@@ -1,0 +1,50 @@
+QUEST 1
+A CHECK_NATION 2 ;엘모라드에 속한 유저
+A CHECK_LV 20 30 ;레벨 20에서 30사이
+A NOEXIST_ITEM 263121000 ;로브를 가지고 있지 않을 때
+A NOEXIST_ITEM 263131000 ;로브를 가지고 있지 않을 때
+E SELECT_MSG 12100 1 2 2 3 3 4 4 -1 -1 -1 -1 ;방어구 주인을 클릭했을 때 1번 대사를 보여주고 클릭할 수 있는 2번과 3번 메뉴를 출력. 2번 메시지를 클릭하면 2번 퀘스트가 실행, 3번은 3번이… 
+END
+
+QUEST 2
+E SELECT_MSG 12100 2 5 5 6 6 -1 -1 -1 -1 -1 -1 ;방어구 주인이 2번 대사를 말하고 5번 메뉴와 7번 메뉴를 보여준다
+END
+
+QUEST 5
+A NOQUEST_END 5
+E GIVE_QUEST 5; 유저가 5번 퀘스트를 받았다는 것을 기록
+E SAY 3 -1 -1 -1 -1 -1 -1 -1 -1 -1 ;3번 대사를 말한다
+END
+
+QUEST 6
+E SAY 4 -1 -1 -1 -1 -1 -1 -1 -1 -1 ;4번 대사를 말한다
+END
+
+QUEST 7
+A CHECK_QUEST_LOG 5 ;유저가 5번 퀘스트를 받았는지 체크
+A EXIT_ITEM 391010000 4 ;퀘스트 완료 아이템 체크
+A EXIT_ITEM 110110000 2 ;퀘스트 완료 아이템 체크
+A CHECK_NOAH 1500 ;퀘스트 완료 노아 체크
+E SAY 5 -1 -1 -1 -1 -1 -1 -1 -1 -1
+E ROB_ITEM 391010000 4 ;퀘스트 아이템 수거
+E ROB_ITEM 110110000 2 ;퀘스트 아이템 수거
+E ROB_NOAH 1500 ;1500 노아 수거
+E RUN_QUEST 8 ;8번 퀘스트 강제 실행
+E RUN_QUEST 9 ;9번 퀘스트 강제 실행
+END
+
+QUEST 8
+A CHECK_RACE 12 ;남자 여부 판단
+E GIVE_ITEM 263121000 ;퀘스트 아이템 준다
+E DONE_QUEST 5
+E SAVE_QUEST 5
+E RETURN
+END
+
+QUEST 9
+A CHECK_RACE 13
+E GIVE_ITEM 263131000
+E DONE_QUEST 5
+E SAVE_QUEST 5
+E RETURN
+END

@@ -1,0 +1,52 @@
+// Copyright (C) 1997-2000 Alias|Wavefront, a division of Silicon Graphics Limited.
+// 
+// The information in this file is provided for the exclusive use of the
+// licensees of Alias|Wavefront.  Such users have the right to use, modify,
+// and incorporate this code into other products for purposes authorized
+// by the Alias|Wavefront license agreement, without fee.
+// 
+// ALIAS|WAVEFRONT DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,
+// INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO
+// EVENT SHALL ALIAS|WAVEFRONT BE LIABLE FOR ANY SPECIAL, INDIRECT OR
+// CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE,
+// DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+// TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+// PERFORMANCE OF THIS SOFTWARE.
+
+// $RCSfile: N3E2TranslatorOpts.mel $     $Revision: /main/7 $
+
+// By Gabor Nagy 1998 Alias|Wavefront
+// Date: 1998.03.02 12:52:44
+
+global proc int N3E2TranslatorOpts ( string $parent,
+									string $action,
+									string $initialSettings,
+									string $resultCallback )
+//
+//	Description:
+//		This script posts the Noah3DExport file translator options.
+//		The optionsString is of the form:
+//			varName1=value1;varName2=value2;...
+//
+//	Parameters:
+//		$parent	- the elf parent layout for this options layout. It is
+//					always a scrollLayout.
+//		$action	- the action that is to be performed with this invokation
+//					of this proc. Valid options are:
+//						"query" - construct the options string and pass it
+//									to the resultCallback.
+//						"post"	- post all the elf controls.
+//		$initialSettings - the current options string in effect at the
+//						   time this script is invoked.
+//		$resultCallback	-
+//				This is the proc to be called with the result string. 
+//				resultCallback ( string $optionsString )
+//
+//	Returns:
+//		1 if successfull.
+//		0 otherwise.
+//
+{
+	$bResult = 1;
+	return $bResult;
+}

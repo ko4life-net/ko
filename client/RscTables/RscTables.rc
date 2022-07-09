@@ -1,0 +1,309 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 18, 1\r\n"
+    "#pragma code_page(949)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\RscTables.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.kor\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\RscTables.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "RscTables 정보"
+FONT 9, "굴림"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "RscTables 버전 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2001",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "확인",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_RSCTABLES_DIALOG DIALOGEX 0, 0, 354, 439
+STYLE WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "RscTables"
+MENU IDR_MENU
+FONT 9, "굴림"
+BEGIN
+    LISTBOX         IDC_LIST_DATATYPE,3,3,150,429,LBS_OWNERDRAWVARIABLE | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "Data0 is must be DWORD type. and it must be identifical number.",
+                    IDC_STATIC,162,9,189,24
+    LTEXT           "Converting\n1. make table by Excel\n2. Save as txt\n3. open enumeration file\n4.  Convert text 2 bin.",
+                    IDC_STATIC,162,39,183,42
+    EDITTEXT        IDC_E_TABLE_BASIC_TXT,192,126,129,12,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "..",IDC_B_OPEN_TABLE_BASIC,324,114,15,24
+    GROUPBOX        "Item Generation",IDC_STATIC,162,87,183,345
+    PUSHBUTTON      "Generate All",IDC_B_GENERATE_ALL,252,405,87,21
+    PUSHBUTTON      "Generate Selected",IDC_B_GENERATE_SELECTED,168,405,84,
+                    21
+    LISTBOX         IDC_LIST_TABLE_EXT,168,169,171,233,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_E_TABLE_BASIC_ENM,192,114,129,12,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Basic Table",IDC_STATIC,192,102,42,8
+    PUSHBUTTON      "..",IDC_B_OPEN_TABLE_EXT_ENUM,324,156,15,12
+    EDITTEXT        IDC_E_TABLE_EXT_ENM,192,157,129,12,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Extension Table",IDC_STATIC,192,144,39,8
+    LTEXT           "*.enm",IDC_STATIC,171,114,21,12,SS_CENTERIMAGE
+    LTEXT           "*.txt",IDC_STATIC,171,126,21,12,SS_CENTERIMAGE
+    LTEXT           "*.enm",IDC_STATIC,171,157,21,12,SS_CENTERIMAGE
+END
+
+IDD_DIALOG_DATACOUNT DIALOG DISCARDABLE  0, 0, 122, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Data Count"
+FONT 9, "굴림"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,7,34,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,65,34,50,14
+    EDITTEXT        IDC_EDIT_COUNT,67,13,48,13,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Input Data Count",IDC_STATIC,7,15,57,10
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,1,10,1632
+ PRODUCTVERSION 2,1,10,1632
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041204b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "Resource Table 변환 프로그램\0"
+            VALUE "FileVersion", "2, 1, 10, 1632\0"
+            VALUE "InternalName", "RscTables\0"
+            VALUE "LegalCopyright", "Copyright (C) 2001\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "RscTables.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "RscTables 응용 프로그램\0"
+            VALUE "ProductVersion", "2, 1, 10, 1632\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x412, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_RSCTABLES_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 347
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 432
+    END
+
+    IDD_DIALOG_DATACOUNT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 115
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New",                        ID_FILE_NEW
+        MENUITEM "Open Table enumeration",      ID_FILE_OPEN_ENUM
+        MENUITEM "Save Tabke enumeration",      ID_FILE_SAVE_ENUM
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_FILE_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Insert before",              ID_EDIT_INSERT
+        MENUITEM "&Delete",                     ID_EDIT_DELETE
+    END
+    POPUP "&Convert"
+    BEGIN
+        MENUITEM "&Text -> Bin",                ID_CONVERT_TEXT2BIN
+        MENUITEM "&Bin -> Text",                ID_CONVERT_BIN2TEXT
+    END
+    POPUP "&Item Generation"
+    BEGIN
+        MENUITEM "Open files list",             ID_ITEM_FILE_LIST_LOAD
+        MENUITEM "Save files list",             ID_ITEM_FILE_LIST_SAVE
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "RscTables 정보(&A)..."
+    IDS_FMT_TABLE_EXT0      "0 : Dagger - "
+    IDS_FMT_TABLE_EXT1      "1 : Sword - "
+    IDS_FMT_TABLE_EXT2      "2 : TwoHanded Sword - "
+    IDS_FMT_TABLE_EXT3      "3 : Axe - "
+    IDS_FMT_TABLE_EXT4      "4 : TwoHanded Axe - "
+    IDS_FMT_TABLE_EXT5      "5 : Mace - "
+    IDS_FMT_TABLE_EXT6      "6 : TwoHanded Mace - "
+    IDS_FMT_TABLE_EXT7      "7 : Spear - "
+    IDS_FMT_TABLE_EXT8      "8 : PollArm - "
+    IDS_FMT_TABLE_EXT9      "9 : Bow - "
+    IDS_FMT_TABLE_EXT10     "10 : Staff - "
+    IDS_FMT_TABLE_EXT11     "11 : Arms for priest - "
+    IDS_FMT_TABLE_EXT12     "12 : Shield - "
+    IDS_FMT_TABLE_EXT13     "13 : Upper - "
+    IDS_FMT_TABLE_EXT14     "14 : Lower - "
+    IDS_FMT_TABLE_EXT15     "15 : Helmet - "
+    IDS_FMT_TABLE_EXT16     "16 : Gauntlet - "
+    IDS_FMT_TABLE_EXT17     "17 : Graves - "
+    IDS_FMT_TABLE_EXT18     "18 : EarRing - "
+    IDS_FMT_TABLE_EXT19     "19 : Amulet - "
+    IDS_FMT_TABLE_EXT20     "20 : Ring - "
+    IDS_FMT_TABLE_EXT21     "21 : Belt - "
+    IDS_FMT_TABLE_EXT22     "22 : Etc - "
+    IDS_FMT_TABLE_EXT23     "23 : Temp, Tester's Ring - "
+END
+
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE 18, 1
+#pragma code_page(949)
+#endif //_WIN32
+#include "res\RscTables.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.kor\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
