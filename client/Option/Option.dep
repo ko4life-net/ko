@@ -1,0 +1,22 @@
+# Microsoft Developer Studio Generated Dependency File, included by Option.mak
+
+.\Option.cpp : \
+	".\Option.h"\
+	".\OptionDlg.h"\
+	".\StdAfx.h"\
+	
+
+.\Option.rc : \
+	".\res\Option.ico"\
+	".\res\Option.rc2"\
+	
+
+.\OptionDlg.cpp : \
+	".\Option.h"\
+	".\OptionDlg.h"\
+	".\StdAfx.h"\
+	
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	

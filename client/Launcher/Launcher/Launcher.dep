@@ -1,0 +1,71 @@
+# Microsoft Developer Studio Generated Dependency File, included by Launcher.mak
+
+.\APISocket.cpp : \
+	".\APISocket.h"\
+	".\BB_CircularBuffer.h"\
+	".\StdAfx.h"\
+	
+
+.\BackgroundUtil.cpp : \
+	".\BackgroundUtil.h"\
+	".\StdAfx.h"\
+	
+
+.\BB_CircularBuffer.cpp : \
+	".\BB_CircularBuffer.h"\
+	".\StdAfx.h"\
+	
+
+.\Launcher.cpp : \
+	"..\ZipArchive\zconf.h"\
+	"..\ZipArchive\ZipArchive.h"\
+	"..\ZipArchive\ZipAutoBuffer.h"\
+	"..\ZipArchive\ZipBigFile.h"\
+	"..\ZipArchive\ZipCentralDir.h"\
+	"..\ZipArchive\ZipException.h"\
+	"..\ZipArchive\ZipFileHeader.h"\
+	"..\ZipArchive\ZipInternalInfo.h"\
+	"..\ZipArchive\ZipStorage.h"\
+	"..\ZipArchive\zlib.h"\
+	".\Define.h"\
+	".\Launcher.h"\
+	".\LauncherDlg.h"\
+	".\MacProgressCtrl.h"\
+	".\StdAfx.h"\
+	
+
+.\Launcher.rc : \
+	".\res\icon1.ico"\
+	".\res\Launcher.ico"\
+	".\res\Launcher.rc2"\
+	
+
+.\LauncherDlg.cpp : \
+	"..\ZipArchive\zconf.h"\
+	"..\ZipArchive\ZipArchive.h"\
+	"..\ZipArchive\ZipAutoBuffer.h"\
+	"..\ZipArchive\ZipBigFile.h"\
+	"..\ZipArchive\ZipCentralDir.h"\
+	"..\ZipArchive\ZipException.h"\
+	"..\ZipArchive\ZipFileHeader.h"\
+	"..\ZipArchive\ZipInternalInfo.h"\
+	"..\ZipArchive\ZipStorage.h"\
+	"..\ZipArchive\zlib.h"\
+	".\APISocket.h"\
+	".\BB_CircularBuffer.h"\
+	".\Define.h"\
+	".\Launcher.h"\
+	".\LauncherDlg.h"\
+	".\MacProgressCtrl.h"\
+	".\PacketDef.h"\
+	".\StdAfx.h"\
+	
+
+.\MacProgressCtrl.cpp : \
+	".\MacProgressCtrl.h"\
+	".\StdAfx.h"\
+	
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	

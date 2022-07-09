@@ -1,0 +1,265 @@
+# Microsoft Developer Studio Generated Dependency File, included by ServerInfoViewer.mak
+
+.\MainFrm.cpp : \
+	"..\N3Base\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Camera.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3EngTool.h"\
+	"..\N3Base\N3Light.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\WaveFile.h"\
+	".\MainFrm.h"\
+	".\ServerInfoViewer.h"\
+	".\StdAfx.h"\
+	
+
+..\N3Base\N3AlphaPrimitiveManager.cpp : \
+	"..\N3Base\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3Base\N3AnimControl.cpp : \
+	"..\N3Base\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3Base\N3AnimKey.cpp : \
+	"..\N3Base\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3Base\N3Base.cpp : \
+	"..\N3Base\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3Base\N3Cloak.h"\
+	"..\N3Base\N3FXPMesh.h"\
+	"..\N3Base\N3FXPMeshInstance.h"\
+	"..\N3Base\N3FXShape.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mesh.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3Base\N3BaseFileAccess.cpp : \
+	"..\N3Base\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3Base\N3Camera.cpp : \
+	"..\N3Base\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Camera.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3Base\N3Eng.cpp : \
+	"..\N3Base\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3Light.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3Base\N3EngTool.cpp : \
+	"..\N3Base\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3EngTool.h"\
+	"..\N3Base\N3Light.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3Base\N3Light.cpp : \
+	"..\N3Base\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Light.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3Base\N3Transform.cpp : \
+	"..\N3Base\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+.\ServerInfoViewer.cpp : \
+	"..\N3Base\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Camera.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3EngTool.h"\
+	"..\N3Base\N3Light.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\WaveFile.h"\
+	".\MainFrm.h"\
+	".\ServerInfoViewer.h"\
+	".\ServerInfoViewerDoc.h"\
+	".\ServerInfoViewerView.h"\
+	".\StdAfx.h"\
+	
+
+.\ServerInfoViewer.rc : \
+	".\res\ServerInfoViewer.ico"\
+	".\res\ServerInfoViewer.rc2"\
+	".\res\ServerInfoViewerDoc.ico"\
+	".\res\Toolbar.bmp"\
+	
+
+.\ServerInfoViewerDoc.cpp : \
+	"..\N3Base\My_3DStruct.h"\
+	".\ServerInfoViewer.h"\
+	".\ServerInfoViewerDoc.h"\
+	".\StdAfx.h"\
+	
+
+.\ServerInfoViewerView.cpp : \
+	"..\N3Base\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Camera.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3EngTool.h"\
+	"..\N3Base\N3Light.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\WaveFile.h"\
+	".\MainFrm.h"\
+	".\ServerInfoViewer.h"\
+	".\ServerInfoViewerDoc.h"\
+	".\ServerInfoViewerView.h"\
+	".\StdAfx.h"\
+	
+
+.\StdAfx.cpp : \
+	"..\N3Base\My_3DStruct.h"\
+	".\StdAfx.h"\
+	

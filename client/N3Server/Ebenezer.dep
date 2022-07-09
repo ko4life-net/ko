@@ -1,0 +1,92 @@
+# Microsoft Developer Studio Generated Dependency File, included by Ebenezer.mak
+
+.\CircularBuffer.cpp : \
+	".\CircularBuffer.h"\
+	".\StdAfx.h"\
+	
+
+.\Ebenezer.cpp : \
+	".\Ebenezer.h"\
+	".\EbenezerDlg.h"\
+	".\IOCPort.h"\
+	".\Map.h"\
+	".\N3Base\My_3DStruct.h"\
+	".\N3Base\N3VMesh.h"\
+	".\StdAfx.h"\
+	
+
+.\Ebenezer.rc : \
+	".\res\Ebenezer.ico"\
+	".\res\Ebenezer.rc2"\
+	
+
+.\EbenezerDlg.cpp : \
+	".\Define.h"\
+	".\Ebenezer.h"\
+	".\EbenezerDlg.h"\
+	".\IOCPort.h"\
+	".\IOCPSocket2.h"\
+	".\Map.h"\
+	".\N3Base\My_3DStruct.h"\
+	".\N3Base\N3VMesh.h"\
+	".\StdAfx.h"\
+	".\User.h"\
+	
+
+.\Global.cpp : \
+	".\Define.h"\
+	".\StdAfx.h"\
+	
+
+.\IOCPort.cpp : \
+	".\Define.h"\
+	".\IOCPort.h"\
+	".\IOCPSocket2.h"\
+	".\StdAfx.h"\
+	
+
+.\IOCPSocket2.cpp : \
+	".\CircularBuffer.h"\
+	".\Define.h"\
+	".\IOCPort.h"\
+	".\IOCPSocket2.h"\
+	".\StdAfx.h"\
+	
+
+.\Map.cpp : \
+	".\Define.h"\
+	".\Map.h"\
+	".\N3Base\My_3DStruct.h"\
+	".\N3Base\N3VMesh.h"\
+	".\Region.h"\
+	".\StdAfx.h"\
+	
+
+.\Region.cpp : \
+	".\N3Base\My_3DStruct.h"\
+	".\N3Base\N3VMesh.h"\
+	".\Region.h"\
+	".\StdAfx.h"\
+	
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	
+
+.\User.cpp : \
+	".\Define.h"\
+	".\Ebenezer.h"\
+	".\EbenezerDlg.h"\
+	".\IOCPort.h"\
+	".\IOCPSocket2.h"\
+	".\Map.h"\
+	".\N3Base\My_3DStruct.h"\
+	".\N3Base\N3VMesh.h"\
+	".\StdAfx.h"\
+	".\User.h"\
+	
+
+.\N3Base\N3VMesh.cpp : \
+	".\N3Base\My_3DStruct.h"\
+	".\N3Base\N3VMesh.h"\
+	
