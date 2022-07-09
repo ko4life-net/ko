@@ -1,0 +1,8 @@
+.vs/
+Release/
+Debug/
+*.exe
+*.pdb
+*.plg
+*.aps
+*.opt
