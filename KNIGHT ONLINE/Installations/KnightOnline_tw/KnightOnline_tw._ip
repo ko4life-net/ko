@@ -1,0 +1,13 @@
+[Project:General]
+Version=3
+SubVersion=1
+
+[Project:Properties:General]
+CurrentMedia=CD-ROM NonCompressed
+CurrentLanguage=1028
+
+[Project:Properties:DepManager]
+Component=
+LogResults=
+Mode=
+

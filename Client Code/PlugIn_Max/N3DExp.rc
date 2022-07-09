@@ -1,0 +1,229 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_EXPORT_OPTION DIALOG DISCARDABLE  0, 0, 211, 216
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Export Option"
+FONT 11, "돋움"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,6,186,96,21
+    PUSHBUTTON      "Cancel",IDCANCEL,105,186,99,21
+    GROUPBOX        "Object Types",IDC_STATIC,6,6,60,78
+    CONTROL         "Geometric",IDC_C_OBJ_GEOMETRY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,21,50,8
+    CONTROL         "Cameras",IDC_C_OBJ_CAMERA,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,33,43,8
+    CONTROL         "Lights",IDC_C_OBJ_LIGHT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,45,35,8
+    CONTROL         "Character",IDC_C_OBJ_CHARACTER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,69,45,8
+    GROUPBOX        "Animation Option",IDC_STATIC,72,6,132,78
+    CONTROL         "Animated Mesh",IDC_C_MESH_ANIMATION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,78,21,95,8
+    CONTROL         "Transform Animation Keys",IDC_C_ANIMATION_KEY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,78,33,99,8
+    RTEXT           "Start",IDC_STATIC,78,51,18,9
+    EDITTEXT        IDC_E_FRAME_START,102,48,27,12,ES_AUTOHSCROLL
+    RTEXT           "End",IDC_STATIC,129,51,18,9
+    EDITTEXT        IDC_E_FRAME_END,150,48,27,12,ES_AUTOHSCROLL
+    RTEXT           "#Sampling",IDC_STATIC,78,66,33,8
+    EDITTEXT        IDC_E_SAMPLING_RATE,117,63,27,12,ES_AUTOHSCROLL
+    RTEXT           "Frame / Sec",IDC_STATIC,147,66,42,8
+    GROUPBOX        "Export Option",IDC_STATIC,6,90,198,90
+    CONTROL         "Normal 다시계산 - 표면 부드럽게 처리",
+                    IDC_C_GENERATE_SMOOTH_NORMAL,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,108,180,8
+    CONTROL         "Progressive Mesh 생성",IDC_C_GENERATE_PROGRESSIVE_MESH,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,120,180,8
+    CONTROL         "Half Size Texture",IDC_C_GENERATE_HALF_SIZE_TEXTURE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,132,180,8
+    CONTROL         "Dummy",IDC_C_OBJ_DUMMY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,57,35,8
+    CONTROL         "Texture Compression (required for game data)",
+                    IDC_C_GENERATE_COMPRESSED_TEXTURE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,144,180,8
+    EDITTEXT        IDC_E_SUBDIR,95,157,100,12,ES_AUTOHSCROLL
+    LTEXT           "sub directory(optional)",IDC_STATIC,15,157,73,12,
+                    SS_CENTERIMAGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_EXPORT_OPTION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 204
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 196
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CURSOR1             CURSOR  DISCARDABLE     "cursor1.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON    DISCARDABLE     "icon1.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP  DISCARDABLE     "bitmap1.bmp"
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,12,23,2146
+ PRODUCTVERSION 1,12,23,2146
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "3DS Max N3Game Export PlugIn\0"
+            VALUE "CompanyName", "NoahSystem\0"
+            VALUE "FileDescription", "3DS Max N3Game Export PlugIn DLL\0"
+            VALUE "FileVersion", "1, 12, 23, 2146\0"
+            VALUE "InternalName", "N3DExp\0"
+            VALUE "LegalCopyright", "\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "N3DExp.dli\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "3D Studio MAX\0"
+            VALUE "ProductVersion", "1, 12, 23, 2146\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CLASS_NAME          "N3DExp"
+    IDS_PARAMS              "Parameters"
+    IDS_SPIN                "Spin"
+    IDS_PROGRESS_MSG        "진행 상황"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

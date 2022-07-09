@@ -1,0 +1,56 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: RscTables - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x412 /fo"Debug/RscTables.res" /d "_DEBUG" /d "_AFXDLL" "D:\骑士在线\骑士cilent code\RscTables\RscTables.rc"" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPD1.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/RscTables.pch" /YX"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\骑士在线\骑士cilent code\RscTables\DlgDataCount.cpp"
+"D:\骑士在线\骑士cilent code\Common Control\PropertyList.cpp"
+"D:\骑士在线\骑士cilent code\RscTables\RscTables.cpp"
+"D:\骑士在线\骑士cilent code\RscTables\RscTablesDlg.cpp"
+"D:\骑士在线\骑士cilent code\RscTables\TableGenerator.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPD1.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPD2.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/RscTables.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\骑士在线\骑士cilent code\RscTables\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPD2.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPD3.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/RscTables_Debug.pdb" /debug /machine:I386 /out:"RscTables_Debug.exe" /pdbtype:sept 
+".\Debug\DlgDataCount.obj"
+".\Debug\PropertyList.obj"
+".\Debug\RscTables.obj"
+".\Debug\RscTablesDlg.obj"
+".\Debug\StdAfx.obj"
+".\Debug\TableGenerator.obj"
+".\Debug\RscTables.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPD3.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+DlgDataCount.cpp
+PropertyList.cpp
+RscTables.cpp
+RscTablesDlg.cpp
+TableGenerator.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+RscTables_Debug.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

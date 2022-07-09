@@ -1,0 +1,223 @@
+Exporting 
+Character Studio R2 Biped Information 
+from 3D Studio MAX R2.X
+
+1.	Introduction
+
+MAX exporters are not always written to handle Biped's non-uniform scaling of biped objects.  Furthermore, exporters are typically concerned with exporting only the node transformations in the hierarchy, rather than the biped default objects themselves.
+
+All bipeds created in Biped 2.0 or earlier store their scale in the transform matrix.  Biped uses non-uniform scaling, which could cause problems during export.  To ease this problem, we have provided two different ways to remove the non-uniform scaling.
+
+1.	A special  keyboard shortcut   operation "control-alt-e" for interactive control (for visual verification only)
+
+2.	A BIPED SDK function call "BipIface->RemoveNonUniformScale(1)" that may be inserted into any existing MAX exporter. (see also bipexp.h, located in the cstudio\docs folder)
+
+Both are described below.  Section 4 describes some MAX SDK calls you can use to get general key-framing information from Biped. Section 6 tells how you can use the Biped export SDK to begin and end figure mode.  We have also included a section 7 on how to remove non-Uniform Scaling for any MAX node (Biped or not) by using the more general MAX SDK function "decomp_affine". This more general technique, however, is not needed if either of the two above ways are used. 
+
+2.	Changes to Biped Scale Storage
+It is important to note that Bipeds created using versions of Biped earlier than 2.1 store their scale in the transform matrix.  You can use the methods described in this document to remove the non-uniform scale from such bipeds. Note that Bipeds created with Biped 2.1 or later store their scale in the object offset matrix.  In theory, it is unnecessary to go through the non-uniform scale removal process for these newer Bipeds. However, since during export there is no clear way to differentiate between these different versions of Bipeds, it is required that non-uniform scaling logic be active during export of all Bipeds, old or new.
+
+NOTE: Removal of Non-uniform scaling will corrupt export of Physique assignments.  It is critical that the methods described below for removal of non-uniform scaling only be active during export of the Biped motion; they should be deactivated during Physique export.
+ 
+Please read the Character Studio realease notes for more information about this.
+
+
+3.	Removing Non-Uniform Scaling using a keyboard shortcut
+
+As a visual test only, a special keyboard shortcut operation  "control-alt-e" has been added that will turn Biped's matrices into ordinary MAX bones with no non-uniform scaling.  (Note: you will have to depress MAX's "Plug-in Keyboard Shortcut Toggle--the white button icon under the MAX viewport, and the Biped motion panel must be visible.)
+     
+When "control-alt-e" is hit, the biped objects will shrink to a uniform scaling of 1.0 in x, y, and z, but the matrix positions will remain the same. In effect, the Biped bones (seen by depressing the Biped "Bones" option in the Biped "Display" pull-down menu) and their Node transforms become identical to MAX bones. The biped polygonal objects will shrink (and look funny) and the center-of-mass object will scale way up, but the biped bones will look the same. Only now the Biped's nodes contain no scaling information, just rotation and position.
+
+Note: This method is meant only as a visual test and should not be employed during export of the Biped data.  Use of this feature a general method for export will corrupt Physique assigments.
+
+Instead, exporters should implement removal of non-uniform scale programmatically using the Biped SDK.  See below for functional access to this feature from Biped's SDK.
+
+     
+4.	Using the MAX SDK to get keyframing information from Biped
+     
+You can find the biped nodes if you know the names of the biped parts. You call the MAX Interface method:
+     
+ INode *GetINodeByName(const TCHAR *name)
+     
+Or you can just check the class of a node's controller.  The Biped class id's are included in bipexp.h.
+     
+To get the controller from an INode, call this MAX  INode method: 
+
+Control *GetTMController().
+     
+To get the vertical, horizontal, and body rotation slave controllers from the body controller call this MAX animatable method:
+     
+Animatable *SubAnim(0) // vertical
+Animatable *SubAnim(1) // horizontal
+Animatable *SubAnim(2) // rotation
+     
+To get the key times from a controller or an animatable call one of  the following MAX animatable methods(the flags parameter in GetKeyTimes is ignored, since we do not have separate keys for position,rotation, and scale):
+     
+BOOL GetNextKeyTime(TimeValue t,DWORD flags,TimeValue &nt) 
+int GetKeyTimes(Tab<TimeValue> &times,Interval range,DWORD flags)
+     
+To get the matrix from an INode at a particular time call this MAX INode method:
+     
+Matrix3 GetNodeTM(TimeValue t, Interval* valid=NULL)
+     
+Biped uses non-uniform scaling, which could cause problems during  export. You should call a Biped exported method to set a flag to remove non-uniform scaling.  The function is called: 
+
+RemoveNonUniformScale( integer FLAG)     
+
+If FLAG is 1, NonUniform scaling is removed
+If FLAG is 0,  NonUniform scaling is put back to its default
+
+NOTE: Removal of Non-uniform scaling will corrupt export of Physique assignments.  It is critical that the NonUnform flag be active only during export of the Biped motion; it should be deactivated during Physique export.
+ 
+       
+5.	Using the Biped Export Interface
+      
+1.	Find the Biped Controller you wish to export from (see sample code below or section 3 above).
+
+2.	Given a Biped controller c, get the Biped Export  Interface:
+              
+IBipedExport *BipIface = (BipedExport*)c->GetInterface(I_BIPINTERFACE);         
+     
+At the moment this interface only allows you to remove the non-uniform scale, and to begin and end figure mode. In the future, more virtual functions will be added, and you'll be able to get more information about the biped via this interface.
+     
+Sample Code
+     
+     // Get a biped node - in this case the root
+     INode *node = ip->GetINodeByName("Bip01");
+     
+     if (node)
+     {
+         // Get the node's transform control
+         Control *c = node->GetTMController();
+     
+         // You can test whether or not this is a biped controller with the following code:
+         if ((c->ClassID() == BIPSLAVE_CONTROL_CLASS_ID) ||
+              (c->ClassID() == BIPBODY_CONTROL_CLASS_ID) 
+              (c->ClassID() == FOOTPRINT_CLASS_ID))
+          {
+       
+                // Get the Biped Export Interface from the controller 
+                IBipedExport *BipIface = (IBipedExport *) c->GetInterface(I_BIPINTERFACE);
+     
+                // Remove the non uniform scale
+                BipIface->RemoveNonUniformScale(1);
+           
+                // Redraw if you want to see the result
+                ip->RedrawViews(ip->GetTime());
+
+                // Release the interface when you are done with it
+                c->ReleaseInterface(I_BIPINTERFACE, BipIface);
+           }
+    }
+     
+     
+6.	Other Functions available in the Biped Export Interface
+
+There are two other functions available from the Biped export interface.  Using them, you can begin or end figure mode.  They are:
+	BeginFigureMode(int redraw);
+	EndFigureMode(int redraw);
+
+If redraw = 0, then the display is not updated in MAX
+If redraw = 1, then the display is  updated in MAX
+
+7.	General Notes on Removing Non-Uniform Scaling
+
+Note: This more general technique is not needed if the above Biped specific techniques are used.
+
+     For each node in a MAX  node hierarchy: 
+     {
+     current_matrix = node->GetNodeTM(t);
+     parent_matrix =  parent_node->GetNodeTM(t);
+     relative_matrix = cur_mat * Inverse( par_mat));
+     Euler angles = Matrix_to_Euler(relative_matrix);
+     }
+
+     //UNIFORM_MATRIX REMOVES 
+     //NON-UNIFORM SCALING FROM MATRIX
+     
+     //must include this in your file's header
+     #include "decomp.h" 
+     
+     Matrix3 Uniform_Matrix(Matrix3 orig_cur_mat)
+     {          
+        AffineParts   parts;  
+        Matrix3       mat;   
+     
+      ///Remove  scaling  from orig_cur_mat
+      //1) Decompose original and get decomposition info
+        decomp_affine(orig_cur_mat, &parts); 
+     
+      //2) construct 3x3 rotation from quaternion parts.q
+        parts.q.MakeMatrix(mat);
+     
+      //3) construct position row from translation parts.t  
+        mat.SetRow(3,  parts.t);
+     
+       return(mat);
+     }
+     
+     //GET_RELATIVE_MATRIX: RETURNS RELATIVE
+     //MATRIX WITHOUT NON_UNIFORM SCALING
+     Matrix3 Get_Relative_Matrix(INode *node, int t)
+     {          
+     /* Note: This function removes the non-uniform scaling 
+     from MAX node transformations. before multiplying the 
+     current node by  the inverse of its parent. The 
+     removal  must be done on both nodes before the 
+     multiplication and Inverse are applied. This is especially 
+     useful for Biped export (which uses non-uniform scaling on 
+     its body parts.) */
+     
+      INode *p_node  =    node->GetParentNode();
+     
+      Matrix3      orig_cur_mat;  // for current and parent 
+      Matrix3     orig_par_mat;  // original matrices 
+     
+      Matrix3      cur_mat;       // for current and parent 
+      Matrix3     par_mat;       // decomposed matrices 
+                                                                         
+      //Get transformation matrices
+      orig_cur_mat   =      node->GetNodeTM(t);
+      orig_par_mat   =    p_node->GetNodeTM(t); 
+      
+     
+      //Decompose each matrix
+      cur_mat =  Uniform_Matrix(orig_cur_mat);
+      par_mat =  Uniform_Matrix(orig_par_mat);
+     
+      //then return relative matrix in coordinate space of parent
+      return(cur_mat * Inverse( par_mat)); 
+     }
+     
+     //POSSIBLE USAGE
+     Matrix3 Get_Relative_Matrix(INode *node, int t);
+     Matrix3 Uniform_Matrix(Matrix3 orig_cur_mat);
+     Matrix3 relative_mat;
+     INode *p_node;
+     TimeValue tm;
+     
+     //For all nodes in biped tree:
+     p_node      =  node->GetParentNode();
+     if (p_node) relative_matrix  =  Get_Relative_Matrix( node, tm);
+     Now convert using:
+     Your_Euler_Angle_Conversion(relative_matrix, &rotx, &roty, &rotz);
+     
+     //NOTE:
+     //TO GET RELATIVE EULER ANGLES, ONE NEEDS TO KNOW YOUR DESIRED 
+     ORDERING //OF ROTATIONS IN CONVERTING FROM THE RELATIVE MATRIX 
+     relative_mat TO
+     //ROTATIONS ABOUT X,Y,Z
+     
+     //Its now the case that: 
+     //uniform_current_matrix = relative_matrix * uniform_parent_matrix
+     
+     //That is for:
+     current_mat      =   Uniform_Matrix(  node->GetNodeTM(tm));
+     parent_mat       =   Uniform_Matrix(p_node->GetNodeTM(tm));
+     relative_mat     =   Get_Relative_Matrix( node, tm);
+     test_current_mat =   relative_mat * parent_mat;
+     //It is true that current_mat equals test_current_mat
+     
+     
+
+

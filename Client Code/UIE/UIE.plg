@@ -1,0 +1,155 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: UIE - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x412 /fo"Debug/UIE.res" /d "_DEBUG" /d "_AFXDLL" "E:\Knight_c\Knight_c\Client Code\UIE\UIE.rc"" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP61.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D "_N3TOOL" /D "_N3UIE" /FR"Debug/" /Fp"Debug/UIE.pch" /YX"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"E:\Knight_c\Knight_c\Client Code\UIE\DlgChangeImage.cpp"
+"E:\Knight_c\Knight_c\Client Code\UIE\DlgUnusedFileList.cpp"
+"E:\Knight_c\Knight_c\Client Code\UIE\HierarchyView.cpp"
+"E:\Knight_c\Knight_c\Client Code\UIE\MainFrm.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3UIList.cpp"
+"E:\Knight_c\Knight_c\Client Code\Common Control\PropertyList.cpp"
+"E:\Knight_c\Knight_c\Client Code\UIE\PropertyView.cpp"
+"E:\Knight_c\Knight_c\Client Code\UIE\StdAfx.cpp"
+"E:\Knight_c\Knight_c\Client Code\UIE\UIE.cpp"
+"E:\Knight_c\Knight_c\Client Code\UIE\UIEDoc.cpp"
+"E:\Knight_c\Knight_c\Client Code\UIE\UIEView.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3UIArea.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3UIBase.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3UIButton.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3UIEdit.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3UIImage.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3UIManager.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3UIProgress.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3UIScrollBar.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3UIStatic.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3UIString.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3UITooltip.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3UITrackBar.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\BitMapFile.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\DFont.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\LogWriter.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3AlphaPrimitiveManager.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3Base.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3BaseFileAccess.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3Eng.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3EngTool.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3Base\N3SndMgr.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3Base\N3SndObj.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3SndObjStream.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3BASE\N3Texture.cpp"
+"E:\Knight_c\Knight_c\Client Code\N3Base\WaveFile.cpp"
+"E:\Knight_c\Knight_c\Client Code\UIE\DlgTexture.cpp"
+"E:\Knight_c\Knight_c\Client Code\UIE\TexViewer.cpp"
+"E:\Knight_c\Knight_c\Client Code\UIE\DlgAnimate.cpp"
+"E:\Knight_c\Knight_c\Client Code\UIE\DlgBar.cpp"
+"E:\Knight_c\Knight_c\Client Code\UIE\DlgReplace.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP61.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP62.tmp" with contents
+[
+d3d8.lib d3dx8.lib dsound.lib dxerr8.lib dxguid.lib winmm.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/UIE_Debug.pdb" /debug /machine:I386 /out:"UIE_Debug.exe" /pdbtype:sept 
+".\Debug\DlgChangeImage.obj"
+".\Debug\DlgUnusedFileList.obj"
+".\Debug\HierarchyView.obj"
+".\Debug\MainFrm.obj"
+".\Debug\N3UIList.obj"
+".\Debug\PropertyList.obj"
+".\Debug\PropertyView.obj"
+".\Debug\StdAfx.obj"
+".\Debug\UIE.obj"
+".\Debug\UIEDoc.obj"
+".\Debug\UIEView.obj"
+".\Debug\N3UIArea.obj"
+".\Debug\N3UIBase.obj"
+".\Debug\N3UIButton.obj"
+".\Debug\N3UIEdit.obj"
+".\Debug\N3UIImage.obj"
+".\Debug\N3UIManager.obj"
+".\Debug\N3UIProgress.obj"
+".\Debug\N3UIScrollBar.obj"
+".\Debug\N3UIStatic.obj"
+".\Debug\N3UIString.obj"
+".\Debug\N3UITooltip.obj"
+".\Debug\N3UITrackBar.obj"
+".\Debug\BitMapFile.obj"
+".\Debug\DFont.obj"
+".\Debug\LogWriter.obj"
+".\Debug\N3AlphaPrimitiveManager.obj"
+".\Debug\N3Base.obj"
+".\Debug\N3BaseFileAccess.obj"
+".\Debug\N3Eng.obj"
+".\Debug\N3EngTool.obj"
+".\Debug\N3SndMgr.obj"
+".\Debug\N3SndObj.obj"
+".\Debug\N3SndObjStream.obj"
+".\Debug\N3Texture.obj"
+".\Debug\WaveFile.obj"
+".\Debug\DlgTexture.obj"
+".\Debug\TexViewer.obj"
+".\Debug\DlgAnimate.obj"
+".\Debug\DlgBar.obj"
+".\Debug\DlgReplace.obj"
+".\Debug\UIE.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP62.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+DlgChangeImage.cpp
+DlgUnusedFileList.cpp
+HierarchyView.cpp
+MainFrm.cpp
+N3UIList.cpp
+PropertyList.cpp
+PropertyView.cpp
+StdAfx.cpp
+UIE.cpp
+UIEDoc.cpp
+UIEView.cpp
+N3UIArea.cpp
+N3UIBase.cpp
+N3UIButton.cpp
+N3UIEdit.cpp
+N3UIImage.cpp
+N3UIManager.cpp
+N3UIProgress.cpp
+N3UIScrollBar.cpp
+N3UIStatic.cpp
+N3UIString.cpp
+N3UITooltip.cpp
+N3UITrackBar.cpp
+BitMapFile.cpp
+DFont.cpp
+LogWriter.cpp
+N3AlphaPrimitiveManager.cpp
+N3Base.cpp
+N3BaseFileAccess.cpp
+N3Eng.cpp
+N3EngTool.cpp
+N3SndMgr.cpp
+N3SndObj.cpp
+N3SndObjStream.cpp
+N3Texture.cpp
+WaveFile.cpp
+DlgTexture.cpp
+TexViewer.cpp
+DlgAnimate.cpp
+DlgBar.cpp
+DlgReplace.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+UIE_Debug.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

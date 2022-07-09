@@ -1,0 +1,14 @@
+[General]
+Type=STRINGTABLESPECIFIC
+Version=1.00.000
+Language=0009
+
+[Data]
+TITLE_MAIN=Knight Online
+TITLE_CAPTIONBAR=Knight Online Setup
+COMPANY_NAME=NoahSystem
+PRODUCT_NAME=Knight Online
+PRODUCT_KEY=Knight Online
+PRODUCT_VERSION=1.068
+FOLDER_NAME=Knight Online
+

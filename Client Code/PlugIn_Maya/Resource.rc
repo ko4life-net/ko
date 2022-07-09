@@ -1,0 +1,201 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PROGRESS DIALOG DISCARDABLE  0, 0, 491, 175
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Progress status ..."
+FONT 9, "돋움"
+BEGIN
+    CONTROL         "Progress1",IDC_PROGRESS,"msctls_progress32",WS_BORDER,3,
+                    3,420,15
+    LISTBOX         IDC_LIST_PROGRESS,3,21,486,150,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Cancel",IDC_B_CANCEL,426,3,63,15
+END
+
+IDD_EXPORT_OPTION DIALOG DISCARDABLE  0, 0, 211, 227
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Export Option"
+FONT 9, "돋움"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,6,183,96,21
+    PUSHBUTTON      "Cancel",IDCANCEL,105,183,99,21
+    GROUPBOX        "Object Types",IDC_STATIC,6,6,60,78
+    CONTROL         "Geometric",IDC_C_OBJ_GEOMETRY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,21,50,8
+    CONTROL         "Cameras",IDC_C_OBJ_CAMERA,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,33,43,8
+    CONTROL         "Lights",IDC_C_OBJ_LIGHT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,45,35,8
+    CONTROL         "Character",IDC_C_OBJ_CHARACTER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,69,45,8
+    GROUPBOX        "Animation Option",IDC_STATIC,72,6,132,78
+    CONTROL         "Animated Mesh",IDC_C_MESH_ANIMATION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,78,21,95,8
+    CONTROL         "Transform Animation Keys",IDC_C_ANIMATION_KEY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,78,33,99,8
+    RTEXT           "Start",IDC_STATIC,78,51,18,9
+    EDITTEXT        IDC_E_FRAME_START,102,48,27,12,ES_AUTOHSCROLL
+    RTEXT           "End",IDC_STATIC,129,51,18,9
+    EDITTEXT        IDC_E_FRAME_END,150,48,27,12,ES_AUTOHSCROLL
+    RTEXT           "#Sampling",IDC_STATIC,78,66,33,8
+    EDITTEXT        IDC_E_SAMPLING_RATE,117,63,27,12,ES_AUTOHSCROLL
+    RTEXT           "Frame / Sec",IDC_STATIC,147,66,42,8
+    GROUPBOX        "Export Option",IDC_STATIC,6,90,198,78
+    CONTROL         "Normal 다시계산 - 표면 부드럽게 처리",
+                    IDC_C_GENERATE_SMOOTH_NORMAL,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,120,180,8
+    CONTROL         "Progressive Mesh 생성",IDC_C_GENERATE_PROGRESSIVE_MESH,
+                    "Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,
+                    15,156,180,8
+    CONTROL         "Half Size Texture",IDC_C_GENERATE_HALF_SIZE_TEXTURE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,132,180,8
+    CONTROL         "Dummy",IDC_C_OBJ_DUMMY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,57,35,8
+    CONTROL         "Texture Compression (required for game data)",
+                    IDC_C_GENERATE_COMPRESSED_TEXTURE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,144,180,8
+    CONTROL         "파일 이름 수정 -> 0_00_0000_0 Format",
+                    IDC_C_GENERATE_FILE_NAME,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,108,180,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_PROGRESS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 484
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 168
+    END
+
+    IDD_EXPORT_OPTION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 204
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 207
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,4,2,1440
+ PRODUCTVERSION 2,4,2,1440
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041204b0"
+        BEGIN
+            VALUE "Comments", "Maya GameData Export PlugIn\0"
+            VALUE "CompanyName", "NoahSystem\0"
+            VALUE "FileDescription", "Maya GameData Export PlugIn DLL\0"
+            VALUE "FileVersion", "2, 4, 2, 1440\0"
+            VALUE "InternalName", "N3Export2\0"
+            VALUE "LegalCopyright", "Copyright ⓒ 2001\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "N3Export2.mll\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "N3Export2\0"
+            VALUE "ProductVersion", "2, 4, 2, 1440\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x412, 1200
+    END
+END
+
+#endif    // !_MAC
+
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

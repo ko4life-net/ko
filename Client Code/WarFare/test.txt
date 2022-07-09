@@ -1,0 +1,590 @@
+"    IDS_BIND_POINT_FAILED   ""ºÎÈ°Àå¼Ò ÁöÁ¤ ½ÇÆÐ"""									"    IDS_BIND_POINT_FAILED   ""?¬¡¦aÂI?©w¥¢±Ñ"""
+"    IDS_BIND_POINT_REQUEST_FAIL ""ºÎÈ°Àå¼ÒÀÇ °Å¸®°¡ ³Ê¹« ¸Ù´Ï´Ù."""									"    IDS_BIND_POINT_REQUEST_FAIL ""?¬¡¦aÂIªº¶ZÂ÷¤Ó»·"""
+"    IDS_BIND_POINT_SUCCESS  ""ºÎÈ°Àå¼Ò ÁöÁ¤ ¼º°ø"""									"    IDS_BIND_POINT_SUCCESS  ""¦¨?ªº?©w¤F?¬¡¦aÂI"""
+"    IDS_CHAT_SELECT_TARGET_FAIL ""±Ó¼Ó¸» ¼³Á¤ÀÌ ½ÇÆÐÇß½À´Ï´Ù."""									"    IDS_CHAT_SELECT_TARGET_FAIL ""??¸Ü?©w¥¢±Ñ."""
+"    IDS_CHAT_SELECT_TARGET_SUCCESS ""´Ô°ú ±Ó¼Ó¸»ÀÌ ¼³Á¤µÇ¾ú½À´Ï´Ù."""									"    IDS_CHAT_SELECT_TARGET_SUCCESS ""»P(¹ï¤è)ªº??¸Ü?©w§¹¦¨."""
+"    IDS_CHR_SELECT_FMT_INFO ""·¹º§ : %d \n\nÁ÷¾÷ : %s\n\n I D : %s"""									"    IDS_CHR_SELECT_FMT_INFO ""µ¥?®t²§¤Ó¤j,©Ò¥HµLªk?¤J¶¤¥î."""
+"    IDS_CHR_SELECT_HINT     ""¸¶¿ì½º ¿ÞÂÊ ¹öÆ°À» \n\n´©¸£½Ã¸é »õ Ä³¸¯ÅÍ¸¦\n\n¸¸µå½Ç ¼ö ÀÖ½À´Ï´Ù."""									"    IDS_CHR_SELECT_HINT     ""\n\n«ö¤U·Æ¹«ªº¥ªÁä, ´N?\n\n°µ¥X??·s¨¤¦â."""
+    IDS_CLASS_CHANGE_ALREADY 									"    IDS_CLASS_CHANGE_ALREADY ""³Ìªñ¦p?°Ú?¬°¤F³Ó§Q,»Ý­n¦V§A³o¼Ëªº¤H?ªº§V¤O°Ú."""
+"    IDS_CLASS_CHANGE_NOT_YET ""ÀÚ³Ù Á»´õ ¼ö·ÃÀÌ ÇÊ¿äÇÑ °Í °°±º."""									"    IDS_CLASS_CHANGE_NOT_YET ""§AÁÙ»Ý­n¦h¦h?½m°Ú."""
+    IDS_CLASS_CHANGE_SUCCESS 									    IDS_CLASS_CHANGE_SUCCESS 
+"    IDS_CLASS_EL_ASSASIN    ""¾î½Ø½Å"""									"    IDS_CLASS_EL_ASSASIN    ""±þ¤â"""
+"    IDS_CLASS_EL_BLADE      ""ºí·¹ÀÌµå"""									"    IDS_CLASS_EL_BLADE      ""ªZ¤h"""
+"    IDS_CLASS_EL_CLERIC     ""Å¬·¹¸¯"""									"    IDS_CLASS_EL_CLERIC     ""ªª®v"""
+"    IDS_CLASS_EL_DRUID      ""µå·çÀÌµå"""									"    IDS_CLASS_EL_DRUID      ""¦ÛµM²½®v"""
+"    IDS_CLASS_EL_ENCHANTER  ""¿£Ã¾ÅÍ"""									"    IDS_CLASS_EL_ENCHANTER  ""¤Û³N®v"""
+"    IDS_CLASS_EL_MAGE       ""¸ÞÀÌÁö"""									"    IDS_CLASS_EL_MAGE       ""³N¤h"""
+"    IDS_CLASS_EL_PROTECTOR  ""ÇÁ·ÎÅØÅÍ"""									"    IDS_CLASS_EL_PROTECTOR  ""?½Ã"""
+"    IDS_CLASS_EL_RANGER     ""·¹ÀÎÀú"""									"    IDS_CLASS_EL_RANGER     ""µs¸é"""
+"    IDS_CLASS_KA_BERSERKER  ""¹ö¼­Ä¿"""									"    IDS_CLASS_KA_BERSERKER  ""¨g¾Ô¤h"""
+"    IDS_CLASS_KA_DARKPRIEST ""´ÙÅ©ÇÁ¸®½ºÆ®"""									"    IDS_CLASS_KA_DARKPRIEST ""µu¼C"""
+"    IDS_CLASS_KA_GUARDIAN   ""°¡µð¾ð"""									"    IDS_CLASS_KA_GUARDIAN   ""¦u?ªÌ"""
+"    IDS_CLASS_KA_HUNTER     ""ÇåÅÍ"""									"    IDS_CLASS_KA_HUNTER     ""¥Ø«eªº??¤O : %d"""
+"    IDS_CLASS_KA_NECROMANCER ""³×Å©·Î¸Ç¼­"""									"    IDS_CLASS_KA_NECROMANCER ""¦ºÆFªk®v"""
+"    IDS_CLASS_KA_PENETRATOR ""Æä³ÊÆ®·¹ÀÌÅÍ"""									"    IDS_CLASS_KA_PENETRATOR ""¼v¤l"""
+"    IDS_CLASS_KA_SHAMAN     ""»þ¸Õ"""									"    IDS_CLASS_KA_SHAMAN     ""§ÅÂå"""
+"    IDS_CLASS_KA_SORCERER   ""¼Ò¼­·¯"""									"    IDS_CLASS_KA_SORCERER   ""§Å®v"""
+"    IDS_CLASS_PRIEST        ""»çÁ¦"""									"    IDS_CLASS_PRIEST        ""²½¥q"""
+"    IDS_CLASS_ROGUE         ""·Î±×"""									"    IDS_CLASS_ROGUE         ""µs¸é¥i°ö¾i¦¨§Q¥ÎÁôÂÃ¨­Åé«á,±µªñ¼Ä¤H?À»ªº±þ¤â»P§Q¥Î?¡B?¨Ó»·¶ZÂ÷?À»ªº¹C«L"""
+"    IDS_CLASS_UNKNOWN       ""¹ÌÈ®ÀÎÁ÷¾÷"""									"    IDS_CLASS_UNKNOWN       ""?½T?¤§Â¾?"""
+"    IDS_CLASS_WARRIOR       ""Àü»ç"""									"    IDS_CLASS_WARRIOR       ""¾Ô¤h"""
+"    IDS_CLASS_WIZARD        ""¸¶¹ý»ç"""									"    IDS_CLASS_WIZARD        ""?ªk®v"""
+"    IDS_CONFIRM_DELETE_CHR  ""Ä³¸¯ÅÍ¸¦ »èÁ¦ÇÏ·Á¸é ÁÖ¹Îµî·Ï ¹øÈ£¸¦ ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À.\n¿¹) 890123-4567890"""									"    IDS_CONFIRM_DELETE_CHR  ""­n¥Ã»·§R°£¦¹¨¤¦â¶Ü?"""
+"    IDS_CONFIRM_EXIT_GAME   ""°ÔÀÓÀ» ³¡³»½Ã°Ú½À´Ï±î?"""									"    IDS_CONFIRM_EXIT_GAME   ""­n²×¤î¹CÀ¸¶Ü?"""
+"    IDS_CONNECTION_CLOSED   ""¼­¹ö¿ÍÀÇ ¿¬°áÀÌ Á¾·á µÇ¾ú½À´Ï´Ù."""									"    IDS_CONNECTION_CLOSED   ""»P?ªA¾¹³s½u¤¤?"""
+"    IDS_COUNTABLE_ITEM_BUY_FAIL ""ÇÑ¹ø¿¡ 9999°³ ÀÌ»óÀÇ ¾ÆÀÌÅÛÀ» »ì¼ö ¾ø½À´Ï´Ù."""									"    IDS_COUNTABLE_ITEM_BUY_FAIL ""µLªk?¦¸ÁÊ¶R9999?¥H¤Wªºª«?"""
+"    IDS_COUNTABLE_ITEM_BUY_NOT_ENOUGH_MONEY ""³ë¾Æ°¡ ºÎÁ·ÇÕ´Ï´Ù."""									"    IDS_COUNTABLE_ITEM_BUY_NOT_ENOUGH_MONEY ""?¹ô¤£¨¬."""
+    IDS_COUNTABLE_ITEM_GET_MANY 									"    IDS_COUNTABLE_ITEM_GET_MANY ""µLªk?¦¸¾Ö¦³9999?¥H¤Wªºª«?"""
+"    IDS_COUNTABLE_ITEM_TOO_MAMY ""9999°³ ÀÌ»óÀÇ ¾ÆÀÌÅÛÀ» °¡Áú¼ö ¾ø½À´Ï´Ù."""									"    IDS_COUNTABLE_ITEM_TOO_MAMY ""µLªk¾Ö¦³9999?¥H¤Wªºª«?."""
+"    IDS_DOOR_CLOSED         ""¼º¹®ÀÌ ´ÝÇû½À´Ï´Ù."""									"    IDS_DOOR_CLOSED         ""«°?¤wÃö"""
+"    IDS_DOOR_OPENED         ""¼º¹®ÀÌ ¿­·È½À´Ï´Ù."""									"    IDS_DOOR_OPENED         ""«°?¥´?¤F"""
+"    IDS_DROPPED_NOAH_GET    ""%d ³ë¾Æ È¹µæ"""									"    IDS_DROPPED_NOAH_GET    ""¨ú±o?¹ô"""
+"    IDS_DURABILITY_EXOAST   ""%s ÀÇ ³»±¸·ÂÀÌ ¸ðµÎ »ç¶óÁ³½À´Ï´Ù."""									"    IDS_DURABILITY_EXOAST   ""%s ?À»¤O¤U?"""
+"    IDS_EDIT_BOX_COUNT      ""¿øÇÏ½Ã´Â °¹¼ö¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À."""									"    IDS_EDIT_BOX_COUNT      ""¿é¤J·Q­nªº¼Æ¶q"""
+"    IDS_EDIT_BOX_GOLD       ""¿øÇÏ½Ã´Â ±Ý¾×À» ÀÔ·ÂÇÏ½Ê½Ã¿À."""									"    IDS_EDIT_BOX_GOLD       ""¿é¤J·Q­nªº?ÃB"""
+"    IDS_ERR_CHARACTER_CREATE ""Ä³¸¯ÅÍ »ý¼º ½ÇÆÐ"""									"    IDS_ERR_CHARACTER_CREATE ""¨¤¦â¥Í¦¨¥¢±Ñ"""
+"    IDS_ERR_CHARACTER_SELECT ""Ä³¸¯ÅÍ¸¦ ¼±ÅÃÇÒ ¼ö ¾ø½À´Ï´Ù."""									"    IDS_ERR_CHARACTER_SELECT ""µLªk¿ï¾Ü¨¤¦â"""
+"    IDS_ERR_DB_CREATE       ""DataBase »ý¼º ½ÇÆÐ."""									"    IDS_ERR_DB_CREATE       ""DataBase ¥Í¦¨¥¢±Ñ."""
+"    IDS_ERR_GOTO_TOWN_OUT_OF_HP ""HP °¡ Àý¹Ý ÀÌÇÏÀÏ¶§´Â ¸¶À»·Î °¥¼ö ¾ø½À´Ï´Ù."""									"    IDS_ERR_GOTO_TOWN_OUT_OF_HP ""¥Í©R¤O¥u¦³?¥b¥H¤U?,µLªk¨ì?²øªº."""
+"    IDS_ERR_INVALID_CLASS   ""Á÷¾÷À» ¼±ÅÃÇØ ÁÖ¼¼¿ä."""									"    IDS_ERR_INVALID_CLASS   ""½Ð¿ï¾ÜÂ¾?"""
+"    IDS_ERR_INVALID_NAME    ""Ä³¸¯ÅÍ ¾ÆÀÌµð¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä."""									"    IDS_ERR_INVALID_NAME    ""½Ð¿é¤J¨¤¦âID"""
+    IDS_ERR_INVALID_NAME_HAS_SPECIAL_LETTER 									"    IDS_ERR_INVALID_NAME_HAS_SPECIAL_LETTER ""³o¬O¤£?¨Ï¥Îªº¨¤¦âID."""
+"    IDS_ERR_INVALID_NATION_RACE ""¼±ÅÃÇÑ ±¹°¡¿Í Á¾Á·ÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù."""									"    IDS_ERR_INVALID_NATION_RACE ""©Ò¿ïªº°ê®a»PºØ±Ú¤£¦X."""
+"    IDS_ERR_INVALID_RACE    ""Á¾Á·À» ¼±ÅÃÇØ ÁÖ¼¼¿ä."""									"    IDS_ERR_INVALID_RACE    ""½Ð¿ï¾ÜºØ±Ú"""
+    IDS_ERR_KNIGHTS_CREATE_FAILED_NAME_EMPTY 									"    IDS_ERR_KNIGHTS_CREATE_FAILED_NAME_EMPTY ""³Ð³yÃM¤h¹Î,¥²¶·­n¦³¦WºÙ."""
+"    IDS_ERR_NO_MORE_CHARACTER ""´õ ÀÌ»óÀÇ Ä³¸¯ÅÍ¸¦ »ý¼ºÇÒ ¼ö ¾ø½À´Ï´Ù."""									"    IDS_ERR_NO_MORE_CHARACTER ""©òÀY"""
+"    IDS_ERR_NOT_SUPPORTED_RACE ""ÀÌ Á¾Á·Àº ¾ÆÁ÷ Áö¿øµÇÁö ¾Ê½À´Ï´Ù."""									"    IDS_ERR_NOT_SUPPORTED_RACE ""¦¹ºØ±Ú¥Ø«eÁÙ?¤ä´©"""
+"    IDS_ERR_OVERLAPPED_ID   ""ÀÌ¹Ì ÀÌ ¾ÆÀÌµð·Î »ý¼ºµÈ Ä³¸¯ÅÍ°¡ ÀÖ¾î¼­ ÀÌ¸§ÀÌ Áßº¹µË´Ï´Ù."""									"    IDS_ERR_OVERLAPPED_ID   ""¦WºÙ?½Æ,¤w¸g¦³¨Ï¥Î¦¹ID¨Ó¥Í¦¨ªº¨¤¦â."""
+"    IDS_ERR_REMAIN_BONUS_POINT ""º¸³Ê½º Æ÷ÀÎÆ®°¡ ³²¾Æ ÀÖ½À´Ï´Ù."""									"    IDS_ERR_REMAIN_BONUS_POINT ""¦³³Ñ¾lªº?§QÂI¼Æ."""
+"    IDS_ERR_REQUEST_NPC_EVENT_SO_FAR ""NPC¿ÍÀÇ °Å¸®°¡ ³Ê¹« ¸Ù´Ï´Ù."""									"    IDS_ERR_REQUEST_OBJECT_EVENT_SO_FAR ""»Pª«¥óªº¶ZÂ÷¤Ó»·"""
+"    IDS_ERR_UNKNOWN         ""¾Ë¼ö ¾ø´Â ¿¡·¯ÀÔ´Ï´Ù."""									"    IDS_ERR_UNKNOWN         ""µLªk±oª¾ªº¿ù?."""
+"    IDS_EXIT                ""Á¾·áÇÏ½Ã°Ú½À´Ï±î?"""									"    IDS_EXIT                ""­nµ²?¶Ü?"""
+"    IDS_FMT_CONCURRENT_USER_COUNT ""*** ÇöÀç µ¿½Ã Á¢¼ÓÀÚ¼ö %d ¸í ***"""									"    IDS_FMT_CONCURRENT_USER_COUNT ""*** ¥Ø«e¦P?¤W½u¤H¼Æ %d ¦W ***"""
+"    IDS_FMT_CONNECT_ERROR   ""%s ¼­¹ö¿¡ Á¢¼ÓÇÒ ¼ö ¾ø½À´Ï´Ù.(%d)"""									"    IDS_FMT_CONNECT_ERROR   ""%s ?ªA¾¹?¦bÀË?¤¤.(%d)"""
+    IDS_FMT_GAME_SERVER_LOGIN_ERROR 									    IDS_FMT_GAME_SERVER_LOGIN_ERROR 
+"    IDS_FONT_BALLOON        ""¾çÀçº»¸ñ°¢Ã¼Med"""									"    IDS_FONT_BALLOON        ""MingLiU"""
+"    IDS_FONT_ID             ""HYºÎÈ°M"""									"    IDS_FONT_ID             ""MingLiU"""
+"    IDS_FONT_INFO           ""¾çÀçº»¸ñ°¢Ã¼Med"""									"    IDS_FONT_INFO           ""MingLiU"""
+"    IDS_HELP_TIP_ALL        ""[³ª¿Â ÆÁ ÇÑ°¡Áö!]"""									"    IDS_HELP_TIP_ALL        ""[¥X¨Ó?ºØ °T? !]"""
+"    IDS_HELP_TIP1           ""¾É¾Æ¼­ ºü¸¥ È¸º¹ - 'C'"""									"    IDS_HELP_TIP1           ""§¤¤U§Ö³t«ì? - 'C'"""
+"    IDS_HELP_TIP10          ""ÀüÁ÷ : 10·¹º§ÀÌ ³ÑÀ¸¸é ÀüÁ÷À» ÇÒ ¼ö ÀÖ½À´Ï´Ù."""									"    IDS_HELP_TIP10          ""ÂàÂ¾ : µ¥?10¥H¤W«á,«K¥i¥HÂàÂ¾."""
+"    IDS_HELP_TIP11          ""¾ÆÀÌÅÛ È¹µæ : ¸ó½ºÅÍ ½ÃÃ¼¿¡ ¿À¸¥ÂÊ Å¬¸¯."""									"    IDS_HELP_TIP11          ""Àò±oª«? : ¦b©Çª««ÍÅé¤W«ö¥kÁä."""
+"    IDS_HELP_TIP12          ""°È°í/¶Ù±â : 'T'"""									"    IDS_HELP_TIP12          ""¨«¸ô/?¨B : 'T'"""
+"    IDS_HELP_TIP13          ""°ø°Ý ½ÃÀÛ/¸ØÃã : 'R' È¤Àº ´õºíÅ¬¸¯."""									"    IDS_HELP_TIP13          ""?À» ?©l/°±¤î : 'R' ©ÎªÌÂùÂI·Æ¹«"""
+"    IDS_HELP_TIP14          ""½ÃÁ¡ º¯È¯ : ´ÜÃàÅ° 'F9' """									"    IDS_HELP_TIP14          ""µøÂI¤Á´« : ¼öÁä'F9'"""
+"    IDS_HELP_TIP15          ""Å°º¸µå ÀÌµ¿Àº 'W,A,S,D' Å°¿Í ¹æÇâ Å°"""									"    IDS_HELP_TIP15          ""Áä½L²¾°Ê¥i¨Ï¥Î'W,A,S,D'»P¤è¦VÁä"""
+"    IDS_HELP_TIP16          ""´ÜÃàÅ°Ã¢ ÄÑ±â/²ô±â : 'H'"""									"    IDS_HELP_TIP16          ""¼öÁäµ¡¤W¤U?ÅÜ°Ê«öÁä :  'PageUp/PageDown'"""
+"    IDS_HELP_TIP17          ""½ºÅ³ »ç¿ë : ´ÜÃàÅ°Ã¢ÀÇ ½ºÅ³¾ÆÀÌÄÜÀ» ´õºíÅ¬¸¯ ¶Ç´Â '1-8'."""									"    IDS_HELP_TIP17          ""¨Ï¥Î§Þ³N : ÂùÂI¼öÁäµ¡ªº§Þ³N¹Ï?©Î'1-8'."""
+"    IDS_HELP_TIP18          ""ÆÄÆ¼¸¦ ¸ÎÀ¸¸é ·¹º§¾÷ ¼Óµµ°¡ »¡¶ó Áý´Ï´Ù."""									"    IDS_HELP_TIP18          ""²Õ¶¤«á,µ¥?´£¤É³t«×??§Ö"""
+"    IDS_HELP_TIP19          ""ÆÄÆ¼±¸ÇÔ ¸Þ½ÃÁö Ç¥½Ã : '/ÆÄÆ¼±¸ÇÔ'"""									"    IDS_HELP_TIP19          ""´M¨D¶¤¥î°T?¼Ð? : '/´M¨D¶¤¥î'"""
+"    IDS_HELP_TIP2           ""ÄõÅÍºä¿¡¼­´Â ¸¶¿ì½º·Î ÀÌµ¿°¡´É."""									"    IDS_HELP_TIP2           ""¦bÄá¼v¼Ò¦¡¸Ì,¥i¨Ï¥Î·Æ¹«²¾°Ê"""
+"    IDS_HELP_TIP20          ""ÆÄÆ¼ ½ÅÃ» : '/ÆÄÆ¼'"""									"    IDS_HELP_TIP20          ""¥Ó½Ð²Õ¶¤ : '/²Õ¶¤'"""
+"    IDS_HELP_TIP21          ""¾ÆÀÌÅÛ °Å·¡ : Å¸°ÙÀ¸·Î ÀâÀº»ó´ë ¿¡°Ô '/°Å·¡'"""									"    IDS_HELP_TIP21          ""ª«?¥æ©ö : §ä??¥Ø¼Ð«á,¥´ '/¥æ©ö'"""
+"    IDS_HELP_TIP22          ""ÆÄÆ¼Ã¤ÆÃ : Ã¤ÆÃÃ¢¿¡¼­ 'Party' ¹öÆ° Å¬¸¯."""									"    IDS_HELP_TIP22          ""¶¤¥î²á¤Ñ : ¦b²á¤Ñµøµ¡¤W,«ö'Party'Áä"""
+"    IDS_HELP_TIP23          ""ÀÏ¹ÝÃ¤ÆÃ : Ã¤ÆÃÃ¢¿¡¼­ 'Say'¹öÆ° Å¬¸¯."""									"    IDS_HELP_TIP23          ""??²á¤Ñ : ¦b²á¤Ñµøµ¡¤WÂI«ö'Say'Áä."""
+"    IDS_HELP_TIP24          ""´É·ÂÄ¡ ½Àµæ : ·¹º§¾÷ÇÒ ¶§¸¶´Ù 3Æ÷ÀÎÆ® ½Àµæ."""									"    IDS_HELP_TIP24          ""?¤O?Àò±o : ¨C?µ¥?,¥i±o¨ì3ÂI."""
+"    IDS_HELP_TIP25          ""½ºÅ³½Àµæ : 10·¹º§ ÀÌ»ó¿¡¼­ ·¹º§¾÷ÇÒ ¶§¸¶´Ù 2Æ÷ÀÎÆ® ½Àµæ."""									"    IDS_HELP_TIP25          ""Àò±o§Þ³N : µ¥?10¥H¤W«á, ¨C¤É?¦¸µ¥??2ÂI."""
+"    IDS_HELP_TIP26          ""¾ÆÀÌÅÛ ¾ø¾Ö±â : ÀÎº¥Åä¸®¿¡¼­ »¡°­»ö ¸¶Å©°¡ ÀÖ´Â ºÎºÐ¿¡ ¾ÆÀÌÅÛ µå·¡±× & µå·Ó."""									"    IDS_HELP_TIP26          ""?°£ª«? : ©ì¦²©Î¥á±¼¦b¹D¨ã¤W,¦³?¦â¼Ð?ªº¦a¤è."""
+"    IDS_HELP_TIP27          ""½ºÅ³ ¼³¸í º¸±â : ½ºÅ³Ã¢¿¡ ÀÖ´Â ¾ÆÀÌÄÜ¿¡ Ä¿¼­¸¦ ³õ½À´Ï´Ù."""									"    IDS_HELP_TIP27          ""¬d¬Ý§Þ³N»¡©ú : §â·Æ¹«²¾°Ê¨ì¹Ï?¤W"""
+"    IDS_HELP_TIP28          ""±Ó¼Ó¸»ÇÏ±â : '/±Ó¼Ó¸»' »ó´ë¹æ¾ÆÀÌµð."""									"    IDS_HELP_TIP28          ""»¡??¸Ü : '/??¸Ü' ¹ï¤èID."""
+"    IDS_HELP_TIP29          ""ÀÚ½ÅÀÇ À§Ä¡ È®ÀÎ : '/À§Ä¡'"""									"    IDS_HELP_TIP29          ""½T?¦Û¤vªº?¸m : '/?¸m'"""
+"    IDS_HELP_TIP3           ""ÀÚµ¿ °È±â/¶Ù±â ÀüÈ¯ - 'E'"""									"    IDS_HELP_TIP3           ""¦Û°ÊÂà´« ¨«¸ô/?¨B - 'E'"""
+"    IDS_HELP_TIP30          ""ÀÚ½ÅÀÇ ¹æÇâ È®ÀÎ : '/¹æÇâ'"""									"    IDS_HELP_TIP30          ""½T?¦Û¤vªº¤è¦V : '/¤è¦V'"""
+"    IDS_HELP_TIP31          ""¹Ì´Ï¸Ê º¸±â : 'M' Àû»ö,ÁÖÈ²»öÀº ÀûÀÔ´Ï´Ù."""									"    IDS_HELP_TIP31          ""¬d¬Ý¤p¦a¹Ï : 'M' ?¦â,¾ï¦â¬°¼Ä¤H"""
+"    IDS_HELP_TIP32          ""´ÜÃàÅ°Ã¢ ÆäÀÌÁö º¯È­ ´ÜÃàÅ° :  'PageUp/PageDown'"""									"    IDS_HELP_TIP32          ""µLªk¦A¥Í¦¨¨¤¦â¤F"""
+"    IDS_HELP_TIP33          ""ÄõÅÍºä¿¡¼­ 'Home / End' Å°·Î Ä«¸Þ¶ó ÀÌµ¿"""									"    IDS_HELP_TIP33          ""¦bÄá¼v¼Ò¦¡¸Ì, ¨Ï¥Î'Home / End'¨Ó²¾°Ê¬Û¾÷"""
+"    IDS_HELP_TIP4           ""¸¶À»·Î ÀÌµ¿ ÇÏ°í ½ÍÀ»¶§  '/¸¶À»'"""									"    IDS_HELP_TIP4           ""·Q­n²¾°Ê¨ì?²ø?¥´ '/?²ø'"""
+"    IDS_HELP_TIP5           ""°¡Àå ±Ù°Å¸®ÀÇ Àû Å¸°ÙÀ¸·Î ÀâÀ½ - 'Z'"""									"    IDS_HELP_TIP5           ""§ì??ªñ¶ZÂ÷ªº©Çª« - 'Z'"""
+"    IDS_HELP_TIP6           ""½ºÅ³»ç¿ë : ´ÜÃàÅ° Ã¢À¸·Î ½ºÅ³¾ÆÀÌÄÜÀ» µå·¡±×."""									"    IDS_HELP_TIP6           ""¨Ï¥Î§Þ³N : ©ì¦²¼öÁäµ¡¸Ìªº§Þ³N¹Ï?"""
+"    IDS_HELP_TIP7           ""ºÎÈ°Àå¼Ò ÁöÁ¤ : ºÎÈ°ºñ¼®À» ¿À¸¥ÂÊ Å¬¸¯."""									"    IDS_HELP_TIP7           ""?©w?¬¡¦aÂI :  ¦b?¬¡¸O?¤W«ö¤SÁä."""
+"    IDS_HELP_TIP8           ""¾ÆÀÌÅÛ ³»±¸·ÂÀº ´ëÀåÀåÀÌ¿¡°Ô."""									"    IDS_HELP_TIP8           ""ª«?ªº??«×½Ð§äÅK¦K."""
+"    IDS_HELP_TIP9           ""¾ÆÀÌÅÛ Ã¢°í : ¿©°üÁÖÀÎ¿¡°Ô ¿À¸¥ÂÊ Å¬¸¯."""									"    IDS_HELP_TIP9           ""ª«??®w : ¦b??¥D¤H¨­¤W«ö¥kÁä."""
+"    IDS_INV_ITEM_FULL       ""ÀÎº¥Åä¸®¿¡ ¾ÆÀÌÅÛÀÌ ²ËÂ÷¼­ ¾ÆÀÌÅÛÀ» ½ÀµæÇÒ¼ö ¾ø½À´Ï´Ù."""									"    IDS_INV_ITEM_FULL       ""¹D¨ãªºª«?¤wº¡, ©Ò¥HµLªk¦AÀò±oª«?¤F."""
+"    IDS_ITEM_ATTRIB_CRAFT   ""Å©·¡ÇÁÆ® ¾ÆÀÌÅÛ"""									"    IDS_ITEM_ATTRIB_CRAFT   ""¾Ôª§ª«?"""
+"    IDS_ITEM_ATTRIB_GENERAL ""ÀÏ¹Ý ¾ÆÀÌÅÛ"""									"    IDS_ITEM_ATTRIB_GENERAL ""??ª«?"""
+"    IDS_ITEM_ATTRIB_LAIR    ""·¹¾î ¾ÆÀÌÅÛ"""									"    IDS_ITEM_ATTRIB_LAIR    ""¹C«L"""
+"    IDS_ITEM_ATTRIB_MAGIC   ""¸ÅÁ÷ ¾ÆÀÌÅÛ"""									"    IDS_ITEM_ATTRIB_MAGIC   ""?ªkª«?"""
+"    IDS_ITEM_ATTRIB_UNIQUE  ""À¯´ÏÅ© ¾ÆÀÌÅÛ"""									"    IDS_ITEM_ATTRIB_UNIQUE  ""¯S?ª«?"""
+"    IDS_ITEM_ATTRIB_UPGRADE ""¾÷±×·¹ÀÌµå ¾ÆÀÌÅÛ"""									"    IDS_ITEM_ATTRIB_UPGRADE ""?·sª«?"""
+"    IDS_ITEM_CLASS_AMULET   ""¸ñ°ÉÀÌ"""									"    IDS_ITEM_CLASS_AMULET   ""¶µÁå"""
+"    IDS_ITEM_CLASS_ARMOR_MAGE ""¸¶¹ý»ç¿ë¹æ¾î±¸"""									"    IDS_ITEM_CLASS_ARMOR_MAGE ""?ªk®v±M¥Î¨¾¨ã"""
+"    IDS_ITEM_CLASS_ARMOR_PRIEST ""»çÁ¦¿ë¹æ¾î±¸"""									"    IDS_ITEM_CLASS_ARMOR_PRIEST ""²½¥q±M¥Î¨¾¨ã"""
+"    IDS_ITEM_CLASS_ARMOR_ROGUE ""·Î±×¿ë¹æ¾î±¸"""									"    IDS_ITEM_CLASS_ARMOR_ROGUE ""µs¸é±M¥Î¨¾¨ã"""
+"    IDS_ITEM_CLASS_ARMOR_WARRIOR ""Àü»ç¿ë¹æ¾î±¸"""									"    IDS_ITEM_CLASS_ARMOR_WARRIOR ""¾Ô¤h±M¥Î¨¾¨ã"""
+"    IDS_ITEM_CLASS_ARROW    ""È­»ì"""									"    IDS_ITEM_CLASS_ARROW    ""½b"""
+"    IDS_ITEM_CLASS_AXE      ""µµ³¢"""									"    IDS_ITEM_CLASS_AXE      ""©òÀY¨¾¿m¤O : %d"""
+"    IDS_ITEM_CLASS_AXE_2H   ""¾ç¼Õµµ³¢"""									"    IDS_ITEM_CLASS_AXE_2H   ""Âù¤â©òÀY"""
+"    IDS_ITEM_CLASS_BELT     ""Çã¸®¶ì"""									"    IDS_ITEM_CLASS_BELT     ""¸y±a"""
+"    IDS_ITEM_CLASS_BOW      ""È°"""									"    IDS_ITEM_CLASS_BOW      ""?"""
+"    IDS_ITEM_CLASS_BOW_CROSS ""¼®±Ã"""									"    IDS_ITEM_CLASS_BOW_CROSS ""??"""
+"    IDS_ITEM_CLASS_BOW_LONG ""°­³ë"""									"    IDS_ITEM_CLASS_BOW_LONG ""±j¨î"""
+"    IDS_ITEM_CLASS_CHARM    ""·é¾ÆÀÌÅÛ"""									"    IDS_ITEM_CLASS_CHARM    ""½üª«?"""
+"    IDS_ITEM_CLASS_DAGGER   ""´Ü°Ë"""									"    IDS_ITEM_CLASS_DAGGER   ""µu¼C¨¾¿m¤O : %d"""
+"    IDS_ITEM_CLASS_EARRING  ""±Í°ÉÀÌ"""									"    IDS_ITEM_CLASS_EARRING  ""¦ÕÀô"""
+"    IDS_ITEM_CLASS_ETC      ""±âÅ¸"""									"    IDS_ITEM_CLASS_ETC      ""¨ä¥L"""
+"    IDS_ITEM_CLASS_JAVELIN  ""ÅõÃ¢"""									"    IDS_ITEM_CLASS_JAVELIN  ""§ë?"""
+"    IDS_ITEM_CLASS_JEWEL    ""º¸¼®Á¾·ù"""									"    IDS_ITEM_CLASS_JEWEL    ""??ºØÃþ"""
+"    IDS_ITEM_CLASS_MACE     ""µÐ±â"""									"    IDS_ITEM_CLASS_MACE     ""¦ÛµM²½¥q"""
+"    IDS_ITEM_CLASS_MACE_2H  ""¾ç¼ÕµÐ±â"""									"    IDS_ITEM_CLASS_MACE_2H  ""Âù¤â¶w¾¹"""
+"    IDS_ITEM_CLASS_POLEARM  ""ÀåÃ¢"""									"    IDS_ITEM_CLASS_POLEARM  ""??"""
+"    IDS_ITEM_CLASS_POTION   ""¹°¾à"""									"    IDS_ITEM_CLASS_POTION   ""ÃÄ¤ô"""
+"    IDS_ITEM_CLASS_RING     ""¹ÝÁö"""									"    IDS_ITEM_CLASS_RING     ""§Ù?"""
+"    IDS_ITEM_CLASS_SCROLL   ""½ºÅ©·Ñ"""									"    IDS_ITEM_CLASS_SCROLL   ""±²¶b"""
+"    IDS_ITEM_CLASS_SHIELD   ""¹æÆÐ"""									"    IDS_ITEM_CLASS_SHIELD   ""¬Þ"""
+"    IDS_ITEM_CLASS_SPEAR    ""Ã¢"""									"    IDS_ITEM_CLASS_SPEAR    ""?"""
+"    IDS_ITEM_CLASS_STAFF    ""ÁöÆÎÀÌ"""									"    IDS_ITEM_CLASS_STAFF    ""??"""
+"    IDS_ITEM_CLASS_SWORD    ""ÇÑ¼Õ°Ë"""									"    IDS_ITEM_CLASS_SWORD    ""³æ¤â¼C"""
+"    IDS_ITEM_CLASS_SWORD_2H ""¾ç¼Õ°Ë"""									"    IDS_ITEM_CLASS_SWORD_2H ""Âù¤â¼C"""
+"    IDS_ITEM_GET_BY_RULE    ""%sÀÇ ¾ÆÀÌÅÛÀ» È¹µæÇß½À´Ï´Ù."""									"    IDS_ITEM_GET_BY_RULE    ""§A¨ú±o%s."""
+"    IDS_ITEM_KIND_ANCIENT   ""¿¡ÀÌ¼ÇÆ®"""									"    IDS_ITEM_KIND_ANCIENT   ""¥j¥N?ÄÝ"""
+"    IDS_ITEM_KIND_BRONS     ""ºê·ÐÁî"""									"    IDS_ITEM_KIND_BRONS     ""«C»É"""
+"    IDS_ITEM_KIND_CRIMSON   ""Å©¸²½¼"""									"    IDS_ITEM_KIND_CRIMSON   ""?¥Õ?"""
+"    IDS_ITEM_KIND_GOLDEN    ""°ñµç"""									"    IDS_ITEM_KIND_GOLDEN    ""?"""
+"    IDS_ITEM_KIND_LUNA      ""·ç³ª"""									"    IDS_ITEM_KIND_LUNA      ""¥Õ»È"""
+"    IDS_ITEM_KIND_MISTIQ    ""¹Ì½ºÆ½"""									"    IDS_ITEM_KIND_MISTIQ    ""±K»È"""
+"    IDS_ITEM_KIND_PLATINUM  ""ÇÃ·¹Æ¼³Ñ"""									"    IDS_ITEM_KIND_PLATINUM  ""¥Õ?"""
+"    IDS_ITEM_KIND_SILVER    ""½Ç¹ö"""									"    IDS_ITEM_KIND_SILVER    ""»È"""
+"    IDS_ITEM_KIND_SOLAR     ""¼Ö¶ó"""									"    IDS_ITEM_KIND_SOLAR     ""ºë?"""
+"    IDS_ITEM_WEIGHT_OVERFLOW ""¹«°Ô Á¦ÇÑÀ» ³Ñ¾î¼¹½À´Ï´Ù."""									"    IDS_ITEM_WEIGHT_OVERFLOW ""¶W¥X?¶q?¨î."""
+"    IDS_KNIGHTS_ADMIT_FAILED ""±â»ç´Ü °¡ÀÔ Çã¶ô ½ÇÆÐ"""									"    IDS_KNIGHTS_ADMIT_FAILED ""ÃM¤h¹Îªº?¤J?¥i¥¢±Ñ"""
+"    IDS_KNIGHTS_ADMIT_SUCCESS ""±â»ç´Ü °¡ÀÔ Çã¶ô ¼º°ø"""									"    IDS_KNIGHTS_ADMIT_SUCCESS ""¦¨?ªº?¥i¤FÃM¤h¹Îªº?¤J"""
+"    IDS_KNIGHTS_APPOINT_CHIEF_FAILED ""±â»ç´ÜÀå ÀÓ¸í ½ÇÆÐ"""									"    IDS_KNIGHTS_APPOINT_CHIEF_FAILED ""ÃM¤h¹Î?¥ô©R¥¢±Ñ"""
+"    IDS_KNIGHTS_APPOINT_CHIEF_SUCCESS ""±â»ç´ÜÀå ÀÓ¸í ¼º°ø"""									"    IDS_KNIGHTS_APPOINT_CHIEF_SUCCESS ""¦¨?ªº¥ô©R¤FÃM¤h¹Î?"""
+"    IDS_KNIGHTS_APPOINT_OFFICER_FAILED ""Àå±³ ÀÓ¸í ½ÇÆÐ"""									"    IDS_KNIGHTS_APPOINT_OFFICER_FAILED ""­x©x¥ô©R¥¢±Ñ"""
+"    IDS_KNIGHTS_APPOINT_OFFICER_SUCCESS ""Àå±³ ÀÓ¸í ¼º°ø"""									"    IDS_KNIGHTS_APPOINT_OFFICER_SUCCESS ""¦¨?ªº¥ô©R¤F­x©x"""
+"    IDS_KNIGHTS_APPOINT_VICECHIEF_FAILED ""±â»ç´Ü ºÎ´ÜÀå ÀÓ¸í ½ÇÆÐ"""									"    IDS_KNIGHTS_APPOINT_VICECHIEF_FAILED ""ÃM¤h¹Î°Æ¹Î?¥ô©R¥¢±Ñ"""
+"    IDS_KNIGHTS_APPOINT_VICECHIEF_SUCCESS ""±â»ç´Ü ºÎ´ÜÀå ÀÓ¸í ¼º°ø"""									"    IDS_KNIGHTS_APPOINT_VICECHIEF_SUCCESS ""¦¨?ªº¥ô©R¤FÃM¤h¹Î°Æ¹Î?"""
+"    IDS_KNIGHTS_CREATE_FAILED ""±â»ç´Ü »ý¼º ½ÇÆÐ"""									"    IDS_KNIGHTS_CREATE_FAILED ""ÃM¤h¹Î¥Í¦¨¥¢±Ñ"""
+"    IDS_KNIGHTS_CREATE_SUCCESS ""±â»ç´Ü »ý¼º ¼º°ø"""									"    IDS_KNIGHTS_CREATE_SUCCESS ""¦¨?ªº¥Í¦¨¤FÃM¤h¹Î"""
+"    IDS_KNIGHTS_DESTROY_CONFIRM ""±â»ç´ÜÀ» ÇØÃ¼ ÇÏ½Ã°Ú½À´Ï±î?"""									"    IDS_KNIGHTS_DESTROY_CONFIRM ""­n¸Ñ´²ÃM¤h¹Î¶Ü?"""
+"    IDS_KNIGHTS_DESTROY_FAILED ""±â»ç´Ü ÇØÃ¼ ½ÇÆÐ"""									"    IDS_KNIGHTS_DESTROY_FAILED ""ÃM¤h¹Î¸Ñ´²¥¢±Ñ"""
+"    IDS_KNIGHTS_DESTROY_SUCCESS ""±â»ç´Ü ÇØÃ¼ ¼º°ø"""									"    IDS_KNIGHTS_DESTROY_SUCCESS ""¦¨?ªº¸Ñ´²¤FÃM¤h¹Î"""
+"    IDS_KNIGHTS_DUTY_CHIEF  ""´ÜÀå"""									"    IDS_KNIGHTS_DUTY_CHIEF  ""ÃM¤h¹Î?"""
+"    IDS_KNIGHTS_DUTY_KNIGHT ""´Ü¿ø"""									"    IDS_KNIGHTS_DUTY_KNIGHT ""ÃM¤h"""
+"    IDS_KNIGHTS_DUTY_OFFICER ""Âü¸ð"""									"    IDS_KNIGHTS_DUTY_OFFICER ""°Ñ¿Ñ"""
+"    IDS_KNIGHTS_DUTY_PUNISH ""Â¡°èÁß"""									"    IDS_KNIGHTS_DUTY_PUNISH ""Ãg§Ù¤¤"""
+"    IDS_KNIGHTS_DUTY_TRAINEE ""°ß½À±â»ç"""									"    IDS_KNIGHTS_DUTY_TRAINEE ""ÃM¤h¨£²ß"""
+"    IDS_KNIGHTS_DUTY_UNKNOWN ""¾øÀ½"""									"    IDS_KNIGHTS_DUTY_UNKNOWN ""¨S¦³"""
+"    IDS_KNIGHTS_DUTY_VICECHIEF ""ºÎ´ÜÀå"""									"    IDS_KNIGHTS_DUTY_VICECHIEF ""°Æ¹Î?"""
+"    IDS_KNIGHTS_JOIN_FAILED ""±â»ç´Ü °¡ÀÔ ½ÇÆÐ"""									"    IDS_KNIGHTS_JOIN_FAILED ""?¤JÃM¤h¹Î¥¢±Ñ"""
+"    IDS_KNIGHTS_JOIN_SUCCESS ""±â»ç´Ü °¡ÀÔ ¼º°ø"""									"    IDS_KNIGHTS_JOIN_SUCCESS ""¦¨?ªº?¤J¤FÃM¤h¹Î"""
+"    IDS_KNIGHTS_PUNISH_FAILED ""±â»ç´Ü¿ø Â¡°è ½ÇÆÐ"""									"    IDS_KNIGHTS_PUNISH_FAILED ""Ãg§ÙÃM¤h¹Î?¥¢±Ñ"""
+"    IDS_KNIGHTS_PUNISH_SUCCESS ""±â»ç´Ü¿ø Â¡°è ¼º°ø"""									"    IDS_KNIGHTS_PUNISH_SUCCESS ""¦¨?ªºÃg§Ù¤FÃM¤h¹Î?"""
+"    IDS_KNIGHTS_REJECT_FAILED ""±â»ç´Ü °¡ÀÔ °ÅÀý ½ÇÆÐ"""									"    IDS_KNIGHTS_REJECT_FAILED ""©Úµ´?¤JÃM¤h¹Î¥¢±Ñ"""
+"    IDS_KNIGHTS_REJECT_SUCCESS ""±â»ç´Ü °¡ÀÔ °ÅÀý ¼º°ø"""									"    IDS_KNIGHTS_REJECT_SUCCESS ""¦¨?ªº©Úµ´?¤J¤FÃM¤h¹Î"""
+"    IDS_KNIGHTS_REMOVE_MEMBER_FAILED ""±â»ç´Ü ¸â¹ö¿¡¼­ Ãß¹æ ½ÇÆÐ"""									"    IDS_KNIGHTS_REMOVE_MEMBER_FAILED ""ÃM¤h¹Î²Õ?°£¦W¥¢±Ñ"""
+"    IDS_KNIGHTS_REMOVE_MEMBER_SUCCESS ""±â»ç´Ü ¸â¹ö¿¡¼­ Ãß¹æ ¼º°ø"""									"    IDS_KNIGHTS_REMOVE_MEMBER_SUCCESS ""¦¨?ªº±NÃM¤h¹Î²Õ?°£¦W¤F"""
+"    IDS_KNIGHTS_WITHDRAW_CONFIRM ""±â»ç´Ü¿¡¼­ Å»ÅðÇÏ½Ã°Ú½À´Ï±î?"""									"    IDS_KNIGHTS_WITHDRAW_CONFIRM ""­n²æÂ÷ÃM¤h¹Î¶Ü?"""
+"    IDS_KNIGHTS_WITHROW_FAILED ""±â»ç´Ü Å»Åð ½ÇÆÐ"""									"    IDS_KNIGHTS_WITHROW_FAILED ""ÃM¤h¹Î²æÂ÷¥¢±Ñ"""
+"    IDS_KNIGHTS_WITHROW_SUCCESS ""±â»ç´Ü Å»Åð ¼º°ø"""									"    IDS_KNIGHTS_WITHROW_SUCCESS ""¦¨?ªº²æÂ÷¤FÃM¤h¹Î"""
+"    IDS_LEVER_ACTIVATE      ""·¹¹ö°¡ ÀÛµ¿µÇ¾ú½À´Ï´Ù."""									"    IDS_LEVER_ACTIVATE      ""±Ò°Ê¤F±±¨î¤â§â"""
+"    IDS_LEVER_DEACTIVATE    ""·¹¹ö°¡ ÀÛµ¿µÇ¾ú½À´Ï´Ù..."""									"    IDS_LEVER_DEACTIVATE    ""µ¥?: %d \n\nÂ¾? : %s\n\n I D : %s"""
+"    IDS_LOGIN_FAILED        ""·Î±×ÀÎ¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù. °í°´Áö¿øÆÀ¿¡ ¿¬¶ôÇØ ÁÖ½Ê½Ã¿À."""									"    IDS_LOGIN_FAILED        ""µn¤J¥¢±Ñ,½Ð»P«ÈªAÁpµ¸."""
+"    IDS_MSG_ATTACK_DISABLE  ""°Å¸®°¡ ¸Ö°Å³ª ¹æÇâÀÌ Æ²·Á °ø°ÝÇÒ ¼ö ¾ø½À´Ï´Ù."""									"    IDS_MSG_ATTACK_DISABLE  ""¶ZÂ÷¤Ó»·©Î¤è¦V¿ù?,¦ÓµLªk¶i??À»"""
+"    IDS_MSG_ATTACK_START    ""°ø°Ý ½ÃÀÛ"""									"    IDS_MSG_ATTACK_START    ""?©l?À»"""
+"    IDS_MSG_ATTACK_STOP     ""°ø°Ý ¸ØÃã"""									"    IDS_MSG_ATTACK_STOP     ""°±¤î?À»"""
+"    IDS_MSG_CASTING_FAIL_LACK_MP ""½ºÅ³ ½ÇÆÐ - MP ºÎÁ·"""									"    IDS_MSG_CASTING_FAIL_LACK_MP ""§Þ³N¥¢±Ñ ¡V ªk¤O¤£¨¬"""
+"    IDS_MSG_FMT_EXP_GET     ""%d °æÇèÄ¡ ¾òÀ½"""									"    IDS_MSG_FMT_EXP_GET     ""±o¨ì%d¸gÅç?"""
+"    IDS_MSG_FMT_EXP_LOST    ""%d °æÇèÄ¡ ÀÒÀ½"""									"    IDS_MSG_FMT_EXP_LOST    ""¥¢¥h%d¸gÅç?"""
+"    IDS_MSG_FMT_HP_LOST     ""%d HP ´ë¹ÌÁö"""									"    IDS_MSG_FMT_HP_LOST     ""·l¶Ë %d ¥Í©R¤O"""
+"    IDS_MSG_FMT_HP_RECOVER  ""%d HP È¸º¹"""									"    IDS_MSG_FMT_HP_RECOVER  ""«ì? %d ¥Í©R¤O"""
+"    IDS_MSG_FMT_MP_RECOVER  ""%d MP È¸º¹"""									"    IDS_MSG_FMT_MP_RECOVER  ""«ì? %d ªk¤O"""
+"    IDS_MSG_FMT_MP_USE      ""%d MP »ç¿ë"""									"    IDS_MSG_FMT_MP_USE      ""¨Ï¥Î %d ªk¤O"""
+"    IDS_MSG_FMT_SP_RECOVER  ""%d SP È¸º¹"""									"    IDS_MSG_FMT_SP_RECOVER  ""«ì? %d SP"""
+"    IDS_MSG_FMT_SP_USE      ""%d SP »ç¿ë"""									"    IDS_MSG_FMT_SP_USE      ""¨Ï¥Î %d SP"""
+"    IDS_MSG_FMT_TARGET_ATTACK_FAILED ""%s °ø°Ý ½ÇÆÐ."""									"    IDS_MSG_FMT_TARGET_ATTACK_FAILED ""%s ?À»¥¢±Ñ."""
+"    IDS_MSG_FMT_TARGET_HP_LOST ""%s¿¡°Ô %d Å¸°Ý"""									"    IDS_MSG_FMT_TARGET_HP_LOST ""Åý%s·l¶Ë¤F%d"""
+"    IDS_MSG_FMT_TARGET_HP_RECOVER ""%sÀÇ HP %d È¸º¹"""									"    IDS_MSG_FMT_TARGET_HP_RECOVER ""%sªº¥Í©R¤O«ì?¤F%d """
+"    IDS_MSG_VALID_CLASSNRACE_INVALID_RACE ""Á¾Á·ÀÌ ¸ÂÁö ¾Ê¾Æ ÀåÂøÀÌ ºÒ°¡"""									"    IDS_MSG_VALID_CLASSNRACE_INVALID_RACE ""ºØ±Ú¤£²Å,©Ò¥HµLªk¸Ë³Æ."""
+"    IDS_MSG_VALID_CLASSNRACE_LOW_CHA ""¸¶·ÂÀÌ ³·¾Æ ÀåÂøÀÌ ºÒ°¡"""									"    IDS_MSG_VALID_CLASSNRACE_LOW_CHA ""?¤O¤£°÷,©Ò¥HµLªk¸Ë³Æ."""
+"    IDS_MSG_VALID_CLASSNRACE_LOW_DEX ""¹ÎÃ¸ÀÌ ³·¾Æ ÀåÂøÀÌ ºÒ°¡"""									"    IDS_MSG_VALID_CLASSNRACE_LOW_DEX ""±Ó±¶¤Ó§C,©Ò¥HµLªk¸Ë³Æ."""
+"    IDS_MSG_VALID_CLASSNRACE_LOW_INT ""Áö´ÉÀÌ ³·¾Æ ÀåÂøÀÌ ºÒ°¡"""									"    IDS_MSG_VALID_CLASSNRACE_LOW_INT ""´¼?¤Ó§C,©Ò¥HµLªk¸Ë³Æ"""
+"    IDS_MSG_VALID_CLASSNRACE_LOW_LEVEL ""·¹º§ÀÌ ³·¾Æ ÀåÂøÀÌ ºÒ°¡"""									"    IDS_MSG_VALID_CLASSNRACE_LOW_LEVEL ""¿àº¸ ª«?"""
+"    IDS_MSG_VALID_CLASSNRACE_LOW_POWER ""ÈûÀÌ ³·¾Æ ÀåÂøÀÌ ºÒ°¡"""									"    IDS_MSG_VALID_CLASSNRACE_LOW_POWER ""¤O¶q¤£¨¬,©Ò¥HµLªk¸Ë³Æ."""
+"    IDS_MSG_VALID_CLASSNRACE_LOW_RANK ""ÀÛÀ§°¡ ³·¾Æ ÀåÂøÀÌ ºÒ°¡"""									"    IDS_MSG_VALID_CLASSNRACE_LOW_RANK ""Â¾?¤Ó§C, ©Ò¥HµLªk¸Ë³Æ."""
+"    IDS_MSG_VALID_CLASSNRACE_LOW_STR ""½ºÅ×¹Ì³ª°¡ ³·¾Æ ÀåÂøÀÌ ºÒ°¡"""									"    IDS_MSG_VALID_CLASSNRACE_LOW_STR ""ºë¤O¤Ó§C,©Ò¥HµLªk¸Ë³Æ."""
+"    IDS_MSG_VALID_CLASSNRACE_LOW_TITLE ""Å¸ÀÌÆ²ÀÌ ³·¾Æ ÀåÂøÀÌ ºÒ°¡"""									"    IDS_MSG_VALID_CLASSNRACE_LOW_TITLE ""ÀY»Î¤Ó§C,©Ò¥HµLªk¸Ë³Æ"""
+"    IDS_NATION_ELMORAD      ""¿¤¸ð¶óµå"""									"    IDS_NATION_ELMORAD      ""·R¾¥º¸"""
+"    IDS_NATION_KARUS        ""Ä«·ç½º"""									"    IDS_NATION_KARUS        ""¥d?´µ"""
+"    IDS_NATION_UNKNOWN      ""¹ÌÈ®ÀÎ±¹°¡"""									"    IDS_NATION_UNKNOWN      ""?½T?¤§°ê®a"""
+"    IDS_NEWCHR_DEX          ""Ä³¸¯ÅÍ°¡ ÀüÅõ Áß ÀûÀÇ °ø°ÝÀ» È¸ÇÇÇÒ ¼ö ÀÖ´Â È®·üÀ» ³ôÀÌ¸ç ·Î±×ÀÇ È­»ì °ø°Ý·ÂÀ» ³ô¿© ÁÖ´Â ´É·ÂÀÔ´Ï´Ù."""									"    IDS_NEWCHR_DEX          ""¦¹?¤O¬O¨¤¦â¦b»P¼Ä¤H¾Ô°«?, ?°÷´£°ª°jÁ×²v, ¨Ã¥B¨M©wµo®g©ÊªZ¾¹,?ªkµ¥ªº©R¤¤²v»P«Â¤O."""
+"    IDS_NEWCHR_EL_BABA      ""¹Ù¹Ù¸®¾ÈÀº °­ÀÎÇÑ À°Ã¼¸¦ ¼ÒÀ¯ÇÑ ºÏ¹æÀÇ Àü»ç·Î Àü»çÀÌ¿ÜÀÇ Á÷¾÷Àº ¼±ÅÃÇÒ ¼ö ¾ø½À´Ï´Ù."""									"    IDS_NEWCHR_EL_BABA      ""³¥?¤H¬O¾Ö¦³±j¶´¦×Åéªº?¤è¾Ô¤h,¾Ô¤h¥H?ªºÂ¾?,¬OµLªk¿ï¾Üªº."""
+"    IDS_NEWCHR_EL_FEMALE    ""¿¤¸ð¶óµð¾È ¿©ÀÚ´Â ³ôÀº Áö´É°ú ¸¶·ÂÀ» ¼ÒÀ¯ÇÑ Ä³¸¯ÅÍÀÔ´Ï´Ù."""									"    IDS_NEWCHR_EL_FEMALE    ""·R¾¥º¸¤H¤k¤l¬O¾Ö¦³°ª´¼?»P¾y¤Oªº¨¤¦â."""
+"    IDS_NEWCHR_EL_MAGE      ""¸¶¹ý»ç´Â 4´ë ¿ø¼ÒÀÇ ÈûÀ» ÀÌ¿ëÇØ °ø°Ý ¸¶¹ýÀ» ±¸»çÇÏ´Â ¸ÞÀÌÁö¿Í Á¤½ÅÀÇ Áö¹èÀÚÀÎ ¿£Ã¾ÅÍ·Î ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."""									"    IDS_NEWCHR_EL_MAGE      ""?ªk®v¥i¥H°ö¾i¦¨§Q¥Î?¤j¤¸?ªº¤O¶q¨ÓÅX¨Ï?À»?ªkªº³N¤h»P¤ä°tºë?ªº¤Û³N®v"""
+"    IDS_NEWCHR_EL_MALE      ""¿¤¸ð¶óµð¾È ³²ÀÚ´Â Ã¼·Â°ú Áö´ÉÀÌ ±ÕÇüÀ» ÀÌ·ç°í ÀÖ¾î ¸ðµç Á÷¾÷¿¡ ÀûÇÕÇÕ´Ï´Ù."""									"    IDS_NEWCHR_EL_MALE      ""·R¾¥º¸¤H¨k¤l¬OÅé¤O»P´¼?§¡¤Ãªº¨¤¦â,¾A¦X©Ò¦³ªºÂ¾?."""
+"    IDS_NEWCHR_EL_PRIEST    ""»çÁ¦´Â µ¿·áÀÇ Ä¡·á¸¦ ÁÖ ÀÓ¹«·Î ÇÏ´Â Å¬·¹¸¯°ú µ¿·áÀÇ ´É·ÂÄ¡¸¦ ³ôÀÌ°Å³ª Àû¿¡°Ô ÀúÁÖ¸¦ °Å´Â µå·çÀÌµå·Î ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."""									"    IDS_NEWCHR_EL_PRIEST    ""²½¥q¥i°ö¾i¦¨ªvÀø¦P?¬°¥Dªºªª®v»P´£°ª¦P??¤O?©Î¶A©G¼Ä¤Hªº¦ÛµM²½¥q"""
+"    IDS_NEWCHR_EL_ROGUE     ""·Î±×´Â ¸öÀ» ¼û±â°í Àû¿¡°Ô ´Ù°¡°¡ Ä¡¸í»óÀ» ÀÔÈ÷´Â ¾î½Ø½Å°ú È°°ú Ã¢À» ÀÌ¿ëÇØ ¿ø°Å¸® °ø°ÝÀ» ÇÏ´Â ·¹ÀÎÁ®·Î ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."""									"    IDS_NEWCHR_EL_ROGUE     ""µs¸é¥i°ö¾i¦¨§Q¥ÎÁôÂÃ¨­Åé«á,±µªñ¼Ä¤H?À»ªº±þ¤â»P§Q¥Î?¡B?¨Ó»·¶ZÂ÷?À»ªº??."""
+"    IDS_NEWCHR_EL_WARRIOR   ""Àü»ç´Â ÁßÀå°©°ú ¸ðµç Á¾·ùÀÇ °ø°Ý ¹«±â¸¦ »ç¿ëÇÏ´Â ºí·¹ÀÌµå¿Í ³ôÀº ¹æ¾î·ÂÀ» ¹ÙÅÁÀ¸·Î ¾Æ±ºÀÇ ¸¶¹ý»ç¿Í »çÁ¦¸¦ º¸È£ÇÏ´Â ÇÁ·ÎÅØÅÍ·Î ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."""									"    IDS_NEWCHR_EL_WARRIOR   ""¾Ô¤h¥i¥H°ö¾i¦¨¥i¥H¨Ï¥Î©Ò¦³?À»©ÊªZ¾¹ªºªZ¤h»P¨¾¿m¤O«Ü°ª,¨Ã¥H«O??ªk®v»P²½ªÁ¬°¨Ï©Rªº?½Ã"""
+"    IDS_NEWCHR_INT          ""¸¶¹ý»ç¿Í »çÁ¦ÀÇ Á¤½Å ¿¡³ÊÁö(MP) ·®°ú ¸¶¹ýÀÇ À§·ÂÀ» °áÁ¤Áþ´Â ´É·ÂÀÔ´Ï´Ù."""									"    IDS_NEWCHR_INT          ""?ªk®v»P²½ªÁªº?ªk«Â¤O¬O¥Hºë??¶q(ªk¤O)ªº¶q¦Ó©wªº."""
+"    IDS_NEWCHR_KA_ARKTUAREK ""¾ÆÅ© Åõ¾Æ·ºÀº À°Ã¼ÀÇ ´É·ÂÀ» ±Ø´ëÈ­ ½ÃÅ² Á¾Á·À¸·Î ¿ÀÁ÷ Àü»ç¸¸À» ¼±ÅÃÇÒ ¼ö ÀÖ½À´Ï´Ù."""									"    IDS_NEWCHR_KA_ARKTUAREK ""¨È§J¹Ï¤H¬O§â¦×´£ªº?¤O·¥¦Ü±j¤ÆªººØ±Ú,¥u¦³¾Ô¤h??¿ï¾Ü."""
+"    IDS_NEWCHR_KA_MAGE      ""¸¶¹ý»ç´Â 4´ë ¿ø¼ÒÀÇ ÈûÀ» ÀÌ¿ëÇØ °ø°Ý ¸¶¹ýÀ» ±¸»çÇÏ´Â ¼Ò¼­·¯¿Í Á×Àº ÀÚµéÀÇ ÁÖÀÎÀÎ ³×Å©·Î¸Ç¼­·Î ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."""									"    IDS_NEWCHR_KA_MAGE      ""?ªk®v¥i¥H°ö¾i¦¨§Q¥Î?¤j¤¸?ªº¤O¶q¨ÓÅX¨Ï?À»?ªkªº§Å®v»P¦ºªÌªº¥D¤H¦ºÆFªk®v"""
+"    IDS_NEWCHR_KA_PRIEST    ""»çÁ¦´Â µ¿·áÀÇ Ä¡·á¸¦ ÁÖ ÀÓ¹«·Î ÇÏ´Â »þ¸¸°ú °­·ÂÇÑ ÀúÁÖÀÇ ´É·ÂÀ» °¡Áø ´ÙÅ© ÇÁ¸®½ºÆ®·Î ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."""									"    IDS_NEWCHR_KA_PRIEST    ""²½¥q¥i°ö¾i¦¨ªvÀø¦P?¬°¥Dªº§ÅÂå»P¶A©G?¤O±jªº¶Â·t²½¥q"""
+    IDS_NEWCHR_KA_PURITUAREK 									    IDS_NEWCHR_KA_PURITUAREK 
+"    IDS_NEWCHR_KA_ROGUE     ""·Î±×´Â ¸öÀ» ¼û±â°í Àû¿¡°Ô ´Ù°¡°¡ Ä¡¸í»óÀ» ÀÔÈ÷´Â ¾î½Ø½Å°ú È°°ú È­»ìÀ» ÀÌ¿ëÇØ ¿ø°Å¸® °ø°ÝÀ» ÇÏ´Â ÇåÅÍ·Î ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."""									"    IDS_NEWCHR_KA_ROGUE     ""µs¸é±M¥Î¨¾¨ã"""
+"    IDS_NEWCHR_KA_TUAREK    ""Åõ¾Æ·ºÀº À°Ã¼ÀûÀÎ ´É·Â°ú Á¤½ÅÀûÀÎ ´É·ÂÀÌ ±ÕÇüÀ» ÀÌ·ç°í ÀÖ´Â Á¾Á·À¸·Î ·Î±×¿Í »çÁ¦ÀÇ Á÷¾÷À» ¼±ÅÃÇÒ ¼ö ÀÖ½À´Ï´Ù."""									"    IDS_NEWCHR_KA_TUAREK    ""¬ð¹p§J¤H¬O¦×Åé»Pºë??¤O³£«Ü§¡¤ÃªººØ±Ú, ¨Ã¥i¿ï¾Üµs¸é»P²½¥qªºÂ¾?"""
+"    IDS_NEWCHR_KA_WARRIOR   ""Àü»ç´Â ÁßÀå°©°ú ¸ðµç Á¾·ùÀÇ °ø°Ý ¹«±â¸¦ »ç¿ëÇÏ´Â ¹ö¼­Ä¿¿Í ³ôÀº ¹æ¾î·ÂÀ» ¹ÙÅÁÀ¸·Î »çÁ¦¿Í ¸¶¹ý»çÀÇ º¸È£ ÀÓ¹«¸¦ ¸Ã´Â °¡µð¾ðÀ¸·Î ¼ºÀåÇÒ ¼ö ÀÖ½À´Ï´Ù."""									"    IDS_NEWCHR_KA_WARRIOR   ""¾Ô¤h¥i¥H°ö¾i¦¨¥i¥H¨Ï¥Î©Ò¦³?À»©ÊªZ¾¹ªº¨g¾Ô¤h»P¨¾¿m¤O«Ü°ª,¨Ã¥H«O??ªk®v»P²½ªÁ¬°¨Ï©Rªº¦u?ªÌ"""
+    IDS_NEWCHR_KA_WRINKLETUAREK 									    IDS_NEWCHR_KA_WRINKLETUAREK 
+"    IDS_NEWCHR_MAP          ""Ä³¸¯ÅÍÀÇ ¸¶¹ý °ø°Ý·ÂÀ» °áÁ¤Áþ´Â ´É·ÂÀÔ´Ï´Ù."""									"    IDS_NEWCHR_MAP          ""³o¬O¼vÅT¨¤¦â?ªk?ªG»P¦¨?²vªº?¤O."""
+"    IDS_NEWCHR_POW          ""¹«±â¸¦ ÀÌ¿ëÇÑ Ä³¸¯ÅÍÀÇ °ø°Ý°ú ¹æ¾î·Â¿¡ ¿µÇâÀ» ¹ÌÄ¡´Â ´É·ÂÀÔ´Ï´Ù."""									"    IDS_NEWCHR_POW          ""³o¬O?¼vÅT¨Ï¥ÎªZ¾¹ªº¨¤¦â¤§?À»»P¨¾¿m¤Oªº?¤O."""
+"    IDS_NEWCHR_STA          ""Ä³¸¯ÅÍÀÇ »ý¸í·Â(HP)À» °áÁ¤ÇÏ´Â ´É·ÂÀÔ´Ï´Ù."""									"    IDS_NEWCHR_STA          ""³o¬O¨M©w¨¤¦â¥Í©R¤O(¥Í©R¤O)±o?¤O"""
+    IDS_NPC_EVENT_TITLE_TRADE 									"    IDS_NPC_EVENT_TITLE_TRADE ""§Ú¨­¤W±a¤F«Ü¦hª«?³á,­n¬Ý¶Ü?"""
+    IDS_NPCEVENT_TITLE_REPAIR 									    IDS_NPCEVENT_TITLE_REPAIR 
+"    IDS_OTHER_PER_TRADE_CANCEL ""%s ´ÔÀÌ °Å·¡¸¦ Ãë¼ÒÇÏ¼Ì½À´Ï´Ù. """									"    IDS_OTHER_PER_TRADE_CANCEL ""%s¨ú?¤F¥æ©ö."""
+"    IDS_OTHER_PER_TRADE_NO  ""%s ´ÔÀÌ °Å·¡¸¦ °ÅÀýÇÏ¼Ì½À´Ï´Ù. """									"    IDS_OTHER_PER_TRADE_NO  ""%s©Úµ´¤F¥æ©ö."""
+"    IDS_PARTY_CONFIRM_DESTROY ""ÆÄÆ¼¸¦ ÇØÃ¼ÇÏ½Ã°Ú½À´Ï±î?"""									"    IDS_PARTY_CONFIRM_DESTROY ""­n¸Ñ´²¶¤¥î¶Ü?"""
+"    IDS_PARTY_CONFIRM_DISCHARGE ""´ÔÀ» ÆÄÆ¼¿¡¼­ Å»Åð½ÃÅ³±î¿ä?"""									"    IDS_PARTY_CONFIRM_DISCHARGE ""(¹ï¤è)?¤J¤F¶¤¥î."""
+"    IDS_PARTY_CONFIRM_LEAVE ""ÆÄÆ¼¿¡¼­ Å»ÅðÇÏ½Ã°Ú½À´Ï±î?"""									"    IDS_PARTY_CONFIRM_LEAVE ""­n²æÂ÷¶¤¥î¶Ü?"""
+"    IDS_PARTY_DESTROY       ""ÆÄÆ¼°¡ ÇØÁ¦µÇ¾ú½À´Ï´Ù."""									"    IDS_PARTY_DESTROY       ""¶¤¥î¤w¸g¸Ñ´²¤F"""
+"    IDS_PARTY_INSERT        ""´ÔÀÌ ÆÄÆ¼¿¡ µé¾î¿Ô½À´Ï´Ù."""									"    IDS_PARTY_INSERT        ""(¹ï¤è)ÁÜ½Ð±z?¤J¶¤¥î.­n?¤J¶Ü?"""
+"    IDS_PARTY_INSERT_ERR    ""ÆÄÆ¼ÃÊ´ë°¡ °ÅÀý µÇ¾ú½À´Ï´Ù."""									"    IDS_PARTY_INSERT_ERR    ""¹ï¤è©Úµ´?¤J¶¤¥î"""
+"    IDS_PARTY_INSERT_ERR_INVALID_NATION ""ÆÄÆ¼¸¦ ¸ÎÀ» ¼ö ¾ø´Â ±¹°¡ÀÔ´Ï´Ù."""									"    IDS_PARTY_INSERT_ERR_INVALID_NATION ""³o¬OµLªk²Õ¶¤ªº°ê®a"""
+    IDS_PARTY_INSERT_ERR_LEVEL_DIFFERENCE 									"    IDS_PARTY_INSERT_ERR_LEVEL_DIFFERENCE ""µ¥?¤Ó§C,©Ò¥HµLªk¸Ë³Æ."""
+"    IDS_PARTY_INSERT_ERR_REJECTED ""ÆÄÆ¼ÃÊ´ë°¡ °ÅÀý µÇ¾ú½À´Ï´Ù."""									"    IDS_PARTY_INSERT_ERR_REJECTED ""¹ï¤è©Úµ´?¤J¶¤¥î"""
+"    IDS_PARTY_INVITE        ""´ÔÀ» ÆÄÆ¼¿¡ ÃÊ´ëÇÏ¿´½À´Ï´Ù. ÀÀ´äÀ» ±â´Ù¸³´Ï´Ù."""									"    IDS_PARTY_INVITE        ""ÁÜ½Ð(¹ï¤è)?¤J¶¤¥î.?¦bµ¥«Ý?À³¤¤."""
+"    IDS_PARTY_INVITE_FAILED ""´ÔÀ» ÆÄÆ¼¿¡ ÃÊ´ëÇÒ¼ö ¾ø½À´Ï´Ù."""									"    IDS_PARTY_INVITE_FAILED ""­n§â(¹ï¤è)°h¥X¶¤¥î¶Ü?"""
+"    IDS_PARTY_ITEM_GET      ""%s(ÀÌ)°¡ %s(À»)¸¦ È¹µæÇß½À´Ï´Ù."""									"    IDS_PARTY_ITEM_GET      ""%s Àò±o¤F %s."""
+"    IDS_PARTY_LEAVE         ""ÆÄÆ¼¿¡¼­ Å»ÅðÇÏ¿´½À´Ï´Ù."""									"    IDS_PARTY_LEAVE         ""±z¤w¸g²æÂ÷¤F¶¤¥î"""
+"    IDS_PARTY_PERMIT        ""´ÔÀÌ ÆÄÆ¼¿¡ ÃÊ´ëÇÏ¿´½À´Ï´Ù. ÆÄÆ¼¿¡ °¡ÀÔÇÏ½Ã°Ú½À´Ï±î?"""									"    IDS_PARTY_PERMIT        ""Àò±o¤F¦h¼Ë§ë?§Þ³N"""
+"    IDS_PER_TRADE_FAIL      ""°Å·¡°¡ ½ÇÆÐµÇ¾ú½À´Ï´Ù.."""									"    IDS_PER_TRADE_FAIL      ""¥æ©ö¥¢±Ñ."""
+"    IDS_PER_TRADEING_OTHER  ""À¯Àú¿Í °Å·¡Áß¿¡ ´Ù¸¥ À¯Àú¿¡°Ô¼­ °Å·¡ ½ÅÃ»ÀÌ ¿Ô½À´Ï´Ù."""									"    IDS_PER_TRADEING_OTHER  ""»Pª±®a¶i?¥æ©ö?¤¤,¤S¦³¨ä¥Lª±®a´£¥X¥æ©ö¥Ó½Ð¤F"""
+    IDS_PERSONAL_TRADE_FMT_WAIT 									"    IDS_PERSONAL_TRADE_FMT_WAIT ""%s ¦V %s ´£¥X¥æ©ö. ¥Ø«e?¦bµ¥?À³¤¤."""
+    IDS_PERSONAL_TRADE_PERMIT 									"    IDS_PERSONAL_TRADE_PERMIT ""%s ¦¬¨ì¤F %s ´£¥Xªº¥æ©ö. ­n±µ¨ü¶Ü?"""
+"    IDS_PERSONAL_TRADE_REQUEST "" ´Ô¿¡°Ô °Å·¡ ½ÅÃ»"""									"    IDS_PERSONAL_TRADE_REQUEST ""¦V(¹ï¤è)¥Ó½Ð¥æ©ö"""
+"    IDS_POINTINIT_ALREADY   ""ÃÊ±âÈ­ÇÒ Æ÷ÀÎÆ®°¡ ¾ø½À´Ï´Ù."""									"    IDS_POINTINIT_ALREADY   ""±ø¥ó¤£¨¬."""
+"    IDS_POINTINIT_NOT_ENOUGH_NOAH ""%d ³ë¾Æ°¡ ÇÊ¿äÇÕ´Ï´Ù."""									"    IDS_POINTINIT_NOT_ENOUGH_NOAH ""?¹ô¤£¨¬."""
+"    IDS_RACE_ALL            ""¸ðµçÁ¾Á·"""									"    IDS_RACE_ALL            ""©Ò¦³ºØ±Ú"""
+"    IDS_RACE_EL_BABARIAN    ""¹Ù¹Ù¸®¾È"""									"    IDS_RACE_EL_BABARIAN    ""³¥?¤H"""
+"    IDS_RACE_EL_MAN         ""¿¤¸ð¶óµð¾È ³²ÀÚ"""									"    IDS_RACE_EL_MAN         ""·R¾¥º¸¤H¡G¨k¤l"""
+"    IDS_RACE_EL_WOMEN       ""¿¤¸ð¶óµð¾È ¿©ÀÚ"""									"    IDS_RACE_EL_WOMEN       ""·R¾¥º¸¤H¡G¤k¤l"""
+"    IDS_RACE_KA_ARKTUAREK   ""¾ÆÅ©Åõ¾Æ·º"""									"    IDS_RACE_KA_ARKTUAREK   ""¨È§J¹Ï¤H"""
+"    IDS_RACE_KA_PURITUAREK  ""Ç»¸® Åõ¾Æ·º"""									"    IDS_RACE_KA_PURITUAREK  ""¬ð¹p§J¡G¤k¶Ä§L"""
+"    IDS_RACE_KA_TUAREK      ""Åõ¾Æ·º"""									"    IDS_RACE_KA_TUAREK      ""¬ð¹p§J¤H"""
+"    IDS_RACE_KA_WRINKLETUAREK ""¸µÅ¬Åõ¾Æ·º"""									"    IDS_RACE_KA_WRINKLETUAREK ""¬ð¹p«È¡G´¼ªÌ"""
+"    IDS_RACE_UNKNOWN        ""¹ÌÈ®ÀÎÁ¾Á·"""									"    IDS_RACE_UNKNOWN        ""?½T?¤§ºØ±Ú"""
+"    IDS_REGENERATION        ""È®ÀÎÀ» ´©¸£¸é ¸¶À», È¤Àº ºÎÈ°Àå¼Ò·Î µ¹¾Æ°©´Ï´Ù."""									"    IDS_REGENERATION        ""«ö¤U½T?,«K¥i²¾°Ê¨ì?²ø©Î?¬¡¦aÂI"""
+"    IDS_REPAIR_LACK_GOLD    ""¼ö¸® ºñ¿ëÀÌ ºÎÁ·ÇÕ´Ï´Ù. """									"    IDS_REPAIR_LACK_GOLD    ""?²z¶O¥Î¤£¨¬"""
+"    IDS_REQUEST_BINDPOINT   ""ÀÌ°÷À» ºÎÈ°Àå¼Ò·Î ÁöÁ¤ÇÏ°Ú½À´Ï±î?"""									"    IDS_REQUEST_BINDPOINT   ""­n?©w³o¸Ì¬°?¬¡¦aÂI¶Ü?"""
+"    IDS_SKILL_FAIL_CASTING  ""Ä³½ºÆÃ ½ÇÆÐ"""									"    IDS_SKILL_FAIL_CASTING  ""²æ³y¥¢±Ñ"""
+"    IDS_SKILL_FAIL_DIFFURENTCLASS ""»ç¿ëÇÒ ¼ö ¾ø´Â ½ºÅ³(¸¶¹ý)ÀÔ´Ï´Ù."""									"    IDS_SKILL_FAIL_DIFFURENTCLASS ""³o¬O¤£?¨Ï¥Îªº§Þ³N(?ªk)."""
+"    IDS_SKILL_FAIL_EFFECTING ""%s ¹«»ê"""									"    IDS_SKILL_FAIL_EFFECTING ""%s ¥¢?"""
+"    IDS_SKILL_FAIL_INVALID_ITEM ""½ºÅ³ ½ÇÆÐ - ¾ÆÀÌÅÛÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù."""									"    IDS_SKILL_FAIL_INVALID_ITEM ""§Þ³N¥¢±Ñ ¡V ª«?¤£¦X"""
+"    IDS_SKILL_FAIL_LACK_HP  ""½ºÅ³ ½ÇÆÐ - HP ºÎÁ·"""									"    IDS_SKILL_FAIL_LACK_HP  ""§Þ³N¥¢±Ñ - ¥Í©R¤O¤£¨¬"""
+"    IDS_SKILL_FAIL_LACK_ITEM ""½ºÅ³ ½ÇÆÐ - ¾ÆÀÌÅÛÀÌ ºÎÁ·ÇÕ´Ï´Ù."""									"    IDS_SKILL_FAIL_LACK_ITEM ""§Þ³N¥¢±Ñ ¡V ª«?¤£¨¬"""
+"    IDS_SKILL_FAIL_LACK_SP  ""½ºÅ³ ½ÇÆÐ - SP ºÎÁ·"""									"    IDS_SKILL_FAIL_LACK_SP  ""§Þ³N¥¢±Ñ ¡V SP¤£¨¬"""
+"    IDS_SKILL_FAIL_SOFAR    ""½ºÅ³ ½ÇÆÐ - °Å¸®°¡ ¸Ù´Ï´Ù."""									"    IDS_SKILL_FAIL_SOFAR    ""§Þ³N¥¢±Ñ ¡V ¶ZÂ÷¤Ó»·"""
+"    IDS_SKILL_INFO_BASE     ""ÀüÁ÷ ÀÌÀü¿¡ °¡Áö´Â ±âº»ÀûÀÎ ½ºÅ³."""									"    IDS_SKILL_INFO_BASE     ""ÂàÂ¾¤§«e,©Ò¾Ö¦³ªº°ò?§Þ³N"""
+"    IDS_SKILL_INFO_BLADE0   ""¿Þ¼ÕÀÇ ¹«±â»ç¿ë´É·ÂÀ» Çâ»ó½ÃÅµ´Ï´Ù[½ÖÄ®]."""									"    IDS_SKILL_INFO_BLADE0   ""´£?¨Ï¥Î¥ª¤âªZ¾¹ªº?¤O(Âù¤M)"""
+"    IDS_SKILL_INFO_BLADE1   ""¾ç¼Õ¹«±â¸¦ »ç¿ëÇÏ´Â ´É·ÂÀ» Çâ»ó½ÃÅµ´Ï´Ù"""									"    IDS_SKILL_INFO_BLADE1   ""´£?¨Ï¥ÎÂù¤âªZ¾¹ªº?¤O"""
+"    IDS_SKILL_INFO_BLADE2   ""¿©·¯°¡Áö ¹æ¾î±â¼úµéÀ» ½ÀµæÇÕ´Ï´Ù."""									"    IDS_SKILL_INFO_BLADE2   ""Àò±o¦h¼Ë¨¾¿m§Þ³N"""
+"    IDS_SKILL_INFO_BLADE3   ""Àü»çÀÇ Á¤½Å·ÂÀ» ÁõÆø½ÃÅµ´Ï´Ù."""									"    IDS_SKILL_INFO_BLADE3   ""¼W?¾Ô¤hªººë?¤O"""
+"    IDS_SKILL_INFO_CLERIC0  ""´Ù¾çÇÑ Ä¡·á¸¶¹ýµéÀ» ½ÀµæÇÕ´Ï´Ù."""									"    IDS_SKILL_INFO_CLERIC0  ""Àò±o¤F¦h¼Ë?½b§Þ³N"""
+"    IDS_SKILL_INFO_CLERIC1  ""´É·ÂÄ¡¸¦ »ó½Â½ÃÅ°´Â ¸¶¹ýÀ» ½ÀµæÇÕ´Ï´Ù."""									"    IDS_SKILL_INFO_CLERIC1  ""Àò±o¤F¥iÅý?¤O?¤W¤Éªº?ªk."""
+"    IDS_SKILL_INFO_CLERIC2  ""°£´ÜÇÑ °ø°Ý¸¶¹ýÀ» ½ÀµæÇÕ´Ï´Ù."""									"    IDS_SKILL_INFO_CLERIC2  ""¥iÀò±oÂ²³æªº?À»?ªk"""
+"    IDS_SKILL_INFO_CLERIC3  ""Á×Àº »ó´ë¸¦ ´Ù½Ã ºÎÈ° ½ÃÅ°´Â ¸¶¹ýÀ» ½ÀµæÇÕ´Ï´Ù."""									"    IDS_SKILL_INFO_CLERIC3  ""Àò±o¤F¥i¥HÅý¦º±¼ªº¹ï¤è?¬¡ªº?ªk"""
+"    IDS_SKILL_INFO_MAGE0    ""ºÒÀ» ÀÌ¿ëÇÑ ´Ù¾çÇÑ ¸¶¹ýÀ» ½ÀµæÇÕ´Ï´Ù."""									"    IDS_SKILL_INFO_MAGE0    ""Àò±o¦h¼Ë§Q¥Î¤õªº?ªk."""
+"    IDS_SKILL_INFO_MAGE1    ""¾óÀ½À» ÀÌ¿ëÇÑ ´Ù¾çÇÑ ¸¶¹ýÀ» ½ÀµæÇÕ´Ï´Ù."""									"    IDS_SKILL_INFO_MAGE1    ""Àò±o¦h¼Ë¨Ï¥Î¦Bªº?ªk"""
+"    IDS_SKILL_INFO_MAGE2    ""Àü°Ý(Àü±â)¸¦ ÀÌ¿ëÇÑ ´Ù¾çÇÑ ¸¶¹ýÀ» ½ÀµæÇÕ´Ï´Ù."""									"    IDS_SKILL_INFO_MAGE2    ""Àò±o¦h¼Ë¨Ï¥Î¹qÀ»(¹q)ªº?ªk"""
+"    IDS_SKILL_INFO_MAGE3    ""¼ÒÈ¯°ú ÀÌµ¿±â¼úÀ» ½ÀµæÇÕ´Ï´Ù."""									"    IDS_SKILL_INFO_MAGE3    ""¥iÀò±o¥l³ê»P²¾°Ê§Þ³N"""
+"    IDS_SKILL_INFO_RANGER0  ""´Ù¾çÇÑ È°±â¼úµéÀ» ½ÀµæÇÕ´Ï´Ù."""									"    IDS_SKILL_INFO_RANGER0  ""¶Â·t²½¥q"""
+"    IDS_SKILL_INFO_RANGER1  ""´Ù¾çÇÑ Ã¢´øÁö±â ±â¼úµéÀ» ½ÀµæÇÕ´Ï´Ù."""									"    IDS_SKILL_INFO_RANGER1  ""Àò±o¤F¦h¼ËªvÀø?ªk"""
+"    IDS_SKILL_INFO_RANGER2  ""Å½»ö¿¡ À¯¿ëÇÑ ´Ù¾çÇÑ ±â¼úµéÀ» ½ÀµæÇÕ´Ï´Ù."""									"    IDS_SKILL_INFO_RANGER2  ""Àò±o¤F¦h¼Ë¥i±´?ªº§Þ³N"""
+"    IDS_SKILL_INFO_RANGER3  ""°¢Á¾ µ¿¹°µéÀ» ±æµéÀÌ´Â ±â¼úµéÀ» ½ÀµæÇÕ´Ï´Ù."""									"    IDS_SKILL_INFO_RANGER3  ""¥iÀò±o°ö°V°Êª«ªº§Þ³N."""
+    IDS_SKILL_POINT_BEFORE_CLASS_CHANGE 									"    IDS_SKILL_POINT_BEFORE_CLASS_CHANGE ""¥Ø«eÁÙ?ÂàÂ¾, ©Ò¥HµLªk´£?±M?§Þ³N."""
+"    IDS_SKILL_POINT_EXTRA_NOT_EXIST ""³²¾ÆÀÖ´Â ½ºÅ³ Æ÷ÀÎÆ®°¡ ¾ø½À´Ï´Ù."""									"    IDS_SKILL_POINT_EXTRA_NOT_EXIST ""¨S¦³©Ò³Ñªº§Þ?ÂI¼Æ¤F."""
+"    IDS_SKILL_POINT_NOT_YET ""¾ÆÁ÷ ±¸ÇöµÇÁö ¾ÊÀº ½ºÅ³ÀÔ´Ï´Ù."""									"    IDS_SKILL_POINT_NOT_YET ""³o¬OÁÙ??ÅX¨Ïªº§Þ³N."""
+"    IDS_SKILL_SUCCESS_HEALING_FROM ""%s¿¡°Ô¼­ %dÈú¸µ"""									"    IDS_SKILL_SUCCESS_HEALING_FROM ""%sªvÀø±z%d"""
+"    IDS_SKILL_SUCCESS_HEALING_TO ""%s¿¡°Ô %dÈú¸µ"""									"    IDS_SKILL_SUCCESS_HEALING_TO ""¦V%sªvÀø¤F%d"""
+"    IDS_SKILL_TOOLTIP_DOUBLE ""¿ä±¸ ¾ÆÀÌÅÛ : ´õºí ÇÚµå"""									"    IDS_SKILL_TOOLTIP_DOUBLE ""­n¨Dª«? : Âù¤âªZ¾¹"""
+"    IDS_SKILL_TOOLTIP_NEED_ITEM_DUAL ""¿ä±¸ ¾ÆÀÌÅÛ : µà¾ó ÇÚµå"""									"    IDS_SKILL_TOOLTIP_NEED_ITEM_DUAL ""­n¨Dª«?: ¤G¤M¬y"""
+"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID1 ""¿ä±¸ ¾ÆÀÌÅÛ : ¸ðµç¹«±â"""									"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID1 ""­n¨Dª«? : ©Ò¦³ªZ¾¹"""
+"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID10 ""¿ä±¸ ¾ÆÀÌÅÛ : ·±Ã³"""									"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID10 ""­n¨Dª«?: ??"""
+"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID11 ""¿ä±¸ ¾ÆÀÌÅÛ : ¸¶¹ý»ç ÁöÆÎÀÌ(staff)"""									"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID11 ""­n¨Dª«? : ?ªk®v?"""
+"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID12 ""¿ä±¸ ¾ÆÀÌÅÛ : È­»ì"""									"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID12 ""­n¨Dª«? : ½b"""
+"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID13 ""¿ä±¸ ¾ÆÀÌÅÛ : ÅõÃ¢"""									"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID13 ""­n¨Dª«? : §ë?"""
+"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID14 ""¿ä±¸ ¾ÆÀÌÅÛ : Àü»ç ¹æ¾î±¸"""									"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID14 ""­n¨Dª«? : ¾Ô¤h¨¾¨ã"""
+"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID15 ""¿ä±¸ ¾ÆÀÌÅÛ : ·Î±× ¹æ¾î±¸"""									"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID15 ""­n¨Dª«? : µs¸é¨¾¿m¨ã"""
+"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID16 ""¿ä±¸ ¾ÆÀÌÅÛ : ¸¶¹ý»ç ¹æ¾î±¸"""									"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID16 ""­n¨Dª«? : ?ªk®v¨¾¨ã"""
+"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID17 ""¿ä±¸ ¾ÆÀÌÅÛ : »çÁ¦ ¹æ¾î±¸"""									"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID17 ""­n¨Dª«? : ²½ªÁ¨¾¨ã"""
+"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID2 ""¿ä±¸ ¾ÆÀÌÅÛ : ´Ü°Ë"""									"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID2 ""­n¨Dª«? : µu¼C"""
+"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID3 ""¿ä±¸ ¾ÆÀÌÅÛ : °Ë"""									"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID3 ""­n¨Dª«? : ¼C"""
+"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID4 ""¿ä±¸ ¾ÆÀÌÅÛ : µµ³¢"""									"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID4 ""­n¨Dª«? : ©òÀY"""
+"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID5 ""¿ä±¸ ¾ÆÀÌÅÛ : Å¸°Ý¹«±â"""									"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID5 ""­n¨Dª«? : ¥´À»ªZ¾¹"""
+"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID6 ""¿ä±¸ ¾ÆÀÌÅÛ : Ã¢"""									"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID6 ""­n¨Dª«? : ?"""
+"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID7 ""¿ä±¸ ¾ÆÀÌÅÛ : ¹æÆÐ"""									"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID7 ""­n¨Dª«? : ¬Þ"""
+"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID8 ""¿ä±¸ ¾ÆÀÌÅÛ : È°"""									"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID8 ""­n¨Dª«? : ?"""
+"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID9 ""¿ä±¸ ¾ÆÀÌÅÛ : ·Õº¸¿ì"""									"    IDS_SKILL_TOOLTIP_NEED_ITEM_ID9 ""­n¨Dª«?: ??"""
+"    IDS_SKILL_TOOLTIP_NO_MANA ""¼Ò¸ð ¸¶³ª ¾øÀ½"""									"    IDS_SKILL_TOOLTIP_NO_MANA ""¨S¦³¥i??ªºªk¤O"""
+"    IDS_SKILL_TOOLTIP_USE_ITEM_EXIST ""¼Ò¸ð ¾ÆÀÌÅÛ : %s"""									"    IDS_SKILL_TOOLTIP_USE_ITEM_EXIST ""??ª«? : %s"""
+"    IDS_SKILL_TOOLTIP_USE_ITEM_NO ""¼Ò¸ð ¾ÆÀÌÅÛ ¾øÀ½"""									"    IDS_SKILL_TOOLTIP_USE_ITEM_NO ""¨S¦³¥i??ªºª«?"""
+"    IDS_SKILL_TOOLTIP_USE_MANA ""¼Ò¸ð ¸¶³ª : %d"""									"    IDS_SKILL_TOOLTIP_USE_MANA ""??ªk¤O : %d"""
+"    IDS_SKILL_UP_INVALID    ""ÀÚ½ÅÀÇ ·¹º§º¸´Ù ÇØ´ç ½ºÅ³À» ¿Ã¸±¼ö ¾ø½À´Ï´Ù."""									"    IDS_SKILL_UP_INVALID    ""µLªk±N§Þ³N´£°ª¨ìµ¥?¥H¤W"""
+"    IDS_SKILL_USE           ""%sÀ»(¸¦) »ç¿ëÇÕ´Ï´Ù."""									"    IDS_SKILL_USE           ""¨Ï¥Î%s."""
+"    IDS_TOOLTIP_ATTACKINT_FAST ""°ø°Ý¼Óµµ : ºü¸§"""									"    IDS_TOOLTIP_ATTACKINT_FAST ""?À»³t«× : §Ö³t"""
+"    IDS_TOOLTIP_ATTACKINT_NORMAL ""°ø°Ý¼Óµµ : º¸Åë"""									"    IDS_TOOLTIP_ATTACKINT_NORMAL ""?À»³t«× : ´¶³q"""
+"    IDS_TOOLTIP_ATTACKINT_SLOW ""°ø°Ý¼Óµµ : ´À¸²"""									"    IDS_TOOLTIP_ATTACKINT_SLOW ""?À»³t«× : ½wºC"""
+"    IDS_TOOLTIP_ATTACKINT_VERYFAST ""°ø°Ý¼Óµµ : ¸Å¿ìºü¸§"""									"    IDS_TOOLTIP_ATTACKINT_VERYFAST ""?À»³t«× : «D?§Ö³t"""
+"    IDS_TOOLTIP_ATTACKINT_VERYSLOW ""°ø°Ý¼Óµµ : ¸Å¿ì´À¸²"""									"    IDS_TOOLTIP_ATTACKINT_VERYSLOW ""?À»³t«× : «D?½wºC"""
+"    IDS_TOOLTIP_ATTACKRANGE ""À¯È¿°Å¸® : %.2f"""									"    IDS_TOOLTIP_ATTACKRANGE ""¦³?¶ZÂ÷ : %.2f"""
+"    IDS_TOOLTIP_ATTRMAGIC1  ""È­¿° µ¥¹ÌÁö : %d"""									"    IDS_TOOLTIP_ATTRMAGIC1  ""¤õÄY·l¶Ë : %d"""
+"    IDS_TOOLTIP_ATTRMAGIC2  ""³Ã±â µ¥¹ÌÁö : %d"""									"    IDS_TOOLTIP_ATTRMAGIC2  ""§N?¶Ë?? : %d"""
+"    IDS_TOOLTIP_ATTRMAGIC3  ""Àü°Ý µ¥¹ÌÁö : %d"""									"    IDS_TOOLTIP_ATTRMAGIC3  ""¹qÀ»·l?"""
+"    IDS_TOOLTIP_ATTRMAGIC4  ""µ¶ µ¥¹ÌÁö : %d"""									"    IDS_TOOLTIP_ATTRMAGIC4  ""¬r©è§Ü : %d"""
+"    IDS_TOOLTIP_ATTRMAGIC5  ""HP Èí¼ö : %d"""									"    IDS_TOOLTIP_ATTRMAGIC5  ""¥Í©R¤O§l¦¬ : %d"""
+"    IDS_TOOLTIP_ATTRMAGIC6  ""MP Å¸°Ý : %d"""									"    IDS_TOOLTIP_ATTRMAGIC6  ""ªk¤O·l¶Ë : %d"""
+"    IDS_TOOLTIP_ATTRMAGIC7  ""MP Èí¼ö"""									"    IDS_TOOLTIP_ATTRMAGIC7  ""ªk¤O§l¦¬"""
+"    IDS_TOOLTIP_AVOIDRATE_OVER ""È¸ÇÇÀ² %d%% Áõ°¡"""									"    IDS_TOOLTIP_AVOIDRATE_OVER ""°jÁ×²v¼W?%d%%"""
+"    IDS_TOOLTIP_AVOIDRATE_UNDER ""È¸ÇÇÀ² %d%% °¨¼Ò"""									"    IDS_TOOLTIP_AVOIDRATE_UNDER ""°jÁ×²v´î¤Ö%d%%"""
+"    IDS_TOOLTIP_BONUSDEX    ""¹ÎÃ¸¼º º¸³Ê½º : %d"""									"    IDS_TOOLTIP_BONUSDEX    ""±Ó±¶ÃB?¼W? %d ÂI"""
+"    IDS_TOOLTIP_BONUSHP     ""HP º¸³Ê½º : %d"""									"    IDS_TOOLTIP_BONUSHP     ""¥Í©R¤OÃB?¼W? %d ÂI"""
+"    IDS_TOOLTIP_BONUSINT    ""Áö´É º¸³Ê½º : %d """									"    IDS_TOOLTIP_BONUSINT    ""´¼?ÃB?¼W? %d ÂI"""
+"    IDS_TOOLTIP_BONUSMAGICATTACK ""¸¶·Â º¸³Ê½º : %d"""									"    IDS_TOOLTIP_BONUSMAGICATTACK ""?¤OÃB?¼W? %d ÂI"""
+"    IDS_TOOLTIP_BONUSSTA    ""Ã¼·Â º¸³Ê½º : %d"""									"    IDS_TOOLTIP_BONUSSTA    ""Åé¤OÃB?¼W? %d ÂI"""
+"    IDS_TOOLTIP_BONUSSTR    ""Èû º¸³Ê½º : %d"""									"    IDS_TOOLTIP_BONUSSTR    ""¤O¶qÃB?¼W? %d ÂI"""
+"    IDS_TOOLTIP_BONUSWIZ    ""¸¶³ª º¸³Ê½º : %d """									"    IDS_TOOLTIP_BONUSWIZ    ""ªk¤OÃB?¼W? %d ÂI"""
+"    IDS_TOOLTIP_BUY_PRICE   ""»ç´Â °¡°Ý : %d """									"    IDS_TOOLTIP_BUY_PRICE   ""¶Rªº»ù¿ú : %d"""
+"    IDS_TOOLTIP_CANNOT      ""¼ö¸®ºÒ°¡¾ÆÀÌÅÛ"""									"    IDS_TOOLTIP_CANNOT      ""¦¹ª«?µLªk??."""
+"    IDS_TOOLTIP_CUR_DURABILITY ""ÇöÀç ³»±¸·Â : %d"""									"    IDS_TOOLTIP_CUR_DURABILITY ""??«× : %d"""
+"    IDS_TOOLTIP_DAMAGE      ""°ø°Ý·Â : %d"""									"    IDS_TOOLTIP_DAMAGE      ""?À»¤O : %d"""
+"    IDS_TOOLTIP_DEFENSE     ""¹æ¾î·Â : %d"""									"    IDS_TOOLTIP_DEFENSE     ""¨¾¿m¤O : %d"""
+"    IDS_TOOLTIP_DEFENSE_RATE_ARROW ""È­»ì ¹æ¾î·Â : %d"""									"    IDS_TOOLTIP_DEFENSE_RATE_ARROW ""½b¨¾¿m¤O : %d"""
+"    IDS_TOOLTIP_DEFENSE_RATE_AXE ""µµ³¢ ¹æ¾î·Â : %d"""									"    IDS_TOOLTIP_DEFENSE_RATE_AXE ""¬r·l¶Ë : %d"""
+"    IDS_TOOLTIP_DEFENSE_RATE_BLOW ""Å¸°Ý ¹æ¾î·Â : %d"""									"    IDS_TOOLTIP_DEFENSE_RATE_BLOW ""¥´À»¨¾¿m¤O : %d"""
+"    IDS_TOOLTIP_DEFENSE_RATE_DAGGER ""´Ü°Ë ¹æ¾î·Â : %d"""									"    IDS_TOOLTIP_DEFENSE_RATE_DAGGER ""¼öÁäµ¡ ?/Ãö : 'H'"""
+"    IDS_TOOLTIP_DEFENSE_RATE_SPEAR ""Ã¢ ¹æ¾î·Â : %d"""									"    IDS_TOOLTIP_DEFENSE_RATE_SPEAR ""?¨¾¿m¤O : %d"""
+"    IDS_TOOLTIP_DEFENSE_RATE_SWORD ""°Ë ¹æ¾î·Â : %d"""									"    IDS_TOOLTIP_DEFENSE_RATE_SWORD ""¼C¨¾¿m¤O : %d"""
+"    IDS_TOOLTIP_GOLD        ""³ë¾Æ"""									"    IDS_TOOLTIP_GOLD        ""¶Ç?¹ô"""
+"    IDS_TOOLTIP_HITRATE_OVER ""°ø°Ý·ü %d%% Áõ°¡"""									"    IDS_TOOLTIP_HITRATE_OVER ""?À»²v¼W?%d%%"""
+"    IDS_TOOLTIP_HITRATE_UNDER ""°ø°ÝÀ² %d%% °¨¼Ò"""									"    IDS_TOOLTIP_HITRATE_UNDER ""?À»²v´î¤Ö%d%% """
+"    IDS_TOOLTIP_MAX_DURABILITY ""ÃÖ´ë ³»±¸·Â : %d"""									"    IDS_TOOLTIP_MAX_DURABILITY ""³Ì¤j??¤O : %d"""
+"    IDS_TOOLTIP_NEEDDEXTERITY ""¿ä±¸ ¹ÎÃ¸ : %d """									"    IDS_TOOLTIP_NEEDDEXTERITY ""­n¨D±Ó±¶ : %d"""
+"    IDS_TOOLTIP_NEEDINTELLI ""¿ä±¸ Áö´É : %d"""									"    IDS_TOOLTIP_NEEDINTELLI ""­n¨D´¼? : %d """
+"    IDS_TOOLTIP_NEEDLEVEL   ""ÇÊ¿ä ·¹º§ : %d"""									"    IDS_TOOLTIP_NEEDLEVEL   ""»Ý­nªºµ¥? : %d"""
+"    IDS_TOOLTIP_NEEDMAGICATTACK ""¿ä±¸ ¸¶·Â : %d"""									"    IDS_TOOLTIP_NEEDMAGICATTACK ""­n¨D¾y¤O : %d"""
+"    IDS_TOOLTIP_NEEDRANK    ""¿ä±¸ ÀÛÀ§ : %d"""									"    IDS_TOOLTIP_NEEDRANK    ""­n¨DÂ¾? : %d"""
+"    IDS_TOOLTIP_NEEDSTAMINA ""¿ä±¸ ½ºÅ×¹Ì³Ê : %d"""									"    IDS_TOOLTIP_NEEDSTAMINA ""­n¨Dºë¤O : %d"""
+"    IDS_TOOLTIP_NEEDSTRENGTH ""¿ä±¸ ±Ù·Â : %d """									"    IDS_TOOLTIP_NEEDSTRENGTH ""­n¨Dµ¬¤O : %d"""
+"    IDS_TOOLTIP_NEEDTITLE   ""¿ä±¸ Å¸ÀÌÆ² : %d"""									"    IDS_TOOLTIP_NEEDTITLE   ""­n¨D¼ÐÃD : %d"""
+"    IDS_TOOLTIP_NOAH        ""³ë¾Æ: %d"""									"    IDS_TOOLTIP_NOAH        ""?¹ô %d"""
+"    IDS_TOOLTIP_REGISTCURSE ""ÀúÁÖ ÀúÇ× : %d"""									"    IDS_TOOLTIP_REGISTCURSE ""¶A©G©è§Ü"""
+"    IDS_TOOLTIP_REGISTELEC  ""Àü°Ý ÀúÇ× : %d"""									"    IDS_TOOLTIP_REGISTELEC  ""¹qÀ»©è§Ü"""
+"    IDS_TOOLTIP_REGISTFIRE  ""ºÒ ÀúÇ× : %d"""									"    IDS_TOOLTIP_REGISTFIRE  ""¤õ©è§Ü : %d"""
+"    IDS_TOOLTIP_REGISTICE   ""³Ã±â ÀúÇ× : %d """									"    IDS_TOOLTIP_REGISTICE   ""§N?©è§Ü : %d"""
+"    IDS_TOOLTIP_REGISTMAGIC ""¸¶¹ý ÀúÇ× : %d"""									"    IDS_TOOLTIP_REGISTMAGIC ""?ªk©è§Ü : %d"""
+"    IDS_TOOLTIP_REGISTPOISON ""µ¶ ÀúÇ× : %d"""									"    IDS_TOOLTIP_REGISTPOISON ""¶w¾¹"""
+"    IDS_TOOLTIP_REPAIR_PRICE ""¼ö¸®°¡°Ý"""									"    IDS_TOOLTIP_REPAIR_PRICE ""??¶O¥Î"""
+"    IDS_TOOLTIP_SELL_PRICE  ""ÆÄ´Â °¡°Ý : %d"""									"    IDS_TOOLTIP_SELL_PRICE  ""½æªº»ù¿ú : %d"""
+"    IDS_TOOLTIP_WEIGHT      ""¹«°Ô : %.2f"""									"    IDS_TOOLTIP_WEIGHT      ""?¶q : %.2f"""
+"    IDS_TRY_SPEED_HACKING   ""½ºÇÇµå ÇØÅ·ÀÌ ½ÃµµµÇ¾ú½À´Ï´Ù."""									"    IDS_TRY_SPEED_HACKING   ""¹Á¸Õ¨Ï¥Î¤F?³t?¦¡."""
+"    IDS_URL_JOIN            ""http://www.knight-online.net"""									"    IDS_URL_JOIN            ""http://www.knight-online.net"""
+"    IDS_VERSION_CONFIRM     ""ÀÌ Å¬¶óÀÌ¾ðÆ®ÀÇ ¹öÀüÀº %.3f ÀÌ¸ç ÀÌ ¼­¹ö¿¡ Á¢¼ÓÇÏ·Á¸é %.3f ¹öÀüÀÌ ÇÊ¿äÇÕ´Ï´Ù."""									"    IDS_VERSION_CONFIRM     ""¦¹clientªºª©?¬°%.3f , ­n³s±µ?ªA¾¹¥²¶·­n¦³%.3f ª©?."""
+#endif    // Korean resources									#endif    // Chinese (Taiwan) resources
+#endif //_WIN32									#endif    // not APSTUDIO_INVOKED
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)									#ifndef APSTUDIO_INVOKED
+#ifdef _WIN32									//
+#pragma code_page(950)									//
+//									//
+//									//
+// Chinese (Taiwan) resources									// Generated from the TEXTINCLUDE 3 resource.
+// String Table									// String Table
+/////////////////////////////////////////////////////////////////////////////									/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////									/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////									/////////////////////////////////////////////////////////////////////////////
+BEGIN									/////////////////////////////////////////////////////////////////////////////
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									BEGIN
+BEGIN									END
+BEGIN									END
+BEGIN									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									END
+END									STRINGTABLE DISCARDABLE 
+END									STRINGTABLE DISCARDABLE 
+END									STRINGTABLE DISCARDABLE 
+END									STRINGTABLE DISCARDABLE 
+END									STRINGTABLE DISCARDABLE 
+END									STRINGTABLE DISCARDABLE 
+END									STRINGTABLE DISCARDABLE 
+"LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL"									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE 									
+STRINGTABLE DISCARDABLE 									
+STRINGTABLE DISCARDABLE 									
+STRINGTABLE DISCARDABLE 									
+STRINGTABLE DISCARDABLE 									
+STRINGTABLE DISCARDABLE 									
+STRINGTABLE DISCARDABLE 									
+STRINGTABLE DISCARDABLE 									
+STRINGTABLE DISCARDABLE 									
+STRINGTABLE DISCARDABLE 									
+STRINGTABLE DISCARDABLE 									
+STRINGTABLE DISCARDABLE 									

@@ -1,0 +1,698 @@
+EVENT 01
+E RUN_EVENT 02 ; 강제 이벤트 실행 1번 (퀘스트 완료 후)
+E RUN_EVENT 03 ; 이벤트 강제 실행 2번 (퀘스트 진행) 전사
+E RUN_EVENT 109; 이벤트 강제 실행 2번 (퀘스트 진행) 궁사
+E RUN_EVENT 110; 이벤트 강제 실행 2번 (퀘스트 진행) 제사장
+E RUN_EVENT 39 ; 이벤트 강제 실행 2-1번 (퀘스트 진행)
+E RUN_EVENT 04 ; 이벤트 강제 실행 3번 (퀘스트를 부여)
+END
+
+EVENT 02 ; 조건부의 대화(카심에게 퀘스트 1번 끝낸후 대화하기)
+A QUEST_END 1 ; 1번 퀘스트 완료 조건  
+A MORAL 0
+E SELECT_MEG 101 1 1 05 24 10
+E RETURN
+END
+
+EVENT 03 ; 라쿰 마을 무기구 상점
+A MORAL 0
+A CLASS 0
+A QUEST_LOG 1 1 ;1번 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 471 10 ;아이템존재 유무 체크 
+E SAY 19 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 471 10 ; 조건 아이템 회수  
+E GIVE_RAND_ITEM 1 2 2 2 2 2 1 12 16 16 ;(아이템 타입)(일반 아이템 번호1)(일반 아이템 번호2)(일반 아이템 번호3)(일반 아이템 번호4)(일반 아이템 번호5)(접두사1 최소)(접두사1최대)(접두사2최소)(접두사2최대)                        
+E MESSAGE 매직 무기구 아이템을 받았습니다.
+E QUEST_END 1 ; 퀘스트 1번 끝내기
+E RETURN
+END
+
+EVENT 04
+A MORAL 0
+E SELECT_MEG 101 1 1 05 24 10 30 08 ; 퀘스트 부여
+END
+
+EVENT 05 
+E STORE_OPEN 1; 라쿰 마을 무기구상점 실행
+END
+
+EVENT 08 ;카심의 대화 결정 과정
+E SELECT_MEG 101 10 22 41 23 42
+END
+
+EVENT 09
+A MORAL 0
+E SELECT_MEG 102 2 24 10  ; 라쿰 마을 방어구 이벤트
+END
+
+EVENT 10 
+E STORE_OPEN 2 ; 라쿰 마을 방어구상점 실행
+END
+
+EVENT 12 ; 창고 실행
+E BANK_OPEN 
+END
+
+EVENT 14 ; 카심의 퀘스트 과정에서 예를 선택한 경우
+E RUN_EVENT 15 ; 강제 이벤트 실행 1번 (퀘스트 완료 후)
+E RUN_EVENT 16 ; 이벤트 강제 실행 2번 (퀘스트 진행)
+END
+
+EVENT 15 ; 기존 퀘스트 여부 체크
+A NOEXIST_QUEST
+A NOQUEST_END 1 
+E GIVE_QUEST 1 1
+E RETURN
+END
+
+EVENT 16 ; 카심의 퀘스트 부여
+A EXIST_QUEST 
+E SAY 21 -1 -1 -1 -1 -1 -1 -1 -1 -1
+END
+
+EVENT 17 
+E SAY 13 14 15 16 17 18 19 20 -1 -1
+END
+
+EVENT 19 
+E STORE_OPEN 4; 라쿰 마을 장신구상점 실행
+END
+
+EVENT 21 ; 번역소 (라쿰 마을)
+A MORAL 0
+E SELECT_MEG 105 7 5 22 6 23 
+END
+
+EVENT 22 ; 마법 사기
+E MAGIC_SHOP 
+END
+
+EVENT 23 ; 마법 배우기 
+E MAGIC_DECODE 
+END
+ 
+EVENT 24 ;대화하기
+E SAY 25 26 -1 -1 -1 -1 -1 -1 -1 -1
+END
+
+EVENT 26 ; 전사 스킬
+E SELECT_MEG 104 8 10 84 11 85 
+END
+
+EVENT 27 ; 궁사 스킬
+E SELECT_MEG 104 8 12 86 13 87 
+END
+
+EVENT 28 ; 제작자 스킬 
+E SELECT_MEG 104 8 14 88 15 89 16 90 
+END
+
+EVENT 29
+E SAY -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+END
+
+EVENT 30 ; 텔레포트 상점 (라쿰 마을)
+A MORAL 0
+E SELECT_MEG 109 9 1 31 17 32 2 33
+END
+
+EVENT 31 ; 마법문서 구입
+E TELE_SHOP 
+END
+
+EVENT 32 ; 텔레포트 하기 
+E TELE_TOWN 
+END
+
+EVENT 33
+E SAY 31 32 -1 -1 -1 -1 -1 -1 -1 -1 
+END
+
+EVENT 34
+E RUN_EVENT 107; 퀘스트5번 콘드겔이 상아장식품을 준다.
+E RUN_EVENT 35 ; 강제 이벤트 실행 35번(퀘스트 완료 후)
+E RUN_EVENT 44 ; 이벤트 강제 실행 44번(퀘스트 진행2-2)
+E RUN_EVENT 45 ; 이벤트 강제 실행 45번(퀘스트 진행2-1)
+E RUN_EVENT 46 ; 이벤트 강제 실행 46번(퀘스트를 부여)
+E RUN_EVENT 56 ; 일반 상점 열기(퀘스트 얻을 자격 없을때)
+END
+
+EVENT 35
+A QUEST_END 2
+A MORAL 0
+E SELECT_MEG 103 3 19 47 ; 라쿰 소모품 상점 이벤트
+E RETURN
+END
+
+EVENT 36
+A MORAL 0
+E SELECT_MEG 110 6 4 37 18 38
+END
+
+EVENT 37 ; 세겔에서 다릭으로
+E EXCHANGE_SHOP 50001 
+END
+
+EVENT 38 ; 다릭에서 세겔로
+E EXCHANGE_SHOP 60001
+END
+
+EVENT 39 ;퀘스트만 부여 받고 조건부를 만족하지 않은 경우
+A MORAL 0
+A QUEST_LOG 1 1 ;1번 퀘스트를 진행여부 체크
+E SAY 22 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E SELECT_MEG 101 1 1 05 24 10
+E RETURN
+END
+
+EVENT 41 ; 1번 퀘스트 의뢰 과정 대사
+E SAY 11 12 13 14 15 16 17 -1 -1 -1
+E SELECT_MEG 101 18 20 14 21 43 
+END
+
+EVENT 42 ; 1번 퀘스트를 듣지 않는다고 했을 경우
+E SAY 23 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+END
+
+EVENT 43 ; 1번 퀘스트 과정에서 아니오를 택한 경우
+E SAY 24 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+END
+
+EVENT 44 ; 라쿰 마을 스킬 상점
+A MORAL 0
+A QUEST_LOG 2 2; 2번 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 472 1; 아이템존재 유무 체크 
+E SAY 26 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 472 1; 조건 아이템 회수  
+E GIVE_ITEM 0 191 3
+E GIVE_ITEM 0 192 3         
+E MESSAGE 적포도주 3개와 백포도주 3개를 받았습니다.
+E QUEST_END 2 ; 퀘스트 2번 끝내기
+E RETURN
+END
+
+EVENT 45 ; 퀘스트만 부여 받고 조건부를 만족하지 않은 경우
+A MORAL 0
+A QUEST_LOG 2 1 ;1번 퀘스트를 진행여부 체크
+E SAY 27 -1 -1 -1 -1 -1 -1 -1 -1 -1
+E SELECT_MEG 103 3 19 47 
+E RETURN
+END
+
+EVENT 46
+A MORAL 0
+A LEVEL_OVER 5 
+E SELECT_MEG 103 3 19 47 29 50 ; 퀘스트 부여
+E RETURN
+END
+
+EVENT 47 
+E STORE_OPEN 3 ; 라쿰 마을 소모품상점 실행
+END
+
+EVENT 48 ; 2번 퀘스트를 클리어 후 콘드겔에게 간 경우
+E SAY 25 -1 -1 -1 -1 -1 -1 -1 -1 -1
+END
+
+EVENT 50 ; 2번 퀘스트 결정 과정
+E SAY 28 29 30 -1 -1 -1 -1 -1 -1 -1  
+E SELECT_MEG 103 31 27 51 28 52
+END
+
+EVENT 51 ;  2번 퀘스트 과정에서 예를 선택한 경우
+E RUN_EVENT 53 ; 현재 진행 이벤트 유무 체크 후 퀘스트 부여
+E RUN_EVENT 54 ; 현재 진행 이벤트 유무 체크 있으면 퀘스트 주지 않는다. 
+END
+
+EVENT 52 ; 2번 퀘스트를 부지 받지 않을 경우
+E SAY 32 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+END
+
+EVENT 53 ; 기존 퀘스트 여부 체크
+A NOEXIST_QUEST
+A NOQUEST_END 2
+E GIVE_QUEST 2 1
+E RETURN
+END
+
+EVENT 54 ; 기존 퀘스트 여부 체크
+A EXIST_QUEST 
+E SAY 21 -1 -1 -1 -1 -1 -1 -1 -1 -1
+END
+
+EVENT 55 ; 2번 퀘스트 로그를 참조하여 정령의 가루 주는 부분 체크
+A QUEST_LOG 2 1
+E SAY 70 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E GIVE_ITEM 0 472 1
+E MESSAGE 정령의 가루를 받았습니다. 
+E GIVE_QUEST 2 2
+END
+
+EVENT 56
+A MORAL 0
+E SELECT_MEG 103 3 19 47 
+END
+
+EVENT 57 : 3번 퀘스트 엘자린의 사투
+E RUN_EVENT 58 ; 강제 이벤트 실행 58번(퀘스트 완료 후)
+E RUN_EVENT 59 ; 이벤트 강제 실행 59번(퀘스트 진행 3-2)
+E RUN_EVENT 111 ; 이벤트 실행 111번
+E RUN_EVENT 112 ; 이벤트 실행 112번
+E RUN_EVENT 60 ; 이벤트 강제 실행 60번(퀘스트 진행 3-1)
+E RUN_EVENT 61 ; 이벤트 강제 실행 61번(퀘스트를 부여)
+E RUN_EVENT 62 ; 조건 없는 스킬 상점 실행
+END
+
+EVENT 58
+A QUEST_END 3
+A MORAL 0
+E SELECT_MEG 104 8 7 26 8 27 9 28 ; 라쿰마을 스킬 상점 이벤트
+E RETURN
+END
+
+EVENT 59 ; 라쿰 마을 스킬 상점 퀘스트
+A MORAL 0
+A CLASS 0
+A QUEST_LOG 3 1; 3번 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 473 1; 아이템존재 유무 체크 
+E SAY 33 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 473 1; 조건 아이템 회수  
+E GIVE_RAND_ITEM 1 13 13 13 13 13 1 12 16 17    
+E MESSAGE 매직 무기구 아이템을 받았습니다.
+E QUEST_END 3 ; 퀘스트 3번 끝내기
+E RETURN
+END
+
+EVENT 60
+A MORAL 0
+A QUEST_LOG 3 1
+E SAY 34 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E SELECT_MEG 104 8 7 26 8 27 9 28; 스킬 상점 열기 이벤트
+E RETURN
+END
+
+EVENT 61
+A MORAL 0
+A LEVEL_OVER 10
+A NOQUEST_END 4 
+E SELECT_MEG 104 8 7 26 8 27 9 28 31 63 ; 3번 퀘스트 부여
+E RETURN
+END
+
+EVENT 62
+A MORAL 0
+E SELECT_MEG 104 8 7 26 8 27 9 28 ;조건 스킬 상점 열기 
+END
+
+EVENT 63 ; 3번 퀘스트 결정 과정
+E SAY 35 36 37 38 39 40 41 42 -1 -1  
+E SELECT_MEG 103 47 27 64 28 65
+END
+
+EVENT 64 ;  3번 퀘스트 과정에서 예를 선택한 경우
+E RUN_EVENT 66 ; 현재 진행 이벤트 유무 체크 후 퀘스트 부여
+E RUN_EVENT 67 ; 현재 진행 이벤트 유무 체크 있으면 퀘스트 주지 않는다. 
+END
+
+EVENT 65 ; 3번 퀘스트를 부지 받지 않을 경우
+E SAY 43 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+END
+
+EVENT 66 ; 기존 퀘스트 여부 체크
+A NOEXIST_QUEST
+A NOQUEST_END 3
+E SAY 44 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E GIVE_QUEST 3 1
+E RETURN
+END
+
+EVENT 67 ; 카심의 퀘스트 부여
+A EXIST_QUEST 
+E SAY 21 -1 -1 -1 -1 -1 -1 -1 -1 -1
+END
+
+EVENT 68 : 4번 퀘스트 쿠엘의 수정구
+E RUN_EVENT 69 ; 강제 이벤트 실행 69번(퀘스트 완료 후)
+E RUN_EVENT 70 ; 이벤트 강제 실행 70번(퀘스트 진행 3-2) 전사
+E RUN_EVENT 71 ; 이벤트 강제 실행 71번(퀘스트 진행 3-2) 궁사
+E RUN_EVENT 72 ; 이벤트 강제 실행 72번(퀘스트 진행 3-2) 제사장
+E RUN_EVENT 73 ; 이벤트 강제 실행 73번(퀘스트 진행 3-1)
+E RUN_EVENT 74 ; 이벤트 강제 실행 74번(퀘스트를 부여)
+E RUN_EVENT 36 ; 조건 없는 환전소 실행
+END
+
+EVENT 69
+A QUEST_END 4
+A MORAL 0
+E SELECT_MEG 110 6 4 37 18 38 ; 환전소(라쿰 마을)
+E RETURN
+END
+
+EVENT 70 ; 라쿰 마을 스킬 상점 퀘스트 전사
+A MORAL 0
+A CLASS 0
+A QUEST_LOG 4 2 ; 3번 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 476 1; 아이템존재 유무 체크 
+E SAY 45 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 476 1; 조건 아이템 회수
+E GIVE_RAND_ITEM 1 96 106 126 126 126 36 37 1 12      
+E MESSAGE 매직 방어구 아이템을 받았습니다.
+E QUEST_END 4 ; 퀘스트 4번 끝내기
+E RETURN
+END
+
+EVENT 71 ; 라쿰 마을 스킬 상점 퀘스트 궁사
+A MORAL 0
+A CLASS 1
+A QUEST_LOG 4 2 ; 3번 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 476 1; 아이템존재 유무 체크 
+E SAY 45 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 476 1; 조건 아이템 회수
+E GIVE_RAND_ITEM 1 96 106 126 126 126 36 37 1 12     
+E MESSAGE 매직 방어구 아이템을 받았습니다.
+E QUEST_END 4 ; 퀘스트 4번 끝내기
+E RETURN
+END
+
+EVENT 72 ; 라쿰 마을 스킬 상점 퀘스트 마법사
+A MORAL 0
+A CLASS 2
+A QUEST_LOG 4 2 ; 3번 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 476 1; 아이템존재 유무 체크 
+E SAY 45 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 476 1; 조건 아이템 회수
+E GIVE_RAND_ITEM 1 115 115 482 482 115 36 37 1 12      
+E MESSAGE 매직 방어구 아이템을 받았습니다.
+E QUEST_END 4 ; 퀘스트 4번 끝내기
+E RETURN
+END
+
+EVENT 73
+A MORAL 0
+A QUEST_LOG 4 1
+E SAY 46 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E SELECT_MEG 110 6 4 37 18 38; 환전소 열기 이벤트
+E RETURN
+END
+
+EVENT 74
+A MORAL 0
+A NOQUEST_END 3
+A LEVEL_OVER 10 
+E SELECT_MEG 110 6 4 37 18 38 32 75 ; 네번째 퀘스트 부여
+E RETURN
+END
+
+EVENT 75 ; 4번 퀘스트 결정 과정
+E SAY 48 49 50 51 52 53 54 -1 -1 -1  
+E SELECT_MEG 110 55 27 76 28 77
+END
+
+EVENT 76 ;  4번 퀘스트 과정에서 예를 선택한 경우
+E RUN_EVENT 78 ; 현재 진행 이벤트 유무 체크 후 퀘스트 부여
+E RUN_EVENT 79 ; 현재 진행 이벤트 유무 체크 있으면 퀘스트 주지 않는다. 
+END
+
+EVENT 77 ; 4 번 퀘스트를 부지 받지 않을 경우
+E SAY 56 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+END
+
+EVENT 78 ; 기존 퀘스트 여부 체크 4번 부여
+A NOEXIST_QUEST
+A NOQUEST_END 4
+E SAY 57 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E GIVE_QUEST 4 1
+E RETURN
+END
+
+EVENT 79 ; 카심의 퀘스트 부여
+A EXIST_QUEST 
+E SAY 21 -1 -1 -1 -1 -1 -1 -1 -1 -1
+END
+
+EVENT 80 ; 퀘스트 4번 라르칸(장신구)수정구 부분
+E RUN_EVENT 81 
+E RUN_EVENT 105 ; 퀘스트 5번 진행(5-2) 
+E RUN_EVENT 83
+END
+
+EVENT 81
+A MORAL 0
+A QUEST_LOG 4 1
+A EXIST_ITEM 0 474 5
+A EXIST_ITEM 0 475 3
+E SELECT_MEG 108 5 25 19 33 82 ; 라쿰 마을 장신구 이벤트
+E RETURN
+END
+
+EVENT 82
+E SAY 58 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 474 5; 조건 아이템 회수
+E ROB_ITEM 0 475 3; 조건 아이템 회수
+E GIVE_ITEM 0 476 1 
+E MESSAGE 프로디안 수정구을 받았습니다.
+E GIVE_QUEST 4 2
+END
+
+EVENT 83
+A MORAL 0
+E SELECT_MEG 108 5 25 19  ; 라쿰 마을 장신구 이벤트
+END
+
+EVENT 84 ; 전사 공격 스킬
+E WARRIOR_ATTACK_SKILL_SHOP  
+END
+
+EVENT 85 ; 전사 보조 스킬
+E WARRIOR_PASSIVE_SKILL_SHOP   
+END
+
+EVENT 86 ; 궁사 공격 스킬
+E ARCHER_ATTACK_SKILL_SHOP   
+END
+
+EVENT 87 ; 궁사 보조 스킬
+E ARCHER_PASSIVE_SKILL_SHOP
+END
+
+EVENT 88 ; 제작자 소모품 스킬
+E MAKER_TRAP_SKILL_SHOP   
+END
+
+EVENT 89 ; 제작자 트랩 스킬
+E MAKER__WASTE_SKILL_SHOP
+END
+
+EVENT 90 ; 제작자 트랩 스킬
+E MAKER__SIEGE_SKILL_SHOP
+END
+
+EVENT 91 : 5번 퀘스트 엘브린의 수정구
+E RUN_EVENT 92 ; 강제 이벤트 실행 92번(퀘스트 완료 후)
+E RUN_EVENT 93 ; 이벤트 강제 실행 93번(퀘스트 진행 5-3) 전사
+E RUN_EVENT 94 ; 이벤트 강제 실행 94번(퀘스트 진행 5-3) 궁사
+E RUN_EVENT 95 ; 이벤트 강제 실행 95번(퀘스트 진행 5-3) 제사장
+E RUN_EVENT 96 ; 이벤트 강제 실행 96번(퀘스트 진행 5-1)
+E RUN_EVENT 97 ; 이벤트 강제 실행 97번(퀘스트 진행 5-2)
+E RUN_EVENT 98 ; 이벤트 강제 실행 98번(퀘스트를 부여)
+E RUN_EVENT 99 ; 조건 없는 창고 실행
+END
+
+EVENT 92
+A QUEST_END 5
+A MORAL 0
+E SELECT_MEG 107 4 3 12 ; 창고이벤트(라쿰 마을)
+E RETURN
+END
+
+EVENT 93 ; 5번 퀘스트 전사 수행시
+A MORAL 0
+A CLASS 0
+A QUEST_LOG 5 3 ; 5번 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 481 1; 아이템존재 유무 체크 
+E SAY 69 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 481 1; 조건 아이템 회수
+E GIVE_RAND_ITEM 1 96 119 104 127 106 36 37 1 12     
+E GIVE_DARIC 2000
+E MESSAGE 매직 방어구 아이템 과 2000 다릭을 받았습니다.
+E QUEST_END 5 ; 퀘스트 4번 끝내기
+E RETURN
+END
+
+EVENT 94 ; 5번 퀘스트 궁사 수행시
+A MORAL 0
+A CLASS 1
+A QUEST_LOG 5 3 ; 5번 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 481 1; 아이템존재 유무 체크 
+E SAY 69 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 481 1; 조건 아이템 회수
+E GIVE_RAND_ITEM 1 96 119 104 127 106 36 37 1 12    
+E GIVE_DARIC 2000
+E MESSAGE 매직 방어구 아이템 과 2000 다릭을 받았습니다.
+E QUEST_END 5 ; 퀘스트 4번 끝내기
+E RETURN
+END
+
+EVENT 95 ; 5번 퀘스트 제사장 수행시
+A MORAL 0
+A CLASS 2
+A QUEST_LOG 5 3 ; 5번 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 481 1; 아이템존재 유무 체크 
+E SAY 69 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 481 1; 조건 아이템 회수
+E GIVE_RAND_ITEM 1 114 115 116 131 483 36 37 1 12     
+E GIVE_DARIC 2000
+E MESSAGE 매직 방어구 아이템 과 2000 다릭을 받았습니다.
+E QUEST_END 5 ; 퀘스트 4번 끝내기
+E RETURN
+END
+
+EVENT 96
+A MORAL 0
+A QUEST_LOG 5 1
+E SAY 59 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E SELECT_MEG 107 4 3 12 ;창고 열기 이벤트
+E RETURN
+END
+
+EVENT 97
+A MORAL 0
+A QUEST_LOG 5 2
+E SAY 60 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E SELECT_MEG 107 4 3 12 ;창고 열기 이벤트
+E RETURN
+END
+
+EVENT 98
+A MORAL 0
+A LEVEL_OVER 15 
+E SELECT_MEG 107 4 3 12 34 100 ; 5번 퀘스트 부여
+E RETURN
+END
+
+EVENT 99
+A MORAL 0
+E SELECT_MEG 107 4 3 12 ; 창고 이용 
+E RETURN
+END
+
+EVENT 100 ; 5번 퀘스트 결정 과정
+E SAY 61 62 63 64 -1 -1 -1 -1 -1 -1  
+E SELECT_MEG 107 64 27 101 28 102
+END
+
+EVENT 101 ;  5번 퀘스트 과정에서 예를 선택한 경우
+E RUN_EVENT 103 ; 현재 진행 이벤트 유무 체크 후 퀘스트 부여
+E RUN_EVENT 104 ; 현재 진행 이벤트 유무 체크 있으면 퀘스트 주지 않는다. 
+END
+
+EVENT 102 ; 4 번 퀘스트를 부지 받지 않을 경우
+E SAY 65 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+END
+
+EVENT 103 ; 기존 퀘스트 여부 체크 5번 부여
+A NOEXIST_QUEST
+A NOQUEST_END 5
+E SAY  66 -1 -1 -1 -1 -1 -1 -1 -1 -1  
+E GIVE_QUEST 5 1
+E RETURN
+END
+
+EVENT 104 ; 카심의 퀘스트 부여
+A EXIST_QUEST 
+E SAY 21 -1 -1 -1 -1 -1 -1 -1 -1 -1
+END
+
+EVENT 105
+A MORAL 0
+A QUEST_LOG 5 1
+A EXIST_ITEM 0 477 3
+A EXIST_ITEM 0 478 5
+E SELECT_MEG 108 5 25 19 35 106 ; 라쿰 마을 장신구 이벤트
+E RETURN
+END
+
+EVENT 106
+E SAY 67 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 477 3; 조건 아이템 회수
+E ROB_ITEM 0 478 5; 조건 아이템 회수
+E GIVE_ITEM 0 479 1 
+E MESSAGE 상아 장식품을 받았습니다.
+E GIVE_QUEST 5 2
+END
+
+EVENT 107
+A MORAL 0
+A QUEST_LOG 5 2
+A EXIST_ITEM 0 479 1
+A EXIST_ITEM 0 480 5
+E SELECT_MEG 103 3 19 47 36 108 ; 퀘스트 다섯번째 고급상아장식품 준다
+E RETURN
+END
+
+EVENT 108
+E SAY 68 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 479 1; 조건 아이템 회수
+E ROB_ITEM 0 480 5; 조건 아이템 회수
+E GIVE_ITEM 0 481 1 
+E MESSAGE 고급 상아 장식품을 받았습니다.
+E GIVE_QUEST 5 3
+END
+
+EVENT 109 ; 라쿰 마을 무기구 상점
+A MORAL 0
+A CLASS 1
+A QUEST_LOG 1 1 ;1번 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 471 10 ;아이템존재 유무 체크 
+E SAY 19 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 471 10 ; 조건 아이템 회수  
+E GIVE_RAND_ITEM 1 86 86 86 86 86 1 12 16 16 ;(아이템 타입)(일반 아이템 번호1)(일반 아이템 번호2)(일반 아이템 번호3)(일반 아이템 번호4)(일반 아이템 번호5)(접두사1 최소)(접두사1최대)(접두사2최소)(접두사2최대)                        
+E MESSAGE 매직 무기구 아이템을 받았습니다.
+E QUEST_END 1 ; 퀘스트 1번 끝내기
+E RETURN
+END
+
+EVENT 110 ; 라쿰 마을 무기구 상점
+A MORAL 0
+A CLASS 2
+A QUEST_LOG 1 1 ;1번 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 471 10 ;아이템존재 유무 체크 
+E SAY 19 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 471 10 ; 조건 아이템 회수  
+E GIVE_RAND_ITEM 1 59 59 59 59 59 1 12 19 19 ;(아이템 타입)(일반 아이템 번호1)(일반 아이템 번호2)(일반 아이템 번호3)(일반 아이템 번호4)(일반 아이템 번호5)(접두사1 최소)(접두사1최대)(접두사2최소)(접두사2최대)                        
+E MESSAGE 매직 무기구 아이템을 받았습니다.
+E QUEST_END 1 ; 퀘스트 1번 끝내기
+E RETURN
+END
+
+EVENT 111 ; 라쿰 마을 스킬 상점 퀘스트
+A MORAL 0
+A CLASS 1
+A QUEST_LOG 3 1; 3번 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 473 1; 아이템존재 유무 체크 
+E SAY 33 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 473 1; 조건 아이템 회수  
+E GIVE_RAND_ITEM 1 88 88 88 88 88 1 12 1 16    
+E MESSAGE 매직 무기구 아이템을 받았습니다.
+E QUEST_END 3 ; 퀘스트 3번 끝내기
+E RETURN
+END
+
+EVENT 112 ; 라쿰 마을 스킬 상점 퀘스트
+A MORAL 0
+A CLASS 2
+A QUEST_LOG 3 1; 3번 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 473 1; 아이템존재 유무 체크 
+E SAY 33 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 473 1; 조건 아이템 회수  
+E GIVE_RAND_ITEM 1 61 61 61 61 61 1 12 19 20     
+E MESSAGE 매직 무기구 아이템을 받았습니다.
+E QUEST_END 3 ; 퀘스트 3번 끝내기
+E RETURN
+END
+
+
+
+
+
+

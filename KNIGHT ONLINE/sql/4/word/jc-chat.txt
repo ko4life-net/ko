@@ -1,0 +1,579 @@
+  ¥Î»≠ ¡ﬂø° æœ»£≥™ Ω≈øÎ ƒ´µÂ π¯»£∏¶ ¿˝¥Î∑Œ æÀ∑¡¡÷¡ˆ ∏∂Ω Ω√ø¿.
+  
+J.C. ¥‘¿« ∏ª:
+hi
+[samma] ¥‘¿« ∏ª:
+hi.. good saturday..
+J.C. ¥‘¿« ∏ª:
+hi still in office?
+[samma] ¥‘¿« ∏ª:
+ok,.,i am in office
+J.C. ¥‘¿« ∏ª:
+you are really busy
+[samma] ¥‘¿« ∏ª:
+yes.. really
+J.C. ¥‘¿« ∏ª:
+when will you start to integrate our billing system to your game server?
+[samma] ¥‘¿« ∏ª:
+Well, can we discuss this a little bit later since there is no problem so far?
+J.C. ¥‘¿« ∏ª:
+i have study the schema of member and game db of knight
+[samma] ¥‘¿« ∏ª:
+Oh, I'm glad you are into my server programs  
+J.C. ¥‘¿« ∏ª:
+and i think this part will not take to much time
+J.C. ¥‘¿« ∏ª:
+ 
+[samma] ¥‘¿« ∏ª:
+ 
+J.C. ¥‘¿« ∏ª:
+you are a very good engineer
+[samma] ¥‘¿« ∏ª:
+welcome
+J.C. ¥‘¿« ∏ª:
+i have some pressure from my boss  
+[samma] ¥‘¿« ∏ª:
+what?
+J.C. ¥‘¿« ∏ª:
+he want me finish this part as soon as passible
+[samma] ¥‘¿« ∏ª:
+IS it becayse I came back to soon to Korea? If so, I am very sorry  
+[samma] ¥‘¿« ∏ª:
+Well, you shoulnd't have too much difficulty
+J.C. ¥‘¿« ∏ª:
+me?
+[samma] ¥‘¿« ∏ª:
+Yes, you  
+J.C. ¥‘¿« ∏ª:
+for what?
+[samma] ¥‘¿« ∏ª:
+Well, don't know what you meant by 'for what'?
+J.C. ¥‘¿« ∏ª:
+I have many passure now
+J.C. ¥‘¿« ∏ª:
+Knight on-online still in develop
+J.C. ¥‘¿« ∏ª:
+and I know some spec. or some arch. maybe change 
+J.C. ¥‘¿« ∏ª:
+but my boss wish I can do something for this
+[samma] ¥‘¿« ∏ª:
+Well, yes it MAY change but there really is hardly any chance that it will since it works at a satisfactory level already
+J.C. ¥‘¿« ∏ª:
+yes ,I see
+[samma] ¥‘¿« ∏ª:
+To be honest, there is only about a 5% chance that it will change
+J.C. ¥‘¿« ∏ª:
+take the client hardware as example
+[samma] ¥‘¿« ∏ª:
+Well, we are currently optmizing the code for the client part so you should see more computers being able to run Knight Online in the near future
+J.C. ¥‘¿« ∏ª:
+korean web site shows that the recommand spec. is PII 300 and TNT2 32MB and 256 MB RAM
+[samma] ¥‘¿« ∏ª:
+Well, we are hoping to match that and even optimize it a little bit more
+J.C. ¥‘¿« ∏ª:
+my boss wish I can do some testing for the client spec. 
+J.C. ¥‘¿« ∏ª:
+but I don't think this is a good idea 
+J.C. ¥‘¿« ∏ª:
+in this moment
+[samma] ¥‘¿« ∏ª:
+Well, the only thing you really need to worry about now are the video cards and ram
+J.C. ¥‘¿« ∏ª:
+yes
+J.C. ¥‘¿« ∏ª:
+yesterday
+J.C. ¥‘¿« ∏ª:
+I say I need your suggestion for testing server spec.
+[samma] ¥‘¿« ∏ª:
+ok
+J.C. ¥‘¿« ∏ª:
+ 
+J.C. ¥‘¿« ∏ª:
+I have no idea for this test
+[samma] ¥‘¿« ∏ª:
+Well, was the one I saw two days ago the brand new servers I asked your company to buy before I went to Taiwan?
+J.C. ¥‘¿« ∏ª:
+yes
+J.C. ¥‘¿« ∏ª:
+IBM compaq and Dell
+[samma] ¥‘¿« ∏ª:
+So the spec I proposed before I left Korea is the exact spec the server currently running has, right?
+[samma] ¥‘¿« ∏ª:
+You see, I proposed a Xeon Pentium 4 
+[samma] ¥‘¿« ∏ª:
+2 Gigs  
+[samma] ¥‘¿« ∏ª:
+Sample model is DELL POWEREDGE 2650
+J.C. ¥‘¿« ∏ª:
+hmm........
+J.C. ¥‘¿« ∏ª:
+do you know what is the hardest part?
+J.C. ¥‘¿« ∏ª:
+In Taiwan only Dell have the 2G spec.
+[samma] ¥‘¿« ∏ª:
+Could you explain what you mean by 'hardest part'?
+[samma] ¥‘¿« ∏ª:
+Yes, and that's the one you should have bought
+J.C. ¥‘¿« ∏ª:
+but my boss refured this
+[samma] ¥‘¿« ∏ª:
+The only reason why I didn't mention this when I was in Taiwan was because it was only a test server I was setting up
+[samma] ¥‘¿« ∏ª:
+You should  buy the one I proposed ofr the actual service
+[samma] ¥‘¿« ∏ª:
+ofr -> for
+J.C. ¥‘¿« ∏ª:
+I agree
+[samma] ¥‘¿« ∏ª:
+He refuted?? What did he refute?
+[samma] ¥‘¿« ∏ª:
+Wait, let me send you the server proposal I gave your company before I went to Taiwan. HOld on....
+  
+  J.C. ¥‘¿Ã "itemrare.txt" ∆ƒ¿œ ¿¸º€¿ª ºˆ∂Ù«œ±‚∏¶ ±‚¥Ÿ∏Æ∞Ì ¿÷Ω¿¥œ¥Ÿ. ∆ƒ¿œ øÎ∑Æ¿∫ 1KB¿Ã∞Ì, ¿¸º€ Ω√∞£¿∫ 28.8 ∏µ© ªÁøÎ Ω√ 1∫– πÃ∏∏¿‘¥œ¥Ÿ. ¿¿¥‰¿ª ±‚¥Ÿ∏Æ∞≈≥™ ∆ƒ¿œ ¿¸º€¿ª √Îº“(Alt+Q)«“ ºˆ ¿÷Ω¿¥œ¥Ÿ.
+  
+  ∆ƒ¿œ ¿¸º€¿ª √Îº“«ﬂΩ¿¥œ¥Ÿ.
+  
+J.C. ¥‘¿« ∏ª:
+buy the dell server without any testing to prove this is the best choice
+  
+  J.C. ¥‘¿Ã "Server_Specs_KnightOnline.doc" ∆ƒ¿œ ¿¸º€¿ª ºˆ∂Ù«œ±‚∏¶ ±‚¥Ÿ∏Æ∞Ì ¿÷Ω¿¥œ¥Ÿ. ∆ƒ¿œ øÎ∑Æ¿∫ 22KB¿Ã∞Ì, ¿¸º€ Ω√∞£¿∫ 28.8 ∏µ© ªÁøÎ Ω√ 1∫– πÃ∏∏¿‘¥œ¥Ÿ. ¿¿¥‰¿ª ±‚¥Ÿ∏Æ∞≈≥™ ∆ƒ¿œ ¿¸º€¿ª √Îº“(Alt+Q)«“ ºˆ ¿÷Ω¿¥œ¥Ÿ.
+  
+  J.C. ¥‘¿Ã "Server_Specs_KnightOnline.doc" ∆ƒ¿œ ¿¸º€¿ª ºˆ∂Ù«ﬂΩ¿¥œ¥Ÿ. ¿¸º€¿ª Ω√¿€«’¥œ¥Ÿ...
+  
+  "Server_Specs_KnightOnline.doc" ¿¸º€¿Ã øœ∑·µ«æ˙Ω¿¥œ¥Ÿ.
+  
+[samma] ¥‘¿« ∏ª:
+Uh...there is NO better choice than the DELL server I told you about
+[samma] ¥‘¿« ∏ª:
+That is as optimal as you can get
+[samma] ¥‘¿« ∏ª:
+Plus, that is the one we are using right onw
+J.C. ¥‘¿« ∏ª:
+I have see this document already
+[samma] ¥‘¿« ∏ª:
+now
+J.C. ¥‘¿« ∏ª:
+ 
+J.C. ¥‘¿« ∏ª:
+I know that
+[samma] ¥‘¿« ∏ª:
+So that's the reason why I proposed DELL
+J.C. ¥‘¿« ∏ª:
+this is the hardest part
+[samma] ¥‘¿« ∏ª:
+Well, are you saying that the DELL server is too expensive?
+J.C. ¥‘¿« ∏ª:
+no...
+[samma] ¥‘¿« ∏ª:
+Don't know what you mean by hardest part
+[samma] ¥‘¿« ∏ª:
+Define 'Hardest part' please
+J.C. ¥‘¿« ∏ª:
+I try to explain hardest part
+[samma] ¥‘¿« ∏ª:
+OK. Please explain it for me
+[samma] ¥‘¿« ∏ª:
+I don't understand what you mean by it
+J.C. ¥‘¿« ∏ª:
+ok
+J.C. ¥‘¿« ∏ª:
+hardest -->  most hard
+J.C. ¥‘¿« ∏ª:
+this is one of my passsure
+[samma] ¥‘¿« ∏ª:
+So what is most hard for you? Tell me please
+J.C. ¥‘¿« ∏ª:
+I know dell server is the best one you suggest us
+J.C. ¥‘¿« ∏ª:
+but my boss want me to prove that
+[samma] ¥‘¿« ∏ª:
+Yes it is. And the problem is?
+[samma] ¥‘¿« ∏ª:
+Oh I see....
+J.C. ¥‘¿« ∏ª:
+I need some number the prove
+J.C. ¥‘¿« ∏ª:
+can you understand
+J.C. ¥‘¿« ∏ª:
+ 
+[samma] ¥‘¿« ∏ª:
+Well, what is important is that the server is NOT made by DELL but rather the spec of the server itself.
+J.C. ¥‘¿« ∏ª:
+money
+[samma] ¥‘¿« ∏ª:
+Even IBM has servers with specs similar with DELL 2G Xeon
+[samma] ¥‘¿« ∏ª:
+So does Compaq
+[samma] ¥‘¿« ∏ª:
+But brand is not important
+[samma] ¥‘¿« ∏ª:
+What IS important is what is IN the server itself
+[samma] ¥‘¿« ∏ª:
+The reason why we proposed DELL is that it's he cheapest one in Korea
+[samma] ¥‘¿« ∏ª:
+Plus... it has the best price to performance ratio
+J.C. ¥‘¿« ∏ª:
+I know that
+J.C. ¥‘¿« ∏ª:
+but my boss have very good relation with IBM
+J.C. ¥‘¿« ∏ª:
+he say he can get 50% off
+J.C. ¥‘¿« ∏ª:
+even more
+[samma] ¥‘¿« ∏ª:
+Well, then buy the IBM one. But ONLY (and I stress ONLY) if it has the same specs as the DELL server I proposed
+[samma] ¥‘¿« ∏ª:
+Meaning if it has the Xeon 2G Intel processors inside  
+[samma] ¥‘¿« ∏ª:
+Make sure you check the specs before you buy it  
+J.C. ¥‘¿« ∏ª:
+this is another probelm
+[samma] ¥‘¿« ∏ª:
+Well, what's the problem this time?
+J.C. ¥‘¿« ∏ª:
+IBM and compaq don't have the same spec.
+J.C. ¥‘¿« ∏ª:
+so that day you saw is 1.4G
+J.C. ¥‘¿« ∏ª:
+only two dell server 2G
+[samma] ¥‘¿« ∏ª:
+Well, let me check it out then. I will chat with you later.
+[samma] ¥‘¿« ∏ª:
+Let me do some research on his
+[samma] ¥‘¿« ∏ª:
+this
+J.C. ¥‘¿« ∏ª:
+how to test servers?
+[samma] ¥‘¿« ∏ª:
+I will see which IBM servers meet your requirements
+J.C. ¥‘¿« ∏ª:
+I have check it already
+J.C. ¥‘¿« ∏ª:
+the same spec. server still not sell in taiwan
+J.C. ¥‘¿« ∏ª:
+IBM says we have to wait till september
+[samma] ¥‘¿« ∏ª:
+Well, do you plan to start the pay service in September then?
+J.C. ¥‘¿« ∏ª:
+no
+J.C. ¥‘¿« ∏ª:
+but you know
+J.C. ¥‘¿« ∏ª:
+my boss is very hurry to this 
+[samma] ¥‘¿« ∏ª:
+Hmm...well, I don't understand why he's in such a hurry. I mean, everything is going just fine.
+[samma] ¥‘¿« ∏ª:
+Besides, September is just around the corner
+J.C. ¥‘¿« ∏ª:
+he wish I can finish this at end of august
+[samma] ¥‘¿« ∏ª:
+Well, can you ask for a delay then?
+J.C. ¥‘¿« ∏ª:
+I have ask that
+J.C. ¥‘¿« ∏ª:
+he says the knight develop is delay , so we have to find something to do
+[samma] ¥‘¿« ∏ª:
+Well....
+[samma] ¥‘¿« ∏ª:
+It's just that I don't want you to waste your money on the 1,4G server
+[samma] ¥‘¿« ∏ª:
+Besides, there's hardly any difference in price
+J.C. ¥‘¿« ∏ª:
+In fact he want me to solve all his question for knight case
+J.C. ¥‘¿« ∏ª:
+but this is not written by me right?
+[samma] ¥‘¿« ∏ª:
+Ok Ok. Don't worry  
+
+J.C. ¥‘¿« ∏ª:
+ 
+[samma] ¥‘¿« ∏ª:
+Well, if I were you.....
+[samma] ¥‘¿« ∏ª:
+Just tell him the 2Gig specs work fine
+[samma] ¥‘¿« ∏ª:
+I mean, it worked well for us so I don't see why it cannot work for you too
+J.C. ¥‘¿« ∏ª:
+hmm...
+[samma] ¥‘¿« ∏ª:
+I am very confident about my last sentence
+[samma] ¥‘¿« ∏ª:
+Nothing can go wrong with it
+[samma] ¥‘¿« ∏ª:
+Just tell him you did a joint research with us
+[samma] ¥‘¿« ∏ª:
+Which is not really lying when you think about it
+J.C. ¥‘¿« ∏ª:
+I believe that
+[samma] ¥‘¿« ∏ª:
+Yes. So just write a report that says the 2 Gig specs worked very well
+[samma] ¥‘¿« ∏ª:
+And I'm sure your boss will believe you worked very hard to get those results
+J.C. ¥‘¿« ∏ª:
+it's not so easy
+J.C. ¥‘¿« ∏ª:
+he want to see all the test item and plan
+J.C. ¥‘¿« ∏ª:
+and we should do some experiment
+[samma] ¥‘¿« ∏ª:
+Wait. So he actually wants to see the server in OPERATION too?  
+J.C. ¥‘¿« ∏ª:
+and get some number
+J.C. ¥‘¿« ∏ª:
+hmm
+J.C. ¥‘¿« ∏ª:
+he want to know everything
+[samma] ¥‘¿« ∏ª:
+Well, is he a very strict and demanding guy?
+J.C. ¥‘¿« ∏ª:
+yes this
+J.C. ¥‘¿« ∏ª:
+you can ask steven
+[samma] ¥‘¿« ∏ª:
+Well, I thought he was a nice and pleasant man
+[samma] ¥‘¿« ∏ª:
+I guess I misjudged him  
+[samma] ¥‘¿« ∏ª:
+Hmm....
+[samma] ¥‘¿« ∏ª:
+Let's see....
+[samma] ¥‘¿« ∏ª:
+Well, how about conducting the test on the servers you're using now and then tell him that you need a better faster server and that's why you need the 2 Giga Xeon Servers
+J.C. ¥‘¿« ∏ª:
+I am sorry to bore you for this
+[samma] ¥‘¿« ∏ª:
+Nah, it's a slow Saturday anyway 
+[samma] ¥‘¿« ∏ª:
+Can't wait to go home and get some jet lag off me  
+[samma] ¥‘¿« ∏ª:
+Anyway, like I said, write a report on the current server
+[samma] ¥‘¿« ∏ª:
+And as a conclusion, write another report stating why you need the Xoen 2 Giga Servers
+[samma] ¥‘¿« ∏ª:
+Xeon
+[samma] ¥‘¿« ∏ª:
+Each report should take one week each
+[samma] ¥‘¿« ∏ª:
+And by the time you write two of them, it's September
+J.C. ¥‘¿« ∏ª:
+and the test item what is your suggestion
+[samma] ¥‘¿« ∏ª:
+Well, write how the test server is operating now BUT don't write too many good things about it
+[samma] ¥‘¿« ∏ª:
+Try ot make your current server sound a bit...you know..ourdated
+[samma] ¥‘¿« ∏ª:
+ot -> to
+[samma] ¥‘¿« ∏ª:
+outdated
+[samma] ¥‘¿« ∏ª:
+Sorry for all the typos
+[samma] ¥‘¿« ∏ª:
+And also write that the server program will only become more demanding 
+[samma] ¥‘¿« ∏ª:
+It's gonna eat up even more processor time
+[samma] ¥‘¿« ∏ª:
+After all, this game is NOT 100% yet
+J.C. ¥‘¿« ∏ª:
+yes
+[samma] ¥‘¿« ∏ª:
+But remember, not too much positives about the current server
+J.C. ¥‘¿« ∏ª:
+he think wizgate should have some test item for testing  server
+J.C. ¥‘¿« ∏ª:
+ok
+[samma] ¥‘¿« ∏ª:
+Well, our test item is very simple. INstall it on a server. See if it runs. If it runs, it's a good server
+[samma] ¥‘¿« ∏ª:
+Nothing less, nothing more
+J.C. ¥‘¿« ∏ª:
+ 
+[samma] ¥‘¿« ∏ª:
+I don't understand why your boss asks for more than that  
+J.C. ¥‘¿« ∏ª:
+I can't tell he this
+[samma] ¥‘¿« ∏ª:
+Yeah, I know. So I think you need to write a lot of garbage material
+J.C. ¥‘¿« ∏ª:
+I am confuse too
+[samma] ¥‘¿« ∏ª:
+After all, he's not a server expert like me or you, right?  
+
+J.C. ¥‘¿« ∏ª:
+ 
+[samma] ¥‘¿« ∏ª:
+I mean if he sees a report with about 20 pages, I think he will think you did a lot of work
+J.C. ¥‘¿« ∏ª:
+I hope so
+J.C. ¥‘¿« ∏ª:
+ok thanks , I think I got some idea
+[samma] ¥‘¿« ∏ª:
+Really? That's awesome  
+J.C. ¥‘¿« ∏ª:
+but I really feel a little tired 
+[samma] ¥‘¿« ∏ª:
+Well, don't write it all today. Write it next week during work hours
+J.C. ¥‘¿« ∏ª:
+I mean I am tired for do those shit 
+J.C. ¥‘¿« ∏ª:
+sorry 
+[samma] ¥‘¿« ∏ª:
+Yeah I know. But we all gotta do something to keep our jobs. Right?  
+J.C. ¥‘¿« ∏ª:
+maybe
+[samma] ¥‘¿« ∏ª:
+Hang in there. Once September arrives, you are FREE  
+
+J.C. ¥‘¿« ∏ª:
+this is one of those case 
+J.C. ¥‘¿« ∏ª:
+sorry I should not complain to you
+[samma] ¥‘¿« ∏ª:
+Nah, don't worry.
+[samma] ¥‘¿« ∏ª:
+I'm sure God would be proud of me right now  
+J.C. ¥‘¿« ∏ª:
+yes I agree
+[samma] ¥‘¿« ∏ª:
+Well, if you need any more help, contace me later. Okay
+[samma] ¥‘¿« ∏ª:
+contact
+J.C. ¥‘¿« ∏ª:
+I will 
+[samma] ¥‘¿« ∏ª:
+Hopefully, next week will be better for you
+J.C. ¥‘¿« ∏ª:
+thank you very much
+[samma] ¥‘¿« ∏ª:
+No problem. Have a nice weekend.
+J.C. ¥‘¿« ∏ª:
+I need to tell you , my boss feel very angery for knight delay
+[samma] ¥‘¿« ∏ª:
+Well, is his anger towards YOU or ME?
+[samma] ¥‘¿« ∏ª:
+Hope it's towards me  
+J.C. ¥‘¿« ∏ª:
+not to his money
+J.C. ¥‘¿« ∏ª:
+not - no!
+[samma] ¥‘¿« ∏ª:
+Well, I thought he was a rich man. Isn't he?
+J.C. ¥‘¿« ∏ª:
+yes, but he want more
+[samma] ¥‘¿« ∏ª:
+Well, he's gonna eventually spend MORE money if he's gonna buy a slow server now and is forced to upgrade later
+[samma] ¥‘¿« ∏ª:
+I hope he somehow understands that
+J.C. ¥‘¿« ∏ª:
+yes! I will warn he 
+J.C. ¥‘¿« ∏ª:
+I hope he can understand that things have it's sequence
+J.C. ¥‘¿« ∏ª:
+some job is useless
+[samma] ¥‘¿« ∏ª:
+Well, personally I don't think he knows too much about online games and the game industry in general
+J.C. ¥‘¿« ∏ª:
+you hit the point
+[samma] ¥‘¿« ∏ª:
+He should just relegate his duties to someone who knows about games
+[samma] ¥‘¿« ∏ª:
+I'm sure someone in the company knows more than he does
+J.C. ¥‘¿« ∏ª:
+yes
+J.C. ¥‘¿« ∏ª:
+but he always persist in his opinion
+J.C. ¥‘¿« ∏ª:
+even in technique part
+[samma] ¥‘¿« ∏ª:
+Well, he doesn't seem like an expert in technical issues
+[samma] ¥‘¿« ∏ª:
+If he was, he wouldn't be asking for such test reports  
+J.C. ¥‘¿« ∏ª:
+but he have many friend
+[samma] ¥‘¿« ∏ª:
+Well, I bet he only has rich friends
+J.C. ¥‘¿« ∏ª:
+one word from his friend (who is expert in technical) is much more important than me
+[samma] ¥‘¿« ∏ª:
+Well, shouldn't his technical expert friend be telling him that such test reports are useless and unnecessary?  
+J.C. ¥‘¿« ∏ª:
+I don't know
+[samma] ¥‘¿« ∏ª:
+EIther that, or he can't stand seeing his workers sit around and do nothing
+J.C. ¥‘¿« ∏ª:
+no boss can
+J.C. ¥‘¿« ∏ª:
+is wizgate ceo can?
+[samma] ¥‘¿« ∏ª:
+No. But then the company is too big for him to observe everything
+J.C. ¥‘¿« ∏ª:
+yes 
+[samma] ¥‘¿« ∏ª:
+Yeah, that's the disadvantage of working in a small company
+[samma] ¥‘¿« ∏ª:
+Your boss can see you all the time ;(
+J.C. ¥‘¿« ∏ª:
+ha
+J.C. ¥‘¿« ∏ª:
+I will take care that
+J.C. ¥‘¿« ∏ª:
+I feel down
+[samma] ¥‘¿« ∏ª:
+Well, anyway before I go home for the weekends....
+[samma] ¥‘¿« ∏ª:
+I guess this is the last thing I'll tell you.
+J.C. ¥‘¿« ∏ª:
+maybe I am not the one he need
+[samma] ¥‘¿« ∏ª:
+Yeah, maybe. Well, your boss needs to understand that the specs we provided is the one we gurantee will work 100% fully
+[samma] ¥‘¿« ∏ª:
+If your boss buys anything less than the one we recommended....
+[samma] ¥‘¿« ∏ª:
+The number of concurrent users may be way lower than the actual figure we gave you
+[samma] ¥‘¿« ∏ª:
+And also...
+[samma] ¥‘¿« ∏ª:
+my team chief came by and told me this.....
+[samma] ¥‘¿« ∏ª:
+What he said was....
+J.C. ¥‘¿« ∏ª:
+I will tell he that
+[samma] ¥‘¿« ∏ª:
+If you buy a spec less than the one we proposed, then we won't be able to give you technical support 
+J.C. ¥‘¿« ∏ª:
+ 
+[samma] ¥‘¿« ∏ª:
+Then the problem would be....would be that you will have to talk with Steven instead of us
+[samma] ¥‘¿« ∏ª:
+And we all know Steven is not an expert in server proramming  
+[samma] ¥‘¿« ∏ª:
+Make sure your boss understands that, okay?
+J.C. ¥‘¿« ∏ª:
+ok
+J.C. ¥‘¿« ∏ª:
+this is all i can do
+[samma] ¥‘¿« ∏ª:
+Besides, there is not that much price difference  
+[samma] ¥‘¿« ∏ª:
+Okay?
+J.C. ¥‘¿« ∏ª:
+ok sure
+[samma] ¥‘¿« ∏ª:
+Well, I really need to be going home now
+[samma] ¥‘¿« ∏ª:
+Well, it was nice talking to you
+J.C. ¥‘¿« ∏ª:
+have a nice saturday
+[samma] ¥‘¿« ∏ª:
+I'll be here again next week
+[samma] ¥‘¿« ∏ª:
+Well, you have a nice weekend too
+[samma] ¥‘¿« ∏ª:
+See you next week
+J.C. ¥‘¿« ∏ª:
+thank you for listen my complain
+[samma] ¥‘¿« ∏ª:
+No problem. Like I said, I'm sure god would be proud of me
+[samma] ¥‘¿« ∏ª:
+Anyway, bye  
+J.C. ¥‘¿« ∏ª:
+bye

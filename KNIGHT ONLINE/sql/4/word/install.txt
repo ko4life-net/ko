@@ -1,0 +1,35 @@
+		Installing X-Billing Simulation Program
+
+	You should install Java(TM) 2 SDK ,Version j2sdk1.4.0_01 first
+	and follow the steps to run these programs.
+
+
+Introduction
+
+	The X-legend billing system is written by Java. 
+	We use the multi-thread to process individual users¡¦ connection. 
+	In present the billing system can process more than 1,200 users¡¦ 
+	connection in one minute. The higher hardware spec. the more users¡¦ 
+	connection can be processed.The integration of billing system 
+	and game system can process information exchange via socket connection
+	and database.The X-legend billing system architecture will hide the 
+	billing login server in back of the firewall and game login system. 
+	This architecture  design prevent the billing login server from directly 
+	contact with clients. The user data will more safe.
+
+Install X-Billing Simulation
+
+
+	1.install Java 2 Platform, Standard Edition version 1.4.0_01
+	  Download site¡Ghttp://java.sun.com/j2se/
+	2.unzip file 'X-Billing.zip' 
+	3.move directory [X-Billing] to c:\
+	4.click file c:\X-Billing\loginserver.bat for running Login Server. 
+	5.click file c:\X-Billing\logoutserver.bat for running Logout Server.
+ 
+Installation Notes
+
+*Please install Java platform at c:\j2sdk1.4.0_01(default directory path),
+ if not you must edit the loginserver.bat and logoutserver.bat and change the 
+ filepath directory that contains JavaSDK.
+

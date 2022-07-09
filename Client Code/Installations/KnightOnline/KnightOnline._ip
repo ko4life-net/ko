@@ -1,0 +1,13 @@
+[Project:General]
+Version=3
+SubVersion=1
+
+[Project:Properties:General]
+CurrentMedia=NoCompressed
+CurrentLanguage=18
+
+[Project:Properties:DepManager]
+Component=
+LogResults=
+Mode=
+

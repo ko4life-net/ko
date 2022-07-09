@@ -1,0 +1,58 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Aujard - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x412 /fo"Debug/Aujard.res" /d "_DEBUG" "D:\source\Knight_c\KNIGHT ONLINE\Aujard\Aujard.rc"" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1D.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "__SAMMA" /Fp"Debug/Aujard.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\source\Knight_c\KNIGHT ONLINE\Aujard\Aujard.cpp"
+"D:\source\Knight_c\KNIGHT ONLINE\Aujard\AujardDlg.cpp"
+"D:\source\Knight_c\KNIGHT ONLINE\Aujard\DBAgent.cpp"
+"D:\source\Knight_c\KNIGHT ONLINE\Aujard\ItemTableSet.cpp"
+"D:\source\Knight_c\KNIGHT ONLINE\Aujard\SharedMem.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1D.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1E.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "__SAMMA" /Fp"Debug/Aujard.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\source\Knight_c\KNIGHT ONLINE\Aujard\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1E.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1F.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/Aujard.pdb" /debug /machine:I386 /out:"Debug/Aujard.exe" /pdbtype:sept 
+".\Debug\Aujard.obj"
+".\Debug\AujardDlg.obj"
+".\Debug\DBAgent.obj"
+".\Debug\ItemTableSet.obj"
+".\Debug\SharedMem.obj"
+".\Debug\StdAfx.obj"
+".\Debug\Aujard.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1F.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+Aujard.cpp
+AujardDlg.cpp
+DBAgent.cpp
+ItemTableSet.cpp
+SharedMem.cpp
+D:\source\Knight_c\KNIGHT ONLINE\Aujard\SharedMem.cpp(88) : warning C4018: '>' : signed/unsigned mismatch
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+Aujard.exe - 0 error(s), 1 warning(s)
+</pre>
+</body>
+</html>

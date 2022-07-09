@@ -1,0 +1,84 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: VersionManager - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x412 /fo"Debug/VersionManager.res" /d "_DEBUG" "D:\source\Knight_c\KNIGHT ONLINE\LogInServer\VersionManager.rc"" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP5.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/VersionManager.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\source\Knight_c\KNIGHT ONLINE\LogInServer\CircularBuffer.cpp"
+"D:\source\Knight_c\KNIGHT ONLINE\LogInServer\DBProcess.cpp"
+"D:\source\Knight_c\KNIGHT ONLINE\LogInServer\DlgBrowsePath.cpp"
+"D:\source\Knight_c\KNIGHT ONLINE\LogInServer\IOCPort.cpp"
+"D:\source\Knight_c\KNIGHT ONLINE\LogInServer\IOCPSocket2.cpp"
+"D:\source\Knight_c\KNIGHT ONLINE\LogInServer\SettingDlg.cpp"
+"D:\source\Knight_c\KNIGHT ONLINE\LogInServer\ShellTree.cpp"
+"D:\source\Knight_c\KNIGHT ONLINE\LogInServer\User.cpp"
+"D:\source\Knight_c\KNIGHT ONLINE\LogInServer\VersionManager.cpp"
+"D:\source\Knight_c\KNIGHT ONLINE\LogInServer\VersionManagerDlg.cpp"
+"D:\source\Knight_c\KNIGHT ONLINE\LogInServer\VersionSet.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP5.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP6.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/VersionManager.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\source\Knight_c\KNIGHT ONLINE\LogInServer\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP6.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP7.tmp" with contents
+[
+ws2_32.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/VersionManager.pdb" /debug /machine:I386 /force /out:"Debug/VersionManager.exe" /pdbtype:sept 
+".\Debug\CircularBuffer.obj"
+".\Debug\DBProcess.obj"
+".\Debug\DlgBrowsePath.obj"
+".\Debug\IOCPort.obj"
+".\Debug\IOCPSocket2.obj"
+".\Debug\SettingDlg.obj"
+".\Debug\ShellTree.obj"
+".\Debug\StdAfx.obj"
+".\Debug\User.obj"
+".\Debug\VersionManager.obj"
+".\Debug\VersionManagerDlg.obj"
+".\Debug\VersionSet.obj"
+".\Debug\VersionManager.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP7.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+CircularBuffer.cpp
+DBProcess.cpp
+DlgBrowsePath.cpp
+IOCPort.cpp
+IOCPSocket2.cpp
+D:\source\Knight_c\KNIGHT ONLINE\LogInServer\IOCPSocket2.cpp(279) : warning C4101: 'wSerial' : unreferenced local variable
+SettingDlg.cpp
+ShellTree.cpp
+User.cpp
+VersionManager.cpp
+VersionManagerDlg.cpp
+VersionSet.cpp
+Generating Code...
+Linking...
+LINK : warning LNK4075: ignoring /INCREMENTAL due to /FORCE specification
+SettingDlg.obj : error LNK2001: unresolved external symbol "public: virtual __thiscall CZipArchive::~CZipArchive(void)" (??1CZipArchive@@UAE@XZ)
+VersionManagerDlg.obj : error LNK2001: unresolved external symbol "public: virtual __thiscall CZipArchive::~CZipArchive(void)" (??1CZipArchive@@UAE@XZ)
+SettingDlg.obj : error LNK2001: unresolved external symbol "public: __thiscall CZipArchive::CZipArchive(void)" (??0CZipArchive@@QAE@XZ)
+SettingDlg.obj : error LNK2001: unresolved external symbol "public: void __thiscall CZipArchive::Close(bool)" (?Close@CZipArchive@@QAEX_N@Z)
+SettingDlg.obj : error LNK2001: unresolved external symbol "public: int __thiscall CZipArchive::AddNewFile(char const *,char const *,int,unsigned long)" (?AddNewFile@CZipArchive@@QAEHPBD0HK@Z)
+SettingDlg.obj : error LNK2001: unresolved external symbol "public: void __thiscall CZipArchive::Open(char const *,int,int)" (?Open@CZipArchive@@QAEXPBDHH@Z)
+Debug/VersionManager.exe : warning LNK4088: image being generated due to /FORCE option; image may not run
+
+
+
+<h3>Results</h3>
+VersionManager.exe - 6 error(s), 3 warning(s)
+</pre>
+</body>
+</html>

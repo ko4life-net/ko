@@ -1,0 +1,348 @@
+
+EVENT 01
+E RUN_EVENT 40 ; 전사가 클리어 한 경우
+E RUN_EVENT 41 ; 궁사가 클리어 한 경우
+E RUN_EVENT 42 ; 제사장이 클리어 한 경우
+E RUN_EVENT 43 ; 카이란 마을 무기 상점 열기
+END
+
+EVENT 40 ; 베니어스 퀘스트 클리어 후(전사)
+A MORAL 1
+A QUEST_LOG 6 2 ; 베니어스 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 495 1 ;아이템존재 유무 체크 
+A CLASS 0
+E SAY 80 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 495 1 ; 조건 아이템 회수  
+E GIVE_RAND_ITEM 1 12 14 12 14 12 1 13 1 13       
+E MESSAGE 매직 무기구 아이템을 받았습니다.
+E QUEST_END 6            
+E RETURN
+END
+
+EVENT 41; 베니어스 퀘스트 클리어 후(궁사)
+A MORAL 1
+A QUEST_LOG 6 2 ; 베니어스 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 495 1 ;아이템존재 유무 체크 
+A CLASS 1
+E SAY 80 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 495 1 ; 조건 아이템 회수  
+E GIVE_RAND_ITEM 1 87 87 87 87 87 1 13 1 13       
+E MESSAGE 매직 무기구 아이템을 받았습니다.
+E QUEST_END 6            
+E RETURN
+END
+
+EVENT 42 ; 베니어스 퀘스트 클리어 후(제사장)
+A MORAL 1
+A QUEST_LOG 6 2 ; 베니어스 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 495 1 ;아이템존재 유무 체크 
+A CLASS 2
+E SAY 80 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 495 1 ; 조건 아이템 회수  
+E GIVE_RAND_ITEM 1 66 66 66 66 66 19 20 1 13       
+E MESSAGE 매직 무기구 아이템을 받았습니다.
+E QUEST_END 6            
+E RETURN
+END
+
+EVENT 43 ; 카이란마을 엘몬 무기상인 이벤트
+A MORAL 1
+E SELECT_MEG 1 1 1 44 24 04 ; 카이란 마을 무기상점
+END
+
+EVENT 44 
+E STORE_OPEN 10001 ; 무기상점 실행
+END
+
+EVENT 03 ; 카이란마을 나심 방어구상인 이벤트
+A MORAL 1
+E SELECT_MEG 2 2 24 04 ; 카이란 마을 방어구상점
+END
+
+EVENT 04
+E STORE_OPEN 10002 ; 카이란 방어구점 실행
+END
+
+EVENT 05
+E RUN_EVENT 30 ; 베니어스 퀘스트(6번 퀘스트) 완료 했는지 체크
+E RUN_EVENT 31 ; 베니어스 퀘스트(6번 퀘스트) 진행중인지 체크
+E RUN_EVENT 60 ; 베니어스 퀘스트 의뢰 받은 후 조건부를 실행하지 않은 경우
+E RUN_EVENT 61 ; 엘도르 포션을 받은 상태에서 뮤엣을 클릭 한 경우
+E RUN_EVENT 32 ; 베니어스 퀘스트 부여
+E RUN_EVENT 33 ; 단순한 상점 열기
+END
+
+EVENT 30 ; 조건부의 대화(베니어스 퀘스트 클리어 후 대화하기)
+A QUEST_END 6 ; 6번 퀘스트 완료 조건  
+A MORAL 1
+E SELECT_MEG 3 3 19 39
+E RETURN
+END
+
+EVENT 31 ; 라쿰 마을 무기구 상점
+A MORAL 1
+A QUEST_LOG 6 1 ; 베니어스 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 494 5 ;아이템존재 유무 체크 
+E SAY 71 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 494 5 ; 조건 아이템 회수  
+E GIVE_ITEM 0 495 1 ; 엘도른 포션       
+E MESSAGE 엘도른 포션을 받았습니다.
+E GIVE_QUEST 6 2                  
+E RETURN
+END
+
+EVENT 32
+A MORAL 1
+A LEVEL_OVER 10 
+E SELECT_MEG 3 3 19 39 37 34 ; 베니어스 퀘스트 부여
+E RETURN
+END
+
+EVENT 33 ; 카이란마을 뮤엣 소모품상인 이벤트
+A MORAL 1
+E SELECT_MEG 3 3 19 39 ; 카이란 마을 소모품상점
+END
+
+EVENT 34 ; 6번 퀘스트 결정 과정
+E SAY 74 75 76 77 78 -1 -1 -1 -1 -1  
+E SELECT_MEG 3 73 27 35 28 36
+END
+
+EVENT 39
+E STORE_OPEN 10003 ; 카이란 소모품점 실행
+END
+
+EVENT 35 ;  2번 퀘스트 과정에서 예를 선택한 경우
+E RUN_EVENT 37 ; 현재 진행 이벤트 유무 체크 후 퀘스트 부여
+E RUN_EVENT 38 ; 현재 진행 이벤트 유무 체크 있으면 퀘스트 주지 않는다. 
+END
+
+EVENT 36 ; 2번 퀘스트를 부지 받지 않을 경우
+E SAY 72 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+END
+
+EVENT 37 ; 기존 퀘스트 여부 체크
+A NOEXIST_QUEST
+A NOQUEST_END 6 
+E GIVE_QUEST 6 1
+E SAY 79 -1 -1 -1 -1 -1 -1 -1 -1 -1
+E RETURN
+END
+
+EVENT 38 ; 기존 퀘스트 여부 체크
+A EXIST_QUEST 
+E SAY 21 -1 -1 -1 -1 -1 -1 -1 -1 -1
+END
+
+EVENT 07
+E RUN_EVENT 45 ; 7번퀘스트를 클리어 한 경우
+E RUN_EVENT 46 ; 전사가 클리어 한 경우
+E RUN_EVENT 47 ; 궁사가 클리어 한 경우
+E RUN_EVENT 48 ; 제사장이 클리어 한 경우
+E RUN_EVENT 49 ; 퀘스트 부여 상점 열기
+E RUN_EVENT 56 ; 장신구 상점 열기
+END
+
+EVENT 45 ; 조건부의 대화(버닝하트 퀘스트 클리어 후 대화하기)
+A QUEST_END 7 ; 6번 퀘스트 완료 조건  
+A MORAL 1
+E SELECT_MEG 5 5 25 08
+E RETURN
+END
+
+EVENT 46 ; 버닝하트 퀘스트 클리어 후(전사)
+A MORAL 1
+A QUEST_LOG 7 1 ; 버닝하트 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 496 10 ;아이템존재 유무 체크 
+A CLASS 0
+E SAY 82 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 496 10 ; 조건 아이템 회수  
+E GIVE_RAND_ITEM 1 4 4 4 4 4 1 13 1 13
+E MESSAGE 매직 무기구 아이템을 받았습니다.       
+E QUEST_END 7            
+E RETURN
+END
+
+EVENT 47 ; 버닝하트 퀘스트 클리어 후(궁사)
+A MORAL 1
+A QUEST_LOG 7 1 ; 버닝하트 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 496 10 ;아이템존재 유무 체크 
+A CLASS 1
+E SAY 82 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 496 10 ; 조건 아이템 회수  
+E GIVE_RAND_ITEM 1 86 86 86 86 86 1 13 1 13
+E MESSAGE 매직 무기구 아이템을 받았습니다.       
+E QUEST_END 7            
+E RETURN
+END
+
+EVENT 48 ; 버닝하트 퀘스트 클리어 후(제사장)
+A MORAL 1
+A QUEST_LOG 7 1 ; 베니어스 퀘스트를 진행여부 체크
+A EXIST_ITEM 0 496 10 ;아이템존재 유무 체크 
+A CLASS 2
+E SAY 82 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E ROB_ITEM 0 496 10 ; 조건 아이템 회수  
+E GIVE_RAND_ITEM 1 59 59 59 59 59 19 20 1 13  
+E MESSAGE 매직 무기구 아이템을 받았습니다.     
+E QUEST_END 7            
+E RETURN
+END
+
+EVENT 49
+A MORAL 1
+E SELECT_MEG 5 5 25 08 38 50 ; 베니어스 퀘스트 부여
+E RETURN
+END
+
+EVENT 50 ; 7번 퀘스트 결정 과정
+E SAY 83 84 85 -1 -1 -1 -1 -1 -1 -1  
+E SELECT_MEG 5 86 27 51 28 54
+END
+
+EVENT 51 ;  7번 퀘스트 과정에서 예를 선택한 경우
+E RUN_EVENT 52 ; 현재 진행 이벤트 유무 체크 후 퀘스트 부여
+E RUN_EVENT 53 ; 현재 진행 이벤트 유무 체크 있으면 퀘스트 주지 않는다. 
+END
+
+EVENT 52 ; 기존 퀘스트 여부 체크
+A NOEXIST_QUEST
+A NOQUEST_END 7 
+E GIVE_QUEST 7 1
+E SAY 88 -1 -1 -1 -1 -1 -1 -1 -1 -1
+E RETURN
+END
+
+EVENT 53 ; 기존 퀘스트 여부 체크
+A EXIST_QUEST 
+E SAY 21 -1 -1 -1 -1 -1 -1 -1 -1 -1
+END
+
+EVENT 54 ; 7번 퀘스트 결정 과정
+E SAY 87 -1 -1 -1 -1 -1 -1 -1 -1 -1  
+END
+
+EVENT 56
+A MORAL 1
+E SELECT_MEG 5 5 25 08 ; 카이란 마을 장신구 점 실행
+END
+
+EVENT 08
+E STORE_OPEN 10004 ; 카이란 장신구상점 실행
+END
+
+EVENT 09 ; 다이스 창고(카이란 마을)
+A MORAL 1
+E SELECT_MEG 4 4 3 10 
+END
+
+EVENT 10 
+E BANK_OPEN ; 카이란 마을 창고 실행
+END
+
+EVENT 11 ; 환전소(카이란 마을)
+A MORAL 1
+E SELECT_MEG 6 6 4 12 18 13
+END
+
+EVENT 12
+E EXCHANGE_SHOP 50001  ; 세겔에서 다릭으로
+END
+
+EVENT 13
+E EXCHANGE_SHOP 60001  ; 다릭에서 세겔로
+END
+
+EVENT 14 ; 번역소 (카이란 마을)
+A MORAL 1
+E SELECT_MEG 7 7 5 15 6 16 
+END
+
+EVENT 15 ; 마법 사기
+E MAGIC_SHOP 
+END
+
+EVENT 16 ; 마법 배우기 
+E MAGIC_DECODE 
+END
+ 
+EVENT 17 ; 대화하기
+E SAY 25 26 -1 -1 -1 -1 -1 -1 -1 -1
+END
+
+EVENT 19 ; 전사 스킬
+E SELECT_MEG 8 8 10 84 11 85 
+END
+
+EVENT 20 ; 궁사 스킬
+E SELECT_MEG 8 8 12 86 13 87 
+END 
+
+EVENT 21 ; 제작자 스킬 
+E SELECT_MEG 8 8 14 88 15 89 16 90 
+END
+
+EVENT 23 ; 텔레포트 상점 ( 카이란 마을)
+A MORAL 1
+E SELECT_MEG 9 9 26 24 17 25 2 26
+END
+
+EVENT 24 ; 마법문서 구입
+E TELE_SHOP 
+END
+
+EVENT 25 ; 텔레포트 하기 
+E TELE_TOWN 
+END
+
+EVENT 26
+E SAY 31 32 -1 -1 -1 -1 -1 -1 -1 -1 
+END
+
+EVENT 18
+A MORAL 1
+E SELECT_MEG 8 8 7 19 8 20 9 21 ;조건 스킬 상점 열기 
+END
+
+EVENT 60 ; 라쿰 마을 소모품상점
+A MORAL 1
+A QUEST_LOG 6 1 ; 베니어스 퀘스트를 진행여부 체크
+E SAY 79 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 
+E SELECT_MEG 3 3 19 39
+E RETURN
+END
+
+EVENT 61 ; 라쿰 마을 소모품 상점
+A MORAL 1
+A QUEST_LOG 6 2 ; 베니어스 퀘스트를 진행여부 체크
+E SELECT_MEG 3 3 19 39
+E RETURN
+END
+
+EVENT 84 ; 전사 공격 스킬
+E WARRIOR_ATTACK_SKILL_SHOP  
+END
+
+EVENT 85 ; 전사 보조 스킬
+E WARRIOR_PASSIVE_SKILL_SHOP   
+END
+
+EVENT 86 ; 궁사 공격 스킬
+E ARCHER_ATTACK_SKILL_SHOP   
+END
+
+EVENT 87 ; 궁사 보조 스킬
+E ARCHER_PASSIVE_SKILL_SHOP
+END
+
+EVENT 88 ; 제작자 소모품 스킬
+E MAKER_TRAP_SKILL_SHOP   
+END
+
+EVENT 89 ; 제작자 트랩 스킬
+E MAKER__WASTE_SKILL_SHOP
+END
+
+EVENT 90 ; 제작자 트랩 스킬
+E MAKER__SIEGE_SKILL_SHOP
+END

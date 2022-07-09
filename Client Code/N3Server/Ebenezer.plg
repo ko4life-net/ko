@@ -1,0 +1,321 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Ebenezer - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPAE.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /FR"Debug/" /Fp"Debug/Ebenezer.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\骑士在线\骑士cilent code\N3Server\Ebenezer.cpp"
+"D:\骑士在线\骑士cilent code\N3Server\EbenezerDlg.cpp"
+"D:\骑士在线\骑士cilent code\N3Server\Map.cpp"
+"D:\骑士在线\骑士cilent code\N3Server\Region.cpp"
+"D:\骑士在线\骑士cilent code\N3Server\User.cpp"
+"D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPAE.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPAF.tmp" with contents
+[
+ws2_32.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/Ebenezer.pdb" /debug /machine:I386 /out:"Ebenezer.exe" /pdbtype:sept 
+".\Debug\CircularBuffer.obj"
+".\Debug\Ebenezer.obj"
+".\Debug\EbenezerDlg.obj"
+".\Debug\Global.obj"
+".\Debug\IOCPort.obj"
+".\Debug\IOCPSocket2.obj"
+".\Debug\Map.obj"
+".\Debug\Region.obj"
+".\Debug\StdAfx.obj"
+".\Debug\User.obj"
+".\Debug\N3VMesh.obj"
+".\Debug\Ebenezer.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPAF.tmp"
+<h3>Output Window</h3>
+Compiling...
+Ebenezer.cpp
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(340) : error C2146: syntax error : missing ';' before identifier 'vPos'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(340) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(340) : error C2501: 'vPos' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(341) : error C2146: syntax error : missing ';' before identifier 'vUp'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(341) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(341) : error C2501: 'vUp' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(342) : error C2146: syntax error : missing ';' before identifier 'vDir'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(342) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(342) : error C2501: 'vDir' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(343) : error C2146: syntax error : missing ';' before identifier 'vFarPoint'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(343) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(343) : error C2501: 'vFarPoint' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(17) : error C2143: syntax error : missing ';' before '*'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(17) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(17) : error C2501: 'm_pVertices' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(23) : error C2146: syntax error : missing ';' before identifier 'm_vCenter'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(23) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(23) : error C2501: 'm_vCenter' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(31) : error C2146: syntax error : missing ';' before identifier 'Center'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(31) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(31) : warning C4183: 'Center': member function definition looks like a ctor, but name does not match enclosing class
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(36) : error C2143: syntax error : missing ',' before '&'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(36) : error C2059: syntax error : '&'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : error C2143: syntax error : missing ';' before '*'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : error C2501: 'Vertices' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : warning C4183: 'Vertices': member function definition looks like a ctor, but name does not match enclosing class
+d:\骑士在线\骑士cilent code\n3server\map.h(33) : error C2143: syntax error : missing ';' before '*'
+d:\骑士在线\骑士cilent code\n3server\map.h(33) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\map.h(33) : error C2501: 'm_vNormal' : missing storage-class or type specifiers
+EbenezerDlg.cpp
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(340) : error C2146: syntax error : missing ';' before identifier 'vPos'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(340) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(340) : error C2501: 'vPos' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(341) : error C2146: syntax error : missing ';' before identifier 'vUp'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(341) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(341) : error C2501: 'vUp' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(342) : error C2146: syntax error : missing ';' before identifier 'vDir'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(342) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(342) : error C2501: 'vDir' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(343) : error C2146: syntax error : missing ';' before identifier 'vFarPoint'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(343) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(343) : error C2501: 'vFarPoint' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(17) : error C2143: syntax error : missing ';' before '*'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(17) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(17) : error C2501: 'm_pVertices' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(23) : error C2146: syntax error : missing ';' before identifier 'm_vCenter'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(23) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(23) : error C2501: 'm_vCenter' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(31) : error C2146: syntax error : missing ';' before identifier 'Center'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(31) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(31) : warning C4183: 'Center': member function definition looks like a ctor, but name does not match enclosing class
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(36) : error C2143: syntax error : missing ',' before '&'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(36) : error C2059: syntax error : '&'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : error C2143: syntax error : missing ';' before '*'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : error C2501: 'Vertices' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : warning C4183: 'Vertices': member function definition looks like a ctor, but name does not match enclosing class
+d:\骑士在线\骑士cilent code\n3server\map.h(33) : error C2143: syntax error : missing ';' before '*'
+d:\骑士在线\骑士cilent code\n3server\map.h(33) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\map.h(33) : error C2501: 'm_vNormal' : missing storage-class or type specifiers
+Map.cpp
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(340) : error C2146: syntax error : missing ';' before identifier 'vPos'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(340) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(340) : error C2501: 'vPos' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(341) : error C2146: syntax error : missing ';' before identifier 'vUp'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(341) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(341) : error C2501: 'vUp' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(342) : error C2146: syntax error : missing ';' before identifier 'vDir'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(342) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(342) : error C2501: 'vDir' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(343) : error C2146: syntax error : missing ';' before identifier 'vFarPoint'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(343) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(343) : error C2501: 'vFarPoint' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(17) : error C2143: syntax error : missing ';' before '*'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(17) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(17) : error C2501: 'm_pVertices' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(23) : error C2146: syntax error : missing ';' before identifier 'm_vCenter'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(23) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(23) : error C2501: 'm_vCenter' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(31) : error C2146: syntax error : missing ';' before identifier 'Center'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(31) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(31) : warning C4183: 'Center': member function definition looks like a ctor, but name does not match enclosing class
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(36) : error C2143: syntax error : missing ',' before '&'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(36) : error C2059: syntax error : '&'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : error C2143: syntax error : missing ';' before '*'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : error C2501: 'Vertices' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : warning C4183: 'Vertices': member function definition looks like a ctor, but name does not match enclosing class
+d:\骑士在线\骑士cilent code\n3server\map.h(33) : error C2143: syntax error : missing ';' before '*'
+d:\骑士在线\骑士cilent code\n3server\map.h(33) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\map.h(33) : error C2501: 'm_vNormal' : missing storage-class or type specifiers
+D:\骑士在线\骑士cilent code\N3Server\Map.cpp(28) : error C2065: 'm_vNormal' : undeclared identifier
+D:\骑士在线\骑士cilent code\N3Server\Map.cpp(38) : error C2541: delete : cannot delete objects that are not pointers
+D:\骑士在线\骑士cilent code\N3Server\Map.cpp(94) : error C2061: syntax error : identifier '__Vector3'
+D:\骑士在线\骑士cilent code\N3Server\Map.cpp(98) : error C2143: syntax error : missing ')' before ';'
+D:\骑士在线\骑士cilent code\N3Server\Map.cpp(98) : error C2143: syntax error : missing ';' before ')'
+D:\骑士在线\骑士cilent code\N3Server\Map.cpp(98) : error C2143: syntax error : missing ';' before ')'
+D:\骑士在线\骑士cilent code\N3Server\Map.cpp(98) : warning C4552: '<' : operator has no effect; expected operator with side-effect
+D:\骑士在线\骑士cilent code\N3Server\Map.cpp(98) : error C2143: syntax error : missing ';' before ')'
+D:\骑士在线\骑士cilent code\N3Server\Map.cpp(99) : error C2143: syntax error : missing ';' before '{'
+D:\骑士在线\骑士cilent code\N3Server\Map.cpp(109) : error C2109: subscript requires array or pointer type
+D:\骑士在线\骑士cilent code\N3Server\Map.cpp(109) : error C2102: '&' requires l-value
+D:\骑士在线\骑士cilent code\N3Server\Map.cpp(109) : error C2065: '__Vector3' : undeclared identifier
+D:\骑士在线\骑士cilent code\N3Server\Map.cpp(117) : error C2146: syntax error : missing ';' before identifier 'center'
+D:\骑士在线\骑士cilent code\N3Server\Map.cpp(117) : error C2065: 'center' : undeclared identifier
+D:\骑士在线\骑士cilent code\N3Server\Map.cpp(126) : error C2228: left of '.x' must have class/struct/union type
+D:\骑士在线\骑士cilent code\N3Server\Map.cpp(127) : error C2228: left of '.z' must have class/struct/union type
+Region.cpp
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(340) : error C2146: syntax error : missing ';' before identifier 'vPos'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(340) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(340) : error C2501: 'vPos' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(341) : error C2146: syntax error : missing ';' before identifier 'vUp'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(341) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(341) : error C2501: 'vUp' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(342) : error C2146: syntax error : missing ';' before identifier 'vDir'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(342) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(342) : error C2501: 'vDir' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(343) : error C2146: syntax error : missing ';' before identifier 'vFarPoint'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(343) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(343) : error C2501: 'vFarPoint' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(17) : error C2143: syntax error : missing ';' before '*'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(17) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(17) : error C2501: 'm_pVertices' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(23) : error C2146: syntax error : missing ';' before identifier 'm_vCenter'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(23) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(23) : error C2501: 'm_vCenter' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(31) : error C2146: syntax error : missing ';' before identifier 'Center'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(31) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(31) : warning C4183: 'Center': member function definition looks like a ctor, but name does not match enclosing class
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(36) : error C2143: syntax error : missing ',' before '&'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(36) : error C2059: syntax error : '&'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : error C2143: syntax error : missing ';' before '*'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : error C2501: 'Vertices' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : warning C4183: 'Vertices': member function definition looks like a ctor, but name does not match enclosing class
+User.cpp
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(340) : error C2146: syntax error : missing ';' before identifier 'vPos'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(340) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(340) : error C2501: 'vPos' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(341) : error C2146: syntax error : missing ';' before identifier 'vUp'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(341) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(341) : error C2501: 'vUp' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(342) : error C2146: syntax error : missing ';' before identifier 'vDir'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(342) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(342) : error C2501: 'vDir' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(343) : error C2146: syntax error : missing ';' before identifier 'vFarPoint'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(343) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(343) : error C2501: 'vFarPoint' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(17) : error C2143: syntax error : missing ';' before '*'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(17) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(17) : error C2501: 'm_pVertices' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(23) : error C2146: syntax error : missing ';' before identifier 'm_vCenter'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(23) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(23) : error C2501: 'm_vCenter' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(31) : error C2146: syntax error : missing ';' before identifier 'Center'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(31) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(31) : warning C4183: 'Center': member function definition looks like a ctor, but name does not match enclosing class
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(36) : error C2143: syntax error : missing ',' before '&'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(36) : error C2059: syntax error : '&'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : error C2143: syntax error : missing ';' before '*'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : error C2501: 'Vertices' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : warning C4183: 'Vertices': member function definition looks like a ctor, but name does not match enclosing class
+d:\骑士在线\骑士cilent code\n3server\map.h(33) : error C2143: syntax error : missing ';' before '*'
+d:\骑士在线\骑士cilent code\n3server\map.h(33) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\map.h(33) : error C2501: 'm_vNormal' : missing storage-class or type specifiers
+N3VMesh.cpp
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(340) : error C2146: syntax error : missing ';' before identifier 'vPos'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(340) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(340) : error C2501: 'vPos' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(341) : error C2146: syntax error : missing ';' before identifier 'vUp'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(341) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(341) : error C2501: 'vUp' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(342) : error C2146: syntax error : missing ';' before identifier 'vDir'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(342) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(342) : error C2501: 'vDir' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(343) : error C2146: syntax error : missing ';' before identifier 'vFarPoint'
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(343) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\my_3dstruct.h(343) : error C2501: 'vFarPoint' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(17) : error C2143: syntax error : missing ';' before '*'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(17) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(17) : error C2501: 'm_pVertices' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(23) : error C2146: syntax error : missing ';' before identifier 'm_vCenter'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(23) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(23) : error C2501: 'm_vCenter' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(31) : error C2146: syntax error : missing ';' before identifier 'Center'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(31) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(31) : warning C4183: 'Center': member function definition looks like a ctor, but name does not match enclosing class
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(36) : error C2143: syntax error : missing ',' before '&'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(36) : error C2059: syntax error : '&'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : error C2143: syntax error : missing ';' before '*'
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : error C2501: '__Vector3' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : error C2501: 'Vertices' : missing storage-class or type specifiers
+d:\骑士在线\骑士cilent code\n3server\n3base\n3vmesh.h(39) : warning C4183: 'Vertices': member function definition looks like a ctor, but name does not match enclosing class
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(16) : error C2065: 'm_pVertices' : undeclared identifier
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(29) : error C2541: delete : cannot delete objects that are not pointers
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(35) : error C2065: 'm_vCenter' : undeclared identifier
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(35) : error C2228: left of '.Set' must have class/struct/union type
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(50) : error C2065: '__Vector3' : undeclared identifier
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(89) : error C2541: delete : cannot delete objects that are not pointers
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(90) : error C2061: syntax error : identifier '__Vector3'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : error C2143: syntax error : missing ';' before '}'
+D:\骑士在线\骑士cilent code\N3Server\N3Base\N3VMesh.cpp(93) : fatal error C1003: error count exceeds 100; stopping compilation
+Generating Code...
+Error executing cl.exe.
+
+
+
+<h3>Results</h3>
+Ebenezer.exe - 254 error(s), 13 warning(s)
+</pre>
+</body>
+</html>

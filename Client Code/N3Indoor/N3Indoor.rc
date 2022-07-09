@@ -1,0 +1,783 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 18, 1\r\n"
+    "#pragma code_page(949)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\N3Indoor.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.kor\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\N3Indoor.ico"
+IDR_N3INDOTYPE          ICON    DISCARDABLE     "res\\N3IndoorDoc.ico"
+IDI_PVOLUMN             ICON    DISCARDABLE     "res\\POINT06.ICO"
+IDI_SHAPE               ICON    DISCARDABLE     "res\\HEART.ICO"
+IDI_VOL_YT              ICON    DISCARDABLE     "res\\POINT05.ICO"
+IDI_VOL_ZB              ICON    DISCARDABLE     "res\\ARW09UP.ICO"
+IDI_VOL_XL              ICON    DISCARDABLE     "res\\POINT02.ICO"
+IDI_VOL_YB              ICON    DISCARDABLE     "res\\POINT03.ICO"
+IDI_VOL_XR              ICON    DISCARDABLE     "res\\POINT04.ICO"
+IDI_VOL_ZF              ICON    DISCARDABLE     "res\\ARW09DN.ICO"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "파일(&F)"
+    BEGIN
+        MENUITEM "새 작업 파일(&N)\tCtrl+N",    ID_FILE_NEW
+        MENUITEM "작업환경열기(&O)...\tCtrl+O", ID_FILE_WORKSHOP_OPEN
+        MENUITEM "게임화일열기(&G)...\tCtrl+G", ID_FILE_OPEN_GAMEDATA
+        MENUITEM "작업환경저장(&S)\tCtrl+S",    ID_FILE_SAVE_WORKSHOP
+        MENUITEM "게임화일저장(&A))\tCtrl+A",   ID_FILE_SAVE_GAMEDATA
+        MENUITEM SEPARATOR
+        MENUITEM "서버 데이타 저장하기(&V)...", ID_FILE_SERVER_DATA
+        MENUITEM SEPARATOR
+        MENUITEM "최근 파일",                   ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM "최근 파일",                   ID_FILE_MRU_FILE2, GRAYED
+        MENUITEM "최근 파일",                   ID_FILE_MRU_FILE3, GRAYED
+        MENUITEM "최근 파일",                   ID_FILE_MRU_FILE4, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "종료(&X)",                    ID_APP_EXIT
+    END
+    POPUP "보기(&V)"
+    BEGIN
+        MENUITEM "도구 모음(&T)",               ID_VIEW_TOOLBAR
+        MENUITEM "상태 표시줄(&S)",             ID_VIEW_STATUS_BAR
+        MENUITEM "Source Object List(&C)",      ID_VIEW_SOURCEOBJECT
+        MENUITEM "Output Object List(&J)",      ID_VIEW_OUTPUTOBJECT
+        MENUITEM "등록정보 (R)",                ID_EDIT_PROPERTY
+        MENUITEM "통합툴 (G)\tH",               ID_TOTAL_PROPERTY_TOOL
+    END
+    POPUP "커서(&C)"
+    BEGIN
+        MENUITEM "선택\tQ",                     ID_CURSOR_SELECT
+        MENUITEM SEPARATOR
+        MENUITEM "객체 위치조정\tE",            ID_CURSOR_POS
+        MENUITEM "객체 회전\tR",                ID_CURSOR_ROTATE
+        MENUITEM "객체 축소/확대\tT",           ID_CURSOR_SCALE
+        MENUITEM SEPARATOR
+        MENUITEM "선택객체 포커스\tF",          ID_TIP_FOCUS_SELOBJ
+        MENUITEM "전체맵 포커스\tZ",            ID_TIP_FOCUS_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "선택한객체 지우기\tDel",      ID_TIP_DELETE_OBJ
+        MENUITEM "안쓰는 파일 리스트 만들기",   ID_TIP_DELETE_UNUSED_FILES
+        MENUITEM SEPARATOR
+        MENUITEM "연결된 다음 Shape\tN",        ID_TIP_NEXT_SHAPE
+        MENUITEM SEPARATOR
+        MENUITEM "NPC Path 만들기",             ID_CURSOR_MAKE_NPCPATH
+        MENUITEM "이벤트 편집",                 ID_CURSOR_EDIT_EVENT
+        MENUITEM "유저리젠영역",                ID_CURSOR_REGEN_USER
+        MENUITEM "환경소리효과넣기",            ID_CURSOR_SOUND
+    END
+    POPUP "도움말(&H)"
+    BEGIN
+        MENUITEM "N3Indoor 정보(&A)...",        ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "A",            ID_FILE_SAVE_GAMEDATA,  VIRTKEY, CONTROL, NOINVERT
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "E",            ID_CURSOR_POS,          VIRTKEY, NOINVERT
+    "F",            ID_TIP_FOCUS_SELOBJ,    VIRTKEY, NOINVERT
+    "G",            ID_FILE_OPEN_GAMEDATA,  VIRTKEY, CONTROL, NOINVERT
+    "H",            ID_TOTAL_PROPERTY_TOOL, VIRTKEY, NOINVERT
+    "N",            ID_TIP_NEXT_SHAPE,      VIRTKEY, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_WORKSHOP_OPEN,  VIRTKEY, CONTROL, NOINVERT
+    "Q",            ID_CURSOR_SELECT,       VIRTKEY, NOINVERT
+    "R",            ID_CURSOR_ROTATE,       VIRTKEY, NOINVERT
+    "R",            ID_EDIT_PROPERTY,       VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE_WORKSHOP,  VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_CURSOR_SCALE,        VIRTKEY, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_TIP_DELETE_OBJ,      VIRTKEY, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_TIP_FOCUS_ALL,       VIRTKEY, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "N3Indoor 정보"
+FONT 9, "굴림"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "N3Indoor 버전 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2002",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "확인",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_PROPERTY DIALOGEX 0, 0, 151, 629
+STYLE WS_CHILD
+FONT 9, "굴림"
+BEGIN
+    LTEXT           "FPS :",IDC_FPS,93,4,49,8
+    PUSHBUTTON      "Resource 경로",IDC_BUTTON_RESOURCE_PATH,5,3,55,12
+    EDITTEXT        IDC_EDIT_RESOURCE_PATH,6,18,140,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    CONTROL         "편집모드",IDC_EDIT,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE | WS_GROUP | WS_TABSTOP,5,58,46,11
+    CONTROL         "컴파일&&확인",IDC_COMPILE,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE | WS_GROUP | WS_TABSTOP,51,58,46,11
+    CONTROL         "실행모드",IDC_ACTIVE,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE | WS_GROUP | WS_TABSTOP,97,58,46,11
+    GROUPBOX        "1. State",IDC_STATIC,3,48,144,24
+    CONTROL         "Select PVolume",IDC_STATE_PVOLUMN,"Button",
+                    BS_AUTORADIOBUTTON | BS_PUSHLIKE | WS_GROUP | WS_TABSTOP,
+                    6,82,69,12
+    CONTROL         "Select Shape",IDC_STATE_SHAPE,"Button",
+                    BS_AUTORADIOBUTTON | BS_PUSHLIKE | WS_GROUP | WS_TABSTOP,
+                    75,82,69,12
+    GROUPBOX        "2. Select State for Edit",IDC_STATIC,3,73,144,23
+    CONTROL         "Shape",IDC_ADD_SHAPE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,6,106,35,11
+    CONTROL         "Collision",IDC_ADD_COLLISION,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,76,106,39,11
+    GROUPBOX        "5. Add Render Mode",IDC_STATIC,2,98,145,20
+    EDITTEXT        IDC_EDIT_RESOURCE_NAME,36,34,110,11,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    PUSHBUTTON      "Create Volume",IDC_BTN_CREATE_VOL,6,155,69,11
+    PUSHBUTTON      "Destroy Volume",IDC_BTN_DELETE,75,155,69,11
+    GROUPBOX        "Create && Destroy",IDC_STATIC,1,146,146,23
+    CONTROL         "List1",IDC_LIST_SELECT,"SysListView32",
+                    LVS_SHAREIMAGELISTS | WS_TABSTOP,5,186,139,65,
+                    WS_EX_STATICEDGE
+    GROUPBOX        "Select Portal Volume",IDC_STATIC,1,170,146,85
+    GROUPBOX        "Link To Object",IDC_STATIC,1,257,147,104
+    PUSHBUTTON      "1.뒤쪽",IDC_BTN_CREATE_GATE1,5,335,46,11
+    PUSHBUTTON      "2.앞쪽",IDC_BTN_CREATE_GATE2,51,335,46,11
+    PUSHBUTTON      "3.왼쪽",IDC_BTN_CREATE_GATE3,97,335,46,11
+    PUSHBUTTON      "4.오른쪽",IDC_BTN_CREATE_GATE4,5,347,46,11
+    PUSHBUTTON      "5.아랫쪽",IDC_BTN_CREATE_GATE5,51,347,46,11
+    PUSHBUTTON      "6.윗쪽",IDC_BTN_CREATE_GATE6,97,347,46,11
+    CONTROL         "List1",IDC_LIST_LINKTO,"SysListView32",LVS_SINGLESEL | 
+                    LVS_SHAREIMAGELISTS | WS_TABSTOP,5,267,139,65,
+                    WS_EX_STATICEDGE
+    CONTROL         "List1",IDC_LIST_LINKED,"SysListView32",LVS_SINGLESEL | 
+                    LVS_SHAREIMAGELISTS | WS_TABSTOP,5,370,139,64,
+                    WS_EX_STATICEDGE
+    PUSHBUTTON      "Delete",IDC_BTN_LINKED_DELETE,5,437,140,11
+    GROUPBOX        "Linked Object",IDC_STATIC,2,362,146,89
+    PUSHBUTTON      "File :",IDC_BUTTON_FILE_NAME,7,34,27,12
+    GROUPBOX        "Total Shape",IDC_STATIC,3,452,145,89
+    CONTROL         "List1",IDC_LIST_SHAPES,"SysListView32",LVS_SINGLESEL | 
+                    LVS_SHAREIMAGELISTS | WS_GROUP | WS_TABSTOP,7,460,139,65,
+                    WS_EX_STATICEDGE
+    PUSHBUTTON      "Delete..",IDC_BTN_SHAPE_DELETE,7,527,68,11
+    GROUPBOX        "Total Move Offset",IDC_STATIC,2,543,145,22
+    LTEXT           "X :",IDC_STATIC,8,552,9,10
+    EDITTEXT        IDC_TOTAL_MOVE_X,18,551,31,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Z :",IDC_STATIC,103,553,9,10
+    EDITTEXT        IDC_TOTAL_MOVE_Z,114,551,31,12,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "Not Selected..",IDC_SELECT_VOL_TEXT,83,176,59,8
+    GROUPBOX        "6. The Indicator",IDC_STATIC,2,120,145,24
+    CONTROL         "Pick",IDC_INDI_PICK,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE | WS_GROUP | WS_TABSTOP,8,130,34,11
+    CONTROL         "Move",IDC_INDI_MOVE,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE | WS_GROUP | WS_TABSTOP,42,130,34,11
+    CONTROL         "Rotate",IDC_INDI_ROTATE,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE | WS_GROUP | WS_TABSTOP,76,130,34,11
+    CONTROL         "Scale",IDC_INDI_SCALE,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE | WS_GROUP | WS_TABSTOP,110,130,34,11
+    LTEXT           "Y:",IDC_STATIC,52,553,8,10
+    EDITTEXT        IDC_TOTAL_MOVE_Y,67,551,31,12,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "현재 Shape만 보기",IDC_VIEW_SELECTED_TOTAL_SHAPE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,77,528,69,10
+    GROUPBOX        "Floor Info",IDC_STATIC,3,566,145,44
+    COMBOBOX        IDC_COMBO_FLOOR,6,574,69,51,CBS_DROPDOWNLIST | CBS_SORT | 
+                    CBS_LOWERCASE | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "층 지정하기",IDC_SET_FLOOR,7,591,68,13
+    CONTROL         "층별로 보기",IDC_CHECK_FLOOR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,78,576,47,10
+    PUSHBUTTON      "층 삭제하기",IDC_DELETE_FLOOR,77,591,68,13
+END
+
+IDD_BROWSE_PATH DIALOG DISCARDABLE  0, 0, 187, 312
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Browse Path"
+FONT 9, "굴림"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,16,291,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,119,291,50,14
+    COMBOBOX        IDC_FILELIST,4,9,158,15,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "->",IDC_SYNCH_FOLDERS,164,6,17,17
+    CONTROL         "Tree1",IDC_BROWSE_TREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | WS_BORDER | WS_TABSTOP,
+                    5,30,175,255
+END
+
+IDD_COMPUTING DIALOG DISCARDABLE  0, 0, 112, 54
+STYLE DS_SETFOREGROUND | DS_3DLOOK | DS_CENTER | WS_POPUP | WS_VISIBLE
+FONT 12, "System"
+BEGIN
+    LTEXT           "컴파일 중입니다.. \n약간의 시간이 소요됩니다..",
+                    IDC_STATIC,8,8,97,21,NOT WS_GROUP
+    LTEXT           "0% In Progress..",IDC_PROGRESS,21,34,70,12,NOT WS_GROUP
+END
+
+IDD_SHAPE_TYPE DIALOG DISCARDABLE  0, 0, 197, 46
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Shape 타입을 정하십시오.. ^^"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,145,5,41,14
+    PUSHBUTTON      "Cancel",IDCANCEL,145,22,41,14
+    CONTROL         "전체 Shape List에 등록한다.",IDC_RADIO_PARTIAL,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,11,5,127,13
+    CONTROL         "현재 Volume에 Link한다.",IDC_RADIO_NONEPARTIAL,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,11,24,127,13
+END
+
+IDD_SHAPE_LIST DIALOGEX 0, 0, 147, 341
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Shape List"
+FONT 9, "굴림"
+BEGIN
+    PUSHBUTTON      "정  렬",IDC_BTN_SORT,0,0,40,15
+    LISTBOX         IDC_LIST_OBJ,1,20,145,220,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | LBS_EXTENDEDSEL | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "",IDC_PREVIEW,"Static",SS_GRAYFRAME,1,245,84,91
+    PUSHBUTTON      "Link To Shape",IDC_OK,89,315,55,20
+END
+
+IDD_UNUSED_FILES DIALOG DISCARDABLE  0, 0, 383, 363
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "안쓰는 파일 지우기"
+FONT 9, "돋움"
+BEGIN
+    LISTBOX         IDC_LIST_FILES,4,14,375,179,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | LBS_EXTENDEDSEL | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "선택된 파일 지우기",IDC_DELETE,3,197,315,31
+    PUSHBUTTON      "닫기",ID_CANCEL,318,197,61,31
+    LTEXT           "에러 있는 오브젝트",IDC_STATIC,5,237,61,10
+    LISTBOX         IDC_LIST_INVALID_OBJECTS,1,248,380,111,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_BASE DIALOGEX 0, 0, 239, 395
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+FONT 9, "굴림"
+BEGIN
+    LTEXT           "등록정보",IDC_STATIC,1,0,31,9
+    EDITTEXT        IDC_E_NAME,0,9,238,12,ES_AUTOHSCROLL
+    LISTBOX         IDC_LP_TRANSFORM,0,22,238,40,LBS_OWNERDRAWVARIABLE | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    LISTBOX         IDC_LP_CAMERA,0,64,238,40,LBS_OWNERDRAWVARIABLE | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    LISTBOX         IDC_LP_LIGHT,0,106,238,40,LBS_OWNERDRAWVARIABLE | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_CB_PART_SHAPE,0,147,238,15,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LP_SHAPE,0,161,238,41,LBS_OWNERDRAWVARIABLE | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_CB_PART_CHARACTE,0,205,100,12,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CB_LOD,103,205,135,12,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LISTBOX         IDC_LP_CHR,0,219,238,36,LBS_OWNERDRAWVARIABLE | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    LISTBOX         IDC_LP_CHR_PART,0,255,238,35,LBS_OWNERDRAWVARIABLE | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_CB_PLUG_CHARACTER,0,293,238,12,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LP_CHR_PLUG,0,307,238,40,LBS_OWNERDRAWVARIABLE | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    LISTBOX         IDC_LP_MATERIAL,0,348,238,45,LBS_OWNERDRAWVARIABLE | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+END
+
+IDD_MAKE_NPCPATH DIALOG DISCARDABLE  0, 0, 314, 492
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "NPC Path 만들기"
+FONT 9, "굴림"
+BEGIN
+END
+
+IDD_EDIT_EVENT DIALOG DISCARDABLE  0, 0, 314, 492
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "이벤트 편집"
+FONT 9, "굴림"
+BEGIN
+END
+
+IDD_REGEN_USER DIALOG DISCARDABLE  0, 0, 314, 492
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "유저리젠영역"
+FONT 9, "굴림"
+BEGIN
+END
+
+IDD_ENVIRON_SOUND DIALOG DISCARDABLE  0, 0, 314, 492
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "환경소리효과넣기"
+FONT 9, "굴림"
+BEGIN
+END
+
+IDD_FLOORSET DIALOGEX 0, 0, 145, 27
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "층을 지정하세여"
+FONT 9, "굴림"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,67,6,36,14
+    PUSHBUTTON      "Cancel",IDCANCEL,103,6,36,14
+    EDITTEXT        IDC_FLOOR_NUMBER,5,5,55,15,ES_RIGHT | ES_LOWERCASE | 
+                    ES_AUTOHSCROLL | ES_NUMBER
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041204B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "N3Indoor MFC 응용 프로그램\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "N3Indoor\0"
+            VALUE "LegalCopyright", "Copyright (C) 2002\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "N3Indoor.EXE\0"
+            VALUE "ProductName", "N3Indoor 응용 프로그램\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x412, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_PROPERTY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 144
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 622
+    END
+
+    IDD_BROWSE_PATH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 305
+    END
+
+    IDD_COMPUTING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 105
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 47
+    END
+
+    IDD_SHAPE_TYPE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 190
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 39
+    END
+
+    IDD_SHAPE_LIST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 140
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 334
+    END
+
+    IDD_UNUSED_FILES, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 376
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 356
+    END
+
+    IDD_BASE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 232
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 388
+    END
+
+    IDD_MAKE_NPCPATH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 307
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 485
+    END
+
+    IDD_EDIT_EVENT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 307
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 485
+    END
+
+    IDD_REGEN_USER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 307
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 485
+    END
+
+    IDD_ENVIRON_SOUND, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 307
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 485
+    END
+
+    IDD_FLOORSET, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 138
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 20
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_TRANSFORM           CURSOR  DISCARDABLE     "res\\transform.cur"
+IDC_SELECT              CURSOR  DISCARDABLE     "res\\MOVE4WAY.CUR"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_BASE DLGINIT
+BEGIN
+    IDC_CB_PART_CHARACTE, 0x403, 5, 0
+0x6150, 0x7472, "\000" 
+    IDC_CB_LOD, 0x403, 4, 0
+0x4f4c, 0x0044, 
+    IDC_CB_PLUG_CHARACTER, 0x403, 5, 0
+0x6c50, 0x6775, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "N3Indoor\n\nN3Indoor\nN3Indo 파일 (*.n3ie)\n.n3ie\nN3Indoor.Document\nN3Indoor Document"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "N3Indoor"
+    AFX_IDS_IDLEMESSAGE     "준비"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "새 문서를 작성합니다\n새 파일"
+    ID_FILE_OPEN            "기존 문서를 엽니다\n열기"
+    ID_FILE_CLOSE           "현재 열린 문서를 닫습니다\n닫기"
+    ID_FILE_SAVE            "현재 열린 문서를 저장합니다\n저장"
+    ID_FILE_SAVE_AS         "현재 열린 문서를 다른 이름으로 저장합니다\n다른 이름으로 저장"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "프로그램 정보와 버전 정보, 저작권 정보를 표시합니다\n정보"
+    ID_APP_EXIT             "응용 프로그램을 종료하기 위해 문서를 저장할 것인지 묻습니다\n종료"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "이 문서를 엽니다"
+    ID_FILE_MRU_FILE2       "이 문서를 엽니다"
+    ID_FILE_MRU_FILE3       "이 문서를 엽니다"
+    ID_FILE_MRU_FILE4       "이 문서를 엽니다"
+    ID_FILE_MRU_FILE5       "이 문서를 엽니다"
+    ID_FILE_MRU_FILE6       "이 문서를 엽니다"
+    ID_FILE_MRU_FILE7       "이 문서를 엽니다"
+    ID_FILE_MRU_FILE8       "이 문서를 엽니다"
+    ID_FILE_MRU_FILE9       "이 문서를 엽니다"
+    ID_FILE_MRU_FILE10      "이 문서를 엽니다"
+    ID_FILE_MRU_FILE11      "이 문서를 엽니다"
+    ID_FILE_MRU_FILE12      "이 문서를 엽니다"
+    ID_FILE_MRU_FILE13      "이 문서를 엽니다"
+    ID_FILE_MRU_FILE14      "이 문서를 엽니다"
+    ID_FILE_MRU_FILE15      "이 문서를 엽니다"
+    ID_FILE_MRU_FILE16      "이 문서를 엽니다"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "다음 창으로 전환합니다\n다음 창"
+    ID_PREV_PANE            "이전 창으로 전환합니다\n이전 창"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "현재 열린 창을 나눕니다\n나누기"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "선택 부분을 지웁니다\n지우기"
+    ID_EDIT_CLEAR_ALL       "모든 것을 지웁니다\n모두 지우기"
+    ID_EDIT_COPY            "선택 부분을 복사하여 클립보드에 넣습니다\n복사"
+    ID_EDIT_CUT             "선택 부분을 잘라내어 클립보드에 넣습니다\n잘라내기"
+    ID_EDIT_FIND            "지정한 문자열을 찾습니다\n찾기"
+    ID_EDIT_PASTE           "클립보드의 내용을 붙여 넣습니다\n붙여넣기"
+    ID_EDIT_REPEAT          "마지막으로 실행한 동작을 반복합니다\n반복"
+    ID_EDIT_REPLACE         "지정한 문자열을 다른 문자열로 바꿉니다\n바꾸기"
+    ID_EDIT_SELECT_ALL      "문서 전체를 선택합니다\n전체 선택"
+    ID_EDIT_UNDO            "마지막으로 한 동작을 취소합니다\n실행 취소"
+    ID_EDIT_REDO            "이전에 취소한 동작을 다시 수행합니다\n다시 실행"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "도구 모음을 보이거나 감춥니다\n도구 모음 전환"
+    ID_VIEW_STATUS_BAR      "상태 표시줄을 표시하거나 감춥니다\n상태 표시줄 전환"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "창의 크기를 변경합니다"
+    AFX_IDS_SCMOVE          "창의 위치를 변경합니다"
+    AFX_IDS_SCMINIMIZE      "창을 아이콘으로 줄여서 표시합니다"
+    AFX_IDS_SCMAXIMIZE      "창을 최대 크기로 확장합니다"
+    AFX_IDS_SCNEXTWINDOW    "다음 문서 창으로 전환합니다"
+    AFX_IDS_SCPREVWINDOW    "이전 문서 창으로 전환합니다"
+    AFX_IDS_SCCLOSE         "현재 열린 창을 닫고 문서를 저장할 것인지를 묻습니다"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "창을 원래 크기로 복원합니다"
+    AFX_IDS_SCTASKLIST      "작업 목록을 활성화합니다"
+    IDS_TOTAL_SHEET         "통합 툴 윈도우"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_OPEN_GAMEDATA   "게임화일을 엽니다\n열기"
+    ID_CURSOR_SELECT        "객체를 선택합니다.\n선택"
+    ID_CURSOR_POS           "선택한 객체를 이동합니다.\n이동"
+    ID_CURSOR_ROTATE        "선택한 객체를 회전시킵니다.\n회전"
+    ID_CURSOR_SCALE         "선택한 객체를 확대/축소합니다.\n확대/축소"
+END
+
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE 18, 1
+#pragma code_page(949)
+#endif //_WIN32
+#include "res\N3Indoor.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.kor\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

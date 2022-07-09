@@ -1,0 +1,78 @@
+BOOL CServiceMain::DBSocketConnect()
+{
+	char m_pSendBuf[PACKET_DATA_SIZE+1];
+
+	if ( m_pDBSocket == NULL )
+	{
+		m_pDBSocket = GetJSocket( &m_ServerBase );
+		m_pDBSocket->m_ReConnectFlag = TRUE;
+	}
+
+	if ( !m_pDBSocket->m_ReConnectFlag )
+	{
+		if ( db_connected_disp_flag == 0 )
+		{
+			db_connected_disp_flag++;
+
+			#ifdef _DEBUG
+			sprintf( m_pSendBuf, "]DB Server Connected..." );
+			myputs(1,cur_svr_connected_pos++,m_pSendBuf);
+			#else if _CONSOLE
+			sprintf( m_pSendBuf, "]DB Server Connected...");
+			myputs(1,cur_svr_connected_pos++,m_pSendBuf);
+			#endif
+		}
+
+		// 시간 스탬프 갱신하기...
+	//	g_pSQM->m_pResources->SetTimeStamp( m_pDBSocket->m_Sid );
+		return FALSE;
+	}
+
+	if ( !m_pDBSocket->Create() )
+	{
+		m_pDBSocket->SockCloseProcess();
+		return FALSE; 
+	}
+
+	if ( !m_pDBSocket->Connect(m_DBAddr, PORT_JANG_DBSVR) )
+	{
+		m_pDBSocket->SockCloseProcess();
+
+		// DB CONNECT MSG...
+	#ifdef _DEBUG
+		char str_buf[100];
+		sprintf(str_buf, "]Database Server Connect Fail[%s]...", m_DBAddr );
+		myputs(1,cur_svr_connected_pos++,str_buf);
+	#else if _CONSOLE
+		char str_buf[100];
+		sprintf(str_buf, "]Database Server Connect Fail[%s]...", m_DBAddr );
+		myputs(1,cur_svr_connected_pos++,str_buf);
+	#endif
+
+		return FALSE;
+	}
+
+	m_pDBSocket->Init(0);
+	m_pDBSocket->m_ReConnectFlag = FALSE;
+	m_pDBSocket->m_Type = SOCKET_DB_IN_JANG;
+
+	int index = 0;
+	// jasy, 임시로 주석처리...
+	//m_pSendBuf[index++] = CONNECT_JANG_TO_DB;
+	//Send( m_pDBSocket, index, m_pSendBuf );
+	//~
+
+	// DB CONNECT MSG...
+#ifdef _DEBUG
+	char str_buf[100];
+	sprintf(str_buf, "]Database Server Connected[%s]...", m_DBAddr );
+	myputs(1,cur_svr_connected_pos++,str_buf);
+#else if _CONSOLE
+	char str_buf[100];
+	sprintf(str_buf, "]Database Server Connected[%s]...", m_DBAddr );
+	myputs(1,cur_svr_connected_pos++,str_buf);
+#endif
+	//
+
+	return TRUE;
+}
