@@ -114,7 +114,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=/nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\Launcher.pdb" /machine:I386 /force /out:"Launcher.exe" 
+LINK32_FLAGS=ZipArchive.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\Launcher.pdb" /machine:I386 /force /out:"Launcher.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\APISocket.obj" \
 	"$(INTDIR)\BackgroundUtil.obj" \
@@ -222,7 +222,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=/nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\Launcher_Debug.pdb" /debug /machine:I386 /force /out:"Launcher_Debug.exe" /pdbtype:sept 
+LINK32_FLAGS=ZipArchive.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\Launcher_Debug.pdb" /debug /machine:I386 /force /out:"Launcher_Debug.exe" /pdbtype:sept 
 LINK32_OBJS= \
 	"$(INTDIR)\APISocket.obj" \
 	"$(INTDIR)\BackgroundUtil.obj" \
