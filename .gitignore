@@ -1,9 +1,11 @@
 .vs/
 Release/
 Debug/
+vendor/
 *.exe
 *.pdb
 *.plg
 *.aps
 *.opt
 *.ncb
+*.vcxproj.user
