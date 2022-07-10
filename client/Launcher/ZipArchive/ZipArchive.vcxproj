@@ -144,6 +144,7 @@
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <ObjectFileName>.\Unicode_Release\</ObjectFileName>
       <ProgramDataBaseFileName>.\Unicode_Release\</ProgramDataBaseFileName>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0415</Culture>
@@ -174,6 +175,7 @@
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <ObjectFileName>.\Release\</ObjectFileName>
       <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0415</Culture>
@@ -207,6 +209,7 @@
       <ObjectFileName>.\Unicode_Debug\</ObjectFileName>
       <ProgramDataBaseFileName>.\Unicode_Debug\</ProgramDataBaseFileName>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0415</Culture>
@@ -237,6 +240,7 @@
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <ObjectFileName>.\Static_Release\</ObjectFileName>
       <ProgramDataBaseFileName>.\Static_Release\</ProgramDataBaseFileName>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0415</Culture>
@@ -267,6 +271,7 @@
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <ObjectFileName>.\Unicode_Static_Release\</ObjectFileName>
       <ProgramDataBaseFileName>.\Unicode_Static_Release\</ProgramDataBaseFileName>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0415</Culture>
@@ -300,6 +305,7 @@
       <ObjectFileName>.\Debug\</ObjectFileName>
       <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0415</Culture>
