@@ -780,7 +780,7 @@ INTDIR=.\Debug
 OutDir=.\Debug
 # End Custom Macros
 
-ALL : ".\NetCatOnLine_Debug.exe" "$(OUTDIR)\WarFare.bsc"
+ALL : ".\KnightOnLine_Debug.exe" "$(OUTDIR)\WarFare.bsc"
 
 
 CLEAN :
@@ -1121,9 +1121,9 @@ CLEAN :
 	-@erase "$(INTDIR)\WarMessage.sbr"
 	-@erase "$(INTDIR)\WaveFile.obj"
 	-@erase "$(INTDIR)\WaveFile.sbr"
-	-@erase "$(OUTDIR)\NetCatOnLine_Debug.map"
+	-@erase "$(OUTDIR)\KnightOnLine_Debug.map"
 	-@erase "$(OUTDIR)\WarFare.bsc"
-	-@erase ".\NetCatOnLine_Debug.exe"
+	-@erase ".\KnightOnLine_Debug.exe"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -1342,7 +1342,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=implode.lib winmm.lib imm32.lib ddraw.lib d3d8.lib d3dx8.lib dsound.lib dxguid.lib dxerr8.lib wsock32.lib DInput8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib NAFXCWD.LIB LIBCMTD.LIB ..\JPEG\jpegLib.lib /nologo /subsystem:windows /profile /map:"$(INTDIR)\NetCatOnLine_Debug.map" /debug /machine:I386 /nodefaultlib:"msvcrt" /out:"NetCatOnLine_Debug.exe" 
+LINK32_FLAGS=implode.lib winmm.lib imm32.lib ddraw.lib d3d8.lib d3dx8.lib dsound.lib dxguid.lib dxerr8.lib wsock32.lib DInput8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib NAFXCWD.LIB LIBCMTD.LIB ..\JPEG\jpegLib.lib /nologo /subsystem:windows /profile /map:"$(INTDIR)\KnightOnLine_Debug.map" /debug /machine:I386 /nodefaultlib:"msvcrt" /out:"KnightOnLine_Debug.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\N3UIBase.obj" \
 	"$(INTDIR)\N3UIButton.obj" \
@@ -1515,7 +1515,7 @@ LINK32_OBJS= \
 	".\JvCryption.lib" \
 	".\Implode.lib"
 
-".\NetCatOnLine_Debug.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+".\KnightOnLine_Debug.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
