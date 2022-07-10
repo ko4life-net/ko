@@ -7,3 +7,4 @@ Debug/
 *.aps
 *.opt
 *.ncb
+*.vcxproj.user
