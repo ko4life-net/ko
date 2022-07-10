@@ -1,6 +1,7 @@
 .vs/
 Release/
 Debug/
+vendor/
 *.exe
 *.pdb
 *.plg
