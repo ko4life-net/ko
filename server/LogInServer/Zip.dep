@@ -1,0 +1,74 @@
+# Microsoft Developer Studio Generated Dependency File, included by Zip.mak
+
+.\AutoBuffer.cpp : \
+	".\AutoBuffer.h"\
+	
+
+.\BigFile.cpp : \
+	".\BigFile.h"\
+	
+
+.\CentralDir.cpp : \
+	".\AutoBuffer.h"\
+	".\BigFile.h"\
+	".\CentralDir.h"\
+	".\FileHeader.h"\
+	".\zconf.h"\
+	".\ZipArchive.h"\
+	".\ZipException.h"\
+	".\ZipInternalInfo.h"\
+	".\ZipStorage.h"\
+	".\zlib.h"\
+	
+
+.\FileHeader.cpp : \
+	".\AutoBuffer.h"\
+	".\BigFile.h"\
+	".\FileHeader.h"\
+	".\zconf.h"\
+	".\ZipException.h"\
+	".\ZipStorage.h"\
+	".\zlib.h"\
+	
+
+.\StdAfx.cpp : \
+	"..\..\..\..\program files (x86)\microsoft visual studio\vc98\include\basetsd.h"\
+	".\StdAfx.h"\
+	
+
+.\ZipArchive.cpp : \
+	".\AutoBuffer.h"\
+	".\BigFile.h"\
+	".\CentralDir.h"\
+	".\FileHeader.h"\
+	".\zconf.h"\
+	".\ZipArchive.h"\
+	".\ZipException.h"\
+	".\ZipInternalInfo.h"\
+	".\ZipStorage.h"\
+	".\zlib.h"\
+	
+
+.\ZipException.cpp : \
+	".\ZipException.h"\
+	
+
+.\ZipInternalInfo.cpp : \
+	".\AutoBuffer.h"\
+	".\zconf.h"\
+	".\ZipInternalInfo.h"\
+	".\zlib.h"\
+	
+
+.\ZipStorage.cpp : \
+	".\AutoBuffer.h"\
+	".\BigFile.h"\
+	".\CentralDir.h"\
+	".\FileHeader.h"\
+	".\zconf.h"\
+	".\ZipArchive.h"\
+	".\ZipException.h"\
+	".\ZipInternalInfo.h"\
+	".\ZipStorage.h"\
+	".\zlib.h"\
+	

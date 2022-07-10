@@ -276,7 +276,7 @@ BOOL CIOCPSocket2::PullOutCore(char *&data, int &length)
 	int			len;
 	BOOL		foundCore;
 	MYSHORT		slen;
-	DWORD		wSerial;
+	//DWORD		wSerial;
 
 	len = m_pBuffer->GetValidCount();
 

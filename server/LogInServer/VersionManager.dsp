@@ -53,7 +53,8 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
-# ADD LINK32 ws2_32.lib /nologo /subsystem:windows /machine:I386 /force
+# ADD LINK32 Zip.lib ws2_32.lib /nologo /subsystem:windows /machine:I386 /force /libpath:"Release\\"
+# SUBTRACT LINK32 /nodefaultlib
 
 !ELSEIF  "$(CFG)" == "VersionManager - Win32 Debug"
 
@@ -79,8 +80,8 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 ws2_32.lib /nologo /subsystem:windows /debug /machine:I386 /force /pdbtype:sept
-# SUBTRACT LINK32 /nodefaultlib
+# ADD LINK32 Zip.lib ws2_32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept /libpath:"Debug/"
+# SUBTRACT LINK32 /nodefaultlib /force
 
 !ENDIF 
 

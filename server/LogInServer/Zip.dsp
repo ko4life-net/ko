@@ -50,7 +50,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"Debug\Zip.lib"
+# ADD LIB32 /nologo
 
 !ELSEIF  "$(CFG)" == "Zip - Win32 Debug"
 
@@ -96,7 +96,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"Debug\Zip.lib"
+# ADD LIB32 /nologo
 
 !ENDIF 
 
@@ -111,39 +111,110 @@ LIB32=link.exe -lib
 # Begin Source File
 
 SOURCE=.\AutoBuffer.cpp
+DEP_CPP_AUTOB=\
+	".\AutoBuffer.h"\
+	".\StdAfx.h"\
+	
 # End Source File
 # Begin Source File
 
 SOURCE=.\BigFile.cpp
+DEP_CPP_BIGFI=\
+	".\BigFile.h"\
+	".\StdAfx.h"\
+	
 # End Source File
 # Begin Source File
 
 SOURCE=.\CentralDir.cpp
+DEP_CPP_CENTR=\
+	".\AutoBuffer.h"\
+	".\BigFile.h"\
+	".\CentralDir.h"\
+	".\FileHeader.h"\
+	".\StdAfx.h"\
+	".\zconf.h"\
+	".\ZipArchive.h"\
+	".\ZipException.h"\
+	".\ZipInternalInfo.h"\
+	".\ZipStorage.h"\
+	".\zlib.h"\
+	
 # End Source File
 # Begin Source File
 
 SOURCE=.\FileHeader.cpp
+DEP_CPP_FILEH=\
+	".\AutoBuffer.h"\
+	".\BigFile.h"\
+	".\FileHeader.h"\
+	".\StdAfx.h"\
+	".\zconf.h"\
+	".\ZipException.h"\
+	".\ZipStorage.h"\
+	".\zlib.h"\
+	
 # End Source File
 # Begin Source File
 
 SOURCE=.\StdAfx.cpp
+DEP_CPP_STDAF=\
+	".\StdAfx.h"\
+	
 # ADD CPP /Yc"stdafx.h"
 # End Source File
 # Begin Source File
 
 SOURCE=.\ZipArchive.cpp
+DEP_CPP_ZIPAR=\
+	".\AutoBuffer.h"\
+	".\BigFile.h"\
+	".\CentralDir.h"\
+	".\FileHeader.h"\
+	".\StdAfx.h"\
+	".\zconf.h"\
+	".\ZipArchive.h"\
+	".\ZipException.h"\
+	".\ZipInternalInfo.h"\
+	".\ZipStorage.h"\
+	".\zlib.h"\
+	
 # End Source File
 # Begin Source File
 
 SOURCE=.\ZipException.cpp
+DEP_CPP_ZIPEX=\
+	".\StdAfx.h"\
+	".\ZipException.h"\
+	
 # End Source File
 # Begin Source File
 
 SOURCE=.\ZipInternalInfo.cpp
+DEP_CPP_ZIPIN=\
+	".\AutoBuffer.h"\
+	".\StdAfx.h"\
+	".\zconf.h"\
+	".\ZipInternalInfo.h"\
+	".\zlib.h"\
+	
 # End Source File
 # Begin Source File
 
 SOURCE=.\ZipStorage.cpp
+DEP_CPP_ZIPST=\
+	".\AutoBuffer.h"\
+	".\BigFile.h"\
+	".\CentralDir.h"\
+	".\FileHeader.h"\
+	".\StdAfx.h"\
+	".\zconf.h"\
+	".\ZipArchive.h"\
+	".\ZipException.h"\
+	".\ZipInternalInfo.h"\
+	".\ZipStorage.h"\
+	".\zlib.h"\
+	
 # End Source File
 # End Group
 # Begin Group "Header Files"

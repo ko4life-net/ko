@@ -25,6 +25,10 @@ NULL=
 NULL=nul
 !ENDIF 
 
+CPP=cl.exe
+MTL=midl.exe
+RSC=rc.exe
+
 !IF  "$(CFG)" == "VersionManager - Win32 Release"
 
 OUTDIR=.\Release
@@ -57,49 +61,15 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP=cl.exe
 CPP_PROJ=/nologo /MT /W3 /GX /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"$(INTDIR)\VersionManager.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
-
-.c{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.c{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-MTL=midl.exe
 MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /win32 
-RSC=rc.exe
 RSC_PROJ=/l 0x412 /fo"$(INTDIR)\VersionManager.res" /d "NDEBUG" 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\VersionManager.bsc" 
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=ws2_32.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\VersionManager.pdb" /machine:I386 /force /out:"$(OUTDIR)\VersionManager.exe" 
+LINK32_FLAGS=Zip.lib ws2_32.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\VersionManager.pdb" /machine:I386 /force /out:"$(OUTDIR)\VersionManager.exe" /libpath:"Release\\" 
 LINK32_OBJS= \
 	"$(INTDIR)\CircularBuffer.obj" \
 	"$(INTDIR)\DBProcess.obj" \
@@ -155,8 +125,36 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP=cl.exe
 CPP_PROJ=/nologo /MTd /W3 /Gm /GX /ZI /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"$(INTDIR)\VersionManager.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
+MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /win32 
+RSC_PROJ=/l 0x412 /fo"$(INTDIR)\VersionManager.res" /d "_DEBUG" 
+BSC32=bscmake.exe
+BSC32_FLAGS=/nologo /o"$(OUTDIR)\VersionManager.bsc" 
+BSC32_SBRS= \
+	
+LINK32=link.exe
+LINK32_FLAGS=Zip.lib ws2_32.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\VersionManager.pdb" /debug /machine:I386 /out:"$(OUTDIR)\VersionManager.exe" /pdbtype:sept /libpath:"Debug/" 
+LINK32_OBJS= \
+	"$(INTDIR)\CircularBuffer.obj" \
+	"$(INTDIR)\DBProcess.obj" \
+	"$(INTDIR)\DlgBrowsePath.obj" \
+	"$(INTDIR)\IOCPort.obj" \
+	"$(INTDIR)\IOCPSocket2.obj" \
+	"$(INTDIR)\SettingDlg.obj" \
+	"$(INTDIR)\ShellTree.obj" \
+	"$(INTDIR)\StdAfx.obj" \
+	"$(INTDIR)\User.obj" \
+	"$(INTDIR)\VersionManager.obj" \
+	"$(INTDIR)\VersionManagerDlg.obj" \
+	"$(INTDIR)\VersionSet.obj" \
+	"$(INTDIR)\VersionManager.res"
+
+"$(OUTDIR)\VersionManager.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+    $(LINK32) @<<
+  $(LINK32_FLAGS) $(LINK32_OBJS)
+<<
+
+!ENDIF 
 
 .c{$(INTDIR)}.obj::
    $(CPP) @<<
@@ -187,38 +185,6 @@ CPP_PROJ=/nologo /MTd /W3 /Gm /GX /ZI /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_
    $(CPP) @<<
    $(CPP_PROJ) $< 
 <<
-
-MTL=midl.exe
-MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /win32 
-RSC=rc.exe
-RSC_PROJ=/l 0x412 /fo"$(INTDIR)\VersionManager.res" /d "_DEBUG" 
-BSC32=bscmake.exe
-BSC32_FLAGS=/nologo /o"$(OUTDIR)\VersionManager.bsc" 
-BSC32_SBRS= \
-	
-LINK32=link.exe
-LINK32_FLAGS=ws2_32.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\VersionManager.pdb" /debug /machine:I386 /force /out:"$(OUTDIR)\VersionManager.exe" /pdbtype:sept 
-LINK32_OBJS= \
-	"$(INTDIR)\CircularBuffer.obj" \
-	"$(INTDIR)\DBProcess.obj" \
-	"$(INTDIR)\DlgBrowsePath.obj" \
-	"$(INTDIR)\IOCPort.obj" \
-	"$(INTDIR)\IOCPSocket2.obj" \
-	"$(INTDIR)\SettingDlg.obj" \
-	"$(INTDIR)\ShellTree.obj" \
-	"$(INTDIR)\StdAfx.obj" \
-	"$(INTDIR)\User.obj" \
-	"$(INTDIR)\VersionManager.obj" \
-	"$(INTDIR)\VersionManagerDlg.obj" \
-	"$(INTDIR)\VersionSet.obj" \
-	"$(INTDIR)\VersionManager.res"
-
-"$(OUTDIR)\VersionManager.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
-    $(LINK32) @<<
-  $(LINK32_FLAGS) $(LINK32_OBJS)
-<<
-
-!ENDIF 
 
 
 !IF "$(NO_EXTERNAL_DEPS)" != "1"
