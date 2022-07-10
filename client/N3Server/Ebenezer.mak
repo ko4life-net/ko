@@ -98,7 +98,7 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\Ebenezer.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=/nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\Ebenezer.pdb" /machine:I386 /out:"$(OUTDIR)\Ebenezer.exe" 
+LINK32_FLAGS=ws2_32.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\Ebenezer.pdb" /machine:I386 /out:"$(OUTDIR)\Ebenezer.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\CircularBuffer.obj" \
 	"$(INTDIR)\Ebenezer.obj" \
