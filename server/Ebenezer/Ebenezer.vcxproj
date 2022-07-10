@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName>"$/Ebenezer", BAAAAAAA</SccProjectName>
+    <SccLocalPath>.</SccLocalPath>
+    <Keyword>MFCProj</Keyword>
+    <ProjectGuid>{27951848-85E4-46D3-9976-3CEDD74B7A86}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_3DSERVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Release\Ebenezer.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ObjectFileName>.\Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Release\Ebenezer.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\Ebenezer.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>.\Release\Ebenezer.exe</OutputFile>
+      <AdditionalDependencies>Implode.lib;ws2_32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_3DSERVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\Debug\Ebenezer.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Debug\Ebenezer.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug\Ebenezer.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>.\Debug\Ebenezer.exe</OutputFile>
+      <AdditionalDependencies>ws2_32.lib;Implode.lib;winmm.lib;d3d8.lib;d3dx8.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AISocket.cpp" />
+    <ClCompile Include="BattleSet.cpp" />
+    <ClCompile Include="CircularBuffer.cpp" />
+    <ClCompile Include="CoefficientSet.cpp" />
+    <ClCompile Include="Compress.cpp" />
+    <ClCompile Include="Ebenezer.cpp" />
+    <ClCompile Include="EbenezerDlg.cpp" />
+    <ClCompile Include="EVENT.cpp" />
+    <ClCompile Include="EventSet.cpp" />
+    <ClCompile Include="EVENT_DATA.cpp" />
+    <ClCompile Include="EXEC.cpp" />
+    <ClCompile Include="GameEvent.cpp" />
+    <ClCompile Include="HomeSet.cpp" />
+    <ClCompile Include="Ini.cpp" />
+    <ClCompile Include="IOCPort.cpp" />
+    <ClCompile Include="IOCPSocket2.cpp" />
+    <ClCompile Include="ItemTableSet.cpp" />
+    <ClCompile Include="Knights.cpp" />
+    <ClCompile Include="KnightsManager.cpp" />
+    <ClCompile Include="KnightsRankSet.cpp" />
+    <ClCompile Include="KnightsSet.cpp" />
+    <ClCompile Include="KnightsUserSet.cpp" />
+    <ClCompile Include="LevelUpTableSet.cpp" />
+    <ClCompile Include="LOGIC_ELSE.cpp" />
+    <ClCompile Include="MagicProcess.cpp" />
+    <ClCompile Include="MagicTableSet.cpp" />
+    <ClCompile Include="MagicType1Set.cpp" />
+    <ClCompile Include="MagicType2Set.cpp" />
+    <ClCompile Include="MagicType3Set.cpp" />
+    <ClCompile Include="MagicType4Set.cpp" />
+    <ClCompile Include="MagicType5Set.cpp" />
+    <ClCompile Include="MagicType8Set.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="N3Base\N3ShapeMgr.cpp" />
+    <ClCompile Include="Npc.cpp" />
+    <ClCompile Include="Region.cpp" />
+    <ClCompile Include="SharedMem.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="UdpSocket.cpp" />
+    <ClCompile Include="User.cpp" />
+    <ClCompile Include="ZoneInfoSet.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AIPacket.h" />
+    <ClInclude Include="AISocket.h" />
+    <ClInclude Include="BattleSet.h" />
+    <ClInclude Include="CircularBuffer.h" />
+    <ClInclude Include="CoefficientSet.h" />
+    <ClInclude Include="Compress.h" />
+    <ClInclude Include="Define.h" />
+    <ClInclude Include="Ebenezer.h" />
+    <ClInclude Include="EbenezerDlg.h" />
+    <ClInclude Include="EVENT.h" />
+    <ClInclude Include="EventSet.h" />
+    <ClInclude Include="EVENT_DATA.h" />
+    <ClInclude Include="EXEC.h" />
+    <ClInclude Include="GameDefine.h" />
+    <ClInclude Include="GameEvent.h" />
+    <ClInclude Include="HomeSet.h" />
+    <ClInclude Include="IMPLODE.H" />
+    <ClInclude Include="Ini.h" />
+    <ClInclude Include="IOCPort.h" />
+    <ClInclude Include="IOCPSocket2.h" />
+    <ClInclude Include="ItemTableSet.h" />
+    <ClInclude Include="JvCryption.h" />
+    <ClInclude Include="Knights.h" />
+    <ClInclude Include="KnightsManager.h" />
+    <ClInclude Include="KnightsRankSet.h" />
+    <ClInclude Include="KnightsSet.h" />
+    <ClInclude Include="KnightsUserSet.h" />
+    <ClInclude Include="LevelUpTableSet.h" />
+    <ClInclude Include="LOGIC_ELSE.h" />
+    <ClInclude Include="MagicProcess.h" />
+    <ClInclude Include="MagicTableSet.h" />
+    <ClInclude Include="MagicType1Set.h" />
+    <ClInclude Include="MagicType2Set.h" />
+    <ClInclude Include="MagicType3Set.h" />
+    <ClInclude Include="MagicType4Set.h" />
+    <ClInclude Include="MagicType5Set.h" />
+    <ClInclude Include="MagicType8Set.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="N3Base\My_3DStruct.h" />
+    <ClInclude Include="N3Base\My_Macro.h" />
+    <ClInclude Include="N3Base\N3ShapeMgr.h" />
+    <ClInclude Include="N3Base\StdAfxBase.h" />
+    <ClInclude Include="Npc.h" />
+    <ClInclude Include="PacketDefine.h" />
+    <ClInclude Include="Region.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="SharedMem.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="STLMap.h" />
+    <ClInclude Include="UdpSocket.h" />
+    <ClInclude Include="User.h" />
+    <ClInclude Include="ZoneInfoSet.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\Ebenezer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Ebenezer.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="res\Ebenezer.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="JvCryption.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Ebenezer_BUILD.vcxproj">
+      <Project>{4c1d27e1-3b5c-4af6-88e4-40d9415ad623}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
