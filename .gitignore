@@ -8,4 +8,6 @@ vendor/
 *.aps
 *.opt
 *.ncb
+*.ilk
 *.vcxproj.user
+UpgradeLog.htm
