@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UIE", "UIE.vcxproj", "{EB1BE570-0DD7-4E3A-A690-6F08A7D7E0B4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UIE_BUILD", "UIE_BUILD.vcxproj", "{4C1D27E1-3B5C-4AF6-88E4-40D9415AD623}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB1BE570-0DD7-4E3A-A690-6F08A7D7E0B4}.Debug|x86.ActiveCfg = Debug|Win32
+		{EB1BE570-0DD7-4E3A-A690-6F08A7D7E0B4}.Release|x86.ActiveCfg = Release|Win32
+		{4C1D27E1-3B5C-4AF6-88E4-40D9415AD623}.Debug|x86.ActiveCfg = Debug|Win32
+		{4C1D27E1-3B5C-4AF6-88E4-40D9415AD623}.Debug|x86.Build.0 = Debug|Win32
+		{4C1D27E1-3B5C-4AF6-88E4-40D9415AD623}.Release|x86.ActiveCfg = Release|Win32
+		{4C1D27E1-3B5C-4AF6-88E4-40D9415AD623}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {45D1D5C5-2FF9-423A-B515-D666E5F68B4D}
+	EndGlobalSection
+EndGlobal
