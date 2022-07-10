@@ -1,0 +1,47 @@
+# Microsoft Developer Studio Generated Dependency File, included by RscTables.mak
+
+.\DlgDataCount.cpp : \
+	".\DlgDataCount.h"\
+	".\RscTables.h"\
+	".\RscTablesDef.h"\
+	".\StdAfx.h"\
+	".\TableGenerator.h"\
+	
+
+"..\Common Control\PropertyList.cpp" : \
+	"..\Common Control\PropertyList.h"\
+	
+
+.\RscTables.cpp : \
+	"..\Common Control\PropertyList.h"\
+	".\RscTables.h"\
+	".\RscTablesDef.h"\
+	".\RscTablesDlg.h"\
+	".\StdAfx.h"\
+	".\TableGenerator.h"\
+	
+
+.\RscTables.rc : \
+	".\res\RscTables.ico"\
+	".\res\RscTables.rc2"\
+	
+
+.\RscTablesDlg.cpp : \
+	"..\Common Control\PropertyList.h"\
+	".\DlgDataCount.h"\
+	".\RscTables.h"\
+	".\RscTablesDef.h"\
+	".\RscTablesDlg.h"\
+	".\StdAfx.h"\
+	".\TableGenerator.h"\
+	
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	
+
+.\TableGenerator.cpp : \
+	".\RscTablesDef.h"\
+	".\StdAfx.h"\
+	".\TableGenerator.h"\
+	

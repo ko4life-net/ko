@@ -1,0 +1,772 @@
+# Microsoft Developer Studio Generated Dependency File, included by UIE.mak
+
+.\DlgChangeImage.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Eng.h"\
+	"..\N3BASE\N3EngTool.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3Base\WaveFile.h"\
+	".\DlgBar.h"\
+	".\DlgChangeImage.h"\
+	".\MainFrm.h"\
+	".\StdAfx.h"\
+	".\UIE.h"\
+	
+
+.\DlgUnusedFileList.cpp : \
+	".\DlgUnusedFileList.h"\
+	".\StdAfx.h"\
+	".\UIE.h"\
+	
+
+.\HierarchyView.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Eng.h"\
+	"..\N3BASE\N3EngTool.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3UIBase.h"\
+	"..\N3BASE\N3UIButton.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3BASE\N3UIProgress.h"\
+	"..\N3BASE\N3UIScrollBar.h"\
+	"..\N3BASE\N3UITrackBar.h"\
+	"..\N3Base\WaveFile.h"\
+	".\DlgBar.h"\
+	".\HierarchyView.h"\
+	".\MainFrm.h"\
+	".\StdAfx.h"\
+	".\UIE.h"\
+	".\UIEDoc.h"\
+	".\UIEView.h"\
+	
+
+.\MainFrm.cpp : \
+	"..\Common Control\PropertyList.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Eng.h"\
+	"..\N3BASE\N3EngTool.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3Base\WaveFile.h"\
+	".\DlgBar.h"\
+	".\HierarchyView.h"\
+	".\MainFrm.h"\
+	".\PropertyView.h"\
+	".\StdAfx.h"\
+	".\UIE.h"\
+	".\UIEView.h"\
+	
+
+..\N3BASE\N3UIList.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3UIBase.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3BASE\N3UIList.h"\
+	"..\N3BASE\N3UIScrollBar.h"\
+	"..\N3BASE\N3UIString.h"\
+	"..\N3BASE\N3UITrackBar.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+"..\Common Control\PropertyList.cpp" : \
+	"..\Common Control\PropertyList.h"\
+	
+
+.\PropertyView.cpp : \
+	"..\Common Control\PropertyList.h"\
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Eng.h"\
+	"..\N3BASE\N3EngTool.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3SndObj.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3Texture.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3BASE\N3UIBase.h"\
+	"..\N3BASE\N3UIButton.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3BASE\N3UIEdit.h"\
+	"..\N3BASE\N3UIImage.h"\
+	"..\N3BASE\N3UIList.h"\
+	"..\N3BASE\N3UIProgress.h"\
+	"..\N3BASE\N3UIScrollBar.h"\
+	"..\N3BASE\N3UIStatic.h"\
+	"..\N3BASE\N3UIString.h"\
+	"..\N3BASE\N3UITrackBar.h"\
+	"..\N3Base\WaveFile.h"\
+	".\DlgAnimate.h"\
+	".\DlgBar.h"\
+	".\DlgTexture.h"\
+	".\HierarchyView.h"\
+	".\MainFrm.h"\
+	".\PropertyView.h"\
+	".\StdAfx.h"\
+	".\TexViewer.h"\
+	".\UIE.h"\
+	".\UIEDoc.h"\
+	".\UIEView.h"\
+	
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	
+
+.\UIE.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Eng.h"\
+	"..\N3BASE\N3EngTool.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3UIBase.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3Base\WaveFile.h"\
+	".\DlgBar.h"\
+	".\HierarchyView.h"\
+	".\MainFrm.h"\
+	".\StdAfx.h"\
+	".\UIE.h"\
+	".\UIEDoc.h"\
+	
+
+.\UIE.rc : \
+	".\res\hand.cur"\
+	".\res\Toolbar.bmp"\
+	".\res\UIE.ico"\
+	".\res\UIE.rc2"\
+	".\res\UIEDoc.ico"\
+	".\res\zoomin.cur"\
+	".\res\zoomout.cur"\
+	
+
+.\UIEDoc.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Eng.h"\
+	"..\N3BASE\N3EngTool.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3Texture.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3BASE\N3UIBase.h"\
+	"..\N3BASE\N3UIButton.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3BASE\N3UIEdit.h"\
+	"..\N3BASE\N3UIImage.h"\
+	"..\N3BASE\N3UIList.h"\
+	"..\N3BASE\N3UIProgress.h"\
+	"..\N3BASE\N3UIScrollBar.h"\
+	"..\N3BASE\N3UIStatic.h"\
+	"..\N3BASE\N3UIString.h"\
+	"..\N3BASE\N3UITooltip.h"\
+	"..\N3BASE\N3UITrackBar.h"\
+	"..\N3Base\WaveFile.h"\
+	".\DlgBar.h"\
+	".\DlgChangeImage.h"\
+	".\DlgReplace.h"\
+	".\DlgTexture.h"\
+	".\DlgUnusedFileList.h"\
+	".\MainFrm.h"\
+	".\StdAfx.h"\
+	".\TexViewer.h"\
+	".\UIE.h"\
+	".\UIEDoc.h"\
+	".\UIEView.h"\
+	
+
+.\UIEView.cpp : \
+	"..\Common Control\PropertyList.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Eng.h"\
+	"..\N3BASE\N3EngTool.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3UIBase.h"\
+	"..\N3BASE\N3UIButton.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3Base\WaveFile.h"\
+	".\DlgBar.h"\
+	".\MainFrm.h"\
+	".\PropertyView.h"\
+	".\StdAfx.h"\
+	".\UIE.h"\
+	".\UIEDoc.h"\
+	".\UIEView.h"\
+	
+
+..\N3BASE\N3UIArea.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3BASE\N3UIBase.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3BASE\N3UIEdit.h"\
+	"..\N3BASE\N3UIImage.h"\
+	"..\N3BASE\N3UIStatic.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	"..\warfare\GameBase.h"\
+	"..\warfare\GameDef.h"\
+	"..\warfare\GameProcedure.h"\
+	"..\warfare\ItemRepairMgr.h"\
+	"..\warfare\N3UIIcon.h"\
+	"..\warfare\n3uiwndbase.h"\
+	"..\warfare\uiinventory.h"\
+	
+
+..\N3BASE\N3UIBase.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3SndObj.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3BASE\N3UIBase.h"\
+	"..\N3BASE\N3UIButton.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3BASE\N3UIEdit.h"\
+	"..\N3BASE\N3UIImage.h"\
+	"..\N3BASE\N3UIList.h"\
+	"..\N3BASE\N3UIProgress.h"\
+	"..\N3BASE\N3UIScrollBar.h"\
+	"..\N3BASE\N3UIStatic.h"\
+	"..\N3BASE\N3UIString.h"\
+	"..\N3BASE\N3UITooltip.h"\
+	"..\N3BASE\N3UITrackBar.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3BASE\N3UIButton.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3SndObj.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3BASE\N3UIBase.h"\
+	"..\N3BASE\N3UIButton.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3BASE\N3UIImage.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	"..\warfare\GameBase.h"\
+	"..\warfare\GameDef.h"\
+	"..\warfare\GameProcedure.h"\
+	"..\warfare\N3UIIcon.h"\
+	"..\warfare\n3uiwndbase.h"\
+	
+
+..\N3BASE\N3UIEdit.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3SndObj.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3UIBase.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3BASE\N3UIEdit.h"\
+	"..\N3BASE\N3UIImage.h"\
+	"..\N3BASE\N3UIStatic.h"\
+	"..\N3BASE\N3UIString.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3BASE\N3UIImage.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3Texture.h"\
+	"..\N3BASE\N3UIBase.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3BASE\N3UIImage.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3BASE\N3UIManager.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3UIBase.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3BASE\N3UIManager.h"\
+	"..\N3BASE\N3UIStatic.h"\
+	"..\N3BASE\N3UITooltip.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3BASE\N3UIProgress.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3UIBase.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3BASE\N3UIImage.h"\
+	"..\N3BASE\N3UIProgress.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3BASE\N3UIScrollBar.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3UIBase.h"\
+	"..\N3BASE\N3UIButton.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3BASE\N3UIScrollBar.h"\
+	"..\N3BASE\N3UITrackBar.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3BASE\N3UIStatic.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3SndObj.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3UIBase.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3BASE\N3UIImage.h"\
+	"..\N3BASE\N3UIStatic.h"\
+	"..\N3BASE\N3UIString.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3BASE\N3UIString.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3BASE\N3UIBase.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3BASE\N3UIImage.h"\
+	"..\N3BASE\N3UIString.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	"..\warfare\GameBase.h"\
+	"..\warfare\GameDef.h"\
+	"..\warfare\GameProcedure.h"\
+	"..\warfare\ItemRepairMgr.h"\
+	"..\warfare\N3UIIcon.h"\
+	"..\warfare\n3uiwndbase.h"\
+	"..\warfare\uiinventory.h"\
+	
+
+..\N3BASE\N3UITooltip.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3UIBase.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3BASE\N3UIStatic.h"\
+	"..\N3BASE\N3UIString.h"\
+	"..\N3BASE\N3UITooltip.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3BASE\N3UITrackBar.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3UIBase.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3BASE\N3UIImage.h"\
+	"..\N3BASE\N3UITrackBar.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3BASE\BitMapFile.cpp : \
+	"..\N3BASE\BitMapFile.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	
+
+..\N3BASE\DFont.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3BASE\LogWriter.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	
+
+..\N3BASE\N3AlphaPrimitiveManager.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3BASE\N3Base.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3AnimControl.h"\
+	"..\N3BASE\N3AnimKey.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3BASE\N3FXPMesh.h"\
+	"..\N3BASE\N3FXPMeshInstance.h"\
+	"..\N3BASE\N3FXShape.h"\
+	"..\N3BASE\N3IMesh.h"\
+	"..\N3BASE\N3Joint.h"\
+	"..\N3BASE\N3Mesh.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3BASE\N3PMesh.h"\
+	"..\N3BASE\N3PMeshInstance.h"\
+	"..\N3BASE\N3Skin.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3Texture.h"\
+	"..\N3BASE\N3Transform.h"\
+	"..\N3BASE\N3TransformCollision.h"\
+	"..\N3BASE\N3VMesh.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3BASE\N3BaseFileAccess.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3BASE\N3Eng.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3AnimKey.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Eng.h"\
+	"..\N3BASE\N3Light.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3Transform.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3BASE\N3EngTool.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3AnimKey.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Eng.h"\
+	"..\N3BASE\N3EngTool.h"\
+	"..\N3BASE\N3Light.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3Texture.h"\
+	"..\N3BASE\N3Transform.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3Base\N3SndMgr.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3SndObj.h"\
+	"..\N3BASE\N3SndObjStream.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3Base\N3SndObj.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3SndObj.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3BASE\N3SndObjStream.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3SndObj.h"\
+	"..\N3BASE\N3SndObjStream.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3BASE\N3Texture.cpp : \
+	"..\N3BASE\BitMapFile.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3Texture.h"\
+	"..\N3BASE\StdAfxBase.h"\
+	"..\N3Base\WaveFile.h"\
+	
+
+..\N3Base\WaveFile.cpp : \
+	"..\N3Base\WaveFile.h"\
+	
+
+.\DlgTexture.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Eng.h"\
+	"..\N3BASE\N3EngTool.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3Base\WaveFile.h"\
+	".\DlgBar.h"\
+	".\DlgTexture.h"\
+	".\MainFrm.h"\
+	".\StdAfx.h"\
+	".\TexViewer.h"\
+	".\UIE.h"\
+	
+
+.\TexViewer.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Eng.h"\
+	"..\N3BASE\N3EngTool.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3BASE\N3Texture.h"\
+	"..\N3BASE\N3UIDef.h"\
+	"..\N3Base\WaveFile.h"\
+	".\DlgBar.h"\
+	".\MainFrm.h"\
+	".\StdAfx.h"\
+	".\TexViewer.h"\
+	".\UIE.h"\
+	
+
+.\DlgAnimate.cpp : \
+	".\DlgAnimate.h"\
+	".\StdAfx.h"\
+	".\UIE.h"\
+	
+
+.\DlgBar.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	"..\N3BASE\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3Base.h"\
+	"..\N3BASE\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Eng.h"\
+	"..\N3BASE\N3EngTool.h"\
+	"..\N3BASE\N3Mng.h"\
+	"..\N3Base\N3SndDef.h"\
+	"..\N3Base\N3SndMgr.h"\
+	"..\N3Base\N3TableBase.h"\
+	"..\N3Base\WaveFile.h"\
+	".\DlgBar.h"\
+	".\MainFrm.h"\
+	".\StdAfx.h"\
+	".\UIE.h"\
+	
+
+.\DlgReplace.cpp : \
+	".\DlgReplace.h"\
+	".\StdAfx.h"\
+	".\UIE.h"\
+	

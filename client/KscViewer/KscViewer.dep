@@ -1,0 +1,76 @@
+# Microsoft Developer Studio Generated Dependency File, included by KscViewer.mak
+
+..\JPEG\JpegFile.cpp : \
+	"..\JPEG\jconfig.h"\
+	"..\JPEG\jmorecfg.h"\
+	"..\JPEG\JpegFile.h"\
+	"..\JPEG\jpeglib.h"\
+	"..\N3BASE\My_3DStruct.h"\
+	{$(INCLUDE)}"basetsd.h"\
+	
+
+.\KscViewer.cpp : \
+	"..\JPEG\jconfig.h"\
+	"..\JPEG\jmorecfg.h"\
+	"..\JPEG\JpegFile.h"\
+	"..\JPEG\jpeglib.h"\
+	".\KscViewer.h"\
+	".\KscViewerDoc.h"\
+	".\KscViewerView.h"\
+	".\MainFrm.h"\
+	".\N3JpegFile.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"basetsd.h"\
+	
+
+.\KscViewer.rc : \
+	".\res\KscViewer.ico"\
+	".\res\KscViewer.rc2"\
+	".\res\KscViewerDoc.ico"\
+	
+
+.\KscViewerDoc.cpp : \
+	"..\JPEG\jconfig.h"\
+	"..\JPEG\jmorecfg.h"\
+	"..\JPEG\JpegFile.h"\
+	"..\JPEG\jpeglib.h"\
+	".\KscViewer.h"\
+	".\KscViewerDoc.h"\
+	".\N3JpegFile.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"basetsd.h"\
+	
+
+.\KscViewerView.cpp : \
+	"..\JPEG\jconfig.h"\
+	"..\JPEG\jmorecfg.h"\
+	"..\JPEG\JpegFile.h"\
+	"..\JPEG\jpeglib.h"\
+	".\KscViewer.h"\
+	".\KscViewerDoc.h"\
+	".\KscViewerView.h"\
+	".\N3JpegFile.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"basetsd.h"\
+	
+
+.\MainFrm.cpp : \
+	".\KscViewer.h"\
+	".\MainFrm.h"\
+	".\StdAfx.h"\
+	
+
+.\N3JpegFile.cpp : \
+	"..\JPEG\jconfig.h"\
+	"..\JPEG\jmorecfg.h"\
+	"..\JPEG\JpegFile.h"\
+	"..\JPEG\jpeglib.h"\
+	".\KscViewer.h"\
+	".\N3JpegFile.h"\
+	".\StdAfx.h"\
+	{$(INCLUDE)}"basetsd.h"\
+	
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	

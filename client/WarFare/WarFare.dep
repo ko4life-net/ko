@@ -1,0 +1,4960 @@
+# Microsoft Developer Studio Generated Dependency File, included by WarFare.mak
+
+.\Resource.rc : \
+	".\WarFare.ico"\
+	
+
+..\N3Base\N3UIBase.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3BASE\N3UIList.h"\
+	"..\N3Base\N3UIProgress.h"\
+	"..\N3Base\N3UIScrollBar.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3UITooltip.h"\
+	"..\N3Base\N3UITrackBar.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3UIButton.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	
+
+..\N3Base\N3UIEdit.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3UIImage.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3BASE\N3UIList.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3BASE\N3UIList.h"\
+	"..\N3Base\N3UIScrollBar.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3UITrackBar.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3UIProgress.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIProgress.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3UIScrollBar.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIScrollBar.h"\
+	"..\N3Base\N3UITrackBar.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3UIStatic.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3UIString.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\ItemRepairMgr.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\UIInventory.h"\
+	
+
+..\N3Base\N3UITooltip.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3UITooltip.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3UITrackBar.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UITrackBar.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\BitMapFile.cpp : \
+	"..\N3Base\BitMapFile.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\StdAfxBase.h"\
+	
+
+..\N3BASE\DFont.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\JPEG.CPP : \
+	"..\N3Base\JPEG.H"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\StdAfxBase.h"\
+	
+
+..\N3BASE\LogWriter.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\StdAfxBase.h"\
+	
+
+..\N3Base\N3AlphaPrimitiveManager.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3BASE\N3AnimatedTexures.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3BASE\N3AnimatedTexures.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3AnimControl.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3AnimKey.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3Base.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3FXPMesh.h"\
+	"..\N3BASE\N3FXPMeshInstance.h"\
+	"..\N3Base\N3FXShape.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mesh.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3BaseFileAccess.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3Board.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Board.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3Camera.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Camera.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3BASE\N3Cloak.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\PlayerBase.h"\
+	
+
+..\N3Base\N3Eng.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3Light.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3BASE\N3FXPlug.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3FXBundle.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3FXPartBase.h"\
+	"..\N3BASE\N3FXPlug.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3IMesh.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3Joint.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mesh.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3Light.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Light.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3Mesh.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Mesh.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3PMesh.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3PMeshInstance.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3Shape.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3ShapeExtra.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3Base\N3ShapeExtra.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3Texture.cpp : \
+	"..\N3Base\BitMapFile.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3Transform.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3TransformCollision.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3VMesh.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3BASE\N3SndMgr.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3SndObjStream.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3BASE\N3SndObj.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3BASE\N3SndObjStream.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3SndObjStream.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3BASE\WaveFile.cpp : \
+	"..\N3BASE\WaveFile.h"\
+	
+
+.\APISocket.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\StdAfxBase.h"\
+	".\APISocket.h"\
+	".\JvCryption.h"\
+	".\PacketDef.h"\
+	".\StdAfx.h"\
+	
+
+.\Compress.cpp : \
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\StdAfxBase.h"\
+	".\Compress.h"\
+	".\IMPLODE.H"\
+	".\StdAfx.h"\
+	
+
+.\GameProcCharacterCreate.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameCursor.h"\
+	".\GameDef.h"\
+	".\GameEng.h"\
+	".\GameProcCharacterCreate.h"\
+	".\GameProcedure.h"\
+	".\JvCryption.h"\
+	".\LocalInput.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UICharacterCreate.h"\
+	".\UIManager.h"\
+	".\UIMessageBox.h"\
+	".\UIMessageBoxManager.h"\
+	
+
+.\UICharacterCreate.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3UITooltip.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcCharacterCreate.h"\
+	".\GameProcedure.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UICharacterCreate.h"\
+	
+
+.\GameProcCharacterSelect.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Camera.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Light.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3SndObjStream.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameEng.h"\
+	".\GameProcCharacterSelect.h"\
+	".\GameProcedure.h"\
+	".\JvCryption.h"\
+	".\LocalInput.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UICharacterSelect.h"\
+	".\UILoading.h"\
+	".\UIManager.h"\
+	".\UIMessageBox.h"\
+	
+
+.\UICharacterSelect.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3UITooltip.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcCharacterSelect.h"\
+	".\GameProcedure.h"\
+	".\StdAfx.h"\
+	".\UICharacterSelect.h"\
+	".\UIManager.h"\
+	
+
+..\N3Base\N3Chr.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3BASE\N3ColorChange.h"\
+	"..\N3Base\N3FXBundle.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3FXPartBase.h"\
+	"..\N3Base\N3FXPartBillBoard.h"\
+	"..\N3BASE\N3FXPlug.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SkyMng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3Sun.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3Skin.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+.\PlayerBase.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3Base\N3ShapeExtra.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SkyMng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\N3FXMgr.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\N3WorldBase.h"\
+	".\N3WorldManager.h"\
+	".\PlayerBase.h"\
+	".\StdAfx.h"\
+	
+
+.\PlayerNPC.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3Base\N3ShapeMgr.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SkyMng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\N3WorldBase.h"\
+	".\N3WorldManager.h"\
+	".\PlayerBase.h"\
+	".\PlayerNPC.h"\
+	".\StdAfx.h"\
+	
+
+.\Catapult.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Catapult.h"\
+	".\MachineBase.h"\
+	".\StdAfx.h"\
+	
+
+.\MachineBase.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\MachineBase.h"\
+	".\N3Terrain.h"\
+	".\N3TerrainDef.h"\
+	".\N3TerrainPatch.h"\
+	".\StdAfx.h"\
+	
+
+.\MachineMng.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Catapult.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\MachineBase.h"\
+	".\MachineMng.h"\
+	".\StdAfx.h"\
+	
+
+.\PlayerMySelf.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Camera.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3ShapeMgr.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SkyMng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameEng.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\MagicSkillMng.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\N3WorldBase.h"\
+	".\N3WorldManager.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\PlayerNPC.h"\
+	".\PlayerOther.h"\
+	".\PlayerOtherMgr.h"\
+	".\StdAfx.h"\
+	".\UIInventory.h"\
+	
+
+.\PlayerOther.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\PlayerNPC.h"\
+	".\PlayerOther.h"\
+	".\StdAfx.h"\
+	
+
+.\PlayerOtherMgr.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3Base\N3ShapeExtra.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\PlayerBase.h"\
+	".\PlayerNPC.h"\
+	".\PlayerOther.h"\
+	".\PlayerOtherMgr.h"\
+	".\StdAfx.h"\
+	
+
+..\N3Base\N3FXBundle.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3FXBundle.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3FXPartBase.h"\
+	"..\N3Base\N3FXPartBillBoard.h"\
+	"..\N3Base\N3FXPartBottomBoard.h"\
+	"..\N3Base\N3FXPartMesh.h"\
+	"..\N3Base\N3FXPartParticles.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+.\N3FXBundleGame.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Camera.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3FXBundle.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3FXPartBase.h"\
+	"..\N3Base\N3FXPartBillBoard.h"\
+	"..\N3Base\N3FXPartBottomBoard.h"\
+	"..\N3Base\N3FXPartMesh.h"\
+	"..\N3Base\N3FXPartParticles.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3Base\N3ShapeExtra.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameEng.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\N3FXBundleGame.h"\
+	".\N3FXPartBillBoardGame.h"\
+	".\N3FXPartBottomBoardGame.h"\
+	".\N3Terrain.h"\
+	".\N3TerrainDef.h"\
+	".\N3TerrainPatch.h"\
+	".\PlayerBase.h"\
+	".\StdAfx.h"\
+	
+
+.\N3FXMgr.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3FXBundle.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3FXPartBase.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3Base\N3ShapeExtra.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SkyMng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\JvCryption.h"\
+	".\MagicSkillMng.h"\
+	".\N3FXBundleGame.h"\
+	".\N3FXMgr.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\N3WorldBase.h"\
+	".\N3WorldManager.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\PlayerNPC.h"\
+	".\PlayerOther.h"\
+	".\PlayerOtherMgr.h"\
+	".\StdAfx.h"\
+	
+
+..\N3Base\N3FXPartBase.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3FXBundle.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3FXPartBase.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3FXPartBillBoard.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3FXBundle.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3FXPartBase.h"\
+	"..\N3Base\N3FXPartBillBoard.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+.\N3FXPartBillBoardGame.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3FXPartBase.h"\
+	"..\N3Base\N3FXPartBillBoard.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SkyMng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\N3FXPartBillBoardGame.h"\
+	".\N3WorldBase.h"\
+	".\N3WorldManager.h"\
+	".\StdAfx.h"\
+	
+
+..\N3Base\N3FXPartBottomBoard.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3FXBundle.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3FXPartBase.h"\
+	"..\N3Base\N3FXPartBottomBoard.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+.\N3FXPartBottomBoardGame.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3FXPartBase.h"\
+	"..\N3Base\N3FXPartBottomBoard.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SkyMng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\N3FXPartBottomBoardGame.h"\
+	".\N3WorldBase.h"\
+	".\N3WorldManager.h"\
+	".\StdAfx.h"\
+	
+
+..\N3Base\N3FXParticle.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3FXPartBase.h"\
+	"..\N3Base\N3FXParticle.h"\
+	"..\N3Base\N3FXPartParticles.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3FXPartMesh.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3FXBundle.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3FXPartBase.h"\
+	"..\N3Base\N3FXPartMesh.h"\
+	"..\N3Base\N3FXPMesh.h"\
+	"..\N3BASE\N3FXPMeshInstance.h"\
+	"..\N3Base\N3FXShape.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3FXPartParticles.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3FXBundle.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3FXPartBase.h"\
+	"..\N3Base\N3FXParticle.h"\
+	"..\N3Base\N3FXPartParticles.h"\
+	"..\N3Base\N3FXPMesh.h"\
+	"..\N3BASE\N3FXPMeshInstance.h"\
+	"..\N3Base\N3FXShape.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3FXPMesh.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3FXPMesh.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3BASE\N3FXPMeshInstance.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3FXPMesh.h"\
+	"..\N3BASE\N3FXPMeshInstance.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3FXShape.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3FXPMesh.h"\
+	"..\N3BASE\N3FXPMeshInstance.h"\
+	"..\N3Base\N3FXShape.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+.\CountableItemEditDlg.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\CountableItemEditDlg.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\StdAfx.h"\
+	".\SubProcPerTrade.h"\
+	".\UIInventory.h"\
+	".\UIManager.h"\
+	".\UIPerTradeDlg.h"\
+	".\UITransactionDlg.h"\
+	".\UIWareHouseDlg.h"\
+	
+
+.\UIDroppedItemDlg.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\JvCryption.h"\
+	".\LocalInput.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\PlayerNPC.h"\
+	".\PlayerOther.h"\
+	".\PlayerOtherMgr.h"\
+	".\StdAfx.h"\
+	".\SubProcPerTrade.h"\
+	".\UIDroppedItemDlg.h"\
+	".\UIHotKeyDlg.h"\
+	".\UIImageTooltipDlg.h"\
+	".\UIInventory.h"\
+	".\UISkillTreeDlg.h"\
+	".\UITransactionDlg.h"\
+	
+
+.\UIImageTooltipDlg.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UIImageTooltipDlg.h"\
+	
+
+.\UIInventory.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\CountableItemEditDlg.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\JvCryption.h"\
+	".\LocalInput.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\SubProcPerTrade.h"\
+	".\UIHotKeyDlg.h"\
+	".\UIImageTooltipDlg.h"\
+	".\UIInventory.h"\
+	".\UIManager.h"\
+	".\UIPerTradeDlg.h"\
+	".\UIRepairTooltipDlg.h"\
+	".\UISkillTreeDlg.h"\
+	".\UITradeEditDlg.h"\
+	".\UITransactionDlg.h"\
+	
+
+.\UITransactionDlg.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\CountableItemEditDlg.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\JvCryption.h"\
+	".\KnightChrMgr.h"\
+	".\LocalInput.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\SharedMem.h"\
+	".\StdAfx.h"\
+	".\UIHotKeyDlg.h"\
+	".\UIImageTooltipDlg.h"\
+	".\UIInventory.h"\
+	".\UIManager.h"\
+	".\UISkillTreeDlg.h"\
+	".\UITransactionDlg.h"\
+	
+
+.\UIWareHouseDlg.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\CountableItemEditDlg.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\JvCryption.h"\
+	".\LocalInput.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\SubProcPerTrade.h"\
+	".\UIHotKeyDlg.h"\
+	".\UIImageTooltipDlg.h"\
+	".\UIInventory.h"\
+	".\UIManager.h"\
+	".\UISkillTreeDlg.h"\
+	".\UIWareHouseDlg.h"\
+	
+
+..\N3BASE\N3UIArea.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\ItemRepairMgr.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\UIInventory.h"\
+	
+
+.\N3UIIcon.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\StdAfx.h"\
+	".\UIImageTooltipDlg.h"\
+	
+
+.\N3UIWndBase.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3UITooltip.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\CountableItemEditDlg.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\StdAfx.h"\
+	".\UIImageTooltipDlg.h"\
+	".\UIManager.h"\
+	".\UITransactionDlg.h"\
+	
+
+.\UINPCEvent.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\StdAfx.h"\
+	".\SubProcPerTrade.h"\
+	".\UIInventory.h"\
+	".\UIItemExchange.h"\
+	".\UIManager.h"\
+	".\UINPCEvent.h"\
+	".\UINpcTalk.h"\
+	".\UISkillTreeDlg.h"\
+	".\UITransactionDlg.h"\
+	
+
+.\UINpcTalk.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\StdAfx.h"\
+	".\UINpcTalk.h"\
+	
+
+.\UIHotKeyDlg.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\LocalInput.h"\
+	".\MagicSkillMng.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UIHotKeyDlg.h"\
+	".\UIInventory.h"\
+	".\UIManager.h"\
+	".\UISkillTreeDlg.h"\
+	
+
+.\UISkillTreeDlg.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\JvCryption.h"\
+	".\LocalInput.h"\
+	".\MagicSkillMng.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UIHotKeyDlg.h"\
+	".\UIManager.h"\
+	".\UISkillTreeDlg.h"\
+	
+
+.\ItemRepairMgr.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\JvCryption.h"\
+	".\LocalInput.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UIInventory.h"\
+	".\UIRepairTooltipDlg.h"\
+	
+
+.\UIItemExchange.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\JvCryption.h"\
+	".\LocalInput.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UIImageTooltipDlg.h"\
+	".\UIInventory.h"\
+	".\UIItemExchange.h"\
+	".\UIManager.h"\
+	
+
+.\UIRepairTooltipDlg.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\StdAfx.h"\
+	".\UIRepairTooltipDlg.h"\
+	
+
+.\UIClassChange.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\JvCryption.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UIClassChange.h"\
+	".\UIHotKeyDlg.h"\
+	".\UISkillTreeDlg.h"\
+	".\UIVarious.h"\
+	
+
+.\UINPCChangeEvent.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\JvCryption.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UIInventory.h"\
+	".\UIManager.h"\
+	".\UINPCChangeEvent.h"\
+	".\UIPointInitDlg.h"\
+	
+
+.\UIPointInitDlg.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\JvCryption.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UIManager.h"\
+	".\UIPointInitDlg.h"\
+	
+
+.\UICreateClanName.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\JvCryption.h"\
+	".\PacketDef.h"\
+	".\StdAfx.h"\
+	".\UICreateClanName.h"\
+	
+
+.\UIInn.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\JvCryption.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UICreateClanName.h"\
+	".\UIInn.h"\
+	".\UIManager.h"\
+	".\UITradeBBSSelector.h"\
+	
+
+.\N3UIDBCLButton.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\N3UIDBCLButton.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\StdAfx.h"\
+	".\UIImageTooltipDlg.h"\
+	
+
+.\UIChat.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIScrollBar.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3UITrackBar.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\PacketDef.h"\
+	".\StdAfx.h"\
+	".\UIChat.h"\
+	".\UIManager.h"\
+	".\UIMessageWnd.h"\
+	
+
+.\UICmd.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\PlayerNPC.h"\
+	".\PlayerOther.h"\
+	".\PlayerOtherMgr.h"\
+	".\StdAfx.h"\
+	".\UICmd.h"\
+	".\UIManager.h"\
+	".\UITransactionDlg.h"\
+	
+
+.\UIDead.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3UITooltip.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\JvCryption.h"\
+	".\MagicSkillMng.h"\
+	".\N3FXMgr.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UIDead.h"\
+	".\UIInventory.h"\
+	".\UIManager.h"\
+	".\UIMessageBox.h"\
+	".\UIStateBar.h"\
+	
+
+.\UIEndingDisplay.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameEng.h"\
+	".\StdAfx.h"\
+	".\UIEndingDisplay.h"\
+	".\UIManager.h"\
+	
+
+.\UIHelp.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\StdAfx.h"\
+	".\UIHelp.h"\
+	".\UIManager.h"\
+	
+
+.\UIKnightsOperation.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3BASE\N3UIList.h"\
+	"..\N3Base\N3UIScrollBar.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UITrackBar.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\JvCryption.h"\
+	".\PacketDef.h"\
+	".\StdAfx.h"\
+	".\UIKnightsOperation.h"\
+	
+
+.\UILoading.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIProgress.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameEng.h"\
+	".\GameProcedure.h"\
+	".\StdAfx.h"\
+	".\UILoading.h"\
+	".\UIManager.h"\
+	
+
+.\UIManager.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3UITooltip.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\CountableItemEditDlg.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\LocalInput.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\StdAfx.h"\
+	".\SubProcPerTrade.h"\
+	".\UIInventory.h"\
+	".\UIItemExchange.h"\
+	".\UIManager.h"\
+	".\UITransactionDlg.h"\
+	".\UIWareHouseDlg.h"\
+	
+
+.\UIMessageBox.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameEng.h"\
+	".\GameProcCharacterSelect.h"\
+	".\GameProcedure.h"\
+	".\GameProcLogIn.h"\
+	".\GameProcMain.h"\
+	".\JvCryption.h"\
+	".\LocalInput.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\SubProcPerTrade.h"\
+	".\UICreateClanName.h"\
+	".\UIKnightsOperation.h"\
+	".\UIMessageBox.h"\
+	".\UIMessageBoxManager.h"\
+	".\UIPartyBBS.h"\
+	
+
+.\UIMessageBoxManager.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\StdAfx.h"\
+	".\UIManager.h"\
+	".\UIMessageBox.h"\
+	".\UIMessageBoxManager.h"\
+	
+
+.\UIMessageWnd.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIScrollBar.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3UITrackBar.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\PacketDef.h"\
+	".\StdAfx.h"\
+	".\UIChat.h"\
+	".\UIManager.h"\
+	".\UIMessageWnd.h"\
+	
+
+.\UINotice.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIScrollBar.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3UITrackBar.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\StdAfx.h"\
+	".\UIManager.h"\
+	".\UINotice.h"\
+	
+
+.\UIPartyBBS.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3BASE\N3UIList.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\JvCryption.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UIManager.h"\
+	".\UIPartyBBS.h"\
+	".\UIVarious.h"\
+	
+
+.\UIPartyBBSSelector.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\JvCryption.h"\
+	".\PacketDef.h"\
+	".\StdAfx.h"\
+	".\UIPartyBBSSelector.h"\
+	
+
+.\UIPartyOrForce.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIProgress.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\PlayerBase.h"\
+	".\PlayerNPC.h"\
+	".\PlayerOther.h"\
+	".\PlayerOtherMgr.h"\
+	".\StdAfx.h"\
+	".\UIManager.h"\
+	".\UIPartyOrForce.h"\
+	
+
+.\UIQuestMenu.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3UITooltip.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\JvCryption.h"\
+	".\PacketDef.h"\
+	".\StdAfx.h"\
+	".\UIManager.h"\
+	".\UIQuestMenu.h"\
+	
+
+.\UIQuestTalk.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\JvCryption.h"\
+	".\PacketDef.h"\
+	".\StdAfx.h"\
+	".\UIManager.h"\
+	".\UIQuestTalk.h"\
+	
+
+.\UIStateBar.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIProgress.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\JvCryption.h"\
+	".\LocalInput.h"\
+	".\MagicSkillMng.h"\
+	".\N3UIDBCLButton.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UIManager.h"\
+	".\UIStateBar.h"\
+	
+
+.\UITargetBar.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIProgress.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\StdAfx.h"\
+	".\UITargetBar.h"\
+	
+
+.\UITradeBBSEditDlg.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\LocalInput.h"\
+	".\StdAfx.h"\
+	".\UITradeBBSEditDlg.h"\
+	
+
+.\UITradeBBSSelector.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\JvCryption.h"\
+	".\LocalInput.h"\
+	".\PacketDef.h"\
+	".\StdAfx.h"\
+	".\UIManager.h"\
+	".\UIMessageBox.h"\
+	".\UITradeBBSSelector.h"\
+	".\UITradeExplanation.h"\
+	".\UITradeSellBBS.h"\
+	
+
+.\UITradeExplanation.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\GameDef.h"\
+	".\JvCryption.h"\
+	".\PacketDef.h"\
+	".\StdAfx.h"\
+	".\UIMessageBox.h"\
+	".\UITradeExplanation.h"\
+	".\UITradeSellBBS.h"\
+	
+
+.\UITradeSellBBS.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3BASE\N3UIList.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\JvCryption.h"\
+	".\LocalInput.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UIManager.h"\
+	".\UIMessageBox.h"\
+	".\UITradeBBSEditDlg.h"\
+	".\UITradeExplanation.h"\
+	".\UITradeSellBBS.h"\
+	
+
+.\UIVarious.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3BASE\N3UIList.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\JvCryption.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\PlayerNPC.h"\
+	".\PlayerOther.h"\
+	".\PlayerOtherMgr.h"\
+	".\StdAfx.h"\
+	".\UIInventory.h"\
+	".\UIManager.h"\
+	".\UIVarious.h"\
+	
+
+.\UIWarp.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3BASE\N3UIList.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\StdAfx.h"\
+	".\UIManager.h"\
+	".\UIWarp.h"\
+	
+
+.\SubProcPerTrade.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\JvCryption.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\PlayerNPC.h"\
+	".\PlayerOther.h"\
+	".\PlayerOtherMgr.h"\
+	".\StdAfx.h"\
+	".\SubProcPerTrade.h"\
+	".\UIDroppedItemDlg.h"\
+	".\UIHotKeyDlg.h"\
+	".\UIInventory.h"\
+	".\UIManager.h"\
+	".\UIMessageBox.h"\
+	".\UIPerTradeDlg.h"\
+	".\UISkillTreeDlg.h"\
+	".\UITradeEditDlg.h"\
+	
+
+.\UIPerTradeDlg.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\CountableItemEditDlg.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\JvCryption.h"\
+	".\LocalInput.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\SubProcPerTrade.h"\
+	".\UIImageTooltipDlg.h"\
+	".\UIInventory.h"\
+	".\UIManager.h"\
+	".\UIPerTradeDlg.h"\
+	
+
+.\UITradeEditDlg.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\JvCryption.h"\
+	".\LocalInput.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PacketDef.h"\
+	".\StdAfx.h"\
+	".\SubProcPerTrade.h"\
+	".\UIImageTooltipDlg.h"\
+	".\UIInventory.h"\
+	".\UIPerTradeDlg.h"\
+	".\UITradeEditDlg.h"\
+	
+
+.\MagicSkillMng.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3Base\N3ShapeExtra.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SkyMng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3SndObjStream.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\JvCryption.h"\
+	".\MagicSkillMng.h"\
+	".\N3FXMgr.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\N3WorldBase.h"\
+	".\N3WorldManager.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\PlayerNPC.h"\
+	".\PlayerOther.h"\
+	".\PlayerOtherMgr.h"\
+	".\StdAfx.h"\
+	".\UIInventory.h"\
+	".\UIPartyOrForce.h"\
+	".\UIStateBar.h"\
+	".\UIVarious.h"\
+	
+
+..\N3BASE\N3Cloud.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Cloud.h"\
+	"..\N3BASE\N3ColorChange.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3BASE\N3ColorChange.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3BASE\N3ColorChange.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3GERain.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3GERain.h"\
+	"..\N3Base\N3GlobalEffect.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3GESnow.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3GESnow.h"\
+	"..\N3Base\N3GlobalEffect.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3Base\N3GlobalEffect.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3GlobalEffect.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3BASE\N3Moon.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3Moon.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3BASE\N3Sky.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3BASE\N3ColorChange.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3BASE\N3Sky.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3BASE\N3SkyMng.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3BASE\N3Cloud.h"\
+	"..\N3BASE\N3ColorChange.h"\
+	"..\N3Base\N3GERain.h"\
+	"..\N3Base\N3GESnow.h"\
+	"..\N3Base\N3GlobalEffect.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3Moon.h"\
+	"..\N3BASE\N3Sky.h"\
+	"..\N3BASE\N3SkyMng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3Star.h"\
+	"..\N3BASE\N3Sun.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3BASE\N3Star.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3Star.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3BASE\N3Sun.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3BASE\N3ColorChange.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3Sun.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+.\N3Terrain.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3BASE\N3Pond.h"\
+	"..\N3BASE\N3River.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\N3Terrain.h"\
+	".\N3TerrainDef.h"\
+	".\N3TerrainPatch.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UILoading.h"\
+	
+
+.\N3TerrainPatch.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\N3Terrain.h"\
+	".\N3TerrainDef.h"\
+	".\N3TerrainPatch.h"\
+	".\StdAfx.h"\
+	
+
+..\N3Base\N3ShapeMgr.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3Base\N3ShapeExtra.h"\
+	"..\N3Base\N3ShapeMgr.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\StdAfx.h"\
+	".\UILoading.h"\
+	
+
+.\Bird.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bird.h"\
+	".\StdAfx.h"\
+	
+
+.\BirdMng.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bird.h"\
+	".\BirdMng.h"\
+	".\StdAfx.h"\
+	
+
+.\GrassBoard.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GrassBoard.h"\
+	".\N3Terrain.h"\
+	".\N3TerrainDef.h"\
+	".\N3TerrainPatch.h"\
+	".\StdAfx.h"\
+	
+
+.\LightMgr.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Light.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\LightMgr.h"\
+	".\StdAfx.h"\
+	
+
+..\N3BASE\N3Pond.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3Pond.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+..\N3BASE\N3River.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3River.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	
+
+.\ServerMesh.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\N3Terrain.h"\
+	".\N3TerrainDef.h"\
+	".\N3TerrainPatch.h"\
+	".\ServerMesh.h"\
+	".\StdAfx.h"\
+	
+
+.\N3TerrainManager.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3ShapeMgr.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SkyMng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\BirdMng.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\N3Terrain.h"\
+	".\N3TerrainDef.h"\
+	".\N3TerrainManager.h"\
+	".\N3TerrainPatch.h"\
+	".\N3WorldBase.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	
+
+.\PortalVolume.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3Base\N3ShapeExtra.h"\
+	"..\N3Base\N3ShapeMgr.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\PortalVolume.h"\
+	".\PvsMgr.h"\
+	".\StdAfx.h"\
+	
+
+.\PvsMgr.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Camera.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3Base\N3ShapeMgr.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameEng.h"\
+	".\GameProcedure.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\PortalVolume.h"\
+	".\PvsMgr.h"\
+	".\StdAfx.h"\
+	
+
+.\DungeonManager.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SkyMng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bitset.h"\
+	".\DungeonManager.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\N3WorldBase.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\PortalVolume.h"\
+	".\PvsMgr.h"\
+	".\StdAfx.h"\
+	
+
+.\N3WorldBase.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SkyMng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\N3WorldBase.h"\
+	".\StdAfx.h"\
+	
+
+.\N3WorldManager.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SkyMng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3SndObjStream.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\Compress.h"\
+	".\DungeonManager.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameEng.h"\
+	".\GameProcedure.h"\
+	".\JvCryption.h"\
+	".\N3TerrainManager.h"\
+	".\N3WorldBase.h"\
+	".\N3WorldManager.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\PortalVolume.h"\
+	".\PvsMgr.h"\
+	".\StdAfx.h"\
+	
+
+.\GameProcMain.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Camera.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Light.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Shape.h"\
+	"..\N3Base\N3ShapeExtra.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SkyMng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3SndObjStream.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\Compress.h"\
+	".\CountableItemEditDlg.h"\
+	".\GameBase.h"\
+	".\GameCursor.h"\
+	".\GameDef.h"\
+	".\GameEng.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\ItemRepairMgr.h"\
+	".\JvCryption.h"\
+	".\LightMgr.h"\
+	".\LocalInput.h"\
+	".\MagicSkillMng.h"\
+	".\N3FXMgr.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\N3WorldBase.h"\
+	".\N3WorldManager.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\PlayerNPC.h"\
+	".\PlayerOther.h"\
+	".\PlayerOtherMgr.h"\
+	".\ServerMesh.h"\
+	".\StdAfx.h"\
+	".\SubProcPerTrade.h"\
+	".\UIChat.h"\
+	".\UIClassChange.h"\
+	".\UICmd.h"\
+	".\UICreateClanName.h"\
+	".\UIDead.h"\
+	".\UIDroppedItemDlg.h"\
+	".\UIHelp.h"\
+	".\UIHotKeyDlg.h"\
+	".\UIInn.h"\
+	".\UIInventory.h"\
+	".\UIItemExchange.h"\
+	".\UIKnightsOperation.h"\
+	".\UILoading.h"\
+	".\UIManager.h"\
+	".\UIMessageBox.h"\
+	".\UIMessageWnd.h"\
+	".\UINotice.h"\
+	".\UINPCChangeEvent.h"\
+	".\UINPCEvent.h"\
+	".\UINpcTalk.h"\
+	".\UIPartyBBS.h"\
+	".\UIPartyOrForce.h"\
+	".\UIPerTradeDlg.h"\
+	".\UIPointInitDlg.h"\
+	".\UIQuestMenu.h"\
+	".\UIQuestTalk.h"\
+	".\UIRepairTooltipDlg.h"\
+	".\UISkillTreeDlg.h"\
+	".\UIStateBar.h"\
+	".\UITargetBar.h"\
+	".\UITradeBBSEditDlg.h"\
+	".\UITradeBBSSelector.h"\
+	".\UITradeExplanation.h"\
+	".\UITradeSellBBS.h"\
+	".\UITransactionDlg.h"\
+	".\UIVarious.h"\
+	".\UIWareHouseDlg.h"\
+	".\UIWarp.h"\
+	".\WarMessage.h"\
+	
+
+.\GameProcOption.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcOption.h"\
+	".\StdAfx.h"\
+	
+
+.\GameProcNationSelect.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameEng.h"\
+	".\GameProcedure.h"\
+	".\GameProcNationSelect.h"\
+	".\JvCryption.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UIManager.h"\
+	".\UINationSelectDlg.h"\
+	
+
+.\UINationSelectDlg.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcNationSelect.h"\
+	".\StdAfx.h"\
+	".\UINationSelectDlg.h"\
+	
+
+.\KnightChrMgr.cpp : \
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\StdAfxBase.h"\
+	".\KnightChrMgr.h"\
+	".\SharedMem.h"\
+	".\StdAfx.h"\
+	
+
+.\SharedMem.cpp : \
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\StdAfxBase.h"\
+	".\SharedMem.h"\
+	".\StdAfx.h"\
+	
+
+.\GameProcLogIn.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Camera.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Light.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3SndObjStream.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameEng.h"\
+	".\GameProcedure.h"\
+	".\GameProcLogIn.h"\
+	".\JvCryption.h"\
+	".\LocalInput.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	".\UILogin.h"\
+	".\UIManager.h"\
+	
+
+.\UILogin.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIButton.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3BASE\N3UIList.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\GameProcLogIn.h"\
+	".\StdAfx.h"\
+	".\UILogin.h"\
+	".\UIMessageBox.h"\
+	".\UIMessageBoxManager.h"\
+	
+
+.\EventManager.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bitset.h"\
+	".\EventManager.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\N3FXMgr.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\StdAfx.h"\
+	
+
+.\GameBase.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3ShapeMgr.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SkyMng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\N3WorldBase.h"\
+	".\N3WorldManager.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\PlayerNPC.h"\
+	".\PlayerOther.h"\
+	".\PlayerOtherMgr.h"\
+	".\StdAfx.h"\
+	
+
+.\GameCursor.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameCursor.h"\
+	".\GameDef.h"\
+	".\GameProcedure.h"\
+	".\LocalInput.h"\
+	".\StdAfx.h"\
+	".\UIManager.h"\
+	
+
+.\GameEng.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Camera.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3Light.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SkyMng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameEng.h"\
+	".\N3WorldBase.h"\
+	".\N3WorldManager.h"\
+	".\StdAfx.h"\
+	
+
+.\GameProcedure.cpp : \
+	"..\JPEG\jconfig.h"\
+	"..\JPEG\jmorecfg.h"\
+	"..\JPEG\JpegFile.h"\
+	"..\JPEG\jpeglib.h"\
+	"..\N3Base\BitMapFile.h"\
+	"..\N3BASE\DFont.h"\
+	"..\N3Base\JPEG.H"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3FXBundle.h"\
+	"..\N3Base\N3FXDef.h"\
+	"..\N3Base\N3FXPartBase.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3SndObj.h"\
+	"..\N3BASE\N3SndObjStream.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3BASE\N3UIArea.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIImage.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3UIString.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameCursor.h"\
+	".\GameDef.h"\
+	".\GameEng.h"\
+	".\GameProcCharacterCreate.h"\
+	".\GameProcCharacterSelect.h"\
+	".\GameProcedure.h"\
+	".\GameProcLogIn.h"\
+	".\GameProcMain.h"\
+	".\GameProcNationSelect.h"\
+	".\GameProcOption.h"\
+	".\JvCryption.h"\
+	".\KnightChrMgr.h"\
+	".\LocalInput.h"\
+	".\MagicSkillMng.h"\
+	".\N3FXMgr.h"\
+	".\N3UIIcon.h"\
+	".\N3UIWndBase.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\SharedMem.h"\
+	".\StdAfx.h"\
+	".\UIChat.h"\
+	".\UIEndingDisplay.h"\
+	".\UIHelp.h"\
+	".\UIHotKeyDlg.h"\
+	".\UILoading.h"\
+	".\UIManager.h"\
+	".\UIMessageBox.h"\
+	".\UIMessageBoxManager.h"\
+	".\UIMessageWnd.h"\
+	".\UINotice.h"\
+	".\UIPartyOrForce.h"\
+	".\UIVarious.h"\
+	{$(INCLUDE)}"basetsd.h"\
+	
+
+..\JPEG\JpegFile.cpp : \
+	"..\JPEG\jconfig.h"\
+	"..\JPEG\jmorecfg.h"\
+	"..\JPEG\JpegFile.h"\
+	"..\JPEG\jpeglib.h"\
+	"..\N3Base\My_3DStruct.h"\
+	{$(INCLUDE)}"basetsd.h"\
+	
+
+.\LocalInput.cpp : \
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\StdAfxBase.h"\
+	".\LocalInput.h"\
+	".\StdAfx.h"\
+	
+
+.\StdAfx.cpp : \
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\StdAfxBase.h"\
+	".\StdAfx.h"\
+	
+
+.\WarFareMain.cpp : \
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3AnimControl.h"\
+	"..\N3Base\N3AnimKey.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3BaseFileAccess.h"\
+	"..\N3Base\N3Chr.h"\
+	"..\N3BASE\N3Cloak.h"\
+	"..\N3Base\N3Eng.h"\
+	"..\N3Base\N3IMesh.h"\
+	"..\N3Base\N3Joint.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3Base\N3PMesh.h"\
+	"..\N3Base\N3PMeshInstance.h"\
+	"..\N3Base\N3Skin.h"\
+	"..\N3BASE\N3SkyMng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\N3Texture.h"\
+	"..\N3Base\N3Transform.h"\
+	"..\N3Base\N3TransformCollision.h"\
+	"..\N3Base\N3UIBase.h"\
+	"..\N3Base\N3UIDef.h"\
+	"..\N3Base\N3UIEdit.h"\
+	"..\N3Base\N3UIStatic.h"\
+	"..\N3Base\N3VMesh.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\APISocket.h"\
+	".\Bitset.h"\
+	".\GameBase.h"\
+	".\GameDef.h"\
+	".\GameEng.h"\
+	".\GameProcedure.h"\
+	".\GameProcMain.h"\
+	".\JvCryption.h"\
+	".\KnightChrMgr.h"\
+	".\N3WorldBase.h"\
+	".\N3WorldManager.h"\
+	".\PacketDef.h"\
+	".\PlayerBase.h"\
+	".\PlayerMySelf.h"\
+	".\SharedMem.h"\
+	".\StdAfx.h"\
+	".\UIChat.h"\
+	".\WarFareMain.h"\
+	
+
+.\WarMessage.cpp : \
+	"..\N3BASE\DFont.h"\
+	"..\N3BASE\LogWriter.h"\
+	"..\N3Base\My_3DStruct.h"\
+	"..\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\N3Base\N3Base.h"\
+	"..\N3Base\N3Mng.h"\
+	"..\N3BASE\N3SndDef.h"\
+	"..\N3BASE\N3SndMgr.h"\
+	"..\N3BASE\N3TableBase.h"\
+	"..\N3Base\StdAfxBase.h"\
+	"..\N3BASE\WaveFile.h"\
+	".\StdAfx.h"\
+	".\WarMessage.h"\
+	

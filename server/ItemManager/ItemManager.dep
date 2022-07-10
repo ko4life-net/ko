@@ -1,0 +1,46 @@
+# Microsoft Developer Studio Generated Dependency File, included by ItemManager.mak
+
+.\DBAgent.cpp : \
+	".\DBAgent.h"\
+	".\Define.h"\
+	".\ItemManager.h"\
+	".\ItemManagerDlg.h"\
+	".\SharedMem.h"\
+	".\StdAfx.h"\
+	".\STLMap.h"\
+	
+
+.\ItemManager.cpp : \
+	".\DBAgent.h"\
+	".\Define.h"\
+	".\ItemManager.h"\
+	".\ItemManagerDlg.h"\
+	".\SharedMem.h"\
+	".\StdAfx.h"\
+	".\STLMap.h"\
+	
+
+.\ItemManager.rc : \
+	".\res\ItemManager.ico"\
+	".\res\ItemManager.rc2"\
+	
+
+.\ItemManagerDlg.cpp : \
+	".\DBAgent.h"\
+	".\Define.h"\
+	".\ItemManager.h"\
+	".\ItemManagerDlg.h"\
+	".\SharedMem.h"\
+	".\StdAfx.h"\
+	".\STLMap.h"\
+	
+
+.\SharedMem.cpp : \
+	".\Define.h"\
+	".\SharedMem.h"\
+	".\StdAfx.h"\
+	
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	
