@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName>"$/N3CE", GRAAAAAA</SccProjectName>
+    <SccLocalPath>.</SccLocalPath>
+    <Keyword>MFCProj</Keyword>
+    <ProjectGuid>{E06F7FAD-F43A-4CAD-B25C-A0F053AE0BE6}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_N3TOOL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\Debug\N3CE.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_DEBUG;_N3TOOL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Debug\N3CE.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug\N3CE.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>N3CE_Debug.exe</OutputFile>
+      <AdditionalDependencies>d3d8.lib;d3dx8.lib;dsound.lib;dxerr8.lib;dxguid.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_N3TOOL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Release\N3CE.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;_N3TOOL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Release\N3CE.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\N3CE.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>N3CE.exe</OutputFile>
+      <AdditionalDependencies>d3d8.lib;d3dx8.lib;dsound.lib;dxerr8.lib;dxguid.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Common Control\PropertyList.cpp" />
+    <ClCompile Include="..\N3Base\BitMapFile.cpp" />
+    <ClCompile Include="..\N3Base\N3AlphaPrimitiveManager.cpp" />
+    <ClCompile Include="..\N3Base\N3AnimControl.cpp" />
+    <ClCompile Include="..\N3Base\N3AnimKey.cpp" />
+    <ClCompile Include="..\N3Base\N3Base.cpp" />
+    <ClCompile Include="..\N3Base\N3BaseFileAccess.cpp" />
+    <ClCompile Include="..\N3Base\N3Board.cpp" />
+    <ClCompile Include="..\N3Base\N3Camera.cpp" />
+    <ClCompile Include="..\N3Base\N3Chr.cpp" />
+    <ClCompile Include="..\N3Base\N3Eng.cpp" />
+    <ClCompile Include="..\N3Base\N3EngTool.cpp" />
+    <ClCompile Include="..\N3BASE\N3FXBundle.cpp" />
+    <ClCompile Include="..\N3BASE\N3FXPartBase.cpp" />
+    <ClCompile Include="..\N3BASE\N3FXPartBillBoard.cpp" />
+    <ClCompile Include="..\N3BASE\N3FXPartBottomBoard.cpp" />
+    <ClCompile Include="..\N3BASE\N3FXParticle.cpp" />
+    <ClCompile Include="..\N3BASE\N3FXPartMesh.cpp" />
+    <ClCompile Include="..\N3BASE\N3FXPartParticles.cpp" />
+    <ClCompile Include="..\N3BASE\N3FXPlug.cpp" />
+    <ClCompile Include="..\N3BASE\N3FXPMesh.cpp" />
+    <ClCompile Include="..\N3Base\N3FXPMeshInstance.cpp" />
+    <ClCompile Include="..\N3BASE\N3FXShape.cpp" />
+    <ClCompile Include="..\N3Base\N3IMesh.cpp" />
+    <ClCompile Include="..\N3Base\N3Joint.cpp" />
+    <ClCompile Include="..\N3Base\N3Light.cpp" />
+    <ClCompile Include="..\N3Base\N3Mesh.cpp" />
+    <ClCompile Include="..\N3Base\N3PMesh.cpp" />
+    <ClCompile Include="..\N3Base\N3PMeshCreate.cpp" />
+    <ClCompile Include="..\N3Base\N3PMeshInstance.cpp" />
+    <ClCompile Include="..\N3Base\N3Scene.cpp" />
+    <ClCompile Include="..\N3Base\N3Shape.cpp" />
+    <ClCompile Include="..\N3Base\N3ShapeExtra.cpp" />
+    <ClCompile Include="..\N3Base\N3Skin.cpp" />
+    <ClCompile Include="..\N3BASE\N3SndMgr.cpp" />
+    <ClCompile Include="..\N3BASE\N3SndObj.cpp" />
+    <ClCompile Include="..\N3BASE\N3SndObjStream.cpp" />
+    <ClCompile Include="..\N3Base\N3Texture.cpp" />
+    <ClCompile Include="..\N3Base\N3Transform.cpp" />
+    <ClCompile Include="..\N3Base\N3TransformCollision.cpp" />
+    <ClCompile Include="..\N3Base\N3VMesh.cpp" />
+    <ClCompile Include="..\N3Base\Pick.cpp" />
+    <ClCompile Include="..\N3BASE\WaveFile.cpp" />
+    <ClCompile Include="FormViewAnimation.cpp" />
+    <ClCompile Include="FormViewProperty.cpp" />
+    <ClCompile Include="FormViewTool.cpp" />
+    <ClCompile Include="MacSliderCtrl.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="N3CE.cpp" />
+    <ClCompile Include="N3CEDoc.cpp" />
+    <ClCompile Include="N3CEView.cpp" />
+    <ClCompile Include="PosDummy.cpp" />
+    <ClCompile Include="StdAfx.cpp" />
+    <ClCompile Include="TransDummy.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="N3CE.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Common Control\PropertyList.h" />
+    <ClInclude Include="..\N3Base\BitMapFile.h" />
+    <ClInclude Include="..\N3Base\My_3DStruct.h" />
+    <ClInclude Include="..\N3Base\N3AlphaPrimitiveManager.h" />
+    <ClInclude Include="..\N3Base\N3AnimControl.h" />
+    <ClInclude Include="..\N3Base\N3AnimKey.h" />
+    <ClInclude Include="..\N3Base\N3Base.h" />
+    <ClInclude Include="..\N3Base\N3BaseFileAccess.h" />
+    <ClInclude Include="..\N3Base\N3Board.h" />
+    <ClInclude Include="..\N3Base\N3Camera.h" />
+    <ClInclude Include="..\N3Base\N3Chr.h" />
+    <ClInclude Include="..\N3BASE\N3Cloak.h" />
+    <ClInclude Include="..\N3Base\N3Eng.h" />
+    <ClInclude Include="..\N3Base\N3EngTool.h" />
+    <ClInclude Include="..\N3BASE\N3FXBundle.h" />
+    <ClInclude Include="..\N3BASE\N3FXPartBase.h" />
+    <ClInclude Include="..\N3BASE\N3FXPartBillBoard.h" />
+    <ClInclude Include="..\N3BASE\N3FXPartBottomBoard.h" />
+    <ClInclude Include="..\N3BASE\N3FXParticle.h" />
+    <ClInclude Include="..\N3BASE\N3FXPartMesh.h" />
+    <ClInclude Include="..\N3BASE\N3FXPartParticles.h" />
+    <ClInclude Include="..\N3BASE\N3FXPlug.h" />
+    <ClInclude Include="..\N3BASE\N3FXPMesh.h" />
+    <ClInclude Include="..\N3Base\N3FXPMeshInstance.h" />
+    <ClInclude Include="..\N3BASE\N3FXShape.h" />
+    <ClInclude Include="..\N3Base\N3IMesh.h" />
+    <ClInclude Include="..\N3Base\N3Joint.h" />
+    <ClInclude Include="..\N3Base\N3Light.h" />
+    <ClInclude Include="..\N3Base\N3Mesh.h" />
+    <ClInclude Include="..\N3Base\N3Mng.h" />
+    <ClInclude Include="..\N3Base\N3PMesh.h" />
+    <ClInclude Include="..\N3Base\N3PMeshCreate.h" />
+    <ClInclude Include="..\N3Base\N3PMeshInstance.h" />
+    <ClInclude Include="..\N3Base\N3Scene.h" />
+    <ClInclude Include="..\N3Base\N3Shape.h" />
+    <ClInclude Include="..\N3Base\N3ShapeExtra.h" />
+    <ClInclude Include="..\N3Base\N3Skin.h" />
+    <ClInclude Include="..\N3BASE\N3SndDef.h" />
+    <ClInclude Include="..\N3BASE\N3SndMgr.h" />
+    <ClInclude Include="..\N3BASE\N3SndObj.h" />
+    <ClInclude Include="..\N3BASE\N3SndObjStream.h" />
+    <ClInclude Include="..\N3BASE\N3TableBase.h" />
+    <ClInclude Include="..\N3Base\N3Texture.h" />
+    <ClInclude Include="..\N3Base\N3Transform.h" />
+    <ClInclude Include="..\N3Base\N3TransformCollision.h" />
+    <ClInclude Include="..\N3Base\N3VMesh.h" />
+    <ClInclude Include="..\N3Base\Pick.h" />
+    <ClInclude Include="..\N3Base\StdAfxBase.h" />
+    <ClInclude Include="..\N3BASE\WaveFile.h" />
+    <ClInclude Include="FormViewAnimation.h" />
+    <ClInclude Include="FormViewProperty.h" />
+    <ClInclude Include="FormViewTool.h" />
+    <ClInclude Include="MacSliderCtrl.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="N3CE.h" />
+    <ClInclude Include="N3CEDoc.h" />
+    <ClInclude Include="N3CEView.h" />
+    <ClInclude Include="PosDummy.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="TransDummy.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\N3CE.ico" />
+    <Image Include="res\N3CEDoc.ico" />
+    <Image Include="res\NodeIcons.bmp" />
+    <Image Include="res\Toolbar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="res\N3CE.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="N3CE_BUILD.vcxproj">
+      <Project>{4c1d27e1-3b5c-4af6-88e4-40d9415ad623}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
