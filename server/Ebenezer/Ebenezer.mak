@@ -87,7 +87,7 @@ CLEAN :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
 CPP=cl.exe
-CPP_PROJ=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 .c{$(INTDIR)}.obj::
    $(CPP) @<<
@@ -441,7 +441,7 @@ SOURCE=.\AISocket.cpp
 
 !IF  "$(CFG)" == "Ebenezer - Win32 Release"
 
-CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\AISocket.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Ebenezer.pch"
 	$(CPP) @<<
@@ -481,7 +481,7 @@ SOURCE=.\CircularBuffer.cpp
 
 !IF  "$(CFG)" == "Ebenezer - Win32 Release"
 
-CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\CircularBuffer.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Ebenezer.pch"
 	$(CPP) @<<
@@ -537,7 +537,7 @@ SOURCE=.\Ebenezer.cpp
 
 !IF  "$(CFG)" == "Ebenezer - Win32 Release"
 
-CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\Ebenezer.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Ebenezer.pch"
 	$(CPP) @<<
@@ -561,7 +561,7 @@ SOURCE=.\EbenezerDlg.cpp
 
 !IF  "$(CFG)" == "Ebenezer - Win32 Release"
 
-CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\EbenezerDlg.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Ebenezer.pch"
 	$(CPP) @<<
@@ -681,7 +681,7 @@ SOURCE=.\Ini.cpp
 
 !IF  "$(CFG)" == "Ebenezer - Win32 Release"
 
-CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\Ini.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Ebenezer.pch"
 	$(CPP) @<<
@@ -705,7 +705,7 @@ SOURCE=.\IOCPort.cpp
 
 !IF  "$(CFG)" == "Ebenezer - Win32 Release"
 
-CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\IOCPort.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Ebenezer.pch"
 	$(CPP) @<<
@@ -729,7 +729,7 @@ SOURCE=.\IOCPSocket2.cpp
 
 !IF  "$(CFG)" == "Ebenezer - Win32 Release"
 
-CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\IOCPSocket2.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Ebenezer.pch"
 	$(CPP) @<<
@@ -1009,7 +1009,7 @@ SOURCE=.\Map.cpp
 
 !IF  "$(CFG)" == "Ebenezer - Win32 Release"
 
-CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\Map.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Ebenezer.pch"
 	$(CPP) @<<
@@ -1033,7 +1033,7 @@ SOURCE=.\Npc.cpp
 
 !IF  "$(CFG)" == "Ebenezer - Win32 Release"
 
-CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\Npc.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Ebenezer.pch"
 	$(CPP) @<<
@@ -1057,7 +1057,7 @@ SOURCE=.\Region.cpp
 
 !IF  "$(CFG)" == "Ebenezer - Win32 Release"
 
-CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\Region.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Ebenezer.pch"
 	$(CPP) @<<
@@ -1081,7 +1081,7 @@ SOURCE=.\SharedMem.cpp
 
 !IF  "$(CFG)" == "Ebenezer - Win32 Release"
 
-CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\SharedMem.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Ebenezer.pch"
 	$(CPP) @<<
@@ -1145,7 +1145,7 @@ SOURCE=.\User.cpp
 
 !IF  "$(CFG)" == "Ebenezer - Win32 Release"
 
-CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_3DSERVER" /Fp"$(INTDIR)\Ebenezer.pch" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\User.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Ebenezer.pch"
 	$(CPP) @<<
