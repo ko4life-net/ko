@@ -61,7 +61,7 @@ CLEAN :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
 CPP=cl.exe
-CPP_PROJ=/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"$(INTDIR)\ServerInfoViewer.pch" /Yu"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D _N3TOOL /Fp"$(INTDIR)\ServerInfoViewer.pch" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 .c{$(INTDIR)}.obj::
    $(CPP) @<<
@@ -102,7 +102,7 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\ServerInfoViewer.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=/nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\ServerInfoViewer.pdb" /machine:I386 /out:"$(OUTDIR)\ServerInfoViewer.exe" 
+LINK32_FLAGS=winmm.lib d3d8.lib d3dx8.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\ServerInfoViewer.pdb" /machine:I386 /out:"$(OUTDIR)\ServerInfoViewer.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\MainFrm.obj" \
 	"$(INTDIR)\N3AlphaPrimitiveManager.obj" \

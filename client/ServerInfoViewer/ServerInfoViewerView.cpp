@@ -205,7 +205,7 @@ void CServerInfoViewerView::FocusGround()
 	ScreenToClient(&point);
 
 	__Vector3 vPos, vDir;
-	::Convert2D_To_3DCoordinate(point.x, point.y, CN3Base::s_CameraData.mtxView, CN3Base::s_CameraData.mtxProjection, CN3Base::s_CameraData.vp, vPos, vDir);
+	::_Convert2D_To_3DCoordinate(point.x, point.y, CN3Base::s_CameraData.mtxView, CN3Base::s_CameraData.mtxProjection, CN3Base::s_CameraData.vp, vPos, vDir);
 
 	
 	
@@ -215,8 +215,8 @@ void CServerInfoViewerView::FocusGround()
 	__Vector3 v0(0, 0, 4096), v1(4096,0,4096), v2(4096,0,0), v3(0,0,0); // 큰판에 찍히면..
 	__Vector3 vCol;
 	float t, u, v;
-	if(	::IntersectTriangle(vPos, vDir, v0, v1, v2, t, u, v, &vCol) ||
-		::IntersectTriangle(vPos, vDir, v0, v2, v3, t, u, v, &vCol) )
+	if(	::_IntersectTriangle(vPos, vDir, v0, v1, v2, t, u, v, &vCol) ||
+		::_IntersectTriangle(vPos, vDir, v0, v2, v3, t, u, v, &vCol) )
 	{
 		CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 		__Vector3 vAt = vCol;
@@ -275,7 +275,7 @@ void CServerInfoViewerView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	it_CSymbol it, itEnd;
 
 	__Vector3 vPos, vDir;
-	::Convert2D_To_3DCoordinate(point.x, point.y, CN3Base::s_CameraData.mtxView, CN3Base::s_CameraData.mtxProjection, CN3Base::s_CameraData.vp, vPos, vDir);
+	::_Convert2D_To_3DCoordinate(point.x, point.y, CN3Base::s_CameraData.mtxView, CN3Base::s_CameraData.mtxProjection, CN3Base::s_CameraData.vp, vPos, vDir);
 
 	
 	
@@ -285,8 +285,8 @@ void CServerInfoViewerView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	__Vector3 v0(0, 0, 4096), v1(4096,0,4096), v2(4096,0,0), v3(0,0,0); // 큰판에 찍히면..
 	__Vector3 vCol;
 	float t, u, v;
-	if(	::IntersectTriangle(vPos, vDir, v0, v1, v2, t, u, v, &vCol) ||
-		::IntersectTriangle(vPos, vDir, v0, v2, v3, t, u, v, &vCol) )
+	if(	::_IntersectTriangle(vPos, vDir, v0, v1, v2, t, u, v, &vCol) ||
+		::_IntersectTriangle(vPos, vDir, v0, v2, v3, t, u, v, &vCol) )
 	{
 		CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 		__Vector3 vAt = vCol;
