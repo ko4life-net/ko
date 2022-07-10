@@ -1,0 +1,1161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{859cead0-18f5-4f00-b123-750e3f47ae2e}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="N3Base">
+      <UniqueIdentifier>{02d182d5-c2b4-445e-b8b6-b871c006c783}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="N3Base\N3UI">
+      <UniqueIdentifier>{96ef9af0-ecce-4d45-8940-1af6fcdfc36d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="N3Base\Core">
+      <UniqueIdentifier>{270b1b48-7000-4a09-b654-ec2450e2e505}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SoundMgr">
+      <UniqueIdentifier>{888093ad-6a52-4bca-87ec-399133948a8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{f6da6328-9d79-4232-8dde-d0dfdc93712a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Character Create">
+      <UniqueIdentifier>{e963834a-0fa8-498b-baf0-fd4b8fc429d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Character Select">
+      <UniqueIdentifier>{526c5cd2-9f4e-4e3a-8bff-ab9473f98b53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main">
+      <UniqueIdentifier>{b7caf17c-0a90-4642-862b-9d004aa96f2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\Player">
+      <UniqueIdentifier>{387e41e2-a7d1-4908-aabb-1862b6595062}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\Player\Common">
+      <UniqueIdentifier>{7da9ba03-1743-48d0-bb80-e944134c5cb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\Player\Machine">
+      <UniqueIdentifier>{5aefc695-061d-4046-85af-bc7af9259e89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\FX">
+      <UniqueIdentifier>{7af90ee6-44b4-4d3f-932b-b31143785f08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\UI">
+      <UniqueIdentifier>{119557df-1f4a-46c6-bed8-9019d065ad16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\UI\UI%28Item Relative%29">
+      <UniqueIdentifier>{1beb9654-2a68-4baf-a021-774bab2bdece}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\UI\UI%28Icon Basic%29">
+      <UniqueIdentifier>{ece06802-bf16-4269-b66b-ae4616acbca9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\UI\UI%28Skill Relative%29">
+      <UniqueIdentifier>{44eaaa6b-c124-4499-a3a0-72c3c414adcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\UI\UI%28Exchange &amp; Repair%29">
+      <UniqueIdentifier>{29806e67-9531-4574-9176-f2a9d890a72f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\UI\UI%28Change &amp; Init%29">
+      <UniqueIdentifier>{ac3d85f1-bcb6-44e2-a4f1-7efc201052db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\UI\UI%28Inn%29">
+      <UniqueIdentifier>{e6be2dc9-e957-4bd3-a62e-e1925af48299}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\Procedure[Sub] - PerTrade">
+      <UniqueIdentifier>{6c882f60-3f5a-4e53-bcee-39ab48936bf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\MagicSkill">
+      <UniqueIdentifier>{8eb3a0b0-7fec-4135-b828-d092638397e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\World Manager">
+      <UniqueIdentifier>{a0ab9685-2751-4a7d-8d20-3ff739c71340}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\World Manager\Terrain Manager">
+      <UniqueIdentifier>{300594a0-9895-4b04-9046-00c5260ace3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\World Manager\Terrain Manager\N3Sky">
+      <UniqueIdentifier>{52110f09-210b-462b-aefc-492da6d9b5d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\World Manager\Terrain Manager\N3Terrain">
+      <UniqueIdentifier>{0b10c8f1-9c02-4b82-9331-8bb964ffbabe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\World Manager\Terrain Manager\N3ShapeMgr">
+      <UniqueIdentifier>{127b7203-3518-4189-9f0f-a5765874b3de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\World Manager\Terrain Manager\Misc">
+      <UniqueIdentifier>{1482e5e8-1b21-4746-841d-886af93de0bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\World Manager\Dungeon Manager">
+      <UniqueIdentifier>{9910d22e-762c-4949-89b4-970fd608bd6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Main\World Manager\Dungeon Manager\PVS">
+      <UniqueIdentifier>{7063223f-8c68-4e05-bc71-eaa36dc6af76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Option">
+      <UniqueIdentifier>{c32b7c86-7fa6-4e68-8d5b-3b6abc1c1935}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - Nation Select">
+      <UniqueIdentifier>{424c96a0-6028-47a2-87db-1555e8a32eea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Knight Charactor">
+      <UniqueIdentifier>{796b4416-c0df-48ff-bc39-ffaf4464cb86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Procedure - LogIn">
+      <UniqueIdentifier>{b55994c5-6de3-4834-a917-a422ef6668de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Reference Header">
+      <UniqueIdentifier>{a3f77c0f-3216-4b7d-8d2d-7d626634b21c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3UIBase.h">
+      <Filter>N3Base\N3UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3UIButton.h">
+      <Filter>N3Base\N3UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3UIDef.h">
+      <Filter>N3Base\N3UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3UIEdit.h">
+      <Filter>N3Base\N3UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3UIImage.h">
+      <Filter>N3Base\N3UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3UIList.h">
+      <Filter>N3Base\N3UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3UIProgress.h">
+      <Filter>N3Base\N3UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3UIScrollBar.h">
+      <Filter>N3Base\N3UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3UIStatic.h">
+      <Filter>N3Base\N3UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3UIString.h">
+      <Filter>N3Base\N3UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3UITooltip.h">
+      <Filter>N3Base\N3UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3UITrackBar.h">
+      <Filter>N3Base\N3UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\BitMapFile.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\DFont.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\JPEG.H">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\LogWriter.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\My_3DStruct.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3AlphaPrimitiveManager.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3AnimatedTexures.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3AnimControl.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3AnimKey.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3Base.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3BaseFileAccess.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3Board.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3Camera.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3Cloak.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3Eng.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3FXPlug.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3IMesh.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3Joint.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3Light.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3Mesh.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3Mng.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3PMesh.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3PMeshInstance.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3Shape.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3ShapeExtra.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3TableBase.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3Texture.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3Transform.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3TransformCollision.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3VMesh.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\StdAfxBase.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3SndDef.h">
+      <Filter>SoundMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3SndMgr.h">
+      <Filter>SoundMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3SndObj.h">
+      <Filter>SoundMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3SndObjStream.h">
+      <Filter>SoundMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\WaveFile.h">
+      <Filter>SoundMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="APISocket.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Compress.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="IMPLODE.H">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="JvCryption.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketDef.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcCharacterCreate.h">
+      <Filter>Procedure - Character Create</Filter>
+    </ClInclude>
+    <ClInclude Include="UICharacterCreate.h">
+      <Filter>Procedure - Character Create</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcCharacterSelect.h">
+      <Filter>Procedure - Character Select</Filter>
+    </ClInclude>
+    <ClInclude Include="UICharacterSelect.h">
+      <Filter>Procedure - Character Select</Filter>
+    </ClInclude>
+    <ClInclude Include="Bitset.h">
+      <Filter>Procedure - Main\Player\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3Chr.h">
+      <Filter>Procedure - Main\Player\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3Skin.h">
+      <Filter>Procedure - Main\Player\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBase.h">
+      <Filter>Procedure - Main\Player\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerNPC.h">
+      <Filter>Procedure - Main\Player\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Catapult.h">
+      <Filter>Procedure - Main\Player\Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="MachineBase.h">
+      <Filter>Procedure - Main\Player\Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="MachineMng.h">
+      <Filter>Procedure - Main\Player\Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMySelf.h">
+      <Filter>Procedure - Main\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerOther.h">
+      <Filter>Procedure - Main\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerOtherMgr.h">
+      <Filter>Procedure - Main\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3FXBundle.h">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="N3FXBundleGame.h">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3FXDef.h">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="N3FXMgr.h">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3FXPartBase.h">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3FXPartBillBoard.h">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="N3FXPartBillBoardGame.h">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3FXPartBottomBoard.h">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="N3FXPartBottomBoardGame.h">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3FXParticle.h">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3FXPartMesh.h">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3FXPartParticles.h">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3FXPMesh.h">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3FXPMeshInstance.h">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3FXShape.h">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="CountableItemEditDlg.h">
+      <Filter>Procedure - Main\UI\UI%28Item Relative%29</Filter>
+    </ClInclude>
+    <ClInclude Include="UIDroppedItemDlg.h">
+      <Filter>Procedure - Main\UI\UI%28Item Relative%29</Filter>
+    </ClInclude>
+    <ClInclude Include="UIImageTooltipDlg.h">
+      <Filter>Procedure - Main\UI\UI%28Item Relative%29</Filter>
+    </ClInclude>
+    <ClInclude Include="UIInventory.h">
+      <Filter>Procedure - Main\UI\UI%28Item Relative%29</Filter>
+    </ClInclude>
+    <ClInclude Include="UITransactionDlg.h">
+      <Filter>Procedure - Main\UI\UI%28Item Relative%29</Filter>
+    </ClInclude>
+    <ClInclude Include="UIWareHouseDlg.h">
+      <Filter>Procedure - Main\UI\UI%28Item Relative%29</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3UIArea.h">
+      <Filter>Procedure - Main\UI\UI%28Icon Basic%29</Filter>
+    </ClInclude>
+    <ClInclude Include="N3UIIcon.h">
+      <Filter>Procedure - Main\UI\UI%28Icon Basic%29</Filter>
+    </ClInclude>
+    <ClInclude Include="N3UIWndBase.h">
+      <Filter>Procedure - Main\UI\UI%28Icon Basic%29</Filter>
+    </ClInclude>
+    <ClInclude Include="UINPCEvent.h">
+      <Filter>Procedure - Main\UI\UI%28Icon Basic%29</Filter>
+    </ClInclude>
+    <ClInclude Include="UINpcTalk.h">
+      <Filter>Procedure - Main\UI\UI%28Icon Basic%29</Filter>
+    </ClInclude>
+    <ClInclude Include="UIHotKeyDlg.h">
+      <Filter>Procedure - Main\UI\UI%28Skill Relative%29</Filter>
+    </ClInclude>
+    <ClInclude Include="UISkillTreeDlg.h">
+      <Filter>Procedure - Main\UI\UI%28Skill Relative%29</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemRepairMgr.h">
+      <Filter>Procedure - Main\UI\UI%28Exchange &amp; Repair%29</Filter>
+    </ClInclude>
+    <ClInclude Include="UIItemExchange.h">
+      <Filter>Procedure - Main\UI\UI%28Exchange &amp; Repair%29</Filter>
+    </ClInclude>
+    <ClInclude Include="UIRepairTooltipDlg.h">
+      <Filter>Procedure - Main\UI\UI%28Exchange &amp; Repair%29</Filter>
+    </ClInclude>
+    <ClInclude Include="UIClassChange.h">
+      <Filter>Procedure - Main\UI\UI%28Change &amp; Init%29</Filter>
+    </ClInclude>
+    <ClInclude Include="UINPCChangeEvent.h">
+      <Filter>Procedure - Main\UI\UI%28Change &amp; Init%29</Filter>
+    </ClInclude>
+    <ClInclude Include="UIPointInitDlg.h">
+      <Filter>Procedure - Main\UI\UI%28Change &amp; Init%29</Filter>
+    </ClInclude>
+    <ClInclude Include="UICreateClanName.h">
+      <Filter>Procedure - Main\UI\UI%28Inn%29</Filter>
+    </ClInclude>
+    <ClInclude Include="UIInn.h">
+      <Filter>Procedure - Main\UI\UI%28Inn%29</Filter>
+    </ClInclude>
+    <ClInclude Include="N3UIDBCLButton.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIChat.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UICmd.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIDead.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIEndingDisplay.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIHelp.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIKnightsOperation.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UILoading.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIMessageBox.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIMessageBoxManager.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIMessageWnd.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UINotice.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIPartyBBS.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIPartyBBSSelector.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIPartyOrForce.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIQuestMenu.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIQuestTalk.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIStateBar.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UITargetBar.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UITradeBBSEditDlg.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UITradeBBSSelector.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UITradeExplanation.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UITradeSellBBS.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIVarious.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIWarp.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SubProcPerTrade.h">
+      <Filter>Procedure - Main\Procedure[Sub] - PerTrade</Filter>
+    </ClInclude>
+    <ClInclude Include="UIPerTradeDlg.h">
+      <Filter>Procedure - Main\Procedure[Sub] - PerTrade</Filter>
+    </ClInclude>
+    <ClInclude Include="UITradeEditDlg.h">
+      <Filter>Procedure - Main\Procedure[Sub] - PerTrade</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicSkillMng.h">
+      <Filter>Procedure - Main\MagicSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3Cloud.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3ColorChange.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3GERain.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3GESnow.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3GlobalEffect.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3Moon.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3Sky.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3SkyMng.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3Star.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3Sun.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClInclude>
+    <ClInclude Include="N3Terrain.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="N3TerrainDef.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="N3TerrainPatch.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3Base\N3ShapeMgr.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3ShapeMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Bird.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="BirdMng.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="GrassBoard.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="LightMgr.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3Pond.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\N3BASE\N3River.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerMesh.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="N3TerrainManager.h">
+      <Filter>Procedure - Main\World Manager\Terrain Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="PortalVolume.h">
+      <Filter>Procedure - Main\World Manager\Dungeon Manager\PVS</Filter>
+    </ClInclude>
+    <ClInclude Include="PvsMgr.h">
+      <Filter>Procedure - Main\World Manager\Dungeon Manager\PVS</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonManager.h">
+      <Filter>Procedure - Main\World Manager\Dungeon Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="N3WorldBase.h">
+      <Filter>Procedure - Main\World Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="N3WorldManager.h">
+      <Filter>Procedure - Main\World Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcMain.h">
+      <Filter>Procedure - Main</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcOption.h">
+      <Filter>Procedure - Option</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcNationSelect.h">
+      <Filter>Procedure - Nation Select</Filter>
+    </ClInclude>
+    <ClInclude Include="UINationSelectDlg.h">
+      <Filter>Procedure - Nation Select</Filter>
+    </ClInclude>
+    <ClInclude Include="KnightChrMgr.h">
+      <Filter>Knight Charactor</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedMem.h">
+      <Filter>Knight Charactor</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcLogIn.h">
+      <Filter>Procedure - LogIn</Filter>
+    </ClInclude>
+    <ClInclude Include="UILogin.h">
+      <Filter>Procedure - LogIn</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h" />
+    <ClInclude Include="GameBase.h" />
+    <ClInclude Include="GameCursor.h" />
+    <ClInclude Include="GameDef.h" />
+    <ClInclude Include="GameEng.h" />
+    <ClInclude Include="GameProcedure.h" />
+    <ClInclude Include="..\JPEG\JpegFile.h" />
+    <ClInclude Include="LocalInput.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="WarFareMain.h" />
+    <ClInclude Include="WarMessage.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="WarFare.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Warfare_tw.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\N3Base\N3UIBase.cpp">
+      <Filter>N3Base\N3UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3UIButton.cpp">
+      <Filter>N3Base\N3UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3UIEdit.cpp">
+      <Filter>N3Base\N3UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3UIImage.cpp">
+      <Filter>N3Base\N3UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\N3UIList.cpp">
+      <Filter>N3Base\N3UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3UIProgress.cpp">
+      <Filter>N3Base\N3UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3UIScrollBar.cpp">
+      <Filter>N3Base\N3UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3UIStatic.cpp">
+      <Filter>N3Base\N3UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3UIString.cpp">
+      <Filter>N3Base\N3UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3UITooltip.cpp">
+      <Filter>N3Base\N3UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3UITrackBar.cpp">
+      <Filter>N3Base\N3UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\BitMapFile.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\DFont.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\JPEG.CPP">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\LogWriter.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3AlphaPrimitiveManager.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\N3AnimatedTexures.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3AnimControl.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3AnimKey.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3Base.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3BaseFileAccess.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3Board.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3Camera.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\N3Cloak.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3Eng.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\N3FXPlug.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3IMesh.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3Joint.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3Light.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3Mesh.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3PMesh.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3PMeshInstance.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3Shape.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3ShapeExtra.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3Texture.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3Transform.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3TransformCollision.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3VMesh.cpp">
+      <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\N3SndMgr.cpp">
+      <Filter>SoundMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\N3SndObj.cpp">
+      <Filter>SoundMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\N3SndObjStream.cpp">
+      <Filter>SoundMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\WaveFile.cpp">
+      <Filter>SoundMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="APISocket.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Compress.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcCharacterCreate.cpp">
+      <Filter>Procedure - Character Create</Filter>
+    </ClCompile>
+    <ClCompile Include="UICharacterCreate.cpp">
+      <Filter>Procedure - Character Create</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcCharacterSelect.cpp">
+      <Filter>Procedure - Character Select</Filter>
+    </ClCompile>
+    <ClCompile Include="UICharacterSelect.cpp">
+      <Filter>Procedure - Character Select</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3Chr.cpp">
+      <Filter>Procedure - Main\Player\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3Skin.cpp">
+      <Filter>Procedure - Main\Player\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBase.cpp">
+      <Filter>Procedure - Main\Player\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerNPC.cpp">
+      <Filter>Procedure - Main\Player\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Catapult.cpp">
+      <Filter>Procedure - Main\Player\Machine</Filter>
+    </ClCompile>
+    <ClCompile Include="MachineBase.cpp">
+      <Filter>Procedure - Main\Player\Machine</Filter>
+    </ClCompile>
+    <ClCompile Include="MachineMng.cpp">
+      <Filter>Procedure - Main\Player\Machine</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMySelf.cpp">
+      <Filter>Procedure - Main\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerOther.cpp">
+      <Filter>Procedure - Main\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerOtherMgr.cpp">
+      <Filter>Procedure - Main\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3FXBundle.cpp">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="N3FXBundleGame.cpp">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="N3FXMgr.cpp">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3FXPartBase.cpp">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3FXPartBillBoard.cpp">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="N3FXPartBillBoardGame.cpp">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3FXPartBottomBoard.cpp">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="N3FXPartBottomBoardGame.cpp">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3FXParticle.cpp">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3FXPartMesh.cpp">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3FXPartParticles.cpp">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3FXPMesh.cpp">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\N3FXPMeshInstance.cpp">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3FXShape.cpp">
+      <Filter>Procedure - Main\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="CountableItemEditDlg.cpp">
+      <Filter>Procedure - Main\UI\UI%28Item Relative%29</Filter>
+    </ClCompile>
+    <ClCompile Include="UIDroppedItemDlg.cpp">
+      <Filter>Procedure - Main\UI\UI%28Item Relative%29</Filter>
+    </ClCompile>
+    <ClCompile Include="UIImageTooltipDlg.cpp">
+      <Filter>Procedure - Main\UI\UI%28Item Relative%29</Filter>
+    </ClCompile>
+    <ClCompile Include="UIInventory.cpp">
+      <Filter>Procedure - Main\UI\UI%28Item Relative%29</Filter>
+    </ClCompile>
+    <ClCompile Include="UITransactionDlg.cpp">
+      <Filter>Procedure - Main\UI\UI%28Item Relative%29</Filter>
+    </ClCompile>
+    <ClCompile Include="UIWareHouseDlg.cpp">
+      <Filter>Procedure - Main\UI\UI%28Item Relative%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\N3UIArea.cpp">
+      <Filter>Procedure - Main\UI\UI%28Icon Basic%29</Filter>
+    </ClCompile>
+    <ClCompile Include="N3UIIcon.cpp">
+      <Filter>Procedure - Main\UI\UI%28Icon Basic%29</Filter>
+    </ClCompile>
+    <ClCompile Include="N3UIWndBase.cpp">
+      <Filter>Procedure - Main\UI\UI%28Icon Basic%29</Filter>
+    </ClCompile>
+    <ClCompile Include="UINPCEvent.cpp">
+      <Filter>Procedure - Main\UI\UI%28Icon Basic%29</Filter>
+    </ClCompile>
+    <ClCompile Include="UINpcTalk.cpp">
+      <Filter>Procedure - Main\UI\UI%28Icon Basic%29</Filter>
+    </ClCompile>
+    <ClCompile Include="UIHotKeyDlg.cpp">
+      <Filter>Procedure - Main\UI\UI%28Skill Relative%29</Filter>
+    </ClCompile>
+    <ClCompile Include="UISkillTreeDlg.cpp">
+      <Filter>Procedure - Main\UI\UI%28Skill Relative%29</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemRepairMgr.cpp">
+      <Filter>Procedure - Main\UI\UI%28Exchange &amp; Repair%29</Filter>
+    </ClCompile>
+    <ClCompile Include="UIItemExchange.cpp">
+      <Filter>Procedure - Main\UI\UI%28Exchange &amp; Repair%29</Filter>
+    </ClCompile>
+    <ClCompile Include="UIRepairTooltipDlg.cpp">
+      <Filter>Procedure - Main\UI\UI%28Exchange &amp; Repair%29</Filter>
+    </ClCompile>
+    <ClCompile Include="UIClassChange.cpp">
+      <Filter>Procedure - Main\UI\UI%28Change &amp; Init%29</Filter>
+    </ClCompile>
+    <ClCompile Include="UINPCChangeEvent.cpp">
+      <Filter>Procedure - Main\UI\UI%28Change &amp; Init%29</Filter>
+    </ClCompile>
+    <ClCompile Include="UIPointInitDlg.cpp">
+      <Filter>Procedure - Main\UI\UI%28Change &amp; Init%29</Filter>
+    </ClCompile>
+    <ClCompile Include="UICreateClanName.cpp">
+      <Filter>Procedure - Main\UI\UI%28Inn%29</Filter>
+    </ClCompile>
+    <ClCompile Include="UIInn.cpp">
+      <Filter>Procedure - Main\UI\UI%28Inn%29</Filter>
+    </ClCompile>
+    <ClCompile Include="N3UIDBCLButton.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIChat.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UICmd.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIDead.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIEndingDisplay.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIHelp.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIKnightsOperation.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UILoading.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIMessageBox.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIMessageBoxManager.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIMessageWnd.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UINotice.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIPartyBBS.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIPartyBBSSelector.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIPartyOrForce.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIQuestMenu.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIQuestTalk.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIStateBar.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UITargetBar.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UITradeBBSEditDlg.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UITradeBBSSelector.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UITradeExplanation.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UITradeSellBBS.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIVarious.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIWarp.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="SubProcPerTrade.cpp">
+      <Filter>Procedure - Main\Procedure[Sub] - PerTrade</Filter>
+    </ClCompile>
+    <ClCompile Include="UIPerTradeDlg.cpp">
+      <Filter>Procedure - Main\Procedure[Sub] - PerTrade</Filter>
+    </ClCompile>
+    <ClCompile Include="UITradeEditDlg.cpp">
+      <Filter>Procedure - Main\Procedure[Sub] - PerTrade</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicSkillMng.cpp">
+      <Filter>Procedure - Main\MagicSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\N3Cloud.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\N3ColorChange.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3GERain.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3GESnow.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3GlobalEffect.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\N3Moon.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\N3Sky.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\N3SkyMng.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\N3Star.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\N3Sun.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Sky</Filter>
+    </ClCompile>
+    <ClCompile Include="N3Terrain.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="N3TerrainPatch.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3Base\N3ShapeMgr.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\N3ShapeMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Bird.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="BirdMng.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="GrassBoard.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="LightMgr.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\N3Pond.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\N3BASE\N3River.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerMesh.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="N3TerrainManager.cpp">
+      <Filter>Procedure - Main\World Manager\Terrain Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="PortalVolume.cpp">
+      <Filter>Procedure - Main\World Manager\Dungeon Manager\PVS</Filter>
+    </ClCompile>
+    <ClCompile Include="PvsMgr.cpp">
+      <Filter>Procedure - Main\World Manager\Dungeon Manager\PVS</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonManager.cpp">
+      <Filter>Procedure - Main\World Manager\Dungeon Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="N3WorldBase.cpp">
+      <Filter>Procedure - Main\World Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="N3WorldManager.cpp">
+      <Filter>Procedure - Main\World Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcMain.cpp">
+      <Filter>Procedure - Main</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcOption.cpp">
+      <Filter>Procedure - Option</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcNationSelect.cpp">
+      <Filter>Procedure - Nation Select</Filter>
+    </ClCompile>
+    <ClCompile Include="UINationSelectDlg.cpp">
+      <Filter>Procedure - Nation Select</Filter>
+    </ClCompile>
+    <ClCompile Include="KnightChrMgr.cpp">
+      <Filter>Knight Charactor</Filter>
+    </ClCompile>
+    <ClCompile Include="SharedMem.cpp">
+      <Filter>Knight Charactor</Filter>
+    </ClCompile>
+    <ClCompile Include="GameProcLogIn.cpp">
+      <Filter>Procedure - LogIn</Filter>
+    </ClCompile>
+    <ClCompile Include="UILogin.cpp">
+      <Filter>Procedure - LogIn</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="GameBase.cpp" />
+    <ClCompile Include="GameCursor.cpp" />
+    <ClCompile Include="GameEng.cpp" />
+    <ClCompile Include="GameProcedure.cpp" />
+    <ClCompile Include="..\JPEG\JpegFile.cpp" />
+    <ClCompile Include="LocalInput.cpp" />
+    <ClCompile Include="StdAfx.cpp" />
+    <ClCompile Include="WarFareMain.cpp" />
+    <ClCompile Include="WarMessage.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="JvCryption.lib">
+      <Filter>Network</Filter>
+    </Library>
+    <Library Include="Implode.lib">
+      <Filter>Network</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Cursor_Attack.cur">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Cursor_Click.cur">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="cursor_click1.cur">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Cursor_Normal.cur">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="cursor_normal1.cur">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="repair0.cur">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="repair1.cur">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>
