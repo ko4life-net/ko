@@ -11,3 +11,4 @@ vendor/
 *.ilk
 *.vcxproj.user
 UpgradeLog.htm
+Log.txt
