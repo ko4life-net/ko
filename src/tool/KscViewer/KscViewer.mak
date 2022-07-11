@@ -91,7 +91,7 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\KscViewer.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=..\JPEG\jpegLib.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\KscViewer.pdb" /machine:I386 /out:"KscViewer.exe" 
+LINK32_FLAGS=..\..\engine\JPEG\jpegLib.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\KscViewer.pdb" /machine:I386 /out:"KscViewer.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\JpegFile.obj" \
 	"$(INTDIR)\KscViewer.obj" \
@@ -199,7 +199,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=..\JPEG\jpegLib.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\KscViewer_Debug.pdb" /debug /machine:I386 /out:"KscViewer_Debug.exe" /pdbtype:sept 
+LINK32_FLAGS=..\..\engine\JPEG\jpegLib.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\KscViewer_Debug.pdb" /debug /machine:I386 /out:"KscViewer_Debug.exe" /pdbtype:sept 
 LINK32_OBJS= \
 	"$(INTDIR)\JpegFile.obj" \
 	"$(INTDIR)\KscViewer.obj" \
@@ -228,7 +228,7 @@ LINK32_OBJS= \
 
 
 !IF "$(CFG)" == "KscViewer - Win32 Release" || "$(CFG)" == "KscViewer - Win32 Debug"
-SOURCE=..\JPEG\JpegFile.cpp
+SOURCE=..\..\engine\JPEG\JpegFile.cpp
 
 !IF  "$(CFG)" == "KscViewer - Win32 Release"
 

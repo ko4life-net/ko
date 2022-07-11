@@ -68,7 +68,7 @@
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <ObjectFileName>.\Release\</ObjectFileName>
       <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\engine;$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -89,7 +89,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <SubSystem>Windows</SubSystem>
       <OutputFile>KscViewer.exe</OutputFile>
-      <AdditionalDependencies>..\JPEG\jpegLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\..\engine\JPEG\jpegLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -111,7 +111,7 @@
       <ObjectFileName>.\Debug\</ObjectFileName>
       <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\engine;$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -133,11 +133,11 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OutputFile>KscViewer_Debug.exe</OutputFile>
-      <AdditionalDependencies>..\JPEG\jpegLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\..\engine\JPEG\jpegLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\JPEG\JpegFile.cpp" />
+    <ClCompile Include="..\..\engine\JPEG\JpegFile.cpp" />
     <ClCompile Include="KscViewer.cpp" />
     <ClCompile Include="KscViewerDoc.cpp" />
     <ClCompile Include="KscViewerView.cpp" />
@@ -154,7 +154,7 @@
     <ResourceCompile Include="KscViewer.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\JPEG\JpegFile.h" />
+    <ClInclude Include="..\..\engine\JPEG\JpegFile.h" />
     <ClInclude Include="KscViewer.h" />
     <ClInclude Include="KscViewerDoc.h" />
     <ClInclude Include="KscViewerView.h" />

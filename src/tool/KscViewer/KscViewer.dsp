@@ -53,7 +53,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
-# ADD LINK32 ..\JPEG\jpegLib.lib /nologo /subsystem:windows /machine:I386 /out:"KscViewer.exe"
+# ADD LINK32 ..\..\engine\JPEG\jpegLib.lib /nologo /subsystem:windows /machine:I386 /out:"KscViewer.exe"
 
 !ELSEIF  "$(CFG)" == "KscViewer - Win32 Debug"
 
@@ -79,7 +79,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 ..\JPEG\jpegLib.lib /nologo /subsystem:windows /debug /machine:I386 /out:"KscViewer_Debug.exe" /pdbtype:sept
+# ADD LINK32 ..\..\engine\JPEG\jpegLib.lib /nologo /subsystem:windows /debug /machine:I386 /out:"KscViewer_Debug.exe" /pdbtype:sept
 
 !ENDIF 
 
@@ -92,7 +92,7 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE=..\JPEG\JpegFile.cpp
+SOURCE=..\..\engine\JPEG\JpegFile.cpp
 # End Source File
 # Begin Source File
 
@@ -129,7 +129,7 @@ SOURCE=.\StdAfx.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=..\JPEG\JpegFile.h
+SOURCE=..\..\engine\JPEG\JpegFile.h
 # End Source File
 # Begin Source File
 

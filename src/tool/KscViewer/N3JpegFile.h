@@ -9,7 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "..\\JPEG\\JpegFile.h"
+#include "JPEG/JpegFile.h"
 
 class CN3JpegFile  : public CJpegFile
 {
