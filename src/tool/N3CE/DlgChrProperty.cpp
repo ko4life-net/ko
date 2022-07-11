@@ -7,7 +7,7 @@
 #include "N3CEDoc.h"
 #include "N3CEView.h"
 
-#include "../N3Base/N3Chr.h"
+#include "N3Base/N3Chr.h"
 #include "Resource.h"
 
 #ifdef _DEBUG

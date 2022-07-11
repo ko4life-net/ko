@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include "Resource.h"
-#include "../N3Base/N3Chr.h"
+#include "N3Base/N3Chr.h"
 
 #include "MainFrm.h"
 #include "N3CEDoc.h"
@@ -11,8 +11,8 @@
 #include "FormViewAnimation.h"
 
 #include "FormViewProperty.h"
-#include "../N3Base/N3FXPlug.h"
-#include "../N3Base/N3FXBundle.h"
+#include "N3Base/N3FXPlug.h"
+#include "N3Base/N3FXBundle.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
