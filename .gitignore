@@ -2,6 +2,7 @@
 Release/
 Debug/
 vendor/
+[Bb]uild/
 *.exe
 *.lib
 *.pdb
