@@ -9,7 +9,7 @@
 #include "UIImageTooltipDlg.h"
 
 #ifdef _N3GAME
-#include "..\Warfare\N3UIWndBase.h"
+#include "N3UIWndBase.h"
 #endif
 
 #ifdef _DEBUG

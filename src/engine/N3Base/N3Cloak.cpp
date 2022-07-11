@@ -6,7 +6,10 @@
 #include "N3Cloak.h"
 #include "N3Texture.h"
 #include "N3PMeshInstance.h"
-#include "../WarFare/PlayerBase.h"
+
+#if !defined(_REPENT) && defined(_N3GAME)
+#include "PlayerBase.h"
+#endif
 
 #ifdef _DEBUG
 #undef THIS_FILE

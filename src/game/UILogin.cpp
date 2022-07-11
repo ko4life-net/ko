@@ -7,9 +7,9 @@
 #include "UILogIn.h"
 #include "GameProcLogIn.h"
 
-#include "../N3Base/N3UIEdit.h"
-#include "../N3Base/N3UIButton.h"
-#include "../N3Base/N3UIList.h"
+#include "N3Base/N3UIEdit.h"
+#include "N3Base/N3UIButton.h"
+#include "N3Base/N3UIList.h"
 #include "UIMessageBoxManager.h"
 
 #include <algorithm>

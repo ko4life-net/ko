@@ -9,8 +9,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "../N3BASE/N3UIBase.h"
-#include "../N3BASE/N3UIButton.h"
+#include "N3Base/N3UIBase.h"
+#include "N3Base/N3UIButton.h"
 
 #define TRADE_BBS_SELL		1
 #define TRADE_BBS_BUY		2

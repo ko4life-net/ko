@@ -7,9 +7,9 @@
 
 #pragma warning(disable : 4786)
 
-#include "../N3Base/N3BaseFileAccess.h"
-#include "../N3Base/N3FXDef.h"
-#include "../N3Base/N3TableBase.h"
+#include "N3Base/N3BaseFileAccess.h"
+#include "N3Base/N3FXDef.h"
+#include "N3Base/N3TableBase.h"
 
 #include <list>
 #include <map>

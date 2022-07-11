@@ -11,9 +11,9 @@
 #include "PlayerMySelf.h"
 #include "UIManager.h"
 
-#include "../N3Base/N3UIList.h"
-#include "../N3Base/N3UIString.h"
-#include "../N3Base/N3UIButton.h"
+#include "N3Base/N3UIList.h"
+#include "N3Base/N3UIString.h"
+#include "N3Base/N3UIButton.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

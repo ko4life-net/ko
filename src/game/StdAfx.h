@@ -14,6 +14,6 @@
 
 #define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
 
-#include "../N3Base/StdAfxBase.h" // My_3DStruct.h"
+#include "N3Base/StdAfxBase.h" // My_3DStruct.h"
 
 #endif // !defined(AFX_STDAFX_H__1B203DCE_1641_4364_9609_4FE29D5690FC__INCLUDED_)

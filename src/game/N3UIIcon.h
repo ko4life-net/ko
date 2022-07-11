@@ -9,7 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "..\N3BASE\N3UIImage.h"
+#include "N3Base/N3UIImage.h"
 
 class CN3UIIcon  : public CN3UIImage
 {

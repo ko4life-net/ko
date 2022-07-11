@@ -7,10 +7,10 @@
 #include "GameProcMain.h"
 #include "PlayerOtherMgr.h"
 
-#include "../N3Base/N3UIProgress.h"
-#include "../N3Base/N3UIStatic.h"
-#include "../N3Base/N3UIImage.h"
-#include "../N3Base/N3UIArea.h"
+#include "N3Base/N3UIProgress.h"
+#include "N3Base/N3UIStatic.h"
+#include "N3Base/N3UIImage.h"
+#include "N3Base/N3UIArea.h"
 #include "UIManager.h"
 
 #ifdef _DEBUG

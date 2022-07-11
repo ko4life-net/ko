@@ -11,9 +11,9 @@
 
 #include "GameDef.h"
 
-#include "../N3BASE/N3UIBase.h"
-#include "../N3Base/N3UIButton.h"
-#include "../N3Base/N3UIString.h"
+#include "N3Base/N3UIBase.h"
+#include "N3Base/N3UIButton.h"
+#include "N3Base/N3UIString.h"
 
 enum e_NpcEvent	{ NPC_EVENT_ITEM_TRADE = 0, NPC_EVENT_TRADE_REPAIR = 1, NPC_EVENT_KNIGHTS = 2 };
 

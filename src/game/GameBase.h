@@ -9,8 +9,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "../N3Base/N3Base.h"
-#include "../N3Base/N3TableBase.h"
+#include "N3Base/N3Base.h"
+#include "N3Base/N3TableBase.h"
 #include "GameDef.h"
 
 class CGameBase : public CN3Base

@@ -19,9 +19,9 @@
 #include "CountableItemEditDlg.h"
 
 #include "UIManager.h"
-#include "..\N3Base\N3UIButton.h"
-#include "..\N3Base\N3UIEdit.h"
-#include "../N3Base/N3SndObj.h"
+#include "N3Base/N3UIButton.h"
+#include "N3Base/N3UIEdit.h"
+#include "N3Base/N3SndObj.h"
 #include "Resource.h"
 
 #ifdef _DEBUG

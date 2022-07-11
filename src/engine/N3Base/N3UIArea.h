@@ -42,10 +42,8 @@ public:
 	virtual void	SetRegion(const RECT& Rect);
 
 	virtual DWORD	MouseProc(DWORD dwFlags, const POINT& ptCur, const POINT& ptOld);
-#ifndef _REPENT
-#ifdef _N3GAME
+#if !defined(_REPENT) && defined(_N3GAME)
 	virtual	bool	ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg);
-#endif
 #endif
 
 #ifdef _N3TOOL

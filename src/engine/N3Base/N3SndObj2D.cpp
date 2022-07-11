@@ -5,7 +5,7 @@
 #include "StdAfxBase.h"
 #include "N3SndMgr.h"
 #include "N3SndObj.h"
-#include "../N3Base/N3Base.h"
+#include "N3Base/N3Base.h"
 #include <math.h>
 
 #ifdef _DEBUG

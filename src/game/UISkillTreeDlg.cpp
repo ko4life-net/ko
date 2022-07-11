@@ -20,9 +20,9 @@
 #include "MagicSkillMng.h"
 #include "UIManager.h"
 
-#include "..\N3Base\N3UIArea.h"
-#include "..\N3Base\N3UIString.h"
-#include "..\N3Base\N3SndObj.h"
+#include "N3Base/N3UIArea.h"
+#include "N3Base/N3UIString.h"
+#include "N3Base/N3SndObj.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

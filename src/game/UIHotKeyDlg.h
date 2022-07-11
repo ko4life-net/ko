@@ -12,7 +12,7 @@
 #include "GameDef.h"
 #include "N3UIWndBase.h"
 
-#include "../N3Base/N3UIString.h"
+#include "N3Base/N3UIString.h"
 
 
 //////////////////////////////////////////////////////////////////////

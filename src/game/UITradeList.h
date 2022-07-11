@@ -11,8 +11,8 @@
 
 #include "GameDef.h"
 
-#include "../N3BASE/N3UIBase.h"
-#include "../N3Base/N3UIButton.h"
+#include "N3Base/N3UIBase.h"
+#include "N3Base/N3UIButton.h"
 
 //////////////////////////////////////////////////////////////////////
 

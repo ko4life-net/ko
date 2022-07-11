@@ -9,8 +9,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "..\N3BASE\N3Base.h"
-#include "../N3Base/N3Shape.h"
+#include "N3Base/N3Base.h"
+#include "N3Base/N3Shape.h"
 
 #define INDOOR_FOLDER "N3Indoor\\"
 const float fBaseVolumnSize = 1.0f;

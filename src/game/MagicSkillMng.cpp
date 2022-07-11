@@ -18,11 +18,11 @@
 #include "UIVarious.h"
 #include "UIPartyOrForce.h"
 #include "MagicSkillMng.h"
-#include "../N3Base/N3SndObj.h"
-#include "../N3Base/N3SndObjStream.h"
-#include "../N3Base/N3ShapeExtra.h"
+#include "N3Base/N3SndObj.h"
+#include "N3Base/N3SndObjStream.h"
+#include "N3Base/N3ShapeExtra.h"
 
-#include "../N3Base/StdAfxBase.h"
+#include "N3Base/StdAfxBase.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

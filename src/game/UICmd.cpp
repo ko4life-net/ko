@@ -10,7 +10,7 @@
 //#include "GameProcLogIn.h"
 #include "PlayerMyself.h"
 #include "UITransactionDlg.h"
-#include "../N3Base/N3UIButton.h"
+#include "N3Base/N3UIButton.h"
 #include "UIManager.h"
 
 #ifdef _DEBUG

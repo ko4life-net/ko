@@ -9,10 +9,10 @@
 #include "PacketDef.h"
 #include "APISocket.h"
 
-#include "../N3Base/N3UIButton.h"
-#include "../N3Base/N3UIEdit.h"
-#include "../N3Base/N3UIList.h"
-#include "../N3Base/N3UIScrollBar.h"
+#include "N3Base/N3UIButton.h"
+#include "N3Base/N3UIEdit.h"
+#include "N3Base/N3UIList.h"
+#include "N3Base/N3UIScrollBar.h"
 
 
 #ifdef _DEBUG

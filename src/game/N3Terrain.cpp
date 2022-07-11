@@ -13,8 +13,8 @@
 #include "GameProcedure.h"
 #include "UILoading.h"
 
-#include "../N3Base/N3River.h"
-#include "../N3Base/N3Pond.h"
+#include "N3Base/N3River.h"
+#include "N3Base/N3Pond.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

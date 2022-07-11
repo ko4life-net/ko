@@ -9,7 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "../N3Base/N3Eng.h"
+#include "N3Base/N3Eng.h"
 
 struct __EXPORT_OPTION
 {

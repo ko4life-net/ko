@@ -4,7 +4,7 @@
 #include "StdAfx.h"
 #include "PlayerOtherMgr.h"
 
-#include "../N3Base/N3ShapeExtra.h"
+#include "N3Base/N3ShapeExtra.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

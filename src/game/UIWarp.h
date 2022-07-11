@@ -11,7 +11,7 @@
 
 #include <string>
 #include <list>
-#include "../N3Base/N3UIBase.h"
+#include "N3Base/N3UIBase.h"
 
 struct __WarpInfo
 {

@@ -11,8 +11,8 @@
 #include "UIManager.h"
 #include "CountableItemEditDlg.h"
 
-#include "../N3Base/N3UITooltip.h"
-#include "../N3Base/N3SndObj.h"
+#include "N3Base/N3UITooltip.h"
+#include "N3Base/N3SndObj.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

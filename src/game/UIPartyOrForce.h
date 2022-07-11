@@ -10,7 +10,7 @@
 #endif // _MSC_VER > 1000
 
 #include "GameDef.h"
-#include "../N3Base/N3UIBase.h"
+#include "N3Base/N3UIBase.h"
 #include <list>
 
 typedef std::list<__InfoPartyOrForce>::iterator it_PartyOrForce;

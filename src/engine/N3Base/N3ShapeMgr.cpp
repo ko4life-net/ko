@@ -2,15 +2,15 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#ifdef _N3GAME
-#include "../WarFare/StdAfx.h"
-#include "../WarFare/GameProcedure.h"
-#ifndef _REPENT
-#include "../WarFare/UILoading.h"
-#endif	// _REPENT
+#if defined(_N3GAME)
+#include "StdAfx.h"
+#include "GameProcedure.h"
+#if !defined(_REPENT)
+#include "UILoading.h"
+#endif	// end of !defined(_REPENT)
 #else
 #include "StdAfxBase.h"
-#endif // end of #ifndef _N3GAME
+#endif // end of #if defined(_N3GAME)
 
 #include "N3ShapeMgr.h"
 

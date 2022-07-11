@@ -9,9 +9,9 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "..\N3BASE\N3UIBase.h"
-#include "..\N3BASE\N3UIArea.h"
-#include "..\N3BASE\N3UIImage.h"
+#include "N3Base/N3UIBase.h"
+#include "N3Base/N3UIArea.h"
+#include "N3Base/N3UIImage.h"
 #include "GameProcedure.h"
 
 #include "GameDef.h"

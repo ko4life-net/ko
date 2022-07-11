@@ -10,7 +10,7 @@
 #endif // _MSC_VER > 1000
 
 #include "GameDef.h"
-#include "../N3Base/N3UIBase.h"
+#include "N3Base/N3UIBase.h"
 
 class CN3UIButton;
 class CN3UIString;

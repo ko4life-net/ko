@@ -32,7 +32,7 @@ const WORD PACKET_HEADER = 0XAA55;
 const WORD PACKET_TAIL = 0X55AA;
 
 #ifdef _N3GAME
-#include "../N3Base/LogWriter.h"
+#include "N3Base/LogWriter.h"
 #endif
 
 #ifdef _DEBUG

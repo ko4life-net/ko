@@ -8,7 +8,7 @@
 #include "PlayerOther.h"
 #include "PlayerMySelf.h"
 
-#include "../N3Base/DFont.h"
+#include "N3Base/DFont.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

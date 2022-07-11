@@ -16,7 +16,7 @@
 #include "UIItemExchange.h"
 #include "UIWareHouseDlg.h"
 
-#include "../N3Base/N3UITooltip.h"
+#include "N3Base/N3UITooltip.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

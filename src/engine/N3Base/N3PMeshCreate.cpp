@@ -5,7 +5,7 @@
 #include "N3PMeshCreate.h"
 #include "N3PMesh.h"
 #include "N3PMeshInstance.h"
-#include "../N3Base/N3Mesh.h"
+#include "N3Base/N3Mesh.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

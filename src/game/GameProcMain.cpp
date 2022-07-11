@@ -66,13 +66,13 @@
 
 #include "LightMgr.h"
 
-#include "../N3Base/N3SkyMng.h"
-#include "../N3Base/N3ShapeExtra.h"
-#include "../N3Base/N3Camera.h"
-#include "../N3Base/N3SndObj.h"
-#include "../N3Base/N3SndObjStream.h"
-#include "../N3Base/N3SndMgr.h"
-#include "../N3Base/N3TableBase.h"
+#include "N3Base/N3SkyMng.h"
+#include "N3Base/N3ShapeExtra.h"
+#include "N3Base/N3Camera.h"
+#include "N3Base/N3SndObj.h"
+#include "N3Base/N3SndObjStream.h"
+#include "N3Base/N3SndMgr.h"
+#include "N3Base/N3TableBase.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

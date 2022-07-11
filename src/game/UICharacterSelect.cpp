@@ -7,8 +7,8 @@
 
 #include "GameProcCharacterSelect.h"
 #include "UICharacterSelect.h"
-#include "../N3Base/N3UIString.h"
-#include "../N3Base/N3UITooltip.h"
+#include "N3Base/N3UIString.h"
+#include "N3Base/N3UITooltip.h"
 #include "UIManager.h"
 
 #ifdef _DEBUG

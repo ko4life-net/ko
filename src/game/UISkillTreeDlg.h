@@ -12,9 +12,9 @@
 #include "GameDef.h"
 #include "N3UIWndBase.h"
 
-#include "..\N3Base\N3UIButton.h"
-#include "..\N3Base\N3UIImage.h"
-#include "..\N3Base\N3UIString.h"
+#include "N3Base/N3UIButton.h"
+#include "N3Base/N3UIImage.h"
+#include "N3Base/N3UIString.h"
 
 const int SKILL_DEF_BASIC = 0;
 const int SKILL_DEF_SPECIAL0 = 1;

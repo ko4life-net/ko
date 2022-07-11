@@ -6,18 +6,18 @@
 #include "N3FXBundleGame.h"
 #include "GameProcMain.h"
 #include "PlayerBase.h"
-#include "../N3Base/N3SndObj.h"
+#include "N3Base/N3SndObj.h"
 #include "N3Terrain.h"
-#include "../N3Base/N3FXPartMesh.h"
-#include "../N3Base/N3FXPartParticles.h"
-//#include "../N3Base/N3FXPartBillBoard.h"
+#include "N3Base/N3FXPartMesh.h"
+#include "N3Base/N3FXPartParticles.h"
+//#include "N3Base/N3FXPartBillBoard.h"
 #include "N3FXPartBillBoardGame.h"
 #include "N3FXPartBottomBoardGame.h"
-#include "../N3Base/N3ShapeExtra.h"
+#include "N3Base/N3ShapeExtra.h"
 
-#include "../N3Base/StdAfxBase.h"
+#include "N3Base/StdAfxBase.h"
 #include "GameEng.h"
-#include "../N3Base/N3Camera.h"
+#include "N3Base/N3Camera.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

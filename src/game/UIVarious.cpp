@@ -11,11 +11,11 @@
 #include "PacketDef.h"
 #include "APISocket.h"
 
-#include "../N3Base/N3UIString.h"
-#include "../N3Base/N3UIImage.h"
-#include "../N3Base/N3UIButton.h"
-#include "../N3Base/N3UIList.h"
-#include "../N3Base/N3SndObj.h"
+#include "N3Base/N3UIString.h"
+#include "N3Base/N3UIImage.h"
+#include "N3Base/N3UIButton.h"
+#include "N3Base/N3UIList.h"
+#include "N3Base/N3SndObj.h"
 
 #include "UIManager.h"
 #include "UIInventory.h"

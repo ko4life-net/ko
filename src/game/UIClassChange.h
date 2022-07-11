@@ -11,10 +11,10 @@
 
 #include "GameDef.h"
 
-#include "../N3BASE/N3UIBase.h"
-#include "../N3Base/N3UIButton.h"
-#include "../N3Base/N3UIString.h"
-#include "../N3Base/N3UIArea.h"
+#include "N3Base/N3UIBase.h"
+#include "N3Base/N3UIButton.h"
+#include "N3Base/N3UIString.h"
+#include "N3Base/N3UIArea.h"
 
 enum e_ClassChangeState {	UISTATE_NORMAL = 1, UISTATE_WARNING	};
 

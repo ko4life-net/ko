@@ -9,8 +9,8 @@
 #include "GameDef.h"
 #include "GameProcedure.h"
 
-#include "../N3Base/N3UIString.h"
-#include "../N3Base/N3UIScrollBar.h"
+#include "N3Base/N3UIString.h"
+#include "N3Base/N3UIScrollBar.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

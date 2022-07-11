@@ -5,8 +5,8 @@
 #include "stdafx.h"
 #include "GameProcMain.h"
 #include "PacketDef.h"
-#include "..\N3Base\N3UIString.h"
-#include "..\N3Base\N3UIScrollBar.h"
+#include "N3Base/N3UIString.h"
+#include "N3Base/N3UIScrollBar.h"
 #include "UIMessageWnd.h"
 #include "UIManager.h"
 

@@ -17,7 +17,7 @@
 #include "SubProcPerTrade.h"
 #include "UIPerTradeDlg.h"
 
-#include "../N3Base/N3UIEdit.h"
+#include "N3Base/N3UIEdit.h"
 
 
 

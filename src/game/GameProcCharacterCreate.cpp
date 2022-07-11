@@ -17,7 +17,7 @@
 #include "PacketDef.h"
 #include "GameCursor.h"
 
-#include "../N3Base/N3UIString.h"
+#include "N3Base/N3UIString.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

@@ -12,7 +12,7 @@
 #include "GameDef.h"
 #include "PacketDef.h"
 #include "APISocket.h"
-#include "../N3Base/N3UIBase.h"
+#include "N3Base/N3UIBase.h"
 #include <list>
 
 typedef std::list<__InfoPartyBBS>::iterator it_PartyBBS;

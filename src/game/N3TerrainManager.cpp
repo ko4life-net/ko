@@ -4,8 +4,8 @@
 
 #include "stdafx.h"
 
-#include "../N3Base/N3SkyMng.h"
-#include "../N3Base/N3ShapeMgr.h"
+#include "N3Base/N3SkyMng.h"
+#include "N3Base/N3ShapeMgr.h"
 
 #include "N3TerrainManager.h"
 

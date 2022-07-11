@@ -16,10 +16,10 @@
 
 #include "GameEng.h"
 
-#include "../N3Base/DFont.h"
-#include "../N3Base/N3Camera.h"
-#include "../N3Base/N3ShapeMgr.h"
-#include "../N3Base/N3SndObj.h"
+#include "N3Base/DFont.h"
+#include "N3Base/N3Camera.h"
+#include "N3Base/N3ShapeMgr.h"
+#include "N3Base/N3SndObj.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

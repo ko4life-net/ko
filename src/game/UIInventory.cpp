@@ -25,9 +25,9 @@
 #include "UIHotKeyDlg.h"
 #include "UISkillTreeDlg.h"
 
-#include "../N3Base/N3UIString.h"
-#include "../N3Base/N3UIEdit.h"
-#include "../N3Base/N3SndObj.h"
+#include "N3Base/N3UIString.h"
+#include "N3Base/N3UIEdit.h"
+#include "N3Base/N3SndObj.h"
 #include "Resource.h"
 
 #ifdef _DEBUG

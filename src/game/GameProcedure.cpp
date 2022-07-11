@@ -35,14 +35,14 @@
 #include "UIMessageWnd.h"
 #include "UIEndingDisplay.h"
 
-#include "../N3Base/N3UIEdit.h"
-#include "../N3Base/N3SndObjStream.h"
-#include "../N3Base/N3TableBase.h"
-#include "..\N3Base\N3FXBundle.h"
+#include "N3Base/N3UIEdit.h"
+#include "N3Base/N3SndObjStream.h"
+#include "N3Base/N3TableBase.h"
+#include "N3Base/N3FXBundle.h"
 
-#include "../N3Base/BitmapFile.h"
-#include "../N3Base/Jpeg.h"
-#include "../JPEG/JpegFile.h"
+#include "N3Base/BitmapFile.h"
+#include "N3Base/Jpeg.h"
+#include "JPEG/JpegFile.h"
 
 #include "MagicSkillMng.h"
 #include "KnightChrMgr.h"

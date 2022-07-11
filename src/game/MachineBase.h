@@ -20,7 +20,7 @@ const DWORD MACHINE_TYPE_CATAPULT = 0x21;
 class CN3Texture;
 class CN3PMeshInstance;
 
-#include "..\N3BASE\N3Shape.h"
+#include "N3Base/N3Shape.h"
 
 class CMachineBase : public CN3Shape
 {

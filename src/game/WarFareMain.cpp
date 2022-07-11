@@ -1,7 +1,7 @@
 // N3Client.cpp : Defines the entry point for the application.
 //
 #include "StdAfx.h"
-#include "Warfaremain.h"
+#include "WarFareMain.h"
 
 #include "PacketDef.h"
 #include "APISocket.h"
@@ -15,8 +15,8 @@
 
 #include "N3WorldManager.h"
 
-#include "../N3Base/N3SndMgr.h"
-#include "../N3Base/N3UIEdit.h"
+#include "N3Base/N3SndMgr.h"
+#include "N3Base/N3UIEdit.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

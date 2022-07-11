@@ -8,9 +8,9 @@
 #include "GameProcedure.h"
 #include "LocalInput.h"
 
-#include "../N3Base/N3UIProgress.h"
-#include "../N3Base/N3UIString.h"
-#include "../N3Base/N3UIImage.h"
+#include "N3Base/N3UIProgress.h"
+#include "N3Base/N3UIString.h"
+#include "N3Base/N3UIImage.h"
 #include "GameProcMain.h"
 #include "APISocket.h"
 #include "PacketDef.h"
@@ -18,7 +18,7 @@
 #include "MagicSkillMng.h"
 #include "UIManager.h"
 
-#include "../N3Base/N3Texture.h"
+#include "N3Base/N3Texture.h"
 
 #include "N3UIDBCLButton.h"
 

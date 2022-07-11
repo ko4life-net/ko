@@ -8,9 +8,9 @@
 #include "N3WorldManager.h"
 #include "Resource.h"
 
-#include "../N3Base/N3ShapeExtra.h"
-#include "../N3Base/DFont.h"
-#include "../N3Base/N3SndObj.h"
+#include "N3Base/N3ShapeExtra.h"
+#include "N3Base/DFont.h"
+#include "N3Base/N3SndObj.h"
 
 #include "N3FXMgr.h"
 

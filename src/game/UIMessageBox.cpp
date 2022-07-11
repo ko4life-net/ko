@@ -18,10 +18,10 @@
 #include "SubProcPerTrade.h"
 #include "ShellApi.h"
 
-#include "../N3Base/N3UIButton.h"
-#include "../N3Base/N3UIString.h"
-#include "../N3Base/N3UIEdit.h"
-#include "../N3Base/N3Shape.h"
+#include "N3Base/N3UIButton.h"
+#include "N3Base/N3UIString.h"
+#include "N3Base/N3UIEdit.h"
+#include "N3Base/N3Shape.h"
 
 
 #ifdef _DEBUG

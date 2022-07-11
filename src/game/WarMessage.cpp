@@ -4,7 +4,7 @@
 
 #include "stdafx.h"
 #include "Resource.h"
-#include "../N3Base/DFont.h"
+#include "N3Base/DFont.h"
 #include "WarMessage.h"
 
 //////////////////////////////////////////////////////////////////////

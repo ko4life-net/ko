@@ -12,7 +12,7 @@
 #include "GameDef.h"
 #include "PacketDef.h"
 #include "APISocket.h"
-#include "../N3Base/N3UIBase.h"
+#include "N3Base/N3UIBase.h"
 
 class CUITradeExplanation : public CN3UIBase  
 {

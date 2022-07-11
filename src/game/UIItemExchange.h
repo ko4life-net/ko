@@ -13,8 +13,8 @@
 
 #include "N3UIWndBase.h"
 
-#include "../N3BASE/N3UIBase.h"
-#include "../N3Base/N3UIImage.h"
+#include "N3Base/N3UIBase.h"
+#include "N3Base/N3UIImage.h"
 
 //////////////////////////////////////////////////////////////////////
 

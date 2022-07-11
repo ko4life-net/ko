@@ -6,7 +6,7 @@
 #include "StdAfx.h"
 #include "N3Terrain.h"
 #include "N3TerrainPatch.h"
-#include "../N3Base/N3Texture.h"
+#include "N3Base/N3Texture.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

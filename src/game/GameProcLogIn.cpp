@@ -13,12 +13,12 @@
 #include "APISocket.h"
 #include "PacketDef.h"
 
-#include "../N3Base/N3Camera.h"
-#include "../N3Base/N3Light.h"
-#include "../N3Base/N3Chr.h"
-#include "../N3Base/N3SndObj.h"
-#include "../N3Base/N3SndObjStream.h"
-#include "../N3Base/N3SndMgr.h"
+#include "N3Base/N3Camera.h"
+#include "N3Base/N3Light.h"
+#include "N3Base/N3Chr.h"
+#include "N3Base/N3SndObj.h"
+#include "N3Base/N3SndObjStream.h"
+#include "N3Base/N3SndMgr.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

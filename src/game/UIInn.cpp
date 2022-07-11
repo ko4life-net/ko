@@ -15,7 +15,7 @@
 #include "UITradeBBSSelector.h"
 #include "UIManager.h"
 
-#include "../N3Base/StdAfxBase.h"
+#include "N3Base/StdAfxBase.h"
 
 
 #ifdef _DEBUG

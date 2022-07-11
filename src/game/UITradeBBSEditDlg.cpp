@@ -4,8 +4,8 @@
 
 #include "stdafx.h"
 #include "UITradeBBSEditDlg.h"
-#include "../N3Base/N3UIEdit.h"
-#include "../N3Base/N3UIButton.h"
+#include "N3Base/N3UIEdit.h"
+#include "N3Base/N3UIButton.h"
 #include "LocalInput.h"
 
 #ifdef _DEBUG

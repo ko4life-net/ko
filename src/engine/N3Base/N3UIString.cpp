@@ -5,11 +5,9 @@
 #include "StdAfxBase.h"
 #include "N3UIString.h"
 
-#ifndef _REPENT
-#ifdef _N3GAME
-#include "..\warfare\n3uiwndbase.h"
-#include "..\warfare\uiinventory.h"
-#endif 
+#if !defined(_REPENT) && defined(_N3GAME)
+#include "N3UIWndBase.h"
+#include "UIInventory.h"
 #endif
 
 #ifdef _DEBUG
@@ -510,10 +508,8 @@ DWORD CN3UIString::MouseProc(DWORD dwFlags, const POINT &ptCur, const POINT &ptO
 	DWORD dwRet = UI_MOUSEPROC_NONE;
 	if (!m_bVisible) return dwRet;
 
-#ifndef _REPENT
-#ifdef _N3GAME
+#if !defined(_REPENT) && defined(_N3GAME)
 	if ( CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer ) return dwRet;
-#endif
 #endif
 
 	// 특정 이벤트에 대해 메시지 전송..

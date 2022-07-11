@@ -5,8 +5,8 @@
 #include "stdafx.h"
 #include "UILoadingDlg.h"
 #include "GameDef.h"
-#include "../N3Base/N3UIProgress.h"
-#include "../N3Base/N3UIString.h"
+#include "N3Base/N3UIProgress.h"
+#include "N3Base/N3UIString.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

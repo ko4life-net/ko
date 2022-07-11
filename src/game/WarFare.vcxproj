@@ -68,7 +68,7 @@
       <ObjectFileName>.\Debug\</ObjectFileName>
       <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\vendor\DXSDK8\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\engine;$(ProjectDir)..\vendor\DXSDK8\Include;$(ProjectDir)..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -91,7 +91,7 @@
       <SubSystem>Windows</SubSystem>
       <IgnoreSpecificDefaultLibraries>msvcrt;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <OutputFile>KnightOnLine_Debug.exe</OutputFile>
-      <AdditionalDependencies>implode.lib;winmm.lib;imm32.lib;ddraw.lib;d3d8.lib;d3dx8.lib;dsound.lib;dxguid.lib;dxerr8.lib;wsock32.lib;DInput8.lib;odbc32.lib;odbccp32.lib;NAFXCWD.LIB;LIBCMTD.LIB;..\JPEG\jpegLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>implode.lib;winmm.lib;imm32.lib;ddraw.lib;d3d8.lib;d3dx8.lib;dsound.lib;dxguid.lib;dxerr8.lib;wsock32.lib;DInput8.lib;odbc32.lib;odbccp32.lib;NAFXCWD.LIB;LIBCMTD.LIB;..\engine\JPEG\jpegLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -109,7 +109,7 @@
       <PrecompiledHeaderOutputFile>.\Release\WarFare.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\Release\</ObjectFileName>
       <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\vendor\DXSDK8\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\engine;$(ProjectDir)..\vendor\DXSDK8\Include;$(ProjectDir)..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -131,7 +131,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OutputFile>KnightOnLine.exe</OutputFile>
-      <AdditionalDependencies>implode.lib;winmm.lib;imm32.lib;ddraw.lib;d3d8.lib;d3dx8.lib;dsound.lib;dxguid.lib;dxerr8.lib;wsock32.lib;DInput8.lib;..\JPEG\jpegLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>implode.lib;winmm.lib;imm32.lib;ddraw.lib;d3d8.lib;d3dx8.lib;dsound.lib;dxguid.lib;dxerr8.lib;wsock32.lib;DInput8.lib;..\engine\JPEG\jpegLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Version>0.1</Version>
     </Link>
   </ItemDefinitionGroup>
@@ -145,82 +145,82 @@
     <CustomBuild Include="repair1.cur" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\JPEG\JpegFile.h" />
-    <ClInclude Include="..\N3Base\BitMapFile.h" />
-    <ClInclude Include="..\N3BASE\DFont.h" />
-    <ClInclude Include="..\N3Base\JPEG.H" />
-    <ClInclude Include="..\N3BASE\LogWriter.h" />
-    <ClInclude Include="..\N3Base\My_3DStruct.h" />
-    <ClInclude Include="..\N3Base\N3AlphaPrimitiveManager.h" />
-    <ClInclude Include="..\N3BASE\N3AnimatedTexures.h" />
-    <ClInclude Include="..\N3Base\N3AnimControl.h" />
-    <ClInclude Include="..\N3Base\N3AnimKey.h" />
-    <ClInclude Include="..\N3Base\N3Base.h" />
-    <ClInclude Include="..\N3Base\N3BaseFileAccess.h" />
-    <ClInclude Include="..\N3Base\N3Board.h" />
-    <ClInclude Include="..\N3Base\N3Camera.h" />
-    <ClInclude Include="..\N3Base\N3Chr.h" />
-    <ClInclude Include="..\N3BASE\N3Cloak.h" />
-    <ClInclude Include="..\N3BASE\N3Cloud.h" />
-    <ClInclude Include="..\N3BASE\N3ColorChange.h" />
-    <ClInclude Include="..\N3Base\N3Eng.h" />
-    <ClInclude Include="..\N3Base\N3FXBundle.h" />
-    <ClInclude Include="..\N3Base\N3FXDef.h" />
-    <ClInclude Include="..\N3Base\N3FXPartBase.h" />
-    <ClInclude Include="..\N3Base\N3FXPartBillBoard.h" />
-    <ClInclude Include="..\N3Base\N3FXPartBottomBoard.h" />
-    <ClInclude Include="..\N3Base\N3FXParticle.h" />
-    <ClInclude Include="..\N3Base\N3FXPartMesh.h" />
-    <ClInclude Include="..\N3Base\N3FXPartParticles.h" />
-    <ClInclude Include="..\N3BASE\N3FXPlug.h" />
-    <ClInclude Include="..\N3Base\N3FXPMesh.h" />
-    <ClInclude Include="..\N3BASE\N3FXPMeshInstance.h" />
-    <ClInclude Include="..\N3Base\N3FXShape.h" />
-    <ClInclude Include="..\N3Base\N3GERain.h" />
-    <ClInclude Include="..\N3Base\N3GESnow.h" />
-    <ClInclude Include="..\N3Base\N3GlobalEffect.h" />
-    <ClInclude Include="..\N3Base\N3IMesh.h" />
-    <ClInclude Include="..\N3Base\N3Joint.h" />
-    <ClInclude Include="..\N3Base\N3Light.h" />
-    <ClInclude Include="..\N3Base\N3Mesh.h" />
-    <ClInclude Include="..\N3Base\N3Mng.h" />
-    <ClInclude Include="..\N3BASE\N3Moon.h" />
-    <ClInclude Include="..\N3Base\N3PMesh.h" />
-    <ClInclude Include="..\N3Base\N3PMeshInstance.h" />
-    <ClInclude Include="..\N3BASE\N3Pond.h" />
-    <ClInclude Include="..\N3BASE\N3River.h" />
-    <ClInclude Include="..\N3Base\N3Shape.h" />
-    <ClInclude Include="..\N3Base\N3ShapeExtra.h" />
-    <ClInclude Include="..\N3Base\N3ShapeMgr.h" />
-    <ClInclude Include="..\N3Base\N3Skin.h" />
-    <ClInclude Include="..\N3BASE\N3Sky.h" />
-    <ClInclude Include="..\N3BASE\N3SkyMng.h" />
-    <ClInclude Include="..\N3BASE\N3SndDef.h" />
-    <ClInclude Include="..\N3BASE\N3SndMgr.h" />
-    <ClInclude Include="..\N3BASE\N3SndObj.h" />
-    <ClInclude Include="..\N3BASE\N3SndObjStream.h" />
-    <ClInclude Include="..\N3BASE\N3Star.h" />
-    <ClInclude Include="..\N3BASE\N3Sun.h" />
-    <ClInclude Include="..\N3BASE\N3TableBase.h" />
-    <ClInclude Include="..\N3Base\N3Texture.h" />
-    <ClInclude Include="..\N3Base\N3Transform.h" />
-    <ClInclude Include="..\N3Base\N3TransformCollision.h" />
-    <ClInclude Include="..\N3BASE\N3UIArea.h" />
-    <ClInclude Include="..\N3Base\N3UIBase.h" />
-    <ClInclude Include="..\N3Base\N3UIButton.h" />
-    <ClInclude Include="..\N3Base\N3UIDef.h" />
-    <ClInclude Include="..\N3Base\N3UIEdit.h" />
-    <ClInclude Include="..\N3Base\N3UIImage.h" />
-    <ClInclude Include="..\N3BASE\N3UIList.h" />
-    <ClInclude Include="..\N3Base\N3UIProgress.h" />
-    <ClInclude Include="..\N3Base\N3UIScrollBar.h" />
-    <ClInclude Include="..\N3Base\N3UIStatic.h" />
-    <ClInclude Include="..\N3Base\N3UIString.h" />
-    <ClInclude Include="..\N3Base\N3UITooltip.h" />
-    <ClInclude Include="..\N3Base\N3UITrackBar.h" />
-    <ClInclude Include="..\N3Base\N3VMesh.h" />
-    <ClInclude Include="..\N3Base\StdAfxBase.h" />
-    <ClInclude Include="..\N3BASE\WaveFile.h" />
+    <ClInclude Include="..\engine\JPEG\JpegFile.h" />
+    <ClInclude Include="..\engine\N3Base\BitMapFile.h" />
+    <ClInclude Include="..\engine\N3Base\DFont.h" />
+    <ClInclude Include="..\engine\N3Base\JPEG.H" />
+    <ClInclude Include="..\engine\N3Base\LogWriter.h" />
+    <ClInclude Include="..\engine\N3Base\My_3DStruct.h" />
+    <ClInclude Include="..\engine\N3Base\N3AlphaPrimitiveManager.h" />
+    <ClInclude Include="..\engine\N3Base\N3AnimatedTexures.h" />
+    <ClInclude Include="..\engine\N3Base\N3AnimControl.h" />
+    <ClInclude Include="..\engine\N3Base\N3AnimKey.h" />
+    <ClInclude Include="..\engine\N3Base\N3Base.h" />
+    <ClInclude Include="..\engine\N3Base\N3BaseFileAccess.h" />
+    <ClInclude Include="..\engine\N3Base\N3Board.h" />
+    <ClInclude Include="..\engine\N3Base\N3Camera.h" />
+    <ClInclude Include="..\engine\N3Base\N3Chr.h" />
+    <ClInclude Include="..\engine\N3Base\N3Cloak.h" />
+    <ClInclude Include="..\engine\N3Base\N3Cloud.h" />
+    <ClInclude Include="..\engine\N3Base\N3ColorChange.h" />
+    <ClInclude Include="..\engine\N3Base\N3Eng.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXBundle.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXDef.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXPartBase.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXPartBillBoard.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXPartBottomBoard.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXParticle.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXPartMesh.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXPartParticles.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXPlug.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXPMesh.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXPMeshInstance.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXShape.h" />
+    <ClInclude Include="..\engine\N3Base\N3GERain.h" />
+    <ClInclude Include="..\engine\N3Base\N3GESnow.h" />
+    <ClInclude Include="..\engine\N3Base\N3GlobalEffect.h" />
+    <ClInclude Include="..\engine\N3Base\N3IMesh.h" />
+    <ClInclude Include="..\engine\N3Base\N3Joint.h" />
+    <ClInclude Include="..\engine\N3Base\N3Light.h" />
+    <ClInclude Include="..\engine\N3Base\N3Mesh.h" />
+    <ClInclude Include="..\engine\N3Base\N3Mng.h" />
+    <ClInclude Include="..\engine\N3Base\N3Moon.h" />
+    <ClInclude Include="..\engine\N3Base\N3PMesh.h" />
+    <ClInclude Include="..\engine\N3Base\N3PMeshInstance.h" />
+    <ClInclude Include="..\engine\N3Base\N3Pond.h" />
+    <ClInclude Include="..\engine\N3Base\N3River.h" />
+    <ClInclude Include="..\engine\N3Base\N3Shape.h" />
+    <ClInclude Include="..\engine\N3Base\N3ShapeExtra.h" />
+    <ClInclude Include="..\engine\N3Base\N3ShapeMgr.h" />
+    <ClInclude Include="..\engine\N3Base\N3Skin.h" />
+    <ClInclude Include="..\engine\N3Base\N3Sky.h" />
+    <ClInclude Include="..\engine\N3Base\N3SkyMng.h" />
+    <ClInclude Include="..\engine\N3Base\N3SndDef.h" />
+    <ClInclude Include="..\engine\N3Base\N3SndMgr.h" />
+    <ClInclude Include="..\engine\N3Base\N3SndObj.h" />
+    <ClInclude Include="..\engine\N3Base\N3SndObjStream.h" />
+    <ClInclude Include="..\engine\N3Base\N3Star.h" />
+    <ClInclude Include="..\engine\N3Base\N3Sun.h" />
+    <ClInclude Include="..\engine\N3Base\N3TableBase.h" />
+    <ClInclude Include="..\engine\N3Base\N3Texture.h" />
+    <ClInclude Include="..\engine\N3Base\N3Transform.h" />
+    <ClInclude Include="..\engine\N3Base\N3TransformCollision.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIArea.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIBase.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIButton.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIDef.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIEdit.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIImage.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIList.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIProgress.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIScrollBar.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIStatic.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIString.h" />
+    <ClInclude Include="..\engine\N3Base\N3UITooltip.h" />
+    <ClInclude Include="..\engine\N3Base\N3UITrackBar.h" />
+    <ClInclude Include="..\engine\N3Base\N3VMesh.h" />
+    <ClInclude Include="..\engine\N3Base\StdAfxBase.h" />
+    <ClInclude Include="..\engine\N3Base\WaveFile.h" />
     <ClInclude Include="APISocket.h" />
     <ClInclude Include="Bird.h" />
     <ClInclude Include="BirdMng.h" />
@@ -335,75 +335,75 @@
     <Image Include="Warfare_tw.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\JPEG\JpegFile.cpp" />
-    <ClCompile Include="..\N3Base\BitMapFile.cpp" />
-    <ClCompile Include="..\N3BASE\DFont.cpp" />
-    <ClCompile Include="..\N3Base\JPEG.CPP" />
-    <ClCompile Include="..\N3BASE\LogWriter.cpp" />
-    <ClCompile Include="..\N3Base\N3AlphaPrimitiveManager.cpp" />
-    <ClCompile Include="..\N3BASE\N3AnimatedTexures.cpp" />
-    <ClCompile Include="..\N3Base\N3AnimControl.cpp" />
-    <ClCompile Include="..\N3Base\N3AnimKey.cpp" />
-    <ClCompile Include="..\N3Base\N3Base.cpp" />
-    <ClCompile Include="..\N3Base\N3BaseFileAccess.cpp" />
-    <ClCompile Include="..\N3Base\N3Board.cpp" />
-    <ClCompile Include="..\N3Base\N3Camera.cpp" />
-    <ClCompile Include="..\N3Base\N3Chr.cpp" />
-    <ClCompile Include="..\N3BASE\N3Cloak.cpp" />
-    <ClCompile Include="..\N3BASE\N3Cloud.cpp" />
-    <ClCompile Include="..\N3BASE\N3ColorChange.cpp" />
-    <ClCompile Include="..\N3Base\N3Eng.cpp" />
-    <ClCompile Include="..\N3Base\N3FXBundle.cpp" />
-    <ClCompile Include="..\N3Base\N3FXPartBase.cpp" />
-    <ClCompile Include="..\N3Base\N3FXPartBillBoard.cpp" />
-    <ClCompile Include="..\N3Base\N3FXPartBottomBoard.cpp" />
-    <ClCompile Include="..\N3Base\N3FXParticle.cpp" />
-    <ClCompile Include="..\N3Base\N3FXPartMesh.cpp" />
-    <ClCompile Include="..\N3Base\N3FXPartParticles.cpp" />
-    <ClCompile Include="..\N3BASE\N3FXPlug.cpp" />
-    <ClCompile Include="..\N3Base\N3FXPMesh.cpp" />
-    <ClCompile Include="..\N3BASE\N3FXPMeshInstance.cpp" />
-    <ClCompile Include="..\N3Base\N3FXShape.cpp" />
-    <ClCompile Include="..\N3Base\N3GERain.cpp" />
-    <ClCompile Include="..\N3Base\N3GESnow.cpp" />
-    <ClCompile Include="..\N3Base\N3GlobalEffect.cpp" />
-    <ClCompile Include="..\N3Base\N3IMesh.cpp" />
-    <ClCompile Include="..\N3Base\N3Joint.cpp" />
-    <ClCompile Include="..\N3Base\N3Light.cpp" />
-    <ClCompile Include="..\N3Base\N3Mesh.cpp" />
-    <ClCompile Include="..\N3BASE\N3Moon.cpp" />
-    <ClCompile Include="..\N3Base\N3PMesh.cpp" />
-    <ClCompile Include="..\N3Base\N3PMeshInstance.cpp" />
-    <ClCompile Include="..\N3BASE\N3Pond.cpp" />
-    <ClCompile Include="..\N3BASE\N3River.cpp" />
-    <ClCompile Include="..\N3Base\N3Shape.cpp" />
-    <ClCompile Include="..\N3Base\N3ShapeExtra.cpp" />
-    <ClCompile Include="..\N3Base\N3ShapeMgr.cpp" />
-    <ClCompile Include="..\N3Base\N3Skin.cpp" />
-    <ClCompile Include="..\N3BASE\N3Sky.cpp" />
-    <ClCompile Include="..\N3BASE\N3SkyMng.cpp" />
-    <ClCompile Include="..\N3BASE\N3SndMgr.cpp" />
-    <ClCompile Include="..\N3BASE\N3SndObj.cpp" />
-    <ClCompile Include="..\N3BASE\N3SndObjStream.cpp" />
-    <ClCompile Include="..\N3BASE\N3Star.cpp" />
-    <ClCompile Include="..\N3BASE\N3Sun.cpp" />
-    <ClCompile Include="..\N3Base\N3Texture.cpp" />
-    <ClCompile Include="..\N3Base\N3Transform.cpp" />
-    <ClCompile Include="..\N3Base\N3TransformCollision.cpp" />
-    <ClCompile Include="..\N3BASE\N3UIArea.cpp" />
-    <ClCompile Include="..\N3Base\N3UIBase.cpp" />
-    <ClCompile Include="..\N3Base\N3UIButton.cpp" />
-    <ClCompile Include="..\N3Base\N3UIEdit.cpp" />
-    <ClCompile Include="..\N3Base\N3UIImage.cpp" />
-    <ClCompile Include="..\N3BASE\N3UIList.cpp" />
-    <ClCompile Include="..\N3Base\N3UIProgress.cpp" />
-    <ClCompile Include="..\N3Base\N3UIScrollBar.cpp" />
-    <ClCompile Include="..\N3Base\N3UIStatic.cpp" />
-    <ClCompile Include="..\N3Base\N3UIString.cpp" />
-    <ClCompile Include="..\N3Base\N3UITooltip.cpp" />
-    <ClCompile Include="..\N3Base\N3UITrackBar.cpp" />
-    <ClCompile Include="..\N3Base\N3VMesh.cpp" />
-    <ClCompile Include="..\N3BASE\WaveFile.cpp" />
+    <ClCompile Include="..\engine\JPEG\JpegFile.cpp" />
+    <ClCompile Include="..\engine\N3Base\BitMapFile.cpp" />
+    <ClCompile Include="..\engine\N3Base\DFont.cpp" />
+    <ClCompile Include="..\engine\N3Base\JPEG.CPP" />
+    <ClCompile Include="..\engine\N3Base\LogWriter.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3AlphaPrimitiveManager.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3AnimatedTexures.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3AnimControl.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3AnimKey.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Base.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3BaseFileAccess.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Board.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Camera.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Chr.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Cloak.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Cloud.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3ColorChange.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Eng.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXBundle.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXPartBase.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXPartBillBoard.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXPartBottomBoard.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXParticle.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXPartMesh.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXPartParticles.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXPlug.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXPMesh.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXPMeshInstance.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXShape.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3GERain.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3GESnow.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3GlobalEffect.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3IMesh.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Joint.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Light.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Mesh.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Moon.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3PMesh.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3PMeshInstance.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Pond.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3River.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Shape.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3ShapeExtra.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3ShapeMgr.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Skin.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Sky.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3SkyMng.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3SndMgr.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3SndObj.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3SndObjStream.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Star.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Sun.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Texture.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Transform.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3TransformCollision.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIArea.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIBase.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIButton.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIEdit.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIImage.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIList.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIProgress.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIScrollBar.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIStatic.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIString.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UITooltip.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UITrackBar.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3VMesh.cpp" />
+    <ClCompile Include="..\engine\N3Base\WaveFile.cpp" />
     <ClCompile Include="APISocket.cpp" />
     <ClCompile Include="Bird.cpp" />
     <ClCompile Include="BirdMng.cpp" />

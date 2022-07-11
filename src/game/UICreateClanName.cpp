@@ -11,7 +11,7 @@
 #include "PacketDef.h"
 #include "APISocket.h"
 
-#include "../N3Base/StdAfxBase.h"
+#include "N3Base/StdAfxBase.h"
 
 
 #ifdef _DEBUG

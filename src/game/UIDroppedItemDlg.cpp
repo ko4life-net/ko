@@ -25,7 +25,7 @@
 
 #include "Resource.h"
 
-#include "../N3BASE/N3UIArea.h"
+#include "N3Base/N3UIArea.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

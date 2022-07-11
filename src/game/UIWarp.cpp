@@ -8,9 +8,9 @@
 #include "UIWarp.h"
 #include "GameProcMain.h"
 
-#include "../N3Base/N3UIButton.h"
-#include "../N3Base/N3UIString.h"
-#include "../N3Base/N3UIList.h"
+#include "N3Base/N3UIButton.h"
+#include "N3Base/N3UIString.h"
+#include "N3Base/N3UIList.h"
 
 #include "UIManager.h"
 

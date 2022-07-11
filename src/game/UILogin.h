@@ -10,7 +10,7 @@
 #endif // _MSC_VER > 1000
 
 #include <string>
-#include "../N3BASE/N3UIBase.h"
+#include "N3Base/N3UIBase.h"
 
 struct __GameServerInfo : public binary_function<__GameServerInfo, __GameServerInfo, bool>
 {

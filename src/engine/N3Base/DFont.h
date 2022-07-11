@@ -17,7 +17,13 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "..\N3Base\N3Base.h"
+// TODO: Note that there is some weird mixture of files between engine and game.
+// This file is specifically being used by the game's UIs that these UIs not necessarly
+// belongs in engine and could be abstracted better, since they all together not being built
+// when building the engine as a library.
+// I added TODO instead of doing it now to avoid complications during refactoring of
+// the directory structure.
+#include "N3Base/N3Base.h"
 
 // Font creation flags
 #define D3DFONT_BOLD        0x0001

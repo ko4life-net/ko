@@ -13,7 +13,7 @@
 ////////////////////////////////////////////////////////////
 #include "stdafx.h"
 #include "JpegFile.h"
-#include "..\\N3BASE\\My_3DStruct.h"
+#include "N3Base/My_3DStruct.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

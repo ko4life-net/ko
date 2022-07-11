@@ -3,8 +3,8 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-#include "..\N3BASE\N3UITooltip.h"
-#include "../N3Base/N3UIString.h"
+#include "N3Base/N3UITooltip.h"
+#include "N3Base/N3UIString.h"
 #include "resource.h"
 #include "PacketDef.h"
 #include "APISocket.h"
