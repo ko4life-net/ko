@@ -16,7 +16,7 @@
 //#define MAX_PONDMESH_INDEX		199*18
 //#define INDEXBUFFER_PERLINE		18
 
-#include "../N3Base/N3BaseFileAccess.h"
+#include "N3Base/N3BaseFileAccess.h"
 #include <list>
 
 class CLyTerrain;

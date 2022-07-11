@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "n3me.h"
 #include "ToolDlg.h"
-#include "../N3Base/N3Transform.h"
+#include "N3Base/N3Transform.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

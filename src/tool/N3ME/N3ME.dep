@@ -1,782 +1,782 @@
 # Microsoft Developer Studio Generated Dependency File, included by N3ME.mak
 
-..\N3Base\BitMapFile.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\StdAfxBase.h"\
+..\..\engine\N3Base\BitMapFile.cpp : \
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
 	
 
-..\N3Base\LogWriter.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\StdAfxBase.h"\
+..\..\engine\N3Base\LogWriter.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
 	
 
-..\N3Base\N3AlphaPrimitiveManager.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3AnimControl.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimControl.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3AnimControl.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimControl.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3AnimKey.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3AnimKey.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3Base.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimControl.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Chr.h"\
-	"..\N3Base\N3Cloak.h"\
-	"..\N3Base\N3FXPMesh.h"\
-	"..\N3Base\N3FXPMeshInstance.h"\
-	"..\N3Base\N3FXShape.h"\
-	"..\N3Base\N3IMesh.h"\
-	"..\N3Base\N3Joint.h"\
-	"..\N3Base\N3Mesh.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3Skin.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3Base.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimControl.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Chr.h"\
+	"..\..\engine\N3Base\N3Cloak.h"\
+	"..\..\engine\N3Base\N3FXPMesh.h"\
+	"..\..\engine\N3Base\N3FXPMeshInstance.h"\
+	"..\..\engine\N3Base\N3FXShape.h"\
+	"..\..\engine\N3Base\N3IMesh.h"\
+	"..\..\engine\N3Base\N3Joint.h"\
+	"..\..\engine\N3Base\N3Mesh.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3Skin.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3BaseFileAccess.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3BaseFileAccess.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3Camera.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Camera.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3Camera.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Camera.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3Chr.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimControl.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Chr.h"\
-	"..\N3Base\N3Cloak.h"\
-	"..\N3Base\N3ColorChange.h"\
-	"..\N3Base\N3FXBundle.h"\
-	"..\N3Base\N3FXDef.h"\
-	"..\N3Base\N3FXPartBase.h"\
-	"..\N3Base\N3FXPartBillBoard.h"\
-	"..\N3Base\N3FXPlug.h"\
-	"..\N3Base\N3IMesh.h"\
-	"..\N3Base\N3Joint.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3Skin.h"\
-	"..\N3Base\N3SkyMng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3SndObj.h"\
-	"..\N3Base\N3Sun.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3Chr.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimControl.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Chr.h"\
+	"..\..\engine\N3Base\N3Cloak.h"\
+	"..\..\engine\N3Base\N3ColorChange.h"\
+	"..\..\engine\N3Base\N3FXBundle.h"\
+	"..\..\engine\N3Base\N3FXDef.h"\
+	"..\..\engine\N3Base\N3FXPartBase.h"\
+	"..\..\engine\N3Base\N3FXPartBillBoard.h"\
+	"..\..\engine\N3Base\N3FXPlug.h"\
+	"..\..\engine\N3Base\N3IMesh.h"\
+	"..\..\engine\N3Base\N3Joint.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3Skin.h"\
+	"..\..\engine\N3Base\N3SkyMng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3SndObj.h"\
+	"..\..\engine\N3Base\N3Sun.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3Eng.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Eng.h"\
-	"..\N3Base\N3Light.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3Eng.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Eng.h"\
+	"..\..\engine\N3Base\N3Light.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3BASE\N3EngTool.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Eng.h"\
-	"..\N3BASE\N3EngTool.h"\
-	"..\N3Base\N3Light.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3EngTool.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Eng.h"\
+	"..\..\engine\N3Base\N3EngTool.h"\
+	"..\..\engine\N3Base\N3Light.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3FXBundle.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3FXBundle.h"\
-	"..\N3Base\N3FXDef.h"\
-	"..\N3Base\N3FXPartBase.h"\
-	"..\N3Base\N3FXPartBillBoard.h"\
-	"..\N3Base\N3FXPartBottomBoard.h"\
-	"..\N3Base\N3FXPartMesh.h"\
-	"..\N3Base\N3FXPartParticles.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3SndObj.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3FXBundle.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3FXBundle.h"\
+	"..\..\engine\N3Base\N3FXDef.h"\
+	"..\..\engine\N3Base\N3FXPartBase.h"\
+	"..\..\engine\N3Base\N3FXPartBillBoard.h"\
+	"..\..\engine\N3Base\N3FXPartBottomBoard.h"\
+	"..\..\engine\N3Base\N3FXPartMesh.h"\
+	"..\..\engine\N3Base\N3FXPartParticles.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3SndObj.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3FXPartBase.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3FXBundle.h"\
-	"..\N3Base\N3FXDef.h"\
-	"..\N3Base\N3FXPartBase.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3FXPartBase.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3FXBundle.h"\
+	"..\..\engine\N3Base\N3FXDef.h"\
+	"..\..\engine\N3Base\N3FXPartBase.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3FXPartBillBoard.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3FXBundle.h"\
-	"..\N3Base\N3FXDef.h"\
-	"..\N3Base\N3FXPartBase.h"\
-	"..\N3Base\N3FXPartBillBoard.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3FXPartBillBoard.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3FXBundle.h"\
+	"..\..\engine\N3Base\N3FXDef.h"\
+	"..\..\engine\N3Base\N3FXPartBase.h"\
+	"..\..\engine\N3Base\N3FXPartBillBoard.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3FXPartBottomBoard.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3FXBundle.h"\
-	"..\N3Base\N3FXDef.h"\
-	"..\N3Base\N3FXPartBase.h"\
-	"..\N3Base\N3FXPartBottomBoard.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3FXPartBottomBoard.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3FXBundle.h"\
+	"..\..\engine\N3Base\N3FXDef.h"\
+	"..\..\engine\N3Base\N3FXPartBase.h"\
+	"..\..\engine\N3Base\N3FXPartBottomBoard.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3FXParticle.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3FXDef.h"\
-	"..\N3Base\N3FXPartBase.h"\
-	"..\N3Base\N3FXParticle.h"\
-	"..\N3Base\N3FXPartParticles.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3FXParticle.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3FXDef.h"\
+	"..\..\engine\N3Base\N3FXPartBase.h"\
+	"..\..\engine\N3Base\N3FXParticle.h"\
+	"..\..\engine\N3Base\N3FXPartParticles.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3FXPartMesh.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3FXBundle.h"\
-	"..\N3Base\N3FXDef.h"\
-	"..\N3Base\N3FXPartBase.h"\
-	"..\N3Base\N3FXPartMesh.h"\
-	"..\N3Base\N3FXPMesh.h"\
-	"..\N3Base\N3FXPMeshInstance.h"\
-	"..\N3Base\N3FXShape.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3FXPartMesh.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3FXBundle.h"\
+	"..\..\engine\N3Base\N3FXDef.h"\
+	"..\..\engine\N3Base\N3FXPartBase.h"\
+	"..\..\engine\N3Base\N3FXPartMesh.h"\
+	"..\..\engine\N3Base\N3FXPMesh.h"\
+	"..\..\engine\N3Base\N3FXPMeshInstance.h"\
+	"..\..\engine\N3Base\N3FXShape.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3FXPartParticles.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3FXBundle.h"\
-	"..\N3Base\N3FXDef.h"\
-	"..\N3Base\N3FXPartBase.h"\
-	"..\N3Base\N3FXParticle.h"\
-	"..\N3Base\N3FXPartParticles.h"\
-	"..\N3Base\N3FXPMesh.h"\
-	"..\N3Base\N3FXPMeshInstance.h"\
-	"..\N3Base\N3FXShape.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3FXPartParticles.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3FXBundle.h"\
+	"..\..\engine\N3Base\N3FXDef.h"\
+	"..\..\engine\N3Base\N3FXPartBase.h"\
+	"..\..\engine\N3Base\N3FXParticle.h"\
+	"..\..\engine\N3Base\N3FXPartParticles.h"\
+	"..\..\engine\N3Base\N3FXPMesh.h"\
+	"..\..\engine\N3Base\N3FXPMeshInstance.h"\
+	"..\..\engine\N3Base\N3FXShape.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3FXPlug.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimControl.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Chr.h"\
-	"..\N3Base\N3Cloak.h"\
-	"..\N3Base\N3FXBundle.h"\
-	"..\N3Base\N3FXDef.h"\
-	"..\N3Base\N3FXPartBase.h"\
-	"..\N3Base\N3FXPlug.h"\
-	"..\N3Base\N3IMesh.h"\
-	"..\N3Base\N3Joint.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3Skin.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3FXPlug.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimControl.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Chr.h"\
+	"..\..\engine\N3Base\N3Cloak.h"\
+	"..\..\engine\N3Base\N3FXBundle.h"\
+	"..\..\engine\N3Base\N3FXDef.h"\
+	"..\..\engine\N3Base\N3FXPartBase.h"\
+	"..\..\engine\N3Base\N3FXPlug.h"\
+	"..\..\engine\N3Base\N3IMesh.h"\
+	"..\..\engine\N3Base\N3Joint.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3Skin.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3FXPMesh.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3FXPMesh.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3FXPMesh.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3FXPMesh.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3FXPMeshInstance.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3FXPMesh.h"\
-	"..\N3Base\N3FXPMeshInstance.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3FXPMeshInstance.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3FXPMesh.h"\
+	"..\..\engine\N3Base\N3FXPMeshInstance.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3FXShape.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3FXPMesh.h"\
-	"..\N3Base\N3FXPMeshInstance.h"\
-	"..\N3Base\N3FXShape.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3FXShape.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3FXPMesh.h"\
+	"..\..\engine\N3Base\N3FXPMeshInstance.h"\
+	"..\..\engine\N3Base\N3FXShape.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3IMesh.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3IMesh.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3IMesh.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3IMesh.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3Joint.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Joint.h"\
-	"..\N3Base\N3Mesh.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3Joint.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Joint.h"\
+	"..\..\engine\N3Base\N3Mesh.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3Light.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Light.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3Light.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Light.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3Mesh.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3IMesh.h"\
-	"..\N3Base\N3Mesh.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3Mesh.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3IMesh.h"\
+	"..\..\engine\N3Base\N3Mesh.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3PMesh.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3PMesh.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3PMeshCreate.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mesh.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshCreate.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3PMeshCreate.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mesh.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshCreate.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3PMeshInstance.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3PMeshInstance.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3Scene.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimControl.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Camera.h"\
-	"..\N3Base\N3Chr.h"\
-	"..\N3Base\N3Cloak.h"\
-	"..\N3Base\N3IMesh.h"\
-	"..\N3Base\N3Joint.h"\
-	"..\N3Base\N3Light.h"\
-	"..\N3Base\N3Mesh.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3Scene.h"\
-	"..\N3Base\N3Shape.h"\
-	"..\N3Base\N3Skin.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3Scene.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimControl.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Camera.h"\
+	"..\..\engine\N3Base\N3Chr.h"\
+	"..\..\engine\N3Base\N3Cloak.h"\
+	"..\..\engine\N3Base\N3IMesh.h"\
+	"..\..\engine\N3Base\N3Joint.h"\
+	"..\..\engine\N3Base\N3Light.h"\
+	"..\..\engine\N3Base\N3Mesh.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3Scene.h"\
+	"..\..\engine\N3Base\N3Shape.h"\
+	"..\..\engine\N3Base\N3Skin.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3Shape.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3Shape.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3Shape.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3Shape.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3BASE\N3ShapeExtra.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3Shape.h"\
-	"..\N3BASE\N3ShapeExtra.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3ShapeExtra.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3Shape.h"\
+	"..\..\engine\N3Base\N3ShapeExtra.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3ShapeMgr.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3Shape.h"\
-	"..\N3BASE\N3ShapeExtra.h"\
-	"..\N3Base\N3ShapeMgr.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3UIBase.h"\
-	"..\N3Base\N3UIDef.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
-	"..\WarFare\GameBase.h"\
-	"..\WarFare\GameDef.h"\
-	"..\WarFare\GameProcedure.h"\
-	"..\WarFare\StdAfx.h"\
-	"..\WarFare\UILoading.h"\
+..\..\engine\N3Base\N3ShapeMgr.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3Shape.h"\
+	"..\..\engine\N3Base\N3ShapeExtra.h"\
+	"..\..\engine\N3Base\N3ShapeMgr.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3UIBase.h"\
+	"..\..\engine\N3Base\N3UIDef.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
+	"..\..\game\GameBase.h"\
+	"..\..\game\GameDef.h"\
+	"..\..\game\GameProcedure.h"\
+	"..\..\game\StdAfx.h"\
+	"..\..\game\UILoading.h"\
 	
 
-..\N3Base\N3Skin.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3IMesh.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3Skin.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3Skin.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3IMesh.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3Skin.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3Texture.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3Texture.cpp : \
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3Transform.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3Transform.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3TransformCollision.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3TransformCollision.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\N3VMesh.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3IMesh.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\N3VMesh.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3IMesh.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
-..\N3Base\Pick.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mesh.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\Pick.h"\
-	"..\N3Base\StdAfxBase.h"\
-	"..\N3Base\WaveFile.h"\
+..\..\engine\N3Base\Pick.cpp : \
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mesh.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\Pick.h"\
+	"..\..\engine\N3Base\StdAfxBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	
 
 .\MainFrm.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Camera.h"\
-	"..\N3Base\N3Eng.h"\
-	"..\N3BASE\N3EngTool.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3Shape.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Camera.h"\
+	"..\..\engine\N3Base\N3Eng.h"\
+	"..\..\engine\N3Base\N3EngTool.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3Shape.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgBrowsePath.h"\
 	".\DlgDTexGroupView.h"\
@@ -808,16 +808,16 @@
 	
 
 .\N3ME.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgMapView.h"\
 	".\LyTerrainDef.h"\
@@ -842,19 +842,19 @@
 	
 
 .\N3MEDoc.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgMapView.h"\
 	".\DTexGroup.h"\
@@ -880,21 +880,21 @@
 	
 
 .\N3MEView.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Eng.h"\
-	"..\N3BASE\N3EngTool.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Eng.h"\
+	"..\..\engine\N3Base\N3EngTool.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgMapView.h"\
 	".\LyTerrain.h"\
@@ -918,21 +918,21 @@
 	
 
 .\StdAfx.cpp : \
-	"..\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
 	".\StdAfx.h"\
 	
 
 .\BrushDlg.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\BrushDlg.h"\
 	".\LyTerrain.h"\
 	".\LyTerrainDef.h"\
@@ -941,23 +941,23 @@
 	
 
 .\DlgAddDTex.cpp : \
-	"..\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
 	".\DlgAddDTex.h"\
 	".\N3ME.h"\
 	".\StdAfx.h"\
 	
 
 .\DlgAddSoundGroup.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgAddSoundGroup.h"\
 	".\N3ME.h"\
 	".\SoundMgr.h"\
@@ -965,21 +965,21 @@
 	
 
 .\DlgBar.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgMapView.h"\
 	".\LyTerrain.h"\
@@ -1001,34 +1001,34 @@
 	
 
 .\DlgBase.cpp : \
-	"..\Common Control\PropertyList.h"\
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimControl.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Camera.h"\
-	"..\N3Base\N3Chr.h"\
-	"..\N3Base\N3Cloak.h"\
-	"..\N3Base\N3IMesh.h"\
-	"..\N3Base\N3Joint.h"\
-	"..\N3Base\N3Light.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3Shape.h"\
-	"..\N3Base\N3Skin.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\Widget\PropertyList.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimControl.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Camera.h"\
+	"..\..\engine\N3Base\N3Chr.h"\
+	"..\..\engine\N3Base\N3Cloak.h"\
+	"..\..\engine\N3Base\N3IMesh.h"\
+	"..\..\engine\N3Base\N3Joint.h"\
+	"..\..\engine\N3Base\N3Light.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3Shape.h"\
+	"..\..\engine\N3Base\N3Skin.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgBase.h"\
 	".\DlgMapView.h"\
@@ -1050,30 +1050,30 @@
 	
 
 .\DlgBrowsePath.cpp : \
-	"..\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
 	".\DlgBrowsePath.h"\
 	".\ShellTree.h"\
 	".\StdAfx.h"\
 	
 
 .\DlgCtrlHeightScale.cpp : \
-	"..\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
 	".\DlgCtrlHeightScale.h"\
 	".\N3ME.h"\
 	".\StdAfx.h"\
 	
 
 .\DlgDelGroup.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgDelGroup.h"\
 	".\DlgMapView.h"\
@@ -1086,19 +1086,19 @@
 	
 
 .\DlgDTexGroupView.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Eng.h"\
-	"..\N3BASE\N3EngTool.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Eng.h"\
+	"..\..\engine\N3Base\N3EngTool.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgDTexGroupView.h"\
 	".\DlgMapView.h"\
@@ -1113,18 +1113,18 @@
 	
 
 .\DlgEditEvent.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgEditEvent.h"\
 	".\DlgLoadEvt.h"\
 	".\DlgSaveEvt.h"\
@@ -1148,15 +1148,15 @@
 	
 
 .\DlgEditEventAttr.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgEditEventAttr.h"\
 	".\EventCell.h"\
 	".\N3ME.h"\
@@ -1164,16 +1164,16 @@
 	
 
 .\DlgEditWarp.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgEditWarp.h"\
 	".\N3ME.h"\
 	".\StdAfx.h"\
@@ -1181,16 +1181,16 @@
 	
 
 .\DlgInputAttr.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgInputAttr.h"\
 	".\DlgMapView.h"\
@@ -1203,27 +1203,27 @@
 	
 
 .\DlgInputGroup.cpp : \
-	"..\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
 	".\DlgInputGroup.h"\
 	".\N3ME.h"\
 	".\StdAfx.h"\
 	
 
 .\DlgLight.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Light.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Light.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgLight.h"\
 	".\DlgMapView.h"\
@@ -1237,36 +1237,36 @@
 	
 
 .\DlgLoadEvt.cpp : \
-	"..\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
 	".\DlgLoadEvt.h"\
 	".\N3ME.h"\
 	".\StdAfx.h"\
 	
 
 .\DlgLoadNPCPath.cpp : \
-	"..\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
 	".\DlgLoadNPCPath.h"\
 	".\N3ME.h"\
 	".\StdAfx.h"\
 	
 
 .\DlgLoadTileSet.cpp : \
-	"..\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
 	".\DlgLoadTileSet.h"\
 	".\N3ME.h"\
 	".\StdAfx.h"\
 	
 
 .\DlgMakeNPCPath.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgLoadNPCPath.h"\
 	".\DlgMakeNPCPath.h"\
 	".\DlgSaveNPCPath.h"\
@@ -1277,17 +1277,17 @@
 	
 
 .\DlgMakeWall.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3ShapeMgr.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3ShapeMgr.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgMakeWall.h"\
 	".\N3ME.h"\
 	".\StdAfx.h"\
@@ -1296,27 +1296,27 @@
 	
 
 .\DlgModifyDTex.cpp : \
-	"..\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
 	".\DlgModifyDTex.h"\
 	".\N3ME.h"\
 	".\StdAfx.h"\
 	
 
 .\DlgPondProperty.cpp : \
-	"..\Common Control\PropertyList.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\Widget\PropertyList.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgPondProperty.h"\
 	".\N3ME.h"\
 	".\PondMesh.h"\
@@ -1327,15 +1327,15 @@
 	
 
 .\DlgRegenUser.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgRegenUser.h"\
 	".\N3ME.h"\
 	".\RegenUser.h"\
@@ -1343,20 +1343,20 @@
 	
 
 .\DlgRiverProperty.cpp : \
-	"..\Common Control\PropertyList.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\Widget\PropertyList.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgRiverProperty.h"\
 	".\N3ME.h"\
 	".\RiverMesh.h"\
@@ -1367,22 +1367,22 @@
 	
 
 .\DlgSaveDivision.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Eng.h"\
-	"..\N3BASE\N3EngTool.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Eng.h"\
+	"..\..\engine\N3Base\N3EngTool.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgMapView.h"\
 	".\DlgSaveDivision.h"\
@@ -1405,56 +1405,56 @@
 	
 
 .\DlgSaveEvt.cpp : \
-	"..\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
 	".\DlgSaveEvt.h"\
 	".\N3ME.h"\
 	".\StdAfx.h"\
 	
 
 .\DlgSaveNewTileSet.cpp : \
-	"..\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
 	".\DlgSaveNewTileSet.h"\
 	".\N3ME.h"\
 	".\StdAfx.h"\
 	
 
 .\DlgSaveNPCPath.cpp : \
-	"..\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
 	".\DlgSaveNPCPath.h"\
 	".\N3ME.h"\
 	".\StdAfx.h"\
 	
 
 .\DlgSceneGraph.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimControl.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Camera.h"\
-	"..\N3Base\N3Chr.h"\
-	"..\N3Base\N3Cloak.h"\
-	"..\N3Base\N3IMesh.h"\
-	"..\N3Base\N3Joint.h"\
-	"..\N3Base\N3Light.h"\
-	"..\N3Base\N3Mesh.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3Scene.h"\
-	"..\N3Base\N3Shape.h"\
-	"..\N3Base\N3Skin.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimControl.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Camera.h"\
+	"..\..\engine\N3Base\N3Chr.h"\
+	"..\..\engine\N3Base\N3Cloak.h"\
+	"..\..\engine\N3Base\N3IMesh.h"\
+	"..\..\engine\N3Base\N3Joint.h"\
+	"..\..\engine\N3Base\N3Light.h"\
+	"..\..\engine\N3Base\N3Mesh.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3Scene.h"\
+	"..\..\engine\N3Base\N3Shape.h"\
+	"..\..\engine\N3Base\N3Skin.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgMapView.h"\
 	".\DlgSceneGraph.h"\
@@ -1476,22 +1476,22 @@
 	
 
 .\DlgSetDTex.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Eng.h"\
-	"..\N3BASE\N3EngTool.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Eng.h"\
+	"..\..\engine\N3Base\N3EngTool.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgAddDTex.h"\
 	".\DlgBar.h"\
 	".\DlgDelGroup.h"\
@@ -1524,19 +1524,19 @@
 	
 
 .\DlgSetLightMap.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Eng.h"\
-	"..\N3BASE\N3EngTool.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Eng.h"\
+	"..\..\engine\N3Base\N3EngTool.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgMapView.h"\
 	".\DlgSetLightMap.h"\
@@ -1547,18 +1547,18 @@
 	
 
 .\DlgSetSound.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgAddSoundGroup.h"\
 	".\DlgSetSound.h"\
 	".\LyTerrain.h"\
@@ -1581,35 +1581,35 @@
 	
 
 .\DlgShapeList.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimControl.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Camera.h"\
-	"..\N3Base\N3Chr.h"\
-	"..\N3Base\N3Cloak.h"\
-	"..\N3Base\N3IMesh.h"\
-	"..\N3Base\N3Joint.h"\
-	"..\N3Base\N3Light.h"\
-	"..\N3Base\N3Mesh.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3Scene.h"\
-	"..\N3Base\N3Shape.h"\
-	"..\N3Base\N3Skin.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimControl.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Camera.h"\
+	"..\..\engine\N3Base\N3Chr.h"\
+	"..\..\engine\N3Base\N3Cloak.h"\
+	"..\..\engine\N3Base\N3IMesh.h"\
+	"..\..\engine\N3Base\N3Joint.h"\
+	"..\..\engine\N3Base\N3Light.h"\
+	"..\..\engine\N3Base\N3Mesh.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3Scene.h"\
+	"..\..\engine\N3Base\N3Shape.h"\
+	"..\..\engine\N3Base\N3Skin.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgMapView.h"\
 	".\DlgShapeList.h"\
@@ -1633,27 +1633,27 @@
 	
 
 .\DlgSowSeed.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Eng.h"\
-	"..\N3BASE\N3EngTool.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3Shape.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Eng.h"\
+	"..\..\engine\N3Base\N3EngTool.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3Shape.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgMapView.h"\
 	".\DlgShapeList.h"\
@@ -1681,48 +1681,48 @@
 	
 
 .\DlgTerrainSize.cpp : \
-	"..\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
 	".\DlgTerrainSize.h"\
 	".\N3ME.h"\
 	".\StdAfx.h"\
 	
 
 .\DlgUnusedFiles.cpp : \
-	"..\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
 	".\DlgUnusedFiles.h"\
 	".\N3ME.h"\
 	".\StdAfx.h"\
 	
 
-"..\Common Control\PropertyList.cpp" : \
-	"..\Common Control\PropertyList.h"\
+"..\Widget\PropertyList.cpp" : \
+	"..\Widget\PropertyList.h"\
 	
 
 .\ShellTree.cpp : \
-	"..\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
 	".\ShellTree.h"\
 	".\StdAfx.h"\
 	
 
 .\ProgressBar.cpp : \
-	"..\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
 	".\N3ME.h"\
 	".\ProgressBar.h"\
 	".\StdAfx.h"\
 	
 
 .\DTex.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DTex.h"\
 	".\LyTerrainDef.h"\
 	".\N3ME.h"\
@@ -1730,16 +1730,16 @@
 	
 
 .\DTexGroup.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgMapView.h"\
 	".\DTex.h"\
@@ -1752,16 +1752,16 @@
 	
 
 .\DTexGroupMng.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgDTexGroupView.h"\
 	".\DlgMapView.h"\
@@ -1776,18 +1776,18 @@
 	
 
 .\DTexMng.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgDTexGroupView.h"\
 	".\DlgMapView.h"\
@@ -1803,16 +1803,16 @@
 	
 
 .\EventCell.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\EventCell.h"\
 	".\LyTerrain.h"\
 	".\LyTerrainDef.h"\
@@ -1821,18 +1821,18 @@
 	
 
 .\EventMgr.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgEditEvent.h"\
 	".\DlgEditEventAttr.h"\
 	".\EventCell.h"\
@@ -1855,35 +1855,35 @@
 	
 
 .\LightObjMgr.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimControl.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Camera.h"\
-	"..\N3Base\N3Chr.h"\
-	"..\N3Base\N3Cloak.h"\
-	"..\N3Base\N3IMesh.h"\
-	"..\N3Base\N3Joint.h"\
-	"..\N3Base\N3Light.h"\
-	"..\N3Base\N3Mesh.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3Scene.h"\
-	"..\N3Base\N3Shape.h"\
-	"..\N3Base\N3Skin.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimControl.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Camera.h"\
+	"..\..\engine\N3Base\N3Chr.h"\
+	"..\..\engine\N3Base\N3Cloak.h"\
+	"..\..\engine\N3Base\N3IMesh.h"\
+	"..\..\engine\N3Base\N3Joint.h"\
+	"..\..\engine\N3Base\N3Light.h"\
+	"..\..\engine\N3Base\N3Mesh.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3Scene.h"\
+	"..\..\engine\N3Base\N3Shape.h"\
+	"..\..\engine\N3Base\N3Skin.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgLight.h"\
 	".\DlgMapView.h"\
@@ -1907,37 +1907,37 @@
 	
 
 .\LyTerrain.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimControl.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Camera.h"\
-	"..\N3Base\N3Chr.h"\
-	"..\N3Base\N3Cloak.h"\
-	"..\N3Base\N3Eng.h"\
-	"..\N3BASE\N3EngTool.h"\
-	"..\N3Base\N3IMesh.h"\
-	"..\N3Base\N3Joint.h"\
-	"..\N3Base\N3Light.h"\
-	"..\N3Base\N3Mesh.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3Scene.h"\
-	"..\N3Base\N3Shape.h"\
-	"..\N3Base\N3Skin.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimControl.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Camera.h"\
+	"..\..\engine\N3Base\N3Chr.h"\
+	"..\..\engine\N3Base\N3Cloak.h"\
+	"..\..\engine\N3Base\N3Eng.h"\
+	"..\..\engine\N3Base\N3EngTool.h"\
+	"..\..\engine\N3Base\N3IMesh.h"\
+	"..\..\engine\N3Base\N3Joint.h"\
+	"..\..\engine\N3Base\N3Light.h"\
+	"..\..\engine\N3Base\N3Mesh.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3Scene.h"\
+	"..\..\engine\N3Base\N3Shape.h"\
+	"..\..\engine\N3Base\N3Skin.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgDTexGroupView.h"\
 	".\DlgMapView.h"\
@@ -1968,40 +1968,40 @@
 	
 
 .\MapMng.cpp : \
-	"..\Common Control\PropertyList.h"\
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimControl.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Camera.h"\
-	"..\N3Base\N3Chr.h"\
-	"..\N3Base\N3Cloak.h"\
-	"..\N3Base\N3Eng.h"\
-	"..\N3BASE\N3EngTool.h"\
-	"..\N3Base\N3IMesh.h"\
-	"..\N3Base\N3Joint.h"\
-	"..\N3Base\N3Light.h"\
-	"..\N3Base\N3Mesh.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3Scene.h"\
-	"..\N3Base\N3Shape.h"\
-	"..\N3Base\N3ShapeMgr.h"\
-	"..\N3Base\N3Skin.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\Pick.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\Widget\PropertyList.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimControl.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Camera.h"\
+	"..\..\engine\N3Base\N3Chr.h"\
+	"..\..\engine\N3Base\N3Cloak.h"\
+	"..\..\engine\N3Base\N3Eng.h"\
+	"..\..\engine\N3Base\N3EngTool.h"\
+	"..\..\engine\N3Base\N3IMesh.h"\
+	"..\..\engine\N3Base\N3Joint.h"\
+	"..\..\engine\N3Base\N3Light.h"\
+	"..\..\engine\N3Base\N3Mesh.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3Scene.h"\
+	"..\..\engine\N3Base\N3Shape.h"\
+	"..\..\engine\N3Base\N3ShapeMgr.h"\
+	"..\..\engine\N3Base\N3Skin.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\Pick.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\BrushDlg.h"\
 	".\DlgBar.h"\
 	".\DlgBase.h"\
@@ -2036,16 +2036,16 @@
 	
 
 .\NPCPath.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\LyTerrain.h"\
 	".\LyTerrainDef.h"\
 	".\N3ME.h"\
@@ -2054,19 +2054,19 @@
 	
 
 .\NPCPathMgr.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgMakeNPCPath.h"\
 	".\DlgMapView.h"\
@@ -2091,17 +2091,17 @@
 	
 
 .\PondMesh.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\LyTerrain.h"\
 	".\LyTerrainDef.h"\
 	".\N3ME.h"\
@@ -2110,24 +2110,24 @@
 	
 
 .\PondMng.cpp : \
-	"..\Common Control\PropertyList.h"\
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Camera.h"\
-	"..\N3Base\N3Eng.h"\
-	"..\N3BASE\N3EngTool.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\Widget\PropertyList.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Camera.h"\
+	"..\..\engine\N3Base\N3Eng.h"\
+	"..\..\engine\N3Base\N3EngTool.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgMapView.h"\
 	".\DlgPondProperty.h"\
@@ -2150,18 +2150,18 @@
 	
 
 .\PosDummy.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\LyTerrain.h"\
 	".\LyTerrainDef.h"\
 	".\N3ME.h"\
@@ -2171,17 +2171,17 @@
 	
 
 .\QTNode.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\LyTerrain.h"\
 	".\LyTerrainDef.h"\
 	".\QTNode.h"\
@@ -2189,19 +2189,19 @@
 	
 
 .\RegenUser.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgMapView.h"\
 	".\DlgRegenUser.h"\
@@ -2224,41 +2224,41 @@
 	
 
 .\RiverMesh.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\N3ME.h"\
 	".\RiverMesh.h"\
 	".\StdAfx.h"\
 	
 
 .\RiverMng.cpp : \
-	"..\Common Control\PropertyList.h"\
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Camera.h"\
-	"..\N3Base\N3Eng.h"\
-	"..\N3BASE\N3EngTool.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\Widget\PropertyList.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Camera.h"\
+	"..\..\engine\N3Base\N3Eng.h"\
+	"..\..\engine\N3Base\N3EngTool.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgMapView.h"\
 	".\DlgRiverProperty.h"\
@@ -2282,18 +2282,18 @@
 	
 
 .\RotDummy.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\N3ME.h"\
 	".\RotDummy.h"\
 	".\StdAfx.h"\
@@ -2301,18 +2301,18 @@
 	
 
 .\ScaleDummy.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\N3ME.h"\
 	".\ScaleDummy.h"\
 	".\StdAfx.h"\
@@ -2320,16 +2320,16 @@
 	
 
 .\SoundCell.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\LyTerrain.h"\
 	".\LyTerrainDef.h"\
 	".\N3ME.h"\
@@ -2338,18 +2338,18 @@
 	
 
 .\SoundMgr.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgSetSound.h"\
 	".\LyTerrain.h"\
 	".\LyTerrainDef.h"\
@@ -2371,20 +2371,20 @@
 	
 
 .\TransDummy.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mesh.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\Pick.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mesh.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\Pick.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\LyTerrain.h"\
 	".\LyTerrainDef.h"\
 	".\N3ME.h"\
@@ -2393,18 +2393,18 @@
 	
 
 .\VtxPosDummy.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\N3ME.h"\
 	".\StdAfx.h"\
 	".\TransDummy.h"\
@@ -2412,35 +2412,35 @@
 	
 
 .\Wall.cpp : \
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\N3ME.h"\
 	".\StdAfx.h"\
 	".\Wall.h"\
 	
 
 .\WallMgr.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3ShapeMgr.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3ShapeMgr.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgMakeWall.h"\
 	".\DlgMapView.h"\
@@ -2465,19 +2465,19 @@
 	
 
 .\WarpMgr.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgEditWarp.h"\
 	".\DlgMapView.h"\
@@ -2501,37 +2501,37 @@
 	
 
 .\DlgMapView.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimControl.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Camera.h"\
-	"..\N3Base\N3Chr.h"\
-	"..\N3Base\N3Cloak.h"\
-	"..\N3Base\N3Eng.h"\
-	"..\N3BASE\N3EngTool.h"\
-	"..\N3Base\N3IMesh.h"\
-	"..\N3Base\N3Joint.h"\
-	"..\N3Base\N3Light.h"\
-	"..\N3Base\N3Mesh.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3Scene.h"\
-	"..\N3Base\N3Shape.h"\
-	"..\N3Base\N3Skin.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimControl.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Camera.h"\
+	"..\..\engine\N3Base\N3Chr.h"\
+	"..\..\engine\N3Base\N3Cloak.h"\
+	"..\..\engine\N3Base\N3Eng.h"\
+	"..\..\engine\N3Base\N3EngTool.h"\
+	"..\..\engine\N3Base\N3IMesh.h"\
+	"..\..\engine\N3Base\N3Joint.h"\
+	"..\..\engine\N3Base\N3Light.h"\
+	"..\..\engine\N3Base\N3Mesh.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3Scene.h"\
+	"..\..\engine\N3Base\N3Shape.h"\
+	"..\..\engine\N3Base\N3Skin.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgMapView.h"\
 	".\LyTerrain.h"\
@@ -2554,25 +2554,25 @@
 	
 
 .\SowSeedMng.cpp : \
-	"..\N3Base\BitMapFile.h"\
-	"..\N3Base\LogWriter.h"\
-	"..\N3Base\My_3DStruct.h"\
-	"..\N3Base\N3AlphaPrimitiveManager.h"\
-	"..\N3Base\N3AnimKey.h"\
-	"..\N3Base\N3Base.h"\
-	"..\N3Base\N3BaseFileAccess.h"\
-	"..\N3Base\N3Mng.h"\
-	"..\N3Base\N3PMesh.h"\
-	"..\N3Base\N3PMeshInstance.h"\
-	"..\N3Base\N3Shape.h"\
-	"..\N3Base\N3SndDef.h"\
-	"..\N3Base\N3SndMgr.h"\
-	"..\N3Base\N3TableBase.h"\
-	"..\N3Base\N3Texture.h"\
-	"..\N3Base\N3Transform.h"\
-	"..\N3Base\N3TransformCollision.h"\
-	"..\N3Base\N3VMesh.h"\
-	"..\N3Base\WaveFile.h"\
+	"..\..\engine\N3Base\BitMapFile.h"\
+	"..\..\engine\N3Base\LogWriter.h"\
+	"..\..\engine\N3Base\My_3DStruct.h"\
+	"..\..\engine\N3Base\N3AlphaPrimitiveManager.h"\
+	"..\..\engine\N3Base\N3AnimKey.h"\
+	"..\..\engine\N3Base\N3Base.h"\
+	"..\..\engine\N3Base\N3BaseFileAccess.h"\
+	"..\..\engine\N3Base\N3Mng.h"\
+	"..\..\engine\N3Base\N3PMesh.h"\
+	"..\..\engine\N3Base\N3PMeshInstance.h"\
+	"..\..\engine\N3Base\N3Shape.h"\
+	"..\..\engine\N3Base\N3SndDef.h"\
+	"..\..\engine\N3Base\N3SndMgr.h"\
+	"..\..\engine\N3Base\N3TableBase.h"\
+	"..\..\engine\N3Base\N3Texture.h"\
+	"..\..\engine\N3Base\N3Transform.h"\
+	"..\..\engine\N3Base\N3TransformCollision.h"\
+	"..\..\engine\N3Base\N3VMesh.h"\
+	"..\..\engine\N3Base\WaveFile.h"\
 	".\DlgBar.h"\
 	".\DlgMapView.h"\
 	".\DlgShapeList.h"\

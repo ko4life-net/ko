@@ -14,7 +14,7 @@
 #include <list>
 
 #include "LyTerrainDef.h"
-#include "../N3BASE/N3BaseFileAccess.h"
+#include "N3Base/N3BaseFileAccess.h"
 
 class CN3Texture;
 class CQTNode;

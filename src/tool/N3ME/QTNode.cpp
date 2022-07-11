@@ -11,7 +11,7 @@ static char THIS_FILE[]=__FILE__;
 
 #include "QTNode.h"
 #include "LyTerrain.h"
-#include "..\N3Base\N3Texture.h"
+#include "N3Base/N3Texture.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

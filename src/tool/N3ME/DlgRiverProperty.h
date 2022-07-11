@@ -7,7 +7,7 @@
 // DlgRiverProperty.h : header file
 //
 
-#include "../Common Control/PropertyList.h"
+#include "../Widget/PropertyList.h"
 /////////////////////////////////////////////////////////////////////////////
 // CDlgRiverProperty dialog
 

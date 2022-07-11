@@ -8,7 +8,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 // CDlgMapView dialog
-#include "../N3BASE/BitMapFile.h"
+#include "N3Base/BitMapFile.h"
 
 class CBitMapFile;
 class CMainFrame;

@@ -6,7 +6,7 @@
 #include "n3me.h"
 #include "PondMesh.h"
 #include "LyTerrain.h"
-#include "../N3Base/N3Texture.h"
+#include "N3Base/N3Texture.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

@@ -16,9 +16,9 @@
 #include "DlgSowSeed.h"
 #include "DlgSaveDivision.h"
 
-#include "../N3Base/N3EngTool.h"
-#include "../N3Base/N3Shape.h"
-#include "../N3Base/N3Camera.h"
+#include "N3Base/N3EngTool.h"
+#include "N3Base/N3Shape.h"
+#include "N3Base/N3Camera.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

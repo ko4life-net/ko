@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "MainFrm.h"
 #include "MapMng.h"
-#include "../N3Base/N3Shape.h"
+#include "N3Base/N3Shape.h"
 
 #include "SowSeedMng.h"
 #include "DlgSowSeed.h"

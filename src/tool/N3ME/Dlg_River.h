@@ -9,7 +9,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CDlg_River dialog
-#include "../Common Control/PropertyList.h"
+#include "../Widget/PropertyList.h"
 
 class CDlg_River : public CDialog
 {

@@ -6,7 +6,7 @@
 #include "n3me.h"
 #include "RiverMng2.h"
 
-#include "../N3Base/N3Texture.h"
+#include "N3Base/N3Texture.h"
 #include "LyTerrain.h"
 #include "Dlg_River.h"
 #include "MainFrm.h"

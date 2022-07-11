@@ -11,9 +11,9 @@
 #include "MapMng.h"
 #include "LyTerrain.h"
 
-#include "../N3Base/N3EngTool.h"
-#include "../N3Base/N3Camera.h"
-#include "../N3Base/N3Texture.h"
+#include "N3Base/N3EngTool.h"
+#include "N3Base/N3Camera.h"
+#include "N3Base/N3Texture.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

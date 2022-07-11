@@ -10,7 +10,7 @@
 #include "LyTerrain.h"
 #include "MapMng.h"
 #include "MainFrm.h"
-#include "../N3Base/N3Scene.h"
+#include "N3Base/N3Scene.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

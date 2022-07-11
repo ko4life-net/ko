@@ -7,7 +7,7 @@
 // DlgFolderSelect.h : header file
 //
 
-#include "../Common Control/DirTreeCtrl.h"
+#include "../Widget/DirTreeCtrl.h"
 #include "Resource.h"
 /////////////////////////////////////////////////////////////////////////////
 // CDlgFolderSelect dialog
