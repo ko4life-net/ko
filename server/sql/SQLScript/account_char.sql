@@ -1,1 +1,0 @@
-select * from account_char where strcharid1 = '레드오크' or strcharid2 = '레드오크' or strcharid3 = '레드오크' 
