@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName>"$/WarFare", DXBAAAAA</SccProjectName>
+    <SccLocalPath>.</SccLocalPath>
+    <ProjectGuid>{D4401A96-091F-43E1-8873-CB663B6C7F0B}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_N3GAME;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\Debug\WarFare.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\engine;$(ProjectDir)..\vendor\DXSDK8\Include;$(ProjectDir)..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_DEBUG;_N3GAME;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Debug\WarFare.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug\WarFare.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreSpecificDefaultLibraries>msvcrt;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <OutputFile>KnightOnLine_Debug.exe</OutputFile>
+      <AdditionalDependencies>implode.lib;winmm.lib;imm32.lib;ddraw.lib;d3d8.lib;d3dx8.lib;dsound.lib;dxguid.lib;dxerr8.lib;wsock32.lib;DInput8.lib;odbc32.lib;odbccp32.lib;NAFXCWD.LIB;LIBCMTD.LIB;..\engine\JPEG\jpegLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_N3GAME;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\Release\WarFare.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\engine;$(ProjectDir)..\vendor\DXSDK8\Include;$(ProjectDir)..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;_N3GAME;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Release\WarFare.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\WarFare.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>KnightOnLine.exe</OutputFile>
+      <AdditionalDependencies>implode.lib;winmm.lib;imm32.lib;ddraw.lib;d3d8.lib;d3dx8.lib;dsound.lib;dxguid.lib;dxerr8.lib;wsock32.lib;DInput8.lib;..\engine\JPEG\jpegLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <Version>0.1</Version>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="Cursor_Attack.cur" />
+    <CustomBuild Include="Cursor_Click.cur" />
+    <CustomBuild Include="cursor_click1.cur" />
+    <CustomBuild Include="Cursor_Normal.cur" />
+    <CustomBuild Include="cursor_normal1.cur" />
+    <CustomBuild Include="repair0.cur" />
+    <CustomBuild Include="repair1.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\engine\JPEG\JpegFile.h" />
+    <ClInclude Include="..\engine\N3Base\BitMapFile.h" />
+    <ClInclude Include="..\engine\N3Base\DFont.h" />
+    <ClInclude Include="..\engine\N3Base\JPEG.H" />
+    <ClInclude Include="..\engine\N3Base\LogWriter.h" />
+    <ClInclude Include="..\engine\N3Base\My_3DStruct.h" />
+    <ClInclude Include="..\engine\N3Base\N3AlphaPrimitiveManager.h" />
+    <ClInclude Include="..\engine\N3Base\N3AnimatedTexures.h" />
+    <ClInclude Include="..\engine\N3Base\N3AnimControl.h" />
+    <ClInclude Include="..\engine\N3Base\N3AnimKey.h" />
+    <ClInclude Include="..\engine\N3Base\N3Base.h" />
+    <ClInclude Include="..\engine\N3Base\N3BaseFileAccess.h" />
+    <ClInclude Include="..\engine\N3Base\N3Board.h" />
+    <ClInclude Include="..\engine\N3Base\N3Camera.h" />
+    <ClInclude Include="..\engine\N3Base\N3Chr.h" />
+    <ClInclude Include="..\engine\N3Base\N3Cloak.h" />
+    <ClInclude Include="..\engine\N3Base\N3Cloud.h" />
+    <ClInclude Include="..\engine\N3Base\N3ColorChange.h" />
+    <ClInclude Include="..\engine\N3Base\N3Eng.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXBundle.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXDef.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXPartBase.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXPartBillBoard.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXPartBottomBoard.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXParticle.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXPartMesh.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXPartParticles.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXPlug.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXPMesh.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXPMeshInstance.h" />
+    <ClInclude Include="..\engine\N3Base\N3FXShape.h" />
+    <ClInclude Include="..\engine\N3Base\N3GERain.h" />
+    <ClInclude Include="..\engine\N3Base\N3GESnow.h" />
+    <ClInclude Include="..\engine\N3Base\N3GlobalEffect.h" />
+    <ClInclude Include="..\engine\N3Base\N3IMesh.h" />
+    <ClInclude Include="..\engine\N3Base\N3Joint.h" />
+    <ClInclude Include="..\engine\N3Base\N3Light.h" />
+    <ClInclude Include="..\engine\N3Base\N3Mesh.h" />
+    <ClInclude Include="..\engine\N3Base\N3Mng.h" />
+    <ClInclude Include="..\engine\N3Base\N3Moon.h" />
+    <ClInclude Include="..\engine\N3Base\N3PMesh.h" />
+    <ClInclude Include="..\engine\N3Base\N3PMeshInstance.h" />
+    <ClInclude Include="..\engine\N3Base\N3Pond.h" />
+    <ClInclude Include="..\engine\N3Base\N3River.h" />
+    <ClInclude Include="..\engine\N3Base\N3Shape.h" />
+    <ClInclude Include="..\engine\N3Base\N3ShapeExtra.h" />
+    <ClInclude Include="..\engine\N3Base\N3ShapeMgr.h" />
+    <ClInclude Include="..\engine\N3Base\N3Skin.h" />
+    <ClInclude Include="..\engine\N3Base\N3Sky.h" />
+    <ClInclude Include="..\engine\N3Base\N3SkyMng.h" />
+    <ClInclude Include="..\engine\N3Base\N3SndDef.h" />
+    <ClInclude Include="..\engine\N3Base\N3SndMgr.h" />
+    <ClInclude Include="..\engine\N3Base\N3SndObj.h" />
+    <ClInclude Include="..\engine\N3Base\N3SndObjStream.h" />
+    <ClInclude Include="..\engine\N3Base\N3Star.h" />
+    <ClInclude Include="..\engine\N3Base\N3Sun.h" />
+    <ClInclude Include="..\engine\N3Base\N3TableBase.h" />
+    <ClInclude Include="..\engine\N3Base\N3Texture.h" />
+    <ClInclude Include="..\engine\N3Base\N3Transform.h" />
+    <ClInclude Include="..\engine\N3Base\N3TransformCollision.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIArea.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIBase.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIButton.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIDef.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIEdit.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIImage.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIList.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIProgress.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIScrollBar.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIStatic.h" />
+    <ClInclude Include="..\engine\N3Base\N3UIString.h" />
+    <ClInclude Include="..\engine\N3Base\N3UITooltip.h" />
+    <ClInclude Include="..\engine\N3Base\N3UITrackBar.h" />
+    <ClInclude Include="..\engine\N3Base\N3VMesh.h" />
+    <ClInclude Include="..\engine\N3Base\StdAfxBase.h" />
+    <ClInclude Include="..\engine\N3Base\WaveFile.h" />
+    <ClInclude Include="APISocket.h" />
+    <ClInclude Include="Bird.h" />
+    <ClInclude Include="BirdMng.h" />
+    <ClInclude Include="Bitset.h" />
+    <ClInclude Include="Catapult.h" />
+    <ClInclude Include="Compress.h" />
+    <ClInclude Include="CountableItemEditDlg.h" />
+    <ClInclude Include="DungeonManager.h" />
+    <ClInclude Include="EventManager.h" />
+    <ClInclude Include="GameBase.h" />
+    <ClInclude Include="GameCursor.h" />
+    <ClInclude Include="GameDef.h" />
+    <ClInclude Include="GameEng.h" />
+    <ClInclude Include="GameProcCharacterCreate.h" />
+    <ClInclude Include="GameProcCharacterSelect.h" />
+    <ClInclude Include="GameProcedure.h" />
+    <ClInclude Include="GameProcLogIn.h" />
+    <ClInclude Include="GameProcMain.h" />
+    <ClInclude Include="GameProcNationSelect.h" />
+    <ClInclude Include="GameProcOption.h" />
+    <ClInclude Include="GrassBoard.h" />
+    <ClInclude Include="IMPLODE.H" />
+    <ClInclude Include="ItemRepairMgr.h" />
+    <ClInclude Include="JvCryption.h" />
+    <ClInclude Include="KnightChrMgr.h" />
+    <ClInclude Include="LightMgr.h" />
+    <ClInclude Include="LocalInput.h" />
+    <ClInclude Include="MachineBase.h" />
+    <ClInclude Include="MachineMng.h" />
+    <ClInclude Include="MagicSkillMng.h" />
+    <ClInclude Include="N3FXBundleGame.h" />
+    <ClInclude Include="N3FXMgr.h" />
+    <ClInclude Include="N3FXPartBillBoardGame.h" />
+    <ClInclude Include="N3FXPartBottomBoardGame.h" />
+    <ClInclude Include="N3Terrain.h" />
+    <ClInclude Include="N3TerrainDef.h" />
+    <ClInclude Include="N3TerrainManager.h" />
+    <ClInclude Include="N3TerrainPatch.h" />
+    <ClInclude Include="N3UIDBCLButton.h" />
+    <ClInclude Include="N3UIIcon.h" />
+    <ClInclude Include="N3UIWndBase.h" />
+    <ClInclude Include="N3WorldBase.h" />
+    <ClInclude Include="N3WorldManager.h" />
+    <ClInclude Include="PacketDef.h" />
+    <ClInclude Include="PlayerBase.h" />
+    <ClInclude Include="PlayerMySelf.h" />
+    <ClInclude Include="PlayerNPC.h" />
+    <ClInclude Include="PlayerOther.h" />
+    <ClInclude Include="PlayerOtherMgr.h" />
+    <ClInclude Include="PortalVolume.h" />
+    <ClInclude Include="PvsMgr.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="ServerMesh.h" />
+    <ClInclude Include="SharedMem.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="SubProcPerTrade.h" />
+    <ClInclude Include="UICharacterCreate.h" />
+    <ClInclude Include="UICharacterSelect.h" />
+    <ClInclude Include="UIChat.h" />
+    <ClInclude Include="UIClassChange.h" />
+    <ClInclude Include="UICmd.h" />
+    <ClInclude Include="UICreateClanName.h" />
+    <ClInclude Include="UIDead.h" />
+    <ClInclude Include="UIDroppedItemDlg.h" />
+    <ClInclude Include="UIEndingDisplay.h" />
+    <ClInclude Include="UIHelp.h" />
+    <ClInclude Include="UIHotKeyDlg.h" />
+    <ClInclude Include="UIImageTooltipDlg.h" />
+    <ClInclude Include="UIInn.h" />
+    <ClInclude Include="UIInventory.h" />
+    <ClInclude Include="UIItemExchange.h" />
+    <ClInclude Include="UIKnightsOperation.h" />
+    <ClInclude Include="UILoading.h" />
+    <ClInclude Include="UILogin.h" />
+    <ClInclude Include="UIManager.h" />
+    <ClInclude Include="UIMessageBox.h" />
+    <ClInclude Include="UIMessageBoxManager.h" />
+    <ClInclude Include="UIMessageWnd.h" />
+    <ClInclude Include="UINationSelectDlg.h" />
+    <ClInclude Include="UINotice.h" />
+    <ClInclude Include="UINPCChangeEvent.h" />
+    <ClInclude Include="UINPCEvent.h" />
+    <ClInclude Include="UINpcTalk.h" />
+    <ClInclude Include="UIPartyBBS.h" />
+    <ClInclude Include="UIPartyBBSSelector.h" />
+    <ClInclude Include="UIPartyOrForce.h" />
+    <ClInclude Include="UIPerTradeDlg.h" />
+    <ClInclude Include="UIPointInitDlg.h" />
+    <ClInclude Include="UIQuestMenu.h" />
+    <ClInclude Include="UIQuestTalk.h" />
+    <ClInclude Include="UIRepairTooltipDlg.h" />
+    <ClInclude Include="UISkillTreeDlg.h" />
+    <ClInclude Include="UIStateBar.h" />
+    <ClInclude Include="UITargetBar.h" />
+    <ClInclude Include="UITradeBBSEditDlg.h" />
+    <ClInclude Include="UITradeBBSSelector.h" />
+    <ClInclude Include="UITradeEditDlg.h" />
+    <ClInclude Include="UITradeExplanation.h" />
+    <ClInclude Include="UITradeSellBBS.h" />
+    <ClInclude Include="UITransactionDlg.h" />
+    <ClInclude Include="UIVarious.h" />
+    <ClInclude Include="UIWareHouseDlg.h" />
+    <ClInclude Include="UIWarp.h" />
+    <ClInclude Include="WarFareMain.h" />
+    <ClInclude Include="WarMessage.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="WarFare.ico" />
+    <Image Include="Warfare_tw.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\engine\JPEG\JpegFile.cpp" />
+    <ClCompile Include="..\engine\N3Base\BitMapFile.cpp" />
+    <ClCompile Include="..\engine\N3Base\DFont.cpp" />
+    <ClCompile Include="..\engine\N3Base\JPEG.CPP" />
+    <ClCompile Include="..\engine\N3Base\LogWriter.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3AlphaPrimitiveManager.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3AnimatedTexures.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3AnimControl.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3AnimKey.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Base.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3BaseFileAccess.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Board.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Camera.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Chr.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Cloak.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Cloud.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3ColorChange.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Eng.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXBundle.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXPartBase.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXPartBillBoard.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXPartBottomBoard.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXParticle.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXPartMesh.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXPartParticles.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXPlug.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXPMesh.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXPMeshInstance.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3FXShape.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3GERain.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3GESnow.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3GlobalEffect.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3IMesh.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Joint.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Light.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Mesh.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Moon.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3PMesh.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3PMeshInstance.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Pond.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3River.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Shape.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3ShapeExtra.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3ShapeMgr.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Skin.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Sky.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3SkyMng.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3SndMgr.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3SndObj.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3SndObjStream.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Star.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Sun.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Texture.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3Transform.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3TransformCollision.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIArea.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIBase.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIButton.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIEdit.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIImage.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIList.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIProgress.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIScrollBar.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIStatic.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UIString.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UITooltip.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3UITrackBar.cpp" />
+    <ClCompile Include="..\engine\N3Base\N3VMesh.cpp" />
+    <ClCompile Include="..\engine\N3Base\WaveFile.cpp" />
+    <ClCompile Include="APISocket.cpp" />
+    <ClCompile Include="Bird.cpp" />
+    <ClCompile Include="BirdMng.cpp" />
+    <ClCompile Include="Catapult.cpp" />
+    <ClCompile Include="Compress.cpp" />
+    <ClCompile Include="CountableItemEditDlg.cpp" />
+    <ClCompile Include="DungeonManager.cpp" />
+    <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="GameBase.cpp" />
+    <ClCompile Include="GameCursor.cpp" />
+    <ClCompile Include="GameEng.cpp" />
+    <ClCompile Include="GameProcCharacterCreate.cpp" />
+    <ClCompile Include="GameProcCharacterSelect.cpp" />
+    <ClCompile Include="GameProcedure.cpp" />
+    <ClCompile Include="GameProcLogIn.cpp" />
+    <ClCompile Include="GameProcMain.cpp" />
+    <ClCompile Include="GameProcNationSelect.cpp" />
+    <ClCompile Include="GameProcOption.cpp" />
+    <ClCompile Include="GrassBoard.cpp" />
+    <ClCompile Include="ItemRepairMgr.cpp" />
+    <ClCompile Include="KnightChrMgr.cpp" />
+    <ClCompile Include="LightMgr.cpp" />
+    <ClCompile Include="LocalInput.cpp" />
+    <ClCompile Include="MachineBase.cpp" />
+    <ClCompile Include="MachineMng.cpp" />
+    <ClCompile Include="MagicSkillMng.cpp" />
+    <ClCompile Include="N3FXBundleGame.cpp" />
+    <ClCompile Include="N3FXMgr.cpp" />
+    <ClCompile Include="N3FXPartBillBoardGame.cpp" />
+    <ClCompile Include="N3FXPartBottomBoardGame.cpp" />
+    <ClCompile Include="N3Terrain.cpp" />
+    <ClCompile Include="N3TerrainManager.cpp" />
+    <ClCompile Include="N3TerrainPatch.cpp" />
+    <ClCompile Include="N3UIDBCLButton.cpp" />
+    <ClCompile Include="N3UIIcon.cpp" />
+    <ClCompile Include="N3UIWndBase.cpp" />
+    <ClCompile Include="N3WorldBase.cpp" />
+    <ClCompile Include="N3WorldManager.cpp" />
+    <ClCompile Include="PlayerBase.cpp" />
+    <ClCompile Include="PlayerMySelf.cpp" />
+    <ClCompile Include="PlayerNPC.cpp" />
+    <ClCompile Include="PlayerOther.cpp" />
+    <ClCompile Include="PlayerOtherMgr.cpp" />
+    <ClCompile Include="PortalVolume.cpp" />
+    <ClCompile Include="PvsMgr.cpp" />
+    <ClCompile Include="ServerMesh.cpp" />
+    <ClCompile Include="SharedMem.cpp" />
+    <ClCompile Include="StdAfx.cpp" />
+    <ClCompile Include="SubProcPerTrade.cpp" />
+    <ClCompile Include="UICharacterCreate.cpp" />
+    <ClCompile Include="UICharacterSelect.cpp" />
+    <ClCompile Include="UIChat.cpp" />
+    <ClCompile Include="UIClassChange.cpp" />
+    <ClCompile Include="UICmd.cpp" />
+    <ClCompile Include="UICreateClanName.cpp" />
+    <ClCompile Include="UIDead.cpp" />
+    <ClCompile Include="UIDroppedItemDlg.cpp" />
+    <ClCompile Include="UIEndingDisplay.cpp" />
+    <ClCompile Include="UIHelp.cpp" />
+    <ClCompile Include="UIHotKeyDlg.cpp" />
+    <ClCompile Include="UIImageTooltipDlg.cpp" />
+    <ClCompile Include="UIInn.cpp" />
+    <ClCompile Include="UIInventory.cpp" />
+    <ClCompile Include="UIItemExchange.cpp" />
+    <ClCompile Include="UIKnightsOperation.cpp" />
+    <ClCompile Include="UILoading.cpp" />
+    <ClCompile Include="UILogin.cpp" />
+    <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="UIMessageBox.cpp" />
+    <ClCompile Include="UIMessageBoxManager.cpp" />
+    <ClCompile Include="UIMessageWnd.cpp" />
+    <ClCompile Include="UINationSelectDlg.cpp" />
+    <ClCompile Include="UINotice.cpp" />
+    <ClCompile Include="UINPCChangeEvent.cpp" />
+    <ClCompile Include="UINPCEvent.cpp" />
+    <ClCompile Include="UINpcTalk.cpp" />
+    <ClCompile Include="UIPartyBBS.cpp" />
+    <ClCompile Include="UIPartyBBSSelector.cpp" />
+    <ClCompile Include="UIPartyOrForce.cpp" />
+    <ClCompile Include="UIPerTradeDlg.cpp" />
+    <ClCompile Include="UIPointInitDlg.cpp" />
+    <ClCompile Include="UIQuestMenu.cpp" />
+    <ClCompile Include="UIQuestTalk.cpp" />
+    <ClCompile Include="UIRepairTooltipDlg.cpp" />
+    <ClCompile Include="UISkillTreeDlg.cpp" />
+    <ClCompile Include="UIStateBar.cpp" />
+    <ClCompile Include="UITargetBar.cpp" />
+    <ClCompile Include="UITradeBBSEditDlg.cpp" />
+    <ClCompile Include="UITradeBBSSelector.cpp" />
+    <ClCompile Include="UITradeEditDlg.cpp" />
+    <ClCompile Include="UITradeExplanation.cpp" />
+    <ClCompile Include="UITradeSellBBS.cpp" />
+    <ClCompile Include="UITransactionDlg.cpp" />
+    <ClCompile Include="UIVarious.cpp" />
+    <ClCompile Include="UIWareHouseDlg.cpp" />
+    <ClCompile Include="UIWarp.cpp" />
+    <ClCompile Include="WarFareMain.cpp" />
+    <ClCompile Include="WarMessage.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Implode.lib" />
+    <Library Include="JvCryption.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="WarFare_BUILD.vcxproj">
+      <Project>{4c1d27e1-3b5c-4af6-88e4-40d9415ad623}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{4C1D27E1-3B5C-4AF6-88E4-40D9415AD623}</ProjectGuid>
+    <RootNamespace>Build</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PostBuildEvent>
+      <Command>set PATH=$(ProjectDir)..\..\vendor\VC6\Common\MSDev98\Bin;$(ProjectDir)..\..\vendor\VC6\VC98\BIN;$(ProjectDir)..\..\vendor\VC6\Common\TOOLS;C:\ko\VC6\Common\TOOLS\WINNT;%PATH%
+cd $(ProjectDir)
+nmake /f Ebenezer.mak CFG="Ebenezer - Win32 $(Configuration)" /b /a INCLUDE="$(ProjectDir);$(ProjectDir)..\..\engine;$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE" LIB="$(ProjectDir)..\..\vendor\DXSDK8\Lib\x86;$(ProjectDir)..\..\vendor\VC6\VC98\LIB;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\LIB" CL="/D DIRECTINPUT_VERSION=0x0800"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PostBuildEvent>
+      <Command>set PATH=$(ProjectDir)..\..\vendor\VC6\Common\MSDev98\Bin;$(ProjectDir)..\..\vendor\VC6\VC98\BIN;$(ProjectDir)..\..\vendor\VC6\Common\TOOLS;C:\ko\VC6\Common\TOOLS\WINNT;%PATH%
+cd $(ProjectDir)
+nmake /f Ebenezer.mak CFG="Ebenezer - Win32 $(Configuration)" /b /a INCLUDE="$(ProjectDir);$(ProjectDir)..\..\engine;$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE" LIB="$(ProjectDir)..\..\vendor\DXSDK8\Lib\x86;$(ProjectDir)..\..\vendor\VC6\VC98\LIB;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\LIB" CL="/D DIRECTINPUT_VERSION=0x0800"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

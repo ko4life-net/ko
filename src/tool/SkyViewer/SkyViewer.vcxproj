@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName>"$/SkyViewer", WXDAAAAA</SccProjectName>
+    <SccLocalPath>.</SccLocalPath>
+    <Keyword>MFCProj</Keyword>
+    <ProjectGuid>{8384D9F1-C067-4253-A568-80506D5972E4}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_N3TOOL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\Debug\SkyViewer.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\engine;$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Debug\SkyViewer.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug\SkyViewer.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>SkyViewer_Debug.exe</OutputFile>
+      <AdditionalDependencies>d3d8.lib;d3dx8.lib;dxguid.lib;dxerr8.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_N3TOOL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Release\SkyViewer.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\engine;$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Release\SkyViewer.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\SkyViewer.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>SkyViewer.exe</OutputFile>
+      <AdditionalDependencies>d3d8.lib;d3dx8.lib;dxguid.lib;dxerr8.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Widget\PropertyList.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\BitMapFile.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3AnimKey.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Base.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3BaseFileAccess.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Camera.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Cloud.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3ColorChange.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Eng.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3EngTool.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3GERain.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3GESnow.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3GlobalEffect.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3GlobalEffectMng.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3IMesh.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Light.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Moon.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3PMesh.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3PMeshInstance.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Shape.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Sky.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3SkyMng.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Star.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Sun.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Texture.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Transform.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3TransformCollision.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3VMesh.cpp" />
+    <ClCompile Include="FormViewProperty.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="SkyViewer.cpp" />
+    <ClCompile Include="SkyViewerDoc.cpp" />
+    <ClCompile Include="SkyViewerView.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SkyViewer.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Widget\PropertyList.h" />
+    <ClInclude Include="..\..\engine\N3Base\BitMapFile.h" />
+    <ClInclude Include="..\..\engine\N3Base\My_3DStruct.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3AlphaPrimitiveManager.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3AnimKey.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Base.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3BaseFileAccess.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Camera.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Cloud.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3ColorChange.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Eng.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3EngTool.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3GERain.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3GESnow.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3GlobalEffect.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3GlobalEffectMng.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3IMesh.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Light.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Mng.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Moon.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3PMesh.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3PMeshInstance.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Shape.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Sky.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3SkyMng.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Star.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Sun.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Texture.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Transform.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3TransformCollision.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3VMesh.h" />
+    <ClInclude Include="..\..\engine\N3Base\StdAfxBase.h" />
+    <ClInclude Include="FormViewProperty.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="SkyViewer.h" />
+    <ClInclude Include="SkyViewerDoc.h" />
+    <ClInclude Include="SkyViewerView.h" />
+    <ClInclude Include="StdAfx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\SkyViewer.ico" />
+    <Image Include="res\SkyViewerDoc.ico" />
+    <Image Include="res\Toolbar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="res\SkyViewer.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="SkyViewer_BUILD.vcxproj">
+      <Project>{4c1d27e1-3b5c-4af6-88e4-40d9415ad623}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
