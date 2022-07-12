@@ -25,16 +25,17 @@ jobs:
       - name: Install Dependencies
         shell: cmd
         run: |
+          cd src
           git clone --depth=1 https://github.com/stevewgr/ko-vendor.git vendor
 
       - name: Build KnightOnLine (x86)
         shell: cmd
         run: |
-          cd client\WarFare
+          cd src\game
           "%MSBUILD_PATH%\MSBuild.exe" WarFare.sln /p:Configuration=Release
 
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
           name: KnightOnLine-x86-release
-          path: ./client/WarFare/KnightOnLine.exe
+          path: ./src/game/KnightOnLine.exe
