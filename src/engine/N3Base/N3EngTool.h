@@ -60,7 +60,7 @@ public:
 
 
 
-//	LPDIRECT3DDEVICE8	m_lpD3DDevExtra;
+//	LPDIRECT3DDEVICE9	m_lpD3DDevExtra;
 
 public:
 //	bool CreateExtraDevice(int nWidth, int nHeight);

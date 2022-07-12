@@ -14,7 +14,7 @@
 class CN3Light : public CN3Transform
 {
 public:
-	typedef struct __Light : public _D3DLIGHT8
+	typedef struct __Light : public _D3DLIGHT9
 	{
 	public:
 		BOOL		bOn; // 라이트가 켜져 있는지..

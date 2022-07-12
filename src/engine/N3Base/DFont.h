@@ -63,9 +63,9 @@ protected:
     DWORD		m_dwFontHeight;					// Font Size
     DWORD		m_dwFontFlags;
 
-    LPDIRECT3DDEVICE8       m_pd3dDevice;	// A D3DDevice used for rendering
-    LPDIRECT3DTEXTURE8      m_pTexture;		// The d3d texture for this font
-    LPDIRECT3DVERTEXBUFFER8 m_pVB;			// VertexBuffer for rendering text
+    LPDIRECT3DDEVICE9       m_pd3dDevice;	// A D3DDevice used for rendering
+    LPDIRECT3DTEXTURE9      m_pTexture;		// The d3d texture for this font
+    LPDIRECT3DVERTEXBUFFER9 m_pVB;			// VertexBuffer for rendering text
     DWORD	m_dwTexWidth;					// Texture dimensions
     DWORD	m_dwTexHeight;					// Texture dimensions
     FLOAT	m_fTextScale;					// 쓸 폰트가 너무 클경우 비디오 카드에
@@ -85,7 +85,7 @@ public:
 	bool	IsSetText() { if(m_pTexture) return true; return false; }
 	void	AddToAlphaManager(DWORD dwColor, float fDist, __Matrix44& mtxWorld, DWORD dwFlags);
 	HRESULT	SetFontColor(DWORD dwColor);						// 글씨 색을 바꾼다.
-	HRESULT InitDeviceObjects( LPDIRECT3DDEVICE8 pd3dDevice );	// d3d device를 정해주는 초기화 함수 (Init할때 호출)
+	HRESULT InitDeviceObjects( LPDIRECT3DDEVICE9 pd3dDevice );	// d3d device를 정해주는 초기화 함수 (Init할때 호출)
 	HRESULT RestoreDeviceObjects();								// resource를 메모리에 세팅하는 초기화 함수 (Init할때 호출)
 	HRESULT InvalidateDeviceObjects();							// resource등을 무효화시키는 함수 (release할때 호출)
 	HRESULT DeleteDeviceObjects();								// resource등을 메모리에서 해제 (release할때 호출)

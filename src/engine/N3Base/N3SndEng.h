@@ -16,7 +16,7 @@ class CN3SndObj;
 class CN3SndEng  
 {
 protected:
-	LPDIRECTSOUND8			m_pDS;
+	LPDIRECTSOUND9			m_pDS;
 
 	LPDIRECTSOUND3DLISTENER m_pDSListener;			// 3D listener object
 	DS3DLISTENER            m_dsListenerParams;		// Listener properties

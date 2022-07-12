@@ -134,7 +134,7 @@ bool CN3Texture::Create(int nWidth, int nHeight, D3DFORMAT Format, BOOL bGenerat
 }
 
 #ifdef _N3TOOL
-bool CN3Texture::CreateFromSurface(LPDIRECT3DSURFACE8 lpSurf, D3DFORMAT Format, BOOL bGenerateMipMap)
+bool CN3Texture::CreateFromSurface(LPDIRECT3DSURFACE9 lpSurf, D3DFORMAT Format, BOOL bGenerateMipMap)
 {
 	if(lpSurf == NULL) return false;
 
@@ -329,7 +329,10 @@ bool CN3Texture::Load(HANDLE hFile)
 				{
 					m_lpTexture->GetLevelDesc(i, &sd);
 					m_lpTexture->LockRect(i, &LR, NULL, NULL);
-					ReadFile(hFile, (BYTE*)LR.pBits, sd.Size, &dwRWC, NULL); // 일렬로 된 데이터를 쓰고..
+
+					int iTexBytesLength = 0;
+					iTexBytesLength = sd.Format == D3DFMT_DXT1 ? (sd.Width * sd.Height / 2) : (sd.Width * sd.Height);
+					ReadFile(hFile, (BYTE*)LR.pBits, iTexBytesLength, &dwRWC, NULL); // 일렬로 된 데이터를 쓰고..
 					m_lpTexture->UnlockRect(i);
 				}
 
@@ -342,7 +345,10 @@ bool CN3Texture::Load(HANDLE hFile)
 			{
 				m_lpTexture->GetLevelDesc(0, &sd);
 				m_lpTexture->LockRect(0, &LR, NULL, NULL);
-				ReadFile(hFile, (BYTE*)LR.pBits, sd.Size, &dwRWC, NULL); // 일렬로 된 데이터를 쓰고..
+
+				int iTexBytesLength = 0;
+				iTexBytesLength = sd.Format == D3DFMT_DXT1 ? (sd.Width * sd.Height / 2) : (sd.Width * sd.Height);
+				ReadFile(hFile, (BYTE*)LR.pBits, iTexBytesLength, &dwRWC, NULL); // 일렬로 된 데이터를 쓰고..
 				m_lpTexture->UnlockRect(0);
 
 				// 텍스처 압축안되는 비디오 카드를 위한 여분의 데이터 건너뛰기.. 
@@ -607,13 +613,16 @@ bool CN3Texture::Save(HANDLE hFile)
 			m_lpTexture->GetLevelDesc(i, &sd);
 
 			m_lpTexture->LockRect(i, &LR, NULL, NULL);
-			WriteFile(hFile, (BYTE*)LR.pBits, sd.Size, &dwRWC, NULL); // 일렬로 된 데이터를 쓰고..
+
+			int iTexBytesLength = 0;
+			iTexBytesLength = sd.Format == D3DFMT_DXT1 ? (sd.Width * sd.Height / 2) : (sd.Width * sd.Height);
+			WriteFile(hFile, (BYTE*)LR.pBits, iTexBytesLength, &dwRWC, NULL); // 일렬로 된 데이터를 쓰고..
 			m_lpTexture->UnlockRect(i);
 		}
 
 		// 추가로 압축되지 않은 형식을 써준다.. 절반 크기이다.
 		// 압축되지 않은 형식을 해상도를 한단계 낮추어서 저장.
-		LPDIRECT3DSURFACE8 lpSurfSrc = NULL, lpSurfDest = NULL;
+		LPDIRECT3DSURFACE9 lpSurfSrc = NULL, lpSurfDest = NULL;
 		D3DFORMAT fmtExtra = D3DFMT_UNKNOWN;
 		if(D3DFMT_DXT1 == sd.Format) fmtExtra = D3DFMT_A1R5G5B5;
 		else fmtExtra = D3DFMT_A4R4G4B4;
@@ -681,7 +690,7 @@ bool CN3Texture::Save(HANDLE hFile)
 
 		if(nMMC == 1 && m_Header.nWidth >= 512) // 부두를 위해 256 * 256 짜리 하나 더 저장해준다..
 		{
-			LPDIRECT3DSURFACE8 lpSurfSrc = NULL, lpSurfDest = NULL;
+			LPDIRECT3DSURFACE9 lpSurfSrc = NULL, lpSurfDest = NULL;
 
 			m_lpTexture->GetLevelDesc(0, &sd);
 			m_lpTexture->GetSurfaceLevel(0, &lpSurfSrc);
@@ -716,21 +725,21 @@ bool CN3Texture::Convert(D3DFORMAT Format, int nWidth, int nHeight, BOOL bGenera
 		nHeight = dsd.Height;
 	}
 
-	LPDIRECT3DTEXTURE8 lpTexOld = m_lpTexture;
+	LPDIRECT3DTEXTURE9 lpTexOld = m_lpTexture;
 
 	m_lpTexture = NULL;
 	if(this->Create(nWidth, nHeight, Format, bGenerateMipMap) == false) return false;
 	if(bGenerateMipMap)
 	{
-		LPDIRECT3DSURFACE8 lpTSOld;
+		LPDIRECT3DSURFACE9 lpTSOld;
 		lpTexOld->GetSurfaceLevel(0, &lpTSOld);
 		this->GenerateMipMap(lpTSOld); // MipMap 생성
 		lpTSOld->Release();
 	}
 	else
 	{
-		LPDIRECT3DSURFACE8 lpTSNew;
-		LPDIRECT3DSURFACE8 lpTSOld;
+		LPDIRECT3DSURFACE9 lpTSNew;
+		LPDIRECT3DSURFACE9 lpTSOld;
 		m_lpTexture->GetSurfaceLevel(0, &lpTSNew);
 		lpTexOld->GetSurfaceLevel(0, &lpTSOld);
 		D3DXLoadSurfaceFromSurface(lpTSNew, NULL, NULL, lpTSOld, NULL, NULL, D3DX_FILTER_NONE, 0); // 첫번재 레벨 서피스 복사.
@@ -745,7 +754,7 @@ bool CN3Texture::Convert(D3DFORMAT Format, int nWidth, int nHeight, BOOL bGenera
 #endif // end of _N3TOOL
 
 #ifdef _N3TOOL
-bool CN3Texture::GenerateMipMap(LPDIRECT3DSURFACE8 lpSurfSrc)
+bool CN3Texture::GenerateMipMap(LPDIRECT3DSURFACE9 lpSurfSrc)
 {
 	if(m_lpTexture == NULL) return false;
 
@@ -764,7 +773,7 @@ bool CN3Texture::GenerateMipMap(LPDIRECT3DSURFACE8 lpSurfSrc)
 	HRESULT rval = D3D_OK;
 	if(nMMC < nMMC2) // 적으면 새로 생성..
 	{
-		LPDIRECT3DTEXTURE8 lpTexOld = m_lpTexture;
+		LPDIRECT3DTEXTURE9 lpTexOld = m_lpTexture;
 		m_lpTexture = NULL;
 		rval = this->CreateFromSurface(lpSurfSrc, m_Header.Format, TRUE);
 		if(bNeedReleaseSurf) { lpSurfSrc->Release(); lpSurfSrc = NULL; }
@@ -785,7 +794,7 @@ bool CN3Texture::GenerateMipMap(LPDIRECT3DSURFACE8 lpSurfSrc)
 	{
 		if(false == bNeedReleaseSurf) // 다른 서피스에서 복사해야 되는 거면 0 레벨도 복사..
 		{
-			LPDIRECT3DSURFACE8 lpSurfDest;
+			LPDIRECT3DSURFACE9 lpSurfDest;
 			m_lpTexture->GetSurfaceLevel(0, &lpSurfDest);
 			DWORD dwFilter = D3DX_FILTER_TRIANGLE; // 기본 필터는 없다..
 			HRESULT rval = D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfSrc, NULL, NULL, dwFilter, 0); // 작은 맵 체인에 서피스 이미지 축소 복사 
@@ -794,7 +803,7 @@ bool CN3Texture::GenerateMipMap(LPDIRECT3DSURFACE8 lpSurfSrc)
 
 		for(int i = 1; i < nMMC2; i++)
 		{
-			LPDIRECT3DSURFACE8 lpSurfDest, lpSurfUp;
+			LPDIRECT3DSURFACE9 lpSurfDest, lpSurfUp;
 			m_lpTexture->GetSurfaceLevel(i-1, &lpSurfUp);
 			m_lpTexture->GetSurfaceLevel(i, &lpSurfDest);
 			DWORD dwFilter = D3DX_FILTER_TRIANGLE; // 기본 필터는 없다..
@@ -828,12 +837,12 @@ bool CN3Texture::SaveToBitmapFile(const std::string& szFN)
 	if(szFN.empty()) return false;
 	if(NULL == m_lpTexture) return false;
 
-	LPDIRECT3DSURFACE8 lpSurfSrc = NULL;
+	LPDIRECT3DSURFACE9 lpSurfSrc = NULL;
 	m_lpTexture->GetSurfaceLevel(0, &lpSurfSrc);
 
 	if(NULL == lpSurfSrc) return false;
 
-	LPDIRECT3DSURFACE8 lpSurfDest = NULL;
+	LPDIRECT3DSURFACE9 lpSurfDest = NULL;
 	s_lpD3DDev->CreateImageSurface(m_Header.nWidth, m_Header.nHeight, D3DFMT_A8R8G8B8, &lpSurfDest);
 
 	if(NULL == lpSurfDest) return false;

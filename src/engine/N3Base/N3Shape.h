@@ -93,7 +93,7 @@ public:
 	virtual ~CN3SPart();
 
 #ifdef _USE_VERTEXBUFFER
-	void			PartialRender(int iCount, LPDIRECT3DINDEXBUFFER8 pIB);
+	void			PartialRender(int iCount, LPDIRECT3DINDEXBUFFER9 pIB);
 #else
 	void			PartialRender(int iCount, WORD* pIndices);
 #endif
@@ -155,7 +155,7 @@ public:
 	void			SetMaxLOD();
 	__Matrix44	GetPartMatrix(int iPartIndex);
 #ifdef _USE_VERTEXBUFFER
-	void			PartialRender(int iPartIndex, int iCount, LPDIRECT3DINDEXBUFFER8 pIB);
+	void			PartialRender(int iPartIndex, int iCount, LPDIRECT3DINDEXBUFFER9 pIB);
 #else
 	void			PartialRender(int iPartIndex, int iCount, WORD* pIndices);
 #endif

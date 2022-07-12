@@ -127,7 +127,7 @@ void CN3UITooltip::SetText(const std::string& szText)
 	ptNew.x -= (m_rcRegion.right - m_rcRegion.left) / 2;
 	ptNew.y -= (m_rcRegion.bottom - m_rcRegion.top) + 10;
 
-	D3DVIEWPORT8 &vp = s_CameraData.vp;
+	D3DVIEWPORT9 &vp = s_CameraData.vp;
 	int iRegionWidth = m_rcRegion.right - m_rcRegion.left;
 	int iRegionHeight = m_rcRegion.bottom - m_rcRegion.top;
 

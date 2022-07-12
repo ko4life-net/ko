@@ -22,7 +22,7 @@ struct __AlphaPrimitive
 	DWORD				dwBlendSrc;			
 	DWORD				dwBlendDest;
 	int 				nRenderFlags;		// 렌더링 플래그.. RF_... 참조..
-	LPDIRECT3DTEXTURE8	lpTex;				// Texture pointer
+	LPDIRECT3DTEXTURE9	lpTex;				// Texture pointer
 	DWORD				dwFVF;				// flexible vertex format
 	D3DPRIMITIVETYPE	ePrimitiveType;	// Primitive Type 
 	int					nPrimitiveCount;	// PrimitiveCount

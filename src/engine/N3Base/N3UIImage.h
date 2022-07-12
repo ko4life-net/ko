@@ -26,7 +26,7 @@ public:
 public:
 	__FLOAT_RECT*			GetUVRect() {return &m_frcUVRect;}
 protected:
-	LPDIRECT3DVERTEXBUFFER8 m_pVB;			// vertex buffer
+	LPDIRECT3DVERTEXBUFFER9 m_pVB;			// vertex buffer
 	CN3Texture*				m_pTexRef;		// texture 참조 포인터 (s_TexMng에서 관리하므로 참조포인터이다.)
 	std::string				m_szTexFN;		// 텍스처 이름.. 따로 갖고 있는 이유는 툴에서 텍스처 부르기가 실패할 경우를 대비해서이다.
 	__FLOAT_RECT			m_frcUVRect;	// uv 좌표를 저장

@@ -82,7 +82,7 @@ void CN3Board::Tick(float fFrm)
 
 void CN3Board::Render()
 {
-	LPDIRECT3DTEXTURE8 lpTex = NULL;
+	LPDIRECT3DTEXTURE9 lpTex = NULL;
 	int iTC = m_TexRefs.size();
 	if(iTC > 0 && m_fTexIndex < iTC) lpTex = m_TexRefs[(int)m_fTexIndex]->Get();
 

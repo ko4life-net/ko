@@ -64,7 +64,7 @@ void CN3UIEdit::CN3Caret::SetColor(D3DCOLOR color)
 	m_pVB[0].color = color;
 	m_pVB[1].color = color;
 }
-void CN3UIEdit::CN3Caret::Render(LPDIRECT3DDEVICE8	lpD3DDev)
+void CN3UIEdit::CN3Caret::Render(LPDIRECT3DDEVICE9	lpD3DDev)
 {
 	if (FALSE == m_bVisible) return;
 
@@ -77,7 +77,7 @@ void CN3UIEdit::CN3Caret::Render(LPDIRECT3DDEVICE8	lpD3DDev)
 	}
 	if(!m_bFlickerStatus) return;
 
-	__ASSERT(lpD3DDev, "DIRECT3DDEVICE8 is null");
+	__ASSERT(lpD3DDev, "DIRECT3DDEVICE9 is null");
 	lpD3DDev->SetTexture(0, NULL);
 //	lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP,    D3DTOP_SELECTARG1 );
 //	lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1,  D3DTA_DIFFUSE );

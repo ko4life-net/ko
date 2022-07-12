@@ -316,7 +316,7 @@ void CN3FXPMeshInstance::RenderTwoUV()
 }
 
 #ifdef _USE_VERTEXBUFFER
-LPDIRECT3DVERTEXBUFFER8	CN3FXPMeshInstance::GetVertexBuffer() const
+LPDIRECT3DVERTEXBUFFER9	CN3FXPMeshInstance::GetVertexBuffer() const
 {
 	if (m_pFXPMesh == NULL) return NULL;
 	return m_pFXPMesh->GetVertexBuffer();

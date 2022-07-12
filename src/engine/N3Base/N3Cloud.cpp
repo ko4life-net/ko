@@ -221,7 +221,7 @@ void CN3Cloud::Render()
 
 }
 
-LPDIRECT3DTEXTURE8	CN3Cloud::GetTex(e_CLOUDTEX tex)
+LPDIRECT3DTEXTURE9	CN3Cloud::GetTex(e_CLOUDTEX tex)
 {
 	if (NULL == m_pTextures[tex])
 	{

@@ -24,7 +24,7 @@ protected:
 
 	__VertexXyzNormal*	m_pVertices; // 좌표 Data
 	float*				m_pfUVs; // UV Data - m_nUVC * 2 만큼 할당한다.
-//	LPDIRECT3DVERTEXBUFFER8 m_lpVB;
+//	LPDIRECT3DVERTEXBUFFER9 m_lpVB;
 
 	__Vector3			m_vMin, m_vMax; // 최소, 최대점.. 변하긴 하지만 대략적으로...
 

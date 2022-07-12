@@ -147,8 +147,8 @@ void CN3AlphaPrimitiveManager::Render()
 		{
 			if (pBuffs[i]->bUseVB)
 			{
-				CN3Base::s_lpD3DDev->SetStreamSource( 0, (LPDIRECT3DVERTEXBUFFER8)pBuffs[i]->pVertices, pBuffs[i]->dwPrimitiveSize );
-				CN3Base::s_lpD3DDev->SetIndices((LPDIRECT3DINDEXBUFFER8)pBuffs[i]->pwIndices, 0);
+				CN3Base::s_lpD3DDev->SetStreamSource( 0, (LPDIRECT3DVERTEXBUFFER9)pBuffs[i]->pVertices, pBuffs[i]->dwPrimitiveSize );
+				CN3Base::s_lpD3DDev->SetIndices((LPDIRECT3DINDEXBUFFER9)pBuffs[i]->pwIndices, 0);
 				CN3Base::s_lpD3DDev->DrawIndexedPrimitive(	pBuffs[i]->ePrimitiveType,
 												0,
 												pBuffs[i]->nVertexCount,
@@ -171,7 +171,7 @@ void CN3AlphaPrimitiveManager::Render()
 		{
 			if (pBuffs[i]->bUseVB)
 			{
-				CN3Base::s_lpD3DDev->SetStreamSource( 0, (LPDIRECT3DVERTEXBUFFER8)pBuffs[i]->pVertices, pBuffs[i]->dwPrimitiveSize );
+				CN3Base::s_lpD3DDev->SetStreamSource( 0, (LPDIRECT3DVERTEXBUFFER9)pBuffs[i]->pVertices, pBuffs[i]->dwPrimitiveSize );
 				CN3Base::s_lpD3DDev->DrawPrimitive(	pBuffs[i]->ePrimitiveType,
 										0,
 										pBuffs[i]->nPrimitiveCount );
@@ -359,8 +359,8 @@ void CN3AlphaPrimitiveManager::Render()
 		{
 			if (pBuffs[i]->bUseVB)
 			{
-				CN3Base::s_lpD3DDev->SetStreamSource( 0, (LPDIRECT3DVERTEXBUFFER8)pBuffs[i]->pVertices, pBuffs[i]->dwPrimitiveSize );
-				CN3Base::s_lpD3DDev->SetIndices((LPDIRECT3DINDEXBUFFER8)pBuffs[i]->pwIndices, 0);
+				CN3Base::s_lpD3DDev->SetStreamSource( 0, (LPDIRECT3DVERTEXBUFFER9)pBuffs[i]->pVertices, pBuffs[i]->dwPrimitiveSize );
+				CN3Base::s_lpD3DDev->SetIndices((LPDIRECT3DINDEXBUFFER9)pBuffs[i]->pwIndices, 0);
 				CN3Base::s_lpD3DDev->DrawIndexedPrimitive(	pBuffs[i]->ePrimitiveType,
 												0,
 												pBuffs[i]->nVertexCount,
@@ -383,7 +383,7 @@ void CN3AlphaPrimitiveManager::Render()
 		{
 			if (pBuffs[i]->bUseVB)
 			{
-				CN3Base::s_lpD3DDev->SetStreamSource( 0, (LPDIRECT3DVERTEXBUFFER8)pBuffs[i]->pVertices, pBuffs[i]->dwPrimitiveSize );
+				CN3Base::s_lpD3DDev->SetStreamSource( 0, (LPDIRECT3DVERTEXBUFFER9)pBuffs[i]->pVertices, pBuffs[i]->dwPrimitiveSize );
 				CN3Base::s_lpD3DDev->DrawPrimitive(	pBuffs[i]->ePrimitiveType,
 										0,
 										pBuffs[i]->nPrimitiveCount );
@@ -437,7 +437,7 @@ __AlphaPrimitive* CN3AlphaPrimitiveManager::Add(	__Vector3& vCamera,
 													DWORD dwBlendSrc, 
 													DWORD dwBlendDest, 
 													int	nRenderFlags, 
-													LPDIRECT3DTEXTURE8 lpTex, 
+													LPDIRECT3DTEXTURE9 lpTex, 
 													DWORD dwFVF, 
 													int nPrimitiveCount, 
 													D3DPRIMITIVETYPE ePrimitiveType, 

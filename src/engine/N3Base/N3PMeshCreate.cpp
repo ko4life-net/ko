@@ -861,7 +861,7 @@ bool CN3PMeshCreate::ConvertFromN3PMesh(CN3PMesh* pN3PMesh)
 
 #ifdef _USE_VERTEXBUFFER
 	// copy vertices
-	LPDIRECT3DVERTEXBUFFER8 pVB = PMeshInst.GetVertexBuffer();
+	LPDIRECT3DVERTEXBUFFER9 pVB = PMeshInst.GetVertexBuffer();
 	if (pVB)
 	{
 		m_pVertices = new __VertexT1[m_iNumVertices];
@@ -874,7 +874,7 @@ bool CN3PMeshCreate::ConvertFromN3PMesh(CN3PMesh* pN3PMesh)
 		pVB->Unlock();
 	}
 	// copy indices
-	LPDIRECT3DINDEXBUFFER8 pIB = PMeshInst.GetIndexBuffer();
+	LPDIRECT3DINDEXBUFFER9 pIB = PMeshInst.GetIndexBuffer();
 	if (pIB)
 	{
 		m_pIndices = new WORD[m_iNumIndices];

@@ -64,7 +64,7 @@ struct __CameraData
 	float			fAspect; // 종횡비
 	float			fNP; // NearPlane
 	float			fFP; // FarPlane
-	D3DVIEWPORT8	vp; // ViewPort;
+	D3DVIEWPORT9	vp; // ViewPort;
 	__Matrix44		mtxView;
 	__Matrix44		mtxViewInverse;
 	__Matrix44		mtxProjection;
@@ -163,9 +163,9 @@ struct __Options
 class CN3Base
 {
 public:
-	static LPDIRECT3DDEVICE8		s_lpD3DDev; // Device 참조 포인터.. 멋대로 해제하면 안된다..
+	static LPDIRECT3DDEVICE9		s_lpD3DDev; // Device 참조 포인터.. 멋대로 해제하면 안된다..
 	static D3DPRESENT_PARAMETERS	s_DevParam; // Device 생성 Present Parameter
-	static D3DCAPS8					s_DevCaps; // Device 호환성...
+	static D3DCAPS9					s_DevCaps; // Device 호환성...
 	static DWORD					s_dwTextureCaps; // Texture 지원.. DXT1 ~ DXT5, Square Only
 	static HWND						s_hWndBase; // Init 할때 쓴 Window Handle
 	static HWND						s_hWndPresent; // 최근에 Present 한 Window Handle
@@ -186,7 +186,7 @@ public:
 	static CN3SndMgr				s_SndMgr;
 #endif
 
-	static CN3AlphaPrimitiveManager	s_AlphaMgr; // Alpha blend 할 폴리곤들을 관리.. 추가했다가.. 카메라 거리에 맟추어 정렬하고 한꺼번에 그린다..
+	static CN3AlphaPrimitiveManager	s_AlphaMgr; // Alpha blend 할 폴리곤들을 관리.. 추가했다가.. 카메라 거리에 씗추어 정렬하고 한꺼번에 그린다..
 
 	static CN3Mng<class CN3Texture>		s_MngTex; // Texture Manager
 	static CN3Mng<class CN3Mesh>		s_MngMesh; // Normal Mesh Manager

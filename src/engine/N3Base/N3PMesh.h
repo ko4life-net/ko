@@ -52,8 +52,8 @@ protected:
 
 	// Mesh Á¤º¸
 #ifdef _USE_VERTEXBUFFER
-	LPDIRECT3DVERTEXBUFFER8 m_pVB;
-	LPDIRECT3DINDEXBUFFER8	m_pIB;
+	LPDIRECT3DVERTEXBUFFER9 m_pVB;
+	LPDIRECT3DINDEXBUFFER9	m_pIB;
 #else
 	__VertexT1*		m_pVertices;
 	__VertexT2*		m_pVertices2;
@@ -108,8 +108,8 @@ public:
 	int GetMinNumIndices() const {return m_iMinNumIndices;};
 
 #ifdef _USE_VERTEXBUFFER
-	LPDIRECT3DVERTEXBUFFER8	GetVertexBuffer() const {return m_pVB;}
-	LPDIRECT3DINDEXBUFFER8	GetIndexBuffer() const {return m_pIB;}
+	LPDIRECT3DVERTEXBUFFER9	GetVertexBuffer() const {return m_pVB;}
+	LPDIRECT3DINDEXBUFFER9	GetIndexBuffer() const {return m_pIB;}
 #else
 	__VertexT1*		GetVertices() const { return m_pVertices; };
 	__VertexT2*		GetVertices2() const { return m_pVertices2; };

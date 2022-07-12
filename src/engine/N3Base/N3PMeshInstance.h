@@ -26,7 +26,7 @@ public:
 
 protected:
 #ifdef _USE_VERTEXBUFFER
-	LPDIRECT3DINDEXBUFFER8	m_pIB;
+	LPDIRECT3DINDEXBUFFER9	m_pIB;
 #else
 	WORD* m_pIndices;
 #endif
@@ -60,8 +60,8 @@ public:
 	CN3PMesh*	GetMesh() {return m_pPMesh;};
 
 #ifdef _USE_VERTEXBUFFER
-	LPDIRECT3DVERTEXBUFFER8	GetVertexBuffer() const;
-	LPDIRECT3DINDEXBUFFER8 GetIndexBuffer() const {return m_pIB;}
+	LPDIRECT3DVERTEXBUFFER9	GetVertexBuffer() const;
+	LPDIRECT3DINDEXBUFFER9 GetIndexBuffer() const {return m_pIB;}
 #else
 	__VertexT1*	GetVertices() const;
 	WORD*		GetIndices() const { return m_pIndices;};
@@ -70,7 +70,7 @@ public:
 //	By : Ecli666 ( On 2002-08-06 ¿ÀÈÄ 4:33:04 )
 //
 #ifdef _USE_VERTEXBUFFER
-	void			PartialRender(int iCount, LPDIRECT3DINDEXBUFFER8 pIB);
+	void			PartialRender(int iCount, LPDIRECT3DINDEXBUFFER9 pIB);
 #else
 	void			PartialRender(int iCount, WORD* pIndices);
 #endif

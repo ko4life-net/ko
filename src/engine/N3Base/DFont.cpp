@@ -1,7 +1,7 @@
 // DFont.cpp: implementation of the CDFont class.
 //
 //////////////////////////////////////////////////////////////////////
-#include <D3DX8.h>
+#include <d3dx9.h>
 #include "DFont.h"
 
 const int MAX_NUM_VERTICES = 50*6;
@@ -103,7 +103,7 @@ HRESULT CDFont::SetFont(const std::string& szFontName, DWORD dwHeight, DWORD dwF
 	return S_OK;
 }
 
-HRESULT CDFont::InitDeviceObjects( LPDIRECT3DDEVICE8 pd3dDevice )
+HRESULT CDFont::InitDeviceObjects( LPDIRECT3DDEVICE9 pd3dDevice )
 {
 	// Keep a local copy of the device
 	m_pd3dDevice = pd3dDevice;
@@ -268,7 +268,7 @@ HRESULT CDFont::SetText(const std::string& szText, DWORD dwFlags)
 
     // If requested texture is too big, use a smaller texture and smaller font,
     // and scale up when rendering.
-    D3DCAPS8 d3dCaps;
+    D3DCAPS9 d3dCaps;
     m_pd3dDevice->GetDeviceCaps( &d3dCaps );
 
     if( m_dwTexWidth > d3dCaps.MaxTextureWidth )
@@ -380,8 +380,8 @@ HRESULT CDFont::SetText(const std::string& szText, DWORD dwFlags)
 		int iMMC = m_pTexture->GetLevelCount();
 		for(int i = 1; i < iMMC; i++)
 		{
-			LPDIRECT3DSURFACE8 lpSurfSrc = NULL;
-			LPDIRECT3DSURFACE8 lpSurfDest = NULL;
+			LPDIRECT3DSURFACE9 lpSurfSrc = NULL;
+			LPDIRECT3DSURFACE9 lpSurfDest = NULL;
 			m_pTexture->GetSurfaceLevel(i-1, &lpSurfSrc);
 			m_pTexture->GetSurfaceLevel(i, &lpSurfDest);
 

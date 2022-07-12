@@ -30,13 +30,13 @@ CN3Eng::CN3Eng()
 
 	// Direct3D 생성
 	m_lpD3D = NULL;
-	m_lpD3D = Direct3DCreate8(D3D_SDK_VERSION);
+	m_lpD3D = Direct3DCreate9(D3D_SDK_VERSION);
 	if(NULL == m_lpD3D)
 	{
-		MessageBox(::GetActiveWindow(), "Direct3D8 is not installed or lower version.", "Initialization", MB_OK);
+		MessageBox(::GetActiveWindow(), "Direct3D9 is not installed or lower version.", "Initialization", MB_OK);
 //		{ for(int iii = 0; iii < 1; iii++) Beep(2000, 200); Sleep(300); } // 여러번 삑~
 #ifdef _N3GAME
-		CLogWriter::Write("Direct3D8 is not installed or lower version");
+		CLogWriter::Write("Direct3D9 is not installed or lower version");
 #endif
 		this->Release();
 		exit(-1);
@@ -143,7 +143,7 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
 	s_DevParam.EnableAutoDepthStencil = TRUE;
 	s_DevParam.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	s_DevParam.FullScreen_RefreshRateInHz = D3DPRESENT_RATE_DEFAULT;
-	s_DevParam.FullScreen_PresentationInterval = D3DPRESENT_INTERVAL_DEFAULT;
+	s_DevParam.PresentationInterval = D3DPRESENT_INTERVAL_DEFAULT;
 
 	D3DFORMAT BBFormat = D3DFMT_UNKNOWN;
 	if(TRUE == bWindowed) // 윈도우 모드일 경우
@@ -275,7 +275,7 @@ void CN3Eng::SetProjection(float fNear, float fFar, float fLens, float fAspect)
 void CN3Eng::SetViewPort(RECT& rc)
 {
 	if(NULL == s_lpD3DDev) return;
-	D3DVIEWPORT8 vp;
+	D3DVIEWPORT9 vp;
 
 	vp.X = rc.left;
 	vp.Y = rc.top;
@@ -285,7 +285,7 @@ void CN3Eng::SetViewPort(RECT& rc)
 	vp.MaxZ = 1.0f;
 
 	s_lpD3DDev->SetViewport(&vp);
-	memcpy(&s_CameraData.vp, &vp, sizeof(D3DVIEWPORT8));
+	memcpy(&s_CameraData.vp, &vp, sizeof(D3DVIEWPORT9));
 }
 
 LRESULT WINAPI CN3Eng::MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
@@ -569,7 +569,7 @@ void CN3Eng::SetDefaultEnvironment()
 	}
 
 	// 클리핑 상태 지정
-	D3DCLIPSTATUS8 cs; cs.ClipUnion = cs.ClipIntersection = D3DCS_ALL;
+	D3DCLIPSTATUS9 cs; cs.ClipUnion = cs.ClipIntersection = D3DCS_ALL;
 	s_lpD3DDev->SetClipStatus(&cs);	
 }
 

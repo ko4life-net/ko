@@ -203,7 +203,7 @@ void CN3CPart::Render(int nLOD)
 	}
 
 	s_lpD3DDev->SetMaterial(&m_Mtl);
-	LPDIRECT3DTEXTURE8 lpTex = NULL;
+	LPDIRECT3DTEXTURE9 lpTex = NULL;
 	bool bUseTwoUV = false;
 	if(m_pTexRef) lpTex = m_pTexRef->Get();
 	if(lpTex)
@@ -372,7 +372,7 @@ void CN3CPlugBase::Render(const __Matrix44& mtxParent, const __Matrix44& mtxJoin
 	s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx);
 
 	s_lpD3DDev->SetMaterial(&m_Mtl);
-	LPDIRECT3DTEXTURE8 lpTex = NULL;
+	LPDIRECT3DTEXTURE9 lpTex = NULL;
 	bool bUseTwoUV = false;
 	if(m_pTexRef) lpTex = m_pTexRef->Get();
 	if(lpTex)

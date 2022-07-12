@@ -407,7 +407,7 @@ void CN3PMeshInstance::RenderTwoUV()
 }
 
 #ifdef _USE_VERTEXBUFFER
-LPDIRECT3DVERTEXBUFFER8	CN3PMeshInstance::GetVertexBuffer() const
+LPDIRECT3DVERTEXBUFFER9	CN3PMeshInstance::GetVertexBuffer() const
 {
 	if (m_pPMesh == NULL) return NULL;
 	return m_pPMesh->GetVertexBuffer();
@@ -424,7 +424,7 @@ __VertexT1*	CN3PMeshInstance::GetVertices() const
 //	By : Ecli666 ( On 2002-08-06 ¿ÀÈÄ 4:33:04 )
 //
 #ifdef _USE_VERTEXBUFFER
-void CN3PMeshInstance::PartialRender(int iCount, LPDIRECT3DINDEXBUFFER8 pIB)
+void CN3PMeshInstance::PartialRender(int iCount, LPDIRECT3DINDEXBUFFER9 pIB)
 {
 	if (m_pPMesh == NULL) return;
 	s_lpD3DDev->SetVertexShader(FVF_VNT1);
