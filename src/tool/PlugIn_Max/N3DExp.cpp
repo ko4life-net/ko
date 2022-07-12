@@ -11,8 +11,8 @@
  *>	Copyright (c) 1997, All Rights Reserved.
  **********************************************************************/
 
-#include "../N3Base/StdAfxBase.h"
-#include "../N3Base/N3PMeshCreate.h"
+#include "N3Base/StdAfxBase.h"
+#include "N3Base/N3PMeshCreate.h"
 #include "N3DExp.h"
 
 #ifdef _DEBUG

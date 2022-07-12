@@ -11,6 +11,6 @@
 
 // 추가 헤더..
 #include <stdio.h>
-#include "../N3Base/My_3DStruct.h"
+#include "N3Base/My_3DStruct.h"
 
 #endif // !defined(AFX_STDAFX_H__56FE7113_3A24_4DE1_BFF7_2E9D5F20984B__INCLUDED_)

@@ -34,9 +34,9 @@
 #include "N3E2Wrapper.h"
 #include "IFFReader.h"
 
-#include "../N3Base/N3Eng.h"
-#include "../N3Base/N3Scene.h"
-#include "../N3Base/N3PMeshCreate.h"
+#include "N3Base/N3Eng.h"
+#include "N3Base/N3Scene.h"
+#include "N3Base/N3PMeshCreate.h"
 
 extern const char * objectName( MObject object );
 

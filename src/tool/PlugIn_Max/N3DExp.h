@@ -15,8 +15,8 @@
 
 #include "stdafx.h"
 
-#include "../N3Base/N3EngTool.h"
-#include "../N3Base/N3Scene.h"
+#include "N3Base/N3EngTool.h"
+#include "N3Base/N3Scene.h"
 
 #include "Bipexp.h" // biped
 #include "Phyexp.h" // physique
