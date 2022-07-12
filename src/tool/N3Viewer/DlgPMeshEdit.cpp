@@ -7,9 +7,9 @@
 #include "DlgPMeshCreateOption.h"
 #include "DlgPMeshEdit.h"
 
-#include "../N3Base/N3Texture.h"
-#include "../N3Base/N3PMeshCreate.h"
-#include "../N3Base/N3PMeshInstance.h"
+#include "N3Base/N3Texture.h"
+#include "N3Base/N3PMeshCreate.h"
+#include "N3Base/N3PMeshInstance.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

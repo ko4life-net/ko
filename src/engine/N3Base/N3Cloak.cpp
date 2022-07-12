@@ -7,9 +7,9 @@
 #include "N3Texture.h"
 #include "N3PMeshInstance.h"
 
-#if !defined(_REPENT) && defined(_N3GAME)
+// #if !defined(_REPENT) && defined(_N3GAME)
 #include "PlayerBase.h"
-#endif
+// #endif
 
 #ifdef _DEBUG
 #undef THIS_FILE

@@ -11,7 +11,7 @@
 // CViewProperty form view
 class CN3ViewerDoc;
 
-#include "../Common Control/PropertyList.h"
+#include "../Widget/PropertyList.h"
 
 class CViewProperty : public CFormView
 {

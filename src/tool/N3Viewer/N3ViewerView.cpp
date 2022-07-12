@@ -3,10 +3,10 @@
 
 #include "stdafx.h"
 
-#include "../N3Base/N3Camera.h"
-#include "../N3Base/N3Light.h"
-#include "../N3Base/N3Shape.h"
-#include "../N3Base/N3Chr.h"
+#include "N3Base/N3Camera.h"
+#include "N3Base/N3Light.h"
+#include "N3Base/N3Shape.h"
+#include "N3Base/N3Chr.h"
 
 #include "N3Viewer.h"
 #include "MainFrm.h"
