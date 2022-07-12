@@ -92,7 +92,7 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE=..\N3Base\BitMapFile.cpp
+SOURCE=..\..\engine\N3Base\BitMapFile.cpp
 # End Source File
 # Begin Source File
 
@@ -108,7 +108,7 @@ SOURCE=.\FormViewControl.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\LogWriter.cpp
+SOURCE=..\..\engine\N3Base\LogWriter.cpp
 # End Source File
 # Begin Source File
 
@@ -116,35 +116,35 @@ SOURCE=.\MainFrm.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3AlphaPrimitiveManager.cpp
+SOURCE=..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3AnimControl.cpp
+SOURCE=..\..\engine\N3Base\N3AnimControl.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3AnimKey.cpp
+SOURCE=..\..\engine\N3Base\N3AnimKey.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Base.cpp
+SOURCE=..\..\engine\N3Base\N3Base.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3BaseFileAccess.cpp
+SOURCE=..\..\engine\N3Base\N3BaseFileAccess.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Camera.cpp
+SOURCE=..\..\engine\N3Base\N3Camera.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Eng.cpp
+SOURCE=..\..\engine\N3Base\N3Eng.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3EngTool.cpp
+SOURCE=..\..\engine\N3Base\N3EngTool.cpp
 # End Source File
 # Begin Source File
 
@@ -160,47 +160,47 @@ SOURCE=.\N3FEView.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3IMesh.cpp
+SOURCE=..\..\engine\N3Base\N3IMesh.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Light.cpp
+SOURCE=..\..\engine\N3Base\N3Light.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3PMesh.cpp
+SOURCE=..\..\engine\N3Base\N3PMesh.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3PMeshCreate.cpp
+SOURCE=..\..\engine\N3Base\N3PMeshCreate.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3PMeshInstance.cpp
+SOURCE=..\..\engine\N3Base\N3PMeshInstance.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3Shape.cpp
+SOURCE=..\..\engine\N3Base\N3Shape.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Texture.cpp
+SOURCE=..\..\engine\N3Base\N3Texture.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Transform.cpp
+SOURCE=..\..\engine\N3Base\N3Transform.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3TransformCollision.cpp
+SOURCE=..\..\engine\N3Base\N3TransformCollision.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3VMesh.cpp
+SOURCE=..\..\engine\N3Base\N3VMesh.cpp
 # End Source File
 # Begin Source File
 
-SOURCE="..\Common Control\PropertyList.cpp"
+SOURCE="..\Widget\PropertyList.cpp"
 # End Source File
 # Begin Source File
 
@@ -216,7 +216,7 @@ SOURCE=.\StdAfx.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=..\N3Base\BitMapFile.h
+SOURCE=..\..\engine\N3Base\BitMapFile.h
 # End Source File
 # Begin Source File
 
@@ -232,7 +232,7 @@ SOURCE=.\FormViewControl.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\LogWriter.h
+SOURCE=..\..\engine\N3Base\LogWriter.h
 # End Source File
 # Begin Source File
 
@@ -240,39 +240,39 @@ SOURCE=.\MainFrm.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\My_3DStruct.h
+SOURCE=..\..\engine\N3Base\My_3DStruct.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3AlphaPrimitiveManager.h
+SOURCE=..\..\engine\N3Base\N3AlphaPrimitiveManager.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3AnimControl.h
+SOURCE=..\..\engine\N3Base\N3AnimControl.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3AnimKey.h
+SOURCE=..\..\engine\N3Base\N3AnimKey.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Base.h
+SOURCE=..\..\engine\N3Base\N3Base.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3BaseFileAccess.h
+SOURCE=..\..\engine\N3Base\N3BaseFileAccess.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Camera.h
+SOURCE=..\..\engine\N3Base\N3Camera.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Eng.h
+SOURCE=..\..\engine\N3Base\N3Eng.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3EngTool.h
+SOURCE=..\..\engine\N3Base\N3EngTool.h
 # End Source File
 # Begin Source File
 
@@ -284,59 +284,59 @@ SOURCE=.\N3FEView.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3FXDef.h
+SOURCE=..\..\engine\N3Base\N3FXDef.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3FXPartBase.h
+SOURCE=..\..\engine\N3Base\N3FXPartBase.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3FXPartParticles.h
+SOURCE=..\..\engine\N3Base\N3FXPartParticles.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3IMesh.h
+SOURCE=..\..\engine\N3Base\N3IMesh.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Light.h
+SOURCE=..\..\engine\N3Base\N3Light.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3PMesh.h
+SOURCE=..\..\engine\N3Base\N3PMesh.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3PMeshCreate.h
+SOURCE=..\..\engine\N3Base\N3PMeshCreate.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3PMeshInstance.h
+SOURCE=..\..\engine\N3Base\N3PMeshInstance.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3Shape.h
+SOURCE=..\..\engine\N3Base\N3Shape.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Texture.h
+SOURCE=..\..\engine\N3Base\N3Texture.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Transform.h
+SOURCE=..\..\engine\N3Base\N3Transform.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3TransformCollision.h
+SOURCE=..\..\engine\N3Base\N3TransformCollision.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3VMesh.h
+SOURCE=..\..\engine\N3Base\N3VMesh.h
 # End Source File
 # Begin Source File
 
-SOURCE="..\Common Control\PropertyList.h"
+SOURCE="..\Widget\PropertyList.h"
 # End Source File
 # Begin Source File
 

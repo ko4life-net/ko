@@ -6,7 +6,7 @@
 #include "MainFrm.h"
 #include "DlgEditScript.h"
 #include "DlgNewFileName.h"
-#include "../N3Base/N3FXBundle.h"
+#include "N3Base/N3FXBundle.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

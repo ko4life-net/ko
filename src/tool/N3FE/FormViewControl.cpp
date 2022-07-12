@@ -138,18 +138,18 @@ void CFormViewControl::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
 	CN3FEDoc* pDoc = GetDocument();
 	
-	SetDlgItemText(IDC_E_PATH, pDoc->m_EffectMgr.PathGet().c_str());
+	//SetDlgItemText(IDC_E_PATH, pDoc->m_EffectMgr.PathGet().c_str());
 	
 	if(m_BundleList.GetSafeHwnd())
 	{
 		int nPrevSel = m_BundleList.GetCurSel();
 		m_BundleList.ResetContent();
-		for(int i = 0; i < pDoc->m_EffectMgr.BundleCount(); i++)
-		{
-			__EffectBundle* pEB = pDoc->m_EffectMgr.Bundle(i);
-			m_BundleList.AddString(pEB->szName);
-			m_BundleList.SetItemData(i, (DWORD)pEB);
-		}
+		//for(int i = 0; i < pDoc->m_EffectMgr.BundleCount(); i++)
+		//{
+		//	__EffectBundle* pEB = pDoc->m_EffectMgr.Bundle(i);
+		//	m_BundleList.AddString(pEB->szName);
+		//	m_BundleList.SetItemData(i, (DWORD)pEB);
+		//}
 		m_BundleList.SetCurSel(nPrevSel);
 	}
 
@@ -157,12 +157,12 @@ void CFormViewControl::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 	{
 		int nPrevSel = m_PartList.GetCurSel();
 		m_PartList.ResetContent();
-		for(int i = 0; i < pDoc->m_EffectMgr.PartCount(); i++)
-		{
-			__EffectPartBase* pEPB = pDoc->m_EffectMgr.Part(i);
-			m_PartList.AddString(pEPB->szName);
-			m_PartList.SetItemData(i, (DWORD)pEPB);
-		}
+		//for(int i = 0; i < pDoc->m_EffectMgr.PartCount(); i++)
+		//{
+		//	__EffectPartBase* pEPB = pDoc->m_EffectMgr.Part(i);
+		//	m_PartList.AddString(pEPB->szName);
+		//	m_PartList.SetItemData(i, (DWORD)pEPB);
+		//}
 		m_PartList.SetCurSel(nPrevSel);
 	}
 
@@ -201,7 +201,7 @@ void CFormViewControl::OnBUpdateEffect()
 	int nB = m_BundleList.GetCurSel();
 	if(nB >= 0 && nB < pDoc->m_szBundleScripts.GetSize())
 	{
-		__EffectBundle* pEB = pDoc->m_EffectMgr.Bundle(nB);
+		//__EffectBundle* pEB = pDoc->m_EffectMgr.Bundle(nB);
 		GetDlgItemText(IDC_E_BUNDLE_SCRIPT, pDoc->m_szBundleScripts[nB]);
 		std::string szFNTmp = "C:\\Temp.N3FXBundle";
 		CFile file;
@@ -209,7 +209,7 @@ void CFormViewControl::OnBUpdateEffect()
 		{
 			file.Write(pDoc->m_szBundleScripts[nB], pDoc->m_szBundleScripts[nB].GetLength());
 			file.Close();
-			pDoc->m_EffectMgr.ParsingBundle((LPCTSTR)szFNTmp, pEB);
+			//pDoc->m_EffectMgr.ParsingBundle((LPCTSTR)szFNTmp, pEB);
 		}
 	}
 
@@ -217,7 +217,7 @@ void CFormViewControl::OnBUpdateEffect()
 	if(nP >= 0 && nP < pDoc->m_szPartScripts.GetSize())
 	{
 		GetDlgItemText(IDC_E_PART_SCRIPT, pDoc->m_szPartScripts[nP]);
-		__EffectPartBase* pEPB = pDoc->m_EffectMgr.Part(nP);
+		//__EffectPartBase* pEPB = pDoc->m_EffectMgr.Part(nP);
 
 		std::string szFNTmp = "C:\\Temp.N3FXPart";
 		CFile file;
@@ -225,7 +225,7 @@ void CFormViewControl::OnBUpdateEffect()
 		{
 			file.Write(pDoc->m_szPartScripts[nP], pDoc->m_szPartScripts[nP].GetLength());
 			file.Close();
-			pDoc->m_EffectMgr.ParsingParts((LPCTSTR)szFNTmp, pEPB);
+			//pDoc->m_EffectMgr.ParsingParts((LPCTSTR)szFNTmp, pEPB);
 		}
 	}
 }
@@ -238,8 +238,8 @@ void CFormViewControl::OnTimer(UINT nIDEvent)
 		pFrm->GetPaneRender()->InvalidateRect(NULL, FALSE);
 
 		CN3FEDoc* pDoc = GetDocument();
-		int nEIC = pDoc->m_EffectMgr.InstanceCount(); // Effect Instance 갯수..
-		if(nEIC <= 0) KillTimer(0); // 하나도 없으면.. 타이머 죽이기..
+		//int nEIC = pDoc->m_EffectMgr.InstanceCount(); // Effect Instance 갯수..
+		//if(nEIC <= 0) KillTimer(0); // 하나도 없으면.. 타이머 죽이기..
 	}
 	
 	CFormView::OnTimer(nIDEvent);
@@ -250,26 +250,26 @@ void CFormViewControl::OnBTrigger()
 	CN3FEDoc* pDoc = GetDocument();
 
 	int nEB = m_BundleList.GetCurSel();
-	__EffectBundle* pEB = pDoc->m_EffectMgr.BundleSrc(nEB);
-	if(NULL == pEB) return;
+	//__EffectBundle* pEB = pDoc->m_EffectMgr.BundleSrc(nEB);
+	//if(NULL == pEB) return;
 
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 	__Vector3 vTarget = pFrm->GetPaneRender()->m_vTarget;
 	vTarget.Normalize();
 
-	pDoc->m_EffectMgr.Trigger(pEB->szName, __Vector3(0, 0, 0), vTarget);
+	//pDoc->m_EffectMgr.Trigger(pEB->szName, __Vector3(0, 0, 0), vTarget);
 
-	int nEIC = pDoc->m_EffectMgr.InstanceCount(); // Effect Instance 갯수..
-	if(nEIC <= 1)
-	{
-		SetTimer(0, 10, NULL); // 하나도 없으면.. 타이머 작동..
-	}
+	//int nEIC = pDoc->m_EffectMgr.InstanceCount(); // Effect Instance 갯수..
+	//if(nEIC <= 1)
+	//{
+	//	SetTimer(0, 10, NULL); // 하나도 없으면.. 타이머 작동..
+	//}
 }
 
 void CFormViewControl::OnBStop() 
 {
 	CN3FEDoc* pDoc = GetDocument();
-	pDoc->m_EffectMgr.ReleaseInstances();
+	//pDoc->m_EffectMgr.ReleaseInstances();
 	KillTimer(0);
 }
 
@@ -309,12 +309,12 @@ void CFormViewControl::OnBBundleAdd()
 {
 	CN3FEDoc* pDoc = GetDocument();
 	
-	__EffectBundle* pEB = new __EffectBundle;
-	pDoc->m_EffectMgr.m_BundlesSrc.push_back(pEB);
-	int n = pDoc->m_szBundleScripts.Add("");
-	wsprintf(pEB->szName, "New Bundle %.3d", n);
-	m_BundleList.AddString(pEB->szName);
-	m_BundleList.SetCurSel(n);
+	//__EffectBundle* pEB = new __EffectBundle;
+	//pDoc->m_EffectMgr.m_BundlesSrc.push_back(pEB);
+	//int n = pDoc->m_szBundleScripts.Add("");
+	//wsprintf(pEB->szName, "New Bundle %.3d", n);
+	//m_BundleList.AddString(pEB->szName);
+	//m_BundleList.SetCurSel(n);
 
 	this->UpdateInfo();
 }
@@ -325,46 +325,46 @@ void CFormViewControl::OnBBundleInsert()
 
 void CFormViewControl::OnBBundleDelete() 
 {
-	CN3FEDoc* pDoc = GetDocument();
-	int nSel = m_BundleList.GetCurSel();
-	if(nSel < 0 || nSel >= pDoc->m_EffectMgr.BundleCount()) return;
+	//CN3FEDoc* pDoc = GetDocument();
+	//int nSel = m_BundleList.GetCurSel();
+	//if(nSel < 0 || nSel >= pDoc->m_EffectMgr.BundleCount()) return;
 
-	it_EB it = pDoc->m_EffectMgr.m_BundlesSrc.begin();
-	for(int i = 0; i < nSel; i++, it++);
-	delete (*it);
-	pDoc->m_EffectMgr.m_BundlesSrc.erase(it);
-	pDoc->m_szBundleScripts.RemoveAt(nSel);
-	m_BundleList.DeleteString(nSel);
-	m_BundleList.SetCurSel(nSel);
+	//it_EB it = pDoc->m_EffectMgr.m_BundlesSrc.begin();
+	//for(int i = 0; i < nSel; i++, it++);
+	//delete (*it);
+	//pDoc->m_EffectMgr.m_BundlesSrc.erase(it);
+	//pDoc->m_szBundleScripts.RemoveAt(nSel);
+	//m_BundleList.DeleteString(nSel);
+	//m_BundleList.SetCurSel(nSel);
 }
 
 void CFormViewControl::OnBPartAdd() 
 {
-	CN3FEDoc* pDoc = GetDocument();
-	
-	__EffectPartBase* pEPB = new __EffectPartBase;
-	pDoc->m_EffectMgr.m_Parts.push_back(pEPB);
-	int n = pDoc->m_szPartScripts.Add("");
-	wsprintf(pEPB->szName, "New Bundle %.3d", n);
-	m_PartList.AddString(pEPB->szName);
-	m_PartList.SetCurSel(n);
+	//CN3FEDoc* pDoc = GetDocument();
+	//
+	//__EffectPartBase* pEPB = new __EffectPartBase;
+	//pDoc->m_EffectMgr.m_Parts.push_back(pEPB);
+	//int n = pDoc->m_szPartScripts.Add("");
+	//wsprintf(pEPB->szName, "New Bundle %.3d", n);
+	//m_PartList.AddString(pEPB->szName);
+	//m_PartList.SetCurSel(n);
 
-	this->UpdateInfo();
+	//this->UpdateInfo();
 }
 
 void CFormViewControl::OnBPartDelete() 
 {
-	CN3FEDoc* pDoc = GetDocument();
-	int nSel = m_PartList.GetCurSel();
-	if(nSel < 0 || nSel >= pDoc->m_EffectMgr.PartCount()) return;
+	//CN3FEDoc* pDoc = GetDocument();
+	//int nSel = m_PartList.GetCurSel();
+	//if(nSel < 0 || nSel >= pDoc->m_EffectMgr.PartCount()) return;
 
-	it_EP it = pDoc->m_EffectMgr.m_Parts.begin();
-	for(int i = 0; i < nSel; i++, it++);
-	delete (*it);
-	pDoc->m_EffectMgr.m_Parts.erase(it);
-	pDoc->m_szPartScripts.RemoveAt(nSel);
-	m_PartList.DeleteString(nSel);
-	m_PartList.SetCurSel(nSel);
+	//it_EP it = pDoc->m_EffectMgr.m_Parts.begin();
+	//for(int i = 0; i < nSel; i++, it++);
+	//delete (*it);
+	//pDoc->m_EffectMgr.m_Parts.erase(it);
+	//pDoc->m_szPartScripts.RemoveAt(nSel);
+	//m_PartList.DeleteString(nSel);
+	//m_PartList.SetCurSel(nSel);
 }
 
 void CFormViewControl::OnBPartInsert() 

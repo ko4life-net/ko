@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "Ground.h"
-#include "../N3Base/N3Texture.h"
+#include "N3Base/N3Texture.h"
 
 CGround::CGround()
 {

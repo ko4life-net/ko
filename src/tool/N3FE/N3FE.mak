@@ -358,7 +358,7 @@ LINK32_OBJS= \
 
 
 !IF "$(CFG)" == "N3FE - Win32 Release" || "$(CFG)" == "N3FE - Win32 Debug"
-SOURCE=..\N3Base\BitMapFile.cpp
+SOURCE=..\..\engine\N3Base\BitMapFile.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -424,7 +424,7 @@ SOURCE=.\FormViewControl.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\LogWriter.cpp
+SOURCE=..\..\engine\N3Base\LogWriter.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -458,7 +458,7 @@ SOURCE=.\MainFrm.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3AlphaPrimitiveManager.cpp
+SOURCE=..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -476,7 +476,7 @@ SOURCE=..\N3Base\N3AlphaPrimitiveManager.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3AnimControl.cpp
+SOURCE=..\..\engine\N3Base\N3AnimControl.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -494,7 +494,7 @@ SOURCE=..\N3Base\N3AnimControl.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3AnimKey.cpp
+SOURCE=..\..\engine\N3Base\N3AnimKey.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -512,7 +512,7 @@ SOURCE=..\N3Base\N3AnimKey.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3Base.cpp
+SOURCE=..\..\engine\N3Base\N3Base.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -530,7 +530,7 @@ SOURCE=..\N3Base\N3Base.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3BaseFileAccess.cpp
+SOURCE=..\..\engine\N3Base\N3BaseFileAccess.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -548,7 +548,7 @@ SOURCE=..\N3Base\N3BaseFileAccess.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3Camera.cpp
+SOURCE=..\..\engine\N3Base\N3Camera.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -566,7 +566,7 @@ SOURCE=..\N3Base\N3Camera.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3Eng.cpp
+SOURCE=..\..\engine\N3Base\N3Eng.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -584,7 +584,7 @@ SOURCE=..\N3Base\N3Eng.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3EngTool.cpp
+SOURCE=..\..\engine\N3Base\N3EngTool.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -640,7 +640,7 @@ SOURCE=.\N3FEView.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3IMesh.cpp
+SOURCE=..\..\engine\N3Base\N3IMesh.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -658,7 +658,7 @@ SOURCE=..\N3BASE\N3IMesh.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3Light.cpp
+SOURCE=..\..\engine\N3Base\N3Light.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -676,7 +676,7 @@ SOURCE=..\N3Base\N3Light.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3PMesh.cpp
+SOURCE=..\..\engine\N3Base\N3PMesh.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -694,7 +694,7 @@ SOURCE=..\N3BASE\N3PMesh.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3PMeshCreate.cpp
+SOURCE=..\..\engine\N3Base\N3PMeshCreate.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -712,7 +712,7 @@ SOURCE=..\N3BASE\N3PMeshCreate.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3PMeshInstance.cpp
+SOURCE=..\..\engine\N3Base\N3PMeshInstance.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -730,7 +730,7 @@ SOURCE=..\N3BASE\N3PMeshInstance.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3Shape.cpp
+SOURCE=..\..\engine\N3Base\N3Shape.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -748,7 +748,7 @@ SOURCE=..\N3BASE\N3Shape.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3Texture.cpp
+SOURCE=..\..\engine\N3Base\N3Texture.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -766,7 +766,7 @@ SOURCE=..\N3Base\N3Texture.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3Transform.cpp
+SOURCE=..\..\engine\N3Base\N3Transform.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -784,7 +784,7 @@ SOURCE=..\N3Base\N3Transform.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3TransformCollision.cpp
+SOURCE=..\..\engine\N3Base\N3TransformCollision.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -802,7 +802,7 @@ SOURCE=..\N3BASE\N3TransformCollision.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3VMesh.cpp
+SOURCE=..\..\engine\N3Base\N3VMesh.cpp
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 
@@ -820,7 +820,7 @@ SOURCE=..\N3BASE\N3VMesh.cpp
 
 !ENDIF 
 
-SOURCE="..\Common Control\PropertyList.cpp"
+SOURCE="..\Widget\PropertyList.cpp"
 
 !IF  "$(CFG)" == "N3FE - Win32 Release"
 

@@ -9,9 +9,9 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "../N3Base/N3EngTool.h"
-#include "../N3Base/N3Camera.h"
-#include "../N3Base/N3Light.h"
+#include "N3Base/N3EngTool.h"
+#include "N3Base/N3Camera.h"
+#include "N3Base/N3Light.h"
 #include "FormViewControl.h"
 #include "N3FEView.h"
 
