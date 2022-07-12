@@ -8,12 +8,12 @@
 	".\TableGenerator.h"\
 	
 
-"..\Common Control\PropertyList.cpp" : \
-	"..\Common Control\PropertyList.h"\
+"..\Widget\PropertyList.cpp" : \
+	"..\Widget\PropertyList.h"\
 	
 
 .\RscTables.cpp : \
-	"..\Common Control\PropertyList.h"\
+	"..\Widget\PropertyList.h"\
 	".\RscTables.h"\
 	".\RscTablesDef.h"\
 	".\RscTablesDlg.h"\
@@ -27,7 +27,7 @@
 	
 
 .\RscTablesDlg.cpp : \
-	"..\Common Control\PropertyList.h"\
+	"..\Widget\PropertyList.h"\
 	".\DlgDataCount.h"\
 	".\RscTables.h"\
 	".\RscTablesDef.h"\

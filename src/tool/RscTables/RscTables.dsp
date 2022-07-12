@@ -96,7 +96,7 @@ SOURCE=.\DlgDataCount.cpp
 # End Source File
 # Begin Source File
 
-SOURCE="..\Common Control\PropertyList.cpp"
+SOURCE="..\Widget\PropertyList.cpp"
 # End Source File
 # Begin Source File
 
@@ -129,7 +129,7 @@ SOURCE=.\DlgDataCount.h
 # End Source File
 # Begin Source File
 
-SOURCE="..\Common Control\PropertyList.h"
+SOURCE="..\Widget\PropertyList.h"
 # End Source File
 # Begin Source File
 

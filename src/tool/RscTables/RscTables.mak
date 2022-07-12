@@ -241,7 +241,7 @@ SOURCE=.\DlgDataCount.cpp
 
 !ENDIF 
 
-SOURCE="..\Common Control\PropertyList.cpp"
+SOURCE="..\Widget\PropertyList.cpp"
 
 !IF  "$(CFG)" == "RscTables - Win32 Release"
 

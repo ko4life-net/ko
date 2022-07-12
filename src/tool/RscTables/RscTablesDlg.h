@@ -8,7 +8,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "..\Common Control\PropertyList.h"
+#include "../Widget/PropertyList.h"
 #include "RscTablesDef.h"
 #include "TableGenerator.h"
 
