@@ -10,7 +10,7 @@
 #endif // _MSC_VER > 1000
 
 #include "iocport.h"
-#include "./N3Base/My_3DStruct.h"
+#include "N3Base/My_3DStruct.h"
 #include "Map.h"
 #include "PathFind.h"
 #include "user.h"

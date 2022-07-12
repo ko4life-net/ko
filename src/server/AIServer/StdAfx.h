@@ -26,7 +26,7 @@
 
 //#include "Mmsystem.h"
 //#include "Imm.h"
-//#include "./N3Base/My_3DStruct.h"
+//#include "N3Base/My_3DStruct.h"
 
 #include "packet.h"			// packet 정의
 #include "global.h"			// 전역 funtion
