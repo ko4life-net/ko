@@ -716,11 +716,11 @@ void CN3FXPartParticles::Render()
     //s_lpD3DDev->SetRenderState( D3DRS_DESTBLEND, m_dwDestBlend );
 
 	//DWORD dwTAddrU, dwTAddrV;
-	//s_lpD3DDev->GetTextureStageState( 0, D3DTSS_ADDRESSU, &dwTAddrU );
-	//s_lpD3DDev->GetTextureStageState( 0, D3DTSS_ADDRESSV, &dwTAddrV );
+	//s_lpD3DDev->GetSamplerState( 0, D3DSAMP_ADDRESSU, &dwTAddrU );
+	//s_lpD3DDev->GetSamplerState( 0, D3DSAMP_ADDRESSV, &dwTAddrV );
 
-	//s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSU, D3DTADDRESS_CLAMP );
-	//s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSV, D3DTADDRESS_CLAMP );
+	//s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP );
+	//s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP );
 	
 	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP,   D3DTOP_MODULATE );
 	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE );		
@@ -773,8 +773,8 @@ void CN3FXPartParticles::Render()
 	if(m_dwLight != dwLight) s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, dwLight);
 	if(m_dwDoubleSide != dwCullMode) s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, dwCullMode);
 
-	//CN3Base::s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSU, dwTAddrU );
-	//CN3Base::s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSV, dwTAddrV );
+	//CN3Base::s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSU, dwTAddrU );
+	//CN3Base::s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSV, dwTAddrV );
 }
 
 float CN3FXPartParticles::CameraDist(__Vector3 v1, __Vector3 v2, __Vector3 v3)
@@ -809,11 +809,11 @@ void CN3FXPartParticles::Render()
     s_lpD3DDev->SetRenderState( D3DRS_DESTBLEND, m_dwDestBlend );
 
 	DWORD dwTAddrU, dwTAddrV;
-	s_lpD3DDev->GetTextureStageState( 0, D3DTSS_ADDRESSU, &dwTAddrU );
-	s_lpD3DDev->GetTextureStageState( 0, D3DTSS_ADDRESSV, &dwTAddrV );
+	s_lpD3DDev->GetSamplerState( 0, D3DSAMP_ADDRESSU, &dwTAddrU );
+	s_lpD3DDev->GetSamplerState( 0, D3DSAMP_ADDRESSV, &dwTAddrV );
 
-	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSU, D3DTADDRESS_CLAMP );
-	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSV, D3DTADDRESS_CLAMP );
+	s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP );
+	s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP );
 	
 	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP,   D3DTOP_MODULATE );
 	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE );		
@@ -877,8 +877,8 @@ void CN3FXPartParticles::Render()
 
 	//CN3Base::s_lpD3DDev->SetRenderState(D3DRS_ZWRITEENABLE, dwZWriteEnable);
 
-	CN3Base::s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSU, dwTAddrU );
-	CN3Base::s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSV, dwTAddrV );
+	CN3Base::s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSU, dwTAddrU );
+	CN3Base::s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSV, dwTAddrV );
 }
 */
 

@@ -171,8 +171,8 @@ void CN3GESnow::Render(__Vector3& vPos)
 	s_lpD3DDev->GetRenderState(D3DRS_LIGHTING, &dwLight);
 
 	DWORD dwAddressU, dwAddressV;
-	s_lpD3DDev->GetTextureStageState(0, D3DTSS_ADDRESSU, &dwAddressU);
-	s_lpD3DDev->GetTextureStageState(0, D3DTSS_ADDRESSV, &dwAddressV);
+	s_lpD3DDev->GetSamplerState(0, D3DSAMP_ADDRESSU, &dwAddressU);
+	s_lpD3DDev->GetSamplerState(0, D3DSAMP_ADDRESSV, &dwAddressV);
 
 	// set render state
 	s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
@@ -186,9 +186,9 @@ void CN3GESnow::Render(__Vector3& vPos)
 
 	// set texture 
 	__ASSERT(m_pTex, "Texture pointer is NULL!");
-	s_lpD3DDev->SetTextureStageState(0, D3DTSS_BORDERCOLOR, 0xffff0000);
-	s_lpD3DDev->SetTextureStageState(0, D3DTSS_ADDRESSU, D3DTADDRESS_BORDER);
-	s_lpD3DDev->SetTextureStageState(0, D3DTSS_ADDRESSV, D3DTADDRESS_BORDER);
+	s_lpD3DDev->SetSamplerState(0, D3DSAMP_BORDERCOLOR, 0xffff0000);
+	s_lpD3DDev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_BORDER);
+	s_lpD3DDev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_BORDER);
 	s_lpD3DDev->SetTexture(0, m_pTex->Get());
 
 	// render
@@ -202,8 +202,8 @@ void CN3GESnow::Render(__Vector3& vPos)
 	s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND,  dwDestAlpha);
 	s_lpD3DDev->SetRenderState( D3DRS_CULLMODE, dwCullMode );
 	s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, dwLight);
-	s_lpD3DDev->SetTextureStageState(0, D3DTSS_ADDRESSU, dwAddressU);
-	s_lpD3DDev->SetTextureStageState(0, D3DTSS_ADDRESSV, dwAddressV);
+	s_lpD3DDev->SetSamplerState(0, D3DSAMP_ADDRESSU, dwAddressU);
+	s_lpD3DDev->SetSamplerState(0, D3DSAMP_ADDRESSV, dwAddressV);
 }
 
 void CN3GESnow::Create(float fDensity, float fWidth, float fHeight, float fSnowSize, const __Vector3& vVelocity, float fTimeToFade)

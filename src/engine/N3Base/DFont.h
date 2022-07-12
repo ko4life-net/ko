@@ -35,7 +35,7 @@
 
 // Font rendering flags (drawtext or DrawText3D 함수에서 쓰는 flag)
 #define D3DFONT_TWOSIDED    0x0010		// 3D font에서만..
-#define D3DFONT_FILTERED    0x0020		// texture를 D3DTSS_MAGFILTER 로 찍기
+#define D3DFONT_FILTERED    0x0020		// texture를 D3DSAMP_MAGFILTER 로 찍기
 
 
 class CDFont  : public CN3Base

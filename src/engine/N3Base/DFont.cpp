@@ -847,8 +847,8 @@ HRESULT CDFont::DrawText( FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOA
 	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_ALPHAOP,   &dwAlphaOp );
 	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_ALPHAARG1, &dwAlphaArg1 );
 	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_ALPHAARG2, &dwAlphaArg2 );
-	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_MINFILTER, &dwMinFilter );
-	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_MAGFILTER, &dwMagFilter );
+	m_pd3dDevice->GetSamplerState( 0, D3DSAMP_MINFILTER, &dwMinFilter );
+	m_pd3dDevice->GetSamplerState( 0, D3DSAMP_MAGFILTER, &dwMagFilter );
 
     // Set up renderstate
 	if (TRUE != dwAlphaBlend) m_pd3dDevice->SetRenderState( D3DRS_ALPHABLENDENABLE, TRUE );
@@ -869,13 +869,13 @@ HRESULT CDFont::DrawText( FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOA
 	if( dwFlags & D3DFONT_FILTERED )
 	{
 	    // Set filter states
-		if (D3DTEXF_LINEAR != dwMinFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_LINEAR );
-		if (D3DTEXF_LINEAR != dwMagFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_LINEAR );
+		if (D3DTEXF_LINEAR != dwMinFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR );
+		if (D3DTEXF_LINEAR != dwMagFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR );
 	}
 	else
 	{
-		if (D3DTEXF_POINT != dwMinFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_POINT );
-		if (D3DTEXF_POINT != dwMagFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_POINT );
+		if (D3DTEXF_POINT != dwMinFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MINFILTER, D3DTEXF_POINT );
+		if (D3DTEXF_POINT != dwMagFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MAGFILTER, D3DTEXF_POINT );
 	}
 
 	// render
@@ -902,13 +902,13 @@ HRESULT CDFont::DrawText( FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOA
 	if (D3DTA_DIFFUSE != dwAlphaArg2) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_ALPHAARG2, dwAlphaArg2 );
 	if( dwFlags & D3DFONT_FILTERED )
 	{
-		if (D3DTEXF_LINEAR != dwMinFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, dwMinFilter );
-		if (D3DTEXF_LINEAR != dwMagFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MAGFILTER, dwMagFilter );
+		if (D3DTEXF_LINEAR != dwMinFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MINFILTER, dwMinFilter );
+		if (D3DTEXF_LINEAR != dwMagFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MAGFILTER, dwMagFilter );
 	}
 	else
 	{
-		if (D3DTSS_MINFILTER != dwMinFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, dwMinFilter );
-		if (D3DTSS_MAGFILTER != dwMagFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MAGFILTER, dwMagFilter );
+		if (D3DSAMP_MINFILTER != dwMinFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MINFILTER, dwMinFilter );
+		if (D3DSAMP_MAGFILTER != dwMagFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MAGFILTER, dwMagFilter );
 	}
 
     return S_OK;
@@ -960,8 +960,8 @@ HRESULT CDFont::DrawText3D(DWORD dwColor, DWORD dwFlags )
 	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_ALPHAOP,   &dwAlphaOp );
 	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_ALPHAARG1, &dwAlphaArg1 );
 	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_ALPHAARG2, &dwAlphaArg2 );
-	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_MINFILTER, &dwMinFilter );
-	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_MAGFILTER, &dwMagFilter );
+	m_pd3dDevice->GetSamplerState( 0, D3DSAMP_MINFILTER, &dwMinFilter );
+	m_pd3dDevice->GetSamplerState( 0, D3DSAMP_MAGFILTER, &dwMagFilter );
     if( dwFlags & D3DFONT_TWOSIDED )
 	{
 	    // Turn off culling for two-sided text
@@ -986,13 +986,13 @@ HRESULT CDFont::DrawText3D(DWORD dwColor, DWORD dwFlags )
 	if( dwFlags & D3DFONT_FILTERED )
 	{
 	    // Set filter states
-		if (D3DTEXF_LINEAR != dwMinFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_LINEAR );
-		if (D3DTEXF_LINEAR != dwMagFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_LINEAR );
+		if (D3DTEXF_LINEAR != dwMinFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR );
+		if (D3DTEXF_LINEAR != dwMagFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR );
 	}
 	else
 	{
-		if (D3DTEXF_POINT != dwMinFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_POINT );
-		if (D3DTEXF_POINT != dwMagFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_POINT );
+		if (D3DTEXF_POINT != dwMinFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MINFILTER, D3DTEXF_POINT );
+		if (D3DTEXF_POINT != dwMagFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MAGFILTER, D3DTEXF_POINT );
 	}
 
 
@@ -1018,13 +1018,13 @@ HRESULT CDFont::DrawText3D(DWORD dwColor, DWORD dwFlags )
 	if (D3DTA_DIFFUSE != dwAlphaArg2) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_ALPHAARG2, dwAlphaArg2 );
 	if( dwFlags & D3DFONT_FILTERED )
 	{
-		if (D3DTEXF_LINEAR != dwMinFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, dwMinFilter );
-		if (D3DTEXF_LINEAR != dwMagFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MAGFILTER, dwMagFilter );
+		if (D3DTEXF_LINEAR != dwMinFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MINFILTER, dwMinFilter );
+		if (D3DTEXF_LINEAR != dwMagFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MAGFILTER, dwMagFilter );
 	}
 	else
 	{
-		if (D3DTSS_MINFILTER != dwMinFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, dwMinFilter );
-		if (D3DTSS_MAGFILTER != dwMagFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MAGFILTER, dwMagFilter );
+		if (D3DSAMP_MINFILTER != dwMinFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MINFILTER, dwMinFilter );
+		if (D3DSAMP_MAGFILTER != dwMagFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MAGFILTER, dwMagFilter );
 	}
     if( (dwFlags & D3DFONT_TWOSIDED) && D3DCULL_NONE != dwCullMode) m_pd3dDevice->SetRenderState( D3DRS_CULLMODE,  dwCullMode);
 

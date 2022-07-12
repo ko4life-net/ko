@@ -2276,23 +2276,24 @@ void CLyTerrain::Render()
 
 	s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 	s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE);
-	s_lpD3DDev->SetRenderState(D3DRS_ZBIAS, 1);
+	//s_lpD3DDev->SetRenderState(D3DRS_ZBIAS, 1); // TODO: This was gone in dx9 update...
+	s_lpD3DDev->SetRenderState(D3DRS_DEPTHBIAS, 1);
 	
 	//s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, m_FillMode);
 	s_lpD3DDev->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_GOURAUD);
 
 	DWORD AddressU1, AddressV1, AddressU2, AddressV2;
 	HRESULT hr;
-	hr = s_lpD3DDev->GetTextureStageState( 0, D3DTSS_ADDRESSU, &AddressU1 );
-	hr = s_lpD3DDev->GetTextureStageState( 0, D3DTSS_ADDRESSV, &AddressV1 );
-	hr = s_lpD3DDev->GetTextureStageState( 1, D3DTSS_ADDRESSU, &AddressU2 );
-	hr = s_lpD3DDev->GetTextureStageState( 1, D3DTSS_ADDRESSV, &AddressV2 );
+	hr = s_lpD3DDev->GetSamplerState( 0, D3DSAMP_ADDRESSU, &AddressU1 );
+	hr = s_lpD3DDev->GetSamplerState( 0, D3DSAMP_ADDRESSV, &AddressV1 );
+	hr = s_lpD3DDev->GetSamplerState( 1, D3DSAMP_ADDRESSU, &AddressU2 );
+	hr = s_lpD3DDev->GetSamplerState( 1, D3DSAMP_ADDRESSV, &AddressV2 );
 
 	// 각각의 텍스쳐들을 연결했을때 경계선을 없앨 수 있다..^^
-	hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSU,  D3DTADDRESS_MIRROR );
-	hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSV,  D3DTADDRESS_MIRROR );
-	hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_ADDRESSU,  D3DTADDRESS_MIRROR );
-	hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_ADDRESSV,  D3DTADDRESS_MIRROR );
+	hr = s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSU,  D3DTADDRESS_MIRROR );
+	hr = s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSV,  D3DTADDRESS_MIRROR );
+	hr = s_lpD3DDev->SetSamplerState( 1, D3DSAMP_ADDRESSU,  D3DTADDRESS_MIRROR );
+	hr = s_lpD3DDev->SetSamplerState( 1, D3DSAMP_ADDRESSV,  D3DTADDRESS_MIRROR );
 
 	CMainFrame* pFrame = (CMainFrame*)AfxGetMainWnd();
 
@@ -2343,10 +2344,10 @@ void CLyTerrain::Render()
 		hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, dwLighting);
 	}
 	
-	hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSU, AddressU1 );
-	hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSV, AddressV1 );
-	hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_ADDRESSU, AddressU2 );
-	hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_ADDRESSV, AddressV2 );
+	hr = s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSU, AddressU1 );
+	hr = s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSV, AddressV1 );
+	hr = s_lpD3DDev->SetSamplerState( 1, D3DSAMP_ADDRESSU, AddressU2 );
+	hr = s_lpD3DDev->SetSamplerState( 1, D3DSAMP_ADDRESSV, AddressV2 );
 }
 
 

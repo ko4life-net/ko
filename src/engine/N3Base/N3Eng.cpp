@@ -562,10 +562,10 @@ void CN3Eng::SetDefaultEnvironment()
 	for(int i = 0; i < 8; i++)
 	{
 		s_lpD3DDev->SetTexture( i, NULL );
-		s_lpD3DDev->SetTextureStageState(i, D3DTSS_MINFILTER, D3DTEXF_LINEAR);
-		s_lpD3DDev->SetTextureStageState(i, D3DTSS_MAGFILTER, D3DTEXF_LINEAR);
-		s_lpD3DDev->SetTextureStageState(i, D3DTSS_MIPFILTER, D3DTEXF_LINEAR);
-		s_lpD3DDev->SetTextureStageState(i, D3DTSS_MIPMAPLODBIAS, *((LPDWORD) (&fMipMapLODBias)));
+		s_lpD3DDev->SetSamplerState(i, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
+		s_lpD3DDev->SetSamplerState(i, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
+		s_lpD3DDev->SetSamplerState(i, D3DSAMP_MIPFILTER, D3DTEXF_LINEAR);
+		s_lpD3DDev->SetSamplerState(i, D3DSAMP_MIPMAPLODBIAS, *((LPDWORD) (&fMipMapLODBias)));
 	}
 
 	// 클리핑 상태 지정
