@@ -431,7 +431,7 @@ SOURCE=.\MainFrm.cpp
 
 !ENDIF 
 
-SOURCE="..\Common Control\PropertyList.cpp"
+SOURCE="..\Widget\PropertyList.cpp"
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -527,7 +527,7 @@ CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOW
 
 !ENDIF 
 
-SOURCE=..\N3Base\BitMapFile.cpp
+SOURCE=..\..\engine\N3Base\BitMapFile.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -545,7 +545,7 @@ SOURCE=..\N3Base\BitMapFile.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3AlphaPrimitiveManager.cpp
+SOURCE=..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -563,7 +563,7 @@ SOURCE=..\N3BASE\N3AlphaPrimitiveManager.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3AnimKey.cpp
+SOURCE=..\..\engine\N3Base\N3AnimKey.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -581,7 +581,7 @@ SOURCE=..\N3BASE\N3AnimKey.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3Base.cpp
+SOURCE=..\..\engine\N3Base\N3Base.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -599,7 +599,7 @@ SOURCE=..\N3BASE\N3Base.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3BaseFileAccess.cpp
+SOURCE=..\..\engine\N3Base\N3BaseFileAccess.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -617,7 +617,7 @@ SOURCE=..\N3BASE\N3BaseFileAccess.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3Camera.cpp
+SOURCE=..\..\engine\N3Base\N3Camera.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -635,7 +635,7 @@ SOURCE=..\N3BASE\N3Camera.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3Cloud.cpp
+SOURCE=..\..\engine\N3Base\N3Cloud.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -653,7 +653,7 @@ SOURCE=..\N3BASE\N3Cloud.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3ColorChange.cpp
+SOURCE=..\..\engine\N3Base\N3ColorChange.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -671,7 +671,7 @@ SOURCE=..\N3BASE\N3ColorChange.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3Eng.cpp
+SOURCE=..\..\engine\N3Base\N3Eng.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -689,7 +689,7 @@ SOURCE=..\N3BASE\N3Eng.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3EngTool.cpp
+SOURCE=..\..\engine\N3Base\N3EngTool.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -707,7 +707,7 @@ SOURCE=..\N3BASE\N3EngTool.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3GERain.cpp
+SOURCE=..\..\engine\N3Base\N3GERain.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -725,7 +725,7 @@ SOURCE=..\N3BASE\N3GERain.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3GESnow.cpp
+SOURCE=..\..\engine\N3Base\N3GESnow.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -743,7 +743,7 @@ SOURCE=..\N3BASE\N3GESnow.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3GlobalEffect.cpp
+SOURCE=..\..\engine\N3Base\N3GlobalEffect.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -761,7 +761,7 @@ SOURCE=..\N3BASE\N3GlobalEffect.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3GlobalEffectMng.cpp
+SOURCE=..\..\engine\N3Base\N3GlobalEffectMng.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -779,7 +779,7 @@ SOURCE=..\N3BASE\N3GlobalEffectMng.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3IMesh.cpp
+SOURCE=..\..\engine\N3Base\N3IMesh.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -797,7 +797,7 @@ SOURCE=..\N3BASE\N3IMesh.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3Light.cpp
+SOURCE=..\..\engine\N3Base\N3Light.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -815,7 +815,7 @@ SOURCE=..\N3BASE\N3Light.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3Moon.cpp
+SOURCE=..\..\engine\N3Base\N3Moon.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -833,7 +833,7 @@ SOURCE=..\N3BASE\N3Moon.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3PMesh.cpp
+SOURCE=..\..\engine\N3Base\N3PMesh.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -851,7 +851,7 @@ SOURCE=..\N3BASE\N3PMesh.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3PMeshInstance.cpp
+SOURCE=..\..\engine\N3Base\N3PMeshInstance.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -869,7 +869,7 @@ SOURCE=..\N3BASE\N3PMeshInstance.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3Shape.cpp
+SOURCE=..\..\engine\N3Base\N3Shape.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -887,7 +887,7 @@ SOURCE=..\N3BASE\N3Shape.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3Sky.cpp
+SOURCE=..\..\engine\N3Base\N3Sky.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -905,7 +905,7 @@ SOURCE=..\N3BASE\N3Sky.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3SkyMng.cpp
+SOURCE=..\..\engine\N3Base\N3SkyMng.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -923,7 +923,7 @@ SOURCE=..\N3BASE\N3SkyMng.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3Star.cpp
+SOURCE=..\..\engine\N3Base\N3Star.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -941,7 +941,7 @@ SOURCE=..\N3BASE\N3Star.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3Sun.cpp
+SOURCE=..\..\engine\N3Base\N3Sun.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -959,7 +959,7 @@ SOURCE=..\N3BASE\N3Sun.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3Texture.cpp
+SOURCE=..\..\engine\N3Base\N3Texture.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -977,7 +977,7 @@ SOURCE=..\N3BASE\N3Texture.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3Transform.cpp
+SOURCE=..\..\engine\N3Base\N3Transform.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -995,7 +995,7 @@ SOURCE=..\N3BASE\N3Transform.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3TransformCollision.cpp
+SOURCE=..\..\engine\N3Base\N3TransformCollision.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 
@@ -1013,7 +1013,7 @@ SOURCE=..\N3BASE\N3TransformCollision.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\N3VMesh.cpp
+SOURCE=..\..\engine\N3Base\N3VMesh.cpp
 
 !IF  "$(CFG)" == "SkyViewer - Win32 Release"
 

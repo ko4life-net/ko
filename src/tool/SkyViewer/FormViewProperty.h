@@ -14,7 +14,7 @@
 #include <afxext.h>
 #endif
 
-#include "../Common Control/PropertyList.h"
+#include "../Widget/PropertyList.h"
 
 class CFormViewProperty : public CFormView
 {

@@ -9,11 +9,11 @@
 #include "SkyViewerView.h"
 #include "FormViewProperty.h"
 
-#include "../N3Base/N3Texture.h"
-#include "../N3Base/N3Sun.h"
-#include "../N3Base/N3Cloud.h"
-#include "../N3Base/N3SkyMng.h"
-#include "../N3Base/N3GlobalEffectMng.h"
+#include "N3Base/N3Texture.h"
+#include "N3Base/N3Sun.h"
+#include "N3Base/N3Cloud.h"
+#include "N3Base/N3SkyMng.h"
+#include "N3Base/N3GlobalEffectMng.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

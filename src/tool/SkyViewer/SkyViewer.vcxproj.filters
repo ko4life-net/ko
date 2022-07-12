@@ -24,7 +24,7 @@
     <ClCompile Include="MainFrm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Common Control\PropertyList.cpp">
+    <ClCompile Include="..\Widget\PropertyList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SkyViewer.cpp">
@@ -39,88 +39,88 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3Base\BitMapFile.cpp">
+    <ClCompile Include="..\..\engine\N3Base\BitMapFile.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3AlphaPrimitiveManager.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3AnimKey.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3AnimKey.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3Base.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3Base.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3BaseFileAccess.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3BaseFileAccess.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3Camera.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3Camera.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3Cloud.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3Cloud.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3ColorChange.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3ColorChange.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3Eng.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3Eng.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3EngTool.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3EngTool.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3GERain.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3GERain.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3GESnow.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3GESnow.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3GlobalEffect.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3GlobalEffect.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3GlobalEffectMng.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3GlobalEffectMng.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3IMesh.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3IMesh.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3Light.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3Light.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3Moon.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3Moon.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3PMesh.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3PMesh.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3PMeshInstance.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3PMeshInstance.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3Shape.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3Shape.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3Sky.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3Sky.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3SkyMng.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3SkyMng.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3Star.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3Star.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3Sun.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3Sun.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3Texture.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3Texture.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3Transform.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3Transform.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3TransformCollision.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3TransformCollision.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3BASE\N3VMesh.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3VMesh.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
   </ItemGroup>
@@ -136,7 +136,7 @@
     <ClInclude Include="MainFrm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common Control\PropertyList.h">
+    <ClInclude Include="..\Widget\PropertyList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
@@ -154,97 +154,97 @@
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3Base\BitMapFile.h">
+    <ClInclude Include="..\..\engine\N3Base\BitMapFile.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\My_3DStruct.h">
+    <ClInclude Include="..\..\engine\N3Base\My_3DStruct.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3AlphaPrimitiveManager.h">
+    <ClInclude Include="..\..\engine\N3Base\N3AlphaPrimitiveManager.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3AnimKey.h">
+    <ClInclude Include="..\..\engine\N3Base\N3AnimKey.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3Base.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Base.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3BaseFileAccess.h">
+    <ClInclude Include="..\..\engine\N3Base\N3BaseFileAccess.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3Camera.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Camera.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3Cloud.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Cloud.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3ColorChange.h">
+    <ClInclude Include="..\..\engine\N3Base\N3ColorChange.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3Eng.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Eng.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3EngTool.h">
+    <ClInclude Include="..\..\engine\N3Base\N3EngTool.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3GERain.h">
+    <ClInclude Include="..\..\engine\N3Base\N3GERain.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3GESnow.h">
+    <ClInclude Include="..\..\engine\N3Base\N3GESnow.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3GlobalEffect.h">
+    <ClInclude Include="..\..\engine\N3Base\N3GlobalEffect.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3GlobalEffectMng.h">
+    <ClInclude Include="..\..\engine\N3Base\N3GlobalEffectMng.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3IMesh.h">
+    <ClInclude Include="..\..\engine\N3Base\N3IMesh.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3Light.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Light.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3Mng.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Mng.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3Moon.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Moon.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3PMesh.h">
+    <ClInclude Include="..\..\engine\N3Base\N3PMesh.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3PMeshInstance.h">
+    <ClInclude Include="..\..\engine\N3Base\N3PMeshInstance.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3Shape.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Shape.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3Sky.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Sky.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3SkyMng.h">
+    <ClInclude Include="..\..\engine\N3Base\N3SkyMng.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3Star.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Star.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3Sun.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Sun.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3Texture.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Texture.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3Transform.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Transform.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3TransformCollision.h">
+    <ClInclude Include="..\..\engine\N3Base\N3TransformCollision.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\N3VMesh.h">
+    <ClInclude Include="..\..\engine\N3Base\N3VMesh.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3BASE\StdAfxBase.h">
+    <ClInclude Include="..\..\engine\N3Base\StdAfxBase.h">
       <Filter>N3Base</Filter>
     </ClInclude>
   </ItemGroup>
