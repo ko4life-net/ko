@@ -93,7 +93,7 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE=..\N3Base\BitMapFile.cpp
+SOURCE=..\..\engine\N3Base\BitMapFile.cpp
 # End Source File
 # Begin Source File
 
@@ -101,7 +101,7 @@ SOURCE=.\DlgFormat.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\LogWriter.cpp
+SOURCE=..\..\engine\N3Base\LogWriter.cpp
 # End Source File
 # Begin Source File
 
@@ -109,27 +109,27 @@ SOURCE=.\MainFrm.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3AlphaPrimitiveManager.cpp
+SOURCE=..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Base.cpp
+SOURCE=..\..\engine\N3Base\N3Base.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3BaseFileAccess.cpp
+SOURCE=..\..\engine\N3Base\N3BaseFileAccess.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Eng.cpp
+SOURCE=..\..\engine\N3Base\N3Eng.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3EngTool.cpp
+SOURCE=..\..\engine\N3Base\N3EngTool.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Texture.cpp
+SOURCE=..\..\engine\N3Base\N3Texture.cpp
 # End Source File
 # Begin Source File
 
@@ -161,7 +161,7 @@ SOURCE=.\StdAfx.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=..\N3Base\BitMapFile.h
+SOURCE=..\..\engine\N3Base\BitMapFile.h
 # End Source File
 # Begin Source File
 
@@ -169,7 +169,7 @@ SOURCE=.\DlgFormat.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\LogWriter.h
+SOURCE=..\..\engine\N3Base\LogWriter.h
 # End Source File
 # Begin Source File
 
@@ -177,31 +177,31 @@ SOURCE=.\MainFrm.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\My_3DStruct.h
+SOURCE=..\..\engine\N3Base\My_3DStruct.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3AlphaPrimitiveManager.h
+SOURCE=..\..\engine\N3Base\N3AlphaPrimitiveManager.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Base.h
+SOURCE=..\..\engine\N3Base\N3Base.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3BaseFileAccess.h
+SOURCE=..\..\engine\N3Base\N3BaseFileAccess.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Eng.h
+SOURCE=..\..\engine\N3Base\N3Eng.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3EngTool.h
+SOURCE=..\..\engine\N3Base\N3EngTool.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Texture.h
+SOURCE=..\..\engine\N3Base\N3Texture.h
 # End Source File
 # Begin Source File
 
@@ -229,7 +229,7 @@ SOURCE=.\StdAfx.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\StdAfxBase.h
+SOURCE=..\..\engine\N3Base\StdAfxBase.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"

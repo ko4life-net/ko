@@ -274,7 +274,7 @@ LINK32_OBJS= \
 
 
 !IF "$(CFG)" == "N3TexViewer - Win32 Release" || "$(CFG)" == "N3TexViewer - Win32 Debug"
-SOURCE=..\N3Base\BitMapFile.cpp
+SOURCE=..\..\engine\N3Base\BitMapFile.cpp
 
 !IF  "$(CFG)" == "N3TexViewer - Win32 Release"
 
@@ -308,7 +308,7 @@ SOURCE=.\DlgFormat.cpp
 
 !ENDIF 
 
-SOURCE=..\N3BASE\LogWriter.cpp
+SOURCE=..\..\engine\N3Base\LogWriter.cpp
 
 !IF  "$(CFG)" == "N3TexViewer - Win32 Release"
 
@@ -342,7 +342,7 @@ SOURCE=.\MainFrm.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3AlphaPrimitiveManager.cpp
+SOURCE=..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp
 
 !IF  "$(CFG)" == "N3TexViewer - Win32 Release"
 
@@ -360,7 +360,7 @@ SOURCE=..\N3Base\N3AlphaPrimitiveManager.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3Base.cpp
+SOURCE=..\..\engine\N3Base\N3Base.cpp
 
 !IF  "$(CFG)" == "N3TexViewer - Win32 Release"
 
@@ -378,7 +378,7 @@ SOURCE=..\N3Base\N3Base.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3BaseFileAccess.cpp
+SOURCE=..\..\engine\N3Base\N3BaseFileAccess.cpp
 
 !IF  "$(CFG)" == "N3TexViewer - Win32 Release"
 
@@ -396,7 +396,7 @@ SOURCE=..\N3Base\N3BaseFileAccess.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3Eng.cpp
+SOURCE=..\..\engine\N3Base\N3Eng.cpp
 
 !IF  "$(CFG)" == "N3TexViewer - Win32 Release"
 
@@ -414,7 +414,7 @@ SOURCE=..\N3Base\N3Eng.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3EngTool.cpp
+SOURCE=..\..\engine\N3Base\N3EngTool.cpp
 
 !IF  "$(CFG)" == "N3TexViewer - Win32 Release"
 
@@ -432,7 +432,7 @@ SOURCE=..\N3Base\N3EngTool.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3Texture.cpp
+SOURCE=..\..\engine\N3Base\N3Texture.cpp
 
 !IF  "$(CFG)" == "N3TexViewer - Win32 Release"
 

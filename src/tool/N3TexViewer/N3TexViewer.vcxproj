@@ -69,7 +69,7 @@
       <ObjectFileName>.\Debug\</ObjectFileName>
       <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\engine;$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -108,7 +108,7 @@
       <PrecompiledHeaderOutputFile>.\Release\N3TexViewer.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\Release\</ObjectFileName>
       <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\engine;$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -134,14 +134,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\N3Base\BitMapFile.cpp" />
-    <ClCompile Include="..\N3BASE\LogWriter.cpp" />
-    <ClCompile Include="..\N3Base\N3AlphaPrimitiveManager.cpp" />
-    <ClCompile Include="..\N3Base\N3Base.cpp" />
-    <ClCompile Include="..\N3Base\N3BaseFileAccess.cpp" />
-    <ClCompile Include="..\N3Base\N3Eng.cpp" />
-    <ClCompile Include="..\N3Base\N3EngTool.cpp" />
-    <ClCompile Include="..\N3Base\N3Texture.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\BitMapFile.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\LogWriter.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Base.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3BaseFileAccess.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Eng.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3EngTool.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Texture.cpp" />
     <ClCompile Include="DlgFormat.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="N3TexViewer.cpp" />
@@ -154,16 +154,16 @@
     <ResourceCompile Include="N3TexViewer.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\N3Base\BitMapFile.h" />
-    <ClInclude Include="..\N3BASE\LogWriter.h" />
-    <ClInclude Include="..\N3Base\My_3DStruct.h" />
-    <ClInclude Include="..\N3Base\N3AlphaPrimitiveManager.h" />
-    <ClInclude Include="..\N3Base\N3Base.h" />
-    <ClInclude Include="..\N3Base\N3BaseFileAccess.h" />
-    <ClInclude Include="..\N3Base\N3Eng.h" />
-    <ClInclude Include="..\N3Base\N3EngTool.h" />
-    <ClInclude Include="..\N3Base\N3Texture.h" />
-    <ClInclude Include="..\N3Base\StdAfxBase.h" />
+    <ClInclude Include="..\..\engine\N3Base\BitMapFile.h" />
+    <ClInclude Include="..\..\engine\N3Base\LogWriter.h" />
+    <ClInclude Include="..\..\engine\N3Base\My_3DStruct.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3AlphaPrimitiveManager.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Base.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3BaseFileAccess.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Eng.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3EngTool.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Texture.h" />
+    <ClInclude Include="..\..\engine\N3Base\StdAfxBase.h" />
     <ClInclude Include="DlgFormat.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="N3TexViewer.h" />
