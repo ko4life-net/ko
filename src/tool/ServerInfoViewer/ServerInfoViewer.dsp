@@ -95,43 +95,43 @@ SOURCE=.\MainFrm.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3AlphaPrimitiveManager.cpp
+SOURCE=..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3AnimControl.cpp
+SOURCE=..\..\engine\N3Base\N3AnimControl.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3AnimKey.cpp
+SOURCE=..\..\engine\N3Base\N3AnimKey.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Base.cpp
+SOURCE=..\..\engine\N3Base\N3Base.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3BaseFileAccess.cpp
+SOURCE=..\..\engine\N3Base\N3BaseFileAccess.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Camera.cpp
+SOURCE=..\..\engine\N3Base\N3Camera.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Eng.cpp
+SOURCE=..\..\engine\N3Base\N3Eng.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3EngTool.cpp
+SOURCE=..\..\engine\N3Base\N3EngTool.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Light.cpp
+SOURCE=..\..\engine\N3Base\N3Light.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Transform.cpp
+SOURCE=..\..\engine\N3Base\N3Transform.cpp
 # End Source File
 # Begin Source File
 
@@ -164,55 +164,55 @@ SOURCE=.\MainFrm.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\My_3DStruct.h
+SOURCE=..\..\engine\N3Base\My_3DStruct.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\My_Macro.h
+SOURCE=..\..\engine\N3Base\My_Macro.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3AlphaPrimitiveManager.h
+SOURCE=..\..\engine\N3Base\N3AlphaPrimitiveManager.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3AnimControl.h
+SOURCE=..\..\engine\N3Base\N3AnimControl.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3AnimKey.h
+SOURCE=..\..\engine\N3Base\N3AnimKey.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Base.h
+SOURCE=..\..\engine\N3Base\N3Base.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3BaseFileAccess.h
+SOURCE=..\..\engine\N3Base\N3BaseFileAccess.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Camera.h
+SOURCE=..\..\engine\N3Base\N3Camera.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Eng.h
+SOURCE=..\..\engine\N3Base\N3Eng.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3EngTool.h
+SOURCE=..\..\engine\N3Base\N3EngTool.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Light.h
+SOURCE=..\..\engine\N3Base\N3Light.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Mng.h
+SOURCE=..\..\engine\N3Base\N3Mng.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3Transform.h
+SOURCE=..\..\engine\N3Base\N3Transform.h
 # End Source File
 # Begin Source File
 

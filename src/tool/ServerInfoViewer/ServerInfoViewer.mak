@@ -295,7 +295,7 @@ SOURCE=.\MainFrm.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3AlphaPrimitiveManager.cpp
+SOURCE=..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp
 
 !IF  "$(CFG)" == "ServerInfoViewer - Win32 Release"
 
@@ -313,7 +313,7 @@ SOURCE=..\N3Base\N3AlphaPrimitiveManager.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3AnimControl.cpp
+SOURCE=..\..\engine\N3Base\N3AnimControl.cpp
 
 !IF  "$(CFG)" == "ServerInfoViewer - Win32 Release"
 
@@ -331,7 +331,7 @@ SOURCE=..\N3Base\N3AnimControl.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3AnimKey.cpp
+SOURCE=..\..\engine\N3Base\N3AnimKey.cpp
 
 !IF  "$(CFG)" == "ServerInfoViewer - Win32 Release"
 
@@ -349,7 +349,7 @@ SOURCE=..\N3Base\N3AnimKey.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3Base.cpp
+SOURCE=..\..\engine\N3Base\N3Base.cpp
 
 !IF  "$(CFG)" == "ServerInfoViewer - Win32 Release"
 
@@ -367,7 +367,7 @@ SOURCE=..\N3Base\N3Base.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3BaseFileAccess.cpp
+SOURCE=..\..\engine\N3Base\N3BaseFileAccess.cpp
 
 !IF  "$(CFG)" == "ServerInfoViewer - Win32 Release"
 
@@ -385,7 +385,7 @@ SOURCE=..\N3Base\N3BaseFileAccess.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3Camera.cpp
+SOURCE=..\..\engine\N3Base\N3Camera.cpp
 
 !IF  "$(CFG)" == "ServerInfoViewer - Win32 Release"
 
@@ -403,7 +403,7 @@ SOURCE=..\N3Base\N3Camera.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3Eng.cpp
+SOURCE=..\..\engine\N3Base\N3Eng.cpp
 
 !IF  "$(CFG)" == "ServerInfoViewer - Win32 Release"
 
@@ -421,7 +421,7 @@ SOURCE=..\N3Base\N3Eng.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3EngTool.cpp
+SOURCE=..\..\engine\N3Base\N3EngTool.cpp
 
 !IF  "$(CFG)" == "ServerInfoViewer - Win32 Release"
 
@@ -439,7 +439,7 @@ SOURCE=..\N3Base\N3EngTool.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3Light.cpp
+SOURCE=..\..\engine\N3Base\N3Light.cpp
 
 !IF  "$(CFG)" == "ServerInfoViewer - Win32 Release"
 
@@ -457,7 +457,7 @@ SOURCE=..\N3Base\N3Light.cpp
 
 !ENDIF 
 
-SOURCE=..\N3Base\N3Transform.cpp
+SOURCE=..\..\engine\N3Base\N3Transform.cpp
 
 !IF  "$(CFG)" == "ServerInfoViewer - Win32 Release"
 

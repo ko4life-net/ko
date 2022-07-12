@@ -18,34 +18,34 @@
     <ClCompile Include="MainFrm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3Base\N3AlphaPrimitiveManager.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3Base\N3AnimControl.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3AnimControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3Base\N3AnimKey.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3AnimKey.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3Base\N3Base.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3Base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3Base\N3BaseFileAccess.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3BaseFileAccess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3Base\N3Camera.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3Base\N3Eng.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3Eng.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3Base\N3EngTool.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3EngTool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3Base\N3Light.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3Light.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\N3Base\N3Transform.cpp">
+    <ClCompile Include="..\..\engine\N3Base\N3Transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ServerInfoViewer.cpp">
@@ -70,43 +70,43 @@
     <ClInclude Include="MainFrm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3Base\My_3DStruct.h">
+    <ClInclude Include="..\..\engine\N3Base\My_3DStruct.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3Base\My_Macro.h">
+    <ClInclude Include="..\..\engine\N3Base\My_Macro.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3Base\N3AlphaPrimitiveManager.h">
+    <ClInclude Include="..\..\engine\N3Base\N3AlphaPrimitiveManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3Base\N3AnimControl.h">
+    <ClInclude Include="..\..\engine\N3Base\N3AnimControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3Base\N3AnimKey.h">
+    <ClInclude Include="..\..\engine\N3Base\N3AnimKey.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3Base\N3Base.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Base.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3Base\N3BaseFileAccess.h">
+    <ClInclude Include="..\..\engine\N3Base\N3BaseFileAccess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3Base\N3Camera.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3Base\N3Eng.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Eng.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3Base\N3EngTool.h">
+    <ClInclude Include="..\..\engine\N3Base\N3EngTool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3Base\N3Light.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3Base\N3Mng.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Mng.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\N3Base\N3Transform.h">
+    <ClInclude Include="..\..\engine\N3Base\N3Transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">

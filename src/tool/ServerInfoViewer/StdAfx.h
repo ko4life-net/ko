@@ -27,7 +27,7 @@
 
 
 
-#include "../N3Base/My_3DStruct.h"
+#include "N3Base/My_3DStruct.h"
 
 
 

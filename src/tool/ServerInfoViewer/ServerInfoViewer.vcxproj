@@ -69,7 +69,7 @@
       <ObjectFileName>.\Debug\</ObjectFileName>
       <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\engine;$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -110,7 +110,7 @@
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <ObjectFileName>.\Release\</ObjectFileName>
       <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\engine;$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -134,16 +134,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\N3Base\N3AlphaPrimitiveManager.cpp" />
-    <ClCompile Include="..\N3Base\N3AnimControl.cpp" />
-    <ClCompile Include="..\N3Base\N3AnimKey.cpp" />
-    <ClCompile Include="..\N3Base\N3Base.cpp" />
-    <ClCompile Include="..\N3Base\N3BaseFileAccess.cpp" />
-    <ClCompile Include="..\N3Base\N3Camera.cpp" />
-    <ClCompile Include="..\N3Base\N3Eng.cpp" />
-    <ClCompile Include="..\N3Base\N3EngTool.cpp" />
-    <ClCompile Include="..\N3Base\N3Light.cpp" />
-    <ClCompile Include="..\N3Base\N3Transform.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3AnimControl.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3AnimKey.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Base.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3BaseFileAccess.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Camera.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Eng.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3EngTool.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Light.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\N3Transform.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="ServerInfoViewer.cpp" />
     <ClCompile Include="ServerInfoViewerDoc.cpp" />
@@ -159,19 +159,19 @@
     <ResourceCompile Include="ServerInfoViewer.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\N3Base\My_3DStruct.h" />
-    <ClInclude Include="..\N3Base\My_Macro.h" />
-    <ClInclude Include="..\N3Base\N3AlphaPrimitiveManager.h" />
-    <ClInclude Include="..\N3Base\N3AnimControl.h" />
-    <ClInclude Include="..\N3Base\N3AnimKey.h" />
-    <ClInclude Include="..\N3Base\N3Base.h" />
-    <ClInclude Include="..\N3Base\N3BaseFileAccess.h" />
-    <ClInclude Include="..\N3Base\N3Camera.h" />
-    <ClInclude Include="..\N3Base\N3Eng.h" />
-    <ClInclude Include="..\N3Base\N3EngTool.h" />
-    <ClInclude Include="..\N3Base\N3Light.h" />
-    <ClInclude Include="..\N3Base\N3Mng.h" />
-    <ClInclude Include="..\N3Base\N3Transform.h" />
+    <ClInclude Include="..\..\engine\N3Base\My_3DStruct.h" />
+    <ClInclude Include="..\..\engine\N3Base\My_Macro.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3AlphaPrimitiveManager.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3AnimControl.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3AnimKey.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Base.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3BaseFileAccess.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Camera.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Eng.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3EngTool.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Light.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Mng.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Transform.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ServerInfoViewer.h" />
