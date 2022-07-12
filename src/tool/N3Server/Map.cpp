@@ -7,7 +7,7 @@
 #include "Map.h"
 #include "Region.h"
 #include "Define.h"
-#include ".\N3Base\N3VMesh.h"
+#include "N3Base/N3VMesh.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

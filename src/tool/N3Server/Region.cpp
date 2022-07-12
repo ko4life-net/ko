@@ -5,7 +5,7 @@
 #include "stdafx.h"
 //#include "3DServer.h"
 #include "Region.h"
-#include ".\N3Base\N3VMesh.h"
+#include "N3Base/N3VMesh.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

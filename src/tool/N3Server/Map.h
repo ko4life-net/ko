@@ -9,7 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include ".\N3Base\N3VMesh.h"
+#include "N3Base/N3VMesh.h"
 class CRegion;
 
 class C3DMap
