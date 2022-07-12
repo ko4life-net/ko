@@ -688,7 +688,7 @@ void CQTNode::RenderMaxLevel()
 	m_pRefTerrain->m_TileVB->Unlock();
 	if(pLightMapVertices) m_pRefTerrain->m_LightMapVB->Unlock();
 
-	m_pRefTerrain->s_lpD3DDev->SetStreamSource( 0, m_pRefTerrain->m_TileVB, sizeof(__VertexT2) );
+	m_pRefTerrain->s_lpD3DDev->SetStreamSource( 0, m_pRefTerrain->m_TileVB, 0, sizeof(__VertexT2) );
 	m_pRefTerrain->s_lpD3DDev->SetFVF( FVF_VNT2 );
 /*
 	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
@@ -801,7 +801,7 @@ void CQTNode::RenderMaxLevel()
 	}
 
 	// Render Light Map...
-	m_pRefTerrain->s_lpD3DDev->SetStreamSource( 0, m_pRefTerrain->m_LightMapVB, sizeof(__VertexT1) );
+	m_pRefTerrain->s_lpD3DDev->SetStreamSource( 0, m_pRefTerrain->m_LightMapVB, 0, sizeof(__VertexT1) );
 	m_pRefTerrain->s_lpD3DDev->SetFVF( FVF_VNT1 );
 
 	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_MODULATE);
@@ -921,7 +921,7 @@ void CQTNode::RenderMaxLevel()
 	m_pRefTerrain->m_TileVB->Unlock();
 
 
-	m_pRefTerrain->s_lpD3DDev->SetStreamSource( 0, m_pRefTerrain->m_TileVB, sizeof(__VertexT2) );
+	m_pRefTerrain->s_lpD3DDev->SetStreamSource( 0, m_pRefTerrain->m_TileVB, 0, sizeof(__VertexT2) );
 	m_pRefTerrain->s_lpD3DDev->SetFVF( FVF_VNT2 );
 
 	HRESULT hr;
@@ -1128,7 +1128,7 @@ void CQTNode::RenderNormalLevel()
 	
 	m_pRefTerrain->m_ColorMapVB->Unlock();
 
-	m_pRefTerrain->s_lpD3DDev->SetStreamSource( 0, m_pRefTerrain->m_ColorMapVB, sizeof(__VertexT1) );
+	m_pRefTerrain->s_lpD3DDev->SetStreamSource( 0, m_pRefTerrain->m_ColorMapVB, 0, sizeof(__VertexT1) );
 	m_pRefTerrain->s_lpD3DDev->SetFVF( FVF_VNT1 );
 	
 	HRESULT hr;

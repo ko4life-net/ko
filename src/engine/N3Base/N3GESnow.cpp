@@ -193,7 +193,7 @@ void CN3GESnow::Render(__Vector3& vPos)
 
 	// render
 	s_lpD3DDev->SetFVF(FVF_XYZT1);
-	s_lpD3DDev->SetStreamSource(0, m_pVB, sizeof(__VertexXyzT1)); // 버텍스 버퍼 지정
+	s_lpD3DDev->SetStreamSource(0, m_pVB, 0, sizeof(__VertexXyzT1)); // 버텍스 버퍼 지정
 	s_lpD3DDev->DrawPrimitive(D3DPT_TRIANGLELIST, 0, iActiveCount);
 
 	// restore

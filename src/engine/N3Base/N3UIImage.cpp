@@ -147,7 +147,7 @@ void CN3UIImage::Render()
 	{
 		if (m_pVB && m_pTexRef)
 		{
-			s_lpD3DDev->SetStreamSource( 0, m_pVB, sizeof(__VertexTransformed) );
+			s_lpD3DDev->SetStreamSource( 0, m_pVB, 0, sizeof(__VertexTransformed) );
 			s_lpD3DDev->SetFVF( FVF_TRANSFORMED );
 
 			s_lpD3DDev->SetTexture( 0, m_pTexRef->Get());
@@ -168,7 +168,7 @@ void CN3UIImage::RenderIconWrapper()
 
 	if (m_pVB)
 	{
-		s_lpD3DDev->SetStreamSource( 0, m_pVB, sizeof(__VertexTransformed) );
+		s_lpD3DDev->SetStreamSource( 0, m_pVB, 0, sizeof(__VertexTransformed) );
 		s_lpD3DDev->SetFVF( FVF_TRANSFORMED );
 		s_lpD3DDev->SetTexture( 0, NULL);
 

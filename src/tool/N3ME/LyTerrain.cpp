@@ -4025,7 +4025,7 @@ void CLyTerrain::SetColorMap(int x, int y)
 	hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
 	hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
-	hr = s_lpD3DDev->SetStreamSource( 0, m_pColorMapTmpVB, sizeof(__VertexTransformedT2) );
+	hr = s_lpD3DDev->SetStreamSource( 0, m_pColorMapTmpVB, 0, sizeof(__VertexTransformedT2) );
 	hr = s_lpD3DDev->SetFVF( FVF_TRANSFORMEDT2 );
 	
 	DWORD ColorArg11, ColorArg12, ColorArg21, ColorArg22;
@@ -4225,7 +4225,7 @@ void CLyTerrain::SetColorMap(int x, int y)
 	hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 	hr = s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, FALSE);
 
-	hr = s_lpD3DDev->SetStreamSource( 0, m_pColorMapTmpVB, sizeof(__VertexTransformedT2) );
+	hr = s_lpD3DDev->SetStreamSource( 0, m_pColorMapTmpVB, 0, sizeof(__VertexTransformedT2) );
 	hr = s_lpD3DDev->SetFVF( FVF_TRANSFORMEDT2 );
 	
 	DWORD ColorArg11, ColorArg12, ColorArg21, ColorArg22;

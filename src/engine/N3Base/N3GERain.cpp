@@ -164,7 +164,7 @@ void CN3GERain::Render(__Vector3& vPos)
 
 	// render
 	s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
-	s_lpD3DDev->SetStreamSource(0, m_pVB, sizeof(__VertexXyzColor)); // 버텍스 버퍼 지정
+	s_lpD3DDev->SetStreamSource(0, m_pVB, 0, sizeof(__VertexXyzColor)); // 버텍스 버퍼 지정
 	s_lpD3DDev->DrawPrimitive(D3DPT_LINELIST, 0, iActiveCount);
 
 	// restore

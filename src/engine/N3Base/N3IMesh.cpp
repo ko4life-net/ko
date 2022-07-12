@@ -282,7 +282,7 @@ void CN3IMesh::Render(bool bUseTwoUV)
 
 //	this->BuildVertexList();
 //	s_lpD3DDev->SetFVF(FVF_VNT1);
-//	s_lpD3DDev->SetStreamSource( 0, m_lpVB, sizeof(__VertexT1) );
+//	s_lpD3DDev->SetStreamSource( 0, m_lpVB, 0, sizeof(__VertexT1) );
 //	s_lpD3DDev->DrawPrimitive(D3DPT_TRIANGLELIST, 0, m_nFC);
 }
 

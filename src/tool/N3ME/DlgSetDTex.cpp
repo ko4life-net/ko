@@ -191,7 +191,7 @@ void CDlgSetDTex::RenderTex(LPDIRECT3DDEVICE9 lpDDev)
 	hr = lpDDev->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 	hr = lpDDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
 		
-	hr = lpDDev->SetStreamSource( 0, m_pTexVB, sizeof(__VertexTransformed) );
+	hr = lpDDev->SetStreamSource( 0, m_pTexVB, 0, sizeof(__VertexTransformed) );
     hr = lpDDev->SetFVF( FVF_TRANSFORMED );
 /*
 	DWORD IsAlpha, Srcblend, Destblend;
@@ -268,7 +268,7 @@ void CDlgSetDTex::RenderGrid(LPDIRECT3DDEVICE9 lpDDev)
 	hr = lpDDev->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 	hr = lpDDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
 	
-	hr = lpDDev->SetStreamSource( 0, m_pGridVB, sizeof(__VertexTransformedColor) );
+	hr = lpDDev->SetStreamSource( 0, m_pGridVB, 0, sizeof(__VertexTransformedColor) );
     hr = lpDDev->SetFVF( FVF_TRANSFORMEDCOLOR );
 	hr = lpDDev->DrawPrimitive( D3DPT_LINELIST, 0, (NUM_DTEXTILE-1)<<1 );
 

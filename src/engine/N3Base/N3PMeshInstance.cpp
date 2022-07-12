@@ -322,7 +322,7 @@ void CN3PMeshInstance::Render()
 	const int iPCToRender = 1000;	// primitive count to render
 #ifdef _USE_VERTEXBUFFER
 	__ASSERT(m_pPMesh->m_pVB && m_pIB, "Progressive mesh's vertex buffer or index buffer is NULL!");
-	s_lpD3DDev->SetStreamSource(0, m_pPMesh->m_pVB, sizeof(__VertexT1));
+	s_lpD3DDev->SetStreamSource(0, m_pPMesh->m_pVB, 0, sizeof(__VertexT1));
 	s_lpD3DDev->SetIndices(m_pIB, 0);
 
 	if(m_iNumIndices > 3)
@@ -371,7 +371,7 @@ void CN3PMeshInstance::RenderTwoUV()
 	const int iPCToRender = 1000;	// primitive count to render
 #ifdef _USE_VERTEXBUFFER
 	__ASSERT(m_pPMesh->m_pVB && m_pIB, "Progressive mesh's vertex buffer or index buffer is NULL!");
-	s_lpD3DDev->SetStreamSource(0, m_pPMesh->m_pVB, sizeof(__VertexT2));
+	s_lpD3DDev->SetStreamSource(0, m_pPMesh->m_pVB, 0, sizeof(__VertexT2));
 	s_lpD3DDev->SetIndices(m_pIB, 0);
 
 	if(m_iNumIndices > 3)
@@ -431,7 +431,7 @@ void CN3PMeshInstance::PartialRender(int iCount, LPDIRECT3DINDEXBUFFER9 pIB)
 	const int iPCToRender = 1000;	// primitive count to render
 
 	__ASSERT(m_pPMesh->m_pVB && pIB, "Progressive mesh's vertex buffer or index buffer is NULL!");
-	s_lpD3DDev->SetStreamSource(0, m_pPMesh->m_pVB, sizeof(__VertexT1));
+	s_lpD3DDev->SetStreamSource(0, m_pPMesh->m_pVB, 0, sizeof(__VertexT1));
 	s_lpD3DDev->SetIndices(pIB, 0);
 
 	if(iCount > 3)
