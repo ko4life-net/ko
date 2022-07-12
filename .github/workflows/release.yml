@@ -1,0 +1,23 @@
+name: Release
+
+on:
+  push:
+    tags: [ '*' ]
+
+jobs:
+  Windows:
+    runs-on: windows-2022
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build all
+        shell: cmd
+        run: |
+          build.cmd
+
+      - name: Upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: KO-All-x86-release
+          path: ./build
