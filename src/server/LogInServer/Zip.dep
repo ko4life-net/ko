@@ -32,8 +32,8 @@
 	
 
 .\StdAfx.cpp : \
-	"..\..\..\..\program files (x86)\microsoft visual studio\vc98\include\basetsd.h"\
 	".\StdAfx.h"\
+	{$(INCLUDE)}"basetsd.h"\
 	
 
 .\ZipArchive.cpp : \
