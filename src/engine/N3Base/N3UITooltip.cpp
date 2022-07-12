@@ -65,7 +65,7 @@ void CN3UITooltip::Render()
 		s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1,  D3DTA_DIFFUSE );
 
 		// draw
-		s_lpD3DDev->SetVertexShader(FVF_TRANSFORMEDCOLOR);
+		s_lpD3DDev->SetFVF(FVF_TRANSFORMEDCOLOR);
 		HRESULT hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, pVB, sizeof(__VertexTransformedColor));	// 배경색 칠하기
 
 		__VertexTransformedColor* pTemp = pVB;

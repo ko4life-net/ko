@@ -78,7 +78,7 @@ void CN3Star::Render()
 	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP,   D3DTOP_SELECTARG1 );
 	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_DIFFUSE );
 
-	s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+	s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_POINTLIST, m_iCurNumStar, m_Stars, sizeof(m_Stars[0]));
 }
 

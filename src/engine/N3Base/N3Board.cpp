@@ -113,7 +113,7 @@ void CN3Board::Render()
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, m_Mtl.dwColorArg1);
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG2, m_Mtl.dwColorArg2);
 
-	s_lpD3DDev->SetVertexShader(FVF_VNT1);
+	s_lpD3DDev->SetFVF(FVF_VNT1);
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, m_vRects, sizeof(__VertexT1));
 
 	if((m_Mtl.nRenderFlags & RF_ALPHABLENDING) && FALSE == dwAlpha)	s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);

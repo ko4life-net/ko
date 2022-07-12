@@ -74,7 +74,7 @@ void CN3EngTool::RenderGrid(const __Matrix44& mtxWorld)
 	s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxWorld);
 	s_lpD3DDev->SetTexture(0, NULL);
 
-	s_lpD3DDev->SetVertexShader(FVF_CV);
+	s_lpD3DDev->SetFVF(FVF_CV);
 
 	if(m_pVGrids) // 그리드 그리기..
 	{
@@ -120,7 +120,7 @@ void CN3EngTool::RenderAxis(bool bShowDir)
 	s_lpD3DDev->SetTransform(D3DTS_WORLD, &stm);
 	s_lpD3DDev->SetTexture(0, NULL);
 
-	s_lpD3DDev->SetVertexShader(FVF_CV);
+	s_lpD3DDev->SetFVF(FVF_CV);
 
 	// 축 그리기..
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[0], sizeof(__VertexColor)); // X
@@ -187,7 +187,7 @@ void CN3EngTool::RenderTexturePreview(CN3Texture *pTex, HWND hWndDiffuse, RECT* 
 
 		s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_DISABLE);		
 
-		s_lpD3DDev->SetVertexShader(FVF_TRANSFORMED);
+		s_lpD3DDev->SetFVF(FVF_TRANSFORMED);
 		s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 2, &m_VPreview, sizeof(__VertexTransformed));
 
 		s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, ColorOP);
@@ -272,7 +272,7 @@ void CN3EngTool::RenderTexturePreview(CN3Texture *pTex, HWND hWndDiffuse, RECT* 
 			hr = s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
 			hr = s_lpD3DDev->SetTexture(0, pTex->Get());
 
-			hr = s_lpD3DDev->SetVertexShader(FVF_TRANSFORMED);
+			hr = s_lpD3DDev->SetFVF(FVF_TRANSFORMED);
 			hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 2, &m_VPreview, sizeof(__VertexTransformed));
 
 			hr = s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, dwAlpha);

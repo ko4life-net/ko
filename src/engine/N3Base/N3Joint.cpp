@@ -140,7 +140,7 @@ void CN3Joint::Render(const __Matrix44* pMtxParent, float fUnitSize)
 
 		vBone[0].Set(v[0], 0xff00ff00);
 		vBone[1].Set(v[1], 0xff0000ff);
-		s_lpD3DDev->SetVertexShader(FVF_CV);
+		s_lpD3DDev->SetFVF(FVF_CV);
 		s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 1, vBone, sizeof(__VertexColor)); // 선그리기..
 	}
 
@@ -177,7 +177,7 @@ void CN3Joint::Render(const __Matrix44* pMtxParent, float fUnitSize)
 	mtxBox *= m_Matrix;
 	mtxAxis *= m_Matrix;
 
-	s_lpD3DDev->SetVertexShader(FVF_CV);
+	s_lpD3DDev->SetFVF(FVF_CV);
 	s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxBox);
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 12, vBoxes, sizeof(__VertexColor)); // 박스 그리기..
 	s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxAxis);

@@ -221,7 +221,7 @@ void CPondMng::Render()
 			hr = s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
 
 			// Render
-			s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+			s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 			s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 4, m_CreateLine, sizeof(__VertexXyzColor));
 		}
 
@@ -258,7 +258,7 @@ void CPondMng::Render()
 			D3DCOLOR clr ;
 			if(bisFix==TRUE) clr = D3DCOLOR_ARGB(0xff, 0xff, 0xff, 0x00);
 			else clr = D3DCOLOR_ARGB(0xff, 0x00, 0xff, 0x00);
-			s_lpD3DDev->SetVertexShader(FVF_TRANSFORMEDCOLOR);
+			s_lpD3DDev->SetFVF(FVF_TRANSFORMEDCOLOR);
 
 			for (int i=0; i<iSize; ++i)
 			{

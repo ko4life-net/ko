@@ -2336,7 +2336,7 @@ void CLyTerrain::Render()
 		hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
 		hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
-		hr = s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+		hr = s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 
 		hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 1, m_vLineLightMap, sizeof(__VertexXyzColor));
 
@@ -4026,7 +4026,7 @@ void CLyTerrain::SetColorMap(int x, int y)
 	hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
 	hr = s_lpD3DDev->SetStreamSource( 0, m_pColorMapTmpVB, sizeof(__VertexTransformedT2) );
-	hr = s_lpD3DDev->SetVertexShader( FVF_TRANSFORMEDT2 );
+	hr = s_lpD3DDev->SetFVF( FVF_TRANSFORMEDT2 );
 	
 	DWORD ColorArg11, ColorArg12, ColorArg21, ColorArg22;
 	DWORD ColorOP1, ColorOP2;
@@ -4226,7 +4226,7 @@ void CLyTerrain::SetColorMap(int x, int y)
 	hr = s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, FALSE);
 
 	hr = s_lpD3DDev->SetStreamSource( 0, m_pColorMapTmpVB, sizeof(__VertexTransformedT2) );
-	hr = s_lpD3DDev->SetVertexShader( FVF_TRANSFORMEDT2 );
+	hr = s_lpD3DDev->SetFVF( FVF_TRANSFORMEDT2 );
 	
 	DWORD ColorArg11, ColorArg12, ColorArg21, ColorArg22;
 	DWORD ColorOP1, ColorOP2;
@@ -4840,7 +4840,7 @@ void CLyTerrain::RenderBrushArea()
 	s_lpD3DDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
-	s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+	s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 	s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_TRIANGLELIST, 0, MAX_BRUSH_SIZE*MAX_BRUSH_SIZE*9,
 		int(m_iBrushIndexCount/3), m_wBrushIndices, D3DFMT_INDEX16,
 		m_vBrushVertices, sizeof(__VertexXyzColor));

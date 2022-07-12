@@ -846,7 +846,7 @@ void CN3ShapeMgr::RenderCollision(__Vector3 &vPos)
 			vNormalDir[0].color = 0xffff0000;
 			vNormalDir[1].color = 0xffffffff;
 			
-			s_lpD3DDev->SetVertexShader(FVF_CV);
+			s_lpD3DDev->SetFVF(FVF_CV);
 			s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 1, vCols, sizeof(__VertexColor));
 			s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 1, vNormalDir, sizeof(__VertexColor));
 		}

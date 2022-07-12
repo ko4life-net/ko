@@ -268,7 +268,7 @@ bool CN3FXPMeshInstance::SplitOne()
 void CN3FXPMeshInstance::Render()
 {
 	if (m_pFXPMesh == NULL) return;
-	s_lpD3DDev->SetVertexShader(FVF_VNT1);
+	s_lpD3DDev->SetFVF(FVF_VNT1);
 
 	const int iPCToRender = 1000;	// primitive count to render
 	if(m_iNumIndices > 3)
@@ -296,7 +296,7 @@ void CN3FXPMeshInstance::RenderTwoUV()
 	}
 	if(NULL == m_pFXPMesh->GetVertices2()) return;
 	
-	s_lpD3DDev->SetVertexShader(FVF_VNT2);
+	s_lpD3DDev->SetFVF(FVF_VNT2);
 
 	const int iPCToRender = 1000;	// primitive count to render
 	if(m_iNumIndices > 3)

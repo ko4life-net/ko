@@ -610,7 +610,7 @@ void CSowSeedMng::Render_Box(LPDIRECT3DDEVICE9 lpD3DDevice,__Vector3 Pos)
 	lpD3DDevice->SetTransform(D3DTS_WORLD, &WorldMtx);
 
 	lpD3DDevice->SetTexture(0, NULL);
- 	lpD3DDevice->SetVertexShader(D3DFVF_XYZ | D3DFVF_DIFFUSE);
+ 	lpD3DDevice->SetFVF(D3DFVF_XYZ | D3DFVF_DIFFUSE);
 
 	lpD3DDevice->DrawIndexedPrimitiveUP(D3DPT_LINELIST,0,8,13,m_Index,D3DFMT_INDEX16,m_pVertices,sizeof(__VertexColor));
 

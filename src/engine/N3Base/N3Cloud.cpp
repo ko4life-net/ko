@@ -172,7 +172,7 @@ void CN3Cloud::Render()
 	if (D3DTA_TEXTURE != dwAlphaArg1) s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE );
 	if (D3DTA_DIFFUSE != dwAlphaArg2) s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ALPHAARG2, D3DTA_DIFFUSE );
 
-	s_lpD3DDev->SetVertexShader(FVF_XYZCOLORT2);
+	s_lpD3DDev->SetFVF(FVF_XYZCOLORT2);
 
 	D3DCOLOR color1 = m_Color1.GetCurColor();
 	D3DCOLOR color2 = m_Color2.GetCurColor();

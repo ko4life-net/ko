@@ -185,7 +185,7 @@ void CN3VMesh::Render(D3DCOLOR crLine)
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
 	s_lpD3DDev->SetTexture(0, NULL);
- 	s_lpD3DDev->SetVertexShader(FVF_CV);
+ 	s_lpD3DDev->SetFVF(FVF_CV);
 
 	__VertexColor vTs[3];
 	if(m_nIC)
@@ -410,7 +410,7 @@ void CN3VMesh::PartialColRender(int iCount, int* piIndices)
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
 	s_lpD3DDev->SetTexture(0, NULL);
- 	s_lpD3DDev->SetVertexShader(FVF_CV);
+ 	s_lpD3DDev->SetFVF(FVF_CV);
 
 	__VertexColor vTs[3];
 	if(iCount)

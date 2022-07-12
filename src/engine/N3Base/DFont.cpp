@@ -879,7 +879,7 @@ HRESULT CDFont::DrawText( FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOA
 	}
 
 	// render
-    m_pd3dDevice->SetVertexShader( FVF_TRANSFORMED );
+    m_pd3dDevice->SetFVF( FVF_TRANSFORMED );
     m_pd3dDevice->SetStreamSource( 0, m_pVB, sizeof(__VertexTransformed) );
 	m_pd3dDevice->SetTexture( 0, m_pTexture );
     m_pd3dDevice->DrawPrimitive( D3DPT_TRIANGLELIST, 0, m_iPrimitiveCount );
@@ -997,7 +997,7 @@ HRESULT CDFont::DrawText3D(DWORD dwColor, DWORD dwFlags )
 
 
 	// render
-    m_pd3dDevice->SetVertexShader( FVF_XYZCOLORT1 );
+    m_pd3dDevice->SetFVF( FVF_XYZCOLORT1 );
     m_pd3dDevice->SetStreamSource( 0, m_pVB, sizeof(__VertexXyzColorT1) );
 	m_pd3dDevice->SetTexture( 0, m_pTexture );
     m_pd3dDevice->DrawPrimitive( D3DPT_TRIANGLELIST, 0, m_iPrimitiveCount );

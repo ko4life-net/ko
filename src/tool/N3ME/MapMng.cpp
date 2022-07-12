@@ -668,7 +668,7 @@ void CMapMng::RenderDragRect(RECT* rc)
 	hr = pD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 	hr = pD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
 
-	hr = pD3DDev->SetVertexShader( FVF_TRANSFORMEDCOLOR );
+	hr = pD3DDev->SetFVF( FVF_TRANSFORMEDCOLOR );
 	hr = pD3DDev->DrawPrimitiveUP( D3DPT_LINESTRIP, 4, Vertices, sizeof(__VertexTransformedColor));
 }
 
@@ -1969,7 +1969,7 @@ void CMapMng::RenderGrid(float fGridSize, float fMaxDistance)	// fGridSizeÅ©±â·Î
 	pD3DDev->SetTexture(0, NULL);
 
 	// render
-	pD3DDev->SetVertexShader(FVF_XYZCOLOR);
+	pD3DDev->SetFVF(FVF_XYZCOLOR);
 	pD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, iVC/2, pVertices, sizeof(__VertexXyzColor));
 
 	// restore

@@ -247,7 +247,7 @@ void CWallMgr::Render()
 	hr = s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
 
-	hr = s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+	hr = s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 
 	//이미 만들어진 길 그리기...
 	std::list<CWall*>::iterator itWall;

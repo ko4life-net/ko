@@ -317,7 +317,7 @@ bool CN3PMeshInstance::SplitOne()
 void CN3PMeshInstance::Render()
 {
 	if (m_pPMesh == NULL) return;
-	s_lpD3DDev->SetVertexShader(FVF_VNT1);
+	s_lpD3DDev->SetFVF(FVF_VNT1);
 
 	const int iPCToRender = 1000;	// primitive count to render
 #ifdef _USE_VERTEXBUFFER
@@ -366,7 +366,7 @@ void CN3PMeshInstance::RenderTwoUV()
 	}
 	if(NULL == m_pPMesh->GetVertices2()) return;
 	
-	s_lpD3DDev->SetVertexShader(FVF_VNT2);
+	s_lpD3DDev->SetFVF(FVF_VNT2);
 
 	const int iPCToRender = 1000;	// primitive count to render
 #ifdef _USE_VERTEXBUFFER
@@ -427,7 +427,7 @@ __VertexT1*	CN3PMeshInstance::GetVertices() const
 void CN3PMeshInstance::PartialRender(int iCount, LPDIRECT3DINDEXBUFFER9 pIB)
 {
 	if (m_pPMesh == NULL) return;
-	s_lpD3DDev->SetVertexShader(FVF_VNT1);
+	s_lpD3DDev->SetFVF(FVF_VNT1);
 	const int iPCToRender = 1000;	// primitive count to render
 
 	__ASSERT(m_pPMesh->m_pVB && pIB, "Progressive mesh's vertex buffer or index buffer is NULL!");
@@ -451,7 +451,7 @@ void CN3PMeshInstance::PartialRender(int iCount, LPDIRECT3DINDEXBUFFER9 pIB)
 void CN3PMeshInstance::PartialRender(int iCount, WORD* pIndices)
 {
 	if (m_pPMesh == NULL) return;
-	s_lpD3DDev->SetVertexShader(FVF_VNT1);
+	s_lpD3DDev->SetFVF(FVF_VNT1);
 	const int iPCToRender = 1000;	// primitive count to render
 
 /*	if(m_iNumIndices > 3)

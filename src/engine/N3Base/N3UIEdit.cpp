@@ -81,7 +81,7 @@ void CN3UIEdit::CN3Caret::Render(LPDIRECT3DDEVICE9	lpD3DDev)
 	lpD3DDev->SetTexture(0, NULL);
 //	lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP,    D3DTOP_SELECTARG1 );
 //	lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1,  D3DTA_DIFFUSE );
-	lpD3DDev->SetVertexShader(FVF_TRANSFORMEDCOLOR);
+	lpD3DDev->SetFVF(FVF_TRANSFORMEDCOLOR);
 	lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 1, m_pVB, sizeof(m_pVB[0]));
 }
 void CN3UIEdit::CN3Caret::InitFlckering()

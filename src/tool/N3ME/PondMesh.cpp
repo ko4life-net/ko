@@ -73,13 +73,13 @@ void CPondMesh::Render()
 		s_lpD3DDev->SetTexture(0, NULL);
 		s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 		s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
-		s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+		s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 
 		s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 4, m_ViewRect, sizeof(__VertexXyzColor));
 	}
 
 
-	s_lpD3DDev->SetVertexShader(FVF_XYZT2);
+	s_lpD3DDev->SetFVF(FVF_XYZT2);
 	// Texture state
 	if (m_pTexture && m_iVC>2  && m_iIC>0)
 	{
@@ -175,7 +175,7 @@ void CPondMesh::RenderVertexPoint()	// 잘보이게 점만 다시 그리기
 
 	__VertexTransformedColor Vertices[4];
 	D3DCOLOR clr = D3DCOLOR_ARGB(0xff, 0xff, 0x00, 0x00);
-	s_lpD3DDev->SetVertexShader(FVF_TRANSFORMEDCOLOR);
+	s_lpD3DDev->SetFVF(FVF_TRANSFORMEDCOLOR);
 
 	int i;
 	D3DXVECTOR4 v;

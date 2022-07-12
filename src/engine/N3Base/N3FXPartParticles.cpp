@@ -709,7 +709,7 @@ void CN3FXPartParticles::Render()
 		return; // ·»´õ¸µ ¾ÈÇÏÁö·Õ.
 	}
 		
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_XYZCOLORT1);
+	CN3Base::s_lpD3DDev->SetFVF(FVF_XYZCOLORT1);
 
 	//s_lpD3DDev->SetRenderState( D3DRS_ALPHABLENDENABLE, m_bAlpha );
 	//s_lpD3DDev->SetRenderState( D3DRS_SRCBLEND, m_dwSrcBlend );
@@ -798,7 +798,7 @@ void CN3FXPartParticles::Render()
 	m_mtxVI = s_CameraData.mtxViewInverse;
 	m_mtxVI.PosSet(0,0,0);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_XYZCOLORT1);
+	CN3Base::s_lpD3DDev->SetFVF(FVF_XYZCOLORT1);
 
 	//DWORD dwZWriteEnable;
 	//CN3Base::s_lpD3DDev->GetRenderState(D3DRS_ZWRITEENABLE, &dwZWriteEnable);

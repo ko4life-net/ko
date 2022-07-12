@@ -127,7 +127,7 @@ void CN3AlphaPrimitiveManager::Render()
 		if (pBuffs[i]->dwBlendDest != RS_current.dwDestBlend) CN3Base::s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND,  pBuffs[i]->dwBlendDest);
 		else CN3Base::s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND,  RS_old.dwDestBlend);
 
-		CN3Base::s_lpD3DDev->SetVertexShader(pBuffs[i]->dwFVF);
+		CN3Base::s_lpD3DDev->SetFVF(pBuffs[i]->dwFVF);
 		CN3Base::s_lpD3DDev->SetTexture(0, pBuffs[i]->lpTex);
 		CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &(pBuffs[i]->MtxWorld)); // 월드 행렬 적용
 
@@ -339,7 +339,7 @@ void CN3AlphaPrimitiveManager::Render()
 		if (pBuffs[i]->dwBlendSrc != RS_current.dwSrcBlend)	{ RS_current.dwSrcBlend = pBuffs[i]->dwBlendSrc; CN3Base::s_lpD3DDev->SetRenderState(D3DRS_SRCBLEND,   pBuffs[i]->dwBlendSrc);}
 		if (pBuffs[i]->dwBlendDest != RS_current.dwDestBlend) {	RS_current.dwDestBlend = pBuffs[i]->dwBlendDest; CN3Base::s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND,  pBuffs[i]->dwBlendDest);}
 
-		CN3Base::s_lpD3DDev->SetVertexShader(pBuffs[i]->dwFVF);
+		CN3Base::s_lpD3DDev->SetFVF(pBuffs[i]->dwFVF);
 		CN3Base::s_lpD3DDev->SetTexture(0, pBuffs[i]->lpTex);
 		CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &(pBuffs[i]->MtxWorld)); // 월드 행렬 적용
 
