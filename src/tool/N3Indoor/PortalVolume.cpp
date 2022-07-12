@@ -11,9 +11,9 @@
 #include "MainFrm.h"
 #include "OrganizeView.h"
 
-#include "..\N3Base\N3Base.h"
-#include "../N3Base/N3Shape.h"
-#include "../N3Base/N3Scene.h"
+#include "N3Base/N3Base.h"
+#include "N3Base/N3Shape.h"
+#include "N3Base/N3Scene.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

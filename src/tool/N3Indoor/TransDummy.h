@@ -9,7 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "../N3Base/N3Transform.h"
+#include "N3Base/N3Transform.h"
 #include <afxtempl.h>
 #include <vector>
 

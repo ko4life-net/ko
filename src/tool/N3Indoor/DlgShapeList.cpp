@@ -9,8 +9,8 @@
 #include "OrganizeView.h"
 #include "ShapeTypeDlg.h"
 
-#include "../N3Base/N3Shape.h"
-#include "../N3Base/N3Scene.h"
+#include "N3Base/N3Shape.h"
+#include "N3Base/N3Scene.h"
 
 #include <map>
 #include <string>

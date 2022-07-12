@@ -8,8 +8,8 @@
 #include "OrganizeView.h"
 #include "ShapeTypeDlg.h"
 
-#include "../N3Base/N3TransformCollision.h"
-#include "../N3Base/N3Scene.h"
+#include "N3Base/N3TransformCollision.h"
+#include "N3Base/N3Scene.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

@@ -9,7 +9,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CDlgBase dialog
-#include "../Common Control/PropertyList.h"
+#include "../Widget/PropertyList.h"
 #include "Resource.h"
 
 class CDlgBase : public CDialog

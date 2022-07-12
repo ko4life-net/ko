@@ -10,7 +10,7 @@
 #endif // _MSC_VER > 1000
 
 #include "PvsBase.h"
-#include "..\N3Base\My_3DStruct.h"
+#include "N3Base/My_3DStruct.h"
 
 
 class CPvsObjFactory;

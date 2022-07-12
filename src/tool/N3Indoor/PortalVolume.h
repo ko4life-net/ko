@@ -11,9 +11,9 @@
 
 #pragma warning(disable : 4786)
 
-#include "..\N3Base\N3Base.h"
-#include "..\N3Base\N3BaseFileAccess.h"
-#include "..\N3Base\N3Scene.h"
+#include "N3Base/N3Base.h"
+#include "N3Base/N3BaseFileAccess.h"
+#include "N3Base/N3Scene.h"
 
 #include <string>
 #include <list>

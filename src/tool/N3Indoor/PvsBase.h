@@ -11,7 +11,7 @@
 
 #pragma warning(disable : 4786)
 
-#include "..\N3Base\N3Base.h"
+#include "N3Base/N3Base.h"
 
 #include <string>
 #include <list>

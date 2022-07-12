@@ -10,8 +10,8 @@
 /////////////////////////////////////////////////////////////////////////////
 // CDlgSceneGraph dialog
 #include "Resource.h"
-#include "../N3Base/N3Base.h"
-#include "../N3Base/N3TransformCollision.h"
+#include "N3Base/N3Base.h"
+#include "N3Base/N3TransformCollision.h"
 
 class CN3Scene;
 

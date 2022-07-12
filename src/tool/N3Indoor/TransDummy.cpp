@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "PortalVolume.h"
 #include "TransDummy.h"
-#include "../N3Base/Pick.h"
+#include "N3Base/Pick.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
