@@ -13,7 +13,7 @@
 #ifndef __AFXEXT_H__
 #include <afxext.h>
 #endif
-#include "..\Common Control\PropertyList.h"
+#include "../Widget/PropertyList.h"
 
 class CUIEDoc;
 class CN3UIBase;

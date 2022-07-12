@@ -541,13 +541,13 @@ SOURCE=.\MainFrm.cpp
 "$(INTDIR)\MainFrm.obj"	"$(INTDIR)\MainFrm.sbr" : $(SOURCE) "$(INTDIR)"
 
 
-SOURCE=..\N3BASE\N3UIList.cpp
+SOURCE=..\..\engine\N3Base\N3UIList.cpp
 
 "$(INTDIR)\N3UIList.obj"	"$(INTDIR)\N3UIList.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE="..\Common Control\PropertyList.cpp"
+SOURCE="..\Widget\PropertyList.cpp"
 
 "$(INTDIR)\PropertyList.obj"	"$(INTDIR)\PropertyList.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
@@ -584,151 +584,151 @@ SOURCE=.\UIEView.cpp
 "$(INTDIR)\UIEView.obj"	"$(INTDIR)\UIEView.sbr" : $(SOURCE) "$(INTDIR)"
 
 
-SOURCE=..\N3BASE\N3UIArea.cpp
+SOURCE=..\..\engine\N3Base\N3UIArea.cpp
 
 "$(INTDIR)\N3UIArea.obj"	"$(INTDIR)\N3UIArea.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\N3UIBase.cpp
+SOURCE=..\..\engine\N3Base\N3UIBase.cpp
 
 "$(INTDIR)\N3UIBase.obj"	"$(INTDIR)\N3UIBase.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\N3UIButton.cpp
+SOURCE=..\..\engine\N3Base\N3UIButton.cpp
 
 "$(INTDIR)\N3UIButton.obj"	"$(INTDIR)\N3UIButton.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\N3UIEdit.cpp
+SOURCE=..\..\engine\N3Base\N3UIEdit.cpp
 
 "$(INTDIR)\N3UIEdit.obj"	"$(INTDIR)\N3UIEdit.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\N3UIImage.cpp
+SOURCE=..\..\engine\N3Base\N3UIImage.cpp
 
 "$(INTDIR)\N3UIImage.obj"	"$(INTDIR)\N3UIImage.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\N3UIManager.cpp
+SOURCE=..\..\engine\N3Base\N3UIManager.cpp
 
 "$(INTDIR)\N3UIManager.obj"	"$(INTDIR)\N3UIManager.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\N3UIProgress.cpp
+SOURCE=..\..\engine\N3Base\N3UIProgress.cpp
 
 "$(INTDIR)\N3UIProgress.obj"	"$(INTDIR)\N3UIProgress.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\N3UIScrollBar.cpp
+SOURCE=..\..\engine\N3Base\N3UIScrollBar.cpp
 
 "$(INTDIR)\N3UIScrollBar.obj"	"$(INTDIR)\N3UIScrollBar.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\N3UIStatic.cpp
+SOURCE=..\..\engine\N3Base\N3UIStatic.cpp
 
 "$(INTDIR)\N3UIStatic.obj"	"$(INTDIR)\N3UIStatic.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\N3UIString.cpp
+SOURCE=..\..\engine\N3Base\N3UIString.cpp
 
 "$(INTDIR)\N3UIString.obj"	"$(INTDIR)\N3UIString.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\N3UITooltip.cpp
+SOURCE=..\..\engine\N3Base\N3UITooltip.cpp
 
 "$(INTDIR)\N3UITooltip.obj"	"$(INTDIR)\N3UITooltip.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\N3UITrackBar.cpp
+SOURCE=..\..\engine\N3Base\N3UITrackBar.cpp
 
 "$(INTDIR)\N3UITrackBar.obj"	"$(INTDIR)\N3UITrackBar.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\BitMapFile.cpp
+SOURCE=..\..\engine\N3Base\BitMapFile.cpp
 
 "$(INTDIR)\BitMapFile.obj"	"$(INTDIR)\BitMapFile.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\DFont.cpp
+SOURCE=..\..\engine\N3Base\DFont.cpp
 
 "$(INTDIR)\DFont.obj"	"$(INTDIR)\DFont.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\LogWriter.cpp
+SOURCE=..\..\engine\N3Base\LogWriter.cpp
 
 "$(INTDIR)\LogWriter.obj"	"$(INTDIR)\LogWriter.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\N3AlphaPrimitiveManager.cpp
+SOURCE=..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp
 
 "$(INTDIR)\N3AlphaPrimitiveManager.obj"	"$(INTDIR)\N3AlphaPrimitiveManager.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\N3Base.cpp
+SOURCE=..\..\engine\N3Base\N3Base.cpp
 
 "$(INTDIR)\N3Base.obj"	"$(INTDIR)\N3Base.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\N3BaseFileAccess.cpp
+SOURCE=..\..\engine\N3Base\N3BaseFileAccess.cpp
 
 "$(INTDIR)\N3BaseFileAccess.obj"	"$(INTDIR)\N3BaseFileAccess.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\N3Eng.cpp
+SOURCE=..\..\engine\N3Base\N3Eng.cpp
 
 "$(INTDIR)\N3Eng.obj"	"$(INTDIR)\N3Eng.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\N3EngTool.cpp
+SOURCE=..\..\engine\N3Base\N3EngTool.cpp
 
 "$(INTDIR)\N3EngTool.obj"	"$(INTDIR)\N3EngTool.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3Base\N3SndMgr.cpp
+SOURCE=..\..\engine\N3Base\N3SndMgr.cpp
 
 "$(INTDIR)\N3SndMgr.obj"	"$(INTDIR)\N3SndMgr.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3Base\N3SndObj.cpp
+SOURCE=..\..\engine\N3Base\N3SndObj.cpp
 
 "$(INTDIR)\N3SndObj.obj"	"$(INTDIR)\N3SndObj.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\N3SndObjStream.cpp
+SOURCE=..\..\engine\N3Base\N3SndObjStream.cpp
 
 "$(INTDIR)\N3SndObjStream.obj"	"$(INTDIR)\N3SndObjStream.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3BASE\N3Texture.cpp
+SOURCE=..\..\engine\N3Base\N3Texture.cpp
 
 "$(INTDIR)\N3Texture.obj"	"$(INTDIR)\N3Texture.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\N3Base\WaveFile.cpp
+SOURCE=..\..\engine\N3Base\WaveFile.cpp
 
 "$(INTDIR)\WaveFile.obj"	"$(INTDIR)\WaveFile.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)

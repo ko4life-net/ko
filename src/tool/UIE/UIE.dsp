@@ -108,11 +108,11 @@ SOURCE=.\MainFrm.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIList.cpp
+SOURCE=..\..\engine\N3Base\N3UIList.cpp
 # End Source File
 # Begin Source File
 
-SOURCE="..\Common Control\PropertyList.cpp"
+SOURCE="..\Widget\PropertyList.cpp"
 # End Source File
 # Begin Source File
 
@@ -160,11 +160,11 @@ SOURCE=.\MainFrm.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIList.h
+SOURCE=..\..\engine\N3Base\N3UIList.h
 # End Source File
 # Begin Source File
 
-SOURCE="..\Common Control\PropertyList.h"
+SOURCE="..\Widget\PropertyList.h"
 # End Source File
 # Begin Source File
 
@@ -231,220 +231,220 @@ SOURCE=.\res\zoomout.cur
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIArea.cpp
+SOURCE=..\..\engine\N3Base\N3UIArea.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIArea.h
+SOURCE=..\..\engine\N3Base\N3UIArea.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIBase.cpp
+SOURCE=..\..\engine\N3Base\N3UIBase.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIBase.h
+SOURCE=..\..\engine\N3Base\N3UIBase.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIButton.cpp
+SOURCE=..\..\engine\N3Base\N3UIButton.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIButton.h
+SOURCE=..\..\engine\N3Base\N3UIButton.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIDef.h
+SOURCE=..\..\engine\N3Base\N3UIDef.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIEdit.cpp
+SOURCE=..\..\engine\N3Base\N3UIEdit.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIEdit.h
+SOURCE=..\..\engine\N3Base\N3UIEdit.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIImage.cpp
+SOURCE=..\..\engine\N3Base\N3UIImage.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIImage.h
+SOURCE=..\..\engine\N3Base\N3UIImage.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIManager.cpp
+SOURCE=..\..\engine\N3Base\N3UIManager.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIManager.h
+SOURCE=..\..\engine\N3Base\N3UIManager.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIProgress.cpp
+SOURCE=..\..\engine\N3Base\N3UIProgress.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIProgress.h
+SOURCE=..\..\engine\N3Base\N3UIProgress.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIScrollBar.cpp
+SOURCE=..\..\engine\N3Base\N3UIScrollBar.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIScrollBar.h
+SOURCE=..\..\engine\N3Base\N3UIScrollBar.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIStatic.cpp
+SOURCE=..\..\engine\N3Base\N3UIStatic.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIStatic.h
+SOURCE=..\..\engine\N3Base\N3UIStatic.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIString.cpp
+SOURCE=..\..\engine\N3Base\N3UIString.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UIString.h
+SOURCE=..\..\engine\N3Base\N3UIString.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UITooltip.cpp
+SOURCE=..\..\engine\N3Base\N3UITooltip.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UITooltip.h
+SOURCE=..\..\engine\N3Base\N3UITooltip.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UITrackBar.cpp
+SOURCE=..\..\engine\N3Base\N3UITrackBar.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3UITrackBar.h
+SOURCE=..\..\engine\N3Base\N3UITrackBar.h
 # End Source File
 # End Group
 # Begin Source File
 
-SOURCE=..\N3BASE\BitMapFile.cpp
+SOURCE=..\..\engine\N3Base\BitMapFile.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\BitMapFile.h
+SOURCE=..\..\engine\N3Base\BitMapFile.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\DFont.cpp
+SOURCE=..\..\engine\N3Base\DFont.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\DFont.h
+SOURCE=..\..\engine\N3Base\DFont.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\LogWriter.cpp
+SOURCE=..\..\engine\N3Base\LogWriter.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\LogWriter.h
+SOURCE=..\..\engine\N3Base\LogWriter.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\My_3DStruct.h
+SOURCE=..\..\engine\N3Base\My_3DStruct.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3AlphaPrimitiveManager.cpp
+SOURCE=..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3AlphaPrimitiveManager.h
+SOURCE=..\..\engine\N3Base\N3AlphaPrimitiveManager.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3Base.cpp
+SOURCE=..\..\engine\N3Base\N3Base.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3Base.h
+SOURCE=..\..\engine\N3Base\N3Base.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3BaseFileAccess.cpp
+SOURCE=..\..\engine\N3Base\N3BaseFileAccess.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3BaseFileAccess.h
+SOURCE=..\..\engine\N3Base\N3BaseFileAccess.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3Eng.cpp
+SOURCE=..\..\engine\N3Base\N3Eng.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3Eng.h
+SOURCE=..\..\engine\N3Base\N3Eng.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3EngTool.cpp
+SOURCE=..\..\engine\N3Base\N3EngTool.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3EngTool.h
+SOURCE=..\..\engine\N3Base\N3EngTool.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3Mng.h
+SOURCE=..\..\engine\N3Base\N3Mng.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3SndDef.h
+SOURCE=..\..\engine\N3Base\N3SndDef.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3SndMgr.cpp
+SOURCE=..\..\engine\N3Base\N3SndMgr.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3SndMgr.h
+SOURCE=..\..\engine\N3Base\N3SndMgr.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3SndObj.cpp
+SOURCE=..\..\engine\N3Base\N3SndObj.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\N3SndObj.h
+SOURCE=..\..\engine\N3Base\N3SndObj.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3SndObjStream.cpp
+SOURCE=..\..\engine\N3Base\N3SndObjStream.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3SndObjStream.h
+SOURCE=..\..\engine\N3Base\N3SndObjStream.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3Texture.cpp
+SOURCE=..\..\engine\N3Base\N3Texture.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3BASE\N3Texture.h
+SOURCE=..\..\engine\N3Base\N3Texture.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\WaveFile.cpp
+SOURCE=..\..\engine\N3Base\WaveFile.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\N3Base\WaveFile.h
+SOURCE=..\..\engine\N3Base\WaveFile.h
 # End Source File
 # End Group
 # Begin Group "Dialogs"

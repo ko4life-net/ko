@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "UIE.h"
 #include "DlgTexture.h"
-#include "..\N3Base\N3UIDef.h"
+#include "N3Base/N3UIDef.h"
 #include "MainFrm.h"
 
 #ifdef _DEBUG
