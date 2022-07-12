@@ -53,7 +53,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
-# ADD LINK32 D3D8.lib D3DX8.lib dxerr8.lib dsound.lib dxguid.lib winmm.lib /nologo /subsystem:windows /map /machine:I386 /force /out:"N3ME.exe" /opt:ref
+# ADD LINK32 d3d9.lib d3dx9.lib dxerr.lib dsound.lib dxguid.lib winmm.lib /nologo /subsystem:windows /map /machine:I386 /force /out:"N3ME.exe" /opt:ref
 # SUBTRACT LINK32 /pdb:none /debug
 
 !ELSEIF  "$(CFG)" == "N3ME - Win32 Debug"
@@ -80,7 +80,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 D3D8.lib D3DX8.lib dxerr8.lib dsound.lib dxguid.lib winmm.lib /nologo /subsystem:windows /map /debug /machine:I386 /force /out:"N3ME_debug.exe" /pdbtype:sept
+# ADD LINK32 d3d9.lib d3dx9.lib dxerr.lib dsound.lib dxguid.lib winmm.lib /nologo /subsystem:windows /map /debug /machine:I386 /force /out:"N3ME_debug.exe" /pdbtype:sept
 # SUBTRACT LINK32 /profile
 
 !ENDIF 
