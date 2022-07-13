@@ -16,7 +16,7 @@ class CN3CEDoc;
 
 #include <deque>
 
-typedef std::deque<int>::iterator it_AniIndex;
+typedef typename std::deque<int>::iterator it_AniIndex;
 enum e_CursorMode { eCM_Nothing, eCM_PickJoint, eCM_PlugPosition, eCM_PlugScale, eCM_PlugRotation,
 					eCM_PlugFXPosition0,
 					eCM_PlugFXPosition1,

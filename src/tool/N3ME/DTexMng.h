@@ -15,7 +15,7 @@
 class CDTex;
 class CMainFrame;
 
-typedef std::list<CDTex*>::iterator it_DTex;
+typedef typename std::list<CDTex*>::iterator it_DTex;
 
 class CDTexMng : public CN3Base
 {

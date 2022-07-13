@@ -155,7 +155,7 @@ public:
 
 } __AnimData;
 
-typedef std::vector<__AnimData>::iterator it_Ani;
+typedef typename std::vector<__AnimData>::iterator it_Ani;
 
 class CN3AnimControl : public CN3BaseFileAccess
 {

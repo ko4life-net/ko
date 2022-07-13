@@ -14,9 +14,9 @@
 #include "UIMessageBox.h"
 #include "GameBase.h"
 
-typedef std::map<std::string, CUIMessageBox*>::iterator it_UBM;
-typedef std::map<std::string, CUIMessageBox*>::value_type val_UBM;
-typedef std::map<std::string, CUIMessageBox*>::reverse_iterator	rit_UBM;
+typedef typename std::map<std::string, CUIMessageBox*>::iterator it_UBM;
+typedef typename std::map<std::string, CUIMessageBox*>::value_type val_UBM;
+typedef typename std::map<std::string, CUIMessageBox*>::reverse_iterator	rit_UBM;
 
 class CUIMessageBoxManager : public CGameBase
 {

@@ -29,9 +29,9 @@ class CPortalVol : public CPvsBase
 	friend class CPvsObjFactory;
 	friend class CPvsMgr;
 
-	typedef std::list<CPvsBase*>::iterator iter;
-	typedef std::list<__VPI>::iterator	viter;
-	typedef std::vector<int>::iterator Iiter;
+	typedef typename std::list<CPvsBase*>::iterator iter;
+	typedef typename std::list<__VPI>::iterator	viter;
+	typedef typename std::vector<int>::iterator Iiter;
 
 	DECLARE_DYNAMIC( CPortalVol )
 

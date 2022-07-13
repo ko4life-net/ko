@@ -13,7 +13,7 @@
 #include <list>
 
 class CN3UIString;
-typedef std::list<CN3UIString*>::iterator it_pString;
+typedef typename std::list<CN3UIString*>::iterator it_pString;
 
 class CN3UIList : public CN3UIBase  
 {

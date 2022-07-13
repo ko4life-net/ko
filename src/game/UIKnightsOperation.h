@@ -27,10 +27,10 @@ struct __KnightsInfoExt : public __KnightsInfoBase
 	int iPoint;
 };
 
-typedef std::map<int, __KnightsInfoBase>::iterator it_KIB;
-typedef std::map<int, __KnightsInfoBase>::value_type val_KIB;
+typedef typename std::map<int, __KnightsInfoBase>::iterator it_KIB;
+typedef typename std::map<int, __KnightsInfoBase>::value_type val_KIB;
 
-typedef std::list<__KnightsInfoExt>::iterator it_KIE;
+typedef typename std::list<__KnightsInfoExt>::iterator it_KIE;
 
 class CUIKnightsOperation : public CN3UIBase  
 {

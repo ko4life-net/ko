@@ -99,7 +99,7 @@ public:
 #endif
 };
 
-typedef std::vector<CN3SPart*>::iterator it_SPart;
+typedef typename std::vector<CN3SPart*>::iterator it_SPart;
 
 class CN3Shape : public CN3TransformCollision
 {

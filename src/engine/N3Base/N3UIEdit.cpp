@@ -792,8 +792,8 @@ void CN3UIEdit::SetImeStatus(POINT ptPos, bool bOpen)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 #include<map>
-typedef std::map<HWND, CN3UIEdit*>::iterator		it_Edit;
-typedef std::map<HWND, CN3UIEdit*>::value_type		val_Edit;
+typedef typename std::map<HWND, CN3UIEdit*>::iterator		it_Edit;
+typedef typename std::map<HWND, CN3UIEdit*>::value_type		val_Edit;
 static std::map<HWND, CN3UIEdit*> s_Edits;
 
 bool CN3UIEdit::AddEdit(CN3UIEdit* pEdit)

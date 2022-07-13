@@ -13,7 +13,7 @@
 #include "N3Base/N3UIBase.h"
 #include <list>
 
-typedef std::list<__InfoPartyOrForce>::iterator it_PartyOrForce;
+typedef typename std::list<__InfoPartyOrForce>::iterator it_PartyOrForce;
 
 class CUIPartyOrForce : public CN3UIBase // 파티에 관한 UI, 부대와 같은 클래스로 쓴다..
 {

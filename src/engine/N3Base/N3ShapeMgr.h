@@ -29,8 +29,8 @@ class CN3ShapeMgr
 #else
 #include <list>
 #include <vector>
-typedef std::list<class CN3Shape*>::iterator	it_Shp;
-typedef std::list<__Vector3>::iterator			it_Vector3;
+typedef typename std::list<class CN3Shape*>::iterator	it_Shp;
+typedef typename std::list<__Vector3>::iterator			it_Vector3;
 class CN3ShapeMgr : public CN3BaseFileAccess
 #endif // end of #ifndef _3DSERVER
 {

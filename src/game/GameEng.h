@@ -12,7 +12,7 @@
 #include "N3Base/N3Eng.h"
 #include <list>
 
-typedef std::list<class CN3Light*>::iterator		it_Light;
+typedef typename std::list<class CN3Light*>::iterator		it_Light;
 typedef std::list<class CN3Camera*> ::iterator	it_Camera;
 
 // 카메라 시점

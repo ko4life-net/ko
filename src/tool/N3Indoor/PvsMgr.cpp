@@ -267,7 +267,7 @@ void CPvsMgr::RenderCompile()
 	}
 
 // Debug¿ë ·»´õ¸µ..
-/*	typedef std::list<__Collision>::iterator citer;
+/*	typedef typename std::list<__Collision>::iterator citer;
 	citer cit = m_ColList.begin();
 	while (cit != m_ColList.end())
 	{

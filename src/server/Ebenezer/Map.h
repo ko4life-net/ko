@@ -18,7 +18,7 @@ typedef CSTLMap <CGameEvent>		EventArray;
 typedef CSTLMap <_OBJECT_EVENT>		ObjectEventArray;
 typedef CSTLMap <_REGENE_EVENT>		ObjectRegeneArray;
 typedef	CSTLMap <_WARP_INFO>		WarpArray;
-typedef	map < int, int* >::iterator		Iterator;
+typedef typename map < int, int* >::iterator		Iterator;
 
 class CUser;
 class CEbenezerDlg;

@@ -67,7 +67,7 @@ typedef struct tagVisPartIndex {
 	int m_iPartIndex;
 	std::vector<int> m_ivVector;
 } __VPI;
-typedef std::list<__VPI>::iterator	viter;
+typedef typename std::list<__VPI>::iterator	viter;
 
 typedef struct tagShapePart
 {
@@ -123,11 +123,11 @@ typedef struct tagVisPortalPriority
 	}
 }	VisPortalPriority;
 
-typedef std::list<VisPortalPriority>::iterator vppiter;
-typedef std::list<ShapePart*>::iterator spiter;
-typedef std::list<ShapeInfo*>::iterator siiter;
-typedef std::list<__ColIndex*>::iterator ciiter;
-typedef std::list<IDAndPriority>::iterator idapiter;
+typedef typename std::list<VisPortalPriority>::iterator vppiter;
+typedef typename std::list<ShapePart*>::iterator spiter;
+typedef typename std::list<ShapeInfo*>::iterator siiter;
+typedef typename std::list<__ColIndex*>::iterator ciiter;
+typedef typename std::list<IDAndPriority>::iterator idapiter;
 //////////////////////////////////////////////////////////////////
 
 class CPortalVolume	: public CN3Transform

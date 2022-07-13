@@ -26,7 +26,7 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
-typedef std::vector<__SKY_DAYCHANGE>::iterator it_SDC;
+typedef typename std::vector<__SKY_DAYCHANGE>::iterator it_SDC;
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

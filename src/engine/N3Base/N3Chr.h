@@ -213,8 +213,8 @@ const int MAX_CHR_ANI_PART = 2; // 0 - 상체, 1 - 하체 ::: 관절들을 나누어서 나누
 const int MAX_PLUG_TRACE = 2; // 최대 두개의 무기 궤적을 남긴다..
 const int MAX_PLUG_TRACE_VERTEX = 64; // 무기 궤적 점의 수.. 점 8 개로는 잔상이 3단계로 남는다..
 
-typedef std::vector<CN3CPart*>::iterator	it_CPart;
-typedef std::vector<CN3CPlug*>::iterator	it_CPlug;
+typedef typename std::vector<CN3CPart*>::iterator	it_CPart;
+typedef typename std::vector<CN3CPlug*>::iterator	it_CPlug;
 
 class CN3Chr : public CN3TransformCollision
 {

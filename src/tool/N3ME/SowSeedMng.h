@@ -61,9 +61,9 @@ typedef struct __OBJ_NAME
 
 
 
-typedef std::list<LPGRASS>::iterator it_Grass;
-typedef std::list<LPGRASS_GROUP>::iterator it_Grass_Group;
-typedef std::list<LPOBJ_NAME>::iterator it_Obj_Name;
+typedef typename std::list<LPGRASS>::iterator it_Grass;
+typedef typename std::list<LPGRASS_GROUP>::iterator it_Grass_Group;
+typedef typename std::list<LPOBJ_NAME>::iterator it_Obj_Name;
 
 class CSowSeedMng  
 {

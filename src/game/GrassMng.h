@@ -22,7 +22,7 @@
 class CGameProcedure;
 class CN3Terrain;
 
-//typedef std::list<class CGrassBoard*>::iterator it_GrassBoard;
+//typedef typename std::list<class CGrassBoard*>::iterator it_GrassBoard;
 class CGrassMng   : public CGameBase
 {
 protected:

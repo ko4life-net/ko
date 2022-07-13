@@ -17,8 +17,8 @@ using namespace std;
 template <class T> class CSTLMap  
 {
 public:
-	typedef map < int, T* >::iterator		Iterator;
-	typedef map < int, T* >::value_type		ValueType;
+	typedef typename map < int, T* >::iterator		Iterator;
+	typedef typename map < int, T* >::value_type		ValueType;
 
 	map < int, T* >		m_UserTypeMap;
 	

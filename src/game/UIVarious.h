@@ -105,7 +105,7 @@ struct __KnightsMemberInfo // 기사 단원 정보..
 	int				iConnected;
 };
 
-typedef std::list<__KnightsMemberInfo>::iterator it_KMI;
+typedef typename std::list<__KnightsMemberInfo>::iterator it_KMI;
 #define MAX_CLAN_GRADE	5
 
 class CUIKnights : public CN3UIBase  
@@ -191,8 +191,8 @@ struct __FriendsInfo : public binary_function<__FriendsInfo, __FriendsInfo, bool
 	__FriendsInfo() { this->Init(); }
 };
 
-typedef std::map<std::string, __FriendsInfo>::iterator it_FI;
-typedef std::map<std::string, __FriendsInfo>::value_type val_FI;
+typedef typename std::map<std::string, __FriendsInfo>::iterator it_FI;
+typedef typename std::map<std::string, __FriendsInfo>::value_type val_FI;
 
 class CUIFriends : public CN3UIBase  
 {

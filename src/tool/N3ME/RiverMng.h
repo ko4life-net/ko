@@ -20,7 +20,7 @@ class CMainFrame;
 class CDlgRiverProperty;
 
 #include <list>
-typedef std::list<CRiverMesh*>::iterator it_RiverMesh;
+typedef typename std::list<CRiverMesh*>::iterator it_RiverMesh;
 
 class CRiverMng  : public CN3BaseFileAccess
 {

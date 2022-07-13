@@ -61,7 +61,7 @@ bool CTableGenerator::OpenSource(const std::string &szEnumFileName, const std::s
 
 	char szLine[1024];
 	std::set<int> KeySet;
-	typedef std::set<int>::iterator it_Key;
+	typedef typename std::set<int>::iterator it_Key;
 	typedef std::pair<it_Key, bool> pair_Key;
 
 	for(i = 0; true; i++)
@@ -175,7 +175,7 @@ bool CTableGenerator::OpenReference_Txt(int iIndex, const std::string &szTxtFile
 
 	char szLine[1024];
 	std::set<int> KeySet;
-	typedef std::set<int>::iterator it_Key;
+	typedef typename std::set<int>::iterator it_Key;
 	typedef std::pair<it_Key, bool> pair_Key;
 
 	for(int i = 0; true; i++)
@@ -760,7 +760,7 @@ bool CTableGenerator::Convert2Bin(const std::string& szFN)
 
 	// 키 중복 검사용 데이터..
 	std::set<int> KeySet;
-	typedef std::set<int>::iterator it_Key;
+	typedef typename std::set<int>::iterator it_Key;
 	typedef std::pair<it_Key, bool> pair_Key;
 
 	BOOL bCheckEmptyValue = FALSE;

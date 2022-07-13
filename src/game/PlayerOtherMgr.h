@@ -15,17 +15,17 @@
 #include "GameBase.h"
 #include "GameProcedure.h"
 
-//typedef std::list<CPlayerOther*>::iterator it_UPC;
-//typedef std::list<CPlayerNPC*>::iterator it_NPC;
-//typedef std::list<CPlayerBase*>::iterator it_BPC;
+//typedef typename std::list<CPlayerOther*>::iterator it_UPC;
+//typedef typename std::list<CPlayerNPC*>::iterator it_NPC;
+//typedef typename std::list<CPlayerBase*>::iterator it_BPC;
 
-typedef std::map<int, CPlayerOther*>::iterator it_UPC;
-typedef std::map<int, CPlayerNPC*>::iterator it_NPC;
-typedef std::map<int, CPlayerBase*>::iterator it_BPC;
+typedef typename std::map<int, CPlayerOther*>::iterator it_UPC;
+typedef typename std::map<int, CPlayerNPC*>::iterator it_NPC;
+typedef typename std::map<int, CPlayerBase*>::iterator it_BPC;
 
-typedef std::map<int, CPlayerOther*>::value_type val_UPC;
-typedef std::map<int, CPlayerNPC*>::value_type val_NPC;
-typedef std::map<int, CPlayerBase*>::value_type val_BPC;
+typedef typename std::map<int, CPlayerOther*>::value_type val_UPC;
+typedef typename std::map<int, CPlayerNPC*>::value_type val_NPC;
+typedef typename std::map<int, CPlayerBase*>::value_type val_BPC;
 
 class CPlayerOtherMgr : public CGameBase
 {

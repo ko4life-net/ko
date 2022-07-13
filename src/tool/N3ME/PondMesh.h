@@ -41,7 +41,7 @@ protected:
 		int		iz;	//	m_iWaterScaleHeight 상의 숫자
 	};
 
-	typedef std::list<__SELECT_PO*>::iterator it_SelVtx;
+	typedef typename std::list<__SELECT_PO*>::iterator it_SelVtx;
 	std::list<__SELECT_PO*>			m_vSelect;	//	선택된 점들의 관리
 
 	//	기본 데이타

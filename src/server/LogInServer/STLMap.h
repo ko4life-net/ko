@@ -23,8 +23,8 @@ using namespace std;
 template <class T1, class T2> class CSTLMap  
 {
 public:
-	typedef map < T1, T2* >::iterator		Iterator;
-	typedef map < T1, T2* >::value_type		ValueType;
+	typedef typename map < T1, T2* >::iterator		Iterator;
+	typedef typename map < T1, T2* >::value_type		ValueType;
 
 	map < T1, T2* >		m_UserTypeMap;
 	

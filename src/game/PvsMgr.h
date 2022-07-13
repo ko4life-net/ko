@@ -19,7 +19,7 @@
 
 const int ciVersion = 1;
 
-typedef std::list<CPortalVolume*>::iterator iter;
+typedef typename std::list<CPortalVolume*>::iterator iter;
 
 class CPvsMgr : public CN3BaseFileAccess
 {

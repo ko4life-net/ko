@@ -15,7 +15,7 @@
 
 #include <list>
 class CN3Joint;
-typedef std::list<CN3Joint*>::iterator	it_Joint;
+typedef typename std::list<CN3Joint*>::iterator	it_Joint;
 
 const int MAX_JOINT_TRANSFORM = 64;
 

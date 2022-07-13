@@ -41,7 +41,7 @@ struct __InfoTradeSellBBS // 파티 지원 게시판 구조체..
 	}
 };
 
-typedef std::list<__InfoTradeSellBBS>::iterator it_TradeSellBBS;
+typedef typename std::list<__InfoTradeSellBBS>::iterator it_TradeSellBBS;
 
 
 class CUITradeSellBBS : public CN3UIBase  
