@@ -409,8 +409,8 @@ void CUIHotKeyDlg::InitIconUpdate()
 
 			// 아이콘 이름 만들기.. ^^
 			std::vector<char> buffer(256, NULL);
-			sprintf(buffer.begin(),	"UI\\skillicon_%.2d_%d.dxt", HD.iID%100, HD.iID/100);
-			spSkill->szIconFN = buffer.begin();
+			sprintf(&buffer[0],	"UI\\skillicon_%.2d_%d.dxt", HD.iID%100, HD.iID/100);
+			spSkill->szIconFN = std::string(buffer.begin(), buffer.end());
 
 			// 아이콘 로드하기.. ^^
 			spSkill->pUIIcon = new CN3UIIcon;
@@ -890,8 +890,8 @@ bool CUIHotKeyDlg::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 
 		// 아이콘 이름 만들기.. ^^
 		std::vector<char> buffer(256, NULL);
-		sprintf(buffer.begin(),	"UI\\skillicon_%.2d_%d.dxt", spItem->pItemBasic->dwEffectID1%100, spItem->pItemBasic->dwEffectID1/100);
-		spSkill->szIconFN = buffer.begin();
+		sprintf(&buffer[0],	"UI\\skillicon_%.2d_%d.dxt", spItem->pItemBasic->dwEffectID1%100, spItem->pItemBasic->dwEffectID1/100);
+		spSkill->szIconFN = std::string(buffer.begin(), buffer.end());
 
 		// 아이콘 로드하기.. ^^
 		spSkill->pUIIcon = new CN3UIIcon;

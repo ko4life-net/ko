@@ -74,8 +74,8 @@ struct		__SKY_DAYCHANGE
 		if(nL > 0) 
 		{
 			std::vector<char> buffer(nL+1, NULL);
-			ReadFile(hFile, buffer.begin(), nL, &dwRWC, NULL);
-			szName = buffer.begin();
+			ReadFile(hFile, &buffer[0], nL, &dwRWC, NULL);
+			szName = std::string(buffer.begin(), buffer.end());
 		}
 
 		ReadFile(hFile, &eSkyDayChange, 4, &dwRWC, NULL);

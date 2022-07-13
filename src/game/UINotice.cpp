@@ -101,8 +101,8 @@ void CUINotice::GenerateText()
 	it = m_Texts.begin(); itEnd = m_Texts.end();
 	for(; it != itEnd; it++)
 	{
-		lstrcat(&(szBuff[0]), it->c_str());
-		lstrcat(&(szBuff[0]), "\n");
+		lstrcat(&szBuff[0], it->c_str());
+		lstrcat(&szBuff[0], "\n");
 	}
 
 	m_pText_Notice->SetString(&(szBuff[0])); // 글자 적용..

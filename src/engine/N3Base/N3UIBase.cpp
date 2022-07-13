@@ -263,8 +263,8 @@ bool CN3UIBase::Load(HANDLE hFile)
 	if (iIDLen>0)
 	{
 		std::vector<char> buffer(iIDLen+1, NULL);
-		ReadFile(hFile, buffer.begin(), iIDLen, &dwRWC, NULL);			// ui id
-		m_szID = buffer.begin();
+		ReadFile(hFile, &buffer[0], iIDLen, &dwRWC, NULL);			// ui id
+		m_szID = std::string(buffer.begin(), buffer.end());
 	}
 	else
 	{
@@ -280,8 +280,8 @@ bool CN3UIBase::Load(HANDLE hFile)
 	if (iTooltipLen>0)
 	{
 		std::vector<char> buffer(iTooltipLen+1, NULL);
-		ReadFile(hFile, buffer.begin(), iTooltipLen, &dwRWC, NULL);
-		m_szToolTip = buffer.begin();
+		ReadFile(hFile, &buffer[0], iTooltipLen, &dwRWC, NULL);
+		m_szToolTip = std::string(buffer.begin(), buffer.end());
 	}
 
 	// 이전 uif파일을 컨버팅 하려면 사운드 로드 하는 부분 막기
@@ -290,20 +290,20 @@ bool CN3UIBase::Load(HANDLE hFile)
 	if (iSndFNLen>0)
 	{
 		std::vector<char> buffer(iSndFNLen+1, NULL);
-		ReadFile(hFile, buffer.begin(), iSndFNLen, &dwRWC, NULL);
+		ReadFile(hFile, &buffer[0], iSndFNLen, &dwRWC, NULL);
 
 		__ASSERT(NULL == m_pSnd_OpenUI, "memory leak");
-		m_pSnd_OpenUI = s_SndMgr.CreateObj(buffer.begin(), SNDTYPE_2D);
+		m_pSnd_OpenUI = s_SndMgr.CreateObj(std::string(buffer.begin(), buffer.end()), SNDTYPE_2D);
 	}
 
 	ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL);		//	사운드 파일 문자열 길이
 	if (iSndFNLen>0)
 	{
 		std::vector<char> buffer(iSndFNLen+1, NULL);
-		ReadFile(hFile, buffer.begin(), iSndFNLen, &dwRWC, NULL);
+		ReadFile(hFile, &buffer[0], iSndFNLen, &dwRWC, NULL);
 
 		__ASSERT(NULL == m_pSnd_CloseUI, "memory leak");
-		m_pSnd_CloseUI = s_SndMgr.CreateObj(buffer.begin(), SNDTYPE_2D);
+		m_pSnd_CloseUI = s_SndMgr.CreateObj(std::string(buffer.begin(), buffer.end()), SNDTYPE_2D);
 	}
 
 	return true;

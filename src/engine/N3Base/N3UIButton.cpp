@@ -272,20 +272,20 @@ bool CN3UIButton::Load(HANDLE hFile)
 	if (iSndFNLen>0)
 	{
 		std::vector<char> buffer(iSndFNLen+1, NULL);
-		ReadFile(hFile, buffer.begin(), iSndFNLen, &dwNum, NULL);
+		ReadFile(hFile, &buffer[0], iSndFNLen, &dwNum, NULL);
 
 		__ASSERT(NULL == m_pSnd_On, "memory leak");
-		m_pSnd_On = s_SndMgr.CreateObj(buffer.begin(), SNDTYPE_2D);
+		m_pSnd_On = s_SndMgr.CreateObj(std::string(buffer.begin(), buffer.end()), SNDTYPE_2D);
 	}
 
 	ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL);		//	사운드 파일 문자열 길이
 	if (iSndFNLen>0)
 	{
 		std::vector<char> buffer(iSndFNLen+1, NULL);
-		ReadFile(hFile, buffer.begin(), iSndFNLen, &dwNum, NULL);
+		ReadFile(hFile, &buffer[0], iSndFNLen, &dwNum, NULL);
 
 		__ASSERT(NULL == m_pSnd_Click, "memory leak");
-		m_pSnd_Click = s_SndMgr.CreateObj(buffer.begin(), SNDTYPE_2D);
+		m_pSnd_Click = s_SndMgr.CreateObj(std::string(buffer.begin(), buffer.end()), SNDTYPE_2D);
 	}
 
 	return true;

@@ -1286,32 +1286,26 @@ void CPVSManager::WriteCryptographString(HANDLE hFile, std::string strSrc)
 	DWORD dwNum;
 
 	int iCount = strSrc.size();
-	std::vector<char> buffer;
-
+	std::vector<char> buffer(iCount, 0);
 	for( int i = 0; i < iCount; i++)
-		buffer.push_back( ((int)strSrc[i] ^ CRY_KEY) );
+		buffer[i] = (int)strSrc[i] ^ CRY_KEY;
 
 	WriteFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
-	WriteFile(hFile, buffer.begin(), iCount, &dwNum, NULL);
+	WriteFile(hFile, &buffer[0], iCount, &dwNum, NULL);
 }
 
 std::string CPVSManager::ReadDecryptString(HANDLE hFile)
 {
 	DWORD dwNum;
 	int iCount;
-
 	ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
-	std::vector<char> buffer(iCount);
 
-	ReadFile(hFile, &(buffer[0]), iCount, &dwNum, NULL);				// string
+	std::vector<char> buffer(iCount, 0);
+	ReadFile(hFile, &buffer[0], iCount, &dwNum, NULL);				// string
 	for( int i = 0; i < iCount; i++)
 		buffer[i] ^= CRY_KEY;
-	buffer.push_back((char)0x00);
 
-	std::string strDest;
-	strDest = buffer.begin();
-	
-	return strDest;
+	return std::string(buffer.begin(), buffer.end());
 }
 
 CN3Shape* CPVSManager::GetShapeByManager(std::string szStr)
