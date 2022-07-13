@@ -333,11 +333,11 @@ void CN3PMeshInstance::Render()
 		int i;
 		for (i=0; i<iLC; ++i)
 		{
-			s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, m_iNumVertices, i*iPCToRender*3, iPCToRender);
+			s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iNumVertices, i*iPCToRender*3, iPCToRender);
 		}
 
 		int iRPC = iPC%iPCToRender;
-		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, m_iNumVertices, i*iPCToRender*3, iRPC);
+		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iNumVertices, i*iPCToRender*3, iRPC);
 	}
 #else
 	if(m_iNumIndices > 3)
@@ -382,11 +382,11 @@ void CN3PMeshInstance::RenderTwoUV()
 		int i;
 		for (i=0; i<iLC; ++i)
 		{
-			s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, m_iNumVertices, i*iPCToRender*3, iPCToRender);
+			s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iNumVertices, i*iPCToRender*3, iPCToRender);
 		}
 
 		int iRPC = iPC%iPCToRender;
-		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, m_iNumVertices, i*iPCToRender*3, iRPC);
+		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iNumVertices, i*iPCToRender*3, iRPC);
 	}
 #else
 	if(m_iNumIndices > 3)
@@ -441,11 +441,11 @@ void CN3PMeshInstance::PartialRender(int iCount, LPDIRECT3DINDEXBUFFER9 pIB)
 		int i;
 		for (i=0; i<iLC; ++i)
 		{
-			s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, m_iNumVertices, i*iPCToRender*3, iPCToRender);
+			s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iNumVertices, i*iPCToRender*3, iPCToRender);
 		}
 
 		int iRPC = iPC%iPCToRender;
-		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, m_iNumVertices, i*iPCToRender*3, iRPC);
+		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iNumVertices, i*iPCToRender*3, iRPC);
 }
 #else
 void CN3PMeshInstance::PartialRender(int iCount, WORD* pIndices)

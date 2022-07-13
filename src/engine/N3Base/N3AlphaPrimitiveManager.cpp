@@ -149,7 +149,7 @@ void CN3AlphaPrimitiveManager::Render()
 			{
 				CN3Base::s_lpD3DDev->SetStreamSource( 0, (LPDIRECT3DVERTEXBUFFER9)pBuffs[i]->pVertices, 0, pBuffs[i]->dwPrimitiveSize );
 				CN3Base::s_lpD3DDev->SetIndices((LPDIRECT3DINDEXBUFFER9)pBuffs[i]->pwIndices);
-				CN3Base::s_lpD3DDev->DrawIndexedPrimitive(	pBuffs[i]->ePrimitiveType,
+				CN3Base::s_lpD3DDev->DrawIndexedPrimitive(	pBuffs[i]->ePrimitiveType, 0,
 												0,
 												pBuffs[i]->nVertexCount,
 												0,
@@ -361,7 +361,7 @@ void CN3AlphaPrimitiveManager::Render()
 			{
 				CN3Base::s_lpD3DDev->SetStreamSource( 0, (LPDIRECT3DVERTEXBUFFER9)pBuffs[i]->pVertices, 0, pBuffs[i]->dwPrimitiveSize );
 				CN3Base::s_lpD3DDev->SetIndices((LPDIRECT3DINDEXBUFFER9)pBuffs[i]->pwIndices);
-				CN3Base::s_lpD3DDev->DrawIndexedPrimitive(	pBuffs[i]->ePrimitiveType,
+				CN3Base::s_lpD3DDev->DrawIndexedPrimitive(	pBuffs[i]->ePrimitiveType, 0,
 												0,
 												pBuffs[i]->nVertexCount,
 												0,
