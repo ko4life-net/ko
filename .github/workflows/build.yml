@@ -1,7 +1,6 @@
 name: build
 
 on:
-  push:
   pull_request:
   workflow_run:
     # Use a workflow as a trigger of scheduled builds. Forked repositories can disable scheduled builds by disabling
@@ -16,6 +15,7 @@ on:
 jobs:
   Windows:
     runs-on: windows-2022
+    if: github.event.pull_request.draft == false
     env:                  
       MSBUILD_PATH: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64
 
