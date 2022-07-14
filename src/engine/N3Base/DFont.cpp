@@ -298,7 +298,7 @@ HRESULT CDFont::SetText(const std::string& szText, DWORD dwFlags)
 
 		hr = m_pd3dDevice->CreateTexture( m_dwTexWidth, m_dwTexHeight, iMipMapCount,
 										0, D3DFMT_A4R4G4B4,
-										D3DPOOL_MANAGED, &m_pTexture );
+										D3DPOOL_MANAGED, &m_pTexture, NULL );
 		if( FAILED(hr) )
 			return hr;
 	}
