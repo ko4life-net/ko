@@ -123,7 +123,7 @@ BOOL CDlgSetDTex::OnInitDialog()
 	pFrm->m_pEng->s_lpD3DDev->CreateVertexBuffer( 4*sizeof(__VertexTransformed), 0, FVF_TRANSFORMED, D3DPOOL_MANAGED, &m_pTexVB );
 	
 	__VertexTransformed* pVertices = NULL;
-	m_pTexVB->Lock( 0, 0, (BYTE**)&pVertices, 0 );
+	m_pTexVB->Lock( 0, 0, (VOID**)&pVertices, 0 );
 	float DTexSize = (float)DTEX_SIZE;
 	pVertices[0].Set(0.0f,						0.0f,					0.1f, 0.5f, 0x00000000, 1.0f/DTexSize,		1.0f/DTexSize);
 	pVertices[1].Set(m_fTexSurfaceSize-1.0f,	0.0f,					0.1f, 0.5f, 0x00000000, DTexSize/DTexSize,	1.0f/DTexSize);
@@ -135,7 +135,7 @@ BOOL CDlgSetDTex::OnInitDialog()
 	pFrm->m_pEng->s_lpD3DDev->CreateVertexBuffer( ((NUM_DTEXTILE-1)<<2)*sizeof(__VertexTransformedColor), 0, FVF_TRANSFORMEDCOLOR, D3DPOOL_MANAGED, &m_pGridVB );
 
 	__VertexTransformedColor* pVerticesC = NULL;
-	m_pGridVB->Lock(0,0, (BYTE**)&pVerticesC, 0);
+	m_pGridVB->Lock(0,0, (VOID**)&pVerticesC, 0);
 
 	int GridInterval = (int)m_fTexSurfaceSize / NUM_DTEXTILE;
 	for(i=1;i<NUM_DTEXTILE;i++)

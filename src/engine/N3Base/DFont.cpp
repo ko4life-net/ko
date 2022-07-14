@@ -414,7 +414,7 @@ void CDFont::Make2DVertex(const int iFontHeight, const std::string& szText)
 	// lock vertex buffer
 	__VertexTransformed* pVertices = NULL;
 	DWORD         dwNumTriangles = 0;
-	m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0 );
+	m_pVB->Lock( 0, 0, (VOID**)&pVertices, 0 );
 
 	DWORD sx = 0;    // start x y
 	DWORD x = 0;    DWORD y = 0;
@@ -752,7 +752,7 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string& szText, DWOR
 
 	// Vertex buffer로 옮기기.
 	// lock vertex buffer
-	m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0 );
+	m_pVB->Lock( 0, 0, (VOID**)&pVertices, 0 );
 
 	iCount = dwNumTriangles*3;
 	for (i=0; i<iCount; ++i)
@@ -789,8 +789,8 @@ HRESULT CDFont::DrawText( FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOA
 	{
 		// lock vertex buffer
 		__VertexTransformed* pVertices;
-//		m_pVB->Lock( 0, 0, (BYTE**)&pVertices, D3DLOCK_NOSYSLOCK );
-		m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0);
+//		m_pVB->Lock( 0, 0, (VOID**)&pVertices, D3DLOCK_NOSYSLOCK );
+		m_pVB->Lock( 0, 0, (VOID**)&pVertices, 0);
 
 		int i, iVC = m_iPrimitiveCount*3;
 		if (fabs(vDiff.x)>0.5f)
@@ -931,8 +931,8 @@ HRESULT CDFont::DrawText3D(DWORD dwColor, DWORD dwFlags )
 	{
 		// lock vertex buffer
 		__VertexXyzColorT1* pVertices;
-//		m_pVB->Lock( 0, 0, (BYTE**)&pVertices, D3DLOCK_NOSYSLOCK );
-		m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0 );
+//		m_pVB->Lock( 0, 0, (VOID**)&pVertices, D3DLOCK_NOSYSLOCK );
+		m_pVB->Lock( 0, 0, (VOID**)&pVertices, 0 );
 
 		m_dwFontColor = dwColor;
 		int i, iVC = m_iPrimitiveCount*3;
@@ -1050,7 +1050,7 @@ HRESULT	CDFont::SetFontColor(DWORD dwColor)
 		if(m_Is2D)
 		{
 			__VertexTransformed* pVertices;
-			if (FAILED(hr = m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0 ))) return hr;
+			if (FAILED(hr = m_pVB->Lock( 0, 0, (VOID**)&pVertices, 0 ))) return hr;
 			m_dwFontColor = dwColor;
 			int i, iVC = m_iPrimitiveCount*3;
 			for (i=0; i<iVC; ++i)
@@ -1062,7 +1062,7 @@ HRESULT	CDFont::SetFontColor(DWORD dwColor)
 		else
 		{
 			__VertexXyzColorT1* pVertices;
-			if (FAILED(hr = m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0 ))) return hr;
+			if (FAILED(hr = m_pVB->Lock( 0, 0, (VOID**)&pVertices, 0 ))) return hr;
 			m_dwFontColor = dwColor;
 			int i, iVC = m_iPrimitiveCount*3;
 			for (i=0; i<iVC; ++i)
@@ -1097,8 +1097,8 @@ void CDFont::AddToAlphaManager(DWORD dwColor, float fDist, __Matrix44& mtxWorld,
 		{
 			// lock vertex buffer
 			__VertexTransformed* pVertices;
-	//		m_pVB->Lock( 0, 0, (BYTE**)&pVertices, D3DLOCK_NOSYSLOCK );
-			m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0);
+	//		m_pVB->Lock( 0, 0, (VOID**)&pVertices, D3DLOCK_NOSYSLOCK );
+			m_pVB->Lock( 0, 0, (VOID**)&pVertices, 0);
 
 			int i, iVC = m_iPrimitiveCount*3;
 			if (fabs(vDiff.x)>0.5f)

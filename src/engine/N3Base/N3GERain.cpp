@@ -64,7 +64,7 @@ void CN3GERain::Tick()
 	int i;
 
 	__VertexXyzColor* pVertices;
-	HRESULT hr = m_pVB->Lock(0, 0, (BYTE**)&pVertices, D3DLOCK_NOSYSLOCK);
+	HRESULT hr = m_pVB->Lock(0, 0, (VOID**)&pVertices, D3DLOCK_NOSYSLOCK);
 
 	__Vector3 vN = m_vVelocity;	vN.Normalize();
 	__Vector3 vAdd = m_vVelocity*s_fSecPerFrm;
@@ -210,7 +210,7 @@ void CN3GERain::Create(float fDensity,
 
 	if (FAILED(hr)) return;
 	__VertexXyzColor* pVertices;
-	hr = m_pVB->Lock(0, iRainCount*2*sizeof(__VertexXyzColor), (BYTE**)&pVertices, D3DLOCK_NOSYSLOCK);
+	hr = m_pVB->Lock(0, iRainCount*2*sizeof(__VertexXyzColor), (VOID**)&pVertices, D3DLOCK_NOSYSLOCK);
 	if (FAILED(hr)) return;
 
 	const DWORD dwColorA = 0x00bfbfbf,	// ²¿¸®

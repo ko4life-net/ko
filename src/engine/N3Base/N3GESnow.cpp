@@ -65,7 +65,7 @@ void CN3GESnow::Tick()
 
 	int i;
 	__VertexXyzT1* pVertices;
-	HRESULT hr = m_pVB->Lock(0, 0, (BYTE**)&pVertices, D3DLOCK_NOSYSLOCK);
+	HRESULT hr = m_pVB->Lock(0, 0, (VOID**)&pVertices, D3DLOCK_NOSYSLOCK);
 
 	__Vector3	vN = m_vVelocity;	vN.Normalize();
 	__Vector3	vAdd = m_vVelocity*s_fSecPerFrm;
@@ -226,7 +226,7 @@ void CN3GESnow::Create(float fDensity, float fWidth, float fHeight, float fSnowS
 	HRESULT hr = s_lpD3DDev->CreateVertexBuffer(m_iVC*sizeof(__VertexXyzT1), D3DUSAGE_DYNAMIC, FVF_XYZT1, D3DPOOL_DEFAULT, &m_pVB);
 	if (FAILED(hr)) return;
 	__VertexXyzT1* pVertices;
-	hr = m_pVB->Lock(0, iSnowCount*3*sizeof(__VertexXyzT1), (BYTE**)&pVertices, D3DLOCK_NOSYSLOCK);
+	hr = m_pVB->Lock(0, iSnowCount*3*sizeof(__VertexXyzT1), (VOID**)&pVertices, D3DLOCK_NOSYSLOCK);
 	if (FAILED(hr)) return;
 
 	// __SnowParticle 정보 채워 넣기

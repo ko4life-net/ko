@@ -109,8 +109,8 @@ bool CN3PMeshInstance::Create(CN3PMesh* pN3PMesh)
 		__ASSERT(SUCCEEDED(hr), "Failed to create index Buffer");
 
 		BYTE* pDestByte, *pSrcByte;
-		hr = m_pIB->Lock(0, 0, &pDestByte, 0);
-		hr = m_pPMesh->m_pIB->Lock(0, 0, &pSrcByte, 0);
+		hr = m_pIB->Lock(0, 0, (VOID**)&pDestByte, 0);
+		hr = m_pPMesh->m_pIB->Lock(0, 0, (VOID**)&pSrcByte, 0);
 
 		CopyMemory(pDestByte, pSrcByte, m_pPMesh->m_iMaxNumIndices * sizeof(WORD));
 		m_pPMesh->m_pIB->Unlock();
@@ -250,7 +250,7 @@ bool CN3PMeshInstance::CollapseOne()
 #ifdef _USE_VERTEXBUFFER
 	BYTE* pByte;
 	WORD* pIndices;
-	HRESULT hr = m_pIB->Lock(0, 0, &pByte, 0);
+	HRESULT hr = m_pIB->Lock(0, 0, (VOID**)&pByte, 0);
 	pIndices = (WORD*)pByte;
 
 	for (	int *i = m_pPMesh->m_pAllIndexChanges + m_pCollapseUpTo->iIndexChanges;
@@ -290,7 +290,7 @@ bool CN3PMeshInstance::SplitOne()
 		BYTE* pByte;
 		WORD* pIndices;
 		__ASSERT(m_pIB, "Index buffer pointer is NULL!");
-		HRESULT hr = m_pIB->Lock(0, 0, &pByte, 0);
+		HRESULT hr = m_pIB->Lock(0, 0, (VOID**)&pByte, 0);
 		pIndices = (WORD*)pByte;
 
 		for (	int *i = m_pPMesh->m_pAllIndexChanges + m_pCollapseUpTo->iIndexChanges;
@@ -513,7 +513,7 @@ __Vector3 CN3PMeshInstance::GetVertexByIndex(int iIndex)
 #ifdef _USE_VERTEXBUFFER
 	HRESULT hr;
 	__VertexT1* pVB;
-	hr = GetMesh()->m_pVB->Lock(0, 0, (BYTE**)&pVB, 0);
+	hr = GetMesh()->m_pVB->Lock(0, 0, (VOID**)&pVB, 0);
 	if (FAILED(hr)) 
 		return vec;
 	vec = (__Vector3)pVB[iIndex];

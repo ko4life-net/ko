@@ -3967,7 +3967,7 @@ void CLyTerrain::SetColorMap(int x, int y)
 	u2 = (m_ppMapData[x][y].DTexInfo2.TexIdx.TileX * TileTexSize);
 	v2 = (m_ppMapData[x][y].DTexInfo2.TexIdx.TileY * TileTexSize);
 
-	hr = m_pColorMapTmpVB->Lock( 0, 0, (BYTE**)&m_pColorMapTmpVertices, 0 );
+	hr = m_pColorMapTmpVB->Lock( 0, 0, (VOID**)&m_pColorMapTmpVertices, 0 );
 
 	m_pColorMapTmpVertices[0].Set(0.0f,		0.0f,		0.1f, 0.5f, 0xffffffff,
 								(u1+m_fTileDirUforColorMap[dir1][0])/(float)(DTEX_SIZE),
@@ -4165,7 +4165,7 @@ void CLyTerrain::SetColorMap(int x, int y)
 	u2 = (m_ppMapData[x][y].DTexInfo2.TexIdx.TileX * TileTexSize);
 	v2 = (m_ppMapData[x][y].DTexInfo2.TexIdx.TileY * TileTexSize);
 
-	hr = m_pColorMapTmpVB->Lock( 0, 0, (BYTE**)&m_pColorMapTmpVertices, 0 );
+	hr = m_pColorMapTmpVB->Lock( 0, 0, (VOID**)&m_pColorMapTmpVertices, 0 );
 
 	m_pColorMapTmpVertices[0].Set(0.0f,		0.0f,		0.1f, 0.5f, 0xffffffff,
 								(u1+m_fTileDirUforColorMap[dir1][0])/(float)(DTEX_SIZE),

@@ -640,11 +640,11 @@ CN3PMesh *CN3PMeshCreate::CreateRendererMesh()
 #ifdef _USE_VERTEXBUFFER
 	HRESULT hr;
 	BYTE* pByte;
-	hr = pPMesh->m_pVB->Lock(0, 0, &pByte, 0);
+	hr = pPMesh->m_pVB->Lock(0, 0, (VOID**)&pByte, 0);
 	CopyMemory(pByte, m_pVertices, pPMesh->m_iMaxNumVertices*sizeof(__VertexT1));
 	pPMesh->m_pVB->Unlock();
 
-	hr = pPMesh->m_pIB->Lock(0, 0, &pByte, 0);
+	hr = pPMesh->m_pIB->Lock(0, 0, (VOID**)&pByte, 0);
 	CopyMemory(pByte, m_pIndices, pPMesh->m_iMaxNumIndices*sizeof(WORD));
 	pPMesh->m_pIB->Unlock();
 
@@ -719,11 +719,11 @@ int CN3PMeshCreate::ReGenerate(CN3PMesh *pPMesh)
 #ifdef _USE_VERTEXBUFFER
 	HRESULT hr;
 	BYTE* pByte;
-	hr = pPMesh->m_pVB->Lock(0, 0, &pByte, 0);
+	hr = pPMesh->m_pVB->Lock(0, 0, (VOID**)&pByte, 0);
 	CopyMemory(pByte, m_pVertices, pPMesh->m_iMaxNumVertices*sizeof(__VertexT1));
 	pPMesh->m_pVB->Unlock();
 
-	hr = pPMesh->m_pIB->Lock(0, 0, &pByte, 0);
+	hr = pPMesh->m_pIB->Lock(0, 0, (VOID**)&pByte, 0);
 	CopyMemory(pByte, m_pIndices, pPMesh->m_iMaxNumIndices*sizeof(WORD));
 	pPMesh->m_pIB->Unlock();
 
@@ -867,7 +867,7 @@ bool CN3PMeshCreate::ConvertFromN3PMesh(CN3PMesh* pN3PMesh)
 		m_pVertices = new __VertexT1[m_iNumVertices];
 
 		BYTE* pByte;
-		HRESULT hr = pVB->Lock(0, 0, &pByte, D3DLOCK_READONLY);
+		HRESULT hr = pVB->Lock(0, 0, (VOID**)&pByte, D3DLOCK_READONLY);
 		if (FAILED(hr)) return false;
 
 		CopyMemory(m_pVertices, pByte, m_iNumVertices*sizeof(__VertexT1));
@@ -880,7 +880,7 @@ bool CN3PMeshCreate::ConvertFromN3PMesh(CN3PMesh* pN3PMesh)
 		m_pIndices = new WORD[m_iNumIndices];
 
 		BYTE* pByte;
-		HRESULT hr = pIB->Lock(0, 0, &pByte, D3DLOCK_READONLY);
+		HRESULT hr = pIB->Lock(0, 0, (VOID**)&pByte, D3DLOCK_READONLY);
 		if (FAILED(hr)) return false;
 
 		CopyMemory(m_pIndices, pByte, m_iNumIndices*sizeof(WORD));

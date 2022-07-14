@@ -211,7 +211,7 @@ __VertexT1* CN3IMesh::BuildVertexList()
 	if(m_nFC <= 0 || NULL == m_lpVB) return NULL;
 
 	__VertexT1* pVDests = NULL;
-	m_lpVB->Lock(0, 0, (BYTE**)(&pVDests), 0);
+	m_lpVB->Lock(0, 0, (VOID**)(&pVDests), 0);
 
 	int n = 0, nVI = 0, nUVI = 0;
 	if(m_nUVC > 0)

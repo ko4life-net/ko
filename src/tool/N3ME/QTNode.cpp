@@ -410,7 +410,7 @@ void CQTNode::RenderMaxLevel()
 	int tmpTIdx;
 
 	__VertexT2* pVertices;
-	m_pRefTerrain->m_TileVB->Lock( 0, 0, (BYTE**)&pVertices, 0 );
+	m_pRefTerrain->m_TileVB->Lock( 0, 0, (VOID**)&pVertices, 0 );
 
 	cx = m_CenterX - 1;
 	cz = m_CenterZ - 1;
@@ -436,7 +436,7 @@ void CQTNode::RenderMaxLevel()
 			float lsuv = 1.0f / (float)LIGHTMAP_TEX_SIZE;
 			float leuv = ((float)LIGHTMAP_TEX_SIZE - 1.0f) / (float)LIGHTMAP_TEX_SIZE;
 
-			if(!pLightMapVertices) m_pRefTerrain->m_LightMapVB->Lock( 0, 0, (BYTE**)&pLightMapVertices, 0 );
+			if(!pLightMapVertices) m_pRefTerrain->m_LightMapVB->Lock( 0, 0, (VOID**)&pLightMapVertices, 0 );
 			int VBIndx = NumLightMapUse * 4;
 			pLightMapVertices[VBIndx].Set((float)(cx*TERRAIN_CELL_SIZE), m_pRefTerrain->m_ppMapData[cx][cz].fHeight,
 						(float)(cz*TERRAIN_CELL_SIZE), 0.0f, 1.0f, 0.0f,
@@ -565,7 +565,7 @@ void CQTNode::RenderMaxLevel()
 		{
 			pRefLightMapTex[NumLightMapUse] = m_pRefTerrain->m_ppLightMapTexture[cx][cz];
 
-			if(!pLightMapVertices) m_pRefTerrain->m_LightMapVB->Lock( 0, 0, (BYTE**)&pLightMapVertices, 0 );
+			if(!pLightMapVertices) m_pRefTerrain->m_LightMapVB->Lock( 0, 0, (VOID**)&pLightMapVertices, 0 );
 			int VBIndx = NumLightMapUse * 4;
 
 			float lsuv = 1.0f / (float)LIGHTMAP_TEX_SIZE;
@@ -845,7 +845,7 @@ void CQTNode::RenderMaxLevel()
 void CQTNode::RenderMaxLevel()
 {
 	__VertexT2* pVertices;
-	m_pRefTerrain->m_TileVB->Lock( 0, 0, (BYTE**)&pVertices, 0 );
+	m_pRefTerrain->m_TileVB->Lock( 0, 0, (VOID**)&pVertices, 0 );
 
 	int cx,cz;
 	int i;
@@ -1004,7 +1004,7 @@ void CQTNode::RenderNormalLevel()
 	int VC = 0;
 	int half = 1 << (m_pRefTerrain->m_iMaxLevel - m_Level);
 	__VertexT1* pVertices;
-	m_pRefTerrain->m_ColorMapVB->Lock( 0, 0, (BYTE**)&pVertices, 0 );
+	m_pRefTerrain->m_ColorMapVB->Lock( 0, 0, (VOID**)&pVertices, 0 );
 
 	//점만들기..
 	int NumTileInColorTex = m_pRefTerrain->m_iColorMapTexSize / m_pRefTerrain->m_iColorMapPixelPerUnitDistance;
