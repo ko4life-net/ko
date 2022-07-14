@@ -634,7 +634,7 @@ bool CN3Texture::Save(HANDLE hFile)
 			m_lpTexture->GetLevelDesc(i, &sd);
 			m_lpTexture->GetSurfaceLevel(i, &lpSurfSrc);
 			int nW = sd.Width / 2, nH = sd.Height / 2;
-			s_lpD3DDev->CreateImageSurface(nW, nH, fmtExtra, &lpSurfDest);
+			s_lpD3DDev->CreateOffscreenPlainSurface(nW, nH, fmtExtra, D3DPOOL_DEFAULT, &lpSurfDest, NULL);
 			D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfSrc, NULL, NULL, D3DX_FILTER_TRIANGLE, 0); // 서피스 복사.
 			int nPixelSize = 2;
 			lpSurfDest->LockRect(&LR, NULL, NULL);
@@ -652,7 +652,7 @@ bool CN3Texture::Save(HANDLE hFile)
 			m_lpTexture->GetLevelDesc(0, &sd);
 			m_lpTexture->GetSurfaceLevel(0, &lpSurfSrc);
 			int nW = 256, nH = 256;
-			s_lpD3DDev->CreateImageSurface(nW, nH, fmtExtra, &lpSurfDest);
+			s_lpD3DDev->CreateOffscreenPlainSurface(nW, nH, fmtExtra, D3DPOOL_DEFAULT, &lpSurfDest, NULL);
 			D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfSrc, NULL, NULL, D3DX_FILTER_TRIANGLE, 0); // 서피스 복사.
 			int nPixelSize = 2;
 			lpSurfDest->LockRect(&LR, NULL, NULL);
@@ -695,7 +695,7 @@ bool CN3Texture::Save(HANDLE hFile)
 			m_lpTexture->GetLevelDesc(0, &sd);
 			m_lpTexture->GetSurfaceLevel(0, &lpSurfSrc);
 			int nW = 256, nH = 256;
-			s_lpD3DDev->CreateImageSurface(nW, nH, sd.Format, &lpSurfDest);
+			s_lpD3DDev->CreateOffscreenPlainSurface(nW, nH, sd.Format, D3DPOOL_DEFAULT, &lpSurfDest, NULL);
 			HRESULT rval = D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfSrc, NULL, NULL, D3DX_FILTER_TRIANGLE, 0); // 서피스 복사.
 			lpSurfDest->LockRect(&LR, NULL, NULL);
 			for(int y = 0; y < nH; y++)
@@ -843,7 +843,7 @@ bool CN3Texture::SaveToBitmapFile(const std::string& szFN)
 	if(NULL == lpSurfSrc) return false;
 
 	LPDIRECT3DSURFACE9 lpSurfDest = NULL;
-	s_lpD3DDev->CreateImageSurface(m_Header.nWidth, m_Header.nHeight, D3DFMT_A8R8G8B8, &lpSurfDest);
+	s_lpD3DDev->CreateOffscreenPlainSurface(m_Header.nWidth, m_Header.nHeight, D3DFMT_A8R8G8B8, D3DPOOL_DEFAULT, &lpSurfDest, NULL);
 
 	if(NULL == lpSurfDest) return false;
 	if(D3D_OK != D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfSrc, NULL, NULL, D3DX_FILTER_TRIANGLE, 0)) // 서피스 복사.
