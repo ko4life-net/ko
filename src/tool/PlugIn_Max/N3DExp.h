@@ -36,8 +36,8 @@
 #include "stdmat.h"
 #include "bitmap.h"
 
-#include "D3D8.h"
-#include "D3D8Types.h"
+#include <d3d9.h>
+#include <d3d9types.h>
 
 //#include "ISkin.h"
 

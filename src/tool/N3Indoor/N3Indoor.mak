@@ -162,7 +162,7 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\N3Indoor.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=winmm.lib d3d8.lib d3dx8.lib dsound.lib dxguid.lib strmiids.lib dxerr8.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\N3Indoor.pdb" /machine:I386 /out:"$(OUTDIR)\N3Indoor.exe" 
+LINK32_FLAGS=winmm.lib d3d9.lib d3dx9.lib dsound.lib dxguid.lib strmiids.lib  /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\N3Indoor.pdb" /machine:I386 /out:"$(OUTDIR)\N3Indoor.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\ComDialog.obj" \
 	"$(INTDIR)\DlgBase.obj" \
@@ -542,7 +542,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=winmm.lib d3d8.lib d3dx8.lib dsound.lib dxguid.lib strmiids.lib dxerr8.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\N3Indoor_debug.pdb" /debug /machine:I386 /out:"N3Indoor_debug.exe" /pdbtype:sept 
+LINK32_FLAGS=winmm.lib d3d9.lib d3dx9.lib dsound.lib dxguid.lib strmiids.lib  /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\N3Indoor_debug.pdb" /debug /machine:I386 /out:"N3Indoor_debug.exe" /pdbtype:sept 
 LINK32_OBJS= \
 	"$(INTDIR)\ComDialog.obj" \
 	"$(INTDIR)\DlgBase.obj" \

@@ -43,7 +43,7 @@ CGround::~CGround()
 
 void CGround::Render()
 {
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_VNT1);
+	CN3Base::s_lpD3DDev->SetFVF(FVF_VNT1);
 
 	DWORD dwAlpha, dwZEnable;
 	

@@ -98,7 +98,7 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\N3TexViewer.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=d3d8.lib d3dx8.lib dxerr8.lib dxguid.lib dsound.lib winmm.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\N3TexViewer.pdb" /machine:I386 /force /out:"N3TexViewer.exe" /force:multiple 
+LINK32_FLAGS=d3d9.lib d3dx9.lib dxguid.lib dsound.lib winmm.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\N3TexViewer.pdb" /machine:I386 /force /out:"N3TexViewer.exe" /force:multiple 
 LINK32_OBJS= \
 	"$(INTDIR)\BitMapFile.obj" \
 	"$(INTDIR)\DlgFormat.obj" \
@@ -237,7 +237,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=d3d8.lib d3dx8.lib dxerr8.lib dxguid.lib dsound.lib winmm.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\N3TexViewer_Debug.pdb" /debug /machine:I386 /out:"N3TexViewer_Debug.exe" /pdbtype:sept 
+LINK32_FLAGS=d3d9.lib d3dx9.lib dxguid.lib dsound.lib winmm.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\N3TexViewer_Debug.pdb" /debug /machine:I386 /out:"N3TexViewer_Debug.exe" /pdbtype:sept 
 LINK32_OBJS= \
 	"$(INTDIR)\BitMapFile.obj" \
 	"$(INTDIR)\DlgFormat.obj" \

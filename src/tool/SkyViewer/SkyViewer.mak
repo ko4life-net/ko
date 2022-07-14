@@ -122,7 +122,7 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\SkyViewer.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=d3d8.lib d3dx8.lib dxguid.lib dxerr8.lib winmm.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\SkyViewer.pdb" /machine:I386 /out:"SkyViewer.exe" 
+LINK32_FLAGS=d3d9.lib d3dx9.lib dxguid.lib  winmm.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\SkyViewer.pdb" /machine:I386 /out:"SkyViewer.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\FormViewProperty.obj" \
 	"$(INTDIR)\MainFrm.obj" \
@@ -342,7 +342,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=d3d8.lib d3dx8.lib dxguid.lib dxerr8.lib winmm.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\SkyViewer_Debug.pdb" /debug /machine:I386 /out:"SkyViewer_Debug.exe" /pdbtype:sept 
+LINK32_FLAGS=d3d9.lib d3dx9.lib dxguid.lib  winmm.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\SkyViewer_Debug.pdb" /debug /machine:I386 /out:"SkyViewer_Debug.exe" /pdbtype:sept 
 LINK32_OBJS= \
 	"$(INTDIR)\FormViewProperty.obj" \
 	"$(INTDIR)\MainFrm.obj" \

@@ -228,7 +228,7 @@ void CPortalWall::RenderEdit()
 	CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxWorld);
 	CN3Base::s_lpD3DDev->SetTexture(0, NULL);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_CV);	
+	CN3Base::s_lpD3DDev->SetFVF(FVF_CV);	
 	CN3Base::s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_TRIANGLELIST, 0, 4, 2, m_pIndex, D3DFMT_INDEX16, m_pvVertex, sizeof(__VertexColor) );
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_POINT);
 	CN3Base::s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_TRIANGLELIST, 0, 4, 2, m_pIndex, D3DFMT_INDEX16, m_pvVertex, sizeof(__VertexColor) );

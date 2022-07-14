@@ -146,7 +146,7 @@ void CN3VMesh::Render(D3DCOLOR crLine)
 	m_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 	m_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
 	m_lpD3DDev->SetTexture(0, NULL);
-	m_lpD3DDev->SetVertexShader(FVF_CV);
+	m_lpD3DDev->SetFVF(FVF_CV);
 
 	__VertexColor vTs[3];
 	if(m_nIC)

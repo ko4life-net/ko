@@ -1,4 +1,4 @@
-#include "D3DX8.h"
+#include <d3dx9.h>
 
 struct __EXPORT_HEADER
 {

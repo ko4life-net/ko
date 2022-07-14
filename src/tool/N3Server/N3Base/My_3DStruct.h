@@ -1,7 +1,7 @@
 #ifndef __MY_3DSTRUCT_H_
 #define __MY_3DSTRUCT_H_
-#include "D3DX8.h"
-#include "D3DX8Math.h"
+#include <d3dx9.h>
+#include <d3dx9math.h>
 #include <string>
 
 const DWORD FVF_VNT1 = D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_TEX1;
@@ -57,7 +57,7 @@ public:
 	__Vector3 operator / (float fDelta) const;
 };
 
-struct __Material : public _D3DMATERIAL8
+struct __Material : public _D3DMATERIAL9
 {
 public:
 	DWORD	dwColorOp, dwColorArg1, dwColorArg2;

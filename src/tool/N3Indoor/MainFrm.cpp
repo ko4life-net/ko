@@ -482,7 +482,7 @@ void CMainFrame::RenderObjectToWindow(CN3TransformCollision* pObj, HWND hWnd)	//
 	DWORD dwType = pObj->Type();
 	if (!(dwType & OBJ_CHARACTER || dwType & OBJ_SHAPE)) return;
 
-	LPDIRECT3DDEVICE8 pD3DDev = m_Eng.s_lpD3DDev;
+	LPDIRECT3DDEVICE9 pD3DDev = m_Eng.s_lpD3DDev;
 
 	// Save CameraData
 	__CameraData CameraDataBackUp;

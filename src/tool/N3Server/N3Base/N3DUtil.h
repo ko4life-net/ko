@@ -1,7 +1,7 @@
 #ifndef __N3D_UTIL_H_
 #define __N3D_UTIL_H_
 
-#include "D3D8.h"
+#include <d3d9.h>
 
 D3DCOLOR _RGB_To_D3DCOLOR(COLORREF cr, float fAlpha);
 COLORREF _D3DCOLOR_To_RGB(D3DCOLOR& cr);

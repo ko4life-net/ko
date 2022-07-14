@@ -173,7 +173,7 @@ void CPortalVol::RenderEdit()
 	CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxWorld);
 	CN3Base::s_lpD3DDev->SetTexture(0, NULL);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_CV);	
+	CN3Base::s_lpD3DDev->SetFVF(FVF_CV);	
 
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
@@ -242,7 +242,7 @@ void CPortalVol::RenderCompile()
 	CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxWorld);
 	CN3Base::s_lpD3DDev->SetTexture(0, NULL);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_CV);	
+	CN3Base::s_lpD3DDev->SetFVF(FVF_CV);	
 
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
@@ -345,7 +345,7 @@ void CPortalVol::RenderShape()
 		int iSize = vpi.m_ivVector.size();
 	
 #ifdef _USE_VERTEXBUFFER
-		LPDIRECT3DINDEXBUFFER8	pIB;
+		LPDIRECT3DINDEXBUFFER9	pIB;
 		HRESULT hr = CN3Base::s_lpD3DDev->CreateIndexBuffer(iSize*sizeof(WORD),
 										D3DUSAGE_DYNAMIC, D3DFMT_INDEX16, D3DPOOL_MANAGED, &pIB);
 		if (FAILED(hr)) return hr;

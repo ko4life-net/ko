@@ -290,7 +290,7 @@ void CServerMesh::Render()
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
 	s_lpD3DDev->SetTexture(0, NULL);
 
-	s_lpD3DDev->SetVertexShader( D3DFVF_XYZ );
+	s_lpD3DDev->SetFVF( D3DFVF_XYZ );
 	s_lpD3DDev->DrawPrimitiveUP( D3DPT_TRIANGLELIST, 16, &m_vSMesh, sizeof(__Vector3));
 
 	s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, dwFillPrev);
@@ -325,7 +325,7 @@ void CServerMesh::Render()
 	s_lpD3DDev->SetRenderState( D3DRS_COLORVERTEX,				TRUE);
 	s_lpD3DDev->SetRenderState( D3DRS_DIFFUSEMATERIALSOURCE,	D3DMCS_COLOR1);
 
-	s_lpD3DDev->SetVertexShader( FVF_XYZCOLOR );
+	s_lpD3DDev->SetFVF( FVF_XYZCOLOR );
 	s_lpD3DDev->DrawPrimitiveUP( D3DPT_TRIANGLELIST, 16, &m_vSMesh, sizeof(__VertexXyzColor));
 
     s_lpD3DDev->SetRenderState( D3DRS_LIGHTING,					dwUseLighting );      

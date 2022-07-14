@@ -342,7 +342,7 @@ void CPvsMgr::TotalShapeRender()
 	CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxWorld);
 	CN3Base::s_lpD3DDev->SetTexture(0, NULL);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_CV);	
+	CN3Base::s_lpD3DDev->SetFVF(FVF_CV);	
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 
 	CN3Shape* pSh = ((CMainFrame*)AfxGetMainWnd())->m_pShapeBg;
@@ -397,7 +397,7 @@ void CPvsMgr::TotalCollisionRender()
 	CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxWorld);
 	CN3Base::s_lpD3DDev->SetTexture(0, NULL);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_CV);	
+	CN3Base::s_lpD3DDev->SetFVF(FVF_CV);	
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 
 	CN3Shape* pSh = ((CMainFrame*)AfxGetMainWnd())->m_pShapeBg;
@@ -903,7 +903,7 @@ void CPvsMgr::RenderCollision(__Collision& col)
 	CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxWorld);
 	CN3Base::s_lpD3DDev->SetTexture(0, NULL);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_CV);	
+	CN3Base::s_lpD3DDev->SetFVF(FVF_CV);	
 
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_POINT);
 //	CN3Base::s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_POINTLIST, 0, 9, 9, pIndex, D3DFMT_INDEX16, pvVertex, sizeof(__VertexColor) );

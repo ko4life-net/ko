@@ -53,7 +53,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib comctl32.lib advapi32.lib d3d8.lib d3dx8.lib dsound.lib dxerr8.lib dxguid.lib winmm.lib nafxcwd.lib libcmtd.lib core.lib geom.lib mesh.lib maxutil.lib /nologo /base:"0x105b0000" /subsystem:windows /dll /machine:I386 /out:"N3DExp.dli" /release
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib comctl32.lib advapi32.lib d3d9.lib d3dx9.lib dsound.lib dxguid.lib winmm.lib nafxcwd.lib libcmtd.lib core.lib geom.lib mesh.lib maxutil.lib /nologo /base:"0x105b0000" /subsystem:windows /dll /machine:I386 /out:"N3DExp.dli" /release
 # SUBTRACT LINK32 /pdb:none
 
 !ELSEIF  "$(CFG)" == "N3DExp - Win32 Debug"
@@ -80,7 +80,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib comctl32.lib advapi32.lib d3d8.lib d3dx8.lib dsound.lib dxerr8.lib dxguid.lib winmm.lib nafxcwd.lib libcmtd.lib core.lib geom.lib mesh.lib maxutil.lib /nologo /base:"0x105b0000" /subsystem:windows /dll /debug /machine:I386 /out:"debug/N3DExp.dli" /pdbtype:sept
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib comctl32.lib advapi32.lib d3d9.lib d3dx9.lib dsound.lib dxguid.lib winmm.lib nafxcwd.lib libcmtd.lib core.lib geom.lib mesh.lib maxutil.lib /nologo /base:"0x105b0000" /subsystem:windows /dll /debug /machine:I386 /out:"debug/N3DExp.dli" /pdbtype:sept
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
@@ -154,15 +154,15 @@ SOURCE=.\icon1.ico
 # PROP Default_Filter "*.h"
 # Begin Source File
 
-SOURCE=C:\mssdk\include\d3d8.h
+SOURCE=C:\mssdk\include\d3d9.h
 # End Source File
 # Begin Source File
 
-SOURCE=C:\mssdk\include\d3d8types.h
+SOURCE=C:\mssdk\include\d3d9types.h
 # End Source File
 # Begin Source File
 
-SOURCE=D:\MSSDK\include\d3dx8.h
+SOURCE=D:\MSSDK\include\d3dx9.h
 # End Source File
 # End Group
 # Begin Group "Library"

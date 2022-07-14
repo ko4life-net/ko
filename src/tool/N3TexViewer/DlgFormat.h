@@ -9,7 +9,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CDlgFormat dialog
-#include <D3D8Types.h>
+#include <d3d9types.h>
 
 class CDlgFormat : public CDialog
 {

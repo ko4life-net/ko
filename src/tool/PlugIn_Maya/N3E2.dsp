@@ -54,7 +54,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib comdlg32.lib advapi32.lib d3d8.lib d3dx8.lib dsound.lib dxerr8.lib dxguid.lib winmm.lib /nologo /subsystem:windows /dll /machine:I386 /out:"C:\AW\Maya4.0\bin\plug-ins\N3Export2.mll" /libpath:"..\lib" /libpath:"..\..\..\lib" /export:initializePlugin /export:uninitializePlugin
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib comdlg32.lib advapi32.lib d3d9.lib d3dx9.lib dsound.lib dxguid.lib winmm.lib /nologo /subsystem:windows /dll /machine:I386 /out:"C:\AW\Maya4.0\bin\plug-ins\N3Export2.mll" /libpath:"..\lib" /libpath:"..\..\..\lib" /export:initializePlugin /export:uninitializePlugin
 # SUBTRACT LINK32 /pdb:none /incremental:yes
 
 !ELSEIF  "$(CFG)" == "N3Export2 - Win32 Debug"
@@ -81,7 +81,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 d3d8.lib d3dx8.lib dsound.lib dxerr8.lib dxguid.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib nafxcwd.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"g:\N3Export2.mll" /pdbtype:sept /libpath:"..\lib" /libpath:"..\..\..\lib" /export:initializePlugin /export:uninitializePlugin
+# ADD LINK32 d3d9.lib d3dx9.lib dsound.lib dxguid.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib nafxcwd.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"g:\N3Export2.mll" /pdbtype:sept /libpath:"..\lib" /libpath:"..\..\..\lib" /export:initializePlugin /export:uninitializePlugin
 # SUBTRACT LINK32 /pdb:none /nodefaultlib
 
 !ENDIF 
@@ -455,7 +455,7 @@ SOURCE=.\N3E2TranslatorOpts.mel
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=D:\MSSDK\include\d3d8.h
+SOURCE=D:\MSSDK\include\d3d9.h
 # End Source File
 # Begin Source File
 

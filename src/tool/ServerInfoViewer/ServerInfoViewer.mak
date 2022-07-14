@@ -102,7 +102,7 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\ServerInfoViewer.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=winmm.lib d3d8.lib d3dx8.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\ServerInfoViewer.pdb" /machine:I386 /out:"$(OUTDIR)\ServerInfoViewer.exe" 
+LINK32_FLAGS=winmm.lib d3d9.lib d3dx9.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\ServerInfoViewer.pdb" /machine:I386 /out:"$(OUTDIR)\ServerInfoViewer.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\MainFrm.obj" \
 	"$(INTDIR)\N3AlphaPrimitiveManager.obj" \
@@ -242,7 +242,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=winmm.lib d3d8.lib d3dx8.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\ServerInfoViewer.pdb" /debug /machine:I386 /out:"$(OUTDIR)\ServerInfoViewer.exe" /pdbtype:sept 
+LINK32_FLAGS=winmm.lib d3d9.lib d3dx9.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\ServerInfoViewer.pdb" /debug /machine:I386 /out:"$(OUTDIR)\ServerInfoViewer.exe" /pdbtype:sept 
 LINK32_OBJS= \
 	"$(INTDIR)\MainFrm.obj" \
 	"$(INTDIR)\N3AlphaPrimitiveManager.obj" \

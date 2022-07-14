@@ -112,7 +112,7 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)\N3FE.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=winmm.lib d3d8.lib d3dx8.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\N3FE.pdb" /machine:I386 /out:"N3FE.exe" 
+LINK32_FLAGS=winmm.lib d3d9.lib d3dx9.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\N3FE.pdb" /machine:I386 /out:"N3FE.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\BitMapFile.obj" \
 	"$(INTDIR)\DlgBrowsePath.obj" \
@@ -307,7 +307,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=winmm.lib d3d8.lib d3dx8.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\N3FE_Debug.pdb" /debug /machine:I386 /out:"N3FE_Debug.exe" /pdbtype:sept 
+LINK32_FLAGS=winmm.lib d3d9.lib d3dx9.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\N3FE_Debug.pdb" /debug /machine:I386 /out:"N3FE_Debug.exe" /pdbtype:sept 
 LINK32_OBJS= \
 	"$(INTDIR)\BitMapFile.obj" \
 	"$(INTDIR)\DlgBrowsePath.obj" \

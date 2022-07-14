@@ -53,7 +53,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
-# ADD LINK32 d3d8.lib d3dx8.lib dxguid.lib dxerr8.lib winmm.lib /nologo /subsystem:windows /machine:I386 /out:"SkyViewer.exe"
+# ADD LINK32 d3d9.lib d3dx9.lib dxguid.lib  winmm.lib /nologo /subsystem:windows /machine:I386 /out:"SkyViewer.exe"
 
 !ELSEIF  "$(CFG)" == "SkyViewer - Win32 Debug"
 
@@ -79,7 +79,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 d3d8.lib d3dx8.lib dxguid.lib dxerr8.lib winmm.lib /nologo /subsystem:windows /debug /machine:I386 /out:"SkyViewer_Debug.exe" /pdbtype:sept
+# ADD LINK32 d3d9.lib d3dx9.lib dxguid.lib  winmm.lib /nologo /subsystem:windows /debug /machine:I386 /out:"SkyViewer_Debug.exe" /pdbtype:sept
 
 !ENDIF 
 
