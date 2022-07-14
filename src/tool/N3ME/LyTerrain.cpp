@@ -399,7 +399,7 @@ void CLyTerrain::Init(int HeightMapSize)
 	m_iColorMapPixelPerUnitDistance = 4;		//UnitDistance당 들어가는 컬러맵의 픽셀 수..
 
 	m_pColorMapTmpVertices = NULL;
-	s_lpD3DDev->CreateVertexBuffer( 8*sizeof(__VertexTransformedT2), 0, FVF_TRANSFORMEDT2, D3DPOOL_MANAGED, &m_pColorMapTmpVB );
+	s_lpD3DDev->CreateVertexBuffer( 8*sizeof(__VertexTransformedT2), 0, FVF_TRANSFORMEDT2, D3DPOOL_MANAGED, &m_pColorMapTmpVB, NULL );
 	
 	//컬러맵 텍스쳐 만들기..
 	m_iNumColorMap =  (((m_iHeightMapSize-1) * m_iColorMapPixelPerUnitDistance) / m_iColorMapTexSize) + 1;
@@ -457,9 +457,9 @@ void CLyTerrain::Init(int HeightMapSize)
 
 	m_ColorMapTileTree.clear();
 
-	s_lpD3DDev->CreateVertexBuffer( MAX_COLORMAPVB_SIZE*sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_ColorMapVB );
-	s_lpD3DDev->CreateVertexBuffer( MAX_TILEVB_SIZE*sizeof(__VertexT2), 0, FVF_VNT2, D3DPOOL_MANAGED, &m_TileVB );
-	s_lpD3DDev->CreateVertexBuffer( MAX_LIGHTMAPVB_SIZE*sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_LightMapVB );
+	s_lpD3DDev->CreateVertexBuffer( MAX_COLORMAPVB_SIZE*sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_ColorMapVB, NULL );
+	s_lpD3DDev->CreateVertexBuffer( MAX_TILEVB_SIZE*sizeof(__VertexT2), 0, FVF_VNT2, D3DPOOL_MANAGED, &m_TileVB, NULL );
+	s_lpD3DDev->CreateVertexBuffer( MAX_LIGHTMAPVB_SIZE*sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_LightMapVB, NULL );
 
 	m_pRoot = new CQTNode;
 	m_pRoot->Init(0, this);

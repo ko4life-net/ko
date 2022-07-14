@@ -120,7 +120,7 @@ BOOL CDlgSetDTex::OnInitDialog()
 	pView->SetWindowPos(NULL, 0, 0, (int)m_fTexSurfaceSize, (int)m_fTexSurfaceSize, SWP_DRAWFRAME|SWP_NOMOVE);
 
 	//	texture 그리는 버퍼..
-	pFrm->m_pEng->s_lpD3DDev->CreateVertexBuffer( 4*sizeof(__VertexTransformed), 0, FVF_TRANSFORMED, D3DPOOL_MANAGED, &m_pTexVB );
+	pFrm->m_pEng->s_lpD3DDev->CreateVertexBuffer( 4*sizeof(__VertexTransformed), 0, FVF_TRANSFORMED, D3DPOOL_MANAGED, &m_pTexVB, NULL);
 	
 	__VertexTransformed* pVertices = NULL;
 	m_pTexVB->Lock( 0, 0, (VOID**)&pVertices, 0 );
@@ -132,7 +132,7 @@ BOOL CDlgSetDTex::OnInitDialog()
 	m_pTexVB->Unlock();
 
 	//	Grid 그리는 버퍼..
-	pFrm->m_pEng->s_lpD3DDev->CreateVertexBuffer( ((NUM_DTEXTILE-1)<<2)*sizeof(__VertexTransformedColor), 0, FVF_TRANSFORMEDCOLOR, D3DPOOL_MANAGED, &m_pGridVB );
+	pFrm->m_pEng->s_lpD3DDev->CreateVertexBuffer( ((NUM_DTEXTILE-1)<<2)*sizeof(__VertexTransformedColor), 0, FVF_TRANSFORMEDCOLOR, D3DPOOL_MANAGED, &m_pGridVB, NULL );
 
 	__VertexTransformedColor* pVerticesC = NULL;
 	m_pGridVB->Lock(0,0, (VOID**)&pVerticesC, 0);

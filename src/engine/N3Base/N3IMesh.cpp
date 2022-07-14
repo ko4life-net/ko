@@ -85,7 +85,7 @@ bool CN3IMesh::Create(int nFC, int nVC, int nUVC)
 		m_pwUVsIndices = new WORD[nFC*3]; memset(m_pwUVsIndices, 0, 2 * nFC * 3); // unsigned short
 	}
 
-//	s_lpD3DDev->CreateVertexBuffer(nFC * 3 * sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_lpVB);
+//	s_lpD3DDev->CreateVertexBuffer(nFC * 3 * sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_lpVB, NULL);
 
 //	if(NULL == m_lpVB)
 //	{

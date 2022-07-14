@@ -64,7 +64,7 @@ bool CN3UIImage::CreateVB()
 {
 	HRESULT hr;
 	if (m_pVB) {m_pVB->Release(); m_pVB = NULL;}
-	hr = s_lpD3DDev->CreateVertexBuffer( 4*sizeof(__VertexTransformed), 0, FVF_TRANSFORMED, D3DPOOL_MANAGED, &m_pVB );
+	hr = s_lpD3DDev->CreateVertexBuffer( 4*sizeof(__VertexTransformed), 0, FVF_TRANSFORMED, D3DPOOL_MANAGED, &m_pVB, NULL );
 	return SUCCEEDED(hr);
 }
 

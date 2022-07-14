@@ -159,7 +159,7 @@ HRESULT CDFont::RestoreDeviceObjects()
 //    if( FAILED( hr = m_pd3dDevice->CreateVertexBuffer( iVBSize,
 //                                                     D3DUSAGE_WRITEONLY, 0,
 //                                                      D3DPOOL_MANAGED, &m_pVB ) ) )
-    if( FAILED( hr = m_pd3dDevice->CreateVertexBuffer( iVBSize, 0, dwFVF, D3DPOOL_MANAGED, &m_pVB ) ) )
+    if( FAILED( hr = m_pd3dDevice->CreateVertexBuffer( iVBSize, 0, dwFVF, D3DPOOL_MANAGED, &m_pVB, NULL ) ) )
     {
         return hr;
     }

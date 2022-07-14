@@ -188,10 +188,10 @@ void CN3Transform::GenerateSelectBox(__Vector3 &vMin, __Vector3 &vMax)
 {
 	// Bounding Box Vertex Buffer »ý¼º
 	if(m_lpVBBox != NULL) { m_lpVBBox->Release(); m_lpVBBox = NULL; }
-	HRESULT rval = m_lpDevRef->CreateVertexBuffer(54 * sizeof(__VertexColor), 0, FVF_CV, D3DPOOL_MANAGED, &m_lpVBBox);
+	HRESULT rval = m_lpDevRef->CreateVertexBuffer(54 * sizeof(__VertexColor), 0, FVF_CV, D3DPOOL_MANAGED, &m_lpVBBox, NULL);
 	if(rval != D3D_OK)
 	{
-		rval = m_lpDevRef->CreateVertexBuffer(54 * sizeof(__VertexColor), 0, FVF_CV, D3DPOOL_MANAGED, &m_lpVBBox);
+		rval = m_lpDevRef->CreateVertexBuffer(54 * sizeof(__VertexColor), 0, FVF_CV, D3DPOOL_MANAGED, &m_lpVBBox, NULL);
 		if(rval != D3D_OK)
 		{
 			char szDebug[256]; D3DXGetErrorString(rval, szDebug, 256);

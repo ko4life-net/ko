@@ -206,7 +206,7 @@ void CN3GERain::Create(float fDensity,
 
 	// m_pVB, m_pIB ¸¸µé±â
 	m_iVC = iRainCount*2;
-	HRESULT hr = s_lpD3DDev->CreateVertexBuffer(m_iVC*sizeof(__VertexXyzColor), 0, FVF_XYZCOLOR, D3DPOOL_MANAGED, &m_pVB);
+	HRESULT hr = s_lpD3DDev->CreateVertexBuffer(m_iVC*sizeof(__VertexXyzColor), 0, FVF_XYZCOLOR, D3DPOOL_MANAGED, &m_pVB, NULL);
 
 	if (FAILED(hr)) return;
 	__VertexXyzColor* pVertices;

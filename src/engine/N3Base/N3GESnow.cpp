@@ -223,7 +223,7 @@ void CN3GESnow::Create(float fDensity, float fWidth, float fHeight, float fSnowS
 	// m_pVB, m_pIB ¸¸µé±â
 	__ASSERT(s_lpD3DDev, "D3D Device pointer is NULL!");
 	m_iVC = iSnowCount*3;
-	HRESULT hr = s_lpD3DDev->CreateVertexBuffer(m_iVC*sizeof(__VertexXyzT1), D3DUSAGE_DYNAMIC, FVF_XYZT1, D3DPOOL_DEFAULT, &m_pVB);
+	HRESULT hr = s_lpD3DDev->CreateVertexBuffer(m_iVC*sizeof(__VertexXyzT1), D3DUSAGE_DYNAMIC, FVF_XYZT1, D3DPOOL_DEFAULT, &m_pVB, NULL);
 	if (FAILED(hr)) return;
 	__VertexXyzT1* pVertices;
 	hr = m_pVB->Lock(0, iSnowCount*3*sizeof(__VertexXyzT1), (VOID**)&pVertices, D3DLOCK_NOSYSLOCK);

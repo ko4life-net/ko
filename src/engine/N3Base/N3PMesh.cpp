@@ -103,7 +103,7 @@ bool CN3PMesh::Load(HANDLE hFile)
 	if (m_iMaxNumVertices>0)
 	{
 //		HRESULT hr = m_lpD3DDev->CreateVertexBuffer(m_iMaxNumVertices*sizeof(__VertexT1),
-//										D3DUSAGE_DYNAMIC, FVF_VNT1, D3DPOOL_MANAGED, &m_pVB);
+//										D3DUSAGE_DYNAMIC, FVF_VNT1, D3DPOOL_MANAGED, &m_pVB, NULL);
 //		if (FAILED(hr)) return hr;
 		BYTE* pByte;
 		hr = m_pVB->Lock(0, 0, (VOID**)&pByte, 0);
@@ -401,7 +401,7 @@ HRESULT CN3PMesh::GenerateSecondUV()
 	if (m_iMaxNumVertices>0)
 	{
 		hr = m_lpD3DDev->CreateVertexBuffer(m_iMaxNumVertices*sizeof(__VertexT2),
-										D3DUSAGE_DYNAMIC, FVF_VNT2, D3DPOOL_MANAGED, &m_pVB2);
+										D3DUSAGE_DYNAMIC, FVF_VNT2, D3DPOOL_MANAGED, &m_pVB2, NULL);
 		if (FAILED(hr)) return hr;
 
 		__VertexT1* pVSrc = NULL; __VertexT2* pVDest = NULL;
