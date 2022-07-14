@@ -373,7 +373,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=ws2_32.lib Implode.lib winmm.lib d3d8.lib d3dx8.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\Ebenezer.pdb" /map:"$(INTDIR)\Ebenezer.map" /debug /machine:I386 /out:"$(OUTDIR)\Ebenezer.exe" /pdbtype:sept 
+LINK32_FLAGS=ws2_32.lib Implode.lib winmm.lib d3d9.lib d3dx9.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\Ebenezer.pdb" /map:"$(INTDIR)\Ebenezer.map" /debug /machine:I386 /out:"$(OUTDIR)\Ebenezer.exe" /pdbtype:sept 
 LINK32_OBJS= \
 	"$(INTDIR)\AISocket.obj" \
 	"$(INTDIR)\BattleSet.obj" \

@@ -53,14 +53,14 @@
     <PostBuildEvent>
       <Command>set PATH=$(ProjectDir)..\..\vendor\VC6\Common\MSDev98\Bin;$(ProjectDir)..\..\vendor\VC6\VC98\BIN;$(ProjectDir)..\..\vendor\VC6\Common\TOOLS;C:\ko\VC6\Common\TOOLS\WINNT;%PATH%
 cd $(ProjectDir)
-nmake /f Aujard.mak CFG="Aujard - Win32 $(Configuration)" /b /a INCLUDE="$(ProjectDir);$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE" LIB="$(ProjectDir)..\..\vendor\DXSDK8\Lib\x86;$(ProjectDir)..\..\vendor\VC6\VC98\LIB;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\LIB" CL="/D DIRECTINPUT_VERSION=0x0800"</Command>
+nmake /f Aujard.mak CFG="Aujard - Win32 $(Configuration)" /b /a INCLUDE="$(ProjectDir);$(ProjectDir)..\..\vendor\DXSDK9\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE" LIB="$(ProjectDir)..\..\vendor\DXSDK9\Lib\x86;$(ProjectDir)..\..\vendor\VC6\VC98\LIB;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\LIB" CL="/D DIRECTINPUT_VERSION=0x0800"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PostBuildEvent>
       <Command>set PATH=$(ProjectDir)..\..\vendor\VC6\Common\MSDev98\Bin;$(ProjectDir)..\..\vendor\VC6\VC98\BIN;$(ProjectDir)..\..\vendor\VC6\Common\TOOLS;C:\ko\VC6\Common\TOOLS\WINNT;%PATH%
 cd $(ProjectDir)
-nmake /f Aujard.mak CFG="Aujard - Win32 $(Configuration)" /b /a INCLUDE="$(ProjectDir);$(ProjectDir)..\..\vendor\DXSDK8\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE" LIB="$(ProjectDir)..\..\vendor\DXSDK8\Lib\x86;$(ProjectDir)..\..\vendor\VC6\VC98\LIB;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\LIB" CL="/D DIRECTINPUT_VERSION=0x0800"</Command>
+nmake /f Aujard.mak CFG="Aujard - Win32 $(Configuration)" /b /a INCLUDE="$(ProjectDir);$(ProjectDir)..\..\vendor\DXSDK9\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE" LIB="$(ProjectDir)..\..\vendor\DXSDK9\Lib\x86;$(ProjectDir)..\..\vendor\VC6\VC98\LIB;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\LIB" CL="/D DIRECTINPUT_VERSION=0x0800"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
