@@ -340,7 +340,7 @@ void CMainFrame::OnCursorDtex()
 /*
 	LPDIRECT3DSURFACE9 pBackBuff;
 	HRESULT hr;
-	hr = m_pEng->s_lpD3DDev->GetBackBuffer(0, D3DBACKBUFFER_TYPE_MONO, &pBackBuff);
+	hr = m_pEng->s_lpD3DDev->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &pBackBuff);
 	D3DSURFACE_DESC desc;
 	hr = pBackBuff->GetDesc(&desc);
 	if(desc.Format!=D3DFMT_X8R8G8B8)

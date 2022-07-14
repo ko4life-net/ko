@@ -4079,7 +4079,7 @@ void CLyTerrain::SetColorMap(int x, int y)
 
 	//컬러맵 텍스쳐에 쓰기...
 	LPDIRECT3DSURFACE9 pBackBuff;
-	hr = s_lpD3DDev->GetBackBuffer(0, D3DBACKBUFFER_TYPE_MONO, &pBackBuff);
+	hr = s_lpD3DDev->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &pBackBuff);
 
 	D3DSURFACE_DESC desc;
 	hr = pBackBuff->GetDesc(&desc);
@@ -4313,7 +4313,7 @@ void CLyTerrain::SetColorMap(int x, int y)
 
 	//컬러맵 텍스쳐에 쓰기...
 	LPDIRECT3DSURFACE9 pBackBuff;
-	hr = s_lpD3DDev->GetBackBuffer(0, D3DBACKBUFFER_TYPE_MONO, &pBackBuff);
+	hr = s_lpD3DDev->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &pBackBuff);
 
 	//POINT ptCopy = {0,0};
 	//RECT rcCopy = { 0,0,2,2};
