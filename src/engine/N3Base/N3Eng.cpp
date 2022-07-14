@@ -112,7 +112,7 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
 
 	s_hWndBase = hWnd;
 
-	int nAMC = m_lpD3D->GetAdapterModeCount(0); // 디스플레이 모드 카운트
+	int nAMC = m_lpD3D->GetAdapterModeCount(0, D3DFMT_X8R8G8B8); // 디스플레이 모드 카운트
 	if(nAMC <= 0)
 	{
 		MessageBox(hWnd, "Can't create D3D - Invalid display mode property.", "initialization", MB_OK);
@@ -132,7 +132,7 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
 	m_DeviceInfo.pModes = new D3DDISPLAYMODE[nAMC];
 	for(int i = 0; i < nAMC; i++)
 	{
-		m_lpD3D->EnumAdapterModes(0, i, &m_DeviceInfo.pModes[i]); // 디스플레이 모드 가져오기..
+		m_lpD3D->EnumAdapterModes(0, D3DFMT_X8R8G8B8, i, &m_DeviceInfo.pModes[i]); // 디스플레이 모드 가져오기..
 	}
 
 	D3DDEVTYPE DevType = D3DDEVTYPE_REF;
@@ -194,13 +194,19 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
 		rval = m_lpD3D->CreateDevice(0, DevType, hWnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &s_DevParam, &s_lpD3DDev);
 		if(rval != D3D_OK)
 		{
-			char szDebug[256];
-			D3DXGetErrorString(rval, szDebug, 256);
-			MessageBox(hWnd, "Can't create D3D Device - please, check DirectX or display card driver", "initialization", MB_OK);
+			char* pszDebug = NULL;
+			FormatMessage(
+				FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+				NULL, rval, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+				(LPSTR)&pszDebug, 0, NULL);
+			std::stringstream errMsg;
+			errMsg << "Can't create D3D Device - please, check DirectX or display card driver: [";
+			errMsg << std::hex << rval << ":" << pszDebug << "]";
+			MessageBox(hWnd, errMsg.str().c_str(), "Initialization", MB_OK);
 #ifdef _N3GAME
-			CLogWriter::Write("Can't create D3D Device - please, check DirectX or display card driver");
-			CLogWriter::Write(szDebug);
+			CLogWriter::Write(errMsg.str().c_str());
 #endif
+			LocalFree(pszDebug);
 //			{ for(int iii = 0; iii < 3; iii++) Beep(2000, 200); Sleep(300); } // 여러번 삑~
 
 			this->Release();

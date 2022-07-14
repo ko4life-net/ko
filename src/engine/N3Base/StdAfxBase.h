@@ -13,6 +13,7 @@
 #include <list>
 #include <map>
 #include <set>
+#include <sstream>
 
 /////////////////////////////////////////////////////////////////////////////
 // Diagnostic memory management routines
