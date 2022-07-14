@@ -594,7 +594,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=implode.lib kernel32.lib user32.lib gdi32.lib advapi32.lib shell32.lib winmm.lib imm32.lib ddraw.lib d3d8.lib d3dx8.lib dsound.lib dxguid.lib dxerr8.lib wsock32.lib DInput8.lib ..\engine\JPEG\jpegLib.lib /nologo /version:0.1 /subsystem:windows /pdb:none /map:"$(INTDIR)\KnightOnLine.map" /machine:I386 /out:"KnightOnLine.exe" 
+LINK32_FLAGS=implode.lib kernel32.lib user32.lib gdi32.lib advapi32.lib shell32.lib winmm.lib imm32.lib ddraw.lib d3d9.lib d3dx9.lib dsound.lib dxguid.lib  wsock32.lib dinput8.lib ..\engine\JPEG\jpegLib.lib /nologo /version:0.1 /subsystem:windows /pdb:none /map:"$(INTDIR)\KnightOnLine.map" /machine:I386 /out:"KnightOnLine.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\N3UIBase.obj" \
 	"$(INTDIR)\N3UIButton.obj" \
@@ -1342,7 +1342,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=implode.lib winmm.lib imm32.lib ddraw.lib d3d8.lib d3dx8.lib dsound.lib dxguid.lib dxerr8.lib wsock32.lib DInput8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib NAFXCWD.LIB LIBCMTD.LIB ..\engine\JPEG\jpegLib.lib /nologo /subsystem:windows /profile /map:"$(INTDIR)\KnightOnLine_Debug.map" /debug /machine:I386 /nodefaultlib:"msvcrt" /out:"KnightOnLine_Debug.exe" 
+LINK32_FLAGS=implode.lib winmm.lib imm32.lib ddraw.lib d3d9.lib d3dx9.lib dsound.lib dxguid.lib  wsock32.lib dinput8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib NAFXCWD.LIB LIBCMTD.LIB ..\engine\JPEG\jpegLib.lib /nologo /subsystem:windows /profile /map:"$(INTDIR)\KnightOnLine_Debug.map" /debug /machine:I386 /nodefaultlib:"msvcrt" /out:"KnightOnLine_Debug.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\N3UIBase.obj" \
 	"$(INTDIR)\N3UIButton.obj" \

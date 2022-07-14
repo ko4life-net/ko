@@ -179,15 +179,15 @@ void CN3TerrainPatch::SetLevel(int level)
 	HRESULT hr;
 	if(level==1)
 	{
-		hr = CN3Base::s_lpD3DDev->CreateVertexBuffer( m_VBSize[level-1]*sizeof(__VertexT2), 0, FVF_VNT2, D3DPOOL_MANAGED, &m_pVB );
-		hr = CN3Base::s_lpD3DDev->CreateVertexBuffer( m_VBSize[level-1]*sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_pLightMapVB );
+		hr = CN3Base::s_lpD3DDev->CreateVertexBuffer( m_VBSize[level-1]*sizeof(__VertexT2), 0, FVF_VNT2, D3DPOOL_MANAGED, &m_pVB, NULL);
+		hr = CN3Base::s_lpD3DDev->CreateVertexBuffer( m_VBSize[level-1]*sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_pLightMapVB, NULL);
 
 		m_NumLightMapTex = 0;
 		m_pRefLightMapTex = new CN3Texture* [PATCH_TILE_SIZE*PATCH_TILE_SIZE];
 	}
 	else
 	{
-		hr = CN3Base::s_lpD3DDev->CreateVertexBuffer( m_VBSize[level-1]*sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_pVB );
+		hr = CN3Base::s_lpD3DDev->CreateVertexBuffer( m_VBSize[level-1]*sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_pVB, NULL);
 	}
 }
 
@@ -224,7 +224,7 @@ void CN3TerrainPatch::Tick()
 		__VertexT1* pLightMapVertices = NULL;
 
 		__VertexT2* pVertices;
-		m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0 );
+		m_pVB->Lock( 0, 0, (VOID**)&pVertices, 0 );
 
 		int dir1, dir2;
 		int TileCount = 0;
@@ -321,7 +321,7 @@ void CN3TerrainPatch::Tick()
 					if(m_pRefTerrain->GetLightMap(tx, tz))
 					{
 						m_pRefLightMapTex[m_NumLightMapTex] = m_pRefTerrain->GetLightMap(tx, tz);
-						if(!pLightMapVertices) m_pLightMapVB->Lock( 0, 0, (BYTE**)&pLightMapVertices, 0 );
+						if(!pLightMapVertices) m_pLightMapVB->Lock( 0, 0, (VOID**)&pLightMapVertices, 0 );
 						int VBIndx = m_NumLightMapTex * 4;
 						float suv = 1.0f/(float)LIGHTMAP_TEX_SIZE;
 						float euv = (float)(LIGHTMAP_TEX_SIZE - 1.0f)/(float)LIGHTMAP_TEX_SIZE;
@@ -371,7 +371,7 @@ void CN3TerrainPatch::Tick()
 					if(m_pRefTerrain->GetLightMap(tx, tz))
 					{
 						m_pRefLightMapTex[m_NumLightMapTex] = m_pRefTerrain->GetLightMap(tx, tz);
-						if(!pLightMapVertices) m_pLightMapVB->Lock( 0, 0, (BYTE**)&pLightMapVertices, 0 );
+						if(!pLightMapVertices) m_pLightMapVB->Lock( 0, 0, (VOID**)&pLightMapVertices, 0 );
 						int VBIndx = m_NumLightMapTex * 4;
 						float suv = 1.0f/(float)LIGHTMAP_TEX_SIZE;
 						float euv = (float)(LIGHTMAP_TEX_SIZE - 1.0f)/(float)LIGHTMAP_TEX_SIZE;
@@ -405,7 +405,7 @@ void CN3TerrainPatch::Tick()
 	{
 		m_FanInfoList.clear();
 		__VertexT1* pVertices;
-		m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0 );
+		m_pVB->Lock( 0, 0, (VOID**)&pVertices, 0 );
 
 		float HalfUV = (float)HalfCell/(float)UNITUV;
 
@@ -582,7 +582,7 @@ void CN3TerrainPatch::Tick()
 	{
 		m_FanInfoList.clear();
 		__VertexT1* pVertices;
-		HRESULT hr = m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0 );
+		HRESULT hr = m_pVB->Lock( 0, 0, (VOID**)&pVertices, 0 );
 
 		float HalfUV = (float)HalfCell/(float)UNITUV;
 
@@ -768,8 +768,8 @@ void CN3TerrainPatch::Render()
 		hr = CN3Base::s_lpD3DDev->SetTextureStageState( 2, D3DTSS_COLOROP, D3DTOP_DISABLE);	
 		hr = CN3Base::s_lpD3DDev->SetTexture( 2, NULL);
 
-		CN3Base::s_lpD3DDev->SetStreamSource( 0, m_pVB, sizeof(__VertexT1) );
-		CN3Base::s_lpD3DDev->SetVertexShader( FVF_VNT1 );		
+		CN3Base::s_lpD3DDev->SetStreamSource( 0, m_pVB, 0, sizeof(__VertexT1) );
+		CN3Base::s_lpD3DDev->SetFVF( FVF_VNT1 );		
 
 		if(m_pRefColorTex->Get()) hr = CN3Base::s_lpD3DDev->SetTexture( 0, m_pRefColorTex->Get() );
 		else hr = CN3Base::s_lpD3DDev->SetTexture( 0, NULL );
@@ -794,8 +794,8 @@ void CN3TerrainPatch::Render()
 		hr = CN3Base::s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 		hr = CN3Base::s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
 	
-		CN3Base::s_lpD3DDev->SetStreamSource( 0, m_pVB, sizeof(__VertexT2) );
-		CN3Base::s_lpD3DDev->SetVertexShader( FVF_VNT2 );
+		CN3Base::s_lpD3DDev->SetStreamSource( 0, m_pVB, 0, sizeof(__VertexT2) );
+		CN3Base::s_lpD3DDev->SetFVF( FVF_VNT2 );
 			
 		int TotalTile = PATCH_TILE_SIZE*PATCH_TILE_SIZE;
 		for(int i=0; i<TotalTile; i++)
@@ -887,8 +887,8 @@ void CN3TerrainPatch::Render()
 #endif
 
 		// Render Light Map...
-		s_lpD3DDev->SetStreamSource( 0, m_pLightMapVB, sizeof(__VertexT1) );
-		s_lpD3DDev->SetVertexShader( FVF_VNT1 );
+		s_lpD3DDev->SetStreamSource( 0, m_pLightMapVB, 0, sizeof(__VertexT1) );
+		s_lpD3DDev->SetFVF( FVF_VNT1 );
 
 		DWORD dwAlphaEnable, dwSrcBlend, dwDestBlend;
 

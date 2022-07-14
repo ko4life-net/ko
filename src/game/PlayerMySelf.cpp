@@ -437,9 +437,9 @@ void CPlayerMySelf::InventoryChrRender(const RECT& Rect)
 	for ( i = 1; i < 8; i++ )	CN3Base::s_lpD3DDev->LightEnable(i, FALSE);
 	CN3Base::s_lpD3DDev->LightEnable(0, TRUE);
 
-	D3DLIGHT8 lgt0;
+	D3DLIGHT9 lgt0;
 	
-	memset(&lgt0, 0, sizeof(D3DLIGHT8));
+	memset(&lgt0, 0, sizeof(D3DLIGHT9));
 	lgt0.Type = D3DLIGHT_POINT;
 	lgt0.Attenuation0 = 0.5f;
 	lgt0.Range = 100.0f;
@@ -512,7 +512,7 @@ void CPlayerMySelf::InventoryChrRender(const RECT& Rect)
 	// 아래로 dino수정
 	// backup render state
 	DWORD dwLighting;
-	D3DLIGHT8 BackupLight0;
+	D3DLIGHT9 BackupLight0;
 
 	s_lpD3DDev->GetRenderState( D3DRS_LIGHTING, &dwLighting );
 	BOOL bLight[8];
@@ -525,8 +525,8 @@ void CPlayerMySelf::InventoryChrRender(const RECT& Rect)
 	s_lpD3DDev->LightEnable(0, TRUE);
 
 	// 0번 light 설정
-	D3DLIGHT8 Light0;
-	memset(&Light0, 0, sizeof(D3DLIGHT8));
+	D3DLIGHT9 Light0;
+	memset(&Light0, 0, sizeof(D3DLIGHT9));
 	Light0.Type = D3DLIGHT_POINT;
 	Light0.Attenuation0 = 0.5f;
 	Light0.Range = 100.0f;

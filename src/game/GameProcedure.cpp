@@ -486,12 +486,12 @@ bool CGameProcedure::CaptureScreenAndSaveToFile(const std::string& szFN)
 	int iH = CN3Base::s_CameraData.vp.Height;
 
 	bool bResult = false;
-	LPDIRECT3DSURFACE8 lpDDSTmp = NULL;
-	LPDIRECT3DSURFACE8 lpDDSBack = NULL;
-	CN3Base::s_lpD3DDev->GetBackBuffer(0, D3DBACKBUFFER_TYPE_MONO, &lpDDSBack);
+	LPDIRECT3DSURFACE9 lpDDSTmp = NULL;
+	LPDIRECT3DSURFACE9 lpDDSBack = NULL;
+	CN3Base::s_lpD3DDev->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &lpDDSBack);
 	if(lpDDSBack)
 	{
-		CN3Base::s_lpD3DDev->CreateImageSurface(iW, iH, D3DFMT_X8R8G8B8, &lpDDSTmp);
+		CN3Base::s_lpD3DDev->CreateOffscreenPlainSurface(iW, iH, D3DFMT_X8R8G8B8, D3DPOOL_DEFAULT, &lpDDSTmp, NULL);
 		if(lpDDSTmp)
 		{
 			HRESULT rval = D3DXLoadSurfaceFromSurface(lpDDSTmp, NULL, NULL, lpDDSBack, NULL, NULL, D3DX_FILTER_NONE, 0);

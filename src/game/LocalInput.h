@@ -1,7 +1,7 @@
 #ifndef _LocalInput_H_
 #define _LocalInput_H_
 
-#include <DInput.h>
+#include <dinput.h>
 
 const int DK_NONE = 0;
 const int DK_RELEASE = 1;
@@ -81,9 +81,9 @@ public:
 		}
 	}
 	BOOL IsNoKeyDown() { return m_bNoKeyDown; }
-	BOOL IsKeyDown(int iIndex) { if(iIndex < 0 || iIndex >= NUMDIKEYS) return FALSE; return m_byCurKeys[iIndex]; } // 키보드가 눌려있는지... "DInput.h" 에 정의 되어 있는 DIK_???? 스캔코드를 참조..
-	BOOL IsKeyPress(int iIndex) { if(iIndex < 0 || iIndex >= NUMDIKEYS) return FALSE; return m_bKeyPresses[iIndex]; } // 키보드를 누르는 순간... "DInput.h" 에 정의 되어 있는 DIK_???? 스캔코드를 참조..
-	BOOL IsKeyPressed(int iIndex) { if(iIndex < 0 || iIndex >= NUMDIKEYS) return FALSE; return m_bKeyPresseds[iIndex]; } // 키보드를 누르고나서 떼는 순간... "DInput.h" 에 정의 되어 있는 DIK_???? 스캔코드를 참조..
+	BOOL IsKeyDown(int iIndex) { if(iIndex < 0 || iIndex >= NUMDIKEYS) return FALSE; return m_byCurKeys[iIndex]; } // 키보드가 눌려있는지... <dinput.h> 에 정의 되어 있는 DIK_???? 스캔코드를 참조..
+	BOOL IsKeyPress(int iIndex) { if(iIndex < 0 || iIndex >= NUMDIKEYS) return FALSE; return m_bKeyPresses[iIndex]; } // 키보드를 누르는 순간... <dinput.h> 에 정의 되어 있는 DIK_???? 스캔코드를 참조..
+	BOOL IsKeyPressed(int iIndex) { if(iIndex < 0 || iIndex >= NUMDIKEYS) return FALSE; return m_bKeyPresseds[iIndex]; } // 키보드를 누르고나서 떼는 순간... <dinput.h> 에 정의 되어 있는 DIK_???? 스캔코드를 참조..
 	
 	BOOL Init(HINSTANCE hInst, HWND hWnd, BOOL bActivateKeyboard= TRUE, BOOL bActivateMouse = TRUE, BOOL ExclusiveMouseAccess = TRUE );
 

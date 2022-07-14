@@ -183,7 +183,7 @@ void CGameProcLogIn::Render()
 	 // 카메라 잡기..
 	m_pCamera->Tick();
 	m_pCamera->Apply();
-/*	D3DVIEWPORT8 vp;
+/*	D3DVIEWPORT9 vp;
 	CN3Base::s_lpD3DDev->GetViewport(&vp);
 	float fLens = D3DXToRadian(55.0f);
 	float fAspect = (float)vp.Width / (float)vp.Height;
@@ -201,16 +201,16 @@ void CGameProcLogIn::Render()
 	for(i = 0; i < 3; i++) 	m_pLights[i]->Apply();
 
 	// 라이트 잡기..
-/*	D3DLIGHT8 lgt0, lgt1, lgt2;
+/*	D3DLIGHT9 lgt0, lgt1, lgt2;
 	
-	memset(&lgt0, 0, sizeof(D3DLIGHT8));
+	memset(&lgt0, 0, sizeof(D3DLIGHT9));
 	lgt0.Type = D3DLIGHT_POINT;
 	lgt0.Attenuation0 = 0.5f;
 	lgt0.Range = 100000.0f;
 	lgt0.Position = __Vector3(-500, 100, -50);
 	lgt0.Diffuse.r = 232/255.0f; lgt0.Diffuse.g = 226/255.0f; lgt0.Diffuse.b = 215/255.0f;
 
-	memset(&lgt1, 0, sizeof(D3DLIGHT8));
+	memset(&lgt1, 0, sizeof(D3DLIGHT9));
 	lgt1.Type = D3DLIGHT_POINT;
 	lgt1.Attenuation0 = 1.0f;
 	lgt1.Range = 100000.0f;
@@ -218,7 +218,7 @@ void CGameProcLogIn::Render()
 //	lgt1.Ambient.r = 56/255.0f; lgt1.Ambient.g = 58/255.0f; lgt1.Ambient.b = 129/255.0f;
 	lgt1.Diffuse.r = 66/255.0f; lgt1.Diffuse.g = 68/255.0f; lgt1.Diffuse.b = 168/255.0f;
 
-	memset(&lgt2, 0, sizeof(D3DLIGHT8));
+	memset(&lgt2, 0, sizeof(D3DLIGHT9));
 	lgt2.Type = D3DLIGHT_POINT;
 	lgt2.Attenuation0 = 1.0f;
 	lgt2.Range = 100000.0f;
@@ -239,7 +239,7 @@ void CGameProcLogIn::Render()
 
 	////////////////////////////////////////////
 	// 달그리기..
-	D3DVIEWPORT8 vp;
+	D3DVIEWPORT9 vp;
 	CN3Base::s_lpD3DDev->GetViewport(&vp);
 
 	float fMW = (m_pTexBkg->Width() * vp.Width / 1024.0f)*1.3f;
@@ -261,7 +261,7 @@ void CGameProcLogIn::Render()
 	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
 	CN3Base::s_lpD3DDev->SetTexture(0, m_pTexBkg->Get());
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_TRANSFORMED);
+	CN3Base::s_lpD3DDev->SetFVF(FVF_TRANSFORMED);
 	CN3Base::s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, vMoon, sizeof(__VertexTransformed));
 
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_ZWRITEENABLE, dwZWrite);

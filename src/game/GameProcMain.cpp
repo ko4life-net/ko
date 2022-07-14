@@ -584,12 +584,12 @@ void CGameProcMain::Render()
 	float fSunAngle = ACT_WORLD->GetSunAngleByRadinWithSky(); // 해의 각도를 가져오고..
 
 	DWORD dwFilter = D3DTEXF_LINEAR;
-	CN3Base::s_lpD3DDev->SetTextureStageState( 0, D3DTSS_MINFILTER, dwFilter );		// 텍스쳐를 줄여서 찍었을 경우 픽셀이 깨진것처럼 보이는 것 방지
-	CN3Base::s_lpD3DDev->SetTextureStageState( 0, D3DTSS_MAGFILTER, dwFilter );		// 텍스쳐를 늘여서 찍었을 경우 픽셀이 깨진것처럼 보이는 것 방지
-	CN3Base::s_lpD3DDev->SetTextureStageState( 0, D3DTSS_MIPFILTER, dwFilter );		// 텍스쳐를 줄여서 찍었을 경우 픽셀이 깨진것처럼 보이는 것 방지
-	CN3Base::s_lpD3DDev->SetTextureStageState( 1, D3DTSS_MINFILTER, dwFilter );		// 텍스쳐를 줄여서 찍었을 경우 픽셀이 깨진것처럼 보이는 것 방지
-	CN3Base::s_lpD3DDev->SetTextureStageState( 1, D3DTSS_MAGFILTER, dwFilter );		// 텍스쳐를 늘여서 찍었을 경우 픽셀이 깨진것처럼 보이는 것 방지
-	CN3Base::s_lpD3DDev->SetTextureStageState( 1, D3DTSS_MIPFILTER, dwFilter );		// 텍스쳐를 줄여서 찍었을 경우 픽셀이 깨진것처럼 보이는 것 방지
+	CN3Base::s_lpD3DDev->SetSamplerState( 0, D3DSAMP_MINFILTER, dwFilter );		// 텍스쳐를 줄여서 찍었을 경우 픽셀이 깨진것처럼 보이는 것 방지
+	CN3Base::s_lpD3DDev->SetSamplerState( 0, D3DSAMP_MAGFILTER, dwFilter );		// 텍스쳐를 늘여서 찍었을 경우 픽셀이 깨진것처럼 보이는 것 방지
+	CN3Base::s_lpD3DDev->SetSamplerState( 0, D3DSAMP_MIPFILTER, dwFilter );		// 텍스쳐를 줄여서 찍었을 경우 픽셀이 깨진것처럼 보이는 것 방지
+	CN3Base::s_lpD3DDev->SetSamplerState( 1, D3DSAMP_MINFILTER, dwFilter );		// 텍스쳐를 줄여서 찍었을 경우 픽셀이 깨진것처럼 보이는 것 방지
+	CN3Base::s_lpD3DDev->SetSamplerState( 1, D3DSAMP_MAGFILTER, dwFilter );		// 텍스쳐를 늘여서 찍었을 경우 픽셀이 깨진것처럼 보이는 것 방지
+	CN3Base::s_lpD3DDev->SetSamplerState( 1, D3DSAMP_MIPFILTER, dwFilter );		// 텍스쳐를 줄여서 찍었을 경우 픽셀이 깨진것처럼 보이는 것 방지
 
 	ACT_WORLD->RenderTerrain();						// 지형 렌더..
 	ACT_WORLD->RenderShape();						// 물체 렌더..
