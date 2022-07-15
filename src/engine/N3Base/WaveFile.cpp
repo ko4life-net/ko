@@ -14,6 +14,9 @@
 
 #include "WaveFile.h"
 
+// TODO: Temporarily added this. Need to follow this read: https://walbourn.github.io/wheres-dxerr-lib/
+#define DXTRACE_ERR(x, y) 1
+
 //-----------------------------------------------------------------------------
 // Name: CWaveFile::CWaveFile()
 // Desc: Constructs the class.  Call Open() to open a wave file for reading.  
