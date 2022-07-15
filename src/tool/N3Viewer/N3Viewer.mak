@@ -417,7 +417,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=d3d9.lib d3dx9.lib dsound.lib dxguid.lib winmm.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\N3Viewer_Debug.pdb" /debug /machine:I386 /out:"N3Viewer_Debug.exe" /pdbtype:sept 
+LINK32_FLAGS=d3d9.lib d3dx9d.lib dsound.lib dxguidd.lib winmm.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\N3Viewer_Debug.pdb" /debug /machine:I386 /out:"N3Viewer_Debug.exe" /pdbtype:sept 
 LINK32_OBJS= \
 	"$(INTDIR)\BitMapFile.obj" \
 	"$(INTDIR)\DlgBrowsePath.obj" \

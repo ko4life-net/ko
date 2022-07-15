@@ -25,6 +25,10 @@ NULL=
 NULL=nul
 !ENDIF 
 
+CPP=cl.exe
+MTL=midl.exe
+RSC=rc.exe
+
 !IF  "$(CFG)" == "WarFare - Win32 Release"
 
 OUTDIR=.\Release
@@ -380,42 +384,8 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP=cl.exe
-CPP_PROJ=/nologo /ML /W3 /GX /O2 /Ob2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_N3GAME" /Fr"$(INTDIR)\\" /Fp"$(INTDIR)\WarFare.pch" /YX"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
-
-.c{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.c{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-MTL=midl.exe
+CPP_PROJ=/nologo /MT /W3 /GX /O2 /Ob2 /I "." /I "..\vendor\DXSDK9\Include" /I "..\engine" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_N3GAME" /D DIRECTINPUT_VERSION=0x0800 /Fr"$(INTDIR)\\" /Fp"$(INTDIR)\WarFare.pch" /YX"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 MTL_PROJ=/nologo /D "NDEBUG" /D "_N3GAME" /mktyplib203 /win32 
-RSC=rc.exe
 RSC_PROJ=/l 0x412 /fo"$(INTDIR)\Resource.res" /d "NDEBUG" 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\WarFare.bsc" 
@@ -594,7 +564,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=implode.lib kernel32.lib user32.lib gdi32.lib advapi32.lib shell32.lib winmm.lib imm32.lib ddraw.lib d3d9.lib d3dx9.lib dsound.lib dxguid.lib  wsock32.lib dinput8.lib ..\engine\JPEG\jpegLib.lib /nologo /version:0.1 /subsystem:windows /pdb:none /map:"$(INTDIR)\KnightOnLine.map" /machine:I386 /out:"KnightOnLine.exe" 
+LINK32_FLAGS=implode.lib ..\engine\JPEG\jpeglib.lib d3d9.lib d3dx9d.lib dsound.lib ddraw.lib dinput8.lib dxguid.lib winmm.lib kernel32.lib user32.lib gdi32.lib advapi32.lib shell32.lib imm32.lib wsock32.lib /nologo /version:0.1 /subsystem:windows /pdb:none /map:"$(INTDIR)\KnightOnLine.map" /machine:I386 /nodefaultlib:"libc.lib" /out:"KnightOnLine.exe" /libpath:"..\vendor\DXSDK9\Lib\x86" 
 LINK32_OBJS= \
 	"$(INTDIR)\N3UIBase.obj" \
 	"$(INTDIR)\N3UIButton.obj" \
@@ -1128,42 +1098,8 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP=cl.exe
-CPP_PROJ=/nologo /MLd /W3 /Gm /Gi /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_N3GAME" /Fr"$(INTDIR)\\" /Fp"$(INTDIR)\WarFare.pch" /YX"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
-
-.c{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.c{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-MTL=midl.exe
+CPP_PROJ=/nologo /MTd /W3 /Gm /Gi /GX /ZI /Od /I "." /I "..\vendor\DXSDK9\Include" /I "..\engine" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_N3GAME" /D DIRECTINPUT_VERSION=0x0800 /Fr"$(INTDIR)\\" /Fp"$(INTDIR)\WarFare.pch" /YX"stdafx.h" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
 MTL_PROJ=/nologo /D "_DEBUG" /D "_N3GAME" /mktyplib203 /win32 
-RSC=rc.exe
 RSC_PROJ=/l 0x412 /fo"$(INTDIR)\Resource.res" /d "_DEBUG" 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\WarFare.bsc" 
@@ -1342,7 +1278,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=implode.lib winmm.lib imm32.lib ddraw.lib d3d9.lib d3dx9.lib dsound.lib dxguid.lib  wsock32.lib dinput8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib NAFXCWD.LIB LIBCMTD.LIB ..\engine\JPEG\jpegLib.lib /nologo /subsystem:windows /profile /map:"$(INTDIR)\KnightOnLine_Debug.map" /debug /machine:I386 /nodefaultlib:"msvcrt" /out:"KnightOnLine_Debug.exe" 
+LINK32_FLAGS=implode.lib ..\engine\JPEG\jpeglib.lib d3d9.lib d3dx9d.lib dsound.lib ddraw.lib dinput8d.lib dxguidd.lib nafxcwd.lib winmm.lib imm32.lib kernel32.lib user32.lib gdi32.lib advapi32.lib shell32.lib wsock32.lib /nologo /subsystem:windows /profile /map:"$(INTDIR)\KnightOnLine_Debug.map" /debug /machine:I386 /nodefaultlib:"libc.lib" /out:"KnightOnLine_Debug.exe" /libpath:"..\vendor\DXSDK9\Lib\x86" 
 LINK32_OBJS= \
 	"$(INTDIR)\N3UIBase.obj" \
 	"$(INTDIR)\N3UIButton.obj" \
@@ -1521,6 +1457,36 @@ LINK32_OBJS= \
 <<
 
 !ENDIF 
+
+.c{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cpp{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cxx{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.c{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cpp{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cxx{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
 
 
 !IF "$(NO_EXTERNAL_DEPS)" != "1"

@@ -958,7 +958,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=d3d9.lib d3dx9.lib dsound.lib dxguid.lib winmm.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\N3ME_debug.pdb" /map:"$(INTDIR)\N3ME_debug.map" /debug /machine:I386 /force /out:"N3ME_debug.exe" /pdbtype:sept 
+LINK32_FLAGS=d3d9.lib d3dx9d.lib dsound.lib dxguidd.lib winmm.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\N3ME_debug.pdb" /map:"$(INTDIR)\N3ME_debug.map" /debug /machine:I386 /force /out:"N3ME_debug.exe" /pdbtype:sept 
 LINK32_OBJS= \
 	"$(INTDIR)\BitMapFile.obj" \
 	"$(INTDIR)\LogWriter.obj" \

@@ -375,7 +375,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=d3d9.lib d3dx9.lib dsound.lib dxguid.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib nafxcwd.lib /nologo /subsystem:windows /dll /incremental:yes /pdb:"$(OUTDIR)\N3Export2.pdb" /debug /machine:I386 /out:"g:\N3Export2.mll" /implib:"$(OUTDIR)\N3Export2.lib" /pdbtype:sept /libpath:"..\lib" /libpath:"..\..\..\lib" /export:initializePlugin /export:uninitializePlugin 
+LINK32_FLAGS=d3d9.lib d3dx9d.lib dsound.lib dxguidd.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib nafxcwd.lib /nologo /subsystem:windows /dll /incremental:yes /pdb:"$(OUTDIR)\N3Export2.pdb" /debug /machine:I386 /out:"g:\N3Export2.mll" /implib:"$(OUTDIR)\N3Export2.lib" /pdbtype:sept /libpath:"..\lib" /libpath:"..\..\..\lib" /export:initializePlugin /export:uninitializePlugin 
 LINK32_OBJS= \
 	"$(INTDIR)\BitMapFile.obj" \
 	"$(INTDIR)\iffreader.obj" \

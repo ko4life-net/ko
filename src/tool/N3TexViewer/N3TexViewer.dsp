@@ -80,7 +80,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 d3d9.lib d3dx9.lib dxguid.lib dsound.lib winmm.lib /nologo /subsystem:windows /debug /machine:I386 /out:"N3TexViewer_Debug.exe" /pdbtype:sept
+# ADD LINK32 d3d9.lib d3dx9d.lib dxguidd.lib dsound.lib winmm.lib /nologo /subsystem:windows /debug /machine:I386 /out:"N3TexViewer_Debug.exe" /pdbtype:sept
 
 !ENDIF 
 

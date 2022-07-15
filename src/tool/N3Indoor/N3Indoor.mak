@@ -542,7 +542,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=winmm.lib d3d9.lib d3dx9.lib dsound.lib dxguid.lib strmiids.lib  /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\N3Indoor_debug.pdb" /debug /machine:I386 /out:"N3Indoor_debug.exe" /pdbtype:sept 
+LINK32_FLAGS=winmm.lib d3d9.lib d3dx9d.lib dsound.lib dxguidd.lib strmiids.lib  /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\N3Indoor_debug.pdb" /debug /machine:I386 /out:"N3Indoor_debug.exe" /pdbtype:sept 
 LINK32_OBJS= \
 	"$(INTDIR)\ComDialog.obj" \
 	"$(INTDIR)\DlgBase.obj" \
