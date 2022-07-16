@@ -103,10 +103,10 @@ bool CN3PMesh::Load(HANDLE hFile)
 	if (m_iMaxNumVertices>0)
 	{
 //		HRESULT hr = m_lpD3DDev->CreateVertexBuffer(m_iMaxNumVertices*sizeof(__VertexT1),
-//										D3DUSAGE_DYNAMIC, FVF_VNT1, D3DPOOL_MANAGED, &m_pVB);
+//										D3DUSAGE_DYNAMIC, FVF_VNT1, D3DPOOL_MANAGED, &m_pVB, NULL);
 //		if (FAILED(hr)) return hr;
 		BYTE* pByte;
-		hr = m_pVB->Lock(0, 0, &pByte, 0);
+		hr = m_pVB->Lock(0, 0, (VOID**)&pByte, 0);
 		if (FAILED(hr)) return false;
 		ReadFile(hFile, pByte, m_iMaxNumVertices*sizeof(__VertexT1), &dwNum, NULL);
 		m_pVB->Unlock();
@@ -117,7 +117,7 @@ bool CN3PMesh::Load(HANDLE hFile)
 //										D3DUSAGE_DYNAMIC, D3DFMT_INDEX16, D3DPOOL_MANAGED, &m_pIB);
 //		if (FAILED(hr)) return hr;
 		BYTE* pByte;
-		hr = m_pIB->Lock(0, 0, &pByte, 0);
+		hr = m_pIB->Lock(0, 0, (VOID**)&pByte, 0);
 		if (FAILED(hr)) return false;
 		ReadFile(hFile, pByte, m_iMaxNumIndices*sizeof(WORD), &dwNum, NULL);
 		m_pIB->Unlock();
@@ -194,7 +194,7 @@ bool CN3PMesh::Save(HANDLE hFile)
 	{
 		HRESULT hr;
 		BYTE* pByte;
-		hr = m_pVB->Lock(0, 0, &pByte, D3DLOCK_READONLY);
+		hr = m_pVB->Lock(0, 0, (VOID**)&pByte, D3DLOCK_READONLY);
 		if (FAILED(hr)) return false;
 		WriteFile(hFile, pByte, m_iMaxNumVertices*sizeof(__VertexT1), &dwNum, NULL);
 		m_pVB->Unlock();
@@ -203,7 +203,7 @@ bool CN3PMesh::Save(HANDLE hFile)
 	{
 		HRESULT hr;
 		BYTE* pByte;
-		hr = m_pIB->Lock(0, 0, &pByte, D3DLOCK_READONLY);
+		hr = m_pIB->Lock(0, 0, (VOID**)&pByte, D3DLOCK_READONLY);
 		if (FAILED(hr)) return false;
 		WriteFile(hFile, pByte, m_iMaxNumIndices*sizeof(WORD), &dwNum, NULL);
 		m_pIB->Unlock();
@@ -246,7 +246,7 @@ void CN3PMesh::FindMinMax()
 	__ASSERT(m_pVB && m_pIB, "Vertex buffer is NULL or Index buffer is NULL!");
 	HRESULT hr;
 	BYTE* pByte;
-	hr = m_pVB->Lock(0, 0, &pByte, D3DLOCK_READONLY);
+	hr = m_pVB->Lock(0, 0, (VOID**)&pByte, D3DLOCK_READONLY);
 	__VertexT1* pVertices = (__VertexT1*)pByte;
 	for(int i = 0; i < m_iMaxNumVertices; i++)
 	{
@@ -315,8 +315,8 @@ void CN3PMesh::CopyMesh(CN3PMesh* pSrcPMesh)
 	if (m_iMaxNumVertices>0)
 	{
 		BYTE* pDestByte, *pSrcByte;
-		hr = m_pVB->Lock(0, 0, &pDestByte, 0);
-		hr = pSrcPMesh->m_pVB->Lock(0, 0, &pSrcByte, D3DLOCK_READONLY);
+		hr = m_pVB->Lock(0, 0, (VOID**)&pDestByte, 0);
+		hr = pSrcPMesh->m_pVB->Lock(0, 0, (VOID**)&pSrcByte, D3DLOCK_READONLY);
 		CopyMemory(pDestByte, pSrcByte, m_iMaxNumVertices*sizeof(__VertexT1));
 		hr = pSrcPMesh->m_pVB->Unlock();
 		m_pVB->Unlock();
@@ -324,8 +324,8 @@ void CN3PMesh::CopyMesh(CN3PMesh* pSrcPMesh)
 	if (m_iMaxNumIndices>0)
 	{
 		BYTE* pDestByte, *pSrcByte;
-		hr = m_pIB->Lock(0, 0, &pDestByte, 0);
-		hr = pSrcPMesh->m_pIB->Lock(0, 0, &pSrcByte, D3DLOCK_READONLY);
+		hr = m_pIB->Lock(0, 0, (VOID**)&pDestByte, 0);
+		hr = pSrcPMesh->m_pIB->Lock(0, 0, (VOID**)&pSrcByte, D3DLOCK_READONLY);
 		CopyMemory(pDestByte, pSrcByte, m_iMaxNumIndices*sizeof(WORD));
 		pSrcPMesh->m_pIB->Unlock();
 		m_pIB->Unlock();
@@ -401,12 +401,12 @@ HRESULT CN3PMesh::GenerateSecondUV()
 	if (m_iMaxNumVertices>0)
 	{
 		hr = m_lpD3DDev->CreateVertexBuffer(m_iMaxNumVertices*sizeof(__VertexT2),
-										D3DUSAGE_DYNAMIC, FVF_VNT2, D3DPOOL_MANAGED, &m_pVB2);
+										D3DUSAGE_DYNAMIC, FVF_VNT2, D3DPOOL_MANAGED, &m_pVB2, NULL);
 		if (FAILED(hr)) return hr;
 
 		__VertexT1* pVSrc = NULL; __VertexT2* pVDest = NULL;
-		m_pVB->Lock(0, 0, (BYTE**)(&pVSrc), 0);
-		m_pVB2->Lock(0, 0, (BYTE**)(&pVDest), 0);
+		m_pVB->Lock(0, 0, (VOID**)&pVSrc, 0);
+		m_pVB2->Lock(0, 0, (VOID**)&pVDest, 0);
 		for(int i = 0; i < m_iMaxNumVertices; i++)
 		{
 			pVDest[i] = pVSrc[i];

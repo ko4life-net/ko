@@ -21,7 +21,7 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
-LPDIRECT3DDEVICE8 CN3Base::s_lpD3DDev	= NULL;			// 참조 포인터.. 멋대로 해제하면 안된다..
+LPDIRECT3DDEVICE9 CN3Base::s_lpD3DDev	= NULL;			// 참조 포인터.. 멋대로 해제하면 안된다..
 DWORD CN3Base::s_dwTextureCaps			= 0;			// Texture 호환성..
 float CN3Base::s_fFrmPerSec				= 30.0f;		// Frame Per Second
 float CN3Base::s_fSecPerFrm				= 1.0f/30.0f;	// Second per Frame
@@ -29,7 +29,7 @@ HWND CN3Base::s_hWndBase				= NULL;			// Init 할때 쓴 Window Handle
 HWND CN3Base::s_hWndPresent				= NULL;			// 최근에 Present 한 Window Handle
 
 D3DPRESENT_PARAMETERS CN3Base::s_DevParam;	// Device 생성 Present Parameter
-D3DCAPS8 CN3Base::s_DevCaps;				// Device 호환성...
+D3DCAPS9 CN3Base::s_DevCaps;				// Device 호환성...
 std::string CN3Base::s_szPath;
 
 __CameraData CN3Base::s_CameraData;			// Camera Data
@@ -316,7 +316,7 @@ void CN3Base::RenderLines(const __Vector3 *pvLines, int nCount, D3DCOLOR color)
 
 	static __VertexColor svLines[512];
 
-	s_lpD3DDev->SetVertexShader(FVF_CV);
+	s_lpD3DDev->SetFVF(FVF_CV);
 
 	int nRepeat = nCount/512;
 	for(int i = 0; i < nRepeat; i++)
@@ -354,7 +354,7 @@ void CN3Base::RenderLines(const RECT& rc, D3DCOLOR color)
 	CN3Base::s_lpD3DDev->GetTextureStageState(0, D3DTSS_COLORARG1, &dwCA1);
 	CN3Base::s_lpD3DDev->GetTextureStageState(0, D3DTSS_ALPHAOP, &dwAOP);
 	CN3Base::s_lpD3DDev->GetTextureStageState(0, D3DTSS_ALPHAARG1, &dwAA1);
-	CN3Base::s_lpD3DDev->GetVertexShader(&dwVertexShader); 
+	CN3Base::s_lpD3DDev->GetFVF(&dwVertexShader); 
 
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, FALSE);
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, FALSE);
@@ -366,7 +366,7 @@ void CN3Base::RenderLines(const RECT& rc, D3DCOLOR color)
 	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1);
 	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_DIFFUSE);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_TRANSFORMEDCOLOR);
+	CN3Base::s_lpD3DDev->SetFVF(FVF_TRANSFORMEDCOLOR);
 	CN3Base::s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 4, vLines, sizeof(__VertexTransformedColor));
 	
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, dwZ);
@@ -378,7 +378,7 @@ void CN3Base::RenderLines(const RECT& rc, D3DCOLOR color)
 	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, dwCA1);
 	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAOP, dwAOP);
 	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAARG1, dwAA1);
-	CN3Base::s_lpD3DDev->SetVertexShader(dwVertexShader); 
+	CN3Base::s_lpD3DDev->SetFVF(dwVertexShader); 
 }
 
 float CN3Base::TimeGet()

@@ -809,7 +809,7 @@ void COrganizeView::SelectObjectByDragRect(RECT* pRect, BOOL bAdd)	// µå·¡±× ÇØ¼
 	pFrm = (CMainFrame*)AfxGetMainWnd();
 
 	CN3Eng* pEng = &pFrm->m_Eng;
-	LPDIRECT3DDEVICE8 pD3DDev = pEng->s_lpD3DDev;
+	LPDIRECT3DDEVICE9 pD3DDev = pEng->s_lpD3DDev;
 
 	__Matrix44 matView, matProj, matVP;
 	pD3DDev->GetTransform(D3DTS_VIEW, &matView);

@@ -1,8 +1,8 @@
 #ifndef __MY_3DSTRUCT_H_
 #define __MY_3DSTRUCT_H_
 
-#include "D3DX8.h"
-#include "D3DX8Math.h"
+#include <d3dx9.h>
+#include <d3dx9math.h>
 #include <string>
 
 const float __PI = 3.141592654f;
@@ -750,7 +750,7 @@ const DWORD RF_NOTZWRITE		= 0x100;	// ZBuffer 에 안쓴다.
 const DWORD RF_UV_CLAMP			= 0x200;	// texture UV적용을 Clamp로 한다..default는 wrap이다..
 const DWORD RF_NOTZBUFFER		= 0x400;	// ZBuffer 무시.
 
-struct __Material : public _D3DMATERIAL8
+struct __Material : public _D3DMATERIAL9
 {
 public:
 	DWORD	dwColorOp, dwColorArg1, dwColorArg2;
@@ -1131,7 +1131,7 @@ bool			_IntersectTriangle(const __Vector3& vOrig, const __Vector3& vDir , const 
 bool			_IntersectTriangle(const __Vector3& vOrig, const __Vector3& vDir, const __Vector3& v0, const __Vector3& v1, const __Vector3& v2);
 bool			_CheckCollisionByBox(const __Vector3& vOrig, const __Vector3& vDir, const __Vector3& vMin, const __Vector3& vMax);
 POINT			_Convert3D_To_2DCoordinate(const __Vector3 &vPos, const __Matrix44& mtxView, const __Matrix44& mtxProjection, int nVPW, int nVPH);
-void			_Convert2D_To_3DCoordinate(	int ixScreen, int iyScreen, const __Matrix44& mtxView, const __Matrix44& mtxPrj, const D3DVIEWPORT8& vp, __Vector3& vPosResult, __Vector3& vDirResult);
+void			_Convert2D_To_3DCoordinate(	int ixScreen, int iyScreen, const __Matrix44& mtxView, const __Matrix44& mtxPrj, const D3DVIEWPORT9& vp, __Vector3& vPosResult, __Vector3& vDirResult);
 float			_Yaw2D(float fDirX, float fDirZ);
 void			_LoadStringFromResource(DWORD dwID, std::string& szText);
 
@@ -1379,7 +1379,7 @@ inline POINT _Convert3D_To_2DCoordinate(const __Vector3 &vPos, const __Matrix44&
 }
 
 inline void _Convert2D_To_3DCoordinate(	int ixScreen, int iyScreen,
-										const __Matrix44& mtxView, const __Matrix44& mtxPrj, const D3DVIEWPORT8& vp,
+										const __Matrix44& mtxView, const __Matrix44& mtxPrj, const D3DVIEWPORT9& vp,
 										__Vector3& vPosResult, __Vector3& vDirResult)
 {
 	// Compute the vector of the pick ray in screen space

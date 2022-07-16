@@ -1338,16 +1338,16 @@ void CN3Terrain::Render()
 	hr = CN3Base::s_lpD3DDev->GetTextureStageState( 2, D3DTSS_COLORARG2, &ColorArg22);
 
 	DWORD AddressU1, AddressV1, AddressU2, AddressV2;
-	hr = s_lpD3DDev->GetTextureStageState( 0, D3DTSS_ADDRESSU, &AddressU1 );
-	hr = s_lpD3DDev->GetTextureStageState( 0, D3DTSS_ADDRESSV, &AddressV1 );
-	hr = s_lpD3DDev->GetTextureStageState( 1, D3DTSS_ADDRESSU, &AddressU2 );
-	hr = s_lpD3DDev->GetTextureStageState( 1, D3DTSS_ADDRESSV, &AddressV2 );
+	hr = s_lpD3DDev->GetSamplerState( 0, D3DSAMP_ADDRESSU, &AddressU1 );
+	hr = s_lpD3DDev->GetSamplerState( 0, D3DSAMP_ADDRESSV, &AddressV1 );
+	hr = s_lpD3DDev->GetSamplerState( 1, D3DSAMP_ADDRESSU, &AddressU2 );
+	hr = s_lpD3DDev->GetSamplerState( 1, D3DSAMP_ADDRESSV, &AddressV2 );
 
 	// 각각의 텍스쳐들을 연결했을때 경계선을 없앨 수 있다..^^
-	hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSU,  D3DTADDRESS_MIRROR );
-	hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSV,  D3DTADDRESS_MIRROR );
-	hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_ADDRESSU,  D3DTADDRESS_MIRROR );
-	hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_ADDRESSV,  D3DTADDRESS_MIRROR );
+	hr = s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSU,  D3DTADDRESS_MIRROR );
+	hr = s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSV,  D3DTADDRESS_MIRROR );
+	hr = s_lpD3DDev->SetSamplerState( 1, D3DSAMP_ADDRESSU,  D3DTADDRESS_MIRROR );
+	hr = s_lpD3DDev->SetSamplerState( 1, D3DSAMP_ADDRESSV,  D3DTADDRESS_MIRROR );
 
 	int x,z;
 	for(x=m_pat_BoundRect.left; x<=m_pat_BoundRect.right; x++)
@@ -1359,10 +1359,10 @@ void CN3Terrain::Render()
 		}
 	}
 
-	hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSU, AddressU1 );
-	hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSV, AddressV1 );
-	hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_ADDRESSU, AddressU2 );
-	hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_ADDRESSV, AddressV2 );
+	hr = s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSU, AddressU1 );
+	hr = s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSV, AddressV1 );
+	hr = s_lpD3DDev->SetSamplerState( 1, D3DSAMP_ADDRESSU, AddressU2 );
+	hr = s_lpD3DDev->SetSamplerState( 1, D3DSAMP_ADDRESSV, AddressV2 );
 
 	// restor texture stage state settings...
 	hr = CN3Base::s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, ColorOP0);

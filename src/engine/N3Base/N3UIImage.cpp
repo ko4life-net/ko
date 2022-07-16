@@ -64,7 +64,7 @@ bool CN3UIImage::CreateVB()
 {
 	HRESULT hr;
 	if (m_pVB) {m_pVB->Release(); m_pVB = NULL;}
-	hr = s_lpD3DDev->CreateVertexBuffer( 4*sizeof(__VertexTransformed), 0, FVF_TRANSFORMED, D3DPOOL_MANAGED, &m_pVB );
+	hr = s_lpD3DDev->CreateVertexBuffer( 4*sizeof(__VertexTransformed), 0, FVF_TRANSFORMED, D3DPOOL_MANAGED, &m_pVB, NULL );
 	return SUCCEEDED(hr);
 }
 
@@ -79,7 +79,7 @@ void CN3UIImage::SetVB()
 		if(m_pVB)
 		{
 			__VertexTransformed* pVertices;
-			m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0 );
+			m_pVB->Lock( 0, 0, (VOID**)&pVertices, 0 );
 
 			DWORD dwColor = 0xffffffff;
 			float fRHW = 1.0f;
@@ -147,8 +147,8 @@ void CN3UIImage::Render()
 	{
 		if (m_pVB && m_pTexRef)
 		{
-			s_lpD3DDev->SetStreamSource( 0, m_pVB, sizeof(__VertexTransformed) );
-			s_lpD3DDev->SetVertexShader( FVF_TRANSFORMED );
+			s_lpD3DDev->SetStreamSource( 0, m_pVB, 0, sizeof(__VertexTransformed) );
+			s_lpD3DDev->SetFVF( FVF_TRANSFORMED );
 
 			s_lpD3DDev->SetTexture( 0, m_pTexRef->Get());
 			s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP,    D3DTOP_MODULATE );
@@ -168,8 +168,8 @@ void CN3UIImage::RenderIconWrapper()
 
 	if (m_pVB)
 	{
-		s_lpD3DDev->SetStreamSource( 0, m_pVB, sizeof(__VertexTransformed) );
-		s_lpD3DDev->SetVertexShader( FVF_TRANSFORMED );
+		s_lpD3DDev->SetStreamSource( 0, m_pVB, 0, sizeof(__VertexTransformed) );
+		s_lpD3DDev->SetFVF( FVF_TRANSFORMED );
 		s_lpD3DDev->SetTexture( 0, NULL);
 
 		s_lpD3DDev->DrawPrimitive( D3DPT_TRIANGLEFAN, 0, 2);

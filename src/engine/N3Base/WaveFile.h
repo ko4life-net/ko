@@ -17,7 +17,6 @@
 #include <windows.h>
 #include <mmsystem.h>
 #include <mmreg.h>
-#include "dxerr8.h"
 
 #define WAVEFILE_READ	1
 #define WAVEFILE_WRITE	0

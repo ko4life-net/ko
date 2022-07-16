@@ -13,7 +13,7 @@
 
 #include "N3BaseFileAccess.h"
 #include "N3UIDef.h"
-#include <DInput.h>
+#include <dinput.h>
 #include <list>
 #include <set>
 #include <string>

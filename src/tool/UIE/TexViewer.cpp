@@ -392,7 +392,7 @@ void CTexViewer::Render()
 	if (NULL == m_pTex) return;
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 	CN3EngTool* pEng = &(pFrm->m_Eng);
-	LPDIRECT3DDEVICE8 lpD3DDev = pEng->s_lpD3DDev;
+	LPDIRECT3DDEVICE9 lpD3DDev = pEng->s_lpD3DDev;
 
 	// backup render state
 	DWORD dwZEnable, dwAlphaBlend, dwSrcBlend, dwDestBlend, dwFog;
@@ -402,17 +402,17 @@ void CTexViewer::Render()
 	lpD3DDev->GetRenderState(D3DRS_DESTBLEND, &dwDestBlend);
 	lpD3DDev->GetRenderState(D3DRS_FOGENABLE, &dwFog);
 	DWORD dwMagFilter, dwMinFilter, dwMipFilter;
-	lpD3DDev->GetTextureStageState(0, D3DTSS_MAGFILTER,   &dwMagFilter);
-	lpD3DDev->GetTextureStageState(0, D3DTSS_MINFILTER,   &dwMinFilter);
-	lpD3DDev->GetTextureStageState(0, D3DTSS_MIPFILTER,   &dwMipFilter);
+	lpD3DDev->GetSamplerState(0, D3DSAMP_MAGFILTER,   &dwMagFilter);
+	lpD3DDev->GetSamplerState(0, D3DSAMP_MINFILTER,   &dwMinFilter);
+	lpD3DDev->GetSamplerState(0, D3DSAMP_MIPFILTER,   &dwMipFilter);
 
 	// set render state
 	if (D3DZB_FALSE != dwZEnable) lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
 	if (FALSE != dwAlphaBlend) lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
 	if (FALSE != dwFog) lpD3DDev->SetRenderState(D3DRS_FOGENABLE   , FALSE);	// 2d도 fog를 먹는다 ㅡ.ㅡ;
-	if (D3DTEXF_POINT != dwMagFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MAGFILTER,   D3DTEXF_POINT);
-	if (D3DTEXF_POINT != dwMinFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MINFILTER,   D3DTEXF_POINT);
-	if (D3DTEXF_NONE != dwMipFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MIPFILTER,   D3DTEXF_NONE);
+	if (D3DTEXF_POINT != dwMagFilter ) lpD3DDev->SetSamplerState(0, D3DSAMP_MAGFILTER,   D3DTEXF_POINT);
+	if (D3DTEXF_POINT != dwMinFilter ) lpD3DDev->SetSamplerState(0, D3DSAMP_MINFILTER,   D3DTEXF_POINT);
+	if (D3DTEXF_NONE != dwMipFilter ) lpD3DDev->SetSamplerState(0, D3DSAMP_MIPFILTER,   D3DTEXF_NONE);
 	lpD3DDev->SetTexture(0, m_pTex->Get());
 	lpD3DDev->SetTexture(1, NULL);
 	lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP,  D3DTOP_SELECTARG1);
@@ -430,16 +430,16 @@ void CTexViewer::Render()
 	Vertices[3].Set((float)rcRender.left, (float)rcRender.bottom, z, rhw, color, 0.0f, 1.0f);
 
 	// 그리기
-	lpD3DDev->SetVertexShader(FVF_TRANSFORMED);
+	lpD3DDev->SetFVF(FVF_TRANSFORMED);
 	HRESULT hr = lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, Vertices, sizeof(Vertices[0]));
 
 	// restore
 	if (D3DZB_FALSE != dwZEnable) lpD3DDev->SetRenderState(D3DRS_ZENABLE, dwZEnable);
 	if (FALSE != dwAlphaBlend) lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, dwAlphaBlend);
 	if (FALSE != dwFog) lpD3DDev->SetRenderState(D3DRS_FOGENABLE   , dwFog);
-	if (D3DTEXF_POINT != dwMagFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MAGFILTER,   dwMagFilter);
-	if (D3DTEXF_POINT != dwMinFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MINFILTER,   dwMinFilter);
-	if (D3DTEXF_NONE != dwMipFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MIPFILTER,   dwMipFilter);
+	if (D3DTEXF_POINT != dwMagFilter ) lpD3DDev->SetSamplerState(0, D3DSAMP_MAGFILTER,   dwMagFilter);
+	if (D3DTEXF_POINT != dwMinFilter ) lpD3DDev->SetSamplerState(0, D3DSAMP_MINFILTER,   dwMinFilter);
+	if (D3DTEXF_NONE != dwMipFilter ) lpD3DDev->SetSamplerState(0, D3DSAMP_MIPFILTER,   dwMipFilter);
 }
 
 void CTexViewer::SetTexture(LPCTSTR pszFName)

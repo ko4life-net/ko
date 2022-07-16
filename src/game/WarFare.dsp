@@ -43,7 +43,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /W3 /GX /O2 /Ob2 /I "...\vendor\DXSDK8\Include" /I "." /I "..\vendor\DXSDK8\Include" /I "..\engine" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_N3GAME" /D DIRECTINPUT_VERSION=0x0800 /Fr /YX"stdafx.h" /FD /c
+# ADD CPP /nologo /MT /W3 /GX /O2 /Ob2 /I "." /I "..\vendor\DXSDK9\Include" /I "..\engine" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_N3GAME" /D DIRECTINPUT_VERSION=0x0800 /Fr /YX"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /D "_N3GAME" /mktyplib203 /win32
 # ADD BASE RSC /l 0x412 /d "NDEBUG"
@@ -53,7 +53,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386
-# ADD LINK32 implode.lib kernel32.lib user32.lib gdi32.lib advapi32.lib shell32.lib winmm.lib imm32.lib ddraw.lib d3d8.lib d3dx8.lib dsound.lib dxguid.lib dxerr8.lib wsock32.lib DInput8.lib ..\engine\JPEG\jpegLib.lib /nologo /version:0.1 /subsystem:windows /pdb:none /map /machine:I386 /out:"KnightOnLine.exe" /libpath:"..\vendor\DXSDK8\Lib\x86"
+# ADD LINK32 implode.lib ..\engine\JPEG\jpeglib.lib d3d9.lib d3dx9d.lib dsound.lib ddraw.lib dinput8.lib dxguid.lib winmm.lib kernel32.lib user32.lib gdi32.lib advapi32.lib shell32.lib imm32.lib wsock32.lib /nologo /version:0.1 /subsystem:windows /pdb:none /map /machine:I386 /nodefaultlib:"libc.lib" /out:"KnightOnLine.exe" /libpath:"..\vendor\DXSDK9\Lib\x86"
 # SUBTRACT LINK32 /debug /force
 
 !ELSEIF  "$(CFG)" == "WarFare - Win32 Debug"
@@ -70,7 +70,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Yu"stdafx.h" /FD /GZ /c
-# ADD CPP /nologo /W3 /Gm /Gi /GX /ZI /Od /I "." /I "..\vendor\DXSDK8\Include" /I "..\engine" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_N3GAME" /D DIRECTINPUT_VERSION=0x0800 /Fr /YX"stdafx.h" /FD /GZ /c
+# ADD CPP /nologo /MTd /W3 /Gm /Gi /GX /ZI /Od /I "." /I "..\vendor\DXSDK9\Include" /I "..\engine" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_N3GAME" /D DIRECTINPUT_VERSION=0x0800 /Fr /YX"stdafx.h" /FD /GZ /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /D "_N3GAME" /mktyplib203 /win32
 # ADD BASE RSC /l 0x412 /d "_DEBUG"
@@ -80,7 +80,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 implode.lib winmm.lib imm32.lib ddraw.lib d3d8.lib d3dx8.lib dsound.lib dxguid.lib dxerr8.lib wsock32.lib DInput8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib NAFXCWD.LIB LIBCMTD.LIB ..\engine\JPEG\jpegLib.lib /nologo /subsystem:windows /profile /map /debug /machine:I386 /nodefaultlib:"msvcrt" /out:"KnightOnLine_Debug.exe" /libpath:"..\vendor\DXSDK8\Lib\x86"
+# ADD LINK32 implode.lib ..\engine\JPEG\jpeglib.lib d3d9.lib d3dx9d.lib dsound.lib ddraw.lib dinput8d.lib dxguidd.lib nafxcwd.lib winmm.lib imm32.lib kernel32.lib user32.lib gdi32.lib advapi32.lib shell32.lib wsock32.lib /nologo /subsystem:windows /profile /map /debug /machine:I386 /nodefaultlib:"libc.lib" /out:"KnightOnLine_Debug.exe" /libpath:"..\vendor\DXSDK9\Lib\x86"
 # SUBTRACT LINK32 /force
 
 !ENDIF 

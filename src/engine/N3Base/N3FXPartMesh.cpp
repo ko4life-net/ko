@@ -448,10 +448,10 @@ bool CN3FXPartMesh::Tick()
 		{
 			int VertexCount = m_pShape->Part(i)->Mesh()->GetNumVertices();
 
-			LPDIRECT3DVERTEXBUFFER8 pVB = m_pShape->Part(i)->Mesh()->GetVertexBuffer();
+			LPDIRECT3DVERTEXBUFFER9 pVB = m_pShape->Part(i)->Mesh()->GetVertexBuffer();
 			
 			__VertexXyzColorT1* pVertex;
-			HRESULT hr = pVB->Lock(0, 0, (BYTE**)&pVertex, 0);
+			HRESULT hr = pVB->Lock(0, 0, (VOID**)&pVertex, 0);
 			if (FAILED(hr)) continue;
 
 			for(int j=0;j<VertexCount;j++)
@@ -612,7 +612,7 @@ int CN3FXPartMesh::NumVertices(int Part)
 //
 //
 //
-LPDIRECT3DVERTEXBUFFER8 CN3FXPartMesh::GetVB(int Part)
+LPDIRECT3DVERTEXBUFFER9 CN3FXPartMesh::GetVB(int Part)
 {
 	if(!m_pShape) return NULL;
 	return NULL;

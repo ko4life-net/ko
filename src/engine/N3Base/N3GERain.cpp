@@ -64,7 +64,7 @@ void CN3GERain::Tick()
 	int i;
 
 	__VertexXyzColor* pVertices;
-	HRESULT hr = m_pVB->Lock(0, 0, (BYTE**)&pVertices, D3DLOCK_NOSYSLOCK);
+	HRESULT hr = m_pVB->Lock(0, 0, (VOID**)&pVertices, D3DLOCK_NOSYSLOCK);
 
 	__Vector3 vN = m_vVelocity;	vN.Normalize();
 	__Vector3 vAdd = m_vVelocity*s_fSecPerFrm;
@@ -163,8 +163,8 @@ void CN3GERain::Render(__Vector3& vPos)
 	s_lpD3DDev->SetTexture(0, NULL);
 
 	// render
-	s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
-	s_lpD3DDev->SetStreamSource(0, m_pVB, sizeof(__VertexXyzColor)); // 버텍스 버퍼 지정
+	s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
+	s_lpD3DDev->SetStreamSource(0, m_pVB, 0, sizeof(__VertexXyzColor)); // 버텍스 버퍼 지정
 	s_lpD3DDev->DrawPrimitive(D3DPT_LINELIST, 0, iActiveCount);
 
 	// restore
@@ -206,11 +206,11 @@ void CN3GERain::Create(float fDensity,
 
 	// m_pVB, m_pIB 만들기
 	m_iVC = iRainCount*2;
-	HRESULT hr = s_lpD3DDev->CreateVertexBuffer(m_iVC*sizeof(__VertexXyzColor), 0, FVF_XYZCOLOR, D3DPOOL_MANAGED, &m_pVB);
+	HRESULT hr = s_lpD3DDev->CreateVertexBuffer(m_iVC*sizeof(__VertexXyzColor), 0, FVF_XYZCOLOR, D3DPOOL_MANAGED, &m_pVB, NULL);
 
 	if (FAILED(hr)) return;
 	__VertexXyzColor* pVertices;
-	hr = m_pVB->Lock(0, iRainCount*2*sizeof(__VertexXyzColor), (BYTE**)&pVertices, D3DLOCK_NOSYSLOCK);
+	hr = m_pVB->Lock(0, iRainCount*2*sizeof(__VertexXyzColor), (VOID**)&pVertices, D3DLOCK_NOSYSLOCK);
 	if (FAILED(hr)) return;
 
 	const DWORD dwColorA = 0x00bfbfbf,	// 꼬리

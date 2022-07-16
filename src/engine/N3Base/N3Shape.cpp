@@ -177,7 +177,7 @@ void CN3SPart::Render()
 	CN3Base::s_RenderInfo.nShape_Part++; // Rendering Information Update...
 #endif
 
-	LPDIRECT3DTEXTURE8 lpTex = NULL;
+	LPDIRECT3DTEXTURE9 lpTex = NULL;
 	int iTC = m_TexRefs.size();
 	if(iTC > 0)
 	{
@@ -265,7 +265,7 @@ void CN3SPart::RenderSelected(bool bWireFrame)
 	CN3Base::s_RenderInfo.nShape_Polygon += m_PMInst.GetNumIndices() / 3;
 #endif _DEBUG
 
-	LPDIRECT3DTEXTURE8 lpTex = NULL;
+	LPDIRECT3DTEXTURE9 lpTex = NULL;
 	int iTC = m_TexRefs.size();
 	if(iTC > 0)
 	{
@@ -420,7 +420,7 @@ bool CN3SPart::Save(HANDLE hFile)
 #endif // end of _N3TOOL
 
 #ifdef _USE_VERTEXBUFFER
-void CN3SPart::PartialRender(int iCount, LPDIRECT3DINDEXBUFFER8 pIB)
+void CN3SPart::PartialRender(int iCount, LPDIRECT3DINDEXBUFFER9 pIB)
 {
 	if(m_bOutOfCameraRange || m_PMInst.GetNumVertices() <= 0) return;
 
@@ -428,7 +428,7 @@ void CN3SPart::PartialRender(int iCount, LPDIRECT3DINDEXBUFFER8 pIB)
 	CN3Base::s_RenderInfo.nShape_Part++; // Rendering Information Update...
 #endif
 
-	LPDIRECT3DTEXTURE8 lpTex = NULL;
+	LPDIRECT3DTEXTURE9 lpTex = NULL;
 	int iTC = m_TexRefs.size();
 	if(iTC > 0)
 	{
@@ -508,7 +508,7 @@ void CN3SPart::PartialRender(int iCount, WORD* pIndices)
 	CN3Base::s_RenderInfo.nShape_Part++; // Rendering Information Update...
 #endif
 
-	LPDIRECT3DTEXTURE8 lpTex = NULL;
+	LPDIRECT3DTEXTURE9 lpTex = NULL;
 	int iTC = m_TexRefs.size();
 	if(iTC > 0)
 	{
@@ -1089,7 +1089,7 @@ void CN3Shape::MakeDefaultMaterial()
 	int iPC = m_Parts.size();
 	for(int i = 0; i < iPC; i++)
 	{
-		memcpy(&(m_Parts[i]->m_Mtl), &mtlBasic, sizeof(_D3DMATERIAL8));
+		memcpy(&(m_Parts[i]->m_Mtl), &mtlBasic, sizeof(_D3DMATERIAL9));
 	}
 }
 #endif // end of _N3TOOL
@@ -1267,7 +1267,7 @@ __Matrix44	CN3Shape::GetPartMatrix(int iPartIndex)
 }
 
 #ifdef _USE_VERTEXBUFFER
-void CN3Shape::PartialRender(int iPartIndex, int iCount, LPDIRECT3DINDEXBUFFER8 pIB)
+void CN3Shape::PartialRender(int iPartIndex, int iCount, LPDIRECT3DINDEXBUFFER9 pIB)
 {
 	if (iPartIndex >= m_Parts.size() )
 		return;

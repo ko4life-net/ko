@@ -56,7 +56,7 @@ public:
 	virtual void	Render();
 	virtual void	Tick();
 protected:
-	LPDIRECT3DTEXTURE8	GetTex(e_CLOUDTEX tex);
+	LPDIRECT3DTEXTURE9	GetTex(e_CLOUDTEX tex);
 
 };
 

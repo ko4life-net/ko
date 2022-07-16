@@ -65,7 +65,7 @@ void CN3UITooltip::Render()
 		s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1,  D3DTA_DIFFUSE );
 
 		// draw
-		s_lpD3DDev->SetVertexShader(FVF_TRANSFORMEDCOLOR);
+		s_lpD3DDev->SetFVF(FVF_TRANSFORMEDCOLOR);
 		HRESULT hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, pVB, sizeof(__VertexTransformedColor));	// 배경색 칠하기
 
 		__VertexTransformedColor* pTemp = pVB;
@@ -127,7 +127,7 @@ void CN3UITooltip::SetText(const std::string& szText)
 	ptNew.x -= (m_rcRegion.right - m_rcRegion.left) / 2;
 	ptNew.y -= (m_rcRegion.bottom - m_rcRegion.top) + 10;
 
-	D3DVIEWPORT8 &vp = s_CameraData.vp;
+	D3DVIEWPORT9 &vp = s_CameraData.vp;
 	int iRegionWidth = m_rcRegion.right - m_rcRegion.left;
 	int iRegionHeight = m_rcRegion.bottom - m_rcRegion.top;
 

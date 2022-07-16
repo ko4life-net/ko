@@ -212,7 +212,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=ws2_32.lib implode.lib Winmm.lib Imm32.lib d3d8.lib d3dx8.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\Server.pdb" /machine:I386 /out:"$(OUTDIR)\Server.exe" 
+LINK32_FLAGS=ws2_32.lib implode.lib Winmm.lib Imm32.lib d3d9.lib d3dx9.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\Server.pdb" /machine:I386 /out:"$(OUTDIR)\Server.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\CircularBuffer.obj" \
 	"$(INTDIR)\Compress.obj" \
@@ -452,7 +452,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=ws2_32.lib implode.lib Winmm.lib Imm32.lib d3d8.lib d3dx8.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\Server.pdb" /map:"$(INTDIR)\Server.map" /debug /machine:I386 /out:"$(OUTDIR)\Server.exe" /pdbtype:sept 
+LINK32_FLAGS=ws2_32.lib implode.lib Winmm.lib Imm32.lib d3d9.lib d3dx9.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\Server.pdb" /map:"$(INTDIR)\Server.map" /debug /machine:I386 /out:"$(OUTDIR)\Server.exe" /pdbtype:sept 
 LINK32_OBJS= \
 	"$(INTDIR)\CircularBuffer.obj" \
 	"$(INTDIR)\Compress.obj" \

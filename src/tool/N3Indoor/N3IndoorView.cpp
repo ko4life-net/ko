@@ -324,14 +324,14 @@ void CN3IndoorView::RenderDragRect(RECT* rc)
 
 	CMainFrame* pFrm = (CMainFrame* )AfxGetMainWnd();
 	CN3Eng* pEng = &(pFrm->m_Eng);
-	LPDIRECT3DDEVICE8 pD3DDev = pEng->s_lpD3DDev;
+	LPDIRECT3DDEVICE9 pD3DDev = pEng->s_lpD3DDev;
 
 	HRESULT hr;
 	hr = pD3DDev->SetTexture(0, NULL);
 	hr = pD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 	hr = pD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
 
-	hr = pD3DDev->SetVertexShader( FVF_TRANSFORMEDCOLOR );
+	hr = pD3DDev->SetFVF( FVF_TRANSFORMEDCOLOR );
 	hr = pD3DDev->DrawPrimitiveUP( D3DPT_LINESTRIP, 4, Vertices, sizeof(__VertexTransformedColor));
 }
 

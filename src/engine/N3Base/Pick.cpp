@@ -24,7 +24,7 @@ CPick::~CPick()
 
 void CPick::SetPickXY(long x, long y)
 {
-	LPDIRECT3DDEVICE8 lpD3DDev = CN3Base::s_lpD3DDev;
+	LPDIRECT3DDEVICE9 lpD3DDev = CN3Base::s_lpD3DDev;
 
     // Get the pick ray from the mouse position
     D3DXMATRIX matProj;

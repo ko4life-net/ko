@@ -287,12 +287,12 @@ void CN3Pond::Render()
 	s_lpD3DDev->GetTextureStageState(0, D3DTSS_COLOROP, &dwColor_0);
 	s_lpD3DDev->GetTextureStageState(0, D3DTSS_COLORARG1, &dwColorArg1_0);
 	s_lpD3DDev->GetTextureStageState(0, D3DTSS_COLORARG2, &dwColorArg2_0);
-	s_lpD3DDev->GetTextureStageState(0, D3DTSS_MIPFILTER, &dwMipFilter_0);
+	s_lpD3DDev->GetSamplerState(0, D3DSAMP_MIPFILTER, &dwMipFilter_0);
 	DWORD dwColor_1, dwColorArg1_1, dwColorArg2_1, dwMipFilter_1;
 	s_lpD3DDev->GetTextureStageState(1, D3DTSS_COLOROP, &dwColor_1);
 	s_lpD3DDev->GetTextureStageState(1, D3DTSS_COLORARG1, &dwColorArg1_1);
 	s_lpD3DDev->GetTextureStageState(1, D3DTSS_COLORARG2, &dwColorArg2_1);
-	s_lpD3DDev->GetTextureStageState(1, D3DTSS_MIPFILTER, &dwMipFilter_1);
+	s_lpD3DDev->GetSamplerState(1, D3DSAMP_MIPFILTER, &dwMipFilter_1);
 
 
 	// Set
@@ -313,10 +313,10 @@ void CN3Pond::Render()
 	s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP,   D3DTOP_MODULATE);
     s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG1, D3DTA_TEXTURE );
     s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG2, D3DTA_CURRENT);	
-    s_lpD3DDev->SetTextureStageState( 0, D3DTSS_MIPFILTER, D3DTEXF_NONE );
-    s_lpD3DDev->SetTextureStageState( 1, D3DTSS_MIPFILTER, D3DTEXF_NONE );
+    s_lpD3DDev->SetSamplerState( 0, D3DSAMP_MIPFILTER, D3DTEXF_NONE );
+    s_lpD3DDev->SetSamplerState( 1, D3DSAMP_MIPFILTER, D3DTEXF_NONE );
 
-	s_lpD3DDev->SetVertexShader(D3DFVF_XYZ|D3DFVF_NORMAL|D3DFVF_DIFFUSE|D3DFVF_TEX2);
+	s_lpD3DDev->SetFVF(D3DFVF_XYZ|D3DFVF_NORMAL|D3DFVF_DIFFUSE|D3DFVF_TEX2);
 
 	for(int i=0;i<m_iPondMeshNum;i++)
 	{
@@ -346,12 +346,12 @@ void CN3Pond::Render()
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, dwColor_0);
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, dwColorArg1_0);
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG2, dwColorArg2_0);
-	s_lpD3DDev->SetTextureStageState(0, D3DTSS_MIPFILTER, dwMipFilter_0);
+	s_lpD3DDev->SetSamplerState(0, D3DSAMP_MIPFILTER, dwMipFilter_0);
 
 	s_lpD3DDev->SetTextureStageState(1, D3DTSS_COLOROP, dwColor_1);
 	s_lpD3DDev->SetTextureStageState(1, D3DTSS_COLORARG1, dwColorArg1_1);
 	s_lpD3DDev->SetTextureStageState(1, D3DTSS_COLORARG2, dwColorArg2_1);
-	s_lpD3DDev->SetTextureStageState(1, D3DTSS_MIPFILTER, dwMipFilter_1);
+	s_lpD3DDev->SetSamplerState(1, D3DSAMP_MIPFILTER, dwMipFilter_1);
 }
 
 void CN3Pond::UpdateWaterPositions()

@@ -430,7 +430,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=D3D8.lib D3DX8.lib dxerr8.lib dsound.lib dxguid.lib winmm.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\N3ME.pdb" /map:"$(INTDIR)\N3ME.map" /machine:I386 /force /out:"N3ME.exe" /opt:ref 
+LINK32_FLAGS=d3d9.lib d3dx9.lib dsound.lib dxguid.lib winmm.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\N3ME.pdb" /map:"$(INTDIR)\N3ME.map" /machine:I386 /force /out:"N3ME.exe" /opt:ref 
 LINK32_OBJS= \
 	"$(INTDIR)\BitMapFile.obj" \
 	"$(INTDIR)\LogWriter.obj" \
@@ -958,7 +958,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=D3D8.lib D3DX8.lib dxerr8.lib dsound.lib dxguid.lib winmm.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\N3ME_debug.pdb" /map:"$(INTDIR)\N3ME_debug.map" /debug /machine:I386 /force /out:"N3ME_debug.exe" /pdbtype:sept 
+LINK32_FLAGS=d3d9.lib d3dx9d.lib dsound.lib dxguidd.lib winmm.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\N3ME_debug.pdb" /map:"$(INTDIR)\N3ME_debug.map" /debug /machine:I386 /force /out:"N3ME_debug.exe" /pdbtype:sept 
 LINK32_OBJS= \
 	"$(INTDIR)\BitMapFile.obj" \
 	"$(INTDIR)\LogWriter.obj" \

@@ -399,7 +399,7 @@ void CLyTerrain::Init(int HeightMapSize)
 	m_iColorMapPixelPerUnitDistance = 4;		//UnitDistance당 들어가는 컬러맵의 픽셀 수..
 
 	m_pColorMapTmpVertices = NULL;
-	s_lpD3DDev->CreateVertexBuffer( 8*sizeof(__VertexTransformedT2), 0, FVF_TRANSFORMEDT2, D3DPOOL_MANAGED, &m_pColorMapTmpVB );
+	s_lpD3DDev->CreateVertexBuffer( 8*sizeof(__VertexTransformedT2), 0, FVF_TRANSFORMEDT2, D3DPOOL_MANAGED, &m_pColorMapTmpVB, NULL );
 	
 	//컬러맵 텍스쳐 만들기..
 	m_iNumColorMap =  (((m_iHeightMapSize-1) * m_iColorMapPixelPerUnitDistance) / m_iColorMapTexSize) + 1;
@@ -457,9 +457,9 @@ void CLyTerrain::Init(int HeightMapSize)
 
 	m_ColorMapTileTree.clear();
 
-	s_lpD3DDev->CreateVertexBuffer( MAX_COLORMAPVB_SIZE*sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_ColorMapVB );
-	s_lpD3DDev->CreateVertexBuffer( MAX_TILEVB_SIZE*sizeof(__VertexT2), 0, FVF_VNT2, D3DPOOL_MANAGED, &m_TileVB );
-	s_lpD3DDev->CreateVertexBuffer( MAX_LIGHTMAPVB_SIZE*sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_LightMapVB );
+	s_lpD3DDev->CreateVertexBuffer( MAX_COLORMAPVB_SIZE*sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_ColorMapVB, NULL );
+	s_lpD3DDev->CreateVertexBuffer( MAX_TILEVB_SIZE*sizeof(__VertexT2), 0, FVF_VNT2, D3DPOOL_MANAGED, &m_TileVB, NULL );
+	s_lpD3DDev->CreateVertexBuffer( MAX_LIGHTMAPVB_SIZE*sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_LightMapVB, NULL );
 
 	m_pRoot = new CQTNode;
 	m_pRoot->Init(0, this);
@@ -1727,7 +1727,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile)
 				WriteFile(hFile, &(sz), sizeof(short), &dwRWC, NULL);
 
 				CN3Texture* pNewTex = new CN3Texture;
-				LPDIRECT3DSURFACE8 pSurf;
+				LPDIRECT3DSURFACE9 pSurf;
 				m_ppLightMapTexture[x][z]->Get()->GetSurfaceLevel(0, &pSurf);
 				pNewTex->CreateFromSurface(pSurf, m_ppLightMapTexture[x][z]->PixelFormat(), true);
 				pNewTex->Convert(D3DFMT_A4R4G4B4, LIGHTMAP_TEX_SIZE, LIGHTMAP_TEX_SIZE);
@@ -1854,7 +1854,7 @@ void CLyTerrain::MakeGameLightMap(char* szFullPathName)
 						WriteFile(hFile, &(tz), sizeof(int), &dwRWC, NULL); // 
 
 						CN3Texture* pNewTex = new CN3Texture;
-						LPDIRECT3DSURFACE8 pSurf;
+						LPDIRECT3DSURFACE9 pSurf;
 						m_ppLightMapTexture[tpx + tx][tpz + tz]->Get()->GetSurfaceLevel(0, &pSurf);
 						pNewTex->CreateFromSurface(pSurf, m_ppLightMapTexture[tpx + tx][tpz + tz]->PixelFormat(), true);
 						pNewTex->Convert(D3DFMT_A4R4G4B4, LIGHTMAP_TEX_SIZE, LIGHTMAP_TEX_SIZE);
@@ -1890,7 +1890,7 @@ void CLyTerrain::MakeGameColorMap(char* szFullPathName)
 		{
 			ProgressBar.StepIt();
 			
-			LPDIRECT3DSURFACE8 lpSurfSrc = NULL;
+			LPDIRECT3DSURFACE9 lpSurfSrc = NULL;
 			m_pColorTexture[x][z].Get()->GetSurfaceLevel(0, &lpSurfSrc);
 			if(NULL == lpSurfSrc)
 			{
@@ -2276,23 +2276,24 @@ void CLyTerrain::Render()
 
 	s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 	s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE);
-	s_lpD3DDev->SetRenderState(D3DRS_ZBIAS, 1);
+	//s_lpD3DDev->SetRenderState(D3DRS_ZBIAS, 1); // TODO: This was gone in dx9 update...
+	s_lpD3DDev->SetRenderState(D3DRS_DEPTHBIAS, 1);
 	
 	//s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, m_FillMode);
 	s_lpD3DDev->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_GOURAUD);
 
 	DWORD AddressU1, AddressV1, AddressU2, AddressV2;
 	HRESULT hr;
-	hr = s_lpD3DDev->GetTextureStageState( 0, D3DTSS_ADDRESSU, &AddressU1 );
-	hr = s_lpD3DDev->GetTextureStageState( 0, D3DTSS_ADDRESSV, &AddressV1 );
-	hr = s_lpD3DDev->GetTextureStageState( 1, D3DTSS_ADDRESSU, &AddressU2 );
-	hr = s_lpD3DDev->GetTextureStageState( 1, D3DTSS_ADDRESSV, &AddressV2 );
+	hr = s_lpD3DDev->GetSamplerState( 0, D3DSAMP_ADDRESSU, &AddressU1 );
+	hr = s_lpD3DDev->GetSamplerState( 0, D3DSAMP_ADDRESSV, &AddressV1 );
+	hr = s_lpD3DDev->GetSamplerState( 1, D3DSAMP_ADDRESSU, &AddressU2 );
+	hr = s_lpD3DDev->GetSamplerState( 1, D3DSAMP_ADDRESSV, &AddressV2 );
 
 	// 각각의 텍스쳐들을 연결했을때 경계선을 없앨 수 있다..^^
-	hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSU,  D3DTADDRESS_MIRROR );
-	hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSV,  D3DTADDRESS_MIRROR );
-	hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_ADDRESSU,  D3DTADDRESS_MIRROR );
-	hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_ADDRESSV,  D3DTADDRESS_MIRROR );
+	hr = s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSU,  D3DTADDRESS_MIRROR );
+	hr = s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSV,  D3DTADDRESS_MIRROR );
+	hr = s_lpD3DDev->SetSamplerState( 1, D3DSAMP_ADDRESSU,  D3DTADDRESS_MIRROR );
+	hr = s_lpD3DDev->SetSamplerState( 1, D3DSAMP_ADDRESSV,  D3DTADDRESS_MIRROR );
 
 	CMainFrame* pFrame = (CMainFrame*)AfxGetMainWnd();
 
@@ -2335,7 +2336,7 @@ void CLyTerrain::Render()
 		hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
 		hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
-		hr = s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+		hr = s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 
 		hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 1, m_vLineLightMap, sizeof(__VertexXyzColor));
 
@@ -2343,10 +2344,10 @@ void CLyTerrain::Render()
 		hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, dwLighting);
 	}
 	
-	hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSU, AddressU1 );
-	hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ADDRESSV, AddressV1 );
-	hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_ADDRESSU, AddressU2 );
-	hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_ADDRESSV, AddressV2 );
+	hr = s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSU, AddressU1 );
+	hr = s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSV, AddressV1 );
+	hr = s_lpD3DDev->SetSamplerState( 1, D3DSAMP_ADDRESSU, AddressU2 );
+	hr = s_lpD3DDev->SetSamplerState( 1, D3DSAMP_ADDRESSV, AddressV2 );
 }
 
 
@@ -2798,7 +2799,7 @@ bool CLyTerrain::Pick(int x, int y, __Vector3* vec, POINT* pHeightMapPos)
 {
 	__Vector3 vec2, vec3;		// vec1 & vec2 is 2D..  vec3 & vec4 is 3D..
 	CRect rect;
-	D3DVIEWPORT8 vp = CN3Base::s_CameraData.vp;
+	D3DVIEWPORT9 vp = CN3Base::s_CameraData.vp;
 	rect.SetRect(vp.X, vp.Y, vp.X+vp.Width, vp.Y+vp.Height);
 
 	if(x < rect.left || x>=rect.right ) return false;
@@ -3966,7 +3967,7 @@ void CLyTerrain::SetColorMap(int x, int y)
 	u2 = (m_ppMapData[x][y].DTexInfo2.TexIdx.TileX * TileTexSize);
 	v2 = (m_ppMapData[x][y].DTexInfo2.TexIdx.TileY * TileTexSize);
 
-	hr = m_pColorMapTmpVB->Lock( 0, 0, (BYTE**)&m_pColorMapTmpVertices, 0 );
+	hr = m_pColorMapTmpVB->Lock( 0, 0, (VOID**)&m_pColorMapTmpVertices, 0 );
 
 	m_pColorMapTmpVertices[0].Set(0.0f,		0.0f,		0.1f, 0.5f, 0xffffffff,
 								(u1+m_fTileDirUforColorMap[dir1][0])/(float)(DTEX_SIZE),
@@ -4024,8 +4025,8 @@ void CLyTerrain::SetColorMap(int x, int y)
 	hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
 	hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
-	hr = s_lpD3DDev->SetStreamSource( 0, m_pColorMapTmpVB, sizeof(__VertexTransformedT2) );
-	hr = s_lpD3DDev->SetVertexShader( FVF_TRANSFORMEDT2 );
+	hr = s_lpD3DDev->SetStreamSource( 0, m_pColorMapTmpVB, 0, sizeof(__VertexTransformedT2) );
+	hr = s_lpD3DDev->SetFVF( FVF_TRANSFORMEDT2 );
 	
 	DWORD ColorArg11, ColorArg12, ColorArg21, ColorArg22;
 	DWORD ColorOP1, ColorOP2;
@@ -4077,8 +4078,8 @@ void CLyTerrain::SetColorMap(int x, int y)
 	s_lpD3DDev->EndScene();
 
 	//컬러맵 텍스쳐에 쓰기...
-	LPDIRECT3DSURFACE8 pBackBuff;
-	hr = s_lpD3DDev->GetBackBuffer(0, D3DBACKBUFFER_TYPE_MONO, &pBackBuff);
+	LPDIRECT3DSURFACE9 pBackBuff;
+	hr = s_lpD3DDev->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &pBackBuff);
 
 	D3DSURFACE_DESC desc;
 	hr = pBackBuff->GetDesc(&desc);
@@ -4164,7 +4165,7 @@ void CLyTerrain::SetColorMap(int x, int y)
 	u2 = (m_ppMapData[x][y].DTexInfo2.TexIdx.TileX * TileTexSize);
 	v2 = (m_ppMapData[x][y].DTexInfo2.TexIdx.TileY * TileTexSize);
 
-	hr = m_pColorMapTmpVB->Lock( 0, 0, (BYTE**)&m_pColorMapTmpVertices, 0 );
+	hr = m_pColorMapTmpVB->Lock( 0, 0, (VOID**)&m_pColorMapTmpVertices, 0 );
 
 	m_pColorMapTmpVertices[0].Set(0.0f,		0.0f,		0.1f, 0.5f, 0xffffffff,
 								(u1+m_fTileDirUforColorMap[dir1][0])/(float)(DTEX_SIZE),
@@ -4224,8 +4225,8 @@ void CLyTerrain::SetColorMap(int x, int y)
 	hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 	hr = s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, FALSE);
 
-	hr = s_lpD3DDev->SetStreamSource( 0, m_pColorMapTmpVB, sizeof(__VertexTransformedT2) );
-	hr = s_lpD3DDev->SetVertexShader( FVF_TRANSFORMEDT2 );
+	hr = s_lpD3DDev->SetStreamSource( 0, m_pColorMapTmpVB, 0, sizeof(__VertexTransformedT2) );
+	hr = s_lpD3DDev->SetFVF( FVF_TRANSFORMEDT2 );
 	
 	DWORD ColorArg11, ColorArg12, ColorArg21, ColorArg22;
 	DWORD ColorOP1, ColorOP2;
@@ -4311,8 +4312,8 @@ void CLyTerrain::SetColorMap(int x, int y)
 	//s_lpD3DDev->Present(&rcD, &rcD, hWnd, NULL);
 
 	//컬러맵 텍스쳐에 쓰기...
-	LPDIRECT3DSURFACE8 pBackBuff;
-	hr = s_lpD3DDev->GetBackBuffer(0, D3DBACKBUFFER_TYPE_MONO, &pBackBuff);
+	LPDIRECT3DSURFACE9 pBackBuff;
+	hr = s_lpD3DDev->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &pBackBuff);
 
 	//POINT ptCopy = {0,0};
 	//RECT rcCopy = { 0,0,2,2};
@@ -4839,7 +4840,7 @@ void CLyTerrain::RenderBrushArea()
 	s_lpD3DDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
-	s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+	s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 	s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_TRIANGLELIST, 0, MAX_BRUSH_SIZE*MAX_BRUSH_SIZE*9,
 		int(m_iBrushIndexCount/3), m_wBrushIndices, D3DFMT_INDEX16,
 		m_vBrushVertices, sizeof(__VertexXyzColor));
@@ -5384,7 +5385,7 @@ void CLyTerrain::GenerateMiniMap(LPCTSTR lpszPathName, int size)
 		{
 			ProgressBar.StepIt();
 				
-			LPDIRECT3DSURFACE8 lpSurface;
+			LPDIRECT3DSURFACE9 lpSurface;
 			m_pColorTexture[x][z].Get()->GetSurfaceLevel(0, &lpSurface);
 			TmpTex.CreateFromSurface( lpSurface, m_pColorTexture[x][z].PixelFormat(), TRUE);
 			lpSurface->Release();

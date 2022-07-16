@@ -182,7 +182,7 @@ void CN3FXPMesh::Release()
 
 void CN3FXPMesh::Render()
 {
-	s_lpD3DDev->SetVertexShader(FVF_XYZCOLORT1);
+	s_lpD3DDev->SetFVF(FVF_XYZCOLORT1);
 
 	const int iPCToRender = 1000;	// primitive count to render
 	if(m_iMaxNumIndices > 3)

@@ -68,7 +68,7 @@
       <ObjectFileName>.\Debug\</ObjectFileName>
       <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\engine;$(ProjectDir)..\vendor\DXSDK8\Include;$(ProjectDir)..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\engine;$(ProjectDir)..\vendor\DXSDK9\Include;$(ProjectDir)..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -91,7 +91,7 @@
       <SubSystem>Windows</SubSystem>
       <IgnoreSpecificDefaultLibraries>msvcrt;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <OutputFile>KnightOnLine_Debug.exe</OutputFile>
-      <AdditionalDependencies>implode.lib;winmm.lib;imm32.lib;ddraw.lib;d3d8.lib;d3dx8.lib;dsound.lib;dxguid.lib;dxerr8.lib;wsock32.lib;DInput8.lib;odbc32.lib;odbccp32.lib;NAFXCWD.LIB;LIBCMTD.LIB;..\engine\JPEG\jpegLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>implode.lib;winmm.lib;imm32.lib;ddraw.lib;d3d9.lib;d3dx9d.lib;dsound.lib;dxguidd.lib;wsock32.lib;dinput8d.lib;odbc32.lib;odbccp32.lib;NAFXCWD.LIB;LIBCMTD.LIB;..\engine\JPEG\jpegLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -109,7 +109,7 @@
       <PrecompiledHeaderOutputFile>.\Release\WarFare.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\Release\</ObjectFileName>
       <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\engine;$(ProjectDir)..\vendor\DXSDK8\Include;$(ProjectDir)..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\engine;$(ProjectDir)..\vendor\DXSDK9\Include;$(ProjectDir)..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -131,7 +131,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OutputFile>KnightOnLine.exe</OutputFile>
-      <AdditionalDependencies>implode.lib;winmm.lib;imm32.lib;ddraw.lib;d3d8.lib;d3dx8.lib;dsound.lib;dxguid.lib;dxerr8.lib;wsock32.lib;DInput8.lib;..\engine\JPEG\jpegLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>implode.lib;winmm.lib;imm32.lib;ddraw.lib;d3d9.lib;d3dx9.lib;dsound.lib;dxguid.lib;wsock32.lib;dinput8.lib;..\engine\JPEG\jpegLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Version>0.1</Version>
     </Link>
   </ItemDefinitionGroup>

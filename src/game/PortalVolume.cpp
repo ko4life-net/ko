@@ -202,7 +202,7 @@ void CPortalVolume::RenderShape()
 			int iSize = vpi.m_ivVector.size();
 		
 	#ifdef _USE_VERTEXBUFFER
-			LPDIRECT3DINDEXBUFFER8	pIB;
+			LPDIRECT3DINDEXBUFFER9	pIB;
 			HRESULT hr = CN3Base::s_lpD3DDev->CreateIndexBuffer(iSize*sizeof(WORD),
 											D3DUSAGE_DYNAMIC, D3DFMT_INDEX16, D3DPOOL_MANAGED, &pIB);
 			if (FAILED(hr)) return hr;

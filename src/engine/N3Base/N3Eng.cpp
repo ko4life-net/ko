@@ -30,13 +30,13 @@ CN3Eng::CN3Eng()
 
 	// Direct3D 생성
 	m_lpD3D = NULL;
-	m_lpD3D = Direct3DCreate8(D3D_SDK_VERSION);
+	m_lpD3D = Direct3DCreate9(D3D_SDK_VERSION);
 	if(NULL == m_lpD3D)
 	{
-		MessageBox(::GetActiveWindow(), "Direct3D8 is not installed or lower version.", "Initialization", MB_OK);
+		MessageBox(::GetActiveWindow(), "Direct3D9 is not installed or lower version.", "Initialization", MB_OK);
 //		{ for(int iii = 0; iii < 1; iii++) Beep(2000, 200); Sleep(300); } // 여러번 삑~
 #ifdef _N3GAME
-		CLogWriter::Write("Direct3D8 is not installed or lower version");
+		CLogWriter::Write("Direct3D9 is not installed or lower version");
 #endif
 		this->Release();
 		exit(-1);
@@ -112,7 +112,7 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
 
 	s_hWndBase = hWnd;
 
-	int nAMC = m_lpD3D->GetAdapterModeCount(0); // 디스플레이 모드 카운트
+	int nAMC = m_lpD3D->GetAdapterModeCount(0, D3DFMT_X8R8G8B8); // 디스플레이 모드 카운트
 	if(nAMC <= 0)
 	{
 		MessageBox(hWnd, "Can't create D3D - Invalid display mode property.", "initialization", MB_OK);
@@ -132,7 +132,7 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
 	m_DeviceInfo.pModes = new D3DDISPLAYMODE[nAMC];
 	for(int i = 0; i < nAMC; i++)
 	{
-		m_lpD3D->EnumAdapterModes(0, i, &m_DeviceInfo.pModes[i]); // 디스플레이 모드 가져오기..
+		m_lpD3D->EnumAdapterModes(0, D3DFMT_X8R8G8B8, i, &m_DeviceInfo.pModes[i]); // 디스플레이 모드 가져오기..
 	}
 
 	D3DDEVTYPE DevType = D3DDEVTYPE_REF;
@@ -143,7 +143,7 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
 	s_DevParam.EnableAutoDepthStencil = TRUE;
 	s_DevParam.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	s_DevParam.FullScreen_RefreshRateInHz = D3DPRESENT_RATE_DEFAULT;
-	s_DevParam.FullScreen_PresentationInterval = D3DPRESENT_INTERVAL_DEFAULT;
+	s_DevParam.PresentationInterval = D3DPRESENT_INTERVAL_DEFAULT;
 
 	D3DFORMAT BBFormat = D3DFMT_UNKNOWN;
 	if(TRUE == bWindowed) // 윈도우 모드일 경우
@@ -194,13 +194,19 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
 		rval = m_lpD3D->CreateDevice(0, DevType, hWnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &s_DevParam, &s_lpD3DDev);
 		if(rval != D3D_OK)
 		{
-			char szDebug[256];
-			D3DXGetErrorString(rval, szDebug, 256);
-			MessageBox(hWnd, "Can't create D3D Device - please, check DirectX or display card driver", "initialization", MB_OK);
+			char* pszDebug = NULL;
+			FormatMessage(
+				FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+				NULL, rval, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+				(LPSTR)&pszDebug, 0, NULL);
+			std::stringstream errMsg;
+			errMsg << "Can't create D3D Device - please, check DirectX or display card driver: [";
+			errMsg << std::hex << rval << ":" << pszDebug << "]";
+			MessageBox(hWnd, errMsg.str().c_str(), "Initialization", MB_OK);
 #ifdef _N3GAME
-			CLogWriter::Write("Can't create D3D Device - please, check DirectX or display card driver");
-			CLogWriter::Write(szDebug);
+			CLogWriter::Write(errMsg.str().c_str());
 #endif
+			LocalFree(pszDebug);
 //			{ for(int iii = 0; iii < 3; iii++) Beep(2000, 200); Sleep(300); } // 여러번 삑~
 
 			this->Release();
@@ -275,7 +281,7 @@ void CN3Eng::SetProjection(float fNear, float fFar, float fLens, float fAspect)
 void CN3Eng::SetViewPort(RECT& rc)
 {
 	if(NULL == s_lpD3DDev) return;
-	D3DVIEWPORT8 vp;
+	D3DVIEWPORT9 vp;
 
 	vp.X = rc.left;
 	vp.Y = rc.top;
@@ -285,7 +291,7 @@ void CN3Eng::SetViewPort(RECT& rc)
 	vp.MaxZ = 1.0f;
 
 	s_lpD3DDev->SetViewport(&vp);
-	memcpy(&s_CameraData.vp, &vp, sizeof(D3DVIEWPORT8));
+	memcpy(&s_CameraData.vp, &vp, sizeof(D3DVIEWPORT9));
 }
 
 LRESULT WINAPI CN3Eng::MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
@@ -562,14 +568,14 @@ void CN3Eng::SetDefaultEnvironment()
 	for(int i = 0; i < 8; i++)
 	{
 		s_lpD3DDev->SetTexture( i, NULL );
-		s_lpD3DDev->SetTextureStageState(i, D3DTSS_MINFILTER, D3DTEXF_LINEAR);
-		s_lpD3DDev->SetTextureStageState(i, D3DTSS_MAGFILTER, D3DTEXF_LINEAR);
-		s_lpD3DDev->SetTextureStageState(i, D3DTSS_MIPFILTER, D3DTEXF_LINEAR);
-		s_lpD3DDev->SetTextureStageState(i, D3DTSS_MIPMAPLODBIAS, *((LPDWORD) (&fMipMapLODBias)));
+		s_lpD3DDev->SetSamplerState(i, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
+		s_lpD3DDev->SetSamplerState(i, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
+		s_lpD3DDev->SetSamplerState(i, D3DSAMP_MIPFILTER, D3DTEXF_LINEAR);
+		s_lpD3DDev->SetSamplerState(i, D3DSAMP_MIPMAPLODBIAS, *((LPDWORD) (&fMipMapLODBias)));
 	}
 
 	// 클리핑 상태 지정
-	D3DCLIPSTATUS8 cs; cs.ClipUnion = cs.ClipIntersection = D3DCS_ALL;
+	D3DCLIPSTATUS9 cs; cs.ClipUnion = cs.ClipIntersection = D3DCS_ALL;
 	s_lpD3DDev->SetClipStatus(&cs);	
 }
 

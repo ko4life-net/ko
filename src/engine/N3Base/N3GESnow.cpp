@@ -65,7 +65,7 @@ void CN3GESnow::Tick()
 
 	int i;
 	__VertexXyzT1* pVertices;
-	HRESULT hr = m_pVB->Lock(0, 0, (BYTE**)&pVertices, D3DLOCK_NOSYSLOCK);
+	HRESULT hr = m_pVB->Lock(0, 0, (VOID**)&pVertices, D3DLOCK_NOSYSLOCK);
 
 	__Vector3	vN = m_vVelocity;	vN.Normalize();
 	__Vector3	vAdd = m_vVelocity*s_fSecPerFrm;
@@ -171,8 +171,8 @@ void CN3GESnow::Render(__Vector3& vPos)
 	s_lpD3DDev->GetRenderState(D3DRS_LIGHTING, &dwLight);
 
 	DWORD dwAddressU, dwAddressV;
-	s_lpD3DDev->GetTextureStageState(0, D3DTSS_ADDRESSU, &dwAddressU);
-	s_lpD3DDev->GetTextureStageState(0, D3DTSS_ADDRESSV, &dwAddressV);
+	s_lpD3DDev->GetSamplerState(0, D3DSAMP_ADDRESSU, &dwAddressU);
+	s_lpD3DDev->GetSamplerState(0, D3DSAMP_ADDRESSV, &dwAddressV);
 
 	// set render state
 	s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
@@ -186,14 +186,14 @@ void CN3GESnow::Render(__Vector3& vPos)
 
 	// set texture 
 	__ASSERT(m_pTex, "Texture pointer is NULL!");
-	s_lpD3DDev->SetTextureStageState(0, D3DTSS_BORDERCOLOR, 0xffff0000);
-	s_lpD3DDev->SetTextureStageState(0, D3DTSS_ADDRESSU, D3DTADDRESS_BORDER);
-	s_lpD3DDev->SetTextureStageState(0, D3DTSS_ADDRESSV, D3DTADDRESS_BORDER);
+	s_lpD3DDev->SetSamplerState(0, D3DSAMP_BORDERCOLOR, 0xffff0000);
+	s_lpD3DDev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_BORDER);
+	s_lpD3DDev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_BORDER);
 	s_lpD3DDev->SetTexture(0, m_pTex->Get());
 
 	// render
-	s_lpD3DDev->SetVertexShader(FVF_XYZT1);
-	s_lpD3DDev->SetStreamSource(0, m_pVB, sizeof(__VertexXyzT1)); // 버텍스 버퍼 지정
+	s_lpD3DDev->SetFVF(FVF_XYZT1);
+	s_lpD3DDev->SetStreamSource(0, m_pVB, 0, sizeof(__VertexXyzT1)); // 버텍스 버퍼 지정
 	s_lpD3DDev->DrawPrimitive(D3DPT_TRIANGLELIST, 0, iActiveCount);
 
 	// restore
@@ -202,8 +202,8 @@ void CN3GESnow::Render(__Vector3& vPos)
 	s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND,  dwDestAlpha);
 	s_lpD3DDev->SetRenderState( D3DRS_CULLMODE, dwCullMode );
 	s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, dwLight);
-	s_lpD3DDev->SetTextureStageState(0, D3DTSS_ADDRESSU, dwAddressU);
-	s_lpD3DDev->SetTextureStageState(0, D3DTSS_ADDRESSV, dwAddressV);
+	s_lpD3DDev->SetSamplerState(0, D3DSAMP_ADDRESSU, dwAddressU);
+	s_lpD3DDev->SetSamplerState(0, D3DSAMP_ADDRESSV, dwAddressV);
 }
 
 void CN3GESnow::Create(float fDensity, float fWidth, float fHeight, float fSnowSize, const __Vector3& vVelocity, float fTimeToFade)
@@ -223,10 +223,10 @@ void CN3GESnow::Create(float fDensity, float fWidth, float fHeight, float fSnowS
 	// m_pVB, m_pIB 만들기
 	__ASSERT(s_lpD3DDev, "D3D Device pointer is NULL!");
 	m_iVC = iSnowCount*3;
-	HRESULT hr = s_lpD3DDev->CreateVertexBuffer(m_iVC*sizeof(__VertexXyzT1), D3DUSAGE_DYNAMIC, FVF_XYZT1, D3DPOOL_DEFAULT, &m_pVB);
+	HRESULT hr = s_lpD3DDev->CreateVertexBuffer(m_iVC*sizeof(__VertexXyzT1), D3DUSAGE_DYNAMIC, FVF_XYZT1, D3DPOOL_DEFAULT, &m_pVB, NULL);
 	if (FAILED(hr)) return;
 	__VertexXyzT1* pVertices;
-	hr = m_pVB->Lock(0, iSnowCount*3*sizeof(__VertexXyzT1), (BYTE**)&pVertices, D3DLOCK_NOSYSLOCK);
+	hr = m_pVB->Lock(0, iSnowCount*3*sizeof(__VertexXyzT1), (VOID**)&pVertices, D3DLOCK_NOSYSLOCK);
 	if (FAILED(hr)) return;
 
 	// __SnowParticle 정보 채워 넣기

@@ -386,7 +386,7 @@ void CN3FXPartBottomBoard::Render()
 	}
 	else 
 	{
-		CN3Base::s_lpD3DDev->SetVertexShader(FVF_XYZCOLORT1);
+		CN3Base::s_lpD3DDev->SetFVF(FVF_XYZCOLORT1);
 
 		if(m_ppRefTex[m_iTexIdx]) 
 			CN3Base::s_lpD3DDev->SetTexture(0, m_ppRefTex[m_iTexIdx]->Get());

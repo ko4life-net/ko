@@ -27,7 +27,7 @@ public:
 		D3DDISPLAYMODE* pModes; // 디스플레이 모드
 	} __D3DDevInfo;
 
-	LPDIRECT3D8			m_lpD3D;
+	LPDIRECT3D9			m_lpD3D;
 	LPDIRECTDRAW		m_lpDD;
 
 protected:

@@ -109,8 +109,8 @@ bool CN3PMeshInstance::Create(CN3PMesh* pN3PMesh)
 		__ASSERT(SUCCEEDED(hr), "Failed to create index Buffer");
 
 		BYTE* pDestByte, *pSrcByte;
-		hr = m_pIB->Lock(0, 0, &pDestByte, 0);
-		hr = m_pPMesh->m_pIB->Lock(0, 0, &pSrcByte, 0);
+		hr = m_pIB->Lock(0, 0, (VOID**)&pDestByte, 0);
+		hr = m_pPMesh->m_pIB->Lock(0, 0, (VOID**)&pSrcByte, 0);
 
 		CopyMemory(pDestByte, pSrcByte, m_pPMesh->m_iMaxNumIndices * sizeof(WORD));
 		m_pPMesh->m_pIB->Unlock();
@@ -250,7 +250,7 @@ bool CN3PMeshInstance::CollapseOne()
 #ifdef _USE_VERTEXBUFFER
 	BYTE* pByte;
 	WORD* pIndices;
-	HRESULT hr = m_pIB->Lock(0, 0, &pByte, 0);
+	HRESULT hr = m_pIB->Lock(0, 0, (VOID**)&pByte, 0);
 	pIndices = (WORD*)pByte;
 
 	for (	int *i = m_pPMesh->m_pAllIndexChanges + m_pCollapseUpTo->iIndexChanges;
@@ -290,7 +290,7 @@ bool CN3PMeshInstance::SplitOne()
 		BYTE* pByte;
 		WORD* pIndices;
 		__ASSERT(m_pIB, "Index buffer pointer is NULL!");
-		HRESULT hr = m_pIB->Lock(0, 0, &pByte, 0);
+		HRESULT hr = m_pIB->Lock(0, 0, (VOID**)&pByte, 0);
 		pIndices = (WORD*)pByte;
 
 		for (	int *i = m_pPMesh->m_pAllIndexChanges + m_pCollapseUpTo->iIndexChanges;
@@ -317,13 +317,13 @@ bool CN3PMeshInstance::SplitOne()
 void CN3PMeshInstance::Render()
 {
 	if (m_pPMesh == NULL) return;
-	s_lpD3DDev->SetVertexShader(FVF_VNT1);
+	s_lpD3DDev->SetFVF(FVF_VNT1);
 
 	const int iPCToRender = 1000;	// primitive count to render
 #ifdef _USE_VERTEXBUFFER
 	__ASSERT(m_pPMesh->m_pVB && m_pIB, "Progressive mesh's vertex buffer or index buffer is NULL!");
-	s_lpD3DDev->SetStreamSource(0, m_pPMesh->m_pVB, sizeof(__VertexT1));
-	s_lpD3DDev->SetIndices(m_pIB, 0);
+	s_lpD3DDev->SetStreamSource(0, m_pPMesh->m_pVB, 0, sizeof(__VertexT1));
+	s_lpD3DDev->SetIndices(m_pIB);
 
 	if(m_iNumIndices > 3)
 	{
@@ -333,11 +333,11 @@ void CN3PMeshInstance::Render()
 		int i;
 		for (i=0; i<iLC; ++i)
 		{
-			s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, m_iNumVertices, i*iPCToRender*3, iPCToRender);
+			s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iNumVertices, i*iPCToRender*3, iPCToRender);
 		}
 
 		int iRPC = iPC%iPCToRender;
-		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, m_iNumVertices, i*iPCToRender*3, iRPC);
+		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iNumVertices, i*iPCToRender*3, iRPC);
 	}
 #else
 	if(m_iNumIndices > 3)
@@ -366,13 +366,13 @@ void CN3PMeshInstance::RenderTwoUV()
 	}
 	if(NULL == m_pPMesh->GetVertices2()) return;
 	
-	s_lpD3DDev->SetVertexShader(FVF_VNT2);
+	s_lpD3DDev->SetFVF(FVF_VNT2);
 
 	const int iPCToRender = 1000;	// primitive count to render
 #ifdef _USE_VERTEXBUFFER
 	__ASSERT(m_pPMesh->m_pVB && m_pIB, "Progressive mesh's vertex buffer or index buffer is NULL!");
-	s_lpD3DDev->SetStreamSource(0, m_pPMesh->m_pVB, sizeof(__VertexT2));
-	s_lpD3DDev->SetIndices(m_pIB, 0);
+	s_lpD3DDev->SetStreamSource(0, m_pPMesh->m_pVB, 0, sizeof(__VertexT2));
+	s_lpD3DDev->SetIndices(m_pIB);
 
 	if(m_iNumIndices > 3)
 	{
@@ -382,11 +382,11 @@ void CN3PMeshInstance::RenderTwoUV()
 		int i;
 		for (i=0; i<iLC; ++i)
 		{
-			s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, m_iNumVertices, i*iPCToRender*3, iPCToRender);
+			s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iNumVertices, i*iPCToRender*3, iPCToRender);
 		}
 
 		int iRPC = iPC%iPCToRender;
-		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, m_iNumVertices, i*iPCToRender*3, iRPC);
+		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iNumVertices, i*iPCToRender*3, iRPC);
 	}
 #else
 	if(m_iNumIndices > 3)
@@ -407,7 +407,7 @@ void CN3PMeshInstance::RenderTwoUV()
 }
 
 #ifdef _USE_VERTEXBUFFER
-LPDIRECT3DVERTEXBUFFER8	CN3PMeshInstance::GetVertexBuffer() const
+LPDIRECT3DVERTEXBUFFER9	CN3PMeshInstance::GetVertexBuffer() const
 {
 	if (m_pPMesh == NULL) return NULL;
 	return m_pPMesh->GetVertexBuffer();
@@ -424,15 +424,15 @@ __VertexT1*	CN3PMeshInstance::GetVertices() const
 //	By : Ecli666 ( On 2002-08-06 ¿ÀÈÄ 4:33:04 )
 //
 #ifdef _USE_VERTEXBUFFER
-void CN3PMeshInstance::PartialRender(int iCount, LPDIRECT3DINDEXBUFFER8 pIB)
+void CN3PMeshInstance::PartialRender(int iCount, LPDIRECT3DINDEXBUFFER9 pIB)
 {
 	if (m_pPMesh == NULL) return;
-	s_lpD3DDev->SetVertexShader(FVF_VNT1);
+	s_lpD3DDev->SetFVF(FVF_VNT1);
 	const int iPCToRender = 1000;	// primitive count to render
 
 	__ASSERT(m_pPMesh->m_pVB && pIB, "Progressive mesh's vertex buffer or index buffer is NULL!");
-	s_lpD3DDev->SetStreamSource(0, m_pPMesh->m_pVB, sizeof(__VertexT1));
-	s_lpD3DDev->SetIndices(pIB, 0);
+	s_lpD3DDev->SetStreamSource(0, m_pPMesh->m_pVB, 0, sizeof(__VertexT1));
+	s_lpD3DDev->SetIndices(pIB);
 
 	if(iCount > 3)
 	{
@@ -441,17 +441,17 @@ void CN3PMeshInstance::PartialRender(int iCount, LPDIRECT3DINDEXBUFFER8 pIB)
 		int i;
 		for (i=0; i<iLC; ++i)
 		{
-			s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, m_iNumVertices, i*iPCToRender*3, iPCToRender);
+			s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iNumVertices, i*iPCToRender*3, iPCToRender);
 		}
 
 		int iRPC = iPC%iPCToRender;
-		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, m_iNumVertices, i*iPCToRender*3, iRPC);
+		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iNumVertices, i*iPCToRender*3, iRPC);
 }
 #else
 void CN3PMeshInstance::PartialRender(int iCount, WORD* pIndices)
 {
 	if (m_pPMesh == NULL) return;
-	s_lpD3DDev->SetVertexShader(FVF_VNT1);
+	s_lpD3DDev->SetFVF(FVF_VNT1);
 	const int iPCToRender = 1000;	// primitive count to render
 
 /*	if(m_iNumIndices > 3)
@@ -513,7 +513,7 @@ __Vector3 CN3PMeshInstance::GetVertexByIndex(int iIndex)
 #ifdef _USE_VERTEXBUFFER
 	HRESULT hr;
 	__VertexT1* pVB;
-	hr = GetMesh()->m_pVB->Lock(0, 0, (BYTE**)&pVB, 0);
+	hr = GetMesh()->m_pVB->Lock(0, 0, (VOID**)&pVB, 0);
 	if (FAILED(hr)) 
 		return vec;
 	vec = (__Vector3)pVB[iIndex];

@@ -145,9 +145,9 @@ void CGameProcCharacterSelect::Init()
 
 	// 배경..
 	m_pActiveBg = new CN3Shape;	
-	memset(&m_lgt[0], 0, sizeof(D3DLIGHT8));	
-	memset(&m_lgt[1], 0, sizeof(D3DLIGHT8));	
-	memset(&m_lgt[2], 0, sizeof(D3DLIGHT8));	
+	memset(&m_lgt[0], 0, sizeof(D3DLIGHT9));	
+	memset(&m_lgt[1], 0, sizeof(D3DLIGHT9));	
+	memset(&m_lgt[2], 0, sizeof(D3DLIGHT9));	
 
 	// 0가운데.. 1왼쪽..
 	m_lgt[2].Type = m_lgt[1].Type = m_lgt[0].Type = D3DLIGHT_SPOT;
@@ -240,7 +240,7 @@ void CGameProcCharacterSelect::Tick()
 			if (m_eCurProcess == PROCESS_ROTATEING)
 				goto NowRotating;
 
-			D3DVIEWPORT8 vp;
+			D3DVIEWPORT9 vp;
 			CN3Base::s_lpD3DDev->GetViewport(&vp);
 			
 			RECT rc = { vp.Width * 0.36f, vp.Height * 0.44f, vp.Width * 0.64f, vp.Height * 0.86f };
@@ -1148,7 +1148,7 @@ void CGameProcCharacterSelect::FadeOutRender()
 
 	CN3Base::s_lpD3DDev->SetTexture(0, NULL);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_TRANSFORMEDCOLOR);
+	CN3Base::s_lpD3DDev->SetFVF(FVF_TRANSFORMEDCOLOR);
 	CN3Base::s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, pVertices, sizeof(__VertexTransformedColor));
 
 	s_pEng->s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, dwTexStageCO);
@@ -1168,7 +1168,7 @@ void CGameProcCharacterSelect::FadeOutRender()
 
 void CGameProcCharacterSelect::DoProcPreselect()
 {
-	D3DVIEWPORT8 vp;
+	D3DVIEWPORT9 vp;
 	CN3Base::s_lpD3DDev->GetViewport(&vp);
 	
 	float left, right, top, bottom;

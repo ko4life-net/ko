@@ -85,7 +85,7 @@ bool CN3IMesh::Create(int nFC, int nVC, int nUVC)
 		m_pwUVsIndices = new WORD[nFC*3]; memset(m_pwUVsIndices, 0, 2 * nFC * 3); // unsigned short
 	}
 
-//	s_lpD3DDev->CreateVertexBuffer(nFC * 3 * sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_lpVB);
+//	s_lpD3DDev->CreateVertexBuffer(nFC * 3 * sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_lpVB, NULL);
 
 //	if(NULL == m_lpVB)
 //	{
@@ -211,7 +211,7 @@ __VertexT1* CN3IMesh::BuildVertexList()
 	if(m_nFC <= 0 || NULL == m_lpVB) return NULL;
 
 	__VertexT1* pVDests = NULL;
-	m_lpVB->Lock(0, 0, (BYTE**)(&pVDests), 0);
+	m_lpVB->Lock(0, 0, (VOID**)(&pVDests), 0);
 
 	int n = 0, nVI = 0, nUVI = 0;
 	if(m_nUVC > 0)
@@ -266,7 +266,7 @@ void CN3IMesh::Render(bool bUseTwoUV)
 		__VertexT2* pVs = this->BuildVertexListTwoUV();
 		if(pVs)
 		{
-			s_lpD3DDev->SetVertexShader(FVF_VNT2);
+			s_lpD3DDev->SetFVF(FVF_VNT2);
 			s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, m_nFC, pVs, sizeof(__VertexT2));
 		}
 	}
@@ -275,14 +275,14 @@ void CN3IMesh::Render(bool bUseTwoUV)
 		__VertexT1* pVs = this->BuildVertexList();
 		if(pVs)
 		{
-			s_lpD3DDev->SetVertexShader(FVF_VNT1);
+			s_lpD3DDev->SetFVF(FVF_VNT1);
 			s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, m_nFC, pVs, sizeof(__VertexT1));
 		}
 	}
 
 //	this->BuildVertexList();
-//	s_lpD3DDev->SetVertexShader(FVF_VNT1);
-//	s_lpD3DDev->SetStreamSource( 0, m_lpVB, sizeof(__VertexT1) );
+//	s_lpD3DDev->SetFVF(FVF_VNT1);
+//	s_lpD3DDev->SetStreamSource( 0, m_lpVB, 0, sizeof(__VertexT1) );
 //	s_lpD3DDev->DrawPrimitive(D3DPT_TRIANGLELIST, 0, m_nFC);
 }
 

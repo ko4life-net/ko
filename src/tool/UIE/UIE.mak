@@ -215,7 +215,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=d3d8.lib d3dx8.lib dsound.lib dxerr8.lib dxguid.lib winmm.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\UIE.pdb" /machine:I386 /out:"UIE.exe" 
+LINK32_FLAGS=d3d9.lib d3dx9.lib dsound.lib dxguid.lib winmm.lib /nologo /subsystem:windows /incremental:no /pdb:"$(OUTDIR)\UIE.pdb" /machine:I386 /out:"UIE.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\DlgChangeImage.obj" \
 	"$(INTDIR)\DlgUnusedFileList.obj" \
@@ -458,7 +458,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=d3d8.lib d3dx8.lib dsound.lib dxerr8.lib dxguid.lib winmm.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\UIE_Debug.pdb" /debug /machine:I386 /out:"UIE_Debug.exe" /pdbtype:sept 
+LINK32_FLAGS=d3d9.lib d3dx9d.lib dsound.lib dxguidd.lib winmm.lib /nologo /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)\UIE_Debug.pdb" /debug /machine:I386 /out:"UIE_Debug.exe" /pdbtype:sept 
 LINK32_OBJS= \
 	"$(INTDIR)\DlgChangeImage.obj" \
 	"$(INTDIR)\DlgUnusedFileList.obj" \

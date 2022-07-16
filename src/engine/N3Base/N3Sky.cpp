@@ -69,7 +69,7 @@ void CN3Sky::Render()
 	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_DIFFUSE );
 
 	// Render the skybox
-	s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+	s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 	// ¹ØÆÇ ±×¸®±â
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, m_Bottom, sizeof(m_Bottom[0]));
 	// ¿·ÆÇ ±×¸®±â

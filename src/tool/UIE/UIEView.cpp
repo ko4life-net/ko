@@ -459,7 +459,7 @@ void CUIEView::RenderPreview()
 	if (NULL == pDoc) return;
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 	CN3EngTool* pEng = &(pFrm->m_Eng);
-	LPDIRECT3DDEVICE8 lpD3DDev = pEng->s_lpD3DDev;
+	LPDIRECT3DDEVICE9 lpD3DDev = pEng->s_lpD3DDev;
 
 	// back up old state
 	DWORD dwZEnable, dwAlphaBlend, dwSrcBlend, dwDestBlend, dwFog;
@@ -469,9 +469,9 @@ void CUIEView::RenderPreview()
 	lpD3DDev->GetRenderState(D3DRS_DESTBLEND, &dwDestBlend);
 	lpD3DDev->GetRenderState(D3DRS_FOGENABLE, &dwFog);
 	DWORD dwMagFilter, dwMinFilter, dwMipFilter;
-	lpD3DDev->GetTextureStageState(0, D3DTSS_MAGFILTER,   &dwMagFilter);
-	lpD3DDev->GetTextureStageState(0, D3DTSS_MINFILTER,   &dwMinFilter);
-	lpD3DDev->GetTextureStageState(0, D3DTSS_MIPFILTER,   &dwMipFilter);
+	lpD3DDev->GetSamplerState(0, D3DSAMP_MAGFILTER,   &dwMagFilter);
+	lpD3DDev->GetSamplerState(0, D3DSAMP_MINFILTER,   &dwMinFilter);
+	lpD3DDev->GetSamplerState(0, D3DSAMP_MIPFILTER,   &dwMipFilter);
 
 	// set state
 	if (D3DZB_FALSE != dwZEnable) lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
@@ -479,9 +479,9 @@ void CUIEView::RenderPreview()
 	if (D3DBLEND_SRCALPHA != dwSrcBlend) lpD3DDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	if (D3DBLEND_INVSRCALPHA != dwDestBlend) lpD3DDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 	if (FALSE != dwFog) lpD3DDev->SetRenderState(D3DRS_FOGENABLE   , FALSE);	// 2dµµ fog¸¦ ¸Ô´Â´Ù ¤Ñ.¤Ñ;
-	if (D3DTEXF_POINT != dwMagFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MAGFILTER,   D3DTEXF_POINT);
-	if (D3DTEXF_POINT != dwMinFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MINFILTER,   D3DTEXF_POINT);
-	if (D3DTEXF_NONE != dwMipFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MIPFILTER,   D3DTEXF_NONE);
+	if (D3DTEXF_POINT != dwMagFilter ) lpD3DDev->SetSamplerState(0, D3DSAMP_MAGFILTER,   D3DTEXF_POINT);
+	if (D3DTEXF_POINT != dwMinFilter ) lpD3DDev->SetSamplerState(0, D3DSAMP_MINFILTER,   D3DTEXF_POINT);
+	if (D3DTEXF_NONE != dwMipFilter ) lpD3DDev->SetSamplerState(0, D3DSAMP_MIPFILTER,   D3DTEXF_NONE);
 
 	// render
 	CN3UIBase* pRootUI = pDoc->GetRootUI();
@@ -493,9 +493,9 @@ void CUIEView::RenderPreview()
 	if (D3DBLEND_SRCALPHA != dwSrcBlend) lpD3DDev->SetRenderState(D3DRS_SRCBLEND, dwSrcBlend);
 	if (D3DBLEND_INVSRCALPHA != dwDestBlend) lpD3DDev->SetRenderState(D3DRS_DESTBLEND, dwDestBlend);
 	if (FALSE != dwFog) lpD3DDev->SetRenderState(D3DRS_FOGENABLE   , dwFog);
-	if (D3DTEXF_POINT != dwMagFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MAGFILTER,   dwMagFilter);
-	if (D3DTEXF_POINT != dwMinFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MINFILTER,   dwMinFilter);
-	if (D3DTEXF_NONE != dwMipFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MIPFILTER,   dwMipFilter);
+	if (D3DTEXF_POINT != dwMagFilter ) lpD3DDev->SetSamplerState(0, D3DSAMP_MAGFILTER,   dwMagFilter);
+	if (D3DTEXF_POINT != dwMinFilter ) lpD3DDev->SetSamplerState(0, D3DSAMP_MINFILTER,   dwMinFilter);
+	if (D3DTEXF_NONE != dwMipFilter ) lpD3DDev->SetSamplerState(0, D3DSAMP_MIPFILTER,   dwMipFilter);
 }
 
 // Edit render
@@ -505,7 +505,7 @@ void CUIEView::RenderEditview()
 	if (NULL == pDoc) return;
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 	CN3EngTool* pEng = &(pFrm->m_Eng);
-	LPDIRECT3DDEVICE8 lpD3DDev = pEng->s_lpD3DDev;
+	LPDIRECT3DDEVICE9 lpD3DDev = pEng->s_lpD3DDev;
 
 	// back up old state
 	DWORD dwZEnable, dwAlphaBlend, dwSrcBlend, dwDestBlend, dwFog;
@@ -515,9 +515,9 @@ void CUIEView::RenderEditview()
 	lpD3DDev->GetRenderState(D3DRS_DESTBLEND, &dwDestBlend);
 	lpD3DDev->GetRenderState(D3DRS_FOGENABLE, &dwFog);
 	DWORD dwMagFilter, dwMinFilter, dwMipFilter;
-	lpD3DDev->GetTextureStageState(0, D3DTSS_MAGFILTER,   &dwMagFilter);
-	lpD3DDev->GetTextureStageState(0, D3DTSS_MINFILTER,   &dwMinFilter);
-	lpD3DDev->GetTextureStageState(0, D3DTSS_MIPFILTER,   &dwMipFilter);
+	lpD3DDev->GetSamplerState(0, D3DSAMP_MAGFILTER,   &dwMagFilter);
+	lpD3DDev->GetSamplerState(0, D3DSAMP_MINFILTER,   &dwMinFilter);
+	lpD3DDev->GetSamplerState(0, D3DSAMP_MIPFILTER,   &dwMipFilter);
 
 	// set state
 	if (D3DZB_FALSE != dwZEnable) lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
@@ -525,9 +525,9 @@ void CUIEView::RenderEditview()
 	if (D3DBLEND_SRCALPHA != dwSrcBlend) lpD3DDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	if (D3DBLEND_INVSRCALPHA != dwDestBlend) lpD3DDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 	if (FALSE != dwFog) lpD3DDev->SetRenderState(D3DRS_FOGENABLE   , FALSE);	// 2dµµ fog¸¦ ¸Ô´Â´Ù ¤Ñ.¤Ñ;
-	if (D3DTEXF_POINT != dwMagFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MAGFILTER,   D3DTEXF_POINT);
-	if (D3DTEXF_POINT != dwMinFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MINFILTER,   D3DTEXF_POINT);
-	if (D3DTEXF_NONE != dwMipFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MIPFILTER,   D3DTEXF_NONE);
+	if (D3DTEXF_POINT != dwMagFilter ) lpD3DDev->SetSamplerState(0, D3DSAMP_MAGFILTER,   D3DTEXF_POINT);
+	if (D3DTEXF_POINT != dwMinFilter ) lpD3DDev->SetSamplerState(0, D3DSAMP_MINFILTER,   D3DTEXF_POINT);
+	if (D3DTEXF_NONE != dwMipFilter ) lpD3DDev->SetSamplerState(0, D3DSAMP_MIPFILTER,   D3DTEXF_NONE);
 
 	// render
 	CN3UIBase* pRootUI = pDoc->GetRootUI();
@@ -546,9 +546,9 @@ void CUIEView::RenderEditview()
 	if (D3DBLEND_SRCALPHA != dwSrcBlend) lpD3DDev->SetRenderState(D3DRS_SRCBLEND, dwSrcBlend);
 	if (D3DBLEND_INVSRCALPHA != dwDestBlend) lpD3DDev->SetRenderState(D3DRS_DESTBLEND, dwDestBlend);
 	if (FALSE != dwFog) lpD3DDev->SetRenderState(D3DRS_FOGENABLE   , dwFog);
-	if (D3DTEXF_POINT != dwMagFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MAGFILTER,   dwMagFilter);
-	if (D3DTEXF_POINT != dwMinFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MINFILTER,   dwMinFilter);
-	if (D3DTEXF_NONE != dwMipFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MIPFILTER,   dwMipFilter);
+	if (D3DTEXF_POINT != dwMagFilter ) lpD3DDev->SetSamplerState(0, D3DSAMP_MAGFILTER,   dwMagFilter);
+	if (D3DTEXF_POINT != dwMinFilter ) lpD3DDev->SetSamplerState(0, D3DSAMP_MINFILTER,   dwMinFilter);
+	if (D3DTEXF_NONE != dwMipFilter ) lpD3DDev->SetSamplerState(0, D3DSAMP_MIPFILTER,   dwMipFilter);
 }
 
 void CUIEView::SelectRectType(eRECTTYPE eRectType)

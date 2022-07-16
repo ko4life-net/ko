@@ -28,7 +28,7 @@ protected:
 		void	MoveOffset(int iOffsetX, int iOffsetY);
 		void	SetSize(int iSize);
 		void	SetColor(D3DCOLOR color);
-		void	Render(LPDIRECT3DDEVICE8 lpD3DDev);
+		void	Render(LPDIRECT3DDEVICE9 lpD3DDev);
 		void	InitFlckering();		// 깜박임 초기화..
 		BOOL	m_bVisible;				// 보이나
 	protected:

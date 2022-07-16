@@ -1293,8 +1293,8 @@ CN3Texture* CN3E2Wrapper::ProcessTexture(MFnMesh &mMesh)
 	//	}
 		
 		// Surface 생성 및 채우기.
-		LPDIRECT3DSURFACE8 lpSurf;
-		g_pEng->s_lpD3DDev->CreateImageSurface(nW, nH, D3DFMT_A8R8G8B8, &lpSurf);
+		LPDIRECT3DSURFACE9 lpSurf;
+		g_pEng->s_lpD3DDev->CreateOffscreenPlainSurface(nW, nH, D3DFMT_A8R8G8B8, D3DPOOL_DEFAULT, &lpSurf, NULL);
 
 		if(NULL == lpSurf)
 		{
