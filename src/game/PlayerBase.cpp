@@ -14,11 +14,6 @@
 
 #include "N3FXMgr.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 static const __Vector3 s_vLightOffset = __Vector3(10.0f, 40.0f, 30.0f);
 CN3SndObj*	CPlayerBase::m_pSnd_MyMove = NULL;

@@ -7,11 +7,6 @@
 #include "ServerMesh.h"
 #include "N3Terrain.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 static const int SGRID_SIZE = 64;
 static const int SMAP_SIZE  = 4096;

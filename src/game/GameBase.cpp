@@ -11,12 +11,6 @@
 
 #include "N3Base/N3ShapeMgr.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
-
 CN3TableBase<__TABLE_ZONE>*				CGameBase::s_pTbl_Zones = NULL;				// Zone 정보에 관한 Table
 CN3TableBase<__TABLE_UI_RESRC>*			CGameBase::s_pTbl_UI = NULL;				// UI FileName Table
 CN3TableBase<__TABLE_ITEM_BASIC>*		CGameBase::s_pTbl_Items_Basic = NULL;			// 각 유저의(내 자신과 주위 다른 사람) 클레스별 장착 아이템 리소스 테이블

@@ -18,12 +18,6 @@
 #include "MagicSkillMng.h"
 #include "N3FXMgr.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
-
 #define CHILD_UI_REVIVE_MSG				1
 #define CHILD_UI_LACK_LIVE_STONE_MSG	2
 #define CHILD_UI_LOW_LEVEL				3
