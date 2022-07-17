@@ -31,7 +31,7 @@ bool CN3ShapeExtra::Load(HANDLE hFile)
 	m_Rotations.clear();
 	if(iPC <= 0) return bSuccess;
 
-	m_Rotations.assign(iPC);
+	m_Rotations.resize(iPC);
 
 	return bSuccess;
 }

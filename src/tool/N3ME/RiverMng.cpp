@@ -922,7 +922,7 @@ void CRiverMng::ReCalcSelectedVertex()
 it_RiverMesh CRiverMng::GetDrawRiver()
 {
 	int iSize = m_RiverMeshes.size();
-	if(iSize==0) return NULL;
+	if(iSize==0) return {};
 
 	it_RiverMesh it = m_RiverMeshes.begin();
 	return it;

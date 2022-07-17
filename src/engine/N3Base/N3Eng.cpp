@@ -601,7 +601,7 @@ bool CN3Eng::RegistryValueGet(HKEY hKey, const std::string& szName, std::string&
 
 	DWORD dwType = REG_SZ;
 	DWORD dwBytes = 0;
-	long lStatus = RegQueryValueEx(hKey, szName.c_str(), NULL, &dwType, &buffer[0], &dwBytes);
+	long lStatus = RegQueryValueEx(hKey, szName.c_str(), NULL, &dwType, (BYTE *)&buffer[0], &dwBytes);
 	szValue = std::string(buffer.begin(), buffer.end());
 
 	if(ERROR_SUCCESS == lStatus) return true;

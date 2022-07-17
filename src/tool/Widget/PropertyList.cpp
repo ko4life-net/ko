@@ -1,6 +1,6 @@
 // PropertyList.cpp : implementation file
 //
-//#include "StdAfx.h"
+#include "StdAfx.h"
 #include "PropertyList.h"
 
 /////////////////////////////////////////////////////////////////////////////

@@ -13,7 +13,7 @@
 
 class CLyTerrain;
 
-const MAX_CON = 5;
+const int MAX_CON = 5;
 
 class CEventCell : public CN3Base
 {

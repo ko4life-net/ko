@@ -654,7 +654,7 @@ CPondMesh* CPondMng::GetSelPond()
 it_PondMesh CPondMng::GetDrawPond()
 {
 	int iSize = m_PondMeshes.size();
-	if(iSize==0) return NULL;
+	if(iSize==0) return {};
 
 	it_PondMesh it = m_PondMeshes.begin();
 	return it;
