@@ -2,18 +2,18 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{4e71ffce-fd80-415e-85b3-e5d5bef04254}</UniqueIdentifier>
+      <UniqueIdentifier>{f34f515f-caa5-4ad4-b24e-510bfec3a33b}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{af951a82-5567-40a0-b6e7-8148d1800013}</UniqueIdentifier>
+      <UniqueIdentifier>{7703bcb6-9198-4031-9d29-9da5926159f1}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="N3Base">
-      <UniqueIdentifier>{941fa491-9cf7-46ce-9a14-7811c0b119a0}</UniqueIdentifier>
+      <UniqueIdentifier>{596d168a-2159-418b-b93e-d2bcf93855a3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{0899c42c-28bb-4202-9d20-77b196ad8c83}</UniqueIdentifier>
+      <UniqueIdentifier>{d4b437d1-a5ef-4c7a-924d-905f21333a02}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -285,13 +285,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\Server.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
+    <Image Include="res\AIServer.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Server.rc">
-      <Filter>Resource Files</Filter>
+    <ResourceCompile Include="res\AIServer.rc">
+      <Filter>Source Files</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>

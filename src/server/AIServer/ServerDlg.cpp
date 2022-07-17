@@ -1867,7 +1867,7 @@ int CServerDlg::Send(char* pData, int length, int nZone)
 }
 // ~sungyong 2002.05.23
 
-void CServerDlg::OnGameServerLogin( WPARAM wParam )
+LRESULT CServerDlg::OnGameServerLogin( WPARAM wParam, LPARAM lParam )
 {
 /*	if( m_bNpcInfoDown ) {
 		m_ZoneNpcList.push_back(wParam);
@@ -1875,6 +1875,8 @@ void CServerDlg::OnGameServerLogin( WPARAM wParam )
 	}
 
 	AllNpcInfo( wParam );	*/
+
+	return 0L;
 }
 
 void CServerDlg::GameServerAcceptThread()

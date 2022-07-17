@@ -50,7 +50,7 @@ BEGIN
     "LANGUAGE 18, 1\r\n"
     "#pragma code_page(949)\r\n"
     "#endif //_WIN32\r\n"
-    "#include ""res\\Server.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""res\\AIServer.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
     "#include ""l.kor\\afxres.rc""          // Standard components\r\n"
     "#endif\r\n"
     "\0"
@@ -66,7 +66,7 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Server.ico"
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\AIServer.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -75,11 +75,11 @@ IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Server.ico"
 
 IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Server 정보"
+CAPTION "AIServer 정보"
 FONT 9, "굴림"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "Server 버전 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "AIServer 버전 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
     LTEXT           "Copyright (C) 2001",IDC_STATIC,40,25,119,8
     DEFPUSHBUTTON   "확인",IDOK,178,7,50,14,WS_GROUP
 END
@@ -88,7 +88,7 @@ IDD_SERVER_DIALOG DIALOGEX 0, 0, 170, 189
 STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
     WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
-CAPTION "Knight AI-Server Ver 1.0"
+CAPTION "AIServer Ver 1.0"
 FONT 9, "굴림"
 BEGIN
     PUSHBUTTON      "서버 종료",IDCANCEL,14,161,143,14
@@ -122,13 +122,13 @@ BEGIN
         BLOCK "041204B0"
         BEGIN
             VALUE "CompanyName", "\0"
-            VALUE "FileDescription", "Server MFC 응용 프로그램\0"
+            VALUE "FileDescription", "AIServer MFC 응용 프로그램\0"
             VALUE "FileVersion", "1, 0, 0, 1\0"
-            VALUE "InternalName", "Server\0"
+            VALUE "InternalName", "AIServer\0"
             VALUE "LegalCopyright", "Copyright (C) 2001\0"
             VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "Server.EXE\0"
-            VALUE "ProductName", "Server 응용 프로그램\0"
+            VALUE "OriginalFilename", "AIServer.EXE\0"
+            VALUE "ProductName", "AIServer 응용 프로그램\0"
             VALUE "ProductVersion", "1, 0, 0, 1\0"
         END
     END
@@ -167,7 +167,7 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_ABOUTBOX            "Server 정보(&A)..."
+    IDS_ABOUTBOX            "AIServer 정보(&A)..."
     IDS_KARUS_CATCH_1       "카루스 제 1 요새가 점령되었습니다"
     IDS_KARUS_CATCH_2       "카루스 제 2 요새가 점령되었습니다"
     IDS_ELMORAD_CATCH_1     "엘모라드 제 1 요새가 점령되었습니다"
@@ -196,7 +196,7 @@ END
 LANGUAGE 18, 1
 #pragma code_page(949)
 #endif //_WIN32
-#include "res\Server.rc2"  // non-Microsoft Visual C++ edited resources
+#include "res\AIServer.rc2"  // non-Microsoft Visual C++ edited resources
 #include "l.kor\afxres.rc"          // Standard components
 #endif
 

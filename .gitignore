@@ -18,4 +18,4 @@ vendor/
 *.idb
 *.vcxproj.user
 UpgradeLog.htm
-Log.txt
+*[Ll]og*.txt

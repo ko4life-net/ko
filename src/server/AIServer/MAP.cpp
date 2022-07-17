@@ -272,7 +272,7 @@ void MAP::RegionUserAdd(int rx, int rz, int uid)
 Iterator MAP::RegionUserRemove(int rx, int rz, int uid)
 {
 	if( rx<0 || rz<0 || rx>m_sizeRegion.cx || rz>m_sizeRegion.cy )
-		return FALSE;
+		return {};
 
 	CRegion	*region = NULL;
 	map < int, int* >::iterator		Iter;
@@ -311,7 +311,7 @@ void MAP::RegionNpcAdd(int rx, int rz, int nid)
 Iterator MAP::RegionNpcRemove(int rx, int rz, int nid)
 {
 	if( rx<0 || rz<0 || rx>m_sizeRegion.cx || rz>m_sizeRegion.cy )
-		return FALSE;
+		return {};
 
 	CRegion	*region = NULL;
 	map < int, int* >::iterator		Iter;

@@ -2,12 +2,11 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#ifdef _N3GAME
 #include "StdAfx.h"
+
+#ifdef _N3GAME
 #include "GameProcedure.h"
 #include "UILoading.h"
-#else
-#include "StdAfxBase.h"
 #endif // end of #ifndef _N3GAME
 
 #include "N3ShapeMgr.h"
