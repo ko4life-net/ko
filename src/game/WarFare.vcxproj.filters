@@ -109,7 +109,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h">
+    <ClInclude Include="Resource.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\N3Base\N3UIBase.h">
@@ -629,15 +629,12 @@
     <ClInclude Include="WarMessage.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Resource.rc">
+    <ResourceCompile Include="res\Resource.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="WarFare.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Warfare_tw.ico">
+    <Image Include="res\WarFare.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -1133,25 +1130,25 @@
     </Library>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="Cursor_Attack.cur">
+    <CustomBuild Include="res\Cursor_Attack.cur">
       <Filter>Resource Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="Cursor_Click.cur">
+    <CustomBuild Include="res\Cursor_Click.cur">
       <Filter>Resource Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="cursor_click1.cur">
+    <CustomBuild Include="res\cursor_click1.cur">
       <Filter>Resource Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="Cursor_Normal.cur">
+    <CustomBuild Include="res\Cursor_Normal.cur">
       <Filter>Resource Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="cursor_normal1.cur">
+    <CustomBuild Include="res\cursor_normal1.cur">
       <Filter>Resource Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="repair0.cur">
+    <CustomBuild Include="res\repair0.cur">
       <Filter>Resource Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="repair1.cur">
+    <CustomBuild Include="res\repair1.cur">
       <Filter>Resource Files</Filter>
     </CustomBuild>
   </ItemGroup>

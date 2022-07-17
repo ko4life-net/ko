@@ -7,7 +7,7 @@
 #include "PacketDef.h"
 #include "LocalInput.h"
 #include "APISocket.h"
-#include "resource.h"
+#include "Resource.h"
 #include "UISkillTreeDlg.h"
 
 #include "GameProcedure.h"

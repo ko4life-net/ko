@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include "resource.h"
+#include "Resource.h"
 
 #include "UIWarp.h"
 #include "GameProcMain.h"

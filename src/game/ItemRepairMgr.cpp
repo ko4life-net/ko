@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include "resource.h"
+#include "Resource.h"
 #include "ItemRepairMgr.h"
 
 #include "PacketDef.h"

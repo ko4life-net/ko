@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include "resource.h"
+#include "Resource.h"
 #include "CountableItemEditDlg.h"
 
 #include "GameProcedure.h"

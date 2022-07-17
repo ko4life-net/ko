@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include "resource.h"
+#include "Resource.h"
 #include "UIPartyBBS.h"
 #include "GameProcMain.h"
 #include "UIVarious.h"

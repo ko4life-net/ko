@@ -26,7 +26,7 @@
 #include "N3Base/N3UIString.h"
 #include "N3Base/N3UIEdit.h"
 #include "N3Base/N3SndObj.h"
-#include "resource.h"
+#include "Resource.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

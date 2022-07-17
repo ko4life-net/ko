@@ -52,7 +52,7 @@
       <SDLCheck>true</SDLCheck>
       <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_N3GAME;_CRT_SECURE_NO_WARNINGS;DIRECTINPUT_VERSION=0x0800;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\engine;$(WindowsSDK_IncludePath);$(ProjectDir)..\vendor\DXSDK9\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(ProjectDir)..\engine;$(WindowsSDK_IncludePath);$(ProjectDir)..\vendor\DXSDK9\Include</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -83,7 +83,7 @@
       <SDLCheck>true</SDLCheck>
       <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_N3GAME;_CRT_SECURE_NO_WARNINGS;DIRECTINPUT_VERSION=0x0800;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\engine;$(WindowsSDK_IncludePath);$(ProjectDir)..\vendor\DXSDK9\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(ProjectDir)..\engine;$(WindowsSDK_IncludePath);$(ProjectDir)..\vendor\DXSDK9\Include</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -107,13 +107,13 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="Cursor_Attack.cur" />
-    <CustomBuild Include="Cursor_Click.cur" />
-    <CustomBuild Include="cursor_click1.cur" />
-    <CustomBuild Include="Cursor_Normal.cur" />
-    <CustomBuild Include="cursor_normal1.cur" />
-    <CustomBuild Include="repair0.cur" />
-    <CustomBuild Include="repair1.cur" />
+    <CustomBuild Include="res\Cursor_Attack.cur" />
+    <CustomBuild Include="res\Cursor_Click.cur" />
+    <CustomBuild Include="res\cursor_click1.cur" />
+    <CustomBuild Include="res\Cursor_Normal.cur" />
+    <CustomBuild Include="res\cursor_normal1.cur" />
+    <CustomBuild Include="res\repair0.cur" />
+    <CustomBuild Include="res\repair1.cur" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\engine\JPEG\JpegFile.h" />
@@ -242,7 +242,7 @@
     <ClInclude Include="PlayerOtherMgr.h" />
     <ClInclude Include="PortalVolume.h" />
     <ClInclude Include="PvsMgr.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="Resource.h" />
     <ClInclude Include="ServerMesh.h" />
     <ClInclude Include="SharedMem.h" />
     <ClInclude Include="StdAfx.h" />
@@ -298,11 +298,10 @@
     <ClInclude Include="WarMessage.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Resource.rc" />
+    <ResourceCompile Include="res\Resource.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="WarFare.ico" />
-    <Image Include="Warfare_tw.ico" />
+    <Image Include="res\WarFare.ico" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\JPEG\JpegFile.cpp" />

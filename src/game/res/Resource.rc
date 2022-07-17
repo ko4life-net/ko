@@ -1,6 +1,6 @@
 //Microsoft Developer Studio generated resource script.
 //
-#include "resource.h"
+#include "Resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
@@ -55,69 +55,69 @@ END
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_PARTY_INSERT_ERR_LEVEL_DIFFERENCE 
-                            "·¹º§ Â÷ÀÌ°¡ ³ª¼­ ÆÄÆ¼¿¡ °¡ÀÔÇÒ ¼ö ¾ø½À´Ï´Ù."
-    IDS_PARTY_INSERT_ERR_REJECTED "ÆÄÆ¼ÃÊ´ë°¡ °ÅÀý µÇ¾ú½À´Ï´Ù."
-    IDS_PARTY_INVITE        "´ÔÀ» ÆÄÆ¼¿¡ ÃÊ´ëÇÏ¿´½À´Ï´Ù. ÀÀ´äÀ» ±â´Ù¸³´Ï´Ù."
-    IDS_PARTY_INVITE_FAILED "´ÔÀ» ÆÄÆ¼¿¡ ÃÊ´ëÇÒ¼ö ¾ø½À´Ï´Ù."
-    IDS_PARTY_ITEM_GET      "%s(ÀÌ)°¡ %s(À»)¸¦ È¹µæÇß½À´Ï´Ù."
-    IDS_PARTY_LEAVE         "ÆÄÆ¼¿¡¼­ Å»ÅðÇÏ¿´½À´Ï´Ù."
-    IDS_PARTY_PERMIT        "´ÔÀÌ ÆÄÆ¼¿¡ ÃÊ´ëÇÏ¿´½À´Ï´Ù. ÆÄÆ¼¿¡ °¡ÀÔÇÏ½Ã°Ú½À´Ï±î?"
+                            "·¹º§ Â÷ÀÌ°¡ ³ª¼­ ?ÄÆ¼¿? °¡ÀÔ?? ¼ö ¾ø½À´Ï´Ù."
+    IDS_PARTY_INSERT_ERR_REJECTED "?ÄÆ¼ÃÊ´ë°? °ÅÀý µÇ¾ú½À´Ï´Ù."
+    IDS_PARTY_INVITE        "´ÔÀ» ?ÄÆ¼¿? ÃÊ´ë?Ï¿´½À´Ï´?. ÀÀ´äÀ» ±â´Ù¸³´Ï´Ù."
+    IDS_PARTY_INVITE_FAILED "´ÔÀ» ?ÄÆ¼¿? ÃÊ´ë?Ò¼? ¾ø½À´Ï´Ù."
+    IDS_PARTY_ITEM_GET      "%s(ÀÌ)°¡ %s(À»)¸¦ ?¹µæÇß½À´Ï´?."
+    IDS_PARTY_LEAVE         "?ÄÆ¼¿¡¼? Å»Åð?Ï¿´½À´Ï´?."
+    IDS_PARTY_PERMIT        "´ÔÀÌ ?ÄÆ¼¿? ÃÊ´ë?Ï¿´½À´Ï´?. ?ÄÆ¼¿? °¡ÀÔ?Ï½Ã°Ú½À´Ï±??"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_REGENERATION        "È®ÀÎÀ» ´©¸£¸é ¸¶À», È¤Àº ºÎÈ°Àå¼Ò·Î µ¹¾Æ°©´Ï´Ù."
+    IDS_REGENERATION        "?®ÀÎÀ? ´©¸£¸é ¸¶À», ?¤À? ºÎ?°Àå¼Ò·? µ¹¾Æ°©´Ï´Ù."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_ERR_INVALID_CLASS   "Á÷¾÷À» ¼±ÅÃÇØ ÁÖ¼¼¿ä."
-    IDS_ERR_INVALID_NAME    "Ä³¸¯ÅÍ ¾ÆÀÌµð¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä."
+    IDS_ERR_INVALID_CLASS   "Á÷¾÷À» ¼±ÅÃ?? ÁÖ¼¼¿ä."
+    IDS_ERR_INVALID_NAME    "Ä³¸¯ÅÍ ¾ÆÀÌµð¸¦ ÀÔ·Â?? ÁÖ¼¼¿ä."
     IDS_ERR_INVALID_NAME_HAS_SPECIAL_LETTER 
-                            "»ç¿ëÇÒ ¼ö ¾ø´Â Ä³¸¯ÅÍ ¾ÆÀÌµð ÀÔ´Ï´Ù."
-    IDS_ERR_INVALID_NATION_RACE "¼±ÅÃÇÑ ±¹°¡¿Í Á¾Á·ÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù."
-    IDS_ERR_INVALID_RACE    "Á¾Á·À» ¼±ÅÃÇØ ÁÖ¼¼¿ä."
+                            "»ç¿ë?? ¼ö ¾ø´Â Ä³¸¯ÅÍ ¾ÆÀÌµð ÀÔ´Ï´Ù."
+    IDS_ERR_INVALID_NATION_RACE "¼±ÅÃ?? ±¹°¡¿Í Á¾Á·ÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù."
+    IDS_ERR_INVALID_RACE    "Á¾Á·À» ¼±ÅÃ?? ÁÖ¼¼¿ä."
     IDS_ERR_KNIGHTS_CREATE_FAILED_NAME_EMPTY 
-                            "±â»ç´ÜÀ» ¸¸µé·Á¸é ÀÌ¸§ÀÌ ÀÖ¾î¾ß ÇÕ´Ï´Ù."
+                            "±â»ç´ÜÀ» ¸¸µé·Á¸é ÀÌ¸§ÀÌ ÀÖ¾î¾ß ?Õ´Ï´?."
     IDS_ERR_NOT_SUPPORTED_RACE "ÀÌ Á¾Á·Àº ¾ÆÁ÷ Áö¿øµÇÁö ¾Ê½À´Ï´Ù."
-    IDS_ERR_NO_MORE_CHARACTER "´õ ÀÌ»óÀÇ Ä³¸¯ÅÍ¸¦ »ý¼ºÇÒ ¼ö ¾ø½À´Ï´Ù."
+    IDS_ERR_NO_MORE_CHARACTER "´õ ÀÌ»óÀÇ Ä³¸¯ÅÍ¸¦ »ý¼º?? ¼ö ¾ø½À´Ï´Ù."
     IDS_ERR_OVERLAPPED_ID   "ÀÌ¹Ì ÀÌ ¾ÆÀÌµð·Î »ý¼ºµÈ Ä³¸¯ÅÍ°¡ ÀÖ¾î¼­ ÀÌ¸§ÀÌ Áßº¹µË´Ï´Ù."
-    IDS_ERR_REMAIN_BONUS_POINT "º¸³Ê½º Æ÷ÀÎÆ®°¡ ³²¾Æ ÀÖ½À´Ï´Ù."
-    IDS_ERR_REQUEST_OBJECT_EVENT_SO_FAR "¿ÀºêÁ§Æ®¿ÍÀÇ °Å¸®°¡ ³Ê¹« ¸Ù´Ï´Ù."
+    IDS_ERR_REMAIN_BONUS_POINT "º¸³Ê½º ?÷ÀÎÆ®°? ³²¾Æ ÀÖ½À´Ï´Ù."
+    IDS_ERR_REQUEST_OBJECT_EVENT_SO_FAR "¿ÀºêÁ§?®¿ÍÀ? °Å¸®°¡ ³Ê¹« ¸Ù´Ï´Ù."
     IDS_ERR_UNKNOWN         "¾Ë¼ö ¾ø´Â ¿¡·¯ÀÔ´Ï´Ù."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_ERR_CHARACTER_CREATE "Ä³¸¯ÅÍ »ý¼º ½ÇÆÐ"
-    IDS_ERR_DB_CREATE       "DataBase »ý¼º ½ÇÆÐ."
-    IDS_ERR_GOTO_TOWN_OUT_OF_HP "HP °¡ Àý¹Ý ÀÌÇÏÀÏ¶§´Â ¸¶À»·Î °¥¼ö ¾ø½À´Ï´Ù."
+    IDS_ERR_CHARACTER_CREATE "Ä³¸¯ÅÍ »ý¼º ½Ç??"
+    IDS_ERR_DB_CREATE       "DataBase »ý¼º ½Ç??."
+    IDS_ERR_GOTO_TOWN_OUT_OF_HP "HP °¡ Àý¹Ý ÀÌ?ÏÀÏ¶§´? ¸¶À»·Î °¥¼ö ¾ø½À´Ï´Ù."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_PERSONAL_TRADE_FMT_WAIT 
-                            "%s ´ÔÀÌ %s ´Ô¿¡°Ô °Å·¡¸¦ ½ÅÃ»ÇÏ¼Ì½À´Ï´Ù. ÀÀ´äÀ» ±â´Ù¸®°í ÀÖ½À´Ï´Ù."
+                            "%s ´ÔÀÌ %s ´Ô¿¡°Ô °Å·¡¸¦ ½ÅÃ»?Ï¼Ì½À´Ï´?. ÀÀ´äÀ» ±â´Ù¸®°í ÀÖ½À´Ï´Ù."
     IDS_PERSONAL_TRADE_PERMIT 
-                            "%s ´ÔÀÌ %s ´Ô¿¡°Ô¼­ °Å·¡¸¦ ½ÅÃ»¹Þ¾Ò½À´Ï´Ù. ¼ö¶ôÇÏ½Ã°Ú½À´Ï±î?"
+                            "%s ´ÔÀÌ %s ´Ô¿¡°Ô¼­ °Å·¡¸¦ ½ÅÃ»¹Þ¾Ò½À´Ï´Ù. ¼ö¶ô?Ï½Ã°Ú½À´Ï±??"
     IDS_PERSONAL_TRADE_REQUEST " ´Ô¿¡°Ô °Å·¡ ½ÅÃ»"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_VERSION_CONFIRM     "ÀÌ Å¬¶óÀÌ¾ðÆ®ÀÇ ¹öÀüÀº %.3f ÀÌ¸ç ÀÌ ¼­¹ö¿¡ Á¢¼ÓÇÏ·Á¸é %.3f ¹öÀüÀÌ ÇÊ¿äÇÕ´Ï´Ù."
+    IDS_VERSION_CONFIRM     "ÀÌ Å¬¶óÀÌ¾ð?®À? ¹öÀüÀº %.3f ÀÌ¸ç ÀÌ ¼­¹ö¿¡ Á¢¼Ó?Ï·Á¸? %.3f ¹öÀüÀÌ ?Ê¿äÇÕ´Ï´?."
     IDS_TOOLTIP_BONUSSTA    "Ã¼·Â º¸³Ê½º   : %d"
-    IDS_VERSION_CONFIRM_TW  "½ÇÇàÆÄÀÏ ¹öÀüÀÌ Æ²¸³´Ï´Ù. ÃÖ½Å ½ÇÇàÆÄÀÏÀ» ¼³Ä¡ÇÏ¼¼¿ä."
+    IDS_VERSION_CONFIRM_TW  "½Ç?àÆÄÀ? ¹öÀüÀÌ ?²¸³´Ï´?. ÃÖ½Å ½Ç?àÆÄÀÏÀ? ¼³Ä¡?Ï¼¼¿?."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_EXIT                "Á¾·áÇÏ½Ã°Ú½À´Ï±î?"
+    IDS_EXIT                "Á¾·á?Ï½Ã°Ú½À´Ï±??"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_TRY_SPEED_HACKING   "½ºÇÇµå ÇØÅ·ÀÌ ½ÃµµµÇ¾ú½À´Ï´Ù."
+    IDS_TRY_SPEED_HACKING   "½º??µå ?ØÅ·À? ½ÃµµµÇ¾ú½À´Ï´Ù."
 END
 
 STRINGTABLE DISCARDABLE 
@@ -129,16 +129,16 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDS_CLASS_EL_RANGER     "·¹ÀÎÀú"
     IDS_CLASS_KA_BERSERKER  "¹ö¼­Ä¿"
-    IDS_CLASS_KA_DARKPRIEST "´ÙÅ©ÇÁ¸®½ºÆ®"
+    IDS_CLASS_KA_DARKPRIEST "´ÙÅ©?Á¸®½ºÆ?"
     IDS_CLASS_KA_GUARDIAN   "°¡µð¾ð"
-    IDS_CLASS_KA_HUNTER     "ÇåÅÍ"
+    IDS_CLASS_KA_HUNTER     "?åÅ?"
     IDS_CLASS_KA_NECROMANCER "³×Å©·Î¸Ç¼­"
-    IDS_CLASS_KA_PENETRATOR "Æä³ÊÆ®·¹ÀÌÅÍ"
+    IDS_CLASS_KA_PENETRATOR "?ä³ÊÆ®·¹ÀÌÅ?"
     IDS_CLASS_KA_SHAMAN     "»þ¸Õ"
     IDS_CLASS_KA_SORCERER   "¼Ò¼­·¯"
     IDS_CLASS_PRIEST        "»çÁ¦"
     IDS_CLASS_ROGUE         "·Î±×"
-    IDS_CLASS_UNKNOWN       "¹ÌÈ®ÀÎÁ÷¾÷"
+    IDS_CLASS_UNKNOWN       "¹Ì?®ÀÎÁ÷¾?"
     IDS_CLASS_WARRIOR       "Àü»ç"
     IDS_CLASS_WIZARD        "¸¶¹ý»ç"
 END
@@ -147,7 +147,7 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NATION_ELMORAD      "¿¤¸ð¶óµå"
     IDS_NATION_KARUS        "Ä«·ç½º"
-    IDS_NATION_UNKNOWN      "¹ÌÈ®ÀÎ±¹°¡"
+    IDS_NATION_UNKNOWN      "¹Ì?®ÀÎ±¹°?"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -157,93 +157,93 @@ BEGIN
     IDS_RACE_EL_MAN         "¿¤¸ð¶óµð¾È ³²ÀÚ"
     IDS_RACE_EL_WOMEN       "¿¤¸ð¶óµð¾È ¿©ÀÚ"
     IDS_RACE_KA_ARKTUAREK   "¾ÆÅ©Åõ¾Æ·º"
-    IDS_RACE_KA_PURITUAREK  "Ç»¸® Åõ¾Æ·º"
+    IDS_RACE_KA_PURITUAREK  "?»¸? Åõ¾Æ·º"
     IDS_RACE_KA_TUAREK      "Åõ¾Æ·º"
     IDS_RACE_KA_WRINKLETUAREK "¸µÅ¬Åõ¾Æ·º"
-    IDS_RACE_UNKNOWN        "¹ÌÈ®ÀÎÁ¾Á·"
+    IDS_RACE_UNKNOWN        "¹Ì?®ÀÎÁ¾Á?"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_CHR_SELECT_FMT_INFO "·¹º§ : %d \n\nÁ÷¾÷ : %s\n\n I D : %s"
-    IDS_CHR_SELECT_HINT     "¸¶¿ì½º ¿ÞÂÊ ¹öÆ°À» \n\n´©¸£½Ã¸é »õ Ä³¸¯ÅÍ¸¦\n\n¸¸µå½Ç ¼ö ÀÖ½À´Ï´Ù."
+    IDS_CHR_SELECT_HINT     "¸¶¿ì½º ¿ÞÂÊ ¹ö?°À? \n\n´©¸£½Ã¸é »õ Ä³¸¯ÅÍ¸¦\n\n¸¸µå½Ç ¼ö ÀÖ½À´Ï´Ù."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_PARTY_CONFIRM_DESTROY "ÆÄÆ¼¸¦ ÇØÃ¼ÇÏ½Ã°Ú½À´Ï±î?"
-    IDS_PARTY_CONFIRM_DISCHARGE "´ÔÀ» ÆÄÆ¼¿¡¼­ Å»Åð½ÃÅ³±î¿ä?"
-    IDS_PARTY_CONFIRM_LEAVE "ÆÄÆ¼¿¡¼­ Å»ÅðÇÏ½Ã°Ú½À´Ï±î?"
-    IDS_PARTY_DESTROY       "ÆÄÆ¼°¡ ÇØÁ¦µÇ¾ú½À´Ï´Ù."
-    IDS_PARTY_INSERT        "´ÔÀÌ ÆÄÆ¼¿¡ µé¾î¿Ô½À´Ï´Ù."
-    IDS_PARTY_INSERT_ERR    "ÆÄÆ¼ÃÊ´ë°¡ °ÅÀý µÇ¾ú½À´Ï´Ù."
-    IDS_PARTY_INSERT_ERR_INVALID_NATION "ÆÄÆ¼¸¦ ¸ÎÀ» ¼ö ¾ø´Â ±¹°¡ÀÔ´Ï´Ù."
+    IDS_PARTY_CONFIRM_DESTROY "?ÄÆ¼¸? ?ØÃ¼ÇÏ½Ã°Ú½À´Ï±??"
+    IDS_PARTY_CONFIRM_DISCHARGE "´ÔÀ» ?ÄÆ¼¿¡¼? Å»Åð½ÃÅ³±î¿ä?"
+    IDS_PARTY_CONFIRM_LEAVE "?ÄÆ¼¿¡¼? Å»Åð?Ï½Ã°Ú½À´Ï±??"
+    IDS_PARTY_DESTROY       "?ÄÆ¼°? ?ØÁ¦µ?¾ú½À´Ï´Ù."
+    IDS_PARTY_INSERT        "´ÔÀÌ ?ÄÆ¼¿? µé¾î¿Ô½À´Ï´Ù."
+    IDS_PARTY_INSERT_ERR    "?ÄÆ¼ÃÊ´ë°? °ÅÀý µÇ¾ú½À´Ï´Ù."
+    IDS_PARTY_INSERT_ERR_INVALID_NATION "?ÄÆ¼¸? ¸ÎÀ» ¼ö ¾ø´Â ±¹°¡ÀÔ´Ï´Ù."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_LOGIN_FAILED        "·Î±×ÀÎ¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù. °í°´Áö¿øÆÀ¿¡ ¿¬¶ôÇØ ÁÖ½Ê½Ã¿À."
+    IDS_LOGIN_FAILED        "·Î±×ÀÎ¿¡ ½Ç?ÐÇÏ¿´½À´Ï´?. °í°´Áö¿ø?À¿? ¿¬¶ô?? ÁÖ½Ê½Ã¿À."
     IDS_LOGIN_ERR_ALREADY_CONNECTED_ACCOUNT 
-                            "°èÁ¤ ·Î±×ÀÎ ½ÇÆÐ. ´Ù½Ã ½ÃµµÇØ ÁÖ½Ê½Ã¿À."
+                            "°èÁ¤ ·Î±×ÀÎ ½Ç??. ´Ù½Ã ½Ãµµ?? ÁÖ½Ê½Ã¿À."
     IDS_NOACCOUNT_RETRY_MGAMEID 
-                            "µî·ÏµÈ ID °¡ ¾ø½À´Ï´Ù. MGame ID ·Î Á¢¼ÓÀ» ½ÃµµÇÕ´Ï´Ù."
+                            "µî·ÏµÈ ID °¡ ¾ø½À´Ï´Ù. MGame ID ·Î Á¢¼ÓÀ» ½Ãµµ?Õ´Ï´?."
     IDS_NO_MGAME_ACCOUNT    "MGame ¿¡µµ µî·ÏµÈ ID °¡ ¾ø½À´Ï´Ù."
-    IDS_FMT_CONNECT_ERROR   "%s ¼­¹ö¿¡ Á¢¼ÓÇÒ ¼ö ¾ø½À´Ï´Ù.(%d)"
+    IDS_FMT_CONNECT_ERROR   "%s ¼­¹ö¿¡ Á¢¼Ó?? ¼ö ¾ø½À´Ï´Ù.(%d)"
     IDS_FMT_GAME_SERVER_LOGIN_ERROR 
-                            "%s ¼­¹ö¿¡ Á¢¼ÓÀº µÇ¾úÀ¸³ª °ÔÀÓ ·Î±×ÀÎ¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.(%d)"
-    IDS_SERVER_CONNECT_FAIL "¼­¹ö Á¢¼Ó ½ÇÆÐ."
-    IDS_CURRENT_SERVER_ERROR "ÇØ´ç ¼­¹ö¿¡ ¿À·ù°¡ ÀÖ½À´Ï´Ù.."
-    IDS_CONNECT_FAIL        "Á¢¼Ó ½ÇÆÐ"
+                            "%s ¼­¹ö¿¡ Á¢¼ÓÀº µÇ¾úÀ¸³ª °ÔÀÓ ·Î±×ÀÎ¿¡ ½Ç?ÐÇÏ¿´½À´Ï´?.(%d)"
+    IDS_SERVER_CONNECT_FAIL "¼­¹ö Á¢¼Ó ½Ç??."
+    IDS_CURRENT_SERVER_ERROR "?Ø´? ¼­¹ö¿¡ ¿À·ù°¡ ÀÖ½À´Ï´Ù.."
+    IDS_CONNECT_FAIL        "Á¢¼Ó ½Ç??"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_CONFIRM_DELETE_CHR  "Ä³¸¯ÅÍ¸¦ »èÁ¦ÇÏ·Á¸é ÁÖ¹Îµî·Ï ¹øÈ£¸¦ ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À.\n¿¹) 890123-4567890"
+    IDS_CONFIRM_DELETE_CHR  "Ä³¸¯ÅÍ¸¦ »èÁ¦?Ï·Á¸? ÁÖ¹Îµî·Ï ¹ø?£¸? ÀÔ·Â?? ÁÖ½Ê½Ã¿À.\n¿¹) 890123-4567890"
     IDS_CONFIRM_EXIT_GAME   "°ÔÀÓÀ» ³¡³»½Ã°Ú½À´Ï±î?"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_NEWCHR_KA_TUAREK    "Åõ¾Æ·ºÀº À°Ã¼ÀûÀÎ ´É·Â°ú Á¤½ÅÀûÀÎ ´É·ÂÀÌ ±ÕÇüÀ» ÀÌ·ç°í ÀÖ´Â Á¾Á·À¸·Î ·Î±×¿Í »çÁ¦ÀÇ Á÷¾÷À» ¼±ÅÃÇÒ ¼ö ÀÖ½À´Ï´Ù."
-    IDS_NEWCHR_KA_WARRIOR   "Àü»ç´Â ÁßÀå°©°ú ¸ðµç Á¾·ùÀÇ °ø°Ý ¹«±â¸¦ »ç¿ëÇÏ´Â ¹ö¼­Ä¿¿Í ³ôÀº ¹æ¾î·ÂÀ» ¹ÙÅÁÀ¸·Î »çÁ¦¿Í ¸¶¹ý»çÀÇ º¸È£ ÀÓ¹«¸¦ ¸Ã´Â °¡µð¾ðÀ¸·Î ¼ºÀåÇÒ ¼ö ÀÖ½À´Ï´Ù."
+    IDS_NEWCHR_KA_TUAREK    "Åõ¾Æ·ºÀº À°Ã¼ÀûÀÎ ´É·Â°ú Á¤½ÅÀûÀÎ ´É·ÂÀÌ ±Õ??À» ÀÌ·ç°í ÀÖ´Â Á¾Á·À¸·Î ·Î±×¿Í »çÁ¦ÀÇ Á÷¾÷À» ¼±ÅÃ?? ¼ö ÀÖ½À´Ï´Ù."
+    IDS_NEWCHR_KA_WARRIOR   "Àü»ç´Â ÁßÀå°©°ú ¸ðµç Á¾·ùÀÇ °ø°Ý ¹«±â¸¦ »ç¿ë?Ï´? ¹ö¼­Ä¿¿Í ³ôÀº ¹æ¾î·ÂÀ» ¹ÙÅÁÀ¸·Î »çÁ¦¿Í ¸¶¹ý»çÀÇ º¸?? ÀÓ¹«¸¦ ¸Ã´Â °¡µð¾ðÀ¸·Î ¼ºÀå?? ¼ö ÀÖ½À´Ï´Ù."
     IDS_NEWCHR_KA_WRINKLETUAREK 
-                            "¸µÅ¬ Åõ¾Æ·ºÀº °­·ÂÇÑ ¸¶¹ýÀ» ±¸»çÇÏ±â À§ÇØ Á¤½ÅÀûÀÎ ´É·ÂÀ» °­È­½ÃÅ² Á¾Á·ÀÔ´Ï´Ù. ¸µÅ¬ Åõ¾Æ·ºÀº ¸¶¹ý»ç¸¸À» ¼±ÅÃÇÒ ¼ö ÀÖ½À´Ï´Ù."
-    IDS_NEWCHR_POW          "¹«±â¸¦ ÀÌ¿ëÇÑ Ä³¸¯ÅÍÀÇ °ø°Ý°ú ¹æ¾î·Â¿¡ ¿µÇâÀ» ¹ÌÄ¡´Â ´É·ÂÀÔ´Ï´Ù."
-    IDS_NEWCHR_STA          "Ä³¸¯ÅÍÀÇ »ý¸í·Â(HP)À» °áÁ¤ÇÏ´Â ´É·ÂÀÔ´Ï´Ù."
+                            "¸µÅ¬ Åõ¾Æ·ºÀº °­·Â?? ¸¶¹ýÀ» ±¸»ç?Ï±? À§?? Á¤½ÅÀûÀÎ ´É·ÂÀ» °­?­½ÃÅ? Á¾Á·ÀÔ´Ï´Ù. ¸µÅ¬ Åõ¾Æ·ºÀº ¸¶¹ý»ç¸¸À» ¼±ÅÃ?? ¼ö ÀÖ½À´Ï´Ù."
+    IDS_NEWCHR_POW          "¹«±â¸¦ ÀÌ¿ë?? Ä³¸¯ÅÍÀÇ °ø°Ý°ú ¹æ¾î·Â¿¡ ¿µ?âÀ? ¹ÌÄ¡´Â ´É·ÂÀÔ´Ï´Ù."
+    IDS_NEWCHR_STA          "Ä³¸¯ÅÍÀÇ »ý¸í·Â(HP)À» °áÁ¤?Ï´? ´É·ÂÀÔ´Ï´Ù."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_NEWCHR_MAP          "Ä³¸¯ÅÍÀÇ ¸¶¹ý °ø°Ý·ÂÀ» °áÁ¤Áþ´Â ´É·ÂÀÔ´Ï´Ù."
-    IDS_NEWCHR_DEX          "Ä³¸¯ÅÍ°¡ ÀüÅõ Áß ÀûÀÇ °ø°ÝÀ» È¸ÇÇÇÒ ¼ö ÀÖ´Â È®·üÀ» ³ôÀÌ¸ç ·Î±×ÀÇ È­»ì °ø°Ý·ÂÀ» ³ô¿© ÁÖ´Â ´É·ÂÀÔ´Ï´Ù."
-    IDS_NEWCHR_EL_BABA      "¹Ù¹Ù¸®¾ÈÀº °­ÀÎÇÑ À°Ã¼¸¦ ¼ÒÀ¯ÇÑ ºÏ¹æÀÇ Àü»ç·Î Àü»çÀÌ¿ÜÀÇ Á÷¾÷Àº ¼±ÅÃÇÒ ¼ö ¾ø½À´Ï´Ù."
-    IDS_NEWCHR_EL_FEMALE    "¿¤¸ð¶óµð¾È ¿©ÀÚ´Â ³ôÀº Áö´É°ú ¸¶·ÂÀ» ¼ÒÀ¯ÇÑ Ä³¸¯ÅÍÀÔ´Ï´Ù."
-    IDS_NEWCHR_EL_MAGE      "¸¶¹ý»ç´Â 4´ë ¿ø¼ÒÀÇ ÈûÀ» ÀÌ¿ëÇØ °ø°Ý ¸¶¹ýÀ» ±¸»çÇÏ´Â ¸ÞÀÌÁö¿Í Á¤½ÅÀÇ Áö¹èÀÚÀÎ ¿£Ã¾ÅÍ·Î ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."
-    IDS_NEWCHR_EL_MALE      "¿¤¸ð¶óµð¾È ³²ÀÚ´Â Ã¼·Â°ú Áö´ÉÀÌ ±ÕÇüÀ» ÀÌ·ç°í ÀÖ¾î ¸ðµç Á÷¾÷¿¡ ÀûÇÕÇÕ´Ï´Ù."
-    IDS_NEWCHR_EL_PRIEST    "»çÁ¦´Â µ¿·áÀÇ Ä¡·á¸¦ ÁÖ ÀÓ¹«·Î ÇÏ´Â Å¬·¹¸¯°ú µ¿·áÀÇ ´É·ÂÄ¡¸¦ ³ôÀÌ°Å³ª Àû¿¡°Ô ÀúÁÖ¸¦ °Å´Â µå·çÀÌµå·Î ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."
-    IDS_NEWCHR_EL_ROGUE     "·Î±×´Â ¸öÀ» ¼û±â°í Àû¿¡°Ô ´Ù°¡°¡ Ä¡¸í»óÀ» ÀÔÈ÷´Â ¾î½Ø½Å°ú È°°ú Ã¢À» ÀÌ¿ëÇØ ¿ø°Å¸® °ø°ÝÀ» ÇÏ´Â ·¹ÀÎÁ®·Î ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."
-    IDS_NEWCHR_EL_WARRIOR   "Àü»ç´Â ÁßÀå°©°ú ¸ðµç Á¾·ùÀÇ °ø°Ý ¹«±â¸¦ »ç¿ëÇÏ´Â ºí·¹ÀÌµå¿Í ³ôÀº ¹æ¾î·ÂÀ» ¹ÙÅÁÀ¸·Î ¾Æ±ºÀÇ ¸¶¹ý»ç¿Í »çÁ¦¸¦ º¸È£ÇÏ´Â ÇÁ·ÎÅØÅÍ·Î ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."
+    IDS_NEWCHR_DEX          "Ä³¸¯ÅÍ°¡ ÀüÅõ Áß ÀûÀÇ °ø°ÝÀ» ?¸Ç??? ¼ö ÀÖ´Â ?®·?À» ³ôÀÌ¸ç ·Î±×ÀÇ ?­»? °ø°Ý·ÂÀ» ³ô¿© ÁÖ´Â ´É·ÂÀÔ´Ï´Ù."
+    IDS_NEWCHR_EL_BABA      "¹Ù¹Ù¸®¾ÈÀº °­ÀÎ?? À°Ã¼¸¦ ¼ÒÀ¯?? ºÏ¹æÀÇ Àü»ç·Î Àü»çÀÌ¿ÜÀÇ Á÷¾÷Àº ¼±ÅÃ?? ¼ö ¾ø½À´Ï´Ù."
+    IDS_NEWCHR_EL_FEMALE    "¿¤¸ð¶óµð¾È ¿©ÀÚ´Â ³ôÀº Áö´É°ú ¸¶·ÂÀ» ¼ÒÀ¯?? Ä³¸¯ÅÍÀÔ´Ï´Ù."
+    IDS_NEWCHR_EL_MAGE      "¸¶¹ý»ç´Â 4´ë ¿ø¼ÒÀÇ ??À» ÀÌ¿ë?? °ø°Ý ¸¶¹ýÀ» ±¸»ç?Ï´? ¸ÞÀÌÁö¿Í Á¤½ÅÀÇ Áö¹èÀÚÀÎ ¿£Ã¾ÅÍ·Î ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."
+    IDS_NEWCHR_EL_MALE      "¿¤¸ð¶óµð¾È ³²ÀÚ´Â Ã¼·Â°ú Áö´ÉÀÌ ±Õ??À» ÀÌ·ç°í ÀÖ¾î ¸ðµç Á÷¾÷¿¡ Àû?ÕÇÕ´Ï´?."
+    IDS_NEWCHR_EL_PRIEST    "»çÁ¦´Â µ¿·áÀÇ Ä¡·á¸¦ ÁÖ ÀÓ¹«·Î ?Ï´? Å¬·¹¸¯°ú µ¿·áÀÇ ´É·ÂÄ¡¸¦ ³ôÀÌ°Å³ª Àû¿¡°Ô ÀúÁÖ¸¦ °Å´Â µå·çÀÌµå·Î ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."
+    IDS_NEWCHR_EL_ROGUE     "·Î±×´Â ¸öÀ» ¼û±â°í Àû¿¡°Ô ´Ù°¡°¡ Ä¡¸í»óÀ» ÀÔ?÷´? ¾î½Ø½Å°ú ?°°? Ã¢À» ÀÌ¿ë?? ¿ø°Å¸® °ø°ÝÀ» ?Ï´? ·¹ÀÎÁ®·Î ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."
+    IDS_NEWCHR_EL_WARRIOR   "Àü»ç´Â ÁßÀå°©°ú ¸ðµç Á¾·ùÀÇ °ø°Ý ¹«±â¸¦ »ç¿ë?Ï´? ºí·¹ÀÌµå¿Í ³ôÀº ¹æ¾î·ÂÀ» ¹ÙÅÁÀ¸·Î ¾Æ±ºÀÇ ¸¶¹ý»ç¿Í »çÁ¦¸¦ º¸???Ï´? ?Á·ÎÅØÅÍ·? ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."
     IDS_NEWCHR_INT          "¸¶¹ý»ç¿Í »çÁ¦ÀÇ Á¤½Å ¿¡³ÊÁö(MP) ·®°ú ¸¶¹ýÀÇ À§·ÂÀ» °áÁ¤Áþ´Â ´É·ÂÀÔ´Ï´Ù."
-    IDS_NEWCHR_KA_ARKTUAREK "¾ÆÅ© Åõ¾Æ·ºÀº À°Ã¼ÀÇ ´É·ÂÀ» ±Ø´ëÈ­ ½ÃÅ² Á¾Á·À¸·Î ¿ÀÁ÷ Àü»ç¸¸À» ¼±ÅÃÇÒ ¼ö ÀÖ½À´Ï´Ù."
-    IDS_NEWCHR_KA_MAGE      "¸¶¹ý»ç´Â 4´ë ¿ø¼ÒÀÇ ÈûÀ» ÀÌ¿ëÇØ °ø°Ý ¸¶¹ýÀ» ±¸»çÇÏ´Â ¼Ò¼­·¯¿Í Á×Àº ÀÚµéÀÇ ÁÖÀÎÀÎ ³×Å©·Î¸Ç¼­·Î ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."
-    IDS_NEWCHR_KA_PRIEST    "»çÁ¦´Â µ¿·áÀÇ Ä¡·á¸¦ ÁÖ ÀÓ¹«·Î ÇÏ´Â »þ¸¸°ú °­·ÂÇÑ ÀúÁÖÀÇ ´É·ÂÀ» °¡Áø ´ÙÅ© ÇÁ¸®½ºÆ®·Î ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."
+    IDS_NEWCHR_KA_ARKTUAREK "¾ÆÅ© Åõ¾Æ·ºÀº À°Ã¼ÀÇ ´É·ÂÀ» ±Ø´ë?? ½ÃÅ² Á¾Á·À¸·Î ¿ÀÁ÷ Àü»ç¸¸À» ¼±ÅÃ?? ¼ö ÀÖ½À´Ï´Ù."
+    IDS_NEWCHR_KA_MAGE      "¸¶¹ý»ç´Â 4´ë ¿ø¼ÒÀÇ ??À» ÀÌ¿ë?? °ø°Ý ¸¶¹ýÀ» ±¸»ç?Ï´? ¼Ò¼­·¯¿Í Á×Àº ÀÚµéÀÇ ÁÖÀÎÀÎ ³×Å©·Î¸Ç¼­·Î ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."
+    IDS_NEWCHR_KA_PRIEST    "»çÁ¦´Â µ¿·áÀÇ Ä¡·á¸¦ ÁÖ ÀÓ¹«·Î ?Ï´? »þ¸¸°ú °­·Â?? ÀúÁÖÀÇ ´É·ÂÀ» °¡Áø ´ÙÅ© ?Á¸®½ºÆ®·? ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."
     IDS_NEWCHR_KA_PURITUAREK 
-                            "Ç»¸® Åõ¾Æ·ºÀº ¼ø¼öÇÏ°Ô Á¤È­µÈ Á¤½Å ¿¡³ÊÁö¸¦ ÀÌ¿ëÇØ Ä¡·á ¸¶¹ý°ú ÀúÁÖ ¸¶¹ýÀ» ±¸»çÇÏ´Â Ä«·ç½ºÀÇ ¿©¼º Ä³¸¯ÅÍ·Î »çÁ¦ Á÷¾÷À» ¼±ÅÃÇÒ ¼ö ÀÖ½À´Ï´Ù."
-    IDS_NEWCHR_KA_ROGUE     "·Î±×´Â ¸öÀ» ¼û±â°í Àû¿¡°Ô ´Ù°¡°¡ Ä¡¸í»óÀ» ÀÔÈ÷´Â ¾î½Ø½Å°ú È°°ú È­»ìÀ» ÀÌ¿ëÇØ ¿ø°Å¸® °ø°ÝÀ» ÇÏ´Â ÇåÅÍ·Î ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."
+                            "?»¸? Åõ¾Æ·ºÀº ¼ø¼ö?Ï°? Á¤?­µ? Á¤½Å ¿¡³ÊÁö¸¦ ÀÌ¿ë?? Ä¡·á ¸¶¹ý°ú ÀúÁÖ ¸¶¹ýÀ» ±¸»ç?Ï´? Ä«·ç½ºÀÇ ¿©¼º Ä³¸¯ÅÍ·Î »çÁ¦ Á÷¾÷À» ¼±ÅÃ?? ¼ö ÀÖ½À´Ï´Ù."
+    IDS_NEWCHR_KA_ROGUE     "·Î±×´Â ¸öÀ» ¼û±â°í Àû¿¡°Ô ´Ù°¡°¡ Ä¡¸í»óÀ» ÀÔ?÷´? ¾î½Ø½Å°ú ?°°? ?­»ìÀ? ÀÌ¿ë?? ¿ø°Å¸® °ø°ÝÀ» ?Ï´? ?åÅÍ·? ¼ºÀå½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_REQUEST_BINDPOINT   "ÀÌ°÷À» ºÎÈ°Àå¼Ò·Î ÁöÁ¤ÇÏ°Ú½À´Ï±î?"
+    IDS_REQUEST_BINDPOINT   "ÀÌ°÷À» ºÎ?°Àå¼Ò·? ÁöÁ¤?Ï°Ú½À´Ï±??"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_CLASS_CHANGE_ALREADY 
-                            "¿äÁòÀº ¾î¶²°¡? ½Â¸®¸¦ À§ÇØ¼­´Â ÀÚ³×¿Í °°Àº »ç¶÷µéÀÇ ³ë·ÂÀÌ ÇÊ¿äÇÏ³×."
-    IDS_CLASS_CHANGE_NOT_YET "ÀÚ³Ù Á»´õ ¼ö·ÃÀÌ ÇÊ¿äÇÑ °Í °°±º."
+                            "¿äÁòÀº ¾î¶²°¡? ½Â¸®¸¦ À§?Ø¼­´? ÀÚ³×¿Í °°Àº »ç¶÷µéÀÇ ³ë·ÂÀÌ ?Ê¿äÇÏ³?."
+    IDS_CLASS_CHANGE_NOT_YET "ÀÚ³Ù Á»´õ ¼ö·ÃÀÌ ?Ê¿äÇ? °Í °°±º."
     IDS_CLASS_CHANGE_SUCCESS 
-                            "ÀÚ³×´Â Á÷¾÷À» ¹Ù²Ü ¼ö ÀÖ´Â ÀÚ°ÝÀ» ¾ò¾ú±º. ÀÚ³×´Â ´ÙÀ½ µÎ Á÷¾÷ Áß ÇÏ³ª¸¦ ¼±ÅÃÇÒ ¼ö ÀÖ³×. ¾î´À °ÍÀ» ¼±ÅÃÇÒÅÙ°¡?"
+                            "ÀÚ³×´Â Á÷¾÷À» ¹Ù²Ü ¼ö ÀÖ´Â ÀÚ°ÝÀ» ¾ò¾ú±º. ÀÚ³×´Â ´ÙÀ½ µÎ Á÷¾÷ Áß ?Ï³ª¸? ¼±ÅÃ?? ¼ö ÀÖ³×. ¾î´À °ÍÀ» ¼±ÅÃ?ÒÅÙ°??"
     IDS_CLASS_KINDOF_WARRIOR "Àü»ç Á÷¾÷±º"
     IDS_CLASS_KINDOF_ROGUE  "·Î±× Á÷¾÷±º"
     IDS_CLASS_KINDOF_WIZARD "¸¶¹ý»ç Á÷¾÷±º"
@@ -262,114 +262,114 @@ BEGIN
     IDS_CLASS_EL_DRUID      "µå·çÀÌµå"
     IDS_CLASS_EL_ENCHANTER  "¿£Ã¾ÅÍ"
     IDS_CLASS_EL_MAGE       "¸ÞÀÌÁö"
-    IDS_CLASS_EL_PROTECTOR  "ÇÁ·ÎÅØÅÍ"
+    IDS_CLASS_EL_PROTECTOR  "?Á·ÎÅØÅ?"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_SKILL_FAIL_CASTING  "Ä³½ºÆÃ ½ÇÆÐ"
-    IDS_SKILL_FAIL_DIFFURENTCLASS "»ç¿ëÇÒ ¼ö ¾ø´Â ½ºÅ³(¸¶¹ý)ÀÔ´Ï´Ù."
+    IDS_SKILL_FAIL_CASTING  "Ä³½º?? ½Ç??"
+    IDS_SKILL_FAIL_DIFFURENTCLASS "»ç¿ë?? ¼ö ¾ø´Â ½ºÅ³(¸¶¹ý)ÀÔ´Ï´Ù."
     IDS_SKILL_FAIL_EFFECTING "%s ¹«»ê"
-    IDS_SKILL_FAIL_INVALID_ITEM "½ºÅ³ ½ÇÆÐ - ¾ÆÀÌÅÛÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù."
-    IDS_SKILL_FAIL_LACK_HP  "½ºÅ³ ½ÇÆÐ - HP ºÎÁ·"
-    IDS_SKILL_FAIL_LACK_ITEM "½ºÅ³ ½ÇÆÐ - ¾ÆÀÌÅÛÀÌ ºÎÁ·ÇÕ´Ï´Ù."
-    IDS_SKILL_FAIL_LACK_SP  "½ºÅ³ ½ÇÆÐ - SP ºÎÁ·"
-    IDS_SKILL_FAIL_SOFAR    "½ºÅ³ ½ÇÆÐ - °Å¸®°¡ ¸Ù´Ï´Ù."
-    IDS_SKILL_FAIL_OBJECT_BLOCK "½ºÅ³ ½ÇÆÐ - ¿ÀºêÁ§Æ®¿¡ ¸·Èû"
+    IDS_SKILL_FAIL_INVALID_ITEM "½ºÅ³ ½Ç?? - ¾ÆÀÌÅÛÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù."
+    IDS_SKILL_FAIL_LACK_HP  "½ºÅ³ ½Ç?? - HP ºÎÁ·"
+    IDS_SKILL_FAIL_LACK_ITEM "½ºÅ³ ½Ç?? - ¾ÆÀÌÅÛÀÌ ºÎÁ·?Õ´Ï´?."
+    IDS_SKILL_FAIL_LACK_SP  "½ºÅ³ ½Ç?? - SP ºÎÁ·"
+    IDS_SKILL_FAIL_SOFAR    "½ºÅ³ ½Ç?? - °Å¸®°¡ ¸Ù´Ï´Ù."
+    IDS_SKILL_FAIL_OBJECT_BLOCK "½ºÅ³ ½Ç?? - ¿ÀºêÁ§?®¿? ¸·??"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_SKILL_SUCCESS_HEALING_FROM "%s¿¡°Ô¼­ %dÈú¸µ"
-    IDS_SKILL_SUCCESS_HEALING_TO "%s¿¡°Ô %dÈú¸µ"
+    IDS_SKILL_SUCCESS_HEALING_FROM "%s¿¡°Ô¼­ %d??¸µ"
+    IDS_SKILL_SUCCESS_HEALING_TO "%s¿¡°Ô %d??¸µ"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_MSG_FMT_EXP_LOST    "%d °æÇèÄ¡ ÀÒÀ½"
+    IDS_MSG_FMT_EXP_LOST    "%d °æ?èÄ? ÀÒÀ½"
     IDS_MSG_FMT_HP_LOST     "%d HP ´ë¹ÌÁö"
-    IDS_MSG_FMT_HP_RECOVER  "%d HP È¸º¹"
-    IDS_MSG_FMT_MP_RECOVER  "%d MP È¸º¹"
+    IDS_MSG_FMT_HP_RECOVER  "%d HP ?¸º?"
+    IDS_MSG_FMT_MP_RECOVER  "%d MP ?¸º?"
     IDS_MSG_FMT_MP_USE      "%d MP »ç¿ë"
-    IDS_MSG_FMT_SP_RECOVER  "%d SP È¸º¹"
+    IDS_MSG_FMT_SP_RECOVER  "%d SP ?¸º?"
     IDS_MSG_FMT_SP_USE      "%d SP »ç¿ë"
-    IDS_MSG_FMT_TARGET_ATTACK_FAILED "%s °ø°Ý ½ÇÆÐ."
+    IDS_MSG_FMT_TARGET_ATTACK_FAILED "%s °ø°Ý ½Ç??."
     IDS_MSG_FMT_TARGET_HP_LOST "%s¿¡°Ô %d Å¸°Ý"
-    IDS_MSG_FMT_TARGET_HP_RECOVER "%sÀÇ HP %d È¸º¹"
+    IDS_MSG_FMT_TARGET_HP_RECOVER "%sÀÇ HP %d ?¸º?"
     IDS_MSG_VALID_CLASSNRACE_INVALID_RACE "Á¾Á·ÀÌ ¸ÂÁö ¾Ê¾Æ ÀåÂøÀÌ ºÒ°¡"
     IDS_MSG_VALID_CLASSNRACE_LOW_CHA "¸¶·ÂÀÌ ³·¾Æ ÀåÂøÀÌ ºÒ°¡"
     IDS_MSG_VALID_CLASSNRACE_LOW_DEX "¹ÎÃ¸ÀÌ ³·¾Æ ÀåÂøÀÌ ºÒ°¡"
     IDS_MSG_VALID_CLASSNRACE_LOW_INT "Áö´ÉÀÌ ³·¾Æ ÀåÂøÀÌ ºÒ°¡"
     IDS_MSG_VALID_CLASSNRACE_LOW_LEVEL "·¹º§ÀÌ ³·¾Æ ÀåÂøÀÌ ºÒ°¡"
-    IDS_MSG_VALID_CLASSNRACE_LOW_POWER "ÈûÀÌ ³·¾Æ ÀåÂøÀÌ ºÒ°¡"
+    IDS_MSG_VALID_CLASSNRACE_LOW_POWER "??ÀÌ ³·¾Æ ÀåÂøÀÌ ºÒ°¡"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_MSG_ATTACK_DISABLE  "°Å¸®°¡ ¸Ö°Å³ª ¹æÇâÀÌ Æ²·Á °ø°ÝÇÒ ¼ö ¾ø½À´Ï´Ù."
+    IDS_MSG_ATTACK_DISABLE  "°Å¸®°¡ ¸Ö°Å³ª ¹æ?âÀ? ?²·? °ø°Ý?? ¼ö ¾ø½À´Ï´Ù."
     IDS_MSG_ATTACK_START    "°ø°Ý ½ÃÀÛ"
     IDS_MSG_ATTACK_STOP     "°ø°Ý ¸ØÃã"
-    IDS_MSG_CASTING_FAIL_LACK_MP "½ºÅ³ ½ÇÆÐ - MP ºÎÁ·"
-    IDS_MSG_FMT_EXP_GET     "%d °æÇèÄ¡ ¾òÀ½"
+    IDS_MSG_CASTING_FAIL_LACK_MP "½ºÅ³ ½Ç?? - MP ºÎÁ·"
+    IDS_MSG_FMT_EXP_GET     "%d °æ?èÄ? ¾òÀ½"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_MSG_VALID_CLASSNRACE_LOW_RANK "ÀÛÀ§°¡ ³·¾Æ ÀåÂøÀÌ ºÒ°¡"
     IDS_MSG_VALID_CLASSNRACE_LOW_STR "½ºÅ×¹Ì³ª°¡ ³·¾Æ ÀåÂøÀÌ ºÒ°¡"
-    IDS_MSG_VALID_CLASSNRACE_LOW_TITLE "Å¸ÀÌÆ²ÀÌ ³·¾Æ ÀåÂøÀÌ ºÒ°¡"
+    IDS_MSG_VALID_CLASSNRACE_LOW_TITLE "Å¸ÀÌ?²À? ³·¾Æ ÀåÂøÀÌ ºÒ°¡"
     IDS_MSG_CONCURRENT_USER_OVERFLOW 
-                            "ÇØ´ç Áö¿ªÀÇ µ¿½ÃÁ¢¼ÓÀÚ ¼ö¸¦ ÃÊ°úÇÏ¿´½À´Ï´Ù."
+                            "?Ø´? Áö¿ªÀÇ µ¿½ÃÁ¢¼ÓÀÚ ¼ö¸¦ ÃÊ°ú?Ï¿´½À´Ï´?."
     IDS_MSG_VALID_CLASSNRACE_INVALID_CLASS "Á÷¾÷ÀÌ ¸ÂÁö¾Ê¾Æ ÀåÂøÀÌ ºÒ°¡"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_BIND_POINT_FAILED   "ºÎÈ°Àå¼Ò ÁöÁ¤ ½ÇÆÐ"
-    IDS_BIND_POINT_REQUEST_FAIL "ºÎÈ°Àå¼ÒÀÇ °Å¸®°¡ ³Ê¹« ¸Ù´Ï´Ù."
-    IDS_BIND_POINT_SUCCESS  "ºÎÈ°Àå¼Ò ÁöÁ¤ ¼º°ø"
+    IDS_BIND_POINT_FAILED   "ºÎ?°Àå¼? ÁöÁ¤ ½Ç??"
+    IDS_BIND_POINT_REQUEST_FAIL "ºÎ?°Àå¼ÒÀ? °Å¸®°¡ ³Ê¹« ¸Ù´Ï´Ù."
+    IDS_BIND_POINT_SUCCESS  "ºÎ?°Àå¼? ÁöÁ¤ ¼º°ø"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_CHAT_SELECT_TARGET_FAIL "±Ó¼Ó¸» ¼³Á¤ÀÌ ½ÇÆÐÇß½À´Ï´Ù."
+    IDS_CHAT_SELECT_TARGET_FAIL "±Ó¼Ó¸» ¼³Á¤ÀÌ ½Ç?ÐÇß½À´Ï´?."
     IDS_CHAT_SELECT_TARGET_SUCCESS "´Ô°ú ±Ó¼Ó¸»ÀÌ ¼³Á¤µÇ¾ú½À´Ï´Ù."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_FMT_CONCURRENT_USER_COUNT "*** ÇöÀç µ¿½Ã Á¢¼ÓÀÚ¼ö %d ¸í ***"
+    IDS_FMT_CONCURRENT_USER_COUNT "*** ?öÀ? µ¿½Ã Á¢¼ÓÀÚ¼ö %d ¸í ***"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_SKILL_UP_INVALID    "ÀÚ½ÅÀÇ ·¹º§º¸´Ù ÇØ´ç ½ºÅ³À» ¿Ã¸±¼ö ¾ø½À´Ï´Ù."
-    IDS_SKILL_USE           "%sÀ»(¸¦) »ç¿ëÇÕ´Ï´Ù."
+    IDS_SKILL_UP_INVALID    "ÀÚ½ÅÀÇ ·¹º§º¸´Ù ?Ø´? ½ºÅ³À» ¿Ã¸±¼ö ¾ø½À´Ï´Ù."
+    IDS_SKILL_USE           "%sÀ»(¸¦) »ç¿ë?Õ´Ï´?."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_REPAIR_LACK_GOLD    "¼ö¸® ºñ¿ëÀÌ ºÎÁ·ÇÕ´Ï´Ù. "
+    IDS_REPAIR_LACK_GOLD    "¼ö¸® ºñ¿ëÀÌ ºÎÁ·?Õ´Ï´?. "
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_DOOR_CLOSED         "¼º¹®ÀÌ ´ÝÇû½À´Ï´Ù."
+    IDS_DOOR_CLOSED         "¼º¹®ÀÌ ´Ý??½À´Ï´Ù."
     IDS_DOOR_OPENED         "¼º¹®ÀÌ ¿­·È½À´Ï´Ù."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_KNIGHTS_APPOINT_CHIEF_SUCCESS "±â»ç´ÜÀå ÀÓ¸í ¼º°ø"
-    IDS_KNIGHTS_APPOINT_OFFICER_FAILED "Àå±³ ÀÓ¸í ½ÇÆÐ"
+    IDS_KNIGHTS_APPOINT_OFFICER_FAILED "Àå±³ ÀÓ¸í ½Ç??"
     IDS_KNIGHTS_APPOINT_OFFICER_SUCCESS "Àå±³ ÀÓ¸í ¼º°ø"
-    IDS_KNIGHTS_APPOINT_VICECHIEF_FAILED "±â»ç´Ü ºÎ´ÜÀå ÀÓ¸í ½ÇÆÐ"
+    IDS_KNIGHTS_APPOINT_VICECHIEF_FAILED "±â»ç´Ü ºÎ´ÜÀå ÀÓ¸í ½Ç??"
     IDS_KNIGHTS_APPOINT_VICECHIEF_SUCCESS "±â»ç´Ü ºÎ´ÜÀå ÀÓ¸í ¼º°ø"
-    IDS_KNIGHTS_CREATE_FAILED "±â»ç´Ü »ý¼º ½ÇÆÐ"
+    IDS_KNIGHTS_CREATE_FAILED "±â»ç´Ü »ý¼º ½Ç??"
     IDS_KNIGHTS_CREATE_SUCCESS "±â»ç´Ü »ý¼º ¼º°ø"
-    IDS_KNIGHTS_DESTROY_CONFIRM "±â»ç´ÜÀ» ÇØÃ¼ ÇÏ½Ã°Ú½À´Ï±î?"
-    IDS_KNIGHTS_DESTROY_FAILED "±â»ç´Ü ÇØÃ¼ ½ÇÆÐ"
-    IDS_KNIGHTS_DESTROY_SUCCESS "±â»ç´Ü ÇØÃ¼ ¼º°ø"
+    IDS_KNIGHTS_DESTROY_CONFIRM "±â»ç´ÜÀ» ?ØÃ? ?Ï½Ã°Ú½À´Ï±??"
+    IDS_KNIGHTS_DESTROY_FAILED "±â»ç´Ü ?ØÃ? ½Ç??"
+    IDS_KNIGHTS_DESTROY_SUCCESS "±â»ç´Ü ?ØÃ? ¼º°ø"
     IDS_KNIGHTS_DUTY_CHIEF  "´ÜÀå"
     IDS_KNIGHTS_DUTY_KNIGHT "´Ü¿ø"
     IDS_KNIGHTS_DUTY_OFFICER "Âü¸ð"
@@ -381,46 +381,46 @@ END
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_KNIGHTS_DUTY_VICECHIEF "ºÎ´ÜÀå"
-    IDS_KNIGHTS_JOIN_FAILED "±â»ç´Ü °¡ÀÔ ½ÇÆÐ"
+    IDS_KNIGHTS_JOIN_FAILED "±â»ç´Ü °¡ÀÔ ½Ç??"
     IDS_KNIGHTS_JOIN_SUCCESS "±â»ç´Ü °¡ÀÔ ¼º°ø"
-    IDS_KNIGHTS_PUNISH_FAILED "±â»ç´Ü¿ø Â¡°è ½ÇÆÐ"
+    IDS_KNIGHTS_PUNISH_FAILED "±â»ç´Ü¿ø Â¡°è ½Ç??"
     IDS_KNIGHTS_PUNISH_SUCCESS "±â»ç´Ü¿ø Â¡°è ¼º°ø"
-    IDS_KNIGHTS_REJECT_FAILED "±â»ç´Ü °¡ÀÔ °ÅÀý ½ÇÆÐ"
+    IDS_KNIGHTS_REJECT_FAILED "±â»ç´Ü °¡ÀÔ °ÅÀý ½Ç??"
     IDS_KNIGHTS_REJECT_SUCCESS "±â»ç´Ü °¡ÀÔ °ÅÀý ¼º°ø"
-    IDS_KNIGHTS_REMOVE_MEMBER_FAILED "±â»ç´Ü ¸â¹ö¿¡¼­ Ãß¹æ ½ÇÆÐ"
+    IDS_KNIGHTS_REMOVE_MEMBER_FAILED "±â»ç´Ü ¸â¹ö¿¡¼­ Ãß¹æ ½Ç??"
     IDS_KNIGHTS_REMOVE_MEMBER_SUCCESS "±â»ç´Ü ¸â¹ö¿¡¼­ Ãß¹æ ¼º°ø"
-    IDS_KNIGHTS_WITHDRAW_CONFIRM "±â»ç´Ü¿¡¼­ Å»ÅðÇÏ½Ã°Ú½À´Ï±î?"
-    IDS_KNIGHTS_WITHROW_FAILED "±â»ç´Ü Å»Åð ½ÇÆÐ"
+    IDS_KNIGHTS_WITHDRAW_CONFIRM "±â»ç´Ü¿¡¼­ Å»Åð?Ï½Ã°Ú½À´Ï±??"
+    IDS_KNIGHTS_WITHROW_FAILED "±â»ç´Ü Å»Åð ½Ç??"
     IDS_KNIGHTS_WITHROW_SUCCESS "±â»ç´Ü Å»Åð ¼º°ø"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_KNIGHTS_ADMIT_FAILED "±â»ç´Ü °¡ÀÔ Çã¶ô ½ÇÆÐ"
-    IDS_KNIGHTS_ADMIT_SUCCESS "±â»ç´Ü °¡ÀÔ Çã¶ô ¼º°ø"
-    IDS_KNIGHTS_APPOINT_CHIEF_FAILED "±â»ç´ÜÀå ÀÓ¸í ½ÇÆÐ"
+    IDS_KNIGHTS_ADMIT_FAILED "±â»ç´Ü °¡ÀÔ ?ã¶? ½Ç??"
+    IDS_KNIGHTS_ADMIT_SUCCESS "±â»ç´Ü °¡ÀÔ ?ã¶? ¼º°ø"
+    IDS_KNIGHTS_APPOINT_CHIEF_FAILED "±â»ç´ÜÀå ÀÓ¸í ½Ç??"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_MANY_COUNTABLE_ITEM_BUY_FAIL 
-                            "ÇÑ¹ø¿¡ 9999°³ ÀÌ»óÀÇ ¾ÆÀÌÅÛÀ» »ì¼ö ¾ø½À´Ï´Ù."
-    IDS_COUNTABLE_ITEM_BUY_NOT_ENOUGH_MONEY "³ë¾Æ°¡ ºÎÁ·ÇÕ´Ï´Ù."
+                            "?Ñ¹ø¿? 9999°³ ÀÌ»óÀÇ ¾ÆÀÌÅÛÀ» »ì¼ö ¾ø½À´Ï´Ù."
+    IDS_COUNTABLE_ITEM_BUY_NOT_ENOUGH_MONEY "³ë¾Æ°¡ ºÎÁ·?Õ´Ï´?."
     IDS_MANY_COUNTABLE_ITEM_GET_MANY 
-                            "ÇÑ¹ø¿¡ 9999°³ ÀÌ»óÀÇ ¾ÆÀÌÅÛÀ» °¡Áú¼ö ¾ø½À´Ï´Ù."
+                            "?Ñ¹ø¿? 9999°³ ÀÌ»óÀÇ ¾ÆÀÌÅÛÀ» °¡Áú¼ö ¾ø½À´Ï´Ù."
     IDS_MANY_COUNTABLE_ITEM_TOO_MAMY "9999°³ ÀÌ»óÀÇ ¾ÆÀÌÅÛÀ» °¡Áú¼ö ¾ø½À´Ï´Ù."
     IDS_SMALL_COUNTABLE_ITEM_BUY_FAIL 
-                            "ÇÑ¹ø¿¡ 500°³ ÀÌ»óÀÇ ¾ÆÀÌÅÛÀ» »ì¼ö ¾ø½À´Ï´Ù."
+                            "?Ñ¹ø¿? 500°³ ÀÌ»óÀÇ ¾ÆÀÌÅÛÀ» »ì¼ö ¾ø½À´Ï´Ù."
     IDS_SMALL_COUNTABLE_ITEM_GET_MANY 
-                            "ÇÑ¹ø¿¡ 500°³ ÀÌ»óÀÇ ¾ÆÀÌÅÛÀ» °¡Áú¼ö ¾ø½À´Ï´Ù."
+                            "?Ñ¹ø¿? 500°³ ÀÌ»óÀÇ ¾ÆÀÌÅÛÀ» °¡Áú¼ö ¾ø½À´Ï´Ù."
     IDS_SMALL_COUNTABLE_ITEM_TOO_MAMY "500°³ ÀÌ»óÀÇ ¾ÆÀÌÅÛÀ» °¡Áú¼ö ¾ø½À´Ï´Ù."
     IDS_ITEM_TOOMANY_OR_HEAVY 
-                            "¾ÆÀÌÅÛÀÇ °¹¼ö ¶Ç´Â ¹«°Ô¸¦ ÃÊ°úÇÏ¿© °Å·¡ È¤Àº ½ÀµæÀÌ ºÒ°¡ÇÕ´Ï´Ù."
+                            "¾ÆÀÌÅÛÀÇ °¹¼ö ¶Ç´Â ¹«°Ô¸¦ ÃÊ°ú?Ï¿? °Å·¡ ?¤À? ½ÀµæÀÌ ºÒ°¡?Õ´Ï´?."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_ITEM_WEIGHT_OVERFLOW "¹«°Ô Á¦ÇÑÀ» ³Ñ¾î¼¹½À´Ï´Ù."
+    IDS_ITEM_WEIGHT_OVERFLOW "¹«°Ô Á¦?ÑÀ? ³Ñ¾î¼¹½À´Ï´Ù."
 END
 
 STRINGTABLE DISCARDABLE 
@@ -438,14 +438,14 @@ BEGIN
     IDS_ITEM_CLASS_POTION   "¹°¾à"
     IDS_ITEM_CLASS_RING     "¹ÝÁö"
     IDS_ITEM_CLASS_SCROLL   "½ºÅ©·Ñ"
-    IDS_ITEM_CLASS_SHIELD   "¹æÆÐ"
+    IDS_ITEM_CLASS_SHIELD   "¹æ??"
     IDS_ITEM_CLASS_SPEAR    "Ã¢"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_ITEM_CLASS_STAFF    "ÁöÆÎÀÌ"
-    IDS_ITEM_CLASS_SWORD    "ÇÑ¼Õ°Ë"
+    IDS_ITEM_CLASS_STAFF    "Áö?ÎÀ?"
+    IDS_ITEM_CLASS_SWORD    "?Ñ¼Õ°?"
     IDS_ITEM_CLASS_SWORD_2H "¾ç¼Õ°Ë"
 END
 
@@ -456,17 +456,17 @@ BEGIN
     IDS_ITEM_CLASS_ARMOR_PRIEST "»çÁ¦¿ë¹æ¾î±¸"
     IDS_ITEM_CLASS_ARMOR_ROGUE "·Î±×¿ë¹æ¾î±¸"
     IDS_ITEM_CLASS_ARMOR_WARRIOR "Àü»ç¿ë¹æ¾î±¸"
-    IDS_ITEM_CLASS_ARROW    "È­»ì"
+    IDS_ITEM_CLASS_ARROW    "?­»?"
     IDS_ITEM_CLASS_AXE      "µµ³¢"
     IDS_ITEM_CLASS_AXE_2H   "¾ç¼Õµµ³¢"
-    IDS_ITEM_CLASS_BELT     "Çã¸®¶ì"
-    IDS_ITEM_CLASS_BOW      "È°"
+    IDS_ITEM_CLASS_BELT     "?ã¸®¶?"
+    IDS_ITEM_CLASS_BOW      "??"
     IDS_ITEM_CLASS_BOW_CROSS "¼®±Ã"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_ITEM_ATTRIB_CRAFT   "Å©·¡ÇÁÆ® ¾ÆÀÌÅÛ"
+    IDS_ITEM_ATTRIB_CRAFT   "Å©·¡?ÁÆ? ¾ÆÀÌÅÛ"
     IDS_ITEM_ATTRIB_GENERAL "ÀÏ¹Ý ¾ÆÀÌÅÛ"
     IDS_ITEM_ATTRIB_LAIR    "·¹¾î ¾ÆÀÌÅÛ"
     IDS_ITEM_ATTRIB_MAGIC   "¸ÅÁ÷ ¾ÆÀÌÅÛ"
@@ -488,29 +488,29 @@ BEGIN
     IDS_TOOLTIP_NEEDMAGICATTACK "¿ä±¸ ¸¶·Â     : %d"
     IDS_TOOLTIP_NEEDDEXTERITY "¿ä±¸ ¹ÎÃ¸     : %d"
     IDS_TOOLTIP_NEEDINTELLI "¿ä±¸ Áö´É     : %d"
-    IDS_TOOLTIP_NEEDLEVEL   "ÇÊ¿ä ·¹º§     : %d"
+    IDS_TOOLTIP_NEEDLEVEL   "?Ê¿? ·¹º§     : %d"
     IDS_TOOLTIP_NEEDRANK    "¿ä±¸ ÀÛÀ§     : %d"
     IDS_TOOLTIP_NEEDSTAMINA "¿ä±¸ ½ºÅ×¹Ì³Ê : %d"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_TOOLTIP_ATTRMAGIC5  "HP Èí¼ö       : %d"
+    IDS_TOOLTIP_ATTRMAGIC5  "HP ?í¼?       : %d"
     IDS_TOOLTIP_ATTRMAGIC6  "MP Å¸°Ý       : %d"
-    IDS_TOOLTIP_ATTRMAGIC7  "MP Èí¼ö"
-    IDS_TOOLTIP_AVOIDRATE_OVER "È¸ÇÇÀ² %d%% Áõ°¡"
-    IDS_TOOLTIP_AVOIDRATE_UNDER "È¸ÇÇÀ² %d%% °¨¼Ò"
+    IDS_TOOLTIP_ATTRMAGIC7  "MP ?í¼?"
+    IDS_TOOLTIP_AVOIDRATE_OVER "?¸Ç?À² %d%% Áõ°¡"
+    IDS_TOOLTIP_AVOIDRATE_UNDER "?¸Ç?À² %d%% °¨¼Ò"
     IDS_TOOLTIP_BONUSMAGICATTACK "¸¶·Â º¸³Ê½º   : %d"
     IDS_TOOLTIP_BONUSDEX    "¹ÎÃ¸¼º º¸³Ê½º : %d"
     IDS_TOOLTIP_BONUSHP     "HP º¸³Ê½º     : %d"
     IDS_TOOLTIP_BONUSINT    "Áö´É º¸³Ê½º   : %d"
-    IDS_TOOLTIP_BONUSSTR    "Èû º¸³Ê½º     : %d"
+    IDS_TOOLTIP_BONUSSTR    "?? º¸³Ê½º     : %d"
     IDS_TOOLTIP_BONUSWIZ    "¸¶³ª º¸³Ê½º   : %d"
     IDS_TOOLTIP_BUY_PRICE   "»ç´Â °¡°Ý     : %d"
-    IDS_TOOLTIP_CUR_DURABILITY "ÇöÀç ³»±¸·Â   : %d"
+    IDS_TOOLTIP_CUR_DURABILITY "?öÀ? ³»±¸·Â   : %d"
     IDS_TOOLTIP_DAMAGE      "°ø°Ý·Â        : %d"
     IDS_TOOLTIP_DEFENSE     "¹æ¾î·Â        : %d"
-    IDS_TOOLTIP_DEFENSE_RATE_ARROW "È­»ì ¹æ¾î·Â   : %d"
+    IDS_TOOLTIP_DEFENSE_RATE_ARROW "?­»? ¹æ¾î·Â   : %d"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -520,8 +520,8 @@ BEGIN
     IDS_TOOLTIP_ATTACKINT_SLOW "°ø°Ý¼Óµµ      : ´À¸²"
     IDS_TOOLTIP_ATTACKINT_VERYFAST "°ø°Ý¼Óµµ      : ¸Å¿ìºü¸§"
     IDS_TOOLTIP_ATTACKINT_VERYSLOW "°ø°Ý¼Óµµ      : ¸Å¿ì´À¸²"
-    IDS_TOOLTIP_ATTACKRANGE "À¯È¿°Å¸®      : %.2f"
-    IDS_TOOLTIP_ATTRMAGIC1  "È­¿° µ¥¹ÌÁö   : %d"
+    IDS_TOOLTIP_ATTACKRANGE "À¯?¿°Å¸?      : %.2f"
+    IDS_TOOLTIP_ATTRMAGIC1  "?­¿? µ¥¹ÌÁö   : %d"
     IDS_TOOLTIP_ATTRMAGIC2  "³Ã±â µ¥¹ÌÁö   : %d"
     IDS_TOOLTIP_ATTRMAGIC3  "Àü°Ý µ¥¹ÌÁö   : %d"
     IDS_TOOLTIP_ATTRMAGIC4  "µ¶ µ¥¹ÌÁö     : %d"
@@ -530,31 +530,31 @@ END
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_TOOLTIP_NEEDSTRENGTH "¿ä±¸ ±Ù·Â     : %d"
-    IDS_TOOLTIP_NEEDTITLE   "¿ä±¸ Å¸ÀÌÆ²   : %d"
-    IDS_TOOLTIP_REGISTCURSE "ÀúÁÖ ÀúÇ×     : %d"
-    IDS_TOOLTIP_REGISTELEC  "Àü°Ý ÀúÇ×     : %d"
-    IDS_TOOLTIP_REGISTFIRE  "ºÒ ÀúÇ×       : %d"
-    IDS_TOOLTIP_REGISTICE   "³Ã±â ÀúÇ×     : %d"
-    IDS_TOOLTIP_REGISTMAGIC "¸¶¹ý ÀúÇ×     : %d"
-    IDS_TOOLTIP_REGISTPOISON "µ¶ ÀúÇ×       : %d"
-    IDS_TOOLTIP_SELL_PRICE  "ÆÄ´Â °¡°Ý     : %d"
+    IDS_TOOLTIP_NEEDTITLE   "¿ä±¸ Å¸ÀÌ??   : %d"
+    IDS_TOOLTIP_REGISTCURSE "ÀúÁÖ Àú??     : %d"
+    IDS_TOOLTIP_REGISTELEC  "Àü°Ý Àú??     : %d"
+    IDS_TOOLTIP_REGISTFIRE  "ºÒ Àú??       : %d"
+    IDS_TOOLTIP_REGISTICE   "³Ã±â Àú??     : %d"
+    IDS_TOOLTIP_REGISTMAGIC "¸¶¹ý Àú??     : %d"
+    IDS_TOOLTIP_REGISTPOISON "µ¶ Àú??       : %d"
+    IDS_TOOLTIP_SELL_PRICE  "?Ä´? °¡°Ý     : %d"
     IDS_TOOLTIP_WEIGHT      "¹«°Ô          : %.2f"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_NPCEVENT_TITLE_REPAIR 
-                            "³ª Ã³·³ ´ë´ÜÇÑ ´ëÀåÀåÀÌµµ µå¹°Áö ÇÊ¿äÇÑ°Ô ÀÖÀ¸¸é ¸»ÇÏ°Ô³ª..."
+                            "³ª Ã³·³ ´ë´Ü?? ´ëÀåÀåÀÌµµ µå¹°Áö ?Ê¿äÇÑ°? ÀÖÀ¸¸é ¸»?Ï°Ô³?..."
     IDS_NPC_EVENT_TITLE_TRADE 
-                            "³»°¡ °¡Áö°í ÀÖ´Â ¹°°ÇÀº Á¤¸» ¸¹Áö ÀÚ³×µµ ÇÑ¹ø º¸°Ú³ª?"
+                            "³»°¡ °¡Áö°í ÀÖ´Â ¹°°ÇÀº Á¤¸» ¸¹Áö ÀÚ³×µµ ?Ñ¹? º¸°Ú³ª?"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_SKILL_POINT_BEFORE_CLASS_CHANGE 
-                            "¾ÆÁ÷ ÀüÁ÷ÇÏ±â ÀüÀÌ¹Ç·Î Àü¹® ½ºÅ³À» ¿Ã¸±¼ö ¾ø½À´Ï´Ù."
-    IDS_SKILL_POINT_EXTRA_NOT_EXIST "³²¾ÆÀÖ´Â ½ºÅ³ Æ÷ÀÎÆ®°¡ ¾ø½À´Ï´Ù."
-    IDS_SKILL_POINT_NOT_YET "¾ÆÁ÷ ±¸ÇöµÇÁö ¾ÊÀº ½ºÅ³ÀÔ´Ï´Ù."
+                            "¾ÆÁ÷ ÀüÁ÷?Ï±? ÀüÀÌ¹Ç·Î Àü¹® ½ºÅ³À» ¿Ã¸±¼ö ¾ø½À´Ï´Ù."
+    IDS_SKILL_POINT_EXTRA_NOT_EXIST "³²¾ÆÀÖ´Â ½ºÅ³ ?÷ÀÎÆ®°? ¾ø½À´Ï´Ù."
+    IDS_SKILL_POINT_NOT_YET "¾ÆÁ÷ ±¸?öµ?Áö ¾ÊÀº ½ºÅ³ÀÔ´Ï´Ù."
 END
 
 STRINGTABLE DISCARDABLE 
@@ -573,16 +573,16 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_SKILL_TOOLTIP_DOUBLE "¿ä±¸ ¾ÆÀÌÅÛ : ´õºí ÇÚµå"
-    IDS_SKILL_TOOLTIP_NEED_ITEM_DUAL "¿ä±¸ ¾ÆÀÌÅÛ : µà¾ó ÇÚµå"
+    IDS_SKILL_TOOLTIP_DOUBLE "¿ä±¸ ¾ÆÀÌÅÛ : ´õºí ?Úµ?"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_DUAL "¿ä±¸ ¾ÆÀÌÅÛ : µà¾ó ?Úµ?"
     IDS_SKILL_TOOLTIP_NEED_ITEM_ID1 "¿ä±¸ ¾ÆÀÌÅÛ : ¸ðµç¹«±â"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_SKILL_TOOLTIP_NEED_ITEM_ID10 "¿ä±¸ ¾ÆÀÌÅÛ : ·±Ã³"
-    IDS_SKILL_TOOLTIP_NEED_ITEM_ID11 "¿ä±¸ ¾ÆÀÌÅÛ : ¸¶¹ý»ç ÁöÆÎÀÌ(staff)"
-    IDS_SKILL_TOOLTIP_NEED_ITEM_ID12 "¿ä±¸ ¾ÆÀÌÅÛ : È­»ì"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID11 "¿ä±¸ ¾ÆÀÌÅÛ : ¸¶¹ý»ç Áö?ÎÀ?(staff)"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID12 "¿ä±¸ ¾ÆÀÌÅÛ : ?­»?"
     IDS_SKILL_TOOLTIP_NEED_ITEM_ID13 "¿ä±¸ ¾ÆÀÌÅÛ : ÅõÃ¢"
     IDS_SKILL_TOOLTIP_NEED_ITEM_ID14 "¿ä±¸ ¾ÆÀÌÅÛ : Àü»ç ¹æ¾î±¸"
     IDS_SKILL_TOOLTIP_NEED_ITEM_ID15 "¿ä±¸ ¾ÆÀÌÅÛ : ·Î±× ¹æ¾î±¸"
@@ -593,14 +593,14 @@ BEGIN
     IDS_SKILL_TOOLTIP_NEED_ITEM_ID4 "¿ä±¸ ¾ÆÀÌÅÛ : µµ³¢"
     IDS_SKILL_TOOLTIP_NEED_ITEM_ID5 "¿ä±¸ ¾ÆÀÌÅÛ : Å¸°Ý¹«±â"
     IDS_SKILL_TOOLTIP_NEED_ITEM_ID6 "¿ä±¸ ¾ÆÀÌÅÛ : Ã¢"
-    IDS_SKILL_TOOLTIP_NEED_ITEM_ID7 "¿ä±¸ ¾ÆÀÌÅÛ : ¹æÆÐ"
-    IDS_SKILL_TOOLTIP_NEED_ITEM_ID8 "¿ä±¸ ¾ÆÀÌÅÛ : È°"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID7 "¿ä±¸ ¾ÆÀÌÅÛ : ¹æ??"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID8 "¿ä±¸ ¾ÆÀÌÅÛ : ??"
     IDS_SKILL_TOOLTIP_NEED_ITEM_ID9 "¿ä±¸ ¾ÆÀÌÅÛ : ·Õº¸¿ì"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_INV_ITEM_FULL       "ÀÎº¥Åä¸®¿¡ ¾ÆÀÌÅÛÀÌ ²ËÂ÷¼­ ¾ÆÀÌÅÛÀ» ½ÀµæÇÒ¼ö ¾ø½À´Ï´Ù."
+    IDS_INV_ITEM_FULL       "ÀÎº¥Åä¸®¿¡ ¾ÆÀÌÅÛÀÌ ²ËÂ÷¼­ ¾ÆÀÌÅÛÀ» ½Àµæ?Ò¼? ¾ø½À´Ï´Ù."
 END
 
 STRINGTABLE DISCARDABLE 
@@ -615,87 +615,87 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_HELP_TIP1           "¾É¾Æ¼­ ºü¸¥ È¸º¹ - 'C'"
+    IDS_HELP_TIP1           "¾É¾Æ¼­ ºü¸¥ ?¸º? - 'C'"
     IDS_HELP_TIP2           "ÄõÅÍºä¿¡¼­´Â ¸¶¿ì½º·Î ÀÌµ¿°¡´É."
-    IDS_HELP_TIP3           "ÀÚµ¿ °È±â/¶Ù±â ÀüÈ¯ - 'E'"
-    IDS_HELP_TIP4           "¸¶À»·Î ÀÌµ¿ ÇÏ°í ½ÍÀ»¶§  '/¸¶À»'"
+    IDS_HELP_TIP3           "ÀÚµ¿ °È±â/¶Ù±â Àü?? - 'E'"
+    IDS_HELP_TIP4           "¸¶À»·Î ÀÌµ¿ ?Ï°? ½ÍÀ»¶§  '/¸¶À»'"
     IDS_HELP_TIP5           "°¡Àå ±Ù°Å¸®ÀÇ Àû Å¸°ÙÀ¸·Î ÀâÀ½ - 'Z'"
     IDS_HELP_TIP6           "½ºÅ³»ç¿ë : ´ÜÃàÅ° Ã¢À¸·Î ½ºÅ³¾ÆÀÌÄÜÀ» µå·¡±×."
-    IDS_HELP_TIP7           "ºÎÈ°Àå¼Ò ÁöÁ¤ : ºÎÈ°ºñ¼®À» ¿À¸¥ÂÊ Å¬¸¯."
+    IDS_HELP_TIP7           "ºÎ?°Àå¼? ÁöÁ¤ : ºÎ?°ºñ¼®À? ¿À¸¥ÂÊ Å¬¸¯."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_HELP_TIP8           "¾ÆÀÌÅÛ ³»±¸·ÂÀº ´ëÀåÀåÀÌ¿¡°Ô."
     IDS_HELP_TIP9           "¾ÆÀÌÅÛ Ã¢°í : ¿©°üÁÖÀÎ¿¡°Ô ¿À¸¥ÂÊ Å¬¸¯."
-    IDS_HELP_TIP10          "ÀüÁ÷ : 10·¹º§ÀÌ ³ÑÀ¸¸é ÀüÁ÷À» ÇÒ ¼ö ÀÖ½À´Ï´Ù."
-    IDS_HELP_TIP11          "¾ÆÀÌÅÛ È¹µæ : ¸ó½ºÅÍ ½ÃÃ¼¿¡ Å¬¸¯."
+    IDS_HELP_TIP10          "ÀüÁ÷ : 10·¹º§ÀÌ ³ÑÀ¸¸é ÀüÁ÷À» ?? ¼ö ÀÖ½À´Ï´Ù."
+    IDS_HELP_TIP11          "¾ÆÀÌÅÛ ?¹µ? : ¸ó½ºÅÍ ½ÃÃ¼¿¡ Å¬¸¯."
     IDS_HELP_TIP12          "°È°í/¶Ù±â : 'T'"
-    IDS_HELP_TIP13          "°ø°Ý ½ÃÀÛ/¸ØÃã : 'R' È¤Àº ´õºíÅ¬¸¯."
-    IDS_HELP_TIP14          "½ÃÁ¡ º¯È¯ : ´ÜÃàÅ° 'F9' "
-    IDS_HELP_TIP15          "Å°º¸µå ÀÌµ¿Àº 'W,A,S,D' Å°¿Í ¹æÇâ Å°"
+    IDS_HELP_TIP13          "°ø°Ý ½ÃÀÛ/¸ØÃã : 'R' ?¤À? ´õºíÅ¬¸¯."
+    IDS_HELP_TIP14          "½ÃÁ¡ º¯?? : ´ÜÃàÅ° 'F9' "
+    IDS_HELP_TIP15          "Å°º¸µå ÀÌµ¿Àº 'W,A,S,D' Å°¿Í ¹æ?? Å°"
     IDS_HELP_TIP16          "½ºÅ³ »ç¿ë : ´ÜÃàÅ°Ã¢ÀÇ ½ºÅ³¾ÆÀÌÄÜÀ» ´õºíÅ¬¸¯ ¶Ç´Â '1-8'."
-    IDS_HELP_TIP17          "ÆÄÆ¼¸¦ ¸ÎÀ¸¸é ·¹º§¾÷ ¼Óµµ°¡ »¡¶ó Áý´Ï´Ù."
-    IDS_HELP_TIP18          "ÆÄÆ¼±¸ÇÔ ¸Þ½ÃÁö Ç¥½Ã : '/ÆÄÆ¼±¸ÇÔ'"
-    IDS_HELP_TIP19          "ÆÄÆ¼ ½ÅÃ» : '/ÆÄÆ¼'"
+    IDS_HELP_TIP17          "?ÄÆ¼¸? ¸ÎÀ¸¸é ·¹º§¾÷ ¼Óµµ°¡ »¡¶ó Áý´Ï´Ù."
+    IDS_HELP_TIP18          "?ÄÆ¼±¸Ç? ¸Þ½ÃÁö ?¥½? : '/?ÄÆ¼±¸Ç?'"
+    IDS_HELP_TIP19          "?ÄÆ? ½ÅÃ» : '/?ÄÆ?'"
     IDS_HELP_TIP20          "¾ÆÀÌÅÛ °Å·¡ : Å¸°ÙÀ¸·Î ÀâÀº»ó´ë ¿¡°Ô '/°Å·¡'"
-    IDS_HELP_TIP21          "ÆÄÆ¼Ã¤ÆÃ : Ã¤ÆÃÃ¢¿¡¼­ 'Party' ¹öÆ° Å¬¸¯."
-    IDS_HELP_TIP22          "ÀÏ¹ÝÃ¤ÆÃ : Ã¤ÆÃÃ¢¿¡¼­ 'Say'¹öÆ° Å¬¸¯."
-    IDS_HELP_TIP23          "´É·ÂÄ¡ ½Àµæ : ·¹º§¾÷ÇÒ ¶§¸¶´Ù 3Æ÷ÀÎÆ® ½Àµæ."
+    IDS_HELP_TIP21          "?ÄÆ¼Ã¤Æ? : Ã¤?ÃÃ¢¿¡¼? 'Party' ¹ö?? Å¬¸¯."
+    IDS_HELP_TIP22          "ÀÏ¹ÝÃ¤?? : Ã¤?ÃÃ¢¿¡¼? 'Say'¹ö?? Å¬¸¯."
+    IDS_HELP_TIP23          "´É·ÂÄ¡ ½Àµæ : ·¹º§¾÷?? ¶§¸¶´Ù 3?÷ÀÎÆ? ½Àµæ."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_HELP_TIP24          "½ºÅ³½Àµæ : 10·¹º§ ÀÌ»ó¿¡¼­ ·¹º§¾÷ÇÒ ¶§¸¶´Ù 2Æ÷ÀÎÆ® ½Àµæ."
+    IDS_HELP_TIP24          "½ºÅ³½Àµæ : 10·¹º§ ÀÌ»ó¿¡¼­ ·¹º§¾÷?? ¶§¸¶´Ù 2?÷ÀÎÆ? ½Àµæ."
     IDS_HELP_TIP25          "¾ÆÀÌÅÛ ¾ø¾Ö±â : ÀÎº¥Åä¸®¿¡¼­ »¡°­»ö ¸¶Å©°¡ ÀÖ´Â ºÎºÐ¿¡ ¾ÆÀÌÅÛ µå·¡±× & µå·Ó."
     IDS_HELP_TIP26          "½ºÅ³ ¼³¸í º¸±â : ½ºÅ³Ã¢¿¡ ÀÖ´Â ¾ÆÀÌÄÜ¿¡ Ä¿¼­¸¦ ³õ½À´Ï´Ù."
-    IDS_HELP_TIP27          "±Ó¼Ó¸»ÇÏ±â : '/±Ó¼Ó¸»' »ó´ë¹æ¾ÆÀÌµð."
-    IDS_HELP_TIP28          "¹Ì´Ï¸Ê º¸±â : 'M' Àû»ö,ÁÖÈ²»öÀº ÀûÀÔ´Ï´Ù."
-    IDS_HELP_TIP29          "´ÜÃàÅ°Ã¢ ÆäÀÌÁö º¯È­ ´ÜÃàÅ° :  'PageUp/PageDown'"
+    IDS_HELP_TIP27          "±Ó¼Ó¸»?Ï±? : '/±Ó¼Ó¸»' »ó´ë¹æ¾ÆÀÌµð."
+    IDS_HELP_TIP28          "¹Ì´Ï¸Ê º¸±â : 'M' Àû»ö,ÁÖ?²»öÀ? ÀûÀÔ´Ï´Ù."
+    IDS_HELP_TIP29          "´ÜÃàÅ°Ã¢ ?äÀÌÁ? º¯?? ´ÜÃàÅ° :  'PageUp/PageDown'"
     IDS_HELP_TIP30          "ÄõÅÍºä¿¡¼­ 'Home / End' Å°·Î Ä«¸Þ¶ó ÀÌµ¿"
-    IDS_HELP_TIP_ALL        "[³ª¿Â ÆÁ ÇÑ°¡Áö!]"
+    IDS_HELP_TIP_ALL        "[³ª¿Â ?? ?Ñ°¡Á?!]"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_EDIT_BOX_GOLD       "¿øÇÏ½Ã´Â ±Ý¾×À» ÀÔ·ÂÇÏ½Ê½Ã¿À."
-    IDS_EDIT_BOX_COUNT      "¿øÇÏ½Ã´Â °¹¼ö¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À."
+    IDS_EDIT_BOX_GOLD       "¿ø?Ï½Ã´? ±Ý¾×À» ÀÔ·Â?Ï½Ê½Ã¿?."
+    IDS_EDIT_BOX_COUNT      "¿ø?Ï½Ã´? °¹¼ö¸¦ ÀÔ·Â?Ï½Ê½Ã¿?."
     IDS_SKILL_INFO_BASE     "ÀüÁ÷ ÀÌÀü¿¡ °¡Áö´Â ±âº»ÀûÀÎ ½ºÅ³."
-    IDS_SKILL_INFO_BLADE0   "¿Þ¼ÕÀÇ ¹«±â»ç¿ë´É·ÂÀ» Çâ»ó½ÃÅµ´Ï´Ù[½ÖÄ®]."
-    IDS_SKILL_INFO_BLADE1   "¾ç¼Õ¹«±â¸¦ »ç¿ëÇÏ´Â ´É·ÂÀ» Çâ»ó½ÃÅµ´Ï´Ù"
-    IDS_SKILL_INFO_BLADE2   "¿©·¯°¡Áö ¹æ¾î±â¼úµéÀ» ½ÀµæÇÕ´Ï´Ù."
-    IDS_SKILL_INFO_BLADE3   "Àü»çÀÇ Á¤½Å·ÂÀ» ÁõÆø½ÃÅµ´Ï´Ù."
-    IDS_SKILL_INFO_RANGER0  "´Ù¾çÇÑ È°±â¼úµéÀ» ½ÀµæÇÕ´Ï´Ù."
-    IDS_SKILL_INFO_RANGER1  "´Ù¾çÇÑ Ã¢´øÁö±â ±â¼úµéÀ» ½ÀµæÇÕ´Ï´Ù."
-    IDS_SKILL_INFO_RANGER2  "Å½»ö¿¡ À¯¿ëÇÑ ´Ù¾çÇÑ ±â¼úµéÀ» ½ÀµæÇÕ´Ï´Ù."
-    IDS_SKILL_INFO_RANGER3  "°¢Á¾ µ¿¹°µéÀ» ±æµéÀÌ´Â ±â¼úµéÀ» ½ÀµæÇÕ´Ï´Ù."
+    IDS_SKILL_INFO_BLADE0   "¿Þ¼ÕÀÇ ¹«±â»ç¿ë´É·ÂÀ» ?â»ó½ÃÅµ´Ï´Ù[½ÖÄ®]."
+    IDS_SKILL_INFO_BLADE1   "¾ç¼Õ¹«±â¸¦ »ç¿ë?Ï´? ´É·ÂÀ» ?â»ó½ÃÅµ´Ï´?"
+    IDS_SKILL_INFO_BLADE2   "¿©·¯°¡Áö ¹æ¾î±â¼úµéÀ» ½Àµæ?Õ´Ï´?."
+    IDS_SKILL_INFO_BLADE3   "Àü»çÀÇ Á¤½Å·ÂÀ» Áõ?ø½ÃÅµ´Ï´?."
+    IDS_SKILL_INFO_RANGER0  "´Ù¾ç?? ?°±â¼?µéÀ» ½Àµæ?Õ´Ï´?."
+    IDS_SKILL_INFO_RANGER1  "´Ù¾ç?? Ã¢´øÁö±â ±â¼úµéÀ» ½Àµæ?Õ´Ï´?."
+    IDS_SKILL_INFO_RANGER2  "Å½»ö¿¡ À¯¿ë?? ´Ù¾ç?? ±â¼úµéÀ» ½Àµæ?Õ´Ï´?."
+    IDS_SKILL_INFO_RANGER3  "°¢Á¾ µ¿¹°µéÀ» ±æµéÀÌ´Â ±â¼úµéÀ» ½Àµæ?Õ´Ï´?."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_SKILL_INFO_MAGE0    "ºÒÀ» ÀÌ¿ëÇÑ ´Ù¾çÇÑ ¸¶¹ýÀ» ½ÀµæÇÕ´Ï´Ù."
-    IDS_SKILL_INFO_MAGE1    "¾óÀ½À» ÀÌ¿ëÇÑ ´Ù¾çÇÑ ¸¶¹ýÀ» ½ÀµæÇÕ´Ï´Ù."
-    IDS_SKILL_INFO_MAGE2    "Àü°Ý(Àü±â)¸¦ ÀÌ¿ëÇÑ ´Ù¾çÇÑ ¸¶¹ýÀ» ½ÀµæÇÕ´Ï´Ù."
-    IDS_SKILL_INFO_MAGE3    "¼ÒÈ¯°ú ÀÌµ¿±â¼úÀ» ½ÀµæÇÕ´Ï´Ù."
-    IDS_SKILL_INFO_CLERIC0  "´Ù¾çÇÑ Ä¡·á¸¶¹ýµéÀ» ½ÀµæÇÕ´Ï´Ù."
-    IDS_SKILL_INFO_CLERIC1  "´É·ÂÄ¡¸¦ »ó½Â½ÃÅ°´Â ¸¶¹ýÀ» ½ÀµæÇÕ´Ï´Ù."
-    IDS_SKILL_INFO_CLERIC2  "°£´ÜÇÑ °ø°Ý¸¶¹ýÀ» ½ÀµæÇÕ´Ï´Ù."
-    IDS_SKILL_INFO_CLERIC3  "Á×Àº »ó´ë¸¦ ´Ù½Ã ºÎÈ° ½ÃÅ°´Â ¸¶¹ýÀ» ½ÀµæÇÕ´Ï´Ù."
+    IDS_SKILL_INFO_MAGE0    "ºÒÀ» ÀÌ¿ë?? ´Ù¾ç?? ¸¶¹ýÀ» ½Àµæ?Õ´Ï´?."
+    IDS_SKILL_INFO_MAGE1    "¾óÀ½À» ÀÌ¿ë?? ´Ù¾ç?? ¸¶¹ýÀ» ½Àµæ?Õ´Ï´?."
+    IDS_SKILL_INFO_MAGE2    "Àü°Ý(Àü±â)¸¦ ÀÌ¿ë?? ´Ù¾ç?? ¸¶¹ýÀ» ½Àµæ?Õ´Ï´?."
+    IDS_SKILL_INFO_MAGE3    "¼Ò?¯°? ÀÌµ¿±â¼úÀ» ½Àµæ?Õ´Ï´?."
+    IDS_SKILL_INFO_CLERIC0  "´Ù¾ç?? Ä¡·á¸¶¹ýµéÀ» ½Àµæ?Õ´Ï´?."
+    IDS_SKILL_INFO_CLERIC1  "´É·ÂÄ¡¸¦ »ó½Â½ÃÅ°´Â ¸¶¹ýÀ» ½Àµæ?Õ´Ï´?."
+    IDS_SKILL_INFO_CLERIC2  "°£´Ü?? °ø°Ý¸¶¹ýÀ» ½Àµæ?Õ´Ï´?."
+    IDS_SKILL_INFO_CLERIC3  "Á×Àº »ó´ë¸¦ ´Ù½Ã ºÎ?? ½ÃÅ°´Â ¸¶¹ýÀ» ½Àµæ?Õ´Ï´?."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_ERR_CHARACTER_SELECT "Ä³¸¯ÅÍ¸¦ ¼±ÅÃÇÒ ¼ö ¾ø½À´Ï´Ù."
-    IDS_DROPPED_NOAH_GET    "%d ³ë¾Æ È¹µæ"
+    IDS_ERR_CHARACTER_SELECT "Ä³¸¯ÅÍ¸¦ ¼±ÅÃ?? ¼ö ¾ø½À´Ï´Ù."
+    IDS_DROPPED_NOAH_GET    "%d ³ë¾Æ ?¹µ?"
     IDS_DURABILITY_EXOAST   "%s ÀÇ ³»±¸·ÂÀÌ ¸ðµÎ »ç¶óÁ³½À´Ï´Ù."
-    IDS_ITEM_GET_BY_RULE    "%sÀÇ ¾ÆÀÌÅÛÀ» È¹µæÇß½À´Ï´Ù."
-    IDS_OTHER_PER_TRADE_NO  "%s ´ÔÀÌ °Å·¡¸¦ °ÅÀýÇÏ¼Ì½À´Ï´Ù. "
-    IDS_PER_TRADE_FAIL      "°Å·¡°¡ ½ÇÆÐµÇ¾ú½À´Ï´Ù.."
-    IDS_OTHER_PER_TRADE_CANCEL "%s ´ÔÀÌ °Å·¡¸¦ Ãë¼ÒÇÏ¼Ì½À´Ï´Ù. "
+    IDS_ITEM_GET_BY_RULE    "%sÀÇ ¾ÆÀÌÅÛÀ» ?¹µæÇß½À´Ï´?."
+    IDS_OTHER_PER_TRADE_NO  "%s ´ÔÀÌ °Å·¡¸¦ °ÅÀý?Ï¼Ì½À´Ï´?. "
+    IDS_PER_TRADE_FAIL      "°Å·¡°¡ ½Ç?Ðµ?¾ú½À´Ï´Ù.."
+    IDS_OTHER_PER_TRADE_CANCEL "%s ´ÔÀÌ °Å·¡¸¦ Ãë¼Ò?Ï¼Ì½À´Ï´?. "
     IDS_ITEM_KIND_BRONS     "ºê·ÐÁî"
     IDS_ITEM_KIND_SILVER    "½Ç¹ö"
     IDS_ITEM_KIND_GOLDEN    "°ñµç"
-    IDS_ITEM_KIND_PLATINUM  "ÇÃ·¹Æ¼³Ñ"
+    IDS_ITEM_KIND_PLATINUM  "?Ã·¹Æ¼³?"
     IDS_ITEM_KIND_CRIMSON   "Å©¸²½¼"
     IDS_ITEM_KIND_LUNA      "·ç³ª"
     IDS_ITEM_KIND_SOLAR     "¼Ö¶ó"
@@ -703,80 +703,80 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_ITEM_KIND_ANCIENT   "¿¡ÀÌ¼ÇÆ®"
-    IDS_ITEM_KIND_MISTIQ    "¹Ì½ºÆ½"
+    IDS_ITEM_KIND_ANCIENT   "¿¡ÀÌ¼Ç??"
+    IDS_ITEM_KIND_MISTIQ    "¹Ì½º??"
     IDS_TOOLTIP_NOAH        "³ë¾Æ: %d"
     IDS_TOOLTIP_REPAIR_PRICE "¼ö¸®°¡°Ý"
     IDS_TOOLTIP_CANNOT      "¼ö¸®ºÒ°¡¾ÆÀÌÅÛ"
-    IDS_POINTINIT_NOT_ENOUGH_NOAH "%d ³ë¾Æ°¡ ÇÊ¿äÇÕ´Ï´Ù."
-    IDS_POINTINIT_ALREADY   "ÃÊ±âÈ­ÇÒ Æ÷ÀÎÆ®°¡ ¾ø½À´Ï´Ù."
-    IDS_NOAH_CHANGE_GET     "%d ³ë¾Æ¸¦ È¹µæÇÏ¿´½À´Ï´Ù."
+    IDS_POINTINIT_NOT_ENOUGH_NOAH "%d ³ë¾Æ°¡ ?Ê¿äÇÕ´Ï´?."
+    IDS_POINTINIT_ALREADY   "ÃÊ±â?­Ç? ?÷ÀÎÆ®°? ¾ø½À´Ï´Ù."
+    IDS_NOAH_CHANGE_GET     "%d ³ë¾Æ¸¦ ?¹µæÇÏ¿´½À´Ï´?."
     IDS_NOAH_CHANGE_LOST    "%d ³ë¾Æ¸¦ ÀÒ¾ú½À´Ï´Ù."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_CLAN_DENY_LOWLEVEL  "¹Ì¾ÈÇÏ±º. ÀÚ³×°°Àº ÇÞº´¾Æ¸®´Â ¿ìµÎ¸Ó¸®ÀÇ ÀÚ°ÝÀÌ ¾ø¾î!!"
-    IDS_CLAN_DENY_LOWGOLD   "¹Ì¾ÈÇÏ±º. CLANÃ¢¼³À» À§ÇØ¼± %d³ë¾Æ°¡ ÇÊ¿äÇÏ³×."
+    IDS_CLAN_DENY_LOWLEVEL  "¹Ì¾È?Ï±?. ÀÚ³×°°Àº ?Þº´¾?¸®´Â ¿ìµÎ¸Ó¸®ÀÇ ÀÚ°ÝÀÌ ¾ø¾î!!"
+    IDS_CLAN_DENY_LOWGOLD   "¹Ì¾È?Ï±?. CLANÃ¢¼³À» À§?Ø¼? %d³ë¾Æ°¡ ?Ê¿äÇÏ³?."
     IDS_CLAN_DENY_INVALIDDAY "¿À´ÃÀº Å¬·£À» ¸¸µé ¼ö ¾ø´Â ³¯ÀÌ¶ó³×..."
     IDS_CLAN_DENY_ALREADYJOINED 
                             "ÀÚ³Ù ÀÌ¹Ì Å¬·£¿¡ °¡ÀÔÀÌ µÇ¾îÀÖ±º. ±×·³ Å¬·£À» ¸¸µé ¼ö ¾øÁö."
-    IDS_CLAN_DENY_UNKNOWN   "Èì..Áö±ÝÀº Å¬·£À» ¸¸µé ¼ö ¾øÀ¸´Ï ´ÙÀ½¿¡ ´Ù½Ã Ã£¾Æ¿À°Ô³ª."
-    IDS_CLAN_MAKE_SUCCESS   "ÀÚ~~ ÀÌÁ¦ ÀÚ³×´Â Á¤½Ä Å¬·£ ¿ìµÎ¸Ó¸®³×. ÃàÇÏÇÏ³×!! "
+    IDS_CLAN_DENY_UNKNOWN   "??..Áö±ÝÀº Å¬·£À» ¸¸µé ¼ö ¾øÀ¸´Ï ´ÙÀ½¿¡ ´Ù½Ã Ã£¾Æ¿À°Ô³ª."
+    IDS_CLAN_MAKE_SUCCESS   "ÀÚ~~ ÀÌÁ¦ ÀÚ³×´Â Á¤½Ä Å¬·£ ¿ìµÎ¸Ó¸®³×. Ãà?ÏÇÏ³?!! "
     IDS_CLAN_WARNING_COST   "Å¬·£Ã¢¼³¿¡´Â %d³ë¾Æ°¡ ¸íºÎµî·Ïºñ·Î ¼ÒºñµË´Ï´Ù."
-    IDS_CLAN_INPUT_NAME     "¿ÀÈ£È£.. ¾î¼­ ¿À½Ã°Ô ¿ë°¨ÇÑ Ä£±¸. ±×·¡..¸¸µé°í ½ÍÀº Å¬·£ÀÇ ÀÌ¸§À» ¸»ÇØº¸°Ô?"
-    IDS_CLAN_REINPUT_NAME   "¿À~~ ÀÌ·± ¹Ì¾ÈÇÏ³×. ´©±º°¡ ¹ú½á ±× ÀÌ¸§À» ¾²´Â ±º. ´Ù¸¥ ÀÌ¸§À¸·Î ÇÏ´Â°Ô ¾î¶§?"
+    IDS_CLAN_INPUT_NAME     "¿À????.. ¾î¼­ ¿À½Ã°Ô ¿ë°¨?? Ä£±¸. ±×·¡..¸¸µé°í ½ÍÀº Å¬·£ÀÇ ÀÌ¸§À» ¸»?Øº¸°??"
+    IDS_CLAN_REINPUT_NAME   "¿À~~ ÀÌ·± ¹Ì¾È?Ï³?. ´©±º°¡ ¹ú½á ±× ÀÌ¸§À» ¾²´Â ±º. ´Ù¸¥ ÀÌ¸§À¸·Î ?Ï´Â°? ¾î¶§?"
     IDS_CLAN_WITHDRAW_SUCCESS "Å¬·£ Å»Åð ¼º°ø"
-    IDS_CLAN_WITHDRAW_FAIL  "Å¬·£ Å»Åð ½ÇÆÐ"
+    IDS_CLAN_WITHDRAW_FAIL  "Å¬·£ Å»Åð ½Ç??"
     IDS_CLAN_JOIN_SUCCESS   "Å¬·£ °¡ÀÔ ¼º°ø"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_NOAH_CHANGE_SPEND   "%d ³ë¾Æ¸¦ ¼ÒºñÇÏ¿´½À´Ï´Ù."
+    IDS_NOAH_CHANGE_SPEND   "%d ³ë¾Æ¸¦ ¼Òºñ?Ï¿´½À´Ï´?."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_CLAN_JOIN_FAIL_CLAN_FULL "Á¦ÇÑ ÀÎ¿ø¸¦ ÃÊ°úÇÏ¿© ½ÇÆÐ"
-    IDS_CLAN_JOIN_FAIL_NONE_CLAN "Å¬·£ÀÌ À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù."
-    IDS_CLAN_JOIN_FAIL_INVALIDRIGHT "±ÇÇÑÀÌ ¾ø½À´Ï´Ù."
+    IDS_CLAN_JOIN_FAIL_CLAN_FULL "Á¦?? ÀÎ¿ø¸¦ ÃÊ°ú?Ï¿? ½Ç??"
+    IDS_CLAN_JOIN_FAIL_NONE_CLAN "Å¬·£ÀÌ À¯?¿ÇÏÁ? ¾Ê½À´Ï´Ù."
+    IDS_CLAN_JOIN_FAIL_INVALIDRIGHT "±Ç?ÑÀ? ¾ø½À´Ï´Ù."
     IDS_CLAN_JOIN_FAIL_OTHER_CLAN_USER "ÀÌ¹ÌÅ¬·£¿¡ °¡ÀÔµÇ¾î ÀÖ´Â À¯ÀúÀÔ´Ï´Ù."
-    IDS_CLAN_JOIN_FAIL_ENEMY_USER "±¹°¡°¡ ´Þ¶ó ½ÇÆÐ"
+    IDS_CLAN_JOIN_FAIL_ENEMY_USER "±¹°¡°¡ ´Þ¶ó ½Ç??"
     IDS_CLAN_JOIN_FAIL_DEAD_USER "Á×Àº À¯ÀúÀÔ´Ï´Ù."
     IDS_CLAN_JOIN_FAIL_NONE_USER "¾ø´Â À¯Àú ÀÔ´Ï´Ù."
-    IDS_CLAN_COMMON_FAIL_ME "ÀÚ½ÅÀº ¼±ÅÃÇÒ ¼ö ¾ø½À´Ï´Ù."
+    IDS_CLAN_COMMON_FAIL_ME "ÀÚ½ÅÀº ¼±ÅÃ?? ¼ö ¾ø½À´Ï´Ù."
     IDS_CLAN_COMMON_FAIL_NOTJOINED "À¯Àú°¡ °¡ÀÔµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù."
-    IDS_CLAN_JOIN_REQ       "%sÅ¬·£¿¡ °¡ÀÔÇÏ½Ã°Ú½À´Ï±î?"
-    IDS_CLAN_JOIN_REJECT    "»ó´ëÆí¿¡¼­ °ÅÀýÇÏ¿´½À´Ï´Ù."
-    IDS_CLAN_COMMON_FAIL_BATTLEZONE "°³Ã´Áö´ë¿¡¼± ºÒ°¡ÇÕ´Ï´Ù. "
+    IDS_CLAN_JOIN_REQ       "%sÅ¬·£¿¡ °¡ÀÔ?Ï½Ã°Ú½À´Ï±??"
+    IDS_CLAN_JOIN_REJECT    "»ó´ë?í¿¡¼? °ÅÀý?Ï¿´½À´Ï´?."
+    IDS_CLAN_COMMON_FAIL_BATTLEZONE "°³Ã´Áö´ë¿¡¼± ºÒ°¡?Õ´Ï´?. "
     IDS_CONFIRM_EXECUTE_OPTION 
-                            "°ÔÀÓÀ» Á¾·áÇÏ°í ¿É¼ÇÀ» Á¶Á¤ÇÕ´Ï´Ù. °è¼Ó ÇÏ½Ã°Ú½À´Ï±î?"
-    IDS_REQUEST_GAME_SAVE   "Ä³¸¯ÅÍ Á¤º¸¸¦ ÀúÀåÇÏ¿´½À´Ï´Ù."
-    IDS_DELAY_GAME_SAVE     "%dºÐ¸¶´Ù ÇÑ¹ø¾¿ ÀúÀåÇÒ¼ö ÀÖ½À´Ï´Ù."
+                            "°ÔÀÓÀ» Á¾·á?Ï°? ¿É¼ÇÀ» Á¶Á¤?Õ´Ï´?. °è¼Ó ?Ï½Ã°Ú½À´Ï±??"
+    IDS_REQUEST_GAME_SAVE   "Ä³¸¯ÅÍ Á¤º¸¸¦ ÀúÀå?Ï¿´½À´Ï´?."
+    IDS_DELAY_GAME_SAVE     "%dºÐ¸¶´Ù ?Ñ¹ø¾? ÀúÀå?Ò¼? ÀÖ½À´Ï´Ù."
     IDS_CLAN_DENY_INVALID_SERVER 
-                            "»õ·Î¿î ¼­¹ö ½Ã½ºÅÛÀ¸·Î ÀÎÇØ Å¬·£ Ã¢¼³Àº ÃßÈÄ Àû¿ëµË´Ï´Ù."
+                            "»õ·Î¿î ¼­¹ö ½Ã½ºÅÛÀ¸·Î ÀÎ?? Å¬·£ Ã¢¼³Àº Ãß?? Àû¿ëµË´Ï´Ù."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_DEAD_RETURN_TOWN    "¸¶À»·Î µ¹¾Æ°£´Ù."
-    IDS_DEAD_REVIVAL        "ºÎÈ°ÇÑ´Ù."
-    IDS_DEAD_LACK_LIFE_STONE "»ý¸íÀÇ µ¹ÀÌ ºÎÁ·ÇÕ´Ï´Ù."
+    IDS_DEAD_REVIVAL        "ºÎ?°ÇÑ´?."
+    IDS_DEAD_LACK_LIFE_STONE "»ý¸íÀÇ µ¹ÀÌ ºÎÁ·?Õ´Ï´?."
     IDS_DEAD_REVIVAL_MESSAGE 
-                            "ºÎÈ°À» À§ÇØ¼­´Â %d°³ÀÇ »ý¸íÀÇ µ¹À» ½ÅÀü¿¡ ¹ÙÃÄ¾ß ÇÕ´Ï´Ù."
-    IDS_DEAD_LOW_LEVEL      "·¹º§ÀÌ ³·¾Æ ºÎÈ°ÇÒ¼ö ¾ø½À´Ï´Ù."
+                            "ºÎ?°À? À§?Ø¼­´? %d°³ÀÇ »ý¸íÀÇ µ¹À» ½ÅÀü¿¡ ¹ÙÃÄ¾ß ?Õ´Ï´?."
+    IDS_DEAD_LOW_LEVEL      "·¹º§ÀÌ ³·¾Æ ºÎ?°ÇÒ¼? ¾ø½À´Ï´Ù."
     IDS_INVEN_WEIGHT        "¹«°Ô :"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_MSG_HASITEMINSLOT   "¾ÆÀÌÅÛÀ» Âø¿ëÇÏ°í ÀÖÀ¸¸é ´É·ÂÄ¡¸¦ º¯°æ½ÃÅ³ ¼ö ¾ø½À´Ï´Ù."
+    IDS_MSG_HASITEMINSLOT   "¾ÆÀÌÅÛÀ» Âø¿ë?Ï°? ÀÖÀ¸¸é ´É·ÂÄ¡¸¦ º¯°æ½ÃÅ³ ¼ö ¾ø½À´Ï´Ù."
     IDS_ERR_REQUEST_NPC_EVENT_SO_FAR "NPC¿ÍÀÇ °Å¸®°¡ ³Ê¹« ¸Ù´Ï´Ù."
     IDS_WRONG_PASSWORD      "PassWord °¡ ´Ù¸¨´Ï´Ù."
-    IDS_WANT_PARTY_MEMBER   "ÆÄÆ¼±¸ÇÔ : ·¹º§ %d ~ %d"
-    IDS_SETTING_KARUS_SCREEN "\n\nÄ«·ç½º Ä³¸¯ÅÍ ¼³Á¤È­¸éÀÔ´Ï´Ù."
-    IDS_SETTING_ELMORAD_SCREEN "\n\n¿¤¸ð¶óµå Ä³¸¯ÅÍ ¼³Á¤È­¸éÀÔ´Ï´Ù."
+    IDS_WANT_PARTY_MEMBER   "?ÄÆ¼±¸Ç? : ·¹º§ %d ~ %d"
+    IDS_SETTING_KARUS_SCREEN "\n\nÄ«·ç½º Ä³¸¯ÅÍ ¼³Á¤?­¸éÀÔ´Ï´?."
+    IDS_SETTING_ELMORAD_SCREEN "\n\n¿¤¸ð¶óµå Ä³¸¯ÅÍ ¼³Á¤?­¸éÀÔ´Ï´?."
 END
 
 STRINGTABLE DISCARDABLE 
@@ -785,9 +785,9 @@ BEGIN
     IDS_CMD_TOWN            "¸¶À»"
     IDS_CMD_TRADE           "°Å·¡"
     IDS_CMD_EXIT            "Á¾·á"
-    IDS_CMD_PARTY           "ÆÄÆ¼"
-    IDS_CMD_LEAVEPARTY      "ÆÄÆ¼Å»Åð"
-    IDS_CMD_RECRUITPARTY    "ÆÄÆ¼±¸ÇÔ"
+    IDS_CMD_PARTY           "?ÄÆ?"
+    IDS_CMD_LEAVEPARTY      "?ÄÆ¼Å»Å?"
+    IDS_CMD_RECRUITPARTY    "?ÄÆ¼±¸Ç?"
     IDS_CMD_JOINCLAN        "Å¬·£°¡ÀÔ"
 END
 
@@ -808,34 +808,34 @@ BEGIN
     IDS_CMD_NOTICE          "°øÁö"
     IDS_CMD_ARREST          "ÃßÀû"
     IDS_CMD_FORBIDCONNECT   "Á¢¼Ó±ÝÁö"
-    IDS_CMD_FORBIDCHAT      "Ã¤ÆÃ±ÝÁö"
+    IDS_CMD_FORBIDCHAT      "Ã¤?Ã±ÝÁ?"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_CMD_PERMITCHAT      "Ã¤ÆÃÇã°¡"
+    IDS_CMD_PERMITCHAT      "Ã¤?ÃÇã°?"
     IDS_CMD_GAME_SAVE       "ÀúÀå"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_PARTY_BBS_REGISTER  "ÆÄÆ¼ ±¸ÇÔ °Ô½ÃÆÇ¿¡ µî·ÏÇÕ´Ï´Ù."
-    IDS_PARTY_BBS_REGISTER_CANCEL "ÆÄÆ¼ ±¸ÇÔ °Ô½ÃÆÇ¿¡¼­ µî·ÏÀ» ÇØÁ¦ÇÕ´Ï´Ù."
-    IDS_TRADE_BBS_SELL_REGISTER "ÆÄ´Â ¹°°Ç µî·Ï¿¡´Â %d ³ë¾Æ°¡ ¼ÒºñµË´Ï´Ù."
-    IDS_TRADE_BBS_PER_TRADE "¸Ö¸® ¶³¾îÁø »ç¶÷°ú °Å·¡¸¦ ÇÏ±â À§ÇØ¼± ¿©°üÁÖÀÎ¿¡°Ô %d ³ë¾Æ¸¦ ÁöºÒÇØ¾ß ÇÕ´Ï´Ù."
+    IDS_PARTY_BBS_REGISTER  "?ÄÆ? ±¸?? °Ô½Ã??¿¡ µî·Ï?Õ´Ï´?."
+    IDS_PARTY_BBS_REGISTER_CANCEL "?ÄÆ? ±¸?? °Ô½Ã??¿¡¼­ µî·ÏÀ» ?ØÁ¦ÇÕ´Ï´?."
+    IDS_TRADE_BBS_SELL_REGISTER "?Ä´? ¹°°Ç µî·Ï¿¡´Â %d ³ë¾Æ°¡ ¼ÒºñµË´Ï´Ù."
+    IDS_TRADE_BBS_PER_TRADE "¸Ö¸® ¶³¾îÁø »ç¶÷°ú °Å·¡¸¦ ?Ï±? À§?Ø¼? ¿©°üÁÖÀÎ¿¡°Ô %d ³ë¾Æ¸¦ ÁöºÒ?Ø¾? ?Õ´Ï´?."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_TRADE_BBS_BUY_REGISTER 
                             "»ç´Â ¹°°Ç µî·Ï¿¡´Â ½Ã°£ ´ç %d ³ë¾Æ°¡ ¼ÒºñµË´Ï´Ù."
-    IDS_TRADE_BBS_FAIL1     "µî·ÏÀ» ½ÇÆÐÇÏ¿´½À´Ï´Ù."
-    IDS_TRADE_BBS_FAIL2     "³ë¾Æ°¡ ºÎÁ·ÇÕ´Ï´Ù."
-    IDS_TRADE_BBS_FAIL3     "µî·Ï ÇØÁ¦¸¦ ½ÇÆÐÇÏ¿´½À´Ï´Ù."
-    IDS_TRADE_BBS_FAIL4     "½ÇÆÐÇÏ¿´½À´Ï´Ù. »õ·Î°íÄ§À» ÇÏ½Ê½Ã¿ä."
-    IDS_TRADE_BBS_FAIL5     "°Å·¡ ½ÅÃ»ÀÌ ½ÇÆÐÇÏ¿´½À´Ï´Ù."
-    IDS_TRADE_BBS_FAIL6     "»ó°Å·¡ °Ô½ÃÆÇÀ» ¿­¼ö°¡ ¾ø½À´Ï´Ù."
-    IDS_OTHER_PER_TRADE_ID_NO "»ó´ë¹æÀÌ °Å·¡¸¦ °ÅÀýÇÏ¿´½À´Ï´Ù."
+    IDS_TRADE_BBS_FAIL1     "µî·ÏÀ» ½Ç?ÐÇÏ¿´½À´Ï´?."
+    IDS_TRADE_BBS_FAIL2     "³ë¾Æ°¡ ºÎÁ·?Õ´Ï´?."
+    IDS_TRADE_BBS_FAIL3     "µî·Ï ?ØÁ¦¸? ½Ç?ÐÇÏ¿´½À´Ï´?."
+    IDS_TRADE_BBS_FAIL4     "½Ç?ÐÇÏ¿´½À´Ï´?. »õ·Î°íÄ§À» ?Ï½Ê½Ã¿?."
+    IDS_TRADE_BBS_FAIL5     "°Å·¡ ½ÅÃ»ÀÌ ½Ç?ÐÇÏ¿´½À´Ï´?."
+    IDS_TRADE_BBS_FAIL6     "»ó°Å·¡ °Ô½Ã??À» ¿­¼ö°¡ ¾ø½À´Ï´Ù."
+    IDS_OTHER_PER_TRADE_ID_NO "»ó´ë¹æÀÌ °Å·¡¸¦ °ÅÀý?Ï¿´½À´Ï´?."
 END
 
 STRINGTABLE DISCARDABLE 
@@ -848,8 +848,8 @@ END
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_CLASS_KINDOF_ATTACK_WIZARD "°ø°Ý ¸¶¹ý»ç Á÷¾÷±º"
-    IDS_CLASS_KINDOF_PET_WIZARD "Æê ¸¶¹ý»ç Á÷¾÷±º"
-    IDS_CLASS_KINDOF_HEAL_PRIEST "Èú »çÁ¦ Á÷¾÷±º"
+    IDS_CLASS_KINDOF_PET_WIZARD "?? ¸¶¹ý»ç Á÷¾÷±º"
+    IDS_CLASS_KINDOF_HEAL_PRIEST "?? »çÁ¦ Á÷¾÷±º"
     IDS_CLASS_KINDOF_CURSE_PRIEST "ÀúÁÖ »çÁ¦ Á÷¾÷±º"
 END
 
@@ -1220,7 +1220,7 @@ BEGIN
     IDS_ITEM_CLASS_AXE_2H   "Âù¤â©òÀY"
     IDS_ITEM_CLASS_BELT     "¸y±a"
     IDS_ITEM_CLASS_BOW      "¤}"
-    IDS_ITEM_CLASS_BOW_CROSS "¤Q¦r¤}"
+    IDS_ITEM_CLASS_BOW_CROSS "¢Ì¦r¤}"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -1663,7 +1663,7 @@ BEGIN
     IDS_REQUEST_GAME_SAVE   "ÀÉ®×¤wÀx¦s."
     IDS_DELAY_GAME_SAVE     "%d¤ÀÄÁ¥H«á¤~¯àÄ~ÄòÀx¦s."
     IDS_CLAN_DENY_INVALID_SERVER 
-                            "»õ·Î¿î ¼­¹ö ½Ã½ºÅÛÀ¸·Î ÀÎÇØ Å¬·£ Ã¢¼³Àº ÃßÈÄ Àû¿ëµË´Ï´Ù."
+                            "»õ·Î¿î ¼­¹ö ½Ã½ºÅÛÀ¸·Î ÀÎ?? Å¬·£ Ã¢¼³Àº Ãß?? Àû¿ëµË´Ï´Ù."
 END
 
 STRINGTABLE DISCARDABLE 
