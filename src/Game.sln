@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WarFare", "game\WarFare.vcxproj", "{D4401A96-091F-43E1-8873-CB663B6C7F0B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KnightOnLine", "game\KnightOnLine.vcxproj", "{D4401A96-091F-43E1-8873-CB663B6C7F0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

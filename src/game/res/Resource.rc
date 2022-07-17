@@ -873,7 +873,7 @@ LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_MAIN                ICON    DISCARDABLE     "WarFare.ico"
+IDI_MAIN                ICON    DISCARDABLE     "KnightOnLine.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -913,10 +913,10 @@ BEGIN
             VALUE "CompanyName", "NoahSystem\0"
             VALUE "FileDescription", "Knight Online Client\0"
             VALUE "FileVersion", "2, 3, 11, 1718\0"
-            VALUE "InternalName", "Warfare\0"
+            VALUE "InternalName", "KnightOnLine\0"
             VALUE "LegalCopyright", "Copyright ? 2001. NoahSystem.co.ltd\0"
             VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "KnightOnline.exe\0"
+            VALUE "OriginalFilename", "KnightOnLine.exe\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "Knights OnLine Client\0"
             VALUE "ProductVersion", "2, 3, 11, 1718\0"

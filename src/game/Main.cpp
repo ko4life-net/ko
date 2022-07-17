@@ -1,7 +1,7 @@
 // N3Client.cpp : Defines the entry point for the application.
 //
 #include "StdAfx.h"
-#include "WarFareMain.h"
+#include "Main.h"
 
 #include "PacketDef.h"
 #include "APISocket.h"

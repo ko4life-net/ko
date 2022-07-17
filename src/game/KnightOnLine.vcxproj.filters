@@ -625,7 +625,7 @@
     <ClInclude Include="..\engine\JPEG\JpegFile.h" />
     <ClInclude Include="LocalInput.h" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="WarFareMain.h" />
+    <ClInclude Include="Main.h" />
     <ClInclude Include="WarMessage.h" />
   </ItemGroup>
   <ItemGroup>
@@ -634,7 +634,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\WarFare.ico">
+    <Image Include="res\KnightOnLine.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -1118,7 +1118,7 @@
     <ClCompile Include="..\engine\JPEG\JpegFile.cpp" />
     <ClCompile Include="LocalInput.cpp" />
     <ClCompile Include="StdAfx.cpp" />
-    <ClCompile Include="WarFareMain.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="WarMessage.cpp" />
   </ItemGroup>
   <ItemGroup>

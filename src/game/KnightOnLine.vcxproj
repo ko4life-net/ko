@@ -294,14 +294,14 @@
     <ClInclude Include="UIVarious.h" />
     <ClInclude Include="UIWareHouseDlg.h" />
     <ClInclude Include="UIWarp.h" />
-    <ClInclude Include="WarFareMain.h" />
+    <ClInclude Include="Main.h" />
     <ClInclude Include="WarMessage.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\Resource.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\WarFare.ico" />
+    <Image Include="res\KnightOnLine.ico" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\JPEG\JpegFile.cpp" />
@@ -472,7 +472,7 @@
     <ClCompile Include="UIVarious.cpp" />
     <ClCompile Include="UIWareHouseDlg.cpp" />
     <ClCompile Include="UIWarp.cpp" />
-    <ClCompile Include="WarFareMain.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="WarMessage.cpp" />
   </ItemGroup>
   <ItemGroup>

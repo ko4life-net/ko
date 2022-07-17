@@ -1,5 +1,4 @@
-#ifndef _WARFAREMAIN_H_
-#define _WARFAREMAIN_H_
+#pragma once
 
 LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 LRESULT CALLBACK WndProcSub(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -16,5 +15,3 @@ LRESULT CALLBACK OYBLowLevelKeyboardProc (INT nCode, WPARAM wParam, LPARAM lPara
 //    DWORD time;        // time stamp for this message
 //    DWORD dwExtraInfo; // extra info from the driver or keybd_event
 //} KBDLLHOOKSTRUCT, FAR *LPKBDLLHOOKSTRUCT, *PKBDLLHOOKSTRUCT;
-
-#endif //_WARFAREMAIN_H_
