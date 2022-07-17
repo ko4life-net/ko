@@ -29,85 +29,6 @@ HHOOK ghookdata = NULL;
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-/*
-LRESULT CALLBACK OYBLowLevelKeyboardProc (INT nCode, WPARAM wParam, LPARAM lParam)
-{    
-	BOOL	bControlKeyDown = 0;    
-	BOOL	bFlags;
-	DWORD	vkCode;
-	KBDLLHOOKSTRUCT *pkbhs;
-
-	switch ( CGameProcedure::s_eVersion )
-	{
-		case W95:
-		case W98:
-		case WME:
-
-			bFlags = lParam >> 29;
-			bFlags	&= 0x00000001;
-			vkCode = lParam >> 16;
-			vkCode	&= 0x00000fff;
-			switch (nCode)    
-			{        
-				case HC_ACTION:        
-				{   
-					// Check to see if the CTRL key is pressed            
-					bControlKeyDown = GetAsyncKeyState (VK_CONTROL) >> ((sizeof(SHORT) * 8) - 1);                        
-					// Disable CTRL+ESC            
-					if ((vkCode == 0x01) && bControlKeyDown)                
-						return 1;            
-					// Disable ALT+TAB            
-					if ((vkCode == 0x0F) && bFlags)                
-						return 1;            
-					// Disable ALT+ESC            
-					if ((vkCode == 0x01) && bFlags)
-						return 1;			
-					//Disable WINDOWS keys			
-					if ((vkCode == VK_LWIN) || (vkCode == VK_RWIN))				
-						return 1;					
-						break;        
-				}        
-				default:            
-					break;    
-			}    
-			break;
-
-		case WNT4:
-		case W2K:
-
-			// By returning a non-zero value from the hook procedure, the    
-			// message does not get passed to the target window    
-			pkbhs = (KBDLLHOOKSTRUCT *) lParam;    
-			switch (nCode)    
-			{        
-				case HC_ACTION:        
-				{            
-					// Check to see if the CTRL key is pressed            
-					bControlKeyDown = GetAsyncKeyState (VK_CONTROL) >> ((sizeof(SHORT) * 8) - 1);                        
-					// Disable CTRL+ESC            
-					if (pkbhs->vkCode == VK_ESCAPE && bControlKeyDown)                
-						return 1;            
-					// Disable ALT+TAB            
-					if (pkbhs->vkCode == VK_TAB && pkbhs->flags & LLKHF_ALTDOWN)                
-						return 1;            
-					// Disable ALT+ESC            
-					if (pkbhs->vkCode == VK_ESCAPE && pkbhs->flags & LLKHF_ALTDOWN)			    
-						return 1;			
-					//Disable WINDOWS keys			
-					if(pkbhs->vkCode == VK_LWIN || pkbhs->vkCode == VK_RWIN)				
-						return 1;					
-						break;        
-				}        
-				default:            
-					break;    
-			}    
-			break;
-
-	}
-	return CallNextHookEx (ghookdata, nCode, wParam, lParam);
-} 
-*/
-
 LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {	
 	switch(message)
@@ -489,20 +410,6 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	CGameProcedure::StaticMemberInit(hInstance, hWndMain, hWndSub);		// 파괴는 WM_DESTROY 에서 한다..
 	CGameProcedure::ProcActiveSet((CGameProcedure*)CGameProcedure::s_pProcLogIn);	// 로그인 프로시져부터 시작..
 
-	// and its installation, called in InitInstance()
-/*	switch ( CGameProcedure::s_eVersion )
-	{
-		case W95:
-		case W98:
-		case WME:
-//			ghookdata = SetWindowsHookEx(WH_KEYBOARD, OYBLowLevelKeyboardProc, AfxGetInstanceHandle(), 0); 
-			break;
-		case WNT4:
-		case W2K:
-//			ghookdata = SetWindowsHookEx(WH_KEYBOARD_LL, OYBLowLevelKeyboardProc, AfxGetInstanceHandle(), 0); 
-			break;
-	}
-*/
     BOOL bGotMsg = FALSE;
 
 #if _DEBUG
