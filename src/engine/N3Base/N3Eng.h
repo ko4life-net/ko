@@ -10,7 +10,7 @@
 #endif // _MSC_VER > 1000
 
 #include "N3BaseFileAccess.h"
-#include "ddraw.h"
+#include <ddraw.h>
 
 class CN3Eng : public CN3Base
 {

@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "StdAfxBase.h"
+#include "StdAfx.h"
 #include "N3UIEdit.h"
 #include "N3UIString.h"
 #include "N3UIImage.h"
@@ -13,11 +13,6 @@
 #include "N3SndObj.h"
 #include <imm.h>
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 const float CARET_FLICKERING_TIME = 0.4f;
 

@@ -2,16 +2,11 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafxbase.h"
+#include "StdAfx.h"
 #include "N3Moon.h"
 #include "My_3DStruct.h"
 #include "N3Texture.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

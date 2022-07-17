@@ -1,7 +1,7 @@
 // N3Base.cpp: implementation of the CN3Base class.
 //
 //////////////////////////////////////////////////////////////////////
-#include "StdAfxBase.h"
+#include "StdAfx.h"
 
 #include "N3Mesh.h"
 #include "N3VMesh.h"
@@ -10,13 +10,8 @@
 #include "N3FXShape.h"
 #include "N3Chr.h"
 #include "N3Base.h"
-#include "mmsystem.h"
+#include <mmsystem.h>
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

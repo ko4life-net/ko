@@ -1,7 +1,7 @@
 // N3SndEng.cpp: implementation of the CN3SndEng class.
 //
 //////////////////////////////////////////////////////////////////////
-#include "StdAfxBase.h"
+#include "StdAfx.h"
 #include "N3SndEng.h"
 #include "N3SndObj.h"
 #include "N3Snd3dObj.h"
@@ -9,11 +9,6 @@
 #include "WaveFile.h"
 #include "LogWriter.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

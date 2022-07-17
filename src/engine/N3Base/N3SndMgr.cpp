@@ -1,17 +1,12 @@
 // N3SndMgr.cpp: implementation of the CN3SndMgr class.
 //
 //////////////////////////////////////////////////////////////////////
-#include "StdAfxBase.h"
+#include "StdAfx.h"
 #include "N3SndMgr.h"
 #include "N3SndObj.h"
 #include "N3SndObjStream.h"
 #include "N3Base.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

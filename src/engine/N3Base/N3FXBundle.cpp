@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "StdAfxBase.h"
+#include "StdAfx.h"
 #include "N3FXBundle.h"
 #include "N3FXPartParticles.h"
 #include "N3FXPartBillBoard.h"
@@ -12,11 +12,6 @@
 #include "N3Base/N3SndMgr.h"
 #include "N3Base/N3SndObj.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

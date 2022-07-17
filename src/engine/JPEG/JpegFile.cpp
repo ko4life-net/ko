@@ -15,11 +15,7 @@
 #include "JpegFile.h"
 #include "N3Base/My_3DStruct.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
+#include <tchar.h>
 
 /*
  * <setjmp.h> is used for the optional error recovery mechanism shown in
@@ -1198,7 +1194,7 @@ HANDLE CJpegFile::AllocRoomForDIB(BITMAPINFOHEADER bi, HBITMAP hBitmap)
 
 HDIB FAR CJpegFile::ChangeBitmapFormat(HBITMAP  hBitmap, WORD     wBitCount, DWORD    dwCompression, HPALETTE hPal)
 {
-	HDC                hDC;          // Screen DC
+	HDC                hDC=NULL;     // Screen DC
 	HDIB               hNewDIB=NULL; // Handle to new DIB
 	BITMAP             Bitmap;       // BITMAP data structure
 	BITMAPINFOHEADER   bi;           // Bitmap info. header

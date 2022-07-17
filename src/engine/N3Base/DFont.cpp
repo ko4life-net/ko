@@ -1,6 +1,7 @@
 // DFont.cpp: implementation of the CDFont class.
 //
 //////////////////////////////////////////////////////////////////////
+#include "StdAfx.h"
 #include <d3dx9.h>
 #include "DFont.h"
 

@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafxBase.h"
+#include "StdAfx.h"
 #include "N3SkyMng.h"
 #include "N3Sky.h"
 #include "N3Moon.h"
@@ -20,11 +20,6 @@
 #include "N3SndMgr.h"
 #endif // #ifdef _N3GAME
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 typedef typename std::vector<__SKY_DAYCHANGE>::iterator it_SDC;
 
