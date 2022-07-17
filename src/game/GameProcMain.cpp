@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 #include <io.h>
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Resource.h"
 
 #include "GameEng.h"

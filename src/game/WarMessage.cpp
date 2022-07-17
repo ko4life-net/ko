@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Resource.h"
 #include "N3Base/DFont.h"
 #include "WarMessage.h"

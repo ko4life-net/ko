@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "resource.h"
 #include "UITradeSellBBS.h"
 #include "N3Base/N3UIList.h"

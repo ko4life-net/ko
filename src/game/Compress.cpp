@@ -1,6 +1,6 @@
 // Compress.cpp : implementation of the CMainFrame class
 //
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "implode.h"
 #include "Compress.h"
 

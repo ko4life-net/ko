@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3FXBundleGame.h"
 #include "GameProcMain.h"
 #include "PlayerBase.h"

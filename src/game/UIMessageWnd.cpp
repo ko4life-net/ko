@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "GameProcMain.h"
 #include "PacketDef.h"
 #include "N3Base/N3UIString.h"

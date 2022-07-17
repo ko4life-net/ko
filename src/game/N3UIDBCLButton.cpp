@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3UIDBCLButton.h"
 #include "GameProcedure.h"
 #include "UIImageTooltipDlg.h"
