@@ -461,7 +461,7 @@ void CUISkillTreeDlg::PointPushUpButton(int iValue)
 	int iSkillExtra;			// 스킬창의 값..
 	int iSkillPoint;
 	std::string str;
-	CN3UIString* pStrName, *pStrName2;
+	CN3UIString* pStrName = NULL, *pStrName2 = NULL;
 	pStrName = (CN3UIString* )GetChildByID("string_skillpoint"); __ASSERT(pStrName, "NULL UI Component!!");
 	str = pStrName->GetString();
 	iSkillExtra = atoi(str.c_str());

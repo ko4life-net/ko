@@ -238,9 +238,6 @@
     <ClInclude Include="..\engine\N3Base\N3VMesh.h">
       <Filter>N3Base\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\N3Base\StdAfxBase.h">
-      <Filter>N3Base\Core</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\N3Base\N3SndDef.h">
       <Filter>SoundMgr</Filter>
     </ClInclude>

@@ -1294,7 +1294,7 @@ bool CN3SkyMng::Load(HANDLE hFile)
 	ReadFile(hFile, &iSDCC, 4, &dwRWC, NULL);
 	if(iSDCC > 0)
 	{
-		m_DayChanges.assign(iSDCC);
+		m_DayChanges.resize(iSDCC);
 		for(i = 0; i < iSDCC; i++)
 		{
 			m_DayChanges[i].Load(hFile);

@@ -71,7 +71,7 @@ void CUIDroppedItemDlg::Render()
 	m_pUITooltipDlg->DisplayTooltipsDisable();
 
 	bool bTooltipRender = false;
-	__IconItemSkill* spItem;
+	__IconItemSkill* spItem = NULL;
 
 	for(UIListReverseItor itor = m_Children.rbegin(); m_Children.rend() != itor; ++itor)
 	{

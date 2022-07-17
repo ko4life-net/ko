@@ -834,13 +834,12 @@ void CGameProcedure::ReportDebugStringAndSendToServer(const std::string& szDebug
 	if(s_pSocket && s_pSocket->IsConnected())
 	{
 		int iLen = szDebug.size();
-		std::vector<BYTE> buffer;	// 버퍼.. 
-		buffer.assign(iLen + 4);
+		std::vector<BYTE> buffer(iLen + 4, 0);	// 버퍼.. 
 		int iOffset=0;												// 옵셋..
-		s_pSocket->MP_AddByte(&(buffer[0]), iOffset, N3_REPORT_DEBUG_STRING);
-		s_pSocket->MP_AddShort(&(buffer[0]), iOffset, iLen);
-		s_pSocket->MP_AddString(&(buffer[0]), iOffset, szDebug);
-		s_pSocket->Send(&(buffer[0]), iOffset);				// 보냄..
+		s_pSocket->MP_AddByte(&buffer[0], iOffset, N3_REPORT_DEBUG_STRING);
+		s_pSocket->MP_AddShort(&buffer[0], iOffset, iLen);
+		s_pSocket->MP_AddString(&buffer[0], iOffset, szDebug);
+		s_pSocket->Send(&buffer[0], iOffset);				// 보냄..
 	}
 }
 

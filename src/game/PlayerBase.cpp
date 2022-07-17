@@ -1223,7 +1223,7 @@ bool CPlayerBase::ActionMove(e_StateMove eMove)
 {
 	if(this->IsDead()) return false;
 	
-	static sStateTableMove[PSM_COUNT][PSM_COUNT] = // State Table Move
+	static int sStateTableMove[PSM_COUNT][PSM_COUNT] = // State Table Move
 	{
 		//---------------------------------------------------------------------------------------------------------------------------------------
 		//	STOP,	WALK,	RUN,	WALK_BACKWARD

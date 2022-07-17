@@ -213,7 +213,8 @@ bool CN3UIImage::Load(HANDLE hFile)
 
 	// Animate 되는 image이면 관련된 변수 세팅
 	m_iAnimCount = 0; // animate image 수 정하기
-	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
+	UIListItor itor;
+	for(itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 	{
 		if(UI_TYPE_IMAGE == (*itor)->UIType()) m_iAnimCount++;
 	}
