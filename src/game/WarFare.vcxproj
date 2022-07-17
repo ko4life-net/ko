@@ -219,7 +219,6 @@
     <ClInclude Include="..\engine\N3Base\N3UITooltip.h" />
     <ClInclude Include="..\engine\N3Base\N3UITrackBar.h" />
     <ClInclude Include="..\engine\N3Base\N3VMesh.h" />
-    <ClInclude Include="..\engine\N3Base\StdAfxBase.h" />
     <ClInclude Include="..\engine\N3Base\WaveFile.h" />
     <ClInclude Include="APISocket.h" />
     <ClInclude Include="Bird.h" />

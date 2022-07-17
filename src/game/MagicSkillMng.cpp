@@ -22,8 +22,6 @@
 #include "N3Base/N3SndObjStream.h"
 #include "N3Base/N3ShapeExtra.h"
 
-#include "N3Base/StdAfxBase.h"
-
 #ifdef _DEBUG
 #undef THIS_FILE
 static char THIS_FILE[]=__FILE__;

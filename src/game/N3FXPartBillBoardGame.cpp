@@ -6,7 +6,6 @@
 #include "GameProcedure.h"
 #include "N3WorldManager.h"
 #include "N3FXPartBillBoardGame.h"
-#include "N3Base/StdAfxBase.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

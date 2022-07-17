@@ -15,7 +15,6 @@
 #include "N3FXPartBottomBoardGame.h"
 #include "N3Base/N3ShapeExtra.h"
 
-#include "N3Base/StdAfxBase.h"
 #include "GameEng.h"
 #include "N3Base/N3Camera.h"
 
