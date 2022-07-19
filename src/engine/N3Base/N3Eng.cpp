@@ -196,7 +196,9 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
 				(LPSTR)&pszDebug, 0, NULL);
 			std::stringstream errMsg;
 			errMsg << "Can't create D3D Device - please, check DirectX or display card driver: [";
-			errMsg << std::hex << rval << ":" << pszDebug << "]";
+			errMsg << "0x" << std::uppercase << std::hex << rval;
+			if (pszDebug) errMsg << ":" << pszDebug;
+			errMsg << "]";
 			MessageBox(hWnd, errMsg.str().c_str(), "Initialization", MB_OK);
 #ifdef _N3GAME
 			CLogWriter::Write(errMsg.str().c_str());
