@@ -422,7 +422,7 @@ void C3DMap::RegionUserAdd(int rx, int rz, int uid)
 Iterator C3DMap::RegionUserRemove(int rx, int rz, int uid)
 {
 	if( rx<0 || rz<0 || rx>=m_nXRegion || rz>=m_nZRegion )
-		return FALSE;
+		return {};
 
 	CRegion	*region = NULL;
 	map < int, int* >::iterator		Iter;
@@ -458,7 +458,7 @@ void C3DMap::RegionNpcAdd(int rx, int rz, int nid)
 Iterator C3DMap::RegionNpcRemove(int rx, int rz, int nid)
 {
 	if( rx<0 || rz<0 || rx>=m_nXRegion || rz>=m_nZRegion )
-		return FALSE;
+		return {};
 
 	CRegion	*region = NULL;
 	map < int, int* >::iterator		Iter;

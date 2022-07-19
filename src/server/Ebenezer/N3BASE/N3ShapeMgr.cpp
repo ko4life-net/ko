@@ -1,13 +1,11 @@
 // N3ShapeMgr.cpp: implementation of the CN3ShapeMgr class.
 //
 //////////////////////////////////////////////////////////////////////
+#include "StdAfx.h"
 
 #ifdef _N3GAME
-#include "../WarFare/StdAfx.h"
-#include "../WarFare/GameProcedure.h"
-#include "../WarFare/UILoading.h"
-#else
-#include "StdAfxBase.h"
+#include "../../game/GameProcedure.h"
+#include "../../game/UILoading.h"
 #endif // end of #ifndef _N3GAME
 
 #include "N3ShapeMgr.h"
