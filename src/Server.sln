@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AIServer", "server\AIServer
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ebenezer", "server\Ebenezer\Ebenezer.vcxproj", "{27951848-85E4-46D3-9976-3CEDD74B7A86}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ItemManager", "server\ItemManager\ItemManager.vcxproj", "{F23059FC-FE26-4F90-A25B-9BF11ABB4E9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -21,6 +23,10 @@ Global
 		{27951848-85E4-46D3-9976-3CEDD74B7A86}.Debug|x86.Build.0 = Debug|Win32
 		{27951848-85E4-46D3-9976-3CEDD74B7A86}.Release|x86.ActiveCfg = Release|Win32
 		{27951848-85E4-46D3-9976-3CEDD74B7A86}.Release|x86.Build.0 = Release|Win32
+		{F23059FC-FE26-4F90-A25B-9BF11ABB4E9A}.Debug|x86.ActiveCfg = Debug|Win32
+		{F23059FC-FE26-4F90-A25B-9BF11ABB4E9A}.Debug|x86.Build.0 = Debug|Win32
+		{F23059FC-FE26-4F90-A25B-9BF11ABB4E9A}.Release|x86.ActiveCfg = Release|Win32
+		{F23059FC-FE26-4F90-A25B-9BF11ABB4E9A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

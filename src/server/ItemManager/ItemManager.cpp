@@ -51,7 +51,7 @@ BOOL CItemManagerApp::InitInstance()
 #ifdef _AFXDLL
 	Enable3dControls();			// Call this when using MFC in a shared DLL
 #else
-	Enable3dControlsStatic();	// Call this when linking to MFC statically
+	//Enable3dControlsStatic();	// Call this when linking to MFC statically
 #endif
 
 	CItemManagerDlg dlg;
