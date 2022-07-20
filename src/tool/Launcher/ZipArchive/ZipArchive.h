@@ -655,7 +655,7 @@ public:
 	static CString GetFileName(LPCTSTR lpszFilePath);
 
 	// just a helper for a various purposes
-	static const DWORD* GetCRCTable();
+	static const z_crc_t* GetCRCTable();
 	// function for a VERY advanced use - you normally never need that
 	CZipStorage* GetStorage(){return &m_storage;}
 	
