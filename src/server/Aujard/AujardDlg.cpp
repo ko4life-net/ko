@@ -990,7 +990,7 @@ _USER_DATA* CAujardDlg::GetUserPtr(const char *struserid, int &uid)
 		pUser = (_USER_DATA*)m_DBAgent.m_UserDataArray[i];
 		if( !pUser )
 			continue;
-		if( strnicmp( struserid, pUser->m_id, MAX_ID_SIZE ) == 0 ) {
+		if( _strnicmp( struserid, pUser->m_id, MAX_ID_SIZE ) == 0 ) {
 			uid = i;
 			return pUser;
 		}

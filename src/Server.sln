@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VersionManager", "server\Lo
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Zip", "server\LogInServer\Zip.vcxproj", "{8163F992-7B73-4069-B615-3CFA6DBC58F9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Aujard", "server\Aujard\Aujard.vcxproj", "{A641CE5D-2910-4BF5-8423-9E2ED96F3BCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -39,6 +41,10 @@ Global
 		{8163F992-7B73-4069-B615-3CFA6DBC58F9}.Debug|x86.Build.0 = Debug|Win32
 		{8163F992-7B73-4069-B615-3CFA6DBC58F9}.Release|x86.ActiveCfg = Release|Win32
 		{8163F992-7B73-4069-B615-3CFA6DBC58F9}.Release|x86.Build.0 = Release|Win32
+		{A641CE5D-2910-4BF5-8423-9E2ED96F3BCC}.Debug|x86.ActiveCfg = Debug|Win32
+		{A641CE5D-2910-4BF5-8423-9E2ED96F3BCC}.Debug|x86.Build.0 = Debug|Win32
+		{A641CE5D-2910-4BF5-8423-9E2ED96F3BCC}.Release|x86.ActiveCfg = Release|Win32
+		{A641CE5D-2910-4BF5-8423-9E2ED96F3BCC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
