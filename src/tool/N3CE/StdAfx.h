@@ -24,6 +24,13 @@
 #include <afxcmn.h>			// MFC support for Windows Common Controls
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
+#include <string>
+#include <sstream>
+#include <vector>
+#include <list>
+#include <map>
+#include <set>
+
 #include "N3Base/My_3DStruct.h"
 
 //{{AFX_INSERT_LOCATION}}

@@ -33,7 +33,7 @@ public:
 public:
 	void		TexSet(int index, const std::string& szFN);
 	void		TexAlloc(int nCount);
-	int			TexCount() { m_TexRefs.size(); }
+	int			TexCount() { return m_TexRefs.size(); }
 	CN3Texture* Tex(int index) { if(m_TexRefs.empty() || index < 0 || index >= m_TexRefs.size()) return NULL; return m_TexRefs[index]; }
 
 	void		Init(__Vector3 vPos, DWORD dwBoardType, float fW, float fH);
