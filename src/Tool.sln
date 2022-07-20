@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "N3ME", "tool\N3ME\N3ME.vcxproj", "{9CBD7073-895F-488B-8F05-509ADF121E95}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KscViewer", "tool\KscViewer\KscViewer.vcxproj", "{56605844-DE99-4FA8-8D9D-2D25705F35A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -15,6 +17,10 @@ Global
 		{9CBD7073-895F-488B-8F05-509ADF121E95}.Debug|x86.Build.0 = Debug|Win32
 		{9CBD7073-895F-488B-8F05-509ADF121E95}.Release|x86.ActiveCfg = Release|Win32
 		{9CBD7073-895F-488B-8F05-509ADF121E95}.Release|x86.Build.0 = Release|Win32
+		{56605844-DE99-4FA8-8D9D-2D25705F35A2}.Debug|x86.ActiveCfg = Debug|Win32
+		{56605844-DE99-4FA8-8D9D-2D25705F35A2}.Debug|x86.Build.0 = Debug|Win32
+		{56605844-DE99-4FA8-8D9D-2D25705F35A2}.Release|x86.ActiveCfg = Release|Win32
+		{56605844-DE99-4FA8-8D9D-2D25705F35A2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
