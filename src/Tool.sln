@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Launcher", "tool\Launcher\L
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "N3CE", "tool\N3CE\N3CE.vcxproj", "{E06F7FAD-F43A-4CAD-B25C-A0F053AE0BE6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "N3FXE", "tool\N3FXE\N3FXE.vcxproj", "{B103F713-B955-42CD-8B5D-D49C3005337E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -39,6 +41,10 @@ Global
 		{E06F7FAD-F43A-4CAD-B25C-A0F053AE0BE6}.Debug|x86.Build.0 = Debug|Win32
 		{E06F7FAD-F43A-4CAD-B25C-A0F053AE0BE6}.Release|x86.ActiveCfg = Release|Win32
 		{E06F7FAD-F43A-4CAD-B25C-A0F053AE0BE6}.Release|x86.Build.0 = Release|Win32
+		{B103F713-B955-42CD-8B5D-D49C3005337E}.Debug|x86.ActiveCfg = Debug|Win32
+		{B103F713-B955-42CD-8B5D-D49C3005337E}.Debug|x86.Build.0 = Debug|Win32
+		{B103F713-B955-42CD-8B5D-D49C3005337E}.Release|x86.ActiveCfg = Release|Win32
+		{B103F713-B955-42CD-8B5D-D49C3005337E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
