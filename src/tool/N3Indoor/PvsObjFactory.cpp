@@ -80,12 +80,10 @@ HICON CPvsObjFactory::GetPvsWallIcon()
 std::string	CPvsObjFactory::MakePvsWallString(int iIndex, e_WallType eWT)
 {
 	int iWT = (int)eWT; iWT++;
-	std::string strRet;
 	std::vector<char> buffer(32, NULL);
+	sprintf(&buffer[0], "Wall_%d_%d", iIndex, iWT);
 
-	sprintf(buffer.begin(), "Wall_%d_%d", iIndex, iWT);
-	strRet = buffer.begin();
-	return strRet;
+	return std::string(buffer.begin(), buffer.end());
 }
 
 HICON CPvsObjFactory::GetPvsVolIcon()
@@ -95,12 +93,10 @@ HICON CPvsObjFactory::GetPvsVolIcon()
 
 std::string	CPvsObjFactory::MakePvsVolString(int iIndex)
 {
-	std::string strRet;
 	std::vector<char> buffer(32, NULL);
+	sprintf(&buffer[0], "Vol_%d", iIndex);
 
-	sprintf(buffer.begin(), "Vol_%d", iIndex);
-	strRet = buffer.begin();
-	return strRet;
+	return std::string(buffer.begin(), buffer.end());
 }
 
 

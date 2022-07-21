@@ -1,16 +1,11 @@
 // N3Eng.cpp: implementation of the CN3Eng class.
 //
 //////////////////////////////////////////////////////////////////////
-#include "StdAfxBase.h"
+#include "StdAfx.h"
 #include "N3Eng.h"
 #include "N3Light.h"
 #include "LogWriter.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -201,7 +196,9 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
 				(LPSTR)&pszDebug, 0, NULL);
 			std::stringstream errMsg;
 			errMsg << "Can't create D3D Device - please, check DirectX or display card driver: [";
-			errMsg << std::hex << rval << ":" << pszDebug << "]";
+			errMsg << "0x" << std::uppercase << std::hex << rval;
+			if (pszDebug) errMsg << ":" << pszDebug;
+			errMsg << "]";
 			MessageBox(hWnd, errMsg.str().c_str(), "Initialization", MB_OK);
 #ifdef _N3GAME
 			CLogWriter::Write(errMsg.str().c_str());
@@ -606,8 +603,8 @@ bool CN3Eng::RegistryValueGet(HKEY hKey, const std::string& szName, std::string&
 
 	DWORD dwType = REG_SZ;
 	DWORD dwBytes = 0;
-	long lStatus = RegQueryValueEx(hKey, szName.c_str(), NULL, &dwType, (BYTE*)(&(buffer[0])), &dwBytes);
-	szValue = &(buffer[0]);
+	long lStatus = RegQueryValueEx(hKey, szName.c_str(), NULL, &dwType, (BYTE *)&buffer[0], &dwBytes);
+	szValue = std::string(buffer.begin(), buffer.end());
 
 	if(ERROR_SUCCESS == lStatus) return true;
 	return false;

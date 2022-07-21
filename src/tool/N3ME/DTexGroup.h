@@ -12,7 +12,7 @@
 #include "LyTerrainDef.h"
 #include <list>
 
-typedef std::list<LPDTEXTILEATTR>::iterator it_DTexTileAttr;
+typedef typename std::list<LPDTEXTILEATTR>::iterator it_DTexTileAttr;
 
 class CDTexGroup  
 {

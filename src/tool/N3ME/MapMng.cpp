@@ -319,7 +319,7 @@ CN3Transform* CMapMng::AddObjectToOutputScene(CN3Transform* pObj)
 	ASSERT(m_pSceneOutput && pObj->m_szName.size() );
 
 	// m_pSceneOutput에 넣기
-	CN3Transform* pDestObj;
+	CN3Transform* pDestObj = NULL;
 	if (pObj->Type() & OBJ_CHARACTER)
 	{
 		pDestObj = AddChr(m_pSceneOutput, pObj->FileName(), TRUE);
@@ -1934,13 +1934,13 @@ void CMapMng::RenderGrid(float fGridSize, float fMaxDistance)	// fGridSize크기로
 	static float fPrevGridSize = 0;
 	static float fPrevMaxDistance = 0;
 	static __VertexXyzColor pVertices[100*4];
-	static iVC = 0;
+	static int iVC = 0;
 
 	if (fGridSize != fPrevGridSize || fMaxDistance != fPrevMaxDistance)
 	{
 		fPrevGridSize = fGridSize;		fPrevMaxDistance = fMaxDistance;
 		int i, iCount = (int)(fMaxDistance/fGridSize);
-		const color = 0xff00ff00;
+		const D3DCOLOR color = 0xff00ff00;
 		iVC=0;
 		for (i=0; i<iCount; ++i)
 		{

@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Resource.h"
 
 #include "GameProcMain.h"
@@ -22,13 +22,6 @@
 #include "N3Base/N3SndObjStream.h"
 #include "N3Base/N3ShapeExtra.h"
 
-#include "N3Base/StdAfxBase.h"
-
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

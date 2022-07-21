@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 
 #include "N3Base/N3SkyMng.h"
 #include "N3Base/N3ShapeMgr.h"
@@ -16,11 +16,6 @@
 #include "GameProcedure.h"
 #include "PlayerMySelf.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

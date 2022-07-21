@@ -2,19 +2,13 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "GameEng.h"
 #include "GameBase.h"
 #include "N3WorldManager.h"
 
 #include "N3Base/N3Camera.h"
 #include "N3Base/N3Light.h"
-
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 const float LIGHTNING_DURATION = 2.0f;
 

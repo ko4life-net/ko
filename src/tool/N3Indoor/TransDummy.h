@@ -61,7 +61,7 @@ protected:
 	__Quaternion		m_qPrevRot;													// 이번 마우스 드래그 이전에 위치 회전 확대/축소값
 
 	typedef std::vector<__Vector3> Tv;
-	typedef std::vector<Tv>::iterator tvit;
+	typedef typename std::vector<Tv>::iterator tvit;
 	std::vector<Tv> m_vPrevScaleArray;											// 이번 마우스 드래그 이전에 확대/축소값들 (선택된 객체들 모두의 값을 가지고 있어야 하기 때문에 배열)
 
 //	__Vector3*			m_vPrevScaleArray;										// 이번 마우스 드래그 이전에 확대/축소값들 (선택된 객체들 모두의 값을 가지고 있어야 하기 때문에 배열)

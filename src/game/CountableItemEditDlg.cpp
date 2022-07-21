@@ -2,8 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "resource.h"
+#include "StdAfx.h"
+#include "Resource.h"
 #include "CountableItemEditDlg.h"
 
 #include "GameProcedure.h"
@@ -18,11 +18,6 @@
 
 #include "N3Base/N3UIEdit.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

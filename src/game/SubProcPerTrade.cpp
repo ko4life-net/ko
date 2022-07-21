@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Resource.h"
 
 #include "SubProcPerTrade.h"
@@ -30,13 +30,6 @@
 #include "N3Base/N3UIString.h"
 #include "N3Base/N3UIEdit.h"
 #include "N3Base/N3UIButton.h"
-
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
-
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

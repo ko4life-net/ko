@@ -418,9 +418,6 @@
     <ClInclude Include="..\..\engine\N3Base\Pick.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\StdAfxBase.h">
-      <Filter>N3Base</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\engine\N3Base\WaveFile.h">
       <Filter>N3Base</Filter>
     </ClInclude>

@@ -2,17 +2,11 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "UITradeBBSEditDlg.h"
 #include "N3Base/N3UIEdit.h"
 #include "N3Base/N3UIButton.h"
 #include "LocalInput.h"
-
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

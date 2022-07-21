@@ -11,13 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build all
+      - name: Build
         shell: cmd
         run: |
           build.cmd
 
       - name: Upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          name: KO-All-x86-release
-          path: ./build
+          name: All-x86-release
+          path: src/build/Release/*.exe

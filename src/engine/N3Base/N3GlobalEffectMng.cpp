@@ -1,16 +1,11 @@
 // N3GlobalEffectMng.cpp: implementation of the CN3GlobalEffectMng class.
 //
 //////////////////////////////////////////////////////////////////////
-#include "StdAfxBase.h"
+#include "StdAfx.h"
 #include "N3GlobalEffectMng.h"
 #include "N3GERain.h"
 #include "N3GESnow.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

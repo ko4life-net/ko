@@ -41,7 +41,7 @@ struct __CharacterSymbol
 
 #include <list>
 
-typedef std::list<__CharacterSymbol>::iterator it_CSymbol;
+typedef typename std::list<__CharacterSymbol>::iterator it_CSymbol;
 
 class CServerInfoViewerDoc : public CDocument
 {

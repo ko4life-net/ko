@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "GameDef.h"
 #include "GameBase.h"
 #include "N3Base/N3UIString.h"
@@ -11,12 +11,6 @@
 #include "GameProcedure.h"
 #include "UIQuestMenu.h"
 #include "UIManager.h"
-
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

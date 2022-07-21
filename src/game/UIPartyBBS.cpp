@@ -2,8 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "resource.h"
+#include "StdAfx.h"
+#include "Resource.h"
 #include "UIPartyBBS.h"
 #include "GameProcMain.h"
 #include "UIVarious.h"
@@ -14,12 +14,6 @@
 #include "N3Base/N3UIList.h"
 #include "N3Base/N3UIString.h"
 #include "N3Base/N3UIButton.h"
-
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 #define PARTY_BBS_MAXSTRING	69
 #define PARTY_BBS_MAXLINE	23

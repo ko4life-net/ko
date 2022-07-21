@@ -11,7 +11,7 @@
 //	Coded By : Lynus
 //	Coded On 2001-04-12 ¿ÀÈÄ 1:52:49
 //
-
+#include "StdAfx.h"
 #include "WaveFile.h"
 
 // TODO: Temporarily added this. Need to follow this read: https://walbourn.github.io/wheres-dxerr-lib/

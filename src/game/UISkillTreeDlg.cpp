@@ -2,12 +2,12 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 
 #include "PacketDef.h"
 #include "LocalInput.h"
 #include "APISocket.h"
-#include "resource.h"
+#include "Resource.h"
 #include "UISkillTreeDlg.h"
 
 #include "GameProcedure.h"
@@ -23,12 +23,6 @@
 #include "N3Base/N3UIArea.h"
 #include "N3Base/N3UIString.h"
 #include "N3Base/N3SndObj.h"
-
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -467,7 +461,7 @@ void CUISkillTreeDlg::PointPushUpButton(int iValue)
 	int iSkillExtra;			// 스킬창의 값..
 	int iSkillPoint;
 	std::string str;
-	CN3UIString* pStrName, *pStrName2;
+	CN3UIString* pStrName = NULL, *pStrName2 = NULL;
 	pStrName = (CN3UIString* )GetChildByID("string_skillpoint"); __ASSERT(pStrName, "NULL UI Component!!");
 	str = pStrName->GetString();
 	iSkillExtra = atoi(str.c_str());
@@ -1334,8 +1328,8 @@ stop:
 
 	// 아이콘 이름 만들기.. ^^
 	std::vector<char> buffer(256, NULL);
-	sprintf(buffer.begin(),	"UI\\skillicon_%.2d_%d.dxt", pUSkill->dwID%100, pUSkill->dwID/100);
-	spSkill->szIconFN = buffer.begin();
+	sprintf(&buffer[0],	"UI\\skillicon_%.2d_%d.dxt", pUSkill->dwID%100, pUSkill->dwID/100);
+	spSkill->szIconFN = std::string(buffer.begin(), buffer.end());
 
 	// 아이콘 로드하기.. ^^
 	spSkill->pUIIcon = new CN3UIIcon;

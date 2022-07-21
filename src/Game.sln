@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KnightOnLine", "game\KnightOnLine.vcxproj", "{D4401A96-091F-43E1-8873-CB663B6C7F0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4401A96-091F-43E1-8873-CB663B6C7F0B}.Debug|x86.ActiveCfg = Debug|Win32
+		{D4401A96-091F-43E1-8873-CB663B6C7F0B}.Debug|x86.Build.0 = Debug|Win32
+		{D4401A96-091F-43E1-8873-CB663B6C7F0B}.Release|x86.ActiveCfg = Release|Win32
+		{D4401A96-091F-43E1-8873-CB663B6C7F0B}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B639D0D-FF87-4855-884B-AECBB8BF6B1F}
+	EndGlobalSection
+EndGlobal

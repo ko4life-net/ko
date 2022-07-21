@@ -22,8 +22,8 @@ const int MAX_SCENE_CHARACTER = 4096;
 
 #include <vector>
 
-typedef std::vector<class CN3Shape*>::iterator	it_Shape;
-typedef std::vector<class CN3Chr*>::iterator	it_Chr;
+typedef typename std::vector<class CN3Shape*>::iterator	it_Shape;
+typedef typename std::vector<class CN3Chr*>::iterator	it_Chr;
 
 class CN3Scene : public CN3BaseFileAccess
 {

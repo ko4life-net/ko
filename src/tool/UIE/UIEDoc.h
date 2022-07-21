@@ -12,7 +12,7 @@
 #include "N3Base/N3UIBase.h"
 
 #include <list>
-typedef std::list<CN3UIBase*>::iterator it_UI;
+typedef typename std::list<CN3UIBase*>::iterator it_UI;
 
 class CUIEDoc : public CDocument
 {

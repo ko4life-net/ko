@@ -24,7 +24,7 @@ struct __WarpInfo
 	__Vector3 vPos;
 };
 
-typedef std::list<__WarpInfo>::iterator it_WI;
+typedef typename std::list<__WarpInfo>::iterator it_WI;
 
 class CUIWarp : public CN3UIBase  
 {

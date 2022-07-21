@@ -2,17 +2,11 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "UITradeExplanation.h"
 #include "N3Base/N3UIButton.h"
 #include "N3Base/N3UIString.h"
 #include "UITradeSellBBS.h"
-
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

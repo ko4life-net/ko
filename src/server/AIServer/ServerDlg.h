@@ -202,7 +202,7 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	afx_msg void OnTimer(UINT nIDEvent);
 	//}}AFX_MSG
-	afx_msg void OnGameServerLogin( WPARAM wParam );
+	afx_msg LRESULT OnGameServerLogin( WPARAM wParam, LPARAM lParam );
 	DECLARE_MESSAGE_MAP()
 };
 

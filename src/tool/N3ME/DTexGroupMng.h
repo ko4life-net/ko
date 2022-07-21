@@ -17,7 +17,7 @@ class CDTexGroup;
 class CDlgDTexGroupView;
 class CMainFrame;
 
-typedef std::list<CDTexGroup*>::iterator it_DTexGroup;
+typedef typename std::list<CDTexGroup*>::iterator it_DTexGroup;
 
 class CDTexGroupMng : public CN3Base
 {

@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 
 #include "PacketDef.h"
 #include "LocalInput.h"
@@ -23,12 +23,6 @@
 #include "N3Base/N3UIEdit.h"
 #include "N3Base/N3SndObj.h"
 #include "Resource.h"
-
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

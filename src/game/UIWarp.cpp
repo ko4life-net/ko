@@ -2,8 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "resource.h"
+#include "StdAfx.h"
+#include "Resource.h"
 
 #include "UIWarp.h"
 #include "GameProcMain.h"
@@ -13,12 +13,6 @@
 #include "N3Base/N3UIList.h"
 
 #include "UIManager.h"
-
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

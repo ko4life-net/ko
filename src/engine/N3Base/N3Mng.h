@@ -18,11 +18,11 @@ template <class T> class CN3Mng
 {
 protected:
 	
-	typedef std::map<std::string, T*>::iterator		it_Data;
-	typedef std::map<std::string, T*>::value_type	val_Data;
+	typedef typename std::map<std::string, T*>::iterator		it_Data;
+	typedef typename std::map<std::string, T*>::value_type		val_Data;
 
-	typedef std::map<T*, int>::iterator				it_Ref;
-	typedef std::map<T*, int>::value_type			val_Ref;
+	typedef typename std::map<T*, int>::iterator				it_Ref;
+	typedef typename std::map<T*, int>::value_type				val_Ref;
 
 	std::map<std::string, T*>	m_Datas;
 	std::map<T*, int>			m_Refs;

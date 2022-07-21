@@ -289,7 +289,7 @@ void CDlgEditPartParticle::OnPartParticleBtnSave()
 	}
 	else if(EmitType==FX_PART_PARTICLE_EMIT_TYPE_GATHER)
 	{
-		fprintf(file,"<emit_type> gather %5.4f %5.4f %5.4f %d\n", m_fEmitArg1, m_fEmitArg2, m_fEmitArg3);
+		fprintf(file,"<emit_type> gather %5.4f %5.4f %5.4f\n", m_fEmitArg1, m_fEmitArg2, m_fEmitArg3);
 	}
 	
 	fprintf(file,"<particle_direction> %5.4f %5.4f %5.4f\n", m_EmitDirX, m_EmitDirY, m_EmitDirZ);

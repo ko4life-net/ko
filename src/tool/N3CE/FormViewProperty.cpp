@@ -68,7 +68,7 @@ void CFormViewProperty::OnInitialUpdate()
 		this->GetClientRect(&rc);
 		/////////////////////////////////////
 		// Material 등록 정보
-		CString strTmp;
+		std::string strTmp;
 
 		m_LPMtl.AddPropItem("Render Flags", "0", PIT_EDIT, "", 0);
 //		strTmp = "Null|D3DBLEND_ZERO|D3DBLEND_ONE|D3DBLEND_SRCCOLOR|D3DBLEND_INVSRCCOLOR|D3DBLEND_SRCALPHA|D3DBLEND_INVSRCALPHA|D3DBLEND_DESTALPHA|\
@@ -82,10 +82,10 @@ void CFormViewProperty::OnInitialUpdate()
 //D3DTOP_BLENDDIFFUSEALPHA|D3DTOP_BLENDTEXTUREALPHA|D3DTOP_BLENDFACTORALPHA|D3DTOP_BLENDTEXTUREALPHAPM|D3DTOP_BLENDCURRENTALPHA|\
 //D3DTOP_PREMODULATE|D3DTOP_MODULATEALPHA_ADDCOLOR|D3DTOP_MODULATECOLOR_ADDALPHA|D3DTOP_MODULATEINVALPHA_ADDCOLOR|D3DTOP_MODULATEINVCOLOR_ADDALPHA|\
 //D3DTOP_BUMPENVMAP|D3DTOP_BUMPENVMAPLUMINANCE|D3DTOP_DOTPRODUCT|D3DTOP_MULTIPLYADD|D3DTOP_LERP|";
-//		m_LPMtl.AddPropItem("Color Operation", "", PIT_COMBO, strTmp);
+//		m_LPMtl.AddPropItem("Color Operation", "", PIT_COMBO, strTmp.c_str());
 //		strTmp = "D3DTA_DIFFUSE|D3DTA_CURRENTD|3DTA_TEXTURE|D3DTA_TFACTOR|D3DTA_SPECULAR|";
-//		m_LPMtl.AddPropItem("Color Arg1", "", PIT_COMBO, strTmp);
-//		m_LPMtl.AddPropItem("Color Arg2", "", PIT_COMBO, strTmp);
+//		m_LPMtl.AddPropItem("Color Arg1", "", PIT_COMBO, strTmp.c_str());
+//		m_LPMtl.AddPropItem("Color Arg2", "", PIT_COMBO, strTmp.c_str());
 		m_LPMtl.AddPropItem("Ambient Color", "", PIT_COLOR, "");
 		m_LPMtl.AddPropItem("Diffuse Color", "", PIT_COLOR, "");
 		m_LPMtl.AddPropItem("Specular Color", "", PIT_COLOR, "");
@@ -113,7 +113,7 @@ void CFormViewProperty::OnInitialUpdate()
 		m_LPPlug.AddPropItem("FX Line Count", "", PIT_EDIT, "", 0);
 		strTmp = "";
 		for(int i = 0; i < MAX_PLUG_FX_POSITION; i++) { strTmp += ('0' + i); strTmp += "|"; }
-		m_LPPlug.AddPropItem("FX Pos", "", PIT_COMBO, strTmp);
+		m_LPPlug.AddPropItem("FX Pos", "", PIT_COMBO, strTmp.c_str());
 		
 		m_LPPlug.SetDividerWidth(100); // 중간 분할선 조정
 		// Plug 등록 정보

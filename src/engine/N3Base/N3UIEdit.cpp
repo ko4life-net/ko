@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "StdAfxBase.h"
+#include "StdAfx.h"
 #include "N3UIEdit.h"
 #include "N3UIString.h"
 #include "N3UIImage.h"
@@ -13,11 +13,6 @@
 #include "N3SndObj.h"
 #include <imm.h>
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 const float CARET_FLICKERING_TIME = 0.4f;
 
@@ -684,10 +679,10 @@ bool CN3UIEdit::Load(HANDLE hFile)
 	if (iSndFNLen>0)
 	{
 		std::vector<char> buffer(iSndFNLen+1, NULL);
-		ReadFile(hFile, buffer.begin(), iSndFNLen, &dwNum, NULL);
+		ReadFile(hFile, &buffer[0], iSndFNLen, &dwNum, NULL);
 
 		__ASSERT(NULL == m_pSnd_Typing, "memory leak");
-		m_pSnd_Typing = s_SndMgr.CreateObj(buffer.begin(), SNDTYPE_2D);
+		m_pSnd_Typing = s_SndMgr.CreateObj(std::string(buffer.begin(), buffer.end()), SNDTYPE_2D);
 	}
 
 	return true;
@@ -792,8 +787,8 @@ void CN3UIEdit::SetImeStatus(POINT ptPos, bool bOpen)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 #include<map>
-typedef std::map<HWND, CN3UIEdit*>::iterator		it_Edit;
-typedef std::map<HWND, CN3UIEdit*>::value_type		val_Edit;
+typedef typename std::map<HWND, CN3UIEdit*>::iterator		it_Edit;
+typedef typename std::map<HWND, CN3UIEdit*>::value_type		val_Edit;
 static std::map<HWND, CN3UIEdit*> s_Edits;
 
 bool CN3UIEdit::AddEdit(CN3UIEdit* pEdit)

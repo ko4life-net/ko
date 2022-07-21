@@ -599,8 +599,8 @@ void COrganizeView::RefreshLinkedList()
 	while(siit != pVol->m_plShapeInfoList.end())
 	{
 		pSI = *siit++;
-		sprintf(buffer.begin(), "Shape_%d", pSI->m_iID);
-		str = buffer.begin();
+		sprintf(&buffer[0], "Shape_%d", pSI->m_iID);
+		str = std::string(buffer.begin(), buffer.end());
 		m_LinkedListCtrl.InsertItem(iCount++, str.c_str(), 1);						
 	}
 }
@@ -835,8 +835,8 @@ void COrganizeView::RefreshTotalShape()
 	while(siit != m_PVSMgr.m_plShapeInfoList.end())
 	{
 		pSI = *siit++;
-		sprintf(buffer.begin(), "Part_%d", pSI->m_iID);
-		str = buffer.begin();
+		sprintf(&buffer[0], "Part_%d", pSI->m_iID);
+		str = std::string(buffer.begin(), buffer.end());
 		m_ShapesListCtrl.InsertItem(iCount++, str.c_str(), 1);						
 	}
 }

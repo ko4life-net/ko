@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 #include <io.h>
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Resource.h"
 
 #include "GameEng.h"
@@ -74,11 +74,6 @@
 #include "N3Base/N3SndMgr.h"
 #include "N3Base/N3TableBase.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 enum e_ChatCmd { 	CMD_WHISPER, CMD_TOWN, CMD_TRADE, CMD_EXIT, CMD_PARTY,
 					CMD_LEAVEPARTY, CMD_RECRUITPARTY, CMD_JOINCLAN, CMD_WITHDRAWCLAN, CMD_FIRECLAN, 

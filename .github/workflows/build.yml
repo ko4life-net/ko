@@ -1,23 +1,10 @@
-name: build
-
-on:
-  pull_request:
-  workflow_run:
-    # Use a workflow as a trigger of scheduled builds. Forked repositories can disable scheduled builds by disabling
-    # "scheduled" workflow, while maintaining ability to perform local CI builds.
-    workflows:
-      - scheduled
-    branches:
-      - master
-    types:
-      - requested
+name: Build Game and Server
+on: [workflow_dispatch]
 
 jobs:
   Windows:
     runs-on: windows-2022
     if: github.event.pull_request.draft == false
-    env:                  
-      MSBUILD_PATH: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64
 
     steps:
       - uses: actions/checkout@v2
@@ -28,14 +15,22 @@ jobs:
           cd src
           git clone --depth=1 https://github.com/stevewgr/ko-vendor.git vendor
 
-      - name: Build KnightOnLine (x86)
+      - name: Build KnightOnLine
         shell: cmd
         run: |
-          cd src\game
-          "%MSBUILD_PATH%\MSBuild.exe" WarFare.sln /p:Configuration=Release
+          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat"
+          cd src
+          msbuild Game.sln -t:Clean -t:Build -p:Configuration=Release /m
+
+      - name: Build Server
+        shell: cmd
+        run: |
+          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat"
+          cd src
+          msbuild Server.sln -t:Clean -t:Build -p:Configuration=Release /m
 
       - name: Upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          name: KnightOnLine-x86-release
-          path: ./src/game/KnightOnLine.exe
+          name: x86-release
+          path: src/build/Release/*.exe

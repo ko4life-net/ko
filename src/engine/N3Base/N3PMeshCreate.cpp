@@ -1,17 +1,12 @@
 // N3PMeshCreate.cpp: implementation of the CN3PMeshCreate class.
 //
 //////////////////////////////////////////////////////////////////////
-#include "StdAfxBase.h"
+#include "StdAfx.h"
 #include "N3PMeshCreate.h"
 #include "N3PMesh.h"
 #include "N3PMeshInstance.h"
 #include "N3Base/N3Mesh.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 // Maximum buffer sizes. For greater flexibility, the buffers should reallocate dynamically.
 #define MAX_COLLAPSES 5000

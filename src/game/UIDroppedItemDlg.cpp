@@ -1,7 +1,7 @@
 // UIDroppedItemDlg.cpp: implementation of the UIDroppedItemDlg class.
 //
 //////////////////////////////////////////////////////////////////////
-#include "stdafx.h"
+#include "StdAfx.h"
 
 #include "UIDroppedItemDlg.h"
 
@@ -26,12 +26,6 @@
 #include "Resource.h"
 
 #include "N3Base/N3UIArea.h"
-
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -77,7 +71,7 @@ void CUIDroppedItemDlg::Render()
 	m_pUITooltipDlg->DisplayTooltipsDisable();
 
 	bool bTooltipRender = false;
-	__IconItemSkill* spItem;
+	__IconItemSkill* spItem = NULL;
 
 	for(UIListReverseItor itor = m_Children.rbegin(); m_Children.rend() != itor; ++itor)
 	{

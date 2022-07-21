@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "StdAfxBase.h"
+#include "StdAfx.h"
 #include "N3UIBase.h"
 
 #include <vector>
@@ -24,11 +24,6 @@
 #include "N3SndMgr.h"
 #include "N3SndObj.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 CN3UIEdit* CN3UIBase::s_pFocusedEdit = NULL;
 CN3UITooltip* CN3UIBase::s_pTooltipCtrl = NULL;
@@ -263,8 +258,8 @@ bool CN3UIBase::Load(HANDLE hFile)
 	if (iIDLen>0)
 	{
 		std::vector<char> buffer(iIDLen+1, NULL);
-		ReadFile(hFile, buffer.begin(), iIDLen, &dwRWC, NULL);			// ui id
-		m_szID = buffer.begin();
+		ReadFile(hFile, &buffer[0], iIDLen, &dwRWC, NULL);			// ui id
+		m_szID = std::string(buffer.begin(), buffer.end());
 	}
 	else
 	{
@@ -280,8 +275,8 @@ bool CN3UIBase::Load(HANDLE hFile)
 	if (iTooltipLen>0)
 	{
 		std::vector<char> buffer(iTooltipLen+1, NULL);
-		ReadFile(hFile, buffer.begin(), iTooltipLen, &dwRWC, NULL);
-		m_szToolTip = buffer.begin();
+		ReadFile(hFile, &buffer[0], iTooltipLen, &dwRWC, NULL);
+		m_szToolTip = std::string(buffer.begin(), buffer.end());
 	}
 
 	// 이전 uif파일을 컨버팅 하려면 사운드 로드 하는 부분 막기
@@ -290,20 +285,20 @@ bool CN3UIBase::Load(HANDLE hFile)
 	if (iSndFNLen>0)
 	{
 		std::vector<char> buffer(iSndFNLen+1, NULL);
-		ReadFile(hFile, buffer.begin(), iSndFNLen, &dwRWC, NULL);
+		ReadFile(hFile, &buffer[0], iSndFNLen, &dwRWC, NULL);
 
 		__ASSERT(NULL == m_pSnd_OpenUI, "memory leak");
-		m_pSnd_OpenUI = s_SndMgr.CreateObj(buffer.begin(), SNDTYPE_2D);
+		m_pSnd_OpenUI = s_SndMgr.CreateObj(std::string(buffer.begin(), buffer.end()), SNDTYPE_2D);
 	}
 
 	ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL);		//	사운드 파일 문자열 길이
 	if (iSndFNLen>0)
 	{
 		std::vector<char> buffer(iSndFNLen+1, NULL);
-		ReadFile(hFile, buffer.begin(), iSndFNLen, &dwRWC, NULL);
+		ReadFile(hFile, &buffer[0], iSndFNLen, &dwRWC, NULL);
 
 		__ASSERT(NULL == m_pSnd_CloseUI, "memory leak");
-		m_pSnd_CloseUI = s_SndMgr.CreateObj(buffer.begin(), SNDTYPE_2D);
+		m_pSnd_CloseUI = s_SndMgr.CreateObj(std::string(buffer.begin(), buffer.end()), SNDTYPE_2D);
 	}
 
 	return true;
@@ -741,11 +736,13 @@ bool CN3UIBase::SwapChild(CN3UIBase* pChild1, CN3UIBase* pChild2)
 {
 	if(this->IsMyChild(pChild1) < 0 || IsMyChild(pChild2) < 0) return false;
 	
-	for(UIListItor itor1 = m_Children.begin(); m_Children.end() != itor1; itor1++)
+	UIListItor itor1;
+	for(itor1 = m_Children.begin(); m_Children.end() != itor1; itor1++)
 		if(*itor1 == pChild1) break;
 	if(itor1 == m_Children.end()) return false;
 
-	for(UIListItor itor2 = m_Children.begin(); m_Children.end() != itor2; itor2++)
+	UIListItor itor2;
+	for(itor2 = m_Children.begin(); m_Children.end() != itor2; itor2++)
 		if(*itor2 == pChild2) break;
 	if(itor2 == m_Children.end()) return false;
 
@@ -835,7 +832,8 @@ void CN3UIBase::ArrangeZOrder()
 	// 보통 image가 배경그림이 되므로 child list에서 맨 뒤로 보낸다.
 	// 왜냐하면 맨 뒤에 있는것이 맨 먼저 그려지므로
 	UIList tempList;
-	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor;)
+	UIListItor itor;
+	for(itor = m_Children.begin(); m_Children.end() != itor;)
 	{
 		CN3UIBase* pChild = (*itor);
 		if(UI_TYPE_IMAGE == pChild->UIType())

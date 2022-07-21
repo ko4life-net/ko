@@ -22,15 +22,14 @@
 
 #include <afxsock.h>		// MFC socket extensions
 
-
-
-
-
+#include <string>
+#include <sstream>
+#include <vector>
+#include <list>
+#include <map>
+#include <set>
 
 #include "N3Base/My_3DStruct.h"
-
-
-
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.

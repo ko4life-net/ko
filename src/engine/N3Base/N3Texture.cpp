@@ -1,18 +1,13 @@
 // N3Texture.cpp: implementation of the CN3Texture class.
 //
 //////////////////////////////////////////////////////////////////////
-#include "StdAfxBase.h"
+#include "StdAfx.h"
 #include "N3Texture.h"
 
 #ifdef _N3TOOL
 #include "BitmapFile.h"
 #endif // #ifdef _N3TOOL
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

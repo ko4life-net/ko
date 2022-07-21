@@ -21,8 +21,8 @@ class CMainFrame;
 class CDlgPondProperty;
 
 #include <list>
-typedef std::list<CPondMesh*>::iterator it_PondMesh;
-typedef std::list<__Vector3*>::iterator it_SelVtxBak;
+typedef typename std::list<CPondMesh*>::iterator it_PondMesh;
+typedef typename std::list<__Vector3*>::iterator it_SelVtxBak;
 
 class CPondMng  : public CN3BaseFileAccess
 {

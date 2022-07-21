@@ -2,18 +2,13 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "GameProcMain.h"
 #include "N3WorldManager.h"
 #include "N3Terrain.h"
 #include "GameEng.h"
 #include "GrassMng.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

@@ -16,12 +16,6 @@
 #include "N3Base/N3River.h"
 #include "N3Base/N3Pond.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
-
 const float COLLISION_BOX = 100.0f;
 
 //

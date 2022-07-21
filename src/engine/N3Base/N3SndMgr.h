@@ -19,10 +19,10 @@
 class CN3SndObj;
 class CN3SndObjStream;
 
-typedef std::list<CN3SndObj*>::iterator itl_Snd;
-typedef std::list<CN3SndObjStream*>::iterator itl_SndStream;
-typedef std::map<std::string, CN3SndObj*>::iterator itm_Snd;
-typedef std::map<std::string, CN3SndObj*>::value_type val_Snd;
+typedef typename std::list<CN3SndObj*>::iterator itl_Snd;
+typedef typename std::list<CN3SndObjStream*>::iterator itl_SndStream;
+typedef typename std::map<std::string, CN3SndObj*>::iterator itm_Snd;
+typedef typename std::map<std::string, CN3SndObj*>::value_type val_Snd;
 
 class CN3SndMgr
 {

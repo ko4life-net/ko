@@ -2,14 +2,9 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "StdAfxBase.h"
+#include "StdAfx.h"
 #include "N3ShapeExtra.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 CN3ShapeExtra::CN3ShapeExtra()
 {
@@ -36,7 +31,7 @@ bool CN3ShapeExtra::Load(HANDLE hFile)
 	m_Rotations.clear();
 	if(iPC <= 0) return bSuccess;
 
-	m_Rotations.assign(iPC);
+	m_Rotations.resize(iPC);
 
 	return bSuccess;
 }

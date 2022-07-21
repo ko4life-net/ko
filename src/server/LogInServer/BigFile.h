@@ -13,7 +13,7 @@ class CBigFile : public CFile
 {
 	DECLARE_DYNAMIC(CBigFile)
 public:
-	_int64 Seek(_int64 dOff, UINT nFrom);
+	ULONGLONG Seek(LONGLONG lOff, UINT nFrom);
 	CBigFile();
 	virtual ~CBigFile();
 

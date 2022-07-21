@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "LocalInput.h"
 #include "N3UIWndBase.h"
 #include "UIManager.h"
@@ -17,12 +17,6 @@
 #include "UIWareHouseDlg.h"
 
 #include "N3Base/N3UITooltip.h"
-
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

@@ -1,6 +1,6 @@
 .vs/
-Release/
-Debug/
+Release*/
+Debug*/
 vendor/
 [Bb]uild/
 *.exe
@@ -16,6 +16,7 @@ vendor/
 *.pch
 *.obj
 *.idb
+*.log
 *.vcxproj.user
 UpgradeLog.htm
-Log.txt
+*[Ll]og*.txt

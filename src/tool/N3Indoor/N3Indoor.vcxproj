@@ -11,128 +11,111 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <SccProjectName>"$/N3Indoor", GVEAAAAA</SccProjectName>
-    <SccLocalPath>.</SccLocalPath>
-    <Keyword>MFCProj</Keyword>
+    <VCProjectVersion>17.0</VCProjectVersion>
     <ProjectGuid>{072B3F67-DF8B-4DED-AD68-7180FABC5B15}</ProjectGuid>
+    <Keyword>MFCProj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v143</PlatformToolset>
-    <UseOfMfc>Dynamic</UseOfMfc>
+    <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v143</PlatformToolset>
-    <UseOfMfc>Dynamic</UseOfMfc>
+    <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\Release\</OutDir>
-    <IntDir>.\Release\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>.\Debug\</OutDir>
-    <IntDir>.\Debug\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)build\$(Configuration)\</OutDir>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
-      <StringPooling>true</StringPooling>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <Optimization>MaxSpeed</Optimization>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_N3TOOL;_N3INDOOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
-      <PrecompiledHeaderOutputFile>.\Release\N3Indoor.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <ObjectFileName>.\Release\</ObjectFileName>
-      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\engine;$(ProjectDir)..\..\game;$(ProjectDir)..\..\vendor\DXSDK9\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
-    </ClCompile>
-    <Midl>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <TypeLibraryName>.\Release\N3Indoor.tlb</TypeLibraryName>
-      <MkTypLibCompatible>true</MkTypLibCompatible>
-      <TargetEnvironment>Win32</TargetEnvironment>
-    </Midl>
-    <ResourceCompile>
-      <Culture>0x0412</Culture>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-    </ResourceCompile>
-    <Bscmake>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Release\N3Indoor.bsc</OutputFile>
-    </Bscmake>
-    <Link>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <SubSystem>Windows</SubSystem>
-      <OutputFile>.\Release\N3Indoor.exe</OutputFile>
-      <AdditionalDependencies>winmm.lib;d3d9.lib;d3dx9d.lib;dsound.lib;dxguidd.lib;strmiids.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Link>
-  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)build\$(Configuration)\</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <Optimization>Disabled</Optimization>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
-      <MinimalRebuild>true</MinimalRebuild>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_N3TOOL;_N3INDOOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
-      <BrowseInformation>true</BrowseInformation>
-      <PrecompiledHeaderOutputFile>.\Debug\N3Indoor.pch</PrecompiledHeaderOutputFile>
-      <ObjectFileName>.\Debug\</ObjectFileName>
-      <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
+      <SDLCheck>true</SDLCheck>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_N3TOOL;_N3INDOOR;_CRT_SECURE_NO_WARNINGS;DIRECTINPUT_VERSION=0x0800;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\engine;$(ProjectDir)..\..\game;$(WindowsSDK_IncludePath);$(ProjectDir)..\..\vendor\DXSDK9\Include</AdditionalIncludeDirectories>
+      <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\engine;$(ProjectDir)..\..\game;$(ProjectDir)..\..\vendor\DXSDK9\Include;$(ProjectDir)..\..\vendor\VC6\VC98\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\MFC\INCLUDE;$(ProjectDir)..\..\vendor\VC6\VC98\ATL\INCLUDE</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <SupportJustMyCode>true</SupportJustMyCode>
+      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
     </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;dsound.lib;dxguidd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\vendor\DXSDK9\Lib\x86</AdditionalLibraryDirectories>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
     <Midl>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <TypeLibraryName>.\Debug\N3Indoor.tlb</TypeLibraryName>
-      <MkTypLibCompatible>true</MkTypLibCompatible>
-      <TargetEnvironment>Win32</TargetEnvironment>
     </Midl>
     <ResourceCompile>
       <Culture>0x0412</Culture>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
-    <Bscmake>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Debug\N3Indoor.bsc</OutputFile>
-    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <Optimization>MaxSpeed</Optimization>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_N3TOOL;_N3INDOOR;_CRT_SECURE_NO_WARNINGS;DIRECTINPUT_VERSION=0x0800;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\engine;$(ProjectDir)..\..\game;$(WindowsSDK_IncludePath);$(ProjectDir)..\..\vendor\DXSDK9\Include</AdditionalIncludeDirectories>
+      <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 %(AdditionalOptions)</AdditionalOptions>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
+    </ClCompile>
     <Link>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>N3Indoor_debug.exe</OutputFile>
-      <AdditionalDependencies>winmm.lib;d3d9.lib;d3dx9.lib;dsound.lib;dxguid.lib;strmiids.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;dsound.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\vendor\DXSDK9\Lib\x86</AdditionalLibraryDirectories>
+      <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Image Include="res\ARW09DN.ICO" />
@@ -213,7 +196,6 @@
     <ClInclude Include="..\..\engine\N3Base\N3TransformCollision.h" />
     <ClInclude Include="..\..\engine\N3Base\N3VMesh.h" />
     <ClInclude Include="..\..\engine\N3Base\Pick.h" />
-    <ClInclude Include="..\..\engine\N3Base\StdAfxBase.h" />
     <ClInclude Include="ComDialog.h" />
     <ClInclude Include="DlgBase.h" />
     <ClInclude Include="DlgBrowsePath.h" />
@@ -316,19 +298,12 @@
     <ClCompile Include="ShellTree.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="SwappedDummy.cpp" />
     <ClCompile Include="TotalToolSheet.cpp" />
     <ClCompile Include="TransDummy.cpp" />
     <ClCompile Include="UserRegenPage.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="N3Indoor_BUILD.vcxproj">
-      <Project>{4c1d27e1-3b5c-4af6-88e4-40d9415ad623}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

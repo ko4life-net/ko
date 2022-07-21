@@ -82,8 +82,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_Light.m_Data.InitPoint(0, __Vector3(0, 5000, 0), crLgt, 1000000.0f);
 	m_Light.m_Data.bOn = TRUE;
 
-	m_Eng.SetDefaultEnvironment();
 	m_Eng.Init(TRUE, m_hWnd, 0, 0, 0, TRUE);
+	m_Eng.SetDefaultEnvironment();
 	m_Eng.GridCreate(64, 64); // 64 미터씩 4096 미터 표현..
 
 	return 0;

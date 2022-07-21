@@ -43,10 +43,10 @@ class CPvsMgr
 {
 	friend class COrganizeView;
 
-	typedef std::list<CPvsBase*>::iterator iter;
-	typedef std::list<int>::iterator iIDiter;
-	typedef std::list<CPortalVol* >::iterator itviter;
-	typedef std::list<__Collision>::iterator iciter;
+	typedef typename std::list<CPvsBase*>::iterator iter;
+	typedef typename std::list<int>::iterator iIDiter;
+	typedef typename std::list<CPortalVol* >::iterator itviter;
+	typedef typename std::list<__Collision>::iterator iciter;
 
 	bool					m_bShapePerVolumn;
 

@@ -3,14 +3,9 @@
 //////////////////////////////////////////////////////////////////////
 
 #include <stdio.h>
-#include "StdAfxBase.h"
+#include "StdAfx.h"
 #include "LogWriter.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -57,7 +52,7 @@ void CLogWriter::Open(const std::string& szFN)
 	GetLocalTime(&time);
 	DWORD dwRWC = 0;
 
-	sprintf(szBuff, "---------------------------------------------------------------------------\r\n", time.wMonth, time.wDay, time.wHour, time.wMinute);
+	sprintf(szBuff, "---------------------------------------------------------------------------\r\n");
 	int iLength = lstrlen(szBuff);
 	WriteFile(hFile, szBuff, iLength, &dwRWC, NULL);
 
@@ -90,7 +85,7 @@ void CLogWriter::Close()
 		int iLength = lstrlen(szBuff);
 		WriteFile(hFile, szBuff, iLength, &dwRWC, NULL);
 
-		sprintf(szBuff, "---------------------------------------------------------------------------\r\n", time.wMonth, time.wDay, time.wHour, time.wMinute);
+		sprintf(szBuff, "---------------------------------------------------------------------------\r\n");
 		iLength = lstrlen(szBuff);
 		WriteFile(hFile, szBuff, iLength, &dwRWC, NULL);
 

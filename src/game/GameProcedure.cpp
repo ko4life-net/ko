@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Resource.h"
 
 #include "GameDef.h"
@@ -49,11 +49,6 @@
 #include "GameCursor.h"
 
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -90,7 +85,6 @@ HCURSOR	CGameProcedure::s_hCursorAttack = NULL;
 HCURSOR	CGameProcedure::s_hCursorPreRepair = NULL;
 HCURSOR	CGameProcedure::s_hCursorNowRepair = NULL;
 
-e_Version CGameProcedure::s_eVersion =	W95;
 e_LogInClassification CGameProcedure::s_eLogInClassification; // 접속한 서비스.. MGame, Daum, KnightOnLine ....
 std::string	CGameProcedure::s_szAccount = ""; // 계정 문자열..
 std::string	CGameProcedure::s_szPassWord = ""; // 계정 비번..
@@ -219,30 +213,6 @@ void CGameProcedure::StaticMemberInit(HINSTANCE hInstance, HWND hWndMain, HWND h
 	s_pProcCharacterCreate	= new CGameProcCharacterCreate();	// 캐릭터 만들기
 	s_pProcMain				= new CGameProcMain();				// 메인 게임 프로시져
 	s_pProcOption			= new CGameProcOption();			// 게임 옵션 프로시져
-
-	//////////////////////////////////////////////////////////////////////////////////////////
-	// 버전 정보.. ^^
-	OSVERSIONINFO winfo;
-	winfo.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
-	GetVersionEx(&winfo);
-	if(winfo.dwPlatformId==VER_PLATFORM_WIN32_NT)
-	{
-		if(winfo.dwMajorVersion>=5)
-			s_eVersion=W2K;
-		else
-			s_eVersion=WNT4;
-	}
-	else
-	if(winfo.dwPlatformId==VER_PLATFORM_WIN32_WINDOWS)
-	{
-		if(winfo.dwMinorVersion<10)
-			s_eVersion=W95;
-		else
-		if(winfo.dwMinorVersion<90)
-		   s_eVersion=W98;
-		else
-		   s_eVersion=WME;				
-	}
 }
 
 void CGameProcedure::StaticMemberRelease()
@@ -864,13 +834,12 @@ void CGameProcedure::ReportDebugStringAndSendToServer(const std::string& szDebug
 	if(s_pSocket && s_pSocket->IsConnected())
 	{
 		int iLen = szDebug.size();
-		std::vector<BYTE> buffer;	// 버퍼.. 
-		buffer.assign(iLen + 4);
+		std::vector<BYTE> buffer(iLen + 4, 0);	// 버퍼.. 
 		int iOffset=0;												// 옵셋..
-		s_pSocket->MP_AddByte(&(buffer[0]), iOffset, N3_REPORT_DEBUG_STRING);
-		s_pSocket->MP_AddShort(&(buffer[0]), iOffset, iLen);
-		s_pSocket->MP_AddString(&(buffer[0]), iOffset, szDebug);
-		s_pSocket->Send(&(buffer[0]), iOffset);				// 보냄..
+		s_pSocket->MP_AddByte(&buffer[0], iOffset, N3_REPORT_DEBUG_STRING);
+		s_pSocket->MP_AddShort(&buffer[0], iOffset, iLen);
+		s_pSocket->MP_AddString(&buffer[0], iOffset, szDebug);
+		s_pSocket->Send(&buffer[0], iOffset);				// 보냄..
 	}
 }
 

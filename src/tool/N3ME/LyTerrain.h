@@ -36,7 +36,7 @@ typedef MMap::iterator MMIter;
 typedef std::list<short> LList;
 typedef LList::iterator LLIter;
 
-typedef std::list<CQTNode*>::iterator it_QTNode;
+typedef typename std::list<CQTNode*>::iterator it_QTNode;
 
 class CLyTerrain : public CN3BaseFileAccess  
 {

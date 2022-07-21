@@ -14,7 +14,7 @@
 #include "RoomEvent.h"
 
 typedef CSTLMap <_OBJECT_EVENT>		ObjectEventArray;
-typedef	map < int, int* >::iterator		Iterator;
+typedef typename map < int, int* >::iterator		Iterator;
 typedef CSTLMap <CRoomEvent>		RoomEventArray;
 
 class CRegion;

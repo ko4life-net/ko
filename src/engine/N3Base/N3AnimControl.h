@@ -101,8 +101,8 @@ public:
 		if(nL > 0)
 		{
 			std::vector<char> buffer(nL+1, NULL);
-			ReadFile(hFile, buffer.begin(), nL, &dwRWC, NULL);
-			szName = buffer.begin();
+			ReadFile(hFile, &buffer[0], nL, &dwRWC, NULL);
+			szName = std::string(buffer.begin(), buffer.end());
 		}
 	}
 	void Save(HANDLE hFile)
@@ -155,7 +155,7 @@ public:
 
 } __AnimData;
 
-typedef std::vector<__AnimData>::iterator it_Ani;
+typedef typename std::vector<__AnimData>::iterator it_Ani;
 
 class CN3AnimControl : public CN3BaseFileAccess
 {

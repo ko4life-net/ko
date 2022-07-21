@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafxBase.h"
+#include "StdAfx.h"
 #include "N3SkyMng.h"
 #include "N3Sky.h"
 #include "N3Moon.h"
@@ -20,13 +20,8 @@
 #include "N3SndMgr.h"
 #endif // #ifdef _N3GAME
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
-typedef std::vector<__SKY_DAYCHANGE>::iterator it_SDC;
+typedef typename std::vector<__SKY_DAYCHANGE>::iterator it_SDC;
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -399,7 +394,7 @@ bool CN3SkyMng::LoadFromTextFile(const char* szIniFN)
 
 		if(iSDCC > 0)
 		{
-			m_DayChanges.assign(iSDCC);
+			m_DayChanges.resize(iSDCC);
 			for(int i = 0; i < iSDCC; i++)
 			{
 				if(false == this->DayChangeParse(fp, &(m_DayChanges[i])))
@@ -1299,7 +1294,7 @@ bool CN3SkyMng::Load(HANDLE hFile)
 	ReadFile(hFile, &iSDCC, 4, &dwRWC, NULL);
 	if(iSDCC > 0)
 	{
-		m_DayChanges.assign(iSDCC);
+		m_DayChanges.resize(iSDCC);
 		for(i = 0; i < iSDCC; i++)
 		{
 			m_DayChanges[i].Load(hFile);
@@ -1378,7 +1373,7 @@ __SKY_DAYCHANGE* CN3SkyMng::DayChangeInsert(int iIndex)
 	it_SDC it = m_DayChanges.begin();
 	for(int i = 0; i < iIndex; i++, it++);
 	
-	it = m_DayChanges.insert(it);
+	it = m_DayChanges.insert(it, __SKY_DAYCHANGE{});
 	
 	return &(*it);
 }

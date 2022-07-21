@@ -25,8 +25,8 @@ struct __DurationMagicImg
 	float		fDuration;
 };
 
-typedef std::list<__PositionInfo>::iterator it_PositionInfo;
-typedef std::list<__DurationMagicImg*>::iterator it_MagicImg;
+typedef typename std::list<__PositionInfo>::iterator it_PositionInfo;
+typedef typename std::list<__DurationMagicImg*>::iterator it_MagicImg;
 
 
 class CUIStateBar : public CN3UIBase  

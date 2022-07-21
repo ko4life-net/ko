@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PvsMgr.h"
 #include "GameBase.h"
 #include "PlayerMySelf.h"
@@ -14,11 +14,6 @@
 
 #define INDOOR_FOLDER "N3Indoor\\"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 CN3Mng <class CN3Shape>		CPvsMgr::s_MngShape; 
 CN3Mng <class CN3ShapeExtra>	CPvsMgr::s_MngShapeExt; 
@@ -246,19 +241,14 @@ std::string CPvsMgr::ReadDecryptString(HANDLE hFile)
 {
 	DWORD dwNum;
 	int iCount;
-
 	ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
-	std::vector<char> buffer(iCount);
 
-	ReadFile(hFile, &(buffer[0]), iCount, &dwNum, NULL);				// string
+	std::vector<char> buffer(iCount, 0);
+	ReadFile(hFile, &buffer[0], iCount, &dwNum, NULL);				// string
 	for( int i = 0; i < iCount; i++)
 		buffer[i] ^= CRY_KEY;
-	buffer.push_back((char)0x00);
 
-	std::string strDest;
-	strDest = buffer.begin();
-	
-	return strDest;
+	return std::string(buffer.begin(), buffer.end());
 }
 
 

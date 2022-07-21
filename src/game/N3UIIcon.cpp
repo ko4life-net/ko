@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3UIIcon.h"
 #include "N3UIWndBase.h"
 #include "GameProcedure.h"
@@ -12,11 +12,6 @@
 #include "N3UIWndBase.h"
 #endif
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

@@ -229,9 +229,6 @@
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\StdAfxBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TransDummy.h">
       <Filter>Header Files</Filter>
     </ClInclude>

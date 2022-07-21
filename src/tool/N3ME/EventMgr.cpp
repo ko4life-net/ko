@@ -396,7 +396,7 @@ void CEventMgr::SaveInfoTextFile(char* szEvent)
 
 	std::list<CEventCell*> TmpList;
 
-	CEventCell* pEvent;
+	CEventCell* pEvent = NULL;
 	if(stream)
 	{
 		while(!feof(stream))

@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 
 #include "PlayerMySelf.h"
 #include "PacketDef.h"
@@ -29,12 +29,6 @@
 #include "N3Base/N3UIEdit.h"
 #include "N3Base/N3SndObj.h"
 #include "Resource.h"
-
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 static bool g_bItemClassGroup[26][26] = {	// [아이템][플레이어]	
 //	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }	// 초기그룹

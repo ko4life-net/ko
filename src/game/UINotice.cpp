@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "UINotice.h"
 #include "GameProcedure.h"
 #include "UIManager.h"
@@ -10,12 +10,6 @@
 #include "N3Base/N3UIString.h"
 #include "N3Base/N3UIScrollBar.h"
 #include "N3Base/N3UIButton.h"
-
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -101,8 +95,8 @@ void CUINotice::GenerateText()
 	it = m_Texts.begin(); itEnd = m_Texts.end();
 	for(; it != itEnd; it++)
 	{
-		lstrcat(&(szBuff[0]), it->c_str());
-		lstrcat(&(szBuff[0]), "\n");
+		lstrcat(&szBuff[0], it->c_str());
+		lstrcat(&szBuff[0], "\n");
 	}
 
 	m_pText_Notice->SetString(&(szBuff[0])); // 글자 적용..

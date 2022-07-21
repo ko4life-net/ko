@@ -24,6 +24,13 @@
 #include <afxtempl.h>
 #include <afxdb.h>
 
+#include <string>
+#include <sstream>
+#include <vector>
+#include <list>
+#include <map>
+#include <set>
+
 //#include "Mmsystem.h"
 //#include "Imm.h"
 //#include "N3Base/My_3DStruct.h"

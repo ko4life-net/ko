@@ -1,7 +1,7 @@
 // N3Chr.cpp: implementation of the CN3Chr class.
 //
 //////////////////////////////////////////////////////////////////////
-#include "StdAfxBase.h"
+#include "StdAfx.h"
 #include "N3SndObj.h"
 #include "N3Chr.h"
 #include "N3SkyMng.h"
@@ -11,11 +11,6 @@
 #include "N3FXPartBillBoard.h"
 #include "N3FXPlug.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 const float CHR_LOD_CALCULATION_VALUES[MAX_CHR_LOD_DELTA][MAX_CHR_LOD] =
 {

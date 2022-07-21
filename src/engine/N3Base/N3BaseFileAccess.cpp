@@ -2,18 +2,13 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "StdAfxBase.h"
+#include "StdAfx.h"
 #include "N3BaseFileAccess.h"
 #include <vector>
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 CN3BaseFileAccess::CN3BaseFileAccess()
 {
@@ -53,8 +48,8 @@ bool CN3BaseFileAccess::Load(HANDLE hFile)
 	if(nL > 0) 
 	{
 		std::vector<char> buffer(nL+1, NULL);
-		ReadFile(hFile, buffer.begin(), nL, &dwRWC, NULL);
-		m_szName = buffer.begin();
+		ReadFile(hFile, &buffer[0], nL, &dwRWC, NULL);
+		m_szName = std::string(buffer.begin(), buffer.end());
 	}
 
 	return true;

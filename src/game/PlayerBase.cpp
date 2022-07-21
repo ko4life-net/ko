@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PlayerBase.h"
 
 #include "N3WorldManager.h"
@@ -14,11 +14,6 @@
 
 #include "N3FXMgr.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 static const __Vector3 s_vLightOffset = __Vector3(10.0f, 40.0f, 30.0f);
 CN3SndObj*	CPlayerBase::m_pSnd_MyMove = NULL;
@@ -1228,7 +1223,7 @@ bool CPlayerBase::ActionMove(e_StateMove eMove)
 {
 	if(this->IsDead()) return false;
 	
-	static sStateTableMove[PSM_COUNT][PSM_COUNT] = // State Table Move
+	static int sStateTableMove[PSM_COUNT][PSM_COUNT] = // State Table Move
 	{
 		//---------------------------------------------------------------------------------------------------------------------------------------
 		//	STOP,	WALK,	RUN,	WALK_BACKWARD

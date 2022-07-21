@@ -12,7 +12,7 @@
 #include "GameProcedure.h"
 #include <set>
 
-typedef std::set<int>::iterator it_ID;
+typedef typename std::set<int>::iterator it_ID;
 typedef std::pair<it_ID, bool> pair_ID;
 
 class CGameProcMain : public CGameProcedure  

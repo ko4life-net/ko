@@ -2,14 +2,13 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if defined(_N3GAME)
 #include "StdAfx.h"
+
+#if defined(_N3GAME)
 #include "GameProcedure.h"
 #if !defined(_REPENT)
 #include "UILoading.h"
 #endif	// end of !defined(_REPENT)
-#else
-#include "StdAfxBase.h"
 #endif // end of #if defined(_N3GAME)
 
 #include "N3ShapeMgr.h"
@@ -18,11 +17,6 @@
 #include "N3ShapeExtra.h"
 #endif // end of #ifndef _3DSERVER
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
