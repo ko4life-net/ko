@@ -16,6 +16,7 @@ vendor/
 *.pch
 *.obj
 *.idb
+*.log
 *.vcxproj.user
 UpgradeLog.htm
 *[Ll]og*.txt

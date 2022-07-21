@@ -166,8 +166,6 @@ public:
 	bool			MoveToHighest(CN3UIBase* pChild);
 	
 	void			ArrangeZOrder();
-	RECT			GetMoveRect() const {return m_rcMovable;}
-	void			SetMoveRect(RECT rc) {m_rcMovable = rc;}
 	void			SetSndOpen(const std::string& strFileName);
 	void			SetSndClose(const std::string& strFileName);
 	std::string		GetSndFName_OpenUI() const;
