@@ -499,9 +499,6 @@
     <ClInclude Include="..\..\engine\N3Base\Pick.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\StdAfxBase.h">
-      <Filter>N3Base</Filter>
-    </ClInclude>
     <ClInclude Include="MainFrm.h">
       <Filter>N3ME\Frames</Filter>
     </ClInclude>

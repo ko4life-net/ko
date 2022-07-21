@@ -429,10 +429,6 @@ SOURCE=..\..\engine\N3Base\N3TransformCollision.h
 
 SOURCE=..\..\engine\N3Base\N3VMesh.h
 # End Source File
-# Begin Source File
-
-SOURCE=..\..\engine\N3Base\StdAfxBase.h
-# End Source File
 # End Group
 # Begin Group "Mel Scripts"
 

@@ -722,10 +722,6 @@ SOURCE=..\..\engine\N3Base\Pick.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\engine\N3Base\StdAfxBase.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\engine\N3Base\WaveFile.cpp
 # End Source File
 # Begin Source File

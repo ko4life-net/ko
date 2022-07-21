@@ -294,7 +294,6 @@
     <ClInclude Include="..\..\engine\N3Base\N3TransformCollision.h" />
     <ClInclude Include="..\..\engine\N3Base\N3VMesh.h" />
     <ClInclude Include="..\..\engine\N3Base\Pick.h" />
-    <ClInclude Include="..\..\engine\N3Base\StdAfxBase.h" />
     <ClInclude Include="..\Widget\PropertyList.h" />
     <ClInclude Include="BrushDlg.h" />
     <ClInclude Include="DlgAddDTex.h" />

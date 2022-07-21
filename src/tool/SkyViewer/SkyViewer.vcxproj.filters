@@ -244,9 +244,6 @@
     <ClInclude Include="..\..\engine\N3Base\N3VMesh.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\StdAfxBase.h">
-      <Filter>N3Base</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\SkyViewer.ico">

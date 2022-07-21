@@ -3,7 +3,6 @@
 ..\..\engine\N3Base\BitMapFile.cpp : \
 	"..\..\engine\N3Base\BitMapFile.h"\
 	"..\..\engine\N3Base\My_3DStruct.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	
 
 .\iffreader.cpp : \
@@ -13,7 +12,6 @@
 ..\..\engine\N3Base\LogWriter.cpp : \
 	"..\..\engine\N3Base\LogWriter.h"\
 	"..\..\engine\N3Base\My_3DStruct.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	
 
 ..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp : \
@@ -25,7 +23,6 @@
 	"..\..\engine\N3Base\N3SndDef.h"\
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -40,7 +37,6 @@
 	"..\..\engine\N3Base\N3SndDef.h"\
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -54,7 +50,6 @@
 	"..\..\engine\N3Base\N3SndDef.h"\
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -85,7 +80,6 @@
 	"..\..\engine\N3Base\N3Transform.h"\
 	"..\..\engine\N3Base\N3TransformCollision.h"\
 	"..\..\engine\N3Base\N3VMesh.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -99,7 +93,6 @@
 	"..\..\engine\N3Base\N3SndDef.h"\
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -116,7 +109,6 @@
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
 	"..\..\engine\N3Base\N3Transform.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -152,7 +144,6 @@
 	"..\..\engine\N3Base\N3Transform.h"\
 	"..\..\engine\N3Base\N3TransformCollision.h"\
 	"..\..\engine\N3Base\N3VMesh.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -241,7 +232,6 @@
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
 	"..\..\engine\N3Base\N3Transform.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -261,7 +251,6 @@
 	"..\..\engine\N3Base\N3TableBase.h"\
 	"..\..\engine\N3Base\N3Texture.h"\
 	"..\..\engine\N3Base\N3Transform.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -284,7 +273,6 @@
 	"..\..\engine\N3Base\N3SndObj.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
 	"..\..\engine\N3Base\N3Texture.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -303,7 +291,6 @@
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
 	"..\..\engine\N3Base\N3Texture.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -321,7 +308,6 @@
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
 	"..\..\engine\N3Base\N3Texture.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -340,7 +326,6 @@
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
 	"..\..\engine\N3Base\N3Texture.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -359,7 +344,6 @@
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
 	"..\..\engine\N3Base\N3Texture.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -378,7 +362,6 @@
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
 	"..\..\engine\N3Base\N3Texture.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -405,7 +388,6 @@
 	"..\..\engine\N3Base\N3Transform.h"\
 	"..\..\engine\N3Base\N3TransformCollision.h"\
 	"..\..\engine\N3Base\N3VMesh.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -433,7 +415,6 @@
 	"..\..\engine\N3Base\N3Transform.h"\
 	"..\..\engine\N3Base\N3TransformCollision.h"\
 	"..\..\engine\N3Base\N3VMesh.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -464,7 +445,6 @@
 	"..\..\engine\N3Base\N3Transform.h"\
 	"..\..\engine\N3Base\N3TransformCollision.h"\
 	"..\..\engine\N3Base\N3VMesh.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -480,7 +460,6 @@
 	"..\..\engine\N3Base\N3SndDef.h"\
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -497,7 +476,6 @@
 	"..\..\engine\N3Base\N3SndDef.h"\
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -520,7 +498,6 @@
 	"..\..\engine\N3Base\N3Transform.h"\
 	"..\..\engine\N3Base\N3TransformCollision.h"\
 	"..\..\engine\N3Base\N3VMesh.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -535,7 +512,6 @@
 	"..\..\engine\N3Base\N3SndDef.h"\
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -553,7 +529,6 @@
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
 	"..\..\engine\N3Base\N3Transform.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -570,7 +545,6 @@
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
 	"..\..\engine\N3Base\N3Transform.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -588,7 +562,6 @@
 	"..\..\engine\N3Base\N3SndDef.h"\
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -604,7 +577,6 @@
 	"..\..\engine\N3Base\N3SndDef.h"\
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -622,7 +594,6 @@
 	"..\..\engine\N3Base\N3SndDef.h"\
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -638,7 +609,6 @@
 	"..\..\engine\N3Base\N3SndDef.h"\
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -670,7 +640,6 @@
 	"..\..\engine\N3Base\N3Transform.h"\
 	"..\..\engine\N3Base\N3TransformCollision.h"\
 	"..\..\engine\N3Base\N3VMesh.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -692,7 +661,6 @@
 	"..\..\engine\N3Base\N3Transform.h"\
 	"..\..\engine\N3Base\N3TransformCollision.h"\
 	"..\..\engine\N3Base\N3VMesh.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -708,7 +676,6 @@
 	"..\..\engine\N3Base\N3SndDef.h"\
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -724,7 +691,6 @@
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
 	"..\..\engine\N3Base\N3Texture.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -740,7 +706,6 @@
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
 	"..\..\engine\N3Base\N3Transform.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -758,7 +723,6 @@
 	"..\..\engine\N3Base\N3Transform.h"\
 	"..\..\engine\N3Base\N3TransformCollision.h"\
 	"..\..\engine\N3Base\N3VMesh.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
 
@@ -774,6 +738,5 @@
 	"..\..\engine\N3Base\N3SndMgr.h"\
 	"..\..\engine\N3Base\N3TableBase.h"\
 	"..\..\engine\N3Base\N3VMesh.h"\
-	"..\..\engine\N3Base\StdAfxBase.h"\
 	"..\..\engine\N3Base\WaveFile.h"\
 	
