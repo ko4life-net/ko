@@ -394,7 +394,7 @@ bool CN3SkyMng::LoadFromTextFile(const char* szIniFN)
 
 		if(iSDCC > 0)
 		{
-			m_DayChanges.assign(iSDCC);
+			m_DayChanges.resize(iSDCC);
 			for(int i = 0; i < iSDCC; i++)
 			{
 				if(false == this->DayChangeParse(fp, &(m_DayChanges[i])))
@@ -1373,7 +1373,7 @@ __SKY_DAYCHANGE* CN3SkyMng::DayChangeInsert(int iIndex)
 	it_SDC it = m_DayChanges.begin();
 	for(int i = 0; i < iIndex; i++, it++);
 	
-	it = m_DayChanges.insert(it);
+	it = m_DayChanges.insert(it, __SKY_DAYCHANGE{});
 	
 	return &(*it);
 }

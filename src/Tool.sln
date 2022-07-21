@@ -27,6 +27,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RscTables", "tool\RscTables
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerInfoViewer", "tool\ServerInfoViewer\ServerInfoViewer.vcxproj", "{052D42A9-8D62-4B95-AF4B-DB95ACC15D3A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SkyViewer", "tool\SkyViewer\SkyViewer.vcxproj", "{8384D9F1-C067-4253-A568-80506D5972E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -81,6 +83,10 @@ Global
 		{052D42A9-8D62-4B95-AF4B-DB95ACC15D3A}.Debug|x86.Build.0 = Debug|Win32
 		{052D42A9-8D62-4B95-AF4B-DB95ACC15D3A}.Release|x86.ActiveCfg = Release|Win32
 		{052D42A9-8D62-4B95-AF4B-DB95ACC15D3A}.Release|x86.Build.0 = Release|Win32
+		{8384D9F1-C067-4253-A568-80506D5972E4}.Debug|x86.ActiveCfg = Debug|Win32
+		{8384D9F1-C067-4253-A568-80506D5972E4}.Debug|x86.Build.0 = Debug|Win32
+		{8384D9F1-C067-4253-A568-80506D5972E4}.Release|x86.ActiveCfg = Release|Win32
+		{8384D9F1-C067-4253-A568-80506D5972E4}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
