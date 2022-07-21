@@ -41,7 +41,7 @@ bool CTableGenerator::OpenSource(const std::string &szEnumFileName, const std::s
 		return false;
 	}
 
-	m_Datas.assign(iDataCount);
+	m_Datas.resize(iDataCount);
 	for(int i=0; i<iDataCount; ++i)
 	{
 		ReadFile(hFile, &(m_Datas[i].m_Type), sizeof(DATA_TYPE), &dwNum, NULL);
@@ -145,7 +145,7 @@ bool CTableGenerator::OpenReference_Enum(const std::string &szEnumFileName)
 		return false;
 	}
 
-	m_DataExts.assign(iDataCount);
+	m_DataExts.resize(iDataCount);
 	for(int i=0; i<iDataCount; ++i)
 	{
 		ReadFile(hFile, &(m_DataExts[i].m_Type), sizeof(DATA_TYPE), &dwNum, NULL);

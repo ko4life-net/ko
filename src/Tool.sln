@@ -23,6 +23,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "N3Viewer", "tool\N3Viewer\N
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Option", "tool\Option\Option.vcxproj", "{B1972EC5-6512-4DAC-9A19-84A35AB8389B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RscTables", "tool\RscTables\RscTables.vcxproj", "{59F6CDBA-5C5D-4024-9F9A-F45DBF575010}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -69,6 +71,10 @@ Global
 		{B1972EC5-6512-4DAC-9A19-84A35AB8389B}.Debug|x86.Build.0 = Debug|Win32
 		{B1972EC5-6512-4DAC-9A19-84A35AB8389B}.Release|x86.ActiveCfg = Release|Win32
 		{B1972EC5-6512-4DAC-9A19-84A35AB8389B}.Release|x86.Build.0 = Release|Win32
+		{59F6CDBA-5C5D-4024-9F9A-F45DBF575010}.Debug|x86.ActiveCfg = Debug|Win32
+		{59F6CDBA-5C5D-4024-9F9A-F45DBF575010}.Debug|x86.Build.0 = Debug|Win32
+		{59F6CDBA-5C5D-4024-9F9A-F45DBF575010}.Release|x86.ActiveCfg = Release|Win32
+		{59F6CDBA-5C5D-4024-9F9A-F45DBF575010}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
