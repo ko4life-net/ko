@@ -1,16 +1,5 @@
-name: build
-
-on:
-  pull_request:
-  workflow_run:
-    # Use a workflow as a trigger of scheduled builds. Forked repositories can disable scheduled builds by disabling
-    # "scheduled" workflow, while maintaining ability to perform local CI builds.
-    workflows:
-      - scheduled
-    branches:
-      - master
-    types:
-      - requested
+name: Build Game and Server
+on: [workflow_dispatch]
 
 jobs:
   Windows:
