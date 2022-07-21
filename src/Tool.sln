@@ -21,6 +21,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "N3TexViewer", "tool\N3TexVi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "N3Viewer", "tool\N3Viewer\N3Viewer.vcxproj", "{BE60C7BD-0732-442B-9BC8-9EF0138DE8B0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Option", "tool\Option\Option.vcxproj", "{B1972EC5-6512-4DAC-9A19-84A35AB8389B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -63,6 +65,10 @@ Global
 		{BE60C7BD-0732-442B-9BC8-9EF0138DE8B0}.Debug|x86.Build.0 = Debug|Win32
 		{BE60C7BD-0732-442B-9BC8-9EF0138DE8B0}.Release|x86.ActiveCfg = Release|Win32
 		{BE60C7BD-0732-442B-9BC8-9EF0138DE8B0}.Release|x86.Build.0 = Release|Win32
+		{B1972EC5-6512-4DAC-9A19-84A35AB8389B}.Debug|x86.ActiveCfg = Debug|Win32
+		{B1972EC5-6512-4DAC-9A19-84A35AB8389B}.Debug|x86.Build.0 = Debug|Win32
+		{B1972EC5-6512-4DAC-9A19-84A35AB8389B}.Release|x86.ActiveCfg = Release|Win32
+		{B1972EC5-6512-4DAC-9A19-84A35AB8389B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
