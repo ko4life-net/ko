@@ -263,17 +263,15 @@ void CN3E2Wrapper::SceneExport()
 
 	MObjectArray mObjects;
 
-	int i = 0;
-
 	MItDependencyNodes IterNodes1(MFn::kCamera); // scene 의 노드들을 체크..
 	MItDependencyNodes IterNodes2(MFn::kLight); // scene 의 노드들을 체크..
 	MItDependencyNodes IterNodes3(MFn::kMesh); // scene 의 노드들을 체크..
 	MItDependencyNodes IterNodes4(MFn::kSkinClusterFilter); // scene 의 노드들을 체크..
 
-	for(i = 0; !IterNodes1.isDone(); IterNodes1.next(), i++) mObjects.append(IterNodes1.item());
-	for(i = 0; !IterNodes2.isDone(); IterNodes2.next(), i++) mObjects.append(IterNodes2.item());
-	for(i = 0; !IterNodes3.isDone(); IterNodes3.next(), i++) mObjects.append(IterNodes3.item());
-	for(i = 0; !IterNodes4.isDone(); IterNodes4.next(), i++) mObjects.append(IterNodes4.item());
+	for(int i = 0; !IterNodes1.isDone(); IterNodes1.next(), i++) mObjects.append(IterNodes1.item());
+	for(int i = 0; !IterNodes2.isDone(); IterNodes2.next(), i++) mObjects.append(IterNodes2.item());
+	for(int i = 0; !IterNodes3.isDone(); IterNodes3.next(), i++) mObjects.append(IterNodes3.item());
+	for(int i = 0; !IterNodes4.isDone(); IterNodes4.next(), i++) mObjects.append(IterNodes4.item());
 
 	MSelectionList mSelList;
 	if(m_Option.bExportSelectedOnly)
@@ -292,7 +290,7 @@ void CN3E2Wrapper::SceneExport()
 
 	m_bCancelExport = FALSE;
 
-	for (i = 0; i < nObjectCount && FALSE == m_bCancelExport; i++)
+	for (int i = 0; i < nObjectCount && FALSE == m_bCancelExport; i++)
 	{
 		// Dialog Message 처리...
 		MSG msg;
@@ -503,7 +501,7 @@ bool CN3E2Wrapper::ProcessIMesh(MFnMesh &mMesh, CN3IMesh* pIMesh)
 	mMtxWorldRot.matrix[3][3] = 1.0;
 	
 	__VertexXyzNormal* pVDest = pIMesh->Vertices();
-	for(i = 0; i < nVC; i++) 
+	for(int i = 0; i < nVC; i++) 
 	{
 		MPoint mVTmp = mVArray[i]; // World Matrix 곱하고..
 		mVTmp *= mMtxWorld;
@@ -527,9 +525,9 @@ bool CN3E2Wrapper::ProcessIMesh(MFnMesh &mMesh, CN3IMesh* pIMesh)
 
 	}
 
-	for(i = 0; i < nUVC; i++) pIMesh->UVSet(i, mFAU[i], 1.0f - mFAV[i]); // UV 데이터 세팅..
-//	for(i = 0; i < nUVC; i++) pIMesh->UVSet(i, mFAU[i], mFAV[i]); // UV 데이터 세팅..
-	for(i = 0; i < nFC; i++) // 
+	for(int i = 0; i < nUVC; i++) pIMesh->UVSet(i, mFAU[i], 1.0f - mFAV[i]); // UV 데이터 세팅..
+//	for(int i = 0; i < nUVC; i++) pIMesh->UVSet(i, mFAU[i], mFAV[i]); // UV 데이터 세팅..
+	for(int i = 0; i < nFC; i++) // 
 	{
 		pIMesh->VertexIndexSet(i*3+0, mVIArray[i*3+0]); // Vertex Index 세팅
 		pIMesh->VertexIndexSet(i*3+1, mVIArray[i*3+2]);
@@ -732,7 +730,7 @@ bool CN3E2Wrapper::ProcessSkin(MFnSkinCluster &mSkin, CN3Skin* pSkin)
 			pVBone[i].pnJoints = new int[nAffect];
 			if(nAffect > 1) pVBone[i].pfWeights = new float[nAffect];
 
-			for (j = 0; j < nAffect; j++ )
+			for (int j = 0; j < nAffect; j++ )
 			{
 				pVBone[i].pnJoints[j] = s_nJoints[j];
 				if(nAffect > 1) pVBone[i].pfWeights[j] = s_fWeights[j];
@@ -828,7 +826,7 @@ bool CN3E2Wrapper::ProcessShape(MFnMesh& mMesh)
 
 		__VertexT1* pVSrc = IMesh.BuildVertexList();
 		__Vector3* pVDest = pVMesh->Vertices();
-		for(i = 0; i < nFC * 3; i++)
+		for(int i = 0; i < nFC * 3; i++)
 		{
 			pVDest[i].x = pVSrc[i].x; // 위치만 세팅해 준다...
 			pVDest[i].y = pVSrc[i].y; // 위치만 세팅해 준다...
@@ -1201,7 +1199,7 @@ CN3Texture* CN3E2Wrapper::ProcessTexture(MFnMesh &mMesh)
 	char szFNDest[1024]; // 저장할 이름
 	lstrcpy(szFNDest, szFNSrc);
 	nFN = lstrlen(szFNDest);
-	for(i = nFN - 1; i >= 0; i--) // 저장할 이름을 만든다..
+	for(int i = nFN - 1; i >= 0; i--) // 저장할 이름을 만든다..
 	{
 		if(szFNDest[i] == '.') { szFNDest[i+1] = 'D'; szFNDest[i+2] = 'X'; szFNDest[i+3] = 'T'; szFNDest[i+4] = NULL; }
 		if(szFNDest[i] == '\\' || szFNDest[i] == '/') 
@@ -1215,7 +1213,7 @@ CN3Texture* CN3E2Wrapper::ProcessTexture(MFnMesh &mMesh)
 
 	static char szFNs[1024][256]; // 파일 이름이 중복되는지 체크...
 	if(m_pScene->s_MngTex.Count() <= 0) memset(szFNs, 0, sizeof(szFNs));
-	for(i = 0; i < 1024; i++)
+	for(int i = 0; i < 1024; i++)
 	{
 		if(NULL == szFNs[i][0]) break;
 		if(lstrcmpi(szFNDest, szFNs[i]) == 0)
@@ -1539,7 +1537,7 @@ int CN3E2Wrapper::ProcessTransform(MFnTransform &mTransform, CN3Transform *pTran
 		else continue;
 	}
 
-	for(i = 0; i < 3; i++)
+	for(int i = 0; i < 3; i++)
 	{
 		int nKs[3];
 		nKs[0] = mACs[i][0].numKeys();
@@ -1591,7 +1589,7 @@ int CN3E2Wrapper::ProcessTransform(MFnTransform &mTransform, CN3Transform *pTran
 				} // end of if(i == 0)
 			} // end of if(nKs[0] <= 0 || nKs[1] <= 0 || nKs[2] <= 0)
 		} // end of if(nKs[0] > 0 || nKs[1] > 0 || nKs[2] > 0)
-	} // end of for(i = 0; i < 3; i++)
+	} // end of for(int i = 0; i < 3; i++)
 
 	if(pTransform->Type() & OBJ_JOINT) // Joint 이면... Orient 키 값도 본다..
 	{
@@ -1647,7 +1645,7 @@ void CN3E2Wrapper::ProcessAnimKey(	MFnAnimCurve* pmACs,
 		else if(MTransformationMatrix::kZYX == mRotOrder) { nRotSeqs[0] = 2; nRotSeqs[1] = 1; nRotSeqs[2] = 0; }
 		else MessageBox(::GetActiveWindow(), "Not supported rotation order", "Warning - animation key", MB_OK);
 
-		for(i = 0; i < nFrmMax; i++)
+		for(int i = 0; i < nFrmMax; i++)
 		{
 			pQt = (__Quaternion*)(pKey->DataGet(i));
 
@@ -1701,7 +1699,7 @@ void CN3E2Wrapper::ProcessAnimKey(	MFnAnimCurve* pmACs,
 	{
 		double dfValue;
 		__Vector3* pV = NULL;
-		for(i = 0; i < nFrmMax; i++)
+		for(int i = 0; i < nFrmMax; i++)
 		{
 			pV = (__Vector3*)(pKey->DataGet(i));
 
@@ -1749,11 +1747,11 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster &mSkin)
 	static std::string szJointFNs[512]; // 중복되는지 체크...
 	if(m_pScene->s_MngJoint.Count() <= 0) 
 	{
-		for(i = 0; i < 512; i++) szJointFNs[i] = "";
+		for(int i = 0; i < 512; i++) szJointFNs[i] = "";
 	}
 
 	bool bOverlapped = false;
-	for(i = 0; i < 256; i++)
+	for(int i = 0; i < 256; i++)
 	{
 		if(szJointFNs[i].size() <= 0) break;
 		if(szJointFN == szJointFNs[i])
@@ -1845,7 +1843,7 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster &mSkin)
 
 			pJoint->PosSet(pJoint->Pos() * mtxRotG); // 위치 값도 방향과 스케일에 맞게 
 			int nK = pJoint->m_KeyPos.Count(); // 에니메이션 키도 변경해준다..
-			for(i = 0; i < nK; i++)
+			for(int i = 0; i < nK; i++)
 			{
 				__Vector3* pvKey = (__Vector3*)(pJoint->m_KeyPos.DataGet(i));
 				(*pvKey) *= mtxRotG;
@@ -1935,7 +1933,7 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster &mSkin)
 		{
 			MFnTransform mCT(mGT.parent(0)); // Character Transform
 			int nC = mCT.childCount();
-			for(i = 0; i < nC; i++)
+			for(int i = 0; i < nC; i++)
 			{
 				if(!mCT.child(i).hasFn(MFn::kTransform)) continue;
 
@@ -1945,7 +1943,7 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster &mSkin)
 			}
 
 			int nGTC = mGT.childCount();
-			for(i = 0; i < nGTC; i++)
+			for(int i = 0; i < nGTC; i++)
 			{
 				if(!mGT.child(i).hasFn(MFn::kTransform)) continue; 
 
@@ -1957,7 +1955,7 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster &mSkin)
 		else // pair of if(mGT.parentCount() > 0 && mGT.parent(0).apiType() == MFn::kTransform) // 그룹 트랜스폼의 상위 노드가 있을 경우..
 		{
 			int nC = mGT.childCount();
-			for(i = 0; i < nC; i++)
+			for(int i = 0; i < nC; i++)
 			{
 				if(mGT.child(i).apiType() != MFn::kTransform) continue;
 

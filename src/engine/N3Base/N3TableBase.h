@@ -389,7 +389,7 @@ BOOL CN3TableBase<Type>::Load(HANDLE hFile)
 
 	// data(column) 의 구조가 어떻게 되어 있는지 읽기
 	DWORD dwNum;
-	int i, j, iDataTypeCount = 0;
+	int iDataTypeCount = 0;
 	ReadFile(hFile, &iDataTypeCount, 4, &dwNum, NULL);			// (엑셀에서 column 수)
 
 	std::vector<int> offsets;
@@ -419,9 +419,9 @@ BOOL CN3TableBase<Type>::Load(HANDLE hFile)
 	int iRC;
 	ReadFile(hFile, &iRC, sizeof(iRC), &dwNum, NULL);
 	Type Data;
-	for (i=0; i<iRC; ++i)
+	for (int i=0; i<iRC; ++i)
 	{
-		for (j=0; j<iDataTypeCount; ++j)
+		for (int j=0; j<iDataTypeCount; ++j)
 		{
 			ReadData(hFile, m_DataTypes[j], (char*)(&Data) + offsets[j]);
 		}
@@ -469,12 +469,12 @@ BOOL CN3TableBase<Type>::MakeOffsetTable(std::vector<int>& offsets)
 {	
 	if (m_DataTypes.empty()) return false;
 
-	int i, iDataTypeCount = m_DataTypes.size();
+	int iDataTypeCount = m_DataTypes.size();
 	offsets.clear();
 	offsets.reserve(iDataTypeCount+1);	// +1을 한 이유는 맨 마지막 값에 Type의 실제 사이즈를 넣기 위해서
 	offsets[0] = 0;
 	int iPrevDataSize = SizeOf(m_DataTypes[0]);
-	for (i=1; i<iDataTypeCount; ++i)
+	for (int i=1; i<iDataTypeCount; ++i)
 	{
 		int iCurDataSize = SizeOf(m_DataTypes[i]);
 		if (1 == iCurDataSize%4)	// 현재 데이터가 1바이트면 그냥 이전 데이터가 몇바이트든 상관 없다.

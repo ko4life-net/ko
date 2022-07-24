@@ -203,11 +203,10 @@ void CN3TexViewerDoc::FindFiles()
 
 	CFileFind find;
 
-	int i = 0;
 	m_nCurFile = 0;
 	if(FALSE == find.FindFile("*.DXT")) return;
 
-	for(i = 0; find.FindNextFile(); i++)
+	for(int i = 0; find.FindNextFile(); i++)
 	{
 		CString szPathTmp = find.GetFilePath();
 		m_szFiles.Add(szPathTmp);

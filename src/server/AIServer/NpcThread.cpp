@@ -29,7 +29,6 @@ UINT NpcThreadProc(LPVOID pParam /* NPC_THREAD_INFO ptr */)
 	CIOCPort*			pIOCP	= NULL;
 	CPoint				pt;
 
-	int					i			= 0;
 	DWORD				dwDiffTime	= 0;
 	DWORD				dwSleep		= 250;
 	DWORD				dwTickTime  = 0;
@@ -46,7 +45,7 @@ UINT NpcThreadProc(LPVOID pParam /* NPC_THREAD_INFO ptr */)
 	{
 		fTime2 = TimeGet();
 
-		for(i = 0; i < NPC_NUM; i++)
+		for(int i = 0; i < NPC_NUM; i++)
 		{
 			pNpc = pInfo->pNpc[i];
 			pIOCP = pInfo->pIOCP;
@@ -153,17 +152,16 @@ UINT ZoneEventThreadProc(LPVOID pParam /* = NULL */)
 	float  fCurrentTime = 0.0f;
 	MAP* pMap = NULL;
 	CRoomEvent* pRoom = NULL ;
-	int i=0, j=0;
 
 	while(!g_bNpcExit)
 	{
 		fCurrentTime = TimeGet();
-		for( i=0; i<m_pMain->g_arZone.size(); i++)	{
+		for( int i=0; i<m_pMain->g_arZone.size(); i++)	{
 			pMap = m_pMain->g_arZone[i];
 			if( !pMap ) continue;
 			if( pMap->m_byRoomEvent == 0 ) continue;		// 현재의 존이 던젼담당하는 존이 아니면 리턴..
 			if( pMap->IsRoomStatusCheck() == TRUE )	continue;	// 전체방이 클리어 되었다면
-			for( j=1; j<pMap->m_arRoomEventArray.GetSize()+1; j++)	{	// 방번호는 1번부터 시작
+			for( int j=1; j<pMap->m_arRoomEventArray.GetSize()+1; j++)	{	// 방번호는 1번부터 시작
 				pRoom = pMap->m_arRoomEventArray.GetData( j );
 				if( !pRoom ) continue;
 				if( pRoom->m_byStatus == 1 || pRoom->m_byStatus == 3 )   continue; // 1:init, 2:progress, 3:clear

@@ -190,14 +190,13 @@ void CDlgSceneGraph::UpdateTreeItem(HTREEITEM hParent, CN3Base* pBase)
 		str.Format("Scene : %s", m_pSceneRef->m_szName.c_str());
 		m_Tree.SetItemText(hItem, str);
 
-		int i = 0;
 		HTREEITEM hItem2 = NULL;
 
 		if (m_dwFlag & OBJ_SHAPE)
 		{
 			hItem2 = m_Tree.InsertItem("Shape", hItem);
 			int nSC = m_pSceneRef->ShapeCount();
-			for(i = 0; i < nSC; i++) this->UpdateTreeItem(hItem2, m_pSceneRef->ShapeGet(i));
+			for(int i = 0; i < nSC; i++) this->UpdateTreeItem(hItem2, m_pSceneRef->ShapeGet(i));
 			m_Tree.SortChildren(hItem2);
 		}
 	}

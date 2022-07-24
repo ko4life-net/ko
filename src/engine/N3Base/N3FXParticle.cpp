@@ -119,7 +119,7 @@ bool CN3FXParticle::Tick()
 		else m_dwColor = 0x00ffffff;
 	}
 
-	for(i=0;i<NUM_VERTEX_PARTICLE;i++) m_pVB[i].color = m_dwColor;
+	for(int i=0;i<NUM_VERTEX_PARTICLE;i++) m_pVB[i].color = m_dwColor;
 
 	m_vVelocity += m_vAccel * CN3Base::s_fSecPerFrm;
 	m_fRot += CN3Base::s_fSecPerFrm*m_pRefParent->m_fPtRotVelocity;

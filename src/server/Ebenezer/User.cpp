@@ -1631,7 +1631,7 @@ void CUser::SendMyInfo()
 	pMap = (C3DMap*)m_pMain->m_ZoneArray[m_iZoneIndex];
 	if( !pMap ) return;
 
-	int  send_index = 0, i=0, iLength = 0;
+	int  send_index = 0, iLength = 0;
 	char send_buff[2048];
 	memset( send_buff, NULL, 2048);
 
@@ -1759,16 +1759,16 @@ void CUser::SendMyInfo()
 // 이거 나중에 꼭 주석해 --;
 	SetByte( send_buff, m_pUserData->m_bAuthority, send_index );
 //
-	for(i=0; i<9; i++)
+	for(int i=0; i<9; i++)
 		SetByte(send_buff, m_pUserData->m_bstrSkill[i], send_index);
 
-	for(i=0; i<SLOT_MAX; i++ ) {
+	for(int i=0; i<SLOT_MAX; i++ ) {
 		SetDWORD( send_buff, m_pUserData->m_sItemArray[i].nNum, send_index );
 		SetShort( send_buff, m_pUserData->m_sItemArray[i].sDuration, send_index );
 		SetShort( send_buff, m_pUserData->m_sItemArray[i].sCount, send_index );
 	}
 
-	for( i=0; i<HAVE_MAX; i++ ) {
+	for(int i=0; i<HAVE_MAX; i++ ) {
 		SetDWORD( send_buff, m_pUserData->m_sItemArray[SLOT_MAX+i].nNum, send_index );
 		SetShort( send_buff, m_pUserData->m_sItemArray[SLOT_MAX+i].sDuration, send_index );
 		SetShort( send_buff, m_pUserData->m_sItemArray[SLOT_MAX+i].sCount, send_index );
@@ -2635,7 +2635,7 @@ void CUser::InsertRegion(int del_x, int del_z)
 
 void CUser::RequestUserIn(char *pBuf)
 {
-	int index = 0, uid = -1, user_count = 0, buff_index = 0, t_count = 0, i=0,j=0, iLength=0;
+	int index = 0, uid = -1, user_count = 0, buff_index = 0, t_count = 0, iLength=0;
 	CUser* pUser = NULL;
 	CKnights* pKnights = NULL;
 	char buff[40960];
@@ -2643,7 +2643,7 @@ void CUser::RequestUserIn(char *pBuf)
 
 	buff_index = 3;	// packet command 와 user_count 는 나중에 셋팅한다...
 	user_count = GetShort( pBuf, index );
-	for( i=0; i<user_count; i++ ) {
+	for(int i=0; i<user_count; i++ ) {
 		uid = GetShort( pBuf, index );
 		if( uid < 0 || uid >= MAX_USER )
 			continue;
@@ -2732,14 +2732,14 @@ void CUser::RequestNpcIn(char *pBuf)
 {
 	if( m_pMain->m_bPointCheckFlag == FALSE)	return;	// 포인터 참조하면 안됨
 
-	int index = 0, nid = -1, npc_count = 0, buff_index = 0, t_count = 0, i=0,j=0;
+	int index = 0, nid = -1, npc_count = 0, buff_index = 0, t_count = 0;
 	CNpc* pNpc = NULL;
 	char buff[20480];
 	memset( buff, NULL, 20480 );
 
 	buff_index = 3;	// packet command 와 user_count 는 나중에 셋팅한다...
 	npc_count = GetShort( pBuf, index );
-	for( i=0; i<npc_count; i++ ) {
+	for(int i=0; i<npc_count; i++ ) {
 		nid = GetShort( pBuf, index );
 		if( nid < 0 || nid > NPC_BAND+NPC_BAND)
 			continue;
@@ -2973,7 +2973,7 @@ void CUser::SetSlotItemValue()	// 착용한 아이템의 값(타격률, 회피율, 데미지)을 �
 	}
 
 // Also add the weight of items in the inventory....
-	for(i=0 ; i < HAVE_MAX+SLOT_MAX ; i++)  {
+	for(int i=0 ; i < HAVE_MAX+SLOT_MAX ; i++)  {
 		if(m_pUserData->m_sItemArray[i].nNum <= 0) continue;
 
 		pTable = m_pMain->m_ItemtableArray.GetData( m_pUserData->m_sItemArray[i].nNum );
@@ -4253,7 +4253,7 @@ void CUser::NpcEvent(char *pBuf)
 		SetByte( send_buf, WIZ_WAREHOUSE, send_index );
 		SetByte( send_buf, WAREHOUSE_OPEN, send_index );
 		SetDWORD( send_buf, m_pUserData->m_iBank, send_index );
-		for( i=0; i<WAREHOUSE_MAX; i++ ) {
+		for(int i=0; i<WAREHOUSE_MAX; i++ ) {
 			SetDWORD( send_buf, m_pUserData->m_sWarehouseArray[i].nNum, send_index );
 			SetShort( send_buf, m_pUserData->m_sWarehouseArray[i].sDuration, send_index );
 			SetShort( send_buf, m_pUserData->m_sWarehouseArray[i].sCount, send_index );
@@ -4553,7 +4553,7 @@ BOOL CUser::IsValidName(char *name)
 
 void CUser::ItemGet(char *pBuf)
 {
-	int index = 0, send_index = 0, bundle_index = 0, itemid = 0, count = 0, i=0;
+	int index = 0, send_index = 0, bundle_index = 0, itemid = 0, count = 0;
 	BYTE pos;
 	_ITEM_TABLE* pTable = NULL;
 	char send_buff[256];	memset( send_buff, NULL, 256 );
@@ -4577,7 +4577,7 @@ void CUser::ItemGet(char *pBuf)
 	if( !pItem ) goto fail_return;
 
 	itemid = GetDWORD( pBuf, index );
-
+	int i;
 	for(i=0; i<6; i++) {
 		if( pItem->itemid[i] == itemid )
 			break;
@@ -4666,7 +4666,7 @@ void CUser::ItemGet(char *pBuf)
 					}
 				}
 				if( usercount == 0 ) goto fail_return;
-				for( i=0; i<8; i++ ) {
+				for( int i=0; i<8; i++ ) {
 					if( pParty->uid[i] != -1 || pParty->uid[i] >= MAX_USER ) {
 						pUser = (CUser*)m_pMain->m_Iocport.m_SockArray[pParty->uid[i]];
 						if( !pUser ) continue;
@@ -4989,7 +4989,7 @@ void CUser::PartyCancel()	// 거절한 사람한테 온다... 리더를 찾아서 알려주는 함수
 
 void CUser::PartyRequest(int memberid, BOOL bCreate)	//리더에게 패킷이 온거다..
 {
-	int index = 0, send_index = 0, result = -1, i=0;
+	int index = 0, send_index = 0, result = -1;
 	CUser* pUser = NULL;
 	_PARTY_GROUP* pParty = NULL;
 	char send_buff[256]; memset( send_buff, 0x00, 256 );
@@ -5015,6 +5015,7 @@ void CUser::PartyRequest(int memberid, BOOL bCreate)	//리더에게 패킷이 온거다..
 	if( !bCreate ) {	// 기존의 파티에 추가하는 경우
 		pParty = m_pMain->m_PartyArray.GetData(m_sPartyIndex);
 		if( !pParty ) goto fail_return;
+		int i;
 		for(i=0; i<8; i++) {
 			if( pParty->uid[i] < 0 ) 
 				break;
@@ -5128,7 +5129,8 @@ void CUser::PartyInsert()	// 본인이 추가 된다.  리더에게 패킷이 가는것이 아님
 		Send( send_buff, send_index );	// 추가된 사람에게 기존 인원 다 받게함..
 	}
 
-	for( i=0; i<8; i++ ) {
+	int i;
+	for(i=0; i<8; i++ ) {
 		if( pParty->uid[i] == -1 ) {		// Party Structure 에 추가
 			pParty->uid[i] = m_Sid;
 			pParty->sMaxHp[i] = m_iMaxHp;
@@ -5236,7 +5238,7 @@ void CUser::PartyRemove(int memberid)
 	SetShort( send_buff, memberid, send_index );
 	m_pMain->Send_PartyMember( m_sPartyIndex, send_buff, send_index );	// 삭제된 인원을 브로드캐스팅..제거될 사람한테두 패킷이 간다.
 
-	for( i=0; i<8; i++ ) {			// 파티가 유효한 경우 에는 파티 리스트에서 뺀다.
+	for( int i=0; i<8; i++ ) {			// 파티가 유효한 경우 에는 파티 리스트에서 뺀다.
 		if( pParty->uid[i] != -1 ) {
 			if( pParty->uid[i] == memberid ) {
 				pParty->uid[i] = -1;
@@ -5976,8 +5978,8 @@ void CUser::ChatTargetSelect(char *pBuf)
 	idlen = GetShort( pBuf, index );
 	if( idlen > MAX_ID_SIZE || idlen < 0 ) return;
 	GetString( chatid, pBuf, idlen, index );
-
-	for( int i=0; i<MAX_USER; i++ ) {
+	int i;
+	for( i=0; i<MAX_USER; i++ ) {
 		pUser = (CUser*)m_pMain->m_Iocport.m_SockArray[i];
 		if( pUser && pUser->GetState() == STATE_GAMESTART ) {
 			if( _strnicmp( chatid, pUser->m_pUserData->m_id, MAX_ID_SIZE ) == 0 ) {
@@ -7835,7 +7837,7 @@ void CUser::GoldChange(short tid, int gold)
 
 			if( usercount == 0 ) return;
 
-			for( i=0; i<8; i++ ) {		
+			for( int i=0; i<8; i++ ) {		
 				if( pParty->uid[i] != -1 || pParty->uid[i] >= MAX_USER ) {
 					CUser * pUser = NULL;
 					pUser = (CUser*)m_pMain->m_Iocport.m_SockArray[pParty->uid[i]];
@@ -9938,7 +9940,8 @@ BOOL CUser::RobItem(int itemid, short count)
 	pTable = m_pMain->m_ItemtableArray.GetData( itemid );
 	if( !pTable ) return FALSE;
 
-	for ( int i = SLOT_MAX ; i < SLOT_MAX + HAVE_MAX * type ; i++ ) {
+	int i = SLOT_MAX;
+	for ( ; i < SLOT_MAX + HAVE_MAX * type ; i++ ) {
 		if( m_pUserData->m_sItemArray[i].nNum == itemid ) {		
 			if (!pTable->m_bCountable) {	// Remove item from inventory (Non-countable items)
 				m_pUserData->m_sItemArray[i].nNum = 0;

@@ -34,12 +34,11 @@
 
 CUIWareHouseDlg::CUIWareHouseDlg()
 {
-	int i, j;
 	m_iCurPage = 0;
-	for( j = 0; j < MAX_ITEM_WARE_PAGE; j++ )
-		for( i = 0; i < MAX_ITEM_TRADE; i++ )		
+	for( int j = 0; j < MAX_ITEM_WARE_PAGE; j++ )
+		for( int i = 0; i < MAX_ITEM_TRADE; i++ )		
 			m_pMyWare[j][i] = NULL;
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )	m_pMyWareInv[i] = NULL;
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )	m_pMyWareInv[i] = NULL;
 
 	m_pUITooltipDlg		= NULL;
 	m_pStrMyGold		= NULL;
@@ -66,9 +65,8 @@ void CUIWareHouseDlg::Release()
 {
 	CN3UIBase::Release();
 
-	int i, j;
-	for( j = 0; j < MAX_ITEM_WARE_PAGE; j++ )
-		for( i = 0; i < MAX_ITEM_TRADE; i++ )
+	for( int j = 0; j < MAX_ITEM_WARE_PAGE; j++ )
+		for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 		{
 			if ( m_pMyWare[j][i] != NULL )
 			{
@@ -77,7 +75,7 @@ void CUIWareHouseDlg::Release()
 			}
 		}
 
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if ( m_pMyWareInv[i] != NULL )
 		{
@@ -90,8 +88,6 @@ void CUIWareHouseDlg::Release()
 void CUIWareHouseDlg::Render()
 {
 	if (!m_bVisible) return;	// 보이지 않으면 자식들을 render하지 않는다.
-
-	int i;
 
 	POINT ptCur = CGameProcedure::s_pLocalInput->MouseGetPos();
 	m_pUITooltipDlg->DisplayTooltipsDisable();
@@ -114,7 +110,7 @@ void CUIWareHouseDlg::Render()
 	}
 
 	// 갯수 표시되야 할 아이템 갯수 표시..
-	for( i = 0; i < MAX_ITEM_TRADE; i++ )
+	for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 	{
 		if ( m_pMyWare[m_iCurPage][i] && ( (m_pMyWare[m_iCurPage][i]->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE) || 
 			(m_pMyWare[m_iCurPage][i]->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE_SMALL) ) )
@@ -151,7 +147,7 @@ void CUIWareHouseDlg::Render()
 		}
 	}
 
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if ( m_pMyWareInv[i] && ( (m_pMyWareInv[i]->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE)  || (m_pMyWareInv[i]->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE_SMALL)  ) )
 		{
@@ -216,10 +212,9 @@ void CUIWareHouseDlg::InitIconUpdate()
 {
 	CN3UIArea* pArea;
 	float fUVAspect = (float)45.0f/(float)64.0f;
-	int i, j;
 
-	for( j = 0; j < MAX_ITEM_WARE_PAGE; j++ )
-		for( i = 0; i < MAX_ITEM_TRADE; i++ )
+	for( int j = 0; j < MAX_ITEM_WARE_PAGE; j++ )
+		for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 		{
 			if ( m_pMyWare[j][i] != NULL )
 			{
@@ -241,13 +236,10 @@ void CUIWareHouseDlg::InitIconUpdate()
 
 int CUIWareHouseDlg::GetItemiOrder(__IconItemSkill* spItem, e_UIWND_DISTRICT eWndDist)
 {
-	int iReturn = -1;
-	int i;
-
 	switch ( eWndDist )
 	{
 		case UIWND_DISTRICT_TRADE_NPC:
-			for( i = 0; i < MAX_ITEM_TRADE; i++ )
+			for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 			{
 				if ( (m_pMyWare[m_iCurPage][i] != NULL) && (m_pMyWare[m_iCurPage][i] == spItem) )
 					return i;
@@ -255,7 +247,7 @@ int CUIWareHouseDlg::GetItemiOrder(__IconItemSkill* spItem, e_UIWND_DISTRICT eWn
 			break;
 
 		case UIWND_DISTRICT_TRADE_MY:
-			for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+			for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 			{
 				if ( (m_pMyWareInv[i] != NULL) && (m_pMyWareInv[i] == spItem) )
 					return i;
@@ -263,7 +255,7 @@ int CUIWareHouseDlg::GetItemiOrder(__IconItemSkill* spItem, e_UIWND_DISTRICT eWn
 			break;
 	}
 
-	return iReturn;
+	return -1;
 }
 
 RECT CUIWareHouseDlg::GetSampleRect()
@@ -289,7 +281,7 @@ e_UIWND_DISTRICT CUIWareHouseDlg::GetWndDistrict(__IconItemSkill* spItem)
 			return UIWND_DISTRICT_TRADE_NPC;
 	}
 
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if ( (m_pMyWareInv[i] != NULL) && (m_pMyWareInv[i] == spItem) )
 			return UIWND_DISTRICT_TRADE_MY;
@@ -323,7 +315,6 @@ bool CUIWareHouseDlg::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 			}
 
 	if(NULL == pSender) return false;
-	int i, j;
 
 	if (dwMsg == UIMSG_BUTTON_CLICK)					
 	{
@@ -360,11 +351,11 @@ bool CUIWareHouseDlg::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 				pStr->SetString(pszID);
 			}
 
-			for( j = 0; j < MAX_ITEM_WARE_PAGE; j++ )
+			for( int j = 0; j < MAX_ITEM_WARE_PAGE; j++ )
 			{
 				if (j == m_iCurPage)
 				{
-					for( i = 0; i < MAX_ITEM_TRADE; i++ )
+					for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 					{
 						if ( m_pMyWare[j][i] != NULL )
 							m_pMyWare[j][i]->pUIIcon->SetVisible(true);
@@ -372,7 +363,7 @@ bool CUIWareHouseDlg::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 				}
 				else
 				{
-					for( i = 0; i < MAX_ITEM_TRADE; i++ )
+					for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 					{
 						if ( m_pMyWare[j][i] != NULL )
 							m_pMyWare[j][i]->pUIIcon->SetVisible(false);
@@ -395,11 +386,11 @@ bool CUIWareHouseDlg::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 				pStr->SetString(pszID);
 			}
 
-			for( j = 0; j < MAX_ITEM_WARE_PAGE; j++ )
+			for( int j = 0; j < MAX_ITEM_WARE_PAGE; j++ )
 			{
 				if (j == m_iCurPage)
 				{
-					for( i = 0; i < MAX_ITEM_TRADE; i++ )
+					for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 					{
 						if ( m_pMyWare[j][i] != NULL )
 							m_pMyWare[j][i]->pUIIcon->SetVisible(true);
@@ -407,7 +398,7 @@ bool CUIWareHouseDlg::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 				}
 				else
 				{
-					for( i = 0; i < MAX_ITEM_TRADE; i++ )
+					for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 					{
 						if ( m_pMyWare[j][i] != NULL )
 							m_pMyWare[j][i]->pUIIcon->SetVisible(false);
@@ -487,9 +478,8 @@ void CUIWareHouseDlg::LeaveWareHouseState()
 
 void CUIWareHouseDlg::EnterWareHouseStateStart(int iWareGold)
 {
-	int i, j;
-	for( j = 0; j < MAX_ITEM_WARE_PAGE; j++ )
-		for( i = 0; i < MAX_ITEM_TRADE; i++ )
+	for( int j = 0; j < MAX_ITEM_WARE_PAGE; j++ )
+		for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 		{
 			if ( m_pMyWare[j][i] != NULL )
 			{
@@ -505,7 +495,7 @@ void CUIWareHouseDlg::EnterWareHouseStateStart(int iWareGold)
 			}
 		}
 
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if ( m_pMyWareInv[i] != NULL )
 		{
@@ -538,12 +528,11 @@ void CUIWareHouseDlg::EnterWareHouseStateEnd()
 		pStr->SetString(pszID);
 	}
 
-	int i, j;
-	for( j = 0; j < MAX_ITEM_WARE_PAGE; j++ )
+	for( int j = 0; j < MAX_ITEM_WARE_PAGE; j++ )
 	{
 		if (j == m_iCurPage)
 		{
-			for( i = 0; i < MAX_ITEM_TRADE; i++ )
+			for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 			{
 				if ( m_pMyWare[j][i] != NULL )
 					m_pMyWare[j][i]->pUIIcon->SetVisible(true);
@@ -551,7 +540,7 @@ void CUIWareHouseDlg::EnterWareHouseStateEnd()
 		}
 		else
 		{
-			for( i = 0; i < MAX_ITEM_TRADE; i++ )
+			for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 			{
 				if ( m_pMyWare[j][i] != NULL )
 					m_pMyWare[j][i]->pUIIcon->SetVisible(false);
@@ -570,14 +559,13 @@ void CUIWareHouseDlg::EnterWareHouseStateEnd()
 
 __IconItemSkill* CUIWareHouseDlg::GetHighlightIconItem(CN3UIIcon* pUIIcon)
 {
-	int i;
-	for( i = 0; i < MAX_ITEM_TRADE; i++ )
+	for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 	{
 		if ( (m_pMyWare[m_iCurPage][i] != NULL) && (m_pMyWare[m_iCurPage][i]->pUIIcon == pUIIcon) )
 			return m_pMyWare[m_iCurPage][i];
 	}
 
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if ( (m_pMyWareInv[i] != NULL) && (m_pMyWareInv[i]->pUIIcon == pUIIcon) ) 
 			return m_pMyWareInv[i];
@@ -1690,13 +1678,12 @@ void CUIWareHouseDlg::ItemMoveFromInvToThis()
 	CUIInventory* pInven = CGameProcedure::s_pProcMain->m_pUIInventory;
 	if(!pInven) return;
 
-	int i;
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		m_pMyWareInv[i] = NULL;
 	}
 
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if(pInven->m_pMyInvWnd[i])
 		{
@@ -1723,8 +1710,7 @@ void CUIWareHouseDlg::ItemMoveFromThisToInv()
 	CUIInventory* pInven = CGameProcedure::s_pProcMain->m_pUIInventory;
 	if(!pInven) return;
 
-	int i;
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if(m_pMyWareInv[i])
 		{

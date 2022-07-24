@@ -80,8 +80,7 @@ void CN3UIManager::ReorderChildList()	// 다이알로그 순서 재배치
 		}
 		else ++itor;
 	}
-	int i;
-	for (i=iAlwaysTopChildCount-1; i>=0; --i)
+	for (int i=iAlwaysTopChildCount-1; i>=0; --i)
 	{
 		m_Children.push_front(ppBuffer[i]);	// 맨앞에 넣는다. 그리는 순서를 맨 나중에 그리도록 하고 메세지를 맨 먼저 받게 하려고
 	}

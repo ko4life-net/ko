@@ -39,9 +39,8 @@ void CN3Sky::Tick()
 {
 	m_SkyColor.Tick();
 	m_FogColor.Tick();
-	int i;
 	D3DCOLOR FogColor = m_FogColor.GetCurColor();
-	for (i=0; i<4; ++i)
+	for (int i=0; i<4; ++i)
 	{
 		m_vFronts[i].color = (m_vFronts[i].color&0xff000000) | (FogColor&0x00ffffff);
 		m_Bottom[i].color = FogColor;

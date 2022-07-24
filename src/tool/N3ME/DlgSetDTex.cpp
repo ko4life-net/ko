@@ -90,11 +90,10 @@ BOOL CDlgSetDTex::OnInitDialog()
 
 	m_TileSetName = pFrm->m_DTexInfoFileName;
 
-	int i;
 	int iSize = pDTexMng->m_pDTex.size();
 	it_DTex DTexIt = pDTexMng->m_pDTex.begin();
 	CDTex* pDTex;
-	for(i = 0; i<iSize; i++)
+	for(int i = 0; i<iSize; i++)
 	{
 		pDTex = (*DTexIt);
 		if(pDTex)
@@ -110,7 +109,7 @@ BOOL CDlgSetDTex::OnInitDialog()
 
 	it_DTexGroup it = pGroup->m_Groups.begin();
 	iSize = pGroup->m_Groups.size();
-	for(i = 0; i < iSize; i++, it++)
+	for(int i = 0; i < iSize; i++, it++)
 	{
 		CDTexGroup* pDTG = *it;
 		m_GroupList.InsertString(i, pDTG->m_Name);
@@ -138,7 +137,7 @@ BOOL CDlgSetDTex::OnInitDialog()
 	m_pGridVB->Lock(0,0, (VOID**)&pVerticesC, 0);
 
 	int GridInterval = (int)m_fTexSurfaceSize / NUM_DTEXTILE;
-	for(i=1;i<NUM_DTEXTILE;i++)
+	for(int i=1;i<NUM_DTEXTILE;i++)
 	{
 		int index = (i-1)*4;
 		pVerticesC[index].Set((float)((i*GridInterval)-1),	0.0f,							0.1f, 0.5f, 0xff800080);
@@ -668,11 +667,10 @@ void CDlgSetDTex::OnBtnLoadTileset()
 		//reset dialog box...
 		m_FileList.ResetContent();
 		m_GroupList.ResetContent();
-		int i;
 		int iSize = pDTexMng->m_pDTex.size();
 		it_DTex DTexIt = pDTexMng->m_pDTex.begin();
 		CDTex* pDTex;
-		for(i = 0; i<iSize; i++)
+		for(int i = 0; i<iSize; i++)
 		{
 			pDTex = (*DTexIt);
 			if(pDTex)
@@ -686,7 +684,7 @@ void CDlgSetDTex::OnBtnLoadTileset()
 
 		it_DTexGroup it = pDTexGroupMng->m_Groups.begin();
 		iSize = pDTexGroupMng->m_Groups.size();
-		for(i = 0; i < iSize; i++, it++)
+		for(int i = 0; i < iSize; i++, it++)
 		{
 			CDTexGroup* pDTG = *it;
 			m_GroupList.InsertString(i, pDTG->m_Name);

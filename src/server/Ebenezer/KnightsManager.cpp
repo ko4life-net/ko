@@ -674,7 +674,7 @@ fail_return:
 
 void CKnightsManager::CurrentKnightsMember(CUser *pUser, char* pBuf)
 {
-	int index = 0, send_index = 0, buff_index = 0, count = 0, i=0, page = 0, start = 0;
+	int index = 0, send_index = 0, buff_index = 0, count = 0, page = 0, start = 0;
 	char send_buff[128]; memset( send_buff, 0x00, 128 );
 	char temp_buff[4096]; memset( temp_buff, 0x00, 4096 );
 	CUser* pTUser = NULL;
@@ -694,7 +694,7 @@ void CKnightsManager::CurrentKnightsMember(CUser *pUser, char* pBuf)
 	page = GetShort( pBuf, index );
 	start = page * 10;			// page : 0 ~
 
-	for(i=0; i<MAX_USER; i++ ) {
+	for(int i=0; i<MAX_USER; i++ ) {
 		pTUser = (CUser*)m_pMain->m_Iocport.m_SockArray[i];
 		if( !pTUser ) continue;
 		if( pTUser->m_pUserData->m_bKnights != pUser->m_pUserData->m_bKnights ) continue;

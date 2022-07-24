@@ -46,8 +46,8 @@ void CItemRepairMgr::Tick()
 	POINT ptCur			= CGameProcedure::s_pLocalInput->MouseGetPos();
 
 	// 위치를 구해서 
-	int i;	int iArm = 0x00; int iOrder = -1; __IconItemSkill* spItem = NULL;
-	for (i = 0; i < ITEM_SLOT_COUNT; i++)
+	int iArm = 0x00; int iOrder = -1; __IconItemSkill* spItem = NULL;
+	for (int i = 0; i < ITEM_SLOT_COUNT; i++)
 	{
 		if (spItem) break;
 		if (pInv->m_pMySlot[i])
@@ -63,7 +63,7 @@ void CItemRepairMgr::Tick()
 
 	if (!spItem)
 	{
-		for (i = 0; i < MAX_ITEM_INVENTORY; i++)
+		for (int i = 0; i < MAX_ITEM_INVENTORY; i++)
 		{
 			if (spItem) break;
 			if (pInv->m_pMyInvWnd[i])

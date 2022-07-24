@@ -35,18 +35,15 @@ CUISkillTreeDlg::CUISkillTreeDlg()
 	m_fMoveDelta = 0.0f; // 부드럽게 열리고 닫히게 만들기 위해서 현재위치 계산에 부동소수점을 쓴다..
 
 	m_iRBtnDownOffs = -1;
-
-	int i, j, k;
-
 	m_iCurKindOf		= 0;
 	m_iCurSkillPage		= 0;
 
-	for( i = 0; i < MAX_SKILL_FROM_SERVER; i++ )
+	for( int i = 0; i < MAX_SKILL_FROM_SERVER; i++ )
 		m_iSkillInfo[i] = NULL;
 
-	for( i = 0; i < MAX_SKILL_KIND_OF; i++ )
-		for( j = 0; j < MAX_SKILL_PAGE_NUM; j++ )
-			for( k = 0; k < MAX_SKILL_IN_PAGE; k++ )
+	for( int i = 0; i < MAX_SKILL_KIND_OF; i++ )
+		for( int j = 0; j < MAX_SKILL_PAGE_NUM; j++ )
+			for( int k = 0; k < MAX_SKILL_IN_PAGE; k++ )
 				m_pMySkillTree[i][j][k] = NULL;	
 			
 	CN3UIWndBase::m_sSkillSelectInfo.UIWnd = UIWND_HOTKEY;
@@ -56,11 +53,10 @@ CUISkillTreeDlg::CUISkillTreeDlg()
 CUISkillTreeDlg::~CUISkillTreeDlg()
 {
 	Release();
-/*	int i, j, k;
-
-	for( i = 0; i < MAX_SKILL_KIND_OF; i++ )
-		for( j = 0; j < MAX_SKILL_PAGE_NUM; j++ )
-			for( k = 0; k < MAX_SKILL_IN_PAGE; k++ )
+/*
+	for( int i = 0; i < MAX_SKILL_KIND_OF; i++ )
+		for( int j = 0; j < MAX_SKILL_PAGE_NUM; j++ )
+			for( int k = 0; k < MAX_SKILL_IN_PAGE; k++ )
 				if ( m_pMySkillTree[i][j][k] != NULL )
 				{
 					delete m_pMySkillTree[i][j][k];
@@ -82,13 +78,11 @@ void CUISkillTreeDlg::Release()
 	m_bClosingNow = false;	// 닫히고 있다..
 	m_fMoveDelta = 0.0f; // 부드럽게 열리고 닫히게 만들기 위해서 현재위치 계산에 부동소수점을 쓴다..
 
-	int i, j, k;
-
-	for( i = 0; i < MAX_SKILL_KIND_OF; i++ )
+	for( int i = 0; i < MAX_SKILL_KIND_OF; i++ )
 	{
-		for( j = 0; j < MAX_SKILL_PAGE_NUM; j++ )
+		for( int j = 0; j < MAX_SKILL_PAGE_NUM; j++ )
 		{
-			for( k = 0; k < MAX_SKILL_IN_PAGE; k++ )
+			for( int k = 0; k < MAX_SKILL_IN_PAGE; k++ )
 			{
 				if ( m_pMySkillTree[i][j][k] != NULL )
 				{
@@ -108,11 +102,9 @@ void CUISkillTreeDlg::Release()
 
 bool CUISkillTreeDlg::HasIDSkill(int iID)
 {
-	int i, j, k;
-
-	for( i = 0; i < MAX_SKILL_KIND_OF; i++ )
-		for( j = 0; j < MAX_SKILL_PAGE_NUM; j++ )
-			for( k = 0; k < MAX_SKILL_IN_PAGE; k++ )
+	for( int i = 0; i < MAX_SKILL_KIND_OF; i++ )
+		for( int j = 0; j < MAX_SKILL_PAGE_NUM; j++ )
+			for( int k = 0; k < MAX_SKILL_IN_PAGE; k++ )
 				if ( m_pMySkillTree[i][j][k] != NULL )
 				{
 					if ( m_pMySkillTree[i][j][k]->pSkill->dwID == iID )
@@ -124,15 +116,12 @@ bool CUISkillTreeDlg::HasIDSkill(int iID)
 
 void CUISkillTreeDlg::UpdateDisableCheck()
 {
-	int i, j, k;
-	DWORD bitMask;
-
-	for( i = 0; i < MAX_SKILL_KIND_OF; i++ )
-		for( j = 0; j < MAX_SKILL_PAGE_NUM; j++ )
-			for( k = 0; k < MAX_SKILL_IN_PAGE; k++ )
+	for( int i = 0; i < MAX_SKILL_KIND_OF; i++ )
+		for( int j = 0; j < MAX_SKILL_PAGE_NUM; j++ )
+			for( int k = 0; k < MAX_SKILL_IN_PAGE; k++ )
 				if ( m_pMySkillTree[i][j][k] != NULL )
 				{
-					bitMask = UISTYLE_ICON_SKILL;
+					DWORD bitMask = UISTYLE_ICON_SKILL;
 					if (!CGameProcedure::s_pProcMain->m_pMagicSkillMng->CheckValidSkillMagic(m_pMySkillTree[i][j][k]->pSkill))
 						bitMask |= UISTYLE_DISABLE_SKILL;
 					m_pMySkillTree[i][j][k]->pUIIcon->SetStyle(bitMask);
@@ -1041,13 +1030,12 @@ void CUISkillTreeDlg::InitIconWnd(e_UIWND eWnd)
 
 void CUISkillTreeDlg::InitIconUpdate()
 {
-	int i, j, k, iDivide;
 	__TABLE_UPC_SKILL* pUSkill = NULL;
 
 	// 기존 아이콘 모두 클리어..
-	for( i = 0; i < MAX_SKILL_KIND_OF; i++ )
-		for( j = 0; j < MAX_SKILL_PAGE_NUM; j++ )
-			for( k = 0; k < MAX_SKILL_IN_PAGE; k++ )
+	for( int i = 0; i < MAX_SKILL_KIND_OF; i++ )
+		for( int j = 0; j < MAX_SKILL_PAGE_NUM; j++ )
+			for( int k = 0; k < MAX_SKILL_IN_PAGE; k++ )
 				if ( m_pMySkillTree[i][j][k] != NULL )
 				{
 					__IconItemSkill* spSkill = m_pMySkillTree[i][j][k];
@@ -1079,10 +1067,10 @@ void CUISkillTreeDlg::InitIconUpdate()
 
 	if ( CGameBase::s_pPlayer->m_InfoBase.eClass != CLASS_EL_DRUID )
 	{
-		for( i = iSkillIndexFirst; i < CGameBase::s_pTbl_Skill->GetSize(); i++ )
+		for( int i = iSkillIndexFirst; i < CGameBase::s_pTbl_Skill->GetSize(); i++ )
 		{
 			pUSkill = CGameBase::s_pTbl_Skill->GetIndexedData(i);
-			iDivide = pUSkill->dwID / 1000;
+			int iDivide = pUSkill->dwID / 1000;
 			if ( iDivide != (iSkillIDFirst / 1000) )
 			{
 				iSkillIndexLast = i;
@@ -1091,7 +1079,7 @@ void CUISkillTreeDlg::InitIconUpdate()
 		}
 	}
 
-	for( i = iSkillIndexFirst; i < iSkillIndexLast; i++ )
+	for( int i = iSkillIndexFirst; i < iSkillIndexLast; i++ )
 	{
 		__TABLE_UPC_SKILL* pUSkill = CGameBase::s_pTbl_Skill->GetIndexedData(i);
 		if ( pUSkill == NULL ) continue;
@@ -1443,14 +1431,12 @@ void CUISkillTreeDlg::SetPageInIconRegion(int iKindOf, int iPageNum)		// 아이콘 
 	m_iCurKindOf		= iKindOf;
 	m_iCurSkillPage		= iPageNum;
 
-	int i, j, k;
-
-	for( i = 0; i < MAX_SKILL_KIND_OF; i++ )
+	for( int i = 0; i < MAX_SKILL_KIND_OF; i++ )
 	{
 		if ( i != iKindOf )
 		{
-			for( j = 0; j < MAX_SKILL_PAGE_NUM; j++ )
-				for( k = 0; k < MAX_SKILL_IN_PAGE; k++ )
+			for( int j = 0; j < MAX_SKILL_PAGE_NUM; j++ )
+				for( int k = 0; k < MAX_SKILL_IN_PAGE; k++ )
 				{
 					if ( m_pMySkillTree[i][j][k] != NULL )
 						m_pMySkillTree[i][j][k]->pUIIcon->SetVisible(false);
@@ -1458,11 +1444,11 @@ void CUISkillTreeDlg::SetPageInIconRegion(int iKindOf, int iPageNum)		// 아이콘 
 		}
 		else
 		{
-			for( j = 0; j < MAX_SKILL_PAGE_NUM; j++ )
+			for( int j = 0; j < MAX_SKILL_PAGE_NUM; j++ )
 			{
 				if( j != iPageNum )
 				{
-					for( k = 0; k < MAX_SKILL_IN_PAGE; k++ )
+					for( int k = 0; k < MAX_SKILL_IN_PAGE; k++ )
 					{
 						if ( m_pMySkillTree[i][j][k] != NULL )
 							m_pMySkillTree[i][j][k]->pUIIcon->SetVisible(false);
@@ -1470,7 +1456,7 @@ void CUISkillTreeDlg::SetPageInIconRegion(int iKindOf, int iPageNum)		// 아이콘 
 				}
 				else
 				{
-					for( k = 0; k < MAX_SKILL_IN_PAGE; k++ )
+					for( int k = 0; k < MAX_SKILL_IN_PAGE; k++ )
 					{
 						if ( m_pMySkillTree[i][j][k] != NULL )
 							m_pMySkillTree[i][j][k]->pUIIcon->SetVisible(true);
@@ -1485,7 +1471,7 @@ void CUISkillTreeDlg::SetPageInIconRegion(int iKindOf, int iPageNum)		// 아이콘 
 	std::string str; 
 	char	cstr[4];
 
-	for( k = 0; k < MAX_SKILL_IN_PAGE; k++ )
+	for( int k = 0; k < MAX_SKILL_IN_PAGE; k++ )
 	{
 		if ( m_pMySkillTree[m_iCurKindOf][m_iCurSkillPage][k] != NULL )
 		{
@@ -1531,7 +1517,7 @@ void CUISkillTreeDlg::AllClearImageByName(const std::string& szFN, bool bTrueOrN
 	pBase = GetChildBaseByName(str);
 	if (pBase) pBase->SetVisible(bTrueOrNot);
 
-	for ( i = 0; i < 4; i++ )
+	for ( int i = 0; i < 4; i++ )
 	{
 		str = "btn_";	str += szFN;	sprintf(cstr, "%d", i);	str+= cstr;
 		pButton = GetChildButtonByName(str);

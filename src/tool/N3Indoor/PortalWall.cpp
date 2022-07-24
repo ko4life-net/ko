@@ -27,7 +27,6 @@ CPortalWall::CPortalWall(e_WallType eWT, CPortalVol* pVol)
 {
 	m_eWallType = eWT;
 	unsigned short* pIdx = m_pIndex;
-	int i;
 
 	if (pVol)
 	{
@@ -81,7 +80,7 @@ CPortalWall::CPortalWall(e_WallType eWT, CPortalVol* pVol)
 	}
 	else
 	{
-		for ( i = 0; i < 4; i++ )
+		for (int i = 0; i < 4; i++ )
 			m_pvVertex[i].Set(0.0f, 0.0f, 0.0f, dwColorNoneAlpha);
 	}
 
@@ -256,19 +255,18 @@ void CPortalWall::RenderExecute()
 
 void CPortalWall::SetState(e_PvsState ePS)
 {
-	int i = 0;
 	switch (ePS)
 	{
 		case STATE_NONE:
-			for(i = 0; i < 4; i++)
+			for(int i = 0; i < 4; i++)
 				m_pvVertex[i].color = dwColorNoneAlpha;
 			break;
 		case STATE_SELECTED:
-			for(i = 0; i < 4; i++)
+			for(int i = 0; i < 4; i++)
 				m_pvVertex[i].color = dwColorSelectedAlpha;
 			break;
 		case STATE_LINKED:
-			for(i = 0; i < 4; i++)
+			for(int i = 0; i < 4; i++)
 				m_pvVertex[i].color = dwColorLinkedAlpha;
 			break;
 	}

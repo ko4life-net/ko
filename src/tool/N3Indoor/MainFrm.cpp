@@ -865,7 +865,7 @@ void CMainFrame::OnTipDeleteObj()
 
 void CMainFrame::TotalValidateCheckAfterDelete()
 {
-	int i, iSize;
+	int iSize;
 	bool bFound;
 	CPortalVolume* pVol;
 	COrganizeView* pView = GetOrganizeView();
@@ -875,7 +875,7 @@ void CMainFrame::TotalValidateCheckAfterDelete()
 	{
 LOOP1:
 		iSize = m_pDummy->m_SelObjArray.GetSize();
-		for (i=0; i<iSize; ++i)
+		for (int i=0; i<iSize; ++i)
 		{
 			bFound = false;
 
@@ -910,7 +910,7 @@ LOOP1:
 	{
 LOOP2:
 		iSize = m_SelVolArray.GetSize();
-		for (i=0; i<iSize; ++i)
+		for (int i=0; i<iSize; ++i)
 		{
 			bFound = false;
 
@@ -1179,13 +1179,13 @@ void CMainFrame::OnTipDeleteUnusedFiles()
 	// 파일 지우기 대화상자 띄우기..
 	CDlgUnusedFiles dlg;
 	int iUFC = unusedFNs.size();
-	for(i = 0; i < iUFC; i++)
+	for(int i = 0; i < iUFC; i++)
 	{
 		dlg.m_FileNames.Add(unusedFNs[i].c_str());
 	}
 
 	int iIFC = invalidFNs.size();
-	for(i = 0; i < iIFC; i++)
+	for(int i = 0; i < iIFC; i++)
 	{
 		dlg.m_InvalidFileNames.Add(invalidFNs[i].c_str());
 	}

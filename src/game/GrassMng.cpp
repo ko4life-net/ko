@@ -336,7 +336,7 @@ void CGrassMng::ChkThisZoneUseGrass(int nGrassUseOrder)
 //		for(int nGrassCount=0;nGrassCount<iSize;nGrassCount++)
 		while(nGrassCount<iSize)
 		{
-			for(i=0;i<GrassInputCount && nGrassCount<iSize;i++,nGrassCount++,it++)
+			for(int i=0;i<GrassInputCount && nGrassCount<iSize;i++,nGrassCount++,it++)
 			{
 				pGrass = *it;
 				pGrass->TexSelectNum(InputGrass[i],InputGrassOrg[i]);

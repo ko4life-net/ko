@@ -67,7 +67,7 @@ void CGameBase::StaticMemberInit()
 	szFN = "Data\\Quest_Menu" + szLangTail;	s_pTbl_QuestMenu->LoadFromFile(szFN.c_str());	// 퀘스트 관련 선택메뉴
 	szFN = "Data\\Quest_Talk" + szLangTail;	s_pTbl_QuestTalk->LoadFromFile(szFN.c_str());	// 퀘스트 관련 지문
 
-	for(i = 0; i < MAX_ITEM_EXTENSION; i++)
+	for(int i = 0; i < MAX_ITEM_EXTENSION; i++)
 	{
 		char szFNTmp[256] = "";
 		sprintf(szFNTmp, "Data\\Item_Ext_%d", i);

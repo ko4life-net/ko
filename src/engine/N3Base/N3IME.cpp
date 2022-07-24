@@ -422,7 +422,7 @@ BOOL CN3IME::ChangeCandidate(LONG CandList)
     dwPreferNumPerPage = (!lpCandList->dwPageSize ) ?
                          DEFAULT_CAND_NUM_PER_PAGE : lpCandList->dwPageSize;
 
-    for( i = 0; i < lpCandList->dwCount; i++ ) {
+    for( int i = 0; i < lpCandList->dwCount; i++ ) {
         lpStr = (LPSTR)lpCandList + lpCandList->dwOffset[i];
         max_width = (max_width < lstrlen(lpStr)) ? lstrlen(lpStr) : max_width;
     }

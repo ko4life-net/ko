@@ -650,7 +650,7 @@ CPlayerNPC* CPlayerOtherMgr::PickAllPrecisely(int ixScreen, int iyScreen, int &i
 		}
 	}
 
-	for(i = 0; i < iBufCnt; i++)
+	for(int i = 0; i < iBufCnt; i++)
 	{
 		pNPC = NUPCBufs[i];
 		if(pNPC->LODLevel() < 0 || pNPC->LODLevel() >= MAX_CHR_LOD) continue; // Level Of Detail 이 없는건 지나간다.

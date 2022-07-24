@@ -70,8 +70,8 @@ void CPondMng::MainInvalidate()
 void CPondMng::SelPondDelete(CPondMesh* pPondMesh)
 {
 	it_PondMesh it = m_pSelPonds.begin();
-	int iSize = m_pSelPonds.size();
-	for(int i = 0; i < iSize; i++, it++)
+	int i, iSize = m_pSelPonds.size();
+	for(i = 0; i < iSize; i++, it++)
 	{
 		CPondMesh* pRM = *it;
 		if(pRM == pPondMesh)
@@ -123,11 +123,11 @@ bool CPondMng::Load(HANDLE hFile)
 	int iVersion;
 	ReadFile(hFile, &iVersion, sizeof(iVersion), &dwNum,NULL);	//	GetVersion
 
-	int i, iPondMeshCount;
+	int iPondMeshCount;
 	if(iVersion==1001)
 	{
 		ReadFile(hFile, &iPondMeshCount, sizeof(iPondMeshCount), &dwNum, NULL);
-		for (i=0; i<iPondMeshCount; ++i)
+		for (int i=0; i<iPondMeshCount; ++i)
 		{
 			CPondMesh* pPondMesh = new CPondMesh;
 			pPondMesh->Load1001(hFile);
@@ -137,7 +137,7 @@ bool CPondMng::Load(HANDLE hFile)
 	else if(iVersion==1000)
 	{
 		ReadFile(hFile, &iPondMeshCount, sizeof(iPondMeshCount), &dwNum, NULL);
-		for (i=0; i<iPondMeshCount; ++i)
+		for (int i=0; i<iPondMeshCount; ++i)
 		{
 			CPondMesh* pPondMesh = new CPondMesh;
 			pPondMesh->Load1000(hFile);
@@ -147,7 +147,7 @@ bool CPondMng::Load(HANDLE hFile)
 	else
 	{
 		iPondMeshCount = iVersion;
-		for (i=0; i<iPondMeshCount; ++i)
+		for (int i=0; i<iPondMeshCount; ++i)
 		{
 			CPondMesh* pPondMesh = new CPondMesh;
 			pPondMesh->Load(hFile);
@@ -746,14 +746,13 @@ BOOL CPondMng::SelectVtxByDragRect(RECT* pRect, BOOL bAdd,BOOL bSelectPond)
 	CPondMesh* pSelPond=NULL;
 	int iSize = m_pSelPonds.size();
 	it_PondMesh it = m_pSelPonds.begin();
-	int i,k;
-	for(i = 0; i < iSize; ++i, ++it) 	// 이미 선택된 연못이 있다면..
+	for(int i = 0; i < iSize; ++i, ++it) 	// 이미 선택된 연못이 있다면..
 	{
 		pSelPond= *it;
 		if(pSelPond==NULL) continue;
 
 		int iVC = pSelPond->VertexCount();	// 그연못의 점 숫자를 구하기
-		for (k=0; k<iVC;++k)
+		for (int k=0; k<iVC;++k)
 		{
 			__VertexXyzT2* pVtx = pSelPond->GetVertex(k);	// 점 하나 구하기
 			if (pVtx == NULL) continue;
@@ -799,15 +798,15 @@ BOOL CPondMng::SelectVtxByDragRect(RECT* pRect, BOOL bAdd,BOOL bSelectPond)
 		it = m_PondMeshes.begin();
 		iSize = m_PondMeshes.size();
 		BOOL bChkSamePond;
-		for(i = 0; i < iSize; ++i, ++it)
+		for(int i = 0; i < iSize; ++i, ++it)
 		{
 			CPondMesh* pRM = *it;
 			if (pRM == NULL) continue;
 
-			int j, iVC = pRM->VertexCount();				// 이연못의 점 갯수
+			int iVC = pRM->VertexCount();				// 이연못의 점 갯수
 			pSelPond = NULL;
 			bChkSamePond=TRUE;
-			for (j=0; j<iVC; ++j)
+			for (int j=0; j<iVC; ++j)
 			{
 				__VertexXyzT2* pVtx = pRM->GetVertex(j);	// 점 하나 구하기
 				if (pVtx == NULL) continue;
@@ -845,7 +844,7 @@ BOOL CPondMng::SelectVtxByDragRect(RECT* pRect, BOOL bAdd,BOOL bSelectPond)
 	else
 	{
 		m_VtxPosDummy.SetSelVtx(m_SelVtxArray.GetAt(0));
-		for (i=1; i<iSize; ++i)
+		for (int i=1; i<iSize; ++i)
 		{
 			m_VtxPosDummy.AddSelVtx(m_SelVtxArray.GetAt(i));
 		}
@@ -1004,7 +1003,7 @@ void CPondMng::SetVtxCenter()	//	연못(들)의 중간점을 찾아 세팅,예전 스케일도 백�
 	{
 		float Stx,Enx,Stz,Enz;
 		Stx=Enx=pvCenter[0].x, Stz=Enz= pvCenter[0].z;
-		for(i=0;i<nCenterCnt;i++)
+		for(int i=0;i<nCenterCnt;i++)
 		{
 			if(Stx>pvCenter[i].x) Stx  = pvCenter[i].x;
 			if(Enx<pvCenter[i].x) Enx  = pvCenter[i].x;

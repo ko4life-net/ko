@@ -119,10 +119,9 @@ void CTexViewer::OnPaint()
 		dc.SelectObject(pOldPen);
 	}
 	// ImageType별 영역이 있으면 그리기
-	int i;
 	int iOldMode = dc.SetROP2(R2_NOTXORPEN);
 	dc.SelectStockObject(NULL_BRUSH);
-	for (i=0; i<m_iImageTypeCount; ++i)
+	for (int i=0; i<m_iImageTypeCount; ++i)
 	{
 		if (m_iCurSelectedImage == i) continue;	// 현재 선택된 것은 건너뛰기
 		CRect rcTmp = m_ImageRects[i];
@@ -378,8 +377,7 @@ void CTexViewer::Release()
 	m_ptClickOffset = CPoint(-1,-1);
 
 	// image type관련
-	int i;
-	for (i=0; i<MAX_IMAGETYPE; ++i)
+	for (int i=0; i<MAX_IMAGETYPE; ++i)
 	{
 		m_ImageRects[i].SetRect(-1,-1,-1,-1);
 	}
@@ -701,13 +699,12 @@ BOOL CTexViewer::AutoMultiRectSelect(BOOL bHorizon, CString& strErrMsg)	// 가로 
 	}
 
 	Invalidate();
-	int i;
 	int iRow = 0;
 	int iCol = 0;
 	CPoint ptLeftTop = m_rcSelectedRect.TopLeft();
 	if (bHorizon)
 	{	// 수평으로 이동하며 나누기
-		for(i=0; i<m_iImageTypeCount; ++i)
+		for(int i=0; i<m_iImageTypeCount; ++i)
 		{
 			if ( (ptLeftTop.x + m_rcSelectedRect.Width()*(iRow+1)) > m_TexSize.cx) {++iCol; iRow = 0;}
 			if ( (ptLeftTop.y + m_rcSelectedRect.Height()*(iCol+1)) > m_TexSize.cy)
@@ -724,7 +721,7 @@ BOOL CTexViewer::AutoMultiRectSelect(BOOL bHorizon, CString& strErrMsg)	// 가로 
 	}
 	else
 	{	// 수직으로 이동하며 나누기
-		for(i=0; i<m_iImageTypeCount; ++i)
+		for(int i=0; i<m_iImageTypeCount; ++i)
 		{
 			if ( (ptLeftTop.y + m_rcSelectedRect.Height()*(iCol+1)) > m_TexSize.cy) {++iRow; iCol = 0;}
 			if ( (ptLeftTop.x + m_rcSelectedRect.Width()*(iRow+1)) > m_TexSize.cx)

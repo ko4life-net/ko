@@ -352,7 +352,7 @@ void MAP::LoadMapTile(HANDLE hFile)
 	}
 
 	int count = 0;
-	for( i = 0; i < m_sizeMap.cy; i++)
+	for( int i = 0; i < m_sizeMap.cy; i++)
 	{
 		for( int j = 0; j < m_sizeMap.cx; j++)
 		{

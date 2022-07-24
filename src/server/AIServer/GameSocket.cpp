@@ -1090,12 +1090,9 @@ void CGameSocket::RecvUserFail(char* pBuf)
 
 void CGameSocket::RecvBattleEvent(char* pBuf)
 {
-	int index = 0, i=0;
-	int nType = 0, nEvent = 0;
-	CNpc* pNpc = NULL;
-
-	nType = GetByte(pBuf,index);
-	nEvent = GetByte(pBuf,index);
+	int index = 0;
+	int nType = GetByte(pBuf,index);
+	int nEvent = GetByte(pBuf,index);
 
 	if( nEvent == BATTLEZONE_OPEN )	{
 		m_pMain->m_sKillKarusNpc = 0;
@@ -1113,8 +1110,8 @@ void CGameSocket::RecvBattleEvent(char* pBuf)
 
 	int nSize = m_pMain->m_arNpc.GetSize();
 
-	for( i = 0; i < nSize; i++)	{
-		pNpc = m_pMain->m_arNpc.GetData( i );
+	for( int i = 0; i < nSize; i++)	{
+		CNpc* pNpc = m_pMain->m_arNpc.GetData( i );
 		if( !pNpc ) continue;
 		if( pNpc->m_tNpcType > 10 && (pNpc->m_byGroup == KARUS_ZONE || pNpc->m_byGroup == ELMORAD_ZONE) )	{	// npc에만 적용되고, 국가에 소속된 npc
 			if( nEvent == BATTLEZONE_OPEN )	{		// 전쟁 이벤트 시작 (npc의 능력치 다운)

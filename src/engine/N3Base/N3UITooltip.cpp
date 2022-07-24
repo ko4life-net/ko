@@ -64,8 +64,7 @@ void CN3UITooltip::Render()
 		HRESULT hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, pVB, sizeof(__VertexTransformedColor));	// 배경색 칠하기
 
 		__VertexTransformedColor* pTemp = pVB;
-		int i;
-		for (i=0; i<4; ++i) pTemp++->color = BorderColorOut;	// 바깥 테두리 색을 바꾼다.
+		for (int i=0; i<4; ++i) pTemp++->color = BorderColorOut;	// 바깥 테두리 색을 바꾼다.
 		s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_LINELIST, 0, 8, 8, 
 			pIB, D3DFMT_INDEX16, pVB, sizeof(__VertexTransformedColor));	// 테두리 칠하기
 

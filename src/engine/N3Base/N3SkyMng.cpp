@@ -166,10 +166,9 @@ void CN3SkyMng::Render()
 
 void CN3SkyMng::RenderWeather()
 {
-	int i, j;
-	for (i=0; i<3; ++i)
+	for (int i=0; i<3; ++i)
 	{
-		for(j=0; j<3; ++j)
+		for(int j=0; j<3; ++j)
 		{
 			if (m_pGERain)
 			{
@@ -292,9 +291,8 @@ void CN3SkyMng::Tick()
 		if (NewCellPos.x != m_CurCellPos.x || NewCellPos.y != m_CurCellPos.y)
 		{
 			m_CurCellPos = NewCellPos;
-			int i, j;
-			for(i=0; i<3; ++i)
-				for(j=0; j<3; ++j)
+			for(int i=0; i<3; ++i)
+				for(int j=0; j<3; ++j)
 					m_vPos[j*3+i].Set( (m_CurCellPos.x+i-0.5f)*m_fCellSize, 0, (m_CurCellPos.y+j-0.5f)*m_fCellSize);
 		}
 
@@ -376,7 +374,7 @@ bool CN3SkyMng::LoadFromTextFile(const char* szIniFN)
 		}
 	}
 
-	for(i = 0 ; i < NUM_CLOUD; i++)
+	for(int i = 0 ; i < NUM_CLOUD; i++)
 	{
 		pResult = fgets(szLine, 512, fp);
 		if(pResult)
@@ -426,7 +424,7 @@ bool CN3SkyMng::LoadFromTextFile(const char* szIniFN)
 	if(NULL == m_pMoon) m_pMoon = new CN3Moon();
 	m_pMoon->Init(szMoon);
 
-	for(i = 0; i < MAX_GAME_LIGHT; i++)
+	for(int i = 0; i < MAX_GAME_LIGHT; i++)
 	{
 		if(NULL == m_pLightColorDiffuses[i]) m_pLightColorDiffuses[i] = new CN3ColorChange();
 		if(NULL == m_pLightColorAmbients[i]) m_pLightColorAmbients[i] = new CN3ColorChange();
@@ -455,14 +453,13 @@ bool CN3SkyMng::SaveToTextFile(const char* szIniFN)
 	else fprintf(fp, "Moon : \r\n");
 	
 
-	int i = 0;
-	for(i = 0; i < NUM_SUNPART; i++) 
+	for(int i = 0; i < NUM_SUNPART; i++) 
 	{
 		if(this->SunTextureGet(i)) fprintf(fp, "Sun : %s\r\n", this->SunTextureGet(i)->FileName().c_str());
 		else fprintf(fp, "Sun : \r\n");
 	}
 
-	for(i = 0; i < NUM_CLOUD; i++) 
+	for(int i = 0; i < NUM_CLOUD; i++) 
 	{
 		if(this->CloudTextureFileName(i)) fprintf(fp, "Cloud : %s\r\n", this->CloudTextureFileName(i));
 		else fprintf(fp, "Cloud : \r\n");
@@ -471,7 +468,7 @@ bool CN3SkyMng::SaveToTextFile(const char* szIniFN)
 
 	int iDC = m_DayChanges.size();
 	fprintf(fp, "DayChange Count : %d\r\n", iDC);
-	for(i = 0; i < iDC; i++)
+	for(int i = 0; i < iDC; i++)
 	{
 		this->DayChangeWrite(fp, &(m_DayChanges[i]));
 	}
@@ -692,8 +689,7 @@ void CN3SkyMng::SetCheckGameTime(DWORD dwCheckGameTime)
 	if (m_iDayChangeCurPos >= iDCC) m_iDayChangeCurPos = iDCC - 1;
 
 	// 현재 게임시간에서 각 sky상태별로 가장 최근에 변경된 값을 찾아서 값을 지정해준다.
-	int i;
-	for(i=0; i<NUM_SKYDAYCHANGE; ++i)
+	for(int i=0; i<NUM_SKYDAYCHANGE; ++i)
 	{
 		if (i == SDC_MOONPHASE) continue;
 
@@ -1236,8 +1232,7 @@ bool CN3SkyMng::Load(HANDLE hFile)
 	std::string szClouds[NUM_CLOUD];
 	std::string szMoon;
 
-	int i = 0;
-	for(i = 0; i < NUM_SUNPART; i++) 
+	for(int i = 0; i < NUM_SUNPART; i++) 
 	{
 		int iL = 0;
 		ReadFile(hFile, &iL, 4, &dwRWC, NULL);
@@ -1248,7 +1243,7 @@ bool CN3SkyMng::Load(HANDLE hFile)
 		}
 	}
 
-	for(i = 0; i < NUM_CLOUD; i++) 
+	for(int i = 0; i < NUM_CLOUD; i++) 
 	{
 		int iL = 0;
 		ReadFile(hFile, &iL, 4, &dwRWC, NULL);
@@ -1282,7 +1277,7 @@ bool CN3SkyMng::Load(HANDLE hFile)
 	if(NULL == m_pMoon) m_pMoon = new CN3Moon();
 	m_pMoon->Init(szMoon);
 
-	for(i = 0; i < MAX_GAME_LIGHT; i++)
+	for(int i = 0; i < MAX_GAME_LIGHT; i++)
 	{
 		if(NULL == m_pLightColorDiffuses[i]) m_pLightColorDiffuses[i] = new CN3ColorChange();
 		if(NULL == m_pLightColorAmbients[i]) m_pLightColorAmbients[i] = new CN3ColorChange();
@@ -1295,7 +1290,7 @@ bool CN3SkyMng::Load(HANDLE hFile)
 	if(iSDCC > 0)
 	{
 		m_DayChanges.resize(iSDCC);
-		for(i = 0; i < iSDCC; i++)
+		for(int i = 0; i < iSDCC; i++)
 		{
 			m_DayChanges[i].Load(hFile);
 		}
@@ -1316,19 +1311,18 @@ bool CN3SkyMng::Save(HANDLE hFile)
 	std::string szClouds[NUM_CLOUD];
 	std::string szMoon;
 
-	int i = 0;
-	for(i = 0; i < NUM_SUNPART; i++) if(m_pSun && m_pSun->m_Parts[i].pTex) szSuns[i] = m_pSun->m_Parts[i].pTex->FileName();
-	for(i = 0; i < NUM_CLOUD; i++) if(m_pCloud) szClouds[i] = m_pCloud->m_szTextures[i];
+	for(int i = 0; i < NUM_SUNPART; i++) if(m_pSun && m_pSun->m_Parts[i].pTex) szSuns[i] = m_pSun->m_Parts[i].pTex->FileName();
+	for(int i = 0; i < NUM_CLOUD; i++) if(m_pCloud) szClouds[i] = m_pCloud->m_szTextures[i];
 	if(m_pMoon && m_pMoon->m_pTexture) szMoon = m_pMoon->m_pTexture->FileName();
 
-	for(i = 0; i < NUM_SUNPART; i++) 
+	for(int i = 0; i < NUM_SUNPART; i++) 
 	{
 		int iL = szSuns[i].size();
 		WriteFile(hFile, &iL, 4, &dwRWC, NULL);
 		if(iL > 0) WriteFile(hFile, szSuns[i].c_str(), iL, &dwRWC, NULL);
 	}
 
-	for(i = 0; i < NUM_CLOUD; i++)
+	for(int i = 0; i < NUM_CLOUD; i++)
 	{
 		int iL = szClouds[i].size();
 		WriteFile(hFile, &iL, 4, &dwRWC, NULL);
@@ -1342,7 +1336,7 @@ bool CN3SkyMng::Save(HANDLE hFile)
 	// Day Change .....
 	int iSDCC = m_DayChanges.size();
 	WriteFile(hFile, &iSDCC, 4, &dwRWC, NULL);
-	for(i = 0; i < iSDCC; i++)
+	for(int i = 0; i < iSDCC; i++)
 	{
 		m_DayChanges[i].Save(hFile);
 	}

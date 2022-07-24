@@ -127,8 +127,7 @@ void CMachineBase::Tick(float fFrm)
 			if (m_fDirRadian > (2 * D3DX_PI)) m_fDirRadian -= (2 * D3DX_PI);
 		}
 		// 바퀴 회전각 계산.
-		int i;
-		for (i=0; i<NUM_WHEEL; ++i)
+		for (int i=0; i<NUM_WHEEL; ++i)
 		{
 			m_Wheel[i].fRadian += fAddRadian*m_Wheel[i].fRotateRatio;
 		}
@@ -155,8 +154,7 @@ void CMachineBase::Tick(float fFrm)
 			m_vPos = vPos;
 
 			// 바퀴 회전각 계산.
-			int i;
-			for (i=0; i<NUM_WHEEL; ++i)
+			for (int i=0; i<NUM_WHEEL; ++i)
 			{
 				m_Wheel[i].fRadian -= (fDistance/m_Wheel[i].fRadius);
 			}
@@ -164,8 +162,7 @@ void CMachineBase::Tick(float fFrm)
 	}
 
 	// 바퀴 회전각 0~2pi 사이로 조정
-	int i;
-	for (i=0; i<NUM_WHEEL; ++i)
+	for (int i=0; i<NUM_WHEEL; ++i)
 	{
 		if (m_Wheel[i].fRadian > D3DX_PI*2)	m_Wheel[i].fRadian -= (D3DX_PI*2);
 		else if (m_Wheel[i].fRadian < 0.0f)	m_Wheel[i].fRadian += (D3DX_PI*2);
@@ -224,8 +221,7 @@ void CMachineBase::LoadMachine(FILE* stream)
 	ZeroMemory(m_bSkipCalcPartMtx, sizeof(m_bSkipCalcPartMtx[0])*iPartCount);
 
 	// 각각의 바퀴 CN3SPart 포인터 찾기
-	int i;
-	for (i=0; i<NUM_WHEEL; ++i)
+	for (int i=0; i<NUM_WHEEL; ++i)
 	{
 		m_Wheel[i].pPart = GetPartByPMeshName(szWheel[i]);
 		__ASSERT(m_Wheel[i].pPart, "Machine의 바퀴 파트가 NULL입니다.");
@@ -236,7 +232,7 @@ void CMachineBase::LoadMachine(FILE* stream)
 	}
 
 	// machine이 1.0f(rad)회전할때 바퀴가 돌아가는 각도(rad) 정도 계산하기
-	for (i=0; i<NUM_WHEEL; ++i)
+	for (int i=0; i<NUM_WHEEL; ++i)
 	{
 		if (i == WHEEL_FL || i == WHEEL_BL)
 			m_Wheel[i].fRotateRatio = m_Wheel[i].pPart->m_vPivot.Magnitude() / m_Wheel[i].fRadius;

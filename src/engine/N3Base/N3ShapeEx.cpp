@@ -171,7 +171,6 @@ void CN3ShapeEx::Tick(float fFrm)
 	CN3Shape::Tick(fFrm);
 	if (m_bDontRender) return;
 
-	int i;
 	if (m_fActionTimeChanged > 0.0f)
 	{
 		m_fActionTimeChanging += s_fSecPerFrm;
@@ -181,7 +180,7 @@ void CN3ShapeEx::Tick(float fFrm)
 			m_fActionTimeChanging = 0.0f;
 			m_iPrevActionState = m_iCurActionState;
 
-			for (i=0; i<m_iActionPartCount; ++i)
+			for (int i=0; i<m_iActionPartCount; ++i)
 			{
 				m_pActionParts[i].CurStateInfo = m_pActionParts[i].pStateInfos[m_iCurActionState];
 			}
@@ -189,7 +188,7 @@ void CN3ShapeEx::Tick(float fFrm)
 		else
 		{
 			__ActionPart* pMP = NULL;
-			for (i=0; i<m_iActionPartCount; ++i)
+			for (int i=0; i<m_iActionPartCount; ++i)
 			{
 				pMP = m_pActionParts + i;
 				if (pMP->bPos)

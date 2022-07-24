@@ -452,13 +452,12 @@ BOOL CMainFrame::BMPCutter(LPCTSTR lpszFileName, int iWidth, int iHeight, bool b
 	// 새로 쪼개서 저장하기
 	BYTE *pTmpBitDest;
 	pTmpBitDest = ((BYTE*)pDestDIB) + sizeof(BITMAPINFOHEADER);
-	int i, j, y;
-	for (j=0; j<iCY; ++j)
+	for (int j=0; j<iCY; ++j)
 	{
-		for (i=0; i<iCX; ++i)
+		for (int i=0; i<iCX; ++i)
 		{
 			memset(pTmpBitDest, 0, iDestDIBSize - sizeof(BITMAPINFOHEADER));
-			for(y=0; y<iHeight; ++y)
+			for(int y=0; y<iHeight; ++y)
 			{
 				if ( (iHeight*j + y) >= bmInfoHeader.biHeight) break;	// 맨 아래가 짤릴 경우가 있다
 

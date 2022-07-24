@@ -957,7 +957,7 @@ bool CN3Shape::MakeCollisionMeshByParts()  // 충돌 메시를 박스로 만든다...
 	CN3VMesh VMTmp;
 
 	iVC = 0; iIC = 0;
-	for(i = 0; i < iPC; i++)
+	for(int i = 0; i < iPC; i++)
 	{
 		CN3PMesh* pPMesh = m_Parts[i]->Mesh();
 		if(NULL == pPMesh) continue;
@@ -971,7 +971,7 @@ bool CN3Shape::MakeCollisionMeshByParts()  // 충돌 메시를 박스로 만든다...
 		__Matrix44 mtxPart = m_Parts[i]->m_Matrix;
 		mtxPart *= mtxI;
 		for(int j = 0; j < 8; j++) pVDest[iVC+j] = pVSrc[j] * mtxPart;
-		for(j = 0; j < 36; j++) pwIDest[iIC+j] = pwISrc[j] + iVC;
+		for(int j = 0; j < 36; j++) pwIDest[iIC+j] = pwISrc[j] + iVC;
 
 		iVC += 8;
 		iIC += 36;
@@ -1031,7 +1031,7 @@ bool CN3Shape::MakeCollisionMeshByPartsDetail()  // 현재 모습 그대로... 충돌 메�
 	__Matrix44 mtxI = m_Matrix;
 	D3DXMatrixInverse(&mtxI, NULL, &m_Matrix);
 
-	for(i = 0; i < iPC; i++)
+	for(int i = 0; i < iPC; i++)
 	{
 		CN3PMesh* pPMesh = m_Parts[i]->Mesh();
 		CN3PMeshInstance* pPMI = m_Parts[i]->MeshInstance();
@@ -1048,7 +1048,7 @@ bool CN3Shape::MakeCollisionMeshByPartsDetail()  // 현재 모습 그대로... 충돌 메�
 		__Matrix44 mtxPart = m_Parts[i]->m_Matrix;
 		mtxPart *= mtxI;
 		for(int j = 0; j < iMaxNumVertices; j++) pVDest[iVC+j] = pVSrc[j] * mtxPart;
-		for(j = 0; j < iMaxNumIndices; j++) pwIDest[iIC+j] = pwISrc[j] + iVC;
+		for(int j = 0; j < iMaxNumIndices; j++) pwIDest[iIC+j] = pwISrc[j] + iVC;
 
 		iVC += iMaxNumVertices;
 		iIC += iMaxNumIndices;
@@ -1122,7 +1122,7 @@ bool CN3Shape::SaveToSameFolder(const std::string& szFullPath)
 	int iPC = m_Parts.size();
 	std::vector<std::string> OldPartFNs;
 	std::vector<std::string> OldTexFNs;
-	for(i = 0; i < iPC; i++)
+	for(int i = 0; i < iPC; i++)
 	{
 		szOldFN = m_Parts[i]->Mesh()->FileName();
 		OldPartFNs.push_back(szOldFN); // 파일 이름 보관..
@@ -1154,7 +1154,7 @@ bool CN3Shape::SaveToSameFolder(const std::string& szFullPath)
 	// 원래대로 파일 이름 돌려놓기..
 	iPC = m_Parts.size();
 	int iSeq = 0;
-	for(i = 0; i < iPC; i++)
+	for(int i = 0; i < iPC; i++)
 	{
 		m_Parts[i]->Mesh()->FileNameSet(OldPartFNs[i]);
 
@@ -1197,7 +1197,7 @@ bool CN3Shape::SaveToSameFolderAndMore(const std::string& szFullPath, const std:
 	std::string szNameTmp, szOldFN;
 
 	int iPC = m_Parts.size();
-	for(i = 0; i < iPC; i++)
+	for(int i = 0; i < iPC; i++)
 	{
 		szOldFN = m_Parts[i]->Mesh()->FileName();
 

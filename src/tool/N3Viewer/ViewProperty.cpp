@@ -438,7 +438,7 @@ void CViewProperty::UpdateInfo()
 		int nPlug = m_CBChrPlug.GetCurSel();
 		int nPlugCount = pC->PlugCount();
 		m_CBChrPlug.ResetContent();
-		for(i = 0; i < nPlugCount; i++)
+		for(int i = 0; i < nPlugCount; i++)
 		{
 			CString szTmp;
 			szTmp.Format("Plug : %d", i);
@@ -925,7 +925,6 @@ void CViewProperty::OnInitialUpdate()
 		/////////////////////////////////////
 
 
-		int i = 0;
 		CString str, strTmp;
 
 		/////////////////////////////////////
@@ -958,7 +957,7 @@ void CViewProperty::OnInitialUpdate()
 		// Shape
 		m_CBShapePart.ResetContent();
 	//	int nPartCount = 
-	//	for(i = 0; i < nPartCount; i++) { strTmp.Format("%d", i); m_CBShapePart.AddString(strTmp); }
+	//	for(int i = 0; i < nPartCount; i++) { strTmp.Format("%d", i); m_CBShapePart.AddString(strTmp); }
 	//	m_CBShapePart.SetCurSel(0);
 
 		m_LPShape.AddPropItem("¼Ò¼Ó", "", PIT_EDIT, "");
@@ -999,7 +998,7 @@ void CViewProperty::OnInitialUpdate()
 		m_CBChrPart.SetCurSel(0);
 
 		m_CBChrLOD.ResetContent();
-		for(i = 0; i < MAX_CHR_LOD; i++) { strTmp.Format("LOD : %d", i); m_CBChrLOD.AddString(strTmp); }
+		for(int i = 0; i < MAX_CHR_LOD; i++) { strTmp.Format("LOD : %d", i); m_CBChrLOD.AddString(strTmp); }
 		m_CBChrLOD.SetCurSel(0);
 
 		m_LPCPart.AddPropItem("Part File", "", PIT_FILE, "N3 Character part file(*.N3CPart)|*.N3CPart||");

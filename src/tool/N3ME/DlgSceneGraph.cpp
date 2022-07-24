@@ -99,28 +99,27 @@ void CDlgSceneGraph::UpdateTreeItem(HTREEITEM hParent, CN3Base *pBase)
 		str.Format("Scene : %s", m_pSceneRef->m_szName.c_str());
 		m_Tree.SetItemText(hItem, str);
 
-		int i = 0;
 		HTREEITEM hItem2 = NULL;
 
 		if (m_dwFlag & OBJ_CAMERA)
 		{
 			hItem2 = m_Tree.InsertItem("Camera", hItem);
 			int nCC = m_pSceneRef->CameraCount();
-			for(i = 0; i < nCC; i++) this->UpdateTreeItem(hItem2, m_pSceneRef->CameraGet(i));
+			for(int i = 0; i < nCC; i++) this->UpdateTreeItem(hItem2, m_pSceneRef->CameraGet(i));
 		}
 
 		if (m_dwFlag & OBJ_LIGHT)
 		{
 			hItem2 = m_Tree.InsertItem("Light", hItem);
 			int nLC = m_pSceneRef->LightCount();
-			for(i = 0; i < nLC; i++) this->UpdateTreeItem(hItem2, m_pSceneRef->LightGet(i));
+			for(int i = 0; i < nLC; i++) this->UpdateTreeItem(hItem2, m_pSceneRef->LightGet(i));
 		}
 		
 		if (m_dwFlag & OBJ_SHAPE)
 		{
 			hItem2 = m_Tree.InsertItem("Shape", hItem);
 			int nSC = m_pSceneRef->ShapeCount();
-			for(i = 0; i < nSC; i++) this->UpdateTreeItem(hItem2, m_pSceneRef->ShapeGet(i));
+			for(int i = 0; i < nSC; i++) this->UpdateTreeItem(hItem2, m_pSceneRef->ShapeGet(i));
 			m_Tree.SortChildren(hItem2);
 		}
 
@@ -128,28 +127,28 @@ void CDlgSceneGraph::UpdateTreeItem(HTREEITEM hParent, CN3Base *pBase)
 		{
 			hItem2 = m_Tree.InsertItem("Character", hItem);
 			int nCC2 = m_pSceneRef->ChrCount();
-			for(i = 0; i < nCC2; i++) this->UpdateTreeItem(hItem2, m_pSceneRef->ChrGet(i));
+			for(int i = 0; i < nCC2; i++) this->UpdateTreeItem(hItem2, m_pSceneRef->ChrGet(i));
 		}
 
 		if (m_dwFlag & OBJ_MESH)
 		{
 			hItem2 = m_Tree.InsertItem("Mesh Resource", hItem);
 			int nMC = m_pSceneRef->s_MngMesh.Count();
-			for(i = 0; i < nMC; i++) this->UpdateTreeItem(hItem2, m_pSceneRef->s_MngMesh.Get(i));
+			for(int i = 0; i < nMC; i++) this->UpdateTreeItem(hItem2, m_pSceneRef->s_MngMesh.Get(i));
 		}
 
 		if (m_dwFlag & OBJ_MESH_PROGRESSIVE)
 		{
 			hItem2 = m_Tree.InsertItem("Progressive Mesh Resource", hItem);
 			int nPMC = m_pSceneRef->s_MngPMesh.Count();
-			for(i = 0; i < nPMC; i++) this->UpdateTreeItem(hItem2, m_pSceneRef->s_MngPMesh.Get(i));
+			for(int i = 0; i < nPMC; i++) this->UpdateTreeItem(hItem2, m_pSceneRef->s_MngPMesh.Get(i));
 		}
 
 		if (m_dwFlag & OBJ_JOINT)
 		{
 			hItem2 = m_Tree.InsertItem("Joint Resource", hItem);
 			int nJC = m_pSceneRef->s_MngJoint.Count();
-			for(i = 0; i < nJC; i++) this->UpdateTreeItem(hItem2, m_pSceneRef->s_MngJoint.Get(i));
+			for(int i = 0; i < nJC; i++) this->UpdateTreeItem(hItem2, m_pSceneRef->s_MngJoint.Get(i));
 		}
 
 	}

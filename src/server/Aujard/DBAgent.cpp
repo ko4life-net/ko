@@ -145,12 +145,12 @@ void CDBAgent::MUserInit(int uid)
 	// Ω∫≈≥ √ ±‚»≠
 	for(int i=0; i<9; i++) pUser->m_bstrSkill[i] = 0;
 
-	for(i = 0; i < SLOT_MAX+HAVE_MAX; i++) {// ¬¯øÎ∞πºˆ + º“¿Ø∞πºˆ(14+28=42)
+	for(int i = 0; i < SLOT_MAX+HAVE_MAX; i++) {// ¬¯øÎ∞πºˆ + º“¿Ø∞πºˆ(14+28=42)
 		pUser->m_sItemArray[i].nNum = 0;
 		pUser->m_sItemArray[i].sDuration = 0;
 		pUser->m_sItemArray[i].sCount = 0;
 	}
-	for(i = 0; i < WAREHOUSE_MAX; i++) {
+	for(int i = 0; i < WAREHOUSE_MAX; i++) {
 		pUser->m_sWarehouseArray[i].nNum = 0;
 		pUser->m_sWarehouseArray[i].sDuration = 0;
 		pUser->m_sWarehouseArray[i].sCount = 0;
@@ -373,7 +373,7 @@ BOOL CDBAgent::LoadUserData(char *userid, int uid)
 	__int64 serial = 0;
 	_ITEM_TABLE* pTable = NULL;
 
-	for(i = 0; i < HAVE_MAX+SLOT_MAX; i++)        // ¬¯øÎ∞πºˆ + º“¿Ø∞πºˆ(14+28=42)
+	for(int i = 0; i < HAVE_MAX+SLOT_MAX; i++)        // ¬¯øÎ∞πºˆ + º“¿Ø∞πºˆ(14+28=42)
 	{ 
 		itemid = GetDWORD(strItem, index);
 		duration = GetShort(strItem, index );
@@ -510,7 +510,7 @@ int CDBAgent::UpdateUser(const char *userid, int uid, int type )
 		SetByte(strSkill, pUser->m_bstrSkill[i], index);
 
 	index = 0;
-	for(i = 0; i < HAVE_MAX+SLOT_MAX; i++) // ¬¯øÎ∞πºˆ + º“¿Ø∞πºˆ(14+28=42)
+	for(int i = 0; i < HAVE_MAX+SLOT_MAX; i++) // ¬¯øÎ∞πºˆ + º“¿Ø∞πºˆ(14+28=42)
 	{ 
 		if( pUser->m_sItemArray[i].nNum > 0 ) {
 			if( m_pMain->m_ItemtableArray.GetData(pUser->m_sItemArray[i].nNum) == FALSE )

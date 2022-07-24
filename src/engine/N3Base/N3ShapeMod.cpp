@@ -77,12 +77,11 @@ BOOL CN3ShapeMod::LoadStateInfo(FILE* stream)	// »óÅÂ Á¤º¸¸¦ ÀÐ¾î¿Â´Ù.(text·ÎºÎÅ
 	result = fscanf(stream, "State_Count=%d\n", &m_iStateCount);		__ASSERT(result != EOF, "Àß¸øµÈ N3ShapeMod ¼¼ÆÃ ÆÄÀÏ");
 
 	// Shape »óÅÂ Á¤º¸ ÀÐ¾î¿À±â
-	int i, j;
 	__Vector3 vPos, vScale;
 	__Vector3 vAxis;	float fDegree;
 	__Quaternion qRot;
 //	m_ModShape.pShapeStateInfos = new __ModPosRotScale[m_iStateCount];
-//	for (i=0; i<m_iStateCount; ++i)
+//	for (int i=0; i<m_iStateCount; ++i)
 //	{
 //		result = fscanf(stream, "S_Pos(%f, %f, %f)\n", &vPos.x, &vPos.y, &vPos.z);		__ASSERT(result != EOF, "Àß¸øµÈ N3ShapeMod ¼¼ÆÃ ÆÄÀÏ");
 //		result = fscanf(stream, "S_Rot(%f, %f, %f)\n", &vRot.x, &vRot.y, &vRot.z);		__ASSERT(result != EOF, "Àß¸øµÈ N3ShapeMod ¼¼ÆÃ ÆÄÀÏ");
@@ -98,12 +97,12 @@ BOOL CN3ShapeMod::LoadStateInfo(FILE* stream)	// »óÅÂ Á¤º¸¸¦ ÀÐ¾î¿Â´Ù.(text·ÎºÎÅ
 	m_pModParts = new __ModPart[m_iModPartCount];
 
 	char szPMeshName[_MAX_PATH] = "";
-	for (i=0; i<m_iModPartCount; ++i)
+	for (int i=0; i<m_iModPartCount; ++i)
 	{
 		result = fscanf(stream, "PMesh_FName=%s\n", szPMeshName);		__ASSERT(result != EOF, "Àß¸øµÈ N3ShapeMod ¼¼ÆÃ ÆÄÀÏ");
 		m_pModParts[i].pPart = GetPartByPMeshFileName(szPMeshName);
 		m_pModParts[i].pStateInfos = new __ModPosRotScale[m_iStateCount];
-		for (j=0; j<m_iStateCount; ++j)
+		for (int j=0; j<m_iStateCount; ++j)
 		{
 			result = fscanf(stream, "Pos(%f, %f, %f)\n", &vPos.x, &vPos.y, &vPos.z);		__ASSERT(result != EOF, "Àß¸øµÈ N3ShapeMod ¼¼ÆÃ ÆÄÀÏ");
 			result = fscanf(stream, "Rot(%f, %f, %f, %f)\n", &vAxis.x, &vAxis.y, &vAxis.z, &fDegree);		__ASSERT(result != EOF, "Àß¸øµÈ N3ShapeMod ¼¼ÆÃ ÆÄÀÏ");
@@ -131,7 +130,7 @@ BOOL CN3ShapeMod::LoadStateInfo(FILE* stream)	// »óÅÂ Á¤º¸¸¦ ÀÐ¾î¿Â´Ù.(text·ÎºÎÅ
 	if (iPartCount>0) m_pMatchPart2ModPart = new __ModPart*[iPartCount];
 	ZeroMemory(m_pMatchPart2ModPart, sizeof(m_pMatchPart2ModPart[0])*iPartCount);
 	// (¸ÅÄª½ÃÅ°±â)
-	for(i=0; i<m_iModPartCount; ++i)
+	for(int i=0; i<m_iModPartCount; ++i)
 	{
 		it_SPart it = m_Parts.begin();
 		int iPC = m_Parts.size();
@@ -183,7 +182,6 @@ void CN3ShapeMod::Tick(float fFrm)
 	CN3Shape::Tick(fFrm);
 	if (m_bDontRender) return;
 
-	int i;
 	if (m_fTimeChanged > 0.0f)
 	{
 		m_fTimeChanging += s_fSecPerFrm;
@@ -193,7 +191,7 @@ void CN3ShapeMod::Tick(float fFrm)
 			m_fTimeChanging = 0.0f;
 			m_iPrevState = m_iCurState;
 
-			for (i=0; i<m_iModPartCount; ++i)
+			for (int i=0; i<m_iModPartCount; ++i)
 			{
 				m_pModParts[i].CurStateInfo = m_pModParts[i].pStateInfos[m_iCurState];
 			}
@@ -201,7 +199,7 @@ void CN3ShapeMod::Tick(float fFrm)
 		else
 		{
 			__ModPart* pMP = NULL;
-			for (i=0; i<m_iModPartCount; ++i)
+			for (int i=0; i<m_iModPartCount; ++i)
 			{
 				pMP = m_pModParts + i;
 				if (pMP->bPos)

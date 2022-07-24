@@ -107,14 +107,13 @@ int CN3Skin::SortWeightsProc(const void *pArg1, const void *pArg2)
 void CN3Skin::RecalcWeight()
 {
 	if (NULL == m_pSkinVertices) return;
-	int i, j;
-	for (i=0; i<m_nVC; ++i)
+	for (int i=0; i<m_nVC; ++i)
 	{
 		__VertexSkinned* pVtx = m_pSkinVertices + i;
 		if (1 >= pVtx->nAffect) continue;
 		float fSum = 0;
-		for (j=0; j<pVtx->nAffect; ++j) fSum += pVtx->pfWeights[j];
-		for (j=0; j<pVtx->nAffect; ++j) pVtx->pfWeights[j] /= fSum;
+		for (int j=0; j<pVtx->nAffect; ++j) fSum += pVtx->pfWeights[j];
+		for (int j=0; j<pVtx->nAffect; ++j) pVtx->pfWeights[j] /= fSum;
 	}
 }
 

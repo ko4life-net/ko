@@ -34,7 +34,7 @@
 CUIDroppedItemDlg::CUIDroppedItemDlg()
 {
 	for( int i = 0; i < MAX_ITEM_BUNDLE_DROP_PIECE; i++ )	m_pMyDroppedItem[i] = NULL;
-	for( i = 0; i < MAX_ITEM_BUNDLE_DROP_PIECE; i++ )	m_bSendedIconArray[i] = false;
+	for( int i = 0; i < MAX_ITEM_BUNDLE_DROP_PIECE; i++ )	m_bSendedIconArray[i] = false;
 
 	m_iItemBundleID = 0;
 	m_pUITooltipDlg = NULL;
@@ -144,9 +144,7 @@ void CUIDroppedItemDlg::InitIconUpdate()
 {
 	CN3UIArea* pArea;
 	float fUVAspect = (float)45.0f/(float)64.0f;
-	int i;
-
-	for( i = 0; i < MAX_ITEM_BUNDLE_DROP_PIECE; i++ )
+	for( int i = 0; i < MAX_ITEM_BUNDLE_DROP_PIECE; i++ )
 	{
 		if ( m_pMyDroppedItem[i] )
 		{
@@ -183,8 +181,7 @@ void CUIDroppedItemDlg::EnterDroppedState(int xpos, int ypos)
 
 	SetPos(xpos, ypos-150);
 
-	int i;
-	for( i = 0; i < MAX_ITEM_BUNDLE_DROP_PIECE; i++ )
+	for( int i = 0; i < MAX_ITEM_BUNDLE_DROP_PIECE; i++ )
 	{
 		m_bSendedIconArray[i] = false;
 
@@ -332,10 +329,9 @@ bool CUIDroppedItemDlg::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 
 int CUIDroppedItemDlg::GetInventoryEmptyInviOrder(__IconItemSkill* spItem)
 {
-	int i;
 	if (spItem == NULL)
 	{
-		for ( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+		for ( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 		{
 			if ( !CGameProcedure::s_pProcMain->m_pUIInventory->m_pMyInvWnd[i] )
 				return i;
@@ -343,14 +339,14 @@ int CUIDroppedItemDlg::GetInventoryEmptyInviOrder(__IconItemSkill* spItem)
 	}
 	else
 	{
-		for ( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+		for ( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 		{
 			if ( CGameProcedure::s_pProcMain->m_pUIInventory->m_pMyInvWnd[i] && 
 				(CGameProcedure::s_pProcMain->m_pUIInventory->m_pMyInvWnd[i]->pItemBasic->dwID == spItem->pItemBasic->dwID) )
 				return i;
 		}
 
-		for ( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+		for ( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 		{
 			if ( !CGameProcedure::s_pProcMain->m_pUIInventory->m_pMyInvWnd[i] )
 				return i;
@@ -362,9 +358,7 @@ int CUIDroppedItemDlg::GetInventoryEmptyInviOrder(__IconItemSkill* spItem)
 
 int	CUIDroppedItemDlg::GetItemiOrder(__IconItemSkill* spItem)
 {
-	int i;
-
-	for( i = 0; i < MAX_ITEM_BUNDLE_DROP_PIECE; i++ )
+	for( int i = 0; i < MAX_ITEM_BUNDLE_DROP_PIECE; i++ )
 	{
 		if ( (m_pMyDroppedItem[i] != NULL) && (m_pMyDroppedItem[i] == spItem) )
 			return i;
@@ -480,7 +474,7 @@ void CUIDroppedItemDlg::GetItemByIDToInventory(BYTE bResult, int iItemID, int iG
 	__TABLE_ITEM_BASIC*	pItem = NULL;									// 아이템 테이블 구조체 포인터..
 	__TABLE_ITEM_EXT*	pItemExt = NULL;
 	__IconItemSkill*	spItem = NULL;
-	int i;
+	int i = 0;
 	char szMsg[32];
 	CN3UIString* pStatic = NULL;
 	__InfoPlayerMySelf*	pInfoExt = NULL;

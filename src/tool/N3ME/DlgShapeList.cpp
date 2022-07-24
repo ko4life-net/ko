@@ -191,7 +191,7 @@ void CDlgShapeList::OnBtnSort()
 	m_ListShape.ResetContent();
 
 	SMIter it = Map.begin();
-	for(i=0;i<cnt;i++)
+	for(int i=0;i<cnt;i++)
 	{
 		std::string str = (*it).first;
 		CN3Shape* pShape = (*it).second;

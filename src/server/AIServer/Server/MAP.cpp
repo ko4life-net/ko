@@ -50,8 +50,6 @@ MAP::~MAP()
 
 void MAP::RemoveMapData()
 {
-//	int i, j, k;
-
 	if( m_ppRegion ) {
 		for(int i=0; i< m_sizeRegion.cx; i++) {
 			delete[] m_ppRegion[i];
@@ -342,7 +340,7 @@ void MAP::LoadMapTile(HANDLE hFile)
 	}
 
 	int count = 0;
-	for( i = 0; i < m_sizeMap.cy; i++)
+	for(int i = 0; i < m_sizeMap.cy; i++)
 	{
 		for( int j = 0; j < m_sizeMap.cx; j++)
 		{

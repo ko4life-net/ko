@@ -114,7 +114,8 @@ int CDlgSetSound::MakeIdx()
 	for(int i=m_iIdx_Min; i<=m_iIdx_Max;i++)
 	{
 		int cnt = m_ListSoundGroup.GetCount();
-		for(int j=0;j<cnt;j++)
+		int j;
+		for(j=0;j<cnt;j++)
 		{
 			pSoundInfo = (LPSOUNDINFO)m_ListSoundGroup.GetItemDataPtr(j);
 			if(pSoundInfo->dwID == i) break;

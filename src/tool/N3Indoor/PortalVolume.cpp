@@ -388,19 +388,18 @@ void CPortalVolume::RenderExecute()
 
 void CPortalVolume::SetState(e_PvsState ePS, e_PvsWallType ePWT)
 {
-	int i = 0;
 	switch (ePS)
 	{
 		case STATE_NONE:
-			for(i = 0; i < 8; i++)
+			for(int i = 0; i < 8; i++)
 				m_pvVertex[i].color = dwColorNone;
 			break;
 		case STATE_SELECTED:
-			for(i = 0; i < 8; i++)
+			for(int i = 0; i < 8; i++)
 				m_pvVertex[i].color = dwColorSelected;
 			break;
 		case STATE_LINKED:
-			for(i = 0; i < 8; i++)
+			for(int i = 0; i < 8; i++)
 			{
 				switch (ePWT)
 				{
@@ -426,7 +425,7 @@ void CPortalVolume::SetState(e_PvsState ePS, e_PvsWallType ePWT)
 			}
 			break;
 		case STATE_VOLUME_ONLY:
-			for(i = 0; i < 8; i++)
+			for(int i = 0; i < 8; i++)
 				m_pvVertex[i].color = dwColorSelectedVolOnly;
 			break;
 	}
@@ -720,7 +719,7 @@ bool CPortalVolume::Load(HANDLE hFile, bool bGameData)
 	// 링크된 Shape 갯수 로드..
 	int iCount = 0; int iSize = 0;
 	ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
-	for (i = 0; i < iCount; i++)
+	for (int i = 0; i < iCount; i++)
 	{
 		ShapeInfo*	pSI = new ShapeInfo;
 		ReadFile(hFile, &pSI->m_iID, sizeof(int), &dwNum, NULL);
@@ -775,7 +774,7 @@ void CPortalVolume::LoadGameData(HANDLE hFile)
 	ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 		
 	int iSize = 0, iSize_2 = 0, iSize_3 = 0;
-	for( i = 0; i < iCount; i++ )
+	for(int i = 0; i < iCount; i++ )
 	{
 		ShapePart* pSP = new ShapePart;
 		ReadFile(hFile, &pSP->m_iID, sizeof(int), &dwNum, NULL);
@@ -804,7 +803,7 @@ void CPortalVolume::LoadGameData(HANDLE hFile)
 
 	COrganizeView* pView = pFrm->GetOrganizeView();
 
-	for( i = 0; i < iCount; i++ )
+	for( int i = 0; i < iCount; i++ )
 	{
 		__ColIndex* pCI = new __ColIndex;
 		ReadFile(hFile, &pCI->m_iID, sizeof(int), &dwNum, NULL);		
@@ -1187,10 +1186,10 @@ bool CPortalVolume::IsInVolumnExExEx(__Vector3 vOrig, __Vector3 vDir, e_PvsWallT
 	}
 
 	__Vector3 vec[8];
-	for( i = 0; i < 8; i++)
+	for( int j = 0; j < 8; j++)
 	{
-		vec[i] = m_pvVertex[i];
-		vec[i] *= m_Matrix;
+		vec[j] = m_pvVertex[j];
+		vec[j] *= m_Matrix;
 	}
 
 	if(IntersectTriangle(vOrig, vDir, vec[m_pIndex[i]], vec[m_pIndex[i+1]], vec[m_pIndex[i+2]], ft, fu, fv, &vPick))
@@ -1211,7 +1210,7 @@ bool CPortalVolume::PickWithVolume(__Vector3 &vPos, __Vector3& vDir, __Vector3* 
 	}
 
 	float ft, fu, fv;
-	for (i = 0; i < 36; i += 6)
+	for (int i = 0; i < 36; i += 6)
 	{
 		if(IntersectTriangle(vPos, vDir, vec[m_pIndex[i]], vec[m_pIndex[i+1]], vec[m_pIndex[i+2]], ft, fu, fv, pVec))
 			return true;

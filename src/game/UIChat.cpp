@@ -207,9 +207,8 @@ bool CUIChat::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 
 void CUIChat::CreateLines()
 {
-	int i;
 	if (m_ppUILines) {
-		for (i=0; i<m_iChatLineCount; ++i)
+		for (int i=0; i<m_iChatLineCount; ++i)
 		{
 			if (m_ppUILines[i]) {delete m_ppUILines[i]; m_ppUILines[i] = NULL;}
 		}
@@ -228,7 +227,7 @@ void CUIChat::CreateLines()
 	if (m_iChatLineCount<=0 || szFontName.empty()) return;
 
 	m_ppUILines = new CN3UIString*[m_iChatLineCount];
-	for (i=0; i<m_iChatLineCount; ++i)
+	for (int i=0; i<m_iChatLineCount; ++i)
 	{
 		RECT rc;
 		SetRect(&rc, m_rcChatOutRegion.left, m_rcChatOutRegion.top+(i*size.cy),
@@ -483,12 +482,11 @@ void CUIChat::SetTopLine(int iTopLine)
 	if (iTopLine<0) iTopLine = 0;
 	else if (iTopLine > iLineBufferSize) iTopLine = iLineBufferSize;
 	
-	int i;
 	// 앞줄서부터 차례로 임시버퍼에 저장하고 string 길이 측정
 	__ChatInfo** ppLineInfos  = new __ChatInfo*[m_iChatLineCount];
 	ZeroMemory(ppLineInfos, sizeof(__ChatInfo*)*m_iChatLineCount);
 
-	int iCurLine = 0;
+	int i, iCurLine = 0;
 	for (i=0; i<m_iChatLineCount; ++i)
 	{
 		iCurLine = iTopLine + i;
@@ -501,14 +499,14 @@ void CUIChat::SetTopLine(int iTopLine)
 	// 앞에서부터 맞게 차례로 각각 버퍼에 넣기
 	int iRealLine = i;	// 실제 출력되는 줄 수
 	int iRealLineCount = 0;
-	for (i=0; i<iRealLine; ++i)
+	for (int i=0; i<iRealLine; ++i)
 	{
 		++iRealLineCount;
 		if (NULL == m_ppUILines[i]) continue;
 		m_ppUILines[i]->SetColor(ppLineInfos[i]->color);
 		m_ppUILines[i]->SetString(ppLineInfos[i]->szChat);
 	}
-	for (i=iRealLineCount; i<m_iChatLineCount; ++i)
+	for (int i=iRealLineCount; i<m_iChatLineCount; ++i)
 	{
 		if (NULL == m_ppUILines[i]) continue;
 		m_ppUILines[i]->SetString("");	// 나머지는 빈칸 만들기

@@ -428,7 +428,7 @@ void CPlayerMySelf::InventoryChrRender(const RECT& Rect)
 	if (dwUseLighting) CN3Base::s_lpD3DDev->SetRenderState( D3DRS_LIGHTING, TRUE );
 	if (dwUsefog) CN3Base::s_lpD3DDev->SetRenderState( D3DRS_FOGENABLE, FALSE );
 	// set render states
-	for ( i = 1; i < 8; i++ )	CN3Base::s_lpD3DDev->LightEnable(i, FALSE);
+	for ( int i = 1; i < 8; i++ )	CN3Base::s_lpD3DDev->LightEnable(i, FALSE);
 	CN3Base::s_lpD3DDev->LightEnable(0, TRUE);
 
 	D3DLIGHT9 lgt0;
@@ -501,7 +501,7 @@ void CPlayerMySelf::InventoryChrRender(const RECT& Rect)
 
 	CN3Base::s_lpD3DDev->SetRenderState( D3DRS_LIGHTING, dwUseLighting );
 	CN3Base::s_lpD3DDev->SetRenderState( D3DRS_FOGENABLE , dwUsefog );
-	for ( i = 0; i < 8; i++ )	CN3Base::s_lpD3DDev->LightEnable(i, bLight[i]);
+	for ( int i = 0; i < 8; i++ )	CN3Base::s_lpD3DDev->LightEnable(i, bLight[i]);
 */
 	// 아래로 dino수정
 	// backup render state
@@ -515,7 +515,7 @@ void CPlayerMySelf::InventoryChrRender(const RECT& Rect)
 
 	// set render state
 	if (TRUE != dwLighting) s_lpD3DDev->SetRenderState( D3DRS_LIGHTING, TRUE );
-	for ( i = 1; i < 8; ++i )	s_lpD3DDev->LightEnable(i, FALSE);
+	for ( int i = 1; i < 8; ++i )	s_lpD3DDev->LightEnable(i, FALSE);
 	s_lpD3DDev->LightEnable(0, TRUE);
 
 	// 0번 light 설정
@@ -539,7 +539,7 @@ void CPlayerMySelf::InventoryChrRender(const RECT& Rect)
 
 	// restore
 	if (TRUE != dwLighting) s_lpD3DDev->SetRenderState( D3DRS_LIGHTING, dwLighting );
-	for (i = 0; i < 8; ++i )	s_lpD3DDev->LightEnable(i, bLight[i]);
+	for (int i = 0; i < 8; ++i )	s_lpD3DDev->LightEnable(i, bLight[i]);
 	s_lpD3DDev->SetLight(0, &BackupLight0);
 }
 

@@ -32,8 +32,7 @@ bool CN3RiverPatch::Load(HANDLE hFile)
 	DWORD dwNum;
 	ReadFile(hFile, &m_iRiverCount, sizeof(m_iRiverCount), &dwNum, NULL);
 	__River* pRivers = CreateRiver(m_iRiverCount);
-	int i;
-	for (i=0; i<m_iRiverCount; ++i)
+	for (int i=0; i<m_iRiverCount; ++i)
 	{
 		__River* pR = pRivers+i;
 		ReadFile(hFile, &(pR->iRiverID), sizeof(pR->iRiverID), &dwNum, NULL);
@@ -51,8 +50,7 @@ bool CN3RiverPatch::Save(HANDLE hFile)
 {
 	DWORD dwNum;
 	WriteFile(hFile, &m_iRiverCount, sizeof(m_iRiverCount), &dwNum, NULL);
-	int i;
-	for (i=0; i<m_iRiverCount; ++i)
+	for (int i=0; i<m_iRiverCount; ++i)
 	{
 		__River* pR = m_pRivers+i;
 		WriteFile(hFile, &(pR->iRiverID), sizeof(pR->iRiverID), &dwNum, NULL);
@@ -77,8 +75,7 @@ __River* CN3RiverPatch::CreateRiver(int iRiverCount)
 
 __River* CN3RiverPatch::GetRiverByID(int iRiverID)
 {
-	int i;
-	for (i=0; i<m_iRiverCount; ++i)
+	for (int i=0; i<m_iRiverCount; ++i)
 	{
 		if (m_pRivers[i].iRiverID == iRiverID)
 		{

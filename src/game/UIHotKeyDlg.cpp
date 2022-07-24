@@ -315,7 +315,8 @@ void CUIHotKeyDlg::Render()
 	CN3UIArea* pArea;
 	POINT ptCur = CGameProcedure::s_pLocalInput->MouseGetPos();
 
-	for( int k = 0; k < MAX_SKILL_IN_HOTKEY; k++ )
+	int k;
+	for( k = 0; k < MAX_SKILL_IN_HOTKEY; k++ )
 	{
 		if (m_pMyHotkey[m_iCurPage][k] != NULL) 
 			DisplayCountStr(m_pMyHotkey[m_iCurPage][k]);
@@ -433,16 +434,13 @@ void CUIHotKeyDlg::InitIconUpdate()
 
 void CUIHotKeyDlg::UpdateDisableCheck()
 {
-	int i, j;
-	DWORD bitMask;
-
-	for( i = 0; i < MAX_SKILL_HOTKEY_PAGE; i++ )
+	for( int i = 0; i < MAX_SKILL_HOTKEY_PAGE; i++ )
 	{
-		for( j = 0; j < MAX_SKILL_IN_HOTKEY; j++ )
+		for( int j = 0; j < MAX_SKILL_IN_HOTKEY; j++ )
 		{
 			if ( m_pMyHotkey[i][j] != NULL )
 			{
-				bitMask = UISTYLE_ICON_SKILL;
+				DWORD bitMask = UISTYLE_ICON_SKILL;
 				if (!CGameProcedure::s_pProcMain->m_pMagicSkillMng->CheckValidSkillMagic(m_pMyHotkey[i][j]->pSkill))
 					bitMask |= UISTYLE_DISABLE_SKILL;
 				m_pMyHotkey[i][j]->pUIIcon->SetStyle(bitMask);
@@ -455,13 +453,10 @@ void CUIHotKeyDlg::CloseIconRegistry()
 {
 	// Save Hotkey Data to Registry.. 
 	// First, Saving Hotkey Data Count.. 
-
-	int i, j;
-
 	int iHCount = 0;
-	for( i = 0; i < MAX_SKILL_HOTKEY_PAGE; i++ )
+	for( int i = 0; i < MAX_SKILL_HOTKEY_PAGE; i++ )
 	{
-		for( j = 0; j < MAX_SKILL_IN_HOTKEY; j++ )
+		for( int j = 0; j < MAX_SKILL_IN_HOTKEY; j++ )
 		{
 			if ( m_pMyHotkey[i][j] != NULL )
 				iHCount++;
@@ -473,9 +468,9 @@ void CUIHotKeyDlg::CloseIconRegistry()
 	char szSkill[32];
 	int iSkillCount = 0;
 
-	for( i = 0; i < MAX_SKILL_HOTKEY_PAGE; i++ )
+	for( int i = 0; i < MAX_SKILL_HOTKEY_PAGE; i++ )
 	{
-		for( j = 0; j < MAX_SKILL_IN_HOTKEY; j++ )
+		for( int j = 0; j < MAX_SKILL_IN_HOTKEY; j++ )
 		{
 			if ( m_pMyHotkey[i][j] != NULL )
 			{
@@ -556,7 +551,8 @@ bool CUIHotKeyDlg::IsSelectedSkillInRealIconArea()
 	bool bFound = false;
 	POINT ptCur = CGameProcedure::s_pLocalInput->MouseGetPos();
 
-	for( int i = 0; i < MAX_SKILL_IN_HOTKEY; i++ )
+	int i;
+	for( i = 0; i < MAX_SKILL_IN_HOTKEY; i++ )
 	{
 		pArea = CN3UIWndBase::GetChildAreaByiOrder(UI_AREA_TYPE_SKILL_HOTKEY, i);
 		if (pArea && pArea->IsIn(ptCur.x, ptCur.y))
@@ -652,20 +648,18 @@ void CUIHotKeyDlg::PageDown()
 }
 
 void CUIHotKeyDlg::SetHotKeyPage(int iPageNum)
-{
-	int i, j;
-	
-	for( i = 0; i < MAX_SKILL_HOTKEY_PAGE; i++ )
+{	
+	for( int i = 0; i < MAX_SKILL_HOTKEY_PAGE; i++ )
 	{
 		if ( i != iPageNum )
 		{
-			for( j = 0; j < MAX_SKILL_IN_HOTKEY; j++ )
+			for( int j = 0; j < MAX_SKILL_IN_HOTKEY; j++ )
 				if ( m_pMyHotkey[i][j] != NULL )
 					m_pMyHotkey[i][j]->pUIIcon->SetVisible(false);
 		}
 		else
 		{
-			for( j = 0; j < MAX_SKILL_IN_HOTKEY; j++ )
+			for( int j = 0; j < MAX_SKILL_IN_HOTKEY; j++ )
 				if ( m_pMyHotkey[i][j] != NULL )
 					m_pMyHotkey[i][j]->pUIIcon->SetVisible(true);
 		}

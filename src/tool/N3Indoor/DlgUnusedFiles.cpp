@@ -95,7 +95,7 @@ void CDlgUnusedFiles::UpdateAll()
 	}
 
 	iFNC = m_InvalidFileNames.GetSize();
-	for(i = 0; i < iFNC; i++)
+	for(int i = 0; i < iFNC; i++)
 	{
 		m_ListInvalidObjects.AddString(m_InvalidFileNames[i]);
 	}

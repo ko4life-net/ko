@@ -33,8 +33,7 @@ CN3Cloud::CN3Cloud()
 
 CN3Cloud::~CN3Cloud()
 {
-	int i;
-	for (i=0; i<NUM_CLOUD; ++i)
+	for (int i=0; i<NUM_CLOUD; ++i)
 	{
 		s_MngTex.Delete(&m_pTextures[i]);
 	}
@@ -43,8 +42,7 @@ CN3Cloud::~CN3Cloud()
 void CN3Cloud::Release()
 {
 	CN3Base::Release();
-	int i;
-	for (i=0; i<NUM_CLOUD; ++i)
+	for (int i=0; i<NUM_CLOUD; ++i)
 	{
 		if (m_pTextures[i])
 		{
@@ -65,7 +63,6 @@ void CN3Cloud::Release()
 }
 void CN3Cloud::Tick()
 {
-	int i;
 	static float fCloudLayer = 0.0f;
 	fCloudLayer += s_fSecPerFrm;
 
@@ -81,7 +78,7 @@ void CN3Cloud::Tick()
 		float du2 = 0.015*fCloudLayer;
 		float dv2 = 0.025*fCloudLayer;
 
-		for (i=0; i<NUM_CLOUD_VERTEX; ++i)
+		for (int i=0; i<NUM_CLOUD_VERTEX; ++i)
 		{
 			m_pVertices[i].tu += du;
 			m_pVertices[i].tv += dv;
@@ -93,11 +90,11 @@ void CN3Cloud::Tick()
 
 		if (m_pVertices[0].tu > 10.0f)
 		{
-			for (i=0; i<NUM_CLOUD_VERTEX; ++i)	m_pVertices[i].tu -= 10.0f;
+			for (int i=0; i<NUM_CLOUD_VERTEX; ++i)	m_pVertices[i].tu -= 10.0f;
 		}
 		if (m_pVertices[0].tv > 10.0f)
 		{
-			for (i=0; i<NUM_CLOUD_VERTEX; ++i)	m_pVertices[i].tv -= 10.0f;
+			for (int i=0; i<NUM_CLOUD_VERTEX; ++i)	m_pVertices[i].tv -= 10.0f;
 		}
 	}
 
@@ -130,7 +127,7 @@ void CN3Cloud::Tick()
 				m_Alpha.ChangeColor(0x00ffffff, m_fCloudTexTime);
 
 				// uv 좌표도 바꾸기
-				for (i=0; i<NUM_CLOUD_VERTEX; ++i)
+				for (int i=0; i<NUM_CLOUD_VERTEX; ++i)
 				{
 					float fTempUV = m_pVertices[i].tu;
 					m_pVertices[i].tu = m_pVertices[i].tu2;
@@ -173,9 +170,8 @@ void CN3Cloud::Render()
 	D3DCOLOR color2 = m_Color2.GetCurColor();
 	__ASSERT(CLOUD_NONE != m_eCloud1 && CLOUD_NONE != m_eCloud2, "no cloud texture type");
 	// render cloud 1
-	int i;
-	for (i=0; i<4; ++i) m_pVertices[i].color = color1&0x00ffffff;
-	for (i=4; i<NUM_CLOUD_VERTEX; ++i) m_pVertices[i].color = color1;
+	for (int i=0; i<4; ++i) m_pVertices[i].color = color1&0x00ffffff;
+	for (int i=4; i<NUM_CLOUD_VERTEX; ++i) m_pVertices[i].color = color1;
 	s_lpD3DDev->SetTexture(0, GetTex(m_eCloud1));
 	s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_TRIANGLELIST, 0, 8, 10,
 						CloudIndex, D3DFMT_INDEX16, m_pVertices, sizeof(__VertexXyzColorT2));
@@ -186,14 +182,14 @@ void CN3Cloud::Render()
 		D3DCOLOR Alpha = m_Alpha.GetCurColor();
 		if (Alpha<color2) color2 = (Alpha&0xff000000) | (color2&0x00ffffff);	// 기존 색 변화의 alpha값이 구름 교체alpha값보다 큰 경우 구름 교체 alpha값으로 대체
 		// render cloud 2
-		for (i=0; i<4; ++i) m_pVertices[i].color = color2&0x00ffffff;
-		for (i=4; i<NUM_CLOUD_VERTEX; ++i) m_pVertices[i].color = color2;
+		for (int i=0; i<4; ++i) m_pVertices[i].color = color2&0x00ffffff;
+		for (int i=4; i<NUM_CLOUD_VERTEX; ++i) m_pVertices[i].color = color2;
 		s_lpD3DDev->SetTexture(0, GetTex(m_eCloud2));
 		s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_TRIANGLELIST, 0, 8, 10,
 							CloudIndex, D3DFMT_INDEX16, m_pVertices, sizeof(__VertexXyzColorT2));
 		// render cloud 3
 		D3DCOLOR color3 = ((0xff-(color2>>24))<<24) | (color2&0x00ffffff);	// color2의 alpha값을 0xff에서 뺀 값으로 바꿈
-		for (i=4; i<NUM_CLOUD_VERTEX; ++i) m_pVertices[i].color = color3;			
+		for (int i=4; i<NUM_CLOUD_VERTEX; ++i) m_pVertices[i].color = color3;			
 		s_lpD3DDev->SetTexture(0, GetTex(m_eCloud3));
 		s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_TRIANGLELIST, 0, 8, 10,
 							CloudIndex, D3DFMT_INDEX16, m_pVertices, sizeof(__VertexXyzColorT2));
@@ -201,8 +197,8 @@ void CN3Cloud::Render()
 	else
 	{
 		// render cloud 2
-		for (i=0; i<4; ++i) m_pVertices[i].color = color2&0x00ffffff;
-		for (i=4; i<NUM_CLOUD_VERTEX; ++i) m_pVertices[i].color = color2;
+		for (int i=0; i<4; ++i) m_pVertices[i].color = color2&0x00ffffff;
+		for (int i=4; i<NUM_CLOUD_VERTEX; ++i) m_pVertices[i].color = color2;
 		s_lpD3DDev->SetTexture(0, GetTex(m_eCloud2));
 		s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_TRIANGLELIST, 0, 8, 10,
 							CloudIndex, D3DFMT_INDEX16, m_pVertices, sizeof(__VertexXyzColorT2));

@@ -664,11 +664,9 @@ short CMagicProcess::AreaAttack(int magictype, int magicid, int moral, int data1
 
 	int search_x = max_x - min_x + 1;		
 	int search_z = max_z - min_z + 1;	
-	
-	int i, j;
 
-	for(i = 0; i < search_x; i++)	{
-		for(j = 0; j < search_z; j++)	{
+	for(int i = 0; i < search_x; i++)	{
+		for(int j = 0; j < search_z; j++)	{
 			AreaAttackDamage(magictype, min_x+i, min_z+j, magicid, moral, data1, data2, data3, dexpoint, righthand_damage);
 		}
 	}

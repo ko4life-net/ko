@@ -107,7 +107,6 @@ bool CN3EffectWave2::Load(HANDLE hFile)
 		ptmpPondMesh->m_iIC = iIC;		///
 		ptmpPondMesh->m_wpIndex = new WORD [iVC*6];		///
 
-		int j,k;
 		int iWidth = iWidthVertex,iHeight = iVC/iWidthVertex;
 		int x=0,y=iWidth;
 		WORD* indexPtr = ptmpPondMesh->m_wpIndex;	//	삼각형을 부를 위치 설정
@@ -117,9 +116,9 @@ bool CN3EffectWave2::Load(HANDLE hFile)
 		float StX,EnX,StZ,EnZ;
 		StX = ptVtx[0].x,EnX = ptVtx[iWidth].x;
 		StZ = ptVtx[0].z,EnZ = ptVtx[iHeight].z;
-		for (j=0; j<iHeight; j++)
+		for (int j=0; j<iHeight; j++)
 		{
-			for (k=0; k<iWidth; k++)
+			for (int k=0; k<iWidth; k++)
 			{
 				//	삼각형을 부를 위치 설정
 				indexPtr[0] = x;

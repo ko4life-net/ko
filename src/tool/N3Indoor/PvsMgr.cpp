@@ -644,8 +644,6 @@ void CPvsMgr::PrepareCollisionDetect(CPortalVol* const pVol)
 void CPvsMgr::PrepareCollisionDetectOne(CPortalVol* const pVol, CPortalWall* const pWall)
 {
 #define SMALL_OFFSET 0.6f;
-	int i = 0;
-
 	__Collision Col;
 	Col.eWT = pWall->m_eWallType;
 	Col.Wvec[0] = pWall->m_pvVertex[0];
@@ -655,32 +653,32 @@ void CPvsMgr::PrepareCollisionDetectOne(CPortalVol* const pVol, CPortalWall* con
 	switch (Col.eWT)
 	{
 		case WALL_ZB:
-			for(i = 0; i < 4; i++)
+			for(int i = 0; i < 4; i++)
 				Col.Wvec[i] = pWall->m_pvVertex[i];	Col.Wvec[i].z = pWall->m_pvVertex[i].z + SMALL_OFFSET;
 			break;
 
 		case WALL_ZF:
-			for(i = 0; i < 4; i++)
+			for(int i = 0; i < 4; i++)
 				Col.Wvec[i] = pWall->m_pvVertex[i];	Col.Wvec[i].z = pWall->m_pvVertex[i].z - SMALL_OFFSET;
 			break;
 
 		case WALL_XL:
-			for(i = 0; i < 4; i++)
+			for(int i = 0; i < 4; i++)
 				Col.Wvec[i] = pWall->m_pvVertex[i];	Col.Wvec[i].x = pWall->m_pvVertex[i].x + SMALL_OFFSET;
 			break;
  
 		case WALL_XR:
-			for(i = 0; i < 4; i++)
+			for(int i = 0; i < 4; i++)
 				Col.Wvec[i] = pWall->m_pvVertex[i];	Col.Wvec[i].x = pWall->m_pvVertex[i].x - SMALL_OFFSET;
 			break;
 
 		case WALL_YT:
-			for(i = 0; i < 4; i++)
+			for(int i = 0; i < 4; i++)
 				Col.Wvec[i] = pWall->m_pvVertex[i];	Col.Wvec[i].y = pWall->m_pvVertex[i].y - SMALL_OFFSET;
 			break;
 
 		case WALL_YB:
-			for(i = 0; i < 4; i++)
+			for(int i = 0; i < 4; i++)
 				Col.Wvec[i] = pWall->m_pvVertex[i];	Col.Wvec[i].y = pWall->m_pvVertex[i].y + SMALL_OFFSET;
 			break;
 	}
@@ -778,7 +776,6 @@ bool CPvsMgr::CollisionDetectMain(CPortalVol* const pVolMy)
 	__Collision Col;
 	itviter ivit;
 	CPortalVol* pVol = NULL;
-	int i, j;
 	__Vector3 vDir;
 
 	iciter icit = m_ColList.begin();
@@ -787,9 +784,9 @@ bool CPvsMgr::CollisionDetectMain(CPortalVol* const pVolMy)
 		Col = *icit++;
 
 		// Volumn에 있는 충돌 체크 점들..
-		for( i = 0; i < 9; i++ )
+		for( int i = 0; i < 9; i++ )
 		{
-			for( j = 0; j < 5; j++ )
+			for( int j = 0; j < 5; j++ )
 			{
 				if ( (i == 8) && (j == 4) )
 				{
@@ -836,7 +833,7 @@ bool CPvsMgr::CollisionDetectMain(CPortalVol* const pVolMy)
 							break;
 					}
 				}
-again:;		
+again:
 			}
 		}
 	}
@@ -862,13 +859,13 @@ void CPvsMgr::RenderCollision(__Collision& col)
 		pvVertex[i].color = 0xffffffff;
 		pIndex[i] = i;
 	}
-	for( i = 0; i < 4; i++ )
+	for( int i = 0; i < 4; i++ )
 	{
 		pvWVertex[i] = col.Wvec[i];
 		pvWVertex[i].color = 0xffff0000;
 		pWIndex[i] = i;
 	}
-	for( i = 0; i < 8; i++ )
+	for( int i = 0; i < 8; i++ )
 	{
 		pvDVertex[i] = m_dcol.Vvec[i];
 		pvDVertex[i].color = 0xffff0000;
@@ -996,7 +993,7 @@ bool CPvsMgr::CheckPvsWall(const __Vector3& vOrig, const __Vector3& vDir, CPorta
 bool CPvsMgr::CheckPvsVolumnWall(const __Vector3& vOrig, const __Vector3& vDir, CPortalVol* pVolMy, e_WallType eWT)
 {
 	float ft, fu, fv;
-	int i;
+	int i = 0;
 
 	switch (eWT)
 	{

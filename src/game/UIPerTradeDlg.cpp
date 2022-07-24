@@ -32,9 +32,9 @@ CUIPerTradeDlg::CUIPerTradeDlg()
 {
 	m_pSubProcPerTrade = NULL;
 	for( int i = 0; i < MAX_ITEM_PER_TRADE; i++ )	m_pPerTradeMy[i] = NULL;
-	for( i = 0; i < MAX_ITEM_PER_TRADE; i++ )	m_pPerTradeOther[i] = NULL;
-	for( i = 0; i < MAX_ITEM_PER_TRADE; i++ )	m_iBackupiOrder[i] = -1;
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )	m_pPerTradeInv[i] = NULL;
+	for( int i = 0; i < MAX_ITEM_PER_TRADE; i++ )	m_pPerTradeOther[i] = NULL;
+	for( int i = 0; i < MAX_ITEM_PER_TRADE; i++ )	m_iBackupiOrder[i] = -1;
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )	m_pPerTradeInv[i] = NULL;
 
 	m_iBackupiCount = 0;
 	m_pUITooltipDlg = NULL;
@@ -63,7 +63,7 @@ void CUIPerTradeDlg::Release()
 		}
 	}
 
-	for( i = 0; i < MAX_ITEM_PER_TRADE; i++ )
+	for( int i = 0; i < MAX_ITEM_PER_TRADE; i++ )
 	{
 		if ( m_pPerTradeOther[i] != NULL )
 		{
@@ -72,7 +72,7 @@ void CUIPerTradeDlg::Release()
 		}
 	}
 
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if ( m_pPerTradeInv[i] != NULL )
 		{
@@ -129,7 +129,7 @@ void CUIPerTradeDlg::Render()
 	}
 
 	// 갯수 표시되야 할 아이템 갯수 표시..
-	for( i = 0; i < MAX_ITEM_PER_TRADE; i++ )
+	for( int i = 0; i < MAX_ITEM_PER_TRADE; i++ )
 	{
 		if ( m_pPerTradeOther[i] && ( (m_pPerTradeOther[i]->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE) || (m_pPerTradeOther[i]->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE_SMALL) ) )
 		{
@@ -152,7 +152,7 @@ void CUIPerTradeDlg::Render()
 	}
 
 	// 갯수 표시되야 할 아이템 갯수 표시..
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if ( m_pPerTradeInv[i] && ( (m_pPerTradeInv[i]->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE) || (m_pPerTradeInv[i]->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE_SMALL) ) )
 		{
@@ -233,13 +233,13 @@ __IconItemSkill* CUIPerTradeDlg::GetHighlightIconItem(CN3UIIcon* pUIIcon)
 			return m_pPerTradeMy[i];
 	}
 
-	for( i = 0; i < MAX_ITEM_PER_TRADE; i++ )
+	for( int i = 0; i < MAX_ITEM_PER_TRADE; i++ )
 	{
 		if ( (m_pPerTradeOther[i] != NULL) && (m_pPerTradeOther[i]->pUIIcon == pUIIcon) )
 			return m_pPerTradeOther[i];
 	}
 
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if ( (m_pPerTradeInv[i] != NULL) && (m_pPerTradeInv[i]->pUIIcon == pUIIcon) ) 
 			return m_pPerTradeInv[i];
@@ -277,7 +277,7 @@ void CUIPerTradeDlg::EnterPerTradeState()
 	pButton = (CN3UIButton* )GetChildButtonByName(szFN);
 	if(pButton) pButton->SetState(UI_STATE_BUTTON_NORMAL);
 
-	for( i = 0; i < MAX_ITEM_TRADE; i++ )
+	for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 	{
 		if ( m_pPerTradeMy[i] != NULL )
 		{
@@ -293,7 +293,7 @@ void CUIPerTradeDlg::EnterPerTradeState()
 		}
 	}
 
-	for( i = 0; i < MAX_ITEM_TRADE; i++ )
+	for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 	{
 		if ( m_pPerTradeOther[i] != NULL )
 		{
@@ -309,7 +309,7 @@ void CUIPerTradeDlg::EnterPerTradeState()
 		}
 	}
 
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if ( m_pPerTradeInv[i] != NULL )
 		{
@@ -344,8 +344,7 @@ void CUIPerTradeDlg::ItemMoveFromInvToThis()
 	CUIInventory* pInven = CGameProcedure::s_pProcMain->m_pUIInventory;
 	if(!pInven) return;
 
-	int i;
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if(pInven->m_pMyInvWnd[i])
 		{
@@ -372,8 +371,7 @@ void CUIPerTradeDlg::ItemMoveFromThisToInv()
 	CUIInventory* pInven = CGameProcedure::s_pProcMain->m_pUIInventory;
 	if(!pInven) return;
 
-	int i;
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if(m_pPerTradeInv[i])
 		{
@@ -742,13 +740,10 @@ DWORD CUIPerTradeDlg::MouseProc(DWORD dwFlags, const POINT& ptCur, const POINT& 
 
 int	CUIPerTradeDlg::GetItemiOrder(__IconItemSkill* spItem, e_UIWND_DISTRICT eWndDist)
 {
-	int iReturn = -1;
-	int i;
-
 	switch ( eWndDist )
 	{
 		case UIWND_DISTRICT_PER_TRADE_INV:
-			for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+			for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 			{
 				if ( (m_pPerTradeInv[i] != NULL) && (m_pPerTradeInv[i] == spItem) )
 					return i;
@@ -756,7 +751,7 @@ int	CUIPerTradeDlg::GetItemiOrder(__IconItemSkill* spItem, e_UIWND_DISTRICT eWnd
 			break;
 	}
 
-	return iReturn;
+	return -1;
 }
 
 RECT CUIPerTradeDlg::GetSampleRect()

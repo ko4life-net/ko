@@ -546,8 +546,6 @@ BOOL CEbenezerDlg::DestroyWindow()
 	KillTimer( MARKET_BBS_TIME );
 	KillTimer( PACKET_CHECK );
 
-	int i=0;
-
 	if( m_hReadQueueThread )
 		::TerminateThread( m_hReadQueueThread, 0 );
 
@@ -611,11 +609,11 @@ BOOL CEbenezerDlg::DestroyWindow()
 	if ( !m_HomeArray.IsEmpty() )
 		m_HomeArray.DeleteAllData();
 
-	for( i=0; i<m_ZoneArray.size(); i++ )
+	for( int i=0; i<m_ZoneArray.size(); i++ )
 		delete m_ZoneArray[i];
 	m_ZoneArray.clear();
 	
-	for( i=0; i<m_LevelUpArray.size(); i++)
+	for( int i=0; i<m_LevelUpArray.size(); i++)
 		delete m_LevelUpArray[i];
 	m_LevelUpArray.clear();
 
@@ -1580,7 +1578,7 @@ BOOL CEbenezerDlg::LoadLevelUpTable()
 
 void CEbenezerDlg::GetTimeFromIni()
 {
-	int year=0, month=0, date=0, hour=0, server_count=0, sgroup_count = 0, i=0;
+	int year=0, month=0, date=0, hour=0, server_count=0, sgroup_count = 0;
 	char ipkey[20]; memset( ipkey, 0x00, 20 );
 
 	m_Ini.SetPath("server.ini");
@@ -1604,7 +1602,7 @@ void CEbenezerDlg::GetTimeFromIni()
 		return;
 	}
 
-	for( i=0; i<server_count; i++ ) {
+	for( int i=0; i<server_count; i++ ) {
 		_ZONE_SERVERINFO *pInfo = new _ZONE_SERVERINFO;
 		sprintf( ipkey, "SERVER_%02d", i );
 		pInfo->sServerNo = m_Ini.GetProfileInt("ZONE_INFO", ipkey, 1);
@@ -1622,7 +1620,7 @@ void CEbenezerDlg::GetTimeFromIni()
 			AfxMessageBox("ServerCount Error!!");
 			return;
 		}
-		for( i=0; i<sgroup_count; i++ ) {
+		for( int i=0; i<sgroup_count; i++ ) {
 			_ZONE_SERVERINFO *pInfo = new _ZONE_SERVERINFO;
 			sprintf( ipkey, "GSERVER_%02d", i );
 			pInfo->sServerNo = m_Ini.GetProfileInt("SG_INFO", ipkey, 1);
@@ -2540,9 +2538,9 @@ void CEbenezerDlg::SyncTest(int nType)
 	int iErrorCode = 0, send_index = 0;
 
 	SetByte(pBuf, AG_CHECK_ALIVE_REQ, len);
-	int i=0, k=0, total_user = 0, total_mon=0;
+	int total_user = 0, total_mon=0;
 
-	for(i=0; i<m_ZoneArray.size(); i++) {
+	for(int i=0; i<m_ZoneArray.size(); i++) {
 			pSocket = m_AISocketArray.GetData( m_ZoneArray[i]->m_nZoneNumber );
 			if( !pSocket )		continue;	
 			else {
@@ -2571,11 +2569,11 @@ void CEbenezerDlg::SyncTest(int nType)
 	
 	C3DMap* pMap = NULL;
 
-	for(k=0; k<m_ZoneArray.size(); k++)	{
+	for(int k=0; k<m_ZoneArray.size(); k++)	{
 		//if( k != 2 ) continue;		// 201 존만 체크..
 		pMap = m_ZoneArray[k];
 		if(pMap == NULL)	continue;
-		for( i=0; i<pMap->GetXRegionMax(); i++ ) {
+		for( int i=0; i<pMap->GetXRegionMax(); i++ ) {
 			for( int j=0; j<pMap->GetZRegionMax(); j++ ) {
 				EnterCriticalSection( &g_region_critical );
 				total_user = pMap->m_ppRegion[i][j].m_RegionUserArray.GetSize();
@@ -2694,7 +2692,7 @@ void CEbenezerDlg::SendAllUserInfo()
 	
 	EnterCriticalSection( &g_region_critical );
 
-	for(i=0; i<m_PartyArray.GetSize(); i++)	{
+	for(int i=0; i<m_PartyArray.GetSize(); i++)	{
 		pParty = m_PartyArray.GetData( i );
 		if( !pParty ) return;
 		send_index = 0;
@@ -2777,14 +2775,13 @@ void CEbenezerDlg::DeleteAllNpcList(int flag)
 
 	CUser* pUser = NULL;
 	C3DMap* pMap = NULL;
-	int i=0;
 
 	// region Npc Array Delete
-	for(i=0; i<m_ZoneArray.size(); i++)	{
+	for(int i=0; i<m_ZoneArray.size(); i++)	{
 		pMap = (C3DMap*)m_ZoneArray[i];
 		if( !pMap )	continue;
 
-		for( i=0; i<pMap->GetXRegionMax(); i++ ) {
+		for( i=0; i<pMap->GetXRegionMax(); i++ ) { // TODO: Check if this is not a bug that resets parent loop.
 			for( int j=0; j<pMap->GetZRegionMax(); j++ ) {
 				if( !pMap->m_ppRegion[i][j].m_RegionNpcArray.IsEmpty() )
 					pMap->m_ppRegion[i][j].m_RegionNpcArray.DeleteAllData();
@@ -3226,7 +3223,6 @@ BOOL CEbenezerDlg::LoadAllKnights()
 {
 	CKnightsSet	KnightsSet;
 	CString strKnightsName, strChief, strViceChief_1, strViceChief_2, strViceChief_3;
-	int i=0;
 
 	if( !KnightsSet.Open() ) {
 		AfxMessageBox(_T("Knights Open Fail!"));
@@ -3271,7 +3267,7 @@ BOOL CEbenezerDlg::LoadAllKnights()
 				pKnights->bGrade = GetKnightsGrade( KnightsSet.m_Points );
 				pKnights->bRanking = KnightsSet.m_Ranking;
 
-				for(i=0; i<MAX_CLAN; i++)	{
+				for(int i=0; i<MAX_CLAN; i++)	{
 					pKnights->arKnightsUser[i].byUsed = 0;
 					strcpy(pKnights->arKnightsUser[i].strUserName, "");
 				}	
@@ -3316,7 +3312,7 @@ BOOL CEbenezerDlg::LoadAllKnights()
 				pKnights->m_byGrade = GetKnightsGrade( KnightsSet.m_Points );
 				pKnights->m_byRanking = KnightsSet.m_Ranking;
 
-				for(i=0; i<MAX_CLAN; i++)	{
+				for(int i=0; i<MAX_CLAN; i++)	{
 					pKnights->m_arKnightsUser[i].byUsed = 0;
 					strcpy(pKnights->m_arKnightsUser[i].strUserName, "");
 				}	
@@ -3362,7 +3358,7 @@ BOOL CEbenezerDlg::LoadAllKnights()
 			pKnights->m_byGrade = GetKnightsGrade( KnightsSet.m_Points );
 			pKnights->m_byRanking = KnightsSet.m_Ranking;
 
-			for(i=0; i<MAX_CLAN; i++)	{
+			for(int i=0; i<MAX_CLAN; i++)	{
 				pKnights->m_arKnightsUser[i].byUsed = 0;
 				strcpy(pKnights->m_arKnightsUser[i].strUserName, "");
 			}	
@@ -3434,10 +3430,10 @@ int  CEbenezerDlg::GetKnightsAllMembers(int knightsindex, char *temp_buff, int& 
 
 	CUser* pUser = NULL;
 	CKnights* pKnights = NULL;
-	int count = 0, i=0;
+	int count = 0;
 
 	if( type == 0 )	{
-		for( i=0; i<MAX_USER; i++ ) {
+		for( int i=0; i<MAX_USER; i++ ) {
 			pUser = (CUser*)m_Iocport.m_SockArray[i];
 			if( !pUser ) continue;
 			if( pUser->m_pUserData->m_bKnights == knightsindex ) {		// 같은 소속의 클랜..
@@ -3455,7 +3451,7 @@ int  CEbenezerDlg::GetKnightsAllMembers(int knightsindex, char *temp_buff, int& 
 		pKnights = m_KnightsArray.GetData( knightsindex );
 		if( !pKnights ) return 0;
 
-		for( i=0; i<MAX_CLAN; i++ )	{
+		for( int i=0; i<MAX_CLAN; i++ )	{
 			if( pKnights->m_arKnightsUser[i].byUsed == 1 )	{	// 
 				pUser = GetUserPtr( pKnights->m_arKnightsUser[i].strUserName, 0x02 );
 				if( pUser )	{		// 접속중인 회원
@@ -3912,7 +3908,7 @@ BOOL CEbenezerDlg::LoadKnightsRankTable()
 	SetShort( temp_buff, strlen(strElmoCaptainName), temp_index );
 	SetString( temp_buff, strElmoCaptainName, strlen(strElmoCaptainName), temp_index );
 
-	for( i=0; i<MAX_USER; i++) {
+	for( int i=0; i<MAX_USER; i++) {
 		pUser = (CUser*)m_Iocport.m_SockArray[i];
 		if( !pUser )
 			continue;

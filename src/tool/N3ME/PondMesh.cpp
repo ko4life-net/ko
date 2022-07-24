@@ -177,10 +177,9 @@ void CPondMesh::RenderVertexPoint()	// 잘보이게 점만 다시 그리기
 	D3DCOLOR clr = D3DCOLOR_ARGB(0xff, 0xff, 0x00, 0x00);
 	s_lpD3DDev->SetFVF(FVF_TRANSFORMEDCOLOR);
 
-	int i;
 	D3DXVECTOR4 v;
 	//	화면상에 빨간점
-	for (i=0; i<=m_iVC; ++i)
+	for (int i=0; i<=m_iVC; ++i)
 	{
 		D3DXVec3Transform(&v, (D3DXVECTOR3*)(&(m_pViewVts[i])), &matVP);
 
@@ -203,7 +202,7 @@ void CPondMesh::RenderVertexPoint()	// 잘보이게 점만 다시 그리기
 	}
 
 	//	영역을 나타내는 점
-	for(i=0;i<m_iRectVC;++i)
+	for(int i=0;i<m_iRectVC;++i)
 	{
 		D3DXVec3Transform(&v, (D3DXVECTOR3*)(&(m_pRectVts[i])), &matVP);
 
@@ -384,15 +383,14 @@ void CPondMesh::MakeIndex()
 		m_pdwIndex = new WORD [m_iWaterScaleWidth*m_iWaterScaleHeight*6];
 	}
 
-	int j,k;
 	int m = m_iWaterScaleWidth;	//	다음줄
 	int x=0,y=m;
 	WORD* indexPtr = m_pdwIndex;	//	삼각형을 부를 위치 설정
 
 	--m;
-	for (j=0; j<m_iWaterScaleHeight; j++)
+	for (int j=0; j<m_iWaterScaleHeight; j++)
 	{
-		for (k=0; k<m; k++)
+		for (int k=0; k<m; k++)
 		{
 			indexPtr[0] = x;
 			indexPtr[1] = x+1;
@@ -415,20 +413,19 @@ void CPondMesh::ReCalcUV()
 	if (m_iVC<2) return;
 
 	const float fTu = m_fTU,fTv = m_fTV;
-	int i,j;
 
 	__Vector3* pVertices= m_pVertices;
 	__VertexXyzT2* ptmpVertices = m_pViewVts;
 	
 	//	줄에 대한 변경(x,z에 대해)
-	for (i=0;i<m_iWaterScaleHeight;++i)
+	for (int i=0;i<m_iWaterScaleHeight;++i)
 	{	
 		ptmpVertices->tu = ptmpVertices->x/fTu;
 		ptmpVertices->tv = ptmpVertices->z/fTv;
 		ptmpVertices->tu2 = ptmpVertices->tu;
 		ptmpVertices->tv2 = ptmpVertices->tv;			
 
-		for (j=0;j<m_iWaterScaleWidth;++j)
+		for (int j=0;j<m_iWaterScaleWidth;++j)
 		{	
 			(ptmpVertices+j)->tu = (ptmpVertices+j)->x/fTu;
 			(ptmpVertices+j)->tv = (ptmpVertices+j)->z/fTv;
@@ -458,7 +455,7 @@ void CPondMesh::ReCalcVexUV()
 	
 	MakePondPos();
 
-	for(i=0;i<m_iVC;++i)
+	for(int i=0;i<m_iVC;++i)
 	{
 		m_pVertices[i].x  = pBakVertices[i].x;
 		m_pVertices[i].y  = pBakVertices[i].y;
@@ -620,18 +617,17 @@ void CPondMesh::CalcuWidth(int iSx,int iSy,int iEx,int iEy)
 	//	----------------------------------------------------------------------------------
 
 	//	새로운 좌표 계산
-	int iIntervalNum,j;
 	float fx1,fx2,fnx1,fnx2;
 	float fny1,fny2;
 	float ftemp;
 	
 	//	----------------------------------------------------------------------------------
-	iIntervalNum = iSx-1;	//	좌우 각 한점씩 빼기에
+	int iIntervalNum = iSx-1;	//	좌우 각 한점씩 빼기에
 	if(iIntervalNum>0)
 	{
 		++pLRVertices, ++pLRViewVer;	//	오른쪽
 		fny2 = vNowPick.z-vBakPick.z;
-		for(j=0 ; j<iIntervalNum ; ++j,++pLRVertices,++pLRViewVer,++pvTop,++pvBottom)
+		for(int j=0 ; j<iIntervalNum ; ++j,++pLRVertices,++pLRViewVer,++pvTop,++pvBottom)
 		{
 			// 사이의 점마다 거리비율을 구해 새로운 위치를 구한다
 			fx2 = pvRight->x - vBakPick.x;	//	좌우의 비율구함
@@ -659,7 +655,7 @@ void CPondMesh::CalcuWidth(int iSx,int iSy,int iEx,int iEy)
 	{
 		++pLRVertices, ++pLRViewVer;	//	왼쪽
 		fny2 = vNowPick.z-vBakPick.z;
-		for(j=0 ; j<iIntervalNum ; ++j,++pLRVertices,++pLRViewVer,++pvTop,++pvBottom)
+		for(int j=0 ; j<iIntervalNum ; ++j,++pLRVertices,++pLRViewVer,++pvTop,++pvBottom)
 		{
 			fx2 = vBakPick.x - pvLeft->x;
 			if(fx2!=0)
@@ -678,7 +674,7 @@ void CPondMesh::CalcuWidth(int iSx,int iSy,int iEx,int iEy)
 	}
 	//	----------------------------------------------------------------------------------
 
-	for(j=0;j<m_iWaterScaleWidth;++j)
+	for(int j=0;j<m_iWaterScaleWidth;++j)
 		SetAllPos(j,iSy,iEx,iEy);
 }
 
@@ -698,12 +694,11 @@ void CPondMesh::SetAllPos(int iSx,int iSy,int iEx,int iEy)
 	vNowCenter = *(m_pViewVts + m_iWaterScaleWidth*iSy + iSx);	//	백업된 전의 좌표(참조하여 새로운 좌표 계산)
 
 	//	새로운 좌표 계산
-	int iIntervalNum,j;
 	float fy1,fy2,fny1,fny2;
 	float fnx1,fnx2;
 	float ftemp;
 
-	iIntervalNum = iSy-1;
+	int iIntervalNum = iSy-1;
 	if(iIntervalNum>0)
 	{
 		fy2 = vCenter.z - vTop.z;
@@ -712,7 +707,7 @@ void CPondMesh::SetAllPos(int iSx,int iSy,int iEx,int iEy)
 			pTBVertices += m_iWaterScaleWidth, pTBViewVer += m_iWaterScaleWidth;
 			fnx2 = vNowCenter.x - vCenter.x;
 			fny2 = vTop.z - vNowCenter.z;
-			for(j=0 ; j<iIntervalNum ; ++j,pTBVertices+=m_iWaterScaleWidth,pTBViewVer+=m_iWaterScaleWidth)
+			for(int j=0 ; j<iIntervalNum ; ++j,pTBVertices+=m_iWaterScaleWidth,pTBViewVer+=m_iWaterScaleWidth)
 			{
 				fy1 = pTBVertices->z - vTop.z; 	//	좌우의 비율구함
 				ftemp = fy1/fy2;
@@ -735,7 +730,7 @@ void CPondMesh::SetAllPos(int iSx,int iSy,int iEx,int iEy)
 			pTBVertices += m_iWaterScaleWidth, pTBViewVer += m_iWaterScaleWidth;
 			fnx2 = vNowCenter.x - vCenter.x;
 			fny2 = vNowCenter.z - vBottom.z;
-			for(j=0 ; j<iIntervalNum ; ++j,pTBVertices+=m_iWaterScaleWidth,pTBViewVer+=m_iWaterScaleWidth)
+			for(int j=0 ; j<iIntervalNum ; ++j,pTBVertices+=m_iWaterScaleWidth,pTBViewVer+=m_iWaterScaleWidth)
 			{
 				fy1 = vBottom.z - pTBVertices->z; 
 				ftemp = fy1/fy2;
@@ -857,7 +852,7 @@ bool CPondMesh::Load1000(HANDLE hFile)
 
 	//	---------------------------------------------------------------------------------------------------------
 	for(int i=0;i<4;++i) m_vDrawBox[i] = m_pVertices[0];
-	for(i=0;i<m_iVC;++i)
+	for(int i=0;i<m_iVC;++i)
 	{
 		m_pViewVts[i].x = m_pVertices[i].x , m_pViewVts[i].y = m_pVertices[i].y , m_pViewVts[i].z = m_pVertices[i].z;
 
@@ -918,7 +913,7 @@ bool CPondMesh::Load(HANDLE hFile)
 
 	//	---------------------------------------------------------------------------------------------------------
 	for(int i=0;i<4;++i) m_vDrawBox[i] = m_pVertices[0];
-	for(i=0;i<m_iVC;++i)
+	for(int i=0;i<m_iVC;++i)
 	{
 		if(m_vDrawBox[0].x < m_pVertices[i].x) m_vDrawBox[0].x = m_pVertices[i].x,m_vDrawBox[3].x = m_pVertices[i].x;
 		if(m_vDrawBox[1].x > m_pVertices[i].x) m_vDrawBox[1].x = m_pVertices[i].x,m_vDrawBox[2].x = m_pVertices[i].x;
@@ -1000,13 +995,12 @@ void CPondMesh::SetVtx()
 	float tempX = m_fWaterScaleX;
 	float tempZ = m_fWaterScaleZ;
 
-	int i,j;
 	int iNumVertex = m_iVC/m_iWaterScaleWidth;
 
 	//	 처음 한 줄에 대해 x방향만 변함
 	pVtx->Set(pViewVtx->x,pViewVtx->y,pViewVtx->z);
 
-	for (j=1;j<m_iWaterScaleWidth;j++)
+	for (int j=1;j<m_iWaterScaleWidth;j++)
 	{	
 		(pVtx+j)->x = (pVtx+j-1)->x + ((pViewVtx+j)->x-(pViewVtx+j-1)->x) / tempX;
 		(pVtx+j)->y = (pViewVtx+j)->y;
@@ -1016,13 +1010,13 @@ void CPondMesh::SetVtx()
 	pViewVtx += m_iWaterScaleWidth;
 	
 	//	줄에 대한 x,z에 대한 변환
-	for(i = 1 ;i<iNumVertex ; i++)
+	for(int i = 1 ;i<iNumVertex ; i++)
 	{
 		pVtx->x = (pVtx-m_iWaterScaleWidth)->x + (pViewVtx->x-(pViewVtx-m_iWaterScaleWidth)->x) / tempX;
 		pVtx->y = pViewVtx->y;
 		pVtx->z = (pVtx-m_iWaterScaleWidth)->z + (pViewVtx->z-(pViewVtx-m_iWaterScaleWidth)->z) / tempZ;
 
-		for (j=1;j<m_iWaterScaleWidth;j++)
+		for (int j=1;j<m_iWaterScaleWidth;j++)
 		{	
 			(pVtx+j)->x = (pVtx+j-1)->x + ((pViewVtx+j)->x-(pViewVtx+j-1)->x) / tempX;
 			(pVtx+j)->y = (pViewVtx+j)->y;
@@ -1157,11 +1151,11 @@ int CPondMesh::AddVertex()
 int CPondMesh::DeleteVertex(int iIndex)
 {
 	if (iIndex<0 || iIndex>=m_iVC) return m_iVC;
-	int i, iStart;
+	int iStart;
 	iStart = (iIndex/m_iLastVertexNum);
 
 	// Vertext Buffer delete
-	for (i=iStart*m_iLastVertexNum; i<m_iVC-m_iLastVertexNum; ++i)
+	for (int i=iStart*m_iLastVertexNum; i<m_iVC-m_iLastVertexNum; ++i)
 	{
 		m_pVertices[i] = m_pVertices[i+m_iLastVertexNum];
 		m_pViewVts[i] = m_pViewVts[i+m_iLastVertexNum];

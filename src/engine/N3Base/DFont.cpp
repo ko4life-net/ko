@@ -711,7 +711,6 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string& szText, DWOR
 		if (fMaxY < (-fBottom)) fMaxY = (-fBottom);
 	}
 
-	int i;
 	if (dwFlags & D3DFONT_CENTERED)	// 가운데 정렬이면 vertex좌표를 가운데로 계산해서 고쳐넣기
 	{
 		// 제일 긴 줄 찾기..
@@ -742,7 +741,7 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string& szText, DWOR
 			}
 			__ASSERT(fCX>0.0f, "??");
 			float fDiffX = -fCX/2.0f;
-			for (i=iCount; i<iCount+iContinueCount; ++i)
+			for (int i=iCount; i<iCount+iContinueCount; ++i)
 			{
 				for (int j=0; j<6; ++j)
 					TempVertices[i*6+j].x += fDiffX;
@@ -756,7 +755,7 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string& szText, DWOR
 	m_pVB->Lock( 0, 0, (VOID**)&pVertices, 0 );
 
 	iCount = dwNumTriangles*3;
-	for (i=0; i<iCount; ++i)
+	for (int i=0; i<iCount; ++i)
 	{
 		TempVertices[i].x /= ((float)m_dwFontHeight);			// 일정 크기로 줄이기
 		TempVertices[i].y /= ((float)m_dwFontHeight);			// 일정 크기로 줄이기
@@ -793,11 +792,11 @@ HRESULT CDFont::DrawText( FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOA
 //		m_pVB->Lock( 0, 0, (VOID**)&pVertices, D3DLOCK_NOSYSLOCK );
 		m_pVB->Lock( 0, 0, (VOID**)&pVertices, 0);
 
-		int i, iVC = m_iPrimitiveCount*3;
+		int iVC = m_iPrimitiveCount*3;
 		if (fabs(vDiff.x)>0.5f)
 		{
 			m_PrevLeftTop.x = sx;
-			for (i=0; i<iVC; ++i)
+			for (int i=0; i<iVC; ++i)
 			{
 				pVertices[i].x += vDiff.x;
 			}
@@ -806,7 +805,7 @@ HRESULT CDFont::DrawText( FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOA
 		if (fabs(vDiff.y)>0.5f)
 		{
 			m_PrevLeftTop.y = sy;
-			for (i=0; i<iVC; ++i)
+			for (int i=0; i<iVC; ++i)
 			{
 				pVertices[i].y += vDiff.y;
 			}
@@ -816,7 +815,7 @@ HRESULT CDFont::DrawText( FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOA
 		{
 			m_dwFontColor = dwColor;
 			m_PrevLeftTop.y = sy;
-			for (i=0; i<iVC; ++i)
+			for (int i=0; i<iVC; ++i)
 			{
 				pVertices[i].color = m_dwFontColor;
 			}
@@ -824,7 +823,7 @@ HRESULT CDFont::DrawText( FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOA
 
 //		if (fZ != 1.0f) // Z값이 1.0f 가 들어오지 않으면 바꾸어준다.
 //		{
-//			for (i=0; i<iVC; ++i)
+//			for (int i=0; i<iVC; ++i)
 //			{
 //				pVertices[i].z = fZ;
 //			}
@@ -936,8 +935,8 @@ HRESULT CDFont::DrawText3D(DWORD dwColor, DWORD dwFlags )
 		m_pVB->Lock( 0, 0, (VOID**)&pVertices, 0 );
 
 		m_dwFontColor = dwColor;
-		int i, iVC = m_iPrimitiveCount*3;
-		for (i=0; i<iVC; ++i)
+		int iVC = m_iPrimitiveCount*3;
+		for (int i=0; i<iVC; ++i)
 		{
 			pVertices[i].color = m_dwFontColor;
 		}
@@ -1053,8 +1052,8 @@ HRESULT	CDFont::SetFontColor(DWORD dwColor)
 			__VertexTransformed* pVertices;
 			if (FAILED(hr = m_pVB->Lock( 0, 0, (VOID**)&pVertices, 0 ))) return hr;
 			m_dwFontColor = dwColor;
-			int i, iVC = m_iPrimitiveCount*3;
-			for (i=0; i<iVC; ++i)
+			int iVC = m_iPrimitiveCount*3;
+			for (int i=0; i<iVC; ++i)
 			{
 				pVertices[i].color = m_dwFontColor;
 			}
@@ -1065,8 +1064,8 @@ HRESULT	CDFont::SetFontColor(DWORD dwColor)
 			__VertexXyzColorT1* pVertices;
 			if (FAILED(hr = m_pVB->Lock( 0, 0, (VOID**)&pVertices, 0 ))) return hr;
 			m_dwFontColor = dwColor;
-			int i, iVC = m_iPrimitiveCount*3;
-			for (i=0; i<iVC; ++i)
+			int iVC = m_iPrimitiveCount*3;
+			for (int i=0; i<iVC; ++i)
 			{
 				pVertices[i].color = m_dwFontColor;
 			}
@@ -1101,11 +1100,11 @@ void CDFont::AddToAlphaManager(DWORD dwColor, float fDist, __Matrix44& mtxWorld,
 	//		m_pVB->Lock( 0, 0, (VOID**)&pVertices, D3DLOCK_NOSYSLOCK );
 			m_pVB->Lock( 0, 0, (VOID**)&pVertices, 0);
 
-			int i, iVC = m_iPrimitiveCount*3;
+			int iVC = m_iPrimitiveCount*3;
 			if (fabs(vDiff.x)>0.5f)
 			{
 				m_PrevLeftTop.x = mtxWorld._41;
-				for (i=0; i<iVC; ++i)
+				for (int i=0; i<iVC; ++i)
 				{
 					pVertices[i].x += vDiff.x;
 				}
@@ -1114,7 +1113,7 @@ void CDFont::AddToAlphaManager(DWORD dwColor, float fDist, __Matrix44& mtxWorld,
 			if (fabs(vDiff.y)>0.5f)
 			{
 				m_PrevLeftTop.y = mtxWorld._42;
-				for (i=0; i<iVC; ++i)
+				for (int i=0; i<iVC; ++i)
 				{
 					pVertices[i].y += vDiff.y;
 				}
@@ -1124,7 +1123,7 @@ void CDFont::AddToAlphaManager(DWORD dwColor, float fDist, __Matrix44& mtxWorld,
 			{
 				m_dwFontColor = dwColor;
 				m_PrevLeftTop.y = mtxWorld._42;
-				for (i=0; i<iVC; ++i)
+				for (int i=0; i<iVC; ++i)
 				{
 					pVertices[i].color = m_dwFontColor;
 				}
@@ -1132,7 +1131,7 @@ void CDFont::AddToAlphaManager(DWORD dwColor, float fDist, __Matrix44& mtxWorld,
 
 //			if (fZ != 1.0f) // Z값이 1.0f 가 들어오지 않으면 바꾸어준다.
 //			{
-//				for (i=0; i<iVC; ++i)
+//				for (int i=0; i<iVC; ++i)
 //				{
 //					pVertices[i].z = fZ;
 //				}

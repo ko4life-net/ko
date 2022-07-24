@@ -63,7 +63,7 @@ void CN3AlphaPrimitiveManager::Render()
 	static __Material mtl; mtl.Init();
 	CN3Base::s_lpD3DDev->SetMaterial(&mtl);
 
-	for(i = 0; i < m_nToDrawCount; i++)
+	for (int i = 0; i < m_nToDrawCount; i++)
 	{
 
 		if(pBuffs[i]->nRenderFlags & RF_NOTUSEFOG) CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, FALSE);
@@ -270,7 +270,7 @@ void CN3AlphaPrimitiveManager::Render()
 	static __Material mtl; mtl.Init();
 	CN3Base::s_lpD3DDev->SetMaterial(&mtl);
 
-	for(i = 0; i < m_nToDrawCount; i++)
+	for(int i = 0; i < m_nToDrawCount; i++)
 	{
 		if(pBuffs[i]->nRenderFlags & RF_NOTUSEFOG)
 		{

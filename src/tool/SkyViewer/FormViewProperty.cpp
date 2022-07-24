@@ -273,17 +273,15 @@ void CFormViewProperty::UpdateAllInfo()
 	if(pDoc->m_Sky.MoonTextureGet()) SetDlgItemText(IDC_E_MOON_TEXTURE, pDoc->m_Sky.MoonTextureGet()->FileName().c_str());
 	else SetDlgItemText(IDC_E_MOON_TEXTURE, "");
 
-	int i = 0;
-
 	m_ListSunTextures.ResetContent();
-	for(i = 0; i < NUM_SUNPART; i++)
+	for(int i = 0; i < NUM_SUNPART; i++)
 	{
 		if(pDoc->m_Sky.SunTextureGet(i)) m_ListSunTextures.AddString(pDoc->m_Sky.SunTextureGet(i)->FileName().c_str());
 		else m_ListSunTextures.AddString("");
 	}
 	
 	m_ListCloudTextures.ResetContent();
-	for(i = 0; i < NUM_CLOUD; i++)
+	for(int i = 0; i < NUM_CLOUD; i++)
 	{
 		m_ListCloudTextures.AddString(pDoc->m_Sky.CloudTextureFileName(i));
 	}
@@ -293,7 +291,7 @@ void CFormViewProperty::UpdateAllInfo()
 
 	m_ListDayChanges.ResetContent();
 	int iSDCC = pDoc->m_Sky.DayChangeCount();
-	for(i = 0; i < iSDCC; i++)
+	for(int i = 0; i < iSDCC; i++)
 	{
 		__SKY_DAYCHANGE* pSDC = pDoc->m_Sky.DayChangeGet(i);
 		m_ListDayChanges.AddString(pSDC->szName.c_str());

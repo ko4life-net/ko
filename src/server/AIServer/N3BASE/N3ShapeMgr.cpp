@@ -306,7 +306,7 @@ void CN3ShapeMgr::GenerateCollisionData()
 	memset(m_pvCollisions, 0, sizeof(__Vector3) * nFC * 3);
 
 	int nCPC = 0; // Collision Polygon Count
-	for(i = 0; i < iSC; i++) // Shape 에 있는 충돌 메시 만큼 데이터 복사..
+	for(int i = 0; i < iSC; i++) // Shape 에 있는 충돌 메시 만큼 데이터 복사..
 	{
 		CN3VMesh* pVMesh = m_Shapes[i]->CollisionMesh();
 		if (NULL == pVMesh) continue;
@@ -349,7 +349,7 @@ void CN3ShapeMgr::GenerateCollisionData()
 	// 각 선분이 셀에 걸쳐 있는지 혹은 포함되어 있는지 등등 판단해서 인덱스 생성을 한다.
 	int xSMax = (int)(m_fMapWidth / CELL_SUB_SIZE);
 	int zSMax = (int)(m_fMapLength / CELL_SUB_SIZE);
-	for(i = 0; i < nFC; i++)
+	for(int i = 0; i < nFC; i++)
 	{
 		__Vector3 vEdge[3][2];
 
@@ -612,7 +612,6 @@ void CN3ShapeMgr::Tick()
 	int zMainE = (int)((s_CameraData.vEye.z + s_CameraData.fFP) / CELL_MAIN_SIZE); if(zMainE > MAX_CELL_MAIN) zMainE = MAX_CELL_MAIN;
 	
 	__CellMain* pCellCur = NULL;
-	int i = 0, iShp = 0, iSIndex = 0, iSC = m_Shapes.size();;
 	m_ShapesToRender.clear();
 	// 렌더링 리스트 비우고..
 	
@@ -623,11 +622,10 @@ void CN3ShapeMgr::Tick()
 			pCellCur = m_pCells[xM][zM];
 			if(NULL == pCellCur) continue;
 
-			int iSCC = pCellCur->nShapeCount;
-			for(i = 0; i < iSCC; i++)
+			for(int i = 0; i < pCellCur->nShapeCount; i++)
 			{
-				iSIndex = pCellCur->pwShapeIndices[i];
-				__ASSERT(iSIndex >= 0 && iSIndex < iSC, "Shape Index is invalid");
+				int iSIndex = pCellCur->pwShapeIndices[i];
+				__ASSERT(iSIndex >= 0 && iSIndex < m_Shapes.size(), "Shape Index is invalid");
 
 				m_Shapes[iSIndex]->Tick();
 				if(m_Shapes[iSIndex]->m_bDontRender) continue;
@@ -740,7 +738,7 @@ bool CN3ShapeMgr::CheckCollision(	const __Vector3& vPos,		// 충돌 위치
 			if(iSC > 1) qsort(&(Shapes[0]), iSC, 4, SortByCameraDistance); // 카메라 거리에 따라 정렬하고..
 
 			CN3VMesh* pVMesh = NULL;
-			for(i = 0; i < iSC; i++)
+			for(int i = 0; i < iSC; i++)
 			{
 				pVMesh = Shapes[i]->CollisionMesh();
 				if(true == pVMesh->CheckCollision(Shapes[i]->m_Matrix, vPos, vPosNext, pvCol, pvNormal)) return true;
@@ -854,7 +852,7 @@ CN3Shape* CN3ShapeMgr::Pick(int iXScreen, int iYScreen, bool bMustHaveEvent, __V
 	for(int i = 0; it != itEnd; it++, i++) { Shapes[i] = *it; }
 	qsort(&(Shapes[0]), iSC, 4, SortByCameraDistance);
 
-	for(i = 0; i < iSC; i++)
+	for(int i = 0; i < iSC; i++)
 	{
 		if(bMustHaveEvent && Shapes[i]->m_iEventID <= 0) continue; // 이벤트가 있어야 한다면...
 		if(Shapes[i]->CheckCollisionPrecisely(vPos, vDir, pvPick) >= 0)

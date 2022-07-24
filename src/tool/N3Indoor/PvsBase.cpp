@@ -43,7 +43,7 @@ void CPvsBase::Load(FILE* stream)
 			fread(&m_MtxMove.m[i][j], sizeof(float), 1, stream); 
 		}
 
-	for( i = 0; i < 4; i++ )
+	for( int i = 0; i < 4; i++ )
 		for( int j = 0; j < 4; j++ )
 		{
 			fread(&m_MtxScale.m[i][j], sizeof(float), 1, stream); 
@@ -58,7 +58,7 @@ void CPvsBase::Save(FILE* stream)
 			fwrite(&m_MtxMove.m[i][j], sizeof(float), 1, stream); 
 		}
 
-	for( i = 0; i < 4; i++ )
+	for( int i = 0; i < 4; i++ )
 		for( int j = 0; j < 4; j++ )
 		{
 			fwrite(&m_MtxScale.m[i][j], sizeof(float), 1, stream); 

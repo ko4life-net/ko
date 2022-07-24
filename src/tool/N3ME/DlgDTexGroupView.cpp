@@ -65,10 +65,9 @@ void CDlgDTexGroupView::AddGroup(CDTexGroup *pGroup)
 	HTREEITEM hGroup = m_Tree.InsertItem(pGroup->m_Name, NULL);
 	m_Tree.SetItemData(hGroup,(DWORD)pGroup);
 
-	int i;
 	HTREEITEM hAttr;
 	CString Attr;
-	for(i=DTEX_FULL; i<DTEX_MAX; i++)
+	for(int i=DTEX_FULL; i<DTEX_MAX; i++)
 	{
 		//DTEX_FULL=0, DTEX_1PER2, DTEX_1PER4, DTEX_3PER4, DTEX_1PER8, DTEX_7PER8, DTEX_5PER8, DTEX_3PER8, DTEX_MAX=8
 		switch(i)

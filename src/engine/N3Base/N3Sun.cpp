@@ -14,8 +14,7 @@
 CN3Sun::CN3Sun()
 {
 	memset(m_Parts, 0, sizeof(__SunPart)*NUM_SUNPART);
-	int i;
-	for(i=0; i<NUM_SUNPART; ++i)
+	for(int i=0; i<NUM_SUNPART; ++i)
 	{
 		m_Parts[i].Color.ChangeColor(0xffffffff);
 	}
@@ -24,8 +23,7 @@ CN3Sun::CN3Sun()
 
 CN3Sun::~CN3Sun()
 {
-	int i;
-	for(i=0; i<NUM_SUNPART; ++i)
+	for(int i=0; i<NUM_SUNPART; ++i)
 	{
 		__SunPart* pSP = m_Parts+i;
 		s_MngTex.Delete(&(pSP->pTex));
@@ -37,8 +35,7 @@ void CN3Sun::Release()
 	CN3Base::Release();
 	
 	memset(m_Parts, 0, sizeof(__SunPart) * NUM_SUNPART);
-	int i;
-	for(i=0; i<NUM_SUNPART; ++i)
+	for(int i=0; i<NUM_SUNPART; ++i)
 	{
 		s_MngTex.Delete(&m_Parts[i].pTex);
 		m_Parts[i].Color.ChangeColor(0xffffffff);
@@ -118,8 +115,7 @@ void CN3Sun::Render(__Matrix44& matView, __Matrix44& matProj)
 void CN3Sun::Tick()
 {
 	// 해의 색, 크기 변화 계산
-	int i;
-	for(i=0; i<NUM_SUNPART; ++i)
+	for(int i=0; i<NUM_SUNPART; ++i)
 	{
 		m_Parts[i].Color.Tick();
 		m_Parts[i].Delta.Tick();

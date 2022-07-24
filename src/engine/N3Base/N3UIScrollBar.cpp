@@ -122,8 +122,7 @@ void CN3UIScrollBar::operator = (const CN3UIScrollBar& other)
 void CN3UIScrollBar::CreateTrackBarAndBtns()
 {
 	__ASSERT(NULL == m_pTrackBarRef, "구성요소가 이미 할당되어 있어요");
-	int i;
-	for (i=0; i<NUM_BTN_TYPE; ++i)
+	for (int i=0; i<NUM_BTN_TYPE; ++i)
 	{
 		m_pBtnRef[i] = new CN3UIButton();
 		m_pBtnRef[i]->Init(this);

@@ -1552,7 +1552,7 @@ void CMagicProcess::ExecuteType5(int magicid, int sid, int tid, int data1, int d
 {
 	int damage = 0, send_index = 0, result = 1;     // Variable initialization. result == 1 : success, 0 : fail
 	char send_buff[128]; memset( send_buff, NULL, 128);
-	int i = 0, j = 0, k =0; int buff_test = 0; BOOL bType3Test = TRUE; BOOL bType4Test = TRUE; 	
+	int buff_test = 0; BOOL bType3Test = TRUE; BOOL bType4Test = TRUE; 	
 
 	_MAGIC_TABLE* pMagic = NULL;
 	pMagic = m_pMain->m_MagictableArray.GetData(magicid);   // Get main magic table.
@@ -1569,7 +1569,7 @@ void CMagicProcess::ExecuteType5(int magicid, int sid, int tid, int data1, int d
 
 	switch(pType->bType) {
 		case REMOVE_TYPE3:		// REMOVE TYPE 3!!!
-			for (i = 0 ; i < MAX_TYPE3_REPEAT ; i++) {
+			for (int i = 0 ; i < MAX_TYPE3_REPEAT ; i++) {
 				if (pTUser->m_bHPAmount[i] < 0) {
 					pTUser->m_fHPStartTime[i] = 0.0f;
 					pTUser->m_fHPLastTime[i] = 0.0f;   
@@ -1587,13 +1587,13 @@ void CMagicProcess::ExecuteType5(int magicid, int sid, int tid, int data1, int d
 			}
 
 			buff_test = 0;
-			for (j = 0 ; j < MAX_TYPE3_REPEAT ; j++) {
+			for (int j = 0 ; j < MAX_TYPE3_REPEAT ; j++) {
 				buff_test += pTUser->m_bHPDuration[j];
 			}
 			if (buff_test == 0) pTUser->m_bType3Flag = FALSE;	
 //
 			// Check for Type 3 Curses.
-			for (k = 0 ; k < MAX_TYPE3_REPEAT ; k++) {
+			for (int k = 0 ; k < MAX_TYPE3_REPEAT ; k++) {
 				if (pTUser->m_bHPAmount[k] < 0) {
 					bType3Test = FALSE;
 					break;
@@ -1719,13 +1719,13 @@ void CMagicProcess::ExecuteType5(int magicid, int sid, int tid, int data1, int d
 			//  end of Send Party Packet.....  */
 		
 			buff_test = 0;
-			for (i = 0 ; i < MAX_TYPE4_BUFF ; i++) {
+			for (int i = 0 ; i < MAX_TYPE4_BUFF ; i++) {
 				buff_test += pTUser->m_bType4Buff[i];
 			}
 			if (buff_test == 0) pTUser->m_bType4Flag = FALSE;
 
 			bType4Test = TRUE ;
-			for (j = 0 ; j < MAX_TYPE4_BUFF ; j++) {
+			for (int j = 0 ; j < MAX_TYPE4_BUFF ; j++) {
 				if (pTUser->m_bType4Buff[j] == 1) {
 					bType4Test = FALSE;
 					break;
@@ -1768,13 +1768,13 @@ void CMagicProcess::ExecuteType5(int magicid, int sid, int tid, int data1, int d
 				pTUser->Send2AI_UserUpdateInfo();	// AI Server에 바끤 데이타 전송....		
 			
 				buff_test = 0;
-				for (i = 0 ; i < MAX_TYPE4_BUFF ; i++) {
+				for (int i = 0 ; i < MAX_TYPE4_BUFF ; i++) {
 					buff_test += pTUser->m_bType4Buff[i];
 				}
 				if (buff_test == 0) pTUser->m_bType4Flag = FALSE;
 
 				bType4Test = TRUE ;
-				for (j = 0 ; j < MAX_TYPE4_BUFF ; j++) {
+				for (int j = 0 ; j < MAX_TYPE4_BUFF ; j++) {
 					if (pTUser->m_bType4Buff[j] == 1) {
 						bType4Test = FALSE;
 						break;

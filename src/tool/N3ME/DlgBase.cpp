@@ -122,7 +122,6 @@ BOOL CDlgBase::OnInitDialog()
 	/////////////////////////////////////
 
 
-	int i = 0;
 	CString str, strTmp;
 
 	/////////////////////////////////////
@@ -159,7 +158,7 @@ D3DTOP_BUMPENVMAP|D3DTOP_BUMPENVMAPLUMINANCE|D3DTOP_DOTPRODUCT|D3DTOP_MULTIPLYAD
 	// Shape
 	m_CBShapePart.ResetContent();
 //	int nPartCount = 
-//	for(i = 0; i < nPartCount; i++) { strTmp.Format("%d", i); m_CBShapePart.AddString(strTmp); }
+//	for(int i = 0; i < nPartCount; i++) { strTmp.Format("%d", i); m_CBShapePart.AddString(strTmp); }
 //	m_CBShapePart.SetCurSel(0);
 
 	m_LPShape.AddPropItem("소속", "", PIT_EDIT, "");
@@ -200,7 +199,7 @@ D3DTOP_BUMPENVMAP|D3DTOP_BUMPENVMAPLUMINANCE|D3DTOP_DOTPRODUCT|D3DTOP_MULTIPLYAD
 	m_CBChrPart.SetCurSel(0);
 
 	m_CBChrLOD.ResetContent();
-	for(i = 0; i < MAX_CHR_LOD; i++) { strTmp.Format("LOD : %d", i); m_CBChrLOD.AddString(strTmp); }
+	for(int i = 0; i < MAX_CHR_LOD; i++) { strTmp.Format("LOD : %d", i); m_CBChrLOD.AddString(strTmp); }
 	m_CBChrLOD.SetCurSel(0);
 
 	m_LPCPart.AddPropItem("Part Type", "", PIT_COMBO, "머리카락|얼굴|상체|하체|손|발|??|");
@@ -605,7 +604,7 @@ void CDlgBase::UpdateInfo()
 		int nPlug = m_CBChrPlug.GetCurSel();
 		int nPlugCount = pC->PlugCount();
 		m_CBChrPlug.ResetContent();
-		for(i = 0; i < nPlugCount; i++)
+		for(int i = 0; i < nPlugCount; i++)
 		{
 			CString szTmp;
 			szTmp.Format("Plug : %d", i);

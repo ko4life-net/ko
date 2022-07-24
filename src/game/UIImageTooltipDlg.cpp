@@ -132,7 +132,7 @@ void CUIImageTooltipDlg::SetPosSomething(int xpos, int ypos, int iNum)
 	SetPos(iX, iY);
 	SetSize(rect.right - rect.left, rect.bottom - rect.top);
 
-	for (i = 0; i < iNum; i++)
+	for (int i = 0; i < iNum; i++)
 	{
 		if (!m_pStr[i])	continue;		
 		rect2 = m_pStr[i]->GetRegion();
@@ -144,7 +144,7 @@ void CUIImageTooltipDlg::SetPosSomething(int xpos, int ypos, int iNum)
 			m_pStr[i]->SetString("  "+m_pstdstr[i]);
 	}
 
-	for (i = iNum; i < MAX_TOOLTIP_COUNT; i++ )
+	for (int i = iNum; i < MAX_TOOLTIP_COUNT; i++ )
 		m_pStr[i]->SetString("");
 
 	m_pImg->SetRegion(rect);

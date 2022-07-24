@@ -189,7 +189,7 @@ BOOL CServerDlg::OnInitDialog()
 	m_byTestMode = NOW_TEST_MODE;
 
 	// User Point Init
-	for(i=0; i<MAX_USER; i++)
+	for(int i=0; i<MAX_USER; i++)
 		m_pUser[i] = NULL;
 
 	// Server Start
@@ -235,7 +235,7 @@ BOOL CServerDlg::OnInitDialog()
 	//----------------------------------------------------------------------
 	m_Iocport.Init(MAX_SOCKET,1, 1);
 
-	for(i=0; i<MAX_SOCKET; i++) {
+	for(int i=0; i<MAX_SOCKET; i++) {
 		m_Iocport.m_SockArrayInActive[i] = new CGameSocket;
 	}
 
@@ -644,7 +644,6 @@ BOOL CServerDlg::GetNpcItemTable()
 {
 	CNpcItemSet NpcItemSet;
 	int nRowCount = 0;
-	short i;
 	int nItem = 0;
 
 	try
@@ -677,14 +676,14 @@ BOOL CServerDlg::GetNpcItemTable()
 		if(nRowCount == 0) return FALSE;
 
 		m_NpcItem.m_ppItem = new int* [m_NpcItem.m_nRow];
-		for(i = 0; i < m_NpcItem.m_nRow; i++)
+		for(int i = 0; i < m_NpcItem.m_nRow; i++)
 		{
 			m_NpcItem.m_ppItem[i] = new int[m_NpcItem.m_nField];
 		}
 
 		NpcItemSet.MoveFirst();
 
-		i = 0;
+		int i = 0;
 		while(!NpcItemSet.IsEOF())
 		{
 			m_NpcItem.m_ppItem[i][0] = NpcItemSet.m_sIndex;
@@ -952,7 +951,6 @@ BOOL CServerDlg::CreateNpcThread()
 	int		nSerial		= m_sMapEventNpc;
 	int		nPathSerial = 1;
 	int		nNpcCount	= 0;
-	int		i=0, j=0;
 	int nRandom = 0, nServerNum = 0;
 	double  dbSpeed = 0;
 
@@ -1003,7 +1001,7 @@ BOOL CServerDlg::CreateNpcThread()
 			nServerNum = GetServerNumber( NpcPosSet.m_ZoneID );
 
 			if( m_byZone == nServerNum || m_byZone == UNIFY_ZONE)	{
-				for(j=0; j<nMonsterNumber; j++)		{
+				for(int j=0; j<nMonsterNumber; j++)		{
 					CNpc*		pNpc		= new CNpc;
 					pNpc->m_sNid	= nSerial++;			// 서버 내에서의 고유 번호
 					pNpc->m_sSid	= (short)NpcPosSet.m_NpcID;		// MONSTER(NPC) Serial ID
@@ -1180,7 +1178,7 @@ BOOL CServerDlg::CreateNpcThread()
 			
 					pNpc->m_ZoneIndex		= -1;
 
-					for(i = 0; i < g_arZone.size(); i++)	{
+					for(int i = 0; i < g_arZone.size(); i++)	{
 						if(g_arZone[i]->m_nZoneNumber == pNpc->m_sCurZone)	{
 							pNpc->m_ZoneIndex = i;
 							break;
@@ -1255,7 +1253,7 @@ BOOL CServerDlg::CreateNpcThread()
 	int nThreadNumber = 0;
 	CNpcThread* pNpcThread = NULL;
 
-	for(i = 0; i < m_arNpc.GetSize(); i++)
+	for(int i = 0; i < m_arNpc.GetSize(); i++)
 	{
 		if( step == 0 )
 		{
@@ -1291,7 +1289,7 @@ BOOL CServerDlg::CreateNpcThread()
 	pNpcThread->pIOCP = &m_Iocport;
 	pNpcThread->m_sThreadNumber = 1000;
 
-	for(i = 0; i < NPC_NUM; i++) // 미리 최대 소환 NPC_NUM마리 메모리 할당
+	for(int i = 0; i < NPC_NUM; i++) // 미리 최대 소환 NPC_NUM마리 메모리 할당
 	{
 		CNpc*	pNpc = new CNpc;
 		pNpc->m_sNid = nSerial++;
@@ -1322,11 +1320,9 @@ BOOL CServerDlg::CreateNpcThread()
 //	NPC Thread 들을 작동시킨다.
 void CServerDlg::ResumeAI()
 {
-	int i, j;
-
-	for(i = 0; i < m_arNpcThread.size(); i++)
+	for(int i = 0; i < m_arNpcThread.size(); i++)
 	{
-		for(j = 0; j < NPC_NUM; j++)
+		for(int j = 0; j < NPC_NUM; j++)
 		{
 			m_arNpcThread[i]->m_ThreadInfo.pNpc[j] = m_arNpcThread[i]->m_pNpc[j];
 		}
@@ -1339,7 +1335,7 @@ void CServerDlg::ResumeAI()
 
 	// Event Npc Logic
 /*	m_arEventNpcThread[0]->m_ThreadInfo.hWndMsg = this->GetSafeHwnd();
-	for(j = 0; j < NPC_NUM; j++)
+	for(int j = 0; j < NPC_NUM; j++)
 	{
 		m_arEventNpcThread[0]->m_ThreadInfo.pNpc[j] = NULL;	// 초기 소환 몹이 당연히 없으므로 NULL로 작동을 안시킴
 		m_arEventNpcThread[0]->m_ThreadInfo.m_byNpcUsed[j] = 0;
@@ -1363,16 +1359,14 @@ BOOL CServerDlg::DestroyWindow()
 
 	if(m_UserLogFile.m_hFile != CFile::hFileNull) m_UserLogFile.Close();
 	if(m_ItemLogFile.m_hFile != CFile::hFileNull) m_ItemLogFile.Close();
-	
-	int i=0;
 
-	for(i = 0; i < m_arNpcThread.size(); i++)
+	for(int i = 0; i < m_arNpcThread.size(); i++)
 	{
 		WaitForSingleObject(m_arNpcThread[i]->m_pThread->m_hThread, INFINITE);
 	}
 
 	// Event Npc Logic
-/*	for(i = 0; i < m_arEventNpcThread.size(); i++)
+/*	for(int i = 0; i < m_arEventNpcThread.size(); i++)
 	{
 		WaitForSingleObject(m_arEventNpcThread[i]->m_pThread->m_hThread, INFINITE);
 	}	*/
@@ -1382,7 +1376,7 @@ BOOL CServerDlg::DestroyWindow()
 	// DB테이블 삭제 부분
 
 	// Map(Zone) Array Delete...
-	for( i=0; i<g_arZone.size(); i++ )
+	for( int i=0; i<g_arZone.size(); i++ )
 		delete g_arZone[i];
 	g_arZone.clear();
 
@@ -1395,13 +1389,13 @@ BOOL CServerDlg::DestroyWindow()
 		m_arNpcTable.DeleteAllData();
 	
 	// NpcThread Array Delete
-	for(i = 0; i < m_arNpcThread.size(); i++)
+	for(int i = 0; i < m_arNpcThread.size(); i++)
 		delete m_arNpcThread[i];
 	m_arNpcThread.clear();
 
 	// Event Npc Logic
 	// EventNpcThread Array Delete
-/*	for(i = 0; i < m_arEventNpcThread.size(); i++)
+/*	for(int i = 0; i < m_arEventNpcThread.size(); i++)
 		delete m_arEventNpcThread[i];
 	m_arEventNpcThread.clear();		*/
 
@@ -1448,7 +1442,7 @@ BOOL CServerDlg::DestroyWindow()
 		m_arNpc.DeleteAllData();
 
 	// User Array Delete
-	for(i = 0; i < MAX_USER; i++)	{
+	for(int i = 0; i < MAX_USER; i++)	{
 		if(m_pUser[i])	{
 			delete m_pUser[i];
 			m_pUser[i] = NULL;
@@ -1574,14 +1568,14 @@ void CServerDlg::AllNpcInfo()
 	// server alive check
 	CNpc* pNpc = NULL;
 	MAP* pMap = NULL;
-	int nZone = 0, i=0;
+	int nZone = 0;
 	int size = m_arNpc.GetSize();
 
 	int send_index = 0, zone_index = 0, packet_size = 0;
 	int count = 0, send_count = 0, send_tot = 0;
 	char send_buff[2048];		::ZeroMemory(send_buff, sizeof(send_buff));
 
-	for(i=0; i<m_sTotalMap; i++)	{
+	for(int i=0; i<m_sTotalMap; i++)	{
 		pMap = g_arZone[i];
 		if(pMap == NULL)	continue;
 		nZone = pMap->m_nZoneNumber;
@@ -1741,17 +1735,16 @@ void CServerDlg::DeleteAllUserList(int zone)
 	if(zone == 9999 && m_bFirstServerFlag == TRUE)	{						// 모든 소켓이 끊어진 상태...
 		CUser* pUser = NULL;
 		MAP* pMap = NULL;
-		int i=0;
 
 		TRACE("*** DeleteAllUserList - Start *** \n");
 
-		for(i=0; i<m_sTotalMap; i++)	{
+		for(int i=0; i<m_sTotalMap; i++)	{
 			pMap = g_arZone[i];
 			if(pMap == NULL)	continue;
-			for( i=0; i<pMap->m_sizeRegion.cx; i++ ) {
+			for( int k=0; k<pMap->m_sizeRegion.cx; k++ ) {
 				for( int j=0; j<pMap->m_sizeRegion.cy; j++ ) {
-					if( !pMap->m_ppRegion[i][j].m_RegionUserArray.IsEmpty() )
-						pMap->m_ppRegion[i][j].m_RegionUserArray.DeleteAllData();
+					if( !pMap->m_ppRegion[k][j].m_RegionUserArray.IsEmpty() )
+						pMap->m_ppRegion[k][j].m_RegionUserArray.DeleteAllData();
 				}
 			}
 		}
@@ -1760,7 +1753,7 @@ void CServerDlg::DeleteAllUserList(int zone)
 
 		EnterCriticalSection( &g_User_critical );
 		// User Array Delete
-		for(i = 0; i < MAX_USER; i++)	{
+		for(int i = 0; i < MAX_USER; i++)	{
 			pUser = m_pUser[i];
 			if(pUser == NULL)  continue;
 			delete m_pUser[i];
@@ -1949,7 +1942,7 @@ void CServerDlg::SyncTest()
 /*
 	fprintf(stream, "*****   User List  *****\n");
 
-	for(i=0; i<MAX_USER; i++)	{
+	for(int i=0; i<MAX_USER; i++)	{
 		//pUser = m_ppUserActive[i];
 		pUser = m_pUser[i];
 		if(pUser == NULL)		continue;
@@ -1957,17 +1950,14 @@ void CServerDlg::SyncTest()
 	}	
 
 	fprintf(stream, "*****   Region List  *****\n");
-	int k=0, total_user = 0, total_mon=0;
-	MAP* pMap = NULL;
-
-	for(k=0; k<m_sTotalMap; k++)	{
-		pMap = g_arZone[k];
+	for(int k=0; k<m_sTotalMap; k++)	{
+		MAP* pMap = g_arZone[k];
 		if(pMap == NULL)	continue;
-		for( i=0; i<pMap->m_sizeRegion.cx; i++ ) {
+		for( int i=0; i<pMap->m_sizeRegion.cx; i++ ) {
 			for( int j=0; j<pMap->m_sizeRegion.cy; j++ ) {
 				EnterCriticalSection( &g_User_critical );
-				total_user = pMap->m_ppRegion[i][j].m_RegionUserArray.GetSize();
-				total_mon = pMap->m_ppRegion[i][j].m_RegionNpcArray.GetSize();
+				int total_user = pMap->m_ppRegion[i][j].m_RegionUserArray.GetSize();
+				int total_mon = pMap->m_ppRegion[i][j].m_RegionNpcArray.GetSize();
 				LeaveCriticalSection( &g_User_critical );
 
 				if(total_user > 0 || total_mon > 0)	{
@@ -2176,7 +2166,7 @@ BOOL CServerDlg::SetSummonNpcData(CNpc* pNpc, int zone, float fx, float fz)
 
 	int test = 0;
 	
-	for(i = 0; i < NPC_NUM; i++ ) {
+	for(int i = 0; i < NPC_NUM; i++ ) {
 		test = m_arEventNpcThread[0]->m_ThreadInfo.m_byNpcUsed[i];
 		TRACE("setsummon == %d, used=%d\n", i, test);
 		if( m_arEventNpcThread[0]->m_ThreadInfo.m_byNpcUsed[i] == 0 )	{
@@ -2391,16 +2381,13 @@ BOOL CServerDlg::GetMagicType4Data()
 
 void CServerDlg::RegionCheck()
 {
-	int i=0,k=0, total_user = 0;
-	MAP* pMap = NULL;
-
-	for(k=0; k<m_sTotalMap; k++)	{
-		pMap = g_arZone[k];
+	for(int k=0; k<m_sTotalMap; k++)	{
+		MAP* pMap = g_arZone[k];
 		if(pMap == NULL)	continue;
-		for( i=0; i<pMap->m_sizeRegion.cx; i++ ) {
+		for( int i=0; i<pMap->m_sizeRegion.cx; i++ ) {
 			for( int j=0; j<pMap->m_sizeRegion.cy; j++ ) {
 				EnterCriticalSection( &g_User_critical );
-				total_user = pMap->m_ppRegion[i][j].m_RegionUserArray.GetSize();
+				int total_user = pMap->m_ppRegion[i][j].m_RegionUserArray.GetSize();
 				LeaveCriticalSection( &g_User_critical );
 				if( total_user > 0 )  	pMap->m_ppRegion[i][j].m_byMoving = 1;
 				else	pMap->m_ppRegion[i][j].m_byMoving = 0; 
@@ -2411,19 +2398,15 @@ void CServerDlg::RegionCheck()
 
 BOOL CServerDlg::AddObjectEventNpc(_OBJECT_EVENT* pEvent, int zone_number)
 {
-	int i=0, j=0, objectid=0;
-	CNpcTable*	pNpcTable = NULL;
-	BOOL bFindNpcTable = FALSE;
-	int offset = 0;
-	int nServerNum = 0;
-	nServerNum = GetServerNumber( zone_number );
+	int nServerNum = GetServerNumber( zone_number );
 	//if(m_byZone != zone_number)	 return FALSE;
 	//if(m_byZone != UNIFY_ZONE)	{
 	//	if(m_byZone != nServerNum)	 return FALSE;
 	//}
 
 	//if( zone_number > 201 )	return FALSE;	// test
-	pNpcTable = m_arNpcTable.GetData(pEvent->sIndex);
+	CNpcTable* pNpcTable = m_arNpcTable.GetData(pEvent->sIndex);
+	BOOL bFindNpcTable = FALSE;
 	if(pNpcTable == NULL)	{
 		bFindNpcTable = FALSE;
 		TRACE("#### AddObjectEventNpc Fail : [sid = %d], zone=%d #####\n", pEvent->sIndex, zone_number);
@@ -2605,12 +2588,8 @@ void CServerDlg::SendSystemMsg( char* pMsg, int zone, int type, int who )
 void CServerDlg::ResetBattleZone()
 {
 	TRACE("ServerDlg - ResetBattleZone() : start \n");
-	MAP* pMap = NULL;
-	CRoomEvent* pRoom = NULL ;
-	int i=0, j=0;
-
-	for( i=0; i<g_arZone.size(); i++)	{
-		pMap = g_arZone[i];
+	for(int i=0; i<g_arZone.size(); i++)	{
+		MAP* pMap = g_arZone[i];
 		if( !pMap ) continue;
 		if( pMap->m_byRoomEvent == 0 ) continue;		// 현재의 존이 던젼담당하는 존이 아니면 리턴..
 		//if( pMap->IsRoomStatusCheck() == TRUE )	continue;	// 전체방이 클리어 되었다면

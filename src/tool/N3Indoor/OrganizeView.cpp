@@ -1976,9 +1976,7 @@ void COrganizeView::RefreshFloorInfoAll(int iID)
 	std::vector<FloorInfo>	m_FloorVector;
 
 	CMainFrame* pFrm =  (CMainFrame* )AfxGetMainWnd();
-	FloorInfo FInfo;
-	int i; 
-	
+	FloorInfo FInfo;	
 	vfiter vfit = pFrm->m_FloorList.begin();
 	while(vfit != pFrm->m_FloorList.end())
 	{
@@ -1987,7 +1985,7 @@ void COrganizeView::RefreshFloorInfoAll(int iID)
 		vecVol.clear();
 
 		// Verify..
-		for (i = 0; i < iCount; i++)
+		for (int i = 0; i < iCount; i++)
 		{
 			if (iID != FInfo.m_vVolume[i]->m_iID)		
 				vecVol.push_back(FInfo.m_vVolume[i]);
@@ -1996,7 +1994,7 @@ void COrganizeView::RefreshFloorInfoAll(int iID)
 		iCount = vecVol.size();
 
 		// Verify..
-		for (i = 0; i < iCount; i++)
+		for (int i = 0; i < iCount; i++)
 			FInfo.m_vVolume.push_back(vecVol[i]);
 
 		if (iCount != 0)	// 한개라도 남아있으면.. 
@@ -2021,7 +2019,7 @@ void COrganizeView::RefreshFloorInfoAll(int iID)
 	pFrm->m_FloorList.clear();
 
 	iCount = m_FloorVector.size();
-	for (i = 0; i < iCount; i++)
+	for (int i = 0; i < iCount; i++)
 	{
 		pFrm->m_FloorList.push_back(m_FloorVector[i]);
 	}

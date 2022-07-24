@@ -353,9 +353,9 @@ void CMapMng::DeleteSelObjectFromOutputScene()
 		return;
 //	}
 
-	int i, iSize = m_SelOutputObjArray.GetSize();
+	int iSize = m_SelOutputObjArray.GetSize();
 	if (iSize == 0) return;
-	for (i=0; i<iSize; ++i)
+	for (int i=0; i<iSize; ++i)
 	{
 		CN3Transform* pSelObj = m_SelOutputObjArray.GetAt(i);
 		if (pSelObj == NULL) continue;
@@ -598,8 +598,8 @@ void CMapMng::Render()
 	if (m_pTerrain) m_pTerrain->Render();
 	if (m_pSceneOutput && !m_bHideObj) m_pSceneOutput->Render();
 
-	int i, iSize = m_SelOutputObjArray.GetSize();
-	for (i=0; i<iSize; ++i)
+	int iSize = m_SelOutputObjArray.GetSize();
+	for (int i=0; i<iSize; ++i)
 	{
 		CN3Transform* pSelObj = m_SelOutputObjArray.GetAt(i);
 		if (pSelObj == NULL) continue;
@@ -1035,9 +1035,8 @@ BOOL CMapMng::MouseMsgFilter(LPMSG pMsg)
 				__Vector3 vPos;
 				CN3Transform* pDestObj = NULL;
 
-				int j,iSize = m_SelOutputObjArray.GetSize();
-				
-				for(j=0;j<iSize;++j)
+				int iSize = m_SelOutputObjArray.GetSize();
+				for(int j=0;j<iSize;++j)
 				{
 					pDestObj = m_SelOutputObjArray.GetAt(j);
 					if(pDestObj==NULL) continue;
@@ -1169,7 +1168,7 @@ CN3Base* CMapMng::Pick(POINT point, int* pnPart)	// Object Picking...
 	CN3Chr* pChr;
 	CN3Mesh* pMesh;
 	int nCC = m_pSceneOutput->ChrCount();
-	for(i = 0; i < nCC; i++)
+	for(int i = 0; i < nCC; i++)
 	{
 		pChr = m_pSceneOutput->ChrGet(i);
 		_ASSERT(pChr);
@@ -1197,7 +1196,7 @@ CN3Base* CMapMng::Pick(POINT point, int* pnPart)	// Object Picking...
 
 	int nPart = -1;
 	__Vector3 vI;
-	for(i = 0; i < nSortCount; i++)
+	for(int i = 0; i < nSortCount; i++)
 	{
 //		bIntersect = pick.PickByBox(sort[i].vMin, sort[i].vMax, vI);
 		nPart = sort[i].pObj->CheckCollisionPrecisely(true, point.x, point.y);
@@ -1291,8 +1290,8 @@ void CMapMng::SelectObjectByDragRect(RECT* pRect, BOOL bAdd)
 
 	D3DVIEWPORT9 vp = pEng->s_CameraData.vp;
 
-	int i, iSC = m_pSceneOutput->ShapeCount();
-	for (i=0; i<iSC;)
+	int iSC = m_pSceneOutput->ShapeCount();
+	for (int i=0; i<iSC;)
 	{
 		CN3TransformCollision*	pObj = m_pSceneOutput->ShapeGet(i);
 		D3DXVECTOR4 v;
@@ -1475,7 +1474,7 @@ void CMapMng::MakeServerDataFiles(LPCTSTR lpszPathName)
 	//
 	DWORD dwNum;
 	int iEventObjectCount = 0; // 먼저 갯수를 세고..
-	for(i = 0; i < nSC; i++)
+	for(int i = 0; i < nSC; i++)
 	{
 		CN3Shape* pShape = m_pSceneOutput->ShapeGet(i);
 		if(pShape->m_iEventID || pShape->m_iEventType || pShape->m_iNPC_ID || pShape->m_iNPC_Status ) // 이벤트가 있으면
@@ -1483,7 +1482,7 @@ void CMapMng::MakeServerDataFiles(LPCTSTR lpszPathName)
 	}
 
 	WriteFile(hFile, &iEventObjectCount, 4, &dwNum, NULL);
-	for(i = 0; i < nSC; i++)
+	for(int i = 0; i < nSC; i++)
 	{
 		CN3Shape* pShape = m_pSceneOutput->ShapeGet(i);
 		short sEvent = 0; __Vector3 vPos;
@@ -1869,8 +1868,8 @@ void CMapMng::Invalidate()
 void CMapMng::DropSelObjToTerrain()
 {// 선택한 객체를 지형에 붙인다.(Y값만 조정)
 	if (m_pTerrain == NULL) return;
-	int i, iSize = m_SelOutputObjArray.GetSize();
-	for (i=0; i<iSize; ++i)
+	int iSize = m_SelOutputObjArray.GetSize();
+	for (int i=0; i<iSize; ++i)
 	{
 		CN3Transform* pSelObj = m_SelOutputObjArray.GetAt(i);
 		ASSERT(pSelObj);
@@ -1939,15 +1938,15 @@ void CMapMng::RenderGrid(float fGridSize, float fMaxDistance)	// fGridSize크기로
 	if (fGridSize != fPrevGridSize || fMaxDistance != fPrevMaxDistance)
 	{
 		fPrevGridSize = fGridSize;		fPrevMaxDistance = fMaxDistance;
-		int i, iCount = (int)(fMaxDistance/fGridSize);
+		int iCount = (int)(fMaxDistance/fGridSize);
 		const D3DCOLOR color = 0xff00ff00;
 		iVC=0;
-		for (i=0; i<iCount; ++i)
+		for (int i=0; i<iCount; ++i)
 		{
 			pVertices[iVC++].Set(i*fGridSize, 0, 0, color);
 			pVertices[iVC++].Set(i*fGridSize, 0, fMaxDistance, color);
 		}
-		for (i=0; i<iCount; ++i)
+		for (int i=0; i<iCount; ++i)
 		{
 			pVertices[iVC++].Set(0, 0, i*fGridSize, color);
 			pVertices[iVC++].Set(fMaxDistance, 0, i*fGridSize, color);
@@ -1995,10 +1994,10 @@ void CMapMng::SaveObjectPostData(LPCTSTR lpszFileName)
 	char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
 	_splitpath(lpszFileName, szDrive, szDir, szFName, szExt);
 
-	int i, iSC = m_pSceneOutput->ShapeCount();
+	int iSC = m_pSceneOutput->ShapeCount();
 	fprintf(stream, "Shape Count : %d\n", iSC);
 
-	for(i=0; i<iSC; ++i)
+	for(int i=0; i<iSC; ++i)
 	{
 		CN3Shape* pShape = m_pSceneOutput->ShapeGet(i);
 		ASSERT(pShape);
@@ -2033,11 +2032,11 @@ void CMapMng::SaveObjectPostData(LPCTSTR lpszFileName)
 	char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
 	_splitpath(lpszFileName, szDrive, szDir, szFName, szExt); // 파일 이름과 확장자만 갖고..
 
-	int i, iSC = m_pSceneOutput->ShapeCount();
+	int iSC = m_pSceneOutput->ShapeCount();
 	fprintf(stream, "Shape Post Count : %d\n", iSC);
 
 	char szSFN[MAX_PATH] = "";
-	for(i=0; i<iSC; ++i)
+	for(int i=0; i<iSC; ++i)
 	{
 		CN3Shape* pShape = m_pSceneOutput->ShapeGet(i);
 
@@ -2087,7 +2086,7 @@ void CMapMng::SaveObjectPostDataPartition(LPCTSTR lpszFileName, float psx, float
 	float ex = sx + width;
 	float ez = sz + width;
 
-	int i, iSC = m_pSceneOutput->ShapeCount();
+	int iSC = m_pSceneOutput->ShapeCount();
 
 	std::list<int> ShapeList;
 	ShapeList.clear();
@@ -2095,7 +2094,7 @@ void CMapMng::SaveObjectPostDataPartition(LPCTSTR lpszFileName, float psx, float
 	CProgressBar ProgressBar;
 	ProgressBar.Create("Pick out Objects.", 50, iSC);
 
-	for(i=0; i<iSC; ++i)
+	for(int i=0; i<iSC; ++i)
 	{
 		ProgressBar.StepIt();
 		CN3Shape* pShape = m_pSceneOutput->ShapeGet(i);
@@ -2198,12 +2197,12 @@ void CMapMng::LoadObjectPostData(LPCTSTR lpszFileName)
 	}
 	else // 새로 만든 데이터이다..
 	{
-		int i = 0, iSC = 0;
+		int iSC = 0;
 		sscanf(szFirstLine, "Shape Post Count : %d\n", &iSC);
 
 		char szSFN[MAX_PATH] = "", szSFN2[MAX_PATH] = "";
 		char szLine[1024] = "";
-		for(i=0; i<iSC; ++i)
+		for(int i=0; i<iSC; ++i)
 		{
 			CN3Shape* pShape = new CN3Shape();
 			m_pSceneOutput->ShapeAdd(pShape); // 추가..
@@ -2282,12 +2281,12 @@ void CMapMng::ImportPostDataFromScene(const char *szFileName)
 	ReadFile(hFile, &fFrmStart, 4, &dwRWC, NULL); // 전체 프레임.
 	ReadFile(hFile, &fFrmEnd, 4, &dwRWC, NULL); // 전체 프레임.
 
-	int i = 0, nL = 0;
+	int nL = 0;
 	char szName[512] = "";
 
 	int nCC = 0;
 	ReadFile(hFile, &nCC, 4, &dwRWC, NULL); // 카메라..
-	for(i = 0; i < nCC; i++)
+	for(int i = 0; i < nCC; i++)
 	{
 		ReadFile(hFile, &nL, 4, &dwRWC, NULL);
 		if(nL <= 0) continue;
@@ -2298,7 +2297,7 @@ void CMapMng::ImportPostDataFromScene(const char *szFileName)
 
 	int nLC = 0;
 	ReadFile(hFile, &nLC, 4, &dwRWC, NULL); // 카메라..
-	for(i = 0; i < nLC; i++) 
+	for(int i = 0; i < nLC; i++) 
 	{
 		ReadFile(hFile, &nL, 4, &dwRWC, NULL);
 		if(nL <= 0) continue;
@@ -2309,7 +2308,7 @@ void CMapMng::ImportPostDataFromScene(const char *szFileName)
 
 	int nSC = 0;
 	ReadFile(hFile, &nSC, 4, &dwRWC, NULL); // Shapes..
-	for(i = 0; i < nSC; i++)
+	for(int i = 0; i < nSC; i++)
 	{
 		ReadFile(hFile, &nL, 4, &dwRWC, NULL);
 		if(nL <= 0) continue;
@@ -2323,7 +2322,7 @@ void CMapMng::ImportPostDataFromScene(const char *szFileName)
 
 	int nChrC = 0;
 	ReadFile(hFile, &nChrC, 4, &dwRWC, NULL); // 캐릭터
-	for(i = 0; i < nChrC; i++)
+	for(int i = 0; i < nChrC; i++)
 	{
 		ReadFile(hFile, &nL, 4, &dwRWC, NULL);
 		if(nL <= 0) continue;
@@ -2471,13 +2470,13 @@ void CMapMng::DeleteUnusedFiles()
 	// 파일 지우기 대화상자 띄우기..
 	CDlgUnusedFiles dlg;
 	int iUFC = unusedFNs.size();
-	for(i = 0; i < iUFC; i++)
+	for(int i = 0; i < iUFC; i++)
 	{
 		dlg.m_FileNames.Add(unusedFNs[i].c_str());
 	}
 
 	int iIFC = invalidFNs.size();
-	for(i = 0; i < iIFC; i++)
+	for(int i = 0; i < iIFC; i++)
 	{
 		dlg.m_InvalidFileNames.Add(invalidFNs[i].c_str());
 	}
@@ -2521,7 +2520,7 @@ void CMapMng::DeleteOverlappedObjects() // 위치가 겹친 젝트를 찾는다.
 	}
 
 	iSC = OverlappedObjects.size();
-	for(i = 0; i < iSC; i++)
+	for(int i = 0; i < iSC; i++)
 	{
 		m_pSceneOutput->ShapeDelete(OverlappedObjects[i]); // 겹친거 지우기..
 	}
@@ -2550,7 +2549,7 @@ void CMapMng::DeleteSelectedSourceObjects()
 	}
 
 	iSC = SameObjects.size();
-	for(i = 0; i < iSC; i++)
+	for(int i = 0; i < iSC; i++)
 	{
 		m_pSceneOutput->ShapeDelete(SameObjects[i]); // 겹친거 지우기..
 	}
@@ -2624,8 +2623,8 @@ void CMapMng::SetEditState(ENUM_EDIT_STATE eEditStat)
 
 			//	선택한 것들을 백업하고
 			CN3Transform* pDestObj = NULL;
-			int j, iSize = m_SelOutputObjArray.GetSize();
-			for(j=0;j<iSize;++j)
+			int iSize = m_SelOutputObjArray.GetSize();
+			for(int j=0;j<iSize;++j)
 			{
 				pDestObj = m_SelOutputObjArray.GetAt(j);
 				if(pDestObj==NULL) continue;
@@ -2645,9 +2644,7 @@ void CMapMng::SetEditState(ENUM_EDIT_STATE eEditStat)
 			{
 				CN3Transform* pDestObj = NULL, *pNewObj=NULL;
 				__Vector3 vNewPos,vObjPos;
-				int j, iSize;
-
-				iSize = m_SelOutputObjBack.GetSize();
+				int iSize = m_SelOutputObjBack.GetSize();
 				if(iSize==0) return;	
 
 				//	찍을 새로운위치를 입력
@@ -2665,7 +2662,7 @@ void CMapMng::SetEditState(ENUM_EDIT_STATE eEditStat)
 				}
 
 				m_SelOutputObjArray.RemoveAll();	//	기존 선택된 정보를 지우고
-				for(j=0;j<iSize;++j)
+				for(int j=0;j<iSize;++j)
 				{
 					pDestObj = m_SelOutputObjBack.GetAt(j);	//	백업된 데이터를 찾는다
 					if(pDestObj==NULL) continue;

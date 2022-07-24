@@ -1667,7 +1667,7 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack* pDataPack, int& iOffset)
 	int iItemDurabilityInSlots[ITEM_SLOT_COUNT]; memset(iItemDurabilityInSlots, -1, sizeof(iItemDurabilityInSlots));
 	int iItemCountInSlots[ITEM_SLOT_COUNT]; memset(iItemCountInSlots, -1, sizeof(iItemCountInSlots));
 
-	for ( i = 0; i < ITEM_SLOT_COUNT; i++ )				// 슬롯 갯수마큼..
+	for ( int i = 0; i < ITEM_SLOT_COUNT; i++ )				// 슬롯 갯수마큼..
 	{
 		iItemIDInSlots[i]			= CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
 		iItemDurabilityInSlots[i]	= CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
@@ -1700,7 +1700,7 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack* pDataPack, int& iOffset)
 	int iItemCountInInventorys[MAX_ITEM_INVENTORY]; memset(iItemCountInInventorys, -1, sizeof(iItemCountInInventorys));
 	int iItemDurabilityInInventorys[MAX_ITEM_INVENTORY]; memset(iItemDurabilityInInventorys, -1, sizeof(iItemDurabilityInInventorys));
 
-	for ( i = 0; i < MAX_ITEM_INVENTORY; i++ )				// 슬롯 갯수마큼..
+	for ( int i = 0; i < MAX_ITEM_INVENTORY; i++ )				// 슬롯 갯수마큼..
 	{
 		iItemIDInInventorys[i]			= CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
 		iItemDurabilityInInventorys[i]	= CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
@@ -1710,7 +1710,7 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack* pDataPack, int& iOffset)
 	m_pUIInventory->ReleaseItem();
 
 	std::string szResrcFN, szIconFN;
-	for ( i = 0; i < ITEM_SLOT_COUNT; i++ )				// 슬롯 갯수마큼..
+	for ( int i = 0; i < ITEM_SLOT_COUNT; i++ )				// 슬롯 갯수마큼..
 	{
 		if(0 == iItemIDInSlots[i]) continue;
 
@@ -1795,7 +1795,7 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack* pDataPack, int& iOffset)
 
 	// 인벤토리..
 	int iItemCount = 0;
-	for ( i = 0; i < MAX_ITEM_INVENTORY; i++ )				// 인벤토리 갯수만큼..	
+	for ( int i = 0; i < MAX_ITEM_INVENTORY; i++ )				// 인벤토리 갯수만큼..	
 	{
 		if(!iItemIDInInventorys[i]) continue;
 
@@ -2415,7 +2415,7 @@ bool CGameProcMain::MsgRecv_UserInAndRequest(DataPack* pDataPack, int& iOffset)
 		CAPISocket::MP_AddShort(&(byBuff[0]), iOffset, iNewUPCCount);		// 아이디 갯수..
 		
 		itID = m_SetUPCID.begin(); itIDEnd = m_SetUPCID.end();
-		for(i = 0; itID != itIDEnd; itID++, i++)
+		for(int i = 0; itID != itIDEnd; itID++, i++)
 		{
 			iID = *itID;
 			CAPISocket::MP_AddShort(&(byBuff[0]), iOffset, iID);			// 자세한 정보가 필요한 아이디들..
@@ -2767,7 +2767,7 @@ bool CGameProcMain::MsgRecv_NPCInAndRequest(DataPack* pDataPack, int& iOffset)
 		CAPISocket::MP_AddShort(&(byBuff[0]), iOffset, iNewNPCCount);		// 아이디 갯수..
 		
 		itID = m_SetNPCID.begin(); itIDEnd = m_SetNPCID.end();
-		for(i = 0; itID != itIDEnd; itID++, i++)
+		for(int i = 0; itID != itIDEnd; itID++, i++)
 		{
 			iID = *itID;
 			CAPISocket::MP_AddShort(&(byBuff[0]), iOffset, iID);			// 자세한 정보가 필요한 아이디들..
@@ -5976,7 +5976,6 @@ void CGameProcMain::MsgRecv_SkillPointInit(DataPack* pDataPack, int& iOffset)		/
 {
 	BYTE	bType		= CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);	
 	DWORD	dwGold		= CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);	
-	int i;
 	char szBuf[256] = "";
 	std::string szMsg; 
 
@@ -5990,7 +5989,7 @@ void CGameProcMain::MsgRecv_SkillPointInit(DataPack* pDataPack, int& iOffset)		/
 
 		case 0x01:	// 성공..
 			m_pUISkillTreeDlg->m_iSkillInfo[0] = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-			for ( i = 1; i < 9; i++ )
+			for ( int i = 1; i < 9; i++ )
 				m_pUISkillTreeDlg->m_iSkillInfo[i] = 0;
 			m_pUISkillTreeDlg->InitIconUpdate();
 
@@ -6579,7 +6578,7 @@ void CGameProcMain::MsgRecv_Knights_GradeChangeAll(DataPack* pDataPack, int& iOf
 		int iIDTmp = pUPC->m_InfoExt.iKnightsID;
 		if(iIDTmp <= 0) continue;
 
-		for(i = 0; i < iCount; i++)
+		for(int i = 0; i < iCount; i++)
 		{
 			if(iIDs[i] == iIDTmp)
 			{

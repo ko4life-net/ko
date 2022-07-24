@@ -14,8 +14,7 @@
 CN3EngTool::CN3EngTool()
 {
 	// 淑切識 持失..
-	int i = 0;
-	for(i = -10; i < 10; i++)
+	for(int i = -10; i < 10; i++)
 	{
 		m_VAxis[ 0 + i + 10].Set(i * 500.0f, 0, 0, 0xffff0000); // X
 		m_VAxis[20 + i + 10].Set(0, i * 500.0f, 0, 0xff00ff00); // Y
