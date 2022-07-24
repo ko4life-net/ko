@@ -868,9 +868,10 @@ void CSubProcPerTrade::ReceiveMsgPerTradeOtherAdd(int iItemID, int iCount, int i
 			return;
 		}
 
+		int i;
 		if( (pItem->byContable == UIITEM_TYPE_COUNTABLE) || (pItem->byContable == UIITEM_TYPE_COUNTABLE_SMALL) )
 		{
-			for( int i = 0; i < MAX_ITEM_PER_TRADE; i++ )
+			for( i = 0; i < MAX_ITEM_PER_TRADE; i++ )
 			{
 				if( (m_pUIPerTradeDlg->m_pPerTradeOther[i]) && (m_pUIPerTradeDlg->m_pPerTradeOther[i]->pItemBasic->dwID == pItem->dwID) )
 				{
@@ -941,7 +942,7 @@ void CSubProcPerTrade::ReceiveMsgPerTradeOtherAdd(int iItemID, int iCount, int i
 		}
 		else
 		{
-			for( int i = 0; i < MAX_ITEM_PER_TRADE; i++ )
+			for( i = 0; i < MAX_ITEM_PER_TRADE; i++ )
 			{
 				if (m_pUIPerTradeDlg->m_pPerTradeOther[i] == NULL)	
 				{

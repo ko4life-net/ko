@@ -183,7 +183,7 @@ bool CPvsMgr::Load(HANDLE hFile)
 	CPortalVolume* pVol = NULL, *pVolTo = NULL;
 	int iID;
 
-	for( i = 0; i < iCount; i++ )
+	for( int i = 0; i < iCount; i++ )
 	{
 		ReadFile(hFile, &iID, sizeof(int), &dwNum, NULL);
 		pVol = new CPortalVolume;

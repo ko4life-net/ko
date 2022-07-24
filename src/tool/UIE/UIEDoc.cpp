@@ -381,9 +381,8 @@ void CUIEDoc::OnInsertProgress()
 		else pFrm->MessageBox("UV좌표 설정 및 기타 설정을 해야 Progress가 보일 것입니다.");
 		return;
 	}
-	int i;
 	CRect rcRegion;
-	for (i=0; i<CN3UIProgress::NUM_IMAGETYPE; ++i)
+	for (int i=0; i<CN3UIProgress::NUM_IMAGETYPE; ++i)
 	{
 		if (CN3UIProgress::IMAGETYPE_BKGND == i) pUIImage = pUI->GetBkGndImgRef();
 		else if (CN3UIProgress::IMAGETYPE_FRGND == i) pUIImage = pUI->GetFrGndImgRef();
@@ -670,9 +669,8 @@ BOOL CUIEDoc::SetTrackBarInfos(CN3UITrackBar* pUI)
 	char* szImageTypeNames[2] = {szNames[0], szNames[1]};
 	dlg.SetImageTypes(2, szImageTypeNames);
 	if (IDCANCEL == dlg.DoModal())	return FALSE;
-	int i;
 	CRect rcRegion;
-	for (i=0; i<CN3UITrackBar::NUM_IMAGETYPE; ++i)
+	for (int i=0; i<CN3UITrackBar::NUM_IMAGETYPE; ++i)
 	{
 		if (CN3UITrackBar::IMAGETYPE_BKGND == i) pUIImage = pUI->GetBkGndImgRef();
 		else if (CN3UITrackBar::IMAGETYPE_THUMB == i) pUIImage = pUI->GetThumbImgRef();
@@ -713,9 +711,8 @@ BOOL CUIEDoc::SetButtonInfos(CN3UIButton* pUI)
 	char* szImageTypeNames[4] = {szNames[0], szNames[1], szNames[2], szNames[3]};
 	dlg.SetImageTypes(4, szImageTypeNames);
 	if (IDCANCEL == dlg.DoModal()) return FALSE;
-	int i;
 	CRect rcRegion;
-	for (i=0; i<CN3UIButton::NUM_BTN_STATE; ++i)
+	for (int i=0; i<CN3UIButton::NUM_BTN_STATE; ++i)
 	{
 		pUIImage = pUI->GetImageRef((CN3UIButton::eBTN_STATE)i);
 		ASSERT(pUIImage);
@@ -898,7 +895,8 @@ void CUIEDoc::OnEditMakeGroup()
 	CN3UIBase* pUIFirst = NULL;
 	it_UI it = m_SelectedUIs.begin(), itEnd = m_SelectedUIs.end();
 	bool bOverLapped = false;
-	for(int iUIC = 0; it != itEnd; it++, iUIC++)
+	int iUIC = 0;
+	for(; it != itEnd; it++, iUIC++)
 	{
 		pUI = *it;
 		if(iUIC == iUIC) pUIFirst = pUI;

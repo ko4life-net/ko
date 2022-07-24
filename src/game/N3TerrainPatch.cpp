@@ -140,7 +140,7 @@ void CN3TerrainPatch::Init(CN3Terrain* pTerrain)
 	m_pVB = NULL;
 	m_pRefColorTex = NULL;
 
-	for(i=0;i<2;i++) 
+	for(int i=0;i<2;i++) 
 	{
 		m_pTileTexIndx[i] = new int [PATCH_TILE_SIZE*PATCH_TILE_SIZE];
 		memset(m_pTileTexIndx[i], -1, sizeof(int)*PATCH_TILE_SIZE*PATCH_TILE_SIZE);
@@ -899,7 +899,7 @@ void CN3TerrainPatch::Render()
 		hr = s_lpD3DDev->SetRenderState( D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 		hr = s_lpD3DDev->SetRenderState( D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 		
-		for(i=0;i<m_NumLightMapTex;i++)
+		for(int i=0;i<m_NumLightMapTex;i++)
 		{
 			s_lpD3DDev->SetTexture( 0, m_pRefLightMapTex[i]->Get());
 			hr = s_lpD3DDev->DrawPrimitive( D3DPT_TRIANGLEFAN, (i<<2), 2);

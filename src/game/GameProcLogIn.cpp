@@ -106,7 +106,7 @@ void CGameProcLogIn::Init()
 	int iServerCount = GetPrivateProfileInt("Server", "Count", 0, szIniPath);
 
 	char szIPs[256][32]; memset(szIPs, 0, sizeof(szIPs));
-	for(i = 0; i < iServerCount; i++)
+	for(int i = 0; i < iServerCount; i++)
 	{
 		char szKey[32] = "";
 		sprintf(szKey, "IP%d", i);
@@ -192,7 +192,7 @@ void CGameProcLogIn::Render()
 */
 
 	for(int i = 0; i < 8; i++) 	CN3Base::s_lpD3DDev->LightEnable(i, FALSE);
-	for(i = 0; i < 3; i++) 	m_pLights[i]->Apply();
+	for(int i = 0; i < 3; i++) 	m_pLights[i]->Apply();
 
 	// 라이트 잡기..
 /*	D3DLIGHT9 lgt0, lgt1, lgt2;

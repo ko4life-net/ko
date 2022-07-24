@@ -80,8 +80,7 @@ void CTransDummy::InitDummyCube(int iType, __DUMMYCUBE* pDummyCube, __Vector3& v
 	pDummyCube->Vertices[30].Set(vCubeV[6], vCubeN[5], color);	pDummyCube->Vertices[31].Set(vCubeV[2], vCubeN[5], color);	pDummyCube->Vertices[32].Set(vCubeV[1], vCubeN[5], color);
 	pDummyCube->Vertices[33].Set(vCubeV[6], vCubeN[5], color);	pDummyCube->Vertices[34].Set(vCubeV[1], vCubeN[5], color);	pDummyCube->Vertices[35].Set(vCubeV[5], vCubeN[5], color);
 
-	int i;
-	for (i=0; i<NUM_CUBEVERTEX; ++i)
+	for (int i=0; i<NUM_CUBEVERTEX; ++i)
 	{
 		pDummyCube->Vertices[i].x += vOffset.x;
 		pDummyCube->Vertices[i].y += vOffset.y;
@@ -103,13 +102,12 @@ void CTransDummy::Tick()
 	ReCalcMatrix();
 
 	// 거리에 따라 정렬
-	int i;
-	for (i=0; i<NUM_DUMMY; ++i)
+	for (int i=0; i<NUM_DUMMY; ++i)
 	{
 		__Vector3 vPos = m_DummyCubes[i].vCenterPos*m_Matrix;
 		m_DummyCubes[i].fDistance = (vPos - s_CameraData.vEye).Magnitude();
 	}
-	for (i=0; i<NUM_DUMMY; ++i) m_pSortedCubes[i] = &(m_DummyCubes[i]);
+	for (int i=0; i<NUM_DUMMY; ++i) m_pSortedCubes[i] = &(m_DummyCubes[i]);
 	qsort(m_pSortedCubes, sizeof(__DUMMYCUBE*), NUM_DUMMY, SortCube);
 }
 
@@ -152,8 +150,7 @@ void CTransDummy::Render()
 
 	// Cube 그리기
 	hr = s_lpD3DDev->SetFVF(FVF_XYZNORMALCOLOR);
-	int i;
-	for (i=0; i<NUM_DUMMY; ++i)
+	for (int i=0; i<NUM_DUMMY; ++i)
 	{
 		ASSERT(m_pSortedCubes[i]);
 		hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 12, m_pSortedCubes[i]->Vertices, sizeof(__VertexXyzNormalColor));
@@ -186,10 +183,9 @@ __DUMMYCUBE* CTransDummy::Pick(int x, int y)
 	CPick pick;
 	pick.SetPickXY(x, y);
 
-	int i, j;
-	for (i=NUM_DUMMY-1; i>=0; --i)
+	for (int i=NUM_DUMMY-1; i>=0; --i)
 	{
-		for (j=0; j<12; ++j)
+		for (int j=0; j<12; ++j)
 		{
 			__Vector3 v1, v2, v3;
 			__VertexXyzNormalColor* pVertex;
@@ -310,11 +306,11 @@ void CTransDummy::GetPickRay(POINT point, __Vector3& vDir, __Vector3& vOrig)
 
 void CTransDummy::TransDiff(__Vector3* pvDiffPos, __Quaternion* pqDiffRot, __Vector3* pvDiffScale)
 {
-	int i, iSize = m_SelObjArray.GetSize();
+	int iSize = m_SelObjArray.GetSize();
 	if (iSize<=0) return;
 	if (pvDiffPos)
 	{
-		for (i=0; i<iSize; ++i)
+		for (int i=0; i<iSize; ++i)
 		{
 			CN3Transform* pSelObj = m_SelObjArray.GetAt(i);
 			_ASSERT(pSelObj);
@@ -330,7 +326,7 @@ void CTransDummy::TransDiff(__Vector3* pvDiffPos, __Quaternion* pqDiffRot, __Vec
 
 		D3DXMatrixRotationQuaternion(&mtx44Rotate,pqDiffRot);
 
-		for(i=0; i<iSize; ++i)
+		for(int i=0; i<iSize; ++i)
 		{
 			pSelObj = m_SelObjArray.GetAt(i);
 			_ASSERT(pSelObj);
@@ -348,7 +344,7 @@ void CTransDummy::TransDiff(__Vector3* pvDiffPos, __Quaternion* pqDiffRot, __Vec
 	}
 	if (pvDiffScale)
 	{
-		for (i=0; i<iSize; ++i)
+		for (int i=0; i<iSize; ++i)
 		{
 			CN3Transform* pSelObj = m_SelObjArray.GetAt(i);
 			_ASSERT(pSelObj && m_vPrevScaleArray);

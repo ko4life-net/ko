@@ -2173,7 +2173,7 @@ void CPlayerBase::RenderShadow(float fAngle)
 	for( int i = 0; i < SHADOW_SIZE; i++ )
 		m_bitset[i].Resize(SHADOW_SIZE);
 
-	for ( i = 0; i < 4; i++ )
+	for ( int i = 0; i < 4; i++ )
 	{
 		m_vTVertex[i]  = m_pvVertex[i];	
 		m_vTVertex[i] *= mV;
@@ -2186,7 +2186,7 @@ void CPlayerBase::RenderShadow(float fAngle)
 	if (fScale > 6.6f)
 	{
 		m_fShaScale = 2.2f;
-		for ( i = 0; i < 4; i++ )
+		for ( int i = 0; i < 4; i++ )
 		{
 			m_vTVertex[i]  = m_pvVertex[i];	
 			m_vTVertex[i] *= m_fShaScale;
@@ -2195,7 +2195,7 @@ void CPlayerBase::RenderShadow(float fAngle)
 	}
 	else
 	{
-		for ( i = 0; i < 4; i++ )
+		for ( int i = 0; i < 4; i++ )
 		{
 			m_vTVertex[i]  = m_pvVertex[i];	
 			m_vTVertex[i] *= mtPos;
@@ -2226,13 +2226,13 @@ void CPlayerBase::RenderShadow(float fAngle)
 	__Vector3 vLP; vLP.Set(-zVal, 0.0f, 0.0f );	vLP *= mtxRZ;	vLP.Normalize();
 
 	int iPC = m_Chr.PartCount();
-	for( i = 0; i < iPC; i++)
+	for( int i = 0; i < iPC; i++)
 	{
 		CalcPart(m_Chr.Part(i), iLODTemp, vLP);
 	}
 
 	iPC = m_Chr.PlugCount();
-	for(i = 0; i < iPC; i++)
+	for(int i = 0; i < iPC; i++)
 	{
 		CalcPlug(m_Chr.Plug(i), m_Chr.MatrixGet(m_Chr.Plug(i)->m_nJointIndex), mVvar, vLP);
 	}
@@ -2240,7 +2240,7 @@ void CPlayerBase::RenderShadow(float fAngle)
 	// 렌더링하기 전에 스케일을 줄인다..
 	if (fScale > 6.6f)
 	{
-		for ( i = 0; i < 4; i++ )
+		for ( int i = 0; i < 4; i++ )
 		{
 			m_vTVertex[i]  = m_pvVertex[i];	
 			m_vTVertex[i] *= 0.82f;	
@@ -2250,7 +2250,7 @@ void CPlayerBase::RenderShadow(float fAngle)
 	}
 	else
 	{
-		for ( i = 0; i < 4; i++ )
+		for ( int i = 0; i < 4; i++ )
 		{
 			m_vTVertex[i]  = m_pvVertex[i];	
 			m_vTVertex[i] *= 0.5f;	
@@ -2267,7 +2267,7 @@ void CPlayerBase::RenderShadow(float fAngle)
 	LPWORD pDst16 = (LPWORD)LR.pBits;
 	WORD dwColor = SHADOW_COLOR;
 	dwColor = dwColor << 12;
-	for( i = 0; i < SHADOW_SIZE; i++ )
+	for( int i = 0; i < SHADOW_SIZE; i++ )
 	{
 		for(int j = 0; j < SHADOW_SIZE; j++ )
 		{

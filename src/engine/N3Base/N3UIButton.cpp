@@ -96,10 +96,10 @@ void CN3UIButton::Render()
 		}
 	}
 
-	int i = 0;
 	for(UIListReverseItor itor = m_Children.rbegin(); m_Children.rend() != itor; ++itor)
 	{
 		CN3UIBase* pChild = (*itor);
+		int i;
 		for(i = 0; i < NUM_BTN_STATE; i++) // 버튼의 구성 요소가 아닌지 보고..
 			if(pChild == m_ImageRef[i]) break;
 		if(i >= NUM_BTN_STATE) pChild->Render(); // 버튼 차일드가 아니면 렌더링..
@@ -330,8 +330,7 @@ bool CN3UIButton::Save(HANDLE hFile)
 // 툴에서 사용하기 위한 함수 : n3uiImage를 생성한다.
 void CN3UIButton::CreateImages()
 {
-	int i;
-	for (i=0; i<NUM_BTN_STATE; ++i)
+	for (int i=0; i<NUM_BTN_STATE; ++i)
 	{
 		__ASSERT(NULL == m_ImageRef[i],"이미지가 이미 할당되어 있어여");
 		m_ImageRef[i] = new CN3UIImage();

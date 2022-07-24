@@ -558,7 +558,7 @@ void CFormViewProperty::UpdateAllInfo()
 	m_TreeChr.Expand(m_hTI_Parts, TVE_EXPAND);
 
 	nPC = pChr->PlugCount();
-	for(i = 0; i < nPC; i++)
+	for(int i = 0; i < nPC; i++)
 	{
 		if(NULL == pChr->Plug(i)) 
 		{

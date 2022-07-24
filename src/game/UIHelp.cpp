@@ -76,7 +76,7 @@ bool CUIHelp::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 
 		if(iPagePrev != iPage)
 		{
-			for(i = 0; i < MAX_HELP_PAGE; i++)
+			for(int i = 0; i < MAX_HELP_PAGE; i++)
 			{
 				if(NULL == m_pPages[i]) continue;
 

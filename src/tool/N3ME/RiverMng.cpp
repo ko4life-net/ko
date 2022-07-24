@@ -63,9 +63,9 @@ bool CRiverMng::Load(HANDLE hFile)
 	Release();
 
 	DWORD dwNum;
-	int i, iRiverMeshCount;
+	int iRiverMeshCount;
 	ReadFile(hFile, &iRiverMeshCount, sizeof(iRiverMeshCount), &dwNum, NULL);
-	for (i=0; i<iRiverMeshCount; ++i)
+	for (int i=0; i<iRiverMeshCount; ++i)
 	{
 		CRiverMesh* pRvrMesh = new CRiverMesh;
 		pRvrMesh->Load(hFile);
@@ -478,11 +478,10 @@ void CRiverMng::SelectVtxByDragRect(RECT* pRect, BOOL bAdd)
 
 	D3DVIEWPORT9 vp = pEng->s_CameraData.vp;
 
-	int i;
 	if (m_pSelRiver)	// 이미 선택된 강이 있다면..
 	{
 		int iVC = m_pSelRiver->VertexCount();	// 그강의 점 숫자를 구하기
-		for (i=0; i<iVC;++i)
+		for (int i=0; i<iVC;++i)
 		{
 			__VertexXyzT2* pVtx = m_pSelRiver->GetVertex(i);	// 점 하나 구하기
 			if (pVtx == NULL) continue;
@@ -517,8 +516,8 @@ void CRiverMng::SelectVtxByDragRect(RECT* pRect, BOOL bAdd)
 			CRiverMesh* pRM = *it;
 			if (pRM == NULL) continue;
 
-			int j, iVC = pRM->VertexCount();				// 이강의 점 갯수
-			for (j=0; j<iVC; ++j)
+			int iVC = pRM->VertexCount();				// 이강의 점 갯수
+			for (int j=0; j<iVC; ++j)
 			{
 				__VertexXyzT2* pVtx = pRM->GetVertex(j);	// 점 하나 구하기
 				if (pVtx == NULL) continue;
@@ -550,7 +549,7 @@ void CRiverMng::SelectVtxByDragRect(RECT* pRect, BOOL bAdd)
 	else
 	{
 		m_VtxPosDummy.SetSelVtx(m_SelVtxArray.GetAt(0));
-		for (i=1; i<iSize; ++i)
+		for (int i=1; i<iSize; ++i)
 		{
 			m_VtxPosDummy.AddSelVtx(m_SelVtxArray.GetAt(i));
 		}
@@ -682,7 +681,7 @@ void CRiverMng::MakeGameFiles(HANDLE hFile, float fSize)
 
 /*
 	// 모든 강 정보 저장 (*.grm) game river main
-	int i, j, k, iRiverCount = m_RiverMeshes.size();
+	int iRiverCount = m_RiverMeshes.size();
 
 	CLyTerrain* pTerrain = m_pMainFrm->GetMapMng()->GetTerrain();
 	SIZE size = pTerrain->GetPatchNum(fSize);
@@ -692,7 +691,7 @@ void CRiverMng::MakeGameFiles(HANDLE hFile, float fSize)
 	river.SetMaxPatchSize(size.cx, size.cy);
 
 	it_RiverMesh it = m_RiverMeshes.begin();
-	for(i = 0; i < iRiverCount; i++, it++)
+	for(int i = 0; i < iRiverCount; i++, it++)
 	{
 		CRiverMesh* pRM = *it;
 		ASSERT(pRM);
@@ -724,11 +723,11 @@ void CRiverMng::MakeGameFiles(HANDLE hFile, float fSize)
 	__TempPatch* TempPatches = new __TempPatch[iPatchCount];
 
 	it = m_RiverMeshes.begin();
-	for(i = 0; i < iRiverCount; i++, it++)
+	for(int i = 0; i < iRiverCount; i++, it++)
 	{
 		CRiverMesh* pRM = *it;
 		int iVC = pRM->VertexCount();
-		for (j=0; j<iVC; ++j)
+		for (int j=0; j<iVC; ++j)
 		{
 			__VertexXyzT2* pVtx = pRM->GetVertex(j);
 			int iX = int(pVtx->x/fSize);	int iZ = int(pVtx->z/fSize);
@@ -748,11 +747,11 @@ void CRiverMng::MakeGameFiles(HANDLE hFile, float fSize)
 
 	// CN3RiverPatch구조에 알맞게 넣기.
 	CN3RiverPatch* RiverPatches = new CN3RiverPatch[iPatchCount];
-	for (i=0; i<iPatchCount; ++i)
+	for (int i=0; i<iPatchCount; ++i)
 	{
 		int iRC = TempPatches[i].RiverArray.GetSize();
 		__River* Rivers = RiverPatches[i].CreateRiver(iRC);
-		for (j=0; j<iRC; ++j)
+		for (int j=0; j<iRC; ++j)
 		{
 			__TempRiver* pTempRiver = TempPatches[i].RiverArray.GetAt(j);	ASSERT(pTempRiver);
 			Rivers[j].iRiverID = pTempRiver->iRiverID;
@@ -762,7 +761,7 @@ void CRiverMng::MakeGameFiles(HANDLE hFile, float fSize)
 			if (iVC<=0) continue;
 			__VertexRiver* pVertices;
 			pVertices = Rivers[j].pVertices = new __VertexRiver[iVC];
-			for(k=0; k<iVC; ++k)
+			for(int k=0; k<iVC; ++k)
 			{
 				__TempVertex* pTempVtx = pTempRiver->VtxArray.GetAt(k);
 				pVertices[k].index = pTempVtx->index;
@@ -776,9 +775,9 @@ void CRiverMng::MakeGameFiles(HANDLE hFile, float fSize)
 	delete [] TempPatches;
 
 	// RiverPatches 저장하기
-	for (i=0; i<size.cx; ++i)
+	for (int i=0; i<size.cx; ++i)
 	{
-		for (j=0; j<size.cy; ++j)
+		for (int j=0; j<size.cy; ++j)
 		{
 			RiverPatches[j*size.cy + i].Save(hFile);
 		}
@@ -790,7 +789,7 @@ void CRiverMng::MakeGameFiles(HANDLE hFile, float fSize)
 void CRiverMng::MakeGameFiles(LPCTSTR lpszFName, float fSize)
 {
 	// 모든 강 정보 저장 (*.grm) game river main
-	int i, j, k, iRiverCount = m_RiverMeshes.size();
+	int iRiverCount = m_RiverMeshes.size();
 
 	CLyTerrain* pTerrain = m_pMainFrm->GetMapMng()->GetTerrain();
 	SIZE size = pTerrain->GetPatchNum(fSize);
@@ -799,7 +798,7 @@ void CRiverMng::MakeGameFiles(LPCTSTR lpszFName, float fSize)
 	__RiverInfo* RiverInfos = river.CreateRiverInfo(iRiverCount);
 	river.SetMaxPatchSize(size.cx, size.cy);
 
-	for (i=0; i<iRiverCount; ++i)
+	for (int i=0; i<iRiverCount; ++i)
 	{
 		CRiverMesh* pRM = m_RiverMeshes.Get(i);
 		ASSERT(pRM);
@@ -814,7 +813,7 @@ void CRiverMng::MakeGameFiles(LPCTSTR lpszFName, float fSize)
 		RiverInfos[i].fAnimTexFPS = pRM->GetAnimTexFPS();
 		int iAnimTexCount = pRM->GetAnimTexCount();
 		RiverInfos[i].SetAnimTexCount(iAnimTexCount);
-		for (j=0; j<iAnimTexCount; ++j)
+		for (int j=0; j<iAnimTexCount; ++j)
 		{
 			__ASSERT(pRM->AnimTexGet(j), "");
 			RiverInfos[i].SetAnimTexName(j, pRM->AnimTexGet(j)->Name());
@@ -831,11 +830,11 @@ void CRiverMng::MakeGameFiles(LPCTSTR lpszFName, float fSize)
 	// 각 패치별로 정보 분류하기
 	__TempPatch* TempPatches = new __TempPatch[iPatchCount];
 
-	for (i=0; i<iRiverCount; ++i)
+	for (int i=0; i<iRiverCount; ++i)
 	{
 		CRiverMesh* pRM = m_RiverMeshes.Get(i);
 		int iVC = pRM->VertexCount();
-		for (j=0; j<iVC; ++j)
+		for (int j=0; j<iVC; ++j)
 		{
 			__VertexXyzT2* pVtx = pRM->GetVertex(j);
 			int iX = int(pVtx->x/fSize);	int iZ = int(pVtx->z/fSize);
@@ -855,11 +854,11 @@ void CRiverMng::MakeGameFiles(LPCTSTR lpszFName, float fSize)
 
 	// CN3RiverPatch구조에 알맞게 넣기.
 	CN3RiverPatch* RiverPatches = new CN3RiverPatch[iPatchCount];
-	for (i=0; i<iPatchCount; ++i)
+	for (int i=0; i<iPatchCount; ++i)
 	{
 		int iRC = TempPatches[i].RiverArray.GetSize();
 		__River* Rivers = RiverPatches[i].CreateRiver(iRC);
-		for (j=0; j<iRC; ++j)
+		for (int j=0; j<iRC; ++j)
 		{
 			__TempRiver* pTempRiver = TempPatches[i].RiverArray.GetAt(j);	ASSERT(pTempRiver);
 			Rivers[j].iRiverID = pTempRiver->iRiverID;
@@ -869,7 +868,7 @@ void CRiverMng::MakeGameFiles(LPCTSTR lpszFName, float fSize)
 			if (iVC<=0) continue;
 			__VertexRiver* pVertices;
 			pVertices = Rivers[j].pVertices = new __VertexRiver[iVC];
-			for(k=0; k<iVC; ++k)
+			for(int k=0; k<iVC; ++k)
 			{
 				__TempVertex* pTempVtx = pTempRiver->VtxArray.GetAt(k);
 				pVertices[k].index = pTempVtx->index;
@@ -883,9 +882,9 @@ void CRiverMng::MakeGameFiles(LPCTSTR lpszFName, float fSize)
 	delete [] TempPatches;
 
 	// RiverPatches 저장하기
-	for (i=0; i<size.cx; ++i)
+	for (int i=0; i<size.cx; ++i)
 	{
-		for (j=0; j<size.cy; ++j)
+		for (int j=0; j<size.cy; ++j)
 		{
 			wsprintf(szTmpFName, "River\\%s_%02d%02d.grp", lpszFName, i, j);
 			RiverPatches[j*size.cy + i].SaveToFile(szTmpFName);

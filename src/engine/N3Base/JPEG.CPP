@@ -19,20 +19,17 @@
 
 CJpeg::CJpeg()
 {	
-	int i;
 	m_pData = NULL;
-	for(i=0; i<20; i++)
+	for(int i=0; i<20; i++)
 		TbH[i].Flag = FALSE;
 }
 
 CJpeg::~CJpeg()
 {
-	int i;
-
 	if(m_pData != NULL)
 		delete [] m_pData;	
 
-	for(i=0; i<20; i++)
+	for(int i=0; i<20; i++)
 		if(TbH[i].Flag)
 		{
 			delete [] TbH[i].HUFFCODE;
@@ -205,13 +202,12 @@ void CJpeg::FindSOF()
 {
 	if((m_pBuf[m_Index] == 0xff)&&(m_pBuf[m_Index + 1] == 0xc0))
 	{
-		int i;
 		WORD SegSize = m_pBuf[m_Index + 2] * 256 + m_pBuf[m_Index + 3];
 		FrameHeader.Y = m_pBuf[m_Index + 5] * 256 + m_pBuf[m_Index + 6];
 		FrameHeader.X = m_pBuf[m_Index + 7] * 256 + m_pBuf[m_Index + 8];
 		FrameHeader.Nf = m_pBuf[m_Index + 9];
 		
-		for(i=0; i<FrameHeader.Nf; i++)
+		for(int i=0; i<FrameHeader.Nf; i++)
 		{
 			FrameHeader.C[i] = m_pBuf[m_Index + 10 + 3*i];
 			FrameHeader.H[i] = m_pBuf[m_Index + 11 + 3*i] >> 4;
@@ -245,10 +241,9 @@ void CJpeg::FindSOS()
 {
 	if((m_pBuf[m_Index] == 0xff)&&(m_pBuf[m_Index + 1] == 0xda))
 	{
-		int i;		
 		WORD SegSize = m_pBuf[m_Index + 2] * 256 + m_pBuf[m_Index + 3];
 		ScanHeader.Ns = m_pBuf[m_Index + 4];
-		for(i=0; i<ScanHeader.Ns; i++)
+		for(int i=0; i<ScanHeader.Ns; i++)
 		{
 			ScanHeader.Cs[i] = m_pBuf[m_Index + 5 + i*2];
 			ScanHeader.Td[i] = m_pBuf[m_Index + 6 + i*2] >> 4;
@@ -264,7 +259,7 @@ void CJpeg::FindSOS()
 
 		// 최대 Sampling Factor 구함 //
 		Hmax = Vmax = 0;
-		for(i=0; i<FrameHeader.Nf; i++)
+		for(int i=0; i<FrameHeader.Nf; i++)
 		{
 			if(FrameHeader.H[i] > Hmax)
 				Hmax = FrameHeader.H[i];
@@ -317,16 +312,16 @@ BYTE CJpeg::NextByte()
 
 BYTE CJpeg::hDecode(int Th)
 {
-	int i = 1, j;
 	WORD CODE = NextBit();
 	BYTE Value;	
 
+	int i = 1;
 	while((CODE > TbH[Th].MAXCODE[i])||(TbH[Th].MAXCODE[i] == 65535))
 	{
 		i++;
 		CODE = (CODE << 1) + NextBit();
 	}
-	j = TbH[Th].VALPTR[i];
+	int j = TbH[Th].VALPTR[i];
 	j = j + CODE - TbH[Th].MINCODE[i];
 
 	Value = TbH[Th].HUFFVAL[j];
@@ -400,7 +395,6 @@ void CJpeg::DecodeAC(int Th)
 
 void CJpeg::DecodeDU(int N) // N = Component ID 0/1/2
 {	
-	int i;
 	short *pos;
 
 	DecodeDC(ScanHeader.Td[N]);
@@ -412,7 +406,7 @@ void CJpeg::DecodeDU(int N) // N = Component ID 0/1/2
 
 	// Dequantization //
 	pos = ZZ;
-	for(i=0; i<64; i++)
+	for(int i=0; i<64; i++)
 	{
 		*pos = *pos * TbQ[FrameHeader.Tq[N]].Q[i];
 		pos++;
@@ -426,7 +420,7 @@ void CJpeg::DecodeDU(int N) // N = Component ID 0/1/2
 	
 	// Level Shifting  & Correct Error //	
 	pos = ZZ;
-	for(i=0; i<64; i++)
+	for(int i=0; i<64; i++)
 	{
 		*pos = *pos + 128;
 		
@@ -454,11 +448,10 @@ void CJpeg::Zigzag()
 	
 	short Temp[64];
 	memcpy(Temp, ZZ, 64 * sizeof(short));
-	int i, j, idx;
-	for(i=0; i<8; i++)
-		for(j=0; j<8; j++)
+	for(int i=0; i<8; i++)
+		for(int j=0; j<8; j++)
 		{
-			idx = (i<<3)+j;
+			int idx = (i<<3)+j;
 			ZZ[idx] = Temp[Index[idx]];
 		}
 }
@@ -523,34 +516,33 @@ void CJpeg::IDCT()
 
 void CJpeg::DecodeMCU(int mx, int my)
 {
-	int i, j, k, l, m, n, o;
 	int Ns = ScanHeader.Ns;
 	int H, V, Rh, Rv;
 	int mWidth = Hmax * 8, mHeight = Vmax * 8;	
 	int bWidth = FrameHeader.X * Ns, bHeight = FrameHeader.Y;
 	int idx1, idx2, idx3;
 	
-	for(k=0; k<Ns; k++)
+	for(int k=0; k<Ns; k++)
 	{
 		H = FrameHeader.H[k];
 		V = FrameHeader.V[k];		
 		Rh = Hmax / H;
 		Rv = Vmax / V;
 
-		for(l=0; l<V; l++)
+		for(int l=0; l<V; l++)
 		{
-			for(m=0; m<H; m++)
+			for(int m=0; m<H; m++)
 			{
 				DecodeDU(k);
-				for(i=0; i<8; i++)
+				for(int i=0; i<8; i++)
 				{
-					for(j=0; j<8; j++)
+					for(int j=0; j<8; j++)
 					{
 						idx1 = ((l<<3)+i)*Rv;
 						idx2 = ((m<<3)+j)*Rh;
-						for(n = 0; n<Rv; n++)
+						for(int n = 0; n<Rv; n++)
 						{
-							for(o = 0; o<Rh; o++)
+							for(int o = 0; o<Rh; o++)
 							{
 								MCU[(idx1+n) * mWidth + (idx2+o)].C[k] = (BYTE)ZZ[(i<<3)+j];
 							}
@@ -560,13 +552,13 @@ void CJpeg::DecodeMCU(int mx, int my)
 			}		
 		}
 		
-		for(i=0; i<mHeight; i++)
-			for(j=0; j<mWidth; j++)
+		for(int i=0; i<mHeight; i++)
+			for(int j=0; j<mWidth; j++)
 			{
 				idx1 = my * mHeight + i;
 				idx2 = mx * mWidth + j;
 				idx3 = i * mWidth + j;
-				for(n=0; n<Ns; n++)
+				for(int n=0; n<Ns; n++)
 					m_pData[(idx1)*bWidth+((idx2)*Ns + n)] = MCU[idx3].C[n];
 			}
 	}
@@ -577,7 +569,6 @@ void CJpeg::Decode()
 	int Ns = ScanHeader.Ns;	
 	int mx = FrameHeader.X / 8 / Hmax;
 	int my = FrameHeader.Y / 8 / Vmax;	
-	int i, j, k;		
 	
 	cnt = 0;	
 
@@ -586,7 +577,7 @@ void CJpeg::Decode()
 
 	m_pData = new BYTE[FrameHeader.X * FrameHeader.Y * 3];
 
-	for(i=0; i<Ns; i++)
+	for(int i=0; i<Ns; i++)
 		PrevDC[i] = 0;
 
 	MCU = new SET[Vmax * Hmax * 64];
@@ -597,8 +588,8 @@ void CJpeg::Decode()
 	// 실질적인 Decoding Procedure //
 	int Count = 0;///
 	
-	for(i=0; i<my; i++)
-		for(j=0; j<mx; j++)
+	for(int i=0; i<my; i++)
+		for(int j=0; j<mx; j++)
 		{			
 			DecodeMCU(j, i);
 			Count++;
@@ -609,7 +600,7 @@ void CJpeg::Decode()
 				{
 					cnt = 0;
 					pByte = pByte + 2;
-					for(k=0; k<3; k++)
+					for(int k=0; k<3; k++)
 						PrevDC[k] = 0;
 				}				
 			}
@@ -637,7 +628,6 @@ int CJpeg::GetHeight()
 
 void CJpeg::ConvertYUV2RGB()
 {
-	int i, j;
 	int Width = GetWidth();
 	int Height = GetHeight();
 	int Size = Width * Height * ScanHeader.Ns;
@@ -649,8 +639,8 @@ void CJpeg::ConvertYUV2RGB()
 	
 	memcpy(pos, pTemp, Size);
 
-	for(i=0; i<Height; i++)
-		for(j=0; j<Width; j++)
+	for(int i=0; i<Height; i++)
+		for(int j=0; j<Width; j++)
 		{
 			Y = *pos;pos++;
 			
@@ -686,7 +676,7 @@ void CJpeg::ConvertYUV2RGB()
 	{
 		BYTE *pBuf2 = new BYTE [RealBMPWidth  * m_rHeight];
 
-		for(i=0; i<m_rHeight; i++)
+		for(int i=0; i<m_rHeight; i++)
 		{
 			memcpy(&pBuf2[i*RealBMPWidth], &m_pData[i*Width*3], RealBMPWidth);
 		}
@@ -702,7 +692,7 @@ void CJpeg::ConvertYUV2RGB()
 
 	// Flip for BMP Structure //
 	BYTE *pLine = new BYTE[RealBMPWidth];
-	for(i=0; i<m_rHeight/2; i++)
+	for(int i=0; i<m_rHeight/2; i++)
 	{
 		pTemp = &m_pData[i*RealBMPWidth];
 		memcpy(pLine, pTemp, RealBMPWidth);
@@ -728,10 +718,8 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp)
 	if(Height % 8 != 0)
 		bHeight = (Height/8 + 1)*8; // bHeight 는 8의 배수로 만든 높이
 
-	int i, j, k;
-
 	// Huffman Table 초기화 //
-	for(i=0; i<20; i++)
+	for(int i=0; i<20; i++)
 	{
 		if(TbH[i].Flag)
 		{
@@ -760,7 +748,7 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp)
 	memset(m_pData, 0, (bWidth * 3) * bHeight); // 0으로 초기화 //
 
 	// 8의 배수에 맞도록 버퍼를 만들어서 원래 이미지를 복사합니다 //
-	for(i=0; i<Height; i++)
+	for(int i=0; i<Height; i++)
 		memcpy(&m_pData[i*(bWidth*3)], &pp[i*BMPWidth], BMPWidth);
 
 	// RGB Color를 YCbCr Color로 변환합니다. //
@@ -768,10 +756,10 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp)
 	float y, cb, cr;
 	BYTE *pos;	
 
-	for(i=0; i<Height; i++)
+	for(int i=0; i<Height; i++)
 	{
 		pos = &m_pData[i*(bWidth*3)];
-		for(j=0; j<Width; j++)
+		for(int j=0; j<Width; j++)
 		{
 			B = (float)*pos;
 			G = (float)*(pos+1);
@@ -810,9 +798,9 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp)
 
 	
 	// Level Shifting -128 //
-	for(i=0; i<Height; i++)
+	for(int i=0; i<Height; i++)
 	{
-		for(j=0; j<Width; j++)
+		for(int j=0; j<Width; j++)
 		{
 			idx1 = i*bWidth+j;
 			idx2 = i*(bWidth*3)+j*3;
@@ -824,9 +812,9 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp)
 	
 
 	// DCT & Zigzag & Quantization //
-	for(i=0; i<bHeight; i = i + 8)
+	for(int i=0; i<bHeight; i = i + 8)
 	{
-		for(j=0; j<bWidth; j = j + 8)
+		for(int j=0; j<bWidth; j = j + 8)
 		{
 			DCT(&Y[i*bWidth+j], bWidth, FALSE);
 			DCT(&Cb[i*bWidth+j], bWidth, TRUE);
@@ -844,9 +832,9 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp)
 	short *DC2 = new short[Num_X * Num_Y];
 	short *DC3 = new short[Num_X * Num_Y];
 
-	for(i=0; i<bHeight; i = i + 8)
+	for(int i=0; i<bHeight; i = i + 8)
 	{
-		for(j=0; j<bWidth; j = j + 8)
+		for(int j=0; j<bWidth; j = j + 8)
 		{
 			DC1[idx] = Y[i*bWidth+j];				
 			DC2[idx] = Cb[i*bWidth+j];
@@ -855,7 +843,7 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp)
 		}
 	}	
 
-	for(i=Num_X * Num_Y - 1; i>0; i--)
+	for(int i=Num_X * Num_Y - 1; i>0; i--)
 	{		
 		DC1[i] = DC1[i] - DC1[i-1];
 		DC2[i] = DC2[i] - DC2[i-1];
@@ -863,9 +851,9 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp)
 	}
 
 	idx = 0;
-	for(i=0; i<bHeight; i = i + 8)
+	for(int i=0; i<bHeight; i = i + 8)
 	{
-		for(j=0; j<bWidth; j = j + 8)
+		for(int j=0; j<bWidth; j = j + 8)
 		{
 			 Y[i*bWidth+j] = DC1[idx];
 			 Cb[i*bWidth+j] = DC2[idx];
@@ -884,17 +872,17 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp)
 
 	int Num, iTh[4] = {16, 17}, Th, key;
 
-	for(i=0; i<2; i++)
+	for(int i=0; i<2; i++)
 	{
 		Th = iTh[i];
 		Num = TbH[Th].Num;
 		TbH[Th].PT = new int[251];		
 
-		for(k=0; k<251; k++)
+		for(int k=0; k<251; k++)
 		{
 			key = -9999;
 			
-			for(j=0; j<Num; j++)
+			for(int j=0; j<Num; j++)
 			{
 				if(TbH[Th].HUFFVAL[j] == k)
 				{
@@ -926,14 +914,14 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp)
 	
 	// 임시 메모리 모두 해제 //
 
-	for(i=0; i<2; i++)
+	for(int i=0; i<2; i++)
 	{
 		Th = iTh[i];
 		delete [] TbH[Th].PT;
 	}	
 
-	for(i=0; i<bHeight; i++)
-		for(j=0; j<bWidth; j++)
+	for(int i=0; i<bHeight; i++)
+		for(int j=0; j<bWidth; j++)
 		{
 			idx1 = i*bWidth*3 + j*3;
 			m_pData[idx1] = (BYTE)Y[i*bWidth+j];
@@ -963,7 +951,6 @@ void CJpeg::PutSOF(HANDLE hFile, int Width, int Height)
 {
 	WORD Marker, SegSize, w;
 	BYTE c;
-	int i;
 
 	DWORD dwWritten;
 
@@ -985,7 +972,7 @@ void CJpeg::PutSOF(HANDLE hFile, int Width, int Height)
 
 	c = 3; 
 	WriteFile(hFile,(LPSTR)&c,1,&dwWritten,NULL);
-	for(i=1; i<=3; i++)
+	for(int i=1; i<=3; i++)
 	{
 		c = (BYTE)i; // Component Identifier
 		WriteFile(hFile,(LPSTR)&c,1,&dwWritten,NULL);
@@ -1006,7 +993,6 @@ void CJpeg::PutSOS(HANDLE hFile)
 {
 	WORD Marker, SegSize;
 	BYTE c;
-	int i;
 	DWORD dwWritten;
 
 	Marker = (0xda << 8) | 0xff;
@@ -1020,7 +1006,7 @@ void CJpeg::PutSOS(HANDLE hFile)
 	
 	WriteFile(hFile,(LPSTR)&c,1,&dwWritten,NULL);
 
-	for(i=1; i<=3; i++)
+	for(int i=1; i<=3; i++)
 	{
 		c = (BYTE)i; // Scan Component Selector		
 		WriteFile(hFile,(LPSTR)&c,1,&dwWritten,NULL);
@@ -1116,8 +1102,6 @@ void CJpeg::DCT(short * pos, int bWidth, BOOL Flag)
 					99, 99, 99, 99, 99, 99, 99, 99	};
 
 
-	int i, j;
-	int x, y, u, v;	
 	float Cu, Cv;
 	float Sum;
 	float dct_coeff[8][8] =
@@ -1132,14 +1116,14 @@ void CJpeg::DCT(short * pos, int bWidth, BOOL Flag)
 		+0.1951f, -0.5556f, +0.8315f, -0.9808f, +0.9808f, -0.8315f, +0.5556f, -0.1951f
 	};
 
-	for(v=0; v<8; v++)
+	for(int v=0; v<8; v++)
 	{
-		for(u=0; u<8; u++)
+		for(int u=0; u<8; u++)
 		{
 			Sum = 0;
 
-			for(y=0; y<8; y++)
-				for(x=0; x<8; x++)
+			for(int y=0; y<8; y++)
+				for(int x=0; x<8; x++)
 					Sum = Sum + pos[(int)(y*bWidth+x)] * dct_coeff[u][x] * dct_coeff[v][y];
 			
 			Cu = 1.; if(u == 0) Cu = 0.7071f;
@@ -1151,16 +1135,16 @@ void CJpeg::DCT(short * pos, int bWidth, BOOL Flag)
 	Zigzag2();	
 
 	if(Flag) // TRUE : Chrominance, FALSE : Luminance
-		for(i=0; i<64; i++)
+		for(int i=0; i<64; i++)
 			ZZ[i] = ZZ[i] / Qtb1[i];
 	else
-		for(i=0; i<64; i++)
+		for(int i=0; i<64; i++)
 			ZZ[i] = ZZ[i] / Qtb0[i];
 			
 
 
-	for(i=0; i<8; i++)
-		for(j=0; j<8; j++)
+	for(int i=0; i<8; i++)
+		for(int j=0; j<8; j++)
 			pos[i*bWidth+j] = ZZ[i*8+j];
 	
 }
@@ -1179,11 +1163,10 @@ void CJpeg::Zigzag2()
 	
 	short Temp[64];
 	memcpy(Temp, ZZ, 64 * sizeof(short));
-	int i, j, idx;
-	for(i=0; i<8; i++)
-		for(j=0; j<8; j++)
+	for(int i=0; i<8; i++)
+		for(int j=0; j<8; j++)
 		{
-			idx = (i<<3)+j;
+			int idx = (i<<3)+j;
 			ZZ[Index[idx]] = Temp[idx];
 		}
 
@@ -1266,11 +1249,9 @@ BYTE CJpeg::GetCategory(short V)
 
 void CJpeg::hEncode(int bWidth, int bHeight)
 {
-	int i, j;
-
-	for(i=0; i<bHeight; i = i + 8)
+	for(int i=0; i<bHeight; i = i + 8)
 	{
-		for(j=0; j<bWidth; j = j + 8)
+		for(int j=0; j<bWidth; j = j + 8)
 		{
 			EncodeDU(&Y[i*bWidth+j], FALSE, bWidth);
 			EncodeDU(&Cb[i*bWidth+j], TRUE, bWidth);
@@ -1288,7 +1269,6 @@ void CJpeg::EncodeDU(short * pos, BOOL Flag, int bWidth)
 	short XX[64], DIFF;	
 	BYTE ThDC, ThAC;
 	int idx = 0;	
-	int i, j;
 	
 	ThDC = 0; ThAC = 16;
 	if(Flag)
@@ -1296,9 +1276,9 @@ void CJpeg::EncodeDU(short * pos, BOOL Flag, int bWidth)
 		ThDC = 1; ThAC = 17;
 	}	
 
-	for(i=0; i<8; i++)
+	for(int i=0; i<8; i++)
 	{
-		for(j=0; j<8; j++)
+		for(int j=0; j<8; j++)
 		{
 			XX[idx] = pos[i*bWidth+j];
 			idx++;
@@ -1366,12 +1346,9 @@ void CJpeg::EncodeDU(short * pos, BOOL Flag, int bWidth)
 
 void CJpeg::ChargeCode(WORD Code, int Size)
 {
-	int i;
-	BYTE Bit;	
-
-	for(i=0; i<Size; i++)
+	for(int i=0; i<Size; i++)
 	{
-		Bit = (Code >> (Size - 1 - i)) & 0x01;
+		BYTE Bit = (Code >> (Size - 1 - i)) & 0x01;
 		ShotBit(Bit);		
 	}
 }

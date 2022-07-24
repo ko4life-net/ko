@@ -408,7 +408,7 @@ void CEventMgr::SaveInfoTextFile(char* szEvent)
 			for(int i=0;i<5;i++)
 				fscanf(stream, "\t%s", &pEvent->m_Con[i]);
 
-			for(i=0;i<5;i++)
+			for(int i=0;i<5;i++)
 				fscanf(stream, "\t%s", &pEvent->m_Exe[i]);
 
 			fscanf(stream, "\n");
@@ -444,7 +444,7 @@ void CEventMgr::SaveInfoTextFile(char* szEvent)
 			for(int i=0;i<5;i++)
 				fprintf(stream, "\t%s", pEvent->m_Con[i]);
 
-			for(i=0;i<5;i++)
+			for(int i=0;i<5;i++)
 				fprintf(stream, "\t%s", pEvent->m_Exe[i]);
 
 			fprintf(stream, "\n");
@@ -462,7 +462,7 @@ void CEventMgr::SaveInfoTextFile(char* szEvent)
 			for(int i=0;i<5;i++)
 				fprintf(stream, "\t%s", pEvent->m_Con[i]);
 
-			for(i=0;i<5;i++)
+			for(int i=0;i<5;i++)
 				fprintf(stream, "\t%s", pEvent->m_Exe[i]);
 
 			fprintf(stream, "\n");
@@ -492,7 +492,7 @@ void CEventMgr::SaveInfoTextFile(char* szEvent)
 			for(int i=0;i<5;i++)
 				fprintf(stream, "\t%s", pEvent->m_Con[i]);
 
-			for(i=0;i<5;i++)
+			for(int i=0;i<5;i++)
 				fprintf(stream, "\t%s", pEvent->m_Exe[i]);
 
 			fprintf(stream, "\n");

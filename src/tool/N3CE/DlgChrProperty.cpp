@@ -238,7 +238,7 @@ void CDlgChrProperty::UpdateInfo()
 	int nPlug = m_CBChrPlug.GetCurSel();
 	int nPlugCount = pChr->PlugCount();
 	m_CBChrPlug.ResetContent();
-	for(i = 0; i < nPlugCount; i++)
+	for(int i = 0; i < nPlugCount; i++)
 	{
 		CString szTmp;
 		szTmp.Format("Plug : %d", i);

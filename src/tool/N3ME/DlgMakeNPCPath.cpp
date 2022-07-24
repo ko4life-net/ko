@@ -374,6 +374,7 @@ void CDlgMakeNPCPath::OnBtnPathModify()
 
 	m_iSelNPCID = pPath->m_iNPCID;
 	
+	int i;
 	for(i=0;i<m_NPCList.GetCount(); i++)
 	{
 		int id = (int)m_NPCList.GetItemData(i);
@@ -392,7 +393,7 @@ void CDlgMakeNPCPath::OnBtnPathModify()
 
 	m_cSelAttrRegen = pPath->m_cAttr_Regen;
 
-	for(i=0;i<m_AttrRegenList.GetCount(); i++)
+	for(int i=0;i<m_AttrRegenList.GetCount(); i++)
 	{
 		unsigned char cId = (int)m_AttrRegenList.GetItemData(i);
 		if(cId==m_cSelAttrRegen)
@@ -404,7 +405,7 @@ void CDlgMakeNPCPath::OnBtnPathModify()
 
 	m_cSelAttrGroup = pPath->m_cAttr_Group;
 
-	for(i=0;i<m_AttrGroupList.GetCount(); i++)
+	for(int i=0;i<m_AttrGroupList.GetCount(); i++)
 	{
 		unsigned char cId = (int)m_AttrGroupList.GetItemData(i);
 		if(cId==m_cSelAttrGroup)
@@ -416,7 +417,7 @@ void CDlgMakeNPCPath::OnBtnPathModify()
 
 	m_cSelAttrCreate = pPath->m_cAttr_Create;
 
-	for(i=0;i<m_AttrCreateList.GetCount(); i++)
+	for(int i=0;i<m_AttrCreateList.GetCount(); i++)
 	{
 		unsigned char cId = (int)m_AttrCreateList.GetItemData(i);
 		if(cId==m_cSelAttrCreate)
@@ -428,7 +429,7 @@ void CDlgMakeNPCPath::OnBtnPathModify()
 
 	m_cSelOption = pPath->m_cAttr_Option;
 
-	for(i=0;i<m_OptionList.GetCount(); i++)
+	for(int i=0;i<m_OptionList.GetCount(); i++)
 	{
 		unsigned char cId = (int)m_OptionList.GetItemData(i);
 		if(cId==m_cSelOption)

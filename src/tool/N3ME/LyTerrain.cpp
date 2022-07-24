@@ -257,14 +257,13 @@ void CLyTerrain::Release()
 		m_pDlgSetLightMap = NULL;
 	}
 
-	int x,z;
 	if(m_pColorTexture)
 	{
-		for(x=0;x<m_iNumColorMap;x++)
+		for(int x=0;x<m_iNumColorMap;x++)
 		{
 			if(m_pColorTexture[x])
 			{
-//				for(z=0;z<m_iNumColorMap;z++) // 굳이 이렇게 안해도 다 지워진다...
+//				for(int z=0;z<m_iNumColorMap;z++) // 굳이 이렇게 안해도 다 지워진다...
 //				{
 //					m_pColorTexture[x][z].Release();
 //				}
@@ -276,12 +275,11 @@ void CLyTerrain::Release()
 		m_pColorTexture = NULL;
 	}
 
-	int i;
 	if(m_ppLightMapTexture)
 	{
-		for(x=0;x<m_iHeightMapSize;x++)
+		for(int x=0;x<m_iHeightMapSize;x++)
 		{
-			for(z=0;z<m_iHeightMapSize;z++)
+			for(int z=0;z<m_iHeightMapSize;z++)
 			{
 				if(m_ppLightMapTexture[x][z])
 				{
@@ -324,7 +322,7 @@ void CLyTerrain::Release()
 	
 	if(m_ppMapData)
 	{
-		for(i=0;i<m_iHeightMapSize;i++)
+		for(int i=0;i<m_iHeightMapSize;i++)
 		{
 			delete[] m_ppMapData[i];
 			m_ppMapData[i] = NULL;
@@ -335,7 +333,7 @@ void CLyTerrain::Release()
 
 	if(m_ppRenderInfo)
 	{
-		for(i=0;i<m_iHeightMapSize;i++)
+		for(int i=0;i<m_iHeightMapSize;i++)
 		{
 			delete [] m_ppRenderInfo[i];
 			m_ppRenderInfo[i] = NULL;
@@ -346,7 +344,7 @@ void CLyTerrain::Release()
 
 	if(m_ppIsLightMap)
 	{
-		for(i=0;i<m_iHeightMapSize;i++)
+		for(int i=0;i<m_iHeightMapSize;i++)
 		{
 			delete [] m_ppIsLightMap[i];
 			m_ppIsLightMap[i] = NULL;
@@ -406,17 +404,16 @@ void CLyTerrain::Init(int HeightMapSize)
 	if( ((m_iHeightMapSize-1) * m_iColorMapPixelPerUnitDistance) % m_iColorMapTexSize == 0 ) m_iNumColorMap--;
 	
 	m_pColorTexture = new CN3Texture*[m_iNumColorMap];
-	int x,z;
-	for(x=0; x<m_iNumColorMap; x++)
+	for(int x=0; x<m_iNumColorMap; x++)
 	{
 		m_pColorTexture[x] = new CN3Texture[m_iNumColorMap];
 	}
 	
 	//D3DLOCKED_RECT d3dlr;
 	
-	for(x=0;x<m_iNumColorMap;x++)
+	for(int x=0;x<m_iNumColorMap;x++)
 	{
-		for(z=0;z<m_iNumColorMap;z++)
+		for(int z=0;z<m_iNumColorMap;z++)
 		{
 			m_pColorTexture[x][z].Create(m_iColorMapTexSize, m_iColorMapTexSize, D3DFMT_X8R8G8B8, TRUE);
 			/*
@@ -437,8 +434,7 @@ void CLyTerrain::Init(int HeightMapSize)
 	m_ppIsLightMap = new bool*[m_iHeightMapSize];
 	m_ppLightMapTexture = new CN3Texture**[m_iHeightMapSize];
 	
-	int i;		
-	for(i=0;i<m_iHeightMapSize;i++)
+	for(int i=0;i<m_iHeightMapSize;i++)
 	{
 		m_ppMapData[i] = new MAPDATA[m_iHeightMapSize];
 		m_ppRenderInfo[i] = new BOOL[m_iHeightMapSize];
@@ -446,9 +442,9 @@ void CLyTerrain::Init(int HeightMapSize)
 		m_ppLightMapTexture[i] = new CN3Texture*[m_iHeightMapSize];
 	}
 
-	for(x=0;x<m_iHeightMapSize;x++)
+	for(int x=0;x<m_iHeightMapSize;x++)
 	{
-		for(z=0;z<m_iHeightMapSize;z++)
+		for(int z=0;z<m_iHeightMapSize;z++)
 		{
 			m_ppIsLightMap[x][z] = false;
 			m_ppLightMapTexture[x][z] = NULL;
@@ -1372,10 +1368,8 @@ void CLyTerrain::SaveGameData(HANDLE hFile)
 	///////////////////////
 	// 데이타 재구성...
 	//
-	int x,z;
 	short tmpTexIdx;
 	short tmpTileIdx;
-	int i;
 	int TTCount;
 	///////////////////////
 
@@ -1383,11 +1377,11 @@ void CLyTerrain::SaveGameData(HANDLE hFile)
 	ProgressBar.Create("Analyze TileMap...", 50,  m_iHeightMapSize);
 
 	TexTree.clear();
-	for(x=0; x<m_iHeightMapSize-1;x++)
+	for(int x=0; x<m_iHeightMapSize-1;x++)
 	{
 		ProgressBar.StepIt();
 
-		for(z=0; z<m_iHeightMapSize-1;z++)
+		for(int z=0; z<m_iHeightMapSize-1;z++)
 		{
 			tmpTexIdx = (m_ppMapData[x][z].DTexInfo1.TexIdx.TexID * NUM_DTEXTILE) + m_ppMapData[x][z].DTexInfo1.TexIdx.TileY;
 			tmpTileIdx = m_ppMapData[x][z].DTexInfo1.TexIdx.TileX;
@@ -1396,6 +1390,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile)
 			{
 				TTIt = TexTree.lower_bound(tmpTexIdx);
 				TTCount = TexTree.count(tmpTexIdx);
+				int i;
 				for(i=0;i<TTCount; i++)
 				{
 					if((*TTIt).second==tmpTileIdx) break;
@@ -1411,6 +1406,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile)
 			{
 				TTIt = TexTree.lower_bound(tmpTexIdx);
 				TTCount = TexTree.count(tmpTexIdx);
+				int i;
 				for(i=0;i<TTCount; i++)
 				{
 					if((*TTIt).second==tmpTileIdx) break;
@@ -1433,7 +1429,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile)
 			NumTileSrcTex++;
 			TileList.push_back((*TTIt).first);
 			TTCount = TexTree.count((*TTIt).first);
-			for(i=0;i<TTCount;i++) TTIt++;
+			for(int i=0;i<TTCount;i++) TTIt++;
 		}
 	}
 
@@ -1450,11 +1446,11 @@ void CLyTerrain::SaveGameData(HANDLE hFile)
 	__ASSERT(hAlloc, "Global allocation failed.");
 	GAMEMAPDATA* pGMDs = (GAMEMAPDATA*)GlobalLock(hAlloc);
 	ProgressBar.Create("Writing TileMap...", 50, m_iHeightMapSize);
-	for(x=0; x<m_iHeightMapSize;x++)
+	for(int x=0; x<m_iHeightMapSize;x++)
 	{
 		ProgressBar.StepIt();
 
-		for(z=0; z<m_iHeightMapSize;z++)
+		for(int z=0; z<m_iHeightMapSize;z++)
 		{
 			GAMEMAPDATA* pGMD = &pGMDs[x*m_iHeightMapSize+z];
 
@@ -1466,7 +1462,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile)
 			pGMD->Tex2Dir = (char)m_ppMapData[x][z].DTexInfo2.Dir;
 
 			TTIt = TexTree.begin();
-			for(i=0;i<NumTile;i++)
+			for(int i=0;i<NumTile;i++)
 			{
 				tmpTexIdx = (*TTIt).first;
 				tmpTileIdx = (*TTIt).second;
@@ -1501,9 +1497,9 @@ void CLyTerrain::SaveGameData(HANDLE hFile)
 	float re_XZCrossHalfDistPow2 = pow((re_HalfDist * 1.4141592f),2);
 	int sx, sz;
 	float height;
-	for(x=0; x<pat_HeightMapSize; x++)
+	for(int x=0; x<pat_HeightMapSize; x++)
 	{
-		for(z=0; z<pat_HeightMapSize; z++)
+		for(int z=0; z<pat_HeightMapSize; z++)
 		{
 			sx = x * ti_PatchSize;
 			sz = z * ti_PatchSize;
@@ -1532,7 +1528,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile)
 	ZeroMemory(SeedAttr, sizeof(unsigned char)*m_iHeightMapSize*m_iHeightMapSize);
 	CDlgSowSeed* pSowSeed = pFrm->m_pDlgSowSeed;
 
-	for( i = 0 ; i < m_iHeightMapSize*m_iHeightMapSize ; i++)
+	for(int i = 0 ; i < m_iHeightMapSize*m_iHeightMapSize ; i++)
 	{
 		SeedAttr[i].Obj_Id = 0;
 		SeedAttr[i].Seed_Count = 0;
@@ -1542,7 +1538,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile)
 	int size = pFrm->GetMapMng()->m_SowSeedMng.Grass_Group.size();
 	it_Grass_Group it = pFrm->GetMapMng()->m_SowSeedMng.Grass_Group.begin();
 	int temp_Id = 0;
-	for( i = 0 ; i < size ; i++,it++)
+	for(int i = 0 ; i < size ; i++,it++)
 	{
 		LPGRASS_GROUP group = (LPGRASS_GROUP)*it;
 		it_Grass it_grass = group->grass.begin();
@@ -1594,7 +1590,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile)
 			}
 		}
 	}
-	for( i = 0 ; i < m_iHeightMapSize*m_iHeightMapSize ; i++)
+	for(int  i = 0 ; i < m_iHeightMapSize*m_iHeightMapSize ; i++)
 	{
 		WriteFile(hFile,&SeedAttr[i],sizeof(unsigned char),&dwRWC,NULL);
 		if( SeedAttr[i].SeedGroup_Sub != NULL)
@@ -1605,9 +1601,9 @@ void CLyTerrain::SaveGameData(HANDLE hFile)
 
 /*   원래의 풀 저장 
 	int NumSeedInfo = pFrm->m_SeedGroupList.size();
-	for(x=0; x<m_iHeightMapSize-1;x++)
+	for(int x=0; x<m_iHeightMapSize-1;x++)
 	{
-		for(z=0; z<m_iHeightMapSize-1;z++)
+		for(int z=0; z<m_iHeightMapSize-1;z++)
 		{
 			int Group = m_ppMapData[x][z].DTexInfo1.Attr.Group;
 
@@ -1635,9 +1631,9 @@ void CLyTerrain::SaveGameData(HANDLE hFile)
 
 	// 텍스트파일로 함 뽑아보자..
 	FILE* stream = fopen("c:\\grass.txt", "w");
-	for(z=0; z<m_iHeightMapSize;z++)
+	for(int z=0; z<m_iHeightMapSize;z++)
 	{
-		for(x=0; x<m_iHeightMapSize;x++)
+		for(int x=0; x<m_iHeightMapSize;x++)
 		{
 			SEEDGROUP v = SeedAttr[z + (x*m_iHeightMapSize)];
 			fprintf(stream, "%d,%d\t",v.Obj_Id,v.Seed_Count );
@@ -1665,7 +1661,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile)
 		// Tile Map Resource
 		LLIter TLIt = TileList.begin();
 		CN3Texture* pTexture;
-		for(i=0;i<NumTileSrcTex;i++)
+		for(int i=0;i<NumTileSrcTex;i++)
 		{
 			int TexIdx = (*TLIt) / NUM_DTEXTILE;
 			int YIdx = (*TLIt) % NUM_DTEXTILE;
@@ -1684,7 +1680,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile)
 
 		int SrcIdx, TileIdx;
 		TTIt = TexTree.begin();
-		for(i=0;i<NumTile;i++)
+		for(int i=0;i<NumTile;i++)
 		{
 			SrcIdx = 0;
 			for(TLIt=TileList.begin();TLIt!=TileList.end();TLIt++)
@@ -1716,9 +1712,9 @@ void CLyTerrain::SaveGameData(HANDLE hFile)
 		ProgressBar.Create("Save Light Map Data", 50, m_iNumLightMap);	
 		
 		short sx, sz;
-		for(z=0;z<m_iHeightMapSize;z++)
+		for(int z=0;z<m_iHeightMapSize;z++)
 		{
-			for(x=0;x<m_iHeightMapSize;x++)
+			for(int x=0;x<m_iHeightMapSize;x++)
 			{
 				if(m_ppIsLightMap[x][z]==false) continue;
 
@@ -2222,9 +2218,6 @@ void CLyTerrain::SetVisibleRect()
 	m_VisibleRect.left = m_VisibleRect.right = tx;
 	m_VisibleRect.top = m_VisibleRect.bottom = tz;
 
-	int i;
-
-
 	// 사면체의 법선 벡터와 Far 네 귀퉁이 위치 계산..
 	float fS = sinf(CN3Base::s_CameraData.fFOV / 2.0f);
 	float fPL = CN3Base::s_CameraData.fFP;
@@ -2236,7 +2229,7 @@ void CLyTerrain::SetVisibleRect()
 							__Vector3(fPL * fS * fAspect, fPL * -fS, fPL),	// RightBottom
 							__Vector3(fPL * -fS * fAspect, fPL * -fS, fPL) }; // LeftBottom
 
-	for(i=0;i<4;i++)
+	for(int i=0;i<4;i++)
 	{
 		// 귀퉁이 위치에 회전 행렬을 적용한다..
 		vFPs[i] = vFPs[i] * CN3Base::s_CameraData.mtxViewInverse;
@@ -2970,15 +2963,13 @@ bool CLyTerrain::Pick(int x, int y, __Vector3* vec, POINT* pHeightMapPos)
 //
 int CLyTerrain::DetectRealLightMap(int sx, int sz, int range)
 {
-	int x,z;
-	//int i;
 	bool bIsEmpty;
 	D3DLOCKED_RECT d3dlrt;
 	
 	int NumLightMap = 0;
-	for(x=sx;x<(sx+range);x++)
+	for(int x=sx;x<(sx+range);x++)
 	{
-		for(z=sz;z<(sz+range);z++)
+		for(int z=sz;z<(sz+range);z++)
 		{
 			if(m_ppIsLightMap[x][z]==false) continue;
 			if(!m_ppLightMapTexture[x][z]) continue;
@@ -3005,7 +2996,7 @@ int CLyTerrain::DetectRealLightMap(int sx, int sz, int range)
 				}
 			}
 /*	외각테두리 없는거..
-			for(i=0; i<LIGHTMAP_TEX_SIZE*LIGHTMAP_TEX_SIZE; i++)
+			for(int i=0; i<LIGHTMAP_TEX_SIZE*LIGHTMAP_TEX_SIZE; i++)
 			{
 				if(pImg[i]!=0xffffffff)
 				{
@@ -4523,7 +4514,6 @@ void CLyTerrain::UpdateBrushIntensityMap(int iShape, int iSize, float fFallOff)
 {
 	ASSERT(fFallOff>=0.0f && iSize>0);
 	ZeroMemory(m_fBrushIntensityMap, sizeof(m_fBrushIntensityMap));
-	int i, j, k;
 
 	int iStart, iEnd, iHalfRadius;
 	iStart = BRUSH_CENTER-(int)(iSize/2);	iEnd = iStart+iSize;	iHalfRadius = (iSize/2)+1;
@@ -4532,8 +4522,8 @@ void CLyTerrain::UpdateBrushIntensityMap(int iShape, int iSize, float fFallOff)
 	{
 		if (iSize%2)		// Brush 사이즈가 홀수일때
 		{
-			for(i=iStart; i<iEnd; ++i)
-				for(j=iStart; j<iEnd; ++j)
+			for(int i=iStart; i<iEnd; ++i)
+				for(int j=iStart; j<iEnd; ++j)
 				{
 					{
 						int iTmpX = i-BRUSH_CENTER, iTmpY = j-BRUSH_CENTER;
@@ -4547,8 +4537,8 @@ void CLyTerrain::UpdateBrushIntensityMap(int iShape, int iSize, float fFallOff)
 		else				// Brush 사이즈가 짝수일때
 		{
 			float fTmp = (iHalfRadius-0.5f);
-			for(i=iStart; i<iEnd; ++i)
-				for(j=iStart; j<iEnd; ++j)
+			for(int i=iStart; i<iEnd; ++i)
+				for(int j=iStart; j<iEnd; ++j)
 				{
 					float fTmpX = i-BRUSH_CENTER+0.5f, fTmpY = j-BRUSH_CENTER+0.5f;
 					float fLen = fTmpX*fTmpX + fTmpY*fTmpY;
@@ -4565,13 +4555,13 @@ void CLyTerrain::UpdateBrushIntensityMap(int iShape, int iSize, float fFallOff)
 
 		if (iSize%2)		// Brush 사이즈가 홀수일때
 		{
-			for (i=0; i <= iSize/2; ++i) fIntensity[i] = GetFallOffValue(fFallOff, float(i)/iHalfRadius);
+			for (int i=0; i <= iSize/2; ++i) fIntensity[i] = GetFallOffValue(fFallOff, float(i)/iHalfRadius);
 
-			for(i=iStart; i<iEnd; ++i)
-				for(j=iStart; j<iEnd; ++j)
+			for(int i=iStart; i<iEnd; ++i)
+				for(int j=iStart; j<iEnd; ++j)
 				{
 					int iOffsetX = abs(i-BRUSH_CENTER),iOffsetZ = abs(j-BRUSH_CENTER);
-					for (k=0; k<iHalfRadius; ++k)
+					for (int k=0; k<iHalfRadius; ++k)
 					{
 						if ((iOffsetX==k && iOffsetZ<=k) || (iOffsetX<=k && iOffsetZ==k) )
 							m_fBrushIntensityMap[i][j] = fIntensity[k];
@@ -4580,34 +4570,34 @@ void CLyTerrain::UpdateBrushIntensityMap(int iShape, int iSize, float fFallOff)
 		}
 		else				// Brush 사이즈가 짝수일때
 		{
-			for (i=0; i <= iSize/2; ++i) fIntensity[i] = GetFallOffValue(fFallOff, float(i+0.5f)/(iHalfRadius));
+			for (int i=0; i <= iSize/2; ++i) fIntensity[i] = GetFallOffValue(fFallOff, float(i+0.5f)/(iHalfRadius));
 
-			for(i=iStart; i<iEnd; ++i)
+			for(int i=iStart; i<iEnd; ++i)
 			{
 				int iT = 2*iStart+iSize-i;
 				if (BRUSH_CENTER>i)
 				{
-					for(j=i; j<iT; ++j)	m_fBrushIntensityMap[i][j] = fIntensity[BRUSH_CENTER-1-i];
+					for(int j=i; j<iT; ++j)	m_fBrushIntensityMap[i][j] = fIntensity[BRUSH_CENTER-1-i];
 				}
 				else
 				{
-					for(j=iT-1; j<=i; ++j)
+					for(int j=iT-1; j<=i; ++j)
 					{
 						ASSERT(i-BRUSH_CENTER>=0);
 						m_fBrushIntensityMap[i][j] = fIntensity[i-BRUSH_CENTER];
 					}
 				}
 			}
-			for(i=iStart; i<iEnd; ++i)
+			for(int i=iStart; i<iEnd; ++i)
 			{
 				int iT = 2*iStart+iSize-i;
 				if (BRUSH_CENTER>i)
 				{
-					for(j=i+1; j<iT-1; ++j)	m_fBrushIntensityMap[j][i] = fIntensity[BRUSH_CENTER-1-i];
+					for(int j=i+1; j<iT-1; ++j)	m_fBrushIntensityMap[j][i] = fIntensity[BRUSH_CENTER-1-i];
 				}
 				else
 				{
-					for(j=iT; j<i; ++j)
+					for(int j=iT; j<i; ++j)
 					{
 						ASSERT(i-BRUSH_CENTER>=0);
 						m_fBrushIntensityMap[j][i] = fIntensity[i-BRUSH_CENTER];
@@ -4636,15 +4626,13 @@ float CLyTerrain::GetFallOffValue(float fFallOff, float x)
 //
 void CLyTerrain::Heighten(POINT ptCenter, float fHeight)
 {
-	int i, j;
-
 	float fNewHeight = FLT_MAX;
 
 	float fMax = -FLT_MIN;
 	float fMin = FLT_MIN;
-	for (i=0; i<MAX_BRUSH_SIZE; ++i)
+	for (int i=0; i<MAX_BRUSH_SIZE; ++i)
 	{
-		for (j=0; j<MAX_BRUSH_SIZE; ++j)
+		for (int j=0; j<MAX_BRUSH_SIZE; ++j)
 		{
 			int iMapX, iMapZ;
 			iMapX = ptCenter.x - BRUSH_CENTER + i;
@@ -4658,9 +4646,9 @@ void CLyTerrain::Heighten(POINT ptCenter, float fHeight)
 		if(fNewHeight != FLT_MAX) break;
 	}
 
-	for (i=0; i<MAX_BRUSH_SIZE; ++i)
+	for (int i=0; i<MAX_BRUSH_SIZE; ++i)
 	{
-		for (j=0; j<MAX_BRUSH_SIZE; ++j)
+		for (int j=0; j<MAX_BRUSH_SIZE; ++j)
 		{
 			int iMapX, iMapZ;
 			iMapX = ptCenter.x - BRUSH_CENTER + i;
@@ -4683,11 +4671,10 @@ void CLyTerrain::Heighten(POINT ptCenter, float fHeight)
 //
 void CLyTerrain::Flaten(POINT ptCenter)
 {	
-	int i, j;
 	// 새로운 값과 기존 높이값을 차이를 계산해서 버퍼에 저장.
-	for (i=0; i<MAX_BRUSH_SIZE; ++i)
+	for (int i=0; i<MAX_BRUSH_SIZE; ++i)
 	{
-		for (j=0; j<MAX_BRUSH_SIZE; ++j)
+		for (int j=0; j<MAX_BRUSH_SIZE; ++j)
 		{
 			int iMapX, iMapZ;
 			iMapX = ptCenter.x - BRUSH_CENTER + i;
@@ -4718,11 +4705,10 @@ void CLyTerrain::Smooth(POINT ptCenter)
 										{2,3,4,3,2},
 										{1,2,3,2,1}};
 
-	int i, j, k, l;
 	// 새로운 값과 기존 높이값을 차이를 계산해서 버퍼에 저장.
-	for (i=0; i<MAX_BRUSH_SIZE; ++i)
+	for (int i=0; i<MAX_BRUSH_SIZE; ++i)
 	{
-		for (j=0; j<MAX_BRUSH_SIZE; ++j)
+		for (int j=0; j<MAX_BRUSH_SIZE; ++j)
 		{
 			int iMapX, iMapZ;
 			iMapX = ptCenter.x - BRUSH_CENTER + i;
@@ -4733,8 +4719,8 @@ void CLyTerrain::Smooth(POINT ptCenter)
 			{
 				float fH;
 				float fSumWeight = 0.0f;
-				for (k=0; k<iWSize; ++k)
-					for (l=0; l<iWSize; ++l)
+				for (int k=0; k<iWSize; ++k)
+					for (int l=0; l<iWSize; ++l)
 					{
 						fH = GetApexHeight(iMapX+k-iHalfWSize, iMapZ+l-iHalfWSize);
 						if (fH != -FLT_MAX)
@@ -4749,9 +4735,9 @@ void CLyTerrain::Smooth(POINT ptCenter)
 	}
 
 	// 버퍼에 있는 값을 m_fBrushIntensityMap 적용하여 높이값 수정
-	for (i=0; i<MAX_BRUSH_SIZE; ++i)
+	for (int i=0; i<MAX_BRUSH_SIZE; ++i)
 	{
-		for (j=0; j<MAX_BRUSH_SIZE; ++j)
+		for (int j=0; j<MAX_BRUSH_SIZE; ++j)
 		{
 			int iMapX, iMapZ;
 			iMapX = ptCenter.x - BRUSH_CENTER + i;
@@ -4771,11 +4757,10 @@ void CLyTerrain::UpdateBrushArea(POINT ptCenter)
 {
 	m_iBrushIndexCount = 0;
 	int iBrushVerexCount = 0;
-	int i, j;
 	float fOffsetY = 0.05f;
-	for (i=0; i<MAX_BRUSH_SIZE; ++i)
+	for (int i=0; i<MAX_BRUSH_SIZE; ++i)
 	{
-		for (j=0; j<MAX_BRUSH_SIZE; ++j)
+		for (int j=0; j<MAX_BRUSH_SIZE; ++j)
 		{
 			if (m_fBrushIntensityMap[i][j] == 0.0f) continue;
 

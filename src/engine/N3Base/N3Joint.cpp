@@ -503,7 +503,7 @@ void CN3Joint::KeyDelete(CN3Joint *pJoint, int nKS, int nKE)
 
 	// Child 를 다시 만들어 준다.
 	int nCC = pJoint->ChildCount();
-	for(i = 0; i < nCC; i++)
+	for(int i = 0; i < nCC; i++)
 	{
 		CN3Joint* pChild = pJoint->Child(i);
 		pChild->KeyDelete(pChild, nKS, nKE); // 하위 조인트를 복사..

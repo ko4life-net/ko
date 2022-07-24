@@ -107,7 +107,7 @@ void CDlgMapView::OnPaint()
 			LineTo(dc,i,0);
 		}
 
-		for( i = 0; i < Map_View_Size/2 ; i+= Brush_Size)
+		for(int i = 0; i < Map_View_Size/2 ; i+= Brush_Size)
 		{
 			MoveToEx(dc,Map_View_Size/2,i,NULL);
 			LineTo(dc,0,i);

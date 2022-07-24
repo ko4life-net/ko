@@ -89,24 +89,21 @@ CGameEng::CGameEng()
 CGameEng::~CGameEng()
 {
 	it_Camera itCam = m_Cameras.begin();
-	int iSize = m_Cameras.size();
-	for(int i = 0; i < iSize; i++, itCam++)
+	for(int i = 0; i < m_Cameras.size(); i++, itCam++)
 	{
 		delete *itCam; 
 	}
 	m_Cameras.clear();
 
 /*	it_Light itLgt = m_Lights.begin();
-	iSize = m_Lights.size();
-	for(i = 0; i < iSize; i++, itLgt++)
+	for(int i = 0; i < m_Lights.size(); i++, itLgt++)
 	{
 		delete *itLgt; 
 	}
 	m_Lights.clear();
 
 	itLgt = m_LightsBackup.begin();
-	iSize = m_LightsBackup.size();
-	for(i = 0; i < iSize; i++, itLgt++)
+	for(int i = 0; i < m_LightsBackup.size(); i++, itLgt++)
 	{
 		delete *itLgt; 
 	}

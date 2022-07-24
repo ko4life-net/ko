@@ -291,15 +291,14 @@ done_triangle_list:
 	memset(referred, 0, sizeof(referred));
 	__ASSERT(m_iNumVertices < MAX_VERTICES_PER_MATERIAL, "You must increase MAX_VERTICES_PER_MATERIAL");
 
-	int i;
-	for (i = 0; i < m_iNumIndices; i++)
+	for (int i = 0; i < m_iNumIndices; i++)
 	{
 		__ASSERT(m_pIndices[i] < m_iNumVertices, "indices array index overflow");
 		referred[m_pIndices[i]] = 1;
 	}
 
 	// If not, let's lose them.
-	for (i = 0; i < m_iNumVertices;)
+	for (int i = 0; i < m_iNumVertices;)
 	{
 		if (!referred[i])
 		{
@@ -539,8 +538,7 @@ bool CN3PMeshCreate::FindACollapse(float &val_so_far)
 
 #ifdef _SAME_VERTEXPOS
 	// 같은 점 찾기
-	int i;
-	for (i=0; i<m_iNumVertices; ++i)
+	for (int i=0; i<m_iNumVertices; ++i)
 	{
 		if (m_pVertices[be_index_b].x == m_pVertices[i].x &&
 			m_pVertices[be_index_b].y == m_pVertices[i].y &&
@@ -603,10 +601,8 @@ CN3PMesh *CN3PMeshCreate::CreateRendererMesh()
 	pPMesh->m_iNumCollapses = m_pCollapseUpTo - m_pCollapses;
 
 	// Copy the collapses in reverse order, so that the lowest detail collapses are first
-	int i;
-
 	float fTempValue = 0.0f;
-	for (i = 0; i < pPMesh->m_iNumCollapses; i++)
+	for (int i = 0; i < pPMesh->m_iNumCollapses; i++)
 	{
 		__PMCEdgeCollapse &src  = m_pCollapses[pPMesh->m_iNumCollapses - i - 1];
 		CN3PMesh::__EdgeCollapse &dest = pPMesh->m_pCollapses[i];
@@ -685,10 +681,8 @@ int CN3PMeshCreate::ReGenerate(CN3PMesh *pPMesh)
 	pPMesh->m_iNumCollapses = m_pCollapseUpTo - m_pCollapses;
 
 	// Copy the collapses in reverse order, so that the lowest detail collapses are first
-	int i;
-
 	float fTempValue = 0.0f;
-	for (i = 0; i < pPMesh->m_iNumCollapses; i++)
+	for (int i = 0; i < pPMesh->m_iNumCollapses; i++)
 	{
 		__PMCEdgeCollapse &src  = m_pCollapses[pPMesh->m_iNumCollapses - i - 1];
 		CN3PMesh::__EdgeCollapse &dest = pPMesh->m_pCollapses[i];
@@ -914,9 +908,7 @@ float CN3PMeshCreate::GetLossOfSamePosVertex(WORD pt_to, WORD pt_from)
 	float x = m_pVertices[pt_from].x;
 	float y = m_pVertices[pt_from].y;
 	float z = m_pVertices[pt_from].z;
-
-	int i;
-	for (i=0; i<m_iNumVertices; ++i)
+	for (int i=0; i<m_iNumVertices; ++i)
 	{
 		// from 과 같은 위치의 Vertex찾기
 		if (i != pt_to && i != pt_from &&

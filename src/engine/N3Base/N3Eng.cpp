@@ -171,7 +171,7 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
 //#endif // end of _N3TOOL
 
 	int nMC = m_DeviceInfo.nModeCount;
-	for(i = 0; i < nMC; i++)
+	for(int i = 0; i < nMC; i++)
 	{
 //		if(	m_DeviceInfo.pModes[i].Width == dwWidth && 
 //			m_DeviceInfo.pModes[i].Height == dwHeight && 
@@ -242,7 +242,7 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
 	if(s_DevCaps.TextureCaps & D3DPTEXTURECAPS_POW2) s_dwTextureCaps |= TEX_CAPS_POW2;
 
 	// 기본 라이트 정보 지정..
-	for(i = 0; i < 8; i++)
+	for(int i = 0; i < 8; i++)
 	{
 		CN3Light::__Light Lgt;
 		_D3DCOLORVALUE LgtColor = { 1.0f, 1.0f, 1.0f, 1.0f };

@@ -921,10 +921,8 @@ void CUIKnights::RefreshPage()
 
 	it_KMI it = m_MemberList.begin();
 
-	int i = 10;
 	int e = m_iPageCur * 10;
-
-	for(;i<e;i++)
+	for(int i = 10;i<e;i++)
 	{
 		if(it==m_MemberList.end()) break;
 		it++;
@@ -932,7 +930,7 @@ void CUIKnights::RefreshPage()
 
 	std::string szDuty, szClass;
 	char szBuff[80];
-	for(i=0;i<10;i++)
+	for(int i=0;i<10;i++)
 	{
 		if(it==m_MemberList.end()) break;
 
@@ -1412,7 +1410,7 @@ void CUIFriends::UpdateList()
 	it_FI it = m_MapFriends.begin(), itEnd = m_MapFriends.end();
 	for(int i = 0; i < iSkip; i++, it++);
 
-	for(i = 0; i < iLinePerPage && it != itEnd; i++, it++)
+	for(int i = 0; i < iLinePerPage && it != itEnd; i++, it++)
 	{
 		__FriendsInfo& FI = it->second;
 		int iIndex = m_pList_Friends->AddString(FI.szName);

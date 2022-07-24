@@ -64,7 +64,7 @@ bool CTableGenerator::OpenSource(const std::string &szEnumFileName, const std::s
 	typedef typename std::set<int>::iterator it_Key;
 	typedef std::pair<it_Key, bool> pair_Key;
 
-	for(i = 0; true; i++)
+	for(int i = 0; true; i++)
 	{
 		if(NULL == fgets(szLine, 1024, pFile)) break;
 		if(NULL == szLine[0] || '\r' == szLine[0] || '\n' == szLine[0]) continue;
@@ -310,7 +310,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 	int iExt = iIndexS;
 	int iCountWhole2 = 0; // 실제 처리한 갯수..
 	int iAddTitle = -1;
-	for(i = 0; i < iCountWhole; i++)
+	for(int i = 0; i < iCountWhole; i++)
 	{
 		int iType = m_Datas[IG1_GEN_TYPE].m_dwValues[iIndexCur1]; // 아이템 생성타입..
 
@@ -480,7 +480,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 				}
 			} // end of for(int j = 0; j < iDTCountBasic; j++)
 
-			for(j = 0; j < iDTCountRef; j++)
+			for(int j = 0; j < iDTCountRef; j++)
 			{
 				DATA_TYPE dt = m_DataExts[j].m_Type;
 
@@ -545,10 +545,10 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 				iExt++;
 			}
 		}
-	} // end of for(i = 0; i < iCountWhole; i++)
+	} // end of for(int i = 0; i < iCountWhole; i++)
 	
 	int iColCount = pLineArrays[0].size();
-	for(i = 0; i <= iCountWhole; i++) // 설명까지 쓴다.
+	for(int i = 0; i <= iCountWhole; i++) // 설명까지 쓴다.
 	{
 		if(pLineArrays[i].empty()) continue;
 
@@ -793,7 +793,7 @@ bool CTableGenerator::Convert2Bin(const std::string& szFN)
 			return false;
 		}
 
-		//for (j=0; j<m_iDataCount; ++j)
+		//for (int j=0; j<m_iDataCount; ++j)
 		while(iColCount<iDataCount)
 		{
 			if (bQuotationActived)
@@ -976,7 +976,7 @@ bool CTableGenerator::Convert2Bin(const std::string& szFN)
 //}
 	
 	// 암호화 인코딩...
-	for(i = 0; i < dwSizeLow; i++)
+	for(int i = 0; i < dwSizeLow; i++)
 	{
 		BYTE byData = (pDatas[i] ^ (key_r>>8));
 		key_r = (byData + key_r) * key_c1 + key_c2;

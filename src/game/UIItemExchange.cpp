@@ -25,18 +25,17 @@ CUIItemExchange::CUIItemExchange()
 {
 	m_pUITooltipDlg = NULL;
 
-	int i;
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		m_pMyInvWnd[i] = NULL;
 	}
 
-	for( i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
+	for( int i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
 	{
 		m_pMyNpcWnd[i] = NULL;
 	}
 
-	for( i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
+	for( int i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
 	{
 		m_pMyNpcWndOriginIndex[i] = -1;
 	}
@@ -62,7 +61,7 @@ void CUIItemExchange::Release()
 		}
 	}
 
-	for( i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
+	for( int i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
 	{
 		if ( m_pMyNpcWnd[i] != NULL )
 		{
@@ -121,8 +120,7 @@ void CUIItemExchange::InitIconWnd(e_UIWND eWnd)
 
 __IconItemSkill* CUIItemExchange::GetHighlightIconItem(CN3UIIcon* pUIIcon)
 {
-	int i;
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if ( (m_pMyInvWnd[i] != NULL) && (m_pMyInvWnd[i]->pUIIcon == pUIIcon) )
 			return m_pMyInvWnd[i];
@@ -133,12 +131,10 @@ __IconItemSkill* CUIItemExchange::GetHighlightIconItem(CN3UIIcon* pUIIcon)
 
 int	CUIItemExchange::GetItemiOrder(__IconItemSkill* spItem, e_UIWND_DISTRICT eWndDist)
 {
-	int i;
-
 	switch ( eWndDist )
 	{
 		case UIWND_DISTRICT_EX_RE_INV:
-			for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+			for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 			{
 				if ( (m_pMyInvWnd[i] != NULL) && (m_pMyInvWnd[i] == spItem) )
 					return i;
@@ -157,7 +153,7 @@ e_UIWND_DISTRICT CUIItemExchange::GetWndDistrict(__IconItemSkill* spItem)
 			return UIWND_DISTRICT_EX_RE_INV;
 	}
 
-	for( i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
+	for( int i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
 	{
 		if ( (m_pMyNpcWnd[i] != NULL) && (m_pMyNpcWnd[i] == spItem) )
 			return UIWND_DISTRICT_EX_RE_NPC;
@@ -225,7 +221,8 @@ bool CUIItemExchange::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 		FAIL_RETURN
 
 	// 내가 가졌던 아이콘이면.. npc영역인지 검사한다..
-	int i; bool bFound = false;
+	bool bFound = false;
+	int i;
 	for( i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
 	{
 		pArea = CN3UIWndBase::GetChildAreaByiOrder(UI_AREA_TYPE_REPAIR_NPC, i);
@@ -408,13 +405,12 @@ void CUIItemExchange::Open()
 
 
 	// 기타 작업..
-	int i;
-	for( i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
+	for( int i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
 	{
 		m_pMyNpcWnd[i] = NULL;
 	}
 
-	for( i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
+	for( int i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
 	{
 		m_pMyNpcWndOriginIndex[i] = -1;
 	}
@@ -444,7 +440,7 @@ void CUIItemExchange::UserPressOK()
 
 	CAPISocket::MP_AddByte(byBuff, iOffset, N3_ITEM_REPAIR_REQUEST);			// 게임 스타트 패킷 커멘드..
 	CAPISocket::MP_AddShort(byBuff, iOffset, iCount);		// 아이디 길이 패킷에 넣기..
-	for( i = 0; i < iCount; i++ )
+	for( int i = 0; i < iCount; i++ )
 	{
 		CAPISocket::MP_AddByte(byBuff, iOffset, m_pMyNpcWndOriginIndex[i]);		// 아이디 길이 패킷에 넣기..
 		CAPISocket::MP_AddDword(byBuff, iOffset, m_pMyNpcWnd[i]->pItemBasic->dwID+m_pMyNpcWnd[i]->pItemExt->dwID);	// 아이디 문자열 패킷에 넣기..
@@ -505,8 +501,7 @@ void CUIItemExchange::UserPressCancel()
 	CN3UIArea* pArea = NULL;
 
 	// 이 윈도우의 npc 영역의 아이템을 이 윈도우의 inv 영역으로 옮긴다..
-	int i;
-	for( i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
+	for( int i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
 	{
 		if(m_pMyNpcWnd[i])
 		{
@@ -539,13 +534,12 @@ void CUIItemExchange::ItemMoveFromInvToThis()
 	CUIInventory* pInven = CGameProcedure::s_pProcMain->m_pUIInventory;
 	if(!pInven) return;
 
-	int i;
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		m_pMyInvWnd[i] = NULL;
 	}
 
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if(pInven->m_pMyInvWnd[i])
 		{
@@ -572,8 +566,7 @@ void CUIItemExchange::ItemMoveFromThisToInv()
 	CUIInventory* pInven = CGameProcedure::s_pProcMain->m_pUIInventory;
 	if(!pInven) return;
 
-	int i;
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if(m_pMyInvWnd[i])
 		{

@@ -30,7 +30,7 @@ CGameProcCharacterSelect::CGameProcCharacterSelect()
 {
 	m_pCamera = NULL;
 	for ( int i = 0; i < 8; i++ ) m_pLights[i] = NULL;
-	for ( i = 0; i < MAX_AVAILABLE_CHARACTER; i++ )	{ m_pChrs[i] = NULL; }
+	for ( int i = 0; i < MAX_AVAILABLE_CHARACTER; i++ )	{ m_pChrs[i] = NULL; }
 	m_pActiveBg = NULL;
 
 	m_eCurPos = POS_CENTER;
@@ -50,7 +50,7 @@ CGameProcCharacterSelect::~CGameProcCharacterSelect()
 {
 	delete m_pCamera;
 	for ( int i = 0; i < 8; i++ ) delete m_pLights[i];
-	for ( i = 0; i < MAX_AVAILABLE_CHARACTER; i++ ) delete m_pChrs[i];
+	for ( int i = 0; i < MAX_AVAILABLE_CHARACTER; i++ ) delete m_pChrs[i];
 	delete m_pActiveBg;
 	delete m_pUICharacterSelect;
 
@@ -63,7 +63,7 @@ void CGameProcCharacterSelect::Release()
 
 	delete m_pCamera; m_pCamera = NULL;
 	for ( int i = 0; i < 8; i++ ) { delete m_pLights[i]; m_pLights[i] = NULL; }
-	for ( i = 0; i < MAX_AVAILABLE_CHARACTER; i++ )
+	for ( int i = 0; i < MAX_AVAILABLE_CHARACTER; i++ )
 	{
 		delete m_pChrs[i]; m_pChrs[i] = NULL;
 		m_InfoChrs[i].clear();
@@ -81,7 +81,7 @@ void CGameProcCharacterSelect::Init()
 //..
 	m_pCamera = NULL;
 	for ( int i = 0; i < 8; i++ ) m_pLights[i] = NULL;
-	for ( i = 0; i < MAX_AVAILABLE_CHARACTER; i++ )	{ m_pChrs[i] = NULL; }
+	for ( int i = 0; i < MAX_AVAILABLE_CHARACTER; i++ )	{ m_pChrs[i] = NULL; }
 	m_pActiveBg = NULL;
 
 	m_eCurPos = POS_CENTER;
@@ -105,8 +105,8 @@ void CGameProcCharacterSelect::Init()
 	s_pUIMgr->EnableOperationSet(false); // 기존의 캐릭터 정보 패킷이 들어올때까지 UI 를 Disable 시킨다...
 
 	m_pCamera = new CN3Camera();
-	for ( i = 0; i < 8; i++ ) m_pLights[i] = new CN3Light();
-	for ( i = 0; i < MAX_AVAILABLE_CHARACTER; i++ )	m_pChrs[i] = NULL;
+	for ( int i = 0; i < 8; i++ ) m_pLights[i] = new CN3Light();
+	for ( int i = 0; i < MAX_AVAILABLE_CHARACTER; i++ )	m_pChrs[i] = NULL;
 
 	m_eCurPos = POS_CENTER;
 	m_eDestPos = POS_CENTER;
@@ -252,7 +252,7 @@ NowRotating:
 // 라이트..
 	for(int i = 0; i < 8; i++) s_pEng->s_lpD3DDev->LightEnable(i, FALSE); // 일단 라이트 다 끄고..
 	
-	for(i = 0; i < 2; i++)
+	for(int i = 0; i < 2; i++)
 	{
 		m_pLights[i]->Tick(m_pLights[i]->m_fFrmCur);
 		m_pLights[i]->Apply(); // 라이트 적용
@@ -1122,7 +1122,7 @@ void CGameProcCharacterSelect::FadeOutRender()
 	if (dwUsefog) CN3Base::s_lpD3DDev->SetRenderState( D3DRS_FOGENABLE, FALSE );
 	// set render states
 	if (dwUseColorVertex == FALSE) CN3Base::s_lpD3DDev->SetRenderState( D3DRS_COLORVERTEX, TRUE );
-	for ( i = 0; i < 8; i++ )	CN3Base::s_lpD3DDev->LightEnable(i, FALSE);
+	for ( int i = 0; i < 8; i++ )	CN3Base::s_lpD3DDev->LightEnable(i, FALSE);
 
 	DWORD dwTexStageCO, dwTexStageCARG1, dwTexStageAO, dwTexStageAARG1, dwRSSB, dwRSDB;
 
@@ -1156,7 +1156,7 @@ void CGameProcCharacterSelect::FadeOutRender()
 	CN3Base::s_lpD3DDev->SetRenderState( D3DRS_ALPHABLENDENABLE,		bUseAlphaBlend );
 	CN3Base::s_lpD3DDev->SetRenderState( D3DRS_LIGHTING, dwUseLighting );
 	CN3Base::s_lpD3DDev->SetRenderState( D3DRS_FOGENABLE , dwUsefog );
-	for ( i = 0; i < 8; i++ )	CN3Base::s_lpD3DDev->LightEnable(i, bLight[i]);
+	for ( int i = 0; i < 8; i++ )	CN3Base::s_lpD3DDev->LightEnable(i, bLight[i]);
 }
 
 

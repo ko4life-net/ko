@@ -320,8 +320,8 @@ void CRscTablesDlg::OnClose()
 void CRscTablesDlg::UpdateInfo()
 {
 	// 화면에 표시
-	int i, iDataCount = m_Generator.DataTypeCount();
-	for (i=0; i<iDataCount; ++i)
+	int iDataCount = m_Generator.DataTypeCount();
+	for (int i=0; i<iDataCount; ++i)
 	{
 		int iSel = -1;
 
@@ -571,7 +571,7 @@ void CRscTablesDlg::OnItemFileListLoad()
 
 	m_Generator.OpenSource(szBuffs[0], szBuffs[1]);
 	m_Generator.OpenReference_Enum(szBuffs[2]);
-	for(i = 0; i < MAX_ITEM_EXTENSION + 3; i++)
+	for(int i = 0; i < MAX_ITEM_EXTENSION + 3; i++)
 	{
 		m_Generator.OpenReference_Txt(i, szBuffs[i+3]);
 	}
@@ -598,7 +598,7 @@ void CRscTablesDlg::OnItemFileListSave()
 
 	FILE* pFile = fopen(dlg.GetPathName(), "w");
 	if(NULL == pFile) return;
-	for(i = 0; i < MAX_ITEM_EXTENSION + 3; i++)
+	for(int i = 0; i < MAX_ITEM_EXTENSION + 3; i++)
 	{
 		fputs(szBuffs[i], pFile);
 		fputs("\n", pFile);

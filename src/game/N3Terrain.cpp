@@ -97,7 +97,7 @@ CN3Terrain::CN3Terrain()
 
 	m_bAvailableTile = true;
 
-	for(i=0;i<3;i++)
+	for(int i=0;i<3;i++)
 		for(int j=0;j<3;j++) m_LightMapPatch[i][j].clear();
 }
 
@@ -114,13 +114,11 @@ CN3Terrain::~CN3Terrain()
 //
 void CN3Terrain::MakeDistanceTable()
 {
-	int x,z;
-	double dist;
-	for(x=0;x<DISTANCE_TABLE_SIZE;x++)
+	for(int x=0;x<DISTANCE_TABLE_SIZE;x++)
 	{
-		for(z=0;z<DISTANCE_TABLE_SIZE;z++)
+		for(int z=0;z<DISTANCE_TABLE_SIZE;z++)
 		{
-			dist = sqrt( (double)((x*x) + (z*z)) ) + 0.6;
+			double dist = sqrt( (double)((x*x) + (z*z)) ) + 0.6;
 			m_iDistanceTable[x][z] = (int)dist;
 		}
 	}
@@ -132,8 +130,6 @@ void CN3Terrain::MakeDistanceTable()
 //
 void CN3Terrain::Release()
 {	
-	int x;
-
 	if(m_pGrassAttr)
 	{
 		//free(m_pGrassAttr);
@@ -149,7 +145,7 @@ void CN3Terrain::Release()
 	}
 
 //	{
-//		for(x=0;x<m_ti_MapSize;x++)
+//		for(int x=0;x<m_ti_MapSize;x++)
 //		{
 //			if(m_ppGrassAttr[x])
 //			{
@@ -176,7 +172,7 @@ void CN3Terrain::Release()
 
 	if(m_pTileTex)
 	{
-//		for(x=0;x<m_NumTileTex;x++)
+//		for(int x=0;x<m_NumTileTex;x++)
 //			m_pTileTex[x].Release();
 		delete[] m_pTileTex;
 		m_pTileTex = NULL;
@@ -184,9 +180,9 @@ void CN3Terrain::Release()
 	
 	if(m_ppColorMapTex)
 	{
-		for(x=0;x<m_iNumColorMap;x++)
+		for(int x=0;x<m_iNumColorMap;x++)
 		{
-//			for(z=0;z<m_iNumColorMap;z++)
+//			for(int z=0;z<m_iNumColorMap;z++)
 //			{
 //				m_ppColorMapTex[x][z].Release();
 //			}
@@ -199,9 +195,9 @@ void CN3Terrain::Release()
 
 	if(m_ppPatch)
 	{
-		for(x=0;x<m_iNumPatch;x++)
+		for(int x=0;x<m_iNumPatch;x++)
 		{
-//			for(z=0;z<m_iNumPatch;z++)
+//			for(int z=0;z<m_iNumPatch;z++)
 //			{
 //				m_ppPatch[x][z].Release();
 //			}
@@ -227,7 +223,7 @@ void CN3Terrain::Release()
 
 	if(m_ppPatchRadius)
 	{
-		for(x=0;x<m_pat_MapSize;x++)
+		for(int x=0;x<m_pat_MapSize;x++)
 		{
 			delete[] m_ppPatchRadius[x];
 			m_ppPatchRadius[x] = NULL;
@@ -238,7 +234,7 @@ void CN3Terrain::Release()
 
 	if(m_ppPatchMiddleY)
 	{
-		for(x=0;x<m_pat_MapSize;x++)
+		for(int x=0;x<m_pat_MapSize;x++)
 		{
 			delete[] m_ppPatchMiddleY[x];
 			m_ppPatchMiddleY[x] = NULL;
@@ -247,10 +243,9 @@ void CN3Terrain::Release()
 		m_ppPatchMiddleY = NULL;
 	}
 
-	int z;
-	for(x=0;x<3;x++)
+	for(int x=0;x<3;x++)
 	{
-		for(z=0;z<3;z++)
+		for(int z=0;z<3;z++)
 		{
 			stlMap_N3TexIt itBegin = m_LightMapPatch[x][z].begin();
 			stlMap_N3TexIt itEnd = m_LightMapPatch[x][z].end();
@@ -294,16 +289,14 @@ void CN3Terrain::Init()
 	
 	m_iNumPatch = (m_pat_Center2Side<<1) + 1;
 	
-	int x;
 	m_ppPatch = new CN3TerrainPatch* [m_iNumPatch];
-	for(x=0;x<m_iNumPatch;x++)
+	for(int x=0;x<m_iNumPatch;x++)
 	{
 		m_ppPatch[x] = new CN3TerrainPatch [m_iNumPatch];		
 	}
-	int z;
-	for(x=0;x<m_iNumPatch;x++)
+	for(int x=0;x<m_iNumPatch;x++)
 	{
-		for(z=0;z<m_iNumPatch;z++)
+		for(int z=0;z<m_iNumPatch;z++)
 		{
 			m_ppPatch[x][z].Init(this);
 		}
@@ -418,8 +411,6 @@ bool CN3Terrain::Load(HANDLE hFile)
 	ReadFile(hFile, &(m_ti_MapSize), sizeof(int), &dwRWC, NULL);
 	m_pat_MapSize = (m_ti_MapSize-1) / PATCH_TILE_SIZE;
 
-	int x, z;
-
 	//m_pMapData = (LPMAPDATA)malloc(sizeof(MAPDATA)*m_ti_MapSize*m_ti_MapSize);
 	m_pMapData = (LPMAPDATA)GlobalAlloc(GMEM_FIXED, sizeof(MAPDATA)*m_ti_MapSize*m_ti_MapSize);
 	if(m_pMapData==NULL) CLogWriter::Write("Terrain Error : MapData Memory Allocation Failed..-.-");
@@ -437,7 +428,7 @@ bool CN3Terrain::Load(HANDLE hFile)
 
 	m_ppPatchRadius = new float* [m_pat_MapSize];
 	m_ppPatchMiddleY = new float* [m_pat_MapSize];
-	for(x=0;x<m_pat_MapSize;x++)
+	for(int x=0;x<m_pat_MapSize;x++)
 	{
 		m_ppPatchMiddleY[x] = new float [m_pat_MapSize];
 		m_ppPatchRadius[x] = new float [m_pat_MapSize];
@@ -446,9 +437,9 @@ bool CN3Terrain::Load(HANDLE hFile)
 	if(pUILoading) pUILoading->Render("Loading Terrain Patch Data...", 0);
 
 	char szLoadingBuff[128];
-	for(x=0; x<m_pat_MapSize; x++)
+	for(int x=0; x<m_pat_MapSize; x++)
 	{
-		for(z=0; z<m_pat_MapSize; z++)
+		for(int z=0; z<m_pat_MapSize; z++)
 		{
 			ReadFile(hFile, &(m_ppPatchMiddleY[x][z]), sizeof(float), &dwRWC, NULL);
 			ReadFile(hFile, &(m_ppPatchRadius[x][z]), sizeof(float), &dwRWC, NULL);
@@ -461,7 +452,7 @@ bool CN3Terrain::Load(HANDLE hFile)
 	}
 
 //	m_ppGrassAttr = new unsigned char* [m_ti_MapSize];
-//	for(x=0; x<m_ti_MapSize; x++)
+//	for(int x=0; x<m_ti_MapSize; x++)
 //	{
 //		m_ppGrassAttr[x] = new unsigned char[m_ti_MapSize];
 //		ReadFile(hFile, m_ppGrassAttr[x], sizeof(unsigned char)*m_ti_MapSize, &dwRWC, NULL);
@@ -530,12 +521,11 @@ void CN3Terrain::SetNormals()
 {
 	return;
 /*
-	int x,z;
 	__Vector3 vNormalTmp(0.0f, 0.0f, 0.0f);
 	__Vector3 V1, V2;
-	for(x=0;x<m_ti_MapSize;x++)
+	for(int x=0;x<m_ti_MapSize;x++)
 	{
-		for(z=0;z<m_ti_MapSize;z++)
+		for(int z=0;z<m_ti_MapSize;z++)
 		{
 			if( x==0 || z==0 || x==(m_ti_MapSize-1) || z==(m_ti_MapSize-1) )
 			{
@@ -684,7 +674,7 @@ void CN3Terrain::LoadTileInfo(HANDLE hFile)
 	short SrcIdx, TileIdx;
 	HANDLE hTTGFile;
 	char szLoadingBuff[128];
-	for(i=0;i<m_NumTileTex;i++)
+	for(int i=0;i<m_NumTileTex;i++)
 	{
 		ReadFile(hFile, &SrcIdx, sizeof(short), &dwRWC, NULL);
 		ReadFile(hFile, &TileIdx, sizeof(short), &dwRWC, NULL);
@@ -708,7 +698,7 @@ void CN3Terrain::LoadTileInfo(HANDLE hFile)
 		CloseHandle(hTTGFile);
 	}
 
-	for(i=0;i<NumTileTexSrc;i++)
+	for(int i=0;i<NumTileTexSrc;i++)
 	{
 		delete[] SrcName[i];
 		SrcName[i] = NULL;
@@ -730,13 +720,11 @@ bool CN3Terrain::SetLODLevel(int level)
 
 	if(m_iLodLevel<2) m_iLodLevel = 2; 
 
-	int x,z;
-	int dist;
-	for(x=0;x<m_iNumPatch;x++)
+	for(int x=0;x<m_iNumPatch;x++)
 	{
-		for(z=0;z<m_iNumPatch;z++)
+		for(int z=0;z<m_iNumPatch;z++)
 		{
-			dist = m_iDistanceTable[T_Abs(m_pat_Center2Side-x)][T_Abs(m_pat_Center2Side-z)];
+			int dist = m_iDistanceTable[T_Abs(m_pat_Center2Side-x)][T_Abs(m_pat_Center2Side-z)];
 			if(dist <= m_iLodLevel) m_ppPatch[x][z].SetLevel(1);
 			else if(dist <= m_iLodLevel+3) m_ppPatch[x][z].SetLevel(2);
 			else m_ppPatch[x][z].SetLevel(3);
@@ -834,12 +822,11 @@ void CN3Terrain::Tick()
 
 	bool bChangeBound = CheckBound();
 
-	int x,z;
 	if( (bMovePatch) || (bChangeBound) || ChangeLOD)
 	{
-		for(x=m_pat_BoundRect.left; x<=m_pat_BoundRect.right; x++)
+		for(int x=m_pat_BoundRect.left; x<=m_pat_BoundRect.right; x++)
 		{
-			for(z=m_pat_BoundRect.top; z<=m_pat_BoundRect.bottom; z++)
+			for(int z=m_pat_BoundRect.top; z<=m_pat_BoundRect.bottom; z++)
 			{
 				if(x<0 || z<0) continue;
 				m_ppPatch[x][z].Tick();
@@ -875,23 +862,20 @@ bool CN3Terrain::CheckMovePatch()
 //
 void CN3Terrain::DispositionPatch()
 {
-	int x,z;
-	int px,pz;
-	int cx,cz;
-	for(x=0; x<m_iNumPatch; x++)
+	for(int x=0; x<m_iNumPatch; x++)
 	{
-		for(z=0; z<m_iNumPatch; z++)
+		for(int z=0; z<m_iNumPatch; z++)
 		{
-			px = m_pat_LBPos.x+x;
-			pz = m_pat_LBPos.y+z;
+			int px = m_pat_LBPos.x+x;
+			int pz = m_pat_LBPos.y+z;
 
 			if(px<0 || pz<0 || px >= m_pat_MapSize || pz >= m_pat_MapSize) continue;
 
 			m_ppPatch[x][z].m_ti_LBPoint.x = px * PATCH_TILE_SIZE;
 			m_ppPatch[x][z].m_ti_LBPoint.y = pz * PATCH_TILE_SIZE;
 
-			cx = px*PATCH_PIXEL_SIZE/COLORMAPTEX_SIZE;
-			cz = pz*PATCH_PIXEL_SIZE/COLORMAPTEX_SIZE;
+			int cx = px*PATCH_PIXEL_SIZE/COLORMAPTEX_SIZE;
+			int cz = pz*PATCH_PIXEL_SIZE/COLORMAPTEX_SIZE;
 			if(cx < 0 || cz < 0 || cx >= m_iNumColorMap || cz >= m_iNumColorMap) m_ppPatch[x][z].m_pRefColorTex = NULL;
 			else m_ppPatch[x][z].m_pRefColorTex = &(m_ppColorMapTex[cx][cz]);
 		}
@@ -936,7 +920,7 @@ void CN3Terrain::DispositionPatch()
 //
 void CN3Terrain::SetLightMap(int dir)
 {
-	return;
+	return; // TODO: I suppose this needs to be reworked.
 	__TABLE_ZONE* pZoneData = CGameBase::s_pTbl_Zones->Find(CGameBase::s_pPlayer->m_InfoExt.iZoneCur);
 	if(!pZoneData) return;
 
@@ -1147,17 +1131,16 @@ void CN3Terrain::SetLightMapPatch(int x, int z, HANDLE hFile, int* pAddr)
 	int TexCount;
 	ReadFile(hFile, &TexCount, sizeof(int), &dwRWC, NULL);
 	
-	int tx, tz;
-	int rtx, rtz;
 	for(int i=0;i<TexCount;i++)
 	{
+		int tx, tz;
 		ReadFile(hFile, &tx, sizeof(int), &dwRWC, NULL);
 		ReadFile(hFile, &tz, sizeof(int), &dwRWC, NULL);
 
 		CN3Texture* pTex = new CN3Texture;
 		pTex->Load(hFile);
-		rtx = px*PATCH_TILE_SIZE + tx;
-		rtz = pz*PATCH_TILE_SIZE + tz;
+		int rtx = px*PATCH_TILE_SIZE + tx;
+		int rtz = pz*PATCH_TILE_SIZE + tz;
 
 		DWORD key = rtx*10000+rtz;
 		m_LightMapPatch[x][z].insert(stlMap_N3TexValue(key,pTex));
@@ -1170,9 +1153,8 @@ void CN3Terrain::SetLightMapPatch(int x, int z, HANDLE hFile, int* pAddr)
 //
 CN3Texture* CN3Terrain::GetLightMap(int tx, int tz)
 {
-	int px, pz;
-	px = tx / PATCH_TILE_SIZE;
-	pz = tz / PATCH_TILE_SIZE;
+	int px = tx / PATCH_TILE_SIZE;
+	int pz = tz / PATCH_TILE_SIZE;
 
 	px -= (m_pat_CenterPos.x-1);
 	pz -= (m_pat_CenterPos.y-1);
@@ -1217,7 +1199,7 @@ bool CN3Terrain::CheckBound()
 		vFPs[i] = vFPs[i] * CN3Base::s_CameraData.mtxViewInverse;
 
 	
-	for(i=0;i<4;i++)
+	for(int i=0;i<4;i++)
 	{
 		POINT FarPoint;
 		FarPoint.x = Real2Patch(vFPs[i].x);
@@ -1260,20 +1242,18 @@ bool CN3Terrain::CheckRenderablePatch()
 {
 	bool bChange = false;
 	__Vector3 CenterPoint;
-	int px, pz;
-	int x,z;
 	BOOL PrevState;
-	for(x=m_pat_BoundRect.left; x<=m_pat_BoundRect.right; x++)
+	for(int x=m_pat_BoundRect.left; x<=m_pat_BoundRect.right; x++)
 	{
-		for(z=m_pat_BoundRect.top; z<=m_pat_BoundRect.bottom; z++)
+		for(int z=m_pat_BoundRect.top; z<=m_pat_BoundRect.bottom; z++)
 		{
 			if(x<0 || z<0) continue;
 
 			PrevState = m_ppPatch[x][z].m_bIsRender;
 			m_ppPatch[x][z].m_bIsRender = TRUE;
 
-			px = m_pat_LBPos.x + x;
-			pz = m_pat_LBPos.y + z;
+			int px = m_pat_LBPos.x + x;
+			int pz = m_pat_LBPos.y + z;
 
 			if(px<0 || pz<0 || px >= m_pat_MapSize || pz >= m_pat_MapSize)
 			{
@@ -1343,10 +1323,9 @@ void CN3Terrain::Render()
 	hr = s_lpD3DDev->SetSamplerState( 1, D3DSAMP_ADDRESSU,  D3DTADDRESS_MIRROR );
 	hr = s_lpD3DDev->SetSamplerState( 1, D3DSAMP_ADDRESSV,  D3DTADDRESS_MIRROR );
 
-	int x,z;
-	for(x=m_pat_BoundRect.left; x<=m_pat_BoundRect.right; x++)
+	for(int x=m_pat_BoundRect.left; x<=m_pat_BoundRect.right; x++)
 	{
-		for(z=m_pat_BoundRect.top; z<=m_pat_BoundRect.bottom; z++)
+		for(int z=m_pat_BoundRect.top; z<=m_pat_BoundRect.bottom; z++)
 		{
 			if(x<0 || z<0) continue;
 			m_ppPatch[x][z].Render();
@@ -1401,16 +1380,14 @@ inline int CN3Terrain::Log2(int x)
 //
 float CN3Terrain::GetHeight(float x, float z)
 {
-	int ix, iz;
-	ix = ((int)x) / TILE_SIZE;
-	iz = ((int)z) / TILE_SIZE;
+	int ix = ((int)x) / TILE_SIZE;
+	int iz = ((int)z) / TILE_SIZE;
 
 	if(ix<0 || ix>(m_ti_MapSize-2)) return -FLT_MAX;
 	if(iz<0 || iz>(m_ti_MapSize-2)) return -FLT_MAX;
 
-	float dX, dZ;
-	dX = (x - (ix*TILE_SIZE)) / TILE_SIZE;
-	dZ = (z - (iz*TILE_SIZE)) / TILE_SIZE;
+	float dX = (x - (ix*TILE_SIZE)) / TILE_SIZE;
+	float dZ = (z - (iz*TILE_SIZE)) / TILE_SIZE;
 
 	float y;
 	float h1, h2, h3, h12, h13;
@@ -1488,13 +1465,11 @@ void CN3Terrain::GetNormal(float x, float z, __Vector3& vNormal)
 		return;
 	}
 
-	int ix, iz;
-	ix = ((int)x) / TILE_SIZE;
-	iz = ((int)z) / TILE_SIZE;
+	int ix = ((int)x) / TILE_SIZE;
+	int iz = ((int)z) / TILE_SIZE;
 
-	float dX, dZ;
-	dX = (x - ix*TILE_SIZE)/TILE_SIZE;
-	dZ = (z - iz*TILE_SIZE)/TILE_SIZE;
+	float dX = (x - ix*TILE_SIZE)/TILE_SIZE;
+	float dZ = (z - iz*TILE_SIZE)/TILE_SIZE;
 
 	__Vector3 v1,v2;
 	vNormal.Set(0,1,0);
@@ -2104,7 +2079,7 @@ bool CN3Terrain::LoadColorMap(const std::string& szFN)
 	}
 
 	char szBuff[128];
-	for(x=0;x<m_iNumColorMap;x++)
+	for(int x=0;x<m_iNumColorMap;x++)
 	{
 		for(int z=0;z<m_iNumColorMap;z++)
 		{
@@ -2131,9 +2106,8 @@ CN3Texture* CN3Terrain::GetTileTex(int x, int z)
 
 bool CN3Terrain::GetTileTexInfo(float x, float z, TERRAINTILETEXINFO& TexInfo1, TERRAINTILETEXINFO& TexInfo2)
 {
-	int tx, tz;
-	tx = x / TILE_SIZE;
-	tz = z / TILE_SIZE;
+	int tx = x / TILE_SIZE;
+	int tz = z / TILE_SIZE;
 
 	if(tx<0 || tx>=m_ti_MapSize || tz<0 || tz>=m_ti_MapSize) return false;
 

@@ -81,8 +81,7 @@ BOOL CDlgTexture::OnInitDialog()
 	if (m_iImageTypeCount>0)
 	{
 		m_ImageType.ShowWindow(SW_SHOW);
-		int i;
-		for (i=0; i<m_iImageTypeCount; ++i)	m_ImageType.AddString(m_szImageTypeNames[i]);
+		for (int i=0; i<m_iImageTypeCount; ++i)	m_ImageType.AddString(m_szImageTypeNames[i]);
 		m_ImageType.SetCurSel(0);
 		m_pTexViewer->SetImageTypeIndex(0);
 	}
@@ -121,8 +120,7 @@ void CDlgTexture::OnOK()
 	ASSERT(m_pTexViewer);
 	if (m_iImageTypeCount>0)
 	{	// 모두 영역 선택이 되었나 체크
-		int i;
-		for (i=0; i<m_iImageTypeCount; ++i)
+		for (int i=0; i<m_iImageTypeCount; ++i)
 		{
 			if (-1 == m_pTexViewer->GetImageRect(i).left)
 			{
@@ -301,8 +299,7 @@ void CDlgTexture::SetImageTypes(int iCount, char** pszNames)
 	m_pTexViewer->SetImageTypeCount(iCount);
 	m_iImageTypeCount = iCount;
 
-	int i;
-	for (i=0; i<iCount; ++i) lstrcpy(m_szImageTypeNames[i], pszNames[i]);
+	for (int i=0; i<iCount; ++i) lstrcpy(m_szImageTypeNames[i], pszNames[i]);
 }
 
 CRect CDlgTexture::GetImageRect(int iIndex, __FLOAT_RECT* pUVRect)

@@ -56,8 +56,6 @@ void CN3GERain::Tick()
 	}
 	if(iActiveCount <= 0) return;
 
-	int i;
-
 	__VertexXyzColor* pVertices;
 	HRESULT hr = m_pVB->Lock(0, 0, (VOID**)&pVertices, D3DLOCK_NOSYSLOCK);
 
@@ -69,7 +67,7 @@ void CN3GERain::Tick()
 	const float fHalfHeight = m_fHeight/2.0f;
 	const float fCurY = s_CameraData.vEye.y;
 
-	for (i=0; i<iActiveCount; ++i)
+	for (int i=0; i<iActiveCount; ++i)
 	{
 		// tail 위치 결정하기
 		__VertexXyzColor* pVTail = pVertices+i*2+0;
@@ -210,10 +208,9 @@ void CN3GERain::Create(float fDensity,
 
 	const DWORD dwColorA = 0x00bfbfbf,	// 꼬리
 				dwColorB = 0x80bfbfbf;	// 머리
-	int i;
 	__Vector3 vN = vVelocity; vN.Normalize();
 	__Vector3 vAdd = vN*fRainLength;
-	for (i=0; i<iRainCount; ++i)
+	for (int i=0; i<iRainCount; ++i)
 	{
 		pVertices[i*2+0].Set(	fWidth*(rand()%10000-5000)/10000.f,
 								fHeight*(rand()%10000-5000)/10000.f,

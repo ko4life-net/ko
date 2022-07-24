@@ -433,7 +433,7 @@ bool CDlgEditPartParticle::LoadPartScript(const char* szPath)
 	m_bChangeColor = (BOOL)pPart->m_bChangeColor;
 
 	DWORD color;
-	for(i=0;i<NUM_KEY_COLOR;i++)
+	for(int i=0;i<NUM_KEY_COLOR;i++)
 	{
 		if(pPart->GetColor(i, color)) m_Color[i] = color;
 		if(pPart->m_bChangeColorKey[i]) m_bColorKey[i] = true;

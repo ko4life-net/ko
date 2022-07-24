@@ -159,7 +159,7 @@ void CN3Cloak::Render(__Matrix44 &mtx)
 			s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 1, Vtx, sizeof(__VertexXyzColor));
 		}
 	}
-	for ( i = 0 ; i< m_nGridH-1;i++)
+	for (int i = 0 ; i< m_nGridH-1;i++)
 	{
 		for (int j=0;j<m_nGridW;j++)
 		{
@@ -183,17 +183,14 @@ void CN3Cloak::Render(__Matrix44 &mtx)
 #define SPRING_COEFFICIENT		0.3f
 void CN3Cloak::UpdateLocalForce()
 {
-	float length;
-
-	int i, j, index, idx;
 	D3DXVECTOR3 up, down, left, right;
 	const float nSub = 0.2f;
 
-	for ( i = 0; i < m_nGridH; i ++ )
+	for (int i = 0; i < m_nGridH; i++)
 	{
-		for ( j = 0; j < m_nGridW; j ++ )
+		for (int j = 0; j < m_nGridW; j++)
 		{
-			index = i*m_nGridW + j;			
+			int index = i*m_nGridW + j;			
 			
 			up.x = down.x = left.x = right.x = 0; 
 			up.y = down.y = left.y = right.y = 0; 
@@ -201,12 +198,12 @@ void CN3Cloak::UpdateLocalForce()
 			
 			if ( j-1 >= 0 )
 			{
-				idx = i*m_nGridW + (j-1);
+				int idx = i*m_nGridW + (j-1);
 				up.x = m_pParticle[idx].x - m_pParticle[index].x; 
 				up.y = m_pParticle[idx].y - m_pParticle[index].y; 
 				up.z = m_pParticle[idx].z - m_pParticle[index].z;
 				
-				length = sqrt(up.x * up.x + up.y * up.y + up.z * up.z);
+				int length = sqrt(up.x * up.x + up.y * up.y + up.z * up.z);
 
 				if (length > SPRING_TOLERANCE)
 				{
@@ -219,12 +216,12 @@ void CN3Cloak::UpdateLocalForce()
 			}
 			if ( j+1 < m_nGridW)
 			{
-				idx = i * m_nGridW + j+1;
+				int idx = i * m_nGridW + j+1;
 				down.x = m_pParticle[idx].x - m_pParticle[index].x; 
 				down.y = m_pParticle[idx].y - m_pParticle[index].y; 
 				down.z = m_pParticle[idx].z - m_pParticle[index].z; 
 
-				length = sqrt(down.x * down.x + down.y * down.y + down.z * down.z);
+				int length = sqrt(down.x * down.x + down.y * down.y + down.z * down.z);
 				if (length > SPRING_TOLERANCE)
 				{				
 					length = 1.0f-nSub/length;
@@ -235,12 +232,12 @@ void CN3Cloak::UpdateLocalForce()
 			}
 			if ( i-1 >= 0 )
 			{
-				idx = (i-1) * m_nGridW + j;
+				int idx = (i-1) * m_nGridW + j;
 				left.x = m_pParticle[idx].x - m_pParticle[index].x; 
 				left.y = m_pParticle[idx].y - m_pParticle[index].y; 
 				left.z = m_pParticle[idx].z - m_pParticle[index].z; 
 
-				length = sqrt(left.x * left.x + left.y * left.y + left.z * left.z);
+				int length = sqrt(left.x * left.x + left.y * left.y + left.z * left.z);
 				if (length > SPRING_TOLERANCE)
 				{
 					length = 1.0f-nSub/length;					
@@ -251,12 +248,12 @@ void CN3Cloak::UpdateLocalForce()
 			}
 			if ( i+1 < m_nGridH )
 			{
-				idx = (i+1) * m_nGridW + j;
+				int idx = (i+1) * m_nGridW + j;
 				right.x = m_pParticle[idx].x - m_pParticle[index].x; 
 				right.y = m_pParticle[idx].y - m_pParticle[index].y; 
 				right.z = m_pParticle[idx].z - m_pParticle[index].z; 
 
-				length = sqrt(right.x * right.x + right.y * right.y + right.z * right.z);
+				int length = sqrt(right.x * right.x + right.y * right.y + right.z * right.z);
 				if (length > SPRING_TOLERANCE)
 				{
 					length = 1.0f-nSub/length;
@@ -381,10 +378,9 @@ void CN3Cloak::SetLOD(int nLevel)
 	
 	m_pParticle = new __Particle[m_nGridW*m_nGridH];
 	__Particle *pParticle = m_pParticle;
-	int i,j;
-	for (i=0;i<m_nGridH;i++)
+	for (int i=0;i<m_nGridH;i++)
 	{
-		for (j=0;j<m_nGridW;j++)
+		for (int j=0;j<m_nGridW;j++)
 		{
 			pParticle->Set(0.5f, 2.0f-j*.2f, 2.0f-i*.2f, 0.0f, 0.0f, 0.0f, 0.0f);
 			pParticle++;

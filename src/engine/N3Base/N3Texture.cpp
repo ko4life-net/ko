@@ -57,8 +57,9 @@ bool CN3Texture::Create(int nWidth, int nHeight, D3DFORMAT Format, BOOL bGenerat
 
 	if(s_dwTextureCaps & TEX_CAPS_POW2) // 2 의 승수만 된다면..
 	{
-		for(int nW = 1; nW <= nWidth; nW *= 2); nW /= 2;
-		for(int nH = 1; nH <= nHeight; nH *= 2); nH /= 2;
+		int nW = 1, nH = 1;
+		for(; nW <= nWidth; nW *= 2); nW /= 2;
+		for(; nH <= nHeight; nH *= 2); nH /= 2;
 
 		nWidth = nW;
 		nHeight = nH;
@@ -624,7 +625,7 @@ bool CN3Texture::Save(HANDLE hFile)
 		
 		int nMMC2 = nMMC - 1;
 		if(nMMC == 1) nMMC2 = nMMC;
-		for(i = 0; i < nMMC2; i++)
+		for(int i = 0; i < nMMC2; i++)
 		{
 			m_lpTexture->GetLevelDesc(i, &sd);
 			m_lpTexture->GetSurfaceLevel(i, &lpSurfSrc);

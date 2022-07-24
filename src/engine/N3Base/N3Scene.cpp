@@ -32,9 +32,8 @@ CN3Scene::CN3Scene()
 
 CN3Scene::~CN3Scene()
 {
-	int i = 0;
-	for(i = 0; i < MAX_SCENE_CAMERA; i++) { if(m_pCameras[i]) { delete m_pCameras[i]; m_pCameras[i] = NULL; } }
-	for(i = 0; i < MAX_SCENE_LIGHT; i++) { if(m_pLights[i]) { delete m_pLights[i]; m_pLights[i] = NULL; } }
+	for(int i = 0; i < MAX_SCENE_CAMERA; i++) { if(m_pCameras[i]) { delete m_pCameras[i]; m_pCameras[i] = NULL; } }
+	for(int i = 0; i < MAX_SCENE_LIGHT; i++) { if(m_pLights[i]) { delete m_pLights[i]; m_pLights[i] = NULL; } }
 	
 	this->ShapeRelease();
 	this->ChrRelease();
@@ -48,9 +47,8 @@ void CN3Scene::Release()
 	m_fFrmStart = 0.0f; // 전체 프레임.
 	m_fFrmEnd = 1000.0f; // 기본값 프레임.
 
-	int i = 0;
-	for(i = 0; i < MAX_SCENE_CAMERA; i++) { if(m_pCameras[i]) { delete m_pCameras[i]; m_pCameras[i] = NULL; } }
-	for(i = 0; i < MAX_SCENE_LIGHT; i++) { if(m_pLights[i]) { delete m_pLights[i]; m_pLights[i] = NULL; } }
+	for(int i = 0; i < MAX_SCENE_CAMERA; i++) { if(m_pCameras[i]) { delete m_pCameras[i]; m_pCameras[i] = NULL; } }
+	for(int i = 0; i < MAX_SCENE_LIGHT; i++) { if(m_pLights[i]) { delete m_pLights[i]; m_pLights[i] = NULL; } }
 	this->ShapeRelease();
 	this->ChrRelease();
 
@@ -69,12 +67,12 @@ bool CN3Scene::Load(HANDLE hFile)
 	ReadFile(hFile, &m_fFrmStart, 4, &dwRWC, NULL); // 전체 프레임.
 	ReadFile(hFile, &m_fFrmEnd, 4, &dwRWC, NULL); // 전체 프레임.
 
-	int i = 0, nL = 0;
+	int nL = 0;
 	char szName[512] = "";
 
 	int nCC = 0;
 	ReadFile(hFile, &nCC, 4, &dwRWC, NULL); // 카메라..
-	for(i = 0; i < nCC; i++)
+	for(int i = 0; i < nCC; i++)
 	{
 		ReadFile(hFile, &nL, 4, &dwRWC, NULL);
 		if(nL <= 0) continue;
@@ -94,7 +92,7 @@ bool CN3Scene::Load(HANDLE hFile)
 
 	int nLC = 0;
 	ReadFile(hFile, &nLC, 4, &dwRWC, NULL); // 카메라..
-	for(i = 0; i < nLC; i++) 
+	for(int i = 0; i < nLC; i++) 
 	{
 		ReadFile(hFile, &nL, 4, &dwRWC, NULL);
 		if(nL <= 0) continue;
@@ -114,7 +112,7 @@ bool CN3Scene::Load(HANDLE hFile)
 
 	int nSC = 0;
 	ReadFile(hFile, &nSC, 4, &dwRWC, NULL); // Shapes..
-	for(i = 0; i < nSC; i++)
+	for(int i = 0; i < nSC; i++)
 	{
 		ReadFile(hFile, &nL, 4, &dwRWC, NULL);
 		if(nL <= 0) continue;
@@ -134,7 +132,7 @@ bool CN3Scene::Load(HANDLE hFile)
 
 	int nChrC = 0;
 	ReadFile(hFile, &nChrC, 4, &dwRWC, NULL); // 캐릭터
-	for(i = 0; i < nChrC; i++)
+	for(int i = 0; i < nChrC; i++)
 	{
 		ReadFile(hFile, &nL, 4, &dwRWC, NULL);
 		if(nL <= 0) continue;
@@ -171,22 +169,20 @@ bool CN3Scene::Save(HANDLE hFile)
 	WriteFile(hFile, &m_fFrmCur, 4, &dwRWC, NULL); // Animation Frame;
 	WriteFile(hFile, &m_fFrmStart, 4, &dwRWC, NULL); // 전체 프레임.
 	WriteFile(hFile, &m_fFrmEnd, 4, &dwRWC, NULL); // 전체 프레임.
-
-	int i = 0, nL = 0;
 	
 	WriteFile(hFile, &m_nCameraCount, 4, &dwRWC, NULL); // 카메라..
-	for(i = 0; i < m_nCameraCount; i++)
+	for(int i = 0; i < m_nCameraCount; i++)
 	{
-		nL = m_pCameras[i]->FileName().size();
+		int nL = m_pCameras[i]->FileName().size();
 		WriteFile(hFile, &nL, 4, &dwRWC, NULL);
 		WriteFile(hFile, m_pCameras[i]->FileName().c_str(), nL, &dwRWC, NULL);
 		m_pCameras[i]->SaveToFile();
 	}
 
 	WriteFile(hFile, &m_nLightCount, 4, &dwRWC, NULL); // 카메라..
-	for(i = 0; i < m_nLightCount; i++) 
+	for(int i = 0; i < m_nLightCount; i++) 
 	{
-		nL = m_pLights[i]->FileName().size();
+		int nL = m_pLights[i]->FileName().size();
 		WriteFile(hFile, &nL, 4, &dwRWC, NULL);
 		WriteFile(hFile, m_pLights[i]->FileName().c_str(), nL, &dwRWC, NULL);
 		m_pLights[i]->SaveToFile();
@@ -194,9 +190,9 @@ bool CN3Scene::Save(HANDLE hFile)
 
 	int iSC = m_Shapes.size();
 	WriteFile(hFile, &iSC, 4, &dwRWC, NULL); // Shapes..
-	for(i = 0; i < iSC; i++)
+	for(int i = 0; i < iSC; i++)
 	{
-		nL = m_Shapes[i]->FileName().size();
+		int nL = m_Shapes[i]->FileName().size();
 		WriteFile(hFile, &nL, 4, &dwRWC, NULL);
 		if(nL <= 0) continue;
 
@@ -206,9 +202,9 @@ bool CN3Scene::Save(HANDLE hFile)
 
 	int iCC = m_Chrs.size();
 	WriteFile(hFile, &iCC, 4, &dwRWC, NULL); // 캐릭터
-	for(i = 0; i < iCC; i++)
+	for(int i = 0; i < iCC; i++)
 	{
-		nL = m_Chrs[i]->FileName().size();
+		int nL = m_Chrs[i]->FileName().size();
 		WriteFile(hFile, &nL, 4, &dwRWC, NULL);
 		if(nL <= 0) continue;
 
@@ -223,14 +219,13 @@ bool CN3Scene::Save(HANDLE hFile)
 
 void CN3Scene::Render()
 {
-	int i = 0;
-//	for(i = 0; i < m_nCameraCount; i++)
+//	for(int i = 0; i < m_nCameraCount; i++)
 //	{
 //		__ASSERT(m_pCameras[i], "Camera pointer is NULL");
 //		if(m_nCameraActive != i) m_pCameras[i]->Render();
 //	}
 
-//	for(i = 0; i < m_nLightCount; i++)
+//	for(int i = 0; i < m_nLightCount; i++)
 //	{
 //		__ASSERT(m_pLights[i], "Light pointer is NULL");
 //		m_pLights[i]->Render(NULL, 0.5f);
@@ -238,13 +233,13 @@ void CN3Scene::Render()
 	s_lpD3DDev->SetRenderState(D3DRS_AMBIENT, m_AmbientLightColor);
 
 	int iSC = m_Shapes.size();
-	for(i = 0; i < iSC; i++)
+	for(int i = 0; i < iSC; i++)
 	{
 		m_Shapes[i]->Render();
 	}
 
 	int iCC = m_Chrs.size();
-	for(i = 0; i < iCC; i++)
+	for(int i = 0; i < iCC; i++)
 	{
 		m_Chrs[i]->Render();
 	}
@@ -281,7 +276,7 @@ void CN3Scene::TickLights(float fFrm)
 {
 	for(int i = 0; i < 8; i++) s_lpD3DDev->LightEnable(i, FALSE); // 일단 라이트 다 끄고..
 	
-	for(i = 0; i < m_nLightCount; i++)
+	for(int i = 0; i < m_nLightCount; i++)
 	{
 		m_pLights[i]->Tick(m_fFrmCur);
 		m_pLights[i]->Apply(); // 라이트 적용
@@ -498,23 +493,23 @@ bool CN3Scene::CheckOverlappedShapesAndReport()
 	CN3Transform* pShapes[8192];
 	memset(pShapes, 0, 8192*4);
 
-	int i, j, nBC = 0;
-//	for(i = 0; i < m_nCameraCount; i++) pTransforms[nBC++] = m_pCameras[i];
-//	for(i = 0; i < m_nLightCount; i++) pTransforms[nBC++] = m_pLights[i];
+	int nBC = 0;
+//	for(int i = 0; i < m_nCameraCount; i++) pTransforms[nBC++] = m_pCameras[i];
+//	for(int i = 0; i < m_nLightCount; i++) pTransforms[nBC++] = m_pLights[i];
 	it_Shape it = m_Shapes.begin(), itEnd = m_Shapes.end();
 	for(; it != itEnd; it++)
 	{
 		CN3Shape* pShape = *it;
 		pShapes[nBC++] = pShape;
 	}
-//	for(i = 0; i < m_nChrCount; i++) pTransforms[nBC++] = m_pChrs[i];
+//	for(int i = 0; i < m_nChrCount; i++) pTransforms[nBC++] = m_pChrs[i];
 
 	bool bOverlapped = false;
 	__Vector3 vPos1, vPos2;
-	for(i = 0; i < nBC; i++)
+	for(int i = 0; i < nBC; i++)
 	{
 		vPos1 = pShapes[i]->Pos();
-		for(j = i+1; j < nBC; j++)
+		for(int j = i+1; j < nBC; j++)
 		{
 			vPos2 = pShapes[j]->Pos();
 			if(	vPos1 == vPos2 ||
@@ -544,7 +539,7 @@ void CN3Scene::DeleteOverlappedShapes()
 	memset(itShapes, 0, sizeof(itShapes));
 	memset(itShapes, 0, sizeof(pShapes));
 
-	int i, j, nBC = 0;
+	int nBC = 0;
 	it_Shape it = m_Shapes.begin(), itEnd = m_Shapes.end();
 	for(; it != itEnd; it++)
 	{
@@ -553,14 +548,14 @@ void CN3Scene::DeleteOverlappedShapes()
 		CN3Shape* pShape = *it;
 		pShapes[nBC++] = pShape;
 	}
-//	for(i = 0; i < m_nChrCount; i++) pTransforms[nBC++] = m_pChrs[i];
+//	for(int i = 0; i < m_nChrCount; i++) pTransforms[nBC++] = m_pChrs[i];
 
 	int iNeedDeleteCount = 0;
 	__Vector3 vPos1, vPos2;
-	for(i = 0; i < nBC; i++)
+	for(int i = 0; i < nBC; i++)
 	{
 		vPos1 = pShapes[i]->Pos();
-		for(j = i+1; j < nBC; j++)
+		for(int j = i+1; j < nBC; j++)
 		{
 			vPos2 = pShapes[j]->Pos();
 			if(	vPos1 == vPos2 ||
@@ -571,7 +566,7 @@ void CN3Scene::DeleteOverlappedShapes()
 		}
 	}
 
-	for(i = 0; i < nBC; i++)
+	for(int i = 0; i < nBC; i++)
 	{
 		if(bNeedDeletes[i])
 		{

@@ -301,7 +301,7 @@ void CNpc::InitMagicValuable()
 		m_MagicType4[i].fStartTime = 0.0f;
 	}
 
-	for(i=0; i<MAX_MAGIC_TYPE3; i++)	{
+	for(int i=0; i<MAX_MAGIC_TYPE3; i++)	{
 		m_MagicType3[i].sHPAttackUserID = -1;
 		m_MagicType3[i].sHPAmount = 0;
 		m_MagicType3[i].byHPDuration = 0;
@@ -1536,22 +1536,17 @@ int CNpc::PathFind(CPoint start, CPoint end, float fDistance)
 		return 1;
 	}
 
-
-	int i,j;
-	int min_x, max_x;
-	int min_y, max_y;
-
-	min_x = m_min_x;
-	min_y = m_min_y;
-	max_x = m_max_x;
-	max_y = m_max_y;
+	int min_x = m_min_x;
+	int min_y = m_min_y;
+	int max_x = m_max_x;
+	int max_y = m_max_y;
 
 	m_vMapSize.cx = max_x - min_x + 1;		
 	m_vMapSize.cy = max_y - min_y + 1;
 
-	for(i = 0; i < m_vMapSize.cy; i++)
+	for(int i = 0; i < m_vMapSize.cy; i++)
 	{
-		for(j = 0; j < m_vMapSize.cx; j++)
+		for(int j = 0; j < m_vMapSize.cx; j++)
 		{
 			if((min_x+j) < 0 || (min_y+i) < 0)	return 0;
 			if(m_pOrgMap[min_x + j][min_y + i].m_sEvent == 0 )
@@ -1593,7 +1588,7 @@ int CNpc::PathFind(CPoint start, CPoint end, float fDistance)
 
 	int nAdd = GetDir(m_fStartPoint_X, m_fStartPoint_Y, m_fEndPoint_X, m_fEndPoint_Y);
 
-	for(i=0; i<count; i++)
+	for(int i=0; i<count; i++)
 	{
 		if(i==1)
 		{
@@ -3703,7 +3698,6 @@ int CNpc::GetDefense()
 //	Damage 계산, 만약 m_iHP 가 0 이하이면 사망처리
 BOOL CNpc::SetDamage(int nAttackType, int nDamage, TCHAR *id, int uid, CIOCPort* pIOCP)
 {
-	int i=0, len=0;
 	int userDamage = 0;
 	BOOL bFlag = FALSE;
 	_ExpUserList *tempUser = NULL;
@@ -3736,7 +3730,7 @@ BOOL CNpc::SetDamage(int nAttackType, int nDamage, TCHAR *id, int uid, CIOCPort*
 													// 잉여 데미지는 소용없다.		
 	if( (m_iHP - nDamage) < 0 ) userDamage = m_iHP;
 
-	for(i = 0; i < NPC_HAVE_USER_LIST; i++)	{
+	for(int i = 0; i < NPC_HAVE_USER_LIST; i++)	{
 		if(m_DamagedUserList[i].iUid == uid)	{
 			if(_stricmp("**duration**", id) == 0) {
 				bFlag = TRUE;
@@ -3754,13 +3748,13 @@ BOOL CNpc::SetDamage(int nAttackType, int nDamage, TCHAR *id, int uid, CIOCPort*
 		}
 	}
 
-	for(i = 0; i < NPC_HAVE_USER_LIST; i++)				// 인원 제한이 최종 대미지에 영향을 미치나?
+	for(int i = 0; i < NPC_HAVE_USER_LIST; i++)				// 인원 제한이 최종 대미지에 영향을 미치나?
 	{
 		if(m_DamagedUserList[i].iUid == -1)
 		{
 			if(m_DamagedUserList[i].nDamage <= 0)
 			{
-				len = strlen(id);
+				int len = strlen(id);
 				if( len > MAX_ID_SIZE || len <= 0 ) {
 					TRACE("###  Npc SerDamage Fail ---> uid = %d, name=%s, len=%d, id=%s  ### \n", m_sNid+NPC_BAND, m_strName, len, id);
 					continue;
@@ -3857,7 +3851,6 @@ void CNpc::SendExpToUserList()
 		TRACE("#### Npc-SendExpToUserList() ZoneIndex Fail : [name=%s], zoneindex=%d #####\n", m_strName, m_ZoneIndex);
 		return;
 	}
-	int i=0;
 	int nExp = 0;
 	int nPartyExp = 0;
 	int nLoyalty = 0;
@@ -3877,7 +3870,7 @@ void CNpc::SendExpToUserList()
 
 	IsUserInSight();	// 시야권내에 있는 유저 셋팅..
 				
-	for(i = 0; i < NPC_HAVE_USER_LIST; i++)				// 일단 리스트를 검색한다.
+	for(int i = 0; i < NPC_HAVE_USER_LIST; i++)				// 일단 리스트를 검색한다.
 	{
 		if(m_DamagedUserList[i].iUid < 0 || m_DamagedUserList[i].nDamage<= 0) continue;
 		if(m_DamagedUserList[i].bIs == TRUE) pUser = m_pMain->GetUserPtr(m_DamagedUserList[i].iUid);
@@ -4204,22 +4197,22 @@ int CNpc::FindFriend(int type)
 	int search_x = max_x - min_x + 1;		
 	int search_z = max_z - min_z + 1;	
 	
-	int i, j, count = 0;
+	int count = 0; // TODO: Check if this is a bug, since we don't increment it for target healer.
 	_TargetHealer arHealer[9];
-	for(i=0; i<9; i++)	{
+	for(int i=0; i<9; i++)	{
 		arHealer[i].sNID = -1;
 		arHealer[i].sValue = 0;
 	}
 
-	for(i = 0; i < search_x; i++)	{
-		for(j = 0; j < search_z; j++)	{
+	for(int i = 0; i < search_x; i++)	{
+		for(int j = 0; j < search_z; j++)	{
 			FindFriendRegion(min_x+i, min_z+j, pMap, &arHealer[count], type);
 			//FindFriendRegion(min_x+i, min_z+j, pMap, type);
 		}
 	}
 
 	int iValue = 0, iMonsterNid = 0;
-	for(i=0; i<9; i++)	{
+	for(int i=0; i<9; i++)	{
 		if(iValue < arHealer[i].sValue)	{
 			iValue = arHealer[i].sValue;
 			iMonsterNid = arHealer[i].sNID;
@@ -4636,10 +4629,9 @@ BOOL CNpc::GetUserInView()
 	int search_z = max_z - min_z + 1;	
 	
 	BOOL bFlag = FALSE;
-	int i, j;
 
-	for(i = 0; i < search_x; i++)	{
-		for(j = 0; j < search_z; j++)	{
+	for(int i = 0; i < search_x; i++)	{
+		for(int j = 0; j < search_z; j++)	{
 			bFlag = GetUserInViewRange(min_x+i, min_z+j);
 			if(bFlag == TRUE)	return TRUE;
 		}
@@ -4751,18 +4743,17 @@ void CNpc::IsUserInSight()
 	// Npc와 User와의 거리가 50미터 안에 있는 사람에게만,, 경험치를 준다..
 	int iSearchRange = NPC_EXP_RANGE;		
 
-	int i,j;
 	__Vector3 vStart, vEnd;
 	float fDis = 0.0f;
 
 	vStart.Set(m_fCurX, m_fCurY, m_fCurZ);
 
-	for(j = 0; j < NPC_HAVE_USER_LIST; j++)
+	for(int j = 0; j < NPC_HAVE_USER_LIST; j++)
 	{
 		m_DamagedUserList[j].bIs = FALSE;
 	}
 
-	for(i = 0; i < NPC_HAVE_USER_LIST; i++)
+	for(int i = 0; i < NPC_HAVE_USER_LIST; i++)
 	{
 		pUser = m_pMain->GetUserPtr(m_DamagedUserList[i].iUid);
 		if(pUser == NULL)	continue;
@@ -5248,7 +5239,7 @@ void CNpc::GiveNpcHaveItem(CIOCPort* pIOCP)
 	int temp = 0;
 	int iPer = 0, iMakeItemCode = 0, iMoney = 0;
 	int iRandom;
-	int nCount = 1, i =0;
+	int nCount = 1;
 	CString string;
 
 /*	if( m_byMoneyType == 1 )	{
@@ -5277,7 +5268,7 @@ void CNpc::GiveNpcHaveItem(CIOCPort* pIOCP)
 	}
 	
 
-	for(i = 0; i < m_pMain->m_NpcItem.m_nRow; i++)	{
+	for(int i = 0; i < m_pMain->m_NpcItem.m_nRow; i++)	{
 		if(m_pMain->m_NpcItem.m_ppItem[i][0] != m_iItem) continue;
 		for(int j=1; j<m_pMain->m_NpcItem.m_nField; j+=2)	{
 			if(m_pMain->m_NpcItem.m_ppItem[i][j] == 0) continue;
@@ -5319,7 +5310,7 @@ void CNpc::GiveNpcHaveItem(CIOCPort* pIOCP)
 	Setfloat(pBuf, m_fCurZ, index);
 	Setfloat(pBuf, m_fCurY, index);
 	SetByte(pBuf, nCount, index);
-	for(i=0; i<nCount; i++)	{
+	for(int i=0; i<nCount; i++)	{
 		SetInt(pBuf, m_GiveItemList[i].sSid, index);
 		SetShort(pBuf, m_GiveItemList[i].count, index);
 
@@ -5369,10 +5360,9 @@ __Vector3 CNpc::ComputeDestPos( __Vector3 vCur, float fDegree, float fDegreeOffs
 
 int	CNpc::GetPartyDamage(int iNumber)
 {
-	int i=0;
 	int nDamage = 0;
 	CUser* pUser = NULL;
-	for(i = 0; i < NPC_HAVE_USER_LIST; i++)				// 일단 리스트를 검색한다.
+	for(int i = 0; i < NPC_HAVE_USER_LIST; i++)				// 일단 리스트를 검색한다.
 	{
 		if(m_DamagedUserList[i].iUid < 0 || m_DamagedUserList[i].nDamage<= 0) continue;
 		if(m_DamagedUserList[i].bIs == TRUE) pUser = m_pMain->GetUserPtr(m_DamagedUserList[i].iUid);
@@ -5669,7 +5659,7 @@ int	CNpc::ItemProdution(int item_number)							// 아이템 제작
 
 int  CNpc::GetItemGrade(int item_grade)
 {
-	int iPercent = 0, iRandom = 0, i=0;
+	int iPercent = 0, iRandom = 0;
 	int iItemGrade[9];
 	_MAKE_ITEM_GRADE_CODE* pItemData = NULL;
 
@@ -5683,7 +5673,7 @@ int  CNpc::GetItemGrade(int item_grade)
 	iItemGrade[6] = pItemData->sGrade_7;	iItemGrade[7] = pItemData->sGrade_8;
 	iItemGrade[8] = pItemData->sGrade_9;	
 	
-	for(i=0; i<9; i++)	{
+	for(int i=0; i<9; i++)	{
 		if(i == 0)	{
 			if(iItemGrade[i] == 0)	{
 				iPercent += iItemGrade[i];
@@ -5715,7 +5705,7 @@ int  CNpc::GetItemGrade(int item_grade)
 
 int  CNpc::GetWeaponItemCodeNumber(int item_type)
 {
-	int iPercent = 0, iRandom = 0, i=0, iItem_level = 0;
+	int iPercent = 0, iRandom = 0, iItem_level = 0;
 	_MAKE_WEAPON* pItemData = NULL;
 
 	iRandom = myrand(0, 1000);
@@ -5730,7 +5720,7 @@ int  CNpc::GetWeaponItemCodeNumber(int item_type)
 
 	if(pItemData == NULL)	return 0;
 
-	for(i=0; i<MAX_UPGRADE_WEAPON; i++)	{
+	for(int i=0; i<MAX_UPGRADE_WEAPON; i++)	{
 		if(i == 0)	{
 			if(pItemData->sClass[i] == 0)	{
 				iPercent += pItemData->sClass[i];
@@ -5761,7 +5751,7 @@ int  CNpc::GetWeaponItemCodeNumber(int item_type)
 
 int  CNpc::GetItemCodeNumber(int level, int item_type)
 {
-	int iItemCode = 0, iRandom = 0, i=0, iItemType = 0, iPercent = 0;
+	int iItemCode = 0, iRandom = 0, iItemType = 0, iPercent = 0;
 	int iItemPercent[3];
 	_MAKE_ITEM_LARE_CODE* pItemData = NULL;
 
@@ -5772,7 +5762,7 @@ int  CNpc::GetItemCodeNumber(int level, int item_type)
 	iItemPercent[1] = pItemData->sMagicItem;
 	iItemPercent[2] = pItemData->sGereralItem;
 
-	for(i=0; i<3; i++)	{
+	for(int i=0; i<3; i++)	{
 		if(i == 0)	{
 			if( COMPARE( iRandom, 0, iItemPercent[i]) )	{
 				iItemType = i+1;

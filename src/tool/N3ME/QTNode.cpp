@@ -25,8 +25,7 @@ CQTNode::CQTNode()
 	m_Level = 0;
 	m_State = QTNODESTATE_NOTRENDER;
 
-	int i;
-	for(i=0;i<DIR_NUM;i++)
+	for(int i=0;i<DIR_NUM;i++)
 	{
 		m_pFriend[i] = NULL;
 		m_pChild[i] = NULL;
@@ -59,12 +58,10 @@ void CQTNode::Init(int level, CLyTerrain* pTerrain)
 	m_Level = level;
 	m_State = QTNODESTATE_NOTRENDER;
 
-	int i;
-
 	// 자식노드만들기..
 	if(level != m_pRefTerrain->m_iMaxLevel)
 	{
-		for(i=0;i<DIR_NUM;i++)
+		for(int i=0;i<DIR_NUM;i++)
 		{
 			m_pChild[i] = new CQTNode;
 			m_pChild[i]->Init(level+1, pTerrain);
@@ -72,7 +69,7 @@ void CQTNode::Init(int level, CLyTerrain* pTerrain)
 	}
 	else if(level == m_pRefTerrain->m_iMaxLevel)
 	{
-		for(i=0;i<DIR_NUM;i++)
+		for(int i=0;i<DIR_NUM;i++)
 		{
 			m_pChild[i] = NULL;
 		}
@@ -216,8 +213,7 @@ void CQTNode::SetMinMaxY()
 	}
 
 	//젤 마지막 노드가 아닐때...
-	int i;
-	for(i=0;i<DIR_NUM;i++)
+	for(int i=0;i<DIR_NUM;i++)
 	{
 		if(!m_pChild[i]) continue;
 		m_pChild[i]->SetMinMaxY();
@@ -233,8 +229,7 @@ void CQTNode::SetMinMaxY()
 //
 void CQTNode::ClearMinMaxY()
 {
-	int i;
-	for(i=0;i<DIR_NUM;i++)
+	for(int i=0;i<DIR_NUM;i++)
 	{
 		if(!m_pChild[i]) continue;
 		m_pChild[i]->ClearMinMaxY();
@@ -249,8 +244,7 @@ void CQTNode::ClearMinMaxY()
 //
 void CQTNode::SetWholeClipped()
 {
-	int i;
-	for(i=0;i<DIR_NUM;i++)
+	for(int i=0;i<DIR_NUM;i++)
 	{
 		if(!m_pChild[i]) continue;
 		m_pChild[i]->SetWholeClipped();
@@ -286,8 +280,7 @@ void CQTNode::Tick()
 	}
 
 	//내려가는 경우..	
-	int i;
-	for(i=0;i<DIR_NUM;i++)
+	for(int i=0;i<DIR_NUM;i++)
 	{
 		if(!m_pChild[i]) continue;
 		m_pChild[i]->Tick();
@@ -402,9 +395,7 @@ void CQTNode::RenderMaxLevel()
 	hr = m_pRefTerrain->s_lpD3DDev->GetTextureStageState( 1, D3DTSS_COLORARG1, &ColorArg21);
 	hr = m_pRefTerrain->s_lpD3DDev->GetTextureStageState( 1, D3DTSS_COLORARG2, &ColorArg22);
 
-	int cx,cz;
-	int i;
-	
+	int cx,cz;	
 	int dir1, dir2;
 	float u1, u2, v1, v2;
 	int tmpTIdx;
@@ -423,7 +414,7 @@ void CQTNode::RenderMaxLevel()
 	//
 
 
-	for(i=0;i<2;i++)
+	for(int i=0;i<2;i++)
 	{
 		int idx = i<<2;
 		if(i==1) { cx++; cz++; }
@@ -555,7 +546,7 @@ void CQTNode::RenderMaxLevel()
 
 	cx = m_CenterX-1;
 	cz = m_CenterZ;
-	for(i=0;i<2;i++)
+	for(int i=0;i<2;i++)
 	{
 		int idx = (i<<2) + 8;
 		if(i==1) { cx++; cz--; }
@@ -707,7 +698,7 @@ void CQTNode::RenderMaxLevel()
 	int tx, tz;
 
 	DWORD COP2 = D3DTOP_ADD;
-	for(i=0;i<4;i++)
+	for(int i=0;i<4;i++)
 	{
 		COP2 = D3DTOP_ADD;
 		tx = m_CenterX;
@@ -821,7 +812,7 @@ void CQTNode::RenderMaxLevel()
 	hr = m_pRefTerrain->s_lpD3DDev->SetRenderState( D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	hr = m_pRefTerrain->s_lpD3DDev->SetRenderState( D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 	
-	for(i=0;i<NumLightMapUse;i++)
+	for(int i=0;i<NumLightMapUse;i++)
 	{
 		m_pRefTerrain->s_lpD3DDev->SetTexture( 0, pRefLightMapTex[i]->Get());
 		hr = m_pRefTerrain->s_lpD3DDev->DrawPrimitive( D3DPT_TRIANGLEFAN, (i<<2), 2);
@@ -848,13 +839,12 @@ void CQTNode::RenderMaxLevel()
 	m_pRefTerrain->m_TileVB->Lock( 0, 0, (VOID**)&pVertices, 0 );
 
 	int cx,cz;
-	int i;
 	cx = m_CenterX;
 	cz = m_CenterZ;
 
 	int dir1, dir2;
 	float u1, u2, v1, v2;
-	for(i=0;i<2;i++)
+	for(int i=0;i<2;i++)
 	{
 		int idx = i<<2;
 		if(i==1) { cx++; cz++; }
@@ -887,7 +877,7 @@ void CQTNode::RenderMaxLevel()
 	}
 	cx = m_CenterX;
 	cz = m_CenterZ;
-	for(i=0;i<2;i++)
+	for(int i=0;i<2;i++)
 	{
 		int idx = (i<<2) + 8;
 		if(i==1) { cx++; cz--; }
@@ -945,7 +935,7 @@ void CQTNode::RenderMaxLevel()
 	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG2, D3DTA_CURRENT);
 
 	int tx, tz;	
-	for(i=0;i<4;i++)
+	for(int i=0;i<4;i++)
 	{
 		tx = m_CenterX;
 		tz = m_CenterZ;

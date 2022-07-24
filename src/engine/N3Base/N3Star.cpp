@@ -81,12 +81,11 @@ void CN3Star::Init()
 {
 	Release();
 
-	int i;
 	BYTE alpha = 0xff;
 	BYTE alpha_min = 0x80;
 	BYTE alpha_max = 0xff;
 	float fInc = ((float)(alpha_max - alpha_min))/MAX_STAR;
-	for (i=0; i<MAX_STAR; ++i)
+	for (int i=0; i<MAX_STAR; ++i)
 	{
 		float fX = ((float)(rand()%10000))/1000.f - 5.0f;
 		float fY = ((float)(rand()%10000))/1000.f - 2.0f;

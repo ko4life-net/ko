@@ -170,46 +170,45 @@ void CViewSceneTree::UpdateTreeItem(HTREEITEM hParent, CN3Base *pBase)
 		str.Format("Scene : %s", pScene->m_szName.c_str());
 		GetTreeCtrl().SetItemText(hItem, str);
 
-		int i = 0;
 		HTREEITEM hItem2 = NULL;
 
 		hItem2 = GetTreeCtrl().InsertItem("Camera", 3, 3, hItem);
 		int nCC = pScene->CameraCount();
-		for(i = 0; i < nCC; i++) this->UpdateTreeItem(hItem2, pScene->CameraGet(i));
+		for(int i = 0; i < nCC; i++) this->UpdateTreeItem(hItem2, pScene->CameraGet(i));
 
 		hItem2 = GetTreeCtrl().InsertItem("Light", 4, 4, hItem);
 		int nLC = pScene->LightCount();
-		for(i = 0; i < nLC; i++) this->UpdateTreeItem(hItem2, pScene->LightGet(i));
+		for(int i = 0; i < nLC; i++) this->UpdateTreeItem(hItem2, pScene->LightGet(i));
 		
 		hItem2 = GetTreeCtrl().InsertItem("Shape", 6, 6, hItem);
 		int nSC = pScene->ShapeCount();
-		for(i = 0; i < nSC; i++) this->UpdateTreeItem(hItem2, pScene->ShapeGet(i));
+		for(int i = 0; i < nSC; i++) this->UpdateTreeItem(hItem2, pScene->ShapeGet(i));
 		GetTreeCtrl().SortChildren(hItem2);
 
 		hItem2 = GetTreeCtrl().InsertItem("Character", 8, 8, hItem);
 		int nCC2 = pScene->ChrCount();
-		for(i = 0; i < nCC2; i++) this->UpdateTreeItem(hItem2, pScene->ChrGet(i));
+		for(int i = 0; i < nCC2; i++) this->UpdateTreeItem(hItem2, pScene->ChrGet(i));
 		GetTreeCtrl().SortChildren(hItem2);
 
 /*		hItem2 = GetTreeCtrl().InsertItem("Mesh Resource", hItem);
 		int nMC = pScene->m_MngMesh.Count();
-		for(i = 0; i < nMC; i++) this->UpdateTreeItem(hItem2, pScene->m_MngMesh.Get(i));
+		for(int i = 0; i < nMC; i++) this->UpdateTreeItem(hItem2, pScene->m_MngMesh.Get(i));
 
 		hItem2 = GetTreeCtrl().InsertItem("Progressive Mesh Resource", hItem);
 		int nPMC = pScene->m_MngPMesh.Count();
-		for(i = 0; i < nPMC; i++) this->UpdateTreeItem(hItem2, pScene->m_MngPMesh.Get(i));
+		for(int i = 0; i < nPMC; i++) this->UpdateTreeItem(hItem2, pScene->m_MngPMesh.Get(i));
 
 		hItem2 = GetTreeCtrl().InsertItem("Indexed Mesh Resource", hItem);
 		int nIMC = pScene->m_MngIMesh.Count();
-		for(i = 0; i < nIMC; i++) this->UpdateTreeItem(hItem2, pScene->m_MngIMesh.Get(i));
+		for(int i = 0; i < nIMC; i++) this->UpdateTreeItem(hItem2, pScene->m_MngIMesh.Get(i));
 
 		hItem2 = GetTreeCtrl().InsertItem("Joint Resource", hItem);
 		int nJC = pScene->m_MngJoint.Count();
-		for(i = 0; i < nJC; i++) this->UpdateTreeItem(hItem2, pScene->m_MngJoint.Get(i));
+		for(int i = 0; i < nJC; i++) this->UpdateTreeItem(hItem2, pScene->m_MngJoint.Get(i));
 
 		hItem2 = GetTreeCtrl().InsertItem("Skin Resource", hItem);
 		int nSC2 = pScene->m_MngSkin.Count();
-		for(i = 0; i < nSC2; i++) this->UpdateTreeItem(hItem2, pScene->m_MngSkin.Get(i));
+		for(int i = 0; i < nSC2; i++) this->UpdateTreeItem(hItem2, pScene->m_MngSkin.Get(i));
 */
 	}
 /*	else if(pBase->Type() & OBJ_CHARACTER)

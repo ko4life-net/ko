@@ -60,9 +60,8 @@ void CRiverMesh::Release()
 
 void CRiverMesh::ReleaseAnimTextures()
 {
-	int i;
 	if (m_pAnimTextures == NULL) {m_iAnimTextureCount = 0; return;}
-	for (i=0; i<m_iAnimTextureCount; ++i)
+	for (int i=0; i<m_iAnimTextureCount; ++i)
 	{
 		if (m_pAnimTextures[i]) {s_MngTex.Delete(&(m_pAnimTextures[i])); m_pAnimTextures[i] = NULL;}
 	}
@@ -104,8 +103,7 @@ bool CRiverMesh::Load(HANDLE hFile)
 
 	if (m_iAnimTextureCount>0) m_pAnimTextures = new CN3Texture*[m_iAnimTextureCount];
 
-	int i;
-	for (i=0; i<m_iAnimTextureCount; ++i)
+	for (int i=0; i<m_iAnimTextureCount; ++i)
 	{
 		ReadFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);	// texture name length
 		if (iLen <=0) { m_pAnimTextures[i] = NULL; __ASSERT(0, "텍스쳐가 없다"); continue;}
@@ -145,8 +143,7 @@ bool CRiverMesh::Save(HANDLE hFile)
 	WriteFile(hFile, &m_fAnimTexFPS, sizeof(m_fAnimTexFPS), &dwNum, NULL);	// Anim Tex frame/sec
 	WriteFile(hFile, &m_iAnimTextureCount, sizeof(m_iAnimTextureCount), &dwNum, NULL);	// AnimTexture Count
 
-	int i;
-	for (i=0; i<m_iAnimTextureCount; ++i)
+	for (int i=0; i<m_iAnimTextureCount; ++i)
 	{
 		__ASSERT(m_pAnimTextures[i], "강물 텍스쳐 포인터가 NULL입니다.");
 		int iLen = m_pAnimTextures[i]->FileName().size();
@@ -277,8 +274,7 @@ void CRiverMesh::RenderVertexPoint()	// 잘보이게 점만 다시 그리기
 	D3DCOLOR clr = D3DCOLOR_ARGB(0xff, 0xff, 0x00, 0x00);
 	s_lpD3DDev->SetFVF(FVF_TRANSFORMEDCOLOR);
 
-	int i;
-	for (i=0; i<m_iVC; ++i)
+	for (int i=0; i<m_iVC; ++i)
 	{
 		D3DXVECTOR4 v;
 		D3DXVec3Transform(&v, &(m_pVertices[i]), &matVP);
@@ -362,11 +358,10 @@ int CRiverMesh::AddVertex()
 int CRiverMesh::DeleteVertex(int iIndex)
 {
 	if (iIndex<0 || iIndex>=m_iVC) return m_iVC;
-	int i, iStart;
-	iStart = (iIndex/4);
+	int iStart = (iIndex/4);
 
 	// Vertext Buffer delete
-	for (i=iStart*4; i<m_iVC-4; ++i)
+	for (int i=iStart*4; i<m_iVC-4; ++i)
 	{
 		m_pVertices[i] = m_pVertices[i+4];
 	}
@@ -398,8 +393,7 @@ BOOL CRiverMesh::SetAnimTextureName(LPCTSTR pszFName, LPCTSTR pszExt, int iCount
 	m_pAnimTextures = new CN3Texture*[m_iAnimTextureCount];
 
 	char szTemp[_MAX_PATH];
-	int i;
-	for (i=0; i<m_iAnimTextureCount; ++i)
+	for (int i=0; i<m_iAnimTextureCount; ++i)
 	{
 		wsprintf(szTemp, "%s%02d%s", pszFName, i, pszExt);
 		m_pAnimTextures[i] = s_MngTex.Get(szTemp);
@@ -428,7 +422,7 @@ void CRiverMesh::ReCalcUV()
 	}
 
 /*
-	int i, iCount = m_iVC/2;
+	int iCount = m_iVC/2;
 	float fUPerMeter = 1.0f/m_fMeterPerU;
 	float fVPerMeter = 1.0f/m_fMeterPerV;
 	float fUPerMeter2 = 1.0f/m_fMeterPerU2;
@@ -445,7 +439,7 @@ void CRiverMesh::ReCalcUV()
 	m_pVertices[0].tv2 = 0.0f;			m_pVertices[1].tv2 = 0.0f;
 
 	// 나머지 점 계산하기
-	for (i=1; i<iCount; ++i)
+	for (int i=1; i<iCount; ++i)
 	{
 		// U
 		vDiff = (__Vector3)m_pVertices[i*2+0].v - (__Vector3)m_pVertices[i*2+1].v;

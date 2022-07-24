@@ -56,7 +56,7 @@ void CSowSeedMng::Release()
 
 	if( Grass != NULL)
 	{
-		for( i = 0; i <Grass_Count ; i ++)
+		for(int i = 0; i < Grass_Count ; i++)
 		{
 				if(Grass[i].Sub_Grass != NULL)
 					delete Grass[i].Sub_Grass;
@@ -219,7 +219,6 @@ void CSowSeedMng::Render(LPDIRECT3DDEVICE9 lpD3DDevice)
 	{
 		return;
 	}
-	int i,j,Num=0;
 	CMainFrame* pFrame = (CMainFrame*)AfxGetMainWnd();
 
 
@@ -229,9 +228,9 @@ void CSowSeedMng::Render(LPDIRECT3DDEVICE9 lpD3DDevice)
 		if( Render_Grass == TRUE)
 		{
 			pFrame->GetMapMng()->GetTerrain()->RenderBrushArea();
-			for (i = 0,Num = 0 ; i < MAX_BRUSH_SIZE ; ++i)
+			for (int i = 0, Num = 0 ; i < MAX_BRUSH_SIZE ; ++i)
 			{
-				for (j = 0 ; j < MAX_BRUSH_SIZE ; ++j)
+				for (int j = 0 ; j < MAX_BRUSH_SIZE; ++j)
 				{
 					if(pFrame->GetMapMng()->GetTerrain()->m_fBrushIntensityMap[i][j] <= 0) 
 						continue;
@@ -293,14 +292,14 @@ void CSowSeedMng::Render(LPDIRECT3DDEVICE9 lpD3DDevice)
 	if( Render_Grass == TRUE)
 	{
 		it_Grass_Group it = Grass_Group.begin();
-		for( i = 0 ; i < Grass_Group.size(); i++,it++)
+		for(int i = 0 ; i < Grass_Group.size(); i++,it++)
 		{
 			LPGRASS_GROUP group = *it;
 			it_Grass it_grass = group->grass.begin();
 
 			if( Select_Group_Id != i)
 			{
-				for( j = 0 ; j < group->grass.size(); j++, it_grass++)
+				for(int j = 0; j < group->grass.size(); j++, it_grass++)
 				{
 					LPGRASS grass = *it_grass;
 
@@ -320,7 +319,7 @@ void CSowSeedMng::Render(LPDIRECT3DDEVICE9 lpD3DDevice)
 			if( Select_Group_Id == i )  // 선택된 그룹 
 			{
 				Render_Box(lpD3DDevice,group->Pos);
-				for( j = 0 ; j < group->grass.size(); j++, it_grass++)
+				for(int j = 0 ; j < group->grass.size(); j++, it_grass++)
 				{
 					LPGRASS grass = *it_grass;
 
@@ -475,7 +474,7 @@ void CSowSeedMng::Add_Grass(void)
 		
 
 		int Count = 0;
-		for( i = 0 ; i < MAX_BRUSH_SIZE ; i++)
+		for(int i = 0 ; i < MAX_BRUSH_SIZE; i++)
 		{
 			for( int j = 0 ; j < MAX_BRUSH_SIZE ;j++)
 			{
@@ -866,7 +865,7 @@ void CSowSeedMng::Test_GameDataSave(void)
 	}
 	int size = pFrm->GetMapMng()->m_SowSeedMng.Grass_Group.size();
 	it_Grass_Group it = pFrm->GetMapMng()->m_SowSeedMng.Grass_Group.begin();
-	for( i = 0 ; i < size ; i++,it++)
+	for(int i = 0 ; i < size ; i++,it++)
 	{
 		LPGRASS_GROUP group = (LPGRASS_GROUP)*it;
 		it_Grass it_grass = group->grass.begin();
@@ -907,7 +906,7 @@ void CSowSeedMng::Test_GameDataSave(void)
 		}
 	}
 
-	for( i = 0 ; i < Map_Size*Map_Size; i++)
+	for(int i = 0 ; i < Map_Size*Map_Size; i++)
 	{
 		WriteFile(hFile,&SeedAttr[i],sizeof(unsigned char),&dwRWC,NULL);
 		if( SeedAttr[i].sub_flage == 1)
@@ -946,7 +945,7 @@ void CSowSeedMng::Test_GameDataLoad(void)
 		SeedAttr[i].sub_flage = 0;
 	}
 
-	for( i = 0 ; i < Map_Size*Map_Size; i++)
+	for(int i = 0 ; i < Map_Size*Map_Size; i++)
 	{
 //		ReadFile(hFile,&SeedAttr[i],sizeof(unsigned char),&dwRWC,NULL);
 		fread(&SeedAttr[i],sizeof(unsigned char),1,fp);

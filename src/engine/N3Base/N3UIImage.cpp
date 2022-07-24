@@ -186,8 +186,7 @@ void CN3UIImage::SetColor(D3DCOLOR color)
 	m_Color = color;
 	if ((UISTYLE_IMAGE_ANIMATE & m_dwStyle) && m_pAnimImagesRef)
 	{
-		int i;
-		for(i=0; i<m_iAnimCount; ++i) m_pAnimImagesRef[i]->SetColor(color);
+		for(int i=0; i<m_iAnimCount; ++i) m_pAnimImagesRef[i]->SetColor(color);
 	}
 	SetVB();
 }
@@ -327,8 +326,7 @@ void CN3UIImage::ReorderChildImage()
 	CN3UIBase** pNewList = new CN3UIBase*[m_iAnimCount];
 	ZeroMemory(pNewList, sizeof(CN3UIBase*)*m_iAnimCount);
 
-	int i;
-	for (i=0; i<m_iAnimCount; ++i)
+	for (int i=0; i<m_iAnimCount; ++i)
 	{
 		CN3UIBase* pSelChild = NULL;
 		for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
@@ -343,7 +341,7 @@ void CN3UIImage::ReorderChildImage()
 		RemoveChild(pSelChild);
 	}
 	
-	for (i=0; i<m_iAnimCount; ++i) m_Children.push_back(pNewList[i]);	// 작은 순서대로 넣기
+	for (int i=0; i<m_iAnimCount; ++i) m_Children.push_back(pNewList[i]);	// 작은 순서대로 넣기
 
 	delete [] pNewList;
 }
@@ -357,10 +355,9 @@ CN3UIImage* CN3UIImage::GetChildImage(int iIndex)
 void CN3UIImage::SetAnimImage(int iAnimCount)
 {
 	// 이미 설정 되어 있는것이 있으면 지우기
-	int i;
 	if (m_pAnimImagesRef)
 	{
-		for (i=0; i<m_iAnimCount; ++i)
+		for (int i=0; i<m_iAnimCount; ++i)
 		{	// 자식 지우기
 			if (m_pAnimImagesRef[i]) {delete m_pAnimImagesRef[i]; m_pAnimImagesRef[i] = NULL;}
 		}
@@ -383,7 +380,7 @@ void CN3UIImage::SetAnimImage(int iAnimCount)
 
 		m_pAnimImagesRef = new CN3UIImage*[m_iAnimCount];
 		ZeroMemory(m_pAnimImagesRef, sizeof(CN3UIImage*)*m_iAnimCount);
-		for (i=0; i<m_iAnimCount; ++i)
+		for (int i=0; i<m_iAnimCount; ++i)
 		{
 			m_pAnimImagesRef[i] = new CN3UIImage();
 			m_pAnimImagesRef[i]->Init(this);

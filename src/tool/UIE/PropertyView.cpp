@@ -322,8 +322,7 @@ BOOL CPropertyView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 				dlgTex.SetTexture(szTexFName);
 				char szNames[1000][20];
 				char* szImageTypeNames[1000];
-				int i;
-				for (i=0; i<dlgAnim.m_iCount; ++i)
+				for (int i=0; i<dlgAnim.m_iCount; ++i)
 				{
 					wsprintf(szNames[i], "%d", i);
 					szImageTypeNames[i] = szNames[i];
@@ -331,7 +330,7 @@ BOOL CPropertyView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 				dlgTex.SetImageTypes(dlgAnim.m_iCount, szImageTypeNames);
 				if (IDCANCEL == dlgTex.DoModal()) break;	// 취소의 경우
 				CN3UIImage* pChildImage;
-				for (i=0; i<dlgAnim.m_iCount; ++i)
+				for (int i=0; i<dlgAnim.m_iCount; ++i)
 				{
 					__FLOAT_RECT frcUV;
 					dlgTex.GetImageRect(i, &frcUV);

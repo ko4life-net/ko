@@ -240,8 +240,6 @@ void CPVSManager::TickEdit()
 	CPortalVolume* pVol = NULL;
 	WVOL wvol;
 
-	int i = 0;
-
 	iter it = m_pPvsList.begin();
 	witer wit; 
 
@@ -258,7 +256,7 @@ void CPVSManager::TickEdit()
 	if (pFrm->m_pDummy)
 	{
 		int iSize = pFrm->m_pDummy->m_SelObjArray.GetSize();
-		for ( i = 0; i < iSize; i++ )
+		for ( int i = 0; i < iSize; i++ )
 		{
 			if (pFrm->m_pDummy->m_SelObjArray[i].eST == TYPE_VOLUME_TOTAL)
 			{
@@ -280,7 +278,7 @@ void CPVSManager::TickEdit()
 	if (pFrm->m_SelVolArray.GetSize() > 0)
 	{
 		int iSize = pFrm->m_SelVolArray.GetSize();
-		for ( i = 0; i < iSize; i++ )
+		for ( int i = 0; i < iSize; i++ )
 		{
 			pVol = (CPortalVolume* )pFrm->m_SelVolArray[i];
 			pVol->SetState(STATE_SELECTED);
@@ -1149,7 +1147,7 @@ bool CPVSManager::Load(HANDLE hFile)
 	CPortalVolume* pVol = NULL, *pVolTo = NULL;
 	int iID;
 
-	for( i = 0; i < m_iTotalCount; i++ )
+	for( int i = 0; i < m_iTotalCount; i++ )
 	{
 		ReadFile(hFile, &iID, sizeof(int), &dwNum, NULL);
 		if (m_iIncreseIndex < (iID+1))
@@ -1213,7 +1211,7 @@ bool CPVSManager::Load(HANDLE hFile)
 	// Floor..
 	ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
-	for (i = 0; i < iCount; i++)
+	for (int i = 0; i < iCount; i++)
 	{
 		FloorInfo FInfo;
 		ReadFile(hFile, &FInfo.m_iFloor, sizeof(int), &dwNum, NULL);		

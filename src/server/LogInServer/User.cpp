@@ -45,7 +45,7 @@ void CUser::CloseProcess()
 
 void CUser::Parsing(int len, char *pData)
 {
-	int index = 0, send_index = 0, i=0, client_version = 0;
+	int index = 0, send_index = 0, client_version = 0;
 	char buff[2048]; memset( buff, 0x00, 2048 );
 	BYTE command = GetByte( pData, index );
 
@@ -59,7 +59,7 @@ void CUser::Parsing(int len, char *pData)
 		m_pMain->m_DBProcess.LoadUserCountList();		// 기범이가 ^^;
 		SetByte( buff, LS_SERVERLIST, send_index );
 		SetByte( buff, m_pMain->m_nServerCount, send_index );
-		for(i=0; i<m_pMain->m_ServerList.size(); i++) {		
+		for(int i=0; i<m_pMain->m_ServerList.size(); i++) {		
 			SetShort( buff, strlen(m_pMain->m_ServerList[i]->strServerIP), send_index );
 			SetString( buff, m_pMain->m_ServerList[i]->strServerIP, strlen(m_pMain->m_ServerList[i]->strServerIP), send_index );
 			SetShort( buff, strlen(m_pMain->m_ServerList[i]->strServerName), send_index );

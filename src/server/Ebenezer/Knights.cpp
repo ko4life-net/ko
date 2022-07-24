@@ -59,7 +59,7 @@ void CKnights::InitializeValue()
 		memset( m_arKnightsUser[i].strUserName, 0x00, MAX_ID_SIZE+1);
 	}
 
-	for( i=0; i<MAX_KNIGHTS_BANK; i++ )	{
+	for(int i=0; i<MAX_KNIGHTS_BANK; i++ )	{
 		m_StashItem[i].nNum = 0;
 		m_StashItem[i].sCount = 0;
 		m_StashItem[i].sDuration = 0;

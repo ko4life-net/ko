@@ -76,7 +76,7 @@ bool CN3River::Load(HANDLE hFile)
 		pInfo->pDiff = new _RIVER_DIFF[pInfo->iVC];
 		float fAdd = 0.0f;
 		float fMul = 0.002f;
-		for (l=0;l<pInfo->iVC;l++)
+		for (int l=0;l<pInfo->iVC;l++)
 		{
 			pInfo->pDiff[l].fDiff = fAdd;
 			if (l%2==0)
@@ -93,14 +93,13 @@ bool CN3River::Load(HANDLE hFile)
 			}
 		}
 
-		int j,k;
 		__VertexRiver* ptVtx = pInfo->pVertices;
 		float StX,EnX,StZ,EnZ;
 		StX = ptVtx[0].x,EnX = ptVtx[4].x;
 		StZ = ptVtx[0].z,EnZ = ptVtx[pInfo->iVC/4].z;
-		for (j=0; j<pInfo->iVC/4; j++)
+		for (int j=0; j<pInfo->iVC/4; j++)
 		{
-			for (k=0; k<4; k++)
+			for (int k=0; k<4; k++)
 			{
 				if(StX>ptVtx->x) StX = ptVtx->x;
 				if(EnX<ptVtx->x) EnX = ptVtx->x;
@@ -121,7 +120,7 @@ bool CN3River::Load(HANDLE hFile)
 	}	
 
 	char szFileName[30];
-	for (i=0;i<MAX_RIVER_TEX;i++)
+	for (int i=0;i<MAX_RIVER_TEX;i++)
 	{
 		sprintf(szFileName, "misc\\river\\caust%02d.dxt", i);
 		m_pTexRiver[i] = s_MngTex.Get(szFileName);

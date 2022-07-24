@@ -119,7 +119,6 @@ bool CN3Pond::Load(HANDLE hFile)
 		ptmpPondMesh->m_iIC = iIC;		///
 		ptmpPondMesh->m_wpIndex = new WORD [iVC*6];		///
 
-		int j,k;
 		int iWidth = iWidthVertex,iHeight = iVC/iWidthVertex;
 		int x=0,y=iWidth;
 		WORD* indexPtr = ptmpPondMesh->m_wpIndex;	//	삼각형을 부를 위치 설정
@@ -129,9 +128,9 @@ bool CN3Pond::Load(HANDLE hFile)
 		float StX,EnX,StZ,EnZ;
 		StX = ptVtx[0].x,EnX = ptVtx[iWidth].x;
 		StZ = ptVtx[0].z,EnZ = ptVtx[iHeight].z;
-		for (j=0; j<iHeight; j++)
+		for (int j=0; j<iHeight; j++)
 		{
-			for (k=0; k<iWidth; k++)
+			for (int k=0; k<iWidth; k++)
 			{
 				//	삼각형을 부를 위치 설정
 				indexPtr[0] = x;
@@ -208,7 +207,7 @@ bool CN3Pond::Load(HANDLE hFile)
 	if(m_iPondMeshNum<=0) return false;
 
 	char szFileName[30];
-	for (i=0;i<MAX_POND_TEX;i++)
+	for (int i=0;i<MAX_POND_TEX;i++)
 	{
 		sprintf(szFileName, "misc\\river\\caust%02d.dxt", i);
 		m_pTexPond[i] = CN3Base::s_MngTex.Get(szFileName);

@@ -169,7 +169,7 @@ void CN3Board::LoadFromText(const std::string& szFName)
 	FILE* stream = fopen(szFName.c_str(), "r");
 	__ASSERT(stream, "지정한 파일을 찾을 수 없습니다.");
 	
-	int result, i, iCount;
+	int result, iCount;
 	char szBoardType[64]="";	__Vector3 vPos;	float fWidth, fHeight;
 	result = fscanf(stream, "Position = %f %f %f\n", &(vPos.x), &(vPos.y), &(vPos.z));	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
 	result = fscanf(stream, "Size = %f %f\n", &fWidth, &fHeight);	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
@@ -187,7 +187,7 @@ void CN3Board::LoadFromText(const std::string& szFName)
 	{
 		char szTexFName[_MAX_PATH];
 		TexAlloc(iCount);
-		for (i=0; i<iCount; ++i)
+		for (int i=0; i<iCount; ++i)
 		{
 			result = fscanf(stream, "Texture Name = %s\n", &szTexFName);		__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
 			TexSet(i, szTexFName);

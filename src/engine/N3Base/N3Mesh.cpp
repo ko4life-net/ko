@@ -113,7 +113,8 @@ void CN3Mesh::MakeIndexed()
 	for(int i = 0; i < m_nVC; i++)
 	{
 		BOOL bAccord = FALSE;
-		for(int j = 0; j < nVCount; j++)
+		int j;
+		for(j = 0; j < nVCount; j++)
 		{
 			if(	m_pVertices[i].x == pVs[j].x && 
 				m_pVertices[i].y == pVs[j].y && 
@@ -143,7 +144,7 @@ void CN3Mesh::MakeIndexed()
 
 	this->Create(nVCount, m_nVC);
 	memcpy(m_pVertices, pVs, sizeof(__VertexT1)*nVCount);
-	for(i = 0 ; i < m_nIC; i++)
+	for(int i = 0 ; i < m_nIC; i++)
 		m_psnIndices[i] = nIs[i];
 
 	delete [] pVs; pVs = NULL;
@@ -206,43 +207,41 @@ void CN3Mesh::Create_Cube(__Vector3 &vMin, __Vector3 &vMax)
 	__Vector3 vN;
 	float fTUVs[6][2] = { 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1 };
 
-	int i = 0;
-
 	// z 축 음의 면
 	vN.Set(0,0,-1);
 	vPs[0].Set(vMin.x, vMax.y, vMin.z); vPs[1].Set(vMax.x, vMax.y, vMin.z); vPs[2].Set(vMax.x, vMin.y, vMin.z);
 	vPs[3] = vPs[0]; vPs[4] = vPs[2]; vPs[5].Set(vMin.x, vMin.y, vMin.z);
-	for(i = 0; i < 6; i++) m_pVertices[0+i].Set(vPs[i], vN, fTUVs[i][0], fTUVs[i][1]);
+	for(int i = 0; i < 6; i++) m_pVertices[0+i].Set(vPs[i], vN, fTUVs[i][0], fTUVs[i][1]);
 
 	// x 축 양의 면
 	vN.Set(1, 0, 0);
 	vPs[0].Set(vMax.x, vMax.y, vMin.z); vPs[1].Set(vMax.x, vMax.y, vMax.z); vPs[2].Set(vMax.x, vMin.y, vMax.z);
 	vPs[3] = vPs[0]; vPs[4] = vPs[2]; vPs[5].Set(vMax.x, vMin.y, vMin.z);
-	for(i = 0; i < 6; i++) m_pVertices[6+i].Set(vPs[i], vN, fTUVs[i][0], fTUVs[i][1]);
+	for(int i = 0; i < 6; i++) m_pVertices[6+i].Set(vPs[i], vN, fTUVs[i][0], fTUVs[i][1]);
 
 	// z 축 양의 면
 	vN.Set(0, 0, 1);
 	vPs[0].Set(vMax.x, vMax.y, vMax.z); vPs[1].Set(vMin.x, vMax.y, vMax.z); vPs[2].Set(vMin.x, vMin.y, vMax.z);
 	vPs[3] = vPs[0]; vPs[4] = vPs[2]; vPs[5].Set(vMax.x, vMin.y, vMax.z);
-	for(i = 0; i < 6; i++) m_pVertices[12+i].Set(vPs[i], vN, fTUVs[i][0], fTUVs[i][1]);
+	for(int i = 0; i < 6; i++) m_pVertices[12+i].Set(vPs[i], vN, fTUVs[i][0], fTUVs[i][1]);
 
 	// x 축 음의 면
 	vN.Set(-1, 0, 0);
 	vPs[0].Set(vMin.x, vMax.y, vMax.z); vPs[1].Set(vMin.x, vMax.y, vMin.z); vPs[2].Set(vMin.x, vMin.y, vMin.z);
 	vPs[3] = vPs[0]; vPs[4] = vPs[2]; vPs[5].Set(vMin.x, vMin.y, vMax.z);
-	for(i = 0; i < 6; i++) m_pVertices[18+i].Set(vPs[i], vN, fTUVs[i][0], fTUVs[i][1]);
+	for(int i = 0; i < 6; i++) m_pVertices[18+i].Set(vPs[i], vN, fTUVs[i][0], fTUVs[i][1]);
 
 	// y 축 양의 면
 	vN.Set(0, 1, 0);
 	vPs[0].Set(vMin.x, vMax.y, vMax.z); vPs[1].Set(vMax.x, vMax.y, vMax.z); vPs[2].Set(vMax.x, vMax.y, vMin.z);
 	vPs[3] = vPs[0]; vPs[4] = vPs[2]; vPs[5].Set(vMin.x, vMax.y, vMin.z);
-	for(i = 0; i < 6; i++) m_pVertices[24+i].Set(vPs[i], vN, fTUVs[i][0], fTUVs[i][1]);
+	for(int i = 0; i < 6; i++) m_pVertices[24+i].Set(vPs[i], vN, fTUVs[i][0], fTUVs[i][1]);
 
 	// y 축 음의 면
 	vN.Set(0, -1, 0);
 	vPs[0].Set(vMin.x, vMin.y, vMin.z); vPs[1].Set(vMax.x, vMin.y, vMin.z); vPs[2].Set(vMax.x, vMin.y, vMax.z);
 	vPs[3] = vPs[0]; vPs[4] = vPs[2]; vPs[5].Set(vMin.x, vMin.y, vMax.z);
-	for(i = 0; i < 6; i++) m_pVertices[30+i].Set(vPs[i], vN, fTUVs[i][0], fTUVs[i][1]);
+	for(int i = 0; i < 6; i++) m_pVertices[30+i].Set(vPs[i], vN, fTUVs[i][0], fTUVs[i][1]);
 
 	this->FindMinMax();
 }
@@ -280,7 +279,7 @@ void CN3Mesh::Create_Axis(float fLength)
 
 	// z 축
 	mtx.RotationY(D3DX_PI / -2.0f);
-	for(i = 0; i < 4; i++) 
+	for(int i = 0; i < 4; i++) 
 	{
 		m_pVertices[8+i].Set(m_pVertices[i] * mtx, m_pVertices[i].n * mtx, 0, 0);
 	}

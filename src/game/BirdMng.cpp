@@ -48,13 +48,12 @@ void CBirdMng::LoadFromFile(const std::string& szFN)
 		return;
 	}
 
-	int i;
 	char szRrcName[_MAX_PATH];
 	int result = fscanf(stream, "count = %d\n", &m_iBirdCount);			__ASSERT(result != EOF, "肋给等 Machine 技泼 颇老");
 
 	if(m_iBirdCount>0) m_pBird = new CBird[m_iBirdCount];
 
-	for (i=0; i<m_iBirdCount; i++)
+	for (int i=0; i<m_iBirdCount; i++)
 	{
 		result = fscanf(stream, "%s\n", szRrcName);	__ASSERT(result != EOF, "肋给等 bird list 技泼 颇老");
 		m_pBird[i].LoadBird(szRrcName);		

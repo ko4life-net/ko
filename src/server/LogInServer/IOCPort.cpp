@@ -320,7 +320,7 @@ void CIOCPort::DeleteAllArray()
 	}
 	delete[] m_SockArray;
 
-	for ( i=0; i < m_SocketArraySize; i++ ) {
+	for ( int i=0; i < m_SocketArraySize; i++ ) {
 		if ( m_SockArrayInActive[i] != NULL ) {
 			delete m_SockArrayInActive[i];
 			m_SockArrayInActive[i] = NULL;
@@ -328,7 +328,7 @@ void CIOCPort::DeleteAllArray()
 	}
 	delete[] m_SockArrayInActive;
 
-	for ( i=0; i < m_ClientSockSize; i++ ) {
+	for ( int i=0; i < m_ClientSockSize; i++ ) {
 		if ( m_ClientSockArray[i] != NULL ) {
 			delete m_ClientSockArray[i];
 			m_ClientSockArray[i] = NULL;
@@ -351,16 +351,16 @@ void CIOCPort::Init(int serversocksize, int clientsocksize, int workernum)
 	}
 
 	m_SockArrayInActive = new CIOCPSocket2* [serversocksize];
-	for(i = 0; i<serversocksize; i++ ) {
+	for(int i = 0; i<serversocksize; i++ ) {
 		m_SockArrayInActive[i] = NULL;
 	}
 
 	m_ClientSockArray = new CIOCPSocket2* [clientsocksize];		// 해당 서버가 클라이언트로서 다른 컴터에 붙는 소켓수
-	for( i=0; i<clientsocksize; i++ ) {
+	for(int i=0; i<clientsocksize; i++ ) {
 		m_ClientSockArray[i] = NULL;
 	}
 
-	for( i = 0; i<serversocksize; i++)
+	for(int i = 0; i<serversocksize; i++)
 		m_SidList.push_back(i);
 
 	InitializeCriticalSection( &g_critical );

@@ -116,7 +116,7 @@ void CDTexGroupMng::SetGroup(const char* pName)
 	it = m_Groups.begin();
 	iSize = m_Groups.size();
 	int* ArrayIdx = new int[iSize];
-	for(i = 0; i < iSize; i++, it++)
+	for(int i = 0; i < iSize; i++, it++)
 	{
 		CDTexGroup* pDTG = *it;
 		ArrayIdx[i] = pDTG->m_ID;
@@ -125,7 +125,7 @@ void CDTexGroupMng::SetGroup(const char* pName)
 	qsort( ArrayIdx, iSize, sizeof(int), this->CompareIdx );
 
 	int idx = 0;
-	for(i=0; i < iSize; i++)
+	for(int i=0; i < iSize; i++)
 	{
 		if(idx == ArrayIdx[i]) idx++;
 	}
@@ -392,10 +392,9 @@ bool CDTexGroupMng::LoadFromFile(CString RealFileName)
 		CProgressBar ProgressBar;
 		ProgressBar.Create("Load TileGroup Info..", 50,  iCount);
 
-		int i;
 		int id;
 		char szDTexGroupName[40];
-		for(i=0; i<iCount; i++)
+		for(int i=0; i<iCount; i++)
 		{
 			result = fscanf(stream, "%s %d\n", szDTexGroupName, &id);
 			//result = fscanf(stream, "%s", szDTexGroupName);

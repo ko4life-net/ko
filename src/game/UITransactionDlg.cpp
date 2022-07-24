@@ -33,12 +33,11 @@
 
 CUITransactionDlg::CUITransactionDlg()
 {
-	int i, j;
 	m_iCurPage = 0;
-	for( j = 0; j < MAX_ITEM_TRADE_PAGE; j++ )
-		for( i = 0; i < MAX_ITEM_TRADE; i++ )		
+	for( int j = 0; j < MAX_ITEM_TRADE_PAGE; j++ )
+		for( int i = 0; i < MAX_ITEM_TRADE; i++ )		
 			m_pMyTrade[j][i] = NULL;
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )	m_pMyTradeInv[i] = NULL;
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )	m_pMyTradeInv[i] = NULL;
 
 	m_pUITooltipDlg = NULL;
 	m_pStrMyGold    = NULL;
@@ -59,9 +58,8 @@ void CUITransactionDlg::Release()
 {
 	CN3UIBase::Release();
 
-	int i, j;
-	for( j = 0; j < MAX_ITEM_TRADE_PAGE; j++ )
-		for( i = 0; i < MAX_ITEM_TRADE; i++ )
+	for( int j = 0; j < MAX_ITEM_TRADE_PAGE; j++ )
+		for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 		{
 			if ( m_pMyTrade[j][i] != NULL )
 			{
@@ -70,7 +68,7 @@ void CUITransactionDlg::Release()
 			}
 		}
 
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if ( m_pMyTradeInv[i] != NULL )
 		{
@@ -83,8 +81,6 @@ void CUITransactionDlg::Release()
 void CUITransactionDlg::Render()
 {
 	if (!m_bVisible) return;	// 보이지 않으면 자식들을 render하지 않는다.
-
-	int i;
 
 	POINT ptCur = CGameProcedure::s_pLocalInput->MouseGetPos();
 	m_pUITooltipDlg->DisplayTooltipsDisable();
@@ -107,7 +103,7 @@ void CUITransactionDlg::Render()
 	}
 
 	// 갯수 표시되야 할 아이템 갯수 표시..
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if ( m_pMyTradeInv[i] && ( (m_pMyTradeInv[i]->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE) || 
 			(m_pMyTradeInv[i]->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE_SMALL) ) )
@@ -186,10 +182,9 @@ void CUITransactionDlg::InitIconUpdate()
 {
 	CN3UIArea* pArea;
 	float fUVAspect = (float)45.0f/(float)64.0f;
-	int i, j;
 
-	for( j = 0; j < MAX_ITEM_TRADE_PAGE; j++ )
-		for( i = 0; i < MAX_ITEM_TRADE; i++ )
+	for( int j = 0; j < MAX_ITEM_TRADE_PAGE; j++ )
+		for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 		{
 			if ( m_pMyTrade[j][i] != NULL )
 			{
@@ -211,14 +206,13 @@ void CUITransactionDlg::InitIconUpdate()
 
 __IconItemSkill* CUITransactionDlg::GetHighlightIconItem(CN3UIIcon* pUIIcon)
 {
-	int i;
-	for( i = 0; i < MAX_ITEM_TRADE; i++ )
+	for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 	{
 		if ( (m_pMyTrade[m_iCurPage][i] != NULL) && (m_pMyTrade[m_iCurPage][i]->pUIIcon == pUIIcon) )
 			return m_pMyTrade[m_iCurPage][i];
 	}
 
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if ( (m_pMyTradeInv[i] != NULL) && (m_pMyTradeInv[i]->pUIIcon == pUIIcon) ) 
 			return m_pMyTradeInv[i];
@@ -229,9 +223,8 @@ __IconItemSkill* CUITransactionDlg::GetHighlightIconItem(CN3UIIcon* pUIIcon)
 
 void CUITransactionDlg::EnterTransactionState()
 {
-	int i, j;
-	for( j = 0; j < MAX_ITEM_TRADE_PAGE; j++ )
-		for( i = 0; i < MAX_ITEM_TRADE; i++ )
+	for( int j = 0; j < MAX_ITEM_TRADE_PAGE; j++ )
+		for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 		{
 			if ( m_pMyTrade[j][i] != NULL )
 			{
@@ -247,7 +240,7 @@ void CUITransactionDlg::EnterTransactionState()
 			}
 		}
 
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if ( m_pMyTradeInv[i] != NULL )
 		{
@@ -272,8 +265,7 @@ void CUITransactionDlg::EnterTransactionState()
 	int iExt = m_iTradeID%1000;
 	int iSize = CGameBase::s_pTbl_Items_Basic->GetSize();
 
-	j = 0;	int k = 0;
-	for ( i = 0; i < iSize; i++ )
+	for (int i = 0, j = 0, k = 0; i < iSize; i++, k++)
 	{
 		if (k >= MAX_ITEM_TRADE)
 		{
@@ -320,9 +312,7 @@ void CUITransactionDlg::EnterTransactionState()
 		spItem->iCount		= 1;
 		spItem->iDurability = pItem->siMaxDurability+pItemExt->siMaxDurability;
 
-		m_pMyTrade[j][k] = spItem; 
-
-		k++;
+		m_pMyTrade[j][k] = spItem;
 	}
 
 	InitIconUpdate();
@@ -335,11 +325,11 @@ void CUITransactionDlg::EnterTransactionState()
 		pStr->SetString(pszID);
 	}
 
-	for( j = 0; j < MAX_ITEM_TRADE_PAGE; j++ )
+	for( int j = 0; j < MAX_ITEM_TRADE_PAGE; j++ )
 	{
 		if (j == m_iCurPage)
 		{
-			for( i = 0; i < MAX_ITEM_TRADE; i++ )
+			for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 			{
 				if ( m_pMyTrade[j][i] != NULL )
 					m_pMyTrade[j][i]->pUIIcon->SetVisible(true);
@@ -347,7 +337,7 @@ void CUITransactionDlg::EnterTransactionState()
 		}
 		else
 		{
-			for( i = 0; i < MAX_ITEM_TRADE; i++ )
+			for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 			{
 				if ( m_pMyTrade[j][i] != NULL )
 					m_pMyTrade[j][i]->pUIIcon->SetVisible(false);
@@ -391,13 +381,12 @@ void CUITransactionDlg::ItemMoveFromInvToThis()
 	CUIInventory* pInven = CGameProcedure::s_pProcMain->m_pUIInventory;
 	if(!pInven) return;
 
-	int i;
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		m_pMyTradeInv[i] = NULL;
 	}
 
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if(pInven->m_pMyInvWnd[i])
 		{
@@ -441,8 +430,7 @@ void CUITransactionDlg::ItemMoveFromThisToInv()
 	CUIInventory* pInven = CGameProcedure::s_pProcMain->m_pUIInventory;
 	if(!pInven) return;
 
-	int i;
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if(m_pMyTradeInv[i])
 		{
@@ -1319,13 +1307,10 @@ DWORD CUITransactionDlg::MouseProc(DWORD dwFlags, const POINT& ptCur, const POIN
 
 int CUITransactionDlg::GetItemiOrder(__IconItemSkill* spItem, e_UIWND_DISTRICT eWndDist)
 {
-	int iReturn = -1;
-	int i;
-
 	switch ( eWndDist )
 	{
 		case UIWND_DISTRICT_TRADE_NPC:
-			for( i = 0; i < MAX_ITEM_TRADE; i++ )
+			for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 			{
 				if ( (m_pMyTrade[m_iCurPage][i] != NULL) && (m_pMyTrade[m_iCurPage][i] == spItem) )
 					return i;
@@ -1333,7 +1318,7 @@ int CUITransactionDlg::GetItemiOrder(__IconItemSkill* spItem, e_UIWND_DISTRICT e
 			break;
 
 		case UIWND_DISTRICT_TRADE_MY:
-			for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+			for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 			{
 				if ( (m_pMyTradeInv[i] != NULL) && (m_pMyTradeInv[i] == spItem) )
 					return i;
@@ -1341,7 +1326,7 @@ int CUITransactionDlg::GetItemiOrder(__IconItemSkill* spItem, e_UIWND_DISTRICT e
 			break;
 	}
 
-	return iReturn;
+	return -1;
 }
 
 RECT CUITransactionDlg::GetSampleRect()
@@ -1367,7 +1352,7 @@ e_UIWND_DISTRICT CUITransactionDlg::GetWndDistrict(__IconItemSkill* spItem)
 			return UIWND_DISTRICT_TRADE_NPC;
 	}
 
-	for( i = 0; i < MAX_ITEM_INVENTORY; i++ )
+	for( int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if ( (m_pMyTradeInv[i] != NULL) && (m_pMyTradeInv[i] == spItem) )
 			return UIWND_DISTRICT_TRADE_MY;
@@ -1384,7 +1369,6 @@ bool CUITransactionDlg::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 			}
 
 	if(NULL == pSender) return false;
-	int i, j;
 
 	if (dwMsg == UIMSG_BUTTON_CLICK)					
 	{
@@ -1407,11 +1391,11 @@ bool CUITransactionDlg::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 				pStr->SetString(pszID);
 			}
 
-			for( j = 0; j < MAX_ITEM_TRADE_PAGE; j++ )
+			for( int j = 0; j < MAX_ITEM_TRADE_PAGE; j++ )
 			{
 				if (j == m_iCurPage)
 				{
-					for( i = 0; i < MAX_ITEM_TRADE; i++ )
+					for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 					{
 						if ( m_pMyTrade[j][i] != NULL )
 							m_pMyTrade[j][i]->pUIIcon->SetVisible(true);
@@ -1419,7 +1403,7 @@ bool CUITransactionDlg::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 				}
 				else
 				{
-					for( i = 0; i < MAX_ITEM_TRADE; i++ )
+					for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 					{
 						if ( m_pMyTrade[j][i] != NULL )
 							m_pMyTrade[j][i]->pUIIcon->SetVisible(false);
@@ -1442,11 +1426,11 @@ bool CUITransactionDlg::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 				pStr->SetString(pszID);
 			}
 
-			for( j = 0; j < MAX_ITEM_TRADE_PAGE; j++ )
+			for( int j = 0; j < MAX_ITEM_TRADE_PAGE; j++ )
 			{
 				if (j == m_iCurPage)
 				{
-					for( i = 0; i < MAX_ITEM_TRADE; i++ )
+					for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 					{
 						if ( m_pMyTrade[j][i] != NULL )
 							m_pMyTrade[j][i]->pUIIcon->SetVisible(true);
@@ -1454,7 +1438,7 @@ bool CUITransactionDlg::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 				}
 				else
 				{
-					for( i = 0; i < MAX_ITEM_TRADE; i++ )
+					for( int i = 0; i < MAX_ITEM_TRADE; i++ )
 					{
 						if ( m_pMyTrade[j][i] != NULL )
 							m_pMyTrade[j][i]->pUIIcon->SetVisible(false);

@@ -303,7 +303,7 @@ bool CPortalVolume::Load(HANDLE hFile)
 	// 링크된 Shape 갯수 로드..
 	int iCount = 0;
 	ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
-	for (i = 0; i < iCount; i++)
+	for (int i = 0; i < iCount; i++)
 	{
 		ShapeInfo*	pSI = new ShapeInfo;
 		ReadFile(hFile, &pSI->m_iID, sizeof(int), &dwNum, NULL);
@@ -331,7 +331,7 @@ bool CPortalVolume::Load(HANDLE hFile)
 	IDAndPriority IDAP;
 	ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
-	for( i = 0; i < iCount; i++ )
+	for( int i = 0; i < iCount; i++ )
 	{
 		ReadFile(hFile, &IDAP.m_iID, sizeof(int), &dwNum, NULL);
 		ReadFile(hFile, &IDAP.m_iPriority, sizeof(int), &dwNum, NULL);
@@ -342,7 +342,7 @@ bool CPortalVolume::Load(HANDLE hFile)
 	ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
 	int iSize_2 = 0, iSize_3 = 0;
-	for( i = 0; i < iCount; i++ )
+	for( int i = 0; i < iCount; i++ )
 	{
 		ShapePart* pSP = new ShapePart;
 		ReadFile(hFile, &pSP->m_iID, sizeof(int), &dwNum, NULL);
@@ -369,7 +369,7 @@ bool CPortalVolume::Load(HANDLE hFile)
 
 	ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
-	for( i = 0; i < iCount; i++ )
+	for( int i = 0; i < iCount; i++ )
 	{
 		__ColIndex* pCI = new __ColIndex;
 		ReadFile(hFile, &pCI->m_iID, sizeof(int), &dwNum, NULL);		

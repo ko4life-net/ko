@@ -43,9 +43,8 @@ void CN3GlobalEffectMng::Tick()
 	if (NewCellPos.x != m_CurCellPos.x || NewCellPos.y != m_CurCellPos.y)
 	{
 		m_CurCellPos = NewCellPos;
-		int i, j;
-		for(i=0; i<3; ++i)
-			for(j=0; j<3; ++j)
+		for(int i=0; i<3; ++i)
+			for(int j=0; j<3; ++j)
 				m_vPos[j*3+i].Set( (m_CurCellPos.x+i-0.5f)*m_fCellSize, 0, (m_CurCellPos.y+j-0.5f)*m_fCellSize);
 	}
 
@@ -64,10 +63,9 @@ void CN3GlobalEffectMng::Tick()
 
 void CN3GlobalEffectMng::Render()
 {
-	int i, j;
-	for (i=0; i<3; ++i)
+	for (int i=0; i<3; ++i)
 	{
-		for(j=0; j<3; ++j)
+		for(int j=0; j<3; ++j)
 		{
 			if (m_pGERain)
 			{

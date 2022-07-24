@@ -426,19 +426,18 @@ void CPortalVol::Translate()
 
 void CPortalVol::SetState(e_PvsState ePS)
 {
-	int i = 0;
 	switch (ePS)
 	{
 		case STATE_NONE:
-			for(i = 0; i < 8; i++)
+			for(int i = 0; i < 8; i++)
 				m_pvVertex[i].color = dwColorNone;
 			break;
 		case STATE_SELECTED:
-			for(i = 0; i < 8; i++)
+			for(int i = 0; i < 8; i++)
 				m_pvVertex[i].color = dwColorSelected;
 			break;
 		case STATE_LINKED:
-			for(i = 0; i < 8; i++)
+			for(int i = 0; i < 8; i++)
 				m_pvVertex[i].color = dwColorLinked;
 			break;
 	}
@@ -827,7 +826,7 @@ bool CPortalVol::IsInVolumnExEx(__Vector3 vec1, __Vector3 vec2)
 bool CPortalVol::IsInVolumnExExEx(__Vector3 vOrig, __Vector3 vDir, e_WallType eWT, __Vector3 &vPick)
 {
 	float ft, fu, fv;
-	int i;
+	int i = 0;
 
 	switch (eWT)
 	{

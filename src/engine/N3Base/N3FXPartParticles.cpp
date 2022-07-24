@@ -74,7 +74,7 @@ CN3FXPartParticles::CN3FXPartParticles()
 	m_fScaleVelX = m_fScaleVelY = 0.0f;
 
 #ifdef _N3TOOL
-	for(i=0;i<NUM_KEY_COLOR;i++)
+	for(int i=0;i<NUM_KEY_COLOR;i++)
 	{
 		m_bChangeColorKey[i] = false;
 		m_bChangeAlphaKey[i] = false;
@@ -87,10 +87,8 @@ CN3FXPartParticles::~CN3FXPartParticles()
 	CN3FXPartBase::~CN3FXPartBase();
 
 	std::list<CN3FXParticle*>::iterator it;
-
-	int i;
 	it = m_pVBList_Alive.begin();
-	for(i=0;i<m_pVBList_Alive.size();i++, it++)
+	for(int i=0;i<m_pVBList_Alive.size();i++, it++)
 	{
 		CN3FXParticle* pParticle = (*it);
 		if(pParticle) delete pParticle;		
@@ -98,7 +96,7 @@ CN3FXPartParticles::~CN3FXPartParticles()
 	m_pVBList_Alive.clear();
 
 	it = m_pVBList_Dead.begin();
-	for(i=0;i<m_pVBList_Dead.size();i++, it++)
+	for(int i=0;i<m_pVBList_Dead.size();i++, it++)
 	{
 		CN3FXParticle* pParticle = (*it);
 		if(pParticle) delete pParticle;
@@ -324,9 +322,8 @@ void CN3FXPartParticles::Init()
 	}
 
 	std::list<CN3FXParticle*>::iterator it;
-	int i;
 	it = m_pVBList_Alive.begin();
-	for(i=0;i<m_pVBList_Alive.size();i++, it++)
+	for(int i=0;i<m_pVBList_Alive.size();i++, it++)
 	{
 		m_pVBList_Dead.push_back((*it));
 	}
@@ -335,7 +332,7 @@ void CN3FXPartParticles::Init()
 	m_CurrCreateDelay = m_fCreateDelay;
 
 	it = m_pVBList_Dead.begin();
-	for(i=0;i<m_pVBList_Dead.size();i++, it++)
+	for(int i=0;i<m_pVBList_Dead.size();i++, it++)
 	{
 		CN3FXParticle* pParticle = (*it);
 
@@ -883,23 +880,21 @@ void CN3FXPartParticles::Render()
 void CN3FXPartParticles::InitVB()
 {
 	std::list<CN3FXParticle*>::iterator it;
-
-	int i;
 	it = m_pVBList_Alive.begin();
-	for(i=0;i<m_pVBList_Alive.size();i++, it++)
+	for(int i=0;i<m_pVBList_Alive.size();i++, it++)
 	{
 		delete (*it);		
 	}
 	m_pVBList_Alive.clear();
 
 	it = m_pVBList_Dead.begin();
-	for(i=0;i<m_pVBList_Dead.size();i++, it++)
+	for(int i=0;i<m_pVBList_Dead.size();i++, it++)
 	{
 		delete (*it);		
 	}
 	m_pVBList_Dead.clear();
 
-	for(i=0;i<m_iNumParticle;i++)
+	for(int i=0;i<m_iNumParticle;i++)
 	{
 		CN3FXParticle* pParticle = new CN3FXParticle;
 		pParticle->m_iID = i * NUM_VERTEX_PARTICLE;

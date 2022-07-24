@@ -44,13 +44,12 @@ void CVtxPosDummy::Tick()
 	ReCalcMatrix();
 
 	// 거리에 따라 정렬
-	int i;
-	for (i=0; i<NUM_DUMMY; ++i)
+	for (int i=0; i<NUM_DUMMY; ++i)
 	{
 		__Vector3 vPos = m_DummyCubes[i].vCenterPos*m_Matrix;
 		m_DummyCubes[i].fDistance = (vPos - s_CameraData.vEye).Magnitude();
 	}
-	for (i=0; i<NUM_DUMMY; ++i) m_pSortedCubes[i] = &(m_DummyCubes[i]);
+	for (int i=0; i<NUM_DUMMY; ++i) m_pSortedCubes[i] = &(m_DummyCubes[i]);
 	qsort(m_pSortedCubes, sizeof(__DUMMYCUBE*), NUM_DUMMY, SortCube);
 }
 
@@ -83,8 +82,7 @@ void CVtxPosDummy::Render()
 
 	// Cube 그리기
 	hr = s_lpD3DDev->SetFVF(FVF_XYZNORMALCOLOR);
-	int i;
-	for (i=0; i<NUM_DUMMY; ++i)
+	for (int i=0; i<NUM_DUMMY; ++i)
 	{
 		ASSERT(m_pSortedCubes[i]);
 		if (m_pSortedCubes[i]->iType == DUMMY_CENTER) continue;	// 가운데 큐브는 그리지 않는다.
@@ -246,11 +244,11 @@ BOOL CVtxPosDummy::MouseMsgFilter(LPMSG pMsg)				// 마우스 메세지 처리
 
 void CVtxPosDummy::TransDiff(__Vector3* pvDiffPos, __Quaternion* pqDiffRot, __Vector3* pvDiffScale)		// 차이만큼 선택된 오브젝트들을 변형시킨다.
 {
-	int i, iSize = m_SelVtxArray.GetSize();
+	int iSize = m_SelVtxArray.GetSize();
 	if (iSize<=0) return;
 	if (pvDiffPos)
 	{
-		for (i=0; i<iSize; ++i)
+		for (int i=0; i<iSize; ++i)
 		{
 			__VertexXyzT1* pSelVtx = m_SelVtxArray.GetAt(i);
 			_ASSERT(pSelVtx);

@@ -208,14 +208,13 @@ void CDTexMng::LoadFromFile(CString RealFileName)
 		int id;
 
 		CDTexGroupMng* pDTexGroupMng = m_pMainFrm->GetDTexGroupMng();
-		int i;
 		char szDTexFileName[_MAX_PATH];
 		DWORD dwRWC;
 
 		CProgressBar ProgressBar;
 		ProgressBar.Create("Load TileTex Info..", 50,  iCount);
 
-		for(i=0;i<iCount;i++)
+		for(int i=0;i<iCount;i++)
 		{
 			ProgressBar.StepIt();
 
@@ -365,7 +364,6 @@ void CDTexMng::SaveGameTile()
 
 	HANDLE hFile;
 	int ix, iz;
-	int j;
 	char* pSourceImg;
 	char* pTargetImg;
 
@@ -416,7 +414,7 @@ void CDTexMng::SaveGameTile()
 					pSourceImg = (char*)((char*)d3dlr.pBits + (ix*Size*Bits) + (iz*Size*d3dlr.Pitch));
 					pTargetImg = (char*) d3dlrTarget.pBits;
 
-					for(j=0;j<Size;j++)
+					for(int j=0;j<Size;j++)
 					{
 						memcpy( &(pTargetImg[j*Bits*Size]), &(pSourceImg[j* d3dlr.Pitch]), Bits*Size);
 					}
