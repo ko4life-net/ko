@@ -540,16 +540,21 @@ enum {	RESRC_UI_LOGIN = 0, RESRC_UI_CHARACTERSELECT, RESRC_UI_CHARACTERCREATE, R
 
 typedef struct __TABLE_ZONE
 {
-	DWORD		dwID; // zone ID
-	std::string	szTerrainFN; // Terrain FileName - Terrain, Tile Map, ColorMap....
-	std::string	szColorMapFN;
-	std::string	szLightMapFN;
-	std::string	szObjectPostDataFN; // Object 위치 정보 - 이안에 충돌 체크 데이터도 들어 있다.
-	std::string	szMiniMapFN;
-	std::string szSkySetting; // 하늘과 분위기 조정한 세팅 정보 파일..
-	BOOL		bIndicateEnemyPlayer;	// 적국 플레이어를 표시하나??
-	int			iFixedSundDirection;	// 해의 방향을 고정시키는지..
-	std::string szLightObjFN;		// 지형에 배치되어 있는 라이트정보파일..
+	DWORD		dwID;					// zone ID
+	std::string	szTerrainFN;			// GTD - Terrain
+	std::string	szColorMapFN;			// TCT szColor Map (Terrai nColor Map Texture/Tile?)
+	std::string	szLightMapFN;			// TLT szLight Map SetLightMap		pZoneData->szLightMapFN.c_str()
+	std::string	szObjectPostDataFN;		// OPD Object  Map m_pShapes->LoadFromFile(pZone->szObjectPostDataFN); Object 위치 정보 - 이안에 충돌 체크 데이터도 들어 있다.
+	std::string	szMiniMapFN;			// DXT MiniMap
+	std::string szSkySetting;			// N3Sky		FileName	 하늘과 분위기 조정한 세팅 정보 파일..
+	BOOL		bIndicateEnemyPlayer;	// Indicate Enemy Players on Minimap/Screen?? 적국 플레이어를 표시하나??
+	int			iFixedSundDirection;	// m_pSky->SunAndMoonDirectionFixByHour(pZone->iFixedSundDirection); 해의 방향을 고정시키는지..
+	std::string szLightObjFN;			// GLO (Global Lightning Objects?) LoadZoneLight for objects??? 지형에 배치되어 있는 라이트정보파일..
+	std::string szGevFN;				// GEV																		******
+	int			ISTHISm_pvsmgr;			// It has to do something with inside or outside? needs to be Added			******
+	std::string szEnsFN;				// ENS																		******
+	float		ISTHISm_fFogDensity;	// Fog density multiplier													******		
+	std::string szFlagFN;				// DXT for flags to be loaded file path.									******
 } TABLE_ZONE;
 
 typedef struct __TABLE_UI_RESRC
