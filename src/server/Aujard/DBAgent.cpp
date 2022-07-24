@@ -360,7 +360,7 @@ BOOL CDBAgent::LoadUserData(char *userid, int uid)
 
 	CTime t= CTime::GetCurrentTime();
 	memset( logstr, 0x00, 256);
-	sprintf( logstr, "[LoadUserData %d-%d-%d]: name=%s, nation=%d, zone=%d, level, exp=%d, money=%d\r\n", t.GetHour(), t.GetMinute(), t.GetSecond(), userid, Nation, Zone, Level, Exp, Gold );
+	sprintf( logstr, "[LoadUserData %d-%d-%d]: name=%s, nation=%d, zone=%d, level=%d, exp=%d, money=%d\r\n", t.GetHour(), t.GetMinute(), t.GetSecond(), userid, Nation, Zone, Level, Exp, Gold );
 	//m_pMain->m_LogFile.Write(logstr, strlen(logstr));
 
 	int index = 0, serial_index = 0;

@@ -577,8 +577,8 @@ void CUIInventory::SendInvMsg(BYTE bDir, int iItemID, int SrcPos, int DestPos)
 	CAPISocket::MP_AddByte(byBuff, iOffset, N3_ITEM_MOVE);				// Item Move
 	CAPISocket::MP_AddByte(byBuff, iOffset, bDir);						
 	CAPISocket::MP_AddDword(byBuff, iOffset, iItemID);					
-	CAPISocket::MP_AddByte(byBuff, iOffset, (byte)SrcPos);				
-	CAPISocket::MP_AddByte(byBuff, iOffset, (byte)DestPos);						
+	CAPISocket::MP_AddByte(byBuff, iOffset, (uint8_t)SrcPos);				
+	CAPISocket::MP_AddByte(byBuff, iOffset, (uint8_t)DestPos);						
 
 	TRACE("Send Inv Move %d, %d, %d, %d \n", bDir, iItemID, SrcPos, DestPos );
 

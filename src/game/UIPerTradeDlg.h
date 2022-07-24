@@ -70,7 +70,7 @@ public:
 	void				CancelIconDrop(__IconItemSkill* spItem);
 	void				AcceptIconDrop(__IconItemSkill* spItem);
 
-	void				SendToServerItemAddMsg(byte pos, int itemID, int iCount);
+	void				SendToServerItemAddMsg(uint8_t pos, int itemID, int iCount);
 
 	CN3UIBase*			GetChildButtonByName(const std::string& szFN);
 

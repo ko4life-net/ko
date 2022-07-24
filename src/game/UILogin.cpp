@@ -217,7 +217,12 @@ void CUILogIn::ServerInfoUpdate()
 	m_pList_Server->ResetContent();
 	if(!m_ListServerInfos.empty())
 	{
-		sort(m_ListServerInfos.begin(), m_ListServerInfos.end(), not2(__GameServerInfo()));
+		sort(m_ListServerInfos.begin(), m_ListServerInfos.end(),
+			[](const __GameServerInfo & lhs, const __GameServerInfo & rhs) {
+				return lhs.iConcurrentUserCount <= rhs.iConcurrentUserCount;
+			}
+		);
+
 		int iSize = m_ListServerInfos.size();
 		for(int i = 0; i < iSize; i++)
 		{

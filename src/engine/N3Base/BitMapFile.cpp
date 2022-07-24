@@ -166,7 +166,7 @@ bool CBitMapFile::SaveRectToFile(const std::string& szFN, RECT rc)
 	int iRealWidth = ((int)((m_bmInfoHeader.biWidth*3 + 3)/4))*4;	
 	for(int y = rc.bottom - 1; y >= rc.top; y--)
 	{
-		void* pPixelDest = ((byte*)m_pPixels) + iRealWidth * y + (rc.left * 3);
+		void* pPixelDest = ((uint8_t*)m_pPixels) + iRealWidth * y + (rc.left * 3);
 		WriteFile(hFile, pPixelDest, iRealWidthDest, &dwRWC, NULL); // 라인 쓰기..
 	}
 
