@@ -156,7 +156,7 @@ MStatus IFFimageReader::readImage ()
 	type = ILgettype (fImage);
 
 	if ((type & ILH_RGB) || (type & ILH_Black))
-		fBuffer = new byte [width * height * bpp * 4];
+		fBuffer = new uint8_t [width * height * bpp * 4];
 
 	if (type & ILH_Zbuffer)
 		fZBuffer = new float [width * height];
@@ -199,7 +199,7 @@ MStatus IFFimageReader::getPixel (int x, int y, int *r, int *g, int *b,
 			*a = ptr [0];
 #endif
 	} else {
-		byte *ptr = &fBuffer [(y * width + x) * 4];
+		uint8_t *ptr = &fBuffer [(y * width + x) * 4];
 #ifdef _WIN32
 		if (NULL != r)
 			*r = ptr [2];
@@ -244,7 +244,7 @@ MString IFFimageReader::errorString ()
 	return FLstrerror (FLerror ());
 }
 
-const byte *IFFimageReader::getPixelMap () const
+const uint8_t *IFFimageReader::getPixelMap () const
 {
 	return fBuffer;
 }

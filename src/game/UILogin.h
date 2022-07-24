@@ -12,20 +12,16 @@
 #include <string>
 #include "N3Base/N3UIBase.h"
 
-struct __GameServerInfo : public binary_function<__GameServerInfo, __GameServerInfo, bool>
+struct __GameServerInfo
 {
 	std::string szName;
 	std::string szIP;
 	int	iConcurrentUserCount;
 
 	void Init() { szName = ""; szIP = ""; iConcurrentUserCount = 0; }
-	bool operator () (const __GameServerInfo& x, const __GameServerInfo& y) const 
-	{
-		return (x.iConcurrentUserCount >= y.iConcurrentUserCount);
-	}
 
 	__GameServerInfo() { this->Init(); };
-	__GameServerInfo(const std::string szName2, const std::string szIP2, int iConcurrentUserCount2)
+	__GameServerInfo(const std::string & szName2, const std::string & szIP2, int iConcurrentUserCount2)
 	{
 		szName = szName2;
 		szIP = szIP2;

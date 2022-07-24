@@ -3914,8 +3914,8 @@ bool CGameProcMain::MsgRecv_ItemTradeStart(DataPack* pDataPack, int& iOffset)			
 
 bool CGameProcMain::MsgRecv_ItemTradeResult(DataPack* pDataPack, int& iOffset)			// 아이템 상거래 결과..
 {
-	byte bfType = 0x00;	int	iMoney = 0;
-	byte bResult = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);		// Trade id
+	uint8_t bfType = 0x00;	int	iMoney = 0;
+	uint8_t bResult = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);		// Trade id
 
 	switch ( bResult )
 	{

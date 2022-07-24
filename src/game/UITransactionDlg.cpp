@@ -645,7 +645,7 @@ void CUITransactionDlg::ItemCountCancel()
 	CN3UIWndBase::m_pCountableItemEdit->Close();
 }
 
-void CUITransactionDlg::SendToServerSellMsg(int itemID, byte pos, int iCount)
+void CUITransactionDlg::SendToServerSellMsg(int itemID, uint8_t pos, int iCount)
 {
 	BYTE byBuff[32];
 	int iOffset = 0;
@@ -658,7 +658,7 @@ void CUITransactionDlg::SendToServerSellMsg(int itemID, byte pos, int iCount)
 	CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 }
 
-void CUITransactionDlg::SendToServerBuyMsg(int itemID, byte pos, int iCount)
+void CUITransactionDlg::SendToServerBuyMsg(int itemID, uint8_t pos, int iCount)
 {
 	BYTE byBuff[32];
 	int iOffset = 0;
@@ -673,7 +673,7 @@ void CUITransactionDlg::SendToServerBuyMsg(int itemID, byte pos, int iCount)
 	CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 }
 
-void CUITransactionDlg::SendToServerMoveMsg(int itemID, byte startpos, byte destpos)
+void CUITransactionDlg::SendToServerMoveMsg(int itemID, uint8_t startpos, uint8_t destpos)
 {
 	BYTE byBuff[32];
 	int iOffset = 0;
@@ -1090,7 +1090,7 @@ bool CUITransactionDlg::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 	return false;
 }
 
-void CUITransactionDlg::ReceiveResultTradeFromServer(byte bResult, byte bType, int	iMoney)
+void CUITransactionDlg::ReceiveResultTradeFromServer(uint8_t bResult, uint8_t bType, int	iMoney)
 {
 	CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer  = false;
 	CN3UIString* pStatic = NULL;

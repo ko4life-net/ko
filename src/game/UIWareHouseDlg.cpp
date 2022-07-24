@@ -1050,7 +1050,7 @@ void CUIWareHouseDlg::AcceptIconDrop(__IconItemSkill* spItem)
 	SetState(UI_STATE_COMMON_NONE);
 }
 
-void CUIWareHouseDlg::SendToServerToWareMsg(int iItemID, byte page, byte startpos, byte pos, int iCount)
+void CUIWareHouseDlg::SendToServerToWareMsg(int iItemID, uint8_t page, uint8_t startpos, uint8_t pos, int iCount)
 {
 	BYTE byBuff[32];
 	int iOffset = 0;
@@ -1065,7 +1065,7 @@ void CUIWareHouseDlg::SendToServerToWareMsg(int iItemID, byte page, byte startpo
 	CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 }
 
-void CUIWareHouseDlg::SendToServerFromWareMsg(int iItemID, byte page, byte startpos, byte pos, int iCount)
+void CUIWareHouseDlg::SendToServerFromWareMsg(int iItemID, uint8_t page, uint8_t startpos, uint8_t pos, int iCount)
 {
 	BYTE byBuff[32];
 	int iOffset = 0;
@@ -1080,7 +1080,7 @@ void CUIWareHouseDlg::SendToServerFromWareMsg(int iItemID, byte page, byte start
 	CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 }
 
-void CUIWareHouseDlg::SendToServerWareToWareMsg(int iItemID, byte page, byte startpos, byte destpos)
+void CUIWareHouseDlg::SendToServerWareToWareMsg(int iItemID, uint8_t page, uint8_t startpos, uint8_t destpos)
 {
 	BYTE byBuff[32];
 	int iOffset = 0;
@@ -1094,7 +1094,7 @@ void CUIWareHouseDlg::SendToServerWareToWareMsg(int iItemID, byte page, byte sta
 	CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 }
 
-void CUIWareHouseDlg::SendToServerInvToInvMsg(int iItemID, byte page, byte startpos, byte destpos)
+void CUIWareHouseDlg::SendToServerInvToInvMsg(int iItemID, uint8_t page, uint8_t startpos, uint8_t destpos)
 {
 	BYTE byBuff[32];
 	int iOffset = 0;

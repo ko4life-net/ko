@@ -1723,7 +1723,7 @@ BOOL CJpegFile::JpegFromDib(HANDLE     hDib,     //Handle to DIB
 	
 	LPBITMAPINFOHEADER lpbi = (LPBITMAPINFOHEADER)GlobalLock(hDib);
 	
-	byte *buf2 = 0;
+	uint8_t *buf2 = 0;
 	
 	//Use libjpeg functions to write scanlines to disk in JPEG format
 	struct jpeg_compress_struct cinfo;

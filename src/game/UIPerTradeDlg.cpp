@@ -496,7 +496,7 @@ void CUIPerTradeDlg::ItemCountCancel()
 	CN3UIWndBase::m_pCountableItemEdit->Close();
 }
 
-void CUIPerTradeDlg::SendToServerItemAddMsg(byte pos, int itemID, int iCount)
+void CUIPerTradeDlg::SendToServerItemAddMsg(uint8_t pos, int itemID, int iCount)
 {
 	// 서버에게 전송한다..
 	BYTE byBuff[16];											// 패킷 버퍼..

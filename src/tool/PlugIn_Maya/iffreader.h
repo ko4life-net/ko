@@ -20,8 +20,6 @@
 #include <math.h>
 #include <maya/ilib.h>
 
-typedef unsigned char byte;
-
 class MStatus;
 class MString;
 
@@ -42,12 +40,12 @@ public:
 	bool hasAlpha ();
 	MStatus getPixel (int x, int y, int *r, int *g, int *b, int *a = NULL);
 	MStatus getDepth (int x, int y, float *d);
-	const byte *getPixelMap () const;
+	const uint8_t *getPixelMap () const;
 	const float *getDepthMap () const;
 
 protected:
 	ILimage *fImage;
-	byte *fBuffer;
+	uint8_t *fBuffer;
 	float *fZBuffer;
 };
 
