@@ -56,7 +56,7 @@ void CGameBase::StaticMemberInit()
 
 	std::string szLangTail = ".tbl";
 	int iLangID = ::GetUserDefaultLangID();
-	if(0x0404 == iLangID) szLangTail = "_TW.tbl"; // Taiwan Language
+	if(0x0404 == iLangID) szLangTail = "_ch.tbl"; // Taiwan Language
 
 	std::string szFN;
 	szFN = "Data\\Zones.tbl";				s_pTbl_Zones->LoadFromFile(szFN.c_str());		// Zone 정보에 관한 Table
