@@ -13,9 +13,7 @@ call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsD
 
 pushd src
   rmdir /s /q build
-  msbuild Game.sln -t:Clean -t:Build -p:Configuration=Release /m
-  msbuild Server.sln -t:Clean -t:Build -p:Configuration=Release /m
-  msbuild Tool.sln -t:Clean -t:Build -p:Configuration=Release /m
+  msbuild All.sln -t:Clean -t:Build -p:Configuration=Release /m
 popd
 
 pause
