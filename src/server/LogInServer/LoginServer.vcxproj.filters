@@ -42,10 +42,10 @@
     <ClCompile Include="User.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VersionManager.cpp">
+    <ClCompile Include="LoginServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VersionManagerDlg.cpp">
+    <ClCompile Include="LoginServerDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="VersionSet.cpp">
@@ -53,7 +53,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="VersionManager.rc">
+    <ResourceCompile Include="LoginServer.rc">
       <Filter>Source Files</Filter>
     </ResourceCompile>
   </ItemGroup>
@@ -94,10 +94,10 @@
     <ClInclude Include="User.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VersionManager.h">
+    <ClInclude Include="LoginServer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VersionManagerDlg.h">
+    <ClInclude Include="LoginServerDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VersionSet.h">
@@ -105,7 +105,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\VersionManager.ico">
+    <Image Include="res\LoginServer.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -113,7 +113,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="res\VersionManager.rc2">
+    <CustomBuild Include="res\LoginServer.rc2">
       <Filter>Resource Files</Filter>
     </CustomBuild>
   </ItemGroup>

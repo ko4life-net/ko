@@ -1,4 +1,4 @@
-// VersionManagerDlg.h : header file
+// LoginServerDlg.h : header file
 //
 
 #pragma once
@@ -11,18 +11,18 @@
 #include <vector>
 #include <string>
 /////////////////////////////////////////////////////////////////////////////
-// CVersionManagerDlg dialog
+// CLoginServerDlg dialog
 
 typedef CSTLMap <string, _VERSION_INFO>	VersionInfoList;
 typedef std::vector <_SERVER_INFO*>	ServerInfoList;
 
-class CVersionManagerDlg : public CDialog
+class CLoginServerDlg : public CDialog
 {
 // Construction
 public:
 	BOOL GetInfoFromIni();
 	
-	CVersionManagerDlg(CWnd* pParent = NULL);	// standard constructor
+	CLoginServerDlg(CWnd* pParent = NULL);	// standard constructor
 
 	static CIOCPort	m_Iocport;
 
@@ -44,13 +44,13 @@ public:
 	CDBProcess	m_DBProcess;
 
 // Dialog Data
-	//{{AFX_DATA(CVersionManagerDlg)
-	enum { IDD = IDD_VERSIONMANAGER_DIALOG };
+	//{{AFX_DATA(CLoginServerDlg)
+	enum { IDD = IDD_LOGINSERVER_DIALOG };
 	CListBox	m_OutputList;
 	//}}AFX_DATA
 
 	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CVersionManagerDlg)
+	//{{AFX_VIRTUAL(CLoginServerDlg)
 	public:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	virtual BOOL DestroyWindow();
@@ -63,7 +63,7 @@ protected:
 	HICON m_hIcon;
 
 	// Generated message map functions
-	//{{AFX_MSG(CVersionManagerDlg)
+	//{{AFX_MSG(CLoginServerDlg)
 	virtual BOOL OnInitDialog();
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();

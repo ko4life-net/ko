@@ -1,4 +1,4 @@
-// VersionManager.h : main header file for the VERSIONMANAGER application
+// LoginServer.h : main header file for the LoginServer application
 //
 
 #pragma once
@@ -11,25 +11,25 @@
 #include "resource.h"		// main symbols
 
 /////////////////////////////////////////////////////////////////////////////
-// CVersionManagerApp:
-// See VersionManager.cpp for the implementation of this class
+// CLoginServerApp:
+// See LoginServer.cpp for the implementation of this class
 //
 
-class CVersionManagerApp : public CWinApp
+class CLoginServerApp : public CWinApp
 {
 public:
-	CVersionManagerApp();
+	CLoginServerApp();
 
 // Overrides
 	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CVersionManagerApp)
+	//{{AFX_VIRTUAL(CLoginServerApp)
 	public:
 	virtual BOOL InitInstance();
 	//}}AFX_VIRTUAL
 
 // Implementation
 
-	//{{AFX_MSG(CVersionManagerApp)
+	//{{AFX_MSG(CLoginServerApp)
 		// NOTE - the ClassWizard will add and remove member functions here.
 		//    DO NOT EDIT what you see in these blocks of generated code !
 	//}}AFX_MSG

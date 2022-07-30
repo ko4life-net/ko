@@ -2,10 +2,10 @@
 //
 
 #include "stdafx.h"
-#include "versionmanager.h"
+#include "LoginServer.h"
 #include "SettingDlg.h"
 #include "DlgBrowsePath.h"
-#include "VersionManagerDlg.h"
+#include "LoginServerDlg.h"
 
 #pragma warning(disable : 4786)
 #include <string>
@@ -31,7 +31,7 @@ CSettingDlg::CSettingDlg(int version, CWnd* pParent /*=NULL*/)
 
 	memset( m_strDefaultPath, 0x00, MAX_PATH );
 
-	m_pMain = (CVersionManagerDlg*)pParent;
+	m_pMain = (CLoginServerDlg*)pParent;
 }
 
 

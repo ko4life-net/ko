@@ -3,10 +3,10 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-#include "versionmanager.h"
+#include "LoginServer.h"
 #include "define.h"
 #include "DBProcess.h"
-#include "VersionManagerDlg.h"
+#include "LoginServerDlg.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -32,7 +32,7 @@ BOOL CDBProcess::InitDatabase(char *strconnection)
 {
 	m_VersionDB.SetLoginTimeout(100);
 
-	m_pMain = (CVersionManagerDlg*)AfxGetMainWnd();
+	m_pMain = (CLoginServerDlg*)AfxGetMainWnd();
 
 	if( !m_VersionDB.Open( NULL,FALSE,FALSE, strconnection ) )
 		return FALSE;
