@@ -1,8 +1,8 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Developer Studio generated include file.
-// Used by VersionManager.rc
+// Used by LoginServer.rc
 //
-#define IDD_VERSIONMANAGER_DIALOG       102
+#define IDD_LOGINSERVER_DIALOG          102
 #define IDP_SOCKETS_INIT_FAILED         103
 #define IDR_MAINFRAME                   128
 #define IDD_SETTING                     129

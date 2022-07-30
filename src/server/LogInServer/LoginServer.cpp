@@ -1,9 +1,9 @@
-// VersionManager.cpp : Defines the class behaviors for the application.
+// LoginServer.cpp : Defines the class behaviors for the application.
 //
 
 #include "stdafx.h"
-#include "VersionManager.h"
-#include "VersionManagerDlg.h"
+#include "LoginServer.h"
+#include "LoginServerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -12,10 +12,10 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
-// CVersionManagerApp
+// CLoginServerApp
 
-BEGIN_MESSAGE_MAP(CVersionManagerApp, CWinApp)
-	//{{AFX_MSG_MAP(CVersionManagerApp)
+BEGIN_MESSAGE_MAP(CLoginServerApp, CWinApp)
+	//{{AFX_MSG_MAP(CLoginServerApp)
 		// NOTE - the ClassWizard will add and remove mapping macros here.
 		//    DO NOT EDIT what you see in these blocks of generated code!
 	//}}AFX_MSG
@@ -23,23 +23,23 @@ BEGIN_MESSAGE_MAP(CVersionManagerApp, CWinApp)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// CVersionManagerApp construction
+// CLoginServerApp construction
 
-CVersionManagerApp::CVersionManagerApp()
+CLoginServerApp::CLoginServerApp()
 {
 	// TODO: add construction code here,
 	// Place all significant initialization in InitInstance
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// The one and only CVersionManagerApp object
+// The one and only CLoginServerApp object
 
-CVersionManagerApp theApp;
+CLoginServerApp theApp;
 
 /////////////////////////////////////////////////////////////////////////////
-// CVersionManagerApp initialization
+// CLoginServerApp initialization
 
-BOOL CVersionManagerApp::InitInstance()
+BOOL CLoginServerApp::InitInstance()
 {
 	if (!AfxSocketInit())
 	{
@@ -53,7 +53,7 @@ BOOL CVersionManagerApp::InitInstance()
 	// If you are not using these features and wish to reduce the size
 	//  of your final executable, you should remove from the following
 	//  the specific initialization routines you do not need.
-	CVersionManagerDlg dlg;
+	CLoginServerDlg dlg;
 	m_pMainWnd = &dlg;
 	int nResponse = dlg.DoModal();
 	if (nResponse == IDOK)

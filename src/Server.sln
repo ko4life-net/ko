@@ -9,9 +9,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ebenezer", "server\Ebenezer
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ItemManager", "server\ItemManager\ItemManager.vcxproj", "{F23059FC-FE26-4F90-A25B-9BF11ABB4E9A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VersionManager", "server\LogInServer\VersionManager.vcxproj", "{CDCC29A4-6B71-41ED-BFFD-438F419AE1FC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LoginServer", "server\LoginServer\LoginServer.vcxproj", "{CDCC29A4-6B71-41ED-BFFD-438F419AE1FC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Zip", "server\LogInServer\Zip.vcxproj", "{8163F992-7B73-4069-B615-3CFA6DBC58F9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Zip", "server\LoginServer\Zip.vcxproj", "{8163F992-7B73-4069-B615-3CFA6DBC58F9}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Aujard", "server\Aujard\Aujard.vcxproj", "{A641CE5D-2910-4BF5-8423-9E2ED96F3BCC}"
 EndProject

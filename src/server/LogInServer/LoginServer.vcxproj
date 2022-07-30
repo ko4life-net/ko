@@ -128,12 +128,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="User.cpp" />
-    <ClCompile Include="VersionManager.cpp" />
-    <ClCompile Include="VersionManagerDlg.cpp" />
+    <ClCompile Include="LoginServer.cpp" />
+    <ClCompile Include="LoginServerDlg.cpp" />
     <ClCompile Include="VersionSet.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="VersionManager.rc" />
+    <ResourceCompile Include="LoginServer.rc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircularBuffer.h" />
@@ -148,15 +148,15 @@
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="STLMap.h" />
     <ClInclude Include="User.h" />
-    <ClInclude Include="VersionManager.h" />
-    <ClInclude Include="VersionManagerDlg.h" />
+    <ClInclude Include="LoginServer.h" />
+    <ClInclude Include="LoginServerDlg.h" />
     <ClInclude Include="VersionSet.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\VersionManager.ico" />
+    <Image Include="res\LoginServer.ico" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="res\VersionManager.rc2" />
+    <CustomBuild Include="res\LoginServer.rc2" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

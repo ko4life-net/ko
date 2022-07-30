@@ -12,7 +12,7 @@ using namespace std;
 typedef std::set <int>	HistoryList;
 /////////////////////////////////////////////////////////////////////////////
 // CSettingDlg dialog
-class CVersionManagerDlg;
+class CLoginServerDlg;
 class CSettingDlg : public CDialog
 {
 // Construction
@@ -37,7 +37,7 @@ public:
 
 	char m_strDefaultPath[_MAX_PATH];
 
-	CVersionManagerDlg*	m_pMain;
+	CLoginServerDlg*	m_pMain;
 	CZipArchive		m_ZipArchive;
 	HistoryList		m_RepackingVersionList;
 

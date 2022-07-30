@@ -3,8 +3,8 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-#include "versionmanager.h"
-#include "versionmanagerdlg.h"
+#include "LoginServer.h"
+#include "LoginServerDlg.h"
 #include "User.h"
 
 #pragma warning(disable : 4786)		// Visual C++ Only
@@ -32,7 +32,7 @@ CUser::~CUser()
 
 void CUser::Initialize()
 {
-	m_pMain = (CVersionManagerDlg*)AfxGetMainWnd();
+	m_pMain = (CLoginServerDlg*)AfxGetMainWnd();
 
 	CIOCPSocket2::Initialize();
 }

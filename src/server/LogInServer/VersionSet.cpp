@@ -2,7 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "VersionManager.h"
+#include "LoginServer.h"
 #include "VersionSet.h"
 
 #ifdef _DEBUG

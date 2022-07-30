@@ -1,9 +1,9 @@
-// VersionManagerDlg.cpp : implementation file
+// LoginServerDlg.cpp : implementation file
 //
 
 #include "stdafx.h"
-#include "VersionManager.h"
-#include "VersionManagerDlg.h"
+#include "LoginServer.h"
+#include "LoginServerDlg.h"
 #include "IOCPSocket2.h"
 #include "VersionSet.h"
 #include "SettingDlg.h"
@@ -15,15 +15,15 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-CIOCPort	CVersionManagerDlg::m_Iocport;
+CIOCPort	CLoginServerDlg::m_Iocport;
 
 /////////////////////////////////////////////////////////////////////////////
-// CVersionManagerDlg dialog
+// CLoginServerDlg dialog
 
-CVersionManagerDlg::CVersionManagerDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(CVersionManagerDlg::IDD, pParent)
+CLoginServerDlg::CLoginServerDlg(CWnd* pParent /*=NULL*/)
+	: CDialog(CLoginServerDlg::IDD, pParent)
 {
-	//{{AFX_DATA_INIT(CVersionManagerDlg)
+	//{{AFX_DATA_INIT(CLoginServerDlg)
 		// NOTE: the ClassWizard will add member initialization here
 	//}}AFX_DATA_INIT
 	
@@ -39,16 +39,16 @@ CVersionManagerDlg::CVersionManagerDlg(CWnd* pParent /*=NULL*/)
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
 
-void CVersionManagerDlg::DoDataExchange(CDataExchange* pDX)
+void CLoginServerDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CVersionManagerDlg)
+	//{{AFX_DATA_MAP(CLoginServerDlg)
 	DDX_Control(pDX, IDC_LIST1, m_OutputList);
 	//}}AFX_DATA_MAP
 }
 
-BEGIN_MESSAGE_MAP(CVersionManagerDlg, CDialog)
-	//{{AFX_MSG_MAP(CVersionManagerDlg)
+BEGIN_MESSAGE_MAP(CLoginServerDlg, CDialog)
+	//{{AFX_MSG_MAP(CLoginServerDlg)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_SETTING, OnVersionSetting)
@@ -56,9 +56,9 @@ BEGIN_MESSAGE_MAP(CVersionManagerDlg, CDialog)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// CVersionManagerDlg message handlers
+// CLoginServerDlg message handlers
 
-BOOL CVersionManagerDlg::OnInitDialog()
+BOOL CLoginServerDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
@@ -109,7 +109,7 @@ BOOL CVersionManagerDlg::OnInitDialog()
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
-BOOL CVersionManagerDlg::GetInfoFromIni()
+BOOL CLoginServerDlg::GetInfoFromIni()
 {
 	int errorcode = 0;
 	CString errorstr, inipath;
@@ -151,7 +151,7 @@ BOOL CVersionManagerDlg::GetInfoFromIni()
 //  to draw the icon.  For MFC applications using the document/view model,
 //  this is automatically done for you by the framework.
 
-void CVersionManagerDlg::OnPaint() 
+void CLoginServerDlg::OnPaint() 
 {
 	if (IsIconic())
 	{
@@ -178,12 +178,12 @@ void CVersionManagerDlg::OnPaint()
 
 // The system calls this to obtain the cursor to display while the user drags
 //  the minimized window.
-HCURSOR CVersionManagerDlg::OnQueryDragIcon()
+HCURSOR CLoginServerDlg::OnQueryDragIcon()
 {
 	return (HCURSOR) m_hIcon;
 }
 
-BOOL CVersionManagerDlg::PreTranslateMessage(MSG* pMsg) 
+BOOL CLoginServerDlg::PreTranslateMessage(MSG* pMsg) 
 {
 	if( pMsg->message == WM_KEYDOWN ) {
 		if( pMsg->wParam == VK_RETURN || pMsg->wParam == VK_ESCAPE )
@@ -193,7 +193,7 @@ BOOL CVersionManagerDlg::PreTranslateMessage(MSG* pMsg)
 	return CDialog::PreTranslateMessage(pMsg);
 }
 
-BOOL CVersionManagerDlg::DestroyWindow() 
+BOOL CLoginServerDlg::DestroyWindow() 
 {
 	if( !m_VersionList.IsEmpty() )
 		m_VersionList.DeleteAllData();
@@ -205,7 +205,7 @@ BOOL CVersionManagerDlg::DestroyWindow()
 	return CDialog::DestroyWindow();
 }
 
-void CVersionManagerDlg::OnVersionSetting() 
+void CLoginServerDlg::OnVersionSetting() 
 {
 	CString errorstr, inipath;
 	inipath.Format( "%s\\Version.ini", GetProgPath() );

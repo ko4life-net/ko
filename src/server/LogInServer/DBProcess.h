@@ -5,7 +5,7 @@
 #pragma once
 
 
-class CVersionManagerDlg;
+class CLoginServerDlg;
 class CDBProcess  
 {
 public:
@@ -23,6 +23,6 @@ public:
 	virtual ~CDBProcess();
 
 	CDatabase	m_VersionDB;
-	CVersionManagerDlg* m_pMain;
+	CLoginServerDlg* m_pMain;
 };
 

@@ -7,7 +7,7 @@
 
 #include "IOCPSocket2.h"
 
-class CVersionManagerDlg;
+class CLoginServerDlg;
 class CUser : public CIOCPSocket2  
 {
 public:
@@ -22,6 +22,6 @@ public:
 	void MgameLogin( char* pBuf );
 	void LogInReq( char* pBuf );
 
-	CVersionManagerDlg* m_pMain;
+	CLoginServerDlg* m_pMain;
 };
 
