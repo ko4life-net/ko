@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_MAGICPROCESS_H__C39F1966_3F41_47A9_B26A_77F311683A05__INCLUDED_)
-#define AFX_MAGICPROCESS_H__C39F1966_3F41_47A9_B26A_77F311683A05__INCLUDED_
+#pragma once
 
 
 #define NONE_R				0	
@@ -53,4 +52,3 @@ public:
 	BYTE	m_bMagicState;
 };
 
-#endif // !defined(AFX_MAGICPROCESS_H__C39F1966_3F41_47A9_B26A_77F311683A05__INCLUDED_)

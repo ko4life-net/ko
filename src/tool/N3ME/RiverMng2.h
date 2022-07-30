@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_RIVERMNG2_H__D967C973_4844_48A6_B534_E10472968A10__INCLUDED_)
-#define AFX_RIVERMNG2_H__D967C973_4844_48A6_B534_E10472968A10__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3BaseFileAccess.h"
@@ -72,4 +71,3 @@ public:
 	virtual ~CRiverMng2();
 };
 
-#endif // !defined(AFX_RIVERMNG2_H__D967C973_4844_48A6_B534_E10472968A10__INCLUDED_)

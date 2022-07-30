@@ -1,8 +1,7 @@
 // UIE.h : main header file for the UIE application
 //
 
-#if !defined(AFX_UIE_H__83F51B13_FAF0_4DD2_8383_7BE9C8C4AD44__INCLUDED_)
-#define AFX_UIE_H__83F51B13_FAF0_4DD2_8383_7BE9C8C4AD44__INCLUDED_
+#pragma once
 
 
 #ifndef __AFXWIN_H__
@@ -46,4 +45,3 @@ BOOL SelectTexture(char* pszBuff);
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_UIE_H__83F51B13_FAF0_4DD2_8383_7BE9C8C4AD44__INCLUDED_)

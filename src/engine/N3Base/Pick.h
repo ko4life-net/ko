@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_PICK_H__4FEE8165_3BBD_4CD4_9D42_6F13B8A30603__INCLUDED_)
-#define AFX_PICK_H__4FEE8165_3BBD_4CD4_9D42_6F13B8A30603__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3Mesh.h"
@@ -39,4 +38,3 @@ public:
 	}
 };
 
-#endif // !defined(AFX_PICK_H__4FEE8165_3BBD_4CD4_9D42_6F13B8A30603__INCLUDED_)

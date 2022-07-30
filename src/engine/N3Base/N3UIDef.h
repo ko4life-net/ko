@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined __N3UIDEF_H__
-#define __N3UIDEF_H__
+#pragma once
 
 #include <string>
 
@@ -178,4 +177,3 @@ struct __FLOAT_RECT
 	BOOL PtInRect3D(float x, float y) const {return ((x>=left && x<=right && y>=bottom && y<=top)?TRUE:FALSE);}
 };
 
-#endif // #if !defined __N3UIDEF_H__

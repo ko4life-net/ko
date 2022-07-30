@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UINPCCHANGEEVENT_H__01943C6E_D7DD_49B1_BBAF_63DE3B65E586__INCLUDED_)
-#define AFX_UINPCCHANGEEVENT_H__01943C6E_D7DD_49B1_BBAF_63DE3B65E586__INCLUDED_
+#pragma once
 
 
 #include "GameDef.h"
@@ -45,4 +44,3 @@ public:
 	void	ReceivePriceFromServer(int iGold);
 };
 
-#endif // !defined(AFX_UINPCCHANGEEVENT_H__01943C6E_D7DD_49B1_BBAF_63DE3B65E586__INCLUDED_)

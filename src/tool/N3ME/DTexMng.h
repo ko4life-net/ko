@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_DTEXMNG_H__30DCE41A_64F9_4876_AA67_5E344993325D__INCLUDED_)
-#define AFX_DTEXMNG_H__30DCE41A_64F9_4876_AA67_5E344993325D__INCLUDED_
+#pragma once
 
 
 #include "DTexGroup.h"
@@ -44,4 +43,3 @@ public:
 	virtual ~CDTexMng();
 };
 
-#endif // !defined(AFX_DTEXMNG_H__30DCE41A_64F9_4876_AA67_5E344993325D__INCLUDED_)

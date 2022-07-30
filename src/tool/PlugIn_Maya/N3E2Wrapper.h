@@ -1,5 +1,4 @@
-#if !defined(_N3E2WRAPPER_H__INCUDED_)
-#define _N3E2WRAPPER_H__INCUDED_
+#pragma once
 
 // stl ¾µ·Á°í...
 #pragma warning(disable : 4786)
@@ -138,4 +137,3 @@ public:
 	virtual	~CN3E2Wrapper();
 };
 
-#endif // #if !defined(_N3E2WRAPPER_H__INCUDED_)

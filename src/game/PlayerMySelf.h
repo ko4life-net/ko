@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_PLAYERMGR_H__036554E3_CDCC_4B13_97B2_34C5D4D63E8C__INCLUDED_)
-#define AFX_PLAYERMGR_H__036554E3_CDCC_4B13_97B2_34C5D4D63E8C__INCLUDED_
+#pragma once
 
 
 #include <list>
@@ -88,4 +87,3 @@ public:
 };
 
 
-#endif // !defined(AFX_PLAYERMGR_H__036554E3_CDCC_4B13_97B2_34C5D4D63E8C__INCLUDED_)

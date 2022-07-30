@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UIMESSAGEBOXMANAGER_H__34454EC5_5C0E_42EE_8321_6C0ECC0EACD0__INCLUDED_)
-#define AFX_UIMESSAGEBOXMANAGER_H__34454EC5_5C0E_42EE_8321_6C0ECC0EACD0__INCLUDED_
+#pragma once
 
 #include <map>
 
@@ -38,4 +37,3 @@ public:
 
 };
 
-#endif // !defined(AFX_UIMESSAGEBOXMANAGER_H__34454EC5_5C0E_42EE_8321_6C0ECC0EACD0__INCLUDED_)

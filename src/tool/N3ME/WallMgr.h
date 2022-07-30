@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_WALLMGR_H__5633920C_20A6_4FD3_9D71_B522269163F8__INCLUDED_)
-#define AFX_WALLMGR_H__5633920C_20A6_4FD3_9D71_B522269163F8__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3BaseFileAccess.h"
@@ -55,4 +54,3 @@ public:
 
 };
 
-#endif // !defined(AFX_WALLMGR_H__5633920C_20A6_4FD3_9D71_B522269163F8__INCLUDED_)

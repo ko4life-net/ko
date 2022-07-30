@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGMAKEWALL_H__081595A7_E433_408C_85FA_EB69AC055ED0__INCLUDED_)
-#define AFX_DLGMAKEWALL_H__081595A7_E433_408C_85FA_EB69AC055ED0__INCLUDED_
+#pragma once
 
 // DlgMakeWall.h : header file
 //
@@ -52,4 +51,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGMAKEWALL_H__081595A7_E433_408C_85FA_EB69AC055ED0__INCLUDED_)

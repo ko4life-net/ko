@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_DTEXGROUPMNG_H__C89F0301_7CC1_4AB8_BC19_6CC82919DBD3__INCLUDED_)
-#define AFX_DTEXGROUPMNG_H__C89F0301_7CC1_4AB8_BC19_6CC82919DBD3__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3Base.h"
@@ -52,4 +51,3 @@ public:
 
 };
 
-#endif // !defined(AFX_DTEXGROUPMNG_H__C89F0301_7CC1_4AB8_BC19_6CC82919DBD3__INCLUDED_)

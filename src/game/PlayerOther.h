@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_PlayerOther_H__06F94EA0_0640_4532_B8CC_7FB9A99291AB__INCLUDED_)
-#define AFX_PlayerOther_H__06F94EA0_0640_4532_B8CC_7FB9A99291AB__INCLUDED_
+#pragma once
 
 
 #include "GameBase.h"
@@ -30,4 +29,3 @@ public:
 };
 
 
-#endif // !defined(AFX_PlayerOther_H__06F94EA0_0640_4532_B8CC_7FB9A99291AB__INCLUDED_)

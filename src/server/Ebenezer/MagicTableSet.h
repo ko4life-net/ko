@@ -1,5 +1,4 @@
-#if !defined(AFX_MAGICTABLESET_H__E8A08990_A716_4AF2_8C03_7C0C9666F842__INCLUDED_)
-#define AFX_MAGICTABLESET_H__E8A08990_A716_4AF2_8C03_7C0C9666F842__INCLUDED_
+#pragma once
 
 // MagicTableSet.h : header file
 //
@@ -60,4 +59,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_MAGICTABLESET_H__E8A08990_A716_4AF2_8C03_7C0C9666F842__INCLUDED_)

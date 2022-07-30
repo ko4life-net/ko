@@ -5,8 +5,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef __N3FXDEF_H__
-#define __N3FXDEF_H__
+#pragma once
 
 #include "N3Base.h"
 #include "My_3DStruct.h"
@@ -111,4 +110,3 @@ typedef struct __FXBInfo
 	}	
 } FXBINFO, *LPFXBINFO;
 
-#endif // #ifndef __N3FXDEF_H__

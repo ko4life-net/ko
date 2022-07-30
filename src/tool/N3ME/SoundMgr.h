@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_SOUNDMGR_H__73272CD9_F059_4001_A116_871CEC8B25AE__INCLUDED_)
-#define AFX_SOUNDMGR_H__73272CD9_F059_4001_A116_871CEC8B25AE__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3BaseFileAccess.h"
@@ -76,4 +75,3 @@ public:
 	virtual ~CSoundMgr();
 };
 
-#endif // !defined(AFX_SOUNDMGR_H__73272CD9_F059_4001_A116_871CEC8B25AE__INCLUDED_)

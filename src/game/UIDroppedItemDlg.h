@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UIDROPPEDITEMDLG_H__1E9B7E7F_FB6F_4D07_8386_6E84E22D73BB__INCLUDED_)
-#define AFX_UIDROPPEDITEMDLG_H__1E9B7E7F_FB6F_4D07_8386_6E84E22D73BB__INCLUDED_
+#pragma once
 
 
 #include "GameDef.h"
@@ -51,4 +50,3 @@ public:
 	__IconItemSkill*	GetHighlightIconItem(CN3UIIcon* pUIIcon);
 };
 
-#endif // !defined(AFX_UIDROPPEDITEMDLG_H__1E9B7E7F_FB6F_4D07_8386_6E84E22D73BB__INCLUDED_)

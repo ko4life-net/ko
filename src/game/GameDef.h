@@ -1,5 +1,4 @@
-#ifndef __GAME_DEF_H_
-#define __GAME_DEF_H_
+#pragma once
 
 #include <string>
 #include <dinput.h>
@@ -1187,5 +1186,4 @@ enum e_Cursor		{	CURSOR_ATTACK,
 						CURSOR_UNKNOWN = 0xffffffff
 					};
 
-#endif // end of #define __GAME_DEF_H_
 

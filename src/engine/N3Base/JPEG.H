@@ -9,8 +9,7 @@
 // E-Mail : evaasuka1004@hotmail.com
 //////////////////////////////////////////////////////////////////////
 
-#ifndef _JPEG_MODULE_BODY_
-#define _JPEG_MODULE_BODY_
+#pragma once
 
 struct SET
 {
@@ -140,4 +139,3 @@ public:
 
 };
 
-#endif //_JPEG_MODULE_BODY_

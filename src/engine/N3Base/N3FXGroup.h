@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#ifndef __N3FXGROUP_H__
-#define __N3FXGROUP_H__
+#pragma once
 
 #include "N3BaseFileAccess.h"
 #include "N3FXDef.h"
@@ -32,4 +31,3 @@ public:
 #endif // end of _N3TOOL
 };
 
-#endif // #ifndef __N3FXGROUP_H__

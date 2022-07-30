@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_ROOMEVENT_H__70001CA8_64B8_422F_B0F4_ED0F2FA95E0E__INCLUDED_)
-#define AFX_ROOMEVENT_H__70001CA8_64B8_422F_B0F4_ED0F2FA95E0E__INCLUDED_
+#pragma once
 
 
 #include "STLMap.h"
@@ -70,4 +69,3 @@ private:
 
 };
 
-#endif // !defined(AFX_ROOMEVENT_H__70001CA8_64B8_422F_B0F4_ED0F2FA95E0E__INCLUDED_)

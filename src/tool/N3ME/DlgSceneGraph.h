@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGSCENEGRAPH_H__4E0DD889_E442_4F9A_8FC2_0DEA6F939B62__INCLUDED_)
-#define AFX_DLGSCENEGRAPH_H__4E0DD889_E442_4F9A_8FC2_0DEA6F939B62__INCLUDED_
+#pragma once
 
 // DlgSceneGraph.h : header file
 //
@@ -67,4 +66,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGSCENEGRAPH_H__4E0DD889_E442_4F9A_8FC2_0DEA6F939B62__INCLUDED_)

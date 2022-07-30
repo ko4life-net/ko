@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGINPUTATTR_H__8399E1A8_C5C7_41F1_9F95_BFD410431261__INCLUDED_)
-#define AFX_DLGINPUTATTR_H__8399E1A8_C5C7_41F1_9F95_BFD410431261__INCLUDED_
+#pragma once
 
 // DlgInputAttr.h : header file
 //
@@ -45,4 +44,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGINPUTATTR_H__8399E1A8_C5C7_41F1_9F95_BFD410431261__INCLUDED_)

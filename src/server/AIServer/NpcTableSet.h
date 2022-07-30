@@ -1,5 +1,4 @@
-#if !defined(AFX_NPCTABLESET_H__1569108D_232D_47F0_A318_C0B50E1D8D68__INCLUDED_)
-#define AFX_NPCTABLESET_H__1569108D_232D_47F0_A318_C0B50E1D8D68__INCLUDED_
+#pragma once
 
 // NpcTableSet.h : header file
 //
@@ -82,4 +81,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_NPCTABLESET_H__1569108D_232D_47F0_A318_C0B50E1D8D68__INCLUDED_)

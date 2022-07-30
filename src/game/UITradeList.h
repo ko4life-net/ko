@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UITRADELIST_H__B4807FE6_499A_47DE_BEA0_642E52708F0D__INCLUDED_)
-#define AFX_UITRADELIST_H__B4807FE6_499A_47DE_BEA0_642E52708F0D__INCLUDED_
+#pragma once
 
 
 #include "GameDef.h"
@@ -35,4 +34,3 @@ public:
 	void SetTopLine(int iTopLine);		// 맨 윗줄을 지정해준다.
 };
 
-#endif // !defined(AFX_UITRADELIST_H__B4807FE6_499A_47DE_BEA0_642E52708F0D__INCLUDED_)

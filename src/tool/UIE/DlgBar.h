@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGBAR_H__C665D39A_F8D8_44DA_80BA_1517EA83BB90__INCLUDED_)
-#define AFX_DLGBAR_H__C665D39A_F8D8_44DA_80BA_1517EA83BB90__INCLUDED_
+#pragma once
 
 // DlgBar.h : header file
 //
@@ -40,4 +39,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGBAR_H__C665D39A_F8D8_44DA_80BA_1517EA83BB90__INCLUDED_)

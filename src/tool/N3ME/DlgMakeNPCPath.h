@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGMAKENPCPATH_H__A6BC8EF9_5309_42E9_8986_CDE2F8565813__INCLUDED_)
-#define AFX_DLGMAKENPCPATH_H__A6BC8EF9_5309_42E9_8986_CDE2F8565813__INCLUDED_
+#pragma once
 
 // DlgMakeNPCPath.h : header file
 //
@@ -98,4 +97,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGMAKENPCPATH_H__A6BC8EF9_5309_42E9_8986_CDE2F8565813__INCLUDED_)

@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGDELDTEX_H__790BA71D_B58D_4E71_8438_790CC327F643__INCLUDED_)
-#define AFX_DLGDELDTEX_H__790BA71D_B58D_4E71_8438_790CC327F643__INCLUDED_
+#pragma once
 
 // DlgDelDTex.h : header file
 //
@@ -51,4 +50,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGDELDTEX_H__790BA71D_B58D_4E71_8438_790CC327F643__INCLUDED_)

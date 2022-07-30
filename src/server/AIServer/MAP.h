@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_MAP_H__BCC14687_C38F_4597_8522_2170ED077037__INCLUDED_)
-#define AFX_MAP_H__BCC14687_C38F_4597_8522_2170ED077037__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3ShapeMgr.h"
@@ -92,5 +91,4 @@ protected:
 
 };
 
-#endif // !defined(AFX_MAP_H__BCC14687_C38F_4597_8522_2170ED077037__INCLUDED_)
 

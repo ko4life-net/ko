@@ -4,8 +4,7 @@
 //  Copyright (C) 2000 Tadeusz Dracz.
 ////////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_AUTOBUFFER_H__DEC28C20_83FE_11D3_B7C3_EDEC47A8A86C__INCLUDED_)
-#define AFX_AUTOBUFFER_H__DEC28C20_83FE_11D3_B7C3_EDEC47A8A86C__INCLUDED_
+#pragma once
 
 
 class CAutoBuffer  
@@ -26,4 +25,3 @@ protected:
 	DWORD m_iSize;
 };
 
-#endif // !defined(AFX_AUTOBUFFER_H__DEC28C20_83FE_11D3_B7C3_EDEC47A8A86C__INCLUDED_)

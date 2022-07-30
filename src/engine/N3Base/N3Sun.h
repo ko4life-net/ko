@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3SUN_H__8CBCEEB3_465E_4884_9549_C86D2CCC8936__INCLUDED_)
-#define AFX_N3SUN_H__8CBCEEB3_465E_4884_9549_C86D2CCC8936__INCLUDED_
+#pragma once
 
 
 #include "N3Base.h"
@@ -46,4 +45,3 @@ protected:
 
 };
 
-#endif // !defined(AFX_N3SUN_H__8CBCEEB3_465E_4884_9549_C86D2CCC8936__INCLUDED_)

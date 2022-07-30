@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGEDITSCRIPT_H__69B3C205_1BDB_480C_9D2C_EFA8D7324EA0__INCLUDED_)
-#define AFX_DLGEDITSCRIPT_H__69B3C205_1BDB_480C_9D2C_EFA8D7324EA0__INCLUDED_
+#pragma once
 
 // DlgEditScript.h : header file
 //
@@ -151,4 +150,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGEDITSCRIPT_H__69B3C205_1BDB_480C_9D2C_EFA8D7324EA0__INCLUDED_)

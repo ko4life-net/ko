@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3STAR_H__09250C74_48BB_4F81_9903_45EAE7605CB6__INCLUDED_)
-#define AFX_N3STAR_H__09250C74_48BB_4F81_9903_45EAE7605CB6__INCLUDED_
+#pragma once
 
 
 #include "N3Base.h"
@@ -35,4 +34,3 @@ public:
 	void		SetStar(int iNum, float fSec);
 };
 
-#endif // !defined(AFX_N3STAR_H__09250C74_48BB_4F81_9903_45EAE7605CB6__INCLUDED_)

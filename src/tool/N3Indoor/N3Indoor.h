@@ -1,8 +1,7 @@
 // N3Indoor.h : main header file for the N3INDOOR application
 //
 
-#if !defined(AFX_N3INDOOR_H__7CDFFA91_B1B3_45A9_B01E_49C0E165ED2E__INCLUDED_)
-#define AFX_N3INDOOR_H__7CDFFA91_B1B3_45A9_B01E_49C0E165ED2E__INCLUDED_
+#pragma once
 
 
 #ifndef __AFXWIN_H__
@@ -60,4 +59,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_N3INDOOR_H__7CDFFA91_B1B3_45A9_B01E_49C0E165ED2E__INCLUDED_)

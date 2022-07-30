@@ -2,8 +2,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_MAINFRM_H__5C3A71CC_7A05_4B75_9650_5C1396B5D48A__INCLUDED_)
-#define AFX_MAINFRM_H__5C3A71CC_7A05_4B75_9650_5C1396B5D48A__INCLUDED_
+#pragma once
 
 
 class CMainFrame : public CFrameWnd
@@ -45,4 +44,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_MAINFRM_H__5C3A71CC_7A05_4B75_9650_5C1396B5D48A__INCLUDED_)

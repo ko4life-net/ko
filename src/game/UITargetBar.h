@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UITARGETBAR_H__E572A55F_D4DE_471D_A0E8_CB587043DD5B__INCLUDED_)
-#define AFX_UITARGETBAR_H__E572A55F_D4DE_471D_A0E8_CB587043DD5B__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3UIBase.h"
@@ -26,4 +25,3 @@ public:
 	virtual ~CUITargetBar();
 };
 
-#endif // !defined(AFX_UITARGETBAR_H__E572A55F_D4DE_471D_A0E8_CB587043DD5B__INCLUDED_)

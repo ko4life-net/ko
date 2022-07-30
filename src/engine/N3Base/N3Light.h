@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3ILight_h__INCLUDED_)
-#define AFX_N3ILight_h__INCLUDED_
+#pragma once
 
 
 #include "N3Transform.h"
@@ -101,4 +100,3 @@ public:
 	virtual ~CN3Light();
 };
 
-#endif // !defined(AFX_N3ILight_h__INCLUDED_)

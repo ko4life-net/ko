@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGLOADEVT_H__BBB80EB7_9FCA_47C7_8461_15349AD880A7__INCLUDED_)
-#define AFX_DLGLOADEVT_H__BBB80EB7_9FCA_47C7_8461_15349AD880A7__INCLUDED_
+#pragma once
 
 // DlgLoadEvt.h : header file
 //
@@ -43,4 +42,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGLOADEVT_H__BBB80EB7_9FCA_47C7_8461_15349AD880A7__INCLUDED_)

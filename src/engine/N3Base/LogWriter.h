@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_LOGWRITER_H__3299921C_04C3_40D6_848B_52F0CE5C9352__INCLUDED_)
-#define AFX_LOGWRITER_H__3299921C_04C3_40D6_848B_52F0CE5C9352__INCLUDED_
+#pragma once
 
 #include <string>
 
@@ -23,4 +22,3 @@ public:
 
 };
 
-#endif // !defined(AFX_LOGWRITER_H__3299921C_04C3_40D6_848B_52F0CE5C9352__INCLUDED_)

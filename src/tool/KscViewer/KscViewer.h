@@ -1,8 +1,7 @@
 // KscViewer.h : main header file for the KSCVIEWER application
 //
 
-#if !defined(AFX_KSCVIEWER_H__AA838AD8_1B20_44DE_8160_D2D367204465__INCLUDED_)
-#define AFX_KSCVIEWER_H__AA838AD8_1B20_44DE_8160_D2D367204465__INCLUDED_
+#pragma once
 
 
 #ifndef __AFXWIN_H__
@@ -43,4 +42,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_KSCVIEWER_H__AA838AD8_1B20_44DE_8160_D2D367204465__INCLUDED_)

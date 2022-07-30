@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(__REGENUSER_H__)
-#define __REGENUSER_H__
+#pragma once
 
 
 #include "N3Base/N3Base.h"
@@ -52,4 +51,3 @@ public:
 	virtual ~CRegenUser();
 };
 
-#endif // __REGENUSER_H__

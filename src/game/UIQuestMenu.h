@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UIQUESTMENU_H__B74550FB_798B_4DB8_91DD_EE5994976EDE__INCLUDED_)
-#define AFX_UIQUESTMENU_H__B74550FB_798B_4DB8_91DD_EE5994976EDE__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3UIBase.h"
@@ -49,4 +48,3 @@ public:
 
 };
 
-#endif // !defined(AFX_UIQUESTMENU_H__B74550FB_798B_4DB8_91DD_EE5994976EDE__INCLUDED_)

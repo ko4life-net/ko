@@ -1,5 +1,4 @@
-#ifndef _BACKGROUNDUTIL_H_
-#define _BACKGROUNDUTIL_H_
+#pragma once
 
 
 class CBackgroundUtil  
@@ -22,4 +21,3 @@ protected:
 	int m_nBmpHeight;
 };
 
-#endif

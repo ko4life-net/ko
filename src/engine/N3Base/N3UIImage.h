@@ -2,8 +2,7 @@
 // 보강해야 할 점 : animation되는 이미지도 그리도록 가능하게 하자..
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3UIIMAGE_H__80AE123C_5A12_4A0E_9CF0_511ED98BB896__INCLUDED_)
-#define AFX_N3UIIMAGE_H__80AE123C_5A12_4A0E_9CF0_511ED98BB896__INCLUDED_
+#pragma once
 
 
 #include "N3UIBase.h"
@@ -72,4 +71,3 @@ public:
 #endif
 };
 
-#endif // !defined(AFX_N3UIIMAGE_H__80AE123C_5A12_4A0E_9CF0_511ED98BB896__INCLUDED_)

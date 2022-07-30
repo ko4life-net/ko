@@ -1,5 +1,4 @@
-#if !defined(AFX_ORGANIZEVIEW_H__57A9D1DE_2B50_41D4_9B08_8D48CE641331__INCLUDED_)
-#define AFX_ORGANIZEVIEW_H__57A9D1DE_2B50_41D4_9B08_8D48CE641331__INCLUDED_
+#pragma once
 
 // OrganizeView.h : header file
 //
@@ -165,4 +164,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_ORGANIZEVIEW_H__57A9D1DE_2B50_41D4_9B08_8D48CE641331__INCLUDED_)

@@ -1,5 +1,4 @@
-#if !defined(AFX_BATTLESET_H__06E78B0F_F744_4F35_AE1F_65234AAA9743__INCLUDED_)
-#define AFX_BATTLESET_H__06E78B0F_F744_4F35_AE1F_65234AAA9743__INCLUDED_
+#pragma once
 
 // BattleSet.h : header file
 //
@@ -39,4 +38,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_BATTLESET_H__06E78B0F_F744_4F35_AE1F_65234AAA9743__INCLUDED_)

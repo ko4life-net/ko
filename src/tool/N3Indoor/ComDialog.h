@@ -1,5 +1,4 @@
-#if !defined(AFX_COMDIALOG_H__742979CE_A9B8_4F71_8956_6B02C385BE73__INCLUDED_)
-#define AFX_COMDIALOG_H__742979CE_A9B8_4F71_8956_6B02C385BE73__INCLUDED_
+#pragma once
 
 // ComDialog.h : header file
 //
@@ -40,4 +39,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_COMDIALOG_H__742979CE_A9B8_4F71_8956_6B02C385BE73__INCLUDED_)

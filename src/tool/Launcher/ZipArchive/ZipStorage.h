@@ -5,8 +5,7 @@
 //  For conditions of distribution and use, see copyright notice in ZipArchive.h
 ////////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_ZIPSTORAGE_H__941824FE_3320_4794_BDE3_BE334ED8984B__INCLUDED_)
-#define AFX_ZIPSTORAGE_H__941824FE_3320_4794_BDE3_BE334ED8984B__INCLUDED_
+#pragma once
 
 #include "ZipBigFile.h"	// Added by ClassView
 #include "ZipAutoBuffer.h"	// Added by ClassView
@@ -128,4 +127,3 @@ protected:
 	
 };
 
-#endif // !defined(AFX_ZIPSTORAGE_H__941824FE_3320_4794_BDE3_BE334ED8984B__INCLUDED_)

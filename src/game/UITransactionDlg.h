@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UITRANSACTIONDLG_H__42671245_FF4F_42FC_AF7B_DACEDA8734B7__INCLUDED_)
-#define AFX_UITRANSACTIONDLG_H__42671245_FF4F_42FC_AF7B_DACEDA8734B7__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3UIBase.h"
@@ -108,4 +107,3 @@ public:
 	void				GoldUpdate();
 };
 
-#endif // !defined(AFX_UITRANSACTIONDLG_H__42671245_FF4F_42FC_AF7B_DACEDA8734B7__INCLUDED_)

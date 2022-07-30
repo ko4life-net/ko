@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_ZipBigFile_H__79E0E6BD_25D6_4B82_85C5_AB397D9EC368__INCLUDED_)
-#define AFX_ZipBigFile_H__79E0E6BD_25D6_4B82_85C5_AB397D9EC368__INCLUDED_
+#pragma once
 
 
 class CZipBigFile : public CFile  
@@ -16,4 +15,3 @@ public:
 
 };
 
-#endif // !defined(AFX_ZipBigFile_H__79E0E6BD_25D6_4B82_85C5_AB397D9EC368__INCLUDED_)

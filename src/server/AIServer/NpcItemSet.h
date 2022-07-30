@@ -1,5 +1,4 @@
-#if !defined(AFX_NPCITEMSET_H__D2328197_D834_45BD_9542_42CA64414ACD__INCLUDED_)
-#define AFX_NPCITEMSET_H__D2328197_D834_45BD_9542_42CA64414ACD__INCLUDED_
+#pragma once
 
 // NpcItemSet.h : header file
 //
@@ -48,4 +47,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_NPCITEMSET_H__D2328197_D834_45BD_9542_42CA64414ACD__INCLUDED_)

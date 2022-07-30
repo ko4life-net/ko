@@ -1,5 +1,4 @@
-#if !defined(AFX_MAKELAREITEMTABLESET_H__52F441CA_9CEB_469A_97E7_1AC154A492DE__INCLUDED_)
-#define AFX_MAKELAREITEMTABLESET_H__52F441CA_9CEB_469A_97E7_1AC154A492DE__INCLUDED_
+#pragma once
 
 // MakeLareItemTableSet.h : header file
 //
@@ -41,4 +40,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_MAKELAREITEMTABLESET_H__52F441CA_9CEB_469A_97E7_1AC154A492DE__INCLUDED_)

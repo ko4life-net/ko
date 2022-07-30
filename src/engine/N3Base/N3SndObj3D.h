@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3SndObj3D_H__0D78F306_9857_4199_B711_96FFC72D57FA__INCLUDED_)
-#define AFX_N3SndObj3D_H__0D78F306_9857_4199_B711_96FFC72D57FA__INCLUDED_
+#pragma once
 
 
 #include "N3SndObj.h"
@@ -31,4 +30,3 @@ public:
 	virtual ~CN3SndObj3D();
 };
 
-#endif // !defined(AFX_N3SndObj3D_H__0D78F306_9857_4199_B711_96FFC72D57FA__INCLUDED_)

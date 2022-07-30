@@ -3,8 +3,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3TERRAIN_H__7BCDE4B8_8FBC_432E_B4CB_4A56C5FC29F0__INCLUDED_)
-#define AFX_N3TERRAIN_H__7BCDE4B8_8FBC_432E_B4CB_4A56C5FC29F0__INCLUDED_
+#pragma once
 
 
 #include <map>
@@ -203,5 +202,4 @@ public:
 	virtual ~CLyTerrain();
 };
 
-#endif // !defined(AFX_N3TERRAIN_H__7BCDE4B8_8FBC_432E_B4CB_4A56C5FC29F0__INCLUDED_)
 

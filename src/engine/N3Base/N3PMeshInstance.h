@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3PMeshInstance_h__INCLUDED_)
-#define AFX_N3PMeshInstance_h__INCLUDED_
+#pragma once
 
 
 #include "N3Base.h"
@@ -76,4 +75,3 @@ __Vector3		GetVertexByIndex(int iIndex);
 //	~(By Ecli666 On 2002-08-06 ¿ÀÈÄ 4:33:04 )
 };
 
-#endif // !defined(AFX_N3PMeshInstance_h__INCLUDED_)

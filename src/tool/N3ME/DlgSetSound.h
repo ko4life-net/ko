@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGSETSOUND_H__78CB4442_580D_4CBC_9C3F_3927A48D1218__INCLUDED_)
-#define AFX_DLGSETSOUND_H__78CB4442_580D_4CBC_9C3F_3927A48D1218__INCLUDED_
+#pragma once
 
 // DlgSetSound.h : header file
 //
@@ -69,4 +68,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGSETSOUND_H__78CB4442_580D_4CBC_9C3F_3927A48D1218__INCLUDED_)

@@ -1,5 +1,4 @@
-#if !defined(AFX_Bitset_h__INCLUDED_)
-#define AFX_Bitset_h__INCLUDED_
+#pragma once
 
 
 #pragma warning(disable : 4786)
@@ -72,4 +71,3 @@ private:
 	int m_size;
 };
 
-#endif // !defined(AFX_Bitset_h__INCLUDED_)

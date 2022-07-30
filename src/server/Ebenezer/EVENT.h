@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_EVENT_H__7514FC23_511B_11D3_BE41_00105A6B97E2__INCLUDED_)
-#define AFX_EVENT_H__7514FC23_511B_11D3_BE41_00105A6B97E2__INCLUDED_
+#pragma once
 
 
 #include "EVENT_DATA.h"
@@ -28,4 +27,3 @@ public:
 
 };
 
-#endif // !defined(AFX_EVENT_H__7514FC23_511B_11D3_BE41_00105A6B97E2__INCLUDED_)

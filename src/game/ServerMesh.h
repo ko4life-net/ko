@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_SERVERMESH_H__5D0D1E4F_E427_462E_9D72_CB0C4FC02C82__INCLUDED_)
-#define AFX_SERVERMESH_H__5D0D1E4F_E427_462E_9D72_CB0C4FC02C82__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3Base.h"
@@ -23,4 +22,3 @@ public:
 	void	Render();
 };
 
-#endif // !defined(AFX_SERVERMESH_H__5D0D1E4F_E427_462E_9D72_CB0C4FC02C82__INCLUDED_)

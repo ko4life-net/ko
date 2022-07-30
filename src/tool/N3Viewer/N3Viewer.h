@@ -1,8 +1,7 @@
 // N3Viewer.h : main header file for the N3VIEWER application
 //
 
-#if !defined(AFX_N3VIEWER_H__6AE8CCFC_D85F_4339_A6ED_9E2CD70ACBBE__INCLUDED_)
-#define AFX_N3VIEWER_H__6AE8CCFC_D85F_4339_A6ED_9E2CD70ACBBE__INCLUDED_
+#pragma once
 
 
 #ifndef __AFXWIN_H__
@@ -43,4 +42,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_N3VIEWER_H__6AE8CCFC_D85F_4339_A6ED_9E2CD70ACBBE__INCLUDED_)

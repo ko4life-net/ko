@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3SKY_H__0966C25E_2E50_48A2_9DF4_E4CD279E73CE__INCLUDED_)
-#define AFX_N3SKY_H__0966C25E_2E50_48A2_9DF4_E4CD279E73CE__INCLUDED_
+#pragma once
 
 
 #include "N3Base.h"
@@ -36,4 +35,3 @@ public:
 protected:
 };
 
-#endif // !defined(AFX_N3SKY_H__0966C25E_2E50_48A2_9DF4_E4CD279E73CE__INCLUDED_)

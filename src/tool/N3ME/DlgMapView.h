@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGMAPVIEW_H__78BB52D1_A276_4F30_9B9D_7A1915985098__INCLUDED_)
-#define AFX_DLGMAPVIEW_H__78BB52D1_A276_4F30_9B9D_7A1915985098__INCLUDED_
+#pragma once
 
 // DlgMapView.h : header file
 //
@@ -72,4 +71,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGMAPVIEW_H__78BB52D1_A276_4F30_9B9D_7A1915985098__INCLUDED_)

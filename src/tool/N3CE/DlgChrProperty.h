@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGCHRPROPERTY_H__44297C60_64E5_4263_9814_AEA9AF4BC07A__INCLUDED_)
-#define AFX_DLGCHRPROPERTY_H__44297C60_64E5_4263_9814_AEA9AF4BC07A__INCLUDED_
+#pragma once
 
 // DlgChrProperty.h : header file
 //
@@ -52,4 +51,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGCHRPROPERTY_H__44297C60_64E5_4263_9814_AEA9AF4BC07A__INCLUDED_)

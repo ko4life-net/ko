@@ -7,8 +7,7 @@
 //	End Of Comment (By Lynus On 2001-04-12 ¿ÀÈÄ 5:09:28 )
 //////////////////////////////////////////////////
 
-#ifndef __STREAMSOUNDOBJ_H_
-#define __STREAMSOUNDOBJ_H_
+#pragma once
 
 #include "N3SndObj.h"
 
@@ -61,4 +60,3 @@ class CStreamSoundObj : public CN3SndObj
 		void Reset();
 };
 
-#endif // #ifndef __STREAMSOUNDOBJ_H_

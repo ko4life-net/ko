@@ -2,8 +2,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_MAINFRM_H__3EC7F770_B6B0_4DE7_8DA0_8ECACAD52DC0__INCLUDED_)
-#define AFX_MAINFRM_H__3EC7F770_B6B0_4DE7_8DA0_8ECACAD52DC0__INCLUDED_
+#pragma once
 
 
 #pragma warning(disable : 4786)
@@ -110,4 +109,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_MAINFRM_H__3EC7F770_B6B0_4DE7_8DA0_8ECACAD52DC0__INCLUDED_)

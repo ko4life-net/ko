@@ -1,5 +1,4 @@
-#if !defined(AFX_FOLDERSELECTORDLG_H__28851341_4EEA_11D3_9559_00C026EE03FC__INCLUDED_)
-#define AFX_FOLDERSELECTORDLG_H__28851341_4EEA_11D3_9559_00C026EE03FC__INCLUDED_
+#pragma once
 
 // DlgFolderSelect.h : header file
 //
@@ -52,4 +51,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_FOLDERSELECTORDLG_H__28851341_4EEA_11D3_9559_00C026EE03FC__INCLUDED_)

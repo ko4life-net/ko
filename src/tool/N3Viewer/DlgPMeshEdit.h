@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGPMESHEDIT_H__03776521_2EA5_473F_BA1A_FD419AFF1FBA__INCLUDED_)
-#define AFX_DLGPMESHEDIT_H__03776521_2EA5_473F_BA1A_FD419AFF1FBA__INCLUDED_
+#pragma once
 
 // DlgPMeshEdit.h : header file
 //
@@ -64,4 +63,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGPMESHEDIT_H__03776521_2EA5_473F_BA1A_FD419AFF1FBA__INCLUDED_)

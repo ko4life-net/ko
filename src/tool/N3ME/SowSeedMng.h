@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_SOWSEEDMNG_H__12E1EE2D_0B69_4EAC_9E47_172056938255__INCLUDED_)
-#define AFX_SOWSEEDMNG_H__12E1EE2D_0B69_4EAC_9E47_172056938255__INCLUDED_
+#pragma once
 
 
 #include <list>
@@ -103,4 +102,3 @@ public:
 	void Test_GameDataSave(void);
 };
 
-#endif // !defined(AFX_SOWSEEDMNG_H__12E1EE2D_0B69_4EAC_9E47_172056938255__INCLUDED_)

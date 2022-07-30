@@ -1,5 +1,4 @@
-#ifndef _BKDIALOG_H_
-#define _BKDIALOG_H_
+#pragma once
 
 #include "BackgroundUtil.h"
 
@@ -44,4 +43,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
-#endif

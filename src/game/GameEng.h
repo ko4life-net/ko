@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_GAMEENG_H__5422B19E_D43E_4252_B79B_69323824F3F9__INCLUDED_)
-#define AFX_GAMEENG_H__5422B19E_D43E_4252_B79B_69323824F3F9__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3Eng.h"
@@ -115,4 +114,3 @@ inline CN3Camera* CGameEng::Camera(int index)
 }
 
 
-#endif // !defined(AFX_GAMEENG_H__5422B19E_D43E_4252_B79B_69323824F3F9__INCLUDED_)

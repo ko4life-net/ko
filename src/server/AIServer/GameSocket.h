@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_GAMESOCKET_H__E8EB97C6_3A78_44E1_BE1D_E5AC1893D27E__INCLUDED_)
-#define AFX_GAMESOCKET_H__E8EB97C6_3A78_44E1_BE1D_E5AC1893D27E__INCLUDED_
+#pragma once
 
 
 #include "IOCPSocket2.h"
@@ -56,4 +55,3 @@ public:
 	void RecvBattleEvent(char* pBuf);
 };
 
-#endif // !defined(AFX_GAMESOCKET_H__E8EB97C6_3A78_44E1_BE1D_E5AC1893D27E__INCLUDED_)

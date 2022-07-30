@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_MAPMNG_H__995D141A_97C5_4CE7_B100_D729B35E9959__INCLUDED_)
-#define AFX_MAPMNG_H__995D141A_97C5_4CE7_B100_D729B35E9959__INCLUDED_
+#pragma once
 
 
 // Cursor Mode
@@ -187,5 +186,4 @@ public:
 	void	SetEditState(ENUM_EDIT_STATE eEditStat);	//	드로우해서 선택한 오브젝트를 edit
 };
 
-#endif // !defined(AFX_MAPMNG_H__995D141A_97C5_4CE7_B100_D729B35E9959__INCLUDED_)
 

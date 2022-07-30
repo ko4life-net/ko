@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_SCALEDUMMY_H__53B4998F_13C1_456E_97D3_820A76BFC855__INCLUDED_)
-#define AFX_SCALEDUMMY_H__53B4998F_13C1_456E_97D3_820A76BFC855__INCLUDED_
+#pragma once
 
 
 #include "TransDummy.h"
@@ -22,4 +21,3 @@ public:
 protected:
 };
 
-#endif // !defined(AFX_SCALEDUMMY_H__53B4998F_13C1_456E_97D3_820A76BFC855__INCLUDED_)

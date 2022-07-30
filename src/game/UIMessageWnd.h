@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UIMESSAGEWND_H__F825624B_A51E_4889_9ADC_BEBF022D010B__INCLUDED_)
-#define AFX_UIMESSAGEWND_H__F825624B_A51E_4889_9ADC_BEBF022D010B__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3UIBase.h"
@@ -44,4 +43,3 @@ public:
 	virtual ~CUIMessageWnd();
 };
 
-#endif // !defined(AFX_UIMESSAGEWND_H__F825624B_A51E_4889_9ADC_BEBF022D010B__INCLUDED_)

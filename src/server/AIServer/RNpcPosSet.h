@@ -1,5 +1,4 @@
-#if !defined(AFX_RNPCPOSSET_H__A7F476F8_A63E_4734_8763_7DD5C5115D54__INCLUDED_)
-#define AFX_RNPCPOSSET_H__A7F476F8_A63E_4734_8763_7DD5C5115D54__INCLUDED_
+#pragma once
 
 // RNpcPosSet.h : header file
 //
@@ -56,4 +55,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_RNPCPOSSET_H__A7F476F8_A63E_4734_8763_7DD5C5115D54__INCLUDED_)

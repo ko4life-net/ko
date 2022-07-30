@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_QTNODE_H__4B02CBDB_FCB9_4475_BF2F_7701DB658B28__INCLUDED_)
-#define AFX_QTNODE_H__4B02CBDB_FCB9_4475_BF2F_7701DB658B28__INCLUDED_
+#pragma once
 
 
 enum eQTNODESTATE { QTNODESTATE_CLIPPED = 0, QTNODESTATE_NOTRENDER, QTNODESTATE_RENDER, QTNODESTATE_UNKNOWN };	// 쿼드트리 노드들의 상태속성..
@@ -53,4 +52,3 @@ public:
 	virtual ~CQTNode();
 };
 
-#endif // !defined(AFX_QTNODE_H__4B02CBDB_FCB9_4475_BF2F_7701DB658B28__INCLUDED_)

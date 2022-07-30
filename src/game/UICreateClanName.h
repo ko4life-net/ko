@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(__UICREATECLANNAME_H__)
-#define __UICREATECLANNAME_H__
+#pragma once
 
 
 #include "GameDef.h"
@@ -34,4 +33,3 @@ public:
 	virtual ~CUICreateClanName();	
 };
 
-#endif //#if !defined(__UICREATECLANNAME_H__)

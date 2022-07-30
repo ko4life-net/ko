@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UILogIn_H__5D51312E_7B98_43C2_871B_12A9CC0C2096__INCLUDED_)
-#define AFX_UILogIn_H__5D51312E_7B98_43C2_871B_12A9CC0C2096__INCLUDED_
+#pragma once
 
 
 #include <string>
@@ -84,4 +83,3 @@ public:
 	virtual ~CUILogIn();
 };
 
-#endif // !defined(AFX_UILogIn_H__5D51312E_7B98_43C2_871B_12A9CC0C2096__INCLUDED_)

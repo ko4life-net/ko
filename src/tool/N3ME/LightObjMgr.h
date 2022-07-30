@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(__LIGHTOBJMGR_H__)
-#define __LIGHTOBJMGR_H__
+#pragma once
 
 
 #include "N3Base/N3BaseFileAccess.h"
@@ -84,4 +83,3 @@ public:
 	virtual ~CLightObjMgr();
 };
 
-#endif // __LIGHTOBJMGR_H__

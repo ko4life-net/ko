@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#ifndef __N3FXPARTBOTTOMBOARDGAME_H__
-#define __N3FXPARTBOTTOMBOARDGAME_H__
+#pragma once
 
 #include "N3Base/N3FXPartBottomBoard.h"
 
@@ -17,4 +16,3 @@ public:
 	virtual ~CN3FXPartBottomBoardGame();
 };
 
-#endif // #ifndef __N3FXPARTBOTTOMBOARD_H__

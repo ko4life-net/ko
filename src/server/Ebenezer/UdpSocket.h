@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UDPSOCKET_H__E53802D9_5A8C_47B6_9B3B_12D2DDDACD92__INCLUDED_)
-#define AFX_UDPSOCKET_H__E53802D9_5A8C_47B6_9B3B_12D2DDDACD92__INCLUDED_
+#pragma once
 
 
 class CEbenezerDlg;
@@ -34,4 +33,3 @@ public:
 	CEbenezerDlg* m_pMain;
 };
 
-#endif // !defined(AFX_UDPSOCKET_H__E53802D9_5A8C_47B6_9B3B_12D2DDDACD92__INCLUDED_)

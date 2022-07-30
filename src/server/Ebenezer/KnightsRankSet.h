@@ -1,5 +1,4 @@
-#if !defined(AFX_KNIGHTSRANKSET_H__BEEB9164_A159_4016_833A_940D6ED178AB__INCLUDED_)
-#define AFX_KNIGHTSRANKSET_H__BEEB9164_A159_4016_833A_940D6ED178AB__INCLUDED_
+#pragma once
 
 // KnightsRankSet.h : header file
 //
@@ -41,4 +40,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_KNIGHTSRANKSET_H__BEEB9164_A159_4016_833A_940D6ED178AB__INCLUDED_)

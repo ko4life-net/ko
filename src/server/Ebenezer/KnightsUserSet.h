@@ -1,5 +1,4 @@
-#if !defined(AFX_KNIGHTSUSERSET_H__1246D470_46DD_415D_A548_86829EAE6465__INCLUDED_)
-#define AFX_KNIGHTSUSERSET_H__1246D470_46DD_415D_A548_86829EAE6465__INCLUDED_
+#pragma once
 
 // KnightsUserSet.h : header file
 //
@@ -39,4 +38,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_KNIGHTSUSERSET_H__1246D470_46DD_415D_A548_86829EAE6465__INCLUDED_)

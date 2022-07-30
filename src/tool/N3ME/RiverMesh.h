@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_RIVERMESH_H__473FE46A_9CD7_4D5C_8196_45F0BFA94F04__INCLUDED_)
-#define AFX_RIVERMESH_H__473FE46A_9CD7_4D5C_8196_45F0BFA94F04__INCLUDED_
+#pragma once
 
 
 //const int MAXNUM_RIVERMESH_VERTEX = 2048;
@@ -84,4 +83,3 @@ protected:
 	void			ReleaseAnimTextures();
 };
 
-#endif // !defined(AFX_RIVERMESH_H__473FE46A_9CD7_4D5C_8196_45F0BFA94F04__INCLUDED_)

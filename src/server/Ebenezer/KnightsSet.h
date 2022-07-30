@@ -1,5 +1,4 @@
-#if !defined(AFX_KNIGHTSSET_H__1942BDDE_8833_404F_83C6_EFE16E0435F4__INCLUDED_)
-#define AFX_KNIGHTSSET_H__1942BDDE_8833_404F_83C6_EFE16E0435F4__INCLUDED_
+#pragma once
 
 // KnightsSet.h : header file
 //
@@ -53,4 +52,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_KNIGHTSSET_H__1942BDDE_8833_404F_83C6_EFE16E0435F4__INCLUDED_)

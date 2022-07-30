@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_NPCINFOTABLE_H__5F61A01D_DBD7_40CE_8728_03E662E44182__INCLUDED_)
-#define AFX_NPCINFOTABLE_H__5F61A01D_DBD7_40CE_8728_03E662E44182__INCLUDED_
+#pragma once
 
 
 class CNpcInfoTable  
@@ -44,4 +43,3 @@ public:
 
 };
 
-#endif // !defined(AFX_NPCINFOTABLE_H__5F61A01D_DBD7_40CE_8728_03E662E44182__INCLUDED_)

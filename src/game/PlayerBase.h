@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_PlayerBase_H__B8B8986B_3635_462D_8C38_A052CA75B331__INCLUDED_)
-#define AFX_PlayerBase_H__B8B8986B_3635_462D_8C38_A052CA75B331__INCLUDED_
+#pragma once
 
 
 #include "GameBase.h"
@@ -253,4 +252,3 @@ public:
 	int					GetNPCOriginID() {	if (m_pLooksRef) return m_pLooksRef->dwID; else return -1;	}
 };
 
-#endif // !defined(AFX_PlayerBase_H__B8B8986B_3635_462D_8C38_A052CA75B331__INCLUDED_)

@@ -1,5 +1,4 @@
-#if !defined(AFX_LEVELUPTABLESET_H__D86CBDDA_46E3_4514_B317_10362D6051DB__INCLUDED_)
-#define AFX_LEVELUPTABLESET_H__D86CBDDA_46E3_4514_B317_10362D6051DB__INCLUDED_
+#pragma once
 
 // LevelUpTableSet.h : header file
 //
@@ -39,4 +38,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_LEVELUPTABLESET_H__D86CBDDA_46E3_4514_B317_10362D6051DB__INCLUDED_)

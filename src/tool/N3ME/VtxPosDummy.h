@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_VTXPOSDUMMY_H__FA661289_2E6D_4F3A_B490_3B50794389FC__INCLUDED_)
-#define AFX_VTXPOSDUMMY_H__FA661289_2E6D_4F3A_B490_3B50794389FC__INCLUDED_
+#pragma once
 
 
 #include "TransDummy.h"
@@ -38,4 +37,3 @@ protected:
 	virtual void TransDiff(__Vector3* pvDiffPos, __Quaternion* pqDiffRot, __Vector3* pvDiffScale);		// 차이만큼 선택된 오므젝트들을 변형시킨다.
 };
 
-#endif // !defined(AFX_VTXPOSDUMMY_H__FA661289_2E6D_4F3A_B490_3B50794389FC__INCLUDED_)

@@ -1,5 +1,4 @@
-#if !defined(AFX_NPCPOSSET_H__0F6AE0D2_2327_44B1_8D11_AEB3D8DE2CB9__INCLUDED_)
-#define AFX_NPCPOSSET_H__0F6AE0D2_2327_44B1_8D11_AEB3D8DE2CB9__INCLUDED_
+#pragma once
 
 // NpcPosSet.h : header file
 //
@@ -56,4 +55,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_NPCPOSSET_H__0F6AE0D2_2327_44B1_8D11_AEB3D8DE2CB9__INCLUDED_)

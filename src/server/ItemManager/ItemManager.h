@@ -1,8 +1,7 @@
 // ItemManager.h : main header file for the ITEMMANAGER application
 //
 
-#if !defined(AFX_ITEMMANAGER_H__9B641F5C_3768_400F_B6D3_5BC6392010E8__INCLUDED_)
-#define AFX_ITEMMANAGER_H__9B641F5C_3768_400F_B6D3_5BC6392010E8__INCLUDED_
+#pragma once
 
 
 #ifndef __AFXWIN_H__
@@ -43,4 +42,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_ITEMMANAGER_H__9B641F5C_3768_400F_B6D3_5BC6392010E8__INCLUDED_)

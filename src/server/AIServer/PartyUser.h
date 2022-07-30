@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_PARTYUSER_H__3B9E7175_1970_4C1B_BF20_DB6A728AF1AA__INCLUDED_)
-#define AFX_PARTYUSER_H__3B9E7175_1970_4C1B_BF20_DB6A728AF1AA__INCLUDED_
+#pragma once
 
 
 class CPartyUser  
@@ -18,4 +17,3 @@ public:
 
 };
 
-#endif // !defined(AFX_PARTYUSER_H__3B9E7175_1970_4C1B_BF20_DB6A728AF1AA__INCLUDED_)

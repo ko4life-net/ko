@@ -12,8 +12,7 @@
 //
 //	Author:		Davide Calabro'		davide_calabro@yahoo.com
 //
-#ifndef _BTNST_H
-#define _BTNST_H
+#pragma once
 
 
 // CBtnST.h : header file
@@ -187,4 +186,3 @@ private:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
-#endif

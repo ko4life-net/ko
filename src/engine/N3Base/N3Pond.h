@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3Pond_H__B9A59A74_B468_4552_8D80_E8AF3FE586E0__INCLUDED_)
-#define AFX_N3Pond_H__B9A59A74_B468_4552_8D80_E8AF3FE586E0__INCLUDED_
+#pragma once
 
 
 #define MAX_PONDMESH_LINE		200
@@ -90,4 +89,3 @@ private:
 	void		UpdateWaterPositions();
 };
 
-#endif // !defined(AFX_N3Pond_H__B9A59A74_B468_4552_8D80_E8AF3FE586E0__INCLUDED_)

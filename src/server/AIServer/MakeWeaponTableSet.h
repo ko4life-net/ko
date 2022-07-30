@@ -1,5 +1,4 @@
-#if !defined(AFX_MAKEWEAPONTABLESET_H__F80460C1_B7D6_4B77_884F_D225DDF9E9C2__INCLUDED_)
-#define AFX_MAKEWEAPONTABLESET_H__F80460C1_B7D6_4B77_884F_D225DDF9E9C2__INCLUDED_
+#pragma once
 
 // MakeWeaponTableSet.h : header file
 //
@@ -50,4 +49,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_MAKEWEAPONTABLESET_H__F80460C1_B7D6_4B77_884F_D225DDF9E9C2__INCLUDED_)

@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGLIGHT_H__61DD6BB5_F982_4ECF_ABE3_C181081BC28C__INCLUDED_)
-#define AFX_DLGLIGHT_H__61DD6BB5_F982_4ECF_ABE3_C181081BC28C__INCLUDED_
+#pragma once
 
 // DlgLight.h : header file
 //
@@ -67,4 +66,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGLIGHT_H__61DD6BB5_F982_4ECF_ABE3_C181081BC28C__INCLUDED_)

@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UIWAREHOUSEDLG_H__47E9608F_598A_49CF_B10E_3D95FA647768__INCLUDED_)
-#define AFX_UIWAREHOUSEDLG_H__47E9608F_598A_49CF_B10E_3D95FA647768__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3UIBase.h"
@@ -103,4 +102,3 @@ public:
 	void				ItemMoveFromThisToInv();
 };
 
-#endif // !defined(AFX_UIWAREHOUSEDLG_H__47E9608F_598A_49CF_B10E_3D95FA647768__INCLUDED_)

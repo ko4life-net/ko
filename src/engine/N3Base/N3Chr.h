@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3Chr_h__INCLUDED_)
-#define AFX_N3Chr_h__INCLUDED_
+#pragma once
 
 
 #pragma warning(disable : 4786)
@@ -504,4 +503,3 @@ inline bool	CN3Chr::NeedStrike1()
 	return false;
 }
 
-#endif // !defined(AFX_N3Chr_h__INCLUDED_)

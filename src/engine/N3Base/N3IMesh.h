@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3IMesh_h__INCLUDED_)
-#define AFX_N3IMesh_h__INCLUDED_
+#pragma once
 
 #include "N3BaseFileAccess.h"
 
@@ -76,4 +75,3 @@ private:
 //	~(By Ecli666 On 2002-07-23 ¿ÀÈÄ 5:31:41 )
 };
 
-#endif // !defined(AFX_N3IMesh_h__INCLUDED_)

@@ -2,8 +2,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_MAINFRM_H__6A31AAD9_D434_4C15_949D_A76014174F08__INCLUDED_)
-#define AFX_MAINFRM_H__6A31AAD9_D434_4C15_949D_A76014174F08__INCLUDED_
+#pragma once
 
 #include "DlgBar.h"
 #include "N3Base/N3EngTool.h"
@@ -84,4 +83,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_MAINFRM_H__6A31AAD9_D434_4C15_949D_A76014174F08__INCLUDED_)

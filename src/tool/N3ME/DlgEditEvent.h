@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGEDITEVENT_H__73C5E634_B179_4B9F_B487_06D6A992FE95__INCLUDED_)
-#define AFX_DLGEDITEVENT_H__73C5E634_B179_4B9F_B487_06D6A992FE95__INCLUDED_
+#pragma once
 
 // DlgEditEvent.h : header file
 //
@@ -55,4 +54,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGEDITEVENT_H__73C5E634_B179_4B9F_B487_06D6A992FE95__INCLUDED_)

@@ -2,8 +2,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3TEXVIEWERVIEW_H__097CAE80_F002_4377_B06B_E1537225B22D__INCLUDED_)
-#define AFX_N3TEXVIEWERVIEW_H__097CAE80_F002_4377_B06B_E1537225B22D__INCLUDED_
+#pragma once
 
 
 class CN3TexViewerView : public CView
@@ -63,4 +62,3 @@ inline CN3TexViewerDoc* CN3TexViewerView::GetDocument()
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_N3TEXVIEWERVIEW_H__097CAE80_F002_4377_B06B_E1537225B22D__INCLUDED_)

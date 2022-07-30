@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3FXBUNDLEGAME_H__1B6BEFC3_79A4_4FFE_A48B_475D1F07E26A__INCLUDED_)
-#define AFX_N3FXBUNDLEGAME_H__1B6BEFC3_79A4_4FFE_A48B_475D1F07E26A__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3FXBundle.h"
@@ -33,4 +32,3 @@ public:
 
 };
 
-#endif // !defined(AFX_N3FXBUNDLEGAME_H__1B6BEFC3_79A4_4FFE_A48B_475D1F07E26A__INCLUDED_)

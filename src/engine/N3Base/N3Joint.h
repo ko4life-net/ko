@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3IJoint_h__INCLUDED_)
-#define AFX_N3IJoint_h__INCLUDED_
+#pragma once
 
 
 #pragma warning(disable : 4786)
@@ -74,4 +73,3 @@ public:
 
 };
 
-#endif // !defined(AFX_N3IJoint_h__INCLUDED_)

@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_SUBPROCPERTRADE_H__555E4865_7877_425D_8F29_DD028F251889__INCLUDED_)
-#define AFX_SUBPROCPERTRADE_H__555E4865_7877_425D_8F29_DD028F251889__INCLUDED_
+#pragma once
 
 
 enum e_PerTradeState	{												// 아이템 개인 거래 상태..
@@ -108,4 +107,3 @@ public:
 	void	ItemCountCancel();
 };
 
-#endif // !defined(AFX_SUBPROCPERTRADE_H__555E4865_7877_425D_8F29_DD028F251889__INCLUDED_)

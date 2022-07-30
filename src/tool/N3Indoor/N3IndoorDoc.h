@@ -2,8 +2,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3INDOORDOC_H__4AC24108_B961_4DD5_9BEF_D132AA550DC7__INCLUDED_)
-#define AFX_N3INDOORDOC_H__4AC24108_B961_4DD5_9BEF_D132AA550DC7__INCLUDED_
+#pragma once
 
 
 
@@ -51,4 +50,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_N3INDOORDOC_H__4AC24108_B961_4DD5_9BEF_D132AA550DC7__INCLUDED_)

@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_DBPOOL_H__11EEB377_3F31_435A_B5D2_830608264A9B__INCLUDED_)
-#define AFX_DBPOOL_H__11EEB377_3F31_435A_B5D2_830608264A9B__INCLUDED_
+#pragma once
 
 
 class CDBPool  
@@ -14,4 +13,3 @@ public:
 
 };
 
-#endif // !defined(AFX_DBPOOL_H__11EEB377_3F31_435A_B5D2_830608264A9B__INCLUDED_)

@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_NPCTABLE_H__07FF861B_C3CB_4EE8_B64F_E9796B110101__INCLUDED_)
-#define AFX_NPCTABLE_H__07FF861B_C3CB_4EE8_B64F_E9796B110101__INCLUDED_
+#pragma once
 
 
 class CNpcTable  
@@ -77,4 +76,3 @@ public:
 
 };
 
-#endif // !defined(AFX_NPCTABLE_H__07FF861B_C3CB_4EE8_B64F_E9796B110101__INCLUDED_)

@@ -2,8 +2,7 @@
 // 
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_USER_H__5FEC1968_ED75_4AAF_A4DB_CB48F6940B2E__INCLUDED_)
-#define AFX_USER_H__5FEC1968_ED75_4AAF_A4DB_CB48F6940B2E__INCLUDED_
+#pragma once
 
 
 #pragma warning(disable : 4786)
@@ -368,4 +367,3 @@ public:
 	virtual ~CUser();
 };
 
-#endif // !defined(AFX_USER_H__5FEC1968_ED75_4AAF_A4DB_CB48F6940B2E__INCLUDED_)

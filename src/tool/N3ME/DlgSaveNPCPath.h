@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGSAVENPCPATH_H__CCC83D6F_FF16_43FF_9F50_4822CA953B64__INCLUDED_)
-#define AFX_DLGSAVENPCPATH_H__CCC83D6F_FF16_43FF_9F50_4822CA953B64__INCLUDED_
+#pragma once
 
 // DlgSaveNPCPath.h : header file
 //
@@ -43,4 +42,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGSAVENPCPATH_H__CCC83D6F_FF16_43FF_9F50_4822CA953B64__INCLUDED_)

@@ -1,5 +1,4 @@
-#if !defined(AFX_PVSMGR_H__1391B742_4359_49B6_A268_EC098B8F20FD__INCLUDED_)
-#define AFX_PVSMGR_H__1391B742_4359_49B6_A268_EC098B8F20FD__INCLUDED_
+#pragma once
 
 
 #pragma warning(disable : 4786)
@@ -133,4 +132,3 @@ public:
 };
 
 
-#endif // !defined(AFX_PVSMGR_H__1391B742_4359_49B6_A268_EC098B8F20FD__INCLUDED_)

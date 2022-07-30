@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_PlayerOtherMgr_H__B32C59B8_6C08_494E_B9DE_338B3CD026C5__INCLUDED_)
-#define AFX_PlayerOtherMgr_H__B32C59B8_6C08_494E_B9DE_338B3CD026C5__INCLUDED_
+#pragma once
 
 #include <map>
 
@@ -179,4 +178,3 @@ inline bool CPlayerOtherMgr::NPCDelete(int iID)
 	return true;
 }
 
-#endif // !defined(AFX_PlayerOtherMgr_H__B32C59B8_6C08_494E_B9DE_338B3CD026C5__INCLUDED_)

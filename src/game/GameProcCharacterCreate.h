@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_GAMEPROCCHARACTERCREATE_H__DC02405A_668C_4A6F_A2A5_A050431CF900__INCLUDED_)
-#define AFX_GAMEPROCCHARACTERCREATE_H__DC02405A_668C_4A6F_A2A5_A050431CF900__INCLUDED_
+#pragma once
 
 
 #include "GameProcedure.h"
@@ -65,4 +64,3 @@ public:
 	virtual ~CGameProcCharacterCreate();
 };
 
-#endif // !defined(AFX_GAMEPROCCHARACTERCREATE_H__DC02405A_668C_4A6F_A2A5_A050431CF900__INCLUDED_)

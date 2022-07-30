@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3Camera_h__INCLUDED_)
-#define AFX_N3Camera_h__INCLUDED_
+#pragma once
 
 
 #include "N3Transform.h"
@@ -56,4 +55,3 @@ public:
 	void		Apply(); // 세팅된 카메라값을 실제 D3DDevice 에 적용
 };
 
-#endif // !defined(AFX_N3Camera_h__INCLUDED_)

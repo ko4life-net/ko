@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3Scene_h__INCLUDED_)
-#define AFX_N3Scene_h__INCLUDED_
+#pragma once
 
 
 #include "N3Camera.h"
@@ -117,4 +116,3 @@ public:
 
 };
 
-#endif // !defined(AFX_N3Scene_h__INCLUDED_)

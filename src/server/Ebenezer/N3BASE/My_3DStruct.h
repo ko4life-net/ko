@@ -1,5 +1,4 @@
-#ifndef __MY_3DSTRUCT_H_
-#define __MY_3DSTRUCT_H_
+#pragma once
 
 #include <d3dx9.h>
 #include <d3dx9math.h>
@@ -1405,5 +1404,4 @@ template <class T> void T_DeleteArray(T*& ptr) { delete [] ptr; ptr = NULL; } //
 template <class T> void T_Tick(T& obj) { obj.Tick(); } // Template Delete Pointer
 template <class T> void T_Render(T& obj) { obj.Render(); } // Template Delete Pointer
 
-#endif // __MY_3DSTRUCT_H_
 

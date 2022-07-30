@@ -1,5 +1,4 @@
-#if !defined(AFX_CHARACTERDATASET_H__092DF295_1C05_4D8C_B724_78272903037A__INCLUDED_)
-#define AFX_CHARACTERDATASET_H__092DF295_1C05_4D8C_B724_78272903037A__INCLUDED_
+#pragma once
 
 // CharacterDataSet.h : header file
 //
@@ -48,4 +47,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_CHARACTERDATASET_H__092DF295_1C05_4D8C_B724_78272903037A__INCLUDED_)

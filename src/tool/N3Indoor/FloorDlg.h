@@ -1,5 +1,4 @@
-#if !defined(AFX_FLOORDLG_H__16ADC837_2BEA_4B9E_90D5_753F02C0CB4E__INCLUDED_)
-#define AFX_FLOORDLG_H__16ADC837_2BEA_4B9E_90D5_753F02C0CB4E__INCLUDED_
+#pragma once
 
 // FloorDlg.h : header file
 //
@@ -44,4 +43,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_FLOORDLG_H__16ADC837_2BEA_4B9E_90D5_753F02C0CB4E__INCLUDED_)

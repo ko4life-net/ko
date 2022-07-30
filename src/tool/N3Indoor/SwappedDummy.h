@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_SWAPPEDDUMMY_H__0D514EE5_E85D_493D_864F_D9E4BEB68F59__INCLUDED_)
-#define AFX_SWAPPEDDUMMY_H__0D514EE5_E85D_493D_864F_D9E4BEB68F59__INCLUDED_
+#pragma once
 
 
 #include "TransDummy.h"
@@ -18,4 +17,3 @@ public:
 	virtual BOOL MouseMsgFilter(LPMSG pMsg);
 };
 
-#endif // !defined(AFX_SWAPPEDDUMMY_H__0D514EE5_E85D_493D_864F_D9E4BEB68F59__INCLUDED_)

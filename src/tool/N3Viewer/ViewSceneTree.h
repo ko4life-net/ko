@@ -1,5 +1,4 @@
-#if !defined(AFX_VIEWSCENETREE_H__71D8A066_827D_4575_973A_0AFE570B66EF__INCLUDED_)
-#define AFX_VIEWSCENETREE_H__71D8A066_827D_4575_973A_0AFE570B66EF__INCLUDED_
+#pragma once
 
 // ViewSceneTree.h : header file
 //
@@ -69,4 +68,3 @@ inline CN3ViewerDoc* CViewSceneTree::GetDocument()
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_VIEWSCENETREE_H__71D8A066_827D_4575_973A_0AFE570B66EF__INCLUDED_)

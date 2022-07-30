@@ -1,5 +1,4 @@
-#if !defined(AFX_MAKEGRADEITEMTABLESET_H__452304E2_8BD2_42BB_81C8_0F827BB85A12__INCLUDED_)
-#define AFX_MAKEGRADEITEMTABLESET_H__452304E2_8BD2_42BB_81C8_0F827BB85A12__INCLUDED_
+#pragma once
 
 // MakeGradeItemTableSet.h : header file
 //
@@ -47,4 +46,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_MAKEGRADEITEMTABLESET_H__452304E2_8BD2_42BB_81C8_0F827BB85A12__INCLUDED_)

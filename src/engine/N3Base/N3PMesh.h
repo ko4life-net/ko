@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3PMesh_h__INCLUDED_)
-#define AFX_N3PMesh_h__INCLUDED_
+#pragma once
 
 
 //#define _USE_VERTEXBUFFER			// 선언하면 VertexBuffer와 IndexBuffer를 사용한다.
@@ -122,4 +121,3 @@ public:
 	virtual ~CN3PMesh();
 };
 
-#endif // !defined(AFX_N3PMesh_h__INCLUDED_)

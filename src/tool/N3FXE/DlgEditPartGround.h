@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGEDITPARTGROUND_H__CCE20799_81F0_4582_B9AA_B7D0F5C0E142__INCLUDED_)
-#define AFX_DLGEDITPARTGROUND_H__CCE20799_81F0_4582_B9AA_B7D0F5C0E142__INCLUDED_
+#pragma once
 
 // DlgEditPartGround.h : header file
 //
@@ -78,4 +77,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGEDITPARTGROUND_H__CCE20799_81F0_4582_B9AA_B7D0F5C0E142__INCLUDED_)

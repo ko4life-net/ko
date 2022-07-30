@@ -5,8 +5,7 @@
 
 #pragma warning(disable:4786)
 
-#if !defined(AFX_STDAFX_H__1B203DCE_1641_4364_9609_4FE29D5690FC__INCLUDED_)
-#define AFX_STDAFX_H__1B203DCE_1641_4364_9609_4FE29D5690FC__INCLUDED_
+#pragma once
 
 
 #define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
@@ -29,4 +28,3 @@
 #define TRACE(fmt, ...) (void)fmt
 #endif
 
-#endif // !defined(AFX_STDAFX_H__1B203DCE_1641_4364_9609_4FE29D5690FC__INCLUDED_)

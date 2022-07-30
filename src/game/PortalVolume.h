@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_PORTALVOLUME_H__81823A3C_844B_4385_8D5B_F62606F89593__INCLUDED_)
-#define AFX_PORTALVOLUME_H__81823A3C_844B_4385_8D5B_F62606F89593__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3Base.h"
@@ -186,4 +185,3 @@ public:
 
 };
 
-#endif // !defined(AFX_PORTALVOLUME_H__81823A3C_844B_4385_8D5B_F62606F89593__INCLUDED_)

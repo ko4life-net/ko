@@ -1,5 +1,4 @@
-#ifndef _LocalInput_H_
-#define _LocalInput_H_
+#pragma once
 
 #include <dinput.h>
 
@@ -111,4 +110,3 @@ public:
 	~CLocalInput(void);
 };
 
-#endif // end of _LocalInput_H_

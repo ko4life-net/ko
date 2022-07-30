@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGEDITPARTBILLBOARD_H__4593EFF6_FFDC_40F5_ADD9_00F5B26481E3__INCLUDED_)
-#define AFX_DLGEDITPARTBILLBOARD_H__4593EFF6_FFDC_40F5_ADD9_00F5B26481E3__INCLUDED_
+#pragma once
 
 // DlgEditPartBillBoard.h : header file
 //
@@ -86,4 +85,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGEDITPARTBILLBOARD_H__4593EFF6_FFDC_40F5_ADD9_00F5B26481E3__INCLUDED_)

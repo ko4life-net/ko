@@ -2,8 +2,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3FXEVIEW_H__DE5A5E73_150A_458B_9C8A_002C189405A5__INCLUDED_)
-#define AFX_N3FXEVIEW_H__DE5A5E73_150A_458B_9C8A_002C189405A5__INCLUDED_
+#pragma once
 
 
 class CN3FXBundle;
@@ -61,4 +60,3 @@ inline CN3FXEDoc* CN3FXEView::GetDocument()
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_N3FXEVIEW_H__DE5A5E73_150A_458B_9C8A_002C189405A5__INCLUDED_)

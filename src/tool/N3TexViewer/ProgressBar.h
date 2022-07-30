@@ -1,5 +1,4 @@
-#if !defined(AFX_PROGRESSBAR_H__302B9656_4C10_4648_8A00_D23F8F9AD5DB__INCLUDED_)
-#define AFX_PROGRESSBAR_H__302B9656_4C10_4648_8A00_D23F8F9AD5DB__INCLUDED_
+#pragma once
 
 // ProgressBar.h : header file
 //
@@ -50,4 +49,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_PROGRESSBAR_H__302B9656_4C10_4648_8A00_D23F8F9AD5DB__INCLUDED_)

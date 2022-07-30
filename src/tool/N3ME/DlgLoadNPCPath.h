@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGLOADNPCPATH_H__023D7039_A240_4525_BEFF_49C037E84C68__INCLUDED_)
-#define AFX_DLGLOADNPCPATH_H__023D7039_A240_4525_BEFF_49C037E84C68__INCLUDED_
+#pragma once
 
 // DlgLoadNPCPath.h : header file
 //
@@ -44,4 +43,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGLOADNPCPATH_H__023D7039_A240_4525_BEFF_49C037E84C68__INCLUDED_)

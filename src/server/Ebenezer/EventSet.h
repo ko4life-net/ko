@@ -1,5 +1,4 @@
-#if !defined(AFX_EVENTSET_H__20DA4BFC_4D30_4A59_89BF_4A1998F13B69__INCLUDED_)
-#define AFX_EVENTSET_H__20DA4BFC_4D30_4A59_89BF_4A1998F13B69__INCLUDED_
+#pragma once
 
 // EventSet.h : header file
 //
@@ -50,4 +49,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_EVENTSET_H__20DA4BFC_4D30_4A59_89BF_4A1998F13B69__INCLUDED_)

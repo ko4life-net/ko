@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(__UIINN_H__)
-#define __UIINN_H__
+#pragma once
 
 
 #include "GameDef.h"
@@ -26,4 +25,3 @@ public:
 	bool ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg);
 };
 
-#endif //#if !defined(__UIINN_H__)

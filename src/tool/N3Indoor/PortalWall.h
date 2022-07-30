@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_PORTALWALL_H__2558137E_E724_4A7C_9849_76179D720A35__INCLUDED_)
-#define AFX_PORTALWALL_H__2558137E_E724_4A7C_9849_76179D720A35__INCLUDED_
+#pragma once
 
 
 #include "PvsBase.h"
@@ -50,6 +49,5 @@ class CPortalWall : public CPvsBase
 	void RenderExecute();
 };
 
-#endif // !defined(AFX_PORTALWALL_H__2558137E_E724_4A7C_9849_76179D720A35__INCLUDED_)
 
 

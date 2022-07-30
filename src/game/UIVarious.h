@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UIVarious_H__094F9A3E_1620_4E07_8726_82881B21B48C__INCLUDED_)
-#define AFX_UIVarious_H__094F9A3E_1620_4E07_8726_82881B21B48C__INCLUDED_
+#pragma once
 
 
 #include "GameDef.h"
@@ -279,4 +278,3 @@ public:
 	virtual ~CUIVarious();
 };
 
-#endif // !defined(AFX_UIVarious_H__094F9A3E_1620_4E07_8726_82881B21B48C__INCLUDED_)

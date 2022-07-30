@@ -2,8 +2,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_SKYVIEWERDOC_H__A52B394A_9F09_456F_830B_4737EACCAF3E__INCLUDED_)
-#define AFX_SKYVIEWERDOC_H__A52B394A_9F09_456F_830B_4737EACCAF3E__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3SkyMng.h"
@@ -57,4 +56,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_SKYVIEWERDOC_H__A52B394A_9F09_456F_830B_4737EACCAF3E__INCLUDED_)

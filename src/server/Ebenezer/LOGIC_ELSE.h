@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_LOGIC_ELSE_H__B1062E53_5608_11D3_BE54_00105A6B97E2__INCLUDED_)
-#define AFX_LOGIC_ELSE_H__B1062E53_5608_11D3_BE54_00105A6B97E2__INCLUDED_
+#pragma once
 
 
 class LOGIC_ELSE  
@@ -20,4 +19,3 @@ public:
 	virtual ~LOGIC_ELSE();
 };
 
-#endif // !defined(AFX_LOGIC_ELSE_H__B1062E53_5608_11D3_BE54_00105A6B97E2__INCLUDED_)

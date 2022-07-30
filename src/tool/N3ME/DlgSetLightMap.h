@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGSETLIGHTMAP_H__B62A60ED_ED79_4ADD_BABB_76A91158DC41__INCLUDED_)
-#define AFX_DLGSETLIGHTMAP_H__B62A60ED_ED79_4ADD_BABB_76A91158DC41__INCLUDED_
+#pragma once
 
 // DlgSetLightMap.h : header file
 //
@@ -59,4 +58,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGSETLIGHTMAP_H__B62A60ED_ED79_4ADD_BABB_76A91158DC41__INCLUDED_)

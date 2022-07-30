@@ -1,8 +1,7 @@
 // Option.h : main header file for the OPTION application
 //
 
-#if !defined(AFX_OPTION_H__73522433_A06B_4006_9AA4_C9F554EF8231__INCLUDED_)
-#define AFX_OPTION_H__73522433_A06B_4006_9AA4_C9F554EF8231__INCLUDED_
+#pragma once
 
 
 #ifndef __AFXWIN_H__
@@ -43,4 +42,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_OPTION_H__73522433_A06B_4006_9AA4_C9F554EF8231__INCLUDED_)

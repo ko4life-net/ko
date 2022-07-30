@@ -3,8 +3,7 @@
 //      are changed infrequently
 //
 
-#if !defined(AFX_STDAFX_H__ACA18BF8_042E_432F_B824_E89C2148F69C__INCLUDED_)
-#define AFX_STDAFX_H__ACA18BF8_042E_432F_B824_E89C2148F69C__INCLUDED_
+#pragma once
 
 
 #define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
@@ -25,4 +24,3 @@
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_STDAFX_H__ACA18BF8_042E_432F_B824_E89C2148F69C__INCLUDED_)

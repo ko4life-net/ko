@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3PMeshCreate_h__INCLUDED_)
-#define AFX_N3PMeshCreate_h__INCLUDED_
+#pragma once
 
 #include "N3Base.h"
 
@@ -97,4 +96,3 @@ protected:
 
 };
 
-#endif // !defined(AFX_N3PMeshCreate_h__INCLUDED_)

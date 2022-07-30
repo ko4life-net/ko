@@ -2,8 +2,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3CEVIEW_H__EA63D3E6_6DBA_4E70_B8E2_9526FEB7AE05__INCLUDED_)
-#define AFX_N3CEVIEW_H__EA63D3E6_6DBA_4E70_B8E2_9526FEB7AE05__INCLUDED_
+#pragma once
 
 
 class CN3Transform;
@@ -113,4 +112,3 @@ inline CN3CEDoc* CN3CEView::GetDocument()
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_N3CEVIEW_H__EA63D3E6_6DBA_4E70_B8E2_9526FEB7AE05__INCLUDED_)

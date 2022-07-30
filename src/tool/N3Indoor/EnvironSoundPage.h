@@ -1,5 +1,4 @@
-#if !defined(AFX_ENVIRONSOUNDPAGE_H__A141F244_3C2B_466C_AA4D_8E81A49FAA11__INCLUDED_)
-#define AFX_ENVIRONSOUNDPAGE_H__A141F244_3C2B_466C_AA4D_8E81A49FAA11__INCLUDED_
+#pragma once
 
 // EnvironSoundPage.h : header file
 //
@@ -44,4 +43,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_ENVIRONSOUNDPAGE_H__A141F244_3C2B_466C_AA4D_8E81A49FAA11__INCLUDED_)

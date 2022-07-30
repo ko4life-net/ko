@@ -1,5 +1,4 @@
-#if !defined(AFX_ITEMTABLESET_H__9C214CAF_6316_4E33_84A4_8DEBC3D83176__INCLUDED_)
-#define AFX_ITEMTABLESET_H__9C214CAF_6316_4E33_84A4_8DEBC3D83176__INCLUDED_
+#pragma once
 
 // ItemTableSet.h : header file
 //
@@ -94,4 +93,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_ITEMTABLESET_H__9C214CAF_6316_4E33_84A4_8DEBC3D83176__INCLUDED_)

@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGDTEXGROUPVIEW_H__F3662140_F843_4AEF_9FA4_9812A085ED8B__INCLUDED_)
-#define AFX_DLGDTEXGROUPVIEW_H__F3662140_F843_4AEF_9FA4_9812A085ED8B__INCLUDED_
+#pragma once
 
 // DlgDTexGroupView.h : header file
 //
@@ -62,4 +61,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGDTEXGROUPVIEW_H__F3662140_F843_4AEF_9FA4_9812A085ED8B__INCLUDED_)

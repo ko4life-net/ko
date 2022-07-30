@@ -1,5 +1,4 @@
-#if !defined(AFX_TOOLDLG_H__C4914871_B69F_413D_ADA9_AC0446A3655D__INCLUDED_)
-#define AFX_TOOLDLG_H__C4914871_B69F_413D_ADA9_AC0446A3655D__INCLUDED_
+#pragma once
 
 // ToolDlg.h : header file
 //
@@ -49,4 +48,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_TOOLDLG_H__C4914871_B69F_413D_ADA9_AC0446A3655D__INCLUDED_)

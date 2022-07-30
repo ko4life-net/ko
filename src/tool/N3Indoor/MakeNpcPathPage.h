@@ -1,5 +1,4 @@
-#if !defined(AFX_MAKENPCPATHPAGE_H__AA10B3D7_9242_4275_AB25_0F041ABEBF76__INCLUDED_)
-#define AFX_MAKENPCPATHPAGE_H__AA10B3D7_9242_4275_AB25_0F041ABEBF76__INCLUDED_
+#pragma once
 
 // MakeNpcPathPage.h : header file
 //
@@ -44,4 +43,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_MAKENPCPATHPAGE_H__AA10B3D7_9242_4275_AB25_0F041ABEBF76__INCLUDED_)

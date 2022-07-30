@@ -1,5 +1,4 @@
-#if !defined(AFX_TOTALTOOLSHEET_H__D6003ABA_F24F_4AAB_9C63_29BD9FBE4D7A__INCLUDED_)
-#define AFX_TOTALTOOLSHEET_H__D6003ABA_F24F_4AAB_9C63_29BD9FBE4D7A__INCLUDED_
+#pragma once
 
 // TotalToolSheet.h : header file
 //
@@ -55,4 +54,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_TOTALTOOLSHEET_H__D6003ABA_F24F_4AAB_9C63_29BD9FBE4D7A__INCLUDED_)

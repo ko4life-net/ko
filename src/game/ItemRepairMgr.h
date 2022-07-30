@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_ITEMREPAIRMGR_H__773AD64F_2ADD_44CC_BCE8_1EF2F38C76FB__INCLUDED_)
-#define AFX_ITEMREPAIRMGR_H__773AD64F_2ADD_44CC_BCE8_1EF2F38C76FB__INCLUDED_
+#pragma once
 
 
 #include "GameBase.h"
@@ -25,4 +24,3 @@ public:
 	int		CalcRepairGold(struct __IconItemSkill* spItem);
 };
 
-#endif // !defined(AFX_ITEMREPAIRMGR_H__773AD64F_2ADD_44CC_BCE8_1EF2F38C76FB__INCLUDED_)

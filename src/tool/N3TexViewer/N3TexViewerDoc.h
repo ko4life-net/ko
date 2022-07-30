@@ -2,8 +2,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3TEXVIEWERDOC_H__7AF248CB_9159_488E_8B75_9A719F9F36FF__INCLUDED_)
-#define AFX_N3TEXVIEWERDOC_H__7AF248CB_9159_488E_8B75_9A719F9F36FF__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3Texture.h"
@@ -65,4 +64,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_N3TEXVIEWERDOC_H__7AF248CB_9159_488E_8B75_9A719F9F36FF__INCLUDED_)

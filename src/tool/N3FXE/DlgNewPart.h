@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGNEWPART_H__687CF3CB_2C19_4718_AD8E_6B7287FB27F8__INCLUDED_)
-#define AFX_DLGNEWPART_H__687CF3CB_2C19_4718_AD8E_6B7287FB27F8__INCLUDED_
+#pragma once
 
 // DlgNewPart.h : header file
 //
@@ -40,4 +39,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGNEWPART_H__687CF3CB_2C19_4718_AD8E_6B7287FB27F8__INCLUDED_)

@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_EVENTMANAGER_H__7FB7F7FD_67B8_4F22_AE3E_C41581C16561__INCLUDED_)
-#define AFX_EVENTMANAGER_H__7FB7F7FD_67B8_4F22_AE3E_C41581C16561__INCLUDED_
+#pragma once
 
 
 class CEventCell
@@ -39,4 +38,3 @@ public:
 
 };
 
-#endif // !defined(AFX_EVENTMANAGER_H__7FB7F7FD_67B8_4F22_AE3E_C41581C16561__INCLUDED_)

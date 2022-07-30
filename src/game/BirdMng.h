@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_BIRDMNG_H__5307F307_1E9C_469B_BD46_52A408740383__INCLUDED_)
-#define AFX_BIRDMNG_H__5307F307_1E9C_469B_BD46_52A408740383__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3Base.h"
@@ -41,4 +40,3 @@ protected:
 
 };
 
-#endif // !defined(AFX_BIRDMNG_H__5307F307_1E9C_469B_BD46_52A408740383__INCLUDED_)

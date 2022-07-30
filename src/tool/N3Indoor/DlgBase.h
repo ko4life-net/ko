@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGBASE_H__66F49FA8_BC6C_4136_A7A0_AA23CA80A3FB__INCLUDED_)
-#define AFX_DLGBASE_H__66F49FA8_BC6C_4136_A7A0_AA23CA80A3FB__INCLUDED_
+#pragma once
 
 // DlgBase.h : header file
 //
@@ -63,4 +62,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGBASE_H__66F49FA8_BC6C_4136_A7A0_AA23CA80A3FB__INCLUDED_)

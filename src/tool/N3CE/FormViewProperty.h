@@ -1,5 +1,4 @@
-#if !defined(AFX_FORMVIEWPROPERTY_H__BF74B26C_54D1_42EF_8535_7BBECE9535E8__INCLUDED_)
-#define AFX_FORMVIEWPROPERTY_H__BF74B26C_54D1_42EF_8535_7BBECE9535E8__INCLUDED_
+#pragma once
 
 // FormViewProperty.h : header file
 //
@@ -117,4 +116,3 @@ inline CN3CEDoc* CFormViewProperty::GetDocument()
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_FORMVIEWPROPERTY_H__BF74B26C_54D1_42EF_8535_7BBECE9535E8__INCLUDED_)

@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3SHAPEMGR_H__36456F66_1D60_4589_A5D9_70B94C2C3127__INCLUDED_)
-#define AFX_N3SHAPEMGR_H__36456F66_1D60_4589_A5D9_70B94C2C3127__INCLUDED_
+#pragma once
 
 
 #pragma warning(disable : 4786)
@@ -193,4 +192,3 @@ public:
 
 };
 
-#endif // !defined(AFX_N3SHAPEMGR_H__36456F66_1D60_4589_A5D9_70B94C2C3127__INCLUDED_)

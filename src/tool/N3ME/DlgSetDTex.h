@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGSETDTEX_H__AE822ABC_F44E_4C09_BA6D_FEF8D41EF5B8__INCLUDED_)
-#define AFX_DLGSETDTEX_H__AE822ABC_F44E_4C09_BA6D_FEF8D41EF5B8__INCLUDED_
+#pragma once
 
 // DlgSetDTex.h : header file
 //
@@ -67,4 +66,3 @@ private:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGSETDTEX_H__AE822ABC_F44E_4C09_BA6D_FEF8D41EF5B8__INCLUDED_)

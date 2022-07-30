@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UIREPAIRTOOLTIPDLG_H__BC9FC233_F483_41D2_8D9B_B3656A00A637__INCLUDED_)
-#define AFX_UIREPAIRTOOLTIPDLG_H__BC9FC233_F483_41D2_8D9B_B3656A00A637__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3UIBase.h"
@@ -49,4 +48,3 @@ public:
 	void	Render();
 };
 
-#endif // !defined(AFX_UIREPAIRTOOLTIPDLG_H__BC9FC233_F483_41D2_8D9B_B3656A00A637__INCLUDED_)

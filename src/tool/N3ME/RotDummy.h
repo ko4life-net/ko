@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_ROTDUMMY_H__305F5A6A_3477_4523_844F_3AADD7B5CA3D__INCLUDED_)
-#define AFX_ROTDUMMY_H__305F5A6A_3477_4523_844F_3AADD7B5CA3D__INCLUDED_
+#pragma once
 
 
 #include "TransDummy.h"
@@ -23,4 +22,3 @@ public:
 protected:
 };
 
-#endif // !defined(AFX_ROTDUMMY_H__305F5A6A_3477_4523_844F_3AADD7B5CA3D__INCLUDED_)

@@ -3,8 +3,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#ifndef __N3TERRAIN_H__
-#define __N3TERRAIN_H__
+#pragma once
 
 
 ////////////////////////////////
@@ -152,4 +151,3 @@ public:	//additional........
 	
 };
 
-#endif // !defined(__N3TERRAIN_H__)

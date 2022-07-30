@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGPUTCOLOR_H__BE9E4B7C_5FA8_40AD_BDAD_C7B51EA9C897__INCLUDED_)
-#define AFX_DLGPUTCOLOR_H__BE9E4B7C_5FA8_40AD_BDAD_C7B51EA9C897__INCLUDED_
+#pragma once
 
 // DlgPutColor.h : header file
 //
@@ -54,4 +53,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGPUTCOLOR_H__BE9E4B7C_5FA8_40AD_BDAD_C7B51EA9C897__INCLUDED_)

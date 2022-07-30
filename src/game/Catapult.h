@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_CATAPULT_H__9D404701_4B6D_4DFE_9BDD_7125FA9B3CE8__INCLUDED_)
-#define AFX_CATAPULT_H__9D404701_4B6D_4DFE_9BDD_7125FA9B3CE8__INCLUDED_
+#pragma once
 
 
 #include "MachineBase.h"
@@ -57,4 +56,3 @@ public:
 	virtual void	Fire();		// น฿ป็
 };
 
-#endif // !defined(AFX_CATAPULT_H__9D404701_4B6D_4DFE_9BDD_7125FA9B3CE8__INCLUDED_)

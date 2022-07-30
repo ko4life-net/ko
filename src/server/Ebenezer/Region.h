@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_REGION_H__98237635_8ED6_4B3A_8AB8_933055C4995F__INCLUDED_)
-#define AFX_REGION_H__98237635_8ED6_4B3A_8AB8_933055C4995F__INCLUDED_
+#pragma once
 
 
 #include "define.h"
@@ -26,4 +25,3 @@ public:
 
 };
 
-#endif // !defined(AFX_REGION_H__98237635_8ED6_4B3A_8AB8_933055C4995F__INCLUDED_)

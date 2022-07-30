@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_EVENTCELL_H__B3DFDE57_2071_433F_A831_8B26FFE0004B__INCLUDED_)
-#define AFX_EVENTCELL_H__B3DFDE57_2071_433F_A831_8B26FFE0004B__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3Base.h"
@@ -44,4 +43,3 @@ public:
 	virtual ~CEventCell();
 };
 
-#endif // !defined(AFX_EVENTCELL_H__B3DFDE57_2071_433F_A831_8B26FFE0004B__INCLUDED_)

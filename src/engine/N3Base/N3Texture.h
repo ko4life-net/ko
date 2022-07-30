@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3Texture_h__INCLUDED_)
-#define AFX_N3Texture_h__INCLUDED_
+#pragma once
 
 
 #include "N3BaseFileAccess.h"
@@ -56,4 +55,3 @@ public:
 	virtual ~CN3Texture();
 };
 
-#endif // !defined(AFX_N3Texture_h__INCLUDED_)

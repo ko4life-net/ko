@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_MAGICPROCESS_H__9FE02686_F482_4C68_849A_130DE441D38D__INCLUDED_)
-#define AFX_MAGICPROCESS_H__9FE02686_F482_4C68_849A_130DE441D38D__INCLUDED_
+#pragma once
 
 
 class CServerDlg;
@@ -43,4 +42,3 @@ public:
 
 };
 
-#endif // !defined(AFX_MAGICPROCESS_H__9FE02686_F482_4C68_849A_130DE441D38D__INCLUDED_)

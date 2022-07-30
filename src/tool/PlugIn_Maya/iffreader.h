@@ -14,8 +14,7 @@
 // TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
-#ifndef _iffreader_h
-#define _iffreader_h
+#pragma once
 
 #include <math.h>
 #include <maya/ilib.h>
@@ -49,4 +48,3 @@ protected:
 	float *fZBuffer;
 };
 
-#endif

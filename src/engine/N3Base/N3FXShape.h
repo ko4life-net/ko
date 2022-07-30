@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#ifndef __N3FXSHAPE_H__
-#define __N3FXSHAPE_H__
+#pragma once
 
 #pragma warning(disable : 4786)
 
@@ -114,4 +113,3 @@ public:
 	virtual ~CN3FXShape();
 };
 
-#endif // !defined(AFX_N3Shape_h__INCLUDED_)

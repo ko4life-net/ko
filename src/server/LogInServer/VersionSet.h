@@ -1,5 +1,4 @@
-#if !defined(AFX_VERSIONSET_H__AE3C6553_0D3F_4A4A_AD05_57EF200CB92C__INCLUDED_)
-#define AFX_VERSIONSET_H__AE3C6553_0D3F_4A4A_AD05_57EF200CB92C__INCLUDED_
+#pragma once
 
 // VersionSet.h : header file
 //
@@ -40,4 +39,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_VERSIONSET_H__AE3C6553_0D3F_4A4A_AD05_57EF200CB92C__INCLUDED_)

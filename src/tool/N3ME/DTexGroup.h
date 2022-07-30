@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_DTEXGROUP_H__62BBF3A5_4AA0_416F_A7A3_F804F542FE2A__INCLUDED_)
-#define AFX_DTEXGROUP_H__62BBF3A5_4AA0_416F_A7A3_F804F542FE2A__INCLUDED_
+#pragma once
 
 
 #include "LyTerrainDef.h"
@@ -32,4 +31,3 @@ public:
 
 };
 
-#endif // !defined(AFX_DTEXGROUP_H__62BBF3A5_4AA0_416F_A7A3_F804F542FE2A__INCLUDED_)

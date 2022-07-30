@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_MAGICSKILLMNG_H__2C75CDA2_45CC_495F_BCE9_ED2E7CB1B60E__INCLUDED_)
-#define AFX_MAGICSKILLMNG_H__2C75CDA2_45CC_495F_BCE9_ED2E7CB1B60E__INCLUDED_
+#pragma once
 
 
 #include "GameDef.h"
@@ -140,4 +139,3 @@ public:
 	virtual ~CMagicSkillMng();
 };
 
-#endif // !defined(AFX_MAGICSKILLMNG_H__2C75CDA2_45CC_495F_BCE9_ED2E7CB1B60E__INCLUDED_)

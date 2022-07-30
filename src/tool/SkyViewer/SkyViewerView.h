@@ -2,8 +2,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_SKYVIEWERVIEW_H__538AD5EF_87DB_4CAD_9F27_14CC46A58DC2__INCLUDED_)
-#define AFX_SKYVIEWERVIEW_H__538AD5EF_87DB_4CAD_9F27_14CC46A58DC2__INCLUDED_
+#pragma once
 
 
 
@@ -63,4 +62,3 @@ inline CSkyViewerDoc* CSkyViewerView::GetDocument()
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_SKYVIEWERVIEW_H__538AD5EF_87DB_4CAD_9F27_14CC46A58DC2__INCLUDED_)

@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_NPCPATH_H__FA4815FA_8602_45C2_BEF2_5154AB5A4770__INCLUDED_)
-#define AFX_NPCPATH_H__FA4815FA_8602_45C2_BEF2_5154AB5A4770__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3Base.h"
@@ -56,4 +55,3 @@ public:
 
 };
 
-#endif // !defined(AFX_NPCPATH_H__FA4815FA_8602_45C2_BEF2_5154AB5A4770__INCLUDED_)

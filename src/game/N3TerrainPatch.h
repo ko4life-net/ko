@@ -3,8 +3,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_LYTERRAIN_H__38B10089_4193_49B7_BF2A_CD9C6CD3251A__INCLUDED_)
-#define AFX_LYTERRAIN_H__38B10089_4193_49B7_BF2A_CD9C6CD3251A__INCLUDED_
+#pragma once
 
 
 #include "N3TerrainDef.h"
@@ -59,4 +58,3 @@ public:
 	virtual ~CN3TerrainPatch();
 };
 
-#endif // !defined(AFX_LYTERRAIN_H__38B10089_4193_49B7_BF2A_CD9C6CD3251A__INCLUDED_)

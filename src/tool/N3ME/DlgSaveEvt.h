@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGSAVEEVT_H__6D9859E6_F6BF_4C64_9120_A0DA2D27E456__INCLUDED_)
-#define AFX_DLGSAVEEVT_H__6D9859E6_F6BF_4C64_9120_A0DA2D27E456__INCLUDED_
+#pragma once
 
 // DlgSaveEvt.h : header file
 //
@@ -43,4 +42,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGSAVEEVT_H__6D9859E6_F6BF_4C64_9120_A0DA2D27E456__INCLUDED_)

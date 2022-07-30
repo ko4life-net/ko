@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGBROWSEPATH_H__149585E3_52EB_41ED_8BFA_BB5982371255__INCLUDED_)
-#define AFX_DLGBROWSEPATH_H__149585E3_52EB_41ED_8BFA_BB5982371255__INCLUDED_
+#pragma once
 
 
 #include "Resource.h"
@@ -55,4 +54,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGBROWSEPATH_H__149585E3_52EB_41ED_8BFA_BB5982371255__INCLUDED_)

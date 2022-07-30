@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGNEWFILENAME_H__436A638D_8D36_45EF_AAB9_CFA47644EB0A__INCLUDED_)
-#define AFX_DLGNEWFILENAME_H__436A638D_8D36_45EF_AAB9_CFA47644EB0A__INCLUDED_
+#pragma once
 
 // DlgNewFileName.h : header file
 //
@@ -41,4 +40,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGNEWFILENAME_H__436A638D_8D36_45EF_AAB9_CFA47644EB0A__INCLUDED_)

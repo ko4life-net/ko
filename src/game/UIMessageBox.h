@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UIMESSAGEBOX_H__943941D4_06D0_40A0_BEF2_DA3A27406EDC__INCLUDED_)
-#define AFX_UIMESSAGEBOX_H__943941D4_06D0_40A0_BEF2_DA3A27406EDC__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3UIBase.h"
@@ -40,4 +39,3 @@ public:
 
 };
 
-#endif // !defined(AFX_UIMESSAGEBOX_H__943941D4_06D0_40A0_BEF2_DA3A27406EDC__INCLUDED_)

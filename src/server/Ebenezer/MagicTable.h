@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_MAGICTABLE_H__3BEFBF64_0058_48B1_AB56_D98E86016DFE__INCLUDED_)
-#define AFX_MAGICTABLE_H__3BEFBF64_0058_48B1_AB56_D98E86016DFE__INCLUDED_
+#pragma once
 
 
 class CMagicTable  
@@ -42,4 +41,3 @@ public:
 
 };
 
-#endif // !defined(AFX_MAGICTABLE_H__3BEFBF64_0058_48B1_AB56_D98E86016DFE__INCLUDED_)

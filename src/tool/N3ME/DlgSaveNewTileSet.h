@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGSAVENEWTILESET_H__6A49B1B4_7253_44B6_AEFC_A079DC336D97__INCLUDED_)
-#define AFX_DLGSAVENEWTILESET_H__6A49B1B4_7253_44B6_AEFC_A079DC336D97__INCLUDED_
+#pragma once
 
 // DlgSaveNewTileSet.h : header file
 //
@@ -41,4 +40,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGSAVENEWTILESET_H__6A49B1B4_7253_44B6_AEFC_A079DC336D97__INCLUDED_)

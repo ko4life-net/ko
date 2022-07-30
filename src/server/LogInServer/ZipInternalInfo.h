@@ -5,8 +5,7 @@
 //  For conditions of distribution and use, see copyright notice in ZipArchive.h
 ////////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_ZIPINTERNALINFO_H__C6749101_590C_4F74_8121_B82E3BE9FA44__INCLUDED_)
-#define AFX_ZIPINTERNALINFO_H__C6749101_590C_4F74_8121_B82E3BE9FA44__INCLUDED_
+#pragma once
 
 #include "AutoBuffer.h"
 #include "zlib.h"
@@ -26,4 +25,3 @@ public:
 
 };
 
-#endif // !defined(AFX_ZIPINTERNALINFO_H__C6749101_590C_4F74_8121_B82E3BE9FA44__INCLUDED_)

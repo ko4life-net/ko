@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UITRADEBBSSELECTOR_H__034D575A_E014_4C70_ABD5_EE647725A1DF__INCLUDED_)
-#define AFX_UITRADEBBSSELECTOR_H__034D575A_E014_4C70_ABD5_EE647725A1DF__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3UIBase.h"
@@ -33,4 +32,3 @@ public:
 
 };
 
-#endif // !defined(AFX_UITRADEBBSSELECTOR_H__034D575A_E014_4C70_ABD5_EE647725A1DF__INCLUDED_)

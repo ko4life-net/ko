@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3SNDENG_H__0205273B_6697_4AB9_A33F_218534153AB3__INCLUDED_)
-#define AFX_N3SNDENG_H__0205273B_6697_4AB9_A33F_218534153AB3__INCLUDED_
+#pragma once
 
 
 #include "N3SndDef.h"
@@ -48,4 +47,3 @@ public:
 
 };
 
-#endif // !defined(AFX_N3SNDENG_H__0205273B_6697_4AB9_A33F_218534153AB3__INCLUDED_)

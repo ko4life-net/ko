@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_WALL_H__77875B11_2DB7_42DB_8C20_95A1AEDC17B8__INCLUDED_)
-#define AFX_WALL_H__77875B11_2DB7_42DB_8C20_95A1AEDC17B8__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3Base.h"
@@ -27,4 +26,3 @@ public:
 	virtual ~CWall();
 };
 
-#endif // !defined(AFX_WALL_H__77875B11_2DB7_42DB_8C20_95A1AEDC17B8__INCLUDED_)

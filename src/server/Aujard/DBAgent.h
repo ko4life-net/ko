@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_DBAGENT_H__C7580B9A_10FF_46DE_93C2_B0C9BA9D0422__INCLUDED_)
-#define AFX_DBAGENT_H__C7580B9A_10FF_46DE_93C2_B0C9BA9D0422__INCLUDED_
+#pragma once
 
 
 #pragma warning(disable : 4786)
@@ -54,4 +53,3 @@ public:
 	CAujardDlg* m_pMain;
 };
 
-#endif // !defined(AFX_DBAGENT_H__C7580B9A_10FF_46DE_93C2_B0C9BA9D0422__INCLUDED_)

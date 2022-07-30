@@ -1,8 +1,7 @@
 // N3TexViewer.h : main header file for the N3TEXVIEWER application
 //
 
-#if !defined(AFX_N3TEXVIEWER_H__BD91BC46_CB3C_4E31_96A6_6A3A22E1730B__INCLUDED_)
-#define AFX_N3TEXVIEWER_H__BD91BC46_CB3C_4E31_96A6_6A3A22E1730B__INCLUDED_
+#pragma once
 
 
 #ifndef __AFXWIN_H__
@@ -43,4 +42,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_N3TEXVIEWER_H__BD91BC46_CB3C_4E31_96A6_6A3A22E1730B__INCLUDED_)

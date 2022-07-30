@@ -1,5 +1,4 @@
-#if !defined(AFX_ZONEINFOSET_H__2F772D75_7255_43A8_869E_82FA34930974__INCLUDED_)
-#define AFX_ZONEINFOSET_H__2F772D75_7255_43A8_869E_82FA34930974__INCLUDED_
+#pragma once
 
 // ZoneInfoSet.h : header file
 //
@@ -45,4 +44,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_ZONEINFOSET_H__2F772D75_7255_43A8_869E_82FA34930974__INCLUDED_)

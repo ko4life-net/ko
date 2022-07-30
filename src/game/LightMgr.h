@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(__LIGHTMGR_H__)
-#define __LIGHTMGR_H__
+#pragma once
 
 
 #include "N3Base/N3Base.h"
@@ -33,4 +32,3 @@ public:
 	virtual ~CLightMgr();
 };
 
-#endif // #if !defined(__LIGHTMGR_H__)

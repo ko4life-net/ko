@@ -1,5 +1,4 @@
-#if !defined(AFX_TEXVIEWER_H__E7AB26A3_E760_421C_B0CE_E2118D0FB88A__INCLUDED_)
-#define AFX_TEXVIEWER_H__E7AB26A3_E760_421C_B0CE_E2118D0FB88A__INCLUDED_
+#pragma once
 
 // TexViewer.h : header file
 //
@@ -108,4 +107,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_TEXVIEWER_H__E7AB26A3_E760_421C_B0CE_E2118D0FB88A__INCLUDED_)

@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_DUNGEONMANAGER_H__492B3E57_9A05_4F4D_B98C_63CB6ACC572E__INCLUDED_)
-#define AFX_DUNGEONMANAGER_H__492B3E57_9A05_4F4D_B98C_63CB6ACC572E__INCLUDED_
+#pragma once
 
 
 #include "N3WorldBase.h"
@@ -61,4 +60,3 @@ public:
 
 };
 
-#endif // !defined(AFX_DUNGEONMANAGER_H__492B3E57_9A05_4F4D_B98C_63CB6ACC572E__INCLUDED_)

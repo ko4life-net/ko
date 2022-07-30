@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_KNIGHTCHRMGR_H__00D0C1D6_95E8_44A5_BE2B_C8A670F5A9B8__INCLUDED_)
-#define AFX_KNIGHTCHRMGR_H__00D0C1D6_95E8_44A5_BE2B_C8A670F5A9B8__INCLUDED_
+#pragma once
 
 
 #include "SharedMem.h"
@@ -28,4 +27,3 @@ public:
 	void SendActionCommand(int iAc);
 };
 
-#endif // !defined(AFX_KNIGHTCHRMGR_H__00D0C1D6_95E8_44A5_BE2B_C8A670F5A9B8__INCLUDED_)

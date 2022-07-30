@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UITRADEBBSEDITDLG_H__3AEA6C66_D30B_421A_BA47_DD907AD094F3__INCLUDED_)
-#define AFX_UITRADEBBSEDITDLG_H__3AEA6C66_D30B_421A_BA47_DD907AD094F3__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3UIBase.h"
@@ -33,4 +32,3 @@ public:
 
 };
 
-#endif // !defined(AFX_UITRADEBBSEDITDLG_H__3AEA6C66_D30B_421A_BA47_DD907AD094F3__INCLUDED_)

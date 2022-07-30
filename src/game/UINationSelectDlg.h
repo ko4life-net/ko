@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UINATIONSELECTDLG_H__AC80EE20_C90E_4B08_807A_5431F8F23BF7__INCLUDED_)
-#define AFX_UINATIONSELECTDLG_H__AC80EE20_C90E_4B08_807A_5431F8F23BF7__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3UIBase.h"
@@ -24,4 +23,3 @@ public:
 	virtual ~CUINationSelectDlg();
 };
 
-#endif // !defined(AFX_UINATIONSELECTDLG_H__AC80EE20_C90E_4B08_807A_5431F8F23BF7__INCLUDED_)

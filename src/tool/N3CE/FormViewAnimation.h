@@ -1,5 +1,4 @@
-#if !defined(AFX_FORMVIEWANIMATION_H__35364EF4_04E3_427C_8B17_6D4D88DF823B__INCLUDED_)
-#define AFX_FORMVIEWANIMATION_H__35364EF4_04E3_427C_8B17_6D4D88DF823B__INCLUDED_
+#pragma once
 
 // FormViewAnimation.h : header file
 //
@@ -135,4 +134,3 @@ inline CN3CEDoc* CFormViewAnimation::GetDocument()
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_FORMVIEWANIMATION_H__35364EF4_04E3_427C_8B17_6D4D88DF823B__INCLUDED_)

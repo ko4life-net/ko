@@ -1,8 +1,7 @@
 // N3FXE.h : main header file for the N3FXE application
 //
 
-#if !defined(AFX_N3FXE_H__9D64675E_A5BC_43E2_A97D_B9266331170F__INCLUDED_)
-#define AFX_N3FXE_H__9D64675E_A5BC_43E2_A97D_B9266331170F__INCLUDED_
+#pragma once
 
 
 #ifndef __AFXWIN_H__
@@ -44,4 +43,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_N3FXE_H__9D64675E_A5BC_43E2_A97D_B9266331170F__INCLUDED_)

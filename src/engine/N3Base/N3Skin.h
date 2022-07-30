@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3Skin_h__INCLUDED_)
-#define AFX_N3Skin_h__INCLUDED_
+#pragma once
 
 
 #include "N3IMesh.h"
@@ -51,4 +50,3 @@ public:
 
 };
 
-#endif // !defined(AFX_N3Skin_h__INCLUDED_)

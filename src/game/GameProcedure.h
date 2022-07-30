@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_GameProcedure_H__0BEC53F2_1282_402C_9A28_FB98CC131F64__INCLUDED_)
-#define AFX_GameProcedure_H__0BEC53F2_1282_402C_9A28_FB98CC131F64__INCLUDED_
+#pragma once
 
 
 enum e_LogInClassification { LIC_KNIGHTONLINE = 0, LIC_MGAME = 1, LIC_DAUM = 2 };
@@ -155,4 +154,3 @@ public:
 };
 
 
-#endif // !defined(AFX_GameProcedure_H__0BEC53F2_1282_402C_9A28_FB98CC131F64__INCLUDED_)

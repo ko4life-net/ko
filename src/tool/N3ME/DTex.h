@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_DTEXATTR_H__B351DEE0_1602_478C_B5EE_0AC30727C7E8__INCLUDED_)
-#define AFX_DTEXATTR_H__B351DEE0_1602_478C_B5EE_0AC30727C7E8__INCLUDED_
+#pragma once
 
 
 class CN3Texture;
@@ -27,4 +26,3 @@ public:
 	virtual ~CDTex();
 };
 
-#endif // !defined(AFX_DTEXATTR_H__B351DEE0_1602_478C_B5EE_0AC30727C7E8__INCLUDED_)

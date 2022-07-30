@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UIHELP_H__EFE9F4A4_295F_4A67_B97A_1DF248F1101A__INCLUDED_)
-#define AFX_UIHELP_H__EFE9F4A4_295F_4A67_B97A_1DF248F1101A__INCLUDED_
+#pragma once
 
 
 #include "N3Base/N3UIBase.h"
@@ -30,4 +29,3 @@ public:
 	virtual ~CUIHelp();
 };
 
-#endif // !defined(AFX_UIHELP_H__EFE9F4A4_295F_4A67_B97A_1DF248F1101A__INCLUDED_)

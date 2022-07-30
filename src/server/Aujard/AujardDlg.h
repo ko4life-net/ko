@@ -1,8 +1,7 @@
 // AujardDlg.h : header file
 //
 
-#if !defined(AFX_AUJARDDLG_H__B5274041_22AE_464F_86F6_53F992C2BF54__INCLUDED_)
-#define AFX_AUJARDDLG_H__B5274041_22AE_464F_86F6_53F992C2BF54__INCLUDED_
+#pragma once
 
 
 #include "SharedMem.h"
@@ -106,4 +105,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_AUJARDDLG_H__B5274041_22AE_464F_86F6_53F992C2BF54__INCLUDED_)

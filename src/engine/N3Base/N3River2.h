@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3RIVER2_H__2CED45C5_8866_42BC_9677_9084A455DDFF__INCLUDED_)
-#define AFX_N3RIVER2_H__2CED45C5_8866_42BC_9677_9084A455DDFF__INCLUDED_
+#pragma once
 
 
 #include "N3Base.h"
@@ -81,4 +80,3 @@ public:
 	void			Init(const std::string& TexPath);
 };
 
-#endif // !defined(AFX_N3RIVER2_H__2CED45C5_8866_42BC_9677_9084A455DDFF__INCLUDED_)

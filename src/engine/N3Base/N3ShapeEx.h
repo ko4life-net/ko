@@ -8,8 +8,7 @@
 //          설계시 추가하려다 너무 복잡하여 보류함. 리마크 된 부분이 그에 관련된 것임. 추가 보강해야함.
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3SHAPEEX_H__C7E1DD38_999B_4AE7_942F_58A9225C2061__INCLUDED_)
-#define AFX_N3SHAPEEX_H__C7E1DD38_999B_4AE7_942F_58A9225C2061__INCLUDED_
+#pragma once
 
 
 #include "N3Shape.h"
@@ -80,4 +79,3 @@ public:
 protected:
 };
 
-#endif // !defined(AFX_N3SHAPEEX_H__C7E1DD38_999B_4AE7_942F_58A9225C2061__INCLUDED_)

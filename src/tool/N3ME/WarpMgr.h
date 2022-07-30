@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(__WARPMGR_H__)
-#define __WARPMGR_H__
+#pragma once
 
 
 #include "N3Base/N3BaseFileAccess.h"
@@ -63,4 +62,3 @@ public:
 	virtual ~CWarpMgr();
 };
 
-#endif // __REGENUSER_H__

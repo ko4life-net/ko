@@ -1,5 +1,4 @@
-#if !defined(AFX_CHARBASEABILITYTABLESET_H__B30A5230_FA2B_4094_8B84_AF306ED89C3D__INCLUDED_)
-#define AFX_CHARBASEABILITYTABLESET_H__B30A5230_FA2B_4094_8B84_AF306ED89C3D__INCLUDED_
+#pragma once
 
 // CharBaseAbilityTableSet.h : header file
 //
@@ -73,4 +72,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_CHARBASEABILITYTABLESET_H__B30A5230_FA2B_4094_8B84_AF306ED89C3D__INCLUDED_)

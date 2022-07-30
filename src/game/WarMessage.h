@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_WARMESSAGE_H__F05854B5_6723_4F5C_BDAB_329F1939FEA6__INCLUDED_)
-#define AFX_WARMESSAGE_H__F05854B5_6723_4F5C_BDAB_329F1939FEA6__INCLUDED_
+#pragma once
 
 
 class CDFont;
@@ -25,4 +24,3 @@ public:
 
 };
 
-#endif // !defined(AFX_WARMESSAGE_H__F05854B5_6723_4F5C_BDAB_329F1939FEA6__INCLUDED_)

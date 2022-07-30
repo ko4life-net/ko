@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_MACHINEMNG_H__61657DDC_3561_4BCB_BCDD_658B2E9AC77F__INCLUDED_)
-#define AFX_MACHINEMNG_H__61657DDC_3561_4BCB_BCDD_658B2E9AC77F__INCLUDED_
+#pragma once
 
 
 class CMachineBase;
@@ -35,4 +34,3 @@ protected:
 };
 
 
-#endif // !defined(AFX_MACHINEMNG_H__61657DDC_3561_4BCB_BCDD_658B2E9AC77F__INCLUDED_)

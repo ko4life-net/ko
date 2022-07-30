@@ -1,8 +1,7 @@
 // ServerInfoViewer.h : main header file for the SERVERINFOVIEWER application
 //
 
-#if !defined(AFX_SERVERINFOVIEWER_H__452D9531_1BB2_4A1B_BD75_8B72FD84AF51__INCLUDED_)
-#define AFX_SERVERINFOVIEWER_H__452D9531_1BB2_4A1B_BD75_8B72FD84AF51__INCLUDED_
+#pragma once
 
 
 #ifndef __AFXWIN_H__
@@ -43,4 +42,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_SERVERINFOVIEWER_H__452D9531_1BB2_4A1B_BD75_8B72FD84AF51__INCLUDED_)

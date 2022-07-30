@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_TableGenerator_H__A1DD4471_39C7_4B2D_8F30_73BAA637F830__INCLUDED_)
-#define AFX_TableGenerator_H__A1DD4471_39C7_4B2D_8F30_73BAA637F830__INCLUDED_
+#pragma once
 
 
 #pragma warning(disable:4786)
@@ -114,4 +113,3 @@ public:
 
 };
 
-#endif // !defined(AFX_TableGenerator_H__A1DD4471_39C7_4B2D_8F30_73BAA637F830__INCLUDED_)

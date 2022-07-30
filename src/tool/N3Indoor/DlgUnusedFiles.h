@@ -1,5 +1,4 @@
-#if !defined(AFX_DLGUNUSEDFILES_H__00D6A6CE_0993_4CE5_9796_7E8E00EE9350__INCLUDED_)
-#define AFX_DLGUNUSEDFILES_H__00D6A6CE_0993_4CE5_9796_7E8E00EE9350__INCLUDED_
+#pragma once
 
 // DlgUnusedFiles.h : header file
 //
@@ -47,4 +46,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGUNUSEDFILES_H__00D6A6CE_0993_4CE5_9796_7E8E00EE9350__INCLUDED_)

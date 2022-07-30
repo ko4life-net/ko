@@ -1,5 +1,4 @@
-#if !defined(AFX_MONTABLESET_H__9A52F839_5F69_4BC3_B71F_296D06461F35__INCLUDED_)
-#define AFX_MONTABLESET_H__9A52F839_5F69_4BC3_B71F_296D06461F35__INCLUDED_
+#pragma once
 
 // MonTableSet.h : header file
 //
@@ -82,4 +81,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_MONTABLESET_H__9A52F839_5F69_4BC3_B71F_296D06461F35__INCLUDED_)

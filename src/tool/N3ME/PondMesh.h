@@ -4,8 +4,7 @@
 // client에서 구현
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_PONDMESH_H__314B2191_7B76_461C_AFD2_FDBC105914FC__INCLUDED_)
-#define AFX_PONDMESH_H__314B2191_7B76_461C_AFD2_FDBC105914FC__INCLUDED_
+#pragma once
 
 
 #define MAX_PONDMESH_LINE		200
@@ -150,4 +149,3 @@ public:	//	다이얼로그 상자에서 쓰이는 함수
 	BOOL			GetChangUVState()		const {return m_bUVState;}
 };
 
-#endif // !defined(AFX_PONDMESH_H__314B2191_7B76_461C_AFD2_FDBC105914FC__INCLUDED_)

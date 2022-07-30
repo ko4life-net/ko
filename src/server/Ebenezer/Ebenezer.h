@@ -1,8 +1,7 @@
 // Ebenezer.h : main header file for the EBENEZER application
 //
 
-#if !defined(AFX_EBENEZER_H__CCD753A4_B614_486A_895D_330D83D9775F__INCLUDED_)
-#define AFX_EBENEZER_H__CCD753A4_B614_486A_895D_330D83D9775F__INCLUDED_
+#pragma once
 
 
 #ifndef __AFXWIN_H__
@@ -43,4 +42,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_EBENEZER_H__CCD753A4_B614_486A_895D_330D83D9775F__INCLUDED_)

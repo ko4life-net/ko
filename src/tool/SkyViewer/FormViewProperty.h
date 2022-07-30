@@ -1,5 +1,4 @@
-#if !defined(AFX_FORMVIEWPROPERTY_H__53610780_A85B_4CBC_BFC9_75E2E766FC43__INCLUDED_)
-#define AFX_FORMVIEWPROPERTY_H__53610780_A85B_4CBC_BFC9_75E2E766FC43__INCLUDED_
+#pragma once
 
 // FormViewProperty.h : header file
 //
@@ -94,4 +93,3 @@ inline CSkyViewerDoc* CFormViewProperty::GetDocument()
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_FORMVIEWPROPERTY_H__53610780_A85B_4CBC_BFC9_75E2E766FC43__INCLUDED_)

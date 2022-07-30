@@ -1,5 +1,4 @@
-#ifndef _AIPACKET_H_
-#define _AIPACKET_H_
+#pragma once
 
 // ---------------------------------------------------------------------
 // AI Server와 게임서버간의 Npc에 관련된 패킷은 1번~49번 
@@ -61,4 +60,3 @@ const BYTE	AG_USER_UPDATE		= 109;	// User의 Update Info
 const BYTE	AG_USER_FAIL		= 110;	// 잘못된 유저 처리...
 const BYTE	AG_USER_PARTY		= 111;	// 파티처리 담당
 
-#endif
