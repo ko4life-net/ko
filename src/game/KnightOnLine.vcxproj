@@ -60,7 +60,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_N3GAME;_CRT_SECURE_NO_WARNINGS;DIRECTINPUT_VERSION=0x0800;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(ProjectDir)..\engine;$(WindowsSDK_IncludePath);$(ProjectDir)..\vendor\DXSDK9\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(ProjectDir)..\engine;$(ProjectDir)..\vendor\jpeglib\include;$(WindowsSDK_IncludePath);$(ProjectDir)..\vendor\DXSDK9\Include</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -68,9 +68,9 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>..\engine\JPEG\jpegLib.lib;implode.lib;d3d9.lib;d3dx9.lib;dsound.lib;ddraw.lib;dxguidd.lib;dinput8d.lib;winmm.lib;imm32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>jpegd.lib;implode.lib;d3d9.lib;d3dx9.lib;dsound.lib;ddraw.lib;dxguidd.lib;dinput8d.lib;winmm.lib;imm32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>libc.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\vendor\DXSDK9\Lib\x86;$(UniversalCRT_LibraryPath_x86)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\vendor\jpeglib\lib;$(ProjectDir)..\vendor\DXSDK9\Lib\x86;$(UniversalCRT_LibraryPath_x86)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
@@ -95,7 +95,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_N3GAME;_CRT_SECURE_NO_WARNINGS;DIRECTINPUT_VERSION=0x0800;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(ProjectDir)..\engine;$(WindowsSDK_IncludePath);$(ProjectDir)..\vendor\DXSDK9\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(ProjectDir)..\engine;$(ProjectDir)..\vendor\jpeglib\include;$(WindowsSDK_IncludePath);$(ProjectDir)..\vendor\DXSDK9\Include</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 %(AdditionalOptions)</AdditionalOptions>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -103,9 +103,9 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>..\engine\JPEG\jpegLib.lib;implode.lib;d3d9.lib;d3dx9.lib;dsound.lib;ddraw.lib;dxguid.lib;dinput8.lib;winmm.lib;imm32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>jpeg.lib;implode.lib;d3d9.lib;d3dx9.lib;dsound.lib;ddraw.lib;dxguid.lib;dinput8.lib;winmm.lib;imm32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>libc.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\vendor\DXSDK9\Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\vendor\jpeglib\lib;$(ProjectDir)..\vendor\DXSDK9\Lib\x86</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -132,7 +132,7 @@
     <CustomBuild Include="res\repair1.cur" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\engine\JPEG\JpegFile.h" />
+    <ClInclude Include="..\engine\N3Base\JpegFile.h" />
     <ClInclude Include="..\engine\N3Base\BitMapFile.h" />
     <ClInclude Include="..\engine\N3Base\DFont.h" />
     <ClInclude Include="..\engine\N3Base\JPEG.H" />
@@ -320,7 +320,7 @@
     <Image Include="res\KnightOnLine.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\engine\JPEG\JpegFile.cpp" />
+    <ClCompile Include="..\engine\N3Base\JpegFile.cpp" />
     <ClCompile Include="..\engine\N3Base\BitMapFile.cpp" />
     <ClCompile Include="..\engine\N3Base\DFont.cpp" />
     <ClCompile Include="..\engine\N3Base\JPEG.CPP" />
