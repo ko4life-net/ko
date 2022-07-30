@@ -7,8 +7,9 @@
 
 #include "stdafx.h"
 #include "FileHeader.h"
-#include "zlib.h"
 #include "AutoBuffer.h"
+
+#include <zlib.h>
 
 #define FILEHEADERSIZE	46
 #define LOCALFILEHEADERSIZE	30

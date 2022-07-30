@@ -55,9 +55,6 @@
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="zconf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ZipArchive.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -74,9 +71,6 @@
   <ItemGroup>
     <Text Include="Appnote.txt" />
     <Text Include="Readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="zlib.lib" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Zip.htm" />
