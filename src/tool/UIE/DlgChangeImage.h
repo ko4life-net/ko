@@ -1,9 +1,5 @@
-#if !defined(AFX_DLGCHANGEIMAGE_H__F9B2B454_50C6_48B0_9BC8_0CA624174D32__INCLUDED_)
-#define AFX_DLGCHANGEIMAGE_H__F9B2B454_50C6_48B0_9BC8_0CA624174D32__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // DlgChangeImage.h : header file
 //
 
@@ -48,4 +44,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGCHANGEIMAGE_H__F9B2B454_50C6_48B0_9BC8_0CA624174D32__INCLUDED_)

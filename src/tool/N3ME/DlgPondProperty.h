@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_DLGPONDPROPERTY_H__58CA9C39_270B_4DB7_ADED_464F786C84CF__INCLUDED_)
-#define AFX_DLGPONDPROPERTY_H__58CA9C39_270B_4DB7_ADED_464F786C84CF__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "../Widget/PropertyList.h"
 
@@ -71,4 +67,3 @@ protected:
 	DECLARE_MESSAGE_MAP()
 };
 
-#endif // !defined(AFX_DLGPONDPROPERTY_H__58CA9C39_270B_4DB7_ADED_464F786C84CF__INCLUDED_)

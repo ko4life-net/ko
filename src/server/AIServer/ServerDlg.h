@@ -1,12 +1,8 @@
 // ServerDlg.h : header file
 //
 
-#if !defined(AFX_SERVERDLG_H__7E2A41F8_68A3_4C94_8A6E_7C80636869D3__INCLUDED_)
-#define AFX_SERVERDLG_H__7E2A41F8_68A3_4C94_8A6E_7C80636869D3__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #pragma warning(disable : 4786)
 
@@ -209,4 +205,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_SERVERDLG_H__7E2A41F8_68A3_4C94_8A6E_7C80636869D3__INCLUDED_)

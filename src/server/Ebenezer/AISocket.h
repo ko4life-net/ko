@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_AISOCKET_H__DA918EB3_F688_48B4_A48B_87B773A83CA6__INCLUDED_)
-#define AFX_AISOCKET_H__DA918EB3_F688_48B4_A48B_87B773A83CA6__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "IOCPSocket2.h"
 #include "MagicProcess.h"
@@ -57,4 +53,3 @@ public:
 
 };
 
-#endif // !defined(AFX_AISOCKET_H__DA918EB3_F688_48B4_A48B_87B773A83CA6__INCLUDED_)

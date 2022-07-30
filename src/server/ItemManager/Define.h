@@ -1,5 +1,4 @@
-#ifndef _DEFINE_H
-#define _DEFINE_H
+#pragma once
 
 #define MAX_USER			3000
 #define MAX_ID_SIZE			20
@@ -276,4 +275,3 @@ inline int DisplayErrorMsg(SQLHANDLE hstmt)
 		return 0;
 };
 
-#endif

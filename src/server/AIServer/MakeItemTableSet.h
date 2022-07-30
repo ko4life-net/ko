@@ -1,9 +1,5 @@
-#if !defined(AFX_MAKEITEMTABLESET_H__D5EA9892_40E4_46E3_90E2_764D85335CE6__INCLUDED_)
-#define AFX_MAKEITEMTABLESET_H__D5EA9892_40E4_46E3_90E2_764D85335CE6__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // MakeItemTableSet.h : header file
 //
 
@@ -43,4 +39,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_MAKEITEMTABLESET_H__D5EA9892_40E4_46E3_90E2_764D85335CE6__INCLUDED_)

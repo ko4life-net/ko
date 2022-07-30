@@ -5,14 +5,10 @@
 //  For conditions of distribution and use, see copyright notice in ZipArchive.h
 ////////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_ZIPSTORAGE_H__941824FE_3320_4794_BDE3_BE334ED8984B__INCLUDED_)
-#define AFX_ZIPSTORAGE_H__941824FE_3320_4794_BDE3_BE334ED8984B__INCLUDED_
+#pragma once
 
 #include "ZipBigFile.h"	// Added by ClassView
 #include "ZipAutoBuffer.h"	// Added by ClassView
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 // callback function called when there is a need for a disk change
 // calling CZipArchive functions, apart from the static ones, may have unexpected results
@@ -131,4 +127,3 @@ protected:
 	
 };
 
-#endif // !defined(AFX_ZIPSTORAGE_H__941824FE_3320_4794_BDE3_BE334ED8984B__INCLUDED_)

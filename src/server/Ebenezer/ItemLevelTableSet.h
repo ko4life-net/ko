@@ -1,9 +1,5 @@
-#if !defined(AFX_ITEMLEVELTABLESET_H__ABF4EB52_0362_42AC_8C72_41CF933FDB5F__INCLUDED_)
-#define AFX_ITEMLEVELTABLESET_H__ABF4EB52_0362_42AC_8C72_41CF933FDB5F__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // ItemLevelTableSet.h : header file
 //
 
@@ -62,4 +58,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_ITEMLEVELTABLESET_H__ABF4EB52_0362_42AC_8C72_41CF933FDB5F__INCLUDED_)

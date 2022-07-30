@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3Transform_h__INCLUDED_)
-#define AFX_N3Transform_h__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3BaseFileAccess.h"
 #include "N3AnimKey.h"
@@ -57,4 +53,3 @@ public:
 	virtual ~CN3Transform();
 };
 
-#endif // !defined(AFX_N3Transform_h__INCLUDED_)

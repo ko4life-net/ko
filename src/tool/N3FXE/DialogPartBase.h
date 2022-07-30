@@ -1,9 +1,5 @@
-#if !defined(AFX_DIALOGPARTBASE_H__A53F3A27_A0F5_447D_A923_E921D1DD5148__INCLUDED_)
-#define AFX_DIALOGPARTBASE_H__A53F3A27_A0F5_447D_A923_E921D1DD5148__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // DialogPartBase.h : header file
 //
 
@@ -46,4 +42,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DIALOGPARTBASE_H__A53F3A27_A0F5_447D_A923_E921D1DD5148__INCLUDED_)

@@ -10,12 +10,8 @@
 
 #pragma warning(disable:4786)
 
-#if !defined(AFX_DFONT_H__B1A14901_0027_40BC_8A6C_7FC78DE38686__INCLUDED_)
-#define AFX_DFONT_H__B1A14901_0027_40BC_8A6C_7FC78DE38686__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 // TODO: Note that there is some weird mixture of files between engine and game.
 // This file is specifically being used by the game's UIs that these UIs not necessarly
@@ -102,4 +98,3 @@ protected:
 
 };
 
-#endif // !defined(AFX_DFONT_H__B1A14901_0027_40BC_8A6C_7FC78DE38686__INCLUDED_)

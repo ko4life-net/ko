@@ -1,9 +1,5 @@
-#if !defined(AFX_BRUSHDLG_H__1EC13A8F_61C0_4A29_A6FA_F5B686485348__INCLUDED_)
-#define AFX_BRUSHDLG_H__1EC13A8F_61C0_4A29_A6FA_F5B686485348__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // BrushDlg.h : header file
 //
 
@@ -69,4 +65,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_BRUSHDLG_H__1EC13A8F_61C0_4A29_A6FA_F5B686485348__INCLUDED_)

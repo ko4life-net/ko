@@ -8,8 +8,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef __LYTERRAINDEF_H__
-#define __LYTERRAINDEF_H__
+#pragma once
 
 
 // common include header...
@@ -154,4 +153,3 @@ typedef struct __SeedGroup
 	}
 } SEEDGROUP, *LPSEEDGROUP;
 
-#endif	//end of #ifndef __LYTERRAINDEF_H__

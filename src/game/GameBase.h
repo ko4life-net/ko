@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3GAMEBASE_H__5F0720A7_AFF6_4AB5_B469_701AA2935158__INCLUDED_)
-#define AFX_N3GAMEBASE_H__5F0720A7_AFF6_4AB5_B469_701AA2935158__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3Base/N3Base.h"
 #include "N3Base/N3TableBase.h"
@@ -60,4 +56,3 @@ public:
 	virtual ~CGameBase();
 };
 
-#endif // !defined(AFX_N3GAMEBASE_H__5F0720A7_AFF6_4AB5_B469_701AA2935158__INCLUDED_)

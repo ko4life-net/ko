@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_SOUNDCELL_H__B3DFDE57_2071_433F_A831_8B26FFE0004B__INCLUDED_)
-#define AFX_SOUNDCELL_H__B3DFDE57_2071_433F_A831_8B26FFE0004B__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3Base/N3Base.h"
 
@@ -44,4 +40,3 @@ public:
 	virtual ~CSoundCell();
 };
 
-#endif // !defined(AFX_SOUNDCELL_H__B3DFDE57_2071_433F_A831_8B26FFE0004B__INCLUDED_)

@@ -2,12 +2,8 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UIEDOC_H__EE8E9346_D90D_48A7_89CE_DC0950272A0E__INCLUDED_)
-#define AFX_UIEDOC_H__EE8E9346_D90D_48A7_89CE_DC0950272A0E__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3Base/N3UIBase.h"
 
@@ -108,4 +104,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_UIEDOC_H__EE8E9346_D90D_48A7_89CE_DC0950272A0E__INCLUDED_)

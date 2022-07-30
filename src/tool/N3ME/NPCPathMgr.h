@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_NPCPATHMGR_H__927D9E56_84BF_42B3_A588_B2552510C22B__INCLUDED_)
-#define AFX_NPCPATHMGR_H__927D9E56_84BF_42B3_A588_B2552510C22B__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3Base/N3Base.h"
 #include <list>
@@ -72,4 +68,3 @@ public:
 	virtual ~CNPCPathMgr();
 };
 
-#endif // !defined(AFX_NPCPATHMGR_H__927D9E56_84BF_42B3_A588_B2552510C22B__INCLUDED_)

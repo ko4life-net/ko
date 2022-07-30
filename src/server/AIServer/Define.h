@@ -1,5 +1,4 @@
-#ifndef _DEFINE_H
-#define _DEFINE_H
+#pragma once
 
 /*
      ** Repent AI Server 작업시 참고 사항 **
@@ -401,4 +400,3 @@ const BYTE	ATTACK_MAX		=	80;
 #define ATTRIBUTE_ICE			 2
 #define ATTRIBUTE_LIGHTNING		 3
 
-#endif

@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_NPC_H__6077F7AF_6166_463A_AA80_FBF218781BC6__INCLUDED_)
-#define AFX_NPC_H__6077F7AF_6166_463A_AA80_FBF218781BC6__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "iocport.h"
 #include "N3Base/My_3DStruct.h"
@@ -470,4 +466,3 @@ public:
 	BOOL Teleport(CIOCPort* pIOCP);
 };
 
-#endif // !defined(AFX_NPC_H__6077F7AF_6166_463A_AA80_FBF218781BC6__INCLUDED_)

@@ -1,9 +1,5 @@
-#if !defined(AFX_DLGEDITWARP_H__F8240459_A3C8_4CE7_A176_1B4A04DA2B87__INCLUDED_)
-#define AFX_DLGEDITWARP_H__F8240459_A3C8_4CE7_A176_1B4A04DA2B87__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // DlgEditWarp.h : header file
 //
 
@@ -70,4 +66,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGEDITWARP_H__F8240459_A3C8_4CE7_A176_1B4A04DA2B87__INCLUDED_)

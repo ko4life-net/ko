@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(__UICREATECLANNAME_H__)
-#define __UICREATECLANNAME_H__
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "GameDef.h"
 #include "N3Base/N3UIBase.h"
@@ -37,4 +33,3 @@ public:
 	virtual ~CUICreateClanName();	
 };
 
-#endif //#if !defined(__UICREATECLANNAME_H__)

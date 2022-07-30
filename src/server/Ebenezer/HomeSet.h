@@ -1,9 +1,5 @@
-#if !defined(AFX_HOMESET_H__496F83FF_F4B8_4DBF_803B_BA8E741D9FDB__INCLUDED_)
-#define AFX_HOMESET_H__496F83FF_F4B8_4DBF_803B_BA8E741D9FDB__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // HomeSet.h : header file
 //
 
@@ -59,4 +55,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_HOMESET_H__496F83FF_F4B8_4DBF_803B_BA8E741D9FDB__INCLUDED_)

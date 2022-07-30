@@ -1,5 +1,4 @@
-#ifndef _GAMEDEFINE_H
-#define _GAMEDEFINE_H
+#pragma once
 
 #define __VERSION			1081
 
@@ -589,4 +588,3 @@ struct _HOME_INFO
 //
 };
 
-#endif

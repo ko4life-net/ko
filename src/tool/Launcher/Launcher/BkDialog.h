@@ -1,11 +1,7 @@
-#ifndef _BKDIALOG_H_
-#define _BKDIALOG_H_
+#pragma once
 
 #include "BackgroundUtil.h"
 
-#if _MSC_VER >= 1000
-#pragma once
-#endif // _MSC_VER >= 1000
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -47,4 +43,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
-#endif

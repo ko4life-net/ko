@@ -1,12 +1,8 @@
 // Aujard.h : main header file for the AUJARD application
 //
 
-#if !defined(AFX_AUJARD_H__8E466E6E_163E_4622_8610_501586363AD4__INCLUDED_)
-#define AFX_AUJARD_H__8E466E6E_163E_4622_8610_501586363AD4__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #ifndef __AFXWIN_H__
 	#error include 'stdafx.h' before including this file for PCH
@@ -46,4 +42,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_AUJARD_H__8E466E6E_163E_4622_8610_501586363AD4__INCLUDED_)

@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_GAMEPROCOPTION_H__98F2C543_CFC5_45AA_84DA_B93B34A29C46__INCLUDED_)
-#define AFX_GAMEPROCOPTION_H__98F2C543_CFC5_45AA_84DA_B93B34A29C46__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "GameProcedure.h"
 
@@ -24,4 +20,3 @@ public:
 
 };
 
-#endif // !defined(AFX_GAMEPROCOPTION_H__98F2C543_CFC5_45AA_84DA_B93B34A29C46__INCLUDED_)

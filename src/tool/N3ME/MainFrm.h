@@ -2,12 +2,8 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_MAINFRM_H__7FC344E1_B900_4991_B004_087E0775BC84__INCLUDED_)
-#define AFX_MAINFRM_H__7FC344E1_B900_4991_B004_087E0775BC84__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 class CN3EngTool;
 class CMapMng;
@@ -186,4 +182,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_MAINFRM_H__7FC344E1_B900_4991_B004_087E0775BC84__INCLUDED_)

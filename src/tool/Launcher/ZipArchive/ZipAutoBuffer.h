@@ -16,12 +16,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 
-#if !defined(AFX_ZIPAUTOBUFFER_H__DEC28C20_83FE_11D3_B7C3_EDEC47A8A86C__INCLUDED_)
-#define AFX_ZIPAUTOBUFFER_H__DEC28C20_83FE_11D3_B7C3_EDEC47A8A86C__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 /**
 	A smart buffer freeing its contents on destruction.
@@ -60,4 +56,3 @@ protected:
 	DWORD m_iSize;
 };
 
-#endif // !defined(AFX_ZIPAUTOBUFFER_H__DEC28C20_83FE_11D3_B7C3_EDEC47A8A86C__INCLUDED_)

@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#ifndef __GROUND_H__
-#define __GROUND_H__
+#pragma once
 
 #include "N3Base/N3Base.h"
 
@@ -25,4 +24,3 @@ public:
 	virtual ~CGround();
 };
 
-#endif // #ifndef __GROUND_H__

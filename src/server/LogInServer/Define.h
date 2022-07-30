@@ -1,5 +1,4 @@
-#ifndef _DEFINE_H
-#define _DEFINE_H
+#pragma once
 
 #pragma warning(disable : 4786)
 #include <string>
@@ -300,4 +299,3 @@ inline float TimeGet()
 	return (float)timeGetTime();
 };
 
-#endif

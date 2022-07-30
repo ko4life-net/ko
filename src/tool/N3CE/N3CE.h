@@ -1,12 +1,8 @@
 // N3CE.h : main header file for the N3CE application
 //
 
-#if !defined(AFX_N3CE_H__1E0C5C82_CAFE_44FC_AD84_DDCDED50FA12__INCLUDED_)
-#define AFX_N3CE_H__1E0C5C82_CAFE_44FC_AD84_DDCDED50FA12__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #ifndef __AFXWIN_H__
 	#error include 'stdafx.h' before including this file for PCH
@@ -46,4 +42,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_N3CE_H__1E0C5C82_CAFE_44FC_AD84_DDCDED50FA12__INCLUDED_)

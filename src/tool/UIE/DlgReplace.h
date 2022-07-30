@@ -1,9 +1,5 @@
-#if !defined(AFX_DLGREPLACE_H__953A1204_941E_43D1_BBA0_C03C981B0A6A__INCLUDED_)
-#define AFX_DLGREPLACE_H__953A1204_941E_43D1_BBA0_C03C981B0A6A__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // DlgReplace.h : header file
 //
 
@@ -44,4 +40,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGREPLACE_H__953A1204_941E_43D1_BBA0_C03C981B0A6A__INCLUDED_)

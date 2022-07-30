@@ -9,12 +9,8 @@
 // 3. Tick함수도 호출해줘야 합니다.
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3UITOOLTIP_H__7085B857_C8EE_410D_AB27_5332D26DF01A__INCLUDED_)
-#define AFX_N3UITOOLTIP_H__7085B857_C8EE_410D_AB27_5332D26DF01A__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3UIStatic.h"
 
@@ -42,4 +38,3 @@ protected:
 
 };
 
-#endif // !defined(AFX_N3UITOOLTIP_H__7085B857_C8EE_410D_AB27_5332D26DF01A__INCLUDED_)

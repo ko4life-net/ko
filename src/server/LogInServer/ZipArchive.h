@@ -79,13 +79,9 @@
 //	added once again with store method (it may be done only on the files 
 //  not divided between volumes)
 
-#if !defined(AFX_ZIPARCHIVE_H__A7F528A6_1872_4071_BE66_D56CC2DDE0E6__INCLUDED_)
-#define AFX_ZIPARCHIVE_H__A7F528A6_1872_4071_BE66_D56CC2DDE0E6__INCLUDED_
+#pragma once
 
 #include "ZipStorage.h"	// Added by ClassView
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #include "ZipException.h"
 #include "CentralDir.h"	// Added by ClassView
@@ -536,4 +532,3 @@ protected:
 
 };
 
-#endif // !defined(AFX_ZIPARCHIVE_H__A7F528A6_1872_4071_BE66_D56CC2DDE0E6__INCLUDED_)

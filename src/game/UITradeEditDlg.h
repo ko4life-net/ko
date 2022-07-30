@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UITRADEEDITDLG_H__347A4D3E_DC71_4F03_8070_946095EB8120__INCLUDED_)
-#define AFX_UITRADEEDITDLG_H__347A4D3E_DC71_4F03_8070_946095EB8120__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3Base/N3UIBase.h"
 #include "N3Base/N3UIArea.h"
@@ -42,4 +38,3 @@ public:
 	void				Close();
 };
 
-#endif // !defined(AFX_UITRADEEDITDLG_H__347A4D3E_DC71_4F03_8070_946095EB8120__INCLUDED_)

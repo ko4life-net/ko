@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3IME_H__87E26E3B_B5EB_403B_8126_2884169AFEE9__INCLUDED_)
-#define AFX_N3IME_H__87E26E3B_B5EB_403B_8126_2884169AFEE9__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include <imm.h>
 #include <string>
@@ -76,4 +72,3 @@ protected:
 	BOOL GetCompString(LONG flag);
 };
 
-#endif // !defined(AFX_N3IME_H__87E26E3B_B5EB_403B_8126_2884169AFEE9__INCLUDED_)

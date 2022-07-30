@@ -2,12 +2,8 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3VIEWERVIEW_H__DA98F929_87BD_4D61_8DB7_5DE373A09938__INCLUDED_)
-#define AFX_N3VIEWERVIEW_H__DA98F929_87BD_4D61_8DB7_5DE373A09938__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 class CN3ViewerDoc;
 class CN3TransformCollision;
@@ -111,4 +107,3 @@ inline CN3ViewerDoc* CN3ViewerView::GetDocument()
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_N3VIEWERVIEW_H__DA98F929_87BD_4D61_8DB7_5DE373A09938__INCLUDED_)

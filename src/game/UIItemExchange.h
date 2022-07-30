@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UIITEMREPAIREXCHANGE_H__DFB5AC89_C348_41B9_830C_A4FFE08B1E55__INCLUDED_)
-#define AFX_UIITEMREPAIREXCHANGE_H__DFB5AC89_C348_41B9_830C_A4FFE08B1E55__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "GameDef.h"
 
@@ -74,4 +70,3 @@ public:
 	void ReceiveResultFromServer(int iResult, int iUserGold);
 };
 
-#endif // !defined(AFX_UIITEMREPAIREXCHANGE_H__DFB5AC89_C348_41B9_830C_A4FFE08B1E55__INCLUDED_)

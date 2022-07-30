@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UINPCEVENT_H__27F6610C_5D61_4A22_97F2_93211B77BF9C__INCLUDED_)
-#define AFX_UINPCEVENT_H__27F6610C_5D61_4A22_97F2_93211B77BF9C__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "GameDef.h"
 
@@ -43,4 +39,3 @@ public:
 	void Close();
 };
 
-#endif // !defined(AFX_UINPCEVENT_H__27F6610C_5D61_4A22_97F2_93211B77BF9C__INCLUDED_)

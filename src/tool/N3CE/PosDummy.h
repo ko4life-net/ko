@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_POSDUMMY_H__61F97647_F058_413E_A1C2_1F153B020C9D__INCLUDED_)
-#define AFX_POSDUMMY_H__61F97647_F058_413E_A1C2_1F153B020C9D__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "TransDummy.h"
 
@@ -28,4 +24,3 @@ protected:
 
 };
 
-#endif // !defined(AFX_POSDUMMY_H__61F97647_F058_413E_A1C2_1F153B020C9D__INCLUDED_)

@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3SndObj2D_H__64BCBFD5_FD77_438D_9BF4_DC9B7C5D5BB9__INCLUDED_)
-#define AFX_N3SndObj2D_H__64BCBFD5_FD77_438D_9BF4_DC9B7C5D5BB9__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3SndDef.h"
 #include <stdio.h>
@@ -78,4 +74,3 @@ public:
 	virtual ~CN3SndObj2D();
 };
 
-#endif // !defined(AFX_N3SndObj2D_H__64BCBFD5_FD77_438D_9BF4_DC9B7C5D5BB9__INCLUDED_)

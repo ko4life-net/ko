@@ -1,9 +1,5 @@
-#if !defined(AFX_USERREGENPAGE_H__9B4EA087_A1AC_4B9F_81DD_65B46F61352F__INCLUDED_)
-#define AFX_USERREGENPAGE_H__9B4EA087_A1AC_4B9F_81DD_65B46F61352F__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // UserRegenPage.h : header file
 //
 
@@ -47,4 +43,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_USERREGENPAGE_H__9B4EA087_A1AC_4B9F_81DD_65B46F61352F__INCLUDED_)

@@ -139,8 +139,7 @@
 //	for DWORD aligning a buffer
 //
 
-#ifndef _INCLUDE_JPEGFILE
-#define _INCLUDE_JPEGFILE
+#pragma once
 
 #include <stdio.h>
 #include <string>
@@ -344,4 +343,3 @@ public:
 	~CJpegFile();	// destroys nothing
 };
 
-#endif 

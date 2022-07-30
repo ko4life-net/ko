@@ -1,9 +1,5 @@
-#if !defined(AFX_MAGICTYPE4SET_H__484D4528_17D7_4F03_954C_EACDB8011DE7__INCLUDED_)
-#define AFX_MAGICTYPE4SET_H__484D4528_17D7_4F03_954C_EACDB8011DE7__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // MagicType4Set.h : header file
 //
 
@@ -64,4 +60,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_MAGICTYPE4SET_H__484D4528_17D7_4F03_954C_EACDB8011DE7__INCLUDED_)

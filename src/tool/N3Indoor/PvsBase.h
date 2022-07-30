@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_PVSBASE_H__1391B742_4359_49B6_A268_EC098B8F20FD__INCLUDED_)
-#define AFX_PVSBASE_H__1391B742_4359_49B6_A268_EC098B8F20FD__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #pragma warning(disable : 4786)
 
@@ -79,4 +75,3 @@ class CPvsBase : public CObject
 	virtual void Save(FILE* stream);
 };
 
-#endif // !defined(AFX_PVSBASE_H__1391B742_4359_49B6_A268_EC098B8F20FD__INCLUDED_)

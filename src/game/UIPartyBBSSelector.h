@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UIPARTYBBSSELECTOR_H__CF79ECBE_7FBE_4251_A740_E6AD08881785__INCLUDED_)
-#define AFX_UIPARTYBBSSELECTOR_H__CF79ECBE_7FBE_4251_A740_E6AD08881785__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "GameDef.h"
 #include "N3Base/N3UIBase.h"
@@ -32,4 +28,3 @@ public:
 
 };
 
-#endif // !defined(AFX_UIPARTYBBSSELECTOR_H__CF79ECBE_7FBE_4251_A740_E6AD08881785__INCLUDED_)

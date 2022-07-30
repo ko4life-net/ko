@@ -2,12 +2,8 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_MAINFRM_H__38685DF5_9C08_49EB_8984_E5E5BB13CE5C__INCLUDED_)
-#define AFX_MAINFRM_H__38685DF5_9C08_49EB_8984_E5E5BB13CE5C__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3Base/N3EngTool.h"
 #include "N3Base/N3Shape.h"
@@ -71,4 +67,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_MAINFRM_H__38685DF5_9C08_49EB_8984_E5E5BB13CE5C__INCLUDED_)

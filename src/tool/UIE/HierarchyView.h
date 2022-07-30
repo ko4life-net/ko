@@ -2,12 +2,8 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_HIERARCHYVIEW_H__99E40D58_CC41_4A2B_9CCC_CA157570E22F__INCLUDED_)
-#define AFX_HIERARCHYVIEW_H__99E40D58_CC41_4A2B_9CCC_CA157570E22F__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 class CUIEDoc;
 class CN3UIBase;
@@ -71,4 +67,3 @@ inline CUIEDoc* CHierarchyView::GetDocument()
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_HIERARCHYVIEW_H__99E40D58_CC41_4A2B_9CCC_CA157570E22F__INCLUDED_)

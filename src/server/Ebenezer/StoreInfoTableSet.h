@@ -1,9 +1,5 @@
-#if !defined(AFX_STOREINFOTABLESET_H__DD3326A4_C333_4457_AFCE_92B3FEB682FB__INCLUDED_)
-#define AFX_STOREINFOTABLESET_H__DD3326A4_C333_4457_AFCE_92B3FEB682FB__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // StoreInfoTableSet.h : header file
 //
 
@@ -83,4 +79,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_STOREINFOTABLESET_H__DD3326A4_C333_4457_AFCE_92B3FEB682FB__INCLUDED_)

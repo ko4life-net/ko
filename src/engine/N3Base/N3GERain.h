@@ -2,12 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3GERAIN_H__FCA2D0E1_3364_4A9D_870E_5B3FC13CD6DD__INCLUDED_)
-#define AFX_N3GERAIN_H__FCA2D0E1_3364_4A9D_870E_5B3FC13CD6DD__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
 
 #include "N3GlobalEffect.h"
 
@@ -38,4 +33,3 @@ protected:
 
 };
 
-#endif // !defined(AFX_N3GERAIN_H__FCA2D0E1_3364_4A9D_870E_5B3FC13CD6DD__INCLUDED_)

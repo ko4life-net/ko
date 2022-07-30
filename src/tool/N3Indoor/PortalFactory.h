@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_PORTALFACTORY_H__8561BB9B_D293_49FC_832D_F94AF4B8BEF9__INCLUDED_)
-#define AFX_PORTALFACTORY_H__8561BB9B_D293_49FC_832D_F94AF4B8BEF9__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #pragma warning(disable : 4786)
 
@@ -26,4 +22,3 @@ public:
 	CPortalVolume*	CreatePvsVol(int iIndex);
 };
 
-#endif // !defined(AFX_PORTALFACTORY_H__8561BB9B_D293_49FC_832D_F94AF4B8BEF9__INCLUDED_)

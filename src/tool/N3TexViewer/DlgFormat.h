@@ -1,9 +1,5 @@
-#if !defined(AFX_DLGFORMAT_H__94A51D98_DD7E_4FF1_ABD5_940462C2355F__INCLUDED_)
-#define AFX_DLGFORMAT_H__94A51D98_DD7E_4FF1_ABD5_940462C2355F__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // DlgFormat.h : header file
 //
 
@@ -50,4 +46,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGFORMAT_H__94A51D98_DD7E_4FF1_ABD5_940462C2355F__INCLUDED_)

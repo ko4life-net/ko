@@ -1,5 +1,4 @@
-#if !defined(AFX_STDAFX_H__N3BASE__INCLUDED_)
-#define AFX_STDAFX_H__N3BASE__INCLUDED_
+#pragma once
 
 // TODO: reference additional headers your program requires here
 #include "AfxVer_.h"
@@ -151,4 +150,3 @@ void AFX_CDECL AfxTrace(const char* lpszFormat, ...);
 
 
 
-#endif // !defined(AFX_STDAFX_H__N3BASE__INCLUDED_)

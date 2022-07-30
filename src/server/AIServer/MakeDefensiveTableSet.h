@@ -1,9 +1,5 @@
-#if !defined(AFX_MAKEDEFENSIVETABLESET_H__DB434CB6_7AFE_4FD3_9B74_F26C1E4D0ED4__INCLUDED_)
-#define AFX_MAKEDEFENSIVETABLESET_H__DB434CB6_7AFE_4FD3_9B74_F26C1E4D0ED4__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // MakeDefensiveTableSet.h : header file
 //
 
@@ -48,4 +44,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_MAKEDEFENSIVETABLESET_H__DB434CB6_7AFE_4FD3_9B74_F26C1E4D0ED4__INCLUDED_)

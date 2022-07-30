@@ -1,9 +1,5 @@
-#if !defined(AFX_MAGICTYPE2SET_H__12235842_699A_4909_8C5E_D019ADF5A1E9__INCLUDED_)
-#define AFX_MAGICTYPE2SET_H__12235842_699A_4909_8C5E_D019ADF5A1E9__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // MagicType2Set.h : header file
 //
 
@@ -48,4 +44,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_MAGICTYPE2SET_H__12235842_699A_4909_8C5E_D019ADF5A1E9__INCLUDED_)

@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_PVSMANAGER_H__D2D86F4E_2762_4D61_B136_34CFB5E3657D__INCLUDED_)
-#define AFX_PVSMANAGER_H__D2D86F4E_2762_4D61_B136_34CFB5E3657D__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #pragma warning(disable : 4786)
 
@@ -154,4 +150,3 @@ public:
 	virtual ~CPVSManager();
 };
 
-#endif // !defined(AFX_PVSMANAGER_H__D2D86F4E_2762_4D61_B136_34CFB5E3657D__INCLUDED_)

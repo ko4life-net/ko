@@ -5,8 +5,7 @@
 /* BUT ALL COPYRIGHT RESERVED BY JIYOON CHUNG */
 /* (c) ABLEX AND OHSUNGINC 2001.6.1           */
 /* Classed by ks2000 2001.6.1				  */	
-#ifndef __CJVCRYPTION_H
-#define __CJVCRYPTION_H
+#pragma once
 
 typedef unsigned char 	T_OCTET;
 typedef _int64			T_KEY;
@@ -38,4 +37,3 @@ public:
 
 };
 
-#endif

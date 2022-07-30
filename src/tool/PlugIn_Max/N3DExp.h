@@ -10,8 +10,7 @@
  	Copyright (c) 1997, All Rights Reserved.
  **********************************************************************/
 
-#ifndef __CN3DEXP__H
-#define __CN3DEXP__H
+#pragma once
 
 #include "stdafx.h"
 
@@ -152,4 +151,3 @@ public:
 	HINSTANCE		HInstance() { return g_hInst; }			// returns owning module handle
 };
 
-#endif // __CN3DEXP__H

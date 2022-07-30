@@ -1,5 +1,4 @@
-#ifndef _PACKET_H_
-#define _PACKET_H_
+#pragma once
 
 const BYTE INFO_MODIFY			=	1;
 const BYTE INFO_DELETE			= 	2;
@@ -114,4 +113,3 @@ const BYTE	AG_USER_PARTY		= 111;	// 파티처리 담당
 #define PUBLIC_CHAT				0x07
 #define WAR_SYSTEM_CHAT			0x08
 
-#endif

@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3WORLDBASE_H__8064AFB4_48C5_4CFB_8435_635B9F6F321D__INCLUDED_)
-#define AFX_N3WORLDBASE_H__8064AFB4_48C5_4CFB_8435_635B9F6F321D__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3Base/N3BaseFileAccess.h"
 #include "N3Base/N3SkyMng.h"
@@ -86,4 +82,3 @@ public:
 	virtual ~CN3WorldBase();
 };
 
-#endif // !defined(AFX_N3WORLDBASE_H__8064AFB4_48C5_4CFB_8435_635B9F6F321D__INCLUDED_)

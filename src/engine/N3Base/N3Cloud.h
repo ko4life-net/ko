@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3CLOUD_H__0C780CD3_38F2_48CD_B36E_E7C64C7893EB__INCLUDED_)
-#define AFX_N3CLOUD_H__0C780CD3_38F2_48CD_B36E_E7C64C7893EB__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3Base.h"
 #include "N3ColorChange.h"
@@ -60,4 +56,3 @@ protected:
 
 };
 
-#endif // !defined(AFX_N3CLOUD_H__0C780CD3_38F2_48CD_B36E_E7C64C7893EB__INCLUDED_)

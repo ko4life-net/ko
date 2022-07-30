@@ -9,8 +9,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef __N3TERRAINDEF_H__
-#define __N3TERRAINDEF_H__
+#pragma once
 
 // Constant Definitions..
 const int PATCH_TILE_SIZE = 8;		//	패치 하나에 타일이 8x8개 들어간다.
@@ -101,4 +100,3 @@ typedef std::map<DWORD,class CN3Texture*> stlMap_N3Tex;
 typedef stlMap_N3Tex::iterator stlMap_N3TexIt;
 typedef stlMap_N3Tex::value_type stlMap_N3TexValue;
 
-#endif	//end of #ifndef __LYTERRAINDEF_H__

@@ -2,12 +2,8 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_SERVERINFOVIEWERVIEW_H__3E780FC2_6609_4A9D_AF31_52605C4F7513__INCLUDED_)
-#define AFX_SERVERINFOVIEWERVIEW_H__3E780FC2_6609_4A9D_AF31_52605C4F7513__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 
 class CServerInfoViewerView : public CView
@@ -67,4 +63,3 @@ inline CServerInfoViewerDoc* CServerInfoViewerView::GetDocument()
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_SERVERINFOVIEWERVIEW_H__3E780FC2_6609_4A9D_AF31_52605C4F7513__INCLUDED_)

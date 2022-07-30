@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3JPEGFILE_H__680B8929_B03D_45EF_8986_51561B4BDC79__INCLUDED_)
-#define AFX_N3JPEGFILE_H__680B8929_B03D_45EF_8986_51561B4BDC79__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "JPEG/JpegFile.h"
 
@@ -30,4 +26,3 @@ public:
 
 };
 
-#endif // !defined(AFX_N3JPEGFILE_H__680B8929_B03D_45EF_8986_51561B4BDC79__INCLUDED_)

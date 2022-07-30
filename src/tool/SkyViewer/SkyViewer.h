@@ -1,12 +1,8 @@
 // SkyViewer.h : main header file for the SKYVIEWER application
 //
 
-#if !defined(AFX_SKYVIEWER_H__836D22A7_96E6_46B7_A0D7_CF10AD65C812__INCLUDED_)
-#define AFX_SKYVIEWER_H__836D22A7_96E6_46B7_A0D7_CF10AD65C812__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #ifndef __AFXWIN_H__
 	#error include 'stdafx.h' before including this file for PCH
@@ -44,4 +40,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_SKYVIEWER_H__836D22A7_96E6_46B7_A0D7_CF10AD65C812__INCLUDED_)

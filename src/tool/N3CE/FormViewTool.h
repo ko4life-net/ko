@@ -1,9 +1,5 @@
-#if !defined(AFX_FORMVIEWTOOL_H__17EA3D2C_64E7_4C80_95CA_F01045F7BDF7__INCLUDED_)
-#define AFX_FORMVIEWTOOL_H__17EA3D2C_64E7_4C80_95CA_F01045F7BDF7__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // FormViewTool.h : header file
 //
 
@@ -75,4 +71,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_FORMVIEWTOOL_H__17EA3D2C_64E7_4C80_95CA_F01045F7BDF7__INCLUDED_)

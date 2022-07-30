@@ -7,8 +7,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef __N3SNDDEF_H__
-#define __N3SNDDEF_H__
+#pragma once
 
 #include "WaveFile.h"
 #include <DSound.h>
@@ -53,4 +52,3 @@ typedef struct __TABLE_SOUND // Sound 리소스 레코드...
 enum e_SndType { SNDTYPE_2D=0, SNDTYPE_3D, SNDTYPE_STREAM };
 enum e_SndState { SNDSTATE_STOP=0, SNDSTATE_DELAY, SNDSTATE_FADEIN, SNDSTATE_PLAY, SNDSTATE_FADEOUT };
 
-#endif	//end of #ifndef __N3SNDDEF_H__

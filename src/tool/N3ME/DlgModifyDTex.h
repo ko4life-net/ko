@@ -1,9 +1,5 @@
-#if !defined(AFX_DLGMODIFYDTEX_H__2C4EB5E6_3321_4B9C_A818_DDE640421C9B__INCLUDED_)
-#define AFX_DLGMODIFYDTEX_H__2C4EB5E6_3321_4B9C_A818_DDE640421C9B__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // DlgModifyDTex.h : header file
 //
 
@@ -49,4 +45,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGMODIFYDTEX_H__2C4EB5E6_3321_4B9C_A818_DDE640421C9B__INCLUDED_)

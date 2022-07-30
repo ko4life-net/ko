@@ -2,12 +2,8 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3FXEDOC_H__CA8FE555_2AC9_43F1_8021_5808FB81B803__INCLUDED_)
-#define AFX_N3FXEDOC_H__CA8FE555_2AC9_43F1_8021_5808FB81B803__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 
 class CN3FXEDoc : public CDocument
@@ -54,4 +50,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_N3FXEDOC_H__CA8FE555_2AC9_43F1_8021_5808FB81B803__INCLUDED_)

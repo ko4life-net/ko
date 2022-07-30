@@ -1,9 +1,5 @@
-#if !defined(AFX_EVENTEDITPAGE_H__19C24F82_D014_4325_9CF4_9469B3E63265__INCLUDED_)
-#define AFX_EVENTEDITPAGE_H__19C24F82_D014_4325_9CF4_9469B3E63265__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // EventEditPage.h : header file
 //
 
@@ -47,4 +43,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_EVENTEDITPAGE_H__19C24F82_D014_4325_9CF4_9469B3E63265__INCLUDED_)

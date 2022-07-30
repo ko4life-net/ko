@@ -1,9 +1,5 @@
-#if !defined(AFX_FORMVIEWANIMATION_H__35364EF4_04E3_427C_8B17_6D4D88DF823B__INCLUDED_)
-#define AFX_FORMVIEWANIMATION_H__35364EF4_04E3_427C_8B17_6D4D88DF823B__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // FormViewAnimation.h : header file
 //
 #include "N3Base/N3Chr.h"
@@ -138,4 +134,3 @@ inline CN3CEDoc* CFormViewAnimation::GetDocument()
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_FORMVIEWANIMATION_H__35364EF4_04E3_427C_8B17_6D4D88DF823B__INCLUDED_)

@@ -11,8 +11,7 @@
 //	Coded On 2001-04-12 오후 1:50:14
 //
 
-#ifndef __WAVE_H_
-#define __WAVE_H_
+#pragma once
 
 #include <windows.h>
 #include <mmsystem.h>
@@ -56,6 +55,5 @@ public:
     WAVEFORMATEX* GetFormat() { return m_pwfx; };
 };
 
-#endif // #ifndef __WAVE_H_
 //	End Of Code (By Lynus On 2001-04-12 오후 1:50:14 )
 //////////////////////////////////////////////////

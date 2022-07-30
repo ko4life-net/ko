@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3GESNOW_H__F7097F94_15E3_42B8_95DB_9EEC3CFD2E9C__INCLUDED_)
-#define AFX_N3GESNOW_H__F7097F94_15E3_42B8_95DB_9EEC3CFD2E9C__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3GlobalEffect.h"
 
@@ -48,4 +44,3 @@ public:
 
 };
 
-#endif // !defined(AFX_N3GESNOW_H__F7097F94_15E3_42B8_95DB_9EEC3CFD2E9C__INCLUDED_)

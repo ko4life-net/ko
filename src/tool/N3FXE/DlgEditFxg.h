@@ -1,9 +1,5 @@
-#if !defined(AFX_DLGEDITFXG_H__2F7E0A2C_C6F1_4F4F_B297_3A2E35168739__INCLUDED_)
-#define AFX_DLGEDITFXG_H__2F7E0A2C_C6F1_4F4F_B297_3A2E35168739__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // DlgEditFxg.h : header file
 //
 
@@ -79,4 +75,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGEDITFXG_H__2F7E0A2C_C6F1_4F4F_B297_3A2E35168739__INCLUDED_)

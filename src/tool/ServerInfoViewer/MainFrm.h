@@ -2,12 +2,8 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_MAINFRM_H__6F7F8B0C_7BE4_4D0A_BCF4_B0C9FCDBE37A__INCLUDED_)
-#define AFX_MAINFRM_H__6F7F8B0C_7BE4_4D0A_BCF4_B0C9FCDBE37A__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3Base/N3Light.h"
 #include "N3Base/N3Camera.h"
@@ -67,4 +63,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_MAINFRM_H__6F7F8B0C_7BE4_4D0A_BCF4_B0C9FCDBE37A__INCLUDED_)

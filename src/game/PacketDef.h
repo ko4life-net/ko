@@ -1,5 +1,4 @@
-#ifndef __PACKET_DEF_H_
-#define __PACKET_DEF_H_
+#pragma once
 
 const int SOCKET_PORT_GAME = 15001; // 소켓이 붙을 포트 번호..
 const int SOCKET_PORT_LOGIN = 15100; // 소켓이 붙을 포트 번호..
@@ -267,5 +266,4 @@ const int SOCKET_PORT_LOGIN = 15100; // 소켓이 붙을 포트 번호..
 
 #define N3_TEMP_TEST 0xff // 임시 테스트..
 
-#endif // end of #ifndef __PACKET_DEF_H_
 

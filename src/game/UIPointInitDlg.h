@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UIPOINTINITDLG_H__D784EB22_FE0A_4A62_83FF_4664854DE2EC__INCLUDED_)
-#define AFX_UIPOINTINITDLG_H__D784EB22_FE0A_4A62_83FF_4664854DE2EC__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "GameDef.h"
 
@@ -41,4 +37,3 @@ public:
 	void	PushOkButton();
 };
 
-#endif // !defined(AFX_UIPOINTINITDLG_H__D784EB22_FE0A_4A62_83FF_4664854DE2EC__INCLUDED_)

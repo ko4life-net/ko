@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3TERRAINMANAGER_H__4FA514AC_F8F8_4E09_88DC_AC31F2C9B21D__INCLUDED_)
-#define AFX_N3TERRAINMANAGER_H__4FA514AC_F8F8_4E09_88DC_AC31F2C9B21D__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3WorldBase.h"
 
@@ -84,4 +80,3 @@ public:
 	virtual ~CN3TerrainManager();
 };
 
-#endif // !defined(AFX_N3TERRAINMANAGER_H__4FA514AC_F8F8_4E09_88DC_AC31F2C9B21D__INCLUDED_)

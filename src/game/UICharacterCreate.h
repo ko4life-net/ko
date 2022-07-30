@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UICharacterCreate_H__603E8EF7_2789_4162_9F7D_011306807491__INCLUDED_)
-#define AFX_UICharacterCreate_H__603E8EF7_2789_4162_9F7D_011306807491__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "GameDef.h"
 #include "N3Base/N3UIBase.h"
@@ -60,4 +56,3 @@ public:
 	virtual ~CUICharacterCreate();
 };
 
-#endif // !defined(AFX_UICharacterCreate_H__603E8EF7_2789_4162_9F7D_011306807491__INCLUDED_)

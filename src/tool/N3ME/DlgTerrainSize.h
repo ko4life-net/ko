@@ -1,9 +1,5 @@
-#if !defined(AFX_DLGTERRAINSIZE_H__A20BCF9A_2911_47F5_A38E_8CEDCD08012B__INCLUDED_)
-#define AFX_DLGTERRAINSIZE_H__A20BCF9A_2911_47F5_A38E_8CEDCD08012B__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // DlgTerrainSize.h : header file
 //
 
@@ -45,4 +41,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGTERRAINSIZE_H__A20BCF9A_2911_47F5_A38E_8CEDCD08012B__INCLUDED_)

@@ -1,9 +1,5 @@
-#if !defined(AFX_PROPERTYVIEW_H__5DBF88F9_D535_4292_A230_CB192C574AD5__INCLUDED_)
-#define AFX_PROPERTYVIEW_H__5DBF88F9_D535_4292_A230_CB192C574AD5__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // PropertyView.h : header file
 //
 
@@ -107,4 +103,3 @@ inline CUIEDoc* CPropertyView::GetDocument()
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_PROPERTYVIEW_H__5DBF88F9_D535_4292_A230_CB192C574AD5__INCLUDED_)

@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#ifndef __N3FXPARTICLE_H__
-#define __N3FXPARTICLE_H__
+#pragma once
 
 #include "N3Base.h"
 //#include "N3FXDef.h"
@@ -44,4 +43,3 @@ public:
 	virtual ~CN3FXParticle();
 };
 
-#endif // #ifndef __N3FXPARTICLE_H__

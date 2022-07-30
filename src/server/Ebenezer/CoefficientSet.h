@@ -1,9 +1,5 @@
-#if !defined(AFX_COEFFICIENTSET_H__EA091A3F_1163_453C_BD7A_42FC0520C4FD__INCLUDED_)
-#define AFX_COEFFICIENTSET_H__EA091A3F_1163_453C_BD7A_42FC0520C4FD__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // CoefficientSet.h : header file
 //
 
@@ -55,4 +51,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_COEFFICIENTSET_H__EA091A3F_1163_453C_BD7A_42FC0520C4FD__INCLUDED_)

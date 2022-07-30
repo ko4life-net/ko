@@ -1,9 +1,5 @@
-#if !defined(AFX_DLGREGENUSER_H__0975EF8F_1946_499B_BC7C_6237A0554796__INCLUDED_)
-#define AFX_DLGREGENUSER_H__0975EF8F_1946_499B_BC7C_6237A0554796__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // DlgRegenUser.h : header file
 //
 
@@ -58,4 +54,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGREGENUSER_H__0975EF8F_1946_499B_BC7C_6237A0554796__INCLUDED_)

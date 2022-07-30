@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3UIWNDBASE_H__A30E8AD0_2EB8_4F27_8E0D_3E0979560761__INCLUDED_)
-#define AFX_N3UIWNDBASE_H__A30E8AD0_2EB8_4F27_8E0D_3E0979560761__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3Base/N3UIBase.h"
 #include "N3Base/N3UIArea.h"
@@ -181,4 +177,3 @@ public:
 	virtual void				PlayRepairSound();
 };
 
-#endif // !defined(AFX_N3UIWNDBASE_H__A30E8AD0_2EB8_4F27_8E0D_3E0979560761__INCLUDED_)

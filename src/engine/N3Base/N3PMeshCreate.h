@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3PMeshCreate_h__INCLUDED_)
-#define AFX_N3PMeshCreate_h__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 #include "N3Base.h"
 
 #define _SAME_VERTEXPOS
@@ -100,4 +96,3 @@ protected:
 
 };
 
-#endif // !defined(AFX_N3PMeshCreate_h__INCLUDED_)

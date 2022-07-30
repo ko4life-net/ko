@@ -30,8 +30,7 @@
  * and perhaps jerror.h if they want to know the exact error codes.
  */
 
-#ifndef JPEGLIB_H
-#define JPEGLIB_H
+#pragma once
 
 /*
  * First we include the configuration files that record how this
@@ -1072,4 +1071,3 @@ struct jpeg_color_quantizer { long dummy; };
 #include "jerror.h"		/* fetch error codes too */
 #endif
 
-#endif /* JPEGLIB_H */

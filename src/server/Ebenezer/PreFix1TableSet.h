@@ -1,9 +1,5 @@
-#if !defined(AFX_PREFIX1TABLESET_H__52FDFC49_8160_4025_8F57_D96F1F5BE5F6__INCLUDED_)
-#define AFX_PREFIX1TABLESET_H__52FDFC49_8160_4025_8F57_D96F1F5BE5F6__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // PreFix1TableSet.h : header file
 //
 
@@ -72,4 +68,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_PREFIX1TABLESET_H__52FDFC49_8160_4025_8F57_D96F1F5BE5F6__INCLUDED_)

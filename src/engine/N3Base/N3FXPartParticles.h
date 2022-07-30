@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#ifndef __N3FXPARTPARTICLES_H__
-#define __N3FXPARTPARTICLES_H__
+#pragma once
 
 #pragma warning(disable : 4786)
 
@@ -118,6 +117,5 @@ public:
 #endif // end of _N3TOOL
 };
 
-#endif // #ifndef __N3FXPARTPARTICLES_H__
 
 

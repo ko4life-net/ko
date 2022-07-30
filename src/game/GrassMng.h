@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_GRASSMNG_H__3B6D6FD3_4213_40EE_A8E9_F50412B49EC2__INCLUDED_)
-#define AFX_GRASSMNG_H__3B6D6FD3_4213_40EE_A8E9_F50412B49EC2__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "GameBase.h"
 //#include "GameProcedure.h"
@@ -68,4 +64,3 @@ public:
 	virtual ~CGrassMng();
 };
 
-#endif // !defined(AFX_GRASS_H__3B6D6FD3_4213_40EE_A8E9_F50412B49EC2__INCLUDED_)

@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UIKNIGHTSOPERATION_H__1AE95FA6_E4DE_45DF_9EEA_6AEDE400ECA7__INCLUDED_)
-#define AFX_UIKNIGHTSOPERATION_H__1AE95FA6_E4DE_45DF_9EEA_6AEDE400ECA7__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3Base/N3UIBase.h"
 
@@ -85,4 +81,3 @@ public:
 
 };
 
-#endif // !defined(AFX_UIKNIGHTSOPERATION_H__1AE95FA6_E4DE_45DF_9EEA_6AEDE400ECA7__INCLUDED_)

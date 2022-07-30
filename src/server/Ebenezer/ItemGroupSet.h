@@ -1,9 +1,5 @@
-#if !defined(AFX_ITEMGROUPSET_H__973066D1_3776_422A_9D36_CE0C94B5E256__INCLUDED_)
-#define AFX_ITEMGROUPSET_H__973066D1_3776_422A_9D36_CE0C94B5E256__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // ItemGroupSet.h : header file
 //
 
@@ -72,4 +68,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_ITEMGROUPSET_H__973066D1_3776_422A_9D36_CE0C94B5E256__INCLUDED_)

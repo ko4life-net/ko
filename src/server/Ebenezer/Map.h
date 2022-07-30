@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_3DMAP_H__986E02B6_E5A3_43CF_B1D7_A7135551933D__INCLUDED_)
-#define AFX_3DMAP_H__986E02B6_E5A3_43CF_B1D7_A7135551933D__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3Base/N3ShapeMgr.h"
 #include "Region.h"
@@ -88,4 +84,3 @@ public:
 	DWORD m_wBundle;	// Zone Item Max Count
 };
 
-#endif // !defined(AFX_3DMAP_H__986E02B6_E5A3_43CF_B1D7_A7135551933D__INCLUDED_)

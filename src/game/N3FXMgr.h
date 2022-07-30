@@ -2,8 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#ifndef __N3FXMGR_H__
-#define __N3FXMGR_H__
+#pragma once
 
 #pragma warning(disable : 4786)
 
@@ -65,4 +64,3 @@ public:
 	virtual ~CN3FXMgr();
 };
 
-#endif // #ifndef __N3FXMGR_H__

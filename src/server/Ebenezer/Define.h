@@ -1,5 +1,4 @@
-#ifndef _DEFINE_H
-#define _DEFINE_H
+#pragma once
 
 #include <mmsystem.h>
 
@@ -556,4 +555,3 @@ inline void	TimeTrace(TCHAR* pMsg)
 	TRACE(szMsg);
 };
 
-#endif

@@ -2,12 +2,8 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3VIEWERDOC_H__AC59E783_99F4_4FB0_A801_588AAEDE9B9F__INCLUDED_)
-#define AFX_N3VIEWERDOC_H__AC59E783_99F4_4FB0_A801_588AAEDE9B9F__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3Base/N3Scene.h"
 
@@ -72,4 +68,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_N3VIEWERDOC_H__AC59E783_99F4_4FB0_A801_588AAEDE9B9F__INCLUDED_)

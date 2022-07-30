@@ -1,9 +1,5 @@
-#if !defined(AFX_DLGDELGROUP_H__6104C116_7C65_46CF_BABC_2E6D5CE233CF__INCLUDED_)
-#define AFX_DLGDELGROUP_H__6104C116_7C65_46CF_BABC_2E6D5CE233CF__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // DlgDelGroup.h : header file
 //
 
@@ -46,4 +42,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGDELGROUP_H__6104C116_7C65_46CF_BABC_2E6D5CE233CF__INCLUDED_)

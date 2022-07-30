@@ -2,12 +2,8 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3MEVIEW_H__335CC7EE_91A2_41E3_88CA_75FD02DBDBFC__INCLUDED_)
-#define AFX_N3MEVIEW_H__335CC7EE_91A2_41E3_88CA_75FD02DBDBFC__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 class CMapMng;
 class CN3MEDoc;
@@ -75,4 +71,3 @@ inline CN3MEDoc* CN3MEView::GetDocument()
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_N3MEVIEW_H__335CC7EE_91A2_41E3_88CA_75FD02DBDBFC__INCLUDED_)

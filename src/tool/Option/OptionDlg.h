@@ -1,12 +1,8 @@
 // OptionDlg.h : header file
 //
 
-#if !defined(AFX_OPTIONDLG_H__4A33FB17_F101_4D7A_ABAB_CC542891E12D__INCLUDED_)
-#define AFX_OPTIONDLG_H__4A33FB17_F101_4D7A_ABAB_CC542891E12D__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 /////////////////////////////////////////////////////////////////////////////
 // COptionDlg dialog
@@ -94,4 +90,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_OPTIONDLG_H__4A33FB17_F101_4D7A_ABAB_CC542891E12D__INCLUDED_)

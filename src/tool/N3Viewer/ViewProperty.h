@@ -1,9 +1,5 @@
-#if !defined(AFX_VIEWPROPERTY_H__2DE18EC7_53E6_41E3_97EB_C9122F94E12E__INCLUDED_)
-#define AFX_VIEWPROPERTY_H__2DE18EC7_53E6_41E3_97EB_C9122F94E12E__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // ViewProperty.h : header file
 //
 
@@ -81,4 +77,3 @@ inline CN3ViewerDoc* CViewProperty::GetDocument()
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_VIEWPROPERTY_H__2DE18EC7_53E6_41E3_97EB_C9122F94E12E__INCLUDED_)

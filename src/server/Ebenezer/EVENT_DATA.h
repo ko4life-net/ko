@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_EVENT_DATA_H__7514FC26_511B_11D3_BE41_00105A6B97E2__INCLUDED_)
-#define AFX_EVENT_DATA_H__7514FC26_511B_11D3_BE41_00105A6B97E2__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "EXEC.h"
 #include "LOGIC_ELSE.h"
@@ -29,4 +25,3 @@ public:
 	virtual ~EVENT_DATA();
 };
 
-#endif // !defined(AFX_EVENT_DATA_H__7514FC26_511B_11D3_BE41_00105A6B97E2__INCLUDED_)

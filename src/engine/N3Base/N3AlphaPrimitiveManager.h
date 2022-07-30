@@ -2,12 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3ALPHAPRIMITIVEMANAGER_H__616E318C_49E4_4468_9719_E62E384FC48D__INCLUDED_)
-#define AFX_N3ALPHAPRIMITIVEMANAGER_H__616E318C_49E4_4468_9719_E62E384FC48D__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
 
 #include "My_3DStruct.h"
 
@@ -54,4 +49,3 @@ public:
 	virtual ~CN3AlphaPrimitiveManager();
 };
 
-#endif // !defined(AFX_N3ALPHAPRIMITIVEMANAGER_H__616E318C_49E4_4468_9719_E62E384FC48D__INCLUDED_)

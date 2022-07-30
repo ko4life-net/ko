@@ -1,9 +1,5 @@
-#if !defined(AFX_DLGINPUTGROUP_H__A52E3220_BEC2_45A0_8F89_2BF0B6982D26__INCLUDED_)
-#define AFX_DLGINPUTGROUP_H__A52E3220_BEC2_45A0_8F89_2BF0B6982D26__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // DlgInputGroup.h : header file
 //
 
@@ -43,4 +39,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGINPUTGROUP_H__A52E3220_BEC2_45A0_8F89_2BF0B6982D26__INCLUDED_)

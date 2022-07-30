@@ -2,13 +2,9 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_KSCVIEWERDOC_H__F42EC8EB_E49B_4638_B2B2_F25E9C226D55__INCLUDED_)
-#define AFX_KSCVIEWERDOC_H__F42EC8EB_E49B_4638_B2B2_F25E9C226D55__INCLUDED_
+#pragma once
 
 #include "N3JpegFile.h"	// Added by ClassView
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 
 class CKscViewerDoc : public CDocument
@@ -60,4 +56,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_KSCVIEWERDOC_H__F42EC8EB_E49B_4638_B2B2_F25E9C226D55__INCLUDED_)

@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_NPCMAGICPROCESS_H__7C457180_E271_45E6_BEFC_912BCCAB0604__INCLUDED_)
-#define AFX_NPCMAGICPROCESS_H__7C457180_E271_45E6_BEFC_912BCCAB0604__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "iocport.h"
 
@@ -45,4 +41,3 @@ public:
 
 };
 
-#endif // !defined(AFX_NPCMAGICPROCESS_H__7C457180_E271_45E6_BEFC_912BCCAB0604__INCLUDED_)

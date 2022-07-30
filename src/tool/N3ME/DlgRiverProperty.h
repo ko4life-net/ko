@@ -1,9 +1,5 @@
-#if !defined(AFX_DLGRIVERPROPERTY_H__031E22B6_02F1_44F4_BA14_68DF0CBB7A8E__INCLUDED_)
-#define AFX_DLGRIVERPROPERTY_H__031E22B6_02F1_44F4_BA14_68DF0CBB7A8E__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // DlgRiverProperty.h : header file
 //
 
@@ -67,4 +63,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGRIVERPROPERTY_H__031E22B6_02F1_44F4_BA14_68DF0CBB7A8E__INCLUDED_)

@@ -5,12 +5,8 @@
 //  For conditions of distribution and use, see copyright notice in ZipArchive.h
 ////////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_ZipFileHeader_H__0081FC65_C9C9_4D48_AF72_DBF37DF5E0CF__INCLUDED_)
-#define AFX_ZipFileHeader_H__0081FC65_C9C9_4D48_AF72_DBF37DF5E0CF__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "ZipException.h"
 #include "ZipStorage.h"
@@ -103,4 +99,3 @@ protected:
 
 };
 
-#endif // !defined(AFX_ZipFileHeader_H__0081FC65_C9C9_4D48_AF72_DBF37DF5E0CF__INCLUDED_)

@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3EFFECTWAVE2_H__B9A59A74_B468_4552_8D80_E8AF3FE586E0__INCLUDED_)
-#define AFX_N3EFFECTWAVE2_H__B9A59A74_B468_4552_8D80_E8AF3FE586E0__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #define MAX_PONDMESH_LINE		200
 #define MAX_PONDMESH_VERTEX		200*4
@@ -93,4 +89,3 @@ private:
 	void		UpdateWaterPositions();
 };
 
-#endif // !defined(AFX_N3EFFECTWAVE2_H__B9A59A74_B468_4552_8D80_E8AF3FE586E0__INCLUDED_)

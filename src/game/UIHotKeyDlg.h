@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UIHOTKEYDLG_H__9B85201C_0294_4023_8658_923A6A2174BF__INCLUDED_)
-#define AFX_UIHOTKEYDLG_H__9B85201C_0294_4023_8658_923A6A2174BF__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "GameDef.h"
 #include "N3UIWndBase.h"
@@ -87,4 +83,3 @@ public:
 	bool				ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur);
 };
 
-#endif // !defined(AFX_UIHOTKEYDLG_H__9B85201C_0294_4023_8658_923A6A2174BF__INCLUDED_)

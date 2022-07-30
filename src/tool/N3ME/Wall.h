@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_WALL_H__77875B11_2DB7_42DB_8C20_95A1AEDC17B8__INCLUDED_)
-#define AFX_WALL_H__77875B11_2DB7_42DB_8C20_95A1AEDC17B8__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3Base/N3Base.h"
 #include <list>
@@ -30,4 +26,3 @@ public:
 	virtual ~CWall();
 };
 
-#endif // !defined(AFX_WALL_H__77875B11_2DB7_42DB_8C20_95A1AEDC17B8__INCLUDED_)

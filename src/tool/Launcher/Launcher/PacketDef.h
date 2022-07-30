@@ -1,5 +1,4 @@
-#ifndef __PACKET_DEF_H_
-#define __PACKET_DEF_H_
+#pragma once
 
 ///////////////////////////////////////////////////////////////
 // Packet Define 
@@ -11,4 +10,3 @@
 #define SERVER_LIST				0x05	// Recv - b1(ServerCount) loop(	s1(IP길이), str1(IP문자열), s1(서버이름길이), str1(서버이름문자열), s1(서버접속인원) )
 ///////////////////////////////////////////////////////////////
 
-#endif // end of #ifndef __PACKET_DEF_H_

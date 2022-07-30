@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UITRADEBBSSELECTOR_H__034D575A_E014_4C70_ABD5_EE647725A1DF__INCLUDED_)
-#define AFX_UITRADEBBSSELECTOR_H__034D575A_E014_4C70_ABD5_EE647725A1DF__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3Base/N3UIBase.h"
 #include "N3Base/N3UIButton.h"
@@ -36,4 +32,3 @@ public:
 
 };
 
-#endif // !defined(AFX_UITRADEBBSSELECTOR_H__034D575A_E014_4C70_ABD5_EE647725A1DF__INCLUDED_)

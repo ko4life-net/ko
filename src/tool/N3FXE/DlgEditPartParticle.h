@@ -1,9 +1,5 @@
-#if !defined(AFX_DLGEDITPARTPARTICLE_H__34F3B502_A145_4084_AC04_CA2C62CDFAFB__INCLUDED_)
-#define AFX_DLGEDITPARTPARTICLE_H__34F3B502_A145_4084_AC04_CA2C62CDFAFB__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // DlgEditPartParticle.h : header file
 //
 
@@ -118,4 +114,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DLGEDITPARTPARTICLE_H__34F3B502_A145_4084_AC04_CA2C62CDFAFB__INCLUDED_)

@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3UISTATIC_H__CF0050A8_2813_40CB_B696_1CB689FDCC41__INCLUDED_)
-#define AFX_N3UISTATIC_H__CF0050A8_2813_40CB_B696_1CB689FDCC41__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "N3UIBase.h"
 
@@ -46,4 +42,3 @@ public:
 	std::string		GetSndFName_Click() const;
 #endif
 };	
-#endif // !defined(AFX_N3UISTATIC_H__CF0050A8_2813_40CB_B696_1CB689FDCC41__INCLUDED_)

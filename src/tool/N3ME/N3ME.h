@@ -1,12 +1,8 @@
 // N3ME.h : main header file for the N3ME application
 //
 
-#if !defined(AFX_N3ME_H__D671E217_CF08_471A_B577_0055D4F66932__INCLUDED_)
-#define AFX_N3ME_H__D671E217_CF08_471A_B577_0055D4F66932__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #ifndef __AFXWIN_H__
 	#error include 'stdafx.h' before including this file for PCH
@@ -44,4 +40,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_N3ME_H__D671E217_CF08_471A_B577_0055D4F66932__INCLUDED_)

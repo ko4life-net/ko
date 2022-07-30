@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_INI_H__51A75906_827F_44DE_B612_F34750B4A1C8__INCLUDED_)
-#define AFX_INI_H__51A75906_827F_44DE_B612_F34750B4A1C8__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 class CIni  
 {
@@ -35,4 +31,3 @@ public:
 	bool SetPath(const char* filename);
 };
 
-#endif // !defined(AFX_INI_H__51A75906_827F_44DE_B612_F34750B4A1C8__INCLUDED_)

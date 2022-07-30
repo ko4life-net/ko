@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_PORTALVOLUME_H__1AEE8FD1_8D6A_4412_8251_825318D02B19__INCLUDED_)
-#define AFX_PORTALVOLUME_H__1AEE8FD1_8D6A_4412_8251_825318D02B19__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #pragma warning(disable : 4786)
 
@@ -276,4 +272,3 @@ public:
 	__Vector3		Max();
 };
 
-#endif // !defined(AFX_PORTALVOLUME_H__1AEE8FD1_8D6A_4412_8251_825318D02B19__INCLUDED_)

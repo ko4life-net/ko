@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(__UIINN_H__)
-#define __UIINN_H__
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "GameDef.h"
 #include "N3Base/N3UIBase.h"
@@ -29,4 +25,3 @@ public:
 	bool ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg);
 };
 
-#endif //#if !defined(__UIINN_H__)

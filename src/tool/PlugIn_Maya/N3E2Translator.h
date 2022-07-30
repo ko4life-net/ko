@@ -1,5 +1,4 @@
-#if !defined(AFX_CN3E2Translator_h__INCLUDED_)
-#define AFX_CN3E2Translator_h__INCLUDED_
+#pragma once
 
 /*==============================================*/
 /* Header file for the VRML2.0 translator	*/
@@ -80,5 +79,4 @@ inline MString CN3E2Translator::getVersion()
 	return version;
 }
 
-#endif // #if !defined(AFX_CN3E2Translator_h__INCLUDED_)
 

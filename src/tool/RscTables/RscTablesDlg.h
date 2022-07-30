@@ -1,12 +1,8 @@
 // RscTablesDlg.h : header file
 //
 
-#if !defined(AFX_RSCTABLESDLG_H__27563D04_544E_4500_AD52_DBFCA32FBF7E__INCLUDED_)
-#define AFX_RSCTABLESDLG_H__27563D04_544E_4500_AD52_DBFCA32FBF7E__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "../Widget/PropertyList.h"
 #include "RscTablesDef.h"
@@ -77,4 +73,3 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_RSCTABLESDLG_H__27563D04_544E_4500_AD52_DBFCA32FBF7E__INCLUDED_)

@@ -2,12 +2,8 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_SERVERINFOVIEWERDOC_H__B0C14D87_7585_4D1D_984E_79F85FF53FD4__INCLUDED_)
-#define AFX_SERVERINFOVIEWERDOC_H__B0C14D87_7585_4D1D_984E_79F85FF53FD4__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 struct __CharacterSymbol
 {
@@ -92,4 +88,3 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_SERVERINFOVIEWERDOC_H__B0C14D87_7585_4D1D_984E_79F85FF53FD4__INCLUDED_)

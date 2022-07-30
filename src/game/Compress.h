@@ -1,5 +1,4 @@
-#ifndef __COMPRESS_H
-#define __COMPRESS_H
+#pragma once
 
 typedef enum 
 {
@@ -48,4 +47,3 @@ public:
 	int Extract();
 };
 
-#endif

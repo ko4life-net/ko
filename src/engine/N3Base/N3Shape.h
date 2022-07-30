@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_N3Shape_h__INCLUDED_)
-#define AFX_N3Shape_h__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #pragma warning(disable : 4786)
 
@@ -171,4 +167,3 @@ __Vector3	  GetColVertexByIndex(int iIndex);
 //	~(By Ecli666 On 2002-08-06 ¿ÀÈÄ 4:33:04 )
 };
 
-#endif // !defined(AFX_N3Shape_h__INCLUDED_)

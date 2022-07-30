@@ -2,12 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_UIDEAD_H__B5FAFAB6_04A4_4708_945E_731AE35257EB__INCLUDED_)
-#define AFX_UIDEAD_H__B5FAFAB6_04A4_4708_945E_731AE35257EB__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 
 #include "GameDef.h"
 #include "N3Base/N3UIBase.h"
@@ -35,4 +31,3 @@ public:
 
 };
 
-#endif // !defined(AFX_UIDEAD_H__B5FAFAB6_04A4_4708_945E_731AE35257EB__INCLUDED_)
