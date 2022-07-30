@@ -5,9 +5,6 @@
 #if !defined(AFX_MAINFRM_H__5C3A71CC_7A05_4B75_9650_5C1396B5D48A__INCLUDED_)
 #define AFX_MAINFRM_H__5C3A71CC_7A05_4B75_9650_5C1396B5D48A__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 class CMainFrame : public CFrameWnd
 {

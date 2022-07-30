@@ -6,9 +6,6 @@
 #if !defined(AFX_STDAFX_H__ACA18BF8_042E_432F_B824_E89C2148F69C__INCLUDED_)
 #define AFX_STDAFX_H__ACA18BF8_042E_432F_B824_E89C2148F69C__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
 

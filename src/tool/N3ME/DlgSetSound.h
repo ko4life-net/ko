@@ -1,9 +1,6 @@
 #if !defined(AFX_DLGSETSOUND_H__78CB4442_580D_4CBC_9C3F_3927A48D1218__INCLUDED_)
 #define AFX_DLGSETSOUND_H__78CB4442_580D_4CBC_9C3F_3927A48D1218__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // DlgSetSound.h : header file
 //
 

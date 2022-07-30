@@ -1,9 +1,6 @@
 #if !defined(AFX_VIEWSCENETREE_H__71D8A066_827D_4575_973A_0AFE570B66EF__INCLUDED_)
 #define AFX_VIEWSCENETREE_H__71D8A066_827D_4575_973A_0AFE570B66EF__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // ViewSceneTree.h : header file
 //
 

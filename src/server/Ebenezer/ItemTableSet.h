@@ -1,9 +1,6 @@
 #if !defined(AFX_ITEMTABLESET_H__9C214CAF_6316_4E33_84A4_8DEBC3D83176__INCLUDED_)
 #define AFX_ITEMTABLESET_H__9C214CAF_6316_4E33_84A4_8DEBC3D83176__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // ItemTableSet.h : header file
 //
 

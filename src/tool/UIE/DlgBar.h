@@ -1,9 +1,6 @@
 #if !defined(AFX_DLGBAR_H__C665D39A_F8D8_44DA_80BA_1517EA83BB90__INCLUDED_)
 #define AFX_DLGBAR_H__C665D39A_F8D8_44DA_80BA_1517EA83BB90__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // DlgBar.h : header file
 //
 

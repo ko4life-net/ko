@@ -5,9 +5,6 @@
 #if !defined(AFX_MAINFRM_H__3EA7AF1D_2BD0_44CA_A957_189BFB0D0B38__INCLUDED_)
 #define AFX_MAINFRM_H__3EA7AF1D_2BD0_44CA_A957_189BFB0D0B38__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #include "N3Base/N3EngTool.h"
 #include "N3Base/N3Camera.h"

@@ -1,9 +1,6 @@
 #if !defined(AFX_DLGTEXTURE_H__A7C76815_D640_4A33_AEE0_2C53DC8D7CD8__INCLUDED_)
 #define AFX_DLGTEXTURE_H__A7C76815_D640_4A33_AEE0_2C53DC8D7CD8__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // DlgTexture.h : header file
 //
 #include "TexViewer.h"

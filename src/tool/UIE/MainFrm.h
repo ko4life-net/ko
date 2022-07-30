@@ -5,9 +5,6 @@
 #if !defined(AFX_MAINFRM_H__6A31AAD9_D434_4C15_949D_A76014174F08__INCLUDED_)
 #define AFX_MAINFRM_H__6A31AAD9_D434_4C15_949D_A76014174F08__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 #include "DlgBar.h"
 #include "N3Base/N3EngTool.h"
 

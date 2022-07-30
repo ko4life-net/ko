@@ -1,9 +1,6 @@
 #if !defined(AFX_DLGSHAPELIST_H__211F99A7_27C9_4341_A573_09BDBBA0A0A6__INCLUDED_)
 #define AFX_DLGSHAPELIST_H__211F99A7_27C9_4341_A573_09BDBBA0A0A6__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // DlgShapeList.h : header file
 //
 

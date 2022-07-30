@@ -1,9 +1,6 @@
 #if !defined(AFX_SETTINGDLG_H__14FB04F9_C15B_4AAF_81A1_544508F3F9ED__INCLUDED_)
 #define AFX_SETTINGDLG_H__14FB04F9_C15B_4AAF_81A1_544508F3F9ED__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // SettingDlg.h : header file
 //
 

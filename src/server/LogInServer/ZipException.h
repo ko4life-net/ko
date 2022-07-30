@@ -8,9 +8,6 @@
 #if !defined(AFX_ZIPEXCEPTION_H__E3546921_D728_11D3_B7C7_E77339672847__INCLUDED_)
 #define AFX_ZIPEXCEPTION_H__E3546921_D728_11D3_B7C7_E77339672847__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 typedef unsigned short uShort;
 // errors number definitions
 #define ZIP_BADZIPFILE		(-101)

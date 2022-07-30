@@ -5,9 +5,6 @@
 #if !defined(__WARPMGR_H__)
 #define __WARPMGR_H__
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #include "N3Base/N3BaseFileAccess.h"
 #include <list>

@@ -5,9 +5,6 @@
 #if !defined(AFX_SKYVIEWERDOC_H__A52B394A_9F09_456F_830B_4737EACCAF3E__INCLUDED_)
 #define AFX_SKYVIEWERDOC_H__A52B394A_9F09_456F_830B_4737EACCAF3E__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #include "N3Base/N3SkyMng.h"
 #include "N3Base/N3GlobalEffectMng.h"

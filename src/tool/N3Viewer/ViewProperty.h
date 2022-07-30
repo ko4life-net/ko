@@ -1,9 +1,6 @@
 #if !defined(AFX_VIEWPROPERTY_H__2DE18EC7_53E6_41E3_97EB_C9122F94E12E__INCLUDED_)
 #define AFX_VIEWPROPERTY_H__2DE18EC7_53E6_41E3_97EB_C9122F94E12E__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // ViewProperty.h : header file
 //
 

@@ -5,9 +5,6 @@
 #if !defined(AFX_NPCTHREAD_H__EBEC0AA4_EEF9_4F28_AAF0_6FB20E2891EB__INCLUDED_)
 #define AFX_NPCTHREAD_H__EBEC0AA4_EEF9_4F28_AAF0_6FB20E2891EB__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 //#include "Npc.h"
 #include "IOCPort.h"

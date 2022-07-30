@@ -4,9 +4,6 @@
 #if !defined(AFX_N3INDOOR_H__7CDFFA91_B1B3_45A9_B01E_49C0E165ED2E__INCLUDED_)
 #define AFX_N3INDOOR_H__7CDFFA91_B1B3_45A9_B01E_49C0E165ED2E__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #ifndef __AFXWIN_H__
 	#error include 'stdafx.h' before including this file for PCH

@@ -1,9 +1,6 @@
 #if !defined(AFX_VERSIONSET_H__AE3C6553_0D3F_4A4A_AD05_57EF200CB92C__INCLUDED_)
 #define AFX_VERSIONSET_H__AE3C6553_0D3F_4A4A_AD05_57EF200CB92C__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // VersionSet.h : header file
 //
 

@@ -1,9 +1,6 @@
 #if !defined(AFX_ORGANIZEVIEW_H__57A9D1DE_2B50_41D4_9B08_8D48CE641331__INCLUDED_)
 #define AFX_ORGANIZEVIEW_H__57A9D1DE_2B50_41D4_9B08_8D48CE641331__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // OrganizeView.h : header file
 //
 

@@ -6,9 +6,6 @@
 #ifndef __N3TERRAIN_H__
 #define __N3TERRAIN_H__
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 ////////////////////////////////
 //	변수앞에 ti_가 붙은 건 타일단위..

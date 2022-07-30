@@ -1,9 +1,6 @@
 #if !defined(AFX_SKILLTABLESET_H__4C609A54_A619_4D02_87C8_DA6F9B6462DD__INCLUDED_)
 #define AFX_SKILLTABLESET_H__4C609A54_A619_4D02_87C8_DA6F9B6462DD__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // SkillTableSet.h : header file
 //
 

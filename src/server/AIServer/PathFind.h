@@ -5,9 +5,6 @@
 #if !defined(AFX_PATHFIND_H__395FDD6E_C35A_43A2_BBB2_FCDCD17E8CE8__INCLUDED_)
 #define AFX_PATHFIND_H__395FDD6E_C35A_43A2_BBB2_FCDCD17E8CE8__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 class _PathNode {
 public:

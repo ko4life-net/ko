@@ -4,9 +4,6 @@
 #if !defined(AFX_LAUNCHER_H__E8289BE5_E48B_4B72_AA38_5C6AFAA024EC__INCLUDED_)
 #define AFX_LAUNCHER_H__E8289BE5_E48B_4B72_AA38_5C6AFAA024EC__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #ifndef __AFXWIN_H__
 	#error include 'stdafx.h' before including this file for PCH

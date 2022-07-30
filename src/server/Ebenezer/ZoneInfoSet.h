@@ -1,9 +1,6 @@
 #if !defined(AFX_ZONEINFOSET_H__2F772D75_7255_43A8_869E_82FA34930974__INCLUDED_)
 #define AFX_ZONEINFOSET_H__2F772D75_7255_43A8_869E_82FA34930974__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // ZoneInfoSet.h : header file
 //
 

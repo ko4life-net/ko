@@ -5,9 +5,6 @@
 #if !defined(AFX_MAINFRM_H__3EC7F770_B6B0_4DE7_8DA0_8ECACAD52DC0__INCLUDED_)
 #define AFX_MAINFRM_H__3EC7F770_B6B0_4DE7_8DA0_8ECACAD52DC0__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #pragma warning(disable : 4786)
 

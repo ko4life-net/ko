@@ -5,9 +5,6 @@
 #if !defined(__LIGHTMGR_H__)
 #define __LIGHTMGR_H__
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #include "N3Base/N3Base.h"
 #include "N3Base/N3Light.h"

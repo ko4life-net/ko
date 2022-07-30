@@ -1,9 +1,6 @@
 #if !defined(AFX_BATTLESET_H__06E78B0F_F744_4F35_AE1F_65234AAA9743__INCLUDED_)
 #define AFX_BATTLESET_H__06E78B0F_F744_4F35_AE1F_65234AAA9743__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // BattleSet.h : header file
 //
 

@@ -1,9 +1,6 @@
 #if !defined(AFX_COMDIALOG_H__742979CE_A9B8_4F71_8956_6B02C385BE73__INCLUDED_)
 #define AFX_COMDIALOG_H__742979CE_A9B8_4F71_8956_6B02C385BE73__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // ComDialog.h : header file
 //
 

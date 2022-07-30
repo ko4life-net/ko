@@ -1,9 +1,6 @@
 #if !defined(AFX_DLGDELDTEX_H__790BA71D_B58D_4E71_8438_790CC327F643__INCLUDED_)
 #define AFX_DLGDELDTEX_H__790BA71D_B58D_4E71_8438_790CC327F643__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // DlgDelDTex.h : header file
 //
 

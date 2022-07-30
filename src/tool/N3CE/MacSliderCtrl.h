@@ -1,9 +1,6 @@
 #if !defined(AFX_MACSLIDERCTRL_H__021A6935_B2FE_11D3_90FC_0020AFBC499D__INCLUDED_)
 #define AFX_MACSLIDERCTRL_H__021A6935_B2FE_11D3_90FC_0020AFBC499D__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // MacSliderCtrl.h : header file
 //
 //	CMacSliderCtrl class, version 1.0

@@ -1,9 +1,6 @@
 #if !defined(AFX_DLGDATACOUNT_H__49ED5914_1366_43F5_B899_7FF8D0D00380__INCLUDED_)
 #define AFX_DLGDATACOUNT_H__49ED5914_1366_43F5_B899_7FF8D0D00380__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // DlgDataCount.h : header file
 //
 

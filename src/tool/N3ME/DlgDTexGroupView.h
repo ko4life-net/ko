@@ -1,9 +1,6 @@
 #if !defined(AFX_DLGDTEXGROUPVIEW_H__F3662140_F843_4AEF_9FA4_9812A085ED8B__INCLUDED_)
 #define AFX_DLGDTEXGROUPVIEW_H__F3662140_F843_4AEF_9FA4_9812A085ED8B__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // DlgDTexGroupView.h : header file
 //
 class CDTexGroupMng;

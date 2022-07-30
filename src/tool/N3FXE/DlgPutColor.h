@@ -1,9 +1,6 @@
 #if !defined(AFX_DLGPUTCOLOR_H__BE9E4B7C_5FA8_40AD_BDAD_C7B51EA9C897__INCLUDED_)
 #define AFX_DLGPUTCOLOR_H__BE9E4B7C_5FA8_40AD_BDAD_C7B51EA9C897__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // DlgPutColor.h : header file
 //
 

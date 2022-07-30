@@ -1,9 +1,6 @@
 #if !defined(AFX_DLGEDITEVENT_H__73C5E634_B179_4B9F_B487_06D6A992FE95__INCLUDED_)
 #define AFX_DLGEDITEVENT_H__73C5E634_B179_4B9F_B487_06D6A992FE95__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // DlgEditEvent.h : header file
 //
 

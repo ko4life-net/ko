@@ -1,9 +1,6 @@
 #if !defined(AFX_KNIGHTSSET_H__1942BDDE_8833_404F_83C6_EFE16E0435F4__INCLUDED_)
 #define AFX_KNIGHTSSET_H__1942BDDE_8833_404F_83C6_EFE16E0435F4__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // KnightsSet.h : header file
 //
 

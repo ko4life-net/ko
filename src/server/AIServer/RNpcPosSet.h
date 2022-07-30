@@ -1,9 +1,6 @@
 #if !defined(AFX_RNPCPOSSET_H__A7F476F8_A63E_4734_8763_7DD5C5115D54__INCLUDED_)
 #define AFX_RNPCPOSSET_H__A7F476F8_A63E_4734_8763_7DD5C5115D54__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // RNpcPosSet.h : header file
 //
 

@@ -5,9 +5,6 @@
 #if !defined(AFX_MAINFRM_H__8AE789B9_D3EB_4161_B5B1_AE5DF24FAD80__INCLUDED_)
 #define AFX_MAINFRM_H__8AE789B9_D3EB_4161_B5B1_AE5DF24FAD80__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 class CN3CEView;
 class CFormViewProperty;

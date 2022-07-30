@@ -5,9 +5,6 @@
 #if !defined(AFX_DTEXATTR_H__B351DEE0_1602_478C_B5EE_0AC30727C7E8__INCLUDED_)
 #define AFX_DTEXATTR_H__B351DEE0_1602_478C_B5EE_0AC30727C7E8__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 class CN3Texture;
 #include "LyTerrainDef.h"

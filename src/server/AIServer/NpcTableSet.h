@@ -1,9 +1,6 @@
 #if !defined(AFX_NPCTABLESET_H__1569108D_232D_47F0_A318_C0B50E1D8D68__INCLUDED_)
 #define AFX_NPCTABLESET_H__1569108D_232D_47F0_A318_C0B50E1D8D68__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // NpcTableSet.h : header file
 //
 

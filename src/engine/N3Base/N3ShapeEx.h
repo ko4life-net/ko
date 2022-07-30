@@ -11,9 +11,6 @@
 #if !defined(AFX_N3SHAPEEX_H__C7E1DD38_999B_4AE7_942F_58A9225C2061__INCLUDED_)
 #define AFX_N3SHAPEEX_H__C7E1DD38_999B_4AE7_942F_58A9225C2061__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #include "N3Shape.h"
 const DWORD AF_POS = 0x00000001;		// Pos 변화가 있다.

@@ -4,9 +4,6 @@
 #if !defined(AFX_VERSIONMANAGER_H__0D350B04_57C4_481C_AF95_CD1337B02391__INCLUDED_)
 #define AFX_VERSIONMANAGER_H__0D350B04_57C4_481C_AF95_CD1337B02391__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #ifndef __AFXWIN_H__
 	#error include 'stdafx.h' before including this file for PCH

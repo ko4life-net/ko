@@ -1,9 +1,6 @@
 #if !defined(AFX_FLOORDLG_H__16ADC837_2BEA_4B9E_90D5_753F02C0CB4E__INCLUDED_)
 #define AFX_FLOORDLG_H__16ADC837_2BEA_4B9E_90D5_753F02C0CB4E__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // FloorDlg.h : header file
 //
 

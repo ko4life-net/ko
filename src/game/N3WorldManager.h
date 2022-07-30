@@ -5,9 +5,6 @@
 #if !defined(AFX_N3WORLDMANAGER_H__624E2205_DA37_483B_815A_B77C12F6C352__INCLUDED_)
 #define AFX_N3WORLDMANAGER_H__624E2205_DA37_483B_815A_B77C12F6C352__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #include "GameBase.h"
 #include "N3WorldBase.h"

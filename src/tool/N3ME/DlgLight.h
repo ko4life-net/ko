@@ -1,9 +1,6 @@
 #if !defined(AFX_DLGLIGHT_H__61DD6BB5_F982_4ECF_ABE3_C181081BC28C__INCLUDED_)
 #define AFX_DLGLIGHT_H__61DD6BB5_F982_4ECF_ABE3_C181081BC28C__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // DlgLight.h : header file
 //
 

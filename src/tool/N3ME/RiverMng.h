@@ -5,9 +5,6 @@
 #if !defined(AFX_RIVERMNG_H__3A365AC2_8F3E_4E3A_98B4_953352C11BA3__INCLUDED_)
 #define AFX_RIVERMNG_H__3A365AC2_8F3E_4E3A_98B4_953352C11BA3__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #include "N3Base/N3BaseFileAccess.h"
 #include "VtxPosDummy.h"

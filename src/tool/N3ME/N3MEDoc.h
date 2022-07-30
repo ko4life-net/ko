@@ -5,9 +5,6 @@
 #if !defined(AFX_N3MEDOC_H__F966DC17_6B9F_4DF5_AA11_3A85CC37EB0D__INCLUDED_)
 #define AFX_N3MEDOC_H__F966DC17_6B9F_4DF5_AA11_3A85CC37EB0D__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 class CN3MEDoc : public CDocument
 {

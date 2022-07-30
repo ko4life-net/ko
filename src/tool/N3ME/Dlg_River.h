@@ -1,9 +1,6 @@
 #if !defined(AFX_DLG_RIVER_H__5084B2FB_3DD4_404E_9B5F_319440CBBBD3__INCLUDED_)
 #define AFX_DLG_RIVER_H__5084B2FB_3DD4_404E_9B5F_319440CBBBD3__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // Dlg_River.h : header file
 //
 

@@ -1,9 +1,6 @@
 #if !defined(AFX_TEXVIEWER_H__E7AB26A3_E760_421C_B0CE_E2118D0FB88A__INCLUDED_)
 #define AFX_TEXVIEWER_H__E7AB26A3_E760_421C_B0CE_E2118D0FB88A__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // TexViewer.h : header file
 //
 #define UM_UPDATE_INFO	((WM_USER)+101)

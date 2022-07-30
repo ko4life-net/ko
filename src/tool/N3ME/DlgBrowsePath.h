@@ -4,9 +4,6 @@
 #if !defined(AFX_CDlgBrowsePath_H__F0B620A7_9D4F_11D1_B10E_B8F603C10000__INCLUDED_)
 #define AFX_CDlgBrowsePath_H__F0B620A7_9D4F_11D1_B10E_B8F603C10000__INCLUDED_
 
-#if _MSC_VER >= 1000
-#pragma once
-#endif // _MSC_VER >= 1000
 
 #include "Resource.h"
 #include "ShellTree.h"

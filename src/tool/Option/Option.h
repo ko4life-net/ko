@@ -4,9 +4,6 @@
 #if !defined(AFX_OPTION_H__73522433_A06B_4006_9AA4_C9F554EF8231__INCLUDED_)
 #define AFX_OPTION_H__73522433_A06B_4006_9AA4_C9F554EF8231__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #ifndef __AFXWIN_H__
 	#error include 'stdafx.h' before including this file for PCH

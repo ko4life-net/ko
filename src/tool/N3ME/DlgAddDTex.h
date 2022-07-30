@@ -1,9 +1,6 @@
 #if !defined(AFX_DLGADDDTEX_H__703821EA_F9D1_4949_BE8E_97401A0B8236__INCLUDED_)
 #define AFX_DLGADDDTEX_H__703821EA_F9D1_4949_BE8E_97401A0B8236__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // DlgAddDTex.h : header file
 //
 

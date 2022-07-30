@@ -1,9 +1,6 @@
 #if !defined(AFX_NPCPOSSET_H__0F6AE0D2_2327_44B1_8D11_AEB3D8DE2CB9__INCLUDED_)
 #define AFX_NPCPOSSET_H__0F6AE0D2_2327_44B1_8D11_AEB3D8DE2CB9__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // NpcPosSet.h : header file
 //
 

@@ -5,9 +5,6 @@
 #if !defined(AFX_N3MOON_H__A89DCBCF_C959_4D36_92C1_E138448717D9__INCLUDED_)
 #define AFX_N3MOON_H__A89DCBCF_C959_4D36_92C1_E138448717D9__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #include "N3Base.h"
 #include <string>

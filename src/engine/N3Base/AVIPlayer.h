@@ -5,10 +5,6 @@
 #if !defined(AFX_AVIPLAYER_H__303DFB16_16A9_41C8_939F_0EB7B0AB0A03__INCLUDED_)
 #define AFX_AVIPLAYER_H__303DFB16_16A9_41C8_939F_0EB7B0AB0A03__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-
 #include <dshow.h>
 
 class CAVIPlayer  

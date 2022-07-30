@@ -5,9 +5,6 @@
 #if !defined(AFX_DTEXGROUPMNG_H__C89F0301_7CC1_4AB8_BC19_6CC82919DBD3__INCLUDED_)
 #define AFX_DTEXGROUPMNG_H__C89F0301_7CC1_4AB8_BC19_6CC82919DBD3__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #include "N3Base/N3Base.h"
 #include "LyTerrainDef.h"

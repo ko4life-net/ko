@@ -1,9 +1,6 @@
 #if !defined(AFX_SHAPETYPEDLG_H__BD715689_4AFC_437E_8842_ADFC11D39911__INCLUDED_)
 #define AFX_SHAPETYPEDLG_H__BD715689_4AFC_437E_8842_ADFC11D39911__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 // ShapeTypeDlg.h : header file
 //

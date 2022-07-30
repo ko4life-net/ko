@@ -5,9 +5,6 @@
 #if !defined(AFX_PLAYERMGR_H__036554E3_CDCC_4B13_97B2_34C5D4D63E8C__INCLUDED_)
 #define AFX_PLAYERMGR_H__036554E3_CDCC_4B13_97B2_34C5D4D63E8C__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #include <list>
 #include "PlayerBase.h"

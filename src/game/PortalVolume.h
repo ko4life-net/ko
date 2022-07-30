@@ -5,9 +5,6 @@
 #if !defined(AFX_PORTALVOLUME_H__81823A3C_844B_4385_8D5B_F62606F89593__INCLUDED_)
 #define AFX_PORTALVOLUME_H__81823A3C_844B_4385_8D5B_F62606F89593__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #include "N3Base/N3Base.h"
 #include "N3Base/N3Shape.h"

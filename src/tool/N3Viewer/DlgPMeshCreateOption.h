@@ -1,9 +1,6 @@
 #if !defined(AFX_DLGPMESHCREATEOPTION_H__E03BEC53_E5C6_498A_BFEC_04DE5A9A9923__INCLUDED_)
 #define AFX_DLGPMESHCREATEOPTION_H__E03BEC53_E5C6_498A_BFEC_04DE5A9A9923__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // DlgPMeshCreateOption.h : header file
 //
 #include "resource.h"

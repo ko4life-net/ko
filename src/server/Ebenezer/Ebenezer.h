@@ -4,9 +4,6 @@
 #if !defined(AFX_EBENEZER_H__CCD753A4_B614_486A_895D_330D83D9775F__INCLUDED_)
 #define AFX_EBENEZER_H__CCD753A4_B614_486A_895D_330D83D9775F__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #ifndef __AFXWIN_H__
 	#error include 'stdafx.h' before including this file for PCH

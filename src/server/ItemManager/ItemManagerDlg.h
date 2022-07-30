@@ -4,9 +4,6 @@
 #if !defined(AFX_ITEMMANAGERDLG_H__37DB9CC2_C6BC_4681_B13C_E44658B45FD8__INCLUDED_)
 #define AFX_ITEMMANAGERDLG_H__37DB9CC2_C6BC_4681_B13C_E44658B45FD8__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #include "SharedMem.h"
 #include "DBAgent.h"

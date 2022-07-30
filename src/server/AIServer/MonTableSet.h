@@ -1,9 +1,6 @@
 #if !defined(AFX_MONTABLESET_H__9A52F839_5F69_4BC3_B71F_296D06461F35__INCLUDED_)
 #define AFX_MONTABLESET_H__9A52F839_5F69_4BC3_B71F_296D06461F35__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // MonTableSet.h : header file
 //
 

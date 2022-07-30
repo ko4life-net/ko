@@ -5,9 +5,6 @@
 #if !defined(AFX_N3PMesh_h__INCLUDED_)
 #define AFX_N3PMesh_h__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 //#define _USE_VERTEXBUFFER			// 선언하면 VertexBuffer와 IndexBuffer를 사용한다.
 

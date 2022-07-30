@@ -1,9 +1,6 @@
 #if !defined(AFX_DLGMAPVIEW_H__78BB52D1_A276_4F30_9B9D_7A1915985098__INCLUDED_)
 #define AFX_DLGMAPVIEW_H__78BB52D1_A276_4F30_9B9D_7A1915985098__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // DlgMapView.h : header file
 //
 /////////////////////////////////////////////////////////////////////////////

@@ -5,9 +5,6 @@
 #if !defined(AFX_MAP_H__BCC14687_C38F_4597_8522_2170ED077037__INCLUDED_)
 #define AFX_MAP_H__BCC14687_C38F_4597_8522_2170ED077037__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #include "N3Base/N3ShapeMgr.h"
 #include "STLMap.h"

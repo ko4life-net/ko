@@ -1,9 +1,6 @@
 #if !defined(AFX_DLGSAVEEVT_H__6D9859E6_F6BF_4C64_9120_A0DA2D27E456__INCLUDED_)
 #define AFX_DLGSAVEEVT_H__6D9859E6_F6BF_4C64_9120_A0DA2D27E456__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // DlgSaveEvt.h : header file
 //
 

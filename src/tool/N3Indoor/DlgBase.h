@@ -1,9 +1,6 @@
 #if !defined(AFX_DLGBASE_H__66F49FA8_BC6C_4136_A7A0_AA23CA80A3FB__INCLUDED_)
 #define AFX_DLGBASE_H__66F49FA8_BC6C_4136_A7A0_AA23CA80A3FB__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // DlgBase.h : header file
 //
 

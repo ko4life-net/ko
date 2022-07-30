@@ -8,9 +8,6 @@
 #if !defined(AFX_ZipCentralDir_H__859029E8_8927_4717_9D4B_E26E5DA12BAE__INCLUDED_)
 #define AFX_ZipCentralDir_H__859029E8_8927_4717_9D4B_E26E5DA12BAE__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 #include "ZipException.h"
 #include <afxtempl.h>
 #include "ZipFileHeader.h"

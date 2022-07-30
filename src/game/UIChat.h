@@ -5,9 +5,6 @@
 #if !defined(AFX_UICHAT_H__2CFECA0D_EA38_4900_86BB_BAFD4D5EE6F7__INCLUDED_)
 #define AFX_UICHAT_H__2CFECA0D_EA38_4900_86BB_BAFD4D5EE6F7__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #include "N3Base/N3UIBase.h"
 #include <deque>

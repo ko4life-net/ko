@@ -1,9 +1,6 @@
 #if !defined(AFX_DLGSCENEGRAPH_H__C0B705DA_3306_4993_B4A8_77E63DE2CB9D__INCLUDED_)
 #define AFX_DLGSCENEGRAPH_H__C0B705DA_3306_4993_B4A8_77E63DE2CB9D__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // DlgSceneGraph.h : header file
 //
 

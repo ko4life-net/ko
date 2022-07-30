@@ -5,9 +5,6 @@
 #if !defined(AFX_N3SKY_H__0966C25E_2E50_48A2_9DF4_E4CD279E73CE__INCLUDED_)
 #define AFX_N3SKY_H__0966C25E_2E50_48A2_9DF4_E4CD279E73CE__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #include "N3Base.h"
 #include "N3ColorChange.h"

@@ -1,9 +1,6 @@
 #if !defined(AFX_DLGPERCENT_H__6C79643F_FFAC_4AA1_9414_C93ACF3AC8BE__INCLUDED_)
 #define AFX_DLGPERCENT_H__6C79643F_FFAC_4AA1_9414_C93ACF3AC8BE__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 // DlgPercent.h : header file
 //
 

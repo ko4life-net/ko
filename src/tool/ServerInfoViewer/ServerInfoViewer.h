@@ -4,9 +4,6 @@
 #if !defined(AFX_SERVERINFOVIEWER_H__452D9531_1BB2_4A1B_BD75_8B72FD84AF51__INCLUDED_)
 #define AFX_SERVERINFOVIEWER_H__452D9531_1BB2_4A1B_BD75_8B72FD84AF51__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 #ifndef __AFXWIN_H__
 	#error include 'stdafx.h' before including this file for PCH
