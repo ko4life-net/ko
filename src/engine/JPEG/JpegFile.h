@@ -148,7 +148,7 @@
 	extern "C" {
 #endif // __cplusplus
 
-#include "jpeglib.h"
+#include <jpeglib.h>
 
 #ifdef __cplusplus
 	}
