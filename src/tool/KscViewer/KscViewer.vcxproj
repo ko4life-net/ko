@@ -116,7 +116,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\engine\JPEG\JpegFile.cpp" />
+    <ClCompile Include="..\..\engine\N3Base\JpegFile.cpp" />
     <ClCompile Include="KscViewer.cpp" />
     <ClCompile Include="KscViewerDoc.cpp" />
     <ClCompile Include="KscViewerView.cpp" />
@@ -131,7 +131,7 @@
     <ResourceCompile Include="KscViewer.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\engine\JPEG\JpegFile.h" />
+    <ClInclude Include="..\..\engine\N3Base\JpegFile.h" />
     <ClInclude Include="KscViewer.h" />
     <ClInclude Include="KscViewerDoc.h" />
     <ClInclude Include="KscViewerView.h" />

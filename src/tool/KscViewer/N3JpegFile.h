@@ -5,7 +5,7 @@
 #pragma once
 
 
-#include "JPEG/JpegFile.h"
+#include "N3Base/JpegFile.h"
 
 class CN3JpegFile  : public CJpegFile
 {

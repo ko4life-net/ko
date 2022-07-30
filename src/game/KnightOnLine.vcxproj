@@ -132,7 +132,7 @@
     <CustomBuild Include="res\repair1.cur" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\engine\JPEG\JpegFile.h" />
+    <ClInclude Include="..\engine\N3Base\JpegFile.h" />
     <ClInclude Include="..\engine\N3Base\BitMapFile.h" />
     <ClInclude Include="..\engine\N3Base\DFont.h" />
     <ClInclude Include="..\engine\N3Base\JPEG.H" />
@@ -320,7 +320,7 @@
     <Image Include="res\KnightOnLine.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\engine\JPEG\JpegFile.cpp" />
+    <ClCompile Include="..\engine\N3Base\JpegFile.cpp" />
     <ClCompile Include="..\engine\N3Base\BitMapFile.cpp" />
     <ClCompile Include="..\engine\N3Base\DFont.cpp" />
     <ClCompile Include="..\engine\N3Base\JPEG.CPP" />

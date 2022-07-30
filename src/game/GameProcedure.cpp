@@ -42,7 +42,7 @@
 
 #include "N3Base/BitmapFile.h"
 #include "N3Base/Jpeg.h"
-#include "JPEG/JpegFile.h"
+#include "N3Base/JpegFile.h"
 
 #include "MagicSkillMng.h"
 #include "KnightChrMgr.h"

@@ -622,7 +622,7 @@
     <ClInclude Include="GameDef.h" />
     <ClInclude Include="GameEng.h" />
     <ClInclude Include="GameProcedure.h" />
-    <ClInclude Include="..\engine\JPEG\JpegFile.h" />
+    <ClInclude Include="..\engine\N3Base\JpegFile.h" />
     <ClInclude Include="LocalInput.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="Main.h" />
@@ -1115,7 +1115,7 @@
     <ClCompile Include="GameCursor.cpp" />
     <ClCompile Include="GameEng.cpp" />
     <ClCompile Include="GameProcedure.cpp" />
-    <ClCompile Include="..\engine\JPEG\JpegFile.cpp" />
+    <ClCompile Include="..\engine\N3Base\JpegFile.cpp" />
     <ClCompile Include="LocalInput.cpp" />
     <ClCompile Include="StdAfx.cpp" />
     <ClCompile Include="Main.cpp" />
