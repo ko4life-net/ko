@@ -8,7 +8,7 @@
 #pragma once
 
 #include "AutoBuffer.h"
-#include "zlib.h"
+#include <zlib.h>
 
 class CZipInternalInfo  
 {
