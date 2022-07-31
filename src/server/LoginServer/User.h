@@ -11,7 +11,7 @@ class CLoginServerDlg;
 class CUser : public CIOCPSocket2  
 {
 public:
-	CUser();
+	CUser(CLoginServerDlg * pMain);
 	virtual ~CUser();
 
 	void Initialize();

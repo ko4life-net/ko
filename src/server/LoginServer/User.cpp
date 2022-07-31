@@ -20,9 +20,9 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CUser::CUser()
+CUser::CUser(CLoginServerDlg * pMain)
 {
-
+	m_pMain = pMain;
 }
 
 CUser::~CUser()
@@ -32,7 +32,7 @@ CUser::~CUser()
 
 void CUser::Initialize()
 {
-	m_pMain = (CLoginServerDlg*)AfxGetMainWnd();
+	//m_pMain = (CLoginServerDlg*)AfxGetMainWnd();
 
 	CIOCPSocket2::Initialize();
 }

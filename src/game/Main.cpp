@@ -133,18 +133,11 @@ LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 				{
 				case WA_CLICKACTIVE:
 				case WA_ACTIVE:
-#ifdef _DEBUG
 					g_bActive = TRUE;
-#endif
 					break;
 				case WA_INACTIVE:
-#ifdef _DEBUG
-					g_bActive = FALSE;
-#endif
-					if(false == CGameProcedure::s_bWindowed)
-					{
-						CLogWriter::Write("WA_INACTIVE.");
-						PostQuitMessage(0); // 창모드 아니면 팅긴다??
+					if(!CGameProcedure::s_bWindowed) {
+						g_bActive = FALSE;
 					}
 					break;
 				}
@@ -235,8 +228,20 @@ HWND CreateMainWindow(HINSTANCE hInstance)
 		exit(-1);
 	}
 
-	DWORD	style = WS_POPUP | WS_CLIPCHILDREN;
-	return ::CreateWindow("Knight OnLine Client", "Knight OnLine Client", style, 0, 0, CN3Base::s_Options.iViewWidth, CN3Base::s_Options.iViewHeight, NULL, NULL, hInstance, NULL);
+	DWORD dwStyle = WS_POPUP | WS_CLIPCHILDREN;
+	int iWidth = CN3Base::s_Options.iViewWidth;
+	int iHeight = CN3Base::s_Options.iViewHeight;
+	if (CGameProcedure::s_bWindowed) {
+		dwStyle = WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX;
+		RECT rect{};
+		rect.bottom = iHeight;
+		rect.right = iWidth;
+		AdjustWindowRect(&rect, dwStyle, FALSE);
+		iHeight = rect.bottom + GetSystemMetrics(SM_CYCAPTION);
+		iWidth = rect.right;
+	}
+
+	return ::CreateWindow("Knight OnLine Client", "Knight OnLine Client", dwStyle, 0, 0, iWidth, iHeight, NULL, NULL, hInstance, NULL);
 }
 
 HWND CreateSubWindow(HINSTANCE hInstance)
@@ -355,6 +360,12 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 
 	int iWindowCursor = GetPrivateProfileInt("Cursor", "WindowCursor", 1, szIniPath);
 	CN3Base::s_Options.bWindowCursor = (iWindowCursor) ? true : false; // cursor...
+
+	int iWindowMode = GetPrivateProfileInt("Screen", "WindowMode", 0, szIniPath);
+	CGameProcedure::s_bWindowed = iWindowMode ? true : false;
+#if _DEBUG 
+	CGameProcedure::s_bWindowed = true;
+#endif // #if _DEBUG 
 
 	// 두번째 소켓으로 쓸 서브 윈도우 만들기..
 	HWND hWndSub = CreateSubWindow(hInstance);

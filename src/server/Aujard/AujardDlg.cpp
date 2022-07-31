@@ -175,15 +175,15 @@ BOOL CAujardDlg::OnInitDialog()
 	CString inipath;
 	inipath.Format( "%s\\Aujard.ini", GetProgPath() );
 
-	GetPrivateProfileString( "ODBC", "ACCOUNT_DSN", "", m_strAccountDSN, 24, inipath );
-	GetPrivateProfileString( "ODBC", "ACCOUNT_UID", "", m_strAccountUID, 24, inipath );
-	GetPrivateProfileString( "ODBC", "ACCOUNT_PWD", "", m_strAccountPWD, 24, inipath );
-	GetPrivateProfileString( "ODBC", "GAME_DSN", "", m_strGameDSN, 24, inipath );
-	GetPrivateProfileString( "ODBC", "GAME_UID", "", m_strGameUID, 24, inipath );
-	GetPrivateProfileString( "ODBC", "GAME_PWD", "", m_strGamePWD, 24, inipath );
-	GetPrivateProfileString( "ODBC", "LOG_DSN", "", m_strLogDSN, 24, inipath );
-	GetPrivateProfileString( "ODBC", "LOG_UID", "", m_strLogUID, 24, inipath );
-	GetPrivateProfileString( "ODBC", "LOG_PWD", "", m_strLogPWD, 24, inipath );
+	GetPrivateProfileString( "ODBC", "ACCOUNT_DSN", "kn_online", m_strAccountDSN, 24, inipath );
+	GetPrivateProfileString( "ODBC", "ACCOUNT_UID", "knight", m_strAccountUID, 24, inipath );
+	GetPrivateProfileString( "ODBC", "ACCOUNT_PWD", "knight", m_strAccountPWD, 24, inipath );
+	GetPrivateProfileString( "ODBC", "GAME_DSN", "kn_online", m_strGameDSN, 24, inipath );
+	GetPrivateProfileString( "ODBC", "GAME_UID", "knight", m_strGameUID, 24, inipath );
+	GetPrivateProfileString( "ODBC", "GAME_PWD", "knight", m_strGamePWD, 24, inipath );
+	GetPrivateProfileString( "ODBC", "LOG_DSN", "kn_online", m_strLogDSN, 24, inipath );
+	GetPrivateProfileString( "ODBC", "LOG_UID", "knight", m_strLogUID, 24, inipath );
+	GetPrivateProfileString( "ODBC", "LOG_PWD", "knight", m_strLogPWD, 24, inipath );
 
 	m_nServerNo = GetPrivateProfileInt("ZONE_INFO", "GROUP_INFO", 1, inipath);
 	m_nZoneNo = GetPrivateProfileInt("ZONE_INFO", "ZONE_INFO", 1, inipath);

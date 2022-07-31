@@ -363,7 +363,7 @@ public:
 	void LoginProcess( char* pBuf );
 	void Parsing( int len, char* pData );
 	void CloseProcess();
-	CUser();
+	CUser(CEbenezerDlg * pMain);
 	virtual ~CUser();
 };
 

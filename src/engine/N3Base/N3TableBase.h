@@ -467,7 +467,7 @@ BOOL CN3TableBase<Type>::MakeOffsetTable(std::vector<int>& offsets)
 
 	int iDataTypeCount = m_DataTypes.size();
 	offsets.clear();
-	offsets.reserve(iDataTypeCount+1);	// +1을 한 이유는 맨 마지막 값에 Type의 실제 사이즈를 넣기 위해서
+	offsets.resize(iDataTypeCount+1);	// +1을 한 이유는 맨 마지막 값에 Type의 실제 사이즈를 넣기 위해서
 	offsets[0] = 0;
 	int iPrevDataSize = SizeOf(m_DataTypes[0]);
 	for (int i=1; i<iDataTypeCount; ++i)

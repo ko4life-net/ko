@@ -29,8 +29,9 @@ extern T_KEY g_private_key;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CUser::CUser()
+CUser::CUser(CEbenezerDlg * pMain)
 {
+	m_pMain = pMain;
 }
 
 CUser::~CUser()
@@ -39,7 +40,7 @@ CUser::~CUser()
 
 void CUser::Initialize()
 {
-	m_pMain = (CEbenezerDlg*)AfxGetMainWnd();
+	//m_pMain = (CEbenezerDlg*)AfxGetMainWnd();
 
 	// Cryption
 	Make_public_key();

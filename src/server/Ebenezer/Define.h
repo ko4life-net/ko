@@ -16,7 +16,7 @@
 
 #define MAX_ITEM_COUNT		9999		// 한 슬롯에 가지는 최대 화살/송편 개수
 
-#define MAX_ID_SIZE			20
+#define MAX_ID_SIZE			30
 #define MAX_PW_SIZE			12
 #define MAX_ITEM			28
 #define VIEW_DISTANCE		48			// 가시거리

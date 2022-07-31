@@ -22,6 +22,7 @@
 
 #include "N3Base/N3Log.h"
 #include "N3Base/My_3DStruct.h"
+#include "N3Base/N3TableBase.h"
 
 // TODO: Since we now use spdlog, we can get ride of traces like these.
 #if defined(_DEBUG)

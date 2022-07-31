@@ -307,10 +307,10 @@ BOOL CEbenezerDlg::OnInitDialog()
 	m_fReConnectStart = 0.0f;
 	// sungyong~ 2002.05.23
 
-	if( AfxMessageBox("If you are restarting, please restart after all data is saved...do you want to continue?", MB_OKCANCEL) == IDCANCEL ) {
-		AfxPostQuitMessage(0);
-		return FALSE;
-	}
+	//if( AfxMessageBox("If you are restarting, please restart after all data is saved...do you want to continue?", MB_OKCANCEL) == IDCANCEL ) {
+	//	AfxPostQuitMessage(0);
+	//	return FALSE;
+	//}
 	//----------------------------------------------------------------------
 	//	Logfile initialize
 	//----------------------------------------------------------------------
@@ -332,7 +332,7 @@ BOOL CEbenezerDlg::OnInitDialog()
 	m_Iocport.Init( MAX_USER, CLIENT_SOCKSIZE, 4 );
 	
 	for(int i=0; i<MAX_USER; i++) {
-		m_Iocport.m_SockArrayInActive[i] = new CUser;
+		m_Iocport.m_SockArrayInActive[i] = new CUser(this);
 	}
 
 	_ZONE_SERVERINFO *pInfo = NULL;
@@ -720,7 +720,7 @@ BOOL CEbenezerDlg::AIServerConnect()
 {
 	C3DMap* pMap = NULL;
 
-	strcpy(m_AIServerIP, m_Ini.GetProfileString("AI_SERVER", "IP", "192.203.143.119"));
+	strcpy(m_AIServerIP, m_Ini.GetProfileString("AI_SERVER", "IP", "127.0.0.1"));
 	
 	
 	for( int i=0; i<MAX_AI_SOCKET; i++ ) {
@@ -1065,7 +1065,7 @@ BOOL CEbenezerDlg::MapFileLoad()
 	while( !ZoneInfoSet.IsEOF() )
 	{
 		sZoneName = ZoneInfoSet.m_strZoneName;
-		szFullPath.Format(".\\MAP\\%s", sZoneName);
+		szFullPath.Format(".\\MAP_EB\\%s", sZoneName);
 		
 		LogFileWrite("mapfile load\r\n");
 		if (!file.Open(szFullPath, CFile::modeRead)) {
@@ -1607,7 +1607,7 @@ void CEbenezerDlg::GetTimeFromIni()
 		sprintf( ipkey, "SERVER_%02d", i );
 		pInfo->sServerNo = m_Ini.GetProfileInt("ZONE_INFO", ipkey, 1);
 		sprintf( ipkey, "SERVER_IP_%02d", i );
-		strcpy(pInfo->strServerIP, m_Ini.GetProfileString("ZONE_INFO", ipkey, "210.92.91.242"));
+		strcpy(pInfo->strServerIP, m_Ini.GetProfileString("ZONE_INFO", ipkey, "127.0.0.1"));
 		pInfo->sPort = _LISTEN_PORT + pInfo->sServerNo;
 
 		m_ServerArray.PutData(pInfo->sServerNo, pInfo);
@@ -1625,7 +1625,7 @@ void CEbenezerDlg::GetTimeFromIni()
 			sprintf( ipkey, "GSERVER_%02d", i );
 			pInfo->sServerNo = m_Ini.GetProfileInt("SG_INFO", ipkey, 1);
 			sprintf( ipkey, "GSERVER_IP_%02d", i );
-			strcpy(pInfo->strServerIP, m_Ini.GetProfileString("SG_INFO", ipkey, "210.92.91.242"));
+			strcpy(pInfo->strServerIP, m_Ini.GetProfileString("SG_INFO", ipkey, "127.0.0.1"));
 			pInfo->sPort = _LISTEN_PORT + pInfo->sServerNo;
 
 			m_ServerGroupArray.PutData(pInfo->sServerNo, pInfo);
@@ -2505,7 +2505,7 @@ BOOL CEbenezerDlg::LoadNoticeData()
 	int count = 0;
 
 	if (!txt_file.Open(NoticePath, CFile::modeRead)) {
-		AfxMessageBox("cannot open Notice.txt!!");
+		TRACE("cannot open Notice.txt!!");
 		return FALSE;
 	}
 

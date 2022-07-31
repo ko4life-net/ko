@@ -236,7 +236,7 @@ BOOL CServerDlg::OnInitDialog()
 	m_Iocport.Init(MAX_SOCKET,1, 1);
 
 	for(int i=0; i<MAX_SOCKET; i++) {
-		m_Iocport.m_SockArrayInActive[i] = new CGameSocket;
+		m_Iocport.m_SockArrayInActive[i] = new CGameSocket(this);
 	}
 
 	//----------------------------------------------------------------------
