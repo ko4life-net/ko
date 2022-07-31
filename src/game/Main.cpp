@@ -292,7 +292,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
                      LPSTR     lpCmdLine,
                      int       nCmdShow)
 {
-
+	CN3Log::Init("KnightOnLine");
 
 	//////////////////////////////
 	// 스피드 핵 체킹용...
@@ -301,9 +301,6 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 //	::SetThreadPriority(hThreadCheckSpeedHack, THREAD_PRIORITY_NORMAL);
 	// 스피드 핵 체킹용...
 	//////////////////////////////
-
-
-
 	
 	char szPath[_MAX_PATH] = "";
 	GetCurrentDirectory(_MAX_PATH, szPath);
@@ -524,6 +521,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 
 
 	CGameProcedure::StaticMemberRelease(); // 모두 해제......
+	CN3Log::Destroy();
 
 	return msg.wParam;
 }

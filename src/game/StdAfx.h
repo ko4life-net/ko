@@ -20,8 +20,10 @@
 #include <functional>
 #include <io.h>
 
+#include "N3Base/N3Log.h"
 #include "N3Base/My_3DStruct.h"
 
+// TODO: Since we now use spdlog, we can get ride of traces like these.
 #if defined(_DEBUG)
 #define TRACE(fmt, ...) printf(fmt, __VA_ARGS__)
 #else
