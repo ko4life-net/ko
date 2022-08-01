@@ -298,6 +298,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
                      int       nCmdShow)
 {
 	CN3Log::Init("KnightOnLine");
+	N3_INFO("Game started");
 
 	//////////////////////////////
 	// 스피드 핵 체킹용...

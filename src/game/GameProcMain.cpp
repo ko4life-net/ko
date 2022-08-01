@@ -674,12 +674,12 @@ void CGameProcMain::RenderTarget()
 
 bool CGameProcMain::ProcessPacket(DataPack* pDataPack, int& iOffset)
 {
+	N3_INFO("[CGameProcMain::ProcessPacket] Opcode: [0x{:02X}:{}]", *(BYTE*)(pDataPack->m_pData + iOffset), PacketToString[*(BYTE*)(pDataPack->m_pData + iOffset)]);
 	int iOffsetPrev = iOffset;
 	if(false == CGameProcedure::ProcessPacket(pDataPack, iOffset)) iOffset = iOffsetPrev;
 	else return true;
 
 	int iCmd = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);		// Ä¿¸àµå ÆÄ½Ì..
-
 	switch ( iCmd )										// Ä¿¸àµå¿¡ ´Ù¶ó¼­ ºÐ±â..
 	{
 

@@ -1339,6 +1339,8 @@ void CGameProcCharacterSelect::MsgSend_CharacterSelect() // virtual
 
 bool CGameProcCharacterSelect::ProcessPacket(DataPack* pDataPack, int& iOffset)
 {
+	N3_INFO("[CGameProcCharacterSelect::ProcessPacket] Opcode: [0x{:02X}:{}]", *(BYTE*)(pDataPack->m_pData + iOffset), PacketToString[*(BYTE*)(pDataPack->m_pData + iOffset)]);
+
 	int iOffsetPrev = iOffset;
 	if(false == CGameProcedure::ProcessPacket(pDataPack, iOffset)) iOffset = iOffsetPrev;
 	else return true;

@@ -90,6 +90,7 @@ void CGameProcNationSelect::MsgSendNationSelect(e_Nation eNation)
 
 bool CGameProcNationSelect::ProcessPacket(DataPack* pDataPack, int& iOffset)
 {
+	N3_INFO("[CGameProcNationSelect::ProcessPacket] Opcode: [0x{:02X}:{}]", *(BYTE*)(pDataPack->m_pData + iOffset), PacketToString[*(BYTE*)(pDataPack->m_pData + iOffset)]);
 	int iOffsetPrev = iOffset;
 	if(false == CGameProcedure::ProcessPacket(pDataPack, iOffset)) iOffset = iOffsetPrev;
 	else return true;

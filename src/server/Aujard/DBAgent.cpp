@@ -579,7 +579,7 @@ int CDBAgent::AccountLogInReq( char *id, char *pw )
 	SQLSMALLINT		sParmRet;
 	SQLINTEGER		cbParmRet=SQL_NTS;
 
-	wsprintf( szSQL, TEXT( "{call ACCOUNT_LOGIN( \'%s\', \'%s\', ?)}" ), id, pw);
+	wsprintf( szSQL, TEXT( "{call ACCOUNT_LOGIN_MAIN( \'%s\', \'%s\', ?)}" ), id, pw);
 
 	DBProcessNumber( 4 );
 
@@ -763,7 +763,7 @@ BOOL CDBAgent::LoadCharInfo( char *id, char* buff, int &buff_index)
 	DBProcessNumber( 8 );
 	
 	SQLCHAR Race = 0x00, HairColor = 0x00, Level = 0x00, Face = 0x00, Zone = 0x00; 
-	SQLSMALLINT sRet, Class;
+	SQLSMALLINT sRet, Class = 0;
 	TCHAR strItem[400];
 	memset( strItem, 0x00, 400 );
 
