@@ -579,7 +579,7 @@ int CDBAgent::AccountLogInReq( char *id, char *pw )
 	SQLSMALLINT		sParmRet;
 	SQLINTEGER		cbParmRet=SQL_NTS;
 
-	wsprintf( szSQL, TEXT( "{call ACCOUNT_LOGIN( \'%s\', \'%s\', ?)}" ), id, pw);
+	wsprintf( szSQL, TEXT( "{call AUJARD_LOGIN( \'%s\', \'%s\', ?)}" ), id, pw);
 
 	DBProcessNumber( 4 );
 
