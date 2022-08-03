@@ -494,6 +494,7 @@ bool CN3UIEdit::SetFocus()
 	{
 		::SetFocus(s_hWndEdit);
 
+
 		RECT rcEdit = GetRegion();
 		int iX		= rcEdit.left;
 		int iY		= rcEdit.top;
@@ -531,21 +532,18 @@ DWORD CN3UIEdit::MouseProc(DWORD dwFlags, const POINT& ptCur, const POINT& ptOld
 
 void CN3UIEdit::SetCaretPos(UINT nPos)
 {
+	if (nPos > m_iMaxStrLen) nPos = m_iMaxStrLen;	// 최대 길이보다 길경우 작게 세팅
+
 	const std::string& szBuff = m_pBuffOutRef->GetString();
 
-	if (nPos == 0 && szBuff.size() > 0) {
-		nPos = szBuff.size();
-	}
-
-	if (nPos > m_iMaxStrLen) nPos = m_iMaxStrLen;	// ?O´e ±????¸´? ±?°??? ??°O ????
 	m_nCaretPos = nPos;
 
-	__ASSERT(szBuff.empty() || -1 == szBuff.find('\n'), "multiline edit");	// Ao±Y?? multiline?? Ao??C?Ao ??´A´?.
+	
+	__ASSERT(szBuff.empty() || -1 == szBuff.find('\n'), "multiline edit");	// 지금은 multiline은 지원하지 않는다.
 	SIZE size = {0,0};
 	if (!szBuff.empty() && m_pBuffOutRef ) m_pBuffOutRef->GetTextExtent(szBuff, m_nCaretPos, &size) ;
 
 	int iRegionWidth = m_rcRegion.right - m_rcRegion.left;
-
 	if (size.cx > iRegionWidth) size.cx = iRegionWidth;
 	s_Caret.SetPos(m_pBuffOutRef->m_ptDrawPos.x + size.cx, m_pBuffOutRef->m_ptDrawPos.y);
 }
@@ -758,10 +756,16 @@ void CN3UIEdit::UpdateCaretPosFromEditCtrl()
 		ReleaseDC(s_hWndEdit, hDC);
 	}
 */
-	int iTmp = ::SendMessage(s_hWndEdit, EM_GETSEL, 0, 0);
-	int iCaret = LOWORD(iTmp);
-	int iCTmp2 = HIWORD(iTmp);
-	s_pFocusedEdit->SetCaretPos(iCaret);
+
+
+	std::string getText = s_pFocusedEdit->GetString();
+	int cursorPosition = getText.size();
+
+	SendMessageA(s_hWndEdit, EM_SETSEL, cursorPosition, cursorPosition);
+
+
+	//int iCTmp2 = HIWORD(iTmp);
+	s_pFocusedEdit->SetCaretPos(cursorPosition);
 }
 
 void CN3UIEdit::SetImeStatus(POINT ptPos, bool bOpen)
