@@ -121,9 +121,13 @@ LRESULT APIENTRY CN3UIEdit::EditWndProc(HWND hWnd, WORD Message, WPARAM wParam, 
    // When the focus is in an edit control inside a dialog box, the
    //  default ENTER key action will not occur.
    //
+
+
+
     switch (Message)
 	{
-	case WM_KEYDOWN:
+	case WM_KEYUP:
+
 		if (wParam == VK_RETURN)
 		{
 			if(s_pFocusedEdit && s_pFocusedEdit->GetParent())
@@ -132,13 +136,18 @@ LRESULT APIENTRY CN3UIEdit::EditWndProc(HWND hWnd, WORD Message, WPARAM wParam, 
 			}
 			return 0;
 		}
-		(CallWindowProc(s_lpfnEditProc, hWnd, Message, wParam, lParam));
-		if(s_pFocusedEdit) CN3UIEdit::UpdateCaretPosFromEditCtrl();
+		
+
+			(CallWindowProc(s_lpfnEditProc, hWnd, Message, wParam, lParam));
+			if (s_pFocusedEdit) CN3UIEdit::UpdateCaretPosFromEditCtrl(false);
+			
+		
+		
 		return 0;
 		//break;
 
     case WM_CHAR:
-		if(s_pFocusedEdit) CN3UIEdit::UpdateCaretPosFromEditCtrl();
+		if(s_pFocusedEdit) CN3UIEdit::UpdateCaretPosFromEditCtrl(false);
 		if(wParam==VK_RETURN) return 0;
 		if(wParam==VK_TAB) return 0;
 		break;
@@ -399,12 +408,6 @@ LRESULT APIENTRY CN3UIEdit::EditWndProc(HWND hWnd, WORD Message, WPARAM wParam, 
 
 
 
-
-
-
-
-
-
 	return (CallWindowProc(s_lpfnEditProc, hWnd, Message, wParam, lParam));
 }
 
@@ -488,12 +491,11 @@ bool CN3UIEdit::SetFocus()
 
 	s_Caret.m_bVisible = TRUE;
 	s_Caret.InitFlckering();
-	CN3UIEdit::UpdateCaretPosFromEditCtrl(); // 캐럿 포지션 설정
+	CN3UIEdit::UpdateCaretPosFromEditCtrl(true); // 캐럿 포지션 설정
 
 	if(s_hWndEdit)
 	{
 		::SetFocus(s_hWndEdit);
-
 
 		RECT rcEdit = GetRegion();
 		int iX		= rcEdit.left;
@@ -739,7 +741,7 @@ void CN3UIEdit::UpdateTextFromEditCtrl()
 	s_pFocusedEdit->SetString(s_szBuffTmp);
 }
 
-void CN3UIEdit::UpdateCaretPosFromEditCtrl()
+void CN3UIEdit::UpdateCaretPosFromEditCtrl(bool changeFocus)
 {
 	if(NULL == s_pFocusedEdit || NULL == s_hWndEdit) return;
 
@@ -756,15 +758,21 @@ void CN3UIEdit::UpdateCaretPosFromEditCtrl()
 		ReleaseDC(s_hWndEdit, hDC);
 	}
 */
+	int cursorPosition = 0;
+
+	if (changeFocus == false) {
+		int iTmp = ::SendMessage(s_hWndEdit, EM_GETSEL, NULL, NULL);
+		cursorPosition = LOWORD(iTmp);
+		int iCTmp2 = HIWORD(iTmp);
+	}
+	else {
+		std::string getText = s_pFocusedEdit->GetString();
+		cursorPosition = getText.size();
+
+		SendMessageA(s_hWndEdit, EM_SETSEL, (WPARAM)cursorPosition, (LPARAM)cursorPosition);
+	}
 
 
-	std::string getText = s_pFocusedEdit->GetString();
-	int cursorPosition = getText.size();
-
-	SendMessageA(s_hWndEdit, EM_SETSEL, cursorPosition, cursorPosition);
-
-
-	//int iCTmp2 = HIWORD(iTmp);
 	s_pFocusedEdit->SetCaretPos(cursorPosition);
 }
 
