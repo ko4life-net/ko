@@ -101,7 +101,7 @@ void CMonTableSet::DoFieldExchange(CFieldExchange* pFX)
 	RFX_Int(pFX, _T("[sLevel]"), m_sLevel);
 	RFX_Long(pFX, _T("[iExp]"), m_iExp);
 	RFX_Long(pFX, _T("[iLoyalty]"), m_iLoyalty);
-	RFX_Long(pFX, _T("[iHpPoint]"), m_iHpPoint);
+	RFX_Long(pFX, _T("[sHpPoint]"), m_iHpPoint);
 	RFX_Int(pFX, _T("[sMpPoint]"), m_sMpPoint);
 	RFX_Int(pFX, _T("[sAtk]"), m_sAtk);
 	RFX_Int(pFX, _T("[sAc]"), m_sAc);

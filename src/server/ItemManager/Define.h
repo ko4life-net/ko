@@ -1,7 +1,7 @@
 #pragma once
 
 #define MAX_USER			3000
-#define MAX_ID_SIZE			20
+#define MAX_ID_SIZE			30
 #define MAX_PW_SIZE			12
 #define MAX_ITEM			28
 

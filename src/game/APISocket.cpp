@@ -412,6 +412,8 @@ BOOL CAPISocket::ReceiveProcess()
 
 void CAPISocket::Send(BYTE* pData, int nSize)
 {
+	N3_DEBUG("[CAPISocket::Send] Opcode: [0x{:02X}:{}]", pData[0], PacketToString[pData[0]]);
+
 	if(!m_bEnableSend) return; // 보내기 가능..?
 	if (INVALID_SOCKET == m_hSocket || FALSE == m_bConnected)	return;
 
@@ -422,11 +424,7 @@ void CAPISocket::Send(BYTE* pData, int nSize)
 	nSize = DP.m_Size;
 	pData = DP.m_pData;
 #endif
-	
-	
-	
-	
-	
+
 	int nTotalSize = nSize+6;
 	BYTE *pSendData = m_RecvBuf;
 	*((WORD*)pSendData) = htons(PACKET_HEADER);	pSendData+=2;

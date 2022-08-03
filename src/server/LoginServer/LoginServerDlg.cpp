@@ -70,7 +70,7 @@ BOOL CLoginServerDlg::OnInitDialog()
 	m_Iocport.Init( MAX_USER, CLIENT_SOCKSIZE, 1 );
 	
 	for(int i=0; i<MAX_USER; i++) {
-		m_Iocport.m_SockArrayInActive[i] = new CUser;
+		m_Iocport.m_SockArrayInActive[i] = new CUser(this);
 	}
 
 	if ( !m_Iocport.Listen( _LISTEN_PORT ) ) {
@@ -115,16 +115,16 @@ BOOL CLoginServerDlg::GetInfoFromIni()
 	CString errorstr, inipath;
 
 	inipath.Format( "%s\\Version.ini", GetProgPath() );
-	GetPrivateProfileString( "DOWNLOAD", "URL", "", m_strFtpUrl, 256, inipath );
-	GetPrivateProfileString( "DOWNLOAD", "PATH", "", m_strFilePath, 256, inipath );
+	GetPrivateProfileString( "DOWNLOAD", "URL", "ftp.your-site.net", m_strFtpUrl, 256, inipath );
+	GetPrivateProfileString( "DOWNLOAD", "PATH", "/", m_strFilePath, 256, inipath );
 
-	GetPrivateProfileString( "ODBC", "DSN", "", m_ODBCName, 32, inipath );
-	GetPrivateProfileString( "ODBC", "UID", "", m_ODBCLogin, 32, inipath );
-	GetPrivateProfileString( "ODBC", "PWD", "", m_ODBCPwd, 32, inipath );
-	GetPrivateProfileString( "ODBC", "TABLE", "", m_TableName, 32, inipath );
+	GetPrivateProfileString( "ODBC", "DSN", "kn_online", m_ODBCName, 32, inipath );
+	GetPrivateProfileString( "ODBC", "UID", "knight", m_ODBCLogin, 32, inipath );
+	GetPrivateProfileString( "ODBC", "PWD", "knight", m_ODBCPwd, 32, inipath );
+	GetPrivateProfileString( "ODBC", "TABLE", "VERSION", m_TableName, 32, inipath );
 	GetPrivateProfileString( "CONFIGURATION", "DEFAULT_PATH", "", m_strDefaultPath, 256, inipath );
 
-	m_nServerCount = GetPrivateProfileInt( "SERVER_LIST", "COUNT", 0, inipath );
+	m_nServerCount = GetPrivateProfileInt( "SERVER_LIST", "COUNT", 1, inipath );
 
 	if( !strlen(m_strFtpUrl) || !strlen(m_strFilePath) ) return FALSE;
 	if( !strlen(m_ODBCName) || !strlen(m_ODBCLogin) || !strlen(m_ODBCPwd) || !strlen(m_TableName) ) return FALSE;
@@ -139,8 +139,8 @@ BOOL CLoginServerDlg::GetInfoFromIni()
 		pInfo = new _SERVER_INFO;
 		sprintf( ipkey, "SERVER_%02d", i );
 		sprintf( namekey, "NAME_%02d", i );
-		GetPrivateProfileString( "SERVER_LIST", ipkey, "", pInfo->strServerIP, 32, inipath );
-		GetPrivateProfileString( "SERVER_LIST", namekey, "", pInfo->strServerName, 32, inipath );
+		GetPrivateProfileString( "SERVER_LIST", ipkey, "127.0.0.1", pInfo->strServerIP, 32, inipath );
+		GetPrivateProfileString( "SERVER_LIST", namekey, ipkey, pInfo->strServerName, 32, inipath );
 		m_ServerList.push_back( pInfo );
 	}
 

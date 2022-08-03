@@ -484,8 +484,9 @@ int CGameProcLogIn::MsgRecv_GameServerLogIn(DataPack* pDataPack, int& iOffset) /
 
 bool CGameProcLogIn::ProcessPacket(DataPack* pDataPack, int& iOffset)
 {
+	N3_INFO("[CGameProcLogIn::ProcessPacket] Opcode: [0x{:02X}:{}]", *(BYTE*)(pDataPack->m_pData + iOffset), PacketToString[*(BYTE*)(pDataPack->m_pData + iOffset)]);
 	int iOffsetPrev = iOffset;
-	if(false == CGameProcedure::ProcessPacket(pDataPack, iOffset)) iOffset = iOffsetPrev;
+	if(!CGameProcedure::ProcessPacket(pDataPack, iOffset)) iOffset = iOffsetPrev;
 	else return true;
 
 	s_pPlayer->m_InfoBase.eNation = NATION_UNKNOWN;

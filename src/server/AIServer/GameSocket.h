@@ -22,7 +22,7 @@ public:
 	CParty		m_Party;
 	short m_sSocketID;
 public:
-	CGameSocket();
+	CGameSocket(CServerDlg * pMain);
 	virtual ~CGameSocket();
 
 	void Initialize();
