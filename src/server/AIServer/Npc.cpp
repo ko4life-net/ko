@@ -3793,7 +3793,7 @@ go_result:
 	{
 		if(nAttackType == 3 && m_NpcState != NPC_FAINTING)	{			// 기절 시키는 스킬을 사용했다면..
 			// 확률 계산..
-			iLightningR = 10 + (40 - 40 * ( (double)m_byLightningR / 80) );
+			iLightningR = 10 + (40 - 40 * ( (double)m_sLightningR / 80) );
 			if( COMPARE(iRandom, 0, iLightningR) )	{
 				m_NpcState = NPC_FAINTING;
 				m_Delay = 0;
@@ -5955,13 +5955,13 @@ void CNpc::ChangeMonsterInfomation(int iChangeType)
 	m_iMagic1		= pNpcTable->m_iMagic1;		// 사용마법 1
 	m_iMagic2		= pNpcTable->m_iMagic2;		// 사용마법 2
 	m_iMagic3		= pNpcTable->m_iMagic3;		// 사용마법 3
-	m_byFireR		= pNpcTable->m_byFireR;		// 화염 저항력
-	m_byColdR		= pNpcTable->m_byColdR;		// 냉기 저항력
-	m_byLightningR	= pNpcTable->m_byLightningR;	// 전기 저항력
-	m_byMagicR		= pNpcTable->m_byMagicR;	// 마법 저항력
-	m_byDiseaseR	= pNpcTable->m_byDiseaseR;	// 저주 저항력
-	m_byPoisonR		= pNpcTable->m_byPoisonR;	// 독 저항력
-	m_byLightR		= pNpcTable->m_byLightR;	// 빛 저항력
+	m_sFireR		= pNpcTable->m_sFireR;		// 화염 저항력
+	m_sColdR		= pNpcTable->m_sColdR;		// 냉기 저항력
+	m_sLightningR	= pNpcTable->m_sLightningR;	// 전기 저항력
+	m_sMagicR		= pNpcTable->m_sMagicR;		// 마법 저항력
+	m_sDiseaseR		= pNpcTable->m_sDiseaseR;	// 저주 저항력
+	m_sPoisonR		= pNpcTable->m_sPoisonR;	// 독 저항력
+	m_sLightR		= pNpcTable->m_sLightR;		// 빛 저항력
 	m_fBulk			= (float)( ((double)pNpcTable->m_sBulk / 100) * ((double)pNpcTable->m_sSize / 100) );
 	m_bySearchRange	= pNpcTable->m_bySearchRange;	// 적 탐지 범위
 	m_byAttackRange	= pNpcTable->m_byAttackRange;	// 사정거리
@@ -6263,26 +6263,26 @@ void CNpc::ChangeAbility(int iChangeType)	// iChangeType - 0:능력치 다운, 1:능력
 		nHP = pNpcTable->m_iMaxHP * 0.5;
 		nAC = pNpcTable->m_sDefense * 0.2;
 		nDamage = pNpcTable->m_sDamage * 0.3;
-		nLightR = pNpcTable->m_byLightR*0.5;
-		nMagicR = pNpcTable->m_byMagicR*0.5;
-		nDiseaseR = pNpcTable->m_byDiseaseR*0.5;
-		nPoisonR = pNpcTable->m_byPoisonR*0.5;
-		nLightningR = pNpcTable->m_byLightningR*0.5;
-		nFireR = pNpcTable->m_byFireR*0.5;
-		nColdR = pNpcTable->m_byColdR*0.5;
+		nLightR = pNpcTable->m_sLightR*0.5;
+		nMagicR = pNpcTable->m_sMagicR*0.5;
+		nDiseaseR = pNpcTable->m_sDiseaseR*0.5;
+		nPoisonR = pNpcTable->m_sPoisonR*0.5;
+		nLightningR = pNpcTable->m_sLightningR*0.5;
+		nFireR = pNpcTable->m_sFireR*0.5;
+		nColdR = pNpcTable->m_sColdR*0.5;
 		m_iMaxHP = nHP;
 		if( m_iHP > nHP )	{	// HP도 바꿔야 겠군,,
 			HpChange( &m_pMain->m_Iocport );
 		}
 		m_sDefense = nAC;
 		m_sDamage = nDamage;
-		m_byFireR		= nFireR;		// 화염 저항력
-		m_byColdR		= nColdR;		// 냉기 저항력
-		m_byLightningR	= nLightningR;	// 전기 저항력
-		m_byMagicR		= nMagicR;		// 마법 저항력
-		m_byDiseaseR	= nDiseaseR;	// 저주 저항력
-		m_byPoisonR		= nPoisonR;		// 독 저항력
-		m_byLightR		= nLightR;		// 빛 저항력
+		m_sFireR		= nFireR;		// 화염 저항력
+		m_sColdR		= nColdR;		// 냉기 저항력
+		m_sLightningR	= nLightningR;	// 전기 저항력
+		m_sMagicR		= nMagicR;		// 마법 저항력
+		m_sDiseaseR		= nDiseaseR;	// 저주 저항력
+		m_sPoisonR		= nPoisonR;		// 독 저항력
+		m_sLightR		= nLightR;		// 빛 저항력
 		//TRACE("-- ChangeAbility down : nid=%d, name=%s, hp:%d->%d, damage=%d->%d\n", m_sNid+NPC_BAND, m_strName, pNpcTable->m_iMaxHP, nHP, pNpcTable->m_sDamage, nDamage); 
 	}
 	else if( iChangeType == BATTLEZONE_CLOSE )	{	// 능력치 회복
@@ -6294,13 +6294,13 @@ void CNpc::ChangeAbility(int iChangeType)	// iChangeType - 0:능력치 다운, 1:능력
 		}
 		m_sDamage		= pNpcTable->m_sDamage;		// 기본 데미지
 		m_sDefense		= pNpcTable->m_sDefense;	// 방어값
-		m_byFireR		= pNpcTable->m_byFireR;		// 화염 저항력
-		m_byColdR		= pNpcTable->m_byColdR;		// 냉기 저항력
-		m_byLightningR	= pNpcTable->m_byLightningR;	// 전기 저항력
-		m_byMagicR		= pNpcTable->m_byMagicR;	// 마법 저항력
-		m_byDiseaseR	= pNpcTable->m_byDiseaseR;	// 저주 저항력
-		m_byPoisonR		= pNpcTable->m_byPoisonR;	// 독 저항력
-		m_byLightR		= pNpcTable->m_byLightR;	// 빛 저항력
+		m_sFireR		= pNpcTable->m_sFireR;		// 화염 저항력
+		m_sColdR		= pNpcTable->m_sColdR;		// 냉기 저항력
+		m_sLightningR	= pNpcTable->m_sLightningR;	// 전기 저항력
+		m_sMagicR		= pNpcTable->m_sMagicR;		// 마법 저항력
+		m_sDiseaseR		= pNpcTable->m_sDiseaseR;	// 저주 저항력
+		m_sPoisonR		= pNpcTable->m_sPoisonR;	// 독 저항력
+		m_sLightR		= pNpcTable->m_sLightR;		// 빛 저항력
 	}
 }
 
