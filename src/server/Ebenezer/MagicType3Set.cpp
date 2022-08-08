@@ -39,7 +39,7 @@ CMagicType3Set::CMagicType3Set(CDatabase* pdb)
 
 CString CMagicType3Set::GetDefaultConnect()
 {
-	return _T("ODBC;DSN=KN_Online;UID=knight;PWD=knight");
+	return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
 }
 
 CString CMagicType3Set::GetDefaultSQL()

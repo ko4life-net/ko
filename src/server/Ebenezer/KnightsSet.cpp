@@ -42,7 +42,7 @@ CKnightsSet::CKnightsSet(CDatabase* pdb)
 
 CString CKnightsSet::GetDefaultConnect()
 {
-	return _T("ODBC;DSN=KN_Online;UID=knight;PWD=knight");
+	return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
 }
 
 CString CKnightsSet::GetDefaultSQL()
