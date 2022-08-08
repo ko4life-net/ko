@@ -1,6 +1,6 @@
 #pragma once
 
-#define __VERSION			1081
+#define __VERSION			1097
 
 //////////////////// 직업별 Define ////////////////////
 #define KARUWARRRIOR		101		// 카루전사
