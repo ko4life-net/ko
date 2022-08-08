@@ -32,7 +32,7 @@ CUser::~CUser()
 
 void CUser::Initialize()
 {
-	m_pMain = (CLoginServerDlg*)AfxGetMainWnd();
+	m_pMain = (CLoginServerDlg*)AfxGetApp()->GetMainWnd();
 
 	CIOCPSocket2::Initialize();
 }

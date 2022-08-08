@@ -32,7 +32,7 @@ BOOL CDBProcess::InitDatabase(char *strconnection)
 {
 	m_VersionDB.SetLoginTimeout(100);
 
-	m_pMain = (CLoginServerDlg*)AfxGetMainWnd();
+	m_pMain = (CLoginServerDlg*)AfxGetApp()->GetMainWnd();
 
 	if( !m_VersionDB.Open( NULL,FALSE,FALSE, strconnection ) )
 		return FALSE;

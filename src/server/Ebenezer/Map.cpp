@@ -83,7 +83,7 @@ C3DMap::~C3DMap()
 
 BOOL C3DMap::LoadMap(HANDLE hFile)
 {
-	m_pMain = (CEbenezerDlg*)AfxGetMainWnd();
+	m_pMain = (CEbenezerDlg*)AfxGetApp()->GetMainWnd();
 
 	LogFileWrite("load teerr\r\n");
 

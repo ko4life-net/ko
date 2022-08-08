@@ -30,7 +30,7 @@ CParty::~CParty()
 
 void CParty::Initialize()
 {
-	m_pMain = (CServerDlg*)AfxGetMainWnd();
+	m_pMain = (CServerDlg*)AfxGetApp()->GetMainWnd();
 }
 
 void CParty::PartyProcess(char *pBuf)
