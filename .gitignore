@@ -2,6 +2,7 @@
 Release*/
 Debug*/
 vendor/
+assets/
 [Bb]uild/
 *.exe
 *.lib
