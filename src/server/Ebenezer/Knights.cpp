@@ -25,7 +25,7 @@ CKnights::CKnights()
 	//m_pMain = NULL;
 	
 /*	CString strConnect;
-	strConnect.Format (_T("ODBC;DSN=%s;UID=%s;PWD=%s"), "KN_Online", "knight", "knight");
+	strConnect.Format (_T("ODBC;DSN=%s;UID=%s;PWD=%s"), "kodb", "kodb_user", "kodb_user");
 	m_KnightsDB.SetLoginTimeout (10);
 	if( !m_KnightsDB.Open(NULL,FALSE,FALSE,strConnect) )
 		AfxMessageBox("KnightsDB Connection Fail...");	*/

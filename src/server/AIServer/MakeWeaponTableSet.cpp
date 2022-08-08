@@ -41,7 +41,7 @@ CMakeWeaponTableSet::CMakeWeaponTableSet(CDatabase* pdb)
 
 CString CMakeWeaponTableSet::GetDefaultConnect()
 {
-	return _T("ODBC;DSN=kn_online;UID=knight;PWD=knight");
+	return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
 }
 
 CString CMakeWeaponTableSet::GetDefaultSQL()

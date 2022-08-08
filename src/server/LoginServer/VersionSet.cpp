@@ -31,7 +31,7 @@ CVersionSet::CVersionSet(CDatabase* pdb)
 
 CString CVersionSet::GetDefaultConnect()
 {
-	return _T("ODBC;DSN=Knight_Account;UID=knight;PWD=dnlwhrpdlxm");
+	return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
 }
 
 CString CVersionSet::GetDefaultSQL()

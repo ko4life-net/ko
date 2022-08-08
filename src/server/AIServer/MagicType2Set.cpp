@@ -36,7 +36,7 @@ CMagicType2Set::CMagicType2Set(CDatabase* pdb)
 
 CString CMagicType2Set::GetDefaultConnect()
 {
-	return _T("ODBC;DSN=kn_online;UID=knight;PWD=knight");
+	return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
 }
 
 CString CMagicType2Set::GetDefaultSQL()

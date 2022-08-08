@@ -73,7 +73,7 @@ CMonTableSet::CMonTableSet(CDatabase* pdb)
 
 CString CMonTableSet::GetDefaultConnect()
 {
-	return _T("ODBC;DSN=kn_online;UID=knight;PWD=knight");
+	return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
 }
 
 CString CMonTableSet::GetDefaultSQL()

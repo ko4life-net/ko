@@ -720,7 +720,7 @@ BOOL CEbenezerDlg::AIServerConnect()
 {
 	C3DMap* pMap = NULL;
 
-	strcpy(m_AIServerIP, m_Ini.GetProfileString("AI_SERVER", "IP", "192.203.143.119"));
+	strcpy(m_AIServerIP, m_Ini.GetProfileString("AI_SERVER", "IP", "127.0.0.1"));
 	
 	
 	for( int i=0; i<MAX_AI_SOCKET; i++ ) {
@@ -1607,7 +1607,7 @@ void CEbenezerDlg::GetTimeFromIni()
 		sprintf( ipkey, "SERVER_%02d", i );
 		pInfo->sServerNo = m_Ini.GetProfileInt("ZONE_INFO", ipkey, 1);
 		sprintf( ipkey, "SERVER_IP_%02d", i );
-		strcpy(pInfo->strServerIP, m_Ini.GetProfileString("ZONE_INFO", ipkey, "210.92.91.242"));
+		strcpy(pInfo->strServerIP, m_Ini.GetProfileString("ZONE_INFO", ipkey, "127.0.0.1"));
 		pInfo->sPort = _LISTEN_PORT + pInfo->sServerNo;
 
 		m_ServerArray.PutData(pInfo->sServerNo, pInfo);
@@ -1625,7 +1625,7 @@ void CEbenezerDlg::GetTimeFromIni()
 			sprintf( ipkey, "GSERVER_%02d", i );
 			pInfo->sServerNo = m_Ini.GetProfileInt("SG_INFO", ipkey, 1);
 			sprintf( ipkey, "GSERVER_IP_%02d", i );
-			strcpy(pInfo->strServerIP, m_Ini.GetProfileString("SG_INFO", ipkey, "210.92.91.242"));
+			strcpy(pInfo->strServerIP, m_Ini.GetProfileString("SG_INFO", ipkey, "127.0.0.1"));
 			pInfo->sPort = _LISTEN_PORT + pInfo->sServerNo;
 
 			m_ServerGroupArray.PutData(pInfo->sServerNo, pInfo);

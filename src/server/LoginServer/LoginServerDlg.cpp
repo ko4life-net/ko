@@ -115,16 +115,16 @@ BOOL CLoginServerDlg::GetInfoFromIni()
 	CString errorstr, inipath;
 
 	inipath.Format( "%s\\Version.ini", GetProgPath() );
-	GetPrivateProfileString( "DOWNLOAD", "URL", "", m_strFtpUrl, 256, inipath );
-	GetPrivateProfileString( "DOWNLOAD", "PATH", "", m_strFilePath, 256, inipath );
+	GetPrivateProfileString( "DOWNLOAD", "URL", "ftp.your-site.net", m_strFtpUrl, 256, inipath );
+	GetPrivateProfileString( "DOWNLOAD", "PATH", "/", m_strFilePath, 256, inipath );
 
-	GetPrivateProfileString( "ODBC", "DSN", "", m_ODBCName, 32, inipath );
-	GetPrivateProfileString( "ODBC", "UID", "", m_ODBCLogin, 32, inipath );
-	GetPrivateProfileString( "ODBC", "PWD", "", m_ODBCPwd, 32, inipath );
-	GetPrivateProfileString( "ODBC", "TABLE", "", m_TableName, 32, inipath );
+	GetPrivateProfileString( "ODBC", "DSN", "kodb", m_ODBCName, 32, inipath );
+	GetPrivateProfileString( "ODBC", "UID", "kodb_user", m_ODBCLogin, 32, inipath );
+	GetPrivateProfileString( "ODBC", "PWD", "kodb_user", m_ODBCPwd, 32, inipath );
+	GetPrivateProfileString( "ODBC", "TABLE", "VERSION", m_TableName, 32, inipath );
 	GetPrivateProfileString( "CONFIGURATION", "DEFAULT_PATH", "", m_strDefaultPath, 256, inipath );
 
-	m_nServerCount = GetPrivateProfileInt( "SERVER_LIST", "COUNT", 0, inipath );
+	m_nServerCount = GetPrivateProfileInt( "SERVER_LIST", "COUNT", 1, inipath );
 
 	if( !strlen(m_strFtpUrl) || !strlen(m_strFilePath) ) return FALSE;
 	if( !strlen(m_ODBCName) || !strlen(m_ODBCLogin) || !strlen(m_ODBCPwd) || !strlen(m_TableName) ) return FALSE;
@@ -139,8 +139,8 @@ BOOL CLoginServerDlg::GetInfoFromIni()
 		pInfo = new _SERVER_INFO;
 		sprintf( ipkey, "SERVER_%02d", i );
 		sprintf( namekey, "NAME_%02d", i );
-		GetPrivateProfileString( "SERVER_LIST", ipkey, "", pInfo->strServerIP, 32, inipath );
-		GetPrivateProfileString( "SERVER_LIST", namekey, "", pInfo->strServerName, 32, inipath );
+		GetPrivateProfileString( "SERVER_LIST", ipkey, "127.0.0.1", pInfo->strServerIP, 32, inipath );
+		GetPrivateProfileString( "SERVER_LIST", namekey, ipkey, pInfo->strServerName, 32, inipath );
 		m_ServerList.push_back( pInfo );
 	}
 
