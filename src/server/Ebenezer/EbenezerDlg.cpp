@@ -1065,7 +1065,7 @@ BOOL CEbenezerDlg::MapFileLoad()
 	while( !ZoneInfoSet.IsEOF() )
 	{
 		sZoneName = ZoneInfoSet.m_strZoneName;
-		szFullPath.Format(".\\MAP\\%s", sZoneName);
+		szFullPath.Format(".\\Ebenezer_MAP\\%s", sZoneName);
 		
 		LogFileWrite("mapfile load\r\n");
 		if (!file.Open(szFullPath, CFile::modeRead)) {
