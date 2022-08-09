@@ -549,6 +549,12 @@ typedef struct __TABLE_ZONE
 	BOOL		bIndicateEnemyPlayer;	// 적국 플레이어를 표시하나??
 	int			iFixedSundDirection;	// 해의 방향을 고정시키는지..
 	std::string szLightObjFN;		// 지형에 배치되어 있는 라이트정보파일..
+
+	std::string szGevFN; // TODO: implement
+	uint32_t	iAbyssSomething; // TODO: implement
+	std::string szEnsFN; // TODO: implement
+	float		fFOV; // TODO: implement
+	std::string szFlagFN; // TODO: implement
 } TABLE_ZONE;
 
 typedef struct __TABLE_UI_RESRC
@@ -622,6 +628,10 @@ typedef struct __TABLE_UI_RESRC
 	std::string szKaLoading;			// 52
 	std::string szNationSelect;			// 53
 
+	std::string szChatSmall; // TODO: implement
+	std::string szMsgOutputSmall; // TODO: implement
+	std::string szItemUpgrade; // TODO: implement
+
 } TABLE_UI_RESRC;
 
 typedef struct __TABLE_ITEM_BASIC // 장착 아이템에 관한 리소스 레코드...
@@ -676,6 +686,7 @@ typedef struct __TABLE_ITEM_EXT // 장착 아이템에 관한 리소스 레코드...
 	DWORD		dwID;				// 00 코드화된 아이템번호 - // 00 - Item 종류, 00 - Item 장착 위치(장착위치로 Plug 인지 Part 인지 판단이 가능하다.) - 0000 - ItemIndex
 	std::string	szHeader;			// 01 접두사
 	std::string	szRemark;			// 02 아이템 설명	
+	uint32_t	iUnknown1; // TODO: implement
 	BYTE		byMagicOrRare;		// 03 매직 혹은 레어 아이템인지...
 
 	short	siDamage;				// 04 무기타격
@@ -839,7 +850,8 @@ typedef struct __TABLE_UPC_SKILL
 	DWORD		dwExhaustItem;
 	int			iCastTime;			// 캐스팅 시간
 	int			iReCastTime;		// 다시 캐스팅할때까지 걸리는 시간.
-	
+
+	float		fUnkown1; // TODO: implement	
 	int			iPercentSuccess;	// 성공률
 	DWORD		dw1stTableType;		// 첫번째 타입.
 	DWORD		dw2ndTableType;		// 두번째 타입.
@@ -890,6 +902,8 @@ typedef struct __TABLE_UPC_SKILL_TYPE_4
 	int			iAC;			// 방어력
 	int			iAttack;		// 공격력
 	int			iMaxHP;			// MAXHP
+	int			iMaxHPPct;		// TODO: implement
+	int			iMaxMP;			// TODO: implement
 	int			iStr;			// 힘
 	int			iSta;			// 체력
 	int			iDex;			// 민첩
@@ -1098,6 +1112,7 @@ enum e_SkillMagicTaget	{	SKILLMAGIC_TARGET_SELF = 1,				// 나 자신..
 typedef struct __TABLE_FX	// FX 리소스 레코드...
 {
 	DWORD		dwID;		// 고유 ID
+	std::string szName; // TODO: implement
 	std::string	szFN;		// file name
 	DWORD		dwSoundID;	// 효과에 쓰는 사운드 아디.
 } TABLE_FX;
