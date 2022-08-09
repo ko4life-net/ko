@@ -11,6 +11,14 @@ void CN3Log::Init(const std::string & loggerName)
 {
 #ifdef _DEBUG
 	AllocConsole();
+
+	// Position console window aside
+	// TODO: Make this more dynamic, like calculating the position of the game windows and screen resolution.
+	HWND hConsole = GetConsoleWindow();
+	int xpos = 1024;
+	int ypos = 0;
+	SetWindowPos(hConsole, 0, xpos, ypos, 0, 0, SWP_NOSIZE);
+
 	FILE* fDummy;
 	freopen_s(&fDummy, "CONOUT$", "w", stdout);
 	freopen_s(&fDummy, "CONOUT$", "w", stderr);
