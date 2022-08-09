@@ -385,6 +385,8 @@ BOOL CAPISocket::ReceiveProcess()
 #else
 					DataPack *pDP = new DataPack(siCore, pData+4);
 #endif
+					N3_INFO("[CAPISocket::Recv] Opcode: [0x{:02X}:{}]", pDP->m_pData[0], PacketToString[pDP->m_pData[0]]);
+
 
 					m_qRecvPkt.push(pDP);
 					m_CB.HeadIncrease(siCore + 6); // 환형 버퍼 인덱스 증가 시키기..
@@ -412,6 +414,8 @@ BOOL CAPISocket::ReceiveProcess()
 
 void CAPISocket::Send(BYTE* pData, int nSize)
 {
+	N3_DEBUG("[CAPISocket::Send] Opcode: [0x{:02X}:{}]", pData[0], PacketToString[pData[0]]);
+
 	if(!m_bEnableSend) return; // 보내기 가능..?
 	if (INVALID_SOCKET == m_hSocket || FALSE == m_bConnected)	return;
 
