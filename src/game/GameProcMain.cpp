@@ -6066,6 +6066,7 @@ void CGameProcMain::MsgRecv_WarpList(DataPack* pDataPack, int& iOffset)		// ฟ๖วม
 
 	int iStrLen = 0;
 
+	BYTE bySubOp = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
 	int iListCount = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
 	for(int i = 0; i < iListCount; i++)
 	{
