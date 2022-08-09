@@ -257,7 +257,7 @@ bool CN3UIBase::Load(HANDLE hFile)
 	ReadFile(hFile, &iIDLen, sizeof(iIDLen), &dwRWC, NULL);				// ui id length
 	if (iIDLen>0)
 	{
-		std::vector<char> buffer(iIDLen+1, NULL);
+		std::vector<char> buffer(iIDLen, 0);
 		ReadFile(hFile, &buffer[0], iIDLen, &dwRWC, NULL);			// ui id
 		m_szID = std::string(buffer.begin(), buffer.end());
 	}
@@ -274,7 +274,7 @@ bool CN3UIBase::Load(HANDLE hFile)
 	ReadFile(hFile, &iTooltipLen, sizeof(iTooltipLen), &dwRWC, NULL);		//	tooltip문자열 길이
 	if (iTooltipLen>0)
 	{
-		std::vector<char> buffer(iTooltipLen+1, NULL);
+		std::vector<char> buffer(iTooltipLen, 0);
 		ReadFile(hFile, &buffer[0], iTooltipLen, &dwRWC, NULL);
 		m_szToolTip = std::string(buffer.begin(), buffer.end());
 	}
@@ -284,7 +284,7 @@ bool CN3UIBase::Load(HANDLE hFile)
 	ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL);		//	사운드 파일 문자열 길이
 	if (iSndFNLen>0)
 	{
-		std::vector<char> buffer(iSndFNLen+1, NULL);
+		std::vector<char> buffer(iSndFNLen, 0);
 		ReadFile(hFile, &buffer[0], iSndFNLen, &dwRWC, NULL);
 
 		__ASSERT(NULL == m_pSnd_OpenUI, "memory leak");
@@ -294,7 +294,7 @@ bool CN3UIBase::Load(HANDLE hFile)
 	ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL);		//	사운드 파일 문자열 길이
 	if (iSndFNLen>0)
 	{
-		std::vector<char> buffer(iSndFNLen+1, NULL);
+		std::vector<char> buffer(iSndFNLen, 0);
 		ReadFile(hFile, &buffer[0], iSndFNLen, &dwRWC, NULL);
 
 		__ASSERT(NULL == m_pSnd_CloseUI, "memory leak");

@@ -95,7 +95,7 @@ public:
 		ReadFile(hFile, &nL, 4, &dwRWC, NULL);
 		if(nL > 0)
 		{
-			std::vector<char> buffer(nL+1, NULL);
+			std::vector<char> buffer(nL, 0);
 			ReadFile(hFile, &buffer[0], nL, &dwRWC, NULL);
 			szName = std::string(buffer.begin(), buffer.end());
 		}
