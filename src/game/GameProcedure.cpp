@@ -122,29 +122,25 @@ void CGameProcedure::StaticMemberInit(HINSTANCE hInstance, HWND hWndMain, HWND h
 {
 	s_pKnightChr = new CKnightChrMgr(hWndMain);
 
-	//////////////////////////////////////////////////////////////////////////////////////////
-	// 게임 기본 3D 엔진 만들기..
-#if _DEBUG 
-	s_bWindowed = true;
-#endif // #if _DEBUG 
-
-#ifndef _DEBUG
-	// 대만 버전일 경우 IME 문제로 인해 가짜 풀모드를 쓴다..
-	int iLangID = ::GetUserDefaultLangID();
-	if(0x0404 == iLangID) 
-	{
-		s_bWindowed = true;
-		
-		DEVMODE dm;
+	if (s_bWindowed) {
+		DEVMODE dm{};
+		EnumDisplaySettings(NULL, ENUM_REGISTRY_SETTINGS, &dm);
+		if (dm.dmBitsPerPel != s_Options.iViewColorDepth) {
+			dm.dmSize = sizeof(DEVMODE);
+			dm.dmBitsPerPel = CN3Base::s_Options.iViewColorDepth;
+			dm.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
+			ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
+		}
+	}
+	else {
+		DEVMODE dm{};
 		dm.dmSize = sizeof(DEVMODE);
 		dm.dmPelsWidth = CN3Base::s_Options.iViewWidth;
 		dm.dmPelsHeight = CN3Base::s_Options.iViewHeight;
 		dm.dmBitsPerPel = CN3Base::s_Options.iViewColorDepth;
 		dm.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
-		::ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
+		ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
 	}
-#endif // #ifndef _DEBUG
-
 
 	RECT rc;
 	::GetClientRect(hWndMain, &rc);
@@ -217,26 +213,13 @@ void CGameProcedure::StaticMemberInit(HINSTANCE hInstance, HWND hWndMain, HWND h
 
 void CGameProcedure::StaticMemberRelease()
 {
-#ifndef _DEBUG
-	// 대만 버전일 경우 IME 문제로 인해 가짜 풀모드를 쓴다..
-	int iLangID = ::GetUserDefaultLangID();
-	if(0x0404 == iLangID) 
-	{
-		DEVMODE dm;
-		::EnumDisplaySettings(NULL, ENUM_REGISTRY_SETTINGS, &dm);
-
-		// 레지스트리의 디스플레이 모드와 현재 게임의 디스플레이 모드가 다르면 복구 시켜준다.
-		if(	dm.dmPelsWidth != CN3Base::s_Options.iViewWidth || 
-			dm.dmPelsHeight != CN3Base::s_Options.iViewHeight || 
-			dm.dmBitsPerPel != CN3Base::s_Options.iViewColorDepth)
-		{
-			dm.dmSize = sizeof(DEVMODE);
-			dm.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
-			::ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
-		}
+	DEVMODE dm{};
+	EnumDisplaySettings(NULL, ENUM_REGISTRY_SETTINGS, &dm);
+	if (dm.dmBitsPerPel != CN3Base::s_Options.iViewColorDepth) {
+		dm.dmSize = sizeof(DEVMODE);
+		dm.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
+		ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
 	}
-#endif // #ifndef _DEBUG
-
 
 	delete s_pSocket; s_pSocket = NULL; // 통신 끊기..
 	delete s_pSocketSub; s_pSocketSub = NULL; // 서브 소켓 없애기..
