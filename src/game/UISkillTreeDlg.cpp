@@ -1315,9 +1315,9 @@ stop:
 	spSkill->pSkill = pUSkill;
 
 	// 아이콘 이름 만들기.. ^^
-	std::vector<char> buffer(256, NULL);
-	sprintf(&buffer[0],	"UI\\skillicon_%.2d_%d.dxt", pUSkill->dwID%100, pUSkill->dwID/100);
-	spSkill->szIconFN = std::string(buffer.begin(), buffer.end());
+	char buffer[MAX_PATH]{};
+	sprintf(buffer,	"UI\\skillicon_%.2d_%d.dxt", pUSkill->dwID%100, pUSkill->dwID/100);
+	spSkill->szIconFN = buffer;
 
 	// 아이콘 로드하기.. ^^
 	spSkill->pUIIcon = new CN3UIIcon;

@@ -526,8 +526,10 @@ bool CUIStateBar::ToggleMiniMap()
 
 void CUIStateBar::AddMagic(__TABLE_UPC_SKILL* pSkill, float fDuration)
 {
-	std::vector<char> buffer(256, NULL);
-	sprintf(&buffer[0],	"UI\\skillicon_%.2d_%d.dxt", pSkill->dwID%100, pSkill->dwID/100);
+	// TODO: Change instances like these to std::format once upgrading to cpp20:
+	// https://en.cppreference.com/w/cpp/utility/format/format
+	char buffer[MAX_PATH]{};
+	sprintf(buffer,	"UI\\skillicon_%.2d_%d.dxt", pSkill->dwID%100, pSkill->dwID/100);
 
 	__DurationMagicImg* pMagicImg = new __DurationMagicImg;
 	pMagicImg->fDuration = fDuration;
@@ -536,7 +538,7 @@ void CUIStateBar::AddMagic(__TABLE_UPC_SKILL* pSkill, float fDuration)
 
 	CN3UIDBCLButton* pIcon = pMagicImg->pIcon;
 	pIcon->Init(this);
-	pIcon->SetTex(std::string(buffer.begin(), buffer.end()));
+	pIcon->SetTex(buffer);
 	pIcon->SetTooltipText(pSkill->szName.c_str());
 	pIcon->SetUVRect(0,0,1,1);
 
@@ -561,8 +563,8 @@ void CUIStateBar::AddMagic(__TABLE_UPC_SKILL* pSkill, float fDuration)
 
 void CUIStateBar::DelMagic(__TABLE_UPC_SKILL* pSkill)
 {
-	std::vector<char> buffer(256, NULL);
-	sprintf(&buffer[0],	"UI\\skillicon_%.2d_%d.dxt", pSkill->dwID%100, pSkill->dwID/100);
+	char buffer[MAX_PATH]{};
+	sprintf(buffer,	"UI\\skillicon_%.2d_%d.dxt", pSkill->dwID%100, pSkill->dwID/100);
 
 	it_MagicImg it, ite, itRemove;
 	itRemove = ite = m_pMagic.end();	
@@ -571,7 +573,7 @@ void CUIStateBar::DelMagic(__TABLE_UPC_SKILL* pSkill)
 		__DurationMagicImg* pMagicImg = (*it);
 		CN3UIDBCLButton* pIcon = pMagicImg->pIcon;
 		CN3Texture* pTex = pIcon->GetTex();
-		if(pTex && lstrcmpi(pTex->FileName().c_str(), (const char *)&buffer[0])==0)
+		if(pTex && lstrcmpi(pTex->FileName().c_str(), buffer)==0)
 		{
 			itRemove = it;
 		}

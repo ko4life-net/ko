@@ -266,7 +266,7 @@ bool CN3UIButton::Load(HANDLE hFile)
 	ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL);		//	사운드 파일 문자열 길이
 	if (iSndFNLen>0)
 	{
-		std::vector<char> buffer(iSndFNLen+1, NULL);
+		std::vector<char> buffer(iSndFNLen, 0);
 		ReadFile(hFile, &buffer[0], iSndFNLen, &dwNum, NULL);
 
 		__ASSERT(NULL == m_pSnd_On, "memory leak");
@@ -276,7 +276,7 @@ bool CN3UIButton::Load(HANDLE hFile)
 	ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL);		//	사운드 파일 문자열 길이
 	if (iSndFNLen>0)
 	{
-		std::vector<char> buffer(iSndFNLen+1, NULL);
+		std::vector<char> buffer(iSndFNLen, 0);
 		ReadFile(hFile, &buffer[0], iSndFNLen, &dwNum, NULL);
 
 		__ASSERT(NULL == m_pSnd_Click, "memory leak");

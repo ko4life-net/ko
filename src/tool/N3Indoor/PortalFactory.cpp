@@ -32,9 +32,9 @@ CPortalFactory::~CPortalFactory()
 
 std::string	CPortalFactory::MakePvsVolString(int iIndex)
 {
-	std::vector<char> buffer(32, NULL);
-	sprintf(&buffer[0], "Vol_%d", iIndex);
-	return std::string(buffer.begin(), buffer.end());
+	char buffer[32]{};
+	sprintf(buffer, "Vol_%d", iIndex);
+	return std::string(buffer);
 }
 
 CPortalVolume* CPortalFactory::CreatePvsVol(int iIndex)

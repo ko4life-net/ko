@@ -594,13 +594,13 @@ void COrganizeView::RefreshLinkedList()
 	int iCount = m_LinkedListCtrl.GetItemCount();		
 
 	ShapeInfo* pSI;
-	std::vector<char> buffer(32, NULL);
+	char buffer[32]{};
 	siiter siit = pVol->m_plShapeInfoList.begin();
 	while(siit != pVol->m_plShapeInfoList.end())
 	{
 		pSI = *siit++;
-		sprintf(&buffer[0], "Shape_%d", pSI->m_iID);
-		str = std::string(buffer.begin(), buffer.end());
+		sprintf(buffer, "Shape_%d", pSI->m_iID);
+		str = buffer;
 		m_LinkedListCtrl.InsertItem(iCount++, str.c_str(), 1);						
 	}
 }
@@ -830,13 +830,13 @@ void COrganizeView::RefreshTotalShape()
 	int iCount = 0;
 	ShapeInfo* pSI;
 	std::string str; 
-	std::vector<char> buffer(32, NULL);
+	char buffer[32]{};
 	siiter siit = m_PVSMgr.m_plShapeInfoList.begin();
 	while(siit != m_PVSMgr.m_plShapeInfoList.end())
 	{
 		pSI = *siit++;
-		sprintf(&buffer[0], "Part_%d", pSI->m_iID);
-		str = std::string(buffer.begin(), buffer.end());
+		sprintf(buffer, "Part_%d", pSI->m_iID);
+		str = buffer;
 		m_ShapesListCtrl.InsertItem(iCount++, str.c_str(), 1);						
 	}
 }

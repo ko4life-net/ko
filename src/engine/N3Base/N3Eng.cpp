@@ -599,12 +599,13 @@ bool CN3Eng::RegistryValueGet(HKEY hKey, const std::string& szName, std::string&
 {
 	if(NULL == hKey || szName.empty() || szValue.empty()) return false;
 
-	std::vector<char> buffer(256, NULL);
 
 	DWORD dwType = REG_SZ;
 	DWORD dwBytes = 0;
-	long lStatus = RegQueryValueEx(hKey, szName.c_str(), NULL, &dwType, (BYTE *)&buffer[0], &dwBytes);
-	szValue = std::string(buffer.begin(), buffer.end());
+
+	char buffer[MAX_PATH]{};
+	long lStatus = RegQueryValueEx(hKey, szName.c_str(), NULL, &dwType, (BYTE *)buffer, &dwBytes);
+	szValue = buffer;
 
 	if(ERROR_SUCCESS == lStatus) return true;
 	return false;
