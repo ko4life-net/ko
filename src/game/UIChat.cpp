@@ -263,7 +263,9 @@ bool CUIChat::Load(HANDLE hFile)
 	//m_pBtn_KnightsOrGuild = GetChildByID("btn_knights_guild");	__ASSERT(m_pBtn_KnightsOrGuild, "NULL UI Component!!");
 	m_pBtn_KnightsOrGuild	= GetChildByID("btn_clan");				__ASSERT(m_pBtn_KnightsOrGuild, "NULL UI Component!!");
 	m_pBtn_Shout			= GetChildByID("btn_shout");			__ASSERT(m_pBtn_Shout, "NULL UI Component!!");
-	m_pBtn_Check			= GetChildByID("btn_check");			__ASSERT(m_pBtn_Check, "NULL UI Component!!");
+
+	// TODO: Implement chat modes. UI has multiple btn_check_<mode>.
+	//m_pBtn_Check			= GetChildByID("btn_check");			__ASSERT(m_pBtn_Check, "NULL UI Component!!");
 
 	this->ChangeChattingMode(N3_CHAT_NORMAL); // 보통 채팅 모드이다..
 
