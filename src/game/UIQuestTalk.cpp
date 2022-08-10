@@ -77,7 +77,7 @@ bool CUIQuestTalk::Load(HANDLE hFile)
 	if(CN3UIBase::Load(hFile)==false) return false;
 
 	m_pTextTalk	= (CN3UIString*)(this->GetChildByID("Text_Talk"));	__ASSERT(m_pTextTalk, "NULL UI Component!!!");
-	m_pBtnOk	= (CN3UIButton*)(this->GetChildByID("Btn_Ok"));		__ASSERT(m_pBtnOk, "NULL UI Component!!!");
+	m_pBtnOk	= (CN3UIButton*)(this->GetChildByID("btn_Ok_center")); __ASSERT(m_pBtnOk, "NULL UI Component!!!");
 
 	return true;
 }
