@@ -471,21 +471,21 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 				{
 					fTimePrev = fTime;
 
-					sprintf(szDebugs[0], "지형 : 보통(%d) 타일(%d) || Object : 갯수(%d) 부분수(%d) 폴리곤(%d)",
+					sprintf(szDebugs[0], "Terrain: nTerrain_Polygon(%d) nTerrain_Tile_Polygon(%d) || nShape(%d) nShape_Part(%d) nShape_Polygon(%d)",
 						CN3Base::s_RenderInfo.nTerrain_Polygon,
 						CN3Base::s_RenderInfo.nTerrain_Tile_Polygon,
 						CN3Base::s_RenderInfo.nShape,
 						CN3Base::s_RenderInfo.nShape_Part,
 						CN3Base::s_RenderInfo.nShape_Polygon);
 					
-					sprintf(szDebugs[1], "캐릭터 : 갯수(%d), 파트수(%d), 폴리곤(%d), 무기(%d), 무기폴리곤(%d)", 
+					sprintf(szDebugs[1], "Character: nChr(%d), nChr_Part(%d), nChr_Polygon(%d), nChr_Plug(%d), nChr_Plug_Polygon(%d)", 
 						CN3Base::s_RenderInfo.nChr,
 						CN3Base::s_RenderInfo.nChr_Part,
 						CN3Base::s_RenderInfo.nChr_Polygon,
 						CN3Base::s_RenderInfo.nChr_Plug,
 						CN3Base::s_RenderInfo.nChr_Plug_Polygon);
 
-					sprintf(szDebugs[2], "Camera : Lens(%.1f) NearPlane(%.1f) FarPlane(%.1f)",
+					sprintf(szDebugs[2], "Camera: fFOV(%.1f) NearPlane(%.1f) FarPlane(%.1f)",
 						D3DXToDegree(CN3Base::s_CameraData.fFOV),
 						CN3Base::s_CameraData.fNP,
 						CN3Base::s_CameraData.fFP );
@@ -494,7 +494,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 					{
 						int iYear = 0, iMonth = 0, iDay = 0, iH = 0, iM = 0;
 						CGameBase::ACT_WORLD->GetSkyRef()->GetGameTime(&iYear, &iMonth, &iDay, &iH, &iM);
-						sprintf(szDebugs[3], "%.2f Frm/Sec, %d년%d월%d일 %d시%d분", CN3Base::s_fFrmPerSec, iYear, iMonth, iDay, iH, iM);
+						sprintf(szDebugs[3], "Game: %.2f Frm/Sec, %d/%d/%d %d:%d", CN3Base::s_fFrmPerSec, iYear, iMonth, iDay, iH, iM);
 					}
 					else szDebugs[3][0] = NULL;
 				}
