@@ -25,6 +25,7 @@ public:
 	static CN3TableBase<struct __TABLE_FX>*				s_pTbl_FXSource;		// FX소스 정보 테이블..
 	static CN3TableBase<struct __TABLE_QUEST_MENU>*		s_pTbl_QuestMenu;		// 퀘스트 선택 메뉴
 	static CN3TableBase<struct __TABLE_QUEST_TALK>*		s_pTbl_QuestTalk;		// 퀘스트 지문
+	static CN3TableBase<struct __TABLE_TEXTS>*			s_pTbl_Texts;
 
 	static class CN3WorldManager*	s_pWorldMgr;								// 월드 매니져 클래스..
 	static class CPlayerOtherMgr*		s_pOPMgr;									// Other Player Manager - 다른 유저 관리 클래스..

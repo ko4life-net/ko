@@ -1415,15 +1415,6 @@ inline float _Yaw2D(float fDirX, float fDirZ)
 	////////////////////////////////
 }
 
-inline void _LoadStringFromResource(DWORD dwID, std::string& szText)
-{
-	static char szBuffer[512];
-	szBuffer[0] = NULL;
-//	::LoadString(NULL, MAKEINTRESOURCE(dwID), szBuffer, 256);
-	::LoadString(NULL, dwID, szBuffer, 256);
-	szText = szBuffer;
-}
-
 inline short int _IsKeyDown(int iVirtualKey) { return (GetAsyncKeyState(iVirtualKey) & 0xff00); }
 inline short int _IsKeyDowned(int iVirtualKey) { return (GetAsyncKeyState(iVirtualKey) & 0x00ff); }
 

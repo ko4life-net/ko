@@ -1018,6 +1018,12 @@ typedef struct __TABLE_QUEST_TALK
 	std::string szTalk;		// 퀘스트 지문
 } TABLE_QUEST_TALK;
 
+typedef struct __TABLE_TEXTS
+{
+	DWORD		dwID;
+	std::string	szText;
+} TABLE_TEXTS;
+
 const int MAX_ITEM_SLOT_OPC = 8; // 착용 아이템 - 다른 플레이어(NPC 포함) 0 ~ 4 상체,하체,헬멧,팔,발 5 망토 6 오른손 7 왼손
 const int MAX_ITEM_INVENTORY = 28;		// 소유 아템 MAX (인벤토리창)
 const int MAX_ITEM_TRADE = 24;	// 상인과 거래..

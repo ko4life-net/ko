@@ -23,7 +23,7 @@ CN3TableBase<__TABLE_EXCHANGE_QUEST>*	CGameBase::s_pTbl_Exchange_Quest = NULL;	/
 CN3TableBase<__TABLE_FX>*				CGameBase::s_pTbl_FXSource;		// FX소스 정보 테이블..
 CN3TableBase<__TABLE_QUEST_MENU>*		CGameBase::s_pTbl_QuestMenu		= NULL;		// 퀘스트 선택 메뉴
 CN3TableBase<__TABLE_QUEST_TALK>*		CGameBase::s_pTbl_QuestTalk		= NULL;		// 퀘스트 지문
-
+CN3TableBase<__TABLE_TEXTS>*			CGameBase::s_pTbl_Texts 		= NULL;
 
 CN3WorldManager*	CGameBase::s_pWorldMgr = NULL;		// 월드 매니져..
 CPlayerOtherMgr*	CGameBase::s_pOPMgr = NULL;				// Other Player Manager - 다른 유저 관리 클래스..
@@ -35,6 +35,25 @@ CGameBase::CGameBase()
 
 CGameBase::~CGameBase()
 {
+}
+
+void _LoadStringFromResource(DWORD dwID, std::string& szText)
+{
+	if (CGameBase::s_pTbl_Texts) {
+		__TABLE_TEXTS* pTexts = CGameBase::s_pTbl_Texts->Find(dwID);
+		if (pTexts) {
+			szText = pTexts->szText;
+			return;
+		} else {
+			N3_WARN("_LoadStringFromResource ID [{}] not found", dwID);
+		}
+	}
+
+	static char szBuffer[512]{};
+	szBuffer[0] = 0;
+//	::LoadString(NULL, MAKEINTRESOURCE(dwID), szBuffer, 256);
+	::LoadString(NULL, dwID, szBuffer, 256);
+	szText = szBuffer;
 }
 
 void CGameBase::StaticMemberInit()
@@ -53,6 +72,7 @@ void CGameBase::StaticMemberInit()
 	s_pTbl_FXSource			= new CN3TableBase<__TABLE_FX>;				// FX Source에 관한 테이블..
 	s_pTbl_QuestMenu		= new CN3TableBase<__TABLE_QUEST_MENU>;
 	s_pTbl_QuestTalk		= new CN3TableBase<__TABLE_QUEST_TALK>;
+	s_pTbl_Texts			= new CN3TableBase<__TABLE_TEXTS>;
 
 	std::string szLangTail = ".tbl";
 	int iLangID = ::GetUserDefaultLangID();
@@ -66,6 +86,7 @@ void CGameBase::StaticMemberInit()
 
 	szFN = "Data\\Quest_Menu" + szLangTail;	s_pTbl_QuestMenu->LoadFromFile(szFN.c_str());	// 퀘스트 관련 선택메뉴
 	szFN = "Data\\Quest_Talk" + szLangTail;	s_pTbl_QuestTalk->LoadFromFile(szFN.c_str());	// 퀘스트 관련 지문
+	szFN = "Data\\Texts" + szLangTail;		s_pTbl_Texts->LoadFromFile(szFN.c_str());
 
 	for(int i = 0; i < MAX_ITEM_EXTENSION; i++)
 	{
@@ -104,6 +125,7 @@ void CGameBase::StaticMemberRelease()
 	delete s_pTbl_FXSource; s_pTbl_FXSource = NULL;				// FX Source에 관한 테이블..	
 	delete s_pTbl_QuestMenu; s_pTbl_QuestMenu = NULL;			// 퀘스트 관련 선택메뉴
 	delete s_pTbl_QuestTalk; s_pTbl_QuestTalk = NULL;		// 퀘스트 관련 지문
+	delete s_pTbl_Texts; s_pTbl_Texts = NULL;
 
 	
 	delete s_pPlayer;	s_pPlayer = NULL;		// Player Character
