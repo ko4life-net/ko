@@ -13,7 +13,7 @@ jobs:
         shell: cmd
         run: |
           cd src
-          git clone --depth=1 https://github.com/stevewgr/ko-vendor.git vendor
+          git clone --depth=1 https://github.com/ko4life-net/ko-vendor.git vendor
 
       - name: Build KnightOnLine
         shell: cmd

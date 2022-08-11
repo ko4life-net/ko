@@ -13,14 +13,14 @@ if ERRORLEVEL 1 (
 rmdir /s /q src\assets 2> NUL
 rmdir /s /q src\vendor 2> NUL
 
-git clone --depth=1 https://github.com/stevewgr/ko-assets src\assets
-git clone --depth=1 https://github.com/stevewgr/ko-vendor src\vendor
+git clone --depth=1 https://github.com/ko4life-net/ko-assets src\assets
+git clone --depth=1 https://github.com/ko4life-net/ko-vendor src\vendor
 
 @REM src\All.sln
 
 echo Configuring done.
 
-echo If you already setup the database with odbcad settings and the import.ps1 script from: https://github.com/stevewgr/ko-assets
+echo If you already setup the database with odbcad settings and the import.ps1 script from: https://github.com/ko4life-net/ko-assets
 echo You may want to to start the src\All.sln to start developing.
 
 pause

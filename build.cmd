@@ -3,7 +3,7 @@
 set VENDOR_DIR=%cd%\src\vendor
 
 if not exist %VENDOR_DIR% (
-    curl -L -O https://github.com/stevewgr/ko-vendor/archive/refs/heads/master.zip
+    curl -L -O https://github.com/ko4life-net/ko-vendor/archive/refs/heads/master.zip
     tar -xvf master.zip
     del master.zip
     move ko-vendor-master %VENDOR_DIR%
