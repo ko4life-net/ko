@@ -45,7 +45,6 @@ LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 				{
 					pEdit->UpdateTextFromEditCtrl();
 					if (GetAsyncKeyState(VK_TAB) || GetAsyncKeyState(VK_LBUTTON)) {
-						) {
 						pEdit->UpdateCaretPosFromEditCtrl(true);
 					}
 					else {

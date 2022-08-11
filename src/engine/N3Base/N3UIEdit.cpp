@@ -488,7 +488,7 @@ bool CN3UIEdit::SetFocus()
 
 	s_Caret.m_bVisible = TRUE;
 	s_Caret.InitFlckering();
-	CN3UIEdit::UpdateCaretPosFromEditCtrl(); // 캐럿 포지션 설정
+	CN3UIEdit::UpdateCaretPosFromEditCtrl(true); // 캐럿 포지션 설정
 
 	if(s_hWndEdit)
 	{
