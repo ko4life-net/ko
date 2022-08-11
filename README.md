@@ -4,7 +4,7 @@ This is the official Knight Online repository containing sources for the game, s
 
 To get started, clone this repo:
 ```
-git clone https://github.com/stevewgr/ko.git
+git clone https://github.com/ko4life-net/ko.git
 ```
 and then double click to the `config.cmd` script in the root directory to fetch external dependencies.
 
@@ -21,7 +21,7 @@ Note that the entire project has been updated to DirectX-9. There are some runti
 
 ## Setting up the database
 
-The database project is built via SQL scripts. The repository where the database is hosted can be found here: https://github.com/stevewgr/ko-db
+The database project is built via SQL scripts. The repository where the database is hosted can be found here: https://github.com/ko4life-net/ko-db
 
 In order to setup the database, run the `import.ps1` powershell script by right clicking it and `Run with Powershell`.
 
