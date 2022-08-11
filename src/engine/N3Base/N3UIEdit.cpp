@@ -133,12 +133,12 @@ LRESULT APIENTRY CN3UIEdit::EditWndProc(HWND hWnd, WORD Message, WPARAM wParam, 
 			return 0;
 		}
 		(CallWindowProc(s_lpfnEditProc, hWnd, Message, wParam, lParam));
-		if(s_pFocusedEdit) CN3UIEdit::UpdateCaretPosFromEditCtrl();
+		if(s_pFocusedEdit) CN3UIEdit::UpdateCaretPosFromEditCtrl(false);
 		return 0;
 		//break;
 
     case WM_CHAR:
-		if(s_pFocusedEdit) CN3UIEdit::UpdateCaretPosFromEditCtrl();
+		if(s_pFocusedEdit) CN3UIEdit::UpdateCaretPosFromEditCtrl(false);
 		if(wParam==VK_RETURN) return 0;
 		if(wParam==VK_TAB) return 0;
 		break;
@@ -488,7 +488,7 @@ bool CN3UIEdit::SetFocus()
 
 	s_Caret.m_bVisible = TRUE;
 	s_Caret.InitFlckering();
-	CN3UIEdit::UpdateCaretPosFromEditCtrl(); // 캐럿 포지션 설정
+	CN3UIEdit::UpdateCaretPosFromEditCtrl(true); // 캐럿 포지션 설정
 
 	if(s_hWndEdit)
 	{
@@ -735,27 +735,36 @@ void CN3UIEdit::UpdateTextFromEditCtrl()
 	s_pFocusedEdit->SetString(s_szBuffTmp);
 }
 
-void CN3UIEdit::UpdateCaretPosFromEditCtrl()
+void CN3UIEdit::UpdateCaretPosFromEditCtrl(bool bNeedsFocus)
 {
-	if(NULL == s_pFocusedEdit || NULL == s_hWndEdit) return;
+	if (NULL == s_pFocusedEdit || NULL == s_hWndEdit) return;
+	GetWindowTextLength(s_hWndEdit);
+	/*	int iCaret = 0;
+		int iLen = GetWindowTextLength(s_hWndEdit);
+		POINT ptCaret;
+		GetCaretPos(&ptCaret);
+		if(ptCaret.x > 0)
+		{
+			HDC hDC = GetDC(s_hWndEdit);
+			SIZE size;
+			GetTextExtentPoint32(hDC, "1", 1, &size);
+			iCaret = ptCaret.x / size.cx;
+			ReleaseDC(s_hWndEdit, hDC);
+		}
+	*/
+	int cursorPosition = 0;
 
-/*	int iCaret = 0;
-	int iLen = GetWindowTextLength(s_hWndEdit);
-	POINT ptCaret;
-	GetCaretPos(&ptCaret);
-	if(ptCaret.x > 0)
-	{
-		HDC hDC = GetDC(s_hWndEdit);
-		SIZE size;
-		GetTextExtentPoint32(hDC, "1", 1, &size);
-		iCaret = ptCaret.x / size.cx;
-		ReleaseDC(s_hWndEdit, hDC);
+	if (bNeedsFocus == false) {
+		int iTmp = ::SendMessage(s_hWndEdit, EM_GETSEL, NULL, NULL);
+		cursorPosition = LOWORD(iTmp);
+		int iCTmp2 = HIWORD(iTmp);
 	}
-*/
-	int iTmp = ::SendMessage(s_hWndEdit, EM_GETSEL, 0, 0);
-	int iCaret = LOWORD(iTmp);
-	int iCTmp2 = HIWORD(iTmp);
-	s_pFocusedEdit->SetCaretPos(iCaret);
+	else {
+		std::string getText = s_pFocusedEdit->GetString();
+		cursorPosition = getText.size();
+		SendMessageA(s_hWndEdit, EM_SETSEL, (WPARAM)cursorPosition, (LPARAM)cursorPosition);
+	}
+	s_pFocusedEdit->SetCaretPos(cursorPosition);
 }
 
 void CN3UIEdit::SetImeStatus(POINT ptPos, bool bOpen)
