@@ -44,7 +44,13 @@ LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 				if(hwndCtl == CN3UIEdit::s_hWndEdit)
 				{
 					pEdit->UpdateTextFromEditCtrl();
-					pEdit->UpdateCaretPosFromEditCtrl();
+					if (GetAsyncKeyState(VK_TAB) || GetAsyncKeyState(VK_LBUTTON)) {
+						) {
+						pEdit->UpdateCaretPosFromEditCtrl(true);
+					}
+					else {
+						pEdit->UpdateCaretPosFromEditCtrl(false);
+					}
 					CGameProcedure::SetGameCursor(CGameProcedure::s_hCursorNormal);
 				}
 			}

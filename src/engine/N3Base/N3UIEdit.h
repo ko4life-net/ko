@@ -55,7 +55,7 @@ public:
 	static BOOL				CreateEditWindow(HWND hParent, RECT rect);
 	static LRESULT APIENTRY EditWndProc(HWND hWnd, WORD Message, WPARAM wParam, LPARAM lParam);
 	static void				UpdateTextFromEditCtrl();
-	static void				UpdateCaretPosFromEditCtrl();
+	static void				UpdateCaretPosFromEditCtrl(bool bNeedsFocus);
 
 protected:
 	static CN3Caret		s_Caret;
