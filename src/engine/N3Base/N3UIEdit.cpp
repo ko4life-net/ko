@@ -737,34 +737,16 @@ void CN3UIEdit::UpdateTextFromEditCtrl()
 
 void CN3UIEdit::UpdateCaretPosFromEditCtrl(bool bNeedsFocus)
 {
-	if (NULL == s_pFocusedEdit || NULL == s_hWndEdit) return;
-	GetWindowTextLength(s_hWndEdit);
-	/*	int iCaret = 0;
-		int iLen = GetWindowTextLength(s_hWndEdit);
-		POINT ptCaret;
-		GetCaretPos(&ptCaret);
-		if(ptCaret.x > 0)
-		{
-			HDC hDC = GetDC(s_hWndEdit);
-			SIZE size;
-			GetTextExtentPoint32(hDC, "1", 1, &size);
-			iCaret = ptCaret.x / size.cx;
-			ReleaseDC(s_hWndEdit, hDC);
-		}
-	*/
-	int cursorPosition = 0;
+	if (!s_pFocusedEdit || !s_hWndEdit) return;
 
-	if (bNeedsFocus == false) {
-		int iTmp = ::SendMessage(s_hWndEdit, EM_GETSEL, NULL, NULL);
-		cursorPosition = LOWORD(iTmp);
-		int iCTmp2 = HIWORD(iTmp);
+	int iCaretPos = 0;
+	if (bNeedsFocus) {
+		iCaretPos = s_pFocusedEdit->GetString().size();
+		SendMessage(s_hWndEdit, EM_SETSEL, (WPARAM)iCaretPos, (LPARAM)iCaretPos);
+	} else {
+		iCaretPos = LOWORD(SendMessage(s_hWndEdit, EM_GETSEL, NULL, NULL));
 	}
-	else {
-		std::string getText = s_pFocusedEdit->GetString();
-		cursorPosition = getText.size();
-		SendMessageA(s_hWndEdit, EM_SETSEL, (WPARAM)cursorPosition, (LPARAM)cursorPosition);
-	}
-	s_pFocusedEdit->SetCaretPos(cursorPosition);
+	s_pFocusedEdit->SetCaretPos(iCaretPos);
 }
 
 void CN3UIEdit::SetImeStatus(POINT ptPos, bool bOpen)
