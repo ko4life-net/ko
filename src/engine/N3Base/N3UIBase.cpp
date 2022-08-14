@@ -222,8 +222,10 @@ bool CN3UIBase::Load(HANDLE hFile)
 	DWORD dwRWC = NULL;
 
 	// children Á¤º¸
-	int iCC = 0;
-	ReadFile(hFile, &iCC, sizeof(iCC), &dwRWC, NULL); // children count
+	int16_t iCC = 0;
+	ReadFile(hFile, &iCC, sizeof(int16_t), &dwRWC, NULL);
+	ReadFile(hFile, &m_sUIVersion, sizeof(int16_t), &dwRWC, NULL);
+
 	eUI_TYPE eChildUIType;
 	for(int i = 0; i < iCC; i++)
 	{
@@ -247,7 +249,7 @@ bool CN3UIBase::Load(HANDLE hFile)
 #endif
 		case UI_TYPE_LIST:			pChild = new CN3UIList();			break;
 		}
-		__ASSERT(pChild, "Unknown type UserInterface!!!");
+		N3_ASSERT(pChild, "Unknown type UserInterface!!!");
 		pChild->Init(this);
 		pChild->Load(hFile);
 	}

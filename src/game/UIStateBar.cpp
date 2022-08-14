@@ -117,6 +117,11 @@ bool CUIStateBar::Load(HANDLE hFile)
 	}
 	m_pText_Position =	(CN3UIString*)(this->GetChildByID("Text_Position"));	__ASSERT(m_pText_Position, "NULL UI Component!!");
 
+	// TODO: Fix this and implement proper state bar.
+	GetChildByID("Progress_HP_lasting")->SetVisible(false);
+	GetChildByID("Progress_HP_drop")->SetVisible(false);
+	GetChildByID("Progress_HP_slow")->SetVisible(false);
+
 	m_pProgress_HP =	(CN3UIProgress*)(this->GetChildByID("Progress_HP"));	__ASSERT(m_pProgress_HP, "NULL UI Component!!");
 	m_pProgress_MSP =	(CN3UIProgress*)(this->GetChildByID("Progress_MSP"));	__ASSERT(m_pProgress_MSP, "NULL UI Component!!");
 	m_pProgress_ExpC =	(CN3UIProgress*)(this->GetChildByID("Progress_ExpC"));	__ASSERT(m_pProgress_ExpC, "NULL UI Component!!");

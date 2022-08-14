@@ -55,6 +55,7 @@ public:
 	
 	CN3UIBase*	m_pChildUI;		// UI 부속이 아니라 다른 UI를 자식으로 갖는다..
 	CN3UIBase*	m_pParentUI;
+	int16_t			m_sUIVersion;
 
 protected:
 	static std::string	s_szStringTmp;		// 임시 문자열.. 포인터를 넘기기 위해서이다..

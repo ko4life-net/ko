@@ -15,7 +15,7 @@
 #include "N3Base/N3UIString.h"
 #include "N3Base/N3UIButton.h"
 
-#define PARTY_BBS_MAXSTRING	69
+#define PARTY_BBS_MAXSTRING	66
 #define PARTY_BBS_MAXLINE	23
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -55,25 +55,27 @@ bool CUIPartyBBS::Load(HANDLE hFile)
 {
 	if(CN3UIBase::Load(hFile)==false) return false;
 
+	// TODO: fix this. stuff needs to be implemented differently here.
+	auto pParty = GetChildByID("party");					__ASSERT(pParty, "NULL UI Component!!!");
 //	m_pList_Infos = (CN3UIList*)(this->GetChildByID("List_Friends"));					__ASSERT(m_pList_Infos, "NULL UI Component!!!");
-	m_pBtn_PageUp = (CN3UIButton*)(this->GetChildByID("btn_page_up"));					__ASSERT(m_pBtn_PageUp, "NULL UI Component!!!");
-	m_pBtn_PageDown = (CN3UIButton*)(this->GetChildByID("btn_page_down"));				__ASSERT(m_pBtn_PageDown, "NULL UI Component!!!");
-	m_pBtn_Refresh = (CN3UIButton*)(this->GetChildByID("btn_refresh"));					__ASSERT(m_pBtn_Refresh, "NULL UI Component!!!");
+	m_pBtn_PageUp = (CN3UIButton*)pParty->GetChildByID("btn_page_up");					__ASSERT(m_pBtn_PageUp, "NULL UI Component!!!");
+	m_pBtn_PageDown = (CN3UIButton*)pParty->GetChildByID("btn_page_down");				__ASSERT(m_pBtn_PageDown, "NULL UI Component!!!");
+	m_pBtn_Refresh = (CN3UIButton*)pParty->GetChildByID("btn_refresh");					__ASSERT(m_pBtn_Refresh, "NULL UI Component!!!");
 	
-	m_pBtn_Close = (CN3UIButton*)(this->GetChildByID("btn_exit"));						__ASSERT(m_pBtn_Close, "NULL UI Component!!!");
-	m_pBtn_Register = (CN3UIButton*)(this->GetChildByID("btn_add"));					__ASSERT(m_pBtn_Register, "NULL UI Component!!!");
-	m_pBtn_RegisterCancel = (CN3UIButton*)(this->GetChildByID("btn_delete"));			__ASSERT(m_pBtn_RegisterCancel, "NULL UI Component!!!");
-	m_pBtn_Whisper = (CN3UIButton*)(this->GetChildByID("btn_whisper"));					__ASSERT(m_pBtn_Whisper, "NULL UI Component!!!");
-	m_pBtn_Party = (CN3UIButton*)(this->GetChildByID("btn_Party"));						__ASSERT(m_pBtn_Party, "NULL UI Component!!!");
+	m_pBtn_Close = (CN3UIButton*)GetChildByID("btn_exit");								__ASSERT(m_pBtn_Close, "NULL UI Component!!!");
+	m_pBtn_Register = (CN3UIButton*)pParty->GetChildByID("btn_add");					__ASSERT(m_pBtn_Register, "NULL UI Component!!!");
+	m_pBtn_RegisterCancel = (CN3UIButton*)pParty->GetChildByID("btn_delete");			__ASSERT(m_pBtn_RegisterCancel, "NULL UI Component!!!");
+	//m_pBtn_Whisper = (CN3UIButton*)GetChildByID("btn_whisper");					__ASSERT(m_pBtn_Whisper, "NULL UI Component!!!");
+	m_pBtn_Party = (CN3UIButton*)GetChildByID("personal")->GetChildByID("btn_Party");								__ASSERT(m_pBtn_Party, "NULL UI Component!!!");
 
 
-	m_pText_Page = (CN3UIString*)(this->GetChildByID("string_page"));					__ASSERT(m_pText_Page, "NULL UI Component!!!");
+	m_pText_Page = (CN3UIString*)(pParty->GetChildByID("string_page"));					__ASSERT(m_pText_Page, "NULL UI Component!!!");
 
 	char szBuf[64];
 	for(int i = 0 ; i < PARTY_BBS_MAXSTRING ; i++)
 	{
 		sprintf(szBuf,"text_%.2d",i);
-		m_pText[i] = (CN3UIString*)(this->GetChildByID(szBuf));
+		m_pText[i] = (CN3UIString*)(pParty->GetChildByID(szBuf));
 	}
 
 	m_iCurPage = 0; // 현재 페이지..

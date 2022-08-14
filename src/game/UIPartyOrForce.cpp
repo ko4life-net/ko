@@ -67,7 +67,7 @@ bool CUIPartyOrForce::Load(HANDLE hFile)
 			m_pProgress_HPs[i]->SetRange(0, 100);
 		}
 
-		sprintf(szID, "progress_hp_%d_poison", i); // 
+		sprintf(szID, "progress_hp_%d_slow", i); // 
 		m_pProgress_HPReduce[i] = (CN3UIProgress*)(this->GetChildByID(szID)); __ASSERT(m_pProgress_HPReduce[i], "NULL UI Component!!!");
 		if(m_pProgress_HPReduce[i])
 		{
@@ -75,13 +75,15 @@ bool CUIPartyOrForce::Load(HANDLE hFile)
 			m_pProgress_HPReduce[i]->SetRange(0, 100);
 		}
 
-		sprintf(szID, "progress_hp_%d_curse", i); // 
+		sprintf(szID, "progress_hp_%d_drop", i); // 
 		m_pProgress_ETC[i] = (CN3UIProgress*)(this->GetChildByID(szID)); __ASSERT(m_pProgress_ETC[i], "NULL UI Component!!!");
 		if(m_pProgress_ETC[i])
 		{
 			m_pProgress_ETC[i]->SetVisible(false);
 			m_pProgress_ETC[i]->SetRange(0, 100);
 		}
+
+		// TODO: implement progress_hp_%d for fire dot damage, e.g. super nova.
 		
 		sprintf(szID, "static_name_%d", i);
 		m_pStatic_IDs[i] = (CN3UIStatic*)(this->GetChildByID(szID)); __ASSERT(m_pStatic_IDs[i], "NULL UI Component!!!");

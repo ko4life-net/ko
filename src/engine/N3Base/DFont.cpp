@@ -1035,6 +1035,7 @@ BOOL CDFont::GetTextExtent(const std::string& szString, int iStrLen, SIZE* pSize
 {
 	if (NULL == s_hDC) return FALSE;
 
+	// TODO: implement GetFont -> sub_40E4D0 v1264 or sub_429700 v1298 client
 	SelectObject(s_hDC, m_hFont);
 	return ::GetTextExtentPoint32( s_hDC, szString.c_str(), iStrLen, pSize );
 }
