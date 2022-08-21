@@ -13,11 +13,11 @@
       <UniqueIdentifier>{8c18cd29-52f4-4bc8-8f3a-632dbe08c5f3}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
+    <Filter Include="N3Base">
+      <UniqueIdentifier>{cac4d545-2d28-4a67-811a-e69454355707}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\engine\N3Base\JpegFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="KscViewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -36,6 +36,12 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\engine\N3Base\JpegFile.cpp">
+      <Filter>N3Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\N3Base\N3Log.cpp">
+      <Filter>N3Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="KscViewer.rc">
@@ -43,9 +49,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\engine\N3Base\JpegFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="KscViewer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -66,6 +69,12 @@
     </ClInclude>
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\N3Base\JpegFile.h">
+      <Filter>N3Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\N3Base\N3Log.h">
+      <Filter>N3Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

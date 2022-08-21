@@ -313,6 +313,9 @@
     <ClInclude Include="..\..\engine\N3Base\N3VMesh.h">
       <Filter>N3Shape</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\engine\N3Base\N3Log.h">
+      <Filter>N3Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ComDialog.cpp">
@@ -539,6 +542,9 @@
     </ClCompile>
     <ClCompile Include="..\..\engine\N3Base\N3VMesh.cpp">
       <Filter>N3Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\N3Base\N3Log.cpp">
+      <Filter>N3Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

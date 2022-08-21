@@ -13,36 +13,15 @@
       <UniqueIdentifier>{6fc26225-8dbe-408e-af3d-54472bb8843d}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
+    <Filter Include="N3Base">
+      <UniqueIdentifier>{a4efc9b4-466f-4f5c-a1c0-b6395fa2d2ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\engine\N3Base\BitMapFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DlgFormat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\LogWriter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MainFrm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3Base.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3BaseFileAccess.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3Eng.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3EngTool.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="N3TexViewer.cpp">
@@ -60,6 +39,33 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\engine\N3Base\N3Log.cpp">
+      <Filter>N3Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\N3Base\BitMapFile.cpp">
+      <Filter>N3Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\N3Base\LogWriter.cpp">
+      <Filter>N3Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp">
+      <Filter>N3Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\N3Base\N3Base.cpp">
+      <Filter>N3Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\N3Base\N3BaseFileAccess.cpp">
+      <Filter>N3Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\N3Base\N3Eng.cpp">
+      <Filter>N3Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\N3Base\N3EngTool.cpp">
+      <Filter>N3Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\N3Base\N3Texture.cpp">
+      <Filter>N3Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="N3TexViewer.rc">
@@ -67,37 +73,10 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\engine\N3Base\BitMapFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DlgFormat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\LogWriter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MainFrm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\My_3DStruct.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3AlphaPrimitiveManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3Base.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3BaseFileAccess.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3Eng.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3EngTool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="N3TexViewer.h">
@@ -117,6 +96,36 @@
     </ClInclude>
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\N3Base\N3Log.h">
+      <Filter>N3Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\N3Base\BitMapFile.h">
+      <Filter>N3Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\N3Base\My_3DStruct.h">
+      <Filter>N3Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\N3Base\N3AlphaPrimitiveManager.h">
+      <Filter>N3Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\N3Base\N3Base.h">
+      <Filter>N3Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\N3Base\N3BaseFileAccess.h">
+      <Filter>N3Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\N3Base\N3Eng.h">
+      <Filter>N3Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\N3Base\N3EngTool.h">
+      <Filter>N3Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\N3Base\N3Texture.h">
+      <Filter>N3Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\N3Base\LogWriter.h">
+      <Filter>N3Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

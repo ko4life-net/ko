@@ -61,7 +61,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_N3TOOL;_KNIGHT;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SrcDir)\engine;$(SrcDir)\game;$(WindowsSDK_IncludePath);$(VendorDir)\DXSDK9\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SrcDir)\engine;$(SrcDir)\game;$(VendorDir)\spdlog\include;$(WindowsSDK_IncludePath);$(VendorDir)\DXSDK9\Include</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -69,8 +69,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(VendorDir)\DXSDK9\Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>spdlogd.lib;d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(VendorDir)\spdlog\lib;$(VendorDir)\DXSDK9\Lib\x86</AdditionalLibraryDirectories>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -94,7 +94,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_N3TOOL;_KNIGHT;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SrcDir)\engine;$(SrcDir)\game;$(WindowsSDK_IncludePath);$(VendorDir)\DXSDK9\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SrcDir)\engine;$(SrcDir)\game;$(VendorDir)\spdlog\include;$(WindowsSDK_IncludePath);$(VendorDir)\DXSDK9\Include</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 %(AdditionalOptions)</AdditionalOptions>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -102,8 +102,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(VendorDir)\DXSDK9\Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>spdlog.lib;d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(VendorDir)\spdlog\lib;$(VendorDir)\DXSDK9\Lib\x86</AdditionalLibraryDirectories>
       <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
@@ -135,6 +135,7 @@
     <Image Include="res\Toolbar.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\engine\N3Base\N3Log.cpp" />
     <ClCompile Include="..\..\engine\N3Base\BitMapFile.cpp" />
     <ClCompile Include="..\..\engine\N3Base\LogWriter.cpp" />
     <ClCompile Include="..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp" />
@@ -252,6 +253,7 @@
     <ClCompile Include="WarpMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\engine\N3Base\N3Log.h" />
     <ClInclude Include="..\..\engine\N3Base\BitMapFile.h" />
     <ClInclude Include="..\..\engine\N3Base\LogWriter.h" />
     <ClInclude Include="..\..\engine\N3Base\My_3DStruct.h" />
