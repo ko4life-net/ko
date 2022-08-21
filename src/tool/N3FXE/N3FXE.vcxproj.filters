@@ -246,6 +246,9 @@
     <ClCompile Include="N3FXEView.cpp">
       <Filter>Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\engine\N3Base\N3Log.cpp">
+      <Filter>N3Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="N3FXE.rc">
@@ -498,6 +501,9 @@
     </ClInclude>
     <ClInclude Include="N3FXEView.h">
       <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\N3Base\N3Log.h">
+      <Filter>N3Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -123,6 +123,9 @@
     <ClCompile Include="..\..\engine\N3Base\N3VMesh.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\engine\N3Base\N3Log.cpp">
+      <Filter>N3Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SkyViewer.rc">
@@ -242,6 +245,9 @@
       <Filter>N3Base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\engine\N3Base\N3VMesh.h">
+      <Filter>N3Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\N3Base\N3Log.h">
       <Filter>N3Base</Filter>
     </ClInclude>
   </ItemGroup>

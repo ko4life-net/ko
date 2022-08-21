@@ -368,6 +368,9 @@
     <ClCompile Include="..\..\engine\N3Base\Pick.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\engine\N3Base\N3Log.cpp">
+      <Filter>N3Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\engine\N3Base\BitMapFile.h">
@@ -720,6 +723,9 @@
     </ClInclude>
     <ClInclude Include="DlgMapView.h" />
     <ClInclude Include="SowSeedMng.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Log.h">
+      <Filter>N3Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="N3ME.rc">
