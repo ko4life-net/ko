@@ -7137,8 +7137,8 @@ bool CGameProcMain::OnMouseRbtnDown(POINT ptCur, POINT ptPrev)
 {
 	float fMouseSensivity = 0.02f;
 	
-	float fRotY = D3DXToRadian(180.0f) * ((ptCur.x - ptPrev.x) * fMouseSensivity); // 회전할 양을 계산하고..
-	float fRotX = D3DXToRadian(180.0f) * ((ptCur.y - ptPrev.y) * fMouseSensivity);
+	float fRotY = D3DX_PI * ((ptCur.x - ptPrev.x) * fMouseSensivity); // 회전할 양을 계산하고..
+	float fRotX = D3DX_PI * ((ptCur.y - ptPrev.y) * fMouseSensivity);
 	if(fRotY && s_pPlayer->IsAlive())
 	{
 		if(VP_THIRD_PERSON == s_pEng->ViewPoint()) s_pEng->CameraYawAdd(fRotY);
@@ -7153,7 +7153,9 @@ bool CGameProcMain::OnMouseRbtnDown(POINT ptCur, POINT ptPrev)
 	if(fRotY || fRotX)
 	{
 		SetGameCursor(NULL);
-		::SetCursorPos(ptPrev.x, ptPrev.y);
+		POINT ptToScreen{ ptPrev.x, ptPrev.y };
+		::ClientToScreen(s_hWndBase, &ptToScreen);
+		::SetCursorPos(ptToScreen.x, ptToScreen.y);
 		s_pLocalInput->MouseSetPos(ptPrev.x, ptPrev.y);
 	}
 	return true;
