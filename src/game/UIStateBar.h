@@ -25,20 +25,25 @@ typedef typename std::list<__PositionInfo>::iterator it_PositionInfo;
 typedef typename std::list<__DurationMagicImg*>::iterator it_MagicImg;
 
 
-class CUIStateBar : public CN3UIBase  
+class CUIStateBar : public CN3UIBase
 {
 protected:
-	CN3UIString*	m_pText_Position;
-	CN3UIProgress*	m_pProgress_HP;
-	CN3UIProgress*	m_pProgress_MSP;
-	CN3UIProgress*	m_pProgress_ExpC;
-	CN3UIProgress*	m_pProgress_ExpP;
+	CN3UIString* m_pText_Position;
+	CN3UIString* m_pText_HP;
+	CN3UIString* m_pText_MP;
+	CN3UIString* m_pText_Exp;
+	CN3UIString* m_pText_Fps;
+	CN3UIString* m_pText_SystemTime;
+	CN3UIProgress* m_pProgress_HP;
+	CN3UIProgress* m_pProgress_MSP;
+	CN3UIProgress* m_pProgress_ExpC;
+	CN3UIProgress* m_pProgress_ExpP;
 
 	// 미니맵...
-	CN3UIBase*		m_pGroup_MiniMap;
-	CN3UIImage*		m_pImage_Map; // 이 이미지에 미니맵 텍스처를 적용시킨다..
-	CN3UIButton*	m_pBtn_ZoomIn;
-	CN3UIButton*	m_pBtn_ZoomOut;
+	CN3UIBase* m_pGroup_MiniMap;
+	CN3UIImage* m_pImage_Map; // 이 이미지에 미니맵 텍스처를 적용시킨다..
+	CN3UIButton* m_pBtn_ZoomIn;
+	CN3UIButton* m_pBtn_ZoomOut;
 
 	float			m_fZoom; // 지도의 배율..
 	float			m_fMapSizeX;
@@ -52,8 +57,8 @@ protected:
 
 	//컬려있는 마법스킬 표시하기..
 	std::list<__DurationMagicImg*> m_pMagic;
-	
-// Attributes
+
+	// Attributes
 public:
 	bool OnKeyPress(int iKey);
 	DWORD MouseProc(DWORD dwFlags, const POINT& ptCur, const POINT& ptOld);
@@ -71,17 +76,20 @@ public:
 
 	void UpdatePosition(const __Vector3& vPos, float fYaw);
 
+	void UpdateFPS(const float fps);
+	void UpdateSystemTime();
+
 	void ZoomSet(float fZoom);
 	void PositionInfoAdd(int iID, const __Vector3& vPos, D3DCOLOR crID, bool bDrawTop);
 	void PositionInfoClear();
 	bool LoadMap(const std::string& szMiniMapFN, float fMapSizeX, float fMapSizeZ); // 미니맵 비트맵 파일 이름, 매의 너비 길이..(Meter);
-	
+
 	bool	ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg); // 메시지를 받는다.. 보낸놈, msg
 
 	virtual void	Tick();
 	virtual void	Render(); // 미니맵 렌더링..
 	virtual bool	Load(HANDLE hFile);
-	
+
 	virtual void	Release();
 	CUIStateBar();
 	virtual ~CUIStateBar();
