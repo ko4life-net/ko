@@ -26,7 +26,7 @@ const int SKILL_DEF_SPECIAL3 = 4;
 
 //////////////////////////////////////////////////////////////////////
 
-class CUISkillTreeDlg    : public CN3UIWndBase  
+class CUISkillTreeDlg : public CN3UIWndBase
 {
 protected:
 	bool		m_bOpenningNow; // 열리고 있다..
@@ -35,17 +35,17 @@ protected:
 
 	int			m_iRBtnDownOffs;
 
-	CN3UIString*		m_pStr_info;
-	CN3UIString*		m_pStr_skill_mp;
-	CN3UIString*		m_pStr_skill_item0;
-	CN3UIString*		m_pStr_skill_item1;
+	CN3UIString* m_pStr_info;
+	CN3UIString* m_pStr_skill_mp;
+	CN3UIString* m_pStr_skill_item0;
+	CN3UIString* m_pStr_skill_item1;
 
 public:
 	int					m_iCurKindOf;
 	int					m_iCurSkillPage;
 
 	int					m_iSkillInfo[MAX_SKILL_FROM_SERVER];										// 서버로 받는 슬롯 정보..	
-	__IconItemSkill*	m_pMySkillTree[MAX_SKILL_KIND_OF][MAX_SKILL_PAGE_NUM][MAX_SKILL_IN_PAGE];	// 총 스킬 정보..
+	__IconItemSkill* m_pMySkillTree[MAX_SKILL_KIND_OF][MAX_SKILL_PAGE_NUM][MAX_SKILL_IN_PAGE];	// 총 스킬 정보..
 	int					m_iCurInPageOffset[MAX_SKILL_KIND_OF];										// 스킬당 현재 페이지 옵셋..
 
 protected:
@@ -68,10 +68,10 @@ public:
 	void				Open();
 	void				Close();
 
-	void				InitIconWnd(e_UIWND eWnd);	
+	void				InitIconWnd(e_UIWND eWnd);
 	void				InitIconUpdate();
 
-	__IconItemSkill*	GetHighlightIconItem(CN3UIIcon* pUIIcon);
+	__IconItemSkill* GetHighlightIconItem(CN3UIIcon* pUIIcon);
 	int					GetSkilliOrder(__IconItemSkill* spSkill);
 
 	void				AddSkillToPage(__TABLE_UPC_SKILL* pUSkill, int iOffset = 0);
@@ -79,9 +79,9 @@ public:
 	void				SetPageInIconRegion(int iKindOf, int iPageNum);		// 아이콘 역역에서 현재 페이지 설정..
 	void				SetPageInCharRegion();								// 문자 역역에서 현재 페이지 설정..
 
-	CN3UIImage*		   GetChildImageByName(const std::string& szFN);
-	CN3UIBase*			GetChildBaseByName(const std::string &szFN);	
-	CN3UIButton*		GetChildButtonByName(const std::string& szFN);
+	CN3UIImage* GetChildImageByName(const std::string& szFN);
+	CN3UIBase* GetChildBaseByName(const std::string& szFN);
+	CN3UIButton* GetChildButtonByName(const std::string& szFN);
 
 	void				PageLeft();
 	void				PageRight();
@@ -90,6 +90,7 @@ public:
 
 	bool				HasIDSkill(int iID);
 	void				ButtonVisibleStateSet();
+	void				MasterIconsButtonsVisibleSateSet();
 
 	void				TooltipRenderEnable(__IconItemSkill* spSkill);
 	void				TooltipRenderDisable();
