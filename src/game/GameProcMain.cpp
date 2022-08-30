@@ -4468,30 +4468,39 @@ void CGameProcMain::MsgRecv_UserState(DataPack* pDataPack, int& iOffset)
 
 void CGameProcMain::MsgRecv_Notice(DataPack* pDataPack, int& iOffset)
 {
-	if(m_pUINotice) m_pUINotice->RemoveNotice();
+	if (m_pUINotice) m_pUINotice->RemoveNotice();
 
 	int iNoticeCount = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-	for(int i = 0; i < iNoticeCount; i++)
+	for (int i = 0; i < iNoticeCount; i++)
 	{
 		int iStrLen = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-		if(iStrLen <= 0) continue;
+		if (iStrLen <= 0) continue;
 
 		std::string szNotice;
 		CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szNotice, iStrLen);
-		if(m_pUINotice) m_pUINotice->m_Texts.push_back(szNotice);
+		if (m_pUINotice) m_pUINotice->m_Texts.push_back(szNotice);
 	}
 
-	if(m_pUINotice && iNoticeCount > 0)
+	if (m_pUINotice && iNoticeCount > 0)
 	{
 		m_pUINotice->GenerateText();
-		
+
 		RECT rc = m_pUINotice->GetRegion();
+
+		/* OLD POSITION NOTICE BOX CENTER */
+		/*
 		int x = (CN3Base::s_CameraData.vp.Width/2) - (rc.right - rc.left)/2;
 		int y = (CN3Base::s_CameraData.vp.Height/2) - (rc.bottom - rc.top)/2;
+		*/
+
+		int x = (CN3Base::s_CameraData.vp.Width - (rc.right - rc.left));
+		int y = (10);
+
 		m_pUINotice->SetPos(x, y);
 		m_pUINotice->SetVisible(true);
 	}
 }
+
 
 void CGameProcMain::MsgRecv_PartyOrForce(DataPack* pDataPack, int& iOffset)
 {
