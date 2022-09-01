@@ -27,6 +27,7 @@ CUILogIn::CUILogIn()
 	m_pBtn_Connect = NULL;
 	m_pBtn_Cancel = NULL;
 	m_pBtn_Option = NULL;
+	m_pBtn_Join = NULL;
 
 	m_pGroup_ServerList = NULL;
 	m_pGroup_LogIn = NULL;
@@ -34,7 +35,6 @@ CUILogIn::CUILogIn()
 	m_pText_Rights = NULL;
 	m_pImg_MGameLogo = NULL;
 	m_pImg_DaumLogo = NULL;
-	m_pImg_GradeLogo = NULL;
 
 	m_pList_Server = NULL;
 	
@@ -77,6 +77,12 @@ bool CUILogIn::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 			::_LoadStringFromResource(IDS_CONFIRM_EXECUTE_OPTION, szMsg);
 			CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_EXECUTE_OPTION);
 		}
+		else if(pSender == m_pBtn_Join)
+		{
+			N3_WARN("TODO: Implement Join / Registeration button.");
+			// TOOD: Load from Server.ini the [Join] Registration site and open URL with
+			// shell execute.
+		}
 	}
 	else if(UIMSG_LIST_DBLCLK == dwMsg)
 	{
@@ -105,16 +111,27 @@ bool CUILogIn::Load(HANDLE hFile)
 		m_pBtn_LogIn = (CN3UIButton*)m_pGroup_LogIn->GetChildByID("Btn_Login");		__ASSERT(m_pBtn_LogIn, "NULL UI Component!!");
 		m_pBtn_Cancel = (CN3UIButton*)m_pGroup_LogIn->GetChildByID("Btn_Cancel");	__ASSERT(m_pBtn_Cancel, "NULL UI Component!!");
 		m_pBtn_Option = (CN3UIButton*)m_pGroup_LogIn->GetChildByID("Btn_Option");	__ASSERT(m_pBtn_Option, "NULL UI Component!!");
+		m_pBtn_Join = (CN3UIButton*)m_pGroup_LogIn->GetChildByID("Btn_Join");		__ASSERT(m_pBtn_Option, "NULL UI Component!!");
 
 		m_pEdit_id = (CN3UIEdit*)m_pGroup_LogIn->GetChildByID("Edit_ID");			__ASSERT(m_pEdit_id, "NULL UI Component!!");
 		m_pEdit_pw = (CN3UIEdit*)m_pGroup_LogIn->GetChildByID("Edit_PW");			__ASSERT(m_pEdit_pw, "NULL UI Component!!");
-
-		m_pImg_GradeLogo = m_pGroup_LogIn->GetChildByID("Img_Grade");	__ASSERT(m_pImg_GradeLogo, "NULL UI Component!!");
+	}
+	
+	// TODO: This needs to be implemented. Hidding group notices for now.
+	const int GROUP_NOTICE_COUNT = 3;
+	std::string szGroupNotice = "Group_Notice_";
+	for (size_t i = 0; i < GROUP_NOTICE_COUNT; ++i) {
+		CN3UIBase* pGroupNotice = GetChildByID(szGroupNotice + std::to_string(i+1));
+		if (pGroupNotice) pGroupNotice->SetVisible(false);
 	}
 
 	m_pText_Rights = GetChildByID("Text_Rights");	__ASSERT(m_pText_Rights, "NULL UI Component!!");
 	m_pImg_MGameLogo = GetChildByID("Img_MGame");	__ASSERT(m_pImg_MGameLogo, "NULL UI Component!!");
 	m_pImg_DaumLogo = GetChildByID("Img_Daum");		__ASSERT(m_pImg_DaumLogo, "NULL UI Component!!");
+	
+	// TODO: implement
+	auto pPremiumNotice = GetChildByID("premium");
+	if (pPremiumNotice) pPremiumNotice->SetVisible(false);
 
 	if(m_pText_Rights) m_pText_Rights->SetVisible(false);
 	if(m_pImg_MGameLogo) m_pImg_MGameLogo->SetVisible(false);
@@ -126,8 +143,14 @@ bool CUILogIn::Load(HANDLE hFile)
 		m_pList_Server = (CN3UIList*)(m_pGroup_ServerList->GetChildByID("List_Server"));	__ASSERT(m_pList_Server, "NULL UI Component!!");
 		m_pBtn_Connect = (CN3UIButton*)m_pGroup_ServerList->GetChildByID("Btn_Connect");	__ASSERT(m_pBtn_Connect, "NULL UI Component!!");
 
+		// TODO: There is something else happening here in the v1264 client.
+		// if ( m_pList_Server ) sub_409CC0(m_pList_Server, 3);
+		// Quick look; I believe 3 is the child element count to calculate positioning of UI elements.
 		m_pGroup_ServerList->SetVisible(false);
 	}
+
+	// Note that the 1264 loads more UI elements that are not really used / exists in the game assets,
+	// such as Text_RemainDays, Text_RemainPoints, Btn_Exit
 
 	return true;
 }
@@ -329,17 +352,6 @@ void CUILogIn::SetVisibleLogInUIs(bool bEnable)
 				m_pText_Rights->SetVisible(true);
 			}
 		}
-	}
-}
-
-void CUILogIn::RecalcGradePos()
-{
-	if(m_pImg_GradeLogo) // 이용등급 표시
-	{
-		RECT rc = m_pImg_GradeLogo->GetRegion();
-		int iX = s_CameraData.vp.Width - (rc.right - rc.left + 10);
-		int iY = 10;
-		m_pImg_GradeLogo->SetPos(iX, iY);
 	}
 }
 

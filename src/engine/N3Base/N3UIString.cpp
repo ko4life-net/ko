@@ -24,6 +24,7 @@ CN3UIString::CN3UIString()
 	ZeroMemory(&m_ptDrawPos, sizeof(m_ptDrawPos));
 	m_iLineCount = 0;
 	m_iStartLine = 0;
+	m_iPadding = 0;
 }
 
 CN3UIString::~CN3UIString()
@@ -175,13 +176,14 @@ void CN3UIString::WordWrap()
 		// 임시 변수 잡기
 		std::string szNewBuff;
 
-		if (size.cy>iRegionHeight)	// 글자 높이가 해당 영역보다 큰 경우
+		// TODO: fix this
+		if (size.cy>iRegionHeight)	// If the text height is larger than the corresponding area
 		{	
 			m_ptDrawPos.y = m_rcRegion.top;
-			m_pDFont->SetText("글자 높이가 STRING control보다 큽니다.");
-			return;
+			N3_WARN("[CN3UIString::WordWrap]: The text height is greater than the STRING control [1].");
+			// return;
 		}
-		else if (size.cx <= iRegionWidth)	// 글자 가로 길이가 영역 길이보다 작을경우
+		/*else*/ if (size.cx <= iRegionWidth)	// When the width of the text is smaller than the length of the area
 		{
 			szNewBuff = m_szString;
 
@@ -252,8 +254,9 @@ void CN3UIString::WordWrap()
 //		if (iCY > iRegionHeight)
 		if (size.cy > iRegionHeight)
 		{
-			m_pDFont->SetText("글자 높이가 STRING control보다 큽니다.");
-			return;
+			// TODO: fix this
+			N3_WARN("[CN3UIString::WordWrap]: The text height is greater than the STRING control [2].");
+			// return;
 		}
 
 		m_iLineCount = 1;	// 여기까지 오면 1줄은 찍힌다.
@@ -316,7 +319,7 @@ void CN3UIString::SetStartLine(int iLine)
 	__ASSERT(bFlag, "cannot get size of dfont");
 	if (0 == size.cy) return;
 
-	int iEndLine = m_iStartLine + ((m_rcRegion.bottom - m_rcRegion.top)/size.cy);
+	int iEndLine = m_iStartLine + ((m_rcRegion.bottom - m_rcRegion.top)/size.cy + m_iPadding);
 	bool bMoreLine = true;
 	if (iEndLine >= m_iLineCount)
 	{
@@ -336,15 +339,17 @@ void CN3UIString::SetStartLine(int iLine)
 		}
 	}
 	// 마지막줄 처리
-	if (bMoreLine)
-	{
-		iCC = m_NewLineIndices[iEndLine] - m_NewLineIndices[iEndLine-1];
-		if (iCC>0) strNew += m_szString.substr(m_NewLineIndices[i], iCC);
-	}
-	else
-	{
-		iCC = m_szString.size() - m_NewLineIndices[iEndLine-1];
-		if (iCC>0) strNew += m_szString.substr(m_NewLineIndices[i], iCC);
+	if (iEndLine > 0) { // TODO: Added sanity check due to out of range access. Need to check if something else is off.
+		if (bMoreLine)
+		{
+			iCC = m_NewLineIndices[iEndLine] - m_NewLineIndices[iEndLine-1];
+			if (iCC>0) strNew += m_szString.substr(m_NewLineIndices[i], iCC);
+		}
+		else
+		{
+			iCC = m_szString.size() - m_NewLineIndices[iEndLine-1];
+			if (iCC>0) strNew += m_szString.substr(m_NewLineIndices[i], iCC);
+		}
 	}
 	m_pDFont->SetText(strNew);
 }
@@ -386,6 +391,11 @@ bool CN3UIString::Load(HANDLE hFile)
 		ReadFile(hFile, &(szString[0]), iStrLen, &dwNum, NULL);				// string
 		SetString(szString);
 	}
+
+	if (m_sUIVersion >= 1) {
+		ReadFile(hFile, &m_iPadding, sizeof(int), &dwNum, NULL);
+	}
+
 	return true;
 }
 

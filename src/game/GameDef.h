@@ -623,15 +623,73 @@ typedef struct __TABLE_UI_RESRC
 	std::string szTradeMemolist;		// 47
 	std::string szQuestMenu;			// 48
 	std::string szQuestTalk;			// 49
-	std::string szDead;					// 50
-	std::string szElLoading;			// 51
-	std::string szKaLoading;			// 52
-	std::string szNationSelect;			// 53
+	std::string szQuestEdit;			// 50 TODO: implement
+	std::string szDead;					// 51
+	std::string szElLoading;			// 52
+	std::string szKaLoading;			// 53
+	std::string szNationSelect;			// 54
 
-	std::string szChatSmall; // TODO: implement
-	std::string szMsgOutputSmall; // TODO: implement
-	std::string szItemUpgrade; // TODO: implement
-
+	std::string szChatSmall;                // 55 TODO: implement
+	std::string szMsgOutputSmall;           // 56 TODO: implement
+	std::string szItemUpgrade;              // 57 TODO: implement
+	std::string szDuelCreate;               // 58 TODO: implement
+	std::string szDuelList;                 // 59 TODO: implement
+	std::string szDuelMessageBox;           // 60 TODO: implement
+	std::string szDuelEditMsg;              // 61 TODO: implement
+	std::string szDuelLobby;                // 62 TODO: implement
+	std::string szQuestContent;             // 63 TODO: implement
+	std::string szDuelItemCount;            // 64 TODO: implement
+	std::string szTradeInventory;           // 65 TODO: implement
+	std::string szTradeBuyInventory;        // 66 TODO: implement
+	std::string szTradeItemDisplay;         // 67 TODO: implement
+	std::string szTradePrice;               // 68 TODO: implement
+	std::string szTradeCount;               // 69 TODO: implement
+	std::string szTradeMessageBox;          // 70 TODO: implement
+	std::string szKaPageKnights;            // 71 TODO: implement
+	std::string szKaPageKnightsUnionMain;   // 72 TODO: implement
+	std::string szKaPageKnightsUnionSub;    // 73 TODO: implement
+	std::string szKaCmdList;                // 74 TODO: implement
+	std::string szCmdEdit;                  // 75 TODO: implement
+	std::string szKnightsCrest;             // 76 TODO: implement
+	std::string szShoppingMall;             // 77 TODO: implement
+	std::string szKaLevelGuide;             // 78 TODO: implement
+	std::string szWarfareNpc;               // 79 TODO: implement
+	std::string szWarfarePetition;          // 80 TODO: implement
+	std::string szCastleUnion;              // 81 TODO: implement
+	std::string szWarfareSchedule;          // 82 TODO: implement
+	std::string szExitMenu;                 // 83 TODO: implement
+	std::string szResurrection;             // 84 TODO: implement
+	std::string szIdChange;                 // 85 TODO: implement
+	std::string szId;                       // 86 TODO: implement
+	std::string szIdCheck;                  // 87 TODO: implement
+	std::string szWarfareAdministrationNpc; // 88 TODO: implement
+	std::string szWarfareTaxTariff;         // 89 TODO: implement
+	std::string szKaWarfareMantleList;      // 90 TODO: implement
+	std::string szKnightsMantleShop;        // 91 TODO: implement
+	std::string szWarfareTaxCollection;     // 92 TODO: implement
+	std::string szWarfareTaxRate;           // 93 TODO: implement
+	std::string szWarfareTaxMsg;            // 94 TODO: implement
+	std::string szKaCatapult;               // 95 TODO: implement
+	std::string szDisguiseRing;             // 96 TODO: implement
+	std::string szMsgBoxOk;                 // 97 TODO: implement
+	std::string szMsgBoxOkCancel;           // 98 TODO: implement
+	std::string szWhisper_open;             // 99 TODO: implement
+	std::string szWhisper_close;            // 100 TODO: implement
+	std::string szKnights_crest_chr;        // 101 TODO: implement
+	std::string szWarning;                  // 102 TODO: implement
+	std::string szConversation;             // 103 TODO: implement
+	std::string szBlog;                     // 104 TODO: implement
+	std::string szInn_password;             // 105 TODO: implement
+	std::string szRookieTip;                // 106 TODO: implement
+	std::string szWebPage;                  // 107 TODO: implement
+	std::string szPartyBoardMessage;        // 108 TODO: implement
+	std::string szSymbol;                   // 109 TODO: implement
+	std::string szRentalNpc;                // 110 TODO: implement
+	std::string szRentalTransaction;        // 111 TODO: implement
+	std::string szRentalTry;                // 112 TODO: implement
+	std::string szRentalItem;               // 113 TODO: implement
+	std::string szRentalMessage;            // 114 TODO: implement
+	std::string szRentalCount;              // 115 TODO: implement
 } TABLE_UI_RESRC;
 
 typedef struct __TABLE_ITEM_BASIC // 장착 아이템에 관한 리소스 레코드...
@@ -1036,7 +1094,7 @@ const int MAX_ITEM_EX_RE_NPC = 4; // 교환, 수리창 NPC 영역..
 const int MAX_SKILL_FROM_SERVER = 9;		// 서버에게서 받는 정보 슬롯 갯수..			
 
 const int MAX_SKILL_KIND_OF = 5;			// Base Skill 1개, 전문 스킬 4개..			
-const int MAX_SKILL_IN_PAGE = 8;			// 한 페이지 내의 아이콘 갯수..				
+const int MAX_SKILL_IN_PAGE = 6;			// 한 페이지 내의 아이콘 갯수..				
 const int MAX_SKILL_PAGE_NUM = 3;			// 스킬 한개가 가지는 최대 페이지수..		
 
 

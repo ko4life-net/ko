@@ -1722,7 +1722,7 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack* pDataPack, int& iOffset)
 
 		if ( NULL == pItem || NULL == pItemExt )
 		{
-			__ASSERT(0, "NULL Item!!!");
+			N3_WARN("NULL slot Item!!!");
 			CLogWriter::Write("MyInfo - slot - Unknown Item %d, IDNumber", iItemIDInSlots[i]);
 			continue; // 아이템이 없으면..
 		}
@@ -1805,7 +1805,7 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack* pDataPack, int& iOffset)
 			pItemExt = s_pTbl_Items_Exts[pItem->byExtIndex]->Find(iItemIDInInventorys[i]%1000);	// 열 데이터 얻기..
 		if ( NULL == pItem || NULL == pItemExt )
 		{
-			__ASSERT(0, "NULL Item");
+			N3_WARN("NULL Inv Item");
 			CLogWriter::Write("MyInfo - Inv - Unknown Item %d, IDNumber", iItemIDInInventorys[i]);
 			continue; // 아이템이 없으면..
 		}
@@ -2606,7 +2606,7 @@ bool CGameProcMain::MsgRecv_NPCIn(DataPack* pDataPack, int& iOffset)
 			}
 			else
 			{
-				__ASSERT(0, "Invalid Item ID And Extension");
+				N3_WARN("Invalid Item ID And Extension");
 			}
 		}
 	}
@@ -3058,7 +3058,7 @@ bool CGameProcMain::MsgRecv_UserLookChange(DataPack* pDataPack, int& iOffset)
 		pItemExt = s_pTbl_Items_Exts[pItem->byExtIndex]->Find(dwItemID%1000);	// 열 데이터 얻기..
 	if(dwItemID && (NULL == pItem || NULL == pItemExt))
 	{
-		__ASSERT(0, "NULL Item!!!");
+		N3_WARN("NULL Item!!!");
 		return false;
 	}
 

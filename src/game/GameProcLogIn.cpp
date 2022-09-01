@@ -94,7 +94,6 @@ void CGameProcLogIn::Init()
 	int iX = (CN3Base::s_CameraData.vp.Width - (rc.right - rc.left))/2;
 	int iY = CN3Base::s_CameraData.vp.Height - (rc.bottom - rc.top);
 	m_pUILogIn->SetPos(iX, iY);
-	m_pUILogIn->RecalcGradePos();
 	rc.left = 0; rc.top = 0; rc.right = CN3Base::s_CameraData.vp.Width; rc.bottom = CN3Base::s_CameraData.vp.Height;
 	m_pUILogIn->SetRegion(rc); // 이걸 꼭 해줘야 UI 처리가 제대로 된다..
 	s_pUIMgr->SetFocusedUI((CN3UIBase*)m_pUILogIn);

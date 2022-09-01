@@ -292,6 +292,7 @@ int CAPISocket::Connect(HWND hWnd, const char* pszIP, DWORD dwPort)
 	if (connect(m_hSocket, (struct sockaddr far *)&server, sizeof(server)) != 0) 
 	{
 		int iErrCode = ::WSAGetLastError();
+		N3_ERROR("Failed to connect to game server: [{}].\nPort {} might be occupied.", iErrCode, dwPort);
 
 		closesocket(m_hSocket);
 		m_hSocket = INVALID_SOCKET;
