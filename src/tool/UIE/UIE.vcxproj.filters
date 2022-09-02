@@ -132,6 +132,12 @@
     <ClCompile Include="..\..\engine\N3Base\WaveFile.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\engine\N3Base\N3UIList.cpp">
+      <Filter>N3Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\N3Base\N3Log.cpp">
+      <Filter>N3Base</Filter>
+    </ClCompile>
     <ClCompile Include="DlgTexture.cpp">
       <Filter>Dialogs\DlgTexture</Filter>
     </ClCompile>
@@ -146,12 +152,6 @@
     </ClCompile>
     <ClCompile Include="DlgReplace.cpp">
       <Filter>Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3UIList.cpp">
-      <Filter>N3Base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3Log.cpp">
-      <Filter>N3Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -280,6 +280,12 @@
     <ClInclude Include="..\..\engine\N3Base\WaveFile.h">
       <Filter>N3Base</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\engine\N3Base\N3UIList.h">
+      <Filter>N3Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\N3Base\N3Log.h">
+      <Filter>N3Base</Filter>
+    </ClInclude>
     <ClInclude Include="DlgTexture.h">
       <Filter>Dialogs\DlgTexture</Filter>
     </ClInclude>
@@ -294,12 +300,6 @@
     </ClInclude>
     <ClInclude Include="DlgReplace.h">
       <Filter>Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3UIList.h">
-      <Filter>N3Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3Log.h">
-      <Filter>N3Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

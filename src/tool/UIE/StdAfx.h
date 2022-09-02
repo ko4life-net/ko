@@ -25,6 +25,7 @@
 #include <set>
 
 #include "N3Base/My_3DStruct.h"
+#include "N3Base/N3Log.h"
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
