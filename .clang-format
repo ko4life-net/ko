@@ -12,6 +12,6 @@ AlignConsecutiveMacros: true
 AlignConsecutiveDeclarations: true
 AlignArrayOfStructures: Left
 BreakConstructorInitializers: BeforeComma
-InsertBraces: true
+# InsertBraces: true # Uncomment this once LLVM 15 is official
 BreakBeforeBraces: Attach
 AllowShortFunctionsOnASingleLine: Inline
