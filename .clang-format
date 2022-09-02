@@ -1,0 +1,17 @@
+# https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+# find src/{engine,game,server,tool} -regex '.*\.\(cpp\|h\|hpp\|cc\|cxx\)' -exec clang-format -style=file -i {} --verbose \;
+BasedOnStyle: Microsoft
+UseTab: Never
+PointerAlignment: Middle
+ReferenceAlignment: Middle
+ReflowComments: false
+SortIncludes: false
+SortUsingDeclarations: false
+AlignTrailingComments: true
+AlignConsecutiveMacros: true
+AlignConsecutiveDeclarations: true
+AlignArrayOfStructures: Left
+BreakConstructorInitializers: BeforeComma
+InsertBraces: true
+BreakBeforeBraces: Attach
+AllowShortFunctionsOnASingleLine: Inline
