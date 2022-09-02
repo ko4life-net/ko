@@ -4,7 +4,6 @@
 
 #pragma once
 
-
 #include "N3Base/N3BaseFileAccess.h"
 #include "N3Base/N3Light.h"
 #include <list>
@@ -13,44 +12,39 @@
 class CDlgLight;
 class CMapMng;
 
-typedef struct __LightObj
-{
-	char		szName[80];
-	CN3Light*	pRefLight;
+typedef struct __LightObj {
+    char       szName[80];
+    CN3Light * pRefLight;
 
-	__LightObj::__LightObj()
-	{
-		ZeroMemory(szName, 80);		
-	}	
+    __LightObj::__LightObj() { ZeroMemory(szName, 80); }
 } LIGHTOBJ, *LPLIGHTOBJ;
 
 const int IDX_CURR_LIGHT = 3;
 const int IDX_SEL_LIGHT = 4;
 const int IDX_STANDBY_LIGHT = 5;
 
-class CLightObjMgr : public CN3BaseFileAccess
-{
-public:
-	__Vector3				m_BaseCube[8];
-	__VertexXyzColor		m_CubeVB[36];
-	CDlgLight*				m_pDlg;
+class CLightObjMgr : public CN3BaseFileAccess {
+  public:
+    __Vector3        m_BaseCube[8];
+    __VertexXyzColor m_CubeVB[36];
+    CDlgLight *      m_pDlg;
 
-	CMapMng*				m_pRefMapMng;		// 지형 참조 포인터..
-	bool					m_bActive;
+    CMapMng * m_pRefMapMng; // 지형 참조 포인터..
+    bool      m_bActive;
 
-	std::list<LIGHTOBJ*>	m_ListObj;
-	LIGHTOBJ*				m_pCurrLO;
+    std::list<LIGHTOBJ *> m_ListObj;
+    LIGHTOBJ *            m_pCurrLO;
 
-	int						m_iVersion;
-	
-	CVtxPosDummy			m_VtxPosDummy;
-	__VertexXyzT1			m_vCurrLOPos;
+    int m_iVersion;
 
-protected:
-	void MakeCube(__Vector3 cv, D3DCOLOR color);
+    CVtxPosDummy  m_VtxPosDummy;
+    __VertexXyzT1 m_vCurrLOPos;
 
-public:
-	/*
+  protected:
+    void MakeCube(__Vector3 cv, D3DCOLOR color);
+
+  public:
+    /*
 	void DelInfo(WARPINFO* pInfo);
 	WARPINFO* GetInfoByName(char* pName);
 	void AddInfo(WARPINFO* pInfo) { m_ListWarpInfo.push_back(pInfo); }
@@ -63,23 +57,22 @@ public:
 		
 	void UpdateWall();
 	*/
-	bool MakeGameFile(char* szFN);
-	void ChangeSelLights();
-	void RefreshCurrLights(float fRange, float fAtten, D3DCOLORVALUE crLgt);
-	void DeleteLO(LPLIGHTOBJ pLO);
-	void DownLoad();
-	void UpLoad(const char* pName, float fRange, float fAtten, D3DCOLORVALUE crLgt);
-	
-	bool IsActive() { return m_bActive; }
-	void SetActive(bool active);
-	BOOL MouseMsgFilter(LPMSG pMsg);
-	void Render();
-	void ClearList();
-	
-	bool Load(HANDLE hFile);
-	bool Save(HANDLE hFile);
-		
-	CLightObjMgr();
-	virtual ~CLightObjMgr();
-};
+    bool MakeGameFile(char * szFN);
+    void ChangeSelLights();
+    void RefreshCurrLights(float fRange, float fAtten, D3DCOLORVALUE crLgt);
+    void DeleteLO(LPLIGHTOBJ pLO);
+    void DownLoad();
+    void UpLoad(const char * pName, float fRange, float fAtten, D3DCOLORVALUE crLgt);
 
+    bool IsActive() { return m_bActive; }
+    void SetActive(bool active);
+    BOOL MouseMsgFilter(LPMSG pMsg);
+    void Render();
+    void ClearList();
+
+    bool Load(HANDLE hFile);
+    bool Save(HANDLE hFile);
+
+    CLightObjMgr();
+    virtual ~CLightObjMgr();
+};

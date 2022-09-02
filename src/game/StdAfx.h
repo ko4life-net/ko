@@ -3,12 +3,11 @@
 //      are changed infrequently
 //
 
-#pragma warning(disable:4786)
+#pragma warning(disable : 4786)
 
 #pragma once
 
-
-#define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
+#define VC_EXTRALEAN // Exclude rarely-used stuff from Windows headers
 #include <Windows.h>
 
 #include <string>
@@ -29,4 +28,3 @@
 #else
 #define TRACE(fmt, ...) (void)fmt
 #endif
-

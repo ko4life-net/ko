@@ -1,11 +1,11 @@
 // Copyright (C) 1997-2001 Alias|Wavefront,
 //                         a division of Silicon Graphics Limited.
-// 
+//
 // The information in this file is provided for the exclusive use of the
 // licensees of Alias|Wavefront.  Such users have the right to use, modify,
 // and incorporate this code into other products for purposes authorized
 // by the Alias|Wavefront license agreement, without fee.
-// 
+//
 // ALIAS|WAVEFRONT DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,
 // INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO
 // EVENT SHALL ALIAS|WAVEFRONT BE LIABLE FOR ANY SPECIAL, INDIRECT OR
@@ -22,29 +22,27 @@
 class MStatus;
 class MString;
 
-class IFFimageReader
-{
-public:
-	IFFimageReader ();
-	~IFFimageReader ();
-	MStatus open (MString filename);
-	MStatus close ();
-	MStatus readImage ();
-	MStatus getSize (int &x, int &y);
-	MString errorString ();
-	int getBytesPerChannel ();
-	bool isRGB ();
-	bool isGrayscale ();
-	bool hasDepthMap ();
-	bool hasAlpha ();
-	MStatus getPixel (int x, int y, int *r, int *g, int *b, int *a = NULL);
-	MStatus getDepth (int x, int y, float *d);
-	const uint8_t *getPixelMap () const;
-	const float *getDepthMap () const;
+class IFFimageReader {
+  public:
+    IFFimageReader();
+    ~IFFimageReader();
+    MStatus         open(MString filename);
+    MStatus         close();
+    MStatus         readImage();
+    MStatus         getSize(int & x, int & y);
+    MString         errorString();
+    int             getBytesPerChannel();
+    bool            isRGB();
+    bool            isGrayscale();
+    bool            hasDepthMap();
+    bool            hasAlpha();
+    MStatus         getPixel(int x, int y, int * r, int * g, int * b, int * a = NULL);
+    MStatus         getDepth(int x, int y, float * d);
+    const uint8_t * getPixelMap() const;
+    const float *   getDepthMap() const;
 
-protected:
-	ILimage *fImage;
-	uint8_t *fBuffer;
-	float *fZBuffer;
+  protected:
+    ILimage * fImage;
+    uint8_t * fBuffer;
+    float *   fZBuffer;
 };
-

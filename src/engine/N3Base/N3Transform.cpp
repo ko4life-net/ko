@@ -4,175 +4,186 @@
 #include "StdAfx.h"
 #include "N3Transform.h"
 
+CN3Transform::CN3Transform() {
+    m_dwType |= OBJ_TRANSFORM;
 
-CN3Transform::CN3Transform()
-{
-	m_dwType |= OBJ_TRANSFORM;
+    m_vPos.Set(0, 0, 0); // 위치, 스케일, 회전 벡터.
+    m_vScale.Set(1, 1, 1);
+    m_qRot.Identity();
+    m_Matrix.Identity();
 
-	m_vPos.Set(0,0,0); // 위치, 스케일, 회전 벡터. 
-	m_vScale.Set(1,1,1);
-	m_qRot.Identity();
-	m_Matrix.Identity();
-
-	// 에니메이션 키
-	m_fFrmCur = 0;
-	m_fFrmWhole = 0;
+    // 에니메이션 키
+    m_fFrmCur = 0;
+    m_fFrmWhole = 0;
 }
 
-CN3Transform::~CN3Transform()
-{
+CN3Transform::~CN3Transform() {}
+
+void CN3Transform::Release() {
+    m_vPos.Set(0, 0, 0); // 위치, 스케일, 회전 벡터.
+    m_vScale.Set(1, 1, 1);
+    m_qRot.Identity();
+
+    m_Matrix.Identity();
+
+    // 에니메이션 키
+    m_fFrmCur = 0;
+    m_fFrmWhole = 0;
+
+    m_KeyPos.Release();
+    m_KeyRot.Release();
+    m_KeyScale.Release();
+
+    CN3Base::Release();
 }
 
-void CN3Transform::Release()
-{
-	m_vPos.Set(0,0,0); // 위치, 스케일, 회전 벡터. 
-	m_vScale.Set(1,1,1);
-	m_qRot.Identity();
+bool CN3Transform::Load(HANDLE hFile) {
+    CN3BaseFileAccess::Load(hFile);
 
-	m_Matrix.Identity();
+    DWORD dwRWC = 0;
+    ReadFile(hFile, &m_vPos, sizeof(__Vector3), &dwRWC, NULL); // 위치, 스케일, 회전 벡터.
+    ReadFile(hFile, &m_qRot, sizeof(__Quaternion), &dwRWC, NULL);
+    ReadFile(hFile, &m_vScale, sizeof(__Vector3), &dwRWC, NULL);
 
-	// 에니메이션 키
-	m_fFrmCur = 0;
-	m_fFrmWhole = 0;
+    // 에니메이션 키
+    m_KeyPos.Load(hFile);
+    m_KeyRot.Load(hFile);
+    m_KeyScale.Load(hFile);
 
-	m_KeyPos.Release();
-	m_KeyRot.Release();
-	m_KeyScale.Release();
+    m_fFrmCur = 0;
+    m_fFrmWhole = 0;
 
-	CN3Base::Release();
-}
+    float fFrmWhole = 0;
 
-bool CN3Transform::Load(HANDLE hFile)
-{
-	CN3BaseFileAccess::Load(hFile);
+    fFrmWhole = m_KeyPos.Count() * m_KeyPos.SamplingRate() / 30.0f;
+    if (fFrmWhole > m_fFrmWhole) {
+        m_fFrmWhole = fFrmWhole;
+    }
+    fFrmWhole = m_KeyRot.Count() * m_KeyRot.SamplingRate() / 30.0f;
+    if (fFrmWhole > m_fFrmWhole) {
+        m_fFrmWhole = fFrmWhole;
+    }
+    fFrmWhole = m_KeyScale.Count() * m_KeyScale.SamplingRate() / 30.0f;
+    if (fFrmWhole > m_fFrmWhole) {
+        m_fFrmWhole = fFrmWhole;
+    }
 
-	DWORD dwRWC = 0;
-	ReadFile(hFile, &m_vPos, sizeof(__Vector3), &dwRWC, NULL); // 위치, 스케일, 회전 벡터. 
-	ReadFile(hFile, &m_qRot, sizeof(__Quaternion), &dwRWC, NULL);
-	ReadFile(hFile, &m_vScale, sizeof(__Vector3), &dwRWC, NULL);
+    this->ReCalcMatrix(); // 변환 행렬 계산..
 
-	// 에니메이션 키
-	m_KeyPos.Load(hFile);
-	m_KeyRot.Load(hFile);
-	m_KeyScale.Load(hFile);
-
-	m_fFrmCur = 0;
-	m_fFrmWhole = 0;
-
-	float fFrmWhole = 0;
-	
-	fFrmWhole = m_KeyPos.Count() * m_KeyPos.SamplingRate() / 30.0f;
-	if(fFrmWhole > m_fFrmWhole) m_fFrmWhole = fFrmWhole;
-	fFrmWhole = m_KeyRot.Count() * m_KeyRot.SamplingRate() / 30.0f;
-	if(fFrmWhole > m_fFrmWhole) m_fFrmWhole = fFrmWhole;
-	fFrmWhole = m_KeyScale.Count() * m_KeyScale.SamplingRate() / 30.0f;
-	if(fFrmWhole > m_fFrmWhole) m_fFrmWhole = fFrmWhole;
-
-	this->ReCalcMatrix(); // 변환 행렬 계산..
-
-	return true;
+    return true;
 }
 
 #ifdef _N3TOOL
-bool CN3Transform::Save(HANDLE hFile)
-{
-	CN3BaseFileAccess::Save(hFile);
+bool CN3Transform::Save(HANDLE hFile) {
+    CN3BaseFileAccess::Save(hFile);
 
-	DWORD dwRWC = 0;
-	WriteFile(hFile, &m_vPos, sizeof(__Vector3), &dwRWC, NULL); // 위치, 스케일, 회전 벡터. 
-	WriteFile(hFile, &m_qRot, sizeof(__Quaternion), &dwRWC, NULL);
-	WriteFile(hFile, &m_vScale, sizeof(__Vector3), &dwRWC, NULL);
+    DWORD dwRWC = 0;
+    WriteFile(hFile, &m_vPos, sizeof(__Vector3), &dwRWC, NULL); // 위치, 스케일, 회전 벡터.
+    WriteFile(hFile, &m_qRot, sizeof(__Quaternion), &dwRWC, NULL);
+    WriteFile(hFile, &m_vScale, sizeof(__Vector3), &dwRWC, NULL);
 
-	// 에니메이션 키
-	m_KeyPos.Save(hFile);
-	m_KeyRot.Save(hFile);
-	m_KeyScale.Save(hFile);
+    // 에니메이션 키
+    m_KeyPos.Save(hFile);
+    m_KeyRot.Save(hFile);
+    m_KeyScale.Save(hFile);
 
-	return true;
+    return true;
 }
 #endif // end of _N3TOOL
 
-void CN3Transform::Tick(float fFrm)
-{
-	if(FRAME_SELFPLAY == fFrm)
-	{
-		m_fFrmCur += s_fSecPerFrm;
-		if(m_fFrmCur < 0) m_fFrmCur = 0.0f;
-		if(m_fFrmCur >= m_fFrmWhole) m_fFrmCur = 0.0f;
-		fFrm = m_fFrmCur;
-	}
-	else
-	{
-		m_fFrmCur = fFrm;
-	}
+void CN3Transform::Tick(float fFrm) {
+    if (FRAME_SELFPLAY == fFrm) {
+        m_fFrmCur += s_fSecPerFrm;
+        if (m_fFrmCur < 0) {
+            m_fFrmCur = 0.0f;
+        }
+        if (m_fFrmCur >= m_fFrmWhole) {
+            m_fFrmCur = 0.0f;
+        }
+        fFrm = m_fFrmCur;
+    } else {
+        m_fFrmCur = fFrm;
+    }
 
-	bool bNdeedReCalcMatrix = this->TickAnimationKey(m_fFrmCur);
-	
-	if(m_dwType & OBJ_JOINT) return; // Joint 일 경우는 행렬을 계산하는 방법이 다르기 땜시 넘어간다..
+    bool bNdeedReCalcMatrix = this->TickAnimationKey(m_fFrmCur);
 
-	if(bNdeedReCalcMatrix) this->ReCalcMatrix();
+    if (m_dwType & OBJ_JOINT) {
+        return; // Joint 일 경우는 행렬을 계산하는 방법이 다르기 땜시 넘어간다..
+    }
+
+    if (bNdeedReCalcMatrix) {
+        this->ReCalcMatrix();
+    }
 }
 
-void CN3Transform::ReCalcMatrix()
-{
-	m_Matrix.Scale(m_vScale);
-	if(m_qRot.w != 0)
-	{
-		static __Matrix44 mtxRot;
-		D3DXMatrixRotationQuaternion(&mtxRot, &m_qRot);
-		m_Matrix *= mtxRot;
-	}
-	m_Matrix.PosSet(m_vPos);
+void CN3Transform::ReCalcMatrix() {
+    m_Matrix.Scale(m_vScale);
+    if (m_qRot.w != 0) {
+        static __Matrix44 mtxRot;
+        D3DXMatrixRotationQuaternion(&mtxRot, &m_qRot);
+        m_Matrix *= mtxRot;
+    }
+    m_Matrix.PosSet(m_vPos);
 }
 
-bool CN3Transform::TickAnimationKey(float fFrm)
-{
-	// 에니메이션 키
-	int nKCP = m_KeyPos.Count();
-	int nKCR = m_KeyRot.Count();
-	int nKCS = m_KeyScale.Count();
-	if(nKCP <= 0 && nKCR <= 0 && nKCS <= 0) return false;
+bool CN3Transform::TickAnimationKey(float fFrm) {
+    // 에니메이션 키
+    int nKCP = m_KeyPos.Count();
+    int nKCR = m_KeyRot.Count();
+    int nKCS = m_KeyScale.Count();
+    if (nKCP <= 0 && nKCR <= 0 && nKCS <= 0) {
+        return false;
+    }
 
-	bool bNeedReCalcMatrix = false;
-	if(m_KeyPos.DataGet(fFrm, m_vPos) == true) bNeedReCalcMatrix = true;
-	if(m_KeyRot.DataGet(fFrm, m_qRot) == true) bNeedReCalcMatrix = true;
-	if(m_KeyScale.DataGet(fFrm, m_vScale) == true) bNeedReCalcMatrix = true;
+    bool bNeedReCalcMatrix = false;
+    if (m_KeyPos.DataGet(fFrm, m_vPos) == true) {
+        bNeedReCalcMatrix = true;
+    }
+    if (m_KeyRot.DataGet(fFrm, m_qRot) == true) {
+        bNeedReCalcMatrix = true;
+    }
+    if (m_KeyScale.DataGet(fFrm, m_vScale) == true) {
+        bNeedReCalcMatrix = true;
+    }
 
-	return bNeedReCalcMatrix;
+    return bNeedReCalcMatrix;
 }
 
 #ifdef _N3TOOL
-void CN3Transform::Render(const __Matrix44* pMtxParent, float fUnitSize)
-{
-	// 축 그리기..
-	static __Vector3 vAxis[9];
-	static bool bAxisCreated = false;
-	if(false == bAxisCreated)
-	{
-		__Vector3 v0(0,0,0), v1(1,0,0), v2(0.8f,0.2f,0);
-		__Matrix44 mtxRot;
-		for(int i = 0; i < 3; i++)
-		{
-			if(i == 0) { mtxRot.Identity(); } // X 축
-			else if(i == 1) { mtxRot.RotationZ(D3DXToRadian(90.0f)); } // Y 축
-			else if(i == 2) { mtxRot.RotationY(D3DXToRadian(-90.0f)); } // Z 축
-			
-			vAxis[i*3+0] = v0*mtxRot;
-			vAxis[i*3+1] = v1*mtxRot;
-			vAxis[i*3+2] = v2*mtxRot;
-		}
+void CN3Transform::Render(const __Matrix44 * pMtxParent, float fUnitSize) {
+    // 축 그리기..
+    static __Vector3 vAxis[9];
+    static bool      bAxisCreated = false;
+    if (false == bAxisCreated) {
+        __Vector3  v0(0, 0, 0), v1(1, 0, 0), v2(0.8f, 0.2f, 0);
+        __Matrix44 mtxRot;
+        for (int i = 0; i < 3; i++) {
+            if (i == 0) {
+                mtxRot.Identity();
+            } // X 축
+            else if (i == 1) {
+                mtxRot.RotationZ(D3DXToRadian(90.0f));
+            } // Y 축
+            else if (i == 2) {
+                mtxRot.RotationY(D3DXToRadian(-90.0f));
+            } // Z 축
 
-		bAxisCreated = true;
-	}
+            vAxis[i * 3 + 0] = v0 * mtxRot;
+            vAxis[i * 3 + 1] = v1 * mtxRot;
+            vAxis[i * 3 + 2] = v2 * mtxRot;
+        }
 
-	__Matrix44 mtxBox;
-	mtxBox.Scale(fUnitSize, fUnitSize, fUnitSize); // 관절부 박스에 스케일 적용
-	mtxBox *= m_Matrix;
+        bAxisCreated = true;
+    }
 
-	s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxBox);
-	CN3Base::RenderLines(&(vAxis[0]), 2, 0xffff0000); // 선그리기..
-	CN3Base::RenderLines(&(vAxis[3]), 2, 0xff00ff00); // 선그리기..
-	CN3Base::RenderLines(&(vAxis[6]), 2, 0xff0000ff); // 선그리기..
+    __Matrix44 mtxBox;
+    mtxBox.Scale(fUnitSize, fUnitSize, fUnitSize); // 관절부 박스에 스케일 적용
+    mtxBox *= m_Matrix;
+
+    s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxBox);
+    CN3Base::RenderLines(&(vAxis[0]), 2, 0xffff0000); // 선그리기..
+    CN3Base::RenderLines(&(vAxis[3]), 2, 0xff00ff00); // 선그리기..
+    CN3Base::RenderLines(&(vAxis[6]), 2, 0xff0000ff); // 선그리기..
 }
 #endif // end of _N3TOOL
 

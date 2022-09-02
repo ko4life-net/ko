@@ -9,7 +9,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -17,102 +17,87 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CAutoBuffer::CAutoBuffer()
-{
-	m_iSize = 0;
-	m_pBuffer = NULL;	
+CAutoBuffer::CAutoBuffer() {
+    m_iSize = 0;
+    m_pBuffer = NULL;
 }
 
-CAutoBuffer::CAutoBuffer(DWORD iSize, bool bZeroMemory)
-{
-	m_iSize = 0;
-	m_pBuffer = NULL;
-	Allocate(iSize, bZeroMemory);
+CAutoBuffer::CAutoBuffer(DWORD iSize, bool bZeroMemory) {
+    m_iSize = 0;
+    m_pBuffer = NULL;
+    Allocate(iSize, bZeroMemory);
 }
 
-CAutoBuffer::~CAutoBuffer()
-{
-	Release();
+CAutoBuffer::~CAutoBuffer() {
+    Release();
 }
 
-bool CAutoBuffer::IsAllocated()
-{
-	return (m_pBuffer != NULL);
+bool CAutoBuffer::IsAllocated() {
+    return (m_pBuffer != NULL);
 }
 
-
-DWORD CAutoBuffer::GetSize()
-{
-	return m_iSize;
+DWORD CAutoBuffer::GetSize() {
+    return m_iSize;
 }
 
-void CAutoBuffer::Release()
-{
-	if (m_pBuffer)
-	{
-		delete [] m_pBuffer;
-		m_iSize = 0;
-		m_pBuffer = NULL;
-	}
+void CAutoBuffer::Release() {
+    if (m_pBuffer) {
+        delete[] m_pBuffer;
+        m_iSize = 0;
+        m_pBuffer = NULL;
+    }
 }
 
-char* CAutoBuffer::Allocate(DWORD iSize, bool bZeroMemory)
-{
-	if (iSize != m_iSize)
-		Release();
-	else
-	{
-		if (bZeroMemory)
-			memset(m_pBuffer, 0, iSize); // zerowanie bufora
-		return m_pBuffer;
-	}
+char * CAutoBuffer::Allocate(DWORD iSize, bool bZeroMemory) {
+    if (iSize != m_iSize) {
+        Release();
+    } else {
+        if (bZeroMemory) {
+            memset(m_pBuffer, 0, iSize); // zerowanie bufora
+        }
+        return m_pBuffer;
+    }
 
-	if (iSize > 0)
-	{
-// 		try
-// 		{
-			m_pBuffer = new char [iSize];
+    if (iSize > 0) {
+        // 		try
+        // 		{
+        m_pBuffer = new char[iSize];
 
+        m_iSize = iSize;
+        // 		}
+        // 		catch (CMemoryException *e)
+        // 		{
+        // 			e->Delete();
+        // 			return NULL;
+        // 		}
+    } else {
+        m_pBuffer = NULL;
+    }
 
-			m_iSize = iSize;
-// 		}
-// 		catch (CMemoryException *e)
-// 		{
-// 			e->Delete();
-// 			return NULL;
-// 		}
-	}
-	else 
-		m_pBuffer = NULL;
-
-	return m_pBuffer;
+    return m_pBuffer;
 }
 
-CAutoBuffer::operator char*()
-{
-	return m_pBuffer;
+CAutoBuffer::operator char *() {
+    return m_pBuffer;
 }
 
-CAutoBuffer::CAutoBuffer(CAutoBuffer& buffer)
-{
-	m_pBuffer = NULL;
-	m_iSize = 0;
+CAutoBuffer::CAutoBuffer(CAutoBuffer & buffer) {
+    m_pBuffer = NULL;
+    m_iSize = 0;
 
-	if (buffer.m_pBuffer)
-	{
-		Allocate(buffer.m_iSize);
-		memcpy(m_pBuffer, buffer.m_pBuffer, buffer.m_iSize);
-	}	
+    if (buffer.m_pBuffer) {
+        Allocate(buffer.m_iSize);
+        memcpy(m_pBuffer, buffer.m_pBuffer, buffer.m_iSize);
+    }
 }
-CAutoBuffer& CAutoBuffer::operator=(const CAutoBuffer& buffer)
-{
-	if (this == &buffer)
-		return *this;
-	Release();
-	if (buffer.m_pBuffer)
-	{
-		Allocate(buffer.m_iSize);
-		memcpy(m_pBuffer, buffer.m_pBuffer, buffer.m_iSize);
-	}
-	return *this;
+CAutoBuffer & CAutoBuffer::operator=(const CAutoBuffer & buffer) {
+    if (this == &buffer) {
+        return *this;
+    }
+    Release();
+    if (buffer.m_pBuffer) {
+        Allocate(buffer.m_iSize);
+        memcpy(m_pBuffer, buffer.m_pBuffer, buffer.m_iSize);
+    }
+    return *this;
 }

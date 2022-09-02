@@ -1,6 +1,5 @@
 #pragma once
 
-
 #pragma warning(disable : 4786)
 
 #include <list>
@@ -17,118 +16,112 @@ class CN3Shape;
 #include "PvsObjFactory.h"
 
 typedef struct tagCOLLISION {
-	e_WallType	eWT;
-	__Vector3	Wvec[5];
-	__Vector3	Vvec[24];
+    e_WallType eWT;
+    __Vector3  Wvec[5];
+    __Vector3  Vvec[24];
 } __Collision;
 
 typedef struct tagDEBUGCOLLISION {
-	__Vector3	Vvec[8];
+    __Vector3 Vvec[8];
 } __DCollision;
 
-
 // 우선순위대로 정렬..
-template<class T> struct Myless : public std::less<T> {
-bool operator()(const T& x, const T& y) const
-{
-	return (x->m_iPriority > y->m_iPriority);
-}
+template <class T> struct Myless : public std::less<T> {
+    bool operator()(const T & x, const T & y) const { return (x->m_iPriority > y->m_iPriority); }
 };
 
-class CPvsMgr
-{
-	friend class COrganizeView;
+class CPvsMgr {
+    friend class COrganizeView;
 
-	typedef typename std::list<CPvsBase*>::iterator iter;
-	typedef typename std::list<int>::iterator iIDiter;
-	typedef typename std::list<CPortalVol* >::iterator itviter;
-	typedef typename std::list<__Collision>::iterator iciter;
+    typedef typename std::list<CPvsBase *>::iterator   iter;
+    typedef typename std::list<int>::iterator          iIDiter;
+    typedef typename std::list<CPortalVol *>::iterator itviter;
+    typedef typename std::list<__Collision>::iterator  iciter;
 
-	bool					m_bShapePerVolumn;
+    bool m_bShapePerVolumn;
 
-	std::list<CPvsBase*>	m_pPvsList;
-	std::list<__Collision>	m_ColList;		//	충돌체크 Structure 리스트..
-	std::list<CPortalVol*>  m_pVoltList;	// 정렬된 충돌체크 Volumn 리스트..
-	__DCollision			m_dcol;
+    std::list<CPvsBase *>   m_pPvsList;
+    std::list<__Collision>  m_ColList;   //	충돌체크 Structure 리스트..
+    std::list<CPortalVol *> m_pVoltList; // 정렬된 충돌체크 Volumn 리스트..
+    __DCollision            m_dcol;
 
-	//.. Main Shape.. ^^
-	__Matrix44					m_MtxShapeMove;	
-	__Matrix44					m_MtxShapeScale;
-	__Matrix44					m_MtxShapeRot;
-public:
-	__Vector3					m_vShapePos;
-	__Vector3					m_vShapeScale;
-	__Quaternion			 m_qShapeRot;
+    //.. Main Shape.. ^^
+    __Matrix44 m_MtxShapeMove;
+    __Matrix44 m_MtxShapeScale;
+    __Matrix44 m_MtxShapeRot;
 
-private:
-	CPvsObjFactory			m_Factory;
+  public:
+    __Vector3    m_vShapePos;
+    __Vector3    m_vShapeScale;
+    __Quaternion m_qShapeRot;
 
-	int		m_iTotalCount;
-	int		m_iIncreseIndex;
+  private:
+    CPvsObjFactory m_Factory;
 
-	int		m_iCurIndex;
+    int m_iTotalCount;
+    int m_iIncreseIndex;
 
-	void	InsertNewPortalVolumn();
-	void	InsertNewPortalWall(e_WallType eWT, CPortalVol * const pVol);
-	CPortalWall* InsertNewPortalWallGetPointer(e_WallType eWT);
+    int m_iCurIndex;
 
-	bool	DeletePvsObjByiOrder(int iOrder);
-	void	DeletePvsLinkedObjByiID(int iID);
+    void          InsertNewPortalVolumn();
+    void          InsertNewPortalWall(e_WallType eWT, CPortalVol * const pVol);
+    CPortalWall * InsertNewPortalWallGetPointer(e_WallType eWT);
 
-	void	DeleteAllPvsObj();
+    bool DeletePvsObjByiOrder(int iOrder);
+    void DeletePvsLinkedObjByiID(int iID);
 
-	CPvsBase* GetPvsObjByiOrder(int iOrder);
-	CPvsBase* GetPvsWallByiOrder(int iOrder);
-	CPvsBase* GetPvsWallByiID(int iID);
-	CPvsBase* GetPvsVolByiID(int iID);
-	CPortalVol* GetLinkedVolumnByID(int iID);
+    void DeleteAllPvsObj();
 
-	void	Load(FILE* stream);
-	void	Save(FILE* stream);
+    CPvsBase *   GetPvsObjByiOrder(int iOrder);
+    CPvsBase *   GetPvsWallByiOrder(int iOrder);
+    CPvsBase *   GetPvsWallByiID(int iID);
+    CPvsBase *   GetPvsVolByiID(int iID);
+    CPortalVol * GetLinkedVolumnByID(int iID);
 
-	// Edit 모드..
-	void	TickEdit();
-	void	RenderEdit();
+    void Load(FILE * stream);
+    void Save(FILE * stream);
 
-	// Compile 모드..
-	void	TickCompile();
-	void	RenderCompile();
+    // Edit 모드..
+    void TickEdit();
+    void RenderEdit();
 
-	// Execute 모드..
-	void	TickExecute();
-	void	RenderExecute();
+    // Compile 모드..
+    void TickCompile();
+    void RenderCompile();
 
-	//  Compiling..
-	void	CalcCompile();
+    // Execute 모드..
+    void TickExecute();
+    void RenderExecute();
 
-	//.. 
-	void	TotalShapeRender();
-	void	TotalCollisionRender();
+    //  Compiling..
+    void CalcCompile();
 
-	// Visibility를 결정한다..
-	void	ComputeVisibilty(CPortalVol * const pVol);
-	void	SetPriority(CPortalVol * const pVol);
-	void	SetPriorityRecursive(CPortalVol* const pVol, int iRecursive);
-	void	PrepareCollisionDetect(CPortalVol* const pVol);
-	void	PrepareCollisionDetectOne(CPortalVol* const pVol, CPortalWall* const pWall);
-	void	PrepareCollisionDetectTwo(CPortalVol* const pVol, CPortalWall* const pWall, e_WallType eWT, __Collision& col); 
-	bool	CollisionDetectMain(CPortalVol* const pVolMy);
-	bool	IntersectTriangle(const __Vector3& vOrig, const __Vector3& vDir,
-							  const __Vector3& v0, const __Vector3& v1, const __Vector3& v2,
-							  float& fT, float& fU, float& fV, __Vector3* pVCol);
-	e_ReturnCode	CollisionDetectSub(const __Vector3& vOrig, const __Vector3& vDir, CPortalVol* pVolMy);
-	bool			CheckPvsWall(const __Vector3& vOrig, const __Vector3& vDir, CPortalVol* pVolMy, e_WallType eWT);
-	bool			CheckPvsVolumnWall(const __Vector3& vOrig, const __Vector3& vDir, CPortalVol* pVolMy, e_WallType eWT);
+    //..
+    void TotalShapeRender();
+    void TotalCollisionRender();
 
-	// Shape를 공간에 맞게 쪼갠다..
-	void	SplitShapeToVolumn();
+    // Visibility를 결정한다..
+    void ComputeVisibilty(CPortalVol * const pVol);
+    void SetPriority(CPortalVol * const pVol);
+    void SetPriorityRecursive(CPortalVol * const pVol, int iRecursive);
+    void PrepareCollisionDetect(CPortalVol * const pVol);
+    void PrepareCollisionDetectOne(CPortalVol * const pVol, CPortalWall * const pWall);
+    void PrepareCollisionDetectTwo(CPortalVol * const pVol, CPortalWall * const pWall, e_WallType eWT,
+                                   __Collision & col);
+    bool CollisionDetectMain(CPortalVol * const pVolMy);
+    bool IntersectTriangle(const __Vector3 & vOrig, const __Vector3 & vDir, const __Vector3 & v0, const __Vector3 & v1,
+                           const __Vector3 & v2, float & fT, float & fU, float & fV, __Vector3 * pVCol);
+    e_ReturnCode CollisionDetectSub(const __Vector3 & vOrig, const __Vector3 & vDir, CPortalVol * pVolMy);
+    bool         CheckPvsWall(const __Vector3 & vOrig, const __Vector3 & vDir, CPortalVol * pVolMy, e_WallType eWT);
+    bool CheckPvsVolumnWall(const __Vector3 & vOrig, const __Vector3 & vDir, CPortalVol * pVolMy, e_WallType eWT);
 
-	// Debug 용 렌더링..
-//	void	RenderCollision(__Collision& col);
+    // Shape를 공간에 맞게 쪼갠다..
+    void SplitShapeToVolumn();
 
-public:
-	CPvsMgr();
-	virtual ~CPvsMgr();
+    // Debug 용 렌더링..
+    //	void	RenderCollision(__Collision& col);
+
+  public:
+    CPvsMgr();
+    virtual ~CPvsMgr();
 };
-
-

@@ -4,14 +4,10 @@
 
 #pragma once
 
-
-class CZipBigFile : public CFile  
-{
-	DECLARE_DYNAMIC(CZipBigFile)
-public:
-	ULONGLONG Seek(LONGLONG lOff, UINT nFrom);
-	CZipBigFile();
-	virtual ~CZipBigFile();
-
+class CZipBigFile : public CFile {
+    DECLARE_DYNAMIC(CZipBigFile)
+  public:
+    ULONGLONG Seek(LONGLONG lOff, UINT nFrom);
+    CZipBigFile();
+    virtual ~CZipBigFile();
 };
-

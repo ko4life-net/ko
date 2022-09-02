@@ -12,17 +12,12 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CZipInternalInfo::CZipInternalInfo()
-{
-	m_iBufferSize = 16384;
+CZipInternalInfo::CZipInternalInfo() {
+    m_iBufferSize = 16384;
 }
 
-CZipInternalInfo::~CZipInternalInfo()
-{
+CZipInternalInfo::~CZipInternalInfo() {}
 
-}
-
-void CZipInternalInfo::Init()
-{
-	m_pBuffer.Allocate(m_iBufferSize);
+void CZipInternalInfo::Init() {
+    m_pBuffer.Allocate(m_iBufferSize);
 }

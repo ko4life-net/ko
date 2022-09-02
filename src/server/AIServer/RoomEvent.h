@@ -4,68 +4,63 @@
 
 #pragma once
 
-
 #include "STLMap.h"
 
-#define MAX_CHECK_EVENT	5
+#define MAX_CHECK_EVENT 5
 
-typedef CSTLMap <int>			mapNpcArray;
+typedef CSTLMap<int> mapNpcArray;
 
-struct _RoomEvent
-{
-	short	sNumber;			// 명령어, 조건문 번호
-	short	sOption_1;			// option 1 (몬스터의 번호를 주로 가지고 있음)
-	short	sOption_2;			// option 2 (몬스터의 마리수)
+struct _RoomEvent {
+    short sNumber;   // 명령어, 조건문 번호
+    short sOption_1; // option 1 (몬스터의 번호를 주로 가지고 있음)
+    short sOption_2; // option 2 (몬스터의 마리수)
 };
 
 class CNpc;
 class CServerDlg;
 
-class CRoomEvent  
-{
-public:
-	int     m_iZoneNumber;		// zone number
-	short	m_sRoomNumber;		// room number (0:empty room)
-	BYTE	m_byStatus;			// room status (1:init, 2:progress, 3:clear)
-	BYTE	m_byCheck;			// 조건문의 갯수
-	BYTE	m_byRoomType;		// 방의 타입(0:일반, 1:함정방, 2:,,,,)
+class CRoomEvent {
+  public:
+    int   m_iZoneNumber; // zone number
+    short m_sRoomNumber; // room number (0:empty room)
+    BYTE  m_byStatus;    // room status (1:init, 2:progress, 3:clear)
+    BYTE  m_byCheck;     // 조건문의 갯수
+    BYTE  m_byRoomType;  // 방의 타입(0:일반, 1:함정방, 2:,,,,)
 
-	int		m_iInitMinX;		// room region x
-	int		m_iInitMinZ;
-	int		m_iInitMaxX;
-	int		m_iInitMaxZ;
+    int m_iInitMinX; // room region x
+    int m_iInitMinZ;
+    int m_iInitMaxX;
+    int m_iInitMaxZ;
 
-	int		m_iEndMinX;			// room end region x 도착지점,,
-	int		m_iEndMinZ;
-	int		m_iEndMaxX;
-	int		m_iEndMaxZ;
+    int m_iEndMinX; // room end region x 도착지점,,
+    int m_iEndMinZ;
+    int m_iEndMaxX;
+    int m_iEndMaxZ;
 
-	_RoomEvent  m_Logic[MAX_CHECK_EVENT];		// 조건들
-	_RoomEvent  m_Exec[MAX_CHECK_EVENT];		// 실행문
+    _RoomEvent m_Logic[MAX_CHECK_EVENT]; // 조건들
+    _RoomEvent m_Exec[MAX_CHECK_EVENT];  // 실행문
 
-	float   m_fDelayTime;						// time
+    float m_fDelayTime; // time
 
-	mapNpcArray	m_mapRoomNpcArray;				// room npc uid array
-	CServerDlg* m_pMain;
+    mapNpcArray  m_mapRoomNpcArray; // room npc uid array
+    CServerDlg * m_pMain;
 
-private:
-	BYTE    m_byLogicNumber;	// 현재의 조건문 검사 번호 (조건번호는 1부터 시작됨) (m_byCheck와 m_byLogicNumber이 같다면 클리어 상태)
+  private:
+    BYTE
+        m_byLogicNumber; // 현재의 조건문 검사 번호 (조건번호는 1부터 시작됨) (m_byCheck와 m_byLogicNumber이 같다면 클리어 상태)
 
+  public:
+    CRoomEvent();
+    virtual ~CRoomEvent();
 
-public:
-	CRoomEvent();
-	virtual ~CRoomEvent();
+    void MainRoom(float fcurtime);
+    void InitializeRoom();
 
-	void MainRoom( float fcurtime );
-	void InitializeRoom();
-
-private:
-	void Initialize();
-	BOOL  CheckEvent( int event_num, float fcurtime );
-	BOOL  RunEvent( int event_num );
-	BOOL  CheckMonsterCount( int sid, int count, int type );
-	CNpc* GetNpcPtr( int sid );
-	void  EndEventSay( int option1, int option2 );
-
+  private:
+    void   Initialize();
+    BOOL   CheckEvent(int event_num, float fcurtime);
+    BOOL   RunEvent(int event_num);
+    BOOL   CheckMonsterCount(int sid, int count, int type);
+    CNpc * GetNpcPtr(int sid);
+    void   EndEventSay(int option1, int option2);
 };
-

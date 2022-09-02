@@ -4,7 +4,6 @@
 
 #pragma once
 
-
 #include "GameDef.h"
 #include "UIPointInitDlg.h"
 
@@ -13,34 +12,31 @@
 
 //////////////////////////////////////////////////////////////////////
 
+class CUINPCChangeEvent : public CN3UIBase {
+    CN3UIButton * m_pBtn_Change;
+    CN3UIButton * m_pBtn_Repoint0;
+    CN3UIButton * m_pBtn_Repoint1;
+    CN3UIButton * m_pBtn_Close;
 
-class CUINPCChangeEvent   : public CN3UIBase  
-{
-	CN3UIButton*		m_pBtn_Change;
-	CN3UIButton*		m_pBtn_Repoint0;
-	CN3UIButton*		m_pBtn_Repoint1;
-	CN3UIButton*		m_pBtn_Close;
+    CUIPointInitDlg * m_pDlg;
 
-	CUIPointInitDlg*	m_pDlg;
+    bool m_bSendedAllPoint;
 
-	bool					 m_bSendedAllPoint;
+  public:
+    bool OnKeyPress(int iKey);
+    void SetVisible(bool bVisible);
+    void Release();
 
-public:
-	bool OnKeyPress(int iKey);
-	void SetVisible(bool bVisible);
-	void Release();
+    CUINPCChangeEvent();
+    virtual ~CUINPCChangeEvent();
 
-	CUINPCChangeEvent();
-	virtual ~CUINPCChangeEvent();
+    bool Load(HANDLE hFile);
+    bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg);
 
-	bool	Load(HANDLE hFile);
-	bool	ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg);
+    void Open();
+    void Close();
 
-	void	Open();
-	void	Close();
-
-	void	ClassChange();
-	void	PointChangePriceQuery(bool bAllPoint);
-	void	ReceivePriceFromServer(int iGold);
+    void ClassChange();
+    void PointChangePriceQuery(bool bAllPoint);
+    void ReceivePriceFromServer(int iGold);
 };
-

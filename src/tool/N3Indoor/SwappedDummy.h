@@ -4,16 +4,13 @@
 
 #pragma once
 
-
 #include "TransDummy.h"
 
-class CSwappedDummy : public CTransDummy  
-{
-public:
-	CSwappedDummy();
-	virtual ~CSwappedDummy();
+class CSwappedDummy : public CTransDummy {
+  public:
+    CSwappedDummy();
+    virtual ~CSwappedDummy();
 
-public:
-	virtual BOOL MouseMsgFilter(LPMSG pMsg);
+  public:
+    virtual BOOL MouseMsgFilter(LPMSG pMsg);
 };
-

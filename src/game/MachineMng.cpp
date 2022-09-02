@@ -11,26 +11,22 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CMachineMng::CMachineMng()
-{
-	Release();
+CMachineMng::CMachineMng() {
+    Release();
 }
 
-CMachineMng::~CMachineMng()
-{
-	Release();
+CMachineMng::~CMachineMng() {
+    Release();
 }
 
-void CMachineMng::Release()
-{
-	CMachineBase*	pMachine = NULL;
-	it_Machine it = m_Machines.begin();
-	int iSize = m_Machines.size();
-	for(int i = 0; i < iSize; i++, it++)
-	{
-		delete *it;
-	}
-	m_Machines.clear();
+void CMachineMng::Release() {
+    CMachineBase * pMachine = NULL;
+    it_Machine     it = m_Machines.begin();
+    int            iSize = m_Machines.size();
+    for (int i = 0; i < iSize; i++, it++) {
+        delete *it;
+    }
+    m_Machines.clear();
 }
 /*
 void CMachineMng::ReceiveReplyMsg(ReplyMsg& RPMsg)
@@ -154,30 +150,30 @@ void CMachineMng::AddMachine(ReplyMsg& RPMsg)
 	m_Machines.push_back(pMachine);
 }
 */
-void CMachineMng::Render()
-{
-	CMachineBase*	pMachine = NULL;
-	it_Machine it = m_Machines.begin();
-	int iSize = m_Machines.size();
-	for(int i = 0; i < iSize; i++, it++)
-	{
-		pMachine = *it;
-		if (pMachine) pMachine->Render();
-	}
+void CMachineMng::Render() {
+    CMachineBase * pMachine = NULL;
+    it_Machine     it = m_Machines.begin();
+    int            iSize = m_Machines.size();
+    for (int i = 0; i < iSize; i++, it++) {
+        pMachine = *it;
+        if (pMachine) {
+            pMachine->Render();
+        }
+    }
 }
 
-void CMachineMng::Tick()
-{
-	CMachineBase*	pMachine = NULL;
-	it_Machine it = m_Machines.begin();
-	int iSize = m_Machines.size();
-	for(int i = 0; i < iSize; i++, it++)
-	{
-		pMachine = *it;
-		if(NULL == pMachine) continue;
+void CMachineMng::Tick() {
+    CMachineBase * pMachine = NULL;
+    it_Machine     it = m_Machines.begin();
+    int            iSize = m_Machines.size();
+    for (int i = 0; i < iSize; i++, it++) {
+        pMachine = *it;
+        if (NULL == pMachine) {
+            continue;
+        }
 
-		pMachine->Tick(-1);
-/*		if(pMachine->GetMachineState()!=MS_STOP)
+        pMachine->Tick(-1);
+        /*		if(pMachine->GetMachineState()!=MS_STOP)
 		{
 			g_Facade.m_pSndMgr->Looping(SND3DOBJ_CATAPULTMOVE1 + g_Facade.m_pSndMgr->m_IdxCatapultMove, false);
 			g_Facade.m_pSndMgr->SetPos(SND3DOBJ_CATAPULTMOVE1 + g_Facade.m_pSndMgr->m_IdxCatapultMove, (D3DVECTOR)pMachine->Pos());
@@ -185,22 +181,23 @@ void CMachineMng::Tick()
 			g_Facade.m_pSndMgr->m_IdxCatapultMove++;
 			if(g_Facade.m_pSndMgr->m_IdxCatapultMove == g_Facade.m_pSndMgr->m_NumCatapultMove) g_Facade.m_pSndMgr->m_IdxCatapultMove = 0;
 		}*/
-	}
+    }
 }
 
-CMachineBase* CMachineMng::GetMachine(const std::string& szID)
-{
-	if(szID.empty()) return NULL;
+CMachineBase * CMachineMng::GetMachine(const std::string & szID) {
+    if (szID.empty()) {
+        return NULL;
+    }
 
-	CMachineBase*	pMachine = NULL;
-	it_Machine it = m_Machines.begin();
-	int iSize = m_Machines.size();
-	for(int i = 0; i < iSize; i++, it++)
-	{
-		pMachine = *it;
-		
-		if (pMachine->m_szID == szID) return pMachine;
-	}
-	return NULL;
+    CMachineBase * pMachine = NULL;
+    it_Machine     it = m_Machines.begin();
+    int            iSize = m_Machines.size();
+    for (int i = 0; i < iSize; i++, it++) {
+        pMachine = *it;
+
+        if (pMachine->m_szID == szID) {
+            return pMachine;
+        }
+    }
+    return NULL;
 }
-

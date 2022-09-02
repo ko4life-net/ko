@@ -4,12 +4,8 @@
 
 #pragma once
 
-
-class COrderMessage  
-{
-public:
-	COrderMessage();
-	virtual ~COrderMessage();
-
+class COrderMessage {
+  public:
+    COrderMessage();
+    virtual ~COrderMessage();
 };
-

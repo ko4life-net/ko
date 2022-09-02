@@ -5,64 +5,58 @@
 #include "implode.h"
 #include "Compress.h"
 
-#define DO_CRC_INSTREAM          1
-#define DO_CRC_OUTSTREAM         2
+#define DO_CRC_INSTREAM  1
+#define DO_CRC_OUTSTREAM 2
 
-UINT DataType = CMP_BINARY;          // GLOBAL FOR DATA TYPE FOR COMPRESSION
-UINT DictSize = 4096;               // GLOBAL FOR DICTIONARY SIZE FOR COMPRESSION
+UINT DataType = CMP_BINARY; // GLOBAL FOR DATA TYPE FOR COMPRESSION
+UINT DictSize = 4096;       // GLOBAL FOR DICTIONARY SIZE FOR COMPRESSION
 
-CCompressManager::CCompressManager()
-{
-	adding_data_count = 0;
-	addList = NULL;
-	CompressBufferPtr = NULL;
-	ExtractBufferPtr = NULL;
-	pScratchPad = (PCHAR)new char[CMP_BUFFER_SIZE];
+CCompressManager::CCompressManager() {
+    adding_data_count = 0;
+    addList = NULL;
+    CompressBufferPtr = NULL;
+    ExtractBufferPtr = NULL;
+    pScratchPad = (PCHAR) new char[CMP_BUFFER_SIZE];
 }
 
-CCompressManager::~CCompressManager() 
-{
-	if ( pScratchPad != NULL )
-	{
-		delete pScratchPad;
-		pScratchPad = NULL;
-	}
+CCompressManager::~CCompressManager() {
+    if (pScratchPad != NULL) {
+        delete pScratchPad;
+        pScratchPad = NULL;
+    }
 
-	FlushAddData();
-	FlushExtractedData();
+    FlushAddData();
+    FlushExtractedData();
 }
 
 //Compress Part...
-int CCompressManager::AddData(char *add_data, long nLen)
-{
-	short l_len;
+int CCompressManager::AddData(char * add_data, long nLen) {
+    short l_len;
 
-	if ( addList == NULL )
-	{
-		addList = new CObList;
-	}
+    if (addList == NULL) {
+        addList = new CObList;
+    }
 
-	char *dataPtr;
-	if (nLen == 0)
-	{
-		l_len = strlen(add_data);
-	}
-	else
-		l_len = (short)nLen;
+    char * dataPtr;
+    if (nLen == 0) {
+        l_len = strlen(add_data);
+    } else {
+        l_len = (short)nLen;
+    }
 
-	CCompressData *pData;
+    CCompressData * pData;
 
-	pData = new CCompressData;
-	dataPtr = new char[l_len+1+sizeof(short)];
-	memcpy( dataPtr, (char *)(&l_len), sizeof(short) );
-	memcpy( &dataPtr[sizeof(short)], add_data, l_len );
-	dataPtr[l_len+sizeof(short)] = '\0';
-	pData->SetDataPtr( dataPtr );
+    pData = new CCompressData;
+    dataPtr = new char[l_len + 1 + sizeof(short)];
+    memcpy(dataPtr, (char *)(&l_len), sizeof(short));
+    memcpy(&dataPtr[sizeof(short)], add_data, l_len);
+    dataPtr[l_len + sizeof(short)] = '\0';
+    pData->SetDataPtr(dataPtr);
 
-	addList->AddTail( pData );
-	adding_data_count++;
+    addList->AddTail(pData);
+    adding_data_count++;
 
-	return true;
+    return true;
 }
 
 /*********************************************************************
@@ -83,40 +77,36 @@ int CCompressManager::AddData(char *add_data, long nLen)
  * Returns:    Number of bytes actually read, or zero on EOF
  *
  *********************************************************************/
-UINT ReadBuffer(PCHAR buffer, UINT *iSize, void *pParam)
-{
-	CCompressManager *pCM;
-	UINT iRead;
+UINT ReadBuffer(PCHAR buffer, UINT * iSize, void * pParam) {
+    CCompressManager * pCM;
+    UINT               iRead;
 
-	pCM = (CCompressManager *)pParam;
+    pCM = (CCompressManager *)pParam;
 
-	if ( pCM == NULL ) return 0;
+    if (pCM == NULL) {
+        return 0;
+    }
 
-	if ( pCM->CompressCurPos < pCM->nCompressBufferCount )
-	{
-		UINT BytesLeft = pCM->nCompressBufferCount - pCM->CompressCurPos;
+    if (pCM->CompressCurPos < pCM->nCompressBufferCount) {
+        UINT BytesLeft = pCM->nCompressBufferCount - pCM->CompressCurPos;
 
-		if( BytesLeft < *iSize )
-		{
-			*iSize = BytesLeft;
-		}
+        if (BytesLeft < *iSize) {
+            *iSize = BytesLeft;
+        }
 
-		memcpy( buffer, (pCM->CompressBufferPtr + pCM->CompressCurPos), *iSize );
-		pCM->CompressCurPos += *iSize;
+        memcpy(buffer, (pCM->CompressBufferPtr + pCM->CompressCurPos), *iSize);
+        pCM->CompressCurPos += *iSize;
 
-		iRead = *iSize;
-	}
-	else
-	{
-		iRead = 0;
-	}
+        iRead = *iSize;
+    } else {
+        iRead = 0;
+    }
 
-	if (pCM->Mode == COMPRESSING )
-	{
-		pCM->dwCrc = crc32( buffer, &iRead, &pCM->dwCrc );
-	}
+    if (pCM->Mode == COMPRESSING) {
+        pCM->dwCrc = crc32(buffer, &iRead, &pCM->dwCrc);
+    }
 
-	return iRead;
+    return iRead;
 }
 
 /*********************************************************************
@@ -135,262 +125,237 @@ UINT ReadBuffer(PCHAR buffer, UINT *iSize, void *pParam)
  *             Compression Library
  *
  *********************************************************************/
-void WriteBuffer(PCHAR buffer, UINT *iSize, void *pParam)
-{
-	CCompressManager *pCM;
+void WriteBuffer(PCHAR buffer, UINT * iSize, void * pParam) {
+    CCompressManager * pCM;
 
-	pCM = (CCompressManager *)pParam;
-	if ( pCM == NULL ) return;
+    pCM = (CCompressManager *)pParam;
+    if (pCM == NULL) {
+        return;
+    }
 
-	if ( pCM->UncompressCurPos < pCM->nUnCompressBufferCount )
-	{
-		if ( (pCM->nUnCompressBufferCount - pCM->UncompressCurPos) < (int)(*iSize) )
-		{
-			//MessageBox( NULL, "Out of buffer space - #1", "Compression Error", MB_OK );
-			pCM->ErrorOccurred = 1;
-			return;
-		}
+    if (pCM->UncompressCurPos < pCM->nUnCompressBufferCount) {
+        if ((pCM->nUnCompressBufferCount - pCM->UncompressCurPos) < (int)(*iSize)) {
+            //MessageBox( NULL, "Out of buffer space - #1", "Compression Error", MB_OK );
+            pCM->ErrorOccurred = 1;
+            return;
+        }
 
-		memcpy( (pCM->ExtractBufferPtr + pCM->UncompressCurPos), buffer, *iSize );
-		pCM->UncompressCurPos += *iSize;
-	}
-	else
-	{
-		//MessageBox( NULL, "Out of buffer space - #2", "Compression Error", MB_OK );
-		pCM->ErrorOccurred = 2;
-		return;
-	}
+        memcpy((pCM->ExtractBufferPtr + pCM->UncompressCurPos), buffer, *iSize);
+        pCM->UncompressCurPos += *iSize;
+    } else {
+        //MessageBox( NULL, "Out of buffer space - #2", "Compression Error", MB_OK );
+        pCM->ErrorOccurred = 2;
+        return;
+    }
 
-	if (pCM->Mode == UNCOMPRESSING )
-	{
-		pCM->dwCrc = crc32( buffer, iSize, &pCM->dwCrc );
-	}
+    if (pCM->Mode == UNCOMPRESSING) {
+        pCM->dwCrc = crc32(buffer, iSize, &pCM->dwCrc);
+    }
 
-	return;
+    return;
 }
 
-int CCompressManager::PreCompressWork()
-{
-	short strLength;
-	long bytes_count = 0;
-	POSITION pos;
-	CCompressData *pData;
+int CCompressManager::PreCompressWork() {
+    short           strLength;
+    long            bytes_count = 0;
+    POSITION        pos;
+    CCompressData * pData;
 
-	if ( addList == NULL )
-	{
-		nCompressBufferCount = 0;
-		OrgDataLength = 0;
-		return false;
-	}
+    if (addList == NULL) {
+        nCompressBufferCount = 0;
+        OrgDataLength = 0;
+        return false;
+    }
 
-	for (pos = addList->GetHeadPosition(); pos != NULL; addList->GetNext(pos) )
-	{
-		pData = (CCompressData *)addList->GetAt(pos);
-		memcpy((char *)(&strLength), pData->GetDataPtr(), sizeof(short));
-		bytes_count += strLength;
-	}
+    for (pos = addList->GetHeadPosition(); pos != NULL; addList->GetNext(pos)) {
+        pData = (CCompressData *)addList->GetAt(pos);
+        memcpy((char *)(&strLength), pData->GetDataPtr(), sizeof(short));
+        bytes_count += strLength;
+    }
 
-	if ( CompressBufferPtr != NULL )
-		delete CompressBufferPtr;
+    if (CompressBufferPtr != NULL) {
+        delete CompressBufferPtr;
+    }
 
-	CompressBufferPtr = new char[bytes_count+1];
-	nCompressBufferCount = bytes_count;
-	OrgDataLength = bytes_count;
+    CompressBufferPtr = new char[bytes_count + 1];
+    nCompressBufferCount = bytes_count;
+    OrgDataLength = bytes_count;
 
-	CompressCurPos = 0;
+    CompressCurPos = 0;
 
-	for (pos = addList->GetHeadPosition(); pos != NULL; addList->GetNext(pos) )
-	{
-		pData = (CCompressData *)addList->GetAt(pos);
-		memcpy((char *)(&strLength), pData->GetDataPtr(), sizeof(short));
-		bytes_count = strLength;
-		memcpy((CompressBufferPtr+CompressCurPos), (pData->GetDataPtr()+sizeof(short)), bytes_count );
-		CompressCurPos += bytes_count;
-	}
+    for (pos = addList->GetHeadPosition(); pos != NULL; addList->GetNext(pos)) {
+        pData = (CCompressData *)addList->GetAt(pos);
+        memcpy((char *)(&strLength), pData->GetDataPtr(), sizeof(short));
+        bytes_count = strLength;
+        memcpy((CompressBufferPtr + CompressCurPos), (pData->GetDataPtr() + sizeof(short)), bytes_count);
+        CompressCurPos += bytes_count;
+    }
 
-	bytes_count = CompressCurPos;
-	CompressCurPos = 0;
+    bytes_count = CompressCurPos;
+    CompressCurPos = 0;
 
-	if ( ExtractBufferPtr != NULL )
-		delete[] ExtractBufferPtr;
-	
-	if ( bytes_count < 1024 )
-	{
-		bytes_count = bytes_count*2;
-	}
+    if (ExtractBufferPtr != NULL) {
+        delete[] ExtractBufferPtr;
+    }
 
-	ExtractBufferPtr = new char[bytes_count+1];
-	nUnCompressBufferCount = bytes_count;
-	UncompressCurPos = 0;
+    if (bytes_count < 1024) {
+        bytes_count = bytes_count * 2;
+    }
 
-	dwCrc = ~((DWORD)0); // Pre-condition CRC
-	Mode = COMPRESSING;
-	ErrorOccurred = 0;
+    ExtractBufferPtr = new char[bytes_count + 1];
+    nUnCompressBufferCount = bytes_count;
+    UncompressCurPos = 0;
 
-	return true;
+    dwCrc = ~((DWORD)0); // Pre-condition CRC
+    Mode = COMPRESSING;
+    ErrorOccurred = 0;
+
+    return true;
 }
 
-int CCompressManager::Compress()
-{
-	int iStatus;
+int CCompressManager::Compress() {
+    int iStatus;
 
-	if ( OrgDataLength == 0 )
-		return true;
+    if (OrgDataLength == 0) {
+        return true;
+    }
 
-	// COMPRESS THE FILE
-	iStatus = implode( ReadBuffer,WriteBuffer,pScratchPad,this,&DataType,&DictSize );
+    // COMPRESS THE FILE
+    iStatus = implode(ReadBuffer, WriteBuffer, pScratchPad, this, &DataType, &DictSize);
 
-	if ( iStatus )
-	{
-		return false;
-	}
-	
-	return true;
+    if (iStatus) {
+        return false;
+    }
+
+    return true;
 }
 
-void CCompressManager::FlushAddData()
-{
-	POSITION pos;
-	CCompressData *pData;
+void CCompressManager::FlushAddData() {
+    POSITION        pos;
+    CCompressData * pData;
 
-	if ( addList != NULL )
-	{
-		if ( addList->GetCount() > 0 )
-		{
-			for ( pos = addList->GetHeadPosition();  pos != NULL; )
-			{
-				pData = (CCompressData *)addList->GetNext( pos );		
-				delete pData;			
-			}
+    if (addList != NULL) {
+        if (addList->GetCount() > 0) {
+            for (pos = addList->GetHeadPosition(); pos != NULL;) {
+                pData = (CCompressData *)addList->GetNext(pos);
+                delete pData;
+            }
 
-			addList->RemoveAll();
-		}
+            addList->RemoveAll();
+        }
 
-		delete addList;
-		addList = NULL;
-	}
-	adding_data_count = 0;
+        delete addList;
+        addList = NULL;
+    }
+    adding_data_count = 0;
 
-	if ( CompressBufferPtr != NULL )
-	{		
-		delete[] CompressBufferPtr;
-		CompressBufferPtr = NULL;
-	}
+    if (CompressBufferPtr != NULL) {
+        delete[] CompressBufferPtr;
+        CompressBufferPtr = NULL;
+    }
 
-	if ( ExtractBufferPtr != NULL )
-	{
-		delete[] ExtractBufferPtr;
-		ExtractBufferPtr = NULL;
-	}
+    if (ExtractBufferPtr != NULL) {
+        delete[] ExtractBufferPtr;
+        ExtractBufferPtr = NULL;
+    }
 
-	nCompressBufferCount = 0;
-	nUnCompressBufferCount = 0;
-	CompressCurPos = 0;
-	UncompressCurPos = 0;
-	ErrorOccurred = 0;
+    nCompressBufferCount = 0;
+    nUnCompressBufferCount = 0;
+    CompressCurPos = 0;
+    UncompressCurPos = 0;
+    ErrorOccurred = 0;
 
-	if ( pScratchPad != NULL )
-	{
-		for (int i = 0; i <CMP_BUFFER_SIZE; i++)
-		{
-			pScratchPad[i] = 0;
-		}
-	}
+    if (pScratchPad != NULL) {
+        for (int i = 0; i < CMP_BUFFER_SIZE; i++) {
+            pScratchPad[i] = 0;
+        }
+    }
 }
 
 //Extract Part...
-void CCompressManager::SetCompressionData(char *b_ptr, long nLen)
-{
-	int l_len;
-	if ( nLen == 0 ) l_len = strlen(b_ptr);
-	else l_len = nLen;
+void CCompressManager::SetCompressionData(char * b_ptr, long nLen) {
+    int l_len;
+    if (nLen == 0) {
+        l_len = strlen(b_ptr);
+    } else {
+        l_len = nLen;
+    }
 
-	memcpy( CompressBufferPtr, b_ptr, l_len );
+    memcpy(CompressBufferPtr, b_ptr, l_len);
 }
 
-int CCompressManager::PreUncompressWork(long nLen, long orgDataLen)
-{
-	if ( CompressBufferPtr != NULL )
-		delete[] CompressBufferPtr;
-	
-	CompressBufferPtr = new char[nLen+1];
-	nCompressBufferCount = nLen+1;
-	CompressCurPos = 0;
+int CCompressManager::PreUncompressWork(long nLen, long orgDataLen) {
+    if (CompressBufferPtr != NULL) {
+        delete[] CompressBufferPtr;
+    }
 
-	if ( ExtractBufferPtr != NULL )
-		delete[] ExtractBufferPtr;
+    CompressBufferPtr = new char[nLen + 1];
+    nCompressBufferCount = nLen + 1;
+    CompressCurPos = 0;
 
-	if ( orgDataLen == 0 )
-	{
-		if ( DataType == CMP_ASCII )
-		{
-			ExtractBufferPtr = new char[nLen*100];
-			nUnCompressBufferCount = nLen*100;
-		}
-		else
-		{
-			ExtractBufferPtr = new char[nLen*10];
-			nUnCompressBufferCount = nLen*10;
-		}
-	}
-	else
-	{
-		ExtractBufferPtr = new char[orgDataLen+1];
-		nUnCompressBufferCount = orgDataLen+1;
-	}
+    if (ExtractBufferPtr != NULL) {
+        delete[] ExtractBufferPtr;
+    }
 
-	OrgDataLength = orgDataLen;
-	dwCrc = ~((DWORD)0);
-	Mode = UNCOMPRESSING;
-	ErrorOccurred = 0;
-	UncompressCurPos = 0;
+    if (orgDataLen == 0) {
+        if (DataType == CMP_ASCII) {
+            ExtractBufferPtr = new char[nLen * 100];
+            nUnCompressBufferCount = nLen * 100;
+        } else {
+            ExtractBufferPtr = new char[nLen * 10];
+            nUnCompressBufferCount = nLen * 10;
+        }
+    } else {
+        ExtractBufferPtr = new char[orgDataLen + 1];
+        nUnCompressBufferCount = orgDataLen + 1;
+    }
 
-	return true;
+    OrgDataLength = orgDataLen;
+    dwCrc = ~((DWORD)0);
+    Mode = UNCOMPRESSING;
+    ErrorOccurred = 0;
+    UncompressCurPos = 0;
+
+    return true;
 }
 
-int CCompressManager::Extract()
-{
-	int iStatus;
+int CCompressManager::Extract() {
+    int iStatus;
 
-	if ( OrgDataLength == 0 )
-		return true;
+    if (OrgDataLength == 0) {
+        return true;
+    }
 
-	iStatus = explode( ReadBuffer, WriteBuffer, pScratchPad, this );
+    iStatus = explode(ReadBuffer, WriteBuffer, pScratchPad, this);
 
-	if ( iStatus )
-	{
-		return false;
-	}
+    if (iStatus) {
+        return false;
+    }
 
-	return true;
+    return true;
 }
 
-void CCompressManager::FlushExtractedData()
-{
-	if ( CompressBufferPtr != NULL )
-	{
-		delete[] CompressBufferPtr;
-		CompressBufferPtr = NULL;
-	}
+void CCompressManager::FlushExtractedData() {
+    if (CompressBufferPtr != NULL) {
+        delete[] CompressBufferPtr;
+        CompressBufferPtr = NULL;
+    }
 
-	nCompressBufferCount = 0;
-	CompressCurPos = 0;
+    nCompressBufferCount = 0;
+    CompressCurPos = 0;
 
-	if ( ExtractBufferPtr != NULL )
-	{
-		delete[] ExtractBufferPtr;
-		ExtractBufferPtr = NULL;
-	}
+    if (ExtractBufferPtr != NULL) {
+        delete[] ExtractBufferPtr;
+        ExtractBufferPtr = NULL;
+    }
 
-	nUnCompressBufferCount = 0;
-	ErrorOccurred = 0;
-	UncompressCurPos = 0;
+    nUnCompressBufferCount = 0;
+    ErrorOccurred = 0;
+    UncompressCurPos = 0;
 
-	if ( pScratchPad != NULL )
-	{
-		for (int i = 0; i <CMP_BUFFER_SIZE; i++)
-		{
-			pScratchPad[i] = 0;
-		}
-	}
+    if (pScratchPad != NULL) {
+        for (int i = 0; i < CMP_BUFFER_SIZE; i++) {
+            pScratchPad[i] = 0;
+        }
+    }
 }

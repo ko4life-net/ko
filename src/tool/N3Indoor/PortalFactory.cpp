@@ -12,7 +12,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -20,31 +20,22 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CPortalFactory::CPortalFactory()
-{
+CPortalFactory::CPortalFactory() {}
 
+CPortalFactory::~CPortalFactory() {}
+
+std::string CPortalFactory::MakePvsVolString(int iIndex) {
+    char buffer[32]{};
+    sprintf(buffer, "Vol_%d", iIndex);
+    return std::string(buffer);
 }
 
-CPortalFactory::~CPortalFactory()
-{
+CPortalVolume * CPortalFactory::CreatePvsVol(int iIndex) {
+    CPortalVolume * pRet = NULL;
+    pRet = new CPortalVolume;
 
+    pRet->m_strID = MakePvsVolString(iIndex);
+    pRet->m_iID = iIndex;
+
+    return pRet;
 }
-
-std::string	CPortalFactory::MakePvsVolString(int iIndex)
-{
-	char buffer[32]{};
-	sprintf(buffer, "Vol_%d", iIndex);
-	return std::string(buffer);
-}
-
-CPortalVolume* CPortalFactory::CreatePvsVol(int iIndex)
-{
-	CPortalVolume* pRet = NULL;
-	pRet = new CPortalVolume;
-
-	pRet->m_strID = MakePvsVolString(iIndex);
-	pRet->m_iID	   = iIndex;	 
-
-	return pRet;
-}
-

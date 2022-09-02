@@ -6,40 +6,38 @@
 /////////////////////////////////////////////////////////////////////////////
 // CDlgLoadNPCPath dialog
 
-class CDlgLoadNPCPath : public CDialog
-{
-// Construction
-public:
-	CDlgLoadNPCPath(CWnd* pParent = NULL);   // standard constructor
+class CDlgLoadNPCPath : public CDialog {
+    // Construction
+  public:
+    CDlgLoadNPCPath(CWnd * pParent = NULL); // standard constructor
 
-	CString	m_SelFileName;
+    CString m_SelFileName;
 
-// Dialog Data
-	//{{AFX_DATA(CDlgLoadNPCPath)
-	enum { IDD = IDD_LOAD_NPCPATH };
-	CListBox	m_NPCPathFileList;
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(CDlgLoadNPCPath)
+    enum {
+        IDD = IDD_LOAD_NPCPATH
+    };
+    CListBox m_NPCPathFileList;
+    //}}AFX_DATA
 
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(CDlgLoadNPCPath)
+  protected:
+    virtual void DoDataExchange(CDataExchange * pDX); // DDX/DDV support
+                                                      //}}AFX_VIRTUAL
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CDlgLoadNPCPath)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
-
-// Implementation
-protected:
-
-	// Generated message map functions
-	//{{AFX_MSG(CDlgLoadNPCPath)
-	afx_msg void OnSelchangeListNpcpath();
-	afx_msg void OnDblclkListNpcpath();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Implementation
+  protected:
+    // Generated message map functions
+    //{{AFX_MSG(CDlgLoadNPCPath)
+    afx_msg void OnSelchangeListNpcpath();
+    afx_msg void OnDblclkListNpcpath();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-

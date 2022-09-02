@@ -11,7 +11,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -19,61 +19,52 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CDTex::CDTex()
-{
-	m_pTex = NULL;
-	m_ID = -1;
-	
-	ZeroMemory(m_Attr, NUM_DTEXTILE*NUM_DTEXTILE*sizeof(DTEXATTR));
+CDTex::CDTex() {
+    m_pTex = NULL;
+    m_ID = -1;
+
+    ZeroMemory(m_Attr, NUM_DTEXTILE * NUM_DTEXTILE * sizeof(DTEXATTR));
 }
 
-CDTex::~CDTex()
-{
-	Release();
+CDTex::~CDTex() {
+    Release();
 }
-
 
 //
 //	Release..
 //
-void CDTex::Release()
-{
-	if(m_pTex)
-	{
-		m_pTex->Release();
-		delete m_pTex;
-		m_pTex = NULL;
-	}
+void CDTex::Release() {
+    if (m_pTex) {
+        m_pTex->Release();
+        delete m_pTex;
+        m_pTex = NULL;
+    }
 }
-
 
 //
 //	Init..
 //
-void CDTex::Init()
-{
-	Release();
+void CDTex::Init() {
+    Release();
 
-	if(!m_pTex) m_pTex = new CN3Texture;
-	m_ID = -1;
-	
-	int x,z;
-	for(x=0;x<NUM_DTEXTILE;x++)
-	{
-		for(z=0;z<NUM_DTEXTILE;z++)
-		{
-			m_Attr[x][z].Group = 0;
-			m_Attr[x][z].Attr = x;
-		}
-	}
+    if (!m_pTex) {
+        m_pTex = new CN3Texture;
+    }
+    m_ID = -1;
+
+    int x, z;
+    for (x = 0; x < NUM_DTEXTILE; x++) {
+        for (z = 0; z < NUM_DTEXTILE; z++) {
+            m_Attr[x][z].Group = 0;
+            m_Attr[x][z].Attr = x;
+        }
+    }
 }
-
 
 //
 //	SetAttr...
 //	타일하나에 속성 집어 넣기..
 //
-void CDTex::SetAttr(int x, int y, DTEXATTR attr)
-{
-	m_Attr[x][y] = attr;
+void CDTex::SetAttr(int x, int y, DTEXATTR attr) {
+    m_Attr[x][y] = attr;
 }

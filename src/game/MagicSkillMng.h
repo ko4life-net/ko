@@ -4,138 +4,132 @@
 
 #pragma once
 
-
 #include "GameDef.h"
 #include "GameBase.h"
 #include <map>
 
-typedef typename std::map<int, DWORD>::value_type stlmapVAL_INT_DWORD;
+typedef typename std::map<int, DWORD>::value_type      stlmapVAL_INT_DWORD;
 typedef typename std::multimap<int, DWORD>::value_type stlmultimapVAL_INT_DWORD;
 
+class CMagicSkillMng : public CGameBase {
+  public:
+    class CGameProcMain * m_pGameProcMain;
 
-class CMagicSkillMng : public CGameBase
-{
-public:
-	class CGameProcMain* m_pGameProcMain;
-	
-	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_1>*	m_pTbl_Type_1;
-	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_2>*	m_pTbl_Type_2;
-	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_3>*	m_pTbl_Type_3;
-	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_4>*	m_pTbl_Type_4;
-//	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_5>*	m_pTbl_Type_5;
-//	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_6>*	m_pTbl_Type_6;
-//	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_7>*	m_pTbl_Type_7;
-//	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_8>*	m_pTbl_Type_8;
-//	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_9>*	m_pTbl_Type_9;
-//	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_10>*	m_pTbl_Type_10;
+    CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_1> * m_pTbl_Type_1;
+    CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_2> * m_pTbl_Type_2;
+    CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_3> * m_pTbl_Type_3;
+    CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_4> * m_pTbl_Type_4;
+    //	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_5>*	m_pTbl_Type_5;
+    //	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_6>*	m_pTbl_Type_6;
+    //	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_7>*	m_pTbl_Type_7;
+    //	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_8>*	m_pTbl_Type_8;
+    //	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_9>*	m_pTbl_Type_9;
+    //	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_10>*	m_pTbl_Type_10;
 
-	std::map<int, DWORD>	m_MySelf;
+    std::map<int, DWORD> m_MySelf;
 
-	int						m_iTarget;
-	__Vector3				m_vTargetPos;
+    int       m_iTarget;
+    __Vector3 m_vTargetPos;
 
-	//나를 타겟으로 잡은 몬스터처리 관련..
-	std::map<int, DWORD>	m_MobList;	//	int m_iMobID; DWORD m_dwMobMagicID;
-	
-	//related type4.....
-	std::multimap<int, DWORD>	m_ListBuffTypeID;
+    //나를 타겟으로 잡은 몬스터처리 관련..
+    std::map<int, DWORD> m_MobList; //	int m_iMobID; DWORD m_dwMobMagicID;
 
-	int						m_iBuffType;
+    //related type4.....
+    std::multimap<int, DWORD> m_ListBuffTypeID;
 
-	float					m_fAttackSpeed;
-	float					m_fSpeed;
+    int m_iBuffType;
 
-	int						m_iAC;
-	int						m_iAttack;
-	int						m_iMaxHP;
-	int						m_iStr;
-	int						m_iSta;
-	int						m_iDex;
-	int						m_iInt;
-	int						m_iMAP; // Magic Attack Point
+    float m_fAttackSpeed;
+    float m_fSpeed;
 
-	int						m_iFireR;
-	int						m_iColdR;
-	int						m_iLightningR;
-	int						m_iMagicR;
-	int						m_iDeseaseR;
-	int						m_iPoisonR;
+    int m_iAC;
+    int m_iAttack;
+    int m_iMaxHP;
+    int m_iStr;
+    int m_iSta;
+    int m_iDex;
+    int m_iInt;
+    int m_iMAP; // Magic Attack Point
 
-	//combo...
-	int						m_iComboSkillID;
-	int						m_iCurrStep;
-	int						m_iNumStep;
-	float					m_fComboTime;
-		
-	//recast time...
-	float					m_fRecastTime;
-	float					m_fDelay;
-		
-	//related region magic...
-	DWORD					m_dwRegionMagicState;	//0:마침..1:지역선택중..2:지역선택했음.
-	__TABLE_UPC_SKILL		m_dwRegionSkill;		//선택된 지역스킬..
+    int m_iFireR;
+    int m_iColdR;
+    int m_iLightningR;
+    int m_iMagicR;
+    int m_iDeseaseR;
+    int m_iPoisonR;
 
-	//related non-casting action magic...
-	DWORD					m_dwCastingStateNonAction;	//0:아무것도 없는 평온한 상태 1: 캐스팅중
-	float					m_fCastTimeNonAction;
-	DWORD					m_dwNonActionMagicID;
-	int						m_iNonActionMagicTarget;
-	float					m_fRecastTimeNonAction;
+    //combo...
+    int   m_iComboSkillID;
+    int   m_iCurrStep;
+    int   m_iNumStep;
+    float m_fComboTime;
 
-	//지역마법..
-	int						m_iMyRegionTargetFXID;
+    //recast time...
+    float m_fRecastTime;
+    float m_fDelay;
 
+    //related region magic...
+    DWORD             m_dwRegionMagicState; //0:마침..1:지역선택중..2:지역선택했음.
+    __TABLE_UPC_SKILL m_dwRegionSkill;      //선택된 지역스킬..
 
+    //related non-casting action magic...
+    DWORD m_dwCastingStateNonAction; //0:아무것도 없는 평온한 상태 1: 캐스팅중
+    float m_fCastTimeNonAction;
+    DWORD m_dwNonActionMagicID;
+    int   m_iNonActionMagicTarget;
+    float m_fRecastTimeNonAction;
 
-protected:
-	bool	CheckValidCondition(int iTargetID, __TABLE_UPC_SKILL* pSkill);
-	bool	CheckValidDistance(__TABLE_UPC_SKILL* pSkill, __Vector3 vTargetPos, float fTargetRadius);
-	
-	void	InitType4();
+    //지역마법..
+    int m_iMyRegionTargetFXID;
 
-	void	StartSkillMagicAtTargetPacket(__TABLE_UPC_SKILL* pSkill, short TargetID);
-	void	StartSkillMagicAtPosPacket(__TABLE_UPC_SKILL* pSkill, __Vector3 vPos);
-	
-	void	ProcessCasting();
-	void	ProcessCombo();
+  protected:
+    bool CheckValidCondition(int iTargetID, __TABLE_UPC_SKILL * pSkill);
+    bool CheckValidDistance(__TABLE_UPC_SKILL * pSkill, __Vector3 vTargetPos, float fTargetRadius);
 
-	void	MobCasting(__TABLE_UPC_SKILL* pSkill, int iSourceID);
+    void InitType4();
 
-	void	FlyingType2(__TABLE_UPC_SKILL* pSkill, int iSourceID, int iTargetID, short* pData);
+    void StartSkillMagicAtTargetPacket(__TABLE_UPC_SKILL * pSkill, short TargetID);
+    void StartSkillMagicAtPosPacket(__TABLE_UPC_SKILL * pSkill, __Vector3 vPos);
 
-	void	EffectingType4(DWORD dwMagicID);
-	void	EffectingType3(DWORD dwMagicID);
-	bool	EffectingType1(DWORD dwMagicID, int iSourceID, int iTargetID, short* pData);
+    void ProcessCasting();
+    void ProcessCombo();
 
-	int		AddIdx(DWORD dwMagicID, int iNum=1);	//return value is index...
-	void	RemoveIdx(int idx);
+    void MobCasting(__TABLE_UPC_SKILL * pSkill, int iSourceID);
 
-	void	SuccessCast(__TABLE_UPC_SKILL* pSkill, CPlayerBase* pTarget);
-	void	FailCast(__TABLE_UPC_SKILL* pSkill);
-	
-public:
-	bool	CheckValidSkillMagic(__TABLE_UPC_SKILL* pSkill);
-	void	StunMySelf(__TABLE_UPC_SKILL_TYPE_3* pType3);
-	void	StopCastingByRatio();
-	void	ClearDurationalMagic();
-	D3DCOLOR	TraceColorGet(__TABLE_UPC_SKILL* pSkill); // 스킬의 종류에 따라 검기의 색을 정한다..
+    void FlyingType2(__TABLE_UPC_SKILL * pSkill, int iSourceID, int iTargetID, short * pData);
 
-	bool	IsPositiveMagic(DWORD dwMagicID);
-	bool	IsCasting();
-	DWORD	GetMagicID(int idx);
-		
-	bool	MsgSend_MagicProcess(int iTargetID, __TABLE_UPC_SKILL* pSkill);
-	void	MsgRecv_Casting(DataPack* pDataPack, int& iOffset);
-	void	MsgRecv_Flying(DataPack* pDataPack, int& iOffset);
-	void	MsgRecv_Effecting(DataPack* pDataPack, int& iOffset);
-	void	MsgRecv_Fail(DataPack* pDataPack, int& iOffset);
-	void	MsgRecv_BuffType(DataPack* pDataPack, int& iOffset);
-	
-	void	Init();
-	void	Tick();	
+    void EffectingType4(DWORD dwMagicID);
+    void EffectingType3(DWORD dwMagicID);
+    bool EffectingType1(DWORD dwMagicID, int iSourceID, int iTargetID, short * pData);
 
-	CMagicSkillMng();
-	CMagicSkillMng(CGameProcMain* pGameProcMain);
-	virtual ~CMagicSkillMng();
+    int  AddIdx(DWORD dwMagicID, int iNum = 1); //return value is index...
+    void RemoveIdx(int idx);
+
+    void SuccessCast(__TABLE_UPC_SKILL * pSkill, CPlayerBase * pTarget);
+    void FailCast(__TABLE_UPC_SKILL * pSkill);
+
+  public:
+    bool     CheckValidSkillMagic(__TABLE_UPC_SKILL * pSkill);
+    void     StunMySelf(__TABLE_UPC_SKILL_TYPE_3 * pType3);
+    void     StopCastingByRatio();
+    void     ClearDurationalMagic();
+    D3DCOLOR TraceColorGet(__TABLE_UPC_SKILL * pSkill); // 스킬의 종류에 따라 검기의 색을 정한다..
+
+    bool  IsPositiveMagic(DWORD dwMagicID);
+    bool  IsCasting();
+    DWORD GetMagicID(int idx);
+
+    bool MsgSend_MagicProcess(int iTargetID, __TABLE_UPC_SKILL * pSkill);
+    void MsgRecv_Casting(DataPack * pDataPack, int & iOffset);
+    void MsgRecv_Flying(DataPack * pDataPack, int & iOffset);
+    void MsgRecv_Effecting(DataPack * pDataPack, int & iOffset);
+    void MsgRecv_Fail(DataPack * pDataPack, int & iOffset);
+    void MsgRecv_BuffType(DataPack * pDataPack, int & iOffset);
+
+    void Init();
+    void Tick();
+
+    CMagicSkillMng();
+    CMagicSkillMng(CGameProcMain * pGameProcMain);
+    virtual ~CMagicSkillMng();
 };
-

@@ -45,7 +45,7 @@
 #include <maya/MFnDependencyNode.h>
 #include <maya/MItDependencyGraph.h>
 #include <maya/MGlobal.h>
-#include <maya/MDagPath.h> 
+#include <maya/MDagPath.h>
 #include <maya/MItDag.h>
 #include <maya/MFnSkinCluster.h>
 #include <maya/MItDependencyNodes.h>
@@ -64,13 +64,12 @@ const float N3_PI = 3.141592f;
 
 #ifdef WIN32
 #ifndef MAXPATHLEN
-#define MAXPATHLEN					512
+#define MAXPATHLEN 512
 #endif
 #endif
 
-
-#include "MAYA/MString.h"	// Added by ClassView
-#include "MAYA/MObject.h"	// Added by ClassView
+#include "MAYA/MString.h" // Added by ClassView
+#include "MAYA/MObject.h" // Added by ClassView
 
 #include "N3Base/My_3DStruct.h"
 #include "N3Base/N3EngTool.h"
@@ -78,62 +77,57 @@ const float N3_PI = 3.141592f;
 
 const int MAX_TEXTURE = 1024;
 
-class CN3E2Wrapper
-{
-private:
-	// different extensions will get added to this:
-	char	m_szPath[1024];		// 경로 이름
-	char	m_szFileName[1024];	// 파일 이름
-	
-	CN3Scene*		m_pScene;
-	static __EXPORT_OPTION m_Option;
-	HWND	m_hDlgProgress, m_hWndPB, m_hWndLB;
-	
-protected:
-	static BOOL m_bCancelExport; // DialogBox...
+class CN3E2Wrapper {
+  private:
+    // different extensions will get added to this:
+    char m_szPath[1024];     // 경로 이름
+    char m_szFileName[1024]; // 파일 이름
 
+    CN3Scene *             m_pScene;
+    static __EXPORT_OPTION m_Option;
+    HWND                   m_hDlgProgress, m_hWndPB, m_hWndLB;
 
-	MObject MeshGetShader(MFnMesh &pMMesh);
+  protected:
+    static BOOL m_bCancelExport; // DialogBox...
 
-	CN3Texture* ProcessTexture(MFnMesh &mMesh); // 텍스처 인덱스값이 리턴된다..
-	CN3Joint*	ProcessJoint(MFnIkJoint& mJoint);
-	bool		ProcessIMesh(MFnMesh& mMesh, CN3IMesh* pIMesh);
-	bool		ProcessVMesh(MFnMesh &mMesh, CN3VMesh* pVMesh);
-	bool		ProcessSkin(MFnSkinCluster& mSkin, class CN3Skin* pSkin);
+    MObject MeshGetShader(MFnMesh & pMMesh);
 
-	CN3Camera*	ProcessCamera(MFnCamera &mCamera);
-	CN3Light*	ProcessLight(MFnLight &mLight);
+    CN3Texture * ProcessTexture(MFnMesh & mMesh); // 텍스처 인덱스값이 리턴된다..
+    CN3Joint *   ProcessJoint(MFnIkJoint & mJoint);
+    bool         ProcessIMesh(MFnMesh & mMesh, CN3IMesh * pIMesh);
+    bool         ProcessVMesh(MFnMesh & mMesh, CN3VMesh * pVMesh);
+    bool         ProcessSkin(MFnSkinCluster & mSkin, class CN3Skin * pSkin);
 
-	bool 		ProcessShape(MFnMesh& mMesh);
-	bool		ProcessChr(MFnSkinCluster &mSkin);
+    CN3Camera * ProcessCamera(MFnCamera & mCamera);
+    CN3Light *  ProcessLight(MFnLight & mLight);
 
-//	CN3TMesh*	ProcessTMesh(MFnMesh &mMesh);
-	int ProcessMaterial(MObject mShaderObj, __Material* pMtl);
-	int ProcessTransform(MFnTransform &mTransform, class CN3Transform* pTransform);
+    bool ProcessShape(MFnMesh & mMesh);
+    bool ProcessChr(MFnSkinCluster & mSkin);
 
-public:
-	bool IsSelected(MSelectionList& mSelList, MObject mObj);
-	void GetWorldTransform(MFnTransform& mTransform, MMatrix& mMtx);
-	void ProcessName(MObject mObj, std::string& szName);
-	void ProcessAnimKey(	MFnAnimCurve* pmACs,
-							class CN3AnimKey* pKey,
-							bool bReverseZ,
-							float fScale,
-							bool bQuaternion,
-							MTransformationMatrix::RotationOrder mRotOrder = MTransformationMatrix::kYXZ);
-	void ProcessJointTransform(CN3Joint *pJoint, __Vector3* pvTrans, __Quaternion* pqRot, __Vector3* pvScale, bool bProcessChild);
-	bool HaveJoint(MFnMesh &mObj);
-	bool FindAnimCurve(MObject &mObj, MObjectArray &mAnimCurveArray);
-	void ProcessMatrix(MFnTransform &mTransform, __Matrix44& mtx, __Vector3& vPos, __Quaternion& qtRot, __Vector3& vScale);
-	void SceneExport();
+    //	CN3TMesh*	ProcessTMesh(MFnMesh &mMesh);
+    int ProcessMaterial(MObject mShaderObj, __Material * pMtl);
+    int ProcessTransform(MFnTransform & mTransform, class CN3Transform * pTransform);
 
-	void Release();
-	void SetPath(const char* szPath);
-	void SetFileName(const char* szFileName);
+  public:
+    bool IsSelected(MSelectionList & mSelList, MObject mObj);
+    void GetWorldTransform(MFnTransform & mTransform, MMatrix & mMtx);
+    void ProcessName(MObject mObj, std::string & szName);
+    void ProcessAnimKey(MFnAnimCurve * pmACs, class CN3AnimKey * pKey, bool bReverseZ, float fScale, bool bQuaternion,
+                        MTransformationMatrix::RotationOrder mRotOrder = MTransformationMatrix::kYXZ);
+    void ProcessJointTransform(CN3Joint * pJoint, __Vector3 * pvTrans, __Quaternion * pqRot, __Vector3 * pvScale,
+                               bool bProcessChild);
+    bool HaveJoint(MFnMesh & mObj);
+    bool FindAnimCurve(MObject & mObj, MObjectArray & mAnimCurveArray);
+    void ProcessMatrix(MFnTransform & mTransform, __Matrix44 & mtx, __Vector3 & vPos, __Quaternion & qtRot,
+                       __Vector3 & vScale);
+    void SceneExport();
 
-	static BOOL CALLBACK DlgProcProgress(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);
-	static BOOL CALLBACK DlgProcPane(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);
-	CN3E2Wrapper();
-	virtual	~CN3E2Wrapper();
+    void Release();
+    void SetPath(const char * szPath);
+    void SetFileName(const char * szFileName);
+
+    static BOOL CALLBACK DlgProcProgress(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);
+    static BOOL CALLBACK DlgProcPane(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);
+    CN3E2Wrapper();
+    virtual ~CN3E2Wrapper();
 };
-

@@ -4,7 +4,6 @@
 
 #pragma once
 
-
 #pragma warning(disable : 4786)
 
 #include "N3Base/N3Base.h"
@@ -20,133 +19,128 @@
 class COrganizeView;
 
 // 우선순위대로 정렬..
-template<class T> struct Myless : public std::less<T> {
-bool operator()(const T& x, const T& y) const
-{
-	return (x->m_iPriority > y->m_iPriority);
-}
+template <class T> struct Myless : public std::less<T> {
+    bool operator()(const T & x, const T & y) const { return (x->m_iPriority > y->m_iPriority); }
 };
 
-class CPVSManager    : public CN3BaseFileAccess
-{
-	friend class COrganizeView;
-	friend class CMainFrame;
-	friend class CDlgShapeList;
+class CPVSManager : public CN3BaseFileAccess {
+    friend class COrganizeView;
+    friend class CMainFrame;
+    friend class CDlgShapeList;
 
-	/////////////////////////////////////////
-	std::list<CPortalVolume*>	m_pPvsList;
-	
-	//.. Main Shape List.. ^^
-	std::list<ShapeInfo* >	  m_plShapeInfoList;
+    /////////////////////////////////////////
+    std::list<CPortalVolume *> m_pPvsList;
 
-	//.. Current Portal Volume.. ^^
-	CPortalVolume*				m_pCurVol;
-	__Vector3						m_vBackupEye;
-	__Vector3						m_vBackupAt;
-	__Vector3						m_vBackupEyeExecute;
-	__Vector3						m_vBackupAtExecute;
+    //.. Main Shape List.. ^^
+    std::list<ShapeInfo *> m_plShapeInfoList;
 
-	// Total Position Move Backup..
-	__Vector3						m_vBackupTotalMove;
+    //.. Current Portal Volume.. ^^
+    CPortalVolume * m_pCurVol;
+    __Vector3       m_vBackupEye;
+    __Vector3       m_vBackupAt;
+    __Vector3       m_vBackupEyeExecute;
+    __Vector3       m_vBackupAtExecute;
 
-private:
-	bool	m_bCompiled;
-	bool	m_bGameData;	
+    // Total Position Move Backup..
+    __Vector3 m_vBackupTotalMove;
 
-	CPortalFactory			m_Factory;
+  private:
+    bool m_bCompiled;
+    bool m_bGameData;
 
-	int		m_iTotalCount;
-	int		m_iIncreseIndex;
-	int		m_iIncreseShapeIndex;
+    CPortalFactory m_Factory;
 
-	int		m_iCurIndex;
-//////////////////////////////////////////////////
+    int m_iTotalCount;
+    int m_iIncreseIndex;
+    int m_iIncreseShapeIndex;
 
-	void	InsertNewPortalVolumn();
-	void	DeleteAllPvsObj();
+    int m_iCurIndex;
+    //////////////////////////////////////////////////
 
-	CPortalVolume* GetPortalVolByiOrder(int iOrder);
-	CPortalVolume* GetPortalVolPointerByID(int iID);
-	bool	DeletePortalVolByiOrder(int iOrder);
-	bool	DeletePortalVolByPointer(CPortalVolume* pVol);
-	void	DeletePortalVolLinkedByiID(int iID);
-	void	DeleteTotalShapeLinkByiOrder(int iOrder);
+    void InsertNewPortalVolumn();
+    void DeleteAllPvsObj();
 
-	bool	IsExistPortalVolumeByPointer(CPortalVolume* pVol);
-	bool	IsExistTotalShapeByPointer(ShapeInfo* pSI);
-	bool	IsExistLinkedShapeByPointer(ShapeInfo* pSI);
+    CPortalVolume * GetPortalVolByiOrder(int iOrder);
+    CPortalVolume * GetPortalVolPointerByID(int iID);
+    bool            DeletePortalVolByiOrder(int iOrder);
+    bool            DeletePortalVolByPointer(CPortalVolume * pVol);
+    void            DeletePortalVolLinkedByiID(int iID);
+    void            DeleteTotalShapeLinkByiOrder(int iOrder);
 
-	// Load Save..
-	bool	Load(HANDLE hFile);
-	bool	LoadOldVersion(HANDLE hFile, int iVersionFromData);
-	bool	Save(HANDLE hFile);
-	void	SetMaxShapeIndex();
+    bool IsExistPortalVolumeByPointer(CPortalVolume * pVol);
+    bool IsExistTotalShapeByPointer(ShapeInfo * pSI);
+    bool IsExistLinkedShapeByPointer(ShapeInfo * pSI);
 
-	// Edit 모드..
-	void	TickEdit();
-	void	RenderEdit();
+    // Load Save..
+    bool Load(HANDLE hFile);
+    bool LoadOldVersion(HANDLE hFile, int iVersionFromData);
+    bool Save(HANDLE hFile);
+    void SetMaxShapeIndex();
 
-	// Compile 모드..
-	void	TickCompile();
-	void	RenderCompile();
+    // Edit 모드..
+    void TickEdit();
+    void RenderEdit();
 
-	// Execute 모드..
-	void	TickExecute();
-	void	RenderExecute();
+    // Compile 모드..
+    void TickCompile();
+    void RenderCompile();
 
-	bool	StartExecuteMode();
-	void	EndExecuteMode();
+    // Execute 모드..
+    void TickExecute();
+    void RenderExecute();
 
-	void	ExecuteCameraChange();
-	void	RestoreExecuteCameraChange();
+    bool StartExecuteMode();
+    void EndExecuteMode();
 
-	//.. 
-	void	TotalShapeRenderEdit();
-	void	TotalCollisionRenderEdit();
+    void ExecuteCameraChange();
+    void RestoreExecuteCameraChange();
 
-	//  Compiling..
-	void	DoAllCompile();
-	void	CheckcompileMode(CPortalVolume *pVol);
-	void	Decompile();
-	void	DecompilePerVolume(CPortalVolume *pVol);
+    //..
+    void TotalShapeRenderEdit();
+    void TotalCollisionRenderEdit();
 
-	// Utility.. 
-	e_PvsWallType GetReverseWallType(e_PvsWallType ePWT);
+    //  Compiling..
+    void DoAllCompile();
+    void CheckcompileMode(CPortalVolume * pVol);
+    void Decompile();
+    void DecompilePerVolume(CPortalVolume * pVol);
 
-	// Visibility를 결정한다..
-	void	ComputeVisibilty(CPortalVolume * const pVol);
-	void	SetPriority(CPortalVolume * const pVol);
-	void	SetPriorityEx(CPortalVolume * const pVol, e_PvsWallType ePWT, int iRecursive);
-	void	SetPriorityRecursive(CPortalVolume * const pVol, e_PvsWallType ePWT, int iRecursive);
-	bool	HasWallTypeVolume(CPortalVolume * const pVol, e_PvsWallType ePWT);
-	void	SetPriorityNoneRecursive(CPortalVolume * const pVol, int iRecursive);
-	void	SetPriorityNoneRecursiveEx(CPortalVolume * const pVol, int iRecursive);
-	void	DebugFunc();
+    // Utility..
+    e_PvsWallType GetReverseWallType(e_PvsWallType ePWT);
 
-	// Shape를 공간에 맞게 쪼갠다..
-	void	SplitShapeToVolumn(CDialog* pDlg);
+    // Visibility를 결정한다..
+    void ComputeVisibilty(CPortalVolume * const pVol);
+    void SetPriority(CPortalVolume * const pVol);
+    void SetPriorityEx(CPortalVolume * const pVol, e_PvsWallType ePWT, int iRecursive);
+    void SetPriorityRecursive(CPortalVolume * const pVol, e_PvsWallType ePWT, int iRecursive);
+    bool HasWallTypeVolume(CPortalVolume * const pVol, e_PvsWallType ePWT);
+    void SetPriorityNoneRecursive(CPortalVolume * const pVol, int iRecursive);
+    void SetPriorityNoneRecursiveEx(CPortalVolume * const pVol, int iRecursive);
+    void DebugFunc();
 
-	// Shape를 리스트에 등록한다..
-	void	RegisterShape(std::string szStr, CN3Shape* pShape);
-	bool	IsValidPortalVolume(CPortalVolume* pVol);
+    // Shape를 공간에 맞게 쪼갠다..
+    void SplitShapeToVolumn(CDialog * pDlg);
 
-	void	UpdatePosAll(float fx, float fy, float fz);
+    // Shape를 리스트에 등록한다..
+    void RegisterShape(std::string szStr, CN3Shape * pShape);
+    bool IsValidPortalVolume(CPortalVolume * pVol);
 
-////////////////////////////////////////////////////////////////
-public:
-	CPortalVolume* PickCollision(float fx, float fy);
-	int		  GetIndexByVolumePointer(CPortalVolume* const pVol);
+    void UpdatePosAll(float fx, float fy, float fz);
 
-public:
-	//..
-	ShapeInfo* GetShapeInfoByManager(int iID);
-	CN3Shape* GetShapeByManager(std::string szStr);
+    ////////////////////////////////////////////////////////////////
+  public:
+    CPortalVolume * PickCollision(float fx, float fy);
+    int             GetIndexByVolumePointer(CPortalVolume * const pVol);
 
-	// String Cryptograph.. ^^
-	static void WriteCryptographString(HANDLE hFile, std::string strSrc);
-	static std::string ReadDecryptString(HANDLE hFile);
+  public:
+    //..
+    ShapeInfo * GetShapeInfoByManager(int iID);
+    CN3Shape *  GetShapeByManager(std::string szStr);
 
-	CPVSManager();
-	virtual ~CPVSManager();
+    // String Cryptograph.. ^^
+    static void        WriteCryptographString(HANDLE hFile, std::string strSrc);
+    static std::string ReadDecryptString(HANDLE hFile);
+
+    CPVSManager();
+    virtual ~CPVSManager();
 };
-

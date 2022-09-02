@@ -4,7 +4,6 @@
 
 #pragma once
 
-
 #include "PvsBase.h"
 #include "PortalWall.h"
 #include "N3Base/My_3DStruct.h"
@@ -16,96 +15,93 @@ class CPvsMgr;
 class CN3Shape;
 
 typedef struct tagVisPartIndex {
-	int m_iPartIndex;
-	std::vector<int> m_ivVector;
+    int              m_iPartIndex;
+    std::vector<int> m_ivVector;
 } __VPI;
 
-class CPortalVol : public CPvsBase  
-{
-	friend class CPvsObjFactory;
-	friend class CPvsMgr;
+class CPortalVol : public CPvsBase {
+    friend class CPvsObjFactory;
+    friend class CPvsMgr;
 
-	typedef typename std::list<CPvsBase*>::iterator iter;
-	typedef typename std::list<__VPI>::iterator	viter;
-	typedef typename std::vector<int>::iterator Iiter;
+    typedef typename std::list<CPvsBase *>::iterator iter;
+    typedef typename std::list<__VPI>::iterator      viter;
+    typedef typename std::vector<int>::iterator      Iiter;
 
-	DECLARE_DYNAMIC( CPortalVol )
+    DECLARE_DYNAMIC(CPortalVol)
 
-	__VertexColor				m_pvVertex[8];
-	unsigned short				m_pIndex[36];
+    __VertexColor  m_pvVertex[8];
+    unsigned short m_pIndex[36];
 
-// 로드에 필요한 중간 데이터..
-	std::list<int>				m_piIDList;
-//..
+    // 로드에 필요한 중간 데이터..
+    std::list<int> m_piIDList;
+    //..
 
-	std::list<CPvsBase*>		m_pPvsList;
+    std::list<CPvsBase *> m_pPvsList;
 
-//.. 컴파일 모드에서 필요한 거..
-	std::list<int>				m_pVisibleiIDList;
+    //.. 컴파일 모드에서 필요한 거..
+    std::list<int> m_pVisibleiIDList;
 
-//.. pvsMgr의 Tick에서 필요한 거..
-	e_ExtBool					m_eRenderType;
+    //.. pvsMgr의 Tick에서 필요한 거..
+    e_ExtBool m_eRenderType;
 
-//.. 컴파일 모드에서 Portal의 우선순위..	-1로 먼저 클리어 한다음.. 0 순위는 자기 자신..
-	int							m_iPriority;
+    //.. 컴파일 모드에서 Portal의 우선순위..	-1로 먼저 클리어 한다음.. 0 순위는 자기 자신..
+    int m_iPriority;
 
-//.. Shape 파일 이름..
-	std::string						m_strShapeFile;
-	CN3Shape*					m_pShape;
-	__Matrix44						m_MtxShapeMove;	
-	__Matrix44						m_MtxShapeScale;
-	__Vector3						m_vShapePos;
-	__Vector3						m_vShapeScale;
-	std::list<__VPI>				m_viIndex;					// Visible Index List..
+    //.. Shape 파일 이름..
+    std::string      m_strShapeFile;
+    CN3Shape *       m_pShape;
+    __Matrix44       m_MtxShapeMove;
+    __Matrix44       m_MtxShapeScale;
+    __Vector3        m_vShapePos;
+    __Vector3        m_vShapeScale;
+    std::list<__VPI> m_viIndex; // Visible Index List..
 
-//..
-	std::vector<int>				m_ivColVector;			// Collision Index List..
+    //..
+    std::vector<int> m_ivColVector; // Collision Index List..
 
-	void SetShape(std::string szStr, CN3Shape* pShape);
+    void SetShape(std::string szStr, CN3Shape * pShape);
 
-	void AddVisibleIDList(CPortalVol* pVol);
-	void AddWallLinkByPointer(CPvsBase* pBase);
-	void AddVolLinkByPointer(CPortalVol* pVol);
-	void DeleteLinkByiOrder(int iOrder);
-	void WallAdjust(CPvsBase* pBase);
+    void AddVisibleIDList(CPortalVol * pVol);
+    void AddWallLinkByPointer(CPvsBase * pBase);
+    void AddVolLinkByPointer(CPortalVol * pVol);
+    void DeleteLinkByiOrder(int iOrder);
+    void WallAdjust(CPvsBase * pBase);
 
-	CPortalVol();
-	virtual ~CPortalVol();
+    CPortalVol();
+    virtual ~CPortalVol();
 
-	bool CreatePvsObject();
-	bool DeletePvsObject();
+    bool CreatePvsObject();
+    bool DeletePvsObject();
 
-	void SetState(e_PvsState ePS);
+    void SetState(e_PvsState ePS);
 
-	void Load(FILE* stream);
-	void Save(FILE* stream);
+    void Load(FILE * stream);
+    void Save(FILE * stream);
 
-	void Translate();
+    void Translate();
 
-	void TickEdit();
-	void TickCompile();
-	void TickExecute();
+    void TickEdit();
+    void TickCompile();
+    void TickExecute();
 
-	void RenderEdit();
-	void RenderCompile();
-	void RenderExecute();
+    void RenderEdit();
+    void RenderCompile();
+    void RenderExecute();
 
-	void RenderShape();
-	void RenderCollision();
+    void RenderShape();
+    void RenderCollision();
 
-	//..
-	void SplitAndMakeShape(CN3Shape* pShape);
+    //..
+    void SplitAndMakeShape(CN3Shape * pShape);
 
-	//.. 
-	bool IsInVolumn(__Vector3 vec);
-	bool IsInVolumnEx(__Vector3 vec1, __Vector3 vec2, __Vector3 Vec3);
-	bool IsInVolumnExEx(__Vector3 vec1, __Vector3 vec2);
-	bool IsInVolumnExExEx(__Vector3 vOrig, __Vector3 vDir, e_WallType eWT, __Vector3 &vPick);
+    //..
+    bool IsInVolumn(__Vector3 vec);
+    bool IsInVolumnEx(__Vector3 vec1, __Vector3 vec2, __Vector3 Vec3);
+    bool IsInVolumnExEx(__Vector3 vec1, __Vector3 vec2);
+    bool IsInVolumnExExEx(__Vector3 vOrig, __Vector3 vDir, e_WallType eWT, __Vector3 & vPick);
 
-	bool	IntersectTriangle(const __Vector3& vOrig, const __Vector3& vDir,
-							  const __Vector3& v0, const __Vector3& v1, const __Vector3& v2,
-							  float& fT, float& fU, float& fV, __Vector3* pVCol);
+    bool IntersectTriangle(const __Vector3 & vOrig, const __Vector3 & vDir, const __Vector3 & v0, const __Vector3 & v1,
+                           const __Vector3 & v2, float & fT, float & fU, float & fV, __Vector3 * pVCol);
 
-	void SplitAndMakeCollision(CN3Shape* pShape);
+    void SplitAndMakeCollision(CN3Shape * pShape);
 };
-

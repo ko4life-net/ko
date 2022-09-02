@@ -16,30 +16,26 @@ static char THIS_FILE[] = __FILE__;
 
 IMPLEMENT_DYNCREATE(CMakeNpcPathPage, CPropertyPage)
 
-CMakeNpcPathPage::CMakeNpcPathPage() : CPropertyPage(CMakeNpcPathPage::IDD)
-{
-	//{{AFX_DATA_INIT(CMakeNpcPathPage)
-		// NOTE: the ClassWizard will add member initialization here
-	//}}AFX_DATA_INIT
+CMakeNpcPathPage::CMakeNpcPathPage()
+    : CPropertyPage(CMakeNpcPathPage::IDD) {
+    //{{AFX_DATA_INIT(CMakeNpcPathPage)
+    // NOTE: the ClassWizard will add member initialization here
+    //}}AFX_DATA_INIT
 }
 
-CMakeNpcPathPage::~CMakeNpcPathPage()
-{
-}
+CMakeNpcPathPage::~CMakeNpcPathPage() {}
 
-void CMakeNpcPathPage::DoDataExchange(CDataExchange* pDX)
-{
-	CPropertyPage::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CMakeNpcPathPage)
-		// NOTE: the ClassWizard will add DDX and DDV calls here
-	//}}AFX_DATA_MAP
+void CMakeNpcPathPage::DoDataExchange(CDataExchange * pDX) {
+    CPropertyPage::DoDataExchange(pDX);
+    //{{AFX_DATA_MAP(CMakeNpcPathPage)
+    // NOTE: the ClassWizard will add DDX and DDV calls here
+    //}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP(CMakeNpcPathPage, CPropertyPage)
-	//{{AFX_MSG_MAP(CMakeNpcPathPage)
-		// NOTE: the ClassWizard will add message map macros here
-	//}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CMakeNpcPathPage)
+// NOTE: the ClassWizard will add message map macros here
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////

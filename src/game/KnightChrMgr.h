@@ -4,26 +4,23 @@
 
 #pragma once
 
-
 #include "SharedMem.h"
 
-class CKnightChrMgr  
-{
-	char	m_sIDAndPW[32];
-	int		m_iActionNo;
+class CKnightChrMgr {
+    char m_sIDAndPW[32];
+    int  m_iActionNo;
 
-public:
-	CKnightChrMgr(HWND hWnd);
-	virtual ~CKnightChrMgr();
+  public:
+    CKnightChrMgr(HWND hWnd);
+    virtual ~CKnightChrMgr();
 
-public:
-	CSharedMemQueue	Smq;
+  public:
+    CSharedMemQueue Smq;
 
-	void RCommand(char rbuf[], int leng);
-	void TCommand(char);
+    void RCommand(char rbuf[], int leng);
+    void TCommand(char);
 
-	LONG OnReceiveSmq(UINT WParam, LONG LParam);
+    LONG OnReceiveSmq(UINT WParam, LONG LParam);
 
-	void SendActionCommand(int iAc);
+    void SendActionCommand(int iAc);
 };
-

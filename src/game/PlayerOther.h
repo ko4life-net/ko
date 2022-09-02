@@ -4,28 +4,25 @@
 
 #pragma once
 
-
 #include "GameBase.h"
 #include "PlayerNPC.h"
 
-class CPlayerOther : public CPlayerNPC
-{
-	friend class CPlayerOtherMgr;
-public:
-	__InfoPlayerOther	m_InfoExt;					// 캐릭터 정보 확장..
-	bool				m_bSit;
+class CPlayerOther : public CPlayerNPC {
+    friend class CPlayerOtherMgr;
 
-public:
-	void	InitFace();
-	void	InitHair();
-	void	KnightsInfoSet(int iID, const std::string& szName, int iGrade, int iRank);
-	void	SetSoundAndInitFont();
+  public:
+    __InfoPlayerOther m_InfoExt; // 캐릭터 정보 확장..
+    bool              m_bSit;
 
-	bool	Init(enum e_Race eRace, int iFace, int iHair, DWORD* pdwItemIDs, int* piItenDurabilities);
-	void	Tick();
+  public:
+    void InitFace();
+    void InitHair();
+    void KnightsInfoSet(int iID, const std::string & szName, int iGrade, int iRank);
+    void SetSoundAndInitFont();
 
-	CPlayerOther();
-	virtual ~CPlayerOther();
+    bool Init(enum e_Race eRace, int iFace, int iHair, DWORD * pdwItemIDs, int * piItenDurabilities);
+    void Tick();
+
+    CPlayerOther();
+    virtual ~CPlayerOther();
 };
-
-

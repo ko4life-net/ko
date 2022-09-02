@@ -14,29 +14,24 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CDlgCtrlHeightScale dialog
 
-
-CDlgCtrlHeightScale::CDlgCtrlHeightScale(CWnd* pParent /*=NULL*/)
-	: CDialog(CDlgCtrlHeightScale::IDD, pParent)
-{
-	//{{AFX_DATA_INIT(CDlgCtrlHeightScale)
-		// NOTE: the ClassWizard will add member initialization here
-	//}}AFX_DATA_INIT
+CDlgCtrlHeightScale::CDlgCtrlHeightScale(CWnd * pParent /*=NULL*/)
+    : CDialog(CDlgCtrlHeightScale::IDD, pParent) {
+    //{{AFX_DATA_INIT(CDlgCtrlHeightScale)
+    // NOTE: the ClassWizard will add member initialization here
+    //}}AFX_DATA_INIT
 }
 
-
-void CDlgCtrlHeightScale::DoDataExchange(CDataExchange* pDX)
-{
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CDlgCtrlHeightScale)
-	DDX_Control(pDX, IDC_SLIDER1, m_sldr_Scale);
-	//}}AFX_DATA_MAP
+void CDlgCtrlHeightScale::DoDataExchange(CDataExchange * pDX) {
+    CDialog::DoDataExchange(pDX);
+    //{{AFX_DATA_MAP(CDlgCtrlHeightScale)
+    DDX_Control(pDX, IDC_SLIDER1, m_sldr_Scale);
+    //}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP(CDlgCtrlHeightScale, CDialog)
-	//{{AFX_MSG_MAP(CDlgCtrlHeightScale)
-		// NOTE: the ClassWizard will add message map macros here
-	//}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CDlgCtrlHeightScale)
+// NOTE: the ClassWizard will add message map macros here
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////

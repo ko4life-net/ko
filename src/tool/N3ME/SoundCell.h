@@ -4,39 +4,36 @@
 
 #pragma once
 
-
 #include "N3Base/N3Base.h"
 
 class CLyTerrain;
 
 const int MAX_CON = 5;
 
-class CSoundCell : public CN3Base
-{
-protected:
-	int					m_iVersion;
-	__VertexXyzColor	m_TileVB[4];
+class CSoundCell : public CN3Base {
+  protected:
+    int              m_iVersion;
+    __VertexXyzColor m_TileVB[4];
 
-public:
-	CLyTerrain*			m_pRefTerrain;
+  public:
+    CLyTerrain * m_pRefTerrain;
 
-	DWORD				m_dwSoundGroupID;
+    DWORD m_dwSoundGroupID;
 
-	RECT				m_Rect;
-	POINT				m_BasePoint;
+    RECT  m_Rect;
+    POINT m_BasePoint;
 
-protected:
-	void	MakeTileVB(int x, int z, DWORD color);
-	
-public:
-	void	InitRect(__Vector3 v);
-	void	AddRect(__Vector3 v);
-	void	Render(DWORD color);
-	void	Load(HANDLE hFile);
-	void	Save(HANDLE hFile);
+  protected:
+    void MakeTileVB(int x, int z, DWORD color);
 
-	CSoundCell();
-	CSoundCell(CLyTerrain* pRefTerrain);
-	virtual ~CSoundCell();
+  public:
+    void InitRect(__Vector3 v);
+    void AddRect(__Vector3 v);
+    void Render(DWORD color);
+    void Load(HANDLE hFile);
+    void Save(HANDLE hFile);
+
+    CSoundCell();
+    CSoundCell(CLyTerrain * pRefTerrain);
+    virtual ~CSoundCell();
 };
-

@@ -14,35 +14,29 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CDlgNewPart dialog
 
-
-CDlgNewPart::CDlgNewPart(CWnd* pParent /*=NULL*/)
-	: CDialog(CDlgNewPart::IDD, pParent)
-{
-	//{{AFX_DATA_INIT(CDlgNewPart)
-	m_iPartType = 0;
-	//}}AFX_DATA_INIT
+CDlgNewPart::CDlgNewPart(CWnd * pParent /*=NULL*/)
+    : CDialog(CDlgNewPart::IDD, pParent) {
+    //{{AFX_DATA_INIT(CDlgNewPart)
+    m_iPartType = 0;
+    //}}AFX_DATA_INIT
 }
 
-
-void CDlgNewPart::DoDataExchange(CDataExchange* pDX)
-{
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CDlgNewPart)
-	DDX_Radio(pDX, IDC_RADIO1, m_iPartType);
-	//}}AFX_DATA_MAP
+void CDlgNewPart::DoDataExchange(CDataExchange * pDX) {
+    CDialog::DoDataExchange(pDX);
+    //{{AFX_DATA_MAP(CDlgNewPart)
+    DDX_Radio(pDX, IDC_RADIO1, m_iPartType);
+    //}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP(CDlgNewPart, CDialog)
-	//{{AFX_MSG_MAP(CDlgNewPart)
-	//}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CDlgNewPart)
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CDlgNewPart message handlers
 
-void CDlgNewPart::OnOK() 
-{
-	UpdateData(TRUE);	
-	CDialog::OnOK();
+void CDlgNewPart::OnOK() {
+    UpdateData(TRUE);
+    CDialog::OnOK();
 }

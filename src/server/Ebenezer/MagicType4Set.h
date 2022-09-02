@@ -6,57 +6,54 @@
 /////////////////////////////////////////////////////////////////////////////
 // CMagicType4Set recordset
 
-class CMagicType4Set : public CRecordset
-{
-public:
-	CMagicType4Set(CDatabase* pDatabase = NULL);
-	DECLARE_DYNAMIC(CMagicType4Set)
+class CMagicType4Set : public CRecordset {
+  public:
+    CMagicType4Set(CDatabase * pDatabase = NULL);
+    DECLARE_DYNAMIC(CMagicType4Set)
 
-// Field/Param Data
-	//{{AFX_FIELD(CMagicType4Set, CRecordset)
-	long	m_iNum;
-	CString	m_Name;
-	CString	m_Description;
-	BYTE	m_BuffType;
-	BYTE	m_Radius;
-	int		m_Duration;
-	BYTE	m_AttackSpeed;
-	BYTE	m_Speed;
-	int		m_AC;
-	BYTE	m_Attack;
-	int		m_MaxHP;
-	BYTE	m_HitRate;
-	int		m_AvoidRate;
-	BYTE	m_Str;
-	BYTE	m_Sta;
-	BYTE	m_Dex;
-	BYTE	m_Intel;
-	BYTE	m_Cha;
-	BYTE	m_FireR;
-	BYTE	m_ColdR;
-	BYTE	m_LightningR;
-	BYTE	m_MagicR;
-	BYTE	m_DiseaseR;
-	BYTE	m_PoisonR;
-	//}}AFX_FIELD
+    // Field/Param Data
+    //{{AFX_FIELD(CMagicType4Set, CRecordset)
+    long    m_iNum;
+    CString m_Name;
+    CString m_Description;
+    BYTE    m_BuffType;
+    BYTE    m_Radius;
+    int     m_Duration;
+    BYTE    m_AttackSpeed;
+    BYTE    m_Speed;
+    int     m_AC;
+    BYTE    m_Attack;
+    int     m_MaxHP;
+    BYTE    m_HitRate;
+    int     m_AvoidRate;
+    BYTE    m_Str;
+    BYTE    m_Sta;
+    BYTE    m_Dex;
+    BYTE    m_Intel;
+    BYTE    m_Cha;
+    BYTE    m_FireR;
+    BYTE    m_ColdR;
+    BYTE    m_LightningR;
+    BYTE    m_MagicR;
+    BYTE    m_DiseaseR;
+    BYTE    m_PoisonR;
+    //}}AFX_FIELD
 
-
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CMagicType4Set)
-	public:
-	virtual CString GetDefaultConnect();    // Default connection string
-	virtual CString GetDefaultSQL();    // Default SQL for Recordset
-	virtual void DoFieldExchange(CFieldExchange* pFX);  // RFX support
-	//}}AFX_VIRTUAL
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(CMagicType4Set)
+  public:
+    virtual CString GetDefaultConnect();                   // Default connection string
+    virtual CString GetDefaultSQL();                       // Default SQL for Recordset
+    virtual void    DoFieldExchange(CFieldExchange * pFX); // RFX support
+                                                           //}}AFX_VIRTUAL
 
 // Implementation
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext & dc) const;
 #endif
 };
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-

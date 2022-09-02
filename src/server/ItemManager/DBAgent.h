@@ -4,23 +4,20 @@
 
 #pragma once
 
-
 #pragma warning(disable : 4786)
 
 #include "define.h"
 #include <vector>
 
 class CItemManagerDlg;
-class CDBAgent  
-{
-public:
-	void ReConnectODBC(CDatabase *m_db, char *strdb, char *strname, char *strpwd);
-	BOOL DatabaseInit();
-	CDBAgent();
-	virtual ~CDBAgent();
+class CDBAgent {
+  public:
+    void ReConnectODBC(CDatabase * m_db, char * strdb, char * strname, char * strpwd);
+    BOOL DatabaseInit();
+    CDBAgent();
+    virtual ~CDBAgent();
 
-	CDatabase	m_GameDB;
+    CDatabase m_GameDB;
 
-	CItemManagerDlg* m_pMain;
+    CItemManagerDlg * m_pMain;
 };
-

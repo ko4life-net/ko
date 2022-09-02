@@ -7,135 +7,143 @@
 //////////////////////////////////////////////////////////////////////
 // CN3SPartEx
 //////////////////////////////////////////////////////////////////////
-CN3SPartEx::CN3SPartEx()
-{
-	m_ActionInfo.dwActionFlag = 0;
+CN3SPartEx::CN3SPartEx() {
+    m_ActionInfo.dwActionFlag = 0;
 }
 
-CN3SPartEx::~CN3SPartEx()
-{
-}
+CN3SPartEx::~CN3SPartEx() {}
 
-bool CN3SPartEx::Load(HANDLE hFile)
-{
-	if (false == CN3SPart::Load(hFile)) return false;
+bool CN3SPartEx::Load(HANDLE hFile) {
+    if (false == CN3SPart::Load(hFile)) {
+        return false;
+    }
 
-	DWORD dwRWC;
+    DWORD dwRWC;
 
-	ReadFile(hFile, &(m_ActionInfo.dwActionFlag), sizeof(m_ActionInfo.dwActionFlag), &dwRWC, NULL);
-	int iStateCount = 0;
-	if (m_ActionInfo.dwActionFlag) ReadFile(hFile, &iStateCount, sizeof(iStateCount), &dwRWC, NULL);	// 상태 정보의 갯수
-	if (AF_POS & m_ActionInfo.dwActionFlag)
-	{
-		m_ActionInfo.ActionStateInfos_Pos.assign(iStateCount);
-		for (int i=0; i<iStateCount; ++i)
-			ReadFile(hFile, &(m_ActionInfo.ActionStateInfos_Pos[i]), sizeof(__Vector3), &dwRWC, NULL);	// 상태 정보의 갯수
-	}
-	if (AF_SCALE & m_ActionInfo.dwActionFlag)
-	{
-		m_ActionInfo.ActionStateInfos_Scale.assign(iStateCount);
-		for (int i=0; i<iStateCount; ++i)
-			ReadFile(hFile, &(m_ActionInfo.ActionStateInfos_Scale[i]), sizeof(__Vector3), &dwRWC, NULL);	// 상태 정보의 갯수
-	}
-	if (AF_ROTATION & m_ActionInfo.dwActionFlag)
-	{
-		m_ActionInfo.ActionStateInfos_Rot.assign(iStateCount);
-		for (int i=0; i<iStateCount; ++i)
-			ReadFile(hFile, &(m_ActionInfo.ActionStateInfos_Rot[i]), sizeof(__Quaternion), &dwRWC, NULL);	// 상태 정보의 갯수
-	}
+    ReadFile(hFile, &(m_ActionInfo.dwActionFlag), sizeof(m_ActionInfo.dwActionFlag), &dwRWC, NULL);
+    int iStateCount = 0;
+    if (m_ActionInfo.dwActionFlag) {
+        ReadFile(hFile, &iStateCount, sizeof(iStateCount), &dwRWC, NULL); // 상태 정보의 갯수
+    }
+    if (AF_POS & m_ActionInfo.dwActionFlag) {
+        m_ActionInfo.ActionStateInfos_Pos.assign(iStateCount);
+        for (int i = 0; i < iStateCount; ++i) {
+            ReadFile(hFile, &(m_ActionInfo.ActionStateInfos_Pos[i]), sizeof(__Vector3), &dwRWC,
+                     NULL); // 상태 정보의 갯수
+        }
+    }
+    if (AF_SCALE & m_ActionInfo.dwActionFlag) {
+        m_ActionInfo.ActionStateInfos_Scale.assign(iStateCount);
+        for (int i = 0; i < iStateCount; ++i) {
+            ReadFile(hFile, &(m_ActionInfo.ActionStateInfos_Scale[i]), sizeof(__Vector3), &dwRWC,
+                     NULL); // 상태 정보의 갯수
+        }
+    }
+    if (AF_ROTATION & m_ActionInfo.dwActionFlag) {
+        m_ActionInfo.ActionStateInfos_Rot.assign(iStateCount);
+        for (int i = 0; i < iStateCount; ++i) {
+            ReadFile(hFile, &(m_ActionInfo.ActionStateInfos_Rot[i]), sizeof(__Quaternion), &dwRWC,
+                     NULL); // 상태 정보의 갯수
+        }
+    }
 
-	return true;
+    return true;
 }
 #ifdef _N3TOOL
-bool CN3SPartEx::Save(HANDLE hFile)
-{
-	return true;
+bool CN3SPartEx::Save(HANDLE hFile) {
+    return true;
 }
 #endif
 
-void CN3SPartEx::Release()
-{
-	CN3SPart::Release();
-	m_ActionInfo.dwActionFlag = 0;
-	m_ActionInfo.ActionStateInfos_Pos.clear();
-	m_ActionInfo.ActionStateInfos_Scale.clear();
-	m_ActionInfo.ActionStateInfos_Rot.clear();
+void CN3SPartEx::Release() {
+    CN3SPart::Release();
+    m_ActionInfo.dwActionFlag = 0;
+    m_ActionInfo.ActionStateInfos_Pos.clear();
+    m_ActionInfo.ActionStateInfos_Scale.clear();
+    m_ActionInfo.ActionStateInfos_Rot.clear();
 }
 
-void CN3SPartEx::Interpolate(const __Matrix44& mtxParent, int iCurActionState, int iNextActionState, float fPercentage)
-{
-	if (m_bOutOfCameraRange) return;
-	if (0 == m_ActionInfo.dwActionFlag) return;
+void CN3SPartEx::Interpolate(const __Matrix44 & mtxParent, int iCurActionState, int iNextActionState,
+                             float fPercentage) {
+    if (m_bOutOfCameraRange) {
+        return;
+    }
+    if (0 == m_ActionInfo.dwActionFlag) {
+        return;
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
 // CN3ShapeEx
 //////////////////////////////////////////////////////////////////////
 
-CN3ShapeEx::CN3ShapeEx()
-{
-	m_iActionStateCount = 0;
-	m_iCurActionState = 0;	m_iPrevActionState = 0;
-	m_fActionTimeChanged = 0.0f;
-	m_fActionTimeChanging = 0.0f;
+CN3ShapeEx::CN3ShapeEx() {
+    m_iActionStateCount = 0;
+    m_iCurActionState = 0;
+    m_iPrevActionState = 0;
+    m_fActionTimeChanged = 0.0f;
+    m_fActionTimeChanging = 0.0f;
 
-	m_ActionInfo.dwActionFlag = 0;
+    m_ActionInfo.dwActionFlag = 0;
 }
 
-CN3ShapeEx::~CN3ShapeEx()
-{
+CN3ShapeEx::~CN3ShapeEx() {}
+
+void CN3ShapeEx::Release() {
+    CN3Shape::Release();
+
+    m_iActionStateCount = 0;
+    m_iCurActionState = 0;
+    m_iPrevActionState = 0;
+    m_fActionTimeChanged = 0.0f;
+    m_fActionTimeChanging = 0.0f;
+
+    m_ActionInfo.dwActionFlag = 0;
+    m_ActionInfo.ActionStateInfos_Pos.clear();
+    m_ActionInfo.ActionStateInfos_Scale.clear();
+    m_ActionInfo.ActionStateInfos_Rot.clear();
 }
 
-void CN3ShapeEx::Release()
-{
-	CN3Shape::Release();
+bool CN3ShapeEx::Load(HANDLE hFile) {
+    if (false == CN3Shape::Load(hFile)) {
+        return false;
+    }
 
-	m_iActionStateCount = 0;
-	m_iCurActionState = 0;	m_iPrevActionState = 0;
-	m_fActionTimeChanged = 0.0f;
-	m_fActionTimeChanging = 0.0f;
+    DWORD dwRWC;
+    ReadFile(hFile, &m_iActionStateCount, sizeof(m_iActionStateCount), &dwRWC, NULL); // 상태 정보의 갯수
 
-	m_ActionInfo.dwActionFlag = 0;
-	m_ActionInfo.ActionStateInfos_Pos.clear();
-	m_ActionInfo.ActionStateInfos_Scale.clear();
-	m_ActionInfo.ActionStateInfos_Rot.clear();
+    ReadFile(hFile, &(m_ActionInfo.dwActionFlag), sizeof(m_ActionInfo.dwActionFlag), &dwRWC, NULL);
+    int iStateCount = 0;
+    if (m_ActionInfo.dwActionFlag) {
+        ReadFile(hFile, &iStateCount, sizeof(iStateCount), &dwRWC, NULL); // 상태 정보의 갯수
+    }
+    if (AF_POS & m_ActionInfo.dwActionFlag) {
+        m_ActionInfo.ActionStateInfos_Pos.assign(iStateCount);
+        for (int i = 0; i < iStateCount; ++i) {
+            ReadFile(hFile, &(m_ActionInfo.ActionStateInfos_Pos[i]), sizeof(__Vector3), &dwRWC,
+                     NULL); // 상태 정보의 갯수
+        }
+    }
+    if (AF_SCALE & m_ActionInfo.dwActionFlag) {
+        m_ActionInfo.ActionStateInfos_Scale.assign(iStateCount);
+        for (int i = 0; i < iStateCount; ++i) {
+            ReadFile(hFile, &(m_ActionInfo.ActionStateInfos_Scale[i]), sizeof(__Vector3), &dwRWC,
+                     NULL); // 상태 정보의 갯수
+        }
+    }
+    if (AF_ROTATION & m_ActionInfo.dwActionFlag) {
+        m_ActionInfo.ActionStateInfos_Rot.assign(iStateCount);
+        for (int i = 0; i < iStateCount; ++i) {
+            ReadFile(hFile, &(m_ActionInfo.ActionStateInfos_Rot[i]), sizeof(__Quaternion), &dwRWC,
+                     NULL); // 상태 정보의 갯수
+        }
+    }
+
+    return true;
 }
 
-bool CN3ShapeEx::Load(HANDLE hFile)
-{
-	if (false == CN3Shape::Load(hFile)) return false;
-
-	DWORD dwRWC;
-	ReadFile(hFile, &m_iActionStateCount, sizeof(m_iActionStateCount), &dwRWC, NULL);	// 상태 정보의 갯수
-
-	ReadFile(hFile, &(m_ActionInfo.dwActionFlag), sizeof(m_ActionInfo.dwActionFlag), &dwRWC, NULL);
-	int iStateCount = 0;
-	if (m_ActionInfo.dwActionFlag) ReadFile(hFile, &iStateCount, sizeof(iStateCount), &dwRWC, NULL);	// 상태 정보의 갯수
-	if (AF_POS & m_ActionInfo.dwActionFlag)
-	{
-		m_ActionInfo.ActionStateInfos_Pos.assign(iStateCount);
-		for (int i=0; i<iStateCount; ++i)
-			ReadFile(hFile, &(m_ActionInfo.ActionStateInfos_Pos[i]), sizeof(__Vector3), &dwRWC, NULL);	// 상태 정보의 갯수
-	}
-	if (AF_SCALE & m_ActionInfo.dwActionFlag)
-	{
-		m_ActionInfo.ActionStateInfos_Scale.assign(iStateCount);
-		for (int i=0; i<iStateCount; ++i)
-			ReadFile(hFile, &(m_ActionInfo.ActionStateInfos_Scale[i]), sizeof(__Vector3), &dwRWC, NULL);	// 상태 정보의 갯수
-	}
-	if (AF_ROTATION & m_ActionInfo.dwActionFlag)
-	{
-		m_ActionInfo.ActionStateInfos_Rot.assign(iStateCount);
-		for (int i=0; i<iStateCount; ++i)
-			ReadFile(hFile, &(m_ActionInfo.ActionStateInfos_Rot[i]), sizeof(__Quaternion), &dwRWC, NULL);	// 상태 정보의 갯수
-	}
-
-	return true;
-}
-
-void CN3ShapeEx::ReCalcMatrix()
-{
-/*
+void CN3ShapeEx::ReCalcMatrix() {
+    /*
 	// m_Matrix 다시 계산..
 	CN3Transform::ReCalcMatrix(); // Transform Matrix 를 계산 해주고..
 
@@ -165,9 +173,8 @@ void CN3ShapeEx::ReCalcMatrix()
 	*/
 }
 
-void CN3ShapeEx::Tick(float fFrm)
-{
-	/*
+void CN3ShapeEx::Tick(float fFrm) {
+    /*
 	CN3Shape::Tick(fFrm);
 	if (m_bDontRender) return;
 
@@ -213,14 +220,17 @@ void CN3ShapeEx::Tick(float fFrm)
 	*/
 }
 
-BOOL CN3ShapeEx::SetState(int iState, float fSec)
-{
-	if (iState<0 || iState>= m_iActionStateCount) return FALSE;
-	if (m_iCurActionState == iState) return FALSE;
-	m_fActionTimeChanged = fSec;
-	m_fActionTimeChanging = 0.0f;
+BOOL CN3ShapeEx::SetState(int iState, float fSec) {
+    if (iState < 0 || iState >= m_iActionStateCount) {
+        return FALSE;
+    }
+    if (m_iCurActionState == iState) {
+        return FALSE;
+    }
+    m_fActionTimeChanged = fSec;
+    m_fActionTimeChanging = 0.0f;
 
-	m_iPrevActionState = m_iCurActionState;
-	m_iCurActionState = iState;
-	return TRUE;
+    m_iPrevActionState = m_iCurActionState;
+    m_iCurActionState = iState;
+    return TRUE;
 }

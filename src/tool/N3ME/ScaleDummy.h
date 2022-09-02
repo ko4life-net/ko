@@ -4,20 +4,17 @@
 
 #pragma once
 
-
 #include "TransDummy.h"
 
-class CScaleDummy : public CTransDummy  
-{
-public:
-	CScaleDummy();
-	virtual ~CScaleDummy();
+class CScaleDummy : public CTransDummy {
+  public:
+    CScaleDummy();
+    virtual ~CScaleDummy();
 
-public:
-protected:
+  public:
+  protected:
+  public:
+    virtual BOOL MouseMsgFilter(LPMSG pMsg);
 
-public:
-	virtual BOOL MouseMsgFilter(LPMSG pMsg);
-protected:
+  protected:
 };
-

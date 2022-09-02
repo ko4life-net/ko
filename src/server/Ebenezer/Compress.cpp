@@ -4,35 +4,33 @@
 #include "implode.h"
 #include "Compress.h"
 
-#define DO_CRC_INSTREAM          1
-#define DO_CRC_OUTSTREAM         2
+#define DO_CRC_INSTREAM  1
+#define DO_CRC_OUTSTREAM 2
 
-UINT DataType = CMP_BINARY;          // GLOBAL FOR DATA TYPE FOR COMPRESSION
-UINT DictSize = 4096;               // GLOBAL FOR DICTIONARY SIZE FOR COMPRESSION
+UINT DataType = CMP_BINARY; // GLOBAL FOR DATA TYPE FOR COMPRESSION
+UINT DictSize = 4096;       // GLOBAL FOR DICTIONARY SIZE FOR COMPRESSION
 
-CCompressMng::CCompressMng()
-{
-	m_pInputBuffer = NULL;
-	m_pOutputBuffer = NULL;
-	m_nBufferStatus = 0;
-	m_nErrorOccurred = 0;
-	m_pScratchPad = (PCHAR)new char[CMP_BUFFER_SIZE];
+CCompressMng::CCompressMng() {
+    m_pInputBuffer = NULL;
+    m_pOutputBuffer = NULL;
+    m_nBufferStatus = 0;
+    m_nErrorOccurred = 0;
+    m_pScratchPad = (PCHAR) new char[CMP_BUFFER_SIZE];
 }
 
-CCompressMng::~CCompressMng()
-{
-	if ( m_pScratchPad ) {
-		delete m_pScratchPad;
-		m_pScratchPad = NULL;
-	}
-	if ( m_pInputBuffer ) {		
-		delete[] m_pInputBuffer;
-		m_pInputBuffer = NULL;
-	}
-	if ( m_pOutputBuffer ) {
-		delete[] m_pOutputBuffer;
-		m_pOutputBuffer = NULL;
-	}
+CCompressMng::~CCompressMng() {
+    if (m_pScratchPad) {
+        delete m_pScratchPad;
+        m_pScratchPad = NULL;
+    }
+    if (m_pInputBuffer) {
+        delete[] m_pInputBuffer;
+        m_pInputBuffer = NULL;
+    }
+    if (m_pOutputBuffer) {
+        delete[] m_pOutputBuffer;
+        m_pOutputBuffer = NULL;
+    }
 }
 
 /*********************************************************************
@@ -53,40 +51,36 @@ CCompressMng::~CCompressMng()
  * Returns:    Number of bytes actually read, or zero on EOF
  *
  *********************************************************************/
-UINT ReadBuffer(PCHAR buffer, UINT *iSize, void *pParam)
-{
-	CCompressMng *pCM;
-	UINT iRead;
+UINT ReadBuffer(PCHAR buffer, UINT * iSize, void * pParam) {
+    CCompressMng * pCM;
+    UINT           iRead;
 
-	pCM = (CCompressMng *)pParam;
+    pCM = (CCompressMng *)pParam;
 
-	if ( pCM == NULL ) return 0;
+    if (pCM == NULL) {
+        return 0;
+    }
 
-	if ( pCM->m_nInputBufferCurPos < pCM->m_nInputBufferCount )
-	{
-		UINT BytesLeft = pCM->m_nInputBufferCount - pCM->m_nInputBufferCurPos;
+    if (pCM->m_nInputBufferCurPos < pCM->m_nInputBufferCount) {
+        UINT BytesLeft = pCM->m_nInputBufferCount - pCM->m_nInputBufferCurPos;
 
-		if( BytesLeft < *iSize )
-		{
-			*iSize = BytesLeft;
-		}
+        if (BytesLeft < *iSize) {
+            *iSize = BytesLeft;
+        }
 
-		memcpy( buffer, (pCM->m_pInputBuffer + pCM->m_nInputBufferCurPos), *iSize );
-		pCM->m_nInputBufferCurPos += *iSize;
+        memcpy(buffer, (pCM->m_pInputBuffer + pCM->m_nInputBufferCurPos), *iSize);
+        pCM->m_nInputBufferCurPos += *iSize;
 
-		iRead = *iSize;
-	}
-	else
-	{
-		iRead = 0;
-	}
+        iRead = *iSize;
+    } else {
+        iRead = 0;
+    }
 
-	if (pCM->m_nMode == COMPRESSING )
-	{
-		pCM->m_dwCrc = crc32( buffer, &iRead, &pCM->m_dwCrc );
-	}
+    if (pCM->m_nMode == COMPRESSING) {
+        pCM->m_dwCrc = crc32(buffer, &iRead, &pCM->m_dwCrc);
+    }
 
-	return iRead;
+    return iRead;
 }
 
 /*********************************************************************
@@ -105,177 +99,166 @@ UINT ReadBuffer(PCHAR buffer, UINT *iSize, void *pParam)
  *             Compression Library
  *
  *********************************************************************/
-void WriteBuffer(PCHAR buffer, UINT *iSize, void *pParam)
-{
-	CCompressMng *pCM;
+void WriteBuffer(PCHAR buffer, UINT * iSize, void * pParam) {
+    CCompressMng * pCM;
 
-	pCM = (CCompressMng *)pParam;
-	if ( pCM == NULL ) return;
+    pCM = (CCompressMng *)pParam;
+    if (pCM == NULL) {
+        return;
+    }
 
-	if ( pCM->m_nOutputBufferCurPos < pCM->m_nOutputBufferCount )
-	{
-		if ( (pCM->m_nOutputBufferCount - pCM->m_nOutputBufferCurPos) < (int)(*iSize) )
-		{
-			//MessageBox( NULL, "Out of buffer space - #1", "Compression Error", MB_OK );
-			pCM->m_nErrorOccurred = 1;
-			return;
-		}
+    if (pCM->m_nOutputBufferCurPos < pCM->m_nOutputBufferCount) {
+        if ((pCM->m_nOutputBufferCount - pCM->m_nOutputBufferCurPos) < (int)(*iSize)) {
+            //MessageBox( NULL, "Out of buffer space - #1", "Compression Error", MB_OK );
+            pCM->m_nErrorOccurred = 1;
+            return;
+        }
 
-		memcpy( (pCM->m_pOutputBuffer + pCM->m_nOutputBufferCurPos), buffer, *iSize );
-		pCM->m_nOutputBufferCurPos += *iSize;
-	}
-	else
-	{
-		//MessageBox( NULL, "Out of buffer space - #2", "Compression Error", MB_OK );
-		pCM->m_nErrorOccurred = 2;
-		return;
-	}
+        memcpy((pCM->m_pOutputBuffer + pCM->m_nOutputBufferCurPos), buffer, *iSize);
+        pCM->m_nOutputBufferCurPos += *iSize;
+    } else {
+        //MessageBox( NULL, "Out of buffer space - #2", "Compression Error", MB_OK );
+        pCM->m_nErrorOccurred = 2;
+        return;
+    }
 
-	if (pCM->m_nMode == UNCOMPRESSING )
-	{
-		pCM->m_dwCrc = crc32( buffer, iSize, &pCM->m_dwCrc );
-	}
+    if (pCM->m_nMode == UNCOMPRESSING) {
+        pCM->m_dwCrc = crc32(buffer, iSize, &pCM->m_dwCrc);
+    }
 
-	return;
+    return;
 }
 
-int CCompressMng::PreCompressWork( const char* OriginData, int OriginSize )
-{
-	if ( !OriginSize ) {
-		m_nInputBufferCount = 0;
-		m_nOrgDataLength = 0;
-		return false;
-	}
-	if ( m_pInputBuffer ) {
-		delete[] m_pInputBuffer;
-		m_pInputBuffer = NULL;
-	}
+int CCompressMng::PreCompressWork(const char * OriginData, int OriginSize) {
+    if (!OriginSize) {
+        m_nInputBufferCount = 0;
+        m_nOrgDataLength = 0;
+        return false;
+    }
+    if (m_pInputBuffer) {
+        delete[] m_pInputBuffer;
+        m_pInputBuffer = NULL;
+    }
 
-	m_pInputBuffer = new char[OriginSize+1];
-	m_nOrgDataLength = m_nInputBufferCount = OriginSize;
+    m_pInputBuffer = new char[OriginSize + 1];
+    m_nOrgDataLength = m_nInputBufferCount = OriginSize;
 
-	memcpy( m_pInputBuffer, OriginData, OriginSize );
-	m_nInputBufferCurPos = 0;
+    memcpy(m_pInputBuffer, OriginData, OriginSize);
+    m_nInputBufferCurPos = 0;
 
-	if ( m_pOutputBuffer ) {
-		delete[] m_pOutputBuffer;
-		m_pOutputBuffer = NULL;
-	}
-	
-	if ( OriginSize < 1024 ) {
-		OriginSize = OriginSize*2;
-	}
+    if (m_pOutputBuffer) {
+        delete[] m_pOutputBuffer;
+        m_pOutputBuffer = NULL;
+    }
 
-	m_pOutputBuffer = new char[OriginSize+1];
-	m_nOutputBufferCount = OriginSize;
-	m_nOutputBufferCurPos = 0;
+    if (OriginSize < 1024) {
+        OriginSize = OriginSize * 2;
+    }
 
-	m_dwCrc = ~((DWORD)0); // Pre-condition CRC
-	m_nMode = COMPRESSING;
-	m_nErrorOccurred = 0;
+    m_pOutputBuffer = new char[OriginSize + 1];
+    m_nOutputBufferCount = OriginSize;
+    m_nOutputBufferCurPos = 0;
 
-	return true;
+    m_dwCrc = ~((DWORD)0); // Pre-condition CRC
+    m_nMode = COMPRESSING;
+    m_nErrorOccurred = 0;
+
+    return true;
 }
 
-int CCompressMng::Compress()
-{
-	int iStatus;
+int CCompressMng::Compress() {
+    int iStatus;
 
-	if ( m_nOrgDataLength == 0 )
-		return true;
+    if (m_nOrgDataLength == 0) {
+        return true;
+    }
 
-	// COMPRESS THE FILE
-	iStatus = implode( ReadBuffer,WriteBuffer,m_pScratchPad,this,&DataType,&DictSize );
+    // COMPRESS THE FILE
+    iStatus = implode(ReadBuffer, WriteBuffer, m_pScratchPad, this, &DataType, &DictSize);
 
-	if ( iStatus )
-	{
-		return false;
-	}
-	
-	return true;
+    if (iStatus) {
+        return false;
+    }
+
+    return true;
 }
 
 //Extract Part...
 
-int CCompressMng::PreUncompressWork(const char* pCompData, int nCompLen, int orgDataLen)
-{
-	if ( m_pInputBuffer ) {
-		delete[] m_pInputBuffer;
-		m_pInputBuffer = NULL;
-	}
+int CCompressMng::PreUncompressWork(const char * pCompData, int nCompLen, int orgDataLen) {
+    if (m_pInputBuffer) {
+        delete[] m_pInputBuffer;
+        m_pInputBuffer = NULL;
+    }
 
-	m_pInputBuffer = new char[nCompLen+1];
-	m_nInputBufferCount = nCompLen+1;
-	m_nInputBufferCurPos = 0;
+    m_pInputBuffer = new char[nCompLen + 1];
+    m_nInputBufferCount = nCompLen + 1;
+    m_nInputBufferCurPos = 0;
 
-	memcpy( m_pInputBuffer, pCompData, nCompLen );
+    memcpy(m_pInputBuffer, pCompData, nCompLen);
 
-	if ( m_pOutputBuffer ) {
-		delete[] m_pOutputBuffer;
-		m_pOutputBuffer = NULL;
-	}
+    if (m_pOutputBuffer) {
+        delete[] m_pOutputBuffer;
+        m_pOutputBuffer = NULL;
+    }
 
-	if ( orgDataLen == 0 ) {
-		if ( DataType == CMP_ASCII ) {
-			m_pOutputBuffer = new char[nCompLen*100];
-			m_nOutputBufferCount = nCompLen*100;
-		}
-		else {
-			m_pOutputBuffer = new char[nCompLen*10];
-			m_nOutputBufferCount = nCompLen*10;
-		}
-	}
-	else {
-		m_pOutputBuffer = new char[orgDataLen+1];
-		m_nOutputBufferCount = orgDataLen+1;
-	}
+    if (orgDataLen == 0) {
+        if (DataType == CMP_ASCII) {
+            m_pOutputBuffer = new char[nCompLen * 100];
+            m_nOutputBufferCount = nCompLen * 100;
+        } else {
+            m_pOutputBuffer = new char[nCompLen * 10];
+            m_nOutputBufferCount = nCompLen * 10;
+        }
+    } else {
+        m_pOutputBuffer = new char[orgDataLen + 1];
+        m_nOutputBufferCount = orgDataLen + 1;
+    }
 
-	m_nOrgDataLength = orgDataLen;
-	m_dwCrc = ~((DWORD)0);
-	m_nMode = UNCOMPRESSING;
-	m_nErrorOccurred = 0;
-	m_nOutputBufferCurPos = 0;
+    m_nOrgDataLength = orgDataLen;
+    m_dwCrc = ~((DWORD)0);
+    m_nMode = UNCOMPRESSING;
+    m_nErrorOccurred = 0;
+    m_nOutputBufferCurPos = 0;
 
-	return true;
+    return true;
 }
 
-int CCompressMng::Extract()
-{
-	int iStatus;
+int CCompressMng::Extract() {
+    int iStatus;
 
-	if ( m_nOrgDataLength == 0 )
-		return true;
+    if (m_nOrgDataLength == 0) {
+        return true;
+    }
 
-	iStatus = explode( ReadBuffer, WriteBuffer, m_pScratchPad, this );
+    iStatus = explode(ReadBuffer, WriteBuffer, m_pScratchPad, this);
 
-	if ( iStatus )
-	{
-		return false;
-	}
+    if (iStatus) {
+        return false;
+    }
 
-	return true;
+    return true;
 }
 
-void CCompressMng::Initialize()
-{
-	if ( m_pInputBuffer ) {		
-		delete[] m_pInputBuffer;
-		m_pInputBuffer = NULL;
-	}
-	if ( m_pOutputBuffer ) {
-		delete[] m_pOutputBuffer;
-		m_pOutputBuffer = NULL;
-	}
+void CCompressMng::Initialize() {
+    if (m_pInputBuffer) {
+        delete[] m_pInputBuffer;
+        m_pInputBuffer = NULL;
+    }
+    if (m_pOutputBuffer) {
+        delete[] m_pOutputBuffer;
+        m_pOutputBuffer = NULL;
+    }
 
-	m_nBufferStatus = E;
-	m_nInputBufferCount = 0;
-	m_nOutputBufferCount = 0;
-	m_nInputBufferCurPos = 0;
-	m_nOutputBufferCurPos = 0;
-	m_nErrorOccurred = 0;
+    m_nBufferStatus = E;
+    m_nInputBufferCount = 0;
+    m_nOutputBufferCount = 0;
+    m_nInputBufferCurPos = 0;
+    m_nOutputBufferCurPos = 0;
+    m_nErrorOccurred = 0;
 
-	memset( m_pScratchPad, 0x00, CMP_BUFFER_SIZE );
-/*	if ( pScratchPad ) {
+    memset(m_pScratchPad, 0x00, CMP_BUFFER_SIZE);
+    /*	if ( pScratchPad ) {
 		for (int i = 0; i <CMP_BUFFER_SIZE; i++)
 			pScratchPad[i] = 0;
 	}

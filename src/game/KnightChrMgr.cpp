@@ -6,93 +6,89 @@
 #include "Resource.h"
 #include "KnightChrMgr.h"
 
-
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CKnightChrMgr::CKnightChrMgr(HWND hWnd)
-{
+CKnightChrMgr::CKnightChrMgr(HWND hWnd) {
 #ifdef _N3_KNIGHT_CHR
-	Smq.CreateSmq(TRUE);
-//	Smq.CreateSmq(FALSE);
-	Smq.SetHwnd(hWnd);	
-	if (Smq.IsPartner()) TCommand('R');
+    Smq.CreateSmq(TRUE);
+    //	Smq.CreateSmq(FALSE);
+    Smq.SetHwnd(hWnd);
+    if (Smq.IsPartner()) {
+        TCommand('R');
+    }
 #endif
 }
 
-CKnightChrMgr::~CKnightChrMgr()
-{
+CKnightChrMgr::~CKnightChrMgr() {
 #ifdef _N3_KNIGHT_CHR
-	TCommand('D');
+    TCommand('D');
 #endif
 }
-
 
 //////////////////////////////////////////////////////////////////////
 
-void CKnightChrMgr::RCommand(char rbuf[], int leng) 
-{
+void CKnightChrMgr::RCommand(char rbuf[], int leng) {
 #ifdef _N3_KNIGHT_CHR
-	switch(rbuf[0]) {
-		case 'C':	
-//			m_pStatusView.AddString(rbuf);
-			memcpy(m_sIDAndPW, rbuf, sizeof(char)*32);
-			TCommand('c');
-			break;
-	}
+    switch (rbuf[0]) {
+    case 'C':
+        //			m_pStatusView.AddString(rbuf);
+        memcpy(m_sIDAndPW, rbuf, sizeof(char) * 32);
+        TCommand('c');
+        break;
+    }
 #endif
 }
-
 
 //////////////////////////////////////////////////////////////////////
 
-void CKnightChrMgr::TCommand(char Cmd) 
-{
+void CKnightChrMgr::TCommand(char Cmd) {
 #ifdef _N3_KNIGHT_CHR
-	char	Tbuf[100];
-	switch(Cmd) {
-		case 'R':	Tbuf[0] = Cmd; Tbuf[1] = 0;
-					Smq.PutData(Tbuf, 1);
-					break;
+    char Tbuf[100];
+    switch (Cmd) {
+    case 'R':
+        Tbuf[0] = Cmd;
+        Tbuf[1] = 0;
+        Smq.PutData(Tbuf, 1);
+        break;
 
-		case 'c':	Tbuf[0] = Cmd; Tbuf[1] = 1;
-					Smq.PutData(Tbuf, 2);
-					break;
+    case 'c':
+        Tbuf[0] = Cmd;
+        Tbuf[1] = 1;
+        Smq.PutData(Tbuf, 2);
+        break;
 
-		case 'A':	
-					sprintf(Tbuf, "A%c", m_iActionNo);
-					Smq.PutData(Tbuf, 2);
-					break;
+    case 'A':
+        sprintf(Tbuf, "A%c", m_iActionNo);
+        Smq.PutData(Tbuf, 2);
+        break;
 
-		case 'D':	sprintf(Tbuf, "D-Game Inform");
-					Smq.PutData(Tbuf, strlen(Tbuf));
-					break;
-	}
+    case 'D':
+        sprintf(Tbuf, "D-Game Inform");
+        Smq.PutData(Tbuf, strlen(Tbuf));
+        break;
+    }
 #endif
 }
-
 
 //////////////////////////////////////////////////////////////////////
 
-LONG CKnightChrMgr::OnReceiveSmq(UINT WParam, LONG LParam)
-{
+LONG CKnightChrMgr::OnReceiveSmq(UINT WParam, LONG LParam) {
 #ifdef _N3_KNIGHT_CHR
-//	UpdateData(TRUE);
-	int		count = WParam;
-	char rData[4096];
-	Smq.GetReadData(rData,count);
-	rData[count] = 0;
-	RCommand(rData,count);
+    //	UpdateData(TRUE);
+    int  count = WParam;
+    char rData[4096];
+    Smq.GetReadData(rData, count);
+    rData[count] = 0;
+    RCommand(rData, count);
 #endif
-	return 1;
+    return 1;
 }
 
-void CKnightChrMgr::SendActionCommand(int iAc)
-{
+void CKnightChrMgr::SendActionCommand(int iAc) {
 #ifdef _N3_KNIGHT_CHR
-	m_iActionNo = iAc;
-	TCommand('A');
+    m_iActionNo = iAc;
+    TCommand('A');
 #endif
 }
-

@@ -12,65 +12,53 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CUINpcTalk::CUINpcTalk()
-{
+CUINpcTalk::CUINpcTalk() {}
 
+CUINpcTalk::~CUINpcTalk() {}
+
+void CUINpcTalk::Release() {
+    CN3UIBase::Release();
 }
 
-CUINpcTalk::~CUINpcTalk()
-{
+bool CUINpcTalk::Load(HANDLE hFile) {
+    if (CN3UIBase::Load(hFile) == false) {
+        return false;
+    }
 
+    return true;
 }
 
-void CUINpcTalk::Release()
-{
-	CN3UIBase::Release();
+bool CUINpcTalk::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
+    if (dwMsg == UIMSG_BUTTON_CLICK) {
+        if (pSender->m_szID == "btn_0") {
+            //			CGameProcedure::s_pProcMain->m_pUITradeList->Open(m_iIDTarget);
+            Close();
+        }
+
+        if (pSender->m_szID == "btn_1") {
+            //			CGameProcedure::s_pProcMain->m_pUITradeList->Open(m_iIDTarget);
+            Close();
+        }
+
+        if (pSender->m_szID == "btn_2") {
+            //			CGameProcedure::s_pProcMain->m_pUITradeList->Open(m_iIDTarget);
+            Close();
+        }
+
+        if (pSender->m_szID == "btn_close") {
+            Close();
+        }
+    }
+
+    return true;
 }
 
-bool CUINpcTalk::Load(HANDLE hFile)
-{
-	if(CN3UIBase::Load(hFile)==false) return false;
+void CUINpcTalk::Open(int iIDTarget) {
+    SetVisible(true);
 
-	return true;
+    m_iIDTarget = iIDTarget;
 }
 
-bool CUINpcTalk::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
-{
-	if (dwMsg == UIMSG_BUTTON_CLICK)					
-	{
-		if(pSender->m_szID == "btn_0")
-		{
-//			CGameProcedure::s_pProcMain->m_pUITradeList->Open(m_iIDTarget);
-			Close();
-		}
-
-		if(pSender->m_szID == "btn_1")
-		{
-//			CGameProcedure::s_pProcMain->m_pUITradeList->Open(m_iIDTarget);
-			Close();
-		}
-
-		if(pSender->m_szID == "btn_2")
-		{
-//			CGameProcedure::s_pProcMain->m_pUITradeList->Open(m_iIDTarget);
-			Close();
-		}
-
-		if(pSender->m_szID == "btn_close")
-			Close();
-	}
-
-	return true;
-}
-
-void CUINpcTalk::Open(int iIDTarget)
-{
-	SetVisible(true);
-
-	m_iIDTarget = iIDTarget;
-}
-
-void CUINpcTalk::Close()
-{
-	SetVisible(false);
+void CUINpcTalk::Close() {
+    SetVisible(false);
 }

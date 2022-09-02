@@ -4,86 +4,81 @@
 
 #pragma once
 
-
 #pragma warning(disable : 4786)
 
 #include <map>
 using namespace std;
 
-template <class T> class CSTLMap  
-{
-public:
-	typedef typename map < int, T* >::iterator		Iterator;
-	typedef typename map < int, T* >::value_type		ValueType;
+template <class T> class CSTLMap {
+  public:
+    typedef typename map<int, T *>::iterator   Iterator;
+    typedef typename map<int, T *>::value_type ValueType;
 
-	map < int, T* >		m_UserTypeMap;
-	
+    map<int, T *> m_UserTypeMap;
 
-	int GetSize() { return m_UserTypeMap.size(); };
-	
-	bool PutData( int key_value, T* pData)
-	{
-		if( !pData ) return false;
-		pair<Iterator, bool> temp_pair = m_UserTypeMap.insert( ValueType( key_value, pData ) );
-		return temp_pair.second;
-	};
-	
-	T* GetData( int key_value )
-	{
-		T* pData = NULL;
-		Iterator iter = m_UserTypeMap.find( key_value );
-		if( iter == m_UserTypeMap.end() )
-			return NULL;
-		else
-			pData = (*iter).second;
-		
-		return pData;
-	};
+    int GetSize() { return m_UserTypeMap.size(); };
 
-	Iterator DeleteData( int key_value )
-	{
-		if( m_UserTypeMap.empty() )
-			return m_UserTypeMap.end();
-		
-		Iterator iter = m_UserTypeMap.find( key_value );
-		if( iter == m_UserTypeMap.end() )
-			return m_UserTypeMap.end();
-		else {
-			T* pData = NULL;
-			pData = (*iter).second;
+    bool PutData(int key_value, T * pData) {
+        if (!pData) {
+            return false;
+        }
+        pair<Iterator, bool> temp_pair = m_UserTypeMap.insert(ValueType(key_value, pData));
+        return temp_pair.second;
+    };
 
-			iter = m_UserTypeMap.erase(iter);
+    T * GetData(int key_value) {
+        T *      pData = NULL;
+        Iterator iter = m_UserTypeMap.find(key_value);
+        if (iter == m_UserTypeMap.end()) {
+            return NULL;
+        } else {
+            pData = (*iter).second;
+        }
 
-			delete pData;
-			pData = NULL;
+        return pData;
+    };
 
-			return iter;
-		}
-	};
+    Iterator DeleteData(int key_value) {
+        if (m_UserTypeMap.empty()) {
+            return m_UserTypeMap.end();
+        }
 
-	void DeleteAllData()
-	{
-		Iterator iter1 = m_UserTypeMap.begin(), iter2 = m_UserTypeMap.end();
-		for(; iter1 != iter2; iter1++ )
-			delete (*iter1).second;
-		
-		m_UserTypeMap.clear();
-	};
+        Iterator iter = m_UserTypeMap.find(key_value);
+        if (iter == m_UserTypeMap.end()) {
+            return m_UserTypeMap.end();
+        } else {
+            T * pData = NULL;
+            pData = (*iter).second;
 
-	bool IsExist( int key_value )
-	{
-		Iterator iter = m_UserTypeMap.find( key_value );
-		if( iter == m_UserTypeMap.end() )
-			return false;
-		else
-			return true;
-	};
+            iter = m_UserTypeMap.erase(iter);
 
-	bool IsEmpty() { return m_UserTypeMap.empty(); };
+            delete pData;
+            pData = NULL;
 
-	CSTLMap() {};
-	virtual ~CSTLMap() {
-		DeleteAllData();
-	};
+            return iter;
+        }
+    };
+
+    void DeleteAllData() {
+        Iterator iter1 = m_UserTypeMap.begin(), iter2 = m_UserTypeMap.end();
+        for (; iter1 != iter2; iter1++) {
+            delete (*iter1).second;
+        }
+
+        m_UserTypeMap.clear();
+    };
+
+    bool IsExist(int key_value) {
+        Iterator iter = m_UserTypeMap.find(key_value);
+        if (iter == m_UserTypeMap.end()) {
+            return false;
+        } else {
+            return true;
+        }
+    };
+
+    bool IsEmpty() { return m_UserTypeMap.empty(); };
+
+    CSTLMap(){};
+    virtual ~CSTLMap() { DeleteAllData(); };
 };
-

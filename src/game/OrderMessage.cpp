@@ -9,12 +9,6 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-COrderMessage::COrderMessage()
-{
+COrderMessage::COrderMessage() {}
 
-}
-
-COrderMessage::~COrderMessage()
-{
-
-}
+COrderMessage::~COrderMessage() {}
