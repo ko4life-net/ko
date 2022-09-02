@@ -11,124 +11,113 @@
 #include "UIInventory.h"
 #endif
 
-
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CN3UIArea::CN3UIArea()
-{
-	m_eType = UI_TYPE_AREA;
-	m_eAreaType = UI_AREA_TYPE_NONE;
+CN3UIArea::CN3UIArea() {
+    m_eType = UI_TYPE_AREA;
+    m_eAreaType = UI_AREA_TYPE_NONE;
 }
 
-CN3UIArea::~CN3UIArea()
-{
+CN3UIArea::~CN3UIArea() {}
+
+void CN3UIArea::Release() {
+    CN3UIBase::Release();
 }
 
-void CN3UIArea::Release()
-{
-	CN3UIBase::Release();
+void CN3UIArea::SetRegion(const RECT & Rect) {
+    CN3UIBase::SetRegion(Rect);
+    for (UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor) {
+        (*itor)->SetRegion(Rect);
+    }
 }
 
-void CN3UIArea::SetRegion(const RECT& Rect)
-{
-	CN3UIBase::SetRegion(Rect);
-	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
-	{
-		(*itor)->SetRegion(Rect);
-	}
-}
-
-bool CN3UIArea::Load(HANDLE hFile)
-{
-	if (false == CN3UIBase::Load(hFile)) return false;
+bool CN3UIArea::Load(HANDLE hFile) {
+    if (false == CN3UIBase::Load(hFile)) {
+        return false;
+    }
 
 #ifndef _REPENT
-	// 추가사항이 있으면 이곳에 추가하기
-	DWORD dwNum;
-	int iAreaType;
-	ReadFile(hFile, &iAreaType, sizeof(int), &dwNum, NULL);	// click 영역
-	m_eAreaType = (eUI_AREA_TYPE)iAreaType;
+    // 추가사항이 있으면 이곳에 추가하기
+    DWORD dwNum;
+    int   iAreaType;
+    ReadFile(hFile, &iAreaType, sizeof(int), &dwNum, NULL); // click 영역
+    m_eAreaType = (eUI_AREA_TYPE)iAreaType;
 #endif
-	return true;
+    return true;
 }
 
-DWORD CN3UIArea::MouseProc(DWORD dwFlags, const POINT& ptCur, const POINT& ptOld)
-{
-	DWORD dwRet = UI_MOUSEPROC_NONE;
-	if (!m_bVisible) return dwRet;
+DWORD CN3UIArea::MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & ptOld) {
+    DWORD dwRet = UI_MOUSEPROC_NONE;
+    if (!m_bVisible) {
+        return dwRet;
+    }
 #if !defined(_REPENT) && defined(_N3GAME)
-	if ( CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer ) return dwRet;
-	// 부모가 아이콘 매니저이로 Inventory Wnd라면..	
-	if ( (m_pParent->UIType() == UI_TYPE_ICON_MANAGER) && (((CN3UIWndBase* )m_pParent)->GetUIWnd() == UIWND_INVENTORY) )
-	{
-		// 특정 이벤트에 대해 메시지 전송..
-		if(IsIn(ptCur.x, ptCur.y) && (dwFlags & UI_MOUSE_LBCLICK) )	
-		{
-			m_pParent->ReceiveMessage(this, UIMSG_AREA_DOWN_FIRST); // 부모에게 버튼 클릭 통지..
-			dwRet |= UI_MOUSEPROC_DONESOMETHING;
-			return dwRet;
-		}
-	}
+    if (CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer) {
+        return dwRet;
+    }
+    // 부모가 아이콘 매니저이로 Inventory Wnd라면..
+    if ((m_pParent->UIType() == UI_TYPE_ICON_MANAGER) && (((CN3UIWndBase *)m_pParent)->GetUIWnd() == UIWND_INVENTORY)) {
+        // 특정 이벤트에 대해 메시지 전송..
+        if (IsIn(ptCur.x, ptCur.y) && (dwFlags & UI_MOUSE_LBCLICK)) {
+            m_pParent->ReceiveMessage(this, UIMSG_AREA_DOWN_FIRST); // 부모에게 버튼 클릭 통지..
+            dwRet |= UI_MOUSEPROC_DONESOMETHING;
+            return dwRet;
+        }
+    }
 #endif
-	// 특정 이벤트에 대해 메시지 전송..
-	if(IsIn(ptCur.x, ptCur.y) && (dwFlags & UI_MOUSE_LBCLICK) )	
-	{
-		m_pParent->ReceiveMessage(this, UIMSG_BUTTON_CLICK); // 부모에게 버튼 클릭 통지..
-		dwRet |= UI_MOUSEPROC_DONESOMETHING;
-	}
+    // 특정 이벤트에 대해 메시지 전송..
+    if (IsIn(ptCur.x, ptCur.y) && (dwFlags & UI_MOUSE_LBCLICK)) {
+        m_pParent->ReceiveMessage(this, UIMSG_BUTTON_CLICK); // 부모에게 버튼 클릭 통지..
+        dwRet |= UI_MOUSEPROC_DONESOMETHING;
+    }
 
-	dwRet |= CN3UIBase::MouseProc(dwFlags, ptCur, ptOld);
-	return dwRet;
+    dwRet |= CN3UIBase::MouseProc(dwFlags, ptCur, ptOld);
+    return dwRet;
 }
 
 #if !defined(_REPENT) && defined(_N3GAME)
-bool CN3UIArea::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
-{
-	if ( CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer ) return false;
-	// 부모가 아이콘 매니저이로 Inventory Wnd라면..	
-	if ( (m_pParent->UIType() == UI_TYPE_ICON_MANAGER) && (((CN3UIWndBase* )m_pParent)->GetUIWnd() == UIWND_INVENTORY) )
-	{
-		if (dwMsg == UIMSG_BUTTON_CLICK)					
-		{
-			if(pSender->m_szID == "btn_Destroy_ok")
-			{
-				// 인벤토리만 떠 있을때..
-				((CUIInventory* )m_pParent)->ItemDestroyOK();
-			}
+bool CN3UIArea::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
+    if (CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer) {
+        return false;
+    }
+    // 부모가 아이콘 매니저이로 Inventory Wnd라면..
+    if ((m_pParent->UIType() == UI_TYPE_ICON_MANAGER) && (((CN3UIWndBase *)m_pParent)->GetUIWnd() == UIWND_INVENTORY)) {
+        if (dwMsg == UIMSG_BUTTON_CLICK) {
+            if (pSender->m_szID == "btn_Destroy_ok") {
+                // 인벤토리만 떠 있을때..
+                ((CUIInventory *)m_pParent)->ItemDestroyOK();
+            }
 
-			if(pSender->m_szID == "btn_Destroy_cancel")
-			{
-				// 인벤토리만 떠 있을때..
-				((CUIInventory* )m_pParent)->ItemDestroyCancel();
-			}
-		}
-	}
+            if (pSender->m_szID == "btn_Destroy_cancel") {
+                // 인벤토리만 떠 있을때..
+                ((CUIInventory *)m_pParent)->ItemDestroyCancel();
+            }
+        }
+    }
 
-	return true;
+    return true;
 }
 #endif
-
 
 #ifdef _N3TOOL
-bool CN3UIArea::Save(HANDLE hFile)
-{
-	if (false == CN3UIBase::Save(hFile)) return false;
+bool CN3UIArea::Save(HANDLE hFile) {
+    if (false == CN3UIBase::Save(hFile)) {
+        return false;
+    }
 #ifndef _REPENT
-	DWORD dwNum;
-	int iAreaType = (int)m_eAreaType;
-	WriteFile(hFile, &iAreaType, sizeof(int), &dwNum, NULL);	// click 영역
+    DWORD dwNum;
+    int   iAreaType = (int)m_eAreaType;
+    WriteFile(hFile, &iAreaType, sizeof(int), &dwNum, NULL); // click 영역
 #endif
-	return true;
+    return true;
 }
 
-void CN3UIArea::operator = (const CN3UIArea& other)
-{
-	CN3UIBase::operator = (other);
+void CN3UIArea::operator=(const CN3UIArea & other) {
+    CN3UIBase::operator=(other);
 #ifndef _REPENT
-	m_eAreaType = other.m_eAreaType;
+    m_eAreaType = other.m_eAreaType;
 #endif
 }
 #endif
-

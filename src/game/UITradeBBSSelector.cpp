@@ -17,93 +17,85 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CUITradeBBSSelector::CUITradeBBSSelector()
-{
-	m_pBtn_BBSSell		= NULL;
-	m_pBtn_BBSBuy		= NULL;
-	m_pBtn_BBSCancel	= NULL;
+CUITradeBBSSelector::CUITradeBBSSelector() {
+    m_pBtn_BBSSell = NULL;
+    m_pBtn_BBSBuy = NULL;
+    m_pBtn_BBSCancel = NULL;
 }
 
-CUITradeBBSSelector::~CUITradeBBSSelector()
-{
+CUITradeBBSSelector::~CUITradeBBSSelector() {}
 
+bool CUITradeBBSSelector::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
+    if (dwMsg == UIMSG_BUTTON_CLICK) {
+        if (pSender == m_pBtn_BBSSell) {
+            MsgSend_OpenTradeSellBBS();
+            SetVisible(false);
+            return true;
+        } else if (pSender == m_pBtn_BBSBuy) {
+            MsgSend_OpenTradeBuyBBS();
+            SetVisible(false);
+            return true;
+        } else if (pSender == m_pBtn_BBSCancel) {
+            SetVisible(false);
+            return true;
+        }
+    }
+    return true;
 }
 
-bool CUITradeBBSSelector::ReceiveMessage(CN3UIBase *pSender, DWORD dwMsg)
-{
-	if (dwMsg == UIMSG_BUTTON_CLICK)
-	{
-		if(pSender == m_pBtn_BBSSell)
-		{
-			MsgSend_OpenTradeSellBBS();
-			SetVisible(false);
-			return true;
-		}
-		else if(pSender == m_pBtn_BBSBuy)
-		{
-			MsgSend_OpenTradeBuyBBS();
-			SetVisible(false);
-			return true;
-		}
-		else if(pSender == m_pBtn_BBSCancel)
-		{
-			SetVisible(false);
-			return true;
-		}
-	}
-	return true;
+bool CUITradeBBSSelector::Load(HANDLE hFile) {
+    if (CN3UIBase::Load(hFile) == false) {
+        return false;
+    }
+
+    m_pBtn_BBSSell = (CN3UIButton *)GetChildByID("btn_sell");
+    __ASSERT(m_pBtn_BBSSell, "NULL UI Component!!");
+    ;
+    m_pBtn_BBSBuy = (CN3UIButton *)GetChildByID("btn_buy");
+    __ASSERT(m_pBtn_BBSBuy, "NULL UI Component!!");
+    ;
+    m_pBtn_BBSCancel = (CN3UIButton *)GetChildByID("btn_cancel");
+    __ASSERT(m_pBtn_BBSCancel, "NULL UI Component!!");
+    ;
+
+    return true;
 }
 
-bool CUITradeBBSSelector::Load(HANDLE hFile)
-{
-	if(CN3UIBase::Load(hFile)==false) return false;
+void CUITradeBBSSelector::MsgSend_OpenTradeSellBBS() {
+    BYTE byBuff[5];   // 패킷 버퍼..
+    int  iOffset = 0; // 패킷 오프셋..
 
-	m_pBtn_BBSSell	= (CN3UIButton*)GetChildByID("btn_sell");		__ASSERT(m_pBtn_BBSSell,	"NULL UI Component!!");;
-	m_pBtn_BBSBuy	= (CN3UIButton*)GetChildByID("btn_buy");		__ASSERT(m_pBtn_BBSBuy,	"NULL UI Component!!");;
-	m_pBtn_BBSCancel = (CN3UIButton*)GetChildByID("btn_cancel");	__ASSERT(m_pBtn_BBSCancel,	"NULL UI Component!!");;
-
-	return true;
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_TRADE_BBS);
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_TYPE_BBS_OPEN);
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_TRADE_BBS_SELL);
+    CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 }
 
-void CUITradeBBSSelector::MsgSend_OpenTradeSellBBS()
-{
-	BYTE byBuff[5];		// 패킷 버퍼..
-	int iOffset=0;		// 패킷 오프셋..
+void CUITradeBBSSelector::MsgSend_OpenTradeBuyBBS() {
+    BYTE byBuff[5];   // 패킷 버퍼..
+    int  iOffset = 0; // 패킷 오프셋..
 
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_TRADE_BBS);		
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_TYPE_BBS_OPEN);
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_TRADE_BBS_SELL);
-	CGameProcedure::s_pSocket->Send(byBuff, iOffset);
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_TRADE_BBS);
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_TYPE_BBS_OPEN);
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_TRADE_BBS_BUY);
+    CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 }
 
-void CUITradeBBSSelector::MsgSend_OpenTradeBuyBBS()
-{
-	BYTE byBuff[5];		// 패킷 버퍼..
-	int iOffset=0;		// 패킷 오프셋..
+bool CUITradeBBSSelector::OnKeyPress(int iChar) {
+    switch (iChar) {
+    case DIK_ESCAPE:
+        SetVisible(false);
+        return true;
+    }
 
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_TRADE_BBS);		
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_TYPE_BBS_OPEN);
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_TRADE_BBS_BUY);
-	CGameProcedure::s_pSocket->Send(byBuff, iOffset);
+    return CN3UIBase::OnKeyPress(iChar);
 }
 
-bool CUITradeBBSSelector::OnKeyPress(int iChar)
-{
-	switch(iChar)
-	{
-	case DIK_ESCAPE:
-		SetVisible(false);
-		return true;
-	}
-
-	return CN3UIBase::OnKeyPress(iChar);
-}
-
-void CUITradeBBSSelector::SetVisible(bool bVisible)
-{
-	CN3UIBase::SetVisible(bVisible);
-	if(bVisible)
-		CGameProcedure::s_pUIMgr->SetVisibleFocusedUI(this);
-	else
-		CGameProcedure::s_pUIMgr->ReFocusUI();//this_ui
+void CUITradeBBSSelector::SetVisible(bool bVisible) {
+    CN3UIBase::SetVisible(bVisible);
+    if (bVisible) {
+        CGameProcedure::s_pUIMgr->SetVisibleFocusedUI(this);
+    } else {
+        CGameProcedure::s_pUIMgr->ReFocusUI(); //this_ui
+    }
 }

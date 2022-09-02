@@ -2,7 +2,7 @@
 //
 // STLMap.h: interface for the CSTLMap class.
 //
-// This class can use ordinary map of the standard template library 
+// This class can use ordinary map of the standard template library
 //
 // Designed by SAMMA	 2002. 03. 15
 //
@@ -10,86 +10,81 @@
 
 #pragma once
 
-
-#pragma warning(disable : 4786)		// Visual C++ Only
+#pragma warning(disable : 4786) // Visual C++ Only
 
 #include <map>
 using namespace std;
 
-template <class T1, class T2> class CSTLMap  
-{
-public:
-	typedef typename map < T1, T2* >::iterator		Iterator;
-	typedef typename map < T1, T2* >::value_type		ValueType;
+template <class T1, class T2> class CSTLMap {
+  public:
+    typedef typename map<T1, T2 *>::iterator   Iterator;
+    typedef typename map<T1, T2 *>::value_type ValueType;
 
-	map < T1, T2* >		m_UserTypeMap;
-	
+    map<T1, T2 *> m_UserTypeMap;
 
-	int GetSize() { return m_UserTypeMap.size(); };
-	
-	bool PutData( T1 key_value, T2* pData)
-	{
-		if( !pData ) return false;
-		pair<Iterator, bool> temp_pair = m_UserTypeMap.insert( ValueType( key_value, pData ) );
-		return temp_pair.second;
-	};
-	
-	T2* GetData( T1 key_value )
-	{
-		T2* pData = NULL;
-		Iterator iter = m_UserTypeMap.find( key_value );
-		if( iter == m_UserTypeMap.end() )
-			return NULL;
-		else
-			pData = (*iter).second;
-		
-		return pData;
-	};
+    int GetSize() { return m_UserTypeMap.size(); };
 
-	bool DeleteData( T1 key_value )
-	{
-		if( m_UserTypeMap.empty() )
-			return false;
-		
-		Iterator iter = m_UserTypeMap.find( key_value );
-		if( iter == m_UserTypeMap.end() )
-			return false;
-		else {
-			T2* pData = NULL;
-			pData = (*iter).second;
+    bool PutData(T1 key_value, T2 * pData) {
+        if (!pData) {
+            return false;
+        }
+        pair<Iterator, bool> temp_pair = m_UserTypeMap.insert(ValueType(key_value, pData));
+        return temp_pair.second;
+    };
 
-			m_UserTypeMap.erase(iter);
+    T2 * GetData(T1 key_value) {
+        T2 *     pData = NULL;
+        Iterator iter = m_UserTypeMap.find(key_value);
+        if (iter == m_UserTypeMap.end()) {
+            return NULL;
+        } else {
+            pData = (*iter).second;
+        }
 
-			delete pData;
-			pData = NULL;
+        return pData;
+    };
 
-			return true;
-		}
-	};
+    bool DeleteData(T1 key_value) {
+        if (m_UserTypeMap.empty()) {
+            return false;
+        }
 
-	void DeleteAllData()
-	{
-		Iterator iter1 = m_UserTypeMap.begin(), iter2 = m_UserTypeMap.end();
-		for(; iter1 != iter2; iter1++ )
-			delete (*iter1).second;
-		
-		m_UserTypeMap.clear();
-	};
+        Iterator iter = m_UserTypeMap.find(key_value);
+        if (iter == m_UserTypeMap.end()) {
+            return false;
+        } else {
+            T2 * pData = NULL;
+            pData = (*iter).second;
 
-	bool IsExist( T1 key_value )
-	{
-		Iterator iter = m_UserTypeMap.find( key_value );
-		if( iter == m_UserTypeMap.end() )
-			return false;
-		else
-			return true;
-	};
+            m_UserTypeMap.erase(iter);
 
-	bool IsEmpty() { return m_UserTypeMap.empty(); };
+            delete pData;
+            pData = NULL;
 
-	CSTLMap() {};
-	virtual ~CSTLMap() {
-		DeleteAllData();
-	};
+            return true;
+        }
+    };
+
+    void DeleteAllData() {
+        Iterator iter1 = m_UserTypeMap.begin(), iter2 = m_UserTypeMap.end();
+        for (; iter1 != iter2; iter1++) {
+            delete (*iter1).second;
+        }
+
+        m_UserTypeMap.clear();
+    };
+
+    bool IsExist(T1 key_value) {
+        Iterator iter = m_UserTypeMap.find(key_value);
+        if (iter == m_UserTypeMap.end()) {
+            return false;
+        } else {
+            return true;
+        }
+    };
+
+    bool IsEmpty() { return m_UserTypeMap.empty(); };
+
+    CSTLMap(){};
+    virtual ~CSTLMap() { DeleteAllData(); };
 };
-

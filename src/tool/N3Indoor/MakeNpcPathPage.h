@@ -6,40 +6,38 @@
 /////////////////////////////////////////////////////////////////////////////
 // CMakeNpcPathPage dialog
 
-class CMakeNpcPathPage : public CPropertyPage
-{
-	DECLARE_DYNCREATE(CMakeNpcPathPage)
+class CMakeNpcPathPage : public CPropertyPage {
+    DECLARE_DYNCREATE(CMakeNpcPathPage)
 
-// Construction
-public:
-	CMakeNpcPathPage();
-	~CMakeNpcPathPage();
+    // Construction
+  public:
+    CMakeNpcPathPage();
+    ~CMakeNpcPathPage();
 
-// Dialog Data
-	//{{AFX_DATA(CMakeNpcPathPage)
-	enum { IDD = IDD_MAKE_NPCPATH };
-		// NOTE - ClassWizard will add data members here.
-		//    DO NOT EDIT what you see in these blocks of generated code !
-	//}}AFX_DATA
+    // Dialog Data
+    //{{AFX_DATA(CMakeNpcPathPage)
+    enum {
+        IDD = IDD_MAKE_NPCPATH
+    };
+    // NOTE - ClassWizard will add data members here.
+    //    DO NOT EDIT what you see in these blocks of generated code !
+    //}}AFX_DATA
 
+    // Overrides
+    // ClassWizard generate virtual function overrides
+    //{{AFX_VIRTUAL(CMakeNpcPathPage)
+  protected:
+    virtual void DoDataExchange(CDataExchange * pDX); // DDX/DDV support
+                                                      //}}AFX_VIRTUAL
 
-// Overrides
-	// ClassWizard generate virtual function overrides
-	//{{AFX_VIRTUAL(CMakeNpcPathPage)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
-
-// Implementation
-protected:
-	// Generated message map functions
-	//{{AFX_MSG(CMakeNpcPathPage)
-		// NOTE: the ClassWizard will add member functions here
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
-
+    // Implementation
+  protected:
+    // Generated message map functions
+    //{{AFX_MSG(CMakeNpcPathPage)
+    // NOTE: the ClassWizard will add member functions here
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-

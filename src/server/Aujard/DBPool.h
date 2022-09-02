@@ -4,12 +4,8 @@
 
 #pragma once
 
-
-class CDBPool  
-{
-public:
-	CDBPool();
-	virtual ~CDBPool();
-
+class CDBPool {
+  public:
+    CDBPool();
+    virtual ~CDBPool();
 };
-

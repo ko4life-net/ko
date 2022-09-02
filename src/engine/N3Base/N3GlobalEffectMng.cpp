@@ -6,77 +6,80 @@
 #include "N3GERain.h"
 #include "N3GESnow.h"
 
-
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CN3GlobalEffectMng::CN3GlobalEffectMng()
-{
-	m_pGERain = NULL;
-	m_pGESnow = NULL;
-	CN3GlobalEffectMng::Release();
+CN3GlobalEffectMng::CN3GlobalEffectMng() {
+    m_pGERain = NULL;
+    m_pGESnow = NULL;
+    CN3GlobalEffectMng::Release();
 }
 
-CN3GlobalEffectMng::~CN3GlobalEffectMng()
-{
-	CN3GlobalEffectMng::Release();
+CN3GlobalEffectMng::~CN3GlobalEffectMng() {
+    CN3GlobalEffectMng::Release();
 }
 
-void CN3GlobalEffectMng::Release()
-{
-	CN3Base::Release();
-	m_fCellSize = 0.0f;
-	m_CurCellPos.x = m_CurCellPos.y = -1;
+void CN3GlobalEffectMng::Release() {
+    CN3Base::Release();
+    m_fCellSize = 0.0f;
+    m_CurCellPos.x = m_CurCellPos.y = -1;
 
-	if (m_pGERain) {delete m_pGERain; m_pGERain = NULL;}
-	if (m_pGESnow) {delete m_pGESnow; m_pGESnow = NULL;}
+    if (m_pGERain) {
+        delete m_pGERain;
+        m_pGERain = NULL;
+    }
+    if (m_pGESnow) {
+        delete m_pGESnow;
+        m_pGESnow = NULL;
+    }
 }
 
-void CN3GlobalEffectMng::Tick()
-{
-	if (m_fCellSize<=0.0f) return;
+void CN3GlobalEffectMng::Tick() {
+    if (m_fCellSize <= 0.0f) {
+        return;
+    }
 
-	POINT NewCellPos;	
-	NewCellPos.x = int(s_CameraData.vEye.x/m_fCellSize);
-	NewCellPos.y = int(s_CameraData.vEye.z/m_fCellSize);
-	if (NewCellPos.x != m_CurCellPos.x || NewCellPos.y != m_CurCellPos.y)
-	{
-		m_CurCellPos = NewCellPos;
-		for(int i=0; i<3; ++i)
-			for(int j=0; j<3; ++j)
-				m_vPos[j*3+i].Set( (m_CurCellPos.x+i-0.5f)*m_fCellSize, 0, (m_CurCellPos.y+j-0.5f)*m_fCellSize);
-	}
+    POINT NewCellPos;
+    NewCellPos.x = int(s_CameraData.vEye.x / m_fCellSize);
+    NewCellPos.y = int(s_CameraData.vEye.z / m_fCellSize);
+    if (NewCellPos.x != m_CurCellPos.x || NewCellPos.y != m_CurCellPos.y) {
+        m_CurCellPos = NewCellPos;
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                m_vPos[j * 3 + i].Set((m_CurCellPos.x + i - 0.5f) * m_fCellSize, 0,
+                                      (m_CurCellPos.y + j - 0.5f) * m_fCellSize);
+            }
+        }
+    }
 
-	if (m_pGERain)
-	{
-		m_pGERain->Tick();
-		if(m_pGERain->NeedDelete()) { delete m_pGERain; m_pGERain = NULL; }
-	}
-	if (m_pGESnow)
-	{
-		m_pGESnow->Tick();
-		if(m_pGESnow->NeedDelete()) { delete m_pGESnow; m_pGESnow = NULL; }
-	}
-
+    if (m_pGERain) {
+        m_pGERain->Tick();
+        if (m_pGERain->NeedDelete()) {
+            delete m_pGERain;
+            m_pGERain = NULL;
+        }
+    }
+    if (m_pGESnow) {
+        m_pGESnow->Tick();
+        if (m_pGESnow->NeedDelete()) {
+            delete m_pGESnow;
+            m_pGESnow = NULL;
+        }
+    }
 }
 
-void CN3GlobalEffectMng::Render()
-{
-	for (int i=0; i<3; ++i)
-	{
-		for(int j=0; j<3; ++j)
-		{
-			if (m_pGERain)
-			{
-				m_pGERain->Render(m_vPos[j*3+i]);
-			}
-			if (m_pGESnow)
-			{
-				m_pGESnow->Render(m_vPos[j*3+i]);
-			}
-		}
-	}
+void CN3GlobalEffectMng::Render() {
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            if (m_pGERain) {
+                m_pGERain->Render(m_vPos[j * 3 + i]);
+            }
+            if (m_pGESnow) {
+                m_pGESnow->Render(m_vPos[j * 3 + i]);
+            }
+        }
+    }
 }
 /*
 void CN3GlobalEffectMng::SetWeather(int iWeather)
@@ -155,41 +158,50 @@ void CN3GlobalEffectMng::SetWeather(int iWeather)
 	}
 }
 */
-void CN3GlobalEffectMng::WeatherSetClean()
-{
-	if (m_pGESnow) m_pGESnow->FadeSet(3.0f, false);
-	if (m_pGERain) m_pGERain->FadeSet(3.0f, false);
+void CN3GlobalEffectMng::WeatherSetClean() {
+    if (m_pGESnow) {
+        m_pGESnow->FadeSet(3.0f, false);
+    }
+    if (m_pGERain) {
+        m_pGERain->FadeSet(3.0f, false);
+    }
 }
 
-void CN3GlobalEffectMng::WeatherSetRainy(int iPercent)
-{
-	if (m_pGESnow) m_pGESnow->FadeSet(3.0f, false);
-	if (m_pGERain == NULL) m_pGERain = new CN3GERain;
+void CN3GlobalEffectMng::WeatherSetRainy(int iPercent) {
+    if (m_pGESnow) {
+        m_pGESnow->FadeSet(3.0f, false);
+    }
+    if (m_pGERain == NULL) {
+        m_pGERain = new CN3GERain;
+    }
 
-	float fHeight = 20.0f;
-	float fPercent = iPercent / 100.0f;
-	float fDensity = fPercent * 0.1f;
-	__Vector3 vVelocity(3.0f * ((50-rand()%100) / 50.0f), -(10.0f + 8.0f * fPercent), 0);
-	float fRainLength = 0.4f + 0.6f * fPercent;
+    float     fHeight = 20.0f;
+    float     fPercent = iPercent / 100.0f;
+    float     fDensity = fPercent * 0.1f;
+    __Vector3 vVelocity(3.0f * ((50 - rand() % 100) / 50.0f), -(10.0f + 8.0f * fPercent), 0);
+    float     fRainLength = 0.4f + 0.6f * fPercent;
 
-	m_fCellSize = 20.0f;
-	m_pGERain->Create(fDensity, m_fCellSize, fHeight, fRainLength, vVelocity, 10.0f);	// 비
-	m_pGERain->SetActive(TRUE);
+    m_fCellSize = 20.0f;
+    m_pGERain->Create(fDensity, m_fCellSize, fHeight, fRainLength, vVelocity, 10.0f); // 비
+    m_pGERain->SetActive(TRUE);
 }
 
-void CN3GlobalEffectMng::WeatherSetSnow(int iPercent)
-{
-	if (m_pGERain) m_pGERain->FadeSet(3.0f, false);
-	if (m_pGESnow == NULL) m_pGESnow = new CN3GESnow;
+void CN3GlobalEffectMng::WeatherSetSnow(int iPercent) {
+    if (m_pGERain) {
+        m_pGERain->FadeSet(3.0f, false);
+    }
+    if (m_pGESnow == NULL) {
+        m_pGESnow = new CN3GESnow;
+    }
 
-	float fHeight = 20.0f;
-	float fPercent = iPercent / 100.0f;
-	float fDensity = fPercent * 0.1f;
-	float fHorz = (3.0f * fPercent) + (3.0f * ((50-rand()%100) / 50.0f));
-	__Vector3 vVelocity(fHorz, -(2.0f + 2.0f * fPercent), 0);
-	float fSnowSize = 0.1f + 0.1f * fPercent;
+    float     fHeight = 20.0f;
+    float     fPercent = iPercent / 100.0f;
+    float     fDensity = fPercent * 0.1f;
+    float     fHorz = (3.0f * fPercent) + (3.0f * ((50 - rand() % 100) / 50.0f));
+    __Vector3 vVelocity(fHorz, -(2.0f + 2.0f * fPercent), 0);
+    float     fSnowSize = 0.1f + 0.1f * fPercent;
 
-	m_fCellSize = 20.0f;
-	m_pGESnow->Create(fDensity, m_fCellSize, fHeight, fSnowSize, vVelocity, 10.0f);	// 비
-	m_pGESnow->SetActive(TRUE);
+    m_fCellSize = 20.0f;
+    m_pGESnow->Create(fDensity, m_fCellSize, fHeight, fSnowSize, vVelocity, 10.0f); // 비
+    m_pGESnow->SetActive(TRUE);
 }

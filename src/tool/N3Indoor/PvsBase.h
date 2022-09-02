@@ -4,7 +4,6 @@
 
 #pragma once
 
-
 #pragma warning(disable : 4786)
 
 #include "N3Base/N3Base.h"
@@ -12,7 +11,11 @@
 #include <string>
 #include <list>
 
-enum e_PvsState { STATE_NONE = 0, STATE_SELECTED, STATE_LINKED };
+enum e_PvsState {
+    STATE_NONE = 0,
+    STATE_SELECTED,
+    STATE_LINKED
+};
 const DWORD dwColorNone = 0xff00ff00;
 const DWORD dwColorLinked = 0xff6666ff;
 const DWORD dwColorSelected = 0xffff6666;
@@ -22,56 +25,68 @@ const DWORD dwColorSelectedAlpha = 0x66ff6666;
 const float fBaseVolumnSize = 1.0f;
 const float fBaseWallSize = 0.99f;
 const float fWallSizeOffset = 0.01f;
-const int	_iTypeWall = 0;
-const int	_iTypeVolumn = 1;
-enum e_WallType { WALL_ZB = 0, WALL_ZF, WALL_XL, WALL_XR, WALL_YT, WALL_YB };
-enum e_ExtBool	{ TYPE_UNKNOWN = 0, TYPE_TRUE, TYPE_FALSE };
-enum e_ReturnCode {	NO_COLLISION = 0, COLLISION_AND_CONTINUE, COLLISION_AND_STOP };
+const int   _iTypeWall = 0;
+const int   _iTypeVolumn = 1;
+enum e_WallType {
+    WALL_ZB = 0,
+    WALL_ZF,
+    WALL_XL,
+    WALL_XR,
+    WALL_YT,
+    WALL_YB
+};
+enum e_ExtBool {
+    TYPE_UNKNOWN = 0,
+    TYPE_TRUE,
+    TYPE_FALSE
+};
+enum e_ReturnCode {
+    NO_COLLISION = 0,
+    COLLISION_AND_CONTINUE,
+    COLLISION_AND_STOP
+};
 
 class CPvsObjFactory;
 class COrganizeView;
 
-
-class CPvsBase : public CObject  
-{
+class CPvsBase : public CObject {
 #ifdef _N3TOOL
-	friend class COrganizeView;
+    friend class COrganizeView;
 #endif
 
-	friend class CPvsObjFactory;
+    friend class CPvsObjFactory;
 
-	DECLARE_DYNAMIC( CPvsBase )
+    DECLARE_DYNAMIC(CPvsBase)
 
-	e_PvsState	m_eState;
+    e_PvsState m_eState;
 
 #ifdef _N3TOOL
-	std::string		m_strID;
-#endif 
+    std::string m_strID;
+#endif
 
-	int				m_iID;
-	__Matrix44		m_MtxMove;	
-	__Matrix44		m_MtxScale;	
+    int        m_iID;
+    __Matrix44 m_MtxMove;
+    __Matrix44 m_MtxScale;
 
-	CPvsBase();
-	virtual ~CPvsBase();
+    CPvsBase();
+    virtual ~CPvsBase();
 
-	virtual bool CreatePvsObject() = 0;
-	virtual bool DeletePvsObject() = 0;
+    virtual bool CreatePvsObject() = 0;
+    virtual bool DeletePvsObject() = 0;
 
-	virtual void TickEdit() = 0;
-	virtual void TickCompile() = 0;
-	virtual void TickExecute() = 0;
+    virtual void TickEdit() = 0;
+    virtual void TickCompile() = 0;
+    virtual void TickExecute() = 0;
 
-	virtual void RenderEdit() = 0;
-	virtual void RenderCompile() = 0;
-	virtual void RenderExecute() = 0;
+    virtual void RenderEdit() = 0;
+    virtual void RenderCompile() = 0;
+    virtual void RenderExecute() = 0;
 
-//	virtual	void Render() = 0;	
-	virtual void Translate() = 0;
+    //	virtual	void Render() = 0;
+    virtual void Translate() = 0;
 
-	virtual void SetState(e_PvsState ePS) = 0;
+    virtual void SetState(e_PvsState ePS) = 0;
 
-	virtual void Load(FILE* stream);
-	virtual void Save(FILE* stream);
+    virtual void Load(FILE * stream);
+    virtual void Save(FILE * stream);
 };
-

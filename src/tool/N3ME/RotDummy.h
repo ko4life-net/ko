@@ -4,21 +4,18 @@
 
 #pragma once
 
-
 #include "TransDummy.h"
 
-class CRotDummy : public CTransDummy  
-{
-public:
-	CRotDummy();
-	virtual ~CRotDummy();
+class CRotDummy : public CTransDummy {
+  public:
+    CRotDummy();
+    virtual ~CRotDummy();
 
-public:
-protected:
+  public:
+  protected:
+  public:
+    void         SetSelObj(CN3Transform * pObj);
+    virtual BOOL MouseMsgFilter(LPMSG pMsg);
 
-public:
-	void SetSelObj(CN3Transform* pObj);
-	virtual BOOL MouseMsgFilter(LPMSG pMsg);
-protected:
+  protected:
 };
-

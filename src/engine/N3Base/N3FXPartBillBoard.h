@@ -6,67 +6,68 @@
 
 #include "N3FXPartBase.h"
 
-class CN3FXPartBillBoard : public CN3FXPartBase  
-{
-public:
-	int					m_iNum;				//	보드의 갯수.
-	float				m_fSizeX;			//	보드의 크기
-	float				m_fSizeY;
-	bool				m_bTexLoop;
-	
-	int					m_iTexIdx;
-	DWORD				m_dwCurrColor;
+class CN3FXPartBillBoard : public CN3FXPartBase {
+  public:
+    int   m_iNum;   //	보드의 갯수.
+    float m_fSizeX; //	보드의 크기
+    float m_fSizeY;
+    bool  m_bTexLoop;
 
-	float				m_fRadius;
+    int   m_iTexIdx;
+    DWORD m_dwCurrColor;
 
-	__VertexXyzColorT1*	m_pVB;
+    float m_fRadius;
 
-	bool				m_bRoateOnlyY;
+    __VertexXyzColorT1 * m_pVB;
 
-	float				m_fScaleVelX;
-	float				m_fScaleVelY;
-	float				m_fScaleAccelX;
-	float				m_fScaleAccelY;
+    bool m_bRoateOnlyY;
 
-	float				m_fCurrScaleVelX;
-	float				m_fCurrScaleVelY;
+    float m_fScaleVelX;
+    float m_fScaleVelY;
+    float m_fScaleAccelX;
+    float m_fScaleAccelY;
 
-	float				m_fCurrSizeX;			//	보드의 크기
-	float				m_fCurrSizeY;
+    float m_fCurrScaleVelX;
+    float m_fCurrScaleVelY;
 
-	__Matrix44			m_mtxRot;
-	float				m_fRotBillBoardX;
-	float				m_fRotBillBoardY;
-	float				m_fRotBillBoardZ;
+    float m_fCurrSizeX; //	보드의 크기
+    float m_fCurrSizeY;
 
-protected:
-	__Vector3			m_vUnit[4];
+    __Matrix44 m_mtxRot;
+    float      m_fRotBillBoardX;
+    float      m_fRotBillBoardY;
+    float      m_fRotBillBoardZ;
 
-protected:
-	void	CreateVB();
-	bool	IsDead();
-	__Vector3 Rotate2AbsolutePos(__Vector3 vRelativePos);
-	float	CameraDist();
+  protected:
+    __Vector3 m_vUnit[4];
 
-public:
-	void	Init();				//	각종 변수들을 처음 로딩한 상태로 초기화...
-	void	Start();			//	파트 구동 시작.
-	void	Stop();				//	파트 구동 멈춤..
-	bool	Tick();				//	ticktick...
-	void	Render();			//	화면에 뿌리기..
-	bool	Load(HANDLE hFile);	//	게임파일 불러오기.
-	bool	Save(HANDLE hFile);	//	게임파일 저장오기.
-	void	Duplicate(CN3FXPartBillBoard* pSrc);
+  protected:
+    void      CreateVB();
+    bool      IsDead();
+    __Vector3 Rotate2AbsolutePos(__Vector3 vRelativePos);
+    float     CameraDist();
 
-	void	SetScale(float size) { m_fSizeX = m_fCurrSizeX = size; m_fSizeY = m_fCurrSizeY = size; }
-	void	SetRadius(float rad) { m_fRadius = rad; }
-	
-public:
-	CN3FXPartBillBoard();
-	virtual ~CN3FXPartBillBoard();
+  public:
+    void Init();             //	각종 변수들을 처음 로딩한 상태로 초기화...
+    void Start();            //	파트 구동 시작.
+    void Stop();             //	파트 구동 멈춤..
+    bool Tick();             //	ticktick...
+    void Render();           //	화면에 뿌리기..
+    bool Load(HANDLE hFile); //	게임파일 불러오기.
+    bool Save(HANDLE hFile); //	게임파일 저장오기.
+    void Duplicate(CN3FXPartBillBoard * pSrc);
+
+    void SetScale(float size) {
+        m_fSizeX = m_fCurrSizeX = size;
+        m_fSizeY = m_fCurrSizeY = size;
+    }
+    void SetRadius(float rad) { m_fRadius = rad; }
+
+  public:
+    CN3FXPartBillBoard();
+    virtual ~CN3FXPartBillBoard();
 
 #ifdef _N3TOOL
-	bool	ParseScript(char* szCommand, char* szBuff0, char* szBuff1, char* szBuff2, char* szBuff3);
+    bool ParseScript(char * szCommand, char * szBuff0, char * szBuff1, char * szBuff2, char * szBuff3);
 #endif // end of _N3TOOL
 };
-

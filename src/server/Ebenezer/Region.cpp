@@ -8,7 +8,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -16,18 +16,18 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CRegion::CRegion()
-{
-}
+CRegion::CRegion() {}
 
-CRegion::~CRegion()
-{
-	if( !m_RegionItemArray.IsEmpty() )
-		m_RegionItemArray.DeleteAllData();
+CRegion::~CRegion() {
+    if (!m_RegionItemArray.IsEmpty()) {
+        m_RegionItemArray.DeleteAllData();
+    }
 
-	if( !m_RegionUserArray.IsEmpty() )
-		m_RegionUserArray.DeleteAllData();
+    if (!m_RegionUserArray.IsEmpty()) {
+        m_RegionUserArray.DeleteAllData();
+    }
 
-	if( !m_RegionNpcArray.IsEmpty() )
-		m_RegionNpcArray.DeleteAllData();
+    if (!m_RegionNpcArray.IsEmpty()) {
+        m_RegionNpcArray.DeleteAllData();
+    }
 }

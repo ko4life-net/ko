@@ -4,14 +4,10 @@
 
 #pragma once
 
-
-class CBigFile : public CFile  
-{
-	DECLARE_DYNAMIC(CBigFile)
-public:
-	ULONGLONG Seek(LONGLONG lOff, UINT nFrom);
-	CBigFile();
-	virtual ~CBigFile();
-
+class CBigFile : public CFile {
+    DECLARE_DYNAMIC(CBigFile)
+  public:
+    ULONGLONG Seek(LONGLONG lOff, UINT nFrom);
+    CBigFile();
+    virtual ~CBigFile();
 };
-

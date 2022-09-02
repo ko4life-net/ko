@@ -5,17 +5,10 @@
 #include "StdAfx.h"
 #include "N3WorldBase.h"
 
-
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CN3WorldBase::CN3WorldBase()
-{
+CN3WorldBase::CN3WorldBase() {}
 
-}
-
-CN3WorldBase::~CN3WorldBase()
-{
-
-}
+CN3WorldBase::~CN3WorldBase() {}

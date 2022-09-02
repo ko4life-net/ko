@@ -4,34 +4,33 @@
 
 #pragma once
 
-
 #include "N3Base.h"
 #include "N3ColorChange.h"
 
 //class CN3Texture;
-class CN3Sky : public CN3Base  
-{
-	friend class CN3SkyMng;
-public:
-	CN3Sky();
-	virtual ~CN3Sky();
+class CN3Sky : public CN3Base {
+    friend class CN3SkyMng;
 
-// Attributes
-public:
-protected:
-	CN3ColorChange		m_SkyColor;
-	CN3ColorChange		m_FogColor;
+  public:
+    CN3Sky();
+    virtual ~CN3Sky();
 
-	__VertexXyzColor	m_vFronts[4];
-	__VertexXyzColor	m_Bottom[4];
-//	CN3Texture*			m_pTex;
+    // Attributes
+  public:
+  protected:
+    CN3ColorChange m_SkyColor;
+    CN3ColorChange m_FogColor;
 
-// Operations
-public:
-	void				Init();
-	void				Render();
-	virtual				void Release();
-	virtual				void Tick();
-protected:
+    __VertexXyzColor m_vFronts[4];
+    __VertexXyzColor m_Bottom[4];
+    //	CN3Texture*			m_pTex;
+
+    // Operations
+  public:
+    void         Init();
+    void         Render();
+    virtual void Release();
+    virtual void Tick();
+
+  protected:
 };
-

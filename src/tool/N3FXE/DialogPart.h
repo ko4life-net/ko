@@ -4,16 +4,12 @@
 
 #pragma once
 
+class CDialogPart : public CDialog {
+  public:
+    class CMainFrame *     m_pRefFrm;
+    class CDlgEditScript * m_pRefBundle;
 
-class CDialogPart : public CDialog  
-{
-public:
-	class CMainFrame*			m_pRefFrm;
-	class CDlgEditScript*		m_pRefBundle;
+    CDialogPart();
 
-	CDialogPart();
-
-	virtual ~CDialogPart();
-
+    virtual ~CDialogPart();
 };
-

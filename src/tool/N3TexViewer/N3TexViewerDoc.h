@@ -4,63 +4,58 @@
 
 #pragma once
 
-
 #include "N3Base/N3Texture.h"
 
-class CN3TexViewerDoc : public CDocument
-{
-protected: // create from serialization only
-	CN3TexViewerDoc();
-	DECLARE_DYNCREATE(CN3TexViewerDoc)
+class CN3TexViewerDoc : public CDocument {
+  protected: // create from serialization only
+    CN3TexViewerDoc();
+    DECLARE_DYNCREATE(CN3TexViewerDoc)
 
-// Attributes
-public:
-	CN3Texture* m_pTex;
-	CN3Texture* m_pTexAlpha;
+    // Attributes
+  public:
+    CN3Texture * m_pTex;
+    CN3Texture * m_pTexAlpha;
 
-	int				m_nCurFile;
-	CString			m_szPath;
-	CStringArray	m_szFiles;
+    int          m_nCurFile;
+    CString      m_szPath;
+    CStringArray m_szFiles;
 
-// Operations
-public:
+    // Operations
+  public:
+    // Overrides
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(CN3TexViewerDoc)
+  public:
+    virtual BOOL OnNewDocument();
+    virtual BOOL OnOpenDocument(LPCTSTR lpszPathName);
+    virtual BOOL OnSaveDocument(LPCTSTR lpszPathName);
+    virtual void Serialize(CArchive & ar);
+    virtual void SetTitle(LPCTSTR lpszTitle);
+    //}}AFX_VIRTUAL
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CN3TexViewerDoc)
-	public:
-	virtual BOOL OnNewDocument();
-	virtual BOOL OnOpenDocument(LPCTSTR lpszPathName);
-	virtual BOOL OnSaveDocument(LPCTSTR lpszPathName);
-	virtual void Serialize(CArchive& ar);
-	virtual void SetTitle(LPCTSTR lpszTitle);
-	//}}AFX_VIRTUAL
-
-// Implementation
-public:
-	void OpenLastFile();
-	void OpenFirstFile();
-	void OpenPrevFile();
-	void OpenNextFile();
-	void FindFiles();
-	virtual ~CN3TexViewerDoc();
+    // Implementation
+  public:
+    void OpenLastFile();
+    void OpenFirstFile();
+    void OpenPrevFile();
+    void OpenNextFile();
+    void FindFiles();
+    virtual ~CN3TexViewerDoc();
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext & dc) const;
 #endif
 
-protected:
-
-// Generated message map functions
-protected:
-	//{{AFX_MSG(CN3TexViewerDoc)
-	afx_msg void OnFileSaveAsBitmap();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  protected:
+    // Generated message map functions
+  protected:
+    //{{AFX_MSG(CN3TexViewerDoc)
+    afx_msg void OnFileSaveAsBitmap();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-

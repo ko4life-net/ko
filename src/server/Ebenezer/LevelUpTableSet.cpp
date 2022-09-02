@@ -16,48 +16,41 @@ static char THIS_FILE[] = __FILE__;
 
 IMPLEMENT_DYNAMIC(CLevelUpTableSet, CRecordset)
 
-CLevelUpTableSet::CLevelUpTableSet(CDatabase* pdb)
-	: CRecordset(pdb)
-{
-	//{{AFX_FIELD_INIT(CLevelUpTableSet)
-	m_level = 0;
-	m_Exp = 0;
-	m_nFields = 2;
-	//}}AFX_FIELD_INIT
-	m_nDefaultType = snapshot;
+CLevelUpTableSet::CLevelUpTableSet(CDatabase * pdb)
+    : CRecordset(pdb) {
+    //{{AFX_FIELD_INIT(CLevelUpTableSet)
+    m_level = 0;
+    m_Exp = 0;
+    m_nFields = 2;
+    //}}AFX_FIELD_INIT
+    m_nDefaultType = snapshot;
 }
 
-
-CString CLevelUpTableSet::GetDefaultConnect()
-{
-	return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+CString CLevelUpTableSet::GetDefaultConnect() {
+    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
 }
 
-CString CLevelUpTableSet::GetDefaultSQL()
-{
-	return _T("[dbo].[LEVEL_UP]");
+CString CLevelUpTableSet::GetDefaultSQL() {
+    return _T("[dbo].[LEVEL_UP]");
 }
 
-void CLevelUpTableSet::DoFieldExchange(CFieldExchange* pFX)
-{
-	//{{AFX_FIELD_MAP(CLevelUpTableSet)
-	pFX->SetFieldType(CFieldExchange::outputColumn);
-	RFX_Byte(pFX, _T("[level]"), m_level);
-	RFX_Long(pFX, _T("[Exp]"), m_Exp);
-	//}}AFX_FIELD_MAP
+void CLevelUpTableSet::DoFieldExchange(CFieldExchange * pFX) {
+    //{{AFX_FIELD_MAP(CLevelUpTableSet)
+    pFX->SetFieldType(CFieldExchange::outputColumn);
+    RFX_Byte(pFX, _T("[level]"), m_level);
+    RFX_Long(pFX, _T("[Exp]"), m_Exp);
+    //}}AFX_FIELD_MAP
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // CLevelUpTableSet diagnostics
 
 #ifdef _DEBUG
-void CLevelUpTableSet::AssertValid() const
-{
-	CRecordset::AssertValid();
+void CLevelUpTableSet::AssertValid() const {
+    CRecordset::AssertValid();
 }
 
-void CLevelUpTableSet::Dump(CDumpContext& dc) const
-{
-	CRecordset::Dump(dc);
+void CLevelUpTableSet::Dump(CDumpContext & dc) const {
+    CRecordset::Dump(dc);
 }
 #endif //_DEBUG

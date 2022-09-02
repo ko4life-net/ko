@@ -9,56 +9,53 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CCatapult::CCatapult()
-{
-	m_Thrower.pStone = NULL;
-	Release();
+CCatapult::CCatapult() {
+    m_Thrower.pStone = NULL;
+    Release();
 }
 
-CCatapult::~CCatapult()
-{
-	Release();
+CCatapult::~CCatapult() {
+    Release();
 }
 
-void CCatapult::Release()
-{
-	CMachineBase::Release();
-	if (m_Thrower.pStone) { delete m_Thrower.pStone; m_Thrower.pStone = NULL;}
-	ZeroMemory(&m_Thrower, sizeof(m_Thrower));
+void CCatapult::Release() {
+    CMachineBase::Release();
+    if (m_Thrower.pStone) {
+        delete m_Thrower.pStone;
+        m_Thrower.pStone = NULL;
+    }
+    ZeroMemory(&m_Thrower, sizeof(m_Thrower));
 }
 
-void CCatapult::ReCalcMatrix4AnimatedPart()
-{
-	CMachineBase::ReCalcMatrix4AnimatedPart();
+void CCatapult::ReCalcMatrix4AnimatedPart() {
+    CMachineBase::ReCalcMatrix4AnimatedPart();
 
-	if (m_Thrower.bFire == TRUE)	// 발사 상태이면
-	{
-		int iSize = m_Parts.size();
-		for(int i = 0; i < iSize; i++)
-		{
-			if (m_Parts[i] == m_Thrower.pThrowerPart)
-			{
-				m_Parts[i]->m_Matrix.RotationX(m_Thrower.fCurRadian);
-				m_Parts[i]->m_Matrix.PosSet(m_Parts[i]->m_vPivot);
-				m_Parts[i]->m_Matrix *= m_Matrix;
-				m_bSkipCalcPartMtx[i] = TRUE;
-				break;
-			}
-		}
-	}
+    if (m_Thrower.bFire == TRUE) // 발사 상태이면
+    {
+        int iSize = m_Parts.size();
+        for (int i = 0; i < iSize; i++) {
+            if (m_Parts[i] == m_Thrower.pThrowerPart) {
+                m_Parts[i]->m_Matrix.RotationX(m_Thrower.fCurRadian);
+                m_Parts[i]->m_Matrix.PosSet(m_Parts[i]->m_vPivot);
+                m_Parts[i]->m_Matrix *= m_Matrix;
+                m_bSkipCalcPartMtx[i] = TRUE;
+                break;
+            }
+        }
+    }
 }
 
-void CCatapult::Render()
-{
-	CMachineBase::Render();
+void CCatapult::Render() {
+    CMachineBase::Render();
 
-	__ASSERT(m_Thrower.pStone, "투석기에 돌맹이 없음");
-	if (m_Thrower.bDontRenderStone == FALSE ) m_Thrower.pStone->Render();
+    __ASSERT(m_Thrower.pStone, "투석기에 돌맹이 없음");
+    if (m_Thrower.bDontRenderStone == FALSE) {
+        m_Thrower.pStone->Render();
+    }
 }
 
-void CCatapult::Tick(float fFrm)
-{
-/*	if (m_bDontRender)
+void CCatapult::Tick(float fFrm) {
+    /*	if (m_bDontRender)
 	{
 		CN3Shape::Tick(fFrm);
 		if (m_bDontRender) return;
@@ -150,44 +147,54 @@ void CCatapult::Tick(float fFrm)
 */
 }
 
-void CCatapult::LoadMachine(FILE* stream)
-{
-	if (stream == NULL) return;
-	Release();
-	CMachineBase::LoadMachine(stream);
+void CCatapult::LoadMachine(FILE * stream) {
+    if (stream == NULL) {
+        return;
+    }
+    Release();
+    CMachineBase::LoadMachine(stream);
 
-	char szThrowerName[_MAX_PATH];	// Thrower pmesh파일 이름
-	char szStoneShapeName[_MAX_PATH];	// stone shape의 이름
+    char szThrowerName[_MAX_PATH];    // Thrower pmesh파일 이름
+    char szStoneShapeName[_MAX_PATH]; // stone shape의 이름
 
-	int result;
-	float x, y, z;
-	result = fscanf(stream, "Thrower_Name = %s\n", &szThrowerName);						__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-	result = fscanf(stream, "Thrower_LimitRadian = %f\n", &(m_Thrower.fLimitRadian));	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-	result = fscanf(stream, "Thrower_RadianAccel = %f\n", &(m_Thrower.fRadianAccel));	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-	result = fscanf(stream, "Thrower_RadianSpeed2Reload = %f\n", &(m_Thrower.fRadianSpeed2Reload));	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-	result = fscanf(stream, "Thrower_ReloadDelayTime = %f\n", &(m_Thrower.fReloadDelayTime));		__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-	result = fscanf(stream, "Thrower_RecoilRadian = %f\n", &(m_Thrower.fRecoilRadian));				__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-	result = fscanf(stream, "Thrower_StoneShapeName = %s\n", szStoneShapeName);						__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-	result = fscanf(stream, "Thrower_StoneOffset = %f %f %f\n", &x, &y, &z);						__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    int   result;
+    float x, y, z;
+    result = fscanf(stream, "Thrower_Name = %s\n", &szThrowerName);
+    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    result = fscanf(stream, "Thrower_LimitRadian = %f\n", &(m_Thrower.fLimitRadian));
+    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    result = fscanf(stream, "Thrower_RadianAccel = %f\n", &(m_Thrower.fRadianAccel));
+    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    result = fscanf(stream, "Thrower_RadianSpeed2Reload = %f\n", &(m_Thrower.fRadianSpeed2Reload));
+    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    result = fscanf(stream, "Thrower_ReloadDelayTime = %f\n", &(m_Thrower.fReloadDelayTime));
+    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    result = fscanf(stream, "Thrower_RecoilRadian = %f\n", &(m_Thrower.fRecoilRadian));
+    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    result = fscanf(stream, "Thrower_StoneShapeName = %s\n", szStoneShapeName);
+    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    result = fscanf(stream, "Thrower_StoneOffset = %f %f %f\n", &x, &y, &z);
+    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
 
-	__ASSERT(m_Thrower.pStone == NULL, "catapult memory leak 가능성 존재");
-	m_Thrower.pStone = new CN3Shape;
-	m_Thrower.pStone->Load(szStoneShapeName);
-	m_Thrower.vStoneOffset.Set(x, y, z);
+    __ASSERT(m_Thrower.pStone == NULL, "catapult memory leak 가능성 존재");
+    m_Thrower.pStone = new CN3Shape;
+    m_Thrower.pStone->Load(szStoneShapeName);
+    m_Thrower.vStoneOffset.Set(x, y, z);
 
-	// 발사에 걸리는 시간 계산
-	m_Thrower.fReleaseTime = sqrtf(m_Thrower.fLimitRadian/m_Thrower.fRadianAccel);
+    // 발사에 걸리는 시간 계산
+    m_Thrower.fReleaseTime = sqrtf(m_Thrower.fLimitRadian / m_Thrower.fRadianAccel);
 
-	// Thrower 찾기
-	m_Thrower.pThrowerPart = GetPartByPMeshName(szThrowerName);
+    // Thrower 찾기
+    m_Thrower.pThrowerPart = GetPartByPMeshName(szThrowerName);
 }
 
-void CCatapult::Fire()
-{
-	if (m_Thrower.bFire == TRUE) return;	// 이미 발사상태이다.
+void CCatapult::Fire() {
+    if (m_Thrower.bFire == TRUE) {
+        return; // 이미 발사상태이다.
+    }
 
-	m_Thrower.bFire = TRUE;
-	m_Thrower.fTime = 0;
-	m_Thrower.fCurRadian = 0;
-	m_Thrower.bDontRenderStone = FALSE;	// 돌덩이 그리기
+    m_Thrower.bFire = TRUE;
+    m_Thrower.fTime = 0;
+    m_Thrower.fCurRadian = 0;
+    m_Thrower.bDontRenderStone = FALSE; // 돌덩이 그리기
 }

@@ -15,109 +15,91 @@
 //
 // RCSfile:CN3E2Translator.h $ $Revision: /main/13 $
 //
-// 
+//
 // N3E2 Translator Maya specific source
 //
 
 #include "N3E2Translator.h"
 
 // Initialize our magic "number"
-MString CN3E2Translator::magic ("filetype gx");
-// A GE2 file is an ascii file where the 1st line contains 
+MString CN3E2Translator::magic("filetype gx");
+// A GE2 file is an ascii file where the 1st line contains
 // the string "filetype gx"
 
-MString CN3E2Translator::version( "2.0" );
+MString CN3E2Translator::version("2.0");
 
-CN3E2Translator::CN3E2Translator()
-{
-}
+CN3E2Translator::CN3E2Translator() {}
 
-CN3E2Translator::~CN3E2Translator()
-{
-}
+CN3E2Translator::~CN3E2Translator() {}
 
-void* CN3E2Translator::creator()
-{
-	return new CN3E2Translator();
+void * CN3E2Translator::creator() {
+    return new CN3E2Translator();
 }
 
 //
 //
 // The reader is not implemented yet.
 //
-MStatus CN3E2Translator::reader (const MFileObject & file,
-								const MString & options,
-								MPxFileTranslator::FileAccessMode mode)
-{
-	MStatus rval (MS::kSuccess);
+MStatus CN3E2Translator::reader(const MFileObject & file, const MString & options,
+                                MPxFileTranslator::FileAccessMode mode) {
+    MStatus rval(MS::kSuccess);
 
-	return rval;
+    return rval;
 }
 
 // Write method of the N3E2 translator / file exporter
-MStatus CN3E2Translator::writer ( const MFileObject & fileObject,
-								  const MString & options,
-								  MPxFileTranslator::FileAccessMode mode)
-{
-	// Lets now do all of the option processing	
-	if ( options.length () > 0 )
-	{
-		//Start parsing.
-		MStringArray optionList;
-		MStringArray theOption;
+MStatus CN3E2Translator::writer(const MFileObject & fileObject, const MString & options,
+                                MPxFileTranslator::FileAccessMode mode) {
+    // Lets now do all of the option processing
+    if (options.length() > 0) {
+        //Start parsing.
+        MStringArray optionList;
+        MStringArray theOption;
 
-		options.split(';', optionList);
-	}
+        options.split(';', optionList);
+    }
 
-	char szFN[256] = "";
-	lstrcpy(szFN, fileObject.name().asChar());
-	CharLower(szFN);
-	if(strstr(szFN, ".n3scene") == NULL) lstrcat(szFN, ".n3scene");
+    char szFN[256] = "";
+    lstrcpy(szFN, fileObject.name().asChar());
+    CharLower(szFN);
+    if (strstr(szFN, ".n3scene") == NULL) {
+        lstrcat(szFN, ".n3scene");
+    }
 
-	m_Wrapper.SetFileName(szFN);
-	m_Wrapper.SetPath(fileObject.path().asChar());
-	m_Wrapper.SceneExport();
+    m_Wrapper.SetFileName(szFN);
+    m_Wrapper.SetPath(fileObject.path().asChar());
+    m_Wrapper.SceneExport();
 
-	m_Wrapper.Release();
-	
-	return MS::kSuccess;
+    m_Wrapper.Release();
+
+    return MS::kSuccess;
 }
 
-MPxFileTranslator::MFileKind CN3E2Translator::identifyFile (
-	      const MFileObject & fileName,
-	      const char *buffer,
-	      short size) const
-{
-	//Check the buffer for the "GE2" magic number, the
-	// string "filetype gx"
-	MFileKind rval = kNotMyFileType;
+MPxFileTranslator::MFileKind CN3E2Translator::identifyFile(const MFileObject & fileName, const char * buffer,
+                                                           short size) const {
+    //Check the buffer for the "GE2" magic number, the
+    // string "filetype gx"
+    MFileKind rval = kNotMyFileType;
 
-	const char* szFN = fileName.name().asChar();
-	int nFN = lstrlen(szFN);
-	if(	lstrcmpi(&szFN[nFN-4], ".N3Scene") == 0 || 
-		lstrcmpi(&szFN[nFN-7], ".N3Camera") == 0 || 
-		lstrcmpi(&szFN[nFN-7], ".N3Light") == 0 || 
-		lstrcmpi(&szFN[nFN-7], ".N3Mesh") == 0 || 
-		lstrcmpi(&szFN[nFN-7], ".N3PMesh") == 0 || 
-		lstrcmpi(&szFN[nFN-7], ".N3Shape") == 0 || 
-		lstrcmpi(&szFN[nFN-7], ".N3Joint") == 0 || 
-		lstrcmpi(&szFN[nFN-7], ".N3IMesh") == 0 || 
-		lstrcmpi(&szFN[nFN-7], ".N3DSKN") == 0 )
-	{
-		rval = kIsMyFileType;
-	}
+    const char * szFN = fileName.name().asChar();
+    int          nFN = lstrlen(szFN);
+    if (lstrcmpi(&szFN[nFN - 4], ".N3Scene") == 0 || lstrcmpi(&szFN[nFN - 7], ".N3Camera") == 0 ||
+        lstrcmpi(&szFN[nFN - 7], ".N3Light") == 0 || lstrcmpi(&szFN[nFN - 7], ".N3Mesh") == 0 ||
+        lstrcmpi(&szFN[nFN - 7], ".N3PMesh") == 0 || lstrcmpi(&szFN[nFN - 7], ".N3Shape") == 0 ||
+        lstrcmpi(&szFN[nFN - 7], ".N3Joint") == 0 || lstrcmpi(&szFN[nFN - 7], ".N3IMesh") == 0 ||
+        lstrcmpi(&szFN[nFN - 7], ".N3DSKN") == 0) {
+        rval = kIsMyFileType;
+    }
 
-	return rval;
+    return rval;
 }
-
 
 // Shouldn't be any C functions trying to call us, should there?
-/*extern "C" */MStatus initializePlugin ( MObject obj )
-{
-	MStatus         status;
-	MFnPlugin       plugin( obj, "Noah System", CN3E2Translator::getVersion().asChar(), "Any" );
+/*extern "C" */ MStatus initializePlugin(MObject obj) {
+    MStatus   status;
+    MFnPlugin plugin(obj, "Noah System", CN3E2Translator::getVersion().asChar(), "Any");
 
-	/*
+    /*
 	// Get Maya-set values and initialize them --
 	// if user wants to override them then that's ok
 	MTime startFrame( MAnimControl::minTime().value(), MTime::uiUnit() );
@@ -127,30 +109,27 @@ MPxFileTranslator::MFileKind CN3E2Translator::identifyFile (
 	MAnimControl::PlaybackViewMode playbackViewMode = MAnimControl::viewMode();
 */
 
-	//Register the translator with the system (NAME, image, creator func. mel script
-	status = plugin.registerFileTranslator("N3Export2", "N3E2Translator.rgb", CN3E2Translator::creator);
+    //Register the translator with the system (NAME, image, creator func. mel script
+    status = plugin.registerFileTranslator("N3Export2", "N3E2Translator.rgb", CN3E2Translator::creator);
 
-	if (!status)
-	{
-		status.perror ("registerFileTranslator");
-		return status;
-	}
+    if (!status) {
+        status.perror("registerFileTranslator");
+        return status;
+    }
 
-	return status;
+    return status;
 }
 
 // Shouldn't be any C functions trying to call us, should there?
-/*extern "C" */MStatus uninitializePlugin ( MObject obj )
-{
-	MStatus         status;
-	MFnPlugin       plugin (obj);
+/*extern "C" */ MStatus uninitializePlugin(MObject obj) {
+    MStatus   status;
+    MFnPlugin plugin(obj);
 
-	status = plugin.deregisterFileTranslator("N3Export2");
-	if (!status)
-	{
-		status.perror ("deregisterFileTranslator");
-		return status;
-	}
+    status = plugin.deregisterFileTranslator("N3Export2");
+    if (!status) {
+        status.perror("deregisterFileTranslator");
+        return status;
+    }
 
-	return status;
+    return status;
 }

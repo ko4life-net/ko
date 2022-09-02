@@ -14,69 +14,62 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CDlgSaveNewTileSet dialog
 
-
-CDlgSaveNewTileSet::CDlgSaveNewTileSet(CWnd* pParent /*=NULL*/)
-	: CDialog(CDlgSaveNewTileSet::IDD, pParent)
-{
-	//{{AFX_DATA_INIT(CDlgSaveNewTileSet)
-	m_NewTileSetName = _T("");
-	//}}AFX_DATA_INIT
+CDlgSaveNewTileSet::CDlgSaveNewTileSet(CWnd * pParent /*=NULL*/)
+    : CDialog(CDlgSaveNewTileSet::IDD, pParent) {
+    //{{AFX_DATA_INIT(CDlgSaveNewTileSet)
+    m_NewTileSetName = _T("");
+    //}}AFX_DATA_INIT
 }
 
-
-void CDlgSaveNewTileSet::DoDataExchange(CDataExchange* pDX)
-{
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CDlgSaveNewTileSet)
-	DDX_Control(pDX, IDC_LIST_TILESET, m_ListTileSet);
-	DDX_Text(pDX, IDC_EDIT_NEWTILESETNAME, m_NewTileSetName);
-	//}}AFX_DATA_MAP
+void CDlgSaveNewTileSet::DoDataExchange(CDataExchange * pDX) {
+    CDialog::DoDataExchange(pDX);
+    //{{AFX_DATA_MAP(CDlgSaveNewTileSet)
+    DDX_Control(pDX, IDC_LIST_TILESET, m_ListTileSet);
+    DDX_Text(pDX, IDC_EDIT_NEWTILESETNAME, m_NewTileSetName);
+    //}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP(CDlgSaveNewTileSet, CDialog)
-	//{{AFX_MSG_MAP(CDlgSaveNewTileSet)
-	//}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CDlgSaveNewTileSet)
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CDlgSaveNewTileSet message handlers
 
-BOOL CDlgSaveNewTileSet::OnInitDialog() 
-{
-	CDialog::OnInitDialog();
-	
-	// TODO: Add extra initialization here
-	char szOldPath[_MAX_PATH];
-	GetCurrentDirectory(_MAX_PATH, szOldPath);
+BOOL CDlgSaveNewTileSet::OnInitDialog() {
+    CDialog::OnInitDialog();
 
-	char szDrive[_MAX_DRIVE], szDir[_MAX_DIR];
-	char szModuleFilePath[_MAX_PATH];
-	GetModuleFileName(NULL, szModuleFilePath, _MAX_PATH);
+    // TODO: Add extra initialization here
+    char szOldPath[_MAX_PATH];
+    GetCurrentDirectory(_MAX_PATH, szOldPath);
 
-	char szNewPath[_MAX_PATH];
-	_splitpath(szModuleFilePath, szDrive, szDir, NULL, NULL);
-	_makepath(szNewPath, szDrive, szDir, NULL, NULL);
-	SetCurrentDirectory(szNewPath);
-	m_ListTileSet.Dir(DDL_READONLY, "dtex\\*.dtx");
+    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR];
+    char szModuleFilePath[_MAX_PATH];
+    GetModuleFileName(NULL, szModuleFilePath, _MAX_PATH);
 
-	int count = m_ListTileSet.GetCount();
+    char szNewPath[_MAX_PATH];
+    _splitpath(szModuleFilePath, szDrive, szDir, NULL, NULL);
+    _makepath(szNewPath, szDrive, szDir, NULL, NULL);
+    SetCurrentDirectory(szNewPath);
+    m_ListTileSet.Dir(DDL_READONLY, "dtex\\*.dtx");
 
-	CString str;
-	for(int i=0;i<count;i++)
-	{
-		m_ListTileSet.GetText(0, str);
+    int count = m_ListTileSet.GetCount();
 
-		char szFileName[MAX_PATH];
-		_splitpath((LPCTSTR)str, NULL, NULL, szFileName, NULL);
+    CString str;
+    for (int i = 0; i < count; i++) {
+        m_ListTileSet.GetText(0, str);
 
-		str.Format(szFileName);
-		m_ListTileSet.InsertString(count, str);
-		m_ListTileSet.DeleteString(0);
-	}
+        char szFileName[MAX_PATH];
+        _splitpath((LPCTSTR)str, NULL, NULL, szFileName, NULL);
 
-	SetCurrentDirectory(szOldPath);
-	
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
+        str.Format(szFileName);
+        m_ListTileSet.InsertString(count, str);
+        m_ListTileSet.DeleteString(0);
+    }
+
+    SetCurrentDirectory(szOldPath);
+
+    return TRUE; // return TRUE unless you set the focus to a control
+                 // EXCEPTION: OCX Property Pages should return FALSE
 }

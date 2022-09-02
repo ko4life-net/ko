@@ -16,30 +16,26 @@ static char THIS_FILE[] = __FILE__;
 
 IMPLEMENT_DYNCREATE(CEnvironSoundPage, CPropertyPage)
 
-CEnvironSoundPage::CEnvironSoundPage() : CPropertyPage(CEnvironSoundPage::IDD)
-{
-	//{{AFX_DATA_INIT(CEnvironSoundPage)
-		// NOTE: the ClassWizard will add member initialization here
-	//}}AFX_DATA_INIT
+CEnvironSoundPage::CEnvironSoundPage()
+    : CPropertyPage(CEnvironSoundPage::IDD) {
+    //{{AFX_DATA_INIT(CEnvironSoundPage)
+    // NOTE: the ClassWizard will add member initialization here
+    //}}AFX_DATA_INIT
 }
 
-CEnvironSoundPage::~CEnvironSoundPage()
-{
-}
+CEnvironSoundPage::~CEnvironSoundPage() {}
 
-void CEnvironSoundPage::DoDataExchange(CDataExchange* pDX)
-{
-	CPropertyPage::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CEnvironSoundPage)
-		// NOTE: the ClassWizard will add DDX and DDV calls here
-	//}}AFX_DATA_MAP
+void CEnvironSoundPage::DoDataExchange(CDataExchange * pDX) {
+    CPropertyPage::DoDataExchange(pDX);
+    //{{AFX_DATA_MAP(CEnvironSoundPage)
+    // NOTE: the ClassWizard will add DDX and DDV calls here
+    //}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP(CEnvironSoundPage, CPropertyPage)
-	//{{AFX_MSG_MAP(CEnvironSoundPage)
-		// NOTE: the ClassWizard will add message map macros here
-	//}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CEnvironSoundPage)
+// NOTE: the ClassWizard will add message map macros here
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////

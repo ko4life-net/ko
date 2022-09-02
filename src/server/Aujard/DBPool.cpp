@@ -8,7 +8,7 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -16,12 +16,6 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CDBPool::CDBPool()
-{
+CDBPool::CDBPool() {}
 
-}
-
-CDBPool::~CDBPool()
-{
-
-}
+CDBPool::~CDBPool() {}

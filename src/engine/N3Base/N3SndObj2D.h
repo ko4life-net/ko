@@ -4,73 +4,69 @@
 
 #pragma once
 
-
 #include "N3SndDef.h"
 #include <stdio.h>
 #include <string>
 
 class CN3SndMgr;
 
-class CN3SndObj2D
-{
-	friend class CN3SndEng;
+class CN3SndObj2D {
+    friend class CN3SndEng;
 
-protected:
-	LPDIRECTSOUNDBUFFER		m_pDSBuff;
-	bool					m_bIsLoop;
-	int						m_iVol;
-	int						m_iType;				//0:2d, 1:3d, 2:streamming..
-	CN3SndMgr*				m_pRefMgr;
-	
-	float					m_fFadeInTime;
-	float					m_fFadeOutTime;
-	float					m_fStartDelayTime;
-	float					m_fTmpSecPerFrm;
-	int						m_ePlayState;
+  protected:
+    LPDIRECTSOUNDBUFFER m_pDSBuff;
+    bool                m_bIsLoop;
+    int                 m_iVol;
+    int                 m_iType; //0:2d, 1:3d, 2:streamming..
+    CN3SndMgr *         m_pRefMgr;
 
-	int						m_iMaxVolume;
+    float m_fFadeInTime;
+    float m_fFadeOutTime;
+    float m_fStartDelayTime;
+    float m_fTmpSecPerFrm;
+    int   m_ePlayState;
 
-public:
-	int						m_iID;
-	bool					m_bUse;
-	std::string				m_szFileName;	//파일이름...(ID 대용).
-	
+    int m_iMaxVolume;
 
-protected:
-	virtual void RealPlay();
+  public:
+    int         m_iID;
+    bool        m_bUse;
+    std::string m_szFileName; //파일이름...(ID 대용).
 
-		
-public:
-	LPDIRECTSOUNDBUFFER*	GetBuff() { return &(m_pDSBuff); }
+  protected:
+    virtual void RealPlay();
 
-	void	SetRefMgr(CN3SndMgr* pRefMgr) { m_pRefMgr = pRefMgr; } 
+  public:
+    LPDIRECTSOUNDBUFFER * GetBuff() { return &(m_pDSBuff); }
 
-	bool	IsPlaying();
-	
-	void	SetType(int type) { m_iType = type; }
-	int		GetType() { return m_iType; }
+    void SetRefMgr(CN3SndMgr * pRefMgr) { m_pRefMgr = pRefMgr; }
 
-	void	Looping(bool loop) { m_bIsLoop = loop; }
-	bool	IsLoop() { return m_bIsLoop; }
-	
-	int		GetVolume() { return m_iVol; }
-	void	SetVolume(int Vol);	// range : [0,100]
+    bool IsPlaying();
 
-	void	SetMaxVolume(int vol) { m_iMaxVolume = vol; }
-	int		GetMaxVolume() { return m_iMaxVolume; }
+    void SetType(int type) { m_iType = type; }
+    int  GetType() { return m_iType; }
 
-	virtual void Init();
-	virtual void Release();
-	virtual void Play(const D3DVECTOR* pvPos = NULL, float delay = 0.0f, float fFadeInTime = 0.0f, bool bImmediately = true);
-	virtual void Stop(float fFadeOutTime = 0.0f);
-	virtual void Tick();
+    void Looping(bool loop) { m_bIsLoop = loop; }
+    bool IsLoop() { return m_bIsLoop; }
 
-	virtual void SetConeOutSizeVolume(LONG vol) {}
-	virtual void SetMaxDistance(D3DVALUE max) {}
-	virtual void SetMinDistance(D3DVALUE min) {}	
-	virtual void SetPos(const D3DVECTOR* pPos) {}
+    int  GetVolume() { return m_iVol; }
+    void SetVolume(int Vol); // range : [0,100]
 
-	CN3SndObj2D();
-	virtual ~CN3SndObj2D();
+    void SetMaxVolume(int vol) { m_iMaxVolume = vol; }
+    int  GetMaxVolume() { return m_iMaxVolume; }
+
+    virtual void Init();
+    virtual void Release();
+    virtual void Play(const D3DVECTOR * pvPos = NULL, float delay = 0.0f, float fFadeInTime = 0.0f,
+                      bool bImmediately = true);
+    virtual void Stop(float fFadeOutTime = 0.0f);
+    virtual void Tick();
+
+    virtual void SetConeOutSizeVolume(LONG vol) {}
+    virtual void SetMaxDistance(D3DVALUE max) {}
+    virtual void SetMinDistance(D3DVALUE min) {}
+    virtual void SetPos(const D3DVECTOR * pPos) {}
+
+    CN3SndObj2D();
+    virtual ~CN3SndObj2D();
 };
-

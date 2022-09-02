@@ -3,7 +3,6 @@
 
 #pragma once
 
-
 #include "define.h"
 #include "Iocport.h"
 #include "DBProcess.h"
@@ -13,65 +12,66 @@
 /////////////////////////////////////////////////////////////////////////////
 // CLoginServerDlg dialog
 
-typedef CSTLMap <string, _VERSION_INFO>	VersionInfoList;
-typedef std::vector <_SERVER_INFO*>	ServerInfoList;
+typedef CSTLMap<string, _VERSION_INFO> VersionInfoList;
+typedef std::vector<_SERVER_INFO *>    ServerInfoList;
 
-class CLoginServerDlg : public CDialog
-{
-// Construction
-public:
-	BOOL GetInfoFromIni();
-	
-	CLoginServerDlg(CWnd* pParent = NULL);	// standard constructor
+class CLoginServerDlg : public CDialog {
+    // Construction
+  public:
+    BOOL GetInfoFromIni();
 
-	static CIOCPort	m_Iocport;
+    CLoginServerDlg(CWnd * pParent = NULL); // standard constructor
 
-	char	m_strFtpUrl[256];
-	char	m_strFilePath[256];
-	char	m_strDefaultPath[_MAX_PATH];
+    static CIOCPort m_Iocport;
 
-	int		m_nLastVersion;
+    char m_strFtpUrl[256];
+    char m_strFilePath[256];
+    char m_strDefaultPath[_MAX_PATH];
 
-	char	m_ODBCName[32];
-	char	m_ODBCLogin[32];
-	char	m_ODBCPwd[32];
-	char	m_TableName[32];
+    int m_nLastVersion;
 
-	VersionInfoList		m_VersionList;
-	ServerInfoList		m_ServerList;
-	int		m_nServerCount;
+    char m_ODBCName[32];
+    char m_ODBCLogin[32];
+    char m_ODBCPwd[32];
+    char m_TableName[32];
 
-	CDBProcess	m_DBProcess;
+    VersionInfoList m_VersionList;
+    ServerInfoList  m_ServerList;
+    int             m_nServerCount;
 
-// Dialog Data
-	//{{AFX_DATA(CLoginServerDlg)
-	enum { IDD = IDD_LOGINSERVER_DIALOG };
-	CListBox	m_OutputList;
-	//}}AFX_DATA
+    CDBProcess m_DBProcess;
 
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CLoginServerDlg)
-	public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	virtual BOOL DestroyWindow();
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
-	//}}AFX_VIRTUAL
+    // Dialog Data
+    //{{AFX_DATA(CLoginServerDlg)
+    enum {
+        IDD = IDD_LOGINSERVER_DIALOG
+    };
+    CListBox m_OutputList;
+    //}}AFX_DATA
 
-// Implementation
-protected:
-	HICON m_hIcon;
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(CLoginServerDlg)
+  public:
+    virtual BOOL PreTranslateMessage(MSG * pMsg);
+    virtual BOOL DestroyWindow();
 
-	// Generated message map functions
-	//{{AFX_MSG(CLoginServerDlg)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnPaint();
-	afx_msg HCURSOR OnQueryDragIcon();
-	afx_msg void OnVersionSetting();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  protected:
+    virtual void DoDataExchange(CDataExchange * pDX); // DDX/DDV support
+                                                      //}}AFX_VIRTUAL
+
+    // Implementation
+  protected:
+    HICON m_hIcon;
+
+    // Generated message map functions
+    //{{AFX_MSG(CLoginServerDlg)
+    virtual BOOL    OnInitDialog();
+    afx_msg void    OnPaint();
+    afx_msg HCURSOR OnQueryDragIcon();
+    afx_msg void    OnVersionSetting();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-

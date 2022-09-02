@@ -16,33 +16,28 @@ static char THIS_FILE[] = __FILE__;
 
 IMPLEMENT_DYNAMIC(CTotalToolSheet, CPropertySheet)
 
-CTotalToolSheet::CTotalToolSheet(UINT nIDCaption, CWnd* pParentWnd, UINT iSelectPage)
-	:CPropertySheet(nIDCaption, pParentWnd, iSelectPage)
-{
-	AddPage(&m_ESound);
-	AddPage(&m_EventEdit);
-	AddPage(&m_MakeNpcPath);
-	AddPage(&m_UserRegen);
+CTotalToolSheet::CTotalToolSheet(UINT nIDCaption, CWnd * pParentWnd, UINT iSelectPage)
+    : CPropertySheet(nIDCaption, pParentWnd, iSelectPage) {
+    AddPage(&m_ESound);
+    AddPage(&m_EventEdit);
+    AddPage(&m_MakeNpcPath);
+    AddPage(&m_UserRegen);
 }
 
-CTotalToolSheet::CTotalToolSheet(LPCTSTR pszCaption, CWnd* pParentWnd, UINT iSelectPage)
-	:CPropertySheet(pszCaption, pParentWnd, iSelectPage)
-{
-	AddPage(&m_ESound);
-	AddPage(&m_EventEdit);
-	AddPage(&m_MakeNpcPath);
-	AddPage(&m_UserRegen);
+CTotalToolSheet::CTotalToolSheet(LPCTSTR pszCaption, CWnd * pParentWnd, UINT iSelectPage)
+    : CPropertySheet(pszCaption, pParentWnd, iSelectPage) {
+    AddPage(&m_ESound);
+    AddPage(&m_EventEdit);
+    AddPage(&m_MakeNpcPath);
+    AddPage(&m_UserRegen);
 }
 
-CTotalToolSheet::~CTotalToolSheet()
-{
-}
-
+CTotalToolSheet::~CTotalToolSheet() {}
 
 BEGIN_MESSAGE_MAP(CTotalToolSheet, CPropertySheet)
-	//{{AFX_MSG_MAP(CTotalToolSheet)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
-	//}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(CTotalToolSheet)
+// NOTE - the ClassWizard will add and remove mapping macros here.
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////

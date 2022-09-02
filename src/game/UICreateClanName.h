@@ -4,7 +4,6 @@
 
 #pragma once
 
-
 #include "GameDef.h"
 #include "N3Base/N3UIBase.h"
 
@@ -13,23 +12,21 @@
 
 //////////////////////////////////////////////////////////////////////
 
-class CUICreateClanName : public CN3UIBase  
-{
-public:
-	CN3UIString*	m_pText_Title;
-	CN3UIEdit*		m_pEdit_ClanName;
-	std::string		m_szClanName;
+class CUICreateClanName : public CN3UIBase {
+  public:
+    CN3UIString * m_pText_Title;
+    CN3UIEdit *   m_pEdit_ClanName;
+    std::string   m_szClanName;
 
-public:
-	void SetVisible(bool bVisible);
-	void Open(int msg = 0);
-	bool MakeClan();
-	void MsgSend_MakeClan();
+  public:
+    void SetVisible(bool bVisible);
+    void Open(int msg = 0);
+    bool MakeClan();
+    void MsgSend_MakeClan();
 
-	bool Load(HANDLE hFile);
-	bool ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg);
+    bool Load(HANDLE hFile);
+    bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg);
 
-	CUICreateClanName();
-	virtual ~CUICreateClanName();	
+    CUICreateClanName();
+    virtual ~CUICreateClanName();
 };
-

@@ -10,57 +10,51 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CMachineBase::CMachineBase()
-{
-	m_fRotateSpeed = 0.15f;
-	m_fSpeed = 1.0f;
-	m_bSkipCalcPartMtx = NULL;
-	Release();
+CMachineBase::CMachineBase() {
+    m_fRotateSpeed = 0.15f;
+    m_fSpeed = 1.0f;
+    m_bSkipCalcPartMtx = NULL;
+    Release();
 }
 
-CMachineBase::~CMachineBase()
-{
-	Release();
+CMachineBase::~CMachineBase() {
+    Release();
 }
 
-void CMachineBase::Release()
-{
-	CN3Shape::Release();
-	ZeroMemory( m_Wheel, sizeof(m_Wheel) );
-	m_dwMachineState = MS_STOP;
-	m_fDirRadian = 0.0f;
-	m_szID = "";
-	if (m_bSkipCalcPartMtx) {delete [] m_bSkipCalcPartMtx; m_bSkipCalcPartMtx = NULL;}
+void CMachineBase::Release() {
+    CN3Shape::Release();
+    ZeroMemory(m_Wheel, sizeof(m_Wheel));
+    m_dwMachineState = MS_STOP;
+    m_fDirRadian = 0.0f;
+    m_szID = "";
+    if (m_bSkipCalcPartMtx) {
+        delete[] m_bSkipCalcPartMtx;
+        m_bSkipCalcPartMtx = NULL;
+    }
 
-	m_fFireRadian = 0.0f;
-	m_fFireSpeed = 0.0f;
+    m_fFireRadian = 0.0f;
+    m_fFireSpeed = 0.0f;
 }
 
-void CMachineBase::ReCalcMatrix4AnimatedPart()
-{
-	// 바퀴 파트의 매트릭스를 다시 계산해 준다..
-	int iPC = m_Parts.size();
-	for(int i = 0; i < iPC; i++)
-	{
-		for (int j=0; j<NUM_WHEEL; ++j)
-		{
-			if (m_Parts[i] == m_Wheel[j].pPart)
-			{
-				m_Parts[i]->m_Matrix.RotationX(m_Wheel[j].fRadian);
-				m_Parts[i]->m_Matrix.PosSet(m_Parts[i]->m_vPivot);
-				m_Parts[i]->m_Matrix *= m_Matrix;
-				m_bSkipCalcPartMtx[j] = TRUE;
-				break;
-			}
-		}
-	}
-
+void CMachineBase::ReCalcMatrix4AnimatedPart() {
+    // 바퀴 파트의 매트릭스를 다시 계산해 준다..
+    int iPC = m_Parts.size();
+    for (int i = 0; i < iPC; i++) {
+        for (int j = 0; j < NUM_WHEEL; ++j) {
+            if (m_Parts[i] == m_Wheel[j].pPart) {
+                m_Parts[i]->m_Matrix.RotationX(m_Wheel[j].fRadian);
+                m_Parts[i]->m_Matrix.PosSet(m_Parts[i]->m_vPivot);
+                m_Parts[i]->m_Matrix *= m_Matrix;
+                m_bSkipCalcPartMtx[j] = TRUE;
+                break;
+            }
+        }
+    }
 }
 
-void CMachineBase::ReCalcMatrix()
-{
-//	CN3Transform::ReCalcMatrix(); // Transfomr Matrix 를 계산 해주고..
-/*
+void CMachineBase::ReCalcMatrix() {
+    //	CN3Transform::ReCalcMatrix(); // Transfomr Matrix 를 계산 해주고..
+    /*
 	// 균형잡기 위한 계산
 	static __Matrix44 mtx1;	static __Matrix44 mtx2;
 	mtx1.Scale(m_vScale);	mtx2.Rotation(0, m_fDirRadian, 0);
@@ -99,15 +93,16 @@ void CMachineBase::ReCalcMatrix()
 */
 }
 
-void CMachineBase::Render()
-{
-	CN3Shape::Render();
-	if (m_bSkipCalcPartMtx) ZeroMemory(m_bSkipCalcPartMtx, sizeof(m_bSkipCalcPartMtx[0])*PartCount());		// 그린후 part matrix계산 플래그 초기화
+void CMachineBase::Render() {
+    CN3Shape::Render();
+    if (m_bSkipCalcPartMtx) {
+        ZeroMemory(m_bSkipCalcPartMtx,
+                   sizeof(m_bSkipCalcPartMtx[0]) * PartCount()); // 그린후 part matrix계산 플래그 초기화
+    }
 }
 
-void CMachineBase::Tick(float fFrm)
-{
-/*	CN3Shape::Tick(fFrm);
+void CMachineBase::Tick(float fFrm) {
+    /*	CN3Shape::Tick(fFrm);
 	if (m_bDontRender) return;
 
 	// 회전 계산
@@ -176,82 +171,92 @@ void CMachineBase::Tick(float fFrm)
 */
 }
 
-CN3SPart* CMachineBase::GetPartByPMeshName(const std::string& szName)
-{
-	if(szName.empty()) return NULL;
+CN3SPart * CMachineBase::GetPartByPMeshName(const std::string & szName) {
+    if (szName.empty()) {
+        return NULL;
+    }
 
-	int iPC = m_Parts.size();
-	for(int i = 0; i < iPC; i++)
-	{
-		CN3PMesh* pPMesh = m_Parts[i]->Mesh();
-		if (pPMesh == NULL) continue;
-		if (pPMesh->m_szName == szName) return m_Parts[i];
-	}
-	
-	return NULL;
+    int iPC = m_Parts.size();
+    for (int i = 0; i < iPC; i++) {
+        CN3PMesh * pPMesh = m_Parts[i]->Mesh();
+        if (pPMesh == NULL) {
+            continue;
+        }
+        if (pPMesh->m_szName == szName) {
+            return m_Parts[i];
+        }
+    }
+
+    return NULL;
 }
 
-void CMachineBase::LoadMachine(FILE* stream)
-{
-	if (stream == NULL) return;
+void CMachineBase::LoadMachine(FILE * stream) {
+    if (stream == NULL) {
+        return;
+    }
 
-	Release();
-	char szSrcName[_MAX_PATH];	// shape source파일 이름
-	char szWheel[NUM_WHEEL][_MAX_PATH];	// 바퀴 pmesh이름
+    Release();
+    char szSrcName[_MAX_PATH];          // shape source파일 이름
+    char szWheel[NUM_WHEEL][_MAX_PATH]; // 바퀴 pmesh이름
 
-	int result;
-	result = fscanf(stream, "Speed = %f\n", &m_fSpeed);	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-	result = fscanf(stream, "RotateSpeed = %f\n", &m_fRotateSpeed);	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-	result = fscanf(stream, "Shape_Name = %s\n", szSrcName);					__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-	result = fscanf(stream, "Wheel_FL = %s\n", szWheel[WHEEL_FL]);			__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-	result = fscanf(stream, "Wheel_FR = %s\n", szWheel[WHEEL_FR]);			__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-	result = fscanf(stream, "Wheel_BL = %s\n", szWheel[WHEEL_BL]);			__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-	result = fscanf(stream, "Wheel_BR = %s\n", szWheel[WHEEL_BR]);			__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-//	result = fscanf(stream, "WheelRadius_FL = %f\n", &(m_Wheel[WHEEL_FL].fRadius));	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-//	result = fscanf(stream, "WheelRadius_FR = %f\n", &(m_Wheel[WHEEL_FR].fRadius));	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-//	result = fscanf(stream, "WheelRadius_BL = %f\n", &(m_Wheel[WHEEL_BL].fRadius));	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-//	result = fscanf(stream, "WheelRadius_BR = %f\n", &(m_Wheel[WHEEL_BR].fRadius));	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    int result;
+    result = fscanf(stream, "Speed = %f\n", &m_fSpeed);
+    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    result = fscanf(stream, "RotateSpeed = %f\n", &m_fRotateSpeed);
+    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    result = fscanf(stream, "Shape_Name = %s\n", szSrcName);
+    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    result = fscanf(stream, "Wheel_FL = %s\n", szWheel[WHEEL_FL]);
+    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    result = fscanf(stream, "Wheel_FR = %s\n", szWheel[WHEEL_FR]);
+    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    result = fscanf(stream, "Wheel_BL = %s\n", szWheel[WHEEL_BL]);
+    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    result = fscanf(stream, "Wheel_BR = %s\n", szWheel[WHEEL_BR]);
+    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    //	result = fscanf(stream, "WheelRadius_FL = %f\n", &(m_Wheel[WHEEL_FL].fRadius));	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    //	result = fscanf(stream, "WheelRadius_FR = %f\n", &(m_Wheel[WHEEL_FR].fRadius));	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    //	result = fscanf(stream, "WheelRadius_BL = %f\n", &(m_Wheel[WHEEL_BL].fRadius));	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    //	result = fscanf(stream, "WheelRadius_BR = %f\n", &(m_Wheel[WHEEL_BR].fRadius));	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
 
-	// shape load하기
-	this->Load(szSrcName);
+    // shape load하기
+    this->Load(szSrcName);
 
-	__ASSERT(m_bSkipCalcPartMtx == NULL, "Machine에서 메모리 릭 가능성");
-	int iPartCount = PartCount();
-	if (iPartCount>0) m_bSkipCalcPartMtx = new BOOL[iPartCount];
-	ZeroMemory(m_bSkipCalcPartMtx, sizeof(m_bSkipCalcPartMtx[0])*iPartCount);
+    __ASSERT(m_bSkipCalcPartMtx == NULL, "Machine에서 메모리 릭 가능성");
+    int iPartCount = PartCount();
+    if (iPartCount > 0) {
+        m_bSkipCalcPartMtx = new BOOL[iPartCount];
+    }
+    ZeroMemory(m_bSkipCalcPartMtx, sizeof(m_bSkipCalcPartMtx[0]) * iPartCount);
 
-	// 각각의 바퀴 CN3SPart 포인터 찾기
-	for (int i=0; i<NUM_WHEEL; ++i)
-	{
-		m_Wheel[i].pPart = GetPartByPMeshName(szWheel[i]);
-		__ASSERT(m_Wheel[i].pPart, "Machine의 바퀴 파트가 NULL입니다.");
-		// 바퀴 반지름 구하기
-		CN3PMesh* pPMesh = m_Wheel[i].pPart->Mesh();
-		__ASSERT(pPMesh, "machine 바퀴의 PMesh가 없어요.");
-		m_Wheel[i].fRadius = (pPMesh->Max().y - pPMesh->Min().y)/2.0f;
-	}
+    // 각각의 바퀴 CN3SPart 포인터 찾기
+    for (int i = 0; i < NUM_WHEEL; ++i) {
+        m_Wheel[i].pPart = GetPartByPMeshName(szWheel[i]);
+        __ASSERT(m_Wheel[i].pPart, "Machine의 바퀴 파트가 NULL입니다.");
+        // 바퀴 반지름 구하기
+        CN3PMesh * pPMesh = m_Wheel[i].pPart->Mesh();
+        __ASSERT(pPMesh, "machine 바퀴의 PMesh가 없어요.");
+        m_Wheel[i].fRadius = (pPMesh->Max().y - pPMesh->Min().y) / 2.0f;
+    }
 
-	// machine이 1.0f(rad)회전할때 바퀴가 돌아가는 각도(rad) 정도 계산하기
-	for (int i=0; i<NUM_WHEEL; ++i)
-	{
-		if (i == WHEEL_FL || i == WHEEL_BL)
-			m_Wheel[i].fRotateRatio = m_Wheel[i].pPart->m_vPivot.Magnitude() / m_Wheel[i].fRadius;
-		else
-			m_Wheel[i].fRotateRatio = -m_Wheel[i].pPart->m_vPivot.Magnitude() / m_Wheel[i].fRadius;
-	}
+    // machine이 1.0f(rad)회전할때 바퀴가 돌아가는 각도(rad) 정도 계산하기
+    for (int i = 0; i < NUM_WHEEL; ++i) {
+        if (i == WHEEL_FL || i == WHEEL_BL) {
+            m_Wheel[i].fRotateRatio = m_Wheel[i].pPart->m_vPivot.Magnitude() / m_Wheel[i].fRadius;
+        } else {
+            m_Wheel[i].fRotateRatio = -m_Wheel[i].pPart->m_vPivot.Magnitude() / m_Wheel[i].fRadius;
+        }
+    }
 
-	// 균형을 잡기위한 점 계산하기
-	m_vBalancePoint[0] =	m_Wheel[WHEEL_FL].pPart->m_vPivot +				// 전
-							0.5*(m_Wheel[WHEEL_FR].pPart->m_vPivot - m_Wheel[WHEEL_FL].pPart->m_vPivot);
-	m_vBalancePoint[1] =	m_Wheel[WHEEL_BL].pPart->m_vPivot +				// 후
-							0.5*(m_Wheel[WHEEL_BR].pPart->m_vPivot - m_Wheel[WHEEL_BL].pPart->m_vPivot);
-	m_vBalancePoint[2] =	m_Wheel[WHEEL_FL].pPart->m_vPivot +				// 좌
-							0.5*(m_Wheel[WHEEL_BL].pPart->m_vPivot - m_Wheel[WHEEL_FL].pPart->m_vPivot);
-	m_vBalancePoint[3] =	m_Wheel[WHEEL_FR].pPart->m_vPivot +				// 우
-							0.5*(m_Wheel[WHEEL_BR].pPart->m_vPivot - m_Wheel[WHEEL_FR].pPart->m_vPivot);
+    // 균형을 잡기위한 점 계산하기
+    m_vBalancePoint[0] = m_Wheel[WHEEL_FL].pPart->m_vPivot + // 전
+                         0.5 * (m_Wheel[WHEEL_FR].pPart->m_vPivot - m_Wheel[WHEEL_FL].pPart->m_vPivot);
+    m_vBalancePoint[1] = m_Wheel[WHEEL_BL].pPart->m_vPivot + // 후
+                         0.5 * (m_Wheel[WHEEL_BR].pPart->m_vPivot - m_Wheel[WHEEL_BL].pPart->m_vPivot);
+    m_vBalancePoint[2] = m_Wheel[WHEEL_FL].pPart->m_vPivot + // 좌
+                         0.5 * (m_Wheel[WHEEL_BL].pPart->m_vPivot - m_Wheel[WHEEL_FL].pPart->m_vPivot);
+    m_vBalancePoint[3] = m_Wheel[WHEEL_FR].pPart->m_vPivot + // 우
+                         0.5 * (m_Wheel[WHEEL_BR].pPart->m_vPivot - m_Wheel[WHEEL_FR].pPart->m_vPivot);
 }
 
-void CMachineBase::Fire()
-{
-}
-
+void CMachineBase::Fire() {}

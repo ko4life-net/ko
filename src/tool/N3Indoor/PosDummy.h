@@ -4,22 +4,18 @@
 
 #pragma once
 
-
 #include "TransDummy.h"
 
-class CPosDummy : public CTransDummy  
-{
-public:
-	CPosDummy();
-	virtual ~CPosDummy();
+class CPosDummy : public CTransDummy {
+  public:
+    CPosDummy();
+    virtual ~CPosDummy();
 
-public:
-protected:
+  public:
+  protected:
+  public:
+    virtual void SetSelObj(SelectElement pObj, bool bOne = true);
+    virtual BOOL MouseMsgFilter(LPMSG pMsg);
 
-public:
-	virtual void SetSelObj(SelectElement pObj, bool bOne = true);
-	virtual BOOL MouseMsgFilter(LPMSG pMsg);
-protected:
-
+  protected:
 };
-
