@@ -17,9 +17,9 @@ const int SKILL_DEF_SPECIAL1 = 2;
 const int SKILL_DEF_SPECIAL2 = 3;
 const int SKILL_DEF_SPECIAL3 = 4;
 
-// MAX_SKILL_KIND_OF	:						 Base Skill 1개, 전문 스킬 4개..
-// MAX_SKILL_IN_PAGE	:						 한 페이지 내의 아이콘 갯수..
-// MAX_SKILL_PAGE_NUM	:						 스킬 한개가 가지는 최대 페이지수..
+// MAX_SKILL_KIND_OF    :                         Base Skill 1개, 전문 스킬 4개..
+// MAX_SKILL_IN_PAGE    :                         한 페이지 내의 아이콘 갯수..
+// MAX_SKILL_PAGE_NUM    :                         스킬 한개가 가지는 최대 페이지수..
 
 //////////////////////////////////////////////////////////////////////
 

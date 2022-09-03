@@ -134,7 +134,7 @@ DWORD CUIManager::MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & pt
         m_dwMouseFlagsCur |= dwChildRet;
     }
 
-    //	if(UI_MOUSE_LBCLICK & dwFlags) m_pUIFocused = NULL; // 포커스 받은 UI 기록.. 아무것도 안하면.. 널이다..
+    //    if(UI_MOUSE_LBCLICK & dwFlags) m_pUIFocused = NULL; // 포커스 받은 UI 기록.. 아무것도 안하면.. 널이다..
 
     return m_dwMouseFlagsCur;
 }
@@ -402,15 +402,15 @@ void CUIManager::SetVisibleFocusedUI(CN3UIBase * pUI) {
                 pUIHide->SetVisibleWithNoSound(false, true);
             }
             /*
-			if(pUIHide->IsVisible() && pUI != pUIHide)
-			{
-				if(dwUIHideStyle & UISTYLE_SHOW_ME_ALONE)
-					pUIHide->SetVisibleWithNoSound(false, true);
-				else if( (dwUIStyle & UISTYLE_POS_LEFT) && (dwUIHideStyle & UISTYLE_POS_LEFT) )
-					pUIHide->SetVisibleWithNoSound(false, true);
-				else if( (dwUIStyle & UISTYLE_POS_RIGHT) && (dwUIHideStyle & UISTYLE_POS_RIGHT) )
-					pUIHide->SetVisibleWithNoSound(false, true);
-			}
+            if(pUIHide->IsVisible() && pUI != pUIHide)
+            {
+                if(dwUIHideStyle & UISTYLE_SHOW_ME_ALONE)
+                    pUIHide->SetVisibleWithNoSound(false, true);
+                else if( (dwUIStyle & UISTYLE_POS_LEFT) && (dwUIHideStyle & UISTYLE_POS_LEFT) )
+                    pUIHide->SetVisibleWithNoSound(false, true);
+                else if( (dwUIStyle & UISTYLE_POS_RIGHT) && (dwUIHideStyle & UISTYLE_POS_RIGHT) )
+                    pUIHide->SetVisibleWithNoSound(false, true);
+            }
 */
             it++;
         }

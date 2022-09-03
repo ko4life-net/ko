@@ -21,7 +21,7 @@ CGrassBoard::~CGrassBoard() {
 }
 
 void CGrassBoard::Release() {
-    //	memset(m_vRects, 0, sizeof(m_vRects));
+    //    memset(m_vRects, 0, sizeof(m_vRects));
 
     m_nTexIndex = -1;
     m_ucTexIndex = 0;
@@ -57,7 +57,7 @@ void CGrassBoard::Tick(CN3Terrain * pTerrain) {
     // 회전 시킨다..
     static __Vector3 vBakCam;
     if (vBakCam == s_CameraData.vEye) {
-        return; //	카메라 움직이지 않으면 계산 필요없음
+        return; //    카메라 움직이지 않으면 계산 필요없음
     }
     vBakCam = s_CameraData.vEye;
 
@@ -67,14 +67,14 @@ void CGrassBoard::Tick(CN3Terrain * pTerrain) {
     for (int i = 0; i < m_ucTexNum; ++i) {
         pGrass = &m_sGrassInfo[i];
 
-        if (pGrass->vPos.y == 0.0f) { //	높이값
+        if (pGrass->vPos.y == 0.0f) { //    높이값
             pGrass->vPos.y = pTerrain->GetHeight(pGrass->vPos.x, pGrass->vPos.z);
         }
 
-        //	카메라와의 방향백터
+        //    카메라와의 방향백터
         vDir = s_CameraData.vEye - pGrass->vPos;
 
-        //	카메라 방향으로 방향을 튼다
+        //    카메라 방향으로 방향을 튼다
         if (vDir.x > 0.0f) {
             pGrass->mtxWorld.RotationY(-atanf(vDir.z / vDir.x) - (D3DX_PI * 0.5f));
         } else {
@@ -82,7 +82,7 @@ void CGrassBoard::Tick(CN3Terrain * pTerrain) {
         }
         pGrass->mtxWorld.PosSet(m_sGrassInfo[i].vPos);
 
-        //	카메라와의 거리에 따라 알파먹임
+        //    카메라와의 거리에 따라 알파먹임
         dwAlpha = SetBrightLevel(vDir.Magnitude());
         if (dwAlpha != 0x00000000) {
             pGrass->dwAlpColor = dwAlpha;
@@ -92,7 +92,7 @@ void CGrassBoard::Tick(CN3Terrain * pTerrain) {
 
 void CGrassBoard::Render(CN3Texture ** ppTex) {
     if (m_bCamOut == TRUE) {
-        return; //	카메라 범위 벋어나 찍지 않음
+        return; //    카메라 범위 벋어나 찍지 않음
     }
 
     static DWORD dwColorop, dwColorA1, dwColorA2;
@@ -149,17 +149,17 @@ bool CGrassBoard::Save(HANDLE hFile) {
 void CGrassBoard::LoadFromFile(int iTexIndex, unsigned char ucTexOrgIndex, __Vector3 vPos) {
     Release();
 
-    //	m_nTexIndex = iTexIndex;
-    //	m_usTexIndex = ucTexOrgIndex;
-    //	m_dwBoardType = BOARD_Y;
-    //	Init(vPos, m_dwBoardType, 0.7f, 0.7f);
-    //	Init(vPos, m_dwBoardType, 1.0f, 1.0f);
+    //    m_nTexIndex = iTexIndex;
+    //    m_usTexIndex = ucTexOrgIndex;
+    //    m_dwBoardType = BOARD_Y;
+    //    Init(vPos, m_dwBoardType, 0.7f, 0.7f);
+    //    Init(vPos, m_dwBoardType, 1.0f, 1.0f);
 }
 
 DWORD CGrassBoard::SetBrightLevel(float Level) {
-    static float fLevelbak; //	카메라와의 거리를 백업하여 같을시 알파계산을 넘김-예전 데이타 간직
+    static float fLevelbak; //    카메라와의 거리를 백업하여 같을시 알파계산을 넘김-예전 데이타 간직
     if (fLevelbak == Level) {
-        return 0x00000000; //	카메라와의 거리가 같다면 계산할 필요가 없다
+        return 0x00000000; //    카메라와의 거리가 같다면 계산할 필요가 없다
     }
     fLevelbak = Level;
 
@@ -167,26 +167,26 @@ DWORD CGrassBoard::SetBrightLevel(float Level) {
         return 0x00ffffff;
     }
     if (Level > m_fBrightmin + m_fBrightmax) {
-        return 0x00ffffff; //	일정거리 이상은 보이지 않음
+        return 0x00ffffff; //    일정거리 이상은 보이지 않음
     }
 
     DWORD Color = 0x00ffffff;
-    if (Level > m_fBrightmin) //	일정거리내만큼 보임
+    if (Level > m_fBrightmin) //    일정거리내만큼 보임
     {
         float brightper = (Level - m_fBrightmin) / m_fBrightmax;
         DWORD alphaColor = 255 - 255 * brightper;
         Color = (alphaColor << 24) | 0x00ffffff;
     } else {
-        Color = 0xffffffff; //	일정거리안은 완전히 보여줌
+        Color = 0xffffffff; //    일정거리안은 완전히 보여줌
     }
 
     return Color;
 }
 
 void CGrassBoard::SetInfo(__Vector3 vBoardPosion, unsigned short usData) {
-    m_vCenterPo.Set(vBoardPosion.x + 2.0f, vBoardPosion.y, vBoardPosion.z + 2.0f); //	지도에서의 중간위치기억
-    m_ucTexIndex = (unsigned char)((usData & 0xff00) >> 8);                        //	풀의 인덱스
-    m_ucTexNum = (unsigned char)(usData & 0x00ff);                                 //	풀의 갯수
+    m_vCenterPo.Set(vBoardPosion.x + 2.0f, vBoardPosion.y, vBoardPosion.z + 2.0f); //    지도에서의 중간위치기억
+    m_ucTexIndex = (unsigned char)((usData & 0xff00) >> 8);                        //    풀의 인덱스
+    m_ucTexNum = (unsigned char)(usData & 0x00ff);                                 //    풀의 갯수
 
     if (m_ucTexNum > 20) {
         m_ucTexNum = 20;
@@ -212,7 +212,7 @@ void CGrassBoard::SetInfo(__Vector3 vBoardPosion, unsigned short usData) {
         }
 
         mRand = rand();
-        pGrass->vPos.z = (mRand % 40) / 10.000 + vBoardPosion.z; //	랜더값를 좀더 벌리기 위해
+        pGrass->vPos.z = (mRand % 40) / 10.000 + vBoardPosion.z; //    랜더값를 좀더 벌리기 위해
         pGrass->vPos.y = 0.0f;
     }
 }

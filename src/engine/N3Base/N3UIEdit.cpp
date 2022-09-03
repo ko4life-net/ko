@@ -71,8 +71,8 @@ void CN3UIEdit::CN3Caret::Render(LPDIRECT3DDEVICE9 lpD3DDev) {
 
     __ASSERT(lpD3DDev, "DIRECT3DDEVICE9 is null");
     lpD3DDev->SetTexture(0, NULL);
-    //	lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP,    D3DTOP_SELECTARG1 );
-    //	lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1,  D3DTA_DIFFUSE );
+    //    lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP,    D3DTOP_SELECTARG1 );
+    //    lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1,  D3DTA_DIFFUSE );
     lpD3DDev->SetFVF(FVF_TRANSFORMEDCOLOR);
     lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 1, m_pVB, sizeof(m_pVB[0]));
 }
@@ -167,217 +167,217 @@ LRESULT APIENTRY CN3UIEdit::EditWndProc(HWND hWnd, WORD Message, WPARAM wParam, 
     } // switch
 
     /*
-	switch(Message)
-	{
-	case WM_IME_CHAR:
-		{
-			int iiii = 0;
-		}
-		break;
-	case WM_IME_COMPOSITION:
-		{
-			int iiii = 0;
-		}
-		break;
-	case WM_IME_COMPOSITIONFULL:
-		{
-			int iiii = 0;
-		}
-		break;
-	case WM_IME_CONTROL:
-		{
-			int iiii = 0;
-			DWORD dwCmd = wParam;
-			switch(dwCmd)
-			{
-			case IMC_GETCANDIDATEPOS: 
-				iiii = 0;
-				break;
-			case IMC_OPENSTATUSWINDOW:
-				iiii = 0;
-				break;
-			case IMC_GETCOMPOSITIONFONT:
-				iiii = 0;
-				break;
-			case IMC_SETCANDIDATEPOS :
-				iiii = 0;
-				break;
-			case IMC_GETCOMPOSITIONWINDOW:
-				iiii = 0;
-				break;
-			case IMC_SETCOMPOSITIONFONT :
-				iiii = 0;
-				break;
-//			case IMC_GETCONVERSIONMODE:
-//				iiii = 0;
-//				break;
-			case IMC_SETCOMPOSITIONWINDOW :
-				iiii = 0;
-				break;
-//			case IMC_GETOPENSTATUS:
-//				iiii = 0;
-//				break;
-//			case IMC_SETCONVERSIONMODE :
-//				iiii = 0;
-//				break;
-//			case IMC_GETSENTENCEMODE:
-//				iiii = 0;
-//				break;
-//			case IMC_SETOPENSTATUS :
-//				iiii = 0;
-//				break;
-			case IMC_GETSTATUSWINDOWPOS:
-				iiii = 0;
-				break;
-//			case IMC_SETSENTENCEMODE :
-//				iiii = 0;
-//				break;
-			case IMC_CLOSESTATUSWINDOW:
-				iiii = 0;
-				break;
-			case IMC_SETSTATUSWINDOWPOS :
-				iiii = 0;
-				break;
-			}
-		}
-		break;
-	case WM_IME_ENDCOMPOSITION:
-		{
-			int iiii = 0;
-		}
-		break;
-	case WM_IME_KEYDOWN:
-		{
-			int iiii = 0;
-		}
-		break;
-	case WM_IME_KEYUP:
-		{
-			int iiii = 0;
-		}
-		break;
-	case WM_IME_NOTIFY:
-		{
-			int iiii = 0;
+    switch(Message)
+    {
+    case WM_IME_CHAR:
+        {
+            int iiii = 0;
+        }
+        break;
+    case WM_IME_COMPOSITION:
+        {
+            int iiii = 0;
+        }
+        break;
+    case WM_IME_COMPOSITIONFULL:
+        {
+            int iiii = 0;
+        }
+        break;
+    case WM_IME_CONTROL:
+        {
+            int iiii = 0;
+            DWORD dwCmd = wParam;
+            switch(dwCmd)
+            {
+            case IMC_GETCANDIDATEPOS: 
+                iiii = 0;
+                break;
+            case IMC_OPENSTATUSWINDOW:
+                iiii = 0;
+                break;
+            case IMC_GETCOMPOSITIONFONT:
+                iiii = 0;
+                break;
+            case IMC_SETCANDIDATEPOS :
+                iiii = 0;
+                break;
+            case IMC_GETCOMPOSITIONWINDOW:
+                iiii = 0;
+                break;
+            case IMC_SETCOMPOSITIONFONT :
+                iiii = 0;
+                break;
+//            case IMC_GETCONVERSIONMODE:
+//                iiii = 0;
+//                break;
+            case IMC_SETCOMPOSITIONWINDOW :
+                iiii = 0;
+                break;
+//            case IMC_GETOPENSTATUS:
+//                iiii = 0;
+//                break;
+//            case IMC_SETCONVERSIONMODE :
+//                iiii = 0;
+//                break;
+//            case IMC_GETSENTENCEMODE:
+//                iiii = 0;
+//                break;
+//            case IMC_SETOPENSTATUS :
+//                iiii = 0;
+//                break;
+            case IMC_GETSTATUSWINDOWPOS:
+                iiii = 0;
+                break;
+//            case IMC_SETSENTENCEMODE :
+//                iiii = 0;
+//                break;
+            case IMC_CLOSESTATUSWINDOW:
+                iiii = 0;
+                break;
+            case IMC_SETSTATUSWINDOWPOS :
+                iiii = 0;
+                break;
+            }
+        }
+        break;
+    case WM_IME_ENDCOMPOSITION:
+        {
+            int iiii = 0;
+        }
+        break;
+    case WM_IME_KEYDOWN:
+        {
+            int iiii = 0;
+        }
+        break;
+    case WM_IME_KEYUP:
+        {
+            int iiii = 0;
+        }
+        break;
+    case WM_IME_NOTIFY:
+        {
+            int iiii = 0;
 
-			switch(wParam)
-			{
-			case IMN_CHANGECANDIDATE:
-				{
-					int iiii = 0;
-					break;
-				}
-			case IMN_SETCANDIDATEPOS:
-				{
-					int iiii = 0;
-					break;
-				}
-			case IMN_CLOSECANDIDATE:
-				{
-					int iiii = 0;
-					break;
-				}
-			case IMN_SETCOMPOSITIONFONT:
-				{
-					int iiii = 0;
-					break;
-				}
-			case IMN_CLOSESTATUSWINDOW:
-				{
-					int iiii = 0;
-					break;
-				}
-			case IMN_SETCOMPOSITIONWINDOW:
-				{
-					int iiii = 0;
-					
-					COMPOSITIONFORM CompForm;
-					CompForm.dwStyle = CFS_RECT;
-					int msg2 = (UINT) WM_IME_CONTROL;
-					WPARAM wParam2 = (WPARAM) IMC_GETCOMPOSITIONWINDOW;
-					WPARAM lParam2 = (LPARAM) &CompForm;
-					SendMessage(hWnd, msg2, wParam2, lParam2);
+            switch(wParam)
+            {
+            case IMN_CHANGECANDIDATE:
+                {
+                    int iiii = 0;
+                    break;
+                }
+            case IMN_SETCANDIDATEPOS:
+                {
+                    int iiii = 0;
+                    break;
+                }
+            case IMN_CLOSECANDIDATE:
+                {
+                    int iiii = 0;
+                    break;
+                }
+            case IMN_SETCOMPOSITIONFONT:
+                {
+                    int iiii = 0;
+                    break;
+                }
+            case IMN_CLOSESTATUSWINDOW:
+                {
+                    int iiii = 0;
+                    break;
+                }
+            case IMN_SETCOMPOSITIONWINDOW:
+                {
+                    int iiii = 0;
+                    
+                    COMPOSITIONFORM CompForm;
+                    CompForm.dwStyle = CFS_RECT;
+                    int msg2 = (UINT) WM_IME_CONTROL;
+                    WPARAM wParam2 = (WPARAM) IMC_GETCOMPOSITIONWINDOW;
+                    WPARAM lParam2 = (LPARAM) &CompForm;
+                    SendMessage(hWnd, msg2, wParam2, lParam2);
 
-					break;
-				}
-			case IMN_GUIDELINE:
-				{
-					int iiii = 0;
-					break;
-				}
-			case IMN_SETCONVERSIONMODE:
-				{
-					int iiii = 0;
-					break;
-				}
-			case IMN_OPENCANDIDATE:
-				{
-					int iiii = 0;
-					break;
-				}
-			case IMN_SETOPENSTATUS:
-				{
-					int iiii = 0;
-					break;
-				}
-			case IMN_OPENSTATUSWINDOW:
-				{
-					int iiii = 0;
-					break;
-				}
-			case IMN_SETSENTENCEMODE:
-				{
-					int iiii = 0;
-					break;
-				}
-			case IMN_PRIVATE:
-				{
-					int iiii = 0;
+                    break;
+                }
+            case IMN_GUIDELINE:
+                {
+                    int iiii = 0;
+                    break;
+                }
+            case IMN_SETCONVERSIONMODE:
+                {
+                    int iiii = 0;
+                    break;
+                }
+            case IMN_OPENCANDIDATE:
+                {
+                    int iiii = 0;
+                    break;
+                }
+            case IMN_SETOPENSTATUS:
+                {
+                    int iiii = 0;
+                    break;
+                }
+            case IMN_OPENSTATUSWINDOW:
+                {
+                    int iiii = 0;
+                    break;
+                }
+            case IMN_SETSENTENCEMODE:
+                {
+                    int iiii = 0;
+                    break;
+                }
+            case IMN_PRIVATE:
+                {
+                    int iiii = 0;
 
-					CANDIDATEFORM cf;
-					cf.dwStyle = CFS_RECT;
-					iiii = ::SendMessage(hWnd, WM_IME_CONTROL, IMC_GETCANDIDATEPOS, (LPARAM)(&cf));
+                    CANDIDATEFORM cf;
+                    cf.dwStyle = CFS_RECT;
+                    iiii = ::SendMessage(hWnd, WM_IME_CONTROL, IMC_GETCANDIDATEPOS, (LPARAM)(&cf));
 
-					LOGFONT lf;
-					iiii = ::SendMessage(hWnd, WM_IME_CONTROL, IMC_GETCOMPOSITIONFONT, (LPARAM)(&lf));
+                    LOGFONT lf;
+                    iiii = ::SendMessage(hWnd, WM_IME_CONTROL, IMC_GETCOMPOSITIONFONT, (LPARAM)(&lf));
 
-					iiii = 0;
+                    iiii = 0;
 
 
 
-					break;
-				}
-			case IMN_SETSTATUSWINDOWPOS:
-				{
-					int iiii = 0;
-					break;
-				}
-			}
+                    break;
+                }
+            case IMN_SETSTATUSWINDOWPOS:
+                {
+                    int iiii = 0;
+                    break;
+                }
+            }
 
-//			CANDIDATEFORM form;
-//			form.dwIndex = 0;
-//			form.dwStyle = CFS_EXCLUDE;
-//			this->SendMessage(0x0288, 0x0002, (LPARAM)(&form));
-//			iiii = -1;
-//			this->SendMessage(WM_IME_REQUEST, IMR_CANDIDATEWINDOW, &form);
-		}
-		break;
-	case WM_IME_SELECT:
-		{
-			int iiii = 0;
-		}
-		break;
-	case WM_IME_SETCONTEXT:
-		{
-			int iiii = 0;
-		}
-		break;
-	case WM_IME_STARTCOMPOSITION:
-		{
-			int iiii = 0;
-		}
-		break;
-	}
+//            CANDIDATEFORM form;
+//            form.dwIndex = 0;
+//            form.dwStyle = CFS_EXCLUDE;
+//            this->SendMessage(0x0288, 0x0002, (LPARAM)(&form));
+//            iiii = -1;
+//            this->SendMessage(WM_IME_REQUEST, IMR_CANDIDATEWINDOW, &form);
+        }
+        break;
+    case WM_IME_SELECT:
+        {
+            int iiii = 0;
+        }
+        break;
+    case WM_IME_SETCONTEXT:
+        {
+            int iiii = 0;
+        }
+        break;
+    case WM_IME_STARTCOMPOSITION:
+        {
+            int iiii = 0;
+        }
+        break;
+    }
 */
 
     return (CallWindowProc(s_lpfnEditProc, hWnd, Message, wParam, lParam));
@@ -442,7 +442,7 @@ void CN3UIEdit::KillFocus() {
 }
 
 bool CN3UIEdit::SetFocus() {
-    //	if (HaveFocus()) return true;		// 이미 내가 포커스를 가지고 있으면 return true;
+    //    if (HaveFocus()) return true;        // 이미 내가 포커스를 가지고 있으면 return true;
     if (NULL != s_pFocusedEdit) {
         s_pFocusedEdit->KillFocus(); // 다른 edit 가 가지고 있으면 killfocus호출
     }
@@ -637,13 +637,13 @@ BOOL CN3UIEdit::MoveOffset(int iOffsetX,
         return FALSE;
     }
     /*
-	RECT rcEdit = GetRegion();
-	int iX		= rcEdit.left;
-	int iY		= rcEdit.top;
-	int iH		= rcEdit.bottom - rcEdit.top;
-	int iW		= rcEdit.right - rcEdit.left;
+    RECT rcEdit = GetRegion();
+    int iX        = rcEdit.left;
+    int iY        = rcEdit.top;
+    int iH        = rcEdit.bottom - rcEdit.top;
+    int iW        = rcEdit.right - rcEdit.left;
 
-	::MoveWindow(s_hWndEdit, iX, iY, iW, iH, false);
+    ::MoveWindow(s_hWndEdit, iX, iY, iW, iH, false);
 */
     if (HaveFocus()) {
         s_Caret.MoveOffset(iOffsetX, iOffsetY);
@@ -660,7 +660,7 @@ bool CN3UIEdit::Load(HANDLE hFile) {
     int   iSndFNLen = 0;
     DWORD dwNum;
 
-    ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //	사운드 파일 문자열 길이
+    ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //    사운드 파일 문자열 길이
     if (iSndFNLen > 0) {
         std::vector<char> buffer(iSndFNLen, 0);
         ReadFile(hFile, &buffer[0], iSndFNLen, &dwNum, NULL);
@@ -689,7 +689,7 @@ bool CN3UIEdit::Save(HANDLE hFile) {
     if (m_pSnd_Typing) {
         iSndFNLen = m_pSnd_Typing->m_szFileName.size();
     }
-    WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //	사운드 파일 문자열 길이
+    WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //    사운드 파일 문자열 길이
     if (iSndFNLen > 0) {
         WriteFile(hFile, m_pSnd_Typing->m_szFileName.c_str(), iSndFNLen, &dwNum, NULL);
     }
@@ -761,57 +761,57 @@ void CN3UIEdit::SetImeStatus(POINT ptPos, bool bOpen) {
 
 /*
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-//	IME 관련해서
+//    IME 관련해서
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 #include<map>
-typedef typename std::map<HWND, CN3UIEdit*>::iterator		it_Edit;
-typedef typename std::map<HWND, CN3UIEdit*>::value_type		val_Edit;
+typedef typename std::map<HWND, CN3UIEdit*>::iterator        it_Edit;
+typedef typename std::map<HWND, CN3UIEdit*>::value_type        val_Edit;
 static std::map<HWND, CN3UIEdit*> s_Edits;
 
 bool CN3UIEdit::AddEdit(CN3UIEdit* pEdit)
 {
-	if(pEdit == NULL)
-	{
-		__ASSERT(0, "NULL POINTER");
-		return false;
-	}
+    if(pEdit == NULL)
+    {
+        __ASSERT(0, "NULL POINTER");
+        return false;
+    }
 
-	it_Edit it = s_Edits.find(pEdit->m_hWndEdit);
-	if(it == s_Edits.end()) // 중복된게 없으면..
-	{
-		s_Edits.insert(val_Edit(pEdit->m_hWndEdit, pEdit));
-		return true;
-	}
-	else // 중복되었으면..
-	{
-		__ASSERT(0, "Edit Handle Duplicate");
-		return false;
-	}
+    it_Edit it = s_Edits.find(pEdit->m_hWndEdit);
+    if(it == s_Edits.end()) // 중복된게 없으면..
+    {
+        s_Edits.insert(val_Edit(pEdit->m_hWndEdit, pEdit));
+        return true;
+    }
+    else // 중복되었으면..
+    {
+        __ASSERT(0, "Edit Handle Duplicate");
+        return false;
+    }
 }
 
 bool CN3UIEdit::DeleteEdit(CN3UIEdit* pEdit)
 {
-	if(pEdit == NULL)
-	{
-		__ASSERT(0, "NULL POINTER");
-		return false;
-	}
+    if(pEdit == NULL)
+    {
+        __ASSERT(0, "NULL POINTER");
+        return false;
+    }
 
-	it_Edit it = s_Edits.find(pEdit->m_hWndEdit);
-	if(it == s_Edits.end()) return false;
+    it_Edit it = s_Edits.find(pEdit->m_hWndEdit);
+    if(it == s_Edits.end()) return false;
 
-	s_Edits.erase(it);
-	return true;
+    s_Edits.erase(it);
+    return true;
 }
 
 CN3UIEdit* CN3UIEdit::GetEdit(HWND hWnd)
 {
-	it_Edit it = s_Edits.find(hWnd);
-	if(it == s_Edits.end()) return NULL;
+    it_Edit it = s_Edits.find(hWnd);
+    if(it == s_Edits.end()) return NULL;
 
-	return it->second;
+    return it->second;
 }
 
 LRESULT APIENTRY CN3UIEdit::EditWndProc(HWND hWnd, WORD Message, WPARAM wParam, LPARAM lParam)
@@ -820,10 +820,10 @@ LRESULT APIENTRY CN3UIEdit::EditWndProc(HWND hWnd, WORD Message, WPARAM wParam, 
    // When the focus is in an edit control inside a dialog box, the
    //  default ENTER key action will not occur.
    //
-	CN3UIEdit* pEdit = CN3UIEdit::GetEdit(hWnd);
-	if(pEdit) pEdit->EditWndProcFuncPointer(hWnd, Message, wParam, lParam);
+    CN3UIEdit* pEdit = CN3UIEdit::GetEdit(hWnd);
+    if(pEdit) pEdit->EditWndProcFuncPointer(hWnd, Message, wParam, lParam);
 
-	return 0;
+    return 0;
 }
 
 LRESULT APIENTRY CN3UIEdit::EditWndProcFuncPointer(HWND hWnd, WORD Message, WPARAM wParam, LPARAM lParam)
@@ -833,30 +833,30 @@ LRESULT APIENTRY CN3UIEdit::EditWndProcFuncPointer(HWND hWnd, WORD Message, WPAR
    //  default ENTER key action will not occur.
    //
     switch (Message)
-	{
-	case WM_CREATE:
-		::SetWindowText(m_hWndEdit,"");
-		break;
-	case WM_KEYDOWN:
-		if (wParam == VK_RETURN)
-		{
-			if(GetParent())
-			{
-				GetParent()->ReceiveMessage(this, UIMSG_EDIT_RETURN);
-			}
-			return 0;
-		}
-		(CallWindowProc(m_lpfnEditProc, hWnd, Message, wParam, lParam));
-		UpdateCaretPosFromEditCtrl();
-		return 0;
-		//break;
+    {
+    case WM_CREATE:
+        ::SetWindowText(m_hWndEdit,"");
+        break;
+    case WM_KEYDOWN:
+        if (wParam == VK_RETURN)
+        {
+            if(GetParent())
+            {
+                GetParent()->ReceiveMessage(this, UIMSG_EDIT_RETURN);
+            }
+            return 0;
+        }
+        (CallWindowProc(m_lpfnEditProc, hWnd, Message, wParam, lParam));
+        UpdateCaretPosFromEditCtrl();
+        return 0;
+        //break;
 
     case WM_CHAR:
-		CN3UIEdit::UpdateCaretPosFromEditCtrl();
-		if(wParam==VK_RETURN) return 0;
-		if(wParam==VK_TAB) return 0;
-		break;
+        CN3UIEdit::UpdateCaretPosFromEditCtrl();
+        if(wParam==VK_RETURN) return 0;
+        if(wParam==VK_TAB) return 0;
+        break;
     } // switch
-	return (CallWindowProc(m_lpfnEditProc, hWnd, Message, wParam, lParam));
+    return (CallWindowProc(m_lpfnEditProc, hWnd, Message, wParam, lParam));
 }
 */

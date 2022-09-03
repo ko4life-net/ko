@@ -257,13 +257,13 @@ void CPvsMgr::RenderCompile() {
     }
 
     // Debug용 렌더링..
-    /*	typedef typename std::list<__Collision>::iterator citer;
-	citer cit = m_ColList.begin();
-	while (cit != m_ColList.end())
-	{
-		__Collision col = *cit++;
-		RenderCollision(col);
-	}
+    /*    typedef typename std::list<__Collision>::iterator citer;
+    citer cit = m_ColList.begin();
+    while (cit != m_ColList.end())
+    {
+        __Collision col = *cit++;
+        RenderCollision(col);
+    }
 */
 }
 
@@ -587,7 +587,7 @@ void CPvsMgr::SetPriority(CPortalVol * const pVolMy) {
     pVolMy->m_iPriority = 0;
     int igPriority = 0;
 
-    // 재귀적으로 우선순위 결정..	좀더 복잡하구 정확히 하려면.. 첫번째의 Wall과 같은 방향이 우선순위가 높다..
+    // 재귀적으로 우선순위 결정..    좀더 복잡하구 정확히 하려면.. 첫번째의 Wall과 같은 방향이 우선순위가 높다..
     SetPriorityRecursive(pVolMy, igPriority + 1);
 }
 
@@ -813,11 +813,11 @@ bool CPvsMgr::CollisionDetectMain(CPortalVol * const pVolMy) {
                     }
 
                     // Debug용..
-                    /*					if ( (i == 1) && (j == 1) && (pVol->m_iID == 0) )
-					{
-						m_dcol.Vvec[0] = Col.Wvec[j];
-						m_dcol.Vvec[1] = Col.Vvec[i];
-					}*/
+                    /*                    if ( (i == 1) && (j == 1) && (pVol->m_iID == 0) )
+                    {
+                        m_dcol.Vvec[0] = Col.Wvec[j];
+                        m_dcol.Vvec[1] = Col.Vvec[i];
+                    }*/
 
                     // Portal Wall이 있는 면은 Portal Wall과 먼저 검사한후.. 충돌하지 않는 면만 인정.. !!
                     switch (CollisionDetectSub(Col.Vvec[i], vDir, pVol)) {
@@ -850,71 +850,71 @@ bool CPvsMgr::CollisionDetectMain(CPortalVol * const pVolMy) {
 /*
 void CPvsMgr::RenderCollision(__Collision& col)
 {
-	__VertexColor				pvVertex[9];
-	unsigned short				pIndex[9];
+    __VertexColor                pvVertex[9];
+    unsigned short                pIndex[9];
 
-	__VertexColor				pvWVertex[4];
-	__VertexColor				pvDVertex[8];
-	unsigned short				pWIndex[4];
-	unsigned short				pDIndex[8];
+    __VertexColor                pvWVertex[4];
+    __VertexColor                pvDVertex[8];
+    unsigned short                pWIndex[4];
+    unsigned short                pDIndex[8];
 
-	for( int i = 0; i < 9; i++ )
-	{
-		pvVertex[i] = col.Vvec[i];
-		pvVertex[i].color = 0xffffffff;
-		pIndex[i] = i;
-	}
-	for( int i = 0; i < 4; i++ )
-	{
-		pvWVertex[i] = col.Wvec[i];
-		pvWVertex[i].color = 0xffff0000;
-		pWIndex[i] = i;
-	}
-	for( int i = 0; i < 8; i++ )
-	{
-		pvDVertex[i] = m_dcol.Vvec[i];
-		pvDVertex[i].color = 0xffff0000;
-		pDIndex[i] = i;
-	}
+    for( int i = 0; i < 9; i++ )
+    {
+        pvVertex[i] = col.Vvec[i];
+        pvVertex[i].color = 0xffffffff;
+        pIndex[i] = i;
+    }
+    for( int i = 0; i < 4; i++ )
+    {
+        pvWVertex[i] = col.Wvec[i];
+        pvWVertex[i].color = 0xffff0000;
+        pWIndex[i] = i;
+    }
+    for( int i = 0; i < 8; i++ )
+    {
+        pvDVertex[i] = m_dcol.Vvec[i];
+        pvDVertex[i].color = 0xffff0000;
+        pDIndex[i] = i;
+    }
 
-	DWORD dwAlpha, dwFog, dwLight, dwPointSize;
-	CN3Base::s_lpD3DDev->GetRenderState(D3DRS_FOGENABLE, &dwFog);
-	CN3Base::s_lpD3DDev->GetRenderState(D3DRS_ALPHABLENDENABLE, &dwAlpha);
-	CN3Base::s_lpD3DDev->GetRenderState(D3DRS_LIGHTING, &dwLight);
-	CN3Base::s_lpD3DDev->GetRenderState(D3DRS_POINTSIZE , &dwPointSize);
-	
-	if(dwFog) CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, FALSE);
-	if(dwAlpha) CN3Base::s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
-	if(dwLight) CN3Base::s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
+    DWORD dwAlpha, dwFog, dwLight, dwPointSize;
+    CN3Base::s_lpD3DDev->GetRenderState(D3DRS_FOGENABLE, &dwFog);
+    CN3Base::s_lpD3DDev->GetRenderState(D3DRS_ALPHABLENDENABLE, &dwAlpha);
+    CN3Base::s_lpD3DDev->GetRenderState(D3DRS_LIGHTING, &dwLight);
+    CN3Base::s_lpD3DDev->GetRenderState(D3DRS_POINTSIZE , &dwPointSize);
+    
+    if(dwFog) CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, FALSE);
+    if(dwAlpha) CN3Base::s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+    if(dwLight) CN3Base::s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
-	float fPointSize = 8.0f;
-	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_POINTSIZE, *((DWORD*)&fPointSize));
-	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_DISABLE);
-	
-	static __Material smtl;
-	static bool bInit = false;
-	if(false == bInit)
-	{
-		smtl.Init();
-		bInit = true;
-	}
+    float fPointSize = 8.0f;
+    CN3Base::s_lpD3DDev->SetRenderState(D3DRS_POINTSIZE, *((DWORD*)&fPointSize));
+    CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_DISABLE);
+    
+    static __Material smtl;
+    static bool bInit = false;
+    if(false == bInit)
+    {
+        smtl.Init();
+        bInit = true;
+    }
 
-	__Matrix44 mtxWorld;
-	mtxWorld.Identity();
+    __Matrix44 mtxWorld;
+    mtxWorld.Identity();
 
-	CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxWorld);
-	CN3Base::s_lpD3DDev->SetTexture(0, NULL);
+    CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxWorld);
+    CN3Base::s_lpD3DDev->SetTexture(0, NULL);
 
-	CN3Base::s_lpD3DDev->SetFVF(FVF_CV);	
+    CN3Base::s_lpD3DDev->SetFVF(FVF_CV);    
 
-	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_POINT);
-//	CN3Base::s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_POINTLIST, 0, 9, 9, pIndex, D3DFMT_INDEX16, pvVertex, sizeof(__VertexColor) );
-//	CN3Base::s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_POINTLIST, 0, 4, 4, pWIndex, D3DFMT_INDEX16, pvWVertex, sizeof(__VertexColor) );
-//	CN3Base::s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_POINTLIST, 0, 2, 2, pDIndex, D3DFMT_INDEX16, pvDVertex, sizeof(__VertexColor) );
-	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_POINTSIZE, dwPointSize);
-	if(dwFog) CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, dwFog);
-	if(dwAlpha) CN3Base::s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, dwAlpha);
-	if(dwLight) CN3Base::s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, dwLight);
+    CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_POINT);
+//    CN3Base::s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_POINTLIST, 0, 9, 9, pIndex, D3DFMT_INDEX16, pvVertex, sizeof(__VertexColor) );
+//    CN3Base::s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_POINTLIST, 0, 4, 4, pWIndex, D3DFMT_INDEX16, pvWVertex, sizeof(__VertexColor) );
+//    CN3Base::s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_POINTLIST, 0, 2, 2, pDIndex, D3DFMT_INDEX16, pvDVertex, sizeof(__VertexColor) );
+    CN3Base::s_lpD3DDev->SetRenderState(D3DRS_POINTSIZE, dwPointSize);
+    if(dwFog) CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, dwFog);
+    if(dwAlpha) CN3Base::s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, dwAlpha);
+    if(dwLight) CN3Base::s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, dwLight);
 }
 */
 
@@ -1021,11 +1021,11 @@ bool CPvsMgr::CheckPvsVolumnWall(const __Vector3 & vOrig, const __Vector3 & vDir
         break;
     }
 
-    /*	if ( (pVolMy->m_iID == 8) && (eWT == WALL_ZB) )
-	{
-		for ( int k = 0; k < 6; k++ )
-			m_dcol.Vvec[k+2] = pVolMy->m_pvVertex[pVolMy->m_pIndex[i+k]];
-	}*/
+    /*    if ( (pVolMy->m_iID == 8) && (eWT == WALL_ZB) )
+    {
+        for ( int k = 0; k < 6; k++ )
+            m_dcol.Vvec[k+2] = pVolMy->m_pvVertex[pVolMy->m_pIndex[i+k]];
+    }*/
 
     if (IntersectTriangle(vOrig, vDir, pVolMy->m_pvVertex[pVolMy->m_pIndex[i]],
                           pVolMy->m_pvVertex[pVolMy->m_pIndex[i + 1]], pVolMy->m_pvVertex[pVolMy->m_pIndex[i + 2]], ft,
@@ -1054,7 +1054,7 @@ bool CPvsMgr::IntersectTriangle(const __Vector3 & vOrig, const __Vector3 & vDir,
     __Vector3 pVec;
     float     fDet;
 
-    //	By : Ecli666 ( On 2001-09-12 오전 10:39:01 )
+    //    By : Ecli666 ( On 2001-09-12 오전 10:39:01 )
 
     pVec.Cross(vEdge1, vEdge2);
     fDet = pVec.Dot(vDir);
@@ -1062,7 +1062,7 @@ bool CPvsMgr::IntersectTriangle(const __Vector3 & vOrig, const __Vector3 & vDir,
         return false;
     }
 
-    //	~(By Ecli666 On 2001-09-12 오전 10:39:01 )
+    //    ~(By Ecli666 On 2001-09-12 오전 10:39:01 )
 
     pVec.Cross(vDir, vEdge2);
 

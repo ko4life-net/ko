@@ -154,7 +154,7 @@ int myrand(int min, int max, BOOL bSame) {
 }
 
 ///////////////////////////////////////////////////////////////////////////
-//	XdY 형식의 주사위 굴리기
+//    XdY 형식의 주사위 굴리기
 //
 int XdY(int x, int y) {
     int temp = 0;
@@ -169,7 +169,7 @@ int XdY(int x, int y) {
 }
 
 ///////////////////////////////////////////////////////////////////////////
-//	string의 길이가 size 보다 작으면 size 만큼 공백을 채워서 복사한다.
+//    string의 길이가 size 보다 작으면 size 만큼 공백을 채워서 복사한다.
 //
 void SpaceCopy(LPSTR source, CString dest, int size) {
     strncpy(source, dest, size);
@@ -181,7 +181,7 @@ void SpaceCopy(LPSTR source, CString dest, int size) {
 }
 
 ///////////////////////////////////////////////////////////////////////////
-//	string의 길이가 size 보다 작으면 size 만큼 공백을 채워서 복사한다.
+//    string의 길이가 size 보다 작으면 size 만큼 공백을 채워서 복사한다.
 //
 void SpaceCopy(CString & source, CString dest, int size) {
     source = dest.Left(size);
@@ -195,7 +195,7 @@ void SpaceCopy(CString & source, CString dest, int size) {
 }
 
 ///////////////////////////////////////////////////////////////////////////
-//	DWORD 의 Max 값을 채크하면서 증가시킨다.
+//    DWORD 의 Max 값을 채크하면서 증가시킨다.
 //
 void CheckMaxValue(DWORD & dest, DWORD add) {
     DWORD Diff = _MAX_DWORD - dest;
@@ -208,7 +208,7 @@ void CheckMaxValue(DWORD & dest, DWORD add) {
 }
 
 ///////////////////////////////////////////////////////////////////////////
-//	int 의 Max 값을 채크하면서 증가시킨다.
+//    int 의 Max 값을 채크하면서 증가시킨다.
 //
 void CheckMaxValue(int & dest, int add) {
     int Diff = _MAX_INT - dest;
@@ -221,7 +221,7 @@ void CheckMaxValue(int & dest, int add) {
 }
 
 ///////////////////////////////////////////////////////////////////////////
-//	short 의 Max 값을 채크하면서 증가시킨다.
+//    short 의 Max 값을 채크하면서 증가시킨다.
 //
 void CheckMaxValue(short & dest, short add) {
     short Diff = _MAX_SHORT - dest;

@@ -298,8 +298,8 @@ void CCentralDir::Write() {
     m_uSize = 0;
     bool bDontAllowDiskChange = false;
     // if there is a disk spanning archive in creation and it is only one-volume,
-    //	(current disk is 0 so far, no bytes has been written so we know they are
-    //  all in the buffer)	make sure that it will be after writting central dir
+    //    (current disk is 0 so far, no bytes has been written so we know they are
+    //  all in the buffer)    make sure that it will be after writting central dir
     // and make it a non disk spanning archive
     if (m_pStorage->IsSpanMode() && !m_pStorage->GetCurrentDisk()) {
         DWORD uVolumeFree = m_pStorage->VolumeLeft();
@@ -436,7 +436,7 @@ bool CCentralDir::RemoveDataDescr(bool bFromBuffer) {
     DWORD uPosInBuffer = 0;
     for (int i = 0; i < m_headers.GetSize(); i++) {
         // update the flag value in the local and central header
-        // 		int uDataDescr = (m_headers[i]->m_uFlag & 8) ? (4 + 12) : 0;
+        //         int uDataDescr = (m_headers[i]->m_uFlag & 8) ? (4 + 12) : 0;
         CFileHeader * pHeader = m_headers[i];
         pHeader->m_uFlag &= ~8;
         char * pDest = pFile + pHeader->m_uOffset;

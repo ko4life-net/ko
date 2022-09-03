@@ -195,7 +195,7 @@ class CPortalVolume : public CN3Transform {
     ////////////////////////////////////////
 
   public:
-    int m_iPriority; //.. 컴파일 모드에서 Portal의 우선순위..	-1로 먼저 클리어 한다음.. 0 순위는 자기 자신..
+    int m_iPriority; //.. 컴파일 모드에서 Portal의 우선순위..    -1로 먼저 클리어 한다음.. 0 순위는 자기 자신..
 
   private:
     bool            QueryHeight(float fx, float fz, float & fy);

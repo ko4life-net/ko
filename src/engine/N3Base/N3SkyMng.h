@@ -210,19 +210,19 @@ class CN3SkyMng : public CN3BaseFileAccess {
     // 시간 관리
     void GetGameTime(int * piYear, int * piMonth, int * piDay, int * piHour, int * piMin);
     void SetGameTime(int iYear, int iMonth, int iDay, int iHour, int iMin);
-    void SetWeather(eSKY_WEATHER eWeather, int iPercentage); //	날씨 세팅
+    void SetWeather(eSKY_WEATHER eWeather, int iPercentage); //    날씨 세팅
 
     void SunAndMoonDirectionFixByHour(int iHour); // 해와 달 각도 관리
 
-    //	By : Ecli666 ( On 2002-04-04 오전 10:53:58 )
+    //    By : Ecli666 ( On 2002-04-04 오전 10:53:58 )
     //
     CN3Sun * GetSunPointer() { return m_pSun; }
-    //	~(By Ecli666 On 2002-04-04 오전 10:53:58 )
+    //    ~(By Ecli666 On 2002-04-04 오전 10:53:58 )
 
   protected:
     void SetCheckGameTime(
         DWORD
-            dwCheckGameTime); //	CheckGameTime을 정해주고 현재시간을 다시 세팅한다.(특정 시간으로 강제적으로 만들때 호출한다.)
+            dwCheckGameTime); //    CheckGameTime을 정해주고 현재시간을 다시 세팅한다.(특정 시간으로 강제적으로 만들때 호출한다.)
     int  GetLatestChange(eSKY_DAYCHANGE eSDC,
                          int iPos); // m_pDayChangeQueues에서 지정된 위치(iPos) 이전의 가장 최근에 변화하는 위치 얻어오기
     void ChangeSky(__SKY_DAYCHANGE * pSDC, float fTakeTime);

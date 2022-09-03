@@ -151,11 +151,11 @@ BOOL CN3CEDoc::OnSaveDocument(LPCTSTR lpszPathName) {
     CN3Chr * pChr = m_Scene.ChrGet(0);
     pChr->m_szName = szFName; // 이름을 정하고..
 
-    //	CN3Joint* pJoint = pChr->Joint();
-    //	if(pJoint)
-    //	{
-    //		pJoint->SaveToFile(); // 관절도 저장해준다..
-    //	}
+    //    CN3Joint* pJoint = pChr->Joint();
+    //    if(pJoint)
+    //    {
+    //        pJoint->SaveToFile(); // 관절도 저장해준다..
+    //    }
 
     CN3CPlugBase * pPlug = NULL;
     int            nCPC = pChr->PlugCount();

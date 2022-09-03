@@ -26,8 +26,8 @@ class CGameEng : public CN3Eng {
     CN3Light * m_pRefLightSun;
     CN3Light * m_pRefLightSupport;
     CN3Light * m_pRefLightCam;
-    //std::list<CN3Light*>	m_Lights;
-    //std::list<CN3Light*>	m_LightsBackup;
+    //std::list<CN3Light*>    m_Lights;
+    //std::list<CN3Light*>    m_LightsBackup;
     std::list<CN3Camera *> m_Cameras;
     CN3Camera *            m_pActiveCam;
 
@@ -60,9 +60,9 @@ class CGameEng : public CN3Eng {
     void  FarPlaneDeltaSet(float fFPDelta, bool bUpdateImmediately);
 
     // Light 함수들
-    //void			LightAdd(CN3Light* pLight) { m_Lights.push_back(pLight); }
-    //int				LightCount() { return m_Lights.size(); }
-    //CN3Light*		Light(int index);
+    //void            LightAdd(CN3Light* pLight) { m_Lights.push_back(pLight); }
+    //int                LightCount() { return m_Lights.size(); }
+    //CN3Light*        Light(int index);
 
     // Camera 함수들
     void        CameraAdd(CN3Camera * pCamera) { m_Cameras.push_back(pCamera); }
@@ -100,11 +100,11 @@ class CGameEng : public CN3Eng {
 /*
 inline CN3Light* CGameEng::Light(int index)
 {
-	if(index < 0 || index >= m_Lights.size()) return NULL;
-	it_Light itLgt = m_Lights.begin();
-	for(int i = 0; i < index; i++, itLgt++);
+    if(index < 0 || index >= m_Lights.size()) return NULL;
+    it_Light itLgt = m_Lights.begin();
+    for(int i = 0; i < index; i++, itLgt++);
 
-	return *itLgt;
+    return *itLgt;
 }
 */
 

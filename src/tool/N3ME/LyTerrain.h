@@ -1,5 +1,5 @@
 // LyTerrain.h: interface for the CLyTerrain class.
-//	- 2001. 9.24.~ Map Editor용으로 변환...
+//    - 2001. 9.24.~ Map Editor용으로 변환...
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -20,7 +20,7 @@ class CDTexGroupMng;
 class CDlgSetLightMap;
 
 ////////////////////////////////////////////////
-//	multimap사용
+//    multimap사용
 //savegamedata할때 쓸꺼얌..
 //colormap 찍을때도 써..^^
 //
@@ -77,8 +77,8 @@ class CLyTerrain : public CN3BaseFileAccess {
 
     std::list<CQTNode *> m_RenderNodes;
 
-    LPDIRECT3DVERTEXBUFFER9 m_ColorMapVB; //	컬러맵쓸때..
-    LPDIRECT3DVERTEXBUFFER9 m_TileVB;     //	하나의 타일과 하나의 라이트맵
+    LPDIRECT3DVERTEXBUFFER9 m_ColorMapVB; //    컬러맵쓸때..
+    LPDIRECT3DVERTEXBUFFER9 m_TileVB;     //    하나의 타일과 하나의 라이트맵
 
     //common..
     MAPDATA ** m_ppMapData;

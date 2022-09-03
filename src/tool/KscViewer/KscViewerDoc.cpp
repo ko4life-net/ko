@@ -81,8 +81,8 @@ void CKscViewerDoc::Dump(CDumpContext & dc) const {
 // CKscViewerDoc commands
 
 BOOL CKscViewerDoc::OnOpenDocument(LPCTSTR lpszPathName) {
-    //	if (!CDocument::OnOpenDocument(lpszPathName))
-    //		return FALSE;
+    //    if (!CDocument::OnOpenDocument(lpszPathName))
+    //        return FALSE;
     if (m_pJpegFile == NULL) {
         return FALSE;
     }

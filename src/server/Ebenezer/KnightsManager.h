@@ -39,6 +39,6 @@ class CKnightsManager {
     virtual ~CKnightsManager();
 
     CEbenezerDlg * m_pMain;
-    //	CDatabase	m_KnightsDB;
+    //    CDatabase    m_KnightsDB;
   private:
 };

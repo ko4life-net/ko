@@ -144,80 +144,80 @@ bool CN3ShapeEx::Load(HANDLE hFile) {
 
 void CN3ShapeEx::ReCalcMatrix() {
     /*
-	// m_Matrix 다시 계산..
-	CN3Transform::ReCalcMatrix(); // Transform Matrix 를 계산 해주고..
+    // m_Matrix 다시 계산..
+    CN3Transform::ReCalcMatrix(); // Transform Matrix 를 계산 해주고..
 
-	// 각 파트의 매트릭스를 다시 계산.
-	int iPC = m_Parts.size();
-	for(int i = 0; i < iPC; i++)
-	{
-		if (m_pMatchPart2ActionPart[i])
-		{
-			__ActionPart* pModPart = m_pMatchPart2ActionPart[i];
-			// Scale
-			m_Parts[i]->m_Matrix.Scale(pModPart->CurStateInfo.vScale);
-			// 회전
-			static __Matrix44 mtxRot;
-			D3DXMatrixRotationQuaternion(&mtxRot, &(pModPart->CurStateInfo.qRot));
-			m_Parts[i]->m_Matrix *= mtxRot;
+    // 각 파트의 매트릭스를 다시 계산.
+    int iPC = m_Parts.size();
+    for(int i = 0; i < iPC; i++)
+    {
+        if (m_pMatchPart2ActionPart[i])
+        {
+            __ActionPart* pModPart = m_pMatchPart2ActionPart[i];
+            // Scale
+            m_Parts[i]->m_Matrix.Scale(pModPart->CurStateInfo.vScale);
+            // 회전
+            static __Matrix44 mtxRot;
+            D3DXMatrixRotationQuaternion(&mtxRot, &(pModPart->CurStateInfo.qRot));
+            m_Parts[i]->m_Matrix *= mtxRot;
 
-			// 위치
-			m_Parts[i]->m_Matrix.PosSet(m_Parts[i]->m_vPivot + pModPart->CurStateInfo.vPos);
-			m_Parts[i]->m_Matrix *= m_Matrix;
-		}
-		else
-		{
-			m_Parts[i]->ReCalcMatrix(m_Matrix);
-		}
-	}
-	*/
+            // 위치
+            m_Parts[i]->m_Matrix.PosSet(m_Parts[i]->m_vPivot + pModPart->CurStateInfo.vPos);
+            m_Parts[i]->m_Matrix *= m_Matrix;
+        }
+        else
+        {
+            m_Parts[i]->ReCalcMatrix(m_Matrix);
+        }
+    }
+    */
 }
 
 void CN3ShapeEx::Tick(float fFrm) {
     /*
-	CN3Shape::Tick(fFrm);
-	if (m_bDontRender) return;
+    CN3Shape::Tick(fFrm);
+    if (m_bDontRender) return;
 
-	if (m_fActionTimeChanged > 0.0f)
-	{
-		m_fActionTimeChanging += s_fSecPerFrm;
-		if (m_fActionTimeChanging > m_fActionTimeChanged)
-		{
-			m_fActionTimeChanged = 0.0f;
-			m_fActionTimeChanging = 0.0f;
-			m_iPrevActionState = m_iCurActionState;
+    if (m_fActionTimeChanged > 0.0f)
+    {
+        m_fActionTimeChanging += s_fSecPerFrm;
+        if (m_fActionTimeChanging > m_fActionTimeChanged)
+        {
+            m_fActionTimeChanged = 0.0f;
+            m_fActionTimeChanging = 0.0f;
+            m_iPrevActionState = m_iCurActionState;
 
-			for (int i=0; i<m_iActionPartCount; ++i)
-			{
-				m_pActionParts[i].CurStateInfo = m_pActionParts[i].pStateInfos[m_iCurActionState];
-			}
-		}
-		else
-		{
-			__ActionPart* pMP = NULL;
-			for (int i=0; i<m_iActionPartCount; ++i)
-			{
-				pMP = m_pActionParts + i;
-				if (pMP->bPos)
-				{
-					pMP->CurStateInfo.vPos = pMP->pStateInfos[m_iPrevActionState].vPos + 
-											(pMP->pStateInfos[m_iCurActionState].vPos - pMP->pStateInfos[m_iPrevActionState].vPos)*m_fActionTimeChanging/m_fActionTimeChanged;
-				}
-				if (pMP->bRot)
-				{
-					pMP->CurStateInfo.qRot.Slerp(pMP->pStateInfos[m_iPrevActionState].qRot, pMP->pStateInfos[m_iCurActionState].qRot, m_fActionTimeChanging/m_fActionTimeChanged);
-				}
-				if (pMP->bScale)
-				{
-					pMP->CurStateInfo.vScale = pMP->pStateInfos[m_iPrevActionState].vScale + 
-											(pMP->pStateInfos[m_iCurActionState].vScale - pMP->pStateInfos[m_iPrevActionState].vScale)*m_fActionTimeChanging/m_fActionTimeChanged;
-				}
-			}
-		}
-	}
+            for (int i=0; i<m_iActionPartCount; ++i)
+            {
+                m_pActionParts[i].CurStateInfo = m_pActionParts[i].pStateInfos[m_iCurActionState];
+            }
+        }
+        else
+        {
+            __ActionPart* pMP = NULL;
+            for (int i=0; i<m_iActionPartCount; ++i)
+            {
+                pMP = m_pActionParts + i;
+                if (pMP->bPos)
+                {
+                    pMP->CurStateInfo.vPos = pMP->pStateInfos[m_iPrevActionState].vPos + 
+                                            (pMP->pStateInfos[m_iCurActionState].vPos - pMP->pStateInfos[m_iPrevActionState].vPos)*m_fActionTimeChanging/m_fActionTimeChanged;
+                }
+                if (pMP->bRot)
+                {
+                    pMP->CurStateInfo.qRot.Slerp(pMP->pStateInfos[m_iPrevActionState].qRot, pMP->pStateInfos[m_iCurActionState].qRot, m_fActionTimeChanging/m_fActionTimeChanged);
+                }
+                if (pMP->bScale)
+                {
+                    pMP->CurStateInfo.vScale = pMP->pStateInfos[m_iPrevActionState].vScale + 
+                                            (pMP->pStateInfos[m_iCurActionState].vScale - pMP->pStateInfos[m_iPrevActionState].vScale)*m_fActionTimeChanging/m_fActionTimeChanged;
+                }
+            }
+        }
+    }
 
-	ReCalcMatrix();
-	*/
+    ReCalcMatrix();
+    */
 }
 
 BOOL CN3ShapeEx::SetState(int iState, float fSec) {

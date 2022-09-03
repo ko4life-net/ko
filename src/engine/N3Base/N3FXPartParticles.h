@@ -16,32 +16,32 @@ class CN3FXPartParticles : public CN3FXPartBase {
   public:
     //related whole particle system...
     __VertexXyzColorT1 m_vUnit[NUM_VERTEX_PARTICLE];
-    //WORD						m_wUnitIB[6];
+    //WORD                        m_wUnitIB[6];
 
     __VertexXyzColorT1 * m_pVB;
-    //WORD*						m_pIB;
+    //WORD*                        m_pIB;
 
-    __Matrix44 m_mtxVI; //	inverse view mtx..
+    __Matrix44 m_mtxVI; //    inverse view mtx..
 
-    int m_iNumParticle;    //	파티클의 총 수..(maximum)
-    int m_iNumLodParticle; //	거리에 따른 파티클 갯수
-    //float						m_fParticleSize;		//	파티클의 크기
-    std::pair<float, float> m_pair_fParticleSize; //	파티클 크기의 범위
-    std::pair<float, float> m_pair_fParticleLife; //	파티클 생명의 범위
+    int m_iNumParticle;    //    파티클의 총 수..(maximum)
+    int m_iNumLodParticle; //    거리에 따른 파티클 갯수
+    //float                        m_fParticleSize;        //    파티클의 크기
+    std::pair<float, float> m_pair_fParticleSize; //    파티클 크기의 범위
+    std::pair<float, float> m_pair_fParticleLife; //    파티클 생명의 범위
 
-    std::list<CN3FXParticle *> m_pVBList_Alive; //	살아있는 파티클을 담고 있는 버퍼..
-    std::list<CN3FXParticle *> m_pVBList_Dead;  //	죽은 파티클을 담고 있는 버퍼..
+    std::list<CN3FXParticle *> m_pVBList_Alive; //    살아있는 파티클을 담고 있는 버퍼..
+    std::list<CN3FXParticle *> m_pVBList_Dead;  //    죽은 파티클을 담고 있는 버퍼..
 
-    float m_fCreateDelay;    //	파티클 생성 시간 간격.
-    float m_CurrCreateDelay; //	현재 까지 create delay time..
-    int   m_iNumCreate;      //	한번 생성시 만들어지는 파티클 수.
+    float m_fCreateDelay;    //    파티클 생성 시간 간격.
+    float m_CurrCreateDelay; //    현재 까지 create delay time..
+    int   m_iNumCreate;      //    한번 생성시 만들어지는 파티클 수.
 
-    __Vector3 m_MinCreateRange; //	파티클 생성 자유도 범위..min..
-    __Vector3 m_MaxCreateRange; //	파티클 생성 자유도 범위..max..
+    __Vector3 m_MinCreateRange; //    파티클 생성 자유도 범위..min..
+    __Vector3 m_MaxCreateRange; //    파티클 생성 자유도 범위..max..
 
     //emitter...
-    DWORD                 m_dwEmitType; //	발사형태..(spread, gather)..
-    PARTICLEEMITCONDITION m_uEmitCon;   //	발사형태에 따른 필요 데이타..
+    DWORD                 m_dwEmitType; //    발사형태..(spread, gather)..
+    PARTICLEEMITCONDITION m_uEmitCon;   //    발사형태에 따른 필요 데이타..
     __Vector3             m_vEmitterDir;
     __Vector3             m_vPrevShapePos;
     __Vector3             m_vShapePos;
@@ -64,7 +64,7 @@ class CN3FXPartParticles : public CN3FXPartBase {
     bool         m_bAnimKey;
 
     //particle local rotate......2002.10.21.
-    float m_fTexRotateVelocity; //	파티클 텍스쳐를 로컬 Z축으로 회전시켜서 빙글빙글 도는 것처럼 보이게...(속도)
+    float m_fTexRotateVelocity; //    파티클 텍스쳐를 로컬 Z축으로 회전시켜서 빙글빙글 도는 것처럼 보이게...(속도)
     float m_fScaleVelX;
     float m_fScaleVelY;
 
@@ -94,13 +94,13 @@ class CN3FXPartParticles : public CN3FXPartBase {
     //////////////////////////////////////////////
 
   public:
-    void Init();             //	각종 변수들을 처음 로딩한 상태로 초기화...
-    void Start();            //	파트 구동 시작.
-    void Stop();             //	파트 구동 멈춤..
-    bool Tick();             //	ticktick...
-    void Render();           //	화면에 뿌리기..
-    bool Load(HANDLE hFile); //	게임파일 불러오기.
-    bool Save(HANDLE hFile); //	게임파일 저장오기.
+    void Init();             //    각종 변수들을 처음 로딩한 상태로 초기화...
+    void Start();            //    파트 구동 시작.
+    void Stop();             //    파트 구동 멈춤..
+    bool Tick();             //    ticktick...
+    void Render();           //    화면에 뿌리기..
+    bool Load(HANDLE hFile); //    게임파일 불러오기.
+    bool Save(HANDLE hFile); //    게임파일 저장오기.
     void Duplicate(CN3FXPartParticles * pSrc);
 
     bool GetColor(int key, DWORD & color);

@@ -354,7 +354,7 @@ void CUIHotKeyDlg::InitIconUpdate() {
     char        szSkill[32];
     int         iSkillCount = 0;
     CHotkeyData HD;
-    //	DWORD bitMask;
+    //    DWORD bitMask;
 
     while (iHCount--) {
         std::string str = "Data";

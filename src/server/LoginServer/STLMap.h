@@ -4,7 +4,7 @@
 //
 // This class can use ordinary map of the standard template library
 //
-// Designed by SAMMA	 2002. 03. 15
+// Designed by SAMMA     2002. 03. 15
 //
 //////////////////////////////////////////////////////////////////////
 

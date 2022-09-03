@@ -41,7 +41,7 @@ void CNpc::Initialize() {
     ;             // MONSTER(NPC) Name
     m_iMaxHP = 0; // 최대 HP
     m_iHP = 0;    // 현재 HP
-    //m_byState = 0;			// 몬스터 (NPC) 상태이상
+    //m_byState = 0;            // 몬스터 (NPC) 상태이상
     m_tNpcType = 0; // NPC Type
                     // 0 : Normal Monster
                     // 1 : NPC
@@ -50,7 +50,7 @@ void CNpc::Initialize() {
     m_byGroup = 0;
     m_byLevel = 0;
     m_iSellingGroup = 0;
-    //	m_dwStepDelay = 0;
+    //    m_dwStepDelay = 0;
 
     m_sRegion_X = 0; // region x position
     m_sRegion_Z = 0; // region z position
@@ -174,27 +174,27 @@ void CNpc::RemoveRegion(int del_x, int del_z) {
     SetByte(buff, NPC_OUT, send_index);
     SetShort(buff, m_sNid, send_index);
     /*
-	SetShort( buff, m_sPid, send_index );
-	SetByte( buff, m_tNpcType, send_index );
-	SetDWORD( buff, m_iSellingGroup, send_index );
-	SetShort( buff, m_sSize, send_index );
-	SetDWORD( buff, m_iWeapon_1, send_index );
-	SetDWORD( buff, m_iWeapon_2, send_index );
-	SetShort( buff, strlen(m_strName), send_index );
-	SetString( buff, m_strName, strlen(m_strName), send_index );
-	SetByte( buff, m_byGroup, send_index );
-	SetByte( buff, m_byLevel, send_index );
-	SetShort( buff, (WORD)m_fCurX*10, send_index );
-	SetShort( buff, (WORD)m_fCurZ*10, send_index );
-	SetShort( buff, (short)m_fCurY*10, send_index );
-	SetDWORD( buff, (int)m_byGateOpen, send_index );
-	SetByte( buff, m_byObjectType, send_index );
+    SetShort( buff, m_sPid, send_index );
+    SetByte( buff, m_tNpcType, send_index );
+    SetDWORD( buff, m_iSellingGroup, send_index );
+    SetShort( buff, m_sSize, send_index );
+    SetDWORD( buff, m_iWeapon_1, send_index );
+    SetDWORD( buff, m_iWeapon_2, send_index );
+    SetShort( buff, strlen(m_strName), send_index );
+    SetString( buff, m_strName, strlen(m_strName), send_index );
+    SetByte( buff, m_byGroup, send_index );
+    SetByte( buff, m_byLevel, send_index );
+    SetShort( buff, (WORD)m_fCurX*10, send_index );
+    SetShort( buff, (WORD)m_fCurZ*10, send_index );
+    SetShort( buff, (short)m_fCurY*10, send_index );
+    SetDWORD( buff, (int)m_byGateOpen, send_index );
+    SetByte( buff, m_byObjectType, send_index );
 */
     if (del_x != 0) { // x 축으로 이동되었을때...
         m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + del_x * 2, m_sRegion_Z + del_z - 1);
         m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + del_x * 2, m_sRegion_Z + del_z);
         m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + del_x * 2, m_sRegion_Z + del_z + 1);
-        //		TRACE("Remove : (%d %d), (%d %d), (%d %d)\n", m_sRegion_X+del_x*2, m_sRegion_Z+del_z-1, m_sRegion_X+del_x*2, m_sRegion_Z+del_z, m_sRegion_X+del_x*2, m_sRegion_Z+del_z+1 );
+        //        TRACE("Remove : (%d %d), (%d %d), (%d %d)\n", m_sRegion_X+del_x*2, m_sRegion_Z+del_z-1, m_sRegion_X+del_x*2, m_sRegion_Z+del_z, m_sRegion_X+del_x*2, m_sRegion_Z+del_z+1 );
     }
     if (del_z != 0) { // z 축으로 이동되었을때...
         m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + del_x, m_sRegion_Z + del_z * 2);
@@ -205,7 +205,7 @@ void CNpc::RemoveRegion(int del_x, int del_z) {
         } else {
             m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + del_x - 1, m_sRegion_Z + del_z * 2);
             m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + del_x + 1, m_sRegion_Z + del_z * 2);
-            //			TRACE("Remove : (%d %d), (%d %d), (%d %d)\n", m_sRegion_X+del_x-1, m_sRegion_Z+del_z*2, m_sRegion_X+del_x, m_sRegion_Z+del_z*2, m_sRegion_X+del_x+1, m_sRegion_Z+del_z*2 );
+            //            TRACE("Remove : (%d %d), (%d %d), (%d %d)\n", m_sRegion_X+del_x-1, m_sRegion_Z+del_z*2, m_sRegion_X+del_x, m_sRegion_Z+del_z*2, m_sRegion_X+del_x+1, m_sRegion_Z+del_z*2 );
         }
     }
 }
@@ -245,7 +245,7 @@ void CNpc::InsertRegion(int del_x, int del_z) {
         m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + del_x, m_sRegion_Z - 1);
         m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + del_x, m_sRegion_Z);
         m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + del_x, m_sRegion_Z + 1);
-        //		TRACE("Insert : (%d %d), (%d %d), (%d %d)\n", m_sRegion_X+del_x, m_sRegion_Z-1, m_sRegion_X+del_x, m_sRegion_Z, m_sRegion_X+del_x, m_sRegion_Z+1 );
+        //        TRACE("Insert : (%d %d), (%d %d), (%d %d)\n", m_sRegion_X+del_x, m_sRegion_Z-1, m_sRegion_X+del_x, m_sRegion_Z, m_sRegion_X+del_x, m_sRegion_Z+1 );
     }
     if (del_z != 0) { // z 축으로 이동되었을때...
         m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X, m_sRegion_Z + del_z);
@@ -258,7 +258,7 @@ void CNpc::InsertRegion(int del_x, int del_z) {
             m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X - 1, m_sRegion_Z + del_z);
             m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + 1, m_sRegion_Z + del_z);
 
-            //			TRACE("Insert : (%d %d), (%d %d), (%d %d)\n", m_sRegion_X-1, m_sRegion_Z+del_z, m_sRegion_X, m_sRegion_Z+del_z, m_sRegion_X+1, m_sRegion_Z+del_z );
+            //            TRACE("Insert : (%d %d), (%d %d), (%d %d)\n", m_sRegion_X-1, m_sRegion_Z+del_z, m_sRegion_X, m_sRegion_Z+del_z, m_sRegion_X+1, m_sRegion_Z+del_z );
         }
     }
 }

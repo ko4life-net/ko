@@ -18,7 +18,7 @@ class CDlgShapeList : public CDialog {
 
     CN3Scene * m_pSceneRef;
     BOOL       m_IsSourceObj; // Display용이냐? (툴에서 오브젝트 목록)
-                              //	CMapMng* m_pMapMng;
+                              //    CMapMng* m_pMapMng;
 
     // Dialog Data
     //{{AFX_DATA(CDlgShapeList)

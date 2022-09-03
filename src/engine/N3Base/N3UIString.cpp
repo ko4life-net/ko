@@ -262,8 +262,8 @@ void CN3UIString::WordWrap() {
         // 우선 맨 처음 한줄이 들어갈 수 있는 크기인지 체크하기
         BOOL bFlag = m_pDFont->GetTextExtent("최", 2, &size);
         __ASSERT(bFlag, "cannot get size of dfont");
-        //		iCY += size.cy;
-        //		if (iCY > iRegionHeight)
+        //        iCY += size.cy;
+        //        if (iCY > iRegionHeight)
         if (size.cy > iRegionHeight) {
             // TODO: fix this
             N3_WARN("[CN3UIString::WordWrap]: The text height is greater than the STRING control [2].");
@@ -276,9 +276,9 @@ void CN3UIString::WordWrap() {
         while (iCount < iStrLen) {
             if ('\n' == szString[iCount]) // \n
             {
-                //				szNewBuff += '\n';
-                //				iCY += size.cy;
-                //				if (iCY > iRegionHeight) break;	// 세로 범위가 넘으면 더이상 글자를 찍지 않는다.
+                //                szNewBuff += '\n';
+                //                iCY += size.cy;
+                //                if (iCY > iRegionHeight) break;    // 세로 범위가 넘으면 더이상 글자를 찍지 않는다.
                 ++iCount;
                 iCX = 0;
                 if (iCount < iStrLen - 1) {
@@ -297,17 +297,17 @@ void CN3UIString::WordWrap() {
                 __ASSERT(bFlag, "cannot get size of dfont");
                 if ((iCX + size.cx) > iRegionWidth) // 가로 길이가 넘었으면
                 {
-                    //					szNewBuff += '\n';	// 다음줄로 내린다.
+                    //                    szNewBuff += '\n';    // 다음줄로 내린다.
                     iCX = 0;
-                    //					iCY += size.cy;
-                    //					if (iCY > iRegionHeight) break;	// 세로 범위가 넘으면 더이상 글자를 찍지 않는다.
+                    //                    iCY += size.cy;
+                    //                    if (iCY > iRegionHeight) break;    // 세로 범위가 넘으면 더이상 글자를 찍지 않는다.
                     if (iCount < iStrLen - 1) {
                         ++m_iLineCount; // 마지막 글자가 아닐경우 한줄 더하기
                         m_NewLineIndices.push_back(iCount);
                     }
                 }
                 // 글자 카피
-                //				szNewBuff += szString.substr(iCount, iCC);
+                //                szNewBuff += szString.substr(iCount, iCC);
 
                 iCount += iCC;
                 iCX += size.cx;
@@ -421,7 +421,7 @@ void CN3UIString::operator=(const CN3UIString & other) {
     SetFont(other.GetFontName(), other.GetFontHeight(), dwFontFlags & D3DFONT_BOLD, dwFontFlags & D3DFONT_ITALIC);
 
     // 글씨 설정
-    this->SetString(other.m_szString); // m_szString = other.m_szString;			// string buffer
+    this->SetString(other.m_szString); // m_szString = other.m_szString;            // string buffer
 }
 
 #ifdef _N3TOOL
@@ -535,14 +535,14 @@ DWORD CN3UIString::MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & p
     // 특정 이벤트에 대해 메시지 전송..
     if (IsIn(ptCur.x, ptCur.y) && (dwFlags & UI_MOUSE_LBCLICKED)) {
         m_pParent->ReceiveMessage(this, UIMSG_STRING_LCLICK); // 부모에게 버튼 클릭 통지..
-                                                              //		dwRet |= UI_MOUSEPROC_DONESOMETHING;
+                                                              //        dwRet |= UI_MOUSEPROC_DONESOMETHING;
     }
 
     if (IsIn(ptCur.x, ptCur.y) && (dwFlags & UI_MOUSE_LBDBLCLK)) {
         m_pParent->ReceiveMessage(this, UIMSG_STRING_LDCLICK); // 부모에게 버튼 클릭 통지..
-                                                               //		dwRet |= UI_MOUSEPROC_DONESOMETHING;
+                                                               //        dwRet |= UI_MOUSEPROC_DONESOMETHING;
     }
 
-    //	dwRet |= CN3UIBase::MouseProc(dwFlags, ptCur, ptOld);
+    //    dwRet |= CN3UIBase::MouseProc(dwFlags, ptCur, ptOld);
     return dwRet;
 }

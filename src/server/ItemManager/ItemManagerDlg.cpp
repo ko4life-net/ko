@@ -90,7 +90,7 @@ BOOL CItemManagerDlg::OnInitDialog() {
     SetIcon(m_hIcon, FALSE); // Set small icon
 
     //----------------------------------------------------------------------
-    //	Logfile initialize
+    //    Logfile initialize
     //----------------------------------------------------------------------
     CTime time = CTime::GetCurrentTime();
     char  strLogFile[50];
@@ -109,20 +109,20 @@ BOOL CItemManagerDlg::OnInitDialog() {
 
     m_LoggerRecvQueue.InitailizeMMF(MAX_PKTSIZE, MAX_COUNT, SMQ_ITEMLOGGER, FALSE); // Dispatcher ÀÇ Send Queue
                                                                                     /*
-	CString inipath;
-	inipath.Format( "%s\\ItemDB.ini", GetProgPath() );
+    CString inipath;
+    inipath.Format( "%s\\ItemDB.ini", GetProgPath() );
 
-	GetPrivateProfileString( "ODBC", "GAME_DSN", "kodb", m_strGameDSN, 24, inipath );
-	GetPrivateProfileString( "ODBC", "GAME_UID", "kodb_user", m_strGameUID, 24, inipath );
-	GetPrivateProfileString( "ODBC", "GAME_PWD", "kodb_user", m_strGamePWD, 24, inipath );
+    GetPrivateProfileString( "ODBC", "GAME_DSN", "kodb", m_strGameDSN, 24, inipath );
+    GetPrivateProfileString( "ODBC", "GAME_UID", "kodb_user", m_strGameUID, 24, inipath );
+    GetPrivateProfileString( "ODBC", "GAME_PWD", "kodb_user", m_strGamePWD, 24, inipath );
 
-	m_nServerNo = GetPrivateProfileInt("ZONE_INFO", "GROUP_INFO", 1, inipath);
-	m_nZoneNo = GetPrivateProfileInt("ZONE_INFO", "ZONE_INFO", 1, inipath);
+    m_nServerNo = GetPrivateProfileInt("ZONE_INFO", "GROUP_INFO", 1, inipath);
+    m_nZoneNo = GetPrivateProfileInt("ZONE_INFO", "ZONE_INFO", 1, inipath);
 
-	if( !m_DBAgent.DatabaseInit() ) {
-		AfxPostQuitMessage(0);
-		return FALSE;
-	}	*/
+    if( !m_DBAgent.DatabaseInit() ) {
+        AfxPostQuitMessage(0);
+        return FALSE;
+    }    */
 
     DWORD id;
     m_hReadQueueThread = ::CreateThread(NULL, 0, ReadQueueThread, (LPVOID)this, 0, &id);
@@ -199,10 +199,10 @@ void CItemManagerDlg::ItemLogWrite(char * pBuf) {
     putitem = GetDWORD(pBuf, index);
     putcount = GetShort(pBuf, index);
     putdure = GetShort(pBuf, index);
-    //	getserial = GetInt64( pBuf, index );
-    //	getitem = GetDWORD( pBuf, index );
-    //	getcount = GetShort( pBuf, index );
-    //	getdure = GetShort( pBuf, index );
+    //    getserial = GetInt64( pBuf, index );
+    //    getitem = GetDWORD( pBuf, index );
+    //    getcount = GetShort( pBuf, index );
+    //    getdure = GetShort( pBuf, index );
 
     ///
     //wsprintf( strLog, "%d, %s, %d, %s, %d, %20d, %d, %d, %d, %20d, %d, %d, %d", srclen, srcid, tarlen, tarid, type, putserial, putitem, putcount, putdure, getserial, getitem, getcount, getdure);

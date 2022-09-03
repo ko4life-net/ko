@@ -1,8 +1,8 @@
 // MacProgressCtrl.cpp : implementation file
 //
-//	CMacProgressCtrl class, version 1.0
+//    CMacProgressCtrl class, version 1.0
 //
-//	Copyright (c) 1999 Paul M. Meidinger (pmmeidinger@yahoo.com)
+//    Copyright (c) 1999 Paul M. Meidinger (pmmeidinger@yahoo.com)
 //
 // Feel free to modifiy and/or distribute this file, but
 // do not remove this header.
@@ -12,8 +12,8 @@
 //
 // This file is provided "as is" with no expressed or implied warranty.
 //
-//	History:
-//		PMM	12/21/1999		Initial implementation.
+//    History:
+//        PMM    12/21/1999        Initial implementation.
 
 #include "stdafx.h"
 #include "MacProgressCtrl.h"
@@ -35,12 +35,12 @@ COLORREF DarkenColor(const COLORREF crColor, BYTE byReduceVal);
 //
 COLORREF LightenColor(const COLORREF crColor, BYTE byIncreaseVal)
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	crColor - References a COLORREF structure.
-//						byReduceVal - The amount to reduce the RGB values by.
+// Parameters    :    crColor - References a COLORREF structure.
+//                        byReduceVal - The amount to reduce the RGB values by.
 //
-// Remarks		:	Lightens a color by increasing the RGB values by the given number.
+// Remarks        :    Lightens a color by increasing the RGB values by the given number.
 //
 {
     BYTE byRed = GetRValue(crColor);
@@ -64,12 +64,12 @@ COLORREF LightenColor(const COLORREF crColor, BYTE byIncreaseVal)
 //
 COLORREF DarkenColor(const COLORREF crColor, BYTE byReduceVal)
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	crColor - References a COLORREF structure.
-//						byReduceVal - The amount to reduce the RGB values by.
+// Parameters    :    crColor - References a COLORREF structure.
+//                        byReduceVal - The amount to reduce the RGB values by.
 //
-// Remarks		:	Darkens a color by reducing the RGB values by the given number.
+// Remarks        :    Darkens a color by reducing the RGB values by the given number.
 //
 {
     BYTE byRed = GetRValue(crColor);
@@ -96,11 +96,11 @@ COLORREF DarkenColor(const COLORREF crColor, BYTE byReduceVal)
 //
 CMacProgressCtrl::CMacProgressCtrl()
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	None.
+// Parameters    :    None.
 //
-// Remarks		:	Standard constructor.
+// Remarks        :    Standard constructor.
 //
 {
     m_bIndeterminate = FALSE;
@@ -114,11 +114,11 @@ CMacProgressCtrl::CMacProgressCtrl()
 //
 CMacProgressCtrl::~CMacProgressCtrl()
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	None.
+// Parameters    :    None.
 //
-// Remarks		:	None.
+// Remarks        :    None.
 //
 {
     DeletePens();
@@ -139,13 +139,13 @@ END_MESSAGE_MAP()
 //
 void CMacProgressCtrl::OnPaint()
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	None.
+// Parameters    :    None.
 //
-// Remarks		:	The framework calls this member function when Windows
-//						or an application makes a request to repaint a portion
-//						of an application’s window.
+// Remarks        :    The framework calls this member function when Windows
+//                        or an application makes a request to repaint a portion
+//                        of an application’s window.
 //
 {
     CPaintDC dcPaint(this); // device context for painting
@@ -196,12 +196,12 @@ void CMacProgressCtrl::OnPaint()
 //
 void CMacProgressCtrl::DrawHorizontalBar(CDC * pDC, const CRect rect)
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	pDC - Specifies the device context object.
-//						rect - Specifies the rectangle of the progess bar.
+// Parameters    :    pDC - Specifies the device context object.
+//                        rect - Specifies the rectangle of the progess bar.
 //
-// Remarks		:	Draws a horizontal progress bar.
+// Remarks        :    Draws a horizontal progress bar.
 //
 {
     if (!rect.Width()) {
@@ -314,12 +314,12 @@ void CMacProgressCtrl::DrawHorizontalBar(CDC * pDC, const CRect rect)
 //
 void CMacProgressCtrl::DrawVerticalBar(CDC * pDC, const CRect rect)
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	pDC - Specifies the device context object.
-//						rect - Specifies the rectangle of the progess bar.
+// Parameters    :    pDC - Specifies the device context object.
+//                        rect - Specifies the rectangle of the progess bar.
 //
-// Remarks		:	Draws a vertical progress bar.
+// Remarks        :    Draws a vertical progress bar.
 //
 {
     int nHeight = rect.Height();
@@ -430,14 +430,14 @@ void CMacProgressCtrl::DrawVerticalBar(CDC * pDC, const CRect rect)
 //
 BOOL CMacProgressCtrl::OnEraseBkgnd(CDC * pDC)
 //
-// Return Value:	Nonzero if it erases the background; otherwise 0.
+// Return Value:    Nonzero if it erases the background; otherwise 0.
 //
-// Parameters	:	pDC - Specifies the device-context object.
+// Parameters    :    pDC - Specifies the device-context object.
 //
-// Remarks		:	The framework calls this member function when the
-//						CWnd object background needs erasing (for example,
-//						when resized). It is called to prepare an invalidated
-//						region for painting.
+// Remarks        :    The framework calls this member function when the
+//                        CWnd object background needs erasing (for example,
+//                        when resized). It is called to prepare an invalidated
+//                        region for painting.
 //
 {
     return TRUE;
@@ -447,12 +447,12 @@ BOOL CMacProgressCtrl::OnEraseBkgnd(CDC * pDC)
 //
 void CMacProgressCtrl::GetColors()
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	None.
+// Parameters    :    None.
 //
-// Remarks		:	Calculates the lighter and darker colors, as well as
-//						the shadow colors.
+// Remarks        :    Calculates the lighter and darker colors, as well as
+//                        the shadow colors.
 //
 {
     m_crColorLight = LightenColor(m_crColor, 51);
@@ -480,12 +480,12 @@ void CMacProgressCtrl::GetColors()
 //
 void CMacProgressCtrl::SetColor(COLORREF crColor)
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	crColor - New color.
+// Parameters    :    crColor - New color.
 //
-// Remarks		:	Sets the progress	bar control's color. The lighter
-//						darker colors are recalculated, and the pens recreated.
+// Remarks        :    Sets the progress    bar control's color. The lighter
+//                        darker colors are recalculated, and the pens recreated.
 //
 {
     m_crColor = crColor;
@@ -498,11 +498,11 @@ void CMacProgressCtrl::SetColor(COLORREF crColor)
 //
 COLORREF CMacProgressCtrl::GetColor()
 //
-// Return Value:	The current color.
+// Return Value:    The current color.
 //
-// Parameters	:	None.
+// Parameters    :    None.
 //
-// Remarks		:	Returns the progress bar control's current color.
+// Remarks        :    Returns the progress bar control's current color.
 //
 {
     return m_crColor;
@@ -512,11 +512,11 @@ COLORREF CMacProgressCtrl::GetColor()
 //
 void CMacProgressCtrl::CreatePens()
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	None.
+// Parameters    :    None.
 //
-// Remarks		:	Deletes the pen objects, if necessary, and creates them.
+// Remarks        :    Deletes the pen objects, if necessary, and creates them.
 //
 {
     DeletePens();
@@ -535,11 +535,11 @@ void CMacProgressCtrl::CreatePens()
 //
 void CMacProgressCtrl::DeletePens()
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	None.
+// Parameters    :    None.
 //
-// Remarks		:	Deletes the pen objects.
+// Remarks        :    Deletes the pen objects.
 //
 {
     if (m_penColorLight.m_hObject) {
@@ -572,11 +572,11 @@ void CMacProgressCtrl::DeletePens()
 //
 void CMacProgressCtrl::SetIndeterminate(BOOL bIndeterminate)
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	bIndeterminate - Specifies the indeterminate state.
+// Parameters    :    bIndeterminate - Specifies the indeterminate state.
 //
-// Remarks		:	Sets the indeterminate flag.
+// Remarks        :    Sets the indeterminate flag.
 //
 {
     m_bIndeterminate = bIndeterminate;
@@ -598,11 +598,11 @@ void CMacProgressCtrl::SetIndeterminate(BOOL bIndeterminate)
 //
 BOOL CMacProgressCtrl::GetIndeterminate()
 //
-// Return Value:	m_bIndeterminate.
+// Return Value:    m_bIndeterminate.
 //
-// Parameters	:	None.
+// Parameters    :    None.
 //
-// Remarks		:	Returns m_bIndeterminate.
+// Remarks        :    Returns m_bIndeterminate.
 //
 {
     return m_bIndeterminate;
@@ -612,13 +612,13 @@ BOOL CMacProgressCtrl::GetIndeterminate()
 //
 void CMacProgressCtrl::OnTimer(UINT nIDEvent)
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	nIDEvent - Specifies the identifier of the timer.
+// Parameters    :    nIDEvent - Specifies the identifier of the timer.
 //
-// Remarks		:	The framework calls this member function after each
-//						interval specified in the SetTimer member function used
-//						to install a timer.
+// Remarks        :    The framework calls this member function after each
+//                        interval specified in the SetTimer member function used
+//                        to install a timer.
 //
 {
     // Increment the indeterminate bar offset and redraw the window.

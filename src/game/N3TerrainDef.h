@@ -1,28 +1,28 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 //
-//	N3TerrainDef.h
-//	- 이것저것 Terrain에 관련된 자료형정의, 상수정의...
-//	- 게임에 쓰는 지형 (쿼드트리 아님...^^)
-//	- 2001. 10. 22.
+//    N3TerrainDef.h
+//    - 이것저것 Terrain에 관련된 자료형정의, 상수정의...
+//    - 게임에 쓰는 지형 (쿼드트리 아님...^^)
+//    - 2001. 10. 22.
 //
-//	By Donghoon..
+//    By Donghoon..
 //
 ////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma once
 
 // Constant Definitions..
-const int PATCH_TILE_SIZE = 8;      //	패치 하나에 타일이 8x8개 들어간다.
-const int TILE_SIZE = 4;            //	타일하나당 길이 4m
-const int MAX_LOD_LEVEL = 10;       //	LOD수준이 가장 높은 단계 가장 Detail...
-const int MIN_LOD_LEVEL = 0;        //	LOD수준이 가장 낮은 단계 가장 Rough...
-const int MAX_PATCH_LEVEL = 3;      //	2 ^ 3 = 8.
-const int PATCH_PIXEL_SIZE = 32;    //	패치하나에 들어가는 픽셀수..
-const int UNITUV = 32;              //	컬러맵 텍스쳐 한장에 들어가는 타일수..
-const int LIGHTMAP_TEX_SIZE = 16;   //	타일 하나당 들어가는 라이트맵 텍스쳐 크기.
-const int TILE_PIXEL_SIZE = 128;    //	타일하나의 실제 픽셀 사이즈.
-const int COLORMAPTEX_SIZE = 128;   //	컬러맵 텍스쳐의 픽셀크기..128x128
-const int DISTANCE_TABLE_SIZE = 64; //	셀단위의 거리 테이블 크기(64 x 64)..
+const int PATCH_TILE_SIZE = 8;      //    패치 하나에 타일이 8x8개 들어간다.
+const int TILE_SIZE = 4;            //    타일하나당 길이 4m
+const int MAX_LOD_LEVEL = 10;       //    LOD수준이 가장 높은 단계 가장 Detail...
+const int MIN_LOD_LEVEL = 0;        //    LOD수준이 가장 낮은 단계 가장 Rough...
+const int MAX_PATCH_LEVEL = 3;      //    2 ^ 3 = 8.
+const int PATCH_PIXEL_SIZE = 32;    //    패치하나에 들어가는 픽셀수..
+const int UNITUV = 32;              //    컬러맵 텍스쳐 한장에 들어가는 타일수..
+const int LIGHTMAP_TEX_SIZE = 16;   //    타일 하나당 들어가는 라이트맵 텍스쳐 크기.
+const int TILE_PIXEL_SIZE = 128;    //    타일하나의 실제 픽셀 사이즈.
+const int COLORMAPTEX_SIZE = 128;   //    컬러맵 텍스쳐의 픽셀크기..128x128
+const int DISTANCE_TABLE_SIZE = 64; //    셀단위의 거리 테이블 크기(64 x 64)..
 const int MAX_GRASS = 8;
 const int MAX_TERRAIN_SOUND_EFFECT = 4;
 

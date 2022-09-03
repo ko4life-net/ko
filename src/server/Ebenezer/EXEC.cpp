@@ -158,30 +158,30 @@ void EXEC::Parse(char * pBuf) {
     // 현재 여기까지만 쓰입니다. 아래는 나중에 맞게 수정해서 쓰세여.
 
     /*
-	else if( !strcmp( temp, "ROB_NOAH" ) )
-	{
-		m_Exec = EXEC_ROB_NOAH;
+    else if( !strcmp( temp, "ROB_NOAH" ) )
+    {
+        m_Exec = EXEC_ROB_NOAH;
 
-		index += ParseSpace( temp, pBuf+index );	m_ExecInt[i++] = atoi( temp );	// NOAH
-	}
-	else if( !strcmp( temp, "GIVE_QUEST" ) )
-	{
-		m_Exec = EXEC_GIVE_QUEST;
+        index += ParseSpace( temp, pBuf+index );    m_ExecInt[i++] = atoi( temp );    // NOAH
+    }
+    else if( !strcmp( temp, "GIVE_QUEST" ) )
+    {
+        m_Exec = EXEC_GIVE_QUEST;
 
-		index += ParseSpace( temp, pBuf+index );	m_ExecInt[i++] = atoi( temp );	// Quest no.
-	}
-	else if( !strcmp( temp, "DONE_QUEST" ) )
-	{
-		m_Exec = EXEC_QUEST_END;
+        index += ParseSpace( temp, pBuf+index );    m_ExecInt[i++] = atoi( temp );    // Quest no.
+    }
+    else if( !strcmp( temp, "DONE_QUEST" ) )
+    {
+        m_Exec = EXEC_QUEST_END;
 
-		index += ParseSpace( temp, pBuf+index );	m_ExecInt[i++] = atoi( temp );	// Quest no.
-	}
-	else if( !strcmp( temp, "SAVE_QUEST" ) )
-	{
-		m_Exec = EXEC_QUEST_SAVE;
+        index += ParseSpace( temp, pBuf+index );    m_ExecInt[i++] = atoi( temp );    // Quest no.
+    }
+    else if( !strcmp( temp, "SAVE_QUEST" ) )
+    {
+        m_Exec = EXEC_QUEST_SAVE;
 
-		index += ParseSpace( temp, pBuf+index );	m_ExecInt[i++] = atoi( temp );	// Quest no.
-	}
+        index += ParseSpace( temp, pBuf+index );    m_ExecInt[i++] = atoi( temp );    // Quest no.
+    }
 */
 }
 

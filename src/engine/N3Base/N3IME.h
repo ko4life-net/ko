@@ -16,7 +16,7 @@ const DWORD IME_IN_CHOSECAND = 0x00000002;
 #define MAX_COMP_STRING_LEN       10
 #define DEFAULT_CAND_NUM_PER_PAGE 5
 
-//char	CANDWND_CLASS[] = "HanjaCandidate";
+//char    CANDWND_CLASS[] = "HanjaCandidate";
 
 class CN3IME {
   public:

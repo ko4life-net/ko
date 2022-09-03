@@ -776,7 +776,7 @@ bool CUIWareHouseDlg::ReceiveIconDrop(__IconItemSkill * spItem, POINT ptCur) {
 
             CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder = iDestiOrder;
 
-            // 창고 내에서 이동..	(모두 일반 아이템으로 취급한다..)
+            // 창고 내에서 이동..    (모두 일반 아이템으로 취급한다..)
             if (m_pMyWare[m_iCurPage][iDestiOrder]) // 해당 위치에 아이콘이 있으면..
             {
                 CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer = false;
@@ -949,7 +949,7 @@ bool CUIWareHouseDlg::ReceiveIconDrop(__IconItemSkill * spItem, POINT ptCur) {
 
             CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder = iDestiOrder;
 
-            // Inv 내에서 이동..	(모두 일반 아이템으로 취급한다..)
+            // Inv 내에서 이동..    (모두 일반 아이템으로 취급한다..)
             if (m_pMyWareInv[iDestiOrder]) // 해당 위치에 아이콘이 있으면..
             {
                 CN3UIWndBase::m_sRecoveryJobInfo.pItemTarget = m_pMyWareInv[iDestiOrder];
@@ -1074,7 +1074,7 @@ void CUIWareHouseDlg::ReceiveResultToWareMsg(BYTE bResult) // 넣는 경우..
             (CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable ==
              UIITEM_TYPE_COUNTABLE_SMALL)) // 활이나 물약등 아이템인 경우..
         {
-            // Ware Side..	//////////////////////////////////////////////////////
+            // Ware Side..    //////////////////////////////////////////////////////
 
             if ((m_pMyWare[CN3UIWndBase::m_sRecoveryJobInfo.m_iPage]
                           [CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder]
@@ -1104,7 +1104,7 @@ void CUIWareHouseDlg::ReceiveResultToWareMsg(BYTE bResult) // 넣는 경우..
                 spItem = NULL;
             }
 
-            // Inv Side..	//////////////////////////////////////////////////////
+            // Inv Side..    //////////////////////////////////////////////////////
 
             if (!m_pMyWareInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]->pUIIcon->IsVisible()) {
                 m_pMyWareInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]->pUIIcon->SetVisible(true);
@@ -1174,7 +1174,7 @@ void CUIWareHouseDlg::ReceiveResultFromWareMsg(BYTE bResult) // 빼는 경우..
         }
         if ((CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE) ||
             (CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE_SMALL)) {
-            // Inv Side..	//////////////////////////////////////////////////////
+            // Inv Side..    //////////////////////////////////////////////////////
 
             if ((m_pMyWareInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder]->iCount - iGold) > 0) {
                 //  숫자 업데이트..
@@ -1197,7 +1197,7 @@ void CUIWareHouseDlg::ReceiveResultFromWareMsg(BYTE bResult) // 빼는 경우..
                 spItem = NULL;
             }
 
-            // Ware Side..	//////////////////////////////////////////////////////
+            // Ware Side..    //////////////////////////////////////////////////////
 
             if (!m_pMyWare[m_iCurPage][CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]
                      ->pUIIcon->IsVisible()) {

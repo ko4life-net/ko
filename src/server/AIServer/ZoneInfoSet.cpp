@@ -39,7 +39,7 @@ CString CZoneInfoSet::GetDefaultConnect() {
 }
 
 CString CZoneInfoSet::GetDefaultSQL() {
-    //	return _T("[dbo].[ZONE_INFO2]");
+    //    return _T("[dbo].[ZONE_INFO2]");
     return _T("[dbo].[ZONE_INFO]");
 }
 

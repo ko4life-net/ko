@@ -229,22 +229,22 @@ void CButtonST::OnMouseMove(UINT nFlags, CPoint point) {
 #endif
                                       pParent != NULL)) {
         m_bMouseOnButton = TRUE;
-        //SetFocus();	// Thanks Ralph!
+        //SetFocus();    // Thanks Ralph!
         SetCapture();
         Invalidate();
     } // if
     else {
         /*
-		CRect rc;
-		GetClientRect(&rc);
-		if (!rc.PtInRect(point))
-		{
-		*/
+        CRect rc;
+        GetClientRect(&rc);
+        if (!rc.PtInRect(point))
+        {
+        */
 
         POINT p2 = point;
         ClientToScreen(&p2);
         CWnd * wndUnderMouse = WindowFromPoint(p2);
-        //		if (wndUnderMouse != this)
+        //        if (wndUnderMouse != this)
         if (wndUnderMouse && wndUnderMouse->m_hWnd != this->m_hWnd) {
             // Redraw only if mouse goes out
             if (m_bMouseOnButton == TRUE) {
@@ -443,32 +443,32 @@ void CButtonST::DrawItem(LPDRAWITEMSTRUCT lpDIS) {
         //pDC->FrameRect(&captionRect, &brBtnShadow);
 
         /*
-		if ((m_bMouseOnButton == TRUE) || (bIsPressed)) 
-		{
-			pDC->SetTextColor(GetActiveFgColor());
-			pDC->SetBkColor(GetActiveBgColor());
-		} 
-		else 
-		{
-			pDC->SetTextColor(GetInactiveFgColor());
-			pDC->SetBkColor(GetInactiveBgColor());
-		}
-		*/
+        if ((m_bMouseOnButton == TRUE) || (bIsPressed)) 
+        {
+            pDC->SetTextColor(GetActiveFgColor());
+            pDC->SetBkColor(GetActiveBgColor());
+        } 
+        else 
+        {
+            pDC->SetTextColor(GetInactiveFgColor());
+            pDC->SetBkColor(GetInactiveBgColor());
+        }
+        */
         // Center text
         CRect centerRect = captionRect;
         pDC->DrawText(sTitle, -1, captionRect, DT_WORDBREAK | DT_CENTER | DT_CALCRECT);
         captionRect.OffsetRect((centerRect.Width() - captionRect.Width()) / 2,
                                (centerRect.Height() - captionRect.Height()) / 2);
         /* RFU
-		captionRect.OffsetRect(0, (centerRect.Height() - captionRect.Height())/2);
-		captionRect.OffsetRect((centerRect.Width() - captionRect.Width())-4, (centerRect.Height() - captionRect.Height())/2);
-		*/
+        captionRect.OffsetRect(0, (centerRect.Height() - captionRect.Height())/2);
+        captionRect.OffsetRect((centerRect.Width() - captionRect.Width())-4, (centerRect.Height() - captionRect.Height())/2);
+        */
 
         pDC->SetBkMode(TRANSPARENT);
         /*
-		pDC->DrawState(captionRect.TopLeft(), captionRect.Size(), (LPCTSTR)sTitle, (bIsDisabled ? DSS_DISABLED : DSS_NORMAL), 
-						TRUE, 0, (CBrush*)NULL);
-		*/
+        pDC->DrawState(captionRect.TopLeft(), captionRect.Size(), (LPCTSTR)sTitle, (bIsDisabled ? DSS_DISABLED : DSS_NORMAL), 
+                        TRUE, 0, (CBrush*)NULL);
+        */
         if (m_bIsDisabled) {
             captionRect.OffsetRect(1, 1);
             pDC->SetTextColor(::GetSysColor(COLOR_3DHILIGHT));
@@ -918,21 +918,21 @@ HBITMAP CButtonST::CreateBitmapMask(HBITMAP hSourceBitmap, DWORD dwWidth, DWORD 
 
 //
 // Parameters:
-//		[IN]	bHasTitle
-//				TRUE if the button has a text
-//		[IN]	rpItem
-//				A pointer to a RECT structure indicating the allowed paint area
-//		[IN/OUT]rpTitle
-//				A pointer to a CRect object indicating the paint area reserved for the
-//				text. This structure will be modified if necessary.
-//		[IN]	bIsPressed
-//				TRUE if the button is currently pressed
-//		[IN]	dwWidth
-//				Width of the image (icon or bitmap)
-//		[IN]	dwHeight
-//				Height of the image (icon or bitmap)
-//		[OUT]	rpImage
-//				A pointer to a CRect object that will receive the area available to the image
+//        [IN]    bHasTitle
+//                TRUE if the button has a text
+//        [IN]    rpItem
+//                A pointer to a RECT structure indicating the allowed paint area
+//        [IN/OUT]rpTitle
+//                A pointer to a CRect object indicating the paint area reserved for the
+//                text. This structure will be modified if necessary.
+//        [IN]    bIsPressed
+//                TRUE if the button is currently pressed
+//        [IN]    dwWidth
+//                Width of the image (icon or bitmap)
+//        [IN]    dwHeight
+//                Height of the image (icon or bitmap)
+//        [OUT]    rpImage
+//                A pointer to a CRect object that will receive the area available to the image
 //
 void CButtonST::PrepareImageRect(BOOL bHasTitle, RECT * rpItem, CRect * rpTitle, BOOL bIsPressed, DWORD dwWidth,
                                  DWORD dwHeight, CRect * rpImage) {
@@ -990,11 +990,11 @@ void CButtonST::PrepareImageRect(BOOL bHasTitle, RECT * rpItem, CRect * rpTitle,
 
 //
 // Parameters:
-//		[IN]	bRepaint
-//				If TRUE the control will be repainted.
+//        [IN]    bRepaint
+//                If TRUE the control will be repainted.
 // Return value:
-//		BTNST_OK
-//			Function executed successfully.
+//        BTNST_OK
+//            Function executed successfully.
 //
 DWORD CButtonST::SetDefaultColors(BOOL bRepaint) {
     m_crColors[BTNST_COLOR_BK_IN] = ::GetSysColor(COLOR_BTNFACE);
@@ -1011,18 +1011,18 @@ DWORD CButtonST::SetDefaultColors(BOOL bRepaint) {
 
 //
 // Parameters:
-//		[IN]	byColorIndex
-//				Index of the color to set. This index is zero-based.
-//		[IN]	crColor
-//				New color.
-//		[IN]	bRepaint
-//				If TRUE the control will be repainted.
+//        [IN]    byColorIndex
+//                Index of the color to set. This index is zero-based.
+//        [IN]    crColor
+//                New color.
+//        [IN]    bRepaint
+//                If TRUE the control will be repainted.
 //
 // Return value:
-//		BTNST_OK
-//			Function executed successfully.
-//		BTNST_INVALIDINDEX
-//			Invalid color index.
+//        BTNST_OK
+//            Function executed successfully.
+//        BTNST_INVALIDINDEX
+//            Invalid color index.
 //
 DWORD CButtonST::SetColor(BYTE byColorIndex, COLORREF crColor, BOOL bRepaint) {
     if (byColorIndex >= BTNST_MAX_COLORS) {
@@ -1041,16 +1041,16 @@ DWORD CButtonST::SetColor(BYTE byColorIndex, COLORREF crColor, BOOL bRepaint) {
 
 //
 // Parameters:
-//		[IN]	byColorIndex
-//				Index of the color to get. This index is zero-based.
-//		[OUT]	crpColor
-//				A pointer to a COLORREF that will receive the color.
+//        [IN]    byColorIndex
+//                Index of the color to get. This index is zero-based.
+//        [OUT]    crpColor
+//                A pointer to a COLORREF that will receive the color.
 //
 // Return value:
-//		BTNST_OK
-//			Function executed successfully.
-//		BTNST_INVALIDINDEX
-//			Invalid color index.
+//        BTNST_OK
+//            Function executed successfully.
+//        BTNST_INVALIDINDEX
+//            Invalid color index.
 //
 DWORD CButtonST::GetColor(BYTE byColorIndex, COLORREF * crpColor) {
     if (byColorIndex >= BTNST_MAX_COLORS) {
@@ -1065,12 +1065,12 @@ DWORD CButtonST::GetColor(BYTE byColorIndex, COLORREF * crpColor) {
 
 //
 // Parameters:
-//		[IN]	lpszURL
-//				Pointer to a null-terminated string that contains the URL.
+//        [IN]    lpszURL
+//                Pointer to a null-terminated string that contains the URL.
 //
 // Return value:
-//		BTNST_OK
-//			Function executed successfully.
+//        BTNST_OK
+//            Function executed successfully.
 //
 DWORD CButtonST::SetURL(LPCTSTR lpszURL) {
     if (lpszURL != NULL) {
@@ -1100,15 +1100,15 @@ void CButtonST::CancelHover() {
 // This function enable or disable the autorepeat feature.
 //
 // Parameters:
-//		[IN]	bSet
-//				TRUE to enable autorepeat. FALSE to disable.
-//		[IN]	dwMilliseconds
-//				Time (in milliseconds) between each button click.
-//				If bSet is FALSE this parameter is ignored.
+//        [IN]    bSet
+//                TRUE to enable autorepeat. FALSE to disable.
+//        [IN]    dwMilliseconds
+//                Time (in milliseconds) between each button click.
+//                If bSet is FALSE this parameter is ignored.
 //
 // Return value:
-//		BTNST_OK
-//			Function executed successfully.
+//        BTNST_OK
+//            Function executed successfully.
 //
 DWORD CButtonST::SetAutoRepeat(BOOL bSet, DWORD dwMilliseconds) {
     m_bAutoRepeat = bSet;
@@ -1121,15 +1121,15 @@ DWORD CButtonST::SetAutoRepeat(BOOL bSet, DWORD dwMilliseconds) {
 // If the button is in transparent mode this function will NOT be called.
 //
 // Parameters:
-//		[IN]	pDC
-//				Pointer to a CDC object that indicates the device context.
-//		[IN]	pRect
-//				Pointer to a CRect object that indicates the bounds of the
-//				area to be painted.
+//        [IN]    pDC
+//                Pointer to a CDC object that indicates the device context.
+//        [IN]    pRect
+//                Pointer to a CRect object that indicates the bounds of the
+//                area to be painted.
 //
 // Return value:
-//		BTNST_OK
-//			Function executed successfully.
+//        BTNST_OK
+//            Function executed successfully.
 //
 DWORD CButtonST::OnDrawBackground(CDC * pDC, LPCRECT pRect) {
     COLORREF crColor;
@@ -1151,15 +1151,15 @@ DWORD CButtonST::OnDrawBackground(CDC * pDC, LPCRECT pRect) {
 // If the button is in standard (not flat) mode this function will NOT be called.
 //
 // Parameters:
-//		[IN]	pDC
-//				Pointer to a CDC object that indicates the device context.
-//		[IN]	pRect
-//				Pointer to a CRect object that indicates the bounds of the
-//				area to be painted.
+//        [IN]    pDC
+//                Pointer to a CDC object that indicates the device context.
+//        [IN]    pRect
+//                Pointer to a CRect object that indicates the bounds of the
+//                area to be painted.
 //
 // Return value:
-//		BTNST_OK
-//			Function executed successfully.
+//        BTNST_OK
+//            Function executed successfully.
 //
 DWORD CButtonST::OnDrawBorder(CDC * pDC, LPCRECT pRect) {
     if (m_bIsPressed) {

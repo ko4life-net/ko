@@ -64,21 +64,21 @@ void CFormViewProperty::OnInitialUpdate() {
         std::string strTmp;
 
         m_LPMtl.AddPropItem("Render Flags", "0", PIT_EDIT, "", 0);
-        //		strTmp = "Null|D3DBLEND_ZERO|D3DBLEND_ONE|D3DBLEND_SRCCOLOR|D3DBLEND_INVSRCCOLOR|D3DBLEND_SRCALPHA|D3DBLEND_INVSRCALPHA|D3DBLEND_DESTALPHA|\
+        //        strTmp = "Null|D3DBLEND_ZERO|D3DBLEND_ONE|D3DBLEND_SRCCOLOR|D3DBLEND_INVSRCCOLOR|D3DBLEND_SRCALPHA|D3DBLEND_INVSRCALPHA|D3DBLEND_DESTALPHA|\
 //D3DBLEND_INVDESTALPHA|D3DBLEND_DESTCOLOR|D3DBLEND_INVDESTCOLOR|D3DBLEND_SRCALPHASAT|D3DBLEND_BOTHSRCALPHA|D3DBLEND_BOTHINVSRCALPHA|";
-        //		m_LPMtl.AddPropItem("Src Blend", "", PIT_COMBO, strTmp);
-        //		m_LPMtl.AddPropItem("Dest Blend", "", PIT_COMBO, strTmp);
+        //        m_LPMtl.AddPropItem("Src Blend", "", PIT_COMBO, strTmp);
+        //        m_LPMtl.AddPropItem("Dest Blend", "", PIT_COMBO, strTmp);
 
-        //		strTmp = "Null|D3DTOP_DISABLE|D3DTOP_SELECTARG1|D3DTOP_SELECTARG2|D3DTOP_MODULATE|D3DTOP_MODULATE2X|D3DTOP_MODULATE4X|\
+        //        strTmp = "Null|D3DTOP_DISABLE|D3DTOP_SELECTARG1|D3DTOP_SELECTARG2|D3DTOP_MODULATE|D3DTOP_MODULATE2X|D3DTOP_MODULATE4X|\
 //D3DTOP_ADD|D3DTOP_ADDSIGNED|D3DTOP_ADDSIGNED2X|\
 //D3DTOP_SUBTRACT|D3DTOP_ADDSMOOTH|\
 //D3DTOP_BLENDDIFFUSEALPHA|D3DTOP_BLENDTEXTUREALPHA|D3DTOP_BLENDFACTORALPHA|D3DTOP_BLENDTEXTUREALPHAPM|D3DTOP_BLENDCURRENTALPHA|\
 //D3DTOP_PREMODULATE|D3DTOP_MODULATEALPHA_ADDCOLOR|D3DTOP_MODULATECOLOR_ADDALPHA|D3DTOP_MODULATEINVALPHA_ADDCOLOR|D3DTOP_MODULATEINVCOLOR_ADDALPHA|\
 //D3DTOP_BUMPENVMAP|D3DTOP_BUMPENVMAPLUMINANCE|D3DTOP_DOTPRODUCT|D3DTOP_MULTIPLYADD|D3DTOP_LERP|";
-        //		m_LPMtl.AddPropItem("Color Operation", "", PIT_COMBO, strTmp.c_str());
-        //		strTmp = "D3DTA_DIFFUSE|D3DTA_CURRENTD|3DTA_TEXTURE|D3DTA_TFACTOR|D3DTA_SPECULAR|";
-        //		m_LPMtl.AddPropItem("Color Arg1", "", PIT_COMBO, strTmp.c_str());
-        //		m_LPMtl.AddPropItem("Color Arg2", "", PIT_COMBO, strTmp.c_str());
+        //        m_LPMtl.AddPropItem("Color Operation", "", PIT_COMBO, strTmp.c_str());
+        //        strTmp = "D3DTA_DIFFUSE|D3DTA_CURRENTD|3DTA_TEXTURE|D3DTA_TFACTOR|D3DTA_SPECULAR|";
+        //        m_LPMtl.AddPropItem("Color Arg1", "", PIT_COMBO, strTmp.c_str());
+        //        m_LPMtl.AddPropItem("Color Arg2", "", PIT_COMBO, strTmp.c_str());
         m_LPMtl.AddPropItem("Ambient Color", "", PIT_COLOR, "");
         m_LPMtl.AddPropItem("Diffuse Color", "", PIT_COLOR, "");
         m_LPMtl.AddPropItem("Specular Color", "", PIT_COLOR, "");
@@ -116,15 +116,15 @@ void CFormViewProperty::OnInitialUpdate() {
         /////////////////////////////////////
 
         //////////////////////////////////////////////////
-        //	Coded (By Dino On 2002-10-11 오전 9:53:37 )
-        //	FX Plug 등록 정보
+        //    Coded (By Dino On 2002-10-11 오전 9:53:37 )
+        //    FX Plug 등록 정보
         m_LPFXPlugPart.AddPropItem("FXB", "", PIT_FILE, "FX Bundle(*.FXB)|*.FXB||", 0);
         m_LPFXPlugPart.AddPropItem("Referance Index", "", PIT_EDIT, "", 0);
         m_LPFXPlugPart.AddPropItem("Offset Pos", "", PIT_EDIT, "", 0);
         m_LPFXPlugPart.AddPropItem("Offset Dir", "", PIT_EDIT, "", 0);
 
         m_LPFXPlugPart.SetDividerWidth(100);
-        //	End Of Code (By Dino On 2002-10-11 오전 9:53:37 )
+        //    End Of Code (By Dino On 2002-10-11 오전 9:53:37 )
         //////////////////////////////////////////////////
 
         // Tree Control 에 이미지 리스트 연결
@@ -219,8 +219,8 @@ void CFormViewProperty::UpdateWindowPos() {
     }
 
     //////////////////////////////////////////////////
-    //	Coded (By Dino On 2002-10-11 오전 10:24:21 )
-    //	FXPlugPart
+    //    Coded (By Dino On 2002-10-11 오전 10:24:21 )
+    //    FXPlugPart
     if (pBase && pBase->Type() & OBJ_FX_PLUG_PART) {
         int h = m_LPFXPlugPart.GetCount() * m_LPFXPlugPart.GetItemHeight(0);
         y -= h;
@@ -228,7 +228,7 @@ void CFormViewProperty::UpdateWindowPos() {
         m_LPFXPlugPart.ShowWindow(SW_SHOW);
         y -= 5;
     }
-    //	End Of Code (By Dino On 2002-10-11 오전 10:24:21 )
+    //    End Of Code (By Dino On 2002-10-11 오전 10:24:21 )
     //////////////////////////////////////////////////
 
     m_TreeChr.SetWindowPos(NULL, x, 5, cx, y, SWP_NOZORDER);
@@ -317,8 +317,8 @@ void CFormViewProperty::UpdateInfo() {
         }
     }
     //////////////////////////////////////////////////
-    //	Coded (By Dino On 2002-10-11 오전 10:31:36 )
-    //	FXPlugPart
+    //    Coded (By Dino On 2002-10-11 오전 10:31:36 )
+    //    FXPlugPart
     else if (pBase->Type() & OBJ_FX_PLUG_PART) {
         CN3FXPlugPart * pFXPPart = (CN3FXPlugPart *)pBase;
 
@@ -345,7 +345,7 @@ void CFormViewProperty::UpdateInfo() {
 
         m_LPFXPlugPart.Invalidate();
     }
-    //	End Of Code (By Dino On 2002-10-11 오전 10:31:36 )
+    //    End Of Code (By Dino On 2002-10-11 오전 10:31:36 )
     //////////////////////////////////////////////////
 
     // 재질
@@ -355,20 +355,20 @@ void CFormViewProperty::UpdateInfo() {
             pItem->m_curValue.Format("%d", pMtl->nRenderFlags);
         }
 
-        //		pItem = m_LPMtl.GetPropItem("Src Blend");
-        //		if(pItem) pItem->m_crColor = pMtl->dwSrcBlend;
+        //        pItem = m_LPMtl.GetPropItem("Src Blend");
+        //        if(pItem) pItem->m_crColor = pMtl->dwSrcBlend;
 
-        //		pItem = m_LPMtl.GetPropItem("Dest Blend");
-        //		if(pItem) pItem->m_crColor = pMtl->dwDestBlend;
+        //        pItem = m_LPMtl.GetPropItem("Dest Blend");
+        //        if(pItem) pItem->m_crColor = pMtl->dwDestBlend;
 
-        //		pItem = m_LPMtl.GetPropItem("Color Operation");
-        //		if(pItem) pItem->m_crColor = pMtl->dwColorOp;
+        //        pItem = m_LPMtl.GetPropItem("Color Operation");
+        //        if(pItem) pItem->m_crColor = pMtl->dwColorOp;
 
-        //		pItem = m_LPMtl.GetPropItem("Color Arg1");
-        //		if(pItem) pItem->m_crColor = pMtl->dwColorArg1;
+        //        pItem = m_LPMtl.GetPropItem("Color Arg1");
+        //        if(pItem) pItem->m_crColor = pMtl->dwColorArg1;
 
-        //		pItem = m_LPMtl.GetPropItem("Color Arg2");
-        //		if(pItem) pItem->m_crColor = pMtl->dwColorArg2;
+        //        pItem = m_LPMtl.GetPropItem("Color Arg2");
+        //        if(pItem) pItem->m_crColor = pMtl->dwColorArg2;
 
         pItem = m_LPMtl.GetPropItem("Ambient Color");
         if (pItem) {
@@ -419,11 +419,11 @@ BOOL CFormViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult
             if (pItem->m_propName == "Render Flags") {
                 pMtl->nRenderFlags = atoi(pItem->m_curValue);
             }
-            //			if(pItem->m_propName == "Src Blend") pMtl->dwSrcBlend = pItem->m_crColor;
-            //			if(pItem->m_propName == "Dest Blend") pMtl->dwDestBlend = pItem->m_crColor;
-            //			if(pItem->m_propName == "Color Operation") pMtl->dwColorOp = pItem->m_crColor;
-            //			if(pItem->m_propName == "Color Arg1") pMtl->dwColorArg1 = pItem->m_crColor;
-            //			if(pItem->m_propName == "Color Arg2") pMtl->dwColorArg2 = pItem->m_crColor;
+            //            if(pItem->m_propName == "Src Blend") pMtl->dwSrcBlend = pItem->m_crColor;
+            //            if(pItem->m_propName == "Dest Blend") pMtl->dwDestBlend = pItem->m_crColor;
+            //            if(pItem->m_propName == "Color Operation") pMtl->dwColorOp = pItem->m_crColor;
+            //            if(pItem->m_propName == "Color Arg1") pMtl->dwColorArg1 = pItem->m_crColor;
+            //            if(pItem->m_propName == "Color Arg2") pMtl->dwColorArg2 = pItem->m_crColor;
             if (pItem->m_propName == "Ambient Color") {
                 pMtl->Ambient = pItem->D3DColorValueGet();
             }
@@ -485,25 +485,25 @@ BOOL CFormViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult
         //else if(pItem->m_propName == "FX Board Size") //pPlug->m_fFXSize = atof(pItem->m_curValue);
         //else if(pItem->m_propName == "FX Board Offset") pPlug->m_fFXOffset = atof(pItem->m_curValue);
         /*
-		else if(pItem->m_propName == "FX Line Count") 
-		{
-			int iFXPosCount = atoi(pItem->m_curValue);
-			if(iFXPosCount >= 0 && iFXPosCount < MAX_PLUG_FX_POSITION / 2)
-				pPlug->m_iFXPosCount = iFXPosCount;
-		}
-		else if(pItem->m_propName == "FX Pos")
-		{
-			pFrm->GetPaneRender()->m_eCursorMode = (e_CursorMode)(eCM_PlugFXPosition0 + pItem->m_crColor);
-			pFrm->GetPaneRender()->InitFXPos();
+        else if(pItem->m_propName == "FX Line Count") 
+        {
+            int iFXPosCount = atoi(pItem->m_curValue);
+            if(iFXPosCount >= 0 && iFXPosCount < MAX_PLUG_FX_POSITION / 2)
+                pPlug->m_iFXPosCount = iFXPosCount;
+        }
+        else if(pItem->m_propName == "FX Pos")
+        {
+            pFrm->GetPaneRender()->m_eCursorMode = (e_CursorMode)(eCM_PlugFXPosition0 + pItem->m_crColor);
+            pFrm->GetPaneRender()->InitFXPos();
 
-		}
-		*/
+        }
+        */
 
         pFrm->GetPaneRender()->InvalidateRect(NULL, FALSE);
     }
     //////////////////////////////////////////////////
-    //	Coded (By Dino On 2002-10-11 오전 10:37:54 )
-    //	FXPlugPart
+    //    Coded (By Dino On 2002-10-11 오전 10:37:54 )
+    //    FXPlugPart
     else if ((void *)wParam == &m_LPFXPlugPart) {
         CN3Base * pBase = this->GetSelectedObject();
         if (NULL == pBase || !(pBase->Type() & OBJ_FX_PLUG_PART)) {
@@ -536,7 +536,7 @@ BOOL CFormViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult
             pItem->VectorSet(pFXPPart->m_vOffsetDir);
         }
     }
-    //	End Of Code (By Dino On 2002-10-11 오전 10:37:54 )
+    //    End Of Code (By Dino On 2002-10-11 오전 10:37:54 )
     //////////////////////////////////////////////////
     else {
         CFormView::OnNotify(wParam, lParam, pResult);
@@ -578,8 +578,8 @@ void CFormViewProperty::UpdateAllInfo() {
     }
     HTREEITEM hInsert = NULL;
     //////////////////////////////////////////////////
-    //	Coded (By Dino On 2002-10-10 오후 4:44:49 )
-    //	FXPlug
+    //    Coded (By Dino On 2002-10-10 오후 4:44:49 )
+    //    FXPlug
     CN3FXPlug * pFXP = pChr->FXPlugGet();
     if (pFXP) {
         int nFXPPC = pFXP->m_FXPParts.size();
@@ -590,7 +590,7 @@ void CFormViewProperty::UpdateAllInfo() {
             m_TreeChr.SetItemData(hInsert, (DWORD)pFXP->m_FXPParts[i]);
         }
     }
-    //	End Of Code (By Dino On 2002-10-10 오후 4:44:49 )
+    //    End Of Code (By Dino On 2002-10-10 오후 4:44:49 )
     //////////////////////////////////////////////////
 
     CN3Joint * pJoint = pChr->Joint();
@@ -698,7 +698,7 @@ void CFormViewProperty::OnTreeChrRclick(NMHDR * pNMHDR, LRESULT * pResult) {
 
     m_TreeChr.SelectItem(hI);
     HTREEITEM hPI = m_TreeChr.GetParentItem(hI);
-    //	if(NULL == hPI) return;
+    //    if(NULL == hPI) return;
 
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     CMenu *      pMenu = pFrm->GetMenu();

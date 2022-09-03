@@ -67,7 +67,7 @@ DWORD WINAPI AcceptThread(LPVOID lp) {
                     memset(logstr, NULL, 1024);
                     sprintf(logstr, "Socket Array has Broken...\r\n");
                     LogFileWrite(logstr);
-                    //					pIocport->PutOldSid( sid );				// Invalid sid must forbidden to use
+                    //                    pIocport->PutOldSid( sid );                // Invalid sid must forbidden to use
                     goto loop_pass_accept;
                 }
 
@@ -98,7 +98,7 @@ DWORD WINAPI AcceptThread(LPVOID lp) {
                 }
 
                 // Crytion
-                //pSocket->SendCryptionKey();	// 암호화
+                //pSocket->SendCryptionKey();    // 암호화
                 // ~
                 pSocket->Receive();
 
@@ -234,7 +234,7 @@ DWORD WINAPI ClientWorkerThread(LPVOID lp) {
                         TRACE("AISocket Closed By 0 Byte Notify\n");
                         pSocket->CloseProcess();
                         pIocport->RidIOCPSocket(pSocket->GetSocketID(), pSocket);
-                        //						pIocport->PutOldSid( pSocket->GetSocketID() );		// 클라이언트 소켓은 Sid 관리하지 않음
+                        //                        pIocport->PutOldSid( pSocket->GetSocketID() );        // 클라이언트 소켓은 Sid 관리하지 않음
                         LeaveCriticalSection(&g_critical);
                         break;
                     }
@@ -258,7 +258,7 @@ DWORD WINAPI ClientWorkerThread(LPVOID lp) {
                     TRACE("AISocket Closed By Close()\n");
                     pSocket->CloseProcess();
                     pIocport->RidIOCPSocket(pSocket->GetSocketID(), pSocket);
-                    //					pIocport->PutOldSid( pSocket->GetSocketID() );
+                    //                    pIocport->PutOldSid( pSocket->GetSocketID() );
 
                     LeaveCriticalSection(&g_critical);
                     break;
@@ -323,7 +323,7 @@ DWORD WINAPI SendWorkerThread(LPVOID lp) {
                                 pSocket->Send(pBuff, len);
                             } else {
                                 pSocket->SendCompressingPacket(pBuff, len);
-                                //								TRACE("Region Packet %d Bytes\n", len);
+                                //                                TRACE("Region Packet %d Bytes\n", len);
                             }
                         }
                     }

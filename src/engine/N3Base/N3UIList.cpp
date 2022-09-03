@@ -29,11 +29,11 @@ CN3UIList::~CN3UIList() {}
 void CN3UIList::Release() {
     CN3UIBase::Release();
 
-    //	it_pString it = m_ListString.begin(), itEnd = m_ListString.end();
-    //	for(; it != itEnd; it++)
-    //	{
-    //		delete (*it);
-    //	}
+    //    it_pString it = m_ListString.begin(), itEnd = m_ListString.end();
+    //    for(; it != itEnd; it++)
+    //    {
+    //        delete (*it);
+    //    }
 
     m_ListString.clear(); // 어차피 자식은 다지우니까... 리스트의 포인터를 Delete 할 필요 없다..
     m_iCurSel = 0;
@@ -282,17 +282,17 @@ bool CN3UIList::Load(HANDLE hFile) {
         if (pUI->UIType() == UI_TYPE_SCROLLBAR) {
             m_pScrollBarRef = (CN3UIScrollBar *)pUI;
         }
-        //		else if(pUI->Type() == UI_TYPE_STRING)
-        //		{
-        //			CN3UIString* pString = *itor;
-        //			if(	pString->GetFontName != m_szFontName ||
-        //				pString->GetFontHeight() != m_dwFontHeight ||
-        //				m_bFontBold != (pString->GetFontFlags() & D3DFONT_BOLD) ||
-        //				m_bFontItalic != (pString->GetFontFlags() & D3DFONT_ITALIC) ) // 폰트가 다르면.. 적용
-        //			{
-        //				pString->SetFont(m_szFontName, m_dwFontHeight, m_bFontBold, m_bFontItalic);
-        //			}
-        //		}
+        //        else if(pUI->Type() == UI_TYPE_STRING)
+        //        {
+        //            CN3UIString* pString = *itor;
+        //            if(    pString->GetFontName != m_szFontName ||
+        //                pString->GetFontHeight() != m_dwFontHeight ||
+        //                m_bFontBold != (pString->GetFontFlags() & D3DFONT_BOLD) ||
+        //                m_bFontItalic != (pString->GetFontFlags() & D3DFONT_ITALIC) ) // 폰트가 다르면.. 적용
+        //            {
+        //                pString->SetFont(m_szFontName, m_dwFontHeight, m_bFontBold, m_bFontItalic);
+        //            }
+        //        }
     }
 
     return bSuccess;
@@ -443,7 +443,7 @@ bool CN3UIList::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     if (UIMSG_SCROLLBAR_POS == dwMsg) {
         if (pSender == m_pScrollBarRef) {
             this->SetScrollPos(m_pScrollBarRef->GetCurrentPos());
-            //			return m_pParent->ReceiveMessage(this, UIMSG_SCROLLBAR_POS);
+            //            return m_pParent->ReceiveMessage(this, UIMSG_SCROLLBAR_POS);
         }
     }
 

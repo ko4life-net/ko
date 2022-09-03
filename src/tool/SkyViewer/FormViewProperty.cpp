@@ -100,19 +100,19 @@ void CFormViewProperty::OnInitialUpdate() {
     CSkyViewerDoc * pDoc = GetDocument();
     m_SldTime.SetRange(0, 24 * 60);
 
-    //enum		eSKY_DAYCHANGE {	SDC_SKYCOLOR=0,		// 하늘색
-    //								SDC_FOGCOLOR,		// 안개색
-    //								SDC_STARCOUNT,		// 별 수
-    //								SDC_MOONPHASE,		// 달 모양
-    //								SDC_SUNCOLOR,		// 해 색
-    //								SDC_GLOWCOLOR,		// 해의 glow색
-    //								SDC_FLARECOLOR,		// 해의 flare색
-    //								SDC_CLOUD1COLOR,	// 구름층 1의 색
-    //								SDC_CLOUD2COLOR,	// 구름층 2의 색
-    //								SDC_CLOUDTEX,		// 구름 텍스쳐 바꾸기
-    //								NUM_SKYDAYCHANGE,
+    //enum        eSKY_DAYCHANGE {    SDC_SKYCOLOR=0,        // 하늘색
+    //                                SDC_FOGCOLOR,        // 안개색
+    //                                SDC_STARCOUNT,        // 별 수
+    //                                SDC_MOONPHASE,        // 달 모양
+    //                                SDC_SUNCOLOR,        // 해 색
+    //                                SDC_GLOWCOLOR,        // 해의 glow색
+    //                                SDC_FLARECOLOR,        // 해의 flare색
+    //                                SDC_CLOUD1COLOR,    // 구름층 1의 색
+    //                                SDC_CLOUD2COLOR,    // 구름층 2의 색
+    //                                SDC_CLOUDTEX,        // 구름 텍스쳐 바꾸기
+    //                                NUM_SKYDAYCHANGE,
     //
-    //								SDC_UNKNOWN = 0xffffffff
+    //                                SDC_UNKNOWN = 0xffffffff
     //};
 
     m_LPProperty.ResetContent();

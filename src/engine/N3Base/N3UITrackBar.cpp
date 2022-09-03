@@ -157,9 +157,9 @@ DWORD CN3UITrackBar::MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT &
 
 //void CN3UITrackBar::Render()
 //{
-//	if(!m_bVisible) return;
-//	if (m_pBkGndImageRef) m_pBkGndImageRef->Render();
-//	if (m_pThumbImageRef) m_pThumbImageRef->Render();
+//    if(!m_bVisible) return;
+//    if (m_pBkGndImageRef) m_pBkGndImageRef->Render();
+//    if (m_pThumbImageRef) m_pThumbImageRef->Render();
 //}
 
 void CN3UITrackBar::SetRange(int iMin, int iMax) {

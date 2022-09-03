@@ -50,7 +50,7 @@ void _LoadStringFromResource(DWORD dwID, std::string & szText) {
 
     static char szBuffer[512]{};
     szBuffer[0] = 0;
-    //	::LoadString(NULL, MAKEINTRESOURCE(dwID), szBuffer, 256);
+    //    ::LoadString(NULL, MAKEINTRESOURCE(dwID), szBuffer, 256);
     ::LoadString(NULL, dwID, szBuffer, 256);
     szText = szBuffer;
 }
@@ -398,7 +398,7 @@ bool CGameBase::GetTextByItemClass(e_ItemClass eItemClass, std::string & szText)
         ::_LoadStringFromResource(IDS_ITEM_CLASS_ARMOR_PRIEST, szText);
         break; // 사제 방어구
     default:
-        //			__ASSERT(0, "Invalid Item Class"); szText = "Unknonw Item Class";
+        //            __ASSERT(0, "Invalid Item Class"); szText = "Unknonw Item Class";
         return false;
     }
 
@@ -629,7 +629,7 @@ e_ItemType CGameBase::MakeResrcFileNameForUPC(__TABLE_ITEM_BASIC * pItem,       
         }
     }
     if (pszIconFN) {
-        //		sprintf(buffer,	"UI\\ItemIcon_%.1d_%.4d_%.2d_%.1d.dxt", eType, iIndex, eRace, iPos);
+        //        sprintf(buffer,    "UI\\ItemIcon_%.1d_%.4d_%.2d_%.1d.dxt", eType, iIndex, eRace, iPos);
         sprintf(buffer, "UI\\ItemIcon_%.1d_%.4d_%.2d_%.1d.dxt", (pItem->dwIDIcon / 10000000),
                 (pItem->dwIDIcon / 1000) % 10000, (pItem->dwIDIcon / 10) % 100, pItem->dwIDIcon % 10);
         *pszIconFN = buffer;

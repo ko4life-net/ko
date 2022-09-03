@@ -59,7 +59,7 @@ BOOL CIOCPSocket2::Connect(CIOCPort * pIocp, LPCTSTR lpszHostAddress, UINT nHost
     int result = connect(m_Socket, (struct sockaddr *)&addr, sizeof(addr));
     if (result == SOCKET_ERROR) {
         int err = WSAGetLastError();
-        //		TRACE("CONNECT FAIL : %d\n", err);
+        //        TRACE("CONNECT FAIL : %d\n", err);
         closesocket(m_Socket);
         return FALSE;
     }
@@ -190,10 +190,10 @@ int CIOCPSocket2::Receive() {
         last_err = WSAGetLastError();
 
         if (last_err == WSA_IO_PENDING) {
-            //			TRACE("RECV : IO_PENDING[SID=%d]\n", m_Sid);
-            //			m_nPending++;
-            //			if( m_nPending > 3 )
-            //				goto close_routine;
+            //            TRACE("RECV : IO_PENDING[SID=%d]\n", m_Sid);
+            //            m_nPending++;
+            //            if( m_nPending > 3 )
+            //                goto close_routine;
             return 0;
         } else if (last_err == WSAEWOULDBLOCK) {
             TRACE("RECV : WOULDBLOCK[SID=%d]\n", m_Sid);
@@ -248,7 +248,7 @@ void CIOCPSocket2::ReceivedData(int length) {
 
     while (PullOutCore(pData, len)) {
         if (pData) {
-            Parsing(len, pData); //		실제 파싱 함수...
+            Parsing(len, pData); //        실제 파싱 함수...
 
             delete[] pData;
             pData = NULL;
@@ -261,7 +261,7 @@ BOOL CIOCPSocket2::PullOutCore(char *& data, int & length) {
     int     len;
     BOOL    foundCore;
     MYSHORT slen;
-    //DWORD		wSerial;
+    //DWORD        wSerial;
 
     len = m_pBuffer->GetValidCount();
 
@@ -283,7 +283,7 @@ BOOL CIOCPSocket2::PullOutCore(char *& data, int & length) {
         }
 
         if (pTmp[i] == PACKET_START1 && pTmp[i + 1] == PACKET_START2) {
-            //			if( m_wPacketSerial >= wSerial ) goto cancelRoutine;
+            //            if( m_wPacketSerial >= wSerial ) goto cancelRoutine;
             sPos = i + 2;
 
             slen.b[0] = pTmp[sPos];
@@ -303,7 +303,7 @@ BOOL CIOCPSocket2::PullOutCore(char *& data, int & length) {
             if ((ePos + 2) > len) {
                 goto cancelRoutine;
             }
-            //			ASSERT(ePos+2 <= len);
+            //            ASSERT(ePos+2 <= len);
 
             if (pTmp[ePos] == PACKET_END1 && pTmp[ePos + 1] == PACKET_END2) {
                 data = new char[length + 1];
@@ -311,8 +311,8 @@ BOOL CIOCPSocket2::PullOutCore(char *& data, int & length) {
                 data[length] = 0;
                 foundCore = TRUE;
                 int head = m_pBuffer->GetHeadPos(), tail = m_pBuffer->GetTailPos();
-                //				TRACE("data : %s, len : %d\n", data, length);
-                //				TRACE("head : %d, tail : %d\n", head, tail );
+                //                TRACE("data : %s, len : %d\n", data, length);
+                //                TRACE("head : %d, tail : %d\n", head, tail );
                 break;
             } else {
                 m_pBuffer->HeadIncrease(3);
@@ -409,20 +409,20 @@ BOOL CIOCPSocket2::Accept(SOCKET listensocket, struct sockaddr * addr, int * len
         return FALSE;
     }
 
-    //	int flag = 1;
-    //	setsockopt(m_Socket, SOL_SOCKET, SO_DONTLINGER, (char *)&flag, sizeof(flag));
+    //    int flag = 1;
+    //    setsockopt(m_Socket, SOL_SOCKET, SO_DONTLINGER, (char *)&flag, sizeof(flag));
 
-    //	int lensize, socklen=0;
+    //    int lensize, socklen=0;
 
-    //	getsockopt( m_Socket, SOL_SOCKET, SO_RCVBUF, (char*)&socklen, &lensize);
-    //	TRACE("getsockopt : %d\n", socklen);
+    //    getsockopt( m_Socket, SOL_SOCKET, SO_RCVBUF, (char*)&socklen, &lensize);
+    //    TRACE("getsockopt : %d\n", socklen);
 
-    //	struct linger lingerOpt;
+    //    struct linger lingerOpt;
 
-    //	lingerOpt.l_onoff = 1;
-    //	lingerOpt.l_linger = 0;
+    //    lingerOpt.l_onoff = 1;
+    //    lingerOpt.l_linger = 0;
 
-    //	setsockopt(m_Socket, SOL_SOCKET, SO_LINGER, (char *)&lingerOpt, sizeof(lingerOpt));
+    //    setsockopt(m_Socket, SOL_SOCKET, SO_LINGER, (char *)&lingerOpt, sizeof(lingerOpt));
 
     return TRUE;
 }

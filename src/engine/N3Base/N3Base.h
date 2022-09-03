@@ -56,8 +56,8 @@ struct __CameraData {
     __Vector3 vAt;  // Camera At Vector
     __Vector3 vUp;  // Camera Up Vector
 
-    float fFOV;           // 카메라 렌즈 각 : Field Of View
-                          //	float			fInverse_SineHalfOfFOV;
+    float fFOV; // 카메라 렌즈 각 : Field Of View
+    // float        fInverse_SineHalfOfFOV;
     float        fAspect; // 종횡비
     float        fNP;     // NearPlane
     float        fFP;     // FarPlane

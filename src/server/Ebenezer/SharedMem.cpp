@@ -117,7 +117,7 @@ int CSharedMemQueue::PutData(char * pBuf, int size) {
         }
 
         index = 0;
-        SetByte((char *)pQueue, WR, index); // Block Mode Set to WR	-> Data Exist
+        SetByte((char *)pQueue, WR, index); // Block Mode Set to WR    -> Data Exist
         SetShort((char *)pQueue, size, index);
         SetString((char *)pQueue, pBuf, size, index);
 

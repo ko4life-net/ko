@@ -39,19 +39,19 @@ CHomeSet::CHomeSet(CDatabase * pdb)
     m_BattleZoneLZ = 0;
     //
 
-    //	m_nFields = 13;
+    //    m_nFields = 13;
     m_nFields = 17;
     //}}AFX_FIELD_INIT
     m_nDefaultType = snapshot;
 }
 
 CString CHomeSet::GetDefaultConnect() {
-    //	return _T("ODBC;DSN=kodb");
+    //    return _T("ODBC;DSN=kodb");
     return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
 }
 
 CString CHomeSet::GetDefaultSQL() {
-    //	return _T("[dbo].[HOME_BACK]");
+    //    return _T("[dbo].[HOME_BACK]");
     return _T("[dbo].[HOME]");
 }
 

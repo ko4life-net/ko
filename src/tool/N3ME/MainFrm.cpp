@@ -176,8 +176,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     }
 
     if (!m_wndDlgBar.Create(IDR_MAINFRAME, this))
-    //	if (!m_wndDlgBar.Create(this, IDR_MAINFRAME,
-    //		CBRS_ALIGN_TOP, AFX_IDW_DIALOGBAR))
+    //    if (!m_wndDlgBar.Create(this, IDR_MAINFRAME,
+    //        CBRS_ALIGN_TOP, AFX_IDW_DIALOGBAR))
     {
         TRACE0("Failed to create dialogbar\n");
         return -1; // fail to create
@@ -354,18 +354,18 @@ void CMainFrame::OnCursorFlatTerrain() {
 void CMainFrame::OnCursorDtex() {
     ASSERT(m_pMapMng);
     /*
-	LPDIRECT3DSURFACE9 pBackBuff;
-	HRESULT hr;
-	hr = m_pEng->s_lpD3DDev->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &pBackBuff);
-	D3DSURFACE_DESC desc;
-	hr = pBackBuff->GetDesc(&desc);
-	if(desc.Format!=D3DFMT_X8R8G8B8)
-	{
-		MessageBox("화면색상 모드가 32bit모드이어야 합니다..","경고!!");
-	}
+    LPDIRECT3DSURFACE9 pBackBuff;
+    HRESULT hr;
+    hr = m_pEng->s_lpD3DDev->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &pBackBuff);
+    D3DSURFACE_DESC desc;
+    hr = pBackBuff->GetDesc(&desc);
+    if(desc.Format!=D3DFMT_X8R8G8B8)
+    {
+        MessageBox("화면색상 모드가 32bit모드이어야 합니다..","경고!!");
+    }
 */
     m_pMapMng->SetCursorMode(CM_SET_DTEX);
-    //	this->OnViewDtex(); // 화면에 타일 텍스처 그룹 다이얼로그를 열어준다..
+    //    this->OnViewDtex(); // 화면에 타일 텍스처 그룹 다이얼로그를 열어준다..
 }
 void CMainFrame::OnCursorEditRiver() {
     ASSERT(m_pMapMng);

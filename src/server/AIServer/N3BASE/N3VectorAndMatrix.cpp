@@ -374,25 +374,25 @@ inline __Matrix44::__Matrix44(const D3DXQUATERNION & qt) {
 }
 
 inline __Matrix44 __Matrix44::operator*(const D3DXMATRIX & mtx) {
-    //	__tempM._11 = _11 * mtx._11 + _12 * mtx._21 + _13 * mtx._31 + _14 * mtx._41;
-    //	__tempM._12 = _11 * mtx._12 + _12 * mtx._22 + _13 * mtx._32 + _14 * mtx._42;
-    //	__tempM._13 = _11 * mtx._13 + _12 * mtx._23 + _13 * mtx._33 + _14 * mtx._43;
-    //	__tempM._14 = _11 * mtx._14 + _12 * mtx._24 + _13 * mtx._34 + _14 * mtx._44;
+    //    __tempM._11 = _11 * mtx._11 + _12 * mtx._21 + _13 * mtx._31 + _14 * mtx._41;
+    //    __tempM._12 = _11 * mtx._12 + _12 * mtx._22 + _13 * mtx._32 + _14 * mtx._42;
+    //    __tempM._13 = _11 * mtx._13 + _12 * mtx._23 + _13 * mtx._33 + _14 * mtx._43;
+    //    __tempM._14 = _11 * mtx._14 + _12 * mtx._24 + _13 * mtx._34 + _14 * mtx._44;
 
-    //	__tempM._21 = _21 * mtx._11 + _22 * mtx._21 + _23 * mtx._31 + _24 * mtx._41;
-    //	__tempM._22 = _21 * mtx._12 + _22 * mtx._22 + _23 * mtx._32 + _24 * mtx._42;
-    //	__tempM._23 = _21 * mtx._13 + _22 * mtx._23 + _23 * mtx._33 + _24 * mtx._43;
-    //	__tempM._24 = _21 * mtx._14 + _22 * mtx._24 + _23 * mtx._34 + _24 * mtx._44;
+    //    __tempM._21 = _21 * mtx._11 + _22 * mtx._21 + _23 * mtx._31 + _24 * mtx._41;
+    //    __tempM._22 = _21 * mtx._12 + _22 * mtx._22 + _23 * mtx._32 + _24 * mtx._42;
+    //    __tempM._23 = _21 * mtx._13 + _22 * mtx._23 + _23 * mtx._33 + _24 * mtx._43;
+    //    __tempM._24 = _21 * mtx._14 + _22 * mtx._24 + _23 * mtx._34 + _24 * mtx._44;
 
-    //	__tempM._31 = _31 * mtx._11 + _32 * mtx._21 + _33 * mtx._31 + _34 * mtx._41;
-    //	__tempM._32 = _31 * mtx._12 + _32 * mtx._22 + _33 * mtx._32 + _34 * mtx._42;
-    //	__tempM._33 = _31 * mtx._13 + _32 * mtx._23 + _33 * mtx._33 + _34 * mtx._43;
-    //	__tempM._34 = _31 * mtx._14 + _32 * mtx._24 + _33 * mtx._34 + _34 * mtx._44;
+    //    __tempM._31 = _31 * mtx._11 + _32 * mtx._21 + _33 * mtx._31 + _34 * mtx._41;
+    //    __tempM._32 = _31 * mtx._12 + _32 * mtx._22 + _33 * mtx._32 + _34 * mtx._42;
+    //    __tempM._33 = _31 * mtx._13 + _32 * mtx._23 + _33 * mtx._33 + _34 * mtx._43;
+    //    __tempM._34 = _31 * mtx._14 + _32 * mtx._24 + _33 * mtx._34 + _34 * mtx._44;
 
-    //	__tempM._41 = _41 * mtx._11 + _42 * mtx._21 + _43 * mtx._31 + _44 * mtx._41;
-    //	__tempM._42 = _41 * mtx._12 + _42 * mtx._22 + _43 * mtx._32 + _44 * mtx._42;
-    //	__tempM._43 = _41 * mtx._13 + _42 * mtx._23 + _43 * mtx._33 + _44 * mtx._43;
-    //	__tempM._44 = _41 * mtx._14 + _42 * mtx._24 + _43 * mtx._34 + _44 * mtx._44;
+    //    __tempM._41 = _41 * mtx._11 + _42 * mtx._21 + _43 * mtx._31 + _44 * mtx._41;
+    //    __tempM._42 = _41 * mtx._12 + _42 * mtx._22 + _43 * mtx._32 + _44 * mtx._42;
+    //    __tempM._43 = _41 * mtx._13 + _42 * mtx._23 + _43 * mtx._33 + _44 * mtx._43;
+    //    __tempM._44 = _41 * mtx._14 + _42 * mtx._24 + _43 * mtx._34 + _44 * mtx._44;
 
     // 최적화 된 코드..
     __tempM._11 = _11 * mtx._11 + _12 * mtx._21 + _13 * mtx._31;
@@ -421,25 +421,25 @@ inline __Matrix44 __Matrix44::operator*(const D3DXMATRIX & mtx) {
 inline void __Matrix44::operator*=(const D3DXMATRIX & mtx) {
     memcpy(&__tempM, this, sizeof(__Matrix44));
 
-    //	_11 = __tempM._11 * mtx._11 + __tempM._12 * mtx._21 + __tempM._13 * mtx._31 + __tempM._14 * mtx._41;
-    //	_12 = __tempM._11 * mtx._12 + __tempM._12 * mtx._22 + __tempM._13 * mtx._32 + __tempM._14 * mtx._42;
-    //	_13 = __tempM._11 * mtx._13 + __tempM._12 * mtx._23 + __tempM._13 * mtx._33 + __tempM._14 * mtx._43;
-    //	_14 = __tempM._11 * mtx._14 + __tempM._12 * mtx._24 + __tempM._13 * mtx._34 + __tempM._14 * mtx._44;
+    //    _11 = __tempM._11 * mtx._11 + __tempM._12 * mtx._21 + __tempM._13 * mtx._31 + __tempM._14 * mtx._41;
+    //    _12 = __tempM._11 * mtx._12 + __tempM._12 * mtx._22 + __tempM._13 * mtx._32 + __tempM._14 * mtx._42;
+    //    _13 = __tempM._11 * mtx._13 + __tempM._12 * mtx._23 + __tempM._13 * mtx._33 + __tempM._14 * mtx._43;
+    //    _14 = __tempM._11 * mtx._14 + __tempM._12 * mtx._24 + __tempM._13 * mtx._34 + __tempM._14 * mtx._44;
 
-    //	_21 = __tempM._21 * mtx._11 + __tempM._22 * mtx._21 + __tempM._23 * mtx._31 + __tempM._24 * mtx._41;
-    //	_22 = __tempM._21 * mtx._12 + __tempM._22 * mtx._22 + __tempM._23 * mtx._32 + __tempM._24 * mtx._42;
-    //	_23 = __tempM._21 * mtx._13 + __tempM._22 * mtx._23 + __tempM._23 * mtx._33 + __tempM._24 * mtx._43;
-    //	_24 = __tempM._21 * mtx._14 + __tempM._22 * mtx._24 + __tempM._23 * mtx._34 + __tempM._24 * mtx._44;
+    //    _21 = __tempM._21 * mtx._11 + __tempM._22 * mtx._21 + __tempM._23 * mtx._31 + __tempM._24 * mtx._41;
+    //    _22 = __tempM._21 * mtx._12 + __tempM._22 * mtx._22 + __tempM._23 * mtx._32 + __tempM._24 * mtx._42;
+    //    _23 = __tempM._21 * mtx._13 + __tempM._22 * mtx._23 + __tempM._23 * mtx._33 + __tempM._24 * mtx._43;
+    //    _24 = __tempM._21 * mtx._14 + __tempM._22 * mtx._24 + __tempM._23 * mtx._34 + __tempM._24 * mtx._44;
 
-    //	_31 = __tempM._31 * mtx._11 + __tempM._32 * mtx._21 + __tempM._33 * mtx._31 + __tempM._34 * mtx._41;
-    //	_32 = __tempM._31 * mtx._12 + __tempM._32 * mtx._22 + __tempM._33 * mtx._32 + __tempM._34 * mtx._42;
-    //	_33 = __tempM._31 * mtx._13 + __tempM._32 * mtx._23 + __tempM._33 * mtx._33 + __tempM._34 * mtx._43;
-    //	_34 = __tempM._31 * mtx._14 + __tempM._32 * mtx._24 + __tempM._33 * mtx._34 + __tempM._34 * mtx._44;
+    //    _31 = __tempM._31 * mtx._11 + __tempM._32 * mtx._21 + __tempM._33 * mtx._31 + __tempM._34 * mtx._41;
+    //    _32 = __tempM._31 * mtx._12 + __tempM._32 * mtx._22 + __tempM._33 * mtx._32 + __tempM._34 * mtx._42;
+    //    _33 = __tempM._31 * mtx._13 + __tempM._32 * mtx._23 + __tempM._33 * mtx._33 + __tempM._34 * mtx._43;
+    //    _34 = __tempM._31 * mtx._14 + __tempM._32 * mtx._24 + __tempM._33 * mtx._34 + __tempM._34 * mtx._44;
 
-    //	_41 = __tempM._41 * mtx._11 + __tempM._42 * mtx._21 + __tempM._43 * mtx._31 + __tempM._44 * mtx._41;
-    //	_42 = __tempM._41 * mtx._12 + __tempM._42 * mtx._22 + __tempM._43 * mtx._32 + __tempM._44 * mtx._42;
-    //	_43 = __tempM._41 * mtx._13 + __tempM._42 * mtx._23 + __tempM._43 * mtx._33 + __tempM._44 * mtx._43;
-    //	_44 = __tempM._41 * mtx._14 + __tempM._42 * mtx._24 + __tempM._43 * mtx._34 + __tempM._44 * mtx._44;
+    //    _41 = __tempM._41 * mtx._11 + __tempM._42 * mtx._21 + __tempM._43 * mtx._31 + __tempM._44 * mtx._41;
+    //    _42 = __tempM._41 * mtx._12 + __tempM._42 * mtx._22 + __tempM._43 * mtx._32 + __tempM._44 * mtx._42;
+    //    _43 = __tempM._41 * mtx._13 + __tempM._42 * mtx._23 + __tempM._43 * mtx._33 + __tempM._44 * mtx._43;
+    //    _44 = __tempM._41 * mtx._14 + __tempM._42 * mtx._24 + __tempM._43 * mtx._34 + __tempM._44 * mtx._44;
 
     _11 = __tempM._11 * mtx._11 + __tempM._12 * mtx._21 + __tempM._13 * mtx._31;
     _12 = __tempM._11 * mtx._12 + __tempM._12 * mtx._22 + __tempM._13 * mtx._32;
@@ -467,24 +467,24 @@ inline void __Matrix44::operator=(const D3DXQUATERNION & qt) {
 }
 
 inline void __Matrix44::LookAt(const __Vector3 & vPos, const __Vector3 & vAt, const __Vector3 & vUp) {
-    /*	__Vector3 F = vAt - vPos;
-	F.Normalize();
+    /*    __Vector3 F = vAt - vPos;
+    F.Normalize();
 
-	__Vector3 S;
-	S.Cross(F, vUp);
-	S.Normalize();
+    __Vector3 S;
+    S.Cross(F, vUp);
+    S.Normalize();
 
-	__Vector3 U;
-	U.Cross(S, F);
-	U.Normalize();
+    __Vector3 U;
+    U.Cross(S, F);
+    U.Normalize();
 
-	_11 = S.x; _12 = U.x; _13 = F.x; _14 = 0;
-	_21 = S.y; _22 = U.y; _23 = F.y; _24 = 0;
-	_31 = S.z; _32 = U.z; _33 = F.z; _34 = 0;
-	_41 = -vPos.x;
-	_42 = -vPos.y;
-	_43 = -vPos.z;
-	_44 = 1;
+    _11 = S.x; _12 = U.x; _13 = F.x; _14 = 0;
+    _21 = S.y; _22 = U.y; _23 = F.y; _24 = 0;
+    _31 = S.z; _32 = U.z; _33 = F.z; _34 = 0;
+    _41 = -vPos.x;
+    _42 = -vPos.y;
+    _43 = -vPos.z;
+    _44 = 1;
 */
 }
 

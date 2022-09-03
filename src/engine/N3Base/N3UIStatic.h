@@ -21,7 +21,7 @@ class CN3UIStatic : public CN3UIBase {
     virtual const std::string & GetString();
     virtual void                SetString(const std::string & szString);
     virtual void                Release();
-    //	virtual void	Render();
+    //    virtual void    Render();
     virtual bool  Load(HANDLE);
     virtual void  SetRegion(const RECT & Rect);
     virtual DWORD MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & ptOld);

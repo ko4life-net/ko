@@ -385,10 +385,10 @@ void CLauncherDlg::DownloadProcess() {
 
     FTP_Close();
 
-    //	CString inipath, version;
-    //	inipath.Format( "%s\\server.ini", GetProgPath() );
-    //	itoa( m_nServerVersion, (char*)(LPCTSTR)version, 10 );
-    //	WritePrivateProfileString("VERSION","CURRENT",version, inipath);
+    //    CString inipath, version;
+    //    inipath.Format( "%s\\server.ini", GetProgPath() );
+    //    itoa( m_nServerVersion, (char*)(LPCTSTR)version, 10 );
+    //    WritePrivateProfileString("VERSION","CURRENT",version, inipath);
 
     if (true == bExtractSuccess && m_hRegistryKey) // 압축 풀기와 쓰기, 압축 파일 삭제에 성공하면 버전을 쓰고..
     {
@@ -502,10 +502,10 @@ BOOL CLauncherDlg::GetDownloadFile(const std::string & szFtpUrl, const std::stri
 
         dwLastTime = dwCurrent;
 
-        //		if ( m_fCancel || !bRes )
-        //			break;
+        //        if ( m_fCancel || !bRes )
+        //            break;
 
-        //		Sleep(100);
+        //        Sleep(100);
     }
     fclose(fp);
 
@@ -513,17 +513,17 @@ BOOL CLauncherDlg::GetDownloadFile(const std::string & szFtpUrl, const std::stri
     if (dwReadSize < dwFileSize) {
         InternetCloseHandle(hFile);
 
-        /*		if ( m_fCancel )
-		{
-			MessageBox("File Size Error");
-			//// added by manseek for DOWNLOAD
-			CString sLink;
-			sLink.Format("http://download.mgame.com/download/%s.exe", (LPCTSTR)m_strGameID );
-			HINSTANCE t = ShellExecute(GetSafeHwnd(), "open", sLink, NULL,  NULL, SW_SHOWNORMAL);
-			//// 2001.5.23
+        /*        if ( m_fCancel )
+        {
+            MessageBox("File Size Error");
+            //// added by manseek for DOWNLOAD
+            CString sLink;
+            sLink.Format("http://download.mgame.com/download/%s.exe", (LPCTSTR)m_strGameID );
+            HINSTANCE t = ShellExecute(GetSafeHwnd(), "open", sLink, NULL,  NULL, SW_SHOWNORMAL);
+            //// 2001.5.23
 
-			return FALSE;
-		};
+            return FALSE;
+        };
 */
         MessageBox("File Size Error");
 
@@ -685,7 +685,7 @@ bool CLauncherDlg::ArchiveExtract(CString ExtractFolder) {
 void CLauncherDlg::LoadStringFromResource(DWORD dwID, std::string & szString) {
     static char szBuffer[512];
     szBuffer[0] = NULL;
-    //	::LoadString(NULL, MAKEINTRESOURCE(dwID), szBuffer, 256);
+    //    ::LoadString(NULL, MAKEINTRESOURCE(dwID), szBuffer, 256);
     ::LoadString(NULL, dwID, szBuffer, 256);
     szString = szBuffer;
 }
@@ -697,8 +697,8 @@ LRESULT CLauncherDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam) {
         case FD_CONNECT:
             TRACE("Socket connected..\n");
             break;
-            //			case FD_ACCEPT:
-            //				break;
+            //            case FD_ACCEPT:
+            //                break;
         case FD_CLOSE:
             TRACE("Socket closed..\n");
             break;

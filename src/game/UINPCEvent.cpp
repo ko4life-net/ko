@@ -85,17 +85,17 @@ bool CUINPCEvent::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             CGameProcedure::s_pProcMain->m_pUIInventory->Open(INV_STATE_REPAIR);
         }
 
-        /*		if(pSender->m_szID == "Btn_Change")
-		{
-			Close();
-			CGameProcedure::s_pProcMain->m_pUIItemREDlg->Open();
-		}
+        /*        if(pSender->m_szID == "Btn_Change")
+        {
+            Close();
+            CGameProcedure::s_pProcMain->m_pUIItemREDlg->Open();
+        }
 
-		if(pSender->m_szID == "Btn_Talk")
-		{
-			Close();
-			CGameProcedure::s_pProcMain->m_pUINpcTalk->Open(m_iIDTarget);
-		}*/
+        if(pSender->m_szID == "Btn_Talk")
+        {
+            Close();
+            CGameProcedure::s_pProcMain->m_pUINpcTalk->Open(m_iIDTarget);
+        }*/
 
         if (pSender->m_szID == "btn_close") {
             Close();

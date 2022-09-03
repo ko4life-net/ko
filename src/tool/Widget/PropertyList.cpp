@@ -113,11 +113,11 @@ void CPropertyList::DrawItem(LPDRAWITEMSTRUCT lpDIS) {
                 pItem->m_curValue = "";
             }
         }
-        //		else if(pItem->m_nItemType == PIT_CHECK)
-        //		{
-        //			if(pItem->m_crColor == 0) pItem->m_curValue = "On";
-        //			else pItem->m_curValue = "Off";
-        //		}
+        //        else if(pItem->m_nItemType == PIT_CHECK)
+        //        {
+        //            if(pItem->m_crColor == 0) pItem->m_curValue = "On";
+        //            else pItem->m_curValue = "Off";
+        //        }
 
         //write the initial property value in the second rectangle
         dc.DrawText(pItem->m_curValue, CRect(rect.left + 3, rect.top + 3, rect.right + 3, rect.bottom + 3),
@@ -231,10 +231,10 @@ void CPropertyList::OnSelchange() {
         //set the text in the edit box to the property's current value
         m_EditBox.SetWindowText(pItem->m_curValue);
     }
-    //	else if(pItem->m_nItemType == PIT_CHECK)
-    //	{
-    //		DisplayCheckButton(rect);
-    //	}
+    //    else if(pItem->m_nItemType == PIT_CHECK)
+    //    {
+    //        DisplayCheckButton(rect);
+    //    }
     else {
         DisplayPushButton(rect);
     }
@@ -263,25 +263,25 @@ void CPropertyList::DisplayPushButton(CRect region) {
 /*
 void CPropertyList::DisplayCheckButton(CRect region)
 {
-	//displays a button if the property is a file/color/font chooser
-	m_nLastBox = 2;
-	m_prevSel = m_curSel;
+    //displays a button if the property is a file/color/font chooser
+    m_nLastBox = 2;
+    m_prevSel = m_curSel;
 
-	if (region.Width() > 25)
-		region.left = region.right - 25;
-	region.bottom -= 3;
+    if (region.Width() > 25)
+        region.left = region.right - 25;
+    region.bottom -= 3;
 
-	if (m_ButtonCheck)
-		m_ButtonCheck.MoveWindow(region);
-	else
-	{	
-		m_ButtonCheck.Create("...",BS_CHECKBOX | WS_VISIBLE | WS_CHILD,
-						region,this,IDC_PROP_BUTTON);
-		m_ButtonCheck.SetFont(&m_SSerif8Font);
-	}
+    if (m_ButtonCheck)
+        m_ButtonCheck.MoveWindow(region);
+    else
+    {    
+        m_ButtonCheck.Create("...",BS_CHECKBOX | WS_VISIBLE | WS_CHILD,
+                        region,this,IDC_PROP_BUTTON);
+        m_ButtonCheck.SetFont(&m_SSerif8Font);
+    }
 
-	m_ButtonCheck.ShowWindow(SW_SHOW);
-	m_ButtonCheck.SetFocus();
+    m_ButtonCheck.ShowWindow(SW_SHOW);
+    m_ButtonCheck.SetFocus();
 }
 */
 void CPropertyList::OnKillFocus(CWnd * pNewWnd) {

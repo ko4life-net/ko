@@ -412,5 +412,5 @@ void CRegenUser::ClearList() {
         }
     }
     m_vrListRegion.clear();
-    //	m_pDlg->ClearList();
+    //    m_pDlg->ClearList();
 }

@@ -72,7 +72,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     DockControlBar(&m_wndToolBar);
 
     // Engine »ý¼º
-    //	m_Eng.InitEnv();
+    //    m_Eng.InitEnv();
     if (m_Eng.Init(TRUE, m_hWnd, 64, 64, 0, TRUE) == false) {
         return -1;
     }
@@ -177,8 +177,8 @@ CFormViewAnimation * CMainFrame::GetPaneAnimation() {
 }
 
 void CMainFrame::OnEditChrProperty() {
-    //	if(m_DlgProperty.GetSafeHwnd() == NULL) m_DlgProperty.Create(IDD_CHR_PROPERTY, this);
+    //    if(m_DlgProperty.GetSafeHwnd() == NULL) m_DlgProperty.Create(IDD_CHR_PROPERTY, this);
     //
-    //	m_DlgProperty.UpdateInfo();
-    //	m_DlgProperty.ShowWindow(SW_SHOW);
+    //    m_DlgProperty.UpdateInfo();
+    //    m_DlgProperty.ShowWindow(SW_SHOW);
 }

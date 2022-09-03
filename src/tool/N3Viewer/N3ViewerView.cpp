@@ -161,7 +161,7 @@ void CN3ViewerView::OnDraw(CDC * pDC) {
                     }
                 }
             }
-            //		else if(dwType & OBJ_TRANSFORM) ((CN3Shape*)pDoc->m_pSelectedObj)->RenderSelected(m_bViewSelectedMeshWireFrame);
+            //        else if(dwType & OBJ_TRANSFORM) ((CN3Shape*)pDoc->m_pSelectedObj)->RenderSelected(m_bViewSelectedMeshWireFrame);
         }
     } else if (MODE_EDIT_PMESH == pFrm->m_eMode && pFrm->m_DlgPMeshEdit.m_pShapeRef) // PMesh Edit Mode
     {
@@ -450,9 +450,9 @@ void CN3ViewerView::SetFocusToSelectedObject() {
         float          fVol = 5.0f;
         if (pBase->Type() & OBJ_TRANSFORM_COLLISION) {
             fVol = ((CN3TransformCollision *)pBase)->Radius() * 1.2f;
-            //					__Vector3 vMax = ((CN3TransformCollision*)pBase)->Max();
-            //					__Vector3 vMin = ((CN3TransformCollision*)pBase)->Min();
-            //					fVol = (vMax - vMin).Magnitude();
+            //                    __Vector3 vMax = ((CN3TransformCollision*)pBase)->Max();
+            //                    __Vector3 vMin = ((CN3TransformCollision*)pBase)->Min();
+            //                    fVol = (vMax - vMin).Magnitude();
         }
 
         if (fVol < CN3Base::s_CameraData.fNP) {

@@ -68,14 +68,14 @@ LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
         }
 
         //#ifndef _DEBUG //this_reui
-        //			int iVK = (int)wParam;
-        //			if(	VK_RETURN == iVK &&
-        //				CGameProcedure::s_pProcMain &&
-        //				CGameProcedure::s_pProcActive == CGameProcedure::s_pProcMain )
-        //			{
-        //				CUIChat* pUIChat = CGameProcedure::s_pProcMain->m_pUIChatDlg;
-        //				if(pUIChat) pUIChat->SetFocus();
-        //			}
+        //            int iVK = (int)wParam;
+        //            if(    VK_RETURN == iVK &&
+        //                CGameProcedure::s_pProcMain &&
+        //                CGameProcedure::s_pProcActive == CGameProcedure::s_pProcMain )
+        //            {
+        //                CUIChat* pUIChat = CGameProcedure::s_pProcMain->m_pUIChatDlg;
+        //                if(pUIChat) pUIChat->SetFocus();
+        //            }
         //#endif
     } break;
 
@@ -84,10 +84,10 @@ LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
         case FD_CONNECT:
             TRACE("Socket connected..\n");
             break;
-            //			case FD_ACCEPT:
-            //				break;
+            //            case FD_ACCEPT:
+            //                break;
         case FD_CLOSE: {
-            //					MessageBox(::GetActiveWindow(), "socket closed", "error", MB_OK);
+            //                    MessageBox(::GetActiveWindow(), "socket closed", "error", MB_OK);
             if (CGameProcedure::s_bNeedReportConnectionClosed) {
                 CGameProcedure::ReportServerConnectionClosed(true);
             }
@@ -146,15 +146,15 @@ LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
         if (CGameProcedure::s_pProcActive == CGameProcedure::s_pProcMain) {
             float fDelta = ((short)HIWORD(wParam)) * 0.05f;
             CGameProcedure::s_pEng->CameraZoom(fDelta);
-            //					CGameProcedure::s_pProcMain->ControlViewVDegree((short)HIWORD(wParam));
+            //                    CGameProcedure::s_pProcMain->ControlViewVDegree((short)HIWORD(wParam));
         }
     } break;
     }
 
-    //	if ( CGameProcedure::s_pIME && CGameProcedure::s_pIME->IMEMessageProc(message, wParam, lParam))
-    //	{
-    //		return 0;
-    //	}
+    //    if ( CGameProcedure::s_pIME && CGameProcedure::s_pIME->IMEMessageProc(message, wParam, lParam))
+    //    {
+    //        return 0;
+    //    }
 
     return DefWindowProc(hWnd, message, wParam, lParam);
 }
@@ -247,20 +247,20 @@ HWND CreateSubWindow(HINSTANCE hInstance) {
 /*
 DWORD WINAPI CheckSpeedHackProc( LPVOID lpParameter )
 {
-	float fTime, fTime2;
-	while(1)
-	{
-		fTime = CN3Base::TimeGet();
-		Sleep(1000);
-		fTime2 = CN3Base::TimeGet();
-		if(fTime2 - fTime > 1.1f)
-		{
-			int iiiii = 0;
-			CLogWriter::Write("Speedhack detected");
-			exit(-1);
-//			CGameProcedure::s_bUseSpeedHack = true;
-		}
-	}
+    float fTime, fTime2;
+    while(1)
+    {
+        fTime = CN3Base::TimeGet();
+        Sleep(1000);
+        fTime2 = CN3Base::TimeGet();
+        if(fTime2 - fTime > 1.1f)
+        {
+            int iiiii = 0;
+            CLogWriter::Write("Speedhack detected");
+            exit(-1);
+//            CGameProcedure::s_bUseSpeedHack = true;
+        }
+    }
 }
 */
 
@@ -272,9 +272,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
     //////////////////////////////
     // 스피드 핵 체킹용...
-    //	DWORD dwCSHID;
-    //	HANDLE hThreadCheckSpeedHack = ::CreateThread(NULL, 0, CheckSpeedHackProc, NULL, CREATE_SUSPENDED, &dwCSHID);
-    //	::SetThreadPriority(hThreadCheckSpeedHack, THREAD_PRIORITY_NORMAL);
+    //    DWORD dwCSHID;
+    //    HANDLE hThreadCheckSpeedHack = ::CreateThread(NULL, 0, CheckSpeedHackProc, NULL, CREATE_SUSPENDED, &dwCSHID);
+    //    ::SetThreadPriority(hThreadCheckSpeedHack, THREAD_PRIORITY_NORMAL);
     // 스피드 핵 체킹용...
     //////////////////////////////
 
@@ -487,16 +487,16 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 #endif // #if _DEBUG
 
                 //#ifndef _DEBUG
-                //				static HDC hDC = GetDC(hWndMain);
-                //				static char szDebug[256] = "";
-                //				static float fTimePrev = CN3Base::TimeGet();
-                //				float fTime = CN3Base::TimeGet();
-                //				if(fTime > fTimePrev + 0.5f)
-                //				{
-                //					sprintf(szDebug, "%f", CN3Base::s_fFrmPerSec);
-                //					fTimePrev = fTime;
-                //				}
-                //				TextOut(hDC, 0, 0, szDebug, lstrlen(szDebug)); // 화면에 렌더링 정보 표시..
+                //                static HDC hDC = GetDC(hWndMain);
+                //                static char szDebug[256] = "";
+                //                static float fTimePrev = CN3Base::TimeGet();
+                //                float fTime = CN3Base::TimeGet();
+                //                if(fTime > fTimePrev + 0.5f)
+                //                {
+                //                    sprintf(szDebug, "%f", CN3Base::s_fFrmPerSec);
+                //                    fTimePrev = fTime;
+                //                }
+                //                TextOut(hDC, 0, 0, szDebug, lstrlen(szDebug)); // 화면에 렌더링 정보 표시..
                 //#endif
             }
         }
@@ -509,9 +509,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
     //////////////////////////////
     // 스피드 핵 체킹용...
-    //	::TerminateThread(hThreadCheckSpeedHack, 0);
-    //	hThreadCheckSpeedHack = 0;
-    //	dwCSHID = 0;
+    //    ::TerminateThread(hThreadCheckSpeedHack, 0);
+    //    hThreadCheckSpeedHack = 0;
+    //    dwCSHID = 0;
     // 스피드 핵 체킹용...
     //////////////////////////////
 

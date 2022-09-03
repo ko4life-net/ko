@@ -236,17 +236,17 @@ bool CN3Scene::Save(HANDLE hFile) {
 }
 
 void CN3Scene::Render() {
-    //	for(int i = 0; i < m_nCameraCount; i++)
-    //	{
-    //		__ASSERT(m_pCameras[i], "Camera pointer is NULL");
-    //		if(m_nCameraActive != i) m_pCameras[i]->Render();
-    //	}
+    //    for(int i = 0; i < m_nCameraCount; i++)
+    //    {
+    //        __ASSERT(m_pCameras[i], "Camera pointer is NULL");
+    //        if(m_nCameraActive != i) m_pCameras[i]->Render();
+    //    }
 
-    //	for(int i = 0; i < m_nLightCount; i++)
-    //	{
-    //		__ASSERT(m_pLights[i], "Light pointer is NULL");
-    //		m_pLights[i]->Render(NULL, 0.5f);
-    //	}
+    //    for(int i = 0; i < m_nLightCount; i++)
+    //    {
+    //        __ASSERT(m_pLights[i], "Light pointer is NULL");
+    //        m_pLights[i]->Render(NULL, 0.5f);
+    //    }
     s_lpD3DDev->SetRenderState(D3DRS_AMBIENT, m_AmbientLightColor);
 
     int iSC = m_Shapes.size();
@@ -309,11 +309,11 @@ void CN3Scene::TickLights(float fFrm) {
     }
 
     // Ambient Light 바꾸기..
-    //	DWORD dwAmbient =	0xff000000 |
-    //						(((DWORD)(m_pLights[i]->m_Data.Diffuse.r * 255 * 0.5f)) << 16) |
-    //						(((DWORD)(m_pLights[i]->m_Data.Diffuse.g * 255 * 0.5f)) << 8) |
-    //						(((DWORD)(m_pLights[i]->m_Data.Diffuse.b * 255 * 0.5f)) << 0);
-    //	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_AMBIENT, dwAmbient);
+    //    DWORD dwAmbient =    0xff000000 |
+    //                        (((DWORD)(m_pLights[i]->m_Data.Diffuse.r * 255 * 0.5f)) << 16) |
+    //                        (((DWORD)(m_pLights[i]->m_Data.Diffuse.g * 255 * 0.5f)) << 8) |
+    //                        (((DWORD)(m_pLights[i]->m_Data.Diffuse.b * 255 * 0.5f)) << 0);
+    //    CN3Base::s_lpD3DDev->SetRenderState(D3DRS_AMBIENT, dwAmbient);
 }
 
 void CN3Scene::TickShapes(float fFrm) {
@@ -511,92 +511,92 @@ void CN3Scene::ChrRelease() {
 /*
 bool CN3Scene::CheckOverlappedShapesAndReport()
 {
-	// 이름 중복 검사..
-	CN3Transform* pShapes[8192];
-	memset(pShapes, 0, 8192*4);
+    // 이름 중복 검사..
+    CN3Transform* pShapes[8192];
+    memset(pShapes, 0, 8192*4);
 
-	int nBC = 0;
-//	for(int i = 0; i < m_nCameraCount; i++) pTransforms[nBC++] = m_pCameras[i];
-//	for(int i = 0; i < m_nLightCount; i++) pTransforms[nBC++] = m_pLights[i];
-	it_Shape it = m_Shapes.begin(), itEnd = m_Shapes.end();
-	for(; it != itEnd; it++)
-	{
-		CN3Shape* pShape = *it;
-		pShapes[nBC++] = pShape;
-	}
-//	for(int i = 0; i < m_nChrCount; i++) pTransforms[nBC++] = m_pChrs[i];
+    int nBC = 0;
+//    for(int i = 0; i < m_nCameraCount; i++) pTransforms[nBC++] = m_pCameras[i];
+//    for(int i = 0; i < m_nLightCount; i++) pTransforms[nBC++] = m_pLights[i];
+    it_Shape it = m_Shapes.begin(), itEnd = m_Shapes.end();
+    for(; it != itEnd; it++)
+    {
+        CN3Shape* pShape = *it;
+        pShapes[nBC++] = pShape;
+    }
+//    for(int i = 0; i < m_nChrCount; i++) pTransforms[nBC++] = m_pChrs[i];
 
-	bool bOverlapped = false;
-	__Vector3 vPos1, vPos2;
-	for(int i = 0; i < nBC; i++)
-	{
-		vPos1 = pShapes[i]->Pos();
-		for(int j = i+1; j < nBC; j++)
-		{
-			vPos2 = pShapes[j]->Pos();
-			if(	vPos1 == vPos2 ||
-				pShapes[i]->FileName() == pShapes[j]->FileName() ) // 위치나 이름이 같은 오브젝트가 있는지 찾아본다.
-			{
-				char szErr[512];
-				__Vector3 vPos = pShapes[j]->Pos();
-				sprintf(szErr, "파일 이름이 같거나 위치가 같은 오브젝트가 있습니다\n첫번째 오브젝트 : \"%s\" - 위치(%f, %f, %f)\n두번째 오브젝트 : \"%s\" - 위치(%f, %f, %f)",
-					pShapes[i]->FileName().c_str(), vPos1.x, vPos1.y, vPos1.z,
-					pShapes[j]->FileName().c_str(), vPos2.x, vPos2.y, vPos2.z);
-				MessageBox(::GetActiveWindow(), szErr, "Scene 오브젝트 중복 점검", MB_OK);
-				bOverlapped = true;
-			}
-		}
-	}
+    bool bOverlapped = false;
+    __Vector3 vPos1, vPos2;
+    for(int i = 0; i < nBC; i++)
+    {
+        vPos1 = pShapes[i]->Pos();
+        for(int j = i+1; j < nBC; j++)
+        {
+            vPos2 = pShapes[j]->Pos();
+            if(    vPos1 == vPos2 ||
+                pShapes[i]->FileName() == pShapes[j]->FileName() ) // 위치나 이름이 같은 오브젝트가 있는지 찾아본다.
+            {
+                char szErr[512];
+                __Vector3 vPos = pShapes[j]->Pos();
+                sprintf(szErr, "파일 이름이 같거나 위치가 같은 오브젝트가 있습니다\n첫번째 오브젝트 : \"%s\" - 위치(%f, %f, %f)\n두번째 오브젝트 : \"%s\" - 위치(%f, %f, %f)",
+                    pShapes[i]->FileName().c_str(), vPos1.x, vPos1.y, vPos1.z,
+                    pShapes[j]->FileName().c_str(), vPos2.x, vPos2.y, vPos2.z);
+                MessageBox(::GetActiveWindow(), szErr, "Scene 오브젝트 중복 점검", MB_OK);
+                bOverlapped = true;
+            }
+        }
+    }
 
-	return bOverlapped;
+    return bOverlapped;
 }
 
 void CN3Scene::DeleteOverlappedShapes()
 {
-	// 이름 중복 검사..
-	BOOL bNeedDeletes[8192];
-	it_Shape itShapes[8192];
-	CN3Shape* pShapes[8192];
-	memset(bNeedDeletes, 0, sizeof(bNeedDeletes));
-	memset(itShapes, 0, sizeof(itShapes));
-	memset(itShapes, 0, sizeof(pShapes));
+    // 이름 중복 검사..
+    BOOL bNeedDeletes[8192];
+    it_Shape itShapes[8192];
+    CN3Shape* pShapes[8192];
+    memset(bNeedDeletes, 0, sizeof(bNeedDeletes));
+    memset(itShapes, 0, sizeof(itShapes));
+    memset(itShapes, 0, sizeof(pShapes));
 
-	int nBC = 0;
-	it_Shape it = m_Shapes.begin(), itEnd = m_Shapes.end();
-	for(; it != itEnd; it++)
-	{
-		itShapes[nBC] = it;
+    int nBC = 0;
+    it_Shape it = m_Shapes.begin(), itEnd = m_Shapes.end();
+    for(; it != itEnd; it++)
+    {
+        itShapes[nBC] = it;
 
-		CN3Shape* pShape = *it;
-		pShapes[nBC++] = pShape;
-	}
-//	for(int i = 0; i < m_nChrCount; i++) pTransforms[nBC++] = m_pChrs[i];
+        CN3Shape* pShape = *it;
+        pShapes[nBC++] = pShape;
+    }
+//    for(int i = 0; i < m_nChrCount; i++) pTransforms[nBC++] = m_pChrs[i];
 
-	int iNeedDeleteCount = 0;
-	__Vector3 vPos1, vPos2;
-	for(int i = 0; i < nBC; i++)
-	{
-		vPos1 = pShapes[i]->Pos();
-		for(int j = i+1; j < nBC; j++)
-		{
-			vPos2 = pShapes[j]->Pos();
-			if(	vPos1 == vPos2 ||
-				pShapes[i]->FileName() == pShapes[j]->FileName() ) // 위치나 이름이 같은 오브젝트가 있는지 찾아본다.
-			{
-				bNeedDeletes[j] = true;
-			}
-		}
-	}
+    int iNeedDeleteCount = 0;
+    __Vector3 vPos1, vPos2;
+    for(int i = 0; i < nBC; i++)
+    {
+        vPos1 = pShapes[i]->Pos();
+        for(int j = i+1; j < nBC; j++)
+        {
+            vPos2 = pShapes[j]->Pos();
+            if(    vPos1 == vPos2 ||
+                pShapes[i]->FileName() == pShapes[j]->FileName() ) // 위치나 이름이 같은 오브젝트가 있는지 찾아본다.
+            {
+                bNeedDeletes[j] = true;
+            }
+        }
+    }
 
-	for(int i = 0; i < nBC; i++)
-	{
-		if(bNeedDeletes[i])
-		{
-			CN3Shape* pShape = *(itShapes[i]);
-			delete pShape;
-			m_Shapes.erase(itShapes[i]);
-		}
-	}
+    for(int i = 0; i < nBC; i++)
+    {
+        if(bNeedDeletes[i])
+        {
+            CN3Shape* pShape = *(itShapes[i]);
+            delete pShape;
+            m_Shapes.erase(itShapes[i]);
+        }
+    }
 }
 */
 bool CN3Scene::LoadDataAndResourcesFromFile(const std::string & szFN) {

@@ -1,6 +1,6 @@
 // StdAfx.cpp : source file that includes just the standard includes
-//	N3Client.pch will be the pre-compiled header
-//	StdAfx.obj will contain the pre-compiled type information
+//    N3Client.pch will be the pre-compiled header
+//    StdAfx.obj will contain the pre-compiled type information
 
 #include "StdAfx.h"
 

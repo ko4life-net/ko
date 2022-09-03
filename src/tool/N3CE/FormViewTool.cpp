@@ -101,17 +101,17 @@ void CFormViewTool::OnBMakeSmooth() {
 }
 
 void CFormViewTool::OnInitialUpdate() {
-    //	if(m_CBLOD.m_hWnd)
-    //	{
-    //		m_CBLOD.ResetContent();
-    //		for(int i = 0; i < MAX_CHR_LOD; i++)
-    //		{
-    //			CString szLOD;
-    //			szLOD.Format("LOD : %d", i);
-    //			m_CBLOD.AddString(szLOD);
-    //		}
-    //		m_CBLOD.SetCurSel(0);
-    //	}
+    //    if(m_CBLOD.m_hWnd)
+    //    {
+    //        m_CBLOD.ResetContent();
+    //        for(int i = 0; i < MAX_CHR_LOD; i++)
+    //        {
+    //            CString szLOD;
+    //            szLOD.Format("LOD : %d", i);
+    //            m_CBLOD.AddString(szLOD);
+    //        }
+    //        m_CBLOD.SetCurSel(0);
+    //    }
 
     CFormView::OnInitialUpdate();
 }

@@ -1,10 +1,10 @@
 //////////////////////////////////////////////////
-//	Commented By : Lynus
-//	Commented On 2001-04-12 오후 5:09:28
+//    Commented By : Lynus
+//    Commented On 2001-04-12 오후 5:09:28
 //
-//	CStreamSoundObj class (SoundObj.h)
+//    CStreamSoundObj class (SoundObj.h)
 //
-//	End Of Comment (By Lynus On 2001-04-12 오후 5:09:28 )
+//    End Of Comment (By Lynus On 2001-04-12 오후 5:09:28 )
 //////////////////////////////////////////////////
 
 #pragma once
@@ -39,8 +39,8 @@ class CStreamSoundObj : public CN3SndObj {
   public:
     BOOL Create(CN3SndEng * pEng);
 
-    //		void Play(float delay = 0.0f, float fFadeInTime = 0.0f);
-    //		void Stop(float fFadeOutTime = 0.0f);
+    //        void Play(float delay = 0.0f, float fFadeInTime = 0.0f);
+    //        void Stop(float fFadeOutTime = 0.0f);
 
     void Tick();
     void Release();

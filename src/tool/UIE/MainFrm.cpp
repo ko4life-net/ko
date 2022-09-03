@@ -67,8 +67,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
         return -1; // fail to create
     }
     if (!m_wndDlgBar.Create(IDR_MAINFRAME, this))
-    //	if (!m_wndDlgBar.Create(this, IDR_MAINFRAME,
-    //		CBRS_ALIGN_TOP, AFX_IDW_DIALOGBAR))
+    //    if (!m_wndDlgBar.Create(this, IDR_MAINFRAME,
+    //        CBRS_ALIGN_TOP, AFX_IDW_DIALOGBAR))
     {
         TRACE0("Failed to create dialogbar\n");
         return -1; // fail to create
@@ -100,8 +100,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     GetModuleFileName(NULL, szPath, _MAX_PATH);
     _splitpath(szPath, szDrive, szDir, NULL, NULL);
     _makepath(szPath, szDrive, szDir, NULL, NULL);
-    //	SetCurrentDirectory(szPath);
-    //	SetBasePath(szPath);
+    //    SetCurrentDirectory(szPath);
+    //    SetBasePath(szPath);
 
     CWinApp * pApp = AfxGetApp();
     ASSERT(pApp);
@@ -118,15 +118,15 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 
 BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/, CCreateContext * pContext) {
     // create splitter window
-    //	if (!m_wndSplitter.CreateStatic(this, 1, 2))
-    //		return FALSE;
+    //    if (!m_wndSplitter.CreateStatic(this, 1, 2))
+    //        return FALSE;
 
-    //	if (!m_wndSplitter.CreateView(0, 0, RUNTIME_CLASS(CHierarchyView), CSize(100, 100), pContext) ||
-    //		!m_wndSplitter.CreateView(0, 1, RUNTIME_CLASS(CUIEView), CSize(100, 100), pContext))
-    //	{
-    //		m_wndSplitter.DestroyWindow();
-    //		return FALSE;
-    //	}
+    //    if (!m_wndSplitter.CreateView(0, 0, RUNTIME_CLASS(CHierarchyView), CSize(100, 100), pContext) ||
+    //        !m_wndSplitter.CreateView(0, 1, RUNTIME_CLASS(CUIEView), CSize(100, 100), pContext))
+    //    {
+    //        m_wndSplitter.DestroyWindow();
+    //        return FALSE;
+    //    }
 
     CRect rc;
     GetClientRect(rc);

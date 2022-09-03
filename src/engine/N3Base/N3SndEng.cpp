@@ -25,8 +25,8 @@ CN3SndEng::~CN3SndEng() {
 }
 
 //
-//	Init
-//	엔진 초기화...
+//    Init
+//    엔진 초기화...
 //
 bool CN3SndEng::Init(HWND hWnd, DWORD dwCoopLevel, DWORD dwPrimaryChannels, DWORD dwPrimaryFreq,
                      DWORD dwPrimaryBitRate) {
@@ -109,7 +109,7 @@ bool CN3SndEng::SetPrimaryBufferFormat(DWORD dwPrimaryChannels, DWORD dwPrimaryF
 }
 
 //
-//	Release..
+//    Release..
 //
 void CN3SndEng::Release() {
     if (m_pDSListener) {

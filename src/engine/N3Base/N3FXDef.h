@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//	N3FXDef.h
-//	Effect에서 쓰이는 상수들이나 자료형들 정의...
+//    N3FXDef.h
+//    Effect에서 쓰이는 상수들이나 자료형들 정의...
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -63,11 +63,11 @@ enum e_FXPartParticleEmitType // 이펙트 파트가 어떤 모양으로 전개되는지...
 //structures.....
 
 /*
-typedef struct __TABLE_FX	// FX 리소스 레코드...
+typedef struct __TABLE_FX    // FX 리소스 레코드...
 {
-	DWORD		dwID;		// 고유 ID
-	std::string	szFN;		// file name
-	DWORD		dwSoundID;	// 효과에 쓰는 사운드 아디.
+    DWORD        dwID;        // 고유 ID
+    std::string    szFN;        // file name
+    DWORD        dwSoundID;    // 효과에 쓰는 사운드 아디.
 } TABLE_FX;
 */
 

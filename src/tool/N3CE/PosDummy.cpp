@@ -25,7 +25,7 @@ void CPosDummy::SetSelObj(CN3Transform * pObj) {
     if (pObj) {
         m_SelObjArray.Add(pObj);
         m_vPos = pObj->Pos();
-        //		m_qRot.x = m_qRot.y = m_qRot.z = m_qRot.w = 0;
+        //        m_qRot.x = m_qRot.y = m_qRot.z = m_qRot.w = 0;
     }
 }
 

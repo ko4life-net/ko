@@ -56,7 +56,7 @@ bool CN3FXPartBillBoard::ParseScript(char * szCommand, char * szBuff0, char * sz
         return true;
     }
 
-    //	보드 갯수.
+    //    보드 갯수.
     if (lstrcmpi(szCommand, "<billboard_count>") == 0) {
         m_iNum = atoi(szBuff0);
         if (m_iNum > 0) {
@@ -65,7 +65,7 @@ bool CN3FXPartBillBoard::ParseScript(char * szCommand, char * szBuff0, char * sz
         return true;
     }
 
-    //	보드 크기.
+    //    보드 크기.
     if (lstrcmpi(szCommand, "<billboard_size>") == 0) {
         m_fSizeX = atof(szBuff0);
         m_fSizeY = atof(szBuff1);
@@ -151,7 +151,7 @@ void CN3FXPartBillBoard::CreateVB() {
 }
 
 //
-//	init...
+//    init...
 //
 void CN3FXPartBillBoard::Init() {
     CN3FXPartBase::Init();
@@ -293,7 +293,7 @@ bool CN3FXPartBillBoard::Tick() {
     m_fCurrSizeX += m_fCurrScaleVelX * CN3Base::s_fSecPerFrm;
     m_fCurrSizeY += m_fCurrScaleVelY * CN3Base::s_fSecPerFrm;
 
-    //	m_vUnit[0].Set(-0.5f, 0.5f, 0.0f);
+    //    m_vUnit[0].Set(-0.5f, 0.5f, 0.0f);
     //m_vUnit[1].Set(0.5f, 0.5f, 0.0f);
     //m_vUnit[2].Set(0.5f, -0.5f, 0.0f);
     //m_vUnit[3].Set(-0.5f, -0.5f, 0.0f);
@@ -333,9 +333,9 @@ bool CN3FXPartBillBoard::IsDead() {
 }
 
 //
-//	render...
-//	일단은 파티클 하나씩 그리고....
-//	나중에는 같은 텍스쳐 쓰는 것들끼리 묶어서 그리자...
+//    render...
+//    일단은 파티클 하나씩 그리고....
+//    나중에는 같은 텍스쳐 쓰는 것들끼리 묶어서 그리자...
 //
 void CN3FXPartBillBoard::Render() {
     if (m_iTexIdx >= m_iNumTex) {

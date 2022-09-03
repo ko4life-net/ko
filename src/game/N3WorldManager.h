@@ -26,7 +26,7 @@ class CN3WorldManager : public CGameBase {
 
     //..
     CN3WorldBase * GetActiveWorld() {
-        //		__ASSERT(0, "No Acitive World!!");
+        //        __ASSERT(0, "No Acitive World!!");
         return m_pActiveWorld;
     }
 };

@@ -96,9 +96,9 @@ bool CN3Pond::Load(HANDLE hFile) {
         // XyxT2 -> XyzColorT2 Converting.
         ptmpPondMesh->m_pVertices = new __VertexPond[iVC]; ///
         ReadFile(hFile, ptmpPondMesh->m_pVertices, iVC * sizeof(__VertexPond), &dwNum, NULL);
-        ptmpPondMesh->m_pVertices[0].y += 0.2f;                               //	수치가 높으면 물결이 크게 요동친다
-        ptmpPondMesh->m_pVertices[iWidthVertex].y += 0.2f;                    //	수치가 높으면 물결이 크게 요동친다
-        ptmpPondMesh->m_pfMaxHeight = ptmpPondMesh->m_pVertices[0].y += 0.3f; //	물결의 최대치
+        ptmpPondMesh->m_pVertices[0].y += 0.2f;                               //    수치가 높으면 물결이 크게 요동친다
+        ptmpPondMesh->m_pVertices[iWidthVertex].y += 0.2f;                    //    수치가 높으면 물결이 크게 요동친다
+        ptmpPondMesh->m_pfMaxHeight = ptmpPondMesh->m_pVertices[0].y += 0.3f; //    물결의 최대치
 
         ptmpPondMesh->m_pfVelocityArray = new float[iVC]; ///
         memset(ptmpPondMesh->m_pfVelocityArray, 0, sizeof(float) * iVC);
@@ -110,7 +110,7 @@ bool CN3Pond::Load(HANDLE hFile) {
 
         int    iWidth = iWidthVertex, iHeight = iVC / iWidthVertex;
         int    x = 0, y = iWidth;
-        WORD * indexPtr = ptmpPondMesh->m_wpIndex; //	삼각형을 부를 위치 설정
+        WORD * indexPtr = ptmpPondMesh->m_wpIndex; //    삼각형을 부를 위치 설정
         iWidth--;
 
         __VertexPond * ptVtx = ptmpPondMesh->m_pVertices;
@@ -119,7 +119,7 @@ bool CN3Pond::Load(HANDLE hFile) {
         StZ = ptVtx[0].z, EnZ = ptVtx[iHeight].z;
         for (int j = 0; j < iHeight; j++) {
             for (int k = 0; k < iWidth; k++) {
-                //	삼각형을 부를 위치 설정
+                //    삼각형을 부를 위치 설정
                 indexPtr[0] = x;
                 indexPtr[1] = x + 1;
                 indexPtr[2] = y;
@@ -131,7 +131,7 @@ bool CN3Pond::Load(HANDLE hFile) {
                 x++;
                 y++;
 
-                //	연못의 최소최대 위치 구함
+                //    연못의 최소최대 위치 구함
                 if (StX > ptVtx->x) {
                     StX = ptVtx->x;
                 }
@@ -184,7 +184,7 @@ bool CN3Pond::Load(HANDLE hFile) {
         ptmpPondMesh->m_bTick2Rand = TRUE; ///
 
         if (m_iMaxVtxNum < iVC) {
-            m_iMaxVtxNum = iVC; //	가장큰 계산범위 구함
+            m_iMaxVtxNum = iVC; //    가장큰 계산범위 구함
         }
     }
 
@@ -249,7 +249,7 @@ void CN3Pond::Tick() {
         for (int k = 0; k < i; k++) {
             UpdateWaterPositions();
         }
-        //		TRACE("Frame not Accecl \n");
+        //        TRACE("Frame not Accecl \n");
         ftemp = j;
     }
 }
@@ -340,19 +340,19 @@ void CN3Pond::Render() {
 void CN3Pond::UpdateWaterPositions() {
     CPongMesh * pPondMesh;
 
-    //	기초 데이타
+    //    기초 데이타
     int           x, y, n, m;
     float         d;
     __VertexPond *pVtx, *ptmpVtx, *ptmpVtxSub, *ptmpVtxPlus;
     float *       pForceArray, *ptmpForceArray, *ptmpFArrSub, *ptmpFArrPlus;
 
-    //	계산 변수
+    //    계산 변수
     float max, min, mincal, maxcal;
 
     for (int i = 0; i < m_iPondMeshNum; i++) {
         pPondMesh = &m_pCPondMesh[i];
 
-        //	이번에 쓰이지 않을 경우 넘어감
+        //    이번에 쓰이지 않을 경우 넘어감
         if (CN3Base::s_CameraData.IsOutOfFrustum(pPondMesh->m_vCenterPo, pPondMesh->m_fRadius) == TRUE) {
             pPondMesh->m_bTick2Rand = FALSE;
             continue;
@@ -360,8 +360,8 @@ void CN3Pond::UpdateWaterPositions() {
             pPondMesh->m_bTick2Rand = TRUE;
         }
 
-        //		TRACE("Pond Is Chk  ---------- %d \n",i);
-        //	기초데이타 작성
+        //        TRACE("Pond Is Chk  ---------- %d \n",i);
+        //    기초데이타 작성
         m = pPondMesh->m_iWidthVtx;
         n = pPondMesh->m_iHeightVtx;
         max = pPondMesh->m_fmax;
@@ -374,7 +374,7 @@ void CN3Pond::UpdateWaterPositions() {
         pVtx = pPondMesh->m_pVertices;
         pForceArray = m_pfMaxVtx;
 
-        //	계산
+        //    계산
         for (x = 1; x < n - 1; x++) {
             ptmpFArrSub = pForceArray;
             pForceArray += m;
@@ -480,11 +480,11 @@ void CN3Pond::UpdateWaterPositions() {
             }
         }
 
-        ptmpForceArray = pPondMesh->m_pfVelocityArray; //	같은형이라 빌려씀
+        ptmpForceArray = pPondMesh->m_pfVelocityArray; //    같은형이라 빌려씀
         pForceArray = m_pfMaxVtx;
         pVtx = pPondMesh->m_pVertices;
         for (x = 0; x < pPondMesh->m_iVC; x++) {
-            //			*ptmpForceArray += *pForceArray*0.02f;
+            //            *ptmpForceArray += *pForceArray*0.02f;
             (*ptmpForceArray) += (*pForceArray) * 0.001f;
 
             pVtx->y += (*ptmpForceArray);

@@ -59,17 +59,17 @@ char * CAutoBuffer::Allocate(DWORD iSize, bool bZeroMemory) {
     }
 
     if (iSize > 0) {
-        // 		try
-        // 		{
+        //         try
+        //         {
         m_pBuffer = new char[iSize];
 
         m_iSize = iSize;
-        // 		}
-        // 		catch (CMemoryException *e)
-        // 		{
-        // 			e->Delete();
-        // 			return NULL;
-        // 		}
+        //         }
+        //         catch (CMemoryException *e)
+        //         {
+        //             e->Delete();
+        //             return NULL;
+        //         }
     } else {
         m_pBuffer = NULL;
     }

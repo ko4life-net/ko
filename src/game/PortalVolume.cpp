@@ -318,7 +318,7 @@ bool CPortalVolume::Load(HANDLE hFile) {
     DWORD       dwNum;
     std::string strSrc, strDest;
 
-    // 링크된 갯수를 로드..	일단 읽구 버린다..
+    // 링크된 갯수를 로드..    일단 읽구 버린다..
     int iLinkedCount = 0, iTID, iEWT;
     ReadFile(hFile, &iLinkedCount, sizeof(int), &dwNum, NULL);
     for (int i = 0; i < iLinkedCount; i++) {

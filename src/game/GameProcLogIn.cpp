@@ -184,25 +184,25 @@ void CGameProcLogIn::Render() {
     s_pEng->Clear(crEnv);             // 배경은 검은색
     s_pEng->s_lpD3DDev->BeginScene(); // 씬 렌더 ㅅ작...
 
-    //	__Vector3 vEye(0.22f, 0.91f, -1.63f), vAt(-0.19f, 1.1048f, 0.0975f), vUp(0,1,0);
-    //	__Matrix44 mtxView, mtxPrj, mtxWorld;
-    //	mtxWorld.Identity();
+    //    __Vector3 vEye(0.22f, 0.91f, -1.63f), vAt(-0.19f, 1.1048f, 0.0975f), vUp(0,1,0);
+    //    __Matrix44 mtxView, mtxPrj, mtxWorld;
+    //    mtxWorld.Identity();
 
     // 카메라 잡기..
     m_pCamera->Tick();
     m_pCamera->Apply();
-    /*	D3DVIEWPORT9 vp;
-	CN3Base::s_lpD3DDev->GetViewport(&vp);
-	float fLens = D3DXToRadian(55.0f);
-	float fAspect = (float)vp.Width / (float)vp.Height;
-	float fNear = 0.1f;
-	float fFar = 100.0f;
+    /*    D3DVIEWPORT9 vp;
+    CN3Base::s_lpD3DDev->GetViewport(&vp);
+    float fLens = D3DXToRadian(55.0f);
+    float fAspect = (float)vp.Width / (float)vp.Height;
+    float fNear = 0.1f;
+    float fFar = 100.0f;
 
-	::D3DXMatrixLookAtLH(&mtxView, &vEye, &vAt, &vUp);
-	::D3DXMatrixPerspectiveFovLH(&mtxPrj, fLens, fAspect, fNear, fFar);
-	CN3Base::s_lpD3DDev->SetTransform(D3DTS_VIEW, &mtxView); 
-	CN3Base::s_lpD3DDev->SetTransform(D3DTS_PROJECTION, &mtxPrj); 
-	CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxWorld); 
+    ::D3DXMatrixLookAtLH(&mtxView, &vEye, &vAt, &vUp);
+    ::D3DXMatrixPerspectiveFovLH(&mtxPrj, fLens, fAspect, fNear, fFar);
+    CN3Base::s_lpD3DDev->SetTransform(D3DTS_VIEW, &mtxView); 
+    CN3Base::s_lpD3DDev->SetTransform(D3DTS_PROJECTION, &mtxPrj); 
+    CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxWorld); 
 */
 
     for (int i = 0; i < 8; i++) {
@@ -213,40 +213,40 @@ void CGameProcLogIn::Render() {
     }
 
     // 라이트 잡기..
-    /*	D3DLIGHT9 lgt0, lgt1, lgt2;
-	
-	memset(&lgt0, 0, sizeof(D3DLIGHT9));
-	lgt0.Type = D3DLIGHT_POINT;
-	lgt0.Attenuation0 = 0.5f;
-	lgt0.Range = 100000.0f;
-	lgt0.Position = __Vector3(-500, 100, -50);
-	lgt0.Diffuse.r = 232/255.0f; lgt0.Diffuse.g = 226/255.0f; lgt0.Diffuse.b = 215/255.0f;
+    /*    D3DLIGHT9 lgt0, lgt1, lgt2;
+    
+    memset(&lgt0, 0, sizeof(D3DLIGHT9));
+    lgt0.Type = D3DLIGHT_POINT;
+    lgt0.Attenuation0 = 0.5f;
+    lgt0.Range = 100000.0f;
+    lgt0.Position = __Vector3(-500, 100, -50);
+    lgt0.Diffuse.r = 232/255.0f; lgt0.Diffuse.g = 226/255.0f; lgt0.Diffuse.b = 215/255.0f;
 
-	memset(&lgt1, 0, sizeof(D3DLIGHT9));
-	lgt1.Type = D3DLIGHT_POINT;
-	lgt1.Attenuation0 = 1.0f;
-	lgt1.Range = 100000.0f;
-	lgt1.Position = __Vector3(1000, -300, -50);
-//	lgt1.Ambient.r = 56/255.0f; lgt1.Ambient.g = 58/255.0f; lgt1.Ambient.b = 129/255.0f;
-	lgt1.Diffuse.r = 66/255.0f; lgt1.Diffuse.g = 68/255.0f; lgt1.Diffuse.b = 168/255.0f;
+    memset(&lgt1, 0, sizeof(D3DLIGHT9));
+    lgt1.Type = D3DLIGHT_POINT;
+    lgt1.Attenuation0 = 1.0f;
+    lgt1.Range = 100000.0f;
+    lgt1.Position = __Vector3(1000, -300, -50);
+//    lgt1.Ambient.r = 56/255.0f; lgt1.Ambient.g = 58/255.0f; lgt1.Ambient.b = 129/255.0f;
+    lgt1.Diffuse.r = 66/255.0f; lgt1.Diffuse.g = 68/255.0f; lgt1.Diffuse.b = 168/255.0f;
 
-	memset(&lgt2, 0, sizeof(D3DLIGHT9));
-	lgt2.Type = D3DLIGHT_POINT;
-	lgt2.Attenuation0 = 1.0f;
-	lgt2.Range = 100000.0f;
-	lgt2.Position = __Vector3(-200, -800, 350);
-//	lgt2.Ambient.r = 52/255.0f; lgt2.Ambient.g = 56/255.0f; lgt2.Ambient.b = 107/255.0f;
-	lgt2.Diffuse.r = 124/255.0f; lgt2.Diffuse.g = 45/255.0f; lgt2.Diffuse.b = 31/255.0f;
+    memset(&lgt2, 0, sizeof(D3DLIGHT9));
+    lgt2.Type = D3DLIGHT_POINT;
+    lgt2.Attenuation0 = 1.0f;
+    lgt2.Range = 100000.0f;
+    lgt2.Position = __Vector3(-200, -800, 350);
+//    lgt2.Ambient.r = 52/255.0f; lgt2.Ambient.g = 56/255.0f; lgt2.Ambient.b = 107/255.0f;
+    lgt2.Diffuse.r = 124/255.0f; lgt2.Diffuse.g = 45/255.0f; lgt2.Diffuse.b = 31/255.0f;
 
-	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, TRUE);
-	for(int i = 0; i < 8; i++)
-		CN3Base::s_lpD3DDev->LightEnable(0, FALSE);
-	CN3Base::s_lpD3DDev->LightEnable(0, TRUE);
-	CN3Base::s_lpD3DDev->LightEnable(1, TRUE);
-	CN3Base::s_lpD3DDev->LightEnable(2, TRUE);
-	CN3Base::s_lpD3DDev->SetLight(0, &lgt0);
-	CN3Base::s_lpD3DDev->SetLight(1, &lgt1);
-	CN3Base::s_lpD3DDev->SetLight(2, &lgt2);
+    CN3Base::s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, TRUE);
+    for(int i = 0; i < 8; i++)
+        CN3Base::s_lpD3DDev->LightEnable(0, FALSE);
+    CN3Base::s_lpD3DDev->LightEnable(0, TRUE);
+    CN3Base::s_lpD3DDev->LightEnable(1, TRUE);
+    CN3Base::s_lpD3DDev->LightEnable(2, TRUE);
+    CN3Base::s_lpD3DDev->SetLight(0, &lgt0);
+    CN3Base::s_lpD3DDev->SetLight(1, &lgt1);
+    CN3Base::s_lpD3DDev->SetLight(2, &lgt2);
 */
 
     ////////////////////////////////////////////
@@ -310,7 +310,7 @@ bool CGameProcLogIn::MsgSend_AccountLogIn(e_LogInClassification eLIC) {
     } else if (LIC_MGAME == eLIC) {
         byCmd = N3_ACCOUNT_LOGIN_MGAME;
     }
-    //	else if(LIC_DAUM == eLIC) byCmd = N3_ACCOUNT_LOGIN_DAUM;
+    //    else if(LIC_DAUM == eLIC) byCmd = N3_ACCOUNT_LOGIN_DAUM;
 
     CAPISocket::MP_AddByte(byBuff, iOffset, byCmd);                // 커멘드.
     CAPISocket::MP_AddShort(byBuff, iOffset, s_szAccount.size());  // 아이디 길이..
@@ -527,28 +527,28 @@ void CGameProcLogIn::ConnectToGameServer() // 고른 게임 서버에 접속
         this->MsgSend_VersionCheck();
     }
 }
-//	By : Ecli666 ( On 2002-07-15 오후 7:35:16 )
+//    By : Ecli666 ( On 2002-07-15 오후 7:35:16 )
 //
 /*
 void CGameProcLogIn::PacketSend_MGameLogin()
 {
-	if(m_szID.size() >= 20 || m_szPW.size() >= 12)
-	{
-//		MessageBox("ID는 20 자 PassWord 는 12 자 미만이어야 합니다.", "LogIn Error");
-		return;
-	}
+    if(m_szID.size() >= 20 || m_szPW.size() >= 12)
+    {
+//        MessageBox("ID는 20 자 PassWord 는 12 자 미만이어야 합니다.", "LogIn Error");
+        return;
+    }
 
-	int send_index = 0;
-	BYTE send_buff[128];
-	memset( send_buff, NULL, 128 );
+    int send_index = 0;
+    BYTE send_buff[128];
+    memset( send_buff, NULL, 128 );
 
-	CAPISocket::MP_AddByte( send_buff, send_index, N3_ACCOUNT_LOGIN_MGAME); // Send - s1(ID길이) str1(ID문자열:20바이트이하) s1(PW길이) str1(PW문자열:12바이트이하) | Recv - b1(0:실패 1:성공 2:ID없음 3:PW틀림 4:서버점검중)
-	CAPISocket::MP_AddShort( send_buff, send_index, (short)(m_szID.size()));
-	CAPISocket::MP_AddString( send_buff, send_index, m_szID);
-	CAPISocket::MP_AddShort( send_buff, send_index, (short)(m_szPW.size()));
-	CAPISocket::MP_AddString( send_buff, send_index, m_szPW);
+    CAPISocket::MP_AddByte( send_buff, send_index, N3_ACCOUNT_LOGIN_MGAME); // Send - s1(ID길이) str1(ID문자열:20바이트이하) s1(PW길이) str1(PW문자열:12바이트이하) | Recv - b1(0:실패 1:성공 2:ID없음 3:PW틀림 4:서버점검중)
+    CAPISocket::MP_AddShort( send_buff, send_index, (short)(m_szID.size()));
+    CAPISocket::MP_AddString( send_buff, send_index, m_szID);
+    CAPISocket::MP_AddShort( send_buff, send_index, (short)(m_szPW.size()));
+    CAPISocket::MP_AddString( send_buff, send_index, m_szPW);
 
-	s_pSocket->Send( send_buff, send_index );
+    s_pSocket->Send( send_buff, send_index );
 }*/
 
-//	~(By Ecli666 On 2002-07-15 오후 7:35:16 )
+//    ~(By Ecli666 On 2002-07-15 오후 7:35:16 )

@@ -12,15 +12,15 @@
 #include "N3FXPlug.h"
 
 const float CHR_LOD_CALCULATION_VALUES[MAX_CHR_LOD_DELTA][MAX_CHR_LOD] = {
-  //	{ 6.0f, 18.0f, 32.0f, 128.0f },
-  //	{ 4.0f, 12.0f, 21.0f, 85.0f },
-  //	{ 2.66f, 8.0f, 14.21f, 56.8f },
-  //	{ 1.77f, 5.33f, 9.48f, 37.9f }
+  // {6.0f,  18.0f, 32.0f,  128.0f},
+  // {4.0f,  12.0f, 21.0f,  85.0f },
+  // {2.66f, 8.0f,  14.21f, 56.8f },
+  // {1.77f, 5.33f, 9.48f,  37.9f }
     {8.0f, 16.0f, 48.0f, 128.0f},
     {4.0f, 8.0f,  24.0f, 64.0f },
     {2.0f, 4.0f,  12.0f, 32.0f },
     {1.0f, 3.0f,  5.0f,  7.0f  }
-  //	{ 1.0f, 2.0f, 6.0f, 16.0f }
+  // {1.0f,  2.0f,  6.0f,   16.0f }
 };
 
 CN3CPartSkins::CN3CPartSkins() {
@@ -177,8 +177,7 @@ void CN3CPart::Render(int nLOD) {
 #endif
 
     static DWORD dwAlpha, dwFog, dwCull;
-    if (m_Mtl.nRenderFlags & RF_ALPHABLENDING) // Alpha 사용
-    {
+    if (m_Mtl.nRenderFlags & RF_ALPHABLENDING) { // Alpha 사용
         s_lpD3DDev->GetRenderState(D3DRS_ALPHABLENDENABLE, &dwAlpha);
         if (TRUE != dwAlpha) {
             s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
@@ -186,15 +185,13 @@ void CN3CPart::Render(int nLOD) {
         s_lpD3DDev->SetRenderState(D3DRS_SRCBLEND, m_Mtl.dwSrcBlend);
         s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND, m_Mtl.dwDestBlend);
     }
-    if (m_Mtl.nRenderFlags & RF_NOTUSEFOG) // Fog 무시..
-    {
+    if (m_Mtl.nRenderFlags & RF_NOTUSEFOG) { // Fog 무시..
         s_lpD3DDev->GetRenderState(D3DRS_FOGENABLE, &dwFog);
         if (TRUE == dwFog) {
             s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, FALSE);
         }
     }
-    if (m_Mtl.nRenderFlags & RF_DOUBLESIDED) // Render Flags -
-    {
+    if (m_Mtl.nRenderFlags & RF_DOUBLESIDED) { // Render Flags -
         s_lpD3DDev->GetRenderState(D3DRS_CULLMODE, &dwCull);
         s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
     }
@@ -322,12 +319,12 @@ void CN3CPlugBase::ReCalcMatrix() {
     m_Matrix *= m_MtxRot;
     m_Matrix.PosSet(m_vPosition * m_vScale);
 
-    //	m_Matrix *= m_MtxRot;
-    //	m_Matrix.PosSet(m_vPosition);
-    //
-    //	__Matrix44 mtxScale; // 일부러 스케일 값을 나중에 적용하도록 바꾸었다...
-    //	mtxScale.Scale(m_vScale);
-    //	m_Matrix *= mtxScale;
+    // m_Matrix *= m_MtxRot;
+    // m_Matrix.PosSet(m_vPosition);
+
+    // __Matrix44 mtxScale; // 일부러 스케일 값을 나중에 적용하도록 바꾸었다...
+    // mtxScale.Scale(m_vScale);
+    // m_Matrix *= mtxScale;
 }
 
 void CN3CPlugBase::PMeshSet(const std::string & szFN) {
@@ -348,8 +345,7 @@ void CN3CPlugBase::Render(const __Matrix44 & mtxParent, const __Matrix44 & mtxJo
 #endif
 
     DWORD dwAlpha = 0, dwFog = 0, dwCull = 0;
-    if (m_Mtl.nRenderFlags & RF_ALPHABLENDING) // Alpha 사용
-    {
+    if (m_Mtl.nRenderFlags & RF_ALPHABLENDING) { // Alpha 사용
         s_lpD3DDev->GetRenderState(D3DRS_ALPHABLENDENABLE, &dwAlpha);
         if (TRUE != dwAlpha) {
             s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
@@ -357,15 +353,13 @@ void CN3CPlugBase::Render(const __Matrix44 & mtxParent, const __Matrix44 & mtxJo
         s_lpD3DDev->SetRenderState(D3DRS_SRCBLEND, m_Mtl.dwSrcBlend);
         s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND, m_Mtl.dwDestBlend);
     }
-    if (m_Mtl.nRenderFlags & RF_NOTUSEFOG) // Fog 무시..
-    {
+    if (m_Mtl.nRenderFlags & RF_NOTUSEFOG) { // Fog 무시..
         s_lpD3DDev->GetRenderState(D3DRS_FOGENABLE, &dwFog);
         if (TRUE == dwFog) {
             s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, FALSE);
         }
     }
-    if (m_Mtl.nRenderFlags & RF_DOUBLESIDED) // Render Flags -
-    {
+    if (m_Mtl.nRenderFlags & RF_DOUBLESIDED) { // Render Flags -
         s_lpD3DDev->GetRenderState(D3DRS_CULLMODE, &dwCull);
         s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
     }
@@ -428,7 +422,7 @@ void CN3CPlugBase::Render(const __Matrix44 & mtxParent, const __Matrix44 & mtxJo
 }
 
 CN3Texture * CN3CPlugBase::TexOverlapSet(const std::string & szFN) {
-    //	if(m_pTexOverlapRef && m_pTexOverlapRef->FileName() == szFN) return m_pTexOverlapRef;
+    // if(m_pTexOverlapRef && m_pTexOverlapRef->FileName() == szFN) return m_pTexOverlapRef;
     if (m_pTexOverlapRef && 0 == lstrcmpi(m_pTexOverlapRef->FileName().c_str(), szFN.c_str())) {
         return m_pTexOverlapRef;
     }
@@ -558,10 +552,10 @@ CN3CPlug::CN3CPlug() {
         m_pFXTailBundle[i] = NULL;
     }
 
-    //	m_strFXName[PLUGATTR_FIRE] = "fx//fire_sword0_1.fxb";
-    //	m_strFXName[PLUGATTR_ICE] = "fx//ice_sword0_1.fxb";
-    //	m_strFXName[PLUGATTR_LIGHTENNING] = "fx//poison_sword0_1.fxb";
-    //	m_strFXName[PLUGATTR_POISON] = "fx//fire_sword0_1.fxb";
+    // m_strFXName[PLUGATTR_FIRE] = "fx//fire_sword0_1.fxb";
+    // m_strFXName[PLUGATTR_ICE] = "fx//ice_sword0_1.fxb";
+    // m_strFXName[PLUGATTR_LIGHTENNING] = "fx//poison_sword0_1.fxb";
+    // m_strFXName[PLUGATTR_POISON] = "fx//fire_sword0_1.fxb";
 }
 
 CN3CPlug::~CN3CPlug() {
@@ -914,76 +908,76 @@ void CN3CPlug::RenderFX(const __Matrix44 & mtxParent, const __Matrix44 & mtxJoin
             pAP->pwIndices = m_PMeshInstFX.GetIndices();
         }
         /*
-		fArg1 = m_pFXMainBundle->m_fLife * 1.2f;
-		fArg2 = (0.07f * (fArg1 - (int)fArg1)) - 0.035f;
-		vArg2 = pvAxis[0].n * fArg2;
+        fArg1 = m_pFXMainBundle->m_fLife * 1.2f;
+        fArg2 = (0.07f * (fArg1 - (int)fArg1)) - 0.035f;
+        vArg2 = pvAxis[0].n * fArg2;
 
-		mtx.Identity();
-		mtx.RotationY(-__PI / 72.0f);
-		mtx.Scale(0.5f, 0.5f, 0.5f);
-		mtx.PosSet(0.0f, m_PMeshInstFX.GetMesh()->Max().y * 0.6f, 0.0f);
-		mtx += vArg2;
-		mtx *= m_Matrix;
-		mtx *= mtxJoint;
-		mtx *= mtxParent;
+        mtx.Identity();
+        mtx.RotationY(-__PI / 72.0f);
+        mtx.Scale(0.5f, 0.5f, 0.5f);
+        mtx.PosSet(0.0f, m_PMeshInstFX.GetMesh()->Max().y * 0.6f, 0.0f);
+        mtx += vArg2;
+        mtx *= m_Matrix;
+        mtx *= mtxJoint;
+        mtx *= mtxParent;
 
-		pAP = s_AlphaMgr.Add();
-		if(pAP)
-		{
-			pAP->bUseVB			= FALSE;
-			pAP->dwBlendDest		= m_pFXPart->m_dwDestBlend;
-			pAP->dwBlendSrc		= m_pFXPart->m_dwSrcBlend;
-			pAP->dwFVF				= FVF_VNT1;
-			pAP->dwPrimitiveSize	= sizeof(__VertexT1);
-			pAP->fCameraDistance	= (s_CameraData.vEye - mtx.Pos()).Magnitude() + fHeight;
+        pAP = s_AlphaMgr.Add();
+        if(pAP)
+        {
+            pAP->bUseVB            = FALSE;
+            pAP->dwBlendDest        = m_pFXPart->m_dwDestBlend;
+            pAP->dwBlendSrc        = m_pFXPart->m_dwSrcBlend;
+            pAP->dwFVF                = FVF_VNT1;
+            pAP->dwPrimitiveSize    = sizeof(__VertexT1);
+            pAP->fCameraDistance    = (s_CameraData.vEye - mtx.Pos()).Magnitude() + fHeight;
 
-			pAP->lpTex				= NULL;
-			iTexIdx = (iTexIdx+1) % m_pFXPart->m_iNumTex;
-			if(m_pFXPart->m_ppRefTex[iTexIdx])
-				pAP->lpTex = m_pFXPart->m_ppRefTex[iTexIdx]->Get();
-			
-			pAP->ePrimitiveType	= D3DPT_TRIANGLELIST;
-			pAP->nPrimitiveCount	= m_PMeshInstFX.GetNumIndices() / 3;
-			pAP->nRenderFlags		= m_pFXPart->m_dwRenderFlag;
-			pAP->nVertexCount		= m_PMeshInstFX.GetNumVertices();
-			pAP->MtxWorld			= mtx;
-			pAP->pVertices			= m_PMeshInstFX.GetVertices();
-			pAP->pwIndices			= m_PMeshInstFX.GetIndices();
-		}
+            pAP->lpTex                = NULL;
+            iTexIdx = (iTexIdx+1) % m_pFXPart->m_iNumTex;
+            if(m_pFXPart->m_ppRefTex[iTexIdx])
+                pAP->lpTex = m_pFXPart->m_ppRefTex[iTexIdx]->Get();
+            
+            pAP->ePrimitiveType    = D3DPT_TRIANGLELIST;
+            pAP->nPrimitiveCount    = m_PMeshInstFX.GetNumIndices() / 3;
+            pAP->nRenderFlags        = m_pFXPart->m_dwRenderFlag;
+            pAP->nVertexCount        = m_PMeshInstFX.GetNumVertices();
+            pAP->MtxWorld            = mtx;
+            pAP->pVertices            = m_PMeshInstFX.GetVertices();
+            pAP->pwIndices            = m_PMeshInstFX.GetIndices();
+        }
 
-		mtx.Identity();
-		mtx.RotationY(__PI / 72.0f);
-		mtx.Scale(0.5f, 0.5f, 0.5f);
-		mtx.PosSet(0.0f, m_PMeshInstFX.GetMesh()->Max().y * 0.5f, 0.0f);
-		mtx -= vArg2;
-		mtx *= m_Matrix;
-		mtx *= mtxJoint;
-		mtx *= mtxParent;
+        mtx.Identity();
+        mtx.RotationY(__PI / 72.0f);
+        mtx.Scale(0.5f, 0.5f, 0.5f);
+        mtx.PosSet(0.0f, m_PMeshInstFX.GetMesh()->Max().y * 0.5f, 0.0f);
+        mtx -= vArg2;
+        mtx *= m_Matrix;
+        mtx *= mtxJoint;
+        mtx *= mtxParent;
 
-		pAP = s_AlphaMgr.Add();
-		if(pAP)
-		{
-			pAP->bUseVB			= FALSE;
-			pAP->dwBlendDest		= m_pFXPart->m_dwDestBlend;
-			pAP->dwBlendSrc		= m_pFXPart->m_dwSrcBlend;
-			pAP->dwFVF				= FVF_VNT1;
-			pAP->dwPrimitiveSize	= sizeof(__VertexT1);
-			pAP->fCameraDistance	= (s_CameraData.vEye - mtx.Pos()).Magnitude() + fHeight;
+        pAP = s_AlphaMgr.Add();
+        if(pAP)
+        {
+            pAP->bUseVB            = FALSE;
+            pAP->dwBlendDest        = m_pFXPart->m_dwDestBlend;
+            pAP->dwBlendSrc        = m_pFXPart->m_dwSrcBlend;
+            pAP->dwFVF                = FVF_VNT1;
+            pAP->dwPrimitiveSize    = sizeof(__VertexT1);
+            pAP->fCameraDistance    = (s_CameraData.vEye - mtx.Pos()).Magnitude() + fHeight;
 
-			pAP->lpTex				= NULL;
-			iTexIdx = (iTexIdx+1) % m_pFXPart->m_iNumTex;
-			if(m_pFXPart->m_ppRefTex[iTexIdx])
-				pAP->lpTex = m_pFXPart->m_ppRefTex[iTexIdx]->Get();
-			
-			pAP->ePrimitiveType	= D3DPT_TRIANGLELIST;
-			pAP->nPrimitiveCount	= m_PMeshInstFX.GetNumIndices() / 3;
-			pAP->nRenderFlags		= m_pFXPart->m_dwRenderFlag;
-			pAP->nVertexCount		= m_PMeshInstFX.GetNumVertices();
-			pAP->MtxWorld			= mtx;
-			pAP->pVertices			= m_PMeshInstFX.GetVertices();
-			pAP->pwIndices			= m_PMeshInstFX.GetIndices();
-		}
-		*/
+            pAP->lpTex                = NULL;
+            iTexIdx = (iTexIdx+1) % m_pFXPart->m_iNumTex;
+            if(m_pFXPart->m_ppRefTex[iTexIdx])
+                pAP->lpTex = m_pFXPart->m_ppRefTex[iTexIdx]->Get();
+            
+            pAP->ePrimitiveType    = D3DPT_TRIANGLELIST;
+            pAP->nPrimitiveCount    = m_PMeshInstFX.GetNumIndices() / 3;
+            pAP->nRenderFlags        = m_pFXPart->m_dwRenderFlag;
+            pAP->nVertexCount        = m_PMeshInstFX.GetNumVertices();
+            pAP->MtxWorld            = mtx;
+            pAP->pVertices            = m_PMeshInstFX.GetVertices();
+            pAP->pwIndices            = m_PMeshInstFX.GetIndices();
+        }
+        */
     }
     ///
     ////////////////////////////////////////////////////////////////////////
@@ -1055,7 +1049,7 @@ CN3Chr::CN3Chr() {
     m_pMeshCollision = NULL;
     m_pFXPlug = NULL;
 
-    //	m_pSkinCollision = NULL;
+    // m_pSkinCollision = NULL;
     m_fAniSpeedDelta = 1.0f; // 에니메이션 속도 조정 변수 1 이보통, 더 크면 빨라진다..
 
     this->Release();
@@ -1117,8 +1111,8 @@ void CN3Chr::Release() {
     }
     m_vTraces.clear();
 
-    //	s_MngSkin.Delete(m_pSkinCollision);
-    //	m_pSkinCollision = NULL;
+    // s_MngSkin.Delete(m_pSkinCollision);
+    // m_pSkinCollision = NULL;
 
     // Animation Control
     s_MngAniCtrl.Delete(&m_pAniCtrlRef);
@@ -1188,31 +1182,24 @@ bool CN3Chr::Load(HANDLE hFile) {
             szFN[nL] = NULL;
             m_Plugs[i]->LoadFromFile(szFN);
 
-            //			CN3CPlugBase* pPlug = NULL;
-            //			e_PlugType eType = CN3CPlugBase::GetPlugTypeByFileName(szFN);
-            //			if (eType == PLUGTYPE_NORMAL)
-            //			{	// PLUGTYPE_NORMAL
-            //				pPlug = (CN3CPlugBase*) new CN3CPlug();
-            //				if(false == pPlug->LoadFromFile(szFN))
-            //				{
-            //					delete pPlug;
-            //					continue;
-            //				}
-            //			}
-            //			else if (eType == PLUGTYPE_CLOAK)
-            //			{	// PLUGTYPE_CLOAK
-            //				pPlug = (CN3CPlugBase*) new CN3CPlug_Cloak();
-            //				if(false == pPlug->LoadFromFile(szFN))
-            //				{
-            //					delete pPlug;
-            //					continue;
-            //				}
-            //			}
-            //			else
-            //			{
-            //				__ASSERT(0, "Undefined plug type");
-            //			}
-            //			m_Plugs.push_back(pPlug);
+            // CN3CPlugBase * pPlug = NULL;
+            // e_PlugType     eType = CN3CPlugBase::GetPlugTypeByFileName(szFN);
+            // if (eType == PLUGTYPE_NORMAL) { // PLUGTYPE_NORMAL
+            //     pPlug = (CN3CPlugBase *)new CN3CPlug();
+            //     if (false == pPlug->LoadFromFile(szFN)) {
+            //         delete pPlug;
+            //         continue;
+            //     }
+            // } else if (eType == PLUGTYPE_CLOAK) { // PLUGTYPE_CLOAK
+            //     pPlug = (CN3CPlugBase *)new CN3CPlug_Cloak();
+            //     if (false == pPlug->LoadFromFile(szFN)) {
+            //         delete pPlug;
+            //         continue;
+            //     }
+            // } else {
+            //     __ASSERT(0, "Undefined plug type");
+            // }
+            // m_Plugs.push_back(pPlug);
         }
     }
 
@@ -1231,8 +1218,8 @@ bool CN3Chr::Load(HANDLE hFile) {
              NULL); // 조인트의 일부분이 따로 에니메이션 되야 한다면.. 조인트 인덱스 끝 번호
 
     //////////////////////////////////////////////////
-    //	Coded (By Dino On 2002-10-10 오후 2:33:07 )
-    //	FXPlug
+    // Coded (By Dino On 2002-10-10 오후 2:33:07 )
+    // FXPlug
     nL = 0;
     ReadFile(hFile, &nL, sizeof(nL), &dwRWC, NULL);
     if (nL > 0) {
@@ -1240,7 +1227,7 @@ bool CN3Chr::Load(HANDLE hFile) {
         szFN[nL] = NULL;
         FXPlugSet(szFN);
     }
-    //	End Of Code (By Dino On 2002-10-10 오후 2:33:07 )
+    // End Of Code (By Dino On 2002-10-10 오후 2:33:07 )
     //////////////////////////////////////////////////
 
     this->Init(); // 에니메이션, 조인트, 플러그등.... 초기화 작업 수행..
@@ -1301,8 +1288,7 @@ bool CN3Chr::Save(HANDLE hFile) {
         if (bHaveData) // 실제 데이터가 있으면..
         {
             m_Parts.push_back(pPart);
-        } else // 없으면..
-        {
+        } else {          // 없으면..
             delete pPart; // 지운다..
             *it = NULL;
         }
@@ -1341,10 +1327,14 @@ bool CN3Chr::Save(HANDLE hFile) {
         m_Plugs[i]->SaveToFile();
     }
 
-    //	nL = 0;
-    //	if(m_pSkinCollision) nL = m_pSkinCollision->m_szName.size();
-    //	WriteFile(hFile, &nL, 4, &dwRWC, NULL);
-    //	if(nL > 0) WriteFile(hFile, m_pSkinCollision->m_szName.c_str(), nL, &dwRWC, NULL);
+    // nL = 0;
+    // if (m_pSkinCollision) {
+    //     nL = m_pSkinCollision->m_szName.size();
+    // }
+    // WriteFile(hFile, &nL, 4, &dwRWC, NULL);
+    // if (nL > 0) {
+    //     WriteFile(hFile, m_pSkinCollision->m_szName.c_str(), nL, &dwRWC, NULL);
+    // }
 
     // Animation Control..
     nL = 0;
@@ -1362,8 +1352,8 @@ bool CN3Chr::Save(HANDLE hFile) {
               NULL); // 조인트의 일부분이 따로 에니메이션 되야 한다면.. 조인트 인덱스 끝 번호
 
     //////////////////////////////////////////////////
-    //	Coded (By Dino On 2002-10-11 오후 2:19:11 )
-    //	FXPlug
+    // Coded (By Dino On 2002-10-11 오후 2:19:11 )
+    // FXPlug
     nL = 0;
     if (m_pFXPlug) {
         nL = m_pFXPlug->FileName().size();
@@ -1373,7 +1363,7 @@ bool CN3Chr::Save(HANDLE hFile) {
         WriteFile(hFile, m_pFXPlug->FileName().c_str(), nL, &dwRWC, NULL);
         m_pFXPlug->SaveToFile();
     }
-    //	End Of Code (By Dino On 2002-10-11 오후 2:19:11 )
+    // End Of Code (By Dino On 2002-10-11 오후 2:19:11 )
     //////////////////////////////////////////////////
 
     return true;
@@ -1443,12 +1433,12 @@ void CN3Chr::Tick(float fFrm) {
     }
 
     //////////////////////////////////////////////////
-    //	Coded (By Dino On 2002-10-11 오전 11:21:21 )
-    //	FXPlug
+    // Coded (By Dino On 2002-10-11 오전 11:21:21 )
+    // FXPlug
     if (m_pFXPlug) {
         m_pFXPlug->Tick(this);
     }
-    //	End Of Code (By Dino On 2002-10-11 오전 11:21:21 )
+    // End Of Code (By Dino On 2002-10-11 오전 11:21:21 )
     //////////////////////////////////////////////////
 }
 
@@ -1478,8 +1468,7 @@ void CN3Chr::TickAnimationFrame() {
             m_FrmCtrl.fBlendTimeCur = 0.0f;
             m_FrmCtrl.bProcessingDelayNow = false; // 지연처리 끝..
         }
-    } else // 블렌딩 할게 없으면..
-    {
+    } else {                                                          // 블렌딩 할게 없으면..
         m_FrmCtrl.fFrmCur += m_FrmCtrl.pAniData->fFrmPerSec * fDelta; // Frame Tick
         if (m_FrmCtrl.fFrmCur < m_FrmCtrl.pAniData->fFrmStart) {
             m_FrmCtrl.fFrmCur = m_FrmCtrl.pAniData->fFrmStart;
@@ -1530,8 +1519,7 @@ void CN3Chr::TickAnimationFrame() {
                     m_FrmCtrlUpper.fBlendTime = 0;
                 }
             }
-        } else // 블렌딩 할게 없으면..
-        {
+        } else {                                                                    // 블렌딩 할게 없으면..
             m_FrmCtrlUpper.fFrmCur += m_FrmCtrlUpper.pAniData->fFrmPerSec * fDelta; // Frame Tick
             if (m_FrmCtrlUpper.fFrmCur < m_FrmCtrlUpper.pAniData->fFrmStart) {
                 m_FrmCtrlUpper.fFrmCur = m_FrmCtrlUpper.pAniData->fFrmStart;
@@ -1547,8 +1535,7 @@ void CN3Chr::TickAnimationFrame() {
                     if (m_FrmCtrlUpper.fFreezeTime < 0) {
                         m_FrmCtrlUpper.fFreezeTime = 0;
                     }
-                } else // 멈출거 없음.. 하체 에니메이션으로 블렌딩을 한다.
-                {
+                } else {                       // 멈출거 없음.. 하체 에니메이션으로 블렌딩을 한다.
                     m_FrmCtrlUpper.iAniLoop++; // 이렇게 에니메이션이 끝나면.. 하체 에니메이션으로 블렌딩이 된다.
                     m_FrmCtrlUpper.fBlendFrm = m_FrmCtrlUpper.pAniData->fFrmEnd;
                     m_FrmCtrlUpper.fBlendTime = m_FrmCtrlUpper.pAniData->fTimeBlend;
@@ -1574,8 +1561,7 @@ void CN3Chr::TickJoints() {
             }
             m_MtxJoints[i] = m_JointRefs[i]->m_Matrix;
         }
-    } else // 상하체 따로 처리해야 한다면..
-    {
+    } else { // 상하체 따로 처리해야 한다면..
         __FrmCtrl * pFrmCtrls[2] = {&m_FrmCtrl, &m_FrmCtrlUpper};
         for (int i = 0; i < MAX_CHR_ANI_PART; i++) {
             // 하체일경우 루트 조인트 작동...
@@ -1618,7 +1604,9 @@ void CN3Chr::TickPlugs(float fLOD) {
     CN3CPlug * pPlug = NULL;
 
     float fFrmCur = m_FrmCtrl.fFrmCur;
-    //	if(m_FrmCtrlUpper.pAniData) fFrmCur = m_FrmCtrlUpper.fFrmCur; // 상체 에니메이션이 있으면...
+    // if (m_FrmCtrlUpper.pAniData) {
+    //     fFrmCur = m_FrmCtrlUpper.fFrmCur; // 상체 에니메이션이 있으면...
+    // }
 
     int iPC = m_Plugs.size();
     for (int i = 0; i < iPC; i++) {
@@ -1680,14 +1668,12 @@ void CN3Chr::TickPlugs(float fLOD) {
                     m_vTraces[i][j * 2 + 1].Set(vTrace1, crTraceU);
                 }
             }
-        }
-        //		else if (pPlug->m_ePlugType == PLUGTYPE_CLOAK)
-        //		{	// PLUGTYPE_CLOAK
-        //#ifdef _N3GAME
-        //			pPlugCloak = (CN3CPlug_Cloak*)pPlug;
-        //			pPlugCloak->GetCloak()->Tick(m_nLOD);
-        //#endif
-        //		}
+        } /*else if (pPlug->m_ePlugType == PLUGTYPE_CLOAK) { // PLUGTYPE_CLOAK
+#ifdef _N3GAME
+            pPlugCloak = (CN3CPlug_Cloak *)pPlug;
+            pPlugCloak->GetCloak()->Tick(m_nLOD);
+#endif
+        }*/
     }
 }
 
@@ -1803,12 +1789,12 @@ void CN3Chr::Render() {
     }
 
     //////////////////////////////////////////////////
-    //	Coded (By Dino On 2002-10-11 오전 11:20:19 )
-    //	FXPlug
+    // Coded (By Dino On 2002-10-11 오전 11:20:19 )
+    // FXPlug
     if (m_pFXPlug) {
         m_pFXPlug->Render();
     }
-    //	End Of Code (By Dino On 2002-10-11 오전 11:20:19 )
+    // End Of Code (By Dino On 2002-10-11 오전 11:20:19 )
     //////////////////////////////////////////////////
 }
 
@@ -1865,47 +1851,41 @@ void CN3Chr::BuildMesh() {
         }
     }
 
-    /*	if(m_pMeshCollision && m_pSkinCollision)
-	{
-		__ASSERT(m_pMeshCollision->IndexCount() > 0, "Indices count is less than 0");
+    /*
+    if (m_pMeshCollision && m_pSkinCollision) {
+        __ASSERT(m_pMeshCollision->IndexCount() > 0, "Indices count is less than 0");
 
-		__Vector3* pVDest = m_pMeshCollision->Vertices();
-		__VertexSkinned* pVSrc = m_pSkinCollision->Vertices();
+        __Vector3 *       pVDest = m_pMeshCollision->Vertices();
+        __VertexSkinned * pVSrc = m_pSkinCollision->Vertices();
 
-		int nVC = m_pMeshCollision->VertexCount();
-		int nSVC = m_pSkinCollision->VertexCount();
-		if(nSVC != nVC)
-		{
-			__ASSERT(0, "Mesh Vertices count is different to Skin vertices count");
-		}
-		else
-		{
-			int nAffect = 0;
-			float* pfWeights = NULL;
-			for(int j = 0; j < nVC; j++) // j < m_nBoneVertices 와 같다..
-			{
-				nAffect = pVSrc[j].nAffect;
-				if(1 == nAffect)
-				{
-					// 단일 뼈대...
-					nJIndex = pVSrc[j].pnJoints[0];
-					pVDest[j] = (pVSrc[j].vOrigin * pMtxJIs[nJIndex]) * pMtxJs[nJIndex];
-				}
-				else if(nAffect > 1) 
-				{
-					pVDest[j].Zero();
-					pfWeights = pVSrc[j].pfWeights;
-					for(int k = 0; k < nAffect; k++)
-					{
-						if(pfWeights[k] <= 0) continue;
+        int nVC = m_pMeshCollision->VertexCount();
+        int nSVC = m_pSkinCollision->VertexCount();
+        if (nSVC != nVC) {
+            __ASSERT(0, "Mesh Vertices count is different to Skin vertices count");
+        } else {
+            int     nAffect = 0;
+            float * pfWeights = NULL;
+            for (int j = 0; j < nVC; j++) { // j < m_nBoneVertices 와 같다..
+                nAffect = pVSrc[j].nAffect;
+                if (1 == nAffect) {
+                    // 단일 뼈대...
+                    nJIndex = pVSrc[j].pnJoints[0];
+                    pVDest[j] = (pVSrc[j].vOrigin * pMtxJIs[nJIndex]) * pMtxJs[nJIndex];
+                } else if (nAffect > 1) {
+                    pVDest[j].Zero();
+                    pfWeights = pVSrc[j].pfWeights;
+                    for (int k = 0; k < nAffect; k++) {
+                        if (pfWeights[k] <= 0) {
+                            continue;
+                        }
 
-						nJIndex = pVSrc[j].pnJoints[k];
-						pVDest[j] += ((pVSrc[j].vOrigin * pMtxJIs[nJIndex]) * pMtxJs[nJIndex]) * pfWeights[k];
-					}
-				}
-			}
-		}
-	}
+                        nJIndex = pVSrc[j].pnJoints[k];
+                        pVDest[j] += ((pVSrc[j].vOrigin * pMtxJIs[nJIndex]) * pMtxJs[nJIndex]) * pfWeights[k];
+                    }
+                }
+            }
+        }
+    }
 */
 }
 
@@ -2111,8 +2091,8 @@ void CN3Chr::PlugAlloc(int iCount) {
 /*
 void CN3Chr::CollisionSkinSet(const std::string& szFN)
 {
-	s_MngSkin.Delete(m_pSkinCollision);
-	m_pSkinCollision = s_MngSkin.Get(szFN);
+    s_MngSkin.Delete(m_pSkinCollision);
+    m_pSkinCollision = s_MngSkin.Get(szFN);
 }
 */
 
@@ -2142,7 +2122,10 @@ int CN3Chr::AniCurSet(int   iAni,               // Animation 번호,
     if (iAni == m_FrmCtrl.iAni) {
         return -1; // 같은 에니메이션이면 돌아간다.
     }
-    //	if(iAni == m_FrmCtrl.iAni) { m_FrmCtrl.iAniLoop = 0; return -1; } // 같은 에니메이션이면 루핑 참조 카운트만 초기화하고 돌아간다.
+    // if (iAni == m_FrmCtrl.iAni) {
+    //     m_FrmCtrl.iAniLoop = 0; // 같은 에니메이션이면 루핑 참조 카운트만 초기화하고 돌아간다.
+    //     return -1;
+    // }
     if (iAni < 0 || iAni >= m_pAniCtrlRef->Count()) {
         return -1;
     }
@@ -2383,8 +2366,8 @@ int CN3Chr::CheckCollisionPrecisely(const __Vector3 & vPos, const __Vector3 & vD
 }
 
 //////////////////////////////////////////////////
-//	Coded (By Dino On 2002-10-10 오후 2:36:28 )
-//	FXPlug
+// Coded (By Dino On 2002-10-10 오후 2:36:28 )
+// FXPlug
 
 // FXPlugSet : FXPlug 파일을 지정해주는 함수
 CN3FXPlug * CN3Chr::FXPlugSet(const std::string & strFN) {
@@ -2422,5 +2405,5 @@ void CN3Chr::FXPlugDelete() {
     }
     m_pFXPlug = NULL;
 }
-//	End Of Code (By Dino On 2002-10-10 오후 2:36:28 )
+// End Of Code (By Dino On 2002-10-10 오후 2:36:28 )
 //////////////////////////////////////////////////

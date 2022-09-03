@@ -2,18 +2,18 @@
 
 /*
      ** Repent AI Server 작업시 참고 사항 **
-	1. #define AI_SOCKET_PORT	10020 -> 11020으로 수정됨..
+    1. #define AI_SOCKET_PORT    10020 -> 11020으로 수정됨..
 */
 
 //
-//	MAX VALUE DEFINE
+//    MAX VALUE DEFINE
 //
 #define _MAX_DWORD 0xFFFFFFFF
 #define _MAX_INT   0x7FFFFFFF
 #define _MAX_SHORT 0x7FFF
 
 //
-//	Defines About Communication
+//    Defines About Communication
 //
 #define AI_KARUS_SOCKET_PORT  10020
 #define AI_ELMO_SOCKET_PORT   10030
@@ -47,7 +47,7 @@
 #define TIME_NORMAL 350
 
 //
-//	User Authority
+//    User Authority
 //
 #define MANAGER_USER 0 // 운영자, 관리자
 #define GENERAL_USER 1 // 일반유저
@@ -83,7 +83,7 @@
 #define PACKET_START2 0X55
 #define PACKET_END1   0X55
 #define PACKET_END2   0XAA
-//#define PROTOCOL_VER				0X01
+//#define PROTOCOL_VER                0X01
 
 // Socket type
 #define TYPE_ACCEPT  0x01
@@ -144,25 +144,25 @@ struct _OBJECT_EVENT {
     (x) %= SOCKET_BUF_SIZE;
 
 //
-//	Define CriticalSection Spin Count
+//    Define CriticalSection Spin Count
 //
 #define SPIN_COUNT 4000
 
 //
-//	About USER
+//    About USER
 //
 #define USER_DEAD 0X00
 #define USER_LIVE 0X01
 
 //
-//	About USER Log define
+//    About USER Log define
 //
 #define USER_LOGIN    0X01
 #define USER_LOGOUT   0X02
 #define USER_LEVEL_UP 0X03
 
 //
-//	About NPC
+//    About NPC
 //
 #define NPC_NUM                  20
 #define MAX_DUNGEON_BOSS_MONSTER 20
@@ -186,20 +186,20 @@ struct _OBJECT_EVENT {
 #define NPC_MAX_MOVE_RANGE 100
 
 //
-//	About Map Object
+//    About Map Object
 //
 #define USER_BAND    0     // Map 위에 유저가 있다.
 #define NPC_BAND     10000 // Map 위에 NPC(몹포함)가 있다.
 #define INVALID_BAND 20000 // 잘못된 ID BAND
 
 //
-//	Defines About Max Value
+//    Defines About Max Value
 //
 #define MAX_BASIC_ITEM 1000
 #define MAX_EVENT      1000
 
 //
-//	To Who ???
+//    To Who ???
 //
 #define SEND_ME     0x01
 #define SEND_REGION 0x02
@@ -207,7 +207,7 @@ struct _OBJECT_EVENT {
 #define SEND_ZONE   0x04
 
 //
-//	State Value
+//    State Value
 //
 #define STATE_ACCEPTED     0X01
 #define STATE_CONNECTED    0X02
@@ -220,9 +220,9 @@ struct _OBJECT_EVENT {
 //
 //  Item
 //
-//#define MAX_ITEM_IN_USER		45		// Body(10) + Inventory(35)
-//#define MAX_ITEM_IN_QUICK		4
-//#define ITEM_DATA_LENGTH		80
+//#define MAX_ITEM_IN_USER        45        // Body(10) + Inventory(35)
+//#define MAX_ITEM_IN_QUICK        4
+//#define ITEM_DATA_LENGTH        80
 #define TYPE_MONEY 0
 #define TYPE_ITEM  1
 
@@ -237,7 +237,7 @@ struct _OBJECT_EVENT {
 ////////////////////////////////////////////////////////////
 
 //
-//	Attack
+//    Attack
 //
 #define DEFAULT_AT_DELAY 700
 #define DEFAULT_SP_DEC   1
@@ -249,14 +249,14 @@ const BYTE ATTACK_TARGET_DEAD_OK = 3;
 const BYTE MAGIC_ATTACK_TARGET_DEAD = 4;
 
 /*
-const BYTE	ATTACK_FAIL		=   0;
+const BYTE    ATTACK_FAIL        =   0;
 const BYTE  ATTACK_NORMAL   =   1;
-const BYTE	ATTACK_SUCCESS	=	2;
+const BYTE    ATTACK_SUCCESS    =    2;
 const BYTE  ATTACK_GREAT_SUCCESS  =   3;
 
-const BYTE	ATTACK_TARGET_DEAD	= 4;
-const BYTE	ATTACK_TARGET_DEAD_OK = 5;
-const BYTE	MAGIC_ATTACK_TARGET_DEAD = 6;
+const BYTE    ATTACK_TARGET_DEAD    = 4;
+const BYTE    ATTACK_TARGET_DEAD_OK = 5;
+const BYTE    MAGIC_ATTACK_TARGET_DEAD = 6;
 */
 
 const BYTE ATTACK_MIN = 20;
@@ -271,7 +271,7 @@ const BYTE ATTACK_MAX = 80;
 #define FAIL          0X04 // 실패
 
 //
-//	User Status Value
+//    User Status Value
 //
 #define USER_ABILITY_NUM 5 // 기본 상태 능력치 종류
 
@@ -316,7 +316,7 @@ const BYTE ATTACK_MAX = 80;
 #define NPC_DOOR             50 // 성문 (6->50)
 #define NPC_PHOENIX_GATE     51 // 깨지지 않는 문 (8->51)
 #define NPC_SPECIAL_GATE     52 // 깨지지 않는 문이면서 2분마다 열렸다 닫혔다 하는 문
-#define NPC_GATE_LEVER       55 // 성문 레버...	(9->55)
+#define NPC_GATE_LEVER       55 // 성문 레버...    (9->55)
 #define NPC_ARTIFACT         60 // 결계석 (7->60)
 #define NPC_DESTORY_ARTIFACT 61 // 파괴되는 결계석
 #define NPC_DOMESTIC_ANIMAL  99 // 가축 NPC

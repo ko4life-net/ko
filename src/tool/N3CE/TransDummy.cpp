@@ -288,10 +288,10 @@ BOOL CTransDummy::MouseMsgFilter(LPMSG pMsg) {
     {
         if (m_pSelectedCube) {
             __Vector3 vDiffPos = m_vPrevPos - m_vPos;
-            //				__Quaternion qDiffRot = m_qPrevRot - m_qRot;
+            //                __Quaternion qDiffRot = m_qPrevRot - m_qRot;
             __Vector3 vDiffScale;
             vDiffScale.Set(1.0f, 1.0f, 1.0f);
-            //				TransDiff(&vDiffPos, &vDiffRot, &vDiffScale);
+            //                TransDiff(&vDiffPos, &vDiffRot, &vDiffScale);
             TransDiff(&vDiffPos, NULL, &vDiffScale);
 
             m_vPos = m_vPrevPos;

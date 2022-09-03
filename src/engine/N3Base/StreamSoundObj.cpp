@@ -1,10 +1,10 @@
 //////////////////////////////////////////////////
-//	Commented By : Lynus
-//	Commented On 2001-04-12 오후 8:42:02
+//    Commented By : Lynus
+//    Commented On 2001-04-12 오후 8:42:02
 //
-//	CStreamSoundObj class (StreamSoundObj.h)
+//    CStreamSoundObj class (StreamSoundObj.h)
 //
-//	End Of Comment (By Lynus On 2001-04-12 오후 8:42:02 )
+//    End Of Comment (By Lynus On 2001-04-12 오후 8:42:02 )
 //////////////////////////////////////////////////
 #include "StdAfx.h"
 #include "N3SndEng.h"
@@ -174,9 +174,9 @@ BOOL CStreamSoundObj::WriteBuffer() {
 }
 
 void CStreamSoundObj::RealPlay() {
-    //^^	if(m_PlayState==0) Reset();
+    //^^    if(m_PlayState==0) Reset();
 
-    //^^	m_ePlayState = SNDSTATE_PLAY;
+    //^^    m_ePlayState = SNDSTATE_PLAY;
 
     if (m_pDSBuff) {
         if (m_ePlayState == SNDSTATE_DELAY) {
@@ -238,7 +238,7 @@ void CStreamSoundObj::Release() {
 }
 
 //
-//	음악이 플레이되고 있을때 streamming시키기..
+//    음악이 플레이되고 있을때 streamming시키기..
 //
 void CStreamSoundObj::Tick() {
     if (m_ePlayState == SNDSTATE_STOP) {
@@ -297,11 +297,11 @@ void CStreamSoundObj::Tick() {
 //
 void CStreamSoundObj::Play(float delay, float fFadeInTime)
 {
-	m_fFadeInTime = fFadeInTime;
-	m_fFadeOutTime = 0.0f;
-	m_fStartDelayTime = delay;
-	m_fTmpSecPerFrm = 0.0f;
-	m_ePlayState = SNDSTATE_DELAY;
+    m_fFadeInTime = fFadeInTime;
+    m_fFadeOutTime = 0.0f;
+    m_fStartDelayTime = delay;
+    m_fTmpSecPerFrm = 0.0f;
+    m_ePlayState = SNDSTATE_DELAY;
 }
 
 
@@ -310,12 +310,12 @@ void CStreamSoundObj::Play(float delay, float fFadeInTime)
 //
 void CStreamSoundObj::Stop(float fFadeOutTime)
 {
-	if( m_pDSBuff == NULL ) return;
+    if( m_pDSBuff == NULL ) return;
 
-	m_fTmpSecPerFrm = 0;
-	m_fFadeOutTime = fFadeOutTime;
-	m_ePlayState = SNDSTATE_FADEOUT;
-	return;
+    m_fTmpSecPerFrm = 0;
+    m_fFadeOutTime = fFadeOutTime;
+    m_ePlayState = SNDSTATE_FADEOUT;
+    return;
 }
 */
 // end of StreamSoundObj.cpp

@@ -19,12 +19,12 @@ class CMagicSkillMng : public CGameBase {
     CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_2> * m_pTbl_Type_2;
     CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_3> * m_pTbl_Type_3;
     CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_4> * m_pTbl_Type_4;
-    //	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_5>*	m_pTbl_Type_5;
-    //	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_6>*	m_pTbl_Type_6;
-    //	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_7>*	m_pTbl_Type_7;
-    //	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_8>*	m_pTbl_Type_8;
-    //	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_9>*	m_pTbl_Type_9;
-    //	CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_10>*	m_pTbl_Type_10;
+    //    CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_5>*    m_pTbl_Type_5;
+    //    CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_6>*    m_pTbl_Type_6;
+    //    CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_7>*    m_pTbl_Type_7;
+    //    CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_8>*    m_pTbl_Type_8;
+    //    CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_9>*    m_pTbl_Type_9;
+    //    CN3TableBase<struct __TABLE_UPC_SKILL_TYPE_10>*    m_pTbl_Type_10;
 
     std::map<int, DWORD> m_MySelf;
 
@@ -32,7 +32,7 @@ class CMagicSkillMng : public CGameBase {
     __Vector3 m_vTargetPos;
 
     //나를 타겟으로 잡은 몬스터처리 관련..
-    std::map<int, DWORD> m_MobList; //	int m_iMobID; DWORD m_dwMobMagicID;
+    std::map<int, DWORD> m_MobList; //    int m_iMobID; DWORD m_dwMobMagicID;
 
     //related type4.....
     std::multimap<int, DWORD> m_ListBuffTypeID;

@@ -112,11 +112,11 @@ DWORD WINAPI ReadQueueThread(LPVOID lp) {
                 break;
             case WIZ_DEL_CHAR:
                 pUser->RecvDeleteChar(pBuf + index);
-                /*	result = GetByte( pBuf, index );
-					SetByte( send_buff, WIZ_DEL_CHAR, send_index );
-					SetByte( send_buff, result, send_index );					// 성공시 국가 정보
-					SetByte( send_buff, GetByte( pBuf, index ), send_index );
-					pUser->Send( send_buff, send_index );	*/
+                /*    result = GetByte( pBuf, index );
+                    SetByte( send_buff, WIZ_DEL_CHAR, send_index );
+                    SetByte( send_buff, result, send_index );                    // 성공시 국가 정보
+                    SetByte( send_buff, GetByte( pBuf, index ), send_index );
+                    pUser->Send( send_buff, send_index );    */
                 break;
             case WIZ_SEL_CHAR:
                 pUser->SelectCharacter(pBuf + index);
@@ -316,7 +316,7 @@ BOOL CEbenezerDlg::OnInitDialog() {
         return FALSE;
     }
     //----------------------------------------------------------------------
-    //	Logfile initialize
+    //    Logfile initialize
     //----------------------------------------------------------------------
     CTime cur = CTime::GetCurrentTime();
     char  strLogFile[50];
@@ -944,7 +944,7 @@ void CEbenezerDlg::Send_FilterUnitRegion(char * pBuf, int len, int zoneindex, in
         return;
     }
 
-    //	EnterCriticalSection( &g_region_critical );
+    //    EnterCriticalSection( &g_region_critical );
 
     map<int, int *>::iterator Iter1;
     map<int, int *>::iterator Iter2;
@@ -969,7 +969,7 @@ void CEbenezerDlg::Send_FilterUnitRegion(char * pBuf, int len, int zoneindex, in
         }
     }
 
-    //	LeaveCriticalSection( &g_region_critical );
+    //    LeaveCriticalSection( &g_region_critical );
 }
 
 void CEbenezerDlg::Send_PartyMember(int party, char * pBuf, int len) {
@@ -1619,7 +1619,7 @@ void CEbenezerDlg::GetTimeFromIni() {
     m_nHour = m_Ini.GetProfileInt("TIMER", "HOUR", 1);
     m_nWeather = m_Ini.GetProfileInt("TIMER", "WEATHER", 1);
 
-    //	m_nBattleZoneOpenWeek  = m_Ini.GetProfileInt("BATTLE", "WEEK", 3);
+    //    m_nBattleZoneOpenWeek  = m_Ini.GetProfileInt("BATTLE", "WEEK", 3);
     m_nBattleZoneOpenWeek = m_Ini.GetProfileInt("BATTLE", "WEEK", 5);
     m_nBattleZoneOpenHourStart = m_Ini.GetProfileInt("BATTLE", "START_TIME", 20);
     m_nBattleZoneOpenHourEnd = m_Ini.GetProfileInt("BATTLE", "END_TIME", 0);
@@ -1741,11 +1741,11 @@ void CEbenezerDlg::UpdateWeather() {
 
     result = myrand(0, 100);
 
-    //	if( result < 5 )
+    //    if( result < 5 )
     if (result < 2) {
         weather = WEATHER_SNOW;
     }
-    //	else if( result < 15 )
+    //    else if( result < 15 )
     else if (result < 7) {
         weather = WEATHER_RAIN;
     } else {
@@ -2248,7 +2248,7 @@ int CEbenezerDlg::GetRegionNpcIn(C3DMap * pMap, int region_x, int region_z, char
         //LeaveCriticalSection( &g_LogFile_critical );
 
         //if( pNpc->m_sCurZone > 100 )
-        //	TRACE("GetRegionNpcIn rx=%d, rz=%d, nid=%d, name=%s, count=%d\n", region_x, region_z, pNpc->m_sNid, pNpc->m_strName, t_count);
+        //    TRACE("GetRegionNpcIn rx=%d, rz=%d, nid=%d, name=%s, count=%d\n", region_x, region_z, pNpc->m_sNid, pNpc->m_strName, t_count);
     }
 
     LeaveCriticalSection(&g_region_critical);
@@ -2527,7 +2527,7 @@ BOOL CEbenezerDlg::PreTranslateMessage(MSG * pMsg) {
                 m_bPermanentChatMode = FALSE;
                 m_bPermanentChatFlag = FALSE;
                 permanent_off = TRUE;
-                //				return TRUE;	//이것은 고의적으로 TRUE를 뺐었음
+                //                return TRUE;    //이것은 고의적으로 TRUE를 뺐었음
             }
             //
 
@@ -2545,7 +2545,7 @@ BOOL CEbenezerDlg::PreTranslateMessage(MSG * pMsg) {
 
             char finalstr[256];
             memset(finalstr, NULL, 256);
-            //			sprintf( finalstr, "#### 공지 : %s ####", chatstr );
+            //            sprintf( finalstr, "#### 공지 : %s ####", chatstr );
 
             // 비러머글 남는 공지
             if (m_bPermanentChatFlag) {
@@ -2557,7 +2557,7 @@ BOOL CEbenezerDlg::PreTranslateMessage(MSG * pMsg) {
             }
             //
             SetByte(buff, WIZ_CHAT, buffindex);
-            //			SetByte( buff, PUBLIC_CHAT, buffindex );
+            //            SetByte( buff, PUBLIC_CHAT, buffindex );
 
             // 비러머글 남는 공지
             if (permanent_off) {
@@ -2673,25 +2673,25 @@ void CEbenezerDlg::SyncTest(int nType) {
         }
     }
 
-    /*	for(int i=0; i<size; i++)
-	{
-		pNpc = m_arNpcArray.GetData(i+NPC_BAND);
-		if(pNpc == NULL)
-		{
-			fprintf(stream, "Fail -> nid=%d\n", i+NPC_BAND);
-			TRACE("##### allNpcInfo Fail = %d\n", i);
-			continue;
-		}
+    /*    for(int i=0; i<size; i++)
+    {
+        pNpc = m_arNpcArray.GetData(i+NPC_BAND);
+        if(pNpc == NULL)
+        {
+            fprintf(stream, "Fail -> nid=%d\n", i+NPC_BAND);
+            TRACE("##### allNpcInfo Fail = %d\n", i);
+            continue;
+        }
 
-		fprintf(stream, "nid=%d, name=%s, zone=%d, x=%.2f, z=%.2f, rx=%d, rz=%d\n", pNpc->m_sNid, pNpc->m_strName, pNpc->m_sCurZone, pNpc->m_fCurX, pNpc->m_fCurZ, pNpc->m_sRegion_X, pNpc->m_sRegion_X);
-	}	*/
+        fprintf(stream, "nid=%d, name=%s, zone=%d, x=%.2f, z=%.2f, rx=%d, rz=%d\n", pNpc->m_sNid, pNpc->m_strName, pNpc->m_sCurZone, pNpc->m_fCurX, pNpc->m_fCurZ, pNpc->m_sRegion_X, pNpc->m_sRegion_X);
+    }    */
 
     fprintf(stream, "*****   Region List  *****\n");
 
     C3DMap * pMap = NULL;
 
     for (int k = 0; k < m_ZoneArray.size(); k++) {
-        //if( k != 2 ) continue;		// 201 존만 체크..
+        //if( k != 2 ) continue;        // 201 존만 체크..
         pMap = m_ZoneArray[k];
         if (pMap == NULL) {
             continue;
@@ -2737,18 +2737,18 @@ void CEbenezerDlg::SyncRegionTest(C3DMap * pMap, int rx, int rz, FILE * pfile, i
             pUser = (CUser *)m_Iocport.m_SockArray[nid];
             if (!pUser) {
                 TRACE("SyncRegionTest : nid fail = %d\n", nid);
-                fprintf(pfile, "%d(fail)	", nid);
+                fprintf(pfile, "%d(fail)    ", nid);
                 continue;
             }
-            fprintf(pfile, "%d(%d,%d)	", nid, (int)pUser->m_pUserData->m_curx, (int)pUser->m_pUserData->m_curz);
+            fprintf(pfile, "%d(%d,%d)    ", nid, (int)pUser->m_pUserData->m_curx, (int)pUser->m_pUserData->m_curz);
         } else if (nType == 2) {
             pNpc = m_arNpcArray.GetData(nid);
             if (!pNpc) {
                 TRACE("SyncRegionTest : nid fail = %d\n", nid);
-                fprintf(pfile, "%d(fail)	", nid);
+                fprintf(pfile, "%d(fail)    ", nid);
                 continue;
             }
-            fprintf(pfile, "%d(%d,%d)	", nid, (int)pNpc->m_fCurX, (int)pNpc->m_fCurZ);
+            fprintf(pfile, "%d(%d,%d)    ", nid, (int)pNpc->m_fCurX, (int)pNpc->m_fCurZ);
         }
     }
     fprintf(pfile, "\n");
@@ -2824,9 +2824,9 @@ void CEbenezerDlg::SendAllUserInfo() {
         //if( i == pParty->wIndex )
         for (int j = 0; j < 8; j++) {
             SetShort(send_buff, pParty->uid[j], send_index); // 유저 번호
-            //SetShort(send_buff, pParty->sHp[j], send_index );				// HP
-            //SetByte(send_buff, pParty->bLevel[j], send_index );				// Level
-            //SetShort(send_buff, pParty->sClass[j], send_index );			// Class
+            //SetShort(send_buff, pParty->sHp[j], send_index );                // HP
+            //SetByte(send_buff, pParty->bLevel[j], send_index );                // Level
+            //SetShort(send_buff, pParty->sClass[j], send_index );            // Class
         }
 
         Send_AIServer(1000, send_buff, send_index);
@@ -2998,8 +2998,8 @@ void CEbenezerDlg::AliveUserCheck() {
             continue;
         }
         /*
-		if( (currenttime - pUser->m_fHPLastTime) > 300 )
-			pUser->Close();
+        if( (currenttime - pUser->m_fHPLastTime) > 300 )
+            pUser->Close();
 */
         for (int k = 0; k < MAX_TYPE3_REPEAT; k++) {
             if ((currenttime - pUser->m_fHPLastTime[k]) > 300) {
@@ -3022,19 +3022,19 @@ void CEbenezerDlg::BattleZoneOpenTimer() {
     CUser * pKarusUser = NULL;
     CUser * pElmoUser = NULL;
 
-    /*	if( m_byBattleOpen == NO_BATTLE )	{	// When Battlezone is closed, open it!
-		if( nWeek == m_nBattleZoneOpenWeek && nTime == m_nBattleZoneOpenHourStart )	{	// 수요일, 20시에 전쟁존 open
-			TRACE("전쟁 자동 시작 - week=%d, time=%d\n", nWeek, nTime);
-			BattleZoneOpen(BATTLEZONE_OPEN);
-//			KickOutZoneUsers(ZONE_FRONTIER);	// Kick out users in frontier zone.
-		}
-	}
-	else {	  // When Battlezone is open, close it!
-		if( nWeek == (m_nBattleZoneOpenWeek+1) && nTime == m_nBattleZoneOpenHourEnd )	{	// 목요일, 0시에 전쟁존 close
-			TRACE("전쟁 자동 종료 - week=%d, time=%d\n", nWeek, nTime);
-			m_byBanishFlag = 1;
-		}
-	}	*/
+    /*    if( m_byBattleOpen == NO_BATTLE )    {    // When Battlezone is closed, open it!
+        if( nWeek == m_nBattleZoneOpenWeek && nTime == m_nBattleZoneOpenHourStart )    {    // 수요일, 20시에 전쟁존 open
+            TRACE("전쟁 자동 시작 - week=%d, time=%d\n", nWeek, nTime);
+            BattleZoneOpen(BATTLEZONE_OPEN);
+//            KickOutZoneUsers(ZONE_FRONTIER);    // Kick out users in frontier zone.
+        }
+    }
+    else {      // When Battlezone is open, close it!
+        if( nWeek == (m_nBattleZoneOpenWeek+1) && nTime == m_nBattleZoneOpenHourEnd )    {    // 목요일, 0시에 전쟁존 close
+            TRACE("전쟁 자동 종료 - week=%d, time=%d\n", nWeek, nTime);
+            m_byBanishFlag = 1;
+        }
+    }    */
 
     if (m_byBattleOpen == NATION_BATTLE) {
         BattleZoneCurrentUsers();
@@ -3380,7 +3380,7 @@ BOOL CEbenezerDlg::LoadAllKnights() {
         return FALSE;
     }
     if (KnightsSet.IsBOF() || KnightsSet.IsEOF()) {
-        //	AfxMessageBox(_T("Knights Data Empty!"));
+        //    AfxMessageBox(_T("Knights Data Empty!"));
         return TRUE;
     }
 
@@ -3388,96 +3388,96 @@ BOOL CEbenezerDlg::LoadAllKnights() {
 
     while (!KnightsSet.IsEOF()) {
         // sungyong ,, zone server : 카루스와 전쟁존을 합치므로 인해서,,
-        /*	if( m_nServerNo == KARUS )	{
-			if( KnightsSet.m_IDNum < 15000 )	{
-				CKnights* pKnights = new _KNIGHTS;
-				pKnights->sIndex = KnightsSet.m_IDNum;
-				pKnights->bFlag = KnightsSet.m_Flag;
-				pKnights->bNation = KnightsSet.m_Nation;
-				strKnightsName = KnightsSet.m_IDName;
-				strKnightsName.TrimRight();
-				strChief = KnightsSet.m_Chief;
-				strChief.TrimRight();
-				strViceChief_1 = KnightsSet.m_ViceChief_1;
-				strViceChief_1.TrimRight();
-				strViceChief_2 = KnightsSet.m_ViceChief_2;
-				strViceChief_2.TrimRight();
-				strViceChief_3 = KnightsSet.m_ViceChief_3;
-				strViceChief_3.TrimRight();
+        /*    if( m_nServerNo == KARUS )    {
+            if( KnightsSet.m_IDNum < 15000 )    {
+                CKnights* pKnights = new _KNIGHTS;
+                pKnights->sIndex = KnightsSet.m_IDNum;
+                pKnights->bFlag = KnightsSet.m_Flag;
+                pKnights->bNation = KnightsSet.m_Nation;
+                strKnightsName = KnightsSet.m_IDName;
+                strKnightsName.TrimRight();
+                strChief = KnightsSet.m_Chief;
+                strChief.TrimRight();
+                strViceChief_1 = KnightsSet.m_ViceChief_1;
+                strViceChief_1.TrimRight();
+                strViceChief_2 = KnightsSet.m_ViceChief_2;
+                strViceChief_2.TrimRight();
+                strViceChief_3 = KnightsSet.m_ViceChief_3;
+                strViceChief_3.TrimRight();
 
-				strcpy( pKnights->strName, (char*)(LPCTSTR)strKnightsName );
-				pKnights->sMembers = KnightsSet.m_Members;
-				strcpy( pKnights->strChief, (char*)(LPCTSTR)strChief );
-				strcpy( pKnights->strViceChief_1, (char*)(LPCTSTR)strViceChief_1 );
-				strcpy( pKnights->strViceChief_2, (char*)(LPCTSTR)strViceChief_2 );
-				strcpy( pKnights->strViceChief_3, (char*)(LPCTSTR)strViceChief_3 );
-				pKnights->nMoney = atoi((const char*)(LPCTSTR)KnightsSet.m_Gold);
-				pKnights->sDomination = KnightsSet.m_Domination;
-				pKnights->nPoints = KnightsSet.m_Points;
-				pKnights->bGrade = GetKnightsGrade( KnightsSet.m_Points );
-				pKnights->bRanking = KnightsSet.m_Ranking;
+                strcpy( pKnights->strName, (char*)(LPCTSTR)strKnightsName );
+                pKnights->sMembers = KnightsSet.m_Members;
+                strcpy( pKnights->strChief, (char*)(LPCTSTR)strChief );
+                strcpy( pKnights->strViceChief_1, (char*)(LPCTSTR)strViceChief_1 );
+                strcpy( pKnights->strViceChief_2, (char*)(LPCTSTR)strViceChief_2 );
+                strcpy( pKnights->strViceChief_3, (char*)(LPCTSTR)strViceChief_3 );
+                pKnights->nMoney = atoi((const char*)(LPCTSTR)KnightsSet.m_Gold);
+                pKnights->sDomination = KnightsSet.m_Domination;
+                pKnights->nPoints = KnightsSet.m_Points;
+                pKnights->bGrade = GetKnightsGrade( KnightsSet.m_Points );
+                pKnights->bRanking = KnightsSet.m_Ranking;
 
-				for(int i=0; i<MAX_CLAN; i++)	{
-					pKnights->arKnightsUser[i].byUsed = 0;
-					strcpy(pKnights->arKnightsUser[i].strUserName, "");
-				}	
+                for(int i=0; i<MAX_CLAN; i++)    {
+                    pKnights->arKnightsUser[i].byUsed = 0;
+                    strcpy(pKnights->arKnightsUser[i].strUserName, "");
+                }    
 
-				if( !m_KnightsArray.PutData(pKnights->sIndex, pKnights) ) {
-					TRACE("Knights PutData Fail - %d\n", pKnights->sIndex);
-					delete pKnights;
-					pKnights = NULL;
-				}
-			}
-		}
-		else if( m_nServerNo == ELMORAD )	{	*/
-        /*	if( m_nServerNo == ELMORAD )	{
-			if( KnightsSet.m_IDNum >= 15000 && KnightsSet.m_IDNum < 30000 )	{
-				CKnights* pKnights = new CKnights;
-				pKnights->InitializeValue();
+                if( !m_KnightsArray.PutData(pKnights->sIndex, pKnights) ) {
+                    TRACE("Knights PutData Fail - %d\n", pKnights->sIndex);
+                    delete pKnights;
+                    pKnights = NULL;
+                }
+            }
+        }
+        else if( m_nServerNo == ELMORAD )    {    */
+        /*    if( m_nServerNo == ELMORAD )    {
+            if( KnightsSet.m_IDNum >= 15000 && KnightsSet.m_IDNum < 30000 )    {
+                CKnights* pKnights = new CKnights;
+                pKnights->InitializeValue();
 
-				pKnights->m_sIndex = KnightsSet.m_IDNum;
-				pKnights->m_byFlag = KnightsSet.m_Flag;
-				pKnights->m_byNation = KnightsSet.m_Nation;
-				//strcpy( pKnights->strName, (char*)(LPCTSTR)KnightsSet.m_IDName );
-				strKnightsName = KnightsSet.m_IDName;
-				strKnightsName.TrimRight();
-				strChief = KnightsSet.m_Chief;
-				strChief.TrimRight();
-				strViceChief_1 = KnightsSet.m_ViceChief_1;
-				strViceChief_1.TrimRight();
-				strViceChief_2 = KnightsSet.m_ViceChief_2;
-				strViceChief_2.TrimRight();
-				strViceChief_3 = KnightsSet.m_ViceChief_3;
-				strViceChief_3.TrimRight();
+                pKnights->m_sIndex = KnightsSet.m_IDNum;
+                pKnights->m_byFlag = KnightsSet.m_Flag;
+                pKnights->m_byNation = KnightsSet.m_Nation;
+                //strcpy( pKnights->strName, (char*)(LPCTSTR)KnightsSet.m_IDName );
+                strKnightsName = KnightsSet.m_IDName;
+                strKnightsName.TrimRight();
+                strChief = KnightsSet.m_Chief;
+                strChief.TrimRight();
+                strViceChief_1 = KnightsSet.m_ViceChief_1;
+                strViceChief_1.TrimRight();
+                strViceChief_2 = KnightsSet.m_ViceChief_2;
+                strViceChief_2.TrimRight();
+                strViceChief_3 = KnightsSet.m_ViceChief_3;
+                strViceChief_3.TrimRight();
 
-				strcpy( pKnights->m_strName, (char*)(LPCTSTR)strKnightsName );
-				pKnights->m_sMembers = KnightsSet.m_Members;
-				strcpy( pKnights->m_strChief, (char*)(LPCTSTR)strChief );
-				strcpy( pKnights->m_strViceChief_1, (char*)(LPCTSTR)strViceChief_1 );
-				strcpy( pKnights->m_strViceChief_2, (char*)(LPCTSTR)strViceChief_2 );
-				strcpy( pKnights->m_strViceChief_3, (char*)(LPCTSTR)strViceChief_3 );
-				pKnights->m_nMoney = atoi((const char*)(LPCTSTR)KnightsSet.m_Gold);
-				pKnights->m_sDomination = KnightsSet.m_Domination;
-				pKnights->m_nPoints = KnightsSet.m_Points;
-				pKnights->m_byGrade = GetKnightsGrade( KnightsSet.m_Points );
-				pKnights->m_byRanking = KnightsSet.m_Ranking;
+                strcpy( pKnights->m_strName, (char*)(LPCTSTR)strKnightsName );
+                pKnights->m_sMembers = KnightsSet.m_Members;
+                strcpy( pKnights->m_strChief, (char*)(LPCTSTR)strChief );
+                strcpy( pKnights->m_strViceChief_1, (char*)(LPCTSTR)strViceChief_1 );
+                strcpy( pKnights->m_strViceChief_2, (char*)(LPCTSTR)strViceChief_2 );
+                strcpy( pKnights->m_strViceChief_3, (char*)(LPCTSTR)strViceChief_3 );
+                pKnights->m_nMoney = atoi((const char*)(LPCTSTR)KnightsSet.m_Gold);
+                pKnights->m_sDomination = KnightsSet.m_Domination;
+                pKnights->m_nPoints = KnightsSet.m_Points;
+                pKnights->m_byGrade = GetKnightsGrade( KnightsSet.m_Points );
+                pKnights->m_byRanking = KnightsSet.m_Ranking;
 
-				for(int i=0; i<MAX_CLAN; i++)	{
-					pKnights->m_arKnightsUser[i].byUsed = 0;
-					strcpy(pKnights->m_arKnightsUser[i].strUserName, "");
-				}	
+                for(int i=0; i<MAX_CLAN; i++)    {
+                    pKnights->m_arKnightsUser[i].byUsed = 0;
+                    strcpy(pKnights->m_arKnightsUser[i].strUserName, "");
+                }    
 
-				if( !m_KnightsArray.PutData(pKnights->m_sIndex, pKnights) ) {
-					TRACE("Knights PutData Fail - %d\n", pKnights->m_sIndex);
-					delete pKnights;
-					pKnights = NULL;
-				}
+                if( !m_KnightsArray.PutData(pKnights->m_sIndex, pKnights) ) {
+                    TRACE("Knights PutData Fail - %d\n", pKnights->m_sIndex);
+                    delete pKnights;
+                    pKnights = NULL;
+                }
 
-				//TRACE("knightindex = %d\n", IDNum);
+                //TRACE("knightindex = %d\n", IDNum);
 
-			}
-		}
-		else	*/
+            }
+        }
+        else    */
         {
             CKnights * pKnights = new CKnights;
             pKnights->InitializeValue();
@@ -3536,7 +3536,7 @@ BOOL CEbenezerDlg::LoadAllKnightsUserData() {
         return FALSE;
     }
     if (KnightsSet.IsBOF() || KnightsSet.IsEOF()) {
-        //	AfxMessageBox(_T("KnightsUser Data Empty!"));
+        //    AfxMessageBox(_T("KnightsUser Data Empty!"));
         return TRUE;
     }
 
@@ -3544,22 +3544,22 @@ BOOL CEbenezerDlg::LoadAllKnightsUserData() {
 
     while (!KnightsSet.IsEOF()) {
         // sungyong ,, zone server : 카루스와 전쟁존을 합치므로 인해서,,
-        /*	if( m_nServerNo == KARUS )	{
-			if( KnightsSet.m_sIDNum < 15000 )	{
-				strUserName = KnightsSet.m_strUserID;
-				strUserName.TrimRight();
-				m_KnightsManager.AddKnightsUser( KnightsSet.m_sIDNum, (char*)(LPCTSTR) strUserName );
-			}
-		}
-		else if( m_nServerNo == ELMORAD )	{	*/
-        /*	if( m_nServerNo == ELMORAD )	{
-			if( KnightsSet.m_sIDNum >= 15000 && KnightsSet.m_sIDNum < 30000 )	{
-				strUserName = KnightsSet.m_strUserID;
-				strUserName.TrimRight();
-				m_KnightsManager.AddKnightsUser( KnightsSet.m_sIDNum, (char*)(LPCTSTR) strUserName );
-			}
-		}
-		else	*/
+        /*    if( m_nServerNo == KARUS )    {
+            if( KnightsSet.m_sIDNum < 15000 )    {
+                strUserName = KnightsSet.m_strUserID;
+                strUserName.TrimRight();
+                m_KnightsManager.AddKnightsUser( KnightsSet.m_sIDNum, (char*)(LPCTSTR) strUserName );
+            }
+        }
+        else if( m_nServerNo == ELMORAD )    {    */
+        /*    if( m_nServerNo == ELMORAD )    {
+            if( KnightsSet.m_sIDNum >= 15000 && KnightsSet.m_sIDNum < 30000 )    {
+                strUserName = KnightsSet.m_strUserID;
+                strUserName.TrimRight();
+                m_KnightsManager.AddKnightsUser( KnightsSet.m_sIDNum, (char*)(LPCTSTR) strUserName );
+            }
+        }
+        else    */
         {
             strUserName = KnightsSet.m_strUserID;
             strUserName.TrimRight();
@@ -3654,20 +3654,20 @@ void CEbenezerDlg::MarketBBSTimeCheck() {
             }
 
             if (m_fBuyStartTime[i] + BBS_CHECK_TIME < currenttime) {
-                //				if (pUser->m_pUserData->m_iGold >= BUY_POST_PRICE) {
-                //					pUser->m_pUserData->m_iGold -= BUY_POST_PRICE ;
-                //					m_fBuyStartTime[i] = TimeGet();
+                //                if (pUser->m_pUserData->m_iGold >= BUY_POST_PRICE) {
+                //                    pUser->m_pUserData->m_iGold -= BUY_POST_PRICE ;
+                //                    m_fBuyStartTime[i] = TimeGet();
 
-                //					memset(send_buff, NULL, 256); send_index = 0;
-                //					SetByte( send_buff, WIZ_GOLD_CHANGE, send_index );	// Now the target
-                //					SetByte( send_buff, 0x02, send_index );
-                //					SetDWORD( send_buff, BUY_POST_PRICE, send_index );
-                //					SetDWORD( send_buff, pUser->m_pUserData->m_iGold, send_index );
-                //					pUser->Send( send_buff, send_index );
-                //				}
-                //				else {
+                //                    memset(send_buff, NULL, 256); send_index = 0;
+                //                    SetByte( send_buff, WIZ_GOLD_CHANGE, send_index );    // Now the target
+                //                    SetByte( send_buff, 0x02, send_index );
+                //                    SetDWORD( send_buff, BUY_POST_PRICE, send_index );
+                //                    SetDWORD( send_buff, pUser->m_pUserData->m_iGold, send_index );
+                //                    pUser->Send( send_buff, send_index );
+                //                }
+                //                else {
                 MarketBBSBuyDelete(i);
-                //				}
+                //                }
             }
         }
 
@@ -3679,20 +3679,20 @@ void CEbenezerDlg::MarketBBSTimeCheck() {
             }
 
             if (m_fSellStartTime[i] + BBS_CHECK_TIME < currenttime) {
-                //				if (pUser->m_pUserData->m_iGold >= SELL_POST_PRICE) {
-                //					pUser->m_pUserData->m_iGold -= SELL_POST_PRICE ;
-                //					m_fSellStartTime[i] = TimeGet();
+                //                if (pUser->m_pUserData->m_iGold >= SELL_POST_PRICE) {
+                //                    pUser->m_pUserData->m_iGold -= SELL_POST_PRICE ;
+                //                    m_fSellStartTime[i] = TimeGet();
 
-                //					memset(send_buff, NULL, 256); send_index = 0;
-                //					SetByte( send_buff, WIZ_GOLD_CHANGE, send_index );	// Now the target
-                //					SetByte( send_buff, 0x02, send_index );
-                //					SetDWORD( send_buff, SELL_POST_PRICE, send_index );
-                //					SetDWORD( send_buff, pUser->m_pUserData->m_iGold, send_index );
-                //					pUser->Send( send_buff, send_index );
-                //				}
-                //				else {
+                //                    memset(send_buff, NULL, 256); send_index = 0;
+                //                    SetByte( send_buff, WIZ_GOLD_CHANGE, send_index );    // Now the target
+                //                    SetByte( send_buff, 0x02, send_index );
+                //                    SetDWORD( send_buff, SELL_POST_PRICE, send_index );
+                //                    SetDWORD( send_buff, pUser->m_pUserData->m_iGold, send_index );
+                //                    pUser->Send( send_buff, send_index );
+                //                }
+                //                else {
                 MarketBBSSellDelete(i);
-                //				}
+                //                }
             }
         }
     }
@@ -3801,7 +3801,7 @@ __int64 CEbenezerDlg::GenerateItemSerial() {
 
     LeaveCriticalSection(&g_serial_critical);
 
-    //	TRACE("Generate Item Serial : %I64d\n", serial.i);
+    //    TRACE("Generate Item Serial : %I64d\n", serial.i);
     return serial.i;
 }
 
@@ -3892,7 +3892,7 @@ void CEbenezerDlg::Send_CommandChat(char * pBuf, int len, int nation, CUser * pE
         if (!pUser) {
             continue;
         }
-        //if( pUser == pExceptUser )			continue;
+        //if( pUser == pExceptUser )            continue;
         if (pUser->GetState() == STATE_GAMESTART) {
             if (pUser->m_pUserData->m_bNation == nation) {
                 pUser->Send(pBuf, len);
@@ -3966,7 +3966,7 @@ BOOL CEbenezerDlg::LoadKnightsRankTable() {
             continue;
         }
         if (pKnights->m_byNation == KARUS) {
-            //if( nKaursRank == 5 || nFindKarus == 1 )	{
+            //if( nKaursRank == 5 || nFindKarus == 1 )    {
             if (nKaursRank == 5) {
                 KRankSet.MoveNext();
                 continue; // 5위까지 클랜장이 없으면 대장은 없음
@@ -4002,7 +4002,7 @@ BOOL CEbenezerDlg::LoadKnightsRankTable() {
                 //TRACE("Karus Captain - %s, rank=%d, index=%d\n", pUser->m_pUserData->m_id, nRank, nKnightsIndex);
             }
         } else if (pKnights->m_byNation == ELMORAD) {
-            //if( nElmoRank == 5 || nFindElmo == 1 )	{
+            //if( nElmoRank == 5 || nFindElmo == 1 )    {
             if (nElmoRank == 5) {
                 KRankSet.MoveNext();
                 continue; // 5위까지 클랜장이 없으면 대장은 없음
@@ -4033,7 +4033,7 @@ BOOL CEbenezerDlg::LoadKnightsRankTable() {
 
                 //strcpy( m_strElmoradCaptain, pUser->m_pUserData->m_id );
                 //Announcement( ELMORAD_CAPTAIN_NOTIFY, ELMORAD );
-                //memset( send_buff, NULL, 1024 );	send_index = 0;
+                //memset( send_buff, NULL, 1024 );    send_index = 0;
                 //TRACE("Elmo Captain - %s, rank=%d, index=%d\n", pUser->m_pUserData->m_id, nRank, nKnightsIndex);
             }
         }

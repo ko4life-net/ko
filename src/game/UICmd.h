@@ -32,8 +32,8 @@ class CUICmd : public CN3UIBase {
 
   public:
     bool OnKeyPress(int iKey);
-    //	void	SetVisibleOptButtons(bool bVisible);
-    //	void	SetVisibleActButtons(bool bVisible);
+    //    void    SetVisibleOptButtons(bool bVisible);
+    //    void    SetVisibleActButtons(bool bVisible);
 
     bool Load(HANDLE hFile);
     bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg);

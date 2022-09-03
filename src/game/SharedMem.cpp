@@ -61,7 +61,7 @@ void CSharedMemQueue::SetReadData() {
     if (*InData != 0x7f) {
         (Rxd->Tail)++;
         TRACE("Start가 없음");
-        //		AfxMessageBox("Start가 없음", NULL, MB_OK);
+        //        AfxMessageBox("Start가 없음", NULL, MB_OK);
         return;
     }
     memcpy((char *)&size, InData + 1, 2);
@@ -69,7 +69,7 @@ void CSharedMemQueue::SetReadData() {
     if (*(InData + size + 3) != 0x7e) {
         TRACE("Stop가 없음");
     }
-    //		AfxMessageBox("Stop가 없음",NULL, MB_OK);
+    //        AfxMessageBox("Stop가 없음",NULL, MB_OK);
     Rxd->Tail += size + 4;
     SendMessage(m_hwnd, WM_RECEIVEDATA, size, 0);
 }
@@ -125,7 +125,7 @@ BOOL CSharedMemQueue::CreateSmq(BOOL Server) {
     Txd->Data = m_lpMMFile + sizeof(_SMQ_HEADER);
     Txd->Head = Txd->Tail = Rxd->Head = Rxd->Tail = 0;
 
-    //	m_hReadQueueThread = AfxBeginThread((AFX_THREADPROC)SmqWatchProc,(LPVOID)this);
+    //    m_hReadQueueThread = AfxBeginThread((AFX_THREADPROC)SmqWatchProc,(LPVOID)this);
     DWORD id;
     m_hReadQueueThread = ::CreateThread(NULL, 0, SmqWatchProc, (LPVOID)this, 0, &id);
     Txd->Connect = TRUE;

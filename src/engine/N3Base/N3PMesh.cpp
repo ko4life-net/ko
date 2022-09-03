@@ -129,9 +129,9 @@ bool CN3PMesh::Load(HANDLE hFile) {
     __ASSERT(SUCCEEDED(hr), "Failed to create progressive mesh");
 #ifdef _USE_VERTEXBUFFER
     if (m_iMaxNumVertices > 0) {
-        //		HRESULT hr = m_lpD3DDev->CreateVertexBuffer(m_iMaxNumVertices*sizeof(__VertexT1),
-        //										D3DUSAGE_DYNAMIC, FVF_VNT1, D3DPOOL_MANAGED, &m_pVB, NULL);
-        //		if (FAILED(hr)) return hr;
+        //        HRESULT hr = m_lpD3DDev->CreateVertexBuffer(m_iMaxNumVertices*sizeof(__VertexT1),
+        //                                        D3DUSAGE_DYNAMIC, FVF_VNT1, D3DPOOL_MANAGED, &m_pVB, NULL);
+        //        if (FAILED(hr)) return hr;
         BYTE * pByte;
         hr = m_pVB->Lock(0, 0, (VOID **)&pByte, 0);
         if (FAILED(hr)) {
@@ -141,9 +141,9 @@ bool CN3PMesh::Load(HANDLE hFile) {
         m_pVB->Unlock();
     }
     if (m_iMaxNumIndices > 0) {
-        //		HRESULT hr = m_lpD3DDev->CreateIndexBuffer(m_iMaxNumIndices*sizeof(WORD),
-        //										D3DUSAGE_DYNAMIC, D3DFMT_INDEX16, D3DPOOL_MANAGED, &m_pIB);
-        //		if (FAILED(hr)) return hr;
+        //        HRESULT hr = m_lpD3DDev->CreateIndexBuffer(m_iMaxNumIndices*sizeof(WORD),
+        //                                        D3DUSAGE_DYNAMIC, D3DFMT_INDEX16, D3DPOOL_MANAGED, &m_pIB);
+        //        if (FAILED(hr)) return hr;
         BYTE * pByte;
         hr = m_pIB->Lock(0, 0, (VOID **)&pByte, 0);
         if (FAILED(hr)) {
@@ -154,12 +154,12 @@ bool CN3PMesh::Load(HANDLE hFile) {
     }
 #else
     if (m_iMaxNumVertices > 0) {
-        //		m_pVertices = new __VertexT1[m_iMaxNumVertices];
+        //        m_pVertices = new __VertexT1[m_iMaxNumVertices];
         ReadFile(hFile, m_pVertices, m_iMaxNumVertices * sizeof(__VertexT1), &dwNum, NULL);
     }
 
     if (m_iMaxNumIndices > 0) {
-        //		m_pIndices = new WORD[m_iMaxNumIndices];
+        //        m_pIndices = new WORD[m_iMaxNumIndices];
         ReadFile(hFile, m_pIndices, m_iMaxNumIndices * sizeof(WORD), &dwNum, NULL);
     }
 #endif
@@ -388,12 +388,12 @@ void CN3PMesh::CopyMesh(CN3PMesh * pSrcPMesh) {
     }
 #else
     if (m_iMaxNumVertices > 0) {
-        //		m_pVertices = new __VertexT1[m_iMaxNumVertices];
+        //        m_pVertices = new __VertexT1[m_iMaxNumVertices];
         CopyMemory(m_pVertices, pSrcPMesh->m_pVertices, sizeof(__VertexT1) * m_iMaxNumVertices);
     }
 
     if (m_iMaxNumIndices > 0) {
-        //		m_pIndices = new WORD[m_iMaxNumIndices];
+        //        m_pIndices = new WORD[m_iMaxNumIndices];
         CopyMemory(m_pIndices, pSrcPMesh->m_pIndices, sizeof(WORD) * m_iMaxNumIndices);
     }
 #endif

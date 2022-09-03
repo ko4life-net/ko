@@ -187,9 +187,9 @@ void CN3IME::ClearData() {
     //    for(int i = 0; i < MAX_LISTCAND; i++) {
     //        if (m_hwndCand[i]) {
     //            ::DestroyWindow(m_hwndCand[i]);
-    //			m_hwndCand[i] = NULL;
+    //            m_hwndCand[i] = NULL;
     //            delete m_CandList[i];
-    //			m_CandList[i] = NULL;
+    //            m_CandList[i] = NULL;
     //        }
     //    }
     m_dwState = 0;
@@ -312,14 +312,14 @@ BOOL CN3IME::OpenCandidate(LONG lParam) {
             ImmGetCandidateList(m_hIMC, iIndex, lpCandList, dwBufLen);
 
             POINT pt ;
-			GetCaretPos(&pt);
+            GetCaretPos(&pt);
             ClientToScreen(m_hWnd,&pt);
 
             dwPreferNumPerPage = ( !lpCandList->dwPageSize ) ?
                                  DEFAULT_CAND_NUM_PER_PAGE :
                                  lpCandList->dwPageSize;
 
-			// get the longest string length
+            // get the longest string length
             for (int i = 0; i < (int)lpCandList->dwCount; i++ ) {
                 lpStr = (LPSTR)lpCandList + lpCandList->dwOffset[i];
                 max_width = (max_width < lstrlen(lpStr)) ? lstrlen(lpStr) : max_width;
@@ -338,11 +338,11 @@ BOOL CN3IME::OpenCandidate(LONG lParam) {
                                  );
 
             if (m_hwndCand[iIndex] == NULL) {
-				delete m_CandList[iIndex];
-				m_CandList[iIndex] = NULL;
+                delete m_CandList[iIndex];
+                m_CandList[iIndex] = NULL;
                 goto exit_opencand;
             }
-			SetWindowLong(m_hwndCand[iIndex], 0, (LONG)this);
+            SetWindowLong(m_hwndCand[iIndex], 0, (LONG)this);
 
             ::ShowWindow(m_hwndCand[iIndex], SW_SHOWNOACTIVATE);
             DisplayCandStrings(m_hwndCand[iIndex], lpCandList);
@@ -364,8 +364,8 @@ BOOL CN3IME::CloseCandidate(LONG CandList) {
         if ((CandList & ( 1 << i ) ) && m_CandList[i]) {
             ::DestroyWindow(m_hwndCand[i]);
             m_hwndCand[i] = NULL;
-			delete m_CandList[i];
-			m_CandList[i] = NULL;
+            delete m_CandList[i];
+            m_CandList[i] = NULL;
         }
     }
     m_dwState &= ~IME_IN_CHOSECAND;
@@ -378,32 +378,32 @@ BOOL CN3IME::ChangeCandidate(LONG CandList) {
     /*
     LPCANDIDATELIST lpCandList = NULL;         
     DWORD           dwIndex;
-    DWORD 			dwBufLen;
-    LPSTR			lpStr;
-    DWORD			i = 1;
-    RECT			rect;
-    int				max_width = 0;
-    DWORD			dwPreferNumPerPage;
+    DWORD             dwBufLen;
+    LPSTR            lpStr;
+    DWORD            i = 1;
+    RECT            rect;
+    int                max_width = 0;
+    DWORD            dwPreferNumPerPage;
 
 
-	if (!Enter())
-		return FALSE;
+    if (!Enter())
+        return FALSE;
 
     for (dwIndex = 0; dwIndex < MAX_LISTCAND; dwIndex++) {
         if (CandList & i)
             break;
-		else
-			i <<= 1;
-	}
+        else
+            i <<= 1;
+    }
 
     if (dwIndex == MAX_LISTCAND)
         goto exit_changecand;
 
     if (!(dwBufLen = ImmGetCandidateList(m_hIMC, dwIndex, lpCandList, 0))) {
-		goto exit_changecand;
-	}
-	delete m_CandList[dwIndex];
-	m_CandList[dwIndex] = lpCandList = (LPCANDIDATELIST)new char[dwBufLen];
+        goto exit_changecand;
+    }
+    delete m_CandList[dwIndex];
+    m_CandList[dwIndex] = lpCandList = (LPCANDIDATELIST)new char[dwBufLen];
 
     ImmGetCandidateList(m_hIMC, dwIndex, lpCandList, dwBufLen);
     dwPreferNumPerPage = (!lpCandList->dwPageSize ) ?
@@ -416,14 +416,14 @@ BOOL CN3IME::ChangeCandidate(LONG CandList) {
 
     ::GetWindowRect(m_hwndCand[dwIndex], (LPRECT) &rect);
     ::SetWindowPos(m_hwndCand[dwIndex], m_hWnd, rect.left, rect.top,
-		  (max_width + 3) * m_charWidth + 4,
-		  (int)(dwPreferNumPerPage) * m_charHeight + 5,
-		  SWP_NOZORDER | SWP_NOACTIVATE );
-		  
-	DisplayCandStrings(m_hwndCand[dwIndex], lpCandList);
+          (max_width + 3) * m_charWidth + 4,
+          (int)(dwPreferNumPerPage) * m_charHeight + 5,
+          SWP_NOZORDER | SWP_NOACTIVATE );
+          
+    DisplayCandStrings(m_hwndCand[dwIndex], lpCandList);
 
 exit_changecand:
-	Leave();
+    Leave();
 */
     return TRUE;
 }
@@ -444,14 +444,14 @@ BOOL CN3IME::SetOpenStatus() {
             if (m_CandList[i]) {
                 ::DestroyWindow(m_hwndCand[i]);
                 m_hwndCand[i] = NULL;
-				delete m_CandList[i];
-				m_CandList[i] = NULL;
+                delete m_CandList[i];
+                m_CandList[i] = NULL;
             }
         }
-		m_nCompLen = 0;
-		m_dwState = 0;
+        m_nCompLen = 0;
+        m_dwState = 0;
     }
-	Leave();
+    Leave();
 */
     return TRUE;
 }

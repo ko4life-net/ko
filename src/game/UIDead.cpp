@@ -175,8 +175,8 @@ DWORD CUIDead::MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & ptOld
 
         if (UI_MOUSEPROC_DONESOMETHING & dwChildRet) { // 이경우에는 먼가 포커스를 받은 경우이다.
             // (아래 코드는 dialog를 관리하는 곳에서 해야 한다. 따라서 막아놓음)
-            //			m_Children.erase(itor);			// 우선 리스트에서 지우고
-            //			m_Children.push_front(pChild);	// 맨앞에 넣는다. 그리는 순서를 맨 나중에 그리도록 하려고
+            //            m_Children.erase(itor);            // 우선 리스트에서 지우고
+            //            m_Children.push_front(pChild);    // 맨앞에 넣는다. 그리는 순서를 맨 나중에 그리도록 하려고
 
             dwRet |= (UI_MOUSEPROC_CHILDDONESOMETHING | UI_MOUSEPROC_DONESOMETHING);
             return dwRet;

@@ -341,7 +341,7 @@ void CN3SkyMng::Tick() {
     if (m_pSky) {
         m_pSky->Tick();
     }
-    //	if (m_pMoon) m_pMoon->Tick();
+    //    if (m_pMoon) m_pMoon->Tick();
     if (m_pSun) {
         m_pSun->Tick();
     }
@@ -762,7 +762,7 @@ void CN3SkyMng::InitToDefaultHardCoding() {
 }
 #endif // #ifdef _N3TOOL
 
-//	CheckGameTime을 정해주고 현재시간을 다시 세팅한다.(특정 시간으로 강제적으로 만들때 호출한다.)
+//    CheckGameTime을 정해주고 현재시간을 다시 세팅한다.(특정 시간으로 강제적으로 만들때 호출한다.)
 void CN3SkyMng::SetCheckGameTime(DWORD dwCheckGameTime) {
     dwCheckGameTime %= 86400;
     DWORD dwCheckTick = timeGetTime();
@@ -1240,7 +1240,7 @@ void CN3SkyMng::SetWeather(eSKY_WEATHER eWeather, int iPercentage) {
 
         float fHeight = 20.0f;
         float fPercent = iPercentage / 100.0f;
-        //		float fDensity = fPercent * 0.1f;
+        //        float fDensity = fPercent * 0.1f;
         float fDensity = fPercent * 0.03f;
         if (SW_RAINY == m_eWeather) {
             if (m_pGESnow) {
@@ -1714,26 +1714,26 @@ const char * CN3SkyMng::CloudTextureFileName(int iIndex) {
 /*
 void CN3SkyMng::ColorDeltaSet(int iPercentage, float fHowLong) // 현재 하늘, 안개 색을 퍼센트 단위로 변화시킨다.. 비, 눈 올때 쓴다..
 {
-	if(iPercentage < 0) iPercentage = 0;
-	if(iPercentage > 100) iPercentage = 100;
+    if(iPercentage < 0) iPercentage = 0;
+    if(iPercentage > 100) iPercentage = 100;
 
-	D3DCOLOR crFinalFog = m_pSky->m_FogColor.GetCurColor();
-	D3DCOLOR crFinalSky = m_pSky->m_SkyColor.GetCurColor();
+    D3DCOLOR crFinalFog = m_pSky->m_FogColor.GetCurColor();
+    D3DCOLOR crFinalSky = m_pSky->m_SkyColor.GetCurColor();
 
-	crFinalFog = 	((((crFinalFog & 0x00ff0000) >> 16) * iPercentage / 100) << 16) | 
-					((((crFinalFog & 0x0000ff00) >> 8) * iPercentage / 100) << 8) | 
-					((crFinalFog & 0x000000ff) * iPercentage / 100);
-	
-	crFinalSky = 	((((crFinalSky & 0x00ff0000) >> 16) * iPercentage / 100) << 16) | 
-					((((crFinalSky & 0x0000ff00) >> 8) * iPercentage / 100) << 8) | 
-					((crFinalSky & 0x000000ff) * iPercentage / 100);
-	
-	m_pSky->m_FogColor.ChangeColor(crFinalFog, fHowLong);
-	m_pSky->m_SkyColor.ChangeColor(crFinalSky, fHowLong);
+    crFinalFog =     ((((crFinalFog & 0x00ff0000) >> 16) * iPercentage / 100) << 16) | 
+                    ((((crFinalFog & 0x0000ff00) >> 8) * iPercentage / 100) << 8) | 
+                    ((crFinalFog & 0x000000ff) * iPercentage / 100);
+    
+    crFinalSky =     ((((crFinalSky & 0x00ff0000) >> 16) * iPercentage / 100) << 16) | 
+                    ((((crFinalSky & 0x0000ff00) >> 8) * iPercentage / 100) << 8) | 
+                    ((crFinalSky & 0x000000ff) * iPercentage / 100);
+    
+    m_pSky->m_FogColor.ChangeColor(crFinalFog, fHowLong);
+    m_pSky->m_SkyColor.ChangeColor(crFinalSky, fHowLong);
 
 #ifdef _N3GAME // 게임이 아닌 툴에서는 필요없다...
-	if(m_pSnd_Weather_Snow) m_pSnd_Weather_Snow->Stop(5.0f);
-	if(m_pSnd_Weather_Rain) m_pSnd_Weather_Rain->Stop(5.0f);
+    if(m_pSnd_Weather_Snow) m_pSnd_Weather_Snow->Stop(5.0f);
+    if(m_pSnd_Weather_Rain) m_pSnd_Weather_Rain->Stop(5.0f);
 #endif // #ifdef _N3GAME
 }
 */

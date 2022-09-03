@@ -137,7 +137,7 @@ void CN3CEView::OnDraw(CDC * pDC) {
         pFrm->m_Eng.s_lpD3DDev->GetRenderState(D3DRS_ZENABLE, &dwZ);
         pFrm->m_Eng.s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, FALSE);
         m_pJointSelected->Render(&(pChr->m_Matrix), 0.02f);
-        //		m_pJointSelected->CN3Transform::Render(&(pChr->m_Matrix), 0.3f); // 축 그리기..
+        //        m_pJointSelected->CN3Transform::Render(&(pChr->m_Matrix), 0.3f); // 축 그리기..
         pFrm->m_Eng.s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, dwZ);
     }
 
@@ -214,25 +214,25 @@ void CN3CEView::OnDraw(CDC * pDC) {
         pChr->Joint()->Render(&(pChr->m_Matrix), 0.02f);
     }
     /*
-	pChr->BuildMesh();
-	int nPC = pChr->PartCount();
-	pChr->s_lpD3DDev->SetTransform(D3DTS_WORLD, &pChr->m_Matrix);
-	for(int i = 0; i < nPC; i++)
-	{
-		CN3CPart* pPart = pChr->Part(i);
-		if(NULL == pPart) continue;
-		
-		pPart->Render(0);
-	}
+    pChr->BuildMesh();
+    int nPC = pChr->PartCount();
+    pChr->s_lpD3DDev->SetTransform(D3DTS_WORLD, &pChr->m_Matrix);
+    for(int i = 0; i < nPC; i++)
+    {
+        CN3CPart* pPart = pChr->Part(i);
+        if(NULL == pPart) continue;
+        
+        pPart->Render(0);
+    }
 
-	// Character Plug Rendering...
-	CN3Base* pBase = pFrm->GetPaneProperty()->GetSelectedObject();
-	if(pBase && (pBase->Type() & OBJ_CHARACTER_PLUG))
-	{
-		CN3CPlug* pPlug = (CN3CPlug*)pBase;
-		__Matrix44* pMtxJ = pChr->MatrixGet(pPlug->m_nJointIndex);
-		if(pMtxJ) pPlug->Render(pChr->m_Matrix, *pMtxJ);
-	}
+    // Character Plug Rendering...
+    CN3Base* pBase = pFrm->GetPaneProperty()->GetSelectedObject();
+    if(pBase && (pBase->Type() & OBJ_CHARACTER_PLUG))
+    {
+        CN3CPlug* pPlug = (CN3CPlug*)pBase;
+        __Matrix44* pMtxJ = pChr->MatrixGet(pPlug->m_nJointIndex);
+        if(pMtxJ) pPlug->Render(pChr->m_Matrix, *pMtxJ);
+    }
 */
     if (m_bRenderOptionXRay) // 반투명 옵션이 켜져 있으면..
     {
@@ -411,8 +411,8 @@ void CN3CEView::OnLButtonDown(UINT nFlags, CPoint point) {
                 pFrm->GetPaneProperty()->UpdateInfo();
             }
             //////////////////////////////////////////////////
-            //	Coded (By Dino On 2002-10-11 오후 1:50:47 )
-            //	FXPlug
+            //    Coded (By Dino On 2002-10-11 오후 1:50:47 )
+            //    FXPlug
             else if (pBase &&
                      (pBase->Type() & OBJ_FX_PLUG_PART) // FXPlugPart가 선택되어 있을경우 참조하는 조인트를 설정한다.
                      && (nJI >= 0 && nJI < n)) {
@@ -421,7 +421,7 @@ void CN3CEView::OnLButtonDown(UINT nFlags, CPoint point) {
 
                 pFrm->GetPaneProperty()->UpdateInfo();
             }
-            //	End Of Code (By Dino On 2002-10-11 오후 1:50:47 )
+            //    End Of Code (By Dino On 2002-10-11 오후 1:50:47 )
             //////////////////////////////////////////////////
             else if (m_pJointSelected && m_bRenderOptionJoint) {
                 pFrm->GetPaneProperty()->SelectJointNode(TVI_ROOT, m_pJointSelected);
@@ -650,25 +650,25 @@ void CN3CEView::OnMouseMove(UINT nFlags, CPoint point) {
                 }
             }
             /*
-			else if(eCM_PlugFXPosition0 == m_eCursorMode ||
-					eCM_PlugFXPosition1 == m_eCursorMode ||
-					eCM_PlugFXPosition2 == m_eCursorMode ||
-					eCM_PlugFXPosition3 == m_eCursorMode ||
-					eCM_PlugFXPosition4 == m_eCursorMode ||
-					eCM_PlugFXPosition5 == m_eCursorMode ||
-					eCM_PlugFXPosition6 == m_eCursorMode ||
-					eCM_PlugFXPosition7 == m_eCursorMode ) // 플러그 효과 위치 0
-			{
-				int iIndex = m_eCursorMode - eCM_PlugFXPosition0;
-				if(iIndex >= 0 && iIndex < MAX_PLUG_FX_POSITION)
-				{
-					CPoint ptDelta = point - m_ptPrev;
-					vAxis *= (ptDelta.x) * 0.001f;
-					
-					pPlug->m_vFXs[iIndex] += vAxis;
-				}
-			}
-			*/
+            else if(eCM_PlugFXPosition0 == m_eCursorMode ||
+                    eCM_PlugFXPosition1 == m_eCursorMode ||
+                    eCM_PlugFXPosition2 == m_eCursorMode ||
+                    eCM_PlugFXPosition3 == m_eCursorMode ||
+                    eCM_PlugFXPosition4 == m_eCursorMode ||
+                    eCM_PlugFXPosition5 == m_eCursorMode ||
+                    eCM_PlugFXPosition6 == m_eCursorMode ||
+                    eCM_PlugFXPosition7 == m_eCursorMode ) // 플러그 효과 위치 0
+            {
+                int iIndex = m_eCursorMode - eCM_PlugFXPosition0;
+                if(iIndex >= 0 && iIndex < MAX_PLUG_FX_POSITION)
+                {
+                    CPoint ptDelta = point - m_ptPrev;
+                    vAxis *= (ptDelta.x) * 0.001f;
+                    
+                    pPlug->m_vFXs[iIndex] += vAxis;
+                }
+            }
+            */
 
             pPlug->ReCalcMatrix();
             pFrm->GetPaneProperty()->UpdateInfo();
@@ -676,8 +676,8 @@ void CN3CEView::OnMouseMove(UINT nFlags, CPoint point) {
             this->InvalidateRect(NULL, FALSE);
         }
         //////////////////////////////////////////////////
-        //	Coded (By Dino On 2002-10-11 오후 2:04:29 )
-        //	FXPlug
+        //    Coded (By Dino On 2002-10-11 오후 2:04:29 )
+        //    FXPlug
         else if (pChr && pBase && (pBase->Type() & OBJ_FX_PLUG_PART)) {
             CN3FXPlugPart * pFXPPart = (CN3FXPlugPart *)pBase;
 
@@ -735,7 +735,7 @@ void CN3CEView::OnMouseMove(UINT nFlags, CPoint point) {
             pFrm->GetPaneProperty()->UpdateInfo();
             this->InvalidateRect(NULL, FALSE);
         }
-        //	End Of Code (By Dino On 2002-10-11 오후 2:04:29 )
+        //    End Of Code (By Dino On 2002-10-11 오후 2:04:29 )
         //////////////////////////////////////////////////
     }
 

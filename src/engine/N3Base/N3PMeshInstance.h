@@ -66,7 +66,7 @@ class CN3PMeshInstance : public CN3Base {
     WORD *       GetIndices() const { return m_pIndices; };
 #endif
 
-//	By : Ecli666 ( On 2002-08-06 오후 4:33:04 )
+//    By : Ecli666 ( On 2002-08-06 오후 4:33:04 )
 //
 #ifdef _USE_VERTEXBUFFER
     void PartialRender(int iCount, LPDIRECT3DINDEXBUFFER9 pIB);
@@ -75,5 +75,5 @@ class CN3PMeshInstance : public CN3Base {
 #endif
     int       GetIndexByiOrder(int iOrder);
     __Vector3 GetVertexByIndex(int iIndex);
-    //	~(By Ecli666 On 2002-08-06 오후 4:33:04 )
+    //    ~(By Ecli666 On 2002-08-06 오후 4:33:04 )
 };

@@ -43,8 +43,8 @@ CN3FXPartParticles::CN3FXPartParticles() {
     m_vUnit[2].Set(0.5f, -0.5f, 0.0f, 0xffffffff, 1.0f, 1.0f);
     m_vUnit[3].Set(-0.5f, -0.5f, 0.0f, 0xffffffff, 0.0f, 1.0f);
 
-    //m_wUnitIB[0] = 0;	m_wUnitIB[1] = 1;	m_wUnitIB[2] = 3;
-    //m_wUnitIB[3] = 3;	m_wUnitIB[4] = 1;	m_wUnitIB[5] = 2;
+    //m_wUnitIB[0] = 0;    m_wUnitIB[1] = 1;    m_wUnitIB[2] = 3;
+    //m_wUnitIB[3] = 3;    m_wUnitIB[4] = 1;    m_wUnitIB[5] = 2;
 
     //emitter...
     m_dwEmitType = FX_PART_PARTICLE_EMIT_TYPE_NORMAL;
@@ -115,8 +115,8 @@ CN3FXPartParticles::~CN3FXPartParticles() {
     }
     //if(m_pIB)
     //{
-    //	delete[] m_pIB;
-    //	m_pIB = NULL;
+    //    delete[] m_pIB;
+    //    m_pIB = NULL;
     //}
 }
 
@@ -129,7 +129,7 @@ bool CN3FXPartParticles::ParseScript(char * szCommand, char * szBuff0, char * sz
         return true;
     }
 
-    //	파티클 수.
+    //    파티클 수.
     if (lstrcmpi(szCommand, "<particle_count>") == 0) {
         m_iNumParticle = atoi(szBuff0);
         if (m_iNumParticle > 0) {
@@ -138,7 +138,7 @@ bool CN3FXPartParticles::ParseScript(char * szCommand, char * szBuff0, char * sz
         return true;
     }
 
-    //	파티클 크기.
+    //    파티클 크기.
     if (lstrcmpi(szCommand, "<particle_size>") == 0) {
         m_pair_fParticleSize.first = m_pair_fParticleSize.second = atof(szBuff0);
         return true;
@@ -149,38 +149,38 @@ bool CN3FXPartParticles::ParseScript(char * szCommand, char * szBuff0, char * sz
         return true;
     }
 
-    //	파티클 생명.
+    //    파티클 생명.
     if (lstrcmpi(szCommand, "<particle_life>") == 0) {
         m_pair_fParticleLife.first = atof(szBuff0);
         m_pair_fParticleLife.second = atof(szBuff1);
         return true;
     }
 
-    //	파티클 시작오차..min
+    //    파티클 시작오차..min
     if (lstrcmpi(szCommand, "<start_range_min>") == 0) {
         m_MinCreateRange.Set(atof(szBuff0), atof(szBuff1), atof(szBuff2));
         return true;
     }
 
-    //	파티클 시작오차..max
+    //    파티클 시작오차..max
     if (lstrcmpi(szCommand, "<start_range_max>") == 0) {
         m_MaxCreateRange.Set(atof(szBuff0), atof(szBuff1), atof(szBuff2));
         return true;
     }
 
-    //	파티클 한번에 생성 갯수
+    //    파티클 한번에 생성 갯수
     if (lstrcmpi(szCommand, "<create_count>") == 0) {
         m_iNumCreate = atoi(szBuff0);
         return true;
     }
 
-    //	파티클 한번에 생성 시간 범위
+    //    파티클 한번에 생성 시간 범위
     if (lstrcmpi(szCommand, "<create_delay>") == 0) {
         m_CurrCreateDelay = m_fCreateDelay = atof(szBuff0);
         return true;
     }
 
-    //	시작하는 방법.
+    //    시작하는 방법.
     if (lstrcmpi(szCommand, "<emit_type>") == 0) {
         if (lstrcmpi(szBuff0, "spread") == 0) {
             m_dwEmitType = FX_PART_PARTICLE_EMIT_TYPE_SPREAD;
@@ -290,7 +290,7 @@ bool CN3FXPartParticles::ParseScript(char * szCommand, char * szBuff0, char * sz
 #endif // end of _N3TOOL
 
 //
-//	init...
+//    init...
 //
 void CN3FXPartParticles::Init() {
     CN3FXPartBase::Init();
@@ -616,9 +616,9 @@ void CN3FXPartParticles::Scaling() {
 }
 
 //
-//	render...
-//	일단은 파티클 하나씩 그리고....
-//	나중에는 같은 텍스쳐 쓰는 것들끼리 묶어서 그리자...
+//    render...
+//    일단은 파티클 하나씩 그리고....
+//    나중에는 같은 텍스쳐 쓰는 것들끼리 묶어서 그리자...
 //
 void CN3FXPartParticles::Render() {
     if (m_pVBList_Alive.size() == 0) {
@@ -768,92 +768,92 @@ float CN3FXPartParticles::CameraDist(__Vector3 v1, __Vector3 v2, __Vector3 v3) {
 /*
 void CN3FXPartParticles::Render()
 {
-	if(m_pVBList_Alive.size()==0) return;
+    if(m_pVBList_Alive.size()==0) return;
 
-	m_mtxVI = s_CameraData.mtxViewInverse;
-	m_mtxVI.PosSet(0,0,0);
+    m_mtxVI = s_CameraData.mtxViewInverse;
+    m_mtxVI.PosSet(0,0,0);
 
-	CN3Base::s_lpD3DDev->SetFVF(FVF_XYZCOLORT1);
+    CN3Base::s_lpD3DDev->SetFVF(FVF_XYZCOLORT1);
 
-	//DWORD dwZWriteEnable;
-	//CN3Base::s_lpD3DDev->GetRenderState(D3DRS_ZWRITEENABLE, &dwZWriteEnable);
-	//s_lpD3DDev->SetRenderState( D3DRS_ZWRITEENABLE, FALSE);
+    //DWORD dwZWriteEnable;
+    //CN3Base::s_lpD3DDev->GetRenderState(D3DRS_ZWRITEENABLE, &dwZWriteEnable);
+    //s_lpD3DDev->SetRenderState( D3DRS_ZWRITEENABLE, FALSE);
 
-	s_lpD3DDev->SetRenderState( D3DRS_ALPHABLENDENABLE, m_bAlpha );
-	s_lpD3DDev->SetRenderState( D3DRS_SRCBLEND, m_dwSrcBlend );
+    s_lpD3DDev->SetRenderState( D3DRS_ALPHABLENDENABLE, m_bAlpha );
+    s_lpD3DDev->SetRenderState( D3DRS_SRCBLEND, m_dwSrcBlend );
     s_lpD3DDev->SetRenderState( D3DRS_DESTBLEND, m_dwDestBlend );
 
-	DWORD dwTAddrU, dwTAddrV;
-	s_lpD3DDev->GetSamplerState( 0, D3DSAMP_ADDRESSU, &dwTAddrU );
-	s_lpD3DDev->GetSamplerState( 0, D3DSAMP_ADDRESSV, &dwTAddrV );
+    DWORD dwTAddrU, dwTAddrV;
+    s_lpD3DDev->GetSamplerState( 0, D3DSAMP_ADDRESSU, &dwTAddrU );
+    s_lpD3DDev->GetSamplerState( 0, D3DSAMP_ADDRESSV, &dwTAddrV );
 
-	s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP );
-	s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP );
-	
-	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP,   D3DTOP_MODULATE );
-	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE );		
-	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE );
+    s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP );
+    s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP );
+    
+    s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP,   D3DTOP_MODULATE );
+    s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE );        
+    s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE );
 
-	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ALPHAOP,   D3DTOP_MODULATE );
-	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE );		
-	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ALPHAARG2, D3DTA_DIFFUSE );
+    s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ALPHAOP,   D3DTOP_MODULATE );
+    s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE );        
+    s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ALPHAARG2, D3DTA_DIFFUSE );
 
-	s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP,   D3DTOP_DISABLE );
-	s_lpD3DDev->SetTextureStageState( 1, D3DTSS_ALPHAOP,   D3DTOP_DISABLE );
+    s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP,   D3DTOP_DISABLE );
+    s_lpD3DDev->SetTextureStageState( 1, D3DTSS_ALPHAOP,   D3DTOP_DISABLE );
 
-	if(!m_pNumTex)
-	{
-		m_pNumTex = new int[m_iNumTex];
-		for(int i=0;i<m_iNumTex;i++) m_pNumTex[i] = 0;
-	}
-	
-	//
-	////////////////////////////////////////////////////////////////////////////////////
-	//ParticleGreater pg;
-	//m_pVBList_Alive.sort(pg);
-	// 이거이 안되서 안에 있는 루틴 그대로 베껴서 PSort()함수 만들었엉...ㅠ.ㅠ;;
-	PSort();
+    if(!m_pNumTex)
+    {
+        m_pNumTex = new int[m_iNumTex];
+        for(int i=0;i<m_iNumTex;i++) m_pNumTex[i] = 0;
+    }
+    
+    //
+    ////////////////////////////////////////////////////////////////////////////////////
+    //ParticleGreater pg;
+    //m_pVBList_Alive.sort(pg);
+    // 이거이 안되서 안에 있는 루틴 그대로 베껴서 PSort()함수 만들었엉...ㅠ.ㅠ;;
+    PSort();
 
-	std::list<CN3FXParticle*>::iterator it;
-	it = m_pVBList_Alive.begin();
-	int idx = 0;
-	int VBIdx;
-	for(;it!=m_pVBList_Alive.end();it++,idx++)
-	{
-		VBIdx = idx*NUM_VERTEX_PARTICLE;
-		CN3FXParticle* pParticle = (*it);
+    std::list<CN3FXParticle*>::iterator it;
+    it = m_pVBList_Alive.begin();
+    int idx = 0;
+    int VBIdx;
+    for(;it!=m_pVBList_Alive.end();it++,idx++)
+    {
+        VBIdx = idx*NUM_VERTEX_PARTICLE;
+        CN3FXParticle* pParticle = (*it);
 
-		m_pVB[VBIdx] = ((m_vUnit[0] * pParticle->m_fSize) * m_mtxVI) + pParticle->m_vWdPos;
-		m_pVB[VBIdx].color = pParticle->m_dwColor;
-		m_pVB[VBIdx+1] = ((m_vUnit[1] * pParticle->m_fSize) * m_mtxVI) + pParticle->m_vWdPos;
-		m_pVB[VBIdx+1].color = pParticle->m_dwColor;
-		m_pVB[VBIdx+2] = ((m_vUnit[2] * pParticle->m_fSize) * m_mtxVI) + pParticle->m_vWdPos;
-		m_pVB[VBIdx+2].color = pParticle->m_dwColor;
-				
-		m_pNumTex[pParticle->m_iTexIdx]++;		
-	}
-	/////////////////////////////////////////////////////////////////////////////////////////
-	//
+        m_pVB[VBIdx] = ((m_vUnit[0] * pParticle->m_fSize) * m_mtxVI) + pParticle->m_vWdPos;
+        m_pVB[VBIdx].color = pParticle->m_dwColor;
+        m_pVB[VBIdx+1] = ((m_vUnit[1] * pParticle->m_fSize) * m_mtxVI) + pParticle->m_vWdPos;
+        m_pVB[VBIdx+1].color = pParticle->m_dwColor;
+        m_pVB[VBIdx+2] = ((m_vUnit[2] * pParticle->m_fSize) * m_mtxVI) + pParticle->m_vWdPos;
+        m_pVB[VBIdx+2].color = pParticle->m_dwColor;
+                
+        m_pNumTex[pParticle->m_iTexIdx]++;        
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////
+    //
 
-	VBIdx = 0;
-	for(int TexIdx=0;TexIdx<m_iNumTex;TexIdx++)
-	{
-		if(m_pNumTex[TexIdx]==0) continue;
+    VBIdx = 0;
+    for(int TexIdx=0;TexIdx<m_iNumTex;TexIdx++)
+    {
+        if(m_pNumTex[TexIdx]==0) continue;
 
-		if(m_ppRefTex[TexIdx]) CN3Base::s_lpD3DDev->SetTexture(0, m_ppRefTex[TexIdx]->Get());
-		else
-			CN3Base::s_lpD3DDev->SetTexture(0, NULL);
+        if(m_ppRefTex[TexIdx]) CN3Base::s_lpD3DDev->SetTexture(0, m_ppRefTex[TexIdx]->Get());
+        else
+            CN3Base::s_lpD3DDev->SetTexture(0, NULL);
 
-		HRESULT hr;
-		hr = CN3Base::s_lpD3DDev->DrawPrimitiveUP( D3DPT_TRIANGLELIST, m_pNumTex[TexIdx], &(m_pVB[VBIdx]), sizeof(__VertexXyzColorT1));
-		VBIdx += (m_pNumTex[TexIdx]*NUM_VERTEX_PARTICLE);
-		m_pNumTex[TexIdx] = 0;
-	}
+        HRESULT hr;
+        hr = CN3Base::s_lpD3DDev->DrawPrimitiveUP( D3DPT_TRIANGLELIST, m_pNumTex[TexIdx], &(m_pVB[VBIdx]), sizeof(__VertexXyzColorT1));
+        VBIdx += (m_pNumTex[TexIdx]*NUM_VERTEX_PARTICLE);
+        m_pNumTex[TexIdx] = 0;
+    }
 
-	//CN3Base::s_lpD3DDev->SetRenderState(D3DRS_ZWRITEENABLE, dwZWriteEnable);
+    //CN3Base::s_lpD3DDev->SetRenderState(D3DRS_ZWRITEENABLE, dwZWriteEnable);
 
-	CN3Base::s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSU, dwTAddrU );
-	CN3Base::s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSV, dwTAddrV );
+    CN3Base::s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSU, dwTAddrU );
+    CN3Base::s_lpD3DDev->SetSamplerState( 0, D3DSAMP_ADDRESSV, dwTAddrV );
 }
 */
 
@@ -1095,7 +1095,7 @@ void CN3FXPartParticles::CreateParticles_Gather() {
         __Matrix44 RotMtx;
 
         vDir.Set(m_uEmitCon.vGatherPoint.x, m_uEmitCon.vGatherPoint.y, m_uEmitCon.vGatherPoint.z);
-        //	vDir.Normalize();
+        //    vDir.Normalize();
 
         __Vector3 vDirPart, vDirEmit;
         __Vector3 v(0.0f, 0.0f, 1.0f);

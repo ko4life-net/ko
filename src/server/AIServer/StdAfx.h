@@ -33,7 +33,7 @@
 #include "packet.h" // packet 정의
 #include "global.h" // 전역 funtion
 #include "define.h" // define
-//#include "extern.h"			// 전역 객체
+//#include "extern.h"            // 전역 객체
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.

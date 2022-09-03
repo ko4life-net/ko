@@ -64,7 +64,7 @@ bool CPlayerOther::Init(e_Race eRace, int iFace, int iHair, DWORD * pdwItemIDs, 
                 ePart = PART_POS_LOWER;
                 szFN = pLooks->szPartFNs[1];
             }
-            //			else if(2 == i) { ePart = PART_POS_HAIR_HELMET; szFN = pLooks->szPartFNs[5]; }
+            //            else if(2 == i) { ePart = PART_POS_HAIR_HELMET; szFN = pLooks->szPartFNs[5]; }
             else if (3 == i) {
                 ePart = PART_POS_HANDS;
                 szFN = pLooks->szPartFNs[3];
@@ -73,8 +73,8 @@ bool CPlayerOther::Init(e_Race eRace, int iFace, int iHair, DWORD * pdwItemIDs, 
                 szFN = pLooks->szPartFNs[4];
             } else if (5 == i) {
             } // 망토
-              //			else if(6 == i) { ePlug = PLUG_POS_RIGHTHAND; }
-              //			else if(7 == i) { ePlug = PLUG_POS_LEFTHAND; }
+              //            else if(6 == i) { ePlug = PLUG_POS_RIGHTHAND; }
+              //            else if(7 == i) { ePlug = PLUG_POS_LEFTHAND; }
         } else {
             pItem = s_pTbl_Items_Basic->Find(pdwItemIDs[i] / 1000 * 1000); // 유저 플레이어 아이템 얻기..
             if (pItem && pItem->byExtIndex >= 0 && pItem->byExtIndex < MAX_ITEM_EXTENSION) {

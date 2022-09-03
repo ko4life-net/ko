@@ -19,7 +19,7 @@ class CMainFrame : public CFrameWnd {
     CN3SndMgr   m_SndMgr;
     CN3SndObj * m_pSndObj0;
     CN3SndObj * m_pSndObj1;
-    //	CDlgChrProperty m_DlgProperty;
+    //    CDlgChrProperty m_DlgProperty;
 
   public:
     CFormViewProperty *  GetPaneProperty();

@@ -47,7 +47,7 @@ class CPathFind {
     LONG       m_lMapUse;
     _PathNode *m_pOpen, *m_pClosed;
     STACK *    m_pStack;
-    //	int **m_pMap;
+    //    int **m_pMap;
     int * m_pMap;
     CSize m_vMapSize;
 

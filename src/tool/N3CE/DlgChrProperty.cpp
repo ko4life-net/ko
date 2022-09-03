@@ -59,8 +59,8 @@ BOOL CDlgChrProperty::OnInitDialog() {
     m_LPChr.AddPropItem("Joint File", "", PIT_FILE, "N3 Joint File(*.N3Joint)|*.N3Joint||");
     m_LPChr.AddPropItem("Collision Mesh File", "", PIT_FILE, "N3 Vector Mesh(*.N3VMesh)|*.N3VMesh||");
     m_LPChr.AddPropItem("Collision Mesh Delete", "Collision Mesh 삭제", PIT_BUTTON, "");
-    //	m_LPChr.AddPropItem("Collision Skin File", "", PIT_FILE, "N3 Skin File(*.N3Skin)|*.N3Skin||");
-    //	m_LPChr.AddPropItem("Collision Skin Delete", "Collision Skin 삭제", PIT_BUTTON, "");
+    //    m_LPChr.AddPropItem("Collision Skin File", "", PIT_FILE, "N3 Skin File(*.N3Skin)|*.N3Skin||");
+    //    m_LPChr.AddPropItem("Collision Skin Delete", "Collision Skin 삭제", PIT_BUTTON, "");
 
     m_LPChr.AddPropItem("Part Add", "Part 추가", PIT_BUTTON, "");
     m_LPChr.AddPropItem("Part Delete", "Part 삭제", PIT_BUTTON, "");
@@ -213,13 +213,13 @@ void CDlgChrProperty::UpdateInfo() {
         }
     }
 
-    //		pItem = m_LPChr.GetPropItem("Collision Skin File");
-    //		if(pItem)
-    //		{
-    //			CN3Skin* pSkin = pChr->CollisionSkin();
-    //			if(pSkin) pItem->m_curValue = pSkin->Name();
-    //			else pItem->m_curValue = "";
-    //		}
+    //        pItem = m_LPChr.GetPropItem("Collision Skin File");
+    //        if(pItem)
+    //        {
+    //            CN3Skin* pSkin = pChr->CollisionSkin();
+    //            if(pSkin) pItem->m_curValue = pSkin->Name();
+    //            else pItem->m_curValue = "";
+    //        }
 
     __Material * pMtl = NULL;
     if (nPart >= 0 && nPart < nPartCount) {
@@ -393,26 +393,26 @@ BOOL CDlgChrProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) 
             pChr->JointSet(tmp.Name());
             this->UpdateInfo();
         }
-        //			else if(pItem->m_propName == "Collision Mesh File" && pItem->m_curValue.GetLength() > 0)
-        //			{
-        //				pChr->CollisionMeshSet(pItem->m_curValue);
-        //				this->UpdateInfo();
-        //			}
-        //			else if(pItem->m_propName == "Collision Mesh Delete")
-        //			{
-        //				pChr->CollisionMeshSet("");
-        //				this->UpdateInfo();
-        //			}
-        //			else if(pItem->m_propName == "Collision Skin File" && pItem->m_curValue.GetLength() > 0)
-        //			{
-        //				pChr->CollisionSkinSet(pItem->m_curValue);
-        //				this->UpdateInfo();
-        //			}
-        //			else if(pItem->m_propName == "Collision Skin Delete")
-        //			{
-        //				pChr->CollisionSkinSet("");
-        //				this->UpdateInfo();
-        //			}
+        //            else if(pItem->m_propName == "Collision Mesh File" && pItem->m_curValue.GetLength() > 0)
+        //            {
+        //                pChr->CollisionMeshSet(pItem->m_curValue);
+        //                this->UpdateInfo();
+        //            }
+        //            else if(pItem->m_propName == "Collision Mesh Delete")
+        //            {
+        //                pChr->CollisionMeshSet("");
+        //                this->UpdateInfo();
+        //            }
+        //            else if(pItem->m_propName == "Collision Skin File" && pItem->m_curValue.GetLength() > 0)
+        //            {
+        //                pChr->CollisionSkinSet(pItem->m_curValue);
+        //                this->UpdateInfo();
+        //            }
+        //            else if(pItem->m_propName == "Collision Skin Delete")
+        //            {
+        //                pChr->CollisionSkinSet("");
+        //                this->UpdateInfo();
+        //            }
         else if (pItem->m_propName == "Part Add") {
             pChr->PartAdd();
             this->UpdateInfo();

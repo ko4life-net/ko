@@ -6,7 +6,7 @@ const int SOCKET_PORT_LOGIN = 15100; // 소켓이 붙을 포트 번호..
 #define N3_ACCOUNT_LOGIN       0xf3
 #define N3_ACCOUNT_LOGIN_MGAME 0xf4 // !!! LOGIN_REQ !!! 와 동일
 #define N3_GAMESERVER_GROUP_LIST                                                                                       \
-    0xf5 // Recv - b1(ServerCount) loop(	s1(IP길이), str1(IP문자열), s1(서버이름길이), str1(서버이름문자열), s1(서버접속인원) )
+    0xf5 // Recv - b1(ServerCount) loop(    s1(IP길이), str1(IP문자열), s1(서버이름길이), str1(서버이름문자열), s1(서버접속인원) )
 
 #define N3_GAME_SERVER_LOGIN          0x01 // Game server 에 Log in..
 #define N3_NEW_CHARACTER              0x02 // 캐릭터 새로 만들기..
@@ -69,7 +69,7 @@ enum e_SubPacket_Trade {
 #define N3_ITEM_DROPPED_GET 0x26 // 유저가 획득한 아이템에 대한 거..
 #define N3_ZONE_CHANGE      0x27 // 존체인지.. Recv - b1 존번호 f3 좌표 X, Z, Y | Recv
 #define N3_POINT_CHANGE                                                                                                \
-    0x28 // 레벨 체인지 -	 보낼때 b1(1힘 2체력 3민첩 4지능 5마력) s(-1 +1)  // 받을때 b1(1힘 2체력 3민첩 4지능 5매력) s(절대수치)
+    0x28 // 레벨 체인지 -     보낼때 b1(1힘 2체력 3민첩 4지능 5마력) s(-1 +1)  // 받을때 b1(1힘 2체력 3민첩 4지능 5매력) s(절대수치)
 #define N3_STATE_CHANGE                                                                                                \
     0x29 // 상태변화 Send - b2(Type, State) | Recv S1(ID) b2(Type, State) - // Type 1 앉기서기, 2 파티구함...
 enum e_SubPacket_State {
@@ -81,14 +81,14 @@ enum e_SubPacket_State {
 }; // 투명 0 ~ 255
 
 #define N3_VERSION_CHECK 0x2B // 버전 체크... s1 - Version
-//#define N3_CRYPTION_PUBLIC_KEY	0x2C	// 암호화 64 비트 공개키 Recv 64i
+//#define N3_CRYPTION_PUBLIC_KEY    0x2C    // 암호화 64 비트 공개키 Recv 64i
 #define N3_USER_LOOK_CHANGE 0x2D // 플레이어의 복장이나 무기가 바뀐다..
 #define N3_NOTICE           0x2E // 공지사항..
 
 #define N3_PARTY_OR_FORCE 0x2F // Party Or Force Packet... Send - b1(Party:1, Force:2)
 // Sub Packet
 enum e_SubPacket_Party {
-    N3_SP_PARTY_OR_FORCE_CREATE = 0x01, // Send - s1(ID)	| Recv b1(YesNoErr)
+    N3_SP_PARTY_OR_FORCE_CREATE = 0x01, // Send - s1(ID)    | Recv b1(YesNoErr)
     N3_SP_PARTY_OR_FORCE_PERMIT = 0x02, // Send - b1(YesNo) | Recv - s1(ID)
     N3_SP_PARTY_OR_FORCE_INSERT =
         0x03, // Send - s1(ID) | Recv - s3(ID, HPMax, HP) b2(Level, Class) - 문자열은 ID 로 알아낸다.. ID 가 -1 이면.. 파티에 들어오는것을 상대방이 거절한거다..
@@ -113,18 +113,18 @@ enum e_SubPacket_PerTrade {
     N3_SP_PER_TRADE_CANCEL = 0x08
 };
 
-//	마법효과 패킷 구조(모두 공통)
-//	(BYTE)	N3_MAGIC
-//	(BYTE)	N3_MAGIC_CASTING or flying or effecting or fail
-//	(DWORD)	Magic ID
-//	(short)	시전자 ID
-//	(short) 타겟ID
-//	(short) data1
-//	(short) data2
-//	(short) data3
-//	(short) data4
-//	(short) data5
-//	(short) data6
+//    마법효과 패킷 구조(모두 공통)
+//    (BYTE)    N3_MAGIC
+//    (BYTE)    N3_MAGIC_CASTING or flying or effecting or fail
+//    (DWORD)    Magic ID
+//    (short)    시전자 ID
+//    (short) 타겟ID
+//    (short) data1
+//    (short) data2
+//    (short) data3
+//    (short) data4
+//    (short) data5
+//    (short) data6
 #define N3_MAGIC 0x31 //마법효과..
 // Sub Packet
 enum e_SubPacket_Magic {
@@ -266,8 +266,8 @@ enum e_SubPacket_NoahChange {
     N3_SP_NOAH_SPEND = 0x03 // 노아 소비..
 };
 #define N3_WARP_LIST 0x4b // 워프 리스트 Recv -
-//#define	N3_SERVER_CHECK					0x4c	// 가상 임시 서버 체크... Recv - s1, str1(IP), s1(dwPort) | Send s1(Zone ID), s3(x*10,z*10,y*10)
-//#define	N3_SERVER_CONCURRENT_CONNECT	0x4d	// 동시접속자수...  Send - b1(국가) | Recv - s1(동접자수)
+//#define    N3_SERVER_CHECK                    0x4c    // 가상 임시 서버 체크... Recv - s1, str1(IP), s1(dwPort) | Send s1(Zone ID), s3(x*10,z*10,y*10)
+//#define    N3_SERVER_CONCURRENT_CONNECT    0x4d    // 동시접속자수...  Send - b1(국가) | Recv - s1(동접자수)
 #define N3_CORPSE_CHAR 0x4e // 캐릭터가 다시 regen을 하여 시체로 남긴다.
 #define N3_PARTY_BBS   0x4f // 파티 게시판에 등록하기
 enum e_Party_BBS {

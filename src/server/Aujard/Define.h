@@ -15,7 +15,7 @@
 #define PACKET_START2 0X55
 #define PACKET_END1   0X55
 #define PACKET_END2   0XAA
-//#define PROTOCOL_VER				0X01
+//#define PROTOCOL_VER                0X01
 
 // status
 #define STATE_CONNECTED    0X01
@@ -240,7 +240,7 @@ struct _USER_DATA {
     BYTE  m_bFace;      // 종교
     BYTE  m_bCity;      // 소속도시
     short m_bKnights;   // 소속 기사단
-    //short	m_sClan;						// 소속 Clan
+    //short    m_sClan;                        // 소속 Clan
     BYTE  m_bFame;      // 명성
     short m_sHp;        // HP
     short m_sMp;        // MP
@@ -258,7 +258,7 @@ struct _USER_DATA {
 
     BYTE       m_bstrSkill[9];                    // 직업별 스킬
     _ITEM_DATA m_sItemArray[HAVE_MAX + SLOT_MAX]; // 42*8 bytes
-    _ITEM_DATA m_sWarehouseArray[WAREHOUSE_MAX];  // 창고 아이템	196*8 bytes
+    _ITEM_DATA m_sWarehouseArray[WAREHOUSE_MAX];  // 창고 아이템    196*8 bytes
 
     BYTE  m_bLogout;    // 로그아웃 플래그
     BYTE  m_bWarehouse; // 창고 거래 했었나?
@@ -268,7 +268,7 @@ struct _USER_DATA {
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 //
-//	Global Function Define
+//    Global Function Define
 //
 
 inline void GetString(char * tBuf, char * sBuf, int len, int & index) {

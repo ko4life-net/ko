@@ -56,7 +56,7 @@ void CPlayerNPC::Tick() {
         {
             vPos.x = m_vPosFromServer.x; // 위치를 고정해주고..
             vPos.z = m_vPosFromServer.z; // 위치를 고정해주고..
-                                         //			m_fMoveSpeedPerSec = 0; // 움직이는 속도를 0으로!
+                                         //            m_fMoveSpeedPerSec = 0; // 움직이는 속도를 0으로!
             this->ActionMove(PSM_STOP);  // 움직이는 모션 처리..
         } else {
             float fYaw =
@@ -127,6 +127,6 @@ void CPlayerNPC::MoveTo(float fPosX, float fPosY, float fPosZ, float fSpeed, int
             m_fMoveSpeedPerSec *= -1.0f; // 뒤로 간다..
         }
     } else {
-        //		__ASSERT(0, "Invalid Move Mode");
+        //        __ASSERT(0, "Invalid Move Mode");
     }
 }

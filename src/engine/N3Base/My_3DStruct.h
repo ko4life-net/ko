@@ -608,25 +608,25 @@ inline __Matrix44 __Matrix44::operator*(const D3DXMATRIX & mtx) {
     // dino 막음.. 아래 코드는 4번째 행들의 계산을 생략하여서 부정확한 계산을 한다.
     // 보통 4번째 행이 (0, 0, 0, 1)인 matrix를 쓰지만 projection matrix의 경우
     // (0, 0, 1, 0)인 matrix를 쓰므로 이상한 결과를 초래한다.
-    //	mtxTmp._11 = _11 * mtx._11 + _12 * mtx._21 + _13 * mtx._31;
-    //	mtxTmp._12 = _11 * mtx._12 + _12 * mtx._22 + _13 * mtx._32;
-    //	mtxTmp._13 = _11 * mtx._13 + _12 * mtx._23 + _13 * mtx._33;
-    //	mtxTmp._14 = 0;
+    // mtxTmp._11 = _11 * mtx._11 + _12 * mtx._21 + _13 * mtx._31;
+    // mtxTmp._12 = _11 * mtx._12 + _12 * mtx._22 + _13 * mtx._32;
+    // mtxTmp._13 = _11 * mtx._13 + _12 * mtx._23 + _13 * mtx._33;
+    // mtxTmp._14 = 0;
 
-    //	mtxTmp._21 = _21 * mtx._11 + _22 * mtx._21 + _23 * mtx._31;
-    //	mtxTmp._22 = _21 * mtx._12 + _22 * mtx._22 + _23 * mtx._32;
-    //	mtxTmp._23 = _21 * mtx._13 + _22 * mtx._23 + _23 * mtx._33;
-    //	mtxTmp._24 = 0;
+    // mtxTmp._21 = _21 * mtx._11 + _22 * mtx._21 + _23 * mtx._31;
+    // mtxTmp._22 = _21 * mtx._12 + _22 * mtx._22 + _23 * mtx._32;
+    // mtxTmp._23 = _21 * mtx._13 + _22 * mtx._23 + _23 * mtx._33;
+    // mtxTmp._24 = 0;
 
-    //	mtxTmp._31 = _31 * mtx._11 + _32 * mtx._21 + _33 * mtx._31;
-    //	mtxTmp._32 = _31 * mtx._12 + _32 * mtx._22 + _33 * mtx._32;
-    //	mtxTmp._33 = _31 * mtx._13 + _32 * mtx._23 + _33 * mtx._33;
-    //	mtxTmp._34 = 0;
+    // mtxTmp._31 = _31 * mtx._11 + _32 * mtx._21 + _33 * mtx._31;
+    // mtxTmp._32 = _31 * mtx._12 + _32 * mtx._22 + _33 * mtx._32;
+    // mtxTmp._33 = _31 * mtx._13 + _32 * mtx._23 + _33 * mtx._33;
+    // mtxTmp._34 = 0;
 
-    //	mtxTmp._41 = _41 * mtx._11 + _42 * mtx._21 + _43 * mtx._31 + mtx._41;
-    //	mtxTmp._42 = _41 * mtx._12 + _42 * mtx._22 + _43 * mtx._32 + mtx._42;
-    //	mtxTmp._43 = _41 * mtx._13 + _42 * mtx._23 + _43 * mtx._33 + mtx._43;
-    //	mtxTmp._44 = 1.0f;
+    // mtxTmp._41 = _41 * mtx._11 + _42 * mtx._21 + _43 * mtx._31 + mtx._41;
+    // mtxTmp._42 = _41 * mtx._12 + _42 * mtx._22 + _43 * mtx._32 + mtx._42;
+    // mtxTmp._43 = _41 * mtx._13 + _42 * mtx._23 + _43 * mtx._33 + mtx._43;
+    // mtxTmp._44 = 1.0f;
 
     return mtxTmp;
 }
@@ -659,25 +659,25 @@ inline void __Matrix44::operator*=(const D3DXMATRIX & mtx) {
     // dino 막음.. 아래 코드는 4번째 행들의 계산을 생략하여서 부정확한 계산을 한다.
     // 보통 4번째 행이 (0, 0, 0, 1)인 matrix를 쓰지만 projection matrix의 경우
     // (0, 0, 1, 0)인 matrix를 쓰므로 이상한 결과를 초래한다.
-    //	_11 = mtxTmp._11 * mtx._11 + mtxTmp._12 * mtx._21 + mtxTmp._13 * mtx._31;
-    //	_12 = mtxTmp._11 * mtx._12 + mtxTmp._12 * mtx._22 + mtxTmp._13 * mtx._32;
-    //	_13 = mtxTmp._11 * mtx._13 + mtxTmp._12 * mtx._23 + mtxTmp._13 * mtx._33;
-    //	_14 = 0;
+    // _11 = mtxTmp._11 * mtx._11 + mtxTmp._12 * mtx._21 + mtxTmp._13 * mtx._31;
+    // _12 = mtxTmp._11 * mtx._12 + mtxTmp._12 * mtx._22 + mtxTmp._13 * mtx._32;
+    // _13 = mtxTmp._11 * mtx._13 + mtxTmp._12 * mtx._23 + mtxTmp._13 * mtx._33;
+    // _14 = 0;
 
-    //	_21 = mtxTmp._21 * mtx._11 + mtxTmp._22 * mtx._21 + mtxTmp._23 * mtx._31 + mtxTmp._24 * mtx._41;
-    //	_22 = mtxTmp._21 * mtx._12 + mtxTmp._22 * mtx._22 + mtxTmp._23 * mtx._32 + mtxTmp._24 * mtx._42;
-    //	_23 = mtxTmp._21 * mtx._13 + mtxTmp._22 * mtx._23 + mtxTmp._23 * mtx._33 + mtxTmp._24 * mtx._43;
-    //	_24 = 0;
+    // _21 = mtxTmp._21 * mtx._11 + mtxTmp._22 * mtx._21 + mtxTmp._23 * mtx._31 + mtxTmp._24 * mtx._41;
+    // _22 = mtxTmp._21 * mtx._12 + mtxTmp._22 * mtx._22 + mtxTmp._23 * mtx._32 + mtxTmp._24 * mtx._42;
+    // _23 = mtxTmp._21 * mtx._13 + mtxTmp._22 * mtx._23 + mtxTmp._23 * mtx._33 + mtxTmp._24 * mtx._43;
+    // _24 = 0;
 
-    //	_31 = mtxTmp._31 * mtx._11 + mtxTmp._32 * mtx._21 + mtxTmp._33 * mtx._31 + mtxTmp._34 * mtx._41;
-    //	_32 = mtxTmp._31 * mtx._12 + mtxTmp._32 * mtx._22 + mtxTmp._33 * mtx._32 + mtxTmp._34 * mtx._42;
-    //	_33 = mtxTmp._31 * mtx._13 + mtxTmp._32 * mtx._23 + mtxTmp._33 * mtx._33 + mtxTmp._34 * mtx._43;
-    //	_34 = 0;
+    // _31 = mtxTmp._31 * mtx._11 + mtxTmp._32 * mtx._21 + mtxTmp._33 * mtx._31 + mtxTmp._34 * mtx._41;
+    // _32 = mtxTmp._31 * mtx._12 + mtxTmp._32 * mtx._22 + mtxTmp._33 * mtx._32 + mtxTmp._34 * mtx._42;
+    // _33 = mtxTmp._31 * mtx._13 + mtxTmp._32 * mtx._23 + mtxTmp._33 * mtx._33 + mtxTmp._34 * mtx._43;
+    // _34 = 0;
 
-    //	_41 = mtxTmp._41 * mtx._11 + mtxTmp._42 * mtx._21 + mtxTmp._43 * mtx._31 + mtx._41;
-    //	_42 = mtxTmp._41 * mtx._12 + mtxTmp._42 * mtx._22 + mtxTmp._43 * mtx._32 + mtx._42;
-    //	_43 = mtxTmp._41 * mtx._13 + mtxTmp._42 * mtx._23 + mtxTmp._43 * mtx._33 + mtx._43;
-    //	_44 = 1;
+    // _41 = mtxTmp._41 * mtx._11 + mtxTmp._42 * mtx._21 + mtxTmp._43 * mtx._31 + mtx._41;
+    // _42 = mtxTmp._41 * mtx._12 + mtxTmp._42 * mtx._22 + mtxTmp._43 * mtx._32 + mtx._42;
+    // _43 = mtxTmp._41 * mtx._13 + mtxTmp._42 * mtx._23 + mtxTmp._43 * mtx._33 + mtx._43;
+    // _44 = 1;
 }
 
 inline void __Matrix44::operator+=(const D3DXVECTOR3 & v) {
@@ -734,14 +734,14 @@ inline void __Matrix44::Direction(const D3DXVECTOR3 & vDir) {
 
     D3DXMatrixInverse(this, NULL, this);
 
-    //  view(3, 0) = -DotProduct(right, from);
-    //  view(3, 1) = -DotProduct(up, from);
-    //  view(3, 2) = -DotProduct(view_dir, from);
+    // view(3, 0) = -DotProduct(right, from);
+    // view(3, 1) = -DotProduct(up, from);
+    // view(3, 2) = -DotProduct(view_dir, from);
 
     // Set roll
-    //	if (roll != 0.0f) {
-    //		view = MatrixMult(RotateZMatrix(-roll), view);
-    //	}
+    // if (roll != 0.0f) {
+    //     view = MatrixMult(RotateZMatrix(-roll), view);
+    // }
 
     //  return view;
     //} // end ViewMatrix
@@ -1541,7 +1541,7 @@ inline bool _IntersectTriangle(const __Vector3 & vOrig, const __Vector3 & vDir, 
     __Vector3 pVec;
     float     fDet;
 
-    //	By : Ecli666 ( On 2001-09-12 오전 10:39:01 )
+    // By : Ecli666 ( On 2001-09-12 오전 10:39:01 )
 
     pVec.Cross(vEdge1, vEdge2);
     fDet = pVec.Dot(vDir);
@@ -1549,7 +1549,7 @@ inline bool _IntersectTriangle(const __Vector3 & vOrig, const __Vector3 & vDir, 
         return FALSE;
     }
 
-    //	~(By Ecli666 On 2001-09-12 오전 10:39:01 )
+    // ~(By Ecli666 On 2001-09-12 오전 10:39:01 )
 
     pVec.Cross(vDir, vEdge2);
 
@@ -1613,7 +1613,7 @@ inline bool _IntersectTriangle(const __Vector3 & vOrig, const __Vector3 & vDir, 
     vEdge1 = v1 - v0;
     vEdge2 = v2 - v0;
 
-    //	By : Ecli666 ( On 2001-09-12 오전 10:39:01 )
+    // By : Ecli666 ( On 2001-09-12 오전 10:39:01 )
 
     pVec.Cross(vEdge1, vEdge2);
     fDet = pVec.Dot(vDir);
@@ -1621,7 +1621,7 @@ inline bool _IntersectTriangle(const __Vector3 & vOrig, const __Vector3 & vDir, 
         return FALSE;
     }
 
-    //	~(By Ecli666 On 2001-09-12 오전 10:39:01 )
+    // ~(By Ecli666 On 2001-09-12 오전 10:39:01 )
 
     pVec.Cross(vDir, vEdge2);
 

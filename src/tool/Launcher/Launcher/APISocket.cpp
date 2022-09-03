@@ -118,7 +118,7 @@ BOOL CAPISocket::Connect(HWND hWnd, const char * pszIP, DWORD port) {
         return FALSE;
     }
 
-    //	WSAAsyncSelect(m_hSocket, hWnd, WM_SOCKETMSG, FD_CONNECT | FD_ACCEPT | FD_READ | FD_CLOSE);
+    //    WSAAsyncSelect(m_hSocket, hWnd, WM_SOCKETMSG, FD_CONNECT | FD_ACCEPT | FD_READ | FD_CLOSE);
     WSAAsyncSelect(m_hSocket, hWnd, WM_SOCKETMSG, FD_CONNECT | FD_READ | FD_CLOSE);
 
     m_hWndTarget = hWnd;
@@ -189,14 +189,14 @@ void CAPISocket::Send(BYTE * pData, int nSize) {
 
     // UZDream 패킷 형식에 맞춰주는 부분. STX, ETX, size만 붙여준다. 따라서 나머지 부분은 패킷만들때 붙여서 넣어줘야 함.
     // 불합리하지만 이전의 패킷 형식에 맞추기 위해선...
-    //	int nTotalSize = nSize+10;
-    //	BYTE *pSndData = m_RecvBuf;
-    //	*((WORD*)pSndData) = STX;			pSndData+=2;
-    //	*((WORD*)pSndData) = nTotalSize;	pSndData+=2;
-    //	*((WORD*)pSndData) = 0x0000;		pSndData+=2;
-    //	*((WORD*)pSndData) = 0x0000;		pSndData+=2;
-    //	memcpy(pSndData, pData, nSize);		pSndData += nSize;
-    //	*((WORD*)pSndData) = ETX;			pSndData+=2;
+    //    int nTotalSize = nSize+10;
+    //    BYTE *pSndData = m_RecvBuf;
+    //    *((WORD*)pSndData) = STX;            pSndData+=2;
+    //    *((WORD*)pSndData) = nTotalSize;    pSndData+=2;
+    //    *((WORD*)pSndData) = 0x0000;        pSndData+=2;
+    //    *((WORD*)pSndData) = 0x0000;        pSndData+=2;
+    //    memcpy(pSndData, pData, nSize);        pSndData += nSize;
+    //    *((WORD*)pSndData) = ETX;            pSndData+=2;
 
     int    nTotalSize = nSize + 6;
     BYTE * pSendData = m_RecvBuf;
@@ -214,9 +214,9 @@ void CAPISocket::Send(BYTE * pData, int nSize) {
     while (nSent < nTotalSize) {
         count = send(m_hSocket, (char *)m_RecvBuf, nTotalSize, 0);
         if (count == SOCKET_ERROR) {
-            //			__ASSERT(0,"socket send error!");
-            //			DWORD dwErr = GetLastError();
-            //			TRACE("%d\n", dwErr);
+            //            __ASSERT(0,"socket send error!");
+            //            DWORD dwErr = GetLastError();
+            //            TRACE("%d\n", dwErr);
             break;
         }
         if (count) {

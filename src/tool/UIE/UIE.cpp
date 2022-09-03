@@ -63,7 +63,7 @@ BOOL CUIEApp::InitInstance() {
     // Change the registry key under which our settings are stored.
     // TODO: You should modify this string to be something appropriate
     // such as the name of your company or organization.
-    //	SetRegistryKey(_T("Local AppWizard-Generated Applications"));
+    //    SetRegistryKey(_T("Local AppWizard-Generated Applications"));
     SetRegistryKey(_T("NoahSystem"));
 
     LoadStdProfileSettings(); // Load standard INI file options (including MRU)
@@ -172,9 +172,9 @@ BOOL SelectTexture(char * pszBuff) {
     }
     lstrcpy(pszBuff, dlg.GetPathName());
 
-    //	CN3BaseFileAccess tmpBase;
-    //	tmpBase.FileNameSet(pszBuff);	// Base경로에 대해서 상대적 경로를 넘겨준다.
-    //	const std::string strFN(tmpBase.FileName());
-    //	strcpy(pszBuff, strFN.c_str());
+    //    CN3BaseFileAccess tmpBase;
+    //    tmpBase.FileNameSet(pszBuff);    // Base경로에 대해서 상대적 경로를 넘겨준다.
+    //    const std::string strFN(tmpBase.FileName());
+    //    strcpy(pszBuff, strFN.c_str());
     return TRUE;
 }

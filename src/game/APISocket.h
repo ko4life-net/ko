@@ -164,8 +164,8 @@ class DataPack {
 #ifdef _CRYPTION
   protected:
     static BOOL s_bCryptionFlag; //0 : 비암호화 , 1 : 암호화
-                                 //	static _int64		s_PublicKey;
-                                 //	static _int64		s_PrivateKey;				// = 0x1234567890123456;
+                                 //    static _int64        s_PublicKey;
+                                 //    static _int64        s_PrivateKey;                // = 0x1234567890123456;
     static CJvCryption s_JvCrypt;
     static WORD        s_wSendVal;
     static WORD        s_wRcvVal;
@@ -227,8 +227,8 @@ class CAPISocket {
 #ifdef _DEBUG
     __SocketStatisics m_Statistics_Send_Sum[255];
     __SocketStatisics m_Statistics_Recv_Sum[255];
-//	std::vector<__SocketStatisics> m_Statistics_Send[255];
-//	std::vector<__SocketStatisics> m_Statistics_Recv[255];
+//    std::vector<__SocketStatisics> m_Statistics_Send[255];
+//    std::vector<__SocketStatisics> m_Statistics_Recv[255];
 #endif
 
   public:

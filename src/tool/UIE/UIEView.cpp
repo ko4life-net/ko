@@ -239,7 +239,7 @@ BOOL CUIEView::OnEraseBkgnd(CDC * pDC) {
 
     pEng->s_lpD3DDev->BeginScene();
 
-    //	그리기...
+    //    그리기...
     switch (m_eMode) {
     case UIEMODE_PREVIEW:
         RenderPreview();

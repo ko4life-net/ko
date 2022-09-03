@@ -7,7 +7,7 @@
 #include "N3UIStatic.h"
 
 class CN3UIEdit : public CN3UIStatic {
-    //	friend class CN3IME;
+    //    friend class CN3IME;
   public:
     CN3UIEdit();
     virtual ~CN3UIEdit();
@@ -28,21 +28,21 @@ class CN3UIEdit : public CN3UIStatic {
         int   m_iSize;            // caret의 pixel 크기
         float m_fFlickerTimePrev; // 깜박이기 위한 시간..
         bool  m_bFlickerStatus;
-        //		POINT	m_ptPos;				// caret의 pixel 좌표
+        //        POINT    m_ptPos;                // caret의 pixel 좌표
         __VertexTransformedColor m_pVB[2]; // vertex 버퍼
     };
 
     // Attributes
   public:
     /*
-	static bool		AddEdit(CN3UIEdit* pEdit);
-	static bool		DeleteEdit(CN3UIEdit* pEdit);
-	static CN3UIEdit* GetEdit(HWND hWnd);
-	static HWND		s_hWndParent;
+    static bool        AddEdit(CN3UIEdit* pEdit);
+    static bool        DeleteEdit(CN3UIEdit* pEdit);
+    static CN3UIEdit* GetEdit(HWND hWnd);
+    static HWND        s_hWndParent;
 
-	LRESULT APIENTRY EditWndProcFuncPointer(HWND hWnd, WORD Message, WPARAM wParam, LPARAM lParam);
-	static LRESULT	APIENTRY EditWndProc(HWND hWnd, WORD Message, WPARAM wParam, LPARAM lParam);
-	static			void SetParentWindowHwnd(HWND hWnd) { s_hWndParent = hWnd; }
+    LRESULT APIENTRY EditWndProcFuncPointer(HWND hWnd, WORD Message, WPARAM wParam, LPARAM lParam);
+    static LRESULT    APIENTRY EditWndProc(HWND hWnd, WORD Message, WPARAM wParam, LPARAM lParam);
+    static            void SetParentWindowHwnd(HWND hWnd) { s_hWndParent = hWnd; }
 */
     static HWND    s_hWndEdit, s_hWndParent;
     static WNDPROC s_lpfnEditProc;

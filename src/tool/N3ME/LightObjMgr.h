@@ -45,18 +45,18 @@ class CLightObjMgr : public CN3BaseFileAccess {
 
   public:
     /*
-	void DelInfo(WARPINFO* pInfo);
-	WARPINFO* GetInfoByName(char* pName);
-	void AddInfo(WARPINFO* pInfo) { m_ListWarpInfo.push_back(pInfo); }
-	void AddWall2Coll(CN3ShapeMgr* pShapeMgr);
-	void SetFocus(CWall* pWall);
-	void SetCurrWall(CWall* pWall);
-	void DelWall(CWall* pWall);
-	int	 GetSize() { return m_pWalls.size(); }
-	CWall*	GetpWall(int idx);
-		
-	void UpdateWall();
-	*/
+    void DelInfo(WARPINFO* pInfo);
+    WARPINFO* GetInfoByName(char* pName);
+    void AddInfo(WARPINFO* pInfo) { m_ListWarpInfo.push_back(pInfo); }
+    void AddWall2Coll(CN3ShapeMgr* pShapeMgr);
+    void SetFocus(CWall* pWall);
+    void SetCurrWall(CWall* pWall);
+    void DelWall(CWall* pWall);
+    int     GetSize() { return m_pWalls.size(); }
+    CWall*    GetpWall(int idx);
+        
+    void UpdateWall();
+    */
     bool MakeGameFile(char * szFN);
     void ChangeSelLights();
     void RefreshCurrLights(float fRange, float fAtten, D3DCOLORVALUE crLgt);

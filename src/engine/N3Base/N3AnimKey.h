@@ -24,7 +24,7 @@ class CN3AnimKey : CN3Base {
   public:
     ANIMATION_KEY_TYPE Type() { return m_eType; } // 키 형태, 벡터워 쿼터니언 형태가 있다..
     void               Add(CN3AnimKey & AKSrc, int nIndexS, int nIndexE);
-    //	void	Translate(int nIndexStart, int nIndexEnd, float fDelta, int nKFlags);
+    //    void    Translate(int nIndexStart, int nIndexEnd, float fDelta, int nKFlags);
     bool DataGet(float fFrm, __Vector3 & v) {
         if (KEY_VECTOR3 != m_eType) {
             return false;

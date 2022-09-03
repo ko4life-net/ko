@@ -92,7 +92,7 @@ void CUIImageTooltipDlg::SetPosSomething(int xpos, int ypos, int iNum) {
 
     iWidth += 22;
 
-    //	int iWidth	= m_rcRegion.right-m_rcRegion.left;
+    //    int iWidth    = m_rcRegion.right-m_rcRegion.left;
     int iHeight =
         (m_pStr[iNum - 1]->GetRegion().bottom - m_pStr[0]->GetRegion().top) + 14; // 2는 string간의 간격의 절반..
 
@@ -980,7 +980,7 @@ int CUIImageTooltipDlg::CalcTooltipStringNumAndWrite(__IconItemSkill * spItem, b
         }
     }
 
-    return iIndex; // 임시..	반드시 1보다 크다..
+    return iIndex; // 임시..    반드시 1보다 크다..
 }
 
 void CUIImageTooltipDlg::DisplayTooltipsEnable(int xpos, int ypos, __IconItemSkill * spItem, bool bPrice, bool bBuy) {

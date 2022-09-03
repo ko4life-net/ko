@@ -112,15 +112,15 @@ bool CN3AnimKey::Save(HANDLE hFile) {
 /*
 void CN3AnimKey::Translate(int nIndexStart, int nIndexEnd, float fDelta, int nKFlags)
 {
-	if(nIndexStart < 0 || nIndexStart >= m_nCount) return;
-	if(nIndexEnd < 0 || nIndexEnd >= m_nCount) return;
+    if(nIndexStart < 0 || nIndexStart >= m_nCount) return;
+    if(nIndexEnd < 0 || nIndexEnd >= m_nCount) return;
 
-	for(int i = nIndexStart; i <= nIndexEnd; i++)
-	{
-		if(nKFlags & 1) m_pDatas[i].x += fDelta;
-		if(nKFlags & 2) m_pDatas[i].y += fDelta;
-		if(nKFlags & 4) m_pDatas[i].z += fDelta;
-	}
+    for(int i = nIndexStart; i <= nIndexEnd; i++)
+    {
+        if(nKFlags & 1) m_pDatas[i].x += fDelta;
+        if(nKFlags & 2) m_pDatas[i].y += fDelta;
+        if(nKFlags & 4) m_pDatas[i].z += fDelta;
+    }
 }
 */
 #ifdef _N3TOOL

@@ -35,11 +35,11 @@ CN3FXParticle::CN3FXParticle() {
 
     m_pVB = NULL;
     /*
-	m_pVB = new __VertexXyzColorT1[NUM_VERTEX_PARTICLE];
-	m_pVB[0].Set(0,0,0,0xffffffff, 0.0f, -1.0f);
-	m_pVB[1].Set(0,0,0,0xffffffff, 2.0f, 1.0f);
-	m_pVB[2].Set(0,0,0,0xffffffff, 0.0f, 1.0f);	
-	*/
+    m_pVB = new __VertexXyzColorT1[NUM_VERTEX_PARTICLE];
+    m_pVB[0].Set(0,0,0,0xffffffff, 0.0f, -1.0f);
+    m_pVB[1].Set(0,0,0,0xffffffff, 2.0f, 1.0f);
+    m_pVB[2].Set(0,0,0,0xffffffff, 0.0f, 1.0f);    
+    */
 }
 
 CN3FXParticle::~CN3FXParticle() {

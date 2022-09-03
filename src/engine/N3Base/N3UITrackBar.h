@@ -34,7 +34,7 @@ class CN3UITrackBar : public CN3UIBase {
     virtual bool  Load(HANDLE hFile);
     virtual void  SetRegion(const RECT & Rect);
     virtual DWORD MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & ptOld);
-    //	virtual void	Render();
+    //    virtual void    Render();
 
     void SetRange(int iMin, int iMax);
     void SetRangeMax(int iMax) { SetRange(m_iMinPos, iMax); }

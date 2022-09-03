@@ -9,7 +9,7 @@
 #include <list>
 #include "GrassBoard.h"
 
-#define GRASS_MAX     11 //	(40/4(TILE_SIZE)) + 1
+#define GRASS_MAX     11 //    (40/4(TILE_SIZE)) + 1
 #define GRASS_TILENUM 11
 #define GRASS_MAKENEW 1
 #define GRASS_MAKEUSE 2
@@ -20,18 +20,18 @@ class CN3Terrain;
 //typedef typename std::list<class CGrassBoard*>::iterator it_GrassBoard;
 class CGrassMng : public CGameBase {
   protected:
-    //	std::list<class CGrassBoard*>	m_Grasses;
-    CGrassBoard m_pGrasses[GRASS_TILENUM][GRASS_TILENUM]; //	풀 뿌려지는 영역
-                                                          //	__Vector3		m_pCount[GRASS_MAX];
-    float m_fChkRange[4];                                 //	카메라와의 위치검색용
+    //    std::list<class CGrassBoard*>    m_Grasses;
+    CGrassBoard m_pGrasses[GRASS_TILENUM][GRASS_TILENUM]; //    풀 뿌려지는 영역
+                                                          //    __Vector3        m_pCount[GRASS_MAX];
+    float m_fChkRange[4];                                 //    카메라와의 위치검색용
 
-    //	__Vector3		m_vCamPo;
+    //    __Vector3        m_vCamPo;
     bool           m_bChkZoneChange;
     unsigned short m_usDrawIndex;
 
     CN3Texture * m_txTexture[8];
 #ifdef _DEBUG
-    char m_strFileName[8][_MAX_PATH]; //	나중에 디버거를 위해 그림의 이름을 백업 받는다
+    char m_strFileName[8][_MAX_PATH]; //    나중에 디버거를 위해 그림의 이름을 백업 받는다
 #endif
     int m_iFileMaxNum;
 
@@ -45,7 +45,7 @@ class CGrassMng : public CGameBase {
     void FindGrassIndex(const unsigned char uCGrassMngOrder, int * pnInputGrass, unsigned char * GrassIndex,
                         int & nGrassTotNum);
 
-    void ChkTileRange(float fCamX, float fCamZ); //	타일간움직임 채크,tick
+    void ChkTileRange(float fCamX, float fCamZ); //    타일간움직임 채크,tick
     void FineNewTile(WORD * Tile, int & iCount, float * ChkRange, float * LargeRange);
 
   public:
@@ -56,7 +56,7 @@ class CGrassMng : public CGameBase {
 
     bool ChangeZone();
 
-    bool IsInRect(float fPoX, float fPoY, float * fRange); //	영역내에 있는지 확인
+    bool IsInRect(float fPoX, float fPoY, float * fRange); //    영역내에 있는지 확인
   public:
     CGrassMng();
     virtual ~CGrassMng();

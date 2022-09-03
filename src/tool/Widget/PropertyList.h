@@ -104,12 +104,12 @@ class CPropertyList : public CListBox {
 
     void InvertLine(CDC * pDC, CPoint ptFrom, CPoint ptTo);
     void DisplayPushButton(CRect region);
-    //	void DisplayCheckButton(CRect region);
+    //    void DisplayCheckButton(CRect region);
 
     CComboBox m_ComboBox;
     CEdit     m_EditBox;
     CButton   m_ButtonPush;
-    //	CButton m_ButtonCheck;
+    //    CButton m_ButtonCheck;
     CFont m_SSerif8Font;
 
     int     m_curSel, m_prevSel;

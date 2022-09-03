@@ -23,11 +23,11 @@ static char THIS_FILE[] = __FILE__;
 CKnights::CKnights() {
     //m_pMain = NULL;
 
-    /*	CString strConnect;
-	strConnect.Format (_T("ODBC;DSN=%s;UID=%s;PWD=%s"), "kodb", "kodb_user", "kodb_user");
-	m_KnightsDB.SetLoginTimeout (10);
-	if( !m_KnightsDB.Open(NULL,FALSE,FALSE,strConnect) )
-		AfxMessageBox("KnightsDB Connection Fail...");	*/
+    /*    CString strConnect;
+    strConnect.Format (_T("ODBC;DSN=%s;UID=%s;PWD=%s"), "kodb", "kodb_user", "kodb_user");
+    m_KnightsDB.SetLoginTimeout (10);
+    if( !m_KnightsDB.Open(NULL,FALSE,FALSE,strConnect) )
+        AfxMessageBox("KnightsDB Connection Fail...");    */
 }
 
 CKnights::~CKnights() {}
@@ -43,7 +43,7 @@ void CKnights::InitializeValue() {
     memset(m_strChief, 0x00, MAX_ID_SIZE + 1);
     memset(m_strViceChief_1, 0x00, MAX_ID_SIZE + 1); // 부단장 1
     memset(m_strViceChief_2, 0x00, MAX_ID_SIZE + 1); // 부단장 2 (기사단에서는 장교)
-    memset(m_strViceChief_3, 0x00, MAX_ID_SIZE + 1); // 부단장 3	(기사단에서는 사용하지 않음)
+    memset(m_strViceChief_3, 0x00, MAX_ID_SIZE + 1); // 부단장 3    (기사단에서는 사용하지 않음)
     memset(m_Image, 0x00, MAX_KNIGHTS_MARK);
     m_nMoney = 0;
     m_sDomination = 0;

@@ -20,8 +20,8 @@ class CViewSceneTree : public CTreeView {
     CN3ViewerDoc * GetDocument();
     void           UpdateTreeItem(HTREEITEM hParent, CN3Base * pBase);
     void           SelectObject(HTREEITEM hItem, void * pItemData);
-    //	void SelectTree(HTREEITEM hParent, int nDepth, int nSeq);
-    //	void GetSeq(HTREEITEM hParent, HTREEITEM hItem, int& nDepth, int *nSeq);
+    //    void SelectTree(HTREEITEM hParent, int nDepth, int nSeq);
+    //    void GetSeq(HTREEITEM hParent, HTREEITEM hItem, int& nDepth, int *nSeq);
 
     void ExpandTree(HTREEITEM hItem);
     void UpdateAllInfo();

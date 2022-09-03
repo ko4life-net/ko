@@ -178,7 +178,7 @@ void CSubProcPerTrade::EnterWaitMyDecisionToPerTrade(int iOtherID) // 내가 타인�
 ///////////////////////////////////////////////////////////////////////
 
 void CSubProcPerTrade::SecureCodeBegin() {
-    // 1.상거래 중이면 개인 거래 신청이 않된다.. -> 해당 부분..	ok
+    // 1.상거래 중이면 개인 거래 신청이 않된다.. -> 해당 부분..    ok
     // 2.상거래 중에 개인 거래 신청을 받으면 거절.. -> 해당 부분.. ok
 
     // 3.유저가 움직이고 있는 중이면 멈춘다..
@@ -197,7 +197,7 @@ void CSubProcPerTrade::SecureCodeBegin() {
         CGameProcedure::s_pProcMain->m_pUIDroppedItemDlg->LeaveDroppedState();
     }
 
-    // 5.인풋을 막는다..	-> 해당 부분..	ok	(키입력과 메시지..)
+    // 5.인풋을 막는다..    -> 해당 부분..    ok    (키입력과 메시지..)
 
     // 6.거래창의 편집 Control의 값을 Clear..
     CN3UIString * pStrMy = (CN3UIString *)m_pUIPerTradeDlg->GetChildByID("string_money_my");
@@ -431,10 +431,10 @@ void CSubProcPerTrade::LeavePerTradeState(e_PerTradeResultCode ePTRC) // 아이템 
         // 메시지 박스 텍스트 표시..
         ::_LoadStringFromResource(IDS_OTHER_PER_TRADE_ID_NO, szMsg);
         CGameProcedure::s_pProcMain->MsgOutput(szMsg, 0xffff3b3b);
-        //			::_LoadStringFromResource(IDS_OTHER_PER_TRADE_NO, szMsg);
-        //			sprintf(szBuf, szMsg.c_str(),
-        //				(s_pOPMgr->UPCGetByID(s_pPlayer->m_iIDTarget, false))->IDString().c_str());
-        //			CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xffff3b3b);
+        //            ::_LoadStringFromResource(IDS_OTHER_PER_TRADE_NO, szMsg);
+        //            sprintf(szBuf, szMsg.c_str(),
+        //                (s_pOPMgr->UPCGetByID(s_pPlayer->m_iIDTarget, false))->IDString().c_str());
+        //            CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xffff3b3b);
         // 뒷 마무리..
         FinalizePerTrade();
         break;
@@ -622,9 +622,9 @@ void CSubProcPerTrade::SecureJobStuffByMyDecision() {
     // 1. 인벤토리 영역 Icon 움직임 방지..
     PerTradeCoreInvDisable();
 
-    // 2. 돈 입력창 클릭 방지..		해당 부분..
+    // 2. 돈 입력창 클릭 방지..        해당 부분..
 
-    // 3. 올려놓는 버튼 금지..		해당 부분..
+    // 3. 올려놓는 버튼 금지..        해당 부분..
 }
 
 void CSubProcPerTrade::PerTradeOtherDecision() // 다른 사람이 거래를 결정 했다..

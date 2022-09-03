@@ -43,8 +43,8 @@ class CN3Scene : public CN3BaseFileAccess {
     bool LoadDataAndResourcesFromFile(const std::string & szFileName);
     bool SaveDataAndResourcesToFile(const std::string & szFileName);
 
-    //	bool CheckOverlappedShapesAndReport();
-    //	void DeleteOverlappedShapes();
+    //    bool CheckOverlappedShapesAndReport();
+    //    void DeleteOverlappedShapes();
 
     void Tick(float fFrm = FRAME_SELFPLAY);
     void TickCameras(float fFrm = FRAME_SELFPLAY);

@@ -42,8 +42,8 @@ class CN3River2 : public CN3Base {
         _RIVER_DIFF *   pDiff;
 
         BOOL      m_bTick2Rand;
-        __Vector3 m_vCenterPo; //	강의 중간지점
-        float     m_fRadius;   //	강의 지름
+        __Vector3 m_vCenterPo; //    강의 중간지점
+        float     m_fRadius;   //    강의 지름
 
         _RIVER_INFO() {
             pVertices = NULL;

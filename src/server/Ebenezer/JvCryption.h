@@ -4,7 +4,7 @@
 /* THIS PROGRAM IS PROGRAMMED FOR WIZGATE     */
 /* BUT ALL COPYRIGHT RESERVED BY JIYOON CHUNG */
 /* (c) ABLEX AND OHSUNGINC 2001.6.1           */
-/* Classed by ks2000 2001.6.1				  */
+/* Classed by ks2000 2001.6.1                  */
 #pragma once
 
 typedef unsigned char T_OCTET;

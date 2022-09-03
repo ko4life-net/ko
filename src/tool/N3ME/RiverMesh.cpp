@@ -431,44 +431,44 @@ void CRiverMesh::ReCalcUV() {
     }
 
     /*
-	int iCount = m_iVC/2;
-	float fUPerMeter = 1.0f/m_fMeterPerU;
-	float fVPerMeter = 1.0f/m_fMeterPerV;
-	float fUPerMeter2 = 1.0f/m_fMeterPerU2;
-	float fVPerMeter2 = 1.0f/m_fMeterPerV2;
+    int iCount = m_iVC/2;
+    float fUPerMeter = 1.0f/m_fMeterPerU;
+    float fVPerMeter = 1.0f/m_fMeterPerV;
+    float fUPerMeter2 = 1.0f/m_fMeterPerU2;
+    float fVPerMeter2 = 1.0f/m_fMeterPerV2;
 
-	// 처음 두점 설정하기
-	__Vector3 vDiff; float fDiff;
-	vDiff = (__Vector3)m_pVertices[0].v - (__Vector3)m_pVertices[1].v;
-	fDiff = vDiff.Magnitude()*fUPerMeter/2;
-	m_pVertices[0].tu = 0.5f - fDiff;	m_pVertices[1].tu = 0.5f + fDiff;
-	m_pVertices[0].tv = 0.0f;			m_pVertices[1].tv = 0.0f;
-	fDiff = vDiff.Magnitude()*fUPerMeter2/2;
-	m_pVertices[0].tu2 = 0.5f - fDiff;	m_pVertices[1].tu2 = 0.5f + fDiff;
-	m_pVertices[0].tv2 = 0.0f;			m_pVertices[1].tv2 = 0.0f;
+    // 처음 두점 설정하기
+    __Vector3 vDiff; float fDiff;
+    vDiff = (__Vector3)m_pVertices[0].v - (__Vector3)m_pVertices[1].v;
+    fDiff = vDiff.Magnitude()*fUPerMeter/2;
+    m_pVertices[0].tu = 0.5f - fDiff;    m_pVertices[1].tu = 0.5f + fDiff;
+    m_pVertices[0].tv = 0.0f;            m_pVertices[1].tv = 0.0f;
+    fDiff = vDiff.Magnitude()*fUPerMeter2/2;
+    m_pVertices[0].tu2 = 0.5f - fDiff;    m_pVertices[1].tu2 = 0.5f + fDiff;
+    m_pVertices[0].tv2 = 0.0f;            m_pVertices[1].tv2 = 0.0f;
 
-	// 나머지 점 계산하기
-	for (int i=1; i<iCount; ++i)
-	{
-		// U
-		vDiff = (__Vector3)m_pVertices[i*2+0].v - (__Vector3)m_pVertices[i*2+1].v;
-		fDiff = vDiff.Magnitude()*fUPerMeter/2;
-		m_pVertices[i*2+0].tu = 0.5f - fDiff;	m_pVertices[i*2+1].tu = 0.5f + fDiff;
-		// U2
-		fDiff = vDiff.Magnitude()*fUPerMeter2/2;
-		m_pVertices[i*2+0].tu2 = 0.5f - fDiff;	m_pVertices[i*2+1].tu2 = 0.5f + fDiff;
+    // 나머지 점 계산하기
+    for (int i=1; i<iCount; ++i)
+    {
+        // U
+        vDiff = (__Vector3)m_pVertices[i*2+0].v - (__Vector3)m_pVertices[i*2+1].v;
+        fDiff = vDiff.Magnitude()*fUPerMeter/2;
+        m_pVertices[i*2+0].tu = 0.5f - fDiff;    m_pVertices[i*2+1].tu = 0.5f + fDiff;
+        // U2
+        fDiff = vDiff.Magnitude()*fUPerMeter2/2;
+        m_pVertices[i*2+0].tu2 = 0.5f - fDiff;    m_pVertices[i*2+1].tu2 = 0.5f + fDiff;
 
-		// V
-		vDiff = (__Vector3)m_pVertices[i*2+0].v - (__Vector3)m_pVertices[i*2-2].v;
-		float fTmp = vDiff.Magnitude();
-		vDiff = (__Vector3)m_pVertices[i*2+1].v - (__Vector3)m_pVertices[i*2-1].v;
-		fDiff = (fTmp + vDiff.Magnitude())*fVPerMeter/2;
-		m_pVertices[i*2+0].tv = m_pVertices[i*2+1].tv = m_pVertices[i*2-2].tv + fDiff;
+        // V
+        vDiff = (__Vector3)m_pVertices[i*2+0].v - (__Vector3)m_pVertices[i*2-2].v;
+        float fTmp = vDiff.Magnitude();
+        vDiff = (__Vector3)m_pVertices[i*2+1].v - (__Vector3)m_pVertices[i*2-1].v;
+        fDiff = (fTmp + vDiff.Magnitude())*fVPerMeter/2;
+        m_pVertices[i*2+0].tv = m_pVertices[i*2+1].tv = m_pVertices[i*2-2].tv + fDiff;
 
-		// V2
-		fDiff = (fTmp + vDiff.Magnitude())*fVPerMeter2/2;
-		m_pVertices[i*2+0].tv2 = m_pVertices[i*2+1].tv2 = m_pVertices[i*2-2].tv2 + fDiff;
-	}
+        // V2
+        fDiff = (fTmp + vDiff.Magnitude())*fVPerMeter2/2;
+        m_pVertices[i*2+0].tv2 = m_pVertices[i*2+1].tv2 = m_pVertices[i*2-2].tv2 + fDiff;
+    }
 */
 }
 

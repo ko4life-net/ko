@@ -25,8 +25,8 @@ CDlgBar::CDlgBar() {
 
     CSliderCtrl m_TileRegion_Slider;
 
-    //	m_FP_Slider.SetRange(100,4200);
-    //	m_FP_Slider.SetPos(100);
+    //    m_FP_Slider.SetRange(100,4200);
+    //    m_FP_Slider.SetPos(100);
 
     m_bUpdateingNow = FALSE;
 }

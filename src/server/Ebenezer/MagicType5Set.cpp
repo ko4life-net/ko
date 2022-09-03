@@ -31,7 +31,7 @@ CMagicType5Set::CMagicType5Set(CDatabase * pdb)
 }
 
 CString CMagicType5Set::GetDefaultConnect() {
-    //	return _T("ODBC;DSN=kodb");
+    //    return _T("ODBC;DSN=kodb");
     return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
 }
 

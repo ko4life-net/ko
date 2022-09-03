@@ -39,7 +39,7 @@ class CN3GlobalEffectMng : public CN3Base {
     virtual void Release();
     void         Tick();
     void         Render();
-    //	void			SetWeather(int iWeather);	// 날씨 지정하기
+    //    void            SetWeather(int iWeather);    // 날씨 지정하기
     void WeatherSetRainy(int iPercent);
     void WeatherSetSnow(int iPercent);
     void WeatherSetClean();

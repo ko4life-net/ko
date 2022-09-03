@@ -712,8 +712,8 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE * pp) {
             cr = 0.5f * R - 0.4187f * G - 0.0813f * B + 128;
 
             /*y = (77 * R + 150 * G + 29 * B)>>8;
-			cb = (B - y) + 128;
-			cr = (R - y) + 128;*/
+            cb = (B - y) + 128;
+            cr = (R - y) + 128;*/
 
             if (y > 255.) {
                 y = 255.;
@@ -812,7 +812,7 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE * pp) {
     delete[] DC3;
 
     /* AC 허프만 테이블 검색을 빠르게 하기 위하여
-	   허프만 테이블 구조체에 있는 *PT를 설정한다. */
+       허프만 테이블 구조체에 있는 *PT를 설정한다. */
 
     int Num, iTh[4] = {16, 17}, Th, key;
 
@@ -1084,7 +1084,7 @@ void CJpeg::Zigzag2() {
 
 void CJpeg::PutDHT(HANDLE hFile) {
     /* standard 허프만 테이블을 읽어들여서 멤버 구조체에 설정한
-	   후 저장하고자 하는 파일에 적어넣는 함수입니다. */
+       후 저장하고자 하는 파일에 적어넣는 함수입니다. */
 
     m_pBuf = new BYTE[421];
     BYTE HuffTb[421] = {

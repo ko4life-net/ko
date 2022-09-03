@@ -11,7 +11,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #define WAVE_TOP 0.02f
-//#define WAVE_STEP		0.0005f
+//#define WAVE_STEP        0.0005f
 #define WAVE_STEP 0.001f
 
 CN3River2::CN3River2() {
@@ -108,7 +108,7 @@ bool CN3River2::Load(HANDLE hFile) {
         }
     }
 
-    //	Init();
+    //    Init();
 
     return true;
 }
@@ -152,17 +152,17 @@ void CN3River2::Render() {
     s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_MODULATE);
     s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
     s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
-    //	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+    //    s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
     s_lpD3DDev->SetTextureStageState(1, D3DTSS_COLOROP, D3DTOP_MODULATE);
     s_lpD3DDev->SetTextureStageState(1, D3DTSS_COLORARG1, D3DTA_TEXTURE);
     s_lpD3DDev->SetTextureStageState(1, D3DTSS_COLORARG2, D3DTA_CURRENT);
-    //	s_lpD3DDev->SetTextureStageState( 1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
-    //	s_lpD3DDev->SetTextureStageState( 2, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
-    //	s_lpD3DDev->SetTextureStageState( 2, D3DTSS_COLOROP, D3DTOP_DISABLE);
-    //	s_lpD3DDev->SetSamplerState( 0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR );
+    //    s_lpD3DDev->SetTextureStageState( 1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+    //    s_lpD3DDev->SetTextureStageState( 2, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+    //    s_lpD3DDev->SetTextureStageState( 2, D3DTSS_COLOROP, D3DTOP_DISABLE);
+    //    s_lpD3DDev->SetSamplerState( 0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR );
     //    s_lpD3DDev->SetSamplerState( 0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR );
     s_lpD3DDev->SetSamplerState(0, D3DSAMP_MIPFILTER, D3DTEXF_NONE);
-    //	s_lpD3DDev->SetSamplerState( 1, D3DSAMP_MINFILTER, D3DTEXF_LINEAR );
+    //    s_lpD3DDev->SetSamplerState( 1, D3DSAMP_MINFILTER, D3DTEXF_LINEAR );
     //    s_lpD3DDev->SetSamplerState( 1, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR );
     s_lpD3DDev->SetSamplerState(1, D3DSAMP_MIPFILTER, D3DTEXF_NONE);
 
@@ -197,55 +197,55 @@ void CN3River2::Tick() {
         return;
     }
     /*
-	static float fDelay = 0.0f, fDelay2=0.0f;
-	fDelay += s_fSecPerFrm;
-	if (fDelay > 0.6f)
-	{
-		fDelay = 0.0f;
+    static float fDelay = 0.0f, fDelay2=0.0f;
+    fDelay += s_fSecPerFrm;
+    if (fDelay > 0.6f)
+    {
+        fDelay = 0.0f;
 
-		_RIVER_INFO	*pInfo=NULL;
-		for (int i=0;i<m_iRiverCount;i++)
-		{
-			pInfo = m_pRiverInfo+i;
-			for (int j=0;j<pInfo->iVC;j++)
-			{
-				(pInfo->pVertices+j)->v += 0.01f;
-			}
-		}
-	}
-	fDelay2 += s_fSecPerFrm;
-	if (fDelay2 > 0.8f)
-	{
-		fDelay2 = 0.0f;
+        _RIVER_INFO    *pInfo=NULL;
+        for (int i=0;i<m_iRiverCount;i++)
+        {
+            pInfo = m_pRiverInfo+i;
+            for (int j=0;j<pInfo->iVC;j++)
+            {
+                (pInfo->pVertices+j)->v += 0.01f;
+            }
+        }
+    }
+    fDelay2 += s_fSecPerFrm;
+    if (fDelay2 > 0.8f)
+    {
+        fDelay2 = 0.0f;
 
-		_RIVER_INFO	*pInfo=NULL;
-		for (int i=0;i<m_iRiverCount;i++)
-		{
-			pInfo = m_pRiverInfo+i;
-			for (int j=0;j<pInfo->iVC;j++)
-			{
-				(pInfo->pVertices+j)->v2 += 0.01f;
-			}
-		}
-	}	
+        _RIVER_INFO    *pInfo=NULL;
+        for (int i=0;i<m_iRiverCount;i++)
+        {
+            pInfo = m_pRiverInfo+i;
+            for (int j=0;j<pInfo->iVC;j++)
+            {
+                (pInfo->pVertices+j)->v2 += 0.01f;
+            }
+        }
+    }    
 
-	static float fAniDelay = 0.0f;
-	fAniDelay += s_fSecPerFrm;
-	if (fAniDelay > 0.5f)
-	{
-		fAniDelay = 0.0f;
-		m_iTexIndex++;
-		if (m_iTexIndex >= MAX_RIVER_TEX)
-			m_iTexIndex = 0;		
-	}
+    static float fAniDelay = 0.0f;
+    fAniDelay += s_fSecPerFrm;
+    if (fAniDelay > 0.5f)
+    {
+        fAniDelay = 0.0f;
+        m_iTexIndex++;
+        if (m_iTexIndex >= MAX_RIVER_TEX)
+            m_iTexIndex = 0;        
+    }
 
-	static float fWave = 0.0f;
-	fWave += s_fSecPerFrm;
-	if (fWave > 0.1f)
-	{
-		fWave = 0.0f;
-		UpdateWaterPositions();
-	}
+    static float fWave = 0.0f;
+    fWave += s_fSecPerFrm;
+    if (fWave > 0.1f)
+    {
+        fWave = 0.0f;
+        UpdateWaterPositions();
+    }
 */
 
     _RIVER_INFO * pInfo = NULL;
@@ -264,14 +264,14 @@ void CN3River2::Tick() {
         }
     }
 
-    //	for (int i=0;i<m_iRiverCount;i++)
-    //	{
-    //		pInfo = m_pRiverInfo+i;
-    //		for (int j=0;j<pInfo->iVC;j++)
-    //		{
-    //			(pInfo->pVertices+j)->v2 += 0.01f*s_fSecPerFrm;
-    //		}
-    //	}
+    //    for (int i=0;i<m_iRiverCount;i++)
+    //    {
+    //        pInfo = m_pRiverInfo+i;
+    //        for (int j=0;j<pInfo->iVC;j++)
+    //        {
+    //            (pInfo->pVertices+j)->v2 += 0.01f*s_fSecPerFrm;
+    //        }
+    //    }
 
     m_fTexIndex += s_fSecPerFrm * 15.0f;
     if (m_fTexIndex >= 32.0f) {
@@ -319,16 +319,16 @@ void CN3River2::UpdateWaterPositions() {
         pVertex = pInfo->pVertices;
         for (int j = 0; j < pInfo->iVC; j++) {
             /*
-			tmp = j%4;
-			if (tmp==0 || tmp==3)	continue;
+            tmp = j%4;
+            if (tmp==0 || tmp==3)    continue;
 
-			pDiff[j].fDiff += WAVE_STEP*pDiff[j].fWeight;
-			if (pDiff[j].fDiff > WAVE_TOP)
-				pDiff[j].fWeight = -1.0f;
-			else if (pDiff[j].fDiff < -WAVE_TOP)
-				pDiff[j].fWeight = 1.0f;
+            pDiff[j].fDiff += WAVE_STEP*pDiff[j].fWeight;
+            if (pDiff[j].fDiff > WAVE_TOP)
+                pDiff[j].fWeight = -1.0f;
+            else if (pDiff[j].fDiff < -WAVE_TOP)
+                pDiff[j].fWeight = 1.0f;
 
-			pVertex[j].y += pDiff[j].fDiff;
+            pVertex[j].y += pDiff[j].fDiff;
 */
             // berserk
             // For optimizing.

@@ -38,8 +38,8 @@ class CN3TerrainPatch : public CN3Base {
     int                     m_NumLightMapTex;
 
     //Tile지원 안하는 카드들을 위한 설정.
-    //LPDIRECT3DVERTEXBUFFER9		m_pFoolishTileVB;
-    //int							m_NumFoolishTile;
+    //LPDIRECT3DVERTEXBUFFER9        m_pFoolishTileVB;
+    //int                            m_NumFoolishTile;
 
   public:
     inline float UVConvert(float uv);

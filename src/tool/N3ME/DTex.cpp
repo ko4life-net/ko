@@ -31,7 +31,7 @@ CDTex::~CDTex() {
 }
 
 //
-//	Release..
+//    Release..
 //
 void CDTex::Release() {
     if (m_pTex) {
@@ -42,7 +42,7 @@ void CDTex::Release() {
 }
 
 //
-//	Init..
+//    Init..
 //
 void CDTex::Init() {
     Release();
@@ -62,8 +62,8 @@ void CDTex::Init() {
 }
 
 //
-//	SetAttr...
-//	타일하나에 속성 집어 넣기..
+//    SetAttr...
+//    타일하나에 속성 집어 넣기..
 //
 void CDTex::SetAttr(int x, int y, DTEXATTR attr) {
     m_Attr[x][y] = attr;

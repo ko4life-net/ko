@@ -86,7 +86,7 @@ struct _MAGIC_TYPE2 {
 
 struct _MAGIC_TYPE3 {
     int iNum;
-    //BYTE	bDistance;
+    //BYTE    bDistance;
     BYTE  bRadius;
     short sAngle;
     short sFirstDamage;

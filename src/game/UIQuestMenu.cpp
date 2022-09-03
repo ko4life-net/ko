@@ -59,14 +59,14 @@ bool CUIQuestMenu::Load(HANDLE hFile) {
     __ASSERT(m_pTextTitle, "NULL UI Component!!!");
 
     // TODO: Menu is now a button
-    //m_pImageLeft	= (CN3UIImage*)(this->GetChildByID("img_lmenu"));	__ASSERT(m_pImageLeft	, "NULL UI Component!!!");
-    //m_pImageCenter	= (CN3UIImage*)(this->GetChildByID("img_cmenu"));	__ASSERT(m_pImageCenter	, "NULL UI Component!!!");
-    //m_pImageRight	= (CN3UIImage*)(this->GetChildByID("img_rmenu"));	__ASSERT(m_pImageRight	, "NULL UI Component!!!");
+    //m_pImageLeft    = (CN3UIImage*)(this->GetChildByID("img_lmenu"));    __ASSERT(m_pImageLeft    , "NULL UI Component!!!");
+    //m_pImageCenter    = (CN3UIImage*)(this->GetChildByID("img_cmenu"));    __ASSERT(m_pImageCenter    , "NULL UI Component!!!");
+    //m_pImageRight    = (CN3UIImage*)(this->GetChildByID("img_rmenu"));    __ASSERT(m_pImageRight    , "NULL UI Component!!!");
 
-    //m_pImageBLeft	= (CN3UIImage*)(this->GetChildByID("img_lBottom"));	__ASSERT(m_pImageBLeft	, "NULL UI Component!!!");
+    //m_pImageBLeft    = (CN3UIImage*)(this->GetChildByID("img_lBottom"));    __ASSERT(m_pImageBLeft    , "NULL UI Component!!!");
     m_pImageBCenter = (CN3UIImage *)(this->GetChildByID("img_Bottom"));
     __ASSERT(m_pImageBCenter, "NULL UI Component!!!");
-    //m_pImageBRight	= (CN3UIImage*)(this->GetChildByID("img_rBottom"));	__ASSERT(m_pImageBRight	, "NULL UI Component!!!");
+    //m_pImageBRight    = (CN3UIImage*)(this->GetChildByID("img_rBottom"));    __ASSERT(m_pImageBRight    , "NULL UI Component!!!");
 
     if (m_pImageLeft) {
         m_rcLImage = m_pImageLeft->GetRegion();
@@ -152,8 +152,8 @@ DWORD CUIQuestMenu::MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & 
 
         if (UI_MOUSEPROC_DONESOMETHING & dwChildRet) { // 이경우에는 먼가 포커스를 받은 경우이다.
             // (아래 코드는 dialog를 관리하는 곳에서 해야 한다. 따라서 막아놓음)
-            //			m_Children.erase(itor);			// 우선 리스트에서 지우고
-            //			m_Children.push_front(pChild);	// 맨앞에 넣는다. 그리는 순서를 맨 나중에 그리도록 하려고
+            //            m_Children.erase(itor);            // 우선 리스트에서 지우고
+            //            m_Children.push_front(pChild);    // 맨앞에 넣는다. 그리는 순서를 맨 나중에 그리도록 하려고
 
             dwRet |= (UI_MOUSEPROC_CHILDDONESOMETHING | UI_MOUSEPROC_DONESOMETHING);
             return dwRet;

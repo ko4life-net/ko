@@ -32,7 +32,7 @@ class CZipFileHeader {
     bool SetComment(LPCTSTR lpszComment);
     // return true if the data descriptor is present
     bool IsDataDescr();
-    //	return true if the file is encrypted
+    //    return true if the file is encrypted
     bool IsEncrypted();
     //         central file header signature   4 bytes  (0x02014b50)
     char m_szSignature[4];
@@ -55,11 +55,11 @@ class CZipFileHeader {
     //         uncompressed size               4 bytes
     DWORD m_uUncomprSize;
     //         filename length                 2 bytes
-    // 	WORD m_uFileNameSize;
+    //     WORD m_uFileNameSize;
     //         extra field length              2 bytes
-    // 	WORD m_uExtraFieldSize;
+    //     WORD m_uExtraFieldSize;
     //         file comment length             2 bytes
-    // 	WORD m_uCommentSize;
+    //     WORD m_uCommentSize;
     //         disk number start               2 bytes
     WORD m_uDiskStart;
     //         internal file attributes        2 bytes

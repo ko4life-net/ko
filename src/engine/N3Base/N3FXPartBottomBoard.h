@@ -9,13 +9,13 @@
 #include "N3FXPartBase.h"
 
 //
-//	바닥에 그리는 판때기..
-//	triangle fan으로 그리고 삼각형 여덟개로 그린다..
+//    바닥에 그리는 판때기..
+//    triangle fan으로 그리고 삼각형 여덟개로 그린다..
 //
 
 class CN3FXPartBottomBoard : public CN3FXPartBase {
   public:
-    float m_fSizeX; //	보드의 크기
+    float m_fSizeX; //    보드의 크기
     float m_fSizeZ;
 
     bool m_bTexLoop;
@@ -33,7 +33,7 @@ class CN3FXPartBottomBoard : public CN3FXPartBase {
     float m_fCurrScaleVelX;
     float m_fCurrScaleVelZ;
 
-    float m_fCurrSizeX; //	보드의 크기
+    float m_fCurrSizeX; //    보드의 크기
     float m_fCurrSizeZ;
 
     float m_fGap;
@@ -46,13 +46,13 @@ class CN3FXPartBottomBoard : public CN3FXPartBase {
     bool IsDead();
 
   public:
-    void Init();             //	각종 변수들을 처음 로딩한 상태로 초기화...
-    void Start();            //	파트 구동 시작.
-    void Stop();             //	파트 구동 멈춤..
-    bool Tick();             //	ticktick...
-    void Render();           //	화면에 뿌리기..
-    bool Load(HANDLE hFile); //	게임파일 불러오기.
-    bool Save(HANDLE hFile); //	게임파일 저장오기.
+    void Init();             //    각종 변수들을 처음 로딩한 상태로 초기화...
+    void Start();            //    파트 구동 시작.
+    void Stop();             //    파트 구동 멈춤..
+    bool Tick();             //    ticktick...
+    void Render();           //    화면에 뿌리기..
+    bool Load(HANDLE hFile); //    게임파일 불러오기.
+    bool Save(HANDLE hFile); //    게임파일 저장오기.
     void Duplicate(CN3FXPartBottomBoard * pSrc);
 
   public:

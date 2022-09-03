@@ -318,16 +318,16 @@ void CRiverMng2::SetActive(bool bActive, CLyTerrain * pTerrain) {
                 ZeroMemory(m_ppRiver[i], sizeof(__River) * m_nMapSize);
             }
         }
-        //		if (NULL == m_ppIsRiver)
-        //		{
-        //			ASSERT(m_nMapSize);
-        //			m_ppIsRiver = new bool* [m_nMapSize];
-        //			for (int i=0;i<m_nMapSize;i++)
-        //			{
-        //				m_ppIsRiver[i] = new bool[m_nMapSize];
-        //				ZeroMemory(m_ppIsRiver[i], sizeof(bool)*m_nMapSize);
-        //			}
-        //		}
+        //        if (NULL == m_ppIsRiver)
+        //        {
+        //            ASSERT(m_nMapSize);
+        //            m_ppIsRiver = new bool* [m_nMapSize];
+        //            for (int i=0;i<m_nMapSize;i++)
+        //            {
+        //                m_ppIsRiver[i] = new bool[m_nMapSize];
+        //                ZeroMemory(m_ppIsRiver[i], sizeof(bool)*m_nMapSize);
+        //            }
+        //        }
         if (NULL == m_pTexRiver[0]) {
             char szFileName[40];
             for (int i = 0; i < MAX_RIVER_TEX; i++) {
@@ -359,7 +359,7 @@ void CRiverMng2::MakeTileVB(__VertexRiver * pVtx, int x, int z) {
     //DWORD color = 0xa0ffffff;
     DWORD color = 0x80ffffff;
 
-    //if((x+z)%2==0)	// 슬래쉬 모양의 타일..
+    //if((x+z)%2==0)    // 슬래쉬 모양의 타일..
     {
         __Vector3 v;
         v.x = x * TERRAIN_CELL_SIZE;
@@ -389,27 +389,27 @@ void CRiverMng2::MakeTileVB(__VertexRiver * pVtx, int x, int z) {
 
         return;
     }
-    //	if((x+z)%2==1)	//백슬레쉬 모양의 타일..
-    //	{
-    //		__Vector3 v;
-    //		v.x = x*TERRAIN_CELL_SIZE;
-    //		v.z = (z+1)*TERRAIN_CELL_SIZE;
-    //		v.y = m_ppRiver[x][z+1];
-    //		pVtx[0].Set(v.x, v.y, v.z, color);
+    //    if((x+z)%2==1)    //백슬레쉬 모양의 타일..
+    //    {
+    //        __Vector3 v;
+    //        v.x = x*TERRAIN_CELL_SIZE;
+    //        v.z = (z+1)*TERRAIN_CELL_SIZE;
+    //        v.y = m_ppRiver[x][z+1];
+    //        pVtx[0].Set(v.x, v.y, v.z, color);
     //
-    //		v.x = (x+1)*TERRAIN_CELL_SIZE;
-    //		v.y = m_ppRiver[x+1][z+1];
-    //		pVtx[1].Set(v.x, v.y, v.z, color);
+    //        v.x = (x+1)*TERRAIN_CELL_SIZE;
+    //        v.y = m_ppRiver[x+1][z+1];
+    //        pVtx[1].Set(v.x, v.y, v.z, color);
     //
-    //		v.z = z*TERRAIN_CELL_SIZE;
-    //		v.y = m_ppRiver[x+1][z];
-    //		pVtx[2].Set(v.x, v.y, v.z, color);
+    //        v.z = z*TERRAIN_CELL_SIZE;
+    //        v.y = m_ppRiver[x+1][z];
+    //        pVtx[2].Set(v.x, v.y, v.z, color);
     //
-    //		v.x = x*TERRAIN_CELL_SIZE;
-    //		v.y = m_ppRiver[x][z];
-    //		pVtx[3].Set(v.x, v.y, v.z, color);
-    //		return;
-    //	}
+    //        v.x = x*TERRAIN_CELL_SIZE;
+    //        v.y = m_ppRiver[x][z];
+    //        pVtx[3].Set(v.x, v.y, v.z, color);
+    //        return;
+    //    }
 }
 
 bool CRiverMng2::Load(HANDLE hFile) {

@@ -98,10 +98,10 @@ BOOL CN3MEDoc::OnOpenDocument(LPCTSTR lpszPathName) {
         pFrm->GetMapMng()->LoadFromFile(lpszPathName);
         pFrm->GetMapMng()->m_bLoadingComplete = true;
 
-        //		pFrm->GetDTexGroupMng()->Init();
-        //		pFrm->GetDTexGroupMng()->LoadFromFile();
-        //		pFrm->GetDTexMng()->Init(pFrm);
-        //		pFrm->GetDTexMng()->LoadFromFile();
+        //        pFrm->GetDTexGroupMng()->Init();
+        //        pFrm->GetDTexGroupMng()->LoadFromFile();
+        //        pFrm->GetDTexMng()->Init(pFrm);
+        //        pFrm->GetDTexMng()->LoadFromFile();
     }
 
     return TRUE;

@@ -135,8 +135,8 @@ void CViewProperty::UpdateInfo() {
         if (pItem) {
             pItem->VectorSet(pT->Pos());
         }
-        //		pItem = m_LPTransform.GetPropItem("Rotation");
-        //		if(pItem) pItem->VectorSet(pT->RotGet());
+        //        pItem = m_LPTransform.GetPropItem("Rotation");
+        //        if(pItem) pItem->VectorSet(pT->RotGet());
         pItem = m_LPTransform.GetPropItem("Scale");
         if (pItem) {
             pItem->VectorSet(pT->Scale());
@@ -188,16 +188,16 @@ void CViewProperty::UpdateInfo() {
                 pItem->m_curValue = "Off";
             }
         }
-        //		pItem = m_LPCamera.GetPropItem("안개 밀도");
-        //		if(pItem) pItem->m_curValue.Format("%f", pC->m_fFogDensity);
+        //        pItem = m_LPCamera.GetPropItem("안개 밀도");
+        //        if(pItem) pItem->m_curValue.Format("%f", pC->m_fFogDensity);
         pItem = m_LPCamera.GetPropItem("안개 색");
         if (pItem) {
             pItem->D3DColorSet(pC->m_FogColor);
         }
-        //		pItem = m_LPCamera.GetPropItem("안개 시작");
-        //		if(pItem) pItem->m_curValue.Format("%f", pC->m_fFogStart);
-        //		pItem = m_LPCamera.GetPropItem("안개 끝");
-        //		if(pItem) pItem->m_curValue.Format("%f", pC->m_fFogEnd);
+        //        pItem = m_LPCamera.GetPropItem("안개 시작");
+        //        if(pItem) pItem->m_curValue.Format("%f", pC->m_fFogStart);
+        //        pItem = m_LPCamera.GetPropItem("안개 끝");
+        //        if(pItem) pItem->m_curValue.Format("%f", pC->m_fFogEnd);
 
         m_LPCamera.Invalidate();
     } else {
@@ -457,13 +457,13 @@ void CViewProperty::UpdateInfo() {
             }
         }
 
-        //		pItem = m_LPChr.GetPropItem("Collision Skin File");
-        //		if(pItem)
-        //		{
-        //			CN3Skin* pSkin = pC->CollisionSkin();
-        //			if(pSkin) pItem->m_curValue = pSkin->m_szName.c_str();
-        //			else pItem->m_curValue = "";
-        //		}
+        //        pItem = m_LPChr.GetPropItem("Collision Skin File");
+        //        if(pItem)
+        //        {
+        //            CN3Skin* pSkin = pC->CollisionSkin();
+        //            if(pSkin) pItem->m_curValue = pSkin->m_szName.c_str();
+        //            else pItem->m_curValue = "";
+        //        }
 
         CN3CPart * pPart = pC->Part(nPart);
         if (pPart) {
@@ -474,8 +474,8 @@ void CViewProperty::UpdateInfo() {
                 pItem->m_curValue = pPart->m_szName.c_str();
             }
 
-            //			pItem = m_LPCPart.GetPropItem("Part Type");
-            //			if(pItem) pItem->m_crColor = m_Parts[nPart].m_Type;
+            //            pItem = m_LPCPart.GetPropItem("Part Type");
+            //            if(pItem) pItem->m_crColor = m_Parts[nPart].m_Type;
 
             pItem = m_LPCPart.GetPropItem("Texture File");
             if (pItem) {
@@ -513,8 +513,8 @@ void CViewProperty::UpdateInfo() {
                 pItem->m_curValue = pPlug->m_szName.c_str();
             }
 
-            //			pItem = m_LPCPlug.GetPropItem("Plug Type");
-            //			if(pItem) pItem->m_crColor = pPlug->m_Type;
+            //            pItem = m_LPCPlug.GetPropItem("Plug Type");
+            //            if(pItem) pItem->m_crColor = pPlug->m_Type;
 
             pItem = m_LPCPlug.GetPropItem("Plug Joint");
             if (pItem) {
@@ -637,7 +637,7 @@ BOOL CViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
             if (pItem->m_propName == "Position") {
                 pT->PosSet(__Vector3(pItem->VectorGet()));
             }
-            //			else if(pItem->m_propName == "Rotation") pT->RotSet(__Vector3(pItem->VectorGet()));
+            //            else if(pItem->m_propName == "Rotation") pT->RotSet(__Vector3(pItem->VectorGet()));
             else if (pItem->m_propName == "Scale") {
                 pT->ScaleSet(__Vector3(pItem->VectorGet()));
             }
@@ -666,12 +666,12 @@ BOOL CViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                     pC->m_bFogUse = FALSE;
                 }
             }
-            //			else if(pItem->m_propName == "안개 밀도") pC->m_fFogDensity = (float)atof(pItem->m_curValue);
+            //            else if(pItem->m_propName == "안개 밀도") pC->m_fFogDensity = (float)atof(pItem->m_curValue);
             else if (pItem->m_propName == "안개 색") {
                 pC->m_FogColor = pItem->D3DColorGet();
             }
-            //			else if(pItem->m_propName == "안개 시작") pC->m_fFogStart = (float)atof(pItem->m_curValue);
-            //			else if(pItem->m_propName == "안개 끝") pC->m_fFogEnd = (float)atof(pItem->m_curValue);
+            //            else if(pItem->m_propName == "안개 시작") pC->m_fFogStart = (float)atof(pItem->m_curValue);
+            //            else if(pItem->m_propName == "안개 끝") pC->m_fFogEnd = (float)atof(pItem->m_curValue);
         }
 
         if ((void *)wParam == &m_LPLight && (pBase->Type() & OBJ_LIGHT)) {
@@ -821,26 +821,26 @@ BOOL CViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                 pC->JointSet(tmp.FileName());
                 this->UpdateInfo();
             }
-            //			else if(pItem->m_propName == "Collision Mesh File" && pItem->m_curValue.GetLength() > 0)
-            //			{
-            //				pC->CollisionMeshSet(pItem->m_curValue);
-            //				this->UpdateInfo();
-            //			}
-            //			else if(pItem->m_propName == "Collision Mesh Delete")
-            //			{
-            //				pC->CollisionMeshSet("");
-            //				this->UpdateInfo();
-            //			}
-            //			else if(pItem->m_propName == "Collision Skin File" && pItem->m_curValue.GetLength() > 0)
-            //			{
-            //				pC->CollisionSkinSet(pItem->m_curValue);
-            //				this->UpdateInfo();
-            //			}
-            //			else if(pItem->m_propName == "Collision Skin Delete")
-            //			{
-            //				pC->CollisionSkinSet("");
-            //				this->UpdateInfo();
-            //			}
+            //            else if(pItem->m_propName == "Collision Mesh File" && pItem->m_curValue.GetLength() > 0)
+            //            {
+            //                pC->CollisionMeshSet(pItem->m_curValue);
+            //                this->UpdateInfo();
+            //            }
+            //            else if(pItem->m_propName == "Collision Mesh Delete")
+            //            {
+            //                pC->CollisionMeshSet("");
+            //                this->UpdateInfo();
+            //            }
+            //            else if(pItem->m_propName == "Collision Skin File" && pItem->m_curValue.GetLength() > 0)
+            //            {
+            //                pC->CollisionSkinSet(pItem->m_curValue);
+            //                this->UpdateInfo();
+            //            }
+            //            else if(pItem->m_propName == "Collision Skin Delete")
+            //            {
+            //                pC->CollisionSkinSet("");
+            //                this->UpdateInfo();
+            //            }
             else if (pItem->m_propName == "Part Add") {
                 pC->PartAdd();
                 this->UpdateInfo();
@@ -871,21 +871,21 @@ BOOL CViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                 if (pItem->m_propName == "Part File") {
                     pPart->m_szName = pItem->m_curValue;
                 }
-                //				else if(pItem->m_propName == "Part Type")
-                //				{
-                //					CN3CPart* pPD = pC->Part(nPart);
-                //					if(pPD)
-                //					{
-                //						if(pItem->m_curValue == "머리카락") pPD->m_Type = PART_HAIR;
-                //						else if(pItem->m_curValue == "얼굴") pPD->m_Type = PART_FACE;
-                //						else if(pItem->m_curValue == "상체") pPD->m_Type = PART_UPPER;
-                //						else if(pItem->m_curValue == "하체") pPD->m_Type = PART_LOWER;
-                //						else if(pItem->m_curValue == "손") pPD->m_Type = PART_HAND;
-                //						else if(pItem->m_curValue == "발") pPD->m_Type = PART_FOOT;
-                //						else if(pItem->m_curValue == "??") pPD->m_Type = PART_UNKNOWN;
-                //					}
-                //					this->UpdateInfo();
-                //				}
+                //                else if(pItem->m_propName == "Part Type")
+                //                {
+                //                    CN3CPart* pPD = pC->Part(nPart);
+                //                    if(pPD)
+                //                    {
+                //                        if(pItem->m_curValue == "머리카락") pPD->m_Type = PART_HAIR;
+                //                        else if(pItem->m_curValue == "얼굴") pPD->m_Type = PART_FACE;
+                //                        else if(pItem->m_curValue == "상체") pPD->m_Type = PART_UPPER;
+                //                        else if(pItem->m_curValue == "하체") pPD->m_Type = PART_LOWER;
+                //                        else if(pItem->m_curValue == "손") pPD->m_Type = PART_HAND;
+                //                        else if(pItem->m_curValue == "발") pPD->m_Type = PART_FOOT;
+                //                        else if(pItem->m_curValue == "??") pPD->m_Type = PART_UNKNOWN;
+                //                    }
+                //                    this->UpdateInfo();
+                //                }
                 else if (pItem->m_propName == "Texture File" && pItem->m_curValue.GetLength() > 0) {
                     CN3BaseFileAccess tmp;
                     tmp.FileNameSet(std::string(pItem->m_curValue));
@@ -907,7 +907,7 @@ BOOL CViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                 if (pItem->m_propName == "Plug Name") {
                     pPlug->m_szName = pItem->m_curValue;
                 }
-                //				else if(pItem->m_propName == "Plug Type") pPlug->m_Type = (e_PlugType)pItem->m_crColor;
+                //                else if(pItem->m_propName == "Plug Type") pPlug->m_Type = (e_PlugType)pItem->m_crColor;
                 else if (pItem->m_propName == "Plug Joint") {
                     int        nJI = atoi(pItem->m_curValue); // Joint Index 가 영역을 벗어나지 못하도록...
                     int        nJC = 0;
@@ -993,7 +993,7 @@ BOOL CViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
     pFrm->GetView()->InvalidateRect(NULL, FALSE);
 
     return TRUE;
-    //	return CFormView::OnNotify(wParam, lParam, pResult);
+    //    return CFormView::OnNotify(wParam, lParam, pResult);
 }
 
 void CViewProperty::OnInitialUpdate() {
@@ -1021,10 +1021,10 @@ void CViewProperty::OnInitialUpdate() {
         m_LPCamera.AddPropItem("Near Plane", "", PIT_EDIT, "");
         m_LPCamera.AddPropItem("Far Plane", "", PIT_EDIT, "");
         m_LPCamera.AddPropItem("안개 사용", "", PIT_EDIT, "");
-        //		m_LPCamera.AddPropItem("안개 밀도", "", PIT_EDIT, "");
+        //        m_LPCamera.AddPropItem("안개 밀도", "", PIT_EDIT, "");
         m_LPCamera.AddPropItem("안개 색", "", PIT_COLOR, "");
-        //		m_LPCamera.AddPropItem("안개 시작", "", PIT_EDIT, "");
-        //		m_LPCamera.AddPropItem("안개 끝", "", PIT_EDIT, "");
+        //        m_LPCamera.AddPropItem("안개 시작", "", PIT_EDIT, "");
+        //        m_LPCamera.AddPropItem("안개 끝", "", PIT_EDIT, "");
         // Camera 등록 정보
         /////////////////////////////////////
 
@@ -1051,17 +1051,17 @@ void CViewProperty::OnInitialUpdate() {
         m_LPMaterial.AddPropItem("Render Flags", "0", PIT_EDIT, "", 0);
         strTmp =
             "Null|D3DBLEND_ZERO|D3DBLEND_ONE|D3DBLEND_SRCCOLOR|D3DBLEND_INVSRCCOLOR|D3DBLEND_SRCALPHA|D3DBLEND_INVSRCALPHA|D3DBLEND_DESTALPHA|\
-	D3DBLEND_INVDESTALPHA|D3DBLEND_DESTCOLOR|D3DBLEND_INVDESTCOLOR|D3DBLEND_SRCALPHASAT|D3DBLEND_BOTHSRCALPHA|D3DBLEND_BOTHINVSRCALPHA|";
+    D3DBLEND_INVDESTALPHA|D3DBLEND_DESTCOLOR|D3DBLEND_INVDESTCOLOR|D3DBLEND_SRCALPHASAT|D3DBLEND_BOTHSRCALPHA|D3DBLEND_BOTHINVSRCALPHA|";
         m_LPMaterial.AddPropItem("Src Blend", "", PIT_COMBO, strTmp);
         m_LPMaterial.AddPropItem("Dest Blend", "", PIT_COMBO, strTmp);
 
         strTmp =
             "Null|D3DTOP_DISABLE|D3DTOP_SELECTARG1|D3DTOP_SELECTARG2|D3DTOP_MODULATE|D3DTOP_MODULATE2X|D3DTOP_MODULATE4X|\
-	D3DTOP_ADD|D3DTOP_ADDSIGNED|D3DTOP_ADDSIGNED2X|\
-	D3DTOP_SUBTRACT|D3DTOP_ADDSMOOTH|\
-	D3DTOP_BLENDDIFFUSEALPHA|D3DTOP_BLENDTEXTUREALPHA|D3DTOP_BLENDFACTORALPHA|D3DTOP_BLENDTEXTUREALPHAPM|D3DTOP_BLENDCURRENTALPHA|\
-	D3DTOP_PREMODULATE|D3DTOP_MODULATEALPHA_ADDCOLOR|D3DTOP_MODULATECOLOR_ADDALPHA|D3DTOP_MODULATEINVALPHA_ADDCOLOR|D3DTOP_MODULATEINVCOLOR_ADDALPHA|\
-	D3DTOP_BUMPENVMAP|D3DTOP_BUMPENVMAPLUMINANCE|D3DTOP_DOTPRODUCT|D3DTOP_MULTIPLYADD|D3DTOP_LERP|";
+    D3DTOP_ADD|D3DTOP_ADDSIGNED|D3DTOP_ADDSIGNED2X|\
+    D3DTOP_SUBTRACT|D3DTOP_ADDSMOOTH|\
+    D3DTOP_BLENDDIFFUSEALPHA|D3DTOP_BLENDTEXTUREALPHA|D3DTOP_BLENDFACTORALPHA|D3DTOP_BLENDTEXTUREALPHAPM|D3DTOP_BLENDCURRENTALPHA|\
+    D3DTOP_PREMODULATE|D3DTOP_MODULATEALPHA_ADDCOLOR|D3DTOP_MODULATECOLOR_ADDALPHA|D3DTOP_MODULATEINVALPHA_ADDCOLOR|D3DTOP_MODULATEINVCOLOR_ADDALPHA|\
+    D3DTOP_BUMPENVMAP|D3DTOP_BUMPENVMAPLUMINANCE|D3DTOP_DOTPRODUCT|D3DTOP_MULTIPLYADD|D3DTOP_LERP|";
         m_LPMaterial.AddPropItem("Color Operation", "", PIT_COMBO, strTmp);
         strTmp = "D3DTA_DIFFUSE|D3DTA_CURRENTD|3DTA_TEXTURE|D3DTA_TFACTOR|D3DTA_SPECULAR|";
         m_LPMaterial.AddPropItem("Color Arg1", "", PIT_COMBO, strTmp);
@@ -1076,9 +1076,9 @@ void CViewProperty::OnInitialUpdate() {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Shape
         m_CBShapePart.ResetContent();
-        //	int nPartCount =
-        //	for(int i = 0; i < nPartCount; i++) { strTmp.Format("%d", i); m_CBShapePart.AddString(strTmp); }
-        //	m_CBShapePart.SetCurSel(0);
+        //    int nPartCount =
+        //    for(int i = 0; i < nPartCount; i++) { strTmp.Format("%d", i); m_CBShapePart.AddString(strTmp); }
+        //    m_CBShapePart.SetCurSel(0);
 
         m_LPShape.AddPropItem("소속", "", PIT_EDIT, "");
         m_LPShape.AddPropItem("Event ID", "", PIT_EDIT, "");
@@ -1106,8 +1106,8 @@ void CViewProperty::OnInitialUpdate() {
         m_LPChr.AddPropItem("Joint File", "", PIT_FILE, "N3 Joint File(*.N3Joint)|*.N3Joint||");
         m_LPChr.AddPropItem("Collision Mesh File", "", PIT_FILE, "N3 Vector Mesh(*.N3VMesh)|*.N3VMesh||");
         m_LPChr.AddPropItem("Collision Mesh Delete", "Collision Mesh 삭제", PIT_BUTTON, "");
-        //	m_LPChr.AddPropItem("Collision Skin File", "", PIT_FILE, "N3 Skin File(*.N3Skin)|*.N3Skin||");
-        //	m_LPChr.AddPropItem("Collision Skin Delete", "Collision Skin 삭제", PIT_BUTTON, "");
+        //    m_LPChr.AddPropItem("Collision Skin File", "", PIT_FILE, "N3 Skin File(*.N3Skin)|*.N3Skin||");
+        //    m_LPChr.AddPropItem("Collision Skin Delete", "Collision Skin 삭제", PIT_BUTTON, "");
 
         m_LPChr.AddPropItem("Part Add", "Part 추가", PIT_BUTTON, "");
         m_LPChr.AddPropItem("Part Delete", "Part 삭제", PIT_BUTTON, "");
@@ -1125,12 +1125,12 @@ void CViewProperty::OnInitialUpdate() {
         m_CBChrLOD.SetCurSel(0);
 
         m_LPCPart.AddPropItem("Part File", "", PIT_FILE, "N3 Character part file(*.N3CPart)|*.N3CPart||");
-        //		m_LPCPart.AddPropItem("Part Type", "", PIT_COMBO, "머리카락|얼굴|상체|하체|손|발|??|");
+        //        m_LPCPart.AddPropItem("Part Type", "", PIT_COMBO, "머리카락|얼굴|상체|하체|손|발|??|");
         m_LPCPart.AddPropItem("Texture File", "", PIT_FILE,
                               "Texture 로 쓸수 있는 그림 파일(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
 
         m_LPCPlug.AddPropItem("Plug Name", "", PIT_EDIT, "");
-        //		m_LPCPlug.AddPropItem("Plug Type", "", PIT_COMBO, "오른손장착|왼손장착|양손장착");
+        //        m_LPCPlug.AddPropItem("Plug Type", "", PIT_COMBO, "오른손장착|왼손장착|양손장착");
         m_LPCPlug.AddPropItem("Plug Joint", "", PIT_EDIT, "");
         m_LPCPlug.AddPropItem("Plug Mesh File", "", PIT_FILE, "N3 Progressive Mesh File(*.N3PMesh)|*.N3PMesh||");
         m_LPCPlug.AddPropItem("Plug Texture File", "", PIT_FILE,

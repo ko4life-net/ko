@@ -18,16 +18,16 @@
 #pragma once
 
 /**
-	A smart buffer freeing its contents on destruction.
+    A smart buffer freeing its contents on destruction.
 */
 class CZipAutoBuffer {
   public:
     operator char *() { return m_pBuffer; }
 
     // may produce ambiguity on some compilers
-    //  	operator const char*() const
-    //   	{
-    //    		return m_pBuffer;
+    //      operator const char*() const
+    //       {
+    //            return m_pBuffer;
     //     }
     const char * GetBuffer() const { return m_pBuffer; }
     char *       Allocate(DWORD iSize, bool bZeroMemory = false);

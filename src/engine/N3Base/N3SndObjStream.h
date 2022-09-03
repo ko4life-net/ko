@@ -1,10 +1,10 @@
 //////////////////////////////////////////////////
-//	Commented By : Lynus
-//	Commented On 2001-04-12 오후 5:09:28
+//    Commented By : Lynus
+//    Commented On 2001-04-12 오후 5:09:28
 //
-//	CN3SndObjStream class (SoundObj.h)
+//    CN3SndObjStream class (SoundObj.h)
 //
-//	End Of Comment (By Lynus On 2001-04-12 오후 5:09:28 )
+//    End Of Comment (By Lynus On 2001-04-12 오후 5:09:28 )
 //////////////////////////////////////////////////
 
 #pragma once
@@ -39,8 +39,8 @@ class CN3SndObjStream : public CN3SndObj {
   public:
     bool Create(const std::string & szFN, e_SndType eType = SNDTYPE_STREAM);
 
-    //	void Play(float delay = 0.0f, float fFadeInTime = 0.0f);
-    //	void Stop(float fFadeOutTime = 0.0f);
+    //    void Play(float delay = 0.0f, float fFadeInTime = 0.0f);
+    //    void Stop(float fFadeOutTime = 0.0f);
 
     void Tick();
     void Release();

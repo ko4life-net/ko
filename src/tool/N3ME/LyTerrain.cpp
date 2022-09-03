@@ -1,5 +1,5 @@
 // LyTerrain.cpp: implementation of the CLyTerrain class.
-//	- 2001. 9.24.~ Map Editor용으로 변환...
+//    - 2001. 9.24.~ Map Editor용으로 변환...
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -58,9 +58,9 @@ CLyTerrain::CLyTerrain() {
 
     m_EyePos.x = m_EyePos.y = 0;
 
-    m_ColorMapVB = NULL; //	컬러맵쓸때..
-    m_TileVB = NULL;     //	타일
-    m_LightMapVB = NULL; //	하나의 라이트맵
+    m_ColorMapVB = NULL; //    컬러맵쓸때..
+    m_TileVB = NULL;     //    타일
+    m_LightMapVB = NULL; //    하나의 라이트맵
 
     m_iHeightLimit = 600; // 작을 수록 더 정밀도가 높아진다..
     m_iDistLimit = 30;    // 클수록 정밀도가 높아진다..
@@ -92,7 +92,7 @@ CLyTerrain::CLyTerrain() {
         {1, 1, 3, 3, 2, 1, 0, 1, 0, 3, 3, 3, 0, 2}
 #endif
 #ifdef _EMPEROR
-        {7, 3, 4, 5, 0, 4, 6, 5, 3, 7, 0, 3, 0, 6}, //	asm
+        {7, 3, 4, 5, 0, 4, 6, 5, 3, 7, 0, 3, 0, 6}, //    asm
         {0, 3, 4, 3, 3, 4, 4, 3, 3, 0, 0, 3, 0, 4},
         {7, 5, 4, 3, 5, 6, 4, 0, 3, 0, 7, 3, 0, 6},
         {7, 0, 3, 5, 7, 3, 5, 5, 3, 7, 0, 0, 0, 5},
@@ -118,7 +118,7 @@ CLyTerrain::CLyTerrain() {
         {0, 1, 3, 1, 0, 1, 0, 0, 0, 1, 2, 3, 0, 0}
 #endif
 #ifdef _EMPEROR
-        {0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0, 4}, //	asm
+        {0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0, 4}, //    asm
         {0, 4, 0, 0, 4, 0, 0, 0, 0, 0, 0, 4, 0, 0},
         {4, 4, 0, 0, 4, 0, 0, 0, 0, 0, 4, 4, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -242,7 +242,7 @@ void CLyTerrain::SetFillMode(D3DFILLMODE fillmode) {
 }
 
 //
-//	Release()
+//    Release()
 //
 void CLyTerrain::Release() {
     if (m_pDlgSetLightMap) {
@@ -254,10 +254,10 @@ void CLyTerrain::Release() {
     if (m_pColorTexture) {
         for (int x = 0; x < m_iNumColorMap; x++) {
             if (m_pColorTexture[x]) {
-                //				for(int z=0;z<m_iNumColorMap;z++) // 굳이 이렇게 안해도 다 지워진다...
-                //				{
-                //					m_pColorTexture[x][z].Release();
-                //				}
+                //                for(int z=0;z<m_iNumColorMap;z++) // 굳이 이렇게 안해도 다 지워진다...
+                //                {
+                //                    m_pColorTexture[x][z].Release();
+                //                }
                 delete[] m_pColorTexture[x];
                 m_pColorTexture[x] = NULL;
             }
@@ -340,7 +340,7 @@ void CLyTerrain::Release() {
 }
 
 //
-//	Init()
+//    Init()
 //
 void CLyTerrain::Init(int HeightMapSize) {
     Release();
@@ -391,15 +391,15 @@ void CLyTerrain::Init(int HeightMapSize) {
         for (int z = 0; z < m_iNumColorMap; z++) {
             m_pColorTexture[x][z].Create(m_iColorMapTexSize, m_iColorMapTexSize, D3DFMT_X8R8G8B8, TRUE);
             /*
-			m_pColorTexture[x][z].Get()->LockRect( 0, &d3dlr, 0, 0 );
-			DWORD* pTexPtr = (DWORD*)d3dlr.pBits;
-			for(int tz=0;tz<m_iColorMapTexSize;tz++)
-			{
-				for(int tx=0;tx<m_iColorMapTexSize;tx++)
-					pTexPtr[tx + tz*m_iColorMapTexSize] = 0xff004400;
-			}
-			m_pColorTexture[x][z].Get()->UnlockRect(0);
-			*/
+            m_pColorTexture[x][z].Get()->LockRect( 0, &d3dlr, 0, 0 );
+            DWORD* pTexPtr = (DWORD*)d3dlr.pBits;
+            for(int tz=0;tz<m_iColorMapTexSize;tz++)
+            {
+                for(int tx=0;tx<m_iColorMapTexSize;tx++)
+                    pTexPtr[tx + tz*m_iColorMapTexSize] = 0xff004400;
+            }
+            m_pColorTexture[x][z].Get()->UnlockRect(0);
+            */
         }
     }
 
@@ -693,8 +693,8 @@ bool CLyTerrain::SaveToFilePartition(const char * lpszPath, float psx, float psz
 }
 
 //
-//	Save()
-//	맵에디터에서 쓰는 파일 타입으로 저장하기..
+//    Save()
+//    맵에디터에서 쓰는 파일 타입으로 저장하기..
 //
 bool CLyTerrain::SaveToFile(const char * lpszPath) {
     HANDLE hFile = CreateFile(lpszPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -846,25 +846,25 @@ bool CLyTerrain::SaveToFile(const char * lpszPath) {
     }
     CloseHandle(hCMFile);
 
-    /*	old version....
-	char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-	_splitpath(lpszPath, szDrive, szDir, szFName, szExt);
-	char szNewFName[_MAX_PATH] = "", szAdd[_MAX_PATH] = "";
+    /*    old version....
+    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
+    _splitpath(lpszPath, szDrive, szDir, szFName, szExt);
+    char szNewFName[_MAX_PATH] = "", szAdd[_MAX_PATH] = "";
 
-	ProgressBar.Create("Save color map..", 50, m_iNumColorMap * m_iNumColorMap);
-	for(x=0;x<m_iNumColorMap;x++)
-	{
-		for(z=0;z<m_iNumColorMap;z++)
-		{
-			ProgressBar.StepIt();
+    ProgressBar.Create("Save color map..", 50, m_iNumColorMap * m_iNumColorMap);
+    for(x=0;x<m_iNumColorMap;x++)
+    {
+        for(z=0;z<m_iNumColorMap;z++)
+        {
+            ProgressBar.StepIt();
 
-			_makepath(szNewFName, szDrive, szDir, szFName, NULL); // 파일 이름과 동일한 이름으로 컬러맵 저장..
-			wsprintf(szAdd, "_%02d%02d.DXT", x, z);  // Tool 경로를 붙이고 번호와 확장자를 붙여서 저장..
-			lstrcat(szNewFName, szAdd);
-			m_pColorTexture[x][z].SaveToFile(szNewFName);
-		}
-	}
-	*/
+            _makepath(szNewFName, szDrive, szDir, szFName, NULL); // 파일 이름과 동일한 이름으로 컬러맵 저장..
+            wsprintf(szAdd, "_%02d%02d.DXT", x, z);  // Tool 경로를 붙이고 번호와 확장자를 붙여서 저장..
+            lstrcat(szNewFName, szAdd);
+            m_pColorTexture[x][z].SaveToFile(szNewFName);
+        }
+    }
+    */
     // 컬러맵 쓰기.
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -872,7 +872,7 @@ bool CLyTerrain::SaveToFile(const char * lpszPath) {
 }
 
 //
-//	Load..
+//    Load..
 //
 bool CLyTerrain::LoadFromFile(const char * lpszPath) {
     HANDLE hFile = CreateFile(lpszPath, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -1284,8 +1284,8 @@ void CLyTerrain::ConvertLightMapToolDataV2toV3() {
 }
 
 //
-//	SaveGameData
-//	게임에 쓸 데이타를 저장..
+//    SaveGameData
+//    게임에 쓸 데이타를 저장..
 //
 void CLyTerrain::SaveGameData(HANDLE hFile) {
     MMap   TexTree;
@@ -1370,7 +1370,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile) {
     DWORD dwRWC;
     WriteFile(hFile, &m_iHeightMapSize, sizeof(int), &dwRWC, NULL);
 
-    //	각 꼭지점 정보 저장...
+    //    각 꼭지점 정보 저장...
     //  그냥 하나씩 저장해도 차이 없지만 네트워크로 저장할때는 파일 엑세스 숫자를 줄이고 한꺼번에 저장해야  빠르다.. ...
     DWORD   dwAlloc = sizeof(GAMEMAPDATA) * m_iHeightMapSize * m_iHeightMapSize;
     HGLOBAL hAlloc = ::GlobalAlloc(GMEM_FIXED, dwAlloc);
@@ -1517,29 +1517,29 @@ void CLyTerrain::SaveGameData(HANDLE hFile) {
     }
 
     /*   원래의 풀 저장 
-	int NumSeedInfo = pFrm->m_SeedGroupList.size();
-	for(int x=0; x<m_iHeightMapSize-1;x++)
-	{
-		for(int z=0; z<m_iHeightMapSize-1;z++)
-		{
-			int Group = m_ppMapData[x][z].DTexInfo1.Attr.Group;
+    int NumSeedInfo = pFrm->m_SeedGroupList.size();
+    for(int x=0; x<m_iHeightMapSize-1;x++)
+    {
+        for(int z=0; z<m_iHeightMapSize-1;z++)
+        {
+            int Group = m_ppMapData[x][z].DTexInfo1.Attr.Group;
 
-			std::list<LPSEEDGROUP>::iterator sgit = pFrm->m_SeedGroupList.begin();
+            std::list<LPSEEDGROUP>::iterator sgit = pFrm->m_SeedGroupList.begin();
 
-			for(int i=0;i<NumSeedInfo;i++)
-			{
-				LPSEEDGROUP pSeedGroup = (*sgit);
-				unsigned char seed = (unsigned char)pSeedGroup->iSeedID;
-				if(Group == pSeedGroup->iDTexGroupID && ((seed & SeedAttr[z + (x*m_iHeightMapSize)])==0))
-				{
-					SeedAttr[z + (x*m_iHeightMapSize)] += seed;
-					//break;
-				}
-				sgit++;
-			}
-		}
-	}
-	WriteFile(hFile, SeedAttr, sizeof(unsigned char)*m_iHeightMapSize*m_iHeightMapSize, &dwRWC, NULL);
+            for(int i=0;i<NumSeedInfo;i++)
+            {
+                LPSEEDGROUP pSeedGroup = (*sgit);
+                unsigned char seed = (unsigned char)pSeedGroup->iSeedID;
+                if(Group == pSeedGroup->iDTexGroupID && ((seed & SeedAttr[z + (x*m_iHeightMapSize)])==0))
+                {
+                    SeedAttr[z + (x*m_iHeightMapSize)] += seed;
+                    //break;
+                }
+                sgit++;
+            }
+        }
+    }
+    WriteFile(hFile, SeedAttr, sizeof(unsigned char)*m_iHeightMapSize*m_iHeightMapSize, &dwRWC, NULL);
 */
     WriteFile(hFile, pFrm->m_SeedFileName, sizeof(char) * MAX_PATH, &dwRWC, NULL);
 
@@ -1566,7 +1566,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile) {
     //컬러맵은 MapMng에서 따로 저장한다..
 
     //
-    //	타일텍스쳐정보 저장...
+    //    타일텍스쳐정보 저장...
     //
     WriteFile(hFile, &NumTile, sizeof(int), &dwRWC, NULL);
     if (NumTile != 0) {
@@ -1807,121 +1807,121 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
 
     ///////////////////////////////////////////////////////////////
     //
-    //	New...(축소시키는방법..)
+    //    New...(축소시키는방법..)
     /*
-	int x,z;
-	CBitMapFile BMP[3][3];
-	char buff[80];
-	unsigned char* pBMPImg;
-	for(x=0;x<3;x++)
-	{
-		for(z=0;z<3;z++) BMP[x][z].Create(m_iColorMapTexSize,m_iColorMapTexSize);
-	}
+    int x,z;
+    CBitMapFile BMP[3][3];
+    char buff[80];
+    unsigned char* pBMPImg;
+    for(x=0;x<3;x++)
+    {
+        for(z=0;z<3;z++) BMP[x][z].Create(m_iColorMapTexSize,m_iColorMapTexSize);
+    }
 
-	CN3Texture TexTmp;
-	TexTmp.Create(m_iColorMapTexSize, m_iColorMapTexSize, D3DFMT_X8R8G8B8, TRUE);
-	
-	D3DLOCKED_RECT d3dlrTex;
-	DWORD* pTexBits;		
-	for(x=0;x<m_iNumColorMap;x++)
-	{
-		for(z=0;z<m_iNumColorMap;z++)
-		{
-			int ax, az;
-			for(ax=0;ax<3;ax++)
-			{
-				for(az=0;az<3;az++)
-				{
-					sprintf(buff,"c:\\tmpcolormap%04d%04d.bmp", ax, az);
-					if((x+ax-1)>=0 && (z+az-1)>=0 && (x+ax-1)<m_iNumColorMap && (z+az-1)<m_iNumColorMap) m_pColorTexture[x+ax-1][z+az-1].SaveToBitmapFile(buff);
-					else BMP[ax][az].SaveToFile(buff);
-				}	//for(int az=0;az<3;az++)
-			}	//for(int ax=0;ax<3;ax++)
+    CN3Texture TexTmp;
+    TexTmp.Create(m_iColorMapTexSize, m_iColorMapTexSize, D3DFMT_X8R8G8B8, TRUE);
+    
+    D3DLOCKED_RECT d3dlrTex;
+    DWORD* pTexBits;        
+    for(x=0;x<m_iNumColorMap;x++)
+    {
+        for(z=0;z<m_iNumColorMap;z++)
+        {
+            int ax, az;
+            for(ax=0;ax<3;ax++)
+            {
+                for(az=0;az<3;az++)
+                {
+                    sprintf(buff,"c:\\tmpcolormap%04d%04d.bmp", ax, az);
+                    if((x+ax-1)>=0 && (z+az-1)>=0 && (x+ax-1)<m_iNumColorMap && (z+az-1)<m_iNumColorMap) m_pColorTexture[x+ax-1][z+az-1].SaveToBitmapFile(buff);
+                    else BMP[ax][az].SaveToFile(buff);
+                }    //for(int az=0;az<3;az++)
+            }    //for(int ax=0;ax<3;ax++)
 
-			//픽셀 재배열...
-			int SmallSize = m_iColorMapTexSize - 2;
-			TexTmp.Convert(D3DFMT_X8R8G8B8, m_iColorMapTexSize, m_iColorMapTexSize);
-			TexTmp.Get()->LockRect(0, &d3dlrTex, 0, 0);
-			pTexBits = (DWORD*)d3dlrTex.pBits;
-			for(ax=0;ax<3;ax++)
-			{
-				for(az=0;az<3;az++)
-				{
-					sprintf(buff,"c:\\tmpcolormap%04d%04d.bmp", ax, az);
-					HANDLE hSrcBitmap = LoadImage(0, buff, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE|LR_DEFAULTSIZE);
-					__ASSERT(hSrcBitmap, "");
+            //픽셀 재배열...
+            int SmallSize = m_iColorMapTexSize - 2;
+            TexTmp.Convert(D3DFMT_X8R8G8B8, m_iColorMapTexSize, m_iColorMapTexSize);
+            TexTmp.Get()->LockRect(0, &d3dlrTex, 0, 0);
+            pTexBits = (DWORD*)d3dlrTex.pBits;
+            for(ax=0;ax<3;ax++)
+            {
+                for(az=0;az<3;az++)
+                {
+                    sprintf(buff,"c:\\tmpcolormap%04d%04d.bmp", ax, az);
+                    HANDLE hSrcBitmap = LoadImage(0, buff, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE|LR_DEFAULTSIZE);
+                    __ASSERT(hSrcBitmap, "");
 
-					HDC hSmallDC = CreateCompatibleDC(NULL);
-					HDC hBMDC = CreateCompatibleDC(hSmallDC);
+                    HDC hSmallDC = CreateCompatibleDC(NULL);
+                    HDC hBMDC = CreateCompatibleDC(hSmallDC);
 
-					HBITMAP hOldBM = (HBITMAP)SelectObject(hBMDC, (HBITMAP)hSrcBitmap);
+                    HBITMAP hOldBM = (HBITMAP)SelectObject(hBMDC, (HBITMAP)hSrcBitmap);
 
-					// Prepare to create a bitmap
-					DWORD* pBitmapBits;
-					BITMAPINFO bmi;
-					ZeroMemory( &bmi.bmiHeader,  sizeof(BITMAPINFOHEADER) );
-					bmi.bmiHeader.biSize        = sizeof(BITMAPINFOHEADER);
-					bmi.bmiHeader.biWidth       =  (int)SmallSize;
-					bmi.bmiHeader.biHeight      = -(int)SmallSize;
-					bmi.bmiHeader.biPlanes      = 1;
-					bmi.bmiHeader.biCompression = BI_RGB;
-					bmi.bmiHeader.biBitCount    = 32;
+                    // Prepare to create a bitmap
+                    DWORD* pBitmapBits;
+                    BITMAPINFO bmi;
+                    ZeroMemory( &bmi.bmiHeader,  sizeof(BITMAPINFOHEADER) );
+                    bmi.bmiHeader.biSize        = sizeof(BITMAPINFOHEADER);
+                    bmi.bmiHeader.biWidth       =  (int)SmallSize;
+                    bmi.bmiHeader.biHeight      = -(int)SmallSize;
+                    bmi.bmiHeader.biPlanes      = 1;
+                    bmi.bmiHeader.biCompression = BI_RGB;
+                    bmi.bmiHeader.biBitCount    = 32;
 
-					HBITMAP hbmBitmap = CreateDIBSection( hSmallDC, &bmi, DIB_RGB_COLORS, (VOID**)&pBitmapBits, NULL, 0 );
-					HBITMAP hOldBM2 = (HBITMAP) SelectObject( hSmallDC, hbmBitmap );
+                    HBITMAP hbmBitmap = CreateDIBSection( hSmallDC, &bmi, DIB_RGB_COLORS, (VOID**)&pBitmapBits, NULL, 0 );
+                    HBITMAP hOldBM2 = (HBITMAP) SelectObject( hSmallDC, hbmBitmap );
 
-					SetStretchBltMode(hSmallDC, HALFTONE);
-					StretchBlt(hSmallDC, 0,0, SmallSize, SmallSize, hBMDC, 0,0, m_iColorMapTexSize, m_iColorMapTexSize, SRCCOPY);
-				
-					if(ax==0 && az==0) 
-						pTexBits[(m_iColorMapTexSize-1)*m_iColorMapTexSize] = pBitmapBits[SmallSize-1];
-					else if(ax==1 && az==0)
-						memcpy(&(pTexBits[(m_iColorMapTexSize-1)*m_iColorMapTexSize + 1]), &(pBitmapBits[0]), sizeof(DWORD)*SmallSize);
-					else if(ax==2 && az==0)
-						pTexBits[(m_iColorMapTexSize*m_iColorMapTexSize)-1] = pBitmapBits[0];
-					else if(ax==0 && az==1)
-					{
-						for(int i=0;i<SmallSize;i++)
-						{
-							pTexBits[(i+1)*m_iColorMapTexSize] = pBitmapBits[(i+1)*SmallSize - 1];
-						}
-					}
-					else if(ax==1 && az==1)
-					{
-						for(int i=0;i<SmallSize;i++)
-							memcpy(&(pTexBits[(i+1)*m_iColorMapTexSize + 1]), &(pBitmapBits[i*SmallSize]), sizeof(DWORD)*SmallSize);
-					}
-					else if(ax==2 && az==1)
-					{
-						for(int i=0;i<SmallSize;i++)
-							pTexBits[(i+1)*m_iColorMapTexSize + (m_iColorMapTexSize-1)] = pBitmapBits[i*SmallSize];
-					}
-					else if(ax==0 && az==2) 
-						pTexBits[0] = pBitmapBits[(SmallSize*SmallSize) - 1];
-					else if(ax==1 && az==2)
-					{
-						memcpy(&(pTexBits[1]), &(pBitmapBits[(SmallSize-1)*SmallSize]), sizeof(DWORD)*SmallSize);
-					}
-					else if(ax==2 && az==2)
-						pTexBits[m_iColorMapTexSize - 1] = pBitmapBits[(SmallSize-1)*SmallSize];
+                    SetStretchBltMode(hSmallDC, HALFTONE);
+                    StretchBlt(hSmallDC, 0,0, SmallSize, SmallSize, hBMDC, 0,0, m_iColorMapTexSize, m_iColorMapTexSize, SRCCOPY);
+                
+                    if(ax==0 && az==0) 
+                        pTexBits[(m_iColorMapTexSize-1)*m_iColorMapTexSize] = pBitmapBits[SmallSize-1];
+                    else if(ax==1 && az==0)
+                        memcpy(&(pTexBits[(m_iColorMapTexSize-1)*m_iColorMapTexSize + 1]), &(pBitmapBits[0]), sizeof(DWORD)*SmallSize);
+                    else if(ax==2 && az==0)
+                        pTexBits[(m_iColorMapTexSize*m_iColorMapTexSize)-1] = pBitmapBits[0];
+                    else if(ax==0 && az==1)
+                    {
+                        for(int i=0;i<SmallSize;i++)
+                        {
+                            pTexBits[(i+1)*m_iColorMapTexSize] = pBitmapBits[(i+1)*SmallSize - 1];
+                        }
+                    }
+                    else if(ax==1 && az==1)
+                    {
+                        for(int i=0;i<SmallSize;i++)
+                            memcpy(&(pTexBits[(i+1)*m_iColorMapTexSize + 1]), &(pBitmapBits[i*SmallSize]), sizeof(DWORD)*SmallSize);
+                    }
+                    else if(ax==2 && az==1)
+                    {
+                        for(int i=0;i<SmallSize;i++)
+                            pTexBits[(i+1)*m_iColorMapTexSize + (m_iColorMapTexSize-1)] = pBitmapBits[i*SmallSize];
+                    }
+                    else if(ax==0 && az==2) 
+                        pTexBits[0] = pBitmapBits[(SmallSize*SmallSize) - 1];
+                    else if(ax==1 && az==2)
+                    {
+                        memcpy(&(pTexBits[1]), &(pBitmapBits[(SmallSize-1)*SmallSize]), sizeof(DWORD)*SmallSize);
+                    }
+                    else if(ax==2 && az==2)
+                        pTexBits[m_iColorMapTexSize - 1] = pBitmapBits[(SmallSize-1)*SmallSize];
 
-					SelectObject( hBMDC, hOldBM );
-					SelectObject( hSmallDC, hOldBM2 );
-					
+                    SelectObject( hBMDC, hOldBM );
+                    SelectObject( hSmallDC, hOldBM2 );
+                    
 
-					DeleteFile(buff); // 임시 파일을 지워준다..	
-				}
-			}
-			TexTmp.Get()->UnlockRect(0);
-			sprintf(buff,"tmpb%04d%04d.bmp", x,z);
-			TexTmp.SaveToBitmapFile(buff);
-			
-			TexTmp.Convert(D3DFMT_A1R5G5B5, m_iColorMapTexSize, m_iColorMapTexSize);
-			TexTmp.Save(hCMFile);
-			
-		}	//for(z=0;z<m_iNumColorMap;z++)
-	}	//for(x=0;x<m_iNumColorMap;x++)
-	//*/
+                    DeleteFile(buff); // 임시 파일을 지워준다..    
+                }
+            }
+            TexTmp.Get()->UnlockRect(0);
+            sprintf(buff,"tmpb%04d%04d.bmp", x,z);
+            TexTmp.SaveToBitmapFile(buff);
+            
+            TexTmp.Convert(D3DFMT_A1R5G5B5, m_iColorMapTexSize, m_iColorMapTexSize);
+            TexTmp.Save(hCMFile);
+            
+        }    //for(z=0;z<m_iNumColorMap;z++)
+    }    //for(x=0;x<m_iNumColorMap;x++)
+    //*/
     //
     ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1932,33 +1932,33 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
     // 그런데 texturestagestate에서 mirror쓰면 좀 어색하긴 해도 어느정도는 되더라...-.-
     //
     /*
-	HANDLE hCMFile = CreateFile(szFullPathName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hCMFile = CreateFile(szFullPathName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
-	CProgressBar ProgressBar; // 진행 상황..
-	ProgressBar.Create("Save game color map..", 50, m_iNumColorMap * m_iNumColorMap);
-	ProgressBar.SetStep(1);
+    CProgressBar ProgressBar; // 진행 상황..
+    ProgressBar.Create("Save game color map..", 50, m_iNumColorMap * m_iNumColorMap);
+    ProgressBar.SetStep(1);
 
-	//bitmap가공...
-	ColorMapExport("c:\\TempColormap.bmp");
+    //bitmap가공...
+    ColorMapExport("c:\\TempColormap.bmp");
 
-	int OrgWidth, OrgHeight;
-	OrgWidth = m_iColorMapTexSize * m_iNumColorMap;
-	OrgHeight = m_iColorMapTexSize * m_iNumColorMap;
+    int OrgWidth, OrgHeight;
+    OrgWidth = m_iColorMapTexSize * m_iNumColorMap;
+    OrgHeight = m_iColorMapTexSize * m_iNumColorMap;
 
-	int SmallWidth, SmallHeight;
-	SmallWidth = OrgWidth - ((OrgWidth / m_iColorMapTexSize)<<1);
-	SmallHeight = OrgHeight - ((OrgHeight / m_iColorMapTexSize)<<1);
+    int SmallWidth, SmallHeight;
+    SmallWidth = OrgWidth - ((OrgWidth / m_iColorMapTexSize)<<1);
+    SmallHeight = OrgHeight - ((OrgHeight / m_iColorMapTexSize)<<1);
 
-	HANDLE hSrcBitmap = LoadImage(0, "c:\\TempColormap.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE|LR_DEFAULTSIZE);
-	__ASSERT(hSrcBitmap, "");
+    HANDLE hSrcBitmap = LoadImage(0, "c:\\TempColormap.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE|LR_DEFAULTSIZE);
+    __ASSERT(hSrcBitmap, "");
 
-	CBitmap PatchBitmap;
-	HDC hSmallDC = CreateCompatibleDC(NULL);
-	HDC hBMDC = CreateCompatibleDC(hSmallDC);
+    CBitmap PatchBitmap;
+    HDC hSmallDC = CreateCompatibleDC(NULL);
+    HDC hBMDC = CreateCompatibleDC(hSmallDC);
 
-	HBITMAP hOldBM = (HBITMAP)SelectObject(hBMDC, (HBITMAP)hSrcBitmap);
+    HBITMAP hOldBM = (HBITMAP)SelectObject(hBMDC, (HBITMAP)hSrcBitmap);
 
-	// Prepare to create a bitmap
+    // Prepare to create a bitmap
     DWORD* pBitmapBits;
     BITMAPINFO bmi;
     ZeroMemory( &bmi.bmiHeader,  sizeof(BITMAPINFOHEADER) );
@@ -1969,74 +1969,74 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
     bmi.bmiHeader.biCompression = BI_RGB;
     bmi.bmiHeader.biBitCount    = 32;
 
-	HBITMAP hbmBitmap = CreateDIBSection( hSmallDC, &bmi, DIB_RGB_COLORS,
+    HBITMAP hbmBitmap = CreateDIBSection( hSmallDC, &bmi, DIB_RGB_COLORS,
                                           (VOID**)&pBitmapBits, NULL, 0 );
     HBITMAP hOldBM2 = (HBITMAP) SelectObject( hSmallDC, hbmBitmap );
 
-	StretchBlt(hSmallDC, 0,0, SmallWidth, SmallHeight,
-				hBMDC, 0,0, OrgWidth, OrgHeight, SRCCOPY);
+    StretchBlt(hSmallDC, 0,0, SmallWidth, SmallHeight,
+                hBMDC, 0,0, OrgWidth, OrgHeight, SRCCOPY);
 
 
-	// n3texture 가공..
-	CN3Texture TexTmp;
-	LPDWORD pImgTarget;
-	D3DLOCKED_RECT d3dlrTarget;
+    // n3texture 가공..
+    CN3Texture TexTmp;
+    LPDWORD pImgTarget;
+    D3DLOCKED_RECT d3dlrTarget;
 
-	int TexSize = m_pColorTexture[0][0].Width();
-	int x,z;
-	int sx,sz;
-	int DestWidth, DestHeight;
-	for(x=0;x<m_iNumColorMap;x++)
-	{
-		for(z=m_iNumColorMap-1;z>=0;z--)
-		{
-			ProgressBar.StepIt();						
-			TexTmp.Create(TexSize, TexSize, D3DFMT_X8R8G8B8, TRUE);
-			TexTmp.Get()->LockRect( 0, &d3dlrTarget, 0, 0 );
-			pImgTarget = (LPDWORD)d3dlrTarget.pBits;
+    int TexSize = m_pColorTexture[0][0].Width();
+    int x,z;
+    int sx,sz;
+    int DestWidth, DestHeight;
+    for(x=0;x<m_iNumColorMap;x++)
+    {
+        for(z=m_iNumColorMap-1;z>=0;z--)
+        {
+            ProgressBar.StepIt();                        
+            TexTmp.Create(TexSize, TexSize, D3DFMT_X8R8G8B8, TRUE);
+            TexTmp.Get()->LockRect( 0, &d3dlrTarget, 0, 0 );
+            pImgTarget = (LPDWORD)d3dlrTarget.pBits;
 
-			sx = x * (TexSize-2) - 1;
-			sz = z * (TexSize-2) - 1;
-			DestWidth = TexSize;
-			DestHeight = TexSize;
-			
-			if(x==0)
-			{
-				sx = 0;
-				DestWidth = TexSize - 1;
-				pImgTarget++;
-			}
-			else if(x==m_iNumColorMap-1)
-			{
-				DestWidth = TexSize - 1;				
-			}
-			
-			if(z==0)
-			{
-				sz = 0;
-				DestHeight = TexSize - 1;
-				pImgTarget += TexSize;
-			}
-			else if(z==m_iNumColorMap-1)
-			{
-				DestHeight = TexSize - 1;				
-			}
-			
-			for(int i=0;i<DestHeight;i++)
-				memcpy(&(pImgTarget[i*TexSize]), &(pBitmapBits[sx + (sz+i)*SmallWidth]), DestWidth*sizeof(DWORD));
+            sx = x * (TexSize-2) - 1;
+            sz = z * (TexSize-2) - 1;
+            DestWidth = TexSize;
+            DestHeight = TexSize;
+            
+            if(x==0)
+            {
+                sx = 0;
+                DestWidth = TexSize - 1;
+                pImgTarget++;
+            }
+            else if(x==m_iNumColorMap-1)
+            {
+                DestWidth = TexSize - 1;                
+            }
+            
+            if(z==0)
+            {
+                sz = 0;
+                DestHeight = TexSize - 1;
+                pImgTarget += TexSize;
+            }
+            else if(z==m_iNumColorMap-1)
+            {
+                DestHeight = TexSize - 1;                
+            }
+            
+            for(int i=0;i<DestHeight;i++)
+                memcpy(&(pImgTarget[i*TexSize]), &(pBitmapBits[sx + (sz+i)*SmallWidth]), DestWidth*sizeof(DWORD));
 
-			TexTmp.Get()->UnlockRect(0);
-			TexTmp.Convert(D3DFMT_DXT1); // DXT1 형식으로 Convert
-			TexTmp.Save(hCMFile);			
-		}
-	}
+            TexTmp.Get()->UnlockRect(0);
+            TexTmp.Convert(D3DFMT_DXT1); // DXT1 형식으로 Convert
+            TexTmp.Save(hCMFile);            
+        }
+    }
 
-	CloseHandle(hCMFile);
+    CloseHandle(hCMFile);
 
-	SelectObject( hBMDC, hOldBM );
-	SelectObject( hSmallDC, hOldBM2 );
+    SelectObject( hBMDC, hOldBM );
+    SelectObject( hSmallDC, hOldBM2 );
 
-	DeleteFile("c:\\TempColormap.bmp"); // 임시 파일을 지워준다..
+    DeleteFile("c:\\TempColormap.bmp"); // 임시 파일을 지워준다..
 */
     //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2046,41 +2046,41 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
     // 컬러 맵 이름.. 파일이름만(확장자는 없다.) 저장해준다.
     // 컬러맵을 패치별로  따로 저장...
     /*
-	char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-	_splitpath(m_szFileName, szDrive, szDir, szFName, szExt);
-	
-	CProgressBar ProgressBar; // 진행 상황..
-	ProgressBar.Create("Save game color map..", m_iNumColorMap * m_iNumColorMap, 50);
-	ProgressBar.SetStep(1);
+    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
+    _splitpath(m_szFileName, szDrive, szDir, szFName, szExt);
+    
+    CProgressBar ProgressBar; // 진행 상황..
+    ProgressBar.Create("Save game color map..", m_iNumColorMap * m_iNumColorMap, 50);
+    ProgressBar.SetStep(1);
 
-	WriteFile(hFile, szFName, _MAX_PATH, &dwRWC, NULL); // 컬러맵 이름 저장.
+    WriteFile(hFile, szFName, _MAX_PATH, &dwRWC, NULL); // 컬러맵 이름 저장.
 
-	CN3Texture TexTmp;
-	char szNewFName[_MAX_PATH] = "", szAdd[_MAX_PATH] = "";
-	for(x=0;x<m_iNumColorMap;x++)
-	{
-		for(z=0;z<m_iNumColorMap;z++)
-		{
-			ProgressBar.StepIt();
+    CN3Texture TexTmp;
+    char szNewFName[_MAX_PATH] = "", szAdd[_MAX_PATH] = "";
+    for(x=0;x<m_iNumColorMap;x++)
+    {
+        for(z=0;z<m_iNumColorMap;z++)
+        {
+            ProgressBar.StepIt();
 
-			m_pColorTexture[x][z].SaveToFile("c:\\TempConversion.DXT"); // 임시로 저장.
-			TexTmp.LoadFromFile("c:\\TempConversion.DXT"); // 읽는다. 
-			TexTmp.Convert(D3DFMT_DXT1); // DXT1 형식으로 Convert
+            m_pColorTexture[x][z].SaveToFile("c:\\TempConversion.DXT"); // 임시로 저장.
+            TexTmp.LoadFromFile("c:\\TempConversion.DXT"); // 읽는다. 
+            TexTmp.Convert(D3DFMT_DXT1); // DXT1 형식으로 Convert
 
-			_makepath(szNewFName, szDrive, szDir, szFName, NULL);
-			wsprintf(szAdd, "_%02d%02d.dxt", x, z);
-			lstrcat(szNewFName, szAdd);
-			TexTmp.SaveToFile(szNewFName);
-		}
-	}
-	DeleteFile("c:\\TempConversion.DXT"); // 임시 파일을 지워준다..
-	*/
+            _makepath(szNewFName, szDrive, szDir, szFName, NULL);
+            wsprintf(szAdd, "_%02d%02d.dxt", x, z);
+            lstrcat(szNewFName, szAdd);
+            TexTmp.SaveToFile(szNewFName);
+        }
+    }
+    DeleteFile("c:\\TempConversion.DXT"); // 임시 파일을 지워준다..
+    */
     //
     ///////////////////////////////////////////////////////////////////////////////////////////
 }
 
 //
-//	Tick...
+//    Tick...
 //
 void CLyTerrain::Tick() {
     RECT  rt = m_VisibleRect;
@@ -2097,7 +2097,7 @@ void CLyTerrain::Tick() {
 }
 
 //
-//	가시거리 범위 정하기...(타일단위)
+//    가시거리 범위 정하기...(타일단위)
 //
 void CLyTerrain::SetVisibleRect() {
     int tx, tz;
@@ -2168,7 +2168,7 @@ void CLyTerrain::SetVisibleRect() {
 }
 
 //
-//	Render()
+//    Render()
 //
 void CLyTerrain::Render() {
     s_lpD3DDev->SetMaterial(&m_Material);
@@ -2248,7 +2248,7 @@ void CLyTerrain::Render() {
 }
 
 //
-//	각점에 대해 그릴지아닐지를 초기화..('아니다'로 초기화)
+//    각점에 대해 그릴지아닐지를 초기화..('아니다'로 초기화)
 //
 inline void CLyTerrain::ClearRenderInfo() {
     for (int i = 0; i < m_iHeightMapSize; i++) {
@@ -2257,8 +2257,8 @@ inline void CLyTerrain::ClearRenderInfo() {
 }
 
 //
-//	Log2(x) = l..
-//	2의 승수에 대해서만 제대로 작동...(x>0)
+//    Log2(x) = l..
+//    2의 승수에 대해서만 제대로 작동...(x>0)
 //
 inline int CLyTerrain::Log2(int x) {
     int l = 0;
@@ -2270,7 +2270,7 @@ inline int CLyTerrain::Log2(int x) {
 }
 
 //
-//	높이값 얻는 함수...
+//    높이값 얻는 함수...
 //
 float CLyTerrain::GetHeight(float x, float z) {
     int ix, iz;
@@ -2353,8 +2353,8 @@ float CLyTerrain::GetHeight(float x, float z) {
 }
 
 //
-//	GetPatchNum(float fSize)
-//	fSize크기의 패치가 전체 맵에서 가로세로로 몇개씩 나오는지....
+//    GetPatchNum(float fSize)
+//    fSize크기의 패치가 전체 맵에서 가로세로로 몇개씩 나오는지....
 //
 SIZE CLyTerrain::GetPatchNum(float fSize) {
     SIZE size;
@@ -2369,8 +2369,8 @@ SIZE CLyTerrain::GetPatchNum(float fSize) {
 }
 
 //
-//	MouseMsgFilter(LPMSG pMsg)
-//	마우스 처리..
+//    MouseMsgFilter(LPMSG pMsg)
+//    마우스 처리..
 //
 BOOL CLyTerrain::MouseMsgFilter(LPMSG pMsg) {
     if (m_iEditMode == TEM_NOT) {
@@ -2957,16 +2957,16 @@ int CLyTerrain::DetectRealLightMap(int sx, int sz, int range) {
                     }
                 }
             }
-            /*	외각테두리 없는거..
-			for(int i=0; i<LIGHTMAP_TEX_SIZE*LIGHTMAP_TEX_SIZE; i++)
-			{
-				if(pImg[i]!=0xffffffff)
-				{
-					bIsWhite = false;
-					NumLightMap++;
-					break;
-				}
-			}
+            /*    외각테두리 없는거..
+            for(int i=0; i<LIGHTMAP_TEX_SIZE*LIGHTMAP_TEX_SIZE; i++)
+            {
+                if(pImg[i]!=0xffffffff)
+                {
+                    bIsWhite = false;
+                    NumLightMap++;
+                    break;
+                }
+            }
 */
             m_ppLightMapTexture[x][z]->Get()->UnlockRect(0);
 
@@ -3307,7 +3307,7 @@ void CLyTerrain::FillLightMap(int x, int z, int lcx, int lcz, DWORD Color, float
 }
 
 //
-//	lcx, lcz는 라이트맵타일내에서의 좌표..
+//    lcx, lcz는 라이트맵타일내에서의 좌표..
 //
 void CLyTerrain::SetLightMap(int x, int z, int lcx, int lcz) {
     DWORD SrcColor;
@@ -3365,9 +3365,9 @@ void CLyTerrain::SetLightMap(int x, int z, int lcx, int lcz) {
 
 //
 //
-//	MakeDistanceTable
-//	거리를 계산하지 말고 테이블에서 가져올 수 있게 미리 테이블 생성..
-//	정수 단위 거리..
+//    MakeDistanceTable
+//    거리를 계산하지 말고 테이블에서 가져올 수 있게 미리 테이블 생성..
+//    정수 단위 거리..
 //
 void CLyTerrain::MakeDistanceTable() {
     int    x, z;
@@ -3381,8 +3381,8 @@ void CLyTerrain::MakeDistanceTable() {
 }
 
 //
-//	지형에서 갈수 있는 타일과 갈 수 없는 타일 구분해서 테이블 만드는 함수.
-//	char형으로 1이면 갈 수 있고, 0이면 갈 수 없다.
+//    지형에서 갈수 있는 타일과 갈 수 없는 타일 구분해서 테이블 만드는 함수.
+//    char형으로 1이면 갈 수 있고, 0이면 갈 수 없다.
 //
 void CLyTerrain::MakeMoveTable(short ** ppEvent) {
     int   x, z;
@@ -3428,7 +3428,7 @@ void CLyTerrain::MakeMoveTable(short ** ppEvent) {
 }
 
 //
-//	SaveServerData(HANDLE hFile)
+//    SaveServerData(HANDLE hFile)
 //
 void CLyTerrain::SaveServerData(HANDLE hFile) {
     DWORD dwRWC;
@@ -3476,20 +3476,20 @@ void CLyTerrain::VerifyTexInfo(LPDTEXINFO pDTex) {
     if (pDTex->Attr.Attr < DTEX_FULL || pDTex->Attr.Attr >= DTEX_MAX) {
         pDTex->Attr.Attr = DTEX_FULL;
     }
-    //	if(pDTex->Attr.Group < 0 || pDTex->Attr.Group >= pDTexGroupMng->m_Groups.size()) pDTex->Attr.Group = 0;
+    //    if(pDTex->Attr.Group < 0 || pDTex->Attr.Group >= pDTexGroupMng->m_Groups.size()) pDTex->Attr.Group = 0;
     if (pDTex->Dir < 0 || pDTex->Dir > 7) {
         pDTex->Dir = 0;
     }
 
-    //	if(pDTex->TexIdx.TexID < 0 || pDTex->TexIdx.TexID > pDTexMng->GetMaxID())
-    //	{
-    //		pDTex->TexIdx = pDTexGroupMng->GetTileAttr(pDTex->Attr.Group, pDTex->Attr.Attr);
-    //	}
+    //    if(pDTex->TexIdx.TexID < 0 || pDTex->TexIdx.TexID > pDTexMng->GetMaxID())
+    //    {
+    //        pDTex->TexIdx = pDTexGroupMng->GetTileAttr(pDTex->Attr.Group, pDTex->Attr.Attr);
+    //    }
 }
 
 //
-//	SetDTex..
-//	자동완성 기능이 있는 것...
+//    SetDTex..
+//    자동완성 기능이 있는 것...
 //
 void CLyTerrain::SetDTex(int x, int y) {
     CMainFrame *    pFrm = (CMainFrame *)AfxGetMainWnd();
@@ -3610,7 +3610,7 @@ void CLyTerrain::SetDTex(int x, int y) {
                 }
 #endif
 #ifdef _EMPEROR
-                switch (Dest1DTex.Attr.Attr) //	asm
+                switch (Dest1DTex.Attr.Attr) //    asm
                 {
                 case DTEX_FULL:
                     TIndex = 12;
@@ -3669,8 +3669,8 @@ void CLyTerrain::SetDTex(int x, int y) {
 }
 
 //
-//	SetDTexManual..
-//	자동완성 기능이 없이 그냥 하나만 찍는 것.....
+//    SetDTexManual..
+//    자동완성 기능이 없이 그냥 하나만 찍는 것.....
 //
 void CLyTerrain::SetDTexManual(int x, int y) {
     CMainFrame *    pFrm = (CMainFrame *)AfxGetMainWnd();
@@ -3725,19 +3725,19 @@ void CLyTerrain::SetDTexManual(int x, int y) {
         return;
     }
 
-    //	if(Dest1DTex.Attr.Group == NewDTex.Attr.Group &&
-    //		Dest1DTex.Attr.Attr == NewDTex.Attr.Attr)
-    //	{
-    //		Dest1DTex.Dir++;
-    //		if(Dest1DTex.Dir>7) Dest1DTex.Dir = 0;
+    //    if(Dest1DTex.Attr.Group == NewDTex.Attr.Group &&
+    //        Dest1DTex.Attr.Attr == NewDTex.Attr.Attr)
+    //    {
+    //        Dest1DTex.Dir++;
+    //        if(Dest1DTex.Dir>7) Dest1DTex.Dir = 0;
     //
-    //		SetPertinentTile(pDTexGroupMng, &Dest1DTex, &Dest2DTex);
+    //        SetPertinentTile(pDTexGroupMng, &Dest1DTex, &Dest2DTex);
     //
-    //		m_ppMapData[x][y].DTexInfo1 = Dest1DTex;
-    //		m_ppMapData[x][y].DTexInfo2 = Dest2DTex;
-    //		PutColorMapTile(x, z);
-    //		return;
-    //	}
+    //        m_ppMapData[x][y].DTexInfo1 = Dest1DTex;
+    //        m_ppMapData[x][y].DTexInfo2 = Dest2DTex;
+    //        PutColorMapTile(x, z);
+    //        return;
+    //    }
 
     if (Dest2DTex.Attr.Group == NewDTex.Attr.Group) {
         DTEXINFO tmp = Dest1DTex;
@@ -3758,7 +3758,7 @@ void CLyTerrain::SetDTexManual(int x, int y) {
     }
 
     if (pDTexGroupMng->m_pGroupView->m_iRadioState == 3) {
-        Dest2DTex.TexIdx.TexID = -1; //	강제찍기의 풀로찍기
+        Dest2DTex.TexIdx.TexID = -1; //    강제찍기의 풀로찍기
     }
 
     m_ppMapData[x][y].DTexInfo1 = Dest1DTex;
@@ -3805,7 +3805,7 @@ void CLyTerrain::SetPertinentTile(CDTexGroupMng * pDTexGroupMng, LPDTEXINFO pDes
     }
 #endif
 #ifdef _EMPEROR
-    switch (pDest1->Attr.Attr) //	asm
+    switch (pDest1->Attr.Attr) //    asm
     {
     case DTEX_FULL:
         pDest2->Attr.Group = 0;
@@ -3860,8 +3860,8 @@ void CLyTerrain::TilingAll() {
 }
 
 //
-//	컬러맵 만들 타일 넣기...
-//	아직 안만들어진...그런 타일들 대기열에 넣는것..
+//    컬러맵 만들 타일 넣기...
+//    아직 안만들어진...그런 타일들 대기열에 넣는것..
 //
 void CLyTerrain::PutColorMapTile(int x, int z) {
     MMIter it = m_ColorMapTileTree.lower_bound((short)x);
@@ -3877,7 +3877,7 @@ void CLyTerrain::PutColorMapTile(int x, int z) {
 }
 
 //
-//	컬러맵 만들지 않은 타일들 컬러맵 만들기..
+//    컬러맵 만들지 않은 타일들 컬러맵 만들기..
 //
 void CLyTerrain::GeneraterColorMap(bool bIsAll) {
     CProgressBar ProgressBar;
@@ -3909,208 +3909,208 @@ void CLyTerrain::GeneraterColorMap(bool bIsAll) {
 }
 
 //
-//	컬러맵텍스쳐 셋팅하기..
+//    컬러맵텍스쳐 셋팅하기..
 //
 //
-//	타일맵을 그대로 축소시켜서 컬러맵을 만드는 방법..
+//    타일맵을 그대로 축소시켜서 컬러맵을 만드는 방법..
 //
 /*
 void CLyTerrain::SetColorMap(int x, int y)
 {
-	float u1,v1,u2,v2;
-	float TileTexSize = (float)(DTEX_SIZE/NUM_DTEXTILE);
-	float fEndPoint = TileTexSize - 1;
+    float u1,v1,u2,v2;
+    float TileTexSize = (float)(DTEX_SIZE/NUM_DTEXTILE);
+    float fEndPoint = TileTexSize - 1;
 
-	HRESULT hr;
+    HRESULT hr;
 
-	if(m_ppMapData[x][y].DTexInfo1.Attr.Group <=0 && 
-		m_ppMapData[x][y].DTexInfo2.Attr.Group <=0) return;
+    if(m_ppMapData[x][y].DTexInfo1.Attr.Group <=0 && 
+        m_ppMapData[x][y].DTexInfo2.Attr.Group <=0) return;
 
-	int dir1, dir2;
-	dir1 = m_ppMapData[x][y].DTexInfo1.Dir;
-	dir2 = m_ppMapData[x][y].DTexInfo2.Dir;
+    int dir1, dir2;
+    dir1 = m_ppMapData[x][y].DTexInfo1.Dir;
+    dir2 = m_ppMapData[x][y].DTexInfo2.Dir;
 
-	u1 = (m_ppMapData[x][y].DTexInfo1.TexIdx.TileX * TileTexSize);
-	v1 = (m_ppMapData[x][y].DTexInfo1.TexIdx.TileY * TileTexSize);
+    u1 = (m_ppMapData[x][y].DTexInfo1.TexIdx.TileX * TileTexSize);
+    v1 = (m_ppMapData[x][y].DTexInfo1.TexIdx.TileY * TileTexSize);
 
-	u2 = (m_ppMapData[x][y].DTexInfo2.TexIdx.TileX * TileTexSize);
-	v2 = (m_ppMapData[x][y].DTexInfo2.TexIdx.TileY * TileTexSize);
+    u2 = (m_ppMapData[x][y].DTexInfo2.TexIdx.TileX * TileTexSize);
+    v2 = (m_ppMapData[x][y].DTexInfo2.TexIdx.TileY * TileTexSize);
 
-	hr = m_pColorMapTmpVB->Lock( 0, 0, (VOID**)&m_pColorMapTmpVertices, 0 );
+    hr = m_pColorMapTmpVB->Lock( 0, 0, (VOID**)&m_pColorMapTmpVertices, 0 );
 
-	m_pColorMapTmpVertices[0].Set(0.0f,		0.0f,		0.1f, 0.5f, 0xffffffff,
-								(u1+m_fTileDirUforColorMap[dir1][0])/(float)(DTEX_SIZE),
-								(v1+m_fTileDirVforColorMap[dir1][0])/(float)(DTEX_SIZE),
-								(u2+m_fTileDirUforColorMap[dir2][0])/(float)(DTEX_SIZE),
-								(v2+m_fTileDirVforColorMap[dir2][0])/(float)(DTEX_SIZE));
-	m_pColorMapTmpVertices[1].Set(fEndPoint,0.0f,		0.1f, 0.5f, 0xffffffff,
-								(u1+m_fTileDirUforColorMap[dir1][1])/(float)(DTEX_SIZE),
-								(v1+m_fTileDirVforColorMap[dir1][1])/(float)(DTEX_SIZE),
-								(u2+m_fTileDirUforColorMap[dir2][1])/(float)(DTEX_SIZE),
-								(v2+m_fTileDirVforColorMap[dir2][1])/(float)(DTEX_SIZE));
-	m_pColorMapTmpVertices[2].Set(fEndPoint,fEndPoint,	0.1f, 0.5f, 0xffffffff,
-								(u1+m_fTileDirUforColorMap[dir1][3])/(float)(DTEX_SIZE),
-								(v1+m_fTileDirVforColorMap[dir1][3])/(float)(DTEX_SIZE),
-								(u2+m_fTileDirUforColorMap[dir2][3])/(float)(DTEX_SIZE),
-								(v2+m_fTileDirVforColorMap[dir2][3])/(float)(DTEX_SIZE));								
-	m_pColorMapTmpVertices[3].Set(0.0f,		fEndPoint,	0.1f, 0.5f, 0xffffffff,
-								(u1+m_fTileDirUforColorMap[dir1][2])/(float)(DTEX_SIZE),
-								(v1+m_fTileDirVforColorMap[dir1][2])/(float)(DTEX_SIZE),
-								(u2+m_fTileDirUforColorMap[dir2][2])/(float)(DTEX_SIZE),
-								(v2+m_fTileDirVforColorMap[dir2][2])/(float)(DTEX_SIZE));
+    m_pColorMapTmpVertices[0].Set(0.0f,        0.0f,        0.1f, 0.5f, 0xffffffff,
+                                (u1+m_fTileDirUforColorMap[dir1][0])/(float)(DTEX_SIZE),
+                                (v1+m_fTileDirVforColorMap[dir1][0])/(float)(DTEX_SIZE),
+                                (u2+m_fTileDirUforColorMap[dir2][0])/(float)(DTEX_SIZE),
+                                (v2+m_fTileDirVforColorMap[dir2][0])/(float)(DTEX_SIZE));
+    m_pColorMapTmpVertices[1].Set(fEndPoint,0.0f,        0.1f, 0.5f, 0xffffffff,
+                                (u1+m_fTileDirUforColorMap[dir1][1])/(float)(DTEX_SIZE),
+                                (v1+m_fTileDirVforColorMap[dir1][1])/(float)(DTEX_SIZE),
+                                (u2+m_fTileDirUforColorMap[dir2][1])/(float)(DTEX_SIZE),
+                                (v2+m_fTileDirVforColorMap[dir2][1])/(float)(DTEX_SIZE));
+    m_pColorMapTmpVertices[2].Set(fEndPoint,fEndPoint,    0.1f, 0.5f, 0xffffffff,
+                                (u1+m_fTileDirUforColorMap[dir1][3])/(float)(DTEX_SIZE),
+                                (v1+m_fTileDirVforColorMap[dir1][3])/(float)(DTEX_SIZE),
+                                (u2+m_fTileDirUforColorMap[dir2][3])/(float)(DTEX_SIZE),
+                                (v2+m_fTileDirVforColorMap[dir2][3])/(float)(DTEX_SIZE));                                
+    m_pColorMapTmpVertices[3].Set(0.0f,        fEndPoint,    0.1f, 0.5f, 0xffffffff,
+                                (u1+m_fTileDirUforColorMap[dir1][2])/(float)(DTEX_SIZE),
+                                (v1+m_fTileDirVforColorMap[dir1][2])/(float)(DTEX_SIZE),
+                                (u2+m_fTileDirUforColorMap[dir2][2])/(float)(DTEX_SIZE),
+                                (v2+m_fTileDirVforColorMap[dir2][2])/(float)(DTEX_SIZE));
 
-	if(m_ppIsLightMap[x][y])
-	{
-		m_pColorMapTmpVertices[4].Set(0.0f,		0.0f,		0.1f, 0.5f, 0xffffffff,
-								(1.0f / (float)LIGHTMAP_TEX_SIZE),
-								(1.0f / (float)LIGHTMAP_TEX_SIZE),
-								0.0f, 0.0f);
-		m_pColorMapTmpVertices[5].Set(fEndPoint,0.0f,		0.1f, 0.5f, 0xffffffff,
-								1.0f,
-								(1.0f / (float)LIGHTMAP_TEX_SIZE),
-								0.0f, 0.0f);
-		m_pColorMapTmpVertices[6].Set(fEndPoint,fEndPoint,	0.1f, 0.5f, 0xffffffff,
-								1.0f,
-								1.0f,
-								0.0f, 0.0f);
-		m_pColorMapTmpVertices[7].Set(0.0f,		fEndPoint,	0.1f, 0.5f, 0xffffffff,
-								(1.0f / (float)LIGHTMAP_TEX_SIZE),
-								1.0f,
-								0.0f, 0.0f);
-	}
-	
-	hr = m_pColorMapTmpVB->Unlock();
-	m_pColorMapTmpVertices = NULL;
+    if(m_ppIsLightMap[x][y])
+    {
+        m_pColorMapTmpVertices[4].Set(0.0f,        0.0f,        0.1f, 0.5f, 0xffffffff,
+                                (1.0f / (float)LIGHTMAP_TEX_SIZE),
+                                (1.0f / (float)LIGHTMAP_TEX_SIZE),
+                                0.0f, 0.0f);
+        m_pColorMapTmpVertices[5].Set(fEndPoint,0.0f,        0.1f, 0.5f, 0xffffffff,
+                                1.0f,
+                                (1.0f / (float)LIGHTMAP_TEX_SIZE),
+                                0.0f, 0.0f);
+        m_pColorMapTmpVertices[6].Set(fEndPoint,fEndPoint,    0.1f, 0.5f, 0xffffffff,
+                                1.0f,
+                                1.0f,
+                                0.0f, 0.0f);
+        m_pColorMapTmpVertices[7].Set(0.0f,        fEndPoint,    0.1f, 0.5f, 0xffffffff,
+                                (1.0f / (float)LIGHTMAP_TEX_SIZE),
+                                1.0f,
+                                0.0f, 0.0f);
+    }
+    
+    hr = m_pColorMapTmpVB->Unlock();
+    m_pColorMapTmpVertices = NULL;
 
-	hr = s_lpD3DDev->Clear(0, NULL, D3DCLEAR_ZBUFFER | D3DCLEAR_TARGET, D3DCOLOR_ARGB(255,0,0,0), 1.0f, 0);
-	hr = s_lpD3DDev->BeginScene();
+    hr = s_lpD3DDev->Clear(0, NULL, D3DCLEAR_ZBUFFER | D3DCLEAR_TARGET, D3DCOLOR_ARGB(255,0,0,0), 1.0f, 0);
+    hr = s_lpD3DDev->BeginScene();
 
-	DWORD dwCull, dwZ, dwLgt;
-	hr = s_lpD3DDev->GetRenderState(D3DRS_CULLMODE, &dwCull);
-	hr = s_lpD3DDev->GetRenderState(D3DRS_ZENABLE, &dwZ);
-	hr = s_lpD3DDev->GetRenderState(D3DRS_LIGHTING, &dwLgt);
+    DWORD dwCull, dwZ, dwLgt;
+    hr = s_lpD3DDev->GetRenderState(D3DRS_CULLMODE, &dwCull);
+    hr = s_lpD3DDev->GetRenderState(D3DRS_ZENABLE, &dwZ);
+    hr = s_lpD3DDev->GetRenderState(D3DRS_LIGHTING, &dwLgt);
 
-	hr = s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
-	hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
-	hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
+    hr = s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+    hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
+    hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
-	hr = s_lpD3DDev->SetStreamSource( 0, m_pColorMapTmpVB, 0, sizeof(__VertexTransformedT2) );
-	hr = s_lpD3DDev->SetFVF( FVF_TRANSFORMEDT2 );
-	
-	DWORD ColorArg11, ColorArg12, ColorArg21, ColorArg22;
-	DWORD ColorOP1, ColorOP2;
+    hr = s_lpD3DDev->SetStreamSource( 0, m_pColorMapTmpVB, 0, sizeof(__VertexTransformedT2) );
+    hr = s_lpD3DDev->SetFVF( FVF_TRANSFORMEDT2 );
+    
+    DWORD ColorArg11, ColorArg12, ColorArg21, ColorArg22;
+    DWORD ColorOP1, ColorOP2;
 
-	hr = s_lpD3DDev->GetTextureStageState( 0, D3DTSS_COLOROP, &ColorOP1);
-	hr = s_lpD3DDev->GetTextureStageState( 0, D3DTSS_COLORARG1, &ColorArg11);
-	hr = s_lpD3DDev->GetTextureStageState( 0, D3DTSS_COLORARG2, &ColorArg12);
+    hr = s_lpD3DDev->GetTextureStageState( 0, D3DTSS_COLOROP, &ColorOP1);
+    hr = s_lpD3DDev->GetTextureStageState( 0, D3DTSS_COLORARG1, &ColorArg11);
+    hr = s_lpD3DDev->GetTextureStageState( 0, D3DTSS_COLORARG2, &ColorArg12);
 
-	hr = s_lpD3DDev->GetTextureStageState( 1, D3DTSS_COLOROP, &ColorOP2);
-	hr = s_lpD3DDev->GetTextureStageState( 1, D3DTSS_COLORARG1, &ColorArg21);
-	hr = s_lpD3DDev->GetTextureStageState( 1, D3DTSS_COLORARG2, &ColorArg22);
+    hr = s_lpD3DDev->GetTextureStageState( 1, D3DTSS_COLOROP, &ColorOP2);
+    hr = s_lpD3DDev->GetTextureStageState( 1, D3DTSS_COLORARG1, &ColorArg21);
+    hr = s_lpD3DDev->GetTextureStageState( 1, D3DTSS_COLORARG2, &ColorArg22);
 
-	hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
-	hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
-	hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
+    hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
+    hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
+    hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
 
-	int t1 = m_ppMapData[x][y].DTexInfo1.TexIdx.TexID;
-	int t2 = m_ppMapData[x][y].DTexInfo2.TexIdx.TexID;
+    int t1 = m_ppMapData[x][y].DTexInfo1.TexIdx.TexID;
+    int t2 = m_ppMapData[x][y].DTexInfo2.TexIdx.TexID;
 
-	if(m_ppMapData[x][y].DTexInfo1.Attr.Group>0 && GetTileTex(t1))
-		hr = s_lpD3DDev->SetTexture( 0, GetTileTex(t1)->Get());
-	else hr = s_lpD3DDev->SetTexture( 0, NULL);
+    if(m_ppMapData[x][y].DTexInfo1.Attr.Group>0 && GetTileTex(t1))
+        hr = s_lpD3DDev->SetTexture( 0, GetTileTex(t1)->Get());
+    else hr = s_lpD3DDev->SetTexture( 0, NULL);
 
-	
-	if(m_ppMapData[x][y].DTexInfo2.Attr.Group>0 && GetTileTex(t2))
-	{
-		hr = s_lpD3DDev->SetTexture( 1, GetTileTex(t2)->Get());
-		hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP, D3DTOP_ADD);
-		hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG1, D3DTA_CURRENT);
-		hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG2, D3DTA_TEXTURE);
-	}
-	else
-	{
-		hr = s_lpD3DDev->SetTexture( 1, NULL);
-		hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
-		hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG1, D3DTA_CURRENT);		
-	}
-	
-	hr = s_lpD3DDev->DrawPrimitive( D3DPT_TRIANGLEFAN, 0, 2);
+    
+    if(m_ppMapData[x][y].DTexInfo2.Attr.Group>0 && GetTileTex(t2))
+    {
+        hr = s_lpD3DDev->SetTexture( 1, GetTileTex(t2)->Get());
+        hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP, D3DTOP_ADD);
+        hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG1, D3DTA_CURRENT);
+        hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG2, D3DTA_TEXTURE);
+    }
+    else
+    {
+        hr = s_lpD3DDev->SetTexture( 1, NULL);
+        hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
+        hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG1, D3DTA_CURRENT);        
+    }
+    
+    hr = s_lpD3DDev->DrawPrimitive( D3DPT_TRIANGLEFAN, 0, 2);
 
-	hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, ColorOP1);
-	hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, ColorArg11);
-	hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG2, ColorArg12);
+    hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, ColorOP1);
+    hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, ColorArg11);
+    hr = s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG2, ColorArg12);
 
-	hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP, ColorOP2);
-	hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG1, ColorArg21);
-	hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG2, ColorArg22);
+    hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP, ColorOP2);
+    hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG1, ColorArg21);
+    hr = s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG2, ColorArg22);
 
-	s_lpD3DDev->EndScene();
+    s_lpD3DDev->EndScene();
 
-	//컬러맵 텍스쳐에 쓰기...
-	LPDIRECT3DSURFACE9 pBackBuff;
-	hr = s_lpD3DDev->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &pBackBuff);
+    //컬러맵 텍스쳐에 쓰기...
+    LPDIRECT3DSURFACE9 pBackBuff;
+    hr = s_lpD3DDev->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &pBackBuff);
 
-	D3DSURFACE_DESC desc;
-	hr = pBackBuff->GetDesc(&desc);
-	if(desc.Format!=D3DFMT_X8R8G8B8)
-	{
-		MessageBox(::GetActiveWindow(),"화면색상모드를 32bit모드로 바꾸세요.\n그렇지 않으면 컬러맵을 만들 수 없어요..ㅠ.ㅠ","경고!!",MB_OK);
-		return;
-	}
+    D3DSURFACE_DESC desc;
+    hr = pBackBuff->GetDesc(&desc);
+    if(desc.Format!=D3DFMT_X8R8G8B8)
+    {
+        MessageBox(::GetActiveWindow(),"화면색상모드를 32bit모드로 바꾸세요.\n그렇지 않으면 컬러맵을 만들 수 없어요..ㅠ.ㅠ","경고!!",MB_OK);
+        return;
+    }
 
-	D3DLOCKED_RECT srcLR, destLR, tmpLR;
-	hr = pBackBuff->LockRect(&srcLR, NULL, 0 );
+    D3DLOCKED_RECT srcLR, destLR, tmpLR;
+    hr = pBackBuff->LockRect(&srcLR, NULL, 0 );
 
-	DWORD* pTexPtr = (DWORD*)srcLR.pBits;
-	
-	int iTilesPerColorTexture = m_iColorMapTexSize / m_iColorMapPixelPerUnitDistance;
-	int idxX = x/iTilesPerColorTexture;
-	int idxZ = y/iTilesPerColorTexture;
+    DWORD* pTexPtr = (DWORD*)srcLR.pBits;
+    
+    int iTilesPerColorTexture = m_iColorMapTexSize / m_iColorMapPixelPerUnitDistance;
+    int idxX = x/iTilesPerColorTexture;
+    int idxZ = y/iTilesPerColorTexture;
 
-	int xx = (x%iTilesPerColorTexture)*m_iColorMapPixelPerUnitDistance;
-	int zz = (iTilesPerColorTexture-1 - (y%iTilesPerColorTexture))*m_iColorMapPixelPerUnitDistance;
+    int xx = (x%iTilesPerColorTexture)*m_iColorMapPixelPerUnitDistance;
+    int zz = (iTilesPerColorTexture-1 - (y%iTilesPerColorTexture))*m_iColorMapPixelPerUnitDistance;
 
-	m_pColorTexture[idxX][idxZ].Get()->LockRect( 0, &destLR, 0, 0 );
-	DWORD* pDestPtr = (DWORD*)destLR.pBits;
+    m_pColorTexture[idxX][idxZ].Get()->LockRect( 0, &destLR, 0, 0 );
+    DWORD* pDestPtr = (DWORD*)destLR.pBits;
 
-	CN3Texture TmpTex;
+    CN3Texture TmpTex;
 
-	TmpTex.Create(TileTexSize, TileTexSize, D3DFMT_X8R8G8B8, TRUE);
-	hr = TmpTex.Get()->LockRect(0, & tmpLR, 0, 0);
-	DWORD* pTmpTexPtr = (DWORD*)tmpLR.pBits;
+    TmpTex.Create(TileTexSize, TileTexSize, D3DFMT_X8R8G8B8, TRUE);
+    hr = TmpTex.Get()->LockRect(0, & tmpLR, 0, 0);
+    DWORD* pTmpTexPtr = (DWORD*)tmpLR.pBits;
 
-	int izz;
-	for(izz=0; izz<TileTexSize; izz++)
-	{
-		memcpy(&(pTmpTexPtr[izz*(tmpLR.Pitch>>2)]), &(pTexPtr[izz*(srcLR.Pitch>>2)]), sizeof(DWORD)*TileTexSize);
-	}
-	TmpTex.Get()->UnlockRect(0);
+    int izz;
+    for(izz=0; izz<TileTexSize; izz++)
+    {
+        memcpy(&(pTmpTexPtr[izz*(tmpLR.Pitch>>2)]), &(pTexPtr[izz*(srcLR.Pitch>>2)]), sizeof(DWORD)*TileTexSize);
+    }
+    TmpTex.Get()->UnlockRect(0);
 
-	TmpTex.Convert(D3DFMT_X8R8G8B8, m_iColorMapPixelPerUnitDistance, m_iColorMapPixelPerUnitDistance);
+    TmpTex.Convert(D3DFMT_X8R8G8B8, m_iColorMapPixelPerUnitDistance, m_iColorMapPixelPerUnitDistance);
 
-	hr = TmpTex.Get()->LockRect(0, & tmpLR, 0, 0);
-	pTmpTexPtr = (DWORD*)tmpLR.pBits;
+    hr = TmpTex.Get()->LockRect(0, & tmpLR, 0, 0);
+    pTmpTexPtr = (DWORD*)tmpLR.pBits;
 
-	for(izz=0; izz<m_iColorMapPixelPerUnitDistance; izz++)
-	{
-		memcpy(&(pDestPtr[xx + (zz+izz)*m_iColorMapTexSize]), &(pTmpTexPtr[izz*(tmpLR.Pitch>>2)]), sizeof(DWORD)*m_iColorMapPixelPerUnitDistance);
-	}
-	TmpTex.Get()->UnlockRect(0);
+    for(izz=0; izz<m_iColorMapPixelPerUnitDistance; izz++)
+    {
+        memcpy(&(pDestPtr[xx + (zz+izz)*m_iColorMapTexSize]), &(pTmpTexPtr[izz*(tmpLR.Pitch>>2)]), sizeof(DWORD)*m_iColorMapPixelPerUnitDistance);
+    }
+    TmpTex.Get()->UnlockRect(0);
 
-	m_pColorTexture[idxX][idxZ].Get()->UnlockRect(0);
+    m_pColorTexture[idxX][idxZ].Get()->UnlockRect(0);
 
-	hr = pBackBuff->UnlockRect();
+    hr = pBackBuff->UnlockRect();
 
-	hr = s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, dwCull);
-	hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, dwZ);
-	hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, dwLgt);
+    hr = s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, dwCull);
+    hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, dwZ);
+    hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, dwLgt);
 
-	m_pColorTexture[idxX][idxZ].GenerateMipMap(); // Mip Map 을 만든다..
+    m_pColorTexture[idxX][idxZ].GenerateMipMap(); // Mip Map 을 만든다..
 }
 /*/
 
 //
-//	타일맵에서 픽셀을 샘플링해서 걸러맵을 만드는 방법...
+//    타일맵에서 픽셀을 샘플링해서 걸러맵을 만드는 방법...
 //
 //*
 void CLyTerrain::SetColorMap(int x, int y) {
@@ -4232,24 +4232,24 @@ void CLyTerrain::SetColorMap(int x, int y) {
     //
     //if(m_ppIsLightMap[x][y])
     //{
-    //	s_lpD3DDev->SetTexture( 0, m_ppLightMapTexture[x][y]->Get());
-    //	s_lpD3DDev->SetTexture( 1, NULL);
+    //    s_lpD3DDev->SetTexture( 0, m_ppLightMapTexture[x][y]->Get());
+    //    s_lpD3DDev->SetTexture( 1, NULL);
     //
-    //	DWORD dwAlphaEnable, dwSrcBlend, dwDestBlend;
+    //    DWORD dwAlphaEnable, dwSrcBlend, dwDestBlend;
     //
-    //	hr = s_lpD3DDev->GetRenderState( D3DRS_ALPHABLENDENABLE, &dwAlphaEnable);
-    //	hr = s_lpD3DDev->GetRenderState( D3DRS_SRCBLEND, &dwSrcBlend);
-    //	hr = s_lpD3DDev->GetRenderState( D3DRS_DESTBLEND, &dwDestBlend);
+    //    hr = s_lpD3DDev->GetRenderState( D3DRS_ALPHABLENDENABLE, &dwAlphaEnable);
+    //    hr = s_lpD3DDev->GetRenderState( D3DRS_SRCBLEND, &dwSrcBlend);
+    //    hr = s_lpD3DDev->GetRenderState( D3DRS_DESTBLEND, &dwDestBlend);
     //
-    //	hr = s_lpD3DDev->SetRenderState( D3DRS_ALPHABLENDENABLE, TRUE);
-    //	hr = s_lpD3DDev->SetRenderState( D3DRS_SRCBLEND, D3DBLEND_ZERO);
-    //	hr = s_lpD3DDev->SetRenderState( D3DRS_DESTBLEND, D3DBLEND_SRCCOLOR);
+    //    hr = s_lpD3DDev->SetRenderState( D3DRS_ALPHABLENDENABLE, TRUE);
+    //    hr = s_lpD3DDev->SetRenderState( D3DRS_SRCBLEND, D3DBLEND_ZERO);
+    //    hr = s_lpD3DDev->SetRenderState( D3DRS_DESTBLEND, D3DBLEND_SRCCOLOR);
     //
-    //	hr = s_lpD3DDev->DrawPrimitive( D3DPT_TRIANGLEFAN, 4, 2);
+    //    hr = s_lpD3DDev->DrawPrimitive( D3DPT_TRIANGLEFAN, 4, 2);
     //
-    //	hr = s_lpD3DDev->SetRenderState( D3DRS_ALPHABLENDENABLE, dwAlphaEnable);
-    //	hr = s_lpD3DDev->SetRenderState( D3DRS_SRCBLEND, dwSrcBlend);
-    //	hr = s_lpD3DDev->SetRenderState( D3DRS_DESTBLEND, dwDestBlend);
+    //    hr = s_lpD3DDev->SetRenderState( D3DRS_ALPHABLENDENABLE, dwAlphaEnable);
+    //    hr = s_lpD3DDev->SetRenderState( D3DRS_SRCBLEND, dwSrcBlend);
+    //    hr = s_lpD3DDev->SetRenderState( D3DRS_DESTBLEND, dwDestBlend);
     //}
     //
     ////////////
@@ -4307,16 +4307,16 @@ void CLyTerrain::SetColorMap(int x, int y) {
             pt.y = izz * varRandom + (rand() % varRandom) + 1;
 
             /*
-			DWORD srcColor = pTexPtr[pt.x + pt.y*(srcLR.Pitch>>2)];
-			
-			DWORD r,g,b;
-			int v = 40;
-			r = (srcColor<<8)>>24;
-			g = (srcColor<<16)>>24;
-			b = (srcColor<<24)>>24;
+            DWORD srcColor = pTexPtr[pt.x + pt.y*(srcLR.Pitch>>2)];
+            
+            DWORD r,g,b;
+            int v = 40;
+            r = (srcColor<<8)>>24;
+            g = (srcColor<<16)>>24;
+            b = (srcColor<<24)>>24;
 
-			//if(r<v && g<v && b<v) continue;
-			*/
+            //if(r<v && g<v && b<v) continue;
+            */
             //
             //int rg,gb,br;
             //rg = (int)(r-g);
@@ -4343,13 +4343,13 @@ void CLyTerrain::SetColorMap(int x, int y) {
 //*/
 
 //
-//	IntersectTriangle..
+//    IntersectTriangle..
 //
-//	orig	: 시작점...
-//	dir		: 피킹 방향..
-//	v0, v1, v2 : 삼각형의 세점..
-//	t		: orig부터 피킹된점까지 거리..
-//	u, v	: v0(0,0) v1(1,0) v2(0,1)로 봤을때 피킹된 점의 uv좌표..
+//    orig    : 시작점...
+//    dir        : 피킹 방향..
+//    v0, v1, v2 : 삼각형의 세점..
+//    t        : orig부터 피킹된점까지 거리..
+//    u, v    : v0(0,0) v1(1,0) v2(0,1)로 봤을때 피킹된 점의 uv좌표..
 //
 BOOL CLyTerrain::IntersectTriangle(const D3DXVECTOR3 orig, const D3DXVECTOR3 dir, D3DXVECTOR3 & v0, D3DXVECTOR3 & v1,
                                    D3DXVECTOR3 & v2, float * t, float * u, float * v) {
@@ -4403,12 +4403,12 @@ BOOL CLyTerrain::IntersectTriangle(const D3DXVECTOR3 orig, const D3DXVECTOR3 dir
 }
 
 //////////////////////////////////////////////////
-//	Coded By : Dino
-//	Coded On 2001-06-21 오후 12:18:31
-//	아래로 지형 Edit관련 함수들
+//    Coded By : Dino
+//    Coded On 2001-06-21 오후 12:18:31
+//    아래로 지형 Edit관련 함수들
 
 //
-//	에디트 모드로 전환...
+//    에디트 모드로 전환...
 //
 void CLyTerrain::SetEditMode(int iEditMode) {
     m_iEditMode = iEditMode;
@@ -4438,7 +4438,7 @@ void CLyTerrain::SetEditMode(int iEditMode) {
 }
 
 //
-//	SetApexHeight
+//    SetApexHeight
 //
 void CLyTerrain::SetApexHeight(int x, int z, float fHeight) {
     if (m_ppMapData && x < m_iHeightMapSize && z < m_iHeightMapSize && x >= 0 && z >= 0) {
@@ -4447,8 +4447,8 @@ void CLyTerrain::SetApexHeight(int x, int z, float fHeight) {
 }
 
 //
-//	GetApexHeight..
-//	각타일의 꼭지점의 높이를 구하는 함수...
+//    GetApexHeight..
+//    각타일의 꼭지점의 높이를 구하는 함수...
 //
 float CLyTerrain::GetApexHeight(int x, int z) const {
     if (m_ppMapData && x < m_iHeightMapSize && z < m_iHeightMapSize && x >= 0 && z >= 0) {
@@ -4571,7 +4571,7 @@ float CLyTerrain::GetFallOffValue(float fFallOff, float x) {
 }
 
 //
-//	지형 높이 조절함수....
+//    지형 높이 조절함수....
 //
 void CLyTerrain::Heighten(POINT ptCenter, float fHeight) {
     float fNewHeight = FLT_MAX;
@@ -4641,7 +4641,7 @@ void CLyTerrain::Flaten(POINT ptCenter) {
 }
 
 //
-//	지형 완만하게 만드는 함수..
+//    지형 완만하게 만드는 함수..
 //
 void CLyTerrain::Smooth(POINT ptCenter) {
     float fMapHeightDiff[MAX_BRUSH_SIZE][MAX_BRUSH_SIZE];
@@ -4699,7 +4699,7 @@ void CLyTerrain::Smooth(POINT ptCenter) {
 }
 
 //
-//	UpdateBrushArea..
+//    UpdateBrushArea..
 //
 void CLyTerrain::UpdateBrushArea(POINT ptCenter) {
     m_iBrushIndexCount = 0;
@@ -4757,7 +4757,7 @@ void CLyTerrain::UpdateBrushArea(POINT ptCenter) {
 }
 
 //
-//	RenderBrushArea..
+//    RenderBrushArea..
 //
 void CLyTerrain::RenderBrushArea() {
     if (m_iEditMode == TEM_NOT || m_iEditMode == TEM_DTEX || m_iBrushIndexCount == 0) {
@@ -4794,8 +4794,8 @@ void CLyTerrain::RenderBrushArea() {
 }
 
 //
-//	Import...
-//	마야에서 뽑아낸 N3Scene파일로 부터 지형 읽기..
+//    Import...
+//    마야에서 뽑아낸 N3Scene파일로 부터 지형 읽기..
 //
 void CLyTerrain::Import(LPCTSTR pFileName, float fSize) {
     int    HeightMapSize;
@@ -4953,70 +4953,70 @@ void CLyTerrain::Import(LPCTSTR pFileName, float fSize) {
     //////////////////////////////////////////////////////////////////////////////////////////////////
     /*
 //구버전...
-	CProgressBar ProgressBar;
-	ProgressBar.Create("Import terrain VMesh..", 50, 1000);
-	ProgressBar.SetPos(1);
-	int iPosProgress = 0;
-	
-	for(int ix=0;ix<m_iHeightMapSize;ix++)
-	{
-		for(int iz=0;iz<m_iHeightMapSize;iz++)
-		{
-			//일단 높이값 초기화..
-			m_ppMapData[ix][iz].fHeight = -FLT_MAX;
+    CProgressBar ProgressBar;
+    ProgressBar.Create("Import terrain VMesh..", 50, 1000);
+    ProgressBar.SetPos(1);
+    int iPosProgress = 0;
+    
+    for(int ix=0;ix<m_iHeightMapSize;ix++)
+    {
+        for(int iz=0;iz<m_iHeightMapSize;iz++)
+        {
+            //일단 높이값 초기화..
+            m_ppMapData[ix][iz].fHeight = -FLT_MAX;
 
-			DTEXINFO TexInfo;
-			ZeroMemory(&TexInfo, sizeof(DTEXINFO));
-			TexInfo.Dir = 0;
-			TexInfo.Attr.Attr = 0;
-			TexInfo.Attr.Group = 0;
-			TexInfo.TexIdx.TexID = -1;
-			TexInfo.TexIdx.TileX = -1;
-			TexInfo.TexIdx.TileY = -1;
-			
-			m_ppMapData[ix][iz].DTexInfo1 = TexInfo;
-			m_ppMapData[ix][iz].DTexInfo2 = TexInfo;
+            DTEXINFO TexInfo;
+            ZeroMemory(&TexInfo, sizeof(DTEXINFO));
+            TexInfo.Dir = 0;
+            TexInfo.Attr.Attr = 0;
+            TexInfo.Attr.Group = 0;
+            TexInfo.TexIdx.TexID = -1;
+            TexInfo.TexIdx.TileX = -1;
+            TexInfo.TexIdx.TileY = -1;
+            
+            m_ppMapData[ix][iz].DTexInfo1 = TexInfo;
+            m_ppMapData[ix][iz].DTexInfo2 = TexInfo;
 
-			for(int i=0;i<NumFace;i++)
-			{
-				int index = i*3;
-				vA.Set((pVertices[index].x - vMin.x)*ScaleX,	(pVertices[index].y)*ScaleX,	(pVertices[index].z - vMin.z)*ScaleZ);
-				vB.Set((pVertices[index+1].x - vMin.x)*ScaleX,	(pVertices[index+1].y)*ScaleX,	(pVertices[index+1].z - vMin.z)*ScaleZ);
-				vC.Set((pVertices[index+2].x - vMin.x)*ScaleX,	(pVertices[index+2].y)*ScaleX,	(pVertices[index+2].z - vMin.z)*ScaleZ);
+            for(int i=0;i<NumFace;i++)
+            {
+                int index = i*3;
+                vA.Set((pVertices[index].x - vMin.x)*ScaleX,    (pVertices[index].y)*ScaleX,    (pVertices[index].z - vMin.z)*ScaleZ);
+                vB.Set((pVertices[index+1].x - vMin.x)*ScaleX,    (pVertices[index+1].y)*ScaleX,    (pVertices[index+1].z - vMin.z)*ScaleZ);
+                vC.Set((pVertices[index+2].x - vMin.x)*ScaleX,    (pVertices[index+2].y)*ScaleX,    (pVertices[index+2].z - vMin.z)*ScaleZ);
 
-				// 삼각형 점 포함 테스트...
-				float a, b, c;
-				float x,z;
-				x = (float)ix * TERRAIN_CELL_SIZE;
-				z = (float)iz * TERRAIN_CELL_SIZE;
+                // 삼각형 점 포함 테스트...
+                float a, b, c;
+                float x,z;
+                x = (float)ix * TERRAIN_CELL_SIZE;
+                z = (float)iz * TERRAIN_CELL_SIZE;
 
-				if( (vA.x > x && vB.x > x && vC.x > x) || (vA.x < x && vB.x < x && vC.x < x) ||
-					(vA.z > z && vB.z > z && vC.z > z) || (vA.z < z && vB.z < z && vC.z < z) ) continue;
-				
-				a = ((vB.x-vA.x)*(z-vA.z)) - ((vB.z-vA.z)*(x-vA.x));
-				b = ((vC.x-vB.x)*(z-vB.z)) - ((vC.z-vB.z)*(x-vB.x));
-				c = ((vA.x-vC.x)*(z-vC.z)) - ((vA.z-vC.z)*(x-vC.x));
+                if( (vA.x > x && vB.x > x && vC.x > x) || (vA.x < x && vB.x < x && vC.x < x) ||
+                    (vA.z > z && vB.z > z && vC.z > z) || (vA.z < z && vB.z < z && vC.z < z) ) continue;
+                
+                a = ((vB.x-vA.x)*(z-vA.z)) - ((vB.z-vA.z)*(x-vA.x));
+                b = ((vC.x-vB.x)*(z-vB.z)) - ((vC.z-vB.z)*(x-vB.x));
+                c = ((vA.x-vC.x)*(z-vC.z)) - ((vA.z-vC.z)*(x-vC.x));
 
-				if((a<=0 && b<=0 && c<=0) || (a>=0 && b>=0 && c>=0))
-				{
-					__Vector3 vAB, vAC, vAxis;
-					vAB.Set(vB.x - vA.x, vB.y - vA.y, vB.z - vA.z);
-					vAC.Set(vC.x - vA.x, vC.y - vA.y, vC.z - vA.z);
+                if((a<=0 && b<=0 && c<=0) || (a>=0 && b>=0 && c>=0))
+                {
+                    __Vector3 vAB, vAC, vAxis;
+                    vAB.Set(vB.x - vA.x, vB.y - vA.y, vB.z - vA.z);
+                    vAC.Set(vC.x - vA.x, vC.y - vA.y, vC.z - vA.z);
 
-					vAxis.Cross(vAB, vAC);
+                    vAxis.Cross(vAB, vAC);
 
-					float y;
-					if(vAxis.y == 0.0f) y = vA.y;
-					else y = (vAxis.x*(vA.x-x)+vAxis.z*(vA.z-z))/vAxis.y + vA.y;
+                    float y;
+                    if(vAxis.y == 0.0f) y = vA.y;
+                    else y = (vAxis.x*(vA.x-x)+vAxis.z*(vA.z-z))/vAxis.y + vA.y;
 
-					m_ppMapData[ix][iz].fHeight = y;
-					break;
-				}
-			}			
-			iPosProgress++;
-			ProgressBar.SetPos((1000 * iPosProgress) / (m_iHeightMapSize * m_iHeightMapSize));
-		}
-	}
+                    m_ppMapData[ix][iz].fHeight = y;
+                    break;
+                }
+            }            
+            iPosProgress++;
+            ProgressBar.SetPos((1000 * iPosProgress) / (m_iHeightMapSize * m_iHeightMapSize));
+        }
+    }
 */
     //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -5171,95 +5171,95 @@ void CLyTerrain::ImportHeight(LPCTSTR pFileName) {
 /*
 void CLyTerrain::ImportHeight(LPCTSTR pFileName)
 {
-	CN3VMesh* pVMesh = new CN3VMesh;
-	__ASSERT(pVMesh, "VMesh가 안읽허여..ㅜ.ㅜ");
+    CN3VMesh* pVMesh = new CN3VMesh;
+    __ASSERT(pVMesh, "VMesh가 안읽허여..ㅜ.ㅜ");
 
-	pVMesh->LoadFromFile(pFileName);
+    pVMesh->LoadFromFile(pFileName);
 
-	__Vector3 vMax, vMin;
-	vMax = pVMesh->Max();
-	vMin = pVMesh->Min();
+    __Vector3 vMax, vMin;
+    vMax = pVMesh->Max();
+    vMin = pVMesh->Min();
 
-	float SizeX, SizeZ;
-	SizeX = vMax.x - vMin.x;
-	SizeZ = vMax.z - vMin.z;
+    float SizeX, SizeZ;
+    SizeX = vMax.x - vMin.x;
+    SizeZ = vMax.z - vMin.z;
 
-	float ScaleX, ScaleZ;
-	ScaleX = (m_iHeightMapSize-1) * TERRAIN_CELL_SIZE / SizeX;
-	ScaleZ = (m_iHeightMapSize-1) * TERRAIN_CELL_SIZE / SizeZ;
+    float ScaleX, ScaleZ;
+    ScaleX = (m_iHeightMapSize-1) * TERRAIN_CELL_SIZE / SizeX;
+    ScaleZ = (m_iHeightMapSize-1) * TERRAIN_CELL_SIZE / SizeZ;
 
-	int NumVertices, NumFace;
-	NumVertices = pVMesh->VertexCount();
-	NumFace = NumVertices / 3;
+    int NumVertices, NumFace;
+    NumVertices = pVMesh->VertexCount();
+    NumFace = NumVertices / 3;
 
-	__Vector3*	pVertices = pVMesh->Vertices();
-	__Vector3 vA, vB, vC;
-	
-	//__VertexT1 vA, vB, vC;
-	CProgressBar ProgressBar;
-	ProgressBar.Create("Import terrain VMesh..", 50, 1000);
-	ProgressBar.SetPos(1);
-	int iPosProgress = 0;
-	
-	for(int ix=0;ix<m_iHeightMapSize;ix++)
-	{
-		for(int iz=0;iz<m_iHeightMapSize;iz++)
-		{
-			//일단 높이값 초기화..
-			m_ppMapData[ix][iz].fHeight = -FLT_MAX;
+    __Vector3*    pVertices = pVMesh->Vertices();
+    __Vector3 vA, vB, vC;
+    
+    //__VertexT1 vA, vB, vC;
+    CProgressBar ProgressBar;
+    ProgressBar.Create("Import terrain VMesh..", 50, 1000);
+    ProgressBar.SetPos(1);
+    int iPosProgress = 0;
+    
+    for(int ix=0;ix<m_iHeightMapSize;ix++)
+    {
+        for(int iz=0;iz<m_iHeightMapSize;iz++)
+        {
+            //일단 높이값 초기화..
+            m_ppMapData[ix][iz].fHeight = -FLT_MAX;
 
-			for(int i=0;i<NumFace;i++)
-			{
-				int index = i*3;
-				vA.Set((pVertices[index].x - vMin.x)*ScaleX,	(pVertices[index].y)*ScaleX,	(pVertices[index].z - vMin.z)*ScaleZ);
-				vB.Set((pVertices[index+1].x - vMin.x)*ScaleX,	(pVertices[index+1].y)*ScaleX,	(pVertices[index+1].z - vMin.z)*ScaleZ);
-				vC.Set((pVertices[index+2].x - vMin.x)*ScaleX,	(pVertices[index+2].y)*ScaleX,	(pVertices[index+2].z - vMin.z)*ScaleZ);
+            for(int i=0;i<NumFace;i++)
+            {
+                int index = i*3;
+                vA.Set((pVertices[index].x - vMin.x)*ScaleX,    (pVertices[index].y)*ScaleX,    (pVertices[index].z - vMin.z)*ScaleZ);
+                vB.Set((pVertices[index+1].x - vMin.x)*ScaleX,    (pVertices[index+1].y)*ScaleX,    (pVertices[index+1].z - vMin.z)*ScaleZ);
+                vC.Set((pVertices[index+2].x - vMin.x)*ScaleX,    (pVertices[index+2].y)*ScaleX,    (pVertices[index+2].z - vMin.z)*ScaleZ);
 
-				// 삼각형 점 포함 테스트...
-				float a, b, c;
-				float x,z;
-				x = (float)ix * TERRAIN_CELL_SIZE;
-				z = (float)iz * TERRAIN_CELL_SIZE;
+                // 삼각형 점 포함 테스트...
+                float a, b, c;
+                float x,z;
+                x = (float)ix * TERRAIN_CELL_SIZE;
+                z = (float)iz * TERRAIN_CELL_SIZE;
 
-				if( (vA.x > x && vB.x > x && vC.x > x) || (vA.x < x && vB.x < x && vC.x < x) ||
-					(vA.z > z && vB.z > z && vC.z > z) || (vA.z < z && vB.z < z && vC.z < z) ) continue;
-				
-				a = ((vB.x-vA.x)*(z-vA.z)) - ((vB.z-vA.z)*(x-vA.x));
-				b = ((vC.x-vB.x)*(z-vB.z)) - ((vC.z-vB.z)*(x-vB.x));
-				c = ((vA.x-vC.x)*(z-vC.z)) - ((vA.z-vC.z)*(x-vC.x));
+                if( (vA.x > x && vB.x > x && vC.x > x) || (vA.x < x && vB.x < x && vC.x < x) ||
+                    (vA.z > z && vB.z > z && vC.z > z) || (vA.z < z && vB.z < z && vC.z < z) ) continue;
+                
+                a = ((vB.x-vA.x)*(z-vA.z)) - ((vB.z-vA.z)*(x-vA.x));
+                b = ((vC.x-vB.x)*(z-vB.z)) - ((vC.z-vB.z)*(x-vB.x));
+                c = ((vA.x-vC.x)*(z-vC.z)) - ((vA.z-vC.z)*(x-vC.x));
 
-				if((a<=0 && b<=0 && c<=0) || (a>=0 && b>=0 && c>=0))
-				{
-					__Vector3 vAB, vAC, vAxis;
-					vAB.Set(vB.x - vA.x, vB.y - vA.y, vB.z - vA.z);
-					vAC.Set(vC.x - vA.x, vC.y - vA.y, vC.z - vA.z);
+                if((a<=0 && b<=0 && c<=0) || (a>=0 && b>=0 && c>=0))
+                {
+                    __Vector3 vAB, vAC, vAxis;
+                    vAB.Set(vB.x - vA.x, vB.y - vA.y, vB.z - vA.z);
+                    vAC.Set(vC.x - vA.x, vC.y - vA.y, vC.z - vA.z);
 
-					vAxis.Cross(vAB, vAC);
+                    vAxis.Cross(vAB, vAC);
 
-					float y;
-					if(vAxis.y == 0.0f) y = vA.y;
-					else y = (vAxis.x*(vA.x-x)+vAxis.z*(vA.z-z))/vAxis.y + vA.y;
+                    float y;
+                    if(vAxis.y == 0.0f) y = vA.y;
+                    else y = (vAxis.x*(vA.x-x)+vAxis.z*(vA.z-z))/vAxis.y + vA.y;
 
-					m_ppMapData[ix][iz].fHeight = y;
-					break;
-				}
-			}			
-			iPosProgress++;
-			ProgressBar.SetPos((1000 * iPosProgress) / (m_iHeightMapSize * m_iHeightMapSize));
-		}
-	}
+                    m_ppMapData[ix][iz].fHeight = y;
+                    break;
+                }
+            }            
+            iPosProgress++;
+            ProgressBar.SetPos((1000 * iPosProgress) / (m_iHeightMapSize * m_iHeightMapSize));
+        }
+    }
 
-	//라이트맵텍스쳐 수도 있고, 텍스쳐도 세팅..
-	m_pRoot->SetWholeClipped();
-	m_pRoot->ClearMinMaxY();
-	m_pRoot->SetMinMaxY();
+    //라이트맵텍스쳐 수도 있고, 텍스쳐도 세팅..
+    m_pRoot->SetWholeClipped();
+    m_pRoot->ClearMinMaxY();
+    m_pRoot->SetMinMaxY();
 
-	delete pVMesh;
+    delete pVMesh;
 }
 //*/
 
 //
-//	ImportColorMap..
+//    ImportColorMap..
 //
 void CLyTerrain::ColorMapImport(LPCTSTR lpszPathName) {
     CBitMapFile BMF;

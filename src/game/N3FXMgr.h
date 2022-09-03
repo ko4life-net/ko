@@ -39,7 +39,7 @@ typedef stlLIST_BUNDLEGAME::iterator stlLIST_BUNDLEGAME_IT;
 
 class CN3FXMgr : public CGameBase {
   public:
-    //std::list<CN3FXBundleGame*>		m_ListBundle;
+    //std::list<CN3FXBundleGame*>        m_ListBundle;
     stlLIST_BUNDLEGAME m_ListBundle;
 
     stlMAP_BUNDLEORIGIN m_OriginBundle;

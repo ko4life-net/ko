@@ -194,7 +194,7 @@ void CCountableItemEditDlg::Open(e_UIWND eUW, e_UIWND_DISTRICT eUD, bool bCountG
 
 void CCountableItemEditDlg::Close() {
     m_bLocked = false;
-    //	SetVisible(false);	//이거 쓰지 말고 SetVisibleWithNoSound 함수 써주세요...
+    //    SetVisible(false);    //이거 쓰지 말고 SetVisibleWithNoSound 함수 써주세요...
     SetVisibleWithNoSound(false);
 
     CN3UIEdit * pEdit = GetFocusedEdit();

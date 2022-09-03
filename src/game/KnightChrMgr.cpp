@@ -13,7 +13,7 @@
 CKnightChrMgr::CKnightChrMgr(HWND hWnd) {
 #ifdef _N3_KNIGHT_CHR
     Smq.CreateSmq(TRUE);
-    //	Smq.CreateSmq(FALSE);
+    //    Smq.CreateSmq(FALSE);
     Smq.SetHwnd(hWnd);
     if (Smq.IsPartner()) {
         TCommand('R');
@@ -33,7 +33,7 @@ void CKnightChrMgr::RCommand(char rbuf[], int leng) {
 #ifdef _N3_KNIGHT_CHR
     switch (rbuf[0]) {
     case 'C':
-        //			m_pStatusView.AddString(rbuf);
+        //            m_pStatusView.AddString(rbuf);
         memcpy(m_sIDAndPW, rbuf, sizeof(char) * 32);
         TCommand('c');
         break;
@@ -76,7 +76,7 @@ void CKnightChrMgr::TCommand(char Cmd) {
 
 LONG CKnightChrMgr::OnReceiveSmq(UINT WParam, LONG LParam) {
 #ifdef _N3_KNIGHT_CHR
-    //	UpdateData(TRUE);
+    //    UpdateData(TRUE);
     int  count = WParam;
     char rData[4096];
     Smq.GetReadData(rData, count);

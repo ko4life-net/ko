@@ -70,7 +70,7 @@ void CSkyViewerView::OnDraw(CDC * pDC) {
             vDir.Normalize();
             pFrm->m_Lights[i].m_Data.Direction = vDir;
         } else if (1 == i) {
-            //			__Vector3 vDir = CN3Base::s_CameraData.vAt - CN3Base::s_CameraData.vEye;
+            //            __Vector3 vDir = CN3Base::s_CameraData.vAt - CN3Base::s_CameraData.vEye;
             __Vector3 vDir(2, -3, 2);
             vDir.Normalize();
             pFrm->m_Lights[i].m_Data.Direction = vDir;
@@ -88,7 +88,7 @@ void CSkyViewerView::OnDraw(CDC * pDC) {
 
     __Matrix44 mtxScale;
     mtxScale.Scale(4.0f, 4.0f, 4.0f);
-    //	pFrm->m_Eng.RenderGrid(mtxScale);
+    //    pFrm->m_Eng.RenderGrid(mtxScale);
     pFrm->m_Eng.RenderAxis();
 
     pDoc->m_Sky.Render();

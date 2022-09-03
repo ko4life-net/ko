@@ -1,14 +1,14 @@
 //////////////////////////////////////////////////
-//	Commented By : Lynus
-//	Commented On 2001-04-12 오후 1:51:00
+//    Commented By : Lynus
+//    Commented On 2001-04-12 오후 1:51:00
 //
-//	CWave Class (WaveFile.h)
+//    CWave Class (WaveFile.h)
 //
-//	End Of Comment (By Lynus On 2001-04-12 오후 1:51:00 )
+//    End Of Comment (By Lynus On 2001-04-12 오후 1:51:00 )
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
-//	Coded By : Lynus
-//	Coded On 2001-04-12 오후 1:50:14
+//    Coded By : Lynus
+//    Coded On 2001-04-12 오후 1:50:14
 //
 
 #pragma once
@@ -54,5 +54,5 @@ class CWaveFile {
     WAVEFORMATEX * GetFormat() { return m_pwfx; };
 };
 
-//	End Of Code (By Lynus On 2001-04-12 오후 1:50:14 )
+//    End Of Code (By Lynus On 2001-04-12 오후 1:50:14 )
 //////////////////////////////////////////////////

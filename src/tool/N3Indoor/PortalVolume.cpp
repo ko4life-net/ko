@@ -88,7 +88,7 @@ CPortalVolume::CPortalVolume() {
     m_eState = STATE_NONE;
 
     m_eRenderType = TYPE_UNKNOWN;
-    m_iPriority = -1; //.. 컴파일 모드에서 Portal의 우선순위..	-1로 먼저 클리어 한다음.. 0 순위는 자기 자신..
+    m_iPriority = -1; //.. 컴파일 모드에서 Portal의 우선순위..    -1로 먼저 클리어 한다음.. 0 순위는 자기 자신..
 }
 
 CPortalVolume::~CPortalVolume() {
@@ -1336,7 +1336,7 @@ bool CPortalVolume::IntersectTriangle(const __Vector3 & vOrig, const __Vector3 &
     __Vector3 pVec;
     float     fDet;
 
-    //	By : Ecli666 ( On 2001-09-12 오전 10:39:01 )
+    //    By : Ecli666 ( On 2001-09-12 오전 10:39:01 )
 
     pVec.Cross(vEdge1, vEdge2);
     fDet = pVec.Dot(vDir);
@@ -1344,7 +1344,7 @@ bool CPortalVolume::IntersectTriangle(const __Vector3 & vOrig, const __Vector3 &
         return false;
     }
 
-    //	~(By Ecli666 On 2001-09-12 오전 10:39:01 )
+    //    ~(By Ecli666 On 2001-09-12 오전 10:39:01 )
 
     pVec.Cross(vDir, vEdge2);
 

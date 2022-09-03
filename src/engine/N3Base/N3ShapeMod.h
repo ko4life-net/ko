@@ -77,13 +77,13 @@ class CN3ShapeMod : public CN3Shape {
     // Attributes
   public:
   protected:
-    //	enum	{
-    //			N3SHAPEMOD_TYPE_NOT_MOD = 0,		// 아무 정보도 변화하지 않는 것
-    //			N3SHAPEMOD_TYPE_ONLY_SHAPE = 1,		// Shape정보만 변화하는 것
-    //			N3SHAPEMOD_TYPE_ONLY_PART = 2,		// Part 정보만 변화하는 것
-    //			N3SHAPEMOD_TYPE_NORMAL = 4			// 둘 다 변화하는 것
-    //	};
-    //	int		m_iModType;			// type..
+    //    enum    {
+    //            N3SHAPEMOD_TYPE_NOT_MOD = 0,        // 아무 정보도 변화하지 않는 것
+    //            N3SHAPEMOD_TYPE_ONLY_SHAPE = 1,        // Shape정보만 변화하는 것
+    //            N3SHAPEMOD_TYPE_ONLY_PART = 2,        // Part 정보만 변화하는 것
+    //            N3SHAPEMOD_TYPE_NORMAL = 4            // 둘 다 변화하는 것
+    //    };
+    //    int        m_iModType;            // type..
     int   m_iStateCount;   // 상태가 몇개가 있는지 나타낸다.
     int   m_iCurState;     // 현재 상태
     int   m_iPrevState;    // 이전 상태(새로운 상태를 설정해주면 Animation되는 동안 이전상태를 저장해둔다.

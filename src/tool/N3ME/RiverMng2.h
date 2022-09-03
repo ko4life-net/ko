@@ -34,7 +34,7 @@ class CRiverMng2 : public CN3BaseFileAccess {
 
     int        m_nMapSize;
     __River ** m_ppRiver;
-    //bool**	m_ppIsRiver;
+    //bool**    m_ppIsRiver;
 
     int                m_nVer;
     bool               m_bActive;

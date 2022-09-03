@@ -352,7 +352,7 @@ BOOL CDlgEditPartMesh::OnInitDialog() {
     m_CBTexUVMove.SetCurSel(0);
 
     /*
-	D3DBLEND_ZERO               =  1,
+    D3DBLEND_ZERO               =  1,
     D3DBLEND_ONE                =  2,
     D3DBLEND_SRCCOLOR           =  3,
     D3DBLEND_INVSRCCOLOR        =  4,

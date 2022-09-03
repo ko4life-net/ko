@@ -43,8 +43,8 @@ class CN3River : public CN3Base // CN3RiverPatch를 관리하는 클래스
         _RIVER_DIFF *   pDiff;
 
         BOOL      m_bTick2Rand;
-        __Vector3 m_vCenterPo; //	강의 중간지점
-        float     m_fRadius;   //	강의 지름
+        __Vector3 m_vCenterPo; //    강의 중간지점
+        float     m_fRadius;   //    강의 지름
 
         CN3Texture * m_pTexWave;
 

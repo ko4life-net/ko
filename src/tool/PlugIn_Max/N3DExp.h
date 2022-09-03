@@ -1,13 +1,13 @@
 /**********************************************************************
-	FILE: CN3DExp.h
+    FILE: CN3DExp.h
 
-	DESCRIPTION:	Template Utility
+    DESCRIPTION:    Template Utility
 
-	CREATED BY:
+    CREATED BY:
 
-	HISTORY:
+    HISTORY:
 
- 	Copyright (c) 1997, All Rights Reserved.
+     Copyright (c) 1997, All Rights Reserved.
  **********************************************************************/
 
 #pragma once
@@ -98,17 +98,17 @@ class CN3DExp : public SceneExport {
     bool       CheckObjectClassID(INode *          pNode,
                                   const Class_ID & cID) const; // 주어진 노드의 오브젝트가 주어진 클래스 아이디인지 검사
     Modifier * FindPhysiqueModifier(INode * pNode);
-    //	bool FindNodeIndex(INode* pNodeCompare, INode* pNodeSrc, Class_ID& cID, int& nNodeIndex);
+    //    bool FindNodeIndex(INode* pNodeCompare, INode* pNodeSrc, Class_ID& cID, int& nNodeIndex);
     bool FindBoneIndex(INode * pNodeCompare, INode * pNodeSrc, int & nNodeIndex);
     bool ProcessPhysique(INode * pNode, INode * pNodeRootJoint, CN3Skin * pSkin);
 
     bool ProcessTransform(INode * pNode, CN3Transform * pTransform, bool bLocalCoordinate); // Animation Key
 
     /* plan add function
-	void ExportMesh
-	void ExportPMesh
-	void ExportTexture
-	*/
+    void ExportMesh
+    void ExportPMesh
+    void ExportTexture
+    */
     static BOOL CALLBACK DlgProcExportOption(HWND hWndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);
     static DWORD WINAPI  DlgProcProgress(LPVOID lpArg);
 

@@ -9,7 +9,7 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 #define WAVE_TOP 0.02f
-//#define WAVE_STEP		0.0005f
+//#define WAVE_STEP        0.0005f
 #define WAVE_STEP 0.001f
 
 CN3River::CN3River() {

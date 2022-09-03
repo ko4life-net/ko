@@ -160,95 +160,95 @@ void CN3TransformCollision::RenderClimbMesh() {
 #ifdef _N3TOOL
 BOOL CN3TransformCollision::CheckClimb(__Vector3 &vPos, __Vector3 &vDir, __Vector3* pVCol, __Vector3* pVNormal, __Vector3* pVPolygon)
 {
-	if(NULL == m_pMeshClimb) return FALSE;
-	
-	int nIC = m_pMeshClimb->IndexCount();
-	int nFC = 0;
-	if(nIC > 0)
-	{
-		nFC = nIC / 3; // Face Count
-	}
-	else
-	{
-		nFC = m_pMeshClimb->VertexCount() / 3;
-	}
-	if(nFC <= 0) return FALSE;
+    if(NULL == m_pMeshClimb) return FALSE;
+    
+    int nIC = m_pMeshClimb->IndexCount();
+    int nFC = 0;
+    if(nIC > 0)
+    {
+        nFC = nIC / 3; // Face Count
+    }
+    else
+    {
+        nFC = m_pMeshClimb->VertexCount() / 3;
+    }
+    if(nFC <= 0) return FALSE;
 
-	float t,u,v;
-	__Vector3 vSrc[3];
+    float t,u,v;
+    __Vector3 vSrc[3];
 
-	if(nIC > 0)
-	{
-		WORD* pwIndices = m_pMeshClimb->Indices();
-		__Vector3* pVSrc = m_pMeshClimb->Vertices();
-		for(int i = 0; i < nFC; i++)
-		{
-			vSrc[0] = pVSrc[pwIndices[i*3+0]] * m_Matrix;
-			vSrc[1] = pVSrc[pwIndices[i*3+1]] * m_Matrix;
-			vSrc[2] = pVSrc[pwIndices[i*3+2]] * m_Matrix;
+    if(nIC > 0)
+    {
+        WORD* pwIndices = m_pMeshClimb->Indices();
+        __Vector3* pVSrc = m_pMeshClimb->Vertices();
+        for(int i = 0; i < nFC; i++)
+        {
+            vSrc[0] = pVSrc[pwIndices[i*3+0]] * m_Matrix;
+            vSrc[1] = pVSrc[pwIndices[i*3+1]] * m_Matrix;
+            vSrc[2] = pVSrc[pwIndices[i*3+2]] * m_Matrix;
 
-			if(TRUE == ::IntersectTriangle(vPos, vDir, vSrc[0], vSrc[1], vSrc[2], t, u, v)) 
-			{
-				if(pVCol) *pVCol = (vDir * t) + vPos;
-				if(pVNormal) { pVNormal->Cross(vSrc[1] - vSrc[0], vSrc[2] - vSrc[0]); pVNormal->Normalize(); }
-				if(pVPolygon)
-				{
-					pVPolygon[0] = vSrc[0];
-					pVPolygon[1] = vSrc[1];
-					pVPolygon[2] = vSrc[2];
-				}
-				return TRUE;
-			}
-		}
-	}
-	else
-	{
-		__Vector3* pVSrc = m_pMeshClimb->Vertices();
-		for(int i = 0; i < nFC; i++, pVSrc += 3)
-		{
-			vSrc[0] = pVSrc[0] * m_Matrix;
-			vSrc[1] = pVSrc[1] * m_Matrix;
-			vSrc[2] = pVSrc[2] * m_Matrix;
+            if(TRUE == ::IntersectTriangle(vPos, vDir, vSrc[0], vSrc[1], vSrc[2], t, u, v)) 
+            {
+                if(pVCol) *pVCol = (vDir * t) + vPos;
+                if(pVNormal) { pVNormal->Cross(vSrc[1] - vSrc[0], vSrc[2] - vSrc[0]); pVNormal->Normalize(); }
+                if(pVPolygon)
+                {
+                    pVPolygon[0] = vSrc[0];
+                    pVPolygon[1] = vSrc[1];
+                    pVPolygon[2] = vSrc[2];
+                }
+                return TRUE;
+            }
+        }
+    }
+    else
+    {
+        __Vector3* pVSrc = m_pMeshClimb->Vertices();
+        for(int i = 0; i < nFC; i++, pVSrc += 3)
+        {
+            vSrc[0] = pVSrc[0] * m_Matrix;
+            vSrc[1] = pVSrc[1] * m_Matrix;
+            vSrc[2] = pVSrc[2] * m_Matrix;
 
-			if(TRUE == ::IntersectTriangle(vPos, vDir, vSrc[0], vSrc[1], vSrc[2], t, u, v)) 
-			{
-				if(pVCol) *pVCol = (vDir * t) + vPos;
-				if(pVNormal) { pVNormal->Cross(vSrc[1] - vSrc[0], vSrc[2] - vSrc[0]); pVNormal->Normalize(); }
-				if(pVPolygon)
-				{
-					pVPolygon[0] = vSrc[0];
-					pVPolygon[1] = vSrc[1];
-					pVPolygon[2] = vSrc[2];
-				}
-				return TRUE;
-			}
-		}
-	}
+            if(TRUE == ::IntersectTriangle(vPos, vDir, vSrc[0], vSrc[1], vSrc[2], t, u, v)) 
+            {
+                if(pVCol) *pVCol = (vDir * t) + vPos;
+                if(pVNormal) { pVNormal->Cross(vSrc[1] - vSrc[0], vSrc[2] - vSrc[0]); pVNormal->Normalize(); }
+                if(pVPolygon)
+                {
+                    pVPolygon[0] = vSrc[0];
+                    pVPolygon[1] = vSrc[1];
+                    pVPolygon[2] = vSrc[2];
+                }
+                return TRUE;
+            }
+        }
+    }
 
-	return FALSE;
+    return FALSE;
 }
 #endif // end of _N3TOOL
 
 #ifdef _N3TOOL
 BOOL CN3TransformCollision::CheckClimb(int x, int y, __Vector3* pVCol, __Vector3* pVNormal, __Vector3* pVPolygon)
 {
-	if(NULL == m_pMeshClimb || NULL == m_pMeshClimb->Vertices()) return FALSE;
+    if(NULL == m_pMeshClimb || NULL == m_pMeshClimb->Vertices()) return FALSE;
 
-	// Compute the vector of the pick ray in screen space
-	__Vector3 vTmp;
-	vTmp.x =  ( ( ( 2.0f * x ) / (CN3Base::s_CameraData.vp.Width) ) - 1 ) / CN3Base::s_CameraData.mtxProjection._11;
-	vTmp.y = -( ( ( 2.0f * y ) / (CN3Base::s_CameraData.vp.Height) ) - 1 ) / CN3Base::s_CameraData.mtxProjection._22;
-	vTmp.z =  1.0f;
+    // Compute the vector of the pick ray in screen space
+    __Vector3 vTmp;
+    vTmp.x =  ( ( ( 2.0f * x ) / (CN3Base::s_CameraData.vp.Width) ) - 1 ) / CN3Base::s_CameraData.mtxProjection._11;
+    vTmp.y = -( ( ( 2.0f * y ) / (CN3Base::s_CameraData.vp.Height) ) - 1 ) / CN3Base::s_CameraData.mtxProjection._22;
+    vTmp.z =  1.0f;
 
-	// Transform the screen space pick ray into 3D space
-	__Matrix44* pMtxVI = &CN3Base::s_CameraData.mtxViewInverse;
-	__Vector3 vPos, vDir;
-	vDir.x  = vTmp.x * pMtxVI->_11 + vTmp.y * pMtxVI->_21 + vTmp.z * pMtxVI->_31;
-	vDir.y  = vTmp.x * pMtxVI->_12 + vTmp.y * pMtxVI->_22 + vTmp.z * pMtxVI->_32;
-	vDir.z  = vTmp.x * pMtxVI->_13 + vTmp.y * pMtxVI->_23 + vTmp.z * pMtxVI->_33;
-	vPos = pMtxVI->Pos();
+    // Transform the screen space pick ray into 3D space
+    __Matrix44* pMtxVI = &CN3Base::s_CameraData.mtxViewInverse;
+    __Vector3 vPos, vDir;
+    vDir.x  = vTmp.x * pMtxVI->_11 + vTmp.y * pMtxVI->_21 + vTmp.z * pMtxVI->_31;
+    vDir.y  = vTmp.x * pMtxVI->_12 + vTmp.y * pMtxVI->_22 + vTmp.z * pMtxVI->_32;
+    vDir.z  = vTmp.x * pMtxVI->_13 + vTmp.y * pMtxVI->_23 + vTmp.z * pMtxVI->_33;
+    vPos = pMtxVI->Pos();
 
-	return CheckClimb(vPos, vDir, pVCol, pVNormal, pVPolygon);
+    return CheckClimb(vPos, vDir, pVCol, pVNormal, pVPolygon);
 }
 #endif // end of _N3TOOL
 */

@@ -14,8 +14,8 @@ class CN3GESnow : public CN3GlobalEffect {
         __Vector3 vOffset1, vOffset2, vOffset3; // 점 1 2 3이 파티클 중점에서 떨어진 정도
         float     fRadius;                      // 회전 반경
         float     fRadian;                      // 현재 회전된 각도
-                                                //float		fRVel							// 회전각속도 (우선 일정하다고 가정)
-                                                // __Vector3 vVelocity						// 떨어지는 속도(우선 모두 같다고 가정)
+        // float     fRVel;                        // 회전각속도 (우선 일정하다고 가정)
+        // __Vector3 vVelocity;                    // 떨어지는 속도(우선 모두 같다고 가정)
     };
 
     // Attributes

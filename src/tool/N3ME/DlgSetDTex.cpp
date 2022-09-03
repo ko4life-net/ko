@@ -109,7 +109,7 @@ BOOL CDlgSetDTex::OnInitDialog() {
     CWnd * pView = GetDlgItem(IDC_TEXTUREVIEW);
     pView->SetWindowPos(NULL, 0, 0, (int)m_fTexSurfaceSize, (int)m_fTexSurfaceSize, SWP_DRAWFRAME | SWP_NOMOVE);
 
-    //	texture 그리는 버퍼..
+    //    texture 그리는 버퍼..
     pFrm->m_pEng->s_lpD3DDev->CreateVertexBuffer(4 * sizeof(__VertexTransformed), 0, FVF_TRANSFORMED, D3DPOOL_MANAGED,
                                                  &m_pTexVB, NULL);
 
@@ -123,7 +123,7 @@ BOOL CDlgSetDTex::OnInitDialog() {
     pVertices[3].Set(0.0f, m_fTexSurfaceSize - 1.0f, 0.1f, 0.5f, 0x00000000, 1.0f / DTexSize, DTexSize / DTexSize);
     m_pTexVB->Unlock();
 
-    //	Grid 그리는 버퍼..
+    //    Grid 그리는 버퍼..
     pFrm->m_pEng->s_lpD3DDev->CreateVertexBuffer(((NUM_DTEXTILE - 1) << 2) * sizeof(__VertexTransformedColor), 0,
                                                  FVF_TRANSFORMEDCOLOR, D3DPOOL_MANAGED, &m_pGridVB, NULL);
 
@@ -186,21 +186,21 @@ void CDlgSetDTex::RenderTex(LPDIRECT3DDEVICE9 lpDDev) {
     hr = lpDDev->SetStreamSource(0, m_pTexVB, 0, sizeof(__VertexTransformed));
     hr = lpDDev->SetFVF(FVF_TRANSFORMED);
     /*
-	DWORD IsAlpha, Srcblend, Destblend;
+    DWORD IsAlpha, Srcblend, Destblend;
 
-	lpDDev->GetRenderState(D3DRS_ALPHABLENDENABLE, &IsAlpha);
-	lpDDev->GetRenderState(D3DRS_SRCBLEND, &Srcblend);
-	lpDDev->GetRenderState(D3DRS_DESTBLEND, &Destblend);
-	
-	lpDDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-	lpDDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-	lpDDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+    lpDDev->GetRenderState(D3DRS_ALPHABLENDENABLE, &IsAlpha);
+    lpDDev->GetRenderState(D3DRS_SRCBLEND, &Srcblend);
+    lpDDev->GetRenderState(D3DRS_DESTBLEND, &Destblend);
+    
+    lpDDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+    lpDDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+    lpDDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 */
     hr = lpDDev->DrawPrimitive(D3DPT_TRIANGLEFAN, 0, 2);
     /*
-	lpDDev->SetRenderState(D3DRS_ALPHABLENDENABLE, IsAlpha);
-	lpDDev->SetRenderState(D3DRS_SRCBLEND, Srcblend);
-	lpDDev->SetRenderState(D3DRS_DESTBLEND, Destblend);
+    lpDDev->SetRenderState(D3DRS_ALPHABLENDENABLE, IsAlpha);
+    lpDDev->SetRenderState(D3DRS_SRCBLEND, Srcblend);
+    lpDDev->SetRenderState(D3DRS_DESTBLEND, Destblend);
 */
     hr = lpDDev->SetTextureStageState(0, D3DTSS_COLOROP, ColorOp);
     hr = lpDDev->SetTextureStageState(0, D3DTSS_COLORARG1, ColorArg1);

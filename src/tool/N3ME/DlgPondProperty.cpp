@@ -133,7 +133,7 @@ void CDlgPondProperty::UpdateInfo() {
         return;
     }
     m_LPPond.ShowWindow(FALSE);
-    //	m_LPPond.ShowWindow(TRUE);
+    //    m_LPPond.ShowWindow(TRUE);
     if (m_IsModalDialog == FALSE) {
         GetDlgItem(IDC_BUTTON_DELETE_POND)->ShowWindow(TRUE);
         GetDlgItem(IDC_BUTTON_EDITPOND)->ShowWindow(TRUE);
@@ -399,9 +399,9 @@ void CDlgPondProperty::OnButtonEditPond() {
 
 //void CDlgPondProperty::OnButtonExtrude()
 //{
-//	if (m_IsModalDialog) return;
+//    if (m_IsModalDialog) return;
 //
-//	m_pPondMng->ExtrudePondEdge();
+//    m_pPondMng->ExtrudePondEdge();
 //}
 
 void CDlgPondProperty::OnButtonRecalUV() {
@@ -463,14 +463,14 @@ void CDlgPondProperty::OnButtonStationPond() {
 
 //void CDlgPondProperty::OnButtonDeleteVertex()
 //{
-//	if (m_IsModalDialog) return;
-//	m_pPondMng->DeleteSelectedVertex();
+//    if (m_IsModalDialog) return;
+//    m_pPondMng->DeleteSelectedVertex();
 //}
 
 //void CDlgPondProperty::OnButtonRecalcvertex()
 //{
-//	if (m_IsModalDialog) return;
-//	m_pPondMng->ReCalcSelectedVertex();
+//    if (m_IsModalDialog) return;
+//    m_pPondMng->ReCalcSelectedVertex();
 //}
 
 void CDlgPondProperty::OnButtonGroup() {

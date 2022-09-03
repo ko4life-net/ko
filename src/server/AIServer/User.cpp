@@ -23,9 +23,9 @@ static char THIS_FILE[] = __FILE__;
 
 /*
      ** Repent AI Server 작업시 참고 사항 **
-	1. Initialize() 수정
-	2. SendAttackSuccess() 수정
-	3. GetDamage() 수정
+    1. Initialize() 수정
+    2. SendAttackSuccess() 수정
+    3. GetDamage() 수정
 */
 
 #define MORAL_GOOD    0x01
@@ -35,12 +35,12 @@ static char THIS_FILE[] = __FILE__;
 // 운영자 아이디 넣기..
 /*const char* g_pszOPID[] = 
 {
-	//"여우야2",
-	//"난강해",
-	//"이쁜여우2"
-	//"Morpheus"
-//	"맨순",
-//	"민순"
+    //"여우야2",
+    //"난강해",
+    //"이쁜여우2"
+    //"Morpheus"
+//    "맨순",
+//    "민순"
 };*/
 
 float surround_fx[8] = {0.0f, -0.7071f, -1.0f, -0.7083f, 0.0f, 0.7059f, 1.0000f, 0.7083f};
@@ -119,15 +119,15 @@ void CUser::Attack(int sid, int tid) {
         return;
     }
 
-    /*	if(pNpc->m_tNpcType == NPCTYPE_GUARD)					// 경비병이면 타겟을 해당 유저로
-	{
-		pNpc->m_Target.id = m_iUserId + USER_BAND;
-		pNpc->m_Target.x = m_curx;
-		pNpc->m_Target.y = m_cury;
-		pNpc->m_Target.failCount = 0;
-		pNpc->Attack(m_pIocport);
-	//	return;
-	}	*/
+    /*    if(pNpc->m_tNpcType == NPCTYPE_GUARD)                    // 경비병이면 타겟을 해당 유저로
+    {
+        pNpc->m_Target.id = m_iUserId + USER_BAND;
+        pNpc->m_Target.x = m_curx;
+        pNpc->m_Target.y = m_cury;
+        pNpc->m_Target.failCount = 0;
+        pNpc->Attack(m_pIocport);
+    //    return;
+    }    */
 
     int nDefence = 0, nFinalDamage = 0;
     // NPC 방어값
@@ -139,7 +139,7 @@ void CUser::Attack(int sid, int tid) {
         nFinalDamage = 3000; // sungyong test
     }
 
-    // Calculate Target HP	 -------------------------------------------------------//
+    // Calculate Target HP     -------------------------------------------------------//
     short sOldNpcHP = pNpc->m_iHP;
 
     if (pNpc->SetDamage(0, nFinalDamage, m_strUserID, m_iUserId + USER_BAND, m_pIocport) == FALSE) {
@@ -148,13 +148,13 @@ void CUser::Attack(int sid, int tid) {
         pNpc->SendDead(m_pIocport);
         SendAttackSuccess(tid, ATTACK_TARGET_DEAD, nFinalDamage, pNpc->m_iHP);
 
-        //	CheckMaxValue(m_dwXP, 1);		// 몹이 죽을때만 1 증가!
-        //	SendXP();
+        //    CheckMaxValue(m_dwXP, 1);        // 몹이 죽을때만 1 증가!
+        //    SendXP();
     } else {
         // 공격 결과 전송
         SendAttackSuccess(tid, ATTACK_SUCCESS, nFinalDamage, pNpc->m_iHP);
     }
-    //	m_dwLastAttackTime = GetTickCount();
+    //    m_dwLastAttackTime = GetTickCount();
 }
 
 void CUser::SendAttackSuccess(int tuid, BYTE result, short sDamage, int nHP, short sAttack_type) {
@@ -246,7 +246,7 @@ void CUser::SendAll(TCHAR * pBuf, int nLength) {
 }
 // ~sungyong 2002.05.22
 
-//	Damage 계산, 만약 m_sHP 가 0 이하이면 사망처리
+//    Damage 계산, 만약 m_sHP 가 0 이하이면 사망처리
 void CUser::SetDamage(int damage, int tid) {
     if (damage <= 0) {
         return;
@@ -337,12 +337,12 @@ void CUser::Dead(int tid, int nDamage) {
         SendAll(buff, send_index); // thread 에서 send
     }
 
-    /*	SetByte(buff, AG_DEAD, send_index );
-	SetShort(buff, m_iUserId, send_index );
-	Setfloat(buff, m_curx, send_index);
-	Setfloat(buff, m_curz, send_index);
+    /*    SetByte(buff, AG_DEAD, send_index );
+    SetShort(buff, m_iUserId, send_index );
+    Setfloat(buff, m_curx, send_index);
+    Setfloat(buff, m_curz, send_index);
 
-	SendAll(buff, send_index);   // thread 에서 send	*/
+    SendAll(buff, send_index);   // thread 에서 send    */
 }
 
 void CUser::SendHP() {
@@ -408,29 +408,29 @@ void CUser::SetExp(int iNpcExp, int iLoyalty, int iLevel) {
         nExp = iNpcExp * 1;
         nLoyalty = iLoyalty * 1;
     }
-    /*	else if(nLevel >= 2 && nLevel < 5)
-	{
-		TempValue = iNpcExp * 1.2;
-		nExp = (int)TempValue;
-		if(TempValue > nExp)  nExp=nExp+1;
-		TempValue = iLoyalty * 1.2;
-		nLoyalty = (int)TempValue;
-		if(TempValue > nLoyalty)  nLoyalty=nLoyalty+1;
-	}
-	else if(nLevel >= 5 && nLevel < 8)
-	{
-		TempValue = iNpcExp * 1.5;
-		nExp = (int)TempValue;
-		if(TempValue > nExp)  nExp=nExp+1;
-		TempValue = iLoyalty * 1.5;
-		nLoyalty = (int)TempValue;
-		if(TempValue > nLoyalty)  nLoyalty=nLoyalty+1;
-	}
-	else if(nLevel >= 8)
-	{
-		nExp = iNpcExp * 2;
-		nLoyalty = iLoyalty * 2;
-	}	*/
+    /*    else if(nLevel >= 2 && nLevel < 5)
+    {
+        TempValue = iNpcExp * 1.2;
+        nExp = (int)TempValue;
+        if(TempValue > nExp)  nExp=nExp+1;
+        TempValue = iLoyalty * 1.2;
+        nLoyalty = (int)TempValue;
+        if(TempValue > nLoyalty)  nLoyalty=nLoyalty+1;
+    }
+    else if(nLevel >= 5 && nLevel < 8)
+    {
+        TempValue = iNpcExp * 1.5;
+        nExp = (int)TempValue;
+        if(TempValue > nExp)  nExp=nExp+1;
+        TempValue = iLoyalty * 1.5;
+        nLoyalty = (int)TempValue;
+        if(TempValue > nLoyalty)  nLoyalty=nLoyalty+1;
+    }
+    else if(nLevel >= 8)
+    {
+        nExp = iNpcExp * 2;
+        nLoyalty = iLoyalty * 2;
+    }    */
 
     //TRACE("$$ User - SetExp Level : %s, exp=%d->%d, loy=%d->%d, mylevel=%d, monlevel=%d $$\n", m_strUserID, iNpcExp, nExp, iLoyalty, nLoyalty, m_sLevel, iLevel);
 
@@ -494,10 +494,10 @@ short CUser::GetDamage(int tid, int magicid) {
         return damage;
     }
 
-    Attack = (float)m_fHitrate;             // 공격민첩
-    Avoid = (float)pNpc->m_sEvadeRate;      // 방어민첩
-    Hit = m_sHitDamage;                     // 공격자 Hit
-                                            //	Ac = (short)(pNpc->m_sDefense) + pNpc->m_sLevel;		// 방어자 Ac 2002.07.06
+    Attack = (float)m_fHitrate;        // 공격민첩
+    Avoid = (float)pNpc->m_sEvadeRate; // 방어민첩
+    Hit = m_sHitDamage;                // 공격자 Hit
+    // Ac = (short)(pNpc->m_sDefense) + pNpc->m_sLevel; // 방어자 Ac 2002.07.06
     Ac = (short)(pNpc->m_sDefense);         // 방어자 Ac
     HitB = (int)((Hit * 200) / (Ac + 240)); // 새로운 공격식의 B
 
@@ -524,13 +524,13 @@ short CUser::GetDamage(int tid, int magicid) {
                 result = GetHitRate((Attack / Avoid) * (pType1->sHitRate / 100.0f));
             }
             /*
-			if(pType1->bHitType) {  // Non-relative hit.
-				Hit = m_sHitDamage * (pType1->sHit / 100.0f);
-			}
-			else {
-//				Hit = (m_sHitDamage - pNpc->m_sDefense) 
-				Hit = HitB * (pType1->sHit / 100.0f) ;
-			}		
+            if(pType1->bHitType) {  // Non-relative hit.
+                Hit = m_sHitDamage * (pType1->sHit / 100.0f);
+            }
+            else {
+//                Hit = (m_sHitDamage - pNpc->m_sDefense) 
+                Hit = HitB * (pType1->sHit / 100.0f) ;
+            }        
 */
             Hit = HitB * (pType1->sHit / 100.0f);
         } else if (pTable->bType1 == 2) {                         // ARROW HIT!
@@ -554,7 +554,7 @@ short CUser::GetDamage(int tid, int magicid) {
             if (pType2->bHitType == 1 /* || pType2->bHitType == 2 */) {
                 Hit = m_sHitDamage * (pType2->sAddDamage / 100.0f);
             } else {
-                //				Hit = (m_sHitDamage - pNpc->m_sDefense) * (pType2->sAddDamage / 100.0f);
+                //                Hit = (m_sHitDamage - pNpc->m_sDefense) * (pType2->sAddDamage / 100.0f);
                 Hit = HitB * (pType2->sAddDamage / 100.0f);
             }
         }
@@ -569,7 +569,7 @@ short CUser::GetDamage(int tid, int magicid) {
         if (magicid > 0) { // 스킬 공격
             damage = (short)Hit;
             random = myrand(0, damage);
-            //				damage = (short)((0.85f * (float)Hit) + 0.3f * (float)random);
+            //                damage = (short)((0.85f * (float)Hit) + 0.3f * (float)random);
             if (pTable->bType1 == 1) {
                 damage = (short)((float)Hit + 0.3f * (float)random + 0.99);
             } else {
@@ -682,129 +682,129 @@ short CUser::GetMagicDamage(int damage, short tid) {
 
 BYTE CUser::GetHitRate(float rate) {
     /*
-	BYTE result;
-	int random = 0;
-	random = myrand(1, 10000);
+    BYTE result;
+    int random = 0;
+    random = myrand(1, 10000);
 
-	if( rate >= 5.0 )
-	{
-		if( random >= 1 && random <= 3500)
-			result = GREAT_SUCCESS;
-		else if( random >= 3501 && random <= 7500)
-			result = SUCCESS;
-		else if( random >= 7501 && random <= 9500)
-			result = NORMAL;
-		else if( random >= 9501 && random <= 10000)
-			result = FAIL;
-		else
-			result = FAIL;
-	}
-	else if ( rate < 5.0 && rate >= 3.0)
-	{
-		if( random >= 1 && random <= 2500)
-			result = GREAT_SUCCESS;
-		else if( random >= 2501 && random <= 6000)
-			result = SUCCESS;
-		else if( random >= 6001 && random <= 9000)
-			result = NORMAL;
-		else if( random >= 9001 && random <= 10000)
-			result = FAIL;
-		else
-			result = FAIL;
-	}
-	else if ( rate < 3.0 && rate >= 2.0)
-	{
-		if( random >= 1 && random <= 2000)
-			result = GREAT_SUCCESS;
-		else if( random >= 2001 && random <= 5000)
-			result = SUCCESS;
-		else if( random >= 5001 && random <= 9000)
-			result = NORMAL;
-		else if( random >= 9001 && random <= 10000)
-			result = FAIL;
-		else
-			result = FAIL;
-	}
-	else if ( rate < 2.0 && rate >= 1.25)
-	{
-		if( random >= 1 && random <= 1500)
-			result = GREAT_SUCCESS;
-		else if( random >= 1501 && random <= 4000)
-			result = SUCCESS;
-		else if( random >= 4001 && random <= 8500)
-			result = NORMAL;
-		else if( random >= 8501 && random <= 10000)
-			result = FAIL;
-		else
-			result = FAIL;
-	}
-	else if ( rate < 1.25 && rate >= 0.8)
-	{
-		if( random >= 1 && random <= 1000)
-			result = GREAT_SUCCESS;
-		else if( random >= 1001 && random <= 3000)
-			result = SUCCESS;
-		else if( random >= 3001 && random <= 8000)
-			result = NORMAL;
-		else if( random >= 8001 && random <= 10000)
-			result = FAIL;
-		else
-			result = FAIL;
-	}	
-	else if ( rate < 0.8 && rate >= 0.5)
-	{
-		if( random >= 1 && random <= 800)
-			result = GREAT_SUCCESS;
-		else if( random >= 801 && random <= 2400)
-			result = SUCCESS;
-		else if( random >= 2401 && random <= 7000)
-			result = NORMAL;
-		else if( random >= 7001 && random <= 10000)
-			result = FAIL;
-		else
-			result = FAIL;
-	}
-	else if ( rate < 0.5 && rate >= 0.33)
-	{
-		if( random >= 1 && random <= 600)
-			result = GREAT_SUCCESS;
-		else if( random >= 601 && random <= 1800)
-			result = SUCCESS;
-		else if( random >= 1801 && random <= 6000)
-			result = NORMAL;
-		else if( random >= 6001 && random <= 10000)
-			result = FAIL;
-		else
-			result = FAIL;
-	}
-	else if ( rate < 0.33 && rate >= 0.2)
-	{
-		if( random >= 1 && random <= 400)
-			result = GREAT_SUCCESS;
-		else if( random >= 401 && random <= 1300)
-			result = SUCCESS;
-		else if( random >= 1301 && random <= 5000)
-			result = NORMAL;
-		else if( random >= 5001 && random <= 10000)
-			result = FAIL;
-		else
-			result = FAIL;
-	}
-	else
-	{
-		if( random >= 1 && random <= 200)
-			result = GREAT_SUCCESS;
-		else if( random >= 201 && random <= 800)
-			result = SUCCESS;
-		else if( random >= 801 && random <= 4000)
-			result = NORMAL;
-		else if( random >= 4001 && random <= 10000)
-			result = FAIL;
-		else
-			result = FAIL;
-	}
-	
-	return result;
+    if( rate >= 5.0 )
+    {
+        if( random >= 1 && random <= 3500)
+            result = GREAT_SUCCESS;
+        else if( random >= 3501 && random <= 7500)
+            result = SUCCESS;
+        else if( random >= 7501 && random <= 9500)
+            result = NORMAL;
+        else if( random >= 9501 && random <= 10000)
+            result = FAIL;
+        else
+            result = FAIL;
+    }
+    else if ( rate < 5.0 && rate >= 3.0)
+    {
+        if( random >= 1 && random <= 2500)
+            result = GREAT_SUCCESS;
+        else if( random >= 2501 && random <= 6000)
+            result = SUCCESS;
+        else if( random >= 6001 && random <= 9000)
+            result = NORMAL;
+        else if( random >= 9001 && random <= 10000)
+            result = FAIL;
+        else
+            result = FAIL;
+    }
+    else if ( rate < 3.0 && rate >= 2.0)
+    {
+        if( random >= 1 && random <= 2000)
+            result = GREAT_SUCCESS;
+        else if( random >= 2001 && random <= 5000)
+            result = SUCCESS;
+        else if( random >= 5001 && random <= 9000)
+            result = NORMAL;
+        else if( random >= 9001 && random <= 10000)
+            result = FAIL;
+        else
+            result = FAIL;
+    }
+    else if ( rate < 2.0 && rate >= 1.25)
+    {
+        if( random >= 1 && random <= 1500)
+            result = GREAT_SUCCESS;
+        else if( random >= 1501 && random <= 4000)
+            result = SUCCESS;
+        else if( random >= 4001 && random <= 8500)
+            result = NORMAL;
+        else if( random >= 8501 && random <= 10000)
+            result = FAIL;
+        else
+            result = FAIL;
+    }
+    else if ( rate < 1.25 && rate >= 0.8)
+    {
+        if( random >= 1 && random <= 1000)
+            result = GREAT_SUCCESS;
+        else if( random >= 1001 && random <= 3000)
+            result = SUCCESS;
+        else if( random >= 3001 && random <= 8000)
+            result = NORMAL;
+        else if( random >= 8001 && random <= 10000)
+            result = FAIL;
+        else
+            result = FAIL;
+    }    
+    else if ( rate < 0.8 && rate >= 0.5)
+    {
+        if( random >= 1 && random <= 800)
+            result = GREAT_SUCCESS;
+        else if( random >= 801 && random <= 2400)
+            result = SUCCESS;
+        else if( random >= 2401 && random <= 7000)
+            result = NORMAL;
+        else if( random >= 7001 && random <= 10000)
+            result = FAIL;
+        else
+            result = FAIL;
+    }
+    else if ( rate < 0.5 && rate >= 0.33)
+    {
+        if( random >= 1 && random <= 600)
+            result = GREAT_SUCCESS;
+        else if( random >= 601 && random <= 1800)
+            result = SUCCESS;
+        else if( random >= 1801 && random <= 6000)
+            result = NORMAL;
+        else if( random >= 6001 && random <= 10000)
+            result = FAIL;
+        else
+            result = FAIL;
+    }
+    else if ( rate < 0.33 && rate >= 0.2)
+    {
+        if( random >= 1 && random <= 400)
+            result = GREAT_SUCCESS;
+        else if( random >= 401 && random <= 1300)
+            result = SUCCESS;
+        else if( random >= 1301 && random <= 5000)
+            result = NORMAL;
+        else if( random >= 5001 && random <= 10000)
+            result = FAIL;
+        else
+            result = FAIL;
+    }
+    else
+    {
+        if( random >= 1 && random <= 200)
+            result = GREAT_SUCCESS;
+        else if( random >= 201 && random <= 800)
+            result = SUCCESS;
+        else if( random >= 801 && random <= 4000)
+            result = NORMAL;
+        else if( random >= 4001 && random <= 10000)
+            result = FAIL;
+        else
+            result = FAIL;
+    }
+    
+    return result;
 */
 
     BYTE result;
@@ -979,10 +979,10 @@ int CUser::IsSurroundCheck(float fX, float fY, float fZ, int NpcID) {
         }
     }
 
-    /*	TRACE("User-Sur : [0=%d,1=%d,2=%d,3=%d,4=%d,5=%d,6=%d,7=%d]\n", m_sSurroundNpcNumber[0], 
-		m_sSurroundNpcNumber[1], m_sSurroundNpcNumber[2], m_sSurroundNpcNumber[3], m_sSurroundNpcNumber[4],
-		m_sSurroundNpcNumber[5],m_sSurroundNpcNumber[6], m_sSurroundNpcNumber[7]);
-	*/
+    /*    TRACE("User-Sur : [0=%d,1=%d,2=%d,3=%d,4=%d,5=%d,6=%d,7=%d]\n", m_sSurroundNpcNumber[0], 
+        m_sSurroundNpcNumber[1], m_sSurroundNpcNumber[2], m_sSurroundNpcNumber[3], m_sSurroundNpcNumber[4],
+        m_sSurroundNpcNumber[5],m_sSurroundNpcNumber[6], m_sSurroundNpcNumber[7]);
+    */
     if (nDir != 0) {
         m_sSurroundNpcNumber[nDir - 1] = NpcID;
     }
@@ -991,19 +991,19 @@ int CUser::IsSurroundCheck(float fX, float fY, float fZ, int NpcID) {
 }
 
 BOOL CUser::IsOpIDCheck(char * szName) {
-    /*	int nSize = sizeof(g_pszOPID)/sizeof(char*);
-	CString szCheck = szName;
-	CString szCheck2;
+    /*    int nSize = sizeof(g_pszOPID)/sizeof(char*);
+    CString szCheck = szName;
+    CString szCheck2;
 
-	szCheck.MakeLower();
+    szCheck.MakeLower();
 
-	for (int i=0; i< nSize; i++) 
-	{
-		szCheck2 = g_pszOPID[i];
-		szCheck2.MakeLower();
+    for (int i=0; i< nSize; i++) 
+    {
+        szCheck2 = g_pszOPID[i];
+        szCheck2.MakeLower();
 
-		if(szCheck.Find(szCheck2) != -1) return TRUE;
-	}	*/
+        if(szCheck.Find(szCheck2) != -1) return TRUE;
+    }    */
 
     return FALSE;
 }

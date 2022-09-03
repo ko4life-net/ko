@@ -932,7 +932,7 @@ bool CPortalVol::IntersectTriangle(const __Vector3 & vOrig, const __Vector3 & vD
     __Vector3 pVec;
     float     fDet;
 
-    //	By : Ecli666 ( On 2001-09-12 오전 10:39:01 )
+    //    By : Ecli666 ( On 2001-09-12 오전 10:39:01 )
 
     pVec.Cross(vEdge1, vEdge2);
     fDet = pVec.Dot(vDir);
@@ -940,7 +940,7 @@ bool CPortalVol::IntersectTriangle(const __Vector3 & vOrig, const __Vector3 & vD
         return false;
     }
 
-    //	~(By Ecli666 On 2001-09-12 오전 10:39:01 )
+    //    ~(By Ecli666 On 2001-09-12 오전 10:39:01 )
 
     pVec.Cross(vDir, vEdge2);
 

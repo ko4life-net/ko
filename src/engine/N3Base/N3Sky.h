@@ -23,7 +23,7 @@ class CN3Sky : public CN3Base {
 
     __VertexXyzColor m_vFronts[4];
     __VertexXyzColor m_Bottom[4];
-    //	CN3Texture*			m_pTex;
+    //    CN3Texture*            m_pTex;
 
     // Operations
   public:

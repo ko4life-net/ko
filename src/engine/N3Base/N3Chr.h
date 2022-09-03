@@ -51,7 +51,7 @@ class CN3CPart : public CN3BaseFileAccess {
   protected:
     CN3Texture * m_pTexRef;
     CN3Texture * m_pTexOverlapRef; // 위에 덧칠할 텍스처
-                                   //	std::vector<class CN3AnimatedTexture*> m_AnimatedTextures;
+    // std::vector<class CN3AnimatedTexture *> m_AnimatedTextures;
     CN3CPartSkins * m_pSkinsRef;
 
   public:
@@ -116,8 +116,8 @@ class CN3CPlugBase : public CN3BaseFileAccess {
     CN3PMeshInstance m_PMeshInst;      // Progressive Mesh Instance
     CN3Texture *     m_pTexRef;        // Texture Reference Pointer
     CN3Texture *     m_pTexOverlapRef; // 위에 덧칠할 Texture Reference Pointer
-                                       //		__Vector3 m_vRotation; // 붙는 Mesh 의 Rotation일.
-    __Matrix44 m_MtxRot;               // Rotation Matrix;
+    // __Vector3        m_vRotation;      // 붙는 Mesh 의 Rotation일.
+    __Matrix44 m_MtxRot; // Rotation Matrix;
 
   public:
     CN3CPlugBase();
@@ -270,7 +270,7 @@ class CN3Chr : public CN3TransformCollision {
     int m_nJointPartStarts[MAX_CHR_ANI_PART]; // 조인트의 일부분이 따로 에니메이션 되야 한다면.. 조인트 인덱스 시작 번호
     int m_nJointPartEnds[MAX_CHR_ANI_PART];   // 조인트의 일부분이 따로 에니메이션 되야 한다면.. 조인트 인덱스 끝 번호
 
-    //	CN3Skin*	m_pSkinCollision;
+    // CN3Skin * m_pSkinCollision;
 
     CN3AnimControl * m_pAniCtrlRef; // Animation Control Reference Pointer
 
@@ -339,8 +339,8 @@ class CN3Chr : public CN3TransformCollision {
         return NULL;
     }
 
-    //	void		CollisionSkinSet(const std::string& szFN);
-    //	CN3Skin*	CollisionSkin() { return m_pSkinCollision; }
+    // void      CollisionSkinSet(const std::string & szFN);
+    // CN3Skin * CollisionSkin() { return m_pSkinCollision; }
 
     void       PartDelete(int iIndex);
     void       PartAlloc(int nCount);
@@ -426,13 +426,13 @@ class CN3Chr : public CN3TransformCollision {
     bool IsLoopingAgain();
 
     //////////////////////////////////////////////////
-    //	Coded (By Dino On 2002-10-10 오후 2:35:32 )
-    //	FXPlug
+    // Coded (By Dino On 2002-10-10 오후 2:35:32 )
+    // FXPlug
     class CN3FXPlug * FXPlugSet(const std::string & strFN);
     class CN3FXPlug * FXPlugCreate();
     class CN3FXPlug * FXPlugGet() { return m_pFXPlug; }
     void              FXPlugDelete();
-    //	End Of Code (By Dino On 2002-10-10 오후 2:35:32 )
+    // End Of Code (By Dino On 2002-10-10 오후 2:35:32 )
     //////////////////////////////////////////////////
 
     void Init();

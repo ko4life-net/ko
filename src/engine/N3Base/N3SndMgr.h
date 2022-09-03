@@ -33,8 +33,8 @@ class CN3SndMgr {
   public:
     void ReleaseObj(CN3SndObj ** ppObj);
     void ReleaseStreamObj(CN3SndObjStream ** ppObj);
-    //	void		DeleteObjWithSource(CN3SndObj* pObj);
-    //	CN3SndObj*	GetObj(int iID);
+    //    void        DeleteObjWithSource(CN3SndObj* pObj);
+    //    CN3SndObj*    GetObj(int iID);
     bool PlayOnceAndRelease(int iSndID, const D3DVECTOR * pPos = NULL);
 
     void SetDuplicated(bool bDuplicate) { m_bSndDuplicated = bDuplicate; }

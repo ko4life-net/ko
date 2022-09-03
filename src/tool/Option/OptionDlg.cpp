@@ -164,10 +164,10 @@ BOOL COptionDlg::OnInitDialog() {
     m_szInstalledPath = szBuff;
 
     // 실행 파일 이름
-    //	dwType = REG_SZ; dwBytes = 256;
-    //	lStatus = RegQueryValueEx(hRegKey, "EXE", NULL, &dwType, (BYTE*)szBuff, &dwBytes); // 실행파일 이름
-    //	if(ERROR_SUCCESS != lStatus) { CString szErr; szErr.LoadString(IDS_ERR_REGISTRY_READ_EXE); MessageBox(szErr); exit(-1); }
-    //	m_szExeName = szBuff;
+    //    dwType = REG_SZ; dwBytes = 256;
+    //    lStatus = RegQueryValueEx(hRegKey, "EXE", NULL, &dwType, (BYTE*)szBuff, &dwBytes); // 실행파일 이름
+    //    if(ERROR_SUCCESS != lStatus) { CString szErr; szErr.LoadString(IDS_ERR_REGISTRY_READ_EXE); MessageBox(szErr); exit(-1); }
+    //    m_szExeName = szBuff;
     m_szExeName = "Launcher.exe";
 
     // Version 표시

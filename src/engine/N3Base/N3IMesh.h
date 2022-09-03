@@ -22,7 +22,7 @@ class CN3IMesh : public CN3BaseFileAccess {
 
     __VertexXyzNormal * m_pVertices; // 좌표 Data
     float *             m_pfUVs;     // UV Data - m_nUVC * 2 만큼 할당한다.
-                                     //	LPDIRECT3DVERTEXBUFFER9 m_lpVB;
+                                     //    LPDIRECT3DVERTEXBUFFER9 m_lpVB;
 
     __Vector3 m_vMin, m_vMax; // 최소, 최대점.. 변하긴 하지만 대략적으로...
 
@@ -73,7 +73,7 @@ class CN3IMesh : public CN3BaseFileAccess {
     CN3IMesh();
     virtual ~CN3IMesh();
 
-//	By : Ecli666 ( On 2002-07-23 오후 5:31:41 )
+//    By : Ecli666 ( On 2002-07-23 오후 5:31:41 )
 //
 #ifdef _N3GAME
     void        TickForShadow(bool bUseTwoUV = false);
@@ -84,5 +84,5 @@ class CN3IMesh : public CN3BaseFileAccess {
     __Vector3 * m_pVertexT1;
 #endif
 
-    //	~(By Ecli666 On 2002-07-23 오후 5:31:41 )
+    //    ~(By Ecli666 On 2002-07-23 오후 5:31:41 )
 };

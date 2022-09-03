@@ -162,7 +162,7 @@ void C3DMap::LoadObjectEvent(HANDLE hFile) {
             pEvent = NULL;
         }
 
-        //		TRACE ("己贰 夸没 : %d , %d , %d , %d , %d \r\n", pEvent->sBelong, pEvent->sIndex, pEvent->sType, pEvent->sControlNpcID, pEvent->sStatus);
+        //        TRACE ("己贰 夸没 : %d , %d , %d , %d , %d \r\n", pEvent->sBelong, pEvent->sIndex, pEvent->sType, pEvent->sControlNpcID, pEvent->sStatus);
     }
 }
 
@@ -214,7 +214,7 @@ void C3DMap::LoadRegeneEvent(HANDLE hFile) {
 
     //TRACE("\n\n");
 
-    //	m_pMain->m_bMaxRegenePoint = iEventObjectCount;
+    //    m_pMain->m_bMaxRegenePoint = iEventObjectCount;
 }
 
 void C3DMap::LoadWarpList(HANDLE hFile) {
@@ -267,7 +267,7 @@ float C3DMap::GetHeight(float x, float y, float z) {
     dX = (x - iX * m_fUnitDist) / m_fUnitDist;
     dZ = (z - iZ * m_fUnitDist) / m_fUnitDist;
 
-    //	_ASSERT(dX>=0.0f && dZ>=0.0f && dX<1.0f && dZ<1.0f);
+    //    _ASSERT(dX>=0.0f && dZ>=0.0f && dX<1.0f && dZ<1.0f);
     if (!(dX >= 0.0f && dZ >= 0.0f && dX < 1.0f && dZ < 1.0f)) {
         return FLT_MIN;
     }

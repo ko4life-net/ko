@@ -1,7 +1,7 @@
 #pragma once
 
 /*==============================================*/
-/* Header file for the VRML2.0 translator	*/
+/* Header file for the VRML2.0 translator    */
 /*==============================================*/
 
 #define MAYA_SRC

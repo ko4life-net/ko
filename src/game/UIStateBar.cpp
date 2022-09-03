@@ -311,8 +311,8 @@ void CUIStateBar::Render() {
         info = *it;
 
         vPos = m_vPosPlayer - info.vPos;
-        //		vPos.x = (float)((int)(fCenterX - m_fZoom * fWidth * (vPos.x / m_fMapSizeX)));
-        //		vPos.z = (float)((int)(fCenterY + m_fZoom * fHeight * (vPos.z / m_fMapSizeZ)));
+        //        vPos.x = (float)((int)(fCenterX - m_fZoom * fWidth * (vPos.x / m_fMapSizeX)));
+        //        vPos.z = (float)((int)(fCenterY + m_fZoom * fHeight * (vPos.z / m_fMapSizeZ)));
         vPos.x = fCenterX - m_fZoom * fWidth * (vPos.x / m_fMapSizeX);
         vPos.y = fCenterY + m_fZoom * fHeight * (vPos.z / m_fMapSizeZ);
 
@@ -350,8 +350,8 @@ void CUIStateBar::Render() {
         info = *it;
 
         vPos = m_vPosPlayer - info.vPos;
-        //		vPos.x = (float)((int)(fCenterX - m_fZoom * fWidth * (vPos.x / m_fMapSizeX)));
-        //		vPos.z = (float)((int)(fCenterY + m_fZoom * fHeight * (vPos.z / m_fMapSizeZ)));
+        //        vPos.x = (float)((int)(fCenterX - m_fZoom * fWidth * (vPos.x / m_fMapSizeX)));
+        //        vPos.z = (float)((int)(fCenterY + m_fZoom * fHeight * (vPos.z / m_fMapSizeZ)));
         vPos.x = fCenterX - m_fZoom * fWidth * (vPos.x / m_fMapSizeX);
         vPos.y = fCenterY + m_fZoom * fHeight * (vPos.z / m_fMapSizeZ);
 
@@ -428,7 +428,7 @@ void CUIStateBar::TickMiniMap() {
     float fOffset = (0.5f / m_fZoom);
     float fX = (m_vPosPlayer.x / m_fMapSizeX); // 1/16 รเภ๛..
     float fY = (m_vPosPlayer.z / m_fMapSizeZ);
-    //	m_pImage_Map->SetUVRect(fX - fOffset, fY - fOffset, fX + fOffset, fY + fOffset);
+    //    m_pImage_Map->SetUVRect(fX - fOffset, fY - fOffset, fX + fOffset, fY + fOffset);
     m_pImage_Map->SetUVRect((fX - fOffset), 1.0f - (fY + fOffset), (fX + fOffset), 1.0f - (fY - fOffset));
 
     RECT  rc = m_pImage_Map->GetRegion();

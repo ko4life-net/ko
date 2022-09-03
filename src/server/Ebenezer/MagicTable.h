@@ -14,7 +14,7 @@ class CMagicTable {
     char  m_strName[30]; // 매직 이름
     BYTE  m_bMoral;      // 성향
     BYTE  m_bClass;      // 사용 클래스
-    BYTE  m_bLevel;      // 레벨	제한
+    BYTE  m_bLevel;      // 레벨    제한
     BYTE
         m_bEffect; // 효과(0:fire, 1:ice, 2:lightning, 3:magic, 4:disease, 5:poison, 6:light, 7:heal, 8:dagger, 9:sword, 10:mace, 11:spear, 12:polearm)
     short m_sMp;   // 소모량

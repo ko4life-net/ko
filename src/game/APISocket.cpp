@@ -15,8 +15,8 @@ int     CAPISocket::s_nInstanceCount = 0;
 
 #ifdef _CRYPTION
 BOOL DataPack::s_bCryptionFlag = FALSE; //0 : 비암호화 , 1 : 암호화
-//_int64		DataPack::s_PublicKey;
-//_int64		DataPack::s_PrivateKey = 0x1234567890123456;
+//_int64        DataPack::s_PublicKey;
+//_int64        DataPack::s_PrivateKey = 0x1234567890123456;
 CJvCryption DataPack::s_JvCrypt;
 WORD        DataPack::s_wSendVal = 0;
 WORD        DataPack::s_wRcvVal = 0;
@@ -126,47 +126,47 @@ void CAPISocket::Release() {
 
     // 통계를 써준다..
 #ifdef _DEBUG
-    /*	DWORD dwRWC = 0;
-	char szFN1[256] = "", szFN2[256] = "";
-	SYSTEMTIME ST;
-	::GetLocalTime(&ST);
-	sprintf(szFN1, "Socket_Statistics_Send_%d_%d_%d_%d.txt", ST.wMonth, ST.wDay, ST.wHour, ST.wMinute);
-	sprintf(szFN2, "Socket_Statistics_Recv_%d_%d_%d_%d.txt", ST.wMonth, ST.wDay, ST.wHour, ST.wMinute);
-	HANDLE hFile1 = ::CreateFile(szFN1, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-	HANDLE hFile2 = ::CreateFile(szFN2, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    /*    DWORD dwRWC = 0;
+    char szFN1[256] = "", szFN2[256] = "";
+    SYSTEMTIME ST;
+    ::GetLocalTime(&ST);
+    sprintf(szFN1, "Socket_Statistics_Send_%d_%d_%d_%d.txt", ST.wMonth, ST.wDay, ST.wHour, ST.wMinute);
+    sprintf(szFN2, "Socket_Statistics_Recv_%d_%d_%d_%d.txt", ST.wMonth, ST.wDay, ST.wHour, ST.wMinute);
+    HANDLE hFile1 = ::CreateFile(szFN1, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFile2 = ::CreateFile(szFN2, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
-	
-	char szBuff[64] = "";
-	char szCmd[32] = "";
+    
+    char szBuff[64] = "";
+    char szCmd[32] = "";
 
-	strcpy(szBuff, "Packet\t양\t횟수\r\n");
-	WriteFile(hFile1, szBuff, lstrlen(szBuff), &dwRWC, NULL);
-	WriteFile(hFile2, szBuff, lstrlen(szBuff), &dwRWC, NULL);
+    strcpy(szBuff, "Packet\t양\t횟수\r\n");
+    WriteFile(hFile1, szBuff, lstrlen(szBuff), &dwRWC, NULL);
+    WriteFile(hFile2, szBuff, lstrlen(szBuff), &dwRWC, NULL);
 
-	for(int i = 0; i < 255; i++)
-	{
-		if(i == N3_NPC_MOVE) lstrcpy(szCmd, "NPC Move");
-		else if(i == N3_ATTACK) lstrcpy(szCmd, "Attack");
-		else if(i == N3_MOVE) lstrcpy(szCmd, "User Move");
-		else if(i == N3_MAGIC) lstrcpy(szCmd, "Magic");
-		else if(i == N3_CHAT) lstrcpy(szCmd, "Chatting");
-		else 
-		{
-			sprintf(szCmd, "ETC : %d", i);
-		}
+    for(int i = 0; i < 255; i++)
+    {
+        if(i == N3_NPC_MOVE) lstrcpy(szCmd, "NPC Move");
+        else if(i == N3_ATTACK) lstrcpy(szCmd, "Attack");
+        else if(i == N3_MOVE) lstrcpy(szCmd, "User Move");
+        else if(i == N3_MAGIC) lstrcpy(szCmd, "Magic");
+        else if(i == N3_CHAT) lstrcpy(szCmd, "Chatting");
+        else 
+        {
+            sprintf(szCmd, "ETC : %d", i);
+        }
 
-		if(m_Statistics_Send_Sum[i].iSize > 0 || m_Statistics_Send_Sum[i].dwTime > 0)
-		{
-			sprintf(szBuff, "%s\t%d\t%d\t\r\n", szCmd, m_Statistics_Send_Sum[i].iSize, m_Statistics_Send_Sum[i].dwTime);
-			WriteFile(hFile1, szBuff, lstrlen(szBuff), &dwRWC, NULL);
-		}
+        if(m_Statistics_Send_Sum[i].iSize > 0 || m_Statistics_Send_Sum[i].dwTime > 0)
+        {
+            sprintf(szBuff, "%s\t%d\t%d\t\r\n", szCmd, m_Statistics_Send_Sum[i].iSize, m_Statistics_Send_Sum[i].dwTime);
+            WriteFile(hFile1, szBuff, lstrlen(szBuff), &dwRWC, NULL);
+        }
 
-		if(m_Statistics_Recv_Sum[i].iSize > 0 || m_Statistics_Recv_Sum[i].dwTime > 0)
-		{
-			sprintf(szBuff, "%s\t%d\t%d\t\r\n", szCmd, m_Statistics_Recv_Sum[i].iSize, m_Statistics_Recv_Sum[i].dwTime);
-			WriteFile(hFile2, szBuff, lstrlen(szBuff), &dwRWC, NULL);
-		}
-	}
+        if(m_Statistics_Recv_Sum[i].iSize > 0 || m_Statistics_Recv_Sum[i].dwTime > 0)
+        {
+            sprintf(szBuff, "%s\t%d\t%d\t\r\n", szCmd, m_Statistics_Recv_Sum[i].iSize, m_Statistics_Recv_Sum[i].dwTime);
+            WriteFile(hFile2, szBuff, lstrlen(szBuff), &dwRWC, NULL);
+        }
+    }
 */
 
     for (int i = 0; i < 255; i++) {
@@ -174,8 +174,8 @@ void CAPISocket::Release() {
         memset(m_Statistics_Recv_Sum, 0, sizeof(m_Statistics_Recv_Sum));
     }
 
-//	CloseHandle(hFile1);
-//	CloseHandle(hFile2);
+//    CloseHandle(hFile1);
+//    CloseHandle(hFile2);
 #endif
 }
 
@@ -254,14 +254,14 @@ int CAPISocket::Connect(HWND hWnd, const char * pszIP, DWORD dwPort) {
         m_hSocket = INVALID_SOCKET;
 
 #ifdef _DEBUG
-//		char msg[256];
-//		sprintf(msg,"Cannot connect to %s on Port %u : ErrorCode : %d", pszIP, dwPort, iErrCode);
-//		MessageBox(hWnd, msg,"socket error", MB_OK | MB_ICONSTOP);
+//        char msg[256];
+//        sprintf(msg,"Cannot connect to %s on Port %u : ErrorCode : %d", pszIP, dwPort, iErrCode);
+//        MessageBox(hWnd, msg,"socket error", MB_OK | MB_ICONSTOP);
 #endif
         return iErrCode;
     }
 
-    //	WSAAsyncSelect(m_hSocket, hWnd, WM_SOCKETMSG, FD_CONNECT | FD_ACCEPT | FD_READ | FD_CLOSE);
+    //    WSAAsyncSelect(m_hSocket, hWnd, WM_SOCKETMSG, FD_CONNECT | FD_ACCEPT | FD_READ | FD_CLOSE);
     WSAAsyncSelect(m_hSocket, hWnd, WM_SOCKETMSG, FD_CONNECT | FD_READ | FD_CLOSE);
 
     m_hWndTarget = hWnd;
@@ -410,10 +410,10 @@ void CAPISocket::Send(BYTE * pData, int nSize) {
 #ifdef _DEBUG
     BYTE byCmd = pData[0]; // 통계 넣기..
 
-    //	__SocketStatisics SS;
-    //	SS.dwTime = GetTickCount();
-    //	SS.iSize = nSize;
-    //	m_Statistics_Send[byCmd].push_back(SS);
+    //    __SocketStatisics SS;
+    //    SS.dwTime = GetTickCount();
+    //    SS.iSize = nSize;
+    //    m_Statistics_Send[byCmd].push_back(SS);
 
     m_Statistics_Send_Sum[byCmd].dwTime++;
     m_Statistics_Send_Sum[byCmd].iSize += nSize;

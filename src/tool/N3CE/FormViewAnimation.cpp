@@ -180,7 +180,7 @@ void CFormViewAnimation::UpdateFrameSliderAndOther() {
 
         if (pAniData->fFrmPerSec > 0) {
             float fTime = (pAniData->fFrmEnd - pAniData->fFrmStart) / pAniData->fFrmPerSec;
-            //			if(1 == pAniData->iBlendFlags) fTime += pAniData->fTimeBlend;
+            //            if(1 == pAniData->iBlendFlags) fTime += pAniData->fTimeBlend;
             CString szTime;
             szTime.Format("시간 : %.2f초", fTime);
             SetDlgItemText(IDC_STATIC_ANIMATION_TIME_SUM, szTime);
@@ -253,7 +253,7 @@ void CFormViewAnimation::UpdateInfo() {
 
         if (pAniData->fFrmPerSec > 0) {
             float fTime = (pAniData->fFrmEnd - pAniData->fFrmStart) / pAniData->fFrmPerSec;
-            //			if(1 == pAniData->iBlendFlags) fTime += pAniData->fTimeBlend;
+            //            if(1 == pAniData->iBlendFlags) fTime += pAniData->fTimeBlend;
             CString szTime;
             szTime.Format("시간 : %.2f초", fTime);
             SetDlgItemText(IDC_STATIC_ANIMATION_TIME_SUM, szTime);
@@ -538,18 +538,18 @@ void CFormViewAnimation::OnSize(UINT nType, int cx, int cy) {
         m_SldSceneFrm.SetWindowPos(NULL, 0, 0, cx2, cy2, SWP_NOMOVE | SWP_NOZORDER);
     }
 
-    //	if(m_SldFrm.GetSafeHwnd() != NULL)
-    //	{
-    //		CRect rcOrg, rcClient;
-    //		m_SldFrm.GetWindowRect(rcOrg); // 그래프 컨트롤의 원래 화면 좌표를
-    //		this->GetClientRect(rcClient); //
-    //		this->ClientToScreen(rcClient); // 화면 좌표로 바꾸고..
+    //    if(m_SldFrm.GetSafeHwnd() != NULL)
+    //    {
+    //        CRect rcOrg, rcClient;
+    //        m_SldFrm.GetWindowRect(rcOrg); // 그래프 컨트롤의 원래 화면 좌표를
+    //        this->GetClientRect(rcClient); //
+    //        this->ClientToScreen(rcClient); // 화면 좌표로 바꾸고..
     //
-    //		int cx2 = rcClient.right - rcOrg.left - 5;
-    //		int cy2 = rcOrg.Height();
+    //        int cx2 = rcClient.right - rcOrg.left - 5;
+    //        int cy2 = rcOrg.Height();
     //
-    //		m_SldFrm.SetWindowPos(NULL, 0, 0, cx2, cy2, SWP_NOMOVE | SWP_NOZORDER);
-    //	}
+    //        m_SldFrm.SetWindowPos(NULL, 0, 0, cx2, cy2, SWP_NOMOVE | SWP_NOZORDER);
+    //    }
 
     if (m_ListAnim0.GetSafeHwnd() != NULL) {
         CRect rcOrg, rcClient;

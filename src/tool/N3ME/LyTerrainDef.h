@@ -1,10 +1,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 //
-//	LyTerrainDef.h
-//	- 이것저것 Terrain에 관련된 자료형정의, 상수정의...
-//	- 쿼드트리 이용한 지형...^^
+//    LyTerrainDef.h
+//    - 이것저것 Terrain에 관련된 자료형정의, 상수정의...
+//    - 쿼드트리 이용한 지형...^^
 //
-//	By Donghoon..
+//    By Donghoon..
 //
 ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -27,9 +27,9 @@ const int N3ME_DTEX_DATA_VERSION = 2;
 //2 : 각텍스쳐의 그룹정보를 dtexinfo.dtx파일로부터 읽는다..
 
 const int TERRAIN_CELL_SIZE = 4;
-//const int MAX_COLORMAPTEXTURE = 32;		//	최대 #colormaptexture at one side = 4096/128..
+//const int MAX_COLORMAPTEXTURE = 32;        //    최대 #colormaptexture at one side = 4096/128..
 //현재 m_iNumColorMap으로 대체해서 쓰고 있당...
-const int PATCH_TILE_SIZE = 8; //	패치 하나에 타일이 8x8개 들어간다.
+const int PATCH_TILE_SIZE = 8; //    패치 하나에 타일이 8x8개 들어간다.
 
 const int MAX_COLORMAPVB_SIZE = 1026; //컬러맵으로 찍는 VB의 최대 사이즈.
 const int MAX_TILEVB_SIZE = 16;       //타일찍는 VB의 최대 사이즈.
@@ -114,7 +114,7 @@ typedef struct __DTexInfo {
 
 typedef struct __MapData {
     float fHeight; //지형의 높이값..
-    //float	u1,v1;
+    //float    u1,v1;
     //__Vector3 Normal;
     DTEXINFO DTexInfo1;
     DTEXINFO DTexInfo2;

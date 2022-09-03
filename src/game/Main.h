@@ -6,7 +6,7 @@ LRESULT CALLBACK OYBLowLevelKeyboardProc(INT nCode, WPARAM wParam, LPARAM lParam
 
 #define WH_KEYBOARD    2
 #define WH_KEYBOARD_LL 13
-//#define LLKHF_ALTDOWN			0x00000020
+//#define LLKHF_ALTDOWN            0x00000020
 
 //typedef struct tagKBDLLHOOKSTRUCT {
 //    DWORD vkCode;      // virtual key code

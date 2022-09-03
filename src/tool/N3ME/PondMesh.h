@@ -8,8 +8,8 @@
 
 #define MAX_PONDMESH_LINE   200
 #define MAX_PONDMESH_VERTEX 200 * 4
-//#define MAX_PONDMESH_INDEX		199*18
-//#define INDEXBUFFER_PERLINE		18
+//#define MAX_PONDMESH_INDEX        199*18
+//#define INDEXBUFFER_PERLINE        18
 
 #include "N3Base/N3BaseFileAccess.h"
 #include <list>
@@ -18,7 +18,7 @@ class CLyTerrain;
 
 class CPondMesh : public CN3BaseFileAccess {
   public:
-    //	기존함수
+    // 기존함수
     CN3Texture * TexGet() const { return m_pTexture; }
     int          VertexCount() const { return m_iVC; }
     int          RectVCount() const { return m_iRectVC; }
@@ -28,46 +28,46 @@ class CPondMesh : public CN3BaseFileAccess {
     void Rotation(__Matrix44 mRot, __Vector3 vCenter);
 
   protected:
-    //	선택된 점제어
+    // 선택된 점제어
     typedef struct __SELECT_PO {
-        int ix; //	m_iWaterScaleWidth 상의 숫자
-        int iz; //	m_iWaterScaleHeight 상의 숫자
+        int ix; // m_iWaterScaleWidth 상의 숫자
+        int iz; // m_iWaterScaleHeight 상의 숫자
     };
 
     typedef typename std::list<__SELECT_PO *>::iterator it_SelVtx;
-    std::list<__SELECT_PO *>                            m_vSelect; //	선택된 점들의 관리
+    std::list<__SELECT_PO *>                            m_vSelect; // 선택된 점들의 관리
 
-    //	기본 데이타
+    // 기본 데이타
     int   m_iPondID;
-    float m_fWaterHeight;      //	물높이
-    int   m_iWaterScaleWidth;  //	가로방향의 점의 갯수
-    int   m_iWaterScaleHeight; //	세로방향의 점의 갯수
-    DWORD m_dwPondAlpha;       //	물의 알파
+    float m_fWaterHeight;      // 물높이
+    int   m_iWaterScaleWidth;  // 가로방향의 점의 갯수
+    int   m_iWaterScaleHeight; // 세로방향의 점의 갯수
+    DWORD m_dwPondAlpha;       // 물의 알파
     float m_fTU;
     float m_fTV;
-    float m_fWaterScaleX, m_fWaterScaleZ; //	정렬했을시 점간의 거리
+    float m_fWaterScaleX, m_fWaterScaleZ; // 정렬했을시 점간의 거리
 
     int m_iBackUpWidht;
     int m_iBackUpHeight;
 
-    __Vector3     m_pVertices[MAX_PONDMESH_VERTEX]; //	저장,백업용으로 쓰이는 값
-    __VertexXyzT2 m_pViewVts[MAX_PONDMESH_VERTEX];  //	화면에 뿌려지는 값
+    __Vector3     m_pVertices[MAX_PONDMESH_VERTEX]; // 저장,백업용으로 쓰이는 값
+    __VertexXyzT2 m_pViewVts[MAX_PONDMESH_VERTEX];  // 화면에 뿌려지는 값
     WORD *        m_pdwIndex;                       //[MAX_PONDMESH_LINE*MAX_PONDMESH_LINE*6];
     int           m_iIC;                            // Index Buffer Count.
     int           m_iVC;                            // Vertex Count.
     CN3Texture *  m_pTexture;
 
-    BOOL m_bUVState; //	TRUE 점에 관여하여, FALSE 평편하게 (uv잡음)
+    BOOL m_bUVState; // TRUE 점에 관여하여, FALSE 평편하게 (uv잡음)
 
-    //	연못영역에 관한 데이타
-    __Vector3        m_vDrawBox[4]; //	화면상에 나올 영역(왼쪽위부터 시계방향으로)
-    __VertexXyzColor m_ViewRect[5]; //	화면에 그릴선
+    // 연못영역에 관한 데이타
+    __Vector3        m_vDrawBox[4]; // 화면상에 나올 영역(왼쪽위부터 시계방향으로)
+    __VertexXyzColor m_ViewRect[5]; // 화면에 그릴선
     int              m_iRectVC;
-    __VertexXyzT2    m_pRectVts[100]; //	영역줄에 그려질 점들
+    __VertexXyzT2    m_pRectVts[100]; // 영역줄에 그려질 점들
 
-    __Vector3 m_vSelectBox[2]; //	점들을 선택했을시 점들의 영역(점들이 화면영역을 벋어났을시)
+    __Vector3 m_vSelectBox[2]; // 점들을 선택했을시 점들의 영역(점들이 화면영역을 벋어났을시)
 
-    //	지형정보 참고
+    // 지형정보 참고
     CLyTerrain * m_pTerrain;
 
   public:
@@ -100,33 +100,33 @@ class CPondMesh : public CN3BaseFileAccess {
     BOOL SetTextureName(LPCTSTR pszFName);
 
   public:
-    //	새로 추가한거나 고친거
+    // 새로 추가한거나 고친거
     void SetTerrain(CLyTerrain * pCTerrain) { m_pTerrain = pCTerrain; }
 
-    void MakeDrawRect(__Vector3 * pvPos); //	화면에 보일 연못의 영역테두리 만든다
-    void UpdateDrawPos();                 //	영역줄에 그려질 점들
+    void MakeDrawRect(__Vector3 * pvPos); // 화면에 보일 연못의 영역테두리 만든다
+    void UpdateDrawPos();                 // 영역줄에 그려질 점들
 
-    void UpdateWaterHeight();                 //	현재의 물의 높이로 세팅
-    void UpdateMovePos(__Vector3 vMovingPos); //	이동
+    void UpdateWaterHeight();                 // 현재의 물의 높이로 세팅
+    void UpdateMovePos(__Vector3 vMovingPos); // 이동
 
-    void MakePondPos(); //	현재 박스에서 연못을 만든다
+    void MakePondPos(); // 현재 박스에서 연못을 만든다
     void MakeIndex();
-    void ReCalcUV();    //	점에 상관없이 평편하게 뿌린다
-    void ReCalcVexUV(); //	점에 관여하여 뿌린다
+    void ReCalcUV();    // 점에 상관없이 평편하게 뿌린다
+    void ReCalcVexUV(); // 점에 관여하여 뿌린다
 
-    void EstimatePos(); //	줄의 크기에 따라 점들의 갯수를 임의로 지정////
+    void EstimatePos(); // 줄의 크기에 따라 점들의 갯수를 임의로 지정////
 
-    void ClearSelectPos();                                               //	선택점에 관한 데이터 초기화
-    void InputSelectPos(float fX, float fY, float fZ, int iVC = -1);     //	선택한 점들에 대한 자료입력
-    BOOL InputDummyMovingPos(__Vector3 vDummyMovingPos, BOOL bMovePond); //	더미가 움직였을시 나머지점을 처리하기 위해
+    void ClearSelectPos();                                               // 선택점에 관한 데이터 초기화
+    void InputSelectPos(float fX, float fY, float fZ, int iVC = -1);     // 선택한 점들에 대한 자료입력
+    BOOL InputDummyMovingPos(__Vector3 vDummyMovingPos, BOOL bMovePond); // 더미가 움직였을시 나머지점을 처리하기 위해
 
   protected:
     void MovingPos();
-    void CalcuWidth(int iSx, int iSy, int iEx = -1, int iEy = -1); //	처음 좌우로의 계산을 한다
-    void SetAllPos(int iSx, int iSy, int iEx = -1, int iEy = -1);  //	처음 계산한점들외에 점들 좌표 계산
-    void ReInputBackPos();                                         //	새로 옮긴좌표를 백업에 넣어줌
+    void CalcuWidth(int iSx, int iSy, int iEx = -1, int iEy = -1); // 처음 좌우로의 계산을 한다
+    void SetAllPos(int iSx, int iSy, int iEx = -1, int iEy = -1);  // 처음 계산한점들외에 점들 좌표 계산
+    void ReInputBackPos();                                         // 새로 옮긴좌표를 백업에 넣어줌
 
-  public: //	다이얼로그 상자에서 쓰이는 함수
+  public: // 다이얼로그 상자에서 쓰이는 함수
     void SetPondID(int iPondID) { m_iPondID = iPondID; }
     void SetWaterHeight(float fHeight);
     void SetWaterScaleWidht(int iWidhtNum) {

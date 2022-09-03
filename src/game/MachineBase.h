@@ -33,7 +33,7 @@ class CMachineBase : public CN3Shape {
     };
     struct __Wheel {
         // 바퀴 정보
-        //		__Vector3			m_vPivot;	// Local 축
+        //        __Vector3            m_vPivot;    // Local 축
         CN3SPart * pPart; // Shape의 바퀴 Part포인터
 
         // 바퀴 정보 입력받은 후 계산해주는 값들.
@@ -50,7 +50,7 @@ class CMachineBase : public CN3Shape {
     __Wheel m_Wheel[NUM_WHEEL];
     float   m_fSpeed;       // 초당 이동속도(전후진)
     float   m_fRotateSpeed; // 초당 회전 각속도
-    //__Vector3		m_vDir;				// machine의 진행방향
+    //__Vector3        m_vDir;                // machine의 진행방향
     float     m_fDirRadian; // 진행방향 각도(z양의 방향이 0.0f);
     DWORD     m_dwMachineState;
     BOOL *    m_bSkipCalcPartMtx; // 파트 메트릭스 계산 건너뛰기(part갯수만큼 할당됨)

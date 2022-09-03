@@ -52,7 +52,7 @@ struct _ExpUserList {
     int   iUid;                       // User uid
     int   nDamage;                    // 타격치 합
     BOOL  bIs;                        // 시야에 존재하는지를 판단(true:존재)
-                                      //BOOL	bSameParty;						// 같은 파티 소속이 있다면 TRUE, 그렇지 않으면 FALSE
+    // BOOL  bSameParty;                 // 같은 파티 소속이 있다면 TRUE, 그렇지 않으면 FALSE
 };
 
 struct _Target {
@@ -100,7 +100,7 @@ class CServerDlg;
 
 /*
      ** Repent AI Server 작업시 참고 사항 **
-	1. MONSTER DB 쪽에 있는 변수들 전부 수정..
+    1. MONSTER DB 쪽에 있는 변수들 전부 수정..
 */
 
 class CNpc {
@@ -118,7 +118,7 @@ class CNpc {
     _PathList  m_PathList;   // Npc의 패스 리스트
     _PattenPos m_pPattenPos; // Npc의 패턴,,
 
-    //int m_iPattenNumber;		// 현재의 패턴번호
+    //int m_iPattenNumber;        // 현재의 패턴번호
     short m_iPattenFrame; // 패턴의 현재 위치..
 
     BYTE  m_byMoveType;     // NPC의 행동타입(이동관련)
@@ -148,7 +148,7 @@ class CNpc {
     float m_fPrevZ; // Prev Z Pos;
 
     //
-    //	PathFind Info
+    //    PathFind Info
     //
     short m_min_x;
     short m_min_y;
@@ -173,8 +173,8 @@ class CNpc {
     int m_nInitMaxY;
 
     // NPC Class, Skill
-    //_NpcSkillList	m_NpcSkill[SKILL_NUM];	// NPC 가 가지고 있는 스킬
-    //BYTE			m_tWeaponClass;			// NPC 의 무기 클래스
+    //_NpcSkillList    m_NpcSkill[SKILL_NUM];    // NPC 가 가지고 있는 스킬
+    //BYTE            m_tWeaponClass;            // NPC 의 무기 클래스
 
     // 지속 마법 관련..
     float       m_fHPChangeTime;               // Hp 회복율
@@ -183,7 +183,7 @@ class CNpc {
     _MagicType4 m_MagicType4[MAX_MAGIC_TYPE4]; // 능력치 관련된 마법..
 
     //----------------------------------------------------------------
-    //	MONSTER DB 쪽에 있는 변수들
+    //    MONSTER DB 쪽에 있는 변수들
     //----------------------------------------------------------------
     short m_sSid;                     // MONSTER(NPC) Serial ID
     TCHAR m_strName[MAX_ID_SIZE + 1]; // MONSTER(NPC) Name
@@ -208,8 +208,8 @@ class CNpc {
     short m_sDamage;                  // 기본 데미지 - 공격값
     short m_sAttackDelay;             // 공격딜레이
     short m_sSpeed;                   // 이동속도
-    float m_fSpeed_1;                 // 기본 이동 타입		(1초에 갈 수 있는 거리)
-    float m_fSpeed_2;                 // 뛰는 이동 타입..		(1초에 갈 수 있는 거리)
+    float m_fSpeed_1;                 // 기본 이동 타입        (1초에 갈 수 있는 거리)
+    float m_fSpeed_2;                 // 뛰는 이동 타입..        (1초에 갈 수 있는 거리)
     short m_sStandTime;               // 서있는 시간
     int   m_iMagic1;                  // 사용마법 1 (공격)
     int   m_iMagic2;                  // 사용마법 2 (지역)
@@ -239,7 +239,7 @@ class CNpc {
 
     int m_iMoney; // 떨어지는 돈
     int m_iItem;  // 떨어지는 아이템
-    //BYTE	m_byMemory;			// 공격 타입
+    //BYTE    m_byMemory;            // 공격 타입
 
     int   m_iHP; // 현재 HP
     short m_sMP; // 현재 MP
@@ -247,14 +247,14 @@ class CNpc {
     float m_fSecForMetor; // 초당 갈 수 있는 거리..
 
     //----------------------------------------------------------------
-    //	MONSTER AI에 관련된 변수들
+    //    MONSTER AI에 관련된 변수들
     //----------------------------------------------------------------
     BYTE m_tNpcLongType;       // 공격 거리 : 원거리(1), 근거리(0), 직.간접(2)
     BYTE m_tNpcAttType;        // 공격 성향 : 선공(1), 후공(0)
     BYTE m_tNpcOldAttType;     // 공격 성향 : 선공(1), 후공(0) (활동영역 제어)
     BYTE m_tNpcGroupType;      // 군집을 형성하냐(1), 안하냐?(0)
     BYTE m_byNpcEndAttType;    // 마지막까지 싸우면(1), 그렇지 않으면(0)
-                               //	BYTE	m_tNpcTraceType;	// 끝까지 따라간다(1), 시야에서 없어지면 그만(0)
+                               //    BYTE    m_tNpcTraceType;    // 끝까지 따라간다(1), 시야에서 없어지면 그만(0)
     BYTE m_byAttackPos;        // User의 어느 부분에서 공격하느지를 판단(8방향)
     BYTE m_byBattlePos;        // 어떤 진형을 선택할 것인지를 판단..
     BYTE m_byWhatAttackType;   // 공격 타입 : Normal(0), 근.장거리마법(1), 독(2), 힐링(3), 지역마법만(4), 1+4번 마법(5)
@@ -277,7 +277,7 @@ class CNpc {
     short m_sControlSid;  // 조정하는 몬스터의 Sid번호..
 
     //----------------------------------------------------------------
-    //	MONSTER_POS DB 쪽에 있는 변수들
+    //    MONSTER_POS DB 쪽에 있는 변수들
     //----------------------------------------------------------------
     int   m_Delay;      // 다음 상태로 전이되기 까지의 시간
     float m_fDelayTime; // Npc Thread체크 타임...
@@ -304,7 +304,7 @@ class CNpc {
     BOOL m_bPathFlag; // 패스 파인드 실행여부 체크 변수..
 
     //----------------------------------------------------------------
-    //	NPC 이동 관련
+    //    NPC 이동 관련
     //----------------------------------------------------------------
     _NpcPosition m_pPoint[MAX_PATH_LINE]; // 이동시 참고 좌표
 
@@ -319,8 +319,8 @@ class CNpc {
     short m_iFind_X[4]; // find enemy에서 찾을 Region검사영역
     short m_iFind_Y[4];
 
-    float m_fOldSpeed_1; // 기본 이동 타입		(1초에 갈 수 있는 거리)
-    float m_fOldSpeed_2; // 뛰는 이동 타입..		(1초에 갈 수 있는 거리)
+    float m_fOldSpeed_1; // 기본 이동 타입        (1초에 갈 수 있는 거리)
+    float m_fOldSpeed_2; // 뛰는 이동 타입..        (1초에 갈 수 있는 거리)
 
     // test
     short m_sThreadNumber; // 자신이 속한 스레드의 번호
@@ -329,7 +329,7 @@ class CNpc {
     CNpc();
     virtual ~CNpc();
 
-    void Init(); //	NPC 기본정보 초기화
+    void Init(); //    NPC 기본정보 초기화
     void InitTarget(void);
     void InitUserList();
     void InitPos();
