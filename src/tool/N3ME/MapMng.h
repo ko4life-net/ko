@@ -143,6 +143,7 @@ class CMapMng : public CN3Base {
         float                   fCamDist;
         __Vector3               vMin, vMax;
     };
+
     // Operations
   public:
     void SetLight(float fLgt);

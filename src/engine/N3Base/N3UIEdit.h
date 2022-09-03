@@ -62,6 +62,7 @@ class CN3UIEdit : public CN3UIStatic {
     std::string     m_szPassword;  // password buffer
 
     CN3SndObj * m_pSnd_Typing; // 타이핑 할 때 나는 소리
+
     // Operations
   public:
     virtual const std::string & GetString();

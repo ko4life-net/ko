@@ -27,6 +27,7 @@ class CN3UITrackBar : public CN3UIBase {
     int m_iMinPos;   // 최소
     int m_iCurPos;   // 현재 값
     int m_iPageSize; // page단위 이동할때 이동값
+
     // Operations
   public:
     virtual void  Release();

@@ -473,11 +473,11 @@ void CMagicProcess::ExecuteType4(int magicid, int sid, int tid, int data1, int d
         break;
 
     case 6: // 이동 속도 올리기..
-            //			if (pNpc->m_MagicType4[pType->bBuffType-1].sDurationTime > 0) {
-            //				result = 0 ;
-            //				goto fail_return ;
-            //			}
-            //			else {
+        //			if (pNpc->m_MagicType4[pType->bBuffType-1].sDurationTime > 0) {
+        //				result = 0 ;
+        //				goto fail_return ;
+        //			}
+        //			else {
         pNpc->m_MagicType4[pType->bBuffType - 1].byAmount = pType->bSpeed;
         pNpc->m_MagicType4[pType->bBuffType - 1].sDurationTime = pType->sDuration;
         pNpc->m_MagicType4[pType->bBuffType - 1].fStartTime = TimeGet();
@@ -866,10 +866,10 @@ void CMagicProcess::AreaAttackDamage(int magictype, int rx, int rz, int magicid,
                         break;
 
                     case 6: // 이동 속도 올리기..
-                            //if (pNpc->m_MagicType4[pType4->bBuffType-1].sDurationTime > 0) {
-                            //	result = 0 ;
-                            //}
-                            //else {
+                        //if (pNpc->m_MagicType4[pType4->bBuffType-1].sDurationTime > 0) {
+                        //	result = 0 ;
+                        //}
+                        //else {
                         pNpc->m_MagicType4[pType4->bBuffType - 1].byAmount = pType4->bSpeed;
                         pNpc->m_MagicType4[pType4->bBuffType - 1].sDurationTime = pType4->sDuration;
                         pNpc->m_MagicType4[pType4->bBuffType - 1].fStartTime = TimeGet();

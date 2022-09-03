@@ -35,6 +35,7 @@ class CN3SPartEx : public CN3SPart {
   public:
   protected:
     __ActionInfo m_ActionInfo; // 움직임에 관한 정보
+
     // Operations
   public:
     virtual void Release();

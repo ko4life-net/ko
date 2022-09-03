@@ -95,7 +95,8 @@ class CN3UIBase : public CN3BaseFileAccess {
     static CN3UITooltip * GetTooltipCtrl() { return s_pTooltipCtrl; }
     DWORD                 GetStyle() { return m_dwStyle; }
 
-    void SetUIType(eUI_TYPE eUIType) { m_eType = eUIType; } // by ecli666 툴에 기능 넣기 귀찮아서.. ^^
+    void SetUIType(eUI_TYPE eUIType) { m_eType = eUIType; }
+
     // Operations
   public:
     bool         IsIn(int x, int y);

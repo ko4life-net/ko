@@ -23,6 +23,7 @@ class CN3Star : public CN3Base {
     float            m_fAddTime;     // 별 하나가 추가되거나 없어지는 시간 간격
     BOOL             m_bIncrease;    // 별이 증가할 것인가 감소할 것인가
     __VertexXyzColor m_Stars[MAX_STAR];
+
     // Operations
   public:
     void         Init();

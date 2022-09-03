@@ -874,8 +874,7 @@ typedef struct __TABLE_UI_RESRC {
 
 typedef struct __TABLE_ITEM_BASIC // 장착 아이템에 관한 리소스 레코드...
 {
-    DWORD
-        dwID; // 00 코드화된 아이템번호 d - // 00 - Item 종류, 00 - Item 장착 위치(장착위치로 Plug 인지 Part 인지 판단이 가능하다.) - 0000 - ItemIndex
+    DWORD       dwID;       // 00 코드화된 아이템번호
     BYTE        byExtIndex; // 01 확장 인덱스
     std::string szName;     // 02 이름
     std::string szRemark;   // 03 아이템 설명
@@ -922,8 +921,7 @@ const int ITEM_LIMITED_EXHAUST = 17;
 
 typedef struct __TABLE_ITEM_EXT // 장착 아이템에 관한 리소스 레코드...
 {
-    DWORD
-        dwID; // 00 코드화된 아이템번호 - // 00 - Item 종류, 00 - Item 장착 위치(장착위치로 Plug 인지 Part 인지 판단이 가능하다.) - 0000 - ItemIndex
+    DWORD       dwID;          // 00 코드화된 아이템번호
     std::string szHeader;      // 01 접두사
     std::string szRemark;      // 02 아이템 설명
     uint32_t    iUnknown1;     // TODO: implement

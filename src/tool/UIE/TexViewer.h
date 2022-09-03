@@ -69,6 +69,7 @@ class CTexViewer : public CWnd {
     int   m_iImageTypeCount;           // 선택되어야 할 이미지 종류의 수
     CRect m_ImageRects[MAX_IMAGETYPE]; // m_iImageTypeCount만큼의 ImageRect
     int   m_iCurSelectedImage;         // 현재 선택된 ImageType
+
     // Operations
   public:
     void      Release();

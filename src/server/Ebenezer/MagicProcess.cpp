@@ -2128,7 +2128,7 @@ void CMagicProcess::ExecuteType8(int magicid, int sid, int tid, int data1, int d
 
         switch (pType->bWarpType) {
         case 1: // Send source to resurrection point.
-                //				_OBJECT_EVENT* pEvent = NULL;
+            //				_OBJECT_EVENT* pEvent = NULL;
 
             SetByte(send_buff, WIZ_MAGIC_PROCESS, send_index);
             SetByte(send_buff, MAGIC_EFFECTING, send_index);
