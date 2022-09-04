@@ -1,0 +1,28 @@
+name: PR Checks
+on:
+  push: {}
+  pull_request:
+    branches: [master]
+    types: [opened, push, ready_for_review]
+
+jobs:
+  pr-checks:
+    name: Check lint
+    runs-on: windows-latest
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v2
+
+      - name: Check lint
+        run: |
+          New-Item src/vendor/opt/bin -Type Directory -Force
+          Invoke-WebRequest -Uri https://raw.githubusercontent.com/ko4life-net/ko-vendor/master/opt/bin/clang-format.exe -OutFile src/vendor/opt/bin/clang-format.exe
+          & .\format.ps1
+          $git_diff = (git diff --stat -- "*.cpp" "*.CPP" "*.c" "*.C" "*.h" "*.H")
+          if ($git_diff -ne $null) {
+              Write-Host "Code formatting issues found! Please run the format.ps1 script, commit the changes and push."
+              git diff --stat -- "*.cpp" "*.CPP" "*.c" "*.C" "*.h" "*.H"
+              exit(1)
+          }
