@@ -84,13 +84,13 @@ BOOL CDlg_River::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
             int      nAlpha = (dwColor & 0xff000000) >> 24;
             pItem_Alpha->m_curValue.Format("%d", nAlpha);
         }
-        //		else if (pItem->m_propName == "Height")
-        //		{
-        //			m_fHeight = atof(pItem->m_curValue);
-        //		}
-        //		CPropertyItem *pItem1 = m_List.GetPropItem("Water Color");
-        //		D3DCOLOR Color = pItem1->D3DColorGet();
-        //		TRACE("Color = %0x\n", Color);
+        //        else if (pItem->m_propName == "Height")
+        //        {
+        //            m_fHeight = atof(pItem->m_curValue);
+        //        }
+        //        CPropertyItem *pItem1 = m_List.GetPropItem("Water Color");
+        //        D3DCOLOR Color = pItem1->D3DColorGet();
+        //        TRACE("Color = %0x\n", Color);
         Invalidate(FALSE);
     }
 

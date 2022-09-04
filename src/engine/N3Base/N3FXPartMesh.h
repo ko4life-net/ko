@@ -32,13 +32,13 @@ class CN3FXPartMesh : public CN3FXPartBase {
     bool IsDead();
 
   public:
-    void Init();             //	각종 변수들을 처음 로딩한 상태로 초기화...
-    void Start();            //	파트 구동 시작.
-    void Stop();             //	파트 구동 멈춤..
-    bool Tick();             //	ticktick...
-    void Render();           //	화면에 뿌리기..
-    bool Load(HANDLE hFile); //	게임파일 불러오기.
-    bool Save(HANDLE hFile); //	게임파일 저장오기.
+    void Init();             //    각종 변수들을 처음 로딩한 상태로 초기화...
+    void Start();            //    파트 구동 시작.
+    void Stop();             //    파트 구동 멈춤..
+    bool Tick();             //    ticktick...
+    void Render();           //    화면에 뿌리기..
+    bool Load(HANDLE hFile); //    게임파일 불러오기.
+    bool Save(HANDLE hFile); //    게임파일 저장오기.
     void Duplicate(CN3FXPartMesh * pSrc);
 
   public:

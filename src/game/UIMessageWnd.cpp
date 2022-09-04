@@ -423,9 +423,9 @@ void CUIMessageWnd::RecalcLineBuffer() // 채팅창 사이즈가 변했을때 호출해주면 li
 void CUIMessageWnd::SetRegion(const RECT & Rect) {
     CN3UIBase::SetRegion(Rect);
     // 자식들을 적당히 배치한다.
-    // m_rcChatOutRegion = ;	// 채팅 출력 영역을 다시 지정해준다.
-    //CreateLines();	// 채팅 라인을 몇줄 들어갈지 계산하고 다시 만든다.
-    //RecalcLineBuffer();	// 라인 버퍼를 다 지우고 다시 만들어주고 글씨를 표시한다.
+    // m_rcChatOutRegion = ;    // 채팅 출력 영역을 다시 지정해준다.
+    //CreateLines();    // 채팅 라인을 몇줄 들어갈지 계산하고 다시 만든다.
+    //RecalcLineBuffer();    // 라인 버퍼를 다 지우고 다시 만들어주고 글씨를 표시한다.
 }
 
 bool CUIMessageWnd::OnKeyPress(int iKey) {

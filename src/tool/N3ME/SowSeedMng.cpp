@@ -134,10 +134,10 @@ void CSowSeedMng::Random_Grass(void) {
                 continue;
             }
 
-            //			if(pFrame->m_pDlgSowSeed->Sow_Array[i][j] == 0)
-            //				continue;
+            //            if(pFrame->m_pDlgSowSeed->Sow_Array[i][j] == 0)
+            //                continue;
 
-            //			if( (pFrame->m_pDlgSowSeed->Sow_Array[i][j] == 2) || (pFrame->m_pDlgSowSeed->Sow_Array[i][j] == 1))
+            //            if( (pFrame->m_pDlgSowSeed->Sow_Array[i][j] == 2) || (pFrame->m_pDlgSowSeed->Sow_Array[i][j] == 1))
             {
                 if (Grass[Num].Sub_Grass != NULL) {
                     delete[] Grass[Num].Sub_Grass;
@@ -191,10 +191,10 @@ void CSowSeedMng::Render(LPDIRECT3DDEVICE9 lpD3DDevice) {
                         continue;
                     }
 
-                    //				if(pFrame->m_pDlgSowSeed->Sow_Array[i][j] == 0)
-                    //					continue;
+                    //                if(pFrame->m_pDlgSowSeed->Sow_Array[i][j] == 0)
+                    //                    continue;
 
-                    //				if( (pFrame->m_pDlgSowSeed->Sow_Array[i][j] == 2) || (pFrame->m_pDlgSowSeed->Sow_Array[i][j] == 1) )
+                    //                if( (pFrame->m_pDlgSowSeed->Sow_Array[i][j] == 2) || (pFrame->m_pDlgSowSeed->Sow_Array[i][j] == 1) )
                     {
                         if (Grass != NULL) {
                             Grass[Num].Tile_x = ptSelHeightMapPos.x - BRUSH_CENTER + i;
@@ -313,7 +313,7 @@ void CSowSeedMng::Add_Grass(void) {
         CN3Shape * pShape = (CN3Shape *)pFrame->GetMapMng()->m_pDlgSourceList->m_ListShape.GetItemDataPtr(temp->Obj_ID);
         strcpy(temp->FileName, pShape->FileName().c_str());
 
-        //		temp->Pos = Grass[0].Pos;
+        //        temp->Pos = Grass[0].Pos;
         for (int i = 0, listCount = 0; i < Grass_Count; i++) {
             LPGRASS grass = new GRASS;
             grass->Sub_Grass = NULL;
@@ -609,7 +609,7 @@ void CSowSeedMng::SaveData(void) {
         fclose(fp);
     }
 
-    //	Test_GameDataSave();
+    //    Test_GameDataSave();
 };
 void CSowSeedMng::LoadData(void) {
 
@@ -683,7 +683,7 @@ void CSowSeedMng::LoadData(void) {
 
     fclose(fp);
 
-    //	Test_GameDataLoad();
+    //    Test_GameDataLoad();
 };
 
 void CSowSeedMng::SaveDataGame(void) {
@@ -840,8 +840,8 @@ void CSowSeedMng::Test_GameDataLoad(void) {
         return;
     }
 
-    //	HANDLE hFile = CreateFile(dlg.GetPathName(), GENERIC_READ, 0, NULL,
-    //		CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    //    HANDLE hFile = CreateFile(dlg.GetPathName(), GENERIC_READ, 0, NULL,
+    //        CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     FILE * fp = fopen((LPCTSTR)dlg.GetPathName(), "r");
 
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
@@ -858,11 +858,11 @@ void CSowSeedMng::Test_GameDataLoad(void) {
     }
 
     for (int i = 0; i < Map_Size * Map_Size; i++) {
-        //		ReadFile(hFile,&SeedAttr[i],sizeof(unsigned char),&dwRWC,NULL);
+        //        ReadFile(hFile,&SeedAttr[i],sizeof(unsigned char),&dwRWC,NULL);
         fread(&SeedAttr[i], sizeof(unsigned char), 1, fp);
         if (SeedAttr[i].sub_flage == 1) {
             SeedAttr[i].SeedGroup_Sub = new SEEDGROUP;
-            //			ReadFile(hFile,SeedAttr[i].SeedGroup_Sub,sizeof(unsigned char),&dwRWC,NULL);
+            //            ReadFile(hFile,SeedAttr[i].SeedGroup_Sub,sizeof(unsigned char),&dwRWC,NULL);
             fread(SeedAttr[i].SeedGroup_Sub, sizeof(unsigned char), 1, fp);
         }
     }
@@ -883,6 +883,6 @@ void CSowSeedMng::Test_GameDataLoad(void) {
     }
     fclose(stream);
 
-    //	CloseHandle(hFile);
+    //    CloseHandle(hFile);
     fclose(fp);
 }

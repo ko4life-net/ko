@@ -147,7 +147,7 @@ BOOL CAujardDlg::OnInitDialog() {
     SetIcon(m_hIcon, FALSE); // Set small icon
 
     //----------------------------------------------------------------------
-    //	Logfile initialize
+    //    Logfile initialize
     //----------------------------------------------------------------------
     CTime time = CTime::GetCurrentTime();
     char  strLogFile[50];
@@ -198,7 +198,7 @@ BOOL CAujardDlg::OnInitDialog() {
 
     SetTimer(PROCESS_CHECK, 40000, NULL);
     SetTimer(CONCURRENT_CHECK, 300000, NULL);
-    //	SetTimer( SERIAL_TIME, 60000, NULL );
+    //    SetTimer( SERIAL_TIME, 60000, NULL );
     SetTimer(PACKET_CHECK, 120000, NULL);
 
     DWORD id;
@@ -247,7 +247,7 @@ HCURSOR CAujardDlg::OnQueryDragIcon() {
 BOOL CAujardDlg::DestroyWindow() {
     KillTimer(PROCESS_CHECK);
     KillTimer(CONCURRENT_CHECK);
-    //	KillTimer( SERIAL_TIME );
+    //    KillTimer( SERIAL_TIME );
     KillTimer(PACKET_CHECK);
 
     if (m_hReadQueueThread) {
@@ -829,7 +829,7 @@ void CAujardDlg::OnTimer(UINT nIDEvent) {
         break;
     case PACKET_CHECK:
         WritePacketLog();
-        //		SaveUserData();
+        //        SaveUserData();
         break;
     }
 
@@ -1022,9 +1022,9 @@ void CAujardDlg::UserDataSave(char * pBuf) {
         //m_LogFile.Write(logstr, strlen(logstr));
     }
 
-    //	sprintf( logstr, "UserDataSave Packet Receive: %s, %s (W:%d,U:%d) \r\n", accountid, userid, retval_1, retval_2 );
-    //	m_LogFile.Write(logstr, strlen(logstr));
-    //	TRACE(logstr);
+    //    sprintf( logstr, "UserDataSave Packet Receive: %s, %s (W:%d,U:%d) \r\n", accountid, userid, retval_1, retval_2 );
+    //    m_LogFile.Write(logstr, strlen(logstr));
+    //    TRACE(logstr);
 
     return;
 }
@@ -1228,11 +1228,11 @@ void CAujardDlg::ModifyKnightsMember(char * pBuf, BYTE command) {
         return;
     }
 
-    /*	if( remove_flag == 0 && command == KNIGHTS_REMOVE )	{		// 없는 유저 추방시에는 디비에서만 처리한다
-		result = m_DBAgent.UpdateKnights( command, userid, knightindex, remove_flag );
-		TRACE("ModifyKnights - command=%d, nid=%d, index=%d, result=%d \n", command, uid, knightindex, result);
-		return;
-	}	*/
+    /*    if( remove_flag == 0 && command == KNIGHTS_REMOVE )    {        // 없는 유저 추방시에는 디비에서만 처리한다
+        result = m_DBAgent.UpdateKnights( command, userid, knightindex, remove_flag );
+        TRACE("ModifyKnights - command=%d, nid=%d, index=%d, result=%d \n", command, uid, knightindex, result);
+        return;
+    }    */
 
     result = m_DBAgent.UpdateKnights(command, userid, knightindex, remove_flag);
     TRACE("ModifyKnights - command=%d, nid=%d, index=%d, result=%d \n", command, uid, knightindex, result);

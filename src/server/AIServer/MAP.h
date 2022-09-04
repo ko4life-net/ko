@@ -33,7 +33,7 @@ class MAP {
     CN3ShapeMgr  m_N3ShapeMgr;
     CMapInfo **  m_pMap;     // 타일의 정보(1셀 : 4미터)
     CRegion **   m_ppRegion; // 64미터의 타일정보..
-    //CRoomEvent*		m_pRoomEvent;
+    //CRoomEvent*        m_pRoomEvent;
     CSize    m_sizeMap;     // 맵의 크기
     CSize    m_sizeRegion;  // 맵의 resion size
     int      m_nZoneNumber; // zone number
@@ -42,7 +42,7 @@ class MAP {
     int      m_nMapSize;  // Grid Unit ex) 4m
     float    m_fUnitDist; // i Grid Distance
     float ** m_fHeight;
-    //	short		m_arDungeonBossMonster[MAX_DUNGEON_BOSS_MONSTER];
+    //    short        m_arDungeonBossMonster[MAX_DUNGEON_BOSS_MONSTER];
     BYTE             m_byRoomType;   // 방의 초기화관련( 0:자동으로 초기화, 1:전쟁이벤트 관련(특정조건이 완료시 초기화)
     BYTE             m_byRoomEvent;  // event room(0:empty, 1:use)
     BYTE             m_byRoomStatus; // room status(1:진행중, 2:방을 초기화중, 3:방초기화 완료)

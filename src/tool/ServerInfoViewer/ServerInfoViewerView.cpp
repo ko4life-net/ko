@@ -209,34 +209,34 @@ void CServerInfoViewerView::FocusGround() {
         pFrm->GetActiveView()->InvalidateRect(NULL, FALSE);
     }
 
-    /*	__Vector3 v0, v1, v2, v3;
-	for(it = pDoc->m_Players.begin(), itEnd = pDoc->m_Players.end(); it != itEnd; it++)
-	{
-		pSymbol = &(*it);
+    /*    __Vector3 v0, v1, v2, v3;
+    for(it = pDoc->m_Players.begin(), itEnd = pDoc->m_Players.end(); it != itEnd; it++)
+    {
+        pSymbol = &(*it);
 
-		v0 = pSymbol->vBoxes[0] * pSymbol->mtxWorld;
-		v1 = pSymbol->vBoxes[1] * pSymbol->mtxWorld;
-		v2 = pSymbol->vBoxes[2] * pSymbol->mtxWorld;
-		v3 = pSymbol->vBoxes[3] * pSymbol->mtxWorld;
-		if(	::IntersectTriangle(vPos, vDir, v0, v1, v2) ||
-			::IntersectTriangle(vPos, vDir, v0, v2, v3) )
-		{
-			pSymbolFocus = pSymbol;
-			break;
-		}
-	}
+        v0 = pSymbol->vBoxes[0] * pSymbol->mtxWorld;
+        v1 = pSymbol->vBoxes[1] * pSymbol->mtxWorld;
+        v2 = pSymbol->vBoxes[2] * pSymbol->mtxWorld;
+        v3 = pSymbol->vBoxes[3] * pSymbol->mtxWorld;
+        if(    ::IntersectTriangle(vPos, vDir, v0, v1, v2) ||
+            ::IntersectTriangle(vPos, vDir, v0, v2, v3) )
+        {
+            pSymbolFocus = pSymbol;
+            break;
+        }
+    }
 
-	if(pSymbolFocus)
-	{
-		CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
-		__Vector3 vAt = pSymbolFocus->mtxWorld.Pos();
-		__Vector3 vEye = vAt + __Vector3(0, 50, - 50);
-		pFrm->m_Camera.EyePosSet(vEye);
-		pFrm->m_Camera.AtPosSet(vAt);
-		pFrm->m_Camera.UpVectorSet(0, 1, 0);
+    if(pSymbolFocus)
+    {
+        CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
+        __Vector3 vAt = pSymbolFocus->mtxWorld.Pos();
+        __Vector3 vEye = vAt + __Vector3(0, 50, - 50);
+        pFrm->m_Camera.EyePosSet(vEye);
+        pFrm->m_Camera.AtPosSet(vAt);
+        pFrm->m_Camera.UpVectorSet(0, 1, 0);
 
-		pFrm->GetActiveView()->InvalidateRect(NULL, FALSE);
-	}
+        pFrm->GetActiveView()->InvalidateRect(NULL, FALSE);
+    }
 */
 }
 

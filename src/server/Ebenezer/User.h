@@ -187,7 +187,7 @@ class CUser : public CIOCPSocket2 {
     BOOL m_bZoneChangeSameZone; // Did the server change when you warped?
 
     // 이밴트용 관련.... 정애씨 이거 보면 코카스 쏠께요 ^^;
-    //	int					m_iSelMsgEvent[5];	// 실행중인 선택 메세지박스 이벤트
+    //    int                    m_iSelMsgEvent[5];    // 실행중인 선택 메세지박스 이벤트
     int           m_iSelMsgEvent[MAX_MESSAGE_EVENT]; // 실행중인 선택 메세지박스 이벤트
     short         m_sEventNid;                       // 마지막으로 선택한 이벤트 NPC 번호
     UserEventList m_arUserEvent;                     // 실행한 이벤트 리스트

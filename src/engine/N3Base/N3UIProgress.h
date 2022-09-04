@@ -43,10 +43,11 @@ class CN3UIProgress : public CN3UIBase {
     float m_fTimeToDelay;       // 지연시간..
 
     int m_iStepValue; // 변화값 StepIt()을 통한 변화되는 값
-    //	Operations
+
+    //    Operations
   public:
     virtual void Tick();
-    //	virtual void	Render();
+    //    virtual void    Render();
     virtual void Release();
     virtual void SetRegion(const RECT & Rect);
     virtual void SetStyle(DWORD dwStyle);

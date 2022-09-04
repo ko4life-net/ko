@@ -38,7 +38,7 @@ CQTNode::~CQTNode() {
 }
 
 //
-//	Initialize..
+//    Initialize..
 //
 void CQTNode::Init(int level, CLyTerrain * pTerrain) {
     if (!pTerrain) {
@@ -68,12 +68,12 @@ void CQTNode::Init(int level, CLyTerrain * pTerrain) {
 }
 
 //
-//	LinkFriend..
-//	친구들 연결하기..
-//	- 원래는 Init함수에 넣을려고 했었는데,
-//	 친구들이 미처 만들어지기 전에 연결을
-//	 시도하는 경우가 있기땜에 모든 노드들을
-//	 다 생성한 다음에 친구연결을 시도해야한다.
+//    LinkFriend..
+//    친구들 연결하기..
+//    - 원래는 Init함수에 넣을려고 했었는데,
+//     친구들이 미처 만들어지기 전에 연결을
+//     시도하는 경우가 있기땜에 모든 노드들을
+//     다 생성한 다음에 친구연결을 시도해야한다.
 //
 void CQTNode::LinkFriend() {
     if (m_Level == m_pRefTerrain->m_iMaxLevel) {
@@ -159,7 +159,7 @@ void CQTNode::LinkFriend() {
 }
 
 //
-//	Release..
+//    Release..
 //
 void CQTNode::Release() {
     for (int i = 0; i < DIR_NUM; i++) {
@@ -172,7 +172,7 @@ void CQTNode::Release() {
 }
 
 //
-//	Center point를 설정하기..
+//    Center point를 설정하기..
 //
 void CQTNode::SetCenterPoint(int x, int z) {
     m_CenterX = x;
@@ -205,7 +205,7 @@ void CQTNode::SetCenterPoint(int x, int z) {
 }
 
 //
-//	SetMinMaxY..
+//    SetMinMaxY..
 //
 void CQTNode::SetMinMaxY() {
     if (m_Level == m_pRefTerrain->m_iMaxLevel) //젤 마지막 노드일때..
@@ -267,10 +267,10 @@ void CQTNode::SetWholeClipped() {
 }
 
 //
-//	tick...
-//	쿼드트리의 실체...^^
-//	일단 가시영역안에 드는지 검사(IntersectRect()..)를 하고..
-//	가시영역안에 들면 그릴것인지 더 내려갈 것인지 검사..
+//    tick...
+//    쿼드트리의 실체...^^
+//    일단 가시영역안에 드는지 검사(IntersectRect()..)를 하고..
+//    가시영역안에 들면 그릴것인지 더 내려갈 것인지 검사..
 //
 void CQTNode::Tick() {
     m_State = QTNODESTATE_CLIPPED; //상태 초기화..
@@ -302,11 +302,11 @@ void CQTNode::Tick() {
 }
 
 //
-//	IsRender..
-//	내려가는 걸 그만두고 그릴것인지, 아니면 더 내려갈것인지 검사...
-//	return true -> 그만 내려가고 Render;
-//	return false -> 더 내려감...
-//	여기에 들어가는게 지형 디테일 방법의 핵심...^^
+//    IsRender..
+//    내려가는 걸 그만두고 그릴것인지, 아니면 더 내려갈것인지 검사...
+//    return true -> 그만 내려가고 Render;
+//    return false -> 더 내려감...
+//    여기에 들어가는게 지형 디테일 방법의 핵심...^^
 //
 bool CQTNode::IsRender(POINT * pEye) {
     if (m_pRefTerrain->m_iMaxLevel == m_Level) {
@@ -354,7 +354,7 @@ bool CQTNode::IsRender(POINT * pEye) {
 }
 
 //
-//	간단한 거리계산 방법..
+//    간단한 거리계산 방법..
 //
 inline int CQTNode::Distance(int sx, int sz, int tx, int tz) {
     int iX = tx - sx;
@@ -381,7 +381,7 @@ void CQTNode::Render() {
 }
 
 //
-//	가장 디테일한 타일을 그리는 함수..
+//    가장 디테일한 타일을 그리는 함수..
 //
 void CQTNode::RenderMaxLevel() {
     HRESULT hr;
@@ -674,18 +674,18 @@ void CQTNode::RenderMaxLevel() {
     m_pRefTerrain->s_lpD3DDev->SetStreamSource(0, m_pRefTerrain->m_TileVB, 0, sizeof(__VertexT2));
     m_pRefTerrain->s_lpD3DDev->SetFVF(FVF_VNT2);
     /*
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
 
-//	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP, D3DTOP_MODULATE);
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP, D3DTOP_ADD);
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG1, D3DTA_TEXTURE);
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG2, D3DTA_CURRENT);
+//    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP, D3DTOP_MODULATE);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP, D3DTOP_ADD);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG1, D3DTA_TEXTURE);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG2, D3DTA_CURRENT);
 
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 2, D3DTSS_COLOROP, D3DTOP_MODULATE);
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 2, D3DTSS_COLORARG1, D3DTA_CURRENT);
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 2, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 2, D3DTSS_COLOROP, D3DTOP_MODULATE);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 2, D3DTSS_COLORARG1, D3DTA_CURRENT);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 2, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
 */
     int tx, tz;
 
@@ -725,34 +725,34 @@ void CQTNode::RenderMaxLevel() {
             hr = m_pRefTerrain->s_lpD3DDev->SetTexture(1, NULL);
             COP2 = D3DTOP_DISABLE;
             /*
-			if(m_pRefTerrain->m_ppMapData[tx][tz].DTexInfo1.Attr.Attr > DTEX_FULL 
-				&& m_pRefTerrain->m_ppMapData[tx][tz].DTexInfo1.Attr.Attr < DTEX_MAX)
-			{
-				COP2 = D3DTOP_ADD;
-				int ctx = (tx * TERRAIN_CELL_SIZE) / (m_pRefTerrain->m_iColorMapTexSize * m_pRefTerrain->m_iColorMapPixelPerUnitDistance);
-				int ctz = (tz * TERRAIN_CELL_SIZE) / (m_pRefTerrain->m_iColorMapTexSize * m_pRefTerrain->m_iColorMapPixelPerUnitDistance);
-				hr = m_pRefTerrain->s_lpD3DDev->SetTexture( 1, m_pRefTerrain->m_pColorTexture[ctx][ctz].Get() );
-			}
-			*/
+            if(m_pRefTerrain->m_ppMapData[tx][tz].DTexInfo1.Attr.Attr > DTEX_FULL 
+                && m_pRefTerrain->m_ppMapData[tx][tz].DTexInfo1.Attr.Attr < DTEX_MAX)
+            {
+                COP2 = D3DTOP_ADD;
+                int ctx = (tx * TERRAIN_CELL_SIZE) / (m_pRefTerrain->m_iColorMapTexSize * m_pRefTerrain->m_iColorMapPixelPerUnitDistance);
+                int ctz = (tz * TERRAIN_CELL_SIZE) / (m_pRefTerrain->m_iColorMapTexSize * m_pRefTerrain->m_iColorMapPixelPerUnitDistance);
+                hr = m_pRefTerrain->s_lpD3DDev->SetTexture( 1, m_pRefTerrain->m_pColorTexture[ctx][ctz].Get() );
+            }
+            */
         }
 
         /*
-		hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
-		//hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_MODULATE);
-		hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
-		hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
+        hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
+        //hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_MODULATE);
+        hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
+        hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
 
-		hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP, COP2);
-		hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG1, D3DTA_TEXTURE);
-		hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG2, D3DTA_CURRENT);
+        hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP, COP2);
+        hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG1, D3DTA_TEXTURE);
+        hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG2, D3DTA_CURRENT);
 
-		if(COP2 = D3DTOP_ADD)
-		{
-			hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 2, D3DTSS_COLOROP, D3DTOP_MODULATE);
-			hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 2, D3DTSS_COLORARG1, D3DTA_CURRENT);
-			hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 2, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
-		}
-		*/
+        if(COP2 = D3DTOP_ADD)
+        {
+            hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 2, D3DTSS_COLOROP, D3DTOP_MODULATE);
+            hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 2, D3DTSS_COLORARG1, D3DTA_CURRENT);
+            hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 2, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
+        }
+        */
         if (D3DTOP_DISABLE == COP2) {
             hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_MODULATE);
             hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
@@ -820,146 +820,146 @@ void CQTNode::RenderMaxLevel() {
 /*
 void CQTNode::RenderMaxLevel()
 {
-	__VertexT2* pVertices;
-	m_pRefTerrain->m_TileVB->Lock( 0, 0, (VOID**)&pVertices, 0 );
+    __VertexT2* pVertices;
+    m_pRefTerrain->m_TileVB->Lock( 0, 0, (VOID**)&pVertices, 0 );
 
-	int cx,cz;
-	cx = m_CenterX;
-	cz = m_CenterZ;
+    int cx,cz;
+    cx = m_CenterX;
+    cz = m_CenterZ;
 
-	int dir1, dir2;
-	float u1, u2, v1, v2;
-	for(int i=0;i<2;i++)
-	{
-		int idx = i<<2;
-		if(i==1) { cx++; cz++; }
+    int dir1, dir2;
+    float u1, u2, v1, v2;
+    for(int i=0;i<2;i++)
+    {
+        int idx = i<<2;
+        if(i==1) { cx++; cz++; }
 
-		dir1 = m_pRefTerrain->m_ppMapData[cx-1][cz-1].DTexInfo1.Dir;
-		dir2 = m_pRefTerrain->m_ppMapData[cx-1][cz-1].DTexInfo2.Dir;
+        dir1 = m_pRefTerrain->m_ppMapData[cx-1][cz-1].DTexInfo1.Dir;
+        dir2 = m_pRefTerrain->m_ppMapData[cx-1][cz-1].DTexInfo2.Dir;
 
-		u1 = (float)m_pRefTerrain->m_ppMapData[cx-1][cz-1].DTexInfo1.TexIdx.TileX * 0.25f;
-		v1 = (float)m_pRefTerrain->m_ppMapData[cx-1][cz-1].DTexInfo1.TexIdx.TileY * 0.25f;
+        u1 = (float)m_pRefTerrain->m_ppMapData[cx-1][cz-1].DTexInfo1.TexIdx.TileX * 0.25f;
+        v1 = (float)m_pRefTerrain->m_ppMapData[cx-1][cz-1].DTexInfo1.TexIdx.TileY * 0.25f;
 
-		u2 = (float)m_pRefTerrain->m_ppMapData[cx-1][cz-1].DTexInfo2.TexIdx.TileX * 0.25f;
-		v2 = (float)m_pRefTerrain->m_ppMapData[cx-1][cz-1].DTexInfo2.TexIdx.TileY * 0.25f;
-		
-		pVertices[idx].Set((float)(cx*TERRAIN_CELL_SIZE), m_pRefTerrain->m_ppMapData[cx][cz].fHeight,
-					(float)(cz*TERRAIN_CELL_SIZE), 0.0f, 1.0f, 0.0f,
-					u1 + m_pRefTerrain->m_fTileDirU[dir1][1], v1 + m_pRefTerrain->m_fTileDirV[dir1][1],
-					u2 + m_pRefTerrain->m_fTileDirU[dir2][1], v2 + m_pRefTerrain->m_fTileDirV[dir2][1]);
-		pVertices[idx+1].Set((float)(cx*TERRAIN_CELL_SIZE), m_pRefTerrain->m_ppMapData[cx][cz-1].fHeight,
-					(float)((cz-1)*TERRAIN_CELL_SIZE), 0.0f, 1.0f, 0.0f,
-					u1 + m_pRefTerrain->m_fTileDirU[dir1][3], v1 + m_pRefTerrain->m_fTileDirV[dir1][3],
-					u2 + m_pRefTerrain->m_fTileDirU[dir2][3], v2 + m_pRefTerrain->m_fTileDirV[dir2][3]);
-		pVertices[idx+2].Set((float)((cx-1)*TERRAIN_CELL_SIZE), m_pRefTerrain->m_ppMapData[cx-1][cz-1].fHeight,
-					(float)((cz-1)*TERRAIN_CELL_SIZE), 0.0f, 1.0f, 0.0f,
-					u1 + m_pRefTerrain->m_fTileDirU[dir1][2], v1 + m_pRefTerrain->m_fTileDirV[dir1][2],
-					u2 + m_pRefTerrain->m_fTileDirU[dir2][2], v2 + m_pRefTerrain->m_fTileDirV[dir2][2]);
-		pVertices[idx+3].Set((float)((cx-1)*TERRAIN_CELL_SIZE), m_pRefTerrain->m_ppMapData[cx-1][cz].fHeight,
-					(float)(cz*TERRAIN_CELL_SIZE), 0.0f, 1.0f, 0.0f,
-					u1 + m_pRefTerrain->m_fTileDirU[dir1][0], v1 + m_pRefTerrain->m_fTileDirV[dir1][0],
-					u2 + m_pRefTerrain->m_fTileDirU[dir2][0], v2 + m_pRefTerrain->m_fTileDirV[dir2][0]);
-	}
-	cx = m_CenterX;
-	cz = m_CenterZ;
-	for(int i=0;i<2;i++)
-	{
-		int idx = (i<<2) + 8;
-		if(i==1) { cx++; cz--; }
+        u2 = (float)m_pRefTerrain->m_ppMapData[cx-1][cz-1].DTexInfo2.TexIdx.TileX * 0.25f;
+        v2 = (float)m_pRefTerrain->m_ppMapData[cx-1][cz-1].DTexInfo2.TexIdx.TileY * 0.25f;
+        
+        pVertices[idx].Set((float)(cx*TERRAIN_CELL_SIZE), m_pRefTerrain->m_ppMapData[cx][cz].fHeight,
+                    (float)(cz*TERRAIN_CELL_SIZE), 0.0f, 1.0f, 0.0f,
+                    u1 + m_pRefTerrain->m_fTileDirU[dir1][1], v1 + m_pRefTerrain->m_fTileDirV[dir1][1],
+                    u2 + m_pRefTerrain->m_fTileDirU[dir2][1], v2 + m_pRefTerrain->m_fTileDirV[dir2][1]);
+        pVertices[idx+1].Set((float)(cx*TERRAIN_CELL_SIZE), m_pRefTerrain->m_ppMapData[cx][cz-1].fHeight,
+                    (float)((cz-1)*TERRAIN_CELL_SIZE), 0.0f, 1.0f, 0.0f,
+                    u1 + m_pRefTerrain->m_fTileDirU[dir1][3], v1 + m_pRefTerrain->m_fTileDirV[dir1][3],
+                    u2 + m_pRefTerrain->m_fTileDirU[dir2][3], v2 + m_pRefTerrain->m_fTileDirV[dir2][3]);
+        pVertices[idx+2].Set((float)((cx-1)*TERRAIN_CELL_SIZE), m_pRefTerrain->m_ppMapData[cx-1][cz-1].fHeight,
+                    (float)((cz-1)*TERRAIN_CELL_SIZE), 0.0f, 1.0f, 0.0f,
+                    u1 + m_pRefTerrain->m_fTileDirU[dir1][2], v1 + m_pRefTerrain->m_fTileDirV[dir1][2],
+                    u2 + m_pRefTerrain->m_fTileDirU[dir2][2], v2 + m_pRefTerrain->m_fTileDirV[dir2][2]);
+        pVertices[idx+3].Set((float)((cx-1)*TERRAIN_CELL_SIZE), m_pRefTerrain->m_ppMapData[cx-1][cz].fHeight,
+                    (float)(cz*TERRAIN_CELL_SIZE), 0.0f, 1.0f, 0.0f,
+                    u1 + m_pRefTerrain->m_fTileDirU[dir1][0], v1 + m_pRefTerrain->m_fTileDirV[dir1][0],
+                    u2 + m_pRefTerrain->m_fTileDirU[dir2][0], v2 + m_pRefTerrain->m_fTileDirV[dir2][0]);
+    }
+    cx = m_CenterX;
+    cz = m_CenterZ;
+    for(int i=0;i<2;i++)
+    {
+        int idx = (i<<2) + 8;
+        if(i==1) { cx++; cz--; }
 
-		dir1 = m_pRefTerrain->m_ppMapData[cx-1][cz].DTexInfo1.Dir;
-		dir2 = m_pRefTerrain->m_ppMapData[cx-1][cz].DTexInfo2.Dir;
+        dir1 = m_pRefTerrain->m_ppMapData[cx-1][cz].DTexInfo1.Dir;
+        dir2 = m_pRefTerrain->m_ppMapData[cx-1][cz].DTexInfo2.Dir;
 
-		u1 = (float)m_pRefTerrain->m_ppMapData[cx-1][cz].DTexInfo1.TexIdx.TileX * 0.25f;
-		v1 = (float)m_pRefTerrain->m_ppMapData[cx-1][cz].DTexInfo1.TexIdx.TileY * 0.25f;
+        u1 = (float)m_pRefTerrain->m_ppMapData[cx-1][cz].DTexInfo1.TexIdx.TileX * 0.25f;
+        v1 = (float)m_pRefTerrain->m_ppMapData[cx-1][cz].DTexInfo1.TexIdx.TileY * 0.25f;
 
-		u2 = (float)m_pRefTerrain->m_ppMapData[cx-1][cz].DTexInfo2.TexIdx.TileX * 0.25f;
-		v2 = (float)m_pRefTerrain->m_ppMapData[cx-1][cz].DTexInfo2.TexIdx.TileY * 0.25f;
+        u2 = (float)m_pRefTerrain->m_ppMapData[cx-1][cz].DTexInfo2.TexIdx.TileX * 0.25f;
+        v2 = (float)m_pRefTerrain->m_ppMapData[cx-1][cz].DTexInfo2.TexIdx.TileY * 0.25f;
 
-		pVertices[idx].Set((float)(cx*TERRAIN_CELL_SIZE), m_pRefTerrain->m_ppMapData[cx][cz].fHeight,
-					(float)(cz*TERRAIN_CELL_SIZE), 0.0f, 1.0f, 0.0f, 
-					u1 + m_pRefTerrain->m_fTileDirU[dir1][3], v1 + m_pRefTerrain->m_fTileDirV[dir1][3],
-					u2 + m_pRefTerrain->m_fTileDirU[dir2][3], v2 + m_pRefTerrain->m_fTileDirV[dir2][3]);
-		pVertices[idx+1].Set((float)((cx-1)*TERRAIN_CELL_SIZE), m_pRefTerrain->m_ppMapData[cx-1][cz].fHeight,
-					(float)(cz*TERRAIN_CELL_SIZE), 0.0f, 1.0f, 0.0f,
-					u1 + m_pRefTerrain->m_fTileDirU[dir1][2], v1 + m_pRefTerrain->m_fTileDirV[dir1][2],
-					u2 + m_pRefTerrain->m_fTileDirU[dir2][2], v2 + m_pRefTerrain->m_fTileDirV[dir2][2]);
-		pVertices[idx+2].Set((float)((cx-1)*TERRAIN_CELL_SIZE), m_pRefTerrain->m_ppMapData[cx-1][cz+1].fHeight,
-					(float)((cz+1)*TERRAIN_CELL_SIZE), 0.0f, 1.0f, 0.0f,
-					u1 + m_pRefTerrain->m_fTileDirU[dir1][0], v1 + m_pRefTerrain->m_fTileDirV[dir1][0],
-					u2 + m_pRefTerrain->m_fTileDirU[dir2][0], v2 + m_pRefTerrain->m_fTileDirV[dir2][0]);
-		pVertices[idx+3].Set((float)(cx*TERRAIN_CELL_SIZE), m_pRefTerrain->m_ppMapData[cx][cz+1].fHeight,
-					(float)((cz+1)*TERRAIN_CELL_SIZE), 0.0f, 1.0f, 0.0f,
-					u1 + m_pRefTerrain->m_fTileDirU[dir1][1], v1 + m_pRefTerrain->m_fTileDirV[dir1][1],
-					u2 + m_pRefTerrain->m_fTileDirU[dir2][1], v2 + m_pRefTerrain->m_fTileDirV[dir2][1]);
-	}
-	m_pRefTerrain->m_TileVB->Unlock();
+        pVertices[idx].Set((float)(cx*TERRAIN_CELL_SIZE), m_pRefTerrain->m_ppMapData[cx][cz].fHeight,
+                    (float)(cz*TERRAIN_CELL_SIZE), 0.0f, 1.0f, 0.0f, 
+                    u1 + m_pRefTerrain->m_fTileDirU[dir1][3], v1 + m_pRefTerrain->m_fTileDirV[dir1][3],
+                    u2 + m_pRefTerrain->m_fTileDirU[dir2][3], v2 + m_pRefTerrain->m_fTileDirV[dir2][3]);
+        pVertices[idx+1].Set((float)((cx-1)*TERRAIN_CELL_SIZE), m_pRefTerrain->m_ppMapData[cx-1][cz].fHeight,
+                    (float)(cz*TERRAIN_CELL_SIZE), 0.0f, 1.0f, 0.0f,
+                    u1 + m_pRefTerrain->m_fTileDirU[dir1][2], v1 + m_pRefTerrain->m_fTileDirV[dir1][2],
+                    u2 + m_pRefTerrain->m_fTileDirU[dir2][2], v2 + m_pRefTerrain->m_fTileDirV[dir2][2]);
+        pVertices[idx+2].Set((float)((cx-1)*TERRAIN_CELL_SIZE), m_pRefTerrain->m_ppMapData[cx-1][cz+1].fHeight,
+                    (float)((cz+1)*TERRAIN_CELL_SIZE), 0.0f, 1.0f, 0.0f,
+                    u1 + m_pRefTerrain->m_fTileDirU[dir1][0], v1 + m_pRefTerrain->m_fTileDirV[dir1][0],
+                    u2 + m_pRefTerrain->m_fTileDirU[dir2][0], v2 + m_pRefTerrain->m_fTileDirV[dir2][0]);
+        pVertices[idx+3].Set((float)(cx*TERRAIN_CELL_SIZE), m_pRefTerrain->m_ppMapData[cx][cz+1].fHeight,
+                    (float)((cz+1)*TERRAIN_CELL_SIZE), 0.0f, 1.0f, 0.0f,
+                    u1 + m_pRefTerrain->m_fTileDirU[dir1][1], v1 + m_pRefTerrain->m_fTileDirV[dir1][1],
+                    u2 + m_pRefTerrain->m_fTileDirU[dir2][1], v2 + m_pRefTerrain->m_fTileDirV[dir2][1]);
+    }
+    m_pRefTerrain->m_TileVB->Unlock();
 
 
-	m_pRefTerrain->s_lpD3DDev->SetStreamSource( 0, m_pRefTerrain->m_TileVB, 0, sizeof(__VertexT2) );
-	m_pRefTerrain->s_lpD3DDev->SetFVF( FVF_VNT2 );
+    m_pRefTerrain->s_lpD3DDev->SetStreamSource( 0, m_pRefTerrain->m_TileVB, 0, sizeof(__VertexT2) );
+    m_pRefTerrain->s_lpD3DDev->SetFVF( FVF_VNT2 );
 
-	HRESULT hr;
-	DWORD ColorArg11, ColorArg12, ColorArg21, ColorArg22;
-	DWORD ColorOP1, ColorOP2;
+    HRESULT hr;
+    DWORD ColorArg11, ColorArg12, ColorArg21, ColorArg22;
+    DWORD ColorOP1, ColorOP2;
 
-	hr = m_pRefTerrain->s_lpD3DDev->GetTextureStageState( 0, D3DTSS_COLOROP, &ColorOP1);
-	hr = m_pRefTerrain->s_lpD3DDev->GetTextureStageState( 0, D3DTSS_COLORARG1, &ColorArg11);
-	hr = m_pRefTerrain->s_lpD3DDev->GetTextureStageState( 0, D3DTSS_COLORARG2, &ColorArg12);
+    hr = m_pRefTerrain->s_lpD3DDev->GetTextureStageState( 0, D3DTSS_COLOROP, &ColorOP1);
+    hr = m_pRefTerrain->s_lpD3DDev->GetTextureStageState( 0, D3DTSS_COLORARG1, &ColorArg11);
+    hr = m_pRefTerrain->s_lpD3DDev->GetTextureStageState( 0, D3DTSS_COLORARG2, &ColorArg12);
 
-	hr = m_pRefTerrain->s_lpD3DDev->GetTextureStageState( 1, D3DTSS_COLOROP, &ColorOP2);
-	hr = m_pRefTerrain->s_lpD3DDev->GetTextureStageState( 1, D3DTSS_COLORARG1, &ColorArg21);
-	hr = m_pRefTerrain->s_lpD3DDev->GetTextureStageState( 1, D3DTSS_COLORARG2, &ColorArg22);
+    hr = m_pRefTerrain->s_lpD3DDev->GetTextureStageState( 1, D3DTSS_COLOROP, &ColorOP2);
+    hr = m_pRefTerrain->s_lpD3DDev->GetTextureStageState( 1, D3DTSS_COLORARG1, &ColorArg21);
+    hr = m_pRefTerrain->s_lpD3DDev->GetTextureStageState( 1, D3DTSS_COLORARG2, &ColorArg22);
 
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
 
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP, D3DTOP_MODULATE);
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG1, D3DTA_TEXTURE);
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG2, D3DTA_CURRENT);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP, D3DTOP_MODULATE);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG1, D3DTA_TEXTURE);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG2, D3DTA_CURRENT);
 
-	int tx, tz;	
-	for(int i=0;i<4;i++)
-	{
-		tx = m_CenterX;
-		tz = m_CenterZ;
-		if(i==0 || i==2) tx = m_CenterX-1;
-		if(i==0 || i==3) tz = m_CenterZ-1;
+    int tx, tz;    
+    for(int i=0;i<4;i++)
+    {
+        tx = m_CenterX;
+        tz = m_CenterZ;
+        if(i==0 || i==2) tx = m_CenterX-1;
+        if(i==0 || i==3) tz = m_CenterZ-1;
 
-		int t1 = m_pRefTerrain->m_ppMapData[tx][tz].DTexInfo1.TexIdx.TexID;
-		int t2 = m_pRefTerrain->m_ppMapData[tx][tz].DTexInfo2.TexIdx.TexID;
+        int t1 = m_pRefTerrain->m_ppMapData[tx][tz].DTexInfo1.TexIdx.TexID;
+        int t2 = m_pRefTerrain->m_ppMapData[tx][tz].DTexInfo2.TexIdx.TexID;
 
-		if(m_pRefTerrain->m_ppMapData[tx][tz].DTexInfo1.bActive && m_pRefTerrain->GetTileTex(t1)) 
-			hr = m_pRefTerrain->s_lpD3DDev->SetTexture( 0, m_pRefTerrain->GetTileTex(t1)->Get());
-		//else hr = m_pRefTerrain->s_lpD3DDev->SetTexture( 0, NULL);
-		else
-		{
-			int ctx = (tx * TERRAIN_CELL_SIZE) / (m_pRefTerrain->m_iColorMapTexSize * m_pRefTerrain->m_iColorMapPixelPerUnitDistance);
-			int ctz = (tz * TERRAIN_CELL_SIZE) / (m_pRefTerrain->m_iColorMapTexSize * m_pRefTerrain->m_iColorMapPixelPerUnitDistance);
-			hr = m_pRefTerrain->s_lpD3DDev->SetTexture( 0, m_pRefTerrain->m_pColorTexture[ctx][ctz].Get() );
-		}
+        if(m_pRefTerrain->m_ppMapData[tx][tz].DTexInfo1.bActive && m_pRefTerrain->GetTileTex(t1)) 
+            hr = m_pRefTerrain->s_lpD3DDev->SetTexture( 0, m_pRefTerrain->GetTileTex(t1)->Get());
+        //else hr = m_pRefTerrain->s_lpD3DDev->SetTexture( 0, NULL);
+        else
+        {
+            int ctx = (tx * TERRAIN_CELL_SIZE) / (m_pRefTerrain->m_iColorMapTexSize * m_pRefTerrain->m_iColorMapPixelPerUnitDistance);
+            int ctz = (tz * TERRAIN_CELL_SIZE) / (m_pRefTerrain->m_iColorMapTexSize * m_pRefTerrain->m_iColorMapPixelPerUnitDistance);
+            hr = m_pRefTerrain->s_lpD3DDev->SetTexture( 0, m_pRefTerrain->m_pColorTexture[ctx][ctz].Get() );
+        }
 
-		if(m_pRefTerrain->m_ppMapData[tx][tz].DTexInfo2.bActive && m_pRefTerrain->GetTileTex(t2))
-			hr = m_pRefTerrain->s_lpD3DDev->SetTexture( 1, m_pRefTerrain->GetTileTex(t2)->Get());
-		else hr = m_pRefTerrain->s_lpD3DDev->SetTexture( 1, NULL);
-				
-		hr = m_pRefTerrain->s_lpD3DDev->DrawPrimitive( D3DPT_TRIANGLEFAN, (i<<2), 2);
+        if(m_pRefTerrain->m_ppMapData[tx][tz].DTexInfo2.bActive && m_pRefTerrain->GetTileTex(t2))
+            hr = m_pRefTerrain->s_lpD3DDev->SetTexture( 1, m_pRefTerrain->GetTileTex(t2)->Get());
+        else hr = m_pRefTerrain->s_lpD3DDev->SetTexture( 1, NULL);
+                
+        hr = m_pRefTerrain->s_lpD3DDev->DrawPrimitive( D3DPT_TRIANGLEFAN, (i<<2), 2);
 
-	}
+    }
 
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, ColorOP1);
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, ColorArg11);
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG2, ColorArg12);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, ColorOP1);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, ColorArg11);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG2, ColorArg12);
 
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP, ColorOP2);
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG1, ColorArg21);
-	hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG2, ColorArg22);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLOROP, ColorOP2);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG1, ColorArg21);
+    hr = m_pRefTerrain->s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG2, ColorArg22);
 }
 */
 
 //
-//	m_pRefTerrain->m_iMaxLevel이 아닌 Level들 Render..
+//    m_pRefTerrain->m_iMaxLevel이 아닌 Level들 Render..
 //
 void CQTNode::RenderNormalLevel() {
     int LeftLevel = 0;
@@ -1147,7 +1147,7 @@ void CQTNode::RenderNormalLevel() {
 }
 
 //
-//	GetMaxLevel..
+//    GetMaxLevel..
 //
 int CQTNode::GetMaxLevel(eDIR dir) {
     if (m_State == QTNODESTATE_CLIPPED) {

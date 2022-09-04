@@ -59,10 +59,10 @@ void CN3Cloud::Tick() {
 
     // 구름층 움직이기
     if (fCloudLayer >= 0.05) {
-        //		float du = 0.001*fCloudLayer;
-        //		float dv = 0.003*fCloudLayer;
-        //		float du2 = 0.003*fCloudLayer;
-        //		float dv2 = 0.005*fCloudLayer;
+        // float du = 0.001 * fCloudLayer;
+        // float dv = 0.003 * fCloudLayer;
+        // float du2 = 0.003 * fCloudLayer;
+        // float dv2 = 0.005 * fCloudLayer;
         float du = 0.005 * fCloudLayer;
         float dv = 0.015 * fCloudLayer;
         float du2 = 0.015 * fCloudLayer;
@@ -137,9 +137,9 @@ void CN3Cloud::Render() {
 
     static WORD CloudIndex[30] = {0, 1, 4, 1, 2, 5, 2, 3, 6, 3, 0, 7, 5, 4, 1,
                                   6, 5, 2, 7, 6, 3, 4, 7, 0, 4, 5, 7, 5, 6, 7};
-    //static WORD CloudIndex[54] = {0,1,4,1,2,5,2,3,6,3,0,7,5,4,1,6,5,2,7,6,3,4,7,0,
-    ///							4,5,8,5,6,9,6,7,10,7,4,11,9,8,5,10,9,6,11,10,7,8,11,4,
-    //							8,9,11,9,10,11};
+    // static WORD CloudIndex[54] = {0, 1, 4, 1,  2, 5, 2,  3,  6, 3, 0,  7, 5, 4, 1,  6, 5,  2,
+    //                               7, 6, 3, 4,  7, 0, 4,  5,  8, 5, 6,  9, 6, 7, 10, 7, 4,  11,
+    //                               9, 8, 5, 10, 9, 6, 11, 10, 7, 8, 11, 4, 8, 9, 11, 9, 10, 11};
 
     // backup state
     DWORD dwAlphaOp, dwAlphaArg1, dwAlphaArg2;
@@ -247,58 +247,70 @@ void CN3Cloud::Init(const std::string * pszFNs) {
         m_szTextures[i] = pszFNs[i];
     }
 
-    //	3단일때
-    /*	const float fSqrt3 = 1.0f/sqrtf(3.0f);
-	const float fOffset = 3.0f;
-	const float fSmallLength = 5.0f;
-	const float fMediumLength = fSmallLength + fOffset;
-	const float fBigLenth = fMediumLength + fOffset*fSqrt3;
-	const float fBigHeight = 0.0f;
-	const float fMediumHeight = fBigHeight + fOffset;
-	const float fSmallHeight = fMediumHeight + fOffset*fSqrt3;
+    /*
+    // 3단일때
+    const float fSqrt3 = 1.0f / sqrtf(3.0f);
+    const float fOffset = 3.0f;
+    const float fSmallLength = 5.0f;
+    const float fMediumLength = fSmallLength + fOffset;
+    const float fBigLenth = fMediumLength + fOffset * fSqrt3;
+    const float fBigHeight = 0.0f;
+    const float fMediumHeight = fBigHeight + fOffset;
+    const float fSmallHeight = fMediumHeight + fOffset * fSqrt3;
 
-	D3DCOLOR BigColor = 0x00ffffff;
-	D3DCOLOR MediumColor = 0xffffffff;
-	D3DCOLOR SmallColor = 0xffffffff;
+    D3DCOLOR BigColor = 0x00ffffff;
+    D3DCOLOR MediumColor = 0xffffffff;
+    D3DCOLOR SmallColor = 0xffffffff;
 
-	float fTmp1, fTmp2;
-	fTmp1 = fBigLenth-fMediumLength;
-	fTmp2 = fMediumHeight - fBigHeight;
-	const float fBig = sqrtf(fTmp1*fTmp1 + fTmp2*fTmp2);	// 젤큰 사각형과 중간사각형간의 거리
-	fTmp1 = fMediumLength - fSmallLength;
-	fTmp2 = fSmallHeight - fMediumHeight;
-	const float fMedium = sqrtf(fTmp1*fTmp1 + fTmp2*fTmp2);	// 중간 사각형과 작은사각형간의 거리
-	const float fSmall = fSmallLength;						// 작은 사각형이 0에서 떨어진 거리
-	const float fTotal = fBig + fMedium + fSmall;
+    float fTmp1, fTmp2;
+    fTmp1 = fBigLenth - fMediumLength;
+    fTmp2 = fMediumHeight - fBigHeight;
+    const float fBig = sqrtf(fTmp1 * fTmp1 + fTmp2 * fTmp2); // 젤큰 사각형과 중간사각형간의 거리
+    fTmp1 = fMediumLength - fSmallLength;
+    fTmp2 = fSmallHeight - fMediumHeight;
+    const float fMedium = sqrtf(fTmp1 * fTmp1 + fTmp2 * fTmp2); // 중간 사각형과 작은사각형간의 거리
+    const float fSmall = fSmallLength;                          // 작은 사각형이 0에서 떨어진 거리
+    const float fTotal = fBig + fMedium + fSmall;
 
-	float fTexUVLeft = 0.0f, fTexUVTop = 0.0f, fTexUVRight = 3.0f, fTexUVBottom = 3.0f;	// 텍스쳐 구름으로 표시할 영역 좌표(텍스쳐의 전체가 될수도 있고 일부분이 될 수도 있기 때문에)
-//	const float fTexOffsetU_M = (fBig/fTotal)*(fTexUVRight-fTexUVLeft)/2;
-//	const float fTexOffsetV_M = (fBig/fTotal)*(fTexUVBottom-fTexUVTop)/2;
-//	const float fTexOffsetU_S = ((fBig+fMedium)/fTotal)*(fTexUVRight-fTexUVLeft)/2;
-//	const float fTexOffsetV_S = ((fBig+fMedium)/fTotal)*(fTexUVBottom-fTexUVTop)/2;
+    // 텍스쳐 구름으로 표시할 영역 좌표(텍스쳐의 전체가 될수도 있고 일부분이 될 수도 있기 때문에)
+    float       fTexUVLeft = 0.0f, fTexUVTop = 0.0f, fTexUVRight = 3.0f, fTexUVBottom = 3.0f;
+    // const float fTexOffsetU_M = (fBig / fTotal) * (fTexUVRight - fTexUVLeft) / 2;
+    // const float fTexOffsetV_M = (fBig / fTotal) * (fTexUVBottom - fTexUVTop) / 2;
+    // const float fTexOffsetU_S = ((fBig + fMedium) / fTotal) * (fTexUVRight - fTexUVLeft) / 2;
+    // const float fTexOffsetV_S = ((fBig + fMedium) / fTotal) * (fTexUVBottom - fTexUVTop) / 2;
 
-	const float fTexOffsetU_M = (1.0f - fMediumLength/fBigLenth)*(fTexUVRight-fTexUVLeft)/2;
-	const float fTexOffsetV_M = (1.0f - fMediumLength/fBigLenth)*(fTexUVBottom-fTexUVTop)/2;
-	const float fTexOffsetU_S = (1.0f - fSmallLength/fBigLenth)*(fTexUVRight-fTexUVLeft)/2;
-	const float fTexOffsetV_S = (1.0f - fSmallLength/fBigLenth)*(fTexUVBottom-fTexUVTop)/2;
+    const float fTexOffsetU_M = (1.0f - fMediumLength / fBigLenth) * (fTexUVRight - fTexUVLeft) / 2;
+    const float fTexOffsetV_M = (1.0f - fMediumLength / fBigLenth) * (fTexUVBottom - fTexUVTop) / 2;
+    const float fTexOffsetU_S = (1.0f - fSmallLength / fBigLenth) * (fTexUVRight - fTexUVLeft) / 2;
+    const float fTexOffsetV_S = (1.0f - fSmallLength / fBigLenth) * (fTexUVBottom - fTexUVTop) / 2;
 
-	// big
-	m_pVertices[0].Set(-fBigLenth, fBigHeight,-fBigLenth, BigColor, fTexUVLeft,	fTexUVTop,		fTexUVLeft,		fTexUVTop);
-	m_pVertices[1].Set( fBigLenth, fBigHeight,-fBigLenth, BigColor, fTexUVRight,	fTexUVTop,		fTexUVRight,	fTexUVTop);
-	m_pVertices[2].Set( fBigLenth, fBigHeight, fBigLenth, BigColor, fTexUVRight,	fTexUVBottom,	fTexUVRight,	fTexUVBottom);
-	m_pVertices[3].Set(-fBigLenth, fBigHeight, fBigLenth, BigColor, fTexUVLeft,	fTexUVBottom,	fTexUVLeft,		fTexUVBottom);
-	// medium
-	m_pVertices[4].Set(-fMediumLength, fMediumHeight,-fMediumLength, MediumColor, fTexUVLeft+fTexOffsetU_M,	fTexUVTop+fTexOffsetV_M,		fTexUVLeft+fTexOffsetU_M,	fTexUVTop+fTexOffsetV_M);
-	m_pVertices[5].Set( fMediumLength, fMediumHeight,-fMediumLength, MediumColor, fTexUVRight-fTexOffsetU_M, fTexUVTop+fTexOffsetV_M,		fTexUVRight-fTexOffsetU_M, fTexUVTop+fTexOffsetV_M);
-	m_pVertices[6].Set( fMediumLength, fMediumHeight, fMediumLength, MediumColor, fTexUVRight-fTexOffsetU_M, fTexUVBottom-fTexOffsetV_M,	fTexUVRight-fTexOffsetU_M, fTexUVBottom-fTexOffsetV_M);
-	m_pVertices[7].Set(-fMediumLength, fMediumHeight, fMediumLength, MediumColor, fTexUVLeft+fTexOffsetU_M,	fTexUVBottom-fTexOffsetV_M,	fTexUVLeft+fTexOffsetU_M,	fTexUVBottom-fTexOffsetV_M);
+    // big
+    m_pVertices[0].Set(-fBigLenth, fBigHeight, -fBigLenth, BigColor, fTexUVLeft, fTexUVTop, fTexUVLeft, fTexUVTop);
+    m_pVertices[1].Set(fBigLenth, fBigHeight, -fBigLenth, BigColor, fTexUVRight, fTexUVTop, fTexUVRight, fTexUVTop);
+    m_pVertices[2].Set(fBigLenth, fBigHeight, fBigLenth, BigColor, fTexUVRight, fTexUVBottom, fTexUVRight,
+                       fTexUVBottom);
+    m_pVertices[3].Set(-fBigLenth, fBigHeight, fBigLenth, BigColor, fTexUVLeft, fTexUVBottom, fTexUVLeft, fTexUVBottom);
+    // medium
+    m_pVertices[4].Set(-fMediumLength, fMediumHeight, -fMediumLength, MediumColor, fTexUVLeft + fTexOffsetU_M,
+                       fTexUVTop + fTexOffsetV_M, fTexUVLeft + fTexOffsetU_M, fTexUVTop + fTexOffsetV_M);
+    m_pVertices[5].Set(fMediumLength, fMediumHeight, -fMediumLength, MediumColor, fTexUVRight - fTexOffsetU_M,
+                       fTexUVTop + fTexOffsetV_M, fTexUVRight - fTexOffsetU_M, fTexUVTop + fTexOffsetV_M);
+    m_pVertices[6].Set(fMediumLength, fMediumHeight, fMediumLength, MediumColor, fTexUVRight - fTexOffsetU_M,
+                       fTexUVBottom - fTexOffsetV_M, fTexUVRight - fTexOffsetU_M, fTexUVBottom - fTexOffsetV_M);
+    m_pVertices[7].Set(-fMediumLength, fMediumHeight, fMediumLength, MediumColor, fTexUVLeft + fTexOffsetU_M,
+                       fTexUVBottom - fTexOffsetV_M, fTexUVLeft + fTexOffsetU_M, fTexUVBottom - fTexOffsetV_M);
 
-	// small
-	m_pVertices[8].Set( -fSmallLength, fSmallHeight,-fSmallLength, SmallColor, fTexUVLeft+fTexOffsetU_S,	fTexUVTop+fTexOffsetV_S,		fTexUVLeft+fTexOffsetU_S,	fTexUVTop+fTexOffsetV_S);
-	m_pVertices[9].Set(  fSmallLength, fSmallHeight,-fSmallLength, SmallColor, fTexUVRight-fTexOffsetU_S, fTexUVTop+fTexOffsetV_S,		fTexUVRight-fTexOffsetU_S, fTexUVTop+fTexOffsetV_S);
-	m_pVertices[10].Set( fSmallLength, fSmallHeight, fSmallLength, SmallColor, fTexUVRight-fTexOffsetU_S, fTexUVBottom-fTexOffsetV_S,	fTexUVRight-fTexOffsetU_S, fTexUVBottom-fTexOffsetV_S);
-	m_pVertices[11].Set(-fSmallLength, fSmallHeight, fSmallLength, SmallColor, fTexUVLeft+fTexOffsetU_S,	fTexUVBottom-fTexOffsetV_S,	fTexUVLeft+fTexOffsetU_S,	fTexUVBottom-fTexOffsetV_S);
-*/
+    // small
+    m_pVertices[8].Set(-fSmallLength, fSmallHeight, -fSmallLength, SmallColor, fTexUVLeft + fTexOffsetU_S,
+                       fTexUVTop + fTexOffsetV_S, fTexUVLeft + fTexOffsetU_S, fTexUVTop + fTexOffsetV_S);
+    m_pVertices[9].Set(fSmallLength, fSmallHeight, -fSmallLength, SmallColor, fTexUVRight - fTexOffsetU_S,
+                       fTexUVTop + fTexOffsetV_S, fTexUVRight - fTexOffsetU_S, fTexUVTop + fTexOffsetV_S);
+    m_pVertices[10].Set(fSmallLength, fSmallHeight, fSmallLength, SmallColor, fTexUVRight - fTexOffsetU_S,
+                        fTexUVBottom - fTexOffsetV_S, fTexUVRight - fTexOffsetU_S, fTexUVBottom - fTexOffsetV_S);
+    m_pVertices[11].Set(-fSmallLength, fSmallHeight, fSmallLength, SmallColor, fTexUVLeft + fTexOffsetU_S,
+                        fTexUVBottom - fTexOffsetV_S, fTexUVLeft + fTexOffsetU_S, fTexUVBottom - fTexOffsetV_S);
+    */
+
     // 2단일때
     const float fSqrt3 = 1.0f / sqrtf(3.0f);
     float       fBigLenth = 16.0f;   // 구름 절두면체의 아래 큰 사각형 길이
@@ -312,16 +324,15 @@ void CN3Cloud::Init(const std::string * pszFNs) {
     D3DCOLOR BigColor = 0x00ffffff;
     D3DCOLOR SmallColor = 0xffffffff;
 
-    float fTexUVLeft = 0.0f, fTexUVTop = 0.0f, fTexUVRight = 4.0f,
-          fTexUVBottom =
-              4.0f; // 텍스쳐 구름으로 표시할 영역 좌표(텍스쳐의 전체가 될수도 있고 일부분이 될 수도 있기 때문에)
+    // 텍스쳐 구름으로 표시할 영역 좌표(텍스쳐의 전체가 될수도 있고 일부분이 될 수도 있기 때문에)
+    float fTexUVLeft = 0.0f, fTexUVTop = 0.0f, fTexUVRight = 4.0f, fTexUVBottom = 4.0f;
     float fTmp1 = fBigLenth - fSmallLength;
     float fTmp2 = fSmallHeight - fBigHeight;
-    //	const float fBig = sqrtf(fTmp1*fTmp1 + fTmp2*fTmp2);
-    //	const float fSmall = fSmallLength;
-    //	const float fTotal = fBig + fSmall;
-    //	const float fTexOffsetU = (fSmall/fTotal)*(fTexUVRight-fTexUVLeft)/2;
-    //	const float fTexOffsetV = (fSmall/fTotal)*(fTexUVBottom-fTexUVTop)/2;
+    // const float fBig = sqrtf(fTmp1 * fTmp1 + fTmp2 * fTmp2);
+    // const float fSmall = fSmallLength;
+    // const float fTotal = fBig + fSmall;
+    // const float fTexOffsetU = (fSmall / fTotal) * (fTexUVRight - fTexUVLeft) / 2;
+    // const float fTexOffsetV = (fSmall / fTotal) * (fTexUVBottom - fTexUVTop) / 2;
     const float fTexOffsetU = (1.0f - fSmallLength / fBigLenth) * (fTexUVRight - fTexUVLeft) / 2;
     const float fTexOffsetV = (1.0f - fSmallLength / fBigLenth) * (fTexUVBottom - fTexUVTop) / 2;
     // big

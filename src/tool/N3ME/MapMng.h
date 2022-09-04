@@ -112,17 +112,17 @@ class CMapMng : public CN3Base {
     CN3Scene *     m_pSceneSource; // source object 목록에 보여줄 것들을 담은 Scene
     CN3Scene *     m_pSceneOutput; // 맵에 배치한 Object를 포함한 Scene
 
-    //CDlgSceneGraph*		m_pDlgSourceList;			// Object 목록을 보여줄 다이알로그
-    //CDlgSceneGraph*		m_pDlgOutputList;			// 맵에 배치한 Object를 보여줄 다이알로그
+    //CDlgSceneGraph*        m_pDlgSourceList;            // Object 목록을 보여줄 다이알로그
+    //CDlgSceneGraph*        m_pDlgOutputList;            // 맵에 배치한 Object를 보여줄 다이알로그
     CDlgShapeList * m_pDlgOutputList; // 맵에 배치한 Object를 보여줄 다이알로그
     CDlgBase *      m_pDlgBase;       // 객체 등록정보 편집 대화상자..
     CBrushDlg *     m_pBrushDlg;      // 지형 편집 브러쉬 옵션지정해주는 대화상자
 
     CN3Transform * m_pSelSourceObj; // source object 목록에서 선택한 것
-    //	CTypedPtrArray<CPtrArray, CN3TransformCollision*> m_SelOutputObjArray;	// 맵에 배치한 Object 중 선택한 것들
+    //    CTypedPtrArray<CPtrArray, CN3TransformCollision*> m_SelOutputObjArray;    // 맵에 배치한 Object 중 선택한 것들
     CTypedPtrArray<CPtrArray, CN3Transform *> m_SelOutputObjArray; // 맵에 배치한 Object 중 선택한 것들
 
-    ENUM_EDIT_STATE                           m_eSelObjBackState; //	임시복사(ctrl+c)의 상태표시
+    ENUM_EDIT_STATE                           m_eSelObjBackState; //    임시복사(ctrl+c)의 상태표시
     CTypedPtrArray<CPtrArray, CN3Transform *> m_SelOutputObjBack; // 맵에 배치한 Object 중 선택한 것들 가지고 있음
 
     int  m_CursorMode;    // 마우스의 기능 모드 구분
@@ -143,6 +143,7 @@ class CMapMng : public CN3Base {
         float                   fCamDist;
         __Vector3               vMin, vMax;
     };
+
     // Operations
   public:
     void SetLight(float fLgt);
@@ -203,10 +204,10 @@ class CMapMng : public CN3Base {
     CN3Base *  Pick(POINT point, int * pnPart);                              // 객체 picking 함수
     static int SortByCameraDistance(const void * pArg1, const void * pArg2); // 카메라 거리에 따른 정렬함수 qsort에 이용
 
-    //	BOOL	CameraMove(LPMSG pMsg);		// 카메라 이동에 관한 메세지 처리
+    //    BOOL    CameraMove(LPMSG pMsg);        // 카메라 이동에 관한 메세지 처리
     BOOL GetObjectMinMax(CN3Transform * pObj, __Vector3 & vMin, __Vector3 & vMax); // 객체의 최대최소점 찾기
 
     CStatusBar * GetStatusBar();
 
-    void SetEditState(ENUM_EDIT_STATE eEditStat); //	드로우해서 선택한 오브젝트를 edit
+    void SetEditState(ENUM_EDIT_STATE eEditStat); //    드로우해서 선택한 오브젝트를 edit
 };

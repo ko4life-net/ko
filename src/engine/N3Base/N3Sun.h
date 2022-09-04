@@ -33,14 +33,15 @@ class CN3Sun : public CN3Base {
 
     __SunPart m_Parts[NUM_SUNPART];
     float     m_fCurRadian; // 현재 해의 회전위치
+
     // Operations
   public:
     void SetCurAngle(float fAngle) { m_fCurRadian = D3DXToRadian(fAngle); } // 현재 각도설정
     void Init(const std::string * pszFNs);
-    //	By : Ecli666 ( On 2002-04-04 오전 10:55:52 )
+    //    By : Ecli666 ( On 2002-04-04 오전 10:55:52 )
     //
     float GetCurAngle() { return D3DXToDegree(m_fCurRadian); }
-    //	~(By Ecli666 On 2002-04-04 오전 10:55:52 )
+    //    ~(By Ecli666 On 2002-04-04 오전 10:55:52 )
 
     void Release();
     void Render(__Matrix44 & matView, __Matrix44 & matProj);

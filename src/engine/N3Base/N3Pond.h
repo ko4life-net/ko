@@ -34,19 +34,19 @@ class CN3Pond : public CN3BaseFileAccess {
     class CPongMesh {
       public:
         CN3Texture *   m_pTexWave;
-        BOOL           m_bTick2Rand;      //	시야에 들어와 tick과rend를 실행결정
-        __VertexPond * m_pVertices;       //	Vertices
-        float *        m_pfVelocityArray; //	계산 저장
-        float          m_pfMaxHeight;     //	물결이 어느정도 이상 올라가지 못하게 함
-        WORD *         m_wpIndex;         //	그림을 그릴 순서
+        BOOL           m_bTick2Rand;      //    시야에 들어와 tick과rend를 실행결정
+        __VertexPond * m_pVertices;       //    Vertices
+        float *        m_pfVelocityArray; //    계산 저장
+        float          m_pfMaxHeight;     //    물결이 어느정도 이상 올라가지 못하게 함
+        WORD *         m_wpIndex;         //    그림을 그릴 순서
         int            m_iIC;             // Index Buffer Count.
         int            m_iVC;             // Vertex Count.
 
         int   m_iWidthVtx, m_iHeightVtx; // 계산에 필요
         float m_fmin, m_fmax, m_fmaxcal, m_fmincal;
 
-        __Vector3 m_vCenterPo; //	연못의 중간지점
-        float     m_fRadius;   //	연못의 지름
+        __Vector3 m_vCenterPo; //    연못의 중간지점
+        float     m_fRadius;   //    연못의 지름
 
         CPongMesh() {
             m_bTick2Rand = FALSE;
@@ -75,14 +75,14 @@ class CN3Pond : public CN3BaseFileAccess {
     };
 
   public:
-    int         m_iPondMeshNum; //	전체 연못의 갯수
-    CPongMesh * m_pCPondMesh;   //	연못의 정보
+    int         m_iPondMeshNum; //    전체 연못의 갯수
+    CPongMesh * m_pCPondMesh;   //    연못의 정보
 
     CN3Texture * m_pTexPond[MAX_POND_TEX];
     float        m_fTexIndex;
 
-    int     m_iMaxVtxNum; //	가장 많은 vertices수
-    float * m_pfMaxVtx;   //	물결높이 계산을 위한 임시
+    int     m_iMaxVtxNum; //    가장 많은 vertices수
+    float * m_pfMaxVtx;   //    물결높이 계산을 위한 임시
 
   public:
     void Release();

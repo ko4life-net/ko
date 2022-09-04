@@ -240,8 +240,8 @@ void CN3FXMgr::Tick() {
         }
         itOrigin++;
     }
-    //	TRACE("Origin Bundle Count : %d \n", m_OriginBundle.size());
-    //	TRACE("현재쓰고 있는 효과의 수 : %d \n", m_ListBundle.size());
+    //    TRACE("Origin Bundle Count : %d \n", m_OriginBundle.size());
+    //    TRACE("현재쓰고 있는 효과의 수 : %d \n", m_ListBundle.size());
 
     stlLIST_BUNDLEGAME_IT it = m_ListBundle.begin();
     //std::list<CN3FXBundleGame*>::iterator it = m_ListBundle.begin();
@@ -258,10 +258,10 @@ void CN3FXMgr::Tick() {
                 LPFXBUNDLEORIGIN pSrc = itOrigin->second;
                 pSrc->iNum--;
             }
-            //			else
-            //			{
-            //				TRACE("Invalid Bundle-.- \n");
-            //			}
+            //            else
+            //            {
+            //                TRACE("Invalid Bundle-.- \n");
+            //            }
 
             delete pBundle;
             it = m_ListBundle.erase(it);
@@ -273,12 +273,12 @@ void CN3FXMgr::Tick() {
         //시야권 검사는 보류....만약 한다면...view frustum으로 하는게 아니라...
         //player와 obj의 거리를 구해서 일정거리 이상이면 없애는 걸로해라..
         //충돌검사
-        /*	
-		if(pBundle->m_iMoveType != FX_BUNDLE_MOVE_NONE &&
-			pBundle->m_dwState==FX_BUNDLE_STATE_LIVE &&
-			( s_pPlayer->IDNumber()==pBundle->m_iSourceID ||
-			( s_pPlayer->IDNumber()==pBundle->m_iTargetID &&
-			s_pOPMgr->UPCGetByID(pBundle->m_iSourceID, true)==NULL)))
+        /*    
+        if(pBundle->m_iMoveType != FX_BUNDLE_MOVE_NONE &&
+            pBundle->m_dwState==FX_BUNDLE_STATE_LIVE &&
+            ( s_pPlayer->IDNumber()==pBundle->m_iSourceID ||
+            ( s_pPlayer->IDNumber()==pBundle->m_iTargetID &&
+            s_pOPMgr->UPCGetByID(pBundle->m_iSourceID, true)==NULL)))
 */
         if (pBundle->m_iMoveType != FX_BUNDLE_MOVE_NONE && pBundle->m_dwState == FX_BUNDLE_STATE_LIVE) {
             if (s_pOPMgr->UPCGetByID(pBundle->m_iSourceID, true) == NULL &&

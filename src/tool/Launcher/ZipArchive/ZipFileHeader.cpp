@@ -30,9 +30,9 @@ CZipFileHeader::~CZipFileHeader() {}
 
 // read the header from the central dir
 bool CZipFileHeader::Read(CZipStorage * pStorage) {
-    // 	// just in case
-    // 	m_pszComment.Release();
-    // 	m_pszFileName.Release();
+    //     // just in case
+    //     m_pszComment.Release();
+    //     m_pszFileName.Release();
     WORD           uFileNameSize, uCommentSize, uExtraFieldSize;
     CZipAutoBuffer buf(ZipFileHeaderSIZE);
     pStorage->Read(buf, ZipFileHeaderSIZE, true);
@@ -158,8 +158,8 @@ void CZipFileHeader::SetTime(const CTime & time) {
     m_uModDate = (WORD)(time.GetDay() + (time.GetMonth() << 5) + (year << 9));
     m_uModTime = (WORD)((time.GetSecond() >> 1) + (time.GetMinute() << 5) + (time.GetHour() << 11));
 }
-//	the buffer contains crc32, compressed and uncompressed sizes to be compared
-//	with the actual values
+//    the buffer contains crc32, compressed and uncompressed sizes to be compared
+//    with the actual values
 bool CZipFileHeader::CheckCrcAndSizes(char * pBuf) {
     return (memcmp(pBuf, &m_uCrc32, 4) == 0) && (memcmp(pBuf + 4, &m_uComprSize, 4) == 0) &&
            (memcmp(pBuf + 8, &m_uUncomprSize, 4) == 0);

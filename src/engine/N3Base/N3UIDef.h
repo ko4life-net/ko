@@ -58,9 +58,9 @@ enum eUI_STATE {
     UI_STATE_LIST_DISABLE,       // List 에서 선택 불가능
 
     // ecli666 (아이콘을 가진 윈도우.. 아이콘 자체는 아니다..)
-    //					UI_STATE_ICON_NONE,						// 아이콘을 가진 윈도우가 아이콘을 선택하지 않은 상태..
-    UI_STATE_ICON_MOVING,           // 아이콘을 가진 윈도우가 아이콘을 움직이고 있는 상태..
-                                    //					UI_STATE_ICON_SELECTED,					// 아이콘을 가진 윈도우가 아이콘을 선택한 상태..
+    // UI_STATE_ICON_NONE,             // 아이콘을 가진 윈도우가 아이콘을 선택하지 않은 상태..
+    UI_STATE_ICON_MOVING, // 아이콘을 가진 윈도우가 아이콘을 움직이고 있는 상태..
+    // UI_STATE_ICON_SELECTED,         // 아이콘을 가진 윈도우가 아이콘을 선택한 상태..
     UI_STATE_ICON_WAIT_FROM_SERVER, // 아이콘을 가진 윈도우가 아이콘을 옮기고 서버로 부터 응답을 기다리는 상태..
     UI_STATE_ICON_DO_SUCCESS,       // 아이콘을 가진 윈도우가 서버로 부터 성공을 받은 상태..
     UI_STATE_ICON_DO_FAIL,          // 아이콘을 가진 윈도우가 서버로 부터 실패를 받은 상태..

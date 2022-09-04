@@ -498,7 +498,7 @@ bool CN3Texture::Load(HANDLE hFile) {
             }
         }
     }
-    //	this->GenerateMipMap(); // Mip Map 을 만든다..
+    //    this->GenerateMipMap(); // Mip Map 을 만든다..
     return true;
 }
 

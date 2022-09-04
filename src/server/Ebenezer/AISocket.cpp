@@ -55,7 +55,7 @@ void CAISocket::Parsing(int len, char * pData) {
         RecvServerInfo(pData + index);
         break;
     case NPC_INFO_ALL:
-        //			Sleep(730);
+        //            Sleep(730);
         RecvNpcInfoAll(pData + index);
         break;
     case MOVE_RESULT:
@@ -233,8 +233,8 @@ void CAISocket::RecvNpcInfoAll(char * pBuf) {
     float fPosZ;                   // Z Position
     float fPosY;                   // Y Position
     float fDir;                    //
-    BYTE  tNpcType;                // 00	: Monster
-                                   // 01	: NPC
+    BYTE  tNpcType;                // 00    : Monster
+                                   // 01    : NPC
     int   iSellingGroup;
     int   nMaxHP;     // 최대 HP
     int   nHP;        // 현재 HP
@@ -344,7 +344,7 @@ void CAISocket::RecvNpcInfoAll(char * pBuf) {
             continue;
         }
 
-        //	TRACE("Recv --> NpcUserInfoAll : uid=%d, sid=%d, name=%s, x=%f, z=%f. gate=%d, objecttype=%d \n", nid, sPid, szName, fPosX, fPosZ, byGateOpen, byObjectType);
+        //    TRACE("Recv --> NpcUserInfoAll : uid=%d, sid=%d, name=%s, x=%f, z=%f. gate=%d, objecttype=%d \n", nid, sPid, szName, fPosX, fPosZ, byGateOpen, byObjectType);
 
         if (!m_pMain->m_arNpcArray.PutData(pNpc->m_sNid, pNpc)) {
             TRACE("Npc PutData Fail - %d\n", pNpc->m_sNid);
@@ -373,8 +373,8 @@ void CAISocket::RecvNpcMoveResult(char * pBuf) {
     char send_buff[256];
     memset(send_buff, 0x00, 256);
     int  index = 0, send_index = 0;
-    BYTE flag;          // 01(INFO_MODIFY)	: NPC 정보 변경
-                        // 02(INFO_DELETE)	: NPC 정보 삭제
+    BYTE flag;          // 01(INFO_MODIFY)    : NPC 정보 변경
+                        // 02(INFO_DELETE)    : NPC 정보 삭제
     short nid;          // NPC index
     float fPosX;        // X Position
     float fPosZ;        // Z Position
@@ -450,9 +450,9 @@ void CAISocket::RecvNpcAttack(char * pBuf) {
 
             SetByte(pOutBuf, WIZ_ATTACK, send_index);
             SetByte(pOutBuf, byAttackType, send_index); // 직접:1, 마법:2, 지속마법:3
-                                                        //if(result == 0x04)								// 마법으로 죽는경우
-                                                        //	SetByte( pOutBuf, 0x02, send_index );
-                                                        //else											// 단순공격으로 죽는경우
+                //if(result == 0x04)                                // 마법으로 죽는경우
+                //    SetByte( pOutBuf, 0x02, send_index );
+                //else                                            // 단순공격으로 죽는경우
             SetByte(pOutBuf, result, send_index);
             SetShort(pOutBuf, sid, send_index);
             SetShort(pOutBuf, tid, send_index);
@@ -472,7 +472,7 @@ void CAISocket::RecvNpcAttack(char * pBuf) {
                 switch (((CUser *)(m_pMain->m_Iocport.m_SockArray[sid]))->m_bMagicTypeLeftHand) { // LEFT HAND!!!
                 case ITEM_TYPE_HP_DRAIN:                                                          // HP Drain
                     ((CUser *)(m_pMain->m_Iocport.m_SockArray[sid]))->HpChange(temp_damage, 0);
-                    //					TRACE("%d : 흡수 HP : %d  ,  현재 HP : %d", sid, temp_damage, ((CUser*)(m_pMain->m_Iocport.m_SockArray[sid]))->m_pUserData->m_sHp);
+                    //                    TRACE("%d : 흡수 HP : %d  ,  현재 HP : %d", sid, temp_damage, ((CUser*)(m_pMain->m_Iocport.m_SockArray[sid]))->m_pUserData->m_sHp);
                     break;
                 case ITEM_TYPE_MP_DRAIN: // MP Drain
                     ((CUser *)(m_pMain->m_Iocport.m_SockArray[sid]))->MSpChange(temp_damage);
@@ -487,7 +487,7 @@ void CAISocket::RecvNpcAttack(char * pBuf) {
                 switch (((CUser *)(m_pMain->m_Iocport.m_SockArray[sid]))->m_bMagicTypeRightHand) { // LEFT HAND!!!
                 case ITEM_TYPE_HP_DRAIN:                                                           // HP Drain
                     ((CUser *)(m_pMain->m_Iocport.m_SockArray[sid]))->HpChange(temp_damage, 0);
-                    //					TRACE("%d : 흡수 HP : %d  ,  현재 HP : %d", sid, temp_damage, ((CUser*)(m_pMain->m_Iocport.m_SockArray[sid]))->m_pUserData->m_sHp);
+                    //                    TRACE("%d : 흡수 HP : %d  ,  현재 HP : %d", sid, temp_damage, ((CUser*)(m_pMain->m_Iocport.m_SockArray[sid]))->m_pUserData->m_sHp);
                     break;
                 case ITEM_TYPE_MP_DRAIN: // MP Drain
                     ((CUser *)(m_pMain->m_Iocport.m_SockArray[sid]))->MSpChange(temp_damage);
@@ -502,7 +502,7 @@ void CAISocket::RecvNpcAttack(char * pBuf) {
             C3DMap * pMap = m_pMain->m_ZoneArray[(int)pNpc->m_sZoneIndex];
             pMap->RegionNpcRemove(pNpc->m_sRegion_X, pNpc->m_sRegion_Z, tid);
 
-            //			TRACE("--- Npc Dead : Npc를 Region에서 삭제처리.. ,, region_x=%d, y=%d\n", pNpc->m_sRegion_X, pNpc->m_sRegion_Z);
+            //            TRACE("--- Npc Dead : Npc를 Region에서 삭제처리.. ,, region_x=%d, y=%d\n", pNpc->m_sRegion_X, pNpc->m_sRegion_Z);
             pNpc->m_sRegion_X = 0;
             pNpc->m_sRegion_Z = 0;
             pNpc->m_NpcState = NPC_DEAD;
@@ -512,7 +512,7 @@ void CAISocket::RecvNpcAttack(char * pBuf) {
                     pEvent->byLife = 0;
                 }
             }
-            //	성용씨! 대만 재미있어요? --;
+            //    성용씨! 대만 재미있어요? --;
             if (pNpc->m_tNpcType == 2) {
                 if (sid >= 0 && sid < MAX_USER) {
                     if (m_pMain->m_Iocport.m_SockArray[sid]) {
@@ -540,14 +540,14 @@ void CAISocket::RecvNpcAttack(char * pBuf) {
             }
 
             // sungyong 2002. 02.04
-            /*			if( sHP <= 0 && pUser->m_pUserData->m_sHp > 0 ) {
-				TRACE("Npc Attack : id=%s, result=%d, AI_HP=%d, GM_HP=%d\n", pUser->m_pUserData->m_id, result, sHP, pUser->m_pUserData->m_sHp);
-				if(result == 0x02)
-					pUser->HpChange(-1000, 1);
-			}
-			else	
-				pUser->HpChange(-damage, 1);
-			*/
+            /*            if( sHP <= 0 && pUser->m_pUserData->m_sHp > 0 ) {
+                TRACE("Npc Attack : id=%s, result=%d, AI_HP=%d, GM_HP=%d\n", pUser->m_pUserData->m_id, result, sHP, pUser->m_pUserData->m_sHp);
+                if(result == 0x02)
+                    pUser->HpChange(-1000, 1);
+            }
+            else    
+                pUser->HpChange(-damage, 1);
+            */
             // ~sungyong 2002. 02.04
             if (pUser->m_MagicProcess.m_bMagicState == CASTING) {
                 pUser->m_MagicProcess.IsAvailable(0, -1, -1, MAGIC_EFFECTING, 0, 0, 0);
@@ -568,7 +568,7 @@ void CAISocket::RecvNpcAttack(char * pBuf) {
             m_pMain->Send_Region(pOutBuf, send_index, pNpc->m_sCurZone, pNpc->m_sRegion_X, pNpc->m_sRegion_Z, NULL,
                                  false);
 
-            //			TRACE("RecvNpcAttack : id=%s, result=%d, AI_HP=%d, GM_HP=%d\n", pUser->m_pUserData->m_id, result, sHP, pUser->m_pUserData->m_sHp);
+            //            TRACE("RecvNpcAttack : id=%s, result=%d, AI_HP=%d, GM_HP=%d\n", pUser->m_pUserData->m_id, result, sHP, pUser->m_pUserData->m_sHp);
             //TRACE("RecvNpcAttack ==> sid = %d, tid = %d, result = %d\n", sid, tid, result);
 
             if (result == 0x02) { // user dead
@@ -646,7 +646,7 @@ void CAISocket::RecvNpcAttack(char * pBuf) {
             if (result == 0x02) { // npc dead
                 C3DMap * pMap = m_pMain->m_ZoneArray[(int)pMon->m_sZoneIndex];
                 pMap->RegionNpcRemove(pMon->m_sRegion_X, pMon->m_sRegion_Z, tid);
-                //				TRACE("--- Npc Dead : Npc를 Region에서 삭제처리.. ,, region_x=%d, y=%d\n", pMon->m_sRegion_X, pMon->m_sRegion_Z);
+                //                TRACE("--- Npc Dead : Npc를 Region에서 삭제처리.. ,, region_x=%d, y=%d\n", pMon->m_sRegion_X, pMon->m_sRegion_Z);
                 pMon->m_sRegion_X = 0;
                 pMon->m_sRegion_Z = 0;
                 pMon->m_NpcState = NPC_DEAD;
@@ -675,8 +675,8 @@ void CAISocket::RecvMagicAttackResult(char * pBuf) {
     char    send_buff[1024];
     memset(send_buff, NULL, 1024);
 
-    //byType = GetByte(pBuf,index);				// who ( 1:mon->user 2:mon->mon )
-    //byAttackType = GetByte(pBuf,index);			// attack type ( 1:long attack, 2:magic attack
+    //byType = GetByte(pBuf,index);                // who ( 1:mon->user 2:mon->mon )
+    //byAttackType = GetByte(pBuf,index);            // attack type ( 1:long attack, 2:magic attack
     byCommand = GetByte(pBuf, index); // magic type ( 1:casting, 2:flying, 3:effecting, 4:fail )
     magicid = GetDWORD(pBuf, index);
     sid = GetShort(pBuf, index);
@@ -710,7 +710,7 @@ void CAISocket::RecvMagicAttackResult(char * pBuf) {
                              false);
     } else if (byCommand == 0x03) { // effecting
         //pNpc = m_pMain->m_arNpcArray.GetData(tid);
-        //if(!pNpc)	return;
+        //if(!pNpc)    return;
         if (sid >= USER_BAND && sid < NPC_BAND) {
             pUser = (CUser *)m_pMain->m_Iocport.m_SockArray[sid];
             if (pUser == NULL || pUser->m_bResHpType == USER_DEAD) {
@@ -752,8 +752,8 @@ void CAISocket::RecvMagicAttackResult(char * pBuf) {
 void CAISocket::RecvNpcInfo(char * pBuf) {
     int index = 0;
 
-    BYTE Mode;                     // 01(INFO_MODIFY)	: NPC 정보 변경
-                                   // 02(INFO_DELETE)	: NPC 정보 삭제
+    BYTE Mode;                     // 01(INFO_MODIFY)    : NPC 정보 변경
+                                   // 02(INFO_DELETE)    : NPC 정보 삭제
     short nid;                     // NPC index
     short sid;                     // NPC index
     short sPid;                    // NPC Picture Number
@@ -770,10 +770,10 @@ void CAISocket::RecvNpcInfo(char * pBuf) {
     float fPosY;                   // Y Position
     float fDir;                    // 방향
     BYTE  tState;                  // NPC 상태
-                                   // 00	: NPC Dead
-                                   // 01	: NPC Live
-    BYTE tNpcKind;                 // 00	: Monster
-                                   // 01	: NPC
+                                   // 00    : NPC Dead
+                                   // 01    : NPC Live
+    BYTE tNpcKind;                 // 00    : Monster
+                                   // 01    : NPC
     int   iSellingGroup;
     int   nMaxHP; // 최대 HP
     int   nHP;    // 현재 HP
@@ -905,7 +905,7 @@ void CAISocket::RecvNpcInfo(char * pBuf) {
     pMap->RegionNpcAdd(pNpc->m_sRegion_X, pNpc->m_sRegion_Z, pNpc->m_sNid);
 
     int nTotMon = m_pMain->m_arNpcArray.GetSize();
-    //	TRACE("Recv --> NpcUserInfo : uid = %d, x=%f, z=%f.. ,, tot = %d\n", nid, fPosX, fPosZ, nTotMon);
+    //    TRACE("Recv --> NpcUserInfo : uid = %d, x=%f, z=%f.. ,, tot = %d\n", nid, fPosX, fPosZ, nTotMon);
 }
 
 void CAISocket::RecvUserHP(char * pBuf) {
@@ -933,7 +933,7 @@ void CAISocket::RecvUserHP(char * pBuf) {
         int nOldHP = pNpc->m_iHP;
         pNpc->m_iHP = nHP;
         pNpc->m_iMaxHP = nMaxHP;
-        //		TRACE("RecvNpcHP - (%d,%s), %d->%d\n", pNpc->m_sNid, pNpc->m_strName, nOldHP, pNpc->m_sHP);
+        //        TRACE("RecvNpcHP - (%d,%s), %d->%d\n", pNpc->m_sNid, pNpc->m_strName, nOldHP, pNpc->m_sHP);
     }
 }
 
@@ -1098,14 +1098,14 @@ void CAISocket::RecvUserFail(char * pBuf) {
     }
 
     // 여기에서 게임데이타의 정보를 AI서버에 보내보자...
-    /*	if(pUser->m_pUserData->m_sHp > 0 && pUser->m_bResHpType != USER_DEAD)	// 게임서버와 AI서버간의 데이타가 틀림..
-	{
-		SetByte(pOutBuf, AG_USER_FAIL, send_index);
-		SetShort( pOutBuf, nid, send_index );
-		SetShort( pOutBuf, sid, send_index );
-		SetShort( pOutBuf, pUser->m_pUserData->m_sHp, send_index);
-		Send( pOutBuf, send_index);
-	}	*/
+    /*    if(pUser->m_pUserData->m_sHp > 0 && pUser->m_bResHpType != USER_DEAD)    // 게임서버와 AI서버간의 데이타가 틀림..
+    {
+        SetByte(pOutBuf, AG_USER_FAIL, send_index);
+        SetShort( pOutBuf, nid, send_index );
+        SetShort( pOutBuf, sid, send_index );
+        SetShort( pOutBuf, pUser->m_pUserData->m_sHp, send_index);
+        Send( pOutBuf, send_index);
+    }    */
 
     pUser->HpChange(-10000, 1);
 
@@ -1200,7 +1200,7 @@ void CAISocket::InitEventMonster(int index) {
 }
 
 void CAISocket::RecvCheckAlive(char * pBuf) {
-    //	TRACE("CAISocket-RecvCheckAlive : zone_num=%d\n", m_iZoneNum);
+    //    TRACE("CAISocket-RecvCheckAlive : zone_num=%d\n", m_iZoneNum);
     m_pMain->m_sErrorSocketCount = 0;
     int  len = 0;
     char pSendBuf[256];
@@ -1229,12 +1229,12 @@ void CAISocket::RecvGateDestory(char * pBuf) {
         pNpc->m_byGateOpen = gate_status;
         TRACE("RecvGateDestory - (%d,%s), gate_status=%d\n", pNpc->m_sNid, pNpc->m_strName, pNpc->m_byGateOpen);
         /*
-		SetByte( send_buff, WIZ_OBJECT_EVENT, send_index );
-		SetByte( send_buff, 1, send_index );					// type
-		SetByte( send_buff, 1, send_index );
-		SetShort( send_buff, nid, send_index );
-		SetByte( send_buff, pNpc->m_byGateOpen, send_index );
-		m_pMain->Send_Region( send_buff, send_index, cur_zone, rx, rz );	*/
+        SetByte( send_buff, WIZ_OBJECT_EVENT, send_index );
+        SetByte( send_buff, 1, send_index );                    // type
+        SetByte( send_buff, 1, send_index );
+        SetShort( send_buff, nid, send_index );
+        SetByte( send_buff, pNpc->m_byGateOpen, send_index );
+        m_pMain->Send_Region( send_buff, send_index, cur_zone, rx, rz );    */
     }
 }
 
@@ -1403,21 +1403,21 @@ void CAISocket::RecvBattleEvent(char * pBuf) {
                 ::_LoadStringFromResource(IDS_KILL_CAPTAIN, buff);
                 sprintf(chatstr, buff.c_str(), strKnightsName, strMaxUserName);
 
-                /*		if( m_pMain->m_byBattleSave == 0 )	{
-					memset( send_buff, NULL, 256 );		send_index = 0;			// 승리국가를 sql에 저장
-					SetByte( send_buff, WIZ_BATTLE_EVENT, send_index );
-					SetByte( send_buff, nType, send_index );
-					SetByte( send_buff, m_pMain->m_bVictory, send_index );
-					SetByte( send_buff, nLen, send_index );
-					SetString( send_buff, strMaxUserName, nLen, send_index );
-					retvalue = m_pMain->m_LoggerSendQueue.PutData( send_buff, send_index );
-					if( retvalue >= SMQ_FULL ) {
-						char logstr[256]; memset( logstr, 0x00, 256 );
-						sprintf( logstr, "WIZ_BATTLE_EVENT Send Fail : %d, %d", retvalue, nType);
-						m_pMain->m_StatusList.AddString(logstr);
-					}
-					m_pMain->m_byBattleSave = 1;
-				}	*/
+                /*        if( m_pMain->m_byBattleSave == 0 )    {
+                    memset( send_buff, NULL, 256 );        send_index = 0;            // 승리국가를 sql에 저장
+                    SetByte( send_buff, WIZ_BATTLE_EVENT, send_index );
+                    SetByte( send_buff, nType, send_index );
+                    SetByte( send_buff, m_pMain->m_bVictory, send_index );
+                    SetByte( send_buff, nLen, send_index );
+                    SetString( send_buff, strMaxUserName, nLen, send_index );
+                    retvalue = m_pMain->m_LoggerSendQueue.PutData( send_buff, send_index );
+                    if( retvalue >= SMQ_FULL ) {
+                        char logstr[256]; memset( logstr, 0x00, 256 );
+                        sprintf( logstr, "WIZ_BATTLE_EVENT Send Fail : %d, %d", retvalue, nType);
+                        m_pMain->m_StatusList.AddString(logstr);
+                    }
+                    m_pMain->m_byBattleSave = 1;
+                }    */
             } else if (nResult == 2) {
                 ::_LoadStringFromResource(IDS_KILL_GATEKEEPER, buff);
                 sprintf(chatstr, buff.c_str(), strKnightsName, strMaxUserName);

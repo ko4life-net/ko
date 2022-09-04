@@ -208,7 +208,7 @@ void CServerMesh::AutoConcMesh(D3DCOLOR color, float left, float right, float bo
                                int iStart) {
     // left, right  : x
     // bottom, top  : z
-    // low, high	: y
+    // low, high    : y
 
     switch (iStart) {
     case 0:
@@ -257,43 +257,43 @@ void CServerMesh::Render() {
     s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, dwFillPrev);
     s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
     /*
-	__Matrix44 WorldMtx;
-	WorldMtx.Identity();
-	s_lpD3DDev->SetTransform(D3DTS_WORLD, &WorldMtx);
-	s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+    __Matrix44 WorldMtx;
+    WorldMtx.Identity();
+    s_lpD3DDev->SetTransform(D3DTS_WORLD, &WorldMtx);
+    s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
-	DWORD dwFillPrev;
-	s_lpD3DDev->GetRenderState(D3DRS_FILLMODE, &dwFillPrev);
-	s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
+    DWORD dwFillPrev;
+    s_lpD3DDev->GetRenderState(D3DRS_FILLMODE, &dwFillPrev);
+    s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 
-	DWORD dwUseLighting, dwAlpha, dwDestAlpha, dwSrcAlpha, dwUseColorVertex, dwDMS;
-	
-	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP,			D3DTOP_DISABLE);
+    DWORD dwUseLighting, dwAlpha, dwDestAlpha, dwSrcAlpha, dwUseColorVertex, dwDMS;
+    
+    s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP,            D3DTOP_DISABLE);
 
-    s_lpD3DDev->GetRenderState( D3DRS_LIGHTING,					&dwUseLighting );      
-	s_lpD3DDev->GetRenderState( D3DRS_ALPHABLENDENABLE,			&dwAlpha);
-	s_lpD3DDev->GetRenderState( D3DRS_DESTBLEND,				&dwDestAlpha);
-	s_lpD3DDev->GetRenderState( D3DRS_SRCBLEND,					&dwSrcAlpha);
-	s_lpD3DDev->GetRenderState( D3DRS_COLORVERTEX,				&dwUseColorVertex);
-	s_lpD3DDev->GetRenderState( D3DRS_DIFFUSEMATERIALSOURCE,	&dwDMS);
+    s_lpD3DDev->GetRenderState( D3DRS_LIGHTING,                    &dwUseLighting );      
+    s_lpD3DDev->GetRenderState( D3DRS_ALPHABLENDENABLE,            &dwAlpha);
+    s_lpD3DDev->GetRenderState( D3DRS_DESTBLEND,                &dwDestAlpha);
+    s_lpD3DDev->GetRenderState( D3DRS_SRCBLEND,                    &dwSrcAlpha);
+    s_lpD3DDev->GetRenderState( D3DRS_COLORVERTEX,                &dwUseColorVertex);
+    s_lpD3DDev->GetRenderState( D3DRS_DIFFUSEMATERIALSOURCE,    &dwDMS);
 
-	s_lpD3DDev->SetTexture( 0, NULL );		
+    s_lpD3DDev->SetTexture( 0, NULL );        
 
-    s_lpD3DDev->SetRenderState( D3DRS_LIGHTING,					FALSE );      
-	s_lpD3DDev->SetRenderState( D3DRS_ALPHABLENDENABLE,			FALSE);
-//	s_lpD3DDev->SetRenderState( D3DRS_DESTBLEND,				D3DBLEND_ONE);
-//	s_lpD3DDev->SetRenderState( D3DRS_SRCBLEND,					D3DBLEND_ONE);
-	s_lpD3DDev->SetRenderState( D3DRS_COLORVERTEX,				TRUE);
-	s_lpD3DDev->SetRenderState( D3DRS_DIFFUSEMATERIALSOURCE,	D3DMCS_COLOR1);
+    s_lpD3DDev->SetRenderState( D3DRS_LIGHTING,                    FALSE );      
+    s_lpD3DDev->SetRenderState( D3DRS_ALPHABLENDENABLE,            FALSE);
+//    s_lpD3DDev->SetRenderState( D3DRS_DESTBLEND,                D3DBLEND_ONE);
+//    s_lpD3DDev->SetRenderState( D3DRS_SRCBLEND,                    D3DBLEND_ONE);
+    s_lpD3DDev->SetRenderState( D3DRS_COLORVERTEX,                TRUE);
+    s_lpD3DDev->SetRenderState( D3DRS_DIFFUSEMATERIALSOURCE,    D3DMCS_COLOR1);
 
-	s_lpD3DDev->SetFVF( FVF_XYZCOLOR );
-	s_lpD3DDev->DrawPrimitiveUP( D3DPT_TRIANGLELIST, 16, &m_vSMesh, sizeof(__VertexXyzColor));
+    s_lpD3DDev->SetFVF( FVF_XYZCOLOR );
+    s_lpD3DDev->DrawPrimitiveUP( D3DPT_TRIANGLELIST, 16, &m_vSMesh, sizeof(__VertexXyzColor));
 
-    s_lpD3DDev->SetRenderState( D3DRS_LIGHTING,					dwUseLighting );      
-	s_lpD3DDev->SetRenderState( D3DRS_ALPHABLENDENABLE,			dwAlpha);
-	s_lpD3DDev->SetRenderState( D3DRS_DESTBLEND,				dwDestAlpha);
-	s_lpD3DDev->SetRenderState( D3DRS_SRCBLEND,					dwSrcAlpha);
-	s_lpD3DDev->SetRenderState( D3DRS_COLORVERTEX,				dwUseColorVertex);
-	s_lpD3DDev->SetRenderState( D3DRS_DIFFUSEMATERIALSOURCE,	dwDMS);
-	s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, dwFillPrev);*/
+    s_lpD3DDev->SetRenderState( D3DRS_LIGHTING,                    dwUseLighting );      
+    s_lpD3DDev->SetRenderState( D3DRS_ALPHABLENDENABLE,            dwAlpha);
+    s_lpD3DDev->SetRenderState( D3DRS_DESTBLEND,                dwDestAlpha);
+    s_lpD3DDev->SetRenderState( D3DRS_SRCBLEND,                    dwSrcAlpha);
+    s_lpD3DDev->SetRenderState( D3DRS_COLORVERTEX,                dwUseColorVertex);
+    s_lpD3DDev->SetRenderState( D3DRS_DIFFUSEMATERIALSOURCE,    dwDMS);
+    s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, dwFillPrev);*/
 }

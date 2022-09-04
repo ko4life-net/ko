@@ -33,3 +33,20 @@ The import should run and setup the login and username, as well as permissions f
 - PWD: `kodb_user`
 
 Lastly you'll need to setup odbcad settings so that the server can access the database with the odbcad driver.
+
+# Code formatting / Linting
+
+This project is using clang-format from LLVM project to ensure consistency in the entire codebase and to make it easier for everyone to contribute.
+
+When a pull-request is created, automated checks will test your changes to check for possible linting issues.
+Your pull-request will not be reviewed or considered to be merged if the linter checks are failing.
+
+Therefore and to avoid further confusion, please run the `format.ps1` script before submitting your code.
+
+Visual Studio has baked-in support for clang-format and will automatically detect the `.clang-format` file.
+However it uses an older version of clang-format, which is not supporting all of the configurations we use.
+You may want to configure your Visual Studio to the clang-format we have in ko-vendor. Please follow the following steps to do so:
+- Go to `Tools` -> `Options` -> Search clang-format
+- Tick: `Use custom clang-format.exe` and browse the path to `src/vendor/opt/bin/clang-format.exe`
+
+Now whenever you hit CTRL + K / D keyboard shortcut, clang-format will automatically format your code as configured in this project.

@@ -93,7 +93,7 @@ BOOL CDlgEditFxg::OnInitDialog() {
         m_pJoint[i]->InsertString(0, "배꼽");
         m_pJoint[i]->SetCurSel(0);
 
-        //	m_CBPartName들 채우기..
+        //    m_CBPartName들 채우기..
         m_pJoint[i]->InsertString(1, "오른손");
         m_pJoint[i]->InsertString(2, "왼손");
     }

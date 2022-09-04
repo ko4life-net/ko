@@ -16,8 +16,8 @@ CN3SPart::CN3SPart() {
     m_fTexFPS = 10.0f;          // Texture Animation Interval;
     m_fTexIndex = 0;            // Current Texture Index.. Animation 시킬때 필요한 인덱스이다..
 
-    //	m_vWindFactorCur.Zero();		// 현재 바람 부는 값.. 이값으로 회전을 시킨다..
-    //	m_vWindFactorToReach.Zero();	// 바람 부는 값..
+    //    m_vWindFactorCur.Zero();        // 현재 바람 부는 값.. 이값으로 회전을 시킨다..
+    //    m_vWindFactorToReach.Zero();    // 바람 부는 값..
     m_fTimeToSetWind = 0;     // 바람 부는 값을 바꾸기 위한 시간..
     m_fWindFactorCur = 0;     // 현재 바람 부는 값.. 이값으로 회전을 시킨다..
     m_fWindFactorToReach = 0; // 바람 부는 값..
@@ -38,8 +38,8 @@ void CN3SPart::Release() {
     m_fTexFPS = 10.0f;          // Texture Animation Interval;
     m_fTexIndex = 0;            // Current Texture Index.. Animation 시킬때 필요한 인덱스이다..
 
-    //	m_vWindFactorCur.Zero();		// 현재 바람 부는 값.. 이값으로 회전을 시킨다..
-    //	m_vWindFactorToReach.Zero();	// 바람 부는 값..
+    //    m_vWindFactorCur.Zero();        // 현재 바람 부는 값.. 이값으로 회전을 시킨다..
+    //    m_vWindFactorToReach.Zero();    // 바람 부는 값..
     m_fTimeToSetWind = 0;     // 바람 부는 값을 바꾸기 위한 시간..
     m_fWindFactorCur = 0;     // 현재 바람 부는 값.. 이값으로 회전을 시킨다..
     m_fWindFactorToReach = 0; // 바람 부는 값..
@@ -90,11 +90,11 @@ void CN3SPart::Tick(const __Matrix44 & mtxParent, const __Quaternion & qRot,
 
     float fDist = (vCenter - s_CameraData.vEye).Magnitude();
     float fLOD = fDist * s_CameraData.fFOV / fScale;
-    //	float fLOD = fDist + fDist * (s_CameraData.fFOV - 1.0f) / 3.0f;
-    //	float fLOD = fDist * s_CameraData.fFOV * (512.0f / s_CameraData.fFP);
+    //    float fLOD = fDist + fDist * (s_CameraData.fFOV - 1.0f) / 3.0f;
+    //    float fLOD = fDist * s_CameraData.fFOV * (512.0f / s_CameraData.fFP);
 
     // 카메라 거리에 따라 LOD 수준을 조절한다.
-    //	fLOD *= 256.0f / s_CameraData.fFP;
+    //    fLOD *= 256.0f / s_CameraData.fFP;
     m_PMInst.SetLOD(fLOD);
 
     int iTC = m_TexRefs.size();
@@ -134,24 +134,24 @@ void CN3SPart::Tick(const __Matrix44 & mtxParent, const __Quaternion & qRot,
         m_fTimeToSetWind -= CN3Base::s_fSecPerFrm;
 
         if (m_fTimeToSetWind <= 0) {
-            //			m_vWindFactorToReach.x = 0.05f - (0.1f * (rand()%100) / 100.0f);
-            //			m_vWindFactorToReach.y = 0.05f - (0.1f * (rand()%100) / 100.0f); // 위아래로는 조금만 불게 한다.
-            //			m_vWindFactorToReach.z = 0.05f - (0.1f * (rand()%100) / 100.0f);
+            //            m_vWindFactorToReach.x = 0.05f - (0.1f * (rand()%100) / 100.0f);
+            //            m_vWindFactorToReach.y = 0.05f - (0.1f * (rand()%100) / 100.0f); // 위아래로는 조금만 불게 한다.
+            //            m_vWindFactorToReach.z = 0.05f - (0.1f * (rand()%100) / 100.0f);
 
             m_fWindFactorToReach = (rand() % 100) / 100.0f;
             m_fTimeToSetWind = 3.0f * ((rand() % 100) / 100.0f); // 바람이 지속될 값..
         } else if (m_fWindFactorToReach != m_fWindFactorCur)
-        //		else if(m_vWindFactorToReach != m_vWindFactorCur)
+        //        else if(m_vWindFactorToReach != m_vWindFactorCur)
         {
-            //			float fFactor = s_fSecPerFrm * (m_vWindFactorToReach - m_vWindFactorCur).Magnitude();
+            //            float fFactor = s_fSecPerFrm * (m_vWindFactorToReach - m_vWindFactorCur).Magnitude();
             float fFactor = s_fSecPerFrm * T_Abs(m_fWindFactorToReach - m_fWindFactorCur);
 
-            //			if(m_vWindFactorCur.x < m_vWindFactorToReach.x) m_vWindFactorCur.x += fFactor;
-            //			if(m_vWindFactorCur.x > m_vWindFactorToReach.x) m_vWindFactorCur.x -= fFactor;
-            //			if(m_vWindFactorCur.y < m_vWindFactorToReach.y) m_vWindFactorCur.y += fFactor;
-            //			if(m_vWindFactorCur.y > m_vWindFactorToReach.y) m_vWindFactorCur.y -= fFactor;
-            //			if(m_vWindFactorCur.z < m_vWindFactorToReach.z) m_vWindFactorCur.z += fFactor;
-            //			if(m_vWindFactorCur.z > m_vWindFactorToReach.z) m_vWindFactorCur.z -= fFactor;
+            //            if(m_vWindFactorCur.x < m_vWindFactorToReach.x) m_vWindFactorCur.x += fFactor;
+            //            if(m_vWindFactorCur.x > m_vWindFactorToReach.x) m_vWindFactorCur.x -= fFactor;
+            //            if(m_vWindFactorCur.y < m_vWindFactorToReach.y) m_vWindFactorCur.y += fFactor;
+            //            if(m_vWindFactorCur.y > m_vWindFactorToReach.y) m_vWindFactorCur.y -= fFactor;
+            //            if(m_vWindFactorCur.z < m_vWindFactorToReach.z) m_vWindFactorCur.z += fFactor;
+            //            if(m_vWindFactorCur.z > m_vWindFactorToReach.z) m_vWindFactorCur.z -= fFactor;
             if (m_fWindFactorCur < m_fWindFactorToReach) {
                 m_fWindFactorCur += fFactor;
             }
@@ -159,15 +159,15 @@ void CN3SPart::Tick(const __Matrix44 & mtxParent, const __Quaternion & qRot,
                 m_fWindFactorCur -= fFactor;
             }
 
-            //			if(T_Abs(m_vWindFactorToReach.x - m_vWindFactorCur.x) < fFactor) m_vWindFactorCur.x = m_vWindFactorToReach.x;
-            //			if(T_Abs(m_vWindFactorToReach.y - m_vWindFactorCur.y) < fFactor) m_vWindFactorCur.y = m_vWindFactorToReach.y;
-            //			if(T_Abs(m_vWindFactorToReach.z - m_vWindFactorCur.z) < fFactor) m_vWindFactorCur.z = m_vWindFactorToReach.z;
+            //            if(T_Abs(m_vWindFactorToReach.x - m_vWindFactorCur.x) < fFactor) m_vWindFactorCur.x = m_vWindFactorToReach.x;
+            //            if(T_Abs(m_vWindFactorToReach.y - m_vWindFactorCur.y) < fFactor) m_vWindFactorCur.y = m_vWindFactorToReach.y;
+            //            if(T_Abs(m_vWindFactorToReach.z - m_vWindFactorCur.z) < fFactor) m_vWindFactorCur.z = m_vWindFactorToReach.z;
             if (T_Abs(m_fWindFactorToReach - m_fWindFactorCur) < fFactor) {
                 m_fWindFactorCur = m_fWindFactorToReach;
             }
 
             __Vector3 vPos = m_vPivot * mtxParent;
-            //			m_Matrix.Rotation(CN3Base::s_vWindFactor * m_fWindFactorCur);
+            //            m_Matrix.Rotation(CN3Base::s_vWindFactor * m_fWindFactorCur);
             m_Matrix.Rotation(__Vector3(0.05f, 0.02f, 0.05f) * m_fWindFactorCur);
             m_Matrix *= mtxParent;
             m_Matrix.PosSet(vPos);
@@ -216,12 +216,12 @@ void CN3SPart::Render() {
         return; // 렌더링 안하지롱.
     }
 
-    //	static DWORD dwAlpha, dwFog, dwCull;
+    //    static DWORD dwAlpha, dwFog, dwCull;
     static DWORD dwFog, dwCull;
-    //	s_lpD3DDev->GetRenderState(D3DRS_ALPHABLENDENABLE, &dwAlpha);
-    //	if(TRUE != dwAlpha) s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-    //	s_lpD3DDev->SetRenderState(D3DRS_SRCBLEND,   m_Mtl.dwSrcBlend);
-    //	s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND,  m_Mtl.dwDestBlend);
+    //    s_lpD3DDev->GetRenderState(D3DRS_ALPHABLENDENABLE, &dwAlpha);
+    //    if(TRUE != dwAlpha) s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+    //    s_lpD3DDev->SetRenderState(D3DRS_SRCBLEND,   m_Mtl.dwSrcBlend);
+    //    s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND,  m_Mtl.dwDestBlend);
 
 #ifdef _DEBUG
     CN3Base::s_RenderInfo.nShape_Polygon += m_PMInst.GetNumIndices() / 3; // Rendering Information Update...
@@ -256,7 +256,7 @@ void CN3SPart::Render() {
 
     m_PMInst.Render();
 
-    //	if((m_Mtl.nRenderFlags & RF_ALPHABLENDING) && FALSE == dwAlpha)	s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+    //    if((m_Mtl.nRenderFlags & RF_ALPHABLENDING) && FALSE == dwAlpha)    s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
     if ((m_Mtl.nRenderFlags & RF_NOTUSEFOG) && TRUE == dwFog) {
         s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, TRUE); // 안개 사용하지 않는다..
     }
@@ -380,16 +380,16 @@ bool CN3SPart::Save(HANDLE hFile) {
     WriteFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
     if (nL > 0) {
 
-        //		if(-1 == pPMesh->FileName().find("object\\")) // 임시로 경로를 바꾸려고 넣었다.. 나중에 필요없음 지운다..
-        //		{
-        //			char szFNTmp[256];
-        //			wsprintf(szFNTmp, "Object\\%s.N3PMesh", pPMesh->Name());
-        //			pPMesh->FileNameSet(szFNTmp);
+        //        if(-1 == pPMesh->FileName().find("object\\")) // 임시로 경로를 바꾸려고 넣었다.. 나중에 필요없음 지운다..
+        //        {
+        //            char szFNTmp[256];
+        //            wsprintf(szFNTmp, "Object\\%s.N3PMesh", pPMesh->Name());
+        //            pPMesh->FileNameSet(szFNTmp);
         //
-        //			SetFilePointer(hFile, -4, 0, FILE_CURRENT);
-        //			nL = pPMesh->FileName().size();
-        //			WriteFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
-        //		}
+        //            SetFilePointer(hFile, -4, 0, FILE_CURRENT);
+        //            nL = pPMesh->FileName().size();
+        //            WriteFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
+        //        }
 
         WriteFile(hFile, pPMesh->FileName().c_str(), nL, &dwRWC, NULL); // 메시 파일 이름..
     }
@@ -410,20 +410,20 @@ bool CN3SPart::Save(HANDLE hFile) {
         WriteFile(hFile, &nL, 4, &dwRWC, NULL);
         if (nL > 0) {
 
-            //			if(-1 == m_TexRefs[j]->FileName().find("object\\")) // 임시로 경로를 바꾸려고 넣었다.. 나중에 필요없음 지운다..
-            //			{
-            //				// 폴더 이름을 분리하고..
-            //				char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-            //				_splitpath(m_TexRefs[j]->FileName(), szDrive, szDir, szFName, szExt);
+            //            if(-1 == m_TexRefs[j]->FileName().find("object\\")) // 임시로 경로를 바꾸려고 넣었다.. 나중에 필요없음 지운다..
+            //            {
+            //                // 폴더 이름을 분리하고..
+            //                char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
+            //                _splitpath(m_TexRefs[j]->FileName(), szDrive, szDir, szFName, szExt);
             //
-            //				char szFNTmp[256];
-            //				wsprintf(szFNTmp, "Object\\%s.DXT", szFName);
-            //				m_TexRefs[j]->FileNameSet(szFNTmp);
+            //                char szFNTmp[256];
+            //                wsprintf(szFNTmp, "Object\\%s.DXT", szFName);
+            //                m_TexRefs[j]->FileNameSet(szFNTmp);
             //
-            //				SetFilePointer(hFile, -4, 0, FILE_CURRENT);
-            //				nL = lstrlen(m_TexRefs[j]->FileName());
-            //				WriteFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
-            //			}
+            //                SetFilePointer(hFile, -4, 0, FILE_CURRENT);
+            //                nL = lstrlen(m_TexRefs[j]->FileName());
+            //                WriteFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
+            //            }
 
             WriteFile(hFile, m_TexRefs[j]->FileName().c_str(), nL, &dwRWC, NULL); // 택스처 파일 이름..
         }
@@ -670,9 +670,9 @@ void CN3Shape::Tick(float fFrm) {
         return;
     }
 
-    //	float fDelta = 2.4f;
-    //	if(fDist < 64.0f)
-    //		fDelta += (64.0f - fDist)/24.0f;
+    //    float fDelta = 2.4f;
+    //    if(fDist < 64.0f)
+    //        fDelta += (64.0f - fDist)/24.0f;
     __Vector3 vCenter = (this->Min() + this->Max()) * 0.5f;
     if (s_CameraData.IsOutOfFrustum(vCenter, this->Radius())) {
         m_bDontRender = true;
@@ -1225,7 +1225,7 @@ bool CN3Shape::SaveToSameFolder(const std::string & szFullPath) {
         }
     }
 
-    //	By : Ecli666 ( On 2002-10-16 오전 11:44:19 )
+    //    By : Ecli666 ( On 2002-10-16 오전 11:44:19 )
     //
     szOldFN = CollisionMesh()->FileName();
     _splitpath(CollisionMesh()->FileName().c_str(), szDrive, szDir, szFName, szExt);
@@ -1233,7 +1233,7 @@ bool CN3Shape::SaveToSameFolder(const std::string & szFullPath) {
     CollisionMesh()->SaveToFile(szNameTmp);
     CollisionMesh()->FileNameSet(szOldFN);
 
-    //	~(By Ecli666 On 2002-10-16 오전 11:44:19 )
+    //    ~(By Ecli666 On 2002-10-16 오전 11:44:19 )
 
     return true;
 }
@@ -1281,7 +1281,7 @@ bool CN3Shape::SaveToSameFolderAndMore(const std::string & szFullPath, const std
     this->SaveToFile(szNameTmp);
     m_szFileName = szRelativePath + szFName + szExt;
 
-    //	By : Ecli666 ( On 2002-10-16 오전 11:44:19 )
+    //    By : Ecli666 ( On 2002-10-16 오전 11:44:19 )
     //
     if (CollisionMesh()) {
         _splitpath(CollisionMesh()->FileName().c_str(), szDrive, szDir, szFName, szExt);
@@ -1291,14 +1291,14 @@ bool CN3Shape::SaveToSameFolderAndMore(const std::string & szFullPath, const std
         szOldFN += szExt;
         CollisionMesh()->FileNameSet(szRelativePath + szFName + szExt);
     }
-    //	~(By Ecli666 On 2002-10-16 오전 11:44:19 )
+    //    ~(By Ecli666 On 2002-10-16 오전 11:44:19 )
 
     return true;
 }
 
 #endif // end of _N3TOOL
 
-//	By : Ecli666 ( On 2002-08-06 오후 4:33:32 )
+//    By : Ecli666 ( On 2002-08-06 오후 4:33:32 )
 //
 void CN3Shape::SetMaxLOD() {
     m_bDontRender = false;
@@ -1376,4 +1376,4 @@ void CN3Shape::PartialGetCollision(int iIndex, __Vector3 & vec) {
     CollisionMesh()->PartialGetCollision(iIndex, vec);
 }
 
-//	~(By Ecli666 On 2002-08-06 오후 4:33:32 )
+//    ~(By Ecli666 On 2002-08-06 오후 4:33:32 )

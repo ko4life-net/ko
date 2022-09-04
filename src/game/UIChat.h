@@ -27,8 +27,8 @@ const int                          MAX_CHAT_LINES = 100;
 
 class CUIChat : public CN3UIBase {
   protected:
-    //	ChatList		m_ChatBuffers[CHAT_BUFFER_COUNT];		// 채팅 packet기준으로 된 buffer
-    //	ChatList		m_LineBuffers[CHAT_BUFFER_COUNT];		// Line 기준으로 된 buffer
+    //    ChatList        m_ChatBuffers[CHAT_BUFFER_COUNT];        // 채팅 packet기준으로 된 buffer
+    //    ChatList        m_LineBuffers[CHAT_BUFFER_COUNT];        // Line 기준으로 된 buffer
     ChatList m_ChatBuffer;  // 채팅 packet기준으로 된 buffer
     ChatList m_LineBuffer;  // Line 기준으로 된 buffer
     ChatList m_ContinueMsg; // 지속적으로 공지해주는 메시지 buffer
@@ -61,20 +61,20 @@ class CUIChat : public CN3UIBase {
     bool m_bChatParty;
 
     bool m_bKillFocus;
-    //	e_ChatBuffer	m_eChatBuffer; // 채팅 표시 모드 .. 버퍼가 나누어져있다..
+    //    e_ChatBuffer    m_eChatBuffer; // 채팅 표시 모드 .. 버퍼가 나누어져있다..
 
     /*
-	ChatList		m_MsgBuffer;		// 채팅 packet기준으로 된 buffer
-	ChatList		m_MsgLineBuffer;	// Line 기준으로 된 buffer
+    ChatList        m_MsgBuffer;        // 채팅 packet기준으로 된 buffer
+    ChatList        m_MsgLineBuffer;    // Line 기준으로 된 buffer
 
-	CN3UIString*	m_pMsgOut;		// 채팅이 출력되는 UIString 참조포인터(실제 m_Child로 관리)
-	CN3UIScrollBar* m_pMsgScrollbar;	// scrollbar 참조포인터(실제 m_Child로 관리)
-	int				m_iMsgLineCount;	// 채팅창에 출력되는 line의 수(채팅창 사이즈가 변했을때 다시 계산해주자.)
+    CN3UIString*    m_pMsgOut;        // 채팅이 출력되는 UIString 참조포인터(실제 m_Child로 관리)
+    CN3UIScrollBar* m_pMsgScrollbar;    // scrollbar 참조포인터(실제 m_Child로 관리)
+    int                m_iMsgLineCount;    // 채팅창에 출력되는 line의 수(채팅창 사이즈가 변했을때 다시 계산해주자.)
 */
 
   protected:
     void SetTopLine(int iTopLine); // 맨 윗줄을 지정해준다.
-    //	void			AddLineBuffer(e_ChatBuffer eCB, const std::string& szString, D3DCOLOR color);	// line 버퍼를 만들어준다.(너무 길면 알아서 2줄로 만들어준다.)
+    //    void            AddLineBuffer(e_ChatBuffer eCB, const std::string& szString, D3DCOLOR color);    // line 버퍼를 만들어준다.(너무 길면 알아서 2줄로 만들어준다.)
     void AddLineBuffer(const std::string & szString,
                        D3DCOLOR            color); // line 버퍼를 만들어준다.(너무 길면 알아서 2줄로 만들어준다.)
     void RecalcLineBuffers();           // 채팅창 사이즈가 변했을때 호출해주면 line buffer를 다시 계산해서 넣어준다.

@@ -44,7 +44,7 @@ class CPortalVol : public CPvsBase {
     //.. pvsMgr의 Tick에서 필요한 거..
     e_ExtBool m_eRenderType;
 
-    //.. 컴파일 모드에서 Portal의 우선순위..	-1로 먼저 클리어 한다음.. 0 순위는 자기 자신..
+    //.. 컴파일 모드에서 Portal의 우선순위..    -1로 먼저 클리어 한다음.. 0 순위는 자기 자신..
     int m_iPriority;
 
     //.. Shape 파일 이름..

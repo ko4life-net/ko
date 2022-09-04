@@ -64,7 +64,7 @@ class CDFont : public CN3Base {
                                            // 따른 texture 크기 제한을 넘어버리기 때문에
                                            // 이런 경우 Scale을 이용하여 크게 늘려 찍는다.
 
-    //	HDC			m_hDC;							// DC handle
+    // HDC         m_hDC;             // DC handle
     HFONT       m_hFont;           // Font handle
     UINT        m_iPrimitiveCount; // 글씨 찍을 판의 갯수
     D3DXVECTOR2 m_PrevLeftTop;     // DrawText의 경우 찍는 곳의 위치가 변경되었을때를 위한 변수

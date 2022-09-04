@@ -27,7 +27,7 @@ extern CRITICAL_SECTION g_region_critical;
 
 /*
      ** Repent AI Server 작업시 참고 사항 **
-	1. RecvUserInfo(), RecvAttackReq(), RecvUserUpdate() 수정
+    1. RecvUserInfo(), RecvAttackReq(), RecvUserUpdate() 수정
 */
 
 CGameSocket::CGameSocket() {
@@ -36,10 +36,10 @@ CGameSocket::CGameSocket() {
 
 CGameSocket::~CGameSocket() {
     /*
-	if(m_pParty)	{
-		delete m_pParty;
-		m_pParty = NULL;
-	}	*/
+    if(m_pParty)    {
+        delete m_pParty;
+        m_pParty = NULL;
+    }    */
 }
 
 void CGameSocket::Initialize() {
@@ -206,7 +206,7 @@ void CGameSocket::RecvServerConnect(char * pBuf) {
 // ~sungyong 2002.05.22
 
 void CGameSocket::RecvUserInfo(char * pBuf) {
-    //	TRACE("RecvUserInfo()\n");
+    //    TRACE("RecvUserInfo()\n");
     int   index = 0;
     short uid = -1, sHp, sMp, sZoneIndex, sLength = 0;
     BYTE  bNation, bLevel, bZone, bAuthority = 1;
@@ -254,7 +254,7 @@ void CGameSocket::RecvUserInfo(char * pBuf) {
     //
 
     //CUser* pUser = m_pMain->GetActiveUserPtr(uid);
-    //if( pUser == NULL )		return;
+    //if( pUser == NULL )        return;
     CUser * pUser = new CUser;
     pUser->Initialize();
 
@@ -315,7 +315,7 @@ void CGameSocket::RecvUserInOut(char * pBuf) {
         TRACE("Error:: RecvUserInOut(),, uid = %d, fX=%.2f, fZ=%.2f\n", uid, fX, fZ);
         return;
     }
-    //	TRACE("RecvUserInOut(),, uid = %d\n", uid);
+    //    TRACE("RecvUserInOut(),, uid = %d\n", uid);
 
     int region_x = 0, region_z = 0;
     int x1 = (int)fX / TILE_SIZE;
@@ -329,10 +329,10 @@ void CGameSocket::RecvUserInOut(char * pBuf) {
 
     CUser * pUser = m_pMain->GetUserPtr(uid);
 
-    //	TRACE("^^& RecvUserInOut( type=%d )-> User(%s, %d),, zone=%d, index=%d, region_x=%d, y=%d\n", bType, pUser->m_strUserID, pUser->m_iUserId, pUser->m_curZone, pUser->m_sZoneIndex, region_x, region_z);
+    //    TRACE("^^& RecvUserInOut( type=%d )-> User(%s, %d),, zone=%d, index=%d, region_x=%d, y=%d\n", bType, pUser->m_strUserID, pUser->m_iUserId, pUser->m_curZone, pUser->m_sZoneIndex, region_x, region_z);
 
     if (pUser != NULL) {
-        //	TRACE("##### Fail : ^^& RecvUserInOut() [name = %s]. state=%d, hp=%d\n", pUser->m_strUserID, pUser->m_bLive, pUser->m_sHP);
+        //    TRACE("##### Fail : ^^& RecvUserInOut() [name = %s]. state=%d, hp=%d\n", pUser->m_strUserID, pUser->m_bLive, pUser->m_sHP);
         BOOL bFlag = FALSE;
 
         if (pUser->m_bLive == USER_DEAD || pUser->m_sHP <= 0) {
@@ -381,7 +381,7 @@ void CGameSocket::RecvUserInOut(char * pBuf) {
         pUser->m_curz = pUser->m_fWill_z = fZ;
 
         //bFlag = pUser->IsOpIDCheck(strName);
-        //if(bFlag)	pUser->m_byIsOP = 1;
+        //if(bFlag)    pUser->m_byIsOP = 1;
 
         if (bType == 2) { // region out
             // 기존의 region정보에서 User의 정보 삭제..
@@ -399,7 +399,7 @@ void CGameSocket::RecvUserInOut(char * pBuf) {
 }
 
 void CGameSocket::RecvUserMove(char * pBuf) {
-    //	TRACE("RecvUserMove()\n");
+    //    TRACE("RecvUserMove()\n");
     int   index = 0;
     short uid = -1, speed = 0;
     float fX = -1.0f, fZ = -1.0f, fY = -1.0f;
@@ -415,7 +415,7 @@ void CGameSocket::RecvUserMove(char * pBuf) {
 }
 
 void CGameSocket::RecvUserMoveEdge(char * pBuf) {
-    //	TRACE("RecvUserMoveEdge()\n");
+    //    TRACE("RecvUserMoveEdge()\n");
     int   index = 0;
     short uid = -1, speed = 0;
     float fX = -1.0f, fZ = -1.0f, fY = -1.0f;
@@ -426,7 +426,7 @@ void CGameSocket::RecvUserMoveEdge(char * pBuf) {
     fY = Getfloat(pBuf, index);
 
     SetUid(fX, fZ, uid, speed);
-    //	TRACE("RecvUserMoveEdge()---> uid = %d, x=%f, z=%f \n", uid, fX, fZ);
+    //    TRACE("RecvUserMoveEdge()---> uid = %d, x=%f, z=%f \n", uid, fX, fZ);
 }
 
 BOOL CGameSocket::SetUid(float x, float z, int id, int speed) {
@@ -887,7 +887,7 @@ void CGameSocket::RecvUserInfoAllData(char * pBuf) {
         }
 
         //CUser* pUser = m_pMain->GetActiveUserPtr(uid);
-        //if(pUser == NULL)	continue;
+        //if(pUser == NULL)    continue;
         CUser * pUser = new CUser;
         pUser->Initialize();
 
@@ -994,7 +994,7 @@ void CGameSocket::RecvPartyInfoAllData(char * pBuf) {
 }
 
 void CGameSocket::RecvCheckAlive(char * pBuf) {
-    //	TRACE("CAISocket-RecvCheckAlive : zone_num=%d\n", m_iZoneNum);
+    //    TRACE("CAISocket-RecvCheckAlive : zone_num=%d\n", m_iZoneNum);
     m_pMain->m_sErrorSocketCount = 0;
 }
 

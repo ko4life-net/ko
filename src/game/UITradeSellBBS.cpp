@@ -28,7 +28,7 @@
 #define TRADE_BBS_MAX_LINE  23
 
 CUITradeSellBBS::CUITradeSellBBS() {
-    //	m_pList_Infos			= NULL;
+    //    m_pList_Infos            = NULL;
     m_pBtn_PageUp = NULL;
     m_pBtn_PageDown = NULL;
     m_pBtn_Refresh = NULL;
@@ -62,7 +62,7 @@ bool CUITradeSellBBS::Load(HANDLE hFile) {
         return false;
     }
 
-    //	m_pList_Infos			= (CN3UIList*)(this->GetChildByID("List_Friends"));		__ASSERT(m_pList_Infos, "NULL UI Component!!!");
+    //    m_pList_Infos            = (CN3UIList*)(this->GetChildByID("List_Friends"));        __ASSERT(m_pList_Infos, "NULL UI Component!!!");
     m_pBtn_PageUp = (CN3UIButton *)(this->GetChildByID("btn_page_up"));
     __ASSERT(m_pBtn_PageUp, "NULL UI Component!!!");
     m_pBtn_PageDown = (CN3UIButton *)(this->GetChildByID("btn_page_down"));

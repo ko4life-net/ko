@@ -22,7 +22,7 @@
 //////////////////////////////////////////////////////////////////////
 
 CUIPartyBBS::CUIPartyBBS() {
-    //	m_pList_Infos			= NULL;
+    //    m_pList_Infos            = NULL;
     m_pBtn_PageUp = NULL;
     m_pBtn_PageDown = NULL;
     m_pBtn_Refresh = NULL;
@@ -54,7 +54,7 @@ bool CUIPartyBBS::Load(HANDLE hFile) {
     // TODO: fix this. stuff needs to be implemented differently here.
     auto pParty = GetChildByID("party");
     __ASSERT(pParty, "NULL UI Component!!!");
-    //	m_pList_Infos = (CN3UIList*)(this->GetChildByID("List_Friends"));					__ASSERT(m_pList_Infos, "NULL UI Component!!!");
+    //    m_pList_Infos = (CN3UIList*)(this->GetChildByID("List_Friends"));                    __ASSERT(m_pList_Infos, "NULL UI Component!!!");
     m_pBtn_PageUp = (CN3UIButton *)pParty->GetChildByID("btn_page_up");
     __ASSERT(m_pBtn_PageUp, "NULL UI Component!!!");
     m_pBtn_PageDown = (CN3UIButton *)pParty->GetChildByID("btn_page_down");
@@ -68,7 +68,7 @@ bool CUIPartyBBS::Load(HANDLE hFile) {
     __ASSERT(m_pBtn_Register, "NULL UI Component!!!");
     m_pBtn_RegisterCancel = (CN3UIButton *)pParty->GetChildByID("btn_delete");
     __ASSERT(m_pBtn_RegisterCancel, "NULL UI Component!!!");
-    //m_pBtn_Whisper = (CN3UIButton*)GetChildByID("btn_whisper");					__ASSERT(m_pBtn_Whisper, "NULL UI Component!!!");
+    //m_pBtn_Whisper = (CN3UIButton*)GetChildByID("btn_whisper");                    __ASSERT(m_pBtn_Whisper, "NULL UI Component!!!");
     m_pBtn_Party = (CN3UIButton *)GetChildByID("personal")->GetChildByID("btn_Party");
     __ASSERT(m_pBtn_Party, "NULL UI Component!!!");
 
@@ -96,7 +96,7 @@ bool CUIPartyBBS::SelectedString(CN3UIBase * pSender, int & iID) {
             }
 
             iID = iIndex;
-            //			SetStringColor( iID, 0xffff0000);
+            //            SetStringColor( iID, 0xffff0000);
             return true;
         }
     }

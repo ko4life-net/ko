@@ -30,14 +30,16 @@ CN3EngTool::CN3EngTool() {
     m_pVGrids = NULL;
     m_nGridLineCount = 0;
 
-    //	m_lpD3DDevExtra = NULL;
+    // m_lpD3DDevExtra = NULL;
 }
 
 CN3EngTool::~CN3EngTool() {
     delete[] m_pVGrids;
     m_pVGrids = NULL;
-    //	if(m_lpD3DDevExtra) m_lpD3DDevExtra->Release();
-    //	m_lpD3DDevExtra = NULL;
+    // if (m_lpD3DDevExtra) {
+    //     m_lpD3DDevExtra->Release();
+    // }
+    // m_lpD3DDevExtra = NULL;
 }
 
 // 월드 축 그리기..
@@ -77,9 +79,9 @@ void CN3EngTool::RenderGrid(const __Matrix44 & mtxWorld) {
     }
 
     // 축 그리기..
-    //	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[0], sizeof(__VertexColor)); // X
-    //	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[20], sizeof(__VertexColor)); // Y
-    //	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[40], sizeof(__VertexColor)); // Z
+    // s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[0], sizeof(__VertexColor));  // X
+    // s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[20], sizeof(__VertexColor)); // Y
+    // s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[40], sizeof(__VertexColor)); // Z
 
     if (dwFog) {
         s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, dwFog);
@@ -208,7 +210,7 @@ void CN3EngTool::RenderTexturePreview(CN3Texture * pTex, HWND hWndDiffuse, RECT 
         return;
     }
 
-    //	if(hWndDiffuse != NULL)
+    // if(hWndDiffuse != NULL)
     {
         // 텍스처 프리뷰
         RECT    rcPreview;
@@ -227,13 +229,11 @@ void CN3EngTool::RenderTexturePreview(CN3Texture * pTex, HWND hWndDiffuse, RECT 
             float fRatioDest = (float)nW / (float)nH;
             float fRatioSrc = (float)(pTex->Width()) / (float)(pTex->Height());
 
-            if (fRatioDest > 1.0f) // 가로가 긴경우
-            {
+            if (fRatioDest > 1.0f) { // 가로가 긴경우
                 int nDec = (nW - nH) / 2;
                 rcTex.left += nDec;
                 rcTex.right -= nDec;
-            } else if (fRatioDest < 1.0f) // 세로가 긴경우
-            {
+            } else if (fRatioDest < 1.0f) { // 세로가 긴경우
                 int nDec = (nH - nW) / 2;
                 rcTex.top += nDec;
                 rcTex.bottom -= nDec;

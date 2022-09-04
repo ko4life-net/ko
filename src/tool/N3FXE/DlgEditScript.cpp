@@ -297,7 +297,7 @@ bool CDlgEditScript::LoadBundle(CString & strPathName) {
     if (m_pFXBundle->DecodeScriptFile((LPCTSTR)strPathName)) //번들 스크립트 읽기 성공했으면...
     {
         //
-        //	set part editor
+        //    set part editor
         //
         for (int i = 0; i < MAX_FX_PART; i++) {
             CN3FXPartBase * pPart = m_pFXBundle->GetPart(i);
@@ -351,14 +351,14 @@ bool CDlgEditScript::NewBundle() {
     // Dialog초기화..
     OnInitDialog();
     /*
-	for(int i=0;i<MAX_FX_PART;i++)
-	{
-		(*m_pPartStartTime[i]) = 0.0f;		
-		m_pPartName[i]->SetCurSel(0);
-	}
-	m_fVelocity = 0.0f;
-	m_bDependScale = FALSE;
-	*/
+    for(int i=0;i<MAX_FX_PART;i++)
+    {
+        (*m_pPartStartTime[i]) = 0.0f;        
+        m_pPartName[i]->SetCurSel(0);
+    }
+    m_fVelocity = 0.0f;
+    m_bDependScale = FALSE;
+    */
     ///////////////////////////////////////////////////
 
     m_pFXBundle = new CN3FXBundle;
@@ -384,7 +384,7 @@ BOOL CDlgEditScript::OnInitDialog() {
         m_pPartName[i]->InsertString(0, "NONE");
         m_pPartName[i]->SetCurSel(0);
 
-        //	m_CBPartName들 채우기..
+        //    m_CBPartName들 채우기..
 
         CString             strPath;
         CN3BaseFileAccess * pBaseFileAccess = new CN3BaseFileAccess;
@@ -457,7 +457,7 @@ void CDlgEditScript::ReloadCombo() {
         m_pPartName[i]->InsertString(0, "NONE");
         m_pPartName[i]->SetCurSel(0);
 
-        //	m_CBPartName들 채우기..
+        //    m_CBPartName들 채우기..
         CString             strPath;
         CN3BaseFileAccess * pBaseFileAccess = new CN3BaseFileAccess;
         strPath = pBaseFileAccess->PathGet().c_str();

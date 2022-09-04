@@ -19,6 +19,7 @@ class CDlgRiverProperty : public CDialog {
 
   protected:
     CRiverMng * m_pRiverMng;
+
     // Operations
   public:
     void UpdateInfo();

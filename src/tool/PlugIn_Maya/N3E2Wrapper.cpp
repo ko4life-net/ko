@@ -82,7 +82,7 @@ void CN3E2Wrapper::Release() {
 
     m_Option.bGenerateFileName = FALSE;
     m_Option.bGenerateSmoothNormal = TRUE;
-    //	m_Option.bGenerateProgressiveMesh = FALSE;
+    //    m_Option.bGenerateProgressiveMesh = FALSE;
     m_Option.bGenerateHalfSizeTexture = FALSE;
     m_Option.bGenerateCompressedTexture = TRUE;
     m_Option.fSamplingRate = 30.0f;
@@ -150,15 +150,15 @@ CN3Light * CN3E2Wrapper::ProcessLight(MFnLight & mLight) {
     pLight->m_Data.Diffuse.g = color.g;
     pLight->m_Data.Diffuse.b = color.b;
 
-    /*	MFnDependencyNode lightDG(mLight);
+    /*    MFnDependencyNode lightDG(mLight);
     MObject lightAttr = lightDG.attribute(MString("intensity"));
-	MPlug plug(mLight, lightAttr); // 강도
-	double intensity;
-	plug.getValue(intensity);
-	
-	lightAttr = lightDG.attribute(MString("specular"));
-	plug.setAttribute(lightAttr);
-	plug.getValue(
+    MPlug plug(mLight, lightAttr); // 강도
+    double intensity;
+    plug.getValue(intensity);
+    
+    lightAttr = lightDG.attribute(MString("specular"));
+    plug.setAttribute(lightAttr);
+    plug.getValue(
 */
 
     // 나머지 기본값.
@@ -175,11 +175,11 @@ CN3Camera * CN3E2Wrapper::ProcessCamera(MFnCamera & mCamera) {
     std::string szFN = "Data\\" + pCamera->m_szName + ".N3Camera";
     pCamera->FileNameSet(szFN);
 
-    //	double dHFOV, dVFOV;
-    //	mCamera.getPortFieldOfView(800, 600, dHFOV, dVFOV);
-    //	pCamera->s_CameraData.fNP = (float)(mCamera.nearClippingPlane() * 0.01); // meter 단위 이기때문에 100 으로 나누어 준다.
-    //	pCamera->s_CameraData.fFP = (float)(mCamera.farClippingPlane() * 0.01);
-    //	pCamera->s_CameraData.fFOV = (float)dHFOV; // 90 도 렌즈로 강제 세팅..
+    //    double dHFOV, dVFOV;
+    //    mCamera.getPortFieldOfView(800, 600, dHFOV, dVFOV);
+    //    pCamera->s_CameraData.fNP = (float)(mCamera.nearClippingPlane() * 0.01); // meter 단위 이기때문에 100 으로 나누어 준다.
+    //    pCamera->s_CameraData.fFP = (float)(mCamera.farClippingPlane() * 0.01);
+    //    pCamera->s_CameraData.fFOV = (float)dHFOV; // 90 도 렌즈로 강제 세팅..
 
     return pCamera;
 }
@@ -188,8 +188,8 @@ MObject CN3E2Wrapper::MeshGetShader(MFnMesh & mMesh) {
     MObjectArray ShaderArray;
     MIntArray    IndicesArray;
     mMesh.getConnectedShaders(0, ShaderArray, IndicesArray);
-    //	int nInstance = PathCur.instanceNumber();
-    //	Mesh.getConnectedShaders(nInstance, ShaderArray, IndicesArray);
+    //    int nInstance = PathCur.instanceNumber();
+    //    Mesh.getConnectedShaders(nInstance, ShaderArray, IndicesArray);
 
     int nSC = ShaderArray.length();
     int nIC = IndicesArray.length();
@@ -220,7 +220,7 @@ void CN3E2Wrapper::SceneExport() {
     }
 
     g_pEng = new CN3EngTool();
-    //	g_pEng->InitEnv();
+    //    g_pEng->InitEnv();
     g_pEng->Init(TRUE, hWnd, 64, 64, 0, FALSE);
 
     char szPath[256];
@@ -252,7 +252,7 @@ void CN3E2Wrapper::SceneExport() {
 
     m_pScene->Release(); // 모두 해제하고..
 
-    //	m_pScene->m_fFrmCur = (float)MAnimControl::currentTime().value();
+    //    m_pScene->m_fFrmCur = (float)MAnimControl::currentTime().value();
     m_pScene->m_fFrmStart = (float)m_Option.nFrmStart; // (float)MAnimControl::minTime().value();
     m_pScene->m_fFrmEnd = (float)m_Option.nFrmEnd;     // (float)MAnimControl::maxTime().value();
 
@@ -339,9 +339,9 @@ void CN3E2Wrapper::SceneExport() {
             }
             if (true == bHaveJoint) // 관절에 연결된 메시면 지나간다..
             {
-                //				wsprintf(szInfo, "Skinning 이 된 메시(%s)를 무시합니다.", mMesh.name().asChar());
-                //				nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
-                //				::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
+                //                wsprintf(szInfo, "Skinning 이 된 메시(%s)를 무시합니다.", mMesh.name().asChar());
+                //                nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
+                //                ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
                 continue;
             } else {
                 bool bProcessShape = false;
@@ -519,12 +519,12 @@ bool CN3E2Wrapper::ProcessIMesh(MFnMesh & mMesh, CN3IMesh * pIMesh) {
         pVDest[i].z = -(float)(mVTmp.z * 0.01); // Z 축은 반대로 한다.
 
         // Normal 값 처리...
-        //		if(iNormalCounts[i] > 0)
-        //		{
-        //			mNTmp.x = mNTmp.x / iNormalCounts[i];
-        //			mNTmp.y = mNTmp.y / iNormalCounts[i];
-        //			mNTmp.z = mNTmp.z / iNormalCounts[i];
-        //		}
+        //        if(iNormalCounts[i] > 0)
+        //        {
+        //            mNTmp.x = mNTmp.x / iNormalCounts[i];
+        //            mNTmp.y = mNTmp.y / iNormalCounts[i];
+        //            mNTmp.z = mNTmp.z / iNormalCounts[i];
+        //        }
 
         MVector mNTmp = Normals[i] * mMtxWorldRot;
         mNTmp.normalize();
@@ -536,7 +536,7 @@ bool CN3E2Wrapper::ProcessIMesh(MFnMesh & mMesh, CN3IMesh * pIMesh) {
     for (int i = 0; i < nUVC; i++) {
         pIMesh->UVSet(i, mFAU[i], 1.0f - mFAV[i]); // UV 데이터 세팅..
     }
-    //	for(int i = 0; i < nUVC; i++) pIMesh->UVSet(i, mFAU[i], mFAV[i]); // UV 데이터 세팅..
+    //    for(int i = 0; i < nUVC; i++) pIMesh->UVSet(i, mFAU[i], mFAV[i]); // UV 데이터 세팅..
     for (int i = 0; i < nFC; i++) //
     {
         pIMesh->VertexIndexSet(i * 3 + 0, mVIArray[i * 3 + 0]); // Vertex Index 세팅
@@ -646,32 +646,32 @@ bool CN3E2Wrapper::ProcessSkin(MFnSkinCluster & mSkin, CN3Skin * pSkin) {
     }
 
     // Joint 가 그룹 되어 있다면 Parent Transform 처리..
-    /*	if(mJointRoot.parentCount() > 0 && mJointRoot.parent(0).hasFn(MFn::kTransform))
-	{
-		MFnTransform mTJP(mJointRoot.parent(0));
+    /*    if(mJointRoot.parentCount() > 0 && mJointRoot.parent(0).hasFn(MFn::kTransform))
+    {
+        MFnTransform mTJP(mJointRoot.parent(0));
 
-		// Normal 값 다시 정리..
-		MMatrix mMtx; mMtx.setToIdentity();
-		this->GetWorldTransform(mTJP, mMtx);
-		MTransformationMatrix mTMtx(mMtx);
+        // Normal 값 다시 정리..
+        MMatrix mMtx; mMtx.setToIdentity();
+        this->GetWorldTransform(mTJP, mMtx);
+        MTransformationMatrix mTMtx(mMtx);
 
-		double dRots[3];
-		MTransformationMatrix::RotationOrder rotOrder = MTransformationMatrix::kXYZ;
-		mTMtx.getRotation(dRots, rotOrder);
-		__Matrix44 mtxRot;
-		mtxRot.Rotation((float)dRots[0], (float)dRots[1], -(float)dRots[2]);
+        double dRots[3];
+        MTransformationMatrix::RotationOrder rotOrder = MTransformationMatrix::kXYZ;
+        mTMtx.getRotation(dRots, rotOrder);
+        __Matrix44 mtxRot;
+        mtxRot.Rotation((float)dRots[0], (float)dRots[1], -(float)dRots[2]);
 
-		int nVC = pIMesh->VertexCount();
-		__VertexXyzNormal* pVs = pIMesh->Vertices();
-		__Vector3 vNTmp;
-		
-		for(int i = 0; i < nVC; i++)
-		{
-			vNTmp = pVs[i].n;
-			vNTmp *= mtxRot;
-			pVs[i].n = vNTmp;
-		}
-	}
+        int nVC = pIMesh->VertexCount();
+        __VertexXyzNormal* pVs = pIMesh->Vertices();
+        __Vector3 vNTmp;
+        
+        for(int i = 0; i < nVC; i++)
+        {
+            vNTmp = pVs[i].n;
+            vNTmp *= mtxRot;
+            pVs[i].n = vNTmp;
+        }
+    }
 */
 
     __VertexSkinned * pVBone = pSkin->SkinVertices();
@@ -705,7 +705,7 @@ bool CN3E2Wrapper::ProcessSkin(MFnSkinCluster & mSkin, CN3Skin * pSkin) {
 
         MPoint mPt;
         mPt = mGIt.position();
-        //		mPt = mVArray[j]; // 원래 이게 정상이지만.. 바인딩 포즈로 돌아가야 한다..
+        //        mPt = mVArray[j]; // 원래 이게 정상이지만.. 바인딩 포즈로 돌아가야 한다..
 
         mPt *= mMtxM; // 행렬을 곱해주고..
         mPt.x *= 0.01;
@@ -917,13 +917,13 @@ bool CN3E2Wrapper::ProcessShape(MFnMesh & mMesh) {
             pPD->TexAlloc(1);
             pPD->TexSet(0, pTex); // Texture Setting ...
 
-            //			D3DFORMAT fmtTex = pTex->PixelFormat();
-            //			if(	fmtTex == D3DFMT_DXT2 ||
-            //				fmtTex == D3DFMT_DXT3 ||
-            //				fmtTex == D3DFMT_DXT4 ||
-            //				fmtTex == D3DFMT_DXT5 ) pPD->m_Mtl.nRenderFlags = RF_ALPHABLENDING;
+            //            D3DFORMAT fmtTex = pTex->PixelFormat();
+            //            if(    fmtTex == D3DFMT_DXT2 ||
+            //                fmtTex == D3DFMT_DXT3 ||
+            //                fmtTex == D3DFMT_DXT4 ||
+            //                fmtTex == D3DFMT_DXT5 ) pPD->m_Mtl.nRenderFlags = RF_ALPHABLENDING;
         } else {
-            //			this->ProcessMaterial(this->MeshGetShader(mMesh), &(pPD->m_Mtl));
+            //            this->ProcessMaterial(this->MeshGetShader(mMesh), &(pPD->m_Mtl));
             pPD->m_Mtl.dwColorOp = D3DTOP_SELECTARG1;
         }
         // 재질 및 텍스처 처리..
@@ -941,12 +941,12 @@ CN3Joint * CN3E2Wrapper::ProcessJoint(MFnIkJoint & mJoint) {
 
     // Rotation Order
     MTransformationMatrix::RotationOrder rotOrder = mJoint.rotationOrder(); // MTransformationMatrix::kXYZ;
-    //	if(rotOrder == MTransformationMatrix::kXYZ) pJoint->m_RotSeq = CN3Joint::ROT_SEQ_XYZ;
-    //	else if(rotOrder == MTransformationMatrix::kYXZ) pJoint->m_RotSeq = CN3Joint::ROT_SEQ_YXZ;
-    //	else
-    //	{
-    //		MessageBox(::GetActiveWindow(), "NotSupported rotation order. Must kXYZ or kYXZ", "Joint export Warning", MB_OK);
-    //	}
+    //    if(rotOrder == MTransformationMatrix::kXYZ) pJoint->m_RotSeq = CN3Joint::ROT_SEQ_XYZ;
+    //    else if(rotOrder == MTransformationMatrix::kYXZ) pJoint->m_RotSeq = CN3Joint::ROT_SEQ_YXZ;
+    //    else
+    //    {
+    //        MessageBox(::GetActiveWindow(), "NotSupported rotation order. Must kXYZ or kYXZ", "Joint export Warning", MB_OK);
+    //    }
 
     char szName[512];
     if (mJoint.parent(0).apiType() == MFn::kTransform) {
@@ -1049,8 +1049,8 @@ void CN3E2Wrapper::ProcessMatrix(MFnTransform & mTransform, __Matrix44 & mtx, __
                                  __Vector3 & vScale) {
     // 행렬 변환..
     static double dRs[4], dSs[3];
-    //	MTransformationMatrix::RotationOrder RotOrder = MTransformationMatrix::kXYZ;
-    //	mTransform.getRotation(dRs, RotOrder, MSpace::kTransform); // 회전
+    //    MTransformationMatrix::RotationOrder RotOrder = MTransformationMatrix::kXYZ;
+    //    mTransform.getRotation(dRs, RotOrder, MSpace::kTransform); // 회전
     MVector mVecPos;
     mVecPos = mTransform.translation(MSpace::kTransform);
     mVecPos *= 0.01; // 100 분의 1로.. 미터 좌표로 맞춘다..
@@ -1059,7 +1059,7 @@ void CN3E2Wrapper::ProcessMatrix(MFnTransform & mTransform, __Matrix44 & mtx, __
     mTransform.getScale(dSs); // 확대
 
     vPos.Set((float)mVecPos.x, (float)mVecPos.y, (float)mVecPos.z);
-    //	vRot.Set((float)-dRs[0], (float)-dRs[1], (float)dRs[2]);
+    //    vRot.Set((float)-dRs[0], (float)-dRs[1], (float)dRs[2]);
     vScale.Set((float)dSs[0], (float)dSs[1], (float)dSs[2]);
 
     mTransform.getRotationQuaternion(dRs[0], dRs[1], dRs[2], dRs[3]); // 회전 쿼터니언
@@ -1079,7 +1079,7 @@ void CN3E2Wrapper::ProcessMatrix(MFnTransform & mTransform, __Matrix44 & mtx, __
     // 최종 행렬 계산..
     mtx.Identity();
     static __Matrix44 mtxTmp;
-    //	mtxTmp.Rotation((float)-dRs[0], (float)-dRs[1], (float)dRs[2]);	mtx *= mtxTmp;
+    //    mtxTmp.Rotation((float)-dRs[0], (float)-dRs[1], (float)dRs[2]);    mtx *= mtxTmp;
     mtxTmp = qtRot;
     mtx *= mtxTmp;
     mtxTmp.Scale((float)dSs[0], (float)dSs[1], (float)dSs[2]);
@@ -1089,8 +1089,8 @@ void CN3E2Wrapper::ProcessMatrix(MFnTransform & mTransform, __Matrix44 & mtx, __
 
 bool CN3E2Wrapper::FindAnimCurve(MObject & mObj, MObjectArray & mAnimCurveArray) {
     MItDependencyGraph::Direction Direction = MItDependencyGraph::kUpstream;
-    //	MItDependencyGraph::Traversal TraversalType = MItDependencyGraph::kBreadthFirst;
-    //	MItDependencyGraph::Level Level = MItDependencyGraph::kNodeLevel;
+    //    MItDependencyGraph::Traversal TraversalType = MItDependencyGraph::kBreadthFirst;
+    //    MItDependencyGraph::Level Level = MItDependencyGraph::kNodeLevel;
     MItDependencyGraph::Traversal TraversalType = MItDependencyGraph::kDepthFirst;
     MItDependencyGraph::Level     Level = MItDependencyGraph::kPlugLevel;
     MFn::Type                     Filter = MFn::kAnimCurve;
@@ -1165,15 +1165,15 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
         return NULL;
     }
 
-    //	int nW = nWH[1], nH = nWH[0]; // 사이즈를 알아내고..
-    //	if(nW < 4 || nH < 4)
-    //	{
-    //		wsprintf(szInfo, "텍스처 파일 처리 오류 : 너비, 높이가 너무 작습니다. Surface - %s, Texture - %s", szSurface.asChar(), szTexture.asChar());
-    //		nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
-    //		::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
+    //    int nW = nWH[1], nH = nWH[0]; // 사이즈를 알아내고..
+    //    if(nW < 4 || nH < 4)
+    //    {
+    //        wsprintf(szInfo, "텍스처 파일 처리 오류 : 너비, 높이가 너무 작습니다. Surface - %s, Texture - %s", szSurface.asChar(), szTexture.asChar());
+    //        nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
+    //        ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
     //
-    //		return NULL;
-    //	}
+    //        return NULL;
+    //    }
 
     // 텍스처를 변환한다..
     MString      szFile;
@@ -1275,95 +1275,95 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
 
     return pTex;
     /*
-	// 이부분은 Maya Image 를 직접 읽는 부분이다..
-	IFFimageReader Reader;
-	if(Reader.open(szFile) == MS::kSuccess)
-	{
-		int nW2, nH2;
-		Reader.getSize(nW2, nH2);
-		if(nW != nW2 || nH != nH2)
-		{
-			wsprintf(szInfo, "텍스처 파일 처리 오류 : 파일을 읽을수 없습니다. - %s", szFile.asChar());
-			nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
-			::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
+    // 이부분은 Maya Image 를 직접 읽는 부분이다..
+    IFFimageReader Reader;
+    if(Reader.open(szFile) == MS::kSuccess)
+    {
+        int nW2, nH2;
+        Reader.getSize(nW2, nH2);
+        if(nW != nW2 || nH != nH2)
+        {
+            wsprintf(szInfo, "텍스처 파일 처리 오류 : 파일을 읽을수 없습니다. - %s", szFile.asChar());
+            nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
+            ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
 
-			delete pTex;
-			return NULL;
-		}
+            delete pTex;
+            return NULL;
+        }
 
-	//	if(Reader.isRGB()) nBPP += 3;
-	//	else
-	//	{
-	//		Reader.close();
-	//		DeleteFile(szFile.asChar()); // 파일 지우기..
-	//		wsprintf(szInfo, "텍스처 파일 처리 오류 : GrayScale Texture 는 차후에 지원 됩니다. Surface - %s, Texture - %s", szSurface.asChar(), szTexture.asChar());
-	//		::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
-	//		::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
-	//		return false;
-	//	}
-		
-		// Surface 생성 및 채우기.
-		LPDIRECT3DSURFACE9 lpSurf;
-		g_pEng->s_lpD3DDev->CreateOffscreenPlainSurface(nW, nH, D3DFMT_A8R8G8B8, D3DPOOL_DEFAULT, &lpSurf, NULL);
+    //    if(Reader.isRGB()) nBPP += 3;
+    //    else
+    //    {
+    //        Reader.close();
+    //        DeleteFile(szFile.asChar()); // 파일 지우기..
+    //        wsprintf(szInfo, "텍스처 파일 처리 오류 : GrayScale Texture 는 차후에 지원 됩니다. Surface - %s, Texture - %s", szSurface.asChar(), szTexture.asChar());
+    //        ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
+    //        ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
+    //        return false;
+    //    }
+        
+        // Surface 생성 및 채우기.
+        LPDIRECT3DSURFACE9 lpSurf;
+        g_pEng->s_lpD3DDev->CreateOffscreenPlainSurface(nW, nH, D3DFMT_A8R8G8B8, D3DPOOL_DEFAULT, &lpSurf, NULL);
 
-		if(NULL == lpSurf)
-		{
-			Reader.close();
-			wsprintf(szInfo, "텍스처 파일 처리 오류 : Direct3D Texture 생성 실패(%d, %d)", nW, nH);
-			nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
-			::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
+        if(NULL == lpSurf)
+        {
+            Reader.close();
+            wsprintf(szInfo, "텍스처 파일 처리 오류 : Direct3D Texture 생성 실패(%d, %d)", nW, nH);
+            nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
+            ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
 
-			return NULL;
-		}
+            return NULL;
+        }
 
-		Reader.readImage(); // 이미지 읽기..
-		int nBPP = 0;
-		nBPP = Reader.getBytesPerChannel() * 4;
-		BOOL bAlpha = Reader.hasAlpha();
-		const unsigned char * pBuffer = Reader.getPixelMap();
+        Reader.readImage(); // 이미지 읽기..
+        int nBPP = 0;
+        nBPP = Reader.getBytesPerChannel() * 4;
+        BOOL bAlpha = Reader.hasAlpha();
+        const unsigned char * pBuffer = Reader.getPixelMap();
 
-		D3DLOCKED_RECT LR;
-		lpSurf->LockRect(&LR, NULL, 0);
-		unsigned char *pDest = NULL, *pSrc = NULL;
-		for(int y = 0; y < nH; y++)
-		{
-			pSrc = (unsigned char*)pBuffer + (nH - y - 1) * nW * nBPP; // 거꾸로 저장되어 있다..
-			pDest = (unsigned char*)LR.pBits + y * LR.Pitch;
-			for(int x = 0; x < nW; x++, pDest += 4, pSrc += nBPP)
-			{
-				*(pDest+3) = *(pSrc+3); // Alpha
-				*(pDest+2) = *(pSrc+2); // Red
-				*(pDest+1) = *(pSrc+1); // Green
-				*(pDest+0) = *(pSrc+0); // Blue
-			}
-		}
-		lpSurf->UnlockRect();
-		Reader.close();
+        D3DLOCKED_RECT LR;
+        lpSurf->LockRect(&LR, NULL, 0);
+        unsigned char *pDest = NULL, *pSrc = NULL;
+        for(int y = 0; y < nH; y++)
+        {
+            pSrc = (unsigned char*)pBuffer + (nH - y - 1) * nW * nBPP; // 거꾸로 저장되어 있다..
+            pDest = (unsigned char*)LR.pBits + y * LR.Pitch;
+            for(int x = 0; x < nW; x++, pDest += 4, pSrc += nBPP)
+            {
+                *(pDest+3) = *(pSrc+3); // Alpha
+                *(pDest+2) = *(pSrc+2); // Red
+                *(pDest+1) = *(pSrc+1); // Green
+                *(pDest+0) = *(pSrc+0); // Blue
+            }
+        }
+        lpSurf->UnlockRect();
+        Reader.close();
 
-		if(bAlpha) pTex->CreateFromSurface(lpSurf, D3DFMT_DXT3, TRUE);
-//		if(bAlpha) pTex->CreateFromSurface(lpSurf, D3DFMT_DXT4, TRUE);
-		else pTex->CreateFromSurface(lpSurf, D3DFMT_DXT1, TRUE);
-		
-		lpSurf->Release(); lpSurf = NULL;
+        if(bAlpha) pTex->CreateFromSurface(lpSurf, D3DFMT_DXT3, TRUE);
+//        if(bAlpha) pTex->CreateFromSurface(lpSurf, D3DFMT_DXT4, TRUE);
+        else pTex->CreateFromSurface(lpSurf, D3DFMT_DXT1, TRUE);
+        
+        lpSurf->Release(); lpSurf = NULL;
 
-		if(pTex->Get() == NULL)
-		{
-			wsprintf(szInfo, "### !!! Texture Export 실패(%.3d) : w,h,w2,h2(%.4d, %.4d, %.4d, %.4d) FileName : \"%s\" TextureName \"%s\" MeshName - \"%s\"", 
-				m_pScene->s_MngTex.Count(), pTex->Width(), pTex->Height(), nW, nH, szFile.asChar(), pTex->m_szName.c_str(), mMesh.name().asChar());
-			nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
-			::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
+        if(pTex->Get() == NULL)
+        {
+            wsprintf(szInfo, "### !!! Texture Export 실패(%.3d) : w,h,w2,h2(%.4d, %.4d, %.4d, %.4d) FileName : \"%s\" TextureName \"%s\" MeshName - \"%s\"", 
+                m_pScene->s_MngTex.Count(), pTex->Width(), pTex->Height(), nW, nH, szFile.asChar(), pTex->m_szName.c_str(), mMesh.name().asChar());
+            nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
+            ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
 
-			delete pTex;
-			return NULL;
-		}
-	}
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            delete pTex;
+            return NULL;
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	// Output Window 에 텍스처 출력..
-	wsprintf(szInfo, "### Texture Export (%.3d) : w,h,w2,h2(%.4d, %.4d, %.4d, %.4d) FileName : \"%s\" TextureName \"%s\" MeshName - \"%s\"", 
-		m_pScene->s_MngTex.Count(), pTex->Width(), pTex->Height(), nW, nH, szFile.asChar(), pTex->m_szName.c_str(), mMesh.name().asChar());
-	nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
-	::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
+    // Output Window 에 텍스처 출력..
+    wsprintf(szInfo, "### Texture Export (%.3d) : w,h,w2,h2(%.4d, %.4d, %.4d, %.4d) FileName : \"%s\" TextureName \"%s\" MeshName - \"%s\"", 
+        m_pScene->s_MngTex.Count(), pTex->Width(), pTex->Height(), nW, nH, szFile.asChar(), pTex->m_szName.c_str(), mMesh.name().asChar());
+    nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
+    ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
 */
 }
 
@@ -1385,7 +1385,7 @@ int CN3E2Wrapper::ProcessMaterial(MObject mShaderObj, __Material * pMtl) {
         MFnLambertShader mShader(mShaderObj);
         DC = mShader.color();
         AC = mShader.ambientColor();
-        //		SC = mShader.specularColor();
+        //        SC = mShader.specularColor();
         TC = mShader.transparency();
         EC = mShader.incandescence();
     } else if (mShaderObj.apiType() == MFn::kReflect) {
@@ -1422,17 +1422,17 @@ int CN3E2Wrapper::ProcessMaterial(MObject mShaderObj, __Material * pMtl) {
     pMtl->Ambient.b = DC.b * 0.7f;
     pMtl->Ambient.a = pMtl->Diffuse.a;
 
-    //	pMtl->Specular.r = SC.r;
-    //	pMtl->Specular.g = SC.g;
-    //	pMtl->Specular.b = SC.b;
-    //	pMtl->Specular.a = 1.0f;
+    //    pMtl->Specular.r = SC.r;
+    //    pMtl->Specular.g = SC.g;
+    //    pMtl->Specular.b = SC.b;
+    //    pMtl->Specular.a = 1.0f;
 
-    //	pMtl->Emissive.r = EC.r;
-    //	pMtl->Emissive.g = EC.g;
-    //	pMtl->Emissive.b = EC.b;
-    //	pMtl->Emissive.a = 1.0f;
+    //    pMtl->Emissive.r = EC.r;
+    //    pMtl->Emissive.g = EC.g;
+    //    pMtl->Emissive.b = EC.b;
+    //    pMtl->Emissive.a = 1.0f;
 
-    //	pMtl->Power = 0.0f;
+    //    pMtl->Power = 0.0f;
 
     return 0;
 }
@@ -1474,7 +1474,7 @@ int CN3E2Wrapper::ProcessTransform(MFnTransform & mTransform, CN3Transform * pTr
     // 에니메이션..
     MObjectArray mAKs;
     this->FindAnimCurve(mTransform.object(), mAKs);
-    //	MStatus stat2 = mTransform.setRotationOrder(MTransformationMatrix::kXYZ, true);
+    //    MStatus stat2 = mTransform.setRotationOrder(MTransformationMatrix::kXYZ, true);
 
     MFnAnimCurve mACs[3][3];         // Position, Rotation, Scale...
     MFnAnimCurve mACJointOrients[3]; // Joint Orient
@@ -1536,12 +1536,12 @@ int CN3E2Wrapper::ProcessTransform(MFnTransform & mTransform, CN3Transform * pTr
             nKType = -1;
         } else // 이름으로 판단할수 없다면.. ID 로 판단한다...??
         {
-            //			MTypeId id = mAC.typeId();
-            //			DWORD dwID = id.id();
-            //			if(dwID == 0x5043544c) { nKType = 0 + nT; nT++; } // Translate
-            //			else if(dwID == 0x50435441) { nKType = 3 + nR; nR++; } // Rotate
-            //			else if(dwID == 0x50435455) { nKType = 6 + nS; nS++; } // Scale
-            //			else nKType = -1;
+            //            MTypeId id = mAC.typeId();
+            //            DWORD dwID = id.id();
+            //            if(dwID == 0x5043544c) { nKType = 0 + nT; nT++; } // Translate
+            //            else if(dwID == 0x50435441) { nKType = 3 + nR; nR++; } // Rotate
+            //            else if(dwID == 0x50435455) { nKType = 6 + nS; nS++; } // Scale
+            //            else nKType = -1;
 
             lstrcpy(szTmp, mAC.typeName().asChar());
             if (NULL != strstr(szTmp, "animCurveTL")) {
@@ -1607,7 +1607,7 @@ int CN3E2Wrapper::ProcessTransform(MFnTransform & mTransform, CN3Transform * pTr
                          mTransform.name().asChar());
                 MessageBox(::GetActiveWindow(), szInfo, "Invalid Animation Key", MB_OK);
             } else {
-                //				if(i == 0) this->ProcessAnimKey(mACs[i], &pTransform->m_KeyPos, true, 0.01f, false); // Translation Animation Key 를 처리한다..
+                //                if(i == 0) this->ProcessAnimKey(mACs[i], &pTransform->m_KeyPos, true, 0.01f, false); // Translation Animation Key 를 처리한다..
                 if (i == 0) {
                     this->ProcessAnimKey(mACs[i], &pTransform->m_KeyPos, true, 0.01f,
                                          false); // Translation Animation Key 를 처리한다..
@@ -1622,22 +1622,22 @@ int CN3E2Wrapper::ProcessTransform(MFnTransform & mTransform, CN3Transform * pTr
                         this->ProcessAnimKey(mACs[i], &pTransform->m_KeyRot, true, 1.0f, true,
                                              rotOrder); // Rotation Animation Key 를 쿼터니언으로 처리한다..
 
-                        //						if(pTransform->Type() & OBJ_JOINT) // 조인트인 경우...
-                        //						{
+                        //                        if(pTransform->Type() & OBJ_JOINT) // 조인트인 경우...
+                        //                        {
                         // -180 도에서 180 도 사이에 있게 만든다..
-                        //						int nKC = pTransform->m_KeyRot.Count();
-                        //						for(int i = 0; i < nKC; i++)
-                        //						{
-                        //							__Vector3* pV = pTransform->m_KeyRot.DataGet(i);
-                        //							if(pV->x > D3DX_PI) { while(pV->x > D3DX_PI) pV->x -= 3.1415192654f * 2.0f; }
-                        //							if(pV->y > D3DX_PI) { while(pV->y > D3DX_PI) pV->y -= 3.1415192654f * 2.0f; }
-                        //							if(pV->z > D3DX_PI) { while(pV->z > D3DX_PI) pV->z -= 3.1415192654f * 2.0f; }
+                        //                        int nKC = pTransform->m_KeyRot.Count();
+                        //                        for(int i = 0; i < nKC; i++)
+                        //                        {
+                        //                            __Vector3* pV = pTransform->m_KeyRot.DataGet(i);
+                        //                            if(pV->x > D3DX_PI) { while(pV->x > D3DX_PI) pV->x -= 3.1415192654f * 2.0f; }
+                        //                            if(pV->y > D3DX_PI) { while(pV->y > D3DX_PI) pV->y -= 3.1415192654f * 2.0f; }
+                        //                            if(pV->z > D3DX_PI) { while(pV->z > D3DX_PI) pV->z -= 3.1415192654f * 2.0f; }
                         //
-                        //							if(pV->x < -D3DX_PI) { while(pV->x < -D3DX_PI) pV->x += 3.1415192654f * 2.0f; }
-                        //							if(pV->y < -D3DX_PI) { while(pV->y < -D3DX_PI) pV->y += 3.1415192654f * 2.0f; }
-                        //							if(pV->z < -D3DX_PI) { while(pV->z < -D3DX_PI) pV->z += 3.1415192654f * 2.0f; }
-                        //						}
-                        //						}
+                        //                            if(pV->x < -D3DX_PI) { while(pV->x < -D3DX_PI) pV->x += 3.1415192654f * 2.0f; }
+                        //                            if(pV->y < -D3DX_PI) { while(pV->y < -D3DX_PI) pV->y += 3.1415192654f * 2.0f; }
+                        //                            if(pV->z < -D3DX_PI) { while(pV->z < -D3DX_PI) pV->z += 3.1415192654f * 2.0f; }
+                        //                        }
+                        //                        }
                     } // end of else
                 } else if (i == 2) {
                     this->ProcessAnimKey(mACs[i], &pTransform->m_KeyScale, false, 1.0f, false,
@@ -1688,8 +1688,8 @@ void CN3E2Wrapper::ProcessAnimKey(MFnAnimCurve * pmACs, CN3AnimKey * pKey, bool 
     if (bQuaternion) {
         double         dRs[4];
         __Quaternion * pQt;
-        //		MMatrix mMtx;
-        //		MTransformationMatrix mTMtx;
+        //        MMatrix mMtx;
+        //        MTransformationMatrix mTMtx;
         __Matrix44 mtxRotFinal, mtxRots[3];
         int        nRotSeqs[3] = {1, 0, 2}; // 기본 YXZ 회전..
 
@@ -1760,14 +1760,14 @@ void CN3E2Wrapper::ProcessAnimKey(MFnAnimCurve * pmACs, CN3AnimKey * pKey, bool 
             mtxRots[1].RotationY(-dRs[1]);
             mtxRots[2].RotationZ(dRs[2]);
 
-            //			mMtx.setToIdentity();
-            //			mTMtx = mMtx;
-            //			mTMtx.setRotation(dRs, MTransformationMatrix::kYXZ, MSpace::kTransform);
-            //			mTMtx.getRotationQuaternion(dRs[0], dRs[1], dRs[2], dRs[3], MSpace::kTransform);
-            //			pQt->x = (float)dRs[0];
-            //			pQt->y = (float)dRs[1];
-            //			pQt->z = (float)dRs[2];
-            //			pQt->w = -(float)dRs[3];
+            //            mMtx.setToIdentity();
+            //            mTMtx = mMtx;
+            //            mTMtx.setRotation(dRs, MTransformationMatrix::kYXZ, MSpace::kTransform);
+            //            mTMtx.getRotationQuaternion(dRs[0], dRs[1], dRs[2], dRs[3], MSpace::kTransform);
+            //            pQt->x = (float)dRs[0];
+            //            pQt->y = (float)dRs[1];
+            //            pQt->z = (float)dRs[2];
+            //            pQt->w = -(float)dRs[3];
 
             mtxRotFinal.Identity();
             mtxRotFinal *= mtxRots[nRotSeqs[0]];
@@ -1897,9 +1897,9 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
             MFnTransform mTJ(mJointRoot.parent(0)); // Joint Transform Node
 
             MTransformationMatrix mTMJ = mTJ.transformation();
-            //			MMatrix mMtxJT; mMtxJT.setToIdentity();
-            //			this->GetWorldTransform(mTJ, mMtxJT);
-            //			MTransformationMatrix mTMJ(mMtxJT);
+            //            MMatrix mMtxJT; mMtxJT.setToIdentity();
+            //            this->GetWorldTransform(mTJ, mMtxJT);
+            //            MTransformationMatrix mTMJ(mMtxJT);
 
             MVector                              mVPos;
             double                               dfScale[3], dfRot[3];
@@ -1984,33 +1984,33 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
 
     if (true == bCollisionMesh) // 충돌 체크 메시면....
     {
-        /*		CN3IMesh* pN3Mesh = this->ProcessIMesh(mMeshOrg); // Indexed Mesh 처리.
-		int nVC = pN3Mesh->VertexCount();
-		int nFC = pN3Mesh->FaceCount();
-		__VertexXyzNormal* pVSrc = pN3Mesh->Vertices();
-		WORD* pwISrc = pN3Mesh->VertexInices();
+        /*        CN3IMesh* pN3Mesh = this->ProcessIMesh(mMeshOrg); // Indexed Mesh 처리.
+        int nVC = pN3Mesh->VertexCount();
+        int nFC = pN3Mesh->FaceCount();
+        __VertexXyzNormal* pVSrc = pN3Mesh->Vertices();
+        WORD* pwISrc = pN3Mesh->VertexInices();
 
-		
-		CN3VMesh* pVMesh = new CN3VMesh();
-		pVMesh->CreateVertices(nVC);
-		pVMesh->CreateIndex(nFC * 3);
-		__Vector3* pVDest = pVMesh->Vertices();
-		WORD* pwIDest = pVMesh->Indices();
+        
+        CN3VMesh* pVMesh = new CN3VMesh();
+        pVMesh->CreateVertices(nVC);
+        pVMesh->CreateIndex(nFC * 3);
+        __Vector3* pVDest = pVMesh->Vertices();
+        WORD* pwIDest = pVMesh->Indices();
 
-		memcpy(pwIDest, pwISrc, nFC * 3 * 2);
-		for(int i = 0; i < nVC; i++) pVDest[i] = pVSrc[i].v;
+        memcpy(pwIDest, pwISrc, nFC * 3 * 2);
+        for(int i = 0; i < nVC; i++) pVDest[i] = pVSrc[i].v;
 
-		delete pN3Mesh;
+        delete pN3Mesh;
 
-		pVMesh->m_szName = "";
-		this->ProcessName(mMeshOrg.object(), pVMesh);
-		std::string szFN = "Chr\\" + pVMesh->m_szName + ".N3VMesh"; // 파일 이름 결정..
-		pVMesh->FileNameSet(szFN);
+        pVMesh->m_szName = "";
+        this->ProcessName(mMeshOrg.object(), pVMesh);
+        std::string szFN = "Chr\\" + pVMesh->m_szName + ".N3VMesh"; // 파일 이름 결정..
+        pVMesh->FileNameSet(szFN);
 
-		pChr->s_MngVMesh.Add(pVMesh);
-		pChr->CollisionMeshSet(pVMesh->m_szName);
+        pChr->s_MngVMesh.Add(pVMesh);
+        pChr->CollisionMeshSet(pVMesh->m_szName);
 
-		this->ProcessSkin(mSkin, pChr->CollisionSkin()); // Skin 처리.
+        this->ProcessSkin(mSkin, pChr->CollisionSkin()); // Skin 처리.
 */
     } else if (false == bCollisionMesh) // 충돌 체크 메시 아니면....정상적으로 진행..
     {
@@ -2126,14 +2126,14 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
             pPart->m_Mtl.dwColorOp = D3DTOP_MODULATE;
             pPart->TexSet(pTex);
 
-            //			D3DFORMAT fmtTex = pTex->PixelFormat();
-            //			if(	fmtTex == D3DFMT_DXT2 ||
-            //				fmtTex == D3DFMT_DXT3 ||
-            //				fmtTex == D3DFMT_DXT4 ||
-            //				fmtTex == D3DFMT_DXT5 ) pPart->m_Mtl.nRenderFlags = RF_ALPHABLENDING;
+            //            D3DFORMAT fmtTex = pTex->PixelFormat();
+            //            if(    fmtTex == D3DFMT_DXT2 ||
+            //                fmtTex == D3DFMT_DXT3 ||
+            //                fmtTex == D3DFMT_DXT4 ||
+            //                fmtTex == D3DFMT_DXT5 ) pPart->m_Mtl.nRenderFlags = RF_ALPHABLENDING;
         } else // 텍스처가 없는 경우에만 재질
         {
-            //			this->ProcessMaterial(this->MeshGetShader(mMeshOutput), &(pPart->m_Mtl));
+            //            this->ProcessMaterial(this->MeshGetShader(mMeshOutput), &(pPart->m_Mtl));
             pPart->m_Mtl.dwColorOp = D3DTOP_SELECTARG1;
         }
     } // if(false == bCollisionMesh) // 충돌 체크 메시 아니면....정상적으로 진행..
@@ -2162,30 +2162,30 @@ void CN3E2Wrapper::ProcessName(MObject mObj, std::string & szName) {
     }
 }
 /*
-const DWORD OBJ_UNKNOWN				= 0;
-const DWORD OBJ_BASE				= 0x1;
-const DWORD OBJ_BASE_HIERARCHY 		= 0x2;
-const DWORD OBJ_TRANSFORM 			= 0x4;
-const DWORD OBJ_SCENE				= 0x8;
-const DWORD OBJ_TEXTURE				= 0x10;
+const DWORD OBJ_UNKNOWN                = 0;
+const DWORD OBJ_BASE                = 0x1;
+const DWORD OBJ_BASE_HIERARCHY         = 0x2;
+const DWORD OBJ_TRANSFORM             = 0x4;
+const DWORD OBJ_SCENE                = 0x8;
+const DWORD OBJ_TEXTURE                = 0x10;
 
-const DWORD OBJ_CAMERA				= 0x20;
-const DWORD OBJ_LIGHT				= 0x40;
-const DWORD OBJ_SHAPE				= 0x80;
-const DWORD OBJ_CHARACTER			= 0x100;
+const DWORD OBJ_CAMERA                = 0x20;
+const DWORD OBJ_LIGHT                = 0x40;
+const DWORD OBJ_SHAPE                = 0x80;
+const DWORD OBJ_CHARACTER            = 0x100;
 
-const DWORD OBJ_MESH				= 0x200;
-const DWORD OBJ_MESH_PROGRESSIVE	= 0x400;
-const DWORD OBJ_MESH_INDEXED		= 0x800;
-const DWORD OBJ_MESH_VECTOR3		= 0x1000;
-const DWORD OBJ_JOINT				= 0x2000;
-const DWORD OBJ_SKIN				= 0x4000;
+const DWORD OBJ_MESH                = 0x200;
+const DWORD OBJ_MESH_PROGRESSIVE    = 0x400;
+const DWORD OBJ_MESH_INDEXED        = 0x800;
+const DWORD OBJ_MESH_VECTOR3        = 0x1000;
+const DWORD OBJ_JOINT                = 0x2000;
+const DWORD OBJ_SKIN                = 0x4000;
 
-const DWORD OBJ_DUMMY				= 0x8000;
-const DWORD OBJ_EFFECT				= 0x10000;
+const DWORD OBJ_DUMMY                = 0x8000;
+const DWORD OBJ_EFFECT                = 0x10000;
 
-const DWORD OBJ_ANIM_CONTROL		= 0x20000;
-const DWORD OBJ_SUBSCENE			= 0x40000;
+const DWORD OBJ_ANIM_CONTROL        = 0x20000;
+const DWORD OBJ_SUBSCENE            = 0x40000;
 */
 
 void CN3E2Wrapper::GetWorldTransform(MFnTransform & mTransform, MMatrix & mMtx) {
@@ -2266,7 +2266,7 @@ BOOL CALLBACK CN3E2Wrapper::DlgProcPane(HWND hDlg, UINT uMsg, WPARAM wParam, LPA
             g_pEng->RegistryValueGet(hKey, "Animation Key", &m_Option.bAnimationKey, 4);
             g_pEng->RegistryValueGet(hKey, "Generate File Name", &m_Option.bGenerateFileName, 4);
             g_pEng->RegistryValueGet(hKey, "Generate Smooth Normal", &m_Option.bGenerateSmoothNormal, 4);
-            //				g_pEng->RegistryValueGet(hKey, "Generate Progressive Mesh", &m_Option.bGenerateProgressiveMesh, 4);
+            //                g_pEng->RegistryValueGet(hKey, "Generate Progressive Mesh", &m_Option.bGenerateProgressiveMesh, 4);
             g_pEng->RegistryValueGet(hKey, "Generate Half Size Texture", &m_Option.bGenerateHalfSizeTexture, 4);
             g_pEng->RegistryValueGet(hKey, "Generate Compressed Texture", &m_Option.bGenerateCompressedTexture, 4);
 
@@ -2283,7 +2283,7 @@ BOOL CALLBACK CN3E2Wrapper::DlgProcPane(HWND hDlg, UINT uMsg, WPARAM wParam, LPA
 
         CheckDlgButton(hDlg, IDC_C_GENERATE_FILE_NAME, m_Option.bGenerateFileName);
         CheckDlgButton(hDlg, IDC_C_GENERATE_SMOOTH_NORMAL, m_Option.bGenerateSmoothNormal);
-        //			CheckDlgButton(hDlg, IDC_C_GENERATE_PROGRESSIVE_MESH, m_Option.bGenerateProgressiveMesh);
+        //            CheckDlgButton(hDlg, IDC_C_GENERATE_PROGRESSIVE_MESH, m_Option.bGenerateProgressiveMesh);
         CheckDlgButton(hDlg, IDC_C_GENERATE_HALF_SIZE_TEXTURE, m_Option.bGenerateHalfSizeTexture);
         CheckDlgButton(hDlg, IDC_C_GENERATE_COMPRESSED_TEXTURE, m_Option.bGenerateCompressedTexture);
 
@@ -2313,7 +2313,7 @@ BOOL CALLBACK CN3E2Wrapper::DlgProcPane(HWND hDlg, UINT uMsg, WPARAM wParam, LPA
 
             m_Option.bGenerateFileName = IsDlgButtonChecked(hDlg, IDC_C_GENERATE_FILE_NAME);
             m_Option.bGenerateSmoothNormal = IsDlgButtonChecked(hDlg, IDC_C_GENERATE_SMOOTH_NORMAL);
-            //				m_Option.bGenerateProgressiveMesh = IsDlgButtonChecked(hDlg, IDC_C_GENERATE_PROGRESSIVE_MESH);
+            //                m_Option.bGenerateProgressiveMesh = IsDlgButtonChecked(hDlg, IDC_C_GENERATE_PROGRESSIVE_MESH);
             m_Option.bGenerateHalfSizeTexture = IsDlgButtonChecked(hDlg, IDC_C_GENERATE_HALF_SIZE_TEXTURE);
             m_Option.bGenerateCompressedTexture = IsDlgButtonChecked(hDlg, IDC_C_GENERATE_COMPRESSED_TEXTURE);
 
@@ -2334,7 +2334,7 @@ BOOL CALLBACK CN3E2Wrapper::DlgProcPane(HWND hDlg, UINT uMsg, WPARAM wParam, LPA
                 g_pEng->RegistryValueSet(hKey, "Animation Key", &m_Option.bAnimationKey, 4);
                 g_pEng->RegistryValueSet(hKey, "Generate File Name", &m_Option.bGenerateFileName, 4);
                 g_pEng->RegistryValueSet(hKey, "Generate Smooth Normal", &m_Option.bGenerateSmoothNormal, 4);
-                //					g_pEng->RegistryValueSet(hKey, "Generate Progressive Mesh", &m_Option.bGenerateProgressiveMesh, 4);
+                //                    g_pEng->RegistryValueSet(hKey, "Generate Progressive Mesh", &m_Option.bGenerateProgressiveMesh, 4);
                 g_pEng->RegistryValueSet(hKey, "Generate Half Size Texture", &m_Option.bGenerateHalfSizeTexture, 4);
                 g_pEng->RegistryValueSet(hKey, "Generate Compressed Texture", &m_Option.bGenerateCompressedTexture, 4);
 

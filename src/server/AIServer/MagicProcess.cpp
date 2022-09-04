@@ -173,10 +173,10 @@ BYTE CMagicProcess::ExecuteType1(int magicid, int tid, int data1, int data2, int
     }
 
     damage = m_pSrcUser->GetDamage(tid, magicid); // Get damage points of enemy.
-                                                  // 	if(damage <= 0)	damage = 1;
+                                                  //     if(damage <= 0)    damage = 1;
                                                   //TRACE("magictype1 ,, magicid=%d, damage=%d\n", magicid, damage);
 
-    //	if (damage > 0) {
+    //    if (damage > 0) {
     CNpc * pNpc = NULL; // Pointer initialization!
     pNpc = m_pMain->m_arNpc.GetData(tid - NPC_BAND);
     if (pNpc == NULL || pNpc->m_NpcState == NPC_DEAD || pNpc->m_iHP == 0) {
@@ -195,9 +195,9 @@ BYTE CMagicProcess::ExecuteType1(int magicid, int tid, int data1, int data2, int
         // 공격 결과 전송
         m_pSrcUser->SendAttackSuccess(tid, ATTACK_SUCCESS, damage, pNpc->m_iHP);
     }
-    //	}
-    //	else
-    //		result = 0;
+    //    }
+    //    else
+    //        result = 0;
 
 packet_send:
     if (pMagic->bType2 == 0 || pMagic->bType2 == 1) {
@@ -231,7 +231,7 @@ BYTE CMagicProcess::ExecuteType2(int magicid, int tid, int data1, int data2, int
     memset(send_buff, NULL, 128); // For the packet.
 
     damage = m_pSrcUser->GetDamage(tid, magicid); // Get damage points of enemy.
-                                                  //	if(damage <= 0)	damage = 1;
+                                                  //    if(damage <= 0)    damage = 1;
     //TRACE("magictype2 ,, magicid=%d, damage=%d\n", magicid, damage);
 
     if (damage > 0) {
@@ -275,8 +275,8 @@ BYTE CMagicProcess::ExecuteType2(int magicid, int tid, int data1, int data2, int
             m_pSrcUser->SendAttackSuccess(tid, ATTACK_SUCCESS, damage, pNpc->m_iHP);
         }
     }
-    //	else
-    //		result = 0;
+    //    else
+    //        result = 0;
 
 packet_send:
     SetByte(send_buff, AG_MAGIC_ATTACK_RESULT, send_index);
@@ -320,7 +320,7 @@ void CMagicProcess::ExecuteType3(
 
     if (tid == -1) { // 지역 공격
         result = AreaAttack(3, magicid, moral, data1, data2, data3, dexpoint, righthand_damage);
-        //if(result == 0)		goto packet_send;
+        //if(result == 0)        goto packet_send;
         //else
         return;
     }
@@ -336,7 +336,7 @@ void CMagicProcess::ExecuteType3(
         return;
     }
 
-    //	if (pType->sFirstDamage < 0) {
+    //    if (pType->sFirstDamage < 0) {
     if ((pType->sFirstDamage < 0) && (pType->bDirectType == 1) && (magicid < 400000)) {
         damage = GetMagicDamage(tid, pType->sFirstDamage, pType->bAttribute, dexpoint, righthand_damage);
     } else {
@@ -348,7 +348,7 @@ void CMagicProcess::ExecuteType3(
     if (pType->sDuration == 0) {       // Non-Durational Spells.
         if (pType->bDirectType == 1) { // Health Point related !
             //damage = pType->sFirstDamage;     // Reduce target health point
-            //			if(damage >= 0)	{
+            //            if(damage >= 0)    {
             if (damage > 0) {
                 result = pNpc->SetHMagicDamage(damage, m_pSrcUser->m_pIocport);
             } else {
@@ -473,18 +473,18 @@ void CMagicProcess::ExecuteType4(int magicid, int sid, int tid, int data1, int d
         break;
 
     case 6: // 이동 속도 올리기..
-            //			if (pNpc->m_MagicType4[pType->bBuffType-1].sDurationTime > 0) {
-            //				result = 0 ;
-            //				goto fail_return ;
-            //			}
-            //			else {
+        //            if (pNpc->m_MagicType4[pType->bBuffType-1].sDurationTime > 0) {
+        //                result = 0 ;
+        //                goto fail_return ;
+        //            }
+        //            else {
         pNpc->m_MagicType4[pType->bBuffType - 1].byAmount = pType->bSpeed;
         pNpc->m_MagicType4[pType->bBuffType - 1].sDurationTime = pType->sDuration;
         pNpc->m_MagicType4[pType->bBuffType - 1].fStartTime = TimeGet();
         pNpc->m_fSpeed_1 = pNpc->m_fOldSpeed_1 * ((double)pType->bSpeed / 100);
         pNpc->m_fSpeed_2 = pNpc->m_fOldSpeed_2 * ((double)pType->bSpeed / 100);
         //TRACE("executeType4 ,, speed1=%.2f, %.2f,, type=%d, cur=%.2f, %.2f\n", pNpc->m_fOldSpeed_1, pNpc->m_fOldSpeed_2, pType->bSpeed, pNpc->m_fSpeed_1, pNpc->m_fSpeed_2);
-        //			}
+        //            }
         break;
 
     case 7: // 능력치 올리기...
@@ -618,7 +618,7 @@ short CMagicProcess::GetMagicDamage(int tid, int total_hit, int attribute, int d
         damage = (short)(total_hit - (0.7f * total_hit * total_r / 200));
         random = myrand(0, damage);
         damage = (short)(0.7f * (total_hit - (0.9f * total_hit * total_r / 200))) + 0.2f * random;
-        //		damage = damage + (3 * righthand_damage);
+        //        damage = damage + (3 * righthand_damage);
         damage = damage + righthand_damage;
     } else {
         damage = 0;
@@ -866,10 +866,10 @@ void CMagicProcess::AreaAttackDamage(int magictype, int rx, int rz, int magicid,
                         break;
 
                     case 6: // 이동 속도 올리기..
-                            //if (pNpc->m_MagicType4[pType4->bBuffType-1].sDurationTime > 0) {
-                            //	result = 0 ;
-                            //}
-                            //else {
+                        //if (pNpc->m_MagicType4[pType4->bBuffType-1].sDurationTime > 0) {
+                        //    result = 0 ;
+                        //}
+                        //else {
                         pNpc->m_MagicType4[pType4->bBuffType - 1].byAmount = pType4->bSpeed;
                         pNpc->m_MagicType4[pType4->bBuffType - 1].sDurationTime = pType4->sDuration;
                         pNpc->m_MagicType4[pType4->bBuffType - 1].fStartTime = TimeGet();
@@ -919,13 +919,13 @@ void CMagicProcess::AreaAttackDamage(int magictype, int rx, int rz, int magicid,
     }
 
     /*
-	for( Iter = pMap->m_ppRegion[rx][rz].m_RegionNpcArray.m_UserTypeMap.begin(); Iter != pMap->m_ppRegion[rx][rz].m_RegionNpcArray.m_UserTypeMap.end(); ) {
-		if( bDead ) {
-			Iter = pMap->m_ppRegion[rx][rz].m_RegionNpcArray.DeleteData( Iter );
-			continue;
-		}
-		Iter++;
-	}	*/
+    for( Iter = pMap->m_ppRegion[rx][rz].m_RegionNpcArray.m_UserTypeMap.begin(); Iter != pMap->m_ppRegion[rx][rz].m_RegionNpcArray.m_UserTypeMap.end(); ) {
+        if( bDead ) {
+            Iter = pMap->m_ppRegion[rx][rz].m_RegionNpcArray.DeleteData( Iter );
+            continue;
+        }
+        Iter++;
+    }    */
 }
 
 short CMagicProcess::GetWeatherDamage(short damage, short attribute) {

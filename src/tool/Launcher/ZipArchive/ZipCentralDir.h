@@ -13,9 +13,9 @@
 #include "ZipAutoBuffer.h"
 
 /**
-	Used in fast finding files by the filename.
-	\see CZipCentralDir::m_findarray
-	\see CZipArchive::FindFile
+    Used in fast finding files by the filename.
+    \see CZipCentralDir::m_findarray
+    \see CZipArchive::FindFile
 */
 struct CZipFindFast {
     CZipFindFast() {
@@ -26,41 +26,41 @@ struct CZipFindFast {
         : m_pHeader(pHeader)
         , m_uIndex(uIndex) {}
     /**
-		We extract a name from it.
-	*/
+        We extract a name from it.
+    */
     CZipFileHeader * m_pHeader;
 
     /**
-		The index in the central directory of the \e m_pHeader.
-	*/
+        The index in the central directory of the \e m_pHeader.
+    */
     WORD m_uIndex;
 };
 
 class CZipCentralDir {
 
   public:
-    //		end of central dir signature    4 bytes  (0x06054b50)
+    //        end of central dir signature    4 bytes  (0x06054b50)
     char m_szSignature[4];
-    //		number of this disk             2 bytes
+    //        number of this disk             2 bytes
     WORD m_uThisDisk;
-    //		number of the disk with the
-    //		start of the central directory  2 bytes
+    //        number of the disk with the
+    //        start of the central directory  2 bytes
     WORD m_uDiskWithCD;
-    //		total number of entries in
-    //		the central dir on this disk    2 bytes
+    //        total number of entries in
+    //        the central dir on this disk    2 bytes
     WORD m_uDiskEntriesNo;
-    //		total number of entries in
-    //		the central dir                 2 bytes
+    //        total number of entries in
+    //        the central dir                 2 bytes
     WORD m_uEntriesNumber;
-    //		size of the central directory   4 bytes
+    //        size of the central directory   4 bytes
     DWORD m_uSize;
-    //		offset of start of central
-    //		directory with respect to
-    //		the starting disk number        4 bytes
+    //        offset of start of central
+    //        directory with respect to
+    //        the starting disk number        4 bytes
     DWORD m_uOffset;
-    //		zipfile comment length          2 bytes
-    // 	WORD m_uCommentSize;
-    //		zipfile comment (variable size)
+    //        zipfile comment length          2 bytes
+    //     WORD m_uCommentSize;
+    //        zipfile comment (variable size)
     CZipAutoBuffer   m_pszComment;
     bool             m_bFindFastEnabled;
     CZipFileHeader * m_pOpenedFile;
@@ -90,31 +90,31 @@ class CZipCentralDir {
     int                                         FindFileNameIndex(LPCTSTR lpszFileName, bool bCaseSensitive);
     void                                        BuildFindFastArray();
     /**
-		- If \c true, the conversion of the filenames takes 
-		place after opening the archive (after reading the central directory 
-		from the file), and before writing the central directory back to
-		the archive.
-		- If \c false, the conversion takes place on each call to CZipArchive::GetFileInfo
+        - If \c true, the conversion of the filenames takes 
+        place after opening the archive (after reading the central directory 
+        from the file), and before writing the central directory back to
+        the archive.
+        - If \c false, the conversion takes place on each call to CZipArchive::GetFileInfo
 
-		Set it to \c true when you plan to use CZipArchive::FindFile or get the stored files information. <BR>
-		Set it to \c false when you plan mostly to only modify the archive.
+        Set it to \c true when you plan to use CZipArchive::FindFile or get the stored files information. <BR>
+        Set it to \c false when you plan mostly to only modify the archive.
 
-		\b Default: \c true
-		\note Set it before opening the archive.
-		\see ConvertFileName
-	*/
+        \b Default: \c true
+        \note Set it before opening the archive.
+        \see ConvertFileName
+    */
     bool m_bConvertAfterOpen;
 
     /**
-	Convert the filename of the CZipFileHeader.
-	\param	bFromZip
-		if \c true, convert from archive format
-	\param	bAfterOpen
-		if \c true, called after opening the archive or before closing
-	\param	pHeader		
-		the header to have filename converted; if \c NULL convert the currently
-		opened file
-	\see m_bConvertAfterOpen
+    Convert the filename of the CZipFileHeader.
+    \param    bFromZip
+        if \c true, convert from archive format
+    \param    bAfterOpen
+        if \c true, called after opening the archive or before closing
+    \param    pHeader        
+        the header to have filename converted; if \c NULL convert the currently
+        opened file
+    \see m_bConvertAfterOpen
 */
     void ConvertFileName(bool bFromZip, bool bAfterOpen, CZipFileHeader * pHeader = NULL) {
         if (bAfterOpen != m_bConvertAfterOpen) {

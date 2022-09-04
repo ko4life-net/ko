@@ -100,13 +100,13 @@ MPxFileTranslator::MFileKind CN3E2Translator::identifyFile(const MFileObject & f
     MFnPlugin plugin(obj, "Noah System", CN3E2Translator::getVersion().asChar(), "Any");
 
     /*
-	// Get Maya-set values and initialize them --
-	// if user wants to override them then that's ok
-	MTime startFrame( MAnimControl::minTime().value(), MTime::uiUnit() );
-	MTime endFrame( MAnimControl::maxTime().value(), MTime::uiUnit() );
-	MTime currFrame( MAnimControl::currentTime().value(), MTime::uiUnit() );
-	MAnimControl::PlaybackMode playbackMode = MAnimControl::playbackMode();
-	MAnimControl::PlaybackViewMode playbackViewMode = MAnimControl::viewMode();
+    // Get Maya-set values and initialize them --
+    // if user wants to override them then that's ok
+    MTime startFrame( MAnimControl::minTime().value(), MTime::uiUnit() );
+    MTime endFrame( MAnimControl::maxTime().value(), MTime::uiUnit() );
+    MTime currFrame( MAnimControl::currentTime().value(), MTime::uiUnit() );
+    MAnimControl::PlaybackMode playbackMode = MAnimControl::playbackMode();
+    MAnimControl::PlaybackViewMode playbackViewMode = MAnimControl::viewMode();
 */
 
     //Register the translator with the system (NAME, image, creator func. mel script

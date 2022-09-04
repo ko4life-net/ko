@@ -216,8 +216,8 @@ void CDlgDTexGroupView::OnPaint() {
 BOOL CDlgDTexGroupView::OnInitDialog() {
     CDialog::OnInitDialog();
 
-    //	CWnd* pView = GetDlgItem(IDC_PREVIEW_DTEX_GROUP);
-    //	pView->SetWindowPos(NULL, 0, 0, (int)m_fTexSurfaceSize, (int)m_fTexSurfaceSize, SWP_DRAWFRAME|SWP_NOMOVE);
+    //    CWnd* pView = GetDlgItem(IDC_PREVIEW_DTEX_GROUP);
+    //    pView->SetWindowPos(NULL, 0, 0, (int)m_fTexSurfaceSize, (int)m_fTexSurfaceSize, SWP_DRAWFRAME|SWP_NOMOVE);
 
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
 

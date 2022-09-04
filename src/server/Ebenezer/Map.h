@@ -25,8 +25,8 @@ class C3DMap {
 
     EventArray  m_EventArray;
     CN3ShapeMgr m_N3ShapeMgr;
-    //	int			m_nMapSize;		// Grid Unit ex) 4m
-    //	float		m_fUnitDist;	// i Grid Distance
+    //    int            m_nMapSize;        // Grid Unit ex) 4m
+    //    float        m_fUnitDist;    // i Grid Distance
 
     float ** m_fHeight;
 

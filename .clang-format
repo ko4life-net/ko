@@ -12,6 +12,13 @@ AlignConsecutiveMacros: true
 AlignConsecutiveDeclarations: true
 AlignArrayOfStructures: Left
 BreakConstructorInitializers: BeforeComma
-# InsertBraces: true # Uncomment this once LLVM 15 is official
 BreakBeforeBraces: Attach
 AllowShortFunctionsOnASingleLine: Inline
+
+# Feature from LLVM-15.
+# Use src/vendor/opt/bin/clang-format.exe, which is from LLVM-16.
+# You can also set in Visual Studio settings:
+# Tools -> Options -> Search clang-format:
+#   1. Tick: Use custom clang-format
+#   2. Browse path to src/vendor/opt/bin/clang-format.exe
+InsertBraces: true

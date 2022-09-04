@@ -112,9 +112,9 @@ void CN3Mesh::MakeIndexed() {
         int  j;
         for (j = 0; j < nVCount; j++) {
             if (m_pVertices[i].x == pVs[j].x && m_pVertices[i].y == pVs[j].y && m_pVertices[i].z == pVs[j].z &&
-                //				m_pVertices[i].nx == pVs[j].nx &&
-                //				m_pVertices[i].ny == pVs[j].ny &&
-                //				m_pVertices[i].nz == pVs[j].nz &&
+                //                m_pVertices[i].nx == pVs[j].nx &&
+                //                m_pVertices[i].ny == pVs[j].ny &&
+                //                m_pVertices[i].nz == pVs[j].nz &&
                 m_pVertices[i].tu == pVs[j].tu && m_pVertices[i].tv == pVs[j].tv) {
                 bAccord = TRUE;
                 break;
@@ -297,12 +297,12 @@ void CN3Mesh::Create_Axis(float fLength) {
     this->FindMinMax();
 
     // x รเ
-    //	m_pVertices[0].Set(-fLength/2.0f, 0, 0, 0, 1, 0, 0, 0);
-    //	m_pVertices[1].Set( fLength/2.0f, 0, 0, 0, 1, 0, 0, 0);
-    //	m_pVertices[2] = m_pVertices[1];
-    //	m_pVertices[3] = m_pVertices[1];
-    //	m_pVertices[3].x -= fLength / 20.0f;
-    //	m_pVertices[3].y += fLength / 20.0f;
+    //    m_pVertices[0].Set(-fLength/2.0f, 0, 0, 0, 1, 0, 0, 0);
+    //    m_pVertices[1].Set( fLength/2.0f, 0, 0, 0, 1, 0, 0, 0);
+    //    m_pVertices[2] = m_pVertices[1];
+    //    m_pVertices[3] = m_pVertices[1];
+    //    m_pVertices[3].x -= fLength / 20.0f;
+    //    m_pVertices[3].y += fLength / 20.0f;
 
     m_pVertices[0].Set(0, 0, 0, 0, 1, 0, 0, 0);
     m_pVertices[1].Set(fLength, 0, 0, 0, 1, 0, 0, 0);

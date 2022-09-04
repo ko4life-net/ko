@@ -30,7 +30,7 @@ void CN3ShapeMod::Release() {
         delete[] m_pMatchPart2ModPart;
         m_pMatchPart2ModPart = NULL;
     }
-    //	m_iModType = 0;
+    //    m_iModType = 0;
     m_fTimeChanged = 0.0f;
     m_fTimeChanging = 0.0f;
 }
@@ -70,14 +70,14 @@ BOOL CN3ShapeMod::LoadStateInfo(FILE * stream) // 상태 정보를 읽어온다.(text로부
     if (NULL == stream) {
         return FALSE;
     }
-    //	Release();
+    //    Release();
 
     int result;
-    //	char szSrcName[_MAX_PATH];	// shape source파일 이름
-    //	result = fscanf(stream, "Shape_FName=%s\n", szSrcName);	__ASSERT(result != EOF, "잘못된 N3ShapeMod 세팅 파일");
+    //    char szSrcName[_MAX_PATH];    // shape source파일 이름
+    //    result = fscanf(stream, "Shape_FName=%s\n", szSrcName);    __ASSERT(result != EOF, "잘못된 N3ShapeMod 세팅 파일");
 
     // shape load하기
-    //	if (!this->Load(szSrcName)) return FALSE;
+    //    if (!this->Load(szSrcName)) return FALSE;
 
     // 변화하는 PMesh의 갯수 및 State의 수
     result = fscanf(stream, "PMesh_Count=%d\n", &m_iModPartCount);
@@ -90,16 +90,16 @@ BOOL CN3ShapeMod::LoadStateInfo(FILE * stream) // 상태 정보를 읽어온다.(text로부
     __Vector3    vAxis;
     float        fDegree;
     __Quaternion qRot;
-    //	m_ModShape.pShapeStateInfos = new __ModPosRotScale[m_iStateCount];
-    //	for (int i=0; i<m_iStateCount; ++i)
-    //	{
-    //		result = fscanf(stream, "S_Pos(%f, %f, %f)\n", &vPos.x, &vPos.y, &vPos.z);		__ASSERT(result != EOF, "잘못된 N3ShapeMod 세팅 파일");
-    //		result = fscanf(stream, "S_Rot(%f, %f, %f)\n", &vRot.x, &vRot.y, &vRot.z);		__ASSERT(result != EOF, "잘못된 N3ShapeMod 세팅 파일");
-    //		result = fscanf(stream, "S_Scale(%f, %f, %f)\n", &vScale.x, &vScale.y, &vScale.z);		__ASSERT(result != EOF, "잘못된 N3ShapeMod 세팅 파일");
-    //		m_ModShape.pShapeStateInfos[i].vPos = vPos;
-    //		m_ModShape.pShapeStateInfos[i].vRot = vRot;
-    //		m_ModShape.pShapeStateInfos[i].vScale = vScale;
-    //	}
+    //    m_ModShape.pShapeStateInfos = new __ModPosRotScale[m_iStateCount];
+    //    for (int i=0; i<m_iStateCount; ++i)
+    //    {
+    //        result = fscanf(stream, "S_Pos(%f, %f, %f)\n", &vPos.x, &vPos.y, &vPos.z);        __ASSERT(result != EOF, "잘못된 N3ShapeMod 세팅 파일");
+    //        result = fscanf(stream, "S_Rot(%f, %f, %f)\n", &vRot.x, &vRot.y, &vRot.z);        __ASSERT(result != EOF, "잘못된 N3ShapeMod 세팅 파일");
+    //        result = fscanf(stream, "S_Scale(%f, %f, %f)\n", &vScale.x, &vScale.y, &vScale.z);        __ASSERT(result != EOF, "잘못된 N3ShapeMod 세팅 파일");
+    //        m_ModShape.pShapeStateInfos[i].vPos = vPos;
+    //        m_ModShape.pShapeStateInfos[i].vRot = vRot;
+    //        m_ModShape.pShapeStateInfos[i].vScale = vScale;
+    //    }
 
     // Part 상태 정보 읽어오기
     __ASSERT(m_iModPartCount > 0, "m_iModPartCount가 1이상이어야 합니다.");

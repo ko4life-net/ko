@@ -96,7 +96,7 @@ const BYTE RESERVED = 14;
 #define USER_STANDING 0X01 // 서 있다.
 #define USER_SITDOWN  0X02 // 앉아 있다.
 #define USER_DEAD     0x03 // 듀거떠
-//#define USER_BLINKING			0x04		// 방금 살아났어!!!
+//#define USER_BLINKING            0x04        // 방금 살아났어!!!
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 // Magic State
@@ -111,11 +111,11 @@ const BYTE RESERVED = 14;
 ////////////////////////////////////////////////////////////
 // Knights Authority Type
 /*
-#define CHIEF				0x06
-#define VICECHIEF			0x05*/
+#define CHIEF                0x06
+#define VICECHIEF            0x05*/
 #define OFFICER 0x04
 #define KNIGHT  0x03
-//#define TRAINEE				0x02
+//#define TRAINEE                0x02
 #define PUNISH 0x01
 
 #define CHIEF           0x01 // 단장
@@ -373,7 +373,7 @@ struct _USER_DATA {
 
     BYTE       m_bstrSkill[9];                    // 직업별 스킬
     _ITEM_DATA m_sItemArray[HAVE_MAX + SLOT_MAX]; // 42*8 bytes
-    _ITEM_DATA m_sWarehouseArray[WAREHOUSE_MAX];  // 창고 아이템	196*8 bytes
+    _ITEM_DATA m_sWarehouseArray[WAREHOUSE_MAX];  // 창고 아이템    196*8 bytes
 
     BYTE  m_bLogout;    // 로그아웃 플래그
     BYTE  m_bWarehouse; // 창고 거래 했었나?

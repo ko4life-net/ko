@@ -51,11 +51,11 @@ class CN3VMesh : public CN3BaseFileAccess {
     CN3VMesh();
     virtual ~CN3VMesh();
 
-    //	By : Ecli666 ( On 2002-08-09 오후 2:47:59 )
+    //    By : Ecli666 ( On 2002-08-09 오후 2:47:59 )
     //
     int       GetColIndexByiOrder(int iOrder);
     __Vector3 GetColVertexByIndex(int iIndex);
     void      PartialColRender(int iCount, int * piIndices);
     void      PartialGetCollision(int iIndex, __Vector3 & vec);
-    //	~(By Ecli666 On 2002-08-09 오후 2:47:59 )
+    //    ~(By Ecli666 On 2002-08-09 오후 2:47:59 )
 };

@@ -1,14 +1,14 @@
 /**********************************************************************
  *<
-	FILE: DllEntry.cpp
+    FILE: DllEntry.cpp
 
-	DESCRIPTION:Contains the Dll Entry stuff
+    DESCRIPTION:Contains the Dll Entry stuff
 
-	CREATED BY: 
+    CREATED BY: 
 
-	HISTORY: 
+    HISTORY: 
 
- *>	Copyright (c) 1997, All Rights Reserved.
+ *>    Copyright (c) 1997, All Rights Reserved.
  **********************************************************************/
 #include "N3DExp.h"
 

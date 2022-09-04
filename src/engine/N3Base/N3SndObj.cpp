@@ -36,7 +36,7 @@ CN3SndObj::~CN3SndObj() {
 }
 
 //
-//	Initialize....
+//    Initialize....
 //
 void CN3SndObj::Init() {
     Release();
@@ -55,7 +55,7 @@ void CN3SndObj::Init() {
 }
 
 //
-//	Release...
+//    Release...
 //
 void CN3SndObj::Release() {
     if (m_lpDS3DBuff) {
@@ -259,14 +259,14 @@ bool CN3SndObj::Duplicate(CN3SndObj * pSrc, e_SndType eType, D3DVECTOR * pPos) {
         }
 
         /*
-		if(pSrc->m_lpDS3DBuff)
-		{
-			DS3DBUFFER BuffParam;
-			BuffParam.dwSize = sizeof(DS3DBUFFER);
-			hr = pSrc->m_lpDS3DBuff->GetAllParameters(&BuffParam);
-		  	hr = m_lpDS3DBuff->SetAllParameters(&BuffParam, DS3D_DEFERRED);			
-		}
-		*/
+        if(pSrc->m_lpDS3DBuff)
+        {
+            DS3DBUFFER BuffParam;
+            BuffParam.dwSize = sizeof(DS3DBUFFER);
+            hr = pSrc->m_lpDS3DBuff->GetAllParameters(&BuffParam);
+              hr = m_lpDS3DBuff->SetAllParameters(&BuffParam, DS3D_DEFERRED);            
+        }
+        */
 
         if (pPos) {
             this->SetPos(pPos);
@@ -363,8 +363,8 @@ bool CN3SndObj::RestoreBuffer() {
 }
 
 //
-//	SetVolume...
-//	range : [0,100]
+//    SetVolume...
+//    range : [0,100]
 //
 void CN3SndObj::SetVolume(int Vol) {
     if (NULL == m_lpDSBuff) {

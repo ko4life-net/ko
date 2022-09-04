@@ -628,7 +628,7 @@ BOOL CPropertyView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
     GetDocument()->SetModifiedFlag();
     pFrm->GetRightPane()->Invalidate();
     return TRUE;
-    //	return CFormView::OnNotify(wParam, lParam, pResult);
+    //    return CFormView::OnNotify(wParam, lParam, pResult);
 }
 
 void CPropertyView::OnUpdate(CView * pSender, LPARAM lHint, CObject * pHint) {

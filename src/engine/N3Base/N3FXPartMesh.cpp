@@ -154,7 +154,7 @@ bool CN3FXPartMesh::ParseScript(char * szCommand, char * szBuff0, char * szBuff1
 #endif // end of _N3TOOL
 
 //
-//	init...
+//    init...
 //
 void CN3FXPartMesh::Init() {
     CN3FXPartBase::Init();
@@ -390,82 +390,82 @@ bool CN3FXPartMesh::Tick() {
 
     return true;
 
-    /*	
-	//회전과 이동..
-	__Matrix44 mtx;
-	mtx.Identity();]
-	mtx.Rotation(m_fCurrLife*m_vRotVelocity);
-	__Quaternion qtLocalRot(mtx);
-	
-	//mesh방향과 bundle방향을 맞춰라...
-	__Quaternion qtBundle;
-	__Vector3 vDirAxis;
-	float fDirAng;
-	
-	vDirAxis.Cross(m_vDir, m_pRefBundle->m_vDir);
-	int tmp;
-	tmp = vDirAxis.x*10000.0f;
-	vDirAxis.x = (float)(tmp)/10000.0f;
-	tmp = vDirAxis.y*10000.0f;
-	vDirAxis.y = (float)(tmp)/10000.0f;
-	tmp = vDirAxis.z*10000.0f;
-	vDirAxis.z = (float)(tmp)/10000.0f;
+    /*    
+    //회전과 이동..
+    __Matrix44 mtx;
+    mtx.Identity();]
+    mtx.Rotation(m_fCurrLife*m_vRotVelocity);
+    __Quaternion qtLocalRot(mtx);
+    
+    //mesh방향과 bundle방향을 맞춰라...
+    __Quaternion qtBundle;
+    __Vector3 vDirAxis;
+    float fDirAng;
+    
+    vDirAxis.Cross(m_vDir, m_pRefBundle->m_vDir);
+    int tmp;
+    tmp = vDirAxis.x*10000.0f;
+    vDirAxis.x = (float)(tmp)/10000.0f;
+    tmp = vDirAxis.y*10000.0f;
+    vDirAxis.y = (float)(tmp)/10000.0f;
+    tmp = vDirAxis.z*10000.0f;
+    vDirAxis.z = (float)(tmp)/10000.0f;
 
-	if(vDirAxis.x==0.0f && vDirAxis.y==0.0f && vDirAxis.z==0.0f) vDirAxis.Set(0,1,0);
+    if(vDirAxis.x==0.0f && vDirAxis.y==0.0f && vDirAxis.z==0.0f) vDirAxis.Set(0,1,0);
 
-	fDirAng = acos((double)m_vDir.Dot(m_pRefBundle->m_vDir));
-	
-	qtBundle.RotationAxis(vDirAxis, fDirAng);
+    fDirAng = acos((double)m_vDir.Dot(m_pRefBundle->m_vDir));
+    
+    qtBundle.RotationAxis(vDirAxis, fDirAng);
 
-	__Quaternion qt = qtLocalRot * qtBundle;
-	m_pShape->RotSet(qt);
-			
-	m_vCurrVelocity += m_vAcceleration*CN3Base::s_fSecPerFrm;
-	m_vCurrPos += m_vCurrVelocity*CN3Base::s_fSecPerFrm;
-	m_pShape->PosSet(m_vCurrPos+m_pRefBundle->m_vPos);
+    __Quaternion qt = qtLocalRot * qtBundle;
+    m_pShape->RotSet(qt);
+            
+    m_vCurrVelocity += m_vAcceleration*CN3Base::s_fSecPerFrm;
+    m_vCurrPos += m_vCurrVelocity*CN3Base::s_fSecPerFrm;
+    m_pShape->PosSet(m_vCurrPos+m_pRefBundle->m_vPos);
 
-	
-	m_vCurrScaleVel += m_vScaleAccel*m_fCurrLife;
-	
-	__Vector3 vScale = m_vCurrScaleVel*m_fCurrLife;
-	vScale += m_vUnitScale;
-	if(m_pRefBundle->m_bDependScale)
-	{
-		vScale.x *= m_pRefBundle->m_vTargetScale.x;
-		vScale.y *= m_pRefBundle->m_vTargetScale.y;
-		vScale.z *= m_pRefBundle->m_vTargetScale.z;
-	}
-	if(vScale.x < 0) vScale.x = 0;
-	if(vScale.y < 0) vScale.y = 0;
-	if(vScale.z < 0) vScale.z = 0;
+    
+    m_vCurrScaleVel += m_vScaleAccel*m_fCurrLife;
+    
+    __Vector3 vScale = m_vCurrScaleVel*m_fCurrLife;
+    vScale += m_vUnitScale;
+    if(m_pRefBundle->m_bDependScale)
+    {
+        vScale.x *= m_pRefBundle->m_vTargetScale.x;
+        vScale.y *= m_pRefBundle->m_vTargetScale.y;
+        vScale.z *= m_pRefBundle->m_vTargetScale.z;
+    }
+    if(vScale.x < 0) vScale.x = 0;
+    if(vScale.y < 0) vScale.y = 0;
+    if(vScale.z < 0) vScale.z = 0;
 
-	//m_pShape->ScaleSet(m_vUnitScale.x+vScale.x, m_vUnitScale.y+vScale.y, m_vUnitScale.z+vScale.z);
-	m_pShape->ScaleSet(vScale.x, vScale.y, vScale.z);
+    //m_pShape->ScaleSet(m_vUnitScale.x+vScale.x, m_vUnitScale.y+vScale.y, m_vUnitScale.z+vScale.z);
+    m_pShape->ScaleSet(vScale.x, vScale.y, vScale.z);
 
-	//텍스쳐 이동..
-	if(m_cTextureMoveDir>0)
-	{
-		int cnt = m_pShape->PartCount();
-		for(int i=0;i<cnt;i++)
-		{
-			int VertexCount = m_pShape->Part(i)->Mesh()->GetNumVertices();
+    //텍스쳐 이동..
+    if(m_cTextureMoveDir>0)
+    {
+        int cnt = m_pShape->PartCount();
+        for(int i=0;i<cnt;i++)
+        {
+            int VertexCount = m_pShape->Part(i)->Mesh()->GetNumVertices();
 
-			LPDIRECT3DVERTEXBUFFER9 pVB = m_pShape->Part(i)->Mesh()->GetVertexBuffer();
-			
-			__VertexXyzColorT1* pVertex;
-			HRESULT hr = pVB->Lock(0, 0, (VOID**)&pVertex, 0);
-			if (FAILED(hr)) continue;
+            LPDIRECT3DVERTEXBUFFER9 pVB = m_pShape->Part(i)->Mesh()->GetVertexBuffer();
+            
+            __VertexXyzColorT1* pVertex;
+            HRESULT hr = pVB->Lock(0, 0, (VOID**)&pVertex, 0);
+            if (FAILED(hr)) continue;
 
-			for(int j=0;j<VertexCount;j++)
-			{
-				pVertex[j].tu += m_fu*CN3Base::s_fSecPerFrm;
-				pVertex[j].tv += m_fv*CN3Base::s_fSecPerFrm;
-			}
-			pVB->Unlock();
-		}
-	}
-	m_pShape->Tick(fFrm);
-	return true;
+            for(int j=0;j<VertexCount;j++)
+            {
+                pVertex[j].tu += m_fu*CN3Base::s_fSecPerFrm;
+                pVertex[j].tv += m_fv*CN3Base::s_fSecPerFrm;
+            }
+            pVB->Unlock();
+        }
+    }
+    m_pShape->Tick(fFrm);
+    return true;
 */
 }
 
@@ -609,7 +609,7 @@ int CN3FXPartMesh::NumVertices(int Part) {
     if (!m_pShape) {
         return 0;
     }
-    //	return m_pShape->Part(Part)->Mesh()->GetNumVertices(); //this_fx
+    //    return m_pShape->Part(Part)->Mesh()->GetNumVertices(); //this_fx
     return m_pShape->Part(Part)->Mesh()->GetMaxNumVertices();
 }
 
@@ -621,7 +621,7 @@ LPDIRECT3DVERTEXBUFFER9 CN3FXPartMesh::GetVB(int Part) {
         return NULL;
     }
     return NULL;
-    //	return m_pShape->Part(Part)->Mesh()->GetVertexBuffer();	//this_fx
+    //    return m_pShape->Part(Part)->Mesh()->GetVertexBuffer();    //this_fx
 }
 
 //
@@ -636,9 +636,9 @@ bool CN3FXPartMesh::IsDead() {
 }
 
 //
-//	render...
-//	일단은 파티클 하나씩 그리고....
-//	나중에는 같은 텍스쳐 쓰는 것들끼리 묶어서 그리자...
+//    render...
+//    일단은 파티클 하나씩 그리고....
+//    나중에는 같은 텍스쳐 쓰는 것들끼리 묶어서 그리자...
 //
 void CN3FXPartMesh::Render() {
     // render state 세팅

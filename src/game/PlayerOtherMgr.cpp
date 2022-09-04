@@ -140,17 +140,17 @@ void CPlayerOtherMgr::Tick(const __Vector3 & vPosPlayer) {
 
 void CPlayerOtherMgr::Render(float fSunAngle) {
 
-    //	CPlayerOther*	pUPC = NULL;
-    //	it_UPC it = m_UPCs.begin(), itEnd = m_UPCs.end();
-    //	for(; it != itEnd; it++)
-    //	{
-    //		pUPC = it->second;
+    //    CPlayerOther*    pUPC = NULL;
+    //    it_UPC it = m_UPCs.begin(), itEnd = m_UPCs.end();
+    //    for(; it != itEnd; it++)
+    //    {
+    //        pUPC = it->second;
     //
-    //		if(pUPC->m_InfoBase.iAuthority == AUTHORITY_MANAGER)
-    //			continue;//this_authority
+    //        if(pUPC->m_InfoBase.iAuthority == AUTHORITY_MANAGER)
+    //            continue;//this_authority
     //
-    //		pUPC->Render(true, fSunAngle);
-    //	}
+    //        pUPC->Render(true, fSunAngle);
+    //    }
 
     // 카메라 거리순으로 정렬
     int iUPCSize = m_UPCs.size();
@@ -172,14 +172,14 @@ void CPlayerOtherMgr::Render(float fSunAngle) {
         }
     }
 
-    //	CPlayerNPC* pNPC = NULL;
-    //	it_NPC it2 = m_NPCs.begin(), itEnd2 = m_NPCs.end();
-    //	for(; it2 != itEnd2; it2++)
-    //	{
-    //		pNPC = it2->second;
+    //    CPlayerNPC* pNPC = NULL;
+    //    it_NPC it2 = m_NPCs.begin(), itEnd2 = m_NPCs.end();
+    //    for(; it2 != itEnd2; it2++)
+    //    {
+    //        pNPC = it2->second;
     //
-    //		pNPC->Render(true, fSunAngle);
-    //	}
+    //        pNPC->Render(true, fSunAngle);
+    //    }
     // 카메라 거리순으로 정렬
     int iNPCSize = m_NPCs.size();
     if (iNPCSize > 0) {
@@ -197,13 +197,13 @@ void CPlayerOtherMgr::Render(float fSunAngle) {
     }
 
     // 죽은놈도 렌더링..
-    //	CPlayerBase* pCorpse = NULL;
-    //	it_NPC it3 = m_Corpses.begin(), itEnd3 = m_Corpses.end();
-    //	for(; it3 != itEnd3; it3++)
-    //	{
-    //		pCorpse = it3->second;
-    //		pCorpse->Render(false, fSunAngle);
-    //	}
+    //    CPlayerBase* pCorpse = NULL;
+    //    it_NPC it3 = m_Corpses.begin(), itEnd3 = m_Corpses.end();
+    //    for(; it3 != itEnd3; it3++)
+    //    {
+    //        pCorpse = it3->second;
+    //        pCorpse->Render(false, fSunAngle);
+    //    }
     // 카메라 거리순으로 정렬
     int iCorpseSize = m_Corpses.size();
     if (iCorpseSize > 0) {
@@ -480,9 +480,9 @@ void CPlayerOtherMgr::MoveToCorpsesForcely(CPlayerNPC * pNPC, bool bErase) {
             m_UPCs.erase(it);      // 맵에서 지운다.
         }
 
-        //		CPlayerOther* pUPC = it->second;
-        //		this->CorpseAdd(pUPC); // 시체로 만들고..
-        //		m_UPCs.erase(it); // 맵에서 지운다.
+        //        CPlayerOther* pUPC = it->second;
+        //        this->CorpseAdd(pUPC); // 시체로 만들고..
+        //        m_UPCs.erase(it); // 맵에서 지운다.
     } else {
         it_NPC it2 = m_NPCs.find(iID);
         if (it2 != m_NPCs.end()) {
@@ -652,9 +652,9 @@ CPlayerNPC * CPlayerOtherMgr::PickAllPrecisely(int ixScreen, int iyScreen, int &
     }
 
     ////////////////////////////////////////////////////////////////////////////
-    //	NPC와 UPC를 따로 충돌체크를 하게 되면 UPC가 나와 가까이 있어도
-    //	뒤에 있는 NPC를 먼저 찾아내기 때문에 UPC와 NPC를 동시에 카메라에 정렬하여
-    //	충돌 체크를 해줘야 정확한 캐릭터를 찾아 낼수가 있다.
+    //    NPC와 UPC를 따로 충돌체크를 하게 되면 UPC가 나와 가까이 있어도
+    //    뒤에 있는 NPC를 먼저 찾아내기 때문에 UPC와 NPC를 동시에 카메라에 정렬하여
+    //    충돌 체크를 해줘야 정확한 캐릭터를 찾아 낼수가 있다.
     ////////////////////////////////////////////////////////////////////////////
 
     int iBufCnt = NUPCBufs.size();

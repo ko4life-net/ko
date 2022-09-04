@@ -100,7 +100,7 @@ class CGameProcMain : public CGameProcedure {
     bool MsgRecv_Chat(DataPack * pDataPack, int & iOffset);
     bool MsgRecv_UserMove(DataPack * pDataPack, int & iOffset);
     bool MsgRecv_Rotation(DataPack * pDataPack, int & iOffset);
-    //	bool	MsgRecv_Dead(DataPack* pDataPack, int& iOffset);
+    //    bool    MsgRecv_Dead(DataPack* pDataPack, int& iOffset);
     bool MsgRecv_Regen(DataPack * pDataPack, int & iOffset);
     void MsgRecv_Corpse(DataPack * pDataPack, int & iOffset);
     bool MsgRecv_Time(DataPack * pDataPack, int & iOffset);
@@ -179,8 +179,8 @@ class CGameProcMain : public CGameProcedure {
 
     void MsgRecv_NoahChange(DataPack * pDataPack, int & iOffset); // 노아 변경..
     void MsgRecv_WarpList(DataPack * pDataPack, int & iOffset);   // 워프 리스트..
-    //	void	MsgRecv_ServerCheckAndRequestConcurrentUserCount(DataPack* pDataPack, int& iOffset);			// 서버 IP 와 포트를 받아 동접자를 체크해 본다..
-    //	void	MsgRecv_ConcurrentUserCountAndSendServerCheck(DataPack* pDataPack, int& iOffset);
+    //    void    MsgRecv_ServerCheckAndRequestConcurrentUserCount(DataPack* pDataPack, int& iOffset);            // 서버 IP 와 포트를 받아 동접자를 체크해 본다..
+    //    void    MsgRecv_ConcurrentUserCountAndSendServerCheck(DataPack* pDataPack, int& iOffset);
 
     //knights...
     void MsgRecv_Knights_Create(DataPack * pDataPack, int & iOffset);

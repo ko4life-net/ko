@@ -278,7 +278,7 @@ bool CN3UIButton::Load(HANDLE hFile) {
 
     // 이전 uif파일을 컨버팅 하려면 사운드 로드 하는 부분 막기
     int iSndFNLen = 0;
-    ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //	사운드 파일 문자열 길이
+    ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //    사운드 파일 문자열 길이
     if (iSndFNLen > 0) {
         std::vector<char> buffer(iSndFNLen, 0);
         ReadFile(hFile, &buffer[0], iSndFNLen, &dwNum, NULL);
@@ -287,7 +287,7 @@ bool CN3UIButton::Load(HANDLE hFile) {
         m_pSnd_On = s_SndMgr.CreateObj(std::string(buffer.begin(), buffer.end()), SNDTYPE_2D);
     }
 
-    ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //	사운드 파일 문자열 길이
+    ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //    사운드 파일 문자열 길이
     if (iSndFNLen > 0) {
         std::vector<char> buffer(iSndFNLen, 0);
         ReadFile(hFile, &buffer[0], iSndFNLen, &dwNum, NULL);
@@ -331,7 +331,7 @@ bool CN3UIButton::Save(HANDLE hFile) {
     if (m_pSnd_On) {
         iSndFNLen = m_pSnd_On->m_szFileName.size();
     }
-    WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //	사운드 파일 문자열 길이
+    WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //    사운드 파일 문자열 길이
     if (iSndFNLen > 0) {
         WriteFile(hFile, m_pSnd_On->m_szFileName.c_str(), iSndFNLen, &dwNum, NULL);
     }
@@ -340,7 +340,7 @@ bool CN3UIButton::Save(HANDLE hFile) {
     if (m_pSnd_Click) {
         iSndFNLen = m_pSnd_Click->m_szFileName.size();
     }
-    WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //	사운드 파일 문자열 길이
+    WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //    사운드 파일 문자열 길이
     if (iSndFNLen > 0) {
         WriteFile(hFile, m_pSnd_Click->m_szFileName.c_str(), iSndFNLen, &dwNum, NULL);
     }

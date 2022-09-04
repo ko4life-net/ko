@@ -8,7 +8,7 @@
 
 class CLogWriter {
   protected:
-    //	static HANDLE s_hFile;
+    // static HANDLE      s_hFile;
     static std::string s_szFileName;
 
   public:

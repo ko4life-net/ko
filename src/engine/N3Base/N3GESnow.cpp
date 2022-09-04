@@ -83,12 +83,12 @@ void CN3GESnow::Tick() {
         __VertexXyzT1 * pV1 = pVertices + i * 3 + 0;
         __VertexXyzT1 * pV2 = pVertices + i * 3 + 1;
         __VertexXyzT1 * pV3 = pVertices + i * 3 + 2;
-        //		__Vector3 vOffset2 = __Vector3(pV2->v) - __Vector3(pV1->v);
-        //		__Vector3 vOffset3 = __Vector3(pV3->v) - __Vector3(pV1->v);
+        //        __Vector3 vOffset2 = __Vector3(pV2->v) - __Vector3(pV1->v);
+        //        __Vector3 vOffset3 = __Vector3(pV3->v) - __Vector3(pV1->v);
 
         __SnowParticle * pParticle = m_pSnowParticle + i;
         pParticle->vPos += vAdd;
-        //		pV1->x += vAdd.x;	pV1->y += vAdd.y;	pV1->z += vAdd.z;
+        //        pV1->x += vAdd.x;    pV1->y += vAdd.y;    pV1->z += vAdd.z;
 
         float fDiff = pParticle->vPos.y - (fCurY - fHalfHeight);
         if (fDiff < 0) // 높이 범위를 벗어났을 경우
@@ -273,12 +273,12 @@ void CN3GESnow::Create(float fDensity, float fWidth, float fHeight, float fSnowS
         m_pSnowParticle[i].fRadian = 2 * D3DX_PI * ((rand() % 10000) / 10000.f);
 
         float fRadian = D3DX_PI * ((rand() % 10000) / 10000.f);
-        //		정삼각형(한변의 길이가 fSnowSize)
-        //		m_pSnowParticle[i].vOffset1.Set(0, sqrt3*fSnowSize/3.f, 0);
-        //		m_pSnowParticle[i].vOffset2.Set(cosf(fRadian)*fSnowSize/2, -sqrt3*fSnowSize/6.f, sinf(fRadian)*fSnowSize/2);
-        //		m_pSnowParticle[i].vOffset3.Set(-cosf(fRadian)*fSnowSize/2, -sqrt3*fSnowSize/6.f, -sinf(fRadian)*fSnowSize/2);
+        //        정삼각형(한변의 길이가 fSnowSize)
+        //        m_pSnowParticle[i].vOffset1.Set(0, sqrt3*fSnowSize/3.f, 0);
+        //        m_pSnowParticle[i].vOffset2.Set(cosf(fRadian)*fSnowSize/2, -sqrt3*fSnowSize/6.f, sinf(fRadian)*fSnowSize/2);
+        //        m_pSnowParticle[i].vOffset3.Set(-cosf(fRadian)*fSnowSize/2, -sqrt3*fSnowSize/6.f, -sinf(fRadian)*fSnowSize/2);
 
-        //		이등변 삼각형(밑변의 길이 fSnowSize, 높이 fSnowSize)
+        //        이등변 삼각형(밑변의 길이 fSnowSize, 높이 fSnowSize)
         m_pSnowParticle[i].vOffset1.Set(0, fSnowSize / 2.f, 0);
         m_pSnowParticle[i].vOffset2.Set(cosf(fRadian) * fSnowSize / 2.f, -fSnowSize / 2.f,
                                         sinf(fRadian) * fSnowSize / 2.f);
@@ -288,9 +288,9 @@ void CN3GESnow::Create(float fDensity, float fWidth, float fHeight, float fSnowS
         // uv좌표 넣기
         __VertexXyzT1 *pV1 = pVertices + i * 3, *pV2 = pVertices + i * 3 + 1, *pV3 = pVertices + i * 3 + 2;
         // 정삼각형에 눈 동그라미가 삼각형에 꽉 차게 UV좌표 배치 (geforce2카드에서 border color가 제대로 되지 않아서..)
-        //		pV1->tu = 0.5f;	pV1->tv = 0.5f - sqrt3/2.f;
-        //		pV2->tu = 0.5f + sqrt3/2.f;	pV2->tv = 1.0f;
-        //		pV3->tu = 0.5f - sqrt3/2.f;	pV3->tv = 1.0f;
+        //        pV1->tu = 0.5f;    pV1->tv = 0.5f - sqrt3/2.f;
+        //        pV2->tu = 0.5f + sqrt3/2.f;    pV2->tv = 1.0f;
+        //        pV3->tu = 0.5f - sqrt3/2.f;    pV3->tv = 1.0f;
 
         // 이등변 삼각형에 UV좌표 넣기
         pV1->tu = 0.5f;

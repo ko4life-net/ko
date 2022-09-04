@@ -55,7 +55,7 @@ DWORD WINAPI AcceptThread(LPVOID lp) {
                     TRACE("Socket Array has Broken...\n");
                     sprintf(logstr, "Socket Array has Broken...[sid:%d]\r\n", sid);
                     LogFileWrite(logstr);
-                    //					pIocport->PutOldSid( sid );				// Invalid sid must forbidden to use
+                    //                    pIocport->PutOldSid( sid );                // Invalid sid must forbidden to use
                     goto loop_pass_accept;
                 }
 
@@ -208,7 +208,7 @@ DWORD WINAPI ClientWorkerThread(LPVOID lp) {
                         TRACE("AISocket Closed By 0 Byte Notify\n");
                         pSocket->CloseProcess();
                         pIocport->RidIOCPSocket(pSocket->GetSocketID(), pSocket);
-                        //						pIocport->PutOldSid( pSocket->GetSocketID() );		// 클라이언트 소켓은 Sid 관리하지 않음
+                        //                        pIocport->PutOldSid( pSocket->GetSocketID() );        // 클라이언트 소켓은 Sid 관리하지 않음
                         LeaveCriticalSection(&g_critical);
                         break;
                     }
@@ -231,7 +231,7 @@ DWORD WINAPI ClientWorkerThread(LPVOID lp) {
                     TRACE("AISocket Closed By Close()\n");
                     pSocket->CloseProcess();
                     pIocport->RidIOCPSocket(pSocket->GetSocketID(), pSocket);
-                    //					pIocport->PutOldSid( pSocket->GetSocketID() );
+                    //                    pIocport->PutOldSid( pSocket->GetSocketID() );
 
                     LeaveCriticalSection(&g_critical);
                     break;
@@ -555,7 +555,7 @@ void CIOCPort::PutOldSid(int sid) {
     EnterCriticalSection(&g_critical);
 
     m_SidList.push_back(sid);
-    //	TRACE("last sid : %d\n", sid);
+    //    TRACE("last sid : %d\n", sid);
 
     LeaveCriticalSection(&g_critical);
 }
@@ -658,7 +658,7 @@ int CIOCPort::GetClientSid() {
 }
 
 // sungyong~ 2002.05.22
-//	Send 를 담당할 Thread를 만든다. (현재는 CPU 갯수 * 2)
+//    Send 를 담당할 Thread를 만든다. (현재는 CPU 갯수 * 2)
 void CIOCPort::CreateSendThread() {
     m_hSendIOCP = INVALID_HANDLE_VALUE;
     // ensure we aren't wiping out a valid completion port
@@ -673,7 +673,7 @@ void CIOCPort::CreateSendThread() {
     DWORD  dwWorkerId;
 
     //for(DWORD i = 0; i < m_dwConcurrency * 2; i++)
-    //for(DWORD i = 0; i < m_dwConcurrency * 1; i++)	// sungyong
+    //for(DWORD i = 0; i < m_dwConcurrency * 1; i++)    // sungyong
     //{
     //if(SErr((hThread = ::CreateThread( NULL, 0, SendThreadMain, (LPVOID)this, 0, &dwWorkerId)) == NULL, _T("CreateSendThread"))) return;
     hThread = ::CreateThread(NULL, 0, SendThreadMain, (LPVOID)this, 0, &dwWorkerId);

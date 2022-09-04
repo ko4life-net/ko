@@ -106,7 +106,7 @@ CNPCPathMgr::~CNPCPathMgr() {
 }
 
 //
-//	FileName은 경로명 하나도 안들어간 순수한 파일이름과 확장자..
+//    FileName은 경로명 하나도 안들어간 순수한 파일이름과 확장자..
 //
 void CNPCPathMgr::LoadFromFile(const char * FileName) {
     if (m_pCurrPath) {
@@ -365,15 +365,15 @@ BOOL CNPCPathMgr::MouseMsgFilter(LPMSG pMsg) {
         POINT point = {short(LOWORD(pMsg->lParam)), short(HIWORD(pMsg->lParam))};
 
         __Vector3 vec;
-        //			if(nFlags & MK_SHIFT)
-        //			{
-        //				if(!pRefTerrain->Pick(point.x, point.y, &vec, NULL)) break;
+        //            if(nFlags & MK_SHIFT)
+        //            {
+        //                if(!pRefTerrain->Pick(point.x, point.y, &vec, NULL)) break;
         //
-        //				CStatusBar* pBar = m_pRefMapMng->GetStatusBar();
-        //				CString str; str.Format("X:%f Y:%f Z:%f", vec.x, vec.y, vec.z);
-        //				if (pBar) pBar->SetPaneText(0, str);
-        //				return TRUE;
-        //			}
+        //                CStatusBar* pBar = m_pRefMapMng->GetStatusBar();
+        //                CString str; str.Format("X:%f Y:%f Z:%f", vec.x, vec.y, vec.z);
+        //                if (pBar) pBar->SetPaneText(0, str);
+        //                return TRUE;
+        //            }
 
         if (m_pDlgMakePath->m_State == 0) {
             if (nFlags & MK_LBUTTON) {
@@ -431,8 +431,8 @@ void CNPCPathMgr::UpdatePath() {
 
     strcpy(m_pCurrPath->m_strNPCName, m_pDlgMakePath->m_strSelNPCName);
 
-    //	m_pCurrPath->m_LTStartVertex = m_LTStartVertex;
-    //	m_pCurrPath->m_RBStartVertex = m_RBStartVertex;
+    //    m_pCurrPath->m_LTStartVertex = m_LTStartVertex;
+    //    m_pCurrPath->m_RBStartVertex = m_RBStartVertex;
 
     m_pPaths.push_back(m_pCurrPath);
 

@@ -45,10 +45,10 @@ typedef std::vector<MAP *>             ZoneArray;
 
 /*
      ** Repent AI Server 작업시 참고 사항 **
-	1. 3개의 함수 추가
-		int GetSpeed(BYTE bySpeed); 
-		int GetAttackSpeed(BYTE bySpeed); 
-		int GetCatsSpeed(BYTE bySpeed); 
+    1. 3개의 함수 추가
+        int GetSpeed(BYTE bySpeed); 
+        int GetAttackSpeed(BYTE bySpeed); 
+        int GetCatsSpeed(BYTE bySpeed); 
 */
 
 class CServerDlg : public CDialog {
@@ -118,7 +118,7 @@ class CServerDlg : public CDialog {
                                                       //}}AFX_VIRTUAL
 
   public:
-    //	ZoneArray			m_arZone;
+    //    ZoneArray            m_arZone;
     NpcArray                 m_arNpc;
     NpcTableArray            m_arMonTable;
     NpcTableArray            m_arNpcTable;
@@ -148,7 +148,7 @@ class CServerDlg : public CDialog {
     CFile m_ItemLogFile;
 
     // 전역 객체 변수
-    //BOOL			m_bNpcExit;
+    //BOOL            m_bNpcExit;
     long  m_TotalNPC;        // DB에있는 총 수
     long  m_CurrentNPCError; // 세팅에서 실패한 수
     long  m_CurrentNPC;      // 현재 게임상에서 실제로 셋팅된 수
@@ -185,7 +185,7 @@ class CServerDlg : public CDialog {
   protected:
     void DefaultInit();
 
-    //	CGameSocket m_GameSocket;
+    //    CGameSocket m_GameSocket;
 
     HICON m_hIcon;
 

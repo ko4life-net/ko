@@ -36,7 +36,7 @@ typedef typename std::list<__InfoTradeSellBBS>::iterator it_TradeSellBBS;
 
 class CUITradeSellBBS : public CN3UIBase {
   protected:
-    //	class CN3UIList*		m_pList_Infos;
+    //    class CN3UIList*        m_pList_Infos;
 
     class CN3UIButton * m_pBtn_PageUp;
     class CN3UIButton * m_pBtn_PageDown;

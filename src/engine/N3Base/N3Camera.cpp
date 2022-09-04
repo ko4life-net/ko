@@ -21,9 +21,9 @@ CN3Camera::CN3Camera() {
 
     m_bFogUse = TRUE;
     m_FogColor = D3DCOLOR_ARGB(255, 255, 255, 255);
-    //	m_fFogDensity = 1.0 / m_Data.fFP;
-    //	m_fFogStart = m_Data.fFP * 0.75f;
-    //	m_fFogEnd = m_Data.fFP;
+    // m_fFogDensity = 1.0 / m_Data.fFP;
+    // m_fFogStart = m_Data.fFP * 0.75f;
+    // m_fFogEnd = m_Data.fFP;
 
     m_fRadianX = 0.0f;
     m_bOrtho = false;
@@ -43,9 +43,9 @@ void CN3Camera::Release() {
 
     m_bFogUse = FALSE;
     m_FogColor = D3DCOLOR_ARGB(255, 255, 255, 255);
-    //	m_fFogDensity = 1.0f / m_Data.fFP;
-    //	m_fFogStart = m_Data.fFP * 0.75f;
-    //	m_fFogEnd = m_Data.fFP;
+    // m_fFogDensity = 1.0f / m_Data.fFP;
+    // m_fFogStart = m_Data.fFP * 0.75f;
+    // m_fFogEnd = m_Data.fFP;
 
     m_fRadianX = 0.0f;
 
@@ -60,16 +60,16 @@ bool CN3Camera::Load(HANDLE hFile) {
     ReadFile(hFile, &m_Data, sizeof(__CameraData), &dwRWC, NULL); // CameraData
     ReadFile(hFile, &m_bFogUse, 4, &dwRWC, NULL);
     ReadFile(hFile, &m_FogColor, 4, &dwRWC, NULL);
-    //	ReadFile(hFile, &m_fFogDensity, 4, &dwRWC, NULL);
-    //	ReadFile(hFile, &m_fFogStart, 4, &dwRWC, NULL);
-    //	ReadFile(hFile, &m_fFogEnd, 4, &dwRWC, NULL);
+    // ReadFile(hFile, &m_fFogDensity, 4, &dwRWC, NULL);
+    // ReadFile(hFile, &m_fFogStart, 4, &dwRWC, NULL);
+    // ReadFile(hFile, &m_fFogEnd, 4, &dwRWC, NULL);
 
     return true;
 }
 
 #ifdef _N3TOOL
 BOOL CN3Camera::MoveByWindowMessage(MSG * pMsg) {
-    //	static int iButtonDownCount = 0;
+    // static int iButtonDownCount = 0;
     if (pMsg->message == WM_MOUSEWHEEL) {
         //short zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
         short zDelta = (short)((pMsg->wParam >> 16) & 0x0000ffff);
@@ -157,8 +157,8 @@ BOOL CN3Camera::MoveByWindowMessage(MSG * pMsg) {
         case WM_LBUTTONDOWN:
         case WM_RBUTTONDOWN:
         case WM_MBUTTONDOWN: {
-            //				iButtonDownCount++;
-            //				::SetCapture(pMsg->hwnd);
+            // iButtonDownCount++;
+            // ::SetCapture(pMsg->hwnd);
             ptPrev.x = short(LOWORD(pMsg->lParam));
             ptPrev.y = short(HIWORD(pMsg->lParam));
             return TRUE;
@@ -166,9 +166,10 @@ BOOL CN3Camera::MoveByWindowMessage(MSG * pMsg) {
         case WM_LBUTTONUP:
         case WM_RBUTTONUP:
         case WM_MBUTTONUP: {
-            //				iButtonDownCount--;
-            //				if (iButtonDownCount <= 0)
-            //					ReleaseCapture();
+            // iButtonDownCount--;
+            // if (iButtonDownCount <= 0) {
+            //     ReleaseCapture();
+            // }
             return TRUE;
         } break;
         case WM_MOUSEMOVE: {
@@ -262,7 +263,7 @@ void CN3Camera::Rotate(float fRadianX, float fRadianY) {
     m_vScale *= mtx; //by lynus...
                      /*
 #ifndef _N3_CLIENT_
-	m_vScale *= mtx;
+    m_vScale *= mtx;
 #endif
 */
     m_vAt = m_vPos + v1;
@@ -292,7 +293,7 @@ void CN3Camera::LookAround(float fRadianX, float fRadianY) //At Postion을 중심으
     m_vScale *= mtx;     //by lynus...
                          /*
 #ifdef _N3_CLIENT_
-	m_vScale *= mtx;
+    m_vScale *= mtx;
 #endif
 */
     m_vPos = m_vAt + v1; // Rotation 은 LookAt Position 처럼, Scale 은 UpVector 처럼 쓴다..
@@ -349,9 +350,9 @@ bool CN3Camera::Save(HANDLE hFile) {
     WriteFile(hFile, &m_Data, sizeof(__CameraData), &dwRWC, NULL); // CameraData
     WriteFile(hFile, &m_bFogUse, 4, &dwRWC, NULL);
     WriteFile(hFile, &m_FogColor, 4, &dwRWC, NULL);
-    //	WriteFile(hFile, &m_fFogStart, 4, &dwRWC, NULL);
-    //	WriteFile(hFile, &m_fFogEnd, 4, &dwRWC, NULL);
-    //	WriteFile(hFile, &m_fFogDensity, 4, &dwRWC, NULL);
+    // WriteFile(hFile, &m_fFogStart, 4, &dwRWC, NULL);
+    // WriteFile(hFile, &m_fFogEnd, 4, &dwRWC, NULL);
+    // WriteFile(hFile, &m_fFogDensity, 4, &dwRWC, NULL);
 
     return true;
 }
@@ -365,8 +366,8 @@ void CN3Camera::Apply() {
     // 안개 색깔 맞추기..
     s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, m_bFogUse);
     s_lpD3DDev->SetRenderState(D3DRS_FOGCOLOR, m_FogColor);
-    //	s_lpD3DDev->SetRenderState( D3DRS_FOGVERTEXMODE,  D3DFOG_EXP2);
-    //	s_lpD3DDev->SetRenderState( D3DRS_FOGTABLEMODE,   D3DFOG_EXP2);
+    // s_lpD3DDev->SetRenderState( D3DRS_FOGVERTEXMODE,  D3DFOG_EXP2);
+    // s_lpD3DDev->SetRenderState( D3DRS_FOGTABLEMODE,   D3DFOG_EXP2);
     s_lpD3DDev->SetRenderState(D3DRS_FOGTABLEMODE, D3DFOG_NONE);
     s_lpD3DDev->SetRenderState(D3DRS_FOGVERTEXMODE, D3DFOG_LINEAR);
     s_lpD3DDev->SetRenderState(D3DRS_RANGEFOGENABLE, TRUE);
@@ -375,19 +376,19 @@ void CN3Camera::Apply() {
 
     // vertex fog 와 pixel fog(table fog)의 차이 - Dino씀..
     // vertex fog : vertex의 depth값을 기반으로 vertex사이의 보간으로 계산되는 것 같다.
-    //				따라서 카메라를 돌리다보면 vertex주위를 중심으로 fog가 변하는것이 관찰된다.
+    //              따라서 카메라를 돌리다보면 vertex주위를 중심으로 fog가 변하는것이 관찰된다.
     // pixel fog : pixel의 depth값을 기반으로 fog를 계산하는것 같다.
 
     // 위의 모든 fog의 차이를 보려면 큰판을 하나 그려서 fog를 넣어보면 쉽게 관찰할 수 있다.
 
-    //	s_lpD3DDev->SetRenderState( D3DRS_FOGSTART,   *(DWORD*)&m_fFogStart);
-    //	s_lpD3DDev->SetRenderState( D3DRS_FOGEND,     *(DWORD*)&m_fFogEnd);
-    //	s_lpD3DDev->SetRenderState( D3DRS_FOGDENSITY, *(DWORD*)&m_fFogDensity);
+    // s_lpD3DDev->SetRenderState( D3DRS_FOGSTART,   *(DWORD*)&m_fFogStart);
+    // s_lpD3DDev->SetRenderState( D3DRS_FOGEND,     *(DWORD*)&m_fFogEnd);
+    // s_lpD3DDev->SetRenderState( D3DRS_FOGDENSITY, *(DWORD*)&m_fFogDensity);
     float fFogStart = m_Data.fFP * 0.1f;
     float fFogEnd = m_Data.fFP;
     s_lpD3DDev->SetRenderState(D3DRS_FOGSTART, *(DWORD *)&fFogStart);
     s_lpD3DDev->SetRenderState(D3DRS_FOGEND, *(DWORD *)&fFogEnd);
-    //	s_lpD3DDev->SetRenderState( D3DRS_FOGDENSITY, *(DWORD*)&m_fFogDensity);
+    // s_lpD3DDev->SetRenderState( D3DRS_FOGDENSITY, *(DWORD*)&m_fFogDensity);
 }
 
 void CN3Camera::Render(float fUnitSize) {}
@@ -399,13 +400,13 @@ void CN3Camera::Tick(float fFrm) {
     // View Matrix 및 Projection Matrix Setting
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // 	__Vector3 m_vEye, m_vUp ->> m_vPos, m_vScale 로 대신한다.. 중요!!
+    //  __Vector3 m_vEye, m_vUp ->> m_vPos, m_vScale 로 대신한다.. 중요!!
     m_Data.vEye = m_vPos;
     m_Data.vAt = m_vAt;
     m_Data.vUp = m_vScale; // Up Vector 처럼 쓴다.
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //	m_Data.fInverse_SineHalfOfFOV = 1.0f/sinf(m_Data.fFOV*0.5f);
+    // m_Data.fInverse_SineHalfOfFOV = 1.0f/sinf(m_Data.fFOV*0.5f);
 
     ::D3DXMatrixLookAtLH(&m_Data.mtxView, &m_Data.vEye, &m_Data.vAt, &m_Data.vUp); // Look At 적용
     ::D3DXMatrixInverse(&m_Data.mtxViewInverse, NULL, &m_Data.mtxView);            // View Inverse 행렬 구하기..
@@ -416,7 +417,7 @@ void CN3Camera::Tick(float fFrm) {
         float fL = (m_Data.vAt - m_Data.vEye).Magnitude() / 2.0f;
         ::D3DXMatrixOrthoLH(&m_Data.mtxProjection, fL, fL / m_Data.fAspect, m_Data.fNP * (1.0f + fL / 1000.0f),
                             m_Data.fFP); // Projection Matrix Setting
-        //		::D3DXMatrixOrthoLH(&m_Data.mtxProjection, 2.0f, 2.0f, m_Data.fNP, m_Data.fFP);  // Projection Matrix Setting
+        // ::D3DXMatrixOrthoLH(&m_Data.mtxProjection, 2.0f, 2.0f, m_Data.fNP, m_Data.fFP);  // Projection Matrix Setting
     } else {
         ::D3DXMatrixPerspectiveFovLH(&m_Data.mtxProjection, m_Data.fFOV, m_Data.fAspect, m_Data.fNP,
                                      m_Data.fFP); // Projection Matrix Setting

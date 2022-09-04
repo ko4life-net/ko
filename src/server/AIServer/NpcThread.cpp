@@ -213,7 +213,7 @@ float TimeGet() {
 
 CNpcThread::CNpcThread() {
     pIOCP = NULL;
-    //	m_pNpc =	NULL;
+    //    m_pNpc =    NULL;
     m_pThread = NULL;
     m_sThreadNumber = -1;
 
@@ -223,14 +223,14 @@ CNpcThread::CNpcThread() {
 }
 
 CNpcThread::~CNpcThread() {
-    /*	for( int i = 0; i < NPC_NUM; i++ )
-	{
-		if(m_pNpc[i])
-		{
-			delete m_pNpc[i];
-			m_pNpc[i] = NULL;
-		}
-	}	*/
+    /*    for( int i = 0; i < NPC_NUM; i++ )
+    {
+        if(m_pNpc[i])
+        {
+            delete m_pNpc[i];
+            m_pNpc[i] = NULL;
+        }
+    }    */
 }
 
 void CNpcThread::InitThreadInfo(HWND hwnd) {

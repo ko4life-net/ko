@@ -16,7 +16,7 @@
 //////////////////////////////////////////////////////////////////////
 
 CN3Cloak::CN3Cloak() {
-    //	m_pPMesh = NULL;
+    // m_pPMesh = NULL;
     m_pTex = NULL;
     m_pParticle = NULL;
     m_bpPlayerBase = NULL;
@@ -63,23 +63,21 @@ void CN3Cloak::Init(CN3CPlug_Cloak * pPlugCloak) {
 }
 
 void CN3Cloak::Tick(int nLOD) {
-    //SetLOD(nLOD);
+    // SetLOD(nLOD);
 
-    //
-    //	static float fForceDelay = 0.0f;
-    //	static float fForceDelayLimit = 4.0f;
-    //	fForceDelay += s_fSecPerFrm;
-    //	if (fForceDelay > fForceDelayLimit)
-    //	{
-    //float x = (rand()%30)*0.0001f;
-    //float z = (rand()%60)*0.0001f;
-    //SetForce(dif.x, dif.y, dif.z);
-    //		m_Force.x = dif.x;
-    //		m_Force.y = dif.y;
-    //		m_Force.z = dif.z;
-    //		fForceDelay = 0.0f;
-    //		fForceDelayLimit = 2.0f + rand()%10;
-    //	}
+    // static float fForceDelay = 0.0f;
+    // static float fForceDelayLimit = 4.0f;
+    // fForceDelay += s_fSecPerFrm;
+    // if (fForceDelay > fForceDelayLimit) {
+    //     float x = (rand() % 30) * 0.0001f;
+    //     float z = (rand() % 60) * 0.0001f;
+    //     SetForce(dif.x, dif.y, dif.z);
+    //     m_Force.x = dif.x;
+    //     m_Force.y = dif.y;
+    //     m_Force.z = dif.z;
+    //     fForceDelay = 0.0f;
+    //     fForceDelayLimit = 2.0f + rand() % 10;
+    // }
     m_fAnchorPreserveTime -= s_fSecPerFrm;
     if (m_eAnchorPattern != AMP_NONE) {
         if (m_fAnchorPreserveTime < 0.0f) {
@@ -118,9 +116,9 @@ void CN3Cloak::Render(__Matrix44 & mtx) {
     s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_MODULATE);
     s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
     s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_TEXTURE);
-    //	s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
-    //	s_lpD3DDev->SetTextureStageState(1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
-    //	s_lpD3DDev->SetTextureStageState(1, D3DTSS_COLOROP, D3DTOP_DISABLE);
+    // s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+    // s_lpD3DDev->SetTextureStageState(1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+    // s_lpD3DDev->SetTextureStageState(1, D3DTSS_COLOROP, D3DTOP_DISABLE);
 
     s_lpD3DDev->SetFVF(FVF_VNT1);
     s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_TRIANGLELIST, 0, m_nVertexCount, m_nIndexCount / 3, m_pIndex,
@@ -129,16 +127,16 @@ void CN3Cloak::Render(__Matrix44 & mtx) {
     //
     __VertexXyzColor Vtx[2];
     /*
-	__VertexT1 *pTemp = m_pVertex;
-	Vtx[0].Set(pTemp->x, pTemp->y, pTemp->z, 0xffffffff);
-	Vtx[1].Set(1.0f, 1.0f, 1.0f, 0xffffffff);
-	s_lpD3DDev->SetFVF(FVF_CV);
-	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 1, Vtx, sizeof(__VertexXyzColor));
-	pTemp++;
-	Vtx[0].Set(pTemp->x, pTemp->y, pTemp->z, 0xffff0000);
-	Vtx[1].Set(1.0f, 1.0f, 1.0f, 0xffffffff);
-	s_lpD3DDev->SetFVF(FVF_CV);
-	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 1, Vtx, sizeof(__VertexXyzColor));
+    __VertexT1 *     pTemp = m_pVertex;
+    Vtx[0].Set(pTemp->x, pTemp->y, pTemp->z, 0xffffffff);
+    Vtx[1].Set(1.0f, 1.0f, 1.0f, 0xffffffff);
+    s_lpD3DDev->SetFVF(FVF_CV);
+    s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 1, Vtx, sizeof(__VertexXyzColor));
+    pTemp++;
+    Vtx[0].Set(pTemp->x, pTemp->y, pTemp->z, 0xffff0000);
+    Vtx[1].Set(1.0f, 1.0f, 1.0f, 0xffffffff);
+    s_lpD3DDev->SetFVF(FVF_CV);
+    s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 1, Vtx, sizeof(__VertexXyzColor));
 */
 
     for (int i = 0; i < m_nGridH; i++) {
@@ -309,39 +307,37 @@ void CN3Cloak::SetLOD(int nLevel) {
     } break;
     case 1: {
         /*
-			m_nGridW = 5;
-			m_nGridH = 4;
+        m_nGridW = 5;
+        m_nGridH = 4;
 
-			int nVertexCount = 25;
-			int nIndexCount = 96;
-			m_pVertex = new __VertexT1[nVertexCount];
-			m_pIndex = new WORD[nIndexCount];
-			__VertexT1 *pVtx0 = m_pPMesh->GetVertices();
-			memcpy(m_pVertex, pVtx0, sizeof(__VertexT1)*5);
-			memcpy(m_pVertex+5, pVtx0+6, sizeof(__VertexT1)*5);
-			memcpy(m_pVertex+10, pVtx0+12, sizeof(__VertexT1)*5);
-			memcpy(m_pVertex+15, pVtx0+18, sizeof(__VertexT1)*5);
-			memcpy(m_pVertex+20, pVtx0+24, sizeof(__VertexT1)*5);			
+        int nVertexCount = 25;
+        int nIndexCount = 96;
+        m_pVertex = new __VertexT1[nVertexCount];
+        m_pIndex = new WORD[nIndexCount];
+        __VertexT1 * pVtx0 = m_pPMesh->GetVertices();
+        memcpy(m_pVertex, pVtx0, sizeof(__VertexT1) * 5);
+        memcpy(m_pVertex + 5, pVtx0 + 6, sizeof(__VertexT1) * 5);
+        memcpy(m_pVertex + 10, pVtx0 + 12, sizeof(__VertexT1) * 5);
+        memcpy(m_pVertex + 15, pVtx0 + 18, sizeof(__VertexT1) * 5);
+        memcpy(m_pVertex + 20, pVtx0 + 24, sizeof(__VertexT1) * 5);
 
-			WORD *pIndex = m_pIndex;
-			int x,y;
-			for (y=0;y<4;y++)
-			{
-				for(x=0;x<4;x++)
-				{
-					*(pIndex)   = x   + y*5;
-					*(pIndex+1) = x+1 + y*5;
-					*(pIndex+2) = x   + (y+1)*5;
+        WORD * pIndex = m_pIndex;
+        int    x, y;
+        for (y = 0; y < 4; y++) {
+            for (x = 0; x < 4; x++) {
+                *(pIndex) = x + y * 5;
+                *(pIndex + 1) = x + 1 + y * 5;
+                *(pIndex + 2) = x + (y + 1) * 5;
 
-					*(pIndex+3) = *(pIndex+2);
-					*(pIndex+4) = *(pIndex+1);
-					*(pIndex+5) = x+1 + (y+1)*5;
-					pIndex+=6;
-				}
-			}
-			m_nVertexCount = nVertexCount;
-			m_nIndexCount = nIndexCount;
-*/
+                *(pIndex + 3) = *(pIndex + 2);
+                *(pIndex + 4) = *(pIndex + 1);
+                *(pIndex + 5) = x + 1 + (y + 1) * 5;
+                pIndex += 6;
+            }
+        }
+        m_nVertexCount = nVertexCount;
+        m_nIndexCount = nIndexCount;
+        */
     } break;
     case 2:
         break;
@@ -368,39 +364,33 @@ void CN3Cloak::SetLOD(int nLevel) {
 
 void CN3Cloak::ApplyOffset(D3DXVECTOR3 & vDif) {
     /*
-	if (m_fOffsetRecoveryTime == 0.0f)
-	{
-		static int Weight[] = {-3, -2, -1, 1, 2, 3};
+    if (m_fOffsetRecoveryTime == 0.0f) {
+        static int Weight[] = {-3, -2, -1, 1, 2, 3};
 
-		for (int i=0;i<m_nGridW;i++)
-		{
-			m_pParticle[i].x += vDif.x*Weight[i];
-			m_pParticle[i].y += vDif.y*Weight[i];
-			m_pParticle[i].z += vDif.z*Weight[i];
-			m_vOffset[i].x = vDif.x*Weight[i];
-			m_vOffset[i].y = vDif.y*Weight[i];
-			m_vOffset[i].z = vDif.z*Weight[i];
-		}
-		m_fOffsetRecoveryTime = 1.4f;
-	}
-	else
-	{	// offset 이 적용되어 있는 상태.
-		m_fOffsetRecoveryTime -= s_fSecPerFrm;
-		if (m_fOffsetRecoveryTime < 0.0f)
-		{	// Recovery process
-			for (int i=0;i<m_nGridW;i++)
-			{
-				m_pParticle[i].x -= m_vOffset[i].x;
-				m_pParticle[i].y -= m_vOffset[i].y;
-				m_pParticle[i].z -= m_vOffset[i].z;
-				m_vOffset[i].x = 0.0f;
-				m_vOffset[i].y = 0.0f;
-				m_vOffset[i].z = 0.0f;
-			}
-			m_fOffsetRecoveryTime = 0.0f;				
-		}
-	}
-*/
+        for (int i = 0; i < m_nGridW; i++) {
+            m_pParticle[i].x += vDif.x * Weight[i];
+            m_pParticle[i].y += vDif.y * Weight[i];
+            m_pParticle[i].z += vDif.z * Weight[i];
+            m_vOffset[i].x = vDif.x * Weight[i];
+            m_vOffset[i].y = vDif.y * Weight[i];
+            m_vOffset[i].z = vDif.z * Weight[i];
+        }
+        m_fOffsetRecoveryTime = 1.4f;
+    } else { // offset 이 적용되어 있는 상태.
+        m_fOffsetRecoveryTime -= s_fSecPerFrm;
+        if (m_fOffsetRecoveryTime < 0.0f) { // Recovery process
+            for (int i = 0; i < m_nGridW; i++) {
+                m_pParticle[i].x -= m_vOffset[i].x;
+                m_pParticle[i].y -= m_vOffset[i].y;
+                m_pParticle[i].z -= m_vOffset[i].z;
+                m_vOffset[i].x = 0.0f;
+                m_vOffset[i].y = 0.0f;
+                m_vOffset[i].z = 0.0f;
+            }
+            m_fOffsetRecoveryTime = 0.0f;
+        }
+    }
+    */
 }
 
 void CN3Cloak::TickYaw() {
@@ -443,8 +433,8 @@ void CN3Cloak::TickByPlayerMotion() {
         if (m_eAnchorPattern == AMP_NONE && m_fAnchorPreserveTime < 0.0f) {
             MoveAnchorLine(AMP_MOVEXZ, 2.0f);
         }
-        //m_GravityForce.y = (rand()%2+1)*-0.0015f;
-        //TRACE("Apply force %f\n", m_Force.z);
+        // m_GravityForce.y = (rand() % 2 + 1) * -0.0015f;
+        // TRACE("Apply force %f\n", m_Force.z);
         break;
     case PSM_RUN:
         m_Force.z = 0.0009f;
@@ -452,8 +442,8 @@ void CN3Cloak::TickByPlayerMotion() {
         if (m_eAnchorPattern == AMP_NONE && m_fAnchorPreserveTime < 0.0f) {
             MoveAnchorLine(AMP_MOVEXZ2, 2.0f);
         }
-        //m_GravityForce.y = (rand()%2+1)*-0.0015f;
-        //TRACE("Apply force %f\n", m_Force.z);
+        // m_GravityForce.y = (rand() % 2 + 1) * -0.0015f;
+        // TRACE("Apply force %f\n", m_Force.z);
         break;
     case PSM_WALK_BACKWARD:
         break;
@@ -491,8 +481,8 @@ void CN3Cloak::MoveAnchorLine(e_Cloak_AnchorMovePattern eType, float fPreserveTi
             m_pParticle[i].z += z_Offset;
             m_vOffset[i].x = x_Offset;
             m_vOffset[i].z = z_Offset;
-            //				m_pParticle[i].y += x_Offset;
-            //				m_vOffset[i].y = x_Offset;
+            // m_pParticle[i].y += x_Offset;
+            // m_vOffset[i].y = x_Offset;
         }
         TRACE("AMP_MOVEXZ2 Applyed \n");
     } break;

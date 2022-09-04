@@ -92,15 +92,15 @@ DWORD CN3UIIcon::MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & ptO
         return dwRet;
     }
     /*
-	else
-	{
-		if(m_pParent && m_pParent->GetState() == UI_STATE_ICON_MOVING) // 이전 상태가 버튼을 Down 상태이면
-		{
-			m_pParent->ReceiveMessage(this, UIMSG_ICON_UP); // 부모에게 버튼 클릭 통지..
-			dwRet |= UI_MOUSEPROC_DONESOMETHING;
-			return dwRet;
-		}
-	}
+    else
+    {
+        if(m_pParent && m_pParent->GetState() == UI_STATE_ICON_MOVING) // 이전 상태가 버튼을 Down 상태이면
+        {
+            m_pParent->ReceiveMessage(this, UIMSG_ICON_UP); // 부모에게 버튼 클릭 통지..
+            dwRet |= UI_MOUSEPROC_DONESOMETHING;
+            return dwRet;
+        }
+    }
 */
 
     if (dwFlags & UI_MOUSE_LBDBLCLK) // 왼쪽 더블 클릭
@@ -128,13 +128,13 @@ void CN3UIIcon::Render() {
 
     CN3UIWndBase::m_pSelectionImage->SetVisible(false);
 
-    /*	if ( m_dwStyle & UISTYLE_ICON_HIGHLIGHT )
-	{		
-		CN3UIWndBase::m_pSelectionImage->SetVisible(true);
-		CN3UIWndBase::m_pSelectionImage->SetRegion(GetRegion());
-		CN3UIWndBase::m_pSelectionImage->Render();
-		CN3UIWndBase::m_pSelectionImage->SetVisible(false);
-	}*/
+    /*    if ( m_dwStyle & UISTYLE_ICON_HIGHLIGHT )
+    {        
+        CN3UIWndBase::m_pSelectionImage->SetVisible(true);
+        CN3UIWndBase::m_pSelectionImage->SetRegion(GetRegion());
+        CN3UIWndBase::m_pSelectionImage->Render();
+        CN3UIWndBase::m_pSelectionImage->SetVisible(false);
+    }*/
 
     CN3UIImage::Render();
 

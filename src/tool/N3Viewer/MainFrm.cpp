@@ -81,7 +81,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     DockControlBar(&m_wndToolBar);
 
     // Engine »ý¼º
-    //	m_Eng.InitEnv();
+    //    m_Eng.InitEnv();
     if (!m_Eng.Init(TRUE, m_hWnd, 64, 64, 0, TRUE)) {
         return -1;
     }
@@ -115,15 +115,15 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/, CCreateContext * pConte
         return FALSE;
     }
 
-    //	m_wndSplitter.SetColumnInfo(0, nW1, 0);
-    //	if (!m_wndSplitter.CreateView(0, 1, RUNTIME_CLASS(CN3ViewerView), CSize(rc.Width() - nW1, rc.Height()), pContext) ||
-    //		!m_wndSplitterLeft.CreateView(0, 0, RUNTIME_CLASS(CViewSceneTree), CSize(nW1, rc.Height()/2), pContext) ||
-    //		!m_wndSplitterLeft.CreateView(1, 0, RUNTIME_CLASS(CViewProperty), CSize(nW1, rc.Height()/2), pContext) )
-    //	{
-    //		m_wndSplitter.DestroyWindow();
-    //		m_wndSplitterLeft.DestroyWindow();
-    //		return FALSE;
-    //	}
+    //    m_wndSplitter.SetColumnInfo(0, nW1, 0);
+    //    if (!m_wndSplitter.CreateView(0, 1, RUNTIME_CLASS(CN3ViewerView), CSize(rc.Width() - nW1, rc.Height()), pContext) ||
+    //        !m_wndSplitterLeft.CreateView(0, 0, RUNTIME_CLASS(CViewSceneTree), CSize(nW1, rc.Height()/2), pContext) ||
+    //        !m_wndSplitterLeft.CreateView(1, 0, RUNTIME_CLASS(CViewProperty), CSize(nW1, rc.Height()/2), pContext) )
+    //    {
+    //        m_wndSplitter.DestroyWindow();
+    //        m_wndSplitterLeft.DestroyWindow();
+    //        return FALSE;
+    //    }
 
     m_wndSplitter.SetColumnInfo(0, nW1, nW1 / 2);
 

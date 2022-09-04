@@ -90,19 +90,19 @@ void CDlgMapView::OnPaint() {
 
         Rectangle(dc, MousePoint.x, MousePoint.y, MousePoint.x + Brush_Size, MousePoint.y + Brush_Size);
         /*
-		oldpen	=(HPEN)SelectObject(dc, (HPEN)PenRed);
+        oldpen    =(HPEN)SelectObject(dc, (HPEN)PenRed);
 
-		for( int i = 0; i < Map_View_Size/2 ; i+= Brush_Size)
-		{
-			MoveToEx(dc,i,Map_View_Size/2,NULL);
-			LineTo(dc,i,0);
-		}
+        for( int i = 0; i < Map_View_Size/2 ; i+= Brush_Size)
+        {
+            MoveToEx(dc,i,Map_View_Size/2,NULL);
+            LineTo(dc,i,0);
+        }
 
-		for(int i = 0; i < Map_View_Size/2 ; i+= Brush_Size)
-		{
-			MoveToEx(dc,Map_View_Size/2,i,NULL);
-			LineTo(dc,0,i);
-		}
+        for(int i = 0; i < Map_View_Size/2 ; i+= Brush_Size)
+        {
+            MoveToEx(dc,Map_View_Size/2,i,NULL);
+            LineTo(dc,0,i);
+        }
 */
     }
 }

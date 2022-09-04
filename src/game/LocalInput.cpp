@@ -10,12 +10,12 @@ static LPDIRECTINPUTDEVICE lpDID = NULL;
 CLocalInput::CLocalInput(void) {
     m_lpDI = NULL;
     m_lpDIDKeyboard = NULL;
-    //	m_lpDIDMouse = NULL;
+    //    m_lpDIDMouse = NULL;
 
     m_hWnd = NULL;
 
-    //	m_bMouse = FALSE;
-    //	m_bKeyboard = FALSE;
+    //    m_bMouse = FALSE;
+    //    m_bKeyboard = FALSE;
 
     m_nMouseFlag = 0;
     m_nMouseFlagOld = 0; // 마우스 버튼 눌림 플래그
@@ -52,12 +52,12 @@ CLocalInput::~CLocalInput(void) {
     }
 
     // shutdown mouse
-    //	if (m_lpDIDMouse)
-    //	{
-    //		UnacquireMouse();
-    //		m_lpDIDMouse->Release();
-    //		m_lpDIDMouse = NULL;
-    //	}
+    //    if (m_lpDIDMouse)
+    //    {
+    //        UnacquireMouse();
+    //        m_lpDIDMouse->Release();
+    //        m_lpDIDMouse = NULL;
+    //    }
 
     // kill directinput
     if (m_lpDI) {
@@ -91,17 +91,17 @@ BOOL CLocalInput::Init(HINSTANCE hInst, HWND hWnd, BOOL bActivateKeyboard, BOOL 
     }
 
     // Create the mouse device
-    /*	rval = m_lpDI->CreateDevice(GUID_SysMouse, &m_lpDIDMouse, NULL);
-	if(rval == DI_OK)
-	{
-		m_lpDIDMouse->SetDataFormat(&c_dfDIMouse);
-		if( ExclusiveMouseAccess == FALSE )
-			m_lpDIDMouse->SetCooperativeLevel(hWnd, DISCL_NONEXCLUSIVE | DISCL_FOREGROUND);
-		else
-			m_lpDIDMouse->SetCooperativeLevel(hWnd, DISCL_EXCLUSIVE | DISCL_FOREGROUND);
+    /*    rval = m_lpDI->CreateDevice(GUID_SysMouse, &m_lpDIDMouse, NULL);
+    if(rval == DI_OK)
+    {
+        m_lpDIDMouse->SetDataFormat(&c_dfDIMouse);
+        if( ExclusiveMouseAccess == FALSE )
+            m_lpDIDMouse->SetCooperativeLevel(hWnd, DISCL_NONEXCLUSIVE | DISCL_FOREGROUND);
+        else
+            m_lpDIDMouse->SetCooperativeLevel(hWnd, DISCL_EXCLUSIVE | DISCL_FOREGROUND);
 
-		AcquireMouse();
-	}*/
+        AcquireMouse();
+    }*/
 
     return TRUE;
 }
@@ -122,7 +122,7 @@ void CLocalInput::SetActiveDevices(BOOL bKeyboard, BOOL bMouse) {
 // have a control panel associated with it, the default device control panel is launched.
 /////////////////////////////////////////////////////////////////////////////////////////////
 void CLocalInput::RunMouseControlPanel(HWND hWnd) {
-    //	m_lpDIDMouse->RunControlPanel(hWnd, 0);
+    //    m_lpDIDMouse->RunControlPanel(hWnd, 0);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -181,14 +181,14 @@ BOOL CLocalInput::KeyboardGetKeyState(int nDIKey) {
 void CLocalInput::AcquireKeyboard() {
     if (m_lpDIDKeyboard) {
         HRESULT rval = m_lpDIDKeyboard->Acquire();
-        //		if(rval != DI_OK) MessageBox(::GetActiveWindow(), "Acquire Keyboard Failed.", "DirectInput", MB_OK);
+        //        if(rval != DI_OK) MessageBox(::GetActiveWindow(), "Acquire Keyboard Failed.", "DirectInput", MB_OK);
         if (rval == DI_OK || rval == S_FALSE) {
-            //			m_bKeyboard = TRUE;
+            //            m_bKeyboard = TRUE;
             KeyboardFlushData();
             return;
         }
     }
-    //	m_bKeyboard = FALSE;
+    //    m_bKeyboard = FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -196,10 +196,10 @@ void CLocalInput::AcquireKeyboard() {
 /////////////////////////////////////////////////////////////////////////////////////////////
 void CLocalInput::UnacquireKeyboard() {
     KeyboardFlushData();
-    //	m_bKeyboard = FALSE;
+    //    m_bKeyboard = FALSE;
     if (m_lpDIDKeyboard) {
         HRESULT rval = m_lpDIDKeyboard->Unacquire();
-        //		if(rval != DI_OK) MessageBox(::GetActiveWindow(), "UnAcquire Keyboard Failed.", "DirectInput", MB_OK);
+        //        if(rval != DI_OK) MessageBox(::GetActiveWindow(), "UnAcquire Keyboard Failed.", "DirectInput", MB_OK);
     }
 }
 
@@ -207,25 +207,25 @@ void CLocalInput::UnacquireKeyboard() {
 // Obtains access to the mouse.
 /////////////////////////////////////////////////////////////////////////////////////////////
 void CLocalInput::AcquireMouse() {
-    //	if (m_lpDIDMouse)
-    //	{
-    //		HRESULT rval = m_lpDIDMouse->Acquire();
-    //		if (rval == DI_OK || rval == S_FALSE)
-    //		{
-    //			return;
-    //		}
-    //	}
+    //    if (m_lpDIDMouse)
+    //    {
+    //        HRESULT rval = m_lpDIDMouse->Acquire();
+    //        if (rval == DI_OK || rval == S_FALSE)
+    //        {
+    //            return;
+    //        }
+    //    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Releases access to the mouse.
 /////////////////////////////////////////////////////////////////////////////////////////////
 void CLocalInput::UnacquireMouse() {
-    //	m_bMouse = FALSE;
-    //	if (m_lpDIDMouse)
-    //	{
-    //		HRESULT rval = m_lpDIDMouse->Unacquire();
-    //	}
+    //    m_bMouse = FALSE;
+    //    if (m_lpDIDMouse)
+    //    {
+    //        HRESULT rval = m_lpDIDMouse->Unacquire();
+    //    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -234,10 +234,10 @@ void CLocalInput::UnacquireMouse() {
 // 되도록이면 전체 프로시저 돌때 한번씩만 도는게 좋다.. 여러번 하면 혼란이 올수도 있다.
 void CLocalInput::Tick(void) {
     HRESULT err;
-    //	int oldx, oldy;
-    //	BOOL isPressed;
-    //	WORD i;
-    //	DWORD key;
+    //    int oldx, oldy;
+    //    BOOL isPressed;
+    //    WORD i;
+    //    DWORD key;
 
     HWND hWndActive = ::GetActiveWindow(); // 포커싱되었을때만...
     if (hWndActive != m_hWnd) {
@@ -247,8 +247,8 @@ void CLocalInput::Tick(void) {
     ///////////////////////
     //  KEYBOARD
     ///////////////////////
-    //	if(m_bKeyboard)
-    //	{
+    //    if(m_bKeyboard)
+    //    {
     memcpy(m_byOldKeys, m_byCurKeys, NUMDIKEYS);                   // 전의 키 상태 기록
     err = m_lpDIDKeyboard->GetDeviceState(NUMDIKEYS, m_byCurKeys); // 현재 키 상태 기록
     if (err != DI_OK) {
@@ -273,42 +273,42 @@ void CLocalInput::Tick(void) {
             }
         }
     }
-    //	}
+    //    }
 
     ///////////////////////
     //  MOUSE
     ///////////////////////
-    //	if(m_bMouse)
-    //	{
-    //		DIMOUSESTATE DIMState;
-    //		err = m_lpDIDMouse->GetDeviceState(sizeof(DIMState), &DIMState); // 마우스 상태 얻기 - 이상타.. 자꾸.. 에러가..
-    //		if(err != DI_OK)
-    //		{
-    //			AcquireMouse();
-    //			return;
-    //		}
+    //    if(m_bMouse)
+    //    {
+    //        DIMOUSESTATE DIMState;
+    //        err = m_lpDIDMouse->GetDeviceState(sizeof(DIMState), &DIMState); // 마우스 상태 얻기 - 이상타.. 자꾸.. 에러가..
+    //        if(err != DI_OK)
+    //        {
+    //            AcquireMouse();
+    //            return;
+    //        }
 
     // 마우스 위치 새로 가져오기
-    //		m_ptCurMouse.x += DIMState.lX;
-    //		m_ptCurMouse.y += DIMState.lY;
+    //        m_ptCurMouse.x += DIMState.lX;
+    //        m_ptCurMouse.y += DIMState.lY;
 
-    //		if((DIMState.rgbButtons[0] & 0x80)) m_bLBDown = TRUE;
-    //		else m_bLBDown = FALSE;
-    //		if((DIMState.rgbButtons[1] & 0x80)) m_bRBDown = TRUE;
-    //		else m_bRBDown = FALSE;
+    //        if((DIMState.rgbButtons[0] & 0x80)) m_bLBDown = TRUE;
+    //        else m_bLBDown = FALSE;
+    //        if((DIMState.rgbButtons[1] & 0x80)) m_bRBDown = TRUE;
+    //        else m_bRBDown = FALSE;
 
     // clamp non-free mouse values to limits
-    //		if (m_ptCurMouse.x >= m_rcMLimit.right)
-    //			m_ptCurMouse.x = m_rcMLimit.right-1;
+    //        if (m_ptCurMouse.x >= m_rcMLimit.right)
+    //            m_ptCurMouse.x = m_rcMLimit.right-1;
     //
-    //		if (m_ptCurMouse.y >= m_rcMLimit.bottom)
-    //			m_ptCurMouse.y = m_rcMLimit.bottom-1;
+    //        if (m_ptCurMouse.y >= m_rcMLimit.bottom)
+    //            m_ptCurMouse.y = m_rcMLimit.bottom-1;
     //
-    //		if (m_ptCurMouse.x < m_rcMLimit.left)
-    //			m_ptCurMouse.x = m_rcMLimit.left;
+    //        if (m_ptCurMouse.x < m_rcMLimit.left)
+    //            m_ptCurMouse.x = m_rcMLimit.left;
     //
-    //		if (m_ptCurMouse.y < m_rcMLimit.top)
-    //			m_ptCurMouse.y = m_rcMLimit.top;
+    //        if (m_ptCurMouse.y < m_rcMLimit.top)
+    //            m_ptCurMouse.y = m_rcMLimit.top;
 
     m_ptOldMouse = m_ptCurMouse; // 일단 전의 것 복사...
 
@@ -410,5 +410,5 @@ void CLocalInput::Tick(void) {
             m_rcRBDrag.top = m_ptCurMouse.y;
         }
     }
-    //	} // end of mouse
+    //    } // end of mouse
 }

@@ -52,6 +52,6 @@ class CZipException : public CException {
 
 // throw zip exception
 // Parameters:
-//		iZipError	- zlib or internal error code
-//		lpszZipName - name of the file where the error occured
+//        iZipError    - zlib or internal error code
+//        lpszZipName - name of the file where the error occured
 void AfxThrowZipException(int iZipError = 1000, LPCTSTR lpszZipName = NULL);

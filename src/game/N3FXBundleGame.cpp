@@ -96,8 +96,8 @@ void CN3FXBundleGame::Trigger(int iSourceID, int iTargetID, int iTargetJoint, in
                 }
             }
         }
-        //	m_vDir = pTarget->Direction();
-        //	m_vDir.Normalize();
+        //    m_vDir = pTarget->Direction();
+        //    m_vDir.Normalize();
     }
 
     m_fDistance = (m_vDestPos - m_vPos).Magnitude();
@@ -152,7 +152,7 @@ bool CN3FXBundleGame::Tick() {
     m_fLife += CN3Base::s_fSecPerFrm;
 
     if (m_dwState == FX_BUNDLE_STATE_LIVE) {
-        //	if(m_fLife>=m_fLife0) Stop();
+        //    if(m_fLife>=m_fLife0) Stop();
 
         if (!m_bRegion) {
             CPlayerBase * pTarget = CGameProcedure::s_pProcMain->CharacterGetByID(m_iTargetID, false);
@@ -205,43 +205,43 @@ bool CN3FXBundleGame::Tick() {
                 break;
             } else {
                 /*
-					m_vDestPos = pTarget->Position();
-					const __Matrix44* pMtx = pTarget->JointMatrixGet(m_iTargetJoint);
-					if(pMtx) pTarget->JointPosGet(m_iTargetJoint, m_vDestPos);
+                    m_vDestPos = pTarget->Position();
+                    const __Matrix44* pMtx = pTarget->JointMatrixGet(m_iTargetJoint);
+                    if(pMtx) pTarget->JointPosGet(m_iTargetJoint, m_vDestPos);
 
-					__Vector3 vDestDir = m_vDestPos - m_vPos;
-					vDestDir.Normalize();
+                    __Vector3 vDestDir = m_vDestPos - m_vPos;
+                    vDestDir.Normalize();
 
-					__Quaternion qtRot;
-					__Vector3 vDirAxis;
-					float fDirAng;
-					
-					vDirAxis.Cross(m_vDir, vDestDir);
+                    __Quaternion qtRot;
+                    __Vector3 vDirAxis;
+                    float fDirAng;
+                    
+                    vDirAxis.Cross(m_vDir, vDestDir);
 
-					int tmp;
-					tmp = vDirAxis.x*10000.0f;
-					vDirAxis.x = (float)(tmp)/10000.0f;
-					tmp = vDirAxis.y*10000.0f;
-					vDirAxis.y = (float)(tmp)/10000.0f;
-					tmp = vDirAxis.z*10000.0f;
-					vDirAxis.z = (float)(tmp)/10000.0f;
-					if(vDirAxis.x==0.0f && vDirAxis.y==0.0f && vDirAxis.z==0.0f) vDirAxis.Set(0,1,0);
+                    int tmp;
+                    tmp = vDirAxis.x*10000.0f;
+                    vDirAxis.x = (float)(tmp)/10000.0f;
+                    tmp = vDirAxis.y*10000.0f;
+                    vDirAxis.y = (float)(tmp)/10000.0f;
+                    tmp = vDirAxis.z*10000.0f;
+                    vDirAxis.z = (float)(tmp)/10000.0f;
+                    if(vDirAxis.x==0.0f && vDirAxis.y==0.0f && vDirAxis.z==0.0f) vDirAxis.Set(0,1,0);
 
-					fDirAng = acos((double)m_vDir.Dot(vDestDir));
-					if(fDirAng > __PI*s_fSecPerFrm) fDirAng = __PI*s_fSecPerFrm;
-					else if(fDirAng < -__PI*s_fSecPerFrm) fDirAng = -__PI*s_fSecPerFrm;
+                    fDirAng = acos((double)m_vDir.Dot(vDestDir));
+                    if(fDirAng > __PI*s_fSecPerFrm) fDirAng = __PI*s_fSecPerFrm;
+                    else if(fDirAng < -__PI*s_fSecPerFrm) fDirAng = -__PI*s_fSecPerFrm;
 
-					qtRot.RotationAxis(vDirAxis, fDirAng);
+                    qtRot.RotationAxis(vDirAxis, fDirAng);
 
-					__Matrix44 mtxRot = qtRot;
-					m_vDir *= mtxRot;
+                    __Matrix44 mtxRot = qtRot;
+                    m_vDir *= mtxRot;
 
-					m_vPos += m_vDir*CN3Base::s_fSecPerFrm*m_fVelocity;
-					
-					float fTerrainY = s_pTerrain->GetHeight(m_vPos.x, m_vPos.z);
-					if(m_vPos.y <= fTerrainY) m_vPos.y = fTerrainY + 0.3f;	//땅을 타고 날라가라..
-					break;
-					*/
+                    m_vPos += m_vDir*CN3Base::s_fSecPerFrm*m_fVelocity;
+                    
+                    float fTerrainY = s_pTerrain->GetHeight(m_vPos.x, m_vPos.z);
+                    if(m_vPos.y <= fTerrainY) m_vPos.y = fTerrainY + 0.3f;    //땅을 타고 날라가라..
+                    break;
+                    */
             }
             //break;
         }
@@ -276,7 +276,7 @@ bool CN3FXBundleGame::Tick() {
             m_vPos += m_vDir * CN3Base::s_fSecPerFrm * m_fVelocity;
 
             //float fTerrainY = s_pTerrain->GetHeight(m_vPos.x, m_vPos.z);
-            //if(m_vPos.y <= fTerrainY) m_vPos.y = fTerrainY + 0.3f;	//땅을 타고 날라가라..
+            //if(m_vPos.y <= fTerrainY) m_vPos.y = fTerrainY + 0.3f;    //땅을 타고 날라가라..
             break;
         }
 

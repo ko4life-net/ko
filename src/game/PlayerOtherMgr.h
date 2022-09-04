@@ -24,9 +24,9 @@ typedef typename std::map<int, CPlayerBase *>::value_type  val_BPC;
 
 class CPlayerOtherMgr : public CGameBase {
   public:
-    //	std::list<CPlayerNPC*>		m_NPCs;		// NPC
-    //	std::list<CPlayerOther*>	m_UPCs;		// User Player Character
-    //	std::list<CPlayerNPC*>		m_Corpses;	// 죽은놈.. 죽는 에니메이션 및 시간이 지나면 없어지게 한다..
+    //    std::list<CPlayerNPC*>        m_NPCs;        // NPC
+    //    std::list<CPlayerOther*>    m_UPCs;        // User Player Character
+    //    std::list<CPlayerNPC*>        m_Corpses;    // 죽은놈.. 죽는 에니메이션 및 시간이 지나면 없어지게 한다..
     std::map<int, CPlayerNPC *>   m_NPCs;              // NPC
     std::map<int, CPlayerOther *> m_UPCs;              // User Player Character
     std::map<int, CPlayerNPC *>   m_Corpses;           // 죽은놈.. 죽는 에니메이션 및 시간이 지나면 없어지게 한다..
@@ -42,10 +42,10 @@ class CPlayerOtherMgr : public CGameBase {
     void UPCAdd(CPlayerOther * pPlayer);
     bool UPCDelete(int iID); // 고유 ID 와 일치하는 NPC를 리스트에서 제거.. 및 리소스 해제
 
-    //	CPlayerOther*		UPCGetByName(const char* szID);					// User Player Character 와 NPC 를 조사해서 포인터를 가져온다.
+    //    CPlayerOther*        UPCGetByName(const char* szID);                    // User Player Character 와 NPC 를 조사해서 포인터를 가져온다.
     CPlayerOther * UPCGetByID(int  iID,
                               bool bFromAliveOnly); // User Player Character 와 NPC 를 조사해서 포인터를 가져온다.
-    //	CPlayerNPC*			NPCGetByName(const char* szID);					// User Player Character 와 NPC 를 조사해서 포인터를 가져온다.
+    //    CPlayerNPC*            NPCGetByName(const char* szID);                    // User Player Character 와 NPC 를 조사해서 포인터를 가져온다.
     CPlayerNPC * NPCGetByID(int  iID,
                             bool bFromAliveOnly); // User Player Character 와 NPC 를 조사해서 포인터를 가져온다.
     CPlayerNPC * NPCGetByPos(const __Vector3 & vPos);

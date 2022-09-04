@@ -65,7 +65,7 @@ enum e_UIIconType {
 
 // Item Info..
 struct __IconItemSkill {
-    //								e_UIIconType			eIconType;
+    //                                e_UIIconType            eIconType;
     CN3UIIcon * pUIIcon;
     std::string szIconFN;
 

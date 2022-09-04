@@ -22,7 +22,7 @@ CDBAgent::CDBAgent() {}
 CDBAgent::~CDBAgent() {}
 
 BOOL CDBAgent::DatabaseInit() {
-    //	Main DB Connecting..
+    //    Main DB Connecting..
     /////////////////////////////////////////////////////////////////////////////////////
     m_pMain = (CItemManagerDlg *)AfxGetApp()->GetMainWnd();
 

@@ -61,25 +61,25 @@ const BYTE WAREHOUSE_MAX = 196; // 창고 아이템 MAX
 #define LOGIC_CHECK_NOAH         0x0D
 
 /*
-#define	LOGIC_CHECK_NATION			0X01
-#define	LOGIC_CHECK_LEVEL			0X02
-#define	LOGIC_NOEXIST_ITEM			0X03
-#define	LOGIC_QUEST_END				0X04
-#define	LOGIC_QUEST_LOG				0X05
-#define	LOGIC_EXIST_ITEM			0X06
-#define	LOGIC_CHECK_NOAH			0X07
-#define LOGIC_CHECK_CLASS			0x08
-#define LOGIC_CHECK_WEIGHT			0x09
-#define LOGIC_CHECK_RACE			0x0A
-#define LOGIC_CHECK_LOYALTY			0x0B
-#define LOGIC_CHECK_AUTHORITY		0x0C
-#define LOGIC_CHECK_STR				0X0D
-#define LOGIC_CHECK_STA				0x0D
-#define LOGIC_CHECK_DEX				0x0E
-#define LOGIC_CHECK_INT				0x0F
-#define LOGIC_CHECK_CHA				0x10
-#define LOGIC_CHECK_SKILLPOINT		0x11
-#define LOGIC_CHECK_DAY				0x12
+#define    LOGIC_CHECK_NATION            0X01
+#define    LOGIC_CHECK_LEVEL            0X02
+#define    LOGIC_NOEXIST_ITEM            0X03
+#define    LOGIC_QUEST_END                0X04
+#define    LOGIC_QUEST_LOG                0X05
+#define    LOGIC_EXIST_ITEM            0X06
+#define    LOGIC_CHECK_NOAH            0X07
+#define LOGIC_CHECK_CLASS            0x08
+#define LOGIC_CHECK_WEIGHT            0x09
+#define LOGIC_CHECK_RACE            0x0A
+#define LOGIC_CHECK_LOYALTY            0x0B
+#define LOGIC_CHECK_AUTHORITY        0x0C
+#define LOGIC_CHECK_STR                0X0D
+#define LOGIC_CHECK_STA                0x0D
+#define LOGIC_CHECK_DEX                0x0E
+#define LOGIC_CHECK_INT                0x0F
+#define LOGIC_CHECK_CHA                0x10
+#define LOGIC_CHECK_SKILLPOINT        0x11
+#define LOGIC_CHECK_DAY                0x12
 */
 
 // 실행관련 define
@@ -96,17 +96,17 @@ const BYTE WAREHOUSE_MAX = 196; // 창고 아이템 MAX
 #define EXEC_ROB_NOAH        0x0B
 
 /*
-#define EXEC_SAY					0X01
-#define EXEC_SELECT_MSG				0X02
-#define EXEC_RUN_EVENT				0X03
-#define EXEC_RETURN					0X04
-#define EXEC_ROB_ITEM				0X05
-#define EXEC_ROB_NOAH				0X06
-#define EXEC_GIVE_ITEM				0X07
-#define EXEC_GIVE_QUEST				0X08
-#define EXEC_QUEST_END				0X09
-#define EXEC_QUEST_SAVE				0X0A
-#define EXEC_GIVE_NOAH				0x0B
+#define EXEC_SAY                    0X01
+#define EXEC_SELECT_MSG                0X02
+#define EXEC_RUN_EVENT                0X03
+#define EXEC_RETURN                    0X04
+#define EXEC_ROB_ITEM                0X05
+#define EXEC_ROB_NOAH                0X06
+#define EXEC_GIVE_ITEM                0X07
+#define EXEC_GIVE_QUEST                0X08
+#define EXEC_QUEST_END                0X09
+#define EXEC_QUEST_SAVE                0X0A
+#define EXEC_GIVE_NOAH                0x0B
 */
 
 // EVENT 시작 번호들 :)
@@ -149,7 +149,7 @@ const BYTE WAREHOUSE_MAX = 196; // 창고 아이템 MAX
 #define NPC_GATE             50  // 성문형태 NPC
 #define NPC_PHOENIX_GATE     51  // 깨지지 않는 문 (8->51)
 #define NPC_SPECIAL_GATE     52  // 깨지지 않는 문이면서 2분마다 열렸다 닫혔다 하는 문
-#define NPC_GATE_LEVER       55  // 성문 레버...	(9->55)
+#define NPC_GATE_LEVER       55  // 성문 레버...    (9->55)
 #define NPC_ARTIFACT         60  // 결계석 (7->60)
 #define NPC_DESTORY_ARTIFACT 61  // 파괴되는 결계석
 #define NPC_MONK_ELMORAD     71  // 비러머글 수도승 >.<
@@ -215,7 +215,7 @@ const BYTE WAREHOUSE_MAX = 196; // 창고 아이템 MAX
 ////////////////////////////////////////////////////////////
 
 // ==================================================================
-//	About Map Object
+//    About Map Object
 // ==================================================================
 #define USER_BAND    0     // Map 위에 유저가 있다.
 #define NPC_BAND     10000 // Map 위에 NPC(몹포함)가 있다.
@@ -328,7 +328,7 @@ struct _REGION_BUFFER {
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 //
-//	Global Function Define
+//    Global Function Define
 //
 
 inline void GetString(char * tBuf, char * sBuf, int len, int & index) {

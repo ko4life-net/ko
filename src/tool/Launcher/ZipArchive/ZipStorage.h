@@ -14,14 +14,14 @@
 // calling CZipArchive functions, apart from the static ones, may have unexpected results
 // iNumber  - disk number needed
 // iCode :
-//		-1 - disk needed for reading
+//        -1 - disk needed for reading
 // other codes occurs during writting
-//		>=0 : number of bytes needed
-// 		-2 - the file with the archive name already exists on the disk
-//		-3 - the disk is probably write - protected
-//		-4 - couldn't create a file
-//	pData - user defined data
-//	return false to abort operation: the proper exception will be thrown
+//        >=0 : number of bytes needed
+//         -2 - the file with the archive name already exists on the disk
+//        -3 - the disk is probably write - protected
+//        -4 - couldn't create a file
+//    pData - user defined data
+//    return false to abort operation: the proper exception will be thrown
 typedef bool (*ZIPCALLBACKFUN)(int iNumber, int iCode, void * pData);
 
 class CZipStorage {
@@ -54,12 +54,12 @@ class CZipStorage {
     // change the disk during extract operations
     void ChangeDisk(int iNumber);
 
-    // Function name	: IsSpanMode
-    // Description	    : detect span mode
-    // Return type		: int
-    //		-1 - existing span opened
-    //		 0 - no span
-    //		 1 - new span
+    // Function name    : IsSpanMode
+    // Description        : detect span mode
+    // Return type        : int
+    //        -1 - existing span opened
+    //         0 - no span
+    //         1 - new span
     int IsSpanMode();
 
     void        Open(LPCTSTR szPathName, int iMode, int iVolumeSize);
@@ -123,7 +123,7 @@ class CZipStorage {
     CString ChangePkzipRead();
 
     //  you can only add a new files to the new disk spanning archive and only extract
-    //	them from the existing one
+    //    them from the existing one
     bool m_bNewSpan;
 
     int  m_iCurrentDisk;

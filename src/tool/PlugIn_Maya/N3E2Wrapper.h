@@ -4,7 +4,7 @@
 #pragma warning(disable : 4786)
 
 /*==============================================*/
-/* Header file for the N3E2 wrapper class		*/
+/* Header file for the N3E2 wrapper class        */
 /*==============================================*/
 #define MAYA_SRC
 
@@ -104,7 +104,7 @@ class CN3E2Wrapper {
     bool ProcessShape(MFnMesh & mMesh);
     bool ProcessChr(MFnSkinCluster & mSkin);
 
-    //	CN3TMesh*	ProcessTMesh(MFnMesh &mMesh);
+    //    CN3TMesh*    ProcessTMesh(MFnMesh &mMesh);
     int ProcessMaterial(MObject mShaderObj, __Material * pMtl);
     int ProcessTransform(MFnTransform & mTransform, class CN3Transform * pTransform);
 

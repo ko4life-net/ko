@@ -22,7 +22,7 @@ class CItemManagerDlg : public CDialog {
 
     CDBAgent m_DBAgent;
 
-    //ItemtableArray		m_ItemtableArray;
+    //ItemtableArray        m_ItemtableArray;
 
     int  m_nServerNo, m_nZoneNo;
     char m_strGameDSN[24];

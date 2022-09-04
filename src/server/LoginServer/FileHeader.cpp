@@ -155,8 +155,8 @@ void CFileHeader::SetTime(const CTime & time) {
     m_uModDate = (WORD)(time.GetDay() + (time.GetMonth() << 5) + (year << 9));
     m_uModTime = (WORD)((time.GetSecond() >> 1) + (time.GetMinute() << 5) + (time.GetHour() << 11));
 }
-//	the buffer contains crc32, compressed and uncompressed sizes to be compared
-//	with the actual values
+//    the buffer contains crc32, compressed and uncompressed sizes to be compared
+//    with the actual values
 bool CFileHeader::CheckCrcAndSizes(char * pBuf) {
     return (memcmp(pBuf, &m_uCrc32, 4) == 0) && (memcmp(pBuf + 4, &m_uComprSize, 4) == 0) &&
            (memcmp(pBuf + 8, &m_uUncomprSize, 4) == 0);

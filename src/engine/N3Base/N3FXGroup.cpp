@@ -67,8 +67,8 @@ bool CN3FXGroup::Save(HANDLE hFile) {
 }
 
 //
-//	decode script file..
-//	스크립트 파일 읽고 해석시킴...
+//    decode script file..
+//    스크립트 파일 읽고 해석시킴...
 //
 #ifdef _N3TOOL
 bool CN3FXGroup::DecodeScriptFile(const char * lpPathName) {

@@ -31,7 +31,7 @@ CDTexGroup::~CDTexGroup() {
 }
 
 //
-//	Release..
+//    Release..
 //
 void CDTexGroup::Release() {
     for (int i = DTEX_FULL; i < DTEX_MAX; i++) {
@@ -46,7 +46,7 @@ void CDTexGroup::Release() {
 }
 
 //
-//	Init..
+//    Init..
 //
 void CDTexGroup::Init() {
     Release();
@@ -56,7 +56,7 @@ void CDTexGroup::Init() {
 }
 
 //
-//	SetAttr..
+//    SetAttr..
 //
 void CDTexGroup::SetAttr(int attr, DTEXTILEATTR tile) {
     if ((attr >= DTEX_FULL) && (attr < DTEX_MAX)) {
@@ -69,7 +69,7 @@ void CDTexGroup::SetAttr(int attr, DTEXTILEATTR tile) {
 }
 
 //
-//	DelAttr..
+//    DelAttr..
 //
 void CDTexGroup::DelAttr(int attr, DTEXTILEATTR tile) {
     if ((attr >= DTEX_FULL) && (attr < DTEX_MAX)) {
@@ -108,8 +108,8 @@ void CDTexGroup::DelAttrByDTexID(int DTexID) {
 }
 
 //
-//	DTexMng에 있는 정보들 청소...
-//	DTex에 저장되어 있는 현재 그룹 정보를 NONE으로 셋팅..
+//    DTexMng에 있는 정보들 청소...
+//    DTex에 저장되어 있는 현재 그룹 정보를 NONE으로 셋팅..
 //
 void CDTexGroup::ClearDTex() {
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();

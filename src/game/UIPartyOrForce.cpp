@@ -101,7 +101,7 @@ bool CUIPartyOrForce::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
         __InfoPartyOrForce * pIP = NULL;
         it_PartyOrForce      it = m_Members.begin(), itEnd = m_Members.end();
         for (int i = 0; it != itEnd && i < MAX_PARTY_OR_FORCE; it++, i++) {
-            //			if(m_pStatic_IDs[i] && pSender == m_pStatic_IDs[i])
+            //            if(m_pStatic_IDs[i] && pSender == m_pStatic_IDs[i])
             if (pSender == m_pAreas[i]) {
                 pIP = &(*it);
                 m_iIndexSelected = i; // 현재 선택된 멤버인덱스..
@@ -305,15 +305,15 @@ void CUIPartyOrForce::MemberInfoReInit() // 파티원 구성이 변경될때.. 순서 및 각�
 
         if (m_pProgress_HPs[i]) {
             m_pProgress_HPs[i]->SetCurValue(pIP->iHP * 100 / pIP->iHPMax);
-            //			m_pProgress_HPs[i]->SetVisible(true);
+            //            m_pProgress_HPs[i]->SetVisible(true);
         }
         if (m_pProgress_HPReduce[i]) {
             m_pProgress_HPReduce[i]->SetCurValue(pIP->iHP * 100 / pIP->iHPMax);
-            //			m_pProgress_HPReduce[i]->SetVisible(false);
+            //            m_pProgress_HPReduce[i]->SetVisible(false);
         }
         if (m_pProgress_ETC[i]) {
             m_pProgress_ETC[i]->SetCurValue(pIP->iHP * 100 / pIP->iHPMax);
-            //			m_pProgress_ETC[i]->SetVisible(false);
+            //            m_pProgress_ETC[i]->SetVisible(false);
         }
         if (m_pStatic_IDs[i]) {
             m_pStatic_IDs[i]->SetString(pIP->szID);

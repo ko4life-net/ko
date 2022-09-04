@@ -43,8 +43,8 @@ MAP::MAP() {
     memset(m_MapName, NULL, 256);
     m_sKarusRoom = 0;
     m_sElmoradRoom = 0;
-    //	for(int i=0; i<MAX_DUNGEON_BOSS_MONSTER; i++)
-    //		m_arDungeonBossMonster[i] = 1;
+    //    for(int i=0; i<MAX_DUNGEON_BOSS_MONSTER; i++)
+    //        m_arDungeonBossMonster[i] = 1;
 }
 
 MAP::~MAP() {
@@ -52,7 +52,7 @@ MAP::~MAP() {
 }
 
 void MAP::RemoveMapData() {
-    //	int i, j, k;
+    //    int i, j, k;
 
     if (m_ppRegion) {
         for (int i = 0; i < m_sizeRegion.cx; i++) {
@@ -113,7 +113,7 @@ BOOL MAP::IsMovable(int dest_x, int dest_y) {
 }
 
 ///////////////////////////////////////////////////////////////////////
-//	각 서버가 담당하고 있는 zone의 Map을 로드한다.
+//    각 서버가 담당하고 있는 zone의 Map을 로드한다.
 //
 BOOL MAP::LoadMap(HANDLE hFile) {
     LoadTerrain(hFile);
@@ -179,7 +179,7 @@ float MAP::GetHeight(float x, float z) {
     dX = (x - iX * m_fUnitDist) / m_fUnitDist;
     dZ = (z - iZ * m_fUnitDist) / m_fUnitDist;
 
-    //	_ASSERT(dX>=0.0f && dZ>=0.0f && dX<1.0f && dZ<1.0f);
+    //    _ASSERT(dX>=0.0f && dZ>=0.0f && dX<1.0f && dZ<1.0f);
     if (!(dX >= 0.0f && dZ >= 0.0f && dX < 1.0f && dZ < 1.0f)) {
         return FLT_MIN;
     }
@@ -320,9 +320,9 @@ Iterator MAP::RegionNpcRemove(int rx, int rz, int nid) {
 
 void MAP::LoadMapTile(HANDLE hFile) {
     //MapTile속성 읽기..
-    //	속성이 0이면 못 가는 곳.
-    //	1이면 그냥 가는 곳...
-    //	그외는 이벤트 ID.
+    //    속성이 0이면 못 가는 곳.
+    //    1이면 그냥 가는 곳...
+    //    그외는 이벤트 ID.
     //
     int      x1 = m_sizeMap.cx;
     int      z1 = m_sizeMap.cy;
@@ -347,28 +347,28 @@ void MAP::LoadMapTile(HANDLE hFile) {
     for (int i = 0; i < m_sizeMap.cy; i++) {
         for (int j = 0; j < m_sizeMap.cx; j++) {
             m_pMap[j][i].m_sEvent = (short)pEvent[j][i];
-            //m_pMap[j][i].m_sEvent	= (short)1;
+            //m_pMap[j][i].m_sEvent    = (short)1;
             if (m_pMap[j][i].m_sEvent >= 1) {
                 count++;
             }
-            //	m_pMap[j][i].m_lUser	= 0;
-            //	m_pMap[j][i].m_dwType = 0;
+            //    m_pMap[j][i].m_lUser    = 0;
+            //    m_pMap[j][i].m_dwType = 0;
         }
     }
     TRACE("move = %d\n", count);
 
-    /*	FILE* stream = fopen("c:\\move1.txt", "w");
+    /*    FILE* stream = fopen("c:\\move1.txt", "w");
 
-	for(int z=m_sizeMap.cy-1; z>=0; z--)
-	{
-		for(int x=0; x<m_sizeMap.cx; x++)
-		{
-			int v = m_pMap[x][z].m_sEvent;
-			fprintf(stream, "%d",v);
-		}
-		fprintf(stream, "\n");
-	}
-	fclose(stream);	*/
+    for(int z=m_sizeMap.cy-1; z>=0; z--)
+    {
+        for(int x=0; x<m_sizeMap.cx; x++)
+        {
+            int v = m_pMap[x][z].m_sEvent;
+            fprintf(stream, "%d",v);
+        }
+        fprintf(stream, "\n");
+    }
+    fclose(stream);    */
 
     if (pEvent) {
         for (int i = 0; i < m_sizeMap.cx; i++) {
@@ -596,7 +596,7 @@ cancel_event_load:
     AfxMessageBox(str);
     in.Close();
     pFile.Close();
-    //	DeleteAll();
+    //    DeleteAll();
     return FALSE;
     //return TRUE;
 }

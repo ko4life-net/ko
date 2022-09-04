@@ -114,7 +114,7 @@ int CSharedMemQueue::PutData(char * pBuf, int size) {
     }
 
     index = 0;
-    SetByte((char *)pQueue, WR, index); // Block Mode Set to WR	-> Data Exist
+    SetByte((char *)pQueue, WR, index); // Block Mode Set to WR    -> Data Exist
     SetShort((char *)pQueue, size, index);
     SetString((char *)pQueue, pBuf, size, index);
 
@@ -125,7 +125,7 @@ int CSharedMemQueue::PutData(char * pBuf, int size) {
 
     m_pHeader->RearMode = WR;
 
-    //	TRACE("Queue Writing : %d %d %x\n", m_pHeader->nCount, m_pHeader->Rear, m_pHeader);
+    //    TRACE("Queue Writing : %d %d %x\n", m_pHeader->nCount, m_pHeader->Rear, m_pHeader);
 
     return 1;
 }
@@ -138,8 +138,8 @@ int CSharedMemQueue::GetData(char * pBuf) {
         return SMQ_READING;
     }
 
-    //	if( m_pHeader->Front >= m_pHeader->Rear )
-    //		return SMQ_EMPTY;
+    //    if( m_pHeader->Front >= m_pHeader->Rear )
+    //        return SMQ_EMPTY;
 
     m_pHeader->FrontMode = R;
     m_pHeader->ReadPid = _getpid();
@@ -172,7 +172,7 @@ int CSharedMemQueue::GetData(char * pBuf) {
 
     m_pHeader->FrontMode = WR;
 
-    //	TRACE("Queue Reading : %d %d %x\n", m_pHeader->nCount, m_pHeader->Front, m_pHeader);
+    //    TRACE("Queue Reading : %d %d %x\n", m_pHeader->nCount, m_pHeader->Front, m_pHeader);
 
     return size;
 }

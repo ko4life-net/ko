@@ -177,69 +177,69 @@ void CViewSceneTree::UpdateTreeItem(HTREEITEM hParent, CN3Base * pBase) {
         }
         GetTreeCtrl().SortChildren(hItem2);
 
-        /*		hItem2 = GetTreeCtrl().InsertItem("Mesh Resource", hItem);
-		int nMC = pScene->m_MngMesh.Count();
-		for(int i = 0; i < nMC; i++) this->UpdateTreeItem(hItem2, pScene->m_MngMesh.Get(i));
+        /*        hItem2 = GetTreeCtrl().InsertItem("Mesh Resource", hItem);
+        int nMC = pScene->m_MngMesh.Count();
+        for(int i = 0; i < nMC; i++) this->UpdateTreeItem(hItem2, pScene->m_MngMesh.Get(i));
 
-		hItem2 = GetTreeCtrl().InsertItem("Progressive Mesh Resource", hItem);
-		int nPMC = pScene->m_MngPMesh.Count();
-		for(int i = 0; i < nPMC; i++) this->UpdateTreeItem(hItem2, pScene->m_MngPMesh.Get(i));
+        hItem2 = GetTreeCtrl().InsertItem("Progressive Mesh Resource", hItem);
+        int nPMC = pScene->m_MngPMesh.Count();
+        for(int i = 0; i < nPMC; i++) this->UpdateTreeItem(hItem2, pScene->m_MngPMesh.Get(i));
 
-		hItem2 = GetTreeCtrl().InsertItem("Indexed Mesh Resource", hItem);
-		int nIMC = pScene->m_MngIMesh.Count();
-		for(int i = 0; i < nIMC; i++) this->UpdateTreeItem(hItem2, pScene->m_MngIMesh.Get(i));
+        hItem2 = GetTreeCtrl().InsertItem("Indexed Mesh Resource", hItem);
+        int nIMC = pScene->m_MngIMesh.Count();
+        for(int i = 0; i < nIMC; i++) this->UpdateTreeItem(hItem2, pScene->m_MngIMesh.Get(i));
 
-		hItem2 = GetTreeCtrl().InsertItem("Joint Resource", hItem);
-		int nJC = pScene->m_MngJoint.Count();
-		for(int i = 0; i < nJC; i++) this->UpdateTreeItem(hItem2, pScene->m_MngJoint.Get(i));
+        hItem2 = GetTreeCtrl().InsertItem("Joint Resource", hItem);
+        int nJC = pScene->m_MngJoint.Count();
+        for(int i = 0; i < nJC; i++) this->UpdateTreeItem(hItem2, pScene->m_MngJoint.Get(i));
 
-		hItem2 = GetTreeCtrl().InsertItem("Skin Resource", hItem);
-		int nSC2 = pScene->m_MngSkin.Count();
-		for(int i = 0; i < nSC2; i++) this->UpdateTreeItem(hItem2, pScene->m_MngSkin.Get(i));
+        hItem2 = GetTreeCtrl().InsertItem("Skin Resource", hItem);
+        int nSC2 = pScene->m_MngSkin.Count();
+        for(int i = 0; i < nSC2; i++) this->UpdateTreeItem(hItem2, pScene->m_MngSkin.Get(i));
 */
     }
-    /*	else if(pBase->Type() & OBJ_CHARACTER)
-	{
-		CN3Chr* pChr = (CN3Chr*)pBase;
+    /*    else if(pBase->Type() & OBJ_CHARACTER)
+    {
+        CN3Chr* pChr = (CN3Chr*)pBase;
 
-		HTREEITEM hItem2 = NULL, hItem3;
-		CString str, szTmp;
+        HTREEITEM hItem2 = NULL, hItem3;
+        CString str, szTmp;
 
-		for(int i = 0; i < MAX_CHR_LOD; i++)
-		{
-			str.Format("Level Of Detail %d", i); hItem2 = GetTreeCtrl().InsertItem(str, hItem);
+        for(int i = 0; i < MAX_CHR_LOD; i++)
+        {
+            str.Format("Level Of Detail %d", i); hItem2 = GetTreeCtrl().InsertItem(str, hItem);
 
-			if(pChr->JointGet(i) != NULL) szTmp = pChr->JointGet(i)->Name(); else szTmp = "";
-			str.Format("Joint : %s", szTmp);
-			hItem3 = GetTreeCtrl().InsertItem(str, hItem2); GetTreeCtrl().SetItemData(hItem3, (DWORD)pChr->JointGet(i));
-			
-			for(int j = 0; j < MAX_CHR_PART; j++)
-			{
-				if(pChr->MeshGet(i, j) != NULL) szTmp = pChr->MeshGet(i, j)->Name(); else szTmp = "";
-				str .Format("Mesh : %s", szTmp);
-				hItem3 = GetTreeCtrl().InsertItem(str, hItem2); GetTreeCtrl().SetItemData(hItem3, (DWORD)pChr->MeshGet(i, j));
-				
-				if(pChr->SkinGet(i, j) != NULL) szTmp = pChr->SkinGet(i, j)->Name(); else szTmp = "";
-				str .Format("Skin : %s", szTmp);
-				hItem3 = GetTreeCtrl().InsertItem(str, hItem2); GetTreeCtrl().SetItemData(hItem3, (DWORD)pChr->SkinGet(i, j));
-			}
-		}
-	}
-	else if(pBase->Type() & OBJ_SHAPE)
-	{
-		CN3Shape* pShape = (CN3Shape*)pBase;
+            if(pChr->JointGet(i) != NULL) szTmp = pChr->JointGet(i)->Name(); else szTmp = "";
+            str.Format("Joint : %s", szTmp);
+            hItem3 = GetTreeCtrl().InsertItem(str, hItem2); GetTreeCtrl().SetItemData(hItem3, (DWORD)pChr->JointGet(i));
+            
+            for(int j = 0; j < MAX_CHR_PART; j++)
+            {
+                if(pChr->MeshGet(i, j) != NULL) szTmp = pChr->MeshGet(i, j)->Name(); else szTmp = "";
+                str .Format("Mesh : %s", szTmp);
+                hItem3 = GetTreeCtrl().InsertItem(str, hItem2); GetTreeCtrl().SetItemData(hItem3, (DWORD)pChr->MeshGet(i, j));
+                
+                if(pChr->SkinGet(i, j) != NULL) szTmp = pChr->SkinGet(i, j)->Name(); else szTmp = "";
+                str .Format("Skin : %s", szTmp);
+                hItem3 = GetTreeCtrl().InsertItem(str, hItem2); GetTreeCtrl().SetItemData(hItem3, (DWORD)pChr->SkinGet(i, j));
+            }
+        }
+    }
+    else if(pBase->Type() & OBJ_SHAPE)
+    {
+        CN3Shape* pShape = (CN3Shape*)pBase;
 
-		CString str;
-		HTREEITEM hItem2 = NULL;
-		for(int i = 0; i < MAX_SHAPE_OBJECT; i++)
-		{
-			CN3PMeshInstance* pPMeshInstance = pShape->MeshGet(i);
-			if(pPMeshInstance == NULL) continue;
-			
-			str.Format("Mesh : %s", pPMeshInstance->Name());
-			hItem2 = GetTreeCtrl().InsertItem(str, hItem); GetTreeCtrl().SetItemData(hItem2, (DWORD)pPMeshInstance);
-		}
-	}
+        CString str;
+        HTREEITEM hItem2 = NULL;
+        for(int i = 0; i < MAX_SHAPE_OBJECT; i++)
+        {
+            CN3PMeshInstance* pPMeshInstance = pShape->MeshGet(i);
+            if(pPMeshInstance == NULL) continue;
+            
+            str.Format("Mesh : %s", pPMeshInstance->Name());
+            hItem2 = GetTreeCtrl().InsertItem(str, hItem); GetTreeCtrl().SetItemData(hItem2, (DWORD)pPMeshInstance);
+        }
+    }
 */
     GetTreeCtrl().Expand(hItem, TVE_EXPAND);
 }
@@ -247,20 +247,20 @@ void CViewSceneTree::UpdateTreeItem(HTREEITEM hParent, CN3Base * pBase) {
 /*
 void CViewSceneTree::SelectTree(HTREEITEM hParent, int nDepth, int* nSeq)
 {
-	static int nTmp = 0;
-	if(hParent == TVI_ROOT) nTmp = 0;
-	if(nTmp == nDepth) return;
+    static int nTmp = 0;
+    if(hParent == TVI_ROOT) nTmp = 0;
+    if(nTmp == nDepth) return;
 
-	HTREEITEM hChild = NULL;
-	for(	int i = 0, HTREEITEM hChild = GetTreeCtrl().GetChildItem(hParent);
-			hChild != NULL && nSeq[nDepth] != i;
-			i++, hChild = GetTreeCtrl().GetNextItem(hChild, TVGN_NEXT))
-	{
-		if(
-	}
+    HTREEITEM hChild = NULL;
+    for(    int i = 0, HTREEITEM hChild = GetTreeCtrl().GetChildItem(hParent);
+            hChild != NULL && nSeq[nDepth] != i;
+            i++, hChild = GetTreeCtrl().GetNextItem(hChild, TVGN_NEXT))
+    {
+        if(
+    }
 
 
-	nTmp++;
+    nTmp++;
 }
 
 void CViewSceneTree::GetSeq(HTREEITEM hParent, HTREEITEM hItem, int& nDepth, int* nSeq)

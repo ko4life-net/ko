@@ -26,7 +26,10 @@ CN3Eng::CN3Eng() {
     m_lpD3D = Direct3DCreate9(D3D_SDK_VERSION);
     if (NULL == m_lpD3D) {
         MessageBox(::GetActiveWindow(), "Direct3D9 is not installed or lower version.", "Initialization", MB_OK);
-//		{ for(int iii = 0; iii < 1; iii++) Beep(2000, 200); Sleep(300); } // 여러번 삑~
+        // for (int iii = 0; iii < 1; iii++) { // 여러번 삑~
+        //     Beep(2000, 200);
+        //     Sleep(300);
+        // }
 #ifdef _N3GAME
         CLogWriter::Write("Direct3D9 is not installed or lower version");
 #endif
@@ -111,7 +114,7 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
     int nAMC = m_lpD3D->GetAdapterModeCount(0, D3DFMT_X8R8G8B8); // 디스플레이 모드 카운트
     if (nAMC <= 0) {
         MessageBox(hWnd, "Can't create D3D - Invalid display mode property.", "initialization", MB_OK);
-//		{ for(int iii = 0; iii < 2; iii++) Beep(2000, 200); Sleep(300); } // 여러번 삑~
+//        { for(int iii = 0; iii < 2; iii++) Beep(2000, 200); Sleep(300); } // 여러번 삑~
 #ifdef _N3GAME
         CLogWriter::Write("Can't create D3D - Invalid display mode property.");
 #endif
@@ -179,8 +182,7 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
 
     int nMC = m_DeviceInfo.nModeCount;
     for (int i = 0; i < nMC; i++) {
-        //		if(	m_DeviceInfo.pModes[i].Width == dwWidth &&
-        //			m_DeviceInfo.pModes[i].Height == dwHeight &&
+        // if (m_DeviceInfo.pModes[i].Width == dwWidth && m_DeviceInfo.pModes[i].Height == dwHeight &&
         if (m_DeviceInfo.pModes[i].Format == BBFormat) // 모드가 일치하면
         {
             this->FindDepthStencilFormat(0, m_DeviceInfo.DevType, m_DeviceInfo.pModes[i].Format,
@@ -210,7 +212,10 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
             CLogWriter::Write(errMsg.str().c_str());
 #endif
             LocalFree(pszDebug);
-            //			{ for(int iii = 0; iii < 3; iii++) Beep(2000, 200); Sleep(300); } // 여러번 삑~
+            // for (int iii = 0; iii < 3; iii++) { // 여러번 삑~
+            //     Beep(2000, 200);
+            //     Sleep(300);
+            // }
 
             this->Release();
             return false;
@@ -234,7 +239,10 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
 #ifdef _N3GAME
         CLogWriter::Write("Can't support this graphic card : Texture size is too small");
 #endif
-        //		{ for(int iii = 0; iii < 4; iii++) Beep(2000, 200); Sleep(300); } // 여러번 삑~
+        // for (int iii = 0; iii < 4; iii++) { // 여러번 삑~
+        //     Beep(2000, 200);
+        //     Sleep(300);
+        // }
 
         this->Release();
         return false;
@@ -316,12 +324,12 @@ void CN3Eng::SetViewPort(RECT & rc) {
 LRESULT WINAPI CN3Eng::MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     switch (msg) {
     case WM_DESTROY:
-        //          PostQuitMessage( 0 );
+        // PostQuitMessage(0);
         return 0;
 
     case WM_PAINT:
-        //          Render();
-        //          ValidateRect( hWnd, NULL );
+        // Render();
+        // ValidateRect(hWnd, NULL);
         return 0;
     }
 
@@ -349,15 +357,14 @@ BOOL CN3Eng::FindDepthStencilFormat(UINT iAdapter, D3DDEVTYPE DeviceType, D3DFOR
     return FALSE;
 }
 void CN3Eng::Present(HWND hWnd, RECT * pRC) {
-    //	HRESULT rval = s_lpD3DDev->TestCooperativeLevel();
-    //	if(D3D_OK != rval)
-    //	{
-    //#if _DEBUG
-    //		char szDebug[256];
-    //		D3DXGetErrorString(rval, szDebug, 256);
-    //#endif
-    //		return;
-    //	}
+    //     HRESULT rval = s_lpD3DDev->TestCooperativeLevel();
+    //     if (D3D_OK != rval) {
+    // #if _DEBUG
+    //         char szDebug[256];
+    //         D3DXGetErrorString(rval, szDebug, 256);
+    // #endif
+    //         return;
+    //     }
 
     RECT rc;
     if (s_DevParam.Windowed) // 윈도우 모드면...
@@ -373,10 +380,10 @@ void CN3Eng::Present(HWND hWnd, RECT * pRC) {
         rval = s_lpD3DDev->Reset(&s_DevParam);
         if (D3D_OK != rval) {
 #ifdef _N3GAME
-//			char szErr[256];
-//			D3DXGetErrorString(rval, szErr, 256);
-//			CLogWriter::Write("CNEng::Present - device present failed (%s)", szErr);
-//			Beep(2000, 50);
+            // char szErr[256];
+            // D3DXGetErrorString(rval, szErr, 256);
+            // CLogWriter::Write("CNEng::Present - device present failed (%s)", szErr);
+            // Beep(2000, 50);
 #endif
         } else {
             rval = s_lpD3DDev->Present(pRC, pRC, hWnd, NULL);
@@ -384,25 +391,24 @@ void CN3Eng::Present(HWND hWnd, RECT * pRC) {
         return;
     } else {
 #ifdef _N3GAME
-//		char szErr[256];
-//		D3DXGetErrorString(rval, szErr, 256);
-//		CLogWriter::Write("CNEng::Present - device present failed (%s)", szErr);
-//		Beep(2000, 50);
+        // char szErr[256];
+        // D3DXGetErrorString(rval, szErr, 256);
+        // CLogWriter::Write("CNEng::Present - device present failed (%s)", szErr);
+        // Beep(2000, 50);
 #endif
     }
 
     ////////////////////////////////////////////////////////////////////////////////
     // 프레임 율 측정...
-    //	float fTime = CN3Base::TimerProcess(TIMER_GETABSOLUTETIME);
-    //	static float fTimePrev = fTime - 0.03333f;
-    //	static DWORD dwFrm = 0;
-    //	dwFrm++;
-    //	if(fTime - fTimePrev > 1.0f) // 1 초 이상 지나야 프레임 측정한다.. 그렇지 않으면 들쭉 날쭉 한 수치가 나온다..
-    //	{
-    //		s_fFrmPerSec = (float)dwFrm / (fTime - fTimePrev);
-    //		dwFrm = 0;
-    //		fTimePrev = fTime;
-    //	}
+    // float        fTime = CN3Base::TimerProcess(TIMER_GETABSOLUTETIME);
+    // static float fTimePrev = fTime - 0.03333f;
+    // static DWORD dwFrm = 0;
+    // dwFrm++;
+    // if (fTime - fTimePrev > 1.0f) { // 1 초 이상 지나야 프레임 측정한다.. 그렇지 않으면 들쭉 날쭉 한 수치가 나온다..
+    //     s_fFrmPerSec = (float)dwFrm / (fTime - fTimePrev);
+    //     dwFrm = 0;
+    //     fTimePrev = fTime;
+    // }
 
     s_fSecPerFrm = CN3Base::TimerProcess(TIMER_GETELAPSEDTIME);
     if (s_fSecPerFrm <= 0.001f || s_fSecPerFrm >= 1.0f) {
@@ -410,7 +416,7 @@ void CN3Eng::Present(HWND hWnd, RECT * pRC) {
     }
     s_fFrmPerSec = 1.0f / s_fSecPerFrm; // 초당 프레임 수 측정..
 
-    //	fTimePrev = fTime;
+    // fTimePrev = fTime;
     // 프레임 율 측정...
     ////////////////////////////////////////////////////////////////////////////////
 }
@@ -520,8 +526,7 @@ bool CN3Eng::Reset(BOOL bWindowed, DWORD dwWidth, DWORD dwHeight, DWORD dwBPP) {
 
     int nMC = m_DeviceInfo.nModeCount;
     for (int i = 0; i < nMC; i++) {
-        //		if(	m_DeviceInfo.pModes[i].Width == dwWidth &&
-        //			m_DeviceInfo.pModes[i].Height == dwHeight &&
+        // if (m_DeviceInfo.pModes[i].Width == dwWidth && m_DeviceInfo.pModes[i].Height == dwHeight &&
         if (m_DeviceInfo.pModes[i].Format == s_DevParam.BackBufferFormat) // 모드가 일치하면
         {
             this->FindDepthStencilFormat(0, m_DeviceInfo.DevType, m_DeviceInfo.pModes[i].Format,
@@ -558,13 +563,13 @@ void CN3Eng::SetDefaultEnvironment() {
     __Matrix44 matWorld;
     matWorld.Identity();
     s_lpD3DDev->SetTransform(D3DTS_WORLD, &matWorld);
-    //	s_lpD3DDev->SetRenderState( D3DRS_ZENABLE, D3DZB_USEW); // Z버퍼 사용가능
+    // s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_USEW); // Z버퍼 사용가능
     s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE); // Z버퍼 사용가능
     s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, TRUE);
 
     s_lpD3DDev->SetRenderState(D3DRS_DITHERENABLE, TRUE);
     s_lpD3DDev->SetRenderState(D3DRS_SPECULARENABLE, TRUE);
-    //	s_lpD3DDev->SetRenderState( D3DRS_AMBIENT,        0x00444444 );
+    // s_lpD3DDev->SetRenderState(D3DRS_AMBIENT, 0x00444444);
 
     s_lpD3DDev->SetRenderState(D3DRS_ALPHATESTENABLE, TRUE);
     s_lpD3DDev->SetRenderState(D3DRS_ALPHAFUNC,

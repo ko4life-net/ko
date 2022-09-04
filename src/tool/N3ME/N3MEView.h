@@ -19,8 +19,8 @@ class CN3MEView : public CView {
     void       SetMapMng(CMapMng * pMapMng) { m_pMapMng = pMapMng; }
 
   protected:
-    //	LYCAMERADATA	m_LyCamera;
-    //	CMove			m_Move;
+    //    LYCAMERADATA    m_LyCamera;
+    //    CMove            m_Move;
     CMapMng * m_pMapMng;
 
     // Operations

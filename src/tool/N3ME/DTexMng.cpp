@@ -34,7 +34,7 @@ CDTexMng::~CDTexMng() {
 }
 
 //
-//	Release..
+//    Release..
 //
 void CDTexMng::Release() {
     it_DTex it = m_pDTex.begin();
@@ -50,7 +50,7 @@ void CDTexMng::Release() {
 }
 
 //
-//	Init..
+//    Init..
 //
 void CDTexMng::Init(CMainFrame * pFrm) {
     Release();
@@ -114,8 +114,8 @@ void CDTexMng::DelDTexByID(int id) {
 }
 
 //
-//	Load..
-//	DTex정보들과 실제 텍스쳐 소스들을 읽어들인다.
+//    Load..
+//    DTex정보들과 실제 텍스쳐 소스들을 읽어들인다.
 //
 void CDTexMng::LoadFromFile(CString RealFileName) {
     Init(m_pMainFrm);
@@ -151,13 +151,13 @@ void CDTexMng::LoadFromFile(CString RealFileName) {
 
             ProgressBar.StepIt();
 
-            //	실제 텍스쳐 소스를 읽고..
+            //    실제 텍스쳐 소스를 읽고..
             CDTex * pDTex = new CDTex;
             pDTex->Init();
             pDTex->m_ID = i;
             pDTex->m_pTex->LoadFromFile(szDTexFileName);
 
-            //	그에 관한 타일 정보들을 읽고..
+            //    그에 관한 타일 정보들을 읽고..
             char szDir[_MAX_DIR], szFName[_MAX_FNAME];
             _splitpath(szDTexFileName, NULL, szDir, szFName, NULL);
             wsprintf(szDTexInfoFileName, "%s%s%s.dif", s_szPath.c_str(), szDir, szFName); // Texture Information file
@@ -209,7 +209,7 @@ void CDTexMng::LoadFromFile(CString RealFileName) {
                 m_NextID = id + 1;
             }
 
-            //	실제 텍스쳐 소스를 읽고..
+            //    실제 텍스쳐 소스를 읽고..
             CDTex * pDTex = new CDTex;
             pDTex->Init();
             pDTex->m_ID = id;
@@ -234,7 +234,7 @@ void CDTexMng::LoadFromFile(CString RealFileName) {
             }
 
             if (version == 1) {
-                //	그에 관한 타일 정보들을 읽고..
+                //    그에 관한 타일 정보들을 읽고..
                 char szDir[_MAX_DIR], szFName[_MAX_FNAME];
                 _splitpath(szDTexFileName, NULL, szDir, szFName, NULL);
                 wsprintf(szDTexInfoFileName, "%s%s%s.dif", s_szPath.c_str(), szDir,
@@ -303,36 +303,36 @@ void CDTexMng::SaveToFile(CString RealFileName) {
         }
 
         /*
-		//
-		//	version1 저장방식...
-		//	dif파일만들기...
-		//
-		char szDir[_MAX_DIR], szFName[_MAX_FNAME];
-		
-		_splitpath(szDTexFileName, NULL, szDir, szFName, NULL);
-		wsprintf(szDTexInfoFileName, "%s%s%s.dif", s_szPath.c_str(), szDir, szFName); // Texture Information file
+        //
+        //    version1 저장방식...
+        //    dif파일만들기...
+        //
+        char szDir[_MAX_DIR], szFName[_MAX_FNAME];
+        
+        _splitpath(szDTexFileName, NULL, szDir, szFName, NULL);
+        wsprintf(szDTexInfoFileName, "%s%s%s.dif", s_szPath.c_str(), szDir, szFName); // Texture Information file
 
-		//	그에 관한 타일 정보들을 읽고..
-		HANDLE hFile = CreateFile(szDTexInfoFileName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+        //    그에 관한 타일 정보들을 읽고..
+        HANDLE hFile = CreateFile(szDTexInfoFileName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
-		if(hFile != INVALID_HANDLE_VALUE)
-		{
-			for(int x=0; x<NUM_DTEXTILE; x++)
-			{
-				for(int y=0; y<NUM_DTEXTILE; y++)
-				{
-					WriteFile(hFile, &(pDTex->m_Attr[x][y]), sizeof(DTEXATTR), &dwRWC, NULL);
-				}
-			}
-		}
-		CloseHandle(hFile);		
-		*/
+        if(hFile != INVALID_HANDLE_VALUE)
+        {
+            for(int x=0; x<NUM_DTEXTILE; x++)
+            {
+                for(int y=0; y<NUM_DTEXTILE; y++)
+                {
+                    WriteFile(hFile, &(pDTex->m_Attr[x][y]), sizeof(DTEXATTR), &dwRWC, NULL);
+                }
+            }
+        }
+        CloseHandle(hFile);        
+        */
     }
     fclose(stream);
 }
 
 //
-//	게임에서 쓸수 있는 타일 텍스쳐 포멧으로 변환후 저장..
+//    게임에서 쓸수 있는 타일 텍스쳐 포멧으로 변환후 저장..
 //
 void CDTexMng::SaveGameTile() {
     D3DFORMAT      Format;

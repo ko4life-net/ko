@@ -204,7 +204,7 @@ void CPVSManager::DeleteTotalShapeLinkByiOrder(int iOrder) {
 
     pSI = *siit;
 
-    // 먼저 지워질 Shape를 가지고 있는 Volume들을 찾아서..	처리한다..
+    // 먼저 지워질 Shape를 가지고 있는 Volume들을 찾아서..    처리한다..
     ShapePart * pSP = NULL;
 
     CPortalVolume * pVol = NULL;
@@ -1323,7 +1323,7 @@ CPortalVolume * CPVSManager::PickCollision(float fx, float fy) {
 
     return pVolNe;
 
-    // 먼저 Volume 갯수만큼 돌면서.. Volume에 링큳된 Shape들을 먼저 검사한다..	나중에 구현..
+    // 먼저 Volume 갯수만큼 돌면서.. Volume에 링큳된 Shape들을 먼저 검사한다..    나중에 구현..
 }
 
 void CPVSManager::UpdatePosAll(float fx, float fy, float fz) {

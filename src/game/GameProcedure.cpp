@@ -62,7 +62,7 @@ CN3FXMgr *        CGameProcedure::s_pFX = NULL;
 CUIManager *           CGameProcedure::s_pUIMgr = NULL;     // UI Manager
 CUILoading *           CGameProcedure::s_pUILoading = NULL; // 로딩바..
 CUIMessageBoxManager * CGameProcedure::s_pMsgBoxMgr = NULL; // MessageBox Manager
-//bool				CGameProcedure::s_bUseSpeedHack = false;
+//bool                CGameProcedure::s_bUseSpeedHack = false;
 
 CGameProcedure * CGameProcedure::s_pProcPrev = NULL;
 CGameProcedure * CGameProcedure::s_pProcActive = NULL;
@@ -252,15 +252,15 @@ void CGameProcedure::StaticMemberRelease() {
 
     delete s_pKnightChr;
     s_pKnightChr = NULL;
-    //	if ( (s_pProcMain) && (s_pProcMain->m_pUIHotKeyDlg) )
-    //			s_pProcMain->m_pUIHotKeyDlg->CloseIconRegistry();
+    //    if ( (s_pProcMain) && (s_pProcMain->m_pUIHotKeyDlg) )
+    //            s_pProcMain->m_pUIHotKeyDlg->CloseIconRegistry();
 
     // UI 위치및 보이기 등의 정보 저장..
     if (s_pProcMain) {
         UIPostData_Write(UI_POST_WND_CHAT, s_pProcMain->m_pUIChatDlg);
         UIPostData_Write(UI_POST_WND_HOTKEY, s_pProcMain->m_pUIHotKeyDlg);
         UIPostData_Write(UI_POST_WND_HELP, s_pProcMain->m_pUIHelp);
-        //		UIPostData_Write(UI_POST_WND_PARTY, s_pProcMain->m_pUIPartyOrForce);
+        //        UIPostData_Write(UI_POST_WND_PARTY, s_pProcMain->m_pUIPartyOrForce);
     }
 
     // 각 프로시저들
@@ -286,7 +286,7 @@ void CGameProcedure::StaticMemberRelease() {
     delete s_pUIMgr;
     s_pUIMgr = NULL; // UI Manager
 
-    //	delete s_pIME; s_pIME = NULL;
+    //    delete s_pIME; s_pIME = NULL;
     delete s_pLocalInput;
     s_pLocalInput = NULL;
     delete s_pEng;
@@ -335,8 +335,8 @@ void CGameProcedure::Tick() {
     }
 
     // 몬가 하면...
-    //	if((dwRet & UI_MOUSEPROC_CHILDDONESOMETHING) || (dwRet & UI_MOUSEPROC_DONESOMETHING))
-    //		s_pLocalInput->MouseRemoveFlag(0xffMOUSE_LBCLICK | MOUSE_LBCLICKED | MOUSE_LBDBLCLK);
+    //    if((dwRet & UI_MOUSEPROC_CHILDDONESOMETHING) || (dwRet & UI_MOUSEPROC_DONESOMETHING))
+    //        s_pLocalInput->MouseRemoveFlag(0xffMOUSE_LBCLICK | MOUSE_LBCLICKED | MOUSE_LBDBLCLK);
     s_pUIMgr->m_bDoneSomething = false; // UI 에서 조작을 했다...
     if (dwRet != UI_MOUSEPROC_NONE) {
         s_pUIMgr->m_bDoneSomething = true; // UI 에서 조작을 했다...
@@ -350,7 +350,7 @@ void CGameProcedure::Tick() {
         SYSTEMTIME st;
         ::GetLocalTime(&st);
         char szFN[128] = "";
-        //		sprintf(szFN, "%d_%d_%d_%d.%d.%d.jpg", st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond);
+        //        sprintf(szFN, "%d_%d_%d_%d.%d.%d.jpg", st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond);
         sprintf(szFN, "%d_%d_%d_%d.%d.%d.ksc", st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond);
         this->CaptureScreenAndSaveToFile(szFN);
     }
@@ -416,19 +416,19 @@ void CGameProcedure::TickActive() {
 }
 
 void CGameProcedure::RenderActive() {
-    //	if(s_pProcActive != s_pProcPrev) // 프로시저가 바뀌면..
-    //	{
-    //		if(s_pProcPrev) s_pProcPrev->Release();
-    //		if(s_pProcActive) s_pProcActive->Init();
+    //    if(s_pProcActive != s_pProcPrev) // 프로시저가 바뀌면..
+    //    {
+    //        if(s_pProcPrev) s_pProcPrev->Release();
+    //        if(s_pProcActive) s_pProcActive->Init();
     //
-    //		s_pProcPrev = s_pProcActive;
-    //	}
-    //	else
-    //	{
+    //        s_pProcPrev = s_pProcActive;
+    //    }
+    //    else
+    //    {
     if (s_pProcActive == s_pProcPrev) {
         s_pProcActive->Render();
     }
-    //	}
+    //    }
 }
 
 bool CGameProcedure::CaptureScreenAndSaveToFile(const std::string & szFN) {
@@ -457,63 +457,63 @@ bool CGameProcedure::CaptureScreenAndSaveToFile(const std::string & szFN) {
     }
     return true;
     /*
-	int iW = CN3Base::s_CameraData.vp.Width;
-	int iH = CN3Base::s_CameraData.vp.Height;
+    int iW = CN3Base::s_CameraData.vp.Width;
+    int iH = CN3Base::s_CameraData.vp.Height;
 
-	bool bResult = false;
-	LPDIRECT3DSURFACE9 lpDDSTmp = NULL;
-	LPDIRECT3DSURFACE9 lpDDSBack = NULL;
-	CN3Base::s_lpD3DDev->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &lpDDSBack);
-	if(lpDDSBack)
-	{
-		CN3Base::s_lpD3DDev->CreateOffscreenPlainSurface(iW, iH, D3DFMT_X8R8G8B8, D3DPOOL_DEFAULT, &lpDDSTmp, NULL);
-		if(lpDDSTmp)
-		{
-			HRESULT rval = D3DXLoadSurfaceFromSurface(lpDDSTmp, NULL, NULL, lpDDSBack, NULL, NULL, D3DX_FILTER_NONE, 0);
-//			HRESULT rval = s_lpD3DDev->CopyRects(lpDDSBack, NULL, 0, lpDDSTmp, NULL);
-//			char szErr[256];
-//			::D3DXGetErrorString(rval, szErr, 256);
+    bool bResult = false;
+    LPDIRECT3DSURFACE9 lpDDSTmp = NULL;
+    LPDIRECT3DSURFACE9 lpDDSBack = NULL;
+    CN3Base::s_lpD3DDev->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &lpDDSBack);
+    if(lpDDSBack)
+    {
+        CN3Base::s_lpD3DDev->CreateOffscreenPlainSurface(iW, iH, D3DFMT_X8R8G8B8, D3DPOOL_DEFAULT, &lpDDSTmp, NULL);
+        if(lpDDSTmp)
+        {
+            HRESULT rval = D3DXLoadSurfaceFromSurface(lpDDSTmp, NULL, NULL, lpDDSBack, NULL, NULL, D3DX_FILTER_NONE, 0);
+//            HRESULT rval = s_lpD3DDev->CopyRects(lpDDSBack, NULL, 0, lpDDSTmp, NULL);
+//            char szErr[256];
+//            ::D3DXGetErrorString(rval, szErr, 256);
 
-			if(D3D_OK == rval)
-			{
-				D3DLOCKED_RECT LR;
-				if(D3D_OK == lpDDSTmp->LockRect(&LR, NULL, 0))
-				{
-//					std::vector<BYTE> buff(iW * iH * 3, 0);
-					CBitMapFile bmf;
-					bmf.Create(iW, iH);
+            if(D3D_OK == rval)
+            {
+                D3DLOCKED_RECT LR;
+                if(D3D_OK == lpDDSTmp->LockRect(&LR, NULL, 0))
+                {
+//                    std::vector<BYTE> buff(iW * iH * 3, 0);
+                    CBitMapFile bmf;
+                    bmf.Create(iW, iH);
 
-					for(int y = 0; y < iH; y++)
-					{
-						BYTE* pPS = ((BYTE*)LR.pBits) + LR.Pitch * y;
-//						BYTE* pPD = (BYTE*)(&(buff[y * (iW * 3)]));
-						BYTE* pPD = (BYTE*)(bmf.Pixels(0, y));
+                    for(int y = 0; y < iH; y++)
+                    {
+                        BYTE* pPS = ((BYTE*)LR.pBits) + LR.Pitch * y;
+//                        BYTE* pPD = (BYTE*)(&(buff[y * (iW * 3)]));
+                        BYTE* pPD = (BYTE*)(bmf.Pixels(0, y));
 
-						for(int x = 0; x < iW; x++, pPS += 4, pPD +=3 )
-						{
-							pPD[0] = pPS[0];
-							pPD[1] = pPS[1];
-							pPD[2] = pPS[2];
-						}
-					}
-					lpDDSTmp->UnlockRect();
+                        for(int x = 0; x < iW; x++, pPS += 4, pPD +=3 )
+                        {
+                            pPD[0] = pPS[0];
+                            pPD[1] = pPS[1];
+                            pPD[2] = pPS[2];
+                        }
+                    }
+                    lpDDSTmp->UnlockRect();
 
-//					CJpeg jpg;
-//					jpg.SaveJPG(szFN.c_str(), iW, iH, &(buff[0]));
-					bmf.SaveToFile(szFN.c_str());
-				}
-			}
-			
-			lpDDSTmp->Release();
-			lpDDSTmp = NULL;
-		}
+//                    CJpeg jpg;
+//                    jpg.SaveJPG(szFN.c_str(), iW, iH, &(buff[0]));
+                    bmf.SaveToFile(szFN.c_str());
+                }
+            }
+            
+            lpDDSTmp->Release();
+            lpDDSTmp = NULL;
+        }
 
 
-		lpDDSBack->Release();
-		lpDDSBack = NULL;
-	}
+        lpDDSBack->Release();
+        lpDDSBack = NULL;
+    }
 
-	return bResult;
+    return bResult;
 */
 }
 
@@ -589,19 +589,19 @@ bool CGameProcedure::RegGetSetting(const char * ValueName, void * pValueData, lo
     len = length;
 
     if (RegOpenKey(HKEY_CURRENT_USER, GetStrRegKeySetting().c_str(), &hKey) != ERROR_SUCCESS) {
-        //		__ASSERT(0, "Registry Open Failed!!!");
+        //        __ASSERT(0, "Registry Open Failed!!!");
         return false;
     }
 
     // get the value
     if (RegQueryValueEx(hKey, ValueName, NULL, &Type, (BYTE *)pValueData, &len) != ERROR_SUCCESS) {
-        //		__ASSERT(0, "Registry Query Failed!!!");
+        //        __ASSERT(0, "Registry Query Failed!!!");
         RegCloseKey(hKey);
         return false;
     }
 
     if (RegCloseKey(hKey) != ERROR_SUCCESS) {
-        //		__ASSERT(0, "Registry Close Failed!!!");
+        //        __ASSERT(0, "Registry Close Failed!!!");
         return false;
     }
 
@@ -750,8 +750,8 @@ bool CGameProcedure::ProcessPacket(DataPack * pDataPack, int & iOffset) {
         // 다른 존 서버로 다시 접속한다.
         int         iLen = 0;
         std::string szName, szIP;
-        //			iLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 서버 이름
-        //			CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szName, iLen);
+        //            iLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 서버 이름
+        //            CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szName, iLen);
         iLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 서버 IP
         CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szIP, iLen);
         DWORD dwPort = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);

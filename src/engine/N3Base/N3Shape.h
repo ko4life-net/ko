@@ -25,8 +25,8 @@ class CN3SPart : public CN3BaseFileAccess {
     __Material m_Mtl;     // Material
     float      m_fTexFPS; // Texture Animation Interval;
 
-    //	__Vector3	m_vWindFactorCur;		// 현재 바람 부는 값.. 이값으로 회전을 시킨다..
-    //	__Vector3	m_vWindFactorToReach;	// 바람 부는 값..
+    //    __Vector3    m_vWindFactorCur;        // 현재 바람 부는 값.. 이값으로 회전을 시킨다..
+    //    __Vector3    m_vWindFactorToReach;    // 바람 부는 값..
     float m_fTimeToSetWind;     // 바람 부는 값을 바꾸기 위한 시간..
     float m_fWindFactorToReach; // 현재 바람 부는 값.. 이값으로 회전을 시킨다..
     float m_fWindFactorCur;     // 바람 부는 값..
@@ -183,7 +183,7 @@ class CN3Shape : public CN3TransformCollision {
     CN3Shape();
     virtual ~CN3Shape();
 
-    //	By : Ecli666 ( On 2002-08-06 오후 4:33:04 )
+    //    By : Ecli666 ( On 2002-08-06 오후 4:33:04 )
     //
     void       SetMaxLOD();
     __Matrix44 GetPartMatrix(int iPartIndex);
@@ -201,5 +201,5 @@ class CN3Shape : public CN3TransformCollision {
     void      PartialColRender(int iCount, int * piIndices);
     void      PartialGetCollision(int iIndex, __Vector3 & vec);
     bool      LoadTransformOnly(HANDLE hFile);
-    //	~(By Ecli666 On 2002-08-06 오후 4:33:04 )
+    //    ~(By Ecli666 On 2002-08-06 오후 4:33:04 )
 };

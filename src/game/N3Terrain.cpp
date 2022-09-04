@@ -1,6 +1,6 @@
 //
 // N3Terrain.cpp: implementation of the CLyTerrain class.
-//	2001. 10. 22.
+//    2001. 10. 22.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -110,9 +110,9 @@ CN3Terrain::~CN3Terrain() {
 }
 
 //
-//	MakeDistanceTable
-//	거리를 계산하지 말고 테이블에서 가져올 수 있게 미리 테이블 생성..
-//	정수 단위 거리..
+//    MakeDistanceTable
+//    거리를 계산하지 말고 테이블에서 가져올 수 있게 미리 테이블 생성..
+//    정수 단위 거리..
 //
 void CN3Terrain::MakeDistanceTable() {
     for (int x = 0; x < DISTANCE_TABLE_SIZE; x++) {
@@ -124,7 +124,7 @@ void CN3Terrain::MakeDistanceTable() {
 }
 
 //
-//	Release....
+//    Release....
 //
 void CN3Terrain::Release() {
     if (m_pGrassAttr) {
@@ -139,18 +139,18 @@ void CN3Terrain::Release() {
         m_pGrassNum = NULL;
     }
 
-    //	{
-    //		for(int x=0;x<m_ti_MapSize;x++)
-    //		{
-    //			if(m_ppGrassAttr[x])
-    //			{
-    //				delete[] m_ppGrassAttr[x];
-    //				m_ppGrassAttr[x] = NULL;
-    //			}
-    //		}
-    //		delete[] m_ppGrassAttr;
-    //		m_ppGrassAttr = NULL;
-    //	}
+    //    {
+    //        for(int x=0;x<m_ti_MapSize;x++)
+    //        {
+    //            if(m_ppGrassAttr[x])
+    //            {
+    //                delete[] m_ppGrassAttr[x];
+    //                m_ppGrassAttr[x] = NULL;
+    //            }
+    //        }
+    //        delete[] m_ppGrassAttr;
+    //        m_ppGrassAttr = NULL;
+    //    }
 
     if (m_pRiver) {
         m_pRiver->Release();
@@ -164,18 +164,18 @@ void CN3Terrain::Release() {
     }
 
     if (m_pTileTex) {
-        //		for(int x=0;x<m_NumTileTex;x++)
-        //			m_pTileTex[x].Release();
+        //        for(int x=0;x<m_NumTileTex;x++)
+        //            m_pTileTex[x].Release();
         delete[] m_pTileTex;
         m_pTileTex = NULL;
     }
 
     if (m_ppColorMapTex) {
         for (int x = 0; x < m_iNumColorMap; x++) {
-            //			for(int z=0;z<m_iNumColorMap;z++)
-            //			{
-            //				m_ppColorMapTex[x][z].Release();
-            //			}
+            //            for(int z=0;z<m_iNumColorMap;z++)
+            //            {
+            //                m_ppColorMapTex[x][z].Release();
+            //            }
             delete[] m_ppColorMapTex[x];
             m_ppColorMapTex[x] = NULL;
         }
@@ -185,10 +185,10 @@ void CN3Terrain::Release() {
 
     if (m_ppPatch) {
         for (int x = 0; x < m_iNumPatch; x++) {
-            //			for(int z=0;z<m_iNumPatch;z++)
-            //			{
-            //				m_ppPatch[x][z].Release();
-            //			}
+            //            for(int z=0;z<m_iNumPatch;z++)
+            //            {
+            //                m_ppPatch[x][z].Release();
+            //            }
             delete[] m_ppPatch[x];
             m_ppPatch[x] = NULL;
         }
@@ -245,7 +245,7 @@ void CN3Terrain::Release() {
 }
 
 //
-//	Init...
+//    Init...
 //
 void CN3Terrain::Init() {
     Release();
@@ -263,7 +263,7 @@ void CN3Terrain::Init() {
 
     SetRectEmpty(&m_pat_BoundRect);
     //m_pat_Center2Side = ((int)CN3Base::s_CameraData.fFP / (PATCH_TILE_SIZE * TILE_SIZE)) + 1;
-    //	m_pat_Center2Side = 17;		// CN3Base::s_CameraData.fFP = 512 라고 가정할때...
+    //    m_pat_Center2Side = 17;        // CN3Base::s_CameraData.fFP = 512 라고 가정할때...
     m_pat_Center2Side = 33; // CN3Base::s_CameraData.fFP = 1024 라고 가정할때...
 
     m_iNumPatch = (m_pat_Center2Side << 1) + 1;
@@ -310,7 +310,7 @@ void CN3Terrain::Init() {
 }
 
 //
-//	글픽카드가 타일맵을 그릴 수 있는지 없는지 검사...
+//    글픽카드가 타일맵을 그릴 수 있는지 없는지 검사...
 //
 void CN3Terrain::TestAvailableTile() {
     m_bAvailableTile = true;
@@ -374,7 +374,7 @@ void CN3Terrain::TestAvailableTile() {
 }
 
 //
-//	Load...
+//    Load...
 //
 bool CN3Terrain::Load(HANDLE hFile) {
     std::string szFNBackup = m_szFileName; // Init 를 하고 나면 파일 이름이 없어진다.... 그래서...
@@ -439,19 +439,19 @@ bool CN3Terrain::Load(HANDLE hFile) {
         }
     }
 
-    //	m_ppGrassAttr = new unsigned char* [m_ti_MapSize];
-    //	for(int x=0; x<m_ti_MapSize; x++)
-    //	{
-    //		m_ppGrassAttr[x] = new unsigned char[m_ti_MapSize];
-    //		ReadFile(hFile, m_ppGrassAttr[x], sizeof(unsigned char)*m_ti_MapSize, &dwRWC, NULL);
+    //    m_ppGrassAttr = new unsigned char* [m_ti_MapSize];
+    //    for(int x=0; x<m_ti_MapSize; x++)
+    //    {
+    //        m_ppGrassAttr[x] = new unsigned char[m_ti_MapSize];
+    //        ReadFile(hFile, m_ppGrassAttr[x], sizeof(unsigned char)*m_ti_MapSize, &dwRWC, NULL);
     //
-    //		if(!(x%256))
-    //		{
-    //			pUILoading->SetValue(20 + 7 * x / m_ti_MapSize);
-    //			pUILoading->Render();
-    //		}
+    //        if(!(x%256))
+    //        {
+    //            pUILoading->SetValue(20 + 7 * x / m_ti_MapSize);
+    //            pUILoading->Render();
+    //        }
     //
-    //	}
+    //    }
 
     //m_pGrassAttr = (unsigned char*)malloc(sizeof(unsigned char)*m_ti_MapSize*m_ti_MapSize);
     m_pGrassAttr = (unsigned char *)GlobalAlloc(GMEM_FIXED, sizeof(unsigned char) * m_ti_MapSize * m_ti_MapSize);
@@ -518,41 +518,41 @@ bool CN3Terrain::Load(HANDLE hFile) {
 void CN3Terrain::SetNormals() {
     return;
     /*
-	__Vector3 vNormalTmp(0.0f, 0.0f, 0.0f);
-	__Vector3 V1, V2;
-	for(int x=0;x<m_ti_MapSize;x++)
-	{
-		for(int z=0;z<m_ti_MapSize;z++)
-		{
-			if( x==0 || z==0 || x==(m_ti_MapSize-1) || z==(m_ti_MapSize-1) )
-			{
-				m_pNormal[z + x*m_ti_MapSize].Set(0.0f, 1.0f, 0.0f);
-			}
-			else
-			{
-				int c = x*m_ti_MapSize + z;
-				if ((x+z)%2==1)
-				{
-					int u,v;
-					for(int i=0;i<4;i++)
-					{
-						if(i==0) { u = x*m_ti_MapSize + (z+1); v = (x+1)*m_ti_MapSize + z; }
-						else if(i==1) { u = (x+1)*m_ti_MapSize + z; v = x*m_ti_MapSize + (z-1); }
-						else if(i==2) { u = x*m_ti_MapSize + (z-1); v = (x-1)*m_ti_MapSize + z; }
-						else if(i==3) { u = (x-1)*m_ti_MapSize + z; v = x*m_ti_MapSize + (z+1); }						
-					}
+    __Vector3 vNormalTmp(0.0f, 0.0f, 0.0f);
+    __Vector3 V1, V2;
+    for(int x=0;x<m_ti_MapSize;x++)
+    {
+        for(int z=0;z<m_ti_MapSize;z++)
+        {
+            if( x==0 || z==0 || x==(m_ti_MapSize-1) || z==(m_ti_MapSize-1) )
+            {
+                m_pNormal[z + x*m_ti_MapSize].Set(0.0f, 1.0f, 0.0f);
+            }
+            else
+            {
+                int c = x*m_ti_MapSize + z;
+                if ((x+z)%2==1)
+                {
+                    int u,v;
+                    for(int i=0;i<4;i++)
+                    {
+                        if(i==0) { u = x*m_ti_MapSize + (z+1); v = (x+1)*m_ti_MapSize + z; }
+                        else if(i==1) { u = (x+1)*m_ti_MapSize + z; v = x*m_ti_MapSize + (z-1); }
+                        else if(i==2) { u = x*m_ti_MapSize + (z-1); v = (x-1)*m_ti_MapSize + z; }
+                        else if(i==3) { u = (x-1)*m_ti_MapSize + z; v = x*m_ti_MapSize + (z+1); }                        
+                    }
 
-					V1.Set(0.0f, m_pMapData[u].fHeight - m_pMapData[c].fHeight, 4.0f);
-					V2.Set(4.0f, m_pMapData[v].fHeight - m_pMapData[c].fHeight, 0.0f);
-					vNormalTmp.Cross(V1, V2);
-					vNormalTmp.Normalize();
+                    V1.Set(0.0f, m_pMapData[u].fHeight - m_pMapData[c].fHeight, 4.0f);
+                    V2.Set(4.0f, m_pMapData[v].fHeight - m_pMapData[c].fHeight, 0.0f);
+                    vNormalTmp.Cross(V1, V2);
+                    vNormalTmp.Normalize();
 
 
 
-				}
-			}
-		}
-	}
+                }
+            }
+        }
+    }
 */
 }
 
@@ -695,8 +695,8 @@ void CN3Terrain::LoadTileInfo(HANDLE hFile) {
         hTTGFile = CreateFile(SrcName[SrcIdx], GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
         for (int j = 0; j < TileIdx; j++) {
-            //			m_pTileTex[i].m_iLOD = s_Options.iTexLOD_Terrain; // LOD 적용후 읽기..
-            //			m_pTileTex[i].Load(hTTGFile);// 앞에 있는 쓸때 없는 것들...
+            //            m_pTileTex[i].m_iLOD = s_Options.iTexLOD_Terrain; // LOD 적용후 읽기..
+            //            m_pTileTex[i].Load(hTTGFile);// 앞에 있는 쓸때 없는 것들...
             m_pTileTex[i].SkipFileHandle(hTTGFile); // 앞에 있는 쓸때 없는 것들...
         }
         m_pTileTex[i].m_iLOD = s_Options.iTexLOD_Terrain; // LOD 적용후 읽기..
@@ -721,9 +721,9 @@ void CN3Terrain::LoadTileInfo(HANDLE hFile) {
 }
 
 //
-//	lod level 설정..
-//	default는 3...
-//	min = 0, max = 10..
+//    lod level 설정..
+//    default는 3...
+//    min = 0, max = 10..
 //
 bool CN3Terrain::SetLODLevel(int level) {
     if (level == m_iLodLevel) {
@@ -754,8 +754,8 @@ bool CN3Terrain::SetLODLevel(int level) {
 }
 
 //
-//	SetBlunt...
-//	각 패치들 그릴방법 정하기..어느면을 무디게 할것인지..
+//    SetBlunt...
+//    각 패치들 그릴방법 정하기..어느면을 무디게 할것인지..
 //
 void CN3Terrain::SetBlunt() {
     for (int x = 0; x < m_iNumPatch; x++) {
@@ -821,7 +821,7 @@ void CN3Terrain::SetBlunt() {
 }
 
 //
-//	Tick..
+//    Tick..
 //
 void CN3Terrain::Tick() {
     int iLOD = 0; // LOD 수준 계산.. 나중에 계산식을 바꾸어야 한다.
@@ -853,8 +853,8 @@ void CN3Terrain::Tick() {
 }
 
 //
-//	CheckMovePatch
-//	패치단위의 이동이 이루어 졌는지...
+//    CheckMovePatch
+//    패치단위의 이동이 이루어 졌는지...
 //
 bool CN3Terrain::CheckMovePatch() {
     m_ti_CenterPos.x = Real2Tile(CN3Base::s_CameraData.vEye.x);
@@ -871,7 +871,7 @@ bool CN3Terrain::CheckMovePatch() {
 }
 
 //
-//	DispositionPatch
+//    DispositionPatch
 //
 void CN3Terrain::DispositionPatch() {
     for (int x = 0; x < m_iNumPatch; x++) {
@@ -1188,9 +1188,9 @@ CN3Texture * CN3Terrain::GetLightMap(int tx, int tz) {
 }
 
 //
-//	CheckBounce...
-//	패치단위의 가시영역 검사..
-//	변했으면 return true...
+//    CheckBounce...
+//    패치단위의 가시영역 검사..
+//    변했으면 return true...
 //
 bool CN3Terrain::CheckBound() {
     RECT prevPatRc = m_pat_BoundRect;
@@ -1397,8 +1397,8 @@ void CN3Terrain::Render() {
 }
 
 //
-//	Log2(x) = l..
-//	2의 승수에 대해서만 제대로 작동...(x>0)
+//    Log2(x) = l..
+//    2의 승수에 대해서만 제대로 작동...(x>0)
 //
 inline int CN3Terrain::Log2(int x) {
     int l = 0;
@@ -1494,7 +1494,7 @@ float CN3Terrain::GetHeight(float x, float z) {
 }
 
 //
-//	GetNormal(float x, float z, __Vector3& vNormal)
+//    GetNormal(float x, float z, __Vector3& vNormal)
 //
 void CN3Terrain::GetNormal(float x, float z, __Vector3 & vNormal) {
     if (x < 10.0f || x > ((m_ti_MapSize - 1) * TILE_SIZE - 10.0f) || z < 10.0f ||
@@ -1625,7 +1625,7 @@ BOOL CN3Terrain::Pick(int x, int y, __Vector3 & vPick) {
     {
         vPick.Set(0, 0, 0); // 일단 충돌 점은 없고..
 
-        // 음....		!!가상!!  버텍스 버퍼와 인덱스 버퍼 만들기..
+        // 음....        !!가상!!  버텍스 버퍼와 인덱스 버퍼 만들기..
         __Vector3 AA[8];      // 가상 버텍스 버퍼..
         int       pIndex[36]; // 가상 인덱스 버퍼..
         int *     pIdx = pIndex;
@@ -1823,7 +1823,7 @@ BOOL CN3Terrain::PickWide(int x, int y, __Vector3 & vPick) {
     {
         vPick.Set(0, 0, 0); // 일단 충돌 점은 없고..
 
-        // 음....		!!가상!!  버텍스 버퍼와 인덱스 버퍼 만들기..
+        // 음....        !!가상!!  버텍스 버퍼와 인덱스 버퍼 만들기..
         __Vector3 AA[8];      // 가상 버텍스 버퍼..
         int       pIndex[36]; // 가상 인덱스 버퍼..
         int *     pIdx = pIndex;
@@ -1967,7 +1967,7 @@ void CN3Terrain::CalcCollisionTerrainByOTPlayer(__Vector3 vOrig, __Vector3 vAt, 
 
     //#define COLLISION_BOX 6000
 
-    // 음....		!!가상!!  버텍스 버퍼와 인덱스 버퍼 만들기..
+    // 음....        !!가상!!  버텍스 버퍼와 인덱스 버퍼 만들기..
     __Vector3 AA[8];      // 가상 버텍스 버퍼..
     int       pIndex[36]; // 가상 인덱스 버퍼..
     int *     pIdx = pIndex;

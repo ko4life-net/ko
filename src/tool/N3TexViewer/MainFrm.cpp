@@ -331,193 +331,193 @@ BOOL CMainFrame::BMPCutter(LPCTSTR lpszFileName, int iWidth, int iHeight, bool b
 
     return TRUE;
     /*
-	if (lstrlen(lpszFileName) == 0 || iWidth<=0 || iHeight<=0)
-	{
-		MessageBox("가로 세로가 0이하인 bitmap으로 나눌 수 없습니다.", "error");
-		return FALSE;
-	}
+    if (lstrlen(lpszFileName) == 0 || iWidth<=0 || iHeight<=0)
+    {
+        MessageBox("가로 세로가 0이하인 bitmap으로 나눌 수 없습니다.", "error");
+        return FALSE;
+    }
 
-	CFile file;
-	CFileException fe;
+    CFile file;
+    CFileException fe;
 
-	// 읽기 모드로 파일 열기
-	if (!file.Open(lpszFileName, CFile::modeRead|CFile::shareDenyWrite, &fe))
-	{
-		MessageBox("원본 bitmap을 열 수 없습니다.", "error");
-		return FALSE;
-	}
+    // 읽기 모드로 파일 열기
+    if (!file.Open(lpszFileName, CFile::modeRead|CFile::shareDenyWrite, &fe))
+    {
+        MessageBox("원본 bitmap을 열 수 없습니다.", "error");
+        return FALSE;
+    }
 
-	// 파일 길이
-	DWORD dwBitsSize;
-	dwBitsSize = file.GetLength();
+    // 파일 길이
+    DWORD dwBitsSize;
+    dwBitsSize = file.GetLength();
 
-	// 파일 헤더 읽기
-	BITMAPFILEHEADER bmfHeader;
-	if (file.Read(&bmfHeader, sizeof(bmfHeader)) != sizeof(bmfHeader))
-	{
-		MessageBox("원본 bitmap이 이상합니다.", "error");
-		return FALSE;
-	}
+    // 파일 헤더 읽기
+    BITMAPFILEHEADER bmfHeader;
+    if (file.Read(&bmfHeader, sizeof(bmfHeader)) != sizeof(bmfHeader))
+    {
+        MessageBox("원본 bitmap이 이상합니다.", "error");
+        return FALSE;
+    }
 
-	// bmp 파일임을 나타내는 "BM"마커 확인
-	if (bmfHeader.bfType != 0x4D42)
-	{
-		MessageBox("원본 파일이 bitmap파일이 아닙니다.", "error");
-		return FALSE;
-	}
+    // bmp 파일임을 나타내는 "BM"마커 확인
+    if (bmfHeader.bfType != 0x4D42)
+    {
+        MessageBox("원본 파일이 bitmap파일이 아닙니다.", "error");
+        return FALSE;
+    }
 
-	// BITMAPINFOHEADER 얻기
-	BITMAPINFOHEADER bmInfoHeader;
-	if (file.Read(&bmInfoHeader, sizeof(bmInfoHeader)) != sizeof(bmInfoHeader)) return FALSE;
+    // BITMAPINFOHEADER 얻기
+    BITMAPINFOHEADER bmInfoHeader;
+    if (file.Read(&bmInfoHeader, sizeof(bmInfoHeader)) != sizeof(bmInfoHeader)) return FALSE;
 
-	// 픽셀당 비트 수 확인
-	WORD wBitCount = bmInfoHeader.biBitCount;
-	if (24 != wBitCount)		// 24비트 bmp가 아니면 return해 버린다.
-	{
-		MessageBox("원본 bitmap이 24bit파일이 아닙니다.", "error");
-		return FALSE;
-	}
+    // 픽셀당 비트 수 확인
+    WORD wBitCount = bmInfoHeader.biBitCount;
+    if (24 != wBitCount)        // 24비트 bmp가 아니면 return해 버린다.
+    {
+        MessageBox("원본 bitmap이 24bit파일이 아닙니다.", "error");
+        return FALSE;
+    }
 
-	// 가로, 세로로 나누어야 할 수 계산
-	int iCX, iCY;
-	iCX = (bmInfoHeader.biWidth+iWidth-1) / iWidth;
-	iCY = (bmInfoHeader.biHeight+iHeight-1) / iHeight;
-	if (iCX <= 0 || iCY <= 0)
-	{
-		MessageBox("나눌 수 없습니다.", "error");
-		return FALSE;
-	}
+    // 가로, 세로로 나누어야 할 수 계산
+    int iCX, iCY;
+    iCX = (bmInfoHeader.biWidth+iWidth-1) / iWidth;
+    iCY = (bmInfoHeader.biHeight+iHeight-1) / iHeight;
+    if (iCX <= 0 || iCY <= 0)
+    {
+        MessageBox("나눌 수 없습니다.", "error");
+        return FALSE;
+    }
 
-	// 실제 이미지 비트 주소
-//	LPVOID pSrcImageBit;
-//	pSrcImageBit = (LPVOID)((BYTE*)pSrcDIB + (bmfHeader.bfOffBits - sizeof(bmfHeader)));
+    // 실제 이미지 비트 주소
+//    LPVOID pSrcImageBit;
+//    pSrcImageBit = (LPVOID)((BYTE*)pSrcDIB + (bmfHeader.bfOffBits - sizeof(bmfHeader)));
 
-	// 실제 이미지의 메모리상에 잡힌 가로 길이 (24bit)
-	int iRealWidthSrc = ((int)((bmInfoHeader.biWidth*3 + 3)/4))*4;	
+    // 실제 이미지의 메모리상에 잡힌 가로 길이 (24bit)
+    int iRealWidthSrc = ((int)((bmInfoHeader.biWidth*3 + 3)/4))*4;    
 
-	// 새로 만들 이미지 메모리 할당
-	int iRealWidthDest = ((int)((iWidth*3 + 3)/4))*4;	
-	int iDestDIBSize = sizeof(BITMAPINFOHEADER) + iRealWidthDest * iHeight;
-	LPVOID pDestDIB;
-	if ((pDestDIB = ::GlobalAlloc(GMEM_FIXED | GMEM_ZEROINIT, iDestDIBSize )) == NULL )
-	{
-		MessageBox("메모리를 할당하지 못했습니다.", "error");
-		return FALSE;
-	}
+    // 새로 만들 이미지 메모리 할당
+    int iRealWidthDest = ((int)((iWidth*3 + 3)/4))*4;    
+    int iDestDIBSize = sizeof(BITMAPINFOHEADER) + iRealWidthDest * iHeight;
+    LPVOID pDestDIB;
+    if ((pDestDIB = ::GlobalAlloc(GMEM_FIXED | GMEM_ZEROINIT, iDestDIBSize )) == NULL )
+    {
+        MessageBox("메모리를 할당하지 못했습니다.", "error");
+        return FALSE;
+    }
 
-	// 새로 만들 이미지 file header 정보 채우기
-	BITMAPFILEHEADER bmfHeaderDest;
-	memset(&bmfHeaderDest, 0, sizeof(bmfHeaderDest));
-	bmfHeaderDest.bfType = 0x4D42; // "BM"
-	bmfHeaderDest.bfSize = sizeof(bmfHeaderDest) + iDestDIBSize;
-	bmfHeaderDest.bfOffBits = sizeof(bmfHeaderDest) + sizeof(BITMAPINFOHEADER);
+    // 새로 만들 이미지 file header 정보 채우기
+    BITMAPFILEHEADER bmfHeaderDest;
+    memset(&bmfHeaderDest, 0, sizeof(bmfHeaderDest));
+    bmfHeaderDest.bfType = 0x4D42; // "BM"
+    bmfHeaderDest.bfSize = sizeof(bmfHeaderDest) + iDestDIBSize;
+    bmfHeaderDest.bfOffBits = sizeof(bmfHeaderDest) + sizeof(BITMAPINFOHEADER);
 
-	// 새로 만들 이미지 bitmap info header 정보 채우기
-	BITMAPINFOHEADER bmInfoHeaderDest;
-	memset(&bmInfoHeaderDest, 0, sizeof(bmInfoHeaderDest));
-	bmInfoHeaderDest.biSize = sizeof(bmInfoHeaderDest);
-	bmInfoHeaderDest.biWidth = iWidth;
-	bmInfoHeaderDest.biHeight = iHeight;
-	bmInfoHeaderDest.biPlanes = 1;
-	bmInfoHeaderDest.biBitCount = 24;
-	bmInfoHeaderDest.biSizeImage = iRealWidthDest * iHeight;
-	memcpy(pDestDIB, &bmInfoHeaderDest, sizeof(bmInfoHeaderDest));
+    // 새로 만들 이미지 bitmap info header 정보 채우기
+    BITMAPINFOHEADER bmInfoHeaderDest;
+    memset(&bmInfoHeaderDest, 0, sizeof(bmInfoHeaderDest));
+    bmInfoHeaderDest.biSize = sizeof(bmInfoHeaderDest);
+    bmInfoHeaderDest.biWidth = iWidth;
+    bmInfoHeaderDest.biHeight = iHeight;
+    bmInfoHeaderDest.biPlanes = 1;
+    bmInfoHeaderDest.biBitCount = 24;
+    bmInfoHeaderDest.biSizeImage = iRealWidthDest * iHeight;
+    memcpy(pDestDIB, &bmInfoHeaderDest, sizeof(bmInfoHeaderDest));
 
-	// 저장할 file 이름
-	char szDrive[_MAX_DRIVE];
-	char szDir[_MAX_DIR];
-	char szFName[_MAX_FNAME];
-	char szFNameDest[_MAX_FNAME];
-	_splitpath(lpszFileName, szDrive, szDir, szFName, NULL);
-	CreateDirectory(szFName, NULL);	// 하위 폴더 만들기
+    // 저장할 file 이름
+    char szDrive[_MAX_DRIVE];
+    char szDir[_MAX_DIR];
+    char szFName[_MAX_FNAME];
+    char szFNameDest[_MAX_FNAME];
+    _splitpath(lpszFileName, szDrive, szDir, szFName, NULL);
+    CreateDirectory(szFName, NULL);    // 하위 폴더 만들기
 
-	// 쪼갠 정보를 tcd파일에 넣어서 저장
-	DWORD dwNum;
-	wsprintf(szFNameDest, "%s\\%s.tcd", szFName, szFName);
-	HANDLE hFile = CreateFile(szFNameDest, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-	if(INVALID_HANDLE_VALUE != hFile)
-	{
-		WriteFile(hFile, &iCX, sizeof(iCX), &dwNum, NULL);
-		WriteFile(hFile, &iCY, sizeof(iCX), &dwNum, NULL);
-		CloseHandle(hFile);
-	}
+    // 쪼갠 정보를 tcd파일에 넣어서 저장
+    DWORD dwNum;
+    wsprintf(szFNameDest, "%s\\%s.tcd", szFName, szFName);
+    HANDLE hFile = CreateFile(szFNameDest, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    if(INVALID_HANDLE_VALUE != hFile)
+    {
+        WriteFile(hFile, &iCX, sizeof(iCX), &dwNum, NULL);
+        WriteFile(hFile, &iCY, sizeof(iCX), &dwNum, NULL);
+        CloseHandle(hFile);
+    }
 
-	// progress bar
-	CProgressBar ProgressBar;
-	ProgressBar.Create("cutting bitmap..", 50, iCY*iCX);
-	ProgressBar.SetStep(1);
+    // progress bar
+    CProgressBar ProgressBar;
+    ProgressBar.Create("cutting bitmap..", 50, iCY*iCX);
+    ProgressBar.SetStep(1);
 
-	// 새로 쪼개서 저장하기
-	BYTE *pTmpBitDest;
-	pTmpBitDest = ((BYTE*)pDestDIB) + sizeof(BITMAPINFOHEADER);
-	for (int j=0; j<iCY; ++j)
-	{
-		for (int i=0; i<iCX; ++i)
-		{
-			memset(pTmpBitDest, 0, iDestDIBSize - sizeof(BITMAPINFOHEADER));
-			for(int y=0; y<iHeight; ++y)
-			{
-				if ( (iHeight*j + y) >= bmInfoHeader.biHeight) break;	// 맨 아래가 짤릴 경우가 있다
+    // 새로 쪼개서 저장하기
+    BYTE *pTmpBitDest;
+    pTmpBitDest = ((BYTE*)pDestDIB) + sizeof(BITMAPINFOHEADER);
+    for (int j=0; j<iCY; ++j)
+    {
+        for (int i=0; i<iCX; ++i)
+        {
+            memset(pTmpBitDest, 0, iDestDIBSize - sizeof(BITMAPINFOHEADER));
+            for(int y=0; y<iHeight; ++y)
+            {
+                if ( (iHeight*j + y) >= bmInfoHeader.biHeight) break;    // 맨 아래가 짤릴 경우가 있다
 
-				// 원본파일의 읽어올 부분의 file position을 맞게 세팅한다.
-				file.Seek(bmfHeader.bfOffBits + 
-					iRealWidthSrc*(bmInfoHeader.biHeight - 1 - (iHeight*j + y)) + 
-					3*(iWidth*i),
-					CFile::begin);
+                // 원본파일의 읽어올 부분의 file position을 맞게 세팅한다.
+                file.Seek(bmfHeader.bfOffBits + 
+                    iRealWidthSrc*(bmInfoHeader.biHeight - 1 - (iHeight*j + y)) + 
+                    3*(iWidth*i),
+                    CFile::begin);
 
-				if (i == (iCX-1))
-				{	// 맨 오른쪽 끝은 짤릴 가능성이 있다.
-					file.Read(pTmpBitDest + iRealWidthDest*(iHeight-1-y), bmInfoHeader.biWidth*3 - iRealWidthDest*(iCX-1));
-				}
-				else
-				{
-					file.Read(pTmpBitDest + iRealWidthDest*(iHeight-1-y), iRealWidthDest);
-				}
-			}
+                if (i == (iCX-1))
+                {    // 맨 오른쪽 끝은 짤릴 가능성이 있다.
+                    file.Read(pTmpBitDest + iRealWidthDest*(iHeight-1-y), bmInfoHeader.biWidth*3 - iRealWidthDest*(iCX-1));
+                }
+                else
+                {
+                    file.Read(pTmpBitDest + iRealWidthDest*(iHeight-1-y), iRealWidthDest);
+                }
+            }
 
-			// 저장하기
-			if(bSaveToDXT)
-			{
-				wsprintf(szFNameDest, "%s%s%s\\ConversionTmp.bmp", szDrive, szDir, szFName, szFName, i, iCY-1-j);
-			}
-			else
-			{
-				wsprintf(szFNameDest, "%s%s%s\\%s_%02d%02d.bmp", szDrive, szDir, szFName, szFName, i, iCY-1-j);
-			}
+            // 저장하기
+            if(bSaveToDXT)
+            {
+                wsprintf(szFNameDest, "%s%s%s\\ConversionTmp.bmp", szDrive, szDir, szFName, szFName, i, iCY-1-j);
+            }
+            else
+            {
+                wsprintf(szFNameDest, "%s%s%s\\%s_%02d%02d.bmp", szDrive, szDir, szFName, szFName, i, iCY-1-j);
+            }
 
-			hFile = CreateFile(szFNameDest, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-			if(INVALID_HANDLE_VALUE != hFile)
-			{
-				WriteFile(hFile, &bmfHeaderDest, sizeof(bmfHeaderDest), &dwNum, NULL);
-				WriteFile(hFile, pDestDIB, iDestDIBSize, &dwNum, NULL);
-				CloseHandle(hFile);
-			}
-			ProgressBar.StepIt();
-			this->UpdateWindow();
+            hFile = CreateFile(szFNameDest, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+            if(INVALID_HANDLE_VALUE != hFile)
+            {
+                WriteFile(hFile, &bmfHeaderDest, sizeof(bmfHeaderDest), &dwNum, NULL);
+                WriteFile(hFile, pDestDIB, iDestDIBSize, &dwNum, NULL);
+                CloseHandle(hFile);
+            }
+            ProgressBar.StepIt();
+            this->UpdateWindow();
 
-			if(bSaveToDXT) // DXT 를 저장하려면..
-			{
-				char szDXT_FName[_MAX_PATH];
-				wsprintf(szDXT_FName, "%s%s%s\\%s_%02d%02d.DXT", szDrive, szDir, szFName, szFName, i, iCY-1-j);
+            if(bSaveToDXT) // DXT 를 저장하려면..
+            {
+                char szDXT_FName[_MAX_PATH];
+                wsprintf(szDXT_FName, "%s%s%s\\%s_%02d%02d.DXT", szDrive, szDir, szFName, szFName, i, iCY-1-j);
 
-				CN3Texture TexTmp;
-				TexTmp.LoadFromFile(szFNameDest); // 로딩
-				if(true == TexTmp.Convert(fmtDXT)) // 변환
-				{
-					TexTmp.SaveToFile(szDXT_FName);
-				}
+                CN3Texture TexTmp;
+                TexTmp.LoadFromFile(szFNameDest); // 로딩
+                if(true == TexTmp.Convert(fmtDXT)) // 변환
+                {
+                    TexTmp.SaveToFile(szDXT_FName);
+                }
 
-				DeleteFile(szFNameDest); // 임시 비트맵 파일 지우기..
-			}
-		}
-	}
+                DeleteFile(szFNameDest); // 임시 비트맵 파일 지우기..
+            }
+        }
+    }
 
-	// 메모리 풀어줌
-	::GlobalFree(pDestDIB);
-	file.Close();
-	
-	 return TRUE;
-	 */
+    // 메모리 풀어줌
+    ::GlobalFree(pDestDIB);
+    file.Close();
+    
+     return TRUE;
+     */
 }
 
 void CMainFrame::OnFileOpenNext() {

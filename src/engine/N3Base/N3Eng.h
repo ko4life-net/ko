@@ -49,7 +49,7 @@ class CN3Eng : public CN3Base {
 
     void Release();
 
-    //	void InitEnv();
+    // void InitEnv();
     bool Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWORD dwBPP, BOOL bUseHW);
     BOOL FindDepthStencilFormat(UINT iAdapter, D3DDEVTYPE DeviceType, D3DFORMAT TargetFormat,
                                 D3DFORMAT * pDepthStencilFormat);

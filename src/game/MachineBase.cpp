@@ -53,43 +53,43 @@ void CMachineBase::ReCalcMatrix4AnimatedPart() {
 }
 
 void CMachineBase::ReCalcMatrix() {
-    //	CN3Transform::ReCalcMatrix(); // Transfomr Matrix 를 계산 해주고..
+    //    CN3Transform::ReCalcMatrix(); // Transfomr Matrix 를 계산 해주고..
     /*
-	// 균형잡기 위한 계산
-	static __Matrix44 mtx1;	static __Matrix44 mtx2;
-	mtx1.Scale(m_vScale);	mtx2.Rotation(0, m_fDirRadian, 0);
-	mtx1 *= mtx2;	mtx1.PosSet(m_vPos);
+    // 균형잡기 위한 계산
+    static __Matrix44 mtx1;    static __Matrix44 mtx2;
+    mtx1.Scale(m_vScale);    mtx2.Rotation(0, m_fDirRadian, 0);
+    mtx1 *= mtx2;    mtx1.PosSet(m_vPos);
 
-	float fPitch=0, fRoll=0;
-	CN3Terrain* pTerrain =  CN3GameBase::s_pArith->m_pTerrain;
-	__Vector3 vPos1 = m_vBalancePoint[0]*mtx1;
-	__Vector3 vPos2 = m_vBalancePoint[1]*mtx1;
-	vPos1.y = pTerrain->GetHeight(vPos1.x, vPos1.z);
-	vPos2.y = pTerrain->GetHeight(vPos2.x, vPos2.z);
-	if (vPos1.y != -FLT_MAX && vPos2.y != -FLT_MAX) fPitch = asinf((vPos2.y - vPos1.y)/(vPos1-vPos2).Magnitude());	// 지형범위 안일때 계산
-	vPos1 = m_vBalancePoint[2]*mtx1;
-	vPos2 = m_vBalancePoint[3]*mtx1;
-	vPos1.y = pTerrain->GetHeight(vPos1.x, vPos1.z);
-	vPos2.y = pTerrain->GetHeight(vPos2.x, vPos2.z);
-	if (vPos1.y != -FLT_MAX && vPos2.y != -FLT_MAX) fRoll = asinf((vPos2.y - vPos1.y)/(vPos1-vPos2).Magnitude());	// 지형범위 안일때만 계산
+    float fPitch=0, fRoll=0;
+    CN3Terrain* pTerrain =  CN3GameBase::s_pArith->m_pTerrain;
+    __Vector3 vPos1 = m_vBalancePoint[0]*mtx1;
+    __Vector3 vPos2 = m_vBalancePoint[1]*mtx1;
+    vPos1.y = pTerrain->GetHeight(vPos1.x, vPos1.z);
+    vPos2.y = pTerrain->GetHeight(vPos2.x, vPos2.z);
+    if (vPos1.y != -FLT_MAX && vPos2.y != -FLT_MAX) fPitch = asinf((vPos2.y - vPos1.y)/(vPos1-vPos2).Magnitude());    // 지형범위 안일때 계산
+    vPos1 = m_vBalancePoint[2]*mtx1;
+    vPos2 = m_vBalancePoint[3]*mtx1;
+    vPos1.y = pTerrain->GetHeight(vPos1.x, vPos1.z);
+    vPos2.y = pTerrain->GetHeight(vPos2.x, vPos2.z);
+    if (vPos1.y != -FLT_MAX && vPos2.y != -FLT_MAX) fRoll = asinf((vPos2.y - vPos1.y)/(vPos1-vPos2).Magnitude());    // 지형범위 안일때만 계산
 
-	// machine의 스케일, 회전, 위치 계산
-	D3DXMatrixRotationYawPitchRoll(&mtx1, -m_fDirRadian, fPitch, fRoll);
-	// -m_fDirRadian : -를 붙여주는 이유는 N3Base에 정의된 matrix연산과 d3d의 연산이 반대로 되어 있어서.. 
+    // machine의 스케일, 회전, 위치 계산
+    D3DXMatrixRotationYawPitchRoll(&mtx1, -m_fDirRadian, fPitch, fRoll);
+    // -m_fDirRadian : -를 붙여주는 이유는 N3Base에 정의된 matrix연산과 d3d의 연산이 반대로 되어 있어서.. 
 
-	m_Matrix.Scale(m_vScale);
-	m_Matrix *= mtx1;
-	m_Matrix.PosSet(m_vPos);
+    m_Matrix.Scale(m_vScale);
+    m_Matrix *= mtx1;
+    m_Matrix.PosSet(m_vPos);
 
-	ReCalcMatrix4AnimatedPart();
+    ReCalcMatrix4AnimatedPart();
 
-	// Animate 되지 않는 나머지 파트의 매트릭스를 다시 계산.
-	int iPC = m_Parts.size();
-	for(int i = 0; i < iPC; i++)
-	{
-		if (m_bSkipCalcPartMtx[count] == FALSE)	m_Parts[i]->RecalcMatrix(m_Matrix);
-		++count;
-	}
+    // Animate 되지 않는 나머지 파트의 매트릭스를 다시 계산.
+    int iPC = m_Parts.size();
+    for(int i = 0; i < iPC; i++)
+    {
+        if (m_bSkipCalcPartMtx[count] == FALSE)    m_Parts[i]->RecalcMatrix(m_Matrix);
+        ++count;
+    }
 */
 }
 
@@ -102,72 +102,72 @@ void CMachineBase::Render() {
 }
 
 void CMachineBase::Tick(float fFrm) {
-    /*	CN3Shape::Tick(fFrm);
-	if (m_bDontRender) return;
+    /*    CN3Shape::Tick(fFrm);
+    if (m_bDontRender) return;
 
-	// 회전 계산
-	if (!((m_dwMachineState & MS_TURNRIGHT) && (m_dwMachineState & MS_TURNLEFT)))	// 좌우 동시가 아니면
-	{
-		float fAddRadian = 0.0f;
-		if (m_dwMachineState & MS_TURNRIGHT)
-		{
-			fAddRadian = -m_fRotateSpeed*s_fSecPerFrm;
-			m_fDirRadian += fAddRadian;
-			if (m_fDirRadian < 0) m_fDirRadian += (2 * D3DX_PI);
-		}
-		else if (m_dwMachineState & MS_TURNLEFT)
-		{
-			fAddRadian = m_fRotateSpeed*s_fSecPerFrm;
-			m_fDirRadian += fAddRadian;
-			if (m_fDirRadian > (2 * D3DX_PI)) m_fDirRadian -= (2 * D3DX_PI);
-		}
-		// 바퀴 회전각 계산.
-		for (int i=0; i<NUM_WHEEL; ++i)
-		{
-			m_Wheel[i].fRadian += fAddRadian*m_Wheel[i].fRotateRatio;
-		}
-	}
+    // 회전 계산
+    if (!((m_dwMachineState & MS_TURNRIGHT) && (m_dwMachineState & MS_TURNLEFT)))    // 좌우 동시가 아니면
+    {
+        float fAddRadian = 0.0f;
+        if (m_dwMachineState & MS_TURNRIGHT)
+        {
+            fAddRadian = -m_fRotateSpeed*s_fSecPerFrm;
+            m_fDirRadian += fAddRadian;
+            if (m_fDirRadian < 0) m_fDirRadian += (2 * D3DX_PI);
+        }
+        else if (m_dwMachineState & MS_TURNLEFT)
+        {
+            fAddRadian = m_fRotateSpeed*s_fSecPerFrm;
+            m_fDirRadian += fAddRadian;
+            if (m_fDirRadian > (2 * D3DX_PI)) m_fDirRadian -= (2 * D3DX_PI);
+        }
+        // 바퀴 회전각 계산.
+        for (int i=0; i<NUM_WHEEL; ++i)
+        {
+            m_Wheel[i].fRadian += fAddRadian*m_Wheel[i].fRotateRatio;
+        }
+    }
 
-	float f90d = D3DXToRadian(90.0f);
-	__Vector3 vDir;	vDir.Set(cosf(f90d+m_fDirRadian), 0, sinf(f90d+m_fDirRadian));
-	__Vector3 vPosDiff;	vPosDiff.Set(0,0,0);
+    float f90d = D3DXToRadian(90.0f);
+    __Vector3 vDir;    vDir.Set(cosf(f90d+m_fDirRadian), 0, sinf(f90d+m_fDirRadian));
+    __Vector3 vPosDiff;    vPosDiff.Set(0,0,0);
 
-	// 전후 이동 계산.
-	if (!((m_dwMachineState & MS_FORWARD) && (m_dwMachineState & MS_BACKWARD)))	// 앞뒤 동시가 아니면
-	{
-		float fDistance = 0.0f;
-		if (m_dwMachineState & MS_FORWARD) fDistance = (m_fSpeed*s_fSecPerFrm);
-		else if (m_dwMachineState & MS_BACKWARD) fDistance = (-m_fSpeed*s_fSecPerFrm);
+    // 전후 이동 계산.
+    if (!((m_dwMachineState & MS_FORWARD) && (m_dwMachineState & MS_BACKWARD)))    // 앞뒤 동시가 아니면
+    {
+        float fDistance = 0.0f;
+        if (m_dwMachineState & MS_FORWARD) fDistance = (m_fSpeed*s_fSecPerFrm);
+        else if (m_dwMachineState & MS_BACKWARD) fDistance = (-m_fSpeed*s_fSecPerFrm);
 
-		if (fDistance != 0.0f)
-		{
-			vPosDiff = vDir*fDistance;
+        if (fDistance != 0.0f)
+        {
+            vPosDiff = vDir*fDistance;
 
-			// 지형에 따른 y좌표 계산
-			__Vector3 vPos = m_vPos + vPosDiff;
-			vPos.y = CN3GameBase::s_pArith->m_pTerrain->GetHeight(vPos.x, vPos.z);
-			m_vPos = vPos;
+            // 지형에 따른 y좌표 계산
+            __Vector3 vPos = m_vPos + vPosDiff;
+            vPos.y = CN3GameBase::s_pArith->m_pTerrain->GetHeight(vPos.x, vPos.z);
+            m_vPos = vPos;
 
-			// 바퀴 회전각 계산.
-			for (int i=0; i<NUM_WHEEL; ++i)
-			{
-				m_Wheel[i].fRadian -= (fDistance/m_Wheel[i].fRadius);
-			}
-		}
-	}
+            // 바퀴 회전각 계산.
+            for (int i=0; i<NUM_WHEEL; ++i)
+            {
+                m_Wheel[i].fRadian -= (fDistance/m_Wheel[i].fRadius);
+            }
+        }
+    }
 
-	// 바퀴 회전각 0~2pi 사이로 조정
-	for (int i=0; i<NUM_WHEEL; ++i)
-	{
-		if (m_Wheel[i].fRadian > D3DX_PI*2)	m_Wheel[i].fRadian -= (D3DX_PI*2);
-		else if (m_Wheel[i].fRadian < 0.0f)	m_Wheel[i].fRadian += (D3DX_PI*2);
-	}
+    // 바퀴 회전각 0~2pi 사이로 조정
+    for (int i=0; i<NUM_WHEEL; ++i)
+    {
+        if (m_Wheel[i].fRadian > D3DX_PI*2)    m_Wheel[i].fRadian -= (D3DX_PI*2);
+        else if (m_Wheel[i].fRadian < 0.0f)    m_Wheel[i].fRadian += (D3DX_PI*2);
+    }
 
-	// Rotate 계산
-//	m_vRot.y = m_fDirRadian;
+    // Rotate 계산
+//    m_vRot.y = m_fDirRadian;
 
-	// 이동 후 matrix계산.
-	ReCalcMatrix();
+    // 이동 후 matrix계산.
+    ReCalcMatrix();
 */
 }
 
@@ -214,10 +214,10 @@ void CMachineBase::LoadMachine(FILE * stream) {
     __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
     result = fscanf(stream, "Wheel_BR = %s\n", szWheel[WHEEL_BR]);
     __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-    //	result = fscanf(stream, "WheelRadius_FL = %f\n", &(m_Wheel[WHEEL_FL].fRadius));	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-    //	result = fscanf(stream, "WheelRadius_FR = %f\n", &(m_Wheel[WHEEL_FR].fRadius));	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-    //	result = fscanf(stream, "WheelRadius_BL = %f\n", &(m_Wheel[WHEEL_BL].fRadius));	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-    //	result = fscanf(stream, "WheelRadius_BR = %f\n", &(m_Wheel[WHEEL_BR].fRadius));	__ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    //    result = fscanf(stream, "WheelRadius_FL = %f\n", &(m_Wheel[WHEEL_FL].fRadius));    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    //    result = fscanf(stream, "WheelRadius_FR = %f\n", &(m_Wheel[WHEEL_FR].fRadius));    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    //    result = fscanf(stream, "WheelRadius_BL = %f\n", &(m_Wheel[WHEEL_BL].fRadius));    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    //    result = fscanf(stream, "WheelRadius_BR = %f\n", &(m_Wheel[WHEEL_BR].fRadius));    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
 
     // shape load하기
     this->Load(szSrcName);

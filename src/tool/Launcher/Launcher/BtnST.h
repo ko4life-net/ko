@@ -1,16 +1,16 @@
 //
-//	Class:		CButtonST
+//    Class:        CButtonST
 //
-//	Compiler:	Visual C++
-//	Tested on:	Visual C++ 5.0
-//				Visual C++ 6.0
+//    Compiler:    Visual C++
+//    Tested on:    Visual C++ 5.0
+//                Visual C++ 6.0
 //
-//	Version:	See GetVersionC() or GetVersionI()
+//    Version:    See GetVersionC() or GetVersionI()
 //
-//	Created:	xx/xxxx/1998
-//	Updated:	14/June/2001
+//    Created:    xx/xxxx/1998
+//    Updated:    14/June/2001
 //
-//	Author:		Davide Calabro'		davide_calabro@yahoo.com
+//    Author:        Davide Calabro'        davide_calabro@yahoo.com
 //
 #pragma once
 

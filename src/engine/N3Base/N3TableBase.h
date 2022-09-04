@@ -63,7 +63,7 @@ template <typename Type> class CN3TableBase {
         }
         return &(it->second);
     }
-    int IDToIndex(unsigned int dwID) // 해당 ID의 Index 리턴..	Skill에서 쓴다..
+    int IDToIndex(unsigned int dwID) // 해당 ID의 Index 리턴..    Skill에서 쓴다..
     {
         it_Table it = m_Datas.find(dwID);
         if (it == m_Datas.end()) {
@@ -301,18 +301,18 @@ template <class Type> BOOL CN3TableBase<Type>::LoadFromFile(const std::string & 
 
     //BYTE Encrypt(BYTE plain)
     //{
-    //	BYTE cipher;
-    //	cipher = (plain ^ (key_r>>8));
-    //	key_r = (cipher + key_r) * key_c1 + key_c2;
-    //	return cipher;
+    //    BYTE cipher;
+    //    cipher = (plain ^ (key_r>>8));
+    //    key_r = (cipher + key_r) * key_c1 + key_c2;
+    //    return cipher;
     //}
 
     //BYTE Decrypt(BYTE cipher)
     //{
-    //	BYTE plain;
-    //	plain = (cipher ^ (m_r>>8));
-    //	m_r = (cipher + m_r) * m_c1 + m_c2;
-    //	return plain;
+    //    BYTE plain;
+    //    plain = (cipher ^ (m_r>>8));
+    //    m_r = (cipher + m_r) * m_c1 + m_c2;
+    //    return plain;
     //}
 
     // 암호화 풀고..

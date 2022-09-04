@@ -125,8 +125,8 @@ void CUIEDoc::Dump(CDumpContext & dc) const {
 // CUIEDoc commands
 
 BOOL CUIEDoc::OnOpenDocument(LPCTSTR lpszPathName) {
-    //	if (!CDocument::OnOpenDocument(lpszPathName))
-    //		return FALSE;
+    //    if (!CDocument::OnOpenDocument(lpszPathName))
+    //        return FALSE;
     Release();
     SetCurrentDirectory(m_RootUI.PathGet().c_str());
     return m_RootUI.LoadFromFile(lpszPathName);
@@ -136,7 +136,7 @@ BOOL CUIEDoc::OnSaveDocument(LPCTSTR lpszPathName) {
     OnEditZorder();
     SetModifiedFlag(FALSE);
     return m_RootUI.SaveToFile(lpszPathName);
-    //	return CDocument::OnSaveDocument(lpszPathName);
+    //    return CDocument::OnSaveDocument(lpszPathName);
 }
 
 void CUIEDoc::OnCloseDocument() {
@@ -180,7 +180,7 @@ void CUIEDoc::SetSelectedUI(CN3UIBase * pUI) {
 void CUIEDoc::OnInsertImage() {
     SetModifiedFlag();
     CN3UIImage * pUI = new CN3UIImage();
-    //	pUI->Init(&m_RootUI);
+    //    pUI->Init(&m_RootUI);
     if (this->GetSelectedUI()) {
         pUI->Init(this->GetSelectedUI());
     } else {
@@ -210,7 +210,7 @@ void CUIEDoc::OnInsertImage() {
 void CUIEDoc::OnInsertString() {
     SetModifiedFlag();
     CN3UIString * pUI = new CN3UIString();
-    //	pUI->Init(&m_RootUI);
+    //    pUI->Init(&m_RootUI);
     if (this->GetSelectedUI()) {
         pUI->Init(this->GetSelectedUI());
     } else {
@@ -246,7 +246,7 @@ void CUIEDoc::OnInsertString() {
 void CUIEDoc::OnInsertButton() {
     SetModifiedFlag();
     CN3UIButton * pUI = new CN3UIButton();
-    //	pUI->Init(&m_RootUI);
+    //    pUI->Init(&m_RootUI);
     if (this->GetSelectedUI()) {
         pUI->Init(this->GetSelectedUI());
     } else {
@@ -284,7 +284,7 @@ void CUIEDoc::OnInsertButton() {
 void CUIEDoc::OnInsertStatic() {
     SetModifiedFlag();
     CN3UIStatic * pUI = new CN3UIStatic();
-    //	pUI->Init(&m_RootUI);
+    //    pUI->Init(&m_RootUI);
     if (this->GetSelectedUI()) {
         pUI->Init(this->GetSelectedUI());
     } else {
@@ -316,7 +316,7 @@ void CUIEDoc::OnInsertStatic() {
 void CUIEDoc::OnInsertEdit() {
     SetModifiedFlag();
     CN3UIEdit * pUI = new CN3UIEdit();
-    //	pUI->Init(&m_RootUI);
+    //    pUI->Init(&m_RootUI);
     if (this->GetSelectedUI()) {
         pUI->Init(this->GetSelectedUI());
     } else {
@@ -347,7 +347,7 @@ void CUIEDoc::OnInsertEdit() {
 void CUIEDoc::OnInsertProgress() {
     SetModifiedFlag();
     CN3UIProgress * pUI = new CN3UIProgress();
-    //	pUI->Init(&m_RootUI);
+    //    pUI->Init(&m_RootUI);
     if (this->GetSelectedUI()) {
         pUI->Init(this->GetSelectedUI());
     } else {
@@ -432,7 +432,7 @@ void CUIEDoc::OnInsertProgress() {
 void CUIEDoc::OnInsertTrackbar() {
     SetModifiedFlag();
     CN3UITrackBar * pUI = new CN3UITrackBar();
-    //	pUI->Init(&m_RootUI);
+    //    pUI->Init(&m_RootUI);
     if (this->GetSelectedUI()) {
         pUI->Init(this->GetSelectedUI());
     } else {
@@ -464,7 +464,7 @@ void CUIEDoc::OnInsertTrackbar() {
 void CUIEDoc::OnInsertScrollbar() {
     SetModifiedFlag();
     CN3UIScrollBar * pUI = new CN3UIScrollBar();
-    //	pUI->Init(&m_RootUI);
+    //    pUI->Init(&m_RootUI);
     if (this->GetSelectedUI()) {
         pUI->Init(this->GetSelectedUI());
     } else {
@@ -540,7 +540,7 @@ void CUIEDoc::OnInsertScrollbar() {
 void CUIEDoc::OnInsertArea() {
     SetModifiedFlag();
     CN3UIArea * pUI = new CN3UIArea();
-    //	pUI->Init(&m_RootUI);
+    //    pUI->Init(&m_RootUI);
     if (this->GetSelectedUI()) {
         pUI->Init(this->GetSelectedUI());
     } else {
@@ -561,7 +561,7 @@ void CUIEDoc::OnInsertIconslot() {
 #ifdef _REPENT
     SetModifiedFlag();
     CN3UIIconSlot * pUI = new CN3UIIconSlot();
-    //	pUI->Init(&m_RootUI);
+    //    pUI->Init(&m_RootUI);
     if (this->GetSelectedUI()) {
         pUI->Init(this->GetSelectedUI());
     } else {
@@ -582,7 +582,7 @@ void CUIEDoc::OnInsertIconslot() {
 void CUIEDoc::OnInsertList() {
     SetModifiedFlag();
     CN3UIList * pUI = new CN3UIList();
-    //	pUI->Init(&m_RootUI);
+    //    pUI->Init(&m_RootUI);
     if (this->GetSelectedUI()) {
         pUI->Init(this->GetSelectedUI());
     } else {
@@ -597,7 +597,7 @@ void CUIEDoc::OnInsertList() {
     pFrm->GetRightPane()->SetMode(CUIEView::UIEMODE_EDIT);
     pFrm->GetRightPane()->SelectRectType(CUIEView::RT_REGION);
 
-    //	this->OnInsertScrollbar();
+    //    this->OnInsertScrollbar();
 }
 
 void CUIEDoc::OnEditDelete() // 선택된 ui 지우기
@@ -606,8 +606,8 @@ void CUIEDoc::OnEditDelete() // 선택된 ui 지우기
     it_UI       it = m_SelectedUIs.begin(), itEnd = m_SelectedUIs.end();
     for (; it != itEnd;) {
         pUI = *it;
-        //		if (pUI && (&m_RootUI) == pUI->GetParent())
-        //		{	// 선택된 ui가 m_RootUI의 child이면 지운다.
+        //        if (pUI && (&m_RootUI) == pUI->GetParent())
+        //        {    // 선택된 ui가 m_RootUI의 child이면 지운다.
         if (pUI && (&m_RootUI) != pUI) // Root UI 가 아니면 지운다..
         {
             delete pUI;
@@ -906,8 +906,8 @@ void CUIEDoc::OnEditDuplicate() {
             *pUINew = *((CN3UIList *)pUISrc);
             pUIDest = pUINew;
         } break; // tooltip
-//		case UI_TYPE_ICON:		pUIDest = new CN3UIIcon();		*pUIDest = *((CN3UIBase*)pUISrc); break;	// icon
-//		case UI_TYPE_ICON_MANAGER:	pUIDest = new CN3UIIconManager();	*pUIDest = *((CN3UIBase*)pUISrc); break;	// icon manager..
+//        case UI_TYPE_ICON:        pUIDest = new CN3UIIcon();        *pUIDest = *((CN3UIBase*)pUISrc); break;    // icon
+//        case UI_TYPE_ICON_MANAGER:    pUIDest = new CN3UIIconManager();    *pUIDest = *((CN3UIBase*)pUISrc); break;    // icon manager..
 #ifdef _REPENT
         case UI_TYPE_ICONSLOT: {
             CN3UIIconSlot * pUINew = new CN3UIIconSlot();

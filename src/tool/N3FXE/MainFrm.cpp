@@ -440,12 +440,12 @@ void CMainFrame::TickRender() {
     m_Light[1].Tick();
     m_Light[1].Apply();
 
-    //	__Matrix44 mtxChrRot;
-    //	mtxChrRot.Identity();
-    //	mtxChrRot.RotationY(__PI);
-    //	__Quaternion qt(mtxChrRot);
+    //    __Matrix44 mtxChrRot;
+    //    mtxChrRot.Identity();
+    //    mtxChrRot.RotationY(__PI);
+    //    __Quaternion qt(mtxChrRot);
 
-    //	m_Chr.RotSet(qt);
+    //    m_Chr.RotSet(qt);
 
     m_Chr.Tick();
     //m_Chr.PosSet(0.0f, -0.2f, 0.0f);

@@ -17,7 +17,9 @@ CLogWriter::CLogWriter() {}
 CLogWriter::~CLogWriter() {}
 
 void CLogWriter::Open(const std::string & szFN) {
-    //	if(s_hFile || szFN.empty()) return;
+    // if (s_hFile || szFN.empty()) {
+    //     return;
+    // }
     if (szFN.empty()) {
         return;
     }

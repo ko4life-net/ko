@@ -13,27 +13,27 @@ class CN3FXBundle;
 class CN3FXPartBase : public CN3BaseFileAccess {
   public:
     //멤버 변수들..
-    int m_iVersion; //	자료의 버전..
+    int m_iVersion; //    자료의 버전..
     int m_iBaseVersion;
 
-    CN3FXBundle *   m_pRefBundle;   //	내가 속한 번들의 포인터.
-    CN3FXPartBase * m_pRefPrevPart; //	내 앞의 파트..
+    CN3FXBundle *   m_pRefBundle;   //    내가 속한 번들의 포인터.
+    CN3FXPartBase * m_pRefPrevPart; //    내 앞의 파트..
 
-    int   m_iType; //	형식타입(particle, mesh, board...)
-    float m_fLife; //	플레이시간..
+    int   m_iType; //    형식타입(particle, mesh, board...)
+    float m_fLife; //    플레이시간..
 
-    std::string m_strName; //	파트이름..
+    std::string m_strName; //    파트이름..
 
-    __Vector3 m_vVelocity;     //	초당 움직이는 속도..(초속도)
-    __Vector3 m_vAcceleration; //	가속도...(중력가속도를 넣고 싶으면 y = -9.8..^^
-    __Vector3 m_vRotVelocity;  //	초당 회전할 수 있는 각속도..
+    __Vector3 m_vVelocity;     //    초당 움직이는 속도..(초속도)
+    __Vector3 m_vAcceleration; //    가속도...(중력가속도를 넣고 싶으면 y = -9.8..^^
+    __Vector3 m_vRotVelocity;  //    초당 회전할 수 있는 각속도..
 
     float     m_fCurrLife;
     __Vector3 m_vCurrVelocity;
     __Vector3 m_vCurrPos;
 
-    DWORD     m_dwState; //	현재 파트의 상태..
-    __Vector3 m_vPos;    //	번들에서 파트의 위치.
+    DWORD     m_dwState; //    현재 파트의 상태..
+    __Vector3 m_vPos;    //    번들에서 파트의 위치.
 
     bool m_bOnGround; //바닥에 붙어서 갈 것인가...
 
@@ -63,13 +63,13 @@ class CN3FXPartBase : public CN3BaseFileAccess {
   public:
     virtual float GetGroundHeight(float x, float z) { return 0.01f; }
 
-    virtual void Init();             //	각종 변수들을 처음 로딩한 상태로 초기화...
-    virtual void Start();            //	파트 구동 시작.
-    virtual void Stop();             //	파트 구동 멈춤..
-    virtual bool Tick();             //	ticktick...
-    virtual void Render();           //	화면에 뿌리기..
-    virtual bool Load(HANDLE hFile); //	게임파일 불러오기.
-    virtual bool Save(HANDLE hFile); //	게임파일 저장하기.
+    virtual void Init();             //    각종 변수들을 처음 로딩한 상태로 초기화...
+    virtual void Start();            //    파트 구동 시작.
+    virtual void Stop();             //    파트 구동 멈춤..
+    virtual bool Tick();             //    ticktick...
+    virtual void Render();           //    화면에 뿌리기..
+    virtual bool Load(HANDLE hFile); //    게임파일 불러오기.
+    virtual bool Save(HANDLE hFile); //    게임파일 저장하기.
     void         Duplicate(CN3FXPartBase * pSrc);
 
 #ifdef _N3TOOL

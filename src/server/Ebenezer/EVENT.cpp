@@ -76,7 +76,7 @@ BOOL EVENT::LoadEvent(int zone) {
 
             t_index += ParseSpace(first, buf + t_index);
 
-            //			if( !strcmp( first, "QUEST" ) )
+            //            if( !strcmp( first, "QUEST" ) )
             if (!strcmp(first, "EVENT")) {
                 t_index += ParseSpace(temp, buf + t_index);
                 event_num = atoi(temp);
@@ -157,11 +157,11 @@ void EVENT::DeleteAll() {
     }
 
     /*
-	for( int i = 0; i < m_arEvent.GetSize(); i++)
-	{
-		if( m_arEvent[i] ) delete m_arEvent[i];
-	}
+    for( int i = 0; i < m_arEvent.GetSize(); i++)
+    {
+        if( m_arEvent[i] ) delete m_arEvent[i];
+    }
 
-	m_arEvent.RemoveAll();
+    m_arEvent.RemoveAll();
 */
 }

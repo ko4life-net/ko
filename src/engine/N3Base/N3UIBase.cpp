@@ -181,7 +181,7 @@ BOOL CN3UIBase::MoveOffset(int iOffsetX, int iOffsetY) {
     return TRUE;
 }
 
-//	점 (x,y)가 영역안에 있으면 true..
+//    점 (x,y)가 영역안에 있으면 true..
 bool CN3UIBase::IsIn(int x, int y) {
     if (x < m_rcRegion.left || x > m_rcRegion.right || y < m_rcRegion.top || y > m_rcRegion.bottom) {
         return false;
@@ -288,10 +288,10 @@ bool CN3UIBase::Load(HANDLE hFile) {
     ReadFile(hFile, &m_rcRegion, sizeof(m_rcRegion), &dwRWC, NULL);     // m_rcRegion
     ReadFile(hFile, &m_rcMovable, sizeof(m_rcMovable), &dwRWC, NULL);   // m_rcMovable
     ReadFile(hFile, &m_dwStyle, sizeof(m_dwStyle), &dwRWC, NULL);       // style
-    ReadFile(hFile, &m_dwReserved, sizeof(m_dwReserved), &dwRWC, NULL); //	m_dwReserved
+    ReadFile(hFile, &m_dwReserved, sizeof(m_dwReserved), &dwRWC, NULL); //    m_dwReserved
 
     int iTooltipLen;
-    ReadFile(hFile, &iTooltipLen, sizeof(iTooltipLen), &dwRWC, NULL); //	tooltip문자열 길이
+    ReadFile(hFile, &iTooltipLen, sizeof(iTooltipLen), &dwRWC, NULL); //    tooltip문자열 길이
     if (iTooltipLen > 0) {
         std::vector<char> buffer(iTooltipLen, 0);
         ReadFile(hFile, &buffer[0], iTooltipLen, &dwRWC, NULL);
@@ -300,7 +300,7 @@ bool CN3UIBase::Load(HANDLE hFile) {
 
     // 이전 uif파일을 컨버팅 하려면 사운드 로드 하는 부분 막기
     int iSndFNLen = 0;
-    ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL); //	사운드 파일 문자열 길이
+    ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL); //    사운드 파일 문자열 길이
     if (iSndFNLen > 0) {
         std::vector<char> buffer(iSndFNLen, 0);
         ReadFile(hFile, &buffer[0], iSndFNLen, &dwRWC, NULL);
@@ -309,7 +309,7 @@ bool CN3UIBase::Load(HANDLE hFile) {
         m_pSnd_OpenUI = s_SndMgr.CreateObj(std::string(buffer.begin(), buffer.end()), SNDTYPE_2D);
     }
 
-    ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL); //	사운드 파일 문자열 길이
+    ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL); //    사운드 파일 문자열 길이
     if (iSndFNLen > 0) {
         std::vector<char> buffer(iSndFNLen, 0);
         ReadFile(hFile, &buffer[0], iSndFNLen, &dwRWC, NULL);
@@ -389,8 +389,8 @@ DWORD CN3UIBase::MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & ptO
         DWORD       dwChildRet = pChild->MouseProc(dwFlags, ptCur, ptOld);
         if (UI_MOUSEPROC_DONESOMETHING & dwChildRet) { // 이경우에는 먼가 포커스를 받은 경우이다.
             // (아래 코드는 dialog를 관리하는 곳에서 해야 한다. 따라서 막아놓음)
-            //			m_Children.erase(itor);			// 우선 리스트에서 지우고
-            //			m_Children.push_front(pChild);	// 맨앞에 넣는다. 그리는 순서를 맨 나중에 그리도록 하려고
+            //            m_Children.erase(itor);            // 우선 리스트에서 지우고
+            //            m_Children.push_front(pChild);    // 맨앞에 넣는다. 그리는 순서를 맨 나중에 그리도록 하려고
 
             dwRet |= (UI_MOUSEPROC_CHILDDONESOMETHING | UI_MOUSEPROC_DONESOMETHING);
             return dwRet;
@@ -434,7 +434,7 @@ CN3UIBase * CN3UIBase::GetChildByID(const std::string & szID) {
 
     for (UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor) {
         CN3UIBase * pChild = (*itor);
-        //		if(pChild->m_szID == szID) return pChild;
+        //        if(pChild->m_szID == szID) return pChild;
         if (lstrcmpi(pChild->m_szID.c_str(), szID.c_str()) == 0) {
             return pChild; // 대소문자 안가리고 검색..
         }
@@ -564,8 +564,8 @@ void CN3UIBase::operator=(const CN3UIBase & other) {
             *pUINew = *((CN3UIList *)pOtherChild);
             pChild = pUINew;
         } break; // tooltip
-//		case UI_TYPE_ICON:		pUIDest = new CN3UIIcon();		*pUIDest = *((CN3UIBase*)pUISrc); break;	// icon
-//		case UI_TYPE_ICON_MANAGER:	pUIDest = new CN3UIIconManager();	*pUIDest = *((CN3UIBase*)pUISrc); break;	// icon manager..
+//        case UI_TYPE_ICON:        pUIDest = new CN3UIIcon();        *pUIDest = *((CN3UIBase*)pUISrc); break;    // icon
+//        case UI_TYPE_ICON_MANAGER:    pUIDest = new CN3UIIconManager();    *pUIDest = *((CN3UIBase*)pUISrc); break;    // icon manager..
 #ifdef _REPENT
         case UI_TYPE_ICONSLOT: {
             CN3UIIconSlot * pUINew = new CN3UIIconSlot();
@@ -630,10 +630,10 @@ bool CN3UIBase::Save(HANDLE hFile) {
     WriteFile(hFile, &m_rcRegion, sizeof(m_rcRegion), &dwRWC, NULL);     // m_rcRegion
     WriteFile(hFile, &m_rcMovable, sizeof(m_rcMovable), &dwRWC, NULL);   // m_rcMovable
     WriteFile(hFile, &m_dwStyle, sizeof(m_dwStyle), &dwRWC, NULL);       // style
-    WriteFile(hFile, &m_dwReserved, sizeof(m_dwReserved), &dwRWC, NULL); //	m_dwReserved
+    WriteFile(hFile, &m_dwReserved, sizeof(m_dwReserved), &dwRWC, NULL); //    m_dwReserved
 
     int iTooltipLen = m_szToolTip.size();
-    WriteFile(hFile, &iTooltipLen, sizeof(iTooltipLen), &dwRWC, NULL); //	tooltip문자열 길이
+    WriteFile(hFile, &iTooltipLen, sizeof(iTooltipLen), &dwRWC, NULL); //    tooltip문자열 길이
     if (iTooltipLen > 0) {
         WriteFile(hFile, m_szToolTip.c_str(), iTooltipLen, &dwRWC, NULL);
     }
@@ -642,7 +642,7 @@ bool CN3UIBase::Save(HANDLE hFile) {
     if (m_pSnd_OpenUI) {
         iSndFNLen = m_pSnd_OpenUI->m_szFileName.size();
     }
-    WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL); //	사운드 파일 문자열 길이
+    WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL); //    사운드 파일 문자열 길이
     if (iSndFNLen > 0) {
         WriteFile(hFile, m_pSnd_OpenUI->m_szFileName.c_str(), iSndFNLen, &dwRWC, NULL);
     }
@@ -651,7 +651,7 @@ bool CN3UIBase::Save(HANDLE hFile) {
     if (m_pSnd_CloseUI) {
         iSndFNLen = m_pSnd_CloseUI->m_szFileName.size();
     }
-    WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL); //	사운드 파일 문자열 길이
+    WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL); //    사운드 파일 문자열 길이
     if (iSndFNLen > 0) {
         WriteFile(hFile, m_pSnd_CloseUI->m_szFileName.c_str(), iSndFNLen, &dwRWC, NULL);
     }
@@ -720,7 +720,7 @@ void CN3UIBase::ResizeAutomaticalyByChild() {
     if (rcCur.bottom < rcMax.bottom) {
         rcCur.bottom = rcMax.bottom;
     }
-    //	this->SetRegion(rcCur);
+    //    this->SetRegion(rcCur);
     m_rcRegion =
         rcCur; // SetRegion을 해버리면 child의 영역을 바꿔버리는 경우가 있으므로 내 영역만 바꾸기위해 직접 넣는다.
 }
@@ -936,8 +936,8 @@ void CN3UIBase::operator=(const CN3UIBase & other) {
             *pUINew = *((CN3UIList *)pOtherChild);
             pChild = pUINew;
         } break; // tooltip
-//		case UI_TYPE_ICON:		pUIDest = new CN3UIIcon();		*pUIDest = *((CN3UIBase*)pUISrc); break;	// icon
-//		case UI_TYPE_ICON_MANAGER:	pUIDest = new CN3UIIconManager();	*pUIDest = *((CN3UIBase*)pUISrc); break;	// icon manager..
+//        case UI_TYPE_ICON:        pUIDest = new CN3UIIcon();        *pUIDest = *((CN3UIBase*)pUISrc); break;    // icon
+//        case UI_TYPE_ICON_MANAGER:    pUIDest = new CN3UIIconManager();    *pUIDest = *((CN3UIBase*)pUISrc); break;    // icon manager..
 #ifdef _REPENT
         case UI_TYPE_ICONSLOT: {
             CN3UIIconSlot * pUINew = new CN3UIIconSlot();

@@ -258,9 +258,9 @@ void CCompressMng::Initialize() {
     m_nErrorOccurred = 0;
 
     memset(m_pScratchPad, 0x00, CMP_BUFFER_SIZE);
-    /*	if ( pScratchPad ) {
-		for (int i = 0; i <CMP_BUFFER_SIZE; i++)
-			pScratchPad[i] = 0;
-	}
+    /*    if ( pScratchPad ) {
+        for (int i = 0; i <CMP_BUFFER_SIZE; i++)
+            pScratchPad[i] = 0;
+    }
 */
 }

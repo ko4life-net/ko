@@ -316,34 +316,34 @@ CN3Transform * CMapMng::AddShape(CN3Scene * pDestScene, const std::string & szFN
         return NULL;
     }
 
-    /*	if(bGenerateChainNumber)
-	{
-		int nSC = pDestScene->ShapeCount();
-		int nChainNumber = 0;
-		char szCompare[_MAX_PATH];
-		for(int i = 0; i < nSC; i++)
-		{
-			lstrcpy(szCompare, pDestScene->ShapeGet(i)->Name());
-			int nL = lstrlen(szCompare);
-			if(nL < 5) continue;
+    /*    if(bGenerateChainNumber)
+    {
+        int nSC = pDestScene->ShapeCount();
+        int nChainNumber = 0;
+        char szCompare[_MAX_PATH];
+        for(int i = 0; i < nSC; i++)
+        {
+            lstrcpy(szCompare, pDestScene->ShapeGet(i)->Name());
+            int nL = lstrlen(szCompare);
+            if(nL < 5) continue;
 
-			szCompare[nL-5] = NULL; // 뒤에 붙는 언더바와 네자리 번호는 뺀다..
-			if(0 == lstrcmpi(pShape->Name(), szCompare)) // 이름이 같으면..
-			{
-				nChainNumber = atoi(&(szCompare[nL-4])) + 1;
-			}
-		}
+            szCompare[nL-5] = NULL; // 뒤에 붙는 언더바와 네자리 번호는 뺀다..
+            if(0 == lstrcmpi(pShape->Name(), szCompare)) // 이름이 같으면..
+            {
+                nChainNumber = atoi(&(szCompare[nL-4])) + 1;
+            }
+        }
 
-		char szName[_MAX_PATH];
-		wsprintf(szName, "%s_%.4d", pShape->Name(), nChainNumber);
-		pShape->m_szName = szName; // .. 이름을 짓는다..
-		
-		char szFileName2[_MAX_PATH];
-		char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-		_splitpath(szFileName, szDrive, szDir, szFName, szExt);
-		_makepath(szFileName2, szDrive, szDir, szName, szExt);
-		pShape->FileNameSet(szFileName2); // 파일 이름 짓기...
-	}
+        char szName[_MAX_PATH];
+        wsprintf(szName, "%s_%.4d", pShape->Name(), nChainNumber);
+        pShape->m_szName = szName; // .. 이름을 짓는다..
+        
+        char szFileName2[_MAX_PATH];
+        char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
+        _splitpath(szFileName, szDrive, szDir, szFName, szExt);
+        _makepath(szFileName2, szDrive, szDir, szName, szExt);
+        pShape->FileNameSet(szFileName2); // 파일 이름 짓기...
+    }
 */
     pDestScene->ShapeAdd(pShape); // 추가 하고
     return pShape;
@@ -381,11 +381,11 @@ void CMapMng::DeleteSelObjectFromOutputScene() {
     }
 
     if (GetCursorMode() == CM_EDIT_POND) {
-        //	{
-        //		m_PondMng.DeleteSelectedVertex();
+        //    {
+        //        m_PondMng.DeleteSelectedVertex();
         return;
     }
-    //	}
+    //    }
 
     int iSize = m_SelOutputObjArray.GetSize();
     if (iSize == 0) {
@@ -450,16 +450,16 @@ void CMapMng::SavePartition(float x, float z, float width) {
     SaveObjectPostDataPartition(szSceneText, x, z, width);
 
     /*
-	// warp 정보 load..
-	char szWarp[_MAX_PATH];
-	_makepath(szWarp, szDrive, szDir, szFName, "wap");
-	m_pWarpMgr->SaveToFile(szWarp);
+    // warp 정보 load..
+    char szWarp[_MAX_PATH];
+    _makepath(szWarp, szDrive, szDir, szFName, "wap");
+    m_pWarpMgr->SaveToFile(szWarp);
 
-	//이벤트 정보 저장..
-	//char szEvent[_MAX_PATH];
-	//_makepath(szEvent, szDrive, szDir, szFName, "evt");
-	//m_pEventMgr->SaveToFile(szEvent);	
-	//*/
+    //이벤트 정보 저장..
+    //char szEvent[_MAX_PATH];
+    //_makepath(szEvent, szDrive, szDir, szFName, "evt");
+    //m_pEventMgr->SaveToFile(szEvent);    
+    //*/
 }
 
 void CMapMng::SaveToFile(LPCTSTR lpszPathName) {
@@ -698,7 +698,7 @@ void CMapMng::Render() {
 
     m_RiverMng.Render();
     m_PondMng.Render();
-    //	RenderGrid(256.0f, 4096);
+    //    RenderGrid(256.0f, 4096);
     RenderDragRect(&m_rcSelDrag);
 }
 
@@ -772,13 +772,13 @@ void CMapMng::FocusSelObj() {
         pCamera->AtPosSet(vAt);
         pCamera->EyePosSet(vAt - vDir * (vMax - vMin).Magnitude());
     }
-    //	else {ASSERT(0);}
-    //	{	// 물체 크기를 알 수 없으므로 지금 거리 유지
-    //		CN3TransformCollision* pSelObj = m_SelOutputObjArray.GetAt(0);
-    //		pCamera->m_vRot = pSelObj->m_vPos;
-    //		__Vector3 vDiff = pSelObj->m_vPos - pCamera->m_vRot;
-    //		pCamera->m_vPos += vDiff;
-    //	}
+    //    else {ASSERT(0);}
+    //    {    // 물체 크기를 알 수 없으므로 지금 거리 유지
+    //        CN3TransformCollision* pSelObj = m_SelOutputObjArray.GetAt(0);
+    //        pCamera->m_vRot = pSelObj->m_vPos;
+    //        __Vector3 vDiff = pSelObj->m_vPos - pCamera->m_vRot;
+    //        pCamera->m_vPos += vDiff;
+    //    }
     Invalidate();
 }
 
@@ -814,172 +814,172 @@ void CMapMng::FocusAll() {
 /*
 BOOL CMapMng::CameraMove(LPMSG pMsg)
 {
-	static int iButtonDownCount = 0;
-	if (pMsg->message == WM_MOUSEWHEEL)
-	{
-		//short zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
-		short zDelta = (short)((pMsg->wParam>>16)&0x0000ffff);
-		CN3Camera* pCamera = m_pSceneOutput->CameraGetActive();
-			
-		if(pCamera)
-		{
-			float fD = (pCamera->AtPos() - pCamera->EyePos()).Magnitude();
-			pCamera->MoveStraight(fD * zDelta * 0.001f);
-			pCamera->Apply();
-			return TRUE;
-		}
-	}
-	else if (pMsg->message == WM_KEYDOWN)
-	{
-		CN3Camera* pCamera = m_pSceneOutput->CameraGetActive();
-		switch(pMsg->wParam)
-		{
-		case VK_UP:
-			if (pCamera) {pCamera->Move(pCamera->Dir()*10.0f); pCamera->Apply(); return TRUE;}
-			break;
-		case VK_DOWN:
-			if (pCamera) {pCamera->Move(pCamera->Dir()*(-10.0f)); pCamera->Apply(); return TRUE;}
-			break;
-		case VK_RIGHT:
-			if (pCamera) {pCamera->Rotate(0, -0.1f); pCamera->Apply(); return TRUE;}
-			break;
-		case VK_LEFT:
-			if (pCamera) {pCamera->Rotate(0, 0.1f); pCamera->Apply(); return TRUE;}
-			break;
-		case '1':
-			{
-				static BOOL bSet = FALSE;
-				if (pCamera)
-				{
-					static __Vector3 vEye(0, 0, 0);
-					static __Vector3 vAt(0, 0, 1);
-					static __Vector3 vUp(0, 1, 0);
-					if (GetAsyncKeyState(VK_CONTROL) & 0xff00)
-					{
-						vEye = pCamera->EyePos();	vAt = pCamera->AtPos();	vUp = pCamera->UpVector();
-						pCamera->Apply();
-						bSet = TRUE;
-						return FALSE;
-					}
-					else if (bSet)
-					{
-						pCamera->EyePosSet(vEye); pCamera->AtPosSet(vAt);	pCamera->UpVectorSet(vUp);
-						pCamera->Apply();
-						return TRUE;
-					}
-					else return FALSE;
-				}
+    static int iButtonDownCount = 0;
+    if (pMsg->message == WM_MOUSEWHEEL)
+    {
+        //short zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
+        short zDelta = (short)((pMsg->wParam>>16)&0x0000ffff);
+        CN3Camera* pCamera = m_pSceneOutput->CameraGetActive();
+            
+        if(pCamera)
+        {
+            float fD = (pCamera->AtPos() - pCamera->EyePos()).Magnitude();
+            pCamera->MoveStraight(fD * zDelta * 0.001f);
+            pCamera->Apply();
+            return TRUE;
+        }
+    }
+    else if (pMsg->message == WM_KEYDOWN)
+    {
+        CN3Camera* pCamera = m_pSceneOutput->CameraGetActive();
+        switch(pMsg->wParam)
+        {
+        case VK_UP:
+            if (pCamera) {pCamera->Move(pCamera->Dir()*10.0f); pCamera->Apply(); return TRUE;}
+            break;
+        case VK_DOWN:
+            if (pCamera) {pCamera->Move(pCamera->Dir()*(-10.0f)); pCamera->Apply(); return TRUE;}
+            break;
+        case VK_RIGHT:
+            if (pCamera) {pCamera->Rotate(0, -0.1f); pCamera->Apply(); return TRUE;}
+            break;
+        case VK_LEFT:
+            if (pCamera) {pCamera->Rotate(0, 0.1f); pCamera->Apply(); return TRUE;}
+            break;
+        case '1':
+            {
+                static BOOL bSet = FALSE;
+                if (pCamera)
+                {
+                    static __Vector3 vEye(0, 0, 0);
+                    static __Vector3 vAt(0, 0, 1);
+                    static __Vector3 vUp(0, 1, 0);
+                    if (GetAsyncKeyState(VK_CONTROL) & 0xff00)
+                    {
+                        vEye = pCamera->EyePos();    vAt = pCamera->AtPos();    vUp = pCamera->UpVector();
+                        pCamera->Apply();
+                        bSet = TRUE;
+                        return FALSE;
+                    }
+                    else if (bSet)
+                    {
+                        pCamera->EyePosSet(vEye); pCamera->AtPosSet(vAt);    pCamera->UpVectorSet(vUp);
+                        pCamera->Apply();
+                        return TRUE;
+                    }
+                    else return FALSE;
+                }
 
-			}
-			break;
-		case '2':	// '1'과 같은 내용임 (함수로 만들지 않은 이유는 static변수 때문에..)
-			{	static BOOL bSet = FALSE;
-				if (pCamera) { static __Vector3 vEye(0, 0, 0);	static __Vector3 vAt(0, 0, 1); static __Vector3 vUp(0, 1, 0); 
-					if (GetAsyncKeyState(VK_CONTROL) & 0xff00) { vEye = pCamera->EyePos();	vAt = pCamera->AtPos();	vUp = pCamera->UpVector(); pCamera->Apply(); bSet = TRUE; return FALSE; }
-					else if (bSet) { pCamera->EyePosSet(vEye); pCamera->AtPosSet(vAt);	pCamera->UpVectorSet(vUp); pCamera->Apply(); return TRUE;}
-					else return FALSE;}
-			} break;
-		case '3':	// '1'과 같은 내용임 (함수로 만들지 않은 이유는 static변수 때문에..)
-			{	static BOOL bSet = FALSE;
-				if (pCamera) { static __Vector3 vEye(0, 0, 0);	static __Vector3 vAt(0, 0, 1); static __Vector3 vUp(0, 1, 0);
-					if (GetAsyncKeyState(VK_CONTROL) & 0xff00) { vEye = pCamera->EyePos();	vAt = pCamera->AtPos();	vUp = pCamera->UpVector(); pCamera->Apply(); bSet = TRUE; return FALSE; }
-					else if (bSet) { pCamera->EyePosSet(vEye); pCamera->AtPosSet(vAt);	pCamera->UpVectorSet(vUp); pCamera->Apply(); return TRUE;}
-					else return FALSE;}
-			} break;
-		case '4':	// '1'과 같은 내용임 (함수로 만들지 않은 이유는 static변수 때문에..)
-			{	static BOOL bSet = FALSE;
-				if (pCamera) { static __Vector3 vEye(0, 0, 0);	static __Vector3 vAt(0, 0, 1); static __Vector3 vUp(0, 1, 0);
-					if (GetAsyncKeyState(VK_CONTROL) & 0xff00) { vEye = pCamera->EyePos();	vAt = pCamera->AtPos();	vUp = pCamera->UpVector(); pCamera->Apply(); bSet = TRUE; return FALSE; }
-					else if (bSet) { pCamera->EyePosSet(vEye); pCamera->AtPosSet(vAt);	pCamera->UpVectorSet(vUp); pCamera->Apply(); return TRUE;}
-					else return FALSE;}
-			} break;
-		case '5':	// '1'과 같은 내용임 (함수로 만들지 않은 이유는 static변수 때문에..)
-			{	static BOOL bSet = FALSE;
-				if (pCamera) { static __Vector3 vEye(0, 0, 0);	static __Vector3 vAt(0, 0, 1); static __Vector3 vUp(0, 1, 0);
-					if (GetAsyncKeyState(VK_CONTROL) & 0xff00) { vEye = pCamera->EyePos();	vAt = pCamera->AtPos();	vUp = pCamera->UpVector(); pCamera->Apply(); bSet = TRUE; return FALSE; }
-					else if (bSet) { pCamera->EyePosSet(vEye); pCamera->AtPosSet(vAt);	pCamera->UpVectorSet(vUp); pCamera->Apply(); return TRUE;}
-					else return FALSE;}
-			} break;
-		}
-	}
-	else if (iButtonDownCount == 0 && !(GetAsyncKeyState(VK_MENU) & 0xff00) ) return FALSE;	// alt 키가 안눌렸을경우는 카메라 움직임이 아니다.
+            }
+            break;
+        case '2':    // '1'과 같은 내용임 (함수로 만들지 않은 이유는 static변수 때문에..)
+            {    static BOOL bSet = FALSE;
+                if (pCamera) { static __Vector3 vEye(0, 0, 0);    static __Vector3 vAt(0, 0, 1); static __Vector3 vUp(0, 1, 0); 
+                    if (GetAsyncKeyState(VK_CONTROL) & 0xff00) { vEye = pCamera->EyePos();    vAt = pCamera->AtPos();    vUp = pCamera->UpVector(); pCamera->Apply(); bSet = TRUE; return FALSE; }
+                    else if (bSet) { pCamera->EyePosSet(vEye); pCamera->AtPosSet(vAt);    pCamera->UpVectorSet(vUp); pCamera->Apply(); return TRUE;}
+                    else return FALSE;}
+            } break;
+        case '3':    // '1'과 같은 내용임 (함수로 만들지 않은 이유는 static변수 때문에..)
+            {    static BOOL bSet = FALSE;
+                if (pCamera) { static __Vector3 vEye(0, 0, 0);    static __Vector3 vAt(0, 0, 1); static __Vector3 vUp(0, 1, 0);
+                    if (GetAsyncKeyState(VK_CONTROL) & 0xff00) { vEye = pCamera->EyePos();    vAt = pCamera->AtPos();    vUp = pCamera->UpVector(); pCamera->Apply(); bSet = TRUE; return FALSE; }
+                    else if (bSet) { pCamera->EyePosSet(vEye); pCamera->AtPosSet(vAt);    pCamera->UpVectorSet(vUp); pCamera->Apply(); return TRUE;}
+                    else return FALSE;}
+            } break;
+        case '4':    // '1'과 같은 내용임 (함수로 만들지 않은 이유는 static변수 때문에..)
+            {    static BOOL bSet = FALSE;
+                if (pCamera) { static __Vector3 vEye(0, 0, 0);    static __Vector3 vAt(0, 0, 1); static __Vector3 vUp(0, 1, 0);
+                    if (GetAsyncKeyState(VK_CONTROL) & 0xff00) { vEye = pCamera->EyePos();    vAt = pCamera->AtPos();    vUp = pCamera->UpVector(); pCamera->Apply(); bSet = TRUE; return FALSE; }
+                    else if (bSet) { pCamera->EyePosSet(vEye); pCamera->AtPosSet(vAt);    pCamera->UpVectorSet(vUp); pCamera->Apply(); return TRUE;}
+                    else return FALSE;}
+            } break;
+        case '5':    // '1'과 같은 내용임 (함수로 만들지 않은 이유는 static변수 때문에..)
+            {    static BOOL bSet = FALSE;
+                if (pCamera) { static __Vector3 vEye(0, 0, 0);    static __Vector3 vAt(0, 0, 1); static __Vector3 vUp(0, 1, 0);
+                    if (GetAsyncKeyState(VK_CONTROL) & 0xff00) { vEye = pCamera->EyePos();    vAt = pCamera->AtPos();    vUp = pCamera->UpVector(); pCamera->Apply(); bSet = TRUE; return FALSE; }
+                    else if (bSet) { pCamera->EyePosSet(vEye); pCamera->AtPosSet(vAt);    pCamera->UpVectorSet(vUp); pCamera->Apply(); return TRUE;}
+                    else return FALSE;}
+            } break;
+        }
+    }
+    else if (iButtonDownCount == 0 && !(GetAsyncKeyState(VK_MENU) & 0xff00) ) return FALSE;    // alt 키가 안눌렸을경우는 카메라 움직임이 아니다.
 
-	static CPoint ptPrev;
-	switch(pMsg->message)
-	{
-	case WM_LBUTTONDOWN:
-	case WM_RBUTTONDOWN:
-	case WM_MBUTTONDOWN:
-		if (iButtonDownCount == 0)
-		{
-			SetCapture(pMsg->hwnd);
-			ptPrev.x = short(LOWORD(pMsg->lParam)); ptPrev.y = short(HIWORD(pMsg->lParam));
-		}
-		++iButtonDownCount;
-		return TRUE;
-		break;
-	case WM_LBUTTONUP:
-	case WM_RBUTTONUP:
-	case WM_MBUTTONUP:
-		--iButtonDownCount;
-		if (iButtonDownCount <= 0) ReleaseCapture();
-		return TRUE;
-		break;
-	case WM_MOUSEMOVE:
-		break;
-	default:	// 마우스 메세지가 아닐경우 카메라 움직임이 아니다.
-		return FALSE;
-	}
+    static CPoint ptPrev;
+    switch(pMsg->message)
+    {
+    case WM_LBUTTONDOWN:
+    case WM_RBUTTONDOWN:
+    case WM_MBUTTONDOWN:
+        if (iButtonDownCount == 0)
+        {
+            SetCapture(pMsg->hwnd);
+            ptPrev.x = short(LOWORD(pMsg->lParam)); ptPrev.y = short(HIWORD(pMsg->lParam));
+        }
+        ++iButtonDownCount;
+        return TRUE;
+        break;
+    case WM_LBUTTONUP:
+    case WM_RBUTTONUP:
+    case WM_MBUTTONUP:
+        --iButtonDownCount;
+        if (iButtonDownCount <= 0) ReleaseCapture();
+        return TRUE;
+        break;
+    case WM_MOUSEMOVE:
+        break;
+    default:    // 마우스 메세지가 아닐경우 카메라 움직임이 아니다.
+        return FALSE;
+    }
 
-	DWORD nFlags = pMsg->wParam;
-	CPoint point(short(LOWORD(pMsg->lParam)), short(HIWORD(pMsg->lParam)));
-	CPoint ptDelta = point - ptPrev;
-	ptPrev = point;
-	
-	CN3Camera* pCamera = m_pSceneOutput->CameraGetActive();
-	if (pCamera == NULL) return FALSE;
+    DWORD nFlags = pMsg->wParam;
+    CPoint point(short(LOWORD(pMsg->lParam)), short(HIWORD(pMsg->lParam)));
+    CPoint ptDelta = point - ptPrev;
+    ptPrev = point;
+    
+    CN3Camera* pCamera = m_pSceneOutput->CameraGetActive();
+    if (pCamera == NULL) return FALSE;
 
-	if(	(nFlags & MK_LBUTTON) && 
-		(nFlags & MK_MBUTTON) ) // Alt + LB + MB
-	{
-		float fZoom = -(float)(ptDelta.x)/1000.0f;
-		pCamera->Zoom(fZoom);
-		pCamera->Apply();
-		SetCursor(LoadCursor(AfxGetResourceHandle(), MAKEINTRESOURCE(IDC_ZOOM)));
-		return TRUE;
-	}
-	else if((nFlags & MK_LBUTTON) ) // Alt + LB
-	{
-		float fRX = (float)(ptDelta.y)/200.0f;
-		float fRY = -(float)(ptDelta.x)/200.0f;
-		pCamera->LookAround(fRX, fRY);
-		pCamera->Apply();
-		SetCursor(LoadCursor(AfxGetResourceHandle(), MAKEINTRESOURCE(IDC_ROTATE)));
-		return TRUE;
-	}
-	else if((nFlags & MK_RBUTTON) ) // Alt + RB
-	{
-		float fRX = (float)(ptDelta.y)/200.0f;
-		float fRY = (float)(ptDelta.x)/200.0f;
-		pCamera->Rotate(fRX, -fRY);
-		pCamera->Apply();
-		return TRUE;
-	}
-	else if((nFlags & MK_MBUTTON) ) // Alt + MB
-	{
-		__Vector3 vDelta = pCamera->EyePos() - pCamera->AtPos();
-		float fDelta = vDelta.Magnitude() * 0.002f / pCamera->m_Data.fFOV;
-		__Vector3 vD1;
-		vD1.Set(-(float)(ptDelta.x), (float)(ptDelta.y), 0 );
+    if(    (nFlags & MK_LBUTTON) && 
+        (nFlags & MK_MBUTTON) ) // Alt + LB + MB
+    {
+        float fZoom = -(float)(ptDelta.x)/1000.0f;
+        pCamera->Zoom(fZoom);
+        pCamera->Apply();
+        SetCursor(LoadCursor(AfxGetResourceHandle(), MAKEINTRESOURCE(IDC_ZOOM)));
+        return TRUE;
+    }
+    else if((nFlags & MK_LBUTTON) ) // Alt + LB
+    {
+        float fRX = (float)(ptDelta.y)/200.0f;
+        float fRY = -(float)(ptDelta.x)/200.0f;
+        pCamera->LookAround(fRX, fRY);
+        pCamera->Apply();
+        SetCursor(LoadCursor(AfxGetResourceHandle(), MAKEINTRESOURCE(IDC_ROTATE)));
+        return TRUE;
+    }
+    else if((nFlags & MK_RBUTTON) ) // Alt + RB
+    {
+        float fRX = (float)(ptDelta.y)/200.0f;
+        float fRY = (float)(ptDelta.x)/200.0f;
+        pCamera->Rotate(fRX, -fRY);
+        pCamera->Apply();
+        return TRUE;
+    }
+    else if((nFlags & MK_MBUTTON) ) // Alt + MB
+    {
+        __Vector3 vDelta = pCamera->EyePos() - pCamera->AtPos();
+        float fDelta = vDelta.Magnitude() * 0.002f / pCamera->m_Data.fFOV;
+        __Vector3 vD1;
+        vD1.Set(-(float)(ptDelta.x), (float)(ptDelta.y), 0 );
 
-		vD1 *= fDelta;
+        vD1 *= fDelta;
 
-		pCamera->MovePlane(vD1.x, -vD1.y);
-		pCamera->Apply();
-		SetCursor(LoadCursor(AfxGetResourceHandle(), MAKEINTRESOURCE(IDC_MOVE)));
-		return TRUE;
-	}
-	return FALSE;
+        pCamera->MovePlane(vD1.x, -vD1.y);
+        pCamera->Apply();
+        SetCursor(LoadCursor(AfxGetResourceHandle(), MAKEINTRESOURCE(IDC_MOVE)));
+        return TRUE;
+    }
+    return FALSE;
 }
 */
 
@@ -1075,10 +1075,10 @@ BOOL CMapMng::MouseMsgFilter(LPMSG pMsg) {
         HWND hWnd = GetFocus();
         if (hWnd == m_pMainFrm->GetActiveView()->GetSafeHwnd()) {
             if (GetAsyncKeyState(VK_CONTROL) & 0xff00) {
-                if (GetAsyncKeyState(0x43) & 0xff00) //	'c'
+                if (GetAsyncKeyState(0x43) & 0xff00) //    'c'
                 {
                     SetEditState(eEDIT_COPY);
-                } else if (GetAsyncKeyState(0x56) & 0xff00) //	'v'
+                } else if (GetAsyncKeyState(0x56) & 0xff00) //    'v'
                 {
                     SetEditState(eEDIT_PASTE);
                 }
@@ -1112,20 +1112,20 @@ BOOL CMapMng::MouseMsgFilter(LPMSG pMsg) {
         } else if (m_CursorMode == CM_ROTATE && m_pTerrain) {
             return TRUE;
             /*
-				__Vector3 vPos;
-				CN3Transform* pDestObj = NULL;
+                __Vector3 vPos;
+                CN3Transform* pDestObj = NULL;
 
-				int iSize = m_SelOutputObjArray.GetSize();
-				for(int j=0;j<iSize;++j)
-				{
-					pDestObj = m_SelOutputObjArray.GetAt(j);
-					if(pDestObj==NULL) continue;
+                int iSize = m_SelOutputObjArray.GetSize();
+                for(int j=0;j<iSize;++j)
+                {
+                    pDestObj = m_SelOutputObjArray.GetAt(j);
+                    if(pDestObj==NULL) continue;
 
-					vPos = pDestObj->Pos();
-					vPos.y = m_pTerrain->GetHeight(vPos.x,vPos.z);
-					pDestObj->PosSet(vPos);
-				}
-				*/
+                    vPos = pDestObj->Pos();
+                    vPos.y = m_pTerrain->GetHeight(vPos.x,vPos.z);
+                    pDestObj->PosSet(vPos);
+                }
+                */
         }
     } break;
     case WM_LBUTTONDOWN: // 객체 선택
@@ -1213,7 +1213,7 @@ CN3Base * CMapMng::Pick(POINT point, int * pnPart) // Object Picking...
 
     int        nSC = m_pSceneOutput->ShapeCount();
     CN3Shape * pShape = NULL;
-    //	CN3PMesh* pPMesh;
+    //    CN3PMesh* pPMesh;
     __Vector3 vDist;
     for (int i = 0; i < nSC; i++) {
         pShape = m_pSceneOutput->ShapeGet(i);
@@ -1221,13 +1221,13 @@ CN3Base * CMapMng::Pick(POINT point, int * pnPart) // Object Picking...
             continue;
         }
 
-        //		int nPC = pShape->PartCount();
-        //		for(int j = 0; j < nPC; j++)
-        //		{
-        //			CN3SPart* pPart = pShape->Part(j);
-        //			if (pPart == NULL) continue;
-        //			pPMesh = pPart->Mesh();
-        //			if(pPMesh == NULL) continue;
+        //        int nPC = pShape->PartCount();
+        //        for(int j = 0; j < nPC; j++)
+        //        {
+        //            CN3SPart* pPart = pShape->Part(j);
+        //            if (pPart == NULL) continue;
+        //            pPMesh = pPart->Mesh();
+        //            if(pPMesh == NULL) continue;
         //
         vDist = pShape->s_CameraData.vEye - pShape->Pos();
 
@@ -1237,42 +1237,42 @@ CN3Base * CMapMng::Pick(POINT point, int * pnPart) // Object Picking...
         sort[nSortCount].vMax = pShape->Max();
 
         nSortCount++;
-        //		}
+        //        }
     }
     /*
-	CN3Chr* pChr;
-	CN3Mesh* pMesh;
-	int nCC = m_pSceneOutput->ChrCount();
-	for(int i = 0; i < nCC; i++)
-	{
-		pChr = m_pSceneOutput->ChrGet(i);
-		_ASSERT(pChr);
+    CN3Chr* pChr;
+    CN3Mesh* pMesh;
+    int nCC = m_pSceneOutput->ChrCount();
+    for(int i = 0; i < nCC; i++)
+    {
+        pChr = m_pSceneOutput->ChrGet(i);
+        _ASSERT(pChr);
 
-		int nPC = pChr->PartCount();
-		for(int j = 0; j < nPC; j++)
-		{
-			if(pChr->MeshGet(0, j) == NULL) continue;
+        int nPC = pChr->PartCount();
+        for(int j = 0; j < nPC; j++)
+        {
+            if(pChr->MeshGet(0, j) == NULL) continue;
 
-			pMesh = pChr->MeshBoxGet(j);
-			if(pMesh == NULL) continue;
+            pMesh = pChr->MeshBoxGet(j);
+            if(pMesh == NULL) continue;
 
-			vDist = pChr->s_CameraData.vEye - pChr->m_vPos;
+            vDist = pChr->s_CameraData.vEye - pChr->m_vPos;
 
-			sort[nSortCount].pObj = pChr;
-			sort[nSortCount].fCamDist = vDist.Magnitude();
-			sort[nSortCount].vMin = pMesh->Min() * pChr->m_Matrix;
-			sort[nSortCount].vMax = pMesh->Max() * pChr->m_Matrix;
+            sort[nSortCount].pObj = pChr;
+            sort[nSortCount].fCamDist = vDist.Magnitude();
+            sort[nSortCount].vMin = pMesh->Min() * pChr->m_Matrix;
+            sort[nSortCount].vMax = pMesh->Max() * pChr->m_Matrix;
 
-			nSortCount++;
-		}
-	}
+            nSortCount++;
+        }
+    }
 */
     qsort(sort, nSortCount, sizeof(__Sort), SortByCameraDistance);
 
     int       nPart = -1;
     __Vector3 vI;
     for (int i = 0; i < nSortCount; i++) {
-        //		bIntersect = pick.PickByBox(sort[i].vMin, sort[i].vMax, vI);
+        //        bIntersect = pick.PickByBox(sort[i].vMin, sort[i].vMax, vI);
         nPart = sort[i].pObj->CheckCollisionPrecisely(true, point.x, point.y);
         if (nPart >= 0) {
             if (pnPart) {
@@ -1466,16 +1466,16 @@ void CMapMng::MakeGameFiles(LPCTSTR lpszPathName, float fSize) {
     }
 
     // Shape Manager 만들고 저장...
-    //	if(true == m_pSceneOutput->CheckOverlappedShapesAndReport()) // 이름이나 위치 중복 확인..
-    //	{
-    //		int idYesNo = ::MessageBox(::GetActiveWindow(), "중복된 오브젝트들을 삭제 하시겠습니까?", "중복된 오브젝트 처리", MB_YESNO);
-    //		if(IDYES == idYesNo)
-    //		{
-    //			m_pSceneOutput->DeleteOverlappedShapes();
-    //			m_pDlgOutputList->UpdateTree(m_pSceneOutput); // 아웃풋 리스트 체크..
-    //			m_SelOutputObjArray.RemoveAll(); // 셀렉션 초기화..
-    //		}
-    //	}
+    //    if(true == m_pSceneOutput->CheckOverlappedShapesAndReport()) // 이름이나 위치 중복 확인..
+    //    {
+    //        int idYesNo = ::MessageBox(::GetActiveWindow(), "중복된 오브젝트들을 삭제 하시겠습니까?", "중복된 오브젝트 처리", MB_YESNO);
+    //        if(IDYES == idYesNo)
+    //        {
+    //            m_pSceneOutput->DeleteOverlappedShapes();
+    //            m_pDlgOutputList->UpdateTree(m_pSceneOutput); // 아웃풋 리스트 체크..
+    //            m_SelOutputObjArray.RemoveAll(); // 셀렉션 초기화..
+    //        }
+    //    }
 
     CN3ShapeMgr ShapeMgr;
     ShapeMgr.Create((m_pTerrain->m_iHeightMapSize - 1) * TERRAIN_CELL_SIZE,
@@ -1530,16 +1530,16 @@ void CMapMng::MakeServerDataFiles(LPCTSTR lpszPathName) {
     //
 
     // Shape Manager 만들고 저장...
-    //	if(true == m_pSceneOutput->CheckOverlappedShapesAndReport()) // 이름이나 위치 중복 확인..
-    //	{
-    //		int idYesNo = ::MessageBox(::GetActiveWindow(), "중복된 오브젝트들을 삭제 하시겠습니까?", "중복된 오브젝트 처리", MB_YESNO);
-    //		if(IDYES == idYesNo)
-    //		{
-    //			m_pSceneOutput->DeleteOverlappedShapes();
-    //			m_pDlgOutputList->UpdateTree(m_pSceneOutput); // 아웃풋 리스트 체크..
-    //			m_SelOutputObjArray.RemoveAll(); // 셀렉션 초기화..
-    //		}
-    //	}
+    //    if(true == m_pSceneOutput->CheckOverlappedShapesAndReport()) // 이름이나 위치 중복 확인..
+    //    {
+    //        int idYesNo = ::MessageBox(::GetActiveWindow(), "중복된 오브젝트들을 삭제 하시겠습니까?", "중복된 오브젝트 처리", MB_YESNO);
+    //        if(IDYES == idYesNo)
+    //        {
+    //            m_pSceneOutput->DeleteOverlappedShapes();
+    //            m_pDlgOutputList->UpdateTree(m_pSceneOutput); // 아웃풋 리스트 체크..
+    //            m_SelOutputObjArray.RemoveAll(); // 셀렉션 초기화..
+    //        }
+    //    }
 
     CN3ShapeMgr ShapeMgr;
     ShapeMgr.Create((m_pTerrain->m_iHeightMapSize - 1) * TERRAIN_CELL_SIZE,
@@ -1595,14 +1595,14 @@ void CMapMng::MakeServerDataFiles(LPCTSTR lpszPathName) {
     //
     m_pEventMgr->MakeEventArray();
     /*
-	for(int z=0; z<m_pTerrain->m_iHeightMapSize; z++)
-	{
-		for(int x=0; x<m_pTerrain->m_iHeightMapSize; x++)
-		{
-			WriteFile(hFile, &(m_pEventMgr->m_ppEvent[x][z]), sizeof(short), &dwNum, NULL);
-		}		
-	}
-	*/
+    for(int z=0; z<m_pTerrain->m_iHeightMapSize; z++)
+    {
+        for(int x=0; x<m_pTerrain->m_iHeightMapSize; x++)
+        {
+            WriteFile(hFile, &(m_pEventMgr->m_ppEvent[x][z]), sizeof(short), &dwNum, NULL);
+        }        
+    }
+    */
     for (int x = 0; x < m_pTerrain->m_iHeightMapSize; x++) {
         WriteFile(hFile, m_pEventMgr->m_ppEvent[x], sizeof(short) * m_pTerrain->m_iHeightMapSize, &dwNum, NULL);
     }
@@ -1634,15 +1634,15 @@ void CMapMng::MakeServerDataFiles(LPCTSTR lpszPathName) {
     fclose(stream);
     //뽑았다.
 
-    /*	
-	char szCollisionFN[512];
-	char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-	_splitpath(lpszPathName, szDrive, szDir, szFName, szExt);
-	_makepath(szCollisionFN, szDrive,szDir, szFName, ".scd"); // 다른 이름으로 저장..
-	CFile file;
-	file.Open(szCollisionFN, CFile::modeCreate | CFile::modeWrite);
-	ShapeMgr.SaveCollisionData((HANDLE)file.m_hFile); // 충돌 데이터만 저장...
-	file.Close();
+    /*    
+    char szCollisionFN[512];
+    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
+    _splitpath(lpszPathName, szDrive, szDir, szFName, szExt);
+    _makepath(szCollisionFN, szDrive,szDir, szFName, ".scd"); // 다른 이름으로 저장..
+    CFile file;
+    file.Open(szCollisionFN, CFile::modeCreate | CFile::modeWrite);
+    ShapeMgr.SaveCollisionData((HANDLE)file.m_hFile); // 충돌 데이터만 저장...
+    file.Close();
 */
     CloseHandle(hFile);
 }
@@ -1653,32 +1653,32 @@ BOOL CMapMng::GetObjectMinMax(CN3Transform * pObj, __Vector3 & vMin, __Vector3 &
     }
     DWORD dwType = pObj->Type();
     /*
-	if ( dwType & OBJ_CHARACTER)
-	{
-		CN3Chr* pChr = (CN3Chr*)pObj;
-		CN3Mesh* pMesh;
-		vMin.Set(FLT_MAX,FLT_MAX,FLT_MAX); vMax.Set(-FLT_MAX,-FLT_MAX,-FLT_MAX);
-		int nPC = pChr->PartCount();
-		for(int i = 0; i < nPC; i++)
-		{
-			if(pChr->MeshGet(0, i) == NULL) continue;
+    if ( dwType & OBJ_CHARACTER)
+    {
+        CN3Chr* pChr = (CN3Chr*)pObj;
+        CN3Mesh* pMesh;
+        vMin.Set(FLT_MAX,FLT_MAX,FLT_MAX); vMax.Set(-FLT_MAX,-FLT_MAX,-FLT_MAX);
+        int nPC = pChr->PartCount();
+        for(int i = 0; i < nPC; i++)
+        {
+            if(pChr->MeshGet(0, i) == NULL) continue;
 
-			pMesh = pChr->MeshBoxGet(i);
-			if(pMesh == NULL) continue;
+            pMesh = pChr->MeshBoxGet(i);
+            if(pMesh == NULL) continue;
 
-			__Vector3 vMeshMin, vMeshMax;
-			vMeshMin = pMesh->Min() * pChr->m_Matrix;
-			vMeshMax = pMesh->Max() * pChr->m_Matrix;
+            __Vector3 vMeshMin, vMeshMax;
+            vMeshMin = pMesh->Min() * pChr->m_Matrix;
+            vMeshMax = pMesh->Max() * pChr->m_Matrix;
 
-			if (vMin.x>vMeshMin.x) vMin.x = vMeshMin.x;
-			if (vMin.y>vMeshMin.y) vMin.y = vMeshMin.y;
-			if (vMin.z>vMeshMin.z) vMin.z = vMeshMin.z;
-			if (vMax.x<vMeshMax.x) vMax.x = vMeshMax.x;
-			if (vMax.y<vMeshMax.y) vMax.y = vMeshMax.y;
-			if (vMax.z<vMeshMax.z) vMax.z = vMeshMax.z;
-		}
-	}
-	else*/
+            if (vMin.x>vMeshMin.x) vMin.x = vMeshMin.x;
+            if (vMin.y>vMeshMin.y) vMin.y = vMeshMin.y;
+            if (vMin.z>vMeshMin.z) vMin.z = vMeshMin.z;
+            if (vMax.x<vMeshMax.x) vMax.x = vMeshMax.x;
+            if (vMax.y<vMeshMax.y) vMax.y = vMeshMax.y;
+            if (vMax.z<vMeshMax.z) vMax.z = vMeshMax.z;
+        }
+    }
+    else*/
     if (dwType & OBJ_SHAPE) {
         CN3Shape * pShape = (CN3Shape *)pObj;
         CN3PMesh * pPMesh;
@@ -1762,7 +1762,7 @@ void CMapMng::RenderObjectToWindow(CN3TransformCollision * pObj, HWND hWnd) {
     vAt = vMin + (vMax - vMin) / 2.0f;
     vAt.y -= (vMax - vMin).Magnitude() / 8.0f;
     vEye = vAt - vDir * ((vMax - vMin).Magnitude() * 0.7f);
-    //	pEng->s_CameraData.vEye = vEye;	// Shape의 LOD설정 때문에..
+    //    pEng->s_CameraData.vEye = vEye;    // Shape의 LOD설정 때문에..
 
     // back up
     __Matrix44 mtxOldView, mtxOldProj;
@@ -1772,8 +1772,8 @@ void CMapMng::RenderObjectToWindow(CN3TransformCollision * pObj, HWND hWnd) {
     pD3DDev->GetRenderState(D3DRS_LIGHTING, &dwLighting);
 
     // camera frustum 세팅..(Apply함수 내부에서 transform을 바꾸기때문에 이 위치에 넣어야 한다.)
-    //	pEng->s_CameraData.vAt = vAt;
-    //	TempCamera.s_CameraData = pEng->s_CameraData;
+    //    pEng->s_CameraData.vAt = vAt;
+    //    TempCamera.s_CameraData = pEng->s_CameraData;
     CN3Camera TempCamera;
     TempCamera.EyePosSet(vEye);
     TempCamera.AtPosSet(vAt);
@@ -1782,12 +1782,12 @@ void CMapMng::RenderObjectToWindow(CN3TransformCollision * pObj, HWND hWnd) {
     TempCamera.Apply(); // 임시카메라에 데이터를 넣고 frustum 정보를 계산..
 
     // View Matrix 및 Projection Matrix Setting
-    //	__Matrix44 viewmtx;
-    //	::D3DXMatrixLookAtLH(&viewmtx, &vEye, &vAt, &vUp);
-    //	pD3DDev->SetTransform(D3DTS_VIEW, &viewmtx);
-    //	__Matrix44 prjmtx;
-    //	::D3DXMatrixPerspectiveFovLH(&prjmtx, D3DXToRadian(54.0f), pEng->s_CameraData.fAspect, 0.01f, 1000.0f);
-    //	pD3DDev->SetTransform(D3DTS_PROJECTION, &prjmtx);
+    //    __Matrix44 viewmtx;
+    //    ::D3DXMatrixLookAtLH(&viewmtx, &vEye, &vAt, &vUp);
+    //    pD3DDev->SetTransform(D3DTS_VIEW, &viewmtx);
+    //    __Matrix44 prjmtx;
+    //    ::D3DXMatrixPerspectiveFovLH(&prjmtx, D3DXToRadian(54.0f), pEng->s_CameraData.fAspect, 0.01f, 1000.0f);
+    //    pD3DDev->SetTransform(D3DTS_PROJECTION, &prjmtx);
 
     // Set Render State
     pD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
@@ -2112,39 +2112,39 @@ void CMapMng::RenderGrid(float fGridSize, float fMaxDistance) // fGridSize크기로
 
 void CMapMng::SaveObjectPostData(LPCTSTR lpszFileName) {
     /*
-	//////////////////////////////////
-	// OldData
-	if (m_pSceneOutput == NULL) return;
+    //////////////////////////////////
+    // OldData
+    if (m_pSceneOutput == NULL) return;
 
-	FILE* stream = fopen(lpszFileName, "w");
-	if (stream == NULL)
-	{
-		m_pMainFrm->MessageBox("파일을 만들수 없습니다.");
-		return;
-	}
+    FILE* stream = fopen(lpszFileName, "w");
+    if (stream == NULL)
+    {
+        m_pMainFrm->MessageBox("파일을 만들수 없습니다.");
+        return;
+    }
 
-	// 폴더 이름을 분리하고..
-	char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-	_splitpath(lpszFileName, szDrive, szDir, szFName, szExt);
+    // 폴더 이름을 분리하고..
+    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
+    _splitpath(lpszFileName, szDrive, szDir, szFName, szExt);
 
-	int iSC = m_pSceneOutput->ShapeCount();
-	fprintf(stream, "Shape Count : %d\n", iSC);
+    int iSC = m_pSceneOutput->ShapeCount();
+    fprintf(stream, "Shape Count : %d\n", iSC);
 
-	for(int i=0; i<iSC; ++i)
-	{
-		CN3Shape* pShape = m_pSceneOutput->ShapeGet(i);
-		ASSERT(pShape);
-		if (pShape == NULL) continue;
+    for(int i=0; i<iSC; ++i)
+    {
+        CN3Shape* pShape = m_pSceneOutput->ShapeGet(i);
+        ASSERT(pShape);
+        if (pShape == NULL) continue;
 
-		char szSFN[MAX_PATH];
-		_makepath(szSFN, szDrive, szDir, pShape->Name(), ".n3shape");
-		pShape->SaveToFile(szSFN); // Shape 정보 binary file로 저장..
+        char szSFN[MAX_PATH];
+        _makepath(szSFN, szDrive, szDir, pShape->Name(), ".n3shape");
+        pShape->SaveToFile(szSFN); // Shape 정보 binary file로 저장..
 
-		fprintf(stream, "%s\n", pShape->Name()); // 텍스트에 Shape 파일 이름을 쓴다..
-	}
-	fclose(stream);
-	// OldData
-	//////////////////////////////////
+        fprintf(stream, "%s\n", pShape->Name()); // 텍스트에 Shape 파일 이름을 쓴다..
+    }
+    fclose(stream);
+    // OldData
+    //////////////////////////////////
 */
 
     if (m_pSceneOutput == NULL) {
@@ -2728,16 +2728,16 @@ void CMapMng::SetEditState(ENUM_EDIT_STATE eEditStat) {
     switch (eEditStat) {
     default:
     case eEDIT_NOT: {
-        //			m_SelOutputObjBack.RemoveAll();
+        //            m_SelOutputObjBack.RemoveAll();
         m_eSelObjBackState = eEDIT_NOT;
     } break;
 
     case eEDIT_COPY: {
-        //	기존백업한거 지우고
+        //    기존백업한거 지우고
         m_SelOutputObjBack.RemoveAll();
         vOldPos.Zero();
 
-        //	선택한 것들을 백업하고
+        //    선택한 것들을 백업하고
         CN3Transform * pDestObj = NULL;
         int            iSize = m_SelOutputObjArray.GetSize();
         for (int j = 0; j < iSize; ++j) {
@@ -2764,7 +2764,7 @@ void CMapMng::SetEditState(ENUM_EDIT_STATE eEditStat) {
                 return;
             }
 
-            //	찍을 새로운위치를 입력
+            //    찍을 새로운위치를 입력
             ASSERT(m_pTerrain);
             CPoint point = ((CN3MEView *)m_pMainFrm->GetActiveView())->m_CurrMousePos;
             m_pTerrain->Pick(point.x, point.y, &vNewPos);
@@ -2773,35 +2773,35 @@ void CMapMng::SetEditState(ENUM_EDIT_STATE eEditStat) {
                 return;
             }
 
-            vNewPos -= vOldPos; //	새로 이사갈 백터를 구함
+            vNewPos -= vOldPos; //    새로 이사갈 백터를 구함
 
-            if (m_pDummy) //	더미의 새로운 좌표 입력
+            if (m_pDummy) //    더미의 새로운 좌표 입력
             {
                 m_pDummy->PosSet(m_pDummy->Pos() + vNewPos);
             }
 
-            m_SelOutputObjArray.RemoveAll(); //	기존 선택된 정보를 지우고
+            m_SelOutputObjArray.RemoveAll(); //    기존 선택된 정보를 지우고
             for (int j = 0; j < iSize; ++j) {
-                pDestObj = m_SelOutputObjBack.GetAt(j); //	백업된 데이터를 찾는다
+                pDestObj = m_SelOutputObjBack.GetAt(j); //    백업된 데이터를 찾는다
                 if (pDestObj == NULL) {
                     continue;
                 }
 
-                pNewObj = AddObjectToOutputScene(pDestObj); //	주소의 정보로만 새로운 데이터를 만든다
+                pNewObj = AddObjectToOutputScene(pDestObj); //    주소의 정보로만 새로운 데이터를 만든다
                 if (pNewObj == NULL) {
                     continue;
                 }
 
-                m_SelOutputObjArray.InsertAt(0, pNewObj); //	기존 정보에 새로 입력한다
+                m_SelOutputObjArray.InsertAt(0, pNewObj); //    기존 정보에 새로 입력한다
 
-                pNewObj->ScaleSet(pDestObj->Scale()); //	크기 입력
-                pNewObj->RotSet(pDestObj->Rot());     //	회전각 입력
+                pNewObj->ScaleSet(pDestObj->Scale()); //    크기 입력
+                pNewObj->RotSet(pDestObj->Rot());     //    회전각 입력
 
                 vObjPos = pDestObj->Pos() + vNewPos;
                 vObjPos.y = m_pTerrain->GetHeight(vObjPos.x, vObjPos.z);
-                pNewObj->PosSet(vObjPos); //	새로운 위치점 입력
+                pNewObj->PosSet(vObjPos); //    새로운 위치점 입력
             }
-            OnSelChanged(); //	데이터입력등 새로운데이터로 갱신
+            OnSelChanged(); //    데이터입력등 새로운데이터로 갱신
         }
     } break;
     }

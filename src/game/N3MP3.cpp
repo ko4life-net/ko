@@ -28,7 +28,7 @@ CN3Mp3::~CN3Mp3() {
 }
 
 //
-//	Init()
+//    Init()
 //
 bool CN3Mp3::Init() {
     Release();

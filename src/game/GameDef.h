@@ -300,11 +300,11 @@ enum e_Ani {
 };
 
 //MAX_INCLINE_CLIMB = sqrt( 1 - sin(90-최대경사각)^2 )
-//const	float MAX_INCLINE_CLIMB = 0.5f;	   // 올라갈수 있는 최대 경사값 = 30 도
+//const    float MAX_INCLINE_CLIMB = 0.5f;       // 올라갈수 있는 최대 경사값 = 30 도
 const float MAX_INCLINE_CLIMB = 0.6430f; // 올라갈수 있는 최대 경사값 = 40 도
-//const	float MAX_INCLINE_CLIMB = 0.7071f; // 올라갈수 있는 최대 경사값 = 45 도
-//const	float MAX_INCLINE_CLIMB = 0.7660f; // 올라갈수 있는 최대 경사값 = 50 도
-//const	float MAX_INCLINE_CLIMB = 0.8660f; // 올라갈수 있는 최대 경사값 = 60 도
+//const    float MAX_INCLINE_CLIMB = 0.7071f; // 올라갈수 있는 최대 경사값 = 45 도
+//const    float MAX_INCLINE_CLIMB = 0.7660f; // 올라갈수 있는 최대 경사값 = 50 도
+//const    float MAX_INCLINE_CLIMB = 0.8660f; // 올라갈수 있는 최대 경사값 = 60 도
 
 enum e_MoveDirection {
     MD_STOP,
@@ -376,45 +376,45 @@ enum e_PlugPosition {
 };
 
 /*
-enum e_ItemClass	{	ITEM_CLASS_DAGGER = 1, // 단검(dagger)
-						ITEM_CLASS_SWORD, // 2 : 한손검(onehandsword)
-						ITEM_CLASS_SWORD_2H, // 3 : 양손검(twohandsword)
-						ITEM_CLASS_AXE, // 4 : 한손도끼(onehandaxe)
-						ITEM_CLASS_AXE_2H, // 5 : 두손도끼(twohandaxe)
-						ITEM_CLASS_MACE, // 6 : 한손타격무기(mace)
-						ITEM_CLASS_MACE_2H, // 7 : 두손타격무기(twohandmace)
-						ITEM_CLASS_SPEAR, // 8 : 창(spear)
-						ITEM_CLASS_POLEARM, // 9 : 폴암(polearm)
-						
-						ITEM_CLASS_SHIELD_SMALL = 11, // 11 : 스몰쉴드(smallshield)
-						ITEM_CLASS_SHIELD_LARGE, // 12 : 라아지쉴드(largeshield)
-						ITEM_CLASS_SHIELD_KITE, // 13 : 카이트쉴드(kiteshield)
-						ITEM_CLASS_SHIELD_LARGETKITE, // 14 : 라아지카이트(largekite)
-						ITEM_CLASS_SHIELD_PLATE, // 15 : 플레이트쉴드(plateshield)
-						
-						ITEM_CLASS_BOW_SHORT = 21, // 21 : 쇼트보우(Shortbow)
-						ITEM_CLASS_BOW_WRAPT, // 22 : 랩트보우(wraptbow)
-						ITEM_CLASS_BOW_COMPOSITE, // 23 : 콤포지트보우(compositebow)
-						ITEM_CLASS_BOW_IRON, // 24 : 아이언보우(ironbow)
-						ITEM_CLASS_BOW_LONG, // 25 : 롱보우(longbow)
-						ITEM_CLASS_BOW_CROSS, // 28 : 크로스보우(crossbow)
-						
-						ITEM_CLASS_STAFF = 31, // 31 : 지팡이(staff)
-						ITEM_CLASS_ETC, // 32 : 기타 마법 물품
-						
-						ITEM_CLASS_ARMOR_COTTON = 41, // 41 : 천방어구(cotton)
-						ITEM_CLASS_ARMOR_FUR, // 42 : 털가죽(Fur)
-						ITEM_CLASS_ARMOR_LEATHER, // 43 : 가죽방어구(leather)
-						ITEM_CLASS_ARMOR_HADLEATHER, // 44 : 하드레더방어구(hardleather)
-						ITEM_CLASS_ARMOR_RINGMAIL, // 45 : 링방어구(ringmail)
-						ITEM_CLASS_ARMOR_SCALEMAIL, // 46 : 비늘방어구(scaledmail)
-						ITEM_CLASS_ARMOR_HALFPLATE, // 47 : 하프 플레이트 방어구
-						ITEM_CLASS_ARMOR_FULLPLATE, // 48 : 철판방어구(platemail)
-						ITEM_CLASS_ROBE, // 49 : 마법사로브(robe)
-						
-						ITEM_CLASS_ARROW = 101,
-						
-						ITEM_CLASS_UNKNOWN = 0xffffffff }; // 101: 화살(arrow) 
+enum e_ItemClass    {    ITEM_CLASS_DAGGER = 1, // 단검(dagger)
+                        ITEM_CLASS_SWORD, // 2 : 한손검(onehandsword)
+                        ITEM_CLASS_SWORD_2H, // 3 : 양손검(twohandsword)
+                        ITEM_CLASS_AXE, // 4 : 한손도끼(onehandaxe)
+                        ITEM_CLASS_AXE_2H, // 5 : 두손도끼(twohandaxe)
+                        ITEM_CLASS_MACE, // 6 : 한손타격무기(mace)
+                        ITEM_CLASS_MACE_2H, // 7 : 두손타격무기(twohandmace)
+                        ITEM_CLASS_SPEAR, // 8 : 창(spear)
+                        ITEM_CLASS_POLEARM, // 9 : 폴암(polearm)
+                        
+                        ITEM_CLASS_SHIELD_SMALL = 11, // 11 : 스몰쉴드(smallshield)
+                        ITEM_CLASS_SHIELD_LARGE, // 12 : 라아지쉴드(largeshield)
+                        ITEM_CLASS_SHIELD_KITE, // 13 : 카이트쉴드(kiteshield)
+                        ITEM_CLASS_SHIELD_LARGETKITE, // 14 : 라아지카이트(largekite)
+                        ITEM_CLASS_SHIELD_PLATE, // 15 : 플레이트쉴드(plateshield)
+                        
+                        ITEM_CLASS_BOW_SHORT = 21, // 21 : 쇼트보우(Shortbow)
+                        ITEM_CLASS_BOW_WRAPT, // 22 : 랩트보우(wraptbow)
+                        ITEM_CLASS_BOW_COMPOSITE, // 23 : 콤포지트보우(compositebow)
+                        ITEM_CLASS_BOW_IRON, // 24 : 아이언보우(ironbow)
+                        ITEM_CLASS_BOW_LONG, // 25 : 롱보우(longbow)
+                        ITEM_CLASS_BOW_CROSS, // 28 : 크로스보우(crossbow)
+                        
+                        ITEM_CLASS_STAFF = 31, // 31 : 지팡이(staff)
+                        ITEM_CLASS_ETC, // 32 : 기타 마법 물품
+                        
+                        ITEM_CLASS_ARMOR_COTTON = 41, // 41 : 천방어구(cotton)
+                        ITEM_CLASS_ARMOR_FUR, // 42 : 털가죽(Fur)
+                        ITEM_CLASS_ARMOR_LEATHER, // 43 : 가죽방어구(leather)
+                        ITEM_CLASS_ARMOR_HADLEATHER, // 44 : 하드레더방어구(hardleather)
+                        ITEM_CLASS_ARMOR_RINGMAIL, // 45 : 링방어구(ringmail)
+                        ITEM_CLASS_ARMOR_SCALEMAIL, // 46 : 비늘방어구(scaledmail)
+                        ITEM_CLASS_ARMOR_HALFPLATE, // 47 : 하프 플레이트 방어구
+                        ITEM_CLASS_ARMOR_FULLPLATE, // 48 : 철판방어구(platemail)
+                        ITEM_CLASS_ROBE, // 49 : 마법사로브(robe)
+                        
+                        ITEM_CLASS_ARROW = 101,
+                        
+                        ITEM_CLASS_UNKNOWN = 0xffffffff }; // 101: 화살(arrow) 
 */
 enum e_ItemAttrib {
     ITEM_ATTRIB_GENERAL = 0,
@@ -874,25 +874,24 @@ typedef struct __TABLE_UI_RESRC {
 
 typedef struct __TABLE_ITEM_BASIC // 장착 아이템에 관한 리소스 레코드...
 {
-    DWORD
-        dwID; // 00 코드화된 아이템번호 d - // 00 - Item 종류, 00 - Item 장착 위치(장착위치로 Plug 인지 Part 인지 판단이 가능하다.) - 0000 - ItemIndex
+    DWORD       dwID;       // 00 코드화된 아이템번호
     BYTE        byExtIndex; // 01 확장 인덱스
     std::string szName;     // 02 이름
     std::string szRemark;   // 03 아이템 설명
-    DWORD       dwIDResrc;  // 04 코드화된 아이템 리소스	d
-    DWORD       dwIDIcon;   // 05 코드화된 아이템 아이콘 리소스	d
+    DWORD       dwIDResrc;  // 04 코드화된 아이템 리소스    d
+    DWORD       dwIDIcon;   // 05 코드화된 아이템 아이콘 리소스    d
     DWORD       dwSoundID0; // 06 Sound ID - 0 이면 사운드 없다~..
     DWORD       dwSoundID1; // 07 Sound ID - 0 이면 사운드 없다~..
 
-    BYTE byClass;       // 08 아이템 형태	b enum e_ItemClass 참조....
+    BYTE byClass;       // 08 아이템 형태    b enum e_ItemClass 참조....
     BYTE byIsRobeType;  // 09 위아래가 통째로 된 로브타입의 아이템.....
-    BYTE byAttachPoint; // 10 장착 위치	b
-    BYTE byNeedRace;    // 11 종족	b
-    BYTE byNeedClass;   // 12 직업	b
+    BYTE byAttachPoint; // 10 장착 위치    b
+    BYTE byNeedRace;    // 11 종족    b
+    BYTE byNeedClass;   // 12 직업    b
 
-    short siDamage;         // 13 무기타격	b
+    short siDamage;         // 13 무기타격    b
     short siAttackInterval; // 14 공격 시간 100 은 1 초
-    short siAttackRange;    // 15 유효 거리	.1 meter 단위
+    short siAttackRange;    // 15 유효 거리    .1 meter 단위
     short siWeight;         // 16 무게 .1 중량단위
     short siMaxDurability;  // 17 내구력
     int   iPrice;           // 18 매수가
@@ -903,14 +902,14 @@ typedef struct __TABLE_ITEM_BASIC // 장착 아이템에 관한 리소스 레코드...
     DWORD dwEffectID1; // 22 마법 효과 ID1
     DWORD dwEffectID2; // 23 마법 효과 ID1
 
-    char cNeedLevel;        // 24 요구 레벨		플레이어의 iLeve.. - 음수값이 있을수도 있다..
-    BYTE byNeedRank;        // 25 요구 작위		플레이어의 iRank..
-    BYTE byNeedTitle;       // 26 요구 타이틀 	플레이어의 iTitle..
-    BYTE byNeedStrength;    // 27 요구 힘 		플레이어의 iStrength..
-    BYTE byNeedStamina;     // 28 요구 정력 	플레이어의 iStamina..
-    BYTE byNeedDexterity;   // 29 요구 민첩		플레이어의 iDexterity..
-    BYTE byNeedInteli;      // 30 요구 지능		플레이어의 iIntelligence..
-    BYTE byNeedMagicAttack; // 31 요구 마력		플레이어의 iMagicAttak..
+    char cNeedLevel;        // 24 요구 레벨        플레이어의 iLeve.. - 음수값이 있을수도 있다..
+    BYTE byNeedRank;        // 25 요구 작위        플레이어의 iRank..
+    BYTE byNeedTitle;       // 26 요구 타이틀     플레이어의 iTitle..
+    BYTE byNeedStrength;    // 27 요구 힘         플레이어의 iStrength..
+    BYTE byNeedStamina;     // 28 요구 정력     플레이어의 iStamina..
+    BYTE byNeedDexterity;   // 29 요구 민첩        플레이어의 iDexterity..
+    BYTE byNeedInteli;      // 30 요구 지능        플레이어의 iIntelligence..
+    BYTE byNeedMagicAttack; // 31 요구 마력        플레이어의 iMagicAttak..
 
     BYTE bySellGroup; // 32 상인이 파는데에 대한 그룹..
 } TABLE_ITEM_BASIC;
@@ -922,8 +921,7 @@ const int ITEM_LIMITED_EXHAUST = 17;
 
 typedef struct __TABLE_ITEM_EXT // 장착 아이템에 관한 리소스 레코드...
 {
-    DWORD
-        dwID; // 00 코드화된 아이템번호 - // 00 - Item 종류, 00 - Item 장착 위치(장착위치로 Plug 인지 Part 인지 판단이 가능하다.) - 0000 - ItemIndex
+    DWORD       dwID;          // 00 코드화된 아이템번호
     std::string szHeader;      // 01 접두사
     std::string szRemark;      // 02 아이템 설명
     uint32_t    iUnknown1;     // TODO: implement
@@ -931,19 +929,19 @@ typedef struct __TABLE_ITEM_EXT // 장착 아이템에 관한 리소스 레코드...
 
     short siDamage;                   // 04 무기타격
     short siAttackIntervalPercentage; // 05 공격 시간 비율
-    short siHitRate;                  // 06 타격률	- 퍼센트
-    short siEvationRate;              // 07 회피율	-   "
+    short siHitRate;                  // 06 타격률    - 퍼센트
+    short siEvationRate;              // 07 회피율    -   "
 
     short siMaxDurability; // 08 내구력
     short siPriceMultiply; // 09 매수가 배율
     short siDefense;       // 10 방어력
 
-    short siDefenseRateDagger; // 11 단검방어	- 퍼센트
-    short siDefenseRateSword;  // 12 검방어	- 퍼센트
-    short siDefenseRateBlow;   // 13 타격방어	- 퍼센트
-    short siDefenseRateAxe;    // 14 도끼방어	- 퍼센트
-    short siDefenseRateSpear;  // 15 창방어	- 퍼센트
-    short siDefenseRateArrow;  // 16 화살방어	- 퍼센트
+    short siDefenseRateDagger; // 11 단검방어    - 퍼센트
+    short siDefenseRateSword;  // 12 검방어    - 퍼센트
+    short siDefenseRateBlow;   // 13 타격방어    - 퍼센트
+    short siDefenseRateAxe;    // 14 도끼방어    - 퍼센트
+    short siDefenseRateSpear;  // 15 창방어    - 퍼센트
+    short siDefenseRateArrow;  // 16 화살방어    - 퍼센트
 
     BYTE byDamageFire;   // 17 추가데미지 - 불
     BYTE byDamageIce;    // 18 추가데미지 - 얼음
@@ -975,14 +973,14 @@ typedef struct __TABLE_ITEM_EXT // 장착 아이템에 관한 리소스 레코드...
     DWORD dwEffectID1; // 39 마법 효과 ID1
     DWORD dwEffectID2; // 40 마법 효과 ID2
 
-    short siNeedLevel;       // 41 요구 레벨		플레이어의 iLeve..
-    short siNeedRank;        // 42 요구 작위		플레이어의 iRank..
-    short siNeedTitle;       // 43 요구 타이틀 	플레이어의 iTitle..
-    short siNeedStrength;    // 44 요구 힘 		플레이어의 iStrength..
-    short siNeedStamina;     // 45 요구 정력 	플레이어의 iStamina..
-    short siNeedDexterity;   // 46 요구 민첩		플레이어의 iDexterity..
-    short siNeedInteli;      // 47 요구 지능		플레이어의 iIntelligence..
-    short siNeedMagicAttack; // 48 요구 마력		플레이어의 iMagicAttak..
+    short siNeedLevel;       // 41 요구 레벨        플레이어의 iLeve..
+    short siNeedRank;        // 42 요구 작위        플레이어의 iRank..
+    short siNeedTitle;       // 43 요구 타이틀     플레이어의 iTitle..
+    short siNeedStrength;    // 44 요구 힘         플레이어의 iStrength..
+    short siNeedStamina;     // 45 요구 정력     플레이어의 iStamina..
+    short siNeedDexterity;   // 46 요구 민첩        플레이어의 iDexterity..
+    short siNeedInteli;      // 47 요구 지능        플레이어의 iIntelligence..
+    short siNeedMagicAttack; // 48 요구 마력        플레이어의 iMagicAttak..
 } TABLE_ITEM_EXT;
 
 const int MAX_NPC_SHOP_ITEM = 30;
@@ -1069,26 +1067,26 @@ typedef struct __TABLE_PLAYER_LOOKS // NPC, Mob 모습 관한 리소스 레코드...
 } TABLE_PLAYER;
 
 typedef struct __TABLE_EXCHANGE_QUEST {
-    DWORD       dwID;              // 퀘스트 번호..	0
-    DWORD       dwNpcNum;          // npc 번호..	1
-    std::string szDesc;            // 설명..		2
-    int         iCondition0;       // 조건 1..		3
-    int         iCondition1;       // 조건 2..		4
-    int         iCondition2;       // 조건 3..		5
-    int         iCondition3;       // 조건 4..		6
-    int         iNeedGold;         // 요구 노아..	7
-    BYTE        bNeedLevel;        // 요구 레벨	8
-    BYTE        bNeedClass;        // 요구 직업	9
-    BYTE        bNeedRank;         // 요구 작위	10
-    BYTE        bNeedExtra1;       // 요구 여분1	11
-    BYTE        bNeedExtra2;       // 요구 여분2	12
-    BYTE        bCreatePercentage; // 생성 확률	13
-    int         iArkTuarek;        // 아크 투아렉..	14
-    int         iTuarek;           // 투아렉..			15
-    int         iRinkleTuarek;     // 링클 투아렉..	16
-    int         iBabarian;         // 바바리안..		17
-    int         iMan;              // 남자..			18
-    int         iWoman;            // 여자..			19
+    DWORD       dwID;              // 퀘스트 번호..    0
+    DWORD       dwNpcNum;          // npc 번호..    1
+    std::string szDesc;            // 설명..        2
+    int         iCondition0;       // 조건 1..        3
+    int         iCondition1;       // 조건 2..        4
+    int         iCondition2;       // 조건 3..        5
+    int         iCondition3;       // 조건 4..        6
+    int         iNeedGold;         // 요구 노아..    7
+    BYTE        bNeedLevel;        // 요구 레벨    8
+    BYTE        bNeedClass;        // 요구 직업    9
+    BYTE        bNeedRank;         // 요구 작위    10
+    BYTE        bNeedExtra1;       // 요구 여분1    11
+    BYTE        bNeedExtra2;       // 요구 여분2    12
+    BYTE        bCreatePercentage; // 생성 확률    13
+    int         iArkTuarek;        // 아크 투아렉..    14
+    int         iTuarek;           // 투아렉..            15
+    int         iRinkleTuarek;     // 링클 투아렉..    16
+    int         iBabarian;         // 바바리안..        17
+    int         iMan;              // 남자..            18
+    int         iWoman;            // 여자..            19
 } TABLE_EXCHANGE_QUEST;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1401,7 +1399,7 @@ const int FXID_SWORD_LIGHTNING_TARGET = 10033;
 const int FXID_SWORD_POISON_MAIN = 10027;
 const int FXID_SWORD_POISON_TAIL = 10028;
 const int FXID_SWORD_POISON_TARGET = 10034;
-//const int	FXID_GROUND_TARGET = 10035;
+//const int    FXID_GROUND_TARGET = 10035;
 const int FXID_REGION_TARGET_EL_ROGUE = 10035;
 const int FXID_REGION_TARGET_EL_WIZARD = 10036;
 const int FXID_REGION_TARGET_EL_PRIEST = 10037;

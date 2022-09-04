@@ -6,7 +6,7 @@
 #include "N3FXShape.h"
 
 //////////////////////////////////////////////////////////////////////
-//	CN3FXSPart class.....
+//    CN3FXSPart class.....
 //////////////////////////////////////////////////////////////////////
 
 CN3FXSPart::CN3FXSPart() {
@@ -23,7 +23,7 @@ CN3FXSPart::CN3FXSPart() {
 
     m_Mtl.Init();
 
-    //	m_pPM = NULL;
+    //    m_pPM = NULL;
 
     m_pRefShape = NULL;
 }
@@ -34,7 +34,7 @@ CN3FXSPart::~CN3FXSPart() {
         s_MngTex.Delete(&m_TexRefs[i]);
     }
 
-    //	if(m_pPM) { m_pPM->Release(); delete m_pPM; m_pPM = NULL; }
+    //    if(m_pPM) { m_pPM->Release(); delete m_pPM; m_pPM = NULL; }
 }
 
 void CN3FXSPart::Release() {
@@ -51,7 +51,7 @@ void CN3FXSPart::Release() {
     }
     m_TexRefs.clear();
 
-    //	if(m_pPM) { m_pPM->Release(); delete m_pPM; m_pPM = NULL; }
+    //    if(m_pPM) { m_pPM->Release(); delete m_pPM; m_pPM = NULL; }
     m_FXPMInst.Release();
 }
 
@@ -168,7 +168,7 @@ void CN3FXSPart::Render() {
             pAP->lpTex = lpTex;
             pAP->ePrimitiveType = D3DPT_TRIANGLELIST;
             pAP->nPrimitiveCount = m_FXPMInst.GetNumIndices() / 3;
-            //pAP->nRenderFlags		= RF_ALPHABLENDING | RF_NOTUSEFOG | RF_DIFFUSEALPHA | RF_NOTUSELIGHT | RF_DOUBLESIDED;
+            //pAP->nRenderFlags        = RF_ALPHABLENDING | RF_NOTUSEFOG | RF_DIFFUSEALPHA | RF_NOTUSELIGHT | RF_DOUBLESIDED;
             pAP->nRenderFlags = m_Mtl.nRenderFlags;
             pAP->nVertexCount = m_FXPMInst.GetNumVertices();
             pAP->MtxWorld = m_WorldMtx;
@@ -411,26 +411,26 @@ bool CN3FXShape::Load(HANDLE hFile) {
 
 bool CN3FXShape::Save(HANDLE hFile) {
     /*
-	CN3TransformCollision::Save(hFile); // 扁夯沥焊 佬扁...
-	
-	DWORD dwRWC = 0;
-	
-	int nL = 0;
-	
-	CN3SPart* pPD = NULL;
-	int iPC = m_Parts.size();
-	WriteFile(hFile, &iPC, 4, &dwRWC, NULL); // Mesh FileName
-	for(int i = 0; i < iPC; i++)
-	{
-		m_Parts[i]->Save(hFile);
-	}
+    CN3TransformCollision::Save(hFile); // 扁夯沥焊 佬扁...
+    
+    DWORD dwRWC = 0;
+    
+    int nL = 0;
+    
+    CN3SPart* pPD = NULL;
+    int iPC = m_Parts.size();
+    WriteFile(hFile, &iPC, 4, &dwRWC, NULL); // Mesh FileName
+    for(int i = 0; i < iPC; i++)
+    {
+        m_Parts[i]->Save(hFile);
+    }
 
-	WriteFile(hFile, &m_iBelong, 4, &dwRWC, NULL); // 家加
-	WriteFile(hFile, &m_iAttr0, 4, &dwRWC, NULL); // 加己 0
-	WriteFile(hFile, &m_iAttr1, 4, &dwRWC, NULL); // 加己 1
-	WriteFile(hFile, &m_iAttr2, 4, &dwRWC, NULL); // 加己 2
-	WriteFile(hFile, &m_iAttr3, 4, &dwRWC, NULL); // 加己 3
-	*/
+    WriteFile(hFile, &m_iBelong, 4, &dwRWC, NULL); // 家加
+    WriteFile(hFile, &m_iAttr0, 4, &dwRWC, NULL); // 加己 0
+    WriteFile(hFile, &m_iAttr1, 4, &dwRWC, NULL); // 加己 1
+    WriteFile(hFile, &m_iAttr2, 4, &dwRWC, NULL); // 加己 2
+    WriteFile(hFile, &m_iAttr3, 4, &dwRWC, NULL); // 加己 3
+    */
     return true;
 }
 

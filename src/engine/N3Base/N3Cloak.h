@@ -51,7 +51,7 @@ class CN3Cloak : public CN3Base {
     void ApplyOffset(D3DXVECTOR3 & vDif);
 
   protected:
-    //	Anchor
+    // Anchor
     e_Cloak_AnchorMovePattern m_eAnchorPattern;
     float                     m_fAnchorPreserveTime;
     D3DXVECTOR3               m_vOffset[CLOAK_MAX_WIDTH];

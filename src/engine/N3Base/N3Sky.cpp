@@ -13,22 +13,22 @@
 //////////////////////////////////////////////////////////////////////
 
 CN3Sky::CN3Sky() {
-    //	m_pTex = NULL;
+    //    m_pTex = NULL;
     m_SkyColor.ChangeColor(0xff081021); //广
     m_FogColor.ChangeColor(0xff102942); //广
 }
 
 CN3Sky::~CN3Sky() {
-    //	if (m_pTex) {s_MngTex.Delete(m_pTex);	m_pTex = NULL;}
+    //    if (m_pTex) {s_MngTex.Delete(m_pTex);    m_pTex = NULL;}
 }
 
 void CN3Sky::Release() {
     CN3Base::Release();
-    //	m_SkyColor.ChangeColor(0xFF5284DE);	//撤
-    //	m_FogColor.ChangeColor(0xFFB5C6DE);	//撤
+    //    m_SkyColor.ChangeColor(0xFF5284DE);    //撤
+    //    m_FogColor.ChangeColor(0xFFB5C6DE);    //撤
     m_SkyColor.ChangeColor(0xff081021); //广
     m_FogColor.ChangeColor(0xff102942); //广
-    //	if (m_pTex) {s_MngTex.Delete(m_pTex);	m_pTex = NULL;}
+    //    if (m_pTex) {s_MngTex.Delete(m_pTex);    m_pTex = NULL;}
 }
 
 void CN3Sky::Tick() {

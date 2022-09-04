@@ -21,7 +21,7 @@
 #define WIZ_LOGOUT            0x0F // Request Logout
 #define WIZ_CHAT              0x10 // User Chatting..
 #define WIZ_DEAD              0x11 // User Dead
-#define WIZ_REGENE            0x12 // User	Regeneration
+#define WIZ_REGENE            0x12 // User    Regeneration
 #define WIZ_TIME              0x13 // Game Timer
 #define WIZ_WEATHER           0x14 // Game Weather
 #define WIZ_REGIONCHANGE      0x15 // Region UserInfo Receive
@@ -79,7 +79,7 @@
 #define WIZ_FRIEND_REPORT     0x49 // Get the status of your friend
 #define WIZ_GOLD_CHANGE       0x4A // When you get the gold of your enemy.
 #define WIZ_WARP_LIST         0x4B // Warp List by NPC or Object
-#define WIZ_VIRTUAL_SERVER    0x4C // Battle zone Server Info packet	(IP, Port)
+#define WIZ_VIRTUAL_SERVER    0x4C // Battle zone Server Info packet    (IP, Port)
 #define WIZ_ZONE_CONCURRENT   0x4D // Battle zone concurrent users request packet
 #define WIZ_CORPSE            0x4e // To have your corpse have an ID on top of it.
 #define WIZ_PARTY_BBS         0x4f // For the party wanted bulletin board service..

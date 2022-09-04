@@ -98,10 +98,10 @@ template <class T> class CN3Mng {
                 pData = NULL;
             } else {
                 int reChk = Add(pData); // 읽기 성공하면 추가..
-                //	asm
-                if (reChk == -1) //	추가시 전에 데이터가 있어 참조 카운트를 하나 더한다
+                //    asm
+                if (reChk == -1) // 추가시 전에 데이터가 있어 참조 카운트를 하나 더한다
                 {
-                    T *     pBakData = pData; //	같은 파일중 전 데이타를 받아 리턴(새로운 그림으로 바뀌지 않을수 있다)
+                    T *     pBakData = pData; // 같은 파일중 전 데이타를 받아 리턴(새로운 그림으로 바뀌지 않을수 있다)
                     it_Data it = m_Datas.find(pBakData->FileName());
                     pData = (*it).second;
 
@@ -113,10 +113,10 @@ template <class T> class CN3Mng {
                         }
                     }
 
-                    delete pBakData; //	이번에 읽은 데이타는 필요가 없으므로 지움
+                    delete pBakData; // 이번에 읽은 데이타는 필요가 없으므로 지움
                     pBakData = NULL;
                 }
-                //	asm
+                //    asm
             }
         } else //  찾았다..!!
         {

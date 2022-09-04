@@ -9,7 +9,7 @@
 #include "N3Base/N3Texture.h"
 
 //
-//	생성자
+//    생성자
 //
 CN3TerrainPatch::CN3TerrainPatch() {
     m_bIsRender = FALSE;
@@ -43,7 +43,7 @@ CN3TerrainPatch::CN3TerrainPatch() {
 }
 
 //
-//	소멸자
+//    소멸자
 //
 CN3TerrainPatch::~CN3TerrainPatch() {
     Release();
@@ -143,7 +143,7 @@ void CN3TerrainPatch::Init(CN3Terrain * pTerrain) {
 }
 
 //
-//	Set Level....
+//    Set Level....
 //
 void CN3TerrainPatch::SetLevel(int level) {
     if (level == m_iLevel) {
@@ -245,7 +245,7 @@ void CN3TerrainPatch::Tick() {
                     v1[0] = v1[3] = UVConvert((float)(UNITUV - (tz % UNITUV)) / (float)UNITUV);
                     v1[1] = v1[2] = UVConvert(v1[0] - (1.0f / (float)UNITUV));
 
-                    //u1[0] =	u1[1] = (float)(tx%UNITUV) / (float)UNITUV;
+                    //u1[0] =    u1[1] = (float)(tx%UNITUV) / (float)UNITUV;
                     //u1[2] = u1[3] = u1[0] + (1.0f/(float)UNITUV);
 
                     //v1[0] = v1[3] = (float)(UNITUV - (tz%UNITUV)) / (float)UNITUV;
@@ -804,8 +804,8 @@ void CN3TerrainPatch::Render() {
 }
 
 //
-//	한픽셀씩 축소시킨 커러맵 쓸때 uv바꿔주는 함수..
-//	필요없게 됐다..-.- 걍 텍스쳐 스테이지 스테이트에서 mirror쓰면 된다..ㅡ.ㅡ
+//    한픽셀씩 축소시킨 커러맵 쓸때 uv바꿔주는 함수..
+//    필요없게 됐다..-.- 걍 텍스쳐 스테이지 스테이트에서 mirror쓰면 된다..ㅡ.ㅡ
 //
 inline float CN3TerrainPatch::UVConvert(float uv) {
     //return ( (uv*((float)COLORMAPTEX_SIZE - 2.0f) + 1.0f) / (float)COLORMAPTEX_SIZE);

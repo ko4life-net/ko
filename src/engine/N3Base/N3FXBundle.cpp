@@ -73,8 +73,8 @@ CN3FXBundle::~CN3FXBundle() {
 }
 
 //
-//	decode script file..
-//	스크립트 파일 읽고 해석시킴...
+//    decode script file..
+//    스크립트 파일 읽고 해석시킴...
 //
 #ifdef _N3TOOL
 bool CN3FXBundle::DecodeScriptFile(const char * lpPathName) {
@@ -170,8 +170,8 @@ bool CN3FXBundle::DecodeScriptFile(const char * lpPathName) {
 #endif // end of _N3TOOL
 
 //
-//	GetPartType...
-//	파트의 파일이름으로 타입을 알아내자..
+//    GetPartType...
+//    파트의 파일이름으로 타입을 알아내자..
 //
 #ifdef _N3TOOL
 CN3FXPartBase * CN3FXBundle::SetPart(const char * pFileName) {
@@ -250,7 +250,7 @@ CN3FXPartBase * CN3FXBundle::SetPart(const char * pFileName) {
 #endif // end of _N3TOOL
 
 //
-//	Init..
+//    Init..
 //
 void CN3FXBundle::Init() {
     m_fLife = 0.0f;
@@ -492,7 +492,7 @@ bool CN3FXBundle::Save(HANDLE hFile) {
 }
 
 //
-//	Tick...
+//    Tick...
 //
 bool CN3FXBundle::Tick() {
     if (m_dwState == FX_BUNDLE_STATE_DEAD) {
@@ -521,7 +521,7 @@ bool CN3FXBundle::Tick() {
 }
 
 //
-//	Render...
+//    Render...
 //
 void CN3FXBundle::Render() {
     if (m_dwState == FX_BUNDLE_STATE_DEAD) {
@@ -537,7 +537,7 @@ void CN3FXBundle::Render() {
 }
 
 //
-//	Trigger...
+//    Trigger...
 //
 void CN3FXBundle::Trigger(int iSourceID, int iTargetID, int iTargetJoint, int iSndID) {
     m_dwState = FX_BUNDLE_STATE_LIVE;
@@ -555,23 +555,23 @@ void CN3FXBundle::Trigger(int iSourceID, int iTargetID, int iTargetJoint, int iS
 #ifdef _N3GAME
     if (iSndID >= 0) {
         float fDist = (s_CameraData.vEye - m_vPos).Magnitude();
-        //		if(fDist < 48.0f)
+        //        if(fDist < 48.0f)
         if (fDist < m_fEffectSndDist) { //this_Snd
             CN3Base::s_SndMgr.PlayOnceAndRelease(iSndID, &m_vPos);
         }
     }
 
-    //	if(iSndID >= 0 && NULL == m_pSndObj)
-    //		m_pSndObj = CN3Base::s_SndMgr.CreateObj(iSndID);
-    //	if(m_pSndObj) m_pSndObj->Play(&m_vPos);
+    //    if(iSndID >= 0 && NULL == m_pSndObj)
+    //        m_pSndObj = CN3Base::s_SndMgr.CreateObj(iSndID);
+    //    if(m_pSndObj) m_pSndObj->Play(&m_vPos);
 
 #endif
 }
 
 //
-//	Stop...
-//	멈추는 단계를 시작한다..
-//	정말 멈추는 기능은 tick에서 모든 파트가 다 죽었다고 판단될때 tick에서 수행한다.
+//    Stop...
+//    멈추는 단계를 시작한다..
+//    정말 멈추는 기능은 tick에서 모든 파트가 다 죽었다고 판단될때 tick에서 수행한다.
 //
 void CN3FXBundle::Stop(bool immediately) {
     if (m_dwState == FX_BUNDLE_STATE_DEAD) {
@@ -592,8 +592,8 @@ void CN3FXBundle::Stop(bool immediately) {
 }
 
 //
-//	check all parts are dead..
-//	if dead return true..
+//    check all parts are dead..
+//    if dead return true..
 //
 bool CN3FXBundle::CheckAllPartsDead() {
     for (int i = 0; i < MAX_FX_PART; i++) {

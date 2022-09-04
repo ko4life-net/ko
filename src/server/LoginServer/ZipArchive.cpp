@@ -30,7 +30,7 @@ CZipArchive::CZipArchive() {
 }
 
 CZipArchive::~CZipArchive() {
-    // 	Close(); // cannot be here: if an exception is thrown strange things can happen
+    //     Close(); // cannot be here: if an exception is thrown strange things can happen
 
     if (m_list.GetCount()) {
         // if some memory hasn't been freed due to an error in zlib, so free it now
@@ -151,7 +151,7 @@ bool CZipArchive::OpenFile(WORD uIndex) {
     if (uMethod == Z_DEFLATED) {
         m_info.m_stream.opaque = m_bDetectZlibMemoryLeaks ? &m_list : 0;
         int err = inflateInit2(&m_info.m_stream, -MAX_WBITS);
-        //			* windowBits is passed < 0 to tell that there is no zlib header.
+        //            * windowBits is passed < 0 to tell that there is no zlib header.
         //          * Note that in this case inflate *requires* an extra "dummy" byte
         //          * after the compressed stream in order to complete decompression and
         //          * return Z_STREAM_END.
@@ -787,7 +787,7 @@ CString CZipArchive::GetDrive(LPCTSTR lpszFilePath) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//	특정 디렉토리를 제거한체 압축한다. 2001.5.30
+//    특정 디렉토리를 제거한체 압축한다. 2001.5.30
 //
 BOOL CZipArchive::AddNewFile(LPCTSTR lpszFilePath, LPCTSTR strPath, int iLevel, unsigned long nBufSize) {
     CString strFileName = _T("");
@@ -798,8 +798,8 @@ BOOL CZipArchive::AddNewFile(LPCTSTR lpszFilePath, LPCTSTR strPath, int iLevel, 
     }
 
     CFileHeader header;
-    //	strFileName = GetFileDirAndName(lpszFilePath);
-    //	strFileName.TrimLeft(strPath);
+    //    strFileName = GetFileDirAndName(lpszFilePath);
+    //    strFileName.TrimLeft(strPath);
     strFileName.Format("%s", lpszFilePath);
     strDirPath.Format("%s", strPath);
     strFileName.Delete(0, strDirPath.GetLength());

@@ -45,9 +45,9 @@ class CN3ShapeMgr : public CN3BaseFileAccess
                 __ASSERT(pdwCCVertIndices, "New memory failed");
                 ReadFile(hFile, pdwCCVertIndices, nCCPolyCount * 3 * 4, &dwRWC, NULL);
                 //#if _DEBUG
-                //				static char szTrace[256];
-                //				sprintf(szTrace, "CollisionCheckPolygon : %d\n", nCCPolyCount);
-                //				OutputDebugString(szTrace);
+                //                static char szTrace[256];
+                //                sprintf(szTrace, "CollisionCheckPolygon : %d\n", nCCPolyCount);
+                //                OutputDebugString(szTrace);
                 //#endif
             }
         }

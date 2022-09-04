@@ -74,7 +74,7 @@ BOOL CDlgSowSeed::OnInitDialog() {
     //if(m_SeedGroupList.size()) return TRUE;
     m_CB_Seed.ResetContent();
     m_CB_TileGroup.ResetContent();
-    //	m_LB_Sowed.ResetContent();
+    //    m_LB_Sowed.ResetContent();
     //m_SeedGroupList.clear();
 
     m_Brush_Size.SetRange(1, 15);
@@ -98,45 +98,45 @@ BOOL CDlgSowSeed::OnInitDialog() {
 //void CDlgSowSeed::OnBtnSow()
 //{
 /*
-	int idx = m_CB_Seed.GetCurSel();
-	if(idx<0) return;
+    int idx = m_CB_Seed.GetCurSel();
+    if(idx<0) return;
 
-	LPSEEDTEX pSeed = (LPSEEDTEX)m_CB_Seed.GetItemDataPtr(idx);
+    LPSEEDTEX pSeed = (LPSEEDTEX)m_CB_Seed.GetItemDataPtr(idx);
 
-	if(!pSeed) return;
+    if(!pSeed) return;
 
-	int SeedID = pSeed->ID;
-	char SeedName[80];
-	m_CB_Seed.GetLBText(idx, SeedName);
+    int SeedID = pSeed->ID;
+    char SeedName[80];
+    m_CB_Seed.GetLBText(idx, SeedName);
 
-	idx = m_CB_TileGroup.GetCurSel();
-	if(idx<0) return;
+    idx = m_CB_TileGroup.GetCurSel();
+    if(idx<0) return;
 
-	int GroupID = m_CB_TileGroup.GetItemData(idx);
+    int GroupID = m_CB_TileGroup.GetItemData(idx);
 
-	LPSEEDGROUP pSeedGroup = new SEEDGROUP;
-	pSeedGroup->iDTexGroupID = GroupID;
-	pSeedGroup->iSeedID = SeedID;
+    LPSEEDGROUP pSeedGroup = new SEEDGROUP;
+    pSeedGroup->iDTexGroupID = GroupID;
+    pSeedGroup->iSeedID = SeedID;
 
-	m_pRefFrm->m_SeedGroupList.push_back(pSeedGroup);
+    m_pRefFrm->m_SeedGroupList.push_back(pSeedGroup);
 
-	CDTexGroupMng* pDTexGroup = m_pRefFrm->GetDTexGroupMng();
-	char* pGroupName = pDTexGroup->GetGroupName(GroupID);
+    CDTexGroupMng* pDTexGroup = m_pRefFrm->GetDTexGroupMng();
+    char* pGroupName = pDTexGroup->GetGroupName(GroupID);
 
-	if(pGroupName)
-	{
-		CString Str;
-		Str.Format("%s - %s", pGroupName, SeedName);
-		idx = m_LB_Sowed.AddString((LPCTSTR)Str);
-		m_LB_Sowed.SetItemDataPtr(idx, pSeedGroup);
-	}
-	else
-	{
-		CString Str;
-		Str.Format("Unknown - %s", SeedName);
-		idx = m_LB_Sowed.AddString((LPCTSTR)Str);
-		m_LB_Sowed.SetItemDataPtr(idx, pSeedGroup);
-	}
+    if(pGroupName)
+    {
+        CString Str;
+        Str.Format("%s - %s", pGroupName, SeedName);
+        idx = m_LB_Sowed.AddString((LPCTSTR)Str);
+        m_LB_Sowed.SetItemDataPtr(idx, pSeedGroup);
+    }
+    else
+    {
+        CString Str;
+        Str.Format("Unknown - %s", SeedName);
+        idx = m_LB_Sowed.AddString((LPCTSTR)Str);
+        m_LB_Sowed.SetItemDataPtr(idx, pSeedGroup);
+    }
 */
 //}
 
@@ -154,7 +154,7 @@ void CDlgSowSeed::OnBtnDelSeed() {
             it_Grass      it_grass = group_list->grass.begin();
             for (int jj = 0; jj < group_list->grass.size(); jj++, it_grass++) {
                 LPGRASS grass_list = *it_grass;
-                //				group_list->grass.remove(grass_list);
+                //                group_list->grass.remove(grass_list);
                 delete grass_list;
             }
 

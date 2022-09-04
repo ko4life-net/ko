@@ -131,7 +131,7 @@ BOOL CN3ViewerDoc::OnSaveDocument(LPCTSTR lpszPathName) {
 
 void CN3ViewerDoc::OnFileImport() {
     CString szExt = "";
-    //	CString szFilter = "N3D Object File|*.*|카메라 Data(*.N3Camera)|*.N3Camera|Light Data(*.N3Light)|*.N3Light|Shape Data(*.N3Shape)|*.N3Shape|\
+    //    CString szFilter = "N3D Object File|*.*|카메라 Data(*.N3Camera)|*.N3Camera|Light Data(*.N3Light)|*.N3Light|Shape Data(*.N3Shape)|*.N3Shape|\
 // Progressive Mesh Data(*.N3PMesh)|*.N3Mesh|Indexed Mesh Data(*.N3IMesh)|*.N3IMesh|Joint Data(*.N3Joint)|*.N3Joint|Skinning Data(*.N3Skin)|*.N3Skin|Character Data(*.N3Chr)|*.N3Chr||";
     CString szFilter =
         "N3D Object File|*.*|카메라(*.N3Camera)|*.N3Camera|Light(*.N3Light)|*.N3Light|Progressive "
@@ -167,12 +167,12 @@ void CN3ViewerDoc::OnFileImport() {
             m_Scene.s_MngPMesh.Add(pMesh);
             pBase = pMesh;
         }
-        //		else if(lstrcmpi(szExt, "N3Joint") == 0)
-        //		{
-        //			CN3Joint* pJoint = new CN3Joint();
-        //			m_Scene.s_MngJoint.Add(pJoint);
-        //			pBase = pJoint;
-        //		}
+        //        else if(lstrcmpi(szExt, "N3Joint") == 0)
+        //        {
+        //            CN3Joint* pJoint = new CN3Joint();
+        //            m_Scene.s_MngJoint.Add(pJoint);
+        //            pBase = pJoint;
+        //        }
         else if (lstrcmpi(szExt, "N3Shape") == 0) {
             CN3Shape * pShape = new CN3Shape();
             m_Scene.ShapeAdd(pShape);

@@ -20,10 +20,10 @@ struct __EXPORT_OPTION {
     D3DCOLORVALUE dcvBackground;   // 배경 색
     D3DCOLORVALUE dcvAmbientLight; // 기본 조명 색
 
-    //	int nCameraCount;	// scene 내의 카메라 갯수
-    //	int nMaterialCount;	// scene 내의 재질 갯수
-    //	int nTextureCount;	// scene 내의 텍스처 갯수
-    //	int nLightCount;	// scene 내의 조명 갯수
+    //    int nCameraCount;    // scene 내의 카메라 갯수
+    //    int nMaterialCount;    // scene 내의 재질 갯수
+    //    int nTextureCount;    // scene 내의 텍스처 갯수
+    //    int nLightCount;    // scene 내의 조명 갯수
 
     BOOL bExportCamera;   // 카메라 데이터를 갖고 있다.
     BOOL bExportLight;    // 라이트 데이터를 갖고 있다.
@@ -37,7 +37,7 @@ struct __EXPORT_OPTION {
 
     BOOL bGenerateFileName;     // 파일 이름을 0_0000_00_0 포맷으로 바꾼다..??
     BOOL bGenerateSmoothNormal; // 부드럽게 보이도록 법선 벡터들을 재 계산한다.
-                                //	BOOL bGenerateProgressiveMesh; // Progressive Mesh 생성
+                                //    BOOL bGenerateProgressiveMesh; // Progressive Mesh 생성
     BOOL
         bGenerateHalfSizeTexture; // 텍스처 파일을 자동으로 최적화 시켜서 생성 Direct3D 의 포맷에 맞게 2의 제곱수 단위로 맞추어서 "OBM" 비트맵 파일로 저장.
     BOOL bGenerateCompressedTexture; // Texture 압축 사용
@@ -54,10 +54,10 @@ class CN3EngTool : public CN3Eng {
     __VertexColor       m_VDir[6];     // 방향 표시 용
     __VertexTransformed m_VPreview[6]; // 텍스처 프리뷰 용
 
-    //	LPDIRECT3DDEVICE9	m_lpD3DDevExtra;
+    //    LPDIRECT3DDEVICE9    m_lpD3DDevExtra;
 
   public:
-    //	bool CreateExtraDevice(int nWidth, int nHeight);
+    //    bool CreateExtraDevice(int nWidth, int nHeight);
     void GridCreate(int nWidth, int nHeight);
     void RenderTexturePreview(CN3Texture * pTex, HWND hDlgWndDiffuse, RECT * pRCSrc = NULL);
     void RenderGrid(const __Matrix44 & mtxWorld);

@@ -36,7 +36,7 @@ CN3SndObj2D::~CN3SndObj() {
 }
 
 //
-//	Initialize....
+//    Initialize....
 //
 void CN3SndObj2D::Init() {
     Release();
@@ -59,7 +59,7 @@ void CN3SndObj2D::Init() {
 }
 
 //
-//	Release...
+//    Release...
 //
 void CN3SndObj2D::Release() {
     if (m_pDSBuff) {
@@ -70,8 +70,8 @@ void CN3SndObj2D::Release() {
 }
 
 //
-//	SetVolume...
-//	range : [0,100]
+//    SetVolume...
+//    range : [0,100]
 //
 void CN3SndObj2D::SetVolume(int Vol) {
     if (m_pDSBuff) {

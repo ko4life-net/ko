@@ -31,7 +31,7 @@ CZipArchive::CZipArchive() {
 }
 
 CZipArchive::~CZipArchive() {
-    // 	Close(); // cannot be here: if an exception is thrown strange things can happen
+    //     Close(); // cannot be here: if an exception is thrown strange things can happen
     EmptyPtrList();
 }
 
@@ -174,7 +174,7 @@ bool CZipArchive::OpenFile(WORD uIndex) {
     if (uMethod == Z_DEFLATED) {
         m_info.m_stream.opaque = m_bDetectZlibMemoryLeaks ? &m_list : 0;
         int err = inflateInit2(&m_info.m_stream, -MAX_WBITS);
-        //			* windowBits is passed < 0 to tell that there is no zlib header.
+        //            * windowBits is passed < 0 to tell that there is no zlib header.
         //          * Note that in this case inflate *requires* an extra "dummy" byte
         //          * after the compressed stream in order to complete decompression and
         //          * return Z_STREAM_END.
@@ -468,7 +468,7 @@ bool CZipArchive::OpenNewFile(CZipFileHeader & header, int iLevel, LPCTSTR lpszF
         CurrentFile()->SetFileName(szFileName);
     }
     // this ensures the conversion will take place anyway (must take because we are going
-    // 	to write the local header in a moment
+    //     to write the local header in a moment
     m_centralDir.ConvertFileName(false, m_centralDir.m_bConvertAfterOpen);
 
     bool bIsDirectory = IsDirectory(CurrentFile()->m_uExternalAttr);
@@ -476,7 +476,7 @@ bool CZipArchive::OpenNewFile(CZipFileHeader & header, int iLevel, LPCTSTR lpszF
 #ifdef _DEBUG
     if (bIsDirectory && bEncrypted) {
         TRACE(_T("Warning! Encrypting a directory. Possible but pointless.\n\
-		Clear the password before adding a directory.\n"));
+        Clear the password before adding a directory.\n"));
     }
 #endif
 
@@ -1166,7 +1166,7 @@ int CZipArchive::WideToSingle(LPCTSTR lpWide, CZipAutoBuffer & szSingle) {
     return iLen;
 
 #else // if not UNICODE just copy
-    // 	iLen does not include the NULL character
+    //     iLen does not include the NULL character
     szSingle.Allocate(wideLen);
     memcpy(szSingle, lpWide, wideLen);
     return wideLen;
@@ -1189,7 +1189,7 @@ int CZipArchive::SingleToWide(CZipAutoBuffer & szSingle, CString & szWide) {
     return iLen;
 
 #else // if not UNICODE just copy
-    // 	iLen does not include the NULL character
+    //     iLen does not include the NULL character
     memcpy(szWide.GetBuffer(singleLen), szSingle, singleLen);
     szWide.ReleaseBuffer(singleLen);
     return singleLen;

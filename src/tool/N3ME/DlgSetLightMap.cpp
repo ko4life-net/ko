@@ -74,9 +74,9 @@ BOOL CDlgSetLightMap::OnInitDialog() {
 
 DWORD CDlgSetLightMap::GetColor() {
     return m_SelDXColor;
-    //	DWORD SrcColor = m_sld_Color.GetPos();
-    //	DWORD Color = SrcColor + (SrcColor<<4) + (SrcColor<<8) + (SrcColor<<12) + (SrcColor<<16) + (SrcColor<<20) + (SrcColor<<24) + (SrcColor<<28);
-    //	return Color;
+    //    DWORD SrcColor = m_sld_Color.GetPos();
+    //    DWORD Color = SrcColor + (SrcColor<<4) + (SrcColor<<8) + (SrcColor<<12) + (SrcColor<<16) + (SrcColor<<20) + (SrcColor<<24) + (SrcColor<<28);
+    //    return Color;
 }
 
 int CDlgSetLightMap::GetHardness() {

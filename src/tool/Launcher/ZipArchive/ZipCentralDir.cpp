@@ -322,8 +322,8 @@ void CZipCentralDir::Write() {
     m_uSize = 0;
     bool bDontAllowDiskChange = false;
     // if there is a disk spanning archive in creation and it is only one-volume,
-    //	(current disk is 0 so far, no bytes has been written so we know they are
-    //  all in the buffer)	make sure that it will be after writting central dir
+    //    (current disk is 0 so far, no bytes has been written so we know they are
+    //  all in the buffer)    make sure that it will be after writting central dir
     // and make it a non disk spanning archive
     if (m_pStorage->IsSpanMode() && m_pStorage->GetCurrentDisk() == 0) {
         DWORD uVolumeFree = m_pStorage->VolumeLeft();
@@ -480,7 +480,7 @@ bool CZipCentralDir::RemoveDataDescr(bool bFromBuffer) {
     // in the archive
     for (int i = 0; i < m_headers.GetSize(); i++) {
         // update the flag value in the local and central header
-        // 		int uDataDescr = (m_headers[i]->m_uFlag & 8) ? (4 + 12) : 0;
+        //         int uDataDescr = (m_headers[i]->m_uFlag & 8) ? (4 + 12) : 0;
 
         CZipFileHeader * pHeader = m_headers[i];
 
@@ -548,30 +548,30 @@ void CZipCentralDir::InsertFindFastElement(CZipFileHeader * pHeader, WORD uIndex
 
     int iSize = m_findarray.GetSize();
 
-    //	Our initial binary search range encompasses the entire array of filenames:
+    //    Our initial binary search range encompasses the entire array of filenames:
     int start = 0;
     int end = iSize;
 
-    //	Keep halving our search range until we find the right place
-    //	to insert the new element:
+    //    Keep halving our search range until we find the right place
+    //    to insert the new element:
     while (start < end) {
-        //	Find the midpoint of the search range:
+        //    Find the midpoint of the search range:
         int midpoint = (start + end) / 2;
 
-        //	Compare the filename with the filename at the midpoint of the current search range:
+        //    Compare the filename with the filename at the midpoint of the current search range:
         int result = CompareElement(fileName, (WORD)midpoint, true);
 
-        //	If our filename is larger, it must fall in the first half of the search range:
+        //    If our filename is larger, it must fall in the first half of the search range:
         if (result > 0) {
             end = midpoint;
         }
 
-        //	If it's smaller, it must fall in the last half:
+        //    If it's smaller, it must fall in the last half:
         else if (result < 0) {
             start = midpoint + 1;
         }
 
-        //	If they're equal, we can go ahead and insert here:
+        //    If they're equal, we can go ahead and insert here:
         else {
             start = midpoint;
             break;
@@ -584,30 +584,30 @@ int CZipCentralDir::FindFileNameIndex(LPCTSTR lpszFileName, bool bCaseSensitive)
     int start = 0;
     int end = m_findarray.GetUpperBound();
 
-    //	Keep halving our search range until we find the given element:
+    //    Keep halving our search range until we find the given element:
     while (start <= end) {
-        //	Find the midpoint of the search range:
+        //    Find the midpoint of the search range:
         int midpoint = (start + end) / 2;
 
-        //	Compare the given filename with the filename at the midpoint of the search range:
+        //    Compare the given filename with the filename at the midpoint of the search range:
         int result = CompareElement(lpszFileName, (WORD)midpoint, bCaseSensitive);
 
-        //	If our filename is smaller, it must fall in the first half of the search range:
+        //    If our filename is smaller, it must fall in the first half of the search range:
         if (result > 0) {
             end = midpoint - 1;
         }
 
-        //	If it's larger, it must fall in the last half:
+        //    If it's larger, it must fall in the last half:
         else if (result < 0) {
             start = midpoint + 1;
         }
 
-        //	If they're equal, return the result:
+        //    If they're equal, return the result:
         else {
             return midpoint;
         }
     }
 
-    //	Signal failure:
+    //    Signal failure:
     return -1;
 }

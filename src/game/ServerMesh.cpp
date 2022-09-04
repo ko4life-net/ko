@@ -202,7 +202,7 @@ void CServerMesh::AutoConcMesh(D3DCOLOR color, float left, float right, float bo
                                int iStart) {
     // left, right  : x
     // bottom, top  : z
-    // low, high	: y
+    // low, high    : y
 
     switch (iStart) {
     case 0:

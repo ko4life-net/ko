@@ -161,16 +161,16 @@ class CUIKnights : public CN3UIBase {
     }
 
     void ChangeUIByDuty(e_KnightsDuty eDuty);
-    //void	VisibleAppointButtons(bool bVisible); // 기사단장 전용 임명 Interface
+    //void    VisibleAppointButtons(bool bVisible); // 기사단장 전용 임명 Interface
 
-    //void	MsgSend_MemberInfoOnline(int iPage);
+    //void    MsgSend_MemberInfoOnline(int iPage);
     bool MsgRecv_MemberInfo(class DataPack * pDataPack, int & iOffset);
 
-    //void	MsgSend_MemberJoinAdmit();
-    //void	MsgSend_MemberJoinReject();
-    //void	MsgSend_MemberPunish();
-    //void	MsgSend_MemberRemove();
-    //void	MsgSend_DutyAppoint(e_KnightsDuty eDuty);
+    //void    MsgSend_MemberJoinAdmit();
+    //void    MsgSend_MemberJoinReject();
+    //void    MsgSend_MemberPunish();
+    //void    MsgSend_MemberRemove();
+    //void    MsgSend_DutyAppoint(e_KnightsDuty eDuty);
 };
 
 struct __FriendsInfo // 기사 단원 정보..

@@ -131,9 +131,9 @@ void CGameProcCharacterCreate::SetChr() {
 }
 
 void CGameProcCharacterCreate::Tick() {
-    //	s_pLocalInput->Tick(); // 키보드와 마우스로부터 입력을 받는다.
-    //	if(dwMouseFlags & MOUSE_LBDOWN) SetCursor(s_hCursorClick);
-    //	else SetCursor(s_hCursorNormal);
+    //    s_pLocalInput->Tick(); // 키보드와 마우스로부터 입력을 받는다.
+    //    if(dwMouseFlags & MOUSE_LBDOWN) SetCursor(s_hCursorClick);
+    //    else SetCursor(s_hCursorNormal);
 
     CGameProcedure::Tick();
 
@@ -169,10 +169,10 @@ bool CGameProcCharacterCreate::MsgSendCharacterCreate() {
     } else if (RACE_UNKNOWN == s_pPlayer->m_InfoBase.eRace) {
         eErrCode = ERROR_CHARACTER_CREATE_INVALID_RACE;
     }
-    //	else if(RACE_KA_WRINKLETUAREK == s_pPlayer->m_InfoBase.eRace) // 마법사는 선택 불가능..
-    //	{
-    //		eErrCode = ERROR_CHARACTER_CREATE_NOT_SUPPORTED_RACE;
-    //	}
+    //    else if(RACE_KA_WRINKLETUAREK == s_pPlayer->m_InfoBase.eRace) // 마법사는 선택 불가능..
+    //    {
+    //        eErrCode = ERROR_CHARACTER_CREATE_NOT_SUPPORTED_RACE;
+    //    }
     else if (CLASS_UNKNOWN == s_pPlayer->m_InfoBase.eClass) {
         eErrCode = ERROR_CHARACTER_CREATE_INVALID_CLASS;
     } else if (m_pUICharacterCreate->m_iBonusPoint > 0) {
@@ -185,7 +185,7 @@ bool CGameProcCharacterCreate::MsgSendCharacterCreate() {
             if ('~' == szID[i] || '`' == szID[i] || '!' == szID[i] || '@' == szID[i] || '#' == szID[i] ||
                 '$' == szID[i] || '%' == szID[i] || '^' == szID[i] || '&' == szID[i] || '*' == szID[i] ||
                 '(' == szID[i] || ')' == szID[i] ||
-                //				'_' == szID[i] ||
+                //                '_' == szID[i] ||
                 '-' == szID[i] || '+' == szID[i] || '=' == szID[i] || '|' == szID[i] || '\\' == szID[i] ||
                 '<' == szID[i] || '>' == szID[i] || ',' == szID[i] || '.' == szID[i] || '?' == szID[i] ||
                 '/' == szID[i] || '{' == szID[i] || '[' == szID[i] || '}' == szID[i] || ']' == szID[i] ||
@@ -260,7 +260,7 @@ void CGameProcCharacterCreate::ReportErrorCharacterCreate(e_ErrorCharacterCreate
     }
 
     ///
-    //	정보를 잘못 입력해서 실패했다는 메시지를 받을 때...
+    //    정보를 잘못 입력해서 실패했다는 메시지를 받을 때...
     std::string szTitle;
     ::_LoadStringFromResource(IDS_ERR_CHARACTER_CREATE, szTitle);
     MessageBoxPost(szErr, szTitle, MB_OK);

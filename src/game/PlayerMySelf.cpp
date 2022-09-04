@@ -109,9 +109,9 @@ void CPlayerMySelf::Tick() {
         m_eState) // 죽는 상태이고... 죽는 에니메이션이 끝나면.. // 한번 보내면 다시 죽을때까지 안보내는 플래그
     {
         if (0 == m_iSendRegeneration) {
-            //			std::string szMsg; ::_LoadStringFromResource(IDS_REGENERATION, szMsg);
-            //			CGameProcedure::MessageBoxPost(szMsg, "", MB_OK, BEHAVIOR_REGENERATION); // 다시 생성 메시지 보냄..
-            //			CLogWriter::Write("Dead!!!");
+            //            std::string szMsg; ::_LoadStringFromResource(IDS_REGENERATION, szMsg);
+            //            CGameProcedure::MessageBoxPost(szMsg, "", MB_OK, BEHAVIOR_REGENERATION); // 다시 생성 메시지 보냄..
+            //            CLogWriter::Write("Dead!!!");
             m_iSendRegeneration = 1;
         }
         return;
@@ -163,7 +163,7 @@ void CPlayerMySelf::Tick() {
     ////////////////////////////////////////////////////////////////////////////////
 
     CPlayerBase * pTarget = NULL;
-    //	if(true == m_bAttackContinous || m_iSkillStep > 0)
+    //    if(true == m_bAttackContinous || m_iSkillStep > 0)
     if (true == m_bAttackContinous && m_iSkillStep <= 0) {
         pTarget = TargetPointerCheck(false);
         if (NULL == pTarget) {
@@ -402,40 +402,40 @@ void CPlayerMySelf::RotAdd(const float fRotRadianPerSec) // y 축을 기준으로 초당
 
 void CPlayerMySelf::InventoryChrRender(const RECT & Rect) {
     /*
-	DWORD dwUsefog = TRUE;
-	CN3Base::s_lpD3DDev->GetRenderState( D3DRS_FOGENABLE , &dwUsefog );
+    DWORD dwUsefog = TRUE;
+    CN3Base::s_lpD3DDev->GetRenderState( D3DRS_FOGENABLE , &dwUsefog );
 
-	DWORD dwUseLighting=TRUE;
-	CN3Base::s_lpD3DDev->GetRenderState( D3DRS_LIGHTING, &dwUseLighting );
+    DWORD dwUseLighting=TRUE;
+    CN3Base::s_lpD3DDev->GetRenderState( D3DRS_LIGHTING, &dwUseLighting );
 
-	int	bLight[8];
-	for ( int i = 0; i < 8; i++ )	CN3Base::s_lpD3DDev->GetLightEnable(i, &bLight[i]);
+    int    bLight[8];
+    for ( int i = 0; i < 8; i++ )    CN3Base::s_lpD3DDev->GetLightEnable(i, &bLight[i]);
 
-	if (dwUseLighting) CN3Base::s_lpD3DDev->SetRenderState( D3DRS_LIGHTING, TRUE );
-	if (dwUsefog) CN3Base::s_lpD3DDev->SetRenderState( D3DRS_FOGENABLE, FALSE );
-	// set render states
-	for ( int i = 1; i < 8; i++ )	CN3Base::s_lpD3DDev->LightEnable(i, FALSE);
-	CN3Base::s_lpD3DDev->LightEnable(0, TRUE);
+    if (dwUseLighting) CN3Base::s_lpD3DDev->SetRenderState( D3DRS_LIGHTING, TRUE );
+    if (dwUsefog) CN3Base::s_lpD3DDev->SetRenderState( D3DRS_FOGENABLE, FALSE );
+    // set render states
+    for ( int i = 1; i < 8; i++ )    CN3Base::s_lpD3DDev->LightEnable(i, FALSE);
+    CN3Base::s_lpD3DDev->LightEnable(0, TRUE);
 
-	D3DLIGHT9 lgt0;
-	
-	memset(&lgt0, 0, sizeof(D3DLIGHT9));
-	lgt0.Type = D3DLIGHT_POINT;
-	lgt0.Attenuation0 = 0.5f;
-	lgt0.Range = 100.0f;
-	lgt0.Position = __Vector3(0.0f, 2.0f, -10.0f);
-	lgt0.Diffuse.r = 220/255.0f; lgt0.Diffuse.g = 255/255.0f; lgt0.Diffuse.b = 220/255.0f;
-	CN3Base::s_lpD3DDev->SetLight(0, &lgt0);
+    D3DLIGHT9 lgt0;
+    
+    memset(&lgt0, 0, sizeof(D3DLIGHT9));
+    lgt0.Type = D3DLIGHT_POINT;
+    lgt0.Attenuation0 = 0.5f;
+    lgt0.Range = 100.0f;
+    lgt0.Position = __Vector3(0.0f, 2.0f, -10.0f);
+    lgt0.Diffuse.r = 220/255.0f; lgt0.Diffuse.g = 255/255.0f; lgt0.Diffuse.b = 220/255.0f;
+    CN3Base::s_lpD3DDev->SetLight(0, &lgt0);
 
-	//캐릭터 찍기..
-	//
-	__Matrix44 mtxproj, mtxview, mtxworld, mtxprojback, mtxviewback, mtxworldback;
+    //캐릭터 찍기..
+    //
+    __Matrix44 mtxproj, mtxview, mtxworld, mtxprojback, mtxviewback, mtxworldback;
 
-	CN3Base::s_lpD3DDev->GetTransform( D3DTS_PROJECTION, &mtxprojback );
-	CN3Base::s_lpD3DDev->GetTransform( D3DTS_VIEW, &mtxviewback );
-	CN3Base::s_lpD3DDev->GetTransform( D3DTS_WORLD, &mtxworldback );
+    CN3Base::s_lpD3DDev->GetTransform( D3DTS_PROJECTION, &mtxprojback );
+    CN3Base::s_lpD3DDev->GetTransform( D3DTS_VIEW, &mtxviewback );
+    CN3Base::s_lpD3DDev->GetTransform( D3DTS_WORLD, &mtxworldback );
 
-	D3DXMatrixOrthoLH(&mtxproj, 12.0f, 9.0f, 0, 100);  
+    D3DXMatrixOrthoLH(&mtxproj, 12.0f, 9.0f, 0, 100);  
     CN3Base::s_lpD3DDev->SetTransform( D3DTS_PROJECTION, &mtxproj );
 
     D3DXMatrixLookAtLH( &mtxview, &D3DXVECTOR3( 0.0f, 2.0f,-10.0f ),
@@ -443,51 +443,51 @@ void CPlayerMySelf::InventoryChrRender(const RECT & Rect) {
                                   &D3DXVECTOR3( 0.0f, 1.0f, 0.0f ) );
     CN3Base::s_lpD3DDev->SetTransform( D3DTS_VIEW, &mtxview );
 
-	mtxworld.Identity();
-	CN3Base::s_lpD3DDev->SetTransform( D3DTS_WORLD, &mtxworld );
+    mtxworld.Identity();
+    CN3Base::s_lpD3DDev->SetTransform( D3DTS_WORLD, &mtxworld );
 
 
 ///////////////////////////////////////////////////////////////
 // 2d 좌표 구함..
 
-	// 2d -> 3d..
-	__Vector3 vPos;
-	vPos.x = (float)((Rect.right - Rect.left)/2.0f + Rect.left);
-	vPos.y = (float)(Rect.bottom) - (Rect.bottom - Rect.top)/16.0f;
-	vPos.z = 0.11f;
+    // 2d -> 3d..
+    __Vector3 vPos;
+    vPos.x = (float)((Rect.right - Rect.left)/2.0f + Rect.left);
+    vPos.y = (float)(Rect.bottom) - (Rect.bottom - Rect.top)/16.0f;
+    vPos.z = 0.11f;
 
-	float fWidth, fHeight;
-	fWidth = s_CameraData.vp.Width;	fHeight = s_CameraData.vp.Height;	fWidth *= 0.5f;	fHeight *= 0.5f;
+    float fWidth, fHeight;
+    fWidth = s_CameraData.vp.Width;    fHeight = s_CameraData.vp.Height;    fWidth *= 0.5f;    fHeight *= 0.5f;
 
-	vPos.x = (vPos.x - fWidth)/fWidth;
-	vPos.y = (fHeight - vPos.y)/fHeight;
+    vPos.x = (vPos.x - fWidth)/fWidth;
+    vPos.y = (fHeight - vPos.y)/fHeight;
 
-	__Matrix44 mtxProjInv, mtxViewInv;
-	D3DXMatrixInverse(&mtxProjInv, NULL, &mtxproj);
-	D3DXMatrixInverse(&mtxViewInv, NULL, &mtxview);
+    __Matrix44 mtxProjInv, mtxViewInv;
+    D3DXMatrixInverse(&mtxProjInv, NULL, &mtxproj);
+    D3DXMatrixInverse(&mtxViewInv, NULL, &mtxview);
 
-	vPos *= mtxProjInv;
-	vPos *= mtxViewInv;
+    vPos *= mtxProjInv;
+    vPos *= mtxViewInv;
 
-	m_ChrInv.PosSet(vPos.x, vPos.y, 1.0f);
-	__Quaternion qt;
-	qt.RotationAxis(0.0f, 1.0f, 0.0f, D3DXToRadian(198.0f));
-	m_ChrInv.RotSet(qt);
+    m_ChrInv.PosSet(vPos.x, vPos.y, 1.0f);
+    __Quaternion qt;
+    qt.RotationAxis(0.0f, 1.0f, 0.0f, D3DXToRadian(198.0f));
+    m_ChrInv.RotSet(qt);
 
-	CGameProcedure::s_pEng->ClearZBuffer(NULL);
-	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE);
-	m_ChrInv.m_nLOD = 0;
-	m_ChrInv.Render();
+    CGameProcedure::s_pEng->ClearZBuffer(NULL);
+    CN3Base::s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE);
+    m_ChrInv.m_nLOD = 0;
+    m_ChrInv.Render();
 
-	CN3Base::s_lpD3DDev->SetTransform( D3DTS_PROJECTION, &mtxprojback );
-	CN3Base::s_lpD3DDev->SetTransform( D3DTS_VIEW, &mtxviewback );
-	CN3Base::s_lpD3DDev->SetTransform( D3DTS_WORLD, &mtxworldback );
+    CN3Base::s_lpD3DDev->SetTransform( D3DTS_PROJECTION, &mtxprojback );
+    CN3Base::s_lpD3DDev->SetTransform( D3DTS_VIEW, &mtxviewback );
+    CN3Base::s_lpD3DDev->SetTransform( D3DTS_WORLD, &mtxworldback );
 
-	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_AMBIENT, 0x00000000);
+    CN3Base::s_lpD3DDev->SetRenderState(D3DRS_AMBIENT, 0x00000000);
 
-	CN3Base::s_lpD3DDev->SetRenderState( D3DRS_LIGHTING, dwUseLighting );
-	CN3Base::s_lpD3DDev->SetRenderState( D3DRS_FOGENABLE , dwUsefog );
-	for ( int i = 0; i < 8; i++ )	CN3Base::s_lpD3DDev->LightEnable(i, bLight[i]);
+    CN3Base::s_lpD3DDev->SetRenderState( D3DRS_LIGHTING, dwUseLighting );
+    CN3Base::s_lpD3DDev->SetRenderState( D3DRS_FOGENABLE , dwUsefog );
+    for ( int i = 0; i < 8; i++ )    CN3Base::s_lpD3DDev->LightEnable(i, bLight[i]);
 */
     // 아래로 dino수정
     // backup render state
@@ -593,11 +593,11 @@ CN3CPlugBase * CPlayerMySelf::PlugSet(e_PlugPosition ePos, const std::string & s
         pPlug->ScaleSet(__Vector3(fScale, fScale, fScale));
         pPlug->m_nJointIndex = iJoint; // 관절 번호 세팅..
     }
-    //	else if(PLUG_POS_BACK == ePos)
-    //	{
-    //		CN3CPlug_Cloak *pPlugCloak = (CN3CPlug_Cloak*)pPlug;
-    //		pPlugCloak->GetCloak()->SetPlayerBase(this);
-    //	}
+    //    else if(PLUG_POS_BACK == ePos)
+    //    {
+    //        CN3CPlug_Cloak *pPlugCloak = (CN3CPlug_Cloak*)pPlug;
+    //        pPlugCloak->GetCloak()->SetPlayerBase(this);
+    //    }
 
     this->SetSoundPlug(pItemBasic);
     return CPlayerBase::PlugSet(ePos, szFN, pItemBasic, pItemExt);
@@ -815,8 +815,8 @@ bool CPlayerMySelf::CheckCollision() {
     // 다른 플레이어와 체크..
     //////////////////////////////////
 
-    //	__TABLE_ZONE* pZoneInfo = s_pTbl_Zones->Find(m_InfoExt.iZoneCur);
-    //	if(pZoneInfo && pZoneInfo->bNPCCollisionCheck) //this_zone
+    //    __TABLE_ZONE* pZoneInfo = s_pTbl_Zones->Find(m_InfoExt.iZoneCur);
+    //    if(pZoneInfo && pZoneInfo->bNPCCollisionCheck) //this_zone
 
     //적국 엔피씨는 충돌 체크를 한다.
     CPlayerNPC * pNPC = NULL;
@@ -856,7 +856,7 @@ bool CPlayerMySelf::CheckCollision() {
         vPos2.y += 0.5f; // 캐릭터 발높이에서 0.5 미터 높이 위에서 충돌체크한다.
     } else {
         vPos2.y +=
-            0.6f; // 캐릭터 발높이에서 0.6 미터 높이 위에서 충돌체크한다.	이 함수 내에서 쓰는 0.6은 PvsMgr의 m_fVolumeOffs.. ^^
+            0.6f; // 캐릭터 발높이에서 0.6 미터 높이 위에서 충돌체크한다.    이 함수 내에서 쓰는 0.6은 PvsMgr의 m_fVolumeOffs.. ^^
     }
     bool bColShape = ACT_WORLD->CheckCollisionWithShape(vPos2, vDir, fSpeed, &vCol, &vNormal);
     if (bColShape) {
@@ -901,32 +901,32 @@ bool CPlayerMySelf::CheckCollision() {
         }
     }
 
-    //	else // 올라갈수 없는 곳이면 지형과의 기울기 체크..
-    //	{
-    //		// 방향을 구해서.. 기울기에 따라 다른 속도를 적용
-    //		s_pTerrain->GetNormal(vPos.x, vPos.z, vNormal);
-    //		vNormal.Normalize();
-    //		vNormal.y	= 0.0f;
-    //		float fM = vNormal.Magnitude();
-    //		float fD = vNormal.Dot(vDir);
-    //		if(fSpeed < 0) fD *= -1.0f;
-    //		if(fD < 0) fSpeed *= 1.0f - (fM / 0.7071f); // 기울기에 따른 팩터 적용
+    //    else // 올라갈수 없는 곳이면 지형과의 기울기 체크..
+    //    {
+    //        // 방향을 구해서.. 기울기에 따라 다른 속도를 적용
+    //        s_pTerrain->GetNormal(vPos.x, vPos.z, vNormal);
+    //        vNormal.Normalize();
+    //        vNormal.y    = 0.0f;
+    //        float fM = vNormal.Magnitude();
+    //        float fD = vNormal.Dot(vDir);
+    //        if(fSpeed < 0) fD *= -1.0f;
+    //        if(fD < 0) fSpeed *= 1.0f - (fM / 0.7071f); // 기울기에 따른 팩터 적용
     //
-    //		vPosNext = vPos + (vDir * fSpeed); // 다음 위치 계산..
-    //		m_fYNext = s_pTerrain->GetHeight(vPosNext.x, vPosNext.z);
-    //	}
+    //        vPosNext = vPos + (vDir * fSpeed); // 다음 위치 계산..
+    //        m_fYNext = s_pTerrain->GetHeight(vPosNext.x, vPosNext.z);
+    //    }
 
     this->PositionSet(vPosNext, false);
 
     ///////////////////////////////////////////////////////////////
     // 캐릭터 충돌 체크..
-    //	int iSize = s_pOPMgr->m_OPCs.size();
-    //	it_UPC it = s_pOPMgr->m_OPCs.begin();
-    //	for( int i = 0; i < iSize; i++, it++ )
-    //	{
-    //		if ( ((*it)->Position() - vPosAfter).Magnitude() < 1.2f )
-    //			return vPosBefore;
-    //	}
+    //    int iSize = s_pOPMgr->m_OPCs.size();
+    //    it_UPC it = s_pOPMgr->m_OPCs.begin();
+    //    for( int i = 0; i < iSize; i++, it++ )
+    //    {
+    //        if ( ((*it)->Position() - vPosAfter).Magnitude() < 1.2f )
+    //            return vPosBefore;
+    //    }
 
     return false;
 }
@@ -1026,22 +1026,22 @@ float CPlayerMySelf::
         if (CGameProcedure::s_pProcMain) {
             CGameProcedure::s_pProcMain->CommandMove(MD_STOP, true);
         }
-        //		m_fMoveSpeedPerSec = 0;
+        //        m_fMoveSpeedPerSec = 0;
     }
 
     // 방향을 구해서.. 기울기에 따라 다른 속도를 적용
-    /*	__Vector3 vDir = this->Direction();
-	__Vector3 vPos = m_Chr.Pos(), vNormal(0,1,0);
-	s_pTerrain->GetNormal(vPos.x, vPos.z, vNormal);
-	vNormal.Normalize();
-	vNormal.y	= 0.0f;
-	float fM = vNormal.Magnitude();
-	float fD = vNormal.Dot(vDir);
-	if(fSpeed < 0) fD *= -1.0f;
-//	if (fM > MAX_INCLINE_CLIMB && fD <= 0.0f )
-//	{
-//	}
-	if(fD < 0) fSpeed *= 1.0f - (fM / 0.7071f); // 기울기에 따른 팩터 적용
+    /*    __Vector3 vDir = this->Direction();
+    __Vector3 vPos = m_Chr.Pos(), vNormal(0,1,0);
+    s_pTerrain->GetNormal(vPos.x, vPos.z, vNormal);
+    vNormal.Normalize();
+    vNormal.y    = 0.0f;
+    float fM = vNormal.Magnitude();
+    float fD = vNormal.Dot(vDir);
+    if(fSpeed < 0) fD *= -1.0f;
+//    if (fM > MAX_INCLINE_CLIMB && fD <= 0.0f )
+//    {
+//    }
+    if(fD < 0) fSpeed *= 1.0f - (fM / 0.7071f); // 기울기에 따른 팩터 적용
 */
     return m_fMoveSpeedPerSec;
 }

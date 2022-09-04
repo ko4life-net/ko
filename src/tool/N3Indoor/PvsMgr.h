@@ -41,7 +41,7 @@ class CPvsMgr {
     bool m_bShapePerVolumn;
 
     std::list<CPvsBase *>   m_pPvsList;
-    std::list<__Collision>  m_ColList;   //	충돌체크 Structure 리스트..
+    std::list<__Collision>  m_ColList;   //    충돌체크 Structure 리스트..
     std::list<CPortalVol *> m_pVoltList; // 정렬된 충돌체크 Volumn 리스트..
     __DCollision            m_dcol;
 
@@ -119,7 +119,7 @@ class CPvsMgr {
     void SplitShapeToVolumn();
 
     // Debug 용 렌더링..
-    //	void	RenderCollision(__Collision& col);
+    //    void    RenderCollision(__Collision& col);
 
   public:
     CPvsMgr();

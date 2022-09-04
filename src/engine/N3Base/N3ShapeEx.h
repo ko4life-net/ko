@@ -20,9 +20,9 @@ struct __ActionInfo {
     std::vector<__Vector3>    ActionStateInfos_Pos;   // 움직일 상태 정보들(이동 정보 있다면 m_iActionStateCount개)
     std::vector<__Vector3>    ActionStateInfos_Scale; // 확대축소
     std::vector<__Quaternion> ActionStateInfos_Rot;   // 회전
-    //	__Vector3			vCurAction_Pos;	// 현재 움직인 상태 정보(tick에 따라 변화한다)
-    //	__Vector3			vCurAction_Scale;	// 현재 움직인 상태 정보(tick에 따라 변화한다)
-    //	__Quaternion		qtCurAction_Rot;	// 현재 움직인 상태 정보(tick에 따라 변화한다)
+    //    __Vector3            vCurAction_Pos;    // 현재 움직인 상태 정보(tick에 따라 변화한다)
+    //    __Vector3            vCurAction_Scale;    // 현재 움직인 상태 정보(tick에 따라 변화한다)
+    //    __Quaternion        qtCurAction_Rot;    // 현재 움직인 상태 정보(tick에 따라 변화한다)
 };
 
 class CN3SPartEx : public CN3SPart {
@@ -35,6 +35,7 @@ class CN3SPartEx : public CN3SPart {
   public:
   protected:
     __ActionInfo m_ActionInfo; // 움직임에 관한 정보
+
     // Operations
   public:
     virtual void Release();

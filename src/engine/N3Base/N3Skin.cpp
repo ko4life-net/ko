@@ -142,7 +142,7 @@ bool CN3Skin::CheckCollisionPrecisely(const __Vector3 & vPos, const __Vector3 & 
         if (pvPick) {
             float fT, fU, fV;
             ::_IntersectTriangle(vPos, vDir, pVs[nCI0], pVs[nCI1], pVs[nCI2], fT, fU, fV, pvPick);
-            //			(*pvPick) *= m_Mtx;
+            //            (*pvPick) *= m_Mtx;
         }
         return true;
     }

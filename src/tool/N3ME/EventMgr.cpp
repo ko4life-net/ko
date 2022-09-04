@@ -360,7 +360,7 @@ void CEventMgr::MakeEventArray() {
 void CEventMgr::SaveInfoTextFile(char * szEvent) {
     // text 파일 버전...
     FILE * stream = fopen(szEvent, "r");
-    //if(!stream)	return;
+    //if(!stream)    return;
 
     std::list<CEventCell *> TmpList;
 
@@ -443,31 +443,31 @@ void CEventMgr::SaveInfoTextFile(char * szEvent) {
 /*
 void CEventMgr::SaveInfoTextFile(char* szEvent)
 {
-	// text 파일 버전...
-	FILE* stream = fopen(szEvent, "w");
-	if(!stream)	return;
+    // text 파일 버전...
+    FILE* stream = fopen(szEvent, "w");
+    if(!stream)    return;
 
-	std::list<CEventCell*>::iterator itEvent;
+    std::list<CEventCell*>::iterator itEvent;
 
-	CEventCell* pEvent;
-	for(itEvent = m_pEvents.begin(); itEvent != m_pEvents.end(); itEvent++)
-	{
-		pEvent = (*itEvent);
-		if(pEvent)
-		{
-			fprintf(stream, "%d", pEvent->m_ZoneID);
-			fprintf(stream, "\t%d", pEvent->m_EventID);
-			fprintf(stream, "\t%d", pEvent->m_EventType);
-			for(int i=0;i<5;i++)
-				fprintf(stream, "\t%s", pEvent->m_Con[i]);
+    CEventCell* pEvent;
+    for(itEvent = m_pEvents.begin(); itEvent != m_pEvents.end(); itEvent++)
+    {
+        pEvent = (*itEvent);
+        if(pEvent)
+        {
+            fprintf(stream, "%d", pEvent->m_ZoneID);
+            fprintf(stream, "\t%d", pEvent->m_EventID);
+            fprintf(stream, "\t%d", pEvent->m_EventType);
+            for(int i=0;i<5;i++)
+                fprintf(stream, "\t%s", pEvent->m_Con[i]);
 
-			for(int i=0;i<5;i++)
-				fprintf(stream, "\t%s", pEvent->m_Exe[i]);
+            for(int i=0;i<5;i++)
+                fprintf(stream, "\t%s", pEvent->m_Exe[i]);
 
-			fprintf(stream, "\n");
-		}
-	}
-	fclose(stream);	
+            fprintf(stream, "\n");
+        }
+    }
+    fclose(stream);    
 }
 */
 
@@ -488,9 +488,9 @@ bool CEventMgr::MakeGameFile(char * szEventName, int iSize) {
 
 bool CEventMgr::MakeGameFile(HANDLE hFile, int iSize) {
     DWORD dwNum = 0;
-    //	WriteFile(hFile, &iSize, sizeof(int), &dwNum, NULL);
-    //	for(int x=0;x<iSize;x++)
-    //		WriteFile(hFile, m_ppEvent[x], sizeof(short)*iSize, &dwNum, NULL);
+    //    WriteFile(hFile, &iSize, sizeof(int), &dwNum, NULL);
+    //    for(int x=0;x<iSize;x++)
+    //        WriteFile(hFile, m_ppEvent[x], sizeof(short)*iSize, &dwNum, NULL);
 
     int nEventCellCount = m_pEvents.size();
     WriteFile(hFile, &nEventCellCount, sizeof(int), &dwNum, NULL);

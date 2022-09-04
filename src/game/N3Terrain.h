@@ -1,14 +1,14 @@
-//	N3Terrain.h: interface for the CLyTerrain class.
-//	2001. 10. 22.
+//    N3Terrain.h: interface for the CLyTerrain class.
+//    2001. 10. 22.
 //
 //////////////////////////////////////////////////////////////////////
 
 #pragma once
 
 ////////////////////////////////
-//	변수앞에 ti_가 붙은 건 타일단위..
-//	변수앞에 pat_가 붙은 건 패치단위..
-//	변수앞에 re_가 붙은 건 미터단위..
+//    변수앞에 ti_가 붙은 건 타일단위..
+//    변수앞에 pat_가 붙은 건 패치단위..
+//    변수앞에 re_가 붙은 건 미터단위..
 //
 
 #include "N3Base/N3BaseFileAccess.h"
@@ -46,8 +46,8 @@ class CN3Terrain : public CN3BaseFileAccess {
     POINT        m_pat_CenterPos;
     stlMap_N3Tex m_LightMapPatch[3][3];
 
-    //bool**			m_ppIsLightMap;
-    //CN3Texture***		m_pppLightMapTex;
+    //bool**            m_ppIsLightMap;
+    //CN3Texture***        m_pppLightMapTex;
 
     //Patch
     float ** m_ppPatchRadius;

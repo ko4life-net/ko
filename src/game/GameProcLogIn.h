@@ -37,5 +37,5 @@ class CGameProcLogIn : public CGameProcedure {
     void ConnectToGameServer(); // 고른 게임 서버에 접속
     CGameProcLogIn();
     virtual ~CGameProcLogIn();
-    //	void PacketSend_MGameLogin();
+    //    void PacketSend_MGameLogin();
 };

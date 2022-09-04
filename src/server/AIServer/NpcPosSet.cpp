@@ -49,7 +49,7 @@ CString CNpcPosSet::GetDefaultConnect() {
 
 CString CNpcPosSet::GetDefaultSQL() {
     return _T("[dbo].[K_NPCPOS]");
-    //return _T("[dbo].[K_NPCPOS_BACK]");	// sungyong test
+    //return _T("[dbo].[K_NPCPOS_BACK]");    // sungyong test
 }
 
 void CNpcPosSet::DoFieldExchange(CFieldExchange * pFX) {

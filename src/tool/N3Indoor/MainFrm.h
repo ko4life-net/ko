@@ -85,7 +85,7 @@ class CMainFrame : public CFrameWnd, public CN3Base {
     CDlgShapeList *   m_pDlgSourceList;      // Object 목록을 보여줄 다이알로그
     CDlgShapeList *   m_pDlgOutputList;      // 맵에 배치한 Object를 보여줄 다이알로그
     CN3Scene *        m_pSceneSource;        // source object 목록에 보여줄 것들을 담은 Scene
-    SelectElement     m_LastSelectedElement; // 가장 마지막으로 선택된 객체..	포커스 맞출때 쓴다..
+    SelectElement     m_LastSelectedElement; // 가장 마지막으로 선택된 객체..    포커스 맞출때 쓴다..
 
     //.................
     CArray<CPortalVolume *, CPortalVolume *> m_SelVolArray;

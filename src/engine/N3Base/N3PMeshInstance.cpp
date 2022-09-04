@@ -226,7 +226,7 @@ void CN3PMeshInstance::SetLOD(float value) {
     float fVolume = m_pPMesh->GetVolume();
     float fD = (sqrtf(fVolume) * 3.0f) / (value * 1.0f);
     fD = 1.0f;
-    //	float fD = fVolume/(value*13.0f) * (400.0f/(float)iMaxNumVertices);
+    //    float fD = fVolume/(value*13.0f) * (400.0f/(float)iMaxNumVertices);
     if (fD > 1.0f) {
         SetLODByNumVertices(iMaxNumVertices);
     } else if (fD < 0.1f) {
@@ -276,7 +276,7 @@ bool CN3PMeshInstance::SplitOne() {
     }
     // 하지만 이렇게 다시 하는 이유는 아래 코드로 하면 마지막 폴리곤이 절대 그려지지 않는다.
     // 이렇게 해도 괜찮을 수 있도록 방어코드를 넣었다. m_pPMesh->m_pCollapses 를 할당할때 1개 더 할당하고 마지막 데이터를 초기값으로 넣었다.
-    //	if (m_pCollapseUpTo >= m_pPMesh->m_pCollapses + m_pPMesh->m_iNumCollapses - 1) return false; // 이게 정상이다..
+    //    if (m_pCollapseUpTo >= m_pPMesh->m_pCollapses + m_pPMesh->m_iNumCollapses - 1) return false; // 이게 정상이다..
 
     m_iNumIndices += m_pCollapseUpTo->NumIndicesToLose;
     m_iNumVertices += m_pCollapseUpTo->NumVerticesToLose;
@@ -430,7 +430,7 @@ __VertexT1 * CN3PMeshInstance::GetVertices() const {
 }
 #endif
 
-//	By : Ecli666 ( On 2002-08-06 오후 4:33:04 )
+//    By : Ecli666 ( On 2002-08-06 오후 4:33:04 )
 //
 #ifdef _USE_VERTEXBUFFER
 void CN3PMeshInstance::PartialRender(int iCount, LPDIRECT3DINDEXBUFFER9 pIB) {
@@ -466,20 +466,20 @@ void CN3PMeshInstance::PartialRender(int iCount, WORD * pIndices) {
     s_lpD3DDev->SetFVF(FVF_VNT1);
     const int iPCToRender = 1000; // primitive count to render
 
-    /*	if(m_iNumIndices > 3)
-	{
-		int iPC = m_iNumIndices / 3;
+    /*    if(m_iNumIndices > 3)
+    {
+        int iPC = m_iNumIndices / 3;
 
-		int iLC = iPC / iPCToRender;
-		int i;
-		for (i=0; i<iLC; ++i)
-		{
-			s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_TRIANGLELIST, 0, m_iNumVertices, iPCToRender, m_pIndices + i*iPCToRender*3, D3DFMT_INDEX16, m_pPMesh->m_pVertices, sizeof(__VertexT1));
-		}
+        int iLC = iPC / iPCToRender;
+        int i;
+        for (i=0; i<iLC; ++i)
+        {
+            s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_TRIANGLELIST, 0, m_iNumVertices, iPCToRender, m_pIndices + i*iPCToRender*3, D3DFMT_INDEX16, m_pPMesh->m_pVertices, sizeof(__VertexT1));
+        }
 
-		int iRPC = iPC%iPCToRender;
-		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_TRIANGLELIST, 0, m_iNumVertices, iRPC, m_pIndices + i*iPCToRender*3, D3DFMT_INDEX16, m_pPMesh->m_pVertices, sizeof(__VertexT1));
-	}
+        int iRPC = iPC%iPCToRender;
+        if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_TRIANGLELIST, 0, m_iNumVertices, iRPC, m_pIndices + i*iPCToRender*3, D3DFMT_INDEX16, m_pPMesh->m_pVertices, sizeof(__VertexT1));
+    }
 */
 
     if (iCount > 3) {
@@ -542,4 +542,4 @@ void CN3PMeshInstance::PartialRender(int iCount, WORD * pIndices) {
 #endif
     }
 
-    //	~(By Ecli666 On 2002-08-06 오후 4:33:04 )
+    //    ~(By Ecli666 On 2002-08-06 오후 4:33:04 )

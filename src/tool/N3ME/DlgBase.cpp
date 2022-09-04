@@ -84,10 +84,10 @@ BOOL CDlgBase::OnInitDialog() {
     m_LPCamera.AddPropItem("Near Plane", "", PIT_EDIT, "");
     m_LPCamera.AddPropItem("Far Plane", "", PIT_EDIT, "");
     m_LPCamera.AddPropItem("안개 사용", "", PIT_EDIT, "");
-    //	m_LPCamera.AddPropItem("안개 밀도", "", PIT_EDIT, "");
+    //    m_LPCamera.AddPropItem("안개 밀도", "", PIT_EDIT, "");
     m_LPCamera.AddPropItem("안개 색", "", PIT_EDIT, "");
-    //	m_LPCamera.AddPropItem("안개 시작", "", PIT_EDIT, "");
-    //	m_LPCamera.AddPropItem("안개 끝", "", PIT_EDIT, "");
+    //    m_LPCamera.AddPropItem("안개 시작", "", PIT_EDIT, "");
+    //    m_LPCamera.AddPropItem("안개 끝", "", PIT_EDIT, "");
 
     m_LPCamera.GetWindowRect(&rc);
     nH = m_LPCamera.GetItemHeight(0) * m_LPCamera.GetCount() + 4;
@@ -151,9 +151,9 @@ D3DTOP_BUMPENVMAP|D3DTOP_BUMPENVMAPLUMINANCE|D3DTOP_DOTPRODUCT|D3DTOP_MULTIPLYAD
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Shape
     m_CBShapePart.ResetContent();
-    //	int nPartCount =
-    //	for(int i = 0; i < nPartCount; i++) { strTmp.Format("%d", i); m_CBShapePart.AddString(strTmp); }
-    //	m_CBShapePart.SetCurSel(0);
+    //    int nPartCount =
+    //    for(int i = 0; i < nPartCount; i++) { strTmp.Format("%d", i); m_CBShapePart.AddString(strTmp); }
+    //    m_CBShapePart.SetCurSel(0);
 
     m_LPShape.AddPropItem("소속", "", PIT_EDIT, "");
     m_LPShape.AddPropItem("Event ID", "", PIT_EDIT, "");
@@ -181,8 +181,8 @@ D3DTOP_BUMPENVMAP|D3DTOP_BUMPENVMAPLUMINANCE|D3DTOP_DOTPRODUCT|D3DTOP_MULTIPLYAD
     m_LPChr.AddPropItem("Joint File", "", PIT_FILE, "N3 Joint File(*.N3Joint)|*.N3Joint||");
     m_LPChr.AddPropItem("Collision Mesh File", "", PIT_FILE, "N3 Vector Mesh(*.N3VMesh)|*.N3VMesh||");
     m_LPChr.AddPropItem("Collision Mesh Delete", "Collision Mesh 삭제", PIT_BUTTON, "");
-    //	m_LPChr.AddPropItem("Collision Skin File", "", PIT_FILE, "N3 Skin File(*.N3Skin)|*.N3Skin||");
-    //	m_LPChr.AddPropItem("Collision Skin Delete", "Collision Skin 삭제", PIT_BUTTON, "");
+    //    m_LPChr.AddPropItem("Collision Skin File", "", PIT_FILE, "N3 Skin File(*.N3Skin)|*.N3Skin||");
+    //    m_LPChr.AddPropItem("Collision Skin Delete", "Collision Skin 삭제", PIT_BUTTON, "");
 
     m_LPChr.AddPropItem("Part Add", "Part 추가", PIT_BUTTON, "");
     m_LPChr.AddPropItem("Part Delete", "Part 삭제", PIT_BUTTON, "");
@@ -202,8 +202,8 @@ D3DTOP_BUMPENVMAP|D3DTOP_BUMPENVMAPLUMINANCE|D3DTOP_DOTPRODUCT|D3DTOP_MULTIPLYAD
     m_LPCPart.AddPropItem("Part Type", "", PIT_COMBO, "머리카락|얼굴|상체|하체|손|발|??|");
     m_LPCPart.AddPropItem("Texture File", "", PIT_FILE,
                           "Texture 로 쓸수 있는 그림 파일(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
-    //	m_LPCPart.AddPropItem("Mesh File", "", PIT_FILE, "N3 Indexed Mesh File(*.N3IMesh)|*.N3IMesh||");
-    //	m_LPCPart.AddPropItem("Skin File", "", PIT_FILE, "N3 Skin File(*.N3Skin)|*.N3Skin||");
+    //    m_LPCPart.AddPropItem("Mesh File", "", PIT_FILE, "N3 Indexed Mesh File(*.N3IMesh)|*.N3IMesh||");
+    //    m_LPCPart.AddPropItem("Skin File", "", PIT_FILE, "N3 Skin File(*.N3Skin)|*.N3Skin||");
 
     m_LPCPlug.AddPropItem("Plug Type", "", PIT_COMBO, "오른손장착|왼손장착|양손장착");
     m_LPCPlug.AddPropItem("Plug Joint", "", PIT_EDIT, "");
@@ -293,8 +293,8 @@ void CDlgBase::UpdateInfo() {
         if (pItem) {
             pItem->VectorSet(pT->Pos());
         }
-        //		pItem = m_LPTransform.GetPropItem("Rotation");
-        //		if(pItem) pItem->VectorSet(pT->Rot());
+        //        pItem = m_LPTransform.GetPropItem("Rotation");
+        //        if(pItem) pItem->VectorSet(pT->Rot());
         pItem = m_LPTransform.GetPropItem("Scale");
         if (pItem) {
             pItem->VectorSet(pT->Scale());
@@ -347,16 +347,16 @@ void CDlgBase::UpdateInfo() {
                 pItem->m_curValue = "Off";
             }
         }
-        //		pItem = m_LPCamera.GetPropItem("안개 밀도");
-        //		if(pItem) pItem->m_curValue.Format("%f", pC->m_fFogDensity);
+        //        pItem = m_LPCamera.GetPropItem("안개 밀도");
+        //        if(pItem) pItem->m_curValue.Format("%f", pC->m_fFogDensity);
         pItem = m_LPCamera.GetPropItem("안개 색");
         if (pItem) {
             pItem->D3DColorSet(pC->m_FogColor);
         }
-        //		pItem = m_LPCamera.GetPropItem("안개 시작");
-        //		if(pItem) pItem->m_curValue.Format("%f", pC->m_fFogStart);
-        //		pItem = m_LPCamera.GetPropItem("안개 끝");
-        //		if(pItem) pItem->m_curValue.Format("%f", pC->m_fFogEnd);
+        //        pItem = m_LPCamera.GetPropItem("안개 시작");
+        //        if(pItem) pItem->m_curValue.Format("%f", pC->m_fFogStart);
+        //        pItem = m_LPCamera.GetPropItem("안개 끝");
+        //        if(pItem) pItem->m_curValue.Format("%f", pC->m_fFogEnd);
 
         m_LPCamera.Invalidate();
 
@@ -616,13 +616,13 @@ void CDlgBase::UpdateInfo() {
             }
         }
 
-        //		pItem = m_LPChr.GetPropItem("Collision Skin File");
-        //		if(pItem)
-        //		{
-        //			CN3Skin* pSkin = pC->CollisionSkin();
-        //			if(pSkin) pItem->m_curValue = pSkin->FileName().c_str();
-        //			else pItem->m_curValue = "";
-        //		}
+        //        pItem = m_LPChr.GetPropItem("Collision Skin File");
+        //        if(pItem)
+        //        {
+        //            CN3Skin* pSkin = pC->CollisionSkin();
+        //            if(pSkin) pItem->m_curValue = pSkin->FileName().c_str();
+        //            else pItem->m_curValue = "";
+        //        }
 
         if (nPart >= 0 && nPart < nPartCount) {
             CN3CPart * pPart = pC->Part(nPart);
@@ -642,21 +642,21 @@ void CDlgBase::UpdateInfo() {
                 }
             }
 
-            //			pItem = m_LPCPart.GetPropItem("Mesh File");
-            //			if(pItem)
-            //			{
-            //				CN3IMesh* pMesh = pPart->Mesh(nLOD);
-            //				if(pMesh) pItem->m_curValue = pMesh->FileName().c_str();
-            //				else pItem->m_curValue = "";
-            //			}
+            //            pItem = m_LPCPart.GetPropItem("Mesh File");
+            //            if(pItem)
+            //            {
+            //                CN3IMesh* pMesh = pPart->Mesh(nLOD);
+            //                if(pMesh) pItem->m_curValue = pMesh->FileName().c_str();
+            //                else pItem->m_curValue = "";
+            //            }
             //
-            //			pItem = m_LPCPart.GetPropItem("Skin File");
-            //			if(pItem)
-            //			{
-            //				CN3Skin* pSkin = pPart->Skin(nLOD);
-            //				if(pSkin) pItem->m_curValue = pSkin->FileName().c_str();
-            //				else pItem->m_curValue = "";
-            //			}
+            //            pItem = m_LPCPart.GetPropItem("Skin File");
+            //            if(pItem)
+            //            {
+            //                CN3Skin* pSkin = pPart->Skin(nLOD);
+            //                if(pSkin) pItem->m_curValue = pSkin->FileName().c_str();
+            //                else pItem->m_curValue = "";
+            //            }
         }
 
         // 붙이는 오브젝트(무기, 장신구 등...) 정보 표시
@@ -812,7 +812,7 @@ BOOL CDlgBase::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
             if (pItem->m_propName == "Position") {
                 pT->PosSet(__Vector3(pItem->VectorGet()));
             }
-            //			else if(pItem->m_propName == "Rotation") pT->RotSet(__Vector3(pItem->VectorGet()));
+            //            else if(pItem->m_propName == "Rotation") pT->RotSet(__Vector3(pItem->VectorGet()));
             else if (pItem->m_propName == "Scale") {
                 pT->ScaleSet(__Vector3(pItem->VectorGet()));
             }
@@ -841,12 +841,12 @@ BOOL CDlgBase::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                     pC->m_bFogUse = FALSE;
                 }
             }
-            //			else if(pItem->m_propName == "안개 밀도") pC->m_fFogDensity = (float)atof(pItem->m_curValue);
+            //            else if(pItem->m_propName == "안개 밀도") pC->m_fFogDensity = (float)atof(pItem->m_curValue);
             else if (pItem->m_propName == "안개 색") {
                 pC->m_FogColor = pItem->D3DColorGet();
             }
-            //			else if(pItem->m_propName == "안개 시작") pC->m_fFogStart = (float)atof(pItem->m_curValue);
-            //			else if(pItem->m_propName == "안개 끝") pC->m_fFogEnd = (float)atof(pItem->m_curValue);
+            //            else if(pItem->m_propName == "안개 시작") pC->m_fFogStart = (float)atof(pItem->m_curValue);
+            //            else if(pItem->m_propName == "안개 끝") pC->m_fFogEnd = (float)atof(pItem->m_curValue);
         }
 
         if ((void *)wParam == &m_LPLight && (pBase->Type() & OBJ_LIGHT)) {
@@ -983,16 +983,16 @@ BOOL CDlgBase::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                 pC->CollisionMeshSet("");
                 this->UpdateInfo();
             }
-            //			else if(pItem->m_propName == "Collision Skin File" && pItem->m_curValue.GetLength() > 0)
-            //			{
-            //				pC->CollisionSkinSet(pItem->m_curValue);
-            //				this->UpdateInfo();
-            //			}
-            //			else if(pItem->m_propName == "Collision Skin Delete")
-            //			{
-            //				pC->CollisionSkinSet("");
-            //				this->UpdateInfo();
-            //			}
+            //            else if(pItem->m_propName == "Collision Skin File" && pItem->m_curValue.GetLength() > 0)
+            //            {
+            //                pC->CollisionSkinSet(pItem->m_curValue);
+            //                this->UpdateInfo();
+            //            }
+            //            else if(pItem->m_propName == "Collision Skin Delete")
+            //            {
+            //                pC->CollisionSkinSet("");
+            //                this->UpdateInfo();
+            //            }
             else if (pItem->m_propName == "Part Add") {
                 pC->PartAdd();
                 this->UpdateInfo();
@@ -1023,13 +1023,13 @@ BOOL CDlgBase::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                 if (pItem->m_propName == "Part Type") {
                     CN3CPart * pPD = pC->Part(nPart);
                     if (pPD) {
-                        //del m_Type			if(pItem->m_curValue == "머리카락") pPD->m_Type = PART_HAIR;
-                        //del m_Type			else if(pItem->m_curValue == "얼굴") pPD->m_Type = PART_FACE;
-                        //del m_Type			else if(pItem->m_curValue == "상체") pPD->m_Type = PART_UPPER;
-                        //del m_Type			else if(pItem->m_curValue == "하체") pPD->m_Type = PART_LOWER;
-                        //del m_Type			else if(pItem->m_curValue == "손") pPD->m_Type = PART_HAND;
-                        //del m_Type			else if(pItem->m_curValue == "발") pPD->m_Type = PART_FOOT;
-                        //del m_Type			else if(pItem->m_curValue == "??") pPD->m_Type = PART_UNKNOWN;
+                        //del m_Type            if(pItem->m_curValue == "머리카락") pPD->m_Type = PART_HAIR;
+                        //del m_Type            else if(pItem->m_curValue == "얼굴") pPD->m_Type = PART_FACE;
+                        //del m_Type            else if(pItem->m_curValue == "상체") pPD->m_Type = PART_UPPER;
+                        //del m_Type            else if(pItem->m_curValue == "하체") pPD->m_Type = PART_LOWER;
+                        //del m_Type            else if(pItem->m_curValue == "손") pPD->m_Type = PART_HAND;
+                        //del m_Type            else if(pItem->m_curValue == "발") pPD->m_Type = PART_FOOT;
+                        //del m_Type            else if(pItem->m_curValue == "??") pPD->m_Type = PART_UNKNOWN;
                     }
                     this->UpdateInfo();
                 } else if (pItem->m_propName == "Texture File" && pItem->m_curValue.GetLength() > 0) {
@@ -1039,22 +1039,22 @@ BOOL CDlgBase::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
 
                     this->UpdateInfo();
                 }
-                //				else if(pItem->m_propName == "Mesh File" && pItem->m_curValue.GetLength() > 0)
-                //				{
-                //					CN3Base tmp;
-                //					tmp.m_szName = pItem->m_curValue;
-                //					pPart->MeshSet(nLOD, tmp.m_szName);
+                //                else if(pItem->m_propName == "Mesh File" && pItem->m_curValue.GetLength() > 0)
+                //                {
+                //                    CN3Base tmp;
+                //                    tmp.m_szName = pItem->m_curValue;
+                //                    pPart->MeshSet(nLOD, tmp.m_szName);
                 //
-                //					this->UpdateInfo();
-                //				}
-                //				else if(pItem->m_propName == "Skin File" && pItem->m_curValue.GetLength() > 0)
-                //				{
-                //					CN3Base tmp;
-                //					tmp.m_szName = pItem->m_curValue;
-                //					pPart->SkinSet(nLOD, tmp.m_szName);
+                //                    this->UpdateInfo();
+                //                }
+                //                else if(pItem->m_propName == "Skin File" && pItem->m_curValue.GetLength() > 0)
+                //                {
+                //                    CN3Base tmp;
+                //                    tmp.m_szName = pItem->m_curValue;
+                //                    pPart->SkinSet(nLOD, tmp.m_szName);
                 //
-                //					this->UpdateInfo();
-                //				}
+                //                    this->UpdateInfo();
+                //                }
             }
         }
 

@@ -192,7 +192,7 @@ void CN3TexViewerDoc::SetTitle(LPCTSTR lpszTitle) {
     }
 
     CDocument::SetTitle(szFmt);
-    //	CDocument::SetTitle(lpszTitle);
+    //    CDocument::SetTitle(lpszTitle);
 }
 
 void CN3TexViewerDoc::FindFiles() {

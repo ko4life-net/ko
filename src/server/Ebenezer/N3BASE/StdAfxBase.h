@@ -101,9 +101,9 @@ struct CMemoryState {
 
 // Enumerate allocated objects or runtime classes
 //void AFXAPI AfxDoForAllObjects(void (AFX_CDECL *pfn)(CObject* pObject, void* pContext),
-//	void* pContext);
+//    void* pContext);
 //void AFXAPI AfxDoForAllClasses(void (AFX_CDECL *pfn)(const CRuntimeClass* pClass,
-//	void* pContext), void* pContext);
+//    void* pContext), void* pContext);
 
 #else
 

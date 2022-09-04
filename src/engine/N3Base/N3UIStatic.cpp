@@ -35,12 +35,12 @@ void CN3UIStatic::Release() {
 
 //void CN3UIStatic::Render()
 //{
-//	if (!m_bVisible) return;
+//    if (!m_bVisible) return;
 //
-//	CN3UIBase::Render();
+//    CN3UIBase::Render();
 //
-////	if (m_pImageBkGnd) m_pImageBkGnd->Render();
-////	if (m_pBuffOutRef) m_pBuffOutRef->Render();
+////    if (m_pImageBkGnd) m_pImageBkGnd->Render();
+////    if (m_pBuffOutRef) m_pBuffOutRef->Render();
 //}
 
 void CN3UIStatic::SetRegion(const RECT & Rect) {
@@ -68,7 +68,7 @@ bool CN3UIStatic::Load(HANDLE hFile) {
     // 이전 uif파일을 컨버팅 하려면 사운드 로드 하는 부분 막기
     int   iSndFNLen = 0;
     DWORD dwNum;
-    ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //	사운드 파일 문자열 길이
+    ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //    사운드 파일 문자열 길이
     if (iSndFNLen > 0) {
         std::vector<char> buffer(iSndFNLen, 0);
         ReadFile(hFile, &buffer[0], iSndFNLen, &dwNum, NULL);
@@ -144,7 +144,7 @@ bool CN3UIStatic::Save(HANDLE hFile) {
     if (m_pSnd_Click) {
         iSndFNLen = m_pSnd_Click->m_szFileName.size();
     }
-    WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //	사운드 파일 문자열 길이
+    WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //    사운드 파일 문자열 길이
     if (iSndFNLen > 0) {
         WriteFile(hFile, m_pSnd_Click->m_szFileName.c_str(), iSndFNLen, &dwNum, NULL);
     }

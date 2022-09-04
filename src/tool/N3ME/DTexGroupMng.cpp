@@ -34,7 +34,7 @@ CDTexGroupMng::~CDTexGroupMng() {
 }
 
 //
-//	Init..
+//    Init..
 //
 void CDTexGroupMng::Init(CWnd * pWndParent) {
     Release();
@@ -50,7 +50,7 @@ void CDTexGroupMng::Init(CWnd * pWndParent) {
 }
 
 //
-//	Release..
+//    Release..
 //
 void CDTexGroupMng::Release() {
     if (m_pGroupView) {
@@ -79,7 +79,7 @@ int CDTexGroupMng::GetBrushSize() {
 }
 
 //
-//	SetGroup..
+//    SetGroup..
 //
 void CDTexGroupMng::SetGroup(const char * pName) {
     //^^
@@ -126,8 +126,8 @@ void CDTexGroupMng::SetGroup(const char * pName) {
 }
 
 //
-//	SetGroupID..
-//	ID로 그룹 넣기..
+//    SetGroupID..
+//    ID로 그룹 넣기..
 //
 void CDTexGroupMng::SetGroupID(const char * pName, int id) {
     CDTexGroup * pGroup = new CDTexGroup;
@@ -142,7 +142,7 @@ void CDTexGroupMng::SetGroupID(const char * pName, int id) {
 }
 
 //
-//	qsort를 위해 정렬하는 함수...
+//    qsort를 위해 정렬하는 함수...
 //
 int CDTexGroupMng::CompareIdx(const void * arg1, const void * arg2) {
     int a, b;
@@ -159,7 +159,7 @@ int CDTexGroupMng::CompareIdx(const void * arg1, const void * arg2) {
 }
 
 //
-//	그룹 지우기..
+//    그룹 지우기..
 //
 void CDTexGroupMng::DelGroup(int ID) {
     it_DTexGroup it = m_Groups.begin();
@@ -179,7 +179,7 @@ void CDTexGroupMng::DelGroup(int ID) {
 }
 
 //
-//	그룹안에 타일 넣기..
+//    그룹안에 타일 넣기..
 //
 void CDTexGroupMng::SetTile(int ID, int attr, __DTexTileAttr tile) {
     it_DTexGroup it = m_Groups.begin();

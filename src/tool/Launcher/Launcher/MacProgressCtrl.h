@@ -2,9 +2,9 @@
 
 // MacProgressCtrl.h : header file
 //
-//	CMacProgressCtrl class, version 1.0
+//    CMacProgressCtrl class, version 1.0
 //
-//	Copyright (c) 1999 Paul M. Meidinger (pmmeidinger@yahoo.com)
+//    Copyright (c) 1999 Paul M. Meidinger (pmmeidinger@yahoo.com)
 //
 // Feel free to modifiy and/or distribute this file, but
 // do not remove this header.
@@ -14,8 +14,8 @@
 //
 // This file is provided "as is" with no expressed or implied warranty.
 //
-//	History:
-//		PMM	12/21/1999		Initial implementation.
+//    History:
+//        PMM    12/21/1999        Initial implementation.
 
 /////////////////////////////////////////////////////////////////////////////
 // CMacProgressCtrl window

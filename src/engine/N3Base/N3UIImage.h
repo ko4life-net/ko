@@ -32,7 +32,7 @@ class CN3UIImage : public CN3UIBase {
     int           m_fCurAnimFrame;  // 현재 그려질 animate frame index (소수는 버리고 사용하자)
     CN3UIImage ** m_pAnimImagesRef; // Animate 될 자식 이미지들 참조 포인터들
 
-    //	Operations
+    //    Operations
   public:
     D3DCOLOR GetColor() { return m_Color; }
 

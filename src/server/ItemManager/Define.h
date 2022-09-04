@@ -15,7 +15,7 @@
 #define PACKET_START2 0X55
 #define PACKET_END1   0X55
 #define PACKET_END2   0XAA
-//#define PROTOCOL_VER				0X01
+//#define PROTOCOL_VER                0X01
 
 // status
 #define STATE_CONNECTED    0X01
@@ -99,7 +99,7 @@ typedef union {
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 //
-//	Global Function Define
+//    Global Function Define
 //
 
 inline void GetString(char * tBuf, char * sBuf, int len, int & index) {

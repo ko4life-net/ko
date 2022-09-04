@@ -140,12 +140,12 @@ bool CN3ShapeMgr::Load(HANDLE hFile) {
 #ifdef _N3GAME
 
             // 강제 코딩... 각종 성문 열기..
-            //			if(dwType & OBJ_SHAPE_EXTRA)
-            //			{
-            //				CN3ShapeExtra* pSE = (CN3ShapeExtra*)pShape; // 성문등 확장된 Object 로 쓸경우..
-            //				pSE->RotateTo(0, __Vector3(0,1,0), 80, 1, true); // 바로 열기.
-            //				pSE->RotateTo(1, __Vector3(0,1,0), -80, 1, true); // 바로 열기.
-            //			}
+            //            if(dwType & OBJ_SHAPE_EXTRA)
+            //            {
+            //                CN3ShapeExtra* pSE = (CN3ShapeExtra*)pShape; // 성문등 확장된 Object 로 쓸경우..
+            //                pSE->RotateTo(0, __Vector3(0,1,0), 80, 1, true); // 바로 열기.
+            //                pSE->RotateTo(1, __Vector3(0,1,0), -80, 1, true); // 바로 열기.
+            //            }
 
             if (!(i % 64)) {
                 sprintf(szBuff, "Loading Objects... %d %%", i * 100 / iSC);
@@ -514,13 +514,13 @@ void CN3ShapeMgr::GenerateCollisionData() {
                         pSubCell->pdwCCVertIndices = new DWORD[768];
                         memset(pSubCell->pdwCCVertIndices, 0, 768 * 4);
                     }
-                    //					else // 이미 있으면..
-                    //					{
-                    //						DWORD* pwBack = pSubCell->pdwCCVertIndices;
-                    //						pSubCell->pdwCCVertIndices = new DWORD[(nCCPC+1)*3];
-                    //						memcpy(pSubCell->pdwCCVertIndices, pwBack, nCCPC * 3 * 4); // 점세개가 하나의 폴리곤이고 워드 인덱스이므로..
-                    //						delete [] pwBack;
-                    //					}
+                    //                    else // 이미 있으면..
+                    //                    {
+                    //                        DWORD* pwBack = pSubCell->pdwCCVertIndices;
+                    //                        pSubCell->pdwCCVertIndices = new DWORD[(nCCPC+1)*3];
+                    //                        memcpy(pSubCell->pdwCCVertIndices, pwBack, nCCPC * 3 * 4); // 점세개가 하나의 폴리곤이고 워드 인덱스이므로..
+                    //                        delete [] pwBack;
+                    //                    }
 
                     if (nCCPC >= 256) {
 #ifdef _N3GAME
@@ -840,9 +840,9 @@ void CN3ShapeMgr::RenderCollision(__Vector3 & vPos) {
     DWORD dwLight;
     s_lpD3DDev->GetRenderState(D3DRS_LIGHTING, &dwLight);
     s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
-    //	DWORD dwZ;
-    //	s_lpD3DDev->GetRenderState(D3DRS_ZENABLE, &dwZ);
-    //	s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, FALSE);
+    //    DWORD dwZ;
+    //    s_lpD3DDev->GetRenderState(D3DRS_ZENABLE, &dwZ);
+    //    s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, FALSE);
     s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
     s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
     s_lpD3DDev->SetTexture(0, NULL);
@@ -864,7 +864,7 @@ void CN3ShapeMgr::RenderCollision(__Vector3 & vPos) {
             vCols[0].Set(m_pvCollisions[n0], 0xffff0000);
             vCols[1].Set(m_pvCollisions[n1], 0xff00ff00);
             vCols[2].Set(m_pvCollisions[n2], 0xff0000ff);
-            //			vCols[3] = vCols[0]; vCols[3].color = 0xffffffff;
+            //            vCols[3] = vCols[0]; vCols[3].color = 0xffffffff;
 
             vDir.Cross((m_pvCollisions[n1] - m_pvCollisions[n0]), (m_pvCollisions[n2] - m_pvCollisions[n1]));
             vDir.Normalize();
@@ -881,7 +881,7 @@ void CN3ShapeMgr::RenderCollision(__Vector3 & vPos) {
 
     s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, dwFillPrev);
     s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, dwLight);
-    //	s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, dwZ);
+    //    s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, dwZ);
 }
 #endif // end of #ifndef _3DSERVER
 

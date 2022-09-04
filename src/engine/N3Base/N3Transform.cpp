@@ -192,54 +192,54 @@ void CN3Transform::Render(const __Matrix44 * pMtxParent, float fUnitSize) {
 // 선택 상자 만들기.
 void CN3Transform::GenerateSelectBox(__Vector3 &vMin, __Vector3 &vMax)
 {
-	// Bounding Box Vertex Buffer 생성
-	if(m_lpVBBox != NULL) { m_lpVBBox->Release(); m_lpVBBox = NULL; }
-	HRESULT rval = m_lpDevRef->CreateVertexBuffer(54 * sizeof(__VertexColor), 0, FVF_CV, D3DPOOL_MANAGED, &m_lpVBBox, NULL);
-	if(rval != D3D_OK)
-	{
-		rval = m_lpDevRef->CreateVertexBuffer(54 * sizeof(__VertexColor), 0, FVF_CV, D3DPOOL_MANAGED, &m_lpVBBox, NULL);
-		if(rval != D3D_OK)
-		{
-			char szDebug[256]; D3DXGetErrorString(rval, szDebug, 256);
-			MessageBox(::GetActiveWindow(), szDebug, "VertexBuffer 생성 실패", MB_OK);
-			return;
-		}
-	}
+    // Bounding Box Vertex Buffer 생성
+    if(m_lpVBBox != NULL) { m_lpVBBox->Release(); m_lpVBBox = NULL; }
+    HRESULT rval = m_lpDevRef->CreateVertexBuffer(54 * sizeof(__VertexColor), 0, FVF_CV, D3DPOOL_MANAGED, &m_lpVBBox, NULL);
+    if(rval != D3D_OK)
+    {
+        rval = m_lpDevRef->CreateVertexBuffer(54 * sizeof(__VertexColor), 0, FVF_CV, D3DPOOL_MANAGED, &m_lpVBBox, NULL);
+        if(rval != D3D_OK)
+        {
+            char szDebug[256]; D3DXGetErrorString(rval, szDebug, 256);
+            MessageBox(::GetActiveWindow(), szDebug, "VertexBuffer 생성 실패", MB_OK);
+            return;
+        }
+    }
 
-	float fW = (vMax.x - vMin.x)/5, fH = (vMax.y - vMin.y)/5, fL = (vMax.z - vMin.z)/5; // 길이 높이 너비 (x y z)
+    float fW = (vMax.x - vMin.x)/5, fH = (vMax.y - vMin.y)/5, fL = (vMax.z - vMin.z)/5; // 길이 높이 너비 (x y z)
 
-	__VertexColor* pVC;
-	m_lpVBBox->Lock(0, 0, (VOID**)&pVC, NULL);
-	
-	pVC[4] =  pVC[2] =  pVC[0] =  __VertexColor(vMin.x, vMax.y, vMin.z, 0xff7f7f7f);  // 정면 - 아래와 같은 선 리스트를 만든다.
-	pVC[10] = pVC[8] =  pVC[6] =  __VertexColor(vMax.x, vMax.y, vMin.z, 0xff7f7f7f);  //  /          /
-	pVC[16] = pVC[14] = pVC[12] = __VertexColor(vMax.x, vMin.y, vMin.z, 0xff7f7f7f);  // +--      --+
-	pVC[22] = pVC[20] = pVC[18] = __VertexColor(vMin.x, vMin.y, vMin.z, 0xff7f7f7f);  // |          |
-	pVC[28] = pVC[26] = pVC[24] = __VertexColor(vMax.x, vMax.y, vMax.z, 0xff7f7f7f);  // 
-	pVC[34] = pVC[32] = pVC[30] = __VertexColor(vMin.x, vMax.y, vMax.z, 0xff7f7f7f);  // |/         |/
-	pVC[40] = pVC[38] = pVC[36] = __VertexColor(vMin.x, vMin.y, vMax.z, 0xff7f7f7f);  // +--      --+
-	pVC[46] = pVC[44] = pVC[42] = __VertexColor(vMax.x, vMin.y, vMax.z, 0xff7f7f7f);  // 
+    __VertexColor* pVC;
+    m_lpVBBox->Lock(0, 0, (VOID**)&pVC, NULL);
+    
+    pVC[4] =  pVC[2] =  pVC[0] =  __VertexColor(vMin.x, vMax.y, vMin.z, 0xff7f7f7f);  // 정면 - 아래와 같은 선 리스트를 만든다.
+    pVC[10] = pVC[8] =  pVC[6] =  __VertexColor(vMax.x, vMax.y, vMin.z, 0xff7f7f7f);  //  /          /
+    pVC[16] = pVC[14] = pVC[12] = __VertexColor(vMax.x, vMin.y, vMin.z, 0xff7f7f7f);  // +--      --+
+    pVC[22] = pVC[20] = pVC[18] = __VertexColor(vMin.x, vMin.y, vMin.z, 0xff7f7f7f);  // |          |
+    pVC[28] = pVC[26] = pVC[24] = __VertexColor(vMax.x, vMax.y, vMax.z, 0xff7f7f7f);  // 
+    pVC[34] = pVC[32] = pVC[30] = __VertexColor(vMin.x, vMax.y, vMax.z, 0xff7f7f7f);  // |/         |/
+    pVC[40] = pVC[38] = pVC[36] = __VertexColor(vMin.x, vMin.y, vMax.z, 0xff7f7f7f);  // +--      --+
+    pVC[46] = pVC[44] = pVC[42] = __VertexColor(vMax.x, vMin.y, vMax.z, 0xff7f7f7f);  // 
 
-	pVC[1] =  pVC[0];  pVC[1].x  += fW;   pVC[3] =  pVC[2];  pVC[3].y  -= fH;   pVC[5] =  pVC[4];  pVC[5].z  += fL;
-	pVC[7] =  pVC[6];  pVC[7].x  -= fW;   pVC[9] =  pVC[8];  pVC[9].y  -= fH;   pVC[11] = pVC[10]; pVC[11].z += fL;
-	pVC[13] = pVC[12]; pVC[13].x -= fW;   pVC[15] = pVC[14]; pVC[15].y += fH;   pVC[17] = pVC[16]; pVC[17].z += fL;
-	pVC[19] = pVC[18]; pVC[19].x += fW;   pVC[21] = pVC[20]; pVC[21].y += fH;   pVC[23] = pVC[22]; pVC[23].z += fL;
-	
-	pVC[25] = pVC[24]; pVC[25].x -= fW;   pVC[27] = pVC[26]; pVC[27].y -= fH;   pVC[29] = pVC[28]; pVC[29].z -= fL;
-	pVC[31] = pVC[30]; pVC[31].x += fW;   pVC[33] = pVC[32]; pVC[33].y -= fH;   pVC[35] = pVC[34]; pVC[35].z -= fL;
-	pVC[37] = pVC[36]; pVC[37].x += fW;   pVC[39] = pVC[38]; pVC[39].y += fH;   pVC[41] = pVC[40]; pVC[41].z -= fL;
-	pVC[43] = pVC[42]; pVC[43].x -= fW;   pVC[45] = pVC[44]; pVC[45].y += fH;   pVC[47] = pVC[46]; pVC[47].z -= fL;
+    pVC[1] =  pVC[0];  pVC[1].x  += fW;   pVC[3] =  pVC[2];  pVC[3].y  -= fH;   pVC[5] =  pVC[4];  pVC[5].z  += fL;
+    pVC[7] =  pVC[6];  pVC[7].x  -= fW;   pVC[9] =  pVC[8];  pVC[9].y  -= fH;   pVC[11] = pVC[10]; pVC[11].z += fL;
+    pVC[13] = pVC[12]; pVC[13].x -= fW;   pVC[15] = pVC[14]; pVC[15].y += fH;   pVC[17] = pVC[16]; pVC[17].z += fL;
+    pVC[19] = pVC[18]; pVC[19].x += fW;   pVC[21] = pVC[20]; pVC[21].y += fH;   pVC[23] = pVC[22]; pVC[23].z += fL;
+    
+    pVC[25] = pVC[24]; pVC[25].x -= fW;   pVC[27] = pVC[26]; pVC[27].y -= fH;   pVC[29] = pVC[28]; pVC[29].z -= fL;
+    pVC[31] = pVC[30]; pVC[31].x += fW;   pVC[33] = pVC[32]; pVC[33].y -= fH;   pVC[35] = pVC[34]; pVC[35].z -= fL;
+    pVC[37] = pVC[36]; pVC[37].x += fW;   pVC[39] = pVC[38]; pVC[39].y += fH;   pVC[41] = pVC[40]; pVC[41].z -= fL;
+    pVC[43] = pVC[42]; pVC[43].x -= fW;   pVC[45] = pVC[44]; pVC[45].y += fH;   pVC[47] = pVC[46]; pVC[47].z -= fL;
 
-	__Vector3 vLength = (vMax - vMin);
-	float fLength = vLength.Magnitude();
-	__Vector3 vCenter = vMin + (vMax - vMin)/2.0f;
-	pVC[48].Set(0, 0, 0, 0xffff0000); pVC[48].x -= vLength.x/2 + fLength/5 + 0.5f;// x 축 빨간색 -> 빨간색
-	pVC[49].Set(0, 0, 0, 0xffff0000); pVC[49].x += vLength.x/2 + fLength/5 + 0.5f;// x 축 빨간색 -> 빨간색
-	pVC[50].Set(0, 0, 0, 0xff00ff00); pVC[50].y -= vLength.y/2 + fLength/5 + 0.5f;// y 축 녹색 -> 녹색
-	pVC[51].Set(0, 0, 0, 0xff00ff00); pVC[51].y += vLength.y/2 + fLength/5 + 0.5f;// y 축 녹색 -> 녹색
-	pVC[52].Set(0, 0, 0, 0xff0000ff); pVC[52].z -= vLength.z/2 + fLength/5 + 0.5f;// z 축 파란색 -> 파란색
-	pVC[53].Set(0, 0, 0, 0xff0000ff); pVC[53].z += vLength.z/2 + fLength/5 + 0.5f;// z 축 파란색 -> 파란색
-	m_lpVBBox->Unlock();
+    __Vector3 vLength = (vMax - vMin);
+    float fLength = vLength.Magnitude();
+    __Vector3 vCenter = vMin + (vMax - vMin)/2.0f;
+    pVC[48].Set(0, 0, 0, 0xffff0000); pVC[48].x -= vLength.x/2 + fLength/5 + 0.5f;// x 축 빨간색 -> 빨간색
+    pVC[49].Set(0, 0, 0, 0xffff0000); pVC[49].x += vLength.x/2 + fLength/5 + 0.5f;// x 축 빨간색 -> 빨간색
+    pVC[50].Set(0, 0, 0, 0xff00ff00); pVC[50].y -= vLength.y/2 + fLength/5 + 0.5f;// y 축 녹색 -> 녹색
+    pVC[51].Set(0, 0, 0, 0xff00ff00); pVC[51].y += vLength.y/2 + fLength/5 + 0.5f;// y 축 녹색 -> 녹색
+    pVC[52].Set(0, 0, 0, 0xff0000ff); pVC[52].z -= vLength.z/2 + fLength/5 + 0.5f;// z 축 파란색 -> 파란색
+    pVC[53].Set(0, 0, 0, 0xff0000ff); pVC[53].z += vLength.z/2 + fLength/5 + 0.5f;// z 축 파란색 -> 파란색
+    m_lpVBBox->Unlock();
 }
 #endif
 */

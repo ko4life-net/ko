@@ -120,7 +120,7 @@ void DisplayErrorMsg(SQLHANDLE hstmt) {
            SQL_NO_DATA) {
         sprintf(logstr, "*** %s, %d, %s, %d ***\r\n", SqlState, NativeError, Msg, MsgLen);
         LogFileWrite(logstr);
-        //		TRACE("*** %s, %d, %s, %d ***\n", SqlState,NativeError,Msg,MsgLen);
+        //        TRACE("*** %s, %d, %s, %d ***\n", SqlState,NativeError,Msg,MsgLen);
 
         i++;
     }

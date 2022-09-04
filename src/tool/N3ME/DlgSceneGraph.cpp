@@ -174,7 +174,7 @@ void CDlgSceneGraph::OnSelchangedTreeObj(NMHDR * pNMHDR, LRESULT * pResult) {
     NM_TREEVIEW * pNMTreeView = (NM_TREEVIEW *)pNMHDR;
 
     // TODO: Add your control notification handler code here
-    //pNMTreeView->itemNew->lParam	//이것이 선택된 아이템의 (CN3Base*)이다.
+    //pNMTreeView->itemNew->lParam    //이것이 선택된 아이템의 (CN3Base*)이다.
     m_pMapMng->SelectObject((CN3Base *)pNMTreeView->itemNew.lParam, m_IsSourceObj);
     Invalidate(FALSE);
 

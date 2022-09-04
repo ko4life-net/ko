@@ -61,13 +61,13 @@ END_MESSAGE_MAP()
 void CDlgPMeshEdit::OnCancel() {
     // TODO: Add extra cleanup here
 
-    //	CDialog::OnCancel();
+    //    CDialog::OnCancel();
 }
 
 void CDlgPMeshEdit::OnOK() {
     // TODO: Add extra validation here
 
-    //	CDialog::OnOK();
+    //    CDialog::OnOK();
 }
 
 BOOL CDlgPMeshEdit::OnInitDialog() {
@@ -221,7 +221,7 @@ void CDlgPMeshEdit::UpdateInfo() {
     int nVCCur = pPMI->GetNumVertices();
     int nFC = pPMI->GetNumIndices() / 3; // ÇöÀç Face Count
     m_ScrollBar.SetScrollRange(0, nVC);
-    //	m_ScrollBar.SetScrollPos(nVC);
+    //    m_ScrollBar.SetScrollPos(nVC);
     if (TRUE == pPMI->IsLOD()) {
         m_ScrollBar.EnableWindow(TRUE);
         szTmp = "LOD Ã³¸® µÊ";

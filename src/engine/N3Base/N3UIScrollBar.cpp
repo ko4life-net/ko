@@ -51,10 +51,10 @@ bool CN3UIScrollBar::Load(HANDLE hFile) {
 void CN3UIScrollBar::SetRegion(const RECT & Rect) {
     CN3UIBase::SetRegion(Rect);
     // 우선 임시로 스크롤 영역 크기와 같게 배치
-    //	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
-    //	{
-    //		(*itor)->SetRegion(Rect);
-    //	}
+    //    for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
+    //    {
+    //        (*itor)->SetRegion(Rect);
+    //    }
 }
 
 bool CN3UIScrollBar::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {

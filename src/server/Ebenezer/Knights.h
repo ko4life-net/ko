@@ -21,7 +21,7 @@ class CKnights {
     char          m_strChief[MAX_ID_SIZE + 1];
     char          m_strViceChief_1[MAX_ID_SIZE + 1]; // 부단장 1
     char          m_strViceChief_2[MAX_ID_SIZE + 1]; // 부단장 2 (기사단에서는 장교)
-    char          m_strViceChief_3[MAX_ID_SIZE + 1]; // 부단장 3	(기사단에서는 사용하지 않음)
+    char          m_strViceChief_3[MAX_ID_SIZE + 1]; // 부단장 3    (기사단에서는 사용하지 않음)
     __int64       m_nMoney;
     short         m_sDomination;
     int           m_nPoints;

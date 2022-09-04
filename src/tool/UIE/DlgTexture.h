@@ -29,6 +29,7 @@ class CDlgTexture : public CDialog {
     int          m_iImageTypeCount;
     char         m_szImageTypeNames[MAX_IMAGETYPE][_MAX_PATH];
     HACCEL       m_hAccelTable;
+
     // Operations
   public:
     void  SetTexture(LPCTSTR pszFileName);

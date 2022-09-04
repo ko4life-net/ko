@@ -21,7 +21,7 @@ CN3SndMgr::~CN3SndMgr() {
 }
 
 //
-//	엔진 초기화..
+//    엔진 초기화..
 //
 void CN3SndMgr::Init(HWND hWnd) {
     Release();
@@ -120,30 +120,30 @@ void CN3SndMgr::ReleaseStreamObj(CN3SndObjStream ** ppObj) {
 }
 
 //
-//	TickTick...^^
+//    TickTick...^^
 //
 void CN3SndMgr::Tick() {
     if (!m_bSndEnable) {
         return;
     }
 
-    //	m_Eng.SetListenerPos(&(CN3Base::s_CameraData.vEye));
-    //	__Vector3 vUP(0.0f, 1.0f, 0.0f);
-    //	__Vector3 vDir = CN3Base::s_CameraData.vAt - CN3Base::s_CameraData.vEye;
+    //    m_Eng.SetListenerPos(&(CN3Base::s_CameraData.vEye));
+    //    __Vector3 vUP(0.0f, 1.0f, 0.0f);
+    //    __Vector3 vDir = CN3Base::s_CameraData.vAt - CN3Base::s_CameraData.vEye;
     //
-    //	if(vDir.Magnitude() <= FLT_MIN) vDir.Set(0.0f, 0.0f, 1.0f);
+    //    if(vDir.Magnitude() <= FLT_MIN) vDir.Set(0.0f, 0.0f, 1.0f);
     //
-    //	m_Eng.SetListenerOrientation(&vDir, &vUP);
+    //    m_Eng.SetListenerOrientation(&vDir, &vUP);
     //
 
     /*
-	CN3SndObj* pObj = NULL;
-	itl_Snd it = m_SndObjs_Duplicated.begin(), itEnd = m_SndObjs_Duplicated.end();
-	for(; it != itEnd; it++)
-	{
-		pObj = *it;
-		pObj->Tick();
-	}
+    CN3SndObj* pObj = NULL;
+    itl_Snd it = m_SndObjs_Duplicated.begin(), itEnd = m_SndObjs_Duplicated.end();
+    for(; it != itEnd; it++)
+    {
+        pObj = *it;
+        pObj->Tick();
+    }
 */
     itl_Snd     it, itEnd; //this_Snd
     CN3SndObj * pObj = NULL;
@@ -185,18 +185,18 @@ void CN3SndMgr::Tick() {
         }
     }
 
-    //	itm_Snd it2 = m_SndObjSrcs.begin();
-    //	for(; it2 != m_SndObjSrcs.end(); it2++)
-    //	{
-    //		pObj = it2->second.pSndObj;
-    //		if(pObj) pObj->Tick();
-    //	}
+    //    itm_Snd it2 = m_SndObjSrcs.begin();
+    //    for(; it2 != m_SndObjSrcs.end(); it2++)
+    //    {
+    //        pObj = it2->second.pSndObj;
+    //        if(pObj) pObj->Tick();
+    //    }
 
     CN3SndObj::StaticTick(); // CommitDeferredSetting...
 }
 
 //
-//	Obj하나 무효화..
+//    Obj하나 무효화..
 void CN3SndMgr::ReleaseObj(CN3SndObj ** ppObj) {
     if (NULL == ppObj || NULL == *ppObj) {
         return;
@@ -226,32 +226,32 @@ void CN3SndMgr::ReleaseObj(CN3SndObj ** ppObj) {
 
     *ppObj = NULL; // 포인터만 널로 만들어 준다..
 
-    /*	itm_Snd it = m_SndObjSrcs.find(szFN);
-	if(it != m_SndObjSrcs.end()) // 찾았다..
-	{
-		CN3SndObj* pObj = it->second;
-		delete pObj;
-		m_SndObjSrcs.erase(it);
-	}
-	else
-	{
-		itl_Snd it2 = m_SndObjs_PlayOnceAndRelease.begin();
-		for(; it2 != m_SndObjs_PlayOnceAndRelease.end(); it2++)
-		{
-			CN3SndObj* pObj = *it2;
-			if(pObj == *ppObj)
-			{
-				delete pObj;
-				m_SndObjs_PlayOnceAndRelease.erase(it2);
-				break;
-			}		
-		}
-	}
+    /*    itm_Snd it = m_SndObjSrcs.find(szFN);
+    if(it != m_SndObjSrcs.end()) // 찾았다..
+    {
+        CN3SndObj* pObj = it->second;
+        delete pObj;
+        m_SndObjSrcs.erase(it);
+    }
+    else
+    {
+        itl_Snd it2 = m_SndObjs_PlayOnceAndRelease.begin();
+        for(; it2 != m_SndObjs_PlayOnceAndRelease.end(); it2++)
+        {
+            CN3SndObj* pObj = *it2;
+            if(pObj == *ppObj)
+            {
+                delete pObj;
+                m_SndObjs_PlayOnceAndRelease.erase(it2);
+                break;
+            }        
+        }
+    }
 */
 }
 
 //
-//	Release Whole Objects & Sound Sources & Sound Engine..
+//    Release Whole Objects & Sound Sources & Sound Engine..
 //
 void CN3SndMgr::Release() {
     if (!m_bSndEnable) {
@@ -356,14 +356,14 @@ bool CN3SndMgr::PlayOnceAndRelease(int iSndID, const _D3DVECTOR * pPos) {
     }
     return false;
     /*
-	CN3SndObj* pObj = new CN3SndObj();
-	if(false == pObj->Create(pTbl->szFN, (e_SndType)pTbl->iType))
-	{
-		delete pObj; pObj = NULL;
-		return false;
-	}
-	pObj->Play(pPos);
-	m_SndObjs_PlayOnceAndRelease.push_back(pObj);
-	return true;
+    CN3SndObj* pObj = new CN3SndObj();
+    if(false == pObj->Create(pTbl->szFN, (e_SndType)pTbl->iType))
+    {
+        delete pObj; pObj = NULL;
+        return false;
+    }
+    pObj->Play(pPos);
+    m_SndObjs_PlayOnceAndRelease.push_back(pObj);
+    return true;
 */
 }

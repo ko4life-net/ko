@@ -109,8 +109,8 @@ HRESULT CDFont::RestoreDeviceObjects() {
 
     m_iPrimitiveCount = 0;
 
-    //	__ASSERT(NULL == s_hDC && NULL == m_hFont, "??");
-    //	m_hDC = CreateCompatibleDC(NULL);
+    // __ASSERT(NULL == s_hDC && NULL == m_hFont, "??");
+    // m_hDC = CreateCompatibleDC(NULL);
     __ASSERT(NULL == m_hFont, "??");
 
     if (NULL == s_hDC) {
@@ -142,9 +142,7 @@ HRESULT CDFont::RestoreDeviceObjects() {
         dwFVF = FVF_XYZCOLORT1;
     }
 
-    //    if( FAILED( hr = m_pd3dDevice->CreateVertexBuffer( iVBSize,
-    //                                                     D3DUSAGE_WRITEONLY, 0,
-    //                                                      D3DPOOL_MANAGED, &m_pVB ) ) )
+    // if (FAILED(hr = m_pd3dDevice->CreateVertexBuffer(iVBSize, D3DUSAGE_WRITEONLY, 0, D3DPOOL_MANAGED, &m_pVB))) {
     if (FAILED(hr = m_pd3dDevice->CreateVertexBuffer(iVBSize, 0, dwFVF, D3DPOOL_MANAGED, &m_pVB, NULL))) {
         return hr;
     }
@@ -202,22 +200,18 @@ HRESULT CDFont::SetText(const std::string & szText, DWORD dwFlags) {
 
     std::string szTemp(iStrLen, '?');
     while (iCount < iStrLen) {
-        if ('\n' == szText[iCount]) // \n
-        {
+        if ('\n' == szText[iCount]) { // \n
             ++iCount;
-        } else if (0x80 & szText[iCount]) // 2BYTE 문자
-        {
-            if ((iCount + 2) > iStrLen) // 이상한 문자열이다..
-            {
-                //				__ASSERT(0, "이상한 문자열이다.!!!");
+        } else if (0x80 & szText[iCount]) { // 2BYTE 문자
+            if ((iCount + 2) > iStrLen) {   // 이상한 문자열이다..
+                // __ASSERT(0, "이상한 문자열이다.!!!");
                 break;
             } else {
                 memcpy(&(szTemp[iTempCount]), &(szText[iCount]), 2);
                 iTempCount += 2;
                 iCount += 2;
             }
-        } else // 1BYTE 문자
-        {
+        } else { // 1BYTE 문자
             memcpy(&(szTemp[iTempCount]), &(szText[iCount]), 1);
             ++iTempCount;
             ++iCount;
@@ -225,7 +219,7 @@ HRESULT CDFont::SetText(const std::string & szText, DWORD dwFlags) {
         __ASSERT(iCount <= iStrLen, "??"); // 이상한 문자가 들어왔을 경우
     }
 
-    //	szTemp[iTempCount] = 0x00;
+    // szTemp[iTempCount] = 0x00;
 
     // 텍스쳐 사이즈 결정하기
     SelectObject(s_hDC, m_hFont);
@@ -400,7 +394,7 @@ void CDFont::Make2DVertex(const int iFontHeight, const std::string & szText) {
     DWORD x = 0;
     DWORD y = 0;
     float vtx_sx = 0;
-    float vtx_sy = 0; //	vertex start x y
+    float vtx_sy = 0; // vertex start x y
     int   iCount = 0;
     int   iTempCount = 0;
 
@@ -412,8 +406,7 @@ void CDFont::Make2DVertex(const int iFontHeight, const std::string & szText) {
     float fMaxX = 0.0f, fMaxY = 0.0f; // 글씨가 찍히는 범위의 최대 최소값을 조사하기 위해서.
 
     while (iCount < iStrLen) {
-        if ('\n' == szText[iCount]) // \n
-        {
+        if ('\n' == szText[iCount]) { // \n
             ++iCount;
 
             // vertex 만들기
@@ -462,13 +455,11 @@ void CDFont::Make2DVertex(const int iFontHeight, const std::string & szText) {
             vtx_sx = 0;
             vtx_sy = vtx_sy + ((float)(iFontHeight)) / m_fTextScale;
             continue;
-        } else if (0x80 & szText[iCount]) // 2BYTE 문자
-        {
+        } else if (0x80 & szText[iCount]) { // 2BYTE 문자
             memcpy(szTempChar, &(szText[iCount]), 2);
             iCount += 2;
             szTempChar[2] = 0x00;
-        } else // 1BYTE 문자
-        {
+        } else { // 1BYTE 문자
             memcpy(szTempChar, &(szText[iCount]), 1);
             iCount += 1;
             szTempChar[1] = 0x00;
@@ -596,7 +587,7 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string & szText, DWO
     DWORD x = 0;
     DWORD y = 0;
     float vtx_sx = 0;
-    float vtx_sy = 0; //	vertex start x y
+    float vtx_sy = 0; // vertex start x y
     int   iCount = 0;
     int   iTempCount = 0;
 
@@ -834,7 +825,7 @@ HRESULT CDFont::DrawText(FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOAT
     if (fabs(vDiff.x) > 0.5f || fabs(vDiff.y) > 0.5f || dwColor != m_dwFontColor) {
         // lock vertex buffer
         __VertexTransformed * pVertices;
-        //		m_pVB->Lock( 0, 0, (VOID**)&pVertices, D3DLOCK_NOSYSLOCK );
+        // m_pVB->Lock( 0, 0, (VOID**)&pVertices, D3DLOCK_NOSYSLOCK );
         m_pVB->Lock(0, 0, (VOID **)&pVertices, 0);
 
         int iVC = m_iPrimitiveCount * 3;
@@ -860,13 +851,11 @@ HRESULT CDFont::DrawText(FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOAT
             }
         }
 
-        //		if (fZ != 1.0f) // Z값이 1.0f 가 들어오지 않으면 바꾸어준다.
-        //		{
-        //			for (int i=0; i<iVC; ++i)
-        //			{
-        //				pVertices[i].z = fZ;
-        //			}
-        //		}
+        // if (fZ != 1.0f) { // Z값이 1.0f 가 들어오지 않으면 바꾸어준다.
+        //     for (int i = 0; i < iVC; ++i) {
+        //         pVertices[i].z = fZ;
+        //     }
+        // }
 
         // Unlock
         m_pVB->Unlock();
@@ -899,13 +888,13 @@ HRESULT CDFont::DrawText(FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOAT
     if (D3DBLEND_INVSRCALPHA != dwDestBlend) {
         m_pd3dDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
     }
-    //	if (1.0f == fZ)
-    //	{
+    // if (1.0f == fZ)
+    // {
     if (D3DZB_FALSE != dwZEnable) {
         m_pd3dDevice->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
     }
-    //	}
-    //	else if ( D3DZB_TRUE != dwZEnable) m_pd3dDevice->SetRenderState( D3DRS_ZENABLE, D3DZB_TRUE );	// fZ가 1.0이 아니면 z 버퍼 켜고 그린다.
+    // }
+    // else if ( D3DZB_TRUE != dwZEnable) m_pd3dDevice->SetRenderState( D3DRS_ZENABLE, D3DZB_TRUE );    // fZ가 1.0이 아니면 z 버퍼 켜고 그린다.
     if (FALSE != dwFog) {
         m_pd3dDevice->SetRenderState(D3DRS_FOGENABLE, FALSE);
     }
@@ -960,13 +949,13 @@ HRESULT CDFont::DrawText(FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOAT
     if (D3DBLEND_INVSRCALPHA != dwDestBlend) {
         m_pd3dDevice->SetRenderState(D3DRS_DESTBLEND, dwDestBlend);
     }
-    //	if (1.0f == fZ)
-    //	{
+    // if (1.0f == fZ)
+    // {
     if (D3DZB_FALSE != dwZEnable) {
         m_pd3dDevice->SetRenderState(D3DRS_ZENABLE, dwZEnable);
     }
-    //	}
-    //	else if ( D3DZB_TRUE != dwZEnable) m_pd3dDevice->SetRenderState( D3DRS_ZENABLE, dwZEnable );
+    // }
+    // else if ( D3DZB_TRUE != dwZEnable) m_pd3dDevice->SetRenderState( D3DRS_ZENABLE, dwZEnable );
     if (FALSE != dwFog) {
         m_pd3dDevice->SetRenderState(D3DRS_FOGENABLE, dwFog);
     }
@@ -1023,7 +1012,7 @@ HRESULT CDFont::DrawText3D(DWORD dwColor, DWORD dwFlags) {
     if (dwColor != m_dwFontColor) {
         // lock vertex buffer
         __VertexXyzColorT1 * pVertices;
-        //		m_pVB->Lock( 0, 0, (VOID**)&pVertices, D3DLOCK_NOSYSLOCK );
+        // m_pVB->Lock( 0, 0, (VOID**)&pVertices, D3DLOCK_NOSYSLOCK );
         m_pVB->Lock(0, 0, (VOID **)&pVertices, 0);
 
         m_dwFontColor = dwColor;
@@ -1249,7 +1238,7 @@ void CDFont::AddToAlphaManager(DWORD dwColor, float fDist, __Matrix44 & mtxWorld
         if (fabs(vDiff.x) > 0.5f || fabs(vDiff.y) > 0.5f || dwColor != m_dwFontColor) {
             // lock vertex buffer
             __VertexTransformed * pVertices;
-            //		m_pVB->Lock( 0, 0, (VOID**)&pVertices, D3DLOCK_NOSYSLOCK );
+            // m_pVB->Lock( 0, 0, (VOID**)&pVertices, D3DLOCK_NOSYSLOCK );
             m_pVB->Lock(0, 0, (VOID **)&pVertices, 0);
 
             int iVC = m_iPrimitiveCount * 3;
@@ -1275,13 +1264,11 @@ void CDFont::AddToAlphaManager(DWORD dwColor, float fDist, __Matrix44 & mtxWorld
                 }
             }
 
-            //			if (fZ != 1.0f) // Z값이 1.0f 가 들어오지 않으면 바꾸어준다.
-            //			{
-            //				for (int i=0; i<iVC; ++i)
-            //				{
-            //					pVertices[i].z = fZ;
-            //				}
-            //			}
+            // if (fZ != 1.0f) { // Z값이 1.0f 가 들어오지 않으면 바꾸어준다.
+            //     for (int i = 0; i < iVC; ++i) {
+            //         pVertices[i].z = fZ;
+            //     }
+            // }
 
             // Unlock
             m_pVB->Unlock();

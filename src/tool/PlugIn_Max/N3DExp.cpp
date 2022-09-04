@@ -1,14 +1,14 @@
 /**********************************************************************
  *<
-	FILE: CN3DExp.cpp
+    FILE: CN3DExp.cpp
 
-	DESCRIPTION:	Appwizard generated plugin
+    DESCRIPTION:    Appwizard generated plugin
 
-	CREATED BY: 
+    CREATED BY: 
 
-	HISTORY: 
+    HISTORY: 
 
- *>	Copyright (c) 1997, All Rights Reserved.
+ *>    Copyright (c) 1997, All Rights Reserved.
  **********************************************************************/
 
 #include "N3Base/N3PMeshCreate.h"
@@ -37,10 +37,10 @@ CN3DExp::CN3DExp() {
     this->Init();
 
     // allocation CN3Eng, CN3Scene | Init Engine
-    //	if(NULL == g_Eng.s_lpD3DDev)
-    //	{
-    //		g_Eng.Init(TRUE, NULL, 64, 64, 0, FALSE);
-    //	}
+    //    if(NULL == g_Eng.s_lpD3DDev)
+    //    {
+    //        g_Eng.Init(TRUE, NULL, 64, 64, 0, FALSE);
+    //    }
     m_pScene = NULL;
 }
 
@@ -57,7 +57,7 @@ void CN3DExp::Init() {
     m_Option.bAnimationKey = TRUE;
 
     m_Option.bGenerateSmoothNormal = TRUE;
-    //	m_Option.bGenerateProgressiveMesh = FALSE;
+    //    m_Option.bGenerateProgressiveMesh = FALSE;
     m_Option.bGenerateHalfSizeTexture = FALSE;
     m_Option.bGenerateCompressedTexture = TRUE;
 
@@ -213,7 +213,7 @@ bool CN3DExp::ProcessRecursive(INode * pNode) {
     const char * szName = pNode->GetName(); // 이름..
 
     // 프로세스 업데이트 (!?)
-    //	g_pIntf->ProgressUpdate((m_nNodeCur)*100/m_nNodeCount, TRUE, pNode->GetName());
+    //    g_pIntf->ProgressUpdate((m_nNodeCur)*100/m_nNodeCount, TRUE, pNode->GetName());
     m_nNodeCur++;
 
     // 어떤 객체인지 읽어온다. (camera? light? geom object?..)
@@ -235,8 +235,8 @@ bool CN3DExp::ProcessRecursive(INode * pNode) {
                     if (pCtrl->ClassID() == BIPBODY_CONTROL_CLASS_ID) {
                         bRootBiped = true;
                     }
-                    //					else if(pCtrl->ClassID() == BIPSLAVE_CONTROL_CLASS_ID) // 나머지는 무시한다.
-                    //					else if(pCtrl->ClassID() == FOOTPRINT_CLASS_ID)
+                    //                    else if(pCtrl->ClassID() == BIPSLAVE_CONTROL_CLASS_ID) // 나머지는 무시한다.
+                    //                    else if(pCtrl->ClassID() == FOOTPRINT_CLASS_ID)
                 }
                 if (false == bRootBiped) {
                     INode * pParentNode = pNode->GetParentNode();
@@ -257,8 +257,8 @@ bool CN3DExp::ProcessRecursive(INode * pNode) {
         } else if (LIGHT_CLASS_ID == dwSCID && TRUE == m_Option.bExportLight) {
             return this->ProcessLight(pNode);
         }
-        //		else if(HELPER_CLASS_ID == dwSCID && TRUE == m_Option.bExportDummy)
-        //			return this->ProcessShape(pNode);
+        //        else if(HELPER_CLASS_ID == dwSCID && TRUE == m_Option.bExportDummy)
+        //            return this->ProcessShape(pNode);
         else {
             char szDebug[512];
             wsprintf(szDebug, "Node : %s, 무시합니다.\n", pNode->GetName());
@@ -345,14 +345,14 @@ bool CN3DExp::ProcessLight(INode * pNode) {
     GenLight *        pLightObj = (GenLight *)os.obj;
     struct LightState ls;
     Interval          valid = FOREVER;
-    //	Interval animRange = ip->GetAnimRange();
+    //    Interval animRange = ip->GetAnimRange();
     pLightObj->EvalLightState(m_Option.nFrmStart * 160, valid, &ls);
 
     // This is part os the lightState, but it doesn't
     // make sense to output as an animated setting so
     // we dump it outside of ExportLightSettings()
 
-    //	Point3 ptLight = pNode->GetNodeTM(m_Option.nFrmStart * 160).GetTrans();
+    //    Point3 ptLight = pNode->GetNodeTM(m_Option.nFrmStart * 160).GetTrans();
     Point3        ptLight = pNode->GetObjTMAfterWSM(m_Option.nFrmStart * 160).GetTrans();
     D3DCOLORVALUE __dcv;
     __dcv.r = ls.color.r;
@@ -430,9 +430,9 @@ bool CN3DExp::ProcessShape(INode * pNode) {
     CN3Texture * pTex = NULL;
     this->ProcessMaterial(pNode, &mtl, &pTex, "Object\\");
     if (pTex) {
-        //		char szDrv[_MAX_DIR], szDir[_MAX_DIR], szFName[_MAX_FNAME];
-        //		_splitpath(pTex->FileName().c_str(), szDrv, szDir, szFName, NULL);
-        //		char szFN[256]; wsprintf(szFN, "Object\\%s.dxt", szFName);
+        //        char szDrv[_MAX_DIR], szDir[_MAX_DIR], szFName[_MAX_FNAME];
+        //        _splitpath(pTex->FileName().c_str(), szDrv, szDir, szFName, NULL);
+        //        char szFN[256]; wsprintf(szFN, "Object\\%s.dxt", szFName);
         pTex->FileNameSet(pTex->FileName());
     }
 
@@ -474,7 +474,7 @@ bool CN3DExp::ProcessShape(INode * pNode) {
             this->ProcessName(pNode, pShape);
             ptPivot = pNode->GetNodeTM(m_Option.nFrmStart * 160).GetTrans();
         }
-        //		pShape->PosSet(ptPivot.x * 0.0254f, ptPivot.z * 0.0254f, ptPivot.y * 0.0254f);  // Pivot 세팅.. y 와 z 를 반대로.
+        //        pShape->PosSet(ptPivot.x * 0.0254f, ptPivot.z * 0.0254f, ptPivot.y * 0.0254f);  // Pivot 세팅.. y 와 z 를 반대로.
         pShape->PosSet(ptPivot.x, ptPivot.z, ptPivot.y); // Pivot 세팅.. y 와 z 를 반대로.
 
         int nSI = m_pScene->ShapeAdd(pShape);
@@ -511,7 +511,7 @@ bool CN3DExp::ProcessShape(INode * pNode) {
 
         // Pivot, Offset 적용
         Point3 ptPivot = pNode->GetNodeTM(m_Option.nFrmStart * 160).GetTrans();
-        //	__Vector3 vOffset(ptPivot.x * 0.0254f, ptPivot.z * 0.0254f, ptPivot.y * 0.0254f);
+        //    __Vector3 vOffset(ptPivot.x * 0.0254f, ptPivot.z * 0.0254f, ptPivot.y * 0.0254f);
         __Vector3 vOffset(ptPivot.x, ptPivot.z, ptPivot.y);
         N3IMesh.ApplyOffset(vOffset * -1.0f); // Offset 만큼 빼준다..
 
@@ -558,7 +558,7 @@ BOOL CALLBACK CN3DExp::DlgProcExportOption(HWND hWndDlg, UINT uMsg, WPARAM wPara
 
             g_Eng.RegistryValueGet(hKey, "Animation Key", &m_Option.bAnimationKey, 4);
             g_Eng.RegistryValueGet(hKey, "Generate Smooth Normal", &m_Option.bGenerateSmoothNormal, 4);
-            //				g_Eng.RegistryValueGet(hKey, "Generate Progressive Mesh", &m_Option.bGenerateProgressiveMesh, 4);
+            //                g_Eng.RegistryValueGet(hKey, "Generate Progressive Mesh", &m_Option.bGenerateProgressiveMesh, 4);
             g_Eng.RegistryValueGet(hKey, "Generate Half Size Texture", &m_Option.bGenerateHalfSizeTexture, 4);
             g_Eng.RegistryValueGet(hKey, "Generate Compressed Texture", &m_Option.bGenerateCompressedTexture, 4);
 
@@ -574,7 +574,7 @@ BOOL CALLBACK CN3DExp::DlgProcExportOption(HWND hWndDlg, UINT uMsg, WPARAM wPara
         CheckDlgButton(hWndDlg, IDC_C_ANIMATION_KEY, m_Option.bAnimationKey);
 
         CheckDlgButton(hWndDlg, IDC_C_GENERATE_SMOOTH_NORMAL, m_Option.bGenerateSmoothNormal);
-        //			CheckDlgButton(hWndDlg, IDC_C_GENERATE_PROGRESSIVE_MESH, m_Option.bGenerateProgressiveMesh);
+        //            CheckDlgButton(hWndDlg, IDC_C_GENERATE_PROGRESSIVE_MESH, m_Option.bGenerateProgressiveMesh);
         CheckDlgButton(hWndDlg, IDC_C_GENERATE_HALF_SIZE_TEXTURE, m_Option.bGenerateHalfSizeTexture);
         CheckDlgButton(hWndDlg, IDC_C_GENERATE_COMPRESSED_TEXTURE, m_Option.bGenerateCompressedTexture);
 
@@ -606,7 +606,7 @@ BOOL CALLBACK CN3DExp::DlgProcExportOption(HWND hWndDlg, UINT uMsg, WPARAM wPara
             m_Option.fSamplingRate = GetDlgItemInt(hWndDlg, IDC_E_SAMPLING_RATE, NULL, FALSE); // Sampling Rate
 
             m_Option.bGenerateSmoothNormal = IsDlgButtonChecked(hWndDlg, IDC_C_GENERATE_SMOOTH_NORMAL);
-            //				m_Option.bGenerateProgressiveMesh = IsDlgButtonChecked(hWndDlg, IDC_C_GENERATE_PROGRESSIVE_MESH);
+            //                m_Option.bGenerateProgressiveMesh = IsDlgButtonChecked(hWndDlg, IDC_C_GENERATE_PROGRESSIVE_MESH);
             m_Option.bGenerateHalfSizeTexture = IsDlgButtonChecked(hWndDlg, IDC_C_GENERATE_HALF_SIZE_TEXTURE);
             m_Option.bGenerateCompressedTexture = IsDlgButtonChecked(hWndDlg, IDC_C_GENERATE_COMPRESSED_TEXTURE);
 
@@ -634,7 +634,7 @@ BOOL CALLBACK CN3DExp::DlgProcExportOption(HWND hWndDlg, UINT uMsg, WPARAM wPara
 
                 g_Eng.RegistryValueSet(hKey, "Animation Key", &m_Option.bAnimationKey, 4);
                 g_Eng.RegistryValueSet(hKey, "Generate Smooth Normal", &m_Option.bGenerateSmoothNormal, 4);
-                //					g_Eng.RegistryValueSet(hKey, "Generate Progressive Mesh", &m_Option.bGenerateProgressiveMesh, 4);
+                //                    g_Eng.RegistryValueSet(hKey, "Generate Progressive Mesh", &m_Option.bGenerateProgressiveMesh, 4);
                 g_Eng.RegistryValueSet(hKey, "Generate Half Size Texture", &m_Option.bGenerateHalfSizeTexture, 4);
                 g_Eng.RegistryValueSet(hKey, "Generate Compressed Texture", &m_Option.bGenerateCompressedTexture, 4);
 
@@ -675,14 +675,14 @@ void CN3DExp::DecodeTransformMatrix(Matrix3 & matSrc, __Matrix44 & matDest) {
     m.Identity();
     tm.Scale(ap.k.x, ap.k.z, ap.k.y);
     m *= tm; // 스케일
-    //	::D3DXMatrixRotationYawPitchRoll(&tm, vRot.z * fAngle, vRot.x * fAngle, vRot.y * fAngle); m *= tm; // 회전
+    //    ::D3DXMatrixRotationYawPitchRoll(&tm, vRot.z * fAngle, vRot.x * fAngle, vRot.y * fAngle); m *= tm; // 회전
     tm.RotationZ(fAngle * vRot.y);
     m *= tm; // 회전
     tm.RotationY(fAngle * vRot.z);
     m *= tm; // 회전
     tm.RotationX(fAngle * vRot.x);
     m *= tm; // 회전
-    //	m.PosSet(ap.t.x * 0.0254f, ap.t.z * 0.0254f, ap.t.y * 0.0254f); // 이동 // 1 Unit == 1 Inch -> Meter 로 바꾼다.. // Y, Z 는 반대로..
+    //    m.PosSet(ap.t.x * 0.0254f, ap.t.z * 0.0254f, ap.t.y * 0.0254f); // 이동 // 1 Unit == 1 Inch -> Meter 로 바꾼다.. // Y, Z 는 반대로..
     m.PosSet(ap.t.x, ap.t.z, ap.t.y); // 이동 // 1 Unit == 1 Inch -> Meter 로 바꾼다.. // Y, Z 는 반대로..
 
     matDest = m; // 휴.. 변환 행렬 최종 완성..
@@ -821,11 +821,11 @@ bool CN3DExp::ProcessChr(INode * pNode) {
         int nCC = pNode->NumberOfChildren();
         for (int i = 0; i < nCC; i++) {
             INode * pNodeTmp = pNode->GetChildNode(i);
-            //		Control* pCtrlTmp = pNodeTmp->GetTMController();
-            //		if(NULL == pCtrlTmp) continue;
-            //		const char* szJR = pNodeTmp->GetName();
-            //		Class_ID cID = pCtrlTmp->ClassID();
-            //		if(BIPSLAVE_CONTROL_CLASS_ID == cID)
+            //        Control* pCtrlTmp = pNodeTmp->GetTMController();
+            //        if(NULL == pCtrlTmp) continue;
+            //        const char* szJR = pNodeTmp->GetName();
+            //        Class_ID cID = pCtrlTmp->ClassID();
+            //        if(BIPSLAVE_CONTROL_CLASS_ID == cID)
             if (IsBone(pNodeTmp)) {
                 pNodeRootJoint = pNodeTmp;
                 break;
@@ -837,17 +837,17 @@ bool CN3DExp::ProcessChr(INode * pNode) {
         return false;
     }
 
-    //	IBipedExport* pBE = (IBipedExport*)pCtrl->GetInterface(I_BIPINTERFACE); // biped export interface
-    //	pBE->RemoveNonUniformScale(1); // remove the non uniform scale
-    //	pBE->BeginFigureMode(1); // Figure Mode .. Binding pose 와 비슷
+    //    IBipedExport* pBE = (IBipedExport*)pCtrl->GetInterface(I_BIPINTERFACE); // biped export interface
+    //    pBE->RemoveNonUniformScale(1); // remove the non uniform scale
+    //    pBE->BeginFigureMode(1); // Figure Mode .. Binding pose 와 비슷
 
     CN3Joint * pJoint = new CN3Joint();
     if (false == this->ProcessJoint(pNodeRootJoint, pJoint)) // Joint 처리..
     {
         delete pJoint;
         pJoint = NULL;
-        //		pBE->EndFigureMode(1);
-        //		pCtrl->ReleaseInterface(I_BIPINTERFACE, pBE); // release biped export interface
+        //        pBE->EndFigureMode(1);
+        //        pCtrl->ReleaseInterface(I_BIPINTERFACE, pBE); // release biped export interface
         return false;
     }
 
@@ -972,10 +972,10 @@ bool CN3DExp::ProcessChr(INode * pNode) {
             CN3Texture * pTex = NULL;
             this->ProcessMaterial(pNodeTmp, &(pPart->m_Mtl), &pTex, "Item\\");
             if (pTex) {
-                //				char szDrv[_MAX_DIR], szDir[_MAX_DIR], szFName[_MAX_FNAME];
-                //				_splitpath(pTex->FileName().c_str(), szDrv, szDir, szFName, NULL);
-                //				char szFN[256]; wsprintf(szFN, "Item\\%s.dxt", szFName);
-                //				pTex->FileNameSet(szFN);
+                //                char szDrv[_MAX_DIR], szDir[_MAX_DIR], szFName[_MAX_FNAME];
+                //                _splitpath(pTex->FileName().c_str(), szDrv, szDir, szFName, NULL);
+                //                char szFN[256]; wsprintf(szFN, "Item\\%s.dxt", szFName);
+                //                pTex->FileNameSet(szFN);
                 pPart->TexSet(pTex->FileName());
             }
             ProcessName(pNodeTmp, pPart);  // 이름 짓기
@@ -985,91 +985,91 @@ bool CN3DExp::ProcessChr(INode * pNode) {
 
     pChr->Init(); // Initializing Skin, IMesh, .... Inverse Matrix....
 
-    //	pBE->EndFigureMode(1);
-    //	pCtrl->ReleaseInterface(I_BIPINTERFACE, pBE); // release biped export interface
-    //	pBE = NULL;
+    //    pBE->EndFigureMode(1);
+    //    pCtrl->ReleaseInterface(I_BIPINTERFACE, pBE); // release biped export interface
+    //    pBE = NULL;
     g_pIntf->RedrawViews(0); // 결과를 본다.. Redraw if you want to see the result
 
-    //	IBipedExport* pBE = (IBipedExport*)pCtrl->GetInterface(I_BIPINTERFACE); // biped export interface
-    //	pBE->RemoveNonUniformScale(1); // remove the non uniform scale
-    //	pBE->BeginFigureMode(1); // Figure Mode .. Binding pose 와 비슷
+    //    IBipedExport* pBE = (IBipedExport*)pCtrl->GetInterface(I_BIPINTERFACE); // biped export interface
+    //    pBE->RemoveNonUniformScale(1); // remove the non uniform scale
+    //    pBE->BeginFigureMode(1); // Figure Mode .. Binding pose 와 비슷
     //
     //
-    //	pBE->EndFigureMode(1);
-    //	g_pIntf->RedrawViews(0); // 결과를 본다.. Redraw if you want to see the result
-    //	pCtrl->ReleaseInterface(I_BIPINTERFACE, pBE); // release biped export interface
+    //    pBE->EndFigureMode(1);
+    //    g_pIntf->RedrawViews(0); // 결과를 본다.. Redraw if you want to see the result
+    //    pCtrl->ReleaseInterface(I_BIPINTERFACE, pBE); // release biped export interface
 
     // biped chr
-    /*	Control *c = pNode->GetTMController();
-	if( (c->ClassID()==BIPSLAVE_CONTROL_CLASS_ID)||
-		(c->ClassID()==BIPBODY_CONTROL_CLASS_ID)||
-		(c->ClassID()==FOOTPRINT_CLASS_ID))
-	{			
-		// get the biped export interface from the controller
-		IBipedExport* BipIface=(IBipedExport*)c->GetInterface(I_BIPINTERFACE);
+    /*    Control *c = pNode->GetTMController();
+    if( (c->ClassID()==BIPSLAVE_CONTROL_CLASS_ID)||
+        (c->ClassID()==BIPBODY_CONTROL_CLASS_ID)||
+        (c->ClassID()==FOOTPRINT_CLASS_ID))
+    {            
+        // get the biped export interface from the controller
+        IBipedExport* BipIface=(IBipedExport*)c->GetInterface(I_BIPINTERFACE);
 
-		
-		BipIface->RemoveNonUniformScale(1); // remove the non uniform scale
-		BipIface->BeginFigureMode(1); // Figure Mode .. Binding pose 와 비슷
+        
+        BipIface->RemoveNonUniformScale(1); // remove the non uniform scale
+        BipIface->BeginFigureMode(1); // Figure Mode .. Binding pose 와 비슷
 
-		// to do ----------------------------------------------------------------------------
-		// these are subanim numbers for the center of mass controller
-        Animatable* pVer = c->SubAnim(VERTICAL_SUBANIM);		// vertical
-		Animatable* pHor = c->SubAnim(HORIZONTAL_SUBANIM);	// horizontal
-		Animatable* pRot = c->SubAnim(ROTATION_SUBANIM);		// rotation
-		
-		if(NULL!=pVer)
-		{
-			OutputDebugString("pVer is not NULL\n");
-			char temp[512]=_T("");
-			sprintf(temp,"[%s][%s][%s]\n",pVer->SubAnimName(0),pVer->SubAnimName(1),pVer->SubAnimName(2));
-			OutputDebugString(temp);
-		}
-		
-		if(NULL!=pHor)
-		{
-			OutputDebugString("pHor is not NULL\n");
-			char temp[512]=_T("");
-			sprintf(temp,"[%s][%s][%s]\n",pHor->SubAnimName(0),pHor->SubAnimName(1),pHor->SubAnimName(2));
-			OutputDebugString(temp);
-		}
+        // to do ----------------------------------------------------------------------------
+        // these are subanim numbers for the center of mass controller
+        Animatable* pVer = c->SubAnim(VERTICAL_SUBANIM);        // vertical
+        Animatable* pHor = c->SubAnim(HORIZONTAL_SUBANIM);    // horizontal
+        Animatable* pRot = c->SubAnim(ROTATION_SUBANIM);        // rotation
+        
+        if(NULL!=pVer)
+        {
+            OutputDebugString("pVer is not NULL\n");
+            char temp[512]=_T("");
+            sprintf(temp,"[%s][%s][%s]\n",pVer->SubAnimName(0),pVer->SubAnimName(1),pVer->SubAnimName(2));
+            OutputDebugString(temp);
+        }
+        
+        if(NULL!=pHor)
+        {
+            OutputDebugString("pHor is not NULL\n");
+            char temp[512]=_T("");
+            sprintf(temp,"[%s][%s][%s]\n",pHor->SubAnimName(0),pHor->SubAnimName(1),pHor->SubAnimName(2));
+            OutputDebugString(temp);
+        }
 
-		if(NULL!=pRot)
-		{
-			OutputDebugString("pRot is not NULL\n");
-			char temp[512]=_T("");
-			sprintf(temp,"[%s][%s][%s]\n",pRot->SubAnimName(0),pRot->SubAnimName(1),pRot->SubAnimName(2));
-			OutputDebugString(temp);
-		}
-	
-		char temp[512]=_T("");
-		sprintf(temp,"[%s][%s][%s]\n",c->SubAnimName(0),c->SubAnimName(1),c->SubAnimName(2));
-		OutputDebugString(temp);
+        if(NULL!=pRot)
+        {
+            OutputDebugString("pRot is not NULL\n");
+            char temp[512]=_T("");
+            sprintf(temp,"[%s][%s][%s]\n",pRot->SubAnimName(0),pRot->SubAnimName(1),pRot->SubAnimName(2));
+            OutputDebugString(temp);
+        }
+    
+        char temp[512]=_T("");
+        sprintf(temp,"[%s][%s][%s]\n",c->SubAnimName(0),c->SubAnimName(1),c->SubAnimName(2));
+        OutputDebugString(temp);
 
-		//-----------------------------------------------------------------------------------
-		// temp///////////////////////////////////////////////////////////////////////////////
-//		Control* pPosCtrl = c->GetPositionController();
-//		Control* pRotCtrl = c->GetRotationController();
-//	 	Control* pSclCtrl = c->GetScaleController();
+        //-----------------------------------------------------------------------------------
+        // temp///////////////////////////////////////////////////////////////////////////////
+//        Control* pPosCtrl = c->GetPositionController();
+//        Control* pRotCtrl = c->GetRotationController();
+//         Control* pSclCtrl = c->GetScaleController();
 //
-//		this->ExportAnimationPosition(pPosCtrl); // 위치
-//		this->ExportAnimationRotation(pRotCtrl); // 회전
-//		this->ExportAnimationScale(pSclCtrl);	 // 스케일
+//        this->ExportAnimationPosition(pPosCtrl); // 위치
+//        this->ExportAnimationRotation(pRotCtrl); // 회전
+//        this->ExportAnimationScale(pSclCtrl);     // 스케일
 //
-//		Control* pTPosCtrl = NULL;
-//		INode* pTarget = pNode->GetTarget();
-//		if(pTarget != NULL) pTPosCtrl = pTarget->GetTMController()->GetPositionController();
-//		this->ExportAnimationPosition(pTPosCtrl); // 타겟 위치 에니메이션..
-		///////////////////////////////////////////////////////////////////////////////////////
+//        Control* pTPosCtrl = NULL;
+//        INode* pTarget = pNode->GetTarget();
+//        if(pTarget != NULL) pTPosCtrl = pTarget->GetTMController()->GetPositionController();
+//        this->ExportAnimationPosition(pTPosCtrl); // 타겟 위치 에니메이션..
+        ///////////////////////////////////////////////////////////////////////////////////////
 
-		BipIface->EndFigureMode(1);
-		
-		// Redraw if you want to see the result
-		g_pIntf->RedrawViews(0);
+        BipIface->EndFigureMode(1);
+        
+        // Redraw if you want to see the result
+        g_pIntf->RedrawViews(0);
 
-		// release the interface when you are done with it
-		c->ReleaseInterface(I_BIPINTERFACE,BipIface);
-	}
+        // release the interface when you are done with it
+        c->ReleaseInterface(I_BIPINTERFACE,BipIface);
+    }
 */
     return true;
 }
@@ -1094,7 +1094,7 @@ bool CN3DExp::ProcessTransform(INode * pNode, CN3Transform * pTransform, bool bL
     }
     decomp_affine(mMtx, &mAP);
 
-    //	pTransform->PosSet(mAP.t.x * 0.0254f, mAP.t.z * 0.0254f, mAP.t.y * 0.0254f); // 1 Unit == 1 Inch -> Meter 로 바꾼다.. // 위치 - y, z 를 바꾸어 준다..
+    //    pTransform->PosSet(mAP.t.x * 0.0254f, mAP.t.z * 0.0254f, mAP.t.y * 0.0254f); // 1 Unit == 1 Inch -> Meter 로 바꾼다.. // 위치 - y, z 를 바꾸어 준다..
     pTransform->PosSet(mAP.t.x, mAP.t.z,
                        mAP.t.y); // 1 Unit == 1 Inch -> Meter 로 바꾼다.. // 위치 - y, z 를 바꾸어 준다..
     __Quaternion qt;             // 회전.
@@ -1182,8 +1182,8 @@ bool CN3DExp::ProcessTransform(INode * pNode, CN3Transform * pTransform, bool bL
             float fTmp = vAxis.y;
             vAxis.y = vAxis.z;
             vAxis.z = fTmp;               // y축과 z축을 바꾼다음..
-                                          //			while (fD>D3DX_PI) fD -= (D3DX_PI*2.0f);
-                                          //			while (fD<= (-D3DX_PI)) fD += (D3DX_PI*2.0f);
+                                          //            while (fD>D3DX_PI) fD -= (D3DX_PI*2.0f);
+                                          //            while (fD<= (-D3DX_PI)) fD += (D3DX_PI*2.0f);
             pQR->RotationAxis(vAxis, fD); // 쿼터니언 계산 및 세팅.
         }
         pVS->Set(mAP.k.x * mAP.f, mAP.k.y * mAP.f, mAP.k.z * mAP.f); // Scale
@@ -1275,7 +1275,7 @@ bool CN3DExp::IsBone(INode * pNode) {
     if (pNode == NULL) {
         return false;
     }
-    //	const char* szName = pNode->GetName();
+    //    const char* szName = pNode->GetName();
     ObjectState os = pNode->EvalWorldState(m_Option.nFrmStart * 160);
     if (!os.obj) {
         return false;
@@ -1341,10 +1341,10 @@ bool CN3DExp::CheckObjectClassID(INode *          pNode,
     Object * pObj = pNode->EvalWorldState(m_Option.nFrmStart * 160).obj;
 
     if (pObj) {
-        //		TSTR szClass;
-        //		pObj->GetClassName(szClass);
+        //        TSTR szClass;
+        //        pObj->GetClassName(szClass);
         Class_ID cID2(pObj->ClassID());
-        //		DWORD dwSCID = pObj->SuperClassID();
+        //        DWORD dwSCID = pObj->SuperClassID();
 
         if (cID2 == cID) {
             return true;
@@ -1356,58 +1356,58 @@ bool CN3DExp::CheckObjectClassID(INode *          pNode,
 // Bone 및 Skin 처리 루틴.. 일부분이지만 나중에 쓸수도 있다..
 ////////////////////////////////////
 /*
-				ISkin* pmSkin = NULL;
-				ModContext *pMC = NULL;
-				Object* pObj = pNode->GetObjectRef();
-				if (NULL == pObj) return NULL;
-				
-				TSTR szClass;
-				pObj->GetClassName(szClass);
-				Class_ID cID = pObj->ClassID();
-				SClass_ID scID = pObj->SuperClassID();
+                ISkin* pmSkin = NULL;
+                ModContext *pMC = NULL;
+                Object* pObj = pNode->GetObjectRef();
+                if (NULL == pObj) return NULL;
+                
+                TSTR szClass;
+                pObj->GetClassName(szClass);
+                Class_ID cID = pObj->ClassID();
+                SClass_ID scID = pObj->SuperClassID();
 
-				while (scID == GEN_DERIVOB_CLASS_ID && pMC == NULL && pmSkin == NULL)
-				{
-					IDerivedObject* pDerObj = (IDerivedObject *)(pObj);
+                while (scID == GEN_DERIVOB_CLASS_ID && pMC == NULL && pmSkin == NULL)
+                {
+                    IDerivedObject* pDerObj = (IDerivedObject *)(pObj);
 
-					pDerObj->GetClassName(szClass);
+                    pDerObj->GetClassName(szClass);
 
-					int nMC = nMC = pDerObj->NumModifiers();
-					for(int i = 0; i < nMC; i++)
-					{
-						Modifier* pMod = pDerObj->GetModifier(i); // Get the modifier. 
-						
-						pMod->GetClassName(szClass);
-						cID = pMod->ClassID();
-						scID = pMod->SuperClassID();
+                    int nMC = nMC = pDerObj->NumModifiers();
+                    for(int i = 0; i < nMC; i++)
+                    {
+                        Modifier* pMod = pDerObj->GetModifier(i); // Get the modifier. 
+                        
+                        pMod->GetClassName(szClass);
+                        cID = pMod->ClassID();
+                        scID = pMod->SuperClassID();
 
 
-						if (pMod->ClassID() == SKIN_CLASSID) // is this the correct Physique Modifier based on index?
-						{
-							pmSkin = (ISkin*)pMod;
-							pMC = pDerObj->GetModContext(i);
-							break;
-						}
-					}
-					pObj = pDerObj->GetObjRef();
-					scID = pObj->SuperClassID();
-				}
+                        if (pMod->ClassID() == SKIN_CLASSID) // is this the correct Physique Modifier based on index?
+                        {
+                            pmSkin = (ISkin*)pMod;
+                            pMC = pDerObj->GetModContext(i);
+                            break;
+                        }
+                    }
+                    pObj = pDerObj->GetObjRef();
+                    scID = pObj->SuperClassID();
+                }
 
-				if(pmSkin)
-				{
-					int nBC = pmSkin->GetNumBones();
-					for(int i = 0 ; i < nBC; i++)
-					{
-						const char* szBone = pmSkin->GetBoneName(i);
-						INode* pBN = pmSkin->GetBone(i);
-					}
-				}
+                if(pmSkin)
+                {
+                    int nBC = pmSkin->GetNumBones();
+                    for(int i = 0 ; i < nBC; i++)
+                    {
+                        const char* szBone = pmSkin->GetBoneName(i);
+                        INode* pBN = pmSkin->GetBone(i);
+                    }
+                }
 
-//				if(pMC && pMC->localData)
-//				{
-//					BoneModData *bmd = (BoneModData *) mc->localData;
-//				}
-				
+//                if(pMC && pMC->localData)
+//                {
+//                    BoneModData *bmd = (BoneModData *) mc->localData;
+//                }
+                
 */
 
 bool CN3DExp::ProcessIMesh(INode * pNode, CN3IMesh * pIMesh) {
@@ -1457,9 +1457,9 @@ bool CN3DExp::ProcessIMesh(INode * pNode, CN3IMesh * pIMesh) {
         return false;
     }
 
-    //	Matrix3 mMtx = pNode->GetNodeTM(m_Option.nFrmStart * 160); // 월드 행렬가져온다.
+    //    Matrix3 mMtx = pNode->GetNodeTM(m_Option.nFrmStart * 160); // 월드 행렬가져온다.
     Matrix3 mMtx = pNode->GetObjTMAfterWSM(m_Option.nFrmStart * 160); // 월드 행렬가져온다.
-    //	Matrix3 mMtx = pNode->GetObjectTM(m_Option.nFrmStart * 160); // 월드 행렬가져온다.
+    //    Matrix3 mMtx = pNode->GetObjectTM(m_Option.nFrmStart * 160); // 월드 행렬가져온다.
 
     __VertexXyzNormal * pvDest1 = NULL;
     __Vector3 *         pvDest2 = NULL;
@@ -1492,8 +1492,8 @@ bool CN3DExp::ProcessIMesh(INode * pNode, CN3IMesh * pIMesh) {
     AffineParts ap;
     decomp_affine(mMtx, &ap);
     if (ap.k.x * ap.f <= 0 || ap.k.y * ap.f <= 0 || ap.k.z * ap.f <= 0) {
-        //		MessageBox(::GetActiveWindow(), pNode->GetName(),
-        //			"경고 : 스케일 값이 음수 입니다 -> Face가 뒤집혀 보일 수 있습니다.", MB_OK);
+        //        MessageBox(::GetActiveWindow(), pNode->GetName(),
+        //            "경고 : 스케일 값이 음수 입니다 -> Face가 뒤집혀 보일 수 있습니다.", MB_OK);
         vx1 = 0;
         vx2 = 1;
         vx3 = 2;
@@ -1586,23 +1586,23 @@ bool CN3DExp::ProcessMaterial(INode * pNode, __Material * pMtl, CN3Texture ** pp
     }
 
     // Methods to access sub-materials of meta-materials
-    //	Mtl* pmMtlTmp = NULL;
+    //    Mtl* pmMtlTmp = NULL;
     int nSM = pmMtl->NumSubMtls();
-    //	if(nSM > 0)
-    //	{
-    //		for(int i = 0; i < nSM; i++)
-    //		{
-    //			if(pmMtl->GetSubMtl(i) != NULL)
-    //			{
-    //				pmMtlTmp = pmMtl->GetSubMtl(i);
-    //				break;
-    //			}
-    //		}
-    //	}
-    //	else
-    //	{
-    //		pmMtlTmp = pmMtl;
-    //	}
+    //    if(nSM > 0)
+    //    {
+    //        for(int i = 0; i < nSM; i++)
+    //        {
+    //            if(pmMtl->GetSubMtl(i) != NULL)
+    //            {
+    //                pmMtlTmp = pmMtl->GetSubMtl(i);
+    //                break;
+    //            }
+    //        }
+    //    }
+    //    else
+    //    {
+    //        pmMtlTmp = pmMtl;
+    //    }
 
     if (pmMtl && pmMtl->GetSubTexmap(1) != NULL) // 텍스처가 씌어 있는 재질이면.
     {
@@ -1822,7 +1822,7 @@ bool CN3DExp::ProcessPhysique(INode * pNode, INode * pNodeRootJoint, CN3Skin * p
     __VertexSkinned * pVDest = pN3Skin->SkinVertices();
     memset(pVDest, 0, sizeof(__VertexSkinned) * nPtCount);
 
-    //	pPCE->ConvertToRigid(TRUE); // we convert all vertices to Rigid in this example
+    //    pPCE->ConvertToRigid(TRUE); // we convert all vertices to Rigid in this example
 
     Matrix3 mMtxOrg = pNode->GetObjTMAfterWSM(m_Option.nFrmStart * 160); // 원래 메시의 월드 행렬
     for (int i = 0; i < nPtCount; i++) {
@@ -1833,9 +1833,9 @@ bool CN3DExp::ProcessPhysique(INode * pNode, INode * pNodeRootJoint, CN3Skin * p
 
         Point3 ptOrg = pObj->GetPoint(i);
         ptOrg = ptOrg * mMtxOrg;
-        //		pVDest[i].vOrigin.Set(ptOrg.x * 0.0254f, ptOrg.z * 0.0254f, ptOrg.y * 0.0254f);
+        //        pVDest[i].vOrigin.Set(ptOrg.x * 0.0254f, ptOrg.z * 0.0254f, ptOrg.y * 0.0254f);
         pVDest[i].vOrigin.Set(ptOrg.x, ptOrg.z, ptOrg.y);
-        //		pObj->SetPoint(i, ptBlendP); // 확인하기 위해서 넣어본다..
+        //        pObj->SetPoint(i, ptBlendP); // 확인하기 위해서 넣어본다..
 
         int nVType = pVE->GetVertexType();
         if (nVType & BLENDED_TYPE) // Blend Type
@@ -1888,30 +1888,30 @@ bool CN3DExp::ProcessPhysique(INode * pNode, INode * pNodeRootJoint, CN3Skin * p
 /*
 bool CN3DExp::FindNodeIndex(INode* pNodeCompare, INode* pNodeSrc, Class_ID& cID, int& nNodeIndex)
 {
-	if(NULL == pNodeCompare || NULL == pNodeSrc) return false;
-	Control* pCtrl = pNodeCompare->GetTMController();
-	if(NULL == pCtrl) return false;
-	if(pCtrl->ClassID() != cID) return false; // 바이페드가 아니면 무시한다..
+    if(NULL == pNodeCompare || NULL == pNodeSrc) return false;
+    Control* pCtrl = pNodeCompare->GetTMController();
+    if(NULL == pCtrl) return false;
+    if(pCtrl->ClassID() != cID) return false; // 바이페드가 아니면 무시한다..
 
-	DWORD dwID = pNodeSrc->SuperClassID();
-	DWORD dwID2 = pNodeCompare->SuperClassID();
+    DWORD dwID = pNodeSrc->SuperClassID();
+    DWORD dwID2 = pNodeCompare->SuperClassID();
 
-	const char* sz1 = pNodeSrc->GetName();
-	const char* sz2 = pNodeCompare->GetName();
+    const char* sz1 = pNodeSrc->GetName();
+    const char* sz2 = pNodeCompare->GetName();
 
-	if(pNodeSrc == pNodeCompare)
-		return true;
-	else
-		nNodeIndex++;
+    if(pNodeSrc == pNodeCompare)
+        return true;
+    else
+        nNodeIndex++;
 
-	int nCC = pNodeCompare->NumberOfChildren();
-	for(int i = 0; i < nCC; i++)
-	{
-		INode* pNodeChild = pNodeCompare->GetChildNode(i);
-		if(this->FindNodeIndex(pNodeChild, pNodeSrc, cID, nNodeIndex) == true) return true;
-	}
+    int nCC = pNodeCompare->NumberOfChildren();
+    for(int i = 0; i < nCC; i++)
+    {
+        INode* pNodeChild = pNodeCompare->GetChildNode(i);
+        if(this->FindNodeIndex(pNodeChild, pNodeSrc, cID, nNodeIndex) == true) return true;
+    }
 
-	return false;
+    return false;
 }
 */
 bool CN3DExp::FindBoneIndex(INode * pNodeCompare, INode * pNodeSrc, int & nNodeIndex) {

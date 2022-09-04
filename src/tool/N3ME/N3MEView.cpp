@@ -92,7 +92,7 @@ void CN3MEView::Render() {
 
     pEng->s_lpD3DDev->BeginScene();
 
-    //	그리기...
+    //    그리기...
     if (m_pMapMng) {
         m_pMapMng->Render();
     }

@@ -36,12 +36,12 @@ class CLocalInput {
   protected:
     LPDIRECTINPUT8       m_lpDI;
     LPDIRECTINPUTDEVICE8 m_lpDIDKeyboard;
-    //	LPDIRECTINPUTDEVICE8	m_lpDIDMouse;
+    //    LPDIRECTINPUTDEVICE8    m_lpDIDMouse;
 
     HWND m_hWnd;
 
-    //	BOOL m_bMouse;
-    //	BOOL m_bKeyboard;
+    //    BOOL m_bMouse;
+    //    BOOL m_bKeyboard;
 
     int   m_nMouseFlag, m_nMouseFlagOld; // 마우스 버튼 눌림 플래그
     DWORD m_dwTickLBDown;                // 마우스 왼쪽 버튼 더블 클릭 감지용

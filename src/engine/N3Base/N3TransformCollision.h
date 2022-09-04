@@ -30,20 +30,20 @@ class CN3TransformCollision : public CN3Transform {
     void SetMeshCollision(const std::string & szFN) { m_pMeshCollision = s_MngVMesh.Get(szFN); }
     void SetMeshClimb(const std::string & szFN) { m_pMeshClimb = s_MngVMesh.Get(szFN); }
 
-    //	By : Dino ( On 2001-08-27 오후 9:15:24 )
-    //	주어진 지점이 m_fRadius 범위안에 있는지 체크
+    //    By : Dino ( On 2001-08-27 오후 9:15:24 )
+    //    주어진 지점이 m_fRadius 범위안에 있는지 체크
     bool IsInRadius(__Vector3 & vCheckPos) { return ((vCheckPos - m_vPos).Magnitude() > m_fRadius ? FALSE : TRUE); }
     bool IsInRadiusXZ(float fX, float fZ) {
         fX -= m_vPos.x;
         fZ -= m_vPos.z;
         return (sqrtf(fX * fX + fZ * fZ) > m_fRadius ? FALSE : TRUE);
     }
-    //	~(By Dino On 2001-08-27 오후 9:15:24 )
+    //    ~(By Dino On 2001-08-27 오후 9:15:24 )
 
     virtual int CheckCollisionPrecisely(bool bIgnoreBoxCheck, int ixScreen, int iyScreen, __Vector3 * pVCol = NULL,
                                         __Vector3 * pVNormal = NULL);
-    //	BOOL CheckClimb(int x, int y, __Vector3* pVCol = NULL, __Vector3* pVNormal = NULL, __Vector3* pVPolygon = NULL);
-    //	BOOL CheckClimb(__Vector3 &vPos, __Vector3 &vDir, __Vector3* pVCol = NULL, __Vector3* pVNormal = NULL, __Vector3* pVPolygon = NULL);
+    //    BOOL CheckClimb(int x, int y, __Vector3* pVCol = NULL, __Vector3* pVNormal = NULL, __Vector3* pVPolygon = NULL);
+    //    BOOL CheckClimb(__Vector3 &vPos, __Vector3 &vDir, __Vector3* pVCol = NULL, __Vector3* pVNormal = NULL, __Vector3* pVPolygon = NULL);
     void RenderCollisionMesh();
     void RenderClimbMesh();
 

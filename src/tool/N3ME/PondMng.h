@@ -71,7 +71,7 @@ class CPondMng : public CN3BaseFileAccess {
     RECT             m_rcSelDrag;     // 드래그 영역
     __VertexXyzColor m_CreateLine[5]; // 연못 처음 생성할때 보이는 선
 
-    __Vector3 m_vPondsCenter; //	연못(들)의 중간점
+    __Vector3 m_vPondsCenter; //    연못(들)의 중간점
 
     BOOL m_bShift;
 
@@ -94,7 +94,7 @@ class CPondMng : public CN3BaseFileAccess {
 
     void MainInvalidate(); // 화면 강재로 다시 찍기
 
-    //	CDlgPondProperty에서 쓰인 함수들
+    //    CDlgPondProperty에서 쓰인 함수들
     void RemovePondMesh(int iPondID); // 선택된 연못을 삭제한다.
     void GoPond(int iPondID);         // 선택된 연못으로 갑니다.
     void StationPond();               // 선택된 연못의 점들을 다시 배치
@@ -105,7 +105,7 @@ class CPondMng : public CN3BaseFileAccess {
     void ChooseGroupPond() { m_bChooseGroup ^= 1; }
     void ChooseEditPond() { m_bChooseEditPond ^= 1; }
 
-    //	나중에 지울지도
+    //    나중에 지울지도
     void ReCalcSelectedVertex(); // 지정된 스케일에 따라 다시 정렬
     void ReCalcUV();             // 선택된 연못의 UV좌표 다시 계산.
   protected:
@@ -124,6 +124,6 @@ class CPondMng : public CN3BaseFileAccess {
     void SetVtxBackup();
     void ReSetVtxBackup();
 
-    void ReSetDrawRect(__Vector3 vStrPos, __Vector3 vEndPos); //	연못을 그리기위한 영역 재정리
-    void InputDummyMovePos(__Vector3 vMovePos);               //	더미가 움직인 만큼 선택한 연못에 입력
+    void ReSetDrawRect(__Vector3 vStrPos, __Vector3 vEndPos); //    연못을 그리기위한 영역 재정리
+    void InputDummyMovePos(__Vector3 vMovePos);               //    더미가 움직인 만큼 선택한 연못에 입력
 };

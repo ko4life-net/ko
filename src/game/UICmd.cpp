@@ -77,8 +77,8 @@ bool CUICmd::Load(HANDLE hFile) {
 
     m_pBtn_Map = GetChildByID("btn_map"); //__ASSERT(m_pBtn_Map, "NULL UI Component!!");
 
-    //	this->SetVisibleActButtons(true);
-    //	this->SetVisibleOptButtons(false);
+    //    this->SetVisibleActButtons(true);
+    //    this->SetVisibleOptButtons(false);
 
     return true;
 }
@@ -89,15 +89,15 @@ bool CUICmd::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     }
 
     if (dwMsg == UIMSG_BUTTON_CLICK) {
-        //		if(pSender == m_pBtn_Option)
-        //		{
-        //			this->SetVisibleActButtons(false);
-        //			this->SetVisibleOptButtons(true);
-        //		}
+        //        if(pSender == m_pBtn_Option)
+        //        {
+        //            this->SetVisibleActButtons(false);
+        //            this->SetVisibleOptButtons(true);
+        //        }
 
         if (pSender == m_pBtn_Act) {
-            //			this->SetVisibleActButtons(true);
-            //			this->SetVisibleOptButtons(false);
+            //            this->SetVisibleActButtons(true);
+            //            this->SetVisibleOptButtons(false);
         }
 
         else if (pSender == m_pBtn_Act_Walk) {
@@ -124,7 +124,7 @@ bool CUICmd::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
         {
             std::string szMsg;
             ::_LoadStringFromResource(IDS_EXIT, szMsg);
-            //			CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_RESTART_GAME); // 게임 다시시작 하기..??
+            //            CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_RESTART_GAME); // 게임 다시시작 하기..??
             CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_EXIT); // 게임 다시시작 하기..??
         }
 
@@ -192,25 +192,25 @@ bool CUICmd::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 /*
 void CUICmd::SetVisibleActButtons(bool bVisible)
 {
-	//행동
-	if(m_pBtn_Act_Walk) m_pBtn_Act_Walk->SetVisible(bVisible); 
-	if(m_pBtn_Act_Run) m_pBtn_Act_Run->SetVisible(bVisible);
-	if(m_pBtn_Act_Stop) m_pBtn_Act_Stop->SetVisible(bVisible);
-	if(m_pBtn_Act_StandUp) m_pBtn_Act_StandUp->SetVisible(bVisible);
-	if(m_pBtn_Act_SitDown) m_pBtn_Act_SitDown->SetVisible(bVisible);
-	if(m_pBtn_Act_Attack) m_pBtn_Act_Attack->SetVisible(bVisible);
+    //행동
+    if(m_pBtn_Act_Walk) m_pBtn_Act_Walk->SetVisible(bVisible); 
+    if(m_pBtn_Act_Run) m_pBtn_Act_Run->SetVisible(bVisible);
+    if(m_pBtn_Act_Stop) m_pBtn_Act_Stop->SetVisible(bVisible);
+    if(m_pBtn_Act_StandUp) m_pBtn_Act_StandUp->SetVisible(bVisible);
+    if(m_pBtn_Act_SitDown) m_pBtn_Act_SitDown->SetVisible(bVisible);
+    if(m_pBtn_Act_Attack) m_pBtn_Act_Attack->SetVisible(bVisible);
 }
 */
 
 /*
 void CUICmd::SetVisibleOptButtons(bool bVisible)
 {
-	//옵션
-	if(m_pBtn_Opt_Quest) m_pBtn_Opt_Quest->SetVisible(bVisible);
-	if(m_pBtn_Character) m_pBtn_Character->SetVisible(bVisible);	
-	if(m_pBtn_Skill) m_pBtn_Skill->SetVisible(bVisible);
-	if(m_pBtn_Opt_Knight) m_pBtn_Opt_Knight->SetVisible(bVisible);
-	if(m_pBtn_Inventory) m_pBtn_Inventory->SetVisible(bVisible);	
+    //옵션
+    if(m_pBtn_Opt_Quest) m_pBtn_Opt_Quest->SetVisible(bVisible);
+    if(m_pBtn_Character) m_pBtn_Character->SetVisible(bVisible);    
+    if(m_pBtn_Skill) m_pBtn_Skill->SetVisible(bVisible);
+    if(m_pBtn_Opt_Knight) m_pBtn_Opt_Knight->SetVisible(bVisible);
+    if(m_pBtn_Inventory) m_pBtn_Inventory->SetVisible(bVisible);    
 }
 */
 

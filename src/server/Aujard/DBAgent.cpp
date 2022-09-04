@@ -24,7 +24,7 @@ CDBAgent::CDBAgent() {}
 CDBAgent::~CDBAgent() {}
 
 BOOL CDBAgent::DatabaseInit() {
-    //	Main DB Connecting..
+    //    Main DB Connecting..
     /////////////////////////////////////////////////////////////////////////////////////
     m_pMain = (CAujardDlg *)AfxGetApp()->GetMainWnd();
 
@@ -188,7 +188,7 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
     if (retcode != SQL_SUCCESS) {
         memset(logstr, 0x00, 256);
         sprintf(logstr, "LoadUserData Fail 000 : name=%s\r\n", userid);
-        //	m_pMain->m_LogFile.Write(logstr, strlen(logstr));
+        //    m_pMain->m_LogFile.Write(logstr, strlen(logstr));
         return FALSE;
     }
 
@@ -197,7 +197,7 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
         SQLFreeHandle((SQLSMALLINT)SQL_HANDLE_STMT, hstmt);
         memset(logstr, 0x00, 256);
         sprintf(logstr, "LoadUserData Fail : name=%s, retcode=%d\r\n", userid, retcode);
-        //	m_pMain->m_LogFile.Write(logstr, strlen(logstr));
+        //    m_pMain->m_LogFile.Write(logstr, strlen(logstr));
         return FALSE;
     }
 
@@ -242,7 +242,7 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
         } else {
             memset(logstr, 0x00, 256);
             sprintf(logstr, "LoadUserData Fail 222 : name=%s, retcode=%d\r\n", userid, retcode);
-            //		m_pMain->m_LogFile.Write(logstr, strlen(logstr));
+            //        m_pMain->m_LogFile.Write(logstr, strlen(logstr));
             retval = FALSE;
         }
     } else {
@@ -250,7 +250,7 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
             char logstr[256];
             memset(logstr, 0x00, 256);
             sprintf(logstr, "[Error-DB Fail] LoadUserData : name=%s\r\n", userid);
-            //		m_pMain->m_LogFile.Write(logstr, strlen(logstr));
+            //        m_pMain->m_LogFile.Write(logstr, strlen(logstr));
 
             m_GameDB.Close();
             if (!m_GameDB.IsOpen()) {
@@ -262,22 +262,22 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
 
         memset(logstr, 0x00, 256);
         sprintf(logstr, "LoadUserData Fail 333 : name=%s, retcode=%d\r\n", userid, retcode);
-        //	m_pMain->m_LogFile.Write(logstr, strlen(logstr));
+        //    m_pMain->m_LogFile.Write(logstr, strlen(logstr));
     }
     SQLFreeHandle((SQLSMALLINT)SQL_HANDLE_STMT, hstmt);
 
     // 엠겜 유저가 아니다.
-    /*	if(sRet == 0)	{
-		memset( logstr, 0x00, 256);
-		sprintf( logstr, "LoadUserData Fail : name=%s, sRet= %d, retval=%d, nation=%d \r\n", userid, sRet, retval, Nation );
-		m_pMain->m_LogFile.Write(logstr, strlen(logstr));
-		return FALSE;
-	}	*/
+    /*    if(sRet == 0)    {
+        memset( logstr, 0x00, 256);
+        sprintf( logstr, "LoadUserData Fail : name=%s, sRet= %d, retval=%d, nation=%d \r\n", userid, sRet, retval, Nation );
+        m_pMain->m_LogFile.Write(logstr, strlen(logstr));
+        return FALSE;
+    }    */
 
     if (retval == FALSE) {
         memset(logstr, 0x00, 256);
         sprintf(logstr, "LoadUserData Fail : name=%s, retval= %d \r\n", userid, retval);
-        //	m_pMain->m_LogFile.Write(logstr, strlen(logstr));
+        //    m_pMain->m_LogFile.Write(logstr, strlen(logstr));
         return FALSE;
     }
 
@@ -285,26 +285,26 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
     if (!pUser) {
         memset(logstr, 0x00, 256);
         sprintf(logstr, "LoadUserData point is Fail : name=%s, uid= %d \r\n", userid, uid);
-        //	m_pMain->m_LogFile.Write(logstr, strlen(logstr));
+        //    m_pMain->m_LogFile.Write(logstr, strlen(logstr));
         return FALSE;
     }
     if (strlen(pUser->m_id) != 0) {
         memset(logstr, 0x00, 256);
         sprintf(logstr, "LoadUserData id length is null Fail : name=%s,  \r\n", userid);
-        //	m_pMain->m_LogFile.Write(logstr, strlen(logstr));
+        //    m_pMain->m_LogFile.Write(logstr, strlen(logstr));
         return FALSE;
     }
     if (dwTime != 0) {
         char logstr[256];
         memset(logstr, 0x00, 256);
         sprintf(logstr, "[LoadUserData dwTime Error : name=%s, dwTime=%d\r\n", userid, dwTime);
-        //	m_pMain->m_LogFile.Write(logstr, strlen(logstr));
+        //    m_pMain->m_LogFile.Write(logstr, strlen(logstr));
         TRACE(logstr);
     }
     if (pUser->m_bLogout) { // 아직 종료되지 않은 유저...
         memset(logstr, 0x00, 256);
         sprintf(logstr, "LoadUserData logout Fail : name=%s, logout= %d \r\n", userid, pUser->m_bLogout);
-        //	m_pMain->m_LogFile.Write(logstr, strlen(logstr));
+        //    m_pMain->m_LogFile.Write(logstr, strlen(logstr));
         return FALSE;
     }
 
@@ -1055,10 +1055,10 @@ int CDBAgent::LoadKnightsAllMembers(int knightsindex, int start, char * temp_buf
                     SQLGetData(hstmt, 3, SQL_C_TINYINT, &Level, 0, &Indexind);
                     SQLGetData(hstmt, 4, SQL_C_SSHORT, &Class, 0, &Indexind);
 
-                    //	if( count < start ) {
-                    //		count++;
-                    //		continue;
-                    //	}
+                    //    if( count < start ) {
+                    //        count++;
+                    //        continue;
+                    //    }
                     strcpy((char *)(LPCTSTR)tempid, (char *)userid);
                     tempid.TrimRight();
 
@@ -1080,7 +1080,7 @@ int CDBAgent::LoadKnightsAllMembers(int knightsindex, int start, char * temp_buf
 
                     count++;
                     //if( count >= start + 10 )
-                    //	break;
+                    //    break;
 
                     bData = TRUE;
                 } else {
@@ -1764,17 +1764,17 @@ BOOL CDBAgent::UpdateCouponEvent(const char * accountid, char * charid, char * c
         return FALSE;
     }
 
-    /*	retcode = SQLBindParameter(hstmt,1,SQL_PARAM_OUTPUT,SQL_C_SSHORT, SQL_SMALLINT,0,0, &sRet,0,&Indexind);
-	if (retcode != SQL_SUCCESS){
-		SQLFreeHandle((SQLSMALLINT)SQL_HANDLE_STMT,hstmt);
-		return FALSE;
-	}	*/
+    /*    retcode = SQLBindParameter(hstmt,1,SQL_PARAM_OUTPUT,SQL_C_SSHORT, SQL_SMALLINT,0,0, &sRet,0,&Indexind);
+    if (retcode != SQL_SUCCESS){
+        SQLFreeHandle((SQLSMALLINT)SQL_HANDLE_STMT,hstmt);
+        return FALSE;
+    }    */
 
     retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
     if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
         //SQLFreeHandle((SQLSMALLINT)SQL_HANDLE_STMT,hstmt);
         retval = TRUE;
-        //if( sRet == 1 )	retval = TRUE;
+        //if( sRet == 1 )    retval = TRUE;
         //else retval = FALSE;
     } else {
         if (DisplayErrorMsg(hstmt) == -1) {

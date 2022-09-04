@@ -293,10 +293,10 @@ BOOL CTransDummy::MouseMsgFilter(LPMSG pMsg) {
     {
         if (m_pSelectedCube) {
             __Vector3 vDiffPos = m_vPrevPos - m_vPos;
-            //				__Quaternion qDiffRot = m_qPrevRot - m_qRot;
+            //                __Quaternion qDiffRot = m_qPrevRot - m_qRot;
             __Vector3 vDiffScale;
             vDiffScale.Set(1.0f, 1.0f, 1.0f);
-            //				TransDiff(&vDiffPos, &vDiffRot, &vDiffScale);
+            //                TransDiff(&vDiffPos, &vDiffRot, &vDiffScale);
             TransDiff(&vDiffPos, NULL, &vDiffScale);
 
             m_vPos = m_vPrevPos;
@@ -368,7 +368,7 @@ void CTransDummy::TransDiff(__Vector3 * pvDiffPos, __Quaternion * pqDiffRot, __V
             qtRot *= (*pqDiffRot);
             pSelObj->RotSet(qtRot);
 
-            vPos = pSelObj->Pos(); //	맵상에서의 위치
+            vPos = pSelObj->Pos(); //    맵상에서의 위치
             vPos -= vCenter;
             vPos *= mtx44Rotate;
             vPos += vCenter;

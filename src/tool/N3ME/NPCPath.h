@@ -19,7 +19,7 @@ class CNPCPath : public CN3Base {
     __Vector3 m_LTStartVertex; // 시작영역의 모서리 두점..
     __Vector3 m_RBStartVertex;
 
-    //CRect	m_rcStartRect;		// NPC생기는 영역.
+    //CRect    m_rcStartRect;        // NPC생기는 영역.
     int m_iRegenTime; // NPC가 죽었다가 다시 살아나는데 걸리는 시간.
     int m_iActType;
     int m_iZoneID;

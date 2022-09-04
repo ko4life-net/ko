@@ -39,7 +39,7 @@ class CDlgSowSeed : public CDialog {
   public:
     CMainFrame * m_pRefFrm;
     //std::list<LPSEEDGROUP> m_SeedGroupList;
-    //char	m_FileName[MAX_PATH];
+    //char    m_FileName[MAX_PATH];
     int Brush_Size;
     int SowDetail;
     int Sow_Array[MAX_BRUSH_SIZE][MAX_BRUSH_SIZE];

@@ -619,8 +619,8 @@ void CUIKnights::Clear() {
     m_pText_Name->SetString("");
     m_pText_Duty->SetString("");
     m_pText_MemberCount->SetString("0");
-    //	m_pText_Grade->SetString("");
-    //	m_pText_Rank->SetString("");
+    //    m_pText_Grade->SetString("");
+    //    m_pText_Rank->SetString("");
 
     this->ChangeUIByDuty(CGameProcedure::s_pPlayer->m_InfoExt.eKnightsDuty);
 }
@@ -651,10 +651,10 @@ bool CUIKnights::Load(HANDLE hFile) {
     __ASSERT(m_pText_Page, "NULL UI Component!!");
     m_pText_MemberCount = (CN3UIString *)this->GetChildByID("Text_clan_MemberCount");
     __ASSERT(m_pText_MemberCount, "NULL UI Component!!");
-    //	m_pText_Grade = (CN3UIString*)this->GetChildByID("Text_clan_Grade");	__ASSERT(m_pText_Grade, "NULL UI Component!!");
-    //	m_pText_Rank = (CN3UIString*)this->GetChildByID("Text_clan_Rank");		__ASSERT(m_pText_Rank, "NULL UI Component!!");
+    //    m_pText_Grade = (CN3UIString*)this->GetChildByID("Text_clan_Grade");    __ASSERT(m_pText_Grade, "NULL UI Component!!");
+    //    m_pText_Rank = (CN3UIString*)this->GetChildByID("Text_clan_Rank");        __ASSERT(m_pText_Rank, "NULL UI Component!!");
 
-    //m_pList_Members = (CN3UIList*)this->GetChildByID("List_clan_Member");		__ASSERT(m_pList_Members, "NULL UI Component!!");
+    //m_pList_Members = (CN3UIList*)this->GetChildByID("List_clan_Member");        __ASSERT(m_pList_Members, "NULL UI Component!!");
 
     m_pBtn_Admit = (CN3UIButton *)(this->GetChildByID("btn_clan_admit"));
     __ASSERT(m_pBtn_Admit, "NULL UI Component!!");
@@ -665,8 +665,8 @@ bool CUIKnights::Load(HANDLE hFile) {
     m_pBtn_Refresh = (CN3UIButton *)(this->GetChildByID("btn_clan_refresh"));
     __ASSERT(m_pBtn_Refresh, "NULL UI Component!!");
 
-    //	if(m_pText_Grade)	m_pText_Grade->SetVisible(false);
-    //	if(m_pText_Rank)	m_pText_Rank->SetVisible(false);
+    //    if(m_pText_Grade)    m_pText_Grade->SetVisible(false);
+    //    if(m_pText_Rank)    m_pText_Rank->SetVisible(false);
 
     char szBuf[128];
     for (int i = 0; i < MAX_CLAN_GRADE; i++) {
@@ -777,68 +777,68 @@ bool CUIKnights::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
         }
 
         /*
-		if(pSender == m_pBtn_PrevPage ||	pSender == m_pBtn_NextPage)
-		{
-			if(pSender == m_pBtn_PrevPage) m_iPageCur--;
-			else m_iPageCur++;
+        if(pSender == m_pBtn_PrevPage ||    pSender == m_pBtn_NextPage)
+        {
+            if(pSender == m_pBtn_PrevPage) m_iPageCur--;
+            else m_iPageCur++;
 
-			if(m_iPageCur < 0) 
-			{
-				m_iPageCur = 0;
-			}
-			else
-			{
-				__InfoPlayerMySelf*	pInfoExt = &(CGameBase::s_pPlayer->m_InfoExt);
+            if(m_iPageCur < 0) 
+            {
+                m_iPageCur = 0;
+            }
+            else
+            {
+                __InfoPlayerMySelf*    pInfoExt = &(CGameBase::s_pPlayer->m_InfoExt);
 
-				if(	KNIGHTS_DUTY_CHIEF == pInfoExt->eKnightsDuty ||
-					KNIGHTS_DUTY_VICECHIEF == pInfoExt->eKnightsDuty || 
-					KNIGHTS_DUTY_OFFICER == pInfoExt->eKnightsDuty )
-				{
-					this->MsgSend_MemberInfoAll(m_iPageCur); // 직위가 있는 상태면.. 전체 리스트 보기..
-				}
-				else if(KNIGHTS_DUTY_UNKNOWN)
-				{
-				}
-				else
-				{
-					this->MsgSend_MemberInfoOnline(m_iPageCur); // 직위가 없는 일반기사면.. 접속한 넘들만 보기...
-				}
-			}
-		}
-		else if(pSender == m_pBtn_Close)
-			SetVisible(false);
-		else if(pSender == m_pBtn_MemberJoinAdmit) // 멤버 가입 허락.
-			this->MsgSend_MemberJoinAdmit();
-		else if(pSender == m_pBtn_MemberJoinReject) // 멤버 가입 거절.
-			this->MsgSend_MemberJoinReject();
-		else if(pSender == m_pBtn_MemberPunish) // 멤버 징계
-			this->MsgSend_MemberPunish();
-		else if(pSender == m_pBtn_MemberRemove) // 멤버 삭제
-			this->MsgSend_MemberRemove();
-		else if(pSender == m_pBtn_MemberAppoint) // 멤버 직위에 임명
-		{
-			this->VisibleAppointButtons(true); // 임명 버튼들 그룹 보이게 하기..
-		}
-		else if(pSender == m_pBtn_AppointChief)
-		{
-			this->MsgSend_DutyAppoint(KNIGHTS_DUTY_CHIEF);
-			this->VisibleAppointButtons(false); // 임명 버튼들 그룹 안보이게 하기..
-		}
-		else if(pSender == m_pBtn_AppointViceChief)
-		{
-			this->MsgSend_DutyAppoint(KNIGHTS_DUTY_VICECHIEF);
-			this->VisibleAppointButtons(false); // 임명 버튼들 그룹 안보이게 하기..
-		}
-		else if(pSender == m_pBtn_AppointOfficer)
-		{
-			this->MsgSend_DutyAppoint(KNIGHTS_DUTY_OFFICER);
-			this->VisibleAppointButtons(false); // 임명 버튼들 그룹 안보이게 하기..
-		}
-		else if(pSender == m_pBtn_Online) // 접속자만 보이게 한다..
-		{
-			m_iPageCur = 0;
-			this->MsgSend_MemberInfoOnline(0);
-		}
+                if(    KNIGHTS_DUTY_CHIEF == pInfoExt->eKnightsDuty ||
+                    KNIGHTS_DUTY_VICECHIEF == pInfoExt->eKnightsDuty || 
+                    KNIGHTS_DUTY_OFFICER == pInfoExt->eKnightsDuty )
+                {
+                    this->MsgSend_MemberInfoAll(m_iPageCur); // 직위가 있는 상태면.. 전체 리스트 보기..
+                }
+                else if(KNIGHTS_DUTY_UNKNOWN)
+                {
+                }
+                else
+                {
+                    this->MsgSend_MemberInfoOnline(m_iPageCur); // 직위가 없는 일반기사면.. 접속한 넘들만 보기...
+                }
+            }
+        }
+        else if(pSender == m_pBtn_Close)
+            SetVisible(false);
+        else if(pSender == m_pBtn_MemberJoinAdmit) // 멤버 가입 허락.
+            this->MsgSend_MemberJoinAdmit();
+        else if(pSender == m_pBtn_MemberJoinReject) // 멤버 가입 거절.
+            this->MsgSend_MemberJoinReject();
+        else if(pSender == m_pBtn_MemberPunish) // 멤버 징계
+            this->MsgSend_MemberPunish();
+        else if(pSender == m_pBtn_MemberRemove) // 멤버 삭제
+            this->MsgSend_MemberRemove();
+        else if(pSender == m_pBtn_MemberAppoint) // 멤버 직위에 임명
+        {
+            this->VisibleAppointButtons(true); // 임명 버튼들 그룹 보이게 하기..
+        }
+        else if(pSender == m_pBtn_AppointChief)
+        {
+            this->MsgSend_DutyAppoint(KNIGHTS_DUTY_CHIEF);
+            this->VisibleAppointButtons(false); // 임명 버튼들 그룹 안보이게 하기..
+        }
+        else if(pSender == m_pBtn_AppointViceChief)
+        {
+            this->MsgSend_DutyAppoint(KNIGHTS_DUTY_VICECHIEF);
+            this->VisibleAppointButtons(false); // 임명 버튼들 그룹 안보이게 하기..
+        }
+        else if(pSender == m_pBtn_AppointOfficer)
+        {
+            this->MsgSend_DutyAppoint(KNIGHTS_DUTY_OFFICER);
+            this->VisibleAppointButtons(false); // 임명 버튼들 그룹 안보이게 하기..
+        }
+        else if(pSender == m_pBtn_Online) // 접속자만 보이게 한다..
+        {
+            m_iPageCur = 0;
+            this->MsgSend_MemberInfoOnline(0);
+        }
 */
     }
 
@@ -864,12 +864,12 @@ void CUIKnights::UpdateKnightsDuty(e_KnightsDuty eDuty) {
     case KNIGHTS_DUTY_VICECHIEF:
         ::_LoadStringFromResource(IDS_KNIGHTS_DUTY_VICECHIEF, szDuty);
         break;
-    //case KNIGHTS_DUTY_OFFICER:	::_LoadStringFromResource(IDS_KNIGHTS_DUTY_OFFICER, szDuty); break;
+    //case KNIGHTS_DUTY_OFFICER:    ::_LoadStringFromResource(IDS_KNIGHTS_DUTY_OFFICER, szDuty); break;
     case KNIGHTS_DUTY_KNIGHT:
         ::_LoadStringFromResource(IDS_KNIGHTS_DUTY_KNIGHT, szDuty);
         break;
-    //case KNIGHTS_DUTY_TRAINEE:	::_LoadStringFromResource(IDS_KNIGHTS_DUTY_TRAINEE, szDuty); break;
-    //case KNIGHTS_DUTY_PUNISH:		::_LoadStringFromResource(IDS_KNIGHTS_DUTY_PUNISH, szDuty); break;
+    //case KNIGHTS_DUTY_TRAINEE:    ::_LoadStringFromResource(IDS_KNIGHTS_DUTY_TRAINEE, szDuty); break;
+    //case KNIGHTS_DUTY_PUNISH:        ::_LoadStringFromResource(IDS_KNIGHTS_DUTY_PUNISH, szDuty); break;
     case KNIGHTS_DUTY_UNKNOWN:
         ::_LoadStringFromResource(IDS_KNIGHTS_DUTY_UNKNOWN, szDuty);
         break;
@@ -893,25 +893,25 @@ void CUIKnights::UpdateKnightsGrade(int iVal) {
         }
     }
     /*
-	if(NULL == m_pText_Grade) return;
-	
-	std::string szVal("등급 : ");
-	if(iVal <= 0) szVal += "없음";
-	else szVal += (char)('0'+iVal);
-	
-	m_pText_Grade->SetString(szVal);
+    if(NULL == m_pText_Grade) return;
+    
+    std::string szVal("등급 : ");
+    if(iVal <= 0) szVal += "없음";
+    else szVal += (char)('0'+iVal);
+    
+    m_pText_Grade->SetString(szVal);
 */
 }
 
 void CUIKnights::UpdateKnightsRank(int iVal) {
     /*
-	if(NULL == m_pText_Rank) return;
+    if(NULL == m_pText_Rank) return;
 
-	std::string szVal("순위 : ");
-	if(iVal <= 0) szVal += "없음";
-	else szVal += (char)('0'+iVal);
-	
-	m_pText_Rank->SetString(szVal);
+    std::string szVal("순위 : ");
+    if(iVal <= 0) szVal += "없음";
+    else szVal += (char)('0'+iVal);
+    
+    m_pText_Rank->SetString(szVal);
 */
 }
 
@@ -1034,17 +1034,17 @@ void CUIKnights::MsgSend_MemberInfoAll() {
 /*
 void CUIKnights::MsgSend_MemberInfoOnline(int iPage)
 {
-	int iOffset = 0;
-	BYTE byBuff[32];
-	
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_KNIGHTS);
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_KNIGHTS_MEMBER_INFO_ONLINE);
-	CAPISocket::MP_AddShort(byBuff, iOffset, iPage);
+    int iOffset = 0;
+    BYTE byBuff[32];
+    
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_KNIGHTS);
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_KNIGHTS_MEMBER_INFO_ONLINE);
+    CAPISocket::MP_AddShort(byBuff, iOffset, iPage);
 
-	CGameProcedure::s_pSocket->Send(byBuff, iOffset);
+    CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 
-	// 페이지를 넘길때는 버튼들을 막아 놓는다.
-//	this->EnableKnightsUIs(false);
+    // 페이지를 넘길때는 버튼들을 막아 놓는다.
+//    this->EnableKnightsUIs(false);
 }
 //*/
 
@@ -1103,124 +1103,124 @@ void CUIKnights::ChangeUIByDuty(e_KnightsDuty eDuty) // 권한에 따라 UI 변경..
         m_pBtn_Remove->SetVisible(false);
     }
     /*
-	bool bVisibles[2] = { false, false };
-	if(KNIGHTS_DUTY_CHIEF == eDuty) 
-	{
-		bVisibles[0] = true;
-		bVisibles[1] = true;
-	}
-	else if(KNIGHTS_DUTY_VICECHIEF == eDuty || KNIGHTS_DUTY_OFFICER == eDuty)
-	{
-		bVisibles[1] = true;
-	}
-	else
-	{
-	}
+    bool bVisibles[2] = { false, false };
+    if(KNIGHTS_DUTY_CHIEF == eDuty) 
+    {
+        bVisibles[0] = true;
+        bVisibles[1] = true;
+    }
+    else if(KNIGHTS_DUTY_VICECHIEF == eDuty || KNIGHTS_DUTY_OFFICER == eDuty)
+    {
+        bVisibles[1] = true;
+    }
+    else
+    {
+    }
 
-	this->VisibleAppointButtons(false); // 임명 버튼 숨기고..
-	if(m_pGroup_BossCmd) m_pGroup_BossCmd->SetVisible(bVisibles[0]);
-	if(m_pBtn_Online) m_pBtn_Online->SetVisible(bVisibles[1]);
-	*/
+    this->VisibleAppointButtons(false); // 임명 버튼 숨기고..
+    if(m_pGroup_BossCmd) m_pGroup_BossCmd->SetVisible(bVisibles[0]);
+    if(m_pBtn_Online) m_pBtn_Online->SetVisible(bVisibles[1]);
+    */
 }
 
 /*
 void CUIKnights::VisibleAppointButtons(bool bVisible) // 기사단장 전용 임명 Interface
 {
-	if(NULL == m_pGroup_Appoint) return;
-	m_pGroup_Appoint->SetVisible(bVisible);
+    if(NULL == m_pGroup_Appoint) return;
+    m_pGroup_Appoint->SetVisible(bVisible);
 }
 //*/
 
 /*
 void CUIKnights::MsgSend_MemberJoinAdmit()
 {
-	int iOffset = 0;
-	BYTE byBuff[32];
-	
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_KNIGHTS);
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_KNIGHTS_MEMBER_JOIN_ADMIT);
+    int iOffset = 0;
+    BYTE byBuff[32];
+    
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_KNIGHTS);
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_KNIGHTS_MEMBER_JOIN_ADMIT);
 
-	std::string szName = "???";
-	CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());	// 아이디 길이..
-	CAPISocket::MP_AddString(byBuff, iOffset, szName);			// 실제 아이디..
+    std::string szName = "???";
+    CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());    // 아이디 길이..
+    CAPISocket::MP_AddString(byBuff, iOffset, szName);            // 실제 아이디..
 
-	CGameProcedure::s_pSocket->Send(byBuff, iOffset);
+    CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 }
 //*/
 
 /*
 void CUIKnights::MsgSend_MemberJoinReject()
 {
-	int iOffset = 0;
-	BYTE byBuff[32];
-	
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_KNIGHTS);
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_KNIGHTS_MEMBER_JOIN_REJECT);
+    int iOffset = 0;
+    BYTE byBuff[32];
+    
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_KNIGHTS);
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_KNIGHTS_MEMBER_JOIN_REJECT);
 
-	std::string szName = "???";
-	CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());	// 아이디 길이..
-	CAPISocket::MP_AddString(byBuff, iOffset, szName);			// 실제 아이디..
+    std::string szName = "???";
+    CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());    // 아이디 길이..
+    CAPISocket::MP_AddString(byBuff, iOffset, szName);            // 실제 아이디..
 
-	CGameProcedure::s_pSocket->Send(byBuff, iOffset);
+    CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 }
 //*/
 
 /*
 void CUIKnights::MsgSend_MemberPunish()
 {
-	int iOffset = 0;
-	BYTE byBuff[32];
-	
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_KNIGHTS);
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_KNIGHTS_MEMBER_PUNISH);
+    int iOffset = 0;
+    BYTE byBuff[32];
+    
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_KNIGHTS);
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_KNIGHTS_MEMBER_PUNISH);
 
-	std::string szName = "???";
-	CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());	// 아이디 길이..
-	CAPISocket::MP_AddString(byBuff, iOffset, szName);			// 실제 아이디..
+    std::string szName = "???";
+    CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());    // 아이디 길이..
+    CAPISocket::MP_AddString(byBuff, iOffset, szName);            // 실제 아이디..
 
-	CGameProcedure::s_pSocket->Send(byBuff, iOffset);
+    CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 }
 //*/
 
 /*
 void CUIKnights::MsgSend_MemberRemove()
 {
-	int iOffset = 0;
-	BYTE byBuff[32];
-	
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_KNIGHTS);
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_KNIGHTS_MEMBER_REMOVE);
+    int iOffset = 0;
+    BYTE byBuff[32];
+    
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_KNIGHTS);
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_KNIGHTS_MEMBER_REMOVE);
 
-	std::string szName = "???";
-	CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());	// 아이디 길이..
-	CAPISocket::MP_AddString(byBuff, iOffset, szName);			// 실제 아이디..
+    std::string szName = "???";
+    CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());    // 아이디 길이..
+    CAPISocket::MP_AddString(byBuff, iOffset, szName);            // 실제 아이디..
 
-	CGameProcedure::s_pSocket->Send(byBuff, iOffset);	
+    CGameProcedure::s_pSocket->Send(byBuff, iOffset);    
 }
 //*/
 
 /*
 void CUIKnights::MsgSend_DutyAppoint(e_KnightsDuty eDuty)
 {
-	return;
+    return;
 
-	int iOffset = 0;
-	BYTE byBuff[32];
-	
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_KNIGHTS);
-	e_SubPacket_Knights eSP = N3_SP_KNIGHTS_UNKNOWN;
-	if(KNIGHTS_DUTY_CHIEF == eDuty) eSP = N3_SP_KNIGHTS_APPOINT_CHIEF;
-	else if(KNIGHTS_DUTY_VICECHIEF == eDuty) eSP = N3_SP_KNIGHTS_APPOINT_VICECHIEF;
-	else if(KNIGHTS_DUTY_OFFICER == eDuty) eSP = N3_SP_KNIGHTS_APPOINT_OFFICER;
-	else return;
-	
-	CAPISocket::MP_AddByte(byBuff, iOffset, eSP);
+    int iOffset = 0;
+    BYTE byBuff[32];
+    
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_KNIGHTS);
+    e_SubPacket_Knights eSP = N3_SP_KNIGHTS_UNKNOWN;
+    if(KNIGHTS_DUTY_CHIEF == eDuty) eSP = N3_SP_KNIGHTS_APPOINT_CHIEF;
+    else if(KNIGHTS_DUTY_VICECHIEF == eDuty) eSP = N3_SP_KNIGHTS_APPOINT_VICECHIEF;
+    else if(KNIGHTS_DUTY_OFFICER == eDuty) eSP = N3_SP_KNIGHTS_APPOINT_OFFICER;
+    else return;
+    
+    CAPISocket::MP_AddByte(byBuff, iOffset, eSP);
 
-	std::string szName = "???";
-	CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());	// 아이디 길이..
-	CAPISocket::MP_AddString(byBuff, iOffset, szName);			// 실제 아이디..
+    std::string szName = "???";
+    CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());    // 아이디 길이..
+    CAPISocket::MP_AddString(byBuff, iOffset, szName);            // 실제 아이디..
 
-	CGameProcedure::s_pSocket->Send(byBuff, iOffset);	
+    CGameProcedure::s_pSocket->Send(byBuff, iOffset);    
 }
 //*/
 
@@ -1349,9 +1349,9 @@ bool CUIFriends::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             } else {
                 int iLinePerPage = 0;
                 if (m_pList_Friends) {
-                    //					RECT rc = m_pList_Friends->GetRegion();
-                    //					DWORD dwH = m_pList_Friends->FontHeight();
-                    //					iLinePerPage = (rc.bottom - rc.top) / dwH;
+                    //                    RECT rc = m_pList_Friends->GetRegion();
+                    //                    DWORD dwH = m_pList_Friends->FontHeight();
+                    //                    iLinePerPage = (rc.bottom - rc.top) / dwH;
                     iLinePerPage = 10;
                 }
 
@@ -1463,11 +1463,11 @@ void CUIFriends::UpdateList() {
         return;
     }
 
-    //	RECT rc = m_pList_Friends->GetRegion();
-    //	DWORD dwH = m_pList_Friends->FontHeight();
-    //	int iLinePerPage = (rc.bottom - rc.top) / dwH;
+    //    RECT rc = m_pList_Friends->GetRegion();
+    //    DWORD dwH = m_pList_Friends->FontHeight();
+    //    int iLinePerPage = (rc.bottom - rc.top) / dwH;
     int iLinePerPage = 10;
-    //	if(iLinePerPage <= 0) return;
+    //    if(iLinePerPage <= 0) return;
 
     int iPageMax = m_MapFriends.size() / iLinePerPage;
     if (m_iPageCur > iPageMax) {
@@ -1704,7 +1704,7 @@ bool CUIVarious::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
         } else if (pSender == m_pBtn_State) {
             this->UpdatePageButtons(m_pBtn_State);
         }
-        //		else if(pSender == m_pBtn_Quest)	this->UpdatePageButtons(m_pBtn_Quest);		// 퀘스트...
+        //        else if(pSender == m_pBtn_Quest)    this->UpdatePageButtons(m_pBtn_Quest);        // 퀘스트...
         else if (pSender == m_pBtn_Knights) {
             this->UpdatePageButtons(m_pBtn_Knights); // 기사단... 잠시 막자..
         } else if (pSender == m_pBtn_Friends) {
@@ -1758,18 +1758,18 @@ void CUIVarious::Open() {
     m_bClosingNow = false;
 
     // 기사단 리스트가 없으면 요청해서 받는다.
-    //	__InfoPlayerMySelf*	pInfoExt = &(CGameBase::s_pPlayer->m_InfoExt);
-    //	if(m_pPageKnights->NeedMemberListRequest() && pInfoExt->iKnightsID > 0)
-    //	{
-    //		m_pPageKnights->MsgSend_MemberInfoOnline(0);
-    //	}
-    //	// 기사단장이거나 간부급이면...UI 가 달라야 한다..
-    //	m_pPageKnights->ChangeUIByDuty(pInfoExt->eKnightsDuty); // 권한에 따라 UI 변경..
+    //    __InfoPlayerMySelf*    pInfoExt = &(CGameBase::s_pPlayer->m_InfoExt);
+    //    if(m_pPageKnights->NeedMemberListRequest() && pInfoExt->iKnightsID > 0)
+    //    {
+    //        m_pPageKnights->MsgSend_MemberInfoOnline(0);
+    //    }
+    //    // 기사단장이거나 간부급이면...UI 가 달라야 한다..
+    //    m_pPageKnights->ChangeUIByDuty(pInfoExt->eKnightsDuty); // 권한에 따라 UI 변경..
 }
 
 void CUIVarious::Close() {
     // 스르륵 닫힌다..!!
-    //	SetVisible(false); // 다 닫히고 나서 해준다..
+    //    SetVisible(false); // 다 닫히고 나서 해준다..
     this->SetPos(0, 80);
     m_fMoveDelta = 0;
     m_bOpenningNow = false;
@@ -1865,7 +1865,7 @@ void CUIVarious::UpdateAllStates(const __InfoPlayerBase * pInfoBase, const __Inf
         m_pPageState->m_pText_Nation->SetString(szVal);
     }
 
-    //	sprintf(szVal, "%d", pInfoExt->iRank);			m_pText_Rank->SetString(szVal);
+    //    sprintf(szVal, "%d", pInfoExt->iRank);            m_pText_Rank->SetString(szVal);
 
     m_pPageState->UpdateLevel(pInfoBase->iLevel);
     m_pPageState->UpdateExp(pInfoExt->iExp, pInfoExt->iExpNext);

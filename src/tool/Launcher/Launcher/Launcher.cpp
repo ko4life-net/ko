@@ -51,7 +51,7 @@ BOOL CLauncherApp::InitInstance() {
     //  of your final executable, you should remove from the following
     //  the specific initialization routines you do not need.
 
-    //	SetDialogBkColor(RGB(255, 0, 255), RGB(0, 255, 0));
+    //    SetDialogBkColor(RGB(255, 0, 255), RGB(0, 255, 0));
 
     CLauncherDlg dlg;
     m_pMainWnd = &dlg;

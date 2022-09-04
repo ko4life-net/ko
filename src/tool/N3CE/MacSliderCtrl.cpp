@@ -1,8 +1,8 @@
 // MacSliderCtrl.cpp : implementation file
 //
-//	CMacSliderCtrl class, version 1.0
+//    CMacSliderCtrl class, version 1.0
 //
-//	Copyright (c) 1999 Paul M. Meidinger (pmmeidinger@yahoo.com)
+//    Copyright (c) 1999 Paul M. Meidinger (pmmeidinger@yahoo.com)
 //
 // Feel free to modifiy and/or distribute this file, but
 // do not remove this header.
@@ -12,8 +12,8 @@
 //
 // This file is provided "as is" with no expressed or implied warranty.
 //
-//	History:
-//		PMM	12/21/1999		Initial implementation.
+//    History:
+//        PMM    12/21/1999        Initial implementation.
 
 #include "stdafx.h"
 #include "MacSliderCtrl.h"
@@ -32,12 +32,12 @@ COLORREF DarkenColor(const COLORREF crColor, BYTE byReduceVal);
 //
 COLORREF CMacSliderCtrl::LightenColor(const COLORREF crColor, BYTE byIncreaseVal)
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	crColor - References a COLORREF structure.
-//						byReduceVal - The amount to reduce the RGB values by.
+// Parameters    :    crColor - References a COLORREF structure.
+//                        byReduceVal - The amount to reduce the RGB values by.
 //
-// Remarks		:	Lightens a color by increasing the RGB values by the given number.
+// Remarks        :    Lightens a color by increasing the RGB values by the given number.
 //
 {
     BYTE byRed = GetRValue(crColor);
@@ -61,12 +61,12 @@ COLORREF CMacSliderCtrl::LightenColor(const COLORREF crColor, BYTE byIncreaseVal
 //
 COLORREF CMacSliderCtrl::DarkenColor(const COLORREF crColor, BYTE byReduceVal)
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	crColor - References a COLORREF structure.
-//						byReduceVal - The amount to reduce the RGB values by.
+// Parameters    :    crColor - References a COLORREF structure.
+//                        byReduceVal - The amount to reduce the RGB values by.
 //
-// Remarks		:	Darkens a color by reducing the RGB values by the given number.
+// Remarks        :    Darkens a color by reducing the RGB values by the given number.
 //
 {
     BYTE byRed = GetRValue(crColor);
@@ -93,11 +93,11 @@ COLORREF CMacSliderCtrl::DarkenColor(const COLORREF crColor, BYTE byReduceVal)
 //
 CMacSliderCtrl::CMacSliderCtrl()
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	None.
+// Parameters    :    None.
 //
-// Remarks		:	Standard constructor.
+// Remarks        :    Standard constructor.
 //
 {
     m_crThumb = ::GetSysColor(COLOR_3DFACE);
@@ -111,11 +111,11 @@ CMacSliderCtrl::CMacSliderCtrl()
 //
 CMacSliderCtrl::~CMacSliderCtrl()
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	None.
+// Parameters    :    None.
 //
-// Remarks		:	Destructor.
+// Remarks        :    Destructor.
 //
 {
     DeletePens();
@@ -134,15 +134,15 @@ END_MESSAGE_MAP()
 //
 void CMacSliderCtrl::OnCustomDraw(NMHDR * pNMHDR, LRESULT * pResult)
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	pNMHDR - Used to get a pointer to a NM_CUSTOMDRAW structure.
-//						pResult - Will receive a value which depends on the current
-//							drawing stage.
+// Parameters    :    pNMHDR - Used to get a pointer to a NM_CUSTOMDRAW structure.
+//                        pResult - Will receive a value which depends on the current
+//                            drawing stage.
 //
-// Remarks		:	Sent by the slider control to notify the parent window
-//						about drawing operations. This notification is sent in
-//						the form of a WM_NOTIFY message.
+// Remarks        :    Sent by the slider control to notify the parent window
+//                        about drawing operations. This notification is sent in
+//                        the form of a WM_NOTIFY message.
 //
 {
     LPNMCUSTOMDRAW lpcd = (LPNMCUSTOMDRAW)pNMHDR;
@@ -235,12 +235,12 @@ void CMacSliderCtrl::OnCustomDraw(NMHDR * pNMHDR, LRESULT * pResult)
 //
 void CMacSliderCtrl::DrawHorizontalThumb(CDC * pDC, const CRect & rect)
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	pDC - Specifies a device context.
-//						rect - The rectangle for the thumb.
+// Parameters    :    pDC - Specifies a device context.
+//                        rect - The rectangle for the thumb.
 //
-// Remarks		:	Draws a thumb for a horizontal slider control.
+// Remarks        :    Draws a thumb for a horizontal slider control.
 //
 {
     CRect rc(rect);
@@ -383,12 +383,12 @@ void CMacSliderCtrl::DrawHorizontalThumb(CDC * pDC, const CRect & rect)
 //
 void CMacSliderCtrl::DrawVerticalThumb(CDC * pDC, const CRect & rect)
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	pDC - Specifies a device context.
-//						rect - The rectangle for the thumb.
+// Parameters    :    pDC - Specifies a device context.
+//                        rect - The rectangle for the thumb.
 //
-// Remarks		:	Draws a thumb for a vertical slider control.
+// Remarks        :    Draws a thumb for a vertical slider control.
 //
 {
     CRect rc(rect);
@@ -525,13 +525,13 @@ void CMacSliderCtrl::DrawVerticalThumb(CDC * pDC, const CRect & rect)
 //
 void CMacSliderCtrl::DrawChannel(CDC * pDC, const CRect & rect, BOOL bHorz)
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	pDC - Specifies a device context.
-//						rect - The rectangle for the channel.
-//						bHorz - TRUE if the slider is horizontal; FALSE otherwise.
+// Parameters    :    pDC - Specifies a device context.
+//                        rect - The rectangle for the channel.
+//                        bHorz - TRUE if the slider is horizontal; FALSE otherwise.
 //
-// Remarks		:	Draws the slider's channel and selection, if any.
+// Remarks        :    Draws the slider's channel and selection, if any.
 //
 {
     CRect rc(rect);
@@ -612,12 +612,12 @@ void CMacSliderCtrl::DrawChannel(CDC * pDC, const CRect & rect, BOOL bHorz)
 //
 void CMacSliderCtrl::GetColors()
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	None.
+// Parameters    :    None.
 //
-// Remarks		:	Calculates the lighter and darker colors, as well as
-//						the shadow colors.
+// Remarks        :    Calculates the lighter and darker colors, as well as
+//                        the shadow colors.
 //
 {
     m_crThumbLight = LightenColor(m_crThumb, 51);
@@ -654,11 +654,11 @@ void CMacSliderCtrl::GetColors()
 //
 void CMacSliderCtrl::CreatePens()
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	None.
+// Parameters    :    None.
 //
-// Remarks		:	Deletes the pen objects, if necessary, and creates them.
+// Remarks        :    Deletes the pen objects, if necessary, and creates them.
 //
 {
     DeletePens();
@@ -677,11 +677,11 @@ void CMacSliderCtrl::CreatePens()
 //
 void CMacSliderCtrl::DeletePens()
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	None.
+// Parameters    :    None.
 //
-// Remarks		:	Deletes the pen objects.
+// Remarks        :    Deletes the pen objects.
 //
 {
     if (m_penThumbLight.m_hObject) {
@@ -714,11 +714,11 @@ void CMacSliderCtrl::DeletePens()
 //
 void CMacSliderCtrl::SetChannelColor(COLORREF crColor)
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	crColor - The new channel color.
+// Parameters    :    crColor - The new channel color.
 //
-// Remarks		:	Sets the channel color.
+// Remarks        :    Sets the channel color.
 //
 {
     m_crChannel = crColor;
@@ -730,11 +730,11 @@ void CMacSliderCtrl::SetChannelColor(COLORREF crColor)
 //
 COLORREF CMacSliderCtrl::GetChannelColor()
 //
-// Return Value:	The current channel color.
+// Return Value:    The current channel color.
 //
-// Parameters	:	None.
+// Parameters    :    None.
 //
-// Remarks		:	Returns the current channel color.
+// Remarks        :    Returns the current channel color.
 //
 {
     return m_crChannel;
@@ -744,11 +744,11 @@ COLORREF CMacSliderCtrl::GetChannelColor()
 //
 void CMacSliderCtrl::SetThumbColor(COLORREF crColor)
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	crColor - The new thumb color.
+// Parameters    :    crColor - The new thumb color.
 //
-// Remarks		:	Sets the channel color.
+// Remarks        :    Sets the channel color.
 //
 {
     m_crThumb = crColor;
@@ -761,11 +761,11 @@ void CMacSliderCtrl::SetThumbColor(COLORREF crColor)
 //
 COLORREF CMacSliderCtrl::GetThumbColor()
 //
-// Return Value:	The current thumb color.
+// Return Value:    The current thumb color.
 //
-// Parameters	:	None.
+// Parameters    :    None.
 //
-// Remarks		:	Returns the current thumb color.
+// Remarks        :    Returns the current thumb color.
 //
 {
     return m_crThumb;
@@ -775,11 +775,11 @@ COLORREF CMacSliderCtrl::GetThumbColor()
 //
 void CMacSliderCtrl::SetSelectionColor(COLORREF crColor)
 //
-// Return Value:	None.
+// Return Value:    None.
 //
-// Parameters	:	crColor - The new selection color.
+// Parameters    :    crColor - The new selection color.
 //
-// Remarks		:	Sets the	selection color.
+// Remarks        :    Sets the    selection color.
 //
 {
     m_crSelection = crColor;
@@ -792,11 +792,11 @@ void CMacSliderCtrl::SetSelectionColor(COLORREF crColor)
 //
 COLORREF CMacSliderCtrl::GetSelectionColor()
 //
-// Return Value:	The current selection color.
+// Return Value:    The current selection color.
 //
-// Parameters	:	None.
+// Parameters    :    None.
 //
-// Remarks		:	Returns the current selection color.
+// Remarks        :    Returns the current selection color.
 //
 {
     return m_crSelection;

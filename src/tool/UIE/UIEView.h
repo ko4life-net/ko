@@ -30,7 +30,7 @@ class CUIEView : public CView {
     D3DCOLOR  m_BkgndColor;
 
   protected:
-    //	int			m_iZoom;
+    //    int            m_iZoom;
     HACCEL    m_hAccelTable;
     eUIE_MODE m_eMode;             // 현재 Mode
     eRECTTYPE m_eSelectedRectType; // 수정하는 사각형 종류 (영역, 움직이는 영역, 클릭 영역)

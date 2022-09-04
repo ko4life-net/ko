@@ -56,7 +56,7 @@ DWORD WINAPI AcceptThread(LPVOID lp) {
                     TRACE("Socket Array has Broken...\n");
                     sprintf(logstr, "Socket Array has Broken...[sid:%d]\r\n", sid);
                     LogFileWrite(logstr);
-                    //					pIocport->PutOldSid( sid );				// Invalid sid must forbidden to use
+                    //                    pIocport->PutOldSid( sid );                // Invalid sid must forbidden to use
                     goto loop_pass_accept;
                 }
 
@@ -208,7 +208,7 @@ DWORD WINAPI ClientWorkerThread(LPVOID lp) {
                         TRACE("AISocket Closed By 0 Byte Notify\n");
                         pSocket->CloseProcess();
                         pIocport->RidIOCPSocket(pSocket->GetSocketID(), pSocket);
-                        //						pIocport->PutOldSid( pSocket->GetSocketID() );		// 클라이언트 소켓은 Sid 관리하지 않음
+                        //                        pIocport->PutOldSid( pSocket->GetSocketID() );        // 클라이언트 소켓은 Sid 관리하지 않음
                         LeaveCriticalSection(&g_critical);
                         break;
                     }
@@ -232,7 +232,7 @@ DWORD WINAPI ClientWorkerThread(LPVOID lp) {
                     TRACE("AISocket Closed By Close()\n");
                     pSocket->CloseProcess();
                     pIocport->RidIOCPSocket(pSocket->GetSocketID(), pSocket);
-                    //					pIocport->PutOldSid( pSocket->GetSocketID() );
+                    //                    pIocport->PutOldSid( pSocket->GetSocketID() );
 
                     LeaveCriticalSection(&g_critical);
                     break;

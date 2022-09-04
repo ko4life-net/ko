@@ -84,78 +84,78 @@ void CN3GlobalEffectMng::Render() {
 /*
 void CN3GlobalEffectMng::SetWeather(int iWeather)
 {
-	const float fHeight = 20.0f;
-	BOOL	bRainy;
-	float fDensity;
-	__Vector3 vVelocity;
-	float fRainLength;
-	float fSnowSize;
+    const float fHeight = 20.0f;
+    BOOL    bRainy;
+    float fDensity;
+    __Vector3 vVelocity;
+    float fRainLength;
+    float fSnowSize;
 
-	switch(iWeather)
-	{
-	case GEW_CLEAR:
-		if (m_pGERain) m_pGERain->FadeSet(3.0f, false);
-		if (m_pGESnow) m_pGESnow->FadeSet(3.0f, false);
-		return;
-		break;
-	case GEW_DRIZZLE_RAIN:
-		bRainy = TRUE;
-		fDensity = 0.03f;
-		vVelocity.Set(0.3f, -7.0f, 0);
-		fRainLength = 0.1f;
-		break;
-	case GEW_RAINY:
-		bRainy = TRUE;
-		fDensity = 0.08f;
-		vVelocity.Set(0, -10.0f, 1);
-		fRainLength= 0.2f;
-		break;
-	case GEW_HEAVY_RAIN:
-		bRainy = TRUE;
-		fDensity = 0.12f;
-		vVelocity.Set(0.3f, -10.0f, -1.5f);
-		fRainLength= 0.25f;
-		break;
-	case GEW_SNOW1:
-		bRainy = FALSE;
-		fDensity = 0.08f;
-		vVelocity.Set(0.0f, -0.7f, 0.0f);
-		fSnowSize = 0.05f;
-		break;
-	case GEW_SNOW2:
-		bRainy = FALSE;
-		fDensity = 0.12f;
-		vVelocity.Set(0.5f, -1.0f, 0.0f);
-		fSnowSize = 0.08f;
-		break;
-	case GEW_HEAVY_SNOW:
-		bRainy = FALSE;
-		fDensity = 0.2f;
-		vVelocity.Set(-9.0f, -3.0f, 0.0f);
-		fSnowSize = 0.1f;
-		break;
-	default:
-		return;
-	}
-	
-	if (bRainy)
-	{
-		if (m_pGERain == NULL) m_pGERain = new CN3GERain;
+    switch(iWeather)
+    {
+    case GEW_CLEAR:
+        if (m_pGERain) m_pGERain->FadeSet(3.0f, false);
+        if (m_pGESnow) m_pGESnow->FadeSet(3.0f, false);
+        return;
+        break;
+    case GEW_DRIZZLE_RAIN:
+        bRainy = TRUE;
+        fDensity = 0.03f;
+        vVelocity.Set(0.3f, -7.0f, 0);
+        fRainLength = 0.1f;
+        break;
+    case GEW_RAINY:
+        bRainy = TRUE;
+        fDensity = 0.08f;
+        vVelocity.Set(0, -10.0f, 1);
+        fRainLength= 0.2f;
+        break;
+    case GEW_HEAVY_RAIN:
+        bRainy = TRUE;
+        fDensity = 0.12f;
+        vVelocity.Set(0.3f, -10.0f, -1.5f);
+        fRainLength= 0.25f;
+        break;
+    case GEW_SNOW1:
+        bRainy = FALSE;
+        fDensity = 0.08f;
+        vVelocity.Set(0.0f, -0.7f, 0.0f);
+        fSnowSize = 0.05f;
+        break;
+    case GEW_SNOW2:
+        bRainy = FALSE;
+        fDensity = 0.12f;
+        vVelocity.Set(0.5f, -1.0f, 0.0f);
+        fSnowSize = 0.08f;
+        break;
+    case GEW_HEAVY_SNOW:
+        bRainy = FALSE;
+        fDensity = 0.2f;
+        vVelocity.Set(-9.0f, -3.0f, 0.0f);
+        fSnowSize = 0.1f;
+        break;
+    default:
+        return;
+    }
+    
+    if (bRainy)
+    {
+        if (m_pGERain == NULL) m_pGERain = new CN3GERain;
 
-		m_fCellSize = 20.0f;
-		m_pGERain->Create(fDensity, m_fCellSize, fHeight, fRainLength, vVelocity);	// ºñ
-		m_pGERain->SetActive(TRUE);
-		if (m_pGESnow) m_pGESnow->FadeSet(3.0f, false);
-	}
-	else
-	{
-		if (m_pGESnow == NULL) m_pGESnow = new CN3GESnow;
+        m_fCellSize = 20.0f;
+        m_pGERain->Create(fDensity, m_fCellSize, fHeight, fRainLength, vVelocity);    // ºñ
+        m_pGERain->SetActive(TRUE);
+        if (m_pGESnow) m_pGESnow->FadeSet(3.0f, false);
+    }
+    else
+    {
+        if (m_pGESnow == NULL) m_pGESnow = new CN3GESnow;
 
-		m_fCellSize = 10.0f;
-		m_pGESnow->Create(fDensity, m_fCellSize, fHeight, fSnowSize, vVelocity);	// ´«
-		m_pGESnow->SetActive(TRUE);
-		if (m_pGERain) m_pGERain->FadeSet(3.0f, false);
-	}
+        m_fCellSize = 10.0f;
+        m_pGESnow->Create(fDensity, m_fCellSize, fHeight, fSnowSize, vVelocity);    // ´«
+        m_pGESnow->SetActive(TRUE);
+        if (m_pGERain) m_pGERain->FadeSet(3.0f, false);
+    }
 }
 */
 void CN3GlobalEffectMng::WeatherSetClean() {

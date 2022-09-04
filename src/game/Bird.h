@@ -22,7 +22,7 @@ class CBird : public CN3Base {
     __Vector3  m_vPivot;  // 중심점(중심점에서 반경 m_fRadius만큼 범위내에서 움직인다.
     float      m_fRadius; // 반경
 
-    //	__Vector3	m_vVelocity;	// 현재 속도(스피드+방향)
+    //    __Vector3    m_vVelocity;    // 현재 속도(스피드+방향)
     float m_fRadianSpeed; // 속력
     float m_fRadian;      // 현재 타원의 위치각
     float m_fFactor1, m_fFactor2;

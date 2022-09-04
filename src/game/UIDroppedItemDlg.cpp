@@ -425,10 +425,10 @@ bool CUIDroppedItemDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
         // 돈이 아니면 인벤토리 리스트에 추가....
         if (ITEM_TYPE_GOLD != eType) {
             CAPISocket::MP_AddDword(byBuff, iOffset, spItem->pItemBasic->dwID + spItem->pItemExt->dwID);
-            //				CAPISocket::MP_AddDword(byBuff, iOffset, (BYTE)iOrderInv);
+            //                CAPISocket::MP_AddDword(byBuff, iOffset, (BYTE)iOrderInv);
         } else {
             CAPISocket::MP_AddDword(byBuff, iOffset, spItem->pItemBasic->dwID);
-            //				CAPISocket::MP_AddDword(byBuff, iOffset, 0xff);
+            //                CAPISocket::MP_AddDword(byBuff, iOffset, 0xff);
         }
         CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 

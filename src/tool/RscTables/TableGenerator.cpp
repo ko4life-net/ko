@@ -221,7 +221,7 @@ bool CTableGenerator::OpenReference_Txt(int iIndex, const std::string & szTxtFil
                 sprintf(szErr, "Field 갯수가 맞지 않거나 문자열이 이상합니다 : Line %d, Field : %d", i + 1, j);
                 MessageBox(hWnd, szErr, "테이블에 추가 실패", MB_OK);
                 fclose(pFile);
-                //				m_DataExts[iIndex].clear();
+                //                m_DataExts[iIndex].clear();
                 return false;
             }
         }
@@ -370,7 +370,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
                 switch (j) {
                 case IG1_KEY: // 일련번호 생성..
                     if (DT_DWORD == dt) {
-                        //						DWORD dwKey = ((m_Datas[j].m_dwValues[iIndexCur1] / 1000) * 1000) + m_DataExts[IG2_KEY].m_dwValues[iExt][iIndexCur2]; // 뒤의거 세자리를 대치한다.
+                        //                        DWORD dwKey = ((m_Datas[j].m_dwValues[iIndexCur1] / 1000) * 1000) + m_DataExts[IG2_KEY].m_dwValues[iExt][iIndexCur2]; // 뒤의거 세자리를 대치한다.
                         DWORD dwKey = m_Datas[j].m_dwValues[iIndexCur1] +
                                       m_DataExts[IG2_KEY].m_dwValues[iExt][iIndexCur2]; // 더해준다.
                         sprintf(szBuff, "%d", dwKey);
@@ -489,7 +489,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
                         int iValue = 0;
                         if (0 == m_DataExts[eIG2].m_iValues[iExt][iIndexCur2]) // Devide By 0..
                         {
-                            //							lstrcpy(szBuff, "Invalid Percentage");
+                            //                            lstrcpy(szBuff, "Invalid Percentage");
                             lstrcpy(szBuff, "100");
                         } else {
                             iValue =
@@ -1009,18 +1009,18 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
 
     //BYTE Encrypt(BYTE plain)
     //{
-    //	BYTE cipher;
-    //	cipher = (plain ^ (key_r>>8));
-    //	key_r = (cipher + key_r) * key_c1 + key_c2;
-    //	return cipher;
+    //    BYTE cipher;
+    //    cipher = (plain ^ (key_r>>8));
+    //    key_r = (cipher + key_r) * key_c1 + key_c2;
+    //    return cipher;
     //}
 
     //BYTE Decrypt(BYTE cipher)
     //{
-    //	BYTE plain;
-    //	plain = (cipher ^ (m_r>>8));
-    //	m_r = (cipher + m_r) * m_c1 + m_c2;
-    //	return plain;
+    //    BYTE plain;
+    //    plain = (cipher ^ (m_r>>8));
+    //    m_r = (cipher + m_r) * m_c1 + m_c2;
+    //    return plain;
     //}
 
     // 암호화 인코딩...
@@ -1056,7 +1056,7 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
 // 파일에 데이타 타입별로 쓰기..
 bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszData) {
     // 만약 lpszData == NULL이면 datatype은 string일 경우에만 된다.
-    //	ASSERT(lpszData || (NULL == lpszData && DT_STRING == DataType));
+    //    ASSERT(lpszData || (NULL == lpszData && DT_STRING == DataType));
 
     DWORD dwNum;
     switch (DataType) {

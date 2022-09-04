@@ -12,8 +12,8 @@ class CNpc;
 typedef CSTLMap<int> ZoneUserArray;
 typedef CSTLMap<int> ZoneNpcArray;
 
-//typedef CTypedPtrArray <CPtrArray, int*>	ZoneUserArray;
-//typedef CTypedPtrArray <CPtrArray, int*>	ZoneNpcArray;
+//typedef CTypedPtrArray <CPtrArray, int*>    ZoneUserArray;
+//typedef CTypedPtrArray <CPtrArray, int*>    ZoneNpcArray;
 
 class CRegion {
   public:

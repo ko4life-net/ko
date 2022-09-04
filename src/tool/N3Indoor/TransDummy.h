@@ -71,7 +71,7 @@ class CTransDummy : public CN3Transform {
     std::vector<Tv>
         m_vPrevScaleArray; // 이번 마우스 드래그 이전에 확대/축소값들 (선택된 객체들 모두의 값을 가지고 있어야 하기 때문에 배열)
 
-    //	__Vector3*			m_vPrevScaleArray;										// 이번 마우스 드래그 이전에 확대/축소값들 (선택된 객체들 모두의 값을 가지고 있어야 하기 때문에 배열)
+    //    __Vector3*            m_vPrevScaleArray;                                        // 이번 마우스 드래그 이전에 확대/축소값들 (선택된 객체들 모두의 값을 가지고 있어야 하기 때문에 배열)
 
     // Operations
   public:

@@ -37,11 +37,11 @@ class CN3FXBundle : public CN3BaseFileAccess {
     int m_iSourceJoint;
 
     bool m_bDependScale;
-    //__Vector3			m_vTargetScale;
+    //__Vector3            m_vTargetScale;
     float m_fTargetScale;
 
-    //	int					m_iNumStep;		//몇단계나 존재하는지...^^
-    //	int					m_iCurrStep;	//현재 진행중인 시퀀스
+    //    int                    m_iNumStep;        //몇단계나 존재하는지...^^
+    //    int                    m_iCurrStep;    //현재 진행중인 시퀀스
     static float m_fEffectSndDist;
 
     class CN3SndObj * m_pSndObj;
@@ -64,7 +64,7 @@ class CN3FXBundle : public CN3BaseFileAccess {
     virtual bool Load(HANDLE hFile); // 핸들에서 읽어오기..
     bool         Save(HANDLE hFile); // 저장하기..
 
-    //	int				GetPartCount() { return m_pPartList.size(); }
+    //    int                GetPartCount() { return m_pPartList.size(); }
     CN3FXPartBase * GetPart(int i);
     float           GetPartSTime(int i);
     void            SetPartSTime(int i, float time);

@@ -72,8 +72,8 @@ void CN3JpegFile::DrawImage(HDC hDC) {
     }
 
     // Center It
-    //		int left = max(clientRect.left, ((clientRect.Width() - (int)m_width) / 2));
-    //		int top = max(clientRect.top, ((clientRect.Height() - (int)m_height) / 2));
+    //        int left = max(clientRect.left, ((clientRect.Width() - (int)m_width) / 2));
+    //        int top = max(clientRect.top, ((clientRect.Height() - (int)m_height) / 2));
     int left = 0;
     int top = 0;
 

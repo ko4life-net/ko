@@ -69,20 +69,20 @@ void CPathFind::SetMap(int x, int y, int * pMap) {
     m_vMapSize.cx = x;
     m_vMapSize.cy = y;
     m_pMap = pMap;
-    /*	if(InterlockedCompareExchange(&m_lMapUse, (LONG)1, (LONG)0) == 0)
-	{
-		m_vMapSize.cx = x;
-		m_vMapSize.cy = y;
-		m_pMap = map;
-		::InterlockedExchange(&m_lMapUse, 0);
-	}
-	else TRACE("잘못된 맵셋팅\n");	*/
+    /*    if(InterlockedCompareExchange(&m_lMapUse, (LONG)1, (LONG)0) == 0)
+    {
+        m_vMapSize.cx = x;
+        m_vMapSize.cy = y;
+        m_pMap = map;
+        ::InterlockedExchange(&m_lMapUse, 0);
+    }
+    else TRACE("잘못된 맵셋팅\n");    */
 }
 
 _PathNode * CPathFind::FindPath(int start_x, int start_y, int dest_x, int dest_y) {
     _PathNode *t_node, *r_node = NULL;
 
-    //	if(!m_pMap) return NULL;
+    //    if(!m_pMap) return NULL;
 
     ClearData();
     m_pOpen = (_PathNode *)calloc(1, sizeof(_PathNode));
@@ -91,19 +91,19 @@ _PathNode * CPathFind::FindPath(int start_x, int start_y, int dest_x, int dest_y
     t_node = (_PathNode *)calloc(1, sizeof(_PathNode));
     t_node->g = 0;
     t_node->h = (int)sqrt((start_x - dest_x) * (start_x - dest_x) + (start_y - dest_y) * (start_y - dest_y));
-    //	t_node->h = (int)max( start_x-dest_x, start_y-dest_y );
+    //    t_node->h = (int)max( start_x-dest_x, start_y-dest_y );
     t_node->f = t_node->g + t_node->h;
     t_node->x = start_x;
     t_node->y = start_y;
 
-    //	int maxtry = (X 이동폭 * 최대 X구간 ) + (Y 이동폭 * 최대 Y구간) + 1;
+    //    int maxtry = (X 이동폭 * 최대 X구간 ) + (Y 이동폭 * 최대 Y구간) + 1;
     int maxtry = abs(start_x - dest_x) * m_vMapSize.cx + abs(start_y - dest_y) * m_vMapSize.cy + 1;
     int count = 0;
 
     m_pOpen->NextNode = t_node;
     while (1) {
         if (count > maxtry * 2) {
-            //			BREAKPOINT();
+            //            BREAKPOINT();
             //TRACE("패스파인드 중도포기...%d\n", count);
             return NULL;
         }
@@ -208,7 +208,7 @@ void CPathFind::FindChildPathSub(_PathNode * node, int x, int y, int dx, int dy,
         t_node = (_PathNode *)calloc(1, sizeof(_PathNode));
         t_node->Parent = node;
         t_node->g = g;
-        //		t_node->h = (int)sqrt((x-dx)*(x-dx) + (y-dy)*(y-dy));
+        //        t_node->h = (int)sqrt((x-dx)*(x-dx) + (y-dy)*(y-dy));
         t_node->h = (int)max(x - dx, y - dy);
         t_node->f = g + t_node->h;
         t_node->x = x;

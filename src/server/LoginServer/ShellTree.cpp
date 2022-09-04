@@ -26,12 +26,12 @@ void CFileName::SetFileName(CString szFileName) {
 
 /*****************************************************************
 *
-*	Function:	GetFileName()
+*    Function:    GetFileName()
 *
-*	Purpose:	Retrieves current filename minus the path
+*    Purpose:    Retrieves current filename minus the path
 *
-*	Remarks:	if the filename is "c:\incoming\hello.txt", this
-*				function returns "hello.txt".
+*    Remarks:    if the filename is "c:\incoming\hello.txt", this
+*                function returns "hello.txt".
 *
 ******************************************************************/
 CString CFileName::GetFileName() {
@@ -46,12 +46,12 @@ CString CFileName::GetFileName() {
 
 /*****************************************************************
 *
-*	Function:	GetRoot()
+*    Function:    GetRoot()
 *
-*	Purpose:	Retrieves the path only of the current filename.
+*    Purpose:    Retrieves the path only of the current filename.
 *
-*	Remarks:	if the filename is "c:\incoming\hello.txt", this
-*				function returns "c:\incoming\".
+*    Remarks:    if the filename is "c:\incoming\hello.txt", this
+*                function returns "c:\incoming\".
 *
 ******************************************************************/
 CString CFileName::GetRoot() {
@@ -66,13 +66,13 @@ CString CFileName::GetRoot() {
 
 /*****************************************************************
 *
-*	Function:	GetFileTitle()
+*    Function:    GetFileTitle()
 *
-*	Purpose:	Retrieves the title of the filename excluding
-*				the path and extension.
+*    Purpose:    Retrieves the title of the filename excluding
+*                the path and extension.
 *
-*	Remarks:	if the filename is "c:\incoming\hello.txt", this
-*				function returns "hello".
+*    Remarks:    if the filename is "c:\incoming\hello.txt", this
+*                function returns "hello".
 *
 ******************************************************************/
 CString CFileName::GetFileTitle() {
@@ -86,9 +86,9 @@ CString CFileName::GetFileTitle() {
 
 /*****************************************************************
 *
-*	Function:	GetDescription()
+*    Function:    GetDescription()
 *
-*	Purpose:	Returns the description of the file
+*    Purpose:    Returns the description of the file
 *
 ******************************************************************/
 CString CFileName::GetDescription() {
@@ -104,9 +104,9 @@ CString CFileName::GetDescription() {
 
 /*****************************************************************
 *
-*	Function:	Exists()
+*    Function:    Exists()
 *
-*	Purpose:	Determines whether a file or directory exists.
+*    Purpose:    Determines whether a file or directory exists.
 *
 ******************************************************************/
 bool CFileName::Exist() {
@@ -470,14 +470,14 @@ void CShellTree::PopulateTree() {
 
 /****************************************************************************
 *
-*	FUNCTION:	PopulateTree()
+*    FUNCTION:    PopulateTree()
 *
-*	PURPOSE:	Processes the File.Fill/RefreshTree command
-*				This overload  has the ability to open from a
-*				special folderlocation like SHBrowseForFolder()
+*    PURPOSE:    Processes the File.Fill/RefreshTree command
+*                This overload  has the ability to open from a
+*                special folderlocation like SHBrowseForFolder()
 *
-*	WARNING:	TunnelTree() will not work if you use a special
-*				folderlocation
+*    WARNING:    TunnelTree() will not work if you use a special
+*                folderlocation
 *
 ****************************************************************************/
 void CShellTree::PopulateTree(int nFolder) {
@@ -723,16 +723,16 @@ int CALLBACK CShellTree::TreeViewCompareProc(LPARAM lparam1, LPARAM lparam2, LPA
 
 /****************************************************************************
 *
-*	FUNCTION:	OnFolderExpanding(NMHDR* pNMHDR, LRESULT* pResult) 
+*    FUNCTION:    OnFolderExpanding(NMHDR* pNMHDR, LRESULT* pResult) 
 *
-*	PURPOSE:	Reponds to an TVN_ITEMEXPANDING message in order to fill up
-*				subdirectories. Pass the parameters from OnItemExpanding() to 
-*				this function. You need to do that or your folders won't
-*				expand.
+*    PURPOSE:    Reponds to an TVN_ITEMEXPANDING message in order to fill up
+*                subdirectories. Pass the parameters from OnItemExpanding() to 
+*                this function. You need to do that or your folders won't
+*                expand.
 *
-*	OTHER:		It can also be used to update a corresponding listview. Seem MFCENUM
+*    OTHER:        It can also be used to update a corresponding listview. Seem MFCENUM
 *
-*	MESSAGEMAP:	TVN_ITEMEXPANDING
+*    MESSAGEMAP:    TVN_ITEMEXPANDING
 *
 ****************************************************************************/
 void CShellTree::OnFolderExpanding(NMHDR * pNMHDR, LRESULT * pResult) {
@@ -768,12 +768,12 @@ void CShellTree::OnFolderExpanding(NMHDR * pNMHDR, LRESULT * pResult) {
 
 /****************************************************************************
 *
-*	FUNCTION:	GetContextMenu(NMHDR* pNMHDR, LRESULT* pResult) 
+*    FUNCTION:    GetContextMenu(NMHDR* pNMHDR, LRESULT* pResult) 
 *
-*	PURPOSE:	Diplays a popup menu for the folder selected. Pass the
-*				parameters from Rclick() to this function.
+*    PURPOSE:    Diplays a popup menu for the folder selected. Pass the
+*                parameters from Rclick() to this function.
 *
-*	MESSAGEMAP:	NM_RCLICK;
+*    MESSAGEMAP:    NM_RCLICK;
 *
 ****************************************************************************/
 void CShellTree::GetContextMenu(NMHDR * pNMHDR, LRESULT * pResult) {
@@ -810,15 +810,15 @@ void CShellTree::GetContextMenu(NMHDR * pNMHDR, LRESULT * pResult) {
 
 /****************************************************************************
 *
-*	FUNCTION:	OnFolderSelected(NMHDR* pNMHDR, LRESULT* pResult, CString &szFolderPath) 
+*    FUNCTION:    OnFolderSelected(NMHDR* pNMHDR, LRESULT* pResult, CString &szFolderPath) 
 *
-*	PURPOSE:	Call this function if for example you want to put the path of the folder
-*				selected inside a combobox or an edit window. You would pass the
-*				parameters from OnSelChanged() to this function along with a CString object
-*				that will hold the folder path. If the path is not
-*				in the filesystem(eg MyComputer) it returns false.
+*    PURPOSE:    Call this function if for example you want to put the path of the folder
+*                selected inside a combobox or an edit window. You would pass the
+*                parameters from OnSelChanged() to this function along with a CString object
+*                that will hold the folder path. If the path is not
+*                in the filesystem(eg MyComputer) it returns false.
 *
-*	MESSAGEMAP:	TVN_SELCHANGED
+*    MESSAGEMAP:    TVN_SELCHANGED
 *
 ****************************************************************************/
 BOOL CShellTree::OnFolderSelected(NMHDR * pNMHDR, LRESULT * pResult, CString & szFolderPath) {
@@ -876,13 +876,13 @@ BOOL CShellTree::OnFolderSelected(NMHDR * pNMHDR, LRESULT * pResult, CString & s
 
 /****************************************************************************
 *
-*	FUNCTION:	OnDeleteShellItem(NMHDR* pNMHDR, LRESULT* pResult)
+*    FUNCTION:    OnDeleteShellItem(NMHDR* pNMHDR, LRESULT* pResult)
 *
-*	PURPOSE:	Releases the memory allocated by the shell folders
+*    PURPOSE:    Releases the memory allocated by the shell folders
 *
-*	MESSAGEMAP:	TVN_DELETEITEM
+*    MESSAGEMAP:    TVN_DELETEITEM
 *
-*	MISC:		failure to call this function will result in a memory leak
+*    MISC:        failure to call this function will result in a memory leak
 *
 ****************************************************************************/
 void CShellTree::OnDeleteShellItem(NMHDR * pNMHDR, LRESULT * pResult) {
@@ -908,12 +908,12 @@ void CShellTree::OnDeleteShellItem(NMHDR * pNMHDR, LRESULT * pResult) {
 
 /****************************************************************************
 *
-*	FUNCTION:	EnableImages()
+*    FUNCTION:    EnableImages()
 *
-*	PURPOSE:	Obtains a handle to the system image list and attaches it
-*				to the tree control. DO NOT DELETE the imagelist
+*    PURPOSE:    Obtains a handle to the system image list and attaches it
+*                to the tree control. DO NOT DELETE the imagelist
 *
-*	MESSAGEMAP:	NONE
+*    MESSAGEMAP:    NONE
 *
 ****************************************************************************/
 void CShellTree::EnableImages() {
@@ -932,14 +932,14 @@ void CShellTree::EnableImages() {
 
 /****************************************************************************
 *
-*	FUNCTION:	GetSelectedFolderPath(CString &szFolderPath)
+*    FUNCTION:    GetSelectedFolderPath(CString &szFolderPath)
 *
-*	PURPOSE:	Retrieves the path of the currently selected string.
-*				Pass a CString object that will hold the folder path. 
-*				If the path is not in the filesystem(eg MyComputer) 
-*				or none is selected it returns false.
+*    PURPOSE:    Retrieves the path of the currently selected string.
+*                Pass a CString object that will hold the folder path. 
+*                If the path is not in the filesystem(eg MyComputer) 
+*                or none is selected it returns false.
 *
-*	MESSAGEMAP:	NONE
+*    MESSAGEMAP:    NONE
 *
 ****************************************************************************/
 BOOL CShellTree::GetSelectedFolderPath(CString & szFolderPath) {
@@ -979,12 +979,12 @@ BOOL CShellTree::GetSelectedFolderPath(CString & szFolderPath) {
 
 /****************************************************************************
 *
-*	FUNCTION:	GetParentShellFolder(HTREEITEM folderNode)
+*    FUNCTION:    GetParentShellFolder(HTREEITEM folderNode)
 *
-*	PURPOSE:	Retrieves the pointer to the ISHELLFOLDER interface
-*				of the tree node passed as the paramter.
+*    PURPOSE:    Retrieves the pointer to the ISHELLFOLDER interface
+*                of the tree node passed as the paramter.
 *
-*	MESSAGEMAP:	NONE
+*    MESSAGEMAP:    NONE
 *
 ****************************************************************************/
 LPSHELLFOLDER CShellTree::GetParentShellFolder(HTREEITEM folderNode) {
@@ -1000,13 +1000,13 @@ LPSHELLFOLDER CShellTree::GetParentShellFolder(HTREEITEM folderNode) {
 
 /****************************************************************************
 *
-*	FUNCTION:	GetRelativeIDLIST(HTREEITEM folderNode)
+*    FUNCTION:    GetRelativeIDLIST(HTREEITEM folderNode)
 *
-*	PURPOSE:	Retrieves the Pointer to an ITEMIDLIST structure that
-*				identifies the subfolder relative to its parent folder.
-*				see GetParentShellFolder();
+*    PURPOSE:    Retrieves the Pointer to an ITEMIDLIST structure that
+*                identifies the subfolder relative to its parent folder.
+*                see GetParentShellFolder();
 *
-*	MESSAGEMAP:	NONE
+*    MESSAGEMAP:    NONE
 *
 ****************************************************************************/
 LPITEMIDLIST CShellTree::GetRelativeIDLIST(HTREEITEM folderNode) {
@@ -1022,13 +1022,13 @@ LPITEMIDLIST CShellTree::GetRelativeIDLIST(HTREEITEM folderNode) {
 
 /****************************************************************************
 *
-*	FUNCTION:	GetFullyQualifiedIDLIST(HTREEITEM folderNode)
+*    FUNCTION:    GetFullyQualifiedIDLIST(HTREEITEM folderNode)
 *
-*	PURPOSE:	Retrieves the Retrieves the Pointer to an ITEMIDLIST
-*				structure that identifies the subfolder relative to the
-*				desktop. This is a fully qualified Item Identifier
+*    PURPOSE:    Retrieves the Retrieves the Pointer to an ITEMIDLIST
+*                structure that identifies the subfolder relative to the
+*                desktop. This is a fully qualified Item Identifier
 *
-*	MESSAGEMAP:	NONE
+*    MESSAGEMAP:    NONE
 *
 ****************************************************************************/
 LPITEMIDLIST CShellTree::GetFullyQualifiedID(HTREEITEM folderNode) {
@@ -1044,15 +1044,15 @@ LPITEMIDLIST CShellTree::GetFullyQualifiedID(HTREEITEM folderNode) {
 
 /****************************************************************************
 *
-*	FUNCTION:	SearchTree(	HTREEITEM treeNode,
-*							CString szSearchName )
+*    FUNCTION:    SearchTree(    HTREEITEM treeNode,
+*                            CString szSearchName )
 *
-*	PURPOSE:	Too crude to explain, just use it
+*    PURPOSE:    Too crude to explain, just use it
 *
-*	WARNING:	Only works if you use the default PopulateTree()
-*				Not guaranteed to work on any future or existing
-*				version of windows. Use with caution. Pretty much
-*				ok if you're using on local drives
+*    WARNING:    Only works if you use the default PopulateTree()
+*                Not guaranteed to work on any future or existing
+*                version of windows. Use with caution. Pretty much
+*                ok if you're using on local drives
 *
 ****************************************************************************/
 bool CShellTree::SearchTree(HTREEITEM treeNode, CString szSearchName, FindAttribs attr) {
@@ -1103,14 +1103,14 @@ bool CShellTree::SearchTree(HTREEITEM treeNode, CString szSearchName, FindAttrib
 
 /****************************************************************************
 *
-*	FUNCTION:	TunnelTree(CString szFindPath)
+*    FUNCTION:    TunnelTree(CString szFindPath)
 *
-*	PURPOSE:	Too crude to explain, just use it
+*    PURPOSE:    Too crude to explain, just use it
 *
-*	WARNING:	Only works if you use the default PopulateTree()
-*				Not guaranteed to work on any future or existing
-*				version of windows. Use with caution. Pretty much
-*				ok if you're using on local drives
+*    WARNING:    Only works if you use the default PopulateTree()
+*                Not guaranteed to work on any future or existing
+*                version of windows. Use with caution. Pretty much
+*                ok if you're using on local drives
 *
 ****************************************************************************/
 void CShellTree::TunnelTree(CString szFindPath) {

@@ -112,7 +112,7 @@ void CGameProcCharacterSelect::Init() {
     //..
 
     CGameProcedure::Init();
-    //	CGameProcedure::s_pEng->BackupReleaseLighting();
+    //    CGameProcedure::s_pEng->BackupReleaseLighting();
 
     CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_Rotate);
     m_pSnd_Rotate = CN3Base::s_SndMgr.CreateObj(ID_SOUND_CHR_SELECT_ROTATE);
@@ -717,7 +717,7 @@ void CGameProcCharacterSelect::ProcessOnReturn() {
 
         s_SndMgr.ReleaseStreamObj(&(CGameProcedure::s_pSnd_BGM));
         CGameProcedure::ProcActiveSet((CGameProcedure *)s_pProcMain); // 캐릭터 고르기에 성공하면.. 메인으로 가자!!
-                                                                      //		CGameProcedure::s_pEng->RestoreLighting();
+        // CGameProcedure::s_pEng->RestoreLighting();
         this->s_pUILoading->Render("Loading data...", 0);
     }
 }
@@ -1079,7 +1079,7 @@ void CGameProcCharacterSelect::DoSelectedChrProc() {
         s_SndMgr.ReleaseStreamObj(&(CGameProcedure::s_pSnd_BGM));
         CGameProcedure::ProcActiveSet(
             (CGameProcedure *)s_pProcMain); // 캐릭터 받았고.. 에니메이션도 끝났으면 메인으로 넘어가자..!!
-                                            //		CGameProcedure::s_pEng->RestoreLighting();
+                                            //        CGameProcedure::s_pEng->RestoreLighting();
     }
 }
 

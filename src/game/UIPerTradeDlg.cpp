@@ -645,7 +645,7 @@ bool CUIPerTradeDlg::ReceiveIconDrop(__IconItemSkill * spItem, POINT ptCur) {
         CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder = i;
         m_iBackupiOrder[i] = CN3UIWndBase::m_sSelectedIconInfo.UIWndSelect.iOrder;
 
-        // Server에게 보낸다..	현재 아이템 갯수는 1..^^
+        // Server에게 보낸다..    현재 아이템 갯수는 1..^^
         SendToServerItemAddMsg(m_iBackupiOrder[i],
                                CN3UIWndBase::m_sSelectedIconInfo.pItemSelect->pItemBasic->dwID +
                                    CN3UIWndBase::m_sSelectedIconInfo.pItemSelect->pItemExt->dwID,

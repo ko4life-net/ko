@@ -27,13 +27,14 @@ class CN3UITrackBar : public CN3UIBase {
     int m_iMinPos;   // 최소
     int m_iCurPos;   // 현재 값
     int m_iPageSize; // page단위 이동할때 이동값
+
     // Operations
   public:
     virtual void  Release();
     virtual bool  Load(HANDLE hFile);
     virtual void  SetRegion(const RECT & Rect);
     virtual DWORD MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & ptOld);
-    //	virtual void	Render();
+    //    virtual void    Render();
 
     void SetRange(int iMin, int iMax);
     void SetRangeMax(int iMax) { SetRange(m_iMinPos, iMax); }

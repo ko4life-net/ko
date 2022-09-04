@@ -12,9 +12,9 @@ class CN3Camera : public CN3Transform {
     __CameraData m_Data;
     BOOL         m_bFogUse;
     D3DCOLOR     m_FogColor;
-    //	float				m_fFogStart;
-    //	float				m_fFogEnd;
-    //	float				m_fFogDensity;
+    // float        m_fFogStart;
+    // float        m_fFogEnd;
+    // float        m_fFogDensity;
     float m_fRadianX;
     bool  m_bOrtho;
 

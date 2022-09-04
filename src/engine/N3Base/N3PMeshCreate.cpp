@@ -511,7 +511,7 @@ void CN3PMeshCreate::CreateCollapseList() {
              "Failed to create collapses buffer"); // note you should really have code to handle failure of malloc
     m_pCollapseUpTo = m_pCollapses;
 
-    //	__PMCEdgeCollapse *CollapseUpTo = m_pCollapses;
+    //    __PMCEdgeCollapse *CollapseUpTo = m_pCollapses;
 
     m_pAllIndexChanges = new int[MAX_INDEX_CHANGES];
     __ASSERT(m_pAllIndexChanges, "Failed to create Index Change buffer");
@@ -564,10 +564,10 @@ CN3PMesh * CN3PMeshCreate::CreateRendererMesh() {
     pPMesh->m_iMinNumVertices = m_iNumVertices;
 
     pPMesh->Create(pPMesh->m_iMaxNumVertices, pPMesh->m_iMaxNumIndices);
-    //	pPMesh->m_pIndices = new WORD[pPMesh->m_iMaxNumIndices];
-    //	__ASSERT(pPMesh->m_pIndices);
-    //	pPMesh->m_pVertices = new __VertexT1[pPMesh->m_iMaxNumVertices];
-    //	__ASSERT(pPMesh->m_pVertices);
+    //    pPMesh->m_pIndices = new WORD[pPMesh->m_iMaxNumIndices];
+    //    __ASSERT(pPMesh->m_pIndices);
+    //    pPMesh->m_pVertices = new __VertexT1[pPMesh->m_iMaxNumVertices];
+    //    __ASSERT(pPMesh->m_pVertices);
 
 #ifdef _USE_VERTEXBUFFER
     HRESULT hr;

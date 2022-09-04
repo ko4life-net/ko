@@ -36,7 +36,7 @@ class CNpc {
                                   // 2 : 각 입구,출구 NPC
                                   // 3 : 경비병
     int m_iSellingGroup;          // ItemGroup
-                                  //	DWORD	m_dwStepDelay;
+                                  //    DWORD    m_dwStepDelay;
 
     short m_sRegion_X;    // region x position
     short m_sRegion_Z;    // region z position

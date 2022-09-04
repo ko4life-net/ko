@@ -32,8 +32,8 @@
 
 static bool g_bItemClassGroup[26][26] = {
   // [아이템][플레이어]
-  //	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }	// 초기그룹
-  //	  0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+  //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }    // 초기그룹
+  //      0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
     {1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1}, // 0번 Group
     {1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1}, // 1번 Group
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0}, // 2번 Group
@@ -206,7 +206,7 @@ void CUIInventory::Close(bool bByKey) {
     CN3UIWndBase::AllHighLightIconFree();
 
     // 스르륵 닫힌다..!!
-    //	SetVisible(false); // 다 닫히고 나서 해준다..
+    //    SetVisible(false); // 다 닫히고 나서 해준다..
     RECT rc = this->GetRegion();
     this->SetPos(CN3Base::s_CameraData.vp.Width - (rc.right - rc.left), 10);
     m_fMoveDelta = 0;
@@ -1486,7 +1486,7 @@ bool CUIInventory::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 
     case UIMSG_AREA_DOWN_FIRST:
         // 개인간 거래중이고.. 내 아이디가 "area_gold"이면..
-        // SubProcPerTrade에 함수를 호출..	( 그 함수는 edit하는 중이 아니면.. 호출)
+        // SubProcPerTrade에 함수를 호출..    ( 그 함수는 edit하는 중이 아니면.. 호출)
         if ((CGameProcedure::s_pProcMain->m_pSubProcPerTrade->m_ePerTradeState == PER_TRADE_STATE_NORMAL) &&
             (pSender->m_szID.compare("area_gold") == 0)) {
             CGameProcedure::s_pProcMain->m_pSubProcPerTrade->RequestItemCountEdit();

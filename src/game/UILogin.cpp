@@ -370,10 +370,10 @@ bool CUILogIn::OnKeyPress(int iKey) {
         case DIK_TAB:
             FocusCircular();
             return true;
-            //		case DIK_NUMPADENTER:
-            //		case DIK_RETURN:
-            //			CGameProcedure::s_pProcLogIn->MsgSend_AccountLogIn(LIC_KNIGHTONLINE);
-            //			return true;
+            //        case DIK_NUMPADENTER:
+            //        case DIK_RETURN:
+            //            CGameProcedure::s_pProcLogIn->MsgSend_AccountLogIn(LIC_KNIGHTONLINE);
+            //            return true;
         }
     } else if (!m_bOpenningNow && m_pGroup_ServerList && m_pGroup_ServerList->IsVisible()) {
         switch (iKey) {

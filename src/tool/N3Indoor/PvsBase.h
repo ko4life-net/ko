@@ -82,7 +82,7 @@ class CPvsBase : public CObject {
     virtual void RenderCompile() = 0;
     virtual void RenderExecute() = 0;
 
-    //	virtual	void Render() = 0;
+    //    virtual    void Render() = 0;
     virtual void Translate() = 0;
 
     virtual void SetState(e_PvsState ePS) = 0;

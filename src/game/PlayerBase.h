@@ -10,12 +10,12 @@
 #include "N3Base/N3Chr.h"
 #include <deque>
 
-//	By : Ecli666 ( On 2002-07-22 오전 9:59:19 )
+//    By : Ecli666 ( On 2002-07-22 오전 9:59:19 )
 //
 #define SHADOW_SIZE       32 // 2의 승수만 된다..
 #define SHADOW_PLANE_SIZE 4.6f
 #define SHADOW_COLOR      0xa; // 16진수 한자리.. 알파
-//	~(By Ecli666 On 2002-07-22 오전 9:59:19 )
+//    ~(By Ecli666 On 2002-07-22 오전 9:59:19 )
 
 const float TIME_CORPSE_REMAIN = 90.0f; // 시체가 남는 시간..
 const float TIME_CORPSE_REMOVE = 10.0f; // 투명해지면서 없앨시간..
@@ -55,12 +55,12 @@ class CPlayerBase : public CGameBase {
     float         m_fTimeDying;  // 죽는 모션을 취하는 시간..
 
     // by tigger
-    //	By : Ecli666 ( On 2002-03-29 오후 4:22:25 )
+    //    By : Ecli666 ( On 2002-03-29 오후 4:22:25 )
     //
-    //	CN3Texture*			m_pTexShadow;			// 그림자 텍스처...
-    //	__VertexXyzT1		m_vShadows[4];			// 그림자 폴리곤..
+    //    CN3Texture*            m_pTexShadow;            // 그림자 텍스처...
+    //    __VertexXyzT1        m_vShadows[4];            // 그림자 폴리곤..
 
-    //	~(By Ecli666 On 2002-03-29 오후 4:22:25 )
+    //    ~(By Ecli666 On 2002-03-29 오후 4:22:25 )
 
     D3DCOLORVALUE m_cvDuration;            // 지속 컬러 값
     float         m_fDurationColorTimeCur; // 현재 시간..
@@ -104,21 +104,21 @@ class CPlayerBase : public CGameBase {
     //sound..
     bool        m_bSoundAllSet;
     CN3SndObj * m_pSnd_Attack_0;
-    //	CN3SndObj*		m_pSnd_Attack_1;
+    //    CN3SndObj*        m_pSnd_Attack_1;
     CN3SndObj * m_pSnd_Move;
     CN3SndObj * m_pSnd_Struck_0;
-    //	CN3SndObj*		m_pSnd_Struck_1;
-    //	CN3SndObj*		m_pSnd_Dead_0;
-    //	CN3SndObj*		m_pSnd_Dead_1;
+    //    CN3SndObj*        m_pSnd_Struck_1;
+    //    CN3SndObj*        m_pSnd_Dead_0;
+    //    CN3SndObj*        m_pSnd_Dead_1;
     CN3SndObj * m_pSnd_Breathe_0;
-    //	CN3SndObj*		m_pSnd_Breathe_1;
+    //    CN3SndObj*        m_pSnd_Breathe_1;
 
     CN3SndObj * m_pSnd_Blow;
 
     float m_fCastFreezeTime;
 
     // 함수...
-    //	By : Ecli666 ( On 2002-03-29 오후 1:32:12 )
+    //    By : Ecli666 ( On 2002-03-29 오후 1:32:12 )
     //
     CBitset            m_bitset[SHADOW_SIZE]; // Used in Quake3.. ^^
     __VertexT1         m_pvVertex[4];
@@ -134,7 +134,7 @@ class CPlayerBase : public CGameBase {
 
   protected:
     void RenderShadow(float fSunAngle);
-    //	~(By Ecli666 On 2002-03-29 오후 1:32:12 )
+    //    ~(By Ecli666 On 2002-03-29 오후 1:32:12 )
 
     virtual bool ProcessAttack(
         CPlayerBase * pTarget); // 공격 루틴 처리.. 타겟 포인터를 구하고 충돌체크까지 하며 충돌하면 참을 리턴..

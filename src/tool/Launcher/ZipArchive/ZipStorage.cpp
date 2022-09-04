@@ -14,7 +14,7 @@
 // - sinature at the first disk at the beginning
 // - headers and central dir records not divided between disks
 // - each file has a data descriptor preceded by the signature
-//	(bit 3 set in flag);
+//    (bit 3 set in flag);
 
 char CZipStorage::m_gszExtHeaderSignat[] = {0x50, 0x4b, 0x07, 0x08};
 CZipStorage::CZipStorage() {

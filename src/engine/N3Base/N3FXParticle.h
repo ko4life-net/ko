@@ -32,7 +32,7 @@ class CN3FXParticle : public CN3Base {
     __Vector3 m_vWdPos;   //
     DWORD     m_dwColor;  //
     float     m_fSize;    //원래크기
-                          //float		m_fCurrSize;	//현재
+                          //float        m_fCurrSize;    //현재
 
   public:
     bool Tick();

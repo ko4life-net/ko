@@ -373,24 +373,24 @@ bool CN3Joint::TickAnimationKey(float fFrm) {
 void CN3Joint::ReCalcMatrix() {
     static __Matrix44   mtx;
     static __Quaternion qt;
-    //	원래 행렬 계산 코드...
-    //	m_Matrix.Identity();
-    //	mtx.Rotation(m_vRot.x, m_vRot.y, m_vRot.z); m_Matrix *= mtx; // 부모 축 만큼 회전.
-    //	mtx.Scale(m_vScale); m_Matrix *= mtx; // 부모 축 만큼 회전.
-    //	mtx.Rotation(m_vOrigin.x, m_vOrigin.y, m_vOrigin.z); m_Matrix *= mtx; // 부모 로컬 축 만큼 회전.
-    //	mtx.Identity(); mtx.PosSet(m_vPos); m_Matrix *= mtx; // 이동
+    //    원래 행렬 계산 코드...
+    //    m_Matrix.Identity();
+    //    mtx.Rotation(m_vRot.x, m_vRot.y, m_vRot.z); m_Matrix *= mtx; // 부모 축 만큼 회전.
+    //    mtx.Scale(m_vScale); m_Matrix *= mtx; // 부모 축 만큼 회전.
+    //    mtx.Rotation(m_vOrigin.x, m_vOrigin.y, m_vOrigin.z); m_Matrix *= mtx; // 부모 로컬 축 만큼 회전.
+    //    mtx.Identity(); mtx.PosSet(m_vPos); m_Matrix *= mtx; // 이동
 
-    //	if(m_RotSeq == ROT_SEQ_XYZ)
-    //	{
-    //		m_Matrix.Rotation(m_vRot.x, m_vRot.y, m_vRot.z); // 부모 축 만큼 회전. // XYZ 회전일때..
-    //	}
-    //	else if(ROT_SEQ_YXZ)
-    //	{
-    //		m_Matrix.Identity();
-    //		mtx.RotationY(m_vRot.y); m_Matrix *= mtx; // YXZ 회전일때
-    //		mtx.RotationX(m_vRot.x); m_Matrix *= mtx;
-    //		mtx.RotationZ(m_vRot.z); m_Matrix *= mtx;
-    //	}
+    //    if(m_RotSeq == ROT_SEQ_XYZ)
+    //    {
+    //        m_Matrix.Rotation(m_vRot.x, m_vRot.y, m_vRot.z); // 부모 축 만큼 회전. // XYZ 회전일때..
+    //    }
+    //    else if(ROT_SEQ_YXZ)
+    //    {
+    //        m_Matrix.Identity();
+    //        mtx.RotationY(m_vRot.y); m_Matrix *= mtx; // YXZ 회전일때
+    //        mtx.RotationX(m_vRot.x); m_Matrix *= mtx;
+    //        mtx.RotationZ(m_vRot.z); m_Matrix *= mtx;
+    //    }
 
     if (m_KeyOrient.Count() > 0) // Orient 키값이 있으면..
     {
@@ -426,7 +426,7 @@ void CN3Joint::MatricesGet(__Matrix44 * pMtxs, int & nJointIndex) {
 }
 
 void CN3Joint::ReCalcMatrixBlended(float fFrm0, float fFrm1, float fWeight0) {
-    //	__ASSERT(1.0f == (fWeight0 + fWeight1));
+    //    __ASSERT(1.0f == (fWeight0 + fWeight1));
 
     static __Vector3    v1, v2;
     static __Quaternion qt1, qt2;

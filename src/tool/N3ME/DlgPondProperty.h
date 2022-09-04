@@ -20,6 +20,7 @@ class CDlgPondProperty : public CDialog {
 
   protected:
     CPondMng * m_pPondMng;
+
     // Operations
   public:
     void UpdateInfo();

@@ -22,7 +22,7 @@ CN3IMesh::CN3IMesh() {
     m_nVC = m_nUVC = 0;
     m_pVertices = NULL;
     m_pfUVs = NULL;
-    //	m_lpVB = NULL;
+    //    m_lpVB = NULL;
 }
 
 CN3IMesh::~CN3IMesh() {
@@ -36,7 +36,7 @@ CN3IMesh::~CN3IMesh() {
     delete[] m_pwUVsIndices;
     m_pwUVsIndices = NULL; // ÅØ½ºÃ³ ÁÂÇ¥ ÀÎµ¦½º ¸®½ºÆ®.
 
-    //	if(m_lpVB) m_lpVB->Release();
+    //    if(m_lpVB) m_lpVB->Release();
 }
 
 void CN3IMesh::Release() {
@@ -56,7 +56,7 @@ void CN3IMesh::Release() {
     delete[] m_pwUVsIndices;
     m_pwUVsIndices = NULL; // ÅØ½ºÃ³ ÁÂÇ¥ ÀÎµ¦½º ¸®½ºÆ®.
 
-    //	if(m_lpVB) m_lpVB->Release(); m_lpVB = NULL;
+    //    if(m_lpVB) m_lpVB->Release(); m_lpVB = NULL;
 
     m_vMin.Zero();
     m_vMax.Zero();
@@ -92,16 +92,16 @@ bool CN3IMesh::Create(int nFC, int nVC, int nUVC) {
         memset(m_pwUVsIndices, 0, 2 * nFC * 3); // unsigned short
     }
 
-    //	s_lpD3DDev->CreateVertexBuffer(nFC * 3 * sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_lpVB, NULL);
+    //    s_lpD3DDev->CreateVertexBuffer(nFC * 3 * sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_lpVB, NULL);
 
-    //	if(NULL == m_lpVB)
-    //	{
+    //    if(NULL == m_lpVB)
+    //    {
     //#ifdef _N3GAME
-    //		CLogWriter::Write("CN3IMesh::Create - Can't Create VertexBuffer (%s)", m_szFileName.c_str());
+    //        CLogWriter::Write("CN3IMesh::Create - Can't Create VertexBuffer (%s)", m_szFileName.c_str());
     //#endif
-    //		this->Release();
-    //		return false;
-    //	}
+    //        this->Release();
+    //        return false;
+    //    }
 
     return true;
 }
@@ -121,21 +121,21 @@ __VertexT1 * CN3IMesh::BuildVertexList() {
             n = i * 3 + 0;
             nVI = m_pwVtxIndices[n];
             nUVI = m_pwUVsIndices[n];
-            //			s_Vertices[n].Set(	m_pVertices[nVI], m_pVertices[nVI].n, m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
+            //            s_Vertices[n].Set(    m_pVertices[nVI], m_pVertices[nVI].n, m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
             s_Vertices[n].Set(m_pVertices[nVI].x, m_pVertices[nVI].y, m_pVertices[nVI].z, m_pVertices[nVI].n.x,
                               m_pVertices[nVI].n.y, m_pVertices[nVI].n.z, m_pfUVs[nUVI * 2], m_pfUVs[nUVI * 2 + 1]);
 
             n = i * 3 + 1;
             nVI = m_pwVtxIndices[n];
             nUVI = m_pwUVsIndices[n];
-            //			s_Vertices[n].Set(	m_pVertices[nVI], m_pVertices[nVI].n, m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
+            //            s_Vertices[n].Set(    m_pVertices[nVI], m_pVertices[nVI].n, m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
             s_Vertices[n].Set(m_pVertices[nVI].x, m_pVertices[nVI].y, m_pVertices[nVI].z, m_pVertices[nVI].n.x,
                               m_pVertices[nVI].n.y, m_pVertices[nVI].n.z, m_pfUVs[nUVI * 2], m_pfUVs[nUVI * 2 + 1]);
 
             n = i * 3 + 2;
             nVI = m_pwVtxIndices[n];
             nUVI = m_pwUVsIndices[n];
-            //			s_Vertices[n].Set(	m_pVertices[nVI], m_pVertices[nVI].n, m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
+            //            s_Vertices[n].Set(    m_pVertices[nVI], m_pVertices[nVI].n, m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
             s_Vertices[n].Set(m_pVertices[nVI].x, m_pVertices[nVI].y, m_pVertices[nVI].z, m_pVertices[nVI].n.x,
                               m_pVertices[nVI].n.y, m_pVertices[nVI].n.z, m_pfUVs[nUVI * 2], m_pfUVs[nUVI * 2 + 1]);
         }
@@ -173,7 +173,7 @@ __VertexT2 * CN3IMesh::BuildVertexListTwoUV() {
             n = i * 3 + 0;
             nVI = m_pwVtxIndices[n];
             nUVI = m_pwUVsIndices[n];
-            //			s_Vertices[n].Set(	m_pVertices[nVI], m_pVertices[nVI].n, m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
+            //            s_Vertices[n].Set(    m_pVertices[nVI], m_pVertices[nVI].n, m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
             s_Vertices2[n].Set(m_pVertices[nVI].x, m_pVertices[nVI].y, m_pVertices[nVI].z, m_pVertices[nVI].n.x,
                                m_pVertices[nVI].n.y, m_pVertices[nVI].n.z, m_pfUVs[nUVI * 2], m_pfUVs[nUVI * 2 + 1],
                                m_pfUVs[nUVI * 2], m_pfUVs[nUVI * 2 + 1]);
@@ -181,7 +181,7 @@ __VertexT2 * CN3IMesh::BuildVertexListTwoUV() {
             n = i * 3 + 1;
             nVI = m_pwVtxIndices[n];
             nUVI = m_pwUVsIndices[n];
-            //			s_Vertices[n].Set(	m_pVertices[nVI], m_pVertices[nVI].n, m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
+            //            s_Vertices[n].Set(    m_pVertices[nVI], m_pVertices[nVI].n, m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
             s_Vertices2[n].Set(m_pVertices[nVI].x, m_pVertices[nVI].y, m_pVertices[nVI].z, m_pVertices[nVI].n.x,
                                m_pVertices[nVI].n.y, m_pVertices[nVI].n.z, m_pfUVs[nUVI * 2], m_pfUVs[nUVI * 2 + 1],
                                m_pfUVs[nUVI * 2], m_pfUVs[nUVI * 2 + 1]);
@@ -189,7 +189,7 @@ __VertexT2 * CN3IMesh::BuildVertexListTwoUV() {
             n = i * 3 + 2;
             nVI = m_pwVtxIndices[n];
             nUVI = m_pwUVsIndices[n];
-            //			s_Vertices[n].Set(	m_pVertices[nVI], m_pVertices[nVI].n, m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
+            //            s_Vertices[n].Set(    m_pVertices[nVI], m_pVertices[nVI].n, m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
             s_Vertices2[n].Set(m_pVertices[nVI].x, m_pVertices[nVI].y, m_pVertices[nVI].z, m_pVertices[nVI].n.x,
                                m_pVertices[nVI].n.y, m_pVertices[nVI].n.z, m_pfUVs[nUVI * 2], m_pfUVs[nUVI * 2 + 1],
                                m_pfUVs[nUVI * 2], m_pfUVs[nUVI * 2 + 1]);
@@ -216,52 +216,52 @@ __VertexT2 * CN3IMesh::BuildVertexListTwoUV() {
 /*
 __VertexT1* CN3IMesh::BuildVertexList()
 {
-	if(m_nFC <= 0 || NULL == m_lpVB) return NULL;
+    if(m_nFC <= 0 || NULL == m_lpVB) return NULL;
 
-	__VertexT1* pVDests = NULL;
-	m_lpVB->Lock(0, 0, (VOID**)(&pVDests), 0);
+    __VertexT1* pVDests = NULL;
+    m_lpVB->Lock(0, 0, (VOID**)(&pVDests), 0);
 
-	int n = 0, nVI = 0, nUVI = 0;
-	if(m_nUVC > 0)
-	{
-		for(int i = 0; i < m_nFC; i++)
-		{
-			n = i*3+0; nVI = m_pwVtxIndices[n]; nUVI = m_pwUVsIndices[n];
-//			pVDests[n].Set(	m_pVertices[nVI], m_pVertices[nVI].n, m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
-			pVDests[n].Set(	m_pVertices[nVI].x, m_pVertices[nVI].y, m_pVertices[nVI].z,
-							m_pVertices[nVI].n.x, m_pVertices[nVI].n.y, m_pVertices[nVI].n.z, 
-							m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
-			
-			n = i*3+1; nVI = m_pwVtxIndices[n]; nUVI = m_pwUVsIndices[n];
-//			pVDests[n].Set(	m_pVertices[nVI], m_pVertices[nVI].n, m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
-			pVDests[n].Set(	m_pVertices[nVI].x, m_pVertices[nVI].y, m_pVertices[nVI].z,
-							m_pVertices[nVI].n.x, m_pVertices[nVI].n.y, m_pVertices[nVI].n.z, 
-							m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
+    int n = 0, nVI = 0, nUVI = 0;
+    if(m_nUVC > 0)
+    {
+        for(int i = 0; i < m_nFC; i++)
+        {
+            n = i*3+0; nVI = m_pwVtxIndices[n]; nUVI = m_pwUVsIndices[n];
+//            pVDests[n].Set(    m_pVertices[nVI], m_pVertices[nVI].n, m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
+            pVDests[n].Set(    m_pVertices[nVI].x, m_pVertices[nVI].y, m_pVertices[nVI].z,
+                            m_pVertices[nVI].n.x, m_pVertices[nVI].n.y, m_pVertices[nVI].n.z, 
+                            m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
+            
+            n = i*3+1; nVI = m_pwVtxIndices[n]; nUVI = m_pwUVsIndices[n];
+//            pVDests[n].Set(    m_pVertices[nVI], m_pVertices[nVI].n, m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
+            pVDests[n].Set(    m_pVertices[nVI].x, m_pVertices[nVI].y, m_pVertices[nVI].z,
+                            m_pVertices[nVI].n.x, m_pVertices[nVI].n.y, m_pVertices[nVI].n.z, 
+                            m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
 
-			n = i*3+2; nVI = m_pwVtxIndices[n]; nUVI = m_pwUVsIndices[n];
-//			pVDests[n].Set(	m_pVertices[nVI], m_pVertices[nVI].n, m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
-			pVDests[n].Set(	m_pVertices[nVI].x, m_pVertices[nVI].y, m_pVertices[nVI].z,
-							m_pVertices[nVI].n.x, m_pVertices[nVI].n.y, m_pVertices[nVI].n.z, 
-							m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
-		}
-	}
-	else
-	{
-		for(int i = 0; i < m_nFC; i++)
-		{
-			n = i*3+0; nVI = m_pwVtxIndices[n];
-			pVDests[n].Set(	m_pVertices[nVI], m_pVertices[nVI].n, 0, 0 );
-			
-			n = i*3+1; nVI = m_pwVtxIndices[n];
-			pVDests[n].Set(	m_pVertices[nVI], m_pVertices[nVI].n, 0, 0 );
+            n = i*3+2; nVI = m_pwVtxIndices[n]; nUVI = m_pwUVsIndices[n];
+//            pVDests[n].Set(    m_pVertices[nVI], m_pVertices[nVI].n, m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
+            pVDests[n].Set(    m_pVertices[nVI].x, m_pVertices[nVI].y, m_pVertices[nVI].z,
+                            m_pVertices[nVI].n.x, m_pVertices[nVI].n.y, m_pVertices[nVI].n.z, 
+                            m_pfUVs[nUVI*2], m_pfUVs[nUVI*2+1] );
+        }
+    }
+    else
+    {
+        for(int i = 0; i < m_nFC; i++)
+        {
+            n = i*3+0; nVI = m_pwVtxIndices[n];
+            pVDests[n].Set(    m_pVertices[nVI], m_pVertices[nVI].n, 0, 0 );
+            
+            n = i*3+1; nVI = m_pwVtxIndices[n];
+            pVDests[n].Set(    m_pVertices[nVI], m_pVertices[nVI].n, 0, 0 );
 
-			n = i*3+2; nVI = m_pwVtxIndices[n];
-			pVDests[n].Set(	m_pVertices[nVI], m_pVertices[nVI].n, 0, 0 );
-		}
-	}
+            n = i*3+2; nVI = m_pwVtxIndices[n];
+            pVDests[n].Set(    m_pVertices[nVI], m_pVertices[nVI].n, 0, 0 );
+        }
+    }
 
-	m_lpVB->Unlock();
-	return pVDests;
+    m_lpVB->Unlock();
+    return pVDests;
 }
 */
 
@@ -284,10 +284,10 @@ void CN3IMesh::Render(bool bUseTwoUV) {
         }
     }
 
-    //	this->BuildVertexList();
-    //	s_lpD3DDev->SetFVF(FVF_VNT1);
-    //	s_lpD3DDev->SetStreamSource( 0, m_lpVB, 0, sizeof(__VertexT1) );
-    //	s_lpD3DDev->DrawPrimitive(D3DPT_TRIANGLELIST, 0, m_nFC);
+    //    this->BuildVertexList();
+    //    s_lpD3DDev->SetFVF(FVF_VNT1);
+    //    s_lpD3DDev->SetStreamSource( 0, m_lpVB, 0, sizeof(__VertexT1) );
+    //    s_lpD3DDev->DrawPrimitive(D3DPT_TRIANGLELIST, 0, m_nFC);
 }
 
 #ifdef _N3TOOL
