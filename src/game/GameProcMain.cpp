@@ -6238,6 +6238,9 @@ int iStrLen = 0;
 
 BYTE bySubOp = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
 int  iListCount = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+if (iListCount == 0) 
+    return;
+
 for (int i = 0; i < iListCount; i++) {
     __WarpInfo WI;
 
