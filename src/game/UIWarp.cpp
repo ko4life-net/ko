@@ -56,6 +56,9 @@ bool CUIWarp::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
         if (pSender == m_pList_Infos) {
             this->UpdateAgreement(); // 동의문 업데이트..
         }
+    } else if(dwMsg & UIMSG_LIST_DBLCLK) {
+            CGameProcedure::s_pProcMain->MsgSend_Warp();
+            this->SetVisible(false);
     }
 
     return true;
