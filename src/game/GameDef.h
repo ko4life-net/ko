@@ -914,7 +914,7 @@ typedef struct __TABLE_ITEM_BASIC // 장착 아이템에 관한 리소스 레코드...
     BYTE bySellGroup; // 32 상인이 파는데에 대한 그룹..
 } TABLE_ITEM_BASIC;
 
-const int MAX_ITEM_EXTENSION = 22; // 확장 아이템 테이블 갯수.
+const int MAX_ITEM_EXTENSION = 23; // 확장 아이템 테이블 갯수.
 const int LIMIT_FX_DAMAGE = 64;
 const int ITEM_UNIQUE = 4;
 const int ITEM_LIMITED_EXHAUST = 17;
