@@ -9,7 +9,11 @@
 class CUINationSelectDlg : public CN3UIBase {
   public:
     CN3UIBase * m_pBtnKarus;
+    CN3UIBase * m_pBtnKarusNext;
+    CN3UIBase * m_pBtnKarusExit;
     CN3UIBase * m_pBtnElmorad;
+    CN3UIBase * m_pBtnElmoradNext;
+    CN3UIBase * m_pBtnElmoradExit;
 
     class CGameProcNationSelect * m_pProcNationSelectRef;
 
