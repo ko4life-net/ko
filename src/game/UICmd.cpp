@@ -89,11 +89,9 @@ bool CUICmd::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     }
 
     if (dwMsg == UIMSG_BUTTON_CLICK) {
-        //        if(pSender == m_pBtn_Option)
-        //        {
-        //            this->SetVisibleActButtons(false);
-        //            this->SetVisibleOptButtons(true);
-        //        }
+        if (pSender == m_pBtn_Option) {
+            CGameProcedure::s_pProcMain->CommandToggleCmdList();
+        }
 
         if (pSender == m_pBtn_Act) {
             //            this->SetVisibleActButtons(true);

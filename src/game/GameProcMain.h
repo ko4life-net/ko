@@ -53,6 +53,8 @@ class CGameProcMain : public CGameProcedure {
     class CUITradeBBSSelector * m_pUITradeBBSSelector; // 상거래 게시판 종류 선택
     class CUITradeBBSEditDlg *  m_pUITradeBBSEdit;     // 상거래 게시물 설명
     class CUIExitMenu *         m_pUIExitMenu;
+    class CUICmdListDlg *       m_pUICmdList;
+    class CUICmdEditDlg *       m_pUICmdEditDlg;
 
     class CN3Shape * m_pTargetSymbol; // 플레이어가 타겟으로 잡은 캐릭터의 위치위에 그리면 된다..
 
@@ -224,6 +226,8 @@ class CGameProcMain : public CGameProcedure {
     bool CommandToggleUISkillTree();
     bool CommandToggleUIMiniMap();
     bool ExitMenu();
+    bool OpenCmdEdit(std::string msg);
+    bool CommandToggleCmdList();
 
     void CommandMove(e_MoveDirection eMD, bool bStartOrEnd); // 움직이는 방향(전후진, 멈춤), 움직이기 시작하는가?
     void CommandEnableAttackContinous(bool bEnable, CPlayerBase * pTarget);
