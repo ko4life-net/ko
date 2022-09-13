@@ -28,10 +28,17 @@
 
 CUIStateBar::CUIStateBar() {
     m_pText_Position = NULL;
+    m_pText_HP = NULL;
+    m_pText_MP = NULL;
+    m_pText_Exp = NULL;
+
     m_pProgress_HP = NULL;
     m_pProgress_MSP = NULL;
     m_pProgress_ExpC = NULL;
     m_pProgress_ExpP = NULL;
+
+    m_pText_Fps = NULL;
+    m_pText_SystemTime = NULL;
 
     // ¹Ì´Ï¸Ê...
     m_pGroup_MiniMap = NULL;
@@ -78,10 +85,15 @@ void CUIStateBar::Release() {
     CN3UIBase::Release();
 
     m_pText_Position = NULL;
+    m_pText_HP = NULL;
+    m_pText_MP = NULL;
+    m_pText_Exp = NULL;
     m_pProgress_HP = NULL;
     m_pProgress_MSP = NULL;
     m_pProgress_ExpC = NULL;
     m_pProgress_ExpP = NULL;
+    m_pText_Fps = NULL;
+    m_pText_SystemTime = NULL;
 
     // ¹Ì´Ï¸Ê...
     m_pGroup_MiniMap = NULL;
@@ -110,6 +122,23 @@ bool CUIStateBar::Load(HANDLE hFile) {
     }
     m_pText_Position = (CN3UIString *)(this->GetChildByID("Text_Position"));
     __ASSERT(m_pText_Position, "NULL UI Component!!");
+
+    m_pText_HP = (CN3UIString *)(this->GetChildByID("Text_HP"));
+    __ASSERT(m_pText_Position, "NULL UI Component!!");
+    ;
+    m_pText_MP = (CN3UIString *)(this->GetChildByID("Text_MSP"));
+    __ASSERT(m_pText_Position, "NULL UI Component!!");
+    ;
+    m_pText_Exp = (CN3UIString *)(this->GetChildByID("Text_ExpP"));
+    __ASSERT(m_pText_Position, "NULL UI Component!!");
+    ;
+
+    m_pText_Fps = (CN3UIString *)(this->GetChildByID("string_fps"));
+    __ASSERT(m_pText_Fps, "NULL UI Component!!");
+    ;
+    m_pText_SystemTime = (CN3UIString *)(this->GetChildByID("SystemTime"));
+    __ASSERT(m_pText_SystemTime, "NULL UI Component!!");
+    ;
 
     // TODO: Fix this and implement proper state bar.
     GetChildByID("Progress_HP_lasting")->SetVisible(false);
@@ -196,6 +225,19 @@ void CUIStateBar::UpdateExp(int iExp, int iExpNext, bool bUpdateImmediately) {
     } else {
         m_pProgress_ExpP->SetCurValue(iPercentage, 0.3f, 100.0f);
     }
+
+    char szExp[64];
+
+    float textExp = 0.00;
+
+    if (iExp <= 0) {
+        textExp = 0.00;
+    } else {
+        textExp = 100 * iExp / iExpNext;
+    }
+
+    sprintf(szExp, "%.2f%%", textExp);
+    m_pText_Exp->SetString(szExp);
 }
 
 void CUIStateBar::UpdateMSP(int iMSP, int iMSPMax, bool bUpdateImmediately) {
@@ -214,6 +256,10 @@ void CUIStateBar::UpdateMSP(int iMSP, int iMSPMax, bool bUpdateImmediately) {
     } else {
         m_pProgress_MSP->SetCurValue(iPercentage, 0.3f, 100.0f);
     }
+
+    char szMP[64];
+    sprintf(szMP, "%i / %i", iMSP, iMSPMax);
+    m_pText_MP->SetString(szMP);
 }
 
 void CUIStateBar::UpdateHP(int iHP, int iHPMax, bool bUpdateImmediately) {
@@ -229,6 +275,10 @@ void CUIStateBar::UpdateHP(int iHP, int iHPMax, bool bUpdateImmediately) {
     } else {
         m_pProgress_HP->SetCurValue(iPercentage, 0.3f, 100.0f);
     }
+
+    char szHP[64];
+    sprintf(szHP, "%i / %i", iHP, iHPMax);
+    m_pText_HP->SetString(szHP);
 }
 
 void CUIStateBar::UpdatePosition(const __Vector3 & vPos, float fYaw) {
@@ -245,9 +295,43 @@ void CUIStateBar::UpdatePosition(const __Vector3 & vPos, float fYaw) {
     m_fYawPlayer = fYaw;
 }
 
+void CUIStateBar::UpdateFPS(float fps) {
+    if (NULL == m_pText_Fps) {
+        return;
+    }
+
+    char szPos[64];
+    sprintf(szPos, "%.0f", fps);
+    m_pText_Fps->SetString(szPos);
+}
+
+void CUIStateBar::UpdateSystemTime() {
+    if (NULL == m_pText_SystemTime) {
+        return;
+    }
+
+    time_t      timer;
+    char        buffer[9];
+    struct tm * tm_info;
+
+    timer = time(NULL);
+    tm_info = localtime(&timer);
+
+    strftime(buffer, 9, "%H:%M:%S", tm_info);
+    m_pText_SystemTime->SetString(buffer);
+}
+
 void CUIStateBar::Render() {
     if (false == m_bVisible) {
         return;
+    }
+
+    float        fTime = CN3Base::TimeGet();
+    static float fTimePrevFps = CN3Base::TimeGet();
+    if (fTime > fTimePrevFps + 1.0f) {
+        fTimePrevFps = fTime;
+        UpdateFPS(CN3Base::s_fFrmPerSec);
+        UpdateSystemTime();
     }
 
     CN3UIBase::Render();
@@ -311,8 +395,8 @@ void CUIStateBar::Render() {
         info = *it;
 
         vPos = m_vPosPlayer - info.vPos;
-        //        vPos.x = (float)((int)(fCenterX - m_fZoom * fWidth * (vPos.x / m_fMapSizeX)));
-        //        vPos.z = (float)((int)(fCenterY + m_fZoom * fHeight * (vPos.z / m_fMapSizeZ)));
+        //		vPos.x = (float)((int)(fCenterX - m_fZoom * fWidth * (vPos.x / m_fMapSizeX)));
+        //		vPos.z = (float)((int)(fCenterY + m_fZoom * fHeight * (vPos.z / m_fMapSizeZ)));
         vPos.x = fCenterX - m_fZoom * fWidth * (vPos.x / m_fMapSizeX);
         vPos.y = fCenterY + m_fZoom * fHeight * (vPos.z / m_fMapSizeZ);
 
@@ -350,8 +434,8 @@ void CUIStateBar::Render() {
         info = *it;
 
         vPos = m_vPosPlayer - info.vPos;
-        //        vPos.x = (float)((int)(fCenterX - m_fZoom * fWidth * (vPos.x / m_fMapSizeX)));
-        //        vPos.z = (float)((int)(fCenterY + m_fZoom * fHeight * (vPos.z / m_fMapSizeZ)));
+        //		vPos.x = (float)((int)(fCenterX - m_fZoom * fWidth * (vPos.x / m_fMapSizeX)));
+        //		vPos.z = (float)((int)(fCenterY + m_fZoom * fHeight * (vPos.z / m_fMapSizeZ)));
         vPos.x = fCenterX - m_fZoom * fWidth * (vPos.x / m_fMapSizeX);
         vPos.y = fCenterY + m_fZoom * fHeight * (vPos.z / m_fMapSizeZ);
 
@@ -428,7 +512,7 @@ void CUIStateBar::TickMiniMap() {
     float fOffset = (0.5f / m_fZoom);
     float fX = (m_vPosPlayer.x / m_fMapSizeX); // 1/16 ÃàÀû..
     float fY = (m_vPosPlayer.z / m_fMapSizeZ);
-    //    m_pImage_Map->SetUVRect(fX - fOffset, fY - fOffset, fX + fOffset, fY + fOffset);
+    //	m_pImage_Map->SetUVRect(fX - fOffset, fY - fOffset, fX + fOffset, fY + fOffset);
     m_pImage_Map->SetUVRect((fX - fOffset), 1.0f - (fY + fOffset), (fX + fOffset), 1.0f - (fY - fOffset));
 
     RECT  rc = m_pImage_Map->GetRegion();

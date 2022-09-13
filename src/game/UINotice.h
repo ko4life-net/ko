@@ -15,6 +15,7 @@ class CUINotice : public CN3UIBase {
     class CN3UIString *    m_pText_Notice;
     class CN3UIScrollBar * m_pScrollBar;
     class CN3UIButton *    m_pBtn_OK;
+    class CN3UIButton *    m_pBtn_Quit;
 
     std::list<std::string> m_Texts;
 

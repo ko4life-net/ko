@@ -55,6 +55,7 @@
 #include "UIQuestMenu.h"
 #include "UIQuestTalk.h"
 #include "UIDead.h"
+#include "UIExitMenu.h";
 
 #include "SubProcPerTrade.h"
 #include "CountableItemEditDlg.h"
@@ -156,6 +157,7 @@ CGameProcMain::CGameProcMain() // r기본 생성자.. 각 변수의 역활은 헤더 참조..
     m_pUIQuestMenu = new CUIQuestMenu();
     m_pUIQuestTalk = new CUIQuestTalk();
     m_pUIDead = new CUIDead();
+    m_pUIExitMenu = new CUIExitMenu();
 
     m_pSubProcPerTrade = new CSubProcPerTrade();
     m_pMagicSkillMng = new CMagicSkillMng(this);
@@ -201,6 +203,7 @@ CGameProcMain::~CGameProcMain() {
     delete m_pUIQuestMenu;
     delete m_pUIQuestTalk;
     delete m_pUIDead;
+    delete m_pUIExitMenu;
 
     delete m_pSubProcPerTrade;
     delete m_pMagicSkillMng;
@@ -248,6 +251,7 @@ void CGameProcMain::ReleaseUIs() {
     m_pUIWarp->Release();
     m_pUIInn->Release();
     m_pUICreateClanName->Release();
+    m_pUIExitMenu->Release();
 
     CN3UIBase::DestroyTooltip();
 }
@@ -3913,6 +3917,16 @@ void CGameProcMain::InitUI() {
     iX = (iW - (rc.right - rc.left)) / 2;
     iY = (iH - (rc.bottom - rc.top)) / 2;
     m_pUITradeBBSEdit->SetPos(iX, iY);
+
+    //Exit Menu
+    m_pUIExitMenu->Init(s_pUIMgr);
+    m_pUIExitMenu->LoadFromFile(pTbl->szExitMenu);
+    m_pUIExitMenu->SetVisibleWithNoSound(false);
+    rc = m_pUIExitMenu->GetRegion();
+    iX = (iW - (rc.right - rc.left)) / 2;
+    iY = (iH - (rc.bottom - rc.top)) / 2;
+    m_pUIExitMenu->SetPos(iX, iY);
+    m_pUIExitMenu->SetStyle(UISTYLE_MODAL);
 }
 
 void CGameProcMain::MsgSend_RequestTargetHP(short siIDTarget, BYTE byUpdateImmediately) {
@@ -4677,7 +4691,6 @@ void CGameProcMain::MsgRecv_UserState(DataPack * pDataPack, int & iOffset) {
         }
     }
 }
-
 void CGameProcMain::MsgRecv_Notice(DataPack * pDataPack, int & iOffset) {
     if (m_pUINotice) {
         m_pUINotice->RemoveNotice();
@@ -4701,13 +4714,20 @@ void CGameProcMain::MsgRecv_Notice(DataPack * pDataPack, int & iOffset) {
         m_pUINotice->GenerateText();
 
         RECT rc = m_pUINotice->GetRegion();
-        int  x = (CN3Base::s_CameraData.vp.Width / 2) - (rc.right - rc.left) / 2;
-        int  y = (CN3Base::s_CameraData.vp.Height / 2) - (rc.bottom - rc.top) / 2;
+
+        /* OLD POSITION NOTICE BOX CENTER */
+        /*
+		int x = (CN3Base::s_CameraData.vp.Width/2) - (rc.right - rc.left)/2;
+		int y = (CN3Base::s_CameraData.vp.Height/2) - (rc.bottom - rc.top)/2;
+		*/
+
+        int x = (CN3Base::s_CameraData.vp.Width - (rc.right - rc.left));
+        int y = (10);
+
         m_pUINotice->SetPos(x, y);
         m_pUINotice->SetVisible(true);
     }
 }
-
 void CGameProcMain::MsgRecv_PartyOrForce(DataPack * pDataPack, int & iOffset) {
     //    int iPartyOrForce = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
     int iSubCmd = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
@@ -4839,6 +4859,19 @@ void CGameProcMain::MsgRecv_PartyOrForce(DataPack * pDataPack, int & iOffset) {
         m_pUIPartyOrForce->MemberStatusChange(iID, ePS, bSuffer);
     } break;
     }
+}
+
+bool CGameProcMain::ExitMenu() {
+    bool bNeedOpen = !(m_pUIExitMenu->IsVisible());
+    if (bNeedOpen) {
+        s_pUIMgr->SetFocusedUI(m_pUIExitMenu);
+
+        m_pUIExitMenu->SetVisible(true);
+    } else {
+        m_pUIExitMenu->SetVisible(false);
+    }
+
+    return bNeedOpen;
 }
 
 void CGameProcMain::CommandSitDown(bool bLimitInterval, bool bSitDown, bool bImmediately) {

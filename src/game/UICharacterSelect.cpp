@@ -23,6 +23,7 @@ CUICharacterSelect::CUICharacterSelect() {
     m_pBtnRight = NULL;
     m_pBtnExit = NULL;
     m_pBtnDelete = NULL;
+    m_pBtnBack = NULL;
 }
 
 CUICharacterSelect::~CUICharacterSelect() {}
@@ -32,6 +33,7 @@ void CUICharacterSelect::Release() {
     m_pBtnRight = NULL;
     m_pBtnExit = NULL;
     m_pBtnDelete = NULL;
+    m_pBtnBack = NULL;
 
     CN3UIBase::Release();
 }
@@ -47,15 +49,17 @@ bool CUICharacterSelect::Load(HANDLE hFile) {
     __ASSERT(m_pBtnExit, "NULL UI Component!!");
     m_pBtnDelete = this->GetChildByID("bt_delete");
     __ASSERT(m_pBtnDelete, "NULL UI Component!!");
+    m_pBtnBack = this->GetChildByID("bt_back");
+    __ASSERT(m_pBtnBack, "NULL UI Component!!");
 
     // 위치를 화면 해상도에 맞게 바꾸기...
     POINT pt;
     RECT  rc = this->GetRegion();
     float fRatio = (float)s_CameraData.vp.Width / (rc.right - rc.left);
-    //    if(pBtnLeft) { pt = pBtnLeft->GetPos(); pt.x *= fRatio; pt.y *= fRatio; pBtnLeft->SetPos(pt.x, pt.y); }
-    //    if(pBtnRight) { pt = pBtnRight->GetPos(); pt.x *= fRatio; pt.y *= fRatio; pBtnRight->SetPos(pt.x, pt.y); }
-    //    if(pBtnExit) { pt = pBtnExit->GetPos(); pt.x *= fRatio; pt.y *= fRatio; pBtnExit->SetPos(pt.x, pt.y); }
-    //    if(pBtnDelete) { pt = pBtnDelete->GetPos(); pt.x *= fRatio; pt.y *= fRatio; pBtnDelete->SetPos(pt.x, pt.y); }
+    //	if(pBtnLeft) { pt = pBtnLeft->GetPos(); pt.x *= fRatio; pt.y *= fRatio; pBtnLeft->SetPos(pt.x, pt.y); }
+    //	if(pBtnRight) { pt = pBtnRight->GetPos(); pt.x *= fRatio; pt.y *= fRatio; pBtnRight->SetPos(pt.x, pt.y); }
+    //	if(pBtnExit) { pt = pBtnExit->GetPos(); pt.x *= fRatio; pt.y *= fRatio; pBtnExit->SetPos(pt.x, pt.y); }
+    //	if(pBtnDelete) { pt = pBtnDelete->GetPos(); pt.x *= fRatio; pt.y *= fRatio; pBtnDelete->SetPos(pt.x, pt.y); }
     if (m_pBtnLeft) {
         pt = m_pBtnLeft->GetPos();
         pt.x *= fRatio;
@@ -110,7 +114,7 @@ bool CUICharacterSelect::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             CGameProcedure::s_pProcCharacterSelect->DojobRight();
         } else if (pSender->m_szID == "bt_exit") // Elmorad
         {
-            //            CGameProcedure::ProcActiveSet((CGameProcedure*)CGameProcedure::s_pProcLogIn); // 로그인으로 돌아간다..
+            //			CGameProcedure::ProcActiveSet((CGameProcedure*)CGameProcedure::s_pProcLogIn); // 로그인으로 돌아간다..
             std::string szMsg;
             ::_LoadStringFromResource(IDS_CONFIRM_EXIT_GAME, szMsg);
             CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_EXIT);
@@ -119,6 +123,9 @@ bool CUICharacterSelect::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             std::string szMsg;
             ::_LoadStringFromResource(IDS_CONFIRM_DELETE_CHR, szMsg);
             CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_DELETE_CHR);
+        } else if (pSender->m_szID == "bt_back") // Elmorad
+        {
+            CGameProcedure::ProcActiveSet((CGameProcedure *)CGameProcedure::s_pProcLogIn);
         }
     }
 

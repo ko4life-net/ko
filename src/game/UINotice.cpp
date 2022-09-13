@@ -38,6 +38,7 @@ bool CUINotice::Load(HANDLE hFile) {
     m_pText_Notice = (CN3UIString *)GetChildByID("Text_Notice");
     m_pScrollBar = (CN3UIScrollBar *)GetChildByID("ScrollBar");
     m_pBtn_OK = (CN3UIButton *)GetChildByID("Btn_OK");
+    m_pBtn_Quit = (CN3UIButton *)GetChildByID("btn_quit");
 
     if (m_pScrollBar) {
         m_pScrollBar->SetRange(0, 100);
@@ -56,7 +57,7 @@ bool CUINotice::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     //DWORD ss = s_CameraData.vp.Width;
 
     if (dwMsg == UIMSG_BUTTON_CLICK) {
-        if (pSender == m_pBtn_OK) {
+        if (pSender == m_pBtn_OK || pSender == m_pBtn_Quit) {
             if (m_pText_Notice) {
                 m_pText_Notice->SetString("");
             }

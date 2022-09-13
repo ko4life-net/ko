@@ -11,10 +11,12 @@ class CGameProcedure;
 
 class CUICharacterSelect : public CN3UIBase {
   protected:
-    CN3UIBase * m_pBtnLeft;
-    CN3UIBase * m_pBtnRight;
-    CN3UIBase * m_pBtnExit;
-    CN3UIBase * m_pBtnDelete;
+    CN3UIBase *       m_pBtnLeft;
+    CN3UIBase *       m_pBtnRight;
+    CN3UIBase *       m_pBtnExit;
+    CN3UIBase *       m_pBtnDelete;
+    CN3UIBase *       m_pBtnBack;
+    class CUINotice * m_pUINotice;
 
   public:
     DWORD MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & ptOld);
