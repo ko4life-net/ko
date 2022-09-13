@@ -24,6 +24,11 @@ typedef typename std::list<__DurationMagicImg *>::iterator it_MagicImg;
 class CUIStateBar : public CN3UIBase {
   protected:
     CN3UIString *   m_pText_Position;
+    CN3UIString *   m_pText_HP;
+    CN3UIString *   m_pText_MP;
+    CN3UIString *   m_pText_Exp;
+    CN3UIString *   m_pText_Fps;
+    CN3UIString *   m_pText_SystemTime;
     CN3UIProgress * m_pProgress_HP;
     CN3UIProgress * m_pProgress_MSP;
     CN3UIProgress * m_pProgress_ExpC;
@@ -65,6 +70,9 @@ class CUIStateBar : public CN3UIBase {
     void UpdateHP(int iHP, int iHPMax, bool bUpdateImmediately);
 
     void UpdatePosition(const __Vector3 & vPos, float fYaw);
+
+    void UpdateFPS(const float fps);
+    void UpdateSystemTime();
 
     void ZoomSet(float fZoom);
     void PositionInfoAdd(int iID, const __Vector3 & vPos, D3DCOLOR crID, bool bDrawTop);
