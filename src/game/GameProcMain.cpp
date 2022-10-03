@@ -5275,6 +5275,14 @@ void CGameProcMain::ParseChattingCommand(const std::string & szCmd) {
         CAPISocket::MP_AddWord(byBuff, iOffset, (fZ * 10));
 
         s_pSocket->Send(byBuff, iOffset);
+    } else if (0 == lstrcmp(szCmds[0], "systemgametimeon")) {
+        if (m_pUIStateBarAndMiniMap) {
+            m_pUIStateBarAndMiniMap->SetSystemTimeVisibility(true);
+        }
+    } else if (0 == lstrcmp(szCmds[0], "systemgametimeoff")) {
+        if (m_pUIStateBarAndMiniMap) {
+            m_pUIStateBarAndMiniMap->SetSystemTimeVisibility(false);
+        }
     }
 
     e_ChatCmd eCmd = CMD_UNKNOWN;

@@ -28,6 +28,7 @@
 
 CUIStateBar::CUIStateBar() {
     m_pText_Position = NULL;
+
     m_pProgress_HP = NULL;
     m_pProgress_MSP = NULL;
     m_pProgress_ExpC = NULL;
@@ -38,12 +39,22 @@ CUIStateBar::CUIStateBar() {
     m_pImage_Map = NULL;
     m_pBtn_ZoomIn = NULL;
     m_pBtn_ZoomOut = NULL;
+
+    m_pText_HP = NULL;
+    m_pText_MSP = NULL;
+    m_pText_ExpP = NULL;
+    m_pText_Fps = NULL;
+    m_pText_SystemTime = NULL;
+
+    m_bShowSystemTime = false;
+
     memset(m_vArrows, 0, sizeof(m_vArrows));
     m_fZoom = 6.0f;
     m_fMapSizeX = 0.0f;
     m_fMapSizeZ = 0.0f;
     m_fYawPlayer = 0;
     m_vPosPlayer.Zero();
+    m_fFPSValue = 0.0f;
 
     m_pMagic.clear();
 }
@@ -88,6 +99,15 @@ void CUIStateBar::Release() {
     m_pImage_Map = NULL;
     m_pBtn_ZoomIn = NULL;
     m_pBtn_ZoomOut = NULL;
+
+    m_pText_HP = NULL;
+    m_pText_MSP = NULL;
+    m_pText_ExpP = NULL;
+    m_pText_Fps = NULL;
+    m_pText_SystemTime = NULL;
+
+    m_bShowSystemTime = false;
+
     memset(m_vArrows, 0, sizeof(m_vArrows));
     m_fZoom = 6.0f;
     m_fMapSizeX = 0.0f;
@@ -152,6 +172,25 @@ bool CUIStateBar::Load(HANDLE hFile) {
         __ASSERT(m_pBtn_ZoomOut, "NULL UI Component!!");
     }
 
+    m_pText_HP = (CN3UIString *)(this->GetChildByID("Text_HP"));
+    __ASSERT(m_pText_Position, "NULL UI Component!!");
+    m_pText_MSP = (CN3UIString *)(this->GetChildByID("Text_MSP"));
+    __ASSERT(m_pText_Position, "NULL UI Component!!");
+    m_pText_ExpP = (CN3UIString *)(this->GetChildByID("Text_ExpP"));
+    __ASSERT(m_pText_Position, "NULL UI Component!!");
+
+    m_pText_Fps = (CN3UIString *)(this->GetChildByID("string_fps"));
+    __ASSERT(m_pText_Fps, "NULL UI Component!!");
+    if (m_pText_Fps) {
+        m_pText_Fps->SetString("");
+    }
+
+    m_pText_SystemTime = (CN3UIString *)(this->GetChildByID("SystemTime"));
+    __ASSERT(m_pText_SystemTime, "NULL UI Component!!");
+    if (m_pText_SystemTime) {
+        m_pText_SystemTime->SetString("");
+    }
+
     return true;
 }
 
@@ -196,6 +235,10 @@ void CUIStateBar::UpdateExp(int iExp, int iExpNext, bool bUpdateImmediately) {
     } else {
         m_pProgress_ExpP->SetCurValue(iPercentage, 0.3f, 100.0f);
     }
+
+    if (m_pText_ExpP) {
+        m_pText_ExpP->SetString(std::to_string(iPercentage) + "%");
+    }
 }
 
 void CUIStateBar::UpdateMSP(int iMSP, int iMSPMax, bool bUpdateImmediately) {
@@ -214,6 +257,10 @@ void CUIStateBar::UpdateMSP(int iMSP, int iMSPMax, bool bUpdateImmediately) {
     } else {
         m_pProgress_MSP->SetCurValue(iPercentage, 0.3f, 100.0f);
     }
+
+    if (m_pText_MSP) {
+        m_pText_MSP->SetString(std::to_string(iMSP) + " / " + std::to_string(iMSPMax));
+    }
 }
 
 void CUIStateBar::UpdateHP(int iHP, int iHPMax, bool bUpdateImmediately) {
@@ -229,6 +276,10 @@ void CUIStateBar::UpdateHP(int iHP, int iHPMax, bool bUpdateImmediately) {
     } else {
         m_pProgress_HP->SetCurValue(iPercentage, 0.3f, 100.0f);
     }
+
+    if (m_pText_HP) {
+        m_pText_HP->SetString(std::to_string(iHP) + " / " + std::to_string(iHPMax));
+    }
 }
 
 void CUIStateBar::UpdatePosition(const __Vector3 & vPos, float fYaw) {
@@ -236,8 +287,8 @@ void CUIStateBar::UpdatePosition(const __Vector3 & vPos, float fYaw) {
         return;
     }
 
-    char szPos[64];
-    sprintf(szPos, "%.1f, %.1f", vPos.x, vPos.z);
+    char szPos[64]{};
+    sprintf(szPos, "%d, %d", (int)vPos.x, (int)vPos.z);
     m_pText_Position->SetString(szPos);
 
     // 미니맵.
@@ -412,6 +463,27 @@ void CUIStateBar::Tick() {
 
     TickMiniMap();   // 맵 이미지...
     TickMagicIcon(); // 아이콘 처리..
+
+    m_fFPSValue += s_fSecPerFrm;
+    if (m_fFPSValue > 1.0f) {
+        char szBuff[12]{};
+        sprintf(szBuff, "%.1f", s_fFrmPerSec);
+        m_pText_Fps->SetString(szBuff);
+        m_fFPSValue = 0.0f;
+    }
+
+    if (m_bShowSystemTime) {
+        char szBuff[12]{};
+        sprintf(szBuff, "%.1f", CN3Base::TimeGet());
+
+        // The official client implements this as the line above.
+        // However printing actual system time as per @xGuTeK PR is not a bad idea either.
+        // Leaving it here as a comment in order to stick to the official behavior for now.
+        //time_t timer = time(NULL);
+        //strftime(szBuff, sizeof(szBuff), "%H:%M:%S", localtime(&timer));
+
+        m_pText_SystemTime->SetString(szBuff);
+    }
 }
 
 void CUIStateBar::TickMiniMap() {
@@ -585,6 +657,14 @@ bool CUIStateBar::ToggleMiniMap() {
     m_pGroup_MiniMap->SetVisible(!bVisible);
 
     return !bVisible;
+}
+
+// Turn ON/OFF with chat command: /systemgametimeon or /systemgametimeoff
+void CUIStateBar::SetSystemTimeVisibility(bool bVisible) {
+    m_bShowSystemTime = bVisible;
+    if (!bVisible) {
+        m_pText_SystemTime->SetString("");
+    }
 }
 
 void CUIStateBar::AddMagic(__TABLE_UPC_SKILL * pSkill, float fDuration) {

@@ -35,11 +35,21 @@ class CUIStateBar : public CN3UIBase {
     CN3UIButton * m_pBtn_ZoomIn;
     CN3UIButton * m_pBtn_ZoomOut;
 
+    CN3UIString * m_pText_HP;
+    CN3UIString * m_pText_MSP;
+    CN3UIString * m_pText_ExpP;
+    CN3UIString * m_pText_Fps;
+    CN3UIString * m_pText_SystemTime;
+
+    bool m_bShowSystemTime;
+
     float     m_fZoom; // 지도의 배율..
     float     m_fMapSizeX;
     float     m_fMapSizeZ;
     float     m_fYawPlayer;
     __Vector3 m_vPosPlayer;
+
+    float m_fFPSValue;
 
     __VertexTransformedColor  m_vArrows[6]; // 플레이어 위치 화살표..
     std::list<__PositionInfo> m_Positions;
@@ -59,6 +69,7 @@ class CUIStateBar : public CN3UIBase {
     void  TickMiniMap();
 
     bool ToggleMiniMap();
+    void SetSystemTimeVisibility(bool bVisible);
 
     void UpdateExp(int iExp, int iExpNext, bool bUpdateImmediately);
     void UpdateMSP(int iMSP, int iMSPMax, bool bUpdateImmediately);
