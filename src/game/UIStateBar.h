@@ -69,6 +69,7 @@ class CUIStateBar : public CN3UIBase {
     void  TickMiniMap();
 
     bool ToggleMiniMap();
+    void SetSystemTimeVisibility(bool bVisible);
 
     void UpdateExp(int iExp, int iExpNext, bool bUpdateImmediately);
     void UpdateMSP(int iMSP, int iMSPMax, bool bUpdateImmediately);

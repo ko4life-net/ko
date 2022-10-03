@@ -659,6 +659,14 @@ bool CUIStateBar::ToggleMiniMap() {
     return !bVisible;
 }
 
+// Turn ON/OFF with chat command: /systemgametimeon or /systemgametimeoff
+void CUIStateBar::SetSystemTimeVisibility(bool bVisible) {
+    m_bShowSystemTime = bVisible;
+    if (!bVisible) {
+        m_pText_SystemTime->SetString("");
+    }
+}
+
 void CUIStateBar::AddMagic(__TABLE_UPC_SKILL * pSkill, float fDuration) {
     // TODO: Change instances like these to std::format once upgrading to cpp20:
     // https://en.cppreference.com/w/cpp/utility/format/format
