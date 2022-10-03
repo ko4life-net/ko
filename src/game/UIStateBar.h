@@ -35,12 +35,16 @@ class CUIStateBar : public CN3UIBase {
     CN3UIButton * m_pBtn_ZoomIn;
     CN3UIButton * m_pBtn_ZoomOut;
 
+    CN3UIButton * m_pBtn_Quest;
+
     CN3UIString * m_pText_HP;
     CN3UIString * m_pText_MSP;
     CN3UIString * m_pText_ExpP;
     CN3UIString * m_pText_Fps;
     CN3UIString * m_pText_SystemTime;
 
+    bool m_bQuestButtonBlink;
+    bool m_bQuestButtonClicked;
     bool m_bShowSystemTime;
 
     float     m_fZoom; // 지도의 배율..

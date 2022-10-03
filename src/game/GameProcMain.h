@@ -49,6 +49,7 @@ class CGameProcMain : public CGameProcedure {
     class CUITradeSellBBS *     m_pUITradeBBS;         // 상거래 게시판
     class CUIQuestMenu *        m_pUIQuestMenu;        // Quest Menu
     class CUIQuestTalk *        m_pUIQuestTalk;        // Quest Talk
+    class CUILevelGuide *       m_pUILevelGuide;       // Level guide
     class CUIDead *             m_pUIDead;             // Dead UI
     class CUITradeBBSSelector * m_pUITradeBBSSelector; // 상거래 게시판 종류 선택
     class CUITradeBBSEditDlg *  m_pUITradeBBSEdit;     // 상거래 게시물 설명

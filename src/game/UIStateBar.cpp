@@ -11,12 +11,14 @@
 #include "N3Base/N3UIProgress.h"
 #include "N3Base/N3UIString.h"
 #include "N3Base/N3UIImage.h"
+#include "N3Base/N3UIButton.h"
 #include "GameProcMain.h"
 #include "APISocket.h"
 #include "PacketDef.h"
 #include "PlayerMySelf.h"
 #include "MagicSkillMng.h"
 #include "UIManager.h"
+#include "UILevelGuide.h"
 
 #include "N3Base/N3Texture.h"
 
@@ -40,12 +42,16 @@ CUIStateBar::CUIStateBar() {
     m_pBtn_ZoomIn = NULL;
     m_pBtn_ZoomOut = NULL;
 
+    m_pBtn_Quest = NULL;
+
     m_pText_HP = NULL;
     m_pText_MSP = NULL;
     m_pText_ExpP = NULL;
     m_pText_Fps = NULL;
     m_pText_SystemTime = NULL;
 
+    m_bQuestButtonBlink = true;
+    m_bQuestButtonClicked = false;
     m_bShowSystemTime = false;
 
     memset(m_vArrows, 0, sizeof(m_vArrows));
@@ -100,6 +106,8 @@ void CUIStateBar::Release() {
     m_pBtn_ZoomIn = NULL;
     m_pBtn_ZoomOut = NULL;
 
+    m_pBtn_Quest = NULL;
+
     m_pText_HP = NULL;
     m_pText_MSP = NULL;
     m_pText_ExpP = NULL;
@@ -135,6 +143,9 @@ bool CUIStateBar::Load(HANDLE hFile) {
     GetChildByID("Progress_HP_lasting")->SetVisible(false);
     GetChildByID("Progress_HP_drop")->SetVisible(false);
     GetChildByID("Progress_HP_slow")->SetVisible(false);
+
+    m_pBtn_Quest = (CN3UIButton *)GetChildByID("Btn_Quest");
+    __ASSERT(m_pBtn_Quest, "NULL UI Component!!");
 
     m_pProgress_HP = (CN3UIProgress *)(this->GetChildByID("Progress_HP"));
     __ASSERT(m_pProgress_HP, "NULL UI Component!!");
@@ -484,6 +495,16 @@ void CUIStateBar::Tick() {
 
         m_pText_SystemTime->SetString(szBuff);
     }
+
+    if (CGameBase::s_pPlayer && !m_bQuestButtonClicked && m_bQuestButtonBlink) {
+        if (CGameBase::s_pPlayer->m_InfoBase.iLevel <= 10) {
+            if (((GetTickCount() / 1000) & 1) == 1) {
+                m_pBtn_Quest->SetState(UI_STATE_BUTTON_ON);
+            } else {
+                m_pBtn_Quest->SetState(UI_STATE_BUTTON_NORMAL);
+            }
+        }
+    }
 }
 
 void CUIStateBar::TickMiniMap() {
@@ -622,7 +643,18 @@ bool CUIStateBar::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
                 }
             }
         }
+    } else if (dwMsg == UIMSG_ICON_RDOWN_FIRST) {
+        N3_WARN("TODO: Implement skills");
+    } else if (dwMsg == UIMSG_BUTTON_CLICK) {
+        if (pSender == (CN3UIBase *)m_pBtn_Quest) {
+            if (CGameProcedure::s_pProcMain->m_pUILevelGuide) {
+                CGameProcedure::s_pProcMain->m_pUILevelGuide->SetVisible(true);
+            }
+            m_bQuestButtonClicked = true;
+            return true;
+        }
     }
+
     return false;
 }
 
@@ -753,6 +785,11 @@ DWORD CUIStateBar::MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & p
         dwRet |= pMagicImg->pIcon->MouseProc(CGameProcedure::s_pLocalInput->MouseGetFlag(),
                                              CGameProcedure::s_pLocalInput->MouseGetPos(),
                                              CGameProcedure::s_pLocalInput->MouseGetPosOld());
+    }
+
+    // If we are hovering the quest button, don't blink anymore so that we can click it
+    if (m_pBtn_Quest && !m_bQuestButtonClicked) {
+        m_bQuestButtonBlink = !m_pBtn_Quest->IsIn(ptCur.x, ptCur.y);
     }
 
     dwRet |= CN3UIBase::MouseProc(dwFlags, ptCur, ptOld);

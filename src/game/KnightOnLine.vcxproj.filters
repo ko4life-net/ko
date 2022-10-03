@@ -630,6 +630,9 @@
     <ClInclude Include="..\engine\N3Base\N3Log.h">
       <Filter>N3Base\Core</Filter>
     </ClInclude>
+    <ClInclude Include="UILevelGuide.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\Resource.rc">
@@ -1125,6 +1128,9 @@
     <ClCompile Include="WarMessage.cpp" />
     <ClCompile Include="..\engine\N3Base\N3Log.cpp">
       <Filter>N3Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="UILevelGuide.cpp">
+      <Filter>Procedure - Main\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
