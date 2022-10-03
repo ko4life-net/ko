@@ -24,11 +24,6 @@ typedef typename std::list<__DurationMagicImg *>::iterator it_MagicImg;
 class CUIStateBar : public CN3UIBase {
   protected:
     CN3UIString *   m_pText_Position;
-    CN3UIString *   m_pText_HP;
-    CN3UIString *   m_pText_MP;
-    CN3UIString *   m_pText_Exp;
-    CN3UIString *   m_pText_Fps;
-    CN3UIString *   m_pText_SystemTime;
     CN3UIProgress * m_pProgress_HP;
     CN3UIProgress * m_pProgress_MSP;
     CN3UIProgress * m_pProgress_ExpC;
@@ -40,11 +35,21 @@ class CUIStateBar : public CN3UIBase {
     CN3UIButton * m_pBtn_ZoomIn;
     CN3UIButton * m_pBtn_ZoomOut;
 
+    CN3UIString * m_pText_HP;
+    CN3UIString * m_pText_MSP;
+    CN3UIString * m_pText_ExpP;
+    CN3UIString * m_pText_Fps;
+    CN3UIString * m_pText_SystemTime;
+
+    bool m_bShowSystemTime;
+
     float     m_fZoom; // 지도의 배율..
     float     m_fMapSizeX;
     float     m_fMapSizeZ;
     float     m_fYawPlayer;
     __Vector3 m_vPosPlayer;
+
+    float m_fFPSValue;
 
     __VertexTransformedColor  m_vArrows[6]; // 플레이어 위치 화살표..
     std::list<__PositionInfo> m_Positions;
@@ -70,9 +75,6 @@ class CUIStateBar : public CN3UIBase {
     void UpdateHP(int iHP, int iHPMax, bool bUpdateImmediately);
 
     void UpdatePosition(const __Vector3 & vPos, float fYaw);
-
-    void UpdateFPS(const float fps);
-    void UpdateSystemTime();
 
     void ZoomSet(float fZoom);
     void PositionInfoAdd(int iID, const __Vector3 & vPos, D3DCOLOR crID, bool bDrawTop);
