@@ -283,6 +283,7 @@
     <ClInclude Include="UIInventory.h" />
     <ClInclude Include="UIItemExchange.h" />
     <ClInclude Include="UIKnightsOperation.h" />
+    <ClInclude Include="UILevelGuide.h" />
     <ClInclude Include="UILoading.h" />
     <ClInclude Include="UILogin.h" />
     <ClInclude Include="UIManager.h" />
@@ -462,6 +463,7 @@
     <ClCompile Include="UIInventory.cpp" />
     <ClCompile Include="UIItemExchange.cpp" />
     <ClCompile Include="UIKnightsOperation.cpp" />
+    <ClCompile Include="UILevelGuide.cpp" />
     <ClCompile Include="UILoading.cpp" />
     <ClCompile Include="UILogin.cpp" />
     <ClCompile Include="UIManager.cpp" />

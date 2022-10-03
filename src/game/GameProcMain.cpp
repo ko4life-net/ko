@@ -54,6 +54,7 @@
 #include "UITradeBBSEditDlg.h"
 #include "UIQuestMenu.h"
 #include "UIQuestTalk.h"
+#include "UILevelGuide.h"
 #include "UIDead.h"
 
 #include "SubProcPerTrade.h"
@@ -155,6 +156,7 @@ CGameProcMain::CGameProcMain() // r기본 생성자.. 각 변수의 역활은 헤더 참조..
     m_pUITradeBBSEdit = new CUITradeBBSEditDlg();
     m_pUIQuestMenu = new CUIQuestMenu();
     m_pUIQuestTalk = new CUIQuestTalk();
+    m_pUILevelGuide = new CUILevelGuide();
     m_pUIDead = new CUIDead();
 
     m_pSubProcPerTrade = new CSubProcPerTrade();
@@ -200,6 +202,7 @@ CGameProcMain::~CGameProcMain() {
     delete m_pUITradeBBSEdit;
     delete m_pUIQuestMenu;
     delete m_pUIQuestTalk;
+    delete m_pUILevelGuide;
     delete m_pUIDead;
 
     delete m_pSubProcPerTrade;
@@ -3876,6 +3879,16 @@ void CGameProcMain::InitUI() {
     iX = (iW - (rc.right - rc.left)) / 2;
     iY = (iH - (rc.bottom - rc.top)) / 2;
     m_pUIQuestTalk->SetPos(iX, iY);
+
+    // Level Guide
+    m_pUILevelGuide->Init(s_pUIMgr);
+    m_pUILevelGuide->LoadFromFile(pTbl->szLevelGuide);
+    m_pUILevelGuide->SetVisibleWithNoSound(false);
+    m_pUILevelGuide->SetStyle(UISTYLE_USER_MOVE_HIDE);
+    rc = m_pUILevelGuide->GetRegion();
+    iX = (iW - (rc.right - rc.left)) / 2;
+    iY = (iH - (rc.bottom - rc.top)) / 2;
+    m_pUILevelGuide->SetPos(iX, iY);
 
     // dead ui
     m_pUIDead->Init(s_pUIMgr);
