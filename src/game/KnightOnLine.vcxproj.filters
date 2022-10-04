@@ -109,7 +109,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Resource.h">
+    <ClInclude Include="res\Resource.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\N3Base\N3UIBase.h">
@@ -633,6 +633,9 @@
     <ClInclude Include="UILevelGuide.h">
       <Filter>Procedure - Main\UI</Filter>
     </ClInclude>
+    <ClInclude Include="UIMsgBoxOkCancel.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\Resource.rc">
@@ -1130,6 +1133,9 @@
       <Filter>N3Base\Core</Filter>
     </ClCompile>
     <ClCompile Include="UILevelGuide.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIMsgBoxOkCancel.cpp">
       <Filter>Procedure - Main\UI</Filter>
     </ClCompile>
   </ItemGroup>
