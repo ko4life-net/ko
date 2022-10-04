@@ -262,7 +262,7 @@
     <ClInclude Include="PlayerOtherMgr.h" />
     <ClInclude Include="PortalVolume.h" />
     <ClInclude Include="PvsMgr.h" />
-    <ClInclude Include="Resource.h" />
+    <ClInclude Include="res/Resource.h" />
     <ClInclude Include="ServerMesh.h" />
     <ClInclude Include="SharedMem.h" />
     <ClInclude Include="StdAfx.h" />
@@ -290,6 +290,7 @@
     <ClInclude Include="UIMessageBox.h" />
     <ClInclude Include="UIMessageBoxManager.h" />
     <ClInclude Include="UIMessageWnd.h" />
+    <ClInclude Include="UIMsgBoxOkCancel.h" />
     <ClInclude Include="UINationSelectDlg.h" />
     <ClInclude Include="UINotice.h" />
     <ClInclude Include="UINPCChangeEvent.h" />
@@ -470,6 +471,7 @@
     <ClCompile Include="UIMessageBox.cpp" />
     <ClCompile Include="UIMessageBoxManager.cpp" />
     <ClCompile Include="UIMessageWnd.cpp" />
+    <ClCompile Include="UIMsgBoxOkCancel.cpp" />
     <ClCompile Include="UINationSelectDlg.cpp" />
     <ClCompile Include="UINotice.cpp" />
     <ClCompile Include="UINPCChangeEvent.cpp" />

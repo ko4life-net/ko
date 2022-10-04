@@ -852,7 +852,7 @@ typedef struct __TABLE_UI_RESRC {
     std::string szKaCatapult;               // 95 TODO: implement
     std::string szDisguiseRing;             // 96 TODO: implement
     std::string szMsgBoxOk;                 // 97 TODO: implement
-    std::string szMsgBoxOkCancel;           // 98 TODO: implement
+    std::string szMsgBoxOkCancel;           // 98
     std::string szWhisper_open;             // 99 TODO: implement
     std::string szWhisper_close;            // 100 TODO: implement
     std::string szKnights_crest_chr;        // 101 TODO: implement
