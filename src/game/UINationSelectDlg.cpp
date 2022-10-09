@@ -236,9 +236,9 @@ bool CUINationSelectDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
         } else if (pSender == (CN3UIBase *)m_pBtnSelectionKa || pSender == (CN3UIBase *)m_pBtnSelectionEl) {
             m_eCurNation = (pSender == (CN3UIBase *)m_pBtnSelectionKa) ? NATION_KARUS : NATION_ELMORAD;
             if (m_pMsgBoxOkCancel) {
-                // 10420: You must delete all your characters in this nation if you wish to create a character
+                // You must delete all your characters in this nation if you wish to create a character
                 std::string szBuff;
-                ::_LoadStringFromResource(10420, szBuff);
+                ::_LoadStringFromResource(IDS_NATIONSELECT_MSGBOX_SELECTION, szBuff);
                 m_pMsgBoxOkCancel->ShowWindow(CHILD_UI_SELNATION_MSG, this);
                 m_pMsgBoxOkCancel->SetMsg(szBuff);
             }
@@ -260,13 +260,13 @@ void CUINationSelectDlg::CallBackProc(int iID, DWORD dwFlag) {
 void CUINationSelectDlg::InitResources() {
     std::string szBuff;
     if (m_pTextNoticeEl) {
-        // 10422: El Morad is a nation that was formed by King Manes...
-        ::_LoadStringFromResource(10422, szBuff);
+        // El Morad is a nation that was formed by King Manes...
+        ::_LoadStringFromResource(IDS_NATIONSELECT_DESCRIPTION_EL, szBuff);
         m_pTextNoticeEl->SetString(szBuff);
     }
     if (m_pTextNoticeKa) {
-        // 10421: Karus is a new nation that was established in Adonis...
-        ::_LoadStringFromResource(10421, szBuff);
+        // Karus is a new nation that was established in Adonis...
+        ::_LoadStringFromResource(IDS_NATIONSELECT_DESCRIPTION_KA, szBuff);
         m_pTextNoticeKa->SetString(szBuff);
     }
 

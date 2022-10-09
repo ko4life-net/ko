@@ -91,7 +91,7 @@ void CGameProcLogIn::Init() {
     m_pLights[2]->LoadFromFile("Intro\\2.N3Light");
 
     s_pEng->s_SndMgr.ReleaseStreamObj(&(CGameProcedure::s_pSnd_BGM));
-    CGameProcedure::s_pSnd_BGM = s_pEng->s_SndMgr.CreateStreamObj(35); //몬스터 울부짖는 26초짜리 소리..
+    CGameProcedure::s_pSnd_BGM = s_pEng->s_SndMgr.CreateStreamObj(ID_SOUND_BGM_LOGIN); //몬스터 울부짖는 26초짜리 소리..
 
     m_pUILogIn = new CUILogIn();
     m_pUILogIn->Init(s_pUIMgr);
