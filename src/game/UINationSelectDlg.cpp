@@ -7,7 +7,7 @@
 #include "UINationSelectDlg.h"
 #include "GameProcNationSelect.h"
 
-#include "N3Base/N3SndObj.h"
+#include "N3Base/N3SndObjStream.h"
 #include "N3Base/N3UIString.h"
 #include "N3Base/N3UIButton.h"
 
@@ -59,10 +59,10 @@ CUINationSelectDlg::~CUINationSelectDlg() {
     m_pMsgBoxOkCancel = NULL;
 
     if (m_pSndKa) {
-        CN3Base::s_SndMgr.ReleaseObj(&m_pSndKa);
+        CN3Base::s_SndMgr.ReleaseStreamObj(&m_pSndKa);
     }
     if (m_pSndEl) {
-        CN3Base::s_SndMgr.ReleaseObj(&m_pSndEl);
+        CN3Base::s_SndMgr.ReleaseStreamObj(&m_pSndEl);
     }
 }
 
@@ -271,10 +271,10 @@ void CUINationSelectDlg::InitResources() {
     }
 
     if (m_pSndKa) {
-        CN3Base::s_SndMgr.ReleaseObj(&m_pSndKa);
+        CN3Base::s_SndMgr.ReleaseStreamObj(&m_pSndKa);
     }
     if (m_pSndEl) {
-        CN3Base::s_SndMgr.ReleaseObj(&m_pSndEl);
+        CN3Base::s_SndMgr.ReleaseStreamObj(&m_pSndEl);
     }
 
     if (m_pBaseEl) {
@@ -285,7 +285,7 @@ void CUINationSelectDlg::InitResources() {
     }
     m_bNationKa = true;
 
-    m_pSndKa = CN3Base::s_SndMgr.CreateObj(20009, SNDTYPE_STREAM);
+    m_pSndKa = CN3Base::s_SndMgr.CreateStreamObj(20009);
     if (m_pSndKa) {
         m_pSndKa->Looping(true);
         m_pSndKa->Play(NULL, 0.0f, 0.0f);
@@ -296,9 +296,9 @@ void CUINationSelectDlg::ChangeNation(bool bNationKa) {
     if (bNationKa) {
         m_bNationKa = true;
         if (m_pSndEl) {
-            CN3Base::s_SndMgr.ReleaseObj(&m_pSndEl);
+            CN3Base::s_SndMgr.ReleaseStreamObj(&m_pSndEl);
         }
-        m_pSndKa = CN3Base::s_SndMgr.CreateObj(20009, SNDTYPE_STREAM);
+        m_pSndKa = CN3Base::s_SndMgr.CreateStreamObj(20009);
         if (m_pSndKa) {
             m_pSndKa->Looping(true);
             m_pSndKa->Play(NULL, 0.0f, 0.0f);
@@ -306,9 +306,9 @@ void CUINationSelectDlg::ChangeNation(bool bNationKa) {
     } else {
         m_bNationKa = false;
         if (m_pSndKa) {
-            CN3Base::s_SndMgr.ReleaseObj(&m_pSndKa);
+            CN3Base::s_SndMgr.ReleaseStreamObj(&m_pSndKa);
         }
-        m_pSndEl = CN3Base::s_SndMgr.CreateObj(20000, SNDTYPE_STREAM);
+        m_pSndEl = CN3Base::s_SndMgr.CreateStreamObj(20000);
         if (m_pSndEl) {
             m_pSndEl->Looping(true);
             m_pSndEl->Play(NULL, 0.0f, 0.0f);

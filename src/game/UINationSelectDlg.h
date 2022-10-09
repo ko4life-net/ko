@@ -43,8 +43,8 @@ class CUINationSelectDlg : public CN3UIBase {
     bool m_bTransitionActive;
     bool m_bNationKa;
 
-    CN3SndObj * m_pSndKa;
-    CN3SndObj * m_pSndEl;
+    CN3SndObjStream * m_pSndKa;
+    CN3SndObjStream * m_pSndEl;
 
     class CUIMsgBoxOkCancel * m_pMsgBoxOkCancel;
 
