@@ -13,6 +13,8 @@
 #include "UINationSelectDlg.h"
 #include "UIManager.h"
 
+#include "N3Base/N3SndObjStream.h"
+
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
@@ -105,6 +107,15 @@ bool CGameProcNationSelect::ProcessPacket(DataPack * pDataPack, int & iOffset) {
             s_pPlayer->m_InfoBase.eNation = NATION_KARUS;
         } else if (2 == iNation) {
             s_pPlayer->m_InfoBase.eNation = NATION_ELMORAD;
+        }
+
+        if (s_pPlayer->m_InfoBase.eNation == NATION_KARUS || s_pPlayer->m_InfoBase.eNation == NATION_ELMORAD) {
+            CN3Base::s_SndMgr.ReleaseStreamObj(&CGameProcedure::s_pSnd_BGM);
+            CGameProcedure::s_pSnd_BGM = CN3Base::s_SndMgr.CreateStreamObj(ID_SOUND_BGM_EL_BATTLE);
+            if (CGameProcedure::s_pSnd_BGM) {
+                CGameProcedure::s_pSnd_BGM->Looping(true);
+                CGameProcedure::s_pSnd_BGM->Play();
+            }
         }
     }
         return true;
