@@ -6,6 +6,7 @@
 #include "Resource.h"
 #include "UINationSelectDlg.h"
 #include "GameProcNationSelect.h"
+#include "GameProcLogIn.h"
 
 #include "N3Base/N3SndObjStream.h"
 #include "N3Base/N3UIString.h"
@@ -226,8 +227,8 @@ bool CUINationSelectDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     if (!m_bTransitionActive && dwMsg == UIMSG_BUTTON_CLICK) {
         if (pSender == (CN3UIBase *)m_pBtnCloseKa || pSender == (CN3UIBase *)m_pBtnCloseEl) {
             CGameProcedure::s_pSocket->Disconnect();
-            CGameProcedure::ProcActiveSet((CGameProcedure *)CGameProcedure::s_pProcCharacterSelect);
-            //*(_BYTE *)(s_pProcCharacterSelect + 53) = 1;
+            CGameProcedure::ProcActiveSet((CGameProcedure *)CGameProcedure::s_pProcLogIn);
+            CGameProcedure::s_pProcLogIn->m_bLogIn = true;
             return true;
         } else if (pSender == (CN3UIBase *)m_pBtnNextKa || pSender == (CN3UIBase *)m_pBtnNextEl) {
             ChangeNation((pSender != (CN3UIBase *)m_pBtnNextKa));
