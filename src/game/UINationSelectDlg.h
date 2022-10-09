@@ -14,7 +14,6 @@ class CUINationSelectDlg : public CN3UIBase {
     bool Load(HANDLE hFile) override;
     void Render() override;
     bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) override;
-    void CallBackProc(int iID, DWORD dwFlag) override;
 
     void InitResources();
     void ChangeNation(bool bNationKa);

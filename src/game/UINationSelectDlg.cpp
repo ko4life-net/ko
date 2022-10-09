@@ -16,8 +16,6 @@
 #include "GameBase.h"
 #include "UIMsgBoxOkCancel.h"
 
-#define CHILD_UI_SELNATION_MSG 1
-
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
@@ -236,26 +234,12 @@ bool CUINationSelectDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             return true;
         } else if (pSender == (CN3UIBase *)m_pBtnSelectionKa || pSender == (CN3UIBase *)m_pBtnSelectionEl) {
             m_eCurNation = (pSender == (CN3UIBase *)m_pBtnSelectionKa) ? NATION_KARUS : NATION_ELMORAD;
-            if (m_pMsgBoxOkCancel) {
-                // You must delete all your characters in this nation if you wish to create a character
-                std::string szBuff;
-                ::_LoadStringFromResource(IDS_NATIONSELECT_MSGBOX_SELECTION, szBuff);
-                m_pMsgBoxOkCancel->ShowWindow(CHILD_UI_SELNATION_MSG, this);
-                m_pMsgBoxOkCancel->SetMsg(szBuff);
-            }
+            m_pProcNationSelectRef->MsgSendNationSelect(m_eCurNation);
             return true;
         }
     }
 
     return true;
-}
-
-void CUINationSelectDlg::CallBackProc(int iID, DWORD dwFlag) {
-    if (iID == CHILD_UI_SELNATION_MSG && dwFlag == UI_MSGBOX_OK_MSG) {
-        if (m_pProcNationSelectRef) {
-            m_pProcNationSelectRef->MsgSendNationSelect(m_eCurNation);
-        }
-    }
 }
 
 void CUINationSelectDlg::InitResources() {
