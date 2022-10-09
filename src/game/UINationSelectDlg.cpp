@@ -150,7 +150,7 @@ void CUINationSelectDlg::Render() {
     }
 
     m_fTextureFactor -= s_fSecPerFrm * 0.3333333f;
-    if (m_fTextureFactor < 0.0f) {
+    if (m_fTextureFactor < 0.30f) {
         m_fTextureFactor = 1.0f;
         m_bTransitionActive = false;
         if (m_bNationKa) {
@@ -313,12 +313,6 @@ void CUINationSelectDlg::ChangeNation(bool bNationKa) {
             m_pSndEl->Looping(true);
             m_pSndEl->Play(NULL, 0.0f, 0.0f);
         }
-    }
-    if (m_pBaseEl) {
-        m_pBaseEl->SetVisible(true);
-    }
-    if (m_pBaseKa) {
-        m_pBaseKa->SetVisible(true);
     }
     m_bTransitionActive = true;
 }
