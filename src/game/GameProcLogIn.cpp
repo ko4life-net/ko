@@ -35,6 +35,8 @@ CGameProcLogIn::CGameProcLogIn() {
     }
 
     m_bLogIn = false; // 로그인 중복 방지..
+
+    m_fCurAudioFrm = 0.0f;
 }
 
 CGameProcLogIn::~CGameProcLogIn() {
@@ -64,6 +66,8 @@ void CGameProcLogIn::Release() {
         delete m_pLights[i];
         m_pLights[i] = NULL;
     }
+
+    m_fCurAudioFrm = 0.0f;
 }
 
 void CGameProcLogIn::Init() {
@@ -90,6 +94,7 @@ void CGameProcLogIn::Init() {
     m_pLights[1]->LoadFromFile("Intro\\1.N3Light");
     m_pLights[2]->LoadFromFile("Intro\\2.N3Light");
 
+    m_fCurAudioFrm = 0.0f;
     s_pEng->s_SndMgr.ReleaseStreamObj(&(CGameProcedure::s_pSnd_BGM));
     CGameProcedure::s_pSnd_BGM = s_pEng->s_SndMgr.CreateStreamObj(ID_SOUND_BGM_LOGIN); //몬스터 울부짖는 26초짜리 소리..
 
@@ -164,15 +169,14 @@ void CGameProcLogIn::Tick() // 프로시져 인덱스를 리턴한다. 0 이면 그대로 진행
     }
     m_pChr->Tick();
 
-    static float fTmp = 0;
-    if (fTmp == 0) {
+    if (m_fCurAudioFrm == 0.0f) {
         if (CGameProcedure::s_pSnd_BGM) {
             CGameProcedure::s_pSnd_BGM->Play(); // 음악 시작..
         }
     }
-    fTmp += CN3Base::s_fSecPerFrm;
-    if (fTmp > 21.66f) {
-        fTmp = 0;
+    m_fCurAudioFrm += CN3Base::s_fSecPerFrm;
+    if (m_fCurAudioFrm > 21.66f) {
+        m_fCurAudioFrm = 0.0f;
         if (CGameProcedure::s_pSnd_BGM) {
             CGameProcedure::s_pSnd_BGM->Stop();
         }

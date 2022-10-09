@@ -17,6 +17,8 @@ class CGameProcLogIn : public CGameProcedure {
 
     bool m_bLogIn; // 로그인 중복 방지..
 
+    float m_fCurAudioFrm;
+
   public:
     void MsgRecv_GameServerGroupList(DataPack * pDataPack, int & iOffset);
     void MsgRecv_AccountLogIn(int iCmd, DataPack * pDataPack, int & iOffset);
