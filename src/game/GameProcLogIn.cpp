@@ -466,12 +466,6 @@ int CGameProcLogIn::MsgRecv_GameServerLogIn(DataPack * pDataPack, int & iOffset)
 
     if (NATION_NOTSELECTED == s_pPlayer->m_InfoBase.eNation) {
         s_pEng->s_SndMgr.ReleaseStreamObj(&(CGameProcedure::s_pSnd_BGM));
-        CGameProcedure::s_pSnd_BGM = s_pEng->s_SndMgr.CreateStreamObj(ID_SOUND_BGM_EL_BATTLE);
-        if (CGameProcedure::s_pSnd_BGM) {
-            CGameProcedure::s_pSnd_BGM->Looping(true);
-            CGameProcedure::s_pSnd_BGM->Play();
-        }
-
         CGameProcedure::ProcActiveSet((CGameProcedure *)s_pProcNationSelect);
     } else if (NATION_KARUS == s_pPlayer->m_InfoBase.eNation || NATION_ELMORAD == s_pPlayer->m_InfoBase.eNation) {
         s_pEng->s_SndMgr.ReleaseStreamObj(&(CGameProcedure::s_pSnd_BGM));
