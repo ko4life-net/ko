@@ -270,50 +270,51 @@ void CUINationSelectDlg::InitResources() {
         m_pTextNoticeKa->SetString(szBuff);
     }
 
-    if (m_pSndKa) {
-        CN3Base::s_SndMgr.ReleaseStreamObj(&m_pSndKa);
-    }
-    if (m_pSndEl) {
-        CN3Base::s_SndMgr.ReleaseStreamObj(&m_pSndEl);
-    }
-
     if (m_pBaseEl) {
         m_pBaseEl->SetVisible(false);
     }
     if (m_pBaseKa) {
         m_pBaseKa->SetVisible(true);
     }
-    m_bNationKa = true;
 
-    m_pSndKa = CN3Base::s_SndMgr.CreateStreamObj(20009);
+    if (m_pSndEl) {
+        CN3Base::s_SndMgr.ReleaseStreamObj(&m_pSndEl);
+    }
+    if (m_pSndKa) {
+        CN3Base::s_SndMgr.ReleaseStreamObj(&m_pSndKa);
+    }
+    m_pSndEl = CN3Base::s_SndMgr.CreateStreamObj(ID_SOUND_BGM_EL_BATTLE);
+    m_pSndKa = CN3Base::s_SndMgr.CreateStreamObj(ID_SOUND_BGM_KA_BATTLE);
+    if (m_pSndEl) {
+        m_pSndEl->Looping(true);
+    }
     if (m_pSndKa) {
         m_pSndKa->Looping(true);
-        m_pSndKa->Play(NULL, 0.0f, 0.0f);
+        m_pSndKa->Play(NULL, 0.0f, 3.0f);
     }
+
+    m_bNationKa = true;
 }
 
 void CUINationSelectDlg::ChangeNation(bool bNationKa) {
     if (bNationKa) {
         m_bNationKa = true;
         if (m_pSndEl) {
-            CN3Base::s_SndMgr.ReleaseStreamObj(&m_pSndEl);
+            m_pSndEl->Stop(3.0f);
         }
-        m_pSndKa = CN3Base::s_SndMgr.CreateStreamObj(20009);
         if (m_pSndKa) {
-            m_pSndKa->Looping(true);
-            m_pSndKa->Play(NULL, 0.0f, 0.0f);
+            m_pSndKa->Play(NULL, 0.0f, 6.0f);
         }
     } else {
         m_bNationKa = false;
         if (m_pSndKa) {
-            CN3Base::s_SndMgr.ReleaseStreamObj(&m_pSndKa);
+            m_pSndKa->Stop(3.0f);
         }
-        m_pSndEl = CN3Base::s_SndMgr.CreateStreamObj(20000);
         if (m_pSndEl) {
-            m_pSndEl->Looping(true);
-            m_pSndEl->Play(NULL, 0.0f, 0.0f);
+            m_pSndEl->Play(NULL, 0.0f, 6.0f);
         }
     }
+
     m_bTransitionActive = true;
 }
 
