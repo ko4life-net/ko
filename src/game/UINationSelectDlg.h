@@ -8,20 +8,33 @@
 
 class CUINationSelectDlg : public CN3UIBase {
   public:
+    CUINationSelectDlg();
+    ~CUINationSelectDlg() override;
+
+    bool Load(HANDLE hFile) override;
+    void Render() override;
+    bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) override;
+    void CallBackProc(int iID, DWORD dwFlag) override;
+
+    void InitResources();
+    void ChangeNation(bool bNationKa);
+    void ButtonsSetEnable(bool bEnable);
+
+  public:
     CN3UIString * m_pTextNoticeName;
     CN3UIString * m_pTextNotice;
 
     CN3UIBase *   m_pBaseEl;
-    CN3UIString * m_pTextElNotice;
-    CN3UIButton * m_pBtnElSelection;
-    CN3UIButton * m_pBtnElClose;
-    CN3UIButton * m_pBtnElNext;
+    CN3UIString * m_pTextNoticeEl;
+    CN3UIButton * m_pBtnSelectionEl;
+    CN3UIButton * m_pBtnCloseEl;
+    CN3UIButton * m_pBtnNextEl;
 
     CN3UIBase *   m_pBaseKa;
-    CN3UIString * m_pTextKaNotice;
-    CN3UIButton * m_pBtnKaSelection;
-    CN3UIButton * m_pBtnKaClose;
-    CN3UIButton * m_pBtnKaNext;
+    CN3UIString * m_pTextNoticeKa;
+    CN3UIButton * m_pBtnSelectionKa;
+    CN3UIButton * m_pBtnCloseKa;
+    CN3UIButton * m_pBtnNextKa;
 
     enum e_Nation m_eCurNation;
 
@@ -36,17 +49,4 @@ class CUINationSelectDlg : public CN3UIBase {
     class CUIMsgBoxOkCancel * m_pMsgBoxOkCancel;
 
     class CGameProcNationSelect * m_pProcNationSelectRef;
-
-  public:
-    void Render() override;
-    void ChangeNation(bool bNationKa);
-    void ButtonsSetEnable(bool bEnable);
-    void InitResources();
-
-    bool Load(HANDLE hFile) override;
-    bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) override;
-    void CallBackProc(int iID, DWORD dwFlag) override;
-
-    CUINationSelectDlg();
-    ~CUINationSelectDlg() override;
 };

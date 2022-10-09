@@ -23,16 +23,16 @@
 
 CUINationSelectDlg::CUINationSelectDlg() {
     m_pBaseEl = NULL;
-    m_pTextElNotice = NULL;
-    m_pBtnElSelection = NULL;
-    m_pBtnElClose = NULL;
-    m_pBtnElNext = NULL;
+    m_pTextNoticeEl = NULL;
+    m_pBtnSelectionEl = NULL;
+    m_pBtnCloseEl = NULL;
+    m_pBtnNextEl = NULL;
 
     m_pBaseKa = NULL;
-    m_pTextKaNotice = NULL;
-    m_pBtnKaSelection = NULL;
-    m_pBtnKaClose = NULL;
-    m_pBtnKaNext = NULL;
+    m_pTextNoticeKa = NULL;
+    m_pBtnSelectionKa = NULL;
+    m_pBtnCloseKa = NULL;
+    m_pBtnNextKa = NULL;
 
     m_pProcNationSelectRef = NULL;
 
@@ -90,33 +90,33 @@ bool CUINationSelectDlg::Load(HANDLE hFile) {
     m_pBaseEl = (CN3UIBase *)GetChildByID("nation_elmo");
     __ASSERT(m_pBaseEl, "NULL UI Component!!");
     if (m_pBaseEl) {
-        m_pTextElNotice = (CN3UIString *)m_pBaseEl->GetChildByID("text_elmo_notice");
-        __ASSERT(m_pTextElNotice, "NULL UI Component!!");
+        m_pTextNoticeEl = (CN3UIString *)m_pBaseEl->GetChildByID("text_elmo_notice");
+        __ASSERT(m_pTextNoticeEl, "NULL UI Component!!");
 
-        m_pBtnElSelection = (CN3UIButton *)m_pBaseEl->GetChildByID("btn_elmo_selection");
-        __ASSERT(m_pBtnElSelection, "NULL UI Component!!");
+        m_pBtnSelectionEl = (CN3UIButton *)m_pBaseEl->GetChildByID("btn_elmo_selection");
+        __ASSERT(m_pBtnSelectionEl, "NULL UI Component!!");
 
-        m_pBtnElClose = (CN3UIButton *)m_pBaseEl->GetChildByID("btn_elmo_close");
-        __ASSERT(m_pBtnElClose, "NULL UI Component!!");
+        m_pBtnCloseEl = (CN3UIButton *)m_pBaseEl->GetChildByID("btn_elmo_close");
+        __ASSERT(m_pBtnCloseEl, "NULL UI Component!!");
 
-        m_pBtnElNext = (CN3UIButton *)m_pBaseEl->GetChildByID("btn_elmo_next");
-        __ASSERT(m_pBtnElNext, "NULL UI Component!!");
+        m_pBtnNextEl = (CN3UIButton *)m_pBaseEl->GetChildByID("btn_elmo_next");
+        __ASSERT(m_pBtnNextEl, "NULL UI Component!!");
     }
 
     m_pBaseKa = (CN3UIBase *)GetChildByID("nation_karus");
     __ASSERT(m_pBaseKa, "NULL UI Component!!");
     if (m_pBaseKa) {
-        m_pTextKaNotice = (CN3UIString *)m_pBaseKa->GetChildByID("text_karus_notice");
-        __ASSERT(m_pTextKaNotice, "NULL UI Component!!");
+        m_pTextNoticeKa = (CN3UIString *)m_pBaseKa->GetChildByID("text_karus_notice");
+        __ASSERT(m_pTextNoticeKa, "NULL UI Component!!");
 
-        m_pBtnKaSelection = (CN3UIButton *)m_pBaseKa->GetChildByID("btn_karus_selection");
-        __ASSERT(m_pBtnKaSelection, "NULL UI Component!!");
+        m_pBtnSelectionKa = (CN3UIButton *)m_pBaseKa->GetChildByID("btn_karus_selection");
+        __ASSERT(m_pBtnSelectionKa, "NULL UI Component!!");
 
-        m_pBtnKaClose = (CN3UIButton *)m_pBaseKa->GetChildByID("btn_karus_close");
-        __ASSERT(m_pBtnKaClose, "NULL UI Component!!");
+        m_pBtnCloseKa = (CN3UIButton *)m_pBaseKa->GetChildByID("btn_karus_close");
+        __ASSERT(m_pBtnCloseKa, "NULL UI Component!!");
 
-        m_pBtnKaNext = (CN3UIButton *)m_pBaseKa->GetChildByID("btn_karus_next");
-        __ASSERT(m_pBtnKaNext, "NULL UI Component!!");
+        m_pBtnNextKa = (CN3UIButton *)m_pBaseKa->GetChildByID("btn_karus_next");
+        __ASSERT(m_pBtnNextKa, "NULL UI Component!!");
     }
 
     InitResources();
@@ -141,122 +141,6 @@ bool CUINationSelectDlg::Load(HANDLE hFile) {
     }
 
     return true;
-}
-
-bool CUINationSelectDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
-    if (!pSender) {
-        return false;
-    }
-
-    if (!m_bTransitionActive && dwMsg == UIMSG_BUTTON_CLICK) {
-        if (pSender == (CN3UIBase *)m_pBtnKaClose || pSender == (CN3UIBase *)m_pBtnElClose) {
-            CGameProcedure::s_pSocket->Disconnect();
-            CGameProcedure::ProcActiveSet((CGameProcedure *)CGameProcedure::s_pProcCharacterSelect);
-            //*(_BYTE *)(s_pProcCharacterSelect + 53) = 1;
-            return true;
-        } else if (pSender == (CN3UIBase *)m_pBtnKaNext || pSender == (CN3UIBase *)m_pBtnElNext) {
-            ChangeNation((pSender != (CN3UIBase *)m_pBtnKaNext));
-            ButtonsSetEnable(false);
-            return true;
-        } else if (pSender == (CN3UIBase *)m_pBtnKaSelection || pSender == (CN3UIBase *)m_pBtnElSelection) {
-            m_eCurNation = (pSender == (CN3UIBase *)m_pBtnKaSelection) ? NATION_KARUS : NATION_ELMORAD;
-            if (m_pMsgBoxOkCancel) {
-                // 10420: You must delete all your characters in this nation if you wish to create a character
-                std::string szBuff;
-                ::_LoadStringFromResource(10420, szBuff);
-                m_pMsgBoxOkCancel->ShowWindow(CHILD_UI_SELNATION_MSG, this);
-                m_pMsgBoxOkCancel->SetMsg(szBuff);
-            }
-            return true;
-        }
-    }
-
-    return true;
-}
-
-void CUINationSelectDlg::CallBackProc(int iID, DWORD dwFlag) {
-    if (iID == CHILD_UI_SELNATION_MSG && dwFlag == UI_MSGBOX_OK_MSG) {
-        if (m_pProcNationSelectRef) {
-            m_pProcNationSelectRef->MsgSendNationSelect(m_eCurNation);
-        }
-    }
-}
-
-void CUINationSelectDlg::ButtonsSetEnable(bool bEnable) {
-    std::vector<CN3UIBase *> pBtns = {
-        m_pBtnElSelection, m_pBtnElClose, m_pBtnElNext, m_pBtnKaSelection, m_pBtnKaClose, m_pBtnKaNext,
-    };
-
-    eUI_STATE eState = bEnable ? UI_STATE_BUTTON_NORMAL : UI_STATE_BUTTON_DISABLE;
-    for (const auto & pBtn : pBtns) {
-        pBtn->SetState(eState);
-    }
-}
-
-void CUINationSelectDlg::InitResources() {
-    std::string szBuff;
-    if (m_pTextElNotice) {
-        // 10422: El Morad is a nation that was formed by King Manes...
-        ::_LoadStringFromResource(10422, szBuff);
-        m_pTextElNotice->SetString(szBuff);
-    }
-    if (m_pTextKaNotice) {
-        // 10421: Karus is a new nation that was established in Adonis...
-        ::_LoadStringFromResource(10421, szBuff);
-        m_pTextKaNotice->SetString(szBuff);
-    }
-
-    if (m_pSndKa) {
-        CN3Base::s_SndMgr.ReleaseObj(&m_pSndKa);
-    }
-    if (m_pSndEl) {
-        CN3Base::s_SndMgr.ReleaseObj(&m_pSndEl);
-    }
-
-    if (m_pBaseEl) {
-        m_pBaseEl->SetVisible(false);
-    }
-    if (m_pBaseKa) {
-        m_pBaseKa->SetVisible(true);
-    }
-    m_bNationKa = true;
-
-    m_pSndKa = CN3Base::s_SndMgr.CreateObj(20009, SNDTYPE_STREAM);
-    if (m_pSndKa) {
-        m_pSndKa->Looping(true);
-        m_pSndKa->Play(NULL, 0.0f, 0.0f);
-    }
-}
-
-void CUINationSelectDlg::ChangeNation(bool bNationKa) {
-    if (bNationKa) {
-        m_bNationKa = true;
-        if (m_pSndEl) {
-            CN3Base::s_SndMgr.ReleaseObj(&m_pSndEl);
-        }
-        m_pSndKa = CN3Base::s_SndMgr.CreateObj(20009, SNDTYPE_STREAM);
-        if (m_pSndKa) {
-            m_pSndKa->Looping(true);
-            m_pSndKa->Play(NULL, 0.0f, 0.0f);
-        }
-    } else {
-        m_bNationKa = false;
-        if (m_pSndKa) {
-            CN3Base::s_SndMgr.ReleaseObj(&m_pSndKa);
-        }
-        m_pSndEl = CN3Base::s_SndMgr.CreateObj(20000, SNDTYPE_STREAM);
-        if (m_pSndEl) {
-            m_pSndEl->Looping(true);
-            m_pSndEl->Play(NULL, 0.0f, 0.0f);
-        }
-    }
-    if (m_pBaseEl) {
-        m_pBaseEl->SetVisible(true);
-    }
-    if (m_pBaseKa) {
-        m_pBaseKa->SetVisible(true);
-    }
-    m_bTransitionActive = true;
 }
 
 void CUINationSelectDlg::Render() {
@@ -331,5 +215,124 @@ void CUINationSelectDlg::Render() {
         CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAOP, dwTexAlphaOp);
         CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAARG1, dwTexAlpha1);
         CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAARG2, dwTexAlpha2);
+    }
+}
+
+bool CUINationSelectDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
+    if (!pSender) {
+        return false;
+    }
+
+    if (!m_bTransitionActive && dwMsg == UIMSG_BUTTON_CLICK) {
+        if (pSender == (CN3UIBase *)m_pBtnCloseKa || pSender == (CN3UIBase *)m_pBtnCloseEl) {
+            CGameProcedure::s_pSocket->Disconnect();
+            CGameProcedure::ProcActiveSet((CGameProcedure *)CGameProcedure::s_pProcCharacterSelect);
+            //*(_BYTE *)(s_pProcCharacterSelect + 53) = 1;
+            return true;
+        } else if (pSender == (CN3UIBase *)m_pBtnNextKa || pSender == (CN3UIBase *)m_pBtnNextEl) {
+            ChangeNation((pSender != (CN3UIBase *)m_pBtnNextKa));
+            ButtonsSetEnable(false);
+            return true;
+        } else if (pSender == (CN3UIBase *)m_pBtnSelectionKa || pSender == (CN3UIBase *)m_pBtnSelectionEl) {
+            m_eCurNation = (pSender == (CN3UIBase *)m_pBtnSelectionKa) ? NATION_KARUS : NATION_ELMORAD;
+            if (m_pMsgBoxOkCancel) {
+                // 10420: You must delete all your characters in this nation if you wish to create a character
+                std::string szBuff;
+                ::_LoadStringFromResource(10420, szBuff);
+                m_pMsgBoxOkCancel->ShowWindow(CHILD_UI_SELNATION_MSG, this);
+                m_pMsgBoxOkCancel->SetMsg(szBuff);
+            }
+            return true;
+        }
+    }
+
+    return true;
+}
+
+void CUINationSelectDlg::CallBackProc(int iID, DWORD dwFlag) {
+    if (iID == CHILD_UI_SELNATION_MSG && dwFlag == UI_MSGBOX_OK_MSG) {
+        if (m_pProcNationSelectRef) {
+            m_pProcNationSelectRef->MsgSendNationSelect(m_eCurNation);
+        }
+    }
+}
+
+void CUINationSelectDlg::InitResources() {
+    std::string szBuff;
+    if (m_pTextNoticeEl) {
+        // 10422: El Morad is a nation that was formed by King Manes...
+        ::_LoadStringFromResource(10422, szBuff);
+        m_pTextNoticeEl->SetString(szBuff);
+    }
+    if (m_pTextNoticeKa) {
+        // 10421: Karus is a new nation that was established in Adonis...
+        ::_LoadStringFromResource(10421, szBuff);
+        m_pTextNoticeKa->SetString(szBuff);
+    }
+
+    if (m_pSndKa) {
+        CN3Base::s_SndMgr.ReleaseObj(&m_pSndKa);
+    }
+    if (m_pSndEl) {
+        CN3Base::s_SndMgr.ReleaseObj(&m_pSndEl);
+    }
+
+    if (m_pBaseEl) {
+        m_pBaseEl->SetVisible(false);
+    }
+    if (m_pBaseKa) {
+        m_pBaseKa->SetVisible(true);
+    }
+    m_bNationKa = true;
+
+    m_pSndKa = CN3Base::s_SndMgr.CreateObj(20009, SNDTYPE_STREAM);
+    if (m_pSndKa) {
+        m_pSndKa->Looping(true);
+        m_pSndKa->Play(NULL, 0.0f, 0.0f);
+    }
+}
+
+void CUINationSelectDlg::ChangeNation(bool bNationKa) {
+    if (bNationKa) {
+        m_bNationKa = true;
+        if (m_pSndEl) {
+            CN3Base::s_SndMgr.ReleaseObj(&m_pSndEl);
+        }
+        m_pSndKa = CN3Base::s_SndMgr.CreateObj(20009, SNDTYPE_STREAM);
+        if (m_pSndKa) {
+            m_pSndKa->Looping(true);
+            m_pSndKa->Play(NULL, 0.0f, 0.0f);
+        }
+    } else {
+        m_bNationKa = false;
+        if (m_pSndKa) {
+            CN3Base::s_SndMgr.ReleaseObj(&m_pSndKa);
+        }
+        m_pSndEl = CN3Base::s_SndMgr.CreateObj(20000, SNDTYPE_STREAM);
+        if (m_pSndEl) {
+            m_pSndEl->Looping(true);
+            m_pSndEl->Play(NULL, 0.0f, 0.0f);
+        }
+    }
+    if (m_pBaseEl) {
+        m_pBaseEl->SetVisible(true);
+    }
+    if (m_pBaseKa) {
+        m_pBaseKa->SetVisible(true);
+    }
+    m_bTransitionActive = true;
+}
+
+void CUINationSelectDlg::ButtonsSetEnable(bool bEnable) {
+    eUI_STATE eState = bEnable ? UI_STATE_BUTTON_NORMAL : UI_STATE_BUTTON_DISABLE;
+    for (const auto & pBtn : {
+             m_pBtnSelectionEl,
+             m_pBtnCloseEl,
+             m_pBtnNextEl,
+             m_pBtnSelectionKa,
+             m_pBtnCloseKa,
+             m_pBtnNextKa,
+         }) {
+        pBtn->SetState(eState);
     }
 }
