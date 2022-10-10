@@ -12,9 +12,11 @@ if ERRORLEVEL 1 (
 
 rmdir /s /q src\assets 2> NUL
 rmdir /s /q src\vendor 2> NUL
+rmdir /s /q src\db 2> NUL
 
 git clone --depth=1 https://github.com/ko4life-net/ko-assets src\assets
 git clone --depth=1 https://github.com/ko4life-net/ko-vendor src\vendor
+git clone https://github.com/ko4life-net/ko-db src\db
 
 @REM src\All.sln
 
