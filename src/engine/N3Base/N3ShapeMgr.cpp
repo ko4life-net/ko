@@ -101,8 +101,7 @@ bool CN3ShapeMgr::Load(HANDLE hFile) {
 #endif
 #endif // end of #ifndef _N3GAME
 
-    char szBuff[128];
-    int  iSC = 0;
+    int iSC = 0;
     if (!m_Shapes.empty()) {
         ReleaseShapes();
     }
@@ -159,7 +158,8 @@ bool CN3ShapeMgr::Load(HANDLE hFile) {
 #ifdef _REPENT
                 CGameProcedure::RenderLoadingBar(80 + 15 * i / iSC);
 #else
-                int iLoading = (i + 1) * 100 / iSC;
+                char szBuff[128]{};
+                int  iLoading = (i + 1) * 100 / iSC;
                 sprintf(szBuff, "Loading Objects... %d %%", iLoading);
                 pUILoading->Render(szBuff, iLoading);
 #endif
