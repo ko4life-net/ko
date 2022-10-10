@@ -7,7 +7,7 @@
 #pragma warning(disable : 4786)
 
 #include "N3Base/N3BaseFileAccess.h"
-#include "N3Base/N3Shape.h"
+#include "N3Base/N3ShapeExtra.h"
 
 #include "PortalVolume.h"
 #include <string>
