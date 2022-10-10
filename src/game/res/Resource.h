@@ -514,6 +514,9 @@
 #define IDS_DEAD_REVIVAL_MESSAGE                 6603
 #define IDS_DEAD_LOW_LEVEL                       6604
 #define IDS_INVEN_WEIGHT                         6605
+#define IDS_NATIONSELECT_MSGBOX_SELECTION        10420
+#define IDS_NATIONSELECT_DESCRIPTION_KA          10421
+#define IDS_NATIONSELECT_DESCRIPTION_EL          10422
 
 // Next default values for new objects
 //
