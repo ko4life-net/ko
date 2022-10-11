@@ -123,6 +123,12 @@ void CGameProcLogIn::Init() {
     lstrcat(szIniPath, "Server.Ini");
     int iServerCount = GetPrivateProfileInt("Server", "Count", 0, szIniPath);
 
+    char szRegistrationSite[_MAX_PATH];
+    memset(szRegistrationSite, 0, sizeof(szRegistrationSite));
+
+    GetPrivateProfileString("Join", "Registration site", "", szRegistrationSite, _MAX_PATH, szIniPath);
+    m_szRegistrationSite = std::string(szRegistrationSite);
+
     char szIPs[256][32];
     memset(szIPs, 0, sizeof(szIPs));
     for (int i = 0; i < iServerCount; i++) {

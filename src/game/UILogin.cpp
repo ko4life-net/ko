@@ -67,9 +67,11 @@ bool CUILogIn::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             ::_LoadStringFromResource(IDS_CONFIRM_EXECUTE_OPTION, szMsg);
             CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_EXECUTE_OPTION);
         } else if (pSender == m_pBtn_Join) {
-            N3_WARN("TODO: Implement Join / Registeration button.");
-            // TOOD: Load from Server.ini the [Join] Registration site and open URL with
-            // shell execute.
+            if (!CGameProcedure::s_pProcLogIn->m_szRegistrationSite.empty()) {
+                ShellExecute(NULL, "open", CGameProcedure::s_pProcLogIn->m_szRegistrationSite.c_str(), NULL, NULL,
+                             SW_SHOWNORMAL);
+            }
+            return true;
         }
     } else if (UIMSG_LIST_DBLCLK == dwMsg) {
         CGameProcedure::s_pProcLogIn->ConnectToGameServer(); // 고른 게임 서버에 접속
