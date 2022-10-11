@@ -15,9 +15,9 @@ class CGameProcLogIn : public CGameProcedure {
     class CN3Camera * m_pCamera;
     class CN3Light *  m_pLights[3];
 
-    bool        m_bLogIn; // 로그인 중복 방지..
-    std::string m_szRegistrationSite;
-    float       m_fCurAudioFrm;
+    bool m_bLogIn; // 로그인 중복 방지..
+
+    float m_fCurAudioFrm;
 
   public:
     void MsgRecv_GameServerGroupList(DataPack * pDataPack, int & iOffset);
