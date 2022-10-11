@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "LoginServer.h"
 #include "define.h"
 #include "DBProcess.h"

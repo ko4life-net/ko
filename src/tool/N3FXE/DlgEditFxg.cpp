@@ -1,7 +1,7 @@
 // DlgEditFxg.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "n3fxe.h"
 #include "MainFrm.h"
 #include "DlgEditFxg.h"

@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "n3me.h"
 #include "WarpMgr.h"
 #include "DlgEditWarp.h"

@@ -1,7 +1,7 @@
 // DlgPutColor.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "n3fxe.h"
 #include "DlgPutColor.h"
 #include "DlgPercent.h"

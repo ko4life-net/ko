@@ -1,7 +1,7 @@
 // DlgTexture.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "UIE.h"
 #include "DlgTexture.h"
 #include "N3Base/N3UIDef.h"

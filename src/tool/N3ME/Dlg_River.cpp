@@ -1,7 +1,7 @@
 // Dlg_River.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "n3me.h"
 #include "Dlg_River.h"
 

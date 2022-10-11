@@ -1,7 +1,7 @@
 // Aujard.cpp : Defines the class behaviors for the application.
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Aujard.h"
 #include "AujardDlg.h"
 

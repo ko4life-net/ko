@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3FXE.h"
 #include "DialogPart.h"
 

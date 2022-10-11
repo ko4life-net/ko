@@ -1,7 +1,7 @@
 // RscTablesDlg.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "RscTables.h"
 #include "RscTablesDlg.h"
 #include "DlgDataCount.h"

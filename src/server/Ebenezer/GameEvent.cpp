@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ebenezer.h"
 #include "GameEvent.h"
 #include "User.h"

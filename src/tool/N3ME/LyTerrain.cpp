@@ -3,7 +3,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "LyTerrain.h"
 #include "QTNode.h"
 #include "N3Base/N3Texture.h"

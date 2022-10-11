@@ -1,7 +1,7 @@
 // FormViewProperty.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "SkyViewer.h"
 #include "MainFrm.h"
 

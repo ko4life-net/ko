@@ -1,7 +1,7 @@
 // DlgSaveNPCPath.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "n3me.h"
 #include "DlgSaveNPCPath.h"
 

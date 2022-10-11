@@ -1,7 +1,7 @@
 // Launcher.cpp : Defines the class behaviors for the application.
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Launcher.h"
 #include "LauncherDlg.h"
 

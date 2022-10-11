@@ -1,7 +1,7 @@
 // N3Indoor.cpp : Defines the class behaviors for the application.
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3Indoor.h"
 
 #include "MainFrm.h"

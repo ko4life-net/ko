@@ -1,7 +1,7 @@
 // N3ViewerDoc.cpp : implementation of the CN3ViewerDoc class
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3Viewer.h"
 #include "MainFrm.h"
 #include "N3ViewerDoc.h"

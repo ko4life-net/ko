@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "global.h"
 
 BOOL CheckGetVarString(int nLength, TCHAR * tBuf, TCHAR * sBuf, int nSize, int & index) {

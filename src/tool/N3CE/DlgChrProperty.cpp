@@ -1,7 +1,7 @@
 // DlgChrProperty.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "DlgChrProperty.h"
 #include "MainFrm.h"
 #include "N3CEDoc.h"

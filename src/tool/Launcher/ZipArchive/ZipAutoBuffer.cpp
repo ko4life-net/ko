@@ -10,7 +10,7 @@
 // For the licensing details see the file License.txt
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ZipAutoBuffer.h"
 #include <memory.h>
 

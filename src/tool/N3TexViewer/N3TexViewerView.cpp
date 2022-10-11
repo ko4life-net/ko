@@ -1,7 +1,7 @@
 // N3TexViewerView.cpp : implementation of the CN3TexViewerView class
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3TexViewer.h"
 
 #include "MainFrm.h"

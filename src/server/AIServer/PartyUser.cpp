@@ -2,8 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "server.h"
+#include "StdAfx.h"
+#include "AIServer.h"
 #include "PartyUser.h"
 
 #ifdef _DEBUG

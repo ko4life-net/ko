@@ -2,8 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "Server.h"
+#include "StdAfx.h"
+#include "AIServer.h"
 #include "NpcInfoTable.h"
 #include "ini.h"
 

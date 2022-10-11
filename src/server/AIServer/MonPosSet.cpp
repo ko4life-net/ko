@@ -1,8 +1,8 @@
 // MonPosSet.cpp : implementation file
 //
 
-#include "stdafx.h"
-#include "Server.h"
+#include "StdAfx.h"
+#include "AIServer.h"
 #include "MonPosSet.h"
 
 #ifdef _DEBUG

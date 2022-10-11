@@ -2,13 +2,13 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "server.h"
+#include "StdAfx.h"
+#include "AIServer.h"
+#include "AIServerDlg.h"
 #include "NpcThread.h"
 #include "Npc.h"
 #include "Extern.h"
 #include "Mmsystem.h"
-#include "ServerDlg.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

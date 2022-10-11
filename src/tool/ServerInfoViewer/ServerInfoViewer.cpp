@@ -1,7 +1,7 @@
 // ServerInfoViewer.cpp : Defines the class behaviors for the application.
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ServerInfoViewer.h"
 
 #include "MainFrm.h"

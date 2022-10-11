@@ -1,7 +1,7 @@
 // SkyViewerView.cpp : implementation of the CSkyViewerView class
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "SkyViewer.h"
 
 #include "MainFrm.h"

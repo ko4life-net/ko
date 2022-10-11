@@ -1,7 +1,7 @@
 // ShellTree.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ShellTree.h"
 
 #ifdef _DEBUG

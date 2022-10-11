@@ -1,7 +1,7 @@
 // DlgBase.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3Indoor.h"
 #include "MainFrm.h"
 #include "DlgBase.h"

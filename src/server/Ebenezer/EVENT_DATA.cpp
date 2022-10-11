@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Ebenezer.h"
 #include "Define.h"
 #include "EVENT_DATA.h"

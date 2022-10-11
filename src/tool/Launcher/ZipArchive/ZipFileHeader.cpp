@@ -5,7 +5,7 @@
 //  For conditions of distribution and use, see copyright notice in ZipArchive.h
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ZipFileHeader.h"
 #include <zlib.h>
 #include "ZipAutoBuffer.h"

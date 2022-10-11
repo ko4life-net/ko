@@ -1,7 +1,7 @@
 // HierarchyView.cpp : implementation of the CHierarchyView class
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "UIE.h"
 
 #include "UIEDoc.h"

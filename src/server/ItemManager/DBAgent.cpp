@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ItemManager.h"
 #include "DBAgent.h"
 #include "ItemManagerDlg.h"

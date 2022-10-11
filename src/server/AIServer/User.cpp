@@ -2,10 +2,10 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "Server.h"
+#include "StdAfx.h"
+#include "AIServer.h"
+#include "AIServerDlg.h"
 #include "User.h"
-#include "Serverdlg.h"
 #include "define.h"
 #include "Region.h"
 #include "GameSocket.h"

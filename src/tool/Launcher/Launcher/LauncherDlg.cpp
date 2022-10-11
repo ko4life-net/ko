@@ -1,7 +1,7 @@
 // LauncherDlg.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Launcher.h"
 #include "LauncherDlg.h"
 #include <wininet.h>

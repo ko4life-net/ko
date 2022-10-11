@@ -1,7 +1,7 @@
 // DlgPMeshEdit.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "n3viewer.h"
 #include "MainFrm.h"
 #include "DlgPMeshCreateOption.h"

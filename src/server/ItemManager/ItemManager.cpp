@@ -1,7 +1,7 @@
 // ItemManager.cpp : Defines the class behaviors for the application.
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ItemManager.h"
 #include "ItemManagerDlg.h"
 

@@ -1,7 +1,7 @@
 // DlgPMeshCreateOption.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "DlgPMeshCreateOption.h"
 
 #ifdef _DEBUG

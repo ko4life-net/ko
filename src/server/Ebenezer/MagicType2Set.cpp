@@ -1,7 +1,7 @@
 // MagicType2Set.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ebenezer.h"
 #include "MagicType2Set.h"
 

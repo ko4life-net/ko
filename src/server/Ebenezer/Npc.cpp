@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Ebenezer.h"
 #include "Npc.h"
 #include "EbenezerDlg.h"

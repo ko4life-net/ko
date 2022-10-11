@@ -1,7 +1,7 @@
 // N3MEView.cpp : implementation of the CN3MEView class
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3ME.h"
 #include "N3Base/N3EngTool.h"
 #include "N3MEDoc.h"

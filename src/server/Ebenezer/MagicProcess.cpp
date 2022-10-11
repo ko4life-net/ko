@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ebenezer.h"
 #include "MagicProcess.h"
 #include "EbenezerDlg.h"

@@ -1,7 +1,7 @@
 // OptionDlg.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Option.h"
 #include "OptionDlg.h"
 

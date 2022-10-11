@@ -1,7 +1,7 @@
 // DlgEditScript.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3FXE.h"
 #include "MainFrm.h"
 #include "DlgEditScript.h"

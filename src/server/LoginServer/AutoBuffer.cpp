@@ -4,7 +4,7 @@
 //  Copyright (C) 2000 Tadeusz Dracz.
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "AutoBuffer.h"
 
 #ifdef _DEBUG

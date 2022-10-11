@@ -1,7 +1,7 @@
 // N3CEDoc.cpp : implementation of the CN3CEDoc class
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3CE.h"
 #include "N3CEDoc.h"
 

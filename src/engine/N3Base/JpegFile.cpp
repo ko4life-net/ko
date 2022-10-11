@@ -11,7 +11,7 @@
 // See jpegfile.h for usage.
 //
 ////////////////////////////////////////////////////////////
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "JpegFile.h"
 #include "N3Base/My_3DStruct.h"
 

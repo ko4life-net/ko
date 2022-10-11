@@ -1,7 +1,7 @@
 // N3IndoorDoc.cpp : implementation of the CN3IndoorDoc class
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3Indoor.h"
 
 #include "N3IndoorDoc.h"

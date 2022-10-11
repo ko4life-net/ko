@@ -1,7 +1,7 @@
 // ServerInfoViewerDoc.cpp : implementation of the CServerInfoViewerDoc class
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ServerInfoViewer.h"
 
 #include "ServerInfoViewerDoc.h"

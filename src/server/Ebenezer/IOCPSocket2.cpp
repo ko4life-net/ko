@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "IOCPSocket2.h"
 #include "CircularBuffer.h"
 #include "Compress.h"

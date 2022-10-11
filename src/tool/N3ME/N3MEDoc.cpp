@@ -1,7 +1,7 @@
 // N3MEDoc.cpp : implementation of the CN3MEDoc class
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3ME.h"
 #include "N3MEDoc.h"
 #include "MapMng.h"

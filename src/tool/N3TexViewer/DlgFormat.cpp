@@ -1,7 +1,7 @@
 // DlgFormat.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "n3texviewer.h"
 #include "DlgFormat.h"
 

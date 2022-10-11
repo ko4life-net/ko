@@ -1,8 +1,8 @@
 // MagicType1Set.cpp : implementation file
 //
 
-#include "stdafx.h"
-#include "server.h"
+#include "StdAfx.h"
+#include "AIServer.h"
 #include "MagicType1Set.h"
 
 #ifdef _DEBUG

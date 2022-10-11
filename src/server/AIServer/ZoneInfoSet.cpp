@@ -1,8 +1,8 @@
 // ZoneInfoSet.cpp : implementation file
 //
 
-#include "stdafx.h"
-#include "Server.h"
+#include "StdAfx.h"
+#include "AIServer.h"
 #include "ZoneInfoSet.h"
 
 #ifdef _DEBUG

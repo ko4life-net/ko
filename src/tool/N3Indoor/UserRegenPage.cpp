@@ -1,7 +1,7 @@
 // UserRegenPage.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3Indoor.h"
 #include "UserRegenPage.h"
 

@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "n3me.h"
 #include "WallMgr.h"
 #include "Wall.h"

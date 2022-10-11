@@ -1,7 +1,7 @@
 // AujardDlg.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Aujard.h"
 #include "AujardDlg.h"
 #include "ItemTableset.h"

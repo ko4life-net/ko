@@ -1,7 +1,7 @@
 // PropertyView.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "UIE.h"
 #include "PropertyView.h"
 #include "HierarchyView.h"

@@ -1,7 +1,7 @@
 // DlgInputAttr.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "n3me.h"
 #include "DlgInputAttr.h"
 #include "MainFrm.h"

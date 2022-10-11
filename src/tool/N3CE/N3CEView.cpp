@@ -1,7 +1,7 @@
 // N3CEView.cpp : implementation of the CN3CEView class
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3CE.h"
 #include "N3CEDoc.h"
 #include "N3CEView.h"

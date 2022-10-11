@@ -1,7 +1,7 @@
 // DlgSetDTex.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "n3me.h"
 #include "DTex.h"
 #include "DTexMng.h"

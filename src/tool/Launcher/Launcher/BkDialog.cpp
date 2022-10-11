@@ -1,7 +1,7 @@
 // BkDialog.cpp : Defines the class behaviors for the application.
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "BkDialog.h"
 
 #ifdef _DEBUG
