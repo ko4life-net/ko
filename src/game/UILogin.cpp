@@ -67,9 +67,14 @@ bool CUILogIn::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             ::_LoadStringFromResource(IDS_CONFIRM_EXECUTE_OPTION, szMsg);
             CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_EXECUTE_OPTION);
         } else if (pSender == m_pBtn_Join) {
-            N3_WARN("TODO: Implement Join / Registeration button.");
-            // TOOD: Load from Server.ini the [Join] Registration site and open URL with
-            // shell execute.
+            char         szRegistrationSite[2000]{};
+            auto         serverIni = fs::path(CN3Base::PathGet()) / "Server.ini";
+            const char * szDefaultSite = "https://github.com/ko4life-net/ko";
+            GetPrivateProfileString("Join", "Registration site", szDefaultSite, szRegistrationSite,
+                                    sizeof(szRegistrationSite), serverIni.string().c_str());
+            ShellExecute(NULL, "open", szRegistrationSite, NULL, NULL, SW_NORMAL);
+            PostQuitMessage(0);
+            return true;
         }
     } else if (UIMSG_LIST_DBLCLK == dwMsg) {
         CGameProcedure::s_pProcLogIn->ConnectToGameServer(); // 고른 게임 서버에 접속
