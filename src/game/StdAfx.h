@@ -17,10 +17,13 @@
 #include <map>
 #include <set>
 #include <functional>
+#include <filesystem>
 #include <io.h>
 
 #include "N3Base/My_3DStruct.h"
 #include "N3Base/N3Log.h"
+
+namespace fs = std::filesystem;
 
 // TODO: Since we now use spdlog, we can get ride of traces like these.
 #if defined(_DEBUG)
