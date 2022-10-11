@@ -1,5 +1,5 @@
 # Runs clang-format in parallel on the entire project
-$vendor_dir = "src/vendor"
+$vendor_dir = "$PSScriptRoot/src/vendor"
 $clang_format = "$vendor_dir/opt/bin/clang-format.exe"
 
 if (-Not (Test-Path -Path $vendor_dir,$clang_format)) {
@@ -7,7 +7,7 @@ if (-Not (Test-Path -Path $vendor_dir,$clang_format)) {
   exit(1)
 }
 
-foreach ($fn In Get-ChildItem -Path src/engine,src/game,src/server,src/tool -Include *.cpp,*.c,*.hpp,*.h -Recurse) {
+foreach ($fn In Get-ChildItem -Path $PSScriptRoot/src/engine,$PSScriptRoot/src/game,$PSScriptRoot/src/server,$PSScriptRoot/src/tool -Include *.cpp,*.c,*.hpp,*.h -Recurse) {
   Write-Host "clang-format: [$($fn.FullName)]"
   # & $clang_format -style=file -i $fn.FullName --verbose > $null
   $pi = New-Object System.Diagnostics.ProcessStartInfo
