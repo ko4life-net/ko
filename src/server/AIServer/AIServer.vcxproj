@@ -157,8 +157,8 @@
     <ClCompile Include="Region.cpp" />
     <ClCompile Include="RNpcPosSet.cpp" />
     <ClCompile Include="RoomEvent.cpp" />
-    <ClCompile Include="Server.cpp" />
-    <ClCompile Include="ServerDlg.cpp" />
+    <ClCompile Include="AIServer.cpp" />
+    <ClCompile Include="AIServerDlg.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -209,8 +209,8 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RNpcPosSet.h" />
     <ClInclude Include="RoomEvent.h" />
-    <ClInclude Include="Server.h" />
-    <ClInclude Include="ServerDlg.h" />
+    <ClInclude Include="AIServer.h" />
+    <ClInclude Include="AIServerDlg.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="STLMap.h" />
     <ClInclude Include="User.h" />

@@ -1,9 +1,9 @@
 // Server.cpp : Defines the class behaviors for the application.
 //
 
-#include "stdafx.h"
-#include "Server.h"
-#include "ServerDlg.h"
+#include "StdAfx.h"
+#include "AIServer.h"
+#include "AIServerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

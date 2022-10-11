@@ -1,8 +1,8 @@
 // MonTableSet.cpp : implementation file
 //
 
-#include "stdafx.h"
-#include "server.h"
+#include "StdAfx.h"
+#include "AIServer.h"
 #include "MonTableSet.h"
 
 #ifdef _DEBUG

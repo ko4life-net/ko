@@ -1,6 +1,6 @@
 #pragma once
 
-//#include "stdafx.h"
+//#include "StdAfx.h"
 
 BOOL    CheckGetVarString(int nLength, TCHAR * tBuf, TCHAR * sBuf, int nSize, int & index);
 int     GetVarString(TCHAR * tBuf, TCHAR * sBuf, int nSize, int & index);

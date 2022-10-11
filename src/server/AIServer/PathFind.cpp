@@ -2,11 +2,11 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "server.h"
+#include "StdAfx.h"
+#include "AIServer.h"
+#include "AIServerDlg.h"
 #include "PathFind.h"
 #include "math.h"
-#include "Serverdlg.h"
 
 //#include "Extern.h"
 

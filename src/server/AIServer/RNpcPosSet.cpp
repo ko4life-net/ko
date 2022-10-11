@@ -1,8 +1,8 @@
 // RNpcPosSet.cpp : implementation file
 //
 
-#include "stdafx.h"
-#include "Server.h"
+#include "StdAfx.h"
+#include "AIServer.h"
 #include "RNpcPosSet.h"
 
 #ifdef _DEBUG

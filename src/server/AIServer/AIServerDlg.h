@@ -15,7 +15,7 @@
 #include "User.h"
 #include "Npc.h"
 #include "NpcThread.h"
-#include "Server.h"
+#include "AIServer.h"
 #include "Compress.h"
 #include "Party.h"
 

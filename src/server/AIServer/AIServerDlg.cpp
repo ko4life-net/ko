@@ -1,9 +1,9 @@
 // ServerDlg.cpp : implementation file
 //
 
-#include "stdafx.h"
-#include "Server.h"
-#include "ServerDlg.h"
+#include "StdAfx.h"
+#include "AIServer.h"
+#include "AIServerDlg.h"
 #include "GameSocket.h"
 #include "math.h"
 #include "MagicTableSet.h"

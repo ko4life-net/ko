@@ -1,8 +1,8 @@
 // MakeLareItemTableSet.cpp : implementation file
 //
 
-#include "stdafx.h"
-#include "server.h"
+#include "StdAfx.h"
+#include "AIServer.h"
 #include "MakeLareItemTableSet.h"
 
 #ifdef _DEBUG

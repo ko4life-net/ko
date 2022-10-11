@@ -2,9 +2,9 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
+#include "AIServerDlg.h"
 #include "Map.h"
-#include "Serverdlg.h"
 #include "Region.h"
 #include "Npc.h"
 #include "User.h"

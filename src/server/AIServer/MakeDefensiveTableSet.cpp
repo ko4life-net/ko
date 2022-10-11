@@ -1,8 +1,8 @@
 // MakeDefensiveTableSet.cpp : implementation file
 //
 
-#include "stdafx.h"
-#include "server.h"
+#include "StdAfx.h"
+#include "AIServer.h"
 #include "MakeDefensiveTableSet.h"
 
 #ifdef _DEBUG

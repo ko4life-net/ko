@@ -1,8 +1,8 @@
 // MakeGradeItemTableSet.cpp : implementation file
 //
 
-#include "stdafx.h"
-#include "server.h"
+#include "StdAfx.h"
+#include "AIServer.h"
 #include "MakeGradeItemTableSet.h"
 
 #ifdef _DEBUG

@@ -2,10 +2,10 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "server.h"
+#include "StdAfx.h"
+#include "AIServer.h"
+#include "AIServerDlg.h"
 #include "MagicProcess.h"
-#include "ServerDlg.h"
 #include "User.h"
 #include "Npc.h"
 #include "Region.h"
