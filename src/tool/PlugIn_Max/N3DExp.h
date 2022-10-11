@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include "stdafx.h"
+#include "StdAfx.h"
 
 #include "N3Base/N3EngTool.h"
 #include "N3Base/N3Scene.h"

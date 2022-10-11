@@ -1,7 +1,7 @@
 // DlgBrowsePath.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "DlgBrowsePath.h"
 
 #ifdef _DEBUG

@@ -1,7 +1,7 @@
 // FormViewAnimation.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "n3ce.h"
 #include "N3CEDoc.h"
 #include "N3CEView.h"

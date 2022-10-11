@@ -1,7 +1,7 @@
 // N3ViewerView.cpp : implementation of the CN3ViewerView class
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 
 #include "N3Base/N3Camera.h"
 #include "N3Base/N3Light.h"

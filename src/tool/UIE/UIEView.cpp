@@ -1,7 +1,7 @@
 // UIEView.cpp : implementation of the CUIEView class
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "UIE.h"
 
 #include "UIEDoc.h"

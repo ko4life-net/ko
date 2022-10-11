@@ -1,7 +1,7 @@
 // EbenezerDlg.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Ebenezer.h"
 #include "EbenezerDlg.h"
 #include "User.h"

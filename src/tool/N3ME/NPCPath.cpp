@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "n3me.h"
 #include "NPCPath.h"
 #include "LyTerrain.h"

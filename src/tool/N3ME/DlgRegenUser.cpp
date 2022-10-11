@@ -1,7 +1,7 @@
 // DlgRegenUser.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "n3me.h"
 #include "DlgRegenUser.h"
 #include "RegenUser.h"

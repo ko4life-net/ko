@@ -1,7 +1,7 @@
 // DialogPartBase.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3FXE.h"
 #include "DialogPartBase.h"
 

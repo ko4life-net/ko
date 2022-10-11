@@ -1,7 +1,7 @@
 // RscTables.cpp : Defines the class behaviors for the application.
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "RscTables.h"
 #include "RscTablesDlg.h"
 

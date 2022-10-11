@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PortalVolume.h"
 #include "TransDummy.h"
 #include "N3Base/Pick.h"

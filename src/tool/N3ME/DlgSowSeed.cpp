@@ -1,7 +1,7 @@
 // DlgSowSeed.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "n3me.h"
 #include "DlgSowSeed.h"
 #include "DlgShapeList.h"

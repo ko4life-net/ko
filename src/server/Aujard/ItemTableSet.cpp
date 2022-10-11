@@ -1,7 +1,7 @@
 // ItemTableSet.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "aujard.h"
 #include "ItemTableSet.h"
 

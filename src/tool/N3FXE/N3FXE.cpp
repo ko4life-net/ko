@@ -1,7 +1,7 @@
 // N3FXE.cpp : Defines the class behaviors for the application.
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3FXE.h"
 
 #include "MainFrm.h"

@@ -1,7 +1,7 @@
 // FormViewProperty.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Resource.h"
 #include "N3Base/N3Chr.h"
 

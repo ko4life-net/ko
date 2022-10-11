@@ -1,7 +1,7 @@
 // DlgSceneGraph.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "DlgSceneGraph.h"
 #include "MainFrm.h"
 #include "MapMng.h"

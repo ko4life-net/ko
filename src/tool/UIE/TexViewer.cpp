@@ -1,7 +1,7 @@
 // TexViewer.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "UIE.h"
 #include "TexViewer.h"
 #include "MainFrm.h"

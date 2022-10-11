@@ -1,7 +1,7 @@
 // DlgEditWarp.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "n3me.h"
 #include "DlgEditWarp.h"
 #include "WarpMgr.h"

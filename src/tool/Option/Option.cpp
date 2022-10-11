@@ -1,7 +1,7 @@
 // Option.cpp : Defines the class behaviors for the application.
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Option.h"
 #include "OptionDlg.h"
 

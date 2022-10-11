@@ -1,7 +1,7 @@
 // LoginServerDlg.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "LoginServer.h"
 #include "LoginServerDlg.h"
 #include "IOCPSocket2.h"

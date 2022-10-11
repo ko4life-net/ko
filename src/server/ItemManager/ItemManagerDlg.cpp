@@ -1,7 +1,7 @@
 // ItemManagerDlg.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ItemManager.h"
 #include "ItemManagerDlg.h"
 #include <process.h>

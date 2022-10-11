@@ -15,7 +15,7 @@
 //    History:
 //        PMM    12/21/1999        Initial implementation.
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "MacProgressCtrl.h"
 
 #ifdef _DEBUG

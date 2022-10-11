@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Aujard.h"
 #include "DBAgent.h"
 #include "AujardDlg.h"

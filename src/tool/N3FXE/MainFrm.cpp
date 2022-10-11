@@ -1,7 +1,7 @@
 // MainFrm.cpp : implementation of the CMainFrame class
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3FXE.h"
 
 #include "N3FXEView.h"

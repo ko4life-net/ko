@@ -1,7 +1,7 @@
 // MainFrm.cpp : implementation of the CMainFrame class
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ServerInfoViewer.h"
 
 #include "MainFrm.h"

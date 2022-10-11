@@ -1,7 +1,7 @@
 // DlgPercent.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "n3fxe.h"
 #include "DlgPercent.h"
 

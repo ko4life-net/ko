@@ -1,7 +1,7 @@
 // DlgBar.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "UIE.h"
 #include "DlgBar.h"
 

@@ -1,7 +1,7 @@
 // ToolDlg.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "n3me.h"
 #include "ToolDlg.h"
 #include "N3Base/N3Transform.h"

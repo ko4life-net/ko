@@ -1,7 +1,7 @@
 // DlgFolderSelect.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "DlgFolderSelect.h"
 
 #ifdef _DEBUG

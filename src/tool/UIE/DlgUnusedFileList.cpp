@@ -1,7 +1,7 @@
 // DlgUnusedFileList.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "uie.h"
 #include "DlgUnusedFileList.h"
 

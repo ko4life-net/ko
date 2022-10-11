@@ -1,7 +1,7 @@
 // DlgReplace.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "uie.h"
 #include "DlgReplace.h"
 

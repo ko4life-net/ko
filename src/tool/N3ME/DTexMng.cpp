@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "MainFrm.h"
 #include "n3me.h"
 #include "LyTerrainDef.h"

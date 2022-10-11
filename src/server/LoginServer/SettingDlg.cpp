@@ -1,7 +1,7 @@
 // SettingDlg.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "LoginServer.h"
 #include "SettingDlg.h"
 #include "DlgBrowsePath.h"

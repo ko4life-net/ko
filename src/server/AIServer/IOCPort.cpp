@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "IOCPort.h"
 #include "IOCPSocket2.h"
 #include "GameSocket.h" // sungyong 2002.05.22

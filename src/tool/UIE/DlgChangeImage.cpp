@@ -1,7 +1,7 @@
 // DlgChangeImage.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "uie.h"
 #include "DlgChangeImage.h"
 #include "MainFrm.h"

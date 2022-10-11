@@ -1,7 +1,7 @@
 // ProgressBar.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3TexViewer.h"
 
 #include "ProgressBar.h"

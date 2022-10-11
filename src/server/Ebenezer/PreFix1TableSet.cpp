@@ -1,7 +1,7 @@
 // PreFix1TableSet.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ebenezer.h"
 #include "PreFix1TableSet.h"
 

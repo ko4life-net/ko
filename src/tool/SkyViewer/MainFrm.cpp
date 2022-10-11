@@ -1,7 +1,7 @@
 // MainFrm.cpp : implementation of the CMainFrame class
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "SkyViewer.h"
 
 #include "SkyViewerView.h"

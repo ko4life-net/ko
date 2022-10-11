@@ -1,7 +1,7 @@
 // FormViewTool.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "n3ce.h"
 #include "FormViewTool.h"
 

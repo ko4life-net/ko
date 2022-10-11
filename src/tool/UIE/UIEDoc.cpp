@@ -1,7 +1,7 @@
 // UIEDoc.cpp : implementation of the CUIEDoc class
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "UIE.h"
 
 #include "UIEDoc.h"

@@ -1,7 +1,7 @@
 // ServerInfoViewerView.cpp : implementation of the CServerInfoViewerView class
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ServerInfoViewer.h"
 
 #include "MainFrm.h"

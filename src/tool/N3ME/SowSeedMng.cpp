@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "MainFrm.h"
 #include "MapMng.h"
 #include "N3Base/N3Shape.h"

@@ -1,7 +1,7 @@
 // LoginServer.cpp : Defines the class behaviors for the application.
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "LoginServer.h"
 #include "LoginServerDlg.h"
 

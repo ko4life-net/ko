@@ -1,6 +1,6 @@
 // N3CE.cpp : Defines the class behaviors for the application.
 //
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "N3CE.h"
 
 #include "MainFrm.h"
