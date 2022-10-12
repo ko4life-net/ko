@@ -28,7 +28,7 @@ class CN3UIList : public CN3UIBase {
     D3DCOLOR            FontColor() { return m_crFont; }
     BOOL                FontIsBold() { return m_bFontBold; }
     BOOL                FontIsItalic() { return m_bFontItalic; }
-    CN3UIString *       GetChildStrFromList(std::string str);
+    CN3UIString *       GetChildStrFromList(const std::string & str);
 
     void SetFont(const std::string & szFontName, DWORD dwHeight, BOOL bBold, BOOL bItalic);
     void SetFontColor(D3DCOLOR color);

@@ -4630,7 +4630,6 @@ bool CGameProcMain::CommandToggleCmdList() {
     } else {
         m_pUICmdList->Close();
     }
-    // 개인 거래중이면..
 
     return bNeedOpen;
 }

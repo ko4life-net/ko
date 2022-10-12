@@ -104,31 +104,24 @@ bool CUICharacterSelect::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     }
 
     if (dwMsg == UIMSG_BUTTON_CLICK) {
-        if (pSender->m_szID == "bt_left") // Karus
-        {
+        if (pSender->m_szID == "bt_left") { // Karus
             // Rotate Left..
             CGameProcedure::s_pProcCharacterSelect->DoJobLeft();
-        } else if (pSender->m_szID == "bt_right") // Elmorad
-        {
+        } else if (pSender->m_szID == "bt_right") { // Elmorad
             // Rotate Right..
             CGameProcedure::s_pProcCharacterSelect->DojobRight();
-        } else if (pSender->m_szID == "bt_exit") // Elmorad
-        {
-            //			CGameProcedure::ProcActiveSet((CGameProcedure*)CGameProcedure::s_pProcLogIn); // 로그인으로 돌아간다..
+        } else if (pSender->m_szID == "bt_exit") { // Elmorad
             std::string szMsg;
             ::_LoadStringFromResource(IDS_CONFIRM_EXIT_GAME, szMsg);
             CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_EXIT);
-        } else if (pSender->m_szID == "bt_delete") // Elmorad
-        {
+        } else if (pSender->m_szID == "bt_delete") { // Elmorad
             std::string szMsg;
             ::_LoadStringFromResource(IDS_CONFIRM_DELETE_CHR, szMsg);
             CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_DELETE_CHR);
-        } else if (pSender->m_szID == "bt_back") // Elmorad
-        {
+        } else if (pSender->m_szID == "bt_back") { // Elmorad
             CGameProcedure::ProcActiveSet((CGameProcedure *)CGameProcedure::s_pProcLogIn);
         }
     }
-
     return true;
 }
 
