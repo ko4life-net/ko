@@ -4714,8 +4714,8 @@ void CGameProcMain::MsgRecv_Notice(DataPack * pDataPack, int & iOffset) {
         m_pUINotice->GenerateText();
 
         RECT rc = m_pUINotice->GetRegion();
-        int  x = (CN3Base::s_CameraData.vp.Width / 2) - (rc.right - rc.left) / 2;
-        int  y = (CN3Base::s_CameraData.vp.Height / 2) - (rc.bottom - rc.top) / 2;
+        int  x = (CN3Base::s_CameraData.vp.Width - (rc.right - rc.left));
+        int  y = (10);
         m_pUINotice->SetPos(x, y);
         m_pUINotice->SetVisible(true);
     }
