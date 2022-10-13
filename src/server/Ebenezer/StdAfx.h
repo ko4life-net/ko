@@ -20,5 +20,16 @@
 #include <afxtempl.h>
 #include <afxdb.h>
 
+#include <map>
+#include <set>
+#include <list>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <fstream>
+#include <filesystem>
+
+namespace fs = std::filesystem;
+
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.

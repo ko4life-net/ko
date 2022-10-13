@@ -2613,29 +2613,41 @@ BOOL CEbenezerDlg::PreTranslateMessage(MSG * pMsg) {
     return CDialog::PreTranslateMessage(pMsg);
 }
 
-BOOL CEbenezerDlg::LoadNoticeData() {
-    CString    ProgPath = GetProgPath();
-    CString    NoticePath = ProgPath + "Notice.txt";
-    CString    buff;
-    CStdioFile txt_file;
-    int        count = 0;
-
-    if (!txt_file.Open(NoticePath, CFile::modeRead)) {
-        AfxMessageBox("cannot open Notice.txt!!");
-        return FALSE;
+bool CEbenezerDlg::LoadNoticeData() {
+    memset(&m_ppNotice, 0, sizeof(m_ppNotice));
+    if (!fs::exists("Notice.txt")) {
+        // Create an empty file, so that people know of its existence
+        std::ofstream fileEmpty("Notice.txt");
+        return true;
     }
 
-    while (txt_file.ReadString(buff)) {
-        if (count > 19) {
-            AfxMessageBox("Notice Count Overflow!!");
+    std::ifstream inFile("Notice.txt");
+    if (!inFile) {
+        AfxMessageBox("ERROR: Notice.txt could not be opened.\n");
+        return false;
+    }
+
+    size_t      iCurLine = 0;
+    std::string szCurLine;
+    while (std::getline(inFile, szCurLine)) {
+        if (iCurLine > 19) {
+            memset(&m_ppNotice, 0, sizeof(m_ppNotice));
+            AfxMessageBox("ERROR: Notice.txt exceeds max 20 lines.\n");
+            return false;
         }
-        strcpy(m_ppNotice[count], (char *)(LPCTSTR)buff);
-        count++;
+
+        if (szCurLine.length() > 128) {
+            memset(&m_ppNotice, 0, sizeof(m_ppNotice));
+            AfxMessageBox(std::string("ERROR: Notice.txt line [" + std::to_string(iCurLine + 1) +
+                                      "] exceeds the limit of 128 characters per line.\n")
+                              .c_str());
+            return false;
+        }
+
+        strcpy_s(m_ppNotice[iCurLine++], szCurLine.c_str());
     }
 
-    txt_file.Close();
-
-    return TRUE;
+    return true;
 }
 
 void CEbenezerDlg::SyncTest(int nType) {

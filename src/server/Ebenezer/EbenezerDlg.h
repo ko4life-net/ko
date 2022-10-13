@@ -88,7 +88,7 @@ class CEbenezerDlg : public CDialog {
     void    Send_KnightsMember(int index, char * pBuf, int len, int zone = 100);
     BOOL    AISocketConnect(int zone, int flag = 0);
     int     GetRegionNpcIn(C3DMap * pMap, int region_x, int region_z, char * buff, int & t_count);
-    BOOL    LoadNoticeData();
+    bool    LoadNoticeData();
     int     GetZoneIndex(int zonenumber);
     int     GetRegionNpcList(C3DMap * pMap, int region_x, int region_z, char * nid_buff, int & t_count,
                              int nType = 0);                      // Region All Npcs nid Packaging Function
