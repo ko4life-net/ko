@@ -109,9 +109,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="res\Resource.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\N3Base\N3UIBase.h">
       <Filter>N3Base\N3UI</Filter>
     </ClInclude>
@@ -260,9 +257,6 @@
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="IMPLODE.H">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="JvCryption.h">
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="PacketDef.h">
@@ -635,6 +629,10 @@
     </ClInclude>
     <ClInclude Include="UIMsgBoxOkCancel.h">
       <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="res/Resource.h" />
+    <ClInclude Include="..\common\JvCryption.h">
+      <Filter>Network</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1138,11 +1136,11 @@
     <ClCompile Include="UIMsgBoxOkCancel.cpp">
       <Filter>Procedure - Main\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\common\JvCryption.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="JvCryption.lib">
-      <Filter>Network</Filter>
-    </Library>
     <Library Include="Implode.lib">
       <Filter>Network</Filter>
     </Library>
