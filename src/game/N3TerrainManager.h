@@ -37,7 +37,7 @@ class CN3TerrainManager : public CN3WorldBase {
     bool  CheckCollisionCameraWithShape(__Vector3 & vEyeResult, const __Vector3 & vAt, float fNP);
     float GetHeightNearstPosWithShape(const __Vector3 & vPos, float fDist, __Vector3 * pvNormal = NULL);
 #ifdef _DEBUG
-    void RenderCollisionWithShape(__Vector3 & vPos);
+    void RenderCollisionWithShape(const __Vector3 & vPos);
 #endif
     float      GetHeightWithShape(float fX, float fZ, __Vector3 * pvNormal = NULL);
     CN3Shape * ShapeGetByIDWithShape(int iID);

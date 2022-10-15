@@ -252,8 +252,7 @@ void CRscTablesDlg::OnFileSaveEnum() {
         return;
     }
 
-    std::string szFN = dlg.GetPathName();
-    m_Generator.DataTypeSave(szFN);
+    m_Generator.DataTypeSave(dlg.GetPathName().GetString());
 }
 
 // data type 설정해 놓을 것을 열기
@@ -264,8 +263,7 @@ void CRscTablesDlg::OnFileOpenEnum() {
         return;
     }
 
-    std::string szFN = dlg.GetPathName();
-    m_Generator.DataTypeLoad(szFN);
+    m_Generator.DataTypeLoad(dlg.GetPathName().GetString());
 
     this->UpdateAllInfo(); // 리스트 박스 갱신하고.. 화면에 표시...
 }
@@ -298,8 +296,7 @@ void CRscTablesDlg::OnConvertText2bin() {
 
     POSITION pos = dlg.GetStartPosition();
     while (pos != NULL) {
-        std::string szFN = dlg.GetNextPathName(pos);
-        m_Generator.Convert2Bin(szFN);
+        m_Generator.Convert2Bin(dlg.GetNextPathName(pos).GetString());
     }
 }
 

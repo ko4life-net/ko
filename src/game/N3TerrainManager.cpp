@@ -234,7 +234,7 @@ float CN3TerrainManager::GetHeightNearstPosWithShape(const __Vector3 & vPos, flo
 }
 
 #ifdef _DEBUG
-void CN3TerrainManager::RenderCollisionWithShape(__Vector3 & vPos) {
+void CN3TerrainManager::RenderCollisionWithShape(const __Vector3 & vPos) {
     if (m_pShapes) {
         m_pShapes->RenderCollision(vPos);
     }

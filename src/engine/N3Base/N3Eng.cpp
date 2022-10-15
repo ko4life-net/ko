@@ -292,7 +292,7 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
     return true;
 }
 
-void CN3Eng::LookAt(__Vector3 & vEye, __Vector3 & vAt, __Vector3 & vUp) {
+void CN3Eng::LookAt(const __Vector3 & vEye, const __Vector3 & vAt, const __Vector3 & vUp) {
     __Matrix44 matView;
     D3DXMatrixLookAtLH(&matView, &vEye, &vAt, &vUp);
     s_lpD3DDev->SetTransform(D3DTS_VIEW, &matView);
@@ -304,7 +304,7 @@ void CN3Eng::SetProjection(float fNear, float fFar, float fLens, float fAspect) 
     s_lpD3DDev->SetTransform(D3DTS_PROJECTION, &matProjection);
 }
 
-void CN3Eng::SetViewPort(RECT & rc) {
+void CN3Eng::SetViewPort(const RECT & rc) {
     if (NULL == s_lpD3DDev) {
         return;
     }

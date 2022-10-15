@@ -172,7 +172,7 @@ void CZipStorage::Close(bool bAfterException) {
 }
 
 CString CZipStorage::GetTdVolumeName(bool bLast, LPCTSTR lpszZipName) {
-    CString szFilePath = lpszZipName ? lpszZipName : m_file.GetFilePath();
+    CString szFilePath = lpszZipName ? CString(lpszZipName) : m_file.GetFilePath();
     CString szPath = CZipArchive::GetFilePath(szFilePath);
     CString szName = CZipArchive::GetFileTitle(szFilePath);
     CString szExt;
@@ -197,7 +197,7 @@ void CZipStorage::NextDisk(int iNeeded, LPCTSTR lpszFileName) {
     CString szFileName;
     bool    bPkSpan = (m_iSpanMode == pkzipSpan);
     if (bPkSpan) {
-        szFileName = lpszFileName ? lpszFileName : m_file.GetFilePath();
+        szFileName = lpszFileName ? CString(lpszFileName) : m_file.GetFilePath();
     } else {
         szFileName = GetTdVolumeName(false, lpszFileName);
     }

@@ -59,7 +59,7 @@ void CTransDummy::Release() {
     m_vPrevScaleArray.clear();
 }
 
-void CTransDummy::InitDummyCube(int iType, __DUMMYCUBE * pDummyCube, __Vector3 & vOffset, D3DCOLOR color) {
+void CTransDummy::InitDummyCube(int iType, __DUMMYCUBE * pDummyCube, const __Vector3 & vOffset, D3DCOLOR color) {
     ASSERT(pDummyCube);
     const float fCubeSize = 1.0f;
     __Vector3   vCubeV[8], vCubeN[6];

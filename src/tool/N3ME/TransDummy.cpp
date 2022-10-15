@@ -25,14 +25,15 @@ CTransDummy::CTransDummy() {
     ZeroMemory(m_pSortedCubes, sizeof(m_pSortedCubes));
 
     const float fCubeOffset = 10.0f;
-    InitDummyCube(DUMMY_CENTER, &(m_DummyCubes[DUMMY_CENTER]), __Vector3(0, 0, 0),
-                  D3DCOLOR_ARGB(0xff, 0xff, 0xff, 0x00));
-    InitDummyCube(DUMMY_X, &(m_DummyCubes[DUMMY_X]), __Vector3(fCubeOffset, 0, 0),
-                  D3DCOLOR_ARGB(0xff, 0xff, 0x00, 0x00));
-    InitDummyCube(DUMMY_Y, &(m_DummyCubes[DUMMY_Y]), __Vector3(0, fCubeOffset, 0),
-                  D3DCOLOR_ARGB(0xff, 0x00, 0xff, 0x00));
-    InitDummyCube(DUMMY_Z, &(m_DummyCubes[DUMMY_Z]), __Vector3(0, 0, fCubeOffset),
-                  D3DCOLOR_ARGB(0xff, 0x00, 0x00, 0xff));
+    __Vector3   vCubeOffsets[4]{};
+    vCubeOffsets[0].Set(0, 0, 0);
+    vCubeOffsets[1].Set(fCubeOffset, 0, 0);
+    vCubeOffsets[2].Set(0, fCubeOffset, 0);
+    vCubeOffsets[3].Set(0, 0, fCubeOffset);
+    InitDummyCube(DUMMY_CENTER, &m_DummyCubes[DUMMY_CENTER], vCubeOffsets[0], D3DCOLOR_ARGB(0xff, 0xff, 0xff, 0x00));
+    InitDummyCube(DUMMY_X, &m_DummyCubes[DUMMY_X], vCubeOffsets[1], D3DCOLOR_ARGB(0xff, 0xff, 0x00, 0x00));
+    InitDummyCube(DUMMY_Y, &m_DummyCubes[DUMMY_Y], vCubeOffsets[2], D3DCOLOR_ARGB(0xff, 0x00, 0xff, 0x00));
+    InitDummyCube(DUMMY_Z, &m_DummyCubes[DUMMY_Z], vCubeOffsets[3], D3DCOLOR_ARGB(0xff, 0x00, 0x00, 0xff));
     D3DCOLOR LineColor = D3DCOLOR_ARGB(0xff, 0xaa, 0xaa, 0xaa);
     m_LineVertices[0].Set(0, 0, 0, LineColor);
     m_LineVertices[1].Set(fCubeOffset, 0, 0, LineColor);

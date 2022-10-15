@@ -13,7 +13,7 @@ CIni::CIni() {}
 
 CIni::~CIni() {}
 
-int CIni::GetProfileInt(char * lpAppName, char * lpKeyName, int nDefault) {
+int CIni::GetProfileInt(const char * lpAppName, const char * lpKeyName, int nDefault) {
     if (m_szFileName[0] == '\0') {
         m_nError = 0X01;
         strcpy(m_strError, "File이 Set되지 않았습니다.");
@@ -31,7 +31,7 @@ int CIni::GetProfileInt(char * lpAppName, char * lpKeyName, int nDefault) {
     return GetPrivateProfileInt(lpAppName, lpKeyName, nDefault, m_szFileName);
 }
 
-char * CIni::GetProfileString(char * lpAppName, char * lpKeyName, char * lpDefault) {
+const char * CIni::GetProfileString(const char * lpAppName, const char * lpKeyName, const char * lpDefault) {
     static char retString[200] = "";
     if (m_szFileName[0] == '\0') {
         m_nError = 0X01;
@@ -66,7 +66,7 @@ bool CIni::SetPath(const char * filename) {
     return true;
 }
 
-int CIni::SetProfileInt(char * lpAppName, char * lpKeyName, int nDefault) {
+int CIni::SetProfileInt(const char * lpAppName, const char * lpKeyName, int nDefault) {
     int nRet = -1;
     if (m_szFileName[0] == '\0') {
         m_nError = 0X01;
@@ -82,7 +82,7 @@ int CIni::SetProfileInt(char * lpAppName, char * lpKeyName, int nDefault) {
     return nRet;
 }
 
-int CIni::SetProfileString(char * lpAppName, char * lpKeyName, char * lpDefault) {
+int CIni::SetProfileString(const char * lpAppName, const char * lpKeyName, const char * lpDefault) {
     int nRet = -1;
     if (m_szFileName[0] == '\0') {
         m_nError = 0X01;

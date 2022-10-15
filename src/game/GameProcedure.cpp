@@ -442,15 +442,15 @@ bool CGameProcedure::CaptureScreenAndSaveToFile(const std::string & szFN) {
 
     HANDLE hDIB = file.CopyScreenToDIB(&wndRect);
     if (hDIB) {
-        int  nQuality = 90;
-        char szBuf[256] = "";
+        int nQuality = 90;
 
         //운영자는 양질의 스크린 캡쳐를 할수 있게...
         if (s_pPlayer->m_InfoBase.iAuthority == AUTHORITY_MANAGER) {
             nQuality = 100;
         }
 
-        if (file.EncryptJPEG(hDIB, nQuality, szFN, szBuf) == TRUE) {
+        std::string szError;
+        if (file.EncryptJPEG(hDIB, nQuality, szFN, szError) == TRUE) {
             TRACE("Screen Captue %s\n", szFN.c_str());
         }
         GlobalFree(hDIB);

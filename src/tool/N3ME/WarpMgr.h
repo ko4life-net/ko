@@ -21,7 +21,7 @@ typedef struct __WarpInfo {
     float fZ;
     float fRadius;
 
-    __WarpInfo::__WarpInfo() {
+    __WarpInfo() {
         ZeroMemory(szName, 32);
         ZeroMemory(szAgree, 256);
         sID = 0;

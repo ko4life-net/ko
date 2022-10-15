@@ -4,6 +4,10 @@
 
 #pragma once
 
+#ifdef _N3GAME
+#include "LogWriter.h"
+#endif
+
 #include <vector>
 #include <map>
 

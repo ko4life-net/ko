@@ -53,7 +53,8 @@ BOOL CPosDummy::MouseMsgFilter(LPMSG pMsg) {
             switch (m_pSelectedCube->iType) {
             case DUMMY_CENTER: {
                 vPN = vCameraDir;
-                float fT = D3DXVec3Dot(&vPN, &(vPV - vRayOrig)) / D3DXVec3Dot(&vPN, &vRayDir);
+                __Vector3 vPR = vPV - vRayOrig;
+                float     fT = D3DXVec3Dot(&vPN, &vPR) / D3DXVec3Dot(&vPN, &vRayDir);
                 vPos = vRayOrig + vRayDir * fT;
 
                 // 평면상의 점에서 지형의 높이를 구한다.
@@ -68,7 +69,8 @@ BOOL CPosDummy::MouseMsgFilter(LPMSG pMsg) {
             case DUMMY_X: {
                 vPN.Set(0, vCameraDir.y, vCameraDir.z);
                 vPN.Normalize();
-                float fT = D3DXVec3Dot(&vPN, &(vPV - vRayOrig)) / D3DXVec3Dot(&vPN, &vRayDir);
+                __Vector3 vPR = vPV - vRayOrig;
+                float     fT = D3DXVec3Dot(&vPN, &vPR) / D3DXVec3Dot(&vPN, &vRayDir);
                 vPos = vRayOrig + vRayDir * fT;
                 vPos += ((m_pSelectedCube->vCenterPos * (-1.0f)) * mat);
 
@@ -80,7 +82,8 @@ BOOL CPosDummy::MouseMsgFilter(LPMSG pMsg) {
             case DUMMY_Y: {
                 vPN.Set(vCameraDir.x, 0, vCameraDir.z);
                 vPN.Normalize();
-                float fT = D3DXVec3Dot(&vPN, &(vPV - vRayOrig)) / D3DXVec3Dot(&vPN, &vRayDir);
+                __Vector3 vPR = vPV - vRayOrig;
+                float     fT = D3DXVec3Dot(&vPN, &vPR) / D3DXVec3Dot(&vPN, &vRayDir);
                 vPos = vRayOrig + vRayDir * fT;
                 vPos += ((m_pSelectedCube->vCenterPos * (-1.0f)) * mat);
 
@@ -92,7 +95,8 @@ BOOL CPosDummy::MouseMsgFilter(LPMSG pMsg) {
             case DUMMY_Z: {
                 vPN.Set(vCameraDir.x, vCameraDir.y, 0);
                 vPN.Normalize();
-                float fT = D3DXVec3Dot(&vPN, &(vPV - vRayOrig)) / D3DXVec3Dot(&vPN, &vRayDir);
+                __Vector3 vPR = vPV - vRayOrig;
+                float     fT = D3DXVec3Dot(&vPN, &vPR) / D3DXVec3Dot(&vPN, &vRayDir);
                 vPos = vRayOrig + vRayDir * fT;
                 vPos += ((m_pSelectedCube->vCenterPos * (-1.0f)) * mat);
 

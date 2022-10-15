@@ -39,7 +39,7 @@ class CN3WorldBase : public CN3BaseFileAccess, public CGameBase {
     virtual bool  CheckCollisionCameraWithShape(__Vector3 & vEyeResult, const __Vector3 & vAt, float fNP) = 0;
     virtual float GetHeightNearstPosWithShape(const __Vector3 & vPos, float fDist, __Vector3 * pvNormal = NULL) = 0;
 #ifdef _DEBUG
-    virtual void RenderCollisionWithShape(__Vector3 & vPos) = 0;
+    virtual void RenderCollisionWithShape(const __Vector3 & vPos) = 0;
 #endif
     virtual float      GetHeightWithShape(float fX, float fZ, __Vector3 * pvNormal = NULL) = 0;
     virtual CN3Shape * ShapeGetByIDWithShape(int iID) = 0;

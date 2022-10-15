@@ -291,8 +291,8 @@ BOOL CRiverMng::MouseMsgFilter(LPMSG pMsg) {
             vPN.Set(0, 1, 0);
             vPV = m_CreateLine[0];
             m_VtxPosDummy.GetPickRay(point, vRayDir, vRayOrig); // ÀÌÇÔ¼ö Àá½Ã ºô·Á¾¸.
-
-            float fT = D3DXVec3Dot(&vPN, &(vPV - vRayOrig)) / D3DXVec3Dot(&vPN, &vRayDir);
+            __Vector3 vPR = vPV - vRayOrig;
+            float     fT = D3DXVec3Dot(&vPN, &vPR) / D3DXVec3Dot(&vPN, &vRayDir);
             vPos = vRayOrig + vRayDir * fT;
             m_CreateLine[1] = vPos;
             return TRUE;
@@ -383,8 +383,8 @@ BOOL CRiverMng::MouseMsgFilter(LPMSG pMsg) {
             vPN.Set(0, 1, 0);
             vPV = m_CreateLine[0];
             m_VtxPosDummy.GetPickRay(point, vRayDir, vRayOrig); // ÀÌÇÔ¼ö Àá½Ã ºô·Á¾¸.
-
-            float fT = D3DXVec3Dot(&vPN, &(vPV - vRayOrig)) / D3DXVec3Dot(&vPN, &vRayDir);
+            __Vector3 vPR = vPV - vRayOrig;
+            float     fT = D3DXVec3Dot(&vPN, &vPR) / D3DXVec3Dot(&vPN, &vRayDir);
             vPos = vRayOrig + vRayDir * fT;
             m_CreateLine[1] = vPos;
 

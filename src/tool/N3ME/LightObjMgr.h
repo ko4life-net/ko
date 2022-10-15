@@ -16,7 +16,10 @@ typedef struct __LightObj {
     char       szName[80];
     CN3Light * pRefLight;
 
-    __LightObj::__LightObj() { ZeroMemory(szName, 80); }
+    __LightObj() {
+        ZeroMemory(szName, 80);
+        pRefLight = NULL;
+    }
 } LIGHTOBJ, *LPLIGHTOBJ;
 
 const int IDX_CURR_LIGHT = 3;
