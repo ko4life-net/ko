@@ -141,6 +141,9 @@
     <ClCompile Include="N3Base\N3ShapeMgr.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\common\JvCryption.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AIPacket.h">
@@ -204,9 +207,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ItemTableSet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="JvCryption.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Knights.h">
@@ -299,6 +299,9 @@
     <ClInclude Include="N3Base\StdAfxBase.h">
       <Filter>N3Base</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\common\JvCryption.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Ebenezer.ico">
@@ -312,9 +315,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="JvCryption.lib" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="res\Ebenezer.rc2">
