@@ -1445,12 +1445,10 @@ RGBQUAD CJpegFile::QuadFromWord(WORD b16) {
 }
 
 BOOL CJpegFile::DibToSamps(HANDLE hDib, int nSampsPerRow, struct jpeg_compress_struct cinfo, JSAMPARRAY jsmpPixels,
-                           char * pcsMsg) {
+                           std::string & szErrMsg) {
     //Sanity...
-    if (hDib == NULL || nSampsPerRow <= 0 || pcsMsg == NULL) {
-        if (pcsMsg != NULL) {
-            pcsMsg = "Invalid input data";
-        }
+    if (hDib == NULL || nSampsPerRow <= 0) {
+        szErrMsg = "Invalid input data";
         return FALSE;
     }
 
@@ -1479,7 +1477,7 @@ BOOL CJpegFile::DibToSamps(HANDLE hDib, int nSampsPerRow, struct jpeg_compress_s
         break;
 
     default:
-        pcsMsg = "Invalid bitmap bit count";
+        szErrMsg = "Invalid bitmap bit count";
         GlobalUnlock(hDib);
         return FALSE; //Unsupported format
     }
@@ -1616,21 +1614,17 @@ BOOL CJpegFile::DibToSamps(HANDLE hDib, int nSampsPerRow, struct jpeg_compress_s
     return TRUE;
 }
 
-BOOL CJpegFile::JpegFromDib(HANDLE      hDib,     //Handle to DIB
-                            int         nQuality, //JPEG quality (0-100)
-                            std::string csJpeg,   //Pathname to jpeg file
-                            char *      pcsMsg)        //Error msg to return
+BOOL CJpegFile::JpegFromDib(HANDLE        hDib,     //Handle to DIB
+                            int           nQuality, //JPEG quality (0-100)
+                            std::string   csJpeg,   //Pathname to jpeg file
+                            std::string & szErrMsg) //Error msg to return
 {
     //Basic sanity checks...
-    if (nQuality < 0 || nQuality > 100 || hDib == NULL || pcsMsg == NULL || csJpeg == "") {
-        if (pcsMsg != NULL) {
-            pcsMsg = "Invalid input data";
-        }
-
+    if (nQuality < 0 || nQuality > 100 || hDib == NULL || csJpeg == "") {
+        szErrMsg = "Invalid input data";
         return FALSE;
     }
-
-    pcsMsg = "";
+    szErrMsg = "";
 
     LPBITMAPINFOHEADER lpbi = (LPBITMAPINFOHEADER)GlobalLock(hDib);
 
@@ -1649,7 +1643,7 @@ BOOL CJpegFile::JpegFromDib(HANDLE      hDib,     //Handle to DIB
     jpeg_create_compress(&cinfo);
 
     if ((pOutFile = fopen(csJpeg.c_str(), "wb")) == NULL) {
-        pcsMsg = "Cannot open Fail";
+        szErrMsg = "Cannot open Fail";
         jpeg_destroy_compress(&cinfo);
         GlobalUnlock(hDib);
         return FALSE;
@@ -1679,7 +1673,7 @@ BOOL CJpegFile::JpegFromDib(HANDLE      hDib,     //Handle to DIB
 
     GlobalUnlock(hDib);
 
-    if (DibToSamps(hDib, nSampsPerRow, cinfo, jsmpArray, pcsMsg)) {
+    if (DibToSamps(hDib, nSampsPerRow, cinfo, jsmpArray, szErrMsg)) {
         //Write the array of scan lines to the JPEG file
         (void)jpeg_write_scanlines(&cinfo, jsmpArray, cinfo.image_height);
     }
@@ -1690,19 +1684,19 @@ BOOL CJpegFile::JpegFromDib(HANDLE      hDib,     //Handle to DIB
 
     jpeg_destroy_compress(&cinfo); //Free resources
 
-    if (strlen(pcsMsg) > 0) {
+    if (!szErrMsg.empty()) {
         return FALSE;
     } else {
         return TRUE;
     }
 }
 
-BOOL CJpegFile::EncryptJPEG(HANDLE      hDib,     //Handle to DIB
-                            int         nQuality, //JPEG quality (0-100)
-                            std::string csJpeg,   //Pathname to jpeg file
-                            char *      pcsMsg)        //Error msg to return
+BOOL CJpegFile::EncryptJPEG(HANDLE        hDib,     //Handle to DIB
+                            int           nQuality, //JPEG quality (0-100)
+                            std::string   csJpeg,   //Pathname to jpeg file
+                            std::string & szErrMsg) //Error msg to return
 {
-    if (JpegFromDib(hDib, nQuality, csJpeg, pcsMsg) == FALSE) {
+    if (JpegFromDib(hDib, nQuality, csJpeg, szErrMsg) == FALSE) {
         return FALSE;
     }
 
@@ -1762,7 +1756,7 @@ BOOL CJpegFile::EncryptJPEG(HANDLE      hDib,     //Handle to DIB
 }
 
 BOOL CJpegFile::DecryptJPEG(std::string csJpeg) {
-    char        szTempName[MAX_PATH] = "";
+    char        szTempName[MAX_PATH]{};
     std::string szDstpath;
     HANDLE      hSrc, hDst;
     BYTE *      dst_data, *src_data;

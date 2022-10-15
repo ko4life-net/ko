@@ -163,11 +163,9 @@ void COrganizeView::OnButtonFileName() {
         return;
     }
 
-    CString strOpen = dlg.GetFileName();
-    pFrm->m_strFileName = strOpen;
-    SetDlgItemText(IDC_EDIT_RESOURCE_NAME, strOpen);
-    std::string strOp = strOpen;
-
+    std::string szOpen(dlg.GetFileName().GetString());
+    pFrm->m_strFileName = szOpen;
+    SetDlgItemText(IDC_EDIT_RESOURCE_NAME, szOpen.c_str());
     SetCurrentDirectory(tch);
 
     CString strExt = dlg.GetFileExt();
@@ -179,7 +177,7 @@ void COrganizeView::OnButtonFileName() {
 
     pFrm->m_pSceneSource = new CN3Scene;
     pFrm->m_pSceneSource->m_szName = "SourceList";
-    pFrm->m_pSceneSource->FileNameSet(strOp);
+    pFrm->m_pSceneSource->FileNameSet(szOpen);
     pFrm->LoadSourceObjects();
 }
 
@@ -190,7 +188,7 @@ void COrganizeView::OnButtonResourcePath() {
         return;
     }
 
-    std::string szPath = dlg.GetPath();
+    std::string szPath(dlg.GetPath().GetString());
     SetDlgItemText(IDC_EDIT_RESOURCE_PATH, szPath.c_str());
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     pFrm->m_strResourcePath = szPath + "\\N3Indoor";
@@ -1270,14 +1268,13 @@ void COrganizeView::OnFileWorkshopOpen() {
         return;
     }
 
-    CString strOpen = dlg.GetPathName(), strExt = dlg.GetFileExt();
-    if (strExt.CompareNoCase("wshop") != 0) {
+    std::string szPath(dlg.GetPathName().GetString()), szExt(dlg.GetFileExt().GetString());
+    if (!N3::iequals(szExt, "wshop")) {
         return;
     }
-    std::string str = strOpen;
 
-    OpenWSFileInternal(str);
-    AfxGetApp()->AddToRecentFileList(str.c_str());
+    OpenWSFileInternal(szPath);
+    AfxGetApp()->AddToRecentFileList(szPath.c_str());
     CN3IndoorApp * pApp = (CN3IndoorApp *)AfxGetApp();
     pApp->UpdateMRU();
 }
@@ -1295,14 +1292,13 @@ void COrganizeView::OnFileOpenGamedata() {
         return;
     }
 
-    CString strOpen = dlg.GetPathName(), strExt = dlg.GetFileExt();
-    if (strExt.CompareNoCase("n3indoor") != 0) {
+    std::string szPath(dlg.GetPathName().GetString()), szExt(dlg.GetFileExt().GetString());
+    if (!N3::iequals(szExt, "n3indoor")) {
         return;
     }
-    std::string str = strOpen;
 
-    OpenGDFileInternal(str);
-    AfxGetApp()->AddToRecentFileList(str.c_str());
+    OpenGDFileInternal(szPath);
+    AfxGetApp()->AddToRecentFileList(szPath.c_str());
     CN3IndoorApp * pApp = (CN3IndoorApp *)AfxGetApp();
     pApp->UpdateMRU();
 }
@@ -1437,11 +1433,8 @@ void COrganizeView::OnFileSaveWorkshop() {
         return;
     }
 
-    CString     strSave = dlg.GetPathName();
-    std::string str = strSave;
-
     m_PVSMgr.m_bGameData = false;
-    m_PVSMgr.SaveToFile(str);
+    m_PVSMgr.SaveToFile(dlg.GetPathName().GetString());
 }
 
 void COrganizeView::OnFileSaveGamedata() {
@@ -1463,15 +1456,12 @@ void COrganizeView::OnFileSaveGamedata() {
         return;
     }
 
-    CString     strSave = dlg.GetPathName();
-    std::string str = strSave;
-
     if (!m_PVSMgr.m_bCompiled) {
         m_PVSMgr.DoAllCompile();
     }
 
     m_PVSMgr.m_bGameData = true;
-    m_PVSMgr.SaveToFile(str);
+    m_PVSMgr.SaveToFile(dlg.GetPathName().GetString());
 }
 
 ////////////////////////////////////////////////////////////////////////

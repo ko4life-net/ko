@@ -43,9 +43,9 @@ class CN3Eng : public CN3Base {
     static void ClearZBuffer(const RECT * pRC = NULL);
     static void Present(HWND hWnd, RECT * pRC = NULL);
 
-    void LookAt(__Vector3 & vEye, __Vector3 & vAt, __Vector3 & vUp);
+    void LookAt(const __Vector3 & vEye, const __Vector3 & vAt, const __Vector3 & vUp);
     void SetProjection(float fNear, float fFar, float fLens, float fAspect);
-    void SetViewPort(RECT & pRC);
+    void SetViewPort(const RECT & pRC);
 
     void Release();
 

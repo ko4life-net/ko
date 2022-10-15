@@ -2382,7 +2382,8 @@ void CMagicSkillMng::FlyingType2(__TABLE_UPC_SKILL * pSkill, int iSourceID, int 
 
     if (LeftItem == (ITEM_CLASS_BOW / 10)) //»∞¿Ã¥Â..
     {
-        CN3Base::s_SndMgr.PlayOnceAndRelease(ID_SOUND_SKILL_THROW_ARROW, &(pPlayer->Position()));
+        __Vector3 vPos = pPlayer->Position();
+        CN3Base::s_SndMgr.PlayOnceAndRelease(ID_SOUND_SKILL_THROW_ARROW, &vPos);
     } else if (RightItem == (ITEM_CLASS_JAVELIN / 10)) //≈ı√¢¿Ã¥Â...pla
     {
     }

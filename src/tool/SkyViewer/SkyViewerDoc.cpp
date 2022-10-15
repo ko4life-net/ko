@@ -87,6 +87,5 @@ void CSkyViewerDoc::OnFileSaveAsGameFormat() {
         return;
     }
 
-    std::string szFN = dlg.GetPathName();
-    m_Sky.SaveToFile(szFN);
+    m_Sky.SaveToFile(dlg.GetPathName().GetString());
 }

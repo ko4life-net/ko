@@ -1377,7 +1377,8 @@ void CMapMng::SelectObjectByDragRect(RECT * pRect, BOOL bAdd) {
     for (int i = 0; i < iSC;) {
         CN3TransformCollision * pObj = m_pSceneOutput->ShapeGet(i);
         D3DXVECTOR4             v;
-        D3DXVec3Transform(&v, &(pObj->Pos()), &matVP);
+        __Vector3               vPos = pObj->Pos();
+        D3DXVec3Transform(&v, &vPos, &matVP);
         float fScreenZ = (v.z / v.w);
         if (fScreenZ < 1.0 && fScreenZ > 0.0) {
             float fScreenX = ((v.x / v.w) + 1.0f) * (vp.Width) / 2.0f;

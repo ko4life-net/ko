@@ -318,7 +318,7 @@ void CNpc::NpcLive(CIOCPort * pIOCP) {
 //
 void CNpc::NpcFighting(CIOCPort * pIOCP) {
     if (cur_test) {
-        NpcTrace(_T("NpcFighting()"));
+        NpcTrace("NpcFighting()");
     }
     if (m_iHP <= 0) {
         Dead(pIOCP);
@@ -349,7 +349,7 @@ void CNpc::NpcTracing(CIOCPort * pIOCP) {
     }
 
     if (cur_test) {
-        NpcTrace(_T("NpcTracing()"));
+        NpcTrace("NpcTracing()");
     }
 
     //  고정 경비병은 추적이 되지 않도록한다.
@@ -480,7 +480,7 @@ void CNpc::NpcTracing(CIOCPort * pIOCP) {
 
 void CNpc::NpcAttacking(CIOCPort * pIOCP) {
     if (cur_test) {
-        NpcTrace(_T("NpcAttacking()"));
+        NpcTrace("NpcAttacking()");
     }
 
     if (m_iHP <= 0) {
@@ -540,7 +540,7 @@ void CNpc::NpcAttacking(CIOCPort * pIOCP) {
 //
 void CNpc::NpcMoving(CIOCPort * pIOCP) {
     if (cur_test) {
-        NpcTrace(_T("NpcMoving()"));
+        NpcTrace("NpcMoving()");
     }
     char pBuf[1024];
     ::ZeroMemory(pBuf, 1024);
@@ -653,7 +653,7 @@ void CNpc::NpcMoving(CIOCPort * pIOCP) {
 //
 void CNpc::NpcStanding() {
     if (cur_test) {
-        NpcTrace(_T("NpcStanding()"));
+        NpcTrace("NpcStanding()");
     }
 
     char send_buff[128];
@@ -1025,7 +1025,7 @@ BOOL CNpc::SetLive(CIOCPort * pIOCP) {
     if (m_bySpecialType == 5 && m_byChangeType == 0) { // 처음에 죽어있다가 살아나는 몬스터
         return FALSE;
     } else if (m_bySpecialType == 5 && m_byChangeType == 3) { // 몬스터의 출현,,,
-                                                              //else if( m_byChangeType == 3) { // 몬스터의 출현,,,
+        //else if( m_byChangeType == 3) { // 몬스터의 출현,,,
         char notify[50];
         memset(notify, 0x00, 50);
         //wsprintf( notify, "** 알림 : %s 몬스터가 출현하였습니다 **", m_strName);
@@ -3870,7 +3870,7 @@ int CNpc::GetDefense() {
 }
 
 //    Damage 계산, 만약 m_iHP 가 0 이하이면 사망처리
-BOOL CNpc::SetDamage(int nAttackType, int nDamage, TCHAR * id, int uid, CIOCPort * pIOCP) {
+BOOL CNpc::SetDamage(int nAttackType, int nDamage, const std::string & id, int uid, CIOCPort * pIOCP) {
     int            userDamage = 0;
     BOOL           bFlag = FALSE;
     _ExpUserList * tempUser = NULL;
@@ -3917,14 +3917,14 @@ BOOL CNpc::SetDamage(int nAttackType, int nDamage, TCHAR * id, int uid, CIOCPort
 
     for (int i = 0; i < NPC_HAVE_USER_LIST; i++) {
         if (m_DamagedUserList[i].iUid == uid) {
-            if (_stricmp("**duration**", id) == 0) {
+            if (N3::iequals("**duration**", id)) {
                 bFlag = TRUE;
                 strcpy(strDurationID, pUser->m_strUserID);
-                if (_stricmp(m_DamagedUserList[i].strUserID, strDurationID) == 0) {
+                if (N3::iequals(m_DamagedUserList[i].strUserID, strDurationID)) {
                     m_DamagedUserList[i].nDamage += userDamage;
                     goto go_result;
                 }
-            } else if (_stricmp(m_DamagedUserList[i].strUserID, id) == 0) {
+            } else if (N3::iequals(m_DamagedUserList[i].strUserID, id)) {
                 m_DamagedUserList[i].nDamage += userDamage;
                 goto go_result;
             }
@@ -3935,19 +3935,19 @@ BOOL CNpc::SetDamage(int nAttackType, int nDamage, TCHAR * id, int uid, CIOCPort
     {
         if (m_DamagedUserList[i].iUid == -1) {
             if (m_DamagedUserList[i].nDamage <= 0) {
-                int len = strlen(id);
+                size_t len = id.length();
                 if (len > MAX_ID_SIZE || len <= 0) {
                     TRACE("###  Npc SerDamage Fail ---> uid = %d, name=%s, len=%d, id=%s  ### \n", m_sNid + NPC_BAND,
-                          m_strName, len, id);
+                          m_strName, len, id.c_str());
                     continue;
                 }
                 if (bFlag == TRUE) {
                     strcpy(m_DamagedUserList[i].strUserID, strDurationID);
                 } else {
-                    if (_stricmp("**duration**", id) == 0) {
+                    if (N3::iequals("**duration**", id)) {
                         strcpy(m_DamagedUserList[i].strUserID, pUser->m_strUserID);
                     } else {
-                        strcpy(m_DamagedUserList[i].strUserID, id);
+                        strcpy(m_DamagedUserList[i].strUserID, id.c_str());
                     }
                 }
                 m_DamagedUserList[i].iUid = uid;
@@ -4812,13 +4812,12 @@ void CNpc::SendAll(CIOCPort * pIOCP, TCHAR * pBuf, int nLength) {
 }
 // ~sungyong 2002.05.22
 
-void CNpc::NpcTrace(TCHAR * pMsg) {
+void CNpc::NpcTrace(const std::string & szMsg) {
     //if(g_bDebug == FALSE) return;
 
-    CString szMsg = _T("");
-    szMsg.Format(_T("%s : uid = %d, name = %s, xpos = %f, zpos = %f\n"), pMsg, m_sNid + NPC_BAND, m_strName, m_fCurX,
-                 m_fCurZ);
-    TRACE(szMsg);
+    TRACE(std::format("{} : uid = {}, name = {}, xpos = {}, zpos = {}", szMsg, m_sNid + NPC_BAND, m_strName, m_fCurX,
+                      m_fCurZ)
+              .c_str());
 }
 
 void CNpc::NpcMoveEnd(CIOCPort * pIOCP) {
@@ -5029,7 +5028,7 @@ void CNpc::IsUserInSight() {
             // 갖고있는 리스트상의 유저와 같다면
             if (m_DamagedUserList[i].iUid == pUser->m_iUserId) {
                 // 최종 ID를 비교해서 동일하면
-                if (_stricmp(m_DamagedUserList[i].strUserID, pUser->m_strUserID) == 0) {
+                if (N3::iequals(m_DamagedUserList[i].strUserID, pUser->m_strUserID)) {
                     // 이때서야 존재한다는 표시를 한다
                     m_DamagedUserList[i].bIs = TRUE;
                 }
@@ -6329,7 +6328,7 @@ void CNpc::DurationMagic_3(CIOCPort * pIOCP, float currenttime) {
 //
 void CNpc::NpcSleeping(CIOCPort * pIOCP) {
     if (cur_test) {
-        NpcTrace(_T("NpcSleeping()"));
+        NpcTrace("NpcSleeping()");
     }
 
     // sungyong test~
@@ -6356,7 +6355,7 @@ void CNpc::NpcSleeping(CIOCPort * pIOCP) {
 // 몬스터가 기절상태로..........
 void CNpc::NpcFainting(CIOCPort * pIOCP, float currenttime) {
     if (cur_test) {
-        NpcTrace(_T("NpcFainting()"));
+        NpcTrace("NpcFainting()");
     }
     // 2초동안 기절해 있다가,,  standing상태로....
     if (currenttime > (m_fFaintingTime + FAINTING_TIME)) {
@@ -6371,7 +6370,7 @@ void CNpc::NpcFainting(CIOCPort * pIOCP, float currenttime) {
 // 몬스터가 치료상태로..........
 void CNpc::NpcHealing(CIOCPort * pIOCP) {
     if (cur_test) {
-        NpcTrace(_T("NpcHealing()"));
+        NpcTrace("NpcHealing()");
     }
 
     if (m_tNpcType != NPC_HEALER) {

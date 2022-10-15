@@ -27,7 +27,7 @@ D3DVECTOR CPropertyItem::VectorGet() {
     return v;
 }
 
-void CPropertyItem::VectorSet(D3DVECTOR & v) {
+void CPropertyItem::VectorSet(const D3DVECTOR & v) {
     m_curValue.Format("%f, %f, %f", v.x, v.y, v.z);
 }
 

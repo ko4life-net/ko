@@ -209,10 +209,7 @@ void CMainFrame::OnProjectSet() {
         return;
     }
 
-    CString szPath = dlg.GetPath();
-
-    std::string szPath2 = szPath;
-    CN3Base::PathSet(szPath2);
+    CN3Base::PathSet(dlg.GetPath().GetString());
 }
 
 void CMainFrame::OnAddLod() {

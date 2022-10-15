@@ -179,17 +179,10 @@ void CMainFrame::OnToolConvertFilesAutomaticaly() {
     POSITION   pos = dlg.GetStartPosition();
     CString    FileName;
     while (pos != NULL) {
-        FileName = dlg.GetNextPathName(pos);
-
-        std::string szFN = FileName;
-        Tex.LoadFromFile(szFN);
+        fs::path fsPath(dlg.GetNextPathName(pos).GetString());
+        Tex.LoadFromFile(fsPath.string());
 
         if (Tex.Get()) {
-            char szFN2[_MAX_PATH], szDrv[_MAX_DRIVE], szDir[_MAX_DIR], szFN[_MAX_FNAME], szExt[_MAX_EXT];
-            ::_splitpath(FileName, szDrv, szDir, szFN, szExt);
-            lstrcpy(szExt, ".DXT");
-            ::_makepath(szFN2, szDrv, szDir, szFN, szExt); // 파일 이름의 확장자를 DXT 로 바꿈...
-
             D3DFORMAT Fmt = Tex.PixelFormat();
             if (Fmt == D3DFMT_R8G8B8 || Fmt == D3DFMT_X8R8G8B8 || Fmt == D3DFMT_R5G6B5 || Fmt == D3DFMT_X1R5G5B5) {
                 Tex.Convert(D3DFMT_DXT1);
@@ -197,8 +190,8 @@ void CMainFrame::OnToolConvertFilesAutomaticaly() {
                 Tex.Convert(D3DFMT_DXT3);
             }
 
-            Tex.m_szName = szFN;
-            Tex.SaveToFile(szFN2);
+            Tex.m_szName = fsPath.stem().string();
+            Tex.SaveToFile(fsPath.replace_extension("dxt").string());
             Tex.Release();
         }
     }
@@ -581,7 +574,7 @@ void CMainFrame::OnToolSaveRepeat() {
     ProgressBar.SetStep(1);
 
     for (int i = 0; i < nFNC; i++) {
-        std::string szFN = FileNames[i];
+        std::string szFN(FileNames[i].GetString());
         Tex.LoadFromFile(szFN);
         Tex.SaveToFile(szFN);
 

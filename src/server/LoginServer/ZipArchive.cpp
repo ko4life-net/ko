@@ -59,7 +59,7 @@ bool CZipArchive::IsClosed(bool bArchive) {
 }
 
 void CZipArchive::ThrowError(int err) {
-    AfxThrowZipException(err, IsClosed() ? "" : m_storage.m_file.GetFilePath());
+    AfxThrowZipException(err, IsClosed() ? "" : m_storage.m_file.GetFilePath().GetString());
 }
 
 bool CZipArchive::DeleteFile(WORD uIndex) {

@@ -505,7 +505,7 @@ void CN3Camera::Tick(float fFrm) {
     memcpy(m_Data.fFrustum, frustum, sizeof(float) * 6 * 4);
 }
 
-void CN3Camera::LookAt(const __Vector3 & vEye, __Vector3 & vAt, __Vector3 & vUp) {
+void CN3Camera::LookAt(const __Vector3 & vEye, const __Vector3 & vAt, const __Vector3 & vUp) {
     m_vPos = vEye;
     m_vAt = vAt;
     m_vScale = vUp;

@@ -416,7 +416,7 @@ BOOL CPropertyView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
             CFontDialog dlg(&logfont);
             if (IDOK == dlg.DoModal()) {
                 __ASSERT(dlg.GetSize() > 0, "font height가 0보다 작습니다.");
-                std::string szFontName = dlg.GetFaceName();
+                std::string szFontName(dlg.GetFaceName().GetString());
                 pUIList->SetFont(szFontName, dlg.GetSize() / 10, dlg.IsBold(), dlg.IsItalic());
                 UpdateUIListInfo(); // List 정보 다시 갱신하기
             }

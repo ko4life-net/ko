@@ -1092,8 +1092,7 @@ void CUIEDoc::OnFileExport() {
         return;
     }
 
-    std::string szFN = dlg.GetPathName();
-    pUI->SaveToFile(szFN);
+    pUI->SaveToFile(dlg.GetPathName().GetString());
 }
 
 void CUIEDoc::OnFileImport() {
@@ -1108,8 +1107,7 @@ void CUIEDoc::OnFileImport() {
         return;
     }
 
-    std::string szFN = dlg.GetPathName();
-    pUI->LoadFromFile(szFN);
+    pUI->LoadFromFile(dlg.GetPathName().GetString());
 }
 
 void CUIEDoc::OnEditReplaceTex() {
@@ -1164,8 +1162,8 @@ void CUIEDoc::OnBatchToolChangeImagePath() {
     CN3Texture  Tex;
     POSITION    pos = dlg.GetStartPosition();
     CString     FileName;
-    std::string szFNOld = dlg2.m_szFN_Old;
-    std::string szFNNew = dlg2.m_szFN_New;
+    std::string szFNOld(dlg2.m_szFN_Old.GetString());
+    std::string szFNNew(dlg2.m_szFN_New.GetString());
 
     while (pos != NULL) {
         CN3UIBase base;

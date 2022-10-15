@@ -14,8 +14,8 @@ class CN3Light : public CN3Transform {
         int  nNumber; // 0 ~ 8
 
         void Zero() { memset(this, 0, sizeof(__Light)); }
-        void InitPoint(int nLgtNumber, D3DXVECTOR3 & dvPos, _D3DCOLORVALUE & ltColor, float fRange = 10000.0f,
-                       float fAttenuation = 0.5f) {
+        void InitPoint(int nLgtNumber, const D3DXVECTOR3 & dvPos, const D3DCOLORVALUE & ltColor,
+                       float fRange = 10000.0f, float fAttenuation = 0.5f) {
             this->Zero();
             nNumber = nLgtNumber; // 라이트 번호..
             Type = D3DLIGHT_POINT;
@@ -36,7 +36,7 @@ class CN3Light : public CN3Transform {
             Range = fRange * 4.0f;
             bOn = TRUE;
         }
-        void InitDirection(int nLgtNumber, D3DXVECTOR3 & dvDir, _D3DCOLORVALUE & ltColor) {
+        void InitDirection(int nLgtNumber, const D3DXVECTOR3 & dvDir, const D3DCOLORVALUE & ltColor) {
             this->Zero();
 
             nNumber = nLgtNumber; // 라이트 번호..
@@ -51,8 +51,8 @@ class CN3Light : public CN3Transform {
             Ambient.g = ltColor.g * 0.7f;
             Ambient.b = ltColor.b * 0.7f;
         }
-        void InitSpot(int nLgtNumber, D3DXVECTOR3 & dvPos, D3DXVECTOR3 & dvDir, _D3DCOLORVALUE & ltColor, float fTheta,
-                      float fPhi, float fRange = 10000.0f) {
+        void InitSpot(int nLgtNumber, const D3DXVECTOR3 & dvPos, const D3DXVECTOR3 & dvDir,
+                      const D3DCOLORVALUE & ltColor, float fTheta, float fPhi, float fRange = 10000.0f) {
             this->Zero();
             nNumber = nLgtNumber; // 라이트 번호..
             Type = D3DLIGHT_SPOT;

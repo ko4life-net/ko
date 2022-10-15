@@ -15,9 +15,9 @@ class CIni {
     virtual ~CIni();
 
   public:
-    int    GetProfileInt(char * lpAppName, char * lpKeyName, int nDefault);
-    char * GetProfileString(char * lpAppName, char * lpKeyName, char * lpDefault);
-    int    SetProfileInt(char * lpAppName, char * lpKeyName, int nDefault);
-    int    SetProfileString(char * lpAppName, char * lpKeyName, char * lpDefault);
-    bool   SetPath(const char * filename);
+    int          GetProfileInt(const char * lpAppName, const char * lpKeyName, int nDefault);
+    const char * GetProfileString(const char * lpAppName, const char * lpKeyName, const char * lpDefault);
+    int          SetProfileInt(const char * lpAppName, const char * lpKeyName, int nDefault);
+    int          SetProfileString(const char * lpAppName, const char * lpKeyName, const char * lpDefault);
+    bool         SetPath(const char * filename);
 };

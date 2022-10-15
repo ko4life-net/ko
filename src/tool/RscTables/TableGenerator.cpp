@@ -501,10 +501,11 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
                             {
                                 if (iValue < 50) {
                                     char szErr[256];
-                                    sprintf("무기의 공격속도가 50 미만입니다.\n    아이템 이름 : %s\n    %d번째 "
-                                            "확장테이블, %d번째열\n    공격속도 : %d",
+                                    sprintf(szErr,
+                                            "The weapon's attack speed is less than 50.\n    Item name : %s\n    %dth "
+                                            "Extended table, %d column\n    attack speed : %d",
                                             m_Datas[IG1_NAME].m_Texts[iIndexCur1].c_str(), iExt, iIndexCur2, iValue);
-                                    MessageBox(::GetActiveWindow(), szErr, "테이블 생성 경고", MB_OK);
+                                    MessageBox(::GetActiveWindow(), szErr, "Table Creation Warning", MB_OK);
                                 }
                             }
                         }

@@ -164,7 +164,7 @@ class CN3ShapeMgr : public CN3BaseFileAccess
 
 #ifndef _3DSERVER
     void       ReleaseShapes();
-    void       RenderCollision(__Vector3 & vPos); // 넣은 위치에 있는 충돌 메시를 그려준다.. 디버깅용...
+    void       RenderCollision(const __Vector3 & vPos); // 넣은 위치에 있는 충돌 메시를 그려준다.. 디버깅용...
     void       Tick();
     void       Render();
     bool       Load(HANDLE hFile);

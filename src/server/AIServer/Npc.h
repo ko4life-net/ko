@@ -347,11 +347,12 @@ class CNpc {
     //void  FindFriendRegion(int x, int z, MAP* pMap, int type=0);
     BOOL IsCloseTarget(CUser * pUser, int nRange);
     void ToTargetMove(CIOCPort * pIOCP, CUser * pUser);
-    int  SendDead(CIOCPort * pIOCP, int type = 1);                                       // Npc Dead
-    void SendExpToUserList();                                                            // User 경험치 분배..
-    BOOL SetDamage(int nAttackType, int nDamage, TCHAR * id, int uid, CIOCPort * pIOCP); // Npc의 데미지 계산..
-    BOOL SetHMagicDamage(int nDamage, CIOCPort * pIOCP);                                 // Npc의 데미지 계산..
-    int  GetDefense();                                                                   // Npc의 방어값..
+    int  SendDead(CIOCPort * pIOCP, int type = 1); // Npc Dead
+    void SendExpToUserList();                      // User 경험치 분배..
+    BOOL SetDamage(int nAttackType, int nDamage, const std::string & id, int uid,
+                   CIOCPort * pIOCP);                    // Npc의 데미지 계산..
+    BOOL SetHMagicDamage(int nDamage, CIOCPort * pIOCP); // Npc의 데미지 계산..
+    int  GetDefense();                                   // Npc의 방어값..
     void ChangeTarget(int nAttackType, CUser * pUser, CIOCPort * pIOCP);
     void ChangeNTarget(CNpc * pNpc, CIOCPort * pIOCP);
     int  GetFinalDamage(CUser * pUser, int type = 1);
@@ -415,7 +416,7 @@ class CNpc {
     float FindEnemyExpand(int nRX, int nRZ, float fCompDis, int nType);
     int   GetMyField();
 
-    void NpcTrace(TCHAR * pMsg);
+    void NpcTrace(const std::string & szMsg);
 
     int  GetDir(float x1, float z1, float x2, float z2);
     void NpcMoveEnd(CIOCPort * pIOCP);
