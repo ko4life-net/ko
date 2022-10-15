@@ -7,7 +7,7 @@ if (-Not (Test-Path -Path $vendor_dir,$clang_format)) {
   exit(1)
 }
 
-foreach ($fn In Get-ChildItem -Path $PSScriptRoot/src/engine,$PSScriptRoot/src/game,$PSScriptRoot/src/server,$PSScriptRoot/src/tool -Include *.cpp,*.c,*.hpp,*.h -Recurse) {
+foreach ($fn In Get-ChildItem -Path $PSScriptRoot/src/common,$PSScriptRoot/src/engine,$PSScriptRoot/src/game,$PSScriptRoot/src/server,$PSScriptRoot/src/tool -Include *.cpp,*.c,*.hpp,*.h -Recurse) {
   Write-Host "clang-format: [$($fn.FullName)]"
   # & $clang_format -style=file -i $fn.FullName --verbose > $null
   $pi = New-Object System.Diagnostics.ProcessStartInfo
