@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
 
@@ -13,13 +13,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Korean resources
+// Korean (Korea) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
-#ifdef _WIN32
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 #pragma code_page(949)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -27,18 +25,18 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE 
 BEGIN
     "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
     "#define _AFX_NO_OLE_RESOURCES\r\n"
@@ -66,15 +64,16 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Option.ico"
+IDR_MAINFRAME           ICON                    "res\\Option.ico"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_ABOUTBOX DIALOG 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Option 薑爾"
 FONT 9, "掉葡"
 BEGIN
@@ -84,67 +83,224 @@ BEGIN
     DEFPUSHBUTTON   "�挫�",IDOK,178,7,50,14,WS_GROUP
 END
 
-IDD_OPTION_DIALOG DIALOGEX 0, 0, 239, 272
-STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
-EXSTYLE WS_EX_APPWINDOW
-CAPTION "釭檜お 螞塭檣 啪歜 褫暮 撲薑"
-FONT 9, "掉葡", 0, 0, 0x1
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
 BEGIN
-    CONTROL         "堪擠",IDC_R_TEX_CHR_HIGH,"Button",BS_AUTORADIOBUTTON | 
-                    WS_GROUP | WS_TABSTOP,24,37,27,12
-    CONTROL         "雪擠",IDC_R_TEX_CHR_LOW,"Button",BS_AUTORADIOBUTTON | 
-                    WS_TABSTOP,24,49,27,12
-    CONTROL         "斜葡濠 餌辨",IDC_C_SHADOW,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,15,72,48,9
-    CONTROL         "Slider1",IDC_SLD_VIEWING_DISTANCE,"msctls_trackbar32",
-                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,15,108,141,18
-    COMBOBOX        IDC_CB_RESOLUTION,39,162,60,156,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
-    COMBOBOX        IDC_CB_COLORDEPTH,126,162,36,156,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
-    DEFPUSHBUTTON   "�挫�",IDOK,177,123,50,14
-    PUSHBUTTON      "鏃模",IDCANCEL,177,141,50,14
-    PUSHBUTTON      "撲薑 盪濰\n�� 褒ч",IDC_B_APPLY_AND_EXECUTE,177,159,51,
-                    23,BS_MULTILINE
-    LTEXT           "譆模",IDC_STATIC,18,126,18,9,NOT WS_GROUP
-    LTEXT           "譆渠",IDC_STATIC,141,126,18,9,NOT WS_GROUP
-    GROUPBOX        "衛撿 (陛衛剪葬) 撲薑",IDC_STATIC,6,96,162,45
-    GROUPBOX        "啪歜 斜楚а ヶ韓",IDC_STATIC,6,9,162,75
-    GROUPBOX        "�飛� п鼻紫 塽 儀鼻",IDC_STATIC,6,144,162,39
-    RTEXT           "п鼻紫",IDC_STATIC,12,162,24,12,SS_CENTERIMAGE
-    RTEXT           "儀鼻",IDC_STATIC,105,162,15,12,SS_CENTERIMAGE
-    CONTROL         "堪擠",IDC_R_TEX_SHAPE_HIGH,"Button",BS_AUTORADIOBUTTON | 
-                    WS_GROUP | WS_TABSTOP,75,37,27,12
-    CONTROL         "雪擠",IDC_R_TEX_SHAPE_LOW,"Button",BS_AUTORADIOBUTTON | 
-                    WS_TABSTOP,75,49,27,12
-    CONTROL         "堪擠",IDC_R_TEX_TERRAIN_HIGH,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,123,37,27,12
-    CONTROL         "雪擠",IDC_R_TEX_TERRAIN_LOW,"Button",BS_AUTORADIOBUTTON | 
-                    WS_TABSTOP,123,49,27,12
-    GROUPBOX        "議葛攪",IDC_STATIC,15,25,45,42
-    GROUPBOX        "螃粽薛お",IDC_STATIC,66,25,45,42
-    GROUPBOX        "雖⑽",IDC_STATIC,117,25,39,42
-    GROUPBOX        "啪歜 幗瞪",IDC_STATIC,174,9,54,75
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Korean (Korea) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (Traditional, Taiwan) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
+#pragma code_page(950)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Option 情報"
+FONT 9, "細明體"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "Option Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2002",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_OPTION_DIALOG DIALOGEX 0, 0, 239, 272
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION " knight online game option 設定"
+FONT 9, "細明體", 0, 0, 0x1
+BEGIN
+    CONTROL         "高",IDC_R_TEX_CHR_HIGH,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,24,37,27,12
+    CONTROL         "低",IDC_R_TEX_CHR_LOW,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,24,49,27,12
+    CONTROL         "使用影子",IDC_C_SHADOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,72,48,9
+    CONTROL         "Slider1",IDC_SLD_VIEWING_DISTANCE,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,15,108,141,18
+    COMBOBOX        IDC_CB_RESOLUTION,39,162,60,156,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CB_COLORDEPTH,126,162,36,156,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "確認",IDOK,177,123,50,14
+    PUSHBUTTON      "取消",IDCANCEL,177,141,50,14
+    PUSHBUTTON      "儲存設定\n後執行",IDC_B_APPLY_AND_EXECUTE,177,159,51,23,BS_MULTILINE
+    LTEXT           "最小",IDC_STATIC,18,126,18,9,NOT WS_GROUP
+    LTEXT           "最大",IDC_STATIC,141,126,18,9,NOT WS_GROUP
+    GROUPBOX        "視野 (可視距離) 設定",IDC_STATIC,6,96,162,45
+    GROUPBOX        "遊戲畫面品質",IDC_STATIC,6,9,162,75
+    GROUPBOX        "畫面解析度及色相",IDC_STATIC,6,144,162,39
+    RTEXT           "解析度",IDC_STATIC,12,162,24,12,SS_CENTERIMAGE
+    RTEXT           "色彩",IDC_STATIC,105,162,15,12,SS_CENTERIMAGE
+    CONTROL         "高",IDC_R_TEX_SHAPE_HIGH,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,75,37,27,12
+    CONTROL         "低",IDC_R_TEX_SHAPE_LOW,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,75,49,27,12
+    CONTROL         "高",IDC_R_TEX_TERRAIN_HIGH,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,123,37,27,12
+    CONTROL         "低",IDC_R_TEX_TERRAIN_LOW,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,123,49,27,12
+    GROUPBOX        "角色",IDC_STATIC,15,25,45,42
+    GROUPBOX        "object",IDC_STATIC,66,25,45,42
+    GROUPBOX        "地形",IDC_STATIC,117,25,39,42
+    GROUPBOX        "遊戲版本",IDC_STATIC,174,9,54,75
     EDITTEXT        IDC_E_VERSION,180,27,42,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "機等檜お縑 瞳辨",IDC_B_VERSION,180,45,42,30,
-                    BS_MULTILINE
-    CONTROL         "模葬 餌辨",IDC_C_SOUND_ENABLE,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,18,205,48,9
-    GROUPBOX        "模葬 撲薑",IDC_STATIC,6,190,162,74
-    CONTROL         "模葬 醞犒",IDC_C_SOUND_DUPLICATE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,69,205,48,9
-    CONTROL         "Slider1",IDC_SLD_SOUND_DISTANCE,"msctls_trackbar32",
-                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,15,231,141,18
-    LTEXT           "譆模",IDC_STATIC,18,249,18,9,NOT WS_GROUP
-    LTEXT           "譆渠",IDC_STATIC,141,249,18,9,NOT WS_GROUP
-    GROUPBOX        "�膩� 擠щ 剪葬 撲薑",IDC_STATIC,13,218,149,42
-    GROUPBOX        "醴憮 撲薑",IDC_STATIC,174,190,54,74
-    CONTROL         "孺紫辦 醴憮",IDC_C_CURSOR_WINDOW,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,177,205,48,9
+    PUSHBUTTON      "適用updata",IDC_B_VERSION,180,45,42,30,BS_MULTILINE
+    CONTROL         "使用聲音",IDC_C_SOUND_ENABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,205,48,9
+    GROUPBOX        "設定聲音",IDC_STATIC,6,190,162,74
+    CONTROL         "重複聲音",IDC_C_SOUND_DUPLICATE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,69,205,48,9
+    CONTROL         "Slider1",IDC_SLD_SOUND_DISTANCE,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,15,231,141,18
+    LTEXT           "最小",IDC_STATIC,18,249,18,9,NOT WS_GROUP
+    LTEXT           "最大",IDC_STATIC,141,249,18,9,NOT WS_GROUP
+    GROUPBOX        "設定效果音響距離",IDC_STATIC,13,218,149,42
+    GROUPBOX        "Cursor 設定",IDC_STATIC,174,190,54,74
+    CONTROL         "Windows\nCursor",IDC_C_CURSOR_WINDOW,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,177,202,48,18
 END
 
 
-#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_OPTION_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 232
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 265
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_ABOUTBOX            "Option 情報(&A)..."
+    IDS_PRODUCT             "KnightOnLine"
+    IDS_ERR_REGISTRY_OPEN   "REGISTRY開啟失敗. 請重新安裝."
+    IDS_ERR_REGISTRY_READ_VERSION "無法在REGISTRY裡找到版本情報. 請重新安裝"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_REGISTRY_READ_PATH "無法在REGISTRY裡找到程式的路徑. 請重新安裝"
+    IDS_ERR_REGISTRY_READ_EXE "無法在REGISTRY找到執行檔案的名稱. 請重新安裝."
+    IDS_ERR_REGISTRY_READ_SERVICE "無法在REGISTRY裡找到伺服器的名稱. 請重新安裝."
+    IDS_ERR_REGISTRY_WRITE_VERSION "無法使用REGISTRY裡的版本情報. 請重新安裝."
+    IDS_CONFIRM_WRITE_REGISRY "REGISTRY 你要堅定REGISTRY的值嗎?"
+END
+
+#endif    // Chinese (Traditional, Taiwan) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_OPTION_DIALOG DIALOGEX 0, 0, 239, 272
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Knight Online Option Editor"
+FONT 9, "??", 0, 0, 0x1
+BEGIN
+    CONTROL         "High",IDC_R_TEX_CHR_HIGH,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,24,37,27,12
+    CONTROL         "Low",IDC_R_TEX_CHR_LOW,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,24,49,27,12
+    CONTROL         "Show Shadows",IDC_C_SHADOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,72,61,9
+    CONTROL         "Slider1",IDC_SLD_VIEWING_DISTANCE,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,15,108,141,18
+    COMBOBOX        IDC_CB_RESOLUTION,21,164,60,156,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CB_COLORDEPTH,112,164,50,156,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "Save",IDOK,177,123,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,177,141,50,14
+    PUSHBUTTON      "Save and start",IDC_B_APPLY_AND_EXECUTE,177,159,51,23,BS_MULTILINE
+    LTEXT           "Minimum",IDC_STATIC,18,126,30,9,NOT WS_GROUP
+    LTEXT           "Maximum",IDC_STATIC,126,126,33,9,NOT WS_GROUP
+    GROUPBOX        "Visibility Range",IDC_STATIC,6,96,162,45
+    GROUPBOX        "Graphics Settings",IDC_STATIC,6,9,162,75
+    GROUPBOX        "Resolution",IDC_STATIC,6,144,162,39
+    RTEXT           "Resolution",IDC_STATIC,31,152,36,12,SS_CENTERIMAGE
+    RTEXT           "Color Depth",IDC_STATIC,114,152,41,12,SS_CENTERIMAGE
+    CONTROL         "High",IDC_R_TEX_SHAPE_HIGH,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,75,37,27,12
+    CONTROL         "Low",IDC_R_TEX_SHAPE_LOW,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,75,49,27,12
+    CONTROL         "High",IDC_R_TEX_TERRAIN_HIGH,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,123,37,27,12
+    CONTROL         "Low",IDC_R_TEX_TERRAIN_LOW,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,123,49,27,12
+    GROUPBOX        "Character",IDC_STATIC,15,25,45,42
+    GROUPBOX        "Object",IDC_STATIC,66,25,45,42
+    GROUPBOX        "Terrain",IDC_STATIC,117,25,39,42
+    GROUPBOX        "Version",IDC_STATIC,174,9,54,75
+    EDITTEXT        IDC_E_VERSION,180,27,42,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Updated Version",IDC_B_VERSION,180,45,42,30,BS_MULTILINE
+    CONTROL         "Background Music",IDC_C_SOUND_ENABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,205,48,9
+    GROUPBOX        "Sound",IDC_STATIC,6,190,162,74
+    CONTROL         "Duplicated Sound",IDC_C_SOUND_DUPLICATE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,69,205,67,9
+    CONTROL         "Slider1",IDC_SLD_SOUND_DISTANCE,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,15,231,141,18
+    LTEXT           "Minimum",IDC_STATIC,18,249,32,9,NOT WS_GROUP
+    LTEXT           "Maximum",IDC_STATIC,125,249,34,9,NOT WS_GROUP
+    GROUPBOX        "Distance of sound effects",IDC_STATIC,13,218,149,42
+    GROUPBOX        "Settings",IDC_STATIC,174,190,54,74
+    CONTROL         "Windows cursor",IDC_C_CURSOR_WINDOW,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,177,205,48,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_OPTION_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 232
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 265
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Version
@@ -165,53 +321,33 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "041204B0"
+        BLOCK "040904b0"
         BEGIN
-            VALUE "CompanyName", "\0"
-            VALUE "FileDescription", "Option MFC 擬辨 Щ煎斜極\0"
-            VALUE "FileVersion", "1, 0, 0, 1\0"
-            VALUE "InternalName", "Option\0"
-            VALUE "LegalCopyright", "Copyright (C) 2002\0"
-            VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "Option.EXE\0"
-            VALUE "ProductName", "Option 擬辨 Щ煎斜極\0"
-            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "FileDescription", "Option"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "Option"
+            VALUE "LegalCopyright", "Copyright (C) 2022"
+            VALUE "OriginalFilename", "Option.EXE"
+            VALUE "ProductName", "Option"
+            VALUE "ProductVersion", "1, 0, 0, 1"
         END
     END
     BLOCK "VarFileInfo"
     BEGIN
-        VALUE "Translation", 0x412, 1200
+        VALUE "Translation", 0x409, 1200
     END
 END
-
-#endif    // !_MAC
 
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// DESIGNINFO
+// AFX_DIALOG_LAYOUT
 //
 
-#ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE 
+IDD_OPTION_DIALOG AFX_DIALOG_LAYOUT
 BEGIN
-    IDD_ABOUTBOX, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 48
-    END
-
-    IDD_OPTION_DIALOG, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 232
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 265
-    END
+    0
 END
-#endif    // APSTUDIO_INVOKED
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -219,168 +355,24 @@ END
 // String Table
 //
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
-    IDS_ABOUTBOX            "Option 薑爾(&A)..."
+    IDS_ABOUTBOX            "Option ??(&A)..."
     IDS_PRODUCT             "KnightOnLine"
-    IDS_ERR_REGISTRY_OPEN   "溯雖蝶お葬 翮晦縑 褒ぬ ц蝗棲棻. 棻衛 撲纂п 輿褊衛螃."
-    IDS_ERR_REGISTRY_READ_VERSION 
-                            "溯雖蝶お葬縑憮 幗瞪薑爾蒂 瓊擊熱 橈蝗棲棻. 棻衛 撲纂п 輿褊衛螃"
+    IDS_ERR_REGISTRY_OPEN   "????? ??? ?? ????. ?? ??? ????."
+    IDS_ERR_REGISTRY_READ_VERSION "??????? ????? ??? ????. ?? ??? ????"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
-    IDS_ERR_REGISTRY_READ_PATH 
-                            "溯雖蝶お葬縑憮 Щ煎斜極 唳煎蒂 瓊擊熱 橈蝗棲棻. 棻衛 撲纂п 輿褊衛螃"
-    IDS_ERR_REGISTRY_READ_EXE 
-                            "溯雖蝶お葬縑憮 褒чだ橾 檜葷擊 瓊擊熱 橈蝗棲棻. 棻衛 撲纂п 輿褊衛螃."
-    IDS_ERR_REGISTRY_READ_SERVICE 
-                            "溯雖蝶お葬縑憮 憮綠蝶 檜葷擊 瓊擊熱 橈蝗棲棻. 棻衛 撲纂п 輿褊衛螃."
-    IDS_ERR_REGISTRY_WRITE_VERSION 
-                            "溯雖蝶お葬縑 幗瞪薑爾蒂 噩 熱 橈蝗棲棻. 棻衛 撲纂п 輿褊衛螃."
-    IDS_CONFIRM_WRITE_REGISRY "溯雖蝶お葬縑 高擊 瞳辨衛酈衛啊蝗棲梱?"
+    IDS_ERR_REGISTRY_READ_PATH "??????? ???? ??? ??? ????. ?? ??? ????"
+    IDS_ERR_REGISTRY_READ_EXE "??????? ???? ??? ??? ????. ?? ??? ????."
+    IDS_ERR_REGISTRY_READ_SERVICE "??????? ??? ??? ??? ????. ?? ??? ????."
+    IDS_ERR_REGISTRY_WRITE_VERSION "?????? ????? ? ? ????. ?? ??? ????."
+    IDS_CONFIRM_WRITE_REGISRY "Would you like to apply the values?"
 END
 
-#endif    // Korean resources
-/////////////////////////////////////////////////////////////////////////////
-
-
-/////////////////////////////////////////////////////////////////////////////
-// Chinese (Taiwan) resources
-
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
-#ifdef _WIN32
-LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
-#pragma code_page(950)
-#endif //_WIN32
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Dialog
-//
-
-IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Option 情報"
-FONT 9, "細明體"
-BEGIN
-    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "Option Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
-    LTEXT           "Copyright (C) 2002",IDC_STATIC,40,25,119,8
-    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
-END
-
-IDD_OPTION_DIALOG DIALOGEX 0, 0, 239, 272
-STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
-EXSTYLE WS_EX_APPWINDOW
-CAPTION " knight online game option 設定"
-FONT 9, "細明體"
-BEGIN
-    CONTROL         "高",IDC_R_TEX_CHR_HIGH,"Button",BS_AUTORADIOBUTTON | 
-                    WS_GROUP | WS_TABSTOP,24,37,27,12
-    CONTROL         "低",IDC_R_TEX_CHR_LOW,"Button",BS_AUTORADIOBUTTON | 
-                    WS_TABSTOP,24,49,27,12
-    CONTROL         "使用影子",IDC_C_SHADOW,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,15,72,48,9
-    CONTROL         "Slider1",IDC_SLD_VIEWING_DISTANCE,"msctls_trackbar32",
-                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,15,108,141,18
-    COMBOBOX        IDC_CB_RESOLUTION,39,162,60,156,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
-    COMBOBOX        IDC_CB_COLORDEPTH,126,162,36,156,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
-    DEFPUSHBUTTON   "確認",IDOK,177,123,50,14
-    PUSHBUTTON      "取消",IDCANCEL,177,141,50,14
-    PUSHBUTTON      "儲存設定\n後執行",IDC_B_APPLY_AND_EXECUTE,177,159,51,23,
-                    BS_MULTILINE
-    LTEXT           "最小",IDC_STATIC,18,126,18,9,NOT WS_GROUP
-    LTEXT           "最大",IDC_STATIC,141,126,18,9,NOT WS_GROUP
-    GROUPBOX        "視野 (可視距離) 設定",IDC_STATIC,6,96,162,45
-    GROUPBOX        "遊戲畫面品質",IDC_STATIC,6,9,162,75
-    GROUPBOX        "畫面解析度及色相",IDC_STATIC,6,144,162,39
-    RTEXT           "解析度",IDC_STATIC,12,162,24,12,SS_CENTERIMAGE
-    RTEXT           "色彩",IDC_STATIC,105,162,15,12,SS_CENTERIMAGE
-    CONTROL         "高",IDC_R_TEX_SHAPE_HIGH,"Button",BS_AUTORADIOBUTTON | 
-                    WS_GROUP | WS_TABSTOP,75,37,27,12
-    CONTROL         "低",IDC_R_TEX_SHAPE_LOW,"Button",BS_AUTORADIOBUTTON | 
-                    WS_TABSTOP,75,49,27,12
-    CONTROL         "高",IDC_R_TEX_TERRAIN_HIGH,"Button",BS_AUTORADIOBUTTON | 
-                    WS_GROUP | WS_TABSTOP,123,37,27,12
-    CONTROL         "低",IDC_R_TEX_TERRAIN_LOW,"Button",BS_AUTORADIOBUTTON | 
-                    WS_TABSTOP,123,49,27,12
-    GROUPBOX        "角色",IDC_STATIC,15,25,45,42
-    GROUPBOX        "object",IDC_STATIC,66,25,45,42
-    GROUPBOX        "地形",IDC_STATIC,117,25,39,42
-    GROUPBOX        "遊戲版本",IDC_STATIC,174,9,54,75
-    EDITTEXT        IDC_E_VERSION,180,27,42,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "適用updata",IDC_B_VERSION,180,45,42,30,BS_MULTILINE
-    CONTROL         "使用聲音",IDC_C_SOUND_ENABLE,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,18,205,48,9
-    GROUPBOX        "設定聲音",IDC_STATIC,6,190,162,74
-    CONTROL         "重複聲音",IDC_C_SOUND_DUPLICATE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,69,205,48,9
-    CONTROL         "Slider1",IDC_SLD_SOUND_DISTANCE,"msctls_trackbar32",
-                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,15,231,141,18
-    LTEXT           "最小",IDC_STATIC,18,249,18,9,NOT WS_GROUP
-    LTEXT           "最大",IDC_STATIC,141,249,18,9,NOT WS_GROUP
-    GROUPBOX        "設定效果音響距離",IDC_STATIC,13,218,149,42
-    GROUPBOX        "Cursor 設定",IDC_STATIC,174,190,54,74
-    CONTROL         "Windows\nCursor",IDC_C_CURSOR_WINDOW,"Button",
-                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,177,202,48,
-                    18
-END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// DESIGNINFO
-//
-
-#ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE 
-BEGIN
-    IDD_ABOUTBOX, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 48
-    END
-
-    IDD_OPTION_DIALOG, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 232
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 265
-    END
-END
-#endif    // APSTUDIO_INVOKED
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// String Table
-//
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_ABOUTBOX            "Option 情報(&A)..."
-    IDS_PRODUCT             "KnightOnLine"
-    IDS_ERR_REGISTRY_OPEN   "REGISTRY開啟失敗. 請重新安裝."
-    IDS_ERR_REGISTRY_READ_VERSION "無法在REGISTRY裡找到版本情報. 請重新安裝"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_ERR_REGISTRY_READ_PATH "無法在REGISTRY裡找到程式的路徑. 請重新安裝"
-    IDS_ERR_REGISTRY_READ_EXE "無法在REGISTRY找到執行檔案的名稱. 請重新安裝."
-    IDS_ERR_REGISTRY_READ_SERVICE 
-                            "無法在REGISTRY裡找到伺服器的名稱. 請重新安裝."
-    IDS_ERR_REGISTRY_WRITE_VERSION "無法使用REGISTRY裡的版本情報. 請重新安裝."
-    IDS_CONFIRM_WRITE_REGISRY "REGISTRY 你要堅定REGISTRY的值嗎?"
-END
-
-#endif    // Chinese (Taiwan) resources
+#endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
