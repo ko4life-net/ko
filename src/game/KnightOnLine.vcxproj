@@ -73,7 +73,7 @@
       <SubSystem>Windows</SubSystem>
       <AdditionalDependencies>spdlogd.lib;jpegd.lib;implode.lib;d3d9.lib;d3dx9.lib;dsound.lib;ddraw.lib;dxguidd.lib;dinput8d.lib;winmm.lib;imm32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>libc.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalLibraryDirectories>$(VendorDir)\spdlog\lib;$(VendorDir)\jpeglib\lib;$(VendorDir)\DXSDK9\Lib\x86;$(UniversalCRT_LibraryPath_x86)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SrcDir)\common;$(VendorDir)\spdlog\lib;$(VendorDir)\jpeglib\lib;$(VendorDir)\DXSDK9\Lib\x86;$(UniversalCRT_LibraryPath_x86)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
@@ -108,7 +108,7 @@
       <SubSystem>Windows</SubSystem>
       <AdditionalDependencies>spdlog.lib;jpeg.lib;implode.lib;d3d9.lib;d3dx9.lib;dsound.lib;ddraw.lib;dxguid.lib;dinput8.lib;winmm.lib;imm32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>libc.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalLibraryDirectories>$(VendorDir)\spdlog\lib;$(VendorDir)\jpeglib\lib;$(VendorDir)\DXSDK9\Lib\x86;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SrcDir)\common;$(VendorDir)\spdlog\lib;$(VendorDir)\jpeglib\lib;$(VendorDir)\DXSDK9\Lib\x86;</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -233,7 +233,6 @@
     <ClInclude Include="GameProcNationSelect.h" />
     <ClInclude Include="GameProcOption.h" />
     <ClInclude Include="GrassBoard.h" />
-    <ClInclude Include="IMPLODE.H" />
     <ClInclude Include="ItemRepairMgr.h" />
     <ClInclude Include="KnightChrMgr.h" />
     <ClInclude Include="LightMgr.h" />
@@ -500,9 +499,6 @@
     <ClCompile Include="UIWarp.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="WarMessage.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="Implode.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

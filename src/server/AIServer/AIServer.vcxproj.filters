@@ -157,9 +157,6 @@
     <ClInclude Include="global.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IMPLODE.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Ini.h">
       <Filter>Header Files</Filter>
     </ClInclude>
