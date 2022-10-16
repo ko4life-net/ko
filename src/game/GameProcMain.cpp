@@ -5768,7 +5768,7 @@ void CGameProcMain::MsgRecv_Knights(DataPack * pDataPack, int & iOffset) {
         MsgRecv_Knigts_Join_Req(pDataPack, iOffset);
         break;
 
-/*    case N3_SP_KNIGHTS_APPOINT_CHIEF: //단장 임명 - 가입허가와 같음
+        /*    case N3_SP_KNIGHTS_APPOINT_CHIEF: //단장 임명 - 가입허가와 같음
         {
             ::_LoadStringFromResource(IDS_KNIGHTS_APPOINT_CHIEF_SUCCESS, szMsg); // 성공
         }
@@ -5857,326 +5857,388 @@ void CGameProcMain::MsgRecv_Knights(DataPack * pDataPack, int & iOffset) {
     default:
         __ASSERT(0, "Invalid Knights SubPacket");
         break;
-*/    }
+*/
+    }
 }
 
 void CGameProcMain::MsgRecv_KnightsListBasic(DataPack * pDataPack, int & iOffset) // 기사단 기본 정보 받기..
 {
-e_SubPacket_KnightsList eSP =
-    (e_SubPacket_KnightsList)(CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset)); // Sub Packet
-switch (eSP) {
-case N3_SP_KNIGHTS_LIST_BASIC_ALL: // Receive - s1(knights Count) { s21(id, 이름길이), str1(이름) }
-{
-    int iCount = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 기사단 갯수
-    for (int i = 0; i < iCount; i++) {
+    e_SubPacket_KnightsList eSP =
+        (e_SubPacket_KnightsList)(CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset)); // Sub Packet
+    switch (eSP) {
+    case N3_SP_KNIGHTS_LIST_BASIC_ALL: // Receive - s1(knights Count) { s21(id, 이름길이), str1(이름) }
+    {
+        int iCount = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 기사단 갯수
+        for (int i = 0; i < iCount; i++) {
+            std::string szID;
+            int         iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);  // 기사단 ID
+            int         iLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // ID 문자열 길이..
+            CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szID, iLen);       // ID 문자열..
+
+            m_pUIKnightsOp->KnightsInfoInsert(iID, szID); // 기사단 정보 모든 걸 받는다..
+        }
+    } break;
+    case N3_SP_KNIGHTS_LIST_BASIC_INSERT: // Receive - s2(id, 이름길이), str1(이름)
+    {
         std::string szID;
         int         iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);  // 기사단 ID
         int         iLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // ID 문자열 길이..
         CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szID, iLen);       // ID 문자열..
 
-        m_pUIKnightsOp->KnightsInfoInsert(iID, szID); // 기사단 정보 모든 걸 받는다..
+        m_pUIKnightsOp->KnightsInfoInsert(iID, szID); // 기사단 정보 추가..
+    } break;
+    case N3_SP_KNIGHTS_LIST_BASIC_REMOVE: // Receive - s1(id)
+    {
+        int iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 기사단 ID
+        m_pUIKnightsOp->KnightsInfoDelete(iID);                            // 기사단 정보 지우기..
+    } break;
     }
-} break;
-case N3_SP_KNIGHTS_LIST_BASIC_INSERT: // Receive - s2(id, 이름길이), str1(이름)
-{
-    std::string szID;
-    int         iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);  // 기사단 ID
-    int         iLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // ID 문자열 길이..
-    CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szID, iLen);       // ID 문자열..
-
-    m_pUIKnightsOp->KnightsInfoInsert(iID, szID); // 기사단 정보 추가..
-} break;
-case N3_SP_KNIGHTS_LIST_BASIC_REMOVE: // Receive - s1(id)
-{
-    int iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 기사단 ID
-    m_pUIKnightsOp->KnightsInfoDelete(iID);                            // 기사단 정보 지우기..
-} break;
-}
 }
 
 void CGameProcMain::MsgRecv_CompressedPacket(DataPack * pDataPack,
                                              int &      iOffset) // 압축된 데이터 이다... 한번 더 파싱해야 한다!!!
 {
-short sCompLen, sOrgLen;
-DWORD dwCrcValue;
-sCompLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);   // 압축된 데이타길이얻기...
-sOrgLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);    // 원래데이타길이얻기...
-dwCrcValue = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset); // CRC값 얻기...
+    short sCompLen, sOrgLen;
+    DWORD dwCrcValue;
+    sCompLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);   // 압축된 데이타길이얻기...
+    sOrgLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);    // 원래데이타길이얻기...
+    dwCrcValue = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset); // CRC값 얻기...
 
-/// 압축 데이터 얻기 및 해제
-CCompressMng Compressor;
-Compressor.PreUncompressWork((char *)(pDataPack->m_pData + iOffset), sCompLen, sOrgLen); // 압축 풀기...
-iOffset += sCompLen;
+    /// 압축 데이터 얻기 및 해제
+    CCompressMng Compressor;
+    Compressor.PreUncompressWork((char *)(pDataPack->m_pData + iOffset), sCompLen, sOrgLen); // 압축 풀기...
+    iOffset += sCompLen;
 
-if (Compressor.Extract() == false || Compressor.m_nErrorOccurred != 0 || dwCrcValue != Compressor.m_dwCrc) {
-    return;
-}
+    if (Compressor.Extract() == false || Compressor.m_nErrorOccurred != 0 || dwCrcValue != Compressor.m_dwCrc) {
+        return;
+    }
 
-// 압축 풀린 데이타 읽기
-BYTE * pDecodeBuf = (BYTE *)(Compressor.m_pOutputBuffer);
+    // 압축 풀린 데이타 읽기
+    BYTE * pDecodeBuf = (BYTE *)(Compressor.m_pOutputBuffer);
 
-// 임시로 데이터 팩 만들고..
-DataPack DataPackTemp;
-DataPackTemp.m_Size = sOrgLen;
-DataPackTemp.m_pData = pDecodeBuf;
-int iOffset2 = 0;
-this->ProcessPacket(&DataPackTemp, iOffset2); // 바로 파싱...
-DataPackTemp.m_Size = 0;
-DataPackTemp.m_pData = NULL;
+    // 임시로 데이터 팩 만들고..
+    DataPack DataPackTemp;
+    DataPackTemp.m_Size = sOrgLen;
+    DataPackTemp.m_pData = pDecodeBuf;
+    int iOffset2 = 0;
+    this->ProcessPacket(&DataPackTemp, iOffset2); // 바로 파싱...
+    DataPackTemp.m_Size = 0;
+    DataPackTemp.m_pData = NULL;
 }
 
 void CGameProcMain::MsgRecv_ContinousPacket(DataPack * pDataPack,
                                             int &      iOffset) // 압축된 데이터 이다... 한번 더 파싱해야 한다!!!
 {
-int iWholeSize = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 원래데이타길이얻기...
-int iOffset2 = iOffset, iOffsetPrev = 0, iSizeThisPacket = 0;
-int i = 0;
-while (iOffset2 < iWholeSize) {
-    iOffsetPrev = iOffset2;
-    iSizeThisPacket = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset2); // 원래데이타길이얻기...
+    int iWholeSize = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 원래데이타길이얻기...
+    int iOffset2 = iOffset, iOffsetPrev = 0, iSizeThisPacket = 0;
+    int i = 0;
+    while (iOffset2 < iWholeSize) {
+        iOffsetPrev = iOffset2;
+        iSizeThisPacket = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset2); // 원래데이타길이얻기...
 
-    if (iSizeThisPacket <= 0 || iSizeThisPacket >= iWholeSize) {
-        char szErr[256];
-        sprintf(szErr, "연속 패킷 받기 오류 - 순서(%d) 크기(%d/%d)", i, iSizeThisPacket, iWholeSize);
-        CGameProcedure::ReportDebugStringAndSendToServer(szErr);
-        __ASSERT(0, szErr);
-        break; // 멈춘다!!
+        if (iSizeThisPacket <= 0 || iSizeThisPacket >= iWholeSize) {
+            char szErr[256];
+            sprintf(szErr, "연속 패킷 받기 오류 - 순서(%d) 크기(%d/%d)", i, iSizeThisPacket, iWholeSize);
+            CGameProcedure::ReportDebugStringAndSendToServer(szErr);
+            __ASSERT(0, szErr);
+            break; // 멈춘다!!
+        }
+        i++;
+
+        this->ProcessPacket(pDataPack, iOffset2);
+        iOffset2 = iOffsetPrev + iSizeThisPacket + 2;
     }
-    i++;
 
-    this->ProcessPacket(pDataPack, iOffset2);
-    iOffset2 = iOffsetPrev + iSizeThisPacket + 2;
-}
-
-iOffset += iWholeSize;
+    iOffset += iWholeSize;
 }
 
 void CGameProcMain::MsgRecv_WareHouse(DataPack * pDataPack, int & iOffset) // 보관함 관련 패킷..
 {
-BYTE bResult, bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+    BYTE bResult, bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
 
-switch ((e_SubPacket_WareHouse)bSubCom) {
-case N3_SP_WARE_INN:
-    m_pUIInn->SetVisible(true);
-    break;
+    switch ((e_SubPacket_WareHouse)bSubCom) {
+    case N3_SP_WARE_INN:
+        m_pUIInn->SetVisible(true);
+        break;
 
-case N3_SP_WARE_OPEN:
-    MsgRecv_WareHouseOpen(pDataPack, iOffset);
-    break;
+    case N3_SP_WARE_OPEN:
+        MsgRecv_WareHouseOpen(pDataPack, iOffset);
+        break;
 
-case N3_SP_WARE_GET_IN:
-    bResult = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 0x01 : true, 0x00 : false..
-    if (m_pUIWareHouseDlg) {
-        m_pUIWareHouseDlg->ReceiveResultToWareMsg(bResult);
+    case N3_SP_WARE_GET_IN:
+        bResult = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 0x01 : true, 0x00 : false..
+        if (m_pUIWareHouseDlg) {
+            m_pUIWareHouseDlg->ReceiveResultToWareMsg(bResult);
+        }
+        break;
+
+    case N3_SP_WARE_GET_OUT:
+        bResult = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 0x01 : true, 0x00 : false..
+        if (m_pUIWareHouseDlg) {
+            m_pUIWareHouseDlg->ReceiveResultFromWareMsg(bResult);
+        }
+        break;
+
+    case N3_SP_WARE_WARE_MOVE:
+        bResult = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 0x01 : true, 0x00 : false..
+        if (m_pUIWareHouseDlg) {
+            m_pUIWareHouseDlg->ReceiveResultWareToWareMsg(bResult);
+        }
+        break;
+
+    case N3_SP_WARE_INV_MOVE:
+        bResult = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 0x01 : true, 0x00 : false..
+        if (m_pUIWareHouseDlg) {
+            m_pUIWareHouseDlg->ReceiveResultInvToInvMsg(bResult);
+        }
+        break;
     }
-    break;
-
-case N3_SP_WARE_GET_OUT:
-    bResult = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 0x01 : true, 0x00 : false..
-    if (m_pUIWareHouseDlg) {
-        m_pUIWareHouseDlg->ReceiveResultFromWareMsg(bResult);
-    }
-    break;
-
-case N3_SP_WARE_WARE_MOVE:
-    bResult = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 0x01 : true, 0x00 : false..
-    if (m_pUIWareHouseDlg) {
-        m_pUIWareHouseDlg->ReceiveResultWareToWareMsg(bResult);
-    }
-    break;
-
-case N3_SP_WARE_INV_MOVE:
-    bResult = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 0x01 : true, 0x00 : false..
-    if (m_pUIWareHouseDlg) {
-        m_pUIWareHouseDlg->ReceiveResultInvToInvMsg(bResult);
-    }
-    break;
-}
 }
 
 void CGameProcMain::MsgRecv_WareHouseOpen(DataPack * pDataPack, int & iOffset) // 보관함 오픈..
 {
-if (m_pUIWareHouseDlg->IsVisible()) {
-    return;
-}
+    if (m_pUIWareHouseDlg->IsVisible()) {
+        return;
+    }
 
-int iWareGold, iItemID, iItemDurability, iItemCount;
-iWareGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
-m_pUIWareHouseDlg->EnterWareHouseStateStart(iWareGold);
+    int iWareGold, iItemID, iItemDurability, iItemCount;
+    iWareGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
+    m_pUIWareHouseDlg->EnterWareHouseStateStart(iWareGold);
 
-for (int i = 0; i < MAX_ITEM_WARE_PAGE * MAX_ITEM_TRADE; i++) // 슬롯 갯수마큼..
-{
-    iItemID = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
-    iItemDurability = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    iItemCount = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    m_pUIWareHouseDlg->AddItemInWare(iItemID, iItemDurability, iItemCount, i);
-}
+    for (int i = 0; i < MAX_ITEM_WARE_PAGE * MAX_ITEM_TRADE; i++) // 슬롯 갯수마큼..
+    {
+        iItemID = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
+        iItemDurability = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        iItemCount = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        m_pUIWareHouseDlg->AddItemInWare(iItemID, iItemDurability, iItemCount, i);
+    }
 
-if (!m_pUIWareHouseDlg->IsVisible()) {
-    m_pUIWareHouseDlg->SetVisible(true);
-}
+    if (!m_pUIWareHouseDlg->IsVisible()) {
+        m_pUIWareHouseDlg->SetVisible(true);
+    }
 
-if (m_pUIInventory->IsVisible()) { // 인벤토리가 안열려 있으면..
-    this->CommandToggleUIInventory();
-}
+    if (m_pUIInventory->IsVisible()) { // 인벤토리가 안열려 있으면..
+        this->CommandToggleUIInventory();
+    }
 
-if (m_pUISkillTreeDlg->IsVisible()) {
-    m_pUISkillTreeDlg->Close();
-}
+    if (m_pUISkillTreeDlg->IsVisible()) {
+        m_pUISkillTreeDlg->Close();
+    }
 
-m_pUIWareHouseDlg->EnterWareHouseStateEnd();
+    m_pUIWareHouseDlg->EnterWareHouseStateEnd();
 }
 
 void CGameProcMain::PlayBGM_Town() {
-if (m_pSnd_Battle) {
-    m_pSnd_Battle->Stop(3.0f);
-}
-if (NULL == m_pSnd_Town || m_pSnd_Town->IsPlaying()) {
-    return;
-}
-m_pSnd_Town->SetMaxVolume(60);
-m_pSnd_Town->Play(NULL, 3.0f); // 전투 음악 설정.. 해제는 주위에 몬스터가 없을때 한다..
+    if (m_pSnd_Battle) {
+        m_pSnd_Battle->Stop(3.0f);
+    }
+    if (NULL == m_pSnd_Town || m_pSnd_Town->IsPlaying()) {
+        return;
+    }
+    m_pSnd_Town->SetMaxVolume(60);
+    m_pSnd_Town->Play(NULL, 3.0f); // 전투 음악 설정.. 해제는 주위에 몬스터가 없을때 한다..
 }
 
 void CGameProcMain::PlayBGM_Battle() {
-if (m_pSnd_Town) {
-    m_pSnd_Town->Stop(3.0f);
-}
-if (NULL == m_pSnd_Battle || m_pSnd_Battle->IsPlaying()) {
-    return;
-}
-m_pSnd_Battle->SetMaxVolume(80);
-m_pSnd_Battle->Play(NULL, 3.0f); // 전투 음악 설정.. 해제는 주위에 몬스터가 없을때 한다..
+    if (m_pSnd_Town) {
+        m_pSnd_Town->Stop(3.0f);
+    }
+    if (NULL == m_pSnd_Battle || m_pSnd_Battle->IsPlaying()) {
+        return;
+    }
+    m_pSnd_Battle->SetMaxVolume(80);
+    m_pSnd_Battle->Play(NULL, 3.0f); // 전투 음악 설정.. 해제는 주위에 몬스터가 없을때 한다..
 }
 
 void CGameProcMain::ReleaseSound() {
-if (ACT_WORLD && ACT_WORLD->GetSkyRef()) {
-    ACT_WORLD->GetSkyRef()->ReleaseSound();
-}
-CN3Base::s_SndMgr.ReleaseStreamObj(&m_pSnd_Town);
-CN3Base::s_SndMgr.ReleaseStreamObj(&m_pSnd_Battle);
+    if (ACT_WORLD && ACT_WORLD->GetSkyRef()) {
+        ACT_WORLD->GetSkyRef()->ReleaseSound();
+    }
+    CN3Base::s_SndMgr.ReleaseStreamObj(&m_pSnd_Town);
+    CN3Base::s_SndMgr.ReleaseStreamObj(&m_pSnd_Battle);
 }
 
 void CGameProcMain::MsgRecv_NpcChangeOpen(DataPack * pDataPack, int & iOffset) // Class Change와 초기화..
 {
-BYTE bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+    BYTE bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
 
-switch (bSubCom) {
-case N3_SP_CLASS_CHANGE_PURE:
-    m_pUINpcChange->Open();
-    break;
+    switch (bSubCom) {
+    case N3_SP_CLASS_CHANGE_PURE:
+        m_pUINpcChange->Open();
+        break;
 
-case N3_SP_CLASS_CHANGE_REQ:
-    this->MsgRecv_ClassChange(pDataPack, iOffset);
-    break;
+    case N3_SP_CLASS_CHANGE_REQ:
+        this->MsgRecv_ClassChange(pDataPack, iOffset);
+        break;
 
-case N3_SP_CLASS_ALL_POINT:
-    this->MsgRecv_AllPointInit(pDataPack, iOffset);
-    break;
+    case N3_SP_CLASS_ALL_POINT:
+        this->MsgRecv_AllPointInit(pDataPack, iOffset);
+        break;
 
-case N3_SP_CLASS_SKILL_POINT:
-    this->MsgRecv_SkillPointInit(pDataPack, iOffset);
-    break;
+    case N3_SP_CLASS_SKILL_POINT:
+        this->MsgRecv_SkillPointInit(pDataPack, iOffset);
+        break;
 
-case N3_SP_CLASS_POINT_CHANGE_PRICE_QUERY:
-    this->MsgRecv_PointChangePriceQueryRequest(pDataPack, iOffset);
-    break;
-}
+    case N3_SP_CLASS_POINT_CHANGE_PRICE_QUERY:
+        this->MsgRecv_PointChangePriceQueryRequest(pDataPack, iOffset);
+        break;
+    }
 }
 
 void CGameProcMain::MsgRecv_AllPointInit(DataPack * pDataPack, int & iOffset) // All Point 초기화..
 {
-BYTE  bType = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-DWORD dwGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
+    BYTE  bType = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+    DWORD dwGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
 
-char        szBuf[256] = "";
-std::string szMsg;
+    char        szBuf[256] = "";
+    std::string szMsg;
 
-switch (bType) {
-case 0x00: // 돈이 부족..
-    ::_LoadStringFromResource(IDS_POINTINIT_NOT_ENOUGH_NOAH, szMsg);
-    sprintf(szBuf, szMsg.c_str(), dwGold);
-    CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xffff3b3b);
-    break;
+    switch (bType) {
+    case 0x00: // 돈이 부족..
+        ::_LoadStringFromResource(IDS_POINTINIT_NOT_ENOUGH_NOAH, szMsg);
+        sprintf(szBuf, szMsg.c_str(), dwGold);
+        CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xffff3b3b);
+        break;
 
-case 0x01: // 성공..
-    s_pPlayer->m_InfoExt.iStrength = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    m_pUIVar->m_pPageState->UpdateStrength(s_pPlayer->m_InfoExt.iStrength, s_pPlayer->m_InfoExt.iStrength_Delta);
+    case 0x01: // 성공..
+        s_pPlayer->m_InfoExt.iStrength = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        m_pUIVar->m_pPageState->UpdateStrength(s_pPlayer->m_InfoExt.iStrength, s_pPlayer->m_InfoExt.iStrength_Delta);
 
-    s_pPlayer->m_InfoExt.iStamina = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    m_pUIVar->m_pPageState->UpdateStamina(s_pPlayer->m_InfoExt.iStamina, s_pPlayer->m_InfoExt.iStamina_Delta);
+        s_pPlayer->m_InfoExt.iStamina = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        m_pUIVar->m_pPageState->UpdateStamina(s_pPlayer->m_InfoExt.iStamina, s_pPlayer->m_InfoExt.iStamina_Delta);
 
-    s_pPlayer->m_InfoExt.iDexterity = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    m_pUIVar->m_pPageState->UpdateDexterity(s_pPlayer->m_InfoExt.iDexterity, s_pPlayer->m_InfoExt.iDexterity_Delta);
+        s_pPlayer->m_InfoExt.iDexterity = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        m_pUIVar->m_pPageState->UpdateDexterity(s_pPlayer->m_InfoExt.iDexterity, s_pPlayer->m_InfoExt.iDexterity_Delta);
 
-    s_pPlayer->m_InfoExt.iIntelligence = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    m_pUIVar->m_pPageState->UpdateIntelligence(s_pPlayer->m_InfoExt.iIntelligence,
-                                               s_pPlayer->m_InfoExt.iIntelligence_Delta);
+        s_pPlayer->m_InfoExt.iIntelligence = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        m_pUIVar->m_pPageState->UpdateIntelligence(s_pPlayer->m_InfoExt.iIntelligence,
+                                                   s_pPlayer->m_InfoExt.iIntelligence_Delta);
 
-    s_pPlayer->m_InfoExt.iMagicAttak = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    m_pUIVar->m_pPageState->UpdateMagicAttak(s_pPlayer->m_InfoExt.iMagicAttak, s_pPlayer->m_InfoExt.iMagicAttak_Delta);
+        s_pPlayer->m_InfoExt.iMagicAttak = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        m_pUIVar->m_pPageState->UpdateMagicAttak(s_pPlayer->m_InfoExt.iMagicAttak,
+                                                 s_pPlayer->m_InfoExt.iMagicAttak_Delta);
 
-    s_pPlayer->m_InfoBase.iHPMax = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    s_pPlayer->m_InfoExt.iMSPMax = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    s_pPlayer->m_InfoExt.iAttack = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    s_pPlayer->m_InfoExt.iWeightMax = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        s_pPlayer->m_InfoBase.iHPMax = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        s_pPlayer->m_InfoExt.iMSPMax = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        s_pPlayer->m_InfoExt.iAttack = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        s_pPlayer->m_InfoExt.iWeightMax = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
 
-    m_pUIVar->m_pPageState->UpdateHP(s_pPlayer->m_InfoBase.iHP, s_pPlayer->m_InfoBase.iHPMax);
-    m_pUIStateBarAndMiniMap->UpdateHP(s_pPlayer->m_InfoBase.iHP, s_pPlayer->m_InfoBase.iHPMax, false);
+        m_pUIVar->m_pPageState->UpdateHP(s_pPlayer->m_InfoBase.iHP, s_pPlayer->m_InfoBase.iHPMax);
+        m_pUIStateBarAndMiniMap->UpdateHP(s_pPlayer->m_InfoBase.iHP, s_pPlayer->m_InfoBase.iHPMax, false);
 
-    m_pUIVar->m_pPageState->UpdateMSP(s_pPlayer->m_InfoExt.iMSP, s_pPlayer->m_InfoExt.iMSPMax);
-    m_pUIStateBarAndMiniMap->UpdateMSP(s_pPlayer->m_InfoExt.iMSP, s_pPlayer->m_InfoExt.iMSPMax, false);
+        m_pUIVar->m_pPageState->UpdateMSP(s_pPlayer->m_InfoExt.iMSP, s_pPlayer->m_InfoExt.iMSPMax);
+        m_pUIStateBarAndMiniMap->UpdateMSP(s_pPlayer->m_InfoExt.iMSP, s_pPlayer->m_InfoExt.iMSPMax, false);
 
-    m_pUIVar->m_pPageState->UpdateAttackPoint(s_pPlayer->m_InfoExt.iAttack, s_pPlayer->m_InfoExt.iAttack_Delta);
-    m_pUIVar->m_pPageState->UpdateWeight(s_pPlayer->m_InfoExt.iWeight, s_pPlayer->m_InfoExt.iWeightMax);
+        m_pUIVar->m_pPageState->UpdateAttackPoint(s_pPlayer->m_InfoExt.iAttack, s_pPlayer->m_InfoExt.iAttack_Delta);
+        m_pUIVar->m_pPageState->UpdateWeight(s_pPlayer->m_InfoExt.iWeight, s_pPlayer->m_InfoExt.iWeightMax);
 
-    s_pPlayer->m_InfoExt.iBonusPointRemain =
-        CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 남은 보너스 포인트..
-    m_pUIVar->m_pPageState->UpdateBonusPointAndButtons(
-        s_pPlayer->m_InfoExt.iBonusPointRemain); // 보너스 포인트 적용이 가능한가??
+        s_pPlayer->m_InfoExt.iBonusPointRemain =
+            CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 남은 보너스 포인트..
+        m_pUIVar->m_pPageState->UpdateBonusPointAndButtons(
+            s_pPlayer->m_InfoExt.iBonusPointRemain); // 보너스 포인트 적용이 가능한가??
 
-    // 돈 변경.. 인벤토리는 바꾸고 상거래.. 개인 거래와는 배타적..
-    s_pPlayer->m_InfoExt.iGold = dwGold;
-    if (m_pUIInventory->IsVisible()) {
-        m_pUIInventory->GoldUpdate();
+        // 돈 변경.. 인벤토리는 바꾸고 상거래.. 개인 거래와는 배타적..
+        s_pPlayer->m_InfoExt.iGold = dwGold;
+        if (m_pUIInventory->IsVisible()) {
+            m_pUIInventory->GoldUpdate();
+        }
+        if (m_pUITransactionDlg->IsVisible()) {
+            m_pUITransactionDlg->GoldUpdate();
+        }
+        if (m_pSubProcPerTrade && m_pSubProcPerTrade->m_pUIPerTradeDlg->IsVisible()) {
+            m_pSubProcPerTrade->m_pUIPerTradeDlg->GoldUpdate();
+        }
+
+        break;
+
+    case 0x02: // Already..
+        ::_LoadStringFromResource(IDS_POINTINIT_ALREADY, szMsg);
+        sprintf(szBuf, szMsg.c_str());
+        CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xffff3b3b);
+        break;
     }
-    if (m_pUITransactionDlg->IsVisible()) {
-        m_pUITransactionDlg->GoldUpdate();
-    }
-    if (m_pSubProcPerTrade && m_pSubProcPerTrade->m_pUIPerTradeDlg->IsVisible()) {
-        m_pSubProcPerTrade->m_pUIPerTradeDlg->GoldUpdate();
-    }
-
-    break;
-
-case 0x02: // Already..
-    ::_LoadStringFromResource(IDS_POINTINIT_ALREADY, szMsg);
-    sprintf(szBuf, szMsg.c_str());
-    CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xffff3b3b);
-    break;
-}
 }
 
 void CGameProcMain::MsgRecv_SkillPointInit(DataPack * pDataPack, int & iOffset) // Skill Point 초기화..
 {
-BYTE        bType = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-DWORD       dwGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
-char        szBuf[256] = "";
-std::string szMsg;
+    BYTE        bType = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+    DWORD       dwGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
+    char        szBuf[256] = "";
+    std::string szMsg;
 
-switch (bType) {
-case 0x00: // 돈이 부족..
-    ::_LoadStringFromResource(IDS_POINTINIT_NOT_ENOUGH_NOAH, szMsg);
-    sprintf(szBuf, szMsg.c_str(), dwGold);
-    CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xffff3b3b);
-    break;
+    switch (bType) {
+    case 0x00: // 돈이 부족..
+        ::_LoadStringFromResource(IDS_POINTINIT_NOT_ENOUGH_NOAH, szMsg);
+        sprintf(szBuf, szMsg.c_str(), dwGold);
+        CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xffff3b3b);
+        break;
 
-case 0x01: // 성공..
-    m_pUISkillTreeDlg->m_iSkillInfo[0] = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-    for (int i = 1; i < 9; i++) {
-        m_pUISkillTreeDlg->m_iSkillInfo[i] = 0;
+    case 0x01: // 성공..
+        m_pUISkillTreeDlg->m_iSkillInfo[0] = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+        for (int i = 1; i < 9; i++) {
+            m_pUISkillTreeDlg->m_iSkillInfo[i] = 0;
+        }
+        m_pUISkillTreeDlg->InitIconUpdate();
+
+        // 돈 변경.. 인벤토리는 바꾸고 상거래.. 개인 거래와는 배타적..
+        s_pPlayer->m_InfoExt.iGold = dwGold;
+        if (m_pUIInventory->IsVisible()) {
+            m_pUIInventory->GoldUpdate();
+        }
+        if (m_pUITransactionDlg->IsVisible()) {
+            m_pUITransactionDlg->GoldUpdate();
+        }
+        if (m_pSubProcPerTrade && m_pSubProcPerTrade->m_pUIPerTradeDlg->IsVisible()) {
+            m_pSubProcPerTrade->m_pUIPerTradeDlg->GoldUpdate();
+        }
+
+        if (m_pUIHotKeyDlg) {
+            m_pUIHotKeyDlg->AllFactorClear();
+        }
+        break;
+
+    case 0x02: // Already..
+        ::_LoadStringFromResource(IDS_POINTINIT_ALREADY, szMsg);
+        sprintf(szBuf, szMsg.c_str());
+        CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xffff3b3b);
+        break;
     }
-    m_pUISkillTreeDlg->InitIconUpdate();
+}
+
+void CGameProcMain::MsgRecv_PointChangePriceQueryRequest(DataPack * pDataPack, int & iOffset) // 가격에 대한 응답 패킷..
+{
+    DWORD dwGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
+    m_pUINpcChange->ReceivePriceFromServer(dwGold);
+}
+
+void CGameProcMain::MsgRecv_NoahChange(DataPack * pDataPack, int & iOffset) // 노아 변경..
+{
+    BYTE  bType = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+    DWORD dwGoldOffset = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
+    DWORD dwGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
+
+    char        szBuf[256] = "";
+    std::string szMsg;
+
+    switch (bType) {
+    case N3_SP_NOAH_GET:
+        ::_LoadStringFromResource(IDS_NOAH_CHANGE_GET, szMsg);
+        sprintf(szBuf, szMsg.c_str(), dwGoldOffset);
+        CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xff6565ff);
+        break;
+
+    case N3_SP_NOAH_LOST:
+        ::_LoadStringFromResource(IDS_NOAH_CHANGE_LOST, szMsg);
+        sprintf(szBuf, szMsg.c_str(), dwGoldOffset);
+        CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xffff3b3b);
+        break;
+
+    case N3_SP_NOAH_SPEND:
+        ::_LoadStringFromResource(IDS_NOAH_CHANGE_LOST, szMsg);
+        sprintf(szBuf, szMsg.c_str(), dwGoldOffset);
+        CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xffff3b3b);
+        break;
+    }
 
     // 돈 변경.. 인벤토리는 바꾸고 상거래.. 개인 거래와는 배타적..
     s_pPlayer->m_InfoExt.iGold = dwGold;
@@ -6189,96 +6251,36 @@ case 0x01: // 성공..
     if (m_pSubProcPerTrade && m_pSubProcPerTrade->m_pUIPerTradeDlg->IsVisible()) {
         m_pSubProcPerTrade->m_pUIPerTradeDlg->GoldUpdate();
     }
-
-    if (m_pUIHotKeyDlg) {
-        m_pUIHotKeyDlg->AllFactorClear();
-    }
-    break;
-
-case 0x02: // Already..
-    ::_LoadStringFromResource(IDS_POINTINIT_ALREADY, szMsg);
-    sprintf(szBuf, szMsg.c_str());
-    CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xffff3b3b);
-    break;
-}
-}
-
-void CGameProcMain::MsgRecv_PointChangePriceQueryRequest(DataPack * pDataPack, int & iOffset) // 가격에 대한 응답 패킷..
-{
-DWORD dwGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
-m_pUINpcChange->ReceivePriceFromServer(dwGold);
-}
-
-void CGameProcMain::MsgRecv_NoahChange(DataPack * pDataPack, int & iOffset) // 노아 변경..
-{
-BYTE  bType = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-DWORD dwGoldOffset = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
-DWORD dwGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
-
-char        szBuf[256] = "";
-std::string szMsg;
-
-switch (bType) {
-case N3_SP_NOAH_GET:
-    ::_LoadStringFromResource(IDS_NOAH_CHANGE_GET, szMsg);
-    sprintf(szBuf, szMsg.c_str(), dwGoldOffset);
-    CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xff6565ff);
-    break;
-
-case N3_SP_NOAH_LOST:
-    ::_LoadStringFromResource(IDS_NOAH_CHANGE_LOST, szMsg);
-    sprintf(szBuf, szMsg.c_str(), dwGoldOffset);
-    CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xffff3b3b);
-    break;
-
-case N3_SP_NOAH_SPEND:
-    ::_LoadStringFromResource(IDS_NOAH_CHANGE_LOST, szMsg);
-    sprintf(szBuf, szMsg.c_str(), dwGoldOffset);
-    CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xffff3b3b);
-    break;
-}
-
-// 돈 변경.. 인벤토리는 바꾸고 상거래.. 개인 거래와는 배타적..
-s_pPlayer->m_InfoExt.iGold = dwGold;
-if (m_pUIInventory->IsVisible()) {
-    m_pUIInventory->GoldUpdate();
-}
-if (m_pUITransactionDlg->IsVisible()) {
-    m_pUITransactionDlg->GoldUpdate();
-}
-if (m_pSubProcPerTrade && m_pSubProcPerTrade->m_pUIPerTradeDlg->IsVisible()) {
-    m_pSubProcPerTrade->m_pUIPerTradeDlg->GoldUpdate();
-}
 }
 
 void CGameProcMain::MsgRecv_WarpList(DataPack * pDataPack, int & iOffset) // 워프 리스트 - 존 체인지가 될 수도 있다..
 {
-m_pUIWarp->Reset();
+    m_pUIWarp->Reset();
 
-int iStrLen = 0;
+    int iStrLen = 0;
 
-BYTE bySubOp = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-int  iListCount = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-for (int i = 0; i < iListCount; i++) {
-    __WarpInfo WI;
+    BYTE bySubOp = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+    int  iListCount = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+    for (int i = 0; i < iListCount; i++) {
+        __WarpInfo WI;
 
-    WI.iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);                  // 워프 ID
-    iStrLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);                 // 이름 길이
-    CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, WI.szName, iStrLen);      // 이름
-    iStrLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);                 // 동의문 길이
-    CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, WI.szAgreement, iStrLen); // 동의문
-    WI.iZone = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);                // 존번호
-    WI.iMaxUser = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);             // 최대 유저 카운트.
-    WI.iGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);                // 돈
-    WI.vPos.x = (CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)) / 10.0f;     // 좌표
-    WI.vPos.z = (CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)) / 10.0f;     //
-    WI.vPos.y = (CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)) / 10.0f;     //
+        WI.iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);                  // 워프 ID
+        iStrLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);                 // 이름 길이
+        CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, WI.szName, iStrLen);      // 이름
+        iStrLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);                 // 동의문 길이
+        CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, WI.szAgreement, iStrLen); // 동의문
+        WI.iZone = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);                // 존번호
+        WI.iMaxUser = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);             // 최대 유저 카운트.
+        WI.iGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);                // 돈
+        WI.vPos.x = (CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)) / 10.0f;     // 좌표
+        WI.vPos.z = (CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)) / 10.0f;     //
+        WI.vPos.y = (CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)) / 10.0f;     //
 
-    m_pUIWarp->InfoAdd(WI);
-}
+        m_pUIWarp->InfoAdd(WI);
+    }
 
-m_pUIWarp->UpdateList();
-m_pUIWarp->SetVisible(true);
+    m_pUIWarp->UpdateList();
+    m_pUIWarp->SetVisible(true);
 }
 
 /*
@@ -6344,237 +6346,310 @@ void CGameProcMain::MsgRecv_ConcurrentUserCountAndSendServerCheck(DataPack* pDat
 */
 
 void CGameProcMain::MsgRecv_Knights_Create(DataPack * pDataPack, int & iOffset) {
-BYTE bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+    BYTE bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
 
-switch ((e_SubPacket_KNights_Create)bSubCom) {
-case N3_SP_KNIGHTS_CREATE_SUCCESS: {
-    int         sid = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    std::string szID;
-    int         iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);  // 기사단 ID
-    int         iLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // ID 문자열 길이..
-    CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szID, iLen);       // ID 문자열..
-    int   iGrade = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);      // 등급
-    int   iRank = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);       // 순위
-    DWORD dwGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
+    switch ((e_SubPacket_KNights_Create)bSubCom) {
+    case N3_SP_KNIGHTS_CREATE_SUCCESS: {
+        int         sid = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        std::string szID;
+        int         iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);  // 기사단 ID
+        int         iLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // ID 문자열 길이..
+        CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szID, iLen);       // ID 문자열..
+        int   iGrade = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);      // 등급
+        int   iRank = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);       // 순위
+        DWORD dwGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
 
-    if (s_pPlayer->IDNumber() == sid) {
-        m_pUIInn->Message(IDS_CLAN_MAKE_SUCCESS);
+        if (s_pPlayer->IDNumber() == sid) {
+            m_pUIInn->Message(IDS_CLAN_MAKE_SUCCESS);
 
-        // 돈 변경.. 인벤토리는 바꾸고 상거래.. 개인 거래와는 배타적..
-        s_pPlayer->m_InfoExt.iGold = dwGold;
-        if (m_pUIInventory->IsVisible()) {
-            m_pUIInventory->GoldUpdate();
+            // 돈 변경.. 인벤토리는 바꾸고 상거래.. 개인 거래와는 배타적..
+            s_pPlayer->m_InfoExt.iGold = dwGold;
+            if (m_pUIInventory->IsVisible()) {
+                m_pUIInventory->GoldUpdate();
+            }
+            if (m_pUITransactionDlg->IsVisible()) {
+                m_pUITransactionDlg->GoldUpdate();
+            }
+            if (m_pSubProcPerTrade && m_pSubProcPerTrade->m_pUIPerTradeDlg->IsVisible()) {
+                m_pSubProcPerTrade->m_pUIPerTradeDlg->GoldUpdate();
+            }
+
+            //기사단(클랜)UI업데이트...해라...
+            s_pPlayer->m_InfoExt.eKnightsDuty = KNIGHTS_DUTY_CHIEF;
+            s_pPlayer->KnightsInfoSet(iID, szID, iGrade, iRank);
+            m_pUIVar->UpdateKnightsInfo();
+
+            if (m_pUIVar->m_pPageKnights->IsVisible()) {
+                m_pUIVar->m_pPageKnights->MsgSend_MemberInfoAll();
+                m_pUIVar->m_pPageKnights->ChangeUIByDuty(s_pPlayer->m_InfoExt.eKnightsDuty);
+            }
+
+            //m_pUIKnightsOp->KnightsInfoInsert(iID, szID); // 기사단 정보 추가..
+        } else {
+            CPlayerOther * pUPC = s_pOPMgr->UPCGetByID(sid, true);
+            if (pUPC) {
+                pUPC->KnightsInfoSet(iID, szID, iGrade, iRank);
+            }
         }
-        if (m_pUITransactionDlg->IsVisible()) {
-            m_pUITransactionDlg->GoldUpdate();
-        }
-        if (m_pSubProcPerTrade && m_pSubProcPerTrade->m_pUIPerTradeDlg->IsVisible()) {
-            m_pSubProcPerTrade->m_pUIPerTradeDlg->GoldUpdate();
-        }
+    } break;
+    case N3_SP_KNIGHTS_CREATE_FAIL_LOWLEVEL:
+        m_pUIInn->Message(IDS_CLAN_DENY_LOWLEVEL);
+        break;
+    case N3_SP_KNIGHTS_CREATE_FAIL_DUPLICATEDNAME:
+        m_pUICreateClanName->Open(IDS_CLAN_REINPUT_NAME);
+        break;
 
-        //기사단(클랜)UI업데이트...해라...
-        s_pPlayer->m_InfoExt.eKnightsDuty = KNIGHTS_DUTY_CHIEF;
-        s_pPlayer->KnightsInfoSet(iID, szID, iGrade, iRank);
-        m_pUIVar->UpdateKnightsInfo();
-
-        if (m_pUIVar->m_pPageKnights->IsVisible()) {
-            m_pUIVar->m_pPageKnights->MsgSend_MemberInfoAll();
-            m_pUIVar->m_pPageKnights->ChangeUIByDuty(s_pPlayer->m_InfoExt.eKnightsDuty);
-        }
-
-        //m_pUIKnightsOp->KnightsInfoInsert(iID, szID); // 기사단 정보 추가..
-    } else {
-        CPlayerOther * pUPC = s_pOPMgr->UPCGetByID(sid, true);
-        if (pUPC) {
-            pUPC->KnightsInfoSet(iID, szID, iGrade, iRank);
-        }
+    case N3_SP_KNIGHTS_CREATE_FAIL_LOWMONEY:
+        m_pUIInn->Message(IDS_CLAN_DENY_LOWGOLD);
+        break;
+    case N3_SP_KNIGHTS_CREATE_FAIL_ALREADYJOINED:
+        m_pUIInn->Message(IDS_CLAN_DENY_ALREADYJOINED);
+        break;
+    case N3_SP_KNIGHTS_CREATE_FAIL_INVALIDDAY:
+        m_pUIInn->Message(IDS_CLAN_DENY_INVALIDDAY);
+        break;
+    case N3_SP_KNIGHTS_CREATE_FAIL_DBFAIL:
+    case N3_SP_KNIGHTS_CREATE_FAIL_UNKNOWN:
+        m_pUIInn->Message(IDS_CLAN_DENY_UNKNOWN);
+        break;
+    case N3_SP_KNIGHTS_CREATE_FAIL_INVALIDSERVER:
+        m_pUIInn->Message(IDS_CLAN_DENY_INVALID_SERVER);
+        break;
     }
-} break;
-case N3_SP_KNIGHTS_CREATE_FAIL_LOWLEVEL:
-    m_pUIInn->Message(IDS_CLAN_DENY_LOWLEVEL);
-    break;
-case N3_SP_KNIGHTS_CREATE_FAIL_DUPLICATEDNAME:
-    m_pUICreateClanName->Open(IDS_CLAN_REINPUT_NAME);
-    break;
-
-case N3_SP_KNIGHTS_CREATE_FAIL_LOWMONEY:
-    m_pUIInn->Message(IDS_CLAN_DENY_LOWGOLD);
-    break;
-case N3_SP_KNIGHTS_CREATE_FAIL_ALREADYJOINED:
-    m_pUIInn->Message(IDS_CLAN_DENY_ALREADYJOINED);
-    break;
-case N3_SP_KNIGHTS_CREATE_FAIL_INVALIDDAY:
-    m_pUIInn->Message(IDS_CLAN_DENY_INVALIDDAY);
-    break;
-case N3_SP_KNIGHTS_CREATE_FAIL_DBFAIL:
-case N3_SP_KNIGHTS_CREATE_FAIL_UNKNOWN:
-    m_pUIInn->Message(IDS_CLAN_DENY_UNKNOWN);
-    break;
-case N3_SP_KNIGHTS_CREATE_FAIL_INVALIDSERVER:
-    m_pUIInn->Message(IDS_CLAN_DENY_INVALID_SERVER);
-    break;
-}
 }
 
 void CGameProcMain::MsgRecv_Knights_Withdraw(DataPack * pDataPack, int & iOffset) {
-BYTE bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+    BYTE bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
 
-std::string szMsg;
-switch ((e_SubPacket_KNights_Common)bSubCom) {
-case N3_SP_KNIGHTS_COMMON_DBFAIL:
-    break;
-case N3_SP_KNIGHTS_COMMON_SUCCESS: {
-    int sid = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    if (s_pPlayer->IDNumber() == sid) {
-        s_pPlayer->m_InfoExt.iKnightsID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-        s_pPlayer->m_InfoExt.eKnightsDuty = (e_KnightsDuty)CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-        m_pUIVar->UpdateKnightsInfo();
+    std::string szMsg;
+    switch ((e_SubPacket_KNights_Common)bSubCom) {
+    case N3_SP_KNIGHTS_COMMON_DBFAIL:
+        break;
+    case N3_SP_KNIGHTS_COMMON_SUCCESS: {
+        int sid = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        if (s_pPlayer->IDNumber() == sid) {
+            s_pPlayer->m_InfoExt.iKnightsID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+            s_pPlayer->m_InfoExt.eKnightsDuty = (e_KnightsDuty)CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+            m_pUIVar->UpdateKnightsInfo();
 
-        s_pPlayer->KnightsInfoSet(s_pPlayer->m_InfoExt.iKnightsID, "", 0, 0);
-        ::_LoadStringFromResource(IDS_CLAN_WITHDRAW_SUCCESS, szMsg);
+            s_pPlayer->KnightsInfoSet(s_pPlayer->m_InfoExt.iKnightsID, "", 0, 0);
+            ::_LoadStringFromResource(IDS_CLAN_WITHDRAW_SUCCESS, szMsg);
+            this->MsgOutput(szMsg, 0xffffff00);
+
+            if (m_pUIVar->m_pPageKnights->IsVisible()) {
+                m_pUIVar->m_pPageKnights->MsgSend_MemberInfoAll();
+                m_pUIVar->m_pPageKnights->ChangeUIByDuty(s_pPlayer->m_InfoExt.eKnightsDuty);
+            }
+        } else {
+            int           iKnightsID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+            e_KnightsDuty eKnightsDuty = (e_KnightsDuty)CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+
+            CPlayerOther * pUPC = s_pOPMgr->UPCGetByID(sid, true);
+            if (pUPC) {
+                //__KnightsInfoBase* pKIB = m_pUIKnightsOp->KnightsInfoFind(iKnightsID);
+                //if(pKIB) pUPC->KnightsNameSet(pKIB->szName, 0xffff0000);
+                //else pUPC->KnightsNameSet("", 0xffff0000);
+                pUPC->KnightsInfoSet(iKnightsID, "", 0, 0);
+            }
+        }
+    } break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_NONE_USER:
+    case N3_SP_KNIGHTS_COMMON_FAIL_DEAD_USER:
+    case N3_SP_KNIGHTS_COMMON_FAIL_ENEMY_USER:
+    case N3_SP_KNIGHTS_COMMON_FAIL_OTHER_CLAN_USER:
+    case N3_SP_KNIGHTS_COMMON_FAIL_INVALIDRIGHT:
+    case N3_SP_KNIGHTS_COMMON_FAIL_NONE_CLAN:
+    case N3_SP_KNIGHTS_COMMON_FAIL_FULL:
+    case N3_SP_KNIGHTS_COMMON_FAIL_ME:
+    case N3_SP_KNIGHTS_COMMON_FAIL_NOT_JOINED:
+        ::_LoadStringFromResource(IDS_CLAN_WITHDRAW_FAIL, szMsg);
         this->MsgOutput(szMsg, 0xffffff00);
-
-        if (m_pUIVar->m_pPageKnights->IsVisible()) {
-            m_pUIVar->m_pPageKnights->MsgSend_MemberInfoAll();
-            m_pUIVar->m_pPageKnights->ChangeUIByDuty(s_pPlayer->m_InfoExt.eKnightsDuty);
-        }
-    } else {
-        int           iKnightsID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-        e_KnightsDuty eKnightsDuty = (e_KnightsDuty)CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-
-        CPlayerOther * pUPC = s_pOPMgr->UPCGetByID(sid, true);
-        if (pUPC) {
-            //__KnightsInfoBase* pKIB = m_pUIKnightsOp->KnightsInfoFind(iKnightsID);
-            //if(pKIB) pUPC->KnightsNameSet(pKIB->szName, 0xffff0000);
-            //else pUPC->KnightsNameSet("", 0xffff0000);
-            pUPC->KnightsInfoSet(iKnightsID, "", 0, 0);
-        }
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_BATTLEZONE:
+        ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_BATTLEZONE, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
     }
-} break;
-case N3_SP_KNIGHTS_COMMON_FAIL_NONE_USER:
-case N3_SP_KNIGHTS_COMMON_FAIL_DEAD_USER:
-case N3_SP_KNIGHTS_COMMON_FAIL_ENEMY_USER:
-case N3_SP_KNIGHTS_COMMON_FAIL_OTHER_CLAN_USER:
-case N3_SP_KNIGHTS_COMMON_FAIL_INVALIDRIGHT:
-case N3_SP_KNIGHTS_COMMON_FAIL_NONE_CLAN:
-case N3_SP_KNIGHTS_COMMON_FAIL_FULL:
-case N3_SP_KNIGHTS_COMMON_FAIL_ME:
-case N3_SP_KNIGHTS_COMMON_FAIL_NOT_JOINED:
-    ::_LoadStringFromResource(IDS_CLAN_WITHDRAW_FAIL, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_BATTLEZONE:
-    ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_BATTLEZONE, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-}
 }
 
 void CGameProcMain::MsgRecv_Knights_Join(DataPack * pDataPack, int & iOffset) {
-BYTE bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+    BYTE bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
 
-std::string szMsg;
-switch ((e_SubPacket_KNights_Common)bSubCom) {
-case N3_SP_KNIGHTS_COMMON_DBFAIL: //DB검색 실패..
-    break;
-case N3_SP_KNIGHTS_COMMON_SUCCESS: //클랜가입 성공
-{
-    int           sid = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    int           iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    e_KnightsDuty eDuty = (e_KnightsDuty)CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-    int           iL = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 소속 기사단 이름 길이.
-    std::string   szKnightsName;
-    CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szKnightsName, iL);
-    int iGrade = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 등급
-    int iRank = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);  // 순위
+    std::string szMsg;
+    switch ((e_SubPacket_KNights_Common)bSubCom) {
+    case N3_SP_KNIGHTS_COMMON_DBFAIL: //DB검색 실패..
+        break;
+    case N3_SP_KNIGHTS_COMMON_SUCCESS: //클랜가입 성공
+    {
+        int           sid = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        int           iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        e_KnightsDuty eDuty = (e_KnightsDuty)CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+        int           iL = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 소속 기사단 이름 길이.
+        std::string   szKnightsName;
+        CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szKnightsName, iL);
+        int iGrade = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 등급
+        int iRank = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);  // 순위
 
-    if (s_pPlayer->IDNumber() == sid) {
-        s_pPlayer->m_InfoExt.eKnightsDuty = eDuty;
-        s_pPlayer->KnightsInfoSet(iID, szKnightsName, iGrade, iRank);
-        m_pUIVar->UpdateKnightsInfo();
+        if (s_pPlayer->IDNumber() == sid) {
+            s_pPlayer->m_InfoExt.eKnightsDuty = eDuty;
+            s_pPlayer->KnightsInfoSet(iID, szKnightsName, iGrade, iRank);
+            m_pUIVar->UpdateKnightsInfo();
 
-        ::_LoadStringFromResource(IDS_CLAN_JOIN_SUCCESS, szMsg);
+            ::_LoadStringFromResource(IDS_CLAN_JOIN_SUCCESS, szMsg);
+            this->MsgOutput(szMsg, 0xffffff00);
+
+            if (m_pUIVar->m_pPageKnights->IsVisible()) {
+                m_pUIVar->m_pPageKnights->MsgSend_MemberInfoAll();
+                m_pUIVar->m_pPageKnights->ChangeUIByDuty(s_pPlayer->m_InfoExt.eKnightsDuty);
+            }
+        } else {
+            CPlayerOther * pUPC = s_pOPMgr->UPCGetByID(sid, true);
+            if (pUPC) {
+                pUPC->KnightsInfoSet(iID, szKnightsName, iGrade, iRank);
+            }
+        }
+    } break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_NONE_USER: //없는 유저..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_NONE_USER, szMsg);
         this->MsgOutput(szMsg, 0xffffff00);
-
-        if (m_pUIVar->m_pPageKnights->IsVisible()) {
-            m_pUIVar->m_pPageKnights->MsgSend_MemberInfoAll();
-            m_pUIVar->m_pPageKnights->ChangeUIByDuty(s_pPlayer->m_InfoExt.eKnightsDuty);
-        }
-    } else {
-        CPlayerOther * pUPC = s_pOPMgr->UPCGetByID(sid, true);
-        if (pUPC) {
-            pUPC->KnightsInfoSet(iID, szKnightsName, iGrade, iRank);
-        }
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_DEAD_USER: //상대유저가 죽어 있음..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_DEAD_USER, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_ENEMY_USER: //상대유저의 국가가 다름..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_ENEMY_USER, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_OTHER_CLAN_USER: //상대유저가 이미 다른 클랜이나 기사단에 가입되어 있음..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_OTHER_CLAN_USER, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_INVALIDRIGHT: //권한이 없음..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_INVALIDRIGHT, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_NONE_CLAN: //존재하지 않는 기사단..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_NONE_CLAN, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_FULL: //인원이 풀..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_CLAN_FULL, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_ME:
+        ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_ME, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_NOT_JOINED:
+        ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_NOTJOINED, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_REJECT:
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_REJECT, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_BATTLEZONE:
+        ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_BATTLEZONE, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
     }
-} break;
-case N3_SP_KNIGHTS_COMMON_FAIL_NONE_USER: //없는 유저..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_NONE_USER, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_DEAD_USER: //상대유저가 죽어 있음..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_DEAD_USER, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_ENEMY_USER: //상대유저의 국가가 다름..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_ENEMY_USER, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_OTHER_CLAN_USER: //상대유저가 이미 다른 클랜이나 기사단에 가입되어 있음..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_OTHER_CLAN_USER, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_INVALIDRIGHT: //권한이 없음..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_INVALIDRIGHT, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_NONE_CLAN: //존재하지 않는 기사단..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_NONE_CLAN, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_FULL: //인원이 풀..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_CLAN_FULL, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_ME:
-    ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_ME, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_NOT_JOINED:
-    ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_NOTJOINED, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_REJECT:
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_REJECT, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_BATTLEZONE:
-    ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_BATTLEZONE, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-}
 }
 
 void CGameProcMain::MsgRecv_Knights_Leave(DataPack * pDataPack, int & iOffset) {
-BYTE bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+    BYTE bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
 
-std::string szMsg;
-switch ((e_SubPacket_KNights_Common)bSubCom) {
-case N3_SP_KNIGHTS_COMMON_DBFAIL: //DB검색 실패..
-    break;
-case N3_SP_KNIGHTS_COMMON_SUCCESS: //클랜탈퇴 성공
-{
-    int           sid = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    int           iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    e_KnightsDuty eDuty = (e_KnightsDuty)CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-    int           iL = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 소속 기사단 이름 길이.
-    std::string   szKnightsName;
-    CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szKnightsName, iL);
-    int iGrade = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 등급
-    int iRank = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);  // 순위
+    std::string szMsg;
+    switch ((e_SubPacket_KNights_Common)bSubCom) {
+    case N3_SP_KNIGHTS_COMMON_DBFAIL: //DB검색 실패..
+        break;
+    case N3_SP_KNIGHTS_COMMON_SUCCESS: //클랜탈퇴 성공
+    {
+        int           sid = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        int           iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        e_KnightsDuty eDuty = (e_KnightsDuty)CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+        int           iL = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 소속 기사단 이름 길이.
+        std::string   szKnightsName;
+        CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szKnightsName, iL);
+        int iGrade = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 등급
+        int iRank = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);  // 순위
 
-    if (s_pPlayer->IDNumber() == sid) {
+        if (s_pPlayer->IDNumber() == sid) {
+            s_pPlayer->m_InfoExt.eKnightsDuty = eDuty;
+            s_pPlayer->KnightsInfoSet(iID, szKnightsName, iGrade, iRank);
+            m_pUIVar->UpdateKnightsInfo();
+
+            ::_LoadStringFromResource(IDS_CLAN_JOIN_SUCCESS, szMsg);
+            this->MsgOutput(szMsg, 0xffffff00);
+
+            if (m_pUIVar->m_pPageKnights->IsVisible()) {
+                m_pUIVar->m_pPageKnights->MsgSend_MemberInfoAll();
+                m_pUIVar->m_pPageKnights->ChangeUIByDuty(s_pPlayer->m_InfoExt.eKnightsDuty);
+            }
+        } else {
+            CPlayerOther * pUPC = s_pOPMgr->UPCGetByID(sid, true);
+            if (pUPC) {
+                pUPC->KnightsInfoSet(iID, "", 0, 0);
+            }
+        }
+    } break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_NONE_USER: //없는 유저..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_NONE_USER, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_DEAD_USER: //상대유저가 죽어 있음..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_DEAD_USER, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_ENEMY_USER: //상대유저의 국가가 다름..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_ENEMY_USER, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_OTHER_CLAN_USER: //상대유저가 이미 다른 클랜이나 기사단에 가입되어 있음..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_OTHER_CLAN_USER, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_INVALIDRIGHT: //권한이 없음..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_INVALIDRIGHT, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_NONE_CLAN: //존재하지 않는 기사단..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_NONE_CLAN, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_FULL: //인원이 풀..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_CLAN_FULL, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_ME:
+        ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_ME, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_NOT_JOINED:
+        ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_NOTJOINED, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_BATTLEZONE:
+        ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_BATTLEZONE, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    }
+}
+
+void CGameProcMain::MsgRecv_Knights_AppointViceChief(DataPack * pDataPack, int & iOffset) {
+    BYTE bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+
+    std::string szMsg;
+    switch ((e_SubPacket_KNights_Common)bSubCom) {
+    case N3_SP_KNIGHTS_COMMON_DBFAIL: //DB검색 실패..
+        break;
+    case N3_SP_KNIGHTS_COMMON_SUCCESS: //클랜가입 성공
+    {
+        int           iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        e_KnightsDuty eDuty = (e_KnightsDuty)CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+
+        s_pPlayer->m_InfoExt.iKnightsID = iID;
         s_pPlayer->m_InfoExt.eKnightsDuty = eDuty;
-        s_pPlayer->KnightsInfoSet(iID, szKnightsName, iGrade, iRank);
         m_pUIVar->UpdateKnightsInfo();
 
         ::_LoadStringFromResource(IDS_CLAN_JOIN_SUCCESS, szMsg);
@@ -6584,331 +6659,261 @@ case N3_SP_KNIGHTS_COMMON_SUCCESS: //클랜탈퇴 성공
             m_pUIVar->m_pPageKnights->MsgSend_MemberInfoAll();
             m_pUIVar->m_pPageKnights->ChangeUIByDuty(s_pPlayer->m_InfoExt.eKnightsDuty);
         }
-    } else {
-        CPlayerOther * pUPC = s_pOPMgr->UPCGetByID(sid, true);
-        if (pUPC) {
-            pUPC->KnightsInfoSet(iID, "", 0, 0);
-        }
+    } break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_NONE_USER: //없는 유저..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_NONE_USER, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_DEAD_USER: //상대유저가 죽어 있음..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_DEAD_USER, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_ENEMY_USER: //상대유저의 국가가 다름..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_ENEMY_USER, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_OTHER_CLAN_USER: //상대유저가 이미 다른 클랜이나 기사단에 가입되어 있음..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_OTHER_CLAN_USER, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_INVALIDRIGHT: //권한이 없음..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_INVALIDRIGHT, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_NONE_CLAN: //존재하지 않는 기사단..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_NONE_CLAN, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_FULL: //인원이 풀..
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_CLAN_FULL, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_ME:
+        ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_ME, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_NOT_JOINED:
+        ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_NOTJOINED, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
+    case N3_SP_KNIGHTS_COMMON_FAIL_BATTLEZONE:
+        ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_BATTLEZONE, szMsg);
+        this->MsgOutput(szMsg, 0xffffff00);
+        break;
     }
-} break;
-case N3_SP_KNIGHTS_COMMON_FAIL_NONE_USER: //없는 유저..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_NONE_USER, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_DEAD_USER: //상대유저가 죽어 있음..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_DEAD_USER, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_ENEMY_USER: //상대유저의 국가가 다름..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_ENEMY_USER, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_OTHER_CLAN_USER: //상대유저가 이미 다른 클랜이나 기사단에 가입되어 있음..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_OTHER_CLAN_USER, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_INVALIDRIGHT: //권한이 없음..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_INVALIDRIGHT, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_NONE_CLAN: //존재하지 않는 기사단..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_NONE_CLAN, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_FULL: //인원이 풀..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_CLAN_FULL, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_ME:
-    ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_ME, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_NOT_JOINED:
-    ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_NOTJOINED, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_BATTLEZONE:
-    ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_BATTLEZONE, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-}
-}
-
-void CGameProcMain::MsgRecv_Knights_AppointViceChief(DataPack * pDataPack, int & iOffset) {
-BYTE bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-
-std::string szMsg;
-switch ((e_SubPacket_KNights_Common)bSubCom) {
-case N3_SP_KNIGHTS_COMMON_DBFAIL: //DB검색 실패..
-    break;
-case N3_SP_KNIGHTS_COMMON_SUCCESS: //클랜가입 성공
-{
-    int           iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    e_KnightsDuty eDuty = (e_KnightsDuty)CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-
-    s_pPlayer->m_InfoExt.iKnightsID = iID;
-    s_pPlayer->m_InfoExt.eKnightsDuty = eDuty;
-    m_pUIVar->UpdateKnightsInfo();
-
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_SUCCESS, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-
-    if (m_pUIVar->m_pPageKnights->IsVisible()) {
-        m_pUIVar->m_pPageKnights->MsgSend_MemberInfoAll();
-        m_pUIVar->m_pPageKnights->ChangeUIByDuty(s_pPlayer->m_InfoExt.eKnightsDuty);
-    }
-} break;
-case N3_SP_KNIGHTS_COMMON_FAIL_NONE_USER: //없는 유저..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_NONE_USER, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_DEAD_USER: //상대유저가 죽어 있음..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_DEAD_USER, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_ENEMY_USER: //상대유저의 국가가 다름..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_ENEMY_USER, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_OTHER_CLAN_USER: //상대유저가 이미 다른 클랜이나 기사단에 가입되어 있음..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_OTHER_CLAN_USER, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_INVALIDRIGHT: //권한이 없음..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_INVALIDRIGHT, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_NONE_CLAN: //존재하지 않는 기사단..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_NONE_CLAN, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_FULL: //인원이 풀..
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_FAIL_CLAN_FULL, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_ME:
-    ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_ME, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_NOT_JOINED:
-    ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_NOTJOINED, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-case N3_SP_KNIGHTS_COMMON_FAIL_BATTLEZONE:
-    ::_LoadStringFromResource(IDS_CLAN_COMMON_FAIL_BATTLEZONE, szMsg);
-    this->MsgOutput(szMsg, 0xffffff00);
-    break;
-}
 }
 
 void CGameProcMain::MsgRecv_Knights_MemberInfoAll(DataPack * pDataPack, int & iOffset) {
-BYTE bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+    BYTE bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
 
-std::string szMsg;
-switch ((e_SubPacket_KNights_Common)bSubCom) {
-case N3_SP_KNIGHTS_COMMON_SUCCESS:
-    m_pUIVar->m_pPageKnights->MsgRecv_MemberInfo(pDataPack, iOffset);
-    break;
-case N3_SP_KNIGHTS_COMMON_DBFAIL: //DB검색 실패..
-default:
-    break;
-}
+    std::string szMsg;
+    switch ((e_SubPacket_KNights_Common)bSubCom) {
+    case N3_SP_KNIGHTS_COMMON_SUCCESS:
+        m_pUIVar->m_pPageKnights->MsgRecv_MemberInfo(pDataPack, iOffset);
+        break;
+    case N3_SP_KNIGHTS_COMMON_DBFAIL: //DB검색 실패..
+    default:
+        break;
+    }
 }
 
 void CGameProcMain::MsgRecv_Knights_GradeChangeAll(DataPack * pDataPack, int & iOffset) {
-int iCount = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-if (iCount <= 0) {
-    return;
-}
-
-std::vector<int> iIDs(iCount, 0);
-std::vector<int> iGrades(iCount, 0);
-std::vector<int> iRanks(iCount, 0);
-
-for (int i = 0; i < iCount; i++) {
-    iIDs[i] = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    iGrades[i] = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-    iRanks[i] = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-}
-
-it_UPC it = s_pOPMgr->m_UPCs.begin(), itEnd = s_pOPMgr->m_UPCs.end();
-for (; it != itEnd; it++) {
-    CPlayerOther * pUPC = it->second;
-    if (NULL == pUPC) {
-        continue;
+    int iCount = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+    if (iCount <= 0) {
+        return;
     }
 
-    int iIDTmp = pUPC->m_InfoExt.iKnightsID;
-    if (iIDTmp <= 0) {
-        continue;
-    }
+    std::vector<int> iIDs(iCount, 0);
+    std::vector<int> iGrades(iCount, 0);
+    std::vector<int> iRanks(iCount, 0);
 
     for (int i = 0; i < iCount; i++) {
-        if (iIDs[i] == iIDTmp) {
-            pUPC->KnightsInfoSet(iIDTmp, pUPC->m_InfoExt.szKnights, iGrades[i], iRanks[i]);
-            break;
-        }
+        iIDs[i] = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        iGrades[i] = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+        iRanks[i] = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
     }
-}
-}
 
-void CGameProcMain::MsgRecv_Knights_Duty_Change(DataPack * pDataPack, int & iOffset) {
-BYTE bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-
-switch ((e_SubPacket_KNights_Common)bSubCom) {
-case N3_SP_KNIGHTS_COMMON_SUCCESS: {
-    int           sid = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    int           iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    e_KnightsDuty eDuty = (e_KnightsDuty)CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-
-    if (s_pPlayer->IDNumber() == sid) {
-        s_pPlayer->m_InfoExt.iKnightsID = iID;
-        s_pPlayer->m_InfoExt.eKnightsDuty = eDuty;
-        m_pUIVar->UpdateKnightsInfo();
-        if (s_pPlayer->m_InfoExt.iKnightsID == 0) {
-            s_pPlayer->KnightsInfoSet(0, "", 0, 0);
+    it_UPC it = s_pOPMgr->m_UPCs.begin(), itEnd = s_pOPMgr->m_UPCs.end();
+    for (; it != itEnd; it++) {
+        CPlayerOther * pUPC = it->second;
+        if (NULL == pUPC) {
+            continue;
         }
-        //std::string szName;
-        //__KnightsInfoBase* pKIB = m_pUIKnightsOp->KnightsInfoFind(s_pPlayer->m_InfoExt.iKnightsID);
-        //if(pKIB) m_pUIVar->m_pPageKnights->UpdateKnightsName(pKIB->szName);
-        //else m_pUIVar->m_pPageKnights->UpdateKnightsName("");
-    } else {
-        CPlayerOther * pUPC = s_pOPMgr->UPCGetByID(sid, true);
-        if (pUPC) {
-            if (iID == 0) {
-                pUPC->KnightsInfoSet(0, "", 0, 0);
+
+        int iIDTmp = pUPC->m_InfoExt.iKnightsID;
+        if (iIDTmp <= 0) {
+            continue;
+        }
+
+        for (int i = 0; i < iCount; i++) {
+            if (iIDs[i] == iIDTmp) {
+                pUPC->KnightsInfoSet(iIDTmp, pUPC->m_InfoExt.szKnights, iGrades[i], iRanks[i]);
+                break;
             }
         }
     }
-} break;
 }
+
+void CGameProcMain::MsgRecv_Knights_Duty_Change(DataPack * pDataPack, int & iOffset) {
+    BYTE bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+
+    switch ((e_SubPacket_KNights_Common)bSubCom) {
+    case N3_SP_KNIGHTS_COMMON_SUCCESS: {
+        int           sid = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        int           iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        e_KnightsDuty eDuty = (e_KnightsDuty)CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+
+        if (s_pPlayer->IDNumber() == sid) {
+            s_pPlayer->m_InfoExt.iKnightsID = iID;
+            s_pPlayer->m_InfoExt.eKnightsDuty = eDuty;
+            m_pUIVar->UpdateKnightsInfo();
+            if (s_pPlayer->m_InfoExt.iKnightsID == 0) {
+                s_pPlayer->KnightsInfoSet(0, "", 0, 0);
+            }
+            //std::string szName;
+            //__KnightsInfoBase* pKIB = m_pUIKnightsOp->KnightsInfoFind(s_pPlayer->m_InfoExt.iKnightsID);
+            //if(pKIB) m_pUIVar->m_pPageKnights->UpdateKnightsName(pKIB->szName);
+            //else m_pUIVar->m_pPageKnights->UpdateKnightsName("");
+        } else {
+            CPlayerOther * pUPC = s_pOPMgr->UPCGetByID(sid, true);
+            if (pUPC) {
+                if (iID == 0) {
+                    pUPC->KnightsInfoSet(0, "", 0, 0);
+                }
+            }
+        }
+    } break;
+    }
 }
 
 void CGameProcMain::MsgRecv_Knigts_Join_Req(DataPack * pDataPack, int & iOffset) {
-BYTE bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+    BYTE bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
 
-switch ((e_SubPacket_KNights_Common)bSubCom) {
-case N3_SP_KNIGHTS_COMMON_SUCCESS: {
-    m_iJoinReqClanRequierID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    m_iJoinReqClan = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+    switch ((e_SubPacket_KNights_Common)bSubCom) {
+    case N3_SP_KNIGHTS_COMMON_SUCCESS: {
+        m_iJoinReqClanRequierID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        m_iJoinReqClan = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
 
-    int         iL = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 소속 기사단 이름 길이.
-    std::string szKnightsName;
-    CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szKnightsName, iL);
+        int         iL = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 소속 기사단 이름 길이.
+        std::string szKnightsName;
+        CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szKnightsName, iL);
 
-    //            std::string szName;
-    //            __KnightsInfoBase* pKIB = m_pUIKnightsOp->KnightsInfoFind(m_iJoinReqClan);
-    //            if(!pKIB)
-    //            {
-    //                MsgSend_KnightsJoinReq(false);
-    //                break;
-    //            }
+        //            std::string szName;
+        //            __KnightsInfoBase* pKIB = m_pUIKnightsOp->KnightsInfoFind(m_iJoinReqClan);
+        //            if(!pKIB)
+        //            {
+        //                MsgSend_KnightsJoinReq(false);
+        //                break;
+        //            }
 
-    std::string szMsg;
-    ::_LoadStringFromResource(IDS_CLAN_JOIN_REQ, szMsg);
+        std::string szMsg;
+        ::_LoadStringFromResource(IDS_CLAN_JOIN_REQ, szMsg);
 
-    char szTmp[256];
-    sprintf(szTmp, szMsg.c_str(), szKnightsName.c_str());
+        char szTmp[256];
+        sprintf(szTmp, szMsg.c_str(), szKnightsName.c_str());
 
-    CGameProcedure::s_pProcMain->MessageBoxPost(szTmp, "", MB_YESNO, BEHAVIOR_CLAN_JOIN);
-} break;
-}
+        CGameProcedure::s_pProcMain->MessageBoxPost(szTmp, "", MB_YESNO, BEHAVIOR_CLAN_JOIN);
+    } break;
+    }
 }
 
 int CGameProcMain::MsgRecv_VersionCheck(DataPack * pDataPack, int & iOffset) // virtual
 {
-int iVersion = CGameProcedure::MsgRecv_VersionCheck(pDataPack, iOffset);
-this->MsgSend_CharacterSelect(); // virtual
+    int iVersion = CGameProcedure::MsgRecv_VersionCheck(pDataPack, iOffset);
+    this->MsgSend_CharacterSelect(); // virtual
 
-return iVersion;
+    return iVersion;
 }
 
 bool CGameProcMain::MsgRecv_CharacterSelect(DataPack * pDataPack, int & iOffset) // virtual
 {
-bool bSuccess = CGameProcedure::MsgRecv_CharacterSelect(pDataPack, iOffset);
+    bool bSuccess = CGameProcedure::MsgRecv_CharacterSelect(pDataPack, iOffset);
 
-//전쟁존에서 죽어서 서버 체인지 하는 경우는 다시 값을 세팅해준다.
-if (s_pPlayer->IsDead()) {
-    this->InitPlayerPosition(s_pPlayer->Position()); // 플레이어 위치 초기화.. 일으켜 세우고, 기본동작을 취하게 한다.
-    s_pPlayer->RegenerateCollisionMesh();            // 충돌 메시를 다시 만든다..
-    s_pPlayer->m_iSendRegeneration = 0;              // 한번 보내면 다시 죽을때까지 안보내는 플래그
-    s_pPlayer->m_fTimeAfterDeath = 0;                // 한번 보내면 다시 죽을때까지 안보내는 플래그
+    //전쟁존에서 죽어서 서버 체인지 하는 경우는 다시 값을 세팅해준다.
+    if (s_pPlayer->IsDead()) {
+        this->InitPlayerPosition(
+            s_pPlayer->Position());           // 플레이어 위치 초기화.. 일으켜 세우고, 기본동작을 취하게 한다.
+        s_pPlayer->RegenerateCollisionMesh(); // 충돌 메시를 다시 만든다..
+        s_pPlayer->m_iSendRegeneration = 0;   // 한번 보내면 다시 죽을때까지 안보내는 플래그
+        s_pPlayer->m_fTimeAfterDeath = 0;     // 한번 보내면 다시 죽을때까지 안보내는 플래그
 
-    //
-    //마법 & 효과 초기화..
-    if (m_pUIStateBarAndMiniMap) {
-        m_pUIStateBarAndMiniMap->ClearMagic();
+        //
+        //마법 & 효과 초기화..
+        if (m_pUIStateBarAndMiniMap) {
+            m_pUIStateBarAndMiniMap->ClearMagic();
+        }
+        if (m_pMagicSkillMng) {
+            m_pMagicSkillMng->ClearDurationalMagic();
+        }
+        if (CGameProcedure::s_pFX) {
+            s_pFX->StopMine();
+        }
+
+        CLogWriter::Write("Receive Regeneration");
+
+        if (s_pPlayer->Nation() == NATION_KARUS) {
+            CGameProcedure::s_pFX->TriggerBundle(s_pPlayer->IDNumber(), -1, FXID_REGEN_KARUS, s_pPlayer->IDNumber(),
+                                                 -1);
+        } else if (s_pPlayer->Nation() == NATION_ELMORAD) {
+            CGameProcedure::s_pFX->TriggerBundle(s_pPlayer->IDNumber(), -1, FXID_REGEN_ELMORAD, s_pPlayer->IDNumber(),
+                                                 -1);
+        }
     }
-    if (m_pMagicSkillMng) {
-        m_pMagicSkillMng->ClearDurationalMagic();
-    }
-    if (CGameProcedure::s_pFX) {
-        s_pFX->StopMine();
-    }
 
-    CLogWriter::Write("Receive Regeneration");
+    this->InitZone(s_pPlayer->m_InfoExt.iZoneCur, s_pPlayer->Position()); // 존을 바꾼다..
+    s_pProcMain->MsgSend_GameStart();                                     // 존로딩이 끝나면 게임 시작..
 
-    if (s_pPlayer->Nation() == NATION_KARUS) {
-        CGameProcedure::s_pFX->TriggerBundle(s_pPlayer->IDNumber(), -1, FXID_REGEN_KARUS, s_pPlayer->IDNumber(), -1);
-    } else if (s_pPlayer->Nation() == NATION_ELMORAD) {
-        CGameProcedure::s_pFX->TriggerBundle(s_pPlayer->IDNumber(), -1, FXID_REGEN_ELMORAD, s_pPlayer->IDNumber(), -1);
-    }
-}
-
-this->InitZone(s_pPlayer->m_InfoExt.iZoneCur, s_pPlayer->Position()); // 존을 바꾼다..
-s_pProcMain->MsgSend_GameStart();                                     // 존로딩이 끝나면 게임 시작..
-
-return bSuccess;
+    return bSuccess;
 }
 
 void CGameProcMain::MsgRecv_Corpse(DataPack * pDataPack, int & iOffset) {
-int iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); //regen하고자 하는 유저의 아이디
+    int iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); //regen하고자 하는 유저의 아이디
 
-if (s_pPlayer->IDNumber() != iID) {
-    s_pOPMgr->CorpseAdd(iID);
+    if (s_pPlayer->IDNumber() != iID) {
+        s_pOPMgr->CorpseAdd(iID);
 
-    if (s_pPlayer->m_iIDTarget == iID) {
-        s_pPlayer->m_iIDTarget = -1; //만약 내가 regen한 캐릭터에 포커스를 가지고 있다면 초기화 해준다.
+        if (s_pPlayer->m_iIDTarget == iID) {
+            s_pPlayer->m_iIDTarget = -1; //만약 내가 regen한 캐릭터에 포커스를 가지고 있다면 초기화 해준다.
+        }
     }
-}
 }
 
 void CGameProcMain::MsgSend_PerTradeBBSReq(std::string szName, int iDestID) {
-if (!m_pUITransactionDlg->IsVisible()) //// 개인간 아이템 거래.. // 상거래 중이 아니면..
-{
-    std::string szMsg;
-    ::_LoadStringFromResource(IDS_PERSONAL_TRADE_REQUEST, szMsg);
-    MsgOutput(szName + szMsg, 0xffffff00);
+    if (!m_pUITransactionDlg->IsVisible()) //// 개인간 아이템 거래.. // 상거래 중이 아니면..
+    {
+        std::string szMsg;
+        ::_LoadStringFromResource(IDS_PERSONAL_TRADE_REQUEST, szMsg);
+        MsgOutput(szName + szMsg, 0xffffff00);
 
-    MsgSend_PerTradeReq(iDestID, false);
+        MsgSend_PerTradeReq(iDestID, false);
 
-    if (m_pUINpcEvent->IsVisible()) {
-        m_pUINpcEvent->Close();
+        if (m_pUINpcEvent->IsVisible()) {
+            m_pUINpcEvent->Close();
+        }
+        m_pSubProcPerTrade->EnterWaitMsgFromServerStatePerTradeReq(szName);
     }
-    m_pSubProcPerTrade->EnterWaitMsgFromServerStatePerTradeReq(szName);
-}
 }
 
 void CGameProcMain::MsgSend_CharacterSelect() // virtual
 {
-CGameProcedure::MsgSend_CharacterSelect();
+    CGameProcedure::MsgSend_CharacterSelect();
 
-m_pMagicSkillMng->ClearDurationalMagic();
-s_pFX->ClearAll();
+    m_pMagicSkillMng->ClearDurationalMagic();
+    s_pFX->ClearAll();
 }
 
 void CGameProcMain::ControlViewVDegree(short sValue) {
-if (s_pEng->ViewPoint() == VP_THIRD_PERSON) {
-    float fPitch = 0;
-    if (sValue > 0) {
-        fPitch = D3DXToRadian(45.0f) * 3;
-    } else {
-        fPitch = D3DXToRadian(-45.0f) * 3;
+    if (s_pEng->ViewPoint() == VP_THIRD_PERSON) {
+        float fPitch = 0;
+        if (sValue > 0) {
+            fPitch = D3DXToRadian(45.0f) * 3;
+        } else {
+            fPitch = D3DXToRadian(-45.0f) * 3;
+        }
+        if (fPitch) {
+            s_pEng->CameraPitchAdd(fPitch);
+        }
     }
-    if (fPitch) {
-        s_pEng->CameraPitchAdd(fPitch);
-    }
-}
 }
 /*
 bool CGameProcMain::OnMouseMove(POINT ptCur, POINT ptPrev)
@@ -6941,127 +6946,161 @@ bool CGameProcMain::OnMouseMove(POINT ptCur, POINT ptPrev)
 }
 */
 bool CGameProcMain::OnMouseMove(POINT ptCur, POINT ptPrev) {
-if (s_pUIMgr->m_bDoneSomething) {
-    return false;
-}
-
-if (ptCur.x != ptPrev.x || ptCur.y != ptPrev.y) {
-    if (m_pMagicSkillMng->m_dwRegionMagicState == 1) {
-        __Vector3 vNormal, vMyPos, vGap, vDir;
-
-        vMyPos = s_pPlayer->Position();
-        vMyPos.y += s_pPlayer->Height() / 2;
-
-        ACT_WORLD->PickWideWithTerrain(ptCur.x, ptCur.y, m_vMouseSkillPos); // 지형을 찍어본다..
-
-        vDir = m_vMouseSkillPos - vMyPos;
-        vGap = vDir;
-        vDir.Normalize();
-
-        bool bColShape =
-            ACT_WORLD->CheckCollisionWithShape(vMyPos, vDir, vGap.Magnitude(), &m_vMouseSkillPos, &vNormal);
-
-        if (!bColShape) // 타겟도 없으면..
-        {
-            int iID = -1;
-            s_pOPMgr->Pick(ptCur.x, ptCur.y, iID, &m_vMouseSkillPos); // 사방에 깔린넘들 픽킹..
-            this->TargetSelect(iID, false);                           // 타겟을 잡는다..
-        } else {
-            m_vMouseSkillPos.y = ACT_WORLD->GetHeightWithTerrain(m_vMouseSkillPos.x, m_vMouseSkillPos.z);
-        }
-        s_pFX->SetBundlePos(m_pMagicSkillMng->m_iMyRegionTargetFXID, m_pMagicSkillMng->m_iMyRegionTargetFXID,
-                            m_vMouseSkillPos);
+    if (s_pUIMgr->m_bDoneSomething) {
+        return false;
     }
-}
 
-return true;
+    if (ptCur.x != ptPrev.x || ptCur.y != ptPrev.y) {
+        if (m_pMagicSkillMng->m_dwRegionMagicState == 1) {
+            __Vector3 vNormal, vMyPos, vGap, vDir;
+
+            vMyPos = s_pPlayer->Position();
+            vMyPos.y += s_pPlayer->Height() / 2;
+
+            ACT_WORLD->PickWideWithTerrain(ptCur.x, ptCur.y, m_vMouseSkillPos); // 지형을 찍어본다..
+
+            vDir = m_vMouseSkillPos - vMyPos;
+            vGap = vDir;
+            vDir.Normalize();
+
+            bool bColShape =
+                ACT_WORLD->CheckCollisionWithShape(vMyPos, vDir, vGap.Magnitude(), &m_vMouseSkillPos, &vNormal);
+
+            if (!bColShape) // 타겟도 없으면..
+            {
+                int iID = -1;
+                s_pOPMgr->Pick(ptCur.x, ptCur.y, iID, &m_vMouseSkillPos); // 사방에 깔린넘들 픽킹..
+                this->TargetSelect(iID, false);                           // 타겟을 잡는다..
+            } else {
+                m_vMouseSkillPos.y = ACT_WORLD->GetHeightWithTerrain(m_vMouseSkillPos.x, m_vMouseSkillPos.z);
+            }
+            s_pFX->SetBundlePos(m_pMagicSkillMng->m_iMyRegionTargetFXID, m_pMagicSkillMng->m_iMyRegionTargetFXID,
+                                m_vMouseSkillPos);
+        }
+    }
+
+    return true;
 }
 
 // 왼쪽 더블 클릭
 bool CGameProcMain::OnMouseLDBtnPress(POINT ptCur, POINT ptPrev) {
-if (s_pUIMgr->m_bDoneSomething) {
-    return false;
-}
-
-CPlayerNPC * pTarget = s_pOPMgr->CharacterGetByID(s_pPlayer->m_iIDTarget, true);
-
-if (pTarget && pTarget->m_InfoBase.iAuthority == AUTHORITY_MANAGER) {
-    s_pPlayer->m_iIDTarget = -1;
-    pTarget = NULL;
-}
-
-if (VP_THIRD_PERSON == s_pEng->ViewPoint()) {
-    if (s_pPlayer->IsAttackableTarget(pTarget, false)) {
-        this->CommandMove(MD_STOP, true);
-        this->CommandEnableAttackContinous(true, pTarget); // 자동 공격
-    } else if (pTarget && VP_THIRD_PERSON == s_pEng->ViewPoint()) {
-        this->CommandMove(MD_FOWARD, true);
-        s_pPlayer->SetMoveTargetID(s_pPlayer->m_iIDTarget);
+    if (s_pUIMgr->m_bDoneSomething) {
+        return false;
     }
-} else {
-    s_pPlayer->m_bAttackContinous = false;
-    CommandToggleAttackContinous();
-}
-return true;
+
+    CPlayerNPC * pTarget = s_pOPMgr->CharacterGetByID(s_pPlayer->m_iIDTarget, true);
+
+    if (pTarget && pTarget->m_InfoBase.iAuthority == AUTHORITY_MANAGER) {
+        s_pPlayer->m_iIDTarget = -1;
+        pTarget = NULL;
+    }
+
+    if (VP_THIRD_PERSON == s_pEng->ViewPoint()) {
+        if (s_pPlayer->IsAttackableTarget(pTarget, false)) {
+            this->CommandMove(MD_STOP, true);
+            this->CommandEnableAttackContinous(true, pTarget); // 자동 공격
+        } else if (pTarget && VP_THIRD_PERSON == s_pEng->ViewPoint()) {
+            this->CommandMove(MD_FOWARD, true);
+            s_pPlayer->SetMoveTargetID(s_pPlayer->m_iIDTarget);
+        }
+    } else {
+        s_pPlayer->m_bAttackContinous = false;
+        CommandToggleAttackContinous();
+    }
+    return true;
 }
 
 // 왼쪽 클릭
 bool CGameProcMain::OnMouseLBtnPress(POINT ptCur, POINT ptPrev) {
-if (s_pUIMgr->m_bDoneSomething) {
-    return false;
-}
-
-POINT ptPlayer = ::_Convert3D_To_2DCoordinate(s_pPlayer->Position(), CN3Base::s_CameraData.mtxView,
-                                              CN3Base::s_CameraData.mtxProjection, CN3Base::s_CameraData.vp.Width,
-                                              CN3Base::s_CameraData.vp.Height);
-
-__Vector3  vDir((float)(ptCur.x - ptPlayer.x), 0, (float)(ptPlayer.y - ptCur.y));
-__Matrix44 mtxTmp;
-mtxTmp.RotationY(s_pEng->CameraYaw());
-vDir *= mtxTmp;
-vDir.Normalize();
-float fYaw = ::_Yaw2D(vDir.x, vDir.z);
-
-CPlayerNPC * pTarget = NULL;
-BOOL         bFindCorpse = false;
-
-int iID = -1;
-pTarget = s_pOPMgr->PickPrecisely(ptCur.x, ptCur.y, iID, &m_vMouseLBClickedPos); // 사방에 깔린넘들 픽킹..
-this->TargetSelect(iID, false);                                                  // 타겟을 잡는다..
-if (NULL == pTarget)                                                             // 타겟이 없으면..
-{
-    if (s_pPlayer->m_bAttackContinous) {                 // 계속 공격하는 중이면..
-        this->CommandEnableAttackContinous(false, NULL); // 계속 공격 취소..
+    if (s_pUIMgr->m_bDoneSomething) {
+        return false;
     }
 
-    s_pPlayer->m_pObjectTarget =
-        ACT_WORLD->PickWithShape(ptCur.x, ptCur.y, true, &m_vMouseLBClickedPos); // 찍힌 위치를 저장한다..
-    if (NULL == s_pPlayer->m_pObjectTarget)                                      // 타겟도 없으면..
+    POINT ptPlayer = ::_Convert3D_To_2DCoordinate(s_pPlayer->Position(), CN3Base::s_CameraData.mtxView,
+                                                  CN3Base::s_CameraData.mtxProjection, CN3Base::s_CameraData.vp.Width,
+                                                  CN3Base::s_CameraData.vp.Height);
+
+    __Vector3  vDir((float)(ptCur.x - ptPlayer.x), 0, (float)(ptPlayer.y - ptCur.y));
+    __Matrix44 mtxTmp;
+    mtxTmp.RotationY(s_pEng->CameraYaw());
+    vDir *= mtxTmp;
+    vDir.Normalize();
+    float fYaw = ::_Yaw2D(vDir.x, vDir.z);
+
+    CPlayerNPC * pTarget = NULL;
+    BOOL         bFindCorpse = false;
+
+    int iID = -1;
+    pTarget = s_pOPMgr->PickPrecisely(ptCur.x, ptCur.y, iID, &m_vMouseLBClickedPos); // 사방에 깔린넘들 픽킹..
+    this->TargetSelect(iID, false);                                                  // 타겟을 잡는다..
+    if (NULL == pTarget)                                                             // 타겟이 없으면..
     {
-        // 시체 뒤저서 아이템 상자 열기..
-        CPlayerNPC * pCorpse = s_pOPMgr->PickCorpse(ptCur.x, ptCur.y, iID); // 픽킹..
-        if (false == this->MsgSend_RequestItemBundleOpen(pCorpse))          // 시체 뒤지기 요청..
+        if (s_pPlayer->m_bAttackContinous) {                 // 계속 공격하는 중이면..
+            this->CommandEnableAttackContinous(false, NULL); // 계속 공격 취소..
+        }
+
+        s_pPlayer->m_pObjectTarget =
+            ACT_WORLD->PickWithShape(ptCur.x, ptCur.y, true, &m_vMouseLBClickedPos); // 찍힌 위치를 저장한다..
+        if (NULL == s_pPlayer->m_pObjectTarget)                                      // 타겟도 없으면..
         {
-            ACT_WORLD->PickWideWithTerrain(ptCur.x, ptCur.y, m_vMouseLBClickedPos); // 지형을 찍어본다..
-        } else {
-            bFindCorpse = true;
+            // 시체 뒤저서 아이템 상자 열기..
+            CPlayerNPC * pCorpse = s_pOPMgr->PickCorpse(ptCur.x, ptCur.y, iID); // 픽킹..
+            if (false == this->MsgSend_RequestItemBundleOpen(pCorpse))          // 시체 뒤지기 요청..
+            {
+                ACT_WORLD->PickWideWithTerrain(ptCur.x, ptCur.y, m_vMouseLBClickedPos); // 지형을 찍어본다..
+            } else {
+                bFindCorpse = true;
+            }
         }
     }
-}
 
-if (m_pMagicSkillMng->m_dwRegionMagicState == 1) {
-    //        s_pFX->SetBundlePos(m_pMagicSkillMng->m_iMyRegionTargetFXID, m_pMagicSkillMng->m_iMyRegionTargetFXID, m_vMouseLBClickedPos);
-    s_pFX->SetBundlePos(m_pMagicSkillMng->m_iMyRegionTargetFXID, m_pMagicSkillMng->m_iMyRegionTargetFXID,
-                        m_vMouseSkillPos);
-    m_pMagicSkillMng->m_dwRegionMagicState = 2;
-}
+    if (m_pMagicSkillMng->m_dwRegionMagicState == 1) {
+        //        s_pFX->SetBundlePos(m_pMagicSkillMng->m_iMyRegionTargetFXID, m_pMagicSkillMng->m_iMyRegionTargetFXID, m_vMouseLBClickedPos);
+        s_pFX->SetBundlePos(m_pMagicSkillMng->m_iMyRegionTargetFXID, m_pMagicSkillMng->m_iMyRegionTargetFXID,
+                            m_vMouseSkillPos);
+        m_pMagicSkillMng->m_dwRegionMagicState = 2;
+    }
 
-if (!s_pPlayer->IsDead() && VP_THIRD_PERSON == s_pEng->ViewPoint()) {
-    m_fLBClickTime = CN3Base::TimeGet();
-    this->CommandSitDown(false, false); // 일단 일으켜 세운다..
+    if (!s_pPlayer->IsDead() && VP_THIRD_PERSON == s_pEng->ViewPoint()) {
+        m_fLBClickTime = CN3Base::TimeGet();
+        this->CommandSitDown(false, false); // 일단 일으켜 세운다..
 
-    if (pTarget) {
-        if (s_pLocalInput->IsKeyDown(DIK_LCONTROL) || s_pLocalInput->IsKeyDown(DIK_RCONTROL)) {
+        if (pTarget) {
+            if (s_pLocalInput->IsKeyDown(DIK_LCONTROL) || s_pLocalInput->IsKeyDown(DIK_RCONTROL)) {
+                if (s_pPlayer->IsAttackableTarget(pTarget, false)) {
+                    if (s_pPlayer->m_bTargetOrPosMove) {
+                        this->CommandMove(MD_STOP, true);
+                    }
+
+                    this->CommandEnableAttackContinous(true, pTarget); // 자동 공격
+                } else {
+                    this->CommandMove(MD_FOWARD, true);
+                    s_pPlayer->SetMoveTargetID(s_pPlayer->m_iIDTarget);
+                }
+            } else {
+                if (s_pPlayer->m_bTargetOrPosMove && s_pPlayer->m_iMoveTarget != pTarget->IDNumber()) {
+                    this->CommandMove(MD_STOP, true);
+                }
+            }
+        } else if (!bFindCorpse) {
+            s_pPlayer->RotateTo(fYaw, true);
+            __Vector3 vMovePoint;
+            ACT_WORLD->PickWideWithTerrain(ptCur.x, ptCur.y, vMovePoint); // 지형을 찍어본다..
+
+            float fDist = (vMovePoint - s_pPlayer->Position()).Magnitude();
+
+            if (!s_pPlayer->m_bTargetOrPosMove && fDist > 1.5f) {
+                this->CommandMove(MD_FOWARD, true);
+            }
+
+            if (fDist > 1.5f) {
+                s_pPlayer->SetMoveTargetPos(vMovePoint);
+            } else if (s_pPlayer->m_bTargetOrPosMove) {
+                this->CommandMove(MD_STOP, true);
+            }
+        }
+    } else if (!s_pPlayer->IsDead()) {
+        if (pTarget && (s_pLocalInput->IsKeyDown(DIK_LCONTROL) || s_pLocalInput->IsKeyDown(DIK_RCONTROL))) {
             if (s_pPlayer->IsAttackableTarget(pTarget, false)) {
                 if (s_pPlayer->m_bTargetOrPosMove) {
                     this->CommandMove(MD_STOP, true);
@@ -7069,269 +7108,235 @@ if (!s_pPlayer->IsDead() && VP_THIRD_PERSON == s_pEng->ViewPoint()) {
 
                 this->CommandEnableAttackContinous(true, pTarget); // 자동 공격
             } else {
-                this->CommandMove(MD_FOWARD, true);
-                s_pPlayer->SetMoveTargetID(s_pPlayer->m_iIDTarget);
+                s_pPlayer->m_bAttackContinous = false;
+                CommandToggleAttackContinous();
             }
-        } else {
-            if (s_pPlayer->m_bTargetOrPosMove && s_pPlayer->m_iMoveTarget != pTarget->IDNumber()) {
-                this->CommandMove(MD_STOP, true);
-            }
-        }
-    } else if (!bFindCorpse) {
-        s_pPlayer->RotateTo(fYaw, true);
-        __Vector3 vMovePoint;
-        ACT_WORLD->PickWideWithTerrain(ptCur.x, ptCur.y, vMovePoint); // 지형을 찍어본다..
-
-        float fDist = (vMovePoint - s_pPlayer->Position()).Magnitude();
-
-        if (!s_pPlayer->m_bTargetOrPosMove && fDist > 1.5f) {
-            this->CommandMove(MD_FOWARD, true);
-        }
-
-        if (fDist > 1.5f) {
-            s_pPlayer->SetMoveTargetPos(vMovePoint);
-        } else if (s_pPlayer->m_bTargetOrPosMove) {
-            this->CommandMove(MD_STOP, true);
         }
     }
-} else if (!s_pPlayer->IsDead()) {
-    if (pTarget && (s_pLocalInput->IsKeyDown(DIK_LCONTROL) || s_pLocalInput->IsKeyDown(DIK_RCONTROL))) {
-        if (s_pPlayer->IsAttackableTarget(pTarget, false)) {
-            if (s_pPlayer->m_bTargetOrPosMove) {
-                this->CommandMove(MD_STOP, true);
-            }
 
-            this->CommandEnableAttackContinous(true, pTarget); // 자동 공격
-        } else {
-            s_pPlayer->m_bAttackContinous = false;
-            CommandToggleAttackContinous();
-        }
-    }
-}
-
-return true;
+    return true;
 }
 
 // 왼쪽 클릭업
 bool CGameProcMain::OnMouseLBtnPressd(POINT ptCur, POINT ptPrev) {
-if (!s_pLocalInput->IsKeyDown(KM_MOVE_FOWARD)) {
-    //        if(!s_pPlayer->m_bTargetOrPosMove)
-    //            this->CommandMove(MD_STOP, true);
-}
-return true;
+    if (!s_pLocalInput->IsKeyDown(KM_MOVE_FOWARD)) {
+        //        if(!s_pPlayer->m_bTargetOrPosMove)
+        //            this->CommandMove(MD_STOP, true);
+    }
+    return true;
 }
 
 // 왼쪽 눌리고 있을때
 bool CGameProcMain::OnMouseLbtnDown(POINT ptCur, POINT ptPrev) {
-if (s_pUIMgr->m_bDoneSomething) {
-    return false;
-}
+    if (s_pUIMgr->m_bDoneSomething) {
+        return false;
+    }
 
-POINT ptPlayer = ::_Convert3D_To_2DCoordinate(s_pPlayer->Position(), CN3Base::s_CameraData.mtxView,
-                                              CN3Base::s_CameraData.mtxProjection, CN3Base::s_CameraData.vp.Width,
-                                              CN3Base::s_CameraData.vp.Height);
+    POINT ptPlayer = ::_Convert3D_To_2DCoordinate(s_pPlayer->Position(), CN3Base::s_CameraData.mtxView,
+                                                  CN3Base::s_CameraData.mtxProjection, CN3Base::s_CameraData.vp.Width,
+                                                  CN3Base::s_CameraData.vp.Height);
 
-__Vector3  vDir((float)(ptCur.x - ptPlayer.x), 0, (float)(ptPlayer.y - ptCur.y));
-__Matrix44 mtxTmp;
-mtxTmp.RotationY(s_pEng->CameraYaw());
-vDir *= mtxTmp;
-vDir.Normalize();
-float fYaw = ::_Yaw2D(vDir.x, vDir.z);
+    __Vector3  vDir((float)(ptCur.x - ptPlayer.x), 0, (float)(ptPlayer.y - ptCur.y));
+    __Matrix44 mtxTmp;
+    mtxTmp.RotationY(s_pEng->CameraYaw());
+    vDir *= mtxTmp;
+    vDir.Normalize();
+    float fYaw = ::_Yaw2D(vDir.x, vDir.z);
 
-if (!s_pPlayer->IsDead() && VP_THIRD_PERSON == s_pEng->ViewPoint() &&
-    !s_pLocalInput->IsKeyDown(KM_MOVE_FOWARD)) // 삼인칭 시점이면.. UI 를 건들지 않았으면..
-{
-    __Vector3 vMovePoint;
-    float     fDist;
-    float     fNowTime = CN3Base::TimeGet();
+    if (!s_pPlayer->IsDead() && VP_THIRD_PERSON == s_pEng->ViewPoint() &&
+        !s_pLocalInput->IsKeyDown(KM_MOVE_FOWARD)) // 삼인칭 시점이면.. UI 를 건들지 않았으면..
+    {
+        __Vector3 vMovePoint;
+        float     fDist;
+        float     fNowTime = CN3Base::TimeGet();
 
-    if (fNowTime - m_fLBClickTime > 0.1f && s_pPlayer->m_bTargetOrPosMove) {
-        if (s_pPlayer->m_bAttackContinous) {
-            CommandToggleAttackContinous();
-        }
+        if (fNowTime - m_fLBClickTime > 0.1f && s_pPlayer->m_bTargetOrPosMove) {
+            if (s_pPlayer->m_bAttackContinous) {
+                CommandToggleAttackContinous();
+            }
 
-        this->CommandSitDown(false, false); // 일단 일으켜 세운다..
-        s_pPlayer->RotateTo(fYaw, true);
-        this->CommandMove(MD_FOWARD, false);
+            this->CommandSitDown(false, false); // 일단 일으켜 세운다..
+            s_pPlayer->RotateTo(fYaw, true);
+            this->CommandMove(MD_FOWARD, false);
 
-        ACT_WORLD->PickWideWithTerrain(ptCur.x, ptCur.y, vMovePoint); // 지형을 찍어본다..
-        fDist = (vMovePoint - s_pPlayer->Position()).Magnitude();
+            ACT_WORLD->PickWideWithTerrain(ptCur.x, ptCur.y, vMovePoint); // 지형을 찍어본다..
+            fDist = (vMovePoint - s_pPlayer->Position()).Magnitude();
 
-        s_pPlayer->SetMoveTargetPos(vMovePoint);
-    } else if (fNowTime - m_fLBClickTime > 0.1f && !s_pPlayer->m_bTargetOrPosMove) {
-        if (s_pPlayer->m_bAttackContinous) {
-            CommandToggleAttackContinous();
-        }
-
-        s_pPlayer->RotateTo(fYaw, true);
-        ACT_WORLD->PickWideWithTerrain(ptCur.x, ptCur.y, vMovePoint); // 지형을 찍어본다..
-
-        fDist = (vMovePoint - s_pPlayer->Position()).Magnitude();
-
-        if (fDist > 1.5f) {
-            this->CommandMove(MD_FOWARD, true);
             s_pPlayer->SetMoveTargetPos(vMovePoint);
+        } else if (fNowTime - m_fLBClickTime > 0.1f && !s_pPlayer->m_bTargetOrPosMove) {
+            if (s_pPlayer->m_bAttackContinous) {
+                CommandToggleAttackContinous();
+            }
+
+            s_pPlayer->RotateTo(fYaw, true);
+            ACT_WORLD->PickWideWithTerrain(ptCur.x, ptCur.y, vMovePoint); // 지형을 찍어본다..
+
+            fDist = (vMovePoint - s_pPlayer->Position()).Magnitude();
+
+            if (fDist > 1.5f) {
+                this->CommandMove(MD_FOWARD, true);
+                s_pPlayer->SetMoveTargetPos(vMovePoint);
+            }
         }
     }
-}
-return true;
+    return true;
 }
 
 // 오른쪽 클릭
 bool CGameProcMain::OnMouseRBtnPress(POINT ptCur, POINT ptPrev) {
-if (s_pUIMgr->m_bDoneSomething) {
-    return false;
-}
+    if (s_pUIMgr->m_bDoneSomething) {
+        return false;
+    }
 
-if (s_pLocalInput->IsKeyDown(DIK_LCONTROL) || s_pLocalInput->IsKeyDown(DIK_RCONTROL)) {
-    m_pUIHotKeyDlg->EffectTriggerByMouse();
-    return true;
-}
+    if (s_pLocalInput->IsKeyDown(DIK_LCONTROL) || s_pLocalInput->IsKeyDown(DIK_RCONTROL)) {
+        m_pUIHotKeyDlg->EffectTriggerByMouse();
+        return true;
+    }
 
-int          iID = -1;
-CPlayerNPC * pNPC = s_pOPMgr->PickNPC(ptCur.x, ptCur.y, iID); // 픽킹..
+    int          iID = -1;
+    CPlayerNPC * pNPC = s_pOPMgr->PickNPC(ptCur.x, ptCur.y, iID); // 픽킹..
 
-if (NULL == pNPC) {
-    CPlayerNPC * pCorpse = s_pOPMgr->PickCorpse(ptCur.x, ptCur.y, iID); // 픽킹..
-    if (false == this->MsgSend_RequestItemBundleOpen(pCorpse))          // 시체 뒤저서 아이템 상자 열기..
-    {
-        CN3Shape * pShape = ACT_WORLD->PickWithShape(ptCur.x, ptCur.y, true);
-        if (pShape && pShape == s_pPlayer->m_pObjectTarget && pShape->m_iEventID) // Event 가 있으면..
+    if (NULL == pNPC) {
+        CPlayerNPC * pCorpse = s_pOPMgr->PickCorpse(ptCur.x, ptCur.y, iID); // 픽킹..
+        if (false == this->MsgSend_RequestItemBundleOpen(pCorpse))          // 시체 뒤저서 아이템 상자 열기..
         {
-            float fD = (s_pPlayer->Position() - pShape->Pos()).Magnitude();
-            float fDLimit = (s_pPlayer->Radius() + pShape->Radius()) * 2.0f;
-            if (fD > fDLimit) // 거리가 멀면
+            CN3Shape * pShape = ACT_WORLD->PickWithShape(ptCur.x, ptCur.y, true);
+            if (pShape && pShape == s_pPlayer->m_pObjectTarget && pShape->m_iEventID) // Event 가 있으면..
             {
-                std::string szMsg;
-                if (OBJECT_TYPE_BINDPOINT == pShape->m_iEventType) {
-                    ::_LoadStringFromResource(IDS_BIND_POINT_REQUEST_FAIL, szMsg);
-                } else {
-                    ::_LoadStringFromResource(IDS_ERR_REQUEST_OBJECT_EVENT_SO_FAR, szMsg);
-                }
-                this->MsgOutput(szMsg, 0xffff8080);
-            } else {
-                if (OBJECT_TYPE_BINDPOINT == pShape->m_iEventType) {
+                float fD = (s_pPlayer->Position() - pShape->Pos()).Magnitude();
+                float fDLimit = (s_pPlayer->Radius() + pShape->Radius()) * 2.0f;
+                if (fD > fDLimit) // 거리가 멀면
+                {
                     std::string szMsg;
-                    ::_LoadStringFromResource(IDS_REQUEST_BINDPOINT, szMsg);
-                    this->MessageBoxPost(szMsg, "", MB_YESNO,
-                                         BEHAVIOR_REQUEST_BINDPOINT); // 바인팅 포인트 설정 메시지 박스
-                } else if (OBJECT_TYPE_WARP_POINT == pShape->m_iEventType) {
-                    this->MsgSend_ObjectEvent(pShape->m_iEventID, pShape->m_iNPC_ID); // 오브젝트 이벤트 보내기..
+                    if (OBJECT_TYPE_BINDPOINT == pShape->m_iEventType) {
+                        ::_LoadStringFromResource(IDS_BIND_POINT_REQUEST_FAIL, szMsg);
+                    } else {
+                        ::_LoadStringFromResource(IDS_ERR_REQUEST_OBJECT_EVENT_SO_FAR, szMsg);
+                    }
+                    this->MsgOutput(szMsg, 0xffff8080);
+                } else {
+                    if (OBJECT_TYPE_BINDPOINT == pShape->m_iEventType) {
+                        std::string szMsg;
+                        ::_LoadStringFromResource(IDS_REQUEST_BINDPOINT, szMsg);
+                        this->MessageBoxPost(szMsg, "", MB_YESNO,
+                                             BEHAVIOR_REQUEST_BINDPOINT); // 바인팅 포인트 설정 메시지 박스
+                    } else if (OBJECT_TYPE_WARP_POINT == pShape->m_iEventType) {
+                        this->MsgSend_ObjectEvent(pShape->m_iEventID, pShape->m_iNPC_ID); // 오브젝트 이벤트 보내기..
+                    }
                 }
             }
         }
-    }
-} else if (pNPC->IDNumber() == s_pPlayer->m_iIDTarget) // 타겟으로 찍은 캐릭터와 피킹한 캐릭터가 같고 ..)
-{
-    if (pNPC->m_pShapeExtraRef) // 오브젝트 형태의 NPC 이면.. 컨트롤 할 NPC의 ID 가 있으면..
+    } else if (pNPC->IDNumber() == s_pPlayer->m_iIDTarget) // 타겟으로 찍은 캐릭터와 피킹한 캐릭터가 같고 ..)
     {
-        if (pNPC->m_pShapeExtraRef->m_iNPC_ID > 0) {
-            float fD = (s_pPlayer->Position() - pNPC->m_pShapeExtraRef->Pos()).Magnitude();
-            float fDLimit = (s_pPlayer->Radius() + pNPC->m_pShapeExtraRef->Radius()) * 2.0f;
-            if (fD > fDLimit) // 거리가 멀면
-            {
-                std::string szMsg;
-                ::_LoadStringFromResource(IDS_ERR_REQUEST_OBJECT_EVENT_SO_FAR, szMsg);
-                this->MsgOutput(szMsg, 0xffff8080);
-            } else {
-                this->MsgSend_ObjectEvent(pNPC->m_pShapeExtraRef->m_iEventID, pNPC->IDNumber());
-            }
-        }
-    } else // 보통 NPC 이면..
-    {
-        if (pNPC->m_InfoBase.eNation == s_pPlayer->m_InfoBase.eNation) // 같은 국가 일때만..
+        if (pNPC->m_pShapeExtraRef) // 오브젝트 형태의 NPC 이면.. 컨트롤 할 NPC의 ID 가 있으면..
         {
-            float fD = (s_pPlayer->Position() - pNPC->Position()).Magnitude();
-            float fDLimit = (s_pPlayer->Radius() + pNPC->Radius()) * 3.0f;
-            if (fD > fDLimit) // 거리가 멀면
+            if (pNPC->m_pShapeExtraRef->m_iNPC_ID > 0) {
+                float fD = (s_pPlayer->Position() - pNPC->m_pShapeExtraRef->Pos()).Magnitude();
+                float fDLimit = (s_pPlayer->Radius() + pNPC->m_pShapeExtraRef->Radius()) * 2.0f;
+                if (fD > fDLimit) // 거리가 멀면
+                {
+                    std::string szMsg;
+                    ::_LoadStringFromResource(IDS_ERR_REQUEST_OBJECT_EVENT_SO_FAR, szMsg);
+                    this->MsgOutput(szMsg, 0xffff8080);
+                } else {
+                    this->MsgSend_ObjectEvent(pNPC->m_pShapeExtraRef->m_iEventID, pNPC->IDNumber());
+                }
+            }
+        } else // 보통 NPC 이면..
+        {
+            if (pNPC->m_InfoBase.eNation == s_pPlayer->m_InfoBase.eNation) // 같은 국가 일때만..
             {
-                std::string szMsg;
-                ::_LoadStringFromResource(IDS_ERR_REQUEST_NPC_EVENT_SO_FAR, szMsg);
-                this->MsgOutput(szMsg, 0xffff8080);
-            } else {
-                s_pPlayer->ActionMove(PSM_STOP); // 일단 멈추고..
-                pNPC->RotateTo(s_pPlayer);       // 방향을 플레이어 쪽으로 돌린다.
-                this->MsgSend_NPCEvent(iID);     // 이벤트 요청..
-                if (m_pUITransactionDlg) {
-                    m_pUITransactionDlg->m_iNpcID = pNPC->IDNumber();
+                float fD = (s_pPlayer->Position() - pNPC->Position()).Magnitude();
+                float fDLimit = (s_pPlayer->Radius() + pNPC->Radius()) * 3.0f;
+                if (fD > fDLimit) // 거리가 멀면
+                {
+                    std::string szMsg;
+                    ::_LoadStringFromResource(IDS_ERR_REQUEST_NPC_EVENT_SO_FAR, szMsg);
+                    this->MsgOutput(szMsg, 0xffff8080);
+                } else {
+                    s_pPlayer->ActionMove(PSM_STOP); // 일단 멈추고..
+                    pNPC->RotateTo(s_pPlayer);       // 방향을 플레이어 쪽으로 돌린다.
+                    this->MsgSend_NPCEvent(iID);     // 이벤트 요청..
+                    if (m_pUITransactionDlg) {
+                        m_pUITransactionDlg->m_iNpcID = pNPC->IDNumber();
+                    }
                 }
             }
         }
     }
-}
-return true;
+    return true;
 }
 
 // 오른쪽 클릭업
 bool CGameProcMain::OnMouseRBtnPressd(POINT ptCur, POINT ptPrev) {
-return true;
+    return true;
 }
 
 // 오른쪽 눌리고 있을때
 bool CGameProcMain::OnMouseRbtnDown(POINT ptCur, POINT ptPrev) {
-float fMouseSensivity = 0.02f;
+    float fMouseSensivity = 0.02f;
 
-float fRotY = D3DX_PI * ((ptCur.x - ptPrev.x) * fMouseSensivity); // 회전할 양을 계산하고..
-float fRotX = D3DX_PI * ((ptCur.y - ptPrev.y) * fMouseSensivity);
-if (fRotY && s_pPlayer->IsAlive()) {
-    if (VP_THIRD_PERSON == s_pEng->ViewPoint()) {
-        s_pEng->CameraYawAdd(fRotY);
-    } else if (false == s_pPlayer->m_bStun) {
-        s_pPlayer->RotAdd(fRotY); // 기절해 있지 않을때만..
+    float fRotY = D3DX_PI * ((ptCur.x - ptPrev.x) * fMouseSensivity); // 회전할 양을 계산하고..
+    float fRotX = D3DX_PI * ((ptCur.y - ptPrev.y) * fMouseSensivity);
+    if (fRotY && s_pPlayer->IsAlive()) {
+        if (VP_THIRD_PERSON == s_pEng->ViewPoint()) {
+            s_pEng->CameraYawAdd(fRotY);
+        } else if (false == s_pPlayer->m_bStun) {
+            s_pPlayer->RotAdd(fRotY); // 기절해 있지 않을때만..
+        }
     }
-}
-if (fRotX) {
-    if (VP_THIRD_PERSON == s_pEng->ViewPoint()) {
-        s_pEng->CameraZoom(-fRotX); // 카메라 확대
-    } else {
-        s_pEng->CameraPitchAdd(fRotX); // 카메라 각도
+    if (fRotX) {
+        if (VP_THIRD_PERSON == s_pEng->ViewPoint()) {
+            s_pEng->CameraZoom(-fRotX); // 카메라 확대
+        } else {
+            s_pEng->CameraPitchAdd(fRotX); // 카메라 각도
+        }
     }
-}
 
-if (fRotY || fRotX) {
-    SetGameCursor(NULL);
-    POINT ptToScreen{ptPrev.x, ptPrev.y};
-    ::ClientToScreen(s_hWndBase, &ptToScreen);
-    ::SetCursorPos(ptToScreen.x, ptToScreen.y);
-    s_pLocalInput->MouseSetPos(ptPrev.x, ptPrev.y);
-}
-return true;
+    if (fRotY || fRotX) {
+        SetGameCursor(NULL);
+        POINT ptToScreen{ptPrev.x, ptPrev.y};
+        ::ClientToScreen(s_hWndBase, &ptToScreen);
+        ::SetCursorPos(ptToScreen.x, ptToScreen.y);
+        s_pLocalInput->MouseSetPos(ptPrev.x, ptPrev.y);
+    }
+    return true;
 }
 
 // 오른쪽 더블 클릭
 bool CGameProcMain::OnMouseRDBtnPress(POINT ptCur, POINT ptPrev) {
-if (s_pUIMgr->m_bDoneSomething) {
-    return false;
-}
+    if (s_pUIMgr->m_bDoneSomething) {
+        return false;
+    }
 
-//스킬 매직이 사용되었다면....
-m_pUIHotKeyDlg->EffectTriggerByMouse();
+    //스킬 매직이 사용되었다면....
+    m_pUIHotKeyDlg->EffectTriggerByMouse();
 
-return true;
+    return true;
 }
 
 void CGameProcMain::ProcessUIKeyInput(bool bEnable) {
-if (m_pUIChatDlg && !m_pUIChatDlg->IsChatMode()) {
-    CGameProcedure::ProcessUIKeyInput();
-    if (s_pLocalInput->IsKeyPress(DIK_RETURN) && !s_bKeyPress) {
-        m_pUIChatDlg->SetFocus();
+    if (m_pUIChatDlg && !m_pUIChatDlg->IsChatMode()) {
+        CGameProcedure::ProcessUIKeyInput();
+        if (s_pLocalInput->IsKeyPress(DIK_RETURN) && !s_bKeyPress) {
+            m_pUIChatDlg->SetFocus();
+        }
+    } else if (m_pUIChatDlg && m_pUIChatDlg->IsChatMode()) {
+        s_bKeyPress = false;
+        if (m_pUIChatDlg->GetEnableKillFocus()) {
+            m_pUIChatDlg->SetEnableKillFocus(false);
+            m_pUIChatDlg->KillFocus();
+        }
     }
-} else if (m_pUIChatDlg && m_pUIChatDlg->IsChatMode()) {
-    s_bKeyPress = false;
-    if (m_pUIChatDlg->GetEnableKillFocus()) {
-        m_pUIChatDlg->SetEnableKillFocus(false);
-        m_pUIChatDlg->KillFocus();
-    }
-}
 }
 
 void CGameProcMain::MsgSend_SpeedCheck(bool bInit) {
-BYTE  byBuff[10];                 // 버퍼..
-int   iOffset = 0;                // 옵셋..
-float fTime = CN3Base::TimeGet(); // 클라이언트 시간
+    BYTE  byBuff[10];                 // 버퍼..
+    int   iOffset = 0;                // 옵셋..
+    float fTime = CN3Base::TimeGet(); // 클라이언트 시간
 
-s_pSocket->MP_AddByte(byBuff, iOffset, N3_CHECK_SPEEDHACK); // 스피드핵 체크 패킷..
-s_pSocket->MP_AddByte(byBuff, iOffset, bInit);  // 서버가 기준 시간으로 쓸 타입 true 이면 기준시간 false면 체크타입
-s_pSocket->MP_AddFloat(byBuff, iOffset, fTime); // 클라이언트 시간
-s_pSocket->Send(byBuff, iOffset);               // 보냄..
+    s_pSocket->MP_AddByte(byBuff, iOffset, N3_CHECK_SPEEDHACK); // 스피드핵 체크 패킷..
+    s_pSocket->MP_AddByte(byBuff, iOffset, bInit);  // 서버가 기준 시간으로 쓸 타입 true 이면 기준시간 false면 체크타입
+    s_pSocket->MP_AddFloat(byBuff, iOffset, fTime); // 클라이언트 시간
+    s_pSocket->Send(byBuff, iOffset);               // 보냄..
 }
