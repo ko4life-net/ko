@@ -65,7 +65,8 @@ COptionDlg::COptionDlg(CWnd * pParent /*=NULL*/)
     // Note that LoadIcon does not require a subsequent DestroyIcon in Win32
     m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
-    m_Option.InitDefault(); // 옵션 초기화
+    m_Option.InitDefault(); // Init Default [GAME OPTIONS]
+    m_ServerOption.InitServerDefault(); // Init Default [Server.ini]
 }
 
 void COptionDlg::DoDataExchange(CDataExchange * pDX) {
@@ -133,61 +134,10 @@ BOOL COptionDlg::OnInitDialog() {
     iAdd = m_CB_ColorDepth.AddString("32 Bit");
     m_CB_ColorDepth.SetItemData(iAdd, 32);
 
-    // 레지스트리에서 설치된 폴더를 읽어온다..
-    CString szProduct, szKey = "SOFTWARE\\";
-    szProduct.LoadString(IDS_PRODUCT);
-    szKey += szProduct;
-
-    HKEY hRegKey = NULL;
-    long lStatus = RegOpenKey(HKEY_CURRENT_USER, szKey, &hRegKey);
-    if (ERROR_SUCCESS != lStatus) {
-        CString szErr;
-        szErr.LoadString(IDS_ERR_REGISTRY_OPEN);
-        MessageBox(szErr);
-        exit(-1);
-    }
-
-    DWORD dwType = REG_SZ;
-    DWORD dwBytes = 0;
-    char  szBuff[256] = "";
-
-    // 실행 파일 경로
-    dwType = REG_SZ;
-    dwBytes = 256;
-    lStatus = RegQueryValueEx(hRegKey, "PATH", NULL, &dwType, (BYTE *)szBuff, &dwBytes); // 인스톨 경로
-    if (ERROR_SUCCESS != lStatus) {
-        CString szErr;
-        szErr.LoadString(IDS_ERR_REGISTRY_READ_PATH);
-        MessageBox(szErr);
-        exit(-1);
-    }
-    m_szInstalledPath = szBuff;
-
-    // 실행 파일 이름
-    //    dwType = REG_SZ; dwBytes = 256;
-    //    lStatus = RegQueryValueEx(hRegKey, "EXE", NULL, &dwType, (BYTE*)szBuff, &dwBytes); // 실행파일 이름
-    //    if(ERROR_SUCCESS != lStatus) { CString szErr; szErr.LoadString(IDS_ERR_REGISTRY_READ_EXE); MessageBox(szErr); exit(-1); }
-    //    m_szExeName = szBuff;
-    m_szExeName = "Launcher.exe";
-
-    // Version 표시
-    DWORD dwVersion = 0;
-    dwType = REG_DWORD;
-    dwBytes = 4;
-    lStatus = RegQueryValueEx(hRegKey, "VERSION", NULL, &dwType, (BYTE *)(&dwVersion), &dwBytes); // 버전
-    if (ERROR_SUCCESS != lStatus) {
-        CString szErr;
-        szErr.LoadString(IDS_ERR_REGISTRY_READ_VERSION);
-        MessageBox(szErr);
-        exit(-1);
-    }
-    SetDlgItemInt(IDC_E_VERSION, dwVersion);
-
-    RegCloseKey(hRegKey);
-    hRegKey = NULL;
-
-    // 세팅을 읽어온다..
-    this->SettingLoad(m_szInstalledPath + "\\Option.ini");
+    // Loading all from ini
+    this->SettingLoad("Option.ini");
+    this->SettingServerLoad("Server.ini");
+    // Setting all from ini
     this->SettingUpdate();
 
     return TRUE; // return TRUE  unless you set the focus to a control
@@ -234,14 +184,15 @@ HCURSOR COptionDlg::OnQueryDragIcon() {
 }
 
 void COptionDlg::OnOK() {
-    this->SettingSave(m_szInstalledPath + "\\Option.ini");
-
+    this->SettingSave("Option.ini");
+    this->SettingServerSave("Server.ini");
+    MessageBox("Settings saved successfully");
     CDialog::OnOK();
 }
 
 void COptionDlg::OnBApplyAndExecute() {
-    CString szExeFN = m_szInstalledPath + "\\" + m_szExeName;                  // 실행 파일 이름 만들고..
-    ShellExecute(NULL, "open", szExeFN, "", m_szInstalledPath, SW_SHOWNORMAL); // 게임 실행..
+    CString szExeFN =  m_szExeName;                  // Find Exe
+    ShellExecute(NULL, "open", szExeFN, "", "", SW_SHOWNORMAL); // Open Launcher
 
     this->OnOK();
 }
@@ -253,14 +204,12 @@ void COptionDlg::SettingSave(CString szIniFile) {
 
     char szIniPath[_MAX_PATH] = "";
 
-    if (szIniFile.Find(":")) {
-        lstrcpy(szIniPath, szIniFile);
-    } else {
-        ::GetCurrentDirectory(_MAX_PATH, szIniPath);
-        lstrcat(szIniPath, szIniFile);
-    }
+    GetCurrentDirectory(_MAX_PATH, szIniPath);
+    lstrcat(szIniPath, "\\");
+    lstrcat(szIniPath, szIniFile);
 
     CString szBuff;
+
 
     if (IsDlgButtonChecked(IDC_R_TEX_CHR_HIGH)) {
         m_Option.iTexLOD_Chr = 0;
@@ -368,15 +317,10 @@ void COptionDlg::SettingLoad(CString szIniFile) {
         return;
     }
 
-    char szIniPath[_MAX_PATH] = "";
-
-    if (szIniFile.Find(":")) {
-        lstrcpy(szIniPath, szIniFile);
-    } else {
-        ::GetCurrentDirectory(_MAX_PATH, szIniPath);
-        lstrcat(szIniPath, "\\");
-        lstrcat(szIniPath, szIniFile);
-    }
+   char szIniPath[_MAX_PATH] = "";
+    GetCurrentDirectory(_MAX_PATH, szIniPath);
+    lstrcat(szIniPath, "\\");
+    lstrcat(szIniPath, szIniFile);
 
     m_Option.iTexLOD_Chr = GetPrivateProfileInt("Texture", "LOD_Chr", 0, szIniPath);
     m_Option.iTexLOD_Shape = GetPrivateProfileInt("Texture", "LOD_Shape", 0, szIniPath);
@@ -395,7 +339,33 @@ void COptionDlg::SettingLoad(CString szIniFile) {
     int iWindowCursor = GetPrivateProfileInt("Cursor", "WindowCursor", 1, szIniPath);
     m_Option.bWindowCursor = (iWindowCursor) ? true : false;
 }
+void COptionDlg::SettingServerLoad(CString szIniFile) {
+    if (szIniFile.GetLength() <= 0) {
+        return;
+    }
 
+    char szIniPath[_MAX_PATH] = "";
+    GetCurrentDirectory(_MAX_PATH, szIniPath);
+    lstrcat(szIniPath, "\\");
+    lstrcat(szIniPath, szIniFile);
+
+    m_ServerOption.Version = GetPrivateProfileInt("Version", "Files", 1298, szIniPath);
+}
+void COptionDlg::SettingServerSave(CString szIniFile) {
+    if (szIniFile.GetLength() <= 0) {
+        return;
+    }
+
+    char szIniPath[_MAX_PATH] = "";
+
+    GetCurrentDirectory(_MAX_PATH, szIniPath);
+    lstrcat(szIniPath, "\\");
+    lstrcat(szIniPath, szIniFile);
+
+    CString szBuff;
+
+    szBuff.Format("%d", m_ServerOption.Version); WritePrivateProfileString("Version", "Files", szBuff, szIniPath);
+}
 void COptionDlg::SettingUpdate() {
     if (m_Option.iTexLOD_Chr) {
         CheckRadioButton(IDC_R_TEX_CHR_HIGH, IDC_R_TEX_CHR_LOW, IDC_R_TEX_CHR_LOW);
@@ -416,6 +386,8 @@ void COptionDlg::SettingUpdate() {
     }
 
     CheckDlgButton(IDC_C_SHADOW, m_Option.iUseShadow);
+
+    SetDlgItemInt(IDC_E_VERSION, m_ServerOption.Version);
 
     int iSel = 0;
     if (1024 == m_Option.iViewWidth) {
@@ -457,27 +429,21 @@ void COptionDlg::OnBVersion() {
     CString szMsg;
     szMsg.LoadString(IDS_CONFIRM_WRITE_REGISRY);
     if (IDNO == MessageBox(szMsg, "", MB_YESNO)) {
-        return; // 한번 물어본다..
+        return; 
     }
+    int dwVersion = GetDlgItemInt(IDC_E_VERSION);
+    this->VersionUpdate("Server.ini", dwVersion);
+}
 
-    // 레지스트리에서 설치된 폴더를 읽어온다..
-    CString szProduct, szKey = "SOFTWARE\\";
-    szProduct.LoadString(IDS_PRODUCT);
-    szKey += szProduct;
+void COptionDlg::VersionUpdate(CString szIniFile, int Version) {
+    char szIniPath[_MAX_PATH] = "";
 
-    HKEY hRegKey = NULL;
-    long lStatus = RegOpenKey(HKEY_CURRENT_USER, szKey, &hRegKey);
+    GetCurrentDirectory(_MAX_PATH, szIniPath);
+    lstrcat(szIniPath, "\\");
+    lstrcat(szIniPath, szIniFile);
 
-    if (ERROR_SUCCESS == lStatus) {
-        DWORD dwVersion = GetDlgItemInt(IDC_E_VERSION);
-        DWORD dwType = REG_DWORD, dwBytes = 4;
-        lStatus = RegSetValueEx(hRegKey, "VERSION", NULL, dwType, (BYTE *)(&dwVersion), 4); // 버전
-        if (ERROR_SUCCESS != lStatus) {
-            CString szErr;
-            szErr.LoadString(IDS_ERR_REGISTRY_WRITE_VERSION);
-            MessageBox(szErr);
-        }
-
-        RegCloseKey(hRegKey);
-    }
+    CString szBuff;
+    m_ServerOption.Version = Version;
+    szBuff.Format("%d", m_ServerOption.Version);
+    WritePrivateProfileString("Version", "Files", szBuff, szIniPath);
 }

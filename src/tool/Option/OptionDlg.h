@@ -6,18 +6,18 @@
 /////////////////////////////////////////////////////////////////////////////
 // COptionDlg dialog
 struct __GameOption {
-    int  iTexLOD_Chr;     // Texture LOD
-    int  iTexLOD_Shape;   // Texture LOD
-    int  iTexLOD_Terrain; // Texture LOD
-    int  iUseShadow;      // 그림자 사용 0 사용안함 1 사용
-    int  iViewDist;       // 가시거리..
-    int  iViewWidth;      // 화면 길이
-    int  iViewHeight;     // 화면 너비
-    int  iViewColorDepth; // 색상수..
-    int  iEffectSndDist;  // 이펙트 사운드 거리
-    bool bSndDuplicated;  // 중복된 음원 사용
-    bool bSoundEnable;    // 사운드 사용
-    bool bWindowCursor;   // 윈도우 커서 사용
+    int  iTexLOD_Chr;     // Texture Chr 0 = HIGH 1 = LOW (Its orginal in 1298)
+    int  iTexLOD_Shape;   // Texture Shape 0 = HIGH 1 = LOW
+    int  iTexLOD_Terrain; // Texture Terrain 0 = HIGH 1 = LOW
+    int  iUseShadow;      // On Shadow 1/Off Shadow 0
+    int  iViewDist;       // Visibility range 
+    int  iViewWidth;      // Width of desktop 
+    int  iViewHeight;     // Height of desktop
+    int  iViewColorDepth; // 16/32 BIT.
+    int  iEffectSndDist;  // Sound Distance
+    bool bSndDuplicated;  // Duplicated Sound
+    bool bSoundEnable;    // Enabled/Disabled Sound
+    bool bWindowCursor;   // Enbaled/Disabled Window Cursor button
 
     void InitDefault() {
         iUseShadow = true;
@@ -36,18 +36,28 @@ struct __GameOption {
 
     __GameOption() { InitDefault(); }
 };
-
+struct __ServerOption {
+    int Version;
+    void InitServerDefault() { 
+        Version = 1298;
+    }
+    __ServerOption() { InitServerDefault(); }
+};
 class COptionDlg : public CDialog {
   protected:
     CString      m_szInstalledPath;
     CString      m_szExeName;
     __GameOption m_Option;
+    __ServerOption m_ServerOption;
 
     // Construction
   public:
     void SettingUpdate();
     void SettingLoad(CString szIniFile);
+    void SettingServerLoad(CString szIniFile);
     void SettingSave(CString szIniFile);
+    void SettingServerSave(CString szIniFile);
+    void VersionUpdate(CString szIniFile, int Version);
     COptionDlg(CWnd * pParent = NULL); // standard constructor
 
     // Dialog Data
