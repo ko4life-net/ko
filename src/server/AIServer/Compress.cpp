@@ -103,7 +103,7 @@ UINT ReadBuffer(PCHAR buffer, UINT * iSize, void * pParam) {
     }
 
     if (pCM->Mode == COMPRESSING) {
-        pCM->dwCrc = crc32(buffer, &iRead, &pCM->dwCrc);
+        pCM->dwCrc = crc32pk(buffer, &iRead, &pCM->dwCrc);
     }
 
     return iRead;
@@ -149,7 +149,7 @@ void WriteBuffer(PCHAR buffer, UINT * iSize, void * pParam) {
     }
 
     if (pCM->Mode == UNCOMPRESSING) {
-        pCM->dwCrc = crc32(buffer, iSize, &pCM->dwCrc);
+        pCM->dwCrc = crc32pk(buffer, iSize, &pCM->dwCrc);
     }
 
     return;

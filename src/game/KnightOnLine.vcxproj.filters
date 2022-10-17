@@ -631,6 +631,9 @@
     <ClInclude Include="..\common\JvCryption.h">
       <Filter>Network</Filter>
     </ClInclude>
+    <ClInclude Include="..\common\Implode.h">
+      <Filter>Network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\Resource.rc">
@@ -1134,6 +1137,9 @@
       <Filter>Procedure - Main\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\common\JvCryption.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\Implode.cpp">
       <Filter>Network</Filter>
     </ClCompile>
   </ItemGroup>
