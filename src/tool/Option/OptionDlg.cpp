@@ -198,18 +198,7 @@ void COptionDlg::OnBApplyAndExecute() {
 }
 
 void COptionDlg::SettingSave(CString szIniFile) {
-    if (szIniFile.GetLength() <= 0) {
-        return;
-    }
-
-    char szIniPath[_MAX_PATH] = "";
-
-    GetCurrentDirectory(_MAX_PATH, szIniPath);
-    lstrcat(szIniPath, "\\");
-    lstrcat(szIniPath, szIniFile);
-
     CString szBuff;
-
 
     if (IsDlgButtonChecked(IDC_R_TEX_CHR_HIGH)) {
         m_Option.iTexLOD_Chr = 0;
@@ -279,92 +268,63 @@ void COptionDlg::SettingSave(CString szIniFile) {
     } else if (m_Option.iEffectSndDist > 48) {
         m_Option.iEffectSndDist = 48;
     }
-
     szBuff.Format("%d", m_Option.iTexLOD_Chr);
-    WritePrivateProfileString("Texture", "LOD_Chr", szBuff, szIniPath);
+    WritePrivateProfileString("Texture", "LOD_Chr", szBuff, szIniFile);
     szBuff.Format("%d", m_Option.iTexLOD_Shape);
-    WritePrivateProfileString("Texture", "LOD_Shape", szBuff, szIniPath);
+    WritePrivateProfileString("Texture", "LOD_Shape", szBuff, szIniFile);
     szBuff.Format("%d", m_Option.iTexLOD_Terrain);
-    WritePrivateProfileString("Texture", "LOD_Terrain", szBuff, szIniPath);
+    WritePrivateProfileString("Texture", "LOD_Terrain", szBuff, szIniFile);
     szBuff.Format("%d", m_Option.iUseShadow);
-    WritePrivateProfileString("Shadow", "Use", szBuff, szIniPath);
+    WritePrivateProfileString("Shadow", "Use", szBuff, szIniFile);
     szBuff.Format("%d", m_Option.iViewWidth);
-    WritePrivateProfileString("ViewPort", "Width", szBuff, szIniPath);
+    WritePrivateProfileString("ViewPort", "Width", szBuff, szIniFile);
     szBuff.Format("%d", m_Option.iViewHeight);
-    WritePrivateProfileString("ViewPort", "Height", szBuff, szIniPath);
+    WritePrivateProfileString("ViewPort", "Height", szBuff, szIniFile);
     szBuff.Format("%d", m_Option.iViewColorDepth);
-    WritePrivateProfileString("ViewPort", "ColorDepth", szBuff, szIniPath);
+    WritePrivateProfileString("ViewPort", "ColorDepth", szBuff, szIniFile);
     szBuff.Format("%d", m_Option.iViewDist);
-    WritePrivateProfileString("ViewPort", "Distance", szBuff, szIniPath);
+    WritePrivateProfileString("ViewPort", "Distance", szBuff, szIniFile);
     szBuff.Format("%d", m_Option.iEffectSndDist);
-    WritePrivateProfileString("Sound", "Distance", szBuff, szIniPath);
+    WritePrivateProfileString("Sound", "Distance", szBuff, szIniFile);
 
     m_Option.bSoundEnable = (IsDlgButtonChecked(IDC_C_SOUND_ENABLE)) ? true : false;
     m_Option.bSoundEnable ? szBuff = "1" : szBuff = "0";
-    WritePrivateProfileString("Sound", "Enable", szBuff, szIniPath);
+    WritePrivateProfileString("Sound", "Enable", szBuff, szIniFile);
 
     m_Option.bSndDuplicated = (IsDlgButtonChecked(IDC_C_SOUND_DUPLICATE)) ? true : false;
     m_Option.bSndDuplicated ? szBuff = "1" : szBuff = "0";
-    WritePrivateProfileString("Sound", "Duplicate", szBuff, szIniPath);
+    WritePrivateProfileString("Sound", "Duplicate", szBuff, szIniFile);
 
     m_Option.bWindowCursor = (IsDlgButtonChecked(IDC_C_CURSOR_WINDOW)) ? true : false;
     m_Option.bWindowCursor ? szBuff = "1" : szBuff = "0";
-    WritePrivateProfileString("Cursor", "WindowCursor", szBuff, szIniPath);
+    WritePrivateProfileString("Cursor", "WindowCursor", szBuff, szIniFile);
 }
 
 void COptionDlg::SettingLoad(CString szIniFile) {
-    if (szIniFile.GetLength() <= 0) {
-        return;
-    }
+    m_Option.iTexLOD_Chr = GetPrivateProfileInt("Texture", "LOD_Chr", 0, szIniFile);
+    m_Option.iTexLOD_Shape = GetPrivateProfileInt("Texture", "LOD_Shape", 0, szIniFile);
+    m_Option.iTexLOD_Terrain = GetPrivateProfileInt("Texture", "LOD_Terrain", 0, szIniFile);
+    m_Option.iUseShadow = GetPrivateProfileInt("Shadow", "Use", 1, szIniFile);
+    m_Option.iViewWidth = GetPrivateProfileInt("ViewPort", "Width", 1024, szIniFile);
+    m_Option.iViewHeight = GetPrivateProfileInt("ViewPort", "Height", 768, szIniFile);
+    m_Option.iViewColorDepth = GetPrivateProfileInt("ViewPort", "ColorDepth", 16, szIniFile);
+    m_Option.iViewDist = GetPrivateProfileInt("ViewPort", "Distance", 512, szIniFile);
+    m_Option.iEffectSndDist = GetPrivateProfileInt("Sound", "Distance", 48, szIniFile);
 
-   char szIniPath[_MAX_PATH] = "";
-    GetCurrentDirectory(_MAX_PATH, szIniPath);
-    lstrcat(szIniPath, "\\");
-    lstrcat(szIniPath, szIniFile);
-
-    m_Option.iTexLOD_Chr = GetPrivateProfileInt("Texture", "LOD_Chr", 0, szIniPath);
-    m_Option.iTexLOD_Shape = GetPrivateProfileInt("Texture", "LOD_Shape", 0, szIniPath);
-    m_Option.iTexLOD_Terrain = GetPrivateProfileInt("Texture", "LOD_Terrain", 0, szIniPath);
-    m_Option.iUseShadow = GetPrivateProfileInt("Shadow", "Use", 1, szIniPath);
-    m_Option.iViewWidth = GetPrivateProfileInt("ViewPort", "Width", 1024, szIniPath);
-    m_Option.iViewHeight = GetPrivateProfileInt("ViewPort", "Height", 768, szIniPath);
-    m_Option.iViewColorDepth = GetPrivateProfileInt("ViewPort", "ColorDepth", 16, szIniPath);
-    m_Option.iViewDist = GetPrivateProfileInt("ViewPort", "Distance", 512, szIniPath);
-    m_Option.iEffectSndDist = GetPrivateProfileInt("Sound", "Distance", 48, szIniPath);
-
-    int iSndEnable = GetPrivateProfileInt("Sound", "Enable", 1, szIniPath);
+    int iSndEnable = GetPrivateProfileInt("Sound", "Enable", 1, szIniFile);
     m_Option.bSoundEnable = (iSndEnable) ? true : false;
-    int iSndDuplicate = GetPrivateProfileInt("Sound", "Duplicate", 0, szIniPath);
+    int iSndDuplicate = GetPrivateProfileInt("Sound", "Duplicate", 0, szIniFile);
     m_Option.bSndDuplicated = (iSndDuplicate) ? true : false;
-    int iWindowCursor = GetPrivateProfileInt("Cursor", "WindowCursor", 1, szIniPath);
+    int iWindowCursor = GetPrivateProfileInt("Cursor", "WindowCursor", 1, szIniFile);
     m_Option.bWindowCursor = (iWindowCursor) ? true : false;
 }
 void COptionDlg::SettingServerLoad(CString szIniFile) {
-    if (szIniFile.GetLength() <= 0) {
-        return;
-    }
-
-    char szIniPath[_MAX_PATH] = "";
-    GetCurrentDirectory(_MAX_PATH, szIniPath);
-    lstrcat(szIniPath, "\\");
-    lstrcat(szIniPath, szIniFile);
-
-    m_ServerOption.Version = GetPrivateProfileInt("Version", "Files", 1298, szIniPath);
+    m_ServerOption.Version = GetPrivateProfileInt("Version", "Files", 1264, szIniFile);
 }
 void COptionDlg::SettingServerSave(CString szIniFile) {
-    if (szIniFile.GetLength() <= 0) {
-        return;
-    }
-
-    char szIniPath[_MAX_PATH] = "";
-
-    GetCurrentDirectory(_MAX_PATH, szIniPath);
-    lstrcat(szIniPath, "\\");
-    lstrcat(szIniPath, szIniFile);
-
     CString szBuff;
-
-    szBuff.Format("%d", m_ServerOption.Version); WritePrivateProfileString("Version", "Files", szBuff, szIniPath);
+    szBuff.Format("%d", m_ServerOption.Version);
+    WritePrivateProfileString("Version", "Files", szBuff, szIniFile);
 }
 void COptionDlg::SettingUpdate() {
     if (m_Option.iTexLOD_Chr) {
@@ -436,14 +396,8 @@ void COptionDlg::OnBVersion() {
 }
 
 void COptionDlg::VersionUpdate(CString szIniFile, int Version) {
-    char szIniPath[_MAX_PATH] = "";
-
-    GetCurrentDirectory(_MAX_PATH, szIniPath);
-    lstrcat(szIniPath, "\\");
-    lstrcat(szIniPath, szIniFile);
-
     CString szBuff;
     m_ServerOption.Version = Version;
     szBuff.Format("%d", m_ServerOption.Version);
-    WritePrivateProfileString("Version", "Files", szBuff, szIniPath);
+    WritePrivateProfileString("Version", "Files", szBuff, szIniFile);
 }
