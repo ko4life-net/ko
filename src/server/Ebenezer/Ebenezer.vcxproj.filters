@@ -144,6 +144,9 @@
     <ClCompile Include="..\..\common\JvCryption.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\common\Implode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AIPacket.h">
@@ -192,9 +195,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HomeSet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IMPLODE.H">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Ini.h">
@@ -300,6 +300,9 @@
       <Filter>N3Base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\common\JvCryption.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\Implode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

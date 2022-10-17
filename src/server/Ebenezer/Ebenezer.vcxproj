@@ -67,9 +67,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>implode.lib;d3d9.lib;d3dx9.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <IgnoreSpecificDefaultLibraries>libc.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalLibraryDirectories>$(VendorDir)\DXSDK9\Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SrcDir)\common;$(VendorDir)\DXSDK9\Lib\x86</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
@@ -102,10 +101,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>implode.lib;d3d9.lib;d3dx9.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <IgnoreSpecificDefaultLibraries>libc.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalLibraryDirectories>$(VendorDir)\DXSDK9\Lib\x86</AdditionalLibraryDirectories>
-      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SrcDir)\common;$(VendorDir)\DXSDK9\Lib\x86</AdditionalLibraryDirectories>
       <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
@@ -122,6 +119,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\common\Implode.cpp" />
     <ClCompile Include="..\..\common\JvCryption.cpp" />
     <ClCompile Include="AISocket.cpp" />
     <ClCompile Include="BattleSet.cpp" />
@@ -169,6 +167,7 @@
     <ClCompile Include="ZoneInfoSet.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\common\Implode.h" />
     <ClInclude Include="..\..\common\JvCryption.h" />
     <ClInclude Include="AIPacket.h" />
     <ClInclude Include="AISocket.h" />
@@ -186,7 +185,6 @@
     <ClInclude Include="GameDefine.h" />
     <ClInclude Include="GameEvent.h" />
     <ClInclude Include="HomeSet.h" />
-    <ClInclude Include="IMPLODE.H" />
     <ClInclude Include="Ini.h" />
     <ClInclude Include="IOCPort.h" />
     <ClInclude Include="IOCPSocket2.h" />

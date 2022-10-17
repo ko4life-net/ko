@@ -137,6 +137,9 @@
     <ClCompile Include="N3BASE\N3ShapeMgr.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\common\Implode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircularBuffer.h">
@@ -155,9 +158,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="global.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IMPLODE.H">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Ini.h">
@@ -282,6 +282,9 @@
     </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\Implode.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
