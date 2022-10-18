@@ -4480,6 +4480,10 @@ bool CGameProcMain::CommandToggleUIInventory() {
         return bNeedOpen;
     }
 
+    if (m_pUINotice->IsVisible()) {
+        m_pUINotice->Close();
+    }
+
     if (m_pUIInventory->IsVisible()) {
         m_pUIInventory->Close(true);
         return bNeedOpen;
@@ -4514,11 +4518,44 @@ bool CGameProcMain::CommandToggleUISkillTree() {
         if (m_pUIWareHouseDlg->IsVisible()) {
             m_pUIWareHouseDlg->LeaveWareHouseState();
         }
+        if (m_pUINotice->IsVisible()) {
+            m_pUINotice->Close();
+        }
 
         s_pUIMgr->SetFocusedUI(m_pUISkillTreeDlg);
         m_pUISkillTreeDlg->Open();
     } else {
         m_pUISkillTreeDlg->Close();
+    }
+
+    return bNeedOpen;
+}
+
+bool CGameProcMain::CommandToggleUINotice() {
+    bool bNeedOpen = !(m_pUINotice->IsVisible());
+
+    if (m_pSubProcPerTrade->m_ePerTradeState != PER_TRADE_STATE_NONE) {
+        return bNeedOpen;
+    }
+
+    if (bNeedOpen) {
+        if (m_pUIInventory->IsVisible()) {
+            m_pUIInventory->Close();
+        }
+        if (m_pUITransactionDlg->IsVisible()) {
+            m_pUITransactionDlg->LeaveTransactionState();
+        }
+        if (m_pUIWareHouseDlg->IsVisible()) {
+            m_pUIWareHouseDlg->LeaveWareHouseState();
+        }
+        if (m_pUISkillTreeDlg->IsVisible()) {
+            m_pUISkillTreeDlg->Close();
+        }
+
+        s_pUIMgr->SetFocusedUI(m_pUINotice);
+        m_pUINotice->Open();
+    } else {
+        m_pUINotice->Close();
     }
 
     return bNeedOpen;
@@ -4696,22 +4733,37 @@ void CGameProcMain::MsgRecv_Notice(DataPack * pDataPack, int & iOffset) {
         m_pUINotice->RemoveNotice();
     }
 
+    bool bStrContainHashSymbol = false;
+
     int iNoticeCount = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
     for (int i = 0; i < iNoticeCount; i++) {
         int iStrLen = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+
         if (iStrLen <= 0) {
             continue;
         }
 
         std::string szNotice;
         CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szNotice, iStrLen);
+
         if (m_pUINotice) {
-            m_pUINotice->m_Texts.push_back(szNotice);
+            char lastCharacter = szNotice.back();
+
+            if (!bStrContainHashSymbol && lastCharacter != '#') { // EventText not found -> Add to NoticeText
+                m_pUINotice->m_TextsNotices.push_back(szNotice);
+            } else if (!bStrContainHashSymbol &&
+                       lastCharacter == '#') { // Last character is # -> Add to NoticeText -> Next line is EventText
+                bStrContainHashSymbol = true;
+                m_pUINotice->m_TextsNotices.push_back(szNotice.substr(0, szNotice.length() - 1));
+            } else if (bStrContainHashSymbol) { // Add text to EventText
+                m_pUINotice->m_Texts.push_back(szNotice);
+            }
         }
     }
 
     if (m_pUINotice && iNoticeCount > 0) {
         m_pUINotice->GenerateText();
+        m_pUINotice->TipOfTheDay();
 
         RECT rc = m_pUINotice->GetRegion();
         int  x = (CN3Base::s_CameraData.vp.Width - (rc.right - rc.left));
