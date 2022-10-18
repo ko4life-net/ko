@@ -32,6 +32,11 @@
 #define IDC_C_SOUND_DUPLICATE          1015
 #define IDC_SLD_SOUND_DISTANCE         1016
 #define IDC_C_CURSOR_WINDOW            1017
+#define IDC_SLD_EFFECT_COUNT           1018
+#define IDC_C_WINDOW_MODE              1019
+#define IDC_C_WEAPON_EFFECT            1020
+#define IDC_C_BACKGROUND_MUSIC         1032
+#define IDC_C_SOUND_EFFECT             1033
 
 // Next default values for new objects
 //
