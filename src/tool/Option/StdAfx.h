@@ -17,3 +17,8 @@
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
+
+#include <string>
+#include <filesystem>
+
+namespace fs = std::filesystem;

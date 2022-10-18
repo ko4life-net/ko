@@ -15,12 +15,16 @@ struct __GameOption {
     int  iViewHeight;     // Height of desktop
     int  iViewColorDepth; // 16/32 BIT.
     int  iEffectSndDist;  // Sound Distance
+    int  iEffectCount;    // Effect count to render
     bool bSndDuplicated;  // Duplicated Sound
-    bool bSoundEnable;    // Enabled/Disabled Sound
+    bool bSndBackground;  // Enabled/Disabled background music
+    bool bSndEffect;      // Enabled/Disabled Sound effects
     bool bWindowCursor;   // Enbaled/Disabled Window Cursor button
+    bool bWindowMode;     // Enabled/Disabled window mode
+    bool bWeaponEffect;   // Enabled/Disabled weapon effects
 
     void InitDefault() {
-        iUseShadow = true;
+        iUseShadow = 1;
         iTexLOD_Chr = 0;
         iTexLOD_Shape = 0;
         iTexLOD_Terrain = 0;
@@ -29,33 +33,37 @@ struct __GameOption {
         iViewHeight = 768;
         iViewDist = 512;
         iEffectSndDist = 48;
+        iEffectCount = 2000;
         bSndDuplicated = false;
-        bSoundEnable = true;
+        bSndBackground = true;
+        bSndEffect = true;
         bWindowCursor = true;
+        bWindowMode = false;
+        bWeaponEffect = true;
     }
 
     __GameOption() { InitDefault(); }
 };
+
 struct __ServerOption {
     int  Version;
-    void InitServerDefault() { Version = 1298; }
+    void InitServerDefault() { Version = 1264; }
     __ServerOption() { InitServerDefault(); }
 };
+
 class COptionDlg : public CDialog {
   protected:
-    CString        m_szInstalledPath;
-    CString        m_szExeName;
     __GameOption   m_Option;
     __ServerOption m_ServerOption;
 
     // Construction
   public:
     void SettingUpdate();
-    void SettingLoad(CString szIniFile);
-    void SettingServerLoad(CString szIniFile);
-    void SettingSave(CString szIniFile);
-    void SettingServerSave(CString szIniFile);
-    void VersionUpdate(CString szIniFile, int Version);
+    void SettingLoad(const std::string & szIniFile);
+    void SettingServerLoad(const std::string & szIniFile);
+    void SettingSave(const std::string & szIniFile);
+    void SettingServerSave(const std::string & szIniFile);
+    void VersionUpdate(const std::string & szIniFile, int Version);
     COptionDlg(CWnd * pParent = NULL); // standard constructor
 
     // Dialog Data
@@ -63,6 +71,7 @@ class COptionDlg : public CDialog {
     enum {
         IDD = IDD_OPTION_DIALOG
     };
+    CSliderCtrl m_SldEffectCount;
     CSliderCtrl m_SldEffectSoundDist;
     CComboBox   m_CB_ColorDepth;
     CComboBox   m_CB_Resolution;
