@@ -3884,11 +3884,9 @@ void CGameProcMain::InitUI() {
     m_pUILevelGuide->Init(s_pUIMgr);
     m_pUILevelGuide->LoadFromFile(pTbl->szLevelGuide);
     m_pUILevelGuide->SetVisibleWithNoSound(false);
-    m_pUILevelGuide->SetStyle(UISTYLE_USER_MOVE_HIDE);
+    m_pUILevelGuide->SetStyle(UISTYLE_HIDE_UNABLE | UISTYLE_POS_RIGHT);
     rc = m_pUILevelGuide->GetRegion();
-    iX = (iW - (rc.right - rc.left)) / 2;
-    iY = (iH - (rc.bottom - rc.top)) / 2;
-    m_pUILevelGuide->SetPos(iX, iY);
+    m_pUILevelGuide->SetPos(iW - (rc.right - rc.left), 10);
 
     // dead ui
     m_pUIDead->Init(s_pUIMgr);
@@ -4484,6 +4482,10 @@ bool CGameProcMain::CommandToggleUIInventory() {
         m_pUINotice->Close();
     }
 
+    if (m_pUILevelGuide->IsVisible()) {
+        m_pUILevelGuide->SetVisible(false);
+    }
+
     if (m_pUIInventory->IsVisible()) {
         m_pUIInventory->Close(true);
         return bNeedOpen;
@@ -4521,6 +4523,9 @@ bool CGameProcMain::CommandToggleUISkillTree() {
         if (m_pUINotice->IsVisible()) {
             m_pUINotice->Close();
         }
+        if (m_pUILevelGuide->IsVisible()) {
+            m_pUILevelGuide->SetVisible(false);
+        }
 
         s_pUIMgr->SetFocusedUI(m_pUISkillTreeDlg);
         m_pUISkillTreeDlg->Open();
@@ -4551,11 +4556,47 @@ bool CGameProcMain::CommandToggleUINotice() {
         if (m_pUISkillTreeDlg->IsVisible()) {
             m_pUISkillTreeDlg->Close();
         }
+        if (m_pUILevelGuide->IsVisible()) {
+            m_pUILevelGuide->SetVisible(false);
+        }
 
         s_pUIMgr->SetFocusedUI(m_pUINotice);
         m_pUINotice->Open();
     } else {
         m_pUINotice->Close();
+    }
+
+    return bNeedOpen;
+}
+
+bool CGameProcMain::CommandToggleUILevelGuide() {
+    bool bNeedOpen = !(m_pUILevelGuide->IsVisible());
+
+    if (m_pSubProcPerTrade->m_ePerTradeState != PER_TRADE_STATE_NONE) {
+        return bNeedOpen;
+    }
+
+    if (bNeedOpen) {
+        if (m_pUIInventory->IsVisible()) {
+            m_pUIInventory->Close();
+        }
+        if (m_pUITransactionDlg->IsVisible()) {
+            m_pUITransactionDlg->LeaveTransactionState();
+        }
+        if (m_pUIWareHouseDlg->IsVisible()) {
+            m_pUIWareHouseDlg->LeaveWareHouseState();
+        }
+        if (m_pUISkillTreeDlg->IsVisible()) {
+            m_pUISkillTreeDlg->Close();
+        }
+        if (m_pUINotice->IsVisible()) {
+            m_pUINotice->SetVisible(false);
+        }
+
+        s_pUIMgr->SetFocusedUI(m_pUILevelGuide);
+        m_pUILevelGuide->Open();
+    } else {
+        m_pUILevelGuide->SetVisible(false);
     }
 
     return bNeedOpen;

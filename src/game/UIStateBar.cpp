@@ -648,7 +648,7 @@ bool CUIStateBar::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     } else if (dwMsg == UIMSG_BUTTON_CLICK) {
         if (pSender == (CN3UIBase *)m_pBtn_Quest) {
             if (CGameProcedure::s_pProcMain->m_pUILevelGuide) {
-                CGameProcedure::s_pProcMain->m_pUILevelGuide->SetVisible(true);
+                CGameProcedure::s_pProcMain->CommandToggleUILevelGuide();
             }
             m_bQuestButtonClicked = true;
             return true;
