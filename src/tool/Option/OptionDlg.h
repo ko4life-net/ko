@@ -6,21 +6,25 @@
 /////////////////////////////////////////////////////////////////////////////
 // COptionDlg dialog
 struct __GameOption {
-    int  iTexLOD_Chr;     // Texture LOD
-    int  iTexLOD_Shape;   // Texture LOD
-    int  iTexLOD_Terrain; // Texture LOD
-    int  iUseShadow;      // 그림자 사용 0 사용안함 1 사용
-    int  iViewDist;       // 가시거리..
-    int  iViewWidth;      // 화면 길이
-    int  iViewHeight;     // 화면 너비
-    int  iViewColorDepth; // 색상수..
-    int  iEffectSndDist;  // 이펙트 사운드 거리
-    bool bSndDuplicated;  // 중복된 음원 사용
-    bool bSoundEnable;    // 사운드 사용
-    bool bWindowCursor;   // 윈도우 커서 사용
+    int  iTexLOD_Chr;     // Texture Chr 0 = HIGH 1 = LOW (Its orginal in 1298)
+    int  iTexLOD_Shape;   // Texture Shape 0 = HIGH 1 = LOW
+    int  iTexLOD_Terrain; // Texture Terrain 0 = HIGH 1 = LOW
+    int  iUseShadow;      // On Shadow 1/Off Shadow 0
+    int  iViewDist;       // Visibility range
+    int  iViewWidth;      // Width of desktop
+    int  iViewHeight;     // Height of desktop
+    int  iViewColorDepth; // 16/32 BIT.
+    int  iEffectSndDist;  // Sound Distance
+    int  iEffectCount;    // Effect count to render
+    bool bSndDuplicated;  // Duplicated Sound
+    bool bSndBackground;  // Enabled/Disabled background music
+    bool bSndEffect;      // Enabled/Disabled Sound effects
+    bool bWindowCursor;   // Enbaled/Disabled Window Cursor button
+    bool bWindowMode;     // Enabled/Disabled window mode
+    bool bWeaponEffect;   // Enabled/Disabled weapon effects
 
     void InitDefault() {
-        iUseShadow = true;
+        iUseShadow = 1;
         iTexLOD_Chr = 0;
         iTexLOD_Shape = 0;
         iTexLOD_Terrain = 0;
@@ -29,25 +33,37 @@ struct __GameOption {
         iViewHeight = 768;
         iViewDist = 512;
         iEffectSndDist = 48;
+        iEffectCount = 2000;
         bSndDuplicated = false;
-        bSoundEnable = true;
+        bSndBackground = true;
+        bSndEffect = true;
         bWindowCursor = true;
+        bWindowMode = false;
+        bWeaponEffect = true;
     }
 
     __GameOption() { InitDefault(); }
 };
 
+struct __ServerOption {
+    int  Version;
+    void InitServerDefault() { Version = 1264; }
+    __ServerOption() { InitServerDefault(); }
+};
+
 class COptionDlg : public CDialog {
   protected:
-    CString      m_szInstalledPath;
-    CString      m_szExeName;
-    __GameOption m_Option;
+    __GameOption   m_Option;
+    __ServerOption m_ServerOption;
 
     // Construction
   public:
     void SettingUpdate();
-    void SettingLoad(CString szIniFile);
-    void SettingSave(CString szIniFile);
+    void SettingLoad(const std::string & szIniFile);
+    void SettingServerLoad(const std::string & szIniFile);
+    void SettingSave(const std::string & szIniFile);
+    void SettingServerSave(const std::string & szIniFile);
+    void VersionUpdate(const std::string & szIniFile, int Version);
     COptionDlg(CWnd * pParent = NULL); // standard constructor
 
     // Dialog Data
@@ -55,6 +71,7 @@ class COptionDlg : public CDialog {
     enum {
         IDD = IDD_OPTION_DIALOG
     };
+    CSliderCtrl m_SldEffectCount;
     CSliderCtrl m_SldEffectSoundDist;
     CComboBox   m_CB_ColorDepth;
     CComboBox   m_CB_Resolution;

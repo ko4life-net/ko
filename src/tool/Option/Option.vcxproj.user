@@ -8,4 +8,7 @@
     <LocalDebuggerWorkingDirectory>$(ProjectDir)..\..\assets\game</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup>
+    <RESOURCE_FILE>Option.rc</RESOURCE_FILE>
+  </PropertyGroup>
 </Project>
