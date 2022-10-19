@@ -28,6 +28,7 @@ CN3TableBase<__TABLE_FX> *             CGameBase::s_pTbl_FXSource;              
 CN3TableBase<__TABLE_QUEST_MENU> *     CGameBase::s_pTbl_QuestMenu = NULL;      // 퀘스트 선택 메뉴
 CN3TableBase<__TABLE_QUEST_TALK> *     CGameBase::s_pTbl_QuestTalk = NULL;      // 퀘스트 지문
 CN3TableBase<__TABLE_TEXTS> *          CGameBase::s_pTbl_Texts = NULL;
+CN3TableBase<__TABLE_HELP> *           CGameBase::s_pTbl_Help = NULL; // leveling guide
 
 CN3WorldManager * CGameBase::s_pWorldMgr = NULL; // 월드 매니져..
 CPlayerOtherMgr * CGameBase::s_pOPMgr = NULL;    // Other Player Manager - 다른 유저 관리 클래스..
@@ -73,6 +74,7 @@ void CGameBase::StaticMemberInit() {
     s_pTbl_QuestMenu = new CN3TableBase<__TABLE_QUEST_MENU>;
     s_pTbl_QuestTalk = new CN3TableBase<__TABLE_QUEST_TALK>;
     s_pTbl_Texts = new CN3TableBase<__TABLE_TEXTS>;
+    s_pTbl_Help = new CN3TableBase<__TABLE_HELP>;
 
     std::string szLangTail = ".tbl";
     int         iLangID = ::GetUserDefaultLangID();
@@ -96,6 +98,9 @@ void CGameBase::StaticMemberInit() {
     s_pTbl_QuestTalk->LoadFromFile(szFN.c_str()); // 퀘스트 관련 지문
     szFN = "Data\\Texts" + szLangTail;
     s_pTbl_Texts->LoadFromFile(szFN.c_str());
+
+    szFN = "Data\\Help_en" + szLangTail; // leveling guide
+    s_pTbl_Help->LoadFromFile(szFN.c_str());
 
     for (int i = 0; i < MAX_ITEM_EXTENSION; i++) {
         char szFNTmp[256] = "";
@@ -146,6 +151,8 @@ void CGameBase::StaticMemberRelease() {
     s_pTbl_QuestTalk = NULL; // 퀘스트 관련 지문
     delete s_pTbl_Texts;
     s_pTbl_Texts = NULL;
+    delete s_pTbl_Help;
+    s_pTbl_Help = NULL;
 
     delete s_pPlayer;
     s_pPlayer = NULL; // Player Character
