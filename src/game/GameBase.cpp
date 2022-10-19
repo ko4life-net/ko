@@ -99,7 +99,7 @@ void CGameBase::StaticMemberInit() {
     szFN = "Data\\Texts" + szLangTail;
     s_pTbl_Texts->LoadFromFile(szFN.c_str());
 
-    szFN = "Data\\Help_en" + szLangTail; // leveling guide
+    szFN = "Data\\Help" + szLangTail; // leveling guide
     s_pTbl_Help->LoadFromFile(szFN.c_str());
 
     for (int i = 0; i < MAX_ITEM_EXTENSION; i++) {
