@@ -224,6 +224,7 @@ class CGameProcMain : public CGameProcedure {
     bool CommandToggleUISkillTree();
     bool CommandToggleUIMiniMap();
     bool CommandToggleUINotice();
+    bool CommandToggleUILevelGuide();
 
     void CommandMove(e_MoveDirection eMD, bool bStartOrEnd); // 움직이는 방향(전후진, 멈춤), 움직이기 시작하는가?
     void CommandEnableAttackContinous(bool bEnable, CPlayerBase * pTarget);

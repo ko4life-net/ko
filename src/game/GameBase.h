@@ -28,7 +28,7 @@ class CGameBase : public CN3Base {
     static CN3TableBase<struct __TABLE_QUEST_MENU> *     s_pTbl_QuestMenu;      // 퀘스트 선택 메뉴
     static CN3TableBase<struct __TABLE_QUEST_TALK> *     s_pTbl_QuestTalk;      // 퀘스트 지문
     static CN3TableBase<struct __TABLE_TEXTS> *          s_pTbl_Texts;
-    static CN3TableBase<struct __TABLE_HELP> *          s_pTbl_Help;
+    static CN3TableBase<struct __TABLE_HELP> *           s_pTbl_Help;
 
     static class CN3WorldManager * s_pWorldMgr; // 월드 매니져 클래스..
     static class CPlayerOtherMgr * s_pOPMgr;    // Other Player Manager - 다른 유저 관리 클래스..
