@@ -1275,6 +1275,15 @@ typedef struct __TABLE_QUEST_TALK {
     std::string szTalk; // 퀘스트 지문
 } TABLE_QUEST_TALK;
 
+typedef struct __TABLE_HELP {
+    DWORD       dwID;
+    int         pLevelMin;
+    int         pLevelMax;
+    int         pClass;
+    std::string qTitle;
+    std::string qDesc;
+} TABLE_HELP;
+
 typedef struct __TABLE_TEXTS {
     DWORD       dwID;
     std::string szText;
