@@ -4480,6 +4480,10 @@ bool CGameProcMain::CommandToggleUIInventory() {
         return bNeedOpen;
     }
 
+    if (m_pUINotice->IsVisible()) {
+        m_pUINotice->Close();
+    }
+
     if (m_pUIInventory->IsVisible()) {
         m_pUIInventory->Close(true);
         return bNeedOpen;
@@ -4514,11 +4518,44 @@ bool CGameProcMain::CommandToggleUISkillTree() {
         if (m_pUIWareHouseDlg->IsVisible()) {
             m_pUIWareHouseDlg->LeaveWareHouseState();
         }
+        if (m_pUINotice->IsVisible()) {
+            m_pUINotice->Close();
+        }
 
         s_pUIMgr->SetFocusedUI(m_pUISkillTreeDlg);
         m_pUISkillTreeDlg->Open();
     } else {
         m_pUISkillTreeDlg->Close();
+    }
+
+    return bNeedOpen;
+}
+
+bool CGameProcMain::CommandToggleUINotice() {
+    bool bNeedOpen = !m_pUINotice->IsVisible();
+
+    if (m_pSubProcPerTrade->m_ePerTradeState != PER_TRADE_STATE_NONE) {
+        return bNeedOpen;
+    }
+
+    if (bNeedOpen) {
+        if (m_pUIInventory->IsVisible()) {
+            m_pUIInventory->Close();
+        }
+        if (m_pUITransactionDlg->IsVisible()) {
+            m_pUITransactionDlg->LeaveTransactionState();
+        }
+        if (m_pUIWareHouseDlg->IsVisible()) {
+            m_pUIWareHouseDlg->LeaveWareHouseState();
+        }
+        if (m_pUISkillTreeDlg->IsVisible()) {
+            m_pUISkillTreeDlg->Close();
+        }
+
+        s_pUIMgr->SetFocusedUI(m_pUINotice);
+        m_pUINotice->Open();
+    } else {
+        m_pUINotice->Close();
     }
 
     return bNeedOpen;
@@ -4696,6 +4733,8 @@ void CGameProcMain::MsgRecv_Notice(DataPack * pDataPack, int & iOffset) {
         m_pUINotice->RemoveNotice();
     }
 
+    bool bNextLineIsEventText = false;
+
     int iNoticeCount = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
     for (int i = 0; i < iNoticeCount; i++) {
         int iStrLen = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
@@ -4705,8 +4744,18 @@ void CGameProcMain::MsgRecv_Notice(DataPack * pDataPack, int & iOffset) {
 
         std::string szNotice;
         CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szNotice, iStrLen);
+
         if (m_pUINotice) {
-            m_pUINotice->m_Texts.push_back(szNotice);
+            if (bNextLineIsEventText) {
+                m_pUINotice->m_TextsEvent.push_back(szNotice);
+            } else {
+                char * pChr = strrchr(szNotice.data(), '#');
+                if (pChr) {
+                    *pChr = ' ';
+                    bNextLineIsEventText = true;
+                }
+                m_pUINotice->m_Texts.push_back(szNotice);
+            }
         }
     }
 
@@ -4714,9 +4763,8 @@ void CGameProcMain::MsgRecv_Notice(DataPack * pDataPack, int & iOffset) {
         m_pUINotice->GenerateText();
 
         RECT rc = m_pUINotice->GetRegion();
-        int  x = (CN3Base::s_CameraData.vp.Width / 2) - (rc.right - rc.left) / 2;
-        int  y = (CN3Base::s_CameraData.vp.Height / 2) - (rc.bottom - rc.top) / 2;
-        m_pUINotice->SetPos(x, y);
+        int  iX = CN3Base::s_CameraData.vp.Width - (rc.right - rc.left);
+        m_pUINotice->SetPos(iX, 10);
         m_pUINotice->SetVisible(true);
     }
 }
