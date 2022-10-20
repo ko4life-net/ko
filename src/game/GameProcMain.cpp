@@ -4532,7 +4532,7 @@ bool CGameProcMain::CommandToggleUISkillTree() {
 }
 
 bool CGameProcMain::CommandToggleUINotice() {
-    bool bNeedOpen = !(m_pUINotice->IsVisible());
+    bool bNeedOpen = !m_pUINotice->IsVisible();
 
     if (m_pSubProcPerTrade->m_ePerTradeState != PER_TRADE_STATE_NONE) {
         return bNeedOpen;
@@ -4733,12 +4733,11 @@ void CGameProcMain::MsgRecv_Notice(DataPack * pDataPack, int & iOffset) {
         m_pUINotice->RemoveNotice();
     }
 
-    bool bStrContainHashSymbol = false;
+    bool bNextLineIsEventText = false;
 
     int iNoticeCount = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
     for (int i = 0; i < iNoticeCount; i++) {
         int iStrLen = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-
         if (iStrLen <= 0) {
             continue;
         }
@@ -4747,15 +4746,14 @@ void CGameProcMain::MsgRecv_Notice(DataPack * pDataPack, int & iOffset) {
         CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szNotice, iStrLen);
 
         if (m_pUINotice) {
-            char lastCharacter = szNotice.back();
-
-            if (!bStrContainHashSymbol && lastCharacter != '#') { // EventText not found -> Add to NoticeText
-                m_pUINotice->m_TextsNotices.push_back(szNotice);
-            } else if (!bStrContainHashSymbol &&
-                       lastCharacter == '#') { // Last character is # -> Add to NoticeText -> Next line is EventText
-                bStrContainHashSymbol = true;
-                m_pUINotice->m_TextsNotices.push_back(szNotice.substr(0, szNotice.length() - 1));
-            } else if (bStrContainHashSymbol) { // Add text to EventText
+            if (bNextLineIsEventText) {
+                m_pUINotice->m_TextsEvent.push_back(szNotice);
+            } else {
+                char * pChr = strrchr(szNotice.data(), '#');
+                if (pChr) {
+                    *pChr = ' ';
+                    bNextLineIsEventText = true;
+                }
                 m_pUINotice->m_Texts.push_back(szNotice);
             }
         }
@@ -4763,12 +4761,10 @@ void CGameProcMain::MsgRecv_Notice(DataPack * pDataPack, int & iOffset) {
 
     if (m_pUINotice && iNoticeCount > 0) {
         m_pUINotice->GenerateText();
-        m_pUINotice->TipOfTheDay();
 
         RECT rc = m_pUINotice->GetRegion();
-        int  x = (CN3Base::s_CameraData.vp.Width - (rc.right - rc.left));
-        int  y = (10);
-        m_pUINotice->SetPos(x, y);
+        int  iX = CN3Base::s_CameraData.vp.Width - (rc.right - rc.left);
+        m_pUINotice->SetPos(iX, 10);
         m_pUINotice->SetVisible(true);
     }
 }

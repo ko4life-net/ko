@@ -4,6 +4,7 @@
 
 #include "StdAfx.h"
 #include "UINotice.h"
+#include "Resource.h"
 #include "GameProcedure.h"
 #include "UIManager.h"
 
@@ -17,29 +18,26 @@
 //////////////////////////////////////////////////////////////////////
 
 CUINotice::CUINotice() {
-    m_pText_Notice = NULL;
+    m_pTextNotice = NULL;
     m_pTextEvent = NULL;
-    m_pBtn_Quit = NULL;
+    m_pTextEventName = NULL;
     m_pTextTip = NULL;
-    m_pTextEvent_Name = NULL;
-    sEventName.clear();
-    sTextTip.clear();
+    m_pBtnQuit = NULL;
 
+    m_fMoveDelta = 0.0f;
     m_bOpenningNow = false;
     m_bClosingNow = false;
-    m_fMoveDelta = 0;
+
+    m_Texts.clear();
+    m_TextsEvent.clear();
 }
 
-CUINotice::~CUINotice() {
-    m_Texts.clear();
-    m_TextsNotices.clear();
-}
+CUINotice::~CUINotice() = default;
 
 void CUINotice::Release() {
     m_Texts.clear();
-    m_TextsNotices.clear();
-    sEventName.clear();
-    sTextTip.clear();
+    m_TextsEvent.clear();
+
     CN3UIBase::Release();
 }
 
@@ -75,30 +73,40 @@ void CUINotice::Close() {
 }
 
 bool CUINotice::Load(HANDLE hFile) {
-    if (CN3UIBase::Load(hFile) == false) {
+    if (!CN3UIBase::Load(hFile)) {
         return false;
     }
 
-    m_pText_Notice = (CN3UIString *)GetChildByID("Text_Notice");
-    m_pBtn_Quit = (CN3UIButton *)GetChildByID("btn_quit");
-    m_pTextEvent_Name = (CN3UIString *)GetChildByID("text_event_name");
+    m_pTextNotice = (CN3UIString *)GetChildByID("Text_Notice");
+    __ASSERT(m_pTextNotice, "NULL UI Component!!");
+
+    m_pBtnQuit = (CN3UIButton *)GetChildByID("btn_quit");
+    __ASSERT(m_pBtnQuit, "NULL UI Component!!");
+
+    m_pTextEventName = (CN3UIString *)GetChildByID("text_event_name");
+    __ASSERT(m_pTextEventName, "NULL UI Component!!");
+
     m_pTextTip = (CN3UIString *)GetChildByID("text_tip");
+    __ASSERT(m_pTextTip, "NULL UI Component!!");
+
     m_pTextEvent = (CN3UIString *)GetChildByID("text_event");
+    __ASSERT(m_pTextEvent, "NULL UI Component!!");
 
     return true;
 }
 
 bool CUINotice::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
-    if (NULL == pSender) {
+    if (!pSender) {
         return false;
     }
 
     if (dwMsg == UIMSG_BUTTON_CLICK) {
-        if (pSender == m_pBtn_Quit) {
-            if (m_pText_Notice) {
-                m_pText_Notice->SetString("");
-            }
-            Close();
+        if (pSender == (CN3UIBase *)m_pBtnQuit && !m_bClosingNow) {
+            m_fMoveDelta = 0.0f;
+            m_bClosingNow = true;
+
+            // TODO: Some logic is missing here with getting Wnd_Help from Windows Registry and
+            // comparing to s_pPlayer data. Then it also retrieves from registry Wnd_RookieTip.
         }
     }
 
@@ -106,65 +114,55 @@ bool CUINotice::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 }
 
 void CUINotice::GenerateText() {
-    if (NULL == m_pText_Notice) {
+    if (!m_pTextNotice) {
         return;
     }
 
     int iTextLen = 0;
-
-    for (auto & itString : m_TextsNotices) {
-        iTextLen += itString.size() + 3; // LineFeed, Carriage return
+    for (const auto & text : m_Texts) {
+        iTextLen += text.size() + 3; // LineFeed, Carriage return
     }
-
     if (iTextLen <= 0) {
         return;
     }
 
-    std::vector<char> szBuff(iTextLen * 2, 0);
-    for (auto & itString : m_TextsNotices) {
-        lstrcat(&szBuff[0], itString.c_str());
-        lstrcat(&szBuff[0], "\n");
+    std::vector<char> szTextNotice(iTextLen * 2, 0);
+    for (const auto & text : m_Texts) {
+        lstrcat(szTextNotice.data(), text.c_str());
+        lstrcat(szTextNotice.data(), "\n");
     }
+    m_pTextNotice->SetString(szTextNotice.data());
 
-    m_pText_Notice->SetString(&(szBuff[0]));
-}
-
-void CUINotice::TipOfTheDay() {
-    if (NULL == m_pText_Notice) {
-        return;
-    }
-
-    int  iTextLen = 0;
-    bool tipOfTheDayEnabled = false;
-
-    for (auto & itString : m_Texts) {
-        iTextLen += itString.size() + 3; // LineFeed, Carriage return
-    }
-
-    if (iTextLen <= 0) {
-        tipOfTheDayEnabled = true;
-    }
-
-    if (!tipOfTheDayEnabled) {
-        std::vector<char> szBuff(iTextLen * 2, 0);
-
-        for (auto & itString : m_Texts) {
-            lstrcat(&szBuff[0], itString.c_str());
-            lstrcat(&szBuff[0], "\n");
+    // Event messages or tip of the day
+    if (m_TextsEvent.size() > 0) {
+        iTextLen = 0;
+        for (const auto & text : m_TextsEvent) {
+            iTextLen += text.size() + 3; // LineFeed, Carriage return
+        }
+        if (iTextLen <= 0) {
+            return;
         }
 
-        m_pTextEvent->SetString(&(szBuff[0])); //Set Event text
-
+        std::vector<char> szTextEvent(iTextLen * 2, 0);
+        for (const auto & text : m_TextsEvent) {
+            lstrcat(szTextEvent.data(), text.c_str());
+            lstrcat(szTextEvent.data(), "\n");
+        }
+        if (m_pTextEvent) {
+            m_pTextEvent->SetString(szTextEvent.data());
+        }
+        if (m_pTextTip) {
+            m_pTextTip->SetVisible(false);
+        }
     } else {
+        srand((uint32_t)time(NULL));
 
-        srand((unsigned)time(NULL));
-        int randomTip = 5001 + rand() % 32;
+        std::string szStrMsg;
+        ::_LoadStringFromResource(IDS_HELP_TIP_ALL, szStrMsg);
+        m_pTextEventName->SetString(szStrMsg);
 
-        ::_LoadStringFromResource(5034, sEventName);
-        m_pTextEvent_Name->SetString(sEventName);
-
-        ::_LoadStringFromResource(randomTip, sTextTip);
-        m_pTextTip->SetString(sTextTip);
+        ::_LoadStringFromResource(IDS_HELP_TIP1 + (rand() % 32), szStrMsg);
+        m_pTextTip->SetString(szStrMsg);
     }
 }
 
@@ -223,7 +221,10 @@ bool CUINotice::OnKeyPress(int iKey) {
     switch (iKey) {
     case DIK_ESCAPE:
     case DIK_RETURN:
-        ReceiveMessage(m_pBtn_Quit, UIMSG_BUTTON_CLICK);
+    case DIK_NUMPADENTER:
+        if (!m_bOpenningNow) {
+            ReceiveMessage(m_pBtnQuit, UIMSG_BUTTON_CLICK);
+        }
         return true;
     }
 
@@ -234,12 +235,15 @@ void CUINotice::SetVisible(bool bVisible) {
     CN3UIBase::SetVisible(bVisible);
     if (bVisible) {
         CGameProcedure::s_pUIMgr->SetVisibleFocusedUI(this);
+        m_bOpenningNow = true;
     } else {
+        m_bClosingNow = true;
         CGameProcedure::s_pUIMgr->ReFocusUI(); //this_ui
     }
+    m_fMoveDelta = 0.0f;
 }
 
 void CUINotice::RemoveNotice() {
     m_Texts.clear();
-    m_TextsNotices.clear();
+    m_TextsEvent.clear();
 }
