@@ -180,7 +180,7 @@ HCURSOR CRscTablesDlg::OnQueryDragIcon() {
     return (HCURSOR)m_hIcon;
 }
 
-// µ¥ÀÌÅ¸ Çü½ÄÀ» »õ·Î ¸¸µç´Ù.
+// ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 void CRscTablesDlg::OnFileNew() {
     // TODO: Add your command handler code here
     CDlgDataCount dlg;
@@ -193,11 +193,11 @@ void CRscTablesDlg::OnFileNew() {
     }
     m_Generator.Release();
 
-    m_Generator.DataTypeAssign(iCount, DT_STRING); // ±âº»°ªÀº ¹®ÀÚ¿­
-    m_Generator.DataTypeSet(0, DT_DWORD);          // Ã¹¹øÂ° ¿­Àº Á¤¼ö..
+    m_Generator.DataTypeAssign(iCount, DT_STRING); // ï¿½âº»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½
+    m_Generator.DataTypeSet(0, DT_DWORD);          // Ã¹ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
     m_ListBoxDataType.SetDividerWidth(100);
-    this->UpdateAllInfo(); // ¸®½ºÆ® ¹Ú½º °»½ÅÇÏ°í.. È­¸é¿¡ Ç¥½Ã...
+    this->UpdateAllInfo(); // ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½.. È­ï¿½é¿¡ Ç¥ï¿½ï¿½...
 }
 
 BOOL CRscTablesDlg::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
@@ -209,9 +209,9 @@ BOOL CRscTablesDlg::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
         if (iIndex < 0 || iIndex >= m_Generator.DataTypeCount()) {
             return TRUE;
         }
-        if (0 == iIndex && lstrcmpi(pItem->m_curValue, "DWORD") != 0) // 0 ¹øÀÌ DWORD °¡ ¾Æ´Ï¸é °æ°íÇÑ´Ù..
+        if (0 == iIndex && lstrcmpi(pItem->m_curValue, "DWORD") != 0) // 0 ï¿½ï¿½ï¿½ï¿½ DWORD ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
         {
-            MessageBox("Data0 ´Â ÀÎµ¦½º·Î ¾²ÀÌ±â ¶§¹®¿¡ ¹Ýµå½Ã DWORD ÇüÀÌ¾î¾ß ÇÕ´Ï´Ù.", "°æ°í");
+            MessageBox("Since Data0 is used as an index, it must be a DWORD type.", "Warning.");
         }
 
         DATA_TYPE DataType = DT_NONE;
@@ -244,7 +244,7 @@ BOOL CRscTablesDlg::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
     return CDialog::OnNotify(wParam, lParam, pResult);
 }
 
-// data type ¼³Á¤ÇØ ³õÀ» °ÍÀ» ÀúÀå
+// data type ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 void CRscTablesDlg::OnFileSaveEnum() {
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(FALSE, "enm", NULL, dwFlags, "Data Enum File(*.enm)|*.enm||", NULL);
@@ -255,7 +255,7 @@ void CRscTablesDlg::OnFileSaveEnum() {
     m_Generator.DataTypeSave(dlg.GetPathName().GetString());
 }
 
-// data type ¼³Á¤ÇØ ³õÀ» °ÍÀ» ¿­±â
+// data type ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 void CRscTablesDlg::OnFileOpenEnum() {
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(TRUE, "enm", NULL, dwFlags, "Data Enum File(*.enm)|*.enm||", NULL);
@@ -265,7 +265,7 @@ void CRscTablesDlg::OnFileOpenEnum() {
 
     m_Generator.DataTypeLoad(dlg.GetPathName().GetString());
 
-    this->UpdateAllInfo(); // ¸®½ºÆ® ¹Ú½º °»½ÅÇÏ°í.. È­¸é¿¡ Ç¥½Ã...
+    this->UpdateAllInfo(); // ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½.. È­ï¿½é¿¡ Ç¥ï¿½ï¿½...
 }
 
 void CRscTablesDlg::OnUpdateFileSaveEnum(CCmdUI * pCmdUI) {
@@ -276,18 +276,18 @@ void CRscTablesDlg::OnFileExit() {
     PostQuitMessage(0);
 }
 
-// TextÁ¤º¸¸¦ bin µ¥ÀÌÅÍ·Î º¯È¯ÇÏ±â
+// Textï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ bin ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ ï¿½ï¿½È¯ï¿½Ï±ï¿½
 void CRscTablesDlg::OnConvertText2bin() {
     int iDataCount = m_Generator.DataTypeCount();
     if (iDataCount <= 0) {
-        MessageBox("¸ÕÀú µ¥ÀÌÅÍ °¹¼ö¿Í Çü½ÄÀ» ÁöÁ¤ÇØÁÖ¾î¾ß ÇÕ´Ï´Ù.");
+        MessageBox("First, you need to specify the number and format of the data.");
         return;
     }
 
     char        szBuff[10240] = "";
     CString     FileName;
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_ALLOWMULTISELECT;
-    CFileDialog dlg(TRUE, "txt", NULL, dwFlags, "txt(ÅÇÀ¸·Î ºÐ¸®)(*.txt)|*.txt||", NULL);
+    CFileDialog dlg(TRUE, "txt", NULL, dwFlags, "txt (separated by tabs) (*.txt)|*.txt||", NULL);
     dlg.m_ofn.nMaxFile = 10240;
     dlg.m_ofn.lpstrFile = szBuff;
     if (dlg.DoModal() == IDCANCEL) {
@@ -307,7 +307,7 @@ void CRscTablesDlg::OnClose() {
 }
 
 void CRscTablesDlg::UpdateInfo() {
-    // È­¸é¿¡ Ç¥½Ã
+    // È­ï¿½é¿¡ Ç¥ï¿½ï¿½
     int iDataCount = m_Generator.DataTypeCount();
     for (int i = 0; i < iDataCount; ++i) {
         int iSel = -1;
@@ -372,9 +372,9 @@ void CRscTablesDlg::OnSize(UINT nType, int cx, int cy) {
 
     if (m_ListBoxDataType.GetSafeHwnd() != NULL) {
         CRect rcOrg, rcClient;
-        m_ListBoxDataType.GetWindowRect(rcOrg); // ±×·¡ÇÁ ÄÁÆ®·ÑÀÇ ¿ø·¡ È­¸é ÁÂÇ¥¸¦
+        m_ListBoxDataType.GetWindowRect(rcOrg); // ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½
         this->GetClientRect(rcClient);          //
-        this->ClientToScreen(rcClient);         // È­¸é ÁÂÇ¥·Î ¹Ù²Ù°í..
+        this->ClientToScreen(rcClient);         // È­ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Ù²Ù°ï¿½..
 
         int cx2 = rcOrg.Width();
         int cy2 = rcClient.bottom - rcOrg.top - 5;
@@ -386,8 +386,8 @@ void CRscTablesDlg::OnSize(UINT nType, int cx, int cy) {
 void CRscTablesDlg::OnEditInsert() {
     // TODO: Add your command handler code here
     int iCurSel = m_ListBoxDataType.GetCurSel();
-    if (m_Generator.DataTypeInsert(iCurSel, DT_STRING)) { // ±âº»ÀûÀ¸·Î stringÃß°¡
-        UpdateAllInfo();                                  // ¸®½ºÆ® ¹Ú½º °»½ÅÇÏ°í.. È­¸é¿¡ Ç¥½Ã...
+    if (m_Generator.DataTypeInsert(iCurSel, DT_STRING)) { // ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ stringï¿½ß°ï¿½
+        UpdateAllInfo();                                  // ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½.. È­ï¿½é¿¡ Ç¥ï¿½ï¿½...
     }
 }
 
@@ -395,7 +395,7 @@ void CRscTablesDlg::OnEditDelete() {
     // TODO: Add your command handler code here
     const int iCurSel = m_ListBoxDataType.GetCurSel();
     if (m_Generator.DataTypeDelete(iCurSel)) {
-        UpdateAllInfo(); // ¸®½ºÆ® ¹Ú½º °»½ÅÇÏ°í.. È­¸é¿¡ Ç¥½Ã...
+        UpdateAllInfo(); // ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½.. È­ï¿½é¿¡ Ç¥ï¿½ï¿½...
     }
 }
 
@@ -422,7 +422,7 @@ bool CRscTablesDlg::BrowseDataEnumAndTxt(int iIndex, BOOL bOpen, std::string * p
     if (pszFN_Txt) {
         CString     FileName2;
         DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
-        CFileDialog dlg2(bOpen, "txt", NULL, dwFlags, "Tab À¸·Î ºÐ¸®µÈ Txt File(*.txt)|*.txt||", NULL);
+        CFileDialog dlg2(bOpen, "txt", NULL, dwFlags, "Tab-delimited Txt File(*.txt)|*.txt||", NULL);
         if (dlg2.DoModal() == IDCANCEL) {
             return false;
         }
