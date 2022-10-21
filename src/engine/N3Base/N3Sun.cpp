@@ -77,8 +77,8 @@ void CN3Sun::Render(__Matrix44 & matView, __Matrix44 & matProj) {
         s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ONE);
     }
     s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_MODULATE);
-    s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
-    s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
+    s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
+    s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAARG2, D3DTA_DIFFUSE);
     s_lpD3DDev->SetFVF(FVF_TRANSFORMED);
 
     RECT rcSun[NUM_SUNPART];
