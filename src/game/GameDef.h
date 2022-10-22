@@ -860,7 +860,7 @@ typedef struct __TABLE_UI_RESRC {
     std::string szConversation;             // 103 TODO: implement
     std::string szBlog;                     // 104 TODO: implement
     std::string szInn_password;             // 105 TODO: implement
-    std::string szRookieTip;                // 106 TODO: implement
+    std::string szRookieTip;                // 106
     std::string szWebPage;                  // 107 TODO: implement
     std::string szPartyBoardMessage;        // 108 TODO: implement
     std::string szSymbol;                   // 109 TODO: implement

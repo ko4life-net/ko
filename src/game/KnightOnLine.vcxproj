@@ -301,6 +301,7 @@
     <ClInclude Include="UIQuestMenu.h" />
     <ClInclude Include="UIQuestTalk.h" />
     <ClInclude Include="UIRepairTooltipDlg.h" />
+    <ClInclude Include="UIRookieTip.h" />
     <ClInclude Include="UISkillTreeDlg.h" />
     <ClInclude Include="UIStateBar.h" />
     <ClInclude Include="UITargetBar.h" />
@@ -484,6 +485,7 @@
     <ClCompile Include="UIQuestMenu.cpp" />
     <ClCompile Include="UIQuestTalk.cpp" />
     <ClCompile Include="UIRepairTooltipDlg.cpp" />
+    <ClCompile Include="UIRookieTip.cpp" />
     <ClCompile Include="UISkillTreeDlg.cpp" />
     <ClCompile Include="UIStateBar.cpp" />
     <ClCompile Include="UITargetBar.cpp" />

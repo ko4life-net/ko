@@ -56,6 +56,7 @@
 #include "UIQuestTalk.h"
 #include "UILevelGuide.h"
 #include "UIDead.h"
+#include "UIRookieTip.h"
 
 #include "SubProcPerTrade.h"
 #include "CountableItemEditDlg.h"
@@ -158,6 +159,7 @@ CGameProcMain::CGameProcMain() // r기본 생성자.. 각 변수의 역활은 헤더 참조..
     m_pUIQuestTalk = new CUIQuestTalk();
     m_pUILevelGuide = new CUILevelGuide();
     m_pUIDead = new CUIDead();
+    m_pUIRookieTip = new CUIRookieTip();
 
     m_pSubProcPerTrade = new CSubProcPerTrade();
     m_pMagicSkillMng = new CMagicSkillMng(this);
@@ -204,6 +206,7 @@ CGameProcMain::~CGameProcMain() {
     delete m_pUIQuestTalk;
     delete m_pUILevelGuide;
     delete m_pUIDead;
+    delete m_pUIRookieTip;
 
     delete m_pSubProcPerTrade;
     delete m_pMagicSkillMng;
@@ -251,6 +254,7 @@ void CGameProcMain::ReleaseUIs() {
     m_pUIWarp->Release();
     m_pUIInn->Release();
     m_pUICreateClanName->Release();
+    m_pUIRookieTip->Release();
 
     CN3UIBase::DestroyTooltip();
 }
@@ -3676,6 +3680,7 @@ void CGameProcMain::InitUI() {
     m_pUINotice->Init(s_pUIMgr);
     m_pUINotice->LoadFromFile(pTbl->szNotice);
     m_pUINotice->SetVisibleWithNoSound(false);
+    m_pUINotice->SetPos(iX, 10);
 
     m_pUIClassChange->Init(s_pUIMgr);
     m_pUIClassChange->LoadFromFile(pTbl->szClassChange);
@@ -3926,6 +3931,16 @@ void CGameProcMain::InitUI() {
     iX = (iW - (rc.right - rc.left)) / 2;
     iY = (iH - (rc.bottom - rc.top)) / 2;
     m_pUITradeBBSEdit->SetPos(iX, iY);
+
+    // Rookie tip
+    m_pUIRookieTip->Init(s_pUIMgr);
+    m_pUIRookieTip->LoadFromFile(pTbl->szRookieTip);
+    m_pUIRookieTip->SetVisibleWithNoSound(false);
+    rc = m_pUIRookieTip->GetRegion();
+    iX = (iW - (rc.right - rc.left)) / 2;
+    iY = (iH - (rc.bottom - rc.top)) / 2;
+    m_pUIRookieTip->SetPos(iX, iY);
+    m_pUIRookieTip->SetState(UI_STATE_COMMON_NONE);
 }
 
 void CGameProcMain::MsgSend_RequestTargetHP(short siIDTarget, BYTE byUpdateImmediately) {

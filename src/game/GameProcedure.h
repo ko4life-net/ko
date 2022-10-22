@@ -13,10 +13,11 @@ enum e_LogInClassification {
 #include "GameDef.h"
 #include "GameBase.h"
 
-#define UI_POST_WND_CHAT   "Wnd_Chat"
-#define UI_POST_WND_HOTKEY "Wnd_Hotkey"
-#define UI_POST_WND_PARTY  "Wnd_Party"
-#define UI_POST_WND_HELP   "Wnd_Help"
+#define UI_POST_WND_CHAT      "Wnd_Chat"
+#define UI_POST_WND_HOTKEY    "Wnd_Hotkey"
+#define UI_POST_WND_PARTY     "Wnd_Party"
+#define UI_POST_WND_HELP      "Wnd_Help"
+#define UI_POST_WND_ROOKIETIP "Wnd_RookieTip"
 
 const int MAX_MSG_BOX = 4;
 
