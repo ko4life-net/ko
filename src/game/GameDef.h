@@ -1277,12 +1277,12 @@ typedef struct __TABLE_QUEST_TALK {
 } TABLE_QUEST_TALK;
 
 typedef struct __TABLE_HELP {
-    DWORD       dwID;
-    int         pLevelMin;
-    int         pLevelMax;
-    int         pClass;
-    std::string qTitle;
-    std::string qDesc;
+    int               iID;
+    int               iLevelMin;
+    int               iLevelMax;
+    e_Class_Represent eRepresentClass;
+    std::string       szTitle;
+    std::string       szDescription;
 } TABLE_HELP;
 
 typedef struct __TABLE_TEXTS {

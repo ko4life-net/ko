@@ -4595,7 +4595,7 @@ bool CGameProcMain::CommandToggleUILevelGuide() {
         }
 
         s_pUIMgr->SetFocusedUI(m_pUILevelGuide);
-        m_pUILevelGuide->Open();
+        m_pUILevelGuide->SetVisible(true);
     } else {
         m_pUILevelGuide->SetVisible(false);
     }

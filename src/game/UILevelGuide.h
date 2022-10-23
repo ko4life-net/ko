@@ -3,34 +3,37 @@
 #include "N3Base/N3UIBase.h"
 #include <list>
 
-const int MAX_GUIDE_PAGE = 3;
-const int MAX_SEARCH_ABOVE_PLAYER_LEVEL = 5;
+const int MAX_QUESTS_PER_PAGE = 3;
 
 class CUILevelGuide : public CN3UIBase {
   public:
     CUILevelGuide();
-    virtual ~CUILevelGuide();
+    ~CUILevelGuide() override;
 
-    bool Load(HANDLE hFile);
-    bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg);
-    bool isQuestIsAvailableForPlayer(int questRequiredClass);
+    bool Load(HANDLE hFile) override;
+    bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) override;
+    void SetVisible(bool bVisible) override;
 
-    void Open();
+    void UpdateQuestsByLevel(int iLevel);
     void ChangePage(int iIndex);
-    void LoadQuestData(int sLevel = 0);
+    void CheckAvailableQuests();
 
   public:
-    CN3UIEdit *      m_pEdit_Level;
-    CN3UIButton *    m_pBtn_Check;
-    CN3UIButton *    m_pBtn_Cancel;
-    CN3UIButton *    m_pBtn_Up;
-    CN3UIButton *    m_pBtn_Down;
-    CN3UIString *    m_pText_Titles[MAX_GUIDE_PAGE];
-    CN3UIString *    m_pText_Guides[MAX_GUIDE_PAGE];
-    CN3UIString *    m_pText_Page;
-    CN3UIString *    m_pText_Level;
-    CN3UIScrollBar * m_pScroll_Guides[MAX_GUIDE_PAGE];
-    int              m_iCurrPage;
-    int              m_iMaxPage;
-    int              m_Quests[30][MAX_GUIDE_PAGE];
+    CN3UIEdit * m_pEdit_Level;
+
+    CN3UIButton * m_pBtn_Check;
+    CN3UIButton * m_pBtn_Cancel;
+    CN3UIButton * m_pBtn_Up;
+    CN3UIButton * m_pBtn_Down;
+
+    CN3UIString * m_pText_Titles[MAX_QUESTS_PER_PAGE];
+    CN3UIString * m_pText_Guides[MAX_QUESTS_PER_PAGE];
+    CN3UIString * m_pText_Page;
+    CN3UIString * m_pText_Level;
+
+    CN3UIScrollBar * m_pScroll_Guides[MAX_QUESTS_PER_PAGE];
+
+    std::list<struct __TABLE_HELP *> m_QuestList;
+
+    int m_iCurrPage;
 };
