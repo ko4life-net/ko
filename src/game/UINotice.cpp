@@ -5,8 +5,11 @@
 #include "StdAfx.h"
 #include "UINotice.h"
 #include "Resource.h"
+#include "GameProcMain.h"
 #include "GameProcedure.h"
+#include "PlayerMySelf.h"
 #include "UIManager.h"
+#include "UIRookieTip.h"
 
 #include "N3Base/N3UIString.h"
 #include "N3Base/N3UIScrollBar.h"
@@ -105,8 +108,19 @@ bool CUINotice::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             m_fMoveDelta = 0.0f;
             m_bClosingNow = true;
 
-            // TODO: Some logic is missing here with getting Wnd_Help from Windows Registry and
-            // comparing to s_pPlayer data. Then it also retrieves from registry Wnd_RookieTip.
+            __WndInfo WIHelp{};
+            if (CGameProcedure::RegGetSetting(UI_POST_WND_HELP, &WIHelp, sizeof(__WndInfo)) && !WIHelp.bVisible) {
+                if (CGameProcedure::s_pPlayer->m_InfoBase.iLevel <= 20 /* && !s_pPlayer->m_InfoBase.bIsChicken */) {
+                    __WndInfo WIRookie{};
+                    WIRookie.bVisible = true;
+                    CGameProcedure::RegGetSetting(UI_POST_WND_ROOKIETIP, &WIRookie, sizeof(__WndInfo));
+                    if (WIRookie.bVisible) {
+                        if (CGameProcedure::s_pProcMain->m_pUIRookieTip) {
+                            CGameProcedure::s_pProcMain->m_pUIRookieTip->SetVisible(true);
+                        }
+                    }
+                }
+            }
         }
     }
 

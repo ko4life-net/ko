@@ -4,8 +4,11 @@
 
 #include "StdAfx.h"
 #include "UIHelp.h"
+#include "GameProcMain.h"
 #include "GameProcedure.h"
+#include "PlayerMySelf.h"
 #include "UIManager.h"
+#include "UIRookieTip.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -68,7 +71,17 @@ bool CUIHelp::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
                 iPage = 0;
             }
         } else if (pSender == m_pBtn_Close) {
-            this->SetVisible(false);
+            SetVisible(false);
+            if (CGameProcedure::s_pPlayer->m_InfoBase.iLevel <= 20 /* && !s_pPlayer->m_InfoBase.bIsChicken */) {
+                __WndInfo WI{};
+                WI.bVisible = true;
+                CGameProcedure::RegGetSetting(UI_POST_WND_ROOKIETIP, &WI, sizeof(__WndInfo));
+                if (WI.bVisible) {
+                    if (CGameProcedure::s_pProcMain->m_pUIRookieTip) {
+                        CGameProcedure::s_pProcMain->m_pUIRookieTip->SetVisible(true);
+                    }
+                }
+            }
         }
 
         if (iPagePrev != iPage) {

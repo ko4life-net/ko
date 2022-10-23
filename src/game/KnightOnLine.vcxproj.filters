@@ -634,6 +634,9 @@
     <ClInclude Include="..\common\Implode.h">
       <Filter>Network</Filter>
     </ClInclude>
+    <ClInclude Include="UIRookieTip.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\Resource.rc">
@@ -1141,6 +1144,9 @@
     </ClCompile>
     <ClCompile Include="..\common\Implode.cpp">
       <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="UIRookieTip.cpp">
+      <Filter>Procedure - Main\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
