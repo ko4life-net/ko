@@ -37,6 +37,7 @@ class CN3UIString : public CN3UIBase {
     int                 GetLineCount() const { return m_iLineCount; }
     int                 GetStartLine() const { return m_iStartLine; }
     int                 GetStringRealWidth(int iNum);
+    int                 GetStringRealWidthRect();
 
     virtual DWORD MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & ptOld);
     virtual void  Render();

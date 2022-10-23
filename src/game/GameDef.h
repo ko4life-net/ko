@@ -115,6 +115,7 @@ enum e_Class_Represent {
     CLASS_REPRESENT_ROGUE,
     CLASS_REPRESENT_WIZARD,
     CLASS_REPRESENT_PRIEST,
+    CLASS_REPRESENT_GENERIC = 100,
     CLASS_REPRESENT_UNKNOWN = 0xffffffff
 };
 
@@ -1274,6 +1275,15 @@ typedef struct __TABLE_QUEST_TALK {
     DWORD       dwID;   // 일련번호
     std::string szTalk; // 퀘스트 지문
 } TABLE_QUEST_TALK;
+
+typedef struct __TABLE_HELP {
+    int               iID;
+    int               iLevelMin;
+    int               iLevelMax;
+    e_Class_Represent eRepresentClass;
+    std::string       szTitle;
+    std::string       szDescription;
+} TABLE_HELP;
 
 typedef struct __TABLE_TEXTS {
     DWORD       dwID;
