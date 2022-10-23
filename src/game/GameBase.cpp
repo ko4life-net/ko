@@ -471,9 +471,10 @@ e_Class_Represent CGameBase::GetRepresentClass(e_Class eClass) {
     case CLASS_EL_CLERIC:
     case CLASS_EL_DRUID:
         return CLASS_REPRESENT_PRIEST;
-    }
 
-    return CLASS_REPRESENT_UNKNOWN;
+    default:
+        return CLASS_REPRESENT_GENERIC;
+    }
 }
 
 bool CGameBase::GetTextByNation(e_Nation eNation, std::string & szText) {
