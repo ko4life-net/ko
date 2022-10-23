@@ -648,6 +648,9 @@ bool CUIStateBar::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     } else if (dwMsg == UIMSG_BUTTON_CLICK) {
         if (pSender == (CN3UIBase *)m_pBtn_Quest) {
             if (CGameProcedure::s_pProcMain->m_pUILevelGuide) {
+                // Note that officialy they call SetVisible, however @xGuTeK's implementation
+                // here is much friendlier, making the Quest button toggling the leveling guide.
+                //CGameProcedure::s_pProcMain->m_pUILevelGuide->SetVisible(true);
                 CGameProcedure::s_pProcMain->CommandToggleUILevelGuide();
             }
             m_bQuestButtonClicked = true;
