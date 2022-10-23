@@ -98,7 +98,7 @@ void CGameBase::StaticMemberInit() {
     s_pTbl_QuestTalk->LoadFromFile(szFN.c_str()); // 퀘스트 관련 지문
     szFN = "Data\\Texts" + szLangTail;
     s_pTbl_Texts->LoadFromFile(szFN.c_str());
-    szFN = "Data\\Help" + szLangTail;
+    szFN = "Data\\help" + szLangTail;
     s_pTbl_Help->LoadFromFile(szFN.c_str());
 
     for (int i = 0; i < MAX_ITEM_EXTENSION; i++) {
