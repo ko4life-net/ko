@@ -3884,9 +3884,10 @@ void CGameProcMain::InitUI() {
     m_pUILevelGuide->Init(s_pUIMgr);
     m_pUILevelGuide->LoadFromFile(pTbl->szLevelGuide);
     m_pUILevelGuide->SetVisibleWithNoSound(false);
-    m_pUILevelGuide->SetStyle(UISTYLE_HIDE_UNABLE | UISTYLE_POS_RIGHT);
+    m_pUILevelGuide->SetStyle(m_pUILevelGuide->GetStyle() | UISTYLE_POS_RIGHT);
     rc = m_pUILevelGuide->GetRegion();
     m_pUILevelGuide->SetPos(iW - (rc.right - rc.left), 10);
+    m_pUILevelGuide->SetState(UI_STATE_COMMON_NONE);
 
     // dead ui
     m_pUIDead->Init(s_pUIMgr);
