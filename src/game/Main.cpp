@@ -10,6 +10,7 @@
 #include "GameProcMain.h"
 #include "GameEng.h"
 #include "UIChat.h"
+#include "UIExitMenu.h"
 
 #include "KnightChrMgr.h"
 
@@ -137,11 +138,24 @@ LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
     case WM_DESTROY:
     case WM_QUIT:
 
-        // 소켓을 최우선적으로 끊는다..
-        CGameProcedure::s_pSocket->Disconnect();
-        CGameProcedure::s_pSocketSub->Disconnect();
+        if (CGameProcedure::s_pProcActive &&
+            CGameProcedure::s_pProcActive == (CGameProcedure *)CGameProcedure::s_pProcMain &&
+            CGameProcMain::s_pProcMain->m_pUIExitMenu) {
+            CGameProcMain::s_pProcMain->m_pUIExitMenu->SetVisible(true);
+            return true;
+        }
 
-        PostQuitMessage(0);
+        if (CGameProcedure::s_pProcMain->m_pExitState == EXIT_STATE_ALLOW_LEAVE) {
+
+            CGameProcedure::s_pSocket->Disconnect();
+            CGameProcedure::s_pSocketSub->Disconnect();
+
+            PostQuitMessage(0);
+        }
+
+        CGameProcMain::s_pProcMain->m_pUIExitMenu->AddWarningMessage(IDS_EXIT_GAME_DURING_BATTLE_WARNING, false);
+        CGameProcedure::s_pProcMain->m_pExitType = EXIT_TYPE_EXIT;
+
         break;
     case WM_RECEIVEDATA:
         if (CGameProcedure::s_pKnightChr) {

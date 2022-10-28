@@ -5,6 +5,7 @@
 #include "StdAfx.h"
 #include "Resource.h"
 #include "UICmd.h"
+#include "UIExitMenu.h"
 #include "GameProcMain.h"
 #include "PlayerOtherMgr.h"
 //#include "GameProcLogIn.h"
@@ -122,10 +123,7 @@ bool CUICmd::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 
         else if (pSender == m_pBtn_Exit) // 캐릭터 캐릭터 선택창으로 간다..
         {
-            std::string szMsg;
-            ::_LoadStringFromResource(IDS_EXIT, szMsg);
-            //            CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_RESTART_GAME); // 게임 다시시작 하기..??
-            CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_EXIT); // 게임 다시시작 하기..??
+            CGameProcedure::s_pProcMain->m_pUIExitMenu->SetVisible(true);
         }
 
         else if (pSender == m_pBtn_Camera) {

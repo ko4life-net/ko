@@ -54,6 +54,7 @@ class CGameProcMain : public CGameProcedure {
     class CUITradeBBSSelector * m_pUITradeBBSSelector; // 상거래 게시판 종류 선택
     class CUITradeBBSEditDlg *  m_pUITradeBBSEdit;     // 상거래 게시물 설명
     class CUIRookieTip *        m_pUIRookieTip;        // RookieTip when closing notice ui
+    class CUIExitMenu *         m_pUIExitMenu;         // Exit Menu
 
     class CN3Shape * m_pTargetSymbol; // 플레이어가 타겟으로 잡은 캐릭터의 위치위에 그리면 된다..
 
@@ -86,6 +87,10 @@ class CGameProcMain : public CGameProcedure {
     int KM_COUNT;
 
     float m_fRotateValue;
+
+    e_TypeOfExit m_pExitType;
+    e_ExitState  m_pExitState;
+    int          m_pExitSecondsElapsed = 0;
 
   protected:
     bool ProcessPacket(DataPack * pDataPack, int & iOffset);

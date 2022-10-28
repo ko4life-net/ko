@@ -640,6 +640,9 @@
     <ClInclude Include="N3UIDebug.h">
       <Filter>Procedure - Main\UI</Filter>
     </ClInclude>
+    <ClInclude Include="UIExitMenu.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\Resource.rc">
@@ -1152,6 +1155,9 @@
       <Filter>Procedure - Main\UI</Filter>
     </ClCompile>
     <ClCompile Include="N3UIDebug.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIExitMenu.cpp">
       <Filter>Procedure - Main\UI</Filter>
     </ClCompile>
   </ItemGroup>

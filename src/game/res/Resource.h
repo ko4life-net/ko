@@ -516,6 +516,9 @@
 #define IDS_INVEN_WEIGHT                         6605
 #define IDS_WARP_ARRIVED                         6606
 #define IDS_WARP_REQUIRED_COINS                  7612
+#define IDS_EXIT_GAME_IN                         7632
+#define IDS_EXIT_GAME_CANCELED                   7633
+#define IDS_EXIT_GAME_DURING_BATTLE_WARNING      7634
 #define IDS_LEVELGUIDE_SEARCH_WARNING            10100
 #define IDS_NATIONSELECT_MSGBOX_SELECTION        10420
 #define IDS_NATIONSELECT_DESCRIPTION_KA          10421

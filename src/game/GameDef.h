@@ -1485,3 +1485,17 @@ enum e_Cursor {
     CURSOR_COUNT,
     CURSOR_UNKNOWN = 0xffffffff
 };
+
+const int TIME_PLAYER_CAN_EXIT_GAME_AFTER_ATTACK = 10;
+
+enum e_TypeOfExit {
+    EXIT_TYPE_NONE,
+    EXIT_TYPE_SELECTCHAR,
+    EXIT_TYPE_EXIT,
+    EXIT_TYPE_OPTION,
+};
+
+enum e_ExitState {
+    EXIT_STATE_ALLOW_LEAVE,
+    EXIT_STATE_DISALLOW_LEAVE,
+};

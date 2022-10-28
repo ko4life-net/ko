@@ -57,6 +57,7 @@
 #include "UILevelGuide.h"
 #include "UIDead.h"
 #include "UIRookieTip.h"
+#include "UIExitMenu.h"
 
 #include "SubProcPerTrade.h"
 #include "CountableItemEditDlg.h"
@@ -127,6 +128,10 @@ CGameProcMain::CGameProcMain() // r기본 생성자.. 각 변수의 역활은 헤더 참조..
 
     m_fRotateValue = -1.0f;
 
+    m_pExitType = EXIT_TYPE_NONE;
+    m_pExitState = EXIT_STATE_ALLOW_LEAVE;
+    m_pExitSecondsElapsed = 0;
+
     //UI
     m_pUIMsgDlg = new CUIMessageWnd;
     m_pUIChatDlg = new CUIChat();
@@ -162,6 +167,7 @@ CGameProcMain::CGameProcMain() // r기본 생성자.. 각 변수의 역활은 헤더 참조..
     m_pUILevelGuide = new CUILevelGuide();
     m_pUIDead = new CUIDead();
     m_pUIRookieTip = new CUIRookieTip();
+    m_pUIExitMenu = new CUIExitMenu();
 
     m_pSubProcPerTrade = new CSubProcPerTrade();
     m_pMagicSkillMng = new CMagicSkillMng(this);
@@ -209,6 +215,7 @@ CGameProcMain::~CGameProcMain() {
     delete m_pUILevelGuide;
     delete m_pUIDead;
     delete m_pUIRookieTip;
+    delete m_pUIExitMenu;
 
     delete m_pSubProcPerTrade;
     delete m_pMagicSkillMng;
@@ -257,6 +264,7 @@ void CGameProcMain::ReleaseUIs() {
     m_pUIInn->Release();
     m_pUICreateClanName->Release();
     m_pUIRookieTip->Release();
+    m_pUIExitMenu->Release();
 
     CN3UIBase::DestroyTooltip();
 }
@@ -416,6 +424,10 @@ void CGameProcMain::Init() {
 
     if (s_pUILoading) {
         s_pUILoading->Render("Loading Character Data... 100 %", 100);
+    }
+
+    if (m_pUIExitMenu) {
+        m_pUIExitMenu->ClearExitState();
     }
 
     this->MsgSend_GameStart();
@@ -586,9 +598,59 @@ void CGameProcMain::Tick() {
         m_pUIChatDlg->ShowContinueMsg();
         fInterval5 = 0;
     }
-    fTimePrev = fTime;
     // 타이머 비슷한 루틴..
     ////////////////////////////////////////////////////////////////////////////////////
+
+    //EXIT MENU
+    static float fTimeIntervalExitWarning = 0;
+    fTimeIntervalExitWarning += fTime - fTimePrev;
+
+    if (m_pExitState == EXIT_STATE_DISALLOW_LEAVE && m_pExitSecondsElapsed <= TIME_PLAYER_CAN_EXIT_GAME_AFTER_ATTACK &&
+        m_pExitType == EXIT_TYPE_NONE && fTimeIntervalExitWarning > 1.0f) {
+        m_pExitSecondsElapsed++;
+
+        if (m_pExitSecondsElapsed == TIME_PLAYER_CAN_EXIT_GAME_AFTER_ATTACK) {
+            m_pExitState = EXIT_STATE_ALLOW_LEAVE;
+            m_pExitSecondsElapsed = 0;
+        }
+        fTimeIntervalExitWarning = 0;
+    }
+
+    if (m_pExitType != EXIT_TYPE_NONE) {
+        if (TIME_PLAYER_CAN_EXIT_GAME_AFTER_ATTACK - m_pExitSecondsElapsed > 0 && fTimeIntervalExitWarning > 1.0f) {
+
+            if (m_pUIChatDlg) {
+
+                char        szBuff[32];
+                std::string szMsg;
+                ::_LoadStringFromResource(IDS_EXIT_GAME_IN, szMsg); // Exiting game in %d seconds.
+
+                sprintf(szBuff, szMsg.c_str(), TIME_PLAYER_CAN_EXIT_GAME_AFTER_ATTACK - m_pExitSecondsElapsed);
+
+                m_pUIChatDlg->AddChatMsg(N3_CHAT_NORMAL, szBuff, 0xFFFF0000);
+            }
+
+            m_pExitSecondsElapsed++;
+            fTimeIntervalExitWarning = 0;
+        } else if (m_pExitState == EXIT_STATE_ALLOW_LEAVE ||
+                   TIME_PLAYER_CAN_EXIT_GAME_AFTER_ATTACK - m_pExitSecondsElapsed <= 0) {
+            if (m_pExitType == EXIT_TYPE_SELECTCHAR) {
+
+                m_pExitType = EXIT_TYPE_NONE;
+                m_pExitState = EXIT_STATE_ALLOW_LEAVE;
+                m_pExitSecondsElapsed = 0;
+
+                m_pUIExitMenu->SelectCharacter();
+            } else if (m_pExitType == EXIT_TYPE_EXIT) {
+                PostQuitMessage(0);
+            } else if (m_pExitType == EXIT_TYPE_OPTION) {
+                ::ShellExecute(NULL, "open", "Option.exe", NULL, NULL, SW_SHOWNORMAL);
+                PostQuitMessage(0);
+            }
+        }
+    }
+
+    fTimePrev = fTime;
 
     // Rotates the player's camera 180 degrees from the current position.
     if (m_fRotateValue >= 0.0f && !CGameProcedure::s_pUIMgr->m_bDoneSomething) {
@@ -1255,6 +1317,16 @@ void CGameProcMain::ProcessLocalInput(DWORD dwMouseFlags) {
         if (s_pLocalInput->IsKeyPress(DIK_NEXT)) {
             if (m_pUIHotKeyDlg) {
                 m_pUIHotKeyDlg->PageDown();
+            }
+        }
+
+        if (s_pLocalInput->IsKeyPress(DIK_ESCAPE)) {
+            if (m_pUIExitMenu) {
+                if (m_pUIExitMenu->IsVisible()) {
+                    m_pUIExitMenu->SetVisible(false);
+                } else {
+                    m_pUIExitMenu->SetVisible(true);
+                }
             }
         }
 
@@ -2260,6 +2332,9 @@ bool CGameProcMain::MsgRecv_Regen(DataPack * pDataPack, int & iOffset) {
     if (CGameProcedure::s_pFX) {
         s_pFX->StopMine();
     }
+    if (m_pUIExitMenu) {
+        m_pUIExitMenu->ClearExitState();
+    }
 
     CLogWriter::Write("Receive Regeneration");
 
@@ -3113,6 +3188,17 @@ bool CGameProcMain::MsgRecv_Attack(DataPack * pDataPack, int & iOffset) {
         TRACE("player is under of attack (%d)\n", iIDAttacker);
     }
 
+    if (s_pPlayer) {
+        if (m_pExitType != EXIT_TYPE_NONE) {
+            std::string szMsg;
+            ::_LoadStringFromResource(IDS_EXIT_GAME_CANCELED, szMsg); // Exiting game canceled.
+            m_pUIChatDlg->AddChatMsg(N3_CHAT_NORMAL, szMsg, 0xFFFF0000);
+        }
+        m_pExitType = EXIT_TYPE_NONE;
+        m_pExitState = EXIT_STATE_DISALLOW_LEAVE;
+        m_pExitSecondsElapsed = 0;
+    }
+
     return true;
 }
 
@@ -3961,6 +4047,16 @@ void CGameProcMain::InitUI() {
     iY = (iH - (rc.bottom - rc.top)) / 2;
     m_pUIRookieTip->SetPos(iX, iY);
     m_pUIRookieTip->SetState(UI_STATE_COMMON_NONE);
+
+    //Exit Menu
+    m_pUIExitMenu->Init(s_pUIMgr);
+    m_pUIExitMenu->LoadFromFile(pTbl->szExitMenu);
+    m_pUIExitMenu->SetVisibleWithNoSound(false);
+    rc = m_pUIExitMenu->GetRegion();
+    iX = (iW - (rc.right - rc.left)) / 2;
+    iY = (iH - (rc.bottom - rc.top)) / 2;
+    m_pUIExitMenu->SetPos(iX, iY);
+    m_pUIExitMenu->SetStyle(UISTYLE_MODAL);
 }
 
 void CGameProcMain::MsgSend_RequestTargetHP(short siIDTarget, BYTE byUpdateImmediately) {
