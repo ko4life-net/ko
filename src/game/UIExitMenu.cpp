@@ -98,26 +98,21 @@ bool CUIExitMenu::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     }
 
     if (dwMsg == UIMSG_BUTTON_CLICK) {
-
-        if (pSender->m_szID == "btn_chr") { // Select characeter
-
+        if (pSender == (CN3UIBase *)m_pBtn_chr) { // Select characeter
             if (CGameProcedure::s_pProcMain->m_pExitState == EXIT_STATE_ALLOW_LEAVE) {
                 SelectCharacter();
             }
 
             AddWarningMessage(IDS_EXIT_GAME_DURING_BATTLE_WARNING, false);
             CGameProcedure::s_pProcMain->m_pExitType = EXIT_TYPE_SELECTCHAR;
-        }
-
-        else if (pSender->m_szID == "btn_exit") {
+        } else if (pSender == (CN3UIBase *)m_pBtn_exit) {
             if (CGameProcedure::s_pProcMain->m_pExitState == EXIT_STATE_ALLOW_LEAVE) {
                 ::PostQuitMessage(0);
             }
 
             AddWarningMessage(IDS_EXIT_GAME_DURING_BATTLE_WARNING, false);
-
             CGameProcedure::s_pProcMain->m_pExitType = EXIT_TYPE_EXIT;
-        } else if (pSender->m_szID == "btn_option") {
+        } else if (pSender == (CN3UIBase *)m_pBtn_option) {
             if (CGameProcedure::s_pProcMain->m_pExitState == EXIT_STATE_ALLOW_LEAVE) {
                 ::ShellExecute(NULL, "open", "Option.exe", NULL, NULL, SW_SHOWNORMAL);
                 PostQuitMessage(0);
@@ -125,10 +120,11 @@ bool CUIExitMenu::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 
             AddWarningMessage(IDS_EXIT_GAME_DURING_BATTLE_WARNING, false);
             CGameProcedure::s_pProcMain->m_pExitType = EXIT_TYPE_OPTION;
-        } else if (pSender->m_szID == "btn_cancel") {
+        } else if (pSender == (CN3UIBase *)m_pBtn_cancel) {
             SetVisible(false);
         }
     }
+
     return true;
 }
 
