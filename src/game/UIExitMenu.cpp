@@ -74,8 +74,7 @@ void CUIExitMenu::SelectCharacter() {
     Sleep(4000);
     CGameProcedure::s_pSocket->Connect(CGameProcedure::s_hWndBase, szIP.c_str(), dwPort);
     CGameProcedure::s_bNeedReportConnectionClosed = true;
-
-    CGameProcedure::MsgSend_GameServerLogIn();
+    CGameProcedure::s_bNeedReportVersionCheck = true;
     CGameProcedure::ProcActiveSet((CGameProcedure *)CGameProcedure::s_pProcCharacterSelect);
 }
 

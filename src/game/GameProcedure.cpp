@@ -96,6 +96,7 @@ bool                  CGameProcedure::m_bCursorLocked = false;
 HCURSOR               CGameProcedure::m_hPrevGameCursor = NULL;
 HWND                  CGameProcedure::s_hWndSubSocket = NULL; // 서브 소켓용 윈도우 핸들..
 int                   CGameProcedure::s_iChrSelectIndex = 0;
+bool                  CGameProcedure::s_bNeedReportVersionCheck = false;
 bool                  CGameProcedure::s_bNeedReportConnectionClosed = false; // 서버접속이 끊어진걸 보고해야 하는지..
 bool                  CGameProcedure::s_bWindowed = false;                   // 창모드 실행??
 bool                  CGameProcedure::s_bKeyPress = false;   //키가 눌려졌을때 ui에서 해당하는 조작된적이 있다면

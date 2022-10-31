@@ -233,7 +233,11 @@ void CGameProcCharacterSelect::Init() {
         break;
     }
 
-    this->MsgSend_RequestAllCharacterInfo(); // 캐릭터 정보 요청..
+    if (s_bNeedReportVersionCheck) {
+        MsgSend_VersionCheck();
+    } else {
+        MsgSend_RequestAllCharacterInfo();
+    }
 }
 
 void CGameProcCharacterSelect::Tick() {
@@ -657,16 +661,36 @@ int CGameProcCharacterSelect::MsgRecv_VersionCheck(DataPack * pDataPack, int & i
 {
     int iVersion = CGameProcedure::MsgRecv_VersionCheck(pDataPack, iOffset);
     if (iVersion == CURRENT_VERSION) {
-        this->MsgSend_CharacterSelect(); // 게임 서버에 로그인..
+        if (s_bNeedReportVersionCheck) {
+            CGameProcedure::MsgSend_GameServerLogIn();
+        } else {
+            MsgSend_CharacterSelect(); // 게임 서버에 로그인..
+        }
     }
 
     return iVersion;
 }
 
+int CGameProcCharacterSelect::MsgRecv_GameServerLogIn(DataPack * pDataPack, int & iOffset) {
+    int iNation = CGameProcedure::MsgRecv_GameServerLogIn(pDataPack, iOffset);
+    if (0xff == iNation) {
+        std::string szFmt;
+        ::_LoadStringFromResource(IDS_FMT_GAME_SERVER_LOGIN_ERROR, szFmt);
+        char szErr[256]{};
+        sprintf(szErr, szFmt.c_str(), "Current", iNation);
+        MessageBoxPost(szErr, "", MB_OK);
+    } else {
+        MsgSend_RequestAllCharacterInfo();
+        s_bNeedReportVersionCheck = false;
+    }
+
+    return iNation;
+}
+
 bool CGameProcCharacterSelect::MsgRecv_CharacterSelect(DataPack * pDataPack, int & iOffset) // virtual
 {
     bool bSuccess = CGameProcedure::MsgRecv_CharacterSelect(pDataPack, iOffset);
-
+    s_bNeedReportVersionCheck = false;
     if (bSuccess) {
         this->CharacterSelect(); // 캐릭터를 일으킨다..
     } else {
