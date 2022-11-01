@@ -1,7 +1,3 @@
-// UIChat.h: interface for the CUIChat class.
-//
-//////////////////////////////////////////////////////////////////////
-
 #pragma once
 
 #include "N3Base/N3UIBase.h"
@@ -15,8 +11,6 @@ class CUIExitMenu : public CN3UIBase {
     CN3UIButton * m_pBtn_option;
     CN3UIButton * m_pBtn_cancel;
 
-  protected:
-    // Operations
   public:
     void SetVisible(bool bVisible) override;
     bool OnKeyPress(int iKey) override;
