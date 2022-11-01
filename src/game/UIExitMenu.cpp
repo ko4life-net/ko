@@ -15,10 +15,10 @@
 #include "N3Base/N3UIButton.h"
 
 CUIExitMenu::CUIExitMenu() {
-    m_pBtn_chr = NULL;
-    m_pBtn_exit = NULL;
-    m_pBtn_option = NULL;
-    m_pBtn_cancel = NULL;
+    m_pBtnChr = NULL;
+    m_pBtnExit = NULL;
+    m_pBtnOption = NULL;
+    m_pBtnCancel = NULL;
 }
 
 CUIExitMenu::~CUIExitMenu() = default;
@@ -29,17 +29,17 @@ void CUIExitMenu::SetVisible(bool bVisible) {
         CGameProcedure::s_pUIMgr->SetVisible(this);
     } else {
         CGameProcedure::s_pUIMgr->ReFocusUI();
-        if (m_pBtn_chr) {
-            m_pBtn_chr->SetState(UI_STATE_BUTTON_NORMAL);
+        if (m_pBtnChr) {
+            m_pBtnChr->SetState(UI_STATE_BUTTON_NORMAL);
         }
-        if (m_pBtn_option) {
-            m_pBtn_option->SetState(UI_STATE_BUTTON_NORMAL);
+        if (m_pBtnOption) {
+            m_pBtnOption->SetState(UI_STATE_BUTTON_NORMAL);
         }
-        if (m_pBtn_exit) {
-            m_pBtn_exit->SetState(UI_STATE_BUTTON_NORMAL);
+        if (m_pBtnExit) {
+            m_pBtnExit->SetState(UI_STATE_BUTTON_NORMAL);
         }
-        if (m_pBtn_cancel) {
-            m_pBtn_cancel->SetState(UI_STATE_BUTTON_NORMAL);
+        if (m_pBtnCancel) {
+            m_pBtnCancel->SetState(UI_STATE_BUTTON_NORMAL);
         }
     }
 }
@@ -105,21 +105,21 @@ bool CUIExitMenu::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     }
 
     if (dwMsg == UIMSG_BUTTON_CLICK) {
-        if (pSender == (CN3UIBase *)m_pBtn_chr) { // Select characeter
+        if (pSender == (CN3UIBase *)m_pBtnChr) { // Select characeter
             if (CGameProcedure::s_pProcMain->m_pExitState == EXIT_STATE_ALLOW_LEAVE) {
                 SelectCharacter();
             }
 
             AddWarningMessage(IDS_EXIT_GAME_DURING_BATTLE_WARNING, false);
             CGameProcedure::s_pProcMain->m_pExitType = EXIT_TYPE_SELECTCHAR;
-        } else if (pSender == (CN3UIBase *)m_pBtn_exit) {
+        } else if (pSender == (CN3UIBase *)m_pBtnExit) {
             if (CGameProcedure::s_pProcMain->m_pExitState == EXIT_STATE_ALLOW_LEAVE) {
                 ::PostQuitMessage(0);
             }
 
             AddWarningMessage(IDS_EXIT_GAME_DURING_BATTLE_WARNING, false);
             CGameProcedure::s_pProcMain->m_pExitType = EXIT_TYPE_EXIT;
-        } else if (pSender == (CN3UIBase *)m_pBtn_option) {
+        } else if (pSender == (CN3UIBase *)m_pBtnOption) {
             if (CGameProcedure::s_pProcMain->m_pExitState == EXIT_STATE_ALLOW_LEAVE) {
                 ::ShellExecute(NULL, "open", "Option.exe", NULL, NULL, SW_SHOWNORMAL);
                 PostQuitMessage(0);
@@ -127,7 +127,7 @@ bool CUIExitMenu::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 
             AddWarningMessage(IDS_EXIT_GAME_DURING_BATTLE_WARNING, false);
             CGameProcedure::s_pProcMain->m_pExitType = EXIT_TYPE_OPTION;
-        } else if (pSender == (CN3UIBase *)m_pBtn_cancel) {
+        } else if (pSender == (CN3UIBase *)m_pBtnCancel) {
             SetVisible(false);
         }
     }
@@ -136,18 +136,21 @@ bool CUIExitMenu::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 }
 
 bool CUIExitMenu::Load(HANDLE hFile) {
-    if (false == CN3UIBase::Load(hFile)) {
+    if (!CN3UIBase::Load(hFile)) {
         return false;
     }
 
-    m_pBtn_chr = (CN3UIButton *)GetChildByID("btn_chr");
-    __ASSERT(m_pBtn_chr, "NULL UI Component!!");
-    m_pBtn_exit = (CN3UIButton *)GetChildByID("btn_exit");
-    __ASSERT(m_pBtn_exit, "NULL UI Component!!");
-    m_pBtn_option = (CN3UIButton *)GetChildByID("btn_option");
-    __ASSERT(m_pBtn_option, "NULL UI Component!!");
-    m_pBtn_cancel = (CN3UIButton *)GetChildByID("btn_cancel");
-    __ASSERT(m_pBtn_cancel, "NULL UI Component!!");
+    m_pBtnChr = (CN3UIButton *)GetChildByID("btn_chr");
+    __ASSERT(m_pBtnChr, "NULL UI Component!!");
+
+    m_pBtnExit = (CN3UIButton *)GetChildByID("btn_exit");
+    __ASSERT(m_pBtnExit, "NULL UI Component!!");
+
+    m_pBtnOption = (CN3UIButton *)GetChildByID("btn_option");
+    __ASSERT(m_pBtnOption, "NULL UI Component!!");
+
+    m_pBtnCancel = (CN3UIButton *)GetChildByID("btn_cancel");
+    __ASSERT(m_pBtnCancel, "NULL UI Component!!");
 
     return true;
 }

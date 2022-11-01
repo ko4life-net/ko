@@ -4,10 +4,10 @@
 
 class CUIExitMenu : public CN3UIBase {
   private:
-    CN3UIButton * m_pBtn_chr;
-    CN3UIButton * m_pBtn_exit;
-    CN3UIButton * m_pBtn_option;
-    CN3UIButton * m_pBtn_cancel;
+    CN3UIButton * m_pBtnChr;
+    CN3UIButton * m_pBtnExit;
+    CN3UIButton * m_pBtnOption;
+    CN3UIButton * m_pBtnCancel;
 
   public:
     void SetVisible(bool bVisible) override;
