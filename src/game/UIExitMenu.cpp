@@ -21,7 +21,7 @@ CUIExitMenu::CUIExitMenu() {
     m_pBtn_cancel = NULL;
 }
 
-CUIExitMenu::~CUIExitMenu() {}
+CUIExitMenu::~CUIExitMenu() = default;
 
 void CUIExitMenu::SetVisible(bool bVisible) {
     CN3UIBase::SetVisible(bVisible);
