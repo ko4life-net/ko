@@ -1,20 +1,16 @@
 #include "StdAfx.h"
 #include "UIExitMenu.h"
-#include "PlayerMySelf.h"
-
-#include "APISocket.h"
-#include "PacketDef.h"
-#include "GameProcMain.h"
-#include "GameProcedure.h"
-#include "GameProcLogin.h"
-#include "GameDef.h"
-
-#include "UIMessageWnd.h"
-#include "UIManager.h"
-#include "UIPartyOrForce.h"
-#include "SubProcPerTrade.h"
 
 #include "Resource.h"
+#include "PacketDef.h"
+#include "APISocket.h"
+#include "PlayerMySelf.h"
+#include "GameProcMain.h"
+#include "SubProcPerTrade.h"
+
+#include "UIManager.h"
+#include "UIMessageWnd.h"
+#include "UIPartyOrForce.h"
 
 #include "N3Base/N3UIButton.h"
 

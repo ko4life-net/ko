@@ -1,8 +1,6 @@
 #pragma once
 
 #include "N3Base/N3UIBase.h"
-#include "GameDef.h"
-#include <deque>
 
 class CUIExitMenu : public CN3UIBase {
   protected:
