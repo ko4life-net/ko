@@ -18,6 +18,7 @@ class CUIExitMenu : public CN3UIBase {
   protected:
     // Operations
   public:
+    void SetVisible(bool bVisible) override;
     bool OnKeyPress(int iKey) override;
     bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) override;
     void Release() override;

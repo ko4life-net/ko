@@ -20,6 +20,8 @@
 
 #include "Resource.h"
 
+#include "N3Base/N3UIButton.h"
+
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
@@ -35,6 +37,27 @@ CUIExitMenu::~CUIExitMenu() {}
 
 void CUIExitMenu::Release() {
     CN3UIBase::Release();
+}
+
+void CUIExitMenu::SetVisible(bool bVisible) {
+    CN3UIBase::SetVisible(bVisible);
+    if (bVisible) {
+        CGameProcedure::s_pUIMgr->SetVisible(this);
+    } else {
+        CGameProcedure::s_pUIMgr->ReFocusUI();
+        if (m_pBtn_chr) {
+            m_pBtn_chr->SetState(UI_STATE_BUTTON_NORMAL);
+        }
+        if (m_pBtn_option) {
+            m_pBtn_option->SetState(UI_STATE_BUTTON_NORMAL);
+        }
+        if (m_pBtn_exit) {
+            m_pBtn_exit->SetState(UI_STATE_BUTTON_NORMAL);
+        }
+        if (m_pBtn_cancel) {
+            m_pBtn_cancel->SetState(UI_STATE_BUTTON_NORMAL);
+        }
+    }
 }
 
 void CUIExitMenu::SelectCharacter() {
