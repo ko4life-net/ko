@@ -3,7 +3,7 @@
 #include "N3Base/N3UIBase.h"
 
 class CUIExitMenu : public CN3UIBase {
-  protected:
+  private:
     CN3UIButton * m_pBtn_chr;
     CN3UIButton * m_pBtn_exit;
     CN3UIButton * m_pBtn_option;
