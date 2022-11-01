@@ -35,10 +35,6 @@ CUIExitMenu::CUIExitMenu() {
 
 CUIExitMenu::~CUIExitMenu() {}
 
-void CUIExitMenu::Release() {
-    CN3UIBase::Release();
-}
-
 void CUIExitMenu::SetVisible(bool bVisible) {
     CN3UIBase::SetVisible(bVisible);
     if (bVisible) {
@@ -166,14 +162,6 @@ bool CUIExitMenu::Load(HANDLE hFile) {
     __ASSERT(m_pBtn_cancel, "NULL UI Component!!");
 
     return true;
-}
-
-void CUIExitMenu::Render() {
-    if (!m_bVisible) {
-        return;
-    }
-
-    CN3UIBase::Render();
 }
 
 void CUIExitMenu::ClearExitState() {

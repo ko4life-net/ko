@@ -21,10 +21,8 @@ class CUIExitMenu : public CN3UIBase {
     void SetVisible(bool bVisible) override;
     bool OnKeyPress(int iKey) override;
     bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) override;
-    void Release() override;
     bool Load(HANDLE hFile) override;
 
-    void Render() override;
     void SelectCharacter();
     void ClearExitState();
     void AddWarningMessage(DWORD idMessage, bool visbleMenu);
