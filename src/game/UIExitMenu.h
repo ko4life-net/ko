@@ -18,16 +18,16 @@ class CUIExitMenu : public CN3UIBase {
   protected:
     // Operations
   public:
-    bool         OnKeyPress(int iKey);
-    virtual bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg);
-    virtual void Release();
-    virtual bool Load(HANDLE hFile);
+    bool OnKeyPress(int iKey) override;
+    bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) override;
+    void Release() override;
+    bool Load(HANDLE hFile) override;
 
-    void Render();
+    void Render() override;
     void SelectCharacter();
     void ClearExitState();
     void AddWarningMessage(DWORD idMessage, bool visbleMenu);
 
     CUIExitMenu();
-    virtual ~CUIExitMenu();
+    ~CUIExitMenu() override;
 };
