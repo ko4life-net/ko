@@ -110,15 +110,11 @@ LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
         switch (iActive) {
         case WA_CLICKACTIVE:
         case WA_ACTIVE:
-#ifdef _DEBUG
             g_bActive = TRUE;
-#endif
             break;
         case WA_INACTIVE:
-#ifdef _DEBUG
-            g_bActive = FALSE;
-#endif
-            if (false == CGameProcedure::s_bWindowed) {
+            if (!CGameProcedure::s_bWindowed) {
+                g_bActive = FALSE;
                 CLogWriter::Write("WA_INACTIVE.");
                 PostQuitMessage(0); // 창모드 아니면 팅긴다??
             }
