@@ -3640,11 +3640,7 @@ void CGameProcMain::InitUI() {
     m_pUIStateBarAndMiniMap->Init(s_pUIMgr);
     m_pUIStateBarAndMiniMap->LoadFromFile(pTbl->szStateBar);
     m_pUIStateBarAndMiniMap->SetStyle(UISTYLE_FOCUS_UNABLE | UISTYLE_HIDE_UNABLE);
-#ifdef _DEBUG
-    m_pUIStateBarAndMiniMap->SetPos(0, 70); // 디버그 정보 표시때문에 조금 내린다....
-#else
     m_pUIStateBarAndMiniMap->SetPos(0, 0);
-#endif
 
     // 다용도 UI - 상태, 기사단관리, 퀘스트, 친구 관리등...
     m_pUIVar->Init(s_pUIMgr);

@@ -1,6 +1,11 @@
 #include "StdAfx.h"
 #include "LocalInput.h"
-#include "mmsystem.h"
+
+#include <mmsystem.h>
+
+#if _DEBUG
+#include <imgui/imgui.h>
+#endif
 
 static LPDIRECTINPUTDEVICE lpDID = NULL;
 
@@ -233,6 +238,12 @@ void CLocalInput::UnacquireMouse() {
 /////////////////////////////////////////////////////////////////////////////////////////////
 // 되도록이면 전체 프로시저 돌때 한번씩만 도는게 좋다.. 여러번 하면 혼란이 올수도 있다.
 void CLocalInput::Tick(void) {
+#if _DEBUG
+    if (ImGui::GetIO().WantCaptureMouse || ImGui::GetIO().WantCaptureKeyboard) {
+        return;
+    }
+#endif
+
     HRESULT err;
     //    int oldx, oldy;
     //    BOOL isPressed;

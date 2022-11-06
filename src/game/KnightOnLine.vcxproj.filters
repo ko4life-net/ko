@@ -637,6 +637,9 @@
     <ClInclude Include="UIRookieTip.h">
       <Filter>Procedure - Main\UI</Filter>
     </ClInclude>
+    <ClInclude Include="N3UIDebug.h">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\Resource.rc">
@@ -1146,6 +1149,9 @@
       <Filter>Network</Filter>
     </ClCompile>
     <ClCompile Include="UIRookieTip.cpp">
+      <Filter>Procedure - Main\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="N3UIDebug.cpp">
       <Filter>Procedure - Main\UI</Filter>
     </ClCompile>
   </ItemGroup>
