@@ -67,10 +67,12 @@ void CN3UIDebug::EndScene() {
     RenderDockingSpace();
 
     static bool s_bDemoWindow = true;
-    ImGui::ShowDemoWindow(&s_bDemoWindow);
+    if (s_bDemoWindow) {
+        ImGui::ShowDemoWindow(&s_bDemoWindow);
+    }
 
-    RenderFPSGraph();
     RenderGameMetrics();
+    RenderFPSGraph();
 
     ImGui::EndFrame();
 
