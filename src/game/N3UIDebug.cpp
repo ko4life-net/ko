@@ -8,6 +8,7 @@
 #include "N3Base/N3Camera.h"
 
 #include <imgui/imgui.h>
+#include <imgui/imgui_internal.h>
 #include <imgui/imgui_impl_dx9.h>
 #include <imgui/imgui_impl_win32.h>
 
@@ -15,10 +16,11 @@
 #define IMGUI_WND_ID_DEMO      "Dear ImGui Demo"
 #define IMGUI_WND_ID_FPS       "FPS Graph##fps_graph"
 #define IMGUI_WND_ID_METRICS   "Game Metrics##game_metrics"
+#define IMGUI_WND_ID_DASHBOARD "Dashboard"
 
 bool CN3UIDebug::s_bReleaseCalled = false;
 
-CN3UIDebug::CN3UIDebug() {}
+CN3UIDebug::CN3UIDebug() = default;
 
 void CN3UIDebug::Release() {
     s_bReleaseCalled = true;
@@ -34,12 +36,9 @@ bool CN3UIDebug::Init() {
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
     io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
     io.ConfigFlags |= ImGuiConfigFlags_NoMouseCursorChange;
-    ImGui::StyleColorsDark();
-
-    ImGui_ImplWin32_Init(CN3Base::s_hWndBase);
-    ImGui_ImplDX9_Init(CN3Base::s_lpD3DDev);
 
     ImGuiStyle & style = ImGui::GetStyle();
+    ImGui::StyleColorsDark();
     style.FrameRounding = 10;
     style.Colors[ImGuiCol_Text] = ImVec4(0.90f, 0.98f, 0.81f, 1.00f);
     style.Colors[ImGuiCol_WindowBg] = ImVec4(0.06f, 0.05f, 0.09f, 0.94f);
@@ -50,10 +49,13 @@ bool CN3UIDebug::Init() {
     style.Colors[ImGuiCol_Separator] = ImVec4(0.25f, 0.90f, 0.52f, 0.50f);
     style.Colors[ImGuiCol_ResizeGrip] = ImVec4(0.16f, 0.91f, 0.27f, 0.20f);
 
+    ImGui_ImplWin32_Init(CN3Base::s_hWndBase);
+    ImGui_ImplDX9_Init(CN3Base::s_lpD3DDev);
+
     return true;
 }
 
-void CN3UIDebug::BeginScene() = default;
+void CN3UIDebug::BeginScene() {}
 
 void CN3UIDebug::EndScene() {
     if (s_bReleaseCalled) {
@@ -63,8 +65,7 @@ void CN3UIDebug::EndScene() {
     ImGui_ImplDX9_NewFrame();
     ImGui_ImplWin32_NewFrame();
     ImGui::NewFrame();
-
-    RenderDockingSpace();
+    RenderDockSpace();
 
     static bool s_bDemoWindow = true;
     if (s_bDemoWindow) {
@@ -102,30 +103,28 @@ LRESULT CN3UIDebug::WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM l
     return false;
 }
 
-void CN3UIDebug::RenderDockingSpace() {
-    static ImGuiWindowFlags s_DockWindowFlags = ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoBackground |
-                                                ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse |
-                                                ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove |
-                                                ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
+void CN3UIDebug::RenderDockSpace() {
+    ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), ImGuiDockNodeFlags_PassthruCentralNode);
 
-    // Make sure the docking window fully covers the whole region.
-    ImGuiViewport * pVP = ImGui::GetMainViewport();
-    ImGui::SetNextWindowPos(pVP->Pos);
-    ImGui::SetNextWindowSize(pVP->Size);
-    ImGui::SetNextWindowViewport(pVP->ID);
+    ImGui::Begin(IMGUI_WND_ID_DASHBOARD);
+    ImGuiID dsId = ImGui::GetID("DashboardDS");
+    if (!ImGui::DockBuilderGetNode(dsId)) {
+        ImGui::SetWindowSize(ImVec2(370.0f, 680.0f));
+        ImGui::SetWindowPos(ImVec2(640.0f, 55.0f));
 
-    // Foreground window style: we don't need it visible, so disable some props.
-    ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
-    ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
-    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
+        ImGui::DockBuilderRemoveNode(dsId);
+        ImGui::DockBuilderAddNode(dsId);
 
-    // Begin
-    ImGui::Begin("Dockspace", NULL, s_DockWindowFlags);
-    ImGui::PopStyleVar();
-    ImGui::PopStyleVar(2);
+        ImGuiID dsIdCopy = dsId;
+        ImGuiID dsIdUp = ImGui::DockBuilderSplitNode(dsIdCopy, ImGuiDir_Up, 0.34f, NULL, &dsIdCopy);
+        ImGuiID dsIdDown = ImGui::DockBuilderSplitNode(dsIdCopy, ImGuiDir_Down, 0.0f, NULL, &dsIdCopy);
+        ImGui::DockBuilderDockWindow(IMGUI_WND_ID_FPS, dsIdUp);
+        ImGui::DockBuilderDockWindow(IMGUI_WND_ID_METRICS, dsIdDown);
+        ImGui::DockBuilderDockWindow(IMGUI_WND_ID_DEMO, dsIdDown);
 
-    ImGui::DockSpace(ImGui::GetID("MyDockspace"), ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_PassthruCentralNode);
-
+        ImGui::DockBuilderFinish(dsId);
+    }
+    ImGui::DockSpace(dsId);
     ImGui::End();
 }
 

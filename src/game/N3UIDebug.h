@@ -13,7 +13,7 @@ class CN3UIDebug {
     static LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
   private:
-    void RenderDockingSpace();
+    void RenderDockSpace();
     void RenderGameMetrics();
     void RenderFPSGraph();
 
