@@ -11,6 +11,11 @@
 #include <imgui/imgui_impl_dx9.h>
 #include <imgui/imgui_impl_win32.h>
 
+// ImGui Window IDs
+#define IMGUI_WND_ID_DEMO      "Dear ImGui Demo"
+#define IMGUI_WND_ID_FPS       "FPS Graph##fps_graph"
+#define IMGUI_WND_ID_METRICS   "Game Metrics##game_metrics"
+
 bool CN3UIDebug::s_bReleaseCalled = false;
 
 CN3UIDebug::CN3UIDebug() {}
@@ -127,7 +132,7 @@ void CN3UIDebug::RenderDockingSpace() {
 }
 
 void CN3UIDebug::RenderGameMetrics() {
-    ImGui::Begin("Game Metrics##game_metrics");
+    ImGui::Begin(IMGUI_WND_ID_METRICS);
 
     ImGui::Text("Camera:");
     CN3Camera * pCamera = CGameProcedure::s_pEng->CameraGetActive();
@@ -165,7 +170,7 @@ void CN3UIDebug::RenderGameMetrics() {
 }
 
 void CN3UIDebug::RenderFPSGraph() {
-    ImGui::Begin("FPS Graph##fps_graph");
+    ImGui::Begin(IMGUI_WND_ID_FPS);
     static std::vector<float> s_Frames = {60.0f};
 
     float fTime = CN3Base::TimeGet();
