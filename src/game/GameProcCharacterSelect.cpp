@@ -294,8 +294,8 @@ NowRotating:
 
 void CGameProcCharacterSelect::Render() {
     D3DCOLOR crEnv = 0x00000000;
-    s_pEng->Clear(crEnv);             // ¹è°æÀº °ËÀº»ö
-    s_pEng->s_lpD3DDev->BeginScene(); // ¾À ·»´õ ¤µÀÛ...
+    s_pEng->Clear(crEnv); // ¹è°æÀº °ËÀº»ö
+    s_pEng->BeginScene(); // ¾À ·»´õ ¤µÀÛ...
 
     __Matrix44 mtxWorld;
     mtxWorld.Identity();
@@ -338,7 +338,7 @@ void CGameProcCharacterSelect::Render() {
         FadeOutRender();
     }
 
-    s_pEng->s_lpD3DDev->EndScene(); // ¾À ·»´õ ½ÃÀÛ...
+    s_pEng->EndScene(); // ¾À ·»´õ ½ÃÀÛ...
     s_pEng->Present(CN3Base::s_hWndBase);
 }
 

@@ -5,6 +5,7 @@
 #include "StdAfx.h"
 #include "UIEndingDisplay.h"
 #include "UIManager.h"
+#include "GameProcedure.h"
 #include "GameEng.h"
 
 //////////////////////////////////////////////////////////////////////
@@ -28,14 +29,13 @@ void CUIEndingDisplay::Render() {
     int  iY = (s_CameraData.vp.Height - (rc.bottom - rc.top)) / 2;
     this->SetPos(iX, iY);
 
-    D3DCOLOR crEnv = 0x00000000;
-    CGameEng::Clear(crEnv);             // ¹è°æÀº °ËÀº»ö
-    CGameEng::s_lpD3DDev->BeginScene(); // ¾À ·»´õ ¤µÀÛ...
+    CGameProcedure::s_pEng->Clear(0);     // ¹è°æÀº °ËÀº»ö
+    CGameProcedure::s_pEng->BeginScene(); // ¾À ·»´õ ¤µÀÛ...
 
     CUIManager::RenderStateSet();
     CN3UIBase::Render();
     CUIManager::RenderStateRestore();
 
-    CGameEng::s_lpD3DDev->EndScene(); // ¾À ·»´õ ½ÃÀÛ...
-    CGameEng::Present(CN3Base::s_hWndBase);
+    CGameProcedure::s_pEng->EndScene(); // ¾À ·»´õ ½ÃÀÛ...
+    CGameProcedure::s_pEng->Present(CN3Base::s_hWndBase);
 }

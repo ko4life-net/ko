@@ -595,8 +595,8 @@ void CGameProcMain::Render() {
     }
 
     D3DCOLOR crSky = ACT_WORLD->GetSkyColorWithSky();
-    s_pEng->Clear(crSky);             // 안개 색깔을 넣어서 클리어.. -> 하늘색깔로 클리어 해야 하늘이 제대로 나온다..
-    s_pEng->s_lpD3DDev->BeginScene(); // 씬 렌더 ㅅ작...
+    s_pEng->Clear(crSky); // 안개 색깔을 넣어서 클리어.. -> 하늘색깔로 클리어 해야 하늘이 제대로 나온다..
+    s_pEng->BeginScene(); // 씬 렌더 ㅅ작...
 
     ACT_WORLD->RenderSky();                                   // 하늘 렌더링..
     float fSunAngle = ACT_WORLD->GetSunAngleByRadinWithSky(); // 해의 각도를 가져오고..
@@ -647,7 +647,7 @@ void CGameProcMain::Render() {
         s_pGameCursor->Render();
     }
 
-    s_pEng->s_lpD3DDev->EndScene();
+    s_pEng->EndScene();
     s_pEng->Present(CN3Base::s_hWndBase);
 }
 

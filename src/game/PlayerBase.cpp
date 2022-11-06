@@ -1833,7 +1833,7 @@ bool CPlayerBase::CheckCollisionToTargetByPlug(CPlayerBase * pTarget, int nPlug,
     v2 += (v2 - v1) * 1.0f; // 길이를 두배로
 
 #ifdef _DEBUG
-/*    CN3Base::s_lpD3DDev->BeginScene();
+/*    CGameProcedure::s_pEng->BeginScene();
 
     __Vector3 vLines[2] = { v1, v2 };
     __Matrix44 mtxTmp; mtxTmp.Identity();
@@ -1845,8 +1845,8 @@ bool CPlayerBase::CheckCollisionToTargetByPlug(CPlayerBase * pTarget, int nPlug,
         CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &(pChrDestination->m_Matrix));
         pChrDestination->CollisionMesh()->Render((D3DCOLOR)0xffff0000); // 충돌 박스를 그려본다.
     }
-    CN3Base::s_lpD3DDev->EndScene();
-    CN3Base::s_lpD3DDev->Present(NULL, NULL, CN3Base::s_hWndBase, NULL);
+    CGameProcedure::s_pEng->EndScene();
+    CGameProcedure::s_pEng->Present(CN3Base::s_hWndBase);
 */
 #endif
 

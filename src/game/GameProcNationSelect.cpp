@@ -63,13 +63,12 @@ void CGameProcNationSelect::Tick() {
 }
 
 void CGameProcNationSelect::Render() {
-    DWORD color = 0x00000000;         // °ËÀº»öÀ¸·Î..
-    s_pEng->Clear(color);             // Å¬¸®¾î..
-    s_pEng->s_lpD3DDev->BeginScene(); // ¾À ·»´õ ¤µÀÛ...
+    s_pEng->Clear(0);     // Å¬¸®¾î..
+    s_pEng->BeginScene(); // ¾À ·»´õ ¤µÀÛ...
 
     CGameProcedure::Render(); // UI ³ª ±×¹ÛÀÇ ±âº»ÀûÀÎ °Íµé ·»´õ¸µ..
 
-    s_pEng->s_lpD3DDev->EndScene(); // ¾À ·»´õ ½ÃÀÛ...
+    s_pEng->EndScene(); // ¾À ·»´õ ½ÃÀÛ...
     s_pEng->Present(CN3Base::s_hWndBase);
 }
 

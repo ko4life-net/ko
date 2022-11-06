@@ -67,8 +67,8 @@ void CGameProcCharacterCreate::Init() {
 }
 
 void CGameProcCharacterCreate::Render() {
-    s_pEng->Clear(0);                 // Å¬¸®¾î..
-    s_pEng->s_lpD3DDev->BeginScene(); // ¾À ·»´õ ¤µÀÛ...
+    s_pEng->Clear(0);     // Å¬¸®¾î..
+    s_pEng->BeginScene(); // ¾À ·»´õ ¤µÀÛ...
 
     s_pUIMgr->Render();
 
@@ -79,7 +79,7 @@ void CGameProcCharacterCreate::Render() {
         s_pGameCursor->Render();
     }
 
-    s_pEng->s_lpD3DDev->EndScene(); // ¾À ·»´õ ½ÃÀÛ...
+    s_pEng->EndScene(); // ¾À ·»´õ ½ÃÀÛ...
     s_pEng->Present(CN3Base::s_hWndBase);
 }
 
