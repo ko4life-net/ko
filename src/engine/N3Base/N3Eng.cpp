@@ -10,6 +10,8 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
+CN3EngCallbacks CN3Eng::m_CB;
+
 CN3Eng::CN3Eng() {
     m_lpDD = NULL;
     s_lpD3DDev = NULL;
@@ -289,6 +291,12 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
     this->SetViewPort(rcView);
     this->SetDefaultEnvironment(); // 기본 상태로 설정..
 
+    if (m_CB.Init) {
+        if (!m_CB.Init()) {
+            return false;
+        }
+    }
+
     return true;
 }
 
@@ -356,6 +364,21 @@ BOOL CN3Eng::FindDepthStencilFormat(UINT iAdapter, D3DDEVTYPE DeviceType, D3DFOR
 
     return FALSE;
 }
+
+void CN3Eng::BeginScene() {
+    s_lpD3DDev->BeginScene();
+    if (m_CB.BeginScene) {
+        m_CB.BeginScene();
+    }
+}
+
+void CN3Eng::EndScene() {
+    if (m_CB.EndScene) {
+        m_CB.EndScene();
+    }
+    s_lpD3DDev->EndScene();
+}
+
 void CN3Eng::Present(HWND hWnd, RECT * pRC) {
     //     HRESULT rval = s_lpD3DDev->TestCooperativeLevel();
     //     if (D3D_OK != rval) {
@@ -371,6 +394,10 @@ void CN3Eng::Present(HWND hWnd, RECT * pRC) {
     {
         GetClientRect(s_hWndBase, &rc);
         pRC = &rc;
+    }
+
+    if (m_CB.Present) {
+        m_CB.Present();
     }
 
     HRESULT rval = s_lpD3DDev->Present(pRC, pRC, hWnd, NULL);

@@ -6,6 +6,14 @@
 
 #include "N3BaseFileAccess.h"
 #include <ddraw.h>
+#include <functional>
+
+struct CN3EngCallbacks {
+    std::function<bool()> Init;
+    std::function<void()> BeginScene;
+    std::function<void()> EndScene;
+    std::function<void()> Present;
+};
 
 class CN3Eng : public CN3Base {
   public:
@@ -22,6 +30,8 @@ class CN3Eng : public CN3Base {
 
     LPDIRECT3D9  m_lpD3D;
     LPDIRECTDRAW m_lpDD;
+
+    static CN3EngCallbacks m_CB;
 
   protected:
     int           m_nModeActive;   // 현재 선택된 Mode
@@ -41,6 +51,8 @@ class CN3Eng : public CN3Base {
     static void Clear(D3DCOLOR crFill, RECT * pRC = NULL);
     static void ClearAuto(RECT * pRC = NULL);
     static void ClearZBuffer(const RECT * pRC = NULL);
+    static void BeginScene();
+    static void EndScene();
     static void Present(HWND hWnd, RECT * pRC = NULL);
 
     void LookAt(const __Vector3 & vEye, const __Vector3 & vAt, const __Vector3 & vUp);

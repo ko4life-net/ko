@@ -63,7 +63,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_N3GAME;_CRT_SECURE_NO_WARNINGS;DIRECTINPUT_VERSION=0x0800;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(SrcDir)\common;$(SrcDir)\engine;$(VendorDir)\spdlog\include;$(VendorDir)\jpeglib\include;$(WindowsSDK_IncludePath);$(VendorDir)\DXSDK9\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(SrcDir)\common;$(SrcDir)\engine;$(VendorDir)\imgui\include;$(VendorDir)\spdlog\include;$(VendorDir)\jpeglib\include;$(WindowsSDK_IncludePath);$(VendorDir)\DXSDK9\Include</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 /wd4102 %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -71,8 +71,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>spdlogd.lib;jpegd.lib;d3d9.lib;d3dx9.lib;dsound.lib;ddraw.lib;dxguidd.lib;dinput8d.lib;winmm.lib;imm32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SrcDir)\common;$(VendorDir)\spdlog\lib;$(VendorDir)\jpeglib\lib;$(VendorDir)\DXSDK9\Lib\x86;$(UniversalCRT_LibraryPath_x86)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>imguid.lib;spdlogd.lib;jpegd.lib;d3d9.lib;d3dx9.lib;dsound.lib;ddraw.lib;dxguidd.lib;dinput8d.lib;winmm.lib;imm32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(VendorDir)\imgui\lib;$(VendorDir)\spdlog\lib;$(VendorDir)\jpeglib\lib;$(VendorDir)\DXSDK9\Lib\x86;$(UniversalCRT_LibraryPath_x86)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
@@ -97,7 +97,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_N3GAME;_CRT_SECURE_NO_WARNINGS;DIRECTINPUT_VERSION=0x0800;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(SrcDir)\common;$(SrcDir)\engine;$(VendorDir)\spdlog\include;$(VendorDir)\jpeglib\include;$(WindowsSDK_IncludePath);$(VendorDir)\DXSDK9\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(SrcDir)\common;$(SrcDir)\engine;$(VendorDir)\imgui\include;$(VendorDir)\spdlog\include;$(VendorDir)\jpeglib\include;$(WindowsSDK_IncludePath);$(VendorDir)\DXSDK9\Include</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 /wd4102 %(AdditionalOptions)</AdditionalOptions>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -105,8 +105,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>spdlog.lib;jpeg.lib;d3d9.lib;d3dx9.lib;dsound.lib;ddraw.lib;dxguid.lib;dinput8.lib;winmm.lib;imm32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SrcDir)\common;$(VendorDir)\spdlog\lib;$(VendorDir)\jpeglib\lib;$(VendorDir)\DXSDK9\Lib\x86;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>imgui.lib;spdlog.lib;jpeg.lib;d3d9.lib;d3dx9.lib;dsound.lib;ddraw.lib;dxguid.lib;dinput8.lib;winmm.lib;imm32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(VendorDir)\imgui\lib;$(VendorDir)\spdlog\lib;$(VendorDir)\jpeglib\lib;$(VendorDir)\DXSDK9\Lib\x86;</AdditionalLibraryDirectories>
       <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
@@ -247,6 +247,9 @@
     <ClInclude Include="N3TerrainManager.h" />
     <ClInclude Include="N3TerrainPatch.h" />
     <ClInclude Include="N3UIDBCLButton.h" />
+    <ClInclude Include="N3UIDebug.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="N3UIIcon.h" />
     <ClInclude Include="N3UIWndBase.h" />
     <ClInclude Include="N3WorldBase.h" />
@@ -430,6 +433,9 @@
     <ClCompile Include="N3TerrainManager.cpp" />
     <ClCompile Include="N3TerrainPatch.cpp" />
     <ClCompile Include="N3UIDBCLButton.cpp" />
+    <ClCompile Include="N3UIDebug.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="N3UIIcon.cpp" />
     <ClCompile Include="N3UIWndBase.cpp" />
     <ClCompile Include="N3WorldBase.cpp" />

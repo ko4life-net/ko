@@ -34,11 +34,7 @@ void CWarMessage::InitFont() {
         m_pMessageFont->InitDeviceObjects(CN3Base::s_lpD3DDev);
         m_pMessageFont->RestoreDeviceObjects();
         const int iW = CN3Base::s_CameraData.vp.Width;
-#ifdef _DEBUG
-        m_ptMessage.y = 80;
-#else
-        m_ptMessage.y = 20;
-#endif
+        m_ptMessage.y = MESSAGE_FONT_SIZE;
         m_ptMessage.x = iW;
     }
 }

@@ -184,9 +184,8 @@ void CGameProcLogIn::Tick() // ÇÁ·Î½ÃÁ® ÀÎµ¦½º¸¦ ¸®ÅÏÇÑ´Ù. 0 ÀÌ¸é ±×´ë·Î ÁøÇà
 }
 
 void CGameProcLogIn::Render() {
-    D3DCOLOR crEnv = 0x00000000;
-    s_pEng->Clear(crEnv);             // ¹è°æÀº °ËÀº»ö
-    s_pEng->s_lpD3DDev->BeginScene(); // ¾À ·»´õ ¤µÀÛ...
+    s_pEng->Clear(0);     // ¹è°æÀº °ËÀº»ö
+    s_pEng->BeginScene(); // ¾À ·»´õ ¤µÀÛ...
 
     //    __Vector3 vEye(0.22f, 0.91f, -1.63f), vAt(-0.19f, 1.1048f, 0.0975f), vUp(0,1,0);
     //    __Matrix44 mtxView, mtxPrj, mtxWorld;
@@ -288,7 +287,7 @@ void CGameProcLogIn::Render() {
 
     CGameProcedure::Render(); // UI ³ª ±×¹ÛÀÇ ±âº»ÀûÀÎ °Íµé ·»´õ¸µ..
 
-    s_pEng->s_lpD3DDev->EndScene(); // ¾À ·»´õ ½ÃÀÛ...
+    s_pEng->EndScene(); // ¾À ·»´õ ½ÃÀÛ...
     s_pEng->Present(CN3Base::s_hWndBase);
 }
 

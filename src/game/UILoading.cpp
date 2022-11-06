@@ -69,15 +69,14 @@ void CUILoading::Render(const std::string & szInfo, int iPercentage) {
         m_pProgress_Loading->SetCurValue(iPercentage);
     }
 
-    D3DCOLOR crEnv = 0x00000000;
-    CGameProcedure::s_pEng->Clear(crEnv); // ¹è°æÀº °ËÀº»ö
-    CN3Base::s_lpD3DDev->BeginScene();    // ¾À ·»´õ ¤µÀÛ...
+    CGameProcedure::s_pEng->Clear(0);     // ¹è°æÀº °ËÀº»ö
+    CGameProcedure::s_pEng->BeginScene(); // ¾À ·»´õ ¤µÀÛ...
 
     CN3UIBase::Tick();
     CUIManager::RenderStateSet();
     CN3UIBase::Render();
     CUIManager::RenderStateRestore();
 
-    CN3Base::s_lpD3DDev->EndScene(); // ¾À ·»´õ ½ÃÀÛ...
+    CGameProcedure::s_pEng->EndScene(); // ¾À ·»´õ ½ÃÀÛ...
     CGameProcedure::s_pEng->Present(CN3Base::s_hWndBase);
 }

@@ -48,6 +48,11 @@
 #include "KnightChrMgr.h"
 #include "GameCursor.h"
 
+#if _DEBUG
+#include "N3UIDebug.h"
+CN3UIDebug CGameProcedure::s_UIDebug;
+#endif
+
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
@@ -137,8 +142,16 @@ void CGameProcedure::StaticMemberInit(HINSTANCE hInstance, HWND hWndMain, HWND h
     RECT rc;
     ::GetClientRect(hWndMain, &rc);
     s_pEng = new CGameEng();
-    if (false == s_pEng->Init(s_bWindowed, hWndMain, CN3Base::s_Options.iViewWidth, CN3Base::s_Options.iViewHeight,
-                              CN3Base::s_Options.iViewColorDepth, TRUE)) {
+
+#if _DEBUG
+    s_pEng->m_CB.Init = std::bind(&CN3UIDebug::Init, s_UIDebug);
+    s_pEng->m_CB.BeginScene = std::bind(&CN3UIDebug::BeginScene, s_UIDebug);
+    s_pEng->m_CB.EndScene = std::bind(&CN3UIDebug::EndScene, s_UIDebug);
+    s_pEng->m_CB.Present = std::bind(&CN3UIDebug::Present, s_UIDebug);
+#endif
+
+    if (!s_pEng->Init(s_bWindowed, hWndMain, CN3Base::s_Options.iViewWidth, CN3Base::s_Options.iViewHeight,
+                      CN3Base::s_Options.iViewColorDepth, TRUE)) {
         exit(-1);
     }
     // 게임 기본 3D 엔진 만들기..

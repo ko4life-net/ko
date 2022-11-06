@@ -595,8 +595,8 @@ void CGameProcMain::Render() {
     }
 
     D3DCOLOR crSky = ACT_WORLD->GetSkyColorWithSky();
-    s_pEng->Clear(crSky);             // 안개 색깔을 넣어서 클리어.. -> 하늘색깔로 클리어 해야 하늘이 제대로 나온다..
-    s_pEng->s_lpD3DDev->BeginScene(); // 씬 렌더 ㅅ작...
+    s_pEng->Clear(crSky); // 안개 색깔을 넣어서 클리어.. -> 하늘색깔로 클리어 해야 하늘이 제대로 나온다..
+    s_pEng->BeginScene(); // 씬 렌더 ㅅ작...
 
     ACT_WORLD->RenderSky();                                   // 하늘 렌더링..
     float fSunAngle = ACT_WORLD->GetSunAngleByRadinWithSky(); // 해의 각도를 가져오고..
@@ -647,7 +647,7 @@ void CGameProcMain::Render() {
         s_pGameCursor->Render();
     }
 
-    s_pEng->s_lpD3DDev->EndScene();
+    s_pEng->EndScene();
     s_pEng->Present(CN3Base::s_hWndBase);
 }
 
@@ -3640,11 +3640,7 @@ void CGameProcMain::InitUI() {
     m_pUIStateBarAndMiniMap->Init(s_pUIMgr);
     m_pUIStateBarAndMiniMap->LoadFromFile(pTbl->szStateBar);
     m_pUIStateBarAndMiniMap->SetStyle(UISTYLE_FOCUS_UNABLE | UISTYLE_HIDE_UNABLE);
-#ifdef _DEBUG
-    m_pUIStateBarAndMiniMap->SetPos(0, 70); // 디버그 정보 표시때문에 조금 내린다....
-#else
     m_pUIStateBarAndMiniMap->SetPos(0, 0);
-#endif
 
     // 다용도 UI - 상태, 기사단관리, 퀘스트, 친구 관리등...
     m_pUIVar->Init(s_pUIMgr);

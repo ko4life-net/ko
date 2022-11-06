@@ -18,6 +18,10 @@
 #include "N3Base/N3SndMgr.h"
 #include "N3Base/N3UIEdit.h"
 
+#ifdef _DEBUG
+#include "N3UIDebug.h"
+#endif
+
 /////////////////////////////////////////////////////////////////////////////////
 //
 /////////////////////////////////////////////////////////////////////////////////
@@ -30,6 +34,12 @@ HHOOK ghookdata = NULL;
 /////////////////////////////////////////////////////////////////////////////////
 
 LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
+#ifdef _DEBUG
+    if (CN3UIDebug::WndProcMain(hWnd, message, wParam, lParam)) {
+        return true;
+    }
+#endif
+
     switch (message) {
     case WM_COMMAND: {
         WORD        wNotifyCode = HIWORD(wParam); // notification code
@@ -110,15 +120,11 @@ LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
         switch (iActive) {
         case WA_CLICKACTIVE:
         case WA_ACTIVE:
-#ifdef _DEBUG
             g_bActive = TRUE;
-#endif
             break;
         case WA_INACTIVE:
-#ifdef _DEBUG
-            g_bActive = FALSE;
-#endif
-            if (false == CGameProcedure::s_bWindowed) {
+            if (!CGameProcedure::s_bWindowed) {
+                g_bActive = FALSE;
                 CLogWriter::Write("WA_INACTIVE.");
                 PostQuitMessage(0); // 창모드 아니면 팅긴다??
             }
@@ -445,64 +451,12 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
             if (g_bActive) {
                 CGameProcedure::TickActive();
                 CGameProcedure::RenderActive();
-#if _DEBUG
-                static float fTimePrev = CN3Base::TimeGet();
-                static char  szDebugs[4][256] = {"", "", "", ""};
-                float        fTime = CN3Base::TimeGet();
-                if (fTime > fTimePrev + 0.5f) {
-                    fTimePrev = fTime;
-
-                    sprintf(szDebugs[0],
-                            "Terrain: nTerrain_Polygon(%d) nTerrain_Tile_Polygon(%d) || nShape(%d) nShape_Part(%d) "
-                            "nShape_Polygon(%d)",
-                            CN3Base::s_RenderInfo.nTerrain_Polygon, CN3Base::s_RenderInfo.nTerrain_Tile_Polygon,
-                            CN3Base::s_RenderInfo.nShape, CN3Base::s_RenderInfo.nShape_Part,
-                            CN3Base::s_RenderInfo.nShape_Polygon);
-
-                    sprintf(
-                        szDebugs[1],
-                        "Character: nChr(%d), nChr_Part(%d), nChr_Polygon(%d), nChr_Plug(%d), nChr_Plug_Polygon(%d)",
-                        CN3Base::s_RenderInfo.nChr, CN3Base::s_RenderInfo.nChr_Part, CN3Base::s_RenderInfo.nChr_Polygon,
-                        CN3Base::s_RenderInfo.nChr_Plug, CN3Base::s_RenderInfo.nChr_Plug_Polygon);
-
-                    sprintf(szDebugs[2], "Camera: fFOV(%.1f) NearPlane(%.1f) FarPlane(%.1f)",
-                            D3DXToDegree(CN3Base::s_CameraData.fFOV), CN3Base::s_CameraData.fNP,
-                            CN3Base::s_CameraData.fFP);
-
-                    if (CGameProcedure::s_pProcMain && CGameBase::ACT_WORLD && CGameBase::ACT_WORLD->GetSkyRef()) {
-                        int iYear = 0, iMonth = 0, iDay = 0, iH = 0, iM = 0;
-                        CGameBase::ACT_WORLD->GetSkyRef()->GetGameTime(&iYear, &iMonth, &iDay, &iH, &iM);
-                        sprintf(szDebugs[3], "Game: %.2f Frm/Sec, %d/%d/%d %d:%d", CN3Base::s_fFrmPerSec, iYear, iMonth,
-                                iDay, iH, iM);
-                    } else {
-                        szDebugs[3][0] = NULL;
-                    }
-                }
-
-                for (int i = 0; i < 4; i++) {
-                    if (szDebugs[i]) {
-                        TextOut(hDC, 0, i * 18, szDebugs[i], lstrlen(szDebugs[i])); // 화면에 렌더링 정보 표시..
-                    }
-                }
-#endif // #if _DEBUG
-
-                //#ifndef _DEBUG
-                //                static HDC hDC = GetDC(hWndMain);
-                //                static char szDebug[256] = "";
-                //                static float fTimePrev = CN3Base::TimeGet();
-                //                float fTime = CN3Base::TimeGet();
-                //                if(fTime > fTimePrev + 0.5f)
-                //                {
-                //                    sprintf(szDebug, "%f", CN3Base::s_fFrmPerSec);
-                //                    fTimePrev = fTime;
-                //                }
-                //                TextOut(hDC, 0, 0, szDebug, lstrlen(szDebug)); // 화면에 렌더링 정보 표시..
-                //#endif
             }
         }
     }
 
 #if _DEBUG
+    CN3UIDebug::Release();
     ReleaseDC(hWndMain, hDC);
     DestroyAcceleratorTable(hAccel);
 #endif // #if _DEBUG
