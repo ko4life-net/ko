@@ -53,7 +53,7 @@ bool CN3UIDebug::Init() {
     return true;
 }
 
-void CN3UIDebug::BeginScene() {}
+void CN3UIDebug::BeginScene() = default;
 
 void CN3UIDebug::EndScene() {
     if (s_bReleaseCalled) {
@@ -73,12 +73,6 @@ void CN3UIDebug::EndScene() {
     RenderGameMetrics();
 
     ImGui::EndFrame();
-}
-
-void CN3UIDebug::Present() {
-    if (s_bReleaseCalled) {
-        return;
-    }
 
     ImGui::Render();
     ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
@@ -89,6 +83,8 @@ void CN3UIDebug::Present() {
         ImGui::RenderPlatformWindowsDefault();
     }
 }
+
+void CN3UIDebug::Present() {}
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
