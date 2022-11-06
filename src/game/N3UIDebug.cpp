@@ -64,6 +64,7 @@ void CN3UIDebug::EndScene() {
     static bool s_bDemoWindow = true;
     ImGui::ShowDemoWindow(&s_bDemoWindow);
 
+    RenderFPSGraph();
     RenderGameMetrics();
 
     ImGui::EndFrame();
@@ -126,11 +127,8 @@ void CN3UIDebug::RenderDockingSpace() {
 }
 
 void CN3UIDebug::RenderGameMetrics() {
-    ImGui::Begin("Game Metrics##metrics");
+    ImGui::Begin("Game Metrics##game_metrics");
 
-    RenderFPSGraph();
-
-    ImGui::Separator();
     ImGui::Text("Camera:");
     CN3Camera * pCamera = CGameProcedure::s_pEng->CameraGetActive();
     ImGui::BulletText("%-8.2f Field of View", D3DXToDegree(pCamera->m_Data.fFOV), 5, 5, " ");
@@ -167,6 +165,7 @@ void CN3UIDebug::RenderGameMetrics() {
 }
 
 void CN3UIDebug::RenderFPSGraph() {
+    ImGui::Begin("FPS Graph##fps_graph");
     static std::vector<float> s_Frames = {60.0f};
 
     float fTime = CN3Base::TimeGet();
@@ -206,4 +205,6 @@ void CN3UIDebug::RenderFPSGraph() {
     ImGui::PlotLines("##fps", s_Frames.data(), s_Frames.size(), 0, szOverlay, -10.0f, s_fFrmMax + 50.0f,
                      ImVec2(ImGui::GetWindowContentRegionWidth(), 100.0f));
     ImGui::Checkbox("Pause Frames", &s_bPauseFrms);
+
+    ImGui::End();
 }
