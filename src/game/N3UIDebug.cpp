@@ -181,14 +181,17 @@ void CN3UIDebug::RenderFPSGraph() {
     static float s_fFrmAvg = s_Frames[0];
     static float s_fFrmMax = s_Frames[0];
 
-    static bool s_bPauseFrms = false;
-    if (!s_bPauseFrms) {
+    static float s_fFrmsDelay = 0.25f;
+    static int   s_iFrmsCount = 50;
+    static bool  s_bFrmsPause = false;
+
+    if (!s_bFrmsPause) {
         s_fTimeInterval += fTime - s_fTimePrev;
-        if (s_fTimeInterval >= 0.25f) {
+        if (s_fTimeInterval >= s_fFrmsDelay) {
             s_fTimeInterval = 0.0f;
             s_fCurFrmPerSec = CN3Base::s_fFrmPerSec;
             s_Frames.push_back(s_fCurFrmPerSec);
-            if (s_Frames.size() > 50) {
+            if (s_Frames.size() > s_iFrmsCount) {
                 s_Frames.erase(s_Frames.begin());
             }
         }
@@ -209,7 +212,33 @@ void CN3UIDebug::RenderFPSGraph() {
     sprintf(szOverlay, "FPS %4.4f\nAvg %4.4f", s_fCurFrmPerSec, s_fFrmAvg);
     ImGui::PlotLines("##fps", s_Frames.data(), s_Frames.size(), 0, szOverlay, -10.0f, s_fFrmMax + 50.0f,
                      ImVec2(ImGui::GetWindowContentRegionWidth(), 100.0f));
-    ImGui::Checkbox("Pause Frames", &s_bPauseFrms);
+    ImGui::Checkbox("Pause", &s_bFrmsPause);
+
+    static int s_iFrmsCountTmp = s_iFrmsCount;
+    if (ImGui::InputInt("Buffer Count", &s_iFrmsCountTmp, 1, 100, ImGuiInputTextFlags_EnterReturnsTrue)) {
+        if (s_iFrmsCountTmp < s_iFrmsCount && s_Frames.size() > (s_iFrmsCount - s_iFrmsCountTmp)) {
+            s_Frames.erase(s_Frames.begin(), s_Frames.begin() + (s_iFrmsCount - s_iFrmsCountTmp));
+        }
+
+        if (s_iFrmsCountTmp < 5) {
+            s_iFrmsCount = s_iFrmsCountTmp = 5;
+        } else if (s_iFrmsCountTmp > 2000) {
+            s_iFrmsCount = s_iFrmsCountTmp = 2000;
+        } else {
+            s_iFrmsCount = s_iFrmsCountTmp;
+        }
+    }
+
+    static float s_fFrmsDelayTmp = s_fFrmsDelay;
+    if (ImGui::InputFloat("Delay", &s_fFrmsDelayTmp, 0.01f, 100.0f, "%.2f", ImGuiInputTextFlags_EnterReturnsTrue)) {
+        if (s_fFrmsDelayTmp < 0.0f) {
+            s_fFrmsDelay = s_fFrmsDelayTmp = 0.0f;
+        } else if (s_fFrmsDelayTmp > 100.0f) {
+            s_fFrmsDelay = s_fFrmsDelayTmp = 100.0f;
+        } else {
+            s_fFrmsDelay = s_fFrmsDelayTmp;
+        }
+    }
 
     ImGui::End();
 }
