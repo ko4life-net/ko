@@ -36,7 +36,8 @@ HHOOK ghookdata = NULL;
 LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 #ifdef _DEBUG
     if (CN3UIDebug::WndProcMain(hWnd, message, wParam, lParam)) {
-        return true;
+        // FIXME: TODO: Need to figure out how to handle game procedure without interferring with packets processing.
+        // return true;
     }
 #endif
 
