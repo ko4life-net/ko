@@ -13,10 +13,11 @@
 #include <imgui/imgui_impl_win32.h>
 
 // ImGui Window IDs
-#define IMGUI_WND_ID_DEMO      "Dear ImGui Demo"
-#define IMGUI_WND_ID_FPS       "FPS Graph##fps_graph"
-#define IMGUI_WND_ID_METRICS   "Game Metrics##game_metrics"
-#define IMGUI_WND_ID_DASHBOARD "Dashboard"
+#define IMGUI_WND_ID_DEMO           "Dear ImGui Demo"
+#define IMGUI_WND_ID_FPS            "FPS Graph##fps_graph"
+#define IMGUI_WND_ID_METRICS        "Game Metrics##game_metrics"
+#define IMGUI_WND_ID_TIMEANDWEATHER "Time & Weather Debug##timeweather_metrics"
+#define IMGUI_WND_ID_DASHBOARD      "Dashboard"
 
 bool CN3UIDebug::s_bReleaseCalled = false;
 
@@ -73,6 +74,7 @@ void CN3UIDebug::EndScene() {
     }
 
     RenderGameMetrics();
+    RenderGameTimeAndWeather();
     RenderFPSGraph();
 
     ImGui::EndFrame();
@@ -161,6 +163,74 @@ void CN3UIDebug::RenderGameMetrics() {
         ImGui::BulletText("%-8d Shape Count", CN3Base::s_RenderInfo.nShape);
         ImGui::BulletText("%-8d Shape Part", CN3Base::s_RenderInfo.nShape_Part);
         ImGui::BulletText("%-8d Shape Polygon", CN3Base::s_RenderInfo.nShape_Polygon);
+    }
+
+    ImGui::End();
+}
+
+void CN3UIDebug::RenderGameTimeAndWeather() {
+    ImGui::Begin(IMGUI_WND_ID_TIMEANDWEATHER);
+
+    ImGui::Text("Game Time & Weather Debug:");
+    ImGui::Separator();
+
+    int        iYear = 0, iMonth = 0, iDay = 0, iHour = 0, iMin = 0;
+    static int iPercentR = 0, iPercentS = 0;
+
+    if (CGameBase::ACT_WORLD) {
+        ImGui::Text("Time:");
+
+        CN3SkyMng * skyManager = CGameBase::ACT_WORLD->GetSkyRef();
+
+        skyManager->GetGameTime(&iYear, &iMonth, &iDay, &iHour, &iMin);
+
+        if (ImGui::SliderInt("Hour", &iHour, 0, 24)) {
+            skyManager->SetGameTime(iYear, iMonth, iDay, iHour, iMin);
+        }
+
+        if (ImGui::SliderInt("Minutes", &iMin, 0, 60)) {
+            skyManager->SetGameTime(iYear, iMonth, iDay, iHour, iMin);
+        }
+
+        ImGui::Separator();
+        ImGui::Text("Weather:");
+
+        if (ImGui::DragInt("Rain", &iPercentR, 1, 0, 100, "%d%%", ImGuiSliderFlags_AlwaysClamp)) {
+
+            if (iPercentR <= 0 && iPercentS <= 0) {
+                skyManager->SetWeather(CN3SkyMng::SW_RAINY, 0);
+                skyManager->SetWeather(CN3SkyMng::SW_CLEAR, iPercentR);
+            } else if (iPercentR > 0) {
+                float fPercent = iPercentR / 100.0f;
+
+                iPercentS = 0;
+                skyManager->SetWeather(CN3SkyMng::SW_CLEAR, 0);
+                skyManager->SetWeather(CN3SkyMng::SW_RAINY, iPercentR);
+
+                float fDelta = 1.0f;
+                fDelta = 0.25f + (1.0f - fPercent) * 0.75f;
+                CGameProcedure::s_pEng->FarPlaneDeltaSet(fDelta, false);
+            }
+        }
+        if (ImGui::DragInt("Snow", &iPercentS, 1, 0, 100, "%d%%", ImGuiSliderFlags_AlwaysClamp)) {
+
+            if (iPercentS <= 0 && iPercentR <= 0) {
+                skyManager->SetWeather(CN3SkyMng::SW_SNOW, 0);
+                skyManager->SetWeather(CN3SkyMng::SW_CLEAR, iPercentS);
+            } else if (iPercentS > 0) {
+                float fPercent = iPercentR / 100.0f;
+
+                iPercentR = 0;
+                skyManager->SetWeather(CN3SkyMng::SW_CLEAR, 0);
+                skyManager->SetWeather(CN3SkyMng::SW_SNOW, iPercentS);
+
+                float fDelta = 1.0f;
+                fDelta = 0.25f + (1.0f - fPercent) * 0.75f;
+                CGameProcedure::s_pEng->FarPlaneDeltaSet(fDelta, false);
+            }
+        }
+    } else {
+        ImGui::Text("You have to enter the game with your character!");
     }
 
     ImGui::End();
