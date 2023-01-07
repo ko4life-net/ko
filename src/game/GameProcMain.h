@@ -85,6 +85,8 @@ class CGameProcMain : public CGameProcedure {
 
     int KM_COUNT;
 
+    float m_fRotateValue;
+
   protected:
     bool ProcessPacket(DataPack * pDataPack, int & iOffset);
 
@@ -206,7 +208,6 @@ class CGameProcMain : public CGameProcedure {
     bool OnMouseRBtnPressd(POINT ptCur, POINT ptPrev);
     bool OnMouseRBtnPress(POINT ptCur, POINT ptPrev);
     bool OnMouseRDBtnPress(POINT ptCur, POINT ptPrev);
-    bool OnMouseMBtnPress(POINT ptCur, POINT ptPrev);
     void ControlViewVDegree(short sValue);
     void PlayBGM_Town();
     void PlayBGM_Battle();

@@ -125,6 +125,8 @@ CGameProcMain::CGameProcMain() // r기본 생성자.. 각 변수의 역활은 헤더 참조..
     m_iJoinReqClan = 0;
     m_iJoinReqClanRequierID = 0;
 
+    m_fRotateValue = -1.0f;
+
     //UI
     m_pUIMsgDlg = new CUIMessageWnd;
     m_pUIChatDlg = new CUIChat();
@@ -587,6 +589,26 @@ void CGameProcMain::Tick() {
     fTimePrev = fTime;
     // 타이머 비슷한 루틴..
     ////////////////////////////////////////////////////////////////////////////////////
+
+    // Rotates the player's camera 180 degrees from the current position.
+    if (m_fRotateValue >= 0.0f && !CGameProcedure::s_pUIMgr->m_bDoneSomething) {
+        m_fRotateValue += s_fSecPerFrm * __PI2;
+        float fRadian = s_fSecPerFrm * __PI2;
+        if (m_fRotateValue > __PI) {
+            fRadian -= m_fRotateValue - __PI;
+            m_fRotateValue = -1.0f;
+        }
+        if (fRadian != 0.0f) {
+            if (CGameBase::s_pPlayer->IsAlive()) {
+                float fRotX = fRadian / s_fSecPerFrm;
+                if (CGameProcedure::s_pEng->ViewPoint() == VP_THIRD_PERSON) {
+                    CGameProcedure::s_pEng->CameraYawAdd(fRotX);
+                } else if (!CGameBase::s_pPlayer->m_bStun) {
+                    CGameBase::s_pPlayer->RotAdd(fRotX);
+                }
+            }
+        }
+    }
 }
 
 void CGameProcMain::Render() {
@@ -1030,7 +1052,7 @@ void CGameProcMain::ProcessLocalInput(DWORD dwMouseFlags) {
         OnMouseLDBtnPress(ptCur, ptPrev);
     }
     if (dwMouseFlags & MOUSE_MBCLICK) {
-        OnMouseMBtnPress(ptCur, ptPrev);
+        m_fRotateValue = 0.0f;
     }
 
     // 마우스에 따른 카메라 회전...
@@ -7415,17 +7437,6 @@ bool CGameProcMain::OnMouseRDBtnPress(POINT ptCur, POINT ptPrev) {
 
     //스킬 매직이 사용되었다면....
     m_pUIHotKeyDlg->EffectTriggerByMouse();
-
-    return true;
-}
-
-// Rotates the player's camera 180 degrees from the current position.
-bool CGameProcMain::OnMouseMBtnPress(POINT ptCur, POINT ptPrev) {
-    if (s_pPlayer->IsAlive())
-	{
-        if (VP_THIRD_PERSON == s_pEng->ViewPoint()) 
-            s_pEng->CameraYawAdd(100);
-	}
 
     return true;
 }
