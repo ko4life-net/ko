@@ -903,7 +903,7 @@ int CUIImageTooltipDlg::CalcTooltipStringNumAndWrite(__IconItemSkill * spItem, b
             } else {
                 m_pStr[iIndex]->SetColor(m_CRed);
             }
-            sprintf(szBuff, szStr.c_str(), spItem->pItemBasic->byNeedDexterity + spItem->pItemExt->siNeedDexterity);
+            sprintf(szBuff, szStr.c_str(), spItem->pItemBasic->byNeedDexterity + spItem->pItemExt->siNeedDexterity, "");
             m_pstdstr[iIndex] = szBuff;
             iIndex++;
         }
