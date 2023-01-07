@@ -1029,6 +1029,9 @@ void CGameProcMain::ProcessLocalInput(DWORD dwMouseFlags) {
     if (dwMouseFlags & MOUSE_LBDBLCLK) {
         OnMouseLDBtnPress(ptCur, ptPrev);
     }
+    if (dwMouseFlags & MOUSE_MBCLICK) {
+        OnMouseMBtnPress(ptCur, ptPrev);
+    }
 
     // 마우스에 따른 카메라 회전...
     float fRotY = 0, fRotX = 0;
@@ -7412,6 +7415,17 @@ bool CGameProcMain::OnMouseRDBtnPress(POINT ptCur, POINT ptPrev) {
 
     //스킬 매직이 사용되었다면....
     m_pUIHotKeyDlg->EffectTriggerByMouse();
+
+    return true;
+}
+
+// Rotates the player's camera 180 degrees from the current position.
+bool CGameProcMain::OnMouseMBtnPress(POINT ptCur, POINT ptPrev) {
+    if (s_pPlayer->IsAlive())
+	{
+        if (VP_THIRD_PERSON == s_pEng->ViewPoint()) 
+            s_pEng->CameraYawAdd(100);
+	}
 
     return true;
 }
