@@ -865,7 +865,7 @@ int CUIImageTooltipDlg::CalcTooltipStringNumAndWrite(__IconItemSkill * spItem, b
             } else {
                 m_pStr[iIndex]->SetColor(m_CRed);
             }
-            sprintf(szBuff, szStr.c_str(), spItem->pItemBasic->byNeedStrength + spItem->pItemExt->siNeedStrength);
+            sprintf(szBuff, szStr.c_str(), spItem->pItemBasic->byNeedStrength + spItem->pItemExt->siNeedStrength, "");
             m_pstdstr[iIndex] = szBuff;
             iIndex++;
         }
@@ -884,7 +884,7 @@ int CUIImageTooltipDlg::CalcTooltipStringNumAndWrite(__IconItemSkill * spItem, b
             } else {
                 m_pStr[iIndex]->SetColor(m_CRed);
             }
-            sprintf(szBuff, szStr.c_str(), spItem->pItemBasic->byNeedStamina + spItem->pItemExt->siNeedStamina);
+            sprintf(szBuff, szStr.c_str(), spItem->pItemBasic->byNeedStamina + spItem->pItemExt->siNeedStamina, "");
             m_pstdstr[iIndex] = szBuff;
             iIndex++;
         }
@@ -903,7 +903,7 @@ int CUIImageTooltipDlg::CalcTooltipStringNumAndWrite(__IconItemSkill * spItem, b
             } else {
                 m_pStr[iIndex]->SetColor(m_CRed);
             }
-            sprintf(szBuff, szStr.c_str(), spItem->pItemBasic->byNeedDexterity + spItem->pItemExt->siNeedDexterity);
+            sprintf(szBuff, szStr.c_str(), spItem->pItemBasic->byNeedDexterity + spItem->pItemExt->siNeedDexterity, "");
             m_pstdstr[iIndex] = szBuff;
             iIndex++;
         }
@@ -922,7 +922,7 @@ int CUIImageTooltipDlg::CalcTooltipStringNumAndWrite(__IconItemSkill * spItem, b
             } else {
                 m_pStr[iIndex]->SetColor(m_CRed);
             }
-            sprintf(szBuff, szStr.c_str(), spItem->pItemBasic->byNeedInteli + spItem->pItemExt->siNeedInteli);
+            sprintf(szBuff, szStr.c_str(), spItem->pItemBasic->byNeedInteli + spItem->pItemExt->siNeedInteli, "");
             m_pstdstr[iIndex] = szBuff;
             iIndex++;
         }
@@ -941,7 +941,8 @@ int CUIImageTooltipDlg::CalcTooltipStringNumAndWrite(__IconItemSkill * spItem, b
             } else {
                 m_pStr[iIndex]->SetColor(m_CRed);
             }
-            sprintf(szBuff, szStr.c_str(), spItem->pItemBasic->byNeedMagicAttack + spItem->pItemExt->siNeedMagicAttack);
+            sprintf(szBuff, szStr.c_str(), spItem->pItemBasic->byNeedMagicAttack + spItem->pItemExt->siNeedMagicAttack,
+                    "");
             m_pstdstr[iIndex] = szBuff;
             iIndex++;
         }
