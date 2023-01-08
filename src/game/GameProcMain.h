@@ -85,6 +85,8 @@ class CGameProcMain : public CGameProcedure {
 
     int KM_COUNT;
 
+    float m_fRotateValue;
+
   protected:
     bool ProcessPacket(DataPack * pDataPack, int & iOffset);
 
