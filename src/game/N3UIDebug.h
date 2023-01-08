@@ -15,7 +15,6 @@ class CN3UIDebug {
   private:
     void RenderDockSpace();
     void RenderGameMetrics();
-    void RenderGameTimeAndWeather();
     void RenderFPSGraph();
 
   private:
