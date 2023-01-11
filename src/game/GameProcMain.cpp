@@ -6386,27 +6386,30 @@ void CGameProcMain::MsgRecv_WarpList(DataPack * pDataPack, int & iOffset) // ¿öÇ
     int iStrLen = 0;
 
     BYTE bySubOp = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-    int  iListCount = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-    for (int i = 0; i < iListCount; i++) {
-        __WarpInfo WI;
+    switch (bySubOp) {
+    case 1:
+        int iListCount = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        for (int i = 0; i < iListCount; i++) {
+            __WarpInfo WI;
 
-        WI.iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);                  // ¿öÇÁ ID
-        iStrLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);                 // ÀÌ¸§ ±æÀÌ
-        CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, WI.szName, iStrLen);      // ÀÌ¸§
-        iStrLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);                 // µ¿ÀÇ¹® ±æÀÌ
-        CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, WI.szAgreement, iStrLen); // µ¿ÀÇ¹®
-        WI.iZone = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);                // Á¸¹øÈ£
-        WI.iMaxUser = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);             // ÃÖ´ë À¯Àú Ä«¿îÆ®.
-        WI.iGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);                // µ·
-        WI.vPos.x = (CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)) / 10.0f;     // ÁÂÇ¥
-        WI.vPos.z = (CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)) / 10.0f;     //
-        WI.vPos.y = (CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)) / 10.0f;     //
+            WI.iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);                  // ¿öÇÁ ID
+            iStrLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);                 // ÀÌ¸§ ±æÀÌ
+            CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, WI.szName, iStrLen);      // ÀÌ¸§
+            iStrLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);                 // µ¿ÀÇ¹® ±æÀÌ
+            CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, WI.szAgreement, iStrLen); // µ¿ÀÇ¹®
+            WI.iZone = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);                // Á¸¹øÈ£
+            WI.iMaxUser = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);             // ÃÖ´ë À¯Àú Ä«¿îÆ®.
+            WI.iGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);                // µ·
+            WI.vPos.x = (CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)) / 10.0f;     // ÁÂÇ¥
+            WI.vPos.z = (CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)) / 10.0f;     //
+            WI.vPos.y = (CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)) / 10.0f;     //
 
-        m_pUIWarp->InfoAdd(WI);
+            m_pUIWarp->InfoAdd(WI);
+        }
+
+        m_pUIWarp->UpdateList();
+        m_pUIWarp->SetVisible(true);
     }
-
-    m_pUIWarp->UpdateList();
-    m_pUIWarp->SetVisible(true);
 }
 
 /*
