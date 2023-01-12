@@ -14,8 +14,14 @@ class CN3UIDebug {
 
   private:
     void RenderDockSpace();
-    void RenderGameMetrics();
     void RenderFPSGraph();
+    void RenderGameController();
+
+    // Game Controller Render Functions
+    void RenderCamera();
+    void RenderCharacter();
+    void RenderTerrain();
+    void RenderEnvironment();
 
   private:
     static bool s_bReleaseCalled;

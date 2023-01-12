@@ -514,6 +514,8 @@
 #define IDS_DEAD_REVIVAL_MESSAGE                 6603
 #define IDS_DEAD_LOW_LEVEL                       6604
 #define IDS_INVEN_WEIGHT                         6605
+#define IDS_WARP_ARRIVED                         6606
+#define IDS_WARP_REQUIRED_COINS                  7612
 #define IDS_LEVELGUIDE_SEARCH_WARNING            10100
 #define IDS_NATIONSELECT_MSGBOX_SELECTION        10420
 #define IDS_NATIONSELECT_DESCRIPTION_KA          10421

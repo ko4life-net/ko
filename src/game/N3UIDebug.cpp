@@ -13,10 +13,10 @@
 #include <imgui/imgui_impl_win32.h>
 
 // ImGui Window IDs
-#define IMGUI_WND_ID_DEMO      "Dear ImGui Demo"
-#define IMGUI_WND_ID_FPS       "FPS Graph##fps_graph"
-#define IMGUI_WND_ID_METRICS   "Game Metrics##game_metrics"
-#define IMGUI_WND_ID_DASHBOARD "Dashboard"
+#define IMGUI_WND_ID_DEMO       "Dear ImGui Demo"
+#define IMGUI_WND_ID_FPS        "FPS Graph##fps_graph"
+#define IMGUI_WND_ID_CONTROLLER "Game Controller##game_controller"
+#define IMGUI_WND_ID_DASHBOARD  "Dashboard"
 
 bool CN3UIDebug::s_bReleaseCalled = false;
 
@@ -72,8 +72,8 @@ void CN3UIDebug::EndScene() {
         ImGui::ShowDemoWindow(&s_bDemoWindow);
     }
 
-    RenderGameMetrics();
     RenderFPSGraph();
+    RenderGameController();
 
     ImGui::EndFrame();
 
@@ -119,7 +119,7 @@ void CN3UIDebug::RenderDockSpace() {
         ImGuiID dsIdUp = ImGui::DockBuilderSplitNode(dsIdCopy, ImGuiDir_Up, 0.34f, NULL, &dsIdCopy);
         ImGuiID dsIdDown = ImGui::DockBuilderSplitNode(dsIdCopy, ImGuiDir_Down, 0.0f, NULL, &dsIdCopy);
         ImGui::DockBuilderDockWindow(IMGUI_WND_ID_FPS, dsIdUp);
-        ImGui::DockBuilderDockWindow(IMGUI_WND_ID_METRICS, dsIdDown);
+        ImGui::DockBuilderDockWindow(IMGUI_WND_ID_CONTROLLER, dsIdDown);
         ImGui::DockBuilderDockWindow(IMGUI_WND_ID_DEMO, dsIdDown);
 
         ImGui::DockBuilderFinish(dsId);
@@ -128,10 +128,24 @@ void CN3UIDebug::RenderDockSpace() {
     ImGui::End();
 }
 
-void CN3UIDebug::RenderGameMetrics() {
-    ImGui::Begin(IMGUI_WND_ID_METRICS);
+void CN3UIDebug::RenderGameController() {
+    ImGui::Begin(IMGUI_WND_ID_CONTROLLER);
 
-    ImGui::Text("Camera:");
+    RenderCamera();
+    RenderCharacter();
+    if (CGameBase::ACT_WORLD) {
+        RenderTerrain();
+        RenderEnvironment();
+    }
+
+    ImGui::End();
+}
+
+void CN3UIDebug::RenderCamera() {
+    if (!ImGui::CollapsingHeader("Camera")) {
+        return;
+    }
+
     CN3Camera * pCamera = CGameProcedure::s_pEng->CameraGetActive();
     ImGui::BulletText("%-8.2f Field of View", D3DXToDegree(pCamera->m_Data.fFOV), 5, 5, " ");
     ImGui::BulletText("%-8.2f Near Plane", pCamera->m_Data.fNP, 5, 5, " ");
@@ -144,26 +158,90 @@ void CN3UIDebug::RenderGameMetrics() {
     if (ImGui::DragFloat("Near Plane", &pCamera->m_Data.fNP, 0.001f, 0.01f, 5.0f)) {
         CN3Base::s_CameraData.fNP = pCamera->m_Data.fNP;
     }
+}
 
-    ImGui::Separator();
-    ImGui::Text("Character:");
+void CN3UIDebug::RenderCharacter() {
+    if (!ImGui::CollapsingHeader("Character")) {
+        return;
+    }
+
     ImGui::BulletText("%-8d Character", CN3Base::s_RenderInfo.nChr);
     ImGui::BulletText("%-8d Part", CN3Base::s_RenderInfo.nChr_Part);
     ImGui::BulletText("%-8d Polygon", CN3Base::s_RenderInfo.nChr_Polygon);
     ImGui::BulletText("%-8d Plug", CN3Base::s_RenderInfo.nChr_Plug);
     ImGui::BulletText("%-8d Plug Polygon", CN3Base::s_RenderInfo.nChr_Plug_Polygon);
+}
 
-    if (CGameBase::ACT_WORLD) {
-        ImGui::Separator();
-        ImGui::Text("Terrain:");
-        ImGui::BulletText("%-8d Polygon", CN3Base::s_RenderInfo.nTerrain_Polygon);
-        ImGui::BulletText("%-8d Tile Polygon", CN3Base::s_RenderInfo.nTerrain_Tile_Polygon);
-        ImGui::BulletText("%-8d Shape Count", CN3Base::s_RenderInfo.nShape);
-        ImGui::BulletText("%-8d Shape Part", CN3Base::s_RenderInfo.nShape_Part);
-        ImGui::BulletText("%-8d Shape Polygon", CN3Base::s_RenderInfo.nShape_Polygon);
+void CN3UIDebug::RenderTerrain() {
+    if (!ImGui::CollapsingHeader("Terrain")) {
+        return;
     }
 
-    ImGui::End();
+    ImGui::BulletText("%-8d Polygon", CN3Base::s_RenderInfo.nTerrain_Polygon);
+    ImGui::BulletText("%-8d Tile Polygon", CN3Base::s_RenderInfo.nTerrain_Tile_Polygon);
+    ImGui::BulletText("%-8d Shape Count", CN3Base::s_RenderInfo.nShape);
+    ImGui::BulletText("%-8d Shape Part", CN3Base::s_RenderInfo.nShape_Part);
+    ImGui::BulletText("%-8d Shape Polygon", CN3Base::s_RenderInfo.nShape_Polygon);
+}
+
+void CN3UIDebug::RenderEnvironment() {
+    if (!ImGui::CollapsingHeader("Environment")) {
+        return;
+    }
+
+    CN3SkyMng * pSM = CGameBase::ACT_WORLD->GetSkyRef();
+
+    int iYear = 0, iMonth = 0, iDay = 0, iHour = 0, iMin = 0;
+    pSM->GetGameTime(&iYear, &iMonth, &iDay, &iHour, &iMin);
+
+    static int iTimeSliderPos = 0;
+    char       szDateTime[60]{};
+    sprintf(szDateTime, "%.2d/%.2d/%.4d %.2d:%.2d", iMonth, iDay, iYear, iHour, iMin);
+    if (ImGui::SliderInt("Time", &iTimeSliderPos, 0, 24 * 60, szDateTime)) {
+        iHour = iTimeSliderPos / 60;
+        iMin = iTimeSliderPos % 60;
+        if (iHour == 24) {
+            iHour = 0;
+        }
+        pSM->SetGameTime(iYear, iMonth, iDay, iHour, iMin);
+        pSM->Tick();
+    } else {
+        iTimeSliderPos = iHour * 60 + iMin % 60;
+    }
+
+    static int iPercentR = 0, iPercentS = 0;
+    if (ImGui::DragInt("Rain", &iPercentR, 1, 0, 100, "%d%%", ImGuiSliderFlags_AlwaysClamp)) {
+        if (iPercentR <= 0 && iPercentS <= 0) {
+            pSM->SetWeather(CN3SkyMng::SW_RAINY, 0);
+            pSM->SetWeather(CN3SkyMng::SW_CLEAR, iPercentR);
+        } else if (iPercentR > 0) {
+            float fPercent = iPercentR / 100.0f;
+
+            iPercentS = 0;
+            pSM->SetWeather(CN3SkyMng::SW_CLEAR, 0);
+            pSM->SetWeather(CN3SkyMng::SW_RAINY, iPercentR);
+
+            float fDelta = 1.0f;
+            fDelta = 0.25f + (1.0f - fPercent) * 0.75f;
+            CGameProcedure::s_pEng->FarPlaneDeltaSet(fDelta, false);
+        }
+    }
+    if (ImGui::DragInt("Snow", &iPercentS, 1, 0, 100, "%d%%", ImGuiSliderFlags_AlwaysClamp)) {
+        if (iPercentS <= 0 && iPercentR <= 0) {
+            pSM->SetWeather(CN3SkyMng::SW_SNOW, 0);
+            pSM->SetWeather(CN3SkyMng::SW_CLEAR, iPercentS);
+        } else if (iPercentS > 0) {
+            float fPercent = iPercentR / 100.0f;
+
+            iPercentR = 0;
+            pSM->SetWeather(CN3SkyMng::SW_CLEAR, 0);
+            pSM->SetWeather(CN3SkyMng::SW_SNOW, iPercentS);
+
+            float fDelta = 1.0f;
+            fDelta = 0.25f + (1.0f - fPercent) * 0.75f;
+            CGameProcedure::s_pEng->FarPlaneDeltaSet(fDelta, false);
+        }
+    }
 }
 
 void CN3UIDebug::RenderFPSGraph() {
