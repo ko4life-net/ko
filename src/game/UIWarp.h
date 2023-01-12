@@ -21,6 +21,9 @@ struct __WarpInfo {
 typedef typename std::list<__WarpInfo>::iterator it_WI;
 
 class CUIWarp : public CN3UIBase {
+  public:
+    __WarpInfo m_CurrWI;
+
   protected:
     class CN3UIButton * m_pBtn_Ok;
     class CN3UIButton * m_pBtn_Cancel;

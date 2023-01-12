@@ -4070,6 +4070,16 @@ void CGameProcMain::MsgSend_Warp() // ¿öÇÁ - Á¸ÀÌµ¿ÀÌ µÉ¼öµµ ÀÖ´Ù..
         return;
     }
 
+    m_pUIWarp->m_CurrWI = WI;
+    if (CGameBase::s_pPlayer->m_InfoExt.iGold < m_pUIWarp->m_CurrWI.iGold) {
+        std::string szMsg;
+        ::_LoadStringFromResource(IDS_WARP_REQUIRED_COINS, szMsg); // 7612
+        char szMsgBuff[400]{};
+        sprintf(szMsgBuff, szMsg.c_str(), m_pUIWarp->m_CurrWI.szName.c_str(), m_pUIWarp->m_CurrWI.iGold);
+        MsgOutput(szMsgBuff, 0xffff3b3b);
+        return;
+    }
+
     BYTE byBuff[8];
     int  iOffset = 0;
 
@@ -6386,8 +6396,7 @@ void CGameProcMain::MsgRecv_WarpList(DataPack * pDataPack, int & iOffset) // ¿öÇ
     int iStrLen = 0;
 
     BYTE bySubOp = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-    switch (bySubOp) {
-    case 1:
+    if (bySubOp == 1) {
         int iListCount = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
         for (int i = 0; i < iListCount; i++) {
             __WarpInfo WI;
@@ -6409,6 +6418,22 @@ void CGameProcMain::MsgRecv_WarpList(DataPack * pDataPack, int & iOffset) // ¿öÇ
 
         m_pUIWarp->UpdateList();
         m_pUIWarp->SetVisible(true);
+    } else if (bySubOp == 2) {
+        BYTE bySubSubOp = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+        switch (bySubSubOp) {
+        case 1:
+            std::string szMsg;
+            ::_LoadStringFromResource(IDS_WARP_ARRIVED, szMsg); // 6606
+            __WarpInfo WI = m_pUIWarp->m_CurrWI;
+            if (WI.szName.empty()) {
+                return;
+            }
+
+            char szMsgBuff[400]{};
+            sprintf(szMsgBuff, szMsg.c_str(), WI.szName.c_str());
+            MsgOutput(szMsgBuff, 0xffffff00);
+            break;
+        }
     }
 }
 
