@@ -879,6 +879,8 @@ typedef struct __TABLE_ITEM_BASIC // 장착 아이템에 관한 리소스 레코드...
     BYTE        byExtIndex; // 01 확장 인덱스
     std::string szName;     // 02 이름
     std::string szRemark;   // 03 아이템 설명
+    DWORD       dwTODO1;    // TODO: implement introduced in 1264
+    BYTE        byTODO2;    // TODO: implement introduced in 1264
     DWORD       dwIDResrc;  // 04 코드화된 아이템 리소스    d
     DWORD       dwIDIcon;   // 05 코드화된 아이템 아이콘 리소스    d
     DWORD       dwSoundID0; // 06 Sound ID - 0 이면 사운드 없다~..
@@ -903,7 +905,10 @@ typedef struct __TABLE_ITEM_BASIC // 장착 아이템에 관한 리소스 레코드...
     DWORD dwEffectID1; // 22 마법 효과 ID1
     DWORD dwEffectID2; // 23 마법 효과 ID1
 
-    char cNeedLevel;        // 24 요구 레벨        플레이어의 iLeve.. - 음수값이 있을수도 있다..
+    char cNeedLevel; // 24 요구 레벨        플레이어의 iLeve.. - 음수값이 있을수도 있다..
+
+    BYTE byTODO3; // TODO: implement introduced in 1264
+
     BYTE byNeedRank;        // 25 요구 작위        플레이어의 iRank..
     BYTE byNeedTitle;       // 26 요구 타이틀     플레이어의 iTitle..
     BYTE byNeedStrength;    // 27 요구 힘         플레이어의 iStrength..
@@ -924,8 +929,11 @@ typedef struct __TABLE_ITEM_EXT // 장착 아이템에 관한 리소스 레코드...
 {
     DWORD       dwID;          // 00 코드화된 아이템번호
     std::string szHeader;      // 01 접두사
+    DWORD       dwTODO1;       // TODO: implement introduced in 1264 BaseID
     std::string szRemark;      // 02 아이템 설명
-    uint32_t    iUnknown1;     // TODO: implement
+    DWORD       dwTODO2;       // TODO: implement introduced in 1097
+    DWORD       dwTODO3;       // TODO: implement introduced in 1264 ResrcID
+    DWORD       dwTODO4;       // TODO: implement introduced in 1264 IconID
     BYTE        byMagicOrRare; // 03 매직 혹은 레어 아이템인지...
 
     short siDamage;                   // 04 무기타격
