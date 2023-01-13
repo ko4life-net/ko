@@ -2,6 +2,7 @@
 
 #include <d3dx9.h>
 #include <d3dx9math.h>
+#include <stdint.h>
 #include <string>
 
 const float __PI = 3.141592654f;
@@ -1411,6 +1412,8 @@ void  _Convert2D_To_3DCoordinate(int ixScreen, int iyScreen, const __Matrix44 & 
                                  const D3DVIEWPORT9 & vp, __Vector3 & vPosResult, __Vector3 & vDirResult);
 float _Yaw2D(float fDirX, float fDirZ);
 void  _LoadStringFromResource(DWORD dwID, std::string & szText);
+std::string _FormatCoins(int64_t nCoins);
+void        _FormatCoins(int64_t nCoins, std::string & szCoins);
 
 inline D3DCOLOR _RGB_To_D3DCOLOR(COLORREF cr, DWORD dwAlpha) {
     D3DCOLOR cr2 = (dwAlpha << 24) | ((cr & 0x000000ff) << 16) | // R
