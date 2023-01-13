@@ -1,0 +1,64 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_hash:
+        description: commit hash to build and deploy
+        required: true
+
+jobs:
+  Build:
+    runs-on: windows-2022
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.commit_hash }}
+
+      - name: Install Dependencies
+        shell: cmd
+        run: |
+          cd src
+          git clone --depth=1 https://github.com/ko4life-net/ko-vendor.git vendor
+
+      - name: Build Server
+        shell: cmd
+        run: |
+          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat"
+          cd src
+          msbuild Server.sln -t:Clean -t:Build -p:Configuration=Release /m
+
+      - name: Upload to Server
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ secrets.KO_SERVER_HOSTNAME }}
+          username: ${{ secrets.KO_SERVER_USERNAME }}
+          password: ${{ secrets.KO_SERVER_PASSWORD }}
+          local-dir: src/build/Release/
+          server-dir: build/Release/
+
+  Deploy:
+    needs: Build
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.KO_SERVER_HOSTNAME }}
+          username: ${{ secrets.KO_SERVER_USERNAME }}
+          key: ${{ secrets.KO_SERVER_PK }}
+          script: |
+            foreach ($serviceName in "LoginServerNSSM", "AujardNSSM", "EbenezerNSSM", "AIServerNSSM") {
+              Stop-Service -Name $serviceName
+            }
+            
+            copy C:\Users\ko4life\Desktop\ftp\build\Release\*.* C:\Users\ko4life\server
+            cd C:\Users\ko4life\server
+            Start-Sleep -s 120
+            
+            foreach ($serviceName in "AIServerNSSM", "EbenezerNSSM", "AujardNSSM", "LoginServerNSSM") {
+              Start-Service -Name $serviceName
+              Start-Sleep -s 30
+            }
