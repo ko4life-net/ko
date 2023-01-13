@@ -56,6 +56,23 @@ void _LoadStringFromResource(DWORD dwID, std::string & szText) {
     szText = szBuffer;
 }
 
+std::string _FormatCoins(int64_t nCoins) {
+    std::string szCoins;
+    ::_FormatCoins(nCoins, szCoins);
+    return szCoins;
+}
+
+void _FormatCoins(int64_t nCoins, std::string & szCoins) {
+    szCoins = std::to_string(nCoins);
+    for (int i = szCoins.length() - 1, iCount = 0; i >= 0; --i) {
+        if (iCount == 3) {
+            szCoins.insert(i + 1, ",");
+            iCount = 0;
+        }
+        ++iCount;
+    }
+}
+
 void CGameBase::StaticMemberInit() {
     //////////////////////////////////////////////////////////////////////////////////////////
     // Resource Table 로딩 및 초기화...

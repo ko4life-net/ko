@@ -157,8 +157,9 @@ void CUIImageTooltipDlg::SetPosSomething(int xpos, int ypos, int iNum) {
 }
 
 int CUIImageTooltipDlg::CalcTooltipStringNumAndWrite(__IconItemSkill * spItem, bool bPrice, bool bBuy) {
-    int         iIndex = 0;
-    std::string szStr;
+    int                iIndex = 0;
+    std::string        szStr;
+    static std::string szCoins;
 
     __InfoPlayerMySelf * pInfoExt = &(CGameBase::s_pPlayer->m_InfoExt);
 
@@ -954,13 +955,14 @@ int CUIImageTooltipDlg::CalcTooltipStringNumAndWrite(__IconItemSkill * spItem, b
             if (bBuy) {
                 m_pStr[iIndex]->SetStyle(UI_STR_TYPE_HALIGN, UISTYLE_STRING_ALIGNLEFT);
                 ::_LoadStringFromResource(IDS_TOOLTIP_BUY_PRICE, szStr);
-                if (SetTooltipTextColor(pInfoExt->iGold,
-                                        spItem->pItemBasic->iPrice * spItem->pItemExt->siPriceMultiply)) {
+                int iBuyPrice = (spItem->pItemBasic->iPrice * spItem->pItemExt->siPriceMultiply);
+                if (SetTooltipTextColor(pInfoExt->iGold, iBuyPrice)) {
                     m_pStr[iIndex]->SetColor(m_CWhite);
                 } else {
                     m_pStr[iIndex]->SetColor(m_CRed);
                 }
-                sprintf(szBuff, szStr.c_str(), spItem->pItemBasic->iPrice * spItem->pItemExt->siPriceMultiply);
+                ::_FormatCoins(iBuyPrice, szCoins);
+                sprintf(szBuff, szStr.c_str(), szCoins.c_str());
                 m_pstdstr[iIndex] = szBuff;
             } else {
                 m_pStr[iIndex]->SetStyle(UI_STR_TYPE_HALIGN, UISTYLE_STRING_ALIGNLEFT);
@@ -970,7 +972,8 @@ int CUIImageTooltipDlg::CalcTooltipStringNumAndWrite(__IconItemSkill * spItem, b
                 if (iSellPrice < 1) {
                     iSellPrice = 1;
                 }
-                sprintf(szBuff, szStr.c_str(), iSellPrice);
+                ::_FormatCoins(iSellPrice, szCoins);
+                sprintf(szBuff, szStr.c_str(), szCoins.c_str());
                 m_pstdstr[iIndex] = szBuff;
             }
             iIndex++;
