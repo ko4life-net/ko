@@ -50,15 +50,12 @@ jobs:
           username: ${{ secrets.KO_SERVER_USERNAME }}
           key: ${{ secrets.KO_SERVER_PK }}
           script: |
-            foreach ($serviceName in "LoginServerNSSM", "AujardNSSM", "EbenezerNSSM", "AIServerNSSM") {
-              Stop-Service -Name $serviceName
-            }
-            
-            copy C:\Users\ko4life\Desktop\ftp\build\Release\*.* C:\Users\ko4life\server
-            cd C:\Users\ko4life\server
+            $servers = @("AIServerNSSM", "EbenezerNSSM", "AujardNSSM", "LoginServerNSSM")
+            Stop-Service -Name $servers
             Start-Sleep -s 120
-            
-            foreach ($serviceName in "AIServerNSSM", "EbenezerNSSM", "AujardNSSM", "LoginServerNSSM") {
-              Start-Service -Name $serviceName
+
+            Copy-Item C:\Users\ko4life\Desktop\ftp\build\Release\*.* C:\Users\ko4life\server
+            foreach ($server in $servers) {
+              Start-Service -Name $server
               Start-Sleep -s 30
             }
