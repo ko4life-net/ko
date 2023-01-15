@@ -5082,7 +5082,7 @@ void CGameProcMain::MsgSend_StateChange(e_SubPacket_State eSP, int iState) {
 }
 
 void CGameProcMain::MsgSend_PerTradeReq(int iDestID, bool bNear) {
-    BYTE byBuff[4];   // 패킷 버퍼..
+    BYTE byBuff[8]{}; // 패킷 버퍼..
     int  iOffset = 0; // 패킷 오프셋..
 
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_PER_TRADE);
