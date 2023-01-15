@@ -469,6 +469,15 @@ void CN3UIString::ChangeFont(const std::string & szFont) {
 }
 #endif
 
+int64_t CN3UIString::GetStringAsInt(const std::vector<char> & remove /* = {}*/) {
+    std::string szTmp(m_szString);
+    for (char delim : remove) {
+        szTmp.erase(std::remove(szTmp.begin(), szTmp.end(), delim), szTmp.end());
+    }
+
+    return std::stoll(szTmp);
+}
+
 int CN3UIString::GetStringRealWidth(int iNum) {
     SIZE size{};
     BOOL bFlag = m_pDFont->GetTextExtent("°¡", lstrlen("°¡"), &size);

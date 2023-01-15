@@ -34,6 +34,7 @@ class CN3UIString : public CN3UIBase {
     void                SetColor(D3DCOLOR color) { m_Color = color; }
     D3DCOLOR            GetColor() const { return m_Color; }
     const std::string & GetString() { return m_szString; }
+    int64_t             GetStringAsInt(const std::vector<char> & remove = {});
     int                 GetLineCount() const { return m_iLineCount; }
     int                 GetStartLine() const { return m_iStartLine; }
     int                 GetStringRealWidth(int iNum);
