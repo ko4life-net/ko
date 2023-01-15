@@ -4449,7 +4449,9 @@ void CGameProcMain::CommandEnableAttackContinous(bool bEnable, CPlayerBase * pTa
     if (bEnable) // 자동 공격!
     {
         ::_LoadStringFromResource(IDS_MSG_ATTACK_START, szMsg);
-        szMsg = pTarget->IDString() + szMsg;
+        char szBuff[260]{};
+        sprintf(szBuff, szMsg.c_str(), pTarget->IDString().c_str());
+        szMsg = szBuff;
         this->PlayBGM_Battle();
 
         if (s_pPlayer->IsAttackableTarget(pTarget)) {
