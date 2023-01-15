@@ -10,6 +10,7 @@ on:
 jobs:
   Build:
     runs-on: windows-2022
+    timeout-minutes: 15
 
     steps:
       - uses: actions/checkout@v3
@@ -21,6 +22,7 @@ jobs:
         run: |
           cd src
           git clone --depth=1 https://github.com/ko4life-net/ko-vendor.git vendor
+          pip install paramiko
 
       - name: Build Server
         shell: cmd
@@ -29,33 +31,51 @@ jobs:
           cd src
           msbuild Server.sln -t:Clean -t:Build -p:Configuration=Release /m
 
-      - name: Upload to Server
-        uses: SamKirkland/FTP-Deploy-Action@4.3.3
-        with:
-          server: ${{ secrets.KO_SERVER_HOSTNAME }}
-          username: ${{ secrets.KO_SERVER_USERNAME }}
-          password: ${{ secrets.KO_SERVER_PASSWORD }}
-          local-dir: src/build/Release/
-          server-dir: build/Release/
+      - name: Upload files
+        shell: python
+        env:
+          KO_SERVER_PK: ${{ secrets.KO_SERVER_PK }}
+          KO_SERVER_USERNAME: ${{ secrets.KO_SERVER_USERNAME }}
+          KO_SERVER_HOSTNAME: ${{ secrets.KO_SERVER_HOSTNAME }}
+        run: |
+          import os, paramiko
+          pk = os.getenv('KO_SERVER_PK')
+          username = os.getenv('KO_SERVER_USERNAME')
+          hostname = os.getenv('KO_SERVER_HOSTNAME')
+          with open('pk.pem', 'w') as f: f.write(pk)
+          client = paramiko.SSHClient()
+          client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+          client.connect(hostname=hostname, username=username, key_filename='pk.pem')
+          sftp = client.open_sftp()
+          source = 'src/build/Release'
+          for item in os.listdir(source):
+            if os.path.isfile(os.path.join(source, item)):
+              sftp.put(os.path.join(source, item), f'Desktop/ftp/build/Release/{item}')
+          sftp.close()
+          client.close()
+          os.remove('pk.pem')
 
   Deploy:
     needs: Build
     runs-on: ubuntu-20.04
+    timeout-minutes: 15
 
     steps:
-      - name: executing remote ssh commands using password
+      - name: Restart Server
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.KO_SERVER_HOSTNAME }}
           username: ${{ secrets.KO_SERVER_USERNAME }}
           key: ${{ secrets.KO_SERVER_PK }}
           script: |
-            $servers = @("AIServerNSSM", "EbenezerNSSM", "AujardNSSM", "LoginServerNSSM")
-            Stop-Service -Name $servers
-            Start-Sleep -s 120
-
-            Copy-Item C:\Users\ko4life\Desktop\ftp\build\Release\*.* C:\Users\ko4life\server
+            $servers = @("LoginServerNSSM", "AujardNSSM", "EbenezerNSSM", "AIServerNSSM")
+            foreach ($server in $servers) {
+              Stop-Service -Name $server
+            }
+            Start-Sleep -s 60
+            Copy-Item -Path "C:\Users\ko4life\Desktop\ftp\build\Release\*" -Destination "C:\Users\ko4life\server" -Recurse
+            [array]::Reverse($servers)
             foreach ($server in $servers) {
               Start-Service -Name $server
-              Start-Sleep -s 30
+              Start-Sleep -s 15
             }
