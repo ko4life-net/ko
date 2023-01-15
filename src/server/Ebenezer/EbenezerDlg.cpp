@@ -310,11 +310,6 @@ BOOL CEbenezerDlg::OnInitDialog() {
     m_fReConnectStart = 0.0f;
     // sungyong~ 2002.05.23
 
-    if (AfxMessageBox("If you are restarting, please restart after all data is saved...do you want to continue?",
-                      MB_OKCANCEL) == IDCANCEL) {
-        AfxPostQuitMessage(0);
-        return FALSE;
-    }
     //----------------------------------------------------------------------
     //    Logfile initialize
     //----------------------------------------------------------------------
