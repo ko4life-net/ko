@@ -351,16 +351,12 @@ void CUIHotKeyDlg::InitIconUpdate() {
         return;
     }
 
-    char        szSkill[32];
     int         iSkillCount = 0;
     CHotkeyData HD;
-    //    DWORD bitMask;
+    // DWORD bitMask;
 
     while (iHCount--) {
-        std::string str = "Data";
-        sprintf(szSkill, "%d", iSkillCount);
-        str += szSkill;
-        if (CGameProcedure::RegGetSetting(str.c_str(), &HD, sizeof(CHotkeyData))) {
+        if (CGameProcedure::RegGetSetting(std::to_string(iSkillCount).c_str(), &HD, sizeof(CHotkeyData))) {
             __TABLE_UPC_SKILL * pUSkill = NULL;
 
             // Skill Tree Window가 아이디를 갖고 있지 않으면 continue..
@@ -378,9 +374,7 @@ void CUIHotKeyDlg::InitIconUpdate() {
             spSkill->pSkill = pUSkill;
 
             // 아이콘 이름 만들기.. ^^
-            char buffer[MAX_PATH]{};
-            sprintf(buffer, "UI\\skillicon_%.2d_%d.dxt", HD.iID % 100, HD.iID / 100);
-            spSkill->szIconFN = buffer;
+            spSkill->szIconFN = std::format("UI\\skillicon_{:02d}_{:d}.dxt", HD.iID % 100, HD.iID / 100);
 
             // 아이콘 로드하기.. ^^
             spSkill->pUIIcon = new CN3UIIcon;
@@ -434,18 +428,13 @@ void CUIHotKeyDlg::CloseIconRegistry() {
 
     CGameProcedure::RegPutSetting("Count", &iHCount, sizeof(int));
 
-    char szSkill[32];
-    int  iSkillCount = 0;
+    int iSkillCount = 0;
 
     for (int i = 0; i < MAX_SKILL_HOTKEY_PAGE; i++) {
         for (int j = 0; j < MAX_SKILL_IN_HOTKEY; j++) {
             if (m_pMyHotkey[i][j] != NULL) {
-                std::string str = "Data";
-                sprintf(szSkill, "%d", iSkillCount);
-                str += szSkill;
-
                 CHotkeyData HD(i, j, m_pMyHotkey[i][j]->pSkill->dwID);
-                CGameProcedure::RegPutSetting(str.c_str(), &HD, sizeof(CHotkeyData));
+                CGameProcedure::RegPutSetting(std::to_string(iSkillCount).c_str(), &HD, sizeof(CHotkeyData));
                 iSkillCount++;
             }
         }
@@ -689,37 +678,24 @@ void CUIHotKeyDlg::ClassChangeHotkeyFlush() {
 }
 
 CN3UIString * CUIHotKeyDlg::GetTooltipStrControl(int iIndex) {
-    CN3UIString * pStr = NULL;
-    std::string   str = "";
-    char          cstr[4];
-    sprintf(cstr, "%d", iIndex + 10);
-    str += cstr;
-    pStr = (CN3UIString *)GetChildByID(str);
+    CN3UIString * pStr = (CN3UIString *)GetChildByID(std::to_string(iIndex + 10));
     __ASSERT(pStr, "NULL UI Component!!");
     return pStr;
 }
 
 CN3UIString * CUIHotKeyDlg::GetCountStrControl(int iIndex) {
-    CN3UIString * pStr = NULL;
-    std::string   str = "";
-    char          cstr[4];
-    sprintf(cstr, "%d", iIndex);
-    str += cstr;
-    pStr = (CN3UIString *)GetChildByID(str);
+    CN3UIString * pStr = (CN3UIString *)GetChildByID(std::to_string(iIndex));
     __ASSERT(pStr, "NULL UI Component!!");
     return pStr;
 }
 
 void CUIHotKeyDlg::DisplayTooltipStr(__IconItemSkill * spSkill) {
-    char pszDesc[256];
-
     int iIndex = GetTooltipCurPageIndex(spSkill);
     if (iIndex != -1) {
         if (!m_pTooltipStr[iIndex]->IsVisible()) {
             m_pTooltipStr[iIndex]->SetVisible(true);
         }
-        sprintf(pszDesc, "%s", spSkill->pSkill->szName.c_str());
-        m_pTooltipStr[iIndex]->SetString(pszDesc);
+        m_pTooltipStr[iIndex]->SetString(spSkill->pSkill->szName);
         m_pTooltipStr[iIndex]->Render();
     }
 }
@@ -733,16 +709,14 @@ void CUIHotKeyDlg::DisableTooltipDisplay() {
 }
 
 void CUIHotKeyDlg::DisplayCountStr(__IconItemSkill * spSkill) {
-    char pszDesc[256];
-
     int iIndex = GetCountCurPageIndex(spSkill);
     if (iIndex != -1) {
         if (!m_pCountStr[iIndex]->IsVisible()) {
             m_pCountStr[iIndex]->SetVisible(true);
         }
-        sprintf(pszDesc, "%d",
-                CGameProcedure::s_pProcMain->m_pUIInventory->GetCountInInvByID(spSkill->pSkill->dwExhaustItem));
-        m_pCountStr[iIndex]->SetString(pszDesc);
+
+        int iCount = CGameProcedure::s_pProcMain->m_pUIInventory->GetCountInInvByID(spSkill->pSkill->dwExhaustItem);
+        m_pCountStr[iIndex]->SetStringAsInt(iCount);
         m_pCountStr[iIndex]->Render();
     }
 }
@@ -827,10 +801,8 @@ bool CUIHotKeyDlg::ReceiveIconDrop(__IconItemSkill * spItem, POINT ptCur) {
         spSkill->pSkill = pUSkill;
 
         // 아이콘 이름 만들기.. ^^
-        char buffer[MAX_PATH]{};
-        sprintf(buffer, "UI\\skillicon_%.2d_%d.dxt", spItem->pItemBasic->dwEffectID1 % 100,
-                spItem->pItemBasic->dwEffectID1 / 100);
-        spSkill->szIconFN = buffer;
+        spSkill->szIconFN = std::format("UI\\skillicon_{:02d}_{:d}.dxt", spItem->pItemBasic->dwEffectID1 % 100,
+                                        spItem->pItemBasic->dwEffectID1 / 100);
 
         // 아이콘 로드하기.. ^^
         spSkill->pUIIcon = new CN3UIIcon;

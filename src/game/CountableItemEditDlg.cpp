@@ -216,12 +216,11 @@ void CCountableItemEditDlg::SetQuantity(int iQuantity) // "edit_trade" Edit Cont
     CN3UIEdit * pEdit = (CN3UIEdit *)this->GetChildByID("edit_trade");
     __ASSERT(pEdit, "NULL UI Component!!");
 
-    char szBuff[64] = "";
-    if (iQuantity != -1) {
-        sprintf(szBuff, "%d", iQuantity);
+    if (iQuantity == -1) {
+        pEdit->SetString("");
+    } else {
+        pEdit->SetString(std::to_string(iQuantity));
     }
-
-    pEdit->SetString(szBuff);
 }
 
 //this_ui_add_start

@@ -776,40 +776,38 @@ void CUISkillTreeDlg::CheckButtonTooltipRenderEnable() {
 }
 
 void CUISkillTreeDlg::ButtonTooltipRender(int iIndex) {
-    std::string szStr;
-    char        pszDesc[256];
-    memset(pszDesc, 0, sizeof(char) * 256);
+    std::string szFmt, szStr;
     if (!m_pStr_info->IsVisible()) {
         m_pStr_info->SetVisible(true);
     }
 
     switch (iIndex) {
     case SKILL_DEF_BASIC:
-        ::_LoadStringFromResource(IDS_SKILL_INFO_BASE, szStr);
-        sprintf(pszDesc, szStr.c_str());
+        ::_LoadStringFromResource(IDS_SKILL_INFO_BASE, szFmt);
+        szStr = szFmt;
         break;
 
     case SKILL_DEF_SPECIAL0:
         switch (CGameBase::s_pPlayer->m_InfoBase.eClass) {
         case CLASS_EL_BLADE:
         case CLASS_KA_BERSERKER:
-            ::_LoadStringFromResource(IDS_SKILL_INFO_BLADE0, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_INFO_BLADE0, szFmt);
+            szStr = szFmt;
             break;
         case CLASS_EL_RANGER:
         case CLASS_KA_HUNTER:
-            ::_LoadStringFromResource(IDS_SKILL_INFO_RANGER0, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_INFO_RANGER0, szFmt);
+            szStr = szFmt;
             break;
         case CLASS_EL_CLERIC:
         case CLASS_KA_SHAMAN:
-            ::_LoadStringFromResource(IDS_SKILL_INFO_CLERIC0, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_INFO_CLERIC0, szFmt);
+            szStr = szFmt;
             break;
         case CLASS_EL_MAGE:
         case CLASS_KA_SORCERER:
-            ::_LoadStringFromResource(IDS_SKILL_INFO_MAGE0, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_INFO_MAGE0, szFmt);
+            szStr = szFmt;
             break;
         }
         break;
@@ -818,23 +816,23 @@ void CUISkillTreeDlg::ButtonTooltipRender(int iIndex) {
         switch (CGameBase::s_pPlayer->m_InfoBase.eClass) {
         case CLASS_EL_BLADE:
         case CLASS_KA_BERSERKER:
-            ::_LoadStringFromResource(IDS_SKILL_INFO_BLADE1, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_INFO_BLADE1, szFmt);
+            szStr = szFmt;
             break;
         case CLASS_EL_RANGER:
         case CLASS_KA_HUNTER:
-            ::_LoadStringFromResource(IDS_SKILL_INFO_RANGER1, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_INFO_RANGER1, szFmt);
+            szStr = szFmt;
             break;
         case CLASS_EL_CLERIC:
         case CLASS_KA_SHAMAN:
-            ::_LoadStringFromResource(IDS_SKILL_INFO_CLERIC1, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_INFO_CLERIC1, szFmt);
+            szStr = szFmt;
             break;
         case CLASS_EL_MAGE:
         case CLASS_KA_SORCERER:
-            ::_LoadStringFromResource(IDS_SKILL_INFO_MAGE1, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_INFO_MAGE1, szFmt);
+            szStr = szFmt;
             break;
         }
         break;
@@ -843,23 +841,23 @@ void CUISkillTreeDlg::ButtonTooltipRender(int iIndex) {
         switch (CGameBase::s_pPlayer->m_InfoBase.eClass) {
         case CLASS_EL_BLADE:
         case CLASS_KA_BERSERKER:
-            ::_LoadStringFromResource(IDS_SKILL_INFO_BLADE2, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_INFO_BLADE2, szFmt);
+            szStr = szFmt;
             break;
         case CLASS_EL_RANGER:
         case CLASS_KA_HUNTER:
-            ::_LoadStringFromResource(IDS_SKILL_INFO_RANGER2, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_INFO_RANGER2, szFmt);
+            szStr = szFmt;
             break;
         case CLASS_EL_CLERIC:
         case CLASS_KA_SHAMAN:
-            ::_LoadStringFromResource(IDS_SKILL_INFO_CLERIC2, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_INFO_CLERIC2, szFmt);
+            szStr = szFmt;
             break;
         case CLASS_EL_MAGE:
         case CLASS_KA_SORCERER:
-            ::_LoadStringFromResource(IDS_SKILL_INFO_MAGE2, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_INFO_MAGE2, szFmt);
+            szStr = szFmt;
             break;
         }
         break;
@@ -868,29 +866,29 @@ void CUISkillTreeDlg::ButtonTooltipRender(int iIndex) {
         switch (CGameBase::s_pPlayer->m_InfoBase.eClass) {
         case CLASS_EL_BLADE:
         case CLASS_KA_BERSERKER:
-            ::_LoadStringFromResource(IDS_SKILL_INFO_BLADE3, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_INFO_BLADE3, szFmt);
+            szStr = szFmt;
             break;
         case CLASS_EL_RANGER:
         case CLASS_KA_HUNTER:
-            ::_LoadStringFromResource(IDS_SKILL_INFO_RANGER3, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_INFO_RANGER3, szFmt);
+            szStr = szFmt;
             break;
         case CLASS_EL_CLERIC:
         case CLASS_KA_SHAMAN:
-            ::_LoadStringFromResource(IDS_SKILL_INFO_CLERIC3, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_INFO_CLERIC3, szFmt);
+            szStr = szFmt;
             break;
         case CLASS_EL_MAGE:
         case CLASS_KA_SORCERER:
-            ::_LoadStringFromResource(IDS_SKILL_INFO_MAGE3, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_INFO_MAGE3, szFmt);
+            szStr = szFmt;
             break;
         }
         break;
     }
 
-    m_pStr_info->SetString(pszDesc);
+    m_pStr_info->SetString(szStr);
     m_pStr_info->Render();
 }
 
@@ -899,26 +897,25 @@ void CUISkillTreeDlg::TooltipRenderEnable(__IconItemSkill * spSkill) {
         return;
     }
 
-    std::string szStr;
+    std::string szFmt;
     bool        bFound = false;
 
-    char pszDesc[256];
+    char pszDesc[256]{};
     if (!m_pStr_info->IsVisible()) {
         m_pStr_info->SetVisible(true);
     }
-    sprintf(pszDesc, "%s", spSkill->pSkill->szDesc.c_str());
-    m_pStr_info->SetString(pszDesc);
+    m_pStr_info->SetString(spSkill->pSkill->szDesc);
 
     if ((spSkill->pSkill->dw1stTableType != 1) && (spSkill->pSkill->dw1stTableType != 2)) {
         if (!m_pStr_skill_mp->IsVisible()) {
             m_pStr_skill_mp->SetVisible(true);
         }
         if (spSkill->pSkill->iExhaustMSP == 0) {
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NO_MANA, szStr);
-            sprintf(pszDesc, "%s", szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NO_MANA, szFmt);
+            sprintf(pszDesc, "%s", szFmt.c_str());
         } else {
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_USE_MANA, szStr);
-            sprintf(pszDesc, szStr.c_str(), spSkill->pSkill->iExhaustMSP);
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_USE_MANA, szFmt);
+            sprintf(pszDesc, szFmt.c_str(), spSkill->pSkill->iExhaustMSP);
         }
         m_pStr_skill_mp->SetString(pszDesc);
     }
@@ -929,15 +926,15 @@ void CUISkillTreeDlg::TooltipRenderEnable(__IconItemSkill * spSkill) {
     switch (spSkill->pSkill->iNeedSkill) {
     case 1055:
     case 2055:
-        ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_DUAL, szStr);
-        sprintf(pszDesc, szStr.c_str());
+        ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_DUAL, szFmt);
+        sprintf(pszDesc, szFmt.c_str());
         bFound = true;
         break;
 
     case 1056:
     case 2056:
-        ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_DOUBLE, szStr);
-        sprintf(pszDesc, szStr.c_str());
+        ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_DOUBLE, szFmt);
+        sprintf(pszDesc, szFmt.c_str());
         bFound = true;
         break;
     }
@@ -945,72 +942,72 @@ void CUISkillTreeDlg::TooltipRenderEnable(__IconItemSkill * spSkill) {
     if (!bFound) {
         switch (spSkill->pSkill->dwNeedItem) {
         case 0:
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID1, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID1, szFmt);
+            sprintf(pszDesc, szFmt.c_str());
             break;
         case 1:
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID2, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID2, szFmt);
+            sprintf(pszDesc, szFmt.c_str());
             break;
         case 2:
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID3, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID3, szFmt);
+            sprintf(pszDesc, szFmt.c_str());
             break;
         case 3:
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID4, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID4, szFmt);
+            sprintf(pszDesc, szFmt.c_str());
             break;
         case 4:
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID5, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID5, szFmt);
+            sprintf(pszDesc, szFmt.c_str());
             break;
         case 5:
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID6, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID6, szFmt);
+            sprintf(pszDesc, szFmt.c_str());
             break;
         case 6:
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID7, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID7, szFmt);
+            sprintf(pszDesc, szFmt.c_str());
             break;
         case 7:
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID8, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID8, szFmt);
+            sprintf(pszDesc, szFmt.c_str());
             break;
         case 8:
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID9, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID9, szFmt);
+            sprintf(pszDesc, szFmt.c_str());
             break;
         case 10:
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID10, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID10, szFmt);
+            sprintf(pszDesc, szFmt.c_str());
             break;
         case 11:
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID11, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID11, szFmt);
+            sprintf(pszDesc, szFmt.c_str());
             break;
         case 12:
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID12, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID12, szFmt);
+            sprintf(pszDesc, szFmt.c_str());
             break;
         case 13:
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID13, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID13, szFmt);
+            sprintf(pszDesc, szFmt.c_str());
             break;
         case 21:
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID14, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID14, szFmt);
+            sprintf(pszDesc, szFmt.c_str());
             break;
         case 22:
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID15, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID15, szFmt);
+            sprintf(pszDesc, szFmt.c_str());
             break;
         case 23:
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID16, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID16, szFmt);
+            sprintf(pszDesc, szFmt.c_str());
             break;
         case 24:
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID17, szStr);
-            sprintf(pszDesc, szStr.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID17, szFmt);
+            sprintf(pszDesc, szFmt.c_str());
             break;
         default:
             sprintf(pszDesc, "");
@@ -1023,14 +1020,14 @@ void CUISkillTreeDlg::TooltipRenderEnable(__IconItemSkill * spSkill) {
         m_pStr_skill_item1->SetVisible(true);
     }
     if (spSkill->pSkill->dwExhaustItem == 0) {
-        ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_USE_ITEM_NO, szStr);
-        sprintf(pszDesc, szStr.c_str());
+        ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_USE_ITEM_NO, szFmt);
+        sprintf(pszDesc, szFmt.c_str());
     } else {
         __TABLE_ITEM_BASIC * pItem = NULL;
         pItem = CGameBase::s_pTbl_Items_Basic->Find(spSkill->pSkill->dwExhaustItem);
         if (pItem) {
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_USE_ITEM_EXIST, szStr);
-            sprintf(pszDesc, szStr.c_str(), pItem->szName.c_str());
+            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_USE_ITEM_EXIST, szFmt);
+            sprintf(pszDesc, szFmt.c_str(), pItem->szName.c_str());
         } else {
             __ASSERT(0, "NULL Item!!!");
         }
@@ -1450,9 +1447,7 @@ stop:
     spSkill->pSkill = pUSkill;
 
     // 아이콘 이름 만들기.. ^^
-    char buffer[MAX_PATH]{};
-    sprintf(buffer, "UI\\skillicon_%.2d_%d.dxt", pUSkill->dwID % 100, pUSkill->dwID / 100);
-    spSkill->szIconFN = buffer;
+    spSkill->szIconFN = std::format("UI\\skillicon_{:02d}_{:d}.dxt", pUSkill->dwID % 100, pUSkill->dwID / 100);
 
     // 아이콘 로드하기.. ^^
     spSkill->pUIIcon = new CN3UIIcon;
@@ -1594,24 +1589,15 @@ void CUISkillTreeDlg::SetPageInIconRegion(int iKindOf, int iPageNum) // 아이콘 �
     }
 
     // 아이콘 설명 문자열 업데이트.. 현재 스킬 종류와 현재 스킬 페이지중 아이콘이 보이면 String보이게.. 아니면 안보이게..
-    CN3UIString * pStrName;
-    std::string   str;
-    char          cstr[4];
-
+    CN3UIString * pStrName = NULL;
     for (int k = 0; k < MAX_SKILL_IN_PAGE; k++) {
         if (m_pMySkillTree[m_iCurKindOf][m_iCurSkillPage][k] != NULL) {
-            str = "string_list_";
-            sprintf(cstr, "%d", k);
-            str += cstr;
-            pStrName = (CN3UIString *)GetChildByID(str);
+            pStrName = (CN3UIString *)GetChildByID(std::format("string_list_{}", k));
             __ASSERT(pStrName, "NULL UI Component!!");
             pStrName->SetString(m_pMySkillTree[m_iCurKindOf][m_iCurSkillPage][k]->pSkill->szName);
             pStrName->SetVisible(true);
         } else {
-            str = "string_list_";
-            sprintf(cstr, "%d", k);
-            str += cstr;
-            pStrName = (CN3UIString *)GetChildByID(str);
+            pStrName = (CN3UIString *)GetChildByID(std::format("string_list_{}", k));
             __ASSERT(pStrName, "NULL UI Component!!");
             pStrName->SetVisible(false);
         }
@@ -1621,44 +1607,29 @@ void CUISkillTreeDlg::SetPageInIconRegion(int iKindOf, int iPageNum) // 아이콘 �
 
     CN3UIString * pStr = (CN3UIString *)GetChildByID("string_page");
     __ASSERT(pStr, "NULL UI Component!!");
-    sprintf(cstr, "%d", iPageNum + 1);
     if (pStr) {
-        pStr->SetString(cstr);
+        pStr->SetStringAsInt(iPageNum + 1);
     }
 }
 
 void CUISkillTreeDlg::AllClearImageByName(const std::string & szFN, bool bTrueOrNot) {
     //    CN3UIImage* pImage;
-    CN3UIBase *   pBase;
-    CN3UIButton * pButton;
-
-    std::string str;
-    char        cstr[4];
-
+    CN3UIBase *   pBase = NULL;
+    CN3UIButton * pButton = NULL;
     for (int i = 0; i < 4; i++) {
-        str = "img_";
-        str += szFN;
-        sprintf(cstr, "_%d", i);
-        str += cstr;
-        pBase = GetChildBaseByName(str);
+        pBase = GetChildBaseByName(std::format("img_{}{}", szFN, i));
         if (pBase) {
             pBase->SetVisible(bTrueOrNot);
         }
     }
 
-    str = "img_";
-    str += szFN;
-    pBase = GetChildBaseByName(str);
+    pBase = GetChildBaseByName("img_" + szFN);
     if (pBase) {
         pBase->SetVisible(bTrueOrNot);
     }
 
     for (int i = 0; i < 4; i++) {
-        str = "btn_";
-        str += szFN;
-        sprintf(cstr, "%d", i);
-        str += cstr;
-        pButton = GetChildButtonByName(str);
+        pButton = GetChildButtonByName(std::format("btn_{}{}", szFN, i));
         if (pButton) {
             pButton->SetVisible(bTrueOrNot);
         }

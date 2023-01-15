@@ -640,23 +640,20 @@ e_ItemType CGameBase::MakeResrcFileNameForUPC(__TABLE_ITEM_BASIC * pItem,       
         __ASSERT(0, "Invalid Item Position");
     }
 
-    char buffer[MAX_PATH]{};
     if (pszResrcFN) {
         if (pItem->dwIDResrc) {
-            sprintf(buffer, "Item\\%.1d_%.4d_%.2d_%.1d%s", (pItem->dwIDResrc / 10000000),
-                    (pItem->dwIDResrc / 1000) % 10000, (pItem->dwIDResrc / 10) % 100, pItem->dwIDResrc % 10,
-                    szExt.c_str());
-            *pszResrcFN = buffer;
-        } else // 아이콘만 있는 플러그나 파트 일수도 있다...
-        {
+            *pszResrcFN = std::format("Item\\{:d}_{:04d}_{:02d}_{:d}{}", (pItem->dwIDResrc / 10000000),
+                                      (pItem->dwIDResrc / 1000) % 10000, (pItem->dwIDResrc / 10) % 100,
+                                      pItem->dwIDResrc % 10, szExt);
+        } else {
+            // 아이콘만 있는 플러그나 파트 일수도 있다...
             *pszResrcFN = "";
         }
     }
     if (pszIconFN) {
-        //        sprintf(buffer,    "UI\\ItemIcon_%.1d_%.4d_%.2d_%.1d.dxt", eType, iIndex, eRace, iPos);
-        sprintf(buffer, "UI\\ItemIcon_%.1d_%.4d_%.2d_%.1d.dxt", (pItem->dwIDIcon / 10000000),
-                (pItem->dwIDIcon / 1000) % 10000, (pItem->dwIDIcon / 10) % 100, pItem->dwIDIcon % 10);
-        *pszIconFN = buffer;
+        //*pszIconFN = std::format("UI\\ItemIcon_{:d}_{:04d}_{:02d}_{:d}.dxt", eType, iIndex, eRace, iPos);
+        *pszIconFN = std::format("UI\\ItemIcon_{:d}_{:04d}_{:02d}_{:d}.dxt", (pItem->dwIDIcon / 10000000),
+                                 (pItem->dwIDIcon / 1000) % 10000, (pItem->dwIDIcon / 10) % 100, pItem->dwIDIcon % 10);
     }
 
     return eType;

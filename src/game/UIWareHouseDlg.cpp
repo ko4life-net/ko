@@ -335,9 +335,7 @@ bool CUIWareHouseDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 
             pStr = (CN3UIString *)GetChildByID("string_page");
             if (pStr) {
-                char pszID[32];
-                sprintf(pszID, "%d", m_iCurPage + 1);
-                pStr->SetString(pszID);
+                pStr->SetStringAsInt(m_iCurPage + 1);
             }
 
             for (int j = 0; j < MAX_ITEM_WARE_PAGE; j++) {
@@ -365,9 +363,7 @@ bool CUIWareHouseDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 
             pStr = (CN3UIString *)GetChildByID("string_page");
             if (pStr) {
-                char pszID[32];
-                sprintf(pszID, "%d", m_iCurPage + 1);
-                pStr->SetString(pszID);
+                pStr->SetStringAsInt(m_iCurPage + 1);
             }
 
             for (int j = 0; j < MAX_ITEM_WARE_PAGE; j++) {
