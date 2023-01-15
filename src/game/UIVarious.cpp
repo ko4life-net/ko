@@ -259,9 +259,7 @@ void CUIState::UpdateHP(int iVal, int iValMax) {
         return;
     }
 
-    char szVal[64] = "0 / 0";
-    sprintf(szVal, "%d / %d", iVal, iValMax);
-    m_pText_HP->SetString(szVal);
+    m_pText_HP->SetString(std::format("{} / {}", iVal, iValMax));
 }
 
 void CUIState::UpdateMSP(int iVal, int iValMax) {
@@ -270,9 +268,7 @@ void CUIState::UpdateMSP(int iVal, int iValMax) {
         return;
     }
 
-    char szVal[64] = "0 / 0";
-    sprintf(szVal, "%d / %d", iVal, iValMax);
-    m_pText_MP->SetString(szVal);
+    m_pText_MP->SetString(std::format("{} / {}", iVal, iValMax));
 }
 
 void CUIState::UpdateExp(int iVal, int iValMax) {
@@ -281,43 +277,31 @@ void CUIState::UpdateExp(int iVal, int iValMax) {
         return;
     }
 
-    char szVal[64] = "0 / 0";
-    sprintf(szVal, "%d / %d", iVal, iValMax);
-    m_pText_Exp->SetString(szVal);
+    m_pText_Exp->SetString(std::format("{} / {}", iVal, iValMax));
+}
+
+void CUIState::UpdatePoints(CN3UIString * pText, int iVal, int iDelta) {
+    if (!pText) {
+        return;
+    }
+
+    if (iDelta != 0) {
+        if (iDelta > 0) {
+            pText->SetString(std::format("{}(+{})", iVal, iDelta));
+        } else {
+            pText->SetString(std::format("{}({})", iVal, iDelta));
+        }
+    } else {
+        pText->SetStringAsInt(iVal);
+    }
 }
 
 void CUIState::UpdateAttackPoint(int iVal, int iDelta) {
-    if (NULL == m_pText_AP) {
-        return;
-    }
-    if (iDelta) {
-        char szBuff[64] = "";
-        if (iDelta > 0) {
-            sprintf(szBuff, "%d(+%d)", iVal, iDelta);
-        } else {
-            sprintf(szBuff, "%d(%d)", iVal, iDelta);
-        }
-        m_pText_AP->SetString(szBuff);
-    } else {
-        m_pText_AP->SetStringAsInt(iVal);
-    }
+    UpdatePoints(m_pText_AP, iVal, iDelta);
 }
 
 void CUIState::UpdateGuardPoint(int iVal, int iDelta) {
-    if (NULL == m_pText_GP) {
-        return;
-    }
-    if (iDelta) {
-        char szBuff[64] = "";
-        if (iDelta > 0) {
-            sprintf(szBuff, "%d(+%d)", iVal, iDelta);
-        } else {
-            sprintf(szBuff, "%d(%d)", iVal, iDelta);
-        }
-        m_pText_GP->SetString(szBuff);
-    } else {
-        m_pText_GP->SetStringAsInt(iVal);
-    }
+    UpdatePoints(m_pText_GP, iVal, iDelta);
 }
 
 void CUIState::UpdateWeight(int iVal, int iValMax) {
@@ -325,218 +309,60 @@ void CUIState::UpdateWeight(int iVal, int iValMax) {
         return;
     }
 
-    char szVal[64] = "0 / 0";
-    sprintf(szVal, "%.1f/%.1f", (iVal * 0.1f), (iValMax * 0.1f));
-    m_pText_Weight->SetString(szVal);
+    std::string szWeight = std::format("{:.1f}/{:.1f}", (iVal * 0.1f), (iValMax * 0.1f));
+    m_pText_Weight->SetString(szWeight);
 
-    char        szBuf[64] = "";
     std::string szMsg;
     ::_LoadStringFromResource(IDS_INVEN_WEIGHT, szMsg);
-    std::string str = szMsg;
-    str += szVal;
 
     CUIInventory * pInv = CGameProcedure::s_pProcMain->m_pUIInventory;
     if (pInv) {
-        pInv->UpdateWeight(str);
+        pInv->UpdateWeight(szMsg + szWeight);
     }
 }
 
 void CUIState::UpdateStrength(int iVal, int iDelta) {
-    if (NULL == m_pText_Strength) {
-        return;
-    }
-
-    if (iDelta) {
-        char szBuff[64] = "";
-        if (iDelta > 0) {
-            sprintf(szBuff, "%d(+%d)", iVal, iDelta);
-        } else {
-            sprintf(szBuff, "%d(%d)", iVal, iDelta);
-        }
-        m_pText_Strength->SetString(szBuff);
-    } else {
-        m_pText_Strength->SetStringAsInt(iVal);
-    }
+    UpdatePoints(m_pText_Strength, iVal, iDelta);
 }
 
 void CUIState::UpdateStamina(int iVal, int iDelta) {
-    if (NULL == m_pText_Stamina) {
-        return;
-    }
-
-    if (iDelta) {
-        char szBuff[64] = "";
-        if (iDelta > 0) {
-            sprintf(szBuff, "%d(+%d)", iVal, iDelta);
-        } else {
-            sprintf(szBuff, "%d(%d)", iVal, iDelta);
-        }
-        m_pText_Stamina->SetString(szBuff);
-    } else {
-        m_pText_Stamina->SetStringAsInt(iVal);
-    }
+    UpdatePoints(m_pText_Stamina, iVal, iDelta);
 }
 
 void CUIState::UpdateDexterity(int iVal, int iDelta) {
-    if (NULL == m_pText_Dexterity) {
-        return;
-    }
-
-    if (iDelta) {
-        char szBuff[64] = "";
-        if (iDelta > 0) {
-            sprintf(szBuff, "%d(+%d)", iVal, iDelta);
-        } else {
-            sprintf(szBuff, "%d(%d)", iVal, iDelta);
-        }
-        m_pText_Dexterity->SetString(szBuff);
-    } else {
-        m_pText_Dexterity->SetStringAsInt(iVal);
-    }
+    UpdatePoints(m_pText_Dexterity, iVal, iDelta);
 }
 
 void CUIState::UpdateIntelligence(int iVal, int iDelta) {
-    if (NULL == m_pText_Intelligence) {
-        return;
-    }
-
-    if (iDelta) {
-        char szBuff[64] = "";
-        if (iDelta > 0) {
-            sprintf(szBuff, "%d(+%d)", iVal, iDelta);
-        } else {
-            sprintf(szBuff, "%d(%d)", iVal, iDelta);
-        }
-        m_pText_Intelligence->SetString(szBuff);
-    } else {
-        m_pText_Intelligence->SetStringAsInt(iVal);
-    }
+    UpdatePoints(m_pText_Intelligence, iVal, iDelta);
 }
 
 void CUIState::UpdateMagicAttak(int iVal, int iDelta) {
-    if (NULL == m_pText_MagicAttak) {
-        return;
-    }
-
-    if (iDelta) {
-        char szBuff[64] = "";
-        if (iDelta > 0) {
-            sprintf(szBuff, "%d(+%d)", iVal, iDelta);
-        } else {
-            sprintf(szBuff, "%d(%d)", iVal, iDelta);
-        }
-        m_pText_MagicAttak->SetString(szBuff);
-    } else {
-        m_pText_MagicAttak->SetStringAsInt(iVal);
-    }
+    UpdatePoints(m_pText_MagicAttak, iVal, iDelta);
 }
 
 void CUIState::UpdateRegistFire(int iVal, int iDelta) {
-    if (NULL == m_pText_RegistFire) {
-        return;
-    }
-
-    if (iDelta) {
-        char szBuff[64] = "";
-        if (iDelta > 0) {
-            sprintf(szBuff, "%d(+%d)", iVal, iDelta);
-        } else {
-            sprintf(szBuff, "%d(%d)", iVal, iDelta);
-        }
-        m_pText_RegistFire->SetString(szBuff);
-    } else {
-        m_pText_RegistFire->SetStringAsInt(iVal);
-    }
+    UpdatePoints(m_pText_RegistFire, iVal, iDelta);
 }
 
 void CUIState::UpdateRegistCold(int iVal, int iDelta) {
-    if (NULL == m_pText_RegistIce) {
-        return;
-    }
-
-    if (iDelta) {
-        char szBuff[64] = "";
-        if (iDelta > 0) {
-            sprintf(szBuff, "%d(+%d)", iVal, iDelta);
-        } else {
-            sprintf(szBuff, "%d(%d)", iVal, iDelta);
-        }
-        m_pText_RegistIce->SetString(szBuff);
-    } else {
-        m_pText_RegistIce->SetStringAsInt(iVal);
-    }
+    UpdatePoints(m_pText_RegistIce, iVal, iDelta);
 }
 
 void CUIState::UpdateRegistLight(int iVal, int iDelta) {
-    if (NULL == m_pText_RegistLight) {
-        return;
-    }
-
-    if (iDelta) {
-        char szBuff[64] = "";
-        if (iDelta > 0) {
-            sprintf(szBuff, "%d(+%d)", iVal, iDelta);
-        } else {
-            sprintf(szBuff, "%d(%d)", iVal, iDelta);
-        }
-        m_pText_RegistLight->SetString(szBuff);
-    } else {
-        m_pText_RegistLight->SetStringAsInt(iVal);
-    }
+    UpdatePoints(m_pText_RegistLight, iVal, iDelta);
 }
 
 void CUIState::UpdateRegistMagic(int iVal, int iDelta) {
-    if (NULL == m_pText_RegistMagic) {
-        return;
-    }
-
-    if (iDelta) {
-        char szBuff[64] = "";
-        if (iDelta > 0) {
-            sprintf(szBuff, "%d(+%d)", iVal, iDelta);
-        } else {
-            sprintf(szBuff, "%d(%d)", iVal, iDelta);
-        }
-        m_pText_RegistMagic->SetString(szBuff);
-    } else {
-        m_pText_RegistMagic->SetStringAsInt(iVal);
-    }
+    UpdatePoints(m_pText_RegistMagic, iVal, iDelta);
 }
 
 void CUIState::UpdateRegistCurse(int iVal, int iDelta) {
-    if (NULL == m_pText_RegistCurse) {
-        return;
-    }
-
-    if (iDelta) {
-        char szBuff[64] = "";
-        if (iDelta > 0) {
-            sprintf(szBuff, "%d(+%d)", iVal, iDelta);
-        } else {
-            sprintf(szBuff, "%d(%d)", iVal, iDelta);
-        }
-        m_pText_RegistCurse->SetString(szBuff);
-    } else {
-        m_pText_RegistCurse->SetStringAsInt(iVal);
-    }
+    UpdatePoints(m_pText_RegistCurse, iVal, iDelta);
 }
 
 void CUIState::UpdateRegistPoison(int iVal, int iDelta) {
-    if (NULL == m_pText_RegistPoison) {
-        return;
-    }
-
-    if (iDelta) {
-        char szBuff[64] = "";
-        if (iDelta > 0) {
-            sprintf(szBuff, "%d(+%d)", iVal, iDelta);
-        } else {
-            sprintf(szBuff, "%d(%d)", iVal, iDelta);
-        }
-        m_pText_RegistPoison->SetString(szBuff);
-    } else {
-        m_pText_RegistPoison->SetStringAsInt(iVal);
-    }
+    UpdatePoints(m_pText_RegistPoison, iVal, iDelta);
 }
 
 bool CUIState::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
@@ -668,12 +494,9 @@ bool CUIKnights::Load(HANDLE hFile) {
     //    if(m_pText_Grade)    m_pText_Grade->SetVisible(false);
     //    if(m_pText_Rank)    m_pText_Rank->SetVisible(false);
 
-    char szBuf[128];
     for (int i = 0; i < MAX_CLAN_GRADE; i++) {
-        sprintf(szBuf, "image_grade%.2d", i);
-        m_pImage_Grade[i] = (CN3UIImage *)(this->GetChildByID(szBuf));
+        m_pImage_Grade[i] = (CN3UIImage *)(this->GetChildByID(std::format("image_grade{:02d}", i)));
         __ASSERT(m_pImage_Grade[i], "NULL UI Component!!");
-        ;
         if (m_pImage_Grade[i]) {
             m_pImage_Grade[i]->SetVisible(false);
         }
@@ -692,9 +515,7 @@ bool CUIKnights::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
                 m_iPageCur = 1;
             }
 
-            char tmp[4];
-            sprintf(tmp, "%d", m_iPageCur);
-            m_pText_Page->SetString(tmp);
+            m_pText_Page->SetStringAsInt(m_iPageCur);
             RefreshPage();
             return true;
         }
@@ -705,9 +526,7 @@ bool CUIKnights::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
                 m_iPageCur = MaxPage;
             }
 
-            char tmp[4];
-            sprintf(tmp, "%d", m_iPageCur);
-            m_pText_Page->SetString(tmp);
+            m_pText_Page->SetStringAsInt(m_iPageCur);
             RefreshPage();
             return true;
         }
@@ -1054,9 +873,7 @@ bool CUIKnights::MsgRecv_MemberInfo(DataPack * pDataPack, int & iOffset) {
     int iPacketLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
     int iKC = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
 
-    char tmp[4];
-    sprintf(tmp, "%d", iKC);
-    m_pText_MemberCount->SetString(tmp);
+    m_pText_MemberCount->SetStringAsInt(iKC);
 
     int           iNameLength, iLevel;
     e_KnightsDuty eDuty = KNIGHTS_DUTY_UNKNOWN;
@@ -1079,8 +896,7 @@ bool CUIKnights::MsgRecv_MemberInfo(DataPack * pDataPack, int & iOffset) {
         this->MemberListAdd(szName, eDuty, eClass, iLevel, iConnected); // UI 에 추가..
     }
     m_iPageCur = 1;
-    sprintf(tmp, "%d", m_iPageCur);
-    m_pText_Page->SetString(tmp);
+    m_pText_Page->SetStringAsInt(m_iPageCur);
 
     this->MemberListUpdate(); // List 에 다 넣었으면 UI Update!!
 
@@ -1865,7 +1681,7 @@ void CUIVarious::UpdateAllStates(const __InfoPlayerBase * pInfoBase, const __Inf
         m_pPageState->m_pText_Nation->SetString(szVal);
     }
 
-    //    sprintf(szVal, "%d", pInfoExt->iRank);            m_pText_Rank->SetString(szVal);
+    // m_pText_Rank->SetStringAsInt(pInfoExt->iRank);
 
     m_pPageState->UpdateLevel(pInfoBase->iLevel);
     m_pPageState->UpdateExp(pInfoExt->iExp, pInfoExt->iExpNext);
