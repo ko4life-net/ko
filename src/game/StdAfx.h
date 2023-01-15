@@ -10,13 +10,15 @@
 #define VC_EXTRALEAN // Exclude rarely-used stuff from Windows headers
 #include <Windows.h>
 
-#include <string>
-#include <sstream>
-#include <vector>
-#include <list>
 #include <map>
 #include <set>
-#include <functional>
+#include <list>
+#include <vector>
+#include <format>
+#include <string>
+#include <sstream>
+#include <ranges>
+#include <algorithm>
 #include <filesystem>
 #include <io.h>
 
@@ -31,3 +33,10 @@ namespace fs = std::filesystem;
 #else
 #define TRACE(fmt, ...) (void)fmt
 #endif
+
+namespace N3 {
+static bool iequals(const std::string_view & lhs, const std::string_view & rhs) {
+    auto to_lower{std::ranges::views::transform(::tolower)};
+    return std::ranges::equal(lhs | to_lower, rhs | to_lower);
+}
+} // namespace N3
