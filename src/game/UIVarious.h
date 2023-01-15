@@ -63,6 +63,7 @@ class CUIState : public CN3UIBase {
     void UpdateHP(int iVal, int iValMax);
     void UpdateMSP(int iVal, int iValMax);
     void UpdateExp(int iVal, int iValMax);
+    void UpdatePoints(CN3UIString * pText, int iVal, int iDelta);
     void UpdateAttackPoint(int iVal, int iDelta);
     void UpdateGuardPoint(int iVal, int iDelta);
     void UpdateWeight(int iVal, int iValMax);
