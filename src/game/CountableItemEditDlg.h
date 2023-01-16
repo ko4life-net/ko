@@ -32,12 +32,12 @@ class CCountableItemEditDlg : public CN3UIBase {
     CN3UIButton * m_pBtnCancel;
 
   public:
-    bool OnKeyPress(int iKey);
-    bool Load(HANDLE hFile);
-    void SetVisibleWithNoSound(bool bVisible, bool bWork = false, bool bReFocus = false);
-    void SetVisible(bool bVisible);
-    int  GetQuantity();              // "edit_trade" Edit Control 에서 정수값을 얻오온다..
-    void SetQuantity(int iQuantity); // "edit_trade" Edit Control 에서 정수값을 문자열로 세팅한다..
+    bool    OnKeyPress(int iKey);
+    bool    Load(HANDLE hFile);
+    void    SetVisibleWithNoSound(bool bVisible, bool bWork = false, bool bReFocus = false);
+    void    SetVisible(bool bVisible);
+    int64_t GetQuantity();                  // "edit_trade" Edit Control 에서 정수값을 얻오온다..
+    void    SetQuantity(int64_t iQuantity); // "edit_trade" Edit Control 에서 정수값을 문자열로 세팅한다..
 
     CCountableItemEditDlg();
     virtual ~CCountableItemEditDlg();

@@ -89,7 +89,7 @@ class CSubProcPerTrade : public CGameBase {
     void ReceiveMsgPerTradeAdd(BYTE bResult);
     void ReceiveMsgPerTradeOtherAdd(int iItemID, int iCount, int iDurability);
     void ReceiveMsgPerTradeOtherDecide();
-    void ReceiveMsgPerTradeDoneSuccessBegin(int iTotalGold);
+    void ReceiveMsgPerTradeDoneSuccessBegin(int64_t iTotalGold);
     void ReceiveMsgPerTradeDoneItemMove(BYTE bItemPos, int iItemID, int iCount, int iDurability);
     void ReceiveMsgPerTradeDoneSuccessEnd();
     void ReceiveMsgPerTradeDoneFail();

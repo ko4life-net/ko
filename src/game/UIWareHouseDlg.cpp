@@ -464,7 +464,7 @@ void CUIWareHouseDlg::LeaveWareHouseState() {
     }
 }
 
-void CUIWareHouseDlg::EnterWareHouseStateStart(int iWareGold) {
+void CUIWareHouseDlg::EnterWareHouseStateStart(int64_t iWareGold) {
     for (int j = 0; j < MAX_ITEM_WARE_PAGE; j++) {
         for (int i = 0; i < MAX_ITEM_TRADE; i++) {
             if (m_pMyWare[j][i] != NULL) {
@@ -997,8 +997,8 @@ void CUIWareHouseDlg::AcceptIconDrop(__IconItemSkill * spItem) {
     SetState(UI_STATE_COMMON_NONE);
 }
 
-void CUIWareHouseDlg::SendToServerToWareMsg(int iItemID, uint8_t page, uint8_t startpos, uint8_t pos, int iCount) {
-    BYTE byBuff[32];
+void CUIWareHouseDlg::SendToServerToWareMsg(int iItemID, uint8_t page, uint8_t startpos, uint8_t pos, int64_t iCount) {
+    BYTE byBuff[32]{};
     int  iOffset = 0;
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_WAREHOUSE);
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_WARE_GET_IN);
@@ -1006,13 +1006,14 @@ void CUIWareHouseDlg::SendToServerToWareMsg(int iItemID, uint8_t page, uint8_t s
     CAPISocket::MP_AddByte(byBuff, iOffset, page);
     CAPISocket::MP_AddByte(byBuff, iOffset, startpos);
     CAPISocket::MP_AddByte(byBuff, iOffset, pos);
-    CAPISocket::MP_AddDword(byBuff, iOffset, iCount);
+    CAPISocket::MP_AddInt64(byBuff, iOffset, iCount);
 
     CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 }
 
-void CUIWareHouseDlg::SendToServerFromWareMsg(int iItemID, uint8_t page, uint8_t startpos, uint8_t pos, int iCount) {
-    BYTE byBuff[32];
+void CUIWareHouseDlg::SendToServerFromWareMsg(int iItemID, uint8_t page, uint8_t startpos, uint8_t pos,
+                                              int64_t iCount) {
+    BYTE byBuff[32]{};
     int  iOffset = 0;
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_WAREHOUSE);
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_WARE_GET_OUT);
@@ -1020,13 +1021,13 @@ void CUIWareHouseDlg::SendToServerFromWareMsg(int iItemID, uint8_t page, uint8_t
     CAPISocket::MP_AddByte(byBuff, iOffset, page);
     CAPISocket::MP_AddByte(byBuff, iOffset, startpos);
     CAPISocket::MP_AddByte(byBuff, iOffset, pos);
-    CAPISocket::MP_AddDword(byBuff, iOffset, iCount);
+    CAPISocket::MP_AddInt64(byBuff, iOffset, iCount);
 
     CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 }
 
 void CUIWareHouseDlg::SendToServerWareToWareMsg(int iItemID, uint8_t page, uint8_t startpos, uint8_t destpos) {
-    BYTE byBuff[32];
+    BYTE byBuff[32]{};
     int  iOffset = 0;
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_WAREHOUSE);
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_WARE_WARE_MOVE);
@@ -1039,7 +1040,7 @@ void CUIWareHouseDlg::SendToServerWareToWareMsg(int iItemID, uint8_t page, uint8
 }
 
 void CUIWareHouseDlg::SendToServerInvToInvMsg(int iItemID, uint8_t page, uint8_t startpos, uint8_t destpos) {
-    BYTE byBuff[32];
+    BYTE byBuff[32]{};
     int  iOffset = 0;
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_WAREHOUSE);
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_WARE_INV_MOVE);
@@ -1054,7 +1055,7 @@ void CUIWareHouseDlg::SendToServerInvToInvMsg(int iItemID, uint8_t page, uint8_t
 void CUIWareHouseDlg::ReceiveResultToWareMsg(BYTE bResult) // 넣는 경우..
 {
     CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer = false;
-    int               iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
+    int64_t           iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
     __IconItemSkill * spItem;
     CN3UIArea *       pArea = NULL;
 
@@ -1070,6 +1071,8 @@ void CUIWareHouseDlg::ReceiveResultToWareMsg(BYTE bResult) // 넣는 경우..
         {
             // Ware Side..    //////////////////////////////////////////////////////
 
+            // TODO: Note that iCount may overflow as well, since it's used in so many other contexts.
+            // We'll add an overflow check for it or change the size of iCount eventually.
             if ((m_pMyWare[CN3UIWndBase::m_sRecoveryJobInfo.m_iPage]
                           [CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder]
                               ->iCount -
@@ -1156,7 +1159,7 @@ void CUIWareHouseDlg::ReceiveResultToWareMsg(BYTE bResult) // 넣는 경우..
 void CUIWareHouseDlg::ReceiveResultFromWareMsg(BYTE bResult) // 빼는 경우..
 {
     CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer = false;
-    int               iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
+    int64_t           iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
     __IconItemSkill * spItem;
     CN3UIArea *       pArea = NULL;
 
@@ -1335,7 +1338,7 @@ void CUIWareHouseDlg::ReceiveResultInvToInvMsg(BYTE bResult) {
 }
 
 void CUIWareHouseDlg::ItemCountOK() {
-    int                  iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
+    int64_t              iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
     __IconItemSkill *    spItem;
     CN3UIArea *          pArea = NULL;
     float                fUVAspect = (float)45.0f / (float)64.0f;
@@ -1711,7 +1714,7 @@ void CUIWareHouseDlg::AddItemInWare(int iItem, int iDurability, int iCount, int 
 
 void CUIWareHouseDlg::GoldCountToWareOK() //돈을 넣는 경우..
 {
-    int iGold, iMyMoney, iWareMoney; // 인벤토리의 값..
+    int64_t iGold, iMyMoney, iWareMoney; // 인벤토리의 값..
 
     // 돈을 보관함에 보관하는 경우..
     iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
@@ -1766,7 +1769,7 @@ void CUIWareHouseDlg::GoldCountToWareOK() //돈을 넣는 경우..
 
 void CUIWareHouseDlg::GoldCountFromWareOK() // 돈을 빼는 경우..
 {
-    int iGold, iMyMoney, iWareMoney; // 인벤토리의 값..
+    int64_t iGold, iMyMoney, iWareMoney; // 인벤토리의 값..
 
     // 돈을 보관함에서 빼는 경우..
     iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
@@ -1847,7 +1850,7 @@ void CUIWareHouseDlg::GoldCountFromWareCancel() {
 }
 
 void CUIWareHouseDlg::ReceiveResultGoldToWareFail() {
-    int iGold, iMyMoney, iWareMoney; // 인벤토리의 값..
+    int64_t iGold, iMyMoney, iWareMoney; // 인벤토리의 값..
 
     m_bSendedItemGold = false; // 원래 대로..
 
@@ -1891,7 +1894,7 @@ void CUIWareHouseDlg::ReceiveResultGoldToWareFail() {
 }
 
 void CUIWareHouseDlg::ReceiveResultGoldFromWareFail() {
-    int iGold, iMyMoney, iWareMoney; // 인벤토리의 값..
+    int64_t iGold, iMyMoney, iWareMoney; // 인벤토리의 값..
 
     m_bSendedItemGold = false; // 원래 대로..
 

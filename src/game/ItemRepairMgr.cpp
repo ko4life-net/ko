@@ -150,7 +150,7 @@ void CItemRepairMgr::Tick() {
     }
 }
 
-void CItemRepairMgr::ReceiveResultFromServer(int iResult, int iUserGold) {
+void CItemRepairMgr::ReceiveResultFromServer(int iResult, int64_t iUserGold) {
     CUIRepairTooltipDlg * pDlg = CGameProcedure::s_pProcMain->m_pUIRepairTooltip;
     CUIInventory *        pInv = CGameProcedure::s_pProcMain->m_pUIInventory;
     if (!pInv) {
@@ -195,7 +195,7 @@ void CItemRepairMgr::ReceiveResultFromServer(int iResult, int iUserGold) {
     CGameProcedure::SetGameCursor(CGameProcedure::s_hCursorPreRepair, true);
 }
 
-void CItemRepairMgr::UpdateUserTotalGold(int iGold) {
+void CItemRepairMgr::UpdateUserTotalGold(int64_t iGold) {
     // µ· ¾÷µ¥ÀÌÆ®..
     s_pPlayer->m_InfoExt.iGold = iGold;
     CN3UIString * pStatic = (CN3UIString *)CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold");

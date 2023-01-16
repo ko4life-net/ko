@@ -453,7 +453,7 @@ bool CUIDroppedItemDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     return true;
 }
 
-void CUIDroppedItemDlg::GetItemByIDToInventory(BYTE bResult, int iItemID, int iGold, int iPos, int iItemCount,
+void CUIDroppedItemDlg::GetItemByIDToInventory(BYTE bResult, int iItemID, int64_t iGold, int iPos, int iItemCount,
                                                int iStrLen, std::string strString) {
     // 아이템 리스트에서 아이템을 찾고..
     bool                 bFound = false;
