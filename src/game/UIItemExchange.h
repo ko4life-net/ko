@@ -20,7 +20,7 @@ class CUIItemExchange : public CN3UIWndBase {
     __IconItemSkill *    m_pMyInvWnd[MAX_ITEM_INVENTORY];
     __IconItemSkill *    m_pMyNpcWnd[MAX_ITEM_EX_RE_NPC];
     int                  m_pMyNpcWndOriginIndex[MAX_ITEM_EX_RE_NPC];
-    int                  m_pTotalPrice;
+    int                  m_iTotalPrice;
     CUIImageTooltipDlg * m_pUITooltipDlg;
 
   private:

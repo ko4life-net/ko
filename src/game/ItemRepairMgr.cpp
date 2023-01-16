@@ -196,16 +196,12 @@ void CItemRepairMgr::ReceiveResultFromServer(int iResult, int iUserGold) {
 }
 
 void CItemRepairMgr::UpdateUserTotalGold(int iGold) {
-    char          szGold[32];
-    CN3UIString * pStatic = NULL;
-
     // µ· ¾÷µ¥ÀÌÆ®..
     s_pPlayer->m_InfoExt.iGold = iGold;
-    sprintf(szGold, "%d", iGold);
-    pStatic = (CN3UIString *)CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold");
+    CN3UIString * pStatic = (CN3UIString *)CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold");
     __ASSERT(pStatic, "NULL UI Component!!");
     if (pStatic) {
-        pStatic->SetString(szGold);
+        pStatic->SetString(::_FormatCoins(iGold));
     }
 }
 

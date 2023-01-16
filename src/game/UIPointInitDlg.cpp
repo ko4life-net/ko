@@ -102,15 +102,8 @@ bool CUIPointInitDlg::OnKeyPress(int iKey) {
 
 void CUIPointInitDlg::InitDlg(bool bAllpoint, int iGold) {
     m_bAllpoint = bAllpoint;
-    if (m_pText_NeedGold) {
-        switch (bAllpoint) {
-        case true:
-            m_pText_NeedGold->SetStringAsInt(iGold);
-            break;
-        case false:
-            m_pText_NeedGold->SetStringAsInt(iGold);
-            break;
-        }
+    if (m_pText_NeedGold && bAllpoint) {
+        m_pText_NeedGold->SetString(::_FormatCoins(iGold));
     }
 }
 
