@@ -137,7 +137,6 @@ LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
     case WM_CLOSE:
     case WM_DESTROY:
     case WM_QUIT:
-
         if (CGameProcedure::s_pProcActive &&
             CGameProcedure::s_pProcActive == (CGameProcedure *)CGameProcedure::s_pProcMain &&
             CGameProcMain::s_pProcMain->m_pUIExitMenu) {
@@ -145,17 +144,14 @@ LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
             return true;
         }
 
-        if (CGameProcedure::s_pProcMain->m_pExitState == EXIT_STATE_ALLOW_LEAVE) {
-
+        if (CGameProcedure::s_pProcMain->m_eExitState == EXIT_STATE_ALLOW_LEAVE) {
             CGameProcedure::s_pSocket->Disconnect();
             CGameProcedure::s_pSocketSub->Disconnect();
-
             PostQuitMessage(0);
         }
 
         CGameProcMain::s_pProcMain->m_pUIExitMenu->AddWarningMessage(IDS_EXIT_GAME_DURING_BATTLE_WARNING, false);
-        CGameProcedure::s_pProcMain->m_pExitType = EXIT_TYPE_EXIT;
-
+        CGameProcedure::s_pProcMain->m_eExitType = EXIT_TYPE_EXIT;
         break;
     case WM_RECEIVEDATA:
         if (CGameProcedure::s_pKnightChr) {

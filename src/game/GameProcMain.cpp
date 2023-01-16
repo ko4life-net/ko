@@ -128,9 +128,9 @@ CGameProcMain::CGameProcMain() // r기본 생성자.. 각 변수의 역활은 헤더 참조..
 
     m_fRotateValue = -1.0f;
 
-    m_pExitType = EXIT_TYPE_NONE;
-    m_pExitState = EXIT_STATE_ALLOW_LEAVE;
-    m_pExitSecondsElapsed = 0;
+    m_eExitType = EXIT_TYPE_NONE;
+    m_eExitState = EXIT_STATE_ALLOW_LEAVE;
+    m_iExitSecondsElapsed = 0;
 
     //UI
     m_pUIMsgDlg = new CUIMessageWnd;
@@ -602,54 +602,43 @@ void CGameProcMain::Tick() {
     ////////////////////////////////////////////////////////////////////////////////////
 
     //EXIT MENU
-    static float fTimeIntervalExitWarning = 0;
+    static float fTimeIntervalExitWarning = 0.0f;
     fTimeIntervalExitWarning += fTime - fTimePrev;
-
-    if (m_pExitState == EXIT_STATE_DISALLOW_LEAVE && m_pExitSecondsElapsed <= TIME_PLAYER_CAN_EXIT_GAME_AFTER_ATTACK &&
-        m_pExitType == EXIT_TYPE_NONE && fTimeIntervalExitWarning > 1.0f) {
-        m_pExitSecondsElapsed++;
-
-        if (m_pExitSecondsElapsed == TIME_PLAYER_CAN_EXIT_GAME_AFTER_ATTACK) {
-            m_pExitState = EXIT_STATE_ALLOW_LEAVE;
-            m_pExitSecondsElapsed = 0;
+    if (m_eExitState == EXIT_STATE_DISALLOW_LEAVE && m_iExitSecondsElapsed <= SECONDS_TO_EXIT_GAME_AFTER_ATTACK &&
+        m_eExitType == EXIT_TYPE_NONE && fTimeIntervalExitWarning > 1.0f) {
+        if (++m_iExitSecondsElapsed == SECONDS_TO_EXIT_GAME_AFTER_ATTACK) {
+            m_eExitState = EXIT_STATE_ALLOW_LEAVE;
+            m_iExitSecondsElapsed = 0;
         }
-        fTimeIntervalExitWarning = 0;
+        fTimeIntervalExitWarning = 0.0f;
     }
 
-    if (m_pExitType != EXIT_TYPE_NONE) {
-        if (TIME_PLAYER_CAN_EXIT_GAME_AFTER_ATTACK - m_pExitSecondsElapsed > 0 && fTimeIntervalExitWarning > 1.0f) {
-
+    if (m_eExitType != EXIT_TYPE_NONE) {
+        if (SECONDS_TO_EXIT_GAME_AFTER_ATTACK - m_iExitSecondsElapsed > 0 && fTimeIntervalExitWarning > 1.0f) {
             if (m_pUIChatDlg) {
-
-                char        szBuff[32];
                 std::string szMsg;
-                ::_LoadStringFromResource(IDS_EXIT_GAME_IN, szMsg); // Exiting game in %d seconds.
-
-                sprintf(szBuff, szMsg.c_str(), TIME_PLAYER_CAN_EXIT_GAME_AFTER_ATTACK - m_pExitSecondsElapsed);
-
+                ::_LoadStringFromResource(IDS_EXIT_GAME_IN, szMsg);
+                char szBuff[40]{};
+                sprintf(szBuff, szMsg.c_str(), SECONDS_TO_EXIT_GAME_AFTER_ATTACK - m_iExitSecondsElapsed);
                 m_pUIChatDlg->AddChatMsg(N3_CHAT_NORMAL, szBuff, 0xFFFF0000);
             }
-
-            m_pExitSecondsElapsed++;
-            fTimeIntervalExitWarning = 0;
-        } else if (m_pExitState == EXIT_STATE_ALLOW_LEAVE ||
-                   TIME_PLAYER_CAN_EXIT_GAME_AFTER_ATTACK - m_pExitSecondsElapsed <= 0) {
-            if (m_pExitType == EXIT_TYPE_SELECTCHAR) {
-
-                m_pExitType = EXIT_TYPE_NONE;
-                m_pExitState = EXIT_STATE_ALLOW_LEAVE;
-                m_pExitSecondsElapsed = 0;
-
+            ++m_iExitSecondsElapsed;
+            fTimeIntervalExitWarning = 0.0f;
+        } else if (m_eExitState == EXIT_STATE_ALLOW_LEAVE ||
+                   SECONDS_TO_EXIT_GAME_AFTER_ATTACK - m_iExitSecondsElapsed <= 0) {
+            if (m_eExitType == EXIT_TYPE_SELECTCHAR) {
+                m_eExitType = EXIT_TYPE_NONE;
+                m_eExitState = EXIT_STATE_ALLOW_LEAVE;
+                m_iExitSecondsElapsed = 0;
                 m_pUIExitMenu->SelectCharacter();
-            } else if (m_pExitType == EXIT_TYPE_EXIT) {
-                PostQuitMessage(0);
-            } else if (m_pExitType == EXIT_TYPE_OPTION) {
+            } else if (m_eExitType == EXIT_TYPE_EXIT) {
+                ::PostQuitMessage(0);
+            } else if (m_eExitType == EXIT_TYPE_OPTION) {
                 ::ShellExecute(NULL, "open", "Option.exe", NULL, NULL, SW_SHOWNORMAL);
-                PostQuitMessage(0);
+                ::PostQuitMessage(0);
             }
         }
     }
-
     fTimePrev = fTime;
 
     // Rotates the player's camera 180 degrees from the current position.
@@ -3178,15 +3167,15 @@ bool CGameProcMain::MsgRecv_Attack(DataPack * pDataPack, int & iOffset) {
         TRACE("player is under of attack (%d)\n", iIDAttacker);
     }
 
-    if (s_pPlayer) {
-        if (m_pExitType != EXIT_TYPE_NONE) {
+    if (bIAmTarget || bIAmAttacker) {
+        if (m_eExitType != EXIT_TYPE_NONE) {
             std::string szMsg;
-            ::_LoadStringFromResource(IDS_EXIT_GAME_CANCELED, szMsg); // Exiting game canceled.
+            ::_LoadStringFromResource(IDS_EXIT_GAME_CANCELED, szMsg);
             m_pUIChatDlg->AddChatMsg(N3_CHAT_NORMAL, szMsg, 0xFFFF0000);
         }
-        m_pExitType = EXIT_TYPE_NONE;
-        m_pExitState = EXIT_STATE_DISALLOW_LEAVE;
-        m_pExitSecondsElapsed = 0;
+        m_eExitType = EXIT_TYPE_NONE;
+        m_eExitState = EXIT_STATE_DISALLOW_LEAVE;
+        m_iExitSecondsElapsed = 0;
     }
 
     return true;

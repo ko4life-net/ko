@@ -88,9 +88,9 @@ class CGameProcMain : public CGameProcedure {
 
     float m_fRotateValue;
 
-    e_TypeOfExit m_pExitType;
-    e_ExitState  m_pExitState;
-    int          m_pExitSecondsElapsed = 0;
+    e_TypeOfExit m_eExitType;
+    e_ExitState  m_eExitState;
+    int          m_iExitSecondsElapsed;
 
   protected:
     bool ProcessPacket(DataPack * pDataPack, int & iOffset);
