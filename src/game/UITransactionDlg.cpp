@@ -331,7 +331,7 @@ void CUITransactionDlg::EnterTransactionState() {
 
     if (m_pStrMyGold) {
         __InfoPlayerMySelf * pInfoExt = &(CGameBase::s_pPlayer->m_InfoExt);
-        m_pStrMyGold->SetStringAsInt(pInfoExt->iGold);
+        m_pStrMyGold->SetString(::_FormatCoins(pInfoExt->iGold));
     }
 
     switch ((int)(m_iTradeID / 1000)) {
@@ -349,8 +349,7 @@ void CUITransactionDlg::EnterTransactionState() {
 
 void CUITransactionDlg::GoldUpdate() {
     if (m_pStrMyGold) {
-        __InfoPlayerMySelf * pInfoExt = &(CGameBase::s_pPlayer->m_InfoExt);
-        m_pStrMyGold->SetStringAsInt(pInfoExt->iGold);
+        m_pStrMyGold->SetString(::_FormatCoins(CGameBase::s_pPlayer->m_InfoExt.iGold));
     }
 }
 
@@ -1121,10 +1120,10 @@ void CUITransactionDlg::ReceiveResultTradeFromServer(uint8_t bResult, uint8_t bT
             pStatic = (CN3UIString *)CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold");
             __ASSERT(pStatic, "NULL UI Component!!");
             if (pStatic) {
-                pStatic->SetStringAsInt(pInfoExt->iGold);
+                pStatic->SetString(::_FormatCoins(pInfoExt->iGold));
             }
             if (m_pStrMyGold) {
-                m_pStrMyGold->SetStringAsInt(pInfoExt->iGold); // 상거래창..
+                m_pStrMyGold->SetString(::_FormatCoins(pInfoExt->iGold)); // 상거래창..
             }
         }
 
@@ -1188,10 +1187,10 @@ void CUITransactionDlg::ReceiveResultTradeFromServer(uint8_t bResult, uint8_t bT
             pStatic = (CN3UIString *)CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold");
             __ASSERT(pStatic, "NULL UI Component!!");
             if (pStatic) {
-                pStatic->SetStringAsInt(pInfoExt->iGold);
+                pStatic->SetString(::_FormatCoins(pInfoExt->iGold));
             }
             if (m_pStrMyGold) {
-                m_pStrMyGold->SetStringAsInt(pInfoExt->iGold); // 상거래창..
+                m_pStrMyGold->SetString(::_FormatCoins(pInfoExt->iGold)); // 상거래창..
             }
         }
 

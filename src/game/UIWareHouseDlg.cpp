@@ -494,7 +494,7 @@ void CUIWareHouseDlg::EnterWareHouseStateStart(int iWareGold) {
     }
 
     if (m_pStrWareGold) {
-        m_pStrWareGold->SetStringAsInt(iWareGold);
+        m_pStrWareGold->SetString(::_FormatCoins(iWareGold));
     }
 }
 
@@ -504,9 +504,7 @@ void CUIWareHouseDlg::EnterWareHouseStateEnd() {
     m_iCurPage = 0;
     CN3UIString * pStr = (CN3UIString *)GetChildByID("string_page");
     if (pStr) {
-        char pszID[32];
-        sprintf(pszID, "%d", m_iCurPage + 1);
-        pStr->SetString(pszID);
+        pStr->SetStringAsInt(m_iCurPage + 1);
     }
 
     for (int j = 0; j < MAX_ITEM_WARE_PAGE; j++) {
@@ -529,7 +527,7 @@ void CUIWareHouseDlg::EnterWareHouseStateEnd() {
 
     if (m_pStrMyGold) {
         __InfoPlayerMySelf * pInfoExt = &(CGameBase::s_pPlayer->m_InfoExt);
-        m_pStrMyGold->SetStringAsInt(pInfoExt->iGold);
+        m_pStrMyGold->SetString(::_FormatCoins(pInfoExt->iGold));
     }
 }
 
@@ -1713,9 +1711,7 @@ void CUIWareHouseDlg::AddItemInWare(int iItem, int iDurability, int iCount, int 
 
 void CUIWareHouseDlg::GoldCountToWareOK() //돈을 넣는 경우..
 {
-    char        szGold[32];
-    int         iGold, iMyMoney, iWareMoney; // 인벤토리의 값..
-    std::string str;
+    int iGold, iMyMoney, iWareMoney; // 인벤토리의 값..
 
     // 돈을 보관함에 보관하는 경우..
     iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
@@ -1727,16 +1723,10 @@ void CUIWareHouseDlg::GoldCountToWareOK() //돈을 넣는 경우..
     iMyMoney = CGameBase::s_pPlayer->m_InfoExt.iGold;
 
     // 보관함의 돈을 얻어온다..
-    CN3UIString * pStr = NULL;
-    pStr = (CN3UIString *)GetChildByID("string_wareitem_name");
+    CN3UIString * pStr = (CN3UIString *)GetChildByID("string_wareitem_name");
     __ASSERT(pStr, "NULL UI Component!!");
-    str = pStr->GetString();
-    iWareMoney = atoi(str.c_str());
-
-    if (iGold <= 0) {
-        return;
-    }
-    if (iGold > iMyMoney) {
+    iWareMoney = pStr->GetStringAsInt({','});
+    if (iGold <= 0 || iGold > iMyMoney) {
         return;
     }
 
@@ -1745,26 +1735,23 @@ void CUIWareHouseDlg::GoldCountToWareOK() //돈을 넣는 경우..
     // 돈을 감소 시킨다..
     iMyMoney -= iGold;
     CGameBase::s_pPlayer->m_InfoExt.iGold = iMyMoney;
-
     iWareMoney += iGold;
 
     // 돈 표시.. Ware..
-    pStr->SetStringAsInt(iWareMoney);
+    pStr->SetString(::_FormatCoins(iWareMoney));
+
     // 돈 표시.. 인벤토리..
-    sprintf(szGold, "%d", iMyMoney);
-    pStr = NULL;
-    str = szGold;
     pStr = (CN3UIString *)CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold");
     __ASSERT(pStr, "NULL UI Component!!");
     if (pStr) {
-        pStr->SetString(str);
+        pStr->SetString(::_FormatCoins(iMyMoney));
     }
-    pStr = NULL;
+
     // 돈 표시.. Inv..
     pStr = (CN3UIString *)GetChildByID("string_item_name");
     __ASSERT(pStr, "NULL UI Component!!");
     if (pStr) {
-        pStr->SetStringAsInt(iMyMoney);
+        pStr->SetString(::_FormatCoins(iMyMoney));
     }
 
     // 서버에게 패킷 만들어서 날림..
@@ -1779,9 +1766,7 @@ void CUIWareHouseDlg::GoldCountToWareOK() //돈을 넣는 경우..
 
 void CUIWareHouseDlg::GoldCountFromWareOK() // 돈을 빼는 경우..
 {
-    char        szGold[32];
-    int         iGold, iMyMoney, iWareMoney; // 인벤토리의 값..
-    std::string str;
+    int iGold, iMyMoney, iWareMoney; // 인벤토리의 값..
 
     // 돈을 보관함에서 빼는 경우..
     iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
@@ -1793,16 +1778,10 @@ void CUIWareHouseDlg::GoldCountFromWareOK() // 돈을 빼는 경우..
     iMyMoney = CGameBase::s_pPlayer->m_InfoExt.iGold;
 
     // 보관함의 돈을 얻어온다..
-    CN3UIString * pStr = NULL;
-    pStr = (CN3UIString *)GetChildByID("string_wareitem_name");
+    CN3UIString * pStr = (CN3UIString *)GetChildByID("string_wareitem_name");
     __ASSERT(pStr, "NULL UI Component!!");
-    str = pStr->GetString();
-    iWareMoney = atoi(str.c_str());
-
-    if (iGold <= 0) {
-        return;
-    }
-    if (iGold > iWareMoney) {
+    iWareMoney = pStr->GetStringAsInt({','});
+    if (iGold <= 0 || iGold > iWareMoney) {
         return;
     }
 
@@ -1815,22 +1794,20 @@ void CUIWareHouseDlg::GoldCountFromWareOK() // 돈을 빼는 경우..
     iWareMoney -= iGold;
 
     // 돈 표시.. Ware..
-    pStr->SetStringAsInt(iWareMoney);
+    pStr->SetString(::_FormatCoins(iWareMoney));
+
     // 돈 표시.. 인벤토리..
-    sprintf(szGold, "%d", iMyMoney);
-    pStr = NULL;
-    str = szGold;
     pStr = (CN3UIString *)CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold");
     __ASSERT(pStr, "NULL UI Component!!");
     if (pStr) {
-        pStr->SetString(str);
+        pStr->SetString(::_FormatCoins(iMyMoney));
     }
-    pStr = NULL;
+
     // 돈 표시.. Inv..
     pStr = (CN3UIString *)GetChildByID("string_item_name");
     __ASSERT(pStr, "NULL UI Component!!");
     if (pStr) {
-        pStr->SetStringAsInt(iMyMoney);
+        pStr->SetString(::_FormatCoins(iMyMoney));
     }
 
     // 서버에게 패킷 만들어서 날림..
@@ -1870,11 +1847,9 @@ void CUIWareHouseDlg::GoldCountFromWareCancel() {
 }
 
 void CUIWareHouseDlg::ReceiveResultGoldToWareFail() {
-    m_bSendedItemGold = false; // 원래 대로..
+    int iGold, iMyMoney, iWareMoney; // 인벤토리의 값..
 
-    char        szGold[32];
-    int         iGold, iMyMoney, iWareMoney; // 인벤토리의 값..
-    std::string str;
+    m_bSendedItemGold = false; // 원래 대로..
 
     // 돈을 보관함에서 빼는 경우..
     iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
@@ -1889,8 +1864,7 @@ void CUIWareHouseDlg::ReceiveResultGoldToWareFail() {
     CN3UIString * pStr = NULL;
     pStr = (CN3UIString *)GetChildByID("string_wareitem_name");
     __ASSERT(pStr, "NULL UI Component!!");
-    str = pStr->GetString();
-    iWareMoney = atoi(str.c_str());
+    iWareMoney = pStr->GetStringAsInt({','});
 
     // 돈을 감소 시킨다..
     iMyMoney += iGold;
@@ -1899,31 +1873,27 @@ void CUIWareHouseDlg::ReceiveResultGoldToWareFail() {
     iWareMoney -= iGold;
 
     // 돈 표시.. Ware..
-    pStr->SetStringAsInt(iWareMoney);
+    pStr->SetString(::_FormatCoins(iWareMoney));
+
     // 돈 표시.. 인벤토리..
-    sprintf(szGold, "%d", iMyMoney);
-    pStr = NULL;
-    str = szGold;
     pStr = (CN3UIString *)CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold");
     __ASSERT(pStr, "NULL UI Component!!");
     if (pStr) {
-        pStr->SetString(str);
+        pStr->SetString(::_FormatCoins(iMyMoney));
     }
-    pStr = NULL;
+
     // 돈 표시.. Inv..
     pStr = (CN3UIString *)GetChildByID("string_item_name");
     __ASSERT(pStr, "NULL UI Component!!");
     if (pStr) {
-        pStr->SetStringAsInt(iMyMoney);
+        pStr->SetString(::_FormatCoins(iMyMoney));
     }
 }
 
 void CUIWareHouseDlg::ReceiveResultGoldFromWareFail() {
-    m_bSendedItemGold = false; // 원래 대로..
+    int iGold, iMyMoney, iWareMoney; // 인벤토리의 값..
 
-    char        szGold[32];
-    int         iGold, iMyMoney, iWareMoney; // 인벤토리의 값..
-    std::string str;
+    m_bSendedItemGold = false; // 원래 대로..
 
     // 돈을 보관함에 보관하는 경우..
     iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
@@ -1938,8 +1908,7 @@ void CUIWareHouseDlg::ReceiveResultGoldFromWareFail() {
     CN3UIString * pStr = NULL;
     pStr = (CN3UIString *)GetChildByID("string_wareitem_name");
     __ASSERT(pStr, "NULL UI Component!!");
-    str = pStr->GetString();
-    iWareMoney = atoi(str.c_str());
+    iWareMoney = pStr->GetStringAsInt({','});
 
     // 돈을 감소 시킨다..
     iMyMoney -= iGold;
@@ -1948,22 +1917,20 @@ void CUIWareHouseDlg::ReceiveResultGoldFromWareFail() {
     iWareMoney += iGold;
 
     // 돈 표시.. Ware..
-    pStr->SetStringAsInt(iWareMoney);
+    pStr->SetString(::_FormatCoins(iWareMoney));
+
     // 돈 표시.. 인벤토리..
-    sprintf(szGold, "%d", iMyMoney);
-    pStr = NULL;
-    str = szGold;
     pStr = (CN3UIString *)CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold");
     __ASSERT(pStr, "NULL UI Component!!");
     if (pStr) {
-        pStr->SetString(str);
+        pStr->SetString(::_FormatCoins(iMyMoney));
     }
-    pStr = NULL;
+
     // 돈 표시.. Inv..
     pStr = (CN3UIString *)GetChildByID("string_item_name");
     __ASSERT(pStr, "NULL UI Component!!");
     if (pStr) {
-        pStr->SetStringAsInt(iMyMoney);
+        pStr->SetString(::_FormatCoins(iMyMoney));
     }
 }
 

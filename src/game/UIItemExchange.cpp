@@ -36,7 +36,7 @@ CUIItemExchange::CUIItemExchange() {
         m_pMyNpcWndOriginIndex[i] = -1;
     }
 
-    m_pTotalPrice = 0;
+    m_iTotalPrice = 0;
 }
 
 CUIItemExchange::~CUIItemExchange() {
@@ -251,7 +251,7 @@ bool CUIItemExchange::ReceiveIconDrop(__IconItemSkill * spItem, POINT ptCur) {
     m_pMyNpcWndOriginIndex[i] = CN3UIWndBase::m_sSelectedIconInfo.UIWndSelect.iOrder;
 
     // 수리비용 업그레이드..
-    m_pTotalPrice += CalcRepairGold(spItem);
+    m_iTotalPrice += CalcRepairGold(spItem);
     UpdateGoldValue();
 
     CN3UIWndBase::AllHighLightIconFree();
@@ -261,28 +261,21 @@ bool CUIItemExchange::ReceiveIconDrop(__IconItemSkill * spItem, POINT ptCur) {
 }
 
 void CUIItemExchange::UpdateGoldValue() {
-    char          szGold[32];
     CN3UIString * pStrGold = (CN3UIString *)GetChildByID("string_gold");
     __ASSERT(pStrGold, "NULL UI Component!!");
-
     if (pStrGold) {
         // 돈 업데이트..
-        sprintf(szGold, "%d", m_pTotalPrice);
-        pStrGold->SetString(szGold);
+        pStrGold->SetString(::_FormatCoins(m_iTotalPrice));
     }
 }
 
 void CUIItemExchange::UpdateUserTotalGold(int iGold) {
-    char          szGold[32];
-    CN3UIString * pStatic = NULL;
-
     // 돈 업데이트..
     CGameBase::s_pPlayer->m_InfoExt.iGold = iGold;
-    sprintf(szGold, "%d", iGold);
-    pStatic = (CN3UIString *)CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold");
+    CN3UIString * pStatic = (CN3UIString *)CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold");
     __ASSERT(pStatic, "NULL UI Component!!");
     if (pStatic) {
-        pStatic->SetString(szGold);
+        pStatic->SetString(::_FormatCoins(iGold));
     }
 }
 
@@ -413,7 +406,7 @@ void CUIItemExchange::Open() {
         m_pMyNpcWndOriginIndex[i] = -1;
     }
 
-    m_pTotalPrice = 0;
+    m_iTotalPrice = 0;
     UpdateGoldValue();
 
     // 인벤토리 inv 영역의 아이템을 이 윈도우의 inv영역으로 옮긴다..

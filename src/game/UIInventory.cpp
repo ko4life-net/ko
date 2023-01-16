@@ -163,7 +163,7 @@ void CUIInventory::Open(e_InvenState eIS) {
     CN3UIString * pStatic = (CN3UIString *)GetChildByID("text_gold");
     __ASSERT(pStatic, "NULL UI Component!!");
     if (pStatic) {
-        pStatic->SetStringAsInt(CGameBase::s_pPlayer->m_InfoExt.iGold);
+        pStatic->SetString(::_FormatCoins(CGameBase::s_pPlayer->m_InfoExt.iGold));
     }
 
     // 스르륵 열린다!!
@@ -180,7 +180,7 @@ void CUIInventory::GoldUpdate() {
     CN3UIString * pStatic = (CN3UIString *)GetChildByID("text_gold");
     __ASSERT(pStatic, "NULL UI Component!!");
     if (pStatic) {
-        pStatic->SetStringAsInt(CGameBase::s_pPlayer->m_InfoExt.iGold);
+        pStatic->SetString(::_FormatCoins(CGameBase::s_pPlayer->m_InfoExt.iGold));
     }
 }
 
