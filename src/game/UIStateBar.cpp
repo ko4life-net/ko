@@ -132,9 +132,7 @@ bool CUIStateBar::Load(HANDLE hFile) {
     CN3UIString * pText = (CN3UIString *)(this->GetChildByID("Text_Version"));
     __ASSERT(pText, "NULL UI Component!!");
     if (pText) {
-        char szVersion[128];
-        sprintf(szVersion, "Ver. %.3f", CURRENT_VERSION / 1000.0f);
-        pText->SetString(szVersion);
+        pText->SetString(std::format("Ver. {:.3f}", CURRENT_VERSION / 1000.0f));
     }
     m_pText_Position = (CN3UIString *)(this->GetChildByID("Text_Position"));
     __ASSERT(m_pText_Position, "NULL UI Component!!");
@@ -248,7 +246,7 @@ void CUIStateBar::UpdateExp(int iExp, int iExpNext, bool bUpdateImmediately) {
     }
 
     if (m_pText_ExpP) {
-        m_pText_ExpP->SetString(std::to_string(iPercentage) + "%");
+        m_pText_ExpP->SetString(std::format("{} %", iPercentage));
     }
 }
 
@@ -270,7 +268,7 @@ void CUIStateBar::UpdateMSP(int iMSP, int iMSPMax, bool bUpdateImmediately) {
     }
 
     if (m_pText_MSP) {
-        m_pText_MSP->SetString(std::to_string(iMSP) + " / " + std::to_string(iMSPMax));
+        m_pText_MSP->SetString(std::format("{} / {}", iMSP, iMSPMax));
     }
 }
 
@@ -289,7 +287,7 @@ void CUIStateBar::UpdateHP(int iHP, int iHPMax, bool bUpdateImmediately) {
     }
 
     if (m_pText_HP) {
-        m_pText_HP->SetString(std::to_string(iHP) + " / " + std::to_string(iHPMax));
+        m_pText_HP->SetString(std::format("{} / {}", iHP, iHPMax));
     }
 }
 
@@ -298,9 +296,7 @@ void CUIStateBar::UpdatePosition(const __Vector3 & vPos, float fYaw) {
         return;
     }
 
-    char szPos[64]{};
-    sprintf(szPos, "%d, %d", (int)vPos.x, (int)vPos.z);
-    m_pText_Position->SetString(szPos);
+    m_pText_Position->SetString(std::format("{}, {}", (int)vPos.x, (int)vPos.z));
 
     // ¹Ì´Ï¸Ê.
     m_vPosPlayer = vPos;
@@ -477,23 +473,18 @@ void CUIStateBar::Tick() {
 
     m_fFPSValue += s_fSecPerFrm;
     if (m_fFPSValue > 1.0f) {
-        char szBuff[12]{};
-        sprintf(szBuff, "%.1f", s_fFrmPerSec);
-        m_pText_Fps->SetString(szBuff);
+        m_pText_Fps->SetString(std::format("{:.1f}", s_fFrmPerSec));
         m_fFPSValue = 0.0f;
     }
 
     if (m_bShowSystemTime) {
-        char szBuff[12]{};
-        sprintf(szBuff, "%.1f", CN3Base::TimeGet());
-
         // The official client implements this as the line above.
         // However printing actual system time as per @xGuTeK PR is not a bad idea either.
         // Leaving it here as a comment in order to stick to the official behavior for now.
         //time_t timer = time(NULL);
         //strftime(szBuff, sizeof(szBuff), "%H:%M:%S", localtime(&timer));
 
-        m_pText_SystemTime->SetString(szBuff);
+        m_pText_SystemTime->SetString(std::format("{:.1f}", CN3Base::TimeGet()));
     }
 
     if (CGameBase::s_pPlayer && !m_bQuestButtonClicked && m_bQuestButtonBlink) {
@@ -703,11 +694,7 @@ void CUIStateBar::SetSystemTimeVisibility(bool bVisible) {
 }
 
 void CUIStateBar::AddMagic(__TABLE_UPC_SKILL * pSkill, float fDuration) {
-    // TODO: Change instances like these to std::format once upgrading to cpp20:
-    // https://en.cppreference.com/w/cpp/utility/format/format
-    char buffer[MAX_PATH]{};
-    sprintf(buffer, "UI\\skillicon_%.2d_%d.dxt", pSkill->dwID % 100, pSkill->dwID / 100);
-
+    std::string          szTexFN = std::format("UI\\skillicon_{:02d}_{:d}.dxt", pSkill->dwID % 100, pSkill->dwID / 100);
     __DurationMagicImg * pMagicImg = new __DurationMagicImg;
     pMagicImg->fDuration = fDuration;
     pMagicImg->pIcon = new CN3UIDBCLButton;
@@ -715,7 +702,7 @@ void CUIStateBar::AddMagic(__TABLE_UPC_SKILL * pSkill, float fDuration) {
 
     CN3UIDBCLButton * pIcon = pMagicImg->pIcon;
     pIcon->Init(this);
-    pIcon->SetTex(buffer);
+    pIcon->SetTex(szTexFN);
     pIcon->SetTooltipText(pSkill->szName.c_str());
     pIcon->SetUVRect(0, 0, 1, 1);
 
@@ -738,8 +725,7 @@ void CUIStateBar::AddMagic(__TABLE_UPC_SKILL * pSkill, float fDuration) {
 }
 
 void CUIStateBar::DelMagic(__TABLE_UPC_SKILL * pSkill) {
-    char buffer[MAX_PATH]{};
-    sprintf(buffer, "UI\\skillicon_%.2d_%d.dxt", pSkill->dwID % 100, pSkill->dwID / 100);
+    std::string szTexFN = std::format("UI\\skillicon_{:02d}_{:d}.dxt", pSkill->dwID % 100, pSkill->dwID / 100);
 
     it_MagicImg it, ite, itRemove;
     itRemove = ite = m_pMagic.end();
@@ -747,7 +733,7 @@ void CUIStateBar::DelMagic(__TABLE_UPC_SKILL * pSkill) {
         __DurationMagicImg * pMagicImg = (*it);
         CN3UIDBCLButton *    pIcon = pMagicImg->pIcon;
         CN3Texture *         pTex = pIcon->GetTex();
-        if (pTex && lstrcmpi(pTex->FileName().c_str(), buffer) == 0) {
+        if (pTex && N3::iequals(szTexFN, pTex->FileName())) {
             itRemove = it;
         }
         if (itRemove != ite) {

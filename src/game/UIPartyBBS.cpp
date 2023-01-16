@@ -75,10 +75,8 @@ bool CUIPartyBBS::Load(HANDLE hFile) {
     m_pText_Page = (CN3UIString *)(pParty->GetChildByID("string_page"));
     __ASSERT(m_pText_Page, "NULL UI Component!!!");
 
-    char szBuf[64];
     for (int i = 0; i < PARTY_BBS_MAXSTRING; i++) {
-        sprintf(szBuf, "text_%.2d", i);
-        m_pText[i] = (CN3UIString *)(pParty->GetChildByID(szBuf));
+        m_pText[i] = (CN3UIString *)(pParty->GetChildByID(std::format("text_{:02d}", i)));
     }
 
     m_iCurPage = 0; // 현재 페이지..
@@ -332,9 +330,7 @@ void CUIPartyBBS::SetContentString(int iIndex, std::string szID, int iLevel, std
     }
 
     if (m_pText[iIndex + PARTY_BBS_MAXLINE]) {
-        char szBuf[20];
-        sprintf(szBuf, "%d", iLevel);
-        m_pText[iIndex + PARTY_BBS_MAXLINE]->SetString(szBuf);
+        m_pText[iIndex + PARTY_BBS_MAXLINE]->SetStringAsInt(iLevel);
     }
 
     if (m_pText[iIndex + PARTY_BBS_MAXLINE * 2]) {

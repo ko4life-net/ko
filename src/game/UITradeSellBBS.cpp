@@ -92,10 +92,8 @@ bool CUITradeSellBBS::Load(HANDLE hFile) {
     m_pString_Page = (CN3UIString *)(this->GetChildByID("string_page"));
     __ASSERT(m_pString_Page, "NULL UI Component!!!");
 
-    char szBuf[64];
     for (int i = 0; i < TRADE_BBS_MAXSTRING; i++) {
-        sprintf(szBuf, "text_%.2d", i);
-        m_pText[i] = (CN3UIString *)(this->GetChildByID(szBuf));
+        m_pText[i] = (CN3UIString *)(this->GetChildByID(std::format("text_{:02d}", i)));
     }
 
     m_iCurPage = 0; // 현재 페이지..

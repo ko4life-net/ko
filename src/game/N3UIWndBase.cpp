@@ -64,13 +64,11 @@ void CN3UIWndBase::InitIconWnd(e_UIWND eWnd) {
 }
 
 CN3UIArea * CN3UIWndBase::GetChildAreaByiOrder(eUI_AREA_TYPE eUAT, int iOrder) {
-    char pszID[32];
-    sprintf(pszID, "%d", iOrder);
-
+    std::string szID(std::to_string(iOrder));
     for (UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor) {
         CN3UIArea * pChild = (CN3UIArea *)(*itor);
         if ((pChild->UIType() == UI_TYPE_AREA) && (pChild->m_eAreaType == eUAT)) {
-            if (pChild->m_szID == pszID) {
+            if (pChild->m_szID == szID) {
                 return pChild;
             }
         }
@@ -80,13 +78,11 @@ CN3UIArea * CN3UIWndBase::GetChildAreaByiOrder(eUI_AREA_TYPE eUAT, int iOrder) {
 }
 
 CN3UIString * CN3UIWndBase::GetChildStringByiOrder(int iOrder) {
-    char pszID[32];
-    sprintf(pszID, "%d", iOrder);
-
+    std::string szID(std::to_string(iOrder));
     for (UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor) {
         CN3UIString * pChild = (CN3UIString *)(*itor);
         if (pChild->UIType() == UI_TYPE_STRING) {
-            if (pChild->m_szID == pszID) {
+            if (pChild->m_szID == szID) {
                 return pChild;
             }
         }

@@ -49,10 +49,7 @@ void CUITradeEditDlg::SetQuantity(int iQuantity) // "edit_trade" Edit Control ¿¡
 {
     CN3UIEdit * pEdit = (CN3UIEdit *)this->GetChildByID("edit_trade");
     __ASSERT(pEdit, "NULL UI Component!!");
-
-    char szBuff[64] = "";
-    sprintf(szBuff, "%d", iQuantity);
-    pEdit->SetString(szBuff);
+    pEdit->SetString(std::to_string(iQuantity));
 }
 
 bool CUITradeEditDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {

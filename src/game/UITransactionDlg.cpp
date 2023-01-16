@@ -308,9 +308,7 @@ void CUITransactionDlg::EnterTransactionState() {
     m_iCurPage = 0;
     CN3UIString * pStr = (CN3UIString *)GetChildByID("string_page");
     if (pStr) {
-        char pszID[32];
-        sprintf(pszID, "%d", m_iCurPage + 1);
-        pStr->SetString(pszID);
+        pStr->SetStringAsInt(m_iCurPage + 1);
     }
 
     for (int j = 0; j < MAX_ITEM_TRADE_PAGE; j++) {
@@ -1346,9 +1344,7 @@ bool CUITransactionDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 
             pStr = (CN3UIString *)GetChildByID("string_page");
             if (pStr) {
-                char pszID[32];
-                sprintf(pszID, "%d", m_iCurPage + 1);
-                pStr->SetString(pszID);
+                pStr->SetStringAsInt(m_iCurPage + 1);
             }
 
             for (int j = 0; j < MAX_ITEM_TRADE_PAGE; j++) {
@@ -1376,9 +1372,7 @@ bool CUITransactionDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 
             pStr = (CN3UIString *)GetChildByID("string_page");
             if (pStr) {
-                char pszID[32];
-                sprintf(pszID, "%d", m_iCurPage + 1);
-                pStr->SetString(pszID);
+                pStr->SetStringAsInt(m_iCurPage + 1);
             }
 
             for (int j = 0; j < MAX_ITEM_TRADE_PAGE; j++) {

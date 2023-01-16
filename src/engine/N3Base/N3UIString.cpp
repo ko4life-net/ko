@@ -78,9 +78,7 @@ void CN3UIString::SetString(const std::string & szString) {
 }
 
 void CN3UIString::SetStringAsInt(int iVal) {
-    char szBuff[32] = "";
-    sprintf(szBuff, "%d", iVal);
-    this->SetString(szBuff);
+    SetString(std::to_string(iVal));
 }
 
 void CN3UIString::SetString_NoWordWrap(const std::string & szString) {
@@ -470,6 +468,15 @@ void CN3UIString::ChangeFont(const std::string & szFont) {
     CN3UIBase::ChangeFont(szFont);
 }
 #endif
+
+int64_t CN3UIString::GetStringAsInt(const std::vector<char> & remove /* = {}*/) {
+    std::string szTmp(m_szString);
+    for (char delim : remove) {
+        szTmp.erase(std::remove(szTmp.begin(), szTmp.end(), delim), szTmp.end());
+    }
+
+    return std::stoll(szTmp);
+}
 
 int CN3UIString::GetStringRealWidth(int iNum) {
     SIZE size{};
