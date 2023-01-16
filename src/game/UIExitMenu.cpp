@@ -69,10 +69,6 @@ void CUIExitMenu::SelectCharacter() {
         CGameProcedure::s_pProcMain->m_pSubProcPerTrade->LeavePerTradeState(PER_TRADE_RESULT_MY_CANCEL);
     }
 
-    if (CGameProcedure::s_pProcMain->m_pUIPartyOrForce) {
-        CGameProcedure::s_pProcMain->m_pUIPartyOrForce->MemberDestroy();
-    }
-
     std::string szIP = CGameProcedure::s_pSocket->GetCurrentIP();
     DWORD       dwPort = CGameProcedure::s_pSocket->GetCurrentPort();
 
