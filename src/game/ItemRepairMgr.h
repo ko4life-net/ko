@@ -16,8 +16,8 @@ class CItemRepairMgr : CGameBase {
     virtual ~CItemRepairMgr();
 
     void Tick();
-    void ReceiveResultFromServer(int iResult, int iUserGold);
+    void ReceiveResultFromServer(int iResult, int64_t iUserGold);
 
-    void UpdateUserTotalGold(int iGold);
+    void UpdateUserTotalGold(int64_t iGold);
     int  CalcRepairGold(struct __IconItemSkill * spItem);
 };

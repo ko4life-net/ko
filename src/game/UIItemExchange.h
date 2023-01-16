@@ -20,7 +20,7 @@ class CUIItemExchange : public CN3UIWndBase {
     __IconItemSkill *    m_pMyInvWnd[MAX_ITEM_INVENTORY];
     __IconItemSkill *    m_pMyNpcWnd[MAX_ITEM_EX_RE_NPC];
     int                  m_pMyNpcWndOriginIndex[MAX_ITEM_EX_RE_NPC];
-    int                  m_iTotalPrice;
+    int64_t              m_iTotalPrice;
     CUIImageTooltipDlg * m_pUITooltipDlg;
 
   private:
@@ -60,9 +60,9 @@ class CUIItemExchange : public CN3UIWndBase {
 
     int  CalcRepairGold(__IconItemSkill * spItem);
     void UpdateGoldValue();
-    void UpdateUserTotalGold(int iGold);
+    void UpdateUserTotalGold(int64_t iGold);
 
     void UserPressCancel(); // And User Press Close.. ^^
     void UserPressOK();
-    void ReceiveResultFromServer(int iResult, int iUserGold);
+    void ReceiveResultFromServer(int iResult, int64_t iUserGold);
 };

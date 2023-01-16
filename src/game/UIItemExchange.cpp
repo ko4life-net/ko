@@ -269,7 +269,7 @@ void CUIItemExchange::UpdateGoldValue() {
     }
 }
 
-void CUIItemExchange::UpdateUserTotalGold(int iGold) {
+void CUIItemExchange::UpdateUserTotalGold(int64_t iGold) {
     // 돈 업데이트..
     CGameBase::s_pPlayer->m_InfoExt.iGold = iGold;
     CN3UIString * pStatic = (CN3UIString *)CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold");
@@ -444,7 +444,7 @@ void CUIItemExchange::UserPressOK() {
     CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer = true;
 }
 
-void CUIItemExchange::ReceiveResultFromServer(int iResult, int iUserGold) {
+void CUIItemExchange::ReceiveResultFromServer(int iResult, int64_t iUserGold) {
     // 성공이면 npc영역의 Durability를 최대값으로..
     if (iResult == 0x01) {
         for (int i = 0; i < MAX_ITEM_EX_RE_NPC; i++) {

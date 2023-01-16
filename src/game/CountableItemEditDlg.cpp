@@ -203,16 +203,14 @@ void CCountableItemEditDlg::Close() {
     }
 }
 
-int CCountableItemEditDlg::GetQuantity() // "edit_trade" Edit Control 에서 정수값을 얻오온다..
-{
+int64_t CCountableItemEditDlg::GetQuantity() {
     CN3UIEdit * pEdit = (CN3UIEdit *)this->GetChildByID("edit_trade");
     __ASSERT(pEdit, "NULL UI Component!!");
 
-    return atoi(pEdit->GetString().c_str());
+    return std::stoll(pEdit->GetString());
 }
 
-void CCountableItemEditDlg::SetQuantity(int iQuantity) // "edit_trade" Edit Control 에서 정수값을 문자열로 세팅한다..
-{
+void CCountableItemEditDlg::SetQuantity(int64_t iQuantity) {
     CN3UIEdit * pEdit = (CN3UIEdit *)this->GetChildByID("edit_trade");
     __ASSERT(pEdit, "NULL UI Component!!");
 

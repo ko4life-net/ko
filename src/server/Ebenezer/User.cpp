@@ -1807,7 +1807,7 @@ void CUser::SendMyInfo() {
     SetByte(send_buff, m_bMagicR, send_index);
     SetByte(send_buff, m_bDiseaseR, send_index);
     SetByte(send_buff, m_bPoisonR, send_index);
-    SetDWORD(send_buff, m_pUserData->m_iGold, send_index);
+    SetInt64(send_buff, m_pUserData->m_iGold, send_index);
     // 이거 나중에 꼭 주석해 --;
     SetByte(send_buff, m_pUserData->m_bAuthority, send_index);
     //
@@ -4526,7 +4526,7 @@ void CUser::NpcEvent(char * pBuf) {
         /*
         SetByte( send_buf, WIZ_WAREHOUSE, send_index );
         SetByte( send_buf, WAREHOUSE_OPEN, send_index );
-        SetDWORD( send_buf, m_pUserData->m_iBank, send_index );
+        SetInt64( send_buf, m_pUserData->m_iBank, send_index );
         for(int i=0; i<WAREHOUSE_MAX; i++ ) {
             SetDWORD( send_buf, m_pUserData->m_sWarehouseArray[i].nNum, send_index );
             SetShort( send_buf, m_pUserData->m_sWarehouseArray[i].sDuration, send_index );
@@ -4975,7 +4975,7 @@ void CUser::ItemGet(char * pBuf) {
                 SetByte(send_buff, pos, send_index);
                 SetDWORD(send_buff, itemid, send_index);
                 SetShort(send_buff, count, send_index);
-                SetDWORD(send_buff, m_pUserData->m_iGold, send_index);
+                SetInt64(send_buff, m_pUserData->m_iGold, send_index);
                 Send(send_buff, send_index);
             } else {
                 pParty = m_pMain->m_PartyArray.GetData(m_sPartyIndex);
@@ -5008,7 +5008,7 @@ void CUser::ItemGet(char * pBuf) {
                         SetByte(send_buff, 0x02, send_index);
                         SetByte(send_buff, 0xff, send_index); // gold -> pos : 0xff
                         SetDWORD(send_buff, itemid, send_index);
-                        SetDWORD(send_buff, pUser->m_pUserData->m_iGold, send_index);
+                        SetInt64(send_buff, pUser->m_pUserData->m_iGold, send_index);
                         pUser->Send(send_buff, send_index);
                     }
                 }
@@ -5026,7 +5026,7 @@ void CUser::ItemGet(char * pBuf) {
     SetByte(send_buff, pos, send_index);
     SetDWORD(send_buff, itemid, send_index);
     SetShort(send_buff, pGetUser->m_pUserData->m_sItemArray[SLOT_MAX + pos].sCount, send_index);
-    SetDWORD(send_buff, pGetUser->m_pUserData->m_iGold, send_index);
+    SetInt64(send_buff, pGetUser->m_pUserData->m_iGold, send_index);
     pGetUser->Send(send_buff, send_index);
 
     if (m_sPartyIndex != -1) {
@@ -5796,7 +5796,8 @@ void CUser::ExchangeAgree(char * pBuf) {
 }
 
 void CUser::ExchangeAdd(char * pBuf) {
-    int                              index = 0, send_index = 0, count = 0, itemid = 0, duration = 0;
+    int64_t                          count = 0;
+    int                              index = 0, send_index = 0, itemid = 0, duration = 0;
     CUser *                          pUser = NULL;
     _EXCHANGE_ITEM *                 pItem = NULL;
     _ITEM_TABLE *                    pTable = NULL;
@@ -5818,7 +5819,7 @@ void CUser::ExchangeAdd(char * pBuf) {
 
     pos = GetByte(pBuf, index);
     itemid = GetDWORD(pBuf, index);
-    count = GetDWORD(pBuf, index);
+    count = GetInt64(pBuf, index);
     pTable = m_pMain->m_ItemtableArray.GetData(itemid);
     if (!pTable) {
         goto add_fail;
@@ -5903,7 +5904,7 @@ void CUser::ExchangeAdd(char * pBuf) {
     SetByte(buff, WIZ_EXCHANGE, send_index);
     SetByte(buff, EXCHANGE_OTHERADD, send_index);
     SetDWORD(buff, itemid, send_index);
-    SetDWORD(buff, count, send_index);
+    SetInt64(buff, count, send_index);
     SetShort(buff, duration, send_index);
     pUser->Send(buff, send_index);
 
@@ -5972,7 +5973,7 @@ void CUser::ExchangeDecide() {
             SetByte(buff, WIZ_EXCHANGE, send_index);
             SetByte(buff, EXCHANGE_DONE, send_index);
             SetByte(buff, 0x01, send_index);
-            SetDWORD(buff, m_pUserData->m_iGold, send_index);
+            SetInt64(buff, m_pUserData->m_iGold, send_index);
             SetShort(buff, pUser->m_ExchangeItemList.size(), send_index);
             for (Iter = pUser->m_ExchangeItemList.begin(); Iter != pUser->m_ExchangeItemList.end(); Iter++) {
                 SetByte(buff, (*Iter)->pos, send_index); // 새로 들어갈 인벤토리 위치
@@ -5990,7 +5991,7 @@ void CUser::ExchangeDecide() {
             SetByte(buff, WIZ_EXCHANGE, send_index);
             SetByte(buff, EXCHANGE_DONE, send_index);
             SetByte(buff, 0x01, send_index);
-            SetDWORD(buff, pUser->m_pUserData->m_iGold, send_index);
+            SetInt64(buff, pUser->m_pUserData->m_iGold, send_index);
             SetShort(buff, m_ExchangeItemList.size(), send_index);
             for (Iter = m_ExchangeItemList.begin(); Iter != m_ExchangeItemList.end(); Iter++) {
                 SetByte(buff, (*Iter)->pos, send_index); // 새로 들어갈 인벤토리 위치
@@ -7147,14 +7148,14 @@ void CUser::ItemRepair(char * pBuf) {
 
     SetByte(send_buff, WIZ_ITEM_REPAIR, send_index);
     SetByte(send_buff, 0x01, send_index);
-    SetDWORD(send_buff, m_pUserData->m_iGold, send_index);
+    SetInt64(send_buff, m_pUserData->m_iGold, send_index);
     Send(send_buff, send_index);
 
     return;
 fail_return:
     SetByte(send_buff, WIZ_ITEM_REPAIR, send_index);
     SetByte(send_buff, 0x00, send_index);
-    SetDWORD(send_buff, m_pUserData->m_iGold, send_index);
+    SetInt64(send_buff, m_pUserData->m_iGold, send_index);
     Send(send_buff, send_index);
 }
 
@@ -7648,8 +7649,9 @@ void CUser::Type3AreaDuration(float currenttime) {
 }
 
 void CUser::WarehouseProcess(char * pBuf) {
-    int  index = 0, send_index = 0, itemid = 0, srcpos = -1, destpos = -1, page = -1, reference_pos = -1, count = 0;
-    char send_buff[2048];
+    int     index = 0, send_index = 0, itemid = 0, srcpos = -1, destpos = -1, page = -1, reference_pos = -1;
+    int64_t count = 0;
+    char    send_buff[2048];
     memset(send_buff, 0x00, 2048);
     _ITEM_TABLE * pTable = NULL;
     BYTE          command = 0;
@@ -7668,7 +7670,7 @@ void CUser::WarehouseProcess(char * pBuf) {
     if (command == WAREHOUSE_OPEN) {
         SetByte(send_buff, WIZ_WAREHOUSE, send_index);
         SetByte(send_buff, WAREHOUSE_OPEN, send_index);
-        SetDWORD(send_buff, m_pUserData->m_iBank, send_index);
+        SetInt64(send_buff, m_pUserData->m_iBank, send_index);
         for (int i = 0; i < WAREHOUSE_MAX; i++) {
             SetDWORD(send_buff, m_pUserData->m_sWarehouseArray[i].nNum, send_index);
             SetShort(send_buff, m_pUserData->m_sWarehouseArray[i].sDuration, send_index);
@@ -7690,7 +7692,7 @@ void CUser::WarehouseProcess(char * pBuf) {
 
     switch (command) {
     case WAREHOUSE_INPUT:
-        count = GetDWORD(pBuf, index);
+        count = GetInt64(pBuf, index);
         if (itemid == ITEM_GOLD) {
             if (m_pUserData->m_iBank + count > 2100000000) {
                 goto fail_return;
@@ -7750,7 +7752,7 @@ void CUser::WarehouseProcess(char * pBuf) {
                        m_pUserData->m_sWarehouseArray[reference_pos + destpos].sDuration);
         break;
     case WAREHOUSE_OUTPUT:
-        count = GetDWORD(pBuf, index);
+        count = GetInt64(pBuf, index);
 
         if (itemid == ITEM_GOLD) {
             if (m_pUserData->m_iGold + count > 2100000000) {

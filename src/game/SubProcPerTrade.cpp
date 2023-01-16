@@ -278,8 +278,8 @@ void CSubProcPerTrade::PerTradeCompleteSuccess() // 개인 거래 최종 성공..
 
 void CSubProcPerTrade::PerTradeCompleteCancel() // 개인 거래 취소..
 {
-    int iGold,    // 거래창의 값..
-        iMyMoney; // 인벤토리의 값..
+    int64_t iGold;    // 거래창의 값..
+    int64_t iMyMoney; // 인벤토리의 값..
 
     if ((int)m_ePerTradeState >= (int)PER_TRADE_STATE_NORMAL) {
         // 먼저 돈을 검사 한다..
@@ -507,9 +507,9 @@ void CSubProcPerTrade::RequestItemCountEdit() {
 
 void CSubProcPerTrade::ItemCountEditOK() {
     std::string szGold;
-    int         iGold, // 거래창의 값..
-        iGoldOffset,   // 편집창의 값..
-        iMyMoney;      // 인벤토리의 값..
+    int64_t     iGold;       // 거래창의 값..
+    int64_t     iGoldOffset; // 편집창의 값..
+    int64_t     iMyMoney;    // 인벤토리의 값..
 
     // 거래 창의 내 현재 돈을 얻어 온다..
     CN3UIString * pStrMy = (CN3UIString *)m_pUIPerTradeDlg->GetChildByID("string_money_my");
@@ -561,7 +561,7 @@ void CSubProcPerTrade::ItemCountEditOK() {
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_PER_TRADE_ADD);
     CAPISocket::MP_AddByte(byBuff, iOffset, 0xff);
     CAPISocket::MP_AddDword(byBuff, iOffset, dwGold);
-    CAPISocket::MP_AddDword(byBuff, iOffset, iGoldOffset);
+    CAPISocket::MP_AddInt64(byBuff, iOffset, iGoldOffset);
 
     CGameProcedure::s_pSocket->Send(byBuff, iOffset); // 보냄..
 
@@ -649,8 +649,8 @@ void CSubProcPerTrade::ReceiveMsgPerTradeAdd(BYTE bResult) {
     CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer = false;
 
     std::string szGold;
-    int         iGold, // 거래창의 값..
-        iMyMoney;      // 인벤토리의 값..
+    int64_t     iGold;    // 거래창의 값..
+    int64_t     iMyMoney; // 인벤토리의 값..
 
     switch (bResult) {
     case 0x01:
@@ -802,7 +802,8 @@ void CSubProcPerTrade::ReceiveMsgPerTradeAdd(BYTE bResult) {
 }
 
 void CSubProcPerTrade::ReceiveMsgPerTradeOtherAdd(int iItemID, int iCount, int iDurability) {
-    int iGold, iDestiOrder; // 거래창의 값..
+    int64_t iGold;
+    int     iDestiOrder; // 거래창의 값..
 
     if (iItemID == dwGold) {
         // 거래 창의 다른 사람의 현재 돈을 얻어 온다..
@@ -953,7 +954,7 @@ void CSubProcPerTrade::ReceiveMsgPerTradeOtherDecide() {
     PerTradeOtherDecision();
 }
 
-void CSubProcPerTrade::ReceiveMsgPerTradeDoneSuccessBegin(int iTotalGold) {
+void CSubProcPerTrade::ReceiveMsgPerTradeDoneSuccessBegin(int64_t iTotalGold) {
     CN3UIString * pString = NULL;
     pString = (CN3UIString *)CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold");
     __ASSERT(pString, "NULL UI Component!!");

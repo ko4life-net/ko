@@ -138,7 +138,7 @@ class CUIInventory : public CN3UIWndBase {
     void         DurabilityChange(e_ItemSlot eSlot, int iDurability);
     e_InvenState GetInvState() { return m_eInvenState; }
 
-    void ReceiveResultFromServer(int iResult, int iUserGold);
+    void ReceiveResultFromServer(int iResult, int64_t iUserGold);
 
     int GetCountInInvByID(int iID);
 

@@ -431,7 +431,7 @@ void CUITransactionDlg::ItemMoveFromThisToInv() {
 }
 
 void CUITransactionDlg::ItemCountOK() {
-    int                  iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
+    int64_t              iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
     __IconItemSkill *    spItem, *spItemNew = NULL;
     __InfoPlayerMySelf * pInfoExt = &(CGameBase::s_pPlayer->m_InfoExt);
     int                  iWeight;
@@ -1066,7 +1066,7 @@ void CUITransactionDlg::ReceiveResultTradeFromServer(uint8_t bResult, uint8_t bT
         {
             if ((CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE) ||
                 (CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE_SMALL)) {
-                int iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
+                int64_t iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
 
                 if ((m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder]->iCount - iGold) > 0) {
                     //  숫자 업데이트..
@@ -1136,7 +1136,7 @@ void CUITransactionDlg::ReceiveResultTradeFromServer(uint8_t bResult, uint8_t bT
         {
             if ((CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE) ||
                 (CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE_SMALL)) {
-                int iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
+                int64_t iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
 
                 if (m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]
                         ->pUIIcon->IsVisible()) // 기존 아이콘이 보인다면..

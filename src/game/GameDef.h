@@ -565,7 +565,7 @@ struct __InfoPlayerMySelf : public __InfoPlayerOther {
     int iMSP;
 
     int           iTargetHPPercent;
-    int           iGold;
+    int64_t       iGold;
     int           iExpNext;
     int           iExp;
     int           iRealmPoint;         // 국가 기여도

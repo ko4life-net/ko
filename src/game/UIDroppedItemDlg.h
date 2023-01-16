@@ -35,10 +35,10 @@ class CUIDroppedItemDlg : public CN3UIWndBase {
     void          Render();
     void          EnterDroppedState(int xpos, int ypos);
     void          LeaveDroppedState();
-    void          GetItemByIDToInventory(BYTE bResult, int iItemId, int iGold, int iPos, int iItemCount, int iStrLen,
-                                         std::string strString);
-    void          AddToItemTable(int iItemId, int iItemCount, int iOrder);
-    void          AddToItemTableToInventory(int iItemId, int iItemCount, int iOrder);
+    void GetItemByIDToInventory(BYTE bResult, int iItemId, int64_t iGold, int iPos, int iItemCount, int iStrLen,
+                                std::string strString);
+    void AddToItemTable(int iItemId, int iItemCount, int iOrder);
+    void AddToItemTableToInventory(int iItemId, int iItemCount, int iOrder);
 
     bool ReceiveIconDrop(__IconItemSkill * spItem, POINT ptCur);
 

@@ -32,8 +32,8 @@ class CUIWareHouseDlg : public CN3UIWndBase {
     CN3UIButton * m_pBtnPageDown;
     //this_ui_add_end
 
-    bool m_bSendedItemGold;
-    int  m_iGoldOffsetBackup;
+    bool    m_bSendedItemGold;
+    int64_t m_iGoldOffsetBackup;
 
     int                  m_iCurPage;
     CUIImageTooltipDlg * m_pUITooltipDlg;
@@ -60,7 +60,7 @@ class CUIWareHouseDlg : public CN3UIWndBase {
     virtual bool  ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg);
     void          Render();
     void          LeaveWareHouseState();
-    void          EnterWareHouseStateStart(int iWareGold);
+    void          EnterWareHouseStateStart(int64_t iWareGold);
     void          AddItemInWare(int iItem, int iDurability, int iCount, int iIndex);
     void          EnterWareHouseStateEnd();
 
@@ -76,8 +76,8 @@ class CUIWareHouseDlg : public CN3UIWndBase {
     void CancelIconDrop(__IconItemSkill * spItem);
     void AcceptIconDrop(__IconItemSkill * spItem);
 
-    void SendToServerToWareMsg(int iItemID, uint8_t page, uint8_t startpos, uint8_t pos, int iCount);
-    void SendToServerFromWareMsg(int iItemID, uint8_t page, uint8_t startpos, uint8_t pos, int iCount);
+    void SendToServerToWareMsg(int iItemID, uint8_t page, uint8_t startpos, uint8_t pos, int64_t iCount);
+    void SendToServerFromWareMsg(int iItemID, uint8_t page, uint8_t startpos, uint8_t pos, int64_t iCount);
     void SendToServerWareToWareMsg(int iItemID, uint8_t page, uint8_t startpos, uint8_t destpos);
     void SendToServerInvToInvMsg(int iItemID, uint8_t page, uint8_t startpos, uint8_t destpos);
     void ReceiveResultToWareMsg(BYTE bResult);

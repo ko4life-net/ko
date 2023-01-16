@@ -376,14 +376,13 @@ void CUIPerTradeDlg::ItemMoveFromThisToInv() {
 }
 
 void CUIPerTradeDlg::ItemCountOK() {
-    int iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
-
-    __IconItemSkill *spItem, *spItemNew = NULL;
-    spItem = m_pPerTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder];
-
+    int64_t iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
     if (iGold <= 0) {
         return;
     }
+
+    __IconItemSkill *spItem, *spItemNew = NULL;
+    spItem = m_pPerTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder];
     if (iGold > spItem->iCount) {
         return;
     }

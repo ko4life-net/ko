@@ -2310,7 +2310,7 @@ void CUIInventory::DurabilityChange(e_ItemSlot eSlot, int iDurability) {
     }
 }
 
-void CUIInventory::ReceiveResultFromServer(int iResult, int iUserGold) {
+void CUIInventory::ReceiveResultFromServer(int iResult, int64_t iUserGold) {
     m_cItemRepairMgr.ReceiveResultFromServer(iResult, iUserGold);
 }
 

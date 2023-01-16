@@ -1777,7 +1777,7 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack * pDataPack, int & iOffset) {
     s_pPlayer->m_InfoExt.iRegistCurse = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
     s_pPlayer->m_InfoExt.iRegistPoison = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
 
-    s_pPlayer->m_InfoExt.iGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
+    s_pPlayer->m_InfoExt.iGold = CAPISocket::Parse_GetInt64(pDataPack->m_pData, iOffset);
     s_pPlayer->m_InfoBase.iAuthority = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); //권한..
 
     // 스킬 UI 갱신..
@@ -3358,8 +3358,8 @@ bool CGameProcMain::MsgRecv_ItemBundleOpen(DataPack * pDataPack, int & iOffset) 
 
 void CGameProcMain::MsgRecv_ItemRepair(DataPack * pDataPack, int & iOffset) // Item Repair Result..
 {
-    int iResult = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // Trade id
-    int iGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);  // Trade id
+    int     iResult = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+    int64_t iGold = CAPISocket::Parse_GetInt64(pDataPack->m_pData, iOffset);
     m_pUIInventory->ReceiveResultFromServer(iResult, iGold);
 }
 
@@ -4672,10 +4672,10 @@ void CGameProcMain::MsgOutput(const std::string & szMsg, D3DCOLOR crMsg) {
 
 bool CGameProcMain::MsgRecv_ItemDroppedGetResult(DataPack * pDataPack, int & iOffset) // 땅에 떨어진 아이템 먹기 결과..
 {
-    BYTE        bResult;
-    BYTE        bPos;
+    BYTE        bResult = 0;
+    BYTE        bPos = 0;
     int         iItemID = 0;
-    int         iGoldID = 0;
+    int64_t     iGold = 0;
     int         iStrLen = 0;
     short       sItemCount = 0;
     std::string szString = "";
@@ -4687,7 +4687,7 @@ bool CGameProcMain::MsgRecv_ItemDroppedGetResult(DataPack * pDataPack, int & iOf
         if ((bResult == 0x01) || (bResult == 0x05)) {
             sItemCount = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
         }
-        iGoldID = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
+        iGold = CAPISocket::Parse_GetInt64(pDataPack->m_pData, iOffset);
     }
 
     if (bResult == 0x03) {
@@ -4696,10 +4696,10 @@ bool CGameProcMain::MsgRecv_ItemDroppedGetResult(DataPack * pDataPack, int & iOf
         CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szString, iStrLen);
     }
 
-    TRACE("받음 - Item Get %d %d\n", bResult, iGoldID);
+    TRACE("받음 - Item Get %d %lld\n", bResult, iGold);
 
     if (m_pUIDroppedItemDlg) {
-        m_pUIDroppedItemDlg->GetItemByIDToInventory(bResult, iItemID, iGoldID, bPos, sItemCount, iStrLen, szString);
+        m_pUIDroppedItemDlg->GetItemByIDToInventory(bResult, iItemID, iGold, bPos, sItemCount, iStrLen, szString);
     }
     return true;
 }
@@ -5102,10 +5102,11 @@ void CGameProcMain::MsgSend_PerTradeReq(int iDestID, bool bNear) {
 }
 
 void CGameProcMain::MsgRecv_PerTrade(DataPack * pDataPack, int & iOffset) {
-    BYTE  bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
-    short sOtherID, sItemCount, sCount, sDurability;
-    BYTE  bResult, bItemPos;
-    int   iItemID, iCount, iTotalGold;
+    BYTE    bSubCom = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+    short   sOtherID, sItemCount, sCount, sDurability;
+    BYTE    bResult, bItemPos;
+    int     iItemID;
+    int64_t iCount, iTotalGold;
 
     switch (bSubCom) {
     case N3_SP_PER_TRADE_REQ:
@@ -5174,7 +5175,7 @@ void CGameProcMain::MsgRecv_PerTrade(DataPack * pDataPack, int & iOffset) {
 
     case N3_SP_PER_TRADE_OTHER_ADD:
         iItemID = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
-        iCount = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
+        iCount = CAPISocket::Parse_GetInt64(pDataPack->m_pData, iOffset);
         sDurability = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
         m_pSubProcPerTrade->ReceiveMsgPerTradeOtherAdd(iItemID, iCount, (int)sDurability);
         break;
@@ -5187,7 +5188,7 @@ void CGameProcMain::MsgRecv_PerTrade(DataPack * pDataPack, int & iOffset) {
         bResult = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
         if (bResult == 0x01) // 성공이면..
         {
-            iTotalGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
+            iTotalGold = CAPISocket::Parse_GetInt64(pDataPack->m_pData, iOffset);
             m_pSubProcPerTrade->ReceiveMsgPerTradeDoneSuccessBegin(iTotalGold);
             sItemCount = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
             for (int i = 0; i < sItemCount; i++) {
@@ -6139,8 +6140,8 @@ void CGameProcMain::MsgRecv_WareHouseOpen(DataPack * pDataPack, int & iOffset) /
         return;
     }
 
-    int iWareGold, iItemID, iItemDurability, iItemCount;
-    iWareGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
+    int     iItemID, iItemDurability, iItemCount;
+    int64_t iWareGold = CAPISocket::Parse_GetInt64(pDataPack->m_pData, iOffset);
     m_pUIWareHouseDlg->EnterWareHouseStateStart(iWareGold);
 
     for (int i = 0; i < MAX_ITEM_WARE_PAGE * MAX_ITEM_TRADE; i++) // 슬롯 갯수마큼..
