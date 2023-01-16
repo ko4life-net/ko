@@ -160,18 +160,3 @@ void CUIExitMenu::ClearExitState() {
     CGameProcedure::s_pProcMain->m_pExitState = EXIT_STATE_ALLOW_LEAVE;
     CGameProcedure::s_pProcMain->m_pExitSecondsElapsed = 0;
 }
-
-bool CUIExitMenu::OnKeyPress(int iKey) {
-    switch (iKey) {
-    case DIK_ESCAPE: {
-        CGameProcedure::s_pUIMgr->ReFocusUI(); //this_ui
-        CN3UIBase * pFocus = CGameProcedure::s_pUIMgr->GetFocusedUI();
-        if (pFocus && pFocus != this) {
-            pFocus->OnKeyPress(iKey);
-        }
-    }
-        return true;
-    }
-
-    return CN3UIBase::OnKeyPress(iKey);
-}
