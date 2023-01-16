@@ -1320,16 +1320,6 @@ void CGameProcMain::ProcessLocalInput(DWORD dwMouseFlags) {
             }
         }
 
-        if (s_pLocalInput->IsKeyPress(DIK_ESCAPE)) {
-            if (m_pUIExitMenu) {
-                if (m_pUIExitMenu->IsVisible()) {
-                    m_pUIExitMenu->SetVisible(false);
-                } else {
-                    m_pUIExitMenu->SetVisible(true);
-                }
-            }
-        }
-
     } // end of if ( !m_UIChatDlg.IsChatMode() )
 
     // ..... 나머지 키보드 처리..
