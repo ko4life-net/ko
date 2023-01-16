@@ -101,29 +101,29 @@ bool CUIExitMenu::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     }
 
     if (dwMsg == UIMSG_BUTTON_CLICK) {
-        if (pSender == (CN3UIBase *)m_pBtnChr) { // Select characeter
+        if (pSender == (CN3UIBase *)m_pBtnChr) {
             if (CGameProcedure::s_pProcMain->m_eExitState == EXIT_STATE_ALLOW_LEAVE) {
                 // CGameProcedure::s_pProcMain->m_bIsSeekingParty = false; // TODO: Reset seeking party.
                 SelectCharacter();
+            } else {
+                AddWarningMessage(IDS_EXIT_GAME_DURING_BATTLE_WARNING, false);
+                CGameProcedure::s_pProcMain->m_eExitType = EXIT_TYPE_SELECTCHAR;
             }
-
-            AddWarningMessage(IDS_EXIT_GAME_DURING_BATTLE_WARNING, false);
-            CGameProcedure::s_pProcMain->m_eExitType = EXIT_TYPE_SELECTCHAR;
         } else if (pSender == (CN3UIBase *)m_pBtnExit) {
             if (CGameProcedure::s_pProcMain->m_eExitState == EXIT_STATE_ALLOW_LEAVE) {
                 ::PostQuitMessage(0);
+            } else {
+                AddWarningMessage(IDS_EXIT_GAME_DURING_BATTLE_WARNING, false);
+                CGameProcedure::s_pProcMain->m_eExitType = EXIT_TYPE_EXIT;
             }
-
-            AddWarningMessage(IDS_EXIT_GAME_DURING_BATTLE_WARNING, false);
-            CGameProcedure::s_pProcMain->m_eExitType = EXIT_TYPE_EXIT;
         } else if (pSender == (CN3UIBase *)m_pBtnOption) {
             if (CGameProcedure::s_pProcMain->m_eExitState == EXIT_STATE_ALLOW_LEAVE) {
                 ::ShellExecute(NULL, "open", "Option.exe", NULL, NULL, SW_SHOWNORMAL);
                 PostQuitMessage(0);
+            } else {
+                AddWarningMessage(IDS_EXIT_GAME_DURING_BATTLE_WARNING, false);
+                CGameProcedure::s_pProcMain->m_eExitType = EXIT_TYPE_OPTION;
             }
-
-            AddWarningMessage(IDS_EXIT_GAME_DURING_BATTLE_WARNING, false);
-            CGameProcedure::s_pProcMain->m_eExitType = EXIT_TYPE_OPTION;
         } else if (pSender == (CN3UIBase *)m_pBtnCancel) {
             SetVisible(false);
         }
