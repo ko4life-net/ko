@@ -274,6 +274,10 @@ class CAPISocket {
         CopyMemory(dest + iOffset, &value, 4);
         iOffset += 4;
     }
+    static void MP_AddInt64(BYTE * dest, int & iOffset, __int64 nInt64) {
+        CopyMemory(dest + iOffset, &nInt64, 8);
+        iOffset += 8;
+    }
     static void MP_AddString(BYTE * dest, int & iOffset, const std::string & szString) {
         if (!szString.empty()) {
             CopyMemory(dest + iOffset, &(szString[0]), szString.size());
