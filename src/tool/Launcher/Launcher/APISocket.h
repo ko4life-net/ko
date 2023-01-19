@@ -7,6 +7,7 @@
 #include <winsock.h>
 
 #include <queue>
+#include <mutex>
 #include "BB_CircularBuffer.h"
 
 #define WM_SOCKETMSG     (WM_USER + 1)
@@ -39,7 +40,7 @@ class CAPISocket {
 
     BB_CircularBuffer m_CB;
 
-    HANDLE                 m_hMutex;
+    std::mutex             m_hMutex;
     std::queue<DataPack *> m_qRecvPkt;
 
   public:
