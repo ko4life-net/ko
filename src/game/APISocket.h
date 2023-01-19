@@ -224,6 +224,9 @@ class CAPISocket {
 
     BB_CircularBuffer m_CB;
 
+    HANDLE                 m_hMutex;
+    std::queue<DataPack *> m_qRecvPkt;
+
 #ifdef _DEBUG
     __SocketStatisics m_Statistics_Send_Sum[255];
     __SocketStatisics m_Statistics_Recv_Sum[255];
@@ -235,11 +238,14 @@ class CAPISocket {
     static int     s_nInstanceCount;
     static WSADATA s_WSData;
 
-    int                    m_iSendByteCount;
-    std::queue<DataPack *> m_qRecvPkt;
+    int m_iSendByteCount;
 
     BOOL m_bEnableSend; // 보내기 가능..?
   public:
+    inline size_t      PktQueueSize() { return m_qRecvPkt.size(); }
+    inline DataPack *& PktQueueFront() { return m_qRecvPkt.front(); }
+    void               PktQueuePop();
+
     int  Connect(HWND hWnd, const char * pszIP, DWORD port);
     void Disconnect();
     BOOL IsConnected() { return m_bConnected; }

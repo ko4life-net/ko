@@ -705,13 +705,13 @@ LRESULT CLauncherDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam) {
         case FD_READ: {
             m_pSocket->Receive();
 
-            while (m_pSocket->m_qRecvPkt.size() > 0) // 패킷 리스트에 패킷이 있냐????
+            while (m_pSocket->PktQueueSize() > 0) // 패킷 리스트에 패킷이 있냐????
             {
                 int        iOffset = 0;
-                DataPack * pDataPack = m_pSocket->m_qRecvPkt.front(); // 큐의 첫번째 것을 복사..
-                this->PacketProcess(pDataPack->m_pData, iOffset);     // 패킷을 처리할 상황이 아니다.
+                DataPack * pDataPack = m_pSocket->PktQueueFront(); // 큐의 첫번째 것을 복사..
+                this->PacketProcess(pDataPack->m_pData, iOffset);  // 패킷을 처리할 상황이 아니다.
                 delete pDataPack;
-                m_pSocket->m_qRecvPkt.pop(); // 패킷을 큐에서 꺼냄..
+                m_pSocket->PktQueuePop(); // 패킷을 큐에서 꺼냄..
             }
         } break;
         default:

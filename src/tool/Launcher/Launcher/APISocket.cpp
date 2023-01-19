@@ -19,6 +19,8 @@ const WORD PACKET_HEADER = 0XAA55;
 const WORD PACKET_TAIL = 0X55AA;
 
 CAPISocket::CAPISocket() {
+    m_hMutex = CreateMutex(NULL, FALSE, NULL);
+
     m_hSocket = INVALID_SOCKET;
     if (s_nInstanceCount == 0) {
         WSAStartup(0x0101, &s_WSData);
@@ -35,6 +37,8 @@ CAPISocket::~CAPISocket() {
     if (s_nInstanceCount == 0) {
         WSACleanup();
     }
+
+    CloseHandle(m_hMutex);
 }
 
 void CAPISocket::Release() {
@@ -126,6 +130,12 @@ BOOL CAPISocket::Connect(HWND hWnd, const char * pszIP, DWORD port) {
     return TRUE;
 }
 
+void CAPISocket::PktQueuePop() {
+    WaitForSingleObject(m_hMutex, INFINITE);
+    m_qRecvPkt.pop();
+    ReleaseMutex(m_hMutex);
+}
+
 void CAPISocket::Receive() {
     if (m_hSocket == INVALID_SOCKET) {
         return;
@@ -155,6 +165,8 @@ void CAPISocket::Receive() {
 }
 
 BOOL CAPISocket::ReceiveProcess() {
+    WaitForSingleObject(m_hMutex, INFINITE);
+
     int  iCount = m_CB.GetValidCount();
     BOOL bFoundTail = FALSE;
     if (iCount >= 7) {
@@ -178,6 +190,8 @@ BOOL CAPISocket::ReceiveProcess() {
 
         delete[] pData, pData = NULL;
     }
+
+    ReleaseMutex(m_hMutex);
 
     return bFoundTail;
 }

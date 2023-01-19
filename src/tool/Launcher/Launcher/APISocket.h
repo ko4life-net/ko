@@ -39,14 +39,20 @@ class CAPISocket {
 
     BB_CircularBuffer m_CB;
 
+    HANDLE                 m_hMutex;
+    std::queue<DataPack *> m_qRecvPkt;
+
   public:
     static int     s_nInstanceCount;
     static WSADATA s_WSData;
 
-    int                    m_iSendByteCount;
-    std::queue<DataPack *> m_qRecvPkt;
+    int m_iSendByteCount;
 
   public:
+    inline size_t      PktQueueSize() { return m_qRecvPkt.size(); }
+    inline DataPack *& PktQueueFront() { return m_qRecvPkt.front(); }
+    void               PktQueuePop();
+
     BOOL Connect(HWND hWnd, const char * pszIP, DWORD port);
     BOOL Disconnect();
 

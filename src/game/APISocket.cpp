@@ -88,6 +88,9 @@ DataPack::DataPack(int size, BYTE * pData, BOOL bSend) {
 #endif
 
 CAPISocket::CAPISocket() {
+    m_hMutex = CreateMutex(NULL, FALSE, NULL);
+    __ASSERT(m_hMutex, "Mutex Error");
+
     m_hSocket = INVALID_SOCKET;
     m_hWndTarget = NULL;
     m_szIP = "";
@@ -110,6 +113,8 @@ CAPISocket::~CAPISocket() {
     if (s_nInstanceCount == 0) {
         WSACleanup();
     }
+
+    CloseHandle(m_hMutex);
 }
 
 void CAPISocket::Release() {
@@ -284,6 +289,12 @@ int CAPISocket::ReConnect() {
     return this->Connect(m_hWndTarget, szIP.c_str(), m_dwPort);
 }
 
+void CAPISocket::PktQueuePop() {
+    __ASSERT(WaitForSingleObject(m_hMutex, INFINITE) == WAIT_OBJECT_0, "Mutex Error");
+    m_qRecvPkt.pop();
+    __ASSERT(ReleaseMutex(m_hMutex), "Mutex Error");
+}
+
 void CAPISocket::Receive() {
     if (INVALID_SOCKET == m_hSocket || FALSE == m_bConnected) {
         return;
@@ -318,6 +329,8 @@ void CAPISocket::Receive() {
 }
 
 BOOL CAPISocket::ReceiveProcess() {
+    __ASSERT(WaitForSingleObject(m_hMutex, INFINITE) == WAIT_OBJECT_0, "Mutex Error");
+
     int  iCount = m_CB.GetValidCount();
     BOOL bFoundTail = FALSE;
     if (iCount >= 7) {
@@ -357,6 +370,8 @@ BOOL CAPISocket::ReceiveProcess() {
 
         delete[] pData, pData = NULL;
     }
+
+    __ASSERT(ReleaseMutex(m_hMutex), "Mutex Error");
 
     return bFoundTail;
 }

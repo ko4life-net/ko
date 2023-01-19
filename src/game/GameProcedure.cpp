@@ -371,10 +371,10 @@ void CGameProcedure::Tick() {
     //////////////////////////////////
     // Network Msg 처리하기
     DataPack * pDataPack = NULL;
-    while (s_pSocket->m_qRecvPkt.size() > 0) // 패킷 리스트에 패킷이 있냐????
+    while (s_pSocket->PktQueueSize() > 0) // 패킷 리스트에 패킷이 있냐????
     {
         int iOffset = 0;
-        pDataPack = s_pSocket->m_qRecvPkt.front(); // 큐의 첫번째 것을 복사..
+        pDataPack = s_pSocket->PktQueueFront(); // 큐의 첫번째 것을 복사..
         if (false == ProcessPacket(pDataPack, iOffset)) {
             // 패킷을 처리할 상황이 아니다.
             int iTempOffst = 0;
@@ -382,18 +382,18 @@ void CGameProcedure::Tick() {
             CLogWriter::Write("Invalid Packet... (%d)", iCmd);
         }
         delete pDataPack;
-        s_pSocket->m_qRecvPkt.pop(); // 패킷을 큐에서 꺼냄..
+        s_pSocket->PktQueuePop(); // 패킷을 큐에서 꺼냄..
     }
 
-    while (s_pSocketSub->m_qRecvPkt.size() > 0) // 패킷 리스트에 패킷이 있냐????
+    while (s_pSocketSub->PktQueueSize() > 0) // 패킷 리스트에 패킷이 있냐????
     {
         int iOffset = 0;
-        pDataPack = s_pSocketSub->m_qRecvPkt.front(); // 큐의 첫번째 것을 복사..
+        pDataPack = s_pSocketSub->PktQueueFront(); // 큐의 첫번째 것을 복사..
         if (false == ProcessPacket(pDataPack, iOffset)) {
             break; // 패킷을 처리할 상황이 아니다.
         }
         delete pDataPack;
-        s_pSocketSub->m_qRecvPkt.pop(); // 패킷을 큐에서 꺼냄..
+        s_pSocketSub->PktQueuePop(); // 패킷을 큐에서 꺼냄..
     }
     // Network Msg 처리하기
     //////////////////////////////////
