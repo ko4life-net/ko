@@ -285,9 +285,8 @@ int CAPISocket::ReConnect() {
 }
 
 void CAPISocket::PktQueuePop() {
-    m_hMutex.lock();
+    const std::lock_guard<std::mutex> lock(m_hMutex);
     m_qRecvPkt.pop();
-    m_hMutex.unlock();
 }
 
 void CAPISocket::Receive() {
@@ -324,7 +323,7 @@ void CAPISocket::Receive() {
 }
 
 BOOL CAPISocket::ReceiveProcess() {
-    m_hMutex.lock();
+    const std::lock_guard<std::mutex> lock(m_hMutex);
 
     int  iCount = m_CB.GetValidCount();
     BOOL bFoundTail = FALSE;
@@ -365,8 +364,6 @@ BOOL CAPISocket::ReceiveProcess() {
 
         delete[] pData, pData = NULL;
     }
-
-    m_hMutex.unlock();
 
     return bFoundTail;
 }
