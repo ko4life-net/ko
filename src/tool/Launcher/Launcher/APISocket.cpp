@@ -127,7 +127,7 @@ BOOL CAPISocket::Connect(HWND hWnd, const char * pszIP, DWORD port) {
 }
 
 void CAPISocket::PktQueuePop() {
-    const std::lock_guard<std::mutex> lock(m_hMutex);
+    const std::lock_guard<std::mutex> lock(m_mRecvMutex);
     m_qRecvPkt.pop();
 }
 
@@ -160,7 +160,7 @@ void CAPISocket::Receive() {
 }
 
 BOOL CAPISocket::ReceiveProcess() {
-    const std::lock_guard<std::mutex> lock(m_hMutex);
+    const std::lock_guard<std::mutex> lock(m_mRecvMutex);
 
     int  iCount = m_CB.GetValidCount();
     BOOL bFoundTail = FALSE;

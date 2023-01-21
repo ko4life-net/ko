@@ -40,7 +40,7 @@ class CAPISocket {
 
     BB_CircularBuffer m_CB;
 
-    std::mutex             m_hMutex;
+    std::mutex             m_mRecvMutex;
     std::queue<DataPack *> m_qRecvPkt;
 
   public:
