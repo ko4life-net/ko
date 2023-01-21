@@ -284,6 +284,11 @@ int CAPISocket::ReConnect() {
     return this->Connect(m_hWndTarget, szIP.c_str(), m_dwPort);
 }
 
+void CAPISocket::PktQueuePop() {
+    const std::lock_guard<std::mutex> lock(m_mRecvMutex);
+    m_qRecvPkt.pop();
+}
+
 void CAPISocket::Receive() {
     if (INVALID_SOCKET == m_hSocket || FALSE == m_bConnected) {
         return;
@@ -318,6 +323,8 @@ void CAPISocket::Receive() {
 }
 
 BOOL CAPISocket::ReceiveProcess() {
+    const std::lock_guard<std::mutex> lock(m_mRecvMutex);
+
     int  iCount = m_CB.GetValidCount();
     BOOL bFoundTail = FALSE;
     if (iCount >= 7) {
