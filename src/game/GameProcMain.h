@@ -88,9 +88,10 @@ class CGameProcMain : public CGameProcedure {
 
     float m_fRotateValue;
 
-    e_TypeOfExit m_eExitType;
-    e_ExitState  m_eExitState;
-    int          m_iExitSecondsElapsed;
+    int            m_iExitCurCountDown;
+    bool           m_bDoCancelExitRequest;
+    e_GameExitType m_eExitType;
+    float          m_fExitCurCountDownToReach;
 
   protected:
     bool ProcessPacket(DataPack * pDataPack, int & iOffset);
@@ -237,6 +238,7 @@ class CGameProcMain : public CGameProcedure {
     void CommandMove(e_MoveDirection eMD, bool bStartOrEnd); // 움직이는 방향(전후진, 멈춤), 움직이기 시작하는가?
     void CommandEnableAttackContinous(bool bEnable, CPlayerBase * pTarget);
     void CommandCameraChange(); // 카메라 시점 바꾸기..
+    void CommandExitMenu();
     void CommandSitDown(bool bLimitInterval, bool bSitDown, bool bImmediately = false);
 
     void CommandTargetSelect_NearstEnemy();    // 가장 가까운 적 타겟 잡기..

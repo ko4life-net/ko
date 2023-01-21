@@ -5,7 +5,6 @@
 #include "StdAfx.h"
 #include "Resource.h"
 #include "UICmd.h"
-#include "UIExitMenu.h"
 #include "GameProcMain.h"
 #include "PlayerOtherMgr.h"
 //#include "GameProcLogIn.h"
@@ -121,9 +120,8 @@ bool CUICmd::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             CGameProcedure::s_pProcMain->CommandToggleUIState();
         }
 
-        else if (pSender == m_pBtn_Exit) // 캐릭터 캐릭터 선택창으로 간다..
-        {
-            CGameProcedure::s_pProcMain->m_pUIExitMenu->SetVisible(true);
+        else if (pSender == m_pBtn_Exit) {
+            CGameProcedure::s_pProcMain->CommandExitMenu();
         }
 
         else if (pSender == m_pBtn_Camera) {

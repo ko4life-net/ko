@@ -12,6 +12,7 @@
 #include "UIMessageWnd.h"
 #include "UIPartyOrForce.h"
 
+#include "N3Base/N3FXDef.h"
 #include "N3Base/N3UIButton.h"
 
 CUIExitMenu::CUIExitMenu() {
@@ -32,11 +33,11 @@ void CUIExitMenu::SetVisible(bool bVisible) {
         if (m_pBtnChr) {
             m_pBtnChr->SetState(UI_STATE_BUTTON_NORMAL);
         }
-        if (m_pBtnOption) {
-            m_pBtnOption->SetState(UI_STATE_BUTTON_NORMAL);
-        }
         if (m_pBtnExit) {
             m_pBtnExit->SetState(UI_STATE_BUTTON_NORMAL);
+        }
+        if (m_pBtnOption) {
+            m_pBtnOption->SetState(UI_STATE_BUTTON_NORMAL);
         }
         if (m_pBtnCancel) {
             m_pBtnCancel->SetState(UI_STATE_BUTTON_NORMAL);
@@ -44,30 +45,69 @@ void CUIExitMenu::SetVisible(bool bVisible) {
     }
 }
 
+bool CUIExitMenu::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
+    if (!pSender || !CGameProcedure::s_pProcMain) {
+        return false;
+    }
+
+#define INITIATE_EXIT_GAME(eExitType)                                                                                  \
+    if (!CGameProcedure::s_pProcMain->m_pUIChatDlg) {                                                                  \
+        return true;                                                                                                   \
+    }                                                                                                                  \
+                                                                                                                       \
+    std::string szMsg;                                                                                                 \
+    ::_LoadStringFromResource(IDS_EXIT_GAME_DURING_BATTLE_WARNING, szMsg);                                             \
+    CGameProcedure::s_pProcMain->m_pUIChatDlg->AddChatMsg(N3_CHAT_NORMAL, szMsg, 0xFFFF0000);                          \
+    CGameProcedure::s_pProcMain->m_eExitType = eExitType;                                                              \
+    SetVisible(false);
+
+    if (dwMsg == UIMSG_BUTTON_CLICK) {
+        if (pSender == (CN3UIBase *)m_pBtnChr) {
+            if (CGameProcedure::s_pProcMain->m_fExitCurCountDownToReach == -1.0f) {
+                //CGameProcedure::s_pProcMain->m_bRecruitingParty = false; // TODO:
+                //CGameProcedure::s_pProcMain->m_bPremiumSomething = true;
+                SelectCharacter();
+            } else {
+                INITIATE_EXIT_GAME(EXIT_TYPE_SELECTCHAR);
+            }
+        } else if (pSender == (CN3UIBase *)m_pBtnExit) {
+            if (CGameProcedure::s_pProcMain->m_fExitCurCountDownToReach == -1.0f) {
+                ::PostQuitMessage(0);
+            } else {
+                INITIATE_EXIT_GAME(EXIT_TYPE_EXIT);
+            }
+        } else if (pSender == (CN3UIBase *)m_pBtnOption) {
+            if (CGameProcedure::s_pProcMain->m_fExitCurCountDownToReach == -1.0f) {
+                ::ShellExecute(NULL, "open", "Option.exe", NULL, NULL, SW_SHOWNORMAL);
+                ::PostQuitMessage(0);
+            } else {
+                INITIATE_EXIT_GAME(EXIT_TYPE_OPTION);
+            }
+        } else if (pSender == (CN3UIBase *)m_pBtnCancel) {
+            SetVisible(false);
+        }
+    }
+
+    return true;
+}
+
 void CUIExitMenu::SelectCharacter() {
+    // TODO: Trigger cursor effect
+    //if (CGameBase::s_pPlayer && CGameProcedure::s_pFX) {
+    //    CGameBase::s_pPlayer->StunRelease();
+    //    CGameProcedure::s_pFX->TriggerCursor(CGameBase::s_pPlayer->m_InfoBase.iID, CGameBase::s_pPlayer->m_InfoBase.iID,
+    //                                         30001, 30001, // fx/target_pointer.fxb for target curosr
+    //                                         FX_BUNDLE_MOVE_DIR_FLEXABLETARGET);
+    //}
 
-    /*
-	
-  v0 = s_pPlayer;
-    if (s_pPlayer && s_pFX) {
-        s_pPlayer->m_bMoveUnk = 0;
-        s_pPlayer->field_9EC = 0;
-        CN3FXMgr::TriggerCursor((_DWORD *)s_pFX, s_pPlayer->m_InfoBase_iID, s_pPlayer->m_InfoBase_iID,
-                                30001, // fx/target_pointer.fxb
-                                30001, FX_BUNDLE_MOVE_DIR_FLEXABLETARGET);
-        v0 = s_pPlayer;
-    }
-    
-    */
-    // TODO: CN3FXMgr::TriggerCursor
-    CGameBase::s_pPlayer->StunRelease();
-
-    if (CGameProcedure::s_pProcMain->m_pSubProcPerTrade) {
-
-        // TODO: MERCHANT CLEAR MODEL
-
-        CGameProcedure::s_pProcMain->m_pSubProcPerTrade->LeavePerTradeState(PER_TRADE_RESULT_MY_CANCEL);
-    }
+    // TODO: Close merchant
+    //if (CGameBase::s_pPlayer->m_bIsMerchantOpened) {
+    //    CGameBase::s_pPlayer->InitOrDeleteMerchant(false, NULL);
+    //    if (CGameProcedure::s_pProcMain->m_pUITradeInventory) {
+    //        CGameProcedure::s_pProcMain->m_pUITradeInventory->m_bMerchantOpened = false;
+    //        CGameProcedure::s_pProcMain->m_pUITradeInventory->MsgSend_MerchantClose();
+    //    }
+    //}
 
     std::string szIP = CGameProcedure::s_pSocket->GetCurrentIP();
     DWORD       dwPort = CGameProcedure::s_pSocket->GetCurrentPort();
@@ -79,57 +119,6 @@ void CUIExitMenu::SelectCharacter() {
     CGameProcedure::s_bNeedReportConnectionClosed = true;
     CGameProcedure::s_bNeedReportVersionCheck = true;
     CGameProcedure::ProcActiveSet((CGameProcedure *)CGameProcedure::s_pProcCharacterSelect);
-}
-
-void CUIExitMenu::AddWarningMessage(DWORD idMessage, bool visbleMenu) {
-
-    if (!CGameProcedure::s_pProcMain->m_pUIChatDlg) {
-        return;
-    }
-
-    std::string szMsg;
-    ::_LoadStringFromResource(idMessage, szMsg);
-
-    CGameProcedure::s_pProcMain->m_pUIChatDlg->AddChatMsg(N3_CHAT_NORMAL, szMsg, 0xFFFF0000);
-
-    SetVisible(visbleMenu);
-}
-
-bool CUIExitMenu::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
-    if (NULL == pSender) {
-        return false;
-    }
-
-    if (dwMsg == UIMSG_BUTTON_CLICK) {
-        if (pSender == (CN3UIBase *)m_pBtnChr) {
-            if (CGameProcedure::s_pProcMain->m_eExitState == EXIT_STATE_ALLOW_LEAVE) {
-                // CGameProcedure::s_pProcMain->m_bIsSeekingParty = false; // TODO: Reset seeking party.
-                SelectCharacter();
-            } else {
-                AddWarningMessage(IDS_EXIT_GAME_DURING_BATTLE_WARNING, false);
-                CGameProcedure::s_pProcMain->m_eExitType = EXIT_TYPE_SELECTCHAR;
-            }
-        } else if (pSender == (CN3UIBase *)m_pBtnExit) {
-            if (CGameProcedure::s_pProcMain->m_eExitState == EXIT_STATE_ALLOW_LEAVE) {
-                ::PostQuitMessage(0);
-            } else {
-                AddWarningMessage(IDS_EXIT_GAME_DURING_BATTLE_WARNING, false);
-                CGameProcedure::s_pProcMain->m_eExitType = EXIT_TYPE_EXIT;
-            }
-        } else if (pSender == (CN3UIBase *)m_pBtnOption) {
-            if (CGameProcedure::s_pProcMain->m_eExitState == EXIT_STATE_ALLOW_LEAVE) {
-                ::ShellExecute(NULL, "open", "Option.exe", NULL, NULL, SW_SHOWNORMAL);
-                PostQuitMessage(0);
-            } else {
-                AddWarningMessage(IDS_EXIT_GAME_DURING_BATTLE_WARNING, false);
-                CGameProcedure::s_pProcMain->m_eExitType = EXIT_TYPE_OPTION;
-            }
-        } else if (pSender == (CN3UIBase *)m_pBtnCancel) {
-            SetVisible(false);
-        }
-    }
-
-    return true;
 }
 
 bool CUIExitMenu::Load(HANDLE hFile) {
@@ -150,10 +139,4 @@ bool CUIExitMenu::Load(HANDLE hFile) {
     __ASSERT(m_pBtnCancel, "NULL UI Component!!");
 
     return true;
-}
-
-void CUIExitMenu::ClearExitState() {
-    CGameProcedure::s_pProcMain->m_eExitType = EXIT_TYPE_NONE;
-    CGameProcedure::s_pProcMain->m_eExitState = EXIT_STATE_ALLOW_LEAVE;
-    CGameProcedure::s_pProcMain->m_iExitSecondsElapsed = 0;
 }

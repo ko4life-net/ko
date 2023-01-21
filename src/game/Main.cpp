@@ -10,7 +10,6 @@
 #include "GameProcMain.h"
 #include "GameEng.h"
 #include "UIChat.h"
-#include "UIExitMenu.h"
 
 #include "KnightChrMgr.h"
 
@@ -125,12 +124,21 @@ LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
             g_bActive = TRUE;
             break;
         case WA_INACTIVE:
-            if (!CGameProcedure::s_bWindowed) {
+            if (CGameProcedure::s_bWindowed || !CGameProcedure::s_pProcMain) {
+                return DefWindowProc(hWnd, message, wParam, lParam);
+            }
+
+            if (CGameProcedure::s_pProcMain->m_fExitCurCountDownToReach == -1.0f) {
                 g_bActive = FALSE;
                 CLogWriter::Write("WA_INACTIVE.");
-                PostQuitMessage(0); // 창모드 아니면 팅긴다??
+                ::PostQuitMessage(0); // 창모드 아니면 팅긴다??
+            } else if (CGameProcedure::s_pProcMain->m_pUIChatDlg) {
+                std::string szMsg;
+                ::_LoadStringFromResource(IDS_EXIT_GAME_DURING_BATTLE_WARNING, szMsg);
+                CGameProcedure::s_pProcMain->m_pUIChatDlg->AddChatMsg(N3_CHAT_NORMAL, szMsg, 0xFFFF0000);
+                CGameProcedure::s_pProcMain->m_eExitType = EXIT_TYPE_EXIT;
             }
-            break;
+            return DefWindowProc(hWnd, message, wParam, lParam);
         }
     } break;
 
@@ -139,20 +147,31 @@ LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
     case WM_QUIT:
         if (CGameProcedure::s_pProcActive &&
             CGameProcedure::s_pProcActive == (CGameProcedure *)CGameProcedure::s_pProcMain &&
-            CGameProcMain::s_pProcMain->m_pUIExitMenu) {
-            CGameProcMain::s_pProcMain->m_pUIExitMenu->SetVisible(true);
+            !GetAsyncKeyState(VK_MENU)) {
+            CGameProcedure::s_pProcMain->CommandExitMenu();
+            return true;
+        }
+        if (!CGameProcedure::s_pProcMain) {
             return true;
         }
 
-        if (CGameProcedure::s_pProcMain->m_eExitState == EXIT_STATE_ALLOW_LEAVE) {
+        // Note that the checks here are necessary to prevent the user from bypassing the count down timer
+        // when either holding the Menu / ALT key + clicking the X button or ALT + F4.
+        if (CGameProcedure::s_pProcMain->m_fExitCurCountDownToReach == -1.0f) {
             CGameProcedure::s_pSocket->Disconnect();
             CGameProcedure::s_pSocketSub->Disconnect();
-            PostQuitMessage(0);
+            ::PostQuitMessage(0);
+            return DefWindowProc(hWnd, message, wParam, lParam);
         }
 
-        CGameProcMain::s_pProcMain->m_pUIExitMenu->AddWarningMessage(IDS_EXIT_GAME_DURING_BATTLE_WARNING, false);
-        CGameProcedure::s_pProcMain->m_eExitType = EXIT_TYPE_EXIT;
-        break;
+        if (CGameProcedure::s_pProcMain->m_pUIChatDlg) {
+            std::string szMsg;
+            ::_LoadStringFromResource(IDS_EXIT_GAME_DURING_BATTLE_WARNING, szMsg);
+            CGameProcedure::s_pProcMain->m_pUIChatDlg->AddChatMsg(N3_CHAT_NORMAL, szMsg, 0xFFFF0000);
+            CGameProcedure::s_pProcMain->m_eExitType = EXIT_TYPE_EXIT;
+        }
+
+        return true;
     case WM_RECEIVEDATA:
         if (CGameProcedure::s_pKnightChr) {
             CGameProcedure::s_pKnightChr->OnReceiveSmq(wParam, lParam);

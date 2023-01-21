@@ -1489,14 +1489,9 @@ enum e_Cursor {
 // Seconds a player can exit or select character after attacking or being attacked
 const int SECONDS_TO_EXIT_GAME_AFTER_ATTACK = 10;
 
-enum e_TypeOfExit {
+enum e_GameExitType {
     EXIT_TYPE_NONE,
     EXIT_TYPE_SELECTCHAR,
     EXIT_TYPE_EXIT,
     EXIT_TYPE_OPTION,
-};
-
-enum e_ExitState {
-    EXIT_STATE_ALLOW_LEAVE,
-    EXIT_STATE_DISALLOW_LEAVE,
 };
