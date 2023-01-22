@@ -436,7 +436,6 @@ END_MESSAGE_MAP()
 *
 ****************************************************************************/
 void CShellTree::PopulateTree() {
-
     LPSHELLFOLDER lpsf = NULL;
     LPITEMIDLIST  lpi = NULL;
     HRESULT       hr;
@@ -481,7 +480,6 @@ void CShellTree::PopulateTree() {
 *
 ****************************************************************************/
 void CShellTree::PopulateTree(int nFolder) {
-
     LPSHELLFOLDER lpsf = NULL, lpsf2 = NULL;
     LPITEMIDLIST  lpi = NULL;
     HRESULT       hr;

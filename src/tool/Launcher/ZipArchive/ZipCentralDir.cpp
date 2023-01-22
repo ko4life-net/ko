@@ -116,7 +116,6 @@ void CZipCentralDir::Read() {
 
 // return the location of the beginning of the "end" record in the file
 DWORD CZipCentralDir::Locate() {
-
     // maximum size of end of central dir record
     long  uMaxRecordSize = 0xffff + ZIPCENTRALDIRSIZE;
     DWORD uFileSize = m_pStorage->m_pFile->GetLength();
@@ -192,7 +191,6 @@ void CZipCentralDir::Clear(bool bEverything) {
 }
 
 bool CZipCentralDir::IsValidIndex(WORD uIndex) {
-
     bool ret = uIndex < m_headers.GetSize();
 #ifdef _DEBUG
     if (!ret) {

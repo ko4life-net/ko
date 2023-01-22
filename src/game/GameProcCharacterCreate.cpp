@@ -197,7 +197,6 @@ bool CGameProcCharacterCreate::MsgSendCharacterCreate() {
         }
 
         if (false == bHasSpecialLetter) {
-
             __InfoPlayerBase *   pInfoBase = &(s_pPlayer->m_InfoBase);
             __InfoPlayerMySelf * pInfoExt = &(s_pPlayer->m_InfoExt);
 

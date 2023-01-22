@@ -807,7 +807,6 @@ bool CGameProcMain::ProcessPacket(DataPack * pDataPack, int & iOffset) {
 
     switch (iCmd) // 커멘드에 다라서 분기..
     {
-
 #ifdef _DEBUG
     case N3_TEMP_TEST: {
         int  iNPC = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);

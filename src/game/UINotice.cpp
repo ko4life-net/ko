@@ -45,7 +45,6 @@ void CUINotice::Release() {
 }
 
 void CUINotice::Open() {
-
     SetState(UI_STATE_COMMON_NONE);
 
     SetVisible(true);
@@ -60,7 +59,6 @@ void CUINotice::Open() {
 }
 
 void CUINotice::Close() {
-
     SetState(UI_STATE_COMMON_NONE);
 
     RECT rc = this->GetRegion();

@@ -31,7 +31,6 @@ void CUser::Initialize() {
 }
 
 void CUser::CloseProcess() {
-
     CIOCPSocket2::CloseProcess();
 }
 

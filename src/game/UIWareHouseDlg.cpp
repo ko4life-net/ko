@@ -1673,7 +1673,6 @@ void CUIWareHouseDlg::ItemMoveFromThisToInv() {
 }
 
 void CUIWareHouseDlg::AddItemInWare(int iItem, int iDurability, int iCount, int iIndex) {
-
     if (!iItem) {
         return;
     }

@@ -182,7 +182,6 @@ void CDlgSceneGraph::OnSelchangedTreeObj(NMHDR * pNMHDR, LRESULT * pResult) {
 }
 
 void CDlgSceneGraph::OnDblclkTreeObj(NMHDR * pNMHDR, LRESULT * pResult) {
-
     *pResult = 0;
 }
 

@@ -28,7 +28,6 @@ END_MESSAGE_MAP()
 // CServerInfoViewerDoc construction/destruction
 
 CServerInfoViewerDoc::CServerInfoViewerDoc() {
-
     /////////////////////
     // Test
     __CharacterSymbol symbol;

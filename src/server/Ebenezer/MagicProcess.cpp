@@ -2151,7 +2151,6 @@ void CMagicProcess::ExecuteType8(int magicid, int sid, int tid, int data1, int d
             pEvent = m_pMain->m_ZoneArray[pTUser->m_iZoneIndex]->GetObjectEvent(pTUser->m_pUserData->m_sBind);
 
             if (pEvent) {
-
                 //                    m_pUserData->m_curx = m_fWill_x = pEvent->fPosX + x;
                 //                    m_pUserData->m_curz = m_fWill_z = pEvent->fPosZ + z;
                 //                    m_pUserData->m_cury = 0;

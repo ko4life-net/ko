@@ -13,7 +13,6 @@
 #include "AutoBuffer.h"
 
 class CCentralDir {
-
   public:
     //        end of central dir signature    4 bytes  (0x06054b50)
     char m_szSignature[4];

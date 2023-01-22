@@ -1564,7 +1564,6 @@ void CN3Terrain::GetNormal(float x, float z, __Vector3 & vNormal) {
 //
 //
 bool CN3Terrain::IsInTerrain(float x, float z) {
-
     if (x < 30.0f || x > ((m_ti_MapSize - 1) * TILE_SIZE - 30.0f) || z < 30.0f ||
         z > ((m_ti_MapSize - 1) * TILE_SIZE - 30.0f)) {
         return false;

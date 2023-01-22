@@ -3,7 +3,6 @@
 #pragma warning(disable : 4786)
 
 class CBitset {
-
   public:
     // Initialize all the data members
     CBitset()

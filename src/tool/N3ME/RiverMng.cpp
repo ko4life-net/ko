@@ -106,7 +106,6 @@ void CRiverMng::Render() {
     }
 
     if (m_bEditMode) {
-
         // 강 새로 만드는 중이면 드래그 선 그리기
         if (m_RCursorMode == RCM_CREATE) {
             // set state

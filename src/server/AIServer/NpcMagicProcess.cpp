@@ -371,7 +371,6 @@ packet_send:
 }
 
 void CNpcMagicProcess::ExecuteType4(int magicid, int tid) {
-
     return;
 }
 

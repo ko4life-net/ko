@@ -160,7 +160,6 @@ int CUIImageTooltipDlg::CalcTooltipStringNumAndWrite(__IconItemSkill * spItem, b
     if ((!m_spItemBack) || (m_spItemBack->pItemBasic->dwID != spItem->pItemBasic->dwID) ||
         (m_spItemBack->pItemExt->dwID != spItem->pItemExt->dwID) ||
         (m_spItemBack->iDurability != spItem->iDurability)) {
-
 #define ERROR_EXCEPTION                                                                                                \
     {                                                                                                                  \
         if (bPrice && (iIndex > MAX_TOOLTIP_COUNT - 2)) {                                                              \

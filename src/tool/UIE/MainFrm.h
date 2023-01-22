@@ -11,7 +11,6 @@ class CUIEView;
 class CHierarchyView;
 class CPropertyView;
 class CMainFrame : public CFrameWnd {
-
   protected: // create from serialization only
     CMainFrame();
     DECLARE_DYNCREATE(CMainFrame)

@@ -66,7 +66,6 @@ void CN3AlphaPrimitiveManager::Render() {
     CN3Base::s_lpD3DDev->SetMaterial(&mtl);
 
     for (int i = 0; i < m_nToDrawCount; i++) {
-
         if (pBuffs[i]->nRenderFlags & RF_NOTUSEFOG) {
             CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, FALSE);
         } else {

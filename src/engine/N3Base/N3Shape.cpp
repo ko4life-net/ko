@@ -379,7 +379,6 @@ bool CN3SPart::Save(HANDLE hFile) {
 
     WriteFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
     if (nL > 0) {
-
         //        if(-1 == pPMesh->FileName().find("object\\")) // 임시로 경로를 바꾸려고 넣었다.. 나중에 필요없음 지운다..
         //        {
         //            char szFNTmp[256];
@@ -409,7 +408,6 @@ bool CN3SPart::Save(HANDLE hFile) {
 
         WriteFile(hFile, &nL, 4, &dwRWC, NULL);
         if (nL > 0) {
-
             //            if(-1 == m_TexRefs[j]->FileName().find("object\\")) // 임시로 경로를 바꾸려고 넣었다.. 나중에 필요없음 지운다..
             //            {
             //                // 폴더 이름을 분리하고..

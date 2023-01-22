@@ -3397,7 +3397,6 @@ int CNpc::GetNFinalDamage(CNpc * pNpc) {
 }
 
 BOOL CNpc::IsCompStatus(CUser * pUser) {
-
     if (IsHPCheck(pUser->m_sHP) == TRUE) {
         if (RandomBackMove() == FALSE) {
             return FALSE;
@@ -4237,7 +4236,6 @@ void CNpc::SendExpToUserList() {
             //nExp =
         } else if (pUser->m_byNowParty == 2) // 부대 소속
         {
-
         } else // 개인
         {
             totalDamage = m_DamagedUserList[i].nDamage;
@@ -4246,7 +4244,6 @@ void CNpc::SendExpToUserList() {
                 nExp = 0;
                 nLoyalty = 0;
             } else {
-
                 if (CompDamage < totalDamage) { //
                     CompDamage = totalDamage;
                     m_sMaxDamageUserid = m_DamagedUserList[i].iUid;
@@ -6138,7 +6135,6 @@ void CNpc::DurationMagic_4(CIOCPort * pIOCP, float currenttime) {
     }
 
     if (m_byDungeonFamily > 0) {
-
         CRoomEvent * pRoom = NULL;
         //if( m_byDungeonFamily < 0 || m_byDungeonFamily >= MAX_DUNGEON_BOSS_MONSTER )    {
         if (m_byDungeonFamily < 0 || m_byDungeonFamily > pMap->m_arRoomEventArray.GetSize() + 1) {
