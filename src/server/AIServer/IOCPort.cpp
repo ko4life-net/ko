@@ -314,7 +314,6 @@ DWORD WINAPI SendThreadMain(LPVOID pVoid) {
                     count++;
 
                     if (pIocp->m_AiSocketCount == count) {
-
                         size = pSocket->Send(pSendData->pBuf, pSendData->sLength);
                         if (size > 0) {
                             pIocp->m_AiSocketCount++;

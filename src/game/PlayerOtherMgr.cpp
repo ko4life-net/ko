@@ -139,7 +139,6 @@ void CPlayerOtherMgr::Tick(const __Vector3 & vPosPlayer) {
 }
 
 void CPlayerOtherMgr::Render(float fSunAngle) {
-
     //    CPlayerOther*    pUPC = NULL;
     //    it_UPC it = m_UPCs.begin(), itEnd = m_UPCs.end();
     //    for(; it != itEnd; it++)

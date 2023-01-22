@@ -755,7 +755,6 @@ bool CN3ShapeMgr::CheckCollision(const __Vector3 & vPos,         // 충돌 위치
     if (fDistClosest != FLT_MAX) {
         return true;
     }
-
 #ifndef _3DSERVER
     else {
         it_Shp it = m_ShapesToRender.begin(), itEnd = m_ShapesToRender.end(); // 눈에 보이는것만 대상으로 해서...

@@ -37,7 +37,6 @@ struct CZipFindFast {
 };
 
 class CZipCentralDir {
-
   public:
     //        end of central dir signature    4 bytes  (0x06054b50)
     char m_szSignature[4];

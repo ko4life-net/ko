@@ -161,7 +161,6 @@ bool CN3TerrainManager::CheckCollisionCameraWithTerrain(__Vector3 & vEyeResult, 
 }
 
 float CN3TerrainManager::GetHeightWithTerrain(float x, float z, bool bWarp) {
-
     if (m_pTerrain) {
         return m_pTerrain->GetHeight(x, z);
     } else {

@@ -1490,7 +1490,6 @@ void CLyTerrain::SaveGameData(HANDLE hFile) {
                     SeedAttr[grass->Tile_z + (grass->Tile_x * m_iHeightMapSize)].Seed_Count += 1;
                 }
             } else {
-
                 if (SeedAttr[grass->Tile_z + (grass->Tile_x * m_iHeightMapSize)].Obj_Id == temp_Id + 1) {
                     if (SeedAttr[grass->Tile_z + (grass->Tile_x * m_iHeightMapSize)].Seed_Count < 15) {
                         SeedAttr[grass->Tile_z + (grass->Tile_x * m_iHeightMapSize)].Seed_Count += 1;
@@ -3039,7 +3038,6 @@ void CLyTerrain::FillLightMap(int x, int z, int lcx, int lcz, DWORD Color, float
         }
         //아래쪽(CB) 칠하기..
         if ((z - 1) >= 0 && m_ppLightMapTexture[x][z - 1]) {
-
             D3DLOCKED_RECT d3dlrtSource;
             m_ppLightMapTexture[x][z - 1]->Get()->LockRect(0, &d3dlrtSource, 0, 0);
 
@@ -3647,7 +3645,6 @@ void CLyTerrain::SetDTex(int x, int y) {
                 SetPertinentTile(pDTexGroupMng, &Dest1DTex, &Dest2DTex);
             } else {
                 if (Dest1DTex.Attr.Group != 0) {
-
                     Dest2DTex = Dest1DTex;
                 }
 

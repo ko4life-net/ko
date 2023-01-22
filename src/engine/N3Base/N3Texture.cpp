@@ -57,7 +57,6 @@ void CN3Texture::Release() {
 
 bool CN3Texture::Create(int nWidth, int nHeight, D3DFORMAT Format, BOOL bGenerateMipMap) {
     if (nWidth != nHeight) {
-
         if (nWidth <= 1 || nHeight <= 1 || D3DFMT_UNKNOWN == Format) {
             return false;
         }

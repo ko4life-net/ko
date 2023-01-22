@@ -453,7 +453,6 @@ bool CN3UIList::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 void CN3UIList::ResetContent() {
     it_pString it = m_ListString.begin(), itEnd = m_ListString.end();
     for (; it != itEnd; it++) {
-
         CN3UIString * pString = *it;
         delete pString;
     }

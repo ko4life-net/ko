@@ -73,7 +73,6 @@ void CDlgMapView::OnPaint() {
     CPaintDC dc(this); // device context for painting
 
     if (m_pFrame->GetMapMng()->GetTerrain() != NULL) {
-
         CWnd * pWnd = GetDlgItem(IDC_MAP_VIEW);
         CRect  rc;
         pWnd->GetClientRect(&rc);
@@ -137,7 +136,6 @@ void CDlgMapView::ColorMapTemp(void) {
     int x = 0, z = 0, x2 = 0, z2 = 0;
     for (z = 0; z < m_iNumColorMap; z++) {
         for (x = 0; x < m_iNumColorMap; x++) {
-
             if (m_pFrame->GetMapMng()->GetTerrain()->m_pColorTexture[x][z].Get() == NULL ||
                 m_pFrame->GetMapMng()->GetTerrain()->m_pColorTexture[x][z].PixelFormat() != D3DFMT_X8R8G8B8 ||
                 m_pFrame->GetMapMng()->GetTerrain()->m_pColorTexture[x][z].Width() != m_iColorMapTexSize ||
@@ -284,7 +282,6 @@ void CDlgMapView::OnMapViewCancel() {
 }
 
 void CDlgMapView::SetMapView(void) {
-
     SetRect(&DragRect, MousePoint.x, MousePoint.y, MousePoint.x + Brush_Size, MousePoint.y + Brush_Size);
 
     int temp = (512 - Brush_Size) - DragRect.top;

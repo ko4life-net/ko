@@ -447,7 +447,6 @@ void CAISocket::RecvNpcAttack(char * pBuf) {
             m_pMain->Send_Region(pOutBuf, send_index, pNpc->m_sCurZone, pNpc->m_sRegion_X, pNpc->m_sRegion_Z, NULL,
                                  false);
         } else {
-
             SetByte(pOutBuf, WIZ_ATTACK, send_index);
             SetByte(pOutBuf, byAttackType, send_index); // 직접:1, 마법:2, 지속마법:3
                 //if(result == 0x04)                                // 마법으로 죽는경우

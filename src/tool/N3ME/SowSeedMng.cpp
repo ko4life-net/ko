@@ -291,7 +291,6 @@ void CSowSeedMng::Render(LPDIRECT3DDEVICE9 lpD3DDevice) {
 
 void CSowSeedMng::Add_Grass(void) {
     if (Grass != NULL) {
-
         __Vector3    Max = __Vector3(-99999.0f, -999999.0f, -999999.0f);
         __Vector3    Min = __Vector3(99999.0f, 999999.0f, 999999.0f);
         CMainFrame * pFrame = (CMainFrame *)AfxGetMainWnd();
@@ -536,7 +535,6 @@ void CSowSeedMng::CreateBox(__Vector3 vMax, __Vector3 vMin) {
 };
 
 void CSowSeedMng::Render_Box(LPDIRECT3DDEVICE9 lpD3DDevice, __Vector3 Pos) {
-
     WORD  m_Index[26] = {0, 1, 1, 4, 4, 5, 5, 0, 3, 2, 2, 7, 7, 6, 6, 3, 1, 2, 0, 3, 1, 2, 4, 7, 5, 6};
     DWORD dwLight;
     lpD3DDevice->GetRenderState(D3DRS_LIGHTING, &dwLight);
@@ -562,7 +560,6 @@ void CSowSeedMng::Render_Box(LPDIRECT3DDEVICE9 lpD3DDevice, __Vector3 Pos) {
 };
 
 void CSowSeedMng::SaveData(void) {
-
     // Seed List 읽어 오기..
     DWORD       dwFlags = OFN_EXPLORER | OFN_CREATEPROMPT | OFN_LONGNAMES | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(FALSE, "tgi", NULL, dwFlags, "Grass Info File(*.tgi)|*.tgi||", NULL);
@@ -612,7 +609,6 @@ void CSowSeedMng::SaveData(void) {
     //    Test_GameDataSave();
 };
 void CSowSeedMng::LoadData(void) {
-
     char szOldPath[_MAX_PATH];
     GetCurrentDirectory(_MAX_PATH, szOldPath);
 
@@ -666,7 +662,6 @@ void CSowSeedMng::LoadData(void) {
         fread(group->FileName, len, 1, fp);
 
         for (int j = 0; j < grass_sub_size; j++) {
-
             LPGRASS grass = new GRASS;
             // 풀의 위치
             fread(grass->Pos, sizeof(grass->Pos), 1, fp);
@@ -687,7 +682,6 @@ void CSowSeedMng::LoadData(void) {
 };
 
 void CSowSeedMng::SaveDataGame(void) {
-
     CMainFrame * m_pRefFrm = (CMainFrame *)AfxGetMainWnd();
 
     if (m_pRefFrm->m_SeedFileName[0] == NULL) {
@@ -763,7 +757,6 @@ void CSowSeedMng::SaveDataGame(void) {
 }
 
 void CSowSeedMng::Test_GameDataSave(void) {
-
     DWORD       dwRWC = 0;
     DWORD       dwFlags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_LONGNAMES | OFN_HIDEREADONLY;
     CFileDialog dlg(FALSE, "tst", NULL, dwFlags, "Grass Info File(*.tst)|*.tst||", NULL);
@@ -801,7 +794,6 @@ void CSowSeedMng::Test_GameDataSave(void) {
                     SeedAttr[grass->Tile_z + (grass->Tile_x * Map_Size)].Seed_Count += 1;
                 }
             } else {
-
                 if (SeedAttr[grass->Tile_z + (grass->Tile_x * Map_Size)].Obj_Id == group->Group_id + 1) {
                     if (SeedAttr[grass->Tile_z + (grass->Tile_x * Map_Size)].Seed_Count < 15) {
                         SeedAttr[grass->Tile_z + (grass->Tile_x * Map_Size)].Seed_Count += 1;

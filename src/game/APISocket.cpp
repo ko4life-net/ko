@@ -337,7 +337,6 @@ BOOL CAPISocket::ReceiveProcess() {
             if (siCore <= iCount) {
                 if (PACKET_TAIL == ntohs(*((WORD *)(pData + iCount - 2)))) // 패킷 꼬리 부분 검사..
                 {
-
 #ifdef _CRYPTION
                     DataPack * pDP = new DataPack(siCore, pData + 4, FALSE);
 #else

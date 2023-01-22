@@ -14,7 +14,6 @@
 #include "N3Base/N3Shape.h"
 
 class CMainFrame : public CFrameWnd {
-
   protected: // create from serialization only
     CMainFrame();
     DECLARE_DYNCREATE(CMainFrame)

@@ -85,7 +85,6 @@ LRESULT CN3IME::OnInputLangChange(WPARAM dwCommand, LPARAM dwData) {
             CANDIDATEFORM cf;
 
             if (m_dwProperty & IME_PROP_AT_CARET) {
-
                 // This application do not want to set candidate window to
                 // any position. Anyway, if an application need to set the
                 // candiadet position, it should remove the if 0 code

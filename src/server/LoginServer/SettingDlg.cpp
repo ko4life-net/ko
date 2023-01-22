@@ -74,7 +74,6 @@ BOOL CSettingDlg::OnInitDialog() {
 }
 
 void CSettingDlg::OnOK() {
-
     CDialog::OnOK();
 }
 

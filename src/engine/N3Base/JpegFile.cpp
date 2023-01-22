@@ -192,7 +192,6 @@ BYTE * CJpegFile::JpegFileToRGB(std::string fileName, UINT * width, UINT * heigh
     // alloc and open our new buffer
     dataBuf = (BYTE *)new BYTE[cinfo.output_width * 3 * cinfo.output_height];
     if (dataBuf == NULL) {
-
         // AfxMessageBox("JpegFile :\nOut of memory",MB_ICONSTOP);
 
         jpeg_destroy_decompress(&cinfo);
@@ -228,11 +227,9 @@ BYTE * CJpegFile::JpegFileToRGB(std::string fileName, UINT * width, UINT * heigh
 
         // asuumer all 3-components are RGBs
         if (cinfo.out_color_components == 3) {
-
             j_putRGBScanline(buffer[0], *width, dataBuf, cinfo.output_scanline - 1);
 
         } else if (cinfo.out_color_components == 1) {
-
             // assume all single component images are grayscale
             j_putGrayScanlineToRGB(buffer[0], *width, dataBuf, cinfo.output_scanline - 1);
         }
@@ -562,7 +559,6 @@ void j_putGrayScanlineToRGB(BYTE * jpegline, int widthPix, BYTE * outBuf, int ro
     int offset = row * widthPix * 3;
     int count;
     for (count = 0; count < widthPix; count++) {
-
         BYTE iGray;
 
         // get our grayscale value
@@ -1338,7 +1334,6 @@ WORD FAR CJpegFile::SaveDIB(HDIB hDib, LPSTR lpFileName) {
     // Now calculate the size of the image
 
     if ((lpBI->biCompression == BI_RLE8) || (lpBI->biCompression == BI_RLE4)) {
-
         // It's an RLE bitmap, we can't calculate size, so trust the
         // biSizeImage field
 

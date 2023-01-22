@@ -501,7 +501,6 @@ BOOL CEbenezerDlg::OnInitDialog() {
 }
 
 void CEbenezerDlg::OnSysCommand(UINT nID, LPARAM lParam) {
-
     CDialog::OnSysCommand(nID, lParam);
 }
 

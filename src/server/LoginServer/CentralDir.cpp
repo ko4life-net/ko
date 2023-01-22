@@ -108,7 +108,6 @@ void CCentralDir::Read() {
 
 // return the location of the beginning of the "end" record in the file
 DWORD CCentralDir::Locate() {
-
     // maximum size of end of central dir record
     long  uMaxRecordSize = 0xffff + CENTRALDIRSIZE;
     DWORD uFileSize = m_pStorage->m_file.GetLength();
@@ -174,7 +173,6 @@ void CCentralDir::Clear() {
 }
 
 bool CCentralDir::IsValidIndex(WORD uIndex) {
-
     bool ret = uIndex < m_headers.GetSize();
 #ifdef _DEBUG
     if (!ret) {

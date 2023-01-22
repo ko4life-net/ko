@@ -138,7 +138,6 @@ void CN3MEView::OnInitialUpdate() {
 }
 
 BOOL CN3MEView::OnSetCursor(CWnd * pWnd, UINT nHitTest, UINT message) {
-
     if (m_pMapMng) {
         int CursorMode = m_pMapMng->GetCursorMode();
         if (CursorMode == CM_POS || CursorMode == CM_ROTATE || CursorMode == CM_SCALE) {

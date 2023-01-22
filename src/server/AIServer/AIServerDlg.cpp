@@ -2200,7 +2200,6 @@ void CServerDlg::TestCode() {
 }
 
 BOOL CServerDlg::GetMagicType1Data() {
-
     CMagicType1Set MagicType1Set;
 
     if (!MagicType1Set.Open()) {

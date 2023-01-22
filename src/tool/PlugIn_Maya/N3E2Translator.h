@@ -12,7 +12,6 @@
 #include "N3E2Wrapper.h"
 
 class CN3E2Translator : public MPxFileTranslator {
-
   public:
     CN3E2Translator();
     virtual ~CN3E2Translator();

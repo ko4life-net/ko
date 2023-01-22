@@ -14,6 +14,7 @@ AlignArrayOfStructures: Left
 BreakConstructorInitializers: BeforeComma
 BreakBeforeBraces: Attach
 AllowShortFunctionsOnASingleLine: Inline
+KeepEmptyLinesAtTheStartOfBlocks: false
 
 # Feature from LLVM-15.
 # Use src/vendor/opt/bin/clang-format.exe, which is from LLVM-16.

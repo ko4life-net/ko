@@ -1833,7 +1833,6 @@ void CN3Chr::BuildMesh() {
         float *   pfWeights = NULL;
         for (int j = 0; j < nVC; j++) // j < m_nBoneVertices 와 같다..
         {
-
             nAffect = pVSrc[j].nAffect;
             if (1 == nAffect) {
                 // 단일 뼈대...
@@ -1924,7 +1923,6 @@ void CN3Chr::BuildMesh(int nLOD) {
         float *   pfWeights = NULL;
         for (int j = 0; j < nVC; j++) // j < m_nBoneVertices 와 같다..
         {
-
             nAffect = pVSrc[j].nAffect;
             if (1 == nAffect) {
                 // 단일 뼈대...

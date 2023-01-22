@@ -152,7 +152,6 @@ bool CZipArchive::OpenFile(WORD uIndex) {
     m_info.Init();
     m_centralDir.OpenFile(uIndex);
     if (CurrentFile()->IsEncrypted()) {
-
         if (m_pszPassword.GetSize() == 0) {
             TRACE(_T("Password not set for the encrypted file.\n"));
             return false;
@@ -991,7 +990,6 @@ void CZipArchive::CryptInitKeys() {
 }
 
 void CZipArchive::CryptUpdateKeys(char c) {
-
     m_keys[0] = CryptCRC32(m_keys[0], c);
     m_keys[1] += m_keys[0] & 0xff;
     m_keys[1] = m_keys[1] * 134775813L + 1;
@@ -1108,7 +1106,6 @@ bool CZipArchive::TestFile(WORD uIndex, ZIPCALLBACKFUN pCallback, void * pUserDa
     }
     CZipFileHeader * pHeader = m_centralDir.m_headers[uIndex];
     if (IsFileDirectory(uIndex)) {
-
         // we do not test whether the password for the encrypted directory
         // is correct, since it seems to be senseless (anyway password
         // encrypted directories should be avoided - it adds 12 bytes)
