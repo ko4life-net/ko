@@ -120,12 +120,8 @@ bool CUICmd::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             CGameProcedure::s_pProcMain->CommandToggleUIState();
         }
 
-        else if (pSender == m_pBtn_Exit) // 캐릭터 캐릭터 선택창으로 간다..
-        {
-            std::string szMsg;
-            ::_LoadStringFromResource(IDS_EXIT, szMsg);
-            //            CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_RESTART_GAME); // 게임 다시시작 하기..??
-            CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_EXIT); // 게임 다시시작 하기..??
+        else if (pSender == m_pBtn_Exit) {
+            CGameProcedure::s_pProcMain->CommandExitMenu();
         }
 
         else if (pSender == m_pBtn_Camera) {

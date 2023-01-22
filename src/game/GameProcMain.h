@@ -54,6 +54,7 @@ class CGameProcMain : public CGameProcedure {
     class CUITradeBBSSelector * m_pUITradeBBSSelector; // 상거래 게시판 종류 선택
     class CUITradeBBSEditDlg *  m_pUITradeBBSEdit;     // 상거래 게시물 설명
     class CUIRookieTip *        m_pUIRookieTip;        // RookieTip when closing notice ui
+    class CUIExitMenu *         m_pUIExitMenu;         // Exit Menu
 
     class CN3Shape * m_pTargetSymbol; // 플레이어가 타겟으로 잡은 캐릭터의 위치위에 그리면 된다..
 
@@ -86,6 +87,11 @@ class CGameProcMain : public CGameProcedure {
     int KM_COUNT;
 
     float m_fRotateValue;
+
+    int            m_iExitCurCountDown;
+    bool           m_bDoCancelExitRequest;
+    e_GameExitType m_eExitType;
+    float          m_fExitCurCountDownToReach;
 
   protected:
     bool ProcessPacket(DataPack * pDataPack, int & iOffset);
@@ -232,6 +238,7 @@ class CGameProcMain : public CGameProcedure {
     void CommandMove(e_MoveDirection eMD, bool bStartOrEnd); // 움직이는 방향(전후진, 멈춤), 움직이기 시작하는가?
     void CommandEnableAttackContinous(bool bEnable, CPlayerBase * pTarget);
     void CommandCameraChange(); // 카메라 시점 바꾸기..
+    void CommandExitMenu();
     void CommandSitDown(bool bLimitInterval, bool bSitDown, bool bImmediately = false);
 
     void CommandTargetSelect_NearstEnemy();    // 가장 가까운 적 타겟 잡기..

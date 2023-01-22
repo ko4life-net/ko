@@ -57,6 +57,7 @@
 #include "UILevelGuide.h"
 #include "UIDead.h"
 #include "UIRookieTip.h"
+#include "UIExitMenu.h"
 
 #include "SubProcPerTrade.h"
 #include "CountableItemEditDlg.h"
@@ -127,6 +128,11 @@ CGameProcMain::CGameProcMain() // r기본 생성자.. 각 변수의 역활은 헤더 참조..
 
     m_fRotateValue = -1.0f;
 
+    m_bDoCancelExitRequest = false;
+    m_eExitType = EXIT_TYPE_NONE;
+    m_iExitCurCountDown = SECONDS_TO_EXIT_GAME_AFTER_ATTACK;
+    m_fExitCurCountDownToReach = -1.0f;
+
     //UI
     m_pUIMsgDlg = new CUIMessageWnd;
     m_pUIChatDlg = new CUIChat();
@@ -162,6 +168,7 @@ CGameProcMain::CGameProcMain() // r기본 생성자.. 각 변수의 역활은 헤더 참조..
     m_pUILevelGuide = new CUILevelGuide();
     m_pUIDead = new CUIDead();
     m_pUIRookieTip = new CUIRookieTip();
+    m_pUIExitMenu = new CUIExitMenu();
 
     m_pSubProcPerTrade = new CSubProcPerTrade();
     m_pMagicSkillMng = new CMagicSkillMng(this);
@@ -209,6 +216,7 @@ CGameProcMain::~CGameProcMain() {
     delete m_pUILevelGuide;
     delete m_pUIDead;
     delete m_pUIRookieTip;
+    delete m_pUIExitMenu;
 
     delete m_pSubProcPerTrade;
     delete m_pMagicSkillMng;
@@ -246,6 +254,7 @@ void CGameProcMain::ReleaseUIs() {
     m_pUIRepairTooltip->Release();
     m_pUIPartyOrForce->Release();
     m_pUISkillTreeDlg->Release();
+    m_pUIInventory->Release();
     m_pUIHotKeyDlg->Release();
     m_pUINpcTalk->Release();
     //    m_pUITradeList->Release();
@@ -257,6 +266,7 @@ void CGameProcMain::ReleaseUIs() {
     m_pUIInn->Release();
     m_pUICreateClanName->Release();
     m_pUIRookieTip->Release();
+    m_pUIExitMenu->Release();
 
     CN3UIBase::DestroyTooltip();
 }
@@ -586,9 +596,64 @@ void CGameProcMain::Tick() {
         m_pUIChatDlg->ShowContinueMsg();
         fInterval5 = 0;
     }
-    fTimePrev = fTime;
     // 타이머 비슷한 루틴..
     ////////////////////////////////////////////////////////////////////////////////////
+
+    // Exit Menu
+    if (m_bDoCancelExitRequest && m_fExitCurCountDownToReach != -1.0f) {
+        if (m_fExitCurCountDownToReach < (float)SECONDS_TO_EXIT_GAME_AFTER_ATTACK) {
+            m_fExitCurCountDownToReach += fTime - fTimePrev;
+        } else {
+            m_fExitCurCountDownToReach = -1.0f;
+            m_bDoCancelExitRequest = false;
+        }
+    }
+
+    if (m_eExitType > EXIT_TYPE_NONE) {
+        int iCountDown = (int)((float)SECONDS_TO_EXIT_GAME_AFTER_ATTACK - m_fExitCurCountDownToReach);
+        if (m_iExitCurCountDown > iCountDown) {
+            m_iExitCurCountDown = iCountDown;
+            if (m_pUIChatDlg) {
+                std::string szMsg;
+                ::_LoadStringFromResource(IDS_EXIT_GAME_IN, szMsg);
+                char szBuff[100]{};
+                sprintf(szBuff, szMsg.c_str(), m_iExitCurCountDown);
+                m_pUIChatDlg->AddChatMsg(N3_CHAT_NORMAL, szBuff, 0xFFFF0000);
+            }
+            if (m_iExitCurCountDown <= 0) {
+                e_GameExitType eExitType = m_eExitType;
+                m_eExitType = EXIT_TYPE_NONE;
+                m_iExitCurCountDown = SECONDS_TO_EXIT_GAME_AFTER_ATTACK;
+                m_fExitCurCountDownToReach = -1.0f;
+                m_bDoCancelExitRequest = false;
+                //m_bRecruitingParty = false; // TODO:
+
+                if (eExitType == EXIT_TYPE_SELECTCHAR) {
+                    m_pUIExitMenu->SelectCharacter();
+                } else if (eExitType == EXIT_TYPE_EXIT) {
+                    ::PostQuitMessage(0);
+                } else if (eExitType == EXIT_TYPE_OPTION) {
+                    ::ShellExecute(NULL, "open", "Option.exe", NULL, NULL, SW_SHOWNORMAL);
+                    ::PostQuitMessage(0);
+                }
+            }
+        }
+    }
+
+    // TODO: Implement
+    //if (m_bRecruitingParty) {
+    //    if ((fTime - m_fRecruitingPartyCurTime) > 180.0f && m_pUIPartyBBS) {
+    //        std::string szMsg;
+    //        m_pUIPartyBBS->GetRecruitingPartyString(szMsg);
+    //        if (!szMsg.empty()) {
+    //            m_fRecruitingPartyCurTime = fTime;
+    //            CGameProcedure::s_pProcMain->MsgSend_Chat(N3_CHAT_SEEKING_PARTY, szMsg);
+    //        }
+    //    }
+    //}
+
+    // Previous time since last tick
+    fTimePrev = fTime;
 
     // Rotates the player's camera 180 degrees from the current position.
     if (m_fRotateValue >= 0.0f && !CGameProcedure::s_pUIMgr->m_bDoneSomething) {
@@ -3076,6 +3141,20 @@ bool CGameProcMain::MsgRecv_Attack(DataPack * pDataPack, int & iOffset) {
         //        else if(0x03 == iType) pAttacker->Action(PSA_SPELLMAGIC, false, pTarget); // 지속 마법 공격..
     }
 
+    if (bIAmTarget || bIAmAttacker) {
+        m_bDoCancelExitRequest = true;
+        m_fExitCurCountDownToReach = 0.0f;
+        if (m_eExitType > EXIT_TYPE_NONE) {
+            m_eExitType = EXIT_TYPE_NONE;
+            m_iExitCurCountDown = SECONDS_TO_EXIT_GAME_AFTER_ATTACK;
+            if (m_pUIChatDlg) {
+                std::string szMsg;
+                ::_LoadStringFromResource(IDS_EXIT_GAME_CANCELED, szMsg);
+                m_pUIChatDlg->AddChatMsg(N3_CHAT_NORMAL, szMsg, 0xFFFF0000);
+            }
+        }
+    }
+
     pTarget->m_bGuardSuccess = false; // 방어에 성공했는지에 대한 플래그..
     if (0x0 == iResult)               // 공격 실패
     {
@@ -3961,6 +4040,16 @@ void CGameProcMain::InitUI() {
     iY = (iH - (rc.bottom - rc.top)) / 2;
     m_pUIRookieTip->SetPos(iX, iY);
     m_pUIRookieTip->SetState(UI_STATE_COMMON_NONE);
+
+    //Exit Menu
+    m_pUIExitMenu->Init(s_pUIMgr);
+    m_pUIExitMenu->LoadFromFile(pTbl->szExitMenu);
+    m_pUIExitMenu->SetVisibleWithNoSound(false);
+    rc = m_pUIExitMenu->GetRegion();
+    iX = (iW - (rc.right - rc.left)) / 2;
+    iY = (iH - (rc.bottom - rc.top)) / 2;
+    m_pUIExitMenu->SetPos(iX, iY);
+    m_pUIExitMenu->SetStyle(UISTYLE_MODAL);
 }
 
 void CGameProcMain::MsgSend_RequestTargetHP(short siIDTarget, BYTE byUpdateImmediately) {
@@ -4664,6 +4753,12 @@ void CGameProcMain::CommandCameraChange() // 카메라 시점 바꾸기..
     }
 
     s_pEng->ViewPointChange(VP_UNKNOWN); // 순서대로 시점을 바꾼다..
+}
+
+void CGameProcMain::CommandExitMenu() {
+    if (m_pUIExitMenu) {
+        return m_pUIExitMenu->SetVisible(true);
+    }
 }
 
 void CGameProcMain::MsgOutput(const std::string & szMsg, D3DCOLOR crMsg) {

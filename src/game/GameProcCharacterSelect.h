@@ -113,7 +113,8 @@ class CGameProcCharacterSelect : public CGameProcedure {
     void MsgSend_DeleteChr(const std::string & szKey);
     void MsgSend_CharacterSelect(); // virtual
 
-    int  MsgRecv_VersionCheck(DataPack * pDataPack, int & iOffset);    // virtual
+    int  MsgRecv_VersionCheck(DataPack * pDataPack, int & iOffset); // virtual
+    int  MsgRecv_GameServerLogIn(DataPack * pDataPack, int & iOffset) override;
     bool MsgRecv_CharacterSelect(DataPack * pDataPack, int & iOffset); // virtual
     void MsgRecv_AllCharacterInfo(class DataPack * pBuf, int & iOffset);
     void MsgRecv_DeleteChr(DataPack * pBuf, int & iOffset);

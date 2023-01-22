@@ -116,8 +116,7 @@ bool CUIMessageBox::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
                     Sleep(2000); // 2초 딜레이.. 서버가 처리할 시간을 준다.
                     CGameProcedure::s_pSocket->Connect(CGameProcedure::s_hWndBase, szIP.c_str(), dwPort);
                     CGameProcedure::s_bNeedReportConnectionClosed = true; // 서버접속이 끊어진걸 보고해야 하는지..
-
-                    CGameProcedure::MsgSend_GameServerLogIn();
+                    CGameProcedure::s_bNeedReportVersionCheck = true;
                     CGameProcedure::ProcActiveSet(
                         (CGameProcedure *)CGameProcedure::s_pProcCharacterSelect); // 다시 캐릭터 고르자..
                 }
