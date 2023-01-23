@@ -1,0 +1,5 @@
+venv/
+build/
+ko.egg-info/
+__pycache__/
+*.pyc

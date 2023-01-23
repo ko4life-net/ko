@@ -1,0 +1,5 @@
+autopep8
+click
+mssql-scripter
+pipreqs
+pyodbc
