@@ -8,7 +8,7 @@ setup(
     install_requires=['click'],
     entry_points={
         'console_scripts': [
-            'ko = kocmd.ko:cli',
+            'ko = ko.main:cli',
         ],
     },
 )

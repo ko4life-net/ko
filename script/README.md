@@ -19,7 +19,7 @@ pip install .
 ko --help
 
 # or
-python kocmd/ko.py --help
+python ko/main.py --help
 
 # add `--editable` if you want to run the shorter `ko` command whilst editing the scripts:
 pip install --editable .
