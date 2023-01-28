@@ -252,6 +252,7 @@ void CGameProcMain::ReleaseUIs() {
     m_pUINpcEvent->Release();
     m_pUIItemREDlg->Release();
     m_pUIRepairTooltip->Release();
+    m_pUIDroppedItemDlg->Release();
     m_pUIPartyOrForce->Release();
     m_pUISkillTreeDlg->Release();
     m_pUIInventory->Release();
