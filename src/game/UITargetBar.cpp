@@ -86,6 +86,9 @@ bool CUITargetBar::Load(HANDLE hFile) {
         m_pProgressHP_burn->SetRange(0, 100);
         m_pProgressHP_curse->SetRange(0, 100);
         m_pProgressHP_slow->SetRange(0, 100);
+        m_pProgressHP_burn->SetVisible(false);
+        m_pProgressHP_curse->SetVisible(false);
+        m_pProgressHP_slow->SetVisible(false);
     }
     if (m_pProgressHP) {
         m_pProgressHP->SetRange(0, 100);
