@@ -9,6 +9,9 @@
 class CUITargetBar : public CN3UIBase {
   public:
     class CN3UIProgress * m_pProgressHP;
+    class CN3UIProgress * m_pProgressHP_burn;
+    class CN3UIProgress * m_pProgressHP_curse;
+    class CN3UIProgress * m_pProgressHP_slow;
     class CN3UIString *   m_pStringID;
 
     float m_fTimeSendPacketLast; // 이걸 기준으로 1초에 한번씩 타겟의 정보 요청..
