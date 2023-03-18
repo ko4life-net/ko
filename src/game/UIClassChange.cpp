@@ -53,13 +53,13 @@ bool CUIClassChange::Load(HANDLE hFile) {
     __ASSERT(m_pBtn_Ok, "NULL UI Component!!");
     m_pBtn_Cancel = (CN3UIButton *)GetChildByID("Btn_Cancel");
     __ASSERT(m_pBtn_Cancel, "NULL UI Component!!");
-    //m_pBtn_Class0        = (CN3UIButton*)GetChildByID("Btn_Class0");        __ASSERT(m_pBtn_Class0,    "NULL UI Component!!");
-    //m_pBtn_Class1        = (CN3UIButton*)GetChildByID("Btn_Class1");        __ASSERT(m_pBtn_Class1,    "NULL UI Component!!");
+    m_pBtn_Class0        = (CN3UIButton*)GetChildByID("Btn_Class0");        __ASSERT(m_pBtn_Class0,    "NULL UI Component!!");
+    m_pBtn_Class1        = (CN3UIButton*)GetChildByID("Btn_Class1");        __ASSERT(m_pBtn_Class1,    "NULL UI Component!!");
 
     m_pText_Warning = (CN3UIString *)GetChildByID("Text_Waring");
     __ASSERT(m_pText_Warning, "NULL UI Component!!");
-    //m_pText_Info0        = (CN3UIString*)GetChildByID("Text_info0");        __ASSERT(m_pText_Info0, "NULL UI Component!!");
-    //m_pText_Info1        = (CN3UIString*)GetChildByID("Text_info1");        __ASSERT(m_pText_Info1, "NULL UI Component!!");
+    m_pText_Info0        = (CN3UIString*)GetChildByID("Text_info0");        __ASSERT(m_pText_Info0, "NULL UI Component!!");
+    m_pText_Info1        = (CN3UIString*)GetChildByID("Text_info1");        __ASSERT(m_pText_Info1, "NULL UI Component!!");
     m_pText_Message = (CN3UIString *)GetChildByID("Text_Message");
     __ASSERT(m_pText_Message, "NULL UI Component!!");
 

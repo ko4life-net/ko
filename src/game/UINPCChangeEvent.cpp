@@ -56,9 +56,9 @@ bool CUINPCChangeEvent::Load(HANDLE hFile) {
         return false;
     }
 
-    //m_pBtn_Change        = (CN3UIButton*)GetChildByID("Btn_change");        __ASSERT(m_pBtn_Change,    "NULL UI Component!!");
-    //m_pBtn_Repoint0        = (CN3UIButton*)GetChildByID("Btn_repoint0");    __ASSERT(m_pBtn_Repoint0, "NULL UI Component!!");
-    //m_pBtn_Repoint1        = (CN3UIButton*)GetChildByID("Btn_repoint1");    __ASSERT(m_pBtn_Repoint1,    "NULL UI Component!!");
+    m_pBtn_Change        = (CN3UIButton*)GetChildByID("Btn_change");        __ASSERT(m_pBtn_Change,    "NULL UI Component!!");
+    m_pBtn_Repoint0        = (CN3UIButton*)GetChildByID("Btn_repoint0");    __ASSERT(m_pBtn_Repoint0, "NULL UI Component!!");
+    m_pBtn_Repoint1        = (CN3UIButton*)GetChildByID("Btn_repoint1");    __ASSERT(m_pBtn_Repoint1,    "NULL UI Component!!");
     m_pBtn_Close = (CN3UIButton *)GetChildByID("Btn_close");
     __ASSERT(m_pBtn_Close, "NULL UI Component!!");
 
