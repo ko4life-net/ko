@@ -2552,6 +2552,7 @@ void CServerDlg::GetServerInfoIni() {
     CIni inifile;
     inifile.SetPath("server.ini");
     m_byZone = inifile.GetProfileInt("SERVER", "ZONE", 1);
+    m_byTestMode = inifile.GetProfileInt("TEST", "MODE", 0);
 }
 
 void CServerDlg::SendSystemMsg(char * pMsg, int zone, int type, int who) {
