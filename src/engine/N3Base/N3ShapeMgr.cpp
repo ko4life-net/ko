@@ -138,8 +138,6 @@ bool CN3ShapeMgr::Load(HANDLE hFile) {
             __Quaternion qtRot = pShape->Rot();
             int          iSPC = pShape->PartCount();
             std::string  str = pShape->m_szName;
-            unsigned     sz = str.size();
-            str.resize(sz - 1, '0');
             fprintf(stream,
                     "FileName[ %s.n3shape ] PartCount[ %d ] Position[ %f %f %f] Rotation[ %f %f %f %f ] Scale[ %f %f "
                     "%f ] Belong [ "
