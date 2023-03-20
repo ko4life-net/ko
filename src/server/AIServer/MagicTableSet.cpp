@@ -75,7 +75,7 @@ void CMagicTableSet::DoFieldExchange(CFieldExchange * pFX) {
     RFX_Byte(pFX, _T("[ItemGroup]"), m_ItemGroup);
     RFX_Long(pFX, _T("[UseItem]"), m_UseItem);
     RFX_Byte(pFX, _T("[CastTime]"), m_CastTime);
-    RFX_Byte(pFX, _T("[ReCastTime]"), m_ReCastTime);
+    RFX_Int(pFX, _T("[ReCastTime]"), m_ReCastTime);
     RFX_Byte(pFX, _T("[SuccessRate]"), m_SuccessRate);
     RFX_Byte(pFX, _T("[Type1]"), m_Type1);
     RFX_Byte(pFX, _T("[Type2]"), m_Type2);

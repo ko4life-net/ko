@@ -30,7 +30,7 @@ class CMagicTableSet : public CRecordset {
     BYTE    m_ItemGroup;
     long    m_UseItem;
     BYTE    m_CastTime;
-    BYTE    m_ReCastTime;
+    int    m_ReCastTime;
     BYTE    m_SuccessRate;
     BYTE    m_Type1;
     BYTE    m_Type2;
