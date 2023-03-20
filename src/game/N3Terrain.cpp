@@ -398,7 +398,7 @@ bool CN3Terrain::Load(HANDLE hFile) {
         ReadFile(hFile, &iNameLength, sizeof(int), &dwRWC, NULL);
     if (iNameLength > 0){
         char szMapFName[25];
-        ReadFile(hFile, szMapFName, iNameLength, &dwRWC, NULL); // texture name
+        ReadFile(hFile, szMapFName, iNameLength, &dwRWC, NULL); // Map name
         printf("Mapname: %s\n", szMapFName);
     }}
     if (gtdversion != 1) {
