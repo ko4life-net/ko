@@ -1130,10 +1130,12 @@ typedef struct __TABLE_UPC_SKILL {
     int   iReCastTime; // 다시 캐스팅할때까지 걸리는 시간.
 
     float fUnkown1;        // TODO: implement
+    float fUnkown2;        // TODO: implement 1264
     int   iPercentSuccess; // 성공률
     DWORD dw1stTableType;  // 첫번째 타입.
     DWORD dw2ndTableType;  // 두번째 타입.
     int   iValidDist;      // 유효거리
+    int   iEtc;            // TODO: implement 1264
 
 } TABLE_UPC_ATTACK_B;
 
