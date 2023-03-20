@@ -393,13 +393,14 @@ bool CN3Terrain::Load(HANDLE hFile) {
     //_________________________________________Loading of (MYKO) <1264 maps version 1 only
     ReadFile(hFile, &(gtdversion), sizeof(int), &dwRWC, NULL);
     if (gtdversion == 1){
-        printf("MapVersion: %i 1264 detected\n", gtdversion);
+        printf("GtdMapVersion: %i 1264 detected\n", gtdversion);
         int iNameLength = 0;
         ReadFile(hFile, &iNameLength, sizeof(int), &dwRWC, NULL);
     if (iNameLength > 0){
-        char szMapFName[25];
+        char * szMapFName = new char[iNameLength + 1];
+        szMapFName[iNameLength] = '\0';
         ReadFile(hFile, szMapFName, iNameLength, &dwRWC, NULL); // Map name
-        printf("Mapname: %s\n", szMapFName);
+        printf("GtdMapname: %s\n", szMapFName);
     }}
     if (gtdversion != 1) {
         DWORD nFilePos = SetFilePointer(hFile, 0, NULL, FILE_BEGIN);

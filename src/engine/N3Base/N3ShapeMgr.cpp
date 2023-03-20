@@ -91,6 +91,24 @@ bool CN3ShapeMgr::Load(HANDLE hFile) {
     DWORD dwRWC;
     int   nL = 0;
 
+    int   opdversion = 0;
+    //_________________________________________Loading of (MYKO) <1264 maps version 1 only
+    ReadFile(hFile, &(opdversion), sizeof(int), &dwRWC, NULL);
+    if (opdversion == 1) {
+        printf("OpdMapVersion: %i 1264 detected\n", opdversion);
+        int iNameLength = 0;
+        ReadFile(hFile, &iNameLength, sizeof(int), &dwRWC, NULL);
+        if (iNameLength > 0) {
+            char * szMapFName = new char[iNameLength + 1];
+            szMapFName[iNameLength] = '\0';
+            ReadFile(hFile, szMapFName, iNameLength, &dwRWC, NULL); // Map name
+            printf("OpdMapname: %s\n", szMapFName);
+        }
+    }
+    if (opdversion != 1) {
+        DWORD nFilePos = SetFilePointer(hFile, 0, NULL, FILE_BEGIN);
+    }
+    //_________________________________________Loading of (MYKO) <1264 maps version 1 only
     if (false == LoadCollisionData(hFile)) {
         return false;
     }
@@ -111,7 +129,7 @@ bool CN3ShapeMgr::Load(HANDLE hFile) {
     //___________________________________________________________Parsing Objects
     FILE * stream = fopen("mapexported.sdt", "w");
     fprintf(stream, "Shape Post Count : %d\n", iSC);
-    printf("\nShape Post Count: %d\n", iSC);
+    printf("Shape Post Count: %d\n", iSC);
     //___________________________________________________________N3ME Exporter Tahsin
     if (iSC > 0) {
         CN3Shape * pShape = NULL;
