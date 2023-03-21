@@ -270,7 +270,8 @@ void CMagicProcess::MagicPacket(char * pBuf, int len) {
             if (sid >= 0 && sid < MAX_USER) {    // If the PLAYER shoots an arrow.
                 if (pMagic->sFlyingEffect > 0) { // Only if Flying Effect is greater than 0.
                     int total_hit = m_pSrcUser->m_sTotalHit + m_pSrcUser->m_sItemHit;
-                    int skill_mana = total_hit * pMagic->sMsp / 100;
+                    //int skill_mana = total_hit * pMagic->sMsp / 100;
+                    int skill_mana = pMagic->sMsp;
 
                     if (skill_mana > m_pSrcUser->m_pUserData->m_sMp) { // Reduce Magic Point!
                         command = MAGIC_FAIL;
@@ -754,7 +755,8 @@ _MAGIC_TABLE * CMagicProcess::IsAvailable(int magicid, int tid, int sid, BYTE ty
 
         if (type == MAGIC_EFFECTING) { // MP/SP SUBTRACTION ROUTINE!!! ITEM AND HP TOO!!!
             int total_hit = m_pSrcUser->m_sTotalHit;
-            int skill_mana = (pTable->sMsp * total_hit) / 100;
+            //int skill_mana = (pTable->sMsp * total_hit) / 100;
+            int skill_mana = (pTable->sMsp);
 
             if (pTable->bType1 == 2 && pTable->sFlyingEffect != 0) { // Type 2 related...
                 m_bMagicState = NONE;
