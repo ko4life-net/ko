@@ -168,6 +168,7 @@ class CServerDlg : public CDialog {
     int  m_iYear, m_iMonth, m_iDate, m_iHour, m_iMin, m_iWeather, m_iAmount;
     BYTE m_byNight; // π„¿Œ¡ˆ,, ≥∑¿Œ¡ˆ∏¶ ∆«¥‹... 1:≥∑, 2:π„
     BYTE m_byTestMode;
+    int m_byPartyExpMultiplier;
 
     CIOCPort m_Iocport;
 

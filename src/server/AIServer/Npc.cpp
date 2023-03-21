@@ -4227,6 +4227,9 @@ void CNpc::SendExpToUserList() {
                                 }
                                 //TRACE("* PartyUser Exp id=%s, damage=%d, total=%d, exp=%d, loral=%d, level=%d/%d *\n", pPartyUser->m_strUserID, (int)totalDamage, m_TotalDamage, nExp, nLoyalty, pPartyUser->m_sLevel, nTotalLevel);
                                 //pPartyUser->SetExp(nExp, nLoyalty, m_sLevel);
+                                if (m_pMain->m_byPartyExpMultiplier > 0) {
+                                    nExp = nExp * m_pMain->m_byPartyExpMultiplier;
+                                }
                                 pPartyUser->SetPartyExp(nExp, nLoyalty, nTotalLevel, nTotalMan);
                             }
                         }
