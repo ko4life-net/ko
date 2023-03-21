@@ -487,12 +487,6 @@ bool CN3FXPartBase::Load(HANDLE hFile) {
             m_bAlpha = FALSE;
         }
     }
-	if (m_iBaseVersion == 7) {
-		BOOL skipfxpartbase1=0;
-		BOOL skipfxpartbase2=0;
-		ReadFile(hFile, &skipfxpartbase1, sizeof(BOOL), &dwRWC, NULL);
-		ReadFile(hFile, &skipfxpartbase2, sizeof(BOOL), &dwRWC, NULL);
-	}
     m_ppRefTex = new CN3Texture *[m_iNumTex];
 
     std::string FileName;
