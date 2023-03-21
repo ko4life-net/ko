@@ -906,10 +906,10 @@ void CUISkillTreeDlg::TooltipRenderEnable(__IconItemSkill * spSkill) {
     }
     m_pStr_info->SetString(spSkill->pSkill->szDesc);
 
-    if ((spSkill->pSkill->dw1stTableType != 1) && (spSkill->pSkill->dw1stTableType != 2)) {
-        if (!m_pStr_skill_mp->IsVisible()) {
-            m_pStr_skill_mp->SetVisible(true);
-        }
+    //if ((spSkill->pSkill->dw1stTableType != 1) && (spSkill->pSkill->dw1stTableType != 2)) {
+    if (!m_pStr_skill_mp->IsVisible()) 
+    {
+        m_pStr_skill_mp->SetVisible(true);
         if (spSkill->pSkill->iExhaustMSP == 0) {
             ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NO_MANA, szFmt);
             sprintf(pszDesc, "%s", szFmt.c_str());
