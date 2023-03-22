@@ -68,21 +68,21 @@ void CMagicType4Set::DoFieldExchange(CFieldExchange * pFX) {
     RFX_Byte(pFX, _T("[AttackSpeed]"), m_AttackSpeed);
     RFX_Byte(pFX, _T("[Speed]"), m_Speed);
     RFX_Int(pFX, _T("[AC]"), m_AC);
-    RFX_Byte(pFX, _T("[Attack]"), m_Attack);
+    RFX_Int(pFX, _T("[Attack]"), m_Attack);
     RFX_Int(pFX, _T("[MaxHP]"), m_MaxHP);
     RFX_Byte(pFX, _T("[HitRate]"), m_HitRate);
     RFX_Int(pFX, _T("[AvoidRate]"), m_AvoidRate);
-    RFX_Byte(pFX, _T("[Str]"), m_Str);
-    RFX_Byte(pFX, _T("[Sta]"), m_Sta);
-    RFX_Byte(pFX, _T("[Dex]"), m_Dex);
-    RFX_Byte(pFX, _T("[Intel]"), m_Intel);
-    RFX_Byte(pFX, _T("[Cha]"), m_Cha);
-    RFX_Byte(pFX, _T("[FireR]"), m_FireR);
-    RFX_Byte(pFX, _T("[ColdR]"), m_ColdR);
-    RFX_Byte(pFX, _T("[LightningR]"), m_LightningR);
-    RFX_Byte(pFX, _T("[MagicR]"), m_MagicR);
-    RFX_Byte(pFX, _T("[DiseaseR]"), m_DiseaseR);
-    RFX_Byte(pFX, _T("[PoisonR]"), m_PoisonR);
+    RFX_Int(pFX, _T("[Str]"), m_Str);
+    RFX_Int(pFX, _T("[Sta]"), m_Sta);
+    RFX_Int(pFX, _T("[Dex]"), m_Dex);
+    RFX_Int(pFX, _T("[Intel]"), m_Intel);
+    RFX_Int(pFX, _T("[Cha]"), m_Cha);
+    RFX_Int(pFX, _T("[FireR]"), m_FireR);
+    RFX_Int(pFX, _T("[ColdR]"), m_ColdR);
+    RFX_Int(pFX, _T("[LightningR]"), m_LightningR);
+    RFX_Int(pFX, _T("[MagicR]"), m_MagicR);
+    RFX_Int(pFX, _T("[DiseaseR]"), m_DiseaseR);
+    RFX_Int(pFX, _T("[PoisonR]"), m_PoisonR);
     //}}AFX_FIELD_MAP
 }
 

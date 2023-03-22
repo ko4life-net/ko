@@ -22,21 +22,21 @@ class CMagicType4Set : public CRecordset {
     BYTE    m_AttackSpeed;
     BYTE    m_Speed;
     int     m_AC;
-    BYTE    m_Attack;
+    int     m_Attack;
     int     m_MaxHP;
     BYTE    m_HitRate;
     int     m_AvoidRate;
-    BYTE    m_Str;
-    BYTE    m_Sta;
-    BYTE    m_Dex;
-    BYTE    m_Intel;
-    BYTE    m_Cha;
-    BYTE    m_FireR;
-    BYTE    m_ColdR;
-    BYTE    m_LightningR;
-    BYTE    m_MagicR;
-    BYTE    m_DiseaseR;
-    BYTE    m_PoisonR;
+    int     m_Str;
+    int     m_Sta;
+    int     m_Dex;
+    int     m_Intel;
+    int     m_Cha;
+    int     m_FireR;
+    int     m_ColdR;
+    int     m_LightningR;
+    int     m_MagicR;
+    int     m_DiseaseR;
+    int     m_PoisonR;
     //}}AFX_FIELD
 
     // Overrides

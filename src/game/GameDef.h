@@ -1156,12 +1156,14 @@ typedef struct __TABLE_UPC_SKILL_TYPE_2 {
     DWORD dwID;         // SKILL 고유 ID
     int   iSuccessType; // 성공타입.
     int   iPower;       // 공격력
+    int   iAddDamageSkipt2;   // TODO: implement 1264
     int   iAddDist;     // 거리증가
     int   iNumArrow;    // 화살요구수
 } TABLE_UPC_SKILL_TYPE_2;
 
 typedef struct __TABLE_UPC_SKILL_TYPE_3 {
     DWORD dwID; // SKILL 고유 ID
+    int   iRadiusSkipt3; // TODO: implement 1264
     int   iDDType;
     int   iStartDamage;
     int   iDuraDamage;
@@ -1172,14 +1174,18 @@ typedef struct __TABLE_UPC_SKILL_TYPE_3 {
 typedef struct __TABLE_UPC_SKILL_TYPE_4 {
     DWORD dwID;      // 일련번호
     int   iBuffType; // 버프타입
+    int   iRadiusSkipt4;      // TODO: implement 1264
     int   iDuration;
     int   iAttackSpeed;     // 공격속도
     int   iMoveSpeed;       // 이동속도
     int   iAC;              // 방어력
     int   iAttack;          // 공격력
+    int   iHitrateSkipt4;     // TODO: implement 1264
+    int   iAvoidRateSkipt4;   // TODO: implement 1264
     int   iMaxHP;           // MAXHP
     int   iMaxHPPct;        // TODO: implement
     int   iMaxMP;           // TODO: implement
+    int   iMaxMPPctt4;      // TODO: implement 1264
     int   iStr;             // 힘
     int   iSta;             // 체력
     int   iDex;             // 민첩
@@ -1191,6 +1197,7 @@ typedef struct __TABLE_UPC_SKILL_TYPE_4 {
     int   iMagicResist;     // 마법저항
     int   iDeseaseResist;   // 저주저항
     int   iPoisonResist;    // 독저항
+    int   iExpPct;          // TODO: implement 1264
 } TABLE_UPC_SKILL_TYPE_4;
 
 typedef struct __TABLE_UPC_SKILL_TYPE_5 {
