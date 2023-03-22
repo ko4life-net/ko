@@ -860,6 +860,9 @@ bool CGameProcMain::ProcessPacket(DataPack * pDataPack, int & iOffset) {
 
         this->InitPlayerPosition(
             __Vector3(fX, fY, fZ)); // 플레이어 위치 초기화.. 일으켜 세우고, 기본동작을 취하게 한다.
+        s_pFX->TriggerBundle(s_pPlayer->IDNumber(), -1,
+                             s_pPlayer->m_InfoBase.eNation == NATION_KARUS ? FXID_WARP_KARUS : FXID_WARP_ELMORAD,
+                             s_pPlayer->IDNumber(), -1, 0);
     }
         return true;
     case N3_MOVE:
