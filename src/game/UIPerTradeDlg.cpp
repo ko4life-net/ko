@@ -24,6 +24,7 @@
 #include "N3Base/N3SndObj.h"
 #include "Resource.h"
 
+
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
@@ -767,7 +768,10 @@ bool CUIPerTradeDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 
     if ((dwMsg == UIMSG_BUTTON_CLICK) && (pSender->m_szID == "btn_trade_my") && (m_pSubProcPerTrade != NULL) &&
         (m_pSubProcPerTrade->m_ePerTradeState == PER_TRADE_STATE_NORMAL)) { // 정상 상태에서만 결정할 수 있다..
-        m_pSubProcPerTrade->PerTradeMyDecision();
+        std::string szFmt;
+        ::_LoadStringFromResource(IDS_TRADE_PERSONAL_CONFIRMATIONSURE, szFmt);
+        CGameProcedure::MessageBoxPost(szFmt, "", MB_YESNO, BEHAVIOR_TRADE_DECISION_DONE);
+        //m_pSubProcPerTrade->PerTradeMyDecision();
     }
 
     if (dwMsg == UIMSG_BUTTON_CLICK) {

@@ -153,6 +153,9 @@ bool CUIMessageBox::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             case BEHAVIOR_PERSONAL_TRADE_PERMIT:
                 pProcMain->m_pSubProcPerTrade->ProcessProceed(PER_TRADE_RESULT_MY_AGREE);
                 break; // 내가 허락..
+            case BEHAVIOR_TRADE_DECISION_DONE:
+                pProcMain->m_pSubProcPerTrade->PerTradeMyDecision();
+                break;
             case BEHAVIOR_MGAME_LOGIN:
                 pProcLogIn->MsgSend_AccountLogIn(LIC_MGAME);
                 break;
@@ -207,6 +210,9 @@ bool CUIMessageBox::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             case BEHAVIOR_PERSONAL_TRADE_FMT_WAIT:
                 pProcMain->m_pSubProcPerTrade->LeavePerTradeState(PER_TRADE_RESULT_MY_CANCEL);
                 break; // 내가 취소..
+            case BEHAVIOR_TRADE_DECISION_DONE:
+                pProcMain->m_pSubProcPerTrade->ResetMyTradeButtonState();
+                break;
             case BEHAVIOR_CLAN_JOIN:
                 pProcMain->MsgSend_KnightsJoinReq(false);
                 break;

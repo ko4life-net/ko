@@ -1376,6 +1376,7 @@ enum e_Behavior {
     BEHAVIOR_PARTY_BBS_REGISTER_CANCEL, // 파티 게시판에 등록 해제
 
     BEHAVIOR_EXECUTE_OPTION, // 게임 종료하고 옵션 실행..
+    BEHAVIOR_TRADE_DECISION_DONE, // Tah enabling messageprompt after pressing trade button
 
     BEHAVIOR_UNKNOWN = 0xffffffff
 };
