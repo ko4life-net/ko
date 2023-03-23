@@ -645,7 +645,7 @@ void CSubProcPerTrade::PerTradeOtherDecision() // 다른 사람이 거래를 결정 했다..
 {
     CN3UIButton * pButtonOther = (CN3UIButton *)m_pUIPerTradeDlg->GetChildByID("btn_trade_other");
     __ASSERT(pButtonOther, "NULL UI Component!!");
-    pButtonOther->SetState(UI_STATE_BUTTON_DISABLE);
+    pButtonOther->SetState(UI_STATE_BUTTON_DOWN);
 }
 
 ///////////////////////////////////////////////////////////////////////
