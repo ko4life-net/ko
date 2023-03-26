@@ -574,3 +574,17 @@ struct _HOME_INFO {
     BYTE  BattleZoneLZ;
     //
 };
+
+struct _START_POSITION {
+    short m_ZoneID;
+    short m_sKarusX;
+    short m_sKarusZ;
+    short m_sElmoradX;
+    short m_sElmoradZ;
+    BYTE  m_bRangeX;
+    BYTE  m_bRangeZ;
+    short m_sKarusGateX;
+    short m_sKarusGateZ;
+    short m_sElmoGateX;
+    short m_sElmoGateZ;
+};

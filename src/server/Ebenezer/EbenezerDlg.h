@@ -42,6 +42,7 @@ typedef CSTLMap<_PARTY_GROUP>       PartyArray;
 typedef CSTLMap<CKnights>           KnightsArray;
 typedef CSTLMap<_ZONE_SERVERINFO>   ServerArray;
 typedef CSTLMap<_HOME_INFO>         HomeArray;
+typedef CSTLMap<_START_POSITION>    StartPositionArray;
 typedef CSTLMap<EVENT>              QuestArray;
 
 class CUser;
@@ -69,6 +70,7 @@ class CEbenezerDlg : public CDialog {
     BOOL    LoadAllKnightsUserData();
     BOOL    LoadAllKnights();
     BOOL    LoadHomeTable();
+    BOOL    LoadStartPositionTable();
     void    Announcement(BYTE type, int nation = 0, int chat_type = 8);
     void    ResetBattleZone();
     void    BanishLosers();
@@ -165,6 +167,7 @@ class CEbenezerDlg : public CDialog {
     PartyArray       m_PartyArray;
     KnightsArray     m_KnightsArray;
     HomeArray        m_HomeArray;
+    StartPositionArray m_StartPositionArray;
     QuestArray       m_Event;
 
     CKnightsManager m_KnightsManager;

@@ -372,6 +372,7 @@ class CUser : public CIOCPSocket2 {
     void    LoginProcess(char * pBuf);
     void    Parsing(int len, char * pData);
     void    CloseProcess();
+    BOOL    SpecialOperatorCommand(char * chatstr, int chatlen);
     CUser();
     virtual ~CUser();
 };
