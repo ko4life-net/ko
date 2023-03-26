@@ -81,7 +81,7 @@ class CSubProcPerTrade : public CGameBase {
 
     void PerTradeMyDecision();    // 내가 거래를 결정 했다..
     void PerTradeOtherDecision(); // 다른 사람이 거래를 결정 했다..
-
+    void ResetMyTradeButtonState();
     void SecureJobStuffByMyDecision();
 
     void ReceiveMsgPerTradeReq(int iOtherID);

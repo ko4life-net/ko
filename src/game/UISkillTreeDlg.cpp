@@ -448,7 +448,7 @@ void CUISkillTreeDlg::PageLeft() {
 }
 
 void CUISkillTreeDlg::PageRight() {
-    if (m_iCurSkillPage == 2) {
+    if (m_iCurSkillPage == 5) {
         return;
     }
 
@@ -906,10 +906,10 @@ void CUISkillTreeDlg::TooltipRenderEnable(__IconItemSkill * spSkill) {
     }
     m_pStr_info->SetString(spSkill->pSkill->szDesc);
 
-    if ((spSkill->pSkill->dw1stTableType != 1) && (spSkill->pSkill->dw1stTableType != 2)) {
-        if (!m_pStr_skill_mp->IsVisible()) {
-            m_pStr_skill_mp->SetVisible(true);
-        }
+    //if ((spSkill->pSkill->dw1stTableType != 1) && (spSkill->pSkill->dw1stTableType != 2)) {
+    if (!m_pStr_skill_mp->IsVisible()) 
+    {
+        m_pStr_skill_mp->SetVisible(true);
         if (spSkill->pSkill->iExhaustMSP == 0) {
             ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NO_MANA, szFmt);
             sprintf(pszDesc, "%s", szFmt.c_str());
@@ -1612,6 +1612,26 @@ void CUISkillTreeDlg::SetPageInIconRegion(int iKindOf, int iPageNum) // 아이콘 �
     }
 }
 
+void CUISkillTreeDlg::AllClearImageByNametah(const std::string & szFN, bool bTrueOrNot) {
+    CN3UIImage *  pImage = GetChildImageByName("img_" + szFN);
+    CN3UIBase *  pString = NULL;
+
+    if (pImage) {
+        pImage->SetVisible(bTrueOrNot);
+    }
+
+    for (int i = 0; i < 4; i++) {
+        std::string test = "img_";
+        std::string test2 = "_";
+        std::string test3 = std::to_string(i);
+        CN3UIBase * pString = GetChildStringByName(test + szFN + test2+test3);
+        if (pString) {
+            pString->SetVisible(bTrueOrNot);
+        }
+    }
+}
+
+
 void CUISkillTreeDlg::AllClearImageByName(const std::string & szFN, bool bTrueOrNot) {
     //    CN3UIImage* pImage;
     CN3UIBase *   pBase = NULL;
@@ -1621,6 +1641,11 @@ void CUISkillTreeDlg::AllClearImageByName(const std::string & szFN, bool bTrueOr
         if (pBase) {
             pBase->SetVisible(bTrueOrNot);
         }
+    }
+
+    CN3UIBase * pImage = GetChildBaseByName("img_");
+    if (pImage) {
+        pImage->SetVisible(bTrueOrNot);
     }
 
     pBase = GetChildBaseByName("img_" + szFN);
@@ -1638,14 +1663,18 @@ void CUISkillTreeDlg::AllClearImageByName(const std::string & szFN, bool bTrueOr
 
 void CUISkillTreeDlg::SetPageInCharRegion() // 문자 역역에서 현재 페이지 설정..
 {
-    AllClearImageByName("public", false);
+    AllClearImageByNametah("public", false);
 
     switch (CGameBase::s_pPlayer->m_InfoBase.eNation) {
     case NATION_KARUS: // 카루스..
-        AllClearImageByName("hunter", false);
-        AllClearImageByName("berserker", false);
-        AllClearImageByName("sorcerer", false);
-        AllClearImageByName("shaman", false);
+        AllClearImageByNametah("hunter", false);
+        AllClearImageByNametah("berserker", false);
+        AllClearImageByNametah("sorcerer", false);
+        AllClearImageByNametah("shaman", false);
+        AllClearImageByNametah("Shadow Bane", false);
+        AllClearImageByNametah("Berserker Hero", false);
+        AllClearImageByNametah("Elemental Lord", false);
+        AllClearImageByNametah("Shadow Knight", false);
 
         // 직업..
         switch (CGameBase::s_pPlayer->m_InfoBase.eClass) {
@@ -1653,32 +1682,36 @@ void CUISkillTreeDlg::SetPageInCharRegion() // 문자 역역에서 현재 페이지 설정..
         case CLASS_KA_ROGUE:
         case CLASS_KA_WIZARD:
         case CLASS_KA_PRIEST:
-            AllClearImageByName("public", true);
+            AllClearImageByNametah("public", true);
             break;
 
         case CLASS_KA_BERSERKER:
-            AllClearImageByName("berserker", true);
+            AllClearImageByNametah("berserker", true);
             break;
 
         case CLASS_KA_HUNTER:
-            AllClearImageByName("hunter", true);
+            AllClearImageByNametah("hunter", true);
             break;
 
         case CLASS_KA_SORCERER:
-            AllClearImageByName("sorcerer", true);
+            AllClearImageByNametah("sorcerer", true);
             break;
 
         case CLASS_KA_SHAMAN:
-            AllClearImageByName("shaman", true);
+            AllClearImageByNametah("shaman", true);
             break;
         }
         break;
 
     case NATION_ELMORAD: // 엘모라도..
-        AllClearImageByName("ranger", false);
-        AllClearImageByName("blade", false);
-        AllClearImageByName("mage", false);
-        AllClearImageByName("cleric", false);
+        AllClearImageByNametah("ranger", false);
+        AllClearImageByNametah("blade", false);
+        AllClearImageByNametah("mage", false);
+        AllClearImageByNametah("cleric", false);
+        AllClearImageByNametah("kasar hood", false);
+        AllClearImageByNametah("Blade Master", false);
+        AllClearImageByNametah("Arc Mage", false);
+        AllClearImageByNametah("Paladin", false);
 
         // 직업..
         switch (CGameBase::s_pPlayer->m_InfoBase.eClass) {
@@ -1686,29 +1719,39 @@ void CUISkillTreeDlg::SetPageInCharRegion() // 문자 역역에서 현재 페이지 설정..
         case CLASS_EL_ROGUE:
         case CLASS_EL_WIZARD:
         case CLASS_EL_PRIEST:
-            AllClearImageByName("public", true);
+            AllClearImageByNametah("public", true);
             break;
 
         case CLASS_EL_RANGER:
-            AllClearImageByName("ranger", true);
+            AllClearImageByNametah("ranger", true);
             break;
 
         case CLASS_EL_BLADE:
-            AllClearImageByName("blade", true);
+            AllClearImageByNametah("blade", true);
             break;
 
         case CLASS_EL_MAGE:
-            AllClearImageByName("mage", true);
+            AllClearImageByNametah("mage", true);
             break;
 
         case CLASS_EL_CLERIC:
-            AllClearImageByName("cleric", true);
+            AllClearImageByNametah("cleric", true);
             break;
         }
         break;
     }
 }
 
+CN3UIString * CUISkillTreeDlg::GetChildStringByName(const std::string & szFN) {
+    for (UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor) {
+        CN3UIString * pChild = (CN3UIString *)(*itor);
+        if (szFN.compare(pChild->m_szID) == 0) {
+            return pChild;
+        }
+    }
+
+    return NULL;
+}
 CN3UIImage * CUISkillTreeDlg::GetChildImageByName(const std::string & szFN) {
     for (UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor) {
         CN3UIBase * pChild = (CN3UIBase *)(*itor);

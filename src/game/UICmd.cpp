@@ -98,6 +98,8 @@ bool CUICmd::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
         if (pSender == m_pBtn_Act) {
             //            this->SetVisibleActButtons(true);
             //            this->SetVisibleOptButtons(false);
+            std::string cmdtradebutton = "/trade";
+            CGameProcMain::s_pProcMain->ParseChattingCommand(cmdtradebutton); // Tah This was the easiest way don't blame me
         }
 
         else if (pSender == m_pBtn_Act_Walk) {

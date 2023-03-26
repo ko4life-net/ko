@@ -46,6 +46,7 @@ class CUISkillTreeDlg : public CN3UIWndBase {
 
   protected:
     void AllClearImageByName(const std::string & szFN, bool bTrueOrNot);
+    void AllClearImageByNametah(const std::string & szFN, bool bTrueOrNot);
     RECT GetSampleRect();
     void PageButtonInitialize();
 
@@ -78,6 +79,7 @@ class CUISkillTreeDlg : public CN3UIWndBase {
     CN3UIImage *  GetChildImageByName(const std::string & szFN);
     CN3UIBase *   GetChildBaseByName(const std::string & szFN);
     CN3UIButton * GetChildButtonByName(const std::string & szFN);
+    CN3UIString *   GetChildStringByName(const std::string & szFN);
 
     void PageLeft();
     void PageRight();

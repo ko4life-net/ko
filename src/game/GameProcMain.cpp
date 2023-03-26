@@ -860,6 +860,9 @@ bool CGameProcMain::ProcessPacket(DataPack * pDataPack, int & iOffset) {
 
         this->InitPlayerPosition(
             __Vector3(fX, fY, fZ)); // 플레이어 위치 초기화.. 일으켜 세우고, 기본동작을 취하게 한다.
+        s_pFX->TriggerBundle(s_pPlayer->IDNumber(), -1,
+                             s_pPlayer->m_InfoBase.eNation == NATION_KARUS ? FXID_WARP_KARUS : FXID_WARP_ELMORAD,
+                             s_pPlayer->IDNumber(), -1, 0);
     }
         return true;
     case N3_MOVE:
@@ -7395,14 +7398,21 @@ bool CGameProcMain::OnMouseLbtnDown(POINT ptCur, POINT ptPrev) {
     vDir.Normalize();
     float fYaw = ::_Yaw2D(vDir.x, vDir.z);
 
+            __Vector3 vMovePoint;
+    float     fDist;
+    float     fNowTime = CN3Base::TimeGet();
+
+    if (!s_pPlayer->m_bTargetOrPosMove) {
+        // if (fDist < 0.5f && !s_pLocalInput->IsKeyDown(MOUSE_LBDOWN)) {
+        CGameProcedure::s_pFX->Stop(0, 0, 30001, 0, true);
+    }
     if (!s_pPlayer->IsDead() && VP_THIRD_PERSON == s_pEng->ViewPoint() &&
         !s_pLocalInput->IsKeyDown(KM_MOVE_FOWARD)) // 삼인칭 시점이면.. UI 를 건들지 않았으면..
     {
-        __Vector3 vMovePoint;
-        float     fDist;
-        float     fNowTime = CN3Base::TimeGet();
+
 
         if (fNowTime - m_fLBClickTime > 0.1f && s_pPlayer->m_bTargetOrPosMove) {
+            CGameProcedure::s_pFX->TriggerBundle(0, 0, 30001, vDir, 0, -1);
             if (s_pPlayer->m_bAttackContinous) {
                 CommandToggleAttackContinous();
             }
@@ -7415,6 +7425,8 @@ bool CGameProcMain::OnMouseLbtnDown(POINT ptCur, POINT ptPrev) {
             fDist = (vMovePoint - s_pPlayer->Position()).Magnitude();
 
             s_pPlayer->SetMoveTargetPos(vMovePoint);
+            
+            CGameProcedure::s_pFX->SetBundlePos(30001, 0, vMovePoint);
         } else if (fNowTime - m_fLBClickTime > 0.1f && !s_pPlayer->m_bTargetOrPosMove) {
             if (s_pPlayer->m_bAttackContinous) {
                 CommandToggleAttackContinous();

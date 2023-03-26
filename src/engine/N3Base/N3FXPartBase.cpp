@@ -487,7 +487,6 @@ bool CN3FXPartBase::Load(HANDLE hFile) {
             m_bAlpha = FALSE;
         }
     }
-
     m_ppRefTex = new CN3Texture *[m_iNumTex];
 
     std::string FileName;

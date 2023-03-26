@@ -920,7 +920,7 @@ typedef struct __TABLE_ITEM_BASIC // 장착 아이템에 관한 리소스 레코드...
     BYTE bySellGroup; // 32 상인이 파는데에 대한 그룹..
 } TABLE_ITEM_BASIC;
 
-const int MAX_ITEM_EXTENSION = 23; // 확장 아이템 테이블 갯수.
+const int MAX_ITEM_EXTENSION = 24; // 확장 아이템 테이블 갯수.
 const int LIMIT_FX_DAMAGE = 64;
 const int ITEM_UNIQUE = 4;
 const int ITEM_LIMITED_EXHAUST = 17;
@@ -1130,10 +1130,12 @@ typedef struct __TABLE_UPC_SKILL {
     int   iReCastTime; // 다시 캐스팅할때까지 걸리는 시간.
 
     float fUnkown1;        // TODO: implement
+    float fUnkown2;        // TODO: implement 1264
     int   iPercentSuccess; // 성공률
     DWORD dw1stTableType;  // 첫번째 타입.
     DWORD dw2ndTableType;  // 두번째 타입.
     int   iValidDist;      // 유효거리
+    int   iEtc;            // TODO: implement 1264
 
 } TABLE_UPC_ATTACK_B;
 
@@ -1154,12 +1156,14 @@ typedef struct __TABLE_UPC_SKILL_TYPE_2 {
     DWORD dwID;         // SKILL 고유 ID
     int   iSuccessType; // 성공타입.
     int   iPower;       // 공격력
+    int   iAddDamageSkipt2;   // TODO: implement 1264
     int   iAddDist;     // 거리증가
     int   iNumArrow;    // 화살요구수
 } TABLE_UPC_SKILL_TYPE_2;
 
 typedef struct __TABLE_UPC_SKILL_TYPE_3 {
     DWORD dwID; // SKILL 고유 ID
+    int   iRadiusSkipt3; // TODO: implement 1264
     int   iDDType;
     int   iStartDamage;
     int   iDuraDamage;
@@ -1170,14 +1174,18 @@ typedef struct __TABLE_UPC_SKILL_TYPE_3 {
 typedef struct __TABLE_UPC_SKILL_TYPE_4 {
     DWORD dwID;      // 일련번호
     int   iBuffType; // 버프타입
+    int   iRadiusSkipt4;      // TODO: implement 1264
     int   iDuration;
     int   iAttackSpeed;     // 공격속도
     int   iMoveSpeed;       // 이동속도
     int   iAC;              // 방어력
     int   iAttack;          // 공격력
+    int   iHitrateSkipt4;     // TODO: implement 1264
+    int   iAvoidRateSkipt4;   // TODO: implement 1264
     int   iMaxHP;           // MAXHP
     int   iMaxHPPct;        // TODO: implement
     int   iMaxMP;           // TODO: implement
+    int   iMaxMPPctt4;      // TODO: implement 1264
     int   iStr;             // 힘
     int   iSta;             // 체력
     int   iDex;             // 민첩
@@ -1189,6 +1197,7 @@ typedef struct __TABLE_UPC_SKILL_TYPE_4 {
     int   iMagicResist;     // 마법저항
     int   iDeseaseResist;   // 저주저항
     int   iPoisonResist;    // 독저항
+    int   iExpPct;          // TODO: implement 1264
 } TABLE_UPC_SKILL_TYPE_4;
 
 typedef struct __TABLE_UPC_SKILL_TYPE_5 {
@@ -1312,7 +1321,7 @@ const int MAX_SKILL_FROM_SERVER = 9; // 서버에게서 받는 정보 슬롯 갯수..
 
 const int MAX_SKILL_KIND_OF = 5;  // Base Skill 1개, 전문 스킬 4개..
 const int MAX_SKILL_IN_PAGE = 6;  // 한 페이지 내의 아이콘 갯수..
-const int MAX_SKILL_PAGE_NUM = 3; // 스킬 한개가 가지는 최대 페이지수..
+const int MAX_SKILL_PAGE_NUM = 6; // 스킬 한개가 가지는 최대 페이지수..
 
 const int MAX_SKILL_HOTKEY_PAGE = 8; // Hot Key의 총 페이지 수..
 const int MAX_SKILL_IN_HOTKEY = 8;   // Hot Key의 현 페이지내의 갯수..
@@ -1367,6 +1376,7 @@ enum e_Behavior {
     BEHAVIOR_PARTY_BBS_REGISTER_CANCEL, // 파티 게시판에 등록 해제
 
     BEHAVIOR_EXECUTE_OPTION, // 게임 종료하고 옵션 실행..
+    BEHAVIOR_TRADE_DECISION_DONE, // Tah enabling messageprompt after pressing trade button
 
     BEHAVIOR_UNKNOWN = 0xffffffff
 };
@@ -1426,6 +1436,8 @@ const int FXID_REGION_TARGET_KA_ROGUE = 10038;
 const int FXID_REGION_TARGET_KA_WIZARD = 10039;
 const int FXID_REGION_TARGET_KA_PRIEST = 10040;
 const int FXID_CLAN_RANK_1 = 10041;
+const int FXID_WARP_KARUS = 10046;
+const int FXID_WARP_ELMORAD = 10047;
 const int FXID_REGION_POISON = 10100;
 
 //define skillmagic_type4_bufftype

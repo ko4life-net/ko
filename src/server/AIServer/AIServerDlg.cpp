@@ -126,6 +126,7 @@ CServerDlg::CServerDlg(CWnd * pParent /*=NULL*/)
     m_sKillElmoNpc = 0;
     m_pZoneEventThread = NULL;
     m_byTestMode = 0;
+    m_byPartyExpMultiplier = 0; //Tahsin partyexp multiplier server.ini
     //m_ppUserActive = NULL;
     //m_ppUserInActive = NULL;
 }
@@ -184,6 +185,7 @@ BOOL CServerDlg::OnInitDialog() {
     m_fReConnectStart = 0.0f;
     m_bFirstServerFlag = FALSE;
     m_byTestMode = NOW_TEST_MODE;
+    m_byPartyExpMultiplier=0;
 
     // User Point Init
     for (int i = 0; i < MAX_USER; i++) {
@@ -2552,6 +2554,8 @@ void CServerDlg::GetServerInfoIni() {
     CIni inifile;
     inifile.SetPath("server.ini");
     m_byZone = inifile.GetProfileInt("SERVER", "ZONE", 1);
+    m_byTestMode = inifile.GetProfileInt("TEST", "MODE", 0);
+    m_byPartyExpMultiplier = inifile.GetProfileInt("SERVER", "PARTYEXP", 0);
 }
 
 void CServerDlg::SendSystemMsg(char * pMsg, int zone, int type, int who) {

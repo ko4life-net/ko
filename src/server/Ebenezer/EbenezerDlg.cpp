@@ -23,6 +23,7 @@
 #include "KnightsUserSet.h"
 #include "KnightsRankSet.h"
 #include "HomeSet.h"
+#include "StartPositionSet.h"
 #include "BattleSet.h"
 
 #define GAME_TIME       100
@@ -453,6 +454,12 @@ BOOL CEbenezerDlg::OnInitDialog() {
         return FALSE;
     }
 
+    if (LoadStartPositionTable() == FALSE) {
+        AfxMessageBox("LoadStartPositionTable Load Fail");
+        AfxPostQuitMessage(0);
+        return FALSE;
+    }
+
     LogFileWrite("before battle\r\n");
     if (LoadBattleTable() == FALSE) {
         AfxMessageBox("LoadBattleTable Load Fail");
@@ -623,6 +630,9 @@ BOOL CEbenezerDlg::DestroyWindow() {
 
     if (!m_HomeArray.IsEmpty()) {
         m_HomeArray.DeleteAllData();
+    }
+    if (!m_StartPositionArray.IsEmpty()) {
+        m_StartPositionArray.DeleteAllData();
     }
 
     for (int i = 0; i < m_ZoneArray.size(); i++) {
@@ -3372,6 +3382,47 @@ BOOL CEbenezerDlg::LoadHomeTable() {
         }
 
         HomeSet.MoveNext();
+    }
+
+    return TRUE;
+}
+
+BOOL CEbenezerDlg::LoadStartPositionTable() {
+    CStartPositionSet StartPositionSet;
+
+    if (!StartPositionSet.Open()) {
+        AfxMessageBox(_T("Start Position Data Open Fail!"));
+        return FALSE;
+    }
+    if (StartPositionSet.IsBOF() || StartPositionSet.IsEOF()) {
+        AfxMessageBox(_T("Start Position Data Empty!"));
+        return FALSE;
+    }
+
+    StartPositionSet.MoveFirst();
+
+    while (!StartPositionSet.IsEOF()) {
+        _START_POSITION * pPositionInfo = new _START_POSITION;
+
+        pPositionInfo->m_ZoneID = StartPositionSet.m_ZoneID;
+        pPositionInfo->m_sKarusX = StartPositionSet.m_sKarusX;
+        pPositionInfo->m_sKarusZ = StartPositionSet.m_sKarusZ;
+        pPositionInfo->m_sElmoradX = StartPositionSet.m_sElmoradX;
+        pPositionInfo->m_sElmoradZ = StartPositionSet.m_sElmoradZ;
+        pPositionInfo->m_bRangeX = StartPositionSet.m_bRangeX;
+        pPositionInfo->m_bRangeZ = StartPositionSet.m_ZoneID;
+        pPositionInfo->m_sKarusGateX = StartPositionSet.m_sKarusGateX;
+        pPositionInfo->m_sKarusGateZ = StartPositionSet.m_sKarusGateZ;
+        pPositionInfo->m_sElmoGateX = StartPositionSet.m_sElmoGateX;
+        pPositionInfo->m_sElmoGateZ = StartPositionSet.m_sElmoGateZ;
+
+        if (!m_StartPositionArray.PutData(pPositionInfo->m_ZoneID, pPositionInfo)) {
+            TRACE("Start Position Info PutData Fail - %d\n", pPositionInfo->m_ZoneID);
+            delete pPositionInfo;
+            pPositionInfo = NULL;
+        }
+
+        StartPositionSet.MoveNext();
     }
 
     return TRUE;

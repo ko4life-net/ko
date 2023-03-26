@@ -389,6 +389,23 @@ bool CN3Terrain::Load(HANDLE hFile) {
     }
 
     DWORD dwRWC;
+    int   gtdversion = 0;
+    //_________________________________________Loading of (MYKO) <1264 maps version 1 only
+    ReadFile(hFile, &(gtdversion), sizeof(int), &dwRWC, NULL);
+    if (gtdversion == 1){
+        printf("GtdMapVersion: %i 1264 detected\n", gtdversion);
+        int iNameLength = 0;
+        ReadFile(hFile, &iNameLength, sizeof(int), &dwRWC, NULL);
+    if (iNameLength > 0){
+        char * szMapFName = new char[iNameLength + 1];
+        szMapFName[iNameLength] = '\0';
+        ReadFile(hFile, szMapFName, iNameLength, &dwRWC, NULL); // Map name
+        printf("GtdMapname: %s\n", szMapFName);
+    }}
+    if (gtdversion != 1) {
+        DWORD nFilePos = SetFilePointer(hFile, 0, NULL, FILE_BEGIN);
+    }
+    //_________________________________________Loading of (MYKO) <1264 maps version 1 only
     ReadFile(hFile, &(m_ti_MapSize), sizeof(int), &dwRWC, NULL);
     m_pat_MapSize = (m_ti_MapSize - 1) / PATCH_TILE_SIZE;
 

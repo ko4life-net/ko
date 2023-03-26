@@ -204,8 +204,14 @@ void CSubProcPerTrade::SecureCodeBegin() {
     __ASSERT(pStrMy, "NULL UI Component!!");
     CN3UIString * pStrOther = (CN3UIString *)m_pUIPerTradeDlg->GetChildByID("string_money_other");
     __ASSERT(pStrOther, "NULL UI Component!!");
+    CN3UIString * pStrMyName = (CN3UIString *)m_pUIPerTradeDlg->GetChildByID("text_id_my");
+    __ASSERT(pStrMyName, "NULL UI Component!!");
+    CN3UIString * pStrOtherName = (CN3UIString *)m_pUIPerTradeDlg->GetChildByID("text_id_other");
+    __ASSERT(pStrOtherName, "NULL UI Component!!");
     pStrMy->SetString("0");
     pStrOther->SetString("0");
+    pStrMyName->SetString(""); 
+    pStrOtherName->SetString("");
 
     // 7.개인 거래 창의 처크 버튼들 원래대로..
     CN3UIButton * pButtonMy = (CN3UIButton *)m_pUIPerTradeDlg->GetChildByID("btn_trade_my");
@@ -215,11 +221,27 @@ void CSubProcPerTrade::SecureCodeBegin() {
     __ASSERT(pButtonOther, "NULL UI Component!!");
     pButtonOther->SetState(UI_STATE_BUTTON_NORMAL);
 
+    if (s_pOPMgr->UPCGetByID(m_iOtherID, false) != NULL) {
+       std::string Otherplayername = (s_pOPMgr->UPCGetByID(m_iOtherID, false))->IDString().c_str();
+       pStrOtherName->SetString(Otherplayername);
+       pStrMyName->SetString(s_pPlayer->IDString().c_str());
+    } else {
+       if (s_pOPMgr->UPCGetByID(s_pPlayer->m_iIDTarget, false) != NULL) {
+           std::string Otherplayername = (s_pOPMgr->UPCGetByID(s_pPlayer->m_iIDTarget, false))->IDString().c_str();
+           pStrOtherName->SetString(Otherplayername);
+           pStrMyName->SetString(s_pPlayer->IDString().c_str());
+       }
+    }
     // 8.상대방 거래 버튼은 Click할 수 없다. uif 자체 기능..
 }
 
 ///////////////////////////////////////////////////////////////////////
-
+void CSubProcPerTrade::ResetMyTradeButtonState() {
+    CN3UIButton * pButton = (CN3UIButton *)m_pUIPerTradeDlg->GetChildButtonByName("btn_trade_my");
+    if (pButton) {
+       pButton->SetState(UI_STATE_BUTTON_NORMAL);
+    }
+}
 void CSubProcPerTrade::FinalizePerTrade() {
     m_ePerTradeState = PER_TRADE_STATE_NONE;
 
@@ -623,7 +645,7 @@ void CSubProcPerTrade::PerTradeOtherDecision() // 다른 사람이 거래를 결정 했다..
 {
     CN3UIButton * pButtonOther = (CN3UIButton *)m_pUIPerTradeDlg->GetChildByID("btn_trade_other");
     __ASSERT(pButtonOther, "NULL UI Component!!");
-    pButtonOther->SetState(UI_STATE_BUTTON_DISABLE);
+    pButtonOther->SetState(UI_STATE_BUTTON_DOWN);
 }
 
 ///////////////////////////////////////////////////////////////////////

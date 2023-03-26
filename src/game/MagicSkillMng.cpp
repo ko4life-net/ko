@@ -185,21 +185,10 @@ bool CMagicSkillMng::CheckValidSkillMagic(__TABLE_UPC_SKILL * pSkill) {
     __InfoPlayerMySelf * pInfoExt = &(s_pPlayer->m_InfoExt);
 
     e_Class_Represent Class = CGameProcedure::GetRepresentClass(pInfoBase->eClass);
-    if (pInfoExt->iMSP < pSkill->iExhaustMSP) {
-        if (Class == CLASS_REPRESENT_PRIEST || Class == CLASS_REPRESENT_WIZARD) {
-            return false;
-        }
-    }
 
-    if (pSkill->dw1stTableType == 1 || pSkill->dw1stTableType == 2) {
-        if (Class == CLASS_REPRESENT_WARRIOR || Class == CLASS_REPRESENT_ROGUE) {
-            int ExhaustSP = pInfoExt->iAttack * pSkill->iExhaustMSP / 100;
-            if (pInfoExt->iMSP < ExhaustSP) {
-                return false;
-            }
-        }
-    } else if (pInfoExt->iMSP < pSkill->iExhaustMSP) {
-        if (Class == CLASS_REPRESENT_WARRIOR || Class == CLASS_REPRESENT_ROGUE) {
+    if (pInfoExt->iMSP < pSkill->iExhaustMSP) {
+        if (Class == CLASS_REPRESENT_PRIEST || Class == CLASS_REPRESENT_WIZARD || Class == CLASS_REPRESENT_ROGUE ||
+            Class == CLASS_REPRESENT_WARRIOR) {
             return false;
         }
     }

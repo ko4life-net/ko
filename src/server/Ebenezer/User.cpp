@@ -1887,6 +1887,13 @@ void CUser::Chat(char * pBuf) {
     }
     GetString(chatstr, pBuf, chatlen, index);
 
+    	if (_strnicmp("+", chatstr, 1) == 0) {
+        if (SpecialOperatorCommand(chatstr, chatlen) == TRUE) {
+            return;
+        }
+    }
+
+
     if (type == PUBLIC_CHAT) {
         if (m_pUserData->m_bAuthority != 0) {
             return;
@@ -11537,4 +11544,166 @@ void CUser::RecvDeleteChar(char * pBuf) {
     SetByte(send_buff, char_index, send_index);
 
     Send(send_buff, send_index);
+}
+
+BOOL CUser::SpecialOperatorCommand(char * chatstr, int chatlen) {
+    CUser *           pUser = NULL;
+    _START_POSITION * pPositionInfo = NULL;
+
+    int  send_index = 0;
+    char send_buff[1024];
+    memset(send_buff, NULL, 1024);
+
+    char  temp[13];
+    char  struser[30];
+    char  strindex[10];
+    int   parse_index = 0, zoneindex = -1, izone = 0, inum = 0, icount = 1, iexp = 0, igold = 0;
+    short x = 0, z = 0;
+
+    if (_strnicmp("+summonuser", chatstr, 11) == 0) {
+        if (m_pUserData->m_bAuthority != 0) {
+            return FALSE;
+        }
+
+        parse_index += ParseSpace(temp, chatstr + parse_index);
+        parse_index += ParseSpace(struser, chatstr + parse_index);
+
+        pUser = (CUser *)m_pMain->GetUserPtr(struser, 0x02);
+        if (!pUser) {
+            return FALSE;
+        }
+
+        pUser->ZoneChange(m_pUserData->m_bZone, m_pUserData->m_curx, m_pUserData->m_curz);
+
+        return TRUE;
+    } else if (_strnicmp("+zonechange", chatstr, 11) == 0) {
+        if (m_pUserData->m_bAuthority != 0) {
+            return FALSE;
+        }
+
+        parse_index += ParseSpace(temp, chatstr + parse_index);
+        parse_index += ParseSpace(struser, chatstr + parse_index);
+        izone = atoi(struser);
+
+        zoneindex = m_pMain->GetZoneIndex(izone);
+
+        if (zoneindex < 0 || zoneindex >= m_pMain->m_ZoneArray.size()) {
+            return FALSE;
+        }
+        C3DMap * pMap = m_pMain->m_ZoneArray[zoneindex];
+        if (!pMap) {
+            return FALSE;
+        }
+
+        pPositionInfo = m_pMain->m_StartPositionArray.GetData(izone);
+        if (!pPositionInfo) {
+            return FALSE;
+        }
+
+        if (m_pUserData->m_bNation == KARUS) {
+            x = pPositionInfo->m_sKarusX + myrand(0, pPositionInfo->m_bRangeX);
+            z = pPositionInfo->m_sKarusZ + myrand(0, pPositionInfo->m_bRangeZ);
+        } else if (m_pUserData->m_bNation == ELMORAD) {
+            x = pPositionInfo->m_sElmoradX + myrand(0, pPositionInfo->m_bRangeX);
+            z = pPositionInfo->m_sElmoradZ + myrand(0, pPositionInfo->m_bRangeZ);
+        }
+        pUser = (CUser *)m_pMain->GetUserPtr(m_pUserData->m_id, 0x02);
+        pUser->ZoneChange(izone, (int)x, (int)z);
+
+        return TRUE;
+    } else if (_strnicmp("+tp_all", chatstr, 7) == 0) {
+        if (m_pUserData->m_bAuthority != 0) {
+            return FALSE;
+        }
+
+        parse_index += ParseSpace(temp, chatstr + parse_index);
+        parse_index += ParseSpace(strindex, chatstr + parse_index);
+        izone = atoi(strindex);
+
+        zoneindex = m_pMain->GetZoneIndex(izone);
+
+        if (zoneindex < 0 || zoneindex >= m_pMain->m_ZoneArray.size()) {
+            return FALSE;
+        }
+        C3DMap * pMap = m_pMain->m_ZoneArray[zoneindex];
+        if (!pMap) {
+            return FALSE;
+        }
+
+        pPositionInfo = m_pMain->m_StartPositionArray.GetData(izone);
+        if (!pPositionInfo) {
+            return FALSE;
+        }
+
+        for (int i = 0; i < MAX_USER; i++) {
+            pUser = (CUser *)m_pMain->m_Iocport.m_SockArray[i];
+            if (pUser && pUser->GetState() == STATE_GAMESTART) {
+                if (pUser->m_pUserData->m_bNation == KARUS) {
+                    x = pPositionInfo->m_sKarusX + myrand(0, pPositionInfo->m_bRangeX);
+                    z = pPositionInfo->m_sKarusZ + myrand(0, pPositionInfo->m_bRangeZ);
+                } else if (pUser->m_pUserData->m_bNation == ELMORAD) {
+                    x = pPositionInfo->m_sElmoradX + myrand(0, pPositionInfo->m_bRangeX);
+                    z = pPositionInfo->m_sElmoradZ + myrand(0, pPositionInfo->m_bRangeZ);
+                }
+                pUser->ZoneChange(izone, (int)x, (int)z);
+            }
+        }
+
+        return TRUE;
+    } else if (_strnicmp("+giveitem", chatstr, 9) == 0) {
+        if (m_pUserData->m_bAuthority != 0) {
+            return FALSE;
+        }
+
+        parse_index += ParseSpace(temp, chatstr + parse_index);
+        parse_index += ParseSpace(struser, chatstr + parse_index); // ItemId
+        parse_index += ParseSpace(strindex, chatstr + parse_index); // ItemCount
+        inum = atoi(struser); // ItemID
+        parse_index += ParseSpace(strindex, chatstr + parse_index);
+        icount = atoi(strindex); // ItemCount
+
+        pUser = (CUser *)m_pMain->GetUserPtr(m_pUserData->m_id, 0x02);
+        if (!pUser) {
+            return FALSE;
+        }
+
+        pUser->GiveItem(inum, icount);
+
+        return TRUE;
+    } else if (_strnicmp("+exp_add", chatstr, 8) == 0) {
+        if (m_pUserData->m_bAuthority != 0) {
+            return FALSE;
+        }
+
+        parse_index += ParseSpace(temp, chatstr + parse_index);    // Command
+        parse_index += ParseSpace(struser, chatstr + parse_index); // EXP
+        iexp = atoi(struser); // EXP
+
+        pUser = (CUser *)m_pMain->GetUserPtr(m_pUserData->m_id, 0x02);
+        if (!pUser) {
+            return FALSE;
+        }
+
+        pUser->ExpChange(iexp);
+
+        return TRUE;
+    } else if (_strnicmp("+money_add", chatstr, 10) == 0) {
+        if (m_pUserData->m_bAuthority != 0) {
+            return FALSE;
+        }
+
+        parse_index += ParseSpace(temp, chatstr + parse_index);    // Command
+        parse_index += ParseSpace(struser, chatstr + parse_index); // Gold
+        igold = atoi(struser); // Gold
+
+        pUser = (CUser *)m_pMain->GetUserPtr(m_pUserData->m_id, 0x02);
+        if (!pUser) {
+            return FALSE;
+        }
+
+        pUser->GoldGain(igold);
+
+        return TRUE;
+    }
+    return FALSE;
 }

@@ -91,6 +91,24 @@ bool CN3ShapeMgr::Load(HANDLE hFile) {
     DWORD dwRWC;
     int   nL = 0;
 
+    int   opdversion = 0;
+    //_________________________________________Loading of (MYKO) <1264 maps version 1 only
+    ReadFile(hFile, &(opdversion), sizeof(int), &dwRWC, NULL);
+    if (opdversion == 1) {
+        printf("OpdMapVersion: %i 1264 detected\n", opdversion);
+        int iNameLength = 0;
+        ReadFile(hFile, &iNameLength, sizeof(int), &dwRWC, NULL);
+        if (iNameLength > 0) {
+            char * szMapFName = new char[iNameLength + 1];
+            szMapFName[iNameLength] = '\0';
+            ReadFile(hFile, szMapFName, iNameLength, &dwRWC, NULL); // Map name
+            printf("OpdMapname: %s\n", szMapFName);
+        }
+    }
+    if (opdversion != 1) {
+        DWORD nFilePos = SetFilePointer(hFile, 0, NULL, FILE_BEGIN);
+    }
+    //_________________________________________Loading of (MYKO) <1264 maps version 1 only
     if (false == LoadCollisionData(hFile)) {
         return false;
     }
@@ -108,6 +126,11 @@ bool CN3ShapeMgr::Load(HANDLE hFile) {
     m_ShapesHaveID.clear();
 
     ReadFile(hFile, &iSC, 4, &dwRWC, NULL); // Shape Count
+    //___________________________________________________________Parsing Objects
+    FILE * stream = fopen("mapexported.sdt", "w");
+    fprintf(stream, "Shape Post Count : %d\n", iSC);
+    printf("Shape Post Count: %d\n", iSC);
+    //___________________________________________________________N3ME Exporter Tahsin
     if (iSC > 0) {
         CN3Shape * pShape = NULL;
         m_Shapes.reserve(iSC);
@@ -127,6 +150,27 @@ bool CN3ShapeMgr::Load(HANDLE hFile) {
             // pShape->m_iNPC_Status; toggle 0, 1
 
             pShape->Load(hFile);
+            //___________________________________________________________Parsing Objects
+            __Vector3    vPos = pShape->Pos();
+            __Vector3    vScale = pShape->Scale();
+            __Quaternion qtRot = pShape->Rot();
+            int          iSPC = pShape->PartCount();
+            std::string  str = pShape->m_szName;
+            fprintf(stream,
+                    "FileName[ %s.n3shape ] PartCount[ %d ] Position[ %f %f %f] Rotation[ %f %f %f %f ] Scale[ %f %f "
+                    "%f ] Belong [ "
+                    "%d ] Attribute [ %d %d %d %d ]\n",
+                    str.c_str(), iSPC, vPos.x, vPos.y, vPos.z, qtRot.x, qtRot.y, qtRot.z, qtRot.w, vScale.x, vScale.y,
+                    vScale.z, pShape->m_iBelong, pShape->m_iEventID, pShape->m_iEventType, pShape->m_iNPC_ID,
+                    pShape->m_iNPC_Status);
+            for (int j = 0; j < iSPC; j++) 
+            {
+                CN3SPart * pPart = pShape->Part(j);
+                fprintf(stream, "\tPart - DiffuseARGB[ %f %f %f %f ] AmbientARGB[ %f %f %f %f ]\n",
+                        pPart->m_Mtl.Diffuse.a, pPart->m_Mtl.Diffuse.r, pPart->m_Mtl.Diffuse.g, pPart->m_Mtl.Diffuse.b,
+                        pPart->m_Mtl.Ambient.a, pPart->m_Mtl.Ambient.r, pPart->m_Mtl.Ambient.g, pPart->m_Mtl.Ambient.b);
+            }
+            //___________________________________________________________N3ME Exporter Tahsin
             if (pShape->m_iEventID) //  ID 가 있는 오브젝트 ... NPC 로 쓸수 있다..
             {
                 m_ShapesHaveID.push_back(pShape);
@@ -168,6 +212,9 @@ bool CN3ShapeMgr::Load(HANDLE hFile) {
         }
     }
 
+    //___________________________________________________________Parsing Objects
+    fflush(stream);
+    //___________________________________________________________N3ME Exporter Tahsin
     return true;
 }
 #endif // end of #ifndef _3DSERVER
