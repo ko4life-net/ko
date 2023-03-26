@@ -448,7 +448,7 @@ void CUISkillTreeDlg::PageLeft() {
 }
 
 void CUISkillTreeDlg::PageRight() {
-    if (m_iCurSkillPage == 2) {
+    if (m_iCurSkillPage == 5) {
         return;
     }
 
