@@ -88,8 +88,9 @@ void CN3SPart::Tick(const __Matrix44 & mtxParent, const __Quaternion & qRot,
         return;
     }
 
-    float fDist = (vCenter - s_CameraData.vEye).Magnitude();
+    float fDist = 0.5f * (vCenter - s_CameraData.vEye).Magnitude(); // srmeier's band aid for texture lods
     float fLOD = fDist * s_CameraData.fFOV / fScale;
+    // original backup float fDist = (vCenter - s_CameraData.vEye).Magnitude();
     //    float fLOD = fDist + fDist * (s_CameraData.fFOV - 1.0f) / 3.0f;
     //    float fLOD = fDist * s_CameraData.fFOV * (512.0f / s_CameraData.fFP);
 
