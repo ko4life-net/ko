@@ -66,7 +66,7 @@ void CDBAgent::ReConnectODBC(CDatabase * m_db, char * strdb, char * strname, cha
     m_pMain->WriteLogFile(strlog);
     //m_pMain->m_LogFile.Write(strlog, strlen(strlog));
 
-    // DATABASE ¿¬°á...
+    // DATABASE ì—°ê²°...
     CString strConnect;
     strConnect.Format(_T("DSN=%s;UID=%s;PWD=%s"), strdb, strname, strpwd);
     int iCount = 0;
@@ -132,12 +132,12 @@ void CDBAgent::MUserInit(int uid) {
     pUser->m_sBind = -1;
     pUser->m_iBank = 0;
 
-    // ½ºÅ³ ÃÊ±âÈ­
+    // ìŠ¤í‚¬ ì´ˆê¸°í™”
     for (int i = 0; i < 9; i++) {
         pUser->m_bstrSkill[i] = 0;
     }
 
-    for (int i = 0; i < SLOT_MAX + HAVE_MAX; i++) { // Âø¿ë°¹¼ö + ¼ÒÀ¯°¹¼ö(14+28=42)
+    for (int i = 0; i < SLOT_MAX + HAVE_MAX; i++) { // ì°©ìš©ê°¯ìˆ˜ + ì†Œìœ ê°¯ìˆ˜(14+28=42)
         pUser->m_sItemArray[i].nNum = 0;
         pUser->m_sItemArray[i].sDuration = 0;
         pUser->m_sItemArray[i].sCount = 0;
@@ -235,9 +235,9 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
             SQLGetData(hstmt, 28, SQL_C_LONG, &PZ, 0, &Indexind);
             SQLGetData(hstmt, 29, SQL_C_LONG, &PY, 0, &Indexind);
             SQLGetData(hstmt, 30, SQL_C_LONG, &dwTime, 0, &Indexind);
-            SQLGetData(hstmt, 31, SQL_C_CHAR, strSkill, 10, &Indexind);
-            SQLGetData(hstmt, 32, SQL_C_CHAR, strItem, 400, &Indexind);
-            SQLGetData(hstmt, 33, SQL_C_CHAR, strSerial, 400, &Indexind);
+            SQLGetData(hstmt, 31, SQL_C_BINARY, strSkill, 10, &Indexind);
+            SQLGetData(hstmt, 32, SQL_C_BINARY, strItem, 400, &Indexind);
+            SQLGetData(hstmt, 33, SQL_C_BINARY, strSerial, 400, &Indexind);
             retval = TRUE;
         } else {
             memset(logstr, 0x00, 256);
@@ -266,7 +266,7 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
     }
     SQLFreeHandle((SQLSMALLINT)SQL_HANDLE_STMT, hstmt);
 
-    // ¿¥°× À¯Àú°¡ ¾Æ´Ï´Ù.
+    // ì— ê²œ ìœ ì €ê°€ ì•„ë‹ˆë‹¤.
     /*    if(sRet == 0)    {
         memset( logstr, 0x00, 256);
         sprintf( logstr, "LoadUserData Fail : name=%s, sRet= %d, retval=%d, nation=%d \r\n", userid, sRet, retval, Nation );
@@ -301,7 +301,7 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
         //    m_pMain->m_LogFile.Write(logstr, strlen(logstr));
         TRACE(logstr);
     }
-    if (pUser->m_bLogout) { // ¾ÆÁ÷ Á¾·áµÇÁö ¾ÊÀº À¯Àú...
+    if (pUser->m_bLogout) { // ì•„ì§ ì¢…ë£Œë˜ì§€ ì•Šì€ ìœ ì €...
         memset(logstr, 0x00, 256);
         sprintf(logstr, "LoadUserData logout Fail : name=%s, logout= %d \r\n", userid, pUser->m_bLogout);
         //    m_pMain->m_LogFile.Write(logstr, strlen(logstr));
@@ -331,7 +331,7 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
     pUser->m_bFace = Face;
     pUser->m_bCity = City;
     pUser->m_bKnights = Knights;
-    // ÀÛ¾÷ : clanÁ¤º¸¸¦ ¹Þ¾Æ¿Í¾ß ÇÑ´Ù
+    // ìž‘ì—… : clanì •ë³´ë¥¼ ë°›ì•„ì™€ì•¼ í•œë‹¤
     //pUser->m_sClan = clan;
     pUser->m_bFame = Fame;
     pUser->m_sHp = Hp;
@@ -365,7 +365,7 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
     __int64       serial = 0;
     _ITEM_TABLE * pTable = NULL;
 
-    for (int i = 0; i < HAVE_MAX + SLOT_MAX; i++) // Âø¿ë°¹¼ö + ¼ÒÀ¯°¹¼ö(14+28=42)
+    for (int i = 0; i < HAVE_MAX + SLOT_MAX; i++) // ì°©ìš©ê°¯ìˆ˜ + ì†Œìœ ê°¯ìˆ˜(14+28=42)
     {
         itemid = GetDWORD(strItem, index);
         duration = GetShort(strItem, index);
@@ -507,7 +507,7 @@ int CDBAgent::UpdateUser(const char * userid, int uid, int type) {
     }
 
     index = 0;
-    for (int i = 0; i < HAVE_MAX + SLOT_MAX; i++) // Âø¿ë°¹¼ö + ¼ÒÀ¯°¹¼ö(14+28=42)
+    for (int i = 0; i < HAVE_MAX + SLOT_MAX; i++) // ì°©ìš©ê°¯ìˆ˜ + ì†Œìœ ê°¯ìˆ˜(14+28=42)
     {
         if (pUser->m_sItemArray[i].nNum > 0) {
             if (m_pMain->m_ItemtableArray.GetData(pUser->m_sItemArray[i].nNum) == FALSE) {
@@ -521,7 +521,7 @@ int CDBAgent::UpdateUser(const char * userid, int uid, int type) {
         SetInt64(strSerial, pUser->m_sItemArray[i].nSerialNum, serial_index);
     }
 
-    // ÀÛ¾÷ : clanÁ¤º¸µµ ¾÷µ¥ÀÌÆ®
+    // ìž‘ì—… : clanì •ë³´ë„ ì—…ë°ì´íŠ¸
     wsprintf(szSQL,
              TEXT("{call UPDATE_USER_DATA ( \'%s\', "
                   "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,?,?,?)}"),
@@ -536,12 +536,12 @@ int CDBAgent::UpdateUser(const char * userid, int uid, int type) {
 
     retcode = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_GameDB.m_hdbc, &hstmt);
     if (retcode == SQL_SUCCESS) {
-        retcode = SQLBindParameter(hstmt, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, sizeof(strSkill), 0, strSkill, 0,
-                                   &sStrSkill);
-        retcode = SQLBindParameter(hstmt, 2, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, sizeof(strItem), 0, strItem, 0,
+        retcode = SQLBindParameter(hstmt, 1, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(strSkill), 0, strSkill,
+                                   0, &sStrSkill);
+        retcode = SQLBindParameter(hstmt, 2, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(strItem), 0, strItem, 0,
                                    &sStrItem);
-        retcode = SQLBindParameter(hstmt, 3, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, sizeof(strSerial), 0, strSerial, 0,
-                                   &sStrSerial);
+        retcode = SQLBindParameter(hstmt, 3, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(strSerial), 0, strSerial,
+                                   0, &sStrSerial);
         if (retcode == SQL_SUCCESS) {
             retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
             if (retcode == SQL_ERROR) {
@@ -783,7 +783,7 @@ BOOL CDBAgent::LoadCharInfo(char * id, char * buff, int & buff_index) {
             SQLGetData(hstmt, 4, SQL_C_TINYINT, &Level, 0, &Indexind);
             SQLGetData(hstmt, 5, SQL_C_TINYINT, &Face, 0, &Indexind);
             SQLGetData(hstmt, 6, SQL_C_TINYINT, &Zone, 0, &Indexind);
-            SQLGetData(hstmt, 7, SQL_C_CHAR, strItem, 400, &Indexind);
+            SQLGetData(hstmt, 7, SQL_C_BINARY, strItem, 400, &Indexind);
             retval = TRUE;
         } else {
             retval = FALSE;
@@ -1176,8 +1176,8 @@ BOOL CDBAgent::LoadWarehouseData(const char * accountid, int uid) {
         if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
             SQLGetData(hstmt, 1, SQL_C_LONG, &Money, 0, &Indexind);
             SQLGetData(hstmt, 2, SQL_C_LONG, &dwTime, 0, &Indexind);
-            SQLGetData(hstmt, 3, SQL_C_CHAR, strItem, 1600, &Indexind);
-            SQLGetData(hstmt, 4, SQL_C_CHAR, strSerial, 1600, &Indexind);
+            SQLGetData(hstmt, 3, SQL_C_BINARY, strItem, 1600, &Indexind);
+            SQLGetData(hstmt, 4, SQL_C_BINARY, strSerial, 1600, &Indexind);
             retval = TRUE;
         } else {
             retval = FALSE;
@@ -1297,10 +1297,10 @@ int CDBAgent::UpdateWarehouseData(const char * accountid, int uid, int type) {
 
     retcode = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_GameDB.m_hdbc, &hstmt);
     if (retcode == SQL_SUCCESS) {
-        retcode = SQLBindParameter(hstmt, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, sizeof(strItem), 0, strItem, 0,
+        retcode = SQLBindParameter(hstmt, 1, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(strItem), 0, strItem, 0,
                                    &sStrItem);
-        retcode = SQLBindParameter(hstmt, 2, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, sizeof(strSerial), 0, strSerial, 0,
-                                   &sStrSerial);
+        retcode = SQLBindParameter(hstmt, 2, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(strSerial), 0, strSerial,
+                                   0, &sStrSerial);
         if (retcode == SQL_SUCCESS) {
             retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
             if (retcode == SQL_ERROR) {
@@ -1594,7 +1594,7 @@ void CDBAgent::LoadKnightsAllList(int nation) {
 
                     count++;
 
-                    if (count >= 40) { // 40°³ ´ÜÀ§·Î º¸³½´Ù
+                    if (count >= 40) { // 40ê°œ ë‹¨ìœ„ë¡œ ë³´ë‚¸ë‹¤
                         SetByte(send_buff, KNIGHTS_ALLLIST_REQ, send_index);
                         SetShort(send_buff, -1, send_index);
                         SetByte(send_buff, count, send_index);
@@ -1631,7 +1631,7 @@ void CDBAgent::LoadKnightsAllList(int nation) {
             }
         }
 
-        if (count < 40) { // 40°³¸¦ º¸³»Áö ¸øÇÑ °æ¿ì
+        if (count < 40) { // 40ê°œë¥¼ ë³´ë‚´ì§€ ëª»í•œ ê²½ìš°
             SetByte(send_buff, KNIGHTS_ALLLIST_REQ, send_index);
             SetShort(send_buff, -1, send_index);
             SetByte(send_buff, count, send_index);
