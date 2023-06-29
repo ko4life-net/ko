@@ -536,12 +536,12 @@ int CDBAgent::UpdateUser(const char * userid, int uid, int type) {
 
     retcode = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_GameDB.m_hdbc, &hstmt);
     if (retcode == SQL_SUCCESS) {
-        retcode = SQLBindParameter(hstmt, 1, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(strSkill), 0, strSkill, 0,
-                                   &sStrSkill);
+        retcode = SQLBindParameter(hstmt, 1, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(strSkill), 0, strSkill,
+                                   0, &sStrSkill);
         retcode = SQLBindParameter(hstmt, 2, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(strItem), 0, strItem, 0,
                                    &sStrItem);
-        retcode = SQLBindParameter(hstmt, 3, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(strSerial), 0, strSerial, 0,
-                                   &sStrSerial);
+        retcode = SQLBindParameter(hstmt, 3, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(strSerial), 0, strSerial,
+                                   0, &sStrSerial);
         if (retcode == SQL_SUCCESS) {
             retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
             if (retcode == SQL_ERROR) {
@@ -1299,8 +1299,8 @@ int CDBAgent::UpdateWarehouseData(const char * accountid, int uid, int type) {
     if (retcode == SQL_SUCCESS) {
         retcode = SQLBindParameter(hstmt, 1, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(strItem), 0, strItem, 0,
                                    &sStrItem);
-        retcode = SQLBindParameter(hstmt, 2, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(strSerial), 0, strSerial, 0,
-                                   &sStrSerial);
+        retcode = SQLBindParameter(hstmt, 2, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(strSerial), 0, strSerial,
+                                   0, &sStrSerial);
         if (retcode == SQL_SUCCESS) {
             retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
             if (retcode == SQL_ERROR) {
