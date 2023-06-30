@@ -2492,7 +2492,7 @@ void CUser::SetDetailData() {
     SetSlotItemValue();
     SetUserAbility();
 
-    if (m_pUserData->m_bLevel >= MAX_LEVEL) {
+    if (m_pUserData->m_bLevel > MAX_LEVEL) {
         Close();
     }
 
