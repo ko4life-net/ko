@@ -80,7 +80,7 @@ void CUITransactionDlg::Render() {
     if (!m_bVisible) {
         return; // 보이지 않으면 자식들을 render하지 않는다.
     }
-
+	int i;
     POINT ptCur = CGameProcedure::s_pLocalInput->MouseGetPos();
     m_pUITooltipDlg->DisplayTooltipsDisable();
 
@@ -103,7 +103,7 @@ void CUITransactionDlg::Render() {
     }
 
     // 갯수 표시되야 할 아이템 갯수 표시..
-    for (int i = 0; i < MAX_ITEM_INVENTORY; i++) {
+    for (i = 0; i < MAX_ITEM_INVENTORY; i++) {
         if (m_pMyTradeInv[i] && ((m_pMyTradeInv[i]->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE) ||
                                  (m_pMyTradeInv[i]->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE_SMALL))) {
             // string 얻기..
@@ -176,9 +176,9 @@ void CUITransactionDlg::InitIconWnd(e_UIWND eWnd) {
 void CUITransactionDlg::InitIconUpdate() {
     CN3UIArea * pArea;
     float       fUVAspect = (float)45.0f / (float)64.0f;
-
-    for (int j = 0; j < MAX_ITEM_TRADE_PAGE; j++) {
-        for (int i = 0; i < MAX_ITEM_TRADE; i++) {
+	int i,j;
+    for (j = 0; j < MAX_ITEM_TRADE_PAGE; j++) {
+        for (i = 0; i < MAX_ITEM_TRADE; i++) {
             if (m_pMyTrade[j][i] != NULL) {
                 m_pMyTrade[j][i]->pUIIcon = new CN3UIIcon;
                 m_pMyTrade[j][i]->pUIIcon->Init(this);
@@ -197,13 +197,14 @@ void CUITransactionDlg::InitIconUpdate() {
 }
 
 __IconItemSkill * CUITransactionDlg::GetHighlightIconItem(CN3UIIcon * pUIIcon) {
-    for (int i = 0; i < MAX_ITEM_TRADE; i++) {
+    int i;
+	for (i = 0; i < MAX_ITEM_TRADE; i++) {
         if ((m_pMyTrade[m_iCurPage][i] != NULL) && (m_pMyTrade[m_iCurPage][i]->pUIIcon == pUIIcon)) {
             return m_pMyTrade[m_iCurPage][i];
         }
     }
 
-    for (int i = 0; i < MAX_ITEM_INVENTORY; i++) {
+    for (i = 0; i < MAX_ITEM_INVENTORY; i++) {
         if ((m_pMyTradeInv[i] != NULL) && (m_pMyTradeInv[i]->pUIIcon == pUIIcon)) {
             return m_pMyTradeInv[i];
         }
@@ -213,8 +214,9 @@ __IconItemSkill * CUITransactionDlg::GetHighlightIconItem(CN3UIIcon * pUIIcon) {
 }
 
 void CUITransactionDlg::EnterTransactionState() {
-    for (int j = 0; j < MAX_ITEM_TRADE_PAGE; j++) {
-        for (int i = 0; i < MAX_ITEM_TRADE; i++) {
+	    int i, j, k;
+    for (j = 0; j < MAX_ITEM_TRADE_PAGE; j++) {
+        for (i = 0; i < MAX_ITEM_TRADE; i++) {
             if (m_pMyTrade[j][i] != NULL) {
                 if (m_pMyTrade[j][i]->pUIIcon) {
                     RemoveChild(m_pMyTrade[j][i]->pUIIcon);
@@ -228,7 +230,7 @@ void CUITransactionDlg::EnterTransactionState() {
         }
     }
 
-    for (int i = 0; i < MAX_ITEM_INVENTORY; i++) {
+    for (i = 0; i < MAX_ITEM_INVENTORY; i++) {
         if (m_pMyTradeInv[i] != NULL) {
             if (m_pMyTradeInv[i]->pUIIcon) {
                 RemoveChild(m_pMyTradeInv[i]->pUIIcon);
@@ -250,7 +252,7 @@ void CUITransactionDlg::EnterTransactionState() {
     int iExt = m_iTradeID % 1000;
     int iSize = CGameBase::s_pTbl_Items_Basic->GetSize();
 
-    for (int i = 0, j = 0, k = 0; i < iSize; i++, k++) {
+    for (i = 0, j = 0, k = 0; i < iSize; i++) {
         if (k >= MAX_ITEM_TRADE) {
             j++;
             k = 0;
@@ -302,6 +304,7 @@ void CUITransactionDlg::EnterTransactionState() {
         spItem->iDurability = pItem->siMaxDurability + pItemExt->siMaxDurability;
 
         m_pMyTrade[j][k] = spItem;
+		k++;
     }
 
     InitIconUpdate();
