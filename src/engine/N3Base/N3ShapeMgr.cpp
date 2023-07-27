@@ -90,7 +90,12 @@ void CN3ShapeMgr::ReleaseShapes() {
 bool CN3ShapeMgr::Load(HANDLE hFile) {
     DWORD dwRWC;
     int   nL = 0;
-
+    int TempVersion, TempIntStringLength;
+    ReadFile(hFile, &(TempVersion), sizeof(int), &dwRWC, NULL);	// Read the map version
+    ReadFile(hFile, &(TempIntStringLength), sizeof(int), &dwRWC, NULL);	// Read the map name char length
+    CHAR * TempOPDMapNamebuffer = new CHAR[TempIntStringLength / sizeof(char) + 1]{};	// Zero-initialized
+    ReadFile(hFile, TempOPDMapNamebuffer, TempIntStringLength, &dwRWC, NULL);	// Now read it and push it back to the OPDMapName char buffer
+	
     if (false == LoadCollisionData(hFile)) {
         return false;
     }
