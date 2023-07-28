@@ -415,6 +415,19 @@ bool CN3FXPartParticles::Load(HANDLE hFile) {
         ReadFile(hFile, &m_fScaleVelY, sizeof(float), &dwRWC, NULL);
     }
 
+    if (m_iVersion >= 6) {
+        ReadFile(hFile, &m_bDistanceNumFix, sizeof(bool), &dwRWC, NULL);
+        ReadFile(hFile, &m_bParticleYAxisFix, sizeof(bool), &dwRWC, NULL);
+    }
+    if (m_iVersion >= 8) {
+        /*
+        ReadFile(hFile, &m_bParticle_Not_Rot, sizeof(bool), &dwRWC, NULL);
+        ReadFile(hFile, &m_vParticle_Not_Rot, sizeof(__Vector3), &dwRWC, NULL);
+        ReadFile(hFile, &m_fPtRangeMin, sizeof(float), &dwRWC, NULL);
+        ReadFile(hFile, &m_fPtRangeMax, sizeof(float), &dwRWC, NULL);
+        */
+    }
+
     Init();
 
     return true;
