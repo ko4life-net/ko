@@ -415,6 +415,19 @@ bool CN3FXPartParticles::Load(HANDLE hFile) {
         ReadFile(hFile, &m_fScaleVelY, sizeof(float), &dwRWC, NULL);
     }
 
+    if (m_iVersion >= 6) {
+        ReadFile(hFile, &m_bDistanceNumFix, sizeof(bool), &dwRWC, NULL);
+        ReadFile(hFile, &m_bParticleYAxisFix, sizeof(bool), &dwRWC, NULL);
+    }
+    if (m_iVersion >= 8) {
+        /*
+        ReadFile(hFile, &m_bParticle_Not_Rot, sizeof(bool), &dwRWC, NULL);
+        ReadFile(hFile, &m_vParticle_Not_Rot, sizeof(__Vector3), &dwRWC, NULL);
+        ReadFile(hFile, &m_fPtRangeMin, sizeof(float), &dwRWC, NULL);
+        ReadFile(hFile, &m_fPtRangeMax, sizeof(float), &dwRWC, NULL);
+        */
+    }
+
     Init();
 
     return true;
@@ -1287,7 +1300,7 @@ void CN3FXPartParticles::Duplicate(CN3FXPartParticles * pSrc) {
     if (m_dwEmitType == FX_PART_PARTICLE_EMIT_TYPE_SPREAD) {
         m_uEmitCon.fEmitAngle = pSrc->m_uEmitCon.fEmitAngle;
     } else if (m_dwEmitType == FX_PART_PARTICLE_EMIT_TYPE_GATHER) {
-        m_uEmitCon.vGatherPoint = m_uEmitCon.vGatherPoint;
+        m_uEmitCon.vGatherPoint = pSrc->m_uEmitCon.vGatherPoint;
     }
 
     m_vPtEmitDir = pSrc->m_vPtEmitDir;

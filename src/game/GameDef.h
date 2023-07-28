@@ -1129,11 +1129,13 @@ typedef struct __TABLE_UPC_SKILL {
     int   iCastTime;   // 캐스팅 시간
     int   iReCastTime; // 다시 캐스팅할때까지 걸리는 시간.
 
-    float fUnkown1;        // TODO: implement
+    float fUnkown1;        // TODO: implement does this have to do with cooldown timers ??
+    float fUnkown2;        // TODO: implement does this have to do with cooldown timers ??
     int   iPercentSuccess; // 성공률
     DWORD dw1stTableType;  // 첫번째 타입.
     DWORD dw2ndTableType;  // 두번째 타입.
     int   iValidDist;      // 유효거리
+    int   iUnkown1;        // TODO: implement 
 
 } TABLE_UPC_ATTACK_B;
 
