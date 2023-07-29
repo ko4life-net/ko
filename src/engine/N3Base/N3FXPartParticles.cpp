@@ -417,8 +417,11 @@ bool CN3FXPartParticles::Load(HANDLE hFile) {
 
     if (m_iVersion >= 6) {
         ReadFile(hFile, &m_bDistanceNumFix, sizeof(bool), &dwRWC, NULL);
+    }
+    if (m_iVersion >= 7) {
         ReadFile(hFile, &m_bParticleYAxisFix, sizeof(bool), &dwRWC, NULL);
     }
+
     if (m_iVersion >= 8) {
         /*
         ReadFile(hFile, &m_bParticle_Not_Rot, sizeof(bool), &dwRWC, NULL);
