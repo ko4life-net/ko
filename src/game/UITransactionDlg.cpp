@@ -302,7 +302,7 @@ void CUITransactionDlg::EnterTransactionState() {
         spItem->iDurability = pItem->siMaxDurability + pItemExt->siMaxDurability;
 
         m_pMyTrade[j][k] = spItem;
-		k++;
+        k++;
     }
 
     InitIconUpdate();
