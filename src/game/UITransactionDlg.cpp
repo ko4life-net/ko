@@ -250,7 +250,7 @@ void CUITransactionDlg::EnterTransactionState() {
     int iExt = m_iTradeID % 1000;
     int iSize = CGameBase::s_pTbl_Items_Basic->GetSize();
 
-    for (int i = 0, j = 0, k = 0; i < iSize; i++, k++) {
+    for (int i = 0, j = 0, k = 0; i < iSize; i++) {
         if (k >= MAX_ITEM_TRADE) {
             j++;
             k = 0;
@@ -302,6 +302,7 @@ void CUITransactionDlg::EnterTransactionState() {
         spItem->iDurability = pItem->siMaxDurability + pItemExt->siMaxDurability;
 
         m_pMyTrade[j][k] = spItem;
+		k++;
     }
 
     InitIconUpdate();
