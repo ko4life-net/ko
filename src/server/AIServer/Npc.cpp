@@ -348,6 +348,12 @@ void CNpc::NpcTracing(CIOCPort * pIOCP) {
         }
     }
 
+    if (m_byMoveType == 4)
+    {
+        m_NpcState = NPC_FIGHTING;
+        return;
+    }
+
     if (cur_test) {
         NpcTrace("NpcTracing()");
     }
@@ -1057,6 +1063,11 @@ BOOL CNpc::SetLive(CIOCPort * pIOCP) {
 BOOL CNpc::RandomMove() {
     // 보통이동일때는 걷는 속도로 맞추어준다...
     m_fSecForMetor = m_fSpeed_1;
+
+    if (m_byMoveType == 4)
+    {
+        return FALSE;
+    }
 
     if (m_bySearchRange == 0) {
         return FALSE;
