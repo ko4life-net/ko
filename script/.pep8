@@ -1,0 +1,5 @@
+[pycodestyle]
+indent-size = 2
+recursive = true
+aggressive = 0
+max_line_length = 140
