@@ -1287,7 +1287,7 @@ void CN3FXPartParticles::Duplicate(CN3FXPartParticles * pSrc) {
     if (m_dwEmitType == FX_PART_PARTICLE_EMIT_TYPE_SPREAD) {
         m_uEmitCon.fEmitAngle = pSrc->m_uEmitCon.fEmitAngle;
     } else if (m_dwEmitType == FX_PART_PARTICLE_EMIT_TYPE_GATHER) {
-        m_uEmitCon.vGatherPoint = m_uEmitCon.vGatherPoint;
+        m_uEmitCon.vGatherPoint = pSrc->m_uEmitCon.vGatherPoint;
     }
 
     m_vPtEmitDir = pSrc->m_vPtEmitDir;
