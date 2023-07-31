@@ -906,38 +906,52 @@ void CUISkillTreeDlg::TooltipRenderEnable(__IconItemSkill * spSkill) {
     }
     m_pStr_info->SetString(spSkill->pSkill->szDesc);
 
-    if ((spSkill->pSkill->dw1stTableType != 1) && (spSkill->pSkill->dw1stTableType != 2)) {
-        if (!m_pStr_skill_mp->IsVisible()) {
-            m_pStr_skill_mp->SetVisible(true);
+    //if ((spSkill->pSkill->dw1stTableType != 1) && (spSkill->pSkill->dw1stTableType != 2)) {
+    //    if (!m_pStr_skill_mp->IsVisible()) {
+    //        m_pStr_skill_mp->SetVisible(true);
+    //    }
+    //    if (spSkill->pSkill->iExhaustMSP == 0) {
+    //        ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NO_MANA, szFmt);
+    //        sprintf(pszDesc, "%s", szFmt.c_str());
+    //    } else {
+    //        ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_USE_MANA, szFmt);
+    //        sprintf(pszDesc, szFmt.c_str(), spSkill->pSkill->iExhaustMSP);
+    //    }
+    //    m_pStr_skill_mp->SetString(pszDesc);
+    //}
+    if (m_pStr_skill_mp) 
+    {
+        m_pStr_skill_mp->SetVisible(true);
+        if (spSkill->pSkill->iExhaustMSP == 0) 
+        {
+                   ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NO_MANA, szFmt);
+                    sprintf(pszDesc, "%s", szFmt.c_str());
+        } 
+        else 
+        {
+                    ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_USE_MANA, szFmt);
+                    sprintf(pszDesc, szFmt.c_str(), spSkill->pSkill->iExhaustMSP);
         }
-        if (spSkill->pSkill->iExhaustMSP == 0) {
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NO_MANA, szFmt);
-            sprintf(pszDesc, "%s", szFmt.c_str());
-        } else {
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_USE_MANA, szFmt);
-            sprintf(pszDesc, szFmt.c_str(), spSkill->pSkill->iExhaustMSP);
-        }
-        m_pStr_skill_mp->SetString(pszDesc);
+                m_pStr_skill_mp->SetString(pszDesc);
     }
 
     if (!m_pStr_skill_item0->IsVisible()) {
         m_pStr_skill_item0->SetVisible(true);
     }
-    switch (spSkill->pSkill->iNeedSkill) {
-    case 1055:
-    case 2055:
-        ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_DUAL, szFmt);
-        sprintf(pszDesc, szFmt.c_str());
-        bFound = true;
-        break;
-
-    case 1056:
-    case 2056:
-        ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_DOUBLE, szFmt);
-        sprintf(pszDesc, szFmt.c_str());
-        bFound = true;
-        break;
-    }
+    //switch (spSkill->pSkill->iNeedSkill) {
+    //case 1055:
+    //case 2055:
+    //    ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_DUAL, szFmt);
+    //    sprintf(pszDesc, szFmt.c_str());
+    //    bFound = true;
+    //    break;
+    //case 1056:
+    //case 2056:
+    //    ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_DOUBLE, szFmt);
+    //    sprintf(pszDesc, szFmt.c_str());
+    //    bFound = true;
+    //    break;
+    //}
 
     if (!bFound) {
         switch (spSkill->pSkill->dwNeedItem) {

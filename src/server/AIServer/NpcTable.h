@@ -13,7 +13,7 @@ class CNpcTable {
     int   m_iWeapon_1;                // 무기계열(오른손)
     int   m_iWeapon_2;                // 무기계열(왼손)
     BYTE  m_byGroup;                  // 소속집단
-    BYTE  m_byActType;                // 행동패턴
+    int  m_byActType;                // 행동패턴
     BYTE  m_tNpcType;                 // NPC Type
                                       // 0 : Monster
                                       // 1 : Normal NPC
