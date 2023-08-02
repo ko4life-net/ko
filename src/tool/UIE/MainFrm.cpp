@@ -63,31 +63,31 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     }
 
     if (!m_wndToolBar.CreateEx(this) || !m_wndToolBar.LoadToolBar(IDR_MAINFRAME)) {
-        TRACE0("Failed to create toolbar\n");
+        TRACE0("Failed to create toolbar.\n");
         return -1; // fail to create
     }
     if (!m_wndDlgBar.Create(IDR_MAINFRAME, this))
     //    if (!m_wndDlgBar.Create(this, IDR_MAINFRAME,
     //        CBRS_ALIGN_TOP, AFX_IDW_DIALOGBAR))
     {
-        TRACE0("Failed to create dialogbar\n");
+        TRACE0("Failed to create dialogbar.\n");
         return -1; // fail to create
     }
 
     if (!m_wndReBar.Create(this) || !m_wndReBar.AddBar(&m_wndToolBar) || !m_wndReBar.AddBar(&m_wndDlgBar)) {
-        TRACE0("Failed to create rebar\n");
+        TRACE0("Failed to create rebar.\n");
         return -1; // fail to create
     }
 
     if (!m_wndStatusBar.Create(this) || !m_wndStatusBar.SetIndicators(indicators, sizeof(indicators) / sizeof(UINT))) {
-        TRACE0("Failed to create status bar\n");
+        TRACE0("Failed to create status bar.\n");
         return -1; // fail to create
     }
 
     // TODO: Remove this if you don't want tool tips
     m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() | CBRS_TOOLTIPS | CBRS_FLYBY);
 
-    // Engine »ý¼º
+    // Engine ï¿½ï¿½ï¿½ï¿½
     //m_Eng.InitEnv();
     if (!m_Eng.Init(TRUE, GetRightPane()->m_hWnd, 64, 64, 0, TRUE)) {
         return -1;
@@ -118,15 +118,15 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 
 BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/, CCreateContext * pContext) {
     // create splitter window
-    //    if (!m_wndSplitter.CreateStatic(this, 1, 2))
-    //        return FALSE;
+    /*   if (!m_wndSplitter.CreateStatic(this, 1, 2))
+            return FALSE;
 
-    //    if (!m_wndSplitter.CreateView(0, 0, RUNTIME_CLASS(CHierarchyView), CSize(100, 100), pContext) ||
-    //        !m_wndSplitter.CreateView(0, 1, RUNTIME_CLASS(CUIEView), CSize(100, 100), pContext))
-    //    {
-    //        m_wndSplitter.DestroyWindow();
-    //        return FALSE;
-    //    }
+        if (!m_wndSplitter.CreateView(0, 0, RUNTIME_CLASS(CHierarchyView), CSize(100, 100), pContext) ||
+            !m_wndSplitter.CreateView(0, 1, RUNTIME_CLASS(CUIEView), CSize(100, 100), pContext))
+        {
+            m_wndSplitter.DestroyWindow();
+            return FALSE;
+        }*/
 
     CRect rc;
     GetClientRect(rc);
@@ -267,7 +267,7 @@ void CMainFrame::OnDestroy() {
 }
 
 void CMainFrame::EnableAccelerator(BOOL bEnable) {
-    // Ã³À½ È£ÃâµÇ¸é ¿ø·¡ Accel table ÀúÀåÇØ³õ±â
+    // Ã³ï¿½ï¿½ È£ï¿½ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ Accel table ï¿½ï¿½ï¿½ï¿½ï¿½Ø³ï¿½ï¿½ï¿½
     if (NULL == m_hDefaultAccelTable) {
         m_hDefaultAccelTable = m_hAccelTable;
     }
