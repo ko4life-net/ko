@@ -54,7 +54,7 @@ BOOL CSharedMemQueue::InitailizeMMF(DWORD dwOffsetsize, int maxcount, LPCTSTR lp
     }
 
     if (m_hMMFile == NULL) {
-        strcpy(logstr, "Shared Memory Open Fail!!\r\n");
+        strcpy(logstr, "Shared Memory Open Fail!\r\n");
         LogFileWrite(logstr);
         return FALSE;
     }
@@ -67,7 +67,7 @@ BOOL CSharedMemQueue::InitailizeMMF(DWORD dwOffsetsize, int maxcount, LPCTSTR lp
 
     m_bMMFCreate = bCreate;
     m_pHeader = (_SMQ_HEADER *)m_lpMMFile;
-    m_lReference = (LONG)(m_lpMMFile + sizeof(_SMQ_HEADER)); // 초기 위치 셋팅
+    m_lReference = (LONG)(m_lpMMFile + sizeof(_SMQ_HEADER)); // set initial position
 
     if (bCreate) {
         memset(m_lpMMFile, 0x00, dwfullsize);

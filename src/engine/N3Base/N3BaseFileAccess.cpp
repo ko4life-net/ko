@@ -12,14 +12,14 @@
 CN3BaseFileAccess::CN3BaseFileAccess() {
     m_dwType |= OBJ_BASE_FILEACCESS;
     m_szFileName = "";
-    m_iLOD = 0; // 로딩할때 쓸 LOD
+    m_iLOD = 0; // LOD for loading
 }
 
 CN3BaseFileAccess::~CN3BaseFileAccess() {}
 
 void CN3BaseFileAccess::Release() {
     m_szFileName = "";
-    m_iLOD = 0; // 로딩할때 쓸 LOD
+    m_iLOD = 0; // LOD for loading
     CN3Base::Release();
 }
 
@@ -27,11 +27,11 @@ void CN3BaseFileAccess::FileNameSet(const std::string & szFileName) {
     std::string szTmpFN = szFileName;
 
     if (!szTmpFN.empty()) {
-        CharLower(&(szTmpFN[0])); // 모두 소문자로 만든다..
+        CharLower(&(szTmpFN[0])); // All lowercase letters...
     }
-    int iPos = szTmpFN.find(s_szPath); // 문자열에 Base Path 와 일치하는 이름이 있는지 본다.
+    int iPos = szTmpFN.find(s_szPath); // See if the string has a name that matches the Base Path.
     if (iPos >= 0) {
-        m_szFileName = szTmpFN.substr(s_szPath.size()); // 경로가 일치하면.. 긴경로는 짤라준다..
+        m_szFileName = szTmpFN.substr(s_szPath.size()); // If the paths match, the long path is cut off.
     } else {
         m_szFileName = szTmpFN;
     }
@@ -62,7 +62,7 @@ bool CN3BaseFileAccess::LoadFromFile() {
 
     std::string szFullPath;
     if (-1 != m_szFileName.find(':') || -1 != m_szFileName.find("\\\\") ||
-        -1 != m_szFileName.find("//")) // 문자열에 ':', '\\', '//' 이 들어 있으면 전체 경로이다..
+        -1 != m_szFileName.find("//")) // If the string contains ':', '\\', or '//', it is a full path.
     {
         szFullPath = m_szFileName;
     } else {
@@ -107,7 +107,7 @@ bool CN3BaseFileAccess::SaveToFile() {
 
     std::string szFullPath;
     if (-1 != m_szFileName.find(':') || -1 != m_szFileName.find("\\\\") ||
-        -1 != m_szFileName.find("//")) // 문자열에 ':', '\\', '//' 이 들어 있으면 전체 경로이다..
+        -1 != m_szFileName.find("//")) // If the string contains ':', '\\', '//', it is the full path.
     {
         szFullPath = m_szFileName;
     } else {

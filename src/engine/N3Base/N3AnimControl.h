@@ -16,9 +16,9 @@ typedef struct __AnimData {
   public:
     std::string szName;
 
-    float fFrmStart;  // 상체 시작
-    float fFrmEnd;    // 상체 끝
-    float fFrmPerSec; // 초당 30프레임이 표준이다..
+    float fFrmStart;  // start upper body
+    float fFrmEnd;    // upper body end
+    float fFrmPerSec; // 30 frames per second is standard.
 
     float fFrmPlugTraceStart;
     float fFrmPlugTraceEnd;
@@ -26,20 +26,20 @@ typedef struct __AnimData {
     float fFrmSound0;
     float fFrmSound1;
 
-    float fTimeBlend;  // 다른 동작과 연결시 블렌딩 시간
-    int   iBlendFlags; // 블렌딩 플래그 0 이면 걍 블렌딩.. 1이면 루핑시 블렌딩 타임만큼 시간 지연
+    float fTimeBlend;  // Blending time when connected to other actions
+    int iBlendFlags;    // If the blending flag is 0, just blending. If it is 1, there is a time delay equal to the blending time when looping.
 
     float fFrmStrike0;
     float fFrmStrike1;
 
     __AnimData() {
-        fFrmPerSec = 30.0f; // 초당 30프레임이 표준이다..
+        fFrmPerSec = 30.0f; // 30 frames per second is standard.
 
         fFrmStart = fFrmEnd = 0;
         fFrmPlugTraceStart = fFrmPlugTraceEnd = 0;
         fFrmSound0 = fFrmSound1 = 0;
-        fTimeBlend = 0.25f; // 기본 블렌딩 시간..
-        iBlendFlags = 0;    // 블렌딩 플래그 0 이면 걍 블렌딩.. 1이면 루핑시 블렌딩 타임만큼 시간 지연
+        fTimeBlend = 0.25f; // Basic blending time..
+        iBlendFlags = 0;    // If the blending flag is 0, just blending. If it is 1, there is a time delay equal to the blending time when looping.
         fFrmStrike0 = fFrmStrike1 = 0;
     }
 
@@ -55,7 +55,7 @@ typedef struct __AnimData {
         fFrmSound1 = other.fFrmSound1;
 
         fTimeBlend = other.fTimeBlend;
-        iBlendFlags = other.iBlendFlags; // 블렌딩 플래그 0 이면 걍 블렌딩.. 1이면 루핑시 블렌딩 타임만큼 시간 지연
+        iBlendFlags = other.iBlendFlags; // If the blending flag is 0, just blending. If it is 1, there is a time delay equal to the blending time when looping.
 
         fFrmStrike0 = other.fFrmStrike0;
         fFrmStrike1 = other.fFrmStrike1;
@@ -71,11 +71,11 @@ typedef struct __AnimData {
         DWORD dwRWC = 0;
 
         int nL = 0;
-        ReadFile(hFile, &nL, 4, &dwRWC, NULL); // 원래는 문자열 포인터가 있던자리이다.. 호환성을 위헤서.. 걍...
+        ReadFile(hFile, &nL, 4, &dwRWC, NULL); // Originally, this is where the string pointer was... for compatibility... just...
 
-        ReadFile(hFile, &fFrmStart, 4, &dwRWC, NULL);  // 상체 시작
-        ReadFile(hFile, &fFrmEnd, 4, &dwRWC, NULL);    // 상체 끝
-        ReadFile(hFile, &fFrmPerSec, 4, &dwRWC, NULL); // 초당 30프레임이 표준이다..
+        ReadFile(hFile, &fFrmStart, 4, &dwRWC, NULL);  // start upper body
+        ReadFile(hFile, &fFrmEnd, 4, &dwRWC, NULL);    // upper body end
+        ReadFile(hFile, &fFrmPerSec, 4, &dwRWC, NULL); // 30 frames per second is standard.
 
         ReadFile(hFile, &fFrmPlugTraceStart, 4, &dwRWC, NULL);
         ReadFile(hFile, &fFrmPlugTraceEnd, 4, &dwRWC, NULL);
@@ -85,12 +85,12 @@ typedef struct __AnimData {
 
         ReadFile(hFile, &fTimeBlend, 4, &dwRWC, NULL);
         ReadFile(hFile, &iBlendFlags, 4, &dwRWC,
-                 NULL); // 블렌딩 플래그 0 이면 걍 블렌딩.. 1이면 루핑시 블렌딩 타임만큼 시간 지연
+                 NULL); // If the blending flag is 0, just blending. If it is 1, there is a time delay equal to the blending time when looping.
 
         ReadFile(hFile, &fFrmStrike0, 4, &dwRWC, NULL);
         ReadFile(hFile, &fFrmStrike1, 4, &dwRWC, NULL);
 
-        // 이름 읽기..
+        // Read name...
         szName = "";
         ReadFile(hFile, &nL, 4, &dwRWC, NULL);
         if (nL > 0) {
@@ -107,11 +107,11 @@ typedef struct __AnimData {
         DWORD dwRWC = 0;
 
         int nL = 0;
-        WriteFile(hFile, &nL, 4, &dwRWC, NULL); // 원래는 문자열 포인터가 있던자리이다.. 호환성을 위헤서.. 걍...
+        WriteFile(hFile, &nL, 4, &dwRWC, NULL); // Originally, this is where the string pointer was... for compatibility... just...
 
-        WriteFile(hFile, &fFrmStart, 4, &dwRWC, NULL);  // 상체 시작
-        WriteFile(hFile, &fFrmEnd, 4, &dwRWC, NULL);    // 상체 끝
-        WriteFile(hFile, &fFrmPerSec, 4, &dwRWC, NULL); // 초당 30프레임이 표준이다..
+        WriteFile(hFile, &fFrmStart, 4, &dwRWC, NULL);  // start upper body
+        WriteFile(hFile, &fFrmEnd, 4, &dwRWC, NULL);    // upper body end
+        WriteFile(hFile, &fFrmPerSec, 4, &dwRWC, NULL); // 30 frames per second is standard.
 
         WriteFile(hFile, &fFrmPlugTraceStart, 4, &dwRWC, NULL);
         WriteFile(hFile, &fFrmPlugTraceEnd, 4, &dwRWC, NULL);
@@ -121,12 +121,12 @@ typedef struct __AnimData {
 
         WriteFile(hFile, &fTimeBlend, 4, &dwRWC, NULL);
         WriteFile(hFile, &iBlendFlags, 4, &dwRWC,
-                  NULL); // 블렌딩 플래그 0 이면 걍 블렌딩.. 1이면 루핑시 블렌딩 타임만큼 시간 지연
+                  NULL); // If the blending flag is 0, just blending. If it is 1, there is a time delay equal to the blending time when looping.
 
         WriteFile(hFile, &fFrmStrike0, 4, &dwRWC, NULL);
         WriteFile(hFile, &fFrmStrike1, 4, &dwRWC, NULL);
 
-        // 이름 읽기..
+        // Read name...
         nL = szName.size();
         WriteFile(hFile, &nL, 4, &dwRWC, NULL);
         if (nL > 0) {

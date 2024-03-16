@@ -60,16 +60,16 @@ void CSharedMemQueue::SetReadData() {
     char * InData = Rxd->Data + Rxd->Tail;
     if (*InData != 0x7f) {
         (Rxd->Tail)++;
-        TRACE("Start가 없음");
-        //        AfxMessageBox("Start가 없음", NULL, MB_OK);
+        TRACE("No Start");
+        //        AfxMessageBox("No Start", NULL, MB_OK);
         return;
     }
     memcpy((char *)&size, InData + 1, 2);
     memcpy(abIn, InData + 3, size);
     if (*(InData + size + 3) != 0x7e) {
-        TRACE("Stop가 없음");
+        TRACE("No Stop");
     }
-    //        AfxMessageBox("Stop가 없음",NULL, MB_OK);
+    //        AfxMessageBox("No Stop",NULL, MB_OK);
     Rxd->Tail += size + 4;
     SendMessage(m_hwnd, WM_RECEIVEDATA, size, 0);
 }
@@ -96,7 +96,7 @@ BOOL CSharedMemQueue::PutData(char * pBuf, WORD size) {
     return TRUE;
 }
 
-//메세지를 전달할 hwnd설정
+// hwnd settings to deliver messages
 void CSharedMemQueue::SetHwnd(HWND hwnd) {
     m_hwnd = hwnd;
 }

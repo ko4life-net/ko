@@ -23,19 +23,19 @@ class CN3Camera : public CN3Transform {
     void      LookAt(const __Vector3 & vEye, const __Vector3 & vAt, const __Vector3 & vUp);
     __Vector3 EyePos() { return m_vPos; }
     __Vector3 AtPos() { return m_vAt; }
-    __Vector3 UpVector() { return m_vScale; } // Rotation 은 LookAt Position 처럼, Scale 은 UpVector 처럼 쓴다..
+    __Vector3 UpVector() { return m_vScale; } // Rotation is used like LookAt Position, and Scale is used like UpVector.
     __Vector3 Dir() {
         __Vector3 vDir = m_vAt - m_vPos;
         vDir.Normalize();
         return vDir;
-    } // 방향을 되돌린다.
+    } // Reverse direction.
 
     void EyePosSet(const __Vector3 & v) { m_vPos = v; }
     void EyePosSet(float x, float y, float z) { m_vPos.Set(x, y, z); }
     void AtPosSet(const __Vector3 & v) { m_vAt = v; }
     void AtPosSet(float x, float y, float z) { m_vAt.Set(x, y, z); }
-    void UpVectorSet(const __Vector3 & v) { m_vScale = v; }                // Scale 은 UpVector 처럼 쓴다..
-    void UpVectorSet(float x, float y, float z) { m_vScale.Set(x, y, z); } // Scale 은 UpVector 처럼 쓴다..
+    void UpVectorSet(const __Vector3 & v) { m_vScale = v; }                // Scale is used like UpVector.
+    void UpVectorSet(float x, float y, float z) { m_vScale.Set(x, y, z); } // Scale is used like UpVector.
 
     bool Load(HANDLE hFile);
 
@@ -52,7 +52,7 @@ class CN3Camera : public CN3Transform {
     CN3Camera();
     virtual ~CN3Camera();
 
-    void Tick(float fFrm = FRAME_SELFPLAY); // 카메라값만 단순히 세팅하기만 한다..
+    void Tick(float fFrm = FRAME_SELFPLAY); // Simply set the camera values.
     void Render(float fUnitSize = 1.0f);
-    void Apply(); // 세팅된 카메라값을 실제 D3DDevice 에 적용
+    void Apply(); // Apply set camera values to actual D3DDevice
 };

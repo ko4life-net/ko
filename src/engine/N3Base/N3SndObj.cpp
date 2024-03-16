@@ -202,10 +202,10 @@ bool CN3SndObj::Create(const std::string & szFN, e_SndType eType) {
     dsbd.dwBufferBytes = WaveFile.GetSize();
     dsbd.lpwfxFormat = WaveFile.m_pwfx;
 
-    if (SNDTYPE_2D == eType) // 2D 음원
+    if (SNDTYPE_2D == eType) // 2D sound source
     {
         dsbd.dwFlags = DSBCAPS_CTRLVOLUME; // | DSBCAPS_STATIC;
-    } else if (SNDTYPE_3D == eType)        //3D 음원..
+    } else if (SNDTYPE_3D == eType)        // 3D sound source..
     {
         dsbd.dwFlags = DSBCAPS_CTRL3D | DSBCAPS_MUTE3DATMAXDISTANCE; // | DSBCAPS_STATIC;
         dsbd.guid3DAlgorithm = DS3DALG_HRTF_LIGHT;
@@ -227,13 +227,13 @@ bool CN3SndObj::Create(const std::string & szFN, e_SndType eType) {
     }
 
     m_lpDSBuff->SetCurrentPosition(0);
-    if (SNDTYPE_3D == eType) { //3D 음원..
+    if (SNDTYPE_3D == eType) { // 3D sound source..
         if (S_OK != m_lpDSBuff->QueryInterface(IID_IDirectSound3DBuffer, (VOID **)(&m_lpDS3DBuff))) {
             return false;
         }
     }
 
-    m_szFileName = szFN; // 파일 이름을 기록한다..
+    m_szFileName = szFN; // Record the file name.
 
     s_bNeedDeferredTick = true; // 3D Listener CommitDeferredSetting
     return true;
@@ -287,7 +287,7 @@ bool CN3SndObj::Duplicate(CN3SndObj * pSrc, e_SndType eType, D3DVECTOR * pPos) {
 
 bool CN3SndObj::FillBufferWithSound(CWaveFile * pWaveFile) {
     if (NULL == m_lpDSBuff || NULL == pWaveFile) {
-        return false; // 포인터들 점검..
+        return false; // Check pointers...
     }
 
     HRESULT hr;
@@ -299,7 +299,7 @@ bool CN3SndObj::FillBufferWithSound(CWaveFile * pWaveFile) {
     dsbc.dwSize = sizeof(dsbc);
     m_lpDSBuff->GetCaps(&dsbc);
     if (dsbc.dwBufferBytes != pWaveFile->GetSize()) {
-        return false; // 사이즈 점검..
+        return false; // Check size...
     }
 
     if (FAILED(hr = RestoreBuffer())) {
@@ -371,7 +371,7 @@ void CN3SndObj::SetVolume(int Vol) {
         return;
     }
     if (m_lpDS3DBuff) {
-        return; // 3D Sound 일때는 소리 조절이 안된다..!!!
+        return; // When it is 3D Sound, the sound cannot be adjusted..!!!
     }
 
     m_iVol = Vol;
@@ -381,7 +381,7 @@ void CN3SndObj::SetVolume(int Vol) {
     }
 
     float fVol = (float)(Vol) / 100.0f;
-    long  dwVol = (long)(log10(fVol) * 3000); //데시벨 관련 소리조절식..
+    long  dwVol = (long)(log10(fVol) * 3000); // Decibel-related sound control..
     m_lpDSBuff->SetVolume(dwVol);
 }
 
@@ -447,7 +447,7 @@ void CN3SndObj::Tick() {
             this->SetVolume(0);
             HRESULT hr = m_lpDSBuff->Stop();
         } else {
-            //볼륨 점점 작게....
+            // The volume gets smaller....
             int vol = 0;
             if (m_fFadeOutTime > 0.0f) {
                 vol = (((m_fFadeOutTime - m_fTmpSecPerFrm) / m_fFadeOutTime) * (float)m_iMaxVolume);
@@ -472,7 +472,7 @@ void CN3SndObj::Play(const D3DVECTOR * pvPos, float delay, float fFadeInTime, bo
     m_fTmpSecPerFrm = 0;
     m_ePlayState = SNDSTATE_DELAY;
 
-    if (m_lpDS3DBuff) // 3D 사운드일때에는 FadeIn 등이 필요 없구.. 볼륨이 먹지 않기 때문에 리턴..
+    if (m_lpDS3DBuff) // When it is 3D sound, there is no need for FadeIn etc.. Return because the volume does not eat..
     {
         m_ePlayState = SNDSTATE_PLAY;
         if (m_lpDSBuff) {

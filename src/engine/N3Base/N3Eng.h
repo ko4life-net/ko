@@ -20,12 +20,12 @@ class CN3Eng : public CN3Base {
     typedef struct __D3DDEV_INFO {
         char szDeviceName[128];
         char szDeviceDesc[128];
-        int  nAdapter; // 몇번째 그래픽 카드인지.
-        int  nDevice;  // 몇번째 장치인지.
+        int  nAdapter; // Which graphics card is it?
+        int  nDevice;  // Which device is it?
 
-        D3DDEVTYPE       DevType;    // 하드웨어 가속인지.
-        int              nModeCount; // 디스플레이 모드 갯수
-        D3DDISPLAYMODE * pModes;     // 디스플레이 모드
+        D3DDEVTYPE       DevType;    // Is it hardware acceleration?
+        int              nModeCount; // Number of display modes
+        D3DDISPLAYMODE * pModes;     // display mode
     } __D3DDevInfo;
 
     LPDIRECT3D9  m_lpD3D;
@@ -34,9 +34,9 @@ class CN3Eng : public CN3Base {
     static CN3EngCallbacks m_CB;
 
   protected:
-    int           m_nModeActive;   // 현재 선택된 Mode
-    int           m_nAdapterCount; // 그래픽 카드 갯수
-    __D3DDEV_INFO m_DeviceInfo;    // Device 정보
+    int           m_nModeActive;   // Currently selected Mode
+    int           m_nAdapterCount; // Number of graphics cards
+    __D3DDEV_INFO m_DeviceInfo;    //Device information
 
   public:
     HKEY RegistryOpen(const std::string & szKey);

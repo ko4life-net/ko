@@ -23,24 +23,24 @@ CLocalInput::CLocalInput(void) {
     //    m_bKeyboard = FALSE;
 
     m_nMouseFlag = 0;
-    m_nMouseFlagOld = 0; // 마우스 버튼 눌림 플래그
-    m_dwTickLBDown = 0;  // 마우스 왼쪽 버튼 더블 클릭 감지용
-    m_dwTickRBDown = 0;  // 마우스 오른쪽 버튼 더블 클릭 감지용
+    m_nMouseFlagOld = 0; // mouse button pressed flag
+    m_dwTickLBDown = 0;  // For detecting left mouse button double click
+    m_dwTickRBDown = 0;  // For detecting right mouse double click
 
-    m_ptCurMouse.x = m_ptCurMouse.y = 0; // 현재 마우스 포인터
-    m_ptOldMouse.x = m_ptOldMouse.y = 0; // 직전 마우스 포인터
+    m_ptCurMouse.x = m_ptCurMouse.y = 0; // current mouse pointer
+    m_ptOldMouse.x = m_ptOldMouse.y = 0; // previous mouse pointer
 
-    SetRect(&m_rcLBDrag, 0, 0, 0, 0); // 드래그 영역
-    SetRect(&m_rcMBDrag, 0, 0, 0, 0); // 드래그 영역
-    SetRect(&m_rcRBDrag, 0, 0, 0, 0); // 드래그 영역
+    SetRect(&m_rcLBDrag, 0, 0, 0, 0); // drag area
+    SetRect(&m_rcMBDrag, 0, 0, 0, 0); // drag area
+    SetRect(&m_rcRBDrag, 0, 0, 0, 0); // drag area
 
-    SetRect(&m_rcMLimit, 0, 0, 0, 0); // 마우스 움직임 제한 영역
+    SetRect(&m_rcMLimit, 0, 0, 0, 0); // Mouse movement restriction area
 
-    memset(m_byCurKeys, 0, sizeof(m_byCurKeys));       // 현재 키 상태
-    memset(m_byOldKeys, 0, sizeof(m_byOldKeys));       // 직전 키 상태
-    memset(m_bKeyPresses, 0, sizeof(m_bKeyPresses));   // 키를 누른 순간인지
-    memset(m_bKeyPresseds, 0, sizeof(m_bKeyPresseds)); // 키를 눌렀다 떼는 순간인지
-    m_bNoKeyDown = FALSE;                              // 아무 키입력도 없는지
+    memset(m_byCurKeys, 0, sizeof(m_byCurKeys));       // Current key status
+    memset(m_byOldKeys, 0, sizeof(m_byOldKeys));       // Previous key state
+    memset(m_bKeyPresses, 0, sizeof(m_bKeyPresses));   // Is it the moment you press the key?
+    memset(m_bKeyPresseds, 0, sizeof(m_bKeyPresseds)); // Is it the moment you press and release the key?
+    m_bNoKeyDown = FALSE;                              // Are there any keystrokes?
 
     memset(m_dwTickKeyPress, 0, sizeof(m_dwTickKeyPress));
 }
@@ -79,7 +79,7 @@ BOOL CLocalInput::Init(HINSTANCE hInst, HWND hWnd, BOOL bActivateKeyboard, BOOL 
                        BOOL ExclusiveMouseAccess) {
     HRESULT rval;
 
-    m_hWnd = hWnd; // 윈도우 핸들 기억..
+    m_hWnd = hWnd; // Remember the window handle...
 
     rval = DirectInput8Create(hInst, DIRECTINPUT_VERSION, IID_IDirectInput8, (void **)(&m_lpDI), NULL);
     if (rval != DI_OK) {
@@ -236,7 +236,7 @@ void CLocalInput::UnacquireMouse() {
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Updates all devices. Call this before you check for input.
 /////////////////////////////////////////////////////////////////////////////////////////////
-// 되도록이면 전체 프로시저 돌때 한번씩만 도는게 좋다.. 여러번 하면 혼란이 올수도 있다.
+// If possible, it is best to run it only once during the entire procedure. If you do it multiple times, it may cause confusion.
 void CLocalInput::Tick(void) {
 #if _DEBUG
     if (ImGui::GetIO().WantCaptureMouse || ImGui::GetIO().WantCaptureKeyboard) {
@@ -250,7 +250,7 @@ void CLocalInput::Tick(void) {
     //    WORD i;
     //    DWORD key;
 
-    HWND hWndActive = ::GetActiveWindow(); // 포커싱되었을때만...
+    HWND hWndActive = ::GetActiveWindow(); // Only when focused...
     if (hWndActive != m_hWnd) {
         return;
     }
@@ -260,21 +260,21 @@ void CLocalInput::Tick(void) {
     ///////////////////////
     //    if(m_bKeyboard)
     //    {
-    memcpy(m_byOldKeys, m_byCurKeys, NUMDIKEYS);                   // 전의 키 상태 기록
-    err = m_lpDIDKeyboard->GetDeviceState(NUMDIKEYS, m_byCurKeys); // 현재 키 상태 기록
+    memcpy(m_byOldKeys, m_byCurKeys, NUMDIKEYS);                   // Previous key state history
+    err = m_lpDIDKeyboard->GetDeviceState(NUMDIKEYS, m_byCurKeys); // Record current key state
     if (err != DI_OK) {
         AcquireKeyboard();
     } else {
-        m_bNoKeyDown = TRUE; // 첨엔 아무것도 안눌림
+        m_bNoKeyDown = TRUE; // At first, I couldn’t press anything.
         for (int i = 0; i < NUMDIKEYS; i++) {
             if (!m_byOldKeys[i] && m_byCurKeys[i]) {
-                m_bKeyPresses[i] = TRUE; // 눌리는 순간
+                m_bKeyPresses[i] = TRUE; // The moment you press
             } else {
                 m_bKeyPresses[i] = FALSE;
             }
 
             if (m_byOldKeys[i] && !m_byCurKeys[i]) {
-                m_bKeyPresseds[i] = TRUE; // 눌렀다 떼는 순간..
+                m_bKeyPresseds[i] = TRUE; // The moment you press and release...
             } else {
                 m_bKeyPresseds[i] = FALSE;
             }
@@ -292,7 +292,7 @@ void CLocalInput::Tick(void) {
     //    if(m_bMouse)
     //    {
     //        DIMOUSESTATE DIMState;
-    //        err = m_lpDIDMouse->GetDeviceState(sizeof(DIMState), &DIMState); // 마우스 상태 얻기 - 이상타.. 자꾸.. 에러가..
+    //        err = m_lpDIDMouse->GetDeviceState(sizeof(DIMState), &DIMState); // Getting the mouse status - I keep getting errors...
     //        if(err != DI_OK)
     //        {
     //            AcquireMouse();
@@ -321,22 +321,22 @@ void CLocalInput::Tick(void) {
     //        if (m_ptCurMouse.y < m_rcMLimit.top)
     //            m_ptCurMouse.y = m_rcMLimit.top;
 
-    m_ptOldMouse = m_ptCurMouse; // 일단 전의 것 복사...
+    m_ptOldMouse = m_ptCurMouse; // First, copy the previous one...
 
     RECT rcClient;
     ::GetClientRect(m_hWnd, &rcClient);
-    ::GetCursorPos(&m_ptCurMouse);           // 좀 이상해서... 그냥 시스템 마우스 커서 위치 가져오기
-    ::ScreenToClient(m_hWnd, &m_ptCurMouse); // 클라이언트 영역으로 변환
+    ::GetCursorPos(&m_ptCurMouse);           // It's a bit strange... Just get the system mouse cursor position.
+    ::ScreenToClient(m_hWnd, &m_ptCurMouse); // Convert to client area
 
     if (PtInRect(&rcClient, m_ptCurMouse) ==
-        FALSE) //  || GetFocus() != m_hWnd) // 스크린 영역 밖에 있거나 포커스가 가있지 않으면..
+        FALSE) //  || GetFocus() != m_hWnd) // If it is outside the screen area or is not in focus...
     {
     } else {
-        // 마우스 버튼 상태 보관.
+        // Maintain mouse button state.
         m_nMouseFlagOld = m_nMouseFlag;
         m_nMouseFlag = 0;
 
-        // 마우스 상태 가져오기
+        // Get mouse state
         if (_IsKeyDown(VK_LBUTTON)) {
             m_nMouseFlag |= MOUSE_LBDOWN;
         }
@@ -347,7 +347,7 @@ void CLocalInput::Tick(void) {
             m_nMouseFlag |= MOUSE_RBDOWN;
         }
 
-        // 버튼 클릭 직후..
+        // Immediately after clicking the button...
         if ((m_nMouseFlagOld & MOUSE_LBDOWN) == FALSE && (m_nMouseFlag & MOUSE_LBDOWN)) {
             m_nMouseFlag |= MOUSE_LBCLICK;
         }
@@ -358,7 +358,7 @@ void CLocalInput::Tick(void) {
             m_nMouseFlag |= MOUSE_RBCLICK;
         }
 
-        // 버튼에서 손을 떼면
+        //When you release the button
         if ((m_nMouseFlagOld & MOUSE_LBDOWN) && (m_nMouseFlag & MOUSE_LBDOWN) == FALSE) {
             m_nMouseFlag |= MOUSE_LBCLICKED;
         }
@@ -369,8 +369,8 @@ void CLocalInput::Tick(void) {
             m_nMouseFlag |= MOUSE_RBCLICKED;
         }
 
-        static DWORD dwDblClk = GetDoubleClickTime(); // 윈도우의 더블 클릭시간을 가져오고..
-        if (m_nMouseFlag & MOUSE_LBCLICKED)           // 왼쪽 더블 클릭 감지
+        static DWORD dwDblClk = GetDoubleClickTime(); // Get the double-click time of Windows.
+        if (m_nMouseFlag & MOUSE_LBCLICKED)           // Left double click detection
         {
             static DWORD dwCLicked = 0;
             if (timeGetTime() < dwCLicked + dwDblClk) {
@@ -378,7 +378,7 @@ void CLocalInput::Tick(void) {
             }
             dwCLicked = timeGetTime();
         }
-        if (m_nMouseFlag & MOUSE_MBCLICKED) // 왼쪽 더블 클릭 감지
+        if (m_nMouseFlag & MOUSE_MBCLICKED) // Left double click detection
         {
             static DWORD dwCLicked = 0;
             if (timeGetTime() < dwCLicked + dwDblClk) {
@@ -386,7 +386,7 @@ void CLocalInput::Tick(void) {
             }
             dwCLicked = timeGetTime();
         }
-        if (m_nMouseFlag & MOUSE_RBCLICKED) // 왼쪽 더블 클릭 감지
+        if (m_nMouseFlag & MOUSE_RBCLICKED) // Left double click detection
         {
             static DWORD dwCLicked = 0;
             if (timeGetTime() < dwCLicked + dwDblClk) {
@@ -395,7 +395,7 @@ void CLocalInput::Tick(void) {
             dwCLicked = timeGetTime();
         }
 
-        // 드래그 영역 처리
+        // Drag area handling
         if (m_nMouseFlag & MOUSE_LBDOWN) {
             m_rcLBDrag.right = m_ptCurMouse.x;
             m_rcLBDrag.bottom = m_ptCurMouse.y;

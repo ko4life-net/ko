@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
 
@@ -13,13 +13,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Korean resources
+// Korean (Korea) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
-#ifdef _WIN32
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 #pragma code_page(949)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -27,18 +25,18 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE 
 BEGIN
     "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
     "#define _AFX_NO_OLE_RESOURCES\r\n"
@@ -61,35 +59,6 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Icon
-//
-
-// Icon with lowest ID value placed first to ensure application icon
-// remains consistent on all systems.
-IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Ebenezer.ico"
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Dialog
-//
-
-IDD_EBENEZER_DIALOG DIALOGEX 0, 0, 183, 183
-STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
-EXSTYLE WS_EX_APPWINDOW
-CAPTION "Ebenezer"
-FONT 9, "±¼¸²", 0, 0, 0x1
-BEGIN
-    LISTBOX         IDC_LIST1,8,4,166,136,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
-                    WS_TABSTOP
-    EDITTEXT        IDC_GONGJI_EDIT,12,156,158,14,ES_AUTOHSCROLL
-    GROUPBOX        "°øÁö",IDC_STATIC,8,145,167,32
-END
-
-
-#ifndef _MAC
-/////////////////////////////////////////////////////////////////////////////
-//
 // Version
 //
 
@@ -108,17 +77,15 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "041204B0"
+        BLOCK "041204b0"
         BEGIN
-            VALUE "CompanyName", "\0"
-            VALUE "FileDescription", "Ebenezer MFC ÀÀ¿ë ÇÁ·Î±×·¥\0"
-            VALUE "FileVersion", "1, 0, 0, 1\0"
-            VALUE "InternalName", "Ebenezer\0"
-            VALUE "LegalCopyright", "Copyright (C) 2001\0"
-            VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "Ebenezer.EXE\0"
-            VALUE "ProductName", "Ebenezer ÀÀ¿ë ÇÁ·Î±×·¥\0"
-            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "FileDescription", "Ebenezer MFC ÀÀ¿ë ÇÁ·Î±×·¥"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "Ebenezer"
+            VALUE "LegalCopyright", "Copyright (C) 2001"
+            VALUE "OriginalFilename", "Ebenezer.EXE"
+            VALUE "ProductName", "Ebenezer ÀÀ¿ë ÇÁ·Î±×·¥"
+            VALUE "ProductVersion", "1, 0, 0, 1"
         END
     END
     BLOCK "VarFileInfo"
@@ -127,95 +94,23 @@ BEGIN
     END
 END
 
-#endif    // !_MAC
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// String Table
-//
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_ABOUTBOX            "Ebenezer Á¤º¸(&A)..."
-    IDP_SOCKETS_INIT_FAILED "Windows ¼ÒÄÏ ÃÊ±âÈ­¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù."
-    IDP_BATTLEZONE_OPEN     "·ç³ª°ÔÀÌÆ®ÀÇ ¹®ÀÌ ¿­·È½À´Ï´Ù. ÀüÀïÀÌ ½ÃÀÛ µÇ¾ú½À´Ï´Ù."
-    IDP_KARUS_VICTORY       "Ä«·ç½º°¡ ½Â¸®Çß½À´Ï´Ù. Á×ÀÎ Àû±ºÀÇ ¼ö : %d¸í, Á×Àº ¾Æ±ºÀÇ ¼ö : %d¸í"
-    IDP_ELMORAD_VICTORY     "¿¤¸ð¶óµå°¡ ½Â¸®Çß½À´Ï´Ù. Á×ÀÎ Àû±ºÀÇ ¼ö : %d¸í, Á×Àº ¾Æ±ºÀÇ ¼ö : %d¸í"
-    IDP_KARUS_BANISH        "ÀüÀïÁ¸¿¡ ÀÖ´Â ¿¤¸ð ¿ë»çµéÀº Ãß¹æ´çÇÏ¿´½À´Ï´Ù!"
-    IDP_ELMORAD_BANISH      "ÀüÀïÁ¸¿¡ ÀÖ´Â Ä«·ç½º ¿ë»çµéÀº Ãß¹æ´çÇÏ¿´½À´Ï´Ù!"
-    IDP_KNIGHT_NAME_REPEAT  "±â»ç´ÜÀÌ¸§ÀÌ Áßº¹µÇ¾ú½À´Ï´Ù."
-    IDP_KNIGHT_ALREADY_REGISTERED "ÀÌ¹Ì ±â»ç´Ü¿¡ °¡ÀÔµÇ¾î ÀÖ½À´Ï´Ù."
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDP_KNIGHT_INSUFFICIENT_LEVEL 
-                            "±â»ç´ÜÀ» Ã¢¼³ ÇÏ·Á¸é 20 Level ÀÌ»óÀÌ ÇÊ¿äÇÕ´Ï´Ù."
-    IDP_KNIGHT_INSUFFICIENT_LOYALTY 
-                            "±â»ç´ÜÀ» Ã¢¼³ ÇÏ·Á¸é ±¹°¡±â¿©µµ 800 ÀÌ»óÀÌ ÇÊ¿äÇÕ´Ï´Ù."
-    IDP_KNIGHT_INSUFFICIENT_SKILL 
-                            "±â»ç´ÜÀ» Ã¢¼³ ÇÏ·Á¸é ÁöÈÖ½ºÅ³ 10, ¿¹Àý½ºÅ³ 5 ÀÌ»óÀÌ ÇÊ¿äÇÕ´Ï´Ù."
-    IDP_KNIGHT_INSUFFICIENT_CHARISMA 
-                            "±â»ç´ÜÀ» Ã¢¼³ ÇÏ·Á¸é ¸Å·Â 120 ÀÌ»óÀÌ ÇÊ¿äÇÕ´Ï´Ù."
-    IDP_KNIGHT_INSUFFICIENT_GOLD 
-                            "±â»ç´ÜÀ» Ã¢¼³ ÇÏ·Á¸é 1000000³ë¾Æ ÀÌ»óÀÌ ÇÊ¿äÇÕ´Ï´Ù."
-    IDP_KNIGHT_CREATE_FAIL  "±â»ç´Ü Ã¢¼³¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù."
-    IDP_KNIGHT_NOT_AVAILABLE "Á¸ÀçÇÏÁö ¾Ê´Â ±â»ç´ÜÀÔ´Ï´Ù."
-    IDP_KNIGHT_LEADER_ONLY  "±â»ç´ÜÀå ¸¸ÀÌ ÇÒ ¼ö ÀÖ½À´Ï´Ù."
-    IDP_KNIGHT_MINIMUM_SUBLEADER "ºÎ±â»ç´ÜÀå ÀÌ»óÀÌ ÇÒ ¼ö ÀÖ½À´Ï´Ù."
-    IDP_KNIGHT_NOT_REGISTERED "±â»ç´Ü¿¡ °¡ÀÔµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù."
-    IDP_KNIGHT_DB_FAIL      "±â»ç´Ü DBÃ³¸®¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù."
-    IDP_WRONG_ID            "Àß¸øµÈ ¾ÆÀÌµð ÀÔ´Ï´Ù."
-    IDP_SOURCE_UNABLE       "ÀÚ½ÅÀº ÇÒ ¼ö ¾ø½À´Ï´Ù."
-    IDP_MINIMUM_OFFICER     "Àå±³ ÀÌ»óÀÌ ÇÒ ¼ö ÀÖ½À´Ï´Ù."
-    IDP_ANNOUNCEMENT        "#### °øÁö : %s ####"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_ELMORAD_LOSER       "¿¤¸ð¶óµå°¡ ÆÐ¹èÇÏ¿´½À´Ï´Ù. Á×ÀÎ Àû±ºÀÇ ¼ö : %d¸í, Á×Àº ¾Æ±ºÀÇ ¼ö : %d¸í"
-    IDS_KARUS_LOSER         "Ä«·ç½º°¡ ÆÐ¹èÇÏ¿´½À´Ï´Ù. Á×ÀÎ Àû±ºÀÇ ¼ö : %d¸í, Á×Àº ¾Æ±ºÀÇ ¼ö : %d¸í"
-    IDS_BANISH_USER         "·ç³ª¹ë¸®¿¡ ÀÖ´Â À¯Àú¿Í Àû±¹¿¡ ÀÖ´Â À¯Àú´Â º»±¹À¸·Î °­Á¦¼ÒÈ¯ÇÕ´Ï´Ù"
-    IDS_BATTLE_CLOSE        "·ç³ª°ÔÀÌÆ®°¡ ´ÝÈü´Ï´Ù"
-    IDS_KILL_GATEKEEPER     "Àû±¹ÀÇ ¼ö¹®ÀåÀ» Á×ÀÎ À¯ÀúÀÌ¸§Àº [%s][%s] ´ÔÀÔ´Ï´Ù. ÃàÇÏÇÕ´Ï´Ù."
-    IDS_KILL_CAPTAIN        "Àû±¹ÀÇ ´ëÀåÀ» Á×ÀÎ À¯ÀúÀÌ¸§Àº [%s][%s] ´ÔÀÔ´Ï´Ù, ÃàÇÏÇÕ´Ï´Ù."
-    IDS_KILL_KARUS_GUARD1   "Ä«·ç½º Á¦ 1¿ä»õÀÇ ¼ö¹®´ëÀåÀÌ Àü»çÇß½À´Ï´Ù. ¼ö¹®´ëÀåÀ» Á×ÀÎ Àû±ºÀ¯Àú´Â [%s][%s] ÀÔ´Ï´Ù"
-    IDS_KILL_KARUS_GUARD2   "Ä«·ç½º Á¦ 2¿ä»õÀÇ ¼ö¹®´ëÀåÀÌ Àü»çÇß½À´Ï´Ù. ¼ö¹®´ëÀåÀ» Á×ÀÎ Àû±ºÀ¯Àú´Â [%s][%s] ÀÔ´Ï´Ù"
-    IDS_KILL_ELMO_GUARD1    "¿¤¸ð¶óµå Á¦ 1¿ä»õÀÇ ¼ö¹®´ëÀåÀÌ Àü»çÇß½À´Ï´Ù. ¼ö¹®´ëÀåÀ» Á×ÀÎ Àû±ºÀ¯Àú´Â [%s][%s] ÀÔ´Ï´Ù"
-    IDS_KILL_ELMO_GUARD2    "¿¤¸ð¶óµå Á¦ 2¿ä»õÀÇ ¼ö¹®´ëÀåÀÌ Àü»çÇß½À´Ï´Ù. ¼ö¹®´ëÀåÀ» Á×ÀÎ Àû±ºÀ¯Àú´Â [%s][%s] ÀÔ´Ï´Ù"
-    IDS_KARUS_CAPTAIN       "Ä«·ç½ºÀÇ ÁöÈÖ°üÀº %s, %s, %s, %s, %s ÀÔ´Ï´Ù"
-    IDS_ELMO_CAPTAIN        "¿¤¸ð¶óµåÀÇ ÃÑÁöÈÖ°üÀº  %s, %s, %s, %s, %s ÀÔ´Ï´Ù"
-    IDS_KARUS_CAPTAIN_DEPRIVE "Ä«·ç½ºÀÇ ÁöÈÖ°ü [%s][%s] ´ÔÀÌ Àü»çÇÏ¿´½À´Ï´Ù. "
-    IDS_ELMO_CAPTAIN_DEPRIVE 
-                            "¿¤¸ð¶óµåÀÇ ÁöÈÖ°ü  [%s][%s]´ÔÀÌ Àü»çÇÏ¿´½À´Ï´Ù.  "
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_COUPON_NOTEPAD_ID   "3572-8471-3720-2495"
-    IDS_COUPON_POSTIT_ID    "7352-6539-3720-2495"
-END
-
-#endif    // Korean resources
+#endif    // Korean (Korea) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Chinese (Taiwan) resources
+// Chinese (Traditional, Taiwan) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
-#ifdef _WIN32
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
 #pragma code_page(950)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     IDS_ABOUTBOX            "Ebenezer ??(&A)..."
     IDP_SOCKETS_INIT_FAILED "Windows ?? ???? ???????."
@@ -228,7 +123,7 @@ BEGIN
     IDP_KNIGHT_ALREADY_REGISTERED "?? ???? ???? ????."
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     IDP_KNIGHT_INSUFFICIENT_LEVEL "???? ?? ??? 20 Level ??? ?????."
     IDP_KNIGHT_INSUFFICIENT_LOYALTY "???? ?? ??? ????? 800 ??? ?????."
@@ -247,7 +142,7 @@ BEGIN
     IDP_ANNOUNCEMENT        "#### GM¤½§i : %s ####"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     IDS_ELMORAD_LOSER       "¦ã²öº¸±Ñ?¡AÀ»±Ñ¼Ä¤H¼Æ : %d¦W, ³QÀ»±Ñ§Ú­xªº¼Æ : %d¦W"
     IDS_KARUS_LOSER         "¥d?´µ±Ñ?¡AÀ»±Ñ¼Ä¤H¼Æ : %d¦W, ³QÀ»±Ñ§Ú­xªº¼Æ : %d¦W"
@@ -265,13 +160,146 @@ BEGIN
     IDS_ELMO_CAPTAIN_DEPRIVE "¦ã²öº¸ªº?´§©x [%s][%s] ¾Ô¦º.  "
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     IDS_COUPON_NOTEPAD_ID   "3572-8471-3720-2495"
     IDS_COUPON_POSTIT_ID    "7352-6539-3720-2495"
 END
 
-#endif    // Chinese (Taiwan) resources
+#endif    // Chinese (Traditional, Taiwan) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\Ebenezer.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_EBENEZER_DIALOG DIALOGEX 0, 0, 183, 183
+STYLE DS_SETFONT | DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Ebenezer"
+FONT 9, "??", 0, 0, 0x1
+BEGIN
+    LISTBOX         IDC_LIST1,8,4,166,136,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_GONGJI_EDIT,12,156,158,14,ES_AUTOHSCROLL
+    GROUPBOX        "Notice",IDC_STATIC,8,145,167,32
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_EBENEZER_DIALOG, DIALOG
+    BEGIN
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_EBENEZER_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_ABOUTBOX            "About Ebenezer &A..."
+    IDP_SOCKETS_INIT_FAILED "Windows socket initialization failed."
+    IDP_BATTLEZONE_OPEN     "The door to Lunagate has opened. The war has begun."
+    IDP_KARUS_VICTORY       "Karus won. Number of enemies killed: %d, Number of allies killed: %d"
+    IDP_ELMORAD_VICTORY     "Elmorad has won. Number of enemies killed: %d, Number of allies killed: %d"
+    IDP_KARUS_BANISH        "Elmorad warriors in the war zone have been exiled!"
+    IDP_ELMORAD_BANISH      "Karus warriors in the war zone have been exiled!"
+    IDP_KNIGHT_NAME_REPEAT  "The Knights name is duplicated."
+    IDP_KNIGHT_ALREADY_REGISTERED 
+                            "You are already a member of the Knights Templar."
+END
+
+STRINGTABLE
+BEGIN
+    IDP_KNIGHT_INSUFFICIENT_LEVEL 
+                            "Level 20 or higher is required to create a knights order."
+    IDP_KNIGHT_INSUFFICIENT_LOYALTY 
+                            "A national contribution of 800 or more is required to create a knighthood."
+    IDP_KNIGHT_INSUFFICIENT_SKILL 
+                            "Command Skill 10 and Etiquette Skill 5 or higher are required to create a Knights."
+    IDP_KNIGHT_INSUFFICIENT_CHARISMA 
+                            "You need at least 120 Charisma to create a Templar Order."
+    IDP_KNIGHT_INSUFFICIENT_GOLD 
+                            "You need at least 1000000 Noah to create a Knights Templar."
+    IDP_KNIGHT_CREATE_FAIL  "The creation of the Knights Templar has failed."
+    IDP_KNIGHT_NOT_AVAILABLE "It is a knighthood that does not exist."
+    IDP_KNIGHT_LEADER_ONLY  "Only the commander of the knights can do it."
+    IDP_KNIGHT_MINIMUM_SUBLEADER 
+                            "Deputy Knight Commander or higher can do this."
+    IDP_KNIGHT_NOT_REGISTERED 
+                            "You are not affiliated with the Knights Templar."
+    IDP_KNIGHT_DB_FAIL      "Knight DB processing failed."
+    IDP_WRONG_ID            "Invalid ID."
+    IDP_SOURCE_UNABLE       "You can't do it yourself."
+    IDP_MINIMUM_OFFICER     "More than an officer can do it."
+    IDP_ANNOUNCEMENT        "#### Notice: %s ####"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ELMORAD_LOSER       "Elmorad has been defeated. Number of enemies killed: %d, Number of allies killed: %d"
+    IDS_KARUS_LOSER         "Karus is defeated. Number of enemies killed: %d, Number of allies killed: %d"
+    IDS_BANISH_USER         "Users in Luna Valley and those in enemy countries will be forcibly summoned to their home countries."
+    IDS_BATTLE_CLOSE        "Lunagate will close."
+    IDS_KILL_GATEKEEPER     "The username that killed the enemy gatekeeper is [%s][%s]. congratulations."
+    IDS_KILL_CAPTAIN        "The username that killed the enemy captain is [%s][%s], congratulations."
+    IDS_KILL_KARUS_GUARD1   "The chief of the guards of the 1st Fort Karus has died. The enemy user who killed the gatekeeper is [%s][%s]"
+    IDS_KILL_KARUS_GUARD2   "The captain of the guards of the 2nd Fort Karus has died. The enemy user who killed the gatekeeper is [%s][%s]"
+    IDS_KILL_ELMO_GUARD1    "The chief of the gates of El Morad's 1st Fortress has died. The enemy user who killed the gatekeeper is [%s][%s]"
+    IDS_KILL_ELMO_GUARD2    "The captain of the gates of the 2nd Elmorad Fortress has died. The enemy user who killed the gatekeeper is [%s][%s]"
+    IDS_KARUS_CAPTAIN       "Karus commanders are %s, %s, %s, %s and %s"
+    IDS_ELMO_CAPTAIN        "Elmorad commanders are  %s, %s, %s, %s and %s"
+    IDS_KARUS_CAPTAIN_DEPRIVE "Karus's commander, [%s][%s], has been killed."
+    IDS_ELMO_CAPTAIN_DEPRIVE "Elmorad's commander, [%s][%s], has been killed."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_COUPON_NOTEPAD_ID   "3572-8471-3720-2495"
+    IDS_COUPON_POSTIT_ID    "7352-6539-3720-2495"
+END
+
+#endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

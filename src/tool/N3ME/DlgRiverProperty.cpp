@@ -43,6 +43,7 @@ ON_BN_CLICKED(IDC_BUTTON_DELETE_VERTEX, OnButtonDeleteVertex)
 ON_BN_CLICKED(IDC_BUTTON_RECALCVERTEX, OnButtonRecalcvertex)
 ON_CBN_SELCHANGE(IDC_COMBO_RIBER, OnCobGORiver)
 //}}AFX_MSG_MAP
+ON_STN_CLICKED(IDC_NOTSELECTED, &CDlgRiverProperty::OnStnClickedNotselected)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -358,4 +359,8 @@ void CDlgRiverProperty::OnButtonRecalcvertex() {
         return;
     }
     m_pRiverMng->ReCalcSelectedVertex();
+}
+
+void CDlgRiverProperty::OnStnClickedNotselected() {
+    // TODO: Add your control notification handler code here
 }

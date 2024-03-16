@@ -26,7 +26,7 @@ void CN3AlphaPrimitiveManager::Render() {
     for (int i = 0; i < m_nToDrawCount; i++) {
         pBuffs[i] = &(m_Buffers[i]);
     }
-    qsort(pBuffs, m_nToDrawCount, 4, SortByCameraDistance); // 버퍼에 쌓인 프리미티브대로 정렬하고..
+    qsort(pBuffs, m_nToDrawCount, 4, SortByCameraDistance); // Sort according to the primitives accumulated in the buffer.
 
     struct __RenderState {
         DWORD dwAlpha, dwFog, dwCull, dwLgt, dwZWrite, dwAO, dwAA1, dwAA2, dwCO, dwCA1, dwCA2, dwPointSampling;
@@ -34,8 +34,8 @@ void CN3AlphaPrimitiveManager::Render() {
         DWORD dwSrcBlend, dwDestBlend;
         DWORD dwZEnable;
     };
-    __RenderState RS_old;     // 이전 render state (나중에 되돌려놓기 위해)
-    __RenderState RS_current; // 현재 render state (현재 어떤 상태인가 판단하기 위해)
+    __RenderState RS_old;    // Previous render state (to revert later)
+    __RenderState RS_current; // Current render state (to determine what the current state is)
 
     CN3Base::s_lpD3DDev->GetRenderState(D3DRS_ALPHABLENDENABLE, &RS_old.dwAlpha);
     CN3Base::s_lpD3DDev->GetRenderState(D3DRS_FOGENABLE, &RS_old.dwFog);
@@ -136,7 +136,7 @@ void CN3AlphaPrimitiveManager::Render() {
 
         CN3Base::s_lpD3DDev->SetFVF(pBuffs[i]->dwFVF);
         CN3Base::s_lpD3DDev->SetTexture(0, pBuffs[i]->lpTex);
-        CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &(pBuffs[i]->MtxWorld)); // 월드 행렬 적용
+        CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &(pBuffs[i]->MtxWorld)); // Apply world matrix
 
         if (pBuffs[i]->lpTex) {
             CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_MODULATE);
@@ -147,7 +147,7 @@ void CN3AlphaPrimitiveManager::Render() {
             CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
         }
 
-        if (pBuffs[i]->pwIndices && pBuffs[i]->nPrimitiveCount > 0) // Index 가 있으면..
+        if (pBuffs[i]->pwIndices && pBuffs[i]->nPrimitiveCount > 0) // If there is an Index...
         {
             if (pBuffs[i]->bUseVB) {
                 CN3Base::s_lpD3DDev->SetStreamSource(0, (LPDIRECT3DVERTEXBUFFER9)pBuffs[i]->pVertices, 0,
@@ -176,7 +176,7 @@ void CN3AlphaPrimitiveManager::Render() {
 #endif
     }
 
-    m_nToDrawCount = 0; // 다 그렸다...
+    m_nToDrawCount = 0; // I drew it all...
 
     // restore
     CN3Base::s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, RS_old.dwAlpha);
@@ -207,14 +207,14 @@ void CN3AlphaPrimitiveManager::Render() {
     for (int i = 0; i < m_nToDrawCount; i++) {
         pBuffs[i] = &(m_Buffers[i]);
     }
-    qsort(pBuffs, m_nToDrawCount, 4, SortByCameraDistance); // 버퍼에 쌓인 프리미티브대로 정렬하고..
+    qsort(pBuffs, m_nToDrawCount, 4, SortByCameraDistance); // Sort according to the primitives accumulated in the buffer.
 
     struct __RenderState {
         DWORD dwAlpha, dwFog, dwCull, dwLgt, dwZWrite, dwAO, dwAA1, dwAA2, dwCO, dwCA1, dwCA2, dwPointSampling;
         DWORD dwSrcBlend, dwDestBlend;
     };
-    __RenderState RS_old;     // 이전 render state (나중에 되돌려놓기 위해)
-    __RenderState RS_current; // 현재 render state (현재 어떤 상태인가 판단하기 위해)
+    __RenderState RS_old;     // Previous render state (to revert later)
+    __RenderState RS_current; // Current render state (to determine what the current state is)
 
     CN3Base::s_lpD3DDev->GetRenderState(D3DRS_ALPHABLENDENABLE, &RS_old.dwAlpha);
     CN3Base::s_lpD3DDev->GetRenderState(D3DRS_FOGENABLE, &RS_old.dwFog);
@@ -338,7 +338,7 @@ void CN3AlphaPrimitiveManager::Render() {
 
         CN3Base::s_lpD3DDev->SetFVF(pBuffs[i]->dwFVF);
         CN3Base::s_lpD3DDev->SetTexture(0, pBuffs[i]->lpTex);
-        CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &(pBuffs[i]->MtxWorld)); // 월드 행렬 적용
+        CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &(pBuffs[i]->MtxWorld)); // Apply world matrix
 
         if (pBuffs[i]->lpTex) {
             if (D3DTOP_MODULATE != RS_current.dwCO) {
@@ -364,7 +364,7 @@ void CN3AlphaPrimitiveManager::Render() {
             }
         }
 
-        if (pBuffs[i]->pwIndices && pBuffs[i]->nPrimitiveCount > 0) // Index 가 있으면..
+        if (pBuffs[i]->pwIndices && pBuffs[i]->nPrimitiveCount > 0) // If there is an Index...
         {
             if (pBuffs[i]->bUseVB) {
                 CN3Base::s_lpD3DDev->SetStreamSource(0, (LPDIRECT3DVERTEXBUFFER9)pBuffs[i]->pVertices, 0,
@@ -393,7 +393,7 @@ void CN3AlphaPrimitiveManager::Render() {
 #endif
     }
 
-    m_nToDrawCount = 0; // 다 그렸다...
+    m_nToDrawCount = 0; // I drew it all...
 
     // restore
     if (RS_old.dwAlpha != RS_current.dwAlpha) {
@@ -458,7 +458,7 @@ __AlphaPrimitive * CN3AlphaPrimitiveManager::Add(__Vector3 & vCamera, DWORD dwBl
                                                  int nVertexCount, const void * pVertices,
                                                  const __Matrix44 & MtxWorld) {
     __ASSERT(m_nToDrawCount < MAX_ALPHAPRIMITIVE_BUFFER, "Alpha primnitive buffer is full");
-    // 메인렌더링시 반드시 이 클래스의 Render() 를 한번 호출해주어야 버퍼를 비워준다..
+    // During main rendering, you must call Render() of this class once to empty the buffer.
 
     __Vector3 vPos = *((__Vector3 *)pVertices);
 
@@ -487,7 +487,7 @@ int CN3AlphaPrimitiveManager::SortByCameraDistance(const void * pArg1, const voi
     __AlphaPrimitive * pObj2 = *((__AlphaPrimitive **)pArg2);
 
     if (pObj1->fCameraDistance > pObj2->fCameraDistance) {
-        return -1; // 거리가 먼것부터 소팅..
+        return -1; // Sorting from the farthest distance...
     } else if (pObj1->fCameraDistance < pObj2->fCameraDistance) {
         return 1;
     } else {

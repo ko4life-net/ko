@@ -48,7 +48,7 @@ void CN3Board::Release() {
 }
 
 void CN3Board::Tick(float fFrm) {
-    // 회전 시킨다..
+    // Rotate..
     if (m_dwBoardType == BOARD_Y) {
         __Vector3 vDir = s_CameraData.vEye - m_vPos;
         if (vDir.x > 0.0f) {
@@ -67,7 +67,7 @@ void CN3Board::Tick(float fFrm) {
     if (iTC > 1) {
         m_fTexIndex += CN3Base::s_fSecPerFrm * m_fTexFPS;
         if (m_fTexIndex >= iTC) {
-            m_fTexIndex -= (iTC * m_fTexIndex) / iTC; // 정수로 나누면 소숫점만 남기게 된다??(하여튼 비슷해~)
+            m_fTexIndex -= (iTC * m_fTexIndex) / iTC; // If you divide by an integer, only the decimal point is left?? (It's similar anyway~)
         }
     }
 }
@@ -82,7 +82,7 @@ void CN3Board::Render() {
     s_lpD3DDev->SetTransform(D3DTS_WORLD, &m_Matrix);
 
     static DWORD dwAlpha, dwFog, dwCull;
-    if (m_Mtl.nRenderFlags & RF_ALPHABLENDING) // Alpha 사용
+    if (m_Mtl.nRenderFlags & RF_ALPHABLENDING) // use Alpha
     {
         s_lpD3DDev->GetRenderState(D3DRS_ALPHABLENDENABLE, &dwAlpha);
         if (TRUE != dwAlpha) {
@@ -91,7 +91,7 @@ void CN3Board::Render() {
         s_lpD3DDev->SetRenderState(D3DRS_SRCBLEND, m_Mtl.dwSrcBlend);
         s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND, m_Mtl.dwDestBlend);
     }
-    if (m_Mtl.nRenderFlags & RF_NOTUSEFOG) // Fog 무시..
+    if (m_Mtl.nRenderFlags & RF_NOTUSEFOG) // Ignore Fog...
     {
         s_lpD3DDev->GetRenderState(D3DRS_FOGENABLE, &dwFog);
         if (TRUE == dwFog) {
@@ -117,7 +117,7 @@ void CN3Board::Render() {
         s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
     }
     if ((m_Mtl.nRenderFlags & RF_NOTUSEFOG) && TRUE == dwFog) {
-        s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, TRUE); // 안개 사용하지 않는다..
+        s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, TRUE); // Do not use fog..
     }
     if ((m_Mtl.nRenderFlags & RF_DOUBLESIDED) && D3DCULL_NONE != dwCull) {
         s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, dwCull);
@@ -174,38 +174,38 @@ void CN3Board::LoadFromText(const std::string & szFName) {
     Release();
 
     FILE * stream = fopen(szFName.c_str(), "r");
-    __ASSERT(stream, "지정한 파일을 찾을 수 없습니다.");
+    __ASSERT(stream, "The specified file cannot be found.");
 
     int       result, iCount;
     char      szBoardType[64] = "";
     __Vector3 vPos;
     float     fWidth, fHeight;
     result = fscanf(stream, "Position = %f %f %f\n", &(vPos.x), &(vPos.y), &(vPos.z));
-    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    __ASSERT(result != EOF, "Invalid machine settings file");
     result = fscanf(stream, "Size = %f %f\n", &fWidth, &fHeight);
-    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    __ASSERT(result != EOF, "Invalid machine settings file");
     result = fscanf(stream, "Rotation Axis = %s\n", szBoardType);
-    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    __ASSERT(result != EOF, "Invalid machine settings file");
     result = fscanf(stream, "Frame per Sec = %f\n", &m_fTexFPS);
-    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    __ASSERT(result != EOF, "Invalid machine settings file");
 
     result = fscanf(stream, "Render Flag = %d\n", &m_Mtl.nRenderFlags);
-    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    __ASSERT(result != EOF, "Invalid machine settings file");
     result = fscanf(stream, "Source Blend = %d\n", &m_Mtl.dwSrcBlend);
-    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    __ASSERT(result != EOF, "Invalid machine settings file");
     result = fscanf(stream, "Dest Blend = %d\n", &m_Mtl.dwDestBlend);
-    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-    // 안개, culling 옵션은 우선 정하지 말자.
+    __ASSERT(result != EOF, "Invalid machine settings file");
+    // Let’s not decide on fog or culling options first.
 
     result = fscanf(stream, "Texture Count = %d\n", &iCount);
-    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+    __ASSERT(result != EOF, "Invalid machine settings file");
 
     if (iCount > 0) {
         char szTexFName[_MAX_PATH];
         TexAlloc(iCount);
         for (int i = 0; i < iCount; ++i) {
             result = fscanf(stream, "Texture Name = %s\n", &szTexFName);
-            __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
+            __ASSERT(result != EOF, "Invalid machine settings file");
             TexSet(i, szTexFName);
         }
     }

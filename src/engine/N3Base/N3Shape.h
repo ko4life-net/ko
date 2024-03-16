@@ -18,25 +18,25 @@ class CN3SPart : public CN3BaseFileAccess {
     friend class CN3Shape;
 
   public:
-    __Vector3  m_vPivot;            // Local 축
-    __Matrix44 m_Matrix;            // World Matrix.. Shape Loading 때 미리 계산해야 좋다..
-    BOOL       m_bOutOfCameraRange; // Camera 범위 바깥에 있음...
+    __Vector3  m_vPivot;            // Local axis
+    __Matrix44 m_Matrix;            // World Matrix.. It is best to calculate it in advance when Shape Loading.
+    BOOL       m_bOutOfCameraRange; // Outside Camera range...
 
     __Material m_Mtl;     // Material
     float      m_fTexFPS; // Texture Animation Interval;
 
-    //    __Vector3    m_vWindFactorCur;        // 현재 바람 부는 값.. 이값으로 회전을 시킨다..
-    //    __Vector3    m_vWindFactorToReach;    // 바람 부는 값..
-    float m_fTimeToSetWind;     // 바람 부는 값을 바꾸기 위한 시간..
-    float m_fWindFactorToReach; // 현재 바람 부는 값.. 이값으로 회전을 시킨다..
-    float m_fWindFactorCur;     // 바람 부는 값..
+    //    __Vector3    m_vWindFactorCur;        // Current wind blowing value.. Rotate with this value..
+    //    __Vector3    m_vWindFactorToReach;    // Windy value...
+    float m_fTimeToSetWind;     // Time to change the wind blowing value...
+    float m_fWindFactorToReach; // Current wind blowing value.. Rotate with this value..
+    float m_fWindFactorCur;     // Windy value...
 
   protected:
     std::vector<CN3Texture *> m_TexRefs; // Texture Reference Pointers
     CN3PMeshInstance          m_PMInst;  // Progressive Mesh Instance
 
     float
-        m_fTexIndex; // Current Texture Index.. Animation 시킬때 필요한 인덱스이다.. float 로 해서 텍스처 에니메이션 제어한다.
+        m_fTexIndex; // Current Texture Index. This is the index required for animation. Texture animation is controlled using float.
 
   public:
     virtual bool Load(HANDLE hFile);
@@ -79,7 +79,7 @@ class CN3SPart : public CN3BaseFileAccess {
     }
 
     void Tick(const __Matrix44 & mtxParent, const __Quaternion & qRot,
-              float fScale); // 부모 행렬 즉 Shape 행렬, 회전쿼터니언 을 넣는다.
+              float fScale); // Enter the parent matrix, that is, the Shape matrix and the rotation quaternion.
     void Render();
 #ifdef _N3TOOL
     void RenderSelected(bool bWireFrame);
@@ -92,14 +92,14 @@ class CN3SPart : public CN3BaseFileAccess {
         } else {
             return __Vector3(0, 0, 0);
         }
-    } // 월드 상의 최소값
+    } // minimum value in world
     __Vector3 Max() {
         if (m_PMInst.GetMesh()) {
             return m_PMInst.GetMesh()->Max() * m_Matrix;
         } else {
             return __Vector3(0, 0, 0);
         }
-    } // 월드 상의 최대값
+    } // maximum value in the world
     float Radius() {
         if (m_PMInst.GetMesh()) {
             return m_PMInst.GetMesh()->Radius();
@@ -124,14 +124,14 @@ typedef typename std::vector<CN3SPart *>::iterator it_SPart;
 
 class CN3Shape : public CN3TransformCollision {
   public:
-    int m_iBelong;     // 소속 - 0:소속 없음 1:엘모라드 2:카루스 3:?? ....
-    int m_iEventID;    // Event ID
+    int m_iBelong;    // Affiliation - 0:No affiliation 1:Elmorad 2:Carus 3:?? ....
+    int m_iEventID;    //Event ID
     int m_iEventType;  // Event Type
-    int m_iNPC_ID;     // NPC 로 쓰는 오브젝트일 경우 NPC ID
-    int m_iNPC_Status; // NPC 로 쓰는 오브젝트일 경우 Default Status
+    int m_iNPC_ID;     // NPC ID if the object is used as an NPC
+    int m_iNPC_Status; // Default Status for objects used as NPCs
 
-    bool m_bDontRender; // 카메라 거리에 따라 이플래그가 설정되면 렌더링하지 않는다..
-    bool m_bVisible;    // ..
+    bool m_bDontRender; // If this flag is set according to the camera distance, it will not be rendered.
+    bool m_bVisible;    //..
 
     std::vector<CN3SPart *> m_Parts; // Part Data Pointer Linked List
 
@@ -144,12 +144,12 @@ class CN3Shape : public CN3TransformCollision {
 #endif // end of _N3TOOL
     int CheckCollisionPrecisely(
         bool bIgnoreBoxCheck, int ixScreen, int iyScreen, __Vector3 * pVCol = NULL,
-        __Vector3 * pVNormal = NULL); // 정밀하게 폴리곤 단위로 체크 - 먼저 박스 체크후 다시 정밀 체크..
+        __Vector3 * pVNormal = NULL); // Precisely check by polygon - first check the box and then check again precisely...
     int CheckCollisionPrecisely(
         bool bIgnoreBoxCheck, const __Vector3 & vPos, const __Vector3 & vDir, __Vector3 * pVCol = NULL,
-        __Vector3 * pVNormal = NULL);      // 정밀하게 폴리곤 단위로 체크 - 먼저 박스 체크후 다시 정밀 체크..
-    bool MakeCollisionMeshByParts();       // 충돌 메시를 박스 형태로 다시 만든다...
-    bool MakeCollisionMeshByPartsDetail(); // 현재 모습 그대로... 충돌 메시를 만든다...
+        __Vector3 * pVNormal = NULL);      // Precisely check by polygon - first check the box and then check again precisely...
+    bool MakeCollisionMeshByParts();       // Recreate the collision mesh as a box...
+    bool MakeCollisionMeshByPartsDetail(); // As it is... create a collision mesh...
 
     void         FindMinMax();
     virtual void ReCalcMatrix();
@@ -183,7 +183,7 @@ class CN3Shape : public CN3TransformCollision {
     CN3Shape();
     virtual ~CN3Shape();
 
-    //    By : Ecli666 ( On 2002-08-06 오후 4:33:04 )
+    //   By: Ecli666 (On 2002-08-06 4:33:04 PM)
     //
     void       SetMaxLOD();
     __Matrix44 GetPartMatrix(int iPartIndex);

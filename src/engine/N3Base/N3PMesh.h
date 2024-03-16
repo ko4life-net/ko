@@ -4,7 +4,7 @@
 
 #pragma once
 
-//#define _USE_VERTEXBUFFER            // 선언하면 VertexBuffer와 IndexBuffer를 사용한다.
+//#define _USE_VERTEXBUFFER            // When declared, VertexBuffer and IndexBuffer are used.
 
 #include "N3BaseFileAccess.h"
 
@@ -12,7 +12,7 @@ class CN3PMesh : public CN3BaseFileAccess {
     friend class CN3FXPMeshInstance;
     friend class CN3PMeshInstance;
     friend class CN3PMeshCreate;
-    friend class CPMeshEditor; // N3Viewer의 클래스
+    friend class CPMeshEditor; // N3Viewer class
 
   public:
     struct __LODCtrlValue {
@@ -25,14 +25,14 @@ class CN3PMesh : public CN3BaseFileAccess {
         //    float Value;
         int NumIndicesToLose, NumIndicesToChange, NumVerticesToLose;
         //int *IndexChanges;
-        int  iIndexChanges; // 포인터 대신 n번째 저장 (0, 1, 2,...)
+        int  iIndexChanges; // store nth instead of pointer (0, 1, 2,...)
         int  CollapseTo;
-        bool bShouldCollapse; // 여기서 병합/나누기를 멈추면 구멍이 뚤린다. 다음단계를 더 진행해야함.
+        bool bShouldCollapse; // If you stop merging/dividing here, a hole will open. You need to proceed to the next step.
     };
 
   protected:
     //int m_iNumMaterials;
-    int   m_iNumCollapses; // 삼각형 병합 리스트
+    int   m_iNumCollapses; // triangle merge list
     int   m_iTotalIndexChanges;
     int * m_pAllIndexChanges; // All the index changes
 
@@ -41,7 +41,7 @@ class CN3PMesh : public CN3BaseFileAccess {
 
     __EdgeCollapse * m_pCollapses;
 
-    // Mesh 정보
+    // Mesh information
 #ifdef _USE_VERTEXBUFFER
     LPDIRECT3DVERTEXBUFFER9 m_pVB;
     LPDIRECT3DINDEXBUFFER9  m_pIB;
@@ -53,10 +53,10 @@ class CN3PMesh : public CN3BaseFileAccess {
     int m_iMaxNumVertices, m_iMaxNumIndices;
     int m_iMinNumVertices, m_iMinNumIndices;
 
-    __Vector3 m_vMin, m_vMax; // 최대 최소값..
-    float     m_fRadius;      // 반지름
+    __Vector3 m_vMin, m_vMax; //maximum value..
+    float     m_fRadius;      // radius
 
-    // LOD 조정 정보..(거리에 따라서 Vertex의 수를 조정할 수 있다.)
+    // LOD adjustment information.. (The number of vertices can be adjusted depending on the distance.)
     int              m_iLODCtrlValueCount;
     __LODCtrlValue * m_pLODCtrlValues;
 
@@ -84,8 +84,8 @@ class CN3PMesh : public CN3BaseFileAccess {
     //    __PMLODCtrlValue*    GetLODCtrlValue(int iIndex) const {if (iIndex>=0&&m_iLODCtrlValueCount>iIndex)return m_pLODCtrlValues+iIndex; return NULL;}
     //    void                SetLODCtrlValues(__PMLODCtrlValue* pValues) {m_pLODCtrlValues = pValues;}
 
-    __Vector3 Min() { return m_vMin; } // 월드 행렬을 적용하지 않은상태의 최소값이다.
-    __Vector3 Max() { return m_vMax; } // 월드 행렬을 적용하지 않은상태의 최대값이다.
+    __Vector3 Min() { return m_vMin; } // This is the minimum value without applying the world matrix.
+    __Vector3 Max() { return m_vMax; } // This is the maximum value without applying the world matrix.
 
     void    Release();
     HRESULT Create(int iNumVertices, int iNumIndices);
@@ -110,8 +110,8 @@ class CN3PMesh : public CN3BaseFileAccess {
 #else
     __VertexT1 * GetVertices() const { return m_pVertices; };
     __VertexT2 * GetVertices2() const { return m_pVertices2; };
-    WORD *       GetIndices() const { return m_pIndices; }; // 제대로된 Index가 아님
-                                                      // (제대로 된 인덱스를 얻으려면 N3PMeshInstance로 만든후 LOD조정후 인덱스값을 얻으면 된다.)
+    WORD *       GetIndices() const { return m_pIndices; }; // Not a proper Index
+        // (To obtain the correct index, create an N3PMeshInstance, adjust the LOD, and obtain the index value.)
 #endif
 
 #ifdef _N3TOOL

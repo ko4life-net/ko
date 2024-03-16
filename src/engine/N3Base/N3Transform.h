@@ -14,19 +14,19 @@ class CN3Transform : public CN3BaseFileAccess {
 
   public:
     __Vector3  m_vPos;
-    __Matrix44 m_Matrix; // 변환 행렬
+    __Matrix44 m_Matrix; // transformation matrix
 
-    CN3AnimKey m_KeyPos; // 에니메이션 키
+    CN3AnimKey m_KeyPos; // animation key
     CN3AnimKey m_KeyRot;
     CN3AnimKey m_KeyScale;
 
-    float m_fFrmWhole; // 전체 프레임수
-    float m_fFrmCur;   // 현재 프레임
+    float m_fFrmWhole; // total number of frames
+    float m_fFrmCur;   // current frame
 
   public:
     virtual void Tick(float fFrm = FRAME_SELFPLAY);
     virtual bool TickAnimationKey(
-        float fFrm); // Animation Key Tick... Animation Key 가 있어 움직이면 true, 아니면 false 를 return;
+        float fFrm); // Animation Key Tick... Returns true if there is an Animation Key and moves, false otherwise;
 
     __Vector3    Pos() const { return m_vPos; }
     __Quaternion Rot() const { return m_qRot; }

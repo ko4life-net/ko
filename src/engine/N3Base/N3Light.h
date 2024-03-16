@@ -10,14 +10,14 @@ class CN3Light : public CN3Transform {
   public:
     typedef struct __Light : public _D3DLIGHT9 {
       public:
-        BOOL bOn;     // 라이트가 켜져 있는지..
+        BOOL bOn;     // Is the light on?
         int  nNumber; // 0 ~ 8
 
         void Zero() { memset(this, 0, sizeof(__Light)); }
         void InitPoint(int nLgtNumber, const D3DXVECTOR3 & dvPos, const D3DCOLORVALUE & ltColor,
                        float fRange = 10000.0f, float fAttenuation = 0.5f) {
             this->Zero();
-            nNumber = nLgtNumber; // 라이트 번호..
+            nNumber = nLgtNumber; // light number..
             Type = D3DLIGHT_POINT;
             Position = dvPos;
             //Specular =
@@ -26,12 +26,12 @@ class CN3Light : public CN3Transform {
             Ambient.g = ltColor.g * 0.7f;
             Ambient.b = ltColor.b * 0.7f;
 
-            Falloff = 1.0f; // 효과가 미미하고 부하기 걸리기 때문에 보통 1.0으로 쓴다.
+            Falloff = 1.0f; // Because the effect is minimal and there is a load, 1.0 is usually used.
             if (fRange < 0.0001f) {
                 fRange = 0.0001f;
             }
             Attenuation0 = 1.0f - fAttenuation;
-            Attenuation1 = fAttenuation / fRange; // 감쇠 범위계산. 범위의 절반이 정확하게 절반의 감쇠가 되도록 한다..
+            Attenuation1 = fAttenuation / fRange; // Attenuation range calculation. Make sure that half of the range is exactly half attenuated.
             Attenuation2 = fAttenuation / (fRange * fRange);
             Range = fRange * 4.0f;
             bOn = TRUE;
@@ -39,7 +39,7 @@ class CN3Light : public CN3Transform {
         void InitDirection(int nLgtNumber, const D3DXVECTOR3 & dvDir, const D3DCOLORVALUE & ltColor) {
             this->Zero();
 
-            nNumber = nLgtNumber; // 라이트 번호..
+            nNumber = nLgtNumber; // Light number..
             bOn = TRUE;
 
             Type = D3DLIGHT_DIRECTIONAL;
@@ -54,7 +54,7 @@ class CN3Light : public CN3Transform {
         void InitSpot(int nLgtNumber, const D3DXVECTOR3 & dvPos, const D3DXVECTOR3 & dvDir,
                       const D3DCOLORVALUE & ltColor, float fTheta, float fPhi, float fRange = 10000.0f) {
             this->Zero();
-            nNumber = nLgtNumber; // 라이트 번호..
+            nNumber = nLgtNumber; // Light number..
             Type = D3DLIGHT_SPOT;
             Position = dvPos;
             Direction = dvDir;
@@ -68,10 +68,10 @@ class CN3Light : public CN3Transform {
                 fRange = 0.0001f;
             }
             Attenuation0 = 1.0f;
-            Attenuation1 = 1.0f / (fRange / 2.0f); // 감쇠 범위계산. 범위의 절반이 정확하게 절반의 감쇠가 되도록 한다..
+            Attenuation1 = 1.0f / (fRange / 2.0f); // Calculate attenuation range. Make sure that half of the range is exactly half attenuated..
             Range = fRange;
 
-            Falloff = 1.0f; // 효과가 미미하고 부하기 걸리기 때문에 보통 1.0으로 쓴다.
+            Falloff = 1.0f; //Because the effect is minimal and there is a load, 1.0 is usually used.
             Theta = fTheta;
             Phi = fPhi;
             bOn = TRUE;
@@ -96,8 +96,8 @@ class CN3Light : public CN3Transform {
         m_vPos = m_Data.Position;
     }
 
-    void Apply();                           // 세팅된 라이트값을 실제 D3DDevice 에 적용
-    void Tick(float fFrm = FRAME_SELFPLAY); // 라이트값만 세팅한다..
+    void Apply();                           // Apply the set light value to the actual D3DDevice
+    void Tick(float fFrm = FRAME_SELFPLAY); // Set only the light value.
 
     bool Load(HANDLE hFile);
 #ifdef _N3TOOL

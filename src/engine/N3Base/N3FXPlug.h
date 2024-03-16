@@ -22,10 +22,10 @@ class CN3FXPlugPart : public CN3BaseFileAccess {
   public:
   protected:
     class CN3FXBundle * m_pFXB;
-    int                 m_nRefIndex; // referance index (캐릭터 : joint index)
+    int                 m_nRefIndex; // reference index (character: joint index)
 
-    __Vector3 m_vOffsetPos; // Joint와 떨어진 정도
-    __Vector3 m_vOffsetDir; // Joint와 떨어진 방향
+    __Vector3 m_vOffsetPos; // Distance from Joint
+    __Vector3 m_vOffsetDir; // Direction away from the joint
 
     // Operations
   public:
@@ -71,11 +71,11 @@ class CN3FXPlug : public CN3BaseFileAccess {
     virtual bool Load(HANDLE hFile);
 
     void StopAll(bool bImmediately = false); // FX Stop
-    void TriggerAll();                       // FX 시작
+    void TriggerAll();                       //start FX
 
 #ifdef _N3TOOL
     virtual bool Save(HANDLE hFile);
-    void         RemoveFXPParts_HaveNoBundle(); // 번들 없는 Part들 제거하기
+    void         RemoveFXPParts_HaveNoBundle(); // Removing unbundled parts
 
     CN3FXPlugPart * FXPPartAdd();
     void            FXPPartDelete(int nIndex);

@@ -22,17 +22,17 @@ static char THIS_FILE[] = __FILE__;
 //////////////////////////////////////////////////////////////////////
 
 /*
-     ** Repent AI Server 작업시 참고 사항 **
-    1. Initialize() 수정
-    2. SendAttackSuccess() 수정
-    3. GetDamage() 수정
+     ** Repent AI Server - Notes on working with **
+    1. Initialize() - Modification
+    2. SendAttackSuccess() - Modification
+    3. GetDamage() - fix
 */
 
 #define MORAL_GOOD    0x01
 #define MORAL_BAD     0x02
 #define MORAL_NEUTRAL 0x03
 
-// 운영자 아이디 넣기..
+// Enter the Operator ID..
 /*const char* g_pszOPID[] = 
 {
     //"여우야2",

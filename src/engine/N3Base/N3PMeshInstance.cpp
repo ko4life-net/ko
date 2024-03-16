@@ -134,7 +134,7 @@ bool CN3PMeshInstance::Create(CN3PMesh * pN3PMesh) {
 
 bool CN3PMeshInstance::Create(const std::string & szFN) {
     if (m_pPMesh && m_pPMesh->FileName() == szFN) {
-        return true; // 파일 이름이 같으면 새로 만들지 않고 리턴하자
+        return true; //If the file name is the same, return it without creating a new one.
     }
     this->Release();
 
@@ -154,7 +154,7 @@ void CN3PMeshInstance::SetLODByNumVertices(int iNumVertices) {
     } else if (iDiff > 0) {
         while (iNumVertices > m_iNumVertices) {
             if (m_pCollapseUpTo->NumVerticesToLose + m_iNumVertices > iNumVertices) {
-                break; // 깜박임 방지 코드..
+                break; //Anti-flicker code..
             }
             if (SplitOne() == false) {
                 break;
@@ -179,12 +179,12 @@ void CN3PMeshInstance::SetLODByNumVertices(int iNumVertices) {
 void CN3PMeshInstance::SetLOD(float value) {
 #define _USE_LODCONTROL_VALUE
 #ifdef _USE_LODCONTROL_VALUE
-    // value는 distance * FOV이다.
+    // value is distance * FOV.
     if (m_pPMesh == NULL) {
         return;
     }
 
-    if (m_pPMesh->m_iLODCtrlValueCount == 0) { // LODCtrlValue가 없으면 모두 그린다.
+    if (m_pPMesh->m_iLODCtrlValueCount == 0) { // If LODCtrlValue is not present, all are drawn.
         SetLODByNumVertices(0x7fffffff);
         return;
     }
@@ -193,11 +193,11 @@ void CN3PMeshInstance::SetLOD(float value) {
 
     CN3PMesh::__LODCtrlValue * pTmpLODCV = m_pPMesh->m_pLODCtrlValues + m_pPMesh->m_iLODCtrlValueCount - 1;
 
-    if (value < m_pPMesh->m_pLODCtrlValues[0].fDist) { // 최소 기준치보다 가까우므로 가장 많은 면으로 그린다.
+    if (value < m_pPMesh->m_pLODCtrlValues[0].fDist) { // Since it is closer than the minimum standard, it is drawn with the most sides.
         SetLODByNumVertices(m_pPMesh->m_pLODCtrlValues[0].iNumVertices);
-    } else if (pTmpLODCV->fDist < value) { // 최대 기준치보다 멀리 있으므로 가장 적은 면으로 그린다.
+    } else if (pTmpLODCV->fDist < value) { // Since it is farther than the maximum reference value, draw with the fewest sides.
         SetLODByNumVertices(pTmpLODCV->iNumVertices);
-    } else { // 중간 값에 맞게 조정된 면 수로 그린다.
+    } else {// Draw with the number of sides adjusted to the intermediate value.
         for (int i = 1; i < m_pPMesh->m_iLODCtrlValueCount; ++i) {
             if (value < m_pPMesh->m_pLODCtrlValues[i].fDist) {
                 CN3PMesh::__LODCtrlValue * pHiValue = m_pPMesh->m_pLODCtrlValues + i;
@@ -210,7 +210,7 @@ void CN3PMeshInstance::SetLOD(float value) {
         }
     }
 #else
-    // value는 distance * FOV이다.
+    // value is distance * FOV.
     if (m_pCollapseUpTo == NULL || m_pPMesh == NULL) {
         return;
     }
@@ -272,11 +272,11 @@ bool CN3PMeshInstance::CollapseOne() {
 
 bool CN3PMeshInstance::SplitOne() {
     if (m_pCollapseUpTo >= m_pPMesh->m_pCollapses + m_pPMesh->m_iNumCollapses) {
-        return false; // 이렇게 하면 포인터 하나가 삐져 나오게 된다..
+        return false; // If you do this, a pointer will stick out.
     }
-    // 하지만 이렇게 다시 하는 이유는 아래 코드로 하면 마지막 폴리곤이 절대 그려지지 않는다.
-    // 이렇게 해도 괜찮을 수 있도록 방어코드를 넣었다. m_pPMesh->m_pCollapses 를 할당할때 1개 더 할당하고 마지막 데이터를 초기값으로 넣었다.
-    //    if (m_pCollapseUpTo >= m_pPMesh->m_pCollapses + m_pPMesh->m_iNumCollapses - 1) return false; // 이게 정상이다..
+    // But the reason for doing this again is that if you use the code below, the last polygon is never drawn.
+    // I included defense code so that it would be okay to do this. When allocating m_pPMesh->m_pCollapses, one more was allocated and the last data was set as the initial value.
+    // if (m_pCollapseUpTo >= m_pPMesh->m_pCollapses + m_pPMesh->m_iNumCollapses - 1) return false; // This is normal..
 
     m_iNumIndices += m_pCollapseUpTo->NumIndicesToLose;
     m_iNumVertices += m_pCollapseUpTo->NumVerticesToLose;
@@ -362,7 +362,7 @@ void CN3PMeshInstance::RenderTwoUV() {
         return;
     }
     if (NULL == m_pPMesh->GetVertices2()) {
-        m_pPMesh->GenerateSecondUV(); // 두번째 UV 가 없음 새로 만든다..
+        m_pPMesh->GenerateSecondUV(); // There is no second UV. Create a new one.
     }
     if (NULL == m_pPMesh->GetVertices2()) {
         return;
@@ -430,7 +430,7 @@ __VertexT1 * CN3PMeshInstance::GetVertices() const {
 }
 #endif
 
-//    By : Ecli666 ( On 2002-08-06 오후 4:33:04 )
+//    By: Ecli666 (On 2002-08-06 4:33:04 PM)
 //
 #ifdef _USE_VERTEXBUFFER
 void CN3PMeshInstance::PartialRender(int iCount, LPDIRECT3DINDEXBUFFER9 pIB) {
@@ -542,4 +542,4 @@ void CN3PMeshInstance::PartialRender(int iCount, WORD * pIndices) {
 #endif
     }
 
-    //    ~(By Ecli666 On 2002-08-06 오후 4:33:04 )
+   // ~(By Ecli666 On 2002-08-06 4:33:04 PM)

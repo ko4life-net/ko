@@ -1,5 +1,6 @@
 #pragma once
 
+
 LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 LRESULT CALLBACK WndProcSub(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 LRESULT CALLBACK OYBLowLevelKeyboardProc(INT nCode, WPARAM wParam, LPARAM lParam);

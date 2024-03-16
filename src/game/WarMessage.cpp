@@ -28,7 +28,7 @@ void CWarMessage::InitFont() {
     std::string szFont;
     ::_LoadStringFromResource(IDS_FONT_ID, szFont);
     m_pMessageFont = new CDFont(szFont, MESSAGE_FONT_SIZE);
-    __ASSERT(m_pMessageFont, "Font Create Fail!!");
+    __ASSERT(m_pMessageFont, "Font Create Fail!");
 
     if (m_pMessageFont) {
         m_pMessageFont->InitDeviceObjects(CN3Base::s_lpD3DDev);
@@ -48,7 +48,7 @@ void CWarMessage::Release() {
 
 void CWarMessage::SetMessage(const std::string & szText, DWORD dwFlags, DWORD dwColor) {
     if (m_pMessageFont) {
-        m_pMessageFont->SetText(szText, dwFlags); // 폰트에 텍스트 지정.
+        m_pMessageFont->SetText(szText, dwFlags); // Specify text in font.
         m_pMessageFont->SetFontColor(dwColor);
         m_fTime = WAR_MESSAGE_SHOW_TIME;
     }

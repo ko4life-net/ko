@@ -4,10 +4,10 @@
 // Packet Define
 ///////////////////////////////////////////////////////////////
 #define VERSION_REQ       0x01 // Send
-#define DOWNLOAD_INFO_REQ 0x02 // Send - s1(현재버전) | Recv FTP
+#define DOWNLOAD_INFO_REQ 0x02 // Send - s1 (current version) | Recv FTP
 #define LOGIN_REQ                                                                                                      \
-    0x03 // Send - s1(ID길이) str1(ID문자열:20바이트이하) s1(PW길이) str1(PW문자열:12바이트이하) | Recv - b1(0:실패 1:성공 2:ID없음 3:PW틀림 4:서버점검중)
-#define MGAME_LOGIN_REQ 0x04 // !!! LOGIN_REQ !!! 와 동일
+    0x03 // Send - s1 (ID length) str1 (ID string: 20 bytes or less) s1 (PW length) str1 (PW string: 12 bytes or less) | Recv - b1 (0: Failure 1: Success 2: No ID 3: Wrong PW 4: Checking server)
+#define MGAME_LOGIN_REQ 0x04 // !!! LOGIN_REQ!!! Same as
 #define SERVER_LIST                                                                                                    \
-    0x05 // Recv - b1(ServerCount) loop(    s1(IP길이), str1(IP문자열), s1(서버이름길이), str1(서버이름문자열), s1(서버접속인원) )
+    0x05 // Recv - b1(ServerCount) loop( s1(IP length), str1(IP string), s1(server name length), str1(server name string), s1(server connection number) )
 ///////////////////////////////////////////////////////////////

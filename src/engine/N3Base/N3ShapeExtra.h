@@ -14,10 +14,10 @@
 class CN3ShapeExtra : public CN3Shape {
   protected:
     struct __Rotation {
-        float     fRadianPerSec;  // 초당 회전.. Radian...
-        __Vector3 vAxis;          // 회전축..
-        float     fRadianCur;     // 현재 회전값..
-        float     fRadianToReach; // 회전시킬값..
+        float     fRadianPerSec;  // Rotations per second... Radian...
+        __Vector3 vAxis;          // Rotation axis..
+        float     fRadianCur;     // Current rotation value..
+        float     fRadianToReach; // Value to rotate...
 
         __Rotation() {
             memset(this, 0, sizeof(__Rotation));
@@ -29,7 +29,7 @@ class CN3ShapeExtra : public CN3Shape {
 
   public:
     void RotateTo(int iPart, const __Vector3 & vAxis, float fRadianToReach, float fRadianPerSec,
-                  bool bImmediately = false); // 원하는 파트를 축에 따라 지정한 각도까지 지정한 속도로 회전시킨다..
+                  bool bImmediately = false); // Rotate the desired part at a specified speed to a specified angle along the axis.
 
     bool Load(HANDLE hFile);
     void Tick(float fFrm);

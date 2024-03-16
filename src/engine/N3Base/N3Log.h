@@ -14,6 +14,7 @@ class CN3Log {
     static std::shared_ptr<spdlog::logger> s_Logger;
 };
 
+// TODO : Learn what spdlog is...
 #ifdef _DEBUG
 #define N3_TRACE(...) CN3Log::GetLogger()->trace(__VA_ARGS__)
 #define N3_DEBUG(...) CN3Log::GetLogger()->debug(__VA_ARGS__)

@@ -11,28 +11,28 @@
 
 #include "N3Base/N3ShapeMgr.h"
 
-CN3TableBase<__TABLE_ZONE> *       CGameBase::s_pTbl_Zones = NULL; // Zone 정보에 관한 Table
+CN3TableBase<__TABLE_ZONE> *       CGameBase::s_pTbl_Zones = NULL; // Table for Zone Information
 CN3TableBase<__TABLE_UI_RESRC> *   CGameBase::s_pTbl_UI = NULL;    // UI FileName Table
 CN3TableBase<__TABLE_ITEM_BASIC> * CGameBase::s_pTbl_Items_Basic =
-    NULL; // 각 유저의(내 자신과 주위 다른 사람) 클레스별 장착 아이템 리소스 테이블
+    NULL; // Equipped item resource table for each class of each user (myself and others around me)
 CN3TableBase<__TABLE_ITEM_EXT> * CGameBase::s_pTbl_Items_Exts[MAX_ITEM_EXTENSION] = {
     NULL, NULL, NULL, NULL, NULL,
-    NULL, NULL, NULL, NULL}; // 각 유저의(내 자신과 주위 다른 사람) 클레스별 장착 아이템 리소스 테이블
+    NULL, NULL, NULL, NULL}; // Equipped item resource table for each class of each user (myself and others around me)
 CN3TableBase<__TABLE_PLAYER_LOOKS> * CGameBase::s_pTbl_UPC_Looks =
-    NULL; // 각 유저의(내 자신과 주위 다른 사람) 클레스별 기본 스킨
+    NULL; // Default skin for each class of each user (myself and others around me)
 CN3TableBase<__TABLE_PLAYER_LOOKS> * CGameBase::s_pTbl_NPC_Looks =
-    NULL; // NPC, Mob 기본 모습 - 6개의 캐릭터 파트(), 2개의 플러그
-CN3TableBase<__TABLE_UPC_SKILL> *      CGameBase::s_pTbl_Skill = NULL;          // Skill 정보에 관한 Table
-CN3TableBase<__TABLE_EXCHANGE_QUEST> * CGameBase::s_pTbl_Exchange_Quest = NULL; // 교환 퀘스트에 관한 테이블..
-CN3TableBase<__TABLE_FX> *             CGameBase::s_pTbl_FXSource;              // FX소스 정보 테이블..
-CN3TableBase<__TABLE_QUEST_MENU> *     CGameBase::s_pTbl_QuestMenu = NULL;      // 퀘스트 선택 메뉴
-CN3TableBase<__TABLE_QUEST_TALK> *     CGameBase::s_pTbl_QuestTalk = NULL;      // 퀘스트 지문
+    NULL; // Basic appearance of NPC, Mob - 6 character parts(), 2 plugs
+CN3TableBase<__TABLE_UPC_SKILL> *      CGameBase::s_pTbl_Skill = NULL;          // Table for skill information
+CN3TableBase<__TABLE_EXCHANGE_QUEST> * CGameBase::s_pTbl_Exchange_Quest = NULL; // Table of exchange quests..
+CN3TableBase<__TABLE_FX> *             CGameBase::s_pTbl_FXSource;              // FX Source Information Table..
+CN3TableBase<__TABLE_QUEST_MENU> *     CGameBase::s_pTbl_QuestMenu = NULL;      // Quest Select Menu
+CN3TableBase<__TABLE_QUEST_TALK> *     CGameBase::s_pTbl_QuestTalk = NULL;      // Quest fingerprint
 CN3TableBase<__TABLE_TEXTS> *          CGameBase::s_pTbl_Texts = NULL;
 CN3TableBase<__TABLE_HELP> *           CGameBase::s_pTbl_Help = NULL;
 
-CN3WorldManager * CGameBase::s_pWorldMgr = NULL; // 월드 매니져..
-CPlayerOtherMgr * CGameBase::s_pOPMgr = NULL;    // Other Player Manager - 다른 유저 관리 클래스..
-CPlayerMySelf *   CGameBase::s_pPlayer = NULL;   // 유저 클래스..
+CN3WorldManager * CGameBase::s_pWorldMgr = NULL; // World Manager..
+CPlayerOtherMgr * CGameBase::s_pOPMgr = NULL;    // Other Player Manager - Another user management class..
+CPlayerMySelf *   CGameBase::s_pPlayer = NULL;   // user class...
 
 CGameBase::CGameBase() {}
 
@@ -76,18 +76,18 @@ void _FormatCoins(int64_t nCoins, std::string & szCoins) {
 void CGameBase::StaticMemberInit() {
     //////////////////////////////////////////////////////////////////////////////////////////
     // Resource Table 로딩 및 초기화...
-    s_pTbl_Zones = new CN3TableBase<__TABLE_ZONE>;  // Zone 정보에 관한 Table
+    s_pTbl_Zones = new CN3TableBase<__TABLE_ZONE>;  // Table for Zone Information
     s_pTbl_UI = new CN3TableBase<__TABLE_UI_RESRC>; // UI Resource File Table loading
     s_pTbl_UPC_Looks =
-        new CN3TableBase<__TABLE_PLAYER_LOOKS>; // 플레이어들의 기본 모습이 되는 NPC Resource Table loading
+        new CN3TableBase<__TABLE_PLAYER_LOOKS>; // NPC Resource Table loading, which is the basic appearance of players
     s_pTbl_Items_Basic = new CN3TableBase<__TABLE_ITEM_BASIC>; // Item Resource Table loading
     for (int i = 0; i < MAX_ITEM_EXTENSION; i++) {
         s_pTbl_Items_Exts[i] = new CN3TableBase<__TABLE_ITEM_EXT>;
     }
     s_pTbl_NPC_Looks = new CN3TableBase<__TABLE_PLAYER_LOOKS>;        // NPC Resource Table loading
-    s_pTbl_Skill = new CN3TableBase<__TABLE_UPC_SKILL>;               // Skill 정보에 관한 Table
-    s_pTbl_Exchange_Quest = new CN3TableBase<__TABLE_EXCHANGE_QUEST>; // 교환 퀘스트에 관한 테이블..
-    s_pTbl_FXSource = new CN3TableBase<__TABLE_FX>;                   // FX Source에 관한 테이블..
+    s_pTbl_Skill = new CN3TableBase<__TABLE_UPC_SKILL>;               // Table for skill information
+    s_pTbl_Exchange_Quest = new CN3TableBase<__TABLE_EXCHANGE_QUEST>; // Table of exchange quests..
+    s_pTbl_FXSource = new CN3TableBase<__TABLE_FX>;                   // Table of FX Source..
     s_pTbl_QuestMenu = new CN3TableBase<__TABLE_QUEST_MENU>;
     s_pTbl_QuestTalk = new CN3TableBase<__TABLE_QUEST_TALK>;
     s_pTbl_Texts = new CN3TableBase<__TABLE_TEXTS>;
@@ -101,18 +101,19 @@ void CGameBase::StaticMemberInit() {
 
     std::string szFN;
     szFN = "Data\\Zones.tbl";
-    s_pTbl_Zones->LoadFromFile(szFN.c_str()); // Zone 정보에 관한 Table
+    s_pTbl_Zones->LoadFromFile(szFN.c_str()); // Table for Zone Information
     szFN = "Data\\UIs" + szLangTail;
     s_pTbl_UI->LoadFromFile(szFN.c_str()); // UI Resource File Table loading
     szFN = "Data\\UPC_DefaultLooks.tbl";
-    s_pTbl_UPC_Looks->LoadFromFile(szFN.c_str()); // 플레이어들의 기본 모습이 되는 NPC Resource Table loading
+    s_pTbl_UPC_Looks->LoadFromFile(
+        szFN.c_str()); // NPC Resource Table loading, which is the basic appearance of players
     szFN = "Data\\Item_Org" + szLangTail;
     s_pTbl_Items_Basic->LoadFromFile(szFN.c_str()); // Item Resource Table loading
 
     szFN = "Data\\Quest_Menu" + szLangTail;
-    s_pTbl_QuestMenu->LoadFromFile(szFN.c_str()); // 퀘스트 관련 선택메뉴
+    s_pTbl_QuestMenu->LoadFromFile(szFN.c_str()); // Quest-related selection menu
     szFN = "Data\\Quest_Talk" + szLangTail;
-    s_pTbl_QuestTalk->LoadFromFile(szFN.c_str()); // 퀘스트 관련 지문
+    s_pTbl_QuestTalk->LoadFromFile(szFN.c_str()); // Quest-related fingerprints
     szFN = "Data\\Texts" + szLangTail;
     s_pTbl_Texts->LoadFromFile(szFN.c_str());
     szFN = "Data\\help" + szLangTail;
@@ -128,25 +129,25 @@ void CGameBase::StaticMemberInit() {
     szFN = "Data\\NPC_Looks.tbl";
     s_pTbl_NPC_Looks->LoadFromFile(szFN.c_str()); // NPC Resource Table loading
     szFN = "Data\\skill_magic_main" + szLangTail;
-    s_pTbl_Skill->LoadFromFile(szFN.c_str()); // Skill 정보에 관한 Table
+    s_pTbl_Skill->LoadFromFile(szFN.c_str()); // Table for skill information
     szFN = "Data\\Exchange_Quest.tbl";
-    s_pTbl_Exchange_Quest->LoadFromFile(szFN.c_str()); // 교환 퀘스트에 관한 테이블..
+    s_pTbl_Exchange_Quest->LoadFromFile(szFN.c_str()); // Table of exchange quests..
     szFN = "Data\\fx.tbl";
     s_pTbl_FXSource->LoadFromFile(szFN.c_str());
 
     s_pWorldMgr = new CN3WorldManager();
     s_pOPMgr = new CPlayerOtherMgr();
-    s_pPlayer = new CPlayerMySelf(); // 기본적인 내 플레이어 생성..
+    s_pPlayer = new CPlayerMySelf(); // Creating basic player...
 }
 
 void CGameBase::StaticMemberRelease() {
     // Tables ....
     delete s_pTbl_Zones;
-    s_pTbl_Zones = NULL; // Zone 정보에 관한 Table
+    s_pTbl_Zones = NULL; // Table for Zone Information
     delete s_pTbl_UI;
     s_pTbl_UI = NULL; // UI Resource File Table loading
     delete s_pTbl_UPC_Looks;
-    s_pTbl_UPC_Looks = NULL; // 플레이어들의 기본 모습이 되는 NPC Resource Table loading
+    s_pTbl_UPC_Looks = NULL; // NPC Resource Table loading, which is the basic appearance of players
     delete s_pTbl_Items_Basic;
     s_pTbl_Items_Basic = NULL; // Item Resource Table loading
     for (int i = 0; i < MAX_ITEM_EXTENSION; i++) {
@@ -156,15 +157,15 @@ void CGameBase::StaticMemberRelease() {
     delete s_pTbl_NPC_Looks;
     s_pTbl_NPC_Looks = NULL; // NPC Resource Table loading
     delete s_pTbl_Skill;
-    s_pTbl_Skill = NULL; // Skill 정보에 관한 Table
+    s_pTbl_Skill = NULL; // Table for skill information
     delete s_pTbl_Exchange_Quest;
-    s_pTbl_Exchange_Quest = NULL; // Skill 정보에 관한 Table
+    s_pTbl_Exchange_Quest = NULL; // Table for skill information
     delete s_pTbl_FXSource;
-    s_pTbl_FXSource = NULL; // FX Source에 관한 테이블..
+    s_pTbl_FXSource = NULL; // Table of FX Source..
     delete s_pTbl_QuestMenu;
-    s_pTbl_QuestMenu = NULL; // 퀘스트 관련 선택메뉴
+    s_pTbl_QuestMenu = NULL; // Quest-related selection menu
     delete s_pTbl_QuestTalk;
-    s_pTbl_QuestTalk = NULL; // 퀘스트 관련 지문
+    s_pTbl_QuestTalk = NULL; // Quest-related fingerprints
     delete s_pTbl_Texts;
     s_pTbl_Texts = NULL;
     delete s_pTbl_Help;
@@ -297,25 +298,25 @@ bool CGameBase::GetTextByKnightsDuty(e_KnightsDuty eDuty, std::string & szText) 
     switch (eDuty) {
     case KNIGHTS_DUTY_UNKNOWN:
         ::_LoadStringFromResource(IDS_KNIGHTS_DUTY_UNKNOWN, szText);
-        break; // ????? 쫓겨남??
+        break; // ????? getting kicked out??
     case KNIGHTS_DUTY_PUNISH:
         ::_LoadStringFromResource(IDS_KNIGHTS_DUTY_PUNISH, szText);
-        break; // 징계중.
+        break; // being punished.
     case KNIGHTS_DUTY_TRAINEE:
         ::_LoadStringFromResource(IDS_KNIGHTS_DUTY_TRAINEE, szText);
-        break; // 견습기사
+        break; // apprentice knight
     case KNIGHTS_DUTY_KNIGHT:
         ::_LoadStringFromResource(IDS_KNIGHTS_DUTY_KNIGHT, szText);
-        break; // 일반기사
+        break; // general article
     case KNIGHTS_DUTY_OFFICER:
         ::_LoadStringFromResource(IDS_KNIGHTS_DUTY_OFFICER, szText);
-        break; // 장교
+        break; // officer
     case KNIGHTS_DUTY_VICECHIEF:
         ::_LoadStringFromResource(IDS_KNIGHTS_DUTY_VICECHIEF, szText);
-        break; // 부단장.
+        break; // Vice-captain.
     case KNIGHTS_DUTY_CHIEF:
         ::_LoadStringFromResource(IDS_KNIGHTS_DUTY_CHIEF, szText);
-        break; // 기사단장 직위..
+        break; // Knight Commander's position.
     default:
         __ASSERT(0, "Invalid Knights Duty");
         szText = "Unknown Duty";
@@ -329,70 +330,70 @@ bool CGameBase::GetTextByItemClass(e_ItemClass eItemClass, std::string & szText)
     switch (eItemClass) {
     case ITEM_CLASS_DAGGER:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_DAGGER, szText);
-        break; // 단검(dagger)
+        break; // (dagger)
     case ITEM_CLASS_SWORD:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_SWORD, szText);
-        break; // 한손검(onehandsword)
+        break; // (onehandsword)
     case ITEM_CLASS_SWORD_2H:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_SWORD_2H, szText);
-        break; // 3 : 양손검(twohandsword)
+        break; // 3 : (twohandsword)
     case ITEM_CLASS_AXE:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_AXE, szText);
-        break; // 한손도끼(onehandaxe)
+        break; // (onehandaxe)
     case ITEM_CLASS_AXE_2H:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_AXE_2H, szText);
-        break; // 두손도끼(twohandaxe)
+        break; // (twohandaxe)
     case ITEM_CLASS_MACE:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_MACE, szText);
-        break; // 한손타격무기(mace)
+        break; // (mace)
     case ITEM_CLASS_MACE_2H:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_MACE_2H, szText);
-        break; // 두손타격무기(twohandmace)
+        break; // (twohandmace)
     case ITEM_CLASS_SPEAR:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_SPEAR, szText);
-        break; // 창(spear)
+        break; // (spear)
     case ITEM_CLASS_POLEARM:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_POLEARM, szText);
-        break; // 폴암(polearm)
+        break; // (polearm)
 
     case ITEM_CLASS_SHIELD:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_SHIELD, szText);
-        break; // 쉴드(shield)
+        break; // (shield)
 
     case ITEM_CLASS_BOW:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_BOW, szText);
-        break; //  쇼트보우(Shortbow)
+        break; //  (Shortbow)
     case ITEM_CLASS_BOW_CROSS:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_BOW_CROSS, szText);
-        break; // 크로스보우(crossbow)
+        break; // (crossbow)
     case ITEM_CLASS_BOW_LONG:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_BOW_LONG, szText);
-        break; // 롱보우(longbow)
+        break; // (longbow)
 
     case ITEM_CLASS_EARRING:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_EARRING, szText);
-        break; // 귀걸이
+        break; // (Earring)
     case ITEM_CLASS_AMULET:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_AMULET, szText);
-        break; // 목걸이
+        break; // (Amulet)
     case ITEM_CLASS_RING:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_RING, szText);
-        break; // 반지
+        break; // (Ring)
     case ITEM_CLASS_BELT:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_BELT, szText);
-        break; // 허리띠
+        break; // (Belt)
     case ITEM_CLASS_CHARM:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_CHARM, szText);
-        break; //인벤토리에 지니고 있는 아이템
+        break; //(Items in Inventory)
     case ITEM_CLASS_JEWEL:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_JEWEL, szText);
-        break; //보석종류
+        break; //(Jewel type)
     case ITEM_CLASS_POTION:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_POTION, szText);
-        break; // 물약
+        break; // (potion)
     case ITEM_CLASS_SCROLL:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_SCROLL, szText);
-        break; // 스크롤
+        break; // (scroll)
 
     case ITEM_CLASS_LAUNCHER:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_LAUNCHER, szText);
@@ -400,26 +401,26 @@ bool CGameBase::GetTextByItemClass(e_ItemClass eItemClass, std::string & szText)
 
     case ITEM_CLASS_STAFF:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_STAFF, szText);
-        break; // 지팡이(staff)
+        break; // (staff)
     case ITEM_CLASS_ARROW:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_ARROW, szText);
-        break; // 화살(Arrow)
+        break; // (Arrow)
     case ITEM_CLASS_JAVELIN:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_JAVELIN, szText);
-        break; // 투창
+        break; //  (Javelin)
 
     case ITEM_CLASS_ARMOR_WARRIOR:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_ARMOR_WARRIOR, szText);
-        break; // 전사 방어구
+        break; //  (Warrior Armor)
     case ITEM_CLASS_ARMOR_ROGUE:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_ARMOR_ROGUE, szText);
-        break; // 로그 방어구
+        break; //  (Rogue Armor)
     case ITEM_CLASS_ARMOR_MAGE:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_ARMOR_MAGE, szText);
-        break; // 마법사 방어구
+        break; //  (Mage Armor)
     case ITEM_CLASS_ARMOR_PRIEST:
         ::_LoadStringFromResource(IDS_ITEM_CLASS_ARMOR_PRIEST, szText);
-        break; // 사제 방어구
+        break; //  (Priest Armor)
     default:
         //            __ASSERT(0, "Invalid Item Class"); szText = "Unknonw Item Class";
         return false;
@@ -432,22 +433,22 @@ bool CGameBase::GetTextByAttrib(e_ItemAttrib eAttrib, std::string & szAttrib) {
     switch (eAttrib) {
     case ITEM_ATTRIB_GENERAL:
         ::_LoadStringFromResource(IDS_ITEM_ATTRIB_GENERAL, szAttrib);
-        break; // 단검(dagger)
+        break; // (dagger)
     case ITEM_ATTRIB_MAGIC:
         ::_LoadStringFromResource(IDS_ITEM_ATTRIB_MAGIC, szAttrib);
-        break; // 한손검(onehandsword)
+        break; // (onehandsword)
     case ITEM_ATTRIB_LAIR:
         ::_LoadStringFromResource(IDS_ITEM_ATTRIB_LAIR, szAttrib);
-        break; // 3 : 양손검(twohandsword)
+        break; // 3 : (twohandsword)
     case ITEM_ATTRIB_CRAFT:
         ::_LoadStringFromResource(IDS_ITEM_ATTRIB_CRAFT, szAttrib);
-        break; // 한손도끼(onehandaxe)
+        break; // (onehandaxe)
     case ITEM_ATTRIB_UNIQUE:
         ::_LoadStringFromResource(IDS_ITEM_ATTRIB_UNIQUE, szAttrib);
-        break; // 두손도끼(twohandaxe)
+        break; // (twohandaxe)
     case ITEM_ATTRIB_UPGRADE:
         ::_LoadStringFromResource(IDS_ITEM_ATTRIB_UPGRADE, szAttrib);
-        break; // 한손타격무기(mace)
+        break; // (mace)
     default:
         return false;
     }
@@ -544,14 +545,14 @@ bool CGameBase::GetTextByRace(e_Race eRace, std::string & szText) {
 }
 
 D3DCOLOR CGameBase::GetIDColorByLevelDifference(int iLevelDiff) {
-    // 레벨 차이에 따른 색깔...
-    // 보라색 : 플레이어보다 +8,
-    // 빨간색: 플레이어보다 +5, +6, +7
-    // 노란색 : 플레이어어보다 +2, +3, +4
-    // 흰색 : -1 ? 플레이어  ? 1
-    // 파란색 : 플레이어보다 2레벨 이하 -2, -3, -4
-    // 초록색 : 플레이어보다 -5, -6, -7
-    // 하늘색 : 플레이어보다 -8, …(경험치를 얻지 못함)
+    // Color, based on level difference...
+    // Purple: +8 over player,
+    // Red: +5, +6, +7 over player
+    // Yellow: +2, +3, +4 over player
+    // White: -1 ? player  ? 1
+    // Blue: 2 levels lower than the player -2, -3, -4
+    // Green: -5, -6, -7 than the player
+    // Light blue: -8 over player, … (no experience gained)
 
     D3DCOLOR crID = 0xffffffff;
     if (iLevelDiff >= 8) {
@@ -573,12 +574,12 @@ D3DCOLOR CGameBase::GetIDColorByLevelDifference(int iLevelDiff) {
     return crID;
 }
 
-// Item Data 를 가지고 파일이름을 만든다..
-e_ItemType CGameBase::MakeResrcFileNameForUPC(__TABLE_ITEM_BASIC * pItem,         // 아이템 데이터...
+// Create a file name with Item Data.
+e_ItemType CGameBase::MakeResrcFileNameForUPC(__TABLE_ITEM_BASIC * pItem,         // item data...
                                               std::string *        pszResrcFN,    // Resource FileName
                                               std::string *        pszIconFN,     // Icon FileName
-                                              e_PartPosition &     ePartPosition, // Part 일경우 Index
-                                              e_PlugPosition &     ePlugPosition)     // Plug 일경우 Index
+                                              e_PartPosition &     ePartPosition, // Index in case of Part
+                                              e_PlugPosition &     ePlugPosition)     // Index in case of Plug
 {
     ePartPosition = PART_POS_UNKNOWN;
     ePlugPosition = PLUG_POS_UNKNOWN;
@@ -593,12 +594,12 @@ e_ItemType CGameBase::MakeResrcFileNameForUPC(__TABLE_ITEM_BASIC * pItem,       
         return ITEM_TYPE_UNKNOWN;
     }
 
-    // 총 8 자리이다.
+    // There are 8 digits in total.
     e_ItemType     eType = ITEM_TYPE_UNKNOWN;
-    e_ItemPosition ePos = (e_ItemPosition)pItem->byAttachPoint; // 장착위치...
+    e_ItemPosition ePos = (e_ItemPosition)pItem->byAttachPoint; // mounting location...
 
     int         iPos = 0;
-    std::string szExt; // 확장자..
+    std::string szExt; // extension..
 
     if (ePos >= ITEM_POS_DUAL && ePos <= ITEM_POS_TWOHANDLEFT) {
         if (ITEM_POS_DUAL == ePos || ITEM_POS_RIGHTHAND == ePos || ITEM_POS_TWOHANDRIGHT == ePos) {
@@ -611,15 +612,15 @@ e_ItemType CGameBase::MakeResrcFileNameForUPC(__TABLE_ITEM_BASIC * pItem,       
         szExt = ".n3cplug";
     } else if (ePos >= ITEM_POS_UPPER && ePos <= ITEM_POS_SHOES) {
         if (ITEM_POS_UPPER == ePos) {
-            ePartPosition = PART_POS_UPPER; // 상체
+            ePartPosition = PART_POS_UPPER; // upper body
         } else if (ITEM_POS_LOWER == ePos) {
-            ePartPosition = PART_POS_LOWER; // 하체
+            ePartPosition = PART_POS_LOWER; // lower body
         } else if (ITEM_POS_HEAD == ePos) {
-            ePartPosition = PART_POS_HAIR_HELMET; // 투구
+            ePartPosition = PART_POS_HAIR_HELMET; // casque
         } else if (ITEM_POS_GLOVES == ePos) {
-            ePartPosition = PART_POS_HANDS; // 팔
+            ePartPosition = PART_POS_HANDS; // arm
         } else if (ITEM_POS_SHOES == ePos) {
-            ePartPosition = PART_POS_FEET; // 발
+            ePartPosition = PART_POS_FEET; // foot
         } else {
             __ASSERT(0, "lll");
         }
@@ -646,7 +647,7 @@ e_ItemType CGameBase::MakeResrcFileNameForUPC(__TABLE_ITEM_BASIC * pItem,       
                                       (pItem->dwIDResrc / 1000) % 10000, (pItem->dwIDResrc / 10) % 100,
                                       pItem->dwIDResrc % 10, szExt);
         } else {
-            // 아이콘만 있는 플러그나 파트 일수도 있다...
+            // It could be a plug or part with just an icon...
             *pszResrcFN = "";
         }
     }
@@ -664,9 +665,9 @@ bool CGameBase::IsValidCharacter(CPlayerBase * pCharacter) {
         return false;
     }
     if (pCharacter == s_pPlayer) {
-        return true; // 플레이어이다.
+        return true; // is a player
     }
-    return s_pOPMgr->IsValidCharacter(pCharacter); //  일단 살아있는 넘들중에서 가져와보고..
+    return s_pOPMgr->IsValidCharacter(pCharacter); //  First of all, take it from among the living ones..
 }
 
 CPlayerBase * CGameBase::CharacterGetByID(int iID, bool bFromAlive) {

@@ -17,12 +17,12 @@ class CN3AnimKey : CN3Base {
 
   protected:
     ANIMATION_KEY_TYPE m_eType;         // Key Type - Position Rotation Scale
-    int                m_nCount;        // 키 카운트
-    float              m_fSamplingRate; // Sampling Rate - 표준은 30 Frame Per Sec 이다..
+    int                m_nCount;        // key count
+    float              m_fSamplingRate; // Sampling Rate - The standard is 30 Frame Per Sec.
     void *             m_pDatas;
 
   public:
-    ANIMATION_KEY_TYPE Type() { return m_eType; } // 키 형태, 벡터워 쿼터니언 형태가 있다..
+    ANIMATION_KEY_TYPE Type() { return m_eType; } // There are key types, vector and quaternion types.
     void               Add(CN3AnimKey & AKSrc, int nIndexS, int nIndexE);
     //    void    Translate(int nIndexStart, int nIndexEnd, float fDelta, int nKFlags);
     bool DataGet(float fFrm, __Vector3 & v) {

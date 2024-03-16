@@ -16,8 +16,8 @@ CN3IMesh::CN3IMesh() {
 
     m_nFC = 0;
 
-    m_pwVtxIndices = NULL; // 점 인덱스 리스트.
-    m_pwUVsIndices = NULL; // 텍스처 좌표 인덱스 리스트.
+    m_pwVtxIndices = NULL; // List of point indices.
+    m_pwUVsIndices = NULL; // Texture coordinate index list.
 
     m_nVC = m_nUVC = 0;
     m_pVertices = NULL;
@@ -32,9 +32,9 @@ CN3IMesh::~CN3IMesh() {
     m_pfUVs = NULL;
 
     delete[] m_pwVtxIndices;
-    m_pwVtxIndices = NULL; // 점 인덱스 리스트.
+    m_pwVtxIndices = NULL;     // List of point indices.
     delete[] m_pwUVsIndices;
-    m_pwUVsIndices = NULL; // 텍스처 좌표 인덱스 리스트.
+    m_pwUVsIndices = NULL;     // Texture coordinate index list.
 
     //    if(m_lpVB) m_lpVB->Release();
 }
@@ -52,9 +52,9 @@ void CN3IMesh::Release() {
     m_pfUVs = NULL;
 
     delete[] m_pwVtxIndices;
-    m_pwVtxIndices = NULL; // 점 인덱스 리스트.
+    m_pwVtxIndices = NULL; // List of point indices.
     delete[] m_pwUVsIndices;
-    m_pwUVsIndices = NULL; // 텍스처 좌표 인덱스 리스트.
+    m_pwUVsIndices = NULL; // Texture coordinate index list.
 
     //    if(m_lpVB) m_lpVB->Release(); m_lpVB = NULL;
 
@@ -87,7 +87,7 @@ bool CN3IMesh::Create(int nFC, int nVC, int nUVC) {
     if (nUVC > 0) {
         m_nUVC = nUVC;
         m_pfUVs = new float[nUVC * 2];
-        memset(m_pfUVs, 0, 8 * nUVC); // 사이즈가 8 인 이유는 float 2개라 그렇다..
+        memset(m_pfUVs, 0, 8 * nUVC); // The reason the size is 8 is because there are 2 floats.
         m_pwUVsIndices = new WORD[nFC * 3];
         memset(m_pwUVsIndices, 0, 2 * nFC * 3); // unsigned short
     }
@@ -306,7 +306,7 @@ void CN3IMesh::RenderSelected() {
         vFace[1] = pVs[i * 3 + 1];
         vFace[2] = pVs[i * 3 + 2];
         vFace[3] = vFace[0];
-        CN3Base::RenderLines(vFace, 3, 0xff00ff00); // 녹색으로 렌더링..
+        CN3Base::RenderLines(vFace, 3, 0xff00ff00); // Rendered in green...
     }
 }
 #endif // end of _N3TOOL
@@ -334,7 +334,7 @@ bool CN3IMesh::Load(HANDLE hFile) {
         ReadFile(hFile, m_pwUVsIndices, 2 * nFC * 3, &dwRWC, NULL); // unsigned short
     }
 
-    this->FindMinMax(); // 최소 최대값을 찾는다..
+    this->FindMinMax(); // Find the minimum and maximum values..
 
     return true;
 }
@@ -371,7 +371,7 @@ void CN3IMesh::FindMinMax() {
         return;
     }
 
-    // 최소, 최대 점을 찾는다.
+    // Find the minimum and maximum points.
     m_vMin.Set(FLT_MAX, FLT_MAX, FLT_MAX);
     m_vMax.Set(-FLT_MAX, -FLT_MAX, -FLT_MAX);
     for (int i = 0; i < m_nVC; i++) {

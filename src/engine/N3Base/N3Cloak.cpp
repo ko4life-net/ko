@@ -376,7 +376,7 @@ void CN3Cloak::ApplyOffset(D3DXVECTOR3 & vDif) {
             m_vOffset[i].z = vDif.z * Weight[i];
         }
         m_fOffsetRecoveryTime = 1.4f;
-    } else { // offset 이 적용되어 있는 상태.
+    } else { // Offset is applied.
         m_fOffsetRecoveryTime -= s_fSecPerFrm;
         if (m_fOffsetRecoveryTime < 0.0f) { // Recovery process
             for (int i = 0; i < m_nGridW; i++) {
@@ -399,7 +399,7 @@ void CN3Cloak::TickYaw() {
     }
 
     float fYaw = m_bpPlayerBase->Yaw();
-    if (fYaw != m_fPrevYaw) { // 회전이 있었다.
+    if (fYaw != m_fPrevYaw) { // There was a rotation.
         if (fYaw - m_fPrevYaw > 0.0f) {
             if (m_eAnchorPattern == AMP_NONE && m_fAnchorPreserveTime < 0.0f) {
                 MoveAnchorLine(AMP_YAWCCW, 2.0f);

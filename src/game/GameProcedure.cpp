@@ -56,16 +56,16 @@ CN3UIDebug CGameProcedure::s_UIDebug;
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
-CKnightChrMgr *   CGameProcedure::s_pKnightChr = NULL;  // 나이트 캐릭터..
-CN3SndObjStream * CGameProcedure::s_pSnd_BGM = NULL;    // 메인 배경음악 포인터..
-CLocalInput *     CGameProcedure::s_pLocalInput = NULL; // 마우스와 키보드 입력 객체 .. Direct Input 을 썼다.
-CAPISocket *      CGameProcedure::s_pSocket = NULL;     // 메인 소켓 객체
-CAPISocket *      CGameProcedure::s_pSocketSub = NULL;  // 서브 소켓 객체
+CKnightChrMgr *   CGameProcedure::s_pKnightChr = NULL;  // Knight character...
+CN3SndObjStream * CGameProcedure::s_pSnd_BGM = NULL;    // Main background music pointer..
+CLocalInput *     CGameProcedure::s_pLocalInput = NULL; // Mouse and keyboard input objects.. Direct Input was used.
+CAPISocket *      CGameProcedure::s_pSocket = NULL;     // main socket object
+CAPISocket *      CGameProcedure::s_pSocketSub = NULL;  // sub socket object
 CGameEng *        CGameProcedure::s_pEng = NULL;        // 3D Wrapper Engine
 CN3FXMgr *        CGameProcedure::s_pFX = NULL;
 
 CUIManager *           CGameProcedure::s_pUIMgr = NULL;     // UI Manager
-CUILoading *           CGameProcedure::s_pUILoading = NULL; // 로딩바..
+CUILoading *           CGameProcedure::s_pUILoading = NULL; // Loading bar...
 CUIMessageBoxManager * CGameProcedure::s_pMsgBoxMgr = NULL; // MessageBox Manager
 //bool                CGameProcedure::s_bUseSpeedHack = false;
 
@@ -88,19 +88,19 @@ HCURSOR CGameProcedure::s_hCursorAttack = NULL;
 HCURSOR CGameProcedure::s_hCursorPreRepair = NULL;
 HCURSOR CGameProcedure::s_hCursorNowRepair = NULL;
 
-e_LogInClassification CGameProcedure::s_eLogInClassification; // 접속한 서비스.. MGame, Daum, KnightOnLine ....
-std::string           CGameProcedure::s_szAccount = "";       // 계정 문자열..
-std::string           CGameProcedure::s_szPassWord = "";      // 계정 비번..
-std::string           CGameProcedure::s_szServer = "";        // 서버 문자열..
+e_LogInClassification CGameProcedure::s_eLogInClassification; // Accessed services... MGame, Daum, KnightOnLine....
+std::string           CGameProcedure::s_szAccount = "";       // Account string..
+std::string           CGameProcedure::s_szPassWord = "";      // Account password..
+std::string           CGameProcedure::s_szServer = "";        // Server string..
 bool                  CGameProcedure::m_bCursorLocked = false;
 HCURSOR               CGameProcedure::m_hPrevGameCursor = NULL;
-HWND                  CGameProcedure::s_hWndSubSocket = NULL; // 서브 소켓용 윈도우 핸들..
+HWND                  CGameProcedure::s_hWndSubSocket = NULL; // Window handle for sub socket..
 int                   CGameProcedure::s_iChrSelectIndex = 0;
 bool                  CGameProcedure::s_bNeedReportVersionCheck = false;
-bool                  CGameProcedure::s_bNeedReportConnectionClosed = false; // 서버접속이 끊어진걸 보고해야 하는지..
-bool                  CGameProcedure::s_bWindowed = false;                   // 창모드 실행??
-bool                  CGameProcedure::s_bKeyPress = false;   //키가 눌려졌을때 ui에서 해당하는 조작된적이 있다면
-bool                  CGameProcedure::s_bKeyPressed = false; //키가 올라갔을때 ui에서 해당하는 조작된적이 있다면
+bool                  CGameProcedure::s_bNeedReportConnectionClosed = false; // Should I report that the server connection was lost?
+bool                  CGameProcedure::s_bWindowed = false;                   // Run windowed mode??
+bool                  CGameProcedure::s_bKeyPress = false;   // When a key is pressed, if there is a corresponding operation in the UI
+bool                  CGameProcedure::s_bKeyPressed = false; // If there is a corresponding manipulation in the UI when the key is raised
 
 CGameProcedure::CGameProcedure() {
     m_bCursorLocked = false;
@@ -155,7 +155,7 @@ void CGameProcedure::StaticMemberInit(HINSTANCE hInstance, HWND hWndMain, HWND h
                       CN3Base::s_Options.iViewColorDepth, TRUE)) {
         exit(-1);
     }
-    // 게임 기본 3D 엔진 만들기..
+    // Creating a basic 3D engine for the game..
     ::SetFocus(hWndMain); // Set focus this window..
 
     RECT rcTmp = rc;
@@ -164,12 +164,12 @@ void CGameProcedure::StaticMemberInit(HINSTANCE hInstance, HWND hWndMain, HWND h
     CN3UIEdit::CreateEditWindow(hWndMain, rcTmp);
     //////////////////////////////////////////////////////////////////////////////////////////
 
-    s_hWndSubSocket = hWndSub; // 서브 소켓용 윈도우 핸들..
+    s_hWndSubSocket = hWndSub; // Window handle for sub socket..
 
-    CGameBase::StaticMemberInit(); // Table 및 지형, 오브젝트, 캐릭터 초기화...
+    CGameBase::StaticMemberInit(); // Initializing tables, terrain, objects, and characters...
 
     //////////////////////////////////////////////////////////////////////////////////////////
-    // Game Procedure 소켓과 로컬 인풋, 3D엔진, Resource Table 로딩 및 초기화...
+    // Game Procedure socket, local input, 3D engine, Resource Table loading and initialization...
     s_pSocket = new CAPISocket();
     s_pSocketSub = new CAPISocket();
 
@@ -189,10 +189,10 @@ void CGameProcedure::StaticMemberInit(HINSTANCE hInstance, HWND hWndMain, HWND h
     SetGameCursor(s_hCursorNormal);
 
     s_pLocalInput = new CLocalInput();
-    s_pLocalInput->Init(hInstance, hWndMain, FALSE); // Input 만 초기화.
+    s_pLocalInput->Init(hInstance, hWndMain, FALSE); // Initialize only input.
 
     //////////////////////////////////////////////////////////////////////////////////////////
-    // Sound 초기화..
+    // Sound initialization..
     if (CN3Base::s_Options.bSndEnable) {
         CN3Base::s_SndMgr.Init(hWndMain);
         CN3Base::s_SndMgr.SetDuplicated(CN3Base::s_Options.bSndDuplicated);
@@ -201,23 +201,23 @@ void CGameProcedure::StaticMemberInit(HINSTANCE hInstance, HWND hWndMain, HWND h
 
     s_pFX = new CN3FXMgr();
 
-    __TABLE_UI_RESRC * pTblUI = s_pTbl_UI->Find(NATION_ELMORAD); // 기본은 엘모라드 UI 로 한다..
-    __ASSERT(pTblUI, "기본 UI 가 없습니다.");
+    __TABLE_UI_RESRC * pTblUI = s_pTbl_UI->Find(NATION_ELMORAD); // The default is Elmorad UI.
+    __ASSERT(pTblUI, "There is no default UI..");
 
-    s_pUIMgr = new CUIManager();               // 기본 UIManager
-    s_pMsgBoxMgr = new CUIMessageBoxManager(); //MessageBox Manager
+    s_pUIMgr = new CUIManager();               // Default UIManager
+    s_pMsgBoxMgr = new CUIMessageBoxManager(); // MessageBox Manager
 
-    // 툴팁..
+    // Tooltip...
     CN3UIBase::EnableTooltip(pTblUI->szToolTip);
 
     //////////////////////////////////////////////////////////////////////////////////////////
     // 각 프로시저들 생성
-    s_pProcLogIn = new CGameProcLogIn();                     // 로그인 프로시져
-    s_pProcNationSelect = new CGameProcNationSelect();       // 나라 선택
-    s_pProcCharacterSelect = new CGameProcCharacterSelect(); // 캐릭터 선택
-    s_pProcCharacterCreate = new CGameProcCharacterCreate(); // 캐릭터 만들기
-    s_pProcMain = new CGameProcMain();                       // 메인 게임 프로시져
-    s_pProcOption = new CGameProcOption();                   // 게임 옵션 프로시져
+    s_pProcLogIn = new CGameProcLogIn();                     // Login procedure
+    s_pProcNationSelect = new CGameProcNationSelect();       // Select country
+    s_pProcCharacterSelect = new CGameProcCharacterSelect(); // Character selection
+    s_pProcCharacterCreate = new CGameProcCharacterCreate(); // Create a character
+    s_pProcMain = new CGameProcMain();                       // Main game procedure
+    s_pProcOption = new CGameProcOption();                   // Game Options Procedure
 }
 
 void CGameProcedure::StaticMemberRelease() {
@@ -230,38 +230,38 @@ void CGameProcedure::StaticMemberRelease() {
     }
 
     delete s_pSocket;
-    s_pSocket = NULL; // 통신 끊기..
+    s_pSocket = NULL; // Cut off communication...
     delete s_pSocketSub;
-    s_pSocketSub = NULL; // 서브 소켓 없애기..
+    s_pSocketSub = NULL; // Deleting sub sockets...
     delete s_pFX;
     s_pFX = NULL;
 
     ////////////////////////////////////////////////////////////
-    // 기본값 쓰기..
+    // Write default value...
     if (s_pPlayer) {
-        int iRun = s_pPlayer->IsRunning();                  // 이동 모드가 뛰는 상태였으면
-        CGameProcedure::RegPutSetting("UserRun", &iRun, 4); // 걷기, 뛰기 상태 기록..
+        int iRun = s_pPlayer->IsRunning();                  // If the movement mode is running
+        CGameProcedure::RegPutSetting("UserRun", &iRun, 4); // Record walking and running conditions...
     }
 
     if (s_pEng) {
         e_ViewPoint eVP = s_pEng->ViewPoint();
-        CGameProcedure::RegPutSetting("CameraMode", &eVP, 4); // 카메라 상태 기록
+        CGameProcedure::RegPutSetting("CameraMode", &eVP, 4); // Camera status record
     }
-    // 기본값 쓰기..
+    // Write default value...
     ////////////////////////////////////////////////////////////
 
     ////////////////////////////////////////////////////////////////////////
-    // 엔딩화면 보이기..
+    // Show ending screen...
     if (s_pPlayer) {
         e_Nation           eNation = s_pPlayer->m_InfoBase.eNation;
         __TABLE_UI_RESRC * pTbl = s_pTbl_UI->Find(eNation);
         if (pTbl) {
-            CUIEndingDisplay Credit; // 엔딩 표시하기..
+            CUIEndingDisplay Credit; // Show ending...
             Credit.LoadFromFile(pTbl->szEndingDisplay);
             Credit.Render();
         }
     }
-    // 엔딩화면 보이기..
+    // Show ending screen...
     ////////////////////////////////////////////////////////////////////////
 
     delete s_pKnightChr;
@@ -269,7 +269,7 @@ void CGameProcedure::StaticMemberRelease() {
     //    if ( (s_pProcMain) && (s_pProcMain->m_pUIHotKeyDlg) )
     //            s_pProcMain->m_pUIHotKeyDlg->CloseIconRegistry();
 
-    // UI 위치및 보이기 등의 정보 저장..
+    // Saving information such as UI location and visibility.
     if (s_pProcMain) {
         UIPostData_Write(UI_POST_WND_CHAT, s_pProcMain->m_pUIChatDlg);
         UIPostData_Write(UI_POST_WND_HOTKEY, s_pProcMain->m_pUIHotKeyDlg);
@@ -277,21 +277,21 @@ void CGameProcedure::StaticMemberRelease() {
         //        UIPostData_Write(UI_POST_WND_PARTY, s_pProcMain->m_pUIPartyOrForce);
     }
 
-    // 각 프로시저들
+    // Each procedure
     delete s_pProcLogIn;
-    s_pProcLogIn = NULL; // 로그인 프로시져
+    s_pProcLogIn = NULL; // Login procedure
     delete s_pProcNationSelect;
-    s_pProcNationSelect = NULL; // 나라 선택
+    s_pProcNationSelect = NULL; // Select country
     delete s_pProcCharacterSelect;
-    s_pProcCharacterSelect = NULL; // 캐릭터 선택
+    s_pProcCharacterSelect = NULL; // Character selection
     delete s_pProcCharacterCreate;
-    s_pProcCharacterCreate = NULL; // 캐릭터 만들기
+    s_pProcCharacterCreate = NULL; // Create a character
     delete s_pProcMain;
-    s_pProcMain = NULL; // 메인 게임 프로시져
+    s_pProcMain = NULL; // Main game procedure
     delete s_pProcOption;
-    s_pProcOption = NULL; // 게임 옵션 프로시져
+    s_pProcOption = NULL; // Game Options Procedure
 
-    // UI 들 날리기..
+    // Throwing away UI..
     if (s_pUILoading) {
         delete s_pUILoading;
     }
@@ -304,7 +304,7 @@ void CGameProcedure::StaticMemberRelease() {
     delete s_pLocalInput;
     s_pLocalInput = NULL;
     delete s_pEng;
-    s_pEng = NULL; // 젤 마지막에 엔진 날리기.!!!!!
+    s_pEng = NULL; // The engine blows at the very end!!!!!
 
     if (s_pGameCursor) {
         delete s_pGameCursor;
@@ -315,7 +315,7 @@ void CGameProcedure::StaticMemberRelease() {
 }
 
 void CGameProcedure::Tick() {
-    s_pLocalInput->Tick(); // 키보드와 마우스로부터 입력을 받는다.
+    s_pLocalInput->Tick(); // Receives input from keyboard and mouse.
     if (s_pGameCursor) {
         s_pGameCursor->Tick();
     }
@@ -333,7 +333,7 @@ void CGameProcedure::Tick() {
         SetGameCursor(((NATION_ELMORAD == eNation) ? s_hCursorNormal1 : s_hCursorNormal));
     }
     if (dwMouseFlags & MOUSE_RBCLICKED) {
-        if (s_pPlayer->m_bAttackContinous && s_pProcActive == s_pProcMain) { // 메인 프로시져 이면..
+        if (s_pPlayer->m_bAttackContinous && s_pProcActive == s_pProcMain) { // If it's the main procedure...
             SetGameCursor(s_hCursorAttack);
         } else {
             SetGameCursor(((NATION_ELMORAD == eNation) ? s_hCursorNormal1 : s_hCursorNormal));
@@ -348,18 +348,18 @@ void CGameProcedure::Tick() {
         s_pUIMgr->Tick();
     }
 
-    // 몬가 하면...
+    // Speaking of mon...
     //    if((dwRet & UI_MOUSEPROC_CHILDDONESOMETHING) || (dwRet & UI_MOUSEPROC_DONESOMETHING))
     //        s_pLocalInput->MouseRemoveFlag(0xffMOUSE_LBCLICK | MOUSE_LBCLICKED | MOUSE_LBDBLCLK);
-    s_pUIMgr->m_bDoneSomething = false; // UI 에서 조작을 했다...
+    s_pUIMgr->m_bDoneSomething = false; // I manipulated it in the UI...
     if (dwRet != UI_MOUSEPROC_NONE) {
-        s_pUIMgr->m_bDoneSomething = true; // UI 에서 조작을 했다...
+        s_pUIMgr->m_bDoneSomething = true; // I manipulated it in the UI...
     }
 
     CN3Base::s_SndMgr.Tick(); // Sound Engine...
 
-    // 스크린 캡쳐 키..
-    if (s_pLocalInput->IsKeyPress(DIK_NUMPADMINUS)) // 키패드의 마이너스 키를 누르면..
+    // Screen capture key..
+    if (s_pLocalInput->IsKeyPress(DIK_NUMPADMINUS)) // When you press the minus key on the keypad...
     {
         SYSTEMTIME st;
         ::GetLocalTime(&st);
@@ -370,39 +370,39 @@ void CGameProcedure::Tick() {
     }
 
     //////////////////////////////////
-    // Network Msg 처리하기
+    //Handling Network Msg
     DataPack * pDataPack = NULL;
-    while (s_pSocket->PktQueueSize() > 0) // 패킷 리스트에 패킷이 있냐????
+    while (s_pSocket->PktQueueSize() > 0) // Are there any packets in the packet list????
     {
         int iOffset = 0;
-        pDataPack = s_pSocket->PktQueueFront(); // 큐의 첫번째 것을 복사..
+        pDataPack = s_pSocket->PktQueueFront(); // Copy the first one in the queue.
         if (false == ProcessPacket(pDataPack, iOffset)) {
-            // 패킷을 처리할 상황이 아니다.
+            // It is not a situation to process packets.
             int iTempOffst = 0;
             int iCmd = CAPISocket::Parse_GetByte(pDataPack->m_pData, iTempOffst);
             CLogWriter::Write("Invalid Packet... (%d)", iCmd);
         }
         delete pDataPack;
-        s_pSocket->PktQueuePop(); // 패킷을 큐에서 꺼냄..
+        s_pSocket->PktQueuePop(); // Take packets out of queue.
     }
 
-    while (s_pSocketSub->PktQueueSize() > 0) // 패킷 리스트에 패킷이 있냐????
+    while (s_pSocketSub->PktQueueSize() > 0) // Are there any packets in the packet list????
     {
         int iOffset = 0;
-        pDataPack = s_pSocketSub->PktQueueFront(); // 큐의 첫번째 것을 복사..
+        pDataPack = s_pSocketSub->PktQueueFront(); // Copy the first one in the queue.
         if (false == ProcessPacket(pDataPack, iOffset)) {
-            break; // 패킷을 처리할 상황이 아니다.
+            break; // It is not a situation to process packets.
         }
         delete pDataPack;
-        s_pSocketSub->PktQueuePop(); // 패킷을 큐에서 꺼냄..
+        s_pSocketSub->PktQueuePop(); // Take packets out of queue.
     }
-    // Network Msg 처리하기
+    // Handling Network Msg
     //////////////////////////////////
 }
 
 void CGameProcedure::Render() {
     if (s_pUIMgr) {
-        s_pUIMgr->Render(); // UI 들 렌더링..
+        s_pUIMgr->Render(); // UI rendering...
     }
 
     s_pMsgBoxMgr->Render();
@@ -412,7 +412,7 @@ void CGameProcedure::Render() {
 }
 
 void CGameProcedure::TickActive() {
-    if (s_pProcActive != s_pProcPrev) // 프로시저가 바뀌면..
+    if (s_pProcActive != s_pProcPrev) // If the procedure changes...
     {
         if (s_pProcPrev) {
             s_pProcPrev->Release();
@@ -425,12 +425,12 @@ void CGameProcedure::TickActive() {
     }
 
     if (s_pProcActive) {
-        s_pProcActive->Tick(); // 현재 프로시저 Tick ................................
+        s_pProcActive->Tick(); //Current procedure Tick .................................
     }
 }
 
 void CGameProcedure::RenderActive() {
-    //    if(s_pProcActive != s_pProcPrev) // 프로시저가 바뀌면..
+    //    if(s_pProcActive != s_pProcPrev) // If the procedure changes...
     //    {
     //        if(s_pProcPrev) s_pProcPrev->Release();
     //        if(s_pProcActive) s_pProcActive->Init();
@@ -458,7 +458,7 @@ bool CGameProcedure::CaptureScreenAndSaveToFile(const std::string & szFN) {
     if (hDIB) {
         int nQuality = 90;
 
-        //운영자는 양질의 스크린 캡쳐를 할수 있게...
+        // Operators can take high-quality screen captures...
         if (s_pPlayer->m_InfoBase.iAuthority == AUTHORITY_MANAGER) {
             nQuality = 100;
         }
@@ -537,18 +537,18 @@ void CGameProcedure::ProcActiveSet(CGameProcedure * pProc) {
     }
 
     if (s_pUIMgr) {
-        s_pUIMgr->EnableOperationSet(true); // UI를 조작할수 있게 한다..
+        s_pUIMgr->EnableOperationSet(true); //Allows you to manipulate the UI.
     }
-    CGameProcedure::MessageBoxClose(-1); // MessageBox 가 떠 있으면 감춘다.
+    CGameProcedure::MessageBoxClose(-1); // If the MessageBox is floating, it is hidden.
 
-    s_pProcPrev = s_pProcActive; // 전의 것 포인터 기억..
+    s_pProcPrev = s_pProcActive; // Remember the previous pointer...
     s_pProcActive = pProc;
 }
 
 void CGameProcedure::ReConnect() {
-    s_bNeedReportConnectionClosed = false; // 서버접속이 끊어진걸 보고해야 하는지..
+    s_bNeedReportConnectionClosed = false; // Should I report that the server connection was lost?
     CGameProcedure::s_pSocket->ReConnect();
-    s_bNeedReportConnectionClosed = true; // 서버접속이 끊어진걸 보고해야 하는지..
+    s_bNeedReportConnectionClosed = true; // Should I report that the server connection was lost?
 }
 
 std::string CGameProcedure::MessageBoxPost(const std::string & szMsg, const std::string & szTitle, int iStyle,
@@ -640,15 +640,15 @@ void CGameProcedure::UIPostData_Read(const std::string & szKey, CN3UIBase * pUI,
         return;
     }
 
-    // 1. 디폴트 데이터를 만든다..
-    // 2. 데이터를 읽어온다..
-    // 3. 영역이 유효한지를 판단한다..
+    // 1.Create default data.
+    // 2. Read data..
+    // 3. Determine whether the area is valid.
 
     __WndInfo WI;
     WI.ptPosition.x = iDefaultX;
     WI.ptPosition.y = iDefaultY;
     if (false == RegGetSetting(szKey.c_str(), &WI, sizeof(__WndInfo))) {
-        WI.bVisible = true; // 기본 데이터가 없으면 무조건 보이게 한다..
+        WI.bVisible = true; // If there is no basic data, it will always be visible.
     }
 
     RECT rc = pUI->GetRegion();
@@ -748,10 +748,10 @@ std::string CGameProcedure::GetStrRegKeySetting() {
 }
 
 bool CGameProcedure::ProcessPacket(DataPack * pDataPack, int & iOffset) {
-    int iCmd = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 커멘드 파싱..
-    switch (iCmd)                                                      // 커멘드에 다라서 분기..
+    int iCmd = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // Command parsing...
+    switch (iCmd)                                                      // Branches depending on the command.
     {
-    case N3_VERSION_CHECK:                              // 암호화도 같이 받는다..
+    case N3_VERSION_CHECK:                              // Encryption is also provided.
         this->MsgRecv_VersionCheck(pDataPack, iOffset); // virtual
         return true;
 
@@ -759,14 +759,14 @@ bool CGameProcedure::ProcessPacket(DataPack * pDataPack, int & iOffset) {
         this->MsgRecv_GameServerLogIn(pDataPack, iOffset);
         return true;
 
-    case N3_SERVER_CHANGE: // 서버 바꾸기 메시지..
+    case N3_SERVER_CHANGE: // Server change message..
     {
-        // 다른 존 서버로 다시 접속한다.
+        // Reconnect to another zone server.
         int         iLen = 0;
         std::string szName, szIP;
-        //            iLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 서버 이름
+        //            iLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // server name
         //            CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szName, iLen);
-        iLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 서버 IP
+        iLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // server IP
         CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szIP, iLen);
         DWORD dwPort = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
         s_pPlayer->m_InfoExt.iZoneInit = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
@@ -774,17 +774,17 @@ bool CGameProcedure::ProcessPacket(DataPack * pDataPack, int & iOffset) {
         int iVictoryNation = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
         CGameProcedure::LoadingUIChange(iVictoryNation);
 
-        s_bNeedReportConnectionClosed = false; // 서버접속이 끊어진걸 보고해야 하는지..
-        s_pSocket->Disconnect();               // 끊고...
-        Sleep(2000);                           // 2초 딜레이.. 서버가 처리할 시간을 준다.
+        s_bNeedReportConnectionClosed = false; // Should I report that the server connection was lost?
+        s_pSocket->Disconnect();               // Hang up...
+        Sleep(2000);                           // 2 second delay... gives the server time to process.
         int iErr = s_pSocket->Connect(s_hWndBase, szIP.c_str(), dwPort);
-        s_bNeedReportConnectionClosed = true; // 서버접속이 끊어진걸 보고해야 하는지..
+        s_bNeedReportConnectionClosed = true; // Should I report that the server connection was lost?
 
         if (iErr) {
-            this->ReportServerConnectionFailed("Current Zone", iErr, true); // 서버 접속 오류.. Exit.
+            this->ReportServerConnectionFailed("Current Zone", iErr, true); // Server connection error.. Exit.
         } else {
-            // 버전체크를 보내면.. 응답으로 버전과 암호화 키가 온다.
-            // 메인 프로시저의 경우 Character_Select 를 보내고 로그인일경우 GameServer_LogIn 을 보낸다.
+            // When you send a version check, you will receive the version and encryption key in response.
+            // For the main procedure, Character_Select is sent, and for login, GameServer_LogIn is sent.
             this->MsgSend_VersionCheck();
         }
     }
@@ -847,26 +847,26 @@ void CGameProcedure::ReportDebugStringAndSendToServer(const std::string & szDebu
 
     if (s_pSocket && s_pSocket->IsConnected()) {
         int               iLen = szDebug.size();
-        std::vector<BYTE> buffer(iLen + 4, 0); // 버퍼..
-        int               iOffset = 0;         // 옵셋..
+        std::vector<BYTE> buffer(iLen + 4, 0); // buffer..
+        int               iOffset = 0;         // Offset...
         s_pSocket->MP_AddByte(&buffer[0], iOffset, N3_REPORT_DEBUG_STRING);
         s_pSocket->MP_AddShort(&buffer[0], iOffset, iLen);
         s_pSocket->MP_AddString(&buffer[0], iOffset, szDebug);
-        s_pSocket->Send(&buffer[0], iOffset); // 보냄..
+        s_pSocket->Send(&buffer[0], iOffset); // Sent...
     }
 }
 
 void CGameProcedure::MsgSend_GameServerLogIn() {
-    BYTE byBuff[128]; // 패킷 버퍼..
-    int  iOffset = 0; // 버퍼의 오프셋..
+    BYTE byBuff[128]; // packet buffer...
+    int  iOffset = 0; // Buffer offset...
 
-    CAPISocket::MP_AddByte(byBuff, iOffset, N3_GAME_SERVER_LOGIN); // 커멘드.
-    CAPISocket::MP_AddShort(byBuff, iOffset, s_szAccount.size());  // 아이디 길이..
-    CAPISocket::MP_AddString(byBuff, iOffset, s_szAccount);        // 실제 아이디..
-    CAPISocket::MP_AddShort(byBuff, iOffset, s_szPassWord.size()); // 패스워드 길이
-    CAPISocket::MP_AddString(byBuff, iOffset, s_szPassWord);       // 실제 패스워드
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_GAME_SERVER_LOGIN); // Command.
+    CAPISocket::MP_AddShort(byBuff, iOffset, s_szAccount.size());  // ID length...
+    CAPISocket::MP_AddString(byBuff, iOffset, s_szAccount);        // Real ID...
+    CAPISocket::MP_AddShort(byBuff, iOffset, s_szPassWord.size()); // password length
+    CAPISocket::MP_AddString(byBuff, iOffset, s_szPassWord);       // real password
 
-    s_pSocket->Send(byBuff, iOffset); // 보낸다
+    s_pSocket->Send(byBuff, iOffset); // send
 }
 
 void CGameProcedure::MsgSend_VersionCheck() // virtual
@@ -874,11 +874,11 @@ void CGameProcedure::MsgSend_VersionCheck() // virtual
     // Version Check
     int  iOffset = 0;
     BYTE byBuffs[4];
-    CAPISocket::MP_AddByte(byBuffs, iOffset, N3_VERSION_CHECK); // 커멘드.
-    s_pSocket->Send(byBuffs, iOffset);                          // 보낸다
+    CAPISocket::MP_AddByte(byBuffs, iOffset, N3_VERSION_CHECK); // Command.
+    s_pSocket->Send(byBuffs, iOffset);                          // send
 
 #ifdef _CRYPTION
-    s_pSocket->m_bEnableSend = FALSE; // 보내기 가능..?
+    s_pSocket->m_bEnableSend = FALSE; // Can I send it..?
 #endif                                // #ifdef _CRYPTION
 }
 
@@ -886,33 +886,33 @@ void CGameProcedure::MsgSend_CharacterSelect() // virtual
 {
     BYTE byBuff[64];
     int  iOffset = 0;
-    CAPISocket::MP_AddByte(byBuff, iOffset, N3_CHARACTER_SELECT);            // 커멘드.
-    CAPISocket::MP_AddShort(byBuff, iOffset, s_szAccount.size());            // 계정 길이..
-    CAPISocket::MP_AddString(byBuff, iOffset, s_szAccount);                  // 계정 문자열..
-    CAPISocket::MP_AddShort(byBuff, iOffset, s_pPlayer->IDString().size());  // 캐릭 아이디 길이..
-    CAPISocket::MP_AddString(byBuff, iOffset, s_pPlayer->IDString());        // 캐릭 아이디 문자열..
-    CAPISocket::MP_AddByte(byBuff, iOffset, s_pPlayer->m_InfoExt.iZoneInit); // 처음 접속인지 아닌지 0x01:처음 접속
-    CAPISocket::MP_AddByte(byBuff, iOffset, s_pPlayer->m_InfoExt.iZoneCur);  // 캐릭터 선택창에서의 캐릭터 존 번호
-    s_pSocket->Send(byBuff, iOffset);                                        // 보낸다
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_CHARACTER_SELECT);            // Command.
+    CAPISocket::MP_AddShort(byBuff, iOffset, s_szAccount.size());            // Account length...
+    CAPISocket::MP_AddString(byBuff, iOffset, s_szAccount);                  // Account string..
+    CAPISocket::MP_AddShort(byBuff, iOffset, s_pPlayer->IDString().size());  // Character ID length...
+    CAPISocket::MP_AddString(byBuff, iOffset, s_pPlayer->IDString());        // Character ID string..
+    CAPISocket::MP_AddByte(byBuff, iOffset, s_pPlayer->m_InfoExt.iZoneInit); // Whether it is the first time connection or not 0x01: First time connection
+    CAPISocket::MP_AddByte(byBuff, iOffset, s_pPlayer->m_InfoExt.iZoneCur);  // Character zone number in the character selection window
+    s_pSocket->Send(byBuff, iOffset);                                        // send
 
     CLogWriter::Write("MsgSend_CharacterSelect - name(%s) zone(%d)", s_pPlayer->IDString().c_str(),
-                      s_pPlayer->m_InfoExt.iZoneCur); // 디버깅 로그..
+                      s_pPlayer->m_InfoExt.iZoneCur); // Debugging log...
 }
 
 void CGameProcedure::MsgSend_AliveCheck() {
     BYTE byBuff[4];
     int  iOffset = 0;
-    CAPISocket::MP_AddByte(byBuff, iOffset, N3_ALIVE_CHECK); // 커멘드.
-    s_pSocket->Send(byBuff, iOffset);                        // 보낸다
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_ALIVE_CHECK); // Command.
+    s_pSocket->Send(byBuff, iOffset);                        //send
 }
 
 int CGameProcedure::MsgRecv_VersionCheck(DataPack * pDataPack, int & iOffset) // virtual
 {
-    int iVersion = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 버전
+    int iVersion = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // version
 #ifdef _CRYPTION
-    __int64 iPublicKey = CAPISocket::Parse_GetInt64(pDataPack->m_pData, iOffset); // 암호화 공개키
+    __int64 iPublicKey = CAPISocket::Parse_GetInt64(pDataPack->m_pData, iOffset); // encryption public key
     DataPack::InitCrypt(iPublicKey);
-    s_pSocket->m_bEnableSend = TRUE; // 보내기 가능..?
+    s_pSocket->m_bEnableSend = TRUE; // Can I send it..?
 #endif                               // #ifdef _CRYPTION
 
     if (iVersion != CURRENT_VERSION) {
@@ -937,14 +937,14 @@ int CGameProcedure::MsgRecv_VersionCheck(DataPack * pDataPack, int & iOffset) //
 
 int CGameProcedure::MsgRecv_GameServerLogIn(DataPack * pDataPack, int & iOffset) // virtual
 {
-    int iNation = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 국가 - 0 없음 0xff - 실패..
+    int iNation = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // Country - 0 None 0xff - Failed..
     return iNation;
 }
 
 bool CGameProcedure::MsgRecv_CharacterSelect(DataPack * pDataPack, int & iOffset) // virtual
 {
-    int iResult = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 0x00 실패
-    if (1 == iResult)                                                     // 성공..
+    int iResult = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 0x00 failed
+    if (1 == iResult)                                                     // success..
     {
         int   iZoneCur = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
         float fX = (CAPISocket::Parse_GetWord(pDataPack->m_pData, iOffset)) / 10.0f;
@@ -960,7 +960,7 @@ bool CGameProcedure::MsgRecv_CharacterSelect(DataPack * pDataPack, int & iOffset
         CLogWriter::Write("MsgRecv_CharacterSelect - name(%s) zone(%d -> %d)", s_pPlayer->m_InfoBase.szID.c_str(),
                           iZonePrev, iZoneCur);
         return true;
-    } else // 실패
+    } else //failure
     {
         CLogWriter::Write("MsgRecv_CharacterSelect - failed(%d)", iResult);
         return false;
@@ -974,7 +974,7 @@ bool CGameProcedure::MsgRecv_CharacterSelect(DataPack * pDataPack, int & iOffset
 }
 
 void CGameProcedure::ProcessUIKeyInput(bool bEnable) {
-    s_bKeyPressed = false; //키가 올라갔을때 ui에서 해당하는 조작된적이 있다면
+    s_bKeyPressed = false; //If there is a corresponding manipulation in the UI when the key is raised
 
     if (!bEnable) {
         if (s_bKeyPress) {
@@ -1003,7 +1003,7 @@ void CGameProcedure::ProcessUIKeyInput(bool bEnable) {
                 s_bKeyPressed |= pMsgBox->OnKeyPressed(i);
             }
         }
-    } else if (pUIFocus && pUIFocus->IsVisible()) // 포커싱 된 UI 가 있으면...
+    } else if (pUIFocus && pUIFocus->IsVisible()) // If there is a focused UI...
     {
         for (int i = 0; i < NUMDIKEYS; i++) {
             if (s_pLocalInput->IsKeyPress(i)) {
@@ -1057,13 +1057,13 @@ void CGameProcedure::LoadingUIChange(int iVictoryNation) {
     s_pUILoading = NULL; // Loading Bar
 
     s_pUILoading = new CUILoading();
-    __ASSERT(s_pUILoading, "로딩화면 생성 실패");
+    __ASSERT(s_pUILoading, "Failed to create loading screen");
     if (s_pUILoading == NULL) {
         return;
     }
 
-    __TABLE_UI_RESRC * pTblUI = s_pTbl_UI->Find(NATION_ELMORAD); // 기본은 엘모라드 UI 로 한다..
-    __ASSERT(pTblUI, "기본 UI 가 없습니다.");
+    __TABLE_UI_RESRC * pTblUI = s_pTbl_UI->Find(NATION_ELMORAD); // The default is Elmorad UI.
+    __ASSERT(pTblUI, "There is no default UI.");
     if (pTblUI == NULL) {
         return;
     }
@@ -1084,5 +1084,5 @@ void CGameProcedure::LoadingUIChange(int iVictoryNation) {
     }
 
     TRACE("Loading UIF : %s\n", szLoading.c_str());
-    s_pUILoading->LoadFromFile(szLoading); // 기본적인 로딩 바 만들기..
+    s_pUILoading->LoadFromFile(szLoading); // Creating a basic loading bar...
 }

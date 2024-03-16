@@ -28,7 +28,7 @@ class CN3SndObj {
     float m_fTmpSecPerFrm;
 
   public:
-    std::string m_szFileName; //파일이름...(ID 대용).
+    std::string m_szFileName; // Filename... (instead of ID).
 
   protected:
     virtual void RealPlay();
@@ -59,7 +59,7 @@ class CN3SndObj {
     int  GetMaxVolume() { return m_iMaxVolume; }
 
     void         Init();
-    void         Release(); // 참조 카운트를 리턴 해준다.. 사운드 매니저에서는 이 참조 카운트를 보고 맵에서 지운다..
+    void         Release(); // It returns the reference count. The sound manager sees this reference count and deletes it from the map.
     virtual bool Create(const std::string & szFN, e_SndType eType);
     bool         Duplicate(CN3SndObj * pSrc, e_SndType eType, D3DVECTOR * pPos = NULL);
 

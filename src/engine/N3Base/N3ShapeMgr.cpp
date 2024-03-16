@@ -91,6 +91,15 @@ bool CN3ShapeMgr::Load(HANDLE hFile) {
     DWORD dwRWC;
     int   nL = 0;
 
+    // 1264 .opd object ©¥c©¥n f©¥x
+    int version, istrlen;
+    ReadFile(hFile, &(version), sizeof(int), &dwRWC, NULL); // Read the map version
+    ReadFile(hFile, &(istrlen), sizeof(int), &dwRWC, NULL); // Read the map name char length
+
+    CHAR * GTDMapName = new CHAR[istrlen + 1]{};        // Zero-initialized
+    ReadFile(hFile, GTDMapName, istrlen, &dwRWC, NULL); // Now read it and push it back to the GTDMapName char buffer
+    // 1264 end
+
     if (false == LoadCollisionData(hFile)) {
         return false;
     }

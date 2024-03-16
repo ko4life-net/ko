@@ -131,7 +131,7 @@ LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
             if (CGameProcedure::s_pProcMain->m_fExitCurCountDownToReach == -1.0f) {
                 g_bActive = FALSE;
                 CLogWriter::Write("WA_INACTIVE.");
-                ::PostQuitMessage(0); // 창모드 아니면 팅긴다??
+                ::PostQuitMessage(0); // Wow, this book is so awesome! It's so amazing! It's so amazing!
             } else if (CGameProcedure::s_pProcMain->m_pUIChatDlg) {
                 std::string szMsg;
                 ::_LoadStringFromResource(IDS_EXIT_GAME_DURING_BATTLE_WARNING, szMsg);
@@ -307,18 +307,18 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
     N3_INFO("Game started");
 
     //////////////////////////////
-    // 스피드 핵 체킹용...
+    // tsk tsk tsk...
     //    DWORD dwCSHID;
     //    HANDLE hThreadCheckSpeedHack = ::CreateThread(NULL, 0, CheckSpeedHackProc, NULL, CREATE_SUSPENDED, &dwCSHID);
     //    ::SetThreadPriority(hThreadCheckSpeedHack, THREAD_PRIORITY_NORMAL);
-    // 스피드 핵 체킹용...
+    // tsk tsk tsk...
     //////////////////////////////
 
     char szPath[_MAX_PATH] = "";
     GetCurrentDirectory(_MAX_PATH, szPath);
     CN3Base::PathSet(szPath);
 
-    // 세팅 읽기..
+    // Tsk tsk tsk tsk tsk..
     char szIniPath[_MAX_PATH] = "";
     lstrcpy(szIniPath, CN3Base::PathGet().c_str());
     lstrcat(szIniPath, "Option.Ini");
@@ -383,10 +383,10 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
     }
 
     int iSndEnable = GetPrivateProfileInt("Sound", "Enable", 1, szIniPath);
-    CN3Base::s_Options.bSndEnable = (iSndEnable) ? true : false; // 사운드...
+    CN3Base::s_Options.bSndEnable = (iSndEnable) ? true : false; // Clap clap clap clap...
 
     int iSndDuplicate = GetPrivateProfileInt("Sound", "Duplicate", 0, szIniPath);
-    CN3Base::s_Options.bSndDuplicated = (iSndDuplicate) ? true : false; // 사운드...
+    CN3Base::s_Options.bSndDuplicated = (iSndDuplicate) ? true : false; // Clap clap clap clap...
 
     int iWindowCursor = GetPrivateProfileInt("Cursor", "WindowCursor", 1, szIniPath);
     CN3Base::s_Options.bWindowCursor = (iWindowCursor) ? true : false; // cursor...
@@ -397,46 +397,46 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
     CGameProcedure::s_bWindowed = true;
 #endif // #if _DEBUG
 
-    // 두번째 소켓으로 쓸 서브 윈도우 만들기..
+    
     HWND hWndSub = CreateSubWindow(hInstance);
-    ::ShowWindow(hWndSub, SW_HIDE); // 감추기..
+    ::ShowWindow(hWndSub, SW_HIDE); 
 
-    // 메인 윈도우를 만들고..
+    // Clap clap clap clap...
     HWND hWndMain = CreateMainWindow(hInstance);
     if (NULL == hWndMain || NULL == hWndSub) {
         CLogWriter::Write("Cannot create window.");
         exit(-1);
     }
-    ::ShowWindow(hWndMain, nCmdShow); // 보여준다..
+    ::ShowWindow(hWndMain, nCmdShow); 
     ::SetActiveWindow(hWndMain);
 
-    // Launcher 업그레이드..
-    FILE * pFile = fopen("Launcher2.exe", "r"); // 업그레이드 할게 있음 해 준다..
+    // Launcher
+    FILE * pFile = fopen("Launcher2.exe", "r"); 
     if (pFile) {
         fclose(pFile);
-        if (::DeleteFile("Launcher.exe")) // 원래 걸 지우고..
+        if (::DeleteFile("Launcher.exe")) 
         {
-            ::rename("Launcher2.exe", "Launcher.exe"); // 이름을 바꾸어 준다..
+            ::rename("Launcher2.exe", "Launcher.exe"); 
         }
     }
 
-    // 프로그램 인수 처리..
-    if (lpCmdLine && lstrlen(lpCmdLine) > 0 && lstrlen(lpCmdLine) < 64) // 인수로 뭔가 들어오면..
+    // Huh huh tsk tsk tsk tsk?
+    if (lpCmdLine && lstrlen(lpCmdLine) > 0 && lstrlen(lpCmdLine) < 64) 
     {
         char szService[64], szAccountTmp[64], szPWTmp[64];
         sscanf(lpCmdLine, "%s %s %s", szService, szAccountTmp, szPWTmp);
 
-        if (0 == lstrcmpi(szService, "MGame")) { // 엠게임 계정 로그인...
+        if (0 == lstrcmpi(szService, "MGame")) { 
             CGameProcedure::s_eLogInClassification = LIC_MGAME;
-        } else if (0 == lstrcmpi(szService, "Daum")) { // 다음 계정 로그인...
+        } else if (0 == lstrcmpi(szService, "Daum")) { 
             CGameProcedure::s_eLogInClassification = LIC_DAUM;
         } else {
             CGameProcedure::s_eLogInClassification = LIC_KNIGHTONLINE;
         }
-        CGameProcedure::s_szAccount = szAccountTmp; // 계정
-        CGameProcedure::s_szPassWord = szPWTmp;     // 비번.
+        CGameProcedure::s_szAccount = szAccountTmp; // Thick straw
+        CGameProcedure::s_szPassWord = szPWTmp;     
 
-        if (0 == lstrcmpi(szService, "$#$%&^@!#$%#@^%&#%$&^운영팀전용게임")) { // 운영팀 전용 게임...
+        if (0 == lstrcmpi(szService, "$#$%&^@!#$%#@^%&#%$&^쩔챤쩔쨉횈??체쩔챘째횚?횙")) { // I was shocked
             CGameProcedure::s_bWindowed = true;
         } else {
             CGameProcedure::s_bWindowed = false;
@@ -444,9 +444,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////
-    // Static Member 생성...
-    CGameProcedure::StaticMemberInit(hInstance, hWndMain, hWndSub);                // 파괴는 WM_DESTROY 에서 한다..
-    CGameProcedure::ProcActiveSet((CGameProcedure *)CGameProcedure::s_pProcLogIn); // 로그인 프로시져부터 시작..
+    // Static Member
+    CGameProcedure::StaticMemberInit(hInstance, hWndMain, hWndSub);                
+    CGameProcedure::ProcActiveSet((CGameProcedure *)CGameProcedure::s_pProcLogIn); 
 
     BOOL bGotMsg = FALSE;
 
@@ -492,14 +492,14 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 #endif // #if _DEBUG
 
     //////////////////////////////
-    // 스피드 핵 체킹용...
+    // 
     //    ::TerminateThread(hThreadCheckSpeedHack, 0);
     //    hThreadCheckSpeedHack = 0;
     //    dwCSHID = 0;
-    // 스피드 핵 체킹용...
+    // 
     //////////////////////////////
 
-    CGameProcedure::StaticMemberRelease(); // 모두 해제......
+    CGameProcedure::StaticMemberRelease(); 
     CN3Log::Destroy();
 
     return msg.wParam;

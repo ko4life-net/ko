@@ -43,11 +43,12 @@ void CDBAgent::ReConnectODBC(CDatabase * m_db, char * strdb, char * strname, cha
     char strlog[256];
     memset(strlog, 0x00, 256);
     CTime t = CTime::GetCurrentTime();
-    sprintf(strlog, "Try ReConnectODBC... %d월 %d일 %d시 %d분\r\n", t.GetMonth(), t.GetDay(), t.GetHour(),
+    sprintf(strlog, "Try ReConnectODBC... Month: %d, Day: %d, Hour: %d, Minute(s): %d\r\n", t.GetMonth(), t.GetDay(), t.GetHour(),
             t.GetMinute());
     m_pMain->m_ItemLogFile.Write(strlog, strlen(strlog));
 
-    // DATABASE 연결...
+    /// DATABASE connection...
+    
     CString strConnect;
     strConnect.Format(_T("DSN=%s;UID=%s;PWD=%s"), strdb, strname, strpwd);
     int iCount = 0;

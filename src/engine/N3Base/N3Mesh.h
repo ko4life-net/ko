@@ -11,11 +11,11 @@ class CN3PMesh;
 
 class CN3Mesh : public CN3BaseFileAccess {
   protected:
-    __VertexT1 * m_pVertices;  // Á¡ ¹öÆÛ
-    WORD *       m_psnIndices; // ÀÎµ¦½º ¹öÆÛ
+    __VertexT1 * m_pVertices;  // dot buffer
+    WORD *       m_psnIndices; // index buffer
 
-    int       m_nVC; // Á¡ °¹¼ö
-    int       m_nIC; // Á¡ °¹¼ö
+    int       m_nVC; // number of points
+    int       m_nIC; // number of points
     __Vector3 m_vMin, m_vMax;
 
   public:
@@ -26,7 +26,7 @@ class CN3Mesh : public CN3BaseFileAccess {
     int          VertexCount() { return m_nVC; }
     __VertexT1 * Vertices() { return m_pVertices; }
     int          IndexCount() { return m_nIC; }
-    WORD *       Indices() { return m_psnIndices; } // ÀÎµ¦½º ¹öÆÛ
+    WORD *       Indices() { return m_psnIndices; }// index buffer
 
     bool Load(HANDLE hFile);
 

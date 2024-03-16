@@ -26,11 +26,11 @@ class CSharedMemQueue //:public CObject
     BOOL IsPartner();
 
     BOOL CreateSmq(BOOL Server);
-    //읽은 데이타를 버퍼에 저장한다.
+    // hwnd settings to deliver messages
     void SetReadData();
-    //읽은 데이타를 버퍼에 가져온다.
+    // The read data is brought into the buffer.
     void GetReadData(LPSTR data, int nLength);
-    //메세재를 보낼 윈도우 플래를 설정한다.
+    // Set the Windows platform to send messages.
     void SetHwnd(HWND hwnd);
     void CloseSmq();
     BOOL IsData();
@@ -39,8 +39,8 @@ class CSharedMemQueue //:public CObject
     HANDLE       m_hrMMFile;
     HANDLE       m_hsMMFile;
     char *       m_lpMMFile;
-    HWND         m_hwnd;         //메세지를 전달할 윈도우 플러그
-    BYTE         abIn[1024 + 1]; //컴포트에서 들어오는 데이타
+    HWND         m_hwnd;         // Windows plug to transmit messages
+    BYTE         abIn[1024 + 1]; // Data coming from Comfort
     BOOL         fConnected;
     _SMQ_HEADER *Txd, *Rxd;
 };

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 //
 //    N3SndDef.h
-//    - 이것저것 Sound에 관련된 자료형정의, 상수정의...
+//    - Data type definition, constant definition related to this and that Sound...
 //
 //    By Donghoon..
 //
@@ -37,15 +37,15 @@ typedef struct __SoundSource {
     }
 } SOUNDSOURCE, *LPSOUNDSOURCE;
 
-typedef struct __TABLE_SOUND // Sound 리소스 레코드...
+typedef struct __TABLE_SOUND // Sound resource record...
 {
-    DWORD       dwID;     // 고유 ID
+    DWORD       dwID;     // unique ID
     std::string szFN;     // wave file name
-    int         iType;    // 사운드 타입...
-    int         iNumInst; // 최대 사용할 수 있는 인스턴스의 갯수..
+    int         iType;    // sound type...
+    int         iNumInst; // The maximum number of available instances.
 } TABLE_SOUND;
 
-// 사운드 오브젝트 타입 정의..
+// Sound object type definition..
 enum e_SndType {
     SNDTYPE_2D = 0,
     SNDTYPE_3D,

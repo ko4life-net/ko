@@ -15,50 +15,50 @@
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
-LPDIRECT3DDEVICE9 CN3Base::s_lpD3DDev = NULL;           // 참조 포인터.. 멋대로 해제하면 안된다..
-DWORD             CN3Base::s_dwTextureCaps = 0;         // Texture 호환성..
+LPDIRECT3DDEVICE9 CN3Base::s_lpD3DDev = NULL;           // Reference pointers.. should not be freed arbitrarily..
+DWORD             CN3Base::s_dwTextureCaps = 0;         // Texture compatibility...
 float             CN3Base::s_fFrmPerSec = 30.0f;        // Frame Per Second
 float             CN3Base::s_fSecPerFrm = 1.0f / 30.0f; // Second per Frame
-HWND              CN3Base::s_hWndBase = NULL;           // Init 할때 쓴 Window Handle
-HWND              CN3Base::s_hWndPresent = NULL;        // 최근에 Present 한 Window Handle
+HWND              CN3Base::s_hWndBase = NULL;           // Window handle used at init
+HWND              CN3Base::s_hWndPresent = NULL;        // Window Handle recently presented
 
-D3DPRESENT_PARAMETERS CN3Base::s_DevParam; // Device 생성 Present Parameter
-D3DCAPS9              CN3Base::s_DevCaps;  // Device 호환성...
+D3DPRESENT_PARAMETERS CN3Base::s_DevParam; // Device Creation Present Parameter
+D3DCAPS9              CN3Base::s_DevCaps;  // Device Compatibility...
 std::string           CN3Base::s_szPath;
 
 __CameraData CN3Base::s_CameraData; // Camera Data
 __ResrcInfo  CN3Base::s_ResrcInfo;  // Rendering Information
-__Options    CN3Base::s_Options;    // 각종 옵션등...
+__Options    CN3Base::s_Options;    // Various options etc...
 #ifdef _DEBUG
 __RenderInfo CN3Base::s_RenderInfo; // Rendering Information
 #endif
 
-#ifdef _N3GAME               // 게임이 아닌 툴에서는 필요없다...
-CN3SndMgr CN3Base::s_SndMgr; //사운드 메니저.
+#ifdef _N3GAME               // In non-game tools, you don't need it...
+CN3SndMgr CN3Base::s_SndMgr; // Sound Manager.
 #endif
-#ifdef _N3UIE                // ui 에디터일때는 필요하다.
-CN3SndMgr CN3Base::s_SndMgr; //사운드 메니저.
+#ifdef _N3UIE                // Required for ui editor.
+CN3SndMgr CN3Base::s_SndMgr; // Sound Manager.
 #endif
 
 CN3Mng<CN3Texture>     CN3Base::s_MngTex;     // Texture Manager
 CN3Mng<CN3Mesh>        CN3Base::s_MngMesh;    // Mesh Manager
-CN3Mng<CN3VMesh>       CN3Base::s_MngVMesh;   // 단순히 폴리곤만 갖고 있는 메시 - 주로 충돌 체크에 쓴다..
+CN3Mng<CN3VMesh>       CN3Base::s_MngVMesh;   // A mesh with only polygons - mainly used for collision checking.
 CN3Mng<CN3PMesh>       CN3Base::s_MngPMesh;   // Progressive Mesh Manager
 CN3Mng<CN3Joint>       CN3Base::s_MngJoint;   // Joint Manager
 CN3Mng<CN3CPartSkins>  CN3Base::s_MngSkins;   // Character Part Skins Manager
 CN3Mng<CN3AnimControl> CN3Base::s_MngAniCtrl; // Animation Manager
-CN3Mng<CN3FXPMesh>     CN3Base::s_MngFXPMesh; // FX에서 쓰는 PMesh - 파일은 일반 PMesh를 쓰지만 속은 다르다.
-CN3Mng<CN3FXShape>     CN3Base::s_MngFXShape; // FX에서 쓰는 Shape - 파일은 일반 shape를 쓰지만 속은 다르다.
+CN3Mng<CN3FXPMesh>     CN3Base::s_MngFXPMesh; // PMesh used in FX - The file uses general PMesh, but the contents are different.
+CN3Mng<CN3FXShape>     CN3Base::s_MngFXShape; // Shape used in FX - The file uses a general shape, but the inside is different.
 
 CN3AlphaPrimitiveManager CN3Base::
-    s_AlphaMgr; // Alpha blend 할 폴리곤들을 관리.. 추가했다가.. 카메라 거리에 맟추어 정렬하고 한꺼번에 그린다..
+    s_AlphaMgr; // Manage the polygons to be alpha blended.. Add them.. Arrange them according to the camera distance and draw them all at once..
 
 #ifdef _N3GAME
-CLogWriter g_Log; // 로그 남기기...
+CLogWriter g_Log; // Leave a log...
 #endif
 
 CN3Base::CN3Base() {
-    m_dwType = OBJ_BASE; // "MESH", "CAMERA", "SCENE", "???" .... 등등등...
+    m_dwType = OBJ_BASE; // "MESH", "CAMERA", "SCENE", "???" .... and so on...
     m_szName = "";
 }
 
@@ -260,7 +260,7 @@ void CN3Base::PathSet(const std::string & szPath) {
         return;
     }
 
-    CharLower(&(s_szPath[0])); // 반드시 소문자로 만들어 준다..
+    CharLower(&(s_szPath[0])); // Be sure to make it in lower case.
     if (s_szPath.size() > 1) {
         if (s_szPath[s_szPath.size() - 1] != '\\') {
             s_szPath += '\\';

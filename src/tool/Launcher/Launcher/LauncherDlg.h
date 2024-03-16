@@ -46,7 +46,7 @@ class CLauncherDlg : public CDialog {
     std::string m_szGetFileNames[MAX_DOWNLOAD_FILE];
     int         m_nVersionNum[MAX_DOWNLOAD_FILE];
 
-    HKEY m_hRegistryKey; // 레지스트리 키 핸들..
+    HKEY m_hRegistryKey; // Registry key handle..
 
     // Construction
   public:

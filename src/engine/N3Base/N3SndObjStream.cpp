@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////
 //    Commented By : Lynus
-//    Commented On 2001-04-12 오후 8:42:02
+//    Commented On 2001-04-12 Apr 8:42:02
 //
 //    CN3SndObjStream class (N3SndObjStream.h)
 //
@@ -199,12 +199,12 @@ void CN3SndObjStream::RealPlay() {
             m_PastTime--;
             if (m_PastTime < 0) {
                 if (m_bIsLoop == false) {
-                    //tick에 어케 적용할 것인가..
+                    //How do I apply it to the tick?
                     m_PastTime = m_PlayTime;
                     Stop();
                     return;
                 } else if (m_bIsLoop == true) {
-                    //tick에 어케 적용할 것인가..
+                    //How do I apply it to the tick?
                     //Stop();
                     //m_lpDSBuff->Stop();
                     Play();
@@ -246,7 +246,7 @@ void CN3SndObjStream::Release() {
 }
 
 //
-//    음악이 플레이되고 있을때 streamming시키기..
+//    Streamming while music is playing...
 //
 void CN3SndObjStream::Tick() {
     if (m_ePlayState == SNDSTATE_STOP) {
@@ -288,7 +288,7 @@ void CN3SndObjStream::Tick() {
             HRESULT hr = m_lpDSBuff->Stop();
             m_ePlayState = SNDSTATE_STOP;
         } else {
-            //볼륨 점점 작게....
+            // The volume goes down....
             int vol = 0;
             if (m_fFadeOutTime > 0.0f) {
                 vol = (((m_fFadeOutTime - m_fTmpSecPerFrm) / m_fFadeOutTime) * (float)m_iMaxVolume);
@@ -314,7 +314,7 @@ void CN3SndObjStream::Play(float delay, float fFadeInTime)
 
 
 //
-// 똑같다.
+// same.
 //
 void CN3SndObjStream::Stop(float fFadeOutTime)
 {

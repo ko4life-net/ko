@@ -8,4 +8,7 @@
     <LocalDebuggerWorkingDirectory>$(ProjectDir)..\..\assets\server</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup>
+    <RESOURCE_FILE>Ebenezer.rc</RESOURCE_FILE>
+  </PropertyGroup>
 </Project>

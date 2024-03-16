@@ -11,7 +11,7 @@
 CN3AnimKey::CN3AnimKey() {
     m_eType = KEY_VECTOR3;
 
-    m_nCount = 0; // 키 카운트
+    m_nCount = 0; // key count
     m_fSamplingRate = 30.0;
     m_pDatas = NULL;
 }
@@ -22,7 +22,7 @@ CN3AnimKey::~CN3AnimKey() {
 }
 
 void CN3AnimKey::Release() {
-    m_nCount = 0; // 키 카운트
+    m_nCount = 0; // key count
     m_fSamplingRate = 30.0;
     delete[] m_pDatas;
     m_pDatas = NULL;
@@ -38,7 +38,7 @@ void CN3AnimKey::Alloc(int nCount, float fSamplingRate, ANIMATION_KEY_TYPE eType
         return;
     }
     if (fSamplingRate <= 0.0f) {
-        __ASSERT(0, "Animation Sampling Rate 는 반드시 0 보다 커야 합니다.");
+        __ASSERT(0, "Animation Sampling Rate must be greater than 0.");
         return;
     }
 
@@ -53,10 +53,10 @@ void CN3AnimKey::Alloc(int nCount, float fSamplingRate, ANIMATION_KEY_TYPE eType
     m_fSamplingRate = fSamplingRate;
 
     if (KEY_VECTOR3 == m_eType) {
-        m_pDatas = new __Vector3[nCount + 1]; // 한개 더 여유있게 할당.
+        m_pDatas = new __Vector3[nCount + 1]; // Allocate one more space.
         memset(m_pDatas, 0, sizeof(__Vector3) * (nCount + 1));
     } else if (KEY_QUATERNION == m_eType) {
-        m_pDatas = new __Quaternion[nCount + 1]; // 한개 더 여유있게 할당.
+        m_pDatas = new __Quaternion[nCount + 1]; // Allocate one more space.
         memset(m_pDatas, 0, sizeof(__Quaternion) * (nCount + 1));
     }
 }
@@ -67,9 +67,9 @@ bool CN3AnimKey::Load(HANDLE hFile) {
     }
 
     DWORD dwRWC = 0;
-    ReadFile(hFile, &m_nCount, 4, &dwRWC, NULL); // 키가 몇개 있는지
+    ReadFile(hFile, &m_nCount, 4, &dwRWC, NULL); // How many keys are there?
 
-    // 키값을 파일에서 읽기..
+    // Read key value from file..
     if (m_nCount > 0) {
         ReadFile(hFile, &m_eType, 4, &dwRWC, NULL);         // Key Type
         ReadFile(hFile, &m_fSamplingRate, 4, &dwRWC, NULL); // Sampling Rate
@@ -77,11 +77,11 @@ bool CN3AnimKey::Load(HANDLE hFile) {
         this->Alloc(m_nCount, m_fSamplingRate, m_eType);
         if (KEY_VECTOR3 == m_eType) {
             ReadFile(hFile, m_pDatas, sizeof(__Vector3) * m_nCount, &dwRWC, NULL);
-            __Vector3 * pKeys = (__Vector3 *)m_pDatas; // 끝에 하나더 복사해준다.
+            __Vector3 * pKeys = (__Vector3 *)m_pDatas; // Copy one more at the end.
             pKeys[m_nCount] = pKeys[m_nCount - 1];
         } else if (KEY_QUATERNION == m_eType) {
             ReadFile(hFile, m_pDatas, sizeof(__Quaternion) * m_nCount, &dwRWC, NULL);
-            __Quaternion * pKeys = (__Quaternion *)m_pDatas; // 끝에 하나더 복사해준다.
+            __Quaternion * pKeys = (__Quaternion *)m_pDatas; // Copy one more at the end.
             pKeys[m_nCount] = pKeys[m_nCount - 1];
         }
     }
@@ -92,7 +92,7 @@ bool CN3AnimKey::Load(HANDLE hFile) {
 #ifdef _N3TOOL
 bool CN3AnimKey::Save(HANDLE hFile) {
     DWORD dwRWC = 0;
-    WriteFile(hFile, &m_nCount, 4, &dwRWC, NULL); // 키가 몇개 있는지
+    WriteFile(hFile, &m_nCount, 4, &dwRWC, NULL); // How many keys are there?
 
     if (m_nCount > 0) {
         WriteFile(hFile, &m_eType, 4, &dwRWC, NULL);         // Key Type
@@ -135,7 +135,7 @@ void CN3AnimKey::Add(CN3AnimKey & AKSrc, int nIndexS, int nIndexE) {
         return;
     }
 
-    int nAddCount = nIndexE - nIndexS + 1; // 추가할 갯수
+    int nAddCount = nIndexE - nIndexS + 1; // Number to add
 
     int    nPrevCount = m_nCount;
     void * pVBackup = NULL;
@@ -150,17 +150,17 @@ void CN3AnimKey::Add(CN3AnimKey & AKSrc, int nIndexS, int nIndexE) {
         }
     }
 
-    this->Alloc(nPrevCount + nAddCount, AKSrc.SamplingRate(), AKSrc.Type()); // 새로 할당.
+    this->Alloc(nPrevCount + nAddCount, AKSrc.SamplingRate(), AKSrc.Type()); // New allocation.
     if (nPrevCount > 0) {
         if (KEY_VECTOR3 == m_eType) {
-            memcpy(m_pDatas, pVBackup, sizeof(__Vector3) * nPrevCount); // 백업받은걸 restore
+            memcpy(m_pDatas, pVBackup, sizeof(__Vector3) * nPrevCount); // restore what was backed up
         } else if (KEY_QUATERNION == m_eType) {
-            memcpy(m_pDatas, pVBackup, sizeof(__Quaternion) * nPrevCount); // 백업받은걸 restore
+            memcpy(m_pDatas, pVBackup, sizeof(__Quaternion) * nPrevCount); // restore what was backed up
         }
     }
 
     if (KEY_VECTOR3 == m_eType) {
-        for (int i = 0; i < nAddCount; i++) // 추가.
+        for (int i = 0; i < nAddCount; i++) // addition.
         {
             __Vector3 * pvTmp = (__Vector3 *)AKSrc.DataGet(nIndexS + i);
             if (pvTmp) {
@@ -170,7 +170,7 @@ void CN3AnimKey::Add(CN3AnimKey & AKSrc, int nIndexS, int nIndexE) {
             }
         }
     } else if (KEY_QUATERNION == m_eType) {
-        for (int i = 0; i < nAddCount; i++) // 추가.
+        for (int i = 0; i < nAddCount; i++) // addition.
         {
             __Quaternion * pvTmp = (__Quaternion *)AKSrc.DataGet(nIndexS + i);
             if (pvTmp) {
@@ -194,7 +194,7 @@ void CN3AnimKey::Duplicate(CN3AnimKey * pSrc) {
 
     m_nCount = pSrc->Count();
 
-    // 키값을 파일에서 읽기..
+    // Read key value from file..
     if (m_nCount > 0) {
         m_eType = pSrc->Type();
         m_fSamplingRate = pSrc->SamplingRate();

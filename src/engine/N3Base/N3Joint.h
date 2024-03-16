@@ -15,10 +15,10 @@ typedef typename std::list<CN3Joint *>::iterator it_Joint;
 const int MAX_JOINT_TRANSFORM = 64;
 
 class CN3Joint : public CN3Transform {
-    friend class CN3Joint; // Position, Rotation, Scale 값들을 자유롭게 다룰수 있어야 한다..
+    friend class CN3Joint; // You must be able to freely handle Position, Rotation, and Scale values.
   public:
     __Quaternion m_qOrient;   // Joint Orient Quaternion
-    CN3AnimKey   m_KeyOrient; // Joint Orient 키값... NULL 이면 없는거다..
+    CN3AnimKey   m_KeyOrient; // Joint Orient key value... If it is NULL, it does not exist.
 
   protected:
     CN3Joint *            m_pParent;
@@ -58,7 +58,7 @@ class CN3Joint : public CN3Transform {
 #ifdef _N3TOOL
     BOOL FindIndex(const std::string & szName, int & nIndex);
     BOOL FindPointerByName(const std::string & szName,
-                           CN3Joint *&         pJoint); // 이름을 넣으면 해당 노드의 포인터를 돌려준다..
+                           CN3Joint *&         pJoint); // If you enter a name, a pointer to the corresponding node is returned.
     void RotSet(const __Quaternion & qtRot) {
         m_qRot = qtRot;
         this->ReCalcMatrix();

@@ -1,6 +1,6 @@
 //Microsoft Developer Studio generated resource script.
 //
-#include "resource.h"
+#include "Resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
@@ -29,7 +29,7 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 
 1 TEXTINCLUDE DISCARDABLE 
 BEGIN
-    "resource.h\0"
+    "Resource.h\0"
 END
 
 2 TEXTINCLUDE DISCARDABLE 
@@ -50,7 +50,7 @@ BEGIN
     "LANGUAGE 18, 1\r\n"
     "#pragma code_page(949)\r\n"
     "#endif //_WIN32\r\n"
-    "#include ""res\\AIServer.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""res\\AIServer2.rc""  // non-Microsoft Visual C++ edited resources\r\n"
     "#include ""l.kor\\afxres.rc""          // Standard components\r\n"
     "#endif\r\n"
     "\0"
@@ -168,12 +168,12 @@ END
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_ABOUTBOX            "AIServer 정보(&A)..."
-    IDS_KARUS_CATCH_1       "카루스 제 1 요새가 점령되었습니다"
-    IDS_KARUS_CATCH_2       "카루스 제 2 요새가 점령되었습니다"
-    IDS_ELMORAD_CATCH_1     "엘모라드 제 1 요새가 점령되었습니다"
-    IDS_ELMORAD_CATCH_2     "엘모라드 제 2 요새가 점령되었습니다"
-    IDS_KARUS_PATHWAY       "***  카루스로 가는 통로가 열렸습니다   ***"
-    IDS_ELMORAD_PATHWAY     "***  엘모라드로 가는 통로가 열렸습니다  ***"
+    IDS_KARUS_CATCH_1       "Karus 1st Fortress has been captured."
+    IDS_KARUS_CATCH_2       "Karus 2nd Fortress has been captured."
+    IDS_ELMORAD_CATCH_1     "Elmorad 1st Fortress has been captured."
+    IDS_ELMORAD_CATCH_2     "Elmorad 2nd Fortress has been captured."
+    IDS_KARUS_PATHWAY       "***  The passage to Karus has been opened.  ***"
+    IDS_ELMORAD_PATHWAY     "***  The passage to Elmorad has been opened.  ***"
 END
 
 #endif    // Korean resources

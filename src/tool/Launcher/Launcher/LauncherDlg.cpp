@@ -56,9 +56,9 @@ BOOL CLauncherDlg::OnInitDialog() {
 
     CString szInfo;
     szInfo.LoadString(IDS_INFO_VERSION_CHECK);
-    m_Status.SetWindowText(szInfo); // 화면에 표시..
+    m_Status.SetWindowText(szInfo); // Displayed on screen..
 
-    m_progress.SetColor(RGB(64, 255, 64)); // 프로그래스 색을 정한다.
+    m_progress.SetColor(RGB(64, 255, 64)); // Set the progress color.
 
     m_pSocket = new CAPISocket();
 
@@ -95,7 +95,7 @@ BOOL CLauncherDlg::OnInitDialog() {
 
     dwType = REG_SZ;
     dwBytes = 256;
-    lStatus = RegQueryValueEx(m_hRegistryKey, "PATH", NULL, &dwType, (BYTE *)szBuff, &dwBytes); // 인스톨 경로
+    lStatus = RegQueryValueEx(m_hRegistryKey, "PATH", NULL, &dwType, (BYTE *)szBuff, &dwBytes); // Installation path
     if (ERROR_SUCCESS != lStatus) {
         CString szErr;
         szErr.LoadString(IDS_ERR_REGISTRY_READ_PATH);
@@ -106,7 +106,7 @@ BOOL CLauncherDlg::OnInitDialog() {
 
     dwType = REG_SZ;
     dwBytes = 256;
-    lStatus = RegQueryValueEx(m_hRegistryKey, "EXE", NULL, &dwType, (BYTE *)szBuff, &dwBytes); // 실행파일 이름
+    lStatus = RegQueryValueEx(m_hRegistryKey, "EXE", NULL, &dwType, (BYTE *)szBuff, &dwBytes); // Executable file name
     if (ERROR_SUCCESS != lStatus) {
         CString szErr;
         szErr.LoadString(IDS_ERR_REGISTRY_READ_EXE);
@@ -118,7 +118,7 @@ BOOL CLauncherDlg::OnInitDialog() {
     dwType = REG_SZ;
     dwBytes = 256;
     lStatus =
-        RegQueryValueEx(m_hRegistryKey, "SERVICE", NULL, &dwType, (BYTE *)m_strServiceName, &dwBytes); // 서비스 이름..
+        RegQueryValueEx(m_hRegistryKey, "SERVICE", NULL, &dwType, (BYTE *)m_strServiceName, &dwBytes); // Service name..
     if (ERROR_SUCCESS != lStatus) {
         CString szErr;
         szErr.LoadString(IDS_ERR_REGISTRY_READ_SERVICE);
@@ -126,7 +126,7 @@ BOOL CLauncherDlg::OnInitDialog() {
         exit(-1);
     }
 
-    // 소켓 접속..
+    // Socket connection...
     char szIniPath[_MAX_PATH] = "";
     ::GetCurrentDirectory(_MAX_PATH, szIniPath);
     lstrcat(szIniPath, "\\Server.Ini");
@@ -158,7 +158,7 @@ BOOL CLauncherDlg::OnInitDialog() {
     } else {
         CString szErr;
         szErr.LoadString(IDS_ERR_INVALID_SERVER_COUNT);
-        this->MessageBox(szInfo); // 끝낸다.
+        this->MessageBox(szInfo); // Finish.
         PostQuitMessage(0);
     }
 
@@ -273,12 +273,12 @@ void CLauncherDlg::PacketReceive_DownloadInfo(const BYTE * pBuf, int & iIndex) {
 
 void CLauncherDlg::PacketReceive_Version(const BYTE * pBuf, int & iIndex) {
     m_nServerVersion = m_pSocket->Parse_GetShort(pBuf, iIndex);
-    if (m_nCurVersion == m_nServerVersion) // 버전이 일치하면..
+    if (m_nCurVersion == m_nServerVersion) // If the versions match...
     {
-        this->StartGame();                       // 게임 실행..
-    } else if (m_nCurVersion < m_nServerVersion) // 버전이 낮으면..
+        this->StartGame();                       // Running the game...
+    } else if (m_nCurVersion < m_nServerVersion) // If the version is lower...
     {
-        PacketSend_DownloadInfo(); // 다운로드 요청..
+        PacketSend_DownloadInfo(); // Download request...
     } else {
         CString szErr;
         szErr.LoadString(IDS_ERR_INVALID_VERSION);
@@ -288,7 +288,7 @@ void CLauncherDlg::PacketReceive_Version(const BYTE * pBuf, int & iIndex) {
 }
 
 void CLauncherDlg::StartGame() {
-    CString szCmd = GetCommandLine(); // 커맨드 라인을 가져오고..
+    CString szCmd = GetCommandLine(); // Bring up the command line...
     char    szApp[_MAX_PATH] = "";
     GetModuleFileName(NULL, szApp, _MAX_PATH);
     int iML = lstrlen(szApp);
@@ -301,8 +301,8 @@ void CLauncherDlg::StartGame() {
         }
     }
 
-    std::string szExeFN = m_szInstalledPath + "\\" + m_szExeName; // 실행 파일 이름 만들고..
-    ::ShellExecute(NULL, "open", szExeFN.c_str(), szParam, m_szInstalledPath.c_str(), SW_SHOWNORMAL); // 게임 실행..
+    std::string szExeFN = m_szInstalledPath + "\\" + m_szExeName; // Create an executable file name...
+    ::ShellExecute(NULL, "open", szExeFN.c_str(), szParam, m_szInstalledPath.c_str(), SW_SHOWNORMAL); // Running the game...
 
     PostQuitMessage(0);
 }
@@ -326,7 +326,7 @@ void CLauncherDlg::DownloadProcess() {
         BOOL bDownloadSuccess = GetDownloadFile(szFullPath, m_szGetFileNames[i]);
         while (!bDownloadSuccess) {
             CString szErr;
-            szErr.LoadString(IDS_ERR_DOWNLOAD_PATCH_FILE_AND_RETRY); // 다시 시도할까여??
+            szErr.LoadString(IDS_ERR_DOWNLOAD_PATCH_FILE_AND_RETRY); // Should I try again??
             int iID = MessageBox(szErr, "Patch error", MB_YESNO);
             if (IDYES == iID) {
                 bDownloadSuccess = GetDownloadFile(szFullPath, m_szGetFileNames[i]);
@@ -364,7 +364,7 @@ void CLauncherDlg::DownloadProcess() {
             if (file.Open(szLocalFName.c_str(), CFile::modeRead | CFile::shareDenyNone, NULL)) {
                 file.Close();
                 file.Remove(szLocalFName.c_str());
-                if (m_hRegistryKey) // 압축 풀기와 쓰기, 압축 파일 삭제에 성공하면 버전을 쓰고..
+                if (m_hRegistryKey) // If you succeed in decompressing, writing, and deleting the compressed file, write the version.
                 {
                     RegSetValueEx(m_hRegistryKey, "VERSION", NULL, REG_DWORD, ((BYTE *)(&m_nVersionNum[i])), 4);
                 }
@@ -390,10 +390,10 @@ void CLauncherDlg::DownloadProcess() {
     //    itoa( m_nServerVersion, (char*)(LPCTSTR)version, 10 );
     //    WritePrivateProfileString("VERSION","CURRENT",version, inipath);
 
-    if (true == bExtractSuccess && m_hRegistryKey) // 압축 풀기와 쓰기, 압축 파일 삭제에 성공하면 버전을 쓰고..
+    if (true == bExtractSuccess && m_hRegistryKey) // If you succeed in decompressing, writing, and deleting the compressed file, write the version.
     {
         long lStatus = RegSetValueEx(m_hRegistryKey, "VERSION", NULL, REG_DWORD, ((BYTE *)(&m_nServerVersion)), 4);
-        this->StartGame(); // 게임 실행..
+        this->StartGame(); // Running the game...
     } else {
         CString szErr;
         szErr.LoadString(IDS_ERR_PATCH);
@@ -705,13 +705,13 @@ LRESULT CLauncherDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam) {
         case FD_READ: {
             m_pSocket->Receive();
 
-            while (m_pSocket->PktQueueSize() > 0) // 패킷 리스트에 패킷이 있냐????
+            while (m_pSocket->PktQueueSize() > 0) // Are there any packets in the packet list????
             {
                 int        iOffset = 0;
-                DataPack * pDataPack = m_pSocket->PktQueueFront(); // 큐의 첫번째 것을 복사..
-                this->PacketProcess(pDataPack->m_pData, iOffset);  // 패킷을 처리할 상황이 아니다.
+                DataPack * pDataPack = m_pSocket->PktQueueFront(); // Copy the first one in the queue.
+                this->PacketProcess(pDataPack->m_pData, iOffset);  // It is not a situation to process packets.
                 delete pDataPack;
-                m_pSocket->PktQueuePop(); // 패킷을 큐에서 꺼냄..
+                m_pSocket->PktQueuePop(); // Take packets out of queue.
             }
         } break;
         default:

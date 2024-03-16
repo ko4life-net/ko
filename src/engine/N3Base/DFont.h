@@ -1,11 +1,11 @@
 // DFont.h: interface for the CDFont class.
-// 사용법 및 사용제한
-// 1. SetText함수는 계산량이 많다.(글씨를 바꿀때만 부르자(중요))
-// 2. DrawText 함수는 2d평면상에 그려준다.
-// 3. DrawText3D 함수는 3d로 그릴때 사용한다.(SetText함수에서 3D라고 명시해줘야 한다.)
-// 제한 : 판때기를 현재 50개밖에 생성하지 못한다.(이 이상 나오게 하려면 MAX_NUM_VERTICES 를 고쳐주면 된다.)
-// 4. InvalidateDeviceObjects();를 호출한후 다시 글씨를 쓰려면 다시 SetText함수를 호출해줘야 한다.
-// 5. 3D공간상에 글씨를 찍을때 가운데 정렬해서 찍고 싶으면 SetText함수에 두번째 파라미터에 (D3DFONT_3D|D3DFONT_CENTERED)를 넣어준다.
+// Usage and usage restrictions
+// 1. The SetText function requires a lot of calculations. (Call it only when changing the text (important))
+// 2. The DrawText function draws on a 2d plane.
+// 3. The DrawText3D function is used when drawing in 3D. (3D must be specified in the SetText function.)
+// Limitation: Currently, only 50 plates can be created. (If you want to create more than this, you can change MAX_NUM_VERTICES.)
+// 4. To write again after calling InvalidateDeviceObjects();, you must call the SetText function again.
+// 5. When writing text in 3D space, if you want to align it in the center, enter (D3DFONT_3D|D3DFONT_CENTERED) in the second parameter of the SetText function.
 //////////////////////////////////////////////////////////////////////
 
 #pragma warning(disable : 4786)
@@ -26,11 +26,11 @@
 #define D3DFONT_3D     0x0008 // 3D text
 
 // set text flag
-#define D3DFONT_CENTERED 0x0004 // 3D font에서만..
+#define D3DFONT_CENTERED 0x0004 // Only in 3D fonts..
 
-// Font rendering flags (drawtext or DrawText3D 함수에서 쓰는 flag)
-#define D3DFONT_TWOSIDED 0x0010 // 3D font에서만..
-#define D3DFONT_FILTERED 0x0020 // texture를 D3DSAMP_MAGFILTER 로 찍기
+// Font rendering flags (flags used in drawtext or DrawText3D function)
+#define D3DFONT_TWOSIDED 0x0010 // Only in 3D fonts..
+#define D3DFONT_FILTERED 0x0020 // Take a texture with D3DSAMP_MAGFILTER
 
 class CDFont : public CN3Base {
   public:
@@ -60,17 +60,17 @@ class CDFont : public CN3Base {
     LPDIRECT3DVERTEXBUFFER9 m_pVB;         // VertexBuffer for rendering text
     DWORD                   m_dwTexWidth;  // Texture dimensions
     DWORD                   m_dwTexHeight; // Texture dimensions
-    FLOAT                   m_fTextScale;  // 쓸 폰트가 너무 클경우 비디오 카드에
-                                           // 따른 texture 크기 제한을 넘어버리기 때문에
-                                           // 이런 경우 Scale을 이용하여 크게 늘려 찍는다.
+    FLOAT                   m_fTextScale;  // If the font to use is too large, the video card
+                                           // Because it exceeds the texture size limit
+                                           // In this case, use Scale to enlarge the image.
 
-    // HDC         m_hDC;             // DC handle
-    HFONT       m_hFont;           // Font handle
-    UINT        m_iPrimitiveCount; // 글씨 찍을 판의 갯수
-    D3DXVECTOR2 m_PrevLeftTop;     // DrawText의 경우 찍는 곳의 위치가 변경되었을때를 위한 변수
-    DWORD       m_dwFontColor;     // 글씨 색
-    BOOL        m_Is2D;            // 2D Text인가?
-    SIZE        m_Size;            // 쓴 글씨들이 차지하는 크기(pixel단위, 가로 세로)
+    // HDC         m_hDC;               // DC handle
+    HFONT       m_hFont;             //Font handle
+    UINT        m_iPrimitiveCount;  // Number of plates to write on
+    D3DXVECTOR2 m_PrevLeftTop;      // In case of DrawText, variable for when the location of the drawing location changes
+    DWORD       m_dwFontColor;      // font color
+    BOOL        m_Is2D;             // Is it 2D Text?
+    SIZE        m_Size;             // Size occupied by written letters (pixel unit, width and height)
 
     // Operations
   public:
@@ -81,24 +81,24 @@ class CDFont : public CN3Base {
         return false;
     }
     void    AddToAlphaManager(DWORD dwColor, float fDist, __Matrix44 & mtxWorld, DWORD dwFlags);
-    HRESULT SetFontColor(DWORD dwColor);                     // 글씨 색을 바꾼다.
-    HRESULT InitDeviceObjects(LPDIRECT3DDEVICE9 pd3dDevice); // d3d device를 정해주는 초기화 함수 (Init할때 호출)
-    HRESULT RestoreDeviceObjects();                          // resource를 메모리에 세팅하는 초기화 함수 (Init할때 호출)
-    HRESULT InvalidateDeviceObjects();                       // resource등을 무효화시키는 함수 (release할때 호출)
-    HRESULT DeleteDeviceObjects();                           // resource등을 메모리에서 해제 (release할때 호출)
+    HRESULT SetFontColor(DWORD dwColor);                     // Change the font color.
+    HRESULT InitDeviceObjects(LPDIRECT3DDEVICE9 pd3dDevice); // Initialization function that determines the d3d device (called when Init)
+    HRESULT RestoreDeviceObjects();                          // Initialization function to set resources in memory (called when Init)
+    HRESULT InvalidateDeviceObjects();                       // Function to invalidate resources, etc. (called when releasing)
+    HRESULT DeleteDeviceObjects();                           // Release resources, etc. from memory (called when releasing)
 
-    HRESULT SetText(const std::string & szText, DWORD dwFlags = 0L); // 출력할 글씨가 달라졌을때만 호출하는 것이 중요.
+    HRESULT SetText(const std::string & szText, DWORD dwFlags = 0L); // It is important to call this only when the text to be printed changes.
     HRESULT DrawText(FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags,
-                     FLOAT fZ = 1.0f);                // 버퍼에 저장된 글씨를 그린다.(2d)
-    HRESULT DrawText3D(DWORD dwColor, DWORD dwFlags); // 버퍼에 저장된 글씨를 그린다.(3d)
+                     FLOAT fZ = 1.0f);                // Draw the text stored in the buffer. (2d)
+    HRESULT DrawText3D(DWORD dwColor, DWORD dwFlags); // Draw the text stored in the buffer. (3d)
 
     HRESULT SetFont(const std::string & szFontName, DWORD dwHeight,
-                    DWORD dwFlags = 0L); // Font를 바꾸고 싶을때 호출한다. (dwHeight는 point size를 넣는다.)
+                    DWORD dwFlags = 0L); // Called when you want to change the font. (dwHeight enters the point size.)
     BOOL    GetTextExtent(const std::string & szString, int iStrLen, SIZE * pSize);
 
   protected:
     void Make2DVertex(const int           iFontHeight,
-                      const std::string & szText); // 입력 받은 문자를 적절하게 배치된 2d 폴리곤으로 만든다.
+                      const std::string & szText); // Converts the input text into appropriately placed 2D polygons.
     void Make3DVertex(const int iFontHeight, const std::string & szText,
-                      DWORD dwFlags); // 입력 받은 문자를 적절하게 배치된 3d 폴리곤을 만든다.
+                      DWORD dwFlags); // Creates 3D polygons with appropriately placed input characters.
 };

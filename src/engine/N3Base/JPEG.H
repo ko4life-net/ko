@@ -2,50 +2,50 @@
 //
 // Jpeg.h: interface for the CJpeg class.
 //
-// 주요동작 : JPEG 파일을 디코드하여 읽어들이거나 디스크에 쓴다.
+// Main operation: Decode the JPEG file and read it or write it to disk.
 //
-// 원저자 : 모름
-// 변경자 : 이현석
+// Original author: unknown
+// Modified by: Lee Hyun-seok
 // E-Mail : evaasuka1004@hotmail.com
 //////////////////////////////////////////////////////////////////////
 
 #pragma once
 
 struct SET {
-    BYTE C[3]; // Y, Cb, Cr 성분
+    BYTE C[3]; //Y, Cb, Cr components
 };
 
 struct DQT {
-    BYTE Q[64]; // Qantization Table 값
+    BYTE Q[64]; // Quantization Table Values
 };
 
 struct DHT {
-    BOOL   Flag;        // 사용되었는지 여부를 나타내는 플래그
-    int    Num;         // 허프만 코드의 수
-    WORD * HUFFCODE;    // 허프만 코드
-    BYTE * HUFFSIZE;    // 허프만 코드의 길이
-    BYTE * HUFFVAL;     // 허프만 코드가 나타내는 값
-    WORD   MAXCODE[17]; // 해당 길이에서 가장 큰 코드
-    WORD   MINCODE[17]; // 해당 길이에서 가장 작은 코드
-    int    VALPTR[17];  // 해당 길이의 코드가 시작되는 인덱스
-    int *  PT;          // VALUE로 INDEX를 빠르게 찾기 위한 포인터
+    BOOL   Flag;        // flag indicating whether it was used or not
+    int    Num;         // Number of Huffman codes
+    WORD * HUFFCODE;    // Huffman code
+    BYTE * HUFFSIZE;    // Length of Huffman code
+    BYTE * HUFFVAL;     // Value indicated by Huffman code
+    WORD   MAXCODE[17]; // Largest code of that length
+    WORD   MINCODE[17]; // smallest code of that length
+    int    VALPTR[17];  // Index where code of that length starts
+    int *  PT;          // Pointer to quickly find INDEX by VALUE
 };
 
 struct FRAMEHEADER {
-    WORD Y;     // 이미지의 높이
-    WORD X;     // 이미지의 넓이
-    BYTE Nf;    // 컴포넌트 수
-    BYTE C[3];  // 컴포넌트 아이디
-    BYTE H[3];  // 컴포넌트의 Horizontal Sampling Factor
-    BYTE V[3];  // 컴포넌트의 Vertical Sampling Factor
-    BYTE Tq[3]; // 해당 컴포넌트에 사용되는 양자화테이블 번호
+    WORD Y;    // height of image
+    WORD X;     //width of image
+    BYTE Nf;    // number of components
+    BYTE C[3];  // component ID
+    BYTE H[3];  // Horizontal Sampling Factor of the component
+    BYTE V[3];  // Vertical Sampling Factor of the component
+    BYTE Tq[3]; // Quantization table number used for the component
 };
 
 struct SCANHEADER {
-    BYTE Ns;    // 컴포넌트 수
-    BYTE Cs[3]; // 컴포넌트 아이디
-    BYTE Td[3]; // 컴포넌트의 DC Huffman Table 번호
-    BYTE Ta[3]; // 컴포넌트의 AC Huffman Table 번호
+    BYTE Ns;   // number of components
+    BYTE Cs[3]; // component ID
+    BYTE Td[3]; // DC Huffman Table number of the component
+    BYTE Ta[3]; // AC Huffman Table number of the component
     BYTE Ss;
     BYTE Se;
     BYTE Ah;
@@ -54,75 +54,75 @@ struct SCANHEADER {
 
 class CJpeg {
   public:
-    // JPEG File을 Load하기 위한 함수들 //
-    void  LoadJPG(LPCSTR FileName);  // JPEG File을 Load하는 함수
-    void  FindSOI();                 // Start of Image 마커를 찾는 함수
-    void  FindDQT();                 // Quantization Table을 찾아 구조체에 설정하는 함수
-    void  FindDHT();                 // Huffman Table을 찾아 구조체에 설정하는 함수
-    void  FindSOF();                 // Frame Header를 찾아 구조체에 설정하는 함수
-    void  FindSOS();                 // Scan Header를 찾아 구조체에 설정하는 함수
-    void  FindETC();                 // DRI(Define Restart Interval) 로드
-    void  Decode();                  // 디코드를 위한 정보를 설정하고 디코드를 시작
-    void  DecodeMCU(int mx, int my); // MCU블럭을 디코드하는 함수
-    void  DecodeDU(int N);           // 8x8 Data Unit를 디코드하는 함수
-    void  IDCT();                    // Inverse DCT를 하는 함수
-    void  Zigzag();                  // Zigzag순으로 되어있는 DU를 원상복귀시키는 함수
-    void  DecodeAC(int Th);          // DU중, AC성분을 디코드하는 함수
-    void  DecodeDC(int Th);          // DU중, DC성분을 디코드하는 함수
-    short Extend(WORD V, BYTE T);    // V를 카테고리 T에 맞도록 확장
-    WORD  Receive(BYTE SSSS);        // 버퍼에서 SSSS비트만큼 읽어오는 함수
-    BYTE  hDecode(int Th);           // 허프만 부호를 디코드하는 부분
-    BYTE  NextByte();                // 버퍼에서 다음 1 바이트를 읽어오는 함수
-    WORD  NextBit();                 // 버퍼에서 다음 1 비트를 읽어오는 함수
-    void  ConvertYUV2RGB();          // 디코드된 데이터를 컬러모델을 바꿈과 동시에
-                                     // 비트맵에 호환되도록 변환하는 함수
+    // Functions for loading JPEG File //
+    void  LoadJPG(LPCSTR FileName);  // Function to load JPEG File
+    void  FindSOI();                 // Function to find the Start of Image marker
+    void  FindDQT();                 // Function to find the Quantization Table and set it in the structure
+    void  FindDHT();                 // Function to find the Huffman Table and set it in the structure
+    void  FindSOF();                 // Function to find the Frame Header and set it in the structure
+    void  FindSOS();                 // Function to find the Scan Header and set it in the structure
+    void  FindETC();                 // Load DRI (Define Restart Interval)
+    void  Decode();                  // Set information for decoding and start decoding
+    void  DecodeMCU(int mx, int my); // Function to decode the MCU block
+    void  DecodeDU(int N);           // Function to decode 8x8 Data Unit
+    void  IDCT();                    // Function to perform inverse DCT
+    void  Zigzag();                  // Function to restore DU in Zigzag order to its original state
+    void  DecodeAC(int Th);          // Function to decode AC component during DU
+    void  DecodeDC(int Th);          // Function to decode DC component during DU
+    short Extend(WORD V, BYTE T);    // extend V to fit category T
+    WORD  Receive(BYTE SSSS);        // Function to read SSSS bits from the buffer
+    BYTE  hDecode(int Th);           // The part that decodes the Huffman code
+    BYTE  NextByte();                // Function to read the next 1 byte from the buffer
+    WORD  NextBit();                 // Function to read the next 1 bit from the buffer
+    void  ConvertYUV2RGB();          // At the same time as changing the color model of the decoded data
+                                     // Function to convert to be compatible with bitmap
 
-    // JPEG File을 Save하기 위한 함수들 //
-    void SaveJPG(LPCSTR FileName, int Width, int Height, BYTE * pp); // JPEG 파일을 저장하는 함수
+    // Functions for saving JPEG File //
+    void SaveJPG(LPCSTR FileName, int Width, int Height, BYTE * pp); // Function to save JPEG file
 
-    void PutSOI(HANDLE hFile);                        // Start of Image 마커를 삽입
-    void PutDQT(HANDLE hFile);                        // Quantizatino Table을 삽입
-    void PutDHT(HANDLE hFile);                        // Huffmann Table을 삽입
-    void PutSOF(HANDLE hFile, int Width, int Height); // FrameHeader를 삽입
-    void PutSOS(HANDLE hFile);                        // ScanHeader를 삽입
-    void PutEOI(HANDLE hFile);                        // End of Image 마커를 삽입
+    void PutSOI(HANDLE hFile);                        // Insert Start of Image marker
+    void PutDQT(HANDLE hFile);                        // Insert Quantizatino Table
+    void PutDHT(HANDLE hFile);                        // Insert Huffmann Table
+    void PutSOF(HANDLE hFile, int Width, int Height); // Insert FrameHeader
+    void PutSOS(HANDLE hFile);                        // Insert ScanHeader
+    void PutEOI(HANDLE hFile);                        // Insert End of Image marker
 
-    void ShotBit(BYTE Bit);                            // 1비트를 버퍼에 저장하는 함수
-    void ChargeCode(WORD Code, int Size);              // Size만큼의 길이(아랫자리로부터)로 Code를 버퍼에 저장하는 함수
-    void EncodeDU(short * pos, BOOL Flag, int bWidth); // 8x8 Block을 인코드하는 함수
-    void hEncode(int bWidth, int bHeight);             // 허프만 인코딩 하는 부분
-    BYTE GetCategory(short V);                         // 주어진 값의 카테고리를 구하는 함수
-    void Zigzag2();                                    // Zigzag순서로 만드는 함수
-    void DCT(short * pos, int bWidth, BOOL Flag);      // DCT를 한 후 Zigzag 및 Quantization 하는 함수
+    void ShotBit(BYTE Bit);                            // Function to store 1 bit in the buffer
+    void ChargeCode(WORD Code, int Size);               // Function to store the code in the buffer as long as Size (from the bottom)
+    void EncodeDU(short * pos, BOOL Flag, int bWidth); // Function to encode 8x8 Block
+    void hEncode(int bWidth, int bHeight);             // Huffman encoding part
+    BYTE GetCategory(short V);                         // Function to find the category of a given value
+    void Zigzag2();                                    // Function to create in Zigzag order
+    void DCT(short * pos, int bWidth, BOOL Flag);      // Function for Zigzag and Quantization after DCT
 
-    int GetHeight(); // 이미지의 높이를 반환하는 함수
-    int GetWidth();  // 이미지의 넓이를 반환하는 함수
+    int GetHeight(); // Function that returns the height of the image
+    int GetWidth();  // Function that returns the width of the image
 
     WORD   Ri;        // Restart Interval
-    int    m_rWidth;  // 이미지의 실제적인 넓이
-    int    m_rHeight; // 이미지의 실제적인 높이
-    BYTE * pByte;     // NextByte()함수에서 쓰임
+    int    m_rWidth;  // actual width of the image
+    int    m_rHeight; // actual height of the image
+    BYTE * pByte;     // Used in NextByte() function
 
-    int cnt; // 비트단위로 연산할 때 쓰이는 카운터
+    int cnt; // Counter used when calculating in bit units
 
-    short * Y;  // Save할 때 쓰이는 Y Buffer
-    short * Cb; // Save할 때 쓰이는 Cb Buffer
-    short * Cr; // Save할 때 쓰이는 Cr Buffer
+    short * Y;  // Y Buffer used when saving
+    short * Cb; // Cb Buffer used when saving
+    short * Cr; // Cr Buffer used when saving
 
-    SET * MCU; // MCU 단위의 블럭
+    SET * MCU; //MCU unit block
 
     BYTE Hmax; // Maximum Horizontal Sampling Factor
     BYTE Vmax; // Maximum Vertical Sampling Factor
 
-    BYTE *      m_pData;     // 이미지 버퍼
-    BYTE *      m_pBuf;      // 버퍼
-    int         m_Index;     // 버퍼의 위치를 나타내는 인덱스
+    BYTE *      m_pData;     // image buffer
+    BYTE *      m_pBuf;      // buffer
+    int         m_Index;     // Index indicating the location of the buffer
     DQT         TbQ[20];     // Quantization Table
     DHT         TbH[20];     // Huffman Table
-    short       ZZ[64];      // 8x8 Block 정보를 담는 배열
-    FRAMEHEADER FrameHeader; // FrameHeader 구조채
-    SCANHEADER  ScanHeader;  // ScanHeader 구조체
-    short       PrevDC[3];   // DC 성분의 Predictor
+    short       ZZ[64];      // Array containing 8x8 Block information
+    FRAMEHEADER FrameHeader; // FrameHeader structure
+    SCANHEADER  ScanHeader;  //ScanHeader structure
+    short       PrevDC[3];   // Predictor of DC component
 
     CJpeg();
     virtual ~CJpeg();

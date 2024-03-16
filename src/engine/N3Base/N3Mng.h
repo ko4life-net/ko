@@ -54,7 +54,7 @@ template <class T> class CN3Mng {
 #ifdef _N3GAME
             CLogWriter::Write("CN3Mng::Add - duplicated object's file name.");
 #endif
-            m_Refs.erase(pairRef.first); // 참조 카운트 지우고..
+            m_Refs.erase(pairRef.first); // Clear the reference count...
             return -1;
         }
 
@@ -91,44 +91,44 @@ template <class T> class CN3Mng {
 
         T *     pData = NULL;
         it_Data it = m_Datas.find(szFN2);
-        if (it == m_Datas.end()) // 못 찾았다..
+        if (it == m_Datas.end()) // I couldn't find it...
         {
             pData = new T();
-            pData->m_iLOD = iLOD; // 로딩시 LOD 적용
+            pData->m_iLOD = iLOD; // Apply LOD when loading
 
-            if (false == pData->LoadFromFile(szFN2)) // 파일 읽기에 실패했다!!
+            if (false == pData->LoadFromFile(szFN2)) // Failed to read file!!
             {
                 delete pData;
                 pData = NULL;
             } else {
-                int reChk = Add(pData); // 읽기 성공하면 추가..
+                int reChk = Add(pData); // If reading is successful, add...
                 //    asm
-                if (reChk == -1) // 추가시 전에 데이터가 있어 참조 카운트를 하나 더한다
+                if (reChk == -1) // When adding, there is data before, so one reference count is added.
                 {
-                    T *     pBakData = pData; // 같은 파일중 전 데이타를 받아 리턴(새로운 그림으로 바뀌지 않을수 있다)
+                    T *     pBakData = pData; // Receives and returns all data from the same file (may not be changed to a new image)
                     it_Data it = m_Datas.find(pBakData->FileName());
                     pData = (*it).second;
 
                     if (bIncreaseRefCount) {
                         it_Ref it2 = m_Refs.find(pData);
-                        if (it2 != m_Refs.end()) // 참조 카운트 찾기..
+                        if (it2 != m_Refs.end()) // Find reference count...
                         {
                             ((*it2).second)++;
                         }
                     }
 
-                    delete pBakData; // 이번에 읽은 데이타는 필요가 없으므로 지움
+                    delete pBakData; // Delete the data read this time as it is no longer needed.
                     pBakData = NULL;
                 }
                 //    asm
             }
-        } else //  찾았다..!!
+        } else // found..!!
         {
             pData = (*it).second;
 
             if (bIncreaseRefCount) {
                 it_Ref it2 = m_Refs.find(pData);
-                if (it2 != m_Refs.end()) // 참조 카운트 찾기..
+                if (it2 != m_Refs.end()) // Find reference count...
                 {
                     ((*it2).second)++;
                 }
@@ -148,11 +148,11 @@ template <class T> class CN3Mng {
         } else {
             return false;
         }
-    } // 있나 없나~
+    } // Is it there or not?
 
     void Delete(T ** ppData, bool bReleaseOrg = true) {
 #ifndef _N3GAME
-        bReleaseOrg = true; // 툴에서는 무조건
+        bReleaseOrg = true; // In the tool, unconditionally
 #endif
         if (NULL == ppData || NULL == *ppData) {
             return;
@@ -160,11 +160,11 @@ template <class T> class CN3Mng {
 
         it_Data it = m_Datas.find((*ppData)->FileName());
         if (it == m_Datas.end()) {
-            return; // 못 찾았다..
-        } else      //  찾았다..!!
+            return; // I couldn't find it...
+        } else      //   found..!!
         {
             it_Ref it2 = m_Refs.find(*ppData);
-            if (bReleaseOrg && it2 != m_Refs.end()) // 참조 카운트 찾기..
+            if (bReleaseOrg && it2 != m_Refs.end()) // Find reference count...
             {
                 ((*it2).second)--;
                 if (0 == (*it2).second) {

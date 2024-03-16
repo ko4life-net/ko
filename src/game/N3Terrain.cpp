@@ -382,13 +382,21 @@ bool CN3Terrain::Load(HANDLE hFile) {
     Init();
 
     m_szFileName = szFNBackup;
+    DWORD dwRWC;
+    // 1264 .gtd terra©¥n ©¥c©¥n f©¥x
+    int   version, istrlen;
+    ReadFile(hFile, &(version), sizeof(int), &dwRWC, NULL); // Read the map version
+    ReadFile(hFile, &(istrlen), sizeof(int), &dwRWC, NULL); // Read the map name char length
+    CHAR * GTDMapName = new CHAR[istrlen + 1]{};        // Zero-initialized
+    ReadFile(hFile, GTDMapName, istrlen, &dwRWC, NULL); // Now read it and push it back to the GTDMapName char buffer
+    // 1264 end
 
     CUILoading * pUILoading = CGameProcedure::s_pUILoading; // ·Îµù¹Ù..
     if (pUILoading) {
         pUILoading->Render("Allocating Terrain...", 0);
     }
 
-    DWORD dwRWC;
+    
     ReadFile(hFile, &(m_ti_MapSize), sizeof(int), &dwRWC, NULL);
     m_pat_MapSize = (m_ti_MapSize - 1) / PATCH_TILE_SIZE;
 

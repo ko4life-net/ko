@@ -59,6 +59,8 @@ class CDlgRiverProperty : public CDialog {
     afx_msg void OnCobGORiver();
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP()
+  public:
+    afx_msg void OnStnClickedNotselected();
 };
 
 //{{AFX_INSERT_LOCATION}}

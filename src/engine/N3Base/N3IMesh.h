@@ -13,18 +13,18 @@ class CN3IMesh : public CN3BaseFileAccess {
     static __VertexT1 s_Vertices[MAX_IMESH_BUFFER];
     static __VertexT2 s_Vertices2[MAX_IMESH_BUFFER];
 
-    int m_nFC; // 삼각형 갯수
+    int m_nFC; // Number of triangles
 
     int    m_nVC;          // Vertex Count
-    WORD * m_pwVtxIndices; // 점 인덱스 리스트.
-    int    m_nUVC;         // UV 좌표 Count
-    WORD * m_pwUVsIndices; // 텍스처 좌표 인덱스 리스트.
+    WORD * m_pwVtxIndices; // List of point indices.
+    int    m_nUVC;         // UV coordinate Count
+    WORD * m_pwUVsIndices; // Texture coordinate index list.
 
-    __VertexXyzNormal * m_pVertices; // 좌표 Data
-    float *             m_pfUVs;     // UV Data - m_nUVC * 2 만큼 할당한다.
-                                     //    LPDIRECT3DVERTEXBUFFER9 m_lpVB;
+    __VertexXyzNormal * m_pVertices;// Coordinate Data
+    float *             m_pfUVs;     // UV Data - Allocate as much as m_nUVC * 2.
+                                     // LPDIRECT3DVERTEXBUFFER9 m_lpVB;
 
-    __Vector3 m_vMin, m_vMax; // 최소, 최대점.. 변하긴 하지만 대략적으로...
+    __Vector3 m_vMin, m_vMax;           // Minimum and maximum points... they may change, but roughly...
 
   public:
 #ifdef _N3TOOL
@@ -36,8 +36,8 @@ class CN3IMesh : public CN3BaseFileAccess {
     __Vector3    Max() { return m_vMax; }
     void         FindMinMax();
     void         Render(bool bUseTwoUV = false);
-    __VertexT1 * BuildVertexList();      // Vertex Buffer 에다가 점을 만든다.. 동시에 두번 사용하지 않도록 주의가 필요
-    __VertexT2 * BuildVertexListTwoUV(); // Vertex Buffer 에다가 점을 만든다.. 동시에 두번 사용하지 않도록 주의가 필요
+    __VertexT1 * BuildVertexList();      // Create a point in the Vertex Buffer. Be careful not to use it twice at the same time.
+    __VertexT2 * BuildVertexListTwoUV(); // Create a point in the Vertex Buffer. Be careful not to use it twice at the same time.
 
     int                 FaceCount() { return m_nFC; }
     int                 VertexCount() { return m_nVC; }
@@ -63,7 +63,7 @@ class CN3IMesh : public CN3BaseFileAccess {
     }
 #endif // end of _N3TOOL
 
-    virtual bool Create(int nFC, int nVC, int nUVC); // 차례대로  Face Count, VertexCount, UV Count
+    virtual bool Create(int nFC, int nVC, int nUVC); // In order, Face Count, VertexCount, UV Count
     bool         Load(HANDLE hFile);
 #ifdef _N3TOOL
     bool Save(HANDLE hFile);
@@ -73,7 +73,7 @@ class CN3IMesh : public CN3BaseFileAccess {
     CN3IMesh();
     virtual ~CN3IMesh();
 
-//    By : Ecli666 ( On 2002-07-23 오후 5:31:41 )
+//   By: Ecli666 (On 2002-07-23 5:31:41 PM)
 //
 #ifdef _N3GAME
     void        TickForShadow(bool bUseTwoUV = false);
@@ -84,5 +84,5 @@ class CN3IMesh : public CN3BaseFileAccess {
     __Vector3 * m_pVertexT1;
 #endif
 
-    //    ~(By Ecli666 On 2002-07-23 오후 5:31:41 )
+    //    ~(By Ecli666 On 2002-07-23 5:31:41 PM)
 };

@@ -1,15 +1,15 @@
 //////////////////////////////////////////////////
 //    Commented By : Lynus
-//    Commented On 2001-04-12 오후 1:52:29
+//    Commented On 2001-04-12 Apr 1:52:29
 //
 //    CWave class(wave.cpp)
 //
-//    End Of Comment (By Lynus On 2001-04-12 오후 1:52:29 )
+//    End Of Comment (By Lynus On 2001-04-12 Apr 1:52:29 )
 //////////////////////////////////////////////////
 
 //////////////////////////////////////////////////
 //    Coded By : Lynus
-//    Coded On 2001-04-12 오후 1:52:49
+//    Coded On 2001-04-12 Apr 1:52:49
 //
 #include "StdAfx.h"
 #include "WaveFile.h"
@@ -67,27 +67,29 @@ HRESULT CWaveFile::Open(LPCSTR strFileName, WAVEFORMATEX * pwfx, DWORD dwFlags) 
         m_hmmio = mmioOpen((LPSTR)strFileName, NULL, MMIO_ALLOCBUF | MMIO_READ);
 
         if (NULL == m_hmmio) {
-            HRSRC   hResInfo;
-            HGLOBAL hResData;
+            HRSRC   hResInfo;  // Type to manage resources
+            HGLOBAL hResData;  // Retrieves the handle associated with the specified pointer to a global memory block.
             DWORD   dwSize;
             VOID *  pvRes;
 
-            // Loading it as a file failed, so try it as a resource
+            
+            // trying to load it as file, if it is failed then try to load it as resource.
             if (NULL == (hResInfo = FindResource(NULL, strFileName, TEXT("WAVE")))) {
                 if (NULL == (hResInfo = FindResource(NULL, strFileName, TEXT("WAV")))) {
                     return E_FAIL;
                 }
             }
 
-            if (NULL == (hResData = LoadResource(NULL, hResInfo))) {
+            if (NULL == (hResData = LoadResource(NULL, hResInfo))) { // Retrieves a handle that can be used to obtain a pointer to the first byte of the specified resource in memory.
+
                 return E_FAIL;
             }
 
-            if (0 == (dwSize = SizeofResource(NULL, hResInfo))) {
+            if (0 == (dwSize = SizeofResource(NULL, hResInfo))) { // to obtain the size of the resource
                 return E_FAIL;
             }
 
-            if (NULL == (pvRes = LockResource(hResData))) {
+            if (NULL == (pvRes = LockResource(hResData))) { // To obtain a pointer to the first byte of the resource data
                 return E_FAIL;
             }
 
@@ -164,7 +166,9 @@ HRESULT CWaveFile::ReadMMIO() {
 
     m_pwfx = NULL;
 
-    if ((0 != mmioDescend(m_hmmio, &m_ckRiff, NULL, 0))) {
+    // The mmioDescend function descends into a chunk of a RIFF file that was opened by using the mmioOpen function. It can also search for a given chunk.
+
+    if ((0 != mmioDescend(m_hmmio, &m_ckRiff, NULL, 0))) { 
         return E_FAIL;
     }
 
@@ -535,5 +539,5 @@ HRESULT CWaveFile::Write(UINT nSizeToWrite, BYTE * pbSrcData, UINT * pnSizeWrote
     return S_OK;
 }
 
-//    End Of Code (By Lynus On 2001-04-12 오후 1:52:49 )
+//    End Of Code (By Lynus On 2001-04-12 Apr 1:52:49 )
 //////////////////////////////////////////////////

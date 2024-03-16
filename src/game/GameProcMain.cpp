@@ -107,13 +107,13 @@ enum e_ChatCmd {
     CMD_COUNT,
     CMD_UNKNOWN = 0xffffffff
 };
-static std::string s_szCmdMsg[CMD_COUNT]; // 게임상 명령어
+static std::string s_szCmdMsg[CMD_COUNT]; // In-game commands
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CGameProcMain::CGameProcMain() // r기본 생성자.. 각 변수의 역활은 헤더 참조..
+CGameProcMain::CGameProcMain() // rDefault constructor. Refer to the header for the role of each variable.
 {
     m_fLBClickTime = 0.0f;
     m_bLoadComplete = FALSE;
@@ -153,8 +153,8 @@ CGameProcMain::CGameProcMain() // r기본 생성자.. 각 변수의 역활은 헤더 참조..
     m_pUISkillTreeDlg = new CUISkillTreeDlg();
     m_pUIHotKeyDlg = new CUIHotKeyDlg();
     m_pUINpcTalk = new CUINpcTalk();
-    m_pUIKnightsOp = new CUIKnightsOperation(); // 기사단 리스트 보기, 가입, 등...
-    m_pUIPartyBBS = new CUIPartyBBS();          // 파티 지원 시스템 게시판??..
+    m_pUIKnightsOp = new CUIKnightsOperation(); // View the list of knights, join, etc...
+    m_pUIPartyBBS = new CUIPartyBBS();          // Party support system bulletin board??..
     m_pUIWareHouseDlg = new CUIWareHouseDlg();
     m_pUINpcChange = new CUINPCChangeEvent();
     m_pUIWarp = new CUIWarp();
@@ -172,7 +172,7 @@ CGameProcMain::CGameProcMain() // r기본 생성자.. 각 변수의 역활은 헤더 참조..
 
     m_pSubProcPerTrade = new CSubProcPerTrade();
     m_pMagicSkillMng = new CMagicSkillMng(this);
-    m_pTargetSymbol = new CN3Shape(); // 플레이어가 타겟으로 잡은 캐릭터의 위치위에 그리면 된다..
+    m_pTargetSymbol = new CN3Shape(); // Just draw it on the location of the character targeted by the player.
     m_pWarMessage = new CWarMessage;
 
     m_pLightMgr = new CLightMgr;
@@ -221,7 +221,7 @@ CGameProcMain::~CGameProcMain() {
     delete m_pSubProcPerTrade;
     delete m_pMagicSkillMng;
     delete m_pWarMessage;
-    delete m_pTargetSymbol; // 플레이어가 타겟으로 잡은 캐릭터의 위치위에 그리면 된다..
+    delete m_pTargetSymbol; // Just draw it on the location of the character targeted by the player.
 
     delete m_pLightMgr;
 }
@@ -259,7 +259,7 @@ void CGameProcMain::ReleaseUIs() {
     m_pUIHotKeyDlg->Release();
     m_pUINpcTalk->Release();
     //    m_pUITradeList->Release();
-    m_pUIKnightsOp->Release(); // 기사단 리스트 보기, 가입, 등...
+    m_pUIKnightsOp->Release(); // View the list of knights, join, etc...
     m_pUIPartyBBS->Release();
     m_pUIWareHouseDlg->Release();
     m_pUINpcChange->Release();
@@ -277,7 +277,7 @@ void CGameProcMain::Init() {
     m_pLightMgr->Release();
     s_pEng->SetDefaultLight(m_pLightMgr->Light(0), m_pLightMgr->Light(1), m_pLightMgr->Light(2));
 
-    for (int i = IDS_CMD_WHISPER; i <= IDS_CMD_GAME_SAVE; i++) //명령어 로딩...
+    for (int i = IDS_CMD_WHISPER; i <= IDS_CMD_GAME_SAVE; i++) //Command loading...
     {
         ::_LoadStringFromResource(i, s_szCmdMsg[i - IDS_CMD_WHISPER]);
     }
@@ -287,21 +287,21 @@ void CGameProcMain::Init() {
     if (m_pWarMessage) {
         m_pWarMessage->InitFont();
     }
-    this->InitUI();                                                       // 국가에 따라 다른 UI 로딩...
-    this->InitZone(s_pPlayer->m_InfoExt.iZoneCur, s_pPlayer->Position()); // 존 로딩..
+    this->InitUI();                                                       // Different UI loading depending on the country...
+    this->InitZone(s_pPlayer->m_InfoExt.iZoneCur, s_pPlayer->Position()); // John loading...
 
     //sound obj...
     if (m_pSnd_Battle == NULL) {
         int iIDSndBattle =
             ((NATION_KARUS == s_pPlayer->m_InfoBase.eNation) ? ID_SOUND_BGM_KA_BATTLE : ID_SOUND_BGM_EL_BATTLE);
-        m_pSnd_Battle = s_pEng->s_SndMgr.CreateStreamObj(iIDSndBattle); // 전투음악 ID
+        m_pSnd_Battle = s_pEng->s_SndMgr.CreateStreamObj(iIDSndBattle); // Battle music ID
         if (m_pSnd_Battle) {
             m_pSnd_Battle->Looping(true);
             m_pSnd_Battle->Stop();
         }
     }
     if (m_pSnd_Town == NULL) {
-        m_pSnd_Town = s_pEng->s_SndMgr.CreateStreamObj(ID_SOUND_BGM_TOWN); // 마을음악 ID
+        m_pSnd_Town = s_pEng->s_SndMgr.CreateStreamObj(ID_SOUND_BGM_TOWN); // Village music ID
         if (m_pSnd_Town) {
             m_pSnd_Town->Looping(true);
             m_pSnd_Town->Play(NULL, 3.0f);
@@ -312,15 +312,15 @@ void CGameProcMain::Init() {
         s_pUILoading->Render("Loading Character Data...", 0);
     }
 
-    // 경로 기억..
+    // Remember the path...
     char szPathOld[_MAX_PATH], szPathFind[_MAX_PATH];
     ::GetCurrentDirectory(_MAX_PATH, szPathOld);
 
     _finddata_t fi;
     long        hFind = -1;
 
-    // 리소스 다 읽기..
-    // 에니메이션 다 읽기..
+    // Read all resources...
+    // Read all the animations...
     lstrcpy(szPathFind, szPathOld);
     lstrcat(szPathFind, "\\Chr");
     ::SetCurrentDirectory(szPathFind);
@@ -341,8 +341,8 @@ void CGameProcMain::Init() {
         s_pUILoading->Render("Loading Character Data... 10 %", 10);
     }
 
-    // 리소스 다 읽기..
-    // 텍스처 다 읽기..
+    // Read all resources...
+    // Read all the textures...
     lstrcpy(szPathFind, szPathOld);
     lstrcat(szPathFind, "\\Item");
     ::SetCurrentDirectory(szPathFind);
@@ -363,8 +363,8 @@ void CGameProcMain::Init() {
         s_pUILoading->Render("Loading Character Data... 25 %", 25);
     }
 
-    // 리소스 다 읽기..
-    // 조인트 다 읽기..
+    //Read all resources...
+    //Read all the joints...
     lstrcpy(szPathFind, szPathOld);
     lstrcat(szPathFind, "\\Chr");
     ::SetCurrentDirectory(szPathFind);
@@ -385,8 +385,8 @@ void CGameProcMain::Init() {
         s_pUILoading->Render("Loading Character Data... 50 %", 50);
     }
 
-    // 리소스 다 읽기..
-    // 스킨 읽기..
+    // Read all resources...
+    // Read the skin...
     lstrcpy(szPathFind, szPathOld);
     lstrcat(szPathFind, "\\Item");
     ::SetCurrentDirectory(szPathFind);
@@ -407,8 +407,8 @@ void CGameProcMain::Init() {
         s_pUILoading->Render("Loading Character Data... 75 %", 75);
     }
 
-    // 리소스 다 읽기..
-    // PMesh 읽기..
+    // Read all resources...
+    // Read PMesh..
     lstrcpy(szPathFind, szPathOld);
     lstrcat(szPathFind, "\\Item");
     ::SetCurrentDirectory(szPathFind);
@@ -430,19 +430,19 @@ void CGameProcMain::Init() {
     }
 
     this->MsgSend_GameStart();
-    // 경로 돌리기..
+    // Change route...
     ::SetCurrentDirectory(szPathOld);
 }
 
 void CGameProcMain::InitPlayerPosition(
-    const __Vector3 & vPos) // 플레이어 위치 초기화.. 일으켜 세우고, 기본동작을 취하게 한다.
+    const __Vector3 & vPos) // Initialize the player's position.. Stand him up and have him take basic actions.
 {
     __Vector3 vPosFinal = vPos;
-    float     fYTerrain = ACT_WORLD->GetHeightWithTerrain(vPos.x, vPos.z);   // 지형의 높이값 얻기..
-    float     fYObject = ACT_WORLD->GetHeightNearstPosWithShape(vPos, 1.0f); // 오브젝트에서 가장 가까운 높이값 얻기..
+    float     fYTerrain = ACT_WORLD->GetHeightWithTerrain(vPos.x, vPos.z);   // Obtaining the height of the terrain...
+    float     fYObject = ACT_WORLD->GetHeightNearstPosWithShape(vPos, 1.0f); // Obtaining the closest height value from an object.
     if (!s_pWorldMgr->IsIndoor()) {
         if (T_Abs(vPos.y - fYObject) < T_Abs(vPos.y - fYTerrain)) {
-            vPosFinal.y = fYObject; // 좀더 가까운 곳에 놓는다..
+            vPosFinal.y = fYObject; // Put it closer.
         } else {
             vPosFinal.y = fYTerrain;
         }
@@ -454,23 +454,23 @@ void CGameProcMain::InitPlayerPosition(
         }
     }
 
-    s_pPlayer->PositionSet(vPosFinal, true); // 캐릭터 위치 셋팅..
+    s_pPlayer->PositionSet(vPosFinal, true); // Character position setting...
     s_pPlayer->m_vPosFromServer = vPos;
-    m_vPlayerPosSended = vPos; // 최근에 보낸 위치 세팅..
-    m_fMsgSendTimeMove = 0;    // 시간을 기록한다..
+    m_vPlayerPosSended = vPos; // Recently sent location settings...
+    m_fMsgSendTimeMove = 0;    // Record the time..
 
-    this->CommandSitDown(false, false, true); // 일으켜 세운다.. 앉아있는 상태에서 워프하면.. 버그가 있다..
-    this->TargetSelect(-1, false);            // 타겟 해제..
-    this->UpdateCameraAndLight();             // 카메라와 라이트 다시 계산..
+    this->CommandSitDown(false, false, true); // Stand up... If you warp while sitting... there is a bug...
+    this->TargetSelect(-1, false);            // Target release...
+    this->UpdateCameraAndLight();             // Camera and light recalculation.
 
-    s_pPlayer->Action(PSA_BASIC, true, NULL, true); // 강제로 기본 자세..
+    s_pPlayer->Action(PSA_BASIC, true, NULL, true); // Forced basic posture...
 }
 
 void CGameProcMain::Tick() {
-    CGameProcedure::Tick(); // 키, 마우스 입력 등등..
+    CGameProcedure::Tick(); // Keys, mouse input, etc.
 
     if (FALSE == m_bLoadComplete) {
-        return; // 로딩이 안되었으면.. 돌아간다.
+        return; // If it doesn't load... go back.
     }
     if (!s_pSocket->IsConnected()) {
         return;
@@ -845,7 +845,7 @@ bool CGameProcMain::ProcessPacket(DataPack * pDataPack, int & iOffset) {
     case N3_POINT_CHANGE:
         this->MsgRecv_MyInfo_PointChange(pDataPack, iOffset);
         return true;
-    case N3_CHAT: // 채팅 메시지..
+    case N3_CHAT:
         this->MsgRecv_Chat(pDataPack, iOffset);
         return true;
     case N3_WARP: {
@@ -4173,7 +4173,7 @@ void CGameProcMain::MsgSend_Warp() // 워프 - 존이동이 될수도 있다..
     int  iOffset = 0;
 
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_WARP_LIST);
-    CAPISocket::MP_AddByte(byBuff, iOffset, WI.iID); // 워프 아이디 보내기...
+    CAPISocket::MP_AddShort(byBuff, iOffset, WI.iID); // 워프 아이디 보내기...
     s_pSocket->Send(byBuff, iOffset);
 }
 

@@ -17,12 +17,12 @@ class CN3Board : public CN3Transform {
   protected:
     __VertexT1                m_vRects[4];
     float                     m_fTexIndex;
-    std::vector<CN3Texture *> m_TexRefs; // 텍스처 포인터 리스트..
+    std::vector<CN3Texture *> m_TexRefs; // Texture pointer list..
 
   public:
     DWORD      m_dwBoardType; // Board Type
     float      m_fTexFPS;     // Frame Per Second
-    __Material m_Mtl;         // 재질..
+    __Material m_Mtl;         // texture..
 
   public:
     void         TexSet(int index, const std::string & szFN);

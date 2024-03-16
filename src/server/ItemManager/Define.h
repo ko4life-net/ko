@@ -88,10 +88,10 @@ typedef union {
 #define WIZ_ITEM_LOG 0x19 // Send To Agent for Writing Log
 #define WIZ_DATASAVE 0x37 // User GameData DB Save Request
 
-#define SLOT_MAX      14   // 착용 아템 MAX
-#define HAVE_MAX      28   // 소유 아템 MAX (인벤토리창)
-#define ITEMCOUNT_MAX 9999 // 소모 아이템 소유 한계값
-#define WAREHOUSE_MAX 196  // 창고 아이템 MAX
+#define SLOT_MAX      14   // Equipped item MAX
+#define HAVE_MAX      28   // Owned item MAX (Inventory window)
+#define ITEMCOUNT_MAX 9999 // Consumable item possession limit
+#define WAREHOUSE_MAX 196  // Warehouse item MAX
 /////////////////////////////////////////////////////////////////////////////////
 // Structure Define
 /////////////////////////////////////////////////////////////////////////////////

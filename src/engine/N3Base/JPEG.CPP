@@ -57,11 +57,11 @@ void CJpeg::LoadJPG(LPCSTR FileName) {
         FindSOF(); // Frame Header Loading
         FindSOS(); // Scan Header Loading & Decoding
 
-        if ((*pByte == 0xff) && (*(pByte + 1) == 0xd9)) { // 끝을 만났을 때
+        if ((*pByte == 0xff) && (*(pByte + 1) == 0xd9)) { // When you reach the end
             break;
         }
         Count++;
-        if (Count > 50) { // Loop가 끝날 가능성이 거의 없을 때
+        if (Count > 50) { // When there is little chance of the loop ending
             break;
         }
     }
@@ -79,7 +79,7 @@ void CJpeg::FindSOI() {
 void CJpeg::FindDHT() {
     if ((m_pBuf[m_Index] == 0xff) && (m_pBuf[m_Index + 1] == 0xc4)) {
         WORD SegSize = m_pBuf[m_Index + 2] * 256 + m_pBuf[m_Index + 3];
-        //버퍼의 현재 위치를 포인터로 설정한다.
+        //Sets the current position of the buffer as a pointer.
         BYTE * p = &m_pBuf[m_Index + 4];
 
         do {
@@ -89,7 +89,7 @@ void CJpeg::FindDHT() {
             BYTE Th = *p; // Table Number
             memcpy(BITS, p, 17);
             p = p + 17;
-            //17개의 값을 모두 더해서 Num에 저장
+            // Add all 17 values and store them in Num.
             for (i = 1; i < 17; i++) {
                 Num = Num + BITS[i];
             }
@@ -99,9 +99,9 @@ void CJpeg::FindDHT() {
             TbH[Th].HUFFCODE = new WORD[Num + 1];
             TbH[Th].HUFFSIZE = new BYTE[Num + 1];
             TbH[Th].HUFFVAL = new BYTE[Num + 1];
-            //Huffman Value 값을 Num크기만큼 p에서 읽는다.
+            //Read the Huffman Value value as much as Num from p.
             memcpy(TbH[Th].HUFFVAL, p, Num);
-            //p가 증가
+            //p increases
             p = p + Num;
 
             // Generation of table of Huffman code sizes //
@@ -236,7 +236,7 @@ void CJpeg::FindSOS() {
 
         m_Index = m_Index + SegSize + 2;
 
-        // 최대 Sampling Factor 구함 //
+        // Find the maximum sampling factor //
         Hmax = Vmax = 0;
         for (int i = 0; i < FrameHeader.Nf; i++) {
             if (FrameHeader.H[i] > Hmax) {
@@ -247,11 +247,11 @@ void CJpeg::FindSOS() {
             }
         }
 
-        // 실제 이미지 사이즈 저장 //
+        // Save actual image size //
         m_rWidth = FrameHeader.X;
         m_rHeight = FrameHeader.Y;
 
-        // 이미지 사이즈를 MCU 크기에 맞아 떨어지도록 다시 계산 //
+        // Recalculate image size to match MCU size
         if (FrameHeader.X % (8 * Hmax) != 0) {
             FrameHeader.X = (FrameHeader.X / (8 * Hmax) + 1) * (8 * Hmax);
         }
@@ -334,8 +334,8 @@ void CJpeg::DecodeAC(int Th) {
     memset((LPSTR)&ZZ[1], 0, 63 * sizeof(short));
     BYTE RS, SSSS, RRRR, R;
 
-    // RRRR : ZZ에서 0 이 아닌 전 값으로부터의 상대적인 위치
-    // SSSS : 0이 아닌 값의 범위(category)
+    // RRRR : Position relative to the previous non-zero value in ZZ
+    // SSSS : Range of non-zero values (category)
 
     while (TRUE) {
         RS = hDecode(Th);
@@ -517,10 +517,10 @@ void CJpeg::Decode() {
 
     MCU = new SET[Vmax * Hmax * 64];
 
-    // NextByte 함수를 위한 포인터 리셋 //
+    // Pointer reset for NextByte function
     pByte = &m_pBuf[m_Index];
 
-    // 실질적인 Decoding Procedure //
+    // Practical Decoding Procedure //
     int Count = 0; ///
 
     for (int i = 0; i < my; i++) {
@@ -543,7 +543,7 @@ void CJpeg::Decode() {
 
     delete[] MCU;
 
-    // RGB 로 바꿈 //
+    //Convert to RGB//
     ConvertYUV2RGB();
 }
 
@@ -631,7 +631,7 @@ void CJpeg::ConvertYUV2RGB() {
         delete[] m_pData;
         m_pData = pBuf2;
 
-        // 본래의 이미지 사이즈로 복원 //
+        // Restore to original image size //
         FrameHeader.X = m_rWidth;
         FrameHeader.Y = m_rHeight;
     }
@@ -651,18 +651,18 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE * pp) {
     m_rWidth = Width;
     m_rHeight = Height;
 
-    int BMPWidth = (Width * 3 + 3) / 4 * 4; // BITMAP의 4의 배수인 넓이
+    int BMPWidth = (Width * 3 + 3) / 4 * 4; // Area that is a multiple of 4 in BITMAP
     int bWidth = Width;
     int bHeight = Height;
 
     if (Width % 8 != 0) {
-        bWidth = (Width / 8 + 1) * 8; // bWidth 는 8의 배수로 만든 넓이
+        bWidth = (Width / 8 + 1) * 8; // bWidth is the width in multiples of 8
     }
     if (Height % 8 != 0) {
-        bHeight = (Height / 8 + 1) * 8; // bHeight 는 8의 배수로 만든 높이
+        bHeight = (Height / 8 + 1) * 8; // bHeight is the height in multiples of 8
     }
 
-    // Huffman Table 초기화 //
+    // Initializing Huffman Table //
     for (int i = 0; i < 20; i++) {
         if (TbH[i].Flag) {
             delete[] TbH[i].HUFFCODE;
@@ -677,25 +677,25 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE * pp) {
         return;
     }
     PutSOI(fh);                // Start Of Image //
-    PutDQT(fh);                // Quantization Table 저장 //
-    PutDHT(fh);                // Huffman Table 저장 //
-    PutSOF(fh, Width, Height); // FrameHeader 저장 //
-    PutSOS(fh);                // Scan Header 저장 //
+    PutDQT(fh);                // Save Quantization Table //
+    PutDHT(fh);                // Save Huffman Table //
+    PutSOF(fh, Width, Height); // Save FrameHeader //
+    PutSOS(fh);                // Save Scan Header //
 
-    // 버퍼를 마련합시다! //
+    // Let's have a buffer! //
     if (m_pData != NULL) {
         delete[] m_pData;
     }
     m_pData = new BYTE[(bWidth * 3) * bHeight];
 
-    memset(m_pData, 0, (bWidth * 3) * bHeight); // 0으로 초기화 //
+    memset(m_pData, 0, (bWidth * 3) * bHeight); // reset to 0 //
 
-    // 8의 배수에 맞도록 버퍼를 만들어서 원래 이미지를 복사합니다 //
+    // Create a buffer to fit a multiple of 8 and copy the original image. //
     for (int i = 0; i < Height; i++) {
         memcpy(&m_pData[i * (bWidth * 3)], &pp[i * BMPWidth], BMPWidth);
     }
 
-    // RGB Color를 YCbCr Color로 변환합니다. //
+    // Convert RGB Color to YCbCr Color. //
     float  R, G, B;
     float  y, cb, cr;
     BYTE * pos;
@@ -811,8 +811,8 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE * pp) {
     delete[] DC2;
     delete[] DC3;
 
-    /* AC 허프만 테이블 검색을 빠르게 하기 위하여
-       허프만 테이블 구조체에 있는 *PT를 설정한다. */
+    /* To speed up AC Huffman table search
+  Set *PT in the Huffman table structure. */
 
     int Num, iTh[4] = {16, 17}, Th, key;
 
@@ -836,9 +836,9 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE * pp) {
 
     /* HUFFMAN CODE ENCODEING!! */
 
-    m_pBuf = new BYTE[bWidth * bHeight * 3]; // 실제로 인코딩된 데이터가 저장될 버퍼
-    m_Index = 0;                             // 인덱스 리셋
-    cnt = 0;                                 // Bit총 리셋
+    m_pBuf = new BYTE[bWidth * bHeight * 3]; // Buffer where the actual encoded data will be stored
+    m_Index = 0;                             // index reset
+    cnt = 0;                                 // Bit total reset
 
     hEncode(bWidth, bHeight);
 
@@ -852,7 +852,7 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE * pp) {
 
     PutEOI(fh);
 
-    // 임시 메모리 모두 해제 //
+    // Free all temporary memory //
 
     for (int i = 0; i < 2; i++) {
         Th = iTh[i];
@@ -872,13 +872,13 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE * pp) {
     delete[] Cb;
     delete[] Cr;
 
-    // 파일 폐쇄 //
+    // file closed//
 
     CloseHandle(fh);
 }
 
 void CJpeg::PutSOI(HANDLE hFile) {
-    // SOI 저장 //
+    // Save SOI //
     DWORD dwWritten;
     WORD  Marker = (0xd8 << 8) | 0xff;
     WriteFile(hFile, (LPSTR)&Marker, 2, &dwWritten, NULL);
@@ -1006,7 +1006,7 @@ void CJpeg::PutDQT(HANDLE hFile) {
 }
 
 void CJpeg::DCT(short * pos, int bWidth, BOOL Flag) {
-    // DCT 분만 아니라, DCT 후의 Zigzag 까지... 게다가 Quantization 까지!?//
+    // DNot only CT, but also Zigzag after DCT... and even Quantization!?//
 
     BYTE Qtb0[64] = {16, 11,  12, 14, 12, 10, 16,  14,  13,  14, 18, 17,  16,  19,  24,  40,  26, 24,  22,  22, 24, 49,
                      36, 37,  29, 40, 58, 51, 61,  60,  57,  51, 56, 55,  64,  72,  92,  78,  64, 68,  87,  69, 66, 57,
@@ -1083,8 +1083,8 @@ void CJpeg::Zigzag2() {
 }
 
 void CJpeg::PutDHT(HANDLE hFile) {
-    /* standard 허프만 테이블을 읽어들여서 멤버 구조체에 설정한
-       후 저장하고자 하는 파일에 적어넣는 함수입니다. */
+    /* The standard Huffman table is read and set in the member structure.
+        This is a function that is written into the file you want to save. */
 
     m_pBuf = new BYTE[421];
     BYTE HuffTb[421] = {
@@ -1109,7 +1109,7 @@ void CJpeg::PutDHT(HANDLE hFile) {
         213, 214, 215, 216, 217, 218, 226, 227, 228, 229, 230, 231, 232, 233, 234, 242, 243, 244, 245, 246, 247, 248,
         249, 250, 255};
     memcpy(m_pBuf, HuffTb, 421);
-    m_Index = 0; // Huffman Table을 읽어들이기 위하여 Index를 Reset
+    m_Index = 0; //Reset the index to read the Huffman Table
     FindDHT();
     //_lwrite(hFile, (LPSTR)m_pBuf, 420);
     DWORD dwWritten;
@@ -1117,7 +1117,7 @@ void CJpeg::PutDHT(HANDLE hFile) {
     delete[] m_pBuf;
 }
 
-// 주어진 값이 어느 케티고리에 소속되는 지를 반환하는 함수 //
+// A function that returns which ketigory a given value belongs to. //
 BYTE CJpeg::GetCategory(short V) {
     BYTE Num = 0;
     if (V < 0) {
@@ -1236,7 +1236,7 @@ void CJpeg::ShotBit(BYTE Bit) {
         cnt = 0;
         m_pBuf[m_Index] = Bullet;
         m_Index++;
-        if (Bullet == 0xff) // 0xff가 나오면 0x00으로 Byte Stuffing!!
+        if (Bullet == 0xff) // If 0xff appears, Byte Stuffing with 0x00!!
         {
             m_pBuf[m_Index] = 0x00;
             m_Index++;
@@ -1246,7 +1246,7 @@ void CJpeg::ShotBit(BYTE Bit) {
 }
 
 void CJpeg::PutEOI(HANDLE hFile) {
-    // EOI 저장 //
+    // Save EOI //
     WORD  Marker = (0xd9 << 8) | 0xff;
     DWORD dwWritten;
     WriteFile(hFile, (LPSTR)&Marker, 2, &dwWritten, NULL);

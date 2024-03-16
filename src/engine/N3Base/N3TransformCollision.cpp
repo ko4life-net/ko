@@ -46,14 +46,14 @@ bool CN3TransformCollision::Load(HANDLE hFile) {
     ReadFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
     if (nL > 0) {
         ReadFile(hFile, szFN, nL, &dwRWC, NULL);
-        szFN[nL] = NULL; // 메시 파일 이름..
+        szFN[nL] = NULL; // Mesh file name..
         m_pMeshCollision = s_MngVMesh.Get(szFN);
     }
 
     ReadFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
     if (nL > 0) {
         ReadFile(hFile, szFN, nL, &dwRWC, NULL);
-        szFN[nL] = NULL; // 메시 파일 이름..
+        szFN[nL] = NULL; // Mesh file name..
         m_pMeshClimb = s_MngVMesh.Get(szFN);
     }
     return true;
@@ -72,7 +72,7 @@ bool CN3TransformCollision::Save(HANDLE hFile) {
     WriteFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
     if (nL > 0) {
         if (m_pMeshCollision->FileName().find("object\\") <
-            0) // 임시로 경로를 바꾸려고 넣었다.. 나중에 필요없음 지운다..
+            0) //I put it in to change the path temporarily. I will delete it later if I don't need it.
         {
             char szFNTmp[256];
             wsprintf(szFNTmp, "Object\\%s.N3VMesh", m_pMeshCollision->m_szName.c_str());
@@ -92,7 +92,7 @@ bool CN3TransformCollision::Save(HANDLE hFile) {
     }
     WriteFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
     if (nL > 0) {
-        if (-1 == m_pMeshClimb->FileName().find("object\\")) // 임시로 경로를 바꾸려고 넣었다.. 나중에 필요없음 지운다..
+        if (-1 == m_pMeshClimb->FileName().find("object\\")) //I put it in to change the path temporarily. I will delete it later if I don't need it.
         {
             char szFNTmp[256];
             wsprintf(szFNTmp, "Object\\%s.N3VMesh", m_pMeshClimb->m_szName.c_str());
@@ -127,7 +127,7 @@ void CN3TransformCollision::ClimbMeshSet(const std::string & szFN) {
 
 int CN3TransformCollision::CheckCollisionPrecisely(bool bIgnoreBoxCheck, int ixScreen, int iyScreen, __Vector3 * pVCol,
                                                    __Vector3 * pVNormal) {
-    __Vector3 vPos, vDir; // 2D 좌표를 3D 좌표로 바꾸고..
+    __Vector3 vPos, vDir; // Convert 2D coordinates to 3D coordinates...
     ::_Convert2D_To_3DCoordinate(ixScreen, iyScreen, s_CameraData.mtxView, s_CameraData.mtxProjection, s_CameraData.vp,
                                  vPos, vDir);
 
@@ -144,7 +144,7 @@ void CN3TransformCollision::RenderCollisionMesh() {
     }
     s_lpD3DDev->SetTransform(D3DTS_WORLD, &m_Matrix);
 
-    m_pMeshCollision->Render(0xffff0000); // 빨간색.
+    m_pMeshCollision->Render(0xffff0000); // Red.
 }
 
 void CN3TransformCollision::RenderClimbMesh() {
@@ -153,7 +153,7 @@ void CN3TransformCollision::RenderClimbMesh() {
     }
     s_lpD3DDev->SetTransform(D3DTS_WORLD, &m_Matrix);
 
-    m_pMeshClimb->Render(0xff0000ff); // 파란색..
+    m_pMeshClimb->Render(0xff0000ff); // blue..
 }
 
 /*
@@ -288,6 +288,6 @@ void CN3TransformCollision::FindMinMax() {
         }
     }
 
-    // 최대 최소값을 갖고 반지름 계산한다..
+    // Calculate the radius using the maximum and minimum values.
     m_fRadius = (m_vMax - m_vMin).Magnitude() * 0.5f;
 }

@@ -172,9 +172,9 @@ BOOL CServerDlg::OnInitDialog() {
         myrand(1, 10000); // don't delete
     }
     // Compress Init
-    memset(m_CompBuf, NULL, 10240); // 압축할 데이터를 모으는 버퍼
-    m_iCompIndex = 0;               // 압축할 데이터의 길이
-    m_CompCount = 0;                // 압축할 데이터의 개수
+    memset(m_CompBuf, NULL, 10240); // A buffer that holds data to be compressed.
+    m_iCompIndex = 0;               // length of data to be compressed
+    m_CompCount = 0;                // Number of data to be compressed
     InitializeCriticalSection(&g_User_critical);
     InitializeCriticalSection(&g_LogFileWrite);
     m_sSocketCount = 0;
@@ -221,13 +221,13 @@ BOOL CServerDlg::OnInitDialog() {
     GetServerInfoIni();
 
     if (m_byZone == UNIFY_ZONE) {
-        m_strStatus.Format("UNIFY_ZONE 서버의 현재 상태");
+        m_strStatus.Format("UNIFY_ZONE - server current state");
     } else if (m_byZone == KARUS_ZONE) {
-        m_strStatus.Format("KARUS 서버의 현재 상태");
+        m_strStatus.Format("KARUS - server  current state");
     } else if (m_byZone == ELMORAD_ZONE) {
-        m_strStatus.Format("ELMORAD 서버의 현재 상태");
+        m_strStatus.Format("ELMORAD - server current state");
     } else if (m_byZone == BATTLE_ZONE) {
-        m_strStatus.Format("BATTLE 서버의 현재 상태");
+        m_strStatus.Format("BATTLE - server current state");
     }
 
     //----------------------------------------------------------------------
@@ -302,12 +302,12 @@ BOOL CServerDlg::OnInitDialog() {
     //----------------------------------------------------------------------
     //    Load NPC Data & Activate NPC
     //----------------------------------------------------------------------
-    if (!GetMonsterTableData()) { // Monster 특성치 테이블 Load
+    if (!GetMonsterTableData()) { // Monster attribute table Load
         EndDialog(IDCANCEL);
         return FALSE;
     }
 
-    if (!GetNpcTableData()) { // NPC 특성치 테이블 Load
+    if (!GetNpcTableData()) { // NPC attribute table Load
         EndDialog(IDCANCEL);
         return FALSE;
     }
@@ -616,7 +616,7 @@ BOOL CServerDlg::GetMakeLareItemTableData() {
 }
 
 /////////////////////////////////////////////////////////////////////////
-//    NPC Item Table 을 읽는다.
+//    NPC Item Table  - read
 //
 BOOL CServerDlg::GetNpcItemTable() {
     CNpcItemSet NpcItemSet;
@@ -691,7 +691,7 @@ BOOL CServerDlg::GetNpcItemTable() {
     return TRUE;
 }
 
-//    Monster Table Data 를 읽는다.
+//    Monster Table Data -read
 BOOL CServerDlg::GetMonsterTableData() {
     CMonTableSet NpcTableSet;
 
@@ -719,54 +719,54 @@ BOOL CServerDlg::GetMonsterTableData() {
             Npc->m_sSid = NpcTableSet.m_sSid;                   // MONSTER(NPC) Serial ID
             _tcscpy(Npc->m_strName, NpcTableSet.m_strName);     // MONSTER(NPC) Name
             Npc->m_sPid = NpcTableSet.m_sPid;                   // MONSTER(NPC) Picture ID
-            Npc->m_sSize = NpcTableSet.m_sSize;                 // MONSTER(NPC) 캐릭 크기 비율
-            Npc->m_iWeapon_1 = NpcTableSet.m_iWeapon1;          // 착용무기
-            Npc->m_iWeapon_2 = NpcTableSet.m_iWeapon2;          // 착용무기
-            Npc->m_byGroup = NpcTableSet.m_byGroup;             // 소속집단
-            Npc->m_byActType = NpcTableSet.m_byActType;         // 행동패턴
-            Npc->m_byRank = NpcTableSet.m_byRank;               // 작위
-            Npc->m_byTitle = NpcTableSet.m_byTitle;             // 지위
+            Npc->m_sSize = NpcTableSet.m_sSize;                 // MONSTER(NPC) character size ratio
+            Npc->m_iWeapon_1 = NpcTableSet.m_iWeapon1;          // Equipped weapon
+            Npc->m_iWeapon_2 = NpcTableSet.m_iWeapon2;          // Equipped weapon
+            Npc->m_byGroup = NpcTableSet.m_byGroup;             // belonging group
+            Npc->m_byActType = NpcTableSet.m_byActType;         // behavior pattern
+            Npc->m_byRank = NpcTableSet.m_byRank;               // title
+            Npc->m_byTitle = NpcTableSet.m_byTitle;             // status
             Npc->m_iSellingGroup = NpcTableSet.m_iSellingGroup; // item group
             Npc->m_sLevel = NpcTableSet.m_sLevel;               // level
-            Npc->m_iExp = NpcTableSet.m_iExp;                   // 경험치
+            Npc->m_iExp = NpcTableSet.m_iExp;                   // Experience
             Npc->m_iLoyalty = NpcTableSet.m_iLoyalty;           // loyalty
-            Npc->m_iMaxHP = NpcTableSet.m_iHpPoint;             // 최대 HP
-            Npc->m_sMaxMP = NpcTableSet.m_sMpPoint;             // 최대 MP
-            Npc->m_sAttack = NpcTableSet.m_sAtk;                // 공격값
-            Npc->m_sDefense = NpcTableSet.m_sAc;                // 방어값
-            Npc->m_sHitRate = NpcTableSet.m_sHitRate;           // 타격성공률
-            Npc->m_sEvadeRate = NpcTableSet.m_sEvadeRate;       // 회피성공률
-            Npc->m_sDamage = NpcTableSet.m_sDamage;             // 기본 데미지
-            Npc->m_sAttackDelay = NpcTableSet.m_sAttackDelay;   // 공격딜레이
-            Npc->m_bySpeed_1 = NpcTableSet.m_bySpeed1;          // 이동속도    (걷기)
-            Npc->m_bySpeed_2 = NpcTableSet.m_bySpeed2;          // 이동속도    (뛰기)
-            Npc->m_sSpeed = MONSTER_SPEED;                      // 이동속도
-            Npc->m_sStandTime = NpcTableSet.m_sStandtime;       // 서있는 시간
-            Npc->m_iMagic1 = NpcTableSet.m_iMagic1;             // 사용마법 1
-            Npc->m_iMagic2 = NpcTableSet.m_iMagic2;             // 사용마법 2
-            Npc->m_iMagic3 = NpcTableSet.m_iMagic3;             // 사용마법 3
-            Npc->m_sFireR = NpcTableSet.m_sFireR;               // 화염 저항력
-            Npc->m_sColdR = NpcTableSet.m_sColdR;               // 냉기 저항력
-            Npc->m_sLightningR = NpcTableSet.m_sLightningR;     // 전기 저항력
-            Npc->m_sMagicR = NpcTableSet.m_sMagicR;             // 마법 저항력
-            Npc->m_sDiseaseR = NpcTableSet.m_sDiseaseR;         // 저주 저항력
-            Npc->m_sPoisonR = NpcTableSet.m_sPoisonR;           // 독 저항력
-            Npc->m_sLightR = NpcTableSet.m_sLightR;             // 빛 저항력
+            Npc->m_iMaxHP = NpcTableSet.m_iHpPoint;             // maximum HP
+            Npc->m_sMaxMP = NpcTableSet.m_sMpPoint;             // maximum MP
+            Npc->m_sAttack = NpcTableSet.m_sAtk;                // attack value
+            Npc->m_sDefense = NpcTableSet.m_sAc;                // defense value
+            Npc->m_sHitRate = NpcTableSet.m_sHitRate;           // hitting success rate
+            Npc->m_sEvadeRate = NpcTableSet.m_sEvadeRate;       // evasion success rate
+            Npc->m_sDamage = NpcTableSet.m_sDamage;             // base damage
+            Npc->m_sAttackDelay = NpcTableSet.m_sAttackDelay;   // attack delay
+            Npc->m_bySpeed_1 = NpcTableSet.m_bySpeed1;          // Movement speed (walking)
+            Npc->m_bySpeed_2 = NpcTableSet.m_bySpeed2;          // movement speed (running)
+            Npc->m_sSpeed = MONSTER_SPEED;                      // speed
+            Npc->m_sStandTime = NpcTableSet.m_sStandtime;       // standing time
+            Npc->m_iMagic1 = NpcTableSet.m_iMagic1;             // Spell 1
+            Npc->m_iMagic2 = NpcTableSet.m_iMagic2;             // Spell 2
+            Npc->m_iMagic3 = NpcTableSet.m_iMagic3;             // Spell 3
+            Npc->m_sFireR = NpcTableSet.m_sFireR;               // fire resistance
+            Npc->m_sColdR = NpcTableSet.m_sColdR;               // cold resistance
+            Npc->m_sLightningR = NpcTableSet.m_sLightningR;     // lightining resistivity
+            Npc->m_sMagicR = NpcTableSet.m_sMagicR;             // magic resistance
+            Npc->m_sDiseaseR = NpcTableSet.m_sDiseaseR;         // curse resistance
+            Npc->m_sPoisonR = NpcTableSet.m_sPoisonR;           // poison resistance
+            Npc->m_sLightR = NpcTableSet.m_sLightR;             // light resistance
             Npc->m_sBulk = NpcTableSet.m_sBulk;
-            Npc->m_bySearchRange = NpcTableSet.m_bySearchRange;   // 적 탐지 범위
-            Npc->m_byAttackRange = NpcTableSet.m_byAttackRange;   // 사정거리
-            Npc->m_byTracingRange = NpcTableSet.m_byTracingRange; // 추격거리
-            //Npc->m_sAI = NpcTableSet.m_sAI;                // 인공지능 인덱스
+            Npc->m_bySearchRange = NpcTableSet.m_bySearchRange;   // Enemy Spotting Range
+            Npc->m_byAttackRange = NpcTableSet.m_byAttackRange;   // Attack Range
+            Npc->m_byTracingRange = NpcTableSet.m_byTracingRange; // chase distance
+            //Npc->m_sAI = NpcTableSet.m_sAI;                // AI Index
             Npc->m_tNpcType = NpcTableSet.m_byType; // NPC Type
                                                     // 0 : Monster
                                                     // 1 : Normal NPC
 
-            Npc->m_byFamilyType = NpcTableSet.m_byFamily; // 몹들사이에서 가족관계를 결정한다.
-            //Npc->m_tItemPer;        // 아이템이 떨어질 확률
-            //Npc->m_tDnPer;            // 돈이 떨어질확률
+            Npc->m_byFamilyType = NpcTableSet.m_byFamily; // Determines the family relationship between mobs.
+            //Npc->m_tItemPer;        // Chance of item drop
+            //Npc->m_tDnPer;            // chance of running out of money
 
-            Npc->m_iMoney = NpcTableSet.m_iMoney; // 떨어지는 돈
-            Npc->m_iItem = NpcTableSet.m_sItem;   // 떨어지는 아이템
+            Npc->m_iMoney = NpcTableSet.m_iMoney; // drop money
+            Npc->m_iItem = NpcTableSet.m_sItem;   // drop items
             Npc->m_byDirectAttack = NpcTableSet.m_byDirectAttack;
             Npc->m_byMagicAttack = NpcTableSet.m_byMagicAttack;
 
@@ -796,7 +796,7 @@ BOOL CServerDlg::GetMonsterTableData() {
     return TRUE;
 }
 
-//    NPC Table Data 를 읽는다. (경비병 & NPC)
+//    NPC Table Data - read (Guards & NPCs)
 BOOL CServerDlg::GetNpcTableData() {
     CNpcTableSet NpcTableSet;
 
@@ -1493,7 +1493,7 @@ BOOL CServerDlg::MapFileLoad() {
         szFullPath.Format(".\\AIServer_MAP\\%s", sZoneName);
 
         if (!file.Open(szFullPath, CFile::modeRead)) {
-            errormsg.Format("파일 Open 실패 - %s\n", szFullPath);
+            errormsg.Format("File Open Failed - %s\n", szFullPath);
             AfxMessageBox(errormsg);
             return FALSE;
         }
@@ -1504,7 +1504,7 @@ BOOL CServerDlg::MapFileLoad() {
         strcpy(pMap->m_MapName, (char *)(LPCTSTR)sZoneName);
 
         if (!pMap->LoadMap((HANDLE)file.m_hFile)) {
-            errormsg.Format("Map Load 실패 - %s\n", szFullPath);
+            errormsg.Format("Map Load Failed - %s\n", szFullPath);
             AfxMessageBox(errormsg);
             delete pMap;
             return FALSE;
@@ -1513,7 +1513,7 @@ BOOL CServerDlg::MapFileLoad() {
         // dungeon work
         if (ZoneInfoSet.m_RoomEvent > 0) {
             if (!pMap->LoadRoomEvent(ZoneInfoSet.m_RoomEvent)) {
-                errormsg.Format("Map Room Event Load 실패 - %s\n", szFullPath);
+                errormsg.Format("Map Room Event Load Failed - %s\n", szFullPath);
                 AfxMessageBox(errormsg);
                 delete pMap;
                 return FALSE;
@@ -2036,13 +2036,13 @@ CNpc * CServerDlg::GetEventNpcPtr() {
 
 int CServerDlg::MonsterSummon(TCHAR * pNpcName, int zone, float fx, float fz) {
     if (zone < 0 || zone > (g_arZone.size() + 1)) {
-        TRACE("#### 소환 실패 : %s, zoneindex=%d #####\n", pNpcName, zone);
+        TRACE("#### Summon failed : %s, zoneindex=%d #####\n", pNpcName, zone);
         return -1;
     }
 
     CNpc * pNpc = GetNpcPtr(pNpcName);
     if (pNpc == NULL) {
-        TRACE("소환할  몬스터의 이름(%s)이 잘못되었습니다.\n", pNpcName);
+        TRACE("The monster name (%s) to summon is incorrect.\n", pNpcName);
         return -1;
     }
 
@@ -2052,13 +2052,13 @@ int CServerDlg::MonsterSummon(TCHAR * pNpcName, int zone, float fx, float fz) {
     return 1;
 }
 
-//    소환할 몹의 데이타값을 셋팅한다.
+//    Set the data value of the mob to be summoned.
 BOOL CServerDlg::SetSummonNpcData(CNpc * pNpc, int zone, float fx, float fz) {
     int    iCount = 0;
     CNpc * pEventNpc = GetEventNpcPtr();
 
     if (pEventNpc == NULL) {
-        TRACE("소환할수 있는 몹은 최대 20마리입니다.\n");
+        TRACE("You can summon up to 20 monsters..\n");
         return FALSE;
     }
 
@@ -2169,11 +2169,11 @@ BOOL CServerDlg::SetSummonNpcData(CNpc * pNpc, int zone, float fx, float fz) {
 
     if (!bSuccess) {
         pEventNpc->m_lEventNpc = 0;
-        TRACE("### 소환에 실패했습니다. ###\n");
+        TRACE("### Summon failed. ###\n");
         return FALSE;
     }
 
-    TRACE("*** %d, %s 를 소환하였습니다. state = %d ***\n", pEventNpc->m_sNid + NPC_BAND, pEventNpc->m_strName,
+    TRACE("*** %d, %s have been summoned. state = %d ***\n", pEventNpc->m_sNid + NPC_BAND, pEventNpc->m_strName,
           pEventNpc->m_NpcState);
 
     return TRUE;
