@@ -26,7 +26,8 @@ class CN3VMesh : public CN3BaseFileAccess {
     bool  Pick(const __Matrix44 & MtxWorld, const __Vector3 & vPos, const __Vector3 & vDir, __Vector3 * pVCol = NULL,
                __Vector3 * pVNormal = NULL);
     bool  CheckCollision(const __Matrix44 & MtxWorld, const __Vector3 & v0, const __Vector3 & v1,
-                         __Vector3 * pVCol = NULL, __Vector3 * pVNormal = NULL); // Collision check determination through local coordinates..
+                         __Vector3 * pVCol = NULL,
+                         __Vector3 * pVNormal = NULL); // Collision check determination through local coordinates..
     float Radius() { return m_fRadius; }
     void  FindMinMax();
     void  Render(D3DCOLOR crLine);

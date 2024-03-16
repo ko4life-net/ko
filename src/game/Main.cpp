@@ -397,9 +397,8 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
     CGameProcedure::s_bWindowed = true;
 #endif // #if _DEBUG
 
-    
     HWND hWndSub = CreateSubWindow(hInstance);
-    ::ShowWindow(hWndSub, SW_HIDE); 
+    ::ShowWindow(hWndSub, SW_HIDE);
 
     // Clap clap clap clap...
     HWND hWndMain = CreateMainWindow(hInstance);
@@ -407,34 +406,32 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
         CLogWriter::Write("Cannot create window.");
         exit(-1);
     }
-    ::ShowWindow(hWndMain, nCmdShow); 
+    ::ShowWindow(hWndMain, nCmdShow);
     ::SetActiveWindow(hWndMain);
 
     // Launcher
-    FILE * pFile = fopen("Launcher2.exe", "r"); 
+    FILE * pFile = fopen("Launcher2.exe", "r");
     if (pFile) {
         fclose(pFile);
-        if (::DeleteFile("Launcher.exe")) 
-        {
-            ::rename("Launcher2.exe", "Launcher.exe"); 
+        if (::DeleteFile("Launcher.exe")) {
+            ::rename("Launcher2.exe", "Launcher.exe");
         }
     }
 
     // Huh huh tsk tsk tsk tsk?
-    if (lpCmdLine && lstrlen(lpCmdLine) > 0 && lstrlen(lpCmdLine) < 64) 
-    {
+    if (lpCmdLine && lstrlen(lpCmdLine) > 0 && lstrlen(lpCmdLine) < 64) {
         char szService[64], szAccountTmp[64], szPWTmp[64];
         sscanf(lpCmdLine, "%s %s %s", szService, szAccountTmp, szPWTmp);
 
-        if (0 == lstrcmpi(szService, "MGame")) { 
+        if (0 == lstrcmpi(szService, "MGame")) {
             CGameProcedure::s_eLogInClassification = LIC_MGAME;
-        } else if (0 == lstrcmpi(szService, "Daum")) { 
+        } else if (0 == lstrcmpi(szService, "Daum")) {
             CGameProcedure::s_eLogInClassification = LIC_DAUM;
         } else {
             CGameProcedure::s_eLogInClassification = LIC_KNIGHTONLINE;
         }
         CGameProcedure::s_szAccount = szAccountTmp; // Thick straw
-        CGameProcedure::s_szPassWord = szPWTmp;     
+        CGameProcedure::s_szPassWord = szPWTmp;
 
         if (0 == lstrcmpi(szService, "$#$%&^@!#$%#@^%&#%$&^¿î¿µÆ??ü¿ë°Ô?Ó")) { // I was shocked
             CGameProcedure::s_bWindowed = true;
@@ -445,8 +442,8 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
     //////////////////////////////////////////////////////////////////////////////////////////
     // Static Member
-    CGameProcedure::StaticMemberInit(hInstance, hWndMain, hWndSub);                
-    CGameProcedure::ProcActiveSet((CGameProcedure *)CGameProcedure::s_pProcLogIn); 
+    CGameProcedure::StaticMemberInit(hInstance, hWndMain, hWndSub);
+    CGameProcedure::ProcActiveSet((CGameProcedure *)CGameProcedure::s_pProcLogIn);
 
     BOOL bGotMsg = FALSE;
 
@@ -492,14 +489,14 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 #endif // #if _DEBUG
 
     //////////////////////////////
-    // 
+    //
     //    ::TerminateThread(hThreadCheckSpeedHack, 0);
     //    hThreadCheckSpeedHack = 0;
     //    dwCSHID = 0;
-    // 
+    //
     //////////////////////////////
 
-    CGameProcedure::StaticMemberRelease(); 
+    CGameProcedure::StaticMemberRelease();
     CN3Log::Destroy();
 
     return msg.wParam;
