@@ -235,9 +235,9 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
             SQLGetData(hstmt, 28, SQL_C_LONG, &PZ, 0, &Indexind);
             SQLGetData(hstmt, 29, SQL_C_LONG, &PY, 0, &Indexind);
             SQLGetData(hstmt, 30, SQL_C_LONG, &dwTime, 0, &Indexind);
-            SQLGetData(hstmt, 31, SQL_C_CHAR, strSkill, 10, &Indexind);
-            SQLGetData(hstmt, 32, SQL_C_CHAR, strItem, 400, &Indexind);
-            SQLGetData(hstmt, 33, SQL_C_CHAR, strSerial, 400, &Indexind);
+            SQLGetData(hstmt, 31, SQL_C_BINARY, strSkill, 10, &Indexind);
+            SQLGetData(hstmt, 32, SQL_C_BINARY, strItem, 400, &Indexind);
+            SQLGetData(hstmt, 33, SQL_C_BINARY, strSerial, 400, &Indexind);
             retval = TRUE;
         } else {
             memset(logstr, 0x00, 256);
@@ -536,12 +536,12 @@ int CDBAgent::UpdateUser(const char * userid, int uid, int type) {
 
     retcode = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_GameDB.m_hdbc, &hstmt);
     if (retcode == SQL_SUCCESS) {
-        retcode = SQLBindParameter(hstmt, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, sizeof(strSkill), 0, strSkill, 0,
-                                   &sStrSkill);
-        retcode = SQLBindParameter(hstmt, 2, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, sizeof(strItem), 0, strItem, 0,
+        retcode = SQLBindParameter(hstmt, 1, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(strSkill), 0, strSkill,
+                                   0, &sStrSkill);
+        retcode = SQLBindParameter(hstmt, 2, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(strItem), 0, strItem, 0,
                                    &sStrItem);
-        retcode = SQLBindParameter(hstmt, 3, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, sizeof(strSerial), 0, strSerial, 0,
-                                   &sStrSerial);
+        retcode = SQLBindParameter(hstmt, 3, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(strSerial), 0, strSerial,
+                                   0, &sStrSerial);
         if (retcode == SQL_SUCCESS) {
             retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
             if (retcode == SQL_ERROR) {
@@ -783,7 +783,7 @@ BOOL CDBAgent::LoadCharInfo(char * id, char * buff, int & buff_index) {
             SQLGetData(hstmt, 4, SQL_C_TINYINT, &Level, 0, &Indexind);
             SQLGetData(hstmt, 5, SQL_C_TINYINT, &Face, 0, &Indexind);
             SQLGetData(hstmt, 6, SQL_C_TINYINT, &Zone, 0, &Indexind);
-            SQLGetData(hstmt, 7, SQL_C_CHAR, strItem, 400, &Indexind);
+            SQLGetData(hstmt, 7, SQL_C_BINARY, strItem, 400, &Indexind);
             retval = TRUE;
         } else {
             retval = FALSE;
