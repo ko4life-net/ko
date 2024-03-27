@@ -168,10 +168,7 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
     SQLCHAR     Face, City, Fame, Authority, Points;
     SQLSMALLINT Hp, Mp, Sp, sRet, Class, Bind, Knights;
     SQLCHAR     Str, Sta, Dex, Intel, Cha, Zone;
-    TCHAR       strSkill[10], strItem[400], strSerial[400];
-    memset(strSkill, 0x00, 10);
-    memset(strItem, 0x00, 400);
-    memset(strSerial, 0x00, 400);
+    TCHAR       bySkill[10]{}, byItem[400]{}, bySerial[400]{};
 
     SQLINTEGER Indexind = SQL_NTS;
 
@@ -235,9 +232,9 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
             SQLGetData(hstmt, 28, SQL_C_LONG, &PZ, 0, &Indexind);
             SQLGetData(hstmt, 29, SQL_C_LONG, &PY, 0, &Indexind);
             SQLGetData(hstmt, 30, SQL_C_LONG, &dwTime, 0, &Indexind);
-            SQLGetData(hstmt, 31, SQL_C_CHAR, strSkill, 10, &Indexind);
-            SQLGetData(hstmt, 32, SQL_C_CHAR, strItem, 400, &Indexind);
-            SQLGetData(hstmt, 33, SQL_C_CHAR, strSerial, 400, &Indexind);
+            SQLGetData(hstmt, 31, SQL_C_BINARY, bySkill, sizeof(bySkill), &Indexind);
+            SQLGetData(hstmt, 32, SQL_C_BINARY, byItem, sizeof(byItem), &Indexind);
+            SQLGetData(hstmt, 33, SQL_C_BINARY, bySerial, sizeof(bySerial), &Indexind);
             retval = TRUE;
         } else {
             memset(logstr, 0x00, 256);
@@ -356,7 +353,7 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
 
     int index = 0, serial_index = 0;
     for (int i = 0; i < 9; i++) {
-        pUser->m_bstrSkill[i] = GetByte(strSkill, index);
+        pUser->m_bstrSkill[i] = GetByte(bySkill, index);
     }
 
     index = 0;
@@ -367,11 +364,11 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
 
     for (int i = 0; i < HAVE_MAX + SLOT_MAX; i++) // 착용갯수 + 소유갯수(14+28=42)
     {
-        itemid = GetDWORD(strItem, index);
-        duration = GetShort(strItem, index);
-        count = GetShort(strItem, index);
+        itemid = GetDWORD(byItem, index);
+        duration = GetShort(byItem, index);
+        count = GetShort(byItem, index);
 
-        serial = GetInt64(strSerial, serial_index); // item serial number
+        serial = GetInt64(bySerial, serial_index); // item serial number
 
         pTable = m_pMain->m_ItemtableArray.GetData(itemid);
 
@@ -470,7 +467,7 @@ int CDBAgent::UpdateUser(const char * userid, int uid, int type) {
     SQLHSTMT  hstmt;
     SQLRETURN retcode;
     TCHAR     szSQL[1024];
-    SDWORD    sStrItem, sStrSkill, sStrSerial;
+    SDWORD    sByItem, sBySkill, sBySerial;
 
     _USER_DATA * pUser = NULL;
     memset(szSQL, 0x00, 1024);
@@ -491,19 +488,14 @@ int CDBAgent::UpdateUser(const char * userid, int uid, int type) {
         pUser->m_dwTime = 0;
     }
 
-    TCHAR strSkill[10];
-    TCHAR strItem[400];
-    TCHAR strSerial[400];
-    memset(strSkill, 0x00, 10);
-    memset(strItem, 0x00, 400);
-    memset(strSerial, 0x00, 400);
-    sStrSkill = sizeof(strSkill);
-    sStrItem = sizeof(strItem);
-    sStrSerial = sizeof(strSerial);
+    TCHAR bySkill[10]{}, byItem[400]{}, bySerial[400]{};
+    sBySkill = sizeof(bySkill);
+    sByItem = sizeof(byItem);
+    sBySerial = sizeof(bySerial);
 
     int index = 0, serial_index = 0;
     for (int i = 0; i < 9; i++) {
-        SetByte(strSkill, pUser->m_bstrSkill[i], index);
+        SetByte(bySkill, pUser->m_bstrSkill[i], index);
     }
 
     index = 0;
@@ -514,11 +506,11 @@ int CDBAgent::UpdateUser(const char * userid, int uid, int type) {
                 TRACE("Item Drop Saved(%d) : %d (%s)\n", i, pUser->m_sItemArray[i].nNum, pUser->m_id);
             }
         }
-        SetDWORD(strItem, pUser->m_sItemArray[i].nNum, index);
-        SetShort(strItem, pUser->m_sItemArray[i].sDuration, index);
-        SetShort(strItem, pUser->m_sItemArray[i].sCount, index);
+        SetDWORD(byItem, pUser->m_sItemArray[i].nNum, index);
+        SetShort(byItem, pUser->m_sItemArray[i].sDuration, index);
+        SetShort(byItem, pUser->m_sItemArray[i].sCount, index);
 
-        SetInt64(strSerial, pUser->m_sItemArray[i].nSerialNum, serial_index);
+        SetInt64(bySerial, pUser->m_sItemArray[i].nSerialNum, serial_index);
     }
 
     // 작업 : clan정보도 업데이트
@@ -536,12 +528,12 @@ int CDBAgent::UpdateUser(const char * userid, int uid, int type) {
 
     retcode = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_GameDB.m_hdbc, &hstmt);
     if (retcode == SQL_SUCCESS) {
-        retcode = SQLBindParameter(hstmt, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, sizeof(strSkill), 0, strSkill, 0,
-                                   &sStrSkill);
-        retcode = SQLBindParameter(hstmt, 2, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, sizeof(strItem), 0, strItem, 0,
-                                   &sStrItem);
-        retcode = SQLBindParameter(hstmt, 3, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, sizeof(strSerial), 0, strSerial, 0,
-                                   &sStrSerial);
+        retcode = SQLBindParameter(hstmt, 1, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(bySkill), 0, bySkill, 0,
+                                   &sBySkill);
+        retcode = SQLBindParameter(hstmt, 2, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(byItem), 0, byItem, 0,
+                                   &sByItem);
+        retcode = SQLBindParameter(hstmt, 3, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(bySerial), 0, bySerial,
+                                   0, &sBySerial);
         if (retcode == SQL_SUCCESS) {
             retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
             if (retcode == SQL_ERROR) {
@@ -554,9 +546,11 @@ int CDBAgent::UpdateUser(const char * userid, int uid, int type) {
                 }
                 SQLFreeHandle((SQLSMALLINT)SQL_HANDLE_STMT, hstmt);
 
-                char logstr[1024];
-                memset(logstr, 0x00, 1024);
-                sprintf(logstr, "[Error-DB Fail] %s, Skill[%s] Item[%s] \r\n", szSQL, strSkill, strItem);
+                char        logstr[1024]{};
+                std::string strBySkill = N3::BytesToHex(reinterpret_cast<uint8_t *>(bySkill), sizeof(bySkill));
+                std::string strByItem = N3::BytesToHex(reinterpret_cast<uint8_t *>(byItem), sizeof(byItem));
+                sprintf(logstr, "[Error-DB Fail] %s, Skill[%s] Item[%s] \r\n", szSQL, strBySkill.c_str(),
+                        strByItem.c_str());
                 m_pMain->WriteLogFile(logstr);
                 //m_pMain->m_LogFile.Write(logstr, strlen(logstr));
                 return 0;
@@ -755,8 +749,7 @@ BOOL CDBAgent::LoadCharInfo(char * id, char * buff, int & buff_index) {
 
     SQLCHAR     Race = 0x00, HairColor = 0x00, Level = 0x00, Face = 0x00, Zone = 0x00;
     SQLSMALLINT sRet, Class = 0;
-    TCHAR       strItem[400];
-    memset(strItem, 0x00, 400);
+    TCHAR       byItem[400]{};
 
     SQLINTEGER Indexind = SQL_NTS;
 
@@ -783,7 +776,7 @@ BOOL CDBAgent::LoadCharInfo(char * id, char * buff, int & buff_index) {
             SQLGetData(hstmt, 4, SQL_C_TINYINT, &Level, 0, &Indexind);
             SQLGetData(hstmt, 5, SQL_C_TINYINT, &Face, 0, &Indexind);
             SQLGetData(hstmt, 6, SQL_C_TINYINT, &Zone, 0, &Indexind);
-            SQLGetData(hstmt, 7, SQL_C_CHAR, strItem, 400, &Indexind);
+            SQLGetData(hstmt, 7, SQL_C_BINARY, byItem, sizeof(byItem), &Indexind);
             retval = TRUE;
         } else {
             retval = FALSE;
@@ -811,9 +804,9 @@ BOOL CDBAgent::LoadCharInfo(char * id, char * buff, int & buff_index) {
 
     int tempid = 0, count = 0, index = 0, duration = 0;
     for (int i = 0; i < SLOT_MAX; i++) {
-        tempid = GetDWORD(strItem, index);
-        duration = GetShort(strItem, index);
-        count = GetShort(strItem, index);
+        tempid = GetDWORD(byItem, index);
+        duration = GetShort(byItem, index);
+        count = GetShort(byItem, index);
         if (i == HEAD || i == BREAST || i == SHOULDER || i == LEG || i == GLOVE || i == FOOT) {
             SetDWORD(buff, tempid, buff_index);
             SetShort(buff, duration, buff_index);
@@ -1155,12 +1148,11 @@ BOOL CDBAgent::LoadWarehouseData(const char * accountid, int uid) {
     _USER_DATA *  pUser = NULL;
     _ITEM_TABLE * pTable = NULL;
     SQLINTEGER    Money = 0, dwTime = 0;
-    TCHAR         strItem[1600], strSerial[1600];
-    memset(strItem, 0x00, 1600);
-    memset(strSerial, 0x00, 1600);
+    TCHAR         byItem[1600]{}, bySerial[1600]{};
+
     SQLINTEGER Indexind = SQL_NTS;
 
-    wsprintf(szSQL, TEXT("SELECT nMoney, dwTime, WarehouseData, strSerial FROM WAREHOUSE WHERE strAccountID = \'%s\'"),
+    wsprintf(szSQL, TEXT("SELECT nMoney, dwTime, byItem, bySerial FROM WAREHOUSE WHERE strAccountID = \'%s\'"),
              accountid);
 
     DBProcessNumber(15);
@@ -1176,8 +1168,8 @@ BOOL CDBAgent::LoadWarehouseData(const char * accountid, int uid) {
         if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
             SQLGetData(hstmt, 1, SQL_C_LONG, &Money, 0, &Indexind);
             SQLGetData(hstmt, 2, SQL_C_LONG, &dwTime, 0, &Indexind);
-            SQLGetData(hstmt, 3, SQL_C_CHAR, strItem, 1600, &Indexind);
-            SQLGetData(hstmt, 4, SQL_C_CHAR, strSerial, 1600, &Indexind);
+            SQLGetData(hstmt, 3, SQL_C_BINARY, byItem, sizeof(byItem), &Indexind);
+            SQLGetData(hstmt, 4, SQL_C_BINARY, bySerial, sizeof(bySerial), &Indexind);
             retval = TRUE;
         } else {
             retval = FALSE;
@@ -1214,11 +1206,11 @@ BOOL CDBAgent::LoadWarehouseData(const char * accountid, int uid) {
     short   count = 0, duration = 0;
     __int64 serial = 0;
     for (int i = 0; i < WAREHOUSE_MAX; i++) {
-        itemid = GetDWORD(strItem, index);
-        duration = GetShort(strItem, index);
-        count = GetShort(strItem, index);
+        itemid = GetDWORD(byItem, index);
+        duration = GetShort(byItem, index);
+        count = GetShort(byItem, index);
 
-        serial = GetInt64(strSerial, serial_index);
+        serial = GetInt64(bySerial, serial_index);
 
         pTable = m_pMain->m_ItemtableArray.GetData(itemid);
         if (pTable) {
@@ -1254,7 +1246,7 @@ int CDBAgent::UpdateWarehouseData(const char * accountid, int uid, int type) {
     SQLHSTMT  hstmt;
     SQLRETURN retcode;
     TCHAR     szSQL[1024];
-    SDWORD    sStrItem, sStrSerial;
+    SDWORD    sByItem, sBySerial;
 
     _USER_DATA * pUser = NULL;
     memset(szSQL, 0x00, 1024);
@@ -1274,19 +1266,17 @@ int CDBAgent::UpdateWarehouseData(const char * accountid, int uid, int type) {
         pUser->m_dwTime = 0;
     }
 
-    TCHAR strItem[1600], strSerial[1600];
-    memset(strItem, 0x00, 1600);
-    memset(strSerial, 0x00, 1600);
-    sStrItem = sizeof(strItem);
-    sStrSerial = sizeof(strSerial);
+    TCHAR byItem[1600]{}, bySerial[1600]{};
+    sByItem = sizeof(byItem);
+    sBySerial = sizeof(bySerial);
 
     int index = 0, serial_index = 0;
     for (int i = 0; i < WAREHOUSE_MAX; i++) {
-        SetDWORD(strItem, pUser->m_sWarehouseArray[i].nNum, index);
-        SetShort(strItem, pUser->m_sWarehouseArray[i].sDuration, index);
-        SetShort(strItem, pUser->m_sWarehouseArray[i].sCount, index);
+        SetDWORD(byItem, pUser->m_sWarehouseArray[i].nNum, index);
+        SetShort(byItem, pUser->m_sWarehouseArray[i].sDuration, index);
+        SetShort(byItem, pUser->m_sWarehouseArray[i].sCount, index);
 
-        SetInt64(strSerial, pUser->m_sWarehouseArray[i].nSerialNum, serial_index);
+        SetInt64(bySerial, pUser->m_sWarehouseArray[i].nSerialNum, serial_index);
     }
 
     wsprintf(szSQL, TEXT("{call UPDATE_WAREHOUSE ( \'%s\', %d,%d,?,?)}"), accountid, pUser->m_iBank, pUser->m_dwTime);
@@ -1297,10 +1287,10 @@ int CDBAgent::UpdateWarehouseData(const char * accountid, int uid, int type) {
 
     retcode = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_GameDB.m_hdbc, &hstmt);
     if (retcode == SQL_SUCCESS) {
-        retcode = SQLBindParameter(hstmt, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, sizeof(strItem), 0, strItem, 0,
-                                   &sStrItem);
-        retcode = SQLBindParameter(hstmt, 2, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, sizeof(strSerial), 0, strSerial, 0,
-                                   &sStrSerial);
+        retcode = SQLBindParameter(hstmt, 1, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(byItem), 0, byItem, 0,
+                                   &sByItem);
+        retcode = SQLBindParameter(hstmt, 2, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(bySerial), 0, bySerial,
+                                   0, &sBySerial);
         if (retcode == SQL_SUCCESS) {
             retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
             if (retcode == SQL_ERROR) {
@@ -1313,9 +1303,9 @@ int CDBAgent::UpdateWarehouseData(const char * accountid, int uid, int type) {
                 }
                 SQLFreeHandle((SQLSMALLINT)SQL_HANDLE_STMT, hstmt);
 
-                char logstr[2048];
-                memset(logstr, 0x00, 2048);
-                sprintf(logstr, "%s, Item[%s] \r\n", szSQL, strItem);
+                char        logstr[2048]{};
+                std::string strByItem = N3::BytesToHex(reinterpret_cast<uint8_t *>(byItem), sizeof(byItem));
+                sprintf(logstr, "%s, Item[%s] \r\n", szSQL, strByItem.c_str());
                 m_pMain->WriteLogFile(logstr);
                 //m_pMain->m_LogFile.Write(logstr, strlen(logstr));
                 return FALSE;
