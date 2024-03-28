@@ -168,10 +168,10 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
     SQLCHAR     Face, City, Fame, Authority, Points;
     SQLSMALLINT Hp, Mp, Sp, sRet, Class, Bind, Knights;
     SQLCHAR     Str, Sta, Dex, Intel, Cha, Zone;
-    TCHAR       strSkill[10], strItem[400], strSerial[400];
-    memset(strSkill, 0x00, 10);
-    memset(strItem, 0x00, 400);
-    memset(strSerial, 0x00, 400);
+    TCHAR       bSkill[10], bItem[400], bSerial[400];
+    memset(bSkill, 0x00, 10);
+    memset(bItem, 0x00, 400);
+    memset(bSerial, 0x00, 400);
 
     SQLINTEGER Indexind = SQL_NTS;
 
@@ -235,9 +235,9 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
             SQLGetData(hstmt, 28, SQL_C_LONG, &PZ, 0, &Indexind);
             SQLGetData(hstmt, 29, SQL_C_LONG, &PY, 0, &Indexind);
             SQLGetData(hstmt, 30, SQL_C_LONG, &dwTime, 0, &Indexind);
-            SQLGetData(hstmt, 31, SQL_C_CHAR, strSkill, 10, &Indexind);
-            SQLGetData(hstmt, 32, SQL_C_CHAR, strItem, 400, &Indexind);
-            SQLGetData(hstmt, 33, SQL_C_CHAR, strSerial, 400, &Indexind);
+            SQLGetData(hstmt, 31, SQL_C_BINARY, bSkill, 10, &Indexind);
+            SQLGetData(hstmt, 32, SQL_C_BINARY, bItem, 400, &Indexind);
+            SQLGetData(hstmt, 33, SQL_C_BINARY, bSerial, 400, &Indexind);
             retval = TRUE;
         } else {
             memset(logstr, 0x00, 256);
@@ -356,7 +356,7 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
 
     int index = 0, serial_index = 0;
     for (int i = 0; i < 9; i++) {
-        pUser->m_bstrSkill[i] = GetByte(strSkill, index);
+        pUser->m_bstrSkill[i] = GetByte(bSkill, index);
     }
 
     index = 0;
@@ -367,11 +367,11 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
 
     for (int i = 0; i < HAVE_MAX + SLOT_MAX; i++) // 착용갯수 + 소유갯수(14+28=42)
     {
-        itemid = GetDWORD(strItem, index);
-        duration = GetShort(strItem, index);
-        count = GetShort(strItem, index);
+        itemid = GetDWORD(bItem, index);
+        duration = GetShort(bItem, index);
+        count = GetShort(bItem, index);
 
-        serial = GetInt64(strSerial, serial_index); // item serial number
+        serial = GetInt64(bSerial, serial_index); // item serial number
 
         pTable = m_pMain->m_ItemtableArray.GetData(itemid);
 
@@ -491,19 +491,19 @@ int CDBAgent::UpdateUser(const char * userid, int uid, int type) {
         pUser->m_dwTime = 0;
     }
 
-    TCHAR strSkill[10];
-    TCHAR strItem[400];
-    TCHAR strSerial[400];
-    memset(strSkill, 0x00, 10);
-    memset(strItem, 0x00, 400);
-    memset(strSerial, 0x00, 400);
-    sStrSkill = sizeof(strSkill);
-    sStrItem = sizeof(strItem);
-    sStrSerial = sizeof(strSerial);
+    TCHAR bSkill[10];
+    TCHAR bItem[400];
+    TCHAR bSerial[400];
+    memset(bSkill, 0x00, 10);
+    memset(bItem, 0x00, 400);
+    memset(bSerial, 0x00, 400);
+    sStrSkill = sizeof(bSkill);
+    sStrItem = sizeof(bItem);
+    sStrSerial = sizeof(bSerial);
 
     int index = 0, serial_index = 0;
     for (int i = 0; i < 9; i++) {
-        SetByte(strSkill, pUser->m_bstrSkill[i], index);
+        SetByte(bSkill, pUser->m_bstrSkill[i], index);
     }
 
     index = 0;
@@ -514,11 +514,11 @@ int CDBAgent::UpdateUser(const char * userid, int uid, int type) {
                 TRACE("Item Drop Saved(%d) : %d (%s)\n", i, pUser->m_sItemArray[i].nNum, pUser->m_id);
             }
         }
-        SetDWORD(strItem, pUser->m_sItemArray[i].nNum, index);
-        SetShort(strItem, pUser->m_sItemArray[i].sDuration, index);
-        SetShort(strItem, pUser->m_sItemArray[i].sCount, index);
+        SetDWORD(bItem, pUser->m_sItemArray[i].nNum, index);
+        SetShort(bItem, pUser->m_sItemArray[i].sDuration, index);
+        SetShort(bItem, pUser->m_sItemArray[i].sCount, index);
 
-        SetInt64(strSerial, pUser->m_sItemArray[i].nSerialNum, serial_index);
+        SetInt64(bSerial, pUser->m_sItemArray[i].nSerialNum, serial_index);
     }
 
     // 작업 : clan정보도 업데이트
@@ -536,11 +536,11 @@ int CDBAgent::UpdateUser(const char * userid, int uid, int type) {
 
     retcode = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_GameDB.m_hdbc, &hstmt);
     if (retcode == SQL_SUCCESS) {
-        retcode = SQLBindParameter(hstmt, 1, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, sizeof(strSkill), 0, strSkill, 0,
+        retcode = SQLBindParameter(hstmt, 1, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(bSkill), 0, bSkill, 0,
                                    &sStrSkill);
-        retcode = SQLBindParameter(hstmt, 2, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, sizeof(strItem), 0, strItem, 0,
+        retcode = SQLBindParameter(hstmt, 2, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(bItem), 0, bItem, 0,
                                    &sStrItem);
-        retcode = SQLBindParameter(hstmt, 3, SQL_PARAM_INPUT, SQL_C_CHAR, SQL_CHAR, sizeof(strSerial), 0, strSerial, 0,
+        retcode = SQLBindParameter(hstmt, 3, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(bSerial), 0, bSerial, 0,
                                    &sStrSerial);
         if (retcode == SQL_SUCCESS) {
             retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
@@ -556,7 +556,7 @@ int CDBAgent::UpdateUser(const char * userid, int uid, int type) {
 
                 char logstr[1024];
                 memset(logstr, 0x00, 1024);
-                sprintf(logstr, "[Error-DB Fail] %s, Skill[%s] Item[%s] \r\n", szSQL, strSkill, strItem);
+                sprintf(logstr, "[Error-DB Fail] %s, Skill[%s] Item[%s] \r\n", szSQL, bSkill, bItem);
                 m_pMain->WriteLogFile(logstr);
                 //m_pMain->m_LogFile.Write(logstr, strlen(logstr));
                 return 0;
@@ -783,7 +783,7 @@ BOOL CDBAgent::LoadCharInfo(char * id, char * buff, int & buff_index) {
             SQLGetData(hstmt, 4, SQL_C_TINYINT, &Level, 0, &Indexind);
             SQLGetData(hstmt, 5, SQL_C_TINYINT, &Face, 0, &Indexind);
             SQLGetData(hstmt, 6, SQL_C_TINYINT, &Zone, 0, &Indexind);
-            SQLGetData(hstmt, 7, SQL_C_CHAR, strItem, 400, &Indexind);
+            SQLGetData(hstmt, 7, SQL_C_BINARY, strItem, 400, &Indexind);
             retval = TRUE;
         } else {
             retval = FALSE;
