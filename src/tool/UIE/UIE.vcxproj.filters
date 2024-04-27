@@ -301,6 +301,9 @@
     <ClInclude Include="DlgReplace.h">
       <Filter>Dialogs</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\common\N3Utils.h">
+      <Filter>N3Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Toolbar.bmp">

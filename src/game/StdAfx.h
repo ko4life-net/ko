@@ -22,6 +22,7 @@
 #include <filesystem>
 #include <io.h>
 
+#include "N3Utils.h"
 #include "N3Base/My_3DStruct.h"
 #include "N3Base/N3Log.h"
 
@@ -33,10 +34,3 @@ namespace fs = std::filesystem;
 #else
 #define TRACE(fmt, ...) (void)fmt
 #endif
-
-namespace N3 {
-static bool iequals(const std::string_view & lhs, const std::string_view & rhs) {
-    auto to_lower{std::ranges::views::transform(::tolower)};
-    return std::ranges::equal(lhs | to_lower, rhs | to_lower);
-}
-} // namespace N3

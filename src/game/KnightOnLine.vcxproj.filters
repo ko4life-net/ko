@@ -643,6 +643,9 @@
     <ClInclude Include="UIExitMenu.h">
       <Filter>Procedure - Main\UI</Filter>
     </ClInclude>
+    <ClInclude Include="..\common\N3Utils.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\Resource.rc">
