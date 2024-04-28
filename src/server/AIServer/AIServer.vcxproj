@@ -166,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\common\Implode.h" />
+    <ClInclude Include="..\..\common\N3Utils.h" />
     <ClInclude Include="CircularBuffer.h" />
     <ClInclude Include="Compress.h" />
     <ClInclude Include="Define.h" />

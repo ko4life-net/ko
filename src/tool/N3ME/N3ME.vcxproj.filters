@@ -726,6 +726,9 @@
     <ClInclude Include="..\..\engine\N3Base\N3Log.h">
       <Filter>N3Base</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\common\N3Utils.h">
+      <Filter>N3Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="N3ME.rc">
