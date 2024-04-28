@@ -9,7 +9,7 @@
 CN3SPart::CN3SPart() {
     m_dwType |= OBJ_SHAPE_PART;
 
-    m_vPivot.Set(0, 0, 0);     // Local axis
+    m_vPivot.Set(0, 0, 0);      // Local axis
     m_Matrix.Identity();        // World Matrix.. It is best to calculate it in advance when Shape Loading.
     m_bOutOfCameraRange = TRUE; // Outside Camera range...
     m_Mtl.Init();               //Material
@@ -82,7 +82,8 @@ void CN3SPart::Tick(const __Matrix44 & mtxParent, const __Quaternion & qRot,
 
     // If you get too far away from the camera, it will pass by.
     __Vector3 vCenter = (this->Min() + this->Max()) * 0.5f;
-    if (s_CameraData.IsOutOfFrustum(vCenter, this->Radius() * fScale)) // If it is outside the camera tetrahedron, it passes.
+    if (s_CameraData.IsOutOfFrustum(vCenter,
+                                    this->Radius() * fScale)) // If it is outside the camera tetrahedron, it passes.
     {
         m_bOutOfCameraRange = TRUE;
         return;
@@ -102,7 +103,8 @@ void CN3SPart::Tick(const __Matrix44 & mtxParent, const __Quaternion & qRot,
     {
         m_fTexIndex += CN3Base::s_fSecPerFrm * m_fTexFPS;
         if (m_fTexIndex >= iTC) {
-            m_fTexIndex -= (iTC * m_fTexIndex) / iTC; // If you divide by an integer, only the decimal point is left?? (It's similar anyway~)
+            m_fTexIndex -= (iTC * m_fTexIndex) /
+                           iTC; // If you divide by an integer, only the decimal point is left?? (It's similar anyway~)
         }
     }
 
@@ -372,7 +374,8 @@ bool CN3SPart::Save(HANDLE hFile) {
         nL = pPMesh->FileName().size();
     } else {
         MessageBox(GetActiveWindow(),
-                   "Progressive mesh pointer is NULL! : The object may not be displayed properly (the resource file may not be displayed properly). "
+                   "Progressive mesh pointer is NULL! : The object may not be displayed properly (the resource file "
+                   "may not be displayed properly). "
                    "It is highly likely that it has not been loaded.)",
                    "warning", MB_OK);
     }
@@ -398,7 +401,7 @@ bool CN3SPart::Save(HANDLE hFile) {
     int iTC = m_TexRefs.size();
     WriteFile(hFile, &iTC, 4, &dwRWC, NULL);
     WriteFile(hFile, &m_fTexFPS, 4, &dwRWC, NULL);
-    for (int j = 0; j < iTC; j++)// Write Texture File name...
+    for (int j = 0; j < iTC; j++) // Write Texture File name...
     {
         if (m_TexRefs[j]) {
             nL = m_TexRefs[j]->FileName().size();
@@ -503,7 +506,7 @@ void CN3SPart::PartialRender(int iCount, LPDIRECT3DINDEXBUFFER9 pIB) {
         s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
     }
 
-   // Apply the pre-calculated world matrix when loading...
+    // Apply the pre-calculated world matrix when loading...
     s_lpD3DDev->SetTransform(D3DTS_WORLD, &m_Matrix);
 
     m_PMInst.PartialRender(iCount, pIB);
@@ -651,7 +654,7 @@ void CN3Shape::Tick(float fFrm) {
         return;
     }
 
-   // If the distance is close, loosen the curling more.
+    // If the distance is close, loosen the curling more.
     // Find the largest scale value...
     float fScale = m_vScale.x;
     if (fScale < m_vScale.y) {

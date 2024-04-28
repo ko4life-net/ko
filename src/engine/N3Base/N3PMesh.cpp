@@ -169,8 +169,9 @@ bool CN3PMesh::Load(HANDLE hFile) {
             [m_iNumCollapses +
              1]; // +1을 한 이유 : PMeshInstance::SplitOne() There are times when a pointer must inevitably point to a boundary line in a function.
         ReadFile(hFile, m_pCollapses, m_iNumCollapses * sizeof(__EdgeCollapse), &dwNum, NULL);
-        ZeroMemory(m_pCollapses + m_iNumCollapses,
-                   sizeof(__EdgeCollapse)); // Same as the reason for +1 above. I initialized the last data just in case.
+        ZeroMemory(
+            m_pCollapses + m_iNumCollapses,
+            sizeof(__EdgeCollapse)); // Same as the reason for +1 above. I initialized the last data just in case.
 
         bool bFixed = false;
         for (int i = 0; i < m_iNumCollapses; i++) {
@@ -363,8 +364,9 @@ void CN3PMesh::CopyMesh(CN3PMesh * pSrcPMesh) {
             [m_iNumCollapses +
              1]; // Reason for +1: In the PMeshInstance::SplitOne() function, there are cases where the pointer must inevitably point to the boundary line.
         CopyMemory(m_pCollapses, pSrcPMesh->m_pCollapses, sizeof(__EdgeCollapse) * m_iNumCollapses);
-        ZeroMemory(m_pCollapses + m_iNumCollapses,
-                   sizeof(__EdgeCollapse)); // Same as the reason for +1 above. I initialized the last data just in case.
+        ZeroMemory(
+            m_pCollapses + m_iNumCollapses,
+            sizeof(__EdgeCollapse)); // Same as the reason for +1 above. I initialized the last data just in case.
     }
 
     hr = Create(m_iMaxNumVertices, m_iMaxNumIndices);
@@ -522,7 +524,7 @@ void CN3PMesh::LODCtrlSet(__LODCtrlValue * pLODCtrls, int nCount) {
         m_pLODCtrlValues = new __LODCtrlValue[nCount];
         memcpy(m_pLODCtrlValues, pLODCtrls, sizeof(__LODCtrlValue) * nCount);
 
-      // Sort by distance
+        // Sort by distance
         qsort(m_pLODCtrlValues, m_iLODCtrlValueCount, sizeof(__LODCtrlValue), SortByDistance);
     }
 }

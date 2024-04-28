@@ -17,20 +17,20 @@ class CBird : public CN3Base {
     // Attributes
   public:
   protected:
-    // 파일에서 읽어오는 정보
+    // Information read from file
     CN3Shape * m_pShape;  // Shape pointer
-    __Vector3  m_vPivot;  // 중심점(중심점에서 반경 m_fRadius만큼 범위내에서 움직인다.
-    float      m_fRadius; // 반경
+    __Vector3  m_vPivot;  // Center point (moves within a range of radius m_fRadius from the center point.
+    float      m_fRadius; // radius
 
-    //    __Vector3    m_vVelocity;    // 현재 속도(스피드+방향)
-    float m_fRadianSpeed; // 속력
-    float m_fRadian;      // 현재 타원의 위치각
+    //    __Vector3    m_vVelocity;    // Current speed (speed + direction)
+    float m_fRadianSpeed; // speed
+    float m_fRadian;      // Current position angle of ellipse
     float m_fFactor1, m_fFactor2;
     float m_fFactorSpeed1, m_fFactorSpeed2;
 
-    float m_fRadiusY;                         // 높이 반경
-    float m_fFactorY1, m_fFactorY2;           // 높이 변화 요소
-    float m_fFactorYSpeed1, m_fFactorYSpeed2; // 높이 변화 요소 변화율..
+    float m_fRadiusY;                         // height radius
+    float m_fFactorY1, m_fFactorY2;           // height change factor
+    float m_fFactorYSpeed1, m_fFactorYSpeed2; // Height change factor rate of change...
 
     CN3SndObj * m_pSnd;
     float       m_fSndInterval;

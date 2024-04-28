@@ -26,8 +26,8 @@ typedef struct __AnimData {
     float fFrmSound0;
     float fFrmSound1;
 
-    float fTimeBlend;  // Blending time when connected to other actions
-    int iBlendFlags;    // If the blending flag is 0, just blending. If it is 1, there is a time delay equal to the blending time when looping.
+    float fTimeBlend; // Blending time when connected to other actions
+    int iBlendFlags; // If the blending flag is 0, just blending. If it is 1, there is a time delay equal to the blending time when looping.
 
     float fFrmStrike0;
     float fFrmStrike1;
@@ -39,7 +39,8 @@ typedef struct __AnimData {
         fFrmPlugTraceStart = fFrmPlugTraceEnd = 0;
         fFrmSound0 = fFrmSound1 = 0;
         fTimeBlend = 0.25f; // Basic blending time..
-        iBlendFlags = 0;    // If the blending flag is 0, just blending. If it is 1, there is a time delay equal to the blending time when looping.
+        iBlendFlags =
+            0; // If the blending flag is 0, just blending. If it is 1, there is a time delay equal to the blending time when looping.
         fFrmStrike0 = fFrmStrike1 = 0;
     }
 
@@ -55,7 +56,9 @@ typedef struct __AnimData {
         fFrmSound1 = other.fFrmSound1;
 
         fTimeBlend = other.fTimeBlend;
-        iBlendFlags = other.iBlendFlags; // If the blending flag is 0, just blending. If it is 1, there is a time delay equal to the blending time when looping.
+        iBlendFlags =
+            other
+                .iBlendFlags; // If the blending flag is 0, just blending. If it is 1, there is a time delay equal to the blending time when looping.
 
         fFrmStrike0 = other.fFrmStrike0;
         fFrmStrike1 = other.fFrmStrike1;
@@ -71,7 +74,8 @@ typedef struct __AnimData {
         DWORD dwRWC = 0;
 
         int nL = 0;
-        ReadFile(hFile, &nL, 4, &dwRWC, NULL); // Originally, this is where the string pointer was... for compatibility... just...
+        ReadFile(hFile, &nL, 4, &dwRWC,
+                 NULL); // Originally, this is where the string pointer was... for compatibility... just...
 
         ReadFile(hFile, &fFrmStart, 4, &dwRWC, NULL);  // start upper body
         ReadFile(hFile, &fFrmEnd, 4, &dwRWC, NULL);    // upper body end
@@ -84,8 +88,9 @@ typedef struct __AnimData {
         ReadFile(hFile, &fFrmSound1, 4, &dwRWC, NULL);
 
         ReadFile(hFile, &fTimeBlend, 4, &dwRWC, NULL);
-        ReadFile(hFile, &iBlendFlags, 4, &dwRWC,
-                 NULL); // If the blending flag is 0, just blending. If it is 1, there is a time delay equal to the blending time when looping.
+        ReadFile(
+            hFile, &iBlendFlags, 4, &dwRWC,
+            NULL); // If the blending flag is 0, just blending. If it is 1, there is a time delay equal to the blending time when looping.
 
         ReadFile(hFile, &fFrmStrike0, 4, &dwRWC, NULL);
         ReadFile(hFile, &fFrmStrike1, 4, &dwRWC, NULL);
@@ -107,7 +112,8 @@ typedef struct __AnimData {
         DWORD dwRWC = 0;
 
         int nL = 0;
-        WriteFile(hFile, &nL, 4, &dwRWC, NULL); // Originally, this is where the string pointer was... for compatibility... just...
+        WriteFile(hFile, &nL, 4, &dwRWC,
+                  NULL); // Originally, this is where the string pointer was... for compatibility... just...
 
         WriteFile(hFile, &fFrmStart, 4, &dwRWC, NULL);  // start upper body
         WriteFile(hFile, &fFrmEnd, 4, &dwRWC, NULL);    // upper body end
@@ -120,8 +126,9 @@ typedef struct __AnimData {
         WriteFile(hFile, &fFrmSound1, 4, &dwRWC, NULL);
 
         WriteFile(hFile, &fTimeBlend, 4, &dwRWC, NULL);
-        WriteFile(hFile, &iBlendFlags, 4, &dwRWC,
-                  NULL); // If the blending flag is 0, just blending. If it is 1, there is a time delay equal to the blending time when looping.
+        WriteFile(
+            hFile, &iBlendFlags, 4, &dwRWC,
+            NULL); // If the blending flag is 0, just blending. If it is 1, there is a time delay equal to the blending time when looping.
 
         WriteFile(hFile, &fFrmStrike0, 4, &dwRWC, NULL);
         WriteFile(hFile, &fFrmStrike1, 4, &dwRWC, NULL);

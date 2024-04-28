@@ -99,6 +99,7 @@ void CN3AnimatedTexures::Tick() {
     int iTC = m_TexRefs.size();
     m_fTexIndex += CN3Base::s_fSecPerFrm * m_fTexFPS;
     if (m_fTexIndex >= iTC) {
-        m_fTexIndex -= (iTC * m_fTexIndex) / iTC; // If you divide by an integer, only the decimal point is left?? (It's similar anyway~)
+        m_fTexIndex -= (iTC * m_fTexIndex) /
+                       iTC; // If you divide by an integer, only the decimal point is left?? (It's similar anyway~)
     }
 }

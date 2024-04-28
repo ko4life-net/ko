@@ -32,7 +32,7 @@ struct DHT {
 };
 
 struct FRAMEHEADER {
-    WORD Y;    // height of image
+    WORD Y;     // height of image
     WORD X;     //width of image
     BYTE Nf;    // number of components
     BYTE C[3];  // component ID
@@ -42,7 +42,7 @@ struct FRAMEHEADER {
 };
 
 struct SCANHEADER {
-    BYTE Ns;   // number of components
+    BYTE Ns;    // number of components
     BYTE Cs[3]; // component ID
     BYTE Td[3]; // DC Huffman Table number of the component
     BYTE Ta[3]; // AC Huffman Table number of the component
@@ -87,8 +87,8 @@ class CJpeg {
     void PutSOS(HANDLE hFile);                        // Insert ScanHeader
     void PutEOI(HANDLE hFile);                        // Insert End of Image marker
 
-    void ShotBit(BYTE Bit);                            // Function to store 1 bit in the buffer
-    void ChargeCode(WORD Code, int Size);               // Function to store the code in the buffer as long as Size (from the bottom)
+    void ShotBit(BYTE Bit);               // Function to store 1 bit in the buffer
+    void ChargeCode(WORD Code, int Size); // Function to store the code in the buffer as long as Size (from the bottom)
     void EncodeDU(short * pos, BOOL Flag, int bWidth); // Function to encode 8x8 Block
     void hEncode(int bWidth, int bHeight);             // Huffman encoding part
     BYTE GetCategory(short V);                         // Function to find the category of a given value

@@ -32,9 +32,9 @@ CN3IMesh::~CN3IMesh() {
     m_pfUVs = NULL;
 
     delete[] m_pwVtxIndices;
-    m_pwVtxIndices = NULL;     // List of point indices.
+    m_pwVtxIndices = NULL; // List of point indices.
     delete[] m_pwUVsIndices;
-    m_pwUVsIndices = NULL;     // Texture coordinate index list.
+    m_pwUVsIndices = NULL; // Texture coordinate index list.
 
     //    if(m_lpVB) m_lpVB->Release();
 }

@@ -28,8 +28,9 @@ class CN3ShapeExtra : public CN3Shape {
     std::vector<__Rotation> m_Rotations;
 
   public:
-    void RotateTo(int iPart, const __Vector3 & vAxis, float fRadianToReach, float fRadianPerSec,
-                  bool bImmediately = false); // Rotate the desired part at a specified speed to a specified angle along the axis.
+    void RotateTo(
+        int iPart, const __Vector3 & vAxis, float fRadianToReach, float fRadianPerSec,
+        bool bImmediately = false); // Rotate the desired part at a specified speed to a specified angle along the axis.
 
     bool Load(HANDLE hFile);
     void Tick(float fFrm);

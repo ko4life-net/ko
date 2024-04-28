@@ -71,7 +71,7 @@ template <typename Type> class CN3TableBase {
     {
         it_Table it = m_Datas.find(dwID);
         if (it == m_Datas.end()) {
-            return -1;// Failed to find!~!!
+            return -1; // Failed to find!~!!
         }
 
         it_Table itSkill = m_Datas.begin();
@@ -145,7 +145,7 @@ template <class Type> BOOL CN3TableBase<Type>::WriteData(HANDLE hFile, DATA_TYPE
         if (isdigit(lpszData[0]) || '-' == lpszData[0]) {
             int iTemp = atoi(lpszData);
             if (iTemp < -32767 || iTemp > 32768) {
-                return FALSE;//Out of range~
+                return FALSE; //Out of range~
             }
             iWrite = (short)iTemp;
         } else {
@@ -292,13 +292,13 @@ template <class Type> BOOL CN3TableBase<Type>::LoadFromFile(const std::string & 
         return FALSE;
     }
 
-// Read the original file...
+    // Read the original file...
     BYTE * pDatas = new BYTE[dwSizeLow];
     DWORD  dwRWC = 0;
     ::ReadFile(hFile, pDatas, dwSizeLow, &dwRWC, NULL); // Read encrypted data...
     CloseHandle(hFile);                                 // close the original file
 
-   // Same key as the key used in the table creation tool..
+    // Same key as the key used in the table creation tool..
     WORD key_r = 0x0816;
     WORD key_c1 = 0x6081;
     WORD key_c2 = 0x1608;
@@ -374,8 +374,9 @@ template <class Type> BOOL CN3TableBase<Type>::Load(HANDLE hFile) {
 
         int iSize = offsets
             [iDataTypeCount]; //Among the values returned from the MakeOffstTable function, m_iDataTypeCount contains the actual size of this function.
-        if (sizeof(Type) != iSize ||    // The size of the entire type is different from the size of the actual structure
-            DT_DWORD != m_DataTypes[0]) // When the first data is not DT_DWORD type (since the first data is a unique ID)
+        if (sizeof(Type) != iSize || // The size of the entire type is different from the size of the actual structure
+            DT_DWORD !=
+                m_DataTypes[0]) // When the first data is not DT_DWORD type (since the first data is a unique ID)
         {
             m_DataTypes.clear();
             __ASSERT(0, "DataType is mismatch or DataSize is incorrect!!");
@@ -383,7 +384,7 @@ template <class Type> BOOL CN3TableBase<Type>::Load(HANDLE hFile) {
         }
     }
 
-   // read how many rows there are
+    // read how many rows there are
     int iRC;
     ReadFile(hFile, &iRC, sizeof(iRC), &dwNum, NULL);
     Type Data;
@@ -434,12 +435,14 @@ template <class Type> BOOL CN3TableBase<Type>::MakeOffsetTable(std::vector<int> 
 
     int iDataTypeCount = m_DataTypes.size();
     offsets.clear();
-    offsets.resize(iDataTypeCount + 1); // The reason for adding +1 is to put the actual size of the Type in the last value.
+    offsets.resize(iDataTypeCount +
+                   1); // The reason for adding +1 is to put the actual size of the Type in the last value.
     offsets[0] = 0;
     int iPrevDataSize = SizeOf(m_DataTypes[0]);
     for (int i = 1; i < iDataTypeCount; ++i) {
         int iCurDataSize = SizeOf(m_DataTypes[i]);
-        if (1 == iCurDataSize % 4) //If the current data is 1 byte, it doesn't matter how many bytes the previous data is.
+        if (1 ==
+            iCurDataSize % 4) //If the current data is 1 byte, it doesn't matter how many bytes the previous data is.
         {
             offsets[i] = offsets[i - 1] + iPrevDataSize;
         } else if (2 == iCurDataSize % 4) //If the current data is 2 bytes, it must be located at an even address.
@@ -449,7 +452,9 @@ template <class Type> BOOL CN3TableBase<Type>::MakeOffsetTable(std::vector<int> 
             } else {
                 offsets[i] = offsets[i - 1] + iPrevDataSize + 1;
             }
-        } else if (0 == iCurDataSize % 4) // If the current data is 4 bytes, it must be located at an address that is a multiple of 4.
+        } else if (0 ==
+                   iCurDataSize %
+                       4) // If the current data is 4 bytes, it must be located at an address that is a multiple of 4.
         {
             if (0 == ((offsets[i - 1] + iPrevDataSize) % 4)) {
                 offsets[i] = offsets[i - 1] + iPrevDataSize;
@@ -462,8 +467,9 @@ template <class Type> BOOL CN3TableBase<Type>::MakeOffsetTable(std::vector<int> 
         iPrevDataSize = iCurDataSize;
     }
 
-   // Let's put the actual size of the Type in the last value.
-    offsets[iDataTypeCount] = ((int)(offsets[iDataTypeCount - 1] + iPrevDataSize + 3) / 4) * 4; // Make it a multiple of 4
+    // Let's put the actual size of the Type in the last value.
+    offsets[iDataTypeCount] =
+        ((int)(offsets[iDataTypeCount - 1] + iPrevDataSize + 3) / 4) * 4; // Make it a multiple of 4
 
     return true;
 }

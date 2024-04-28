@@ -85,7 +85,7 @@ void CN3FXPlugPart::Tick(const __Matrix44 & mtxParent) {
         // location
         m_pFXB->m_vPos = m_vOffsetPos * mtxParent;
 
-       // rotation
+        // rotation
         static __Matrix44 mtxRot;
         mtxRot = mtxParent;
         mtxRot.PosSet(0, 0, 0);

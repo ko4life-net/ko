@@ -97,10 +97,10 @@ HCURSOR               CGameProcedure::m_hPrevGameCursor = NULL;
 HWND                  CGameProcedure::s_hWndSubSocket = NULL; // Window handle for sub socket..
 int                   CGameProcedure::s_iChrSelectIndex = 0;
 bool                  CGameProcedure::s_bNeedReportVersionCheck = false;
-bool                  CGameProcedure::s_bNeedReportConnectionClosed = false; // Should I report that the server connection was lost?
-bool                  CGameProcedure::s_bWindowed = false;                   // Run windowed mode??
-bool                  CGameProcedure::s_bKeyPress = false;   // When a key is pressed, if there is a corresponding operation in the UI
-bool                  CGameProcedure::s_bKeyPressed = false; // If there is a corresponding manipulation in the UI when the key is raised
+bool CGameProcedure::s_bNeedReportConnectionClosed = false; // Should I report that the server connection was lost?
+bool CGameProcedure::s_bWindowed = false;                   // Run windowed mode??
+bool CGameProcedure::s_bKeyPress = false;   // When a key is pressed, if there is a corresponding operation in the UI
+bool CGameProcedure::s_bKeyPressed = false; // If there is a corresponding manipulation in the UI when the key is raised
 
 CGameProcedure::CGameProcedure() {
     m_bCursorLocked = false;
@@ -886,14 +886,17 @@ void CGameProcedure::MsgSend_CharacterSelect() // virtual
 {
     BYTE byBuff[64];
     int  iOffset = 0;
-    CAPISocket::MP_AddByte(byBuff, iOffset, N3_CHARACTER_SELECT);            // Command.
-    CAPISocket::MP_AddShort(byBuff, iOffset, s_szAccount.size());            // Account length...
-    CAPISocket::MP_AddString(byBuff, iOffset, s_szAccount);                  // Account string..
-    CAPISocket::MP_AddShort(byBuff, iOffset, s_pPlayer->IDString().size());  // Character ID length...
-    CAPISocket::MP_AddString(byBuff, iOffset, s_pPlayer->IDString());        // Character ID string..
-    CAPISocket::MP_AddByte(byBuff, iOffset, s_pPlayer->m_InfoExt.iZoneInit); // Whether it is the first time connection or not 0x01: First time connection
-    CAPISocket::MP_AddByte(byBuff, iOffset, s_pPlayer->m_InfoExt.iZoneCur);  // Character zone number in the character selection window
-    s_pSocket->Send(byBuff, iOffset);                                        // send
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_CHARACTER_SELECT);           // Command.
+    CAPISocket::MP_AddShort(byBuff, iOffset, s_szAccount.size());           // Account length...
+    CAPISocket::MP_AddString(byBuff, iOffset, s_szAccount);                 // Account string..
+    CAPISocket::MP_AddShort(byBuff, iOffset, s_pPlayer->IDString().size()); // Character ID length...
+    CAPISocket::MP_AddString(byBuff, iOffset, s_pPlayer->IDString());       // Character ID string..
+    CAPISocket::MP_AddByte(
+        byBuff, iOffset,
+        s_pPlayer->m_InfoExt.iZoneInit); // Whether it is the first time connection or not 0x01: First time connection
+    CAPISocket::MP_AddByte(byBuff, iOffset,
+                           s_pPlayer->m_InfoExt.iZoneCur); // Character zone number in the character selection window
+    s_pSocket->Send(byBuff, iOffset);                      // send
 
     CLogWriter::Write("MsgSend_CharacterSelect - name(%s) zone(%d)", s_pPlayer->IDString().c_str(),
                       s_pPlayer->m_InfoExt.iZoneCur); // Debugging log...

@@ -10,7 +10,7 @@ typedef struct __TABLE_BIRD {
     DWORD  dwID;         // zone ID
     char * pszTerrainFN; // Terrain FileName - Terrain, Tile Map, ColorMap....
     char * pszColorMapFN;
-    char * pszObjectPostDataFN; // Object 위치 정보 - 이안에 충돌 체크 데이터도 들어 있다.
+    char * pszObjectPostDataFN; // Object location information - This also contains collision check data.
 } TABLE_BIRD;
 
 class CBird;

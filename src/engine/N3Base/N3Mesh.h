@@ -26,7 +26,7 @@ class CN3Mesh : public CN3BaseFileAccess {
     int          VertexCount() { return m_nVC; }
     __VertexT1 * Vertices() { return m_pVertices; }
     int          IndexCount() { return m_nIC; }
-    WORD *       Indices() { return m_psnIndices; }// index buffer
+    WORD *       Indices() { return m_psnIndices; } // index buffer
 
     bool Load(HANDLE hFile);
 

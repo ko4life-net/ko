@@ -22,7 +22,7 @@ class CN3PMeshInstance : public CN3Base {
 #ifdef _USE_VERTEXBUFFER
     LPDIRECT3DINDEXBUFFER9 m_pIB;
 #else
-    WORD *       m_pIndices;
+    WORD * m_pIndices;
 #endif
 
     int m_iNumIndices, m_iNumVertices; // number of triangles/vertices to use at this moment.
@@ -71,7 +71,7 @@ class CN3PMeshInstance : public CN3Base {
 #ifdef _USE_VERTEXBUFFER
     void PartialRender(int iCount, LPDIRECT3DINDEXBUFFER9 pIB);
 #else
-    void         PartialRender(int iCount, WORD * pIndices);
+    void PartialRender(int iCount, WORD * pIndices);
 #endif
     int       GetIndexByiOrder(int iOrder);
     __Vector3 GetVertexByIndex(int iIndex);

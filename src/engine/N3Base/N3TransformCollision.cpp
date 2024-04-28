@@ -92,7 +92,9 @@ bool CN3TransformCollision::Save(HANDLE hFile) {
     }
     WriteFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
     if (nL > 0) {
-        if (-1 == m_pMeshClimb->FileName().find("object\\")) //I put it in to change the path temporarily. I will delete it later if I don't need it.
+        if (-1 ==
+            m_pMeshClimb->FileName().find(
+                "object\\")) //I put it in to change the path temporarily. I will delete it later if I don't need it.
         {
             char szFNTmp[256];
             wsprintf(szFNTmp, "Object\\%s.N3VMesh", m_pMeshClimb->m_szName.c_str());

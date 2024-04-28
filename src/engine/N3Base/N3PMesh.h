@@ -25,9 +25,10 @@ class CN3PMesh : public CN3BaseFileAccess {
         //    float Value;
         int NumIndicesToLose, NumIndicesToChange, NumVerticesToLose;
         //int *IndexChanges;
-        int  iIndexChanges; // store nth instead of pointer (0, 1, 2,...)
-        int  CollapseTo;
-        bool bShouldCollapse; // If you stop merging/dividing here, a hole will open. You need to proceed to the next step.
+        int iIndexChanges; // store nth instead of pointer (0, 1, 2,...)
+        int CollapseTo;
+        bool
+            bShouldCollapse; // If you stop merging/dividing here, a hole will open. You need to proceed to the next step.
     };
 
   protected:
@@ -111,7 +112,7 @@ class CN3PMesh : public CN3BaseFileAccess {
     __VertexT1 * GetVertices() const { return m_pVertices; };
     __VertexT2 * GetVertices2() const { return m_pVertices2; };
     WORD *       GetIndices() const { return m_pIndices; }; // Not a proper Index
-        // (To obtain the correct index, create an N3PMeshInstance, adjust the LOD, and obtain the index value.)
+    // (To obtain the correct index, create an N3PMeshInstance, adjust the LOD, and obtain the index value.)
 #endif
 
 #ifdef _N3TOOL

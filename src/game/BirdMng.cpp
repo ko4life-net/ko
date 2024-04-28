@@ -33,7 +33,7 @@ void CBirdMng::LoadFromFile(const std::string & szFN) {
     if (szFN.empty()) {
         return;
     }
-    FILE * stream = fopen(szFN.c_str(), "r"); //text颇老肺 父电促
+    FILE * stream = fopen(szFN.c_str(), "r"); // Make it a text file
 
     if (NULL == stream) {
 #if _DEBUG
@@ -46,7 +46,7 @@ void CBirdMng::LoadFromFile(const std::string & szFN) {
 
     char szRrcName[_MAX_PATH];
     int  result = fscanf(stream, "count = %d\n", &m_iBirdCount);
-    __ASSERT(result != EOF, "肋给等 Machine 技泼 颇老");
+    __ASSERT(result != EOF, "Invalid machine settings file");
 
     if (m_iBirdCount > 0) {
         m_pBird = new CBird[m_iBirdCount];
@@ -54,7 +54,7 @@ void CBirdMng::LoadFromFile(const std::string & szFN) {
 
     for (int i = 0; i < m_iBirdCount; i++) {
         result = fscanf(stream, "%s\n", szRrcName);
-        __ASSERT(result != EOF, "肋给等 bird list 技泼 颇老");
+        __ASSERT(result != EOF, "Invalid bird list settings file");
         m_pBird[i].LoadBird(szRrcName);
     }
     fclose(stream);

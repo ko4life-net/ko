@@ -58,7 +58,7 @@ class CN3Joint : public CN3Transform {
 #ifdef _N3TOOL
     BOOL FindIndex(const std::string & szName, int & nIndex);
     BOOL FindPointerByName(const std::string & szName,
-                           CN3Joint *&         pJoint); // If you enter a name, a pointer to the corresponding node is returned.
+                           CN3Joint *& pJoint); // If you enter a name, a pointer to the corresponding node is returned.
     void RotSet(const __Quaternion & qtRot) {
         m_qRot = qtRot;
         this->ReCalcMatrix();

@@ -403,7 +403,8 @@ void CDFont::Make2DVertex(const int iFontHeight, const std::string & szText) {
     m_dwFontColor = 0xffffffff;
     SIZE size;
 
-    float fMaxX = 0.0f, fMaxY = 0.0f; // To investigate the maximum and minimum values of the range in which letters can be printed.
+    float fMaxX = 0.0f,
+          fMaxY = 0.0f; // To investigate the maximum and minimum values of the range in which letters can be printed.
 
     while (iCount < iStrLen) {
         if ('\n' == szText[iCount]) { // \n
@@ -455,11 +456,11 @@ void CDFont::Make2DVertex(const int iFontHeight, const std::string & szText) {
             vtx_sx = 0;
             vtx_sy = vtx_sy + ((float)(iFontHeight)) / m_fTextScale;
             continue;
-        } else if (0x80 & szText[iCount]) { 
+        } else if (0x80 & szText[iCount]) {
             memcpy(szTempChar, &(szText[iCount]), 2);
             iCount += 2;
             szTempChar[2] = 0x00;
-        } else { 
+        } else {
             memcpy(szTempChar, &(szText[iCount]), 1);
             iCount += 1;
             szTempChar[1] = 0x00;
@@ -594,7 +595,8 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string & szText, DWO
     char szTempChar[3] = "";
     SIZE size;
 
-    float fMaxX = 0.0f, fMaxY = 0.0f; // To investigate the maximum and minimum values of the range in which letters can be printed.
+    float fMaxX = 0.0f,
+          fMaxY = 0.0f; // To investigate the maximum and minimum values of the range in which letters can be printed.
 
     while (iCount < iStrLen) {
         if ('\n' == szText[iCount]) // \n
@@ -646,13 +648,11 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string & szText, DWO
             vtx_sx = 0;
             vtx_sy = vtx_sy - ((float)(iFontHeight)) / m_fTextScale;
             continue;
-        } else if (0x80 & szText[iCount]) 
-        {
+        } else if (0x80 & szText[iCount]) {
             memcpy(szTempChar, &(szText[iCount]), 2);
             iCount += 2;
             szTempChar[2] = 0x00;
-        } else 
-        {
+        } else {
             memcpy(szTempChar, &(szText[iCount]), 1);
             iCount += 1;
             szTempChar[1] = 0x00;

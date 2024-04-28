@@ -24,8 +24,9 @@ struct __AlphaPrimitive {
     BOOL               bUseVB;          // Whether to use vertex buffer or index buffer
     const void *       pwIndices;       // If it is Index-based... just enter something other than NULL.
     int                nVertexCount;
-    const void *       pVertices; //Triangle.. is a vector type, but it must be used to accept various point formats through forced type conversion..
-    __Matrix44         MtxWorld;  // Matrix
+    const void *
+        pVertices; //Triangle.. is a vector type, but it must be used to accept various point formats through forced type conversion..
+    __Matrix44 MtxWorld; // Matrix
 };
 
 const int MAX_ALPHAPRIMITIVE_BUFFER = 1024;

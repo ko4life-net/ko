@@ -36,7 +36,7 @@ bool CN3ShapeExtra::Load(HANDLE hFile) {
 void CN3ShapeExtra::Tick(float fFrm) {
     if (false == m_bVisible) {
         m_bDontRender = true;
-        return;// Do not force rendering.
+        return; // Do not force rendering.
     }
 
     CN3Shape::Tick();
@@ -97,7 +97,8 @@ void CN3ShapeExtra::RotateTo(int iPart, const __Vector3 & vAxis, float fRadianTo
     pRot->fRadianPerSec = fRadianPerSec;
     pRot->vAxis = vAxis;
     if (bImmediately) {
-        pRot->fRadianCur = pRot->fRadianToReach -
-                           0.01f; // This will open it directly. The reason for subtracting the value slightly is to make it tick once.
+        pRot->fRadianCur =
+            pRot->fRadianToReach -
+            0.01f; // This will open it directly. The reason for subtracting the value slightly is to make it tick once.
     }
 }

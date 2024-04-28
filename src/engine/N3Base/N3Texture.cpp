@@ -102,7 +102,7 @@ bool CN3Texture::Create(int nWidth, int nHeight, D3DFORMAT Format, BOOL bGenerat
     memset(&m_Header, 0, sizeof(m_Header));
 
     // MipMap step decision..
-     // Create MipMap only up to 4
+    // Create MipMap only up to 4
     int nMMC = 1;
     if (bGenerateMipMap) {
         nMMC = 0;
@@ -342,7 +342,8 @@ bool CN3Texture::Load(HANDLE hFile) {
                         if (D3DFMT_DXT1 == HeaderOrg.Format) {
                             iSkipSize += iWTmp * iHTmp / 2; // DXT1 format is compressed to 1/4 of the 16-bit format.
                         } else {
-                            iSkipSize += iWTmp * iHTmp; // DXT2 ~ DXT5 formats are compressed to 1/2 of the 16-bit format.
+                            iSkipSize +=
+                                iWTmp * iHTmp; // DXT2 ~ DXT5 formats are compressed to 1/2 of the 16-bit format.
                         }
                     }
                     ::SetFilePointer(hFile, iSkipSize, 0, FILE_CURRENT); // Skip it.
@@ -430,7 +431,8 @@ bool CN3Texture::Load(HANDLE hFile) {
                 // Skip compressed data..
                 int iWTmp = HeaderOrg.nWidth, iHTmp = HeaderOrg.nHeight, iSkipSize = 0;
                 if (D3DFMT_DXT1 == HeaderOrg.Format) {
-                    iSkipSize = iWTmp * iHTmp / 2; // The DXT1 format is compressed to 1/4 the size of the 16-bit format.
+                    iSkipSize =
+                        iWTmp * iHTmp / 2; // The DXT1 format is compressed to 1/4 the size of the 16-bit format.
                 } else {
                     iSkipSize = iWTmp * iHTmp; // DXT2 ~ DXT5 formats are compressed to 1/2 of the 16-bit format.
                 }
@@ -453,12 +455,13 @@ bool CN3Texture::Load(HANDLE hFile) {
             {
                 int iWTmp = HeaderOrg.nWidth, iHTmp = HeaderOrg.nHeight, iSkipSize = 0;
                 for (int i = 0; i < m_iLOD; i++, iWTmp /= 2, iHTmp /= 2) {
-                    iSkipSize += iWTmp * iHTmp * iPixelSize; // I think the pixel size is the pitch divided by the width...
+                    iSkipSize +=
+                        iWTmp * iHTmp * iPixelSize; // I think the pixel size is the pitch divided by the width...
                 }
                 ::SetFilePointer(hFile, iSkipSize, 0, FILE_CURRENT); // Skip.
             }
 
-                // Skip if the video card supported texture size is small..
+            // Skip if the video card supported texture size is small..
             int iWTmp = HeaderOrg.nWidth, iHTmp = HeaderOrg.nHeight, iSkipSize = 0;
             for (; iWTmp > s_DevCaps.MaxTextureWidth || iHTmp > s_DevCaps.MaxTextureHeight; iWTmp /= 2, iHTmp /= 2) {
                 iSkipSize += iWTmp * iHTmp * iPixelSize;
@@ -532,7 +535,8 @@ bool CN3Texture::SkipFileHandle(HANDLE hFile) {
             iWTmp = HeaderOrg.nWidth / 2;
             iHTmp = HeaderOrg.nHeight / 2;
             for (; iWTmp >= 4 && iHTmp >= 4;
-                 iWTmp /= 2, iHTmp /= 2) { // It is formatted as A1R5G5B5 or A4R4G4B4, which contains two bytes per pixel.
+                 iWTmp /= 2,
+                 iHTmp /= 2) { // It is formatted as A1R5G5B5 or A4R4G4B4, which contains two bytes per pixel.
                 iSkipSize += iWTmp * iHTmp * 2; // Skip
             }
         } else // pair of if(HeaderOrg.bMipMap)

@@ -695,14 +695,14 @@ inline void __Matrix44::operator-=(const D3DXVECTOR3 & v) {
 
 inline __Matrix44 __Matrix44::operator*(const __Quaternion & qRot) {
     static __Matrix44 mtx;
-    mtx.              operator=(qRot);
+    mtx.operator=(qRot);
 
     return this->operator*(mtx);
 }
 
 inline void __Matrix44::operator*=(const __Quaternion & qRot) {
     static __Matrix44 mtx;
-    mtx.              operator=(qRot);
+    mtx.operator=(qRot);
 
     this->operator*=(mtx);
 }
@@ -1558,7 +1558,8 @@ inline bool _IntersectTriangle(const __Vector3 & vOrig, const __Vector3 & vDir, 
 
     // If determinant is near zero, ray lies in plane of triangle
     fDet = vEdge1.Dot(pVec);
-    if (fDet < 0.0001f) { // When it is close to 0, the plane of the triangle and the line passing through it are parallel.
+    if (fDet <
+        0.0001f) { // When it is close to 0, the plane of the triangle and the line passing through it are parallel.
         return FALSE;
     }
 
@@ -1616,7 +1617,7 @@ inline bool _IntersectTriangle(const __Vector3 & vOrig, const __Vector3 & vDir, 
     vEdge1 = v1 - v0;
     vEdge2 = v2 - v0;
 
-   // By: Ecli666 (On 2001-09-12 10:39:01 AM)
+    // By: Ecli666 (On 2001-09-12 10:39:01 AM)
 
     pVec.Cross(vEdge1, vEdge2);
     fDet = pVec.Dot(vDir);

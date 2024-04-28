@@ -190,8 +190,10 @@ class CN3Base {
     static CN3Mng<class CN3Joint>       s_MngJoint;   // Joint Manager
     static CN3Mng<class CN3CPartSkins>  s_MngSkins;   // Character Part Skin Manager
     static CN3Mng<class CN3AnimControl> s_MngAniCtrl; // Animation Manager
-    static CN3Mng<class CN3FXPMesh>     s_MngFXPMesh; // PMesh used in FX - The file uses general PMesh, but the contents are different.
-    static CN3Mng<class CN3FXShape>     s_MngFXShape; // Shape used in FX - The file uses a general shape, but the inside is different.
+    static CN3Mng<class CN3FXPMesh>
+        s_MngFXPMesh; // PMesh used in FX - The file uses general PMesh, but the contents are different.
+    static CN3Mng<class CN3FXShape>
+        s_MngFXShape; // Shape used in FX - The file uses a general shape, but the inside is different.
 
   protected:
     static std::string s_szPath; // path where the program was executed.

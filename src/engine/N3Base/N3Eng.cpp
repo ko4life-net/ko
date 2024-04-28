@@ -471,7 +471,8 @@ void CN3Eng::Clear(D3DCOLOR crFill, RECT * pRC) {
 void CN3Eng::ClearAuto(RECT * pRC) {
     DWORD dwFillColor = D3DCOLOR_ARGB(255, 192, 192, 192); // Basic color
     DWORD dwUseFog = FALSE;
-    s_lpD3DDev->GetRenderState(D3DRS_FOGENABLE, &dwUseFog); // When using fog, the fog color is applied as the background color.
+    s_lpD3DDev->GetRenderState(D3DRS_FOGENABLE,
+                               &dwUseFog); // When using fog, the fog color is applied as the background color.
     if (dwUseFog != 0) {
         s_lpD3DDev->GetRenderState(D3DRS_FOGCOLOR, &dwFillColor);
     } else {
@@ -512,7 +513,8 @@ bool CN3Eng::Reset(BOOL bWindowed, DWORD dwWidth, DWORD dwHeight, DWORD dwBPP) {
     if (dwWidth <= 0 || dwHeight <= 0) {
         return false;
     }
-    if (dwWidth == s_DevParam.BackBufferWidth && dwHeight == s_DevParam.BackBufferHeight) // When the width and height are the same...
+    if (dwWidth == s_DevParam.BackBufferWidth &&
+        dwHeight == s_DevParam.BackBufferHeight) // When the width and height are the same...
     {
         if (0 == dwBPP) {
             return false;

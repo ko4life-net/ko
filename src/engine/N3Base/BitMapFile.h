@@ -10,11 +10,11 @@ class CBitMapFile {
     BITMAPINFOHEADER m_bmInfoHeader;
 
   public:
-    void * m_pPixels;                                                            //  actual pixel data
-    int    Pitch() { return ((int)((m_bmInfoHeader.biWidth * 3 + 3) / 4)) * 4; } // Actual width of the bitmap (byte unit).
-    bool   Create(int nWidth, int nHeight, int nBPP = 24);
-    bool   SaveRectToFile(const std::string & szFN, RECT rc);
-    void * Pixels(int x = 0, int y = 0);
+    void * m_pPixels;                                                         //  actual pixel data
+    int Pitch() { return ((int)((m_bmInfoHeader.biWidth * 3 + 3) / 4)) * 4; } // Actual width of the bitmap (byte unit).
+    bool               Create(int nWidth, int nHeight, int nBPP = 24);
+    bool               SaveRectToFile(const std::string & szFN, RECT rc);
+    void *             Pixels(int x = 0, int y = 0);
     BITMAPINFOHEADER * GetBitmapInfoHeader() { return &m_bmInfoHeader; }
     BITMAPFILEHEADER * GetBitmapFileHeader() { return &m_bmfHeader; }
     bool               Load(HANDLE hFile);

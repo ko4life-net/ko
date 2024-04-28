@@ -270,7 +270,8 @@ void CN3Camera::Rotate(float fRadianX, float fRadianY) {
 }
 
 #ifdef _N3TOOL
-void CN3Camera::LookAround(float fRadianX, float fRadianY) //The camera rotates around At Postion, so the position changes.
+void CN3Camera::LookAround(float fRadianX,
+                           float fRadianY) //The camera rotates around At Postion, so the position changes.
 {
     //static __Matrix44 mtx;
     //static __Vector3 v1, v2;
@@ -379,7 +380,7 @@ void CN3Camera::Apply() {
     // Therefore, when rotating the camera, the fog is observed to change around the vertex.
     // pixel fog: It seems that fog is calculated based on the depth value of the pixel.
 
-     // To see the differences between all the fogs above, you can easily observe them by drawing a large board and adding the fog.
+    // To see the differences between all the fogs above, you can easily observe them by drawing a large board and adding the fog.
 
     // s_lpD3DDev->SetRenderState( D3DRS_FOGSTART,   *(DWORD*)&m_fFogStart);
     // s_lpD3DDev->SetRenderState( D3DRS_FOGEND,     *(DWORD*)&m_fFogEnd);

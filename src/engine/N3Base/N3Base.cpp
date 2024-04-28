@@ -47,8 +47,10 @@ CN3Mng<CN3PMesh>       CN3Base::s_MngPMesh;   // Progressive Mesh Manager
 CN3Mng<CN3Joint>       CN3Base::s_MngJoint;   // Joint Manager
 CN3Mng<CN3CPartSkins>  CN3Base::s_MngSkins;   // Character Part Skins Manager
 CN3Mng<CN3AnimControl> CN3Base::s_MngAniCtrl; // Animation Manager
-CN3Mng<CN3FXPMesh>     CN3Base::s_MngFXPMesh; // PMesh used in FX - The file uses general PMesh, but the contents are different.
-CN3Mng<CN3FXShape>     CN3Base::s_MngFXShape; // Shape used in FX - The file uses a general shape, but the inside is different.
+CN3Mng<CN3FXPMesh>
+    CN3Base::s_MngFXPMesh; // PMesh used in FX - The file uses general PMesh, but the contents are different.
+CN3Mng<CN3FXShape>
+    CN3Base::s_MngFXShape; // Shape used in FX - The file uses a general shape, but the inside is different.
 
 CN3AlphaPrimitiveManager CN3Base::
     s_AlphaMgr; // Manage the polygons to be alpha blended.. Add them.. Arrange them according to the camera distance and draw them all at once..

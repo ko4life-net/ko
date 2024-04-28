@@ -105,7 +105,8 @@ template <class T> class CN3Mng {
                 //    asm
                 if (reChk == -1) // When adding, there is data before, so one reference count is added.
                 {
-                    T *     pBakData = pData; // Receives and returns all data from the same file (may not be changed to a new image)
+                    T * pBakData =
+                        pData; // Receives and returns all data from the same file (may not be changed to a new image)
                     it_Data it = m_Datas.find(pBakData->FileName());
                     pData = (*it).second;
 

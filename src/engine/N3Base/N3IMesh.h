@@ -20,11 +20,11 @@ class CN3IMesh : public CN3BaseFileAccess {
     int    m_nUVC;         // UV coordinate Count
     WORD * m_pwUVsIndices; // Texture coordinate index list.
 
-    __VertexXyzNormal * m_pVertices;// Coordinate Data
+    __VertexXyzNormal * m_pVertices; // Coordinate Data
     float *             m_pfUVs;     // UV Data - Allocate as much as m_nUVC * 2.
                                      // LPDIRECT3DVERTEXBUFFER9 m_lpVB;
 
-    __Vector3 m_vMin, m_vMax;           // Minimum and maximum points... they may change, but roughly...
+    __Vector3 m_vMin, m_vMax; // Minimum and maximum points... they may change, but roughly...
 
   public:
 #ifdef _N3TOOL
@@ -32,12 +32,14 @@ class CN3IMesh : public CN3BaseFileAccess {
     void ReGenerateSmoothNormal();
     void RenderSelected();
 #endif // end of _N3TOOL
-    __Vector3    Min() { return m_vMin; }
-    __Vector3    Max() { return m_vMax; }
-    void         FindMinMax();
-    void         Render(bool bUseTwoUV = false);
-    __VertexT1 * BuildVertexList();      // Create a point in the Vertex Buffer. Be careful not to use it twice at the same time.
-    __VertexT2 * BuildVertexListTwoUV(); // Create a point in the Vertex Buffer. Be careful not to use it twice at the same time.
+    __Vector3 Min() { return m_vMin; }
+    __Vector3 Max() { return m_vMax; }
+    void      FindMinMax();
+    void      Render(bool bUseTwoUV = false);
+    __VertexT1 *
+    BuildVertexList(); // Create a point in the Vertex Buffer. Be careful not to use it twice at the same time.
+    __VertexT2 *
+    BuildVertexListTwoUV(); // Create a point in the Vertex Buffer. Be careful not to use it twice at the same time.
 
     int                 FaceCount() { return m_nFC; }
     int                 VertexCount() { return m_nVC; }

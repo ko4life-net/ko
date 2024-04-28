@@ -26,7 +26,8 @@ void CN3AlphaPrimitiveManager::Render() {
     for (int i = 0; i < m_nToDrawCount; i++) {
         pBuffs[i] = &(m_Buffers[i]);
     }
-    qsort(pBuffs, m_nToDrawCount, 4, SortByCameraDistance); // Sort according to the primitives accumulated in the buffer.
+    qsort(pBuffs, m_nToDrawCount, 4,
+          SortByCameraDistance); // Sort according to the primitives accumulated in the buffer.
 
     struct __RenderState {
         DWORD dwAlpha, dwFog, dwCull, dwLgt, dwZWrite, dwAO, dwAA1, dwAA2, dwCO, dwCA1, dwCA2, dwPointSampling;
@@ -34,7 +35,7 @@ void CN3AlphaPrimitiveManager::Render() {
         DWORD dwSrcBlend, dwDestBlend;
         DWORD dwZEnable;
     };
-    __RenderState RS_old;    // Previous render state (to revert later)
+    __RenderState RS_old;     // Previous render state (to revert later)
     __RenderState RS_current; // Current render state (to determine what the current state is)
 
     CN3Base::s_lpD3DDev->GetRenderState(D3DRS_ALPHABLENDENABLE, &RS_old.dwAlpha);

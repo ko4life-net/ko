@@ -65,12 +65,12 @@ class CDFont : public CN3Base {
                                            // In this case, use Scale to enlarge the image.
 
     // HDC         m_hDC;               // DC handle
-    HFONT       m_hFont;             //Font handle
-    UINT        m_iPrimitiveCount;  // Number of plates to write on
-    D3DXVECTOR2 m_PrevLeftTop;      // In case of DrawText, variable for when the location of the drawing location changes
-    DWORD       m_dwFontColor;      // font color
-    BOOL        m_Is2D;             // Is it 2D Text?
-    SIZE        m_Size;             // Size occupied by written letters (pixel unit, width and height)
+    HFONT       m_hFont;           //Font handle
+    UINT        m_iPrimitiveCount; // Number of plates to write on
+    D3DXVECTOR2 m_PrevLeftTop; // In case of DrawText, variable for when the location of the drawing location changes
+    DWORD       m_dwFontColor; // font color
+    BOOL        m_Is2D;        // Is it 2D Text?
+    SIZE        m_Size;        // Size occupied by written letters (pixel unit, width and height)
 
     // Operations
   public:
@@ -81,13 +81,15 @@ class CDFont : public CN3Base {
         return false;
     }
     void    AddToAlphaManager(DWORD dwColor, float fDist, __Matrix44 & mtxWorld, DWORD dwFlags);
-    HRESULT SetFontColor(DWORD dwColor);                     // Change the font color.
-    HRESULT InitDeviceObjects(LPDIRECT3DDEVICE9 pd3dDevice); // Initialization function that determines the d3d device (called when Init)
-    HRESULT RestoreDeviceObjects();                          // Initialization function to set resources in memory (called when Init)
-    HRESULT InvalidateDeviceObjects();                       // Function to invalidate resources, etc. (called when releasing)
-    HRESULT DeleteDeviceObjects();                           // Release resources, etc. from memory (called when releasing)
+    HRESULT SetFontColor(DWORD dwColor); // Change the font color.
+    HRESULT InitDeviceObjects(
+        LPDIRECT3DDEVICE9 pd3dDevice); // Initialization function that determines the d3d device (called when Init)
+    HRESULT RestoreDeviceObjects();    // Initialization function to set resources in memory (called when Init)
+    HRESULT InvalidateDeviceObjects(); // Function to invalidate resources, etc. (called when releasing)
+    HRESULT DeleteDeviceObjects();     // Release resources, etc. from memory (called when releasing)
 
-    HRESULT SetText(const std::string & szText, DWORD dwFlags = 0L); // It is important to call this only when the text to be printed changes.
+    HRESULT SetText(const std::string & szText,
+                    DWORD dwFlags = 0L); // It is important to call this only when the text to be printed changes.
     HRESULT DrawText(FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags,
                      FLOAT fZ = 1.0f);                // Draw the text stored in the buffer. (2d)
     HRESULT DrawText3D(DWORD dwColor, DWORD dwFlags); // Draw the text stored in the buffer. (3d)

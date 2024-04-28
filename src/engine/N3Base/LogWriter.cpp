@@ -36,8 +36,7 @@ void CLogWriter::Open(const std::string & szFN) {
 
     DWORD dwSizeHigh = 0;
     DWORD dwSizeLow = ::GetFileSize(hFile, &dwSizeHigh);
-    if (dwSizeLow > 256000) 
-    {
+    if (dwSizeLow > 256000) {
         CloseHandle(hFile);
         ::DeleteFile(s_szFileName.c_str());
         hFile = CreateFile(s_szFileName.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -46,7 +45,7 @@ void CLogWriter::Open(const std::string & szFN) {
         }
     }
 
-    ::SetFilePointer(hFile, 0, NULL, FILE_END); 
+    ::SetFilePointer(hFile, 0, NULL, FILE_END);
 
     char       szBuff[1024];
     SYSTEMTIME time;
@@ -75,7 +74,7 @@ void CLogWriter::Close() {
     }
 
     if (hFile) {
-        ::SetFilePointer(hFile, 0, NULL, FILE_END); 
+        ::SetFilePointer(hFile, 0, NULL, FILE_END);
 
         char       szBuff[1024];
         SYSTEMTIME time;

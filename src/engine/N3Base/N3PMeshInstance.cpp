@@ -193,11 +193,13 @@ void CN3PMeshInstance::SetLOD(float value) {
 
     CN3PMesh::__LODCtrlValue * pTmpLODCV = m_pPMesh->m_pLODCtrlValues + m_pPMesh->m_iLODCtrlValueCount - 1;
 
-    if (value < m_pPMesh->m_pLODCtrlValues[0].fDist) { // Since it is closer than the minimum standard, it is drawn with the most sides.
+    if (value < m_pPMesh->m_pLODCtrlValues[0]
+                    .fDist) { // Since it is closer than the minimum standard, it is drawn with the most sides.
         SetLODByNumVertices(m_pPMesh->m_pLODCtrlValues[0].iNumVertices);
-    } else if (pTmpLODCV->fDist < value) { // Since it is farther than the maximum reference value, draw with the fewest sides.
+    } else if (pTmpLODCV->fDist <
+               value) { // Since it is farther than the maximum reference value, draw with the fewest sides.
         SetLODByNumVertices(pTmpLODCV->iNumVertices);
-    } else {// Draw with the number of sides adjusted to the intermediate value.
+    } else { // Draw with the number of sides adjusted to the intermediate value.
         for (int i = 1; i < m_pPMesh->m_iLODCtrlValueCount; ++i) {
             if (value < m_pPMesh->m_pLODCtrlValues[i].fDist) {
                 CN3PMesh::__LODCtrlValue * pHiValue = m_pPMesh->m_pLODCtrlValues + i;
@@ -542,4 +544,4 @@ void CN3PMeshInstance::PartialRender(int iCount, WORD * pIndices) {
 #endif
     }
 
-   // ~(By Ecli666 On 2002-08-06 4:33:04 PM)
+    // ~(By Ecli666 On 2002-08-06 4:33:04 PM)

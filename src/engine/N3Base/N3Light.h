@@ -31,7 +31,9 @@ class CN3Light : public CN3Transform {
                 fRange = 0.0001f;
             }
             Attenuation0 = 1.0f - fAttenuation;
-            Attenuation1 = fAttenuation / fRange; // Attenuation range calculation. Make sure that half of the range is exactly half attenuated.
+            Attenuation1 =
+                fAttenuation /
+                fRange; // Attenuation range calculation. Make sure that half of the range is exactly half attenuated.
             Attenuation2 = fAttenuation / (fRange * fRange);
             Range = fRange * 4.0f;
             bOn = TRUE;
@@ -68,7 +70,10 @@ class CN3Light : public CN3Transform {
                 fRange = 0.0001f;
             }
             Attenuation0 = 1.0f;
-            Attenuation1 = 1.0f / (fRange / 2.0f); // Calculate attenuation range. Make sure that half of the range is exactly half attenuated..
+            Attenuation1 =
+                1.0f /
+                (fRange /
+                 2.0f); // Calculate attenuation range. Make sure that half of the range is exactly half attenuated..
             Range = fRange;
 
             Falloff = 1.0f; //Because the effect is minimal and there is a load, 1.0 is usually used.
