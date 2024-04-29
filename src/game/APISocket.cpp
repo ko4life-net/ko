@@ -143,7 +143,7 @@ void CAPISocket::Release() {
     WriteFile(hFile1, szBuff, lstrlen(szBuff), &dwRWC, NULL);
     WriteFile(hFile2, szBuff, lstrlen(szBuff), &dwRWC, NULL);
 
-    for(int i = 0; i < 255; i++)
+    for(int i = 0; i < UCHAR_MAX + 1; i++)
     {
         if(i == N3_NPC_MOVE) lstrcpy(szCmd, "NPC Move");
         else if(i == N3_ATTACK) lstrcpy(szCmd, "Attack");
@@ -169,10 +169,8 @@ void CAPISocket::Release() {
     }
 */
 
-    for (int i = 0; i < 255; i++) {
-        memset(m_Statistics_Send_Sum, 0, sizeof(m_Statistics_Send_Sum));
-        memset(m_Statistics_Recv_Sum, 0, sizeof(m_Statistics_Recv_Sum));
-    }
+    memset(m_Statistics_Send_Sum, 0, sizeof(m_Statistics_Send_Sum));
+    memset(m_Statistics_Recv_Sum, 0, sizeof(m_Statistics_Recv_Sum));
 
 //    CloseHandle(hFile1);
 //    CloseHandle(hFile2);
@@ -270,10 +268,8 @@ int CAPISocket::Connect(HWND hWnd, const char * pszIP, DWORD dwPort) {
     m_bConnected = TRUE;
 
 #ifdef _DEBUG
-    for (int i = 0; i < 255; i++) {
-        memset(m_Statistics_Send_Sum, 0, sizeof(m_Statistics_Send_Sum));
-        memset(m_Statistics_Recv_Sum, 0, sizeof(m_Statistics_Recv_Sum));
-    }
+    memset(m_Statistics_Send_Sum, 0, sizeof(m_Statistics_Send_Sum));
+    memset(m_Statistics_Recv_Sum, 0, sizeof(m_Statistics_Recv_Sum));
 #endif
 
     return 0;
@@ -415,12 +411,6 @@ void CAPISocket::Send(BYTE * pData, int nSize) {
 
 #ifdef _DEBUG
     BYTE byCmd = pData[0]; // 통계 넣기..
-
-    //    __SocketStatisics SS;
-    //    SS.dwTime = GetTickCount();
-    //    SS.iSize = nSize;
-    //    m_Statistics_Send[byCmd].push_back(SS);
-
     m_Statistics_Send_Sum[byCmd].dwTime++;
     m_Statistics_Send_Sum[byCmd].iSize += nSize;
 #endif
