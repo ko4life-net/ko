@@ -198,7 +198,7 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
         return FALSE;
     }
 
-    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
     if (retcode == SQL_SUCCESS) { //|| retcode == SQL_SUCCESS_WITH_INFO){
         retcode = SQLFetch(hstmt);
         if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
@@ -535,7 +535,7 @@ int CDBAgent::UpdateUser(const char * userid, int uid, int type) {
         retcode = SQLBindParameter(hstmt, 3, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(bySerial), 0, bySerial,
                                    0, &sBySerial);
         if (retcode == SQL_SUCCESS) {
-            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
             if (retcode == SQL_ERROR) {
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_GameDB.Close();
@@ -583,7 +583,7 @@ int CDBAgent::AccountLogInReq(char * id, char * pw) {
         retcode =
             SQLBindParameter(hstmt, 1, SQL_PARAM_OUTPUT, SQL_C_SSHORT, SQL_SMALLINT, 0, 0, &sParmRet, 0, &cbParmRet);
         if (retcode == SQL_SUCCESS) {
-            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
             if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
                 SQLFreeHandle((SQLSMALLINT)SQL_HANDLE_STMT, hstmt);
                 if (sParmRet == 0) {
@@ -627,7 +627,7 @@ BOOL CDBAgent::NationSelect(char * id, int nation) {
         retcode =
             SQLBindParameter(hstmt, 1, SQL_PARAM_OUTPUT, SQL_C_SSHORT, SQL_INTEGER, 0, 0, &sParmRet, 0, &cbParmRet);
         if (retcode == SQL_SUCCESS) {
-            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
             if (retcode == SQL_ERROR) {
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_GameDB.Close();
@@ -671,7 +671,7 @@ int CDBAgent::CreateNewChar(char * accountid, int index, char * charid, int race
         retcode =
             SQLBindParameter(hstmt, 1, SQL_PARAM_OUTPUT, SQL_C_SSHORT, SQL_INTEGER, 0, 0, &sParmRet, 0, &cbParmRet);
         if (retcode == SQL_SUCCESS) {
-            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
             if (retcode == SQL_ERROR) {
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_GameDB.Close();
@@ -710,7 +710,7 @@ BOOL CDBAgent::DeleteChar(int index, char * id, char * charid, char * socno) {
         retcode =
             SQLBindParameter(hstmt, 1, SQL_PARAM_OUTPUT, SQL_C_SSHORT, SQL_INTEGER, 0, 0, &sParmRet, 0, &cbParmRet);
         if (retcode == SQL_SUCCESS) {
-            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
             if (retcode == SQL_ERROR) {
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_GameDB.Close();
@@ -766,7 +766,7 @@ BOOL CDBAgent::LoadCharInfo(char * id, char * buff, int & buff_index) {
         return FALSE;
     }
 
-    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
     if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
         retcode = SQLFetch(hstmt);
         if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
@@ -853,7 +853,7 @@ BOOL CDBAgent::GetAllCharID(const char * id, char * char1, char * char2, char * 
         return FALSE;
     }
 
-    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
     if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
         retcode = SQLFetch(hstmt);
         if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
@@ -911,7 +911,7 @@ int CDBAgent::CreateKnights(int knightsindex, int nation, char * name, char * ch
             SQLBindParameter(hstmt, 1, SQL_PARAM_OUTPUT, SQL_C_SSHORT, SQL_INTEGER, 0, 0, &sParmRet, 0, &cbParmRet);
         //retcode = SQLBindParameter(hstmt, 2, SQL_PARAM_OUTPUT, SQL_C_SSHORT, SQL_INTEGER, 0,0, &sKnightIndex,0, &cbParmRet );
         if (retcode == SQL_SUCCESS) {
-            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
             if (retcode == SQL_ERROR) {
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_GameDB.Close();
@@ -952,7 +952,7 @@ int CDBAgent::UpdateKnights(int type, char * userid, int knightsindex, int domin
         retcode =
             SQLBindParameter(hstmt, 1, SQL_PARAM_OUTPUT, SQL_C_SSHORT, SQL_INTEGER, 0, 0, &sParmRet, 0, &cbParmRet);
         if (retcode == SQL_SUCCESS) {
-            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
             if (retcode == SQL_ERROR) {
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_GameDB.Close();
@@ -994,7 +994,7 @@ int CDBAgent::DeleteKnights(int knightsindex) {
         retcode =
             SQLBindParameter(hstmt, 1, SQL_PARAM_OUTPUT, SQL_C_SSHORT, SQL_INTEGER, 0, 0, &sParmRet, 0, &cbParmRet);
         if (retcode == SQL_SUCCESS) {
-            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
             if (retcode == SQL_ERROR) {
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_GameDB.Close();
@@ -1038,7 +1038,7 @@ int CDBAgent::LoadKnightsAllMembers(int knightsindex, int start, char * temp_buf
 
     retcode = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_GameDB.m_hdbc, &hstmt);
     if (retcode == SQL_SUCCESS) {
-        retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+        retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
         if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
             while (bData) {
                 retcode = SQLFetch(hstmt);
@@ -1119,7 +1119,7 @@ BOOL CDBAgent::UpdateConCurrentUserCount(int serverno, int zoneno, int t_count) 
 
     retcode = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_AccountDB1.m_hdbc, &hstmt);
     if (retcode == SQL_SUCCESS) {
-        retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+        retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
         if (retcode == SQL_ERROR) {
             if (DisplayErrorMsg(hstmt) == -1) {
                 m_AccountDB1.Close();
@@ -1162,7 +1162,7 @@ BOOL CDBAgent::LoadWarehouseData(const char * accountid, int uid) {
         return FALSE;
     }
 
-    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
     if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
         retcode = SQLFetch(hstmt);
         if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
@@ -1292,7 +1292,7 @@ int CDBAgent::UpdateWarehouseData(const char * accountid, int uid, int type) {
         retcode = SQLBindParameter(hstmt, 2, SQL_PARAM_INPUT, SQL_C_BINARY, SQL_BINARY, sizeof(bySerial), 0, bySerial,
                                    0, &sBySerial);
         if (retcode == SQL_SUCCESS) {
-            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
             if (retcode == SQL_ERROR) {
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_GameDB.Close();
@@ -1343,7 +1343,7 @@ BOOL CDBAgent::LoadKnightsInfo(int index, char * buff, int & buff_index) {
 
     retcode = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_GameDB.m_hdbc, &hstmt);
     if (retcode == SQL_SUCCESS) {
-        retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+        retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
         if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
             retcode = SQLFetch(hstmt);
             if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
@@ -1412,7 +1412,7 @@ BOOL CDBAgent::SetLogInInfo(const char * accountid, const char * charid, const c
 
     retcode = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_AccountDB.m_hdbc, &hstmt);
     if (retcode == SQL_SUCCESS) {
-        retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+        retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
         if (retcode == SQL_ERROR) {
             bSuccess = FALSE;
             if (DisplayErrorMsg(hstmt) == -1) {
@@ -1456,7 +1456,7 @@ int CDBAgent::AccountLogout(const char * accountid) {
         retcode =
             SQLBindParameter(hstmt, 1, SQL_PARAM_OUTPUT, SQL_C_SSHORT, SQL_SMALLINT, 0, 0, &sParmRet, 0, &cbParmRet);
         if (retcode == SQL_SUCCESS) {
-            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
             if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
                 SQLFreeHandle((SQLSMALLINT)SQL_HANDLE_STMT, hstmt);
                 if (sParmRet == 0) {
@@ -1503,7 +1503,7 @@ BOOL CDBAgent::CheckUserData(const char * accountid, const char * charid, int ty
 
     retcode = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_GameDB.m_hdbc, &hstmt);
     if (retcode == SQL_SUCCESS) {
-        retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+        retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
         if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
             retcode = SQLFetch(hstmt);
             if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
@@ -1569,7 +1569,7 @@ void CDBAgent::LoadKnightsAllList(int nation) {
 
     retcode = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_GameDB.m_hdbc, &hstmt);
     if (retcode == SQL_SUCCESS) {
-        retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+        retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
         if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
             while (bData) {
                 retcode = SQLFetch(hstmt);
@@ -1666,7 +1666,7 @@ BOOL CDBAgent::UpdateBattleEvent(const char * charid, int nation) {
 
     retcode = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_GameDB.m_hdbc, &hstmt);
     if (retcode == SQL_SUCCESS) {
-        retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+        retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
         if (retcode == SQL_ERROR) {
             if (DisplayErrorMsg(hstmt) == -1) {
                 m_GameDB.Close();
@@ -1709,7 +1709,7 @@ BOOL CDBAgent::CheckCouponEvent(const char * accountid) {
         return FALSE;
     }
 
-    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
     if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
         //SQLFreeHandle((SQLSMALLINT)SQL_HANDLE_STMT,hstmt);
         if (sRet == 0) {
@@ -1760,7 +1760,7 @@ BOOL CDBAgent::UpdateCouponEvent(const char * accountid, char * charid, char * c
         return FALSE;
     }    */
 
-    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
     if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
         //SQLFreeHandle((SQLSMALLINT)SQL_HANDLE_STMT,hstmt);
         retval = TRUE;
