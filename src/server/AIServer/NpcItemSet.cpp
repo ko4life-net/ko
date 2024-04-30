@@ -41,7 +41,6 @@ CString CNpcItemSet::GetDefaultConnect() {
 
 CString CNpcItemSet::GetDefaultSQL() {
     return _T("[dbo].[K_MONSTER_ITEM]");
-    //return _T("[dbo].[MONSTER_ITEM_TEST]");
 }
 
 void CNpcItemSet::DoFieldExchange(CFieldExchange * pFX) {
