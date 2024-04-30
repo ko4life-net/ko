@@ -85,7 +85,7 @@ BOOL CDBProcess::LoadVersionList() {
         return FALSE;
     }
 
-    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
     if (retcode != SQL_SUCCESS && retcode != SQL_SUCCESS_WITH_INFO) {
         if (DisplayErrorMsg(hstmt) == -1) {
             m_VersionDB.Close();
@@ -155,7 +155,7 @@ int CDBProcess::AccountLogin(const char * id, const char * pwd) {
         retcode =
             SQLBindParameter(hstmt, 1, SQL_PARAM_OUTPUT, SQL_C_SSHORT, SQL_SMALLINT, 0, 0, &sParmRet, 0, &cbParmRet);
         if (retcode == SQL_SUCCESS) {
-            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
             if (retcode != SQL_SUCCESS && retcode != SQL_SUCCESS_WITH_INFO) {
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_VersionDB.Close();
@@ -188,7 +188,7 @@ int CDBProcess::MgameLogin(const char * id, const char * pwd) {
         retcode =
             SQLBindParameter(hstmt, 1, SQL_PARAM_OUTPUT, SQL_C_SSHORT, SQL_SMALLINT, 0, 0, &sParmRet, 0, &cbParmRet);
         if (retcode == SQL_SUCCESS) {
-            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+            retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
             if (retcode != SQL_SUCCESS && retcode != SQL_SUCCESS_WITH_INFO) {
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_VersionDB.Close();
@@ -221,7 +221,7 @@ BOOL CDBProcess::InsertVersion(int version, const char * filename, const char * 
 
     retcode = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_VersionDB.m_hdbc, &hstmt);
     if (retcode == SQL_SUCCESS) {
-        retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+        retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
         if (retcode != SQL_SUCCESS && retcode != SQL_SUCCESS_WITH_INFO) {
             DisplayErrorMsg(hstmt);
             retvalue = FALSE;
@@ -244,7 +244,7 @@ BOOL CDBProcess::DeleteVersion(const char * filename) {
 
     retcode = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_VersionDB.m_hdbc, &hstmt);
     if (retcode == SQL_SUCCESS) {
-        retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+        retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
         if (retcode != SQL_SUCCESS && retcode != SQL_SUCCESS_WITH_INFO) {
             DisplayErrorMsg(hstmt);
             retvalue = FALSE;
@@ -275,7 +275,7 @@ BOOL CDBProcess::LoadUserCountList() {
         return FALSE;
     }
 
-    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
     if (retcode != SQL_SUCCESS && retcode != SQL_SUCCESS_WITH_INFO) {
         if (DisplayErrorMsg(hstmt) == -1) {
             m_VersionDB.Close();
@@ -325,7 +325,7 @@ BOOL CDBProcess::IsCurrentUser(const char * accountid, char * strServerIP, int &
         return FALSE;
     }
 
-    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, SQL_NTS);
     if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
         retcode = SQLFetch(hstmt);
         if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {

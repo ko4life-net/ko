@@ -1304,7 +1304,7 @@ BOOL CKnightsManager::LoadAllKnights() {
     retcode = SQLAllocHandle( (SQLSMALLINT)SQL_HANDLE_STMT, m_KnightsDB.m_hdbc, &hstmt );
     if (retcode == SQL_SUCCESS)
     {
-        retcode = SQLExecDirect (hstmt, (unsigned char *)szSQL, 1024);
+        retcode = SQLExecDirect (hstmt, (unsigned char *)szSQL, SQL_NTS);
         if (retcode == SQL_SUCCESS|| retcode == SQL_SUCCESS_WITH_INFO) {
             while (bData) {
                 retcode = SQLFetch(hstmt);
@@ -1446,7 +1446,7 @@ BOOL CKnightsManager::LoadKnightsIndex(int index) {
     retcode = SQLAllocHandle( (SQLSMALLINT)SQL_HANDLE_STMT, m_KnightsDB.m_hdbc, &hstmt );
     if (retcode == SQL_SUCCESS)
     {
-        retcode = SQLExecDirect (hstmt, (unsigned char *)szSQL, 1024);
+        retcode = SQLExecDirect (hstmt, (unsigned char *)szSQL, SQL_NTS);
         if (retcode == SQL_SUCCESS|| retcode == SQL_SUCCESS_WITH_INFO) {
             retcode = SQLFetch(hstmt);
             if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {

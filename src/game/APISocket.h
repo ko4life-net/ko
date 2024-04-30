@@ -229,10 +229,8 @@ class CAPISocket {
     std::queue<DataPack *> m_qRecvPkt;
 
 #ifdef _DEBUG
-    __SocketStatisics m_Statistics_Send_Sum[255];
-    __SocketStatisics m_Statistics_Recv_Sum[255];
-//    std::vector<__SocketStatisics> m_Statistics_Send[255];
-//    std::vector<__SocketStatisics> m_Statistics_Recv[255];
+    __SocketStatisics m_Statistics_Send_Sum[UCHAR_MAX + 1];
+    __SocketStatisics m_Statistics_Recv_Sum[UCHAR_MAX + 1];
 #endif
 
   public:
