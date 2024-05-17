@@ -119,7 +119,7 @@ void CDlgLight::OnBtnUpload() {
     UpdateData(TRUE);
 
     if (m_strLightObjName.IsEmpty()) {
-        MessageBox("Light Object객체의 이름이 지정되어 있지 않습니다.", "-.-;");
+        MessageBox("The name of the Light Object object is not specified.", "-.-;");
         return;
     }
 

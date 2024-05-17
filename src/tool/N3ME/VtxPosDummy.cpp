@@ -30,7 +30,7 @@ void CVtxPosDummy::Tick() {
         return;
     }
 
-    // Scale 조정
+    // Scale adjustment
     __Vector3 vL = s_CameraData.vEye - m_vPos;
     float     fL = vL.Magnitude() * 0.01f;
     m_vScale.Set(fL, fL, fL);
@@ -38,7 +38,7 @@ void CVtxPosDummy::Tick() {
     CN3Transform::Tick(-1000.0f);
     ReCalcMatrix();
 
-    // 거리에 따라 정렬
+    // Sort by distance
     for (int i = 0; i < NUM_DUMMY; ++i) {
         __Vector3 vPos = m_DummyCubes[i].vCenterPos * m_Matrix;
         m_DummyCubes[i].fDistance = (vPos - s_CameraData.vEye).Magnitude();
@@ -57,7 +57,7 @@ void CVtxPosDummy::Render() {
     HRESULT hr;
 
     // set transform
-    hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &m_Matrix); // 월드 행렬 적용..
+    hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &m_Matrix); // Apply world matrix...
 
     // set texture
     hr = s_lpD3DDev->SetTexture(0, NULL);
@@ -73,16 +73,16 @@ void CVtxPosDummy::Render() {
     hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
     hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
-    // 이어지 선 그리기
+    // Draw continuous lines
     hr = s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
     hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 3, m_LineVertices, sizeof(__VertexXyzColor));
 
-    // Cube 그리기
+    // Draw Cube
     hr = s_lpD3DDev->SetFVF(FVF_XYZNORMALCOLOR);
     for (int i = 0; i < NUM_DUMMY; ++i) {
         ASSERT(m_pSortedCubes[i]);
         if (m_pSortedCubes[i]->iType == DUMMY_CENTER) {
-            continue; // 가운데 큐브는 그리지 않는다.
+            continue; // The center cube is not drawn.
         }
         hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 12, m_pSortedCubes[i]->Vertices,
                                          sizeof(__VertexXyzNormalColor));
@@ -101,7 +101,7 @@ void CVtxPosDummy::AddSelObj(CN3Transform * pObj) {
     ASSERT(0);
 }
 
-void CVtxPosDummy::SetSelVtx(__VertexXyzT1 * pVtx) // 선택된 점 바꾸기
+void CVtxPosDummy::SetSelVtx(__VertexXyzT1 * pVtx) // change selected point
 {
     m_SelVtxArray.RemoveAll();
     if (pVtx) {
@@ -111,13 +111,13 @@ void CVtxPosDummy::SetSelVtx(__VertexXyzT1 * pVtx) // 선택된 점 바꾸기
     }
 }
 
-void CVtxPosDummy::AddSelVtx(__VertexXyzT1 * pVtx) // 선택된 점 추가
+void CVtxPosDummy::AddSelVtx(__VertexXyzT1 * pVtx) // add selected point
 {
     _ASSERT(pVtx);
     m_SelVtxArray.Add(pVtx);
 }
 
-BOOL CVtxPosDummy::MouseMsgFilter(LPMSG pMsg) // 마우스 메세지 처리
+BOOL CVtxPosDummy::MouseMsgFilter(LPMSG pMsg) // Process mouse messages
 {
     int iSize = m_SelVtxArray.GetSize();
     if (iSize == 0) {
@@ -129,9 +129,10 @@ BOOL CVtxPosDummy::MouseMsgFilter(LPMSG pMsg) // 마우스 메세지 처리
         POINT point = {short(LOWORD(pMsg->lParam)), short(HIWORD(pMsg->lParam))};
         DWORD nFlags = pMsg->wParam;
         if (m_pSelectedCube && (nFlags & MK_LBUTTON)) {
-            __Vector3 vRayDir, vRayOrig; // 화면 중앙(시점)과 마우스 포인터를 이은 직선의 방향과 원점
-            __Vector3 vPN, vPV;          // 평면의 법선과 포함된 점
-            __Vector3 vPos;              // 위의 평면과 직선의 만나는 점(구할 점)
+            __Vector3 vRayDir,
+                vRayOrig; // Direction and origin of the straight line connecting the screen center (viewpoint) and the mouse pointer
+            __Vector3 vPN, vPV; // Plane normal and contained points
+            __Vector3 vPos;     // Point where the above plane meets the straight line (point to find)
             __Vector3 vCameraDir = s_CameraData.vAt - s_CameraData.vEye;
             vCameraDir.Normalize();
             GetPickRay(point, vRayDir, vRayOrig);
@@ -141,7 +142,7 @@ BOOL CVtxPosDummy::MouseMsgFilter(LPMSG pMsg) // 마우스 메세지 처리
 
             switch (m_pSelectedCube->iType) {
             case DUMMY_CENTER: {
-                // XZ평면 위로 움직이게..
+                // Move over the XZ plane...
                 vPN.Set(0, 1, 0);
                 __Vector3 vPR = vPV - vRayOrig;
                 float     fT = D3DXVec3Dot(&vPN, &vPR) / D3DXVec3Dot(&vPN, &vRayDir);
@@ -214,7 +215,7 @@ BOOL CVtxPosDummy::MouseMsgFilter(LPMSG pMsg) // 마우스 메세지 처리
             return TRUE;
         }
     } break;
-    case WM_RBUTTONDOWN: // 큐브 선택 취소 및 이번 드래그로 움직인것 되돌려 놓기
+    case WM_RBUTTONDOWN: // Cancel selection of cube and return what was moved by this drag
     {
         if (m_pSelectedCube) {
             __Vector3 vDiffPos = m_vPrevPos - m_vPos;
@@ -232,7 +233,7 @@ BOOL CVtxPosDummy::MouseMsgFilter(LPMSG pMsg) // 마우스 메세지 처리
 }
 
 void CVtxPosDummy::TransDiff(__Vector3 * pvDiffPos, __Quaternion * pqDiffRot,
-                             __Vector3 * pvDiffScale) // 차이만큼 선택된 오브젝트들을 변형시킨다.
+                             __Vector3 * pvDiffScale) // Transform the selected objects by the difference.
 {
     int iSize = m_SelVtxArray.GetSize();
     if (iSize <= 0) {

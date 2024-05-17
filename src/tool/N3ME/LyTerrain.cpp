@@ -1,5 +1,5 @@
 // LyTerrain.cpp: implementation of the CLyTerrain class.
-//    - 2001. 9.24.~ Map Editor용으로 변환...
+// - 2001. 9.24.~ Converted for Map Editor...
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -58,18 +58,18 @@ CLyTerrain::CLyTerrain() {
 
     m_EyePos.x = m_EyePos.y = 0;
 
-    m_ColorMapVB = NULL; //    컬러맵쓸때..
-    m_TileVB = NULL;     //    타일
-    m_LightMapVB = NULL; //    하나의 라이트맵
+    m_ColorMapVB = NULL; // When using a color map...
+    m_TileVB = NULL;     //    tile
+    m_LightMapVB = NULL; // one lightmap
 
-    m_iHeightLimit = 600; // 작을 수록 더 정밀도가 높아진다..
-    m_iDistLimit = 30;    // 클수록 정밀도가 높아진다..
+    m_iHeightLimit = 600; // The smaller it is, the higher the precision.
+    m_iDistLimit = 30;    // The bigger it is, the higher the precision.
 
     m_iHeightMapSize = 1025;
     m_iMaxLevel = 9; //(log2(m_iHeightMapSize-1)) - 1
 
-    m_iColorMapTexSize = 128;            //컬러맵 텍스쳐의 크기..
-    m_iColorMapPixelPerUnitDistance = 4; //UnitDistance당 들어가는 컬러맵의 픽셀 수..
+    m_iColorMapTexSize = 128;            //Size of color map texture..
+    m_iColorMapPixelPerUnitDistance = 4; //Number of color map pixels per UnitDistance...
     m_iNumColorMap = 32;
 
     m_iNumTileMap = 0;
@@ -254,7 +254,7 @@ void CLyTerrain::Release() {
     if (m_pColorTexture) {
         for (int x = 0; x < m_iNumColorMap; x++) {
             if (m_pColorTexture[x]) {
-                //                for(int z=0;z<m_iNumColorMap;z++) // 굳이 이렇게 안해도 다 지워진다...
+                //                for(int z=0;z<m_iNumColorMap;z++) // Even if you don't do this, everything will be erased...
                 //                {
                 //                    m_pColorTexture[x][z].Release();
                 //                }
@@ -367,14 +367,14 @@ void CLyTerrain::Init(int HeightMapSize) {
     m_iNumTileMap = 0;
     m_iNumLightMap = 0;
 
-    m_iColorMapTexSize = 128;            //컬러맵 텍스쳐의 크기..
-    m_iColorMapPixelPerUnitDistance = 4; //UnitDistance당 들어가는 컬러맵의 픽셀 수..
+    m_iColorMapTexSize = 128;            //Size of color map texture..
+    m_iColorMapPixelPerUnitDistance = 4; //Number of color map pixels per UnitDistance...
 
     m_pColorMapTmpVertices = NULL;
     s_lpD3DDev->CreateVertexBuffer(8 * sizeof(__VertexTransformedT2), 0, FVF_TRANSFORMEDT2, D3DPOOL_MANAGED,
                                    &m_pColorMapTmpVB, NULL);
 
-    //컬러맵 텍스쳐 만들기..
+    //Create color map texture...
     m_iNumColorMap = (((m_iHeightMapSize - 1) * m_iColorMapPixelPerUnitDistance) / m_iColorMapTexSize) + 1;
     if (((m_iHeightMapSize - 1) * m_iColorMapPixelPerUnitDistance) % m_iColorMapTexSize == 0) {
         m_iNumColorMap--;
@@ -496,10 +496,10 @@ bool CLyTerrain::SaveToFilePartition(const char * lpszPath, float psx, float psz
 
     WriteFile(hFile, &(HeightMapSize), sizeof(int), &dwRWC, NULL);
 
-    CProgressBar ProgressBar; // 진행 상황..
+    CProgressBar ProgressBar; // Progress..
 
     if (HeightMapSize > 0) {
-        //  그냥 하나씩 저장해도 차이 없지만 네트워크로 저장할때는 파일 엑세스 숫자를 줄이고 한꺼번에 저장해야  빠르다.. ...
+        // There is no difference if you just save them one by one, but when saving over the network, it is faster to reduce the number of file accesses and save them all at once.. ...
         DWORD   dwAlloc = HeightMapSize * HeightMapSize * sizeof(float);
         HGLOBAL hAlloc = ::GlobalAlloc(GMEM_FIXED, dwAlloc);
         __ASSERT(hAlloc, "Global allocation failed.");
@@ -513,12 +513,12 @@ bool CLyTerrain::SaveToFilePartition(const char * lpszPath, float psx, float psz
                 pfHeights[idx] = m_ppMapData[x][z].fHeight;
             }
         }
-        WriteFile(hFile, pfHeights, dwAlloc, &dwRWC, NULL); // 파일에 쓴다..
+        WriteFile(hFile, pfHeights, dwAlloc, &dwRWC, NULL); //Write to file..
         pfHeights = NULL;
         ::GlobalUnlock(hAlloc);
         ::GlobalFree(hAlloc);
 
-        // Detail Texture 저장..
+        // Save Detail Texture..
         dwAlloc = HeightMapSize * HeightMapSize * sizeof(DTEXINFO) * 2;
         hAlloc = ::GlobalAlloc(GMEM_FIXED, dwAlloc);
         __ASSERT(hAlloc, "Global allocation failed.");
@@ -529,7 +529,7 @@ bool CLyTerrain::SaveToFilePartition(const char * lpszPath, float psx, float psz
             ProgressBar.StepIt();
             for (x = sx; x < ex; x++) {
                 ////////////////////////////////////////////////////////////////////
-                // 쓰레기 정보 차단...
+                // Block garbage information...
                 if (m_ppMapData[x][z].DTexInfo1.TexIdx.TileX < 0 ||
                     m_ppMapData[x][z].DTexInfo1.TexIdx.TileX >= NUM_DTEXTILE) {
                     m_ppMapData[x][z].DTexInfo1.TexIdx.TileX = 0;
@@ -546,7 +546,7 @@ bool CLyTerrain::SaveToFilePartition(const char * lpszPath, float psx, float psz
                     m_ppMapData[x][z].DTexInfo2.TexIdx.TileY >= NUM_DTEXTILE) {
                     m_ppMapData[x][z].DTexInfo2.TexIdx.TileY = 0;
                 }
-                // 쓰레기 정보 차단...
+                // Block garbage information...
                 ////////////////////////////////////////////////////////////////////
 
                 int idx = (z - sz) * HeightMapSize + (x - sx);
@@ -554,16 +554,16 @@ bool CLyTerrain::SaveToFilePartition(const char * lpszPath, float psx, float psz
                 pDTexInfos[idx * 2 + 1] = m_ppMapData[x][z].DTexInfo2;
             }
         }
-        WriteFile(hFile, pDTexInfos, dwAlloc, &dwRWC, NULL); // 파일에 쓴다..
+        WriteFile(hFile, pDTexInfos, dwAlloc, &dwRWC, NULL); //Write to file..
         pDTexInfos = NULL;
         ::GlobalUnlock(hAlloc);
         ::GlobalFree(hAlloc);
     }
 
-    //라이트맵 정보 기록...
-    //N3ME_DATA_VERSION 1이상부터..
+    //Record lightmap information...
+    //N3ME_DATA_VERSION 1 or higher...
     int NumLightMap = DetectRealLightMap(sx, sz, HeightMapSize);
-    WriteFile(hFile, &(NumLightMap), sizeof(int), &dwRWC, NULL); // LightMap의 갯수 기록..
+    WriteFile(hFile, &(NumLightMap), sizeof(int), &dwRWC, NULL); // Record the number of LightMap..
 
     if (NumLightMap > 0) {
         ProgressBar.Create("Save Light Map Data", 50, NumLightMap);
@@ -595,7 +595,7 @@ bool CLyTerrain::SaveToFilePartition(const char * lpszPath, float psx, float psz
         }
     }
 
-    //풀 관련 정보 저장..
+    //Save pool-related information..
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
 
     int NumSeedInfo = pFrm->m_SeedGroupList.size();
@@ -615,11 +615,11 @@ bool CLyTerrain::SaveToFilePartition(const char * lpszPath, float psx, float psz
     CloseHandle(hFile);
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
-    // 컬러맵 쓰기.
+    // Write colormap.
     char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
     _splitpath(lpszPath, szDrive, szDir, szFName, szExt);
     char szNewFName[_MAX_PATH] = "";
-    _makepath(szNewFName, szDrive, szDir, szFName, "tcm"); // 파일 이름과 동일한 이름으로 컬러맵 저장..
+    _makepath(szNewFName, szDrive, szDir, szFName, "tcm"); // Save the color map with the same name as the file name.
 
     HANDLE hCMFile = CreateFile(szNewFName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
@@ -629,7 +629,7 @@ bool CLyTerrain::SaveToFilePartition(const char * lpszPath, float psx, float psz
     }
 
     //////////////////////////////////////////////////////////
-    //일단 국지적인 컬러맵을 생성한 다음에....그걸 써야해...
+    //Once we create a local color map... we need to use it...
     //
     ProgressBar.Create("Create ColorMap", 50, NumColorMap * NumColorMap + NumColorMap);
 
@@ -641,11 +641,11 @@ bool CLyTerrain::SaveToFilePartition(const char * lpszPath, float psx, float psz
     }
 
     //
-    // fill color map..
-    // bmp컬러맵 만들고...
-    // 다시 읽어온 다음에...
-    // 다시 잘라서 저장한 다음에...
-    // 잘라 저장한 bmp를 Import하는 것처럼 읽어서 셋팅..
+    //fill color map..
+    // Create a bmp color map...
+    // After reading again...
+    // After cutting and saving again...
+    // Read and set the cut and saved BMP as if importing it.
     CString strTmpColorMap("c:\\MiniMap.bmp");
     ColorMapExport((LPCTSTR)strTmpColorMap);
 
@@ -694,7 +694,7 @@ bool CLyTerrain::SaveToFilePartition(const char * lpszPath, float psx, float psz
 
 //
 //    Save()
-//    맵에디터에서 쓰는 파일 타입으로 저장하기..
+//    Save as the file type used in the map editor..
 //
 bool CLyTerrain::SaveToFile(const char * lpszPath) {
     HANDLE hFile = CreateFile(lpszPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -710,10 +710,10 @@ bool CLyTerrain::SaveToFile(const char * lpszPath) {
 
     WriteFile(hFile, &(m_iHeightMapSize), sizeof(int), &dwRWC, NULL);
 
-    CProgressBar ProgressBar; // 진행 상황..
+    CProgressBar ProgressBar; // Progress..
 
     if (m_iHeightMapSize > 0) {
-        //  그냥 하나씩 저장해도 차이 없지만 네트워크로 저장할때는 파일 엑세스 숫자를 줄이고 한꺼번에 저장해야  빠르다.. ...
+        // There is no difference if you just save them one by one, but when saving over the network, it is faster to reduce the number of file accesses and save them all at once.. ...
         DWORD   dwAlloc = m_iHeightMapSize * m_iHeightMapSize * sizeof(float);
         HGLOBAL hAlloc = ::GlobalAlloc(GMEM_FIXED, dwAlloc);
         __ASSERT(hAlloc, "Global allocation failed.");
@@ -726,12 +726,12 @@ bool CLyTerrain::SaveToFile(const char * lpszPath) {
                 pfHeights[z * m_iHeightMapSize + x] = m_ppMapData[x][z].fHeight;
             }
         }
-        WriteFile(hFile, pfHeights, dwAlloc, &dwRWC, NULL); // 파일에 쓴다..
+        WriteFile(hFile, pfHeights, dwAlloc, &dwRWC, NULL); //Write to file..
         pfHeights = NULL;
         ::GlobalUnlock(hAlloc);
         ::GlobalFree(hAlloc);
 
-        // Detail Texture 저장..
+        // Save Detail Texture..
         dwAlloc = m_iHeightMapSize * m_iHeightMapSize * sizeof(DTEXINFO) * 2;
         hAlloc = ::GlobalAlloc(GMEM_FIXED, dwAlloc);
         __ASSERT(hAlloc, "Global allocation failed.");
@@ -742,7 +742,7 @@ bool CLyTerrain::SaveToFile(const char * lpszPath) {
             ProgressBar.StepIt();
             for (x = 0; x < m_iHeightMapSize; x++) {
                 ////////////////////////////////////////////////////////////////////
-                // 쓰레기 정보 차단...
+                // Block garbage information...
                 if (m_ppMapData[x][z].DTexInfo1.TexIdx.TileX < 0 ||
                     m_ppMapData[x][z].DTexInfo1.TexIdx.TileX >= NUM_DTEXTILE) {
                     m_ppMapData[x][z].DTexInfo1.TexIdx.TileX = 0;
@@ -759,23 +759,23 @@ bool CLyTerrain::SaveToFile(const char * lpszPath) {
                     m_ppMapData[x][z].DTexInfo2.TexIdx.TileY >= NUM_DTEXTILE) {
                     m_ppMapData[x][z].DTexInfo2.TexIdx.TileY = 0;
                 }
-                // 쓰레기 정보 차단...
+                // Block garbage information...
                 ////////////////////////////////////////////////////////////////////
 
                 pDTexInfos[(z * m_iHeightMapSize + x) * 2] = m_ppMapData[x][z].DTexInfo1;
                 pDTexInfos[(z * m_iHeightMapSize + x) * 2 + 1] = m_ppMapData[x][z].DTexInfo2;
             }
         }
-        WriteFile(hFile, pDTexInfos, dwAlloc, &dwRWC, NULL); // 파일에 쓴다..
+        WriteFile(hFile, pDTexInfos, dwAlloc, &dwRWC, NULL); //Write to file..
         pDTexInfos = NULL;
         ::GlobalUnlock(hAlloc);
         ::GlobalFree(hAlloc);
     }
 
-    //라이트맵 정보 기록...
-    //N3ME_DATA_VERSION 1이상부터..
+    //Record lightmap information...
+    //N3ME_DATA_VERSION 1 or higher...
     DetectRealLightMap(0, 0, m_iHeightMapSize);
-    WriteFile(hFile, &(m_iNumLightMap), sizeof(int), &dwRWC, NULL); // LightMap의 갯수 기록..
+    WriteFile(hFile, &(m_iNumLightMap), sizeof(int), &dwRWC, NULL); // Record the number of LightMap..
 
     int CountLightMap = m_iNumLightMap;
     if (CountLightMap > 0) {
@@ -809,7 +809,7 @@ bool CLyTerrain::SaveToFile(const char * lpszPath) {
         }
     }
 
-    //풀 관련 정보 저장..
+    //Save pool-related information..
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
 
     int NumSeedInfo = pFrm->m_SeedGroupList.size();
@@ -829,11 +829,11 @@ bool CLyTerrain::SaveToFile(const char * lpszPath) {
     CloseHandle(hFile);
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
-    // 컬러맵 쓰기.
+    // Write colormap.
     char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
     _splitpath(lpszPath, szDrive, szDir, szFName, szExt);
     char szNewFName[_MAX_PATH] = "";
-    _makepath(szNewFName, szDrive, szDir, szFName, "tcm"); // 파일 이름과 동일한 이름으로 컬러맵 저장..
+    _makepath(szNewFName, szDrive, szDir, szFName, "tcm"); // Save the color map with the same name as the file name.
 
     HANDLE hCMFile = CreateFile(szNewFName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
@@ -858,14 +858,14 @@ bool CLyTerrain::SaveToFile(const char * lpszPath) {
         {
             ProgressBar.StepIt();
 
-            _makepath(szNewFName, szDrive, szDir, szFName, NULL); // 파일 이름과 동일한 이름으로 컬러맵 저장..
-            wsprintf(szAdd, "_%02d%02d.DXT", x, z);  // Tool 경로를 붙이고 번호와 확장자를 붙여서 저장..
+            _makepath(szNewFName, szDrive, szDir, szFName, NULL); // Save the color map with the same name as the file name.
+            wsprintf(szAdd, "_%02d%02d.DXT", x, z);  // Add the tool path and save it with a number and extension.
             lstrcat(szNewFName, szAdd);
             m_pColorTexture[x][z].SaveToFile(szNewFName);
         }
     }
     */
-    // 컬러맵 쓰기.
+    // Write colormap.
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return true;
@@ -885,19 +885,19 @@ bool CLyTerrain::LoadFromFile(const char * lpszPath) {
     int   HeightMapSize;
     int   version = 0;
     ReadFile(hFile, &(version), sizeof(int), &dwRWC, NULL);
-    if (version < 0) //버전이 기록된 데이터들....
+    if (version < 0) //Data with recorded versions....
     {
         ReadFile(hFile, &(HeightMapSize), sizeof(int), &dwRWC, NULL);
     } else {
-        HeightMapSize = version; //버전이 기록되어 있지 않은 이전 데이터들..
+        HeightMapSize = version; //Previous data whose version is not recorded...
     }
 
     Init(HeightMapSize);
 
-    CProgressBar ProgressBar; // 진행 상황..
+    CProgressBar ProgressBar; // Progress..
 
     if (m_iHeightMapSize > 0) {
-        //  그냥 하나씩 저장해도 차이 없지만 네트워크로 저장할때는 파일 엑세스 숫자를 줄이고 한꺼번에 저장해야  빠르다.. ...
+        // There is no difference if you just save them one by one, but when saving over the network, it is faster to reduce the number of file accesses and save them all at once.. ...
         DWORD   dwAlloc = m_iHeightMapSize * m_iHeightMapSize * sizeof(float);
         HGLOBAL hAlloc = ::GlobalAlloc(GMEM_FIXED, dwAlloc);
         __ASSERT(hAlloc, "Global allocation failed.");
@@ -916,7 +916,7 @@ bool CLyTerrain::LoadFromFile(const char * lpszPath) {
         hAlloc = NULL;
         fHeights = NULL;
 
-        //  그냥 하나씩 저장해도 차이 없지만 네트워크로 저장할때는 파일 엑세스 숫자를 줄이고 한꺼번에 저장해야  빠르다.. ...
+        // There is no difference if you just save them one by one, but when saving over the network, it is faster to reduce the number of file accesses and save them all at once.. ...
         dwAlloc = m_iHeightMapSize * m_iHeightMapSize * sizeof(DTEXINFO) * 2;
         hAlloc = ::GlobalAlloc(GMEM_FIXED, dwAlloc);
         __ASSERT(hAlloc, "Global allocation failed.");
@@ -939,10 +939,10 @@ bool CLyTerrain::LoadFromFile(const char * lpszPath) {
         pDTIs = NULL;
     }
 
-    if (version <= -1) //버전 1부터....^^
+    if (version <= -1) //From version 1....^^
     {
-        //라이트맵 정보 읽기..
-        ReadFile(hFile, &(m_iNumLightMap), sizeof(int), &dwRWC, NULL); // LightMap의 갯수 기록..
+        //Read light map information..
+        ReadFile(hFile, &(m_iNumLightMap), sizeof(int), &dwRWC, NULL); // Record the number of LightMap..
         ProgressBar.Create("Load Light Map Data", 50, m_iNumLightMap);
 
         if (version > -3) {
@@ -979,9 +979,9 @@ bool CLyTerrain::LoadFromFile(const char * lpszPath) {
             }
         }
     }
-    if (version <= -2) //버전 2부터....^^
+    if (version <= -2) //From version 2....^^
     {
-        // 풀씨에 관한 정보 읽기..
+        // Read information about grass seeds...
         int NumSeedInfo;
         ReadFile(hFile, &(NumSeedInfo), sizeof(int), &dwRWC, NULL);
 
@@ -1002,14 +1002,15 @@ bool CLyTerrain::LoadFromFile(const char * lpszPath) {
     CloseHandle(hFile);
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
-    // 컬러맵 읽기.
+    // Read the colormap.
     ProgressBar.Create("Load color map..", 50, m_iNumColorMap * m_iNumColorMap);
 
     char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
     _splitpath(lpszPath, szDrive, szDir, szFName, szExt);
     char szNewFName[_MAX_PATH] = "", szAdd[_MAX_PATH] = "";
 
-    _makepath(szNewFName, szDrive, szDir, szFName, "tcm"); // 파일 이름과 동일한 이름으로 컬러맵 저장되어 있다.
+    _makepath(szNewFName, szDrive, szDir, szFName,
+              "tcm"); // The color map is saved with the same name as the file name.
     HANDLE hCMFile = CreateFile(szNewFName, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hCMFile) {
         for (x = 0; x < m_iNumColorMap; x++) {
@@ -1017,12 +1018,13 @@ bool CLyTerrain::LoadFromFile(const char * lpszPath) {
                 ProgressBar.StepIt();
 
                 _makepath(szNewFName, szDrive, szDir, szFName,
-                          NULL);                        // 파일 이름과 동일한 이름으로 컬러맵 저장되어 있다.
-                wsprintf(szAdd, "_%02d%02d.DXT", x, z); // Tool 경로를 붙이고 번호와 확장자를 붙여서 저장되어 있다.
+                          NULL); // The color map is saved with the same name as the file name.
+                wsprintf(szAdd, "_%02d%02d.DXT", x,
+                         z); // It is saved with the tool path attached and a number and extension added.
                 lstrcat(szNewFName, szAdd);
 
                 if (m_pColorTexture[x][z].LoadFromFile(szNewFName) == false) {
-                    MessageBox(::GetActiveWindow(), "컬러맵은 32bit dxt파일만 사용할 수 있어요..", "ㅠ.ㅠ", MB_OK);
+                    MessageBox(::GetActiveWindow(), "Only 32bit dxt files can be used for color maps.", "ㅠ.ㅠ", MB_OK);
                 }
             }
         }
@@ -1038,10 +1040,10 @@ bool CLyTerrain::LoadFromFile(const char * lpszPath) {
         CloseHandle(hCMFile);
     }
 
-    // 컬러맵 읽기.
+    // Read the colormap.
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //라이트맵텍스쳐 수도 있고, 텍스쳐도 세팅..
+    //Can be a light map texture, and also set the texture..
     m_pRoot->SetWholeClipped();
     m_pRoot->ClearMinMaxY();
     m_pRoot->SetMinMaxY();
@@ -1095,7 +1097,7 @@ void CLyTerrain::ConvertLightMapToolDataV2toV3() {
                 }
             }
 
-            //dc만들어서 비트맵축소..
+            //Create dc and reduce bitmap..
             pBMP->SaveToFile("c:\\templightmap.bmp");
 
             int SmallSize = LIGHTMAP_TEX_SIZE - 2;
@@ -1144,11 +1146,11 @@ void CLyTerrain::ConvertLightMapToolDataV2toV3() {
             SelectObject(hBMDC, hOldBM);
             SelectObject(hSmallDC, hOldBM2);
 
-            DeleteFile("c:\\templightmap.bmp"); // 임시 파일을 지워준다..
+            DeleteFile("c:\\templightmap.bmp"); // Delete temporary files.
         }
     }
 
-    //테두리 만들기..
+    //Create border...
     D3DLOCKED_RECT d3dlrDest;
     DWORD *        pDestBits;
     int            srcX, srcZ;
@@ -1285,7 +1287,7 @@ void CLyTerrain::ConvertLightMapToolDataV2toV3() {
 
 //
 //    SaveGameData
-//    게임에 쓸 데이타를 저장..
+//    Save data to be used in the game.
 //
 void CLyTerrain::SaveGameData(HANDLE hFile) {
     MMap   TexTree;
@@ -1293,7 +1295,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile) {
 
     //
     ///////////////////////
-    // 데이타 재구성...
+    // Reorganize data...
     //
     short tmpTexIdx;
     short tmpTileIdx;
@@ -1365,13 +1367,13 @@ void CLyTerrain::SaveGameData(HANDLE hFile) {
     }
 
     //
-    // 기록 시작...^^...
+    // Start recording...^^...
     //
     DWORD dwRWC;
     WriteFile(hFile, &m_iHeightMapSize, sizeof(int), &dwRWC, NULL);
 
-    //    각 꼭지점 정보 저장...
-    //  그냥 하나씩 저장해도 차이 없지만 네트워크로 저장할때는 파일 엑세스 숫자를 줄이고 한꺼번에 저장해야  빠르다.. ...
+    // Store each vertex information...
+    // There is no difference if you just save them one by one, but when saving over the network, it is faster to reduce the number of file accesses and save them all at once.. ...
     DWORD   dwAlloc = sizeof(GAMEMAPDATA) * m_iHeightMapSize * m_iHeightMapSize;
     HGLOBAL hAlloc = ::GlobalAlloc(GMEM_FIXED, dwAlloc);
     __ASSERT(hAlloc, "Global allocation failed.");
@@ -1412,15 +1414,15 @@ void CLyTerrain::SaveGameData(HANDLE hFile) {
         }
     }
 
-    WriteFile(hFile, pGMDs, dwAlloc, &dwRWC, NULL); // 좀더 빨리 저장하려고 몰아서 저장....
+    WriteFile(hFile, pGMDs, dwAlloc, &dwRWC, NULL); // I rushed to save it to save it faster....
     GlobalUnlock(hAlloc);
     GlobalFree(hAlloc);
     hAlloc = NULL;
     pGMDs = NULL;
 
-    // 각 패치의 가운데 y값과 반지름 저장..
+    // Store the center y value and radius of each patch..
     int   ti_PatchSize = 8;                                // 32m = 8tiles..
-    float re_HalfDist = (float)((ti_PatchSize >> 1) << 2); //패치길이의 절반..(m단위)
+    float re_HalfDist = (float)((ti_PatchSize >> 1) << 2); //Half of the patch length.. (unit of m)
     float MinY, MaxY;
 
     int pat_HeightMapSize = (m_iHeightMapSize - 1) / ti_PatchSize;
@@ -1452,7 +1454,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile) {
         }
     }
 
-    //타일에 풀 속성 저장..
+    //Save pool properties to tile..
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     pFrm->GetMapMng()->m_SowSeedMng.SaveDataGame();
     LPSEEDGROUP SeedAttr = new SEEDGROUP[m_iHeightMapSize * m_iHeightMapSize];
@@ -1515,7 +1517,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile) {
         }
     }
 
-    /*   원래의 풀 저장 
+    /*   Save the original pool
     int NumSeedInfo = pFrm->m_SeedGroupList.size();
     for(int x=0; x<m_iHeightMapSize-1;x++)
     {
@@ -1545,7 +1547,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile) {
     char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
     _splitpath(m_szFileName.c_str(), szDrive, szDir, szFName, szExt);
 
-    // 텍스트파일로 함 뽑아보자..
+    // Let's extract it as a text file.
     FILE * stream = fopen("c:\\grass.txt", "w");
     for (int z = 0; z < m_iHeightMapSize; z++) {
         for (int x = 0; x < m_iHeightMapSize; x++) {
@@ -1553,7 +1555,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile) {
             fprintf(stream, "%d,%d\t", v.Obj_Id, v.Seed_Count);
 
             if (v.SeedGroup_Sub != NULL) {
-                fprintf(stream, "서브 %d,%d\t", v.SeedGroup_Sub->Obj_Id, v.SeedGroup_Sub->Seed_Count);
+                fprintf(stream, "Serve %d,%d\t", v.SeedGroup_Sub->Obj_Id, v.SeedGroup_Sub->Seed_Count);
             }
 
             fprintf(stream, "\n");
@@ -1561,11 +1563,11 @@ void CLyTerrain::SaveGameData(HANDLE hFile) {
     }
     fclose(stream);
 
-    //WriteFile(hFile, szFName, _MAX_PATH, &dwRWC, NULL); // 컬러맵 이름 저장.
-    //컬러맵은 MapMng에서 따로 저장한다..
+    //WriteFile(hFile, szFName, _MAX_PATH, &dwRWC, NULL); // Save the colormap name.
+    //The color map is stored separately in MapMng.
 
     //
-    //    타일텍스쳐정보 저장...
+    //    Save tile texture information...
     //
     WriteFile(hFile, &NumTile, sizeof(int), &dwRWC, NULL);
     if (NumTile != 0) {
@@ -1580,7 +1582,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile) {
 
             pTexture = GetTileTex(TexIdx);
             if (pTexture) {
-                // 경로를 빼고 파일이름과 확장자만 저장해준다.
+                // Save only the file name and extension, excluding the path.
                 char szTileFN[MAX_PATH];
                 _splitpath(pTexture->FileName().c_str(), NULL, NULL, szFName, NULL);
                 wsprintf(szTileFN, "dtex\\%s_%d.gtt", szFName, YIdx);
@@ -1605,15 +1607,15 @@ void CLyTerrain::SaveGameData(HANDLE hFile) {
         }
     }
 
-    //라이트맵 정보 기록...
+    //Record lightmap information...
     DetectRealLightMap(0, 0, m_iHeightMapSize);
     int CountLightMap;
 
     CountLightMap = 0;
-    //라이트맵은 따로 파일로 저장해서 쓰기때문에 걍 0으로 해서 저장...
+    //The light map is saved as a separate file, so just save it as 0...
     //CountLightMap = m_iNumLightMap;
 
-    WriteFile(hFile, &(CountLightMap), sizeof(int), &dwRWC, NULL); // LightMap의 갯수 기록..
+    WriteFile(hFile, &(CountLightMap), sizeof(int), &dwRWC, NULL); // Record the number of LightMap..
 
     if (CountLightMap > 0) {
         ProgressBar.Create("Save Light Map Data", 50, m_iNumLightMap);
@@ -1660,7 +1662,7 @@ void CLyTerrain::MakeGameLightMap(char * szFullPathName) {
     int * PatchInfo = new int[PatchCount * PatchCount];
     ZeroMemory(PatchInfo, sizeof(int) * PatchCount * PatchCount);
 
-    //각각의 파일을 만들어 보고 크기도 알아내자..
+    //Let뭩 create each file and find out its size.
     int   Size = sizeof(int) * PatchCount * PatchCount + sizeof(int);
     int   px, pz;
     int   tx, tz;
@@ -1688,19 +1690,19 @@ void CLyTerrain::MakeGameLightMap(char * szFullPathName) {
                 continue;
             }
 
-            //임시파일 만들고 저장함 해보고, 용량 알아낸다음....저장할까?
+            // Let's create a temporary file and save it, find out its size... Shall we save it?
 
             char szTmpName[_MAX_PATH];
             sprintf(szTmpName, "c:\\temp_lightmap.binn");
             HANDLE hFile = CreateFile(szTmpName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
-            WriteFile(hFile, &(TexCount), sizeof(int), &dwRWC, NULL); // LightMap의 갯수 기록..
+            WriteFile(hFile, &(TexCount), sizeof(int), &dwRWC, NULL); // Record the number of LightMap..
 
             for (tx = 0; tx < PATCH_TILE_SIZE; tx++) {
                 for (tz = 0; tz < PATCH_TILE_SIZE; tz++) {
                     if (m_ppIsLightMap[tpx + tx][tpz + tz] == true && m_ppLightMapTexture[tpx + tx][tpz + tz]) {
-                        WriteFile(hFile, &(tx), sizeof(int), &dwRWC, NULL); // 패치안에서의 좌표
-                        WriteFile(hFile, &(tz), sizeof(int), &dwRWC, NULL); // LightMap의 갯수 기록..
+                        WriteFile(hFile, &(tx), sizeof(int), &dwRWC, NULL); // coordinates within patch
+                        WriteFile(hFile, &(tz), sizeof(int), &dwRWC, NULL); // Record the number of LightMap..
 
                         m_ppLightMapTexture[tpx + tx][tpz + tz]->Convert(D3DFMT_A4R4G4B4, LIGHTMAP_TEX_SIZE,
                                                                          LIGHTMAP_TEX_SIZE);
@@ -1746,11 +1748,11 @@ void CLyTerrain::MakeGameLightMap(char * szFullPathName) {
                 continue;
             }
 
-            WriteFile(hFile, &(TexCount), sizeof(int), &dwRWC, NULL); // LightMap의 갯수 기록..
+            WriteFile(hFile, &(TexCount), sizeof(int), &dwRWC, NULL); // Record the number of LightMap..
             for (tx = 0; tx < PATCH_TILE_SIZE; tx++) {
                 for (tz = 0; tz < PATCH_TILE_SIZE; tz++) {
                     if (m_ppIsLightMap[tpx + tx][tpz + tz] == true && m_ppLightMapTexture[tpx + tx][tpz + tz]) {
-                        WriteFile(hFile, &(tx), sizeof(int), &dwRWC, NULL); // 패치안에서의 좌표
+                        WriteFile(hFile, &(tx), sizeof(int), &dwRWC, NULL); // coordinates within patch
                         WriteFile(hFile, &(tz), sizeof(int), &dwRWC, NULL); //
 
                         CN3Texture *       pNewTex = new CN3Texture;
@@ -1774,12 +1776,12 @@ void CLyTerrain::MakeGameLightMap(char * szFullPathName) {
 void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
     HANDLE hCMFile = CreateFile(szFullPathName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
-    CProgressBar ProgressBar; // 진행 상황..
+    CProgressBar ProgressBar; // Progress..
     ProgressBar.Create("Save game color map..", 50, m_iNumColorMap * m_iNumColorMap);
     ProgressBar.SetStep(1);
 
     ///////////////////////////////////////////////////////////////
-    //원본...(축소시키지 않는방법..)
+    //Original... (How not to reduce it...)
     //*
     CN3Texture TexTmp;
     TexTmp.Create(m_iColorMapTexSize, m_iColorMapTexSize, D3DFMT_A1R5G5B5, TRUE);
@@ -1806,7 +1808,7 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
 
     ///////////////////////////////////////////////////////////////
     //
-    //    New...(축소시키는방법..)
+    //    New...(How to shrink...)
     /*
     int x,z;
     CBitMapFile BMP[3][3];
@@ -1837,7 +1839,7 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
                 }    //for(int az=0;az<3;az++)
             }    //for(int ax=0;ax<3;ax++)
 
-            //픽셀 재배열...
+            //Pixel rearrangement...
             int SmallSize = m_iColorMapTexSize - 2;
             TexTmp.Convert(D3DFMT_X8R8G8B8, m_iColorMapTexSize, m_iColorMapTexSize);
             TexTmp.Get()->LockRect(0, &d3dlrTex, 0, 0);
@@ -1908,7 +1910,7 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
                     SelectObject( hSmallDC, hOldBM2 );
                     
 
-                    DeleteFile(buff); // 임시 파일을 지워준다..    
+                    DeleteFile(buff); // Delete temporary files.   
                 }
             }
             TexTmp.Get()->UnlockRect(0);
@@ -1927,17 +1929,17 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
     CloseHandle(hCMFile);
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // 픽셀을 하나씩 밀어서 선을 없애는 텍스쳐 저장..
-    // 그런데 texturestagestate에서 mirror쓰면 좀 어색하긴 해도 어느정도는 되더라...-.-
+    // Save a texture that removes lines by sliding pixels one by one.
+    // However, if you use mirror in texturestagestate, it is a bit awkward, but it works to some extent...-.-
     //
     /*
     HANDLE hCMFile = CreateFile(szFullPathName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
-    CProgressBar ProgressBar; // 진행 상황..
+    CProgressBar ProgressBar; // Progress..
     ProgressBar.Create("Save game color map..", 50, m_iNumColorMap * m_iNumColorMap);
     ProgressBar.SetStep(1);
 
-    //bitmap가공...
+    //bitmap processing...
     ColorMapExport("c:\\TempColormap.bmp");
 
     int OrgWidth, OrgHeight;
@@ -1976,7 +1978,7 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
                 hBMDC, 0,0, OrgWidth, OrgHeight, SRCCOPY);
 
 
-    // n3texture 가공..
+    // n3texture processing..
     CN3Texture TexTmp;
     LPDWORD pImgTarget;
     D3DLOCKED_RECT d3dlrTarget;
@@ -2025,7 +2027,7 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
                 memcpy(&(pImgTarget[i*TexSize]), &(pBitmapBits[sx + (sz+i)*SmallWidth]), DestWidth*sizeof(DWORD));
 
             TexTmp.Get()->UnlockRect(0);
-            TexTmp.Convert(D3DFMT_DXT1); // DXT1 형식으로 Convert
+            TexTmp.Convert(D3DFMT_DXT1); // Convert to DXT1 format
             TexTmp.Save(hCMFile);            
         }
     }
@@ -2035,15 +2037,15 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
     SelectObject( hBMDC, hOldBM );
     SelectObject( hSmallDC, hOldBM2 );
 
-    DeleteFile("c:\\TempColormap.bmp"); // 임시 파일을 지워준다..
+    DeleteFile("c:\\TempColormap.bmp"); // Delete temporary files.
 */
     //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    // 컬러맵을 저장해준다.(old version..)
-    // 컬러 맵 이름.. 파일이름만(확장자는 없다.) 저장해준다.
-    // 컬러맵을 패치별로  따로 저장...
+    // Save the color map. (old version..)
+    // Color map name.. Saves only the file name (no extension).
+    // Save the color map separately for each patch...
     /*
     char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
     _splitpath(m_szFileName, szDrive, szDir, szFName, szExt);
@@ -2052,7 +2054,7 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
     ProgressBar.Create("Save game color map..", m_iNumColorMap * m_iNumColorMap, 50);
     ProgressBar.SetStep(1);
 
-    WriteFile(hFile, szFName, _MAX_PATH, &dwRWC, NULL); // 컬러맵 이름 저장.
+    WriteFile(hFile, szFName, _MAX_PATH, &dwRWC, NULL); // Save the colormap name.
 
     CN3Texture TexTmp;
     char szNewFName[_MAX_PATH] = "", szAdd[_MAX_PATH] = "";
@@ -2062,9 +2064,9 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
         {
             ProgressBar.StepIt();
 
-            m_pColorTexture[x][z].SaveToFile("c:\\TempConversion.DXT"); // 임시로 저장.
-            TexTmp.LoadFromFile("c:\\TempConversion.DXT"); // 읽는다. 
-            TexTmp.Convert(D3DFMT_DXT1); // DXT1 형식으로 Convert
+            m_pColorTexture[x][z].SaveToFile("c:\\TempConversion.DXT"); // Save temporarily.
+            TexTmp.LoadFromFile("c:\\TempConversion.DXT"); // read
+            TexTmp.Convert(D3DFMT_DXT1); // Convert to DXT1 format
 
             _makepath(szNewFName, szDrive, szDir, szFName, NULL);
             wsprintf(szAdd, "_%02d%02d.dxt", x, z);
@@ -2072,7 +2074,7 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
             TexTmp.SaveToFile(szNewFName);
         }
     }
-    DeleteFile("c:\\TempConversion.DXT"); // 임시 파일을 지워준다..
+    DeleteFile("c:\\TempConversion.DXT"); // Delete temporary files.
     */
     //
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -2096,7 +2098,7 @@ void CLyTerrain::Tick() {
 }
 
 //
-//    가시거리 범위 정하기...(타일단위)
+// Set the visibility range... (tile unit)
 //
 void CLyTerrain::SetVisibleRect() {
     int tx, tz;
@@ -2114,22 +2116,22 @@ void CLyTerrain::SetVisibleRect() {
     m_VisibleRect.left = m_VisibleRect.right = tx;
     m_VisibleRect.top = m_VisibleRect.bottom = tz;
 
-    // 사면체의 법선 벡터와 Far 네 귀퉁이 위치 계산..
+    // Calculate the normal vector of the tetrahedron and the positions of the far four corners..
     float fS = sinf(CN3Base::s_CameraData.fFOV / 2.0f);
     float fPL = CN3Base::s_CameraData.fFP;
-    float fAspect = CN3Base::s_CameraData.fAspect; // 종횡비
+    float fAspect = CN3Base::s_CameraData.fAspect; // aspect ratio
 
-    // Far Plane 의 네 귀퉁이 위치 계산
+    // Calculate the positions of the four corners of the Far Plane
     __Vector3 vFPs[4] = {__Vector3(fPL * -fS * fAspect, fPL * fS, fPL),   // LeftTop
                          __Vector3(fPL * fS * fAspect, fPL * fS, fPL),    // rightTop
                          __Vector3(fPL * fS * fAspect, fPL * -fS, fPL),   // RightBottom
                          __Vector3(fPL * -fS * fAspect, fPL * -fS, fPL)}; // LeftBottom
 
     for (int i = 0; i < 4; i++) {
-        // 귀퉁이 위치에 회전 행렬을 적용한다..
+        // Apply rotation matrix to corner positions.
         vFPs[i] = vFPs[i] * CN3Base::s_CameraData.mtxViewInverse;
 
-        int tx, tz; // 타일좌표계...
+        int tx, tz; // Tile coordinate system...
         tx = (int)(vFPs[i].x / TERRAIN_CELL_SIZE);
         tz = (int)(vFPs[i].z / TERRAIN_CELL_SIZE);
 
@@ -2191,7 +2193,7 @@ void CLyTerrain::Render() {
     hr = s_lpD3DDev->GetSamplerState(1, D3DSAMP_ADDRESSU, &AddressU2);
     hr = s_lpD3DDev->GetSamplerState(1, D3DSAMP_ADDRESSV, &AddressV2);
 
-    // 각각의 텍스쳐들을 연결했을때 경계선을 없앨 수 있다..^^
+    // When connecting each texture, the border can be removed..^^
     hr = s_lpD3DDev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_MIRROR);
     hr = s_lpD3DDev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_MIRROR);
     hr = s_lpD3DDev->SetSamplerState(1, D3DSAMP_ADDRESSU, D3DTADDRESS_MIRROR);
@@ -2212,7 +2214,7 @@ void CLyTerrain::Render() {
 
     RenderBrushArea();
 
-    //라이트맵 라인..
+    //Light map line..
     //if(m_bDrawLineLightMap)
     if (m_vLineLightMap[0] != m_vLineLightMap[1]) {
         HRESULT hr;
@@ -2247,7 +2249,7 @@ void CLyTerrain::Render() {
 }
 
 //
-//    각점에 대해 그릴지아닐지를 초기화..('아니다'로 초기화)
+// Initialize whether or not to draw for each point... (initialize to 'no')
 //
 inline void CLyTerrain::ClearRenderInfo() {
     for (int i = 0; i < m_iHeightMapSize; i++) {
@@ -2257,7 +2259,7 @@ inline void CLyTerrain::ClearRenderInfo() {
 
 //
 //    Log2(x) = l..
-//    2의 승수에 대해서만 제대로 작동...(x>0)
+//    Only works properly for powers of 2...(x>0)
 //
 inline int CLyTerrain::Log2(int x) {
     int l = 0;
@@ -2269,7 +2271,7 @@ inline int CLyTerrain::Log2(int x) {
 }
 
 //
-//    높이값 얻는 함수...
+// Function to get the height value...
 //
 float CLyTerrain::GetHeight(float x, float z) {
     int ix, iz;
@@ -2290,20 +2292,20 @@ float CLyTerrain::GetHeight(float x, float z) {
     float y;
     float h1, h2, h3, h12, h13;
 
-    if ((ix + iz) % 2 == 0) //사각형이 / 모양..
+    if ((ix + iz) % 2 == 0) //square / shape...
     {
         h1 = m_ppMapData[ix][iz].fHeight;
         h3 = m_ppMapData[ix + 1][iz + 1].fHeight;
-        if (dZ > dX) //윗쪽 삼각형..
+        if (dZ > dX) //Upper triangle...
         {
             h2 = m_ppMapData[ix][iz + 1].fHeight;
 
-            h12 = h1 + (h2 - h1) * dZ; // h1과 h2사이의 높이값
-            h13 = h1 + (h3 - h1) * dZ; // h1과 h3사이의 높이값
+            h12 = h1 + (h2 - h1) * dZ; // Height value between h1 and h2
+            h13 = h1 + (h3 - h1) * dZ; // Height value between h1 and h3
 
-            y = h12 + ((h13 - h12) * (dX / dZ)); // 찾고자 하는 높이값
+            y = h12 + ((h13 - h12) * (dX / dZ)); // Height value to find
             return y;
-        } else //아래쪽 삼각형..
+        } else //Down triangle...
         {
             if (dX == 0.0f) {
                 return h1;
@@ -2311,18 +2313,18 @@ float CLyTerrain::GetHeight(float x, float z) {
 
             h2 = m_ppMapData[ix + 1][iz].fHeight;
 
-            h12 = h1 + (h2 - h1) * dX; // h1과 h2사이의 높이값
-            h13 = h1 + (h3 - h1) * dX; // h1과 h3사이의 높이값
+            h12 = h1 + (h2 - h1) * dX; // Height value between h1 and h2
+            h13 = h1 + (h3 - h1) * dX; // Height value between h1 and h3
 
-            y = h12 + ((h13 - h12) * (dZ / dX)); // 찾고자 하는 높이값
+            y = h12 + ((h13 - h12) * (dZ / dX)); // Height value to find
             return y;
         }
-    } else if ((ix + iz) % 2 == 1) //사각형이 역슬레쉬 모양..
+    } else if ((ix + iz) % 2 == 1) //The rectangle is in the shape of a backslash...
     {
         h1 = m_ppMapData[ix + 1][iz].fHeight;
         h3 = m_ppMapData[ix][iz + 1].fHeight;
 
-        if ((dX + dZ) > 1.0f) //윗쪽 삼각형..
+        if ((dX + dZ) > 1.0f) //Upper triangle...
         {
             if (dZ == 0.0f) {
                 return h1;
@@ -2334,15 +2336,15 @@ float CLyTerrain::GetHeight(float x, float z) {
 
             y = h12 + ((h13 - h12) * ((1.0f - dX) / dZ));
             return y;
-        } else //아래쪽 삼각형..
+        } else //Down triangle...
         {
             if (dX == 1.0f) {
                 return h1;
             }
             h2 = m_ppMapData[ix][iz].fHeight;
 
-            h12 = h2 + (h1 - h2) * dX; // h1과 h2사이의 높이값
-            h13 = h3 + (h1 - h3) * dX; // h1과 h3사이의 높이값
+            h12 = h2 + (h1 - h2) * dX; // Height value between h1 and h2
+            h13 = h3 + (h1 - h3) * dX; // Height value between h1 and h3
 
             y = h12 + ((h13 - h12) * (dZ / (1.0f - dX)));
             return y;
@@ -2353,7 +2355,7 @@ float CLyTerrain::GetHeight(float x, float z) {
 
 //
 //    GetPatchNum(float fSize)
-//    fSize크기의 패치가 전체 맵에서 가로세로로 몇개씩 나오는지....
+//    How many patches of size fSize appear horizontally and vertically in the entire map...
 //
 SIZE CLyTerrain::GetPatchNum(float fSize) {
     SIZE size;
@@ -2369,7 +2371,7 @@ SIZE CLyTerrain::GetPatchNum(float fSize) {
 
 //
 //    MouseMsgFilter(LPMSG pMsg)
-//    마우스 처리..
+//    Mouse handling...
 //
 BOOL CLyTerrain::MouseMsgFilter(LPMSG pMsg) {
     if (m_iEditMode == TEM_NOT) {
@@ -2380,7 +2382,7 @@ BOOL CLyTerrain::MouseMsgFilter(LPMSG pMsg) {
     static POINT ptSelHeightMapPos;
     static int   iPrevScreenY = 0;
     const float  fDelta = 0.10f;
-    static int   iSumOfEditedHeight = 0; // 이번 드래그로 변화된 지형높이의 합
+    static int   iSumOfEditedHeight = 0; // Sum of terrain height changed by this drag
 
     switch (pMsg->message) {
     case WM_MOUSEMOVE: {
@@ -2396,7 +2398,7 @@ BOOL CLyTerrain::MouseMsgFilter(LPMSG pMsg) {
             }
         }
 
-        if (nFlags & MK_LBUTTON && m_iEditMode == TEM_LIGHTMAP) //라이트맵칠하기..
+        if (nFlags & MK_LBUTTON && m_iEditMode == TEM_LIGHTMAP) //Painting the light map...
         {
             __Vector3 vPos;
             if (Pick(point.x, point.y, &vPos, &ptSelHeightMapPos)) {
@@ -2414,7 +2416,7 @@ BOOL CLyTerrain::MouseMsgFilter(LPMSG pMsg) {
             }
         }
 
-        if (nFlags & MK_RBUTTON && m_iEditMode == TEM_LIGHTMAP) //라이트맵칠하기..
+        if (nFlags & MK_RBUTTON && m_iEditMode == TEM_LIGHTMAP) //Painting the light map...
         {
             __Vector3 vPos;
             if (Pick(point.x, point.y, &vPos, &ptSelHeightMapPos)) {
@@ -2447,7 +2449,7 @@ BOOL CLyTerrain::MouseMsgFilter(LPMSG pMsg) {
                 iz = (int)vPos.z / TERRAIN_CELL_SIZE;
                 SetDTex(ix, iz);
             }
-            if (m_iEditMode == TEM_LIGHTMAP) //라이트맵칠하기..
+            if (m_iEditMode == TEM_LIGHTMAP) //Painting the light map...
             {
                 int ix, iz;
                 ix = (int)vPos.x / TERRAIN_CELL_SIZE;
@@ -2703,8 +2705,8 @@ BOOL CLyTerrain::MouseMsgFilter(LPMSG pMsg) {
 
 //
 // Terrain Picking
-// vec : 지형에서 피킹된곳의 실좌표
-// pHeightMapPos : 피킹된 곳에서 가장 가까운 높이맵의 좌표
+// vec: Real coordinates of the picked location on the terrain
+// pHeightMapPos: Coordinates of the height map closest to the picked location
 bool CLyTerrain::Pick(int x, int y, __Vector3 * vec, POINT * pHeightMapPos) {
     __Vector3    vec2, vec3; // vec1 & vec2 is 2D..  vec3 & vec4 is 3D..
     CRect        rect;
@@ -2731,7 +2733,7 @@ bool CLyTerrain::Pick(int x, int y, __Vector3 * vec, POINT * pHeightMapPos) {
     // Get the inverse view matrix
     D3DXMATRIX  matView, m;
     D3DXVECTOR3 vOrig, vDir;
-    CN3Base::s_lpD3DDev->GetTransform(D3DTS_VIEW, &matView); // 내 맘대로 되라..!! 얍..~~
+    CN3Base::s_lpD3DDev->GetTransform(D3DTS_VIEW, &matView); // Do whatever you want..!! Yay..~~
     D3DXMatrixInverse(&m, NULL, &matView);
 
     // Transform the screen space pick ray into 3D space
@@ -2807,7 +2809,7 @@ bool CLyTerrain::Pick(int x, int y, __Vector3 * vec, POINT * pHeightMapPos) {
                 continue;
             }
 
-            if ((ix + iz) % 2 == 1) // 당근.. 왼손 바인딩...
+            if ((ix + iz) % 2 == 1) // Carrot.. Left hand binding...
             {
                 A.Set((float)ix * TERRAIN_CELL_SIZE, m_ppMapData[ix][iz].fHeight, (float)iz * TERRAIN_CELL_SIZE);
                 C.Set((float)(ix + 1) * TERRAIN_CELL_SIZE, m_ppMapData[ix + 1][iz].fHeight,
@@ -2943,7 +2945,7 @@ int CLyTerrain::DetectRealLightMap(int sx, int sz, int range) {
 
             bIsEmpty = true;
 
-            //외각테두리 있는거..
+            //Something with an outer border...
             for (int bx = 0; bx < LIGHTMAP_TEX_SIZE; bx++) {
                 for (int bz = 0; bz < LIGHTMAP_TEX_SIZE; bz++) {
                     DWORD dwAlpha = pImg[bx + bz * LIGHTMAP_TEX_SIZE];
@@ -2956,7 +2958,7 @@ int CLyTerrain::DetectRealLightMap(int sx, int sz, int range) {
                     }
                 }
             }
-            /*    외각테두리 없는거..
+            /*    There is no outer border...
             for(int i=0; i<LIGHTMAP_TEX_SIZE*LIGHTMAP_TEX_SIZE; i++)
             {
                 if(pImg[i]!=0xffffffff)
@@ -2969,7 +2971,7 @@ int CLyTerrain::DetectRealLightMap(int sx, int sz, int range) {
 */
             m_ppLightMapTexture[x][z]->Get()->UnlockRect(0);
 
-            if (bIsEmpty) //텅빈 라이트맵이었당...-.-++
+            if (bIsEmpty) //It was an empty lightmap...-.-++
             {
                 m_iNumLightMap--;
                 m_ppIsLightMap[x][z] = false;
@@ -3001,10 +3003,10 @@ void CLyTerrain::FillLightMap(int x, int z, int lcx, int lcz, DWORD Color, float
         memset(d3dlrt.pBits, 0x00, sizeof(DWORD) * LIGHTMAP_TEX_SIZE * LIGHTMAP_TEX_SIZE);
 
         ///////////////////////////////////////
-        //외각 라인 그리기...
+        //Draw an outer line...
         ///////////////////////////////////////
 
-        //왼쪽(LT) 칠하기..
+        //Paint the left (LT)...
         if ((x - 1) >= 0 && (z + 1) < m_iHeightMapSize && m_ppLightMapTexture[x - 1][z + 1]) {
             D3DLOCKED_RECT d3dlrtSource;
             m_ppLightMapTexture[x - 1][z + 1]->Get()->LockRect(0, &d3dlrtSource, 0, 0);
@@ -3014,7 +3016,7 @@ void CLyTerrain::FillLightMap(int x, int z, int lcx, int lcz, DWORD Color, float
             pDest[0] = pSource[((LIGHTMAP_TEX_SIZE - 2) * LIGHTMAP_TEX_SIZE) + (LIGHTMAP_TEX_SIZE - 2)];
             m_ppLightMapTexture[x - 1][z + 1]->Get()->UnlockRect(0);
         }
-        //왼쪽(LM) 칠하기..
+        //Paint the left (LM)...
         if ((x - 1) >= 0 && m_ppLightMapTexture[x - 1][z]) {
             D3DLOCKED_RECT d3dlrtSource;
             m_ppLightMapTexture[x - 1][z]->Get()->LockRect(0, &d3dlrtSource, 0, 0);
@@ -3026,7 +3028,7 @@ void CLyTerrain::FillLightMap(int x, int z, int lcx, int lcz, DWORD Color, float
             }
             m_ppLightMapTexture[x - 1][z]->Get()->UnlockRect(0);
         }
-        //왼쪽(LB) 칠하기..
+        //Paint the left (LB)...
         if ((x - 1) >= 0 && (z - 1) >= 0 && m_ppLightMapTexture[x - 1][z - 1]) {
             D3DLOCKED_RECT d3dlrtSource;
             m_ppLightMapTexture[x - 1][z - 1]->Get()->LockRect(0, &d3dlrtSource, 0, 0);
@@ -3036,7 +3038,7 @@ void CLyTerrain::FillLightMap(int x, int z, int lcx, int lcz, DWORD Color, float
             pDest[(LIGHTMAP_TEX_SIZE - 1) * LIGHTMAP_TEX_SIZE] = pSource[LIGHTMAP_TEX_SIZE + (LIGHTMAP_TEX_SIZE - 2)];
             m_ppLightMapTexture[x - 1][z - 1]->Get()->UnlockRect(0);
         }
-        //아래쪽(CB) 칠하기..
+        //Paint the bottom (CB)...
         if ((z - 1) >= 0 && m_ppLightMapTexture[x][z - 1]) {
             D3DLOCKED_RECT d3dlrtSource;
             m_ppLightMapTexture[x][z - 1]->Get()->LockRect(0, &d3dlrtSource, 0, 0);
@@ -3048,7 +3050,7 @@ void CLyTerrain::FillLightMap(int x, int z, int lcx, int lcz, DWORD Color, float
                    sizeof(DWORD) * (LIGHTMAP_TEX_SIZE - 2));
             m_ppLightMapTexture[x][z - 1]->Get()->UnlockRect(0);
         }
-        //오른쪽(RT) 칠하기..
+        //Paint the right side (RT)...
         if ((x + 1) < m_iHeightMapSize && (z + 1) < m_iHeightMapSize && m_ppLightMapTexture[x + 1][z + 1]) {
             D3DLOCKED_RECT d3dlrtSource;
             m_ppLightMapTexture[x + 1][z + 1]->Get()->LockRect(0, &d3dlrtSource, 0, 0);
@@ -3058,7 +3060,7 @@ void CLyTerrain::FillLightMap(int x, int z, int lcx, int lcz, DWORD Color, float
             pDest[LIGHTMAP_TEX_SIZE - 1] = pSource[1 + ((LIGHTMAP_TEX_SIZE - 2) * LIGHTMAP_TEX_SIZE)];
             m_ppLightMapTexture[x + 1][z + 1]->Get()->UnlockRect(0);
         }
-        //오른쪽(RM) 칠하기..
+        //Paint the right side (RM)...
         if ((x + 1) < m_iHeightMapSize && m_ppLightMapTexture[x + 1][z]) {
             D3DLOCKED_RECT d3dlrtSource;
             m_ppLightMapTexture[x + 1][z]->Get()->LockRect(0, &d3dlrtSource, 0, 0);
@@ -3070,7 +3072,7 @@ void CLyTerrain::FillLightMap(int x, int z, int lcx, int lcz, DWORD Color, float
             }
             m_ppLightMapTexture[x + 1][z]->Get()->UnlockRect(0);
         }
-        //오른쪽(RB) 칠하기..
+        //Paint the right side (RB)...
         if ((x + 1) < m_iHeightMapSize && (z - 1) >= 0 && m_ppLightMapTexture[x + 1][z - 1]) {
             D3DLOCKED_RECT d3dlrtSource;
             m_ppLightMapTexture[x + 1][z - 1]->Get()->LockRect(0, &d3dlrtSource, 0, 0);
@@ -3081,7 +3083,7 @@ void CLyTerrain::FillLightMap(int x, int z, int lcx, int lcz, DWORD Color, float
                 pSource[1 + LIGHTMAP_TEX_SIZE];
             m_ppLightMapTexture[x + 1][z - 1]->Get()->UnlockRect(0);
         }
-        //위쪽(CT) 칠하기..
+        //Paint the top (CT)...
         if ((z + 1) < m_iHeightMapSize && m_ppLightMapTexture[x][z + 1]) {
             D3DLOCKED_RECT d3dlrtSource;
             m_ppLightMapTexture[x][z + 1]->Get()->LockRect(0, &d3dlrtSource, 0, 0);
@@ -3102,7 +3104,7 @@ void CLyTerrain::FillLightMap(int x, int z, int lcx, int lcz, DWORD Color, float
         m_iNumLightMap++;
     }
 
-    //본격칠하기...
+    //The actual painting...
     m_ppLightMapTexture[x][z]->Get()->LockRect(0, &d3dlrt, 0, 0);
     LPDWORD pDest = (LPDWORD)d3dlrt.pBits;
 
@@ -3111,7 +3113,7 @@ void CLyTerrain::FillLightMap(int x, int z, int lcx, int lcz, DWORD Color, float
     DWORD OrgColor = pDest[PixelPos];
     DWORD NewColor = 0x00000000;
 
-    if (m_pDlgSetLightMap->MoreLight()) //옅게 그리기(지우기)
+    if (m_pDlgSetLightMap->MoreLight()) //Light drawing (erase)
     {
         //if(OrgColor < Color) pDest[lcx + (LIGHTMAP_TEX_SIZE-lcz-1)*LIGHTMAP_TEX_SIZE] = 0xffffffff;
         NewColor = 0x00000000;
@@ -3305,19 +3307,20 @@ void CLyTerrain::FillLightMap(int x, int z, int lcx, int lcz, DWORD Color, float
 }
 
 //
-//    lcx, lcz는 라이트맵타일내에서의 좌표..
+// lcx, lcz are coordinates within the light map tile..
 //
 void CLyTerrain::SetLightMap(int x, int z, int lcx, int lcz) {
     DWORD SrcColor;
     int   PenSize, Hardness;
     PenSize = m_pDlgSetLightMap->GetPenSize();   //1~(LIGHTMAP_TEX_SIZE-2)
     Hardness = m_pDlgSetLightMap->GetHardness(); //1~100
-    SrcColor = m_pDlgSetLightMap->GetColor();    //전체적인 컬러.
+    SrcColor = m_pDlgSetLightMap->GetColor();    //Overall color.
 
     int ix, iz;
     int dist;
     int nx, nz, nlx, nlz;
-    int LimitFullColor = (((float)Hardness / 100.0f) * (float)PenSize); //중심에서 풀컬러로 채워지는 거리..
+    int LimitFullColor =
+        (((float)Hardness / 100.0f) * (float)PenSize); //Distance filled with full color from the center...
     for (ix = lcx - PenSize + 1; ix < lcx + PenSize; ix++) {
         for (iz = lcz - PenSize + 1; iz < lcz + PenSize; iz++) {
             dist = m_iDistanceTable[T_Abs(lcx - ix)][T_Abs(lcz - iz)] + 1;
@@ -3364,8 +3367,8 @@ void CLyTerrain::SetLightMap(int x, int z, int lcx, int lcz) {
 //
 //
 //    MakeDistanceTable
-//    거리를 계산하지 말고 테이블에서 가져올 수 있게 미리 테이블 생성..
-//    정수 단위 거리..
+//    Instead of calculating the distance, create a table in advance so that you can retrieve it from the table.
+//    Integer unit distance..
 //
 void CLyTerrain::MakeDistanceTable() {
     int    x, z;
@@ -3379,8 +3382,8 @@ void CLyTerrain::MakeDistanceTable() {
 }
 
 //
-//    지형에서 갈수 있는 타일과 갈 수 없는 타일 구분해서 테이블 만드는 함수.
-//    char형으로 1이면 갈 수 있고, 0이면 갈 수 없다.
+// Function to create a table by distinguishing between tiles that can be accessed and tiles that cannot be accessed in the terrain.
+// In char type, if it is 1 you can go, if it is 0 you cannot go.
 //
 void CLyTerrain::MakeMoveTable(short ** ppEvent) {
     int   x, z;
@@ -3437,7 +3440,7 @@ void CLyTerrain::SaveServerData(HANDLE hFile) {
 
     int x, z;
 
-    //  그냥 하나씩 저장해도 차이 없지만 네트워크로 저장할때는 파일 엑세스 숫자를 줄이고 한꺼번에 저장해야  빠르다.. ...
+    // There is no difference if you just save them one by one, but when saving over the network, it is faster to reduce the number of file accesses and save them all at once.. ...
     DWORD   dwAlloc = m_iHeightMapSize * m_iHeightMapSize * sizeof(float);
     HGLOBAL hAlloc = ::GlobalAlloc(GMEM_FIXED, dwAlloc);
     __ASSERT(hAlloc, "Global allocation failed.");
@@ -3451,7 +3454,7 @@ void CLyTerrain::SaveServerData(HANDLE hFile) {
             pfHeights[x * m_iHeightMapSize + z] = m_ppMapData[x][z].fHeight;
         }
     }
-    WriteFile(hFile, pfHeights, dwAlloc, &dwRWC, NULL); // 파일에 쓴다..
+    WriteFile(hFile, pfHeights, dwAlloc, &dwRWC, NULL); //Write to file..
     pfHeights = NULL;
     ::GlobalUnlock(hAlloc);
     ::GlobalFree(hAlloc);
@@ -3487,7 +3490,7 @@ void CLyTerrain::VerifyTexInfo(LPDTEXINFO pDTex) {
 
 //
 //    SetDTex..
-//    자동완성 기능이 있는 것...
+//    Something with an autocomplete feature...
 //
 void CLyTerrain::SetDTex(int x, int y) {
     CMainFrame *    pFrm = (CMainFrame *)AfxGetMainWnd();
@@ -3667,7 +3670,7 @@ void CLyTerrain::SetDTex(int x, int y) {
 
 //
 //    SetDTexManual..
-//    자동완성 기능이 없이 그냥 하나만 찍는 것.....
+//    Just take one picture without the auto-completion function.....
 //
 void CLyTerrain::SetDTexManual(int x, int y) {
     CMainFrame *    pFrm = (CMainFrame *)AfxGetMainWnd();
@@ -3755,7 +3758,7 @@ void CLyTerrain::SetDTexManual(int x, int y) {
     }
 
     if (pDTexGroupMng->m_pGroupView->m_iRadioState == 3) {
-        Dest2DTex.TexIdx.TexID = -1; //    강제찍기의 풀로찍기
+        Dest2DTex.TexIdx.TexID = -1; // Full photo of forced photo
     }
 
     m_ppMapData[x][y].DTexInfo1 = Dest1DTex;
@@ -3857,8 +3860,8 @@ void CLyTerrain::TilingAll() {
 }
 
 //
-//    컬러맵 만들 타일 넣기...
-//    아직 안만들어진...그런 타일들 대기열에 넣는것..
+// Insert tiles to create a color map...
+// Putting tiles that haven't been created yet into the queue...
 //
 void CLyTerrain::PutColorMapTile(int x, int z) {
     MMIter it = m_ColorMapTileTree.lower_bound((short)x);
@@ -3874,7 +3877,7 @@ void CLyTerrain::PutColorMapTile(int x, int z) {
 }
 
 //
-//    컬러맵 만들지 않은 타일들 컬러맵 만들기..
+// Create a color map for tiles that have not been created with a color map.
 //
 void CLyTerrain::GeneraterColorMap(bool bIsAll) {
     CProgressBar ProgressBar;
@@ -3906,10 +3909,10 @@ void CLyTerrain::GeneraterColorMap(bool bIsAll) {
 }
 
 //
-//    컬러맵텍스쳐 셋팅하기..
+// Setting the color map texture...
 //
 //
-//    타일맵을 그대로 축소시켜서 컬러맵을 만드는 방법..
+// How to create a color map by reducing the tile map as is..
 //
 /*
 void CLyTerrain::SetColorMap(int x, int y)
@@ -4051,7 +4054,7 @@ void CLyTerrain::SetColorMap(int x, int y)
     hr = pBackBuff->GetDesc(&desc);
     if(desc.Format!=D3DFMT_X8R8G8B8)
     {
-        MessageBox(::GetActiveWindow(),"화면색상모드를 32bit모드로 바꾸세요.\n그렇지 않으면 컬러맵을 만들 수 없어요..ㅠ.ㅠ","경고!!",MB_OK);
+        MessageBox(::GetActiveWindow(),"Change the screen color mode to 32bit mode.\nOtherwise, you cannot create a color map..","warning!!",MB_OK);
         return;
     }
 
@@ -4102,12 +4105,12 @@ void CLyTerrain::SetColorMap(int x, int y)
     hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, dwZ);
     hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, dwLgt);
 
-    m_pColorTexture[idxX][idxZ].GenerateMipMap(); // Mip Map 을 만든다..
+    m_pColorTexture[idxX][idxZ].GenerateMipMap(); // Create a Mip Map..
 }
 /*/
 
 //
-//    타일맵에서 픽셀을 샘플링해서 걸러맵을 만드는 방법...
+// How to create a filtered map by sampling pixels from a tile map...
 //
 //*
 void CLyTerrain::SetColorMap(int x, int y) {
@@ -4225,7 +4228,7 @@ void CLyTerrain::SetColorMap(int x, int y) {
 
     hr = s_lpD3DDev->DrawPrimitive(D3DPT_TRIANGLEFAN, 0, 2);
 
-    //light map 찍기...
+    //Take a light map...
     //
     //if(m_ppIsLightMap[x][y])
     //{
@@ -4275,8 +4278,8 @@ void CLyTerrain::SetColorMap(int x, int y) {
     hr = pBackBuff->GetDesc(&desc);
     if (desc.Format != D3DFMT_X8R8G8B8) {
         MessageBox(::GetActiveWindow(),
-                   "화면색상모드를 32bit모드로 바꾸세요.\n그렇지 않으면 컬러맵을 만들 수 없어요..ㅠ.ㅠ", "경고!!",
-                   MB_OK);
+                   "Change the screen color mode to 32bit mode.\nOtherwise, you cannot create a color map..",
+                   "Warning!!", MB_OK);
         return;
     }
 
@@ -4335,18 +4338,18 @@ void CLyTerrain::SetColorMap(int x, int y) {
     hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, dwLgt);
     hr = s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, dwFog);
 
-    m_pColorTexture[idxX][idxZ].GenerateMipMap(); // Mip Map 을 만든다..
+    m_pColorTexture[idxX][idxZ].GenerateMipMap(); // Create a Mip Map..
 }
 //*/
 
 //
 //    IntersectTriangle..
 //
-//    orig    : 시작점...
-//    dir        : 피킹 방향..
-//    v0, v1, v2 : 삼각형의 세점..
-//    t        : orig부터 피킹된점까지 거리..
-//    u, v    : v0(0,0) v1(1,0) v2(0,1)로 봤을때 피킹된 점의 uv좌표..
+// orig: starting point...
+// dir: Picking direction..
+// v0, v1, v2: Three points of the triangle..
+// t: Distance from orig to the picked point..
+// u, v: uv coordinates of the picked point when viewed as v0(0,0) v1(1,0) v2(0,1)..
 //
 BOOL CLyTerrain::IntersectTriangle(const D3DXVECTOR3 orig, const D3DXVECTOR3 dir, D3DXVECTOR3 & v0, D3DXVECTOR3 & v1,
                                    D3DXVECTOR3 & v2, float * t, float * u, float * v) {
@@ -4360,7 +4363,7 @@ BOOL CLyTerrain::IntersectTriangle(const D3DXVECTOR3 orig, const D3DXVECTOR3 dir
 
     // If determinant is near zero, ray lies in plane of triangle
     FLOAT det = D3DXVec3Dot(&edge1, &pvec);
-    if (det < 0.0001f) { // 거의 0에 가까우면 삼각형 평면과 지나가는 선이 평행하다.
+    if (det < 0.0001f) { // If it is close to 0, the line passing through the triangle plane is parallel.
         return FALSE;
     }
 
@@ -4390,10 +4393,10 @@ BOOL CLyTerrain::IntersectTriangle(const D3DXVECTOR3 orig, const D3DXVECTOR3 dir
     *u *= fInvDet;
     *v *= fInvDet;
 
-    // t가 클수록 멀리 직선과 평면과 만나는 점이 멀다.
-    // t*dir + orig 를 구하면 만나는 점을 구할 수 있다.
-    // u와 v의 의미는 무엇일까?
-    // 추측 : v0 (0,0), v1(1,0), v2(0,1) <괄호안은 (U, V)좌표> 이런식으로 어느 점에 가깝나 나타낸 것 같음
+    // The larger t is, the farther the point where the straight line meets the plane is.
+    // You can find the meeting point by finding t*dir + orig.
+    // What do u and v mean?
+    // Guess: v0 (0,0), v1(1,0), v2(0,1) <(U, V) coordinates in parentheses> This seems to indicate which point is closest.
     //
 
     return TRUE;
@@ -4402,10 +4405,10 @@ BOOL CLyTerrain::IntersectTriangle(const D3DXVECTOR3 orig, const D3DXVECTOR3 dir
 //////////////////////////////////////////////////
 //    Coded By : Dino
 //    Coded On 2001-06-21 오후 12:18:31
-//    아래로 지형 Edit관련 함수들
+//    Terrain Edit related functions below
 
 //
-//    에디트 모드로 전환...
+//    Switch to edit mode...
 //
 void CLyTerrain::SetEditMode(int iEditMode) {
     m_iEditMode = iEditMode;
@@ -4445,7 +4448,7 @@ void CLyTerrain::SetApexHeight(int x, int z, float fHeight) {
 
 //
 //    GetApexHeight..
-//    각타일의 꼭지점의 높이를 구하는 함수...
+//    A function to find the height of the vertex of each tile...
 //
 float CLyTerrain::GetApexHeight(int x, int z) const {
     if (m_ppMapData && x < m_iHeightMapSize && z < m_iHeightMapSize && x >= 0 && z >= 0) {
@@ -4455,7 +4458,7 @@ float CLyTerrain::GetApexHeight(int x, int z) const {
 }
 
 //
-// 브러쉬의 모양과 사이즈에 따라서 IntensityMap을 다시 구성한다.
+// Reconfigure the IntensityMap according to the shape and size of the brush.
 //
 void CLyTerrain::UpdateBrushIntensityMap(int iShape, int iSize, float fFallOff) {
     ASSERT(fFallOff >= 0.0f && iSize > 0);
@@ -4467,7 +4470,7 @@ void CLyTerrain::UpdateBrushIntensityMap(int iShape, int iSize, float fFallOff) 
     iHalfRadius = (iSize / 2) + 1;
 
     if (iShape == BRUSHSHAPE_CIRCLE) {
-        if (iSize % 2) // Brush 사이즈가 홀수일때
+        if (iSize % 2) // When the brush size is odd
         {
             for (int i = iStart; i < iEnd; ++i) {
                 for (int j = iStart; j < iEnd; ++j) {
@@ -4482,7 +4485,7 @@ void CLyTerrain::UpdateBrushIntensityMap(int iShape, int iSize, float fFallOff) 
                     }
                 }
             }
-        } else // Brush 사이즈가 짝수일때
+        } else // When the brush size is an even number
         {
             float fTmp = (iHalfRadius - 0.5f);
             for (int i = iStart; i < iEnd; ++i) {
@@ -4501,7 +4504,7 @@ void CLyTerrain::UpdateBrushIntensityMap(int iShape, int iSize, float fFallOff) 
         float fIntensity[MAX_BRUSH_SIZE];
         ZeroMemory(fIntensity, sizeof(fIntensity));
 
-        if (iSize % 2) // Brush 사이즈가 홀수일때
+        if (iSize % 2) // When the brush size is odd
         {
             for (int i = 0; i <= iSize / 2; ++i) {
                 fIntensity[i] = GetFallOffValue(fFallOff, float(i) / iHalfRadius);
@@ -4517,7 +4520,7 @@ void CLyTerrain::UpdateBrushIntensityMap(int iShape, int iSize, float fFallOff) 
                     }
                 }
             }
-        } else // Brush 사이즈가 짝수일때
+        } else // When the brush size is an even number
         {
             for (int i = 0; i <= iSize / 2; ++i) {
                 fIntensity[i] = GetFallOffValue(fFallOff, float(i + 0.5f) / (iHalfRadius));
@@ -4568,7 +4571,7 @@ float CLyTerrain::GetFallOffValue(float fFallOff, float x) {
 }
 
 //
-//    지형 높이 조절함수....
+//    Terrain height adjustment function....
 //
 void CLyTerrain::Heighten(POINT ptCenter, float fHeight) {
     float fNewHeight = FLT_MAX;
@@ -4620,7 +4623,7 @@ void CLyTerrain::Heighten(POINT ptCenter, float fHeight) {
 //
 //
 void CLyTerrain::Flaten(POINT ptCenter) {
-    // 새로운 값과 기존 높이값을 차이를 계산해서 버퍼에 저장.
+    // Calculate the difference between the new value and the existing height value and store it in the buffer.
     for (int i = 0; i < MAX_BRUSH_SIZE; ++i) {
         for (int j = 0; j < MAX_BRUSH_SIZE; ++j) {
             int iMapX, iMapZ;
@@ -4638,12 +4641,12 @@ void CLyTerrain::Flaten(POINT ptCenter) {
 }
 
 //
-//    지형 완만하게 만드는 함수..
+//    A function that smoothes the terrain.
 //
 void CLyTerrain::Smooth(POINT ptCenter) {
     float fMapHeightDiff[MAX_BRUSH_SIZE][MAX_BRUSH_SIZE];
     ZeroMemory(fMapHeightDiff, sizeof(fMapHeightDiff));
-    const int iWSize = 5; // 홀수여야 한다.
+    const int iWSize = 5; // It must be an odd number.
     const int iHalfWSize = iWSize / 2;
     float     fWeight[iWSize][iWSize] = {
         {1, 2, 3, 2, 1},
@@ -4653,7 +4656,7 @@ void CLyTerrain::Smooth(POINT ptCenter) {
         {1, 2, 3, 2, 1}
     };
 
-    // 새로운 값과 기존 높이값을 차이를 계산해서 버퍼에 저장.
+    // Calculate the difference between the new value and the existing height value and store it in the buffer.
     for (int i = 0; i < MAX_BRUSH_SIZE; ++i) {
         for (int j = 0; j < MAX_BRUSH_SIZE; ++j) {
             int iMapX, iMapZ;
@@ -4680,7 +4683,7 @@ void CLyTerrain::Smooth(POINT ptCenter) {
         }
     }
 
-    // 버퍼에 있는 값을 m_fBrushIntensityMap 적용하여 높이값 수정
+    // Modify the height value by applying the value in the buffer to m_fBrushIntensityMap
     for (int i = 0; i < MAX_BRUSH_SIZE; ++i) {
         for (int j = 0; j < MAX_BRUSH_SIZE; ++j) {
             int iMapX, iMapZ;
@@ -4792,7 +4795,7 @@ void CLyTerrain::RenderBrushArea() {
 
 //
 //    Import...
-//    마야에서 뽑아낸 N3Scene파일로 부터 지형 읽기..
+//    Reading terrain from N3Scene file extracted from Maya..
 //
 void CLyTerrain::Import(LPCTSTR pFileName, float fSize) {
     int    HeightMapSize;
@@ -4808,7 +4811,7 @@ void CLyTerrain::Import(LPCTSTR pFileName, float fSize) {
     Init(HeightMapSize);
 
     CN3VMesh * pVMesh = new CN3VMesh;
-    __ASSERT(pVMesh, "VMesh가 안읽허여..ㅜ.ㅜ");
+    __ASSERT(pVMesh, "VMesh doesn뭪 read it..");
 
     pVMesh->LoadFromFile(pFileName);
 
@@ -4914,7 +4917,7 @@ void CLyTerrain::Import(LPCTSTR pFileName, float fSize) {
 
         for (ix = sx; ix <= ex; ix++) {
             for (iz = sz; iz <= ez; iz++) {
-                // 삼각형 점 포함 테스트...
+                // Test for triangle point inclusion...
                 float a, b, c;
                 float x, z;
                 x = (float)ix * TERRAIN_CELL_SIZE;
@@ -4959,7 +4962,7 @@ void CLyTerrain::Import(LPCTSTR pFileName, float fSize) {
     {
         for(int iz=0;iz<m_iHeightMapSize;iz++)
         {
-            //일단 높이값 초기화..
+            //First, initialize the height value...
             m_ppMapData[ix][iz].fHeight = -FLT_MAX;
 
             DTEXINFO TexInfo;
@@ -4981,7 +4984,7 @@ void CLyTerrain::Import(LPCTSTR pFileName, float fSize) {
                 vB.Set((pVertices[index+1].x - vMin.x)*ScaleX,    (pVertices[index+1].y)*ScaleX,    (pVertices[index+1].z - vMin.z)*ScaleZ);
                 vC.Set((pVertices[index+2].x - vMin.x)*ScaleX,    (pVertices[index+2].y)*ScaleX,    (pVertices[index+2].z - vMin.z)*ScaleZ);
 
-                // 삼각형 점 포함 테스트...
+                // Test for triangle point inclusion...
                 float a, b, c;
                 float x,z;
                 x = (float)ix * TERRAIN_CELL_SIZE;
@@ -5017,7 +5020,7 @@ void CLyTerrain::Import(LPCTSTR pFileName, float fSize) {
 */
     //////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //라이트맵텍스쳐 수도 있고, 텍스쳐도 세팅..
+    //Can be a light map texture, and also set the texture..
     m_pRoot->SetWholeClipped();
     m_pRoot->ClearMinMaxY();
     m_pRoot->SetMinMaxY();
@@ -5030,7 +5033,7 @@ void CLyTerrain::Import(LPCTSTR pFileName, float fSize) {
 //
 void CLyTerrain::ImportHeight(LPCTSTR pFileName) {
     CN3VMesh * pVMesh = new CN3VMesh;
-    __ASSERT(pVMesh, "VMesh가 안읽혀여..ㅜ.ㅜ");
+    __ASSERT(pVMesh, "VMesh is not read..");
 
     pVMesh->LoadFromFile(pFileName);
 
@@ -5125,7 +5128,7 @@ void CLyTerrain::ImportHeight(LPCTSTR pFileName) {
 
         for (ix = sx; ix <= ex; ix++) {
             for (iz = sz; iz <= ez; iz++) {
-                // 삼각형 점 포함 테스트...
+                // Test for triangle point inclusion...
                 float a, b, c;
                 float x, z;
                 x = (float)ix * TERRAIN_CELL_SIZE;
@@ -5158,7 +5161,7 @@ void CLyTerrain::ImportHeight(LPCTSTR pFileName) {
         ProgressBar.SetPos(iPosProgress);
     }
 
-    //라이트맵텍스쳐 수도 있고, 텍스쳐도 세팅..
+    //Can be a light map texture, and also set the texture..
     m_pRoot->SetWholeClipped();
     m_pRoot->ClearMinMaxY();
     m_pRoot->SetMinMaxY();
@@ -5169,7 +5172,7 @@ void CLyTerrain::ImportHeight(LPCTSTR pFileName) {
 void CLyTerrain::ImportHeight(LPCTSTR pFileName)
 {
     CN3VMesh* pVMesh = new CN3VMesh;
-    __ASSERT(pVMesh, "VMesh가 안읽허여..ㅜ.ㅜ");
+    __ASSERT(pVMesh, "VMesh doesn뭪 read it..");
 
     pVMesh->LoadFromFile(pFileName);
 
@@ -5202,7 +5205,7 @@ void CLyTerrain::ImportHeight(LPCTSTR pFileName)
     {
         for(int iz=0;iz<m_iHeightMapSize;iz++)
         {
-            //일단 높이값 초기화..
+            //First, initialize the height value...
             m_ppMapData[ix][iz].fHeight = -FLT_MAX;
 
             for(int i=0;i<NumFace;i++)
@@ -5212,7 +5215,7 @@ void CLyTerrain::ImportHeight(LPCTSTR pFileName)
                 vB.Set((pVertices[index+1].x - vMin.x)*ScaleX,    (pVertices[index+1].y)*ScaleX,    (pVertices[index+1].z - vMin.z)*ScaleZ);
                 vC.Set((pVertices[index+2].x - vMin.x)*ScaleX,    (pVertices[index+2].y)*ScaleX,    (pVertices[index+2].z - vMin.z)*ScaleZ);
 
-                // 삼각형 점 포함 테스트...
+                // Test for triangle point inclusion...
                 float a, b, c;
                 float x,z;
                 x = (float)ix * TERRAIN_CELL_SIZE;
@@ -5246,7 +5249,7 @@ void CLyTerrain::ImportHeight(LPCTSTR pFileName)
         }
     }
 
-    //라이트맵텍스쳐 수도 있고, 텍스쳐도 세팅..
+    //Can be a light map texture, and also set the texture..
     m_pRoot->SetWholeClipped();
     m_pRoot->ClearMinMaxY();
     m_pRoot->SetMinMaxY();
@@ -5264,7 +5267,7 @@ void CLyTerrain::ColorMapImport(LPCTSTR lpszPathName) {
         return;
     }
 
-    CProgressBar ProgressBar; // 진행 상황..
+    CProgressBar ProgressBar; // Progress..
     ProgressBar.Create("Import color map..", 50, m_iNumColorMap * m_iNumColorMap);
     ProgressBar.SetStep(1);
 
@@ -5298,7 +5301,7 @@ void CLyTerrain::ColorMapExport(LPCTSTR lpszPathName) {
         return;
     }
 
-    CProgressBar ProgressBar; // 진행 상황..
+    CProgressBar ProgressBar; // Progress..
     ProgressBar.Create("Export color map..", 50, m_iNumColorMap * m_iNumColorMap);
     ProgressBar.SetStep(1);
 
@@ -5337,7 +5340,7 @@ void CLyTerrain::ColorMapExport(LPCTSTR lpszPathName) {
         }
     }
 
-    BMF.SaveToFile(lpszPathName); // 비트맵으로 저장..
+    BMF.SaveToFile(lpszPathName); // Save as bitmap..
 }
 
 void CLyTerrain::GenerateMiniMap(LPCTSTR lpszPathName, int size) {
@@ -5353,7 +5356,7 @@ void CLyTerrain::GenerateMiniMap(LPCTSTR lpszPathName, int size) {
         return;
     }
 
-    CProgressBar ProgressBar; // 진행 상황..
+    CProgressBar ProgressBar; // Progress..
     ProgressBar.Create("Generate MiniMap..", 50, m_iNumColorMap * m_iNumColorMap);
     ProgressBar.SetStep(1);
 
@@ -5394,7 +5397,7 @@ void CLyTerrain::GenerateMiniMap(LPCTSTR lpszPathName, int size) {
             TmpTex.Get()->UnlockRect(0);
         }
     }
-    BMF.SaveToFile(lpszPathName); // 비트맵으로 저장..
+    BMF.SaveToFile(lpszPathName); // Save as bitmap..
 }
 
 void CLyTerrain::ExportHeightBMP(const char * szPathName) {
@@ -5407,7 +5410,7 @@ void CLyTerrain::ExportHeightBMP(const char * szPathName) {
         return;
     }
 
-    CProgressBar ProgressBar; // 진행 상황..
+    CProgressBar ProgressBar; // Progress..
     ProgressBar.Create("Export HeightBMP..", 50, m_iHeightMapSize * m_iHeightMapSize);
     ProgressBar.SetStep(1);
 
@@ -5457,7 +5460,7 @@ void CLyTerrain::ExportHeightBMP(const char * szPathName) {
             pPixelDest[2] = gray;
         }
     }
-    BMF.SaveToFile(szPathName); // 비트맵으로 저장..
+    BMF.SaveToFile(szPathName); // Save as bitmap..
 
     char msg[256];
     sprintf(msg, "Max : %.2f Min : %.2f", Max, Min);
@@ -5469,7 +5472,7 @@ void CLyTerrain::ImportHeightBMP(const char * szPathName) {
     CBitMapFile BMF;
     BMF.LoadFromFile(szPathName);
 
-    CProgressBar ProgressBar; // 진행 상황..
+    CProgressBar ProgressBar; // Progress..
     ProgressBar.Create("Import HeightBMP..", 50, m_iHeightMapSize * m_iHeightMapSize);
     ProgressBar.SetStep(1);
 
@@ -5486,7 +5489,7 @@ void CLyTerrain::ImportHeightBMP(const char * szPathName) {
         }
     }
 
-    //라이트맵텍스쳐 수도 있고, 텍스쳐도 세팅..
+    //Can be a light map texture, and also set the texture..
     m_pRoot->SetWholeClipped();
     m_pRoot->ClearMinMaxY();
     m_pRoot->SetMinMaxY();

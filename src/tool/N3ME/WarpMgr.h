@@ -35,7 +35,7 @@ class CWarpMgr : public CN3BaseFileAccess {
   public:
     CDlgEditWarp * m_pDlg;
 
-    CMapMng * m_pRefMapMng; // 지형 참조 포인터..
+    CMapMng * m_pRefMapMng; // Terrain reference pointer..
     bool      m_bActive;
 
     std::list<WARPINFO *> m_ListWarpInfo;

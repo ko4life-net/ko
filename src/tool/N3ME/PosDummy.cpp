@@ -40,9 +40,10 @@ BOOL CPosDummy::MouseMsgFilter(LPMSG pMsg) {
         POINT point = {short(LOWORD(pMsg->lParam)), short(HIWORD(pMsg->lParam))};
         DWORD nFlags = pMsg->wParam;
         if (m_pSelectedCube && (nFlags & MK_LBUTTON)) {
-            __Vector3 vRayDir, vRayOrig; // 화면 중앙(시점)과 마우스 포인터를 이은 직선의 방향과 원점
-            __Vector3 vPN, vPV;          // 평면의 법선과 포함된 점
-            __Vector3 vPos;              // 위의 평면과 직선의 만나는 점(구할 점)
+            __Vector3 vRayDir,
+                vRayOrig; // Direction and origin of the straight line connecting the screen center (viewpoint) and the mouse pointer
+            __Vector3 vPN, vPV; // Plane normal and contained points
+            __Vector3 vPos;     // Point where the above plane meets the straight line (point to find)
             __Vector3 vCameraDir = s_CameraData.vAt - s_CameraData.vEye;
             vCameraDir.Normalize();
             GetPickRay(point, vRayDir, vRayOrig);
@@ -57,7 +58,7 @@ BOOL CPosDummy::MouseMsgFilter(LPMSG pMsg) {
                 float     fT = D3DXVec3Dot(&vPN, &vPR) / D3DXVec3Dot(&vPN, &vRayDir);
                 vPos = vRayOrig + vRayDir * fT;
 
-                // 평면상의 점에서 지형의 높이를 구한다.
+                // Find the height of the terrain from a point on the plane.
                 if (m_pTerrainRef) {
                     m_pTerrainRef->Pick(point.x, point.y, &vPos);
                 }

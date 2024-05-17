@@ -72,7 +72,7 @@ BOOL CSowSeedMng::MouseMessage(LPMSG pMsg) {
 
     static int   iPrevScreenY = 0;
     const float  fDelta = 0.10f;
-    static int   iSumOfEditedHeight = 0; // 이번 드래그로 변화된 지형높이의 합
+    static int   iSumOfEditedHeight = 0; // Sum of terrain height changed by this drag
     CMainFrame * pFrame = (CMainFrame *)AfxGetMainWnd();
 
     switch (pMsg->message) {
@@ -81,7 +81,7 @@ BOOL CSowSeedMng::MouseMessage(LPMSG pMsg) {
         POINT point = {short(LOWORD(pMsg->lParam)), short(HIWORD(pMsg->lParam))};
 
         if (pFrame->m_pDlgSowSeed->Sow_Select_Flage == CS_SOW) {
-            // 브러시 업데이트
+            // update brush
             if (pFrame->GetMapMng()->GetTerrain()->Pick(point.x, point.y, NULL, &ptSelHeightMapPos)) {
                 pFrame->GetMapMng()->GetTerrain()->UpdateBrushArea(ptSelHeightMapPos);
             }
@@ -182,7 +182,7 @@ void CSowSeedMng::Render(LPDIRECT3DDEVICE9 lpD3DDevice) {
     CMainFrame * pFrame = (CMainFrame *)AfxGetMainWnd();
 
     if (pFrame->m_pDlgSowSeed->Sow_Select_Flage == CS_SOW) {
-        // 브러시에 선택된 풀
+        // Grass selected on brush
         if (Render_Grass == TRUE) {
             pFrame->GetMapMng()->GetTerrain()->RenderBrushArea();
             for (int i = 0, Num = 0; i < MAX_BRUSH_SIZE; ++i) {
@@ -247,7 +247,7 @@ void CSowSeedMng::Render(LPDIRECT3DDEVICE9 lpD3DDevice) {
         }
     }
 
-    // 맵에 찍힌 풀 그리기
+    // Draw the grass on the map
     if (Render_Grass == TRUE) {
         it_Grass_Group it = Grass_Group.begin();
         for (int i = 0; i < Grass_Group.size(); i++, it++) {
@@ -268,7 +268,7 @@ void CSowSeedMng::Render(LPDIRECT3DDEVICE9 lpD3DDevice) {
                         }
                     }
                 }
-            } else if (Select_Group_Id == i) // 선택된 그룹
+            } else if (Select_Group_Id == i) // selected group
             {
                 Render_Box(lpD3DDevice, group->Pos);
                 for (int j = 0; j < group->grass.size(); j++, it_grass++) {
@@ -453,7 +453,7 @@ void CSowSeedMng::Add_Grass(void) {
         pFrame->GetMapMng()->m_pDlgSourceList->m_ListShape.GetText(temp->Obj_ID, Name);
 
         char text[256];
-        sprintf(text, "풀 ID: %d , 파일명:%s", Grass_ID, Name);
+        sprintf(text, "Pool ID: %d , File name:%s", Grass_ID, Name);
         int CurPos = pFrame->m_pDlgSowSeed->m_CB_TileGroup.GetCount();
 
         pFrame->m_pDlgSowSeed->m_CB_TileGroup.AddString(text);
@@ -560,7 +560,7 @@ void CSowSeedMng::Render_Box(LPDIRECT3DDEVICE9 lpD3DDevice, __Vector3 Pos) {
 };
 
 void CSowSeedMng::SaveData(void) {
-    // Seed List 읽어 오기..
+    // Read Seed List...
     DWORD       dwFlags = OFN_EXPLORER | OFN_CREATEPROMPT | OFN_LONGNAMES | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(FALSE, "tgi", NULL, dwFlags, "Grass Info File(*.tgi)|*.tgi||", NULL);
 
@@ -571,24 +571,24 @@ void CSowSeedMng::SaveData(void) {
     int size = Grass_Group.size();
     if (size > 0) {
         FILE * fp = fopen((LPCTSTR)dlg.GetPathName(), "w");
-        // 그룹의 총겟수
+        // Total number of gets in the group
         fwrite(&size, sizeof(int), 1, fp);
         it_Grass_Group it = Grass_Group.begin();
         for (int i = 0; i < size; i++, it++) {
             LPGRASS_GROUP group = *it;
-            // 브러시 크기
+            // brush size
             fwrite(&group->b_size, sizeof(group->b_size), 1, fp);
-            // 그룹 아이디
+            // group ID
             fwrite(&group->Group_id, sizeof(group->Group_id), 1, fp);
-            // 오브젝트 아이디
+            // object ID
             fwrite(&group->Obj_ID, sizeof(group->Obj_ID), 1, fp);
-            // 그룹 위치
+            // group position
             fwrite(group->Pos, sizeof(group->Pos), 1, fp);
-            // 서브 그룹 크기
+            // subgroup size
             int grass_size = group->grass.size();
             fwrite(&grass_size, sizeof(grass_size), 1, fp);
 
-            // 파일명 쓰기
+            // Write file name
             int len = strlen(group->FileName);
             fwrite(&len, sizeof(int), 1, fp);
             fwrite(group->FileName, len, 1, fp);
@@ -596,9 +596,9 @@ void CSowSeedMng::SaveData(void) {
             it_Grass it_grass = group->grass.begin();
             for (int j = 0; j < grass_size; j++, it_grass++) {
                 LPGRASS grass = *it_grass;
-                // 풀의 위치
+                // location of the pool
                 fwrite(grass->Pos, sizeof(grass->Pos), 1, fp);
-                // 풀의 타일 번호
+                // tile number in the pool
                 fwrite(&grass->Tile_x, sizeof(grass->Tile_x), 1, fp);
                 fwrite(&grass->Tile_z, sizeof(grass->Tile_z), 1, fp);
             }
@@ -612,7 +612,7 @@ void CSowSeedMng::LoadData(void) {
     char szOldPath[_MAX_PATH];
     GetCurrentDirectory(_MAX_PATH, szOldPath);
 
-    // Seed List 읽어 오기..
+    // Read Seed List...
     DWORD       dwFlags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_LONGNAMES | OFN_HIDEREADONLY;
     CFileDialog dlg(TRUE, "tgi", NULL, dwFlags, "Grass Info File(*.tgi)|*.tgi||", NULL);
 
@@ -620,7 +620,7 @@ void CSowSeedMng::LoadData(void) {
         return;
     }
 
-    // 리스트 초기화
+    // list initialization
     if (Grass_Group.size() > 0) {
         Render_Grass = FALSE;
         it_Grass_Group it = Grass_Group.begin();
@@ -640,7 +640,7 @@ void CSowSeedMng::LoadData(void) {
         }
         Grass_Group.clear();
     }
-    // 로딩 시작
+    // start loading
     FILE * fp = fopen((LPCTSTR)dlg.GetPathName(), "r");
 
     int size = 0;
@@ -656,16 +656,16 @@ void CSowSeedMng::LoadData(void) {
         int grass_sub_size = 0;
         fread(&grass_sub_size, sizeof(grass_sub_size), 1, fp);
 
-        // 파일명 읽기
+        // read file name
         int len = 0;
         fread(&len, sizeof(int), 1, fp);
         fread(group->FileName, len, 1, fp);
 
         for (int j = 0; j < grass_sub_size; j++) {
             LPGRASS grass = new GRASS;
-            // 풀의 위치
+            // location of the pool
             fread(grass->Pos, sizeof(grass->Pos), 1, fp);
-            // 풀의 타일 번호
+            // tile number in the pool
             fread(&grass->Tile_x, sizeof(grass->Tile_x), 1, fp);
             fread(&grass->Tile_z, sizeof(grass->Tile_z), 1, fp);
             group->grass.push_back(grass);
@@ -685,7 +685,7 @@ void CSowSeedMng::SaveDataGame(void) {
     CMainFrame * m_pRefFrm = (CMainFrame *)AfxGetMainWnd();
 
     if (m_pRefFrm->m_SeedFileName[0] == NULL) {
-        ::MessageBox(NULL, "맵 파일 부터 게임용으로 저장하세요", "확인", MB_OK);
+        ::MessageBox(NULL, "Save the map file for use in the game.", "Warning", MB_OK);
         return;
     }
 
@@ -718,7 +718,7 @@ void CSowSeedMng::SaveDataGame(void) {
     sprintf(Buff, "GrassInfoFile");
     WriteFile(hFile, Buff, 80, &dwRWC, NULL);
 
-    // 그룹 크기
+    // group size
     Obj_Name.clear();
     it_Grass_Group it = Grass_Group.begin();
     for (int i = 0, Object_ID = 0; i < Grass_Group.size(); i++, it++) {
@@ -769,7 +769,7 @@ void CSowSeedMng::Test_GameDataSave(void) {
 
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     int          Map_Size = pFrm->GetMapMng()->GetTerrain()->m_iHeightMapSize;
-    //타일에 풀 속성 저장..
+    //Save pool properties to tile..
     LPSEEDGROUP SeedAttr = new SEEDGROUP[Map_Size * Map_Size];
     ZeroMemory(SeedAttr, sizeof(unsigned char) * Map_Size * Map_Size);
 
@@ -838,7 +838,7 @@ void CSowSeedMng::Test_GameDataLoad(void) {
 
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     int          Map_Size = pFrm->GetMapMng()->GetTerrain()->m_iHeightMapSize;
-    //타일에 풀 속성 저장..
+    //Save pool properties to tile..
     LPSEEDGROUP SeedAttr = new SEEDGROUP[Map_Size * Map_Size];
     ZeroMemory(SeedAttr, sizeof(unsigned char) * Map_Size * Map_Size);
 
@@ -859,7 +859,7 @@ void CSowSeedMng::Test_GameDataLoad(void) {
         }
     }
 
-    // 텍스트파일로 함 뽑아보자..
+    // Let's extract it as a text file.
     FILE * stream = fopen("c:\\grass.txt", "w");
     for (int z = 0; z < Map_Size; z++) {
         for (int x = 0; x < Map_Size; x++) {

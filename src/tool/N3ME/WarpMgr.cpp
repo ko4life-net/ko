@@ -22,7 +22,7 @@ static char THIS_FILE[] = __FILE__;
 //////////////////////////////////////////////////////////////////////
 
 CWarpMgr::CWarpMgr() {
-    m_pRefMapMng = NULL; // 지형 참조 포인터..
+    m_pRefMapMng = NULL; // Terrain reference pointer..
     m_bActive = false;
 
     m_ListWarpInfo.clear();

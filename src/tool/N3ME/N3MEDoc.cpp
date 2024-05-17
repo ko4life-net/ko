@@ -43,8 +43,8 @@ BOOL CN3MEDoc::OnNewDocument() {
     // TODO: add reinitialization code here
     // (SDI documents will reuse this document)
 
-    // 맨 처음 실행할때 AfxGetMainWnd()함수가 CMainFrame* 을 넘겨주지 않고
-    // ActiveWindow()를 넘겨주기 때문에 아래 방식을 사용
+    // When run for the first time, the AfxGetMainWnd() function does not pass CMainFrame*
+    // Since ActiveWindow() is passed, use the method below
     CWinThread * pThread = AfxGetThread();
     if (pThread) {
         CMainFrame * pFrm = (CMainFrame *)pThread->m_pMainWnd;

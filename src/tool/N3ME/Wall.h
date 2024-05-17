@@ -16,8 +16,8 @@ class CWall : public CN3Base {
     void Load(HANDLE hFile);
     void Save(HANDLE hFile);
     int  GetSize() { return m_Wall.size(); }
-    bool GetVertex(int idx, __Vector3 * pPos); // idx째 점 가져오기..
-    void AddVertex(__Vector3 Vertex);          //path더하기.
+    bool GetVertex(int idx, __Vector3 * pPos); // Get the idxth point...
+    void AddVertex(__Vector3 Vertex);          // Add path.
     void DelPrevVertex();
 
     CWall();

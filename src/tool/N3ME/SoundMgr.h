@@ -42,7 +42,7 @@ class CSoundMgr : public CN3BaseFileAccess {
     int m_MapSize;
 
     CMapMng *      m_pRefMapMng;
-    bool           m_bActive; // 이기능이 활성화 되어 있는지...1:활성화, 0:비활성화..
+    bool           m_bActive; // Is this function activated? 1: Enabled, 0: Disabled..
     CDlgSetSound * m_pDlgSound;
 
   public:
@@ -55,7 +55,7 @@ class CSoundMgr : public CN3BaseFileAccess {
     void Render();
 
     //////////////////////////////////////////////
-    //m_pSound를 소트하기위함이야..
+    //This is to sort m_pSound..
     void SCSort();
     void SCMerge(std::list<CSoundCell *> & l1, std::list<CSoundCell *> & l2);
     bool SCComp(CSoundCell * pP1, CSoundCell * pP2);

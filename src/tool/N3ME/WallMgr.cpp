@@ -23,24 +23,24 @@ static char THIS_FILE[] = __FILE__;
 //////////////////////////////////////////////////////////////////////
 
 CWallMgr::CWallMgr() {
-    m_BaseCube[0].Set(0, 1, 0); // 앞쪽 LT
-    m_BaseCube[1].Set(1, 1, 0); // 앞쪽 RT
-    m_BaseCube[2].Set(0, 0, 0); // 앞쪽 LB
-    m_BaseCube[3].Set(1, 0, 0); // 앞쪽 RB
-    m_BaseCube[4].Set(0, 1, 1); // 뒤쪽 LT
-    m_BaseCube[5].Set(1, 1, 1); // 뒤쪽 RT
-    m_BaseCube[6].Set(0, 0, 1); // 뒤쪽 LB
-    m_BaseCube[7].Set(1, 0, 1); // 뒤쪽 RB
+    m_BaseCube[0].Set(0, 1, 0); // front LT
+    m_BaseCube[1].Set(1, 1, 0); // front RT
+    m_BaseCube[2].Set(0, 0, 0); // front LB
+    m_BaseCube[3].Set(1, 0, 0); // front RB
+    m_BaseCube[4].Set(0, 1, 1); // rear LT
+    m_BaseCube[5].Set(1, 1, 1); // rear RT
+    m_BaseCube[6].Set(0, 0, 1); // rear LB
+    m_BaseCube[7].Set(1, 0, 1); // rear RB
 
-    m_pRefMapMng = NULL; // 지형 참조 포인터..
-    m_pWalls.clear();    // 벽들...
+    m_pRefMapMng = NULL; // Terrain reference pointer..
+    m_pWalls.clear();    // Walls...
 
     m_pDlg = new CDlgMakeWall;
     m_pDlg->Create(IDD_MAKE_WALL);
     m_pDlg->ShowWindow(FALSE);
     m_pDlg->m_pRefWallMgr = this;
 
-    m_bActive = false; // 이기능이 활성화 되어 있는지...1:활성화, 0:비활성화..
+    m_bActive = false; // Is this function activated? 1: Enabled, 0: Disabled..
     m_pCurrWall = NULL;
 }
 
@@ -217,7 +217,7 @@ void CWallMgr::Render() {
     D3DXMATRIX mtx;
     D3DXMatrixIdentity(&mtx);
 
-    hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // 월드 행렬 적용..
+    hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // Apply world matrix...
 
     // set texture
     hr = s_lpD3DDev->SetTexture(0, NULL);
@@ -237,7 +237,7 @@ void CWallMgr::Render() {
 
     hr = s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 
-    //이미 만들어진 길 그리기...
+    // Draw an already created path...
     std::list<CWall *>::iterator   itWall;
     std::list<__Vector3>::iterator itVertex;
 
@@ -270,7 +270,7 @@ void CWallMgr::Render() {
         }
     }
 
-    //다이얼로그 창에서 선택된 길 그리기..
+    // Draw the selected path in the dialog window...
     CWall * pSelWall = m_pDlg->m_pSelWall;
     if (pSelWall) {
         for (itVertex = pSelWall->m_Wall.begin(); itVertex != pSelWall->m_Wall.end(); itVertex++) {
@@ -293,7 +293,7 @@ void CWallMgr::Render() {
         }
     }
 
-    //만들고 있는 길 & 영역 그리기..
+    //Drawing the path & area being created...
     if (m_pCurrWall) {
         for (itVertex = m_pCurrWall->m_Wall.begin(); itVertex != m_pCurrWall->m_Wall.end(); itVertex++) {
             Vertex = (*itVertex);
@@ -435,14 +435,14 @@ void CWallMgr::AddWall2Coll(CN3ShapeMgr * pShapeMgr) {
     __Vector3 PrevVertex(0, 0, 0), Vertex(0, 0, 0);
     __Vector3 v1, v2, v3;
 
-    // 텍스트파일로 함 뽑아보자..
+    // Let's extract it as a text file.
     FILE * stream = fopen("c:\\Wall_info.txt", "w");
 
     fprintf(stream, "Walls = %d\n", m_pWalls.size());
     for (itWall = m_pWalls.begin(); itWall != m_pWalls.end(); itWall++) {
         pWall = (*itWall);
         if (!pWall) {
-            fprintf(stream, "아싸..벽도 없는데 시도하네...ㅡ.ㅡ\n");
+            fprintf(stream, "Ah... there's no wall, but they're trying... \n");
             continue;
         }
 
@@ -464,10 +464,10 @@ void CWallMgr::AddWall2Coll(CN3ShapeMgr * pShapeMgr) {
             v3.Set(Vertex.x, -5000.0f, Vertex.z);
 
             if (!pShapeMgr->AddCollisionTriangle(v1, v2, v3)) {
-                fprintf(stream, "벽 못 넣었어..ㅡ.ㅡ\n");
+                fprintf(stream, "I couldn't put it in the wall..\n");
             }
             if (!pShapeMgr->AddCollisionTriangle(v1, v3, v2)) {
-                fprintf(stream, "벽 못 넣었어..ㅡ.ㅡ\n");
+                fprintf(stream, "I couldn't put it in the wall..\n");
             }
 
             v1.Set(PrevVertex.x, 5000.0f, PrevVertex.z);
@@ -475,10 +475,10 @@ void CWallMgr::AddWall2Coll(CN3ShapeMgr * pShapeMgr) {
             v3.Set(PrevVertex.x, -5000.0f, PrevVertex.z);
 
             if (!pShapeMgr->AddCollisionTriangle(v1, v2, v3)) {
-                fprintf(stream, "벽 못 넣었어..ㅡ.ㅡ\n");
+                fprintf(stream, "I couldn't put it in the wall..\n");
             }
             if (!pShapeMgr->AddCollisionTriangle(v1, v3, v2)) {
-                fprintf(stream, "벽 못 넣었어..ㅡ.ㅡ\n");
+                fprintf(stream, "I couldn't put it in the wall..\n");
             }
 
             PrevVertex = Vertex;

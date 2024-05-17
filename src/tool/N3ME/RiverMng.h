@@ -51,17 +51,17 @@ class CRiverMng : public CN3BaseFileAccess {
 
   protected:
     std::list<CRiverMesh *>                    m_RiverMeshes; // River Mesh list
-    CRiverMesh *                               m_pSelRiver;   // 선택된 RiverMesh
-    CTypedPtrArray<CPtrArray, __VertexXyzT2 *> m_SelVtxArray; // 선택된 점들
-    CVtxPosDummy                               m_VtxPosDummy; // 점을 움직일수 있는 dummy object
-    BOOL                                       m_bEditMode;   // 강물 편집모드인가?
-    int                                        m_RCursorMode; // 강을 추가?하는 것인가 점을 선택하는 것인가?
+    CRiverMesh *                               m_pSelRiver;   // Selected RiverMesh
+    CTypedPtrArray<CPtrArray, __VertexXyzT2 *> m_SelVtxArray; // selected points
+    CVtxPosDummy                               m_VtxPosDummy; // dummy object that can move the point
+    BOOL                                       m_bEditMode;   // Is this river editing mode?
+    int                                        m_RCursorMode; // Adding a river or selecting a point?
 
     CMainFrame *        m_pMainFrm;     // mainframe pointer
     CDlgRiverProperty * m_pDlgProperty; // property dialog
 
-    RECT             m_rcSelDrag;     // 드래그 영역
-    __VertexXyzColor m_CreateLine[2]; // 강 처음 생성할때 보이는 선
+    RECT             m_rcSelDrag;     // drag area
+    __VertexXyzColor m_CreateLine[2]; // Line visible when the river is first created
 
     // Operations
   public:
@@ -71,21 +71,21 @@ class CRiverMng : public CN3BaseFileAccess {
     virtual bool Load(HANDLE hFile);
     virtual bool Save(HANDLE hFile);
 
-    void         MakeGameFiles(HANDLE hFile, float fSize); // Game file로 저장
+    void         MakeGameFiles(HANDLE hFile, float fSize); // Save as game file
     CRiverMesh * CreateNewRiverMesh(__Vector3 & vPos1, __Vector3 & vPos2, __Vector3 & vPos3,
-                                    __Vector3 & vPos4);             // 새로운 강을 추가한다.
-    void         RemoveRiverMesh(int iRiverID);                     // 선택된 강을 삭제한다.
-    BOOL         MouseMsgFilter(LPMSG pMsg);                        // Mouse 메세지 처리
-    BOOL         SetRiverID(CRiverMesh * pRiverMesh, int iRiverID); // 강의 ID를 설정
-    void         SetEditMode(BOOL bEditMode);                       // 강 EditMode설정
+                                    __Vector3 & vPos4);             // Add a new river.
+    void         RemoveRiverMesh(int iRiverID);                     // Delete the selected river.
+    BOOL         MouseMsgFilter(LPMSG pMsg);                        // Mouse message processing
+    BOOL         SetRiverID(CRiverMesh * pRiverMesh, int iRiverID); // Set course ID
+    void         SetEditMode(BOOL bEditMode);                       // Strong EditMode settings
     void         ExtrudeRiverEdge();
-    CRiverMesh * GetRiverMesh(int iRiverID); // RiverMesh 얻기
-    void         DeleteSelectedVertex();     // 선택된 점들 지우기
-    void         ReCalcUV();                 // 선택된 강의 UV좌표 다시 계산.
+    CRiverMesh * GetRiverMesh(int iRiverID); // Get RiverMesh
+    void         DeleteSelectedVertex();     // Clear selected points
+    void         ReCalcUV();                 // Recalculate the UV coordinates of the selected river.
     void         ReCalcSelectedVertex();
 
-    void GoRiver(int iRiverID); // 선택된 강으로 갑니다.
+    void GoRiver(int iRiverID); // Go to the selected river.
   protected:
-    void SetSelRiver(CRiverMesh * pRiverMesh); // RiverMesh 선택하기
+    void SetSelRiver(CRiverMesh * pRiverMesh); // Select RiverMesh
     void SelectVtxByDragRect(RECT * pRect, BOOL bAdd);
 };

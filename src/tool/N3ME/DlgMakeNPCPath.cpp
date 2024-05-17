@@ -298,7 +298,7 @@ void CDlgMakeNPCPath::OnBtnSavePathset() {
 
 void CDlgMakeNPCPath::OnBtnSaveServerPathset() {
     CFileDialog dlg(FALSE, "snr", "Noname", OFN_EXPLORER | OFN_LONGNAMES | OFN_OVERWRITEPROMPT,
-                    "서버 NPC Route파일(*.snr)|*.snr||");
+                    "Server NPC Route file(*.snr)|*.snr||");
 
     if (dlg.DoModal() == IDOK) {
         CString str = dlg.GetPathName();

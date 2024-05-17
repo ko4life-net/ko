@@ -9,7 +9,7 @@ enum eQTNODESTATE {
     QTNODESTATE_NOTRENDER,
     QTNODESTATE_RENDER,
     QTNODESTATE_UNKNOWN
-}; // 쿼드트리 노드들의 상태속성..
+}; // Status properties of quadtree nodes..
 enum eDIR {
     DIR_LEFT = 0,
     DIR_TOP,
@@ -22,10 +22,10 @@ class CLyTerrain;
 
 class CQTNode {
   protected:
-    int m_CenterX; //중심점의 높이필드배열상의 좌표.
-    int m_CenterZ; //중심점의 높이필드배열상의 좌표.
+    int m_CenterX; //Coordinates of the center point in the height field array.
+    int m_CenterZ; //Coordinates of the center point in the height field array.
 
-    int          m_Level; //쿼드트리상에서 깊이값..
+    int          m_Level; //Depth value on the quadtree...
     eQTNODESTATE m_State; //
 
     CQTNode * m_pFriend[DIR_NUM];
@@ -34,8 +34,8 @@ class CQTNode {
     CLyTerrain * m_pRefTerrain;
 
   public:
-    float m_MinY; //최저점
-    float m_MaxY; //최고점
+    float m_MinY; // lowest point
+    float m_MaxY; // lowest point
     int   GetCenterX() { return m_CenterX; }
     int   GetCenterZ() { return m_CenterZ; }
 

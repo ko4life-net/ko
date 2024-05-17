@@ -22,7 +22,7 @@ static char THIS_FILE[] = __FILE__;
 //////////////////////////////////////////////////////////////////////
 
 CRegenUser::CRegenUser() {
-    m_pRefMapMng = NULL; // 지형 참조 포인터..
+    m_pRefMapMng = NULL; // Terrain reference pointer..
     m_bActive = false;
 
     m_vrListRegion.clear();
@@ -55,7 +55,7 @@ void CRegenUser::Render() {
 
     D3DXMATRIX mtx;
     D3DXMatrixIdentity(&mtx);
-    hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // 월드 행렬 적용..
+    hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // Apply world matrix...
 
     // set texture
     hr = s_lpD3DDev->SetTexture(0, NULL);
@@ -75,7 +75,7 @@ void CRegenUser::Render() {
 
     __VertexXyzColor v[4];
 
-    //이미 만들어진 영역..
+    //Area already created...
     std::list<VERTEXRECT *>::iterator it, ite;
     ite = m_vrListRegion.end();
     for (it = m_vrListRegion.begin(); it != ite; it++) {
@@ -92,7 +92,7 @@ void CRegenUser::Render() {
         hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, v, sizeof(__VertexXyzColor));
     }
 
-    //지금 만들고 있는 영역..
+    //Area currently being created...
     v[0] = m_vrCurrRegion.m_vLB;
     v[0].color = 0xffff0000;
     v[1] = m_vrCurrRegion.m_vLT;
