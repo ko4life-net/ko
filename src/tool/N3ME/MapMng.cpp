@@ -113,10 +113,27 @@ CMapMng::CMapMng(CMainFrame * pMainFrm)
 
     // window layout
 
+    /* orginal window size
     CRect rc(0, 0, 980, 1000);
     pMainFrm->MoveWindow(&rc);
     m_pDlgSourceList->MoveWindow(rc.right, rc.top, 300, 500);
     m_pDlgOutputList->MoveWindow(rc.right, 500, 300, 500);
+    */
+
+    RECT primaryMonitor;
+    if (SystemParametersInfo(SPI_GETWORKAREA, 0, &primaryMonitor, 0)) {
+        int screenWidth = primaryMonitor.right - primaryMonitor.left;
+        int screenHeight = primaryMonitor.bottom - primaryMonitor.top;
+
+        CRect rcMain(0, 0, screenWidth - 300, screenHeight);
+        pMainFrm->MoveWindow(&rcMain);
+
+        CRect rcSourceList(rcMain.right, rcMain.top, rcMain.right + 300, rcMain.top + screenHeight / 2);
+        m_pDlgSourceList->MoveWindow(&rcSourceList);
+
+        CRect rcOutputList(rcMain.right, rcMain.top + screenHeight / 2, rcMain.right + 300, rcMain.bottom);
+        m_pDlgOutputList->MoveWindow(&rcOutputList);
+    }
 
     Release();
 }
