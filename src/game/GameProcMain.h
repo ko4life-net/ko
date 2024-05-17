@@ -27,7 +27,9 @@ class CGameProcMain : public CGameProcedure {
     class CUIMessageWnd * m_pUIMsgDlg;             // 게임 메시지 출력 상자.
     class CUIStateBar *   m_pUIStateBarAndMiniMap; // mp,hp,exp, minimap....
     class CUICmd *        m_pUICmd;                // 왼쪽 하단의 명령버튼 창..
-    class CUITargetBar *  m_pUITargetBar;          // 타겟 상태창..
+    class CUICmdListDlg * m_pUICmdList;
+    class CUICmdEditDlg * m_pUICmdEditDlg;
+    class CUITargetBar *  m_pUITargetBar; // 타겟 상태창..
     class CUITransactionDlg *   m_pUITransactionDlg;
     class CUIDroppedItemDlg *   m_pUIDroppedItemDlg;
     class CSubProcPerTrade *    m_pSubProcPerTrade;
@@ -231,6 +233,8 @@ class CGameProcMain : public CGameProcedure {
     bool CommandToggleMoveContinous();
     bool CommandToggleWalkRun();
     bool CommandToggleUISkillTree();
+    bool CommandToggleCmdList();
+    bool OpenCmdEdit(std::string msg);
     bool CommandToggleUIMiniMap();
     bool CommandToggleUINotice();
     bool CommandToggleUILevelGuide();
