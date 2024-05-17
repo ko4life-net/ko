@@ -273,6 +273,8 @@
     <ClInclude Include="UIChat.h" />
     <ClInclude Include="UIClassChange.h" />
     <ClInclude Include="UICmd.h" />
+    <ClInclude Include="UICmdEdit.h" />
+    <ClInclude Include="UICmdList.h" />
     <ClInclude Include="UICreateClanName.h" />
     <ClInclude Include="UIDead.h" />
     <ClInclude Include="UIDroppedItemDlg.h" />
@@ -461,6 +463,8 @@
     <ClCompile Include="UIChat.cpp" />
     <ClCompile Include="UIClassChange.cpp" />
     <ClCompile Include="UICmd.cpp" />
+    <ClCompile Include="UICmdEdit.cpp" />
+    <ClCompile Include="UICmdList.cpp" />
     <ClCompile Include="UICreateClanName.cpp" />
     <ClCompile Include="UIDead.cpp" />
     <ClCompile Include="UIDroppedItemDlg.cpp" />
