@@ -1633,14 +1633,9 @@ void CEbenezerDlg::GetTimeFromIni() {
     m_nBattleZoneOpenHourStart = m_Ini.GetProfileInt("BATTLE", "START_TIME", 20);
     m_nBattleZoneOpenHourEnd = m_Ini.GetProfileInt("BATTLE", "END_TIME", 0);
 
-    const char * strSettingVal = m_Ini.GetProfileString("ODBC", "GAME_DSN", "kodb");
-    strncpy(m_strGameDSN, strSettingVal, sizeof(m_strGameDSN) - 1);
-
-    strSettingVal = m_Ini.GetProfileString("ODBC", "GAME_UID", "kodb_user");
-    strncpy(m_strGameUID, strSettingVal, sizeof(m_strGameUID) - 1);
-
-    strSettingVal = m_Ini.GetProfileString("ODBC", "GAME_PWD", "kodb_user");
-    strncpy(m_strGamePWD, strSettingVal, sizeof(m_strGamePWD) - 1);
+    m_Ini.GetProfileString("ODBC", "GAME_DSN", "kodb", m_strGameDSN, sizeof(m_strGameDSN));
+    m_Ini.GetProfileString("ODBC", "GAME_UID", "kodb_user", m_strGameUID, sizeof(m_strGameUID));
+    m_Ini.GetProfileString("ODBC", "GAME_PWD", "kodb_user", m_strGamePWD, sizeof(m_strGamePWD));
 
     m_nCastleCapture = m_Ini.GetProfileInt("CASTLE", "NATION", 1);
     m_nServerNo = m_Ini.GetProfileInt("ZONE_INFO", "MY_INFO", 1);

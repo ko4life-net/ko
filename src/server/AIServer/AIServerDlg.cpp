@@ -2573,14 +2573,9 @@ void CServerDlg::GetServerInfoIni() {
     inifile.SetPath("server.ini");
     m_byZone = inifile.GetProfileInt("SERVER", "ZONE", 1);
 
-    const char * strSettingVal = inifile.GetProfileString("ODBC", "GAME_DSN", "kodb");
-    strncpy(m_strGameDSN, strSettingVal, sizeof(m_strGameDSN) - 1);
-
-    strSettingVal = inifile.GetProfileString("ODBC", "GAME_UID", "kodb_user");
-    strncpy(m_strGameUID, strSettingVal, sizeof(m_strGameUID) - 1);
-
-    strSettingVal = inifile.GetProfileString("ODBC", "GAME_PWD", "kodb_user");
-    strncpy(m_strGamePWD, strSettingVal, sizeof(m_strGamePWD) - 1);
+    inifile.GetProfileString("ODBC", "GAME_DSN", "kodb", m_strGameDSN, sizeof(m_strGameDSN));
+    inifile.GetProfileString("ODBC", "GAME_UID", "kodb_user", m_strGameUID, sizeof(m_strGameUID));
+    inifile.GetProfileString("ODBC", "GAME_PWD", "kodb_user", m_strGamePWD, sizeof(m_strGamePWD));
 }
 
 void CServerDlg::SendSystemMsg(char * pMsg, int zone, int type, int who) {
