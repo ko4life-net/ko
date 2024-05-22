@@ -5,11 +5,15 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CBattleSet recordset
-
+class CEbenezerDlg;
 class CBattleSet : public CRecordset {
   public:
     CBattleSet(CDatabase * pDatabase = NULL);
     DECLARE_DYNAMIC(CBattleSet)
+
+    void Initialize();
+
+    CEbenezerDlg * m_pMain;
 
     // Field/Param Data
     //{{AFX_FIELD(CBattleSet, CRecordset)

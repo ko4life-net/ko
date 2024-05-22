@@ -88,13 +88,14 @@ class CServerDlg : public CDialog {
     int     GetServerNumber(int zonenumber);
     void    ClostSocket(int zonenumber);
 
-    void CheckAliveTest();
-    void DeleteUserList(int uid);
-    void DeleteAllUserList(int zone);
-    void SendCompressedData(int nZone); // 패킷을 압축해서 보낸다..
-    int  Send(char * pData, int length, int nZone = 0);
-    void SendSystemMsg(char * pMsg, int zone, int type = 0, int who = 0);
-    void ResetBattleZone();
+    void    CheckAliveTest();
+    void    DeleteUserList(int uid);
+    void    DeleteAllUserList(int zone);
+    void    SendCompressedData(int nZone); // 패킷을 압축해서 보낸다..
+    int     Send(char * pData, int length, int nZone = 0);
+    void    SendSystemMsg(char * pMsg, int zone, int type = 0, int who = 0);
+    void    ResetBattleZone();
+    CString GetGameDBConnectionString() const;
 
     CServerDlg(CWnd * pParent = NULL); // standard constructor
 
@@ -168,6 +169,10 @@ class CServerDlg : public CDialog {
     int  m_iYear, m_iMonth, m_iDate, m_iHour, m_iMin, m_iWeather, m_iAmount;
     BYTE m_byNight; // 밤인지,, 낮인지를 판단... 1:낮, 2:밤
     BYTE m_byTestMode;
+
+    char m_strGameDSN[24];
+    char m_strGameUID[24];
+    char m_strGamePWD[24];
 
     CIOCPort m_Iocport;
 

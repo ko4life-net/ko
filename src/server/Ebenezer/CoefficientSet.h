@@ -5,11 +5,15 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CCoefficientSet recordset
-
+class CEbenezerDlg;
 class CCoefficientSet : public CRecordset {
   public:
     CCoefficientSet(CDatabase * pDatabase = NULL);
     DECLARE_DYNAMIC(CCoefficientSet)
+
+    void Initialize();
+
+    CEbenezerDlg * m_pMain;
 
     // Field/Param Data
     //{{AFX_FIELD(CCoefficientSet, CRecordset)

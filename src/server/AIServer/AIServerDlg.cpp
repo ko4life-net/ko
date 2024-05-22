@@ -128,6 +128,10 @@ CServerDlg::CServerDlg(CWnd * pParent /*=NULL*/)
     m_byTestMode = 0;
     //m_ppUserActive = NULL;
     //m_ppUserInActive = NULL;
+
+    memset(m_strGameDSN, 0, sizeof(m_strGameDSN));
+    memset(m_strGameUID, 0, sizeof(m_strGameUID));
+    memset(m_strGamePWD, 0, sizeof(m_strGamePWD));
 }
 
 void CServerDlg::DoDataExchange(CDataExchange * pDX) {
@@ -421,6 +425,7 @@ void CServerDlg::DefaultInit() {
 //    Magic Table 을 읽는다.
 BOOL CServerDlg::GetMagicTableData() {
     CMagicTableSet MagicTableSet;
+    MagicTableSet.Initialize();
 
     if (!MagicTableSet.Open()) {
         AfxMessageBox(_T("MagicTable Open Fail!"));
@@ -466,6 +471,7 @@ BOOL CServerDlg::GetMagicTableData() {
 
 BOOL CServerDlg::GetMakeWeaponItemTableData() {
     CMakeWeaponTableSet MakeItemTableSet;
+    MakeItemTableSet.Initialize();
 
     if (!MakeItemTableSet.Open()) {
         AfxMessageBox(_T("GetMakeWeaponItemTableData Open Fail!"));
@@ -508,6 +514,7 @@ BOOL CServerDlg::GetMakeWeaponItemTableData() {
 
 BOOL CServerDlg::GetMakeDefensiveItemTableData() {
     CMakeDefensiveTableSet MakeItemTableSet;
+    MakeItemTableSet.Initialize();
 
     if (!MakeItemTableSet.Open()) {
         AfxMessageBox(_T("GetMakeDefensiveItemTableData Open Fail!"));
@@ -545,6 +552,7 @@ BOOL CServerDlg::GetMakeDefensiveItemTableData() {
 
 BOOL CServerDlg::GetMakeGradeItemTableData() {
     CMakeGradeItemTableSet MakeItemTableSet;
+    MakeItemTableSet.Initialize();
 
     if (!MakeItemTableSet.Open()) {
         AfxMessageBox(_T("MakeGradeItemTable Open Fail!"));
@@ -584,6 +592,7 @@ BOOL CServerDlg::GetMakeGradeItemTableData() {
 
 BOOL CServerDlg::GetMakeLareItemTableData() {
     CMakeLareItemTableSet MakeItemTableSet;
+    MakeItemTableSet.Initialize();
 
     if (!MakeItemTableSet.Open()) {
         AfxMessageBox(_T("MakeLareItemTable Open Fail!"));
@@ -622,6 +631,8 @@ BOOL CServerDlg::GetNpcItemTable() {
     CNpcItemSet NpcItemSet;
     int         nRowCount = 0;
     int         nItem = 0;
+
+    NpcItemSet.Initialize();
 
     try {
         if (NpcItemSet.IsOpen()) {
@@ -694,6 +705,7 @@ BOOL CServerDlg::GetNpcItemTable() {
 //    Monster Table Data 를 읽는다.
 BOOL CServerDlg::GetMonsterTableData() {
     CMonTableSet NpcTableSet;
+    NpcTableSet.Initialize();
 
     try {
         //if(m_arMonTable.GetSize()) return FALSE;
@@ -799,6 +811,7 @@ BOOL CServerDlg::GetMonsterTableData() {
 //    NPC Table Data 를 읽는다. (경비병 & NPC)
 BOOL CServerDlg::GetNpcTableData() {
     CNpcTableSet NpcTableSet;
+    NpcTableSet.Initialize();
 
     try {
         //if(m_arNpcTable.GetSize()) return FALSE;
@@ -930,6 +943,8 @@ BOOL CServerDlg::CreateNpcThread() {
     BOOL  bFindNpcTable = FALSE;
 
     int nMonsterNumber = 0;
+
+    NpcPosSet.Initialize();
 
     try {
         if (NpcPosSet.IsOpen()) {
@@ -1474,6 +1489,7 @@ BOOL CServerDlg::MapFileLoad() {
     m_sTotalMap = 0;
 
     CZoneInfoSet ZoneInfoSet;
+    ZoneInfoSet.Initialize();
 
     if (!ZoneInfoSet.Open()) {
         AfxMessageBox(_T("ZoneInfoTable Open Fail!"));
@@ -2201,6 +2217,7 @@ void CServerDlg::TestCode() {
 
 BOOL CServerDlg::GetMagicType1Data() {
     CMagicType1Set MagicType1Set;
+    MagicType1Set.Initialize();
 
     if (!MagicType1Set.Open()) {
         AfxMessageBox(_T("MagicType1 Open Fail!"));
@@ -2240,6 +2257,7 @@ BOOL CServerDlg::GetMagicType1Data() {
 
 BOOL CServerDlg::GetMagicType2Data() {
     CMagicType2Set MagicType2Set;
+    MagicType2Set.Initialize();
 
     if (!MagicType2Set.Open()) {
         AfxMessageBox(_T("MagicType1 Open Fail!"));
@@ -2275,6 +2293,7 @@ BOOL CServerDlg::GetMagicType2Data() {
 
 BOOL CServerDlg::GetMagicType3Data() {
     CMagicType3Set MagicType3Set;
+    MagicType3Set.Initialize();
 
     if (!MagicType3Set.Open()) {
         AfxMessageBox(_T("MagicType3 Open Fail!"));
@@ -2315,6 +2334,7 @@ BOOL CServerDlg::GetMagicType3Data() {
 
 BOOL CServerDlg::GetMagicType4Data() {
     CMagicType4Set MagicType4Set;
+    MagicType4Set.Initialize();
 
     if (!MagicType4Set.Open()) {
         AfxMessageBox(_T("MagicType4 Open Fail!"));
@@ -2552,6 +2572,15 @@ void CServerDlg::GetServerInfoIni() {
     CIni inifile;
     inifile.SetPath("server.ini");
     m_byZone = inifile.GetProfileInt("SERVER", "ZONE", 1);
+
+    const char * strSettingVal = inifile.GetProfileString("ODBC", "GAME_DSN", "kodb");
+    strncpy(m_strGameDSN, strSettingVal, sizeof(m_strGameDSN) - 1);
+
+    strSettingVal = inifile.GetProfileString("ODBC", "GAME_UID", "kodb_user");
+    strncpy(m_strGameUID, strSettingVal, sizeof(m_strGameUID) - 1);
+
+    strSettingVal = inifile.GetProfileString("ODBC", "GAME_PWD", "kodb_user");
+    strncpy(m_strGamePWD, strSettingVal, sizeof(m_strGamePWD) - 1);
 }
 
 void CServerDlg::SendSystemMsg(char * pMsg, int zone, int type, int who) {
@@ -2583,4 +2612,10 @@ void CServerDlg::ResetBattleZone() {
         pMap->InitializeRoom();
     }
     TRACE("ServerDlg - ResetBattleZone() : end \n");
+}
+
+CString CServerDlg::GetGameDBConnectionString() const {
+    CString strConnection;
+    strConnection.Format(_T("ODBC;DSN=%s;UID=%s;PWD=%s"), m_strGameDSN, m_strGameUID, m_strGamePWD);
+    return strConnection;
 }

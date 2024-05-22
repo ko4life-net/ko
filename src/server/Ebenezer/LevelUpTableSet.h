@@ -5,11 +5,15 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CLevelUpTableSet recordset
-
+class CEbenezerDlg;
 class CLevelUpTableSet : public CRecordset {
   public:
     CLevelUpTableSet(CDatabase * pDatabase = NULL);
     DECLARE_DYNAMIC(CLevelUpTableSet)
+
+    void Initialize();
+
+    CEbenezerDlg * m_pMain;
 
     // Field/Param Data
     //{{AFX_FIELD(CLevelUpTableSet, CRecordset)

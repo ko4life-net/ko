@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "ebenezer.h"
 #include "KnightsUserSet.h"
+#include "EbenezerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,6 +18,8 @@ IMPLEMENT_DYNAMIC(CKnightsUserSet, CRecordset)
 
 CKnightsUserSet::CKnightsUserSet(CDatabase * pdb)
     : CRecordset(pdb) {
+    m_pMain = nullptr;
+
     //{{AFX_FIELD_INIT(CKnightsUserSet)
     m_sIDNum = 0;
     m_strUserID = _T("");
@@ -26,8 +28,12 @@ CKnightsUserSet::CKnightsUserSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
+void CKnightsUserSet::Initialize() {
+    m_pMain = (CEbenezerDlg *)AfxGetApp()->GetMainWnd();
+}
+
 CString CKnightsUserSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return m_pMain->GetGameDBConnectionString();
 }
 
 CString CKnightsUserSet::GetDefaultSQL() {

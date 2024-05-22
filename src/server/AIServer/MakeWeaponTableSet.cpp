@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "AIServer.h"
 #include "MakeWeaponTableSet.h"
+#include "AIServerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,6 +18,8 @@ IMPLEMENT_DYNAMIC(CMakeWeaponTableSet, CRecordset)
 
 CMakeWeaponTableSet::CMakeWeaponTableSet(CDatabase * pdb)
     : CRecordset(pdb) {
+    m_pMain = nullptr;
+
     //{{AFX_FIELD_INIT(CMakeWeaponTableSet)
     m_byLevel = 0;
     m_sClass_1 = 0;
@@ -37,8 +39,12 @@ CMakeWeaponTableSet::CMakeWeaponTableSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
+void CMakeWeaponTableSet::Initialize() {
+    m_pMain = (CServerDlg *)AfxGetApp()->GetMainWnd();
+}
+
 CString CMakeWeaponTableSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return m_pMain->GetGameDBConnectionString();
 }
 
 CString CMakeWeaponTableSet::GetDefaultSQL() {

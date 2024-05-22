@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "ebenezer.h"
 #include "CoefficientSet.h"
+#include "EbenezerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,6 +18,8 @@ IMPLEMENT_DYNAMIC(CCoefficientSet, CRecordset)
 
 CCoefficientSet::CCoefficientSet(CDatabase * pdb)
     : CRecordset(pdb) {
+    m_pMain = nullptr;
+
     //{{AFX_FIELD_INIT(CCoefficientSet)
     m_sClass = 0;
     m_ShortSword = 0.0;
@@ -39,8 +41,12 @@ CCoefficientSet::CCoefficientSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
+void CCoefficientSet::Initialize() {
+    m_pMain = (CEbenezerDlg *)AfxGetApp()->GetMainWnd();
+}
+
 CString CCoefficientSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return m_pMain->GetGameDBConnectionString();
 }
 
 CString CCoefficientSet::GetDefaultSQL() {

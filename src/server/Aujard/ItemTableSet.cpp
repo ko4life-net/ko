@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "aujard.h"
 #include "ItemTableSet.h"
+#include "AujardDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,6 +18,8 @@ IMPLEMENT_DYNAMIC(CItemTableSet, CRecordset)
 
 CItemTableSet::CItemTableSet(CDatabase * pdb)
     : CRecordset(pdb) {
+    m_pMain = nullptr;
+
     //{{AFX_FIELD_INIT(CItemTableSet)
     m_Num = 0;
     m_strName = _T("");
@@ -79,8 +81,12 @@ CItemTableSet::CItemTableSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
+void CItemTableSet::Initialize() {
+    m_pMain = (CAujardDlg *)AfxGetApp()->GetMainWnd();
+}
+
 CString CItemTableSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return m_pMain->GetGameDBConnectionString();
 }
 
 CString CItemTableSet::GetDefaultSQL() {

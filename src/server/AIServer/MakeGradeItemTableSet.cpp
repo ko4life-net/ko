@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "AIServer.h"
 #include "MakeGradeItemTableSet.h"
+#include "AIServerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,6 +18,8 @@ IMPLEMENT_DYNAMIC(CMakeGradeItemTableSet, CRecordset)
 
 CMakeGradeItemTableSet::CMakeGradeItemTableSet(CDatabase * pdb)
     : CRecordset(pdb) {
+    m_pMain = nullptr;
+
     //{{AFX_FIELD_INIT(CMakeGradeItemTableSet)
     m_byItemIndex = 0;
     m_byGrade_1 = 0;
@@ -34,8 +36,12 @@ CMakeGradeItemTableSet::CMakeGradeItemTableSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
+void CMakeGradeItemTableSet::Initialize() {
+    m_pMain = (CServerDlg *)AfxGetApp()->GetMainWnd();
+}
+
 CString CMakeGradeItemTableSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return m_pMain->GetGameDBConnectionString();
 }
 
 CString CMakeGradeItemTableSet::GetDefaultSQL() {

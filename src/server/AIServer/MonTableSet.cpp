@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "AIServer.h"
 #include "MonTableSet.h"
+#include "AIServerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,6 +18,8 @@ IMPLEMENT_DYNAMIC(CMonTableSet, CRecordset)
 
 CMonTableSet::CMonTableSet(CDatabase * pdb)
     : CRecordset(pdb) {
+    m_pMain = nullptr;
+
     //{{AFX_FIELD_INIT(CMonTableSet)
     m_sSid = 0;
     m_strName = _T("");
@@ -69,8 +71,12 @@ CMonTableSet::CMonTableSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
+void CMonTableSet::Initialize() {
+    m_pMain = (CServerDlg *)AfxGetApp()->GetMainWnd();
+}
+
 CString CMonTableSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return m_pMain->GetGameDBConnectionString();
 }
 
 CString CMonTableSet::GetDefaultSQL() {

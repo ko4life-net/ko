@@ -5,11 +5,15 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CNpcTableSet recordset
-
+class CServerDlg;
 class CNpcTableSet : public CRecordset {
   public:
     CNpcTableSet(CDatabase * pDatabase = NULL);
     DECLARE_DYNAMIC(CNpcTableSet)
+
+    void Initialize();
+
+    CServerDlg * m_pMain;
 
     // Field/Param Data
     //{{AFX_FIELD(CNpcTableSet, CRecordset)

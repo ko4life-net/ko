@@ -298,6 +298,7 @@ BOOL CAujardDlg::InitializeMMF() {
 
 BOOL CAujardDlg::LoadItemTable() {
     CItemTableSet ItemTableSet;
+    ItemTableSet.Initialize();
 
     if (!ItemTableSet.Open()) {
         AfxMessageBox(_T("ItemTable Open Fail!"));
@@ -1554,4 +1555,10 @@ void CAujardDlg::CouponEvent(char * pData) {
 
         nResult = m_DBAgent.UpdateCouponEvent(strAccountName, strCharName, strCouponID, nItemID, nItemCount);
     }
+}
+
+CString CAujardDlg::GetGameDBConnectionString() const {
+    CString strConnection;
+    strConnection.Format(_T("ODBC;DSN=%s;UID=%s;PWD=%s"), m_strGameDSN, m_strGameUID, m_strGamePWD);
+    return strConnection;
 }

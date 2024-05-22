@@ -5,11 +5,15 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CKnightsUserSet recordset
-
+class CEbenezerDlg;
 class CKnightsUserSet : public CRecordset {
   public:
     CKnightsUserSet(CDatabase * pDatabase = NULL);
     DECLARE_DYNAMIC(CKnightsUserSet)
+
+    void Initialize();
+
+    CEbenezerDlg * m_pMain;
 
     // Field/Param Data
     //{{AFX_FIELD(CKnightsUserSet, CRecordset)

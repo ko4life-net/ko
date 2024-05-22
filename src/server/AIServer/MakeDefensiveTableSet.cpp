@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "AIServer.h"
 #include "MakeDefensiveTableSet.h"
+#include "AIServerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,6 +18,8 @@ IMPLEMENT_DYNAMIC(CMakeDefensiveTableSet, CRecordset)
 
 CMakeDefensiveTableSet::CMakeDefensiveTableSet(CDatabase * pdb)
     : CRecordset(pdb) {
+    m_pMain = nullptr;
+
     //{{AFX_FIELD_INIT(CMakeDefensiveTableSet)
     m_byLevel = 0;
     m_sClass_1 = 0;
@@ -32,8 +34,12 @@ CMakeDefensiveTableSet::CMakeDefensiveTableSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
+void CMakeDefensiveTableSet::Initialize() {
+    m_pMain = (CServerDlg *)AfxGetApp()->GetMainWnd();
+}
+
 CString CMakeDefensiveTableSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return m_pMain->GetGameDBConnectionString();
 }
 
 CString CMakeDefensiveTableSet::GetDefaultSQL() {

@@ -5,11 +5,15 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CMakeWeaponTableSet recordset
-
+class CServerDlg;
 class CMakeWeaponTableSet : public CRecordset {
   public:
     CMakeWeaponTableSet(CDatabase * pDatabase = NULL);
     DECLARE_DYNAMIC(CMakeWeaponTableSet)
+
+    void Initialize();
+
+    CServerDlg * m_pMain;
 
     // Field/Param Data
     //{{AFX_FIELD(CMakeWeaponTableSet, CRecordset)

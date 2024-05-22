@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "ebenezer.h"
 #include "MagicType1Set.h"
+#include "EbenezerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,6 +18,8 @@ IMPLEMENT_DYNAMIC(CMagicType1Set, CRecordset)
 
 CMagicType1Set::CMagicType1Set(CDatabase * pdb)
     : CRecordset(pdb) {
+    m_pMain = nullptr;
+
     //{{AFX_FIELD_INIT(CMagicType1Set)
     m_iNum = 0;
     m_Name = _T("");
@@ -35,8 +37,12 @@ CMagicType1Set::CMagicType1Set(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
+void CMagicType1Set::Initialize() {
+    m_pMain = (CEbenezerDlg *)AfxGetApp()->GetMainWnd();
+}
+
 CString CMagicType1Set::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return m_pMain->GetGameDBConnectionString();
 }
 
 CString CMagicType1Set::GetDefaultSQL() {

@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "AIServer.h"
 #include "ZoneInfoSet.h"
+#include "AIServerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,6 +18,8 @@ IMPLEMENT_DYNAMIC(CZoneInfoSet, CRecordset)
 
 CZoneInfoSet::CZoneInfoSet(CDatabase * pdb)
     : CRecordset(pdb) {
+    m_pMain = nullptr;
+
     //{{AFX_FIELD_INIT(CZoneInfoSet)
     m_ServerNo = 0;
     m_ZoneNo = 0;
@@ -34,8 +36,12 @@ CZoneInfoSet::CZoneInfoSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
+void CZoneInfoSet::Initialize() {
+    m_pMain = (CServerDlg *)AfxGetApp()->GetMainWnd();
+}
+
 CString CZoneInfoSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return m_pMain->GetGameDBConnectionString();
 }
 
 CString CZoneInfoSet::GetDefaultSQL() {

@@ -5,11 +5,15 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CMakeLareItemTableSet recordset
-
+class CServerDlg;
 class CMakeLareItemTableSet : public CRecordset {
   public:
     CMakeLareItemTableSet(CDatabase * pDatabase = NULL);
     DECLARE_DYNAMIC(CMakeLareItemTableSet)
+
+    void Initialize();
+
+    CServerDlg * m_pMain;
 
     // Field/Param Data
     //{{AFX_FIELD(CMakeLareItemTableSet, CRecordset)

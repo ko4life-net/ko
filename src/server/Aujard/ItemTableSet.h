@@ -5,11 +5,15 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CItemTableSet recordset
-
+class CAujardDlg;
 class CItemTableSet : public CRecordset {
   public:
     CItemTableSet(CDatabase * pDatabase = NULL);
     DECLARE_DYNAMIC(CItemTableSet)
+
+    void Initialize();
+
+    CAujardDlg * m_pMain;
 
     // Field/Param Data
     //{{AFX_FIELD(CItemTableSet, CRecordset)

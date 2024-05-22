@@ -5,11 +5,15 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CMakeGradeItemTableSet recordset
-
+class CServerDlg;
 class CMakeGradeItemTableSet : public CRecordset {
   public:
     CMakeGradeItemTableSet(CDatabase * pDatabase = NULL);
     DECLARE_DYNAMIC(CMakeGradeItemTableSet)
+
+    void Initialize();
+
+    CServerDlg * m_pMain;
 
     // Field/Param Data
     //{{AFX_FIELD(CMakeGradeItemTableSet, CRecordset)

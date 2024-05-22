@@ -5,11 +5,15 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CRNpcPosSet recordset
-
+class CServerDlg;
 class CRNpcPosSet : public CRecordset {
   public:
     CRNpcPosSet(CDatabase * pDatabase = NULL);
     DECLARE_DYNAMIC(CRNpcPosSet)
+
+    void Initialize();
+
+    CServerDlg * m_pMain;
 
     // Field/Param Data
     //{{AFX_FIELD(CRNpcPosSet, CRecordset)

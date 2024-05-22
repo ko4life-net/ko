@@ -7,6 +7,7 @@
 #include "DBAgent.h"
 #include "define.h"
 #include "STLMap.h"
+#include "Resource.h"
 
 typedef CSTLMap<_ITEM_TABLE> ItemtableArray;
 /////////////////////////////////////////////////////////////////////////////
@@ -43,8 +44,9 @@ class CAujardDlg : public CDialog {
     void         UserLogOut(char * pBuf);
     CAujardDlg(CWnd * pParent = NULL); // standard constructor
 
-    BOOL InitializeMMF();
-    void SelectCharacter(char * pBuf);
+    BOOL    InitializeMMF();
+    void    SelectCharacter(char * pBuf);
+    CString GetGameDBConnectionString() const;
 
     CSharedMemQueue m_LoggerSendQueue;
     CSharedMemQueue m_LoggerRecvQueue;

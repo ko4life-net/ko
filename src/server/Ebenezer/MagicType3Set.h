@@ -5,11 +5,15 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CMagicType3Set recordset
-
+class CEbenezerDlg;
 class CMagicType3Set : public CRecordset {
   public:
     CMagicType3Set(CDatabase * pDatabase = NULL);
     DECLARE_DYNAMIC(CMagicType3Set)
+
+    void Initialize();
+
+    CEbenezerDlg * m_pMain;
 
     // Field/Param Data
     //{{AFX_FIELD(CMagicType3Set, CRecordset)

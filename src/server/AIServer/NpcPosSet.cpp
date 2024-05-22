@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "AIServer.h"
 #include "NpcPosSet.h"
+#include "AIServerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,6 +18,8 @@ IMPLEMENT_DYNAMIC(CNpcPosSet, CRecordset)
 
 CNpcPosSet::CNpcPosSet(CDatabase * pdb)
     : CRecordset(pdb) {
+    m_pMain = nullptr;
+
     //{{AFX_FIELD_INIT(CNpcPosSet)
     m_ZoneID = 0;
     m_NpcID = 0;
@@ -43,8 +45,12 @@ CNpcPosSet::CNpcPosSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
+void CNpcPosSet::Initialize() {
+    m_pMain = (CServerDlg *)AfxGetApp()->GetMainWnd();
+}
+
 CString CNpcPosSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return m_pMain->GetGameDBConnectionString();
 }
 
 CString CNpcPosSet::GetDefaultSQL() {

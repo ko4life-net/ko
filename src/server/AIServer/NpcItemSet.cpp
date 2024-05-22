@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "AIServer.h"
 #include "NpcItemSet.h"
+#include "AIServerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,6 +18,8 @@ IMPLEMENT_DYNAMIC(CNpcItemSet, CRecordset)
 
 CNpcItemSet::CNpcItemSet(CDatabase * pdb)
     : CRecordset(pdb) {
+    m_pMain = nullptr;
+
     //{{AFX_FIELD_INIT(CNpcItemSet)
     m_sIndex = 0;
     m_iItem01 = 0;
@@ -35,8 +37,12 @@ CNpcItemSet::CNpcItemSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
+void CNpcItemSet::Initialize() {
+    m_pMain = (CServerDlg *)AfxGetApp()->GetMainWnd();
+}
+
 CString CNpcItemSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return m_pMain->GetGameDBConnectionString();
 }
 
 CString CNpcItemSet::GetDefaultSQL() {

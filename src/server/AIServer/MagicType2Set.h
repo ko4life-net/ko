@@ -5,11 +5,15 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CMagicType2Set recordset
-
+class CServerDlg;
 class CMagicType2Set : public CRecordset {
   public:
     CMagicType2Set(CDatabase * pDatabase = NULL);
     DECLARE_DYNAMIC(CMagicType2Set)
+
+    void Initialize();
+
+    CServerDlg * m_pMain;
 
     // Field/Param Data
     //{{AFX_FIELD(CMagicType2Set, CRecordset)
