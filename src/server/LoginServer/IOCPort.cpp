@@ -45,7 +45,10 @@ DWORD WINAPI AcceptThread(LPVOID lp) {
 
         if (network_event.lNetworkEvents & FD_ACCEPT) {
             if (network_event.iErrorCode[FD_ACCEPT_BIT] == 0) {
+                EnterCriticalSection(&g_critical);
                 sid = pIocport->GetNewSid();
+                LeaveCriticalSection(&g_critical);
+
                 if (sid == -1) {
                     TRACE("Accepting User Socket Fail - New Uid is -1\n");
                     goto loop_pass_accept;
@@ -63,8 +66,11 @@ DWORD WINAPI AcceptThread(LPVOID lp) {
                 len = sizeof(addr);
                 if (!pSocket->Accept(pIocport->m_ListenSocket, (struct sockaddr *)&addr, &len)) {
                     TRACE("Accept Fail %d\n", sid);
+
+                    EnterCriticalSection(&g_critical);
                     pIocport->RidIOCPSocket(sid, pSocket);
                     pIocport->PutOldSid(sid);
+                    LeaveCriticalSection(&g_critical);
                     goto loop_pass_accept;
                 }
 
@@ -72,9 +78,12 @@ DWORD WINAPI AcceptThread(LPVOID lp) {
 
                 if (!pIocport->Associate(pSocket, pIocport->m_hServerIOCPort)) {
                     TRACE("Socket Associate Fail\n");
+
+                    EnterCriticalSection(&g_critical);
                     pSocket->CloseProcess();
                     pIocport->RidIOCPSocket(sid, pSocket);
                     pIocport->PutOldSid(sid);
+                    LeaveCriticalSection(&g_critical);
                     goto loop_pass_accept;
                 }
 
