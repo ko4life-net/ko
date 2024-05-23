@@ -40,8 +40,7 @@ const char * CIni::GetProfileString(const char * lpAppName, const char * lpKeyNa
         return retString;
     }
 
-    char tmpReturn[500];
-    return GetProfileString(lpAppName, lpKeyName, lpDefault, tmpReturn, sizeof(tmpReturn));
+    return GetProfileString(lpAppName, lpKeyName, lpDefault, retString, sizeof(retString));
 }
 
 const char * CIni::GetProfileString(const char * lpAppName, const char * lpKeyName, const char * lpDefault,
