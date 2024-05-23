@@ -182,11 +182,11 @@ DWORD WINAPI ReadQueueThread(LPVOID lp) {
 /////////////////////////////////////////////////////////////////////////////
 // CEbenezerDlg dialog
 
-CEbenezerDlg * CEbenezerDlg::s_instance = nullptr;
+CEbenezerDlg * CEbenezerDlg::s_pInstance = nullptr;
 
 CEbenezerDlg::CEbenezerDlg(CWnd * pParent /*=NULL*/)
     : CDialog(CEbenezerDlg::IDD, pParent) {
-    s_instance = this;
+    s_pInstance = this;
 
     //{{AFX_DATA_INIT(CEbenezerDlg)
     //}}AFX_DATA_INIT

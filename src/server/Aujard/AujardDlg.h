@@ -16,7 +16,7 @@ typedef CSTLMap<_ITEM_TABLE> ItemtableArray;
 class CAujardDlg : public CDialog {
     // Construction
   public:
-    static CAujardDlg * GetInstance() { return s_instance; }
+    static CAujardDlg * GetInstance() { return s_pInstance; }
 
     void         CouponEvent(char * pData);
     void         BattleEventResult(char * pData);
@@ -96,7 +96,7 @@ class CAujardDlg : public CDialog {
   protected:
     HICON m_hIcon;
 
-    static CAujardDlg * s_instance;
+    static CAujardDlg * s_pInstance;
 
     // Generated message map functions
     //{{AFX_MSG(CAujardDlg)

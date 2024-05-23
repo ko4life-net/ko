@@ -96,11 +96,11 @@ DWORD WINAPI ReadQueueThread(LPVOID lp) {
 /////////////////////////////////////////////////////////////////////////////
 // CAujardDlg dialog
 
-CAujardDlg * CAujardDlg::s_instance = nullptr;
+CAujardDlg * CAujardDlg::s_pInstance = nullptr;
 
 CAujardDlg::CAujardDlg(CWnd * pParent /*=NULL*/)
     : CDialog(CAujardDlg::IDD, pParent) {
-    s_instance = this;
+    s_pInstance = this;
 
     //{{AFX_DATA_INIT(CAujardDlg)
     m_DBProcessNum = _T("");

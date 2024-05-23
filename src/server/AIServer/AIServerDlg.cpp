@@ -104,11 +104,11 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CServerDlg dialog
 
-CServerDlg * CServerDlg::s_instance = nullptr;
+CServerDlg * CServerDlg::s_pInstance = nullptr;
 
 CServerDlg::CServerDlg(CWnd * pParent /*=NULL*/)
     : CDialog(CServerDlg::IDD, pParent) {
-    s_instance = this;
+    s_pInstance = this;
 
     //{{AFX_DATA_INIT(CServerDlg)
     m_strStatus = _T("");
