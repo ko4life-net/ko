@@ -248,9 +248,9 @@ class CEbenezerDlg : public CDialog {
     CFile        m_LogFile;
     CFile        m_EvnetLogFile;
 
-    char m_strGameDSN[24];
-    char m_strGameUID[24];
-    char m_strGamePWD[24];
+    char m_szOdbcGameDsn[24];
+    char m_szOdbcGameUid[24];
+    char m_szOdbcGamePwd[24];
 
     // Dialog Data
     //{{AFX_DATA(CEbenezerDlg)

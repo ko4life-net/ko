@@ -108,15 +108,15 @@ CAujardDlg::CAujardDlg(CWnd * pParent /*=NULL*/)
     // Note that LoadIcon does not require a subsequent DestroyIcon in Win32
     m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
-    memset(m_strGameDSN, 0x00, 24);
-    memset(m_strGameUID, 0x00, 24);
-    memset(m_strGamePWD, 0x00, 24);
-    memset(m_strAccountDSN, 0x00, 24);
-    memset(m_strAccountUID, 0x00, 24);
-    memset(m_strAccountPWD, 0x00, 24);
-    memset(m_strLogDSN, 0x00, 24);
-    memset(m_strLogUID, 0x00, 24);
-    memset(m_strLogPWD, 0x00, 24);
+    memset(m_szOdbcGameDsn, 0, sizeof(m_szOdbcGameDsn));
+    memset(m_szOdbcGameUid, 0, sizeof(m_szOdbcGameUid));
+    memset(m_szOdbcGamePwd, 0, sizeof(m_szOdbcGamePwd));
+    memset(m_szOdbcAccountDsn, 0, sizeof(m_szOdbcAccountDsn));
+    memset(m_szOdbcAccountUid, 0, sizeof(m_szOdbcAccountUid));
+    memset(m_szOdbcAccountPwd, 0, sizeof(m_szOdbcAccountPwd));
+    memset(m_szOdbcLogDsn, 0, sizeof(m_szOdbcLogDsn));
+    memset(m_szOdbcLogUid, 0, sizeof(m_szOdbcLogUid));
+    memset(m_szOdbcLogPwd, 0, sizeof(m_szOdbcLogPwd));
 
     m_iSendPacketCount = 0;
     m_iPacketCount = 0;
@@ -176,15 +176,17 @@ BOOL CAujardDlg::OnInitDialog() {
     CString inipath;
     inipath.Format("%s\\Aujard.ini", GetProgPath());
 
-    GetPrivateProfileString("ODBC", "ACCOUNT_DSN", "kodb", m_strAccountDSN, 24, inipath);
-    GetPrivateProfileString("ODBC", "ACCOUNT_UID", "kodb_user", m_strAccountUID, 24, inipath);
-    GetPrivateProfileString("ODBC", "ACCOUNT_PWD", "kodb_user", m_strAccountPWD, 24, inipath);
-    GetPrivateProfileString("ODBC", "GAME_DSN", "kodb", m_strGameDSN, 24, inipath);
-    GetPrivateProfileString("ODBC", "GAME_UID", "kodb_user", m_strGameUID, 24, inipath);
-    GetPrivateProfileString("ODBC", "GAME_PWD", "kodb_user", m_strGamePWD, 24, inipath);
-    GetPrivateProfileString("ODBC", "LOG_DSN", "kodb", m_strLogDSN, 24, inipath);
-    GetPrivateProfileString("ODBC", "LOG_UID", "kodb_user", m_strLogUID, 24, inipath);
-    GetPrivateProfileString("ODBC", "LOG_PWD", "kodb_user", m_strLogPWD, 24, inipath);
+    GetPrivateProfileString("ODBC", "ACCOUNT_DSN", "kodb", m_szOdbcAccountDsn, sizeof(m_szOdbcAccountDsn), inipath);
+    GetPrivateProfileString("ODBC", "ACCOUNT_UID", "kodb_user", m_szOdbcAccountUid, sizeof(m_szOdbcAccountUid),
+                            inipath);
+    GetPrivateProfileString("ODBC", "ACCOUNT_PWD", "kodb_user", m_szOdbcAccountPwd, sizeof(m_szOdbcAccountPwd),
+                            inipath);
+    GetPrivateProfileString("ODBC", "GAME_DSN", "kodb", m_szOdbcGameDsn, sizeof(m_szOdbcGameDsn), inipath);
+    GetPrivateProfileString("ODBC", "GAME_UID", "kodb_user", m_szOdbcGameUid, sizeof(m_szOdbcGameUid), inipath);
+    GetPrivateProfileString("ODBC", "GAME_PWD", "kodb_user", m_szOdbcGamePwd, sizeof(m_szOdbcGamePwd), inipath);
+    GetPrivateProfileString("ODBC", "LOG_DSN", "kodb", m_szOdbcLogDsn, sizeof(m_szOdbcLogDsn), inipath);
+    GetPrivateProfileString("ODBC", "LOG_UID", "kodb_user", m_szOdbcLogUid, sizeof(m_szOdbcLogUid), inipath);
+    GetPrivateProfileString("ODBC", "LOG_PWD", "kodb_user", m_szOdbcLogPwd, sizeof(m_szOdbcLogPwd), inipath);
 
     m_nServerNo = GetPrivateProfileInt("ZONE_INFO", "GROUP_INFO", 1, inipath);
     m_nZoneNo = GetPrivateProfileInt("ZONE_INFO", "ZONE_INFO", 1, inipath);
@@ -1562,6 +1564,6 @@ void CAujardDlg::CouponEvent(char * pData) {
 
 CString CAujardDlg::GetGameDBConnectionString() const {
     CString strConnection;
-    strConnection.Format(_T("ODBC;DSN=%s;UID=%s;PWD=%s"), m_strGameDSN, m_strGameUID, m_strGamePWD);
+    strConnection.Format(_T("ODBC;DSN=%s;UID=%s;PWD=%s"), m_szOdbcGameDsn, m_szOdbcGameUid, m_szOdbcGamePwd);
     return strConnection;
 }
