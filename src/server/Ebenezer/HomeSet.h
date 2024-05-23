@@ -5,15 +5,11 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CHomeSet recordset
-class CEbenezerDlg;
+
 class CHomeSet : public CRecordset {
   public:
     CHomeSet(CDatabase * pDatabase = NULL);
     DECLARE_DYNAMIC(CHomeSet)
-
-    void Initialize();
-
-    CEbenezerDlg * m_pMain;
 
     // Field/Param Data
     //{{AFX_FIELD(CHomeSet, CRecordset)

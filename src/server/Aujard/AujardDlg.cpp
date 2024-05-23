@@ -96,8 +96,12 @@ DWORD WINAPI ReadQueueThread(LPVOID lp) {
 /////////////////////////////////////////////////////////////////////////////
 // CAujardDlg dialog
 
+CAujardDlg * CAujardDlg::s_instance = nullptr;
+
 CAujardDlg::CAujardDlg(CWnd * pParent /*=NULL*/)
     : CDialog(CAujardDlg::IDD, pParent) {
+    s_instance = this;
+
     //{{AFX_DATA_INIT(CAujardDlg)
     m_DBProcessNum = _T("");
     //}}AFX_DATA_INIT
@@ -298,7 +302,6 @@ BOOL CAujardDlg::InitializeMMF() {
 
 BOOL CAujardDlg::LoadItemTable() {
     CItemTableSet ItemTableSet;
-    ItemTableSet.Initialize();
 
     if (!ItemTableSet.Open()) {
         AfxMessageBox(_T("ItemTable Open Fail!"));

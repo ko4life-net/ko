@@ -18,8 +18,6 @@ IMPLEMENT_DYNAMIC(CHomeSet, CRecordset)
 
 CHomeSet::CHomeSet(CDatabase * pdb)
     : CRecordset(pdb) {
-    m_pMain = nullptr;
-
     //{{AFX_FIELD_INIT(CHomeSet)
     m_Nation = 0;
     m_ElmoZoneX = 0;
@@ -47,12 +45,8 @@ CHomeSet::CHomeSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
-void CHomeSet::Initialize() {
-    m_pMain = (CEbenezerDlg *)AfxGetApp()->GetMainWnd();
-}
-
 CString CHomeSet::GetDefaultConnect() {
-    return m_pMain->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CHomeSet::GetDefaultSQL() {

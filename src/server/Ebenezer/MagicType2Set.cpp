@@ -18,8 +18,6 @@ IMPLEMENT_DYNAMIC(CMagicType2Set, CRecordset)
 
 CMagicType2Set::CMagicType2Set(CDatabase * pdb)
     : CRecordset(pdb) {
-    m_pMain = nullptr;
-
     //{{AFX_FIELD_INIT(CMagicType2Set)
     m_iNum = 0;
     m_Name = _T("");
@@ -34,12 +32,8 @@ CMagicType2Set::CMagicType2Set(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
-void CMagicType2Set::Initialize() {
-    m_pMain = (CEbenezerDlg *)AfxGetApp()->GetMainWnd();
-}
-
 CString CMagicType2Set::GetDefaultConnect() {
-    return m_pMain->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CMagicType2Set::GetDefaultSQL() {

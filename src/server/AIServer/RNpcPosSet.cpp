@@ -18,8 +18,6 @@ IMPLEMENT_DYNAMIC(CRNpcPosSet, CRecordset)
 
 CRNpcPosSet::CRNpcPosSet(CDatabase * pdb)
     : CRecordset(pdb) {
-    m_pMain = nullptr;
-
     //{{AFX_FIELD_INIT(CRNpcPosSet)
     m_ZoneID = 0;
     m_NpcID = 0;
@@ -45,12 +43,8 @@ CRNpcPosSet::CRNpcPosSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
-void CRNpcPosSet::Initialize() {
-    m_pMain = (CServerDlg *)AfxGetApp()->GetMainWnd();
-}
-
 CString CRNpcPosSet::GetDefaultConnect() {
-    return m_pMain->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CRNpcPosSet::GetDefaultSQL() {

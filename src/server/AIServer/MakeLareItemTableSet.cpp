@@ -18,8 +18,6 @@ IMPLEMENT_DYNAMIC(CMakeLareItemTableSet, CRecordset)
 
 CMakeLareItemTableSet::CMakeLareItemTableSet(CDatabase * pdb)
     : CRecordset(pdb) {
-    m_pMain = nullptr;
-
     //{{AFX_FIELD_INIT(CMakeLareItemTableSet)
     m_byLevelGrade = 0;
     m_sLareItem = 0;
@@ -30,12 +28,8 @@ CMakeLareItemTableSet::CMakeLareItemTableSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
-void CMakeLareItemTableSet::Initialize() {
-    m_pMain = (CServerDlg *)AfxGetApp()->GetMainWnd();
-}
-
 CString CMakeLareItemTableSet::GetDefaultConnect() {
-    return m_pMain->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CMakeLareItemTableSet::GetDefaultSQL() {

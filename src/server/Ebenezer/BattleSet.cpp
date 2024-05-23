@@ -18,8 +18,6 @@ IMPLEMENT_DYNAMIC(CBattleSet, CRecordset)
 
 CBattleSet::CBattleSet(CDatabase * pdb)
     : CRecordset(pdb) {
-    m_pMain = nullptr;
-
     //{{AFX_FIELD_INIT(CBattleSet)
     m_sIndex = 0;
     m_byNation = 0;
@@ -28,12 +26,8 @@ CBattleSet::CBattleSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
-void CBattleSet::Initialize() {
-    m_pMain = (CEbenezerDlg *)AfxGetApp()->GetMainWnd();
-}
-
 CString CBattleSet::GetDefaultConnect() {
-    return m_pMain->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CBattleSet::GetDefaultSQL() {

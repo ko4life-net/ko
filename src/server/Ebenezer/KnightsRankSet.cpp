@@ -18,8 +18,6 @@ IMPLEMENT_DYNAMIC(CKnightsRankSet, CRecordset)
 
 CKnightsRankSet::CKnightsRankSet(CDatabase * pdb)
     : CRecordset(pdb) {
-    m_pMain = nullptr;
-
     //{{AFX_FIELD_INIT(CKnightsRankSet)
     m_nRank = 0;
     m_shIndex = 0;
@@ -30,12 +28,8 @@ CKnightsRankSet::CKnightsRankSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
-void CKnightsRankSet::Initialize() {
-    m_pMain = (CEbenezerDlg *)AfxGetApp()->GetMainWnd();
-}
-
 CString CKnightsRankSet::GetDefaultConnect() {
-    return m_pMain->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CKnightsRankSet::GetDefaultSQL() {

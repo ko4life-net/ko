@@ -5,15 +5,11 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CZoneInfoSet recordset
-class CServerDlg;
+
 class CZoneInfoSet : public CRecordset {
   public:
     CZoneInfoSet(CDatabase * pDatabase = NULL);
     DECLARE_DYNAMIC(CZoneInfoSet)
-
-    void Initialize();
-
-    CServerDlg * m_pMain;
 
     // Field/Param Data
     //{{AFX_FIELD(CZoneInfoSet, CRecordset)

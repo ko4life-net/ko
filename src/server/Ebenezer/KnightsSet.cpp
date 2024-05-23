@@ -18,8 +18,6 @@ IMPLEMENT_DYNAMIC(CKnightsSet, CRecordset)
 
 CKnightsSet::CKnightsSet(CDatabase * pdb)
     : CRecordset(pdb) {
-    m_pMain = nullptr;
-
     //{{AFX_FIELD_INIT(CKnightsSet)
     m_IDNum = 0;
     m_Flag = 0;
@@ -40,12 +38,8 @@ CKnightsSet::CKnightsSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
-void CKnightsSet::Initialize() {
-    m_pMain = (CEbenezerDlg *)AfxGetApp()->GetMainWnd();
-}
-
 CString CKnightsSet::GetDefaultConnect() {
-    return m_pMain->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CKnightsSet::GetDefaultSQL() {

@@ -5,15 +5,11 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CMagicType2Set recordset
-class CEbenezerDlg;
+
 class CMagicType2Set : public CRecordset {
   public:
     CMagicType2Set(CDatabase * pDatabase = NULL);
     DECLARE_DYNAMIC(CMagicType2Set)
-
-    void Initialize();
-
-    CEbenezerDlg * m_pMain;
 
     // Field/Param Data
     //{{AFX_FIELD(CMagicType2Set, CRecordset)

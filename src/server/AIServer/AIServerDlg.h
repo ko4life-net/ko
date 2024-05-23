@@ -75,6 +75,8 @@ class CServerDlg : public CDialog {
     void TestCode();
     // Construction
   public:
+    static CServerDlg * GetInstance() { return s_instance; }
+
     void    GameServerAcceptThread();
     BOOL    AddObjectEventNpc(_OBJECT_EVENT * pEvent, int zone_number);
     void    AllNpcInfo(); // ~sungyong 2002.05.23
@@ -193,6 +195,8 @@ class CServerDlg : public CDialog {
     //    CGameSocket m_GameSocket;
 
     HICON m_hIcon;
+
+    static CServerDlg * s_instance;
 
     // Generated message map functions
     //{{AFX_MSG(CServerDlg)

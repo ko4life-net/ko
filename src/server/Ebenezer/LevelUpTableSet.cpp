@@ -18,8 +18,6 @@ IMPLEMENT_DYNAMIC(CLevelUpTableSet, CRecordset)
 
 CLevelUpTableSet::CLevelUpTableSet(CDatabase * pdb)
     : CRecordset(pdb) {
-    m_pMain = nullptr;
-
     //{{AFX_FIELD_INIT(CLevelUpTableSet)
     m_level = 0;
     m_Exp = 0;
@@ -28,12 +26,8 @@ CLevelUpTableSet::CLevelUpTableSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
-void CLevelUpTableSet::Initialize() {
-    m_pMain = (CEbenezerDlg *)AfxGetApp()->GetMainWnd();
-}
-
 CString CLevelUpTableSet::GetDefaultConnect() {
-    return m_pMain->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CLevelUpTableSet::GetDefaultSQL() {

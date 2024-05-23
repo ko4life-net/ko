@@ -18,8 +18,6 @@ IMPLEMENT_DYNAMIC(CEventSet, CRecordset)
 
 CEventSet::CEventSet(CDatabase * pdb)
     : CRecordset(pdb) {
-    m_pMain = nullptr;
-
     //{{AFX_FIELD_INIT(CEventSet)
     m_ZoneNum = 0;
     m_EventNum = 0;
@@ -39,12 +37,8 @@ CEventSet::CEventSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
-void CEventSet::Initialize() {
-    m_pMain = (CEbenezerDlg *)AfxGetApp()->GetMainWnd();
-}
-
 CString CEventSet::GetDefaultConnect() {
-    return m_pMain->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CEventSet::GetDefaultSQL() {

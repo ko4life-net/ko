@@ -18,8 +18,6 @@ IMPLEMENT_DYNAMIC(CKnightsUserSet, CRecordset)
 
 CKnightsUserSet::CKnightsUserSet(CDatabase * pdb)
     : CRecordset(pdb) {
-    m_pMain = nullptr;
-
     //{{AFX_FIELD_INIT(CKnightsUserSet)
     m_sIDNum = 0;
     m_strUserID = _T("");
@@ -28,12 +26,8 @@ CKnightsUserSet::CKnightsUserSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
-void CKnightsUserSet::Initialize() {
-    m_pMain = (CEbenezerDlg *)AfxGetApp()->GetMainWnd();
-}
-
 CString CKnightsUserSet::GetDefaultConnect() {
-    return m_pMain->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CKnightsUserSet::GetDefaultSQL() {

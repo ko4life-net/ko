@@ -18,8 +18,6 @@ IMPLEMENT_DYNAMIC(CMonTableSet, CRecordset)
 
 CMonTableSet::CMonTableSet(CDatabase * pdb)
     : CRecordset(pdb) {
-    m_pMain = nullptr;
-
     //{{AFX_FIELD_INIT(CMonTableSet)
     m_sSid = 0;
     m_strName = _T("");
@@ -71,12 +69,8 @@ CMonTableSet::CMonTableSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
-void CMonTableSet::Initialize() {
-    m_pMain = (CServerDlg *)AfxGetApp()->GetMainWnd();
-}
-
 CString CMonTableSet::GetDefaultConnect() {
-    return m_pMain->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CMonTableSet::GetDefaultSQL() {

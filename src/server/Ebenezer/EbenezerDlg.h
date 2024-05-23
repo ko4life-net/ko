@@ -50,6 +50,8 @@ class CUser;
 class CEbenezerDlg : public CDialog {
     // Construction
   public:
+    static CEbenezerDlg * GetInstance() { return s_instance; }
+
     void    WriteEventLog(char * pBuf);
     void    FlySanta();
     void    BattleZoneCurrentUsers();
@@ -137,7 +139,8 @@ class CEbenezerDlg : public CDialog {
     CString        GetGameDBConnectionString() const;
     CEbenezerDlg(CWnd * pParent = NULL); // standard constructor
 
-    static CIOCPort m_Iocport;
+    static CEbenezerDlg * s_instance;
+    static CIOCPort       m_Iocport;
 
     CSharedMemQueue m_LoggerSendQueue;
     CSharedMemQueue m_LoggerRecvQueue;

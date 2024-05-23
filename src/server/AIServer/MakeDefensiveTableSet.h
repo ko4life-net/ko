@@ -5,15 +5,11 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CMakeDefensiveTableSet recordset
-class CServerDlg;
+
 class CMakeDefensiveTableSet : public CRecordset {
   public:
     CMakeDefensiveTableSet(CDatabase * pDatabase = NULL);
     DECLARE_DYNAMIC(CMakeDefensiveTableSet)
-
-    void Initialize();
-
-    CServerDlg * m_pMain;
 
     // Field/Param Data
     //{{AFX_FIELD(CMakeDefensiveTableSet, CRecordset)

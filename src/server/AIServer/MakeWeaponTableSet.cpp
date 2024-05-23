@@ -18,8 +18,6 @@ IMPLEMENT_DYNAMIC(CMakeWeaponTableSet, CRecordset)
 
 CMakeWeaponTableSet::CMakeWeaponTableSet(CDatabase * pdb)
     : CRecordset(pdb) {
-    m_pMain = nullptr;
-
     //{{AFX_FIELD_INIT(CMakeWeaponTableSet)
     m_byLevel = 0;
     m_sClass_1 = 0;
@@ -39,12 +37,8 @@ CMakeWeaponTableSet::CMakeWeaponTableSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
-void CMakeWeaponTableSet::Initialize() {
-    m_pMain = (CServerDlg *)AfxGetApp()->GetMainWnd();
-}
-
 CString CMakeWeaponTableSet::GetDefaultConnect() {
-    return m_pMain->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CMakeWeaponTableSet::GetDefaultSQL() {

@@ -523,8 +523,6 @@ BOOL C3DMap::LoadEvent() {
 
     LogFileWrite("LoadEvent start \r\n");
 
-    EventSet.Initialize();
-
     if (!EventSet.Open()) {
         LogFileWrite("LoadEvent 22 \r\n");
         AfxMessageBox(_T("EventTable Open Fail!"));

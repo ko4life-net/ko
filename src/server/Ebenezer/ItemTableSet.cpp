@@ -18,8 +18,6 @@ IMPLEMENT_DYNAMIC(CItemTableSet, CRecordset)
 
 CItemTableSet::CItemTableSet(CDatabase * pdb)
     : CRecordset(pdb) {
-    m_pMain = nullptr;
-
     //{{AFX_FIELD_INIT(CItemTableSet)
     m_Num = 0;
     m_strName = _T("");
@@ -81,12 +79,8 @@ CItemTableSet::CItemTableSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
-void CItemTableSet::Initialize() {
-    m_pMain = (CEbenezerDlg *)AfxGetApp()->GetMainWnd();
-}
-
 CString CItemTableSet::GetDefaultConnect() {
-    return m_pMain->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CItemTableSet::GetDefaultSQL() {

@@ -18,8 +18,6 @@ IMPLEMENT_DYNAMIC(CMakeDefensiveTableSet, CRecordset)
 
 CMakeDefensiveTableSet::CMakeDefensiveTableSet(CDatabase * pdb)
     : CRecordset(pdb) {
-    m_pMain = nullptr;
-
     //{{AFX_FIELD_INIT(CMakeDefensiveTableSet)
     m_byLevel = 0;
     m_sClass_1 = 0;
@@ -34,12 +32,8 @@ CMakeDefensiveTableSet::CMakeDefensiveTableSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
-void CMakeDefensiveTableSet::Initialize() {
-    m_pMain = (CServerDlg *)AfxGetApp()->GetMainWnd();
-}
-
 CString CMakeDefensiveTableSet::GetDefaultConnect() {
-    return m_pMain->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CMakeDefensiveTableSet::GetDefaultSQL() {

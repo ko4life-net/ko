@@ -18,8 +18,6 @@ IMPLEMENT_DYNAMIC(CCoefficientSet, CRecordset)
 
 CCoefficientSet::CCoefficientSet(CDatabase * pdb)
     : CRecordset(pdb) {
-    m_pMain = nullptr;
-
     //{{AFX_FIELD_INIT(CCoefficientSet)
     m_sClass = 0;
     m_ShortSword = 0.0;
@@ -41,12 +39,8 @@ CCoefficientSet::CCoefficientSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
-void CCoefficientSet::Initialize() {
-    m_pMain = (CEbenezerDlg *)AfxGetApp()->GetMainWnd();
-}
-
 CString CCoefficientSet::GetDefaultConnect() {
-    return m_pMain->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CCoefficientSet::GetDefaultSQL() {

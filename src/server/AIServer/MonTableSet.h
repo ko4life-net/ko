@@ -5,15 +5,11 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CMonTableSet recordset
-class CServerDlg;
+
 class CMonTableSet : public CRecordset {
   public:
     CMonTableSet(CDatabase * pDatabase = NULL);
     DECLARE_DYNAMIC(CMonTableSet)
-
-    void Initialize();
-
-    CServerDlg * m_pMain;
 
     // Field/Param Data
     //{{AFX_FIELD(CMonTableSet, CRecordset)

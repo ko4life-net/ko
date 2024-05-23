@@ -18,8 +18,6 @@ IMPLEMENT_DYNAMIC(CZoneInfoSet, CRecordset)
 
 CZoneInfoSet::CZoneInfoSet(CDatabase * pdb)
     : CRecordset(pdb) {
-    m_pMain = nullptr;
-
     //{{AFX_FIELD_INIT(CZoneInfoSet)
     m_ServerNo = 0;
     m_ZoneNo = 0;
@@ -35,12 +33,8 @@ CZoneInfoSet::CZoneInfoSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
-void CZoneInfoSet::Initialize() {
-    m_pMain = (CEbenezerDlg *)AfxGetApp()->GetMainWnd();
-}
-
 CString CZoneInfoSet::GetDefaultConnect() {
-    return m_pMain->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CZoneInfoSet::GetDefaultSQL() {

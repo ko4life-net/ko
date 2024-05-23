@@ -5,15 +5,11 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CEventSet recordset
-class CEbenezerDlg;
+
 class CEventSet : public CRecordset {
   public:
     CEventSet(CDatabase * pDatabase = NULL);
     DECLARE_DYNAMIC(CEventSet)
-
-    void Initialize();
-
-    CEbenezerDlg * m_pMain;
 
     // Field/Param Data
     //{{AFX_FIELD(CEventSet, CRecordset)

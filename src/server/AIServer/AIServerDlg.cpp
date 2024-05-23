@@ -104,8 +104,12 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CServerDlg dialog
 
+CServerDlg * CServerDlg::s_instance = nullptr;
+
 CServerDlg::CServerDlg(CWnd * pParent /*=NULL*/)
     : CDialog(CServerDlg::IDD, pParent) {
+    s_instance = this;
+
     //{{AFX_DATA_INIT(CServerDlg)
     m_strStatus = _T("");
     //}}AFX_DATA_INIT
@@ -425,7 +429,6 @@ void CServerDlg::DefaultInit() {
 //    Magic Table 을 읽는다.
 BOOL CServerDlg::GetMagicTableData() {
     CMagicTableSet MagicTableSet;
-    MagicTableSet.Initialize();
 
     if (!MagicTableSet.Open()) {
         AfxMessageBox(_T("MagicTable Open Fail!"));
@@ -471,7 +474,6 @@ BOOL CServerDlg::GetMagicTableData() {
 
 BOOL CServerDlg::GetMakeWeaponItemTableData() {
     CMakeWeaponTableSet MakeItemTableSet;
-    MakeItemTableSet.Initialize();
 
     if (!MakeItemTableSet.Open()) {
         AfxMessageBox(_T("GetMakeWeaponItemTableData Open Fail!"));
@@ -514,7 +516,6 @@ BOOL CServerDlg::GetMakeWeaponItemTableData() {
 
 BOOL CServerDlg::GetMakeDefensiveItemTableData() {
     CMakeDefensiveTableSet MakeItemTableSet;
-    MakeItemTableSet.Initialize();
 
     if (!MakeItemTableSet.Open()) {
         AfxMessageBox(_T("GetMakeDefensiveItemTableData Open Fail!"));
@@ -552,7 +553,6 @@ BOOL CServerDlg::GetMakeDefensiveItemTableData() {
 
 BOOL CServerDlg::GetMakeGradeItemTableData() {
     CMakeGradeItemTableSet MakeItemTableSet;
-    MakeItemTableSet.Initialize();
 
     if (!MakeItemTableSet.Open()) {
         AfxMessageBox(_T("MakeGradeItemTable Open Fail!"));
@@ -592,7 +592,6 @@ BOOL CServerDlg::GetMakeGradeItemTableData() {
 
 BOOL CServerDlg::GetMakeLareItemTableData() {
     CMakeLareItemTableSet MakeItemTableSet;
-    MakeItemTableSet.Initialize();
 
     if (!MakeItemTableSet.Open()) {
         AfxMessageBox(_T("MakeLareItemTable Open Fail!"));
@@ -631,8 +630,6 @@ BOOL CServerDlg::GetNpcItemTable() {
     CNpcItemSet NpcItemSet;
     int         nRowCount = 0;
     int         nItem = 0;
-
-    NpcItemSet.Initialize();
 
     try {
         if (NpcItemSet.IsOpen()) {
@@ -705,7 +702,6 @@ BOOL CServerDlg::GetNpcItemTable() {
 //    Monster Table Data 를 읽는다.
 BOOL CServerDlg::GetMonsterTableData() {
     CMonTableSet NpcTableSet;
-    NpcTableSet.Initialize();
 
     try {
         //if(m_arMonTable.GetSize()) return FALSE;
@@ -811,7 +807,6 @@ BOOL CServerDlg::GetMonsterTableData() {
 //    NPC Table Data 를 읽는다. (경비병 & NPC)
 BOOL CServerDlg::GetNpcTableData() {
     CNpcTableSet NpcTableSet;
-    NpcTableSet.Initialize();
 
     try {
         //if(m_arNpcTable.GetSize()) return FALSE;
@@ -943,8 +938,6 @@ BOOL CServerDlg::CreateNpcThread() {
     BOOL  bFindNpcTable = FALSE;
 
     int nMonsterNumber = 0;
-
-    NpcPosSet.Initialize();
 
     try {
         if (NpcPosSet.IsOpen()) {
@@ -1489,7 +1482,6 @@ BOOL CServerDlg::MapFileLoad() {
     m_sTotalMap = 0;
 
     CZoneInfoSet ZoneInfoSet;
-    ZoneInfoSet.Initialize();
 
     if (!ZoneInfoSet.Open()) {
         AfxMessageBox(_T("ZoneInfoTable Open Fail!"));
@@ -2217,7 +2209,6 @@ void CServerDlg::TestCode() {
 
 BOOL CServerDlg::GetMagicType1Data() {
     CMagicType1Set MagicType1Set;
-    MagicType1Set.Initialize();
 
     if (!MagicType1Set.Open()) {
         AfxMessageBox(_T("MagicType1 Open Fail!"));
@@ -2257,7 +2248,6 @@ BOOL CServerDlg::GetMagicType1Data() {
 
 BOOL CServerDlg::GetMagicType2Data() {
     CMagicType2Set MagicType2Set;
-    MagicType2Set.Initialize();
 
     if (!MagicType2Set.Open()) {
         AfxMessageBox(_T("MagicType1 Open Fail!"));
@@ -2293,7 +2283,6 @@ BOOL CServerDlg::GetMagicType2Data() {
 
 BOOL CServerDlg::GetMagicType3Data() {
     CMagicType3Set MagicType3Set;
-    MagicType3Set.Initialize();
 
     if (!MagicType3Set.Open()) {
         AfxMessageBox(_T("MagicType3 Open Fail!"));
@@ -2334,7 +2323,6 @@ BOOL CServerDlg::GetMagicType3Data() {
 
 BOOL CServerDlg::GetMagicType4Data() {
     CMagicType4Set MagicType4Set;
-    MagicType4Set.Initialize();
 
     if (!MagicType4Set.Open()) {
         AfxMessageBox(_T("MagicType4 Open Fail!"));

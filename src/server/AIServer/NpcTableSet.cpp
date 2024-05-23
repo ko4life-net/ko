@@ -18,8 +18,6 @@ IMPLEMENT_DYNAMIC(CNpcTableSet, CRecordset)
 
 CNpcTableSet::CNpcTableSet(CDatabase * pdb)
     : CRecordset(pdb) {
-    m_pMain = nullptr;
-
     //{{AFX_FIELD_INIT(CNpcTableSet)
     m_sSid = 0;
     m_strName = _T("");
@@ -71,12 +69,8 @@ CNpcTableSet::CNpcTableSet(CDatabase * pdb)
     m_nDefaultType = snapshot;
 }
 
-void CNpcTableSet::Initialize() {
-    m_pMain = (CServerDlg *)AfxGetApp()->GetMainWnd();
-}
-
 CString CNpcTableSet::GetDefaultConnect() {
-    return m_pMain->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CNpcTableSet::GetDefaultSQL() {

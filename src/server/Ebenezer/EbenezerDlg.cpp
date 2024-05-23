@@ -182,8 +182,12 @@ DWORD WINAPI ReadQueueThread(LPVOID lp) {
 /////////////////////////////////////////////////////////////////////////////
 // CEbenezerDlg dialog
 
+CEbenezerDlg * CEbenezerDlg::s_instance = nullptr;
+
 CEbenezerDlg::CEbenezerDlg(CWnd * pParent /*=NULL*/)
     : CDialog(CEbenezerDlg::IDD, pParent) {
+    s_instance = this;
+
     //{{AFX_DATA_INIT(CEbenezerDlg)
     //}}AFX_DATA_INIT
     // Note that LoadIcon does not require a subsequent DestroyIcon in Win32
@@ -1100,7 +1104,6 @@ BOOL CEbenezerDlg::MapFileLoad() {
     EVENT *  pEvent = NULL;
 
     CZoneInfoSet ZoneInfoSet;
-    ZoneInfoSet.Initialize();
 
     if (!ZoneInfoSet.Open()) {
         AfxMessageBox(_T("ZoneInfoTable Open Fail!"));
@@ -1169,7 +1172,6 @@ BOOL CEbenezerDlg::MapFileLoad() {
 
 BOOL CEbenezerDlg::LoadItemTable() {
     CItemTableSet ItemTableSet;
-    ItemTableSet.Initialize();
 
     if (!ItemTableSet.Open()) {
         AfxMessageBox(_T("ItemTable Open Fail!"));
@@ -1257,7 +1259,6 @@ BOOL CEbenezerDlg::LoadItemTable() {
 
 BOOL CEbenezerDlg::LoadMagicTable() {
     CMagicTableSet MagicTableSet;
-    MagicTableSet.Initialize();
 
     if (!MagicTableSet.Open()) {
         AfxMessageBox(_T("MagicTable Open Fail!"));
@@ -1304,7 +1305,6 @@ BOOL CEbenezerDlg::LoadMagicTable() {
 
 BOOL CEbenezerDlg::LoadMagicType1() {
     CMagicType1Set MagicType1Set;
-    MagicType1Set.Initialize();
 
     if (!MagicType1Set.Open()) {
         AfxMessageBox(_T("MagicType1 Open Fail!"));
@@ -1344,7 +1344,6 @@ BOOL CEbenezerDlg::LoadMagicType1() {
 
 BOOL CEbenezerDlg::LoadMagicType2() {
     CMagicType2Set MagicType2Set;
-    MagicType2Set.Initialize();
 
     if (!MagicType2Set.Open()) {
         AfxMessageBox(_T("MagicType2 Open Fail!"));
@@ -1380,7 +1379,6 @@ BOOL CEbenezerDlg::LoadMagicType2() {
 
 BOOL CEbenezerDlg::LoadMagicType3() {
     CMagicType3Set MagicType3Set;
-    MagicType3Set.Initialize();
 
     if (!MagicType3Set.Open()) {
         AfxMessageBox(_T("MagicType3 Open Fail!"));
@@ -1419,7 +1417,6 @@ BOOL CEbenezerDlg::LoadMagicType3() {
 
 BOOL CEbenezerDlg::LoadMagicType4() {
     CMagicType4Set MagicType4Set;
-    MagicType4Set.Initialize();
 
     if (!MagicType4Set.Open()) {
         AfxMessageBox(_T("MagicType4 Open Fail!"));
@@ -1470,7 +1467,6 @@ BOOL CEbenezerDlg::LoadMagicType4() {
 
 BOOL CEbenezerDlg::LoadMagicType5() {
     CMagicType5Set MagicType5Set;
-    MagicType5Set.Initialize();
 
     if (!MagicType5Set.Open()) {
         AfxMessageBox(_T("MagicType5 Open Fail!"));
@@ -1505,7 +1501,6 @@ BOOL CEbenezerDlg::LoadMagicType5() {
 
 BOOL CEbenezerDlg::LoadMagicType8() {
     CMagicType8Set MagicType8Set;
-    MagicType8Set.Initialize();
 
     if (!MagicType8Set.Open()) {
         AfxMessageBox(_T("MagicType8 Open Fail!"));
@@ -1541,7 +1536,6 @@ BOOL CEbenezerDlg::LoadMagicType8() {
 
 BOOL CEbenezerDlg::LoadCoefficientTable() {
     CCoefficientSet CoefficientSet;
-    CoefficientSet.Initialize();
 
     if (!CoefficientSet.Open()) {
         AfxMessageBox(_T("CharacterDataTable Open Fail!"));
@@ -1587,7 +1581,6 @@ BOOL CEbenezerDlg::LoadCoefficientTable() {
 
 BOOL CEbenezerDlg::LoadLevelUpTable() {
     CLevelUpTableSet LevelUpTableSet;
-    LevelUpTableSet.Initialize();
 
     if (!LevelUpTableSet.Open()) {
         AfxMessageBox(_T("LevelUpTable Open Fail!"));
@@ -3347,7 +3340,6 @@ void CEbenezerDlg::Announcement(BYTE type, int nation, int chat_type) {
 
 BOOL CEbenezerDlg::LoadHomeTable() {
     CHomeSet HomeSet;
-    HomeSet.Initialize();
 
     if (!HomeSet.Open()) {
         AfxMessageBox(_T("Home Data Open Fail!"));
@@ -3400,8 +3392,6 @@ BOOL CEbenezerDlg::LoadHomeTable() {
 BOOL CEbenezerDlg::LoadAllKnights() {
     CKnightsSet KnightsSet;
     CString     strKnightsName, strChief, strViceChief_1, strViceChief_2, strViceChief_3;
-
-    KnightsSet.Initialize();
 
     if (!KnightsSet.Open()) {
         AfxMessageBox(_T("Knights Open Fail!"));
@@ -3558,8 +3548,6 @@ BOOL CEbenezerDlg::LoadAllKnightsUserData() {
     CKnightsUserSet KnightsSet;
     CString         strUserName;
     int             iFame = 0, iLevel = 0, iClass = 0;
-
-    KnightsSet.Initialize();
 
     if (!KnightsSet.Open()) {
         AfxMessageBox(_T("KnightsUser Open Fail!"));
@@ -3894,7 +3882,6 @@ void CEbenezerDlg::Send_UDP_All(char * pBuf, int len, int group_type) {
 
 BOOL CEbenezerDlg::LoadBattleTable() {
     CBattleSet BattleSet;
-    BattleSet.Initialize();
 
     if (!BattleSet.Open()) {
         AfxMessageBox(_T("BattleSet Data Open Fail!"));
@@ -3974,8 +3961,6 @@ BOOL CEbenezerDlg::LoadKnightsRankTable() {
         memset(strKarusCaptain[i], 0x00, 50);
         memset(strElmoCaptain[i], 0x00, 50);
     }
-
-    KRankSet.Initialize();
 
     if (!KRankSet.Open()) {
         TRACE("### KnightsRankTable Open Fail! ###\n");
