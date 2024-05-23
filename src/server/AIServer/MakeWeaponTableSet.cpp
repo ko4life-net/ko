@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "AIServer.h"
 #include "MakeWeaponTableSet.h"
+#include "AIServerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -38,7 +38,7 @@ CMakeWeaponTableSet::CMakeWeaponTableSet(CDatabase * pdb)
 }
 
 CString CMakeWeaponTableSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return CServerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CMakeWeaponTableSet::GetDefaultSQL() {

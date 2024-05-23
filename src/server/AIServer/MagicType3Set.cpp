@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "AIServer.h"
 #include "MagicType3Set.h"
+#include "AIServerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -36,7 +36,7 @@ CMagicType3Set::CMagicType3Set(CDatabase * pdb)
 }
 
 CString CMagicType3Set::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return CServerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CMagicType3Set::GetDefaultSQL() {

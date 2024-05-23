@@ -75,6 +75,8 @@ class CServerDlg : public CDialog {
     void TestCode();
     // Construction
   public:
+    static CServerDlg * GetInstance() { return s_pInstance; }
+
     void    GameServerAcceptThread();
     BOOL    AddObjectEventNpc(_OBJECT_EVENT * pEvent, int zone_number);
     void    AllNpcInfo(); // ~sungyong 2002.05.23
@@ -88,13 +90,14 @@ class CServerDlg : public CDialog {
     int     GetServerNumber(int zonenumber);
     void    ClostSocket(int zonenumber);
 
-    void CheckAliveTest();
-    void DeleteUserList(int uid);
-    void DeleteAllUserList(int zone);
-    void SendCompressedData(int nZone); // 패킷을 압축해서 보낸다..
-    int  Send(char * pData, int length, int nZone = 0);
-    void SendSystemMsg(char * pMsg, int zone, int type = 0, int who = 0);
-    void ResetBattleZone();
+    void    CheckAliveTest();
+    void    DeleteUserList(int uid);
+    void    DeleteAllUserList(int zone);
+    void    SendCompressedData(int nZone); // 패킷을 압축해서 보낸다..
+    int     Send(char * pData, int length, int nZone = 0);
+    void    SendSystemMsg(char * pMsg, int zone, int type = 0, int who = 0);
+    void    ResetBattleZone();
+    CString GetGameDBConnectionString() const;
 
     CServerDlg(CWnd * pParent = NULL); // standard constructor
 
@@ -169,6 +172,10 @@ class CServerDlg : public CDialog {
     BYTE m_byNight; // 밤인지,, 낮인지를 판단... 1:낮, 2:밤
     BYTE m_byTestMode;
 
+    char m_szOdbcGameDsn[24];
+    char m_szOdbcGameUid[24];
+    char m_szOdbcGamePwd[24];
+
     CIOCPort m_Iocport;
 
   private:
@@ -188,6 +195,8 @@ class CServerDlg : public CDialog {
     //    CGameSocket m_GameSocket;
 
     HICON m_hIcon;
+
+    static CServerDlg * s_pInstance;
 
     // Generated message map functions
     //{{AFX_MSG(CServerDlg)

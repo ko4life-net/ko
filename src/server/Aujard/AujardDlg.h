@@ -7,6 +7,7 @@
 #include "DBAgent.h"
 #include "define.h"
 #include "STLMap.h"
+#include "Resource.h"
 
 typedef CSTLMap<_ITEM_TABLE> ItemtableArray;
 /////////////////////////////////////////////////////////////////////////////
@@ -15,6 +16,8 @@ typedef CSTLMap<_ITEM_TABLE> ItemtableArray;
 class CAujardDlg : public CDialog {
     // Construction
   public:
+    static CAujardDlg * GetInstance() { return s_pInstance; }
+
     void         CouponEvent(char * pData);
     void         BattleEventResult(char * pData);
     void         WriteLogFile(char * pData);
@@ -43,8 +46,9 @@ class CAujardDlg : public CDialog {
     void         UserLogOut(char * pBuf);
     CAujardDlg(CWnd * pParent = NULL); // standard constructor
 
-    BOOL InitializeMMF();
-    void SelectCharacter(char * pBuf);
+    BOOL    InitializeMMF();
+    void    SelectCharacter(char * pBuf);
+    CString GetGameDBConnectionString() const;
 
     CSharedMemQueue m_LoggerSendQueue;
     CSharedMemQueue m_LoggerRecvQueue;
@@ -58,9 +62,9 @@ class CAujardDlg : public CDialog {
     ItemtableArray m_ItemtableArray;
 
     int  m_nServerNo, m_nZoneNo;
-    char m_strGameDSN[24], m_strAccountDSN[24], m_strLogDSN[24];
-    char m_strGameUID[24], m_strAccountUID[24], m_strLogUID[24];
-    char m_strGamePWD[24], m_strAccountPWD[24], m_strLogPWD[24];
+    char m_szOdbcGameDsn[24], m_szOdbcAccountDsn[24], m_szOdbcLogDsn[24];
+    char m_szOdbcGameUid[24], m_szOdbcAccountUid[24], m_szOdbcLogUid[24];
+    char m_szOdbcGamePwd[24], m_szOdbcAccountPwd[24], m_szOdbcLogPwd[24];
 
     CFile m_LogFile;
 
@@ -91,6 +95,8 @@ class CAujardDlg : public CDialog {
     // Implementation
   protected:
     HICON m_hIcon;
+
+    static CAujardDlg * s_pInstance;
 
     // Generated message map functions
     //{{AFX_MSG(CAujardDlg)

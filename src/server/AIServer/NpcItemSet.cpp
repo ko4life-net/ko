@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "AIServer.h"
 #include "NpcItemSet.h"
+#include "AIServerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -36,7 +36,7 @@ CNpcItemSet::CNpcItemSet(CDatabase * pdb)
 }
 
 CString CNpcItemSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return CServerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CNpcItemSet::GetDefaultSQL() {

@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "AIServer.h"
 #include "MakeDefensiveTableSet.h"
+#include "AIServerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -33,7 +33,7 @@ CMakeDefensiveTableSet::CMakeDefensiveTableSet(CDatabase * pdb)
 }
 
 CString CMakeDefensiveTableSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return CServerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CMakeDefensiveTableSet::GetDefaultSQL() {

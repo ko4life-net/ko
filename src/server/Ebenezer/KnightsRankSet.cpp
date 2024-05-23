@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "ebenezer.h"
 #include "KnightsRankSet.h"
+#include "EbenezerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -29,7 +29,7 @@ CKnightsRankSet::CKnightsRankSet(CDatabase * pdb)
 }
 
 CString CKnightsRankSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CKnightsRankSet::GetDefaultSQL() {

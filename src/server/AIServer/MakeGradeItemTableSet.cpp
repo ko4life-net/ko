@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "AIServer.h"
 #include "MakeGradeItemTableSet.h"
+#include "AIServerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -35,7 +35,7 @@ CMakeGradeItemTableSet::CMakeGradeItemTableSet(CDatabase * pdb)
 }
 
 CString CMakeGradeItemTableSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return CServerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CMakeGradeItemTableSet::GetDefaultSQL() {

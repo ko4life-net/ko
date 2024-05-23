@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "ebenezer.h"
 #include "MagicTableSet.h"
+#include "EbenezerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -48,7 +48,7 @@ CMagicTableSet::CMagicTableSet(CDatabase * pdb)
 }
 
 CString CMagicTableSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CMagicTableSet::GetDefaultSQL() {

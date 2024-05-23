@@ -40,14 +40,17 @@ const char * CIni::GetProfileString(const char * lpAppName, const char * lpKeyNa
         return retString;
     }
 
-    char  tmpReturn[500];
-    DWORD ret = GetPrivateProfileString(lpAppName, lpKeyName, "", tmpReturn, 500, m_szFileName);
-    if (!ret) {
+    return GetProfileString(lpAppName, lpKeyName, lpDefault, retString, sizeof(retString));
+}
+
+const char * CIni::GetProfileString(const char * lpAppName, const char * lpKeyName, const char * lpDefault,
+                                    char * szBuffer, uint32_t nBufferSize) const {
+    DWORD ret = GetPrivateProfileString(lpAppName, lpKeyName, "", szBuffer, nBufferSize, m_szFileName);
+    if (ret == 0) {
         WritePrivateProfileString(lpAppName, lpKeyName, lpDefault, m_szFileName);
-        strcpy(tmpReturn, lpDefault);
+        snprintf(szBuffer, nBufferSize, "%s", lpDefault);
     }
-    strcpy(retString, tmpReturn);
-    return retString;
+    return szBuffer;
 }
 
 bool CIni::SetPath(const char * filename) {

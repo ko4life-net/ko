@@ -22,6 +22,8 @@
 #include "STLMap.h"
 #include <vector>
 
+#include "Resource.h"
+
 /////////////////////////////////////////////////////////////////////////////
 // CEbenezerDlg dialog
 
@@ -48,6 +50,8 @@ class CUser;
 class CEbenezerDlg : public CDialog {
     // Construction
   public:
+    static CEbenezerDlg * GetInstance() { return s_pInstance; }
+
     void    WriteEventLog(char * pBuf);
     void    FlySanta();
     void    BattleZoneCurrentUsers();
@@ -132,9 +136,11 @@ class CEbenezerDlg : public CDialog {
                             int nation = 0); // pointer != NULL don`t send to that user pointer
     void           Send_AIServer(int zone, char * pBuf, int len);
     static CUser * GetUserPtr(const char * userid, BYTE type);
+    CString        GetGameDBConnectionString() const;
     CEbenezerDlg(CWnd * pParent = NULL); // standard constructor
 
-    static CIOCPort m_Iocport;
+    static CEbenezerDlg * s_pInstance;
+    static CIOCPort       m_Iocport;
 
     CSharedMemQueue m_LoggerSendQueue;
     CSharedMemQueue m_LoggerRecvQueue;
@@ -241,6 +247,11 @@ class CEbenezerDlg : public CDialog {
     CFile        m_RegionLogFile;
     CFile        m_LogFile;
     CFile        m_EvnetLogFile;
+
+    char m_szOdbcGameDsn[24];
+    char m_szOdbcGameUid[24];
+    char m_szOdbcGamePwd[24];
+
     // Dialog Data
     //{{AFX_DATA(CEbenezerDlg)
     enum {

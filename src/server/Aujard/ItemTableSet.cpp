@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "aujard.h"
 #include "ItemTableSet.h"
+#include "AujardDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -80,7 +80,7 @@ CItemTableSet::CItemTableSet(CDatabase * pdb)
 }
 
 CString CItemTableSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return CAujardDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CItemTableSet::GetDefaultSQL() {

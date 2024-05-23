@@ -182,8 +182,12 @@ DWORD WINAPI ReadQueueThread(LPVOID lp) {
 /////////////////////////////////////////////////////////////////////////////
 // CEbenezerDlg dialog
 
+CEbenezerDlg * CEbenezerDlg::s_pInstance = nullptr;
+
 CEbenezerDlg::CEbenezerDlg(CWnd * pParent /*=NULL*/)
     : CDialog(CEbenezerDlg::IDD, pParent) {
+    s_pInstance = this;
+
     //{{AFX_DATA_INIT(CEbenezerDlg)
     //}}AFX_DATA_INIT
     // Note that LoadIcon does not require a subsequent DestroyIcon in Win32
@@ -263,6 +267,10 @@ CEbenezerDlg::CEbenezerDlg(CWnd * pParent /*=NULL*/)
     memset(m_strElmoradCaptain, 0x00, MAX_ID_SIZE + 1);
 
     m_bSanta = FALSE; // °«´ï »êÅ¸!!! >.<
+
+    memset(m_szOdbcGameDsn, 0, sizeof(m_szOdbcGameDsn));
+    memset(m_szOdbcGameUid, 0, sizeof(m_szOdbcGameUid));
+    memset(m_szOdbcGamePwd, 0, sizeof(m_szOdbcGamePwd));
 }
 
 void CEbenezerDlg::DoDataExchange(CDataExchange * pDX) {
@@ -1617,6 +1625,10 @@ void CEbenezerDlg::GetTimeFromIni() {
     m_nBattleZoneOpenWeek = m_Ini.GetProfileInt("BATTLE", "WEEK", 5);
     m_nBattleZoneOpenHourStart = m_Ini.GetProfileInt("BATTLE", "START_TIME", 20);
     m_nBattleZoneOpenHourEnd = m_Ini.GetProfileInt("BATTLE", "END_TIME", 0);
+
+    m_Ini.GetProfileString("ODBC", "GAME_DSN", "kodb", m_szOdbcGameDsn, sizeof(m_szOdbcGameDsn));
+    m_Ini.GetProfileString("ODBC", "GAME_UID", "kodb_user", m_szOdbcGameUid, sizeof(m_szOdbcGameUid));
+    m_Ini.GetProfileString("ODBC", "GAME_PWD", "kodb_user", m_szOdbcGamePwd, sizeof(m_szOdbcGamePwd));
 
     m_nCastleCapture = m_Ini.GetProfileInt("CASTLE", "NATION", 1);
     m_nServerNo = m_Ini.GetProfileInt("ZONE_INFO", "MY_INFO", 1);
@@ -4148,4 +4160,10 @@ void CEbenezerDlg::WriteEventLog(char * pBuf) {
     EnterCriticalSection(&g_LogFile_critical);
     m_EvnetLogFile.Write(strLog, strlen(strLog));
     LeaveCriticalSection(&g_LogFile_critical);
+}
+
+CString CEbenezerDlg::GetGameDBConnectionString() const {
+    CString strConnection;
+    strConnection.Format(_T("ODBC;DSN=%s;UID=%s;PWD=%s"), m_szOdbcGameDsn, m_szOdbcGameUid, m_szOdbcGamePwd);
+    return strConnection;
 }

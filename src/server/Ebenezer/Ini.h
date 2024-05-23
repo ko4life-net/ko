@@ -17,6 +17,8 @@ class CIni {
   public:
     int          GetProfileInt(const char * lpAppName, const char * lpKeyName, int nDefault);
     const char * GetProfileString(const char * lpAppName, const char * lpKeyName, const char * lpDefault);
+    const char * GetProfileString(const char * lpAppName, const char * lpKeyName, const char * lpDefault,
+                                  char * szBuffer, uint32_t nBufferSize) const;
     int          SetProfileInt(const char * lpAppName, const char * lpKeyName, int nDefault);
     int          SetProfileString(const char * lpAppName, const char * lpKeyName, const char * lpDefault);
     bool         SetPath(const char * filename);

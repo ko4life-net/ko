@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "Ebenezer.h"
 #include "LevelUpTableSet.h"
+#include "EbenezerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -27,7 +27,7 @@ CLevelUpTableSet::CLevelUpTableSet(CDatabase * pdb)
 }
 
 CString CLevelUpTableSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CLevelUpTableSet::GetDefaultSQL() {
