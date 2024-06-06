@@ -71,7 +71,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>imguid.lib;spdlogd.lib;jpegd.lib;d3d9.lib;d3dx9.lib;dsound.lib;ddraw.lib;dxguidd.lib;dinput8d.lib;winmm.lib;imm32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>imguid.lib;spdlogd.lib;jpegd.lib;d3d9.lib;d3dx9.lib;dsound.lib;dinput8.lib;dxguid.lib;ddraw.lib;winmm.lib;imm32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(VendorDir)\imgui\lib;$(VendorDir)\spdlog\lib;$(VendorDir)\jpeglib\lib;$(VendorDir)\DXSDK9\Lib\x86;$(UniversalCRT_LibraryPath_x86)</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
@@ -105,7 +105,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>imgui.lib;spdlog.lib;jpeg.lib;d3d9.lib;d3dx9.lib;dsound.lib;ddraw.lib;dxguid.lib;dinput8.lib;winmm.lib;imm32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>imgui.lib;spdlog.lib;jpeg.lib;d3d9.lib;d3dx9.lib;dsound.lib;dinput8.lib;dxguid.lib;ddraw.lib;winmm.lib;imm32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(VendorDir)\imgui\lib;$(VendorDir)\spdlog\lib;$(VendorDir)\jpeglib\lib;$(VendorDir)\DXSDK9\Lib\x86;</AdditionalLibraryDirectories>
       <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

@@ -67,7 +67,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>spdlogd.lib;d3d9.lib;d3dx9.lib;dsound.lib;dxguidd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>spdlogd.lib;d3d9.lib;d3dx9.lib;dsound.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(VendorDir)\spdlog\lib;$(VendorDir)\DXSDK9\Lib\x86</AdditionalLibraryDirectories>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
