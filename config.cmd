@@ -15,8 +15,8 @@ rmdir /s /q %CURRENT_PATH%src\assets 2> NUL
 rmdir /s /q %CURRENT_PATH%src\vendor 2> NUL
 rmdir /s /q %CURRENT_PATH%src\db 2> NUL
 
-git clone --depth=1 https://github.com/ko4life-net/ko-assets %CURRENT_PATH%src\assets
-git clone --depth=1 --branch=1.0.0 https://github.com/ko4life-net/ko-vendor %CURRENT_PATH%src\vendor
+git clone --branch=master --depth=1 https://github.com/ko4life-net/ko-assets %CURRENT_PATH%src\assets
+git clone --branch=1.1.0 --depth=1 https://github.com/ko4life-net/ko-vendor %CURRENT_PATH%src\vendor
 git clone --branch=1.1.1 https://github.com/ko4life-net/ko-db %CURRENT_PATH%src\db
 
 @REM src\All.sln
