@@ -19,7 +19,7 @@ rmdir /s /q %CURRENT_PATH%src\db 2> NUL
 
 git clone --branch=1.1.1 -c advice.detachedHead=false --depth=1 https://github.com/ko4life-net/ko-assets %CURRENT_PATH%src\assets
 git clone --branch=1.1.0 -c advice.detachedHead=false --depth=1 https://github.com/ko4life-net/ko-vendor %CURRENT_PATH%src\vendor
-git clone --branch=1.1.1 -c advice.detachedHead=false https://github.com/ko4life-net/ko-db %CURRENT_PATH%src\db
+git clone --branch=1.1.2 -c advice.detachedHead=false https://github.com/ko4life-net/ko-db %CURRENT_PATH%src\db
 
 @REM src\All.sln
 
