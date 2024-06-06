@@ -104,7 +104,7 @@ LRESULT CN3UIDebug::WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM l
 }
 
 void CN3UIDebug::RenderDockSpace() {
-    ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), ImGuiDockNodeFlags_PassthruCentralNode);
+    ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport(), ImGuiDockNodeFlags_PassthruCentralNode);
 
     ImGui::Begin(IMGUI_WND_ID_DASHBOARD);
     ImGuiID dsId = ImGui::GetID("DashboardDS");
@@ -286,7 +286,7 @@ void CN3UIDebug::RenderFPSGraph() {
     char szOverlay[64]{};
     sprintf(szOverlay, "FPS %4.4f\nAvg %4.4f", s_fCurFrmPerSec, s_fFrmAvg);
     ImGui::PlotLines("##fps", s_Frames.data(), s_Frames.size(), 0, szOverlay, -10.0f, s_fFrmMax + 50.0f,
-                     ImVec2(ImGui::GetWindowContentRegionWidth(), 100.0f));
+                     ImVec2(ImGui::GetContentRegionAvail().x, 100.0f));
     ImGui::Checkbox("Pause", &s_bFrmsPause);
 
     static int s_iFrmsCountTmp = s_iFrmsCount;
