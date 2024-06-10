@@ -1,9 +1,6 @@
 .vs/
 Release*/
 Debug*/
-assets/
-db/
-vendor/
 [Bb]uild/
 *.exe
 *.lib
