@@ -60,6 +60,9 @@ class CDlgSetDTex : public CDialog {
     void RenderGrid(LPDIRECT3DDEVICE9 lpDDev);
     void RenderTex(LPDIRECT3DDEVICE9 lpDDev);
     void InitVB();
+
+  public:
+    afx_msg void OnStnClickedStaticTilesetname();
 };
 
 //{{AFX_INSERT_LOCATION}}

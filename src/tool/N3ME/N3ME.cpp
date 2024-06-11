@@ -107,6 +107,8 @@ class CAboutDlg : public CDialog {
     // No message handlers
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP()
+  public:
+    afx_msg void OnBnClickedOk();
 };
 
 CAboutDlg::CAboutDlg()
@@ -125,6 +127,7 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 //{{AFX_MSG_MAP(CAboutDlg)
 // No message handlers
 //}}AFX_MSG_MAP
+ON_BN_CLICKED(IDOK, &CAboutDlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 // App command to run the dialog
@@ -135,3 +138,8 @@ void CN3MEApp::OnAppAbout() {
 
 /////////////////////////////////////////////////////////////////////////////
 // CN3MEApp message handlers
+
+void CAboutDlg::OnBnClickedOk() {
+    // TODO: Add your control notification handler code here
+    CDialog::OnOK();
+}

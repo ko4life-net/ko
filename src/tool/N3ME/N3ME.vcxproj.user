@@ -10,4 +10,7 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerEnvironment>PATH=%PATH%;$(VendorDir)\dxsdk9\bin\$(PlatformTarget)</LocalDebuggerEnvironment>
   </PropertyGroup>
+  <PropertyGroup>
+    <RESOURCE_FILE>N3ME.rc</RESOURCE_FILE>
+  </PropertyGroup>
 </Project>

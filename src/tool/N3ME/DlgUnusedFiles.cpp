@@ -46,7 +46,7 @@ void CDlgUnusedFiles::OnDelete() {
         return;
     }
 
-    int iYesNo = MessageBox("지우시겠습니까?", "확인", MB_YESNO);
+    int iYesNo = MessageBox("Are you sure you want to delete it?", "Warning", MB_YESNO);
 
     if (IDYES != iYesNo) {
         return;

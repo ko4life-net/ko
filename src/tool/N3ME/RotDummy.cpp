@@ -80,6 +80,6 @@ void CRotDummy::SetSelObj(CN3Transform * pObj) {
         m_vPos = pObj->Pos();
 
         //        m_qRot = pObj->Rot();
-        m_qRot.Identity(); // Quaternion 회전이기 땜시... 초기화를 해준다..
+        m_qRot.Identity(); // Since it is a quaternion rotation... initialize it.
     }
 }

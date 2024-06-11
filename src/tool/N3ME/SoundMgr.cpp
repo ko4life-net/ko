@@ -178,7 +178,7 @@ void CSoundMgr::Render() {
     D3DXMATRIX mtx;
     D3DXMatrixIdentity(&mtx);
 
-    hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // 월드 행렬 적용..
+    hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // Apply world matrix...
 
     // set texture
     hr = s_lpD3DDev->SetTexture(0, NULL);
@@ -198,7 +198,7 @@ void CSoundMgr::Render() {
 
     hr = s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 
-    //이미 만들어진 길 그리기...
+    //Draw an already created path...
     std::list<CSoundCell *>::iterator itSound;
 
     CSoundCell * pSound;
@@ -211,12 +211,12 @@ void CSoundMgr::Render() {
         pSound->Render(0xff0000ff);
     }
 
-    //대화상자에서 선택된 길 그리기.
+    //Drawing the path & area being created...
     if (m_pDlgSound->m_pSelSound) {
         m_pDlgSound->m_pSelSound->Render(0xff00ff00);
     }
 
-    //만들고 있는 길 & 영역 그리기..
+    //Drawing the path & area being created...
     m_pCurrSound->Render(0xffff0000);
 
     // restore
@@ -226,7 +226,7 @@ void CSoundMgr::Render() {
 }
 
 bool CSoundMgr::Load(HANDLE hFile) {
-    //dlg 클리어..
+    //dlg clear..
     m_pDlgSound->Clear();
 
     DWORD dwRWC;
@@ -235,7 +235,7 @@ bool CSoundMgr::Load(HANDLE hFile) {
         return false;
     }
 
-    //m_pSound클리어...
+    //m_pSound Clear...
     std::list<CSoundCell *>::iterator it;
     for (it = m_pSound.begin(); it != m_pSound.end(); it++) {
         CSoundCell * pSoundCell = (*it);
@@ -251,7 +251,7 @@ bool CSoundMgr::Load(HANDLE hFile) {
         pSoundCell->Load(hFile);
 
         m_pSound.push_back(pSoundCell);
-        //dlg에 추가...
+        //Add to dlg...
         m_pDlgSound->AddSoundInfo(pSoundCell);
     }
     m_pRefMapMng->Invalidate();
@@ -284,8 +284,8 @@ void CSoundMgr::SaveGameData(HANDLE hFile) {
     char * pSound = (char *)GlobalAlloc(GMEM_FIXED, sizeof(char) * m_MapSize * m_MapSize);
     memset(pSound, -1, sizeof(char) * m_MapSize * m_MapSize);
 
-    //sound cell들을 면적순으로(큰게 앞으로 오게..)정렬하고...
-    //면적순으로 정리하면서 아이디정렬도 하고...
+    //Arrange the sound cells in order of area (larger first)...
+    //Organize by area and sort by ID...
     //
     //
     SCSort();
@@ -310,10 +310,10 @@ void CSoundMgr::SaveGameData(HANDLE hFile) {
 
         LPSOUNDINFO pSI = m_pDlgSound->GetSoundGroup(dwID);
         if (!pSI) {
-            AfxMessageBox("Sound Group이 유효하지 않습니다.ㅠ.ㅠ");
+            AfxMessageBox("Sound Group is invalid");
             return;
         }
-        //sound group을 어케 저장한담?
+        //How did you save the sound group?
         for (int j = 0; j < 4; j++) {
             int         str_size = 0;
             std::string str;
@@ -332,7 +332,7 @@ void CSoundMgr::SaveGameData(HANDLE hFile) {
         }
     }
 
-    // 타일에 Sound Info 셋팅하고 저장...
+    // Set Sound Info on the tile and save...
     for (it = m_pSound.begin(); it != m_pSound.end(); it++) {
         CSoundCell * pSoundCell = (*it);
 
@@ -351,8 +351,8 @@ void CSoundMgr::SaveGameData(HANDLE hFile) {
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // related sort list...
-// list의 sort함수 베꼈당..-.-
-// 제대로 동작 안하더라..ㅠ.ㅠ
+// Copied the sort function of the list..
+// It didn뭪 work properly..
 //
 
 void CSoundMgr::SCSort() {

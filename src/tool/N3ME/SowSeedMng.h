@@ -62,8 +62,8 @@ class CSowSeedMng {
 
     int Add_List_Count;
 
-    __VertexColor * m_pVertices; // 점 버퍼
-    int             m_nVC;       // 점 갯수
+    __VertexColor * m_pVertices; // dot buffer
+    int             m_nVC;       // number of points
 
     bool  bActive;
     BOOL  Render_Grass;
@@ -75,7 +75,7 @@ class CSowSeedMng {
     void SetActive(BOOL flage);
 
     void Render(LPDIRECT3DDEVICE9 lpD3DDevice);
-    // Mouse 메세지 처리
+    // Mouse message processing
     BOOL MouseMessage(LPMSG pMsg);
     void Release();
     void Create_Grass(int NUm);

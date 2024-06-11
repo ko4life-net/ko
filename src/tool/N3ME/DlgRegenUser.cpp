@@ -47,7 +47,7 @@ END_MESSAGE_MAP()
 
 void CDlgRegenUser::OnBtnLoadPathset() {
     DWORD       dwFlags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_LONGNAMES | OFN_HIDEREADONLY;
-    CFileDialog dlg(TRUE, "trur", NULL, dwFlags, "trur파일(*.trur)|*.trur||", NULL);
+    CFileDialog dlg(TRUE, "trur", NULL, dwFlags, "trur file(*.trur)|*.trur||", NULL);
 
     if (dlg.DoModal() == IDCANCEL) {
         return;
@@ -73,7 +73,7 @@ void CDlgRegenUser::OnBtnPathDelete() {
 void CDlgRegenUser::OnBtnSavePathset() {
     if (m_PathName.IsEmpty()) {
         CFileDialog dlg(FALSE, "trur", "Noname", OFN_EXPLORER | OFN_LONGNAMES | OFN_OVERWRITEPROMPT,
-                        "trur파일(*.trur)|*.trur||");
+                        "trur file(*.trur)|*.trur||");
 
         if (dlg.DoModal() == IDOK) {
             m_PathName = dlg.GetPathName();
@@ -128,7 +128,7 @@ void CDlgRegenUser::PutRegion(VERTEXRECT * pVR) {
 
 void CDlgRegenUser::OnBtnSaveAs() {
     CFileDialog dlg(FALSE, "trur", "Noname", OFN_EXPLORER | OFN_LONGNAMES | OFN_OVERWRITEPROMPT,
-                    "trur파일(*.trur)|*.trur||");
+                    "trur file(*.trur)|*.trur||");
 
     if (dlg.DoModal() == IDOK) {
         m_PathName = dlg.GetPathName();

@@ -51,6 +51,7 @@ ON_BN_CLICKED(IDC_BU_RECALCUV, OnButtonRecalUV)
 ON_BN_CLICKED(IDC_GROUP, OnButtonGroup)
 ON_CBN_SELCHANGE(IDC_COMBO_GOPOND, OnCobGOPond)
 //}}AFX_MSG_MAP
+ON_BN_CLICKED(IDOK, &CDlgPondProperty::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -70,7 +71,7 @@ BOOL CDlgPondProperty::OnInitDialog() {
     m_LPPond.AddPropItem("WaterScaleHeight(int)", "", PIT_EDIT, "");
 
     m_LPPond.AddPropItem("Texture File", "", PIT_FILE,
-                         "Texture 로 쓸수 있는 그림 파일(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
+                         "Picture file that can be used as texture(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
     m_LPPond.AddPropItem("Alpha factor(hex)", "", PIT_EDIT, "");
 
     m_LPPond.AddPropItem("Water tu(float)", "", PIT_EDIT, "");
@@ -156,9 +157,9 @@ void CDlgPondProperty::UpdateInfo() {
         }
 
         if (pSelPond->GetChangUVState() == TRUE) {
-            GetDlgItem(IDC_BU_RECALCUV)->SetWindowText("점으로");
+            GetDlgItem(IDC_BU_RECALCUV)->SetWindowText("By dot");
         } else {
-            GetDlgItem(IDC_BU_RECALCUV)->SetWindowText("평편하게");
+            GetDlgItem(IDC_BU_RECALCUV)->SetWindowText("Flatly");
         }
 
         if (m_pPondMng->GetChooseGroup() == TRUE) {
@@ -325,7 +326,7 @@ BOOL CDlgPondProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult)
             } else if (pItem->m_propName == "WaterScaleWidth(int)") {
                 int iWidht = (int)atoi(pItem->m_curValue);
                 if (MAX_PONDMESH_VERTEX < iWidht * pSelPond->GetWaterScaleHeight()) {
-                    MessageBox("만들수있는 한계를 넘었습니다.");
+                    MessageBox("We have surpassed the limit of what can be created.");
                     pItem->m_curValue.Format("%d", pSelPond->GetWaterScaleWidht());
                     return TRUE;
                 } else {
@@ -335,7 +336,7 @@ BOOL CDlgPondProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult)
             } else if (pItem->m_propName == "WaterScaleHeight(int)") {
                 int iHeight = (int)atoi(pItem->m_curValue);
                 if (MAX_PONDMESH_VERTEX < iHeight * pSelPond->GetWaterScaleWidht()) {
-                    MessageBox("만들수있는 한계를 넘었습니다.");
+                    MessageBox("We have surpassed the limit of what can be created.");
                     pItem->m_curValue.Format("%d", pSelPond->GetWaterScaleHeight());
                     return TRUE;
                 } else {
@@ -344,7 +345,7 @@ BOOL CDlgPondProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult)
                 }
             } else if (pItem->m_propName == "Texture File") {
                 CN3Base tmp;
-                tmp.m_szName = pItem->m_curValue; // 상대경로로 바꾸기
+                tmp.m_szName = pItem->m_curValue; // Change to relative path
                 if (pSelPond->SetTextureName(tmp.m_szName.c_str()) == FALSE) {
                     CString strMsg;
                     strMsg.Format("Cannot get \"%s\"Texture, check file and directory", pItem->m_curValue);
@@ -370,10 +371,10 @@ void CDlgPondProperty::OnOK() {
             if (m_pPondMng->GetPondMesh(pSelPond->GetPondID()) == NULL) {
                 CDialog::OnOK();
             } else {
-                MessageBox("중복되는 아이디 입니다.");
+                MessageBox("This is a duplicate ID.");
             }
         } else {
-            MessageBox("Texture를 지정하지 않았습니다.");
+            MessageBox("Texture was not specified.");
         }
     }
 }
@@ -419,10 +420,10 @@ void CDlgPondProperty::OnButtonRecalUV() {
 
     pSelPond->SetChangUVState();
     if (pSelPond->GetChangUVState() == TRUE) {
-        GetDlgItem(IDC_BU_RECALCUV)->SetWindowText("점으로");
+        GetDlgItem(IDC_BU_RECALCUV)->SetWindowText("By dot");
         pSelPond->ReCalcUV();
     } else {
-        GetDlgItem(IDC_BU_RECALCUV)->SetWindowText("평편하게");
+        GetDlgItem(IDC_BU_RECALCUV)->SetWindowText("Flatly");
         pSelPond->ReCalcVexUV();
     }
 
@@ -435,7 +436,8 @@ void CDlgPondProperty::OnButtonDeletePond() {
     }
     CPondMesh * pSelPond = m_pPondMng->GetSelPond();
     if (pSelPond) {
-        if (MessageBox("선택된 연못을 지우시겠습니까?", "Remove pond", MB_YESNO | MB_DEFBUTTON2) == IDNO) {
+        if (MessageBox("Are you sure you want to clear the selected pond?", "Remove pond", MB_YESNO | MB_DEFBUTTON2) ==
+            IDNO) {
             return;
         }
         m_pPondMng->RemovePondMesh(pSelPond->GetPondID());
@@ -484,4 +486,9 @@ void CDlgPondProperty::OnButtonGroup() {
     } else {
         GetDlgItem(IDC_GROUP)->SetWindowText("Gup Off");
     }
+}
+
+void CDlgPondProperty::OnBnClickedOk() {
+    // TODO: Add your control notification handler code here
+    CDialog::OnOK();
 }

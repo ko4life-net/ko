@@ -20,11 +20,11 @@ class CWallMgr : public CN3BaseFileAccess {
     __VertexXyzColor m_BoardVB[4];
 
   public:
-    CMapMng *          m_pRefMapMng; // 지형 참조 포인터..
-    std::list<CWall *> m_pWalls;     // 벽들...
+    CMapMng *          m_pRefMapMng; // Terrain reference pointer..
+    std::list<CWall *> m_pWalls;     // Walls
     CDlgMakeWall *     m_pDlg;       // path make dialog..
-    bool               m_bActive;    // 이기능이 활성화 되어 있는지...1:활성화, 0:비활성화..
-    CWall *            m_pCurrWall;  // 현재 만들고 있는 벽..or 만들려고 준비한 버퍼..
+    bool               m_bActive;    // Is this function activated? 1: Enabled, 0: Disabled..
+    CWall * m_pCurrWall; // The wall that is currently being built.. or the buffer that is being prepared to be built..
 
   protected:
     void MakeLine(__Vector3 sv, __Vector3 ev, D3DCOLOR color);

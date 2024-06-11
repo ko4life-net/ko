@@ -64,4 +64,6 @@ class CDlgPondProperty : public CDialog {
     afx_msg void OnCobGOPond();
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP()
+  public:
+    afx_msg void OnBnClickedOk();
 };

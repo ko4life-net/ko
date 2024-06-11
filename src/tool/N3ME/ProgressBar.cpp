@@ -33,26 +33,26 @@ END_MESSAGE_MAP()
 
 BOOL CProgressBar::Create(LPCTSTR strMessage, int nSize, int MaxValue) {
     if (NULL == m_hWnd) {
-        // 상태바를 얻음
+        // get the status bar
         CStatusBar * pStatusBar = GetStatusBar();
         if (pStatusBar == NULL) {
             return FALSE;
         }
 
-        // 상태바 위에 프로그레스 컨트롤생성
+        // Create a progress control on the status bar
         if (!CProgressCtrl::Create(WS_CHILD | WS_VISIBLE, CRect(0, 0, 0, 0), pStatusBar, 1)) {
             return FALSE;
         }
     }
 
-    // 프로그레스 컨트롤의 범위와 스텝 설정
+    // Set the range and steps of progress control
     SetRange(0, MaxValue);
     SetStep(1);
 
     m_strMessage = strMessage;
     m_nSize = nSize;
 
-    // 위치와 크기 조정
+    // Adjust position and size
     Resize();
     return TRUE;
 }
@@ -77,20 +77,20 @@ void CProgressBar::Resize() {
         return;
     }
 
-    // 텍스트 출력
+    // text output
     if (::IsWindow(m_hWnd) && IsWindowVisible()) {
         pStatusBar->SetWindowText(m_strMessage);
         pStatusBar->UpdateWindow();
     }
 
-    // 텍스트가 차지하는 영역 계산
+    // Calculate the area occupied by the text
     CClientDC dc(pStatusBar);
     CFont *   pOldFont = dc.SelectObject(pStatusBar->GetFont());
     CSize     size = dc.GetTextExtent(m_strMessage);
     int       margin = dc.GetTextExtent(_T(" ")).cx * 2;
     dc.SelectObject(pOldFont);
 
-    // 프로그레스 컨트롤이 그려질 영역 계산
+    // Calculate the area where the progress control will be drawn
     CRect rc;
     pStatusBar->GetItemRect(0, rc);
     rc.left = size.cx + 2 * margin;
@@ -99,12 +99,12 @@ void CProgressBar::Resize() {
         rc.right = rc.left;
     }
 
-    // 상태바 상하로 10%의 여백을 둠
+    // Leave 10% margin at the top and bottom of the status bar
     int Height = rc.bottom - rc.top;
     rc.bottom -= Height / 10;
     rc.top += Height / 10;
 
-    // 프로그레스 컨트롤의 위치와 크기를 재조정
+    // Readjust the position and size of the progress control
     if (::IsWindow(m_hWnd) && (rc != m_Rect)) {
         MoveWindow(&rc);
     }

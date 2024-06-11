@@ -17,7 +17,7 @@ class CDlgShapeList : public CDialog {
     CDlgShapeList(CWnd * pParent = NULL); // standard constructor
 
     CN3Scene * m_pSceneRef;
-    BOOL       m_IsSourceObj; // Display용이냐? (툴에서 오브젝트 목록)
+    BOOL       m_IsSourceObj; // Is it for display? (List of objects in the tool)
     CMapMng *  m_pMapMng;
 
     // Dialog Data

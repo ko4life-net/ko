@@ -97,7 +97,8 @@ void CN3MEView::Render() {
         m_pMapMng->Render();
     }
 
-    CN3Base::s_AlphaMgr.Render(); // Alpha Primitive Manager Rendering.. ¾ÈÇÏ¸é ¾ðÁ¨°¡ »¶³­´Ù.
+    CN3Base::s_AlphaMgr
+        .Render(); // Alpha Primitive Manager Rendering.. If you don't do it, it will get annoying at some point.
     pEng->s_lpD3DDev->EndScene();
     pEng->Present(m_hWnd);
 }

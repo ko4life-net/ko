@@ -83,7 +83,7 @@ int CDTexGroupMng::GetBrushSize() {
 //
 void CDTexGroupMng::SetGroup(const char * pName) {
     //^^
-    //셋팅하려는 그룹이 있으면 걍 리턴해버려..
+    //If there is a group to set, just return it.
     it_DTexGroup it = m_Groups.begin();
     int          iSize = m_Groups.size();
     for (int i = 0; i < iSize; i++, it++) {
@@ -100,7 +100,7 @@ void CDTexGroupMng::SetGroup(const char * pName) {
 
     wsprintf(pGroup->m_Name, pName);
 
-    //새로운 idx를 지정하기 위해서 일단 정렬을 하자..
+    //Let뭩 sort first to specify a new idx.
     it = m_Groups.begin();
     iSize = m_Groups.size();
     int * ArrayIdx = new int[iSize];
@@ -127,7 +127,7 @@ void CDTexGroupMng::SetGroup(const char * pName) {
 
 //
 //    SetGroupID..
-//    ID로 그룹 넣기..
+//    Insert group by ID..
 //
 void CDTexGroupMng::SetGroupID(const char * pName, int id) {
     CDTexGroup * pGroup = new CDTexGroup;
@@ -142,7 +142,7 @@ void CDTexGroupMng::SetGroupID(const char * pName, int id) {
 }
 
 //
-//    qsort를 위해 정렬하는 함수...
+//    Sorting function for qsort...
 //
 int CDTexGroupMng::CompareIdx(const void * arg1, const void * arg2) {
     int a, b;
@@ -159,7 +159,7 @@ int CDTexGroupMng::CompareIdx(const void * arg1, const void * arg2) {
 }
 
 //
-//    그룹 지우기..
+//    Delete group...
 //
 void CDTexGroupMng::DelGroup(int ID) {
     it_DTexGroup it = m_Groups.begin();
@@ -179,7 +179,7 @@ void CDTexGroupMng::DelGroup(int ID) {
 }
 
 //
-//    그룹안에 타일 넣기..
+//    Putting tiles into a group...
 //
 void CDTexGroupMng::SetTile(int ID, int attr, __DTexTileAttr tile) {
     it_DTexGroup it = m_Groups.begin();

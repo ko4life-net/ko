@@ -55,16 +55,16 @@ class CRiverMesh : public CN3BaseFileAccess {
     int           m_iIC; // Index Buffer Count.
     int           m_iVC; // Vertex Count.
     CN3Texture *  m_pTexture;
-    int           m_iAnimTextureCount; // Animation되는 텍스쳐 갯수
-    CN3Texture ** m_pAnimTextures;     // Animation되는 텍스쳐 포인터들..
-    float         m_fSpeed1;           // 유속 : 초당 v좌표의 변화량
-    float         m_fSpeed2;           // 유속 : 초당 v2좌표의 변화량
-    float         m_fMeterPerU;        // U좌표 1.0에 해당하는 강의 길이
-    float         m_fMeterPerV;        // V좌표 1.0에 해당하는 강의 길이
-    float         m_fMeterPerU2;       // U2좌표 1.0에 해당하는 강의 길이
-    float         m_fMeterPerV2;       // V2좌표 1.0에 해당하는 강의 길이
-    float         m_fAnimTexFPS;       // AnimTexture의 초당 frame 수;
-    DWORD         m_dwAlphaFactor;     // 강을 투명하게 하기 위한 알파값
+    int           m_iAnimTextureCount; // Number of animated textures
+    CN3Texture ** m_pAnimTextures;     // Animated texture pointers...
+    float         m_fSpeed1;           // Flow speed: Change in v coordinate per second
+    float         m_fSpeed2;           // Flow speed: Change in v2 coordinates per second
+    float         m_fMeterPerU;        // The length of the river corresponding to U-coordinate 1.0
+    float         m_fMeterPerV;        // The length of the river corresponding to V coordinate 1.0
+    float         m_fMeterPerU2;       // The length of the river corresponding to U2 coordinate 1.0
+    float         m_fMeterPerV2;       // The length of the river corresponding to V2 coordinate 1.0
+    float         m_fAnimTexFPS;       // Number of frames per second of AnimTexture;
+    DWORD         m_dwAlphaFactor;     // Alpha value to make the river transparent
 
     // Operations
   public:
@@ -72,11 +72,11 @@ class CRiverMesh : public CN3BaseFileAccess {
     virtual bool Load(HANDLE hFile);
     virtual bool Save(HANDLE hFile);
     void         Render();
-    void         RenderVertexPoint(); // 잘보이게 점만 다시 그리기
+    void         RenderVertexPoint(); // Redraw only the dots so they are visible
 
     int             AddVertex(__Vector3 & vPos1, __Vector3 & vPos2, __Vector3 & vPos3, __Vector3 & vPos4);
     int             AddVertex();
-    int             DeleteVertex(int iIndex); // 쌍으로 지우고 뒤에 있는 것들을 앞으로 두개씩 이동
+    int             DeleteVertex(int iIndex); // Erase in pairs and move the ones behind by two to the front
     __VertexXyzT2 * GetVertex(int iIndex) {
         if (iIndex < 0 || iIndex >= m_iVC) {
             return NULL;

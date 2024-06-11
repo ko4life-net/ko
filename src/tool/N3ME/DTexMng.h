@@ -19,7 +19,7 @@ class CDTexMng : public CN3Base {
   public:
     std::list<CDTex *> m_pDTex;
     CMainFrame *       m_pMainFrm;
-    //int                    m_NumDTex;    //dtex를 담고 있는 마지막 배열 + 1...^^
+    //int                    m_NumDTex;    //last array containing dtex + 1...^^
     //CDTex*            m_pDTex[MAX_TILETEXTURE];
 
   public:

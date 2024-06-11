@@ -36,14 +36,14 @@ CNPCPathMgr::CNPCPathMgr() {
     m_pppRefEvent = NULL;
     m_bRenderMovableRegion = false;
 
-    m_BaseCube[0].Set(0, 1, 0); // 앞쪽 LT
-    m_BaseCube[1].Set(1, 1, 0); // 앞쪽 RT
-    m_BaseCube[2].Set(0, 0, 0); // 앞쪽 LB
-    m_BaseCube[3].Set(1, 0, 0); // 앞쪽 RB
-    m_BaseCube[4].Set(0, 1, 1); // 뒤쪽 LT
-    m_BaseCube[5].Set(1, 1, 1); // 뒤쪽 RT
-    m_BaseCube[6].Set(0, 0, 1); // 뒤쪽 LB
-    m_BaseCube[7].Set(1, 0, 1); // 뒤쪽 RB
+    m_BaseCube[0].Set(0, 1, 0); // front LT
+    m_BaseCube[1].Set(1, 1, 0); // front RT
+    m_BaseCube[2].Set(0, 0, 0); // front LB
+    m_BaseCube[3].Set(1, 0, 0); // front RB
+    m_BaseCube[4].Set(0, 1, 1); // behind LT
+    m_BaseCube[5].Set(1, 1, 1); // behind RT
+    m_BaseCube[6].Set(0, 0, 1); // behind LB
+    m_BaseCube[7].Set(1, 0, 1); // behind RB
 
     m_LTStartVertex.Set(0, 0, 0);
     m_RBStartVertex.Set(0, 0, 0);
@@ -66,14 +66,14 @@ CNPCPathMgr::CNPCPathMgr(CMapMng * pMapMng) {
     m_pppRefEvent = NULL;
     m_bRenderMovableRegion = false;
 
-    m_BaseCube[0].Set(0, 1, 0); // 앞쪽 LT
-    m_BaseCube[1].Set(1, 1, 0); // 앞쪽 RT
-    m_BaseCube[2].Set(0, 0, 0); // 앞쪽 LB
-    m_BaseCube[3].Set(1, 0, 0); // 앞쪽 RB
-    m_BaseCube[4].Set(0, 1, 1); // 뒤쪽 LT
-    m_BaseCube[5].Set(1, 1, 1); // 뒤쪽 RT
-    m_BaseCube[6].Set(0, 0, 1); // 뒤쪽 LB
-    m_BaseCube[7].Set(1, 0, 1); // 뒤쪽 RB
+    m_BaseCube[0].Set(0, 1, 0); // front LT
+    m_BaseCube[1].Set(1, 1, 0); // front RT
+    m_BaseCube[2].Set(0, 0, 0); // front LB
+    m_BaseCube[3].Set(1, 0, 0); // front RB
+    m_BaseCube[4].Set(0, 1, 1); // behind LT
+    m_BaseCube[5].Set(1, 1, 1); // behind RT
+    m_BaseCube[6].Set(0, 0, 1); // behind LB
+    m_BaseCube[7].Set(1, 0, 1); // behind RB
 
     m_LTStartVertex.Set(0, 0, 0);
     m_RBStartVertex.Set(0, 0, 0);
@@ -106,7 +106,7 @@ CNPCPathMgr::~CNPCPathMgr() {
 }
 
 //
-//    FileName은 경로명 하나도 안들어간 순수한 파일이름과 확장자..
+// FileName is a pure file name and extension without any path name..
 //
 void CNPCPathMgr::LoadFromFile(const char * FileName) {
     if (m_pCurrPath) {
@@ -144,7 +144,7 @@ void CNPCPathMgr::SaveToFile(const char * FileName) {
     GetCurrentDirectory(_MAX_PATH, szOldPath);
     SetCurrentDirectory(s_szPath.c_str());
 
-    CreateDirectory("npcpath", NULL); // 경로 만들고..
+    CreateDirectory("npcpath", NULL); // Create a path...
     char szNPCPathFileName[_MAX_PATH];
     wsprintf(szNPCPathFileName, "%snpcpath\\%s.npi", s_szPath.c_str(), FileName);
 
@@ -166,7 +166,7 @@ void CNPCPathMgr::SaveToFile(const char * FileName) {
 }
 
 void CNPCPathMgr::MakeServerDataFile(const char * FullFileName) {
-    // text 파일 버전...
+    // text file version...
     FILE * stream = fopen(FullFileName, "w");
     if (!stream) {
         return;
@@ -295,7 +295,7 @@ BOOL CNPCPathMgr::MouseMsgFilter(LPMSG pMsg) {
             break;
         }
 
-        if (m_pDlgMakePath->m_State == 0) // 시작 RECT 그림.
+        if (m_pDlgMakePath->m_State == 0) // Start RECT picture.
         {
             m_pCurrPath->m_LTStartVertex = m_LTStartVertex;
             m_pCurrPath->m_RBStartVertex = m_RBStartVertex;
@@ -303,7 +303,7 @@ BOOL CNPCPathMgr::MouseMsgFilter(LPMSG pMsg) {
             //MakeStartRectVB(m_LTStartVertex, m_RBStartVertex, 0xff00ffff);
         }
 
-        if (m_pDlgMakePath->m_State == 1) // 길 만듦
+        if (m_pDlgMakePath->m_State == 1) // make a path
         {
             __Vector3 PrevPos;
             if (false == m_pCurrPath->GetPath(m_pCurrPath->GetSize() - 1, &PrevPos)) //
@@ -334,7 +334,7 @@ BOOL CNPCPathMgr::MouseMsgFilter(LPMSG pMsg) {
             }
         }
 
-        if (m_pDlgMakePath->m_State == 2) // 시작 RECT 그림.
+        if (m_pDlgMakePath->m_State == 2) // Start RECT picture.
         {
             m_pCurrPath->m_LTActVertex = m_LTActVertex;
             m_pCurrPath->m_RBActVertex = m_RBActVertex;
@@ -465,7 +465,7 @@ void CNPCPathMgr::Render() {
     D3DXMATRIX mtx;
     D3DXMatrixIdentity(&mtx);
 
-    hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // 월드 행렬 적용..
+    hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // Apply world matrix...
 
     // set texture
     hr = s_lpD3DDev->SetTexture(0, NULL);
@@ -483,14 +483,14 @@ void CNPCPathMgr::Render() {
 
     hr = s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 
-    //갈 수 없는 곳 빨간색으로 칠하기..
+    //Color the places you can't go to in red...
     hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE);
     if (m_bRenderMovableRegion) {
         RenderMovableRegion();
     }
     hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
 
-    //이미 만들어진 길 그리기...
+    //Drawing a path that has already been created...
     std::list<CNPCPath *>::iterator itPath;
     std::list<__Vector3>::iterator  itVertex;
     CNPCPath *                      pPath;
@@ -529,7 +529,7 @@ void CNPCPathMgr::Render() {
         }
     }
 
-    //다이얼로그 창에서 선택된 길 그리기..
+    //Draw the selected path in the dialog window...
     CNPCPath * pSelPath = m_pDlgMakePath->m_pSelPath;
     if (pSelPath) {
         MakeRectVB(m_StartRectVB, pSelPath->m_LTStartVertex, pSelPath->m_RBStartVertex, 0xff00ff00);
@@ -556,7 +556,7 @@ void CNPCPathMgr::Render() {
         }
     }
 
-    //만들고 있는 길 & 영역 그리기..
+    //Drawing the path & area being created...
     MakeRectVB(m_StartRectVB, m_pCurrPath->m_LTStartVertex, m_pCurrPath->m_RBStartVertex, 0xffff0000);
     hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 12, m_StartRectVB, sizeof(__VertexXyzColor));
 
@@ -688,7 +688,7 @@ void CNPCPathMgr::SetLTRB(__Vector3 * pLT, __Vector3 * pRB) {
 }
 
 void CNPCPathMgr::MakeRectVB(__VertexXyzColor * pVB, __Vector3 lt, __Vector3 rb, DWORD color) {
-    // 상판...
+    // tops..
     pVB[0].Set(lt.x, lt.y, lt.z, color);
     pVB[1].Set(lt.x, lt.y, rb.z, color);
 
@@ -701,7 +701,7 @@ void CNPCPathMgr::MakeRectVB(__VertexXyzColor * pVB, __Vector3 lt, __Vector3 rb,
     pVB[6] = pVB[5];
     pVB[7] = pVB[0];
 
-    // 다리..
+    // leg..
     pVB[8] = pVB[0];
     pVB[9].Set(lt.x, rb.y, lt.z, color);
 
@@ -714,7 +714,7 @@ void CNPCPathMgr::MakeRectVB(__VertexXyzColor * pVB, __Vector3 lt, __Vector3 rb,
     pVB[14] = pVB[5];
     pVB[15].Set(rb.x, rb.y, lt.z, color);
 
-    // 바닥...
+    // floor...
     pVB[16] = pVB[9];
     pVB[17] = pVB[11];
 
@@ -805,7 +805,7 @@ void CNPCPathMgr::RenderMovableRegion() {
                 continue;
             }
 
-            if ((x + z) % 2 == 0) // 슬래쉬 모양의 타일..
+            if ((x + z) % 2 == 0) // Slash-shaped tile..
             {
                 __Vector3 v;
                 v.x = x * TERRAIN_CELL_SIZE;
@@ -825,7 +825,7 @@ void CNPCPathMgr::RenderMovableRegion() {
                 v.y = pRefTerrain->GetHeight(v.x, v.z) + 0.3f;
                 TileVB[3].Set(v.x, v.y, v.z, color);
             }
-            if ((x + z) % 2 == 1) //백슬레쉬 모양의 타일..
+            if ((x + z) % 2 == 1) //Backslash-shaped tile..
             {
                 __Vector3 v;
                 v.x = x * TERRAIN_CELL_SIZE;

@@ -21,7 +21,7 @@ class CRegenUser : public CN3Base {
   public:
     CDlgRegenUser * m_pDlg;
 
-    CMapMng * m_pRefMapMng; // 지형 참조 포인터..
+    CMapMng * m_pRefMapMng; // Terrain reference pointer..
     bool      m_bActive;
 
     std::list<VERTEXRECT *> m_vrListRegion;

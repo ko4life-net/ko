@@ -11,27 +11,27 @@ class CLyTerrain;
 
 class CNPCPath : public CN3Base {
   public:
-    char m_strPathName[256]; // 길이름..
-    char m_strNPCName[80];   // NPC 이름.
-    int  m_iNPCID;           // NPC 종류..
-    int  m_iNumNPC;          // 몇마리?..
+    char m_strPathName[256]; //Length name..
+    char m_strNPCName[80];   // NPC name.
+    int  m_iNPCID;           // NPC Id ? Type?
+    int  m_iNumNPC;          // How many?..
 
-    __Vector3 m_LTStartVertex; // 시작영역의 모서리 두점..
+    __Vector3 m_LTStartVertex; // Two corners of the starting area...
     __Vector3 m_RBStartVertex;
 
-    //CRect    m_rcStartRect;        // NPC생기는 영역.
-    int m_iRegenTime; // NPC가 죽었다가 다시 살아나는데 걸리는 시간.
+    //CRect    m_rcStartRect;        // Area where NPCs appear.
+    int m_iRegenTime; // The time it takes for an NPC to die and come back to life.
     int m_iActType;
     int m_iZoneID;
 
-    std::list<__Vector3> m_Path; //path지정하는 점들....시작점~끝점..
+    std::list<__Vector3> m_Path; //Path designation points...start point~end point...
 
     CLyTerrain * m_pRefTerrain;
 
     DWORD m_dwColor;
     int   m_iVersion;
 
-    __Vector3 m_LTActVertex; // 시작영역의 모서리 두점..
+    __Vector3 m_LTActVertex; // Two corners of the starting area...
     __Vector3 m_RBActVertex;
 
     unsigned char m_cAttr_Create;
@@ -45,8 +45,8 @@ class CNPCPath : public CN3Base {
     void Load(HANDLE hFile);
     void Save(HANDLE hFile);
     int  GetSize() { return m_Path.size(); }
-    bool GetPath(int idx, __Vector3 * pPos); // idx째 점 가져오기..
-    void AddPos(__Vector3 Path);             //path더하기.
+    bool GetPath(int idx, __Vector3 * pPos); // Get the idxth point...
+    void AddPos(__Vector3 Path);             // Add path.
     void DelPrevPos();
     CNPCPath();
     virtual ~CNPCPath();

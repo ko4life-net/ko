@@ -30,11 +30,11 @@ class CNPCPathMgr : public CN3Base {
     __Vector3 m_RBActVertex;
 
   public:
-    CMapMng *             m_pRefMapMng;   // 지형 참조 포인터..
-    std::list<CNPCPath *> m_pPaths;       // npc path들...
+    CMapMng *             m_pRefMapMng;   // Terrain reference pointer..
+    std::list<CNPCPath *> m_pPaths;       // npc paths...
     CDlgMakeNPCPath *     m_pDlgMakePath; // path make dialog..
-    bool                  m_bActive;      // 이기능이 활성화 되어 있는지...1:활성화, 0:비활성화..
-    CNPCPath *            m_pCurrPath;    // 현재 만들고 있는 길..or 만들려고 준비한 버퍼..
+    bool                  m_bActive;      // Is this function activated? 1: Enabled, 0: Disabled..
+    CNPCPath *            m_pCurrPath;    // The path currently being created..or the buffer prepared to be created..
 
     short ** m_pppRefEvent;
     bool     m_bRenderMovableRegion;

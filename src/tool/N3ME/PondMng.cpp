@@ -149,7 +149,7 @@ bool CPondMng::Save(HANDLE hFile) {
 
     //    version 1000 - alpha input
     int nFileVersion = 1001;
-    WriteFile(hFile, &nFileVersion, sizeof(nFileVersion), &dwNum, NULL); // 연못 번호
+    WriteFile(hFile, &nFileVersion, sizeof(nFileVersion), &dwNum, NULL); //pond number
 
     int iSize = m_PondMeshes.size();
     WriteFile(hFile, &iSize, 4, &dwNum, NULL);
@@ -185,7 +185,7 @@ void CPondMng::Render() {
         hr = s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, FALSE);
     }
 
-    // 기존에 있던 연못 그리기
+    // Drawing an existing pond
     it_PondMesh it = m_PondMeshes.begin();
     int         iSize = m_PondMeshes.size();
     for (int i = 0; i < iSize; i++, it++) {
@@ -194,7 +194,7 @@ void CPondMng::Render() {
     }
 
     if (m_bEditMode) {
-        // 연못 새로 만드는 중이면 드래그 선 그리기
+        // If you are creating a new pond, draw a drag line
         if (m_PCursorMode == PCM_CREATE) {
             __Matrix44 matWorld;
             matWorld.Identity();
@@ -210,7 +210,7 @@ void CPondMng::Render() {
             s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 4, m_CreateLine, sizeof(__VertexXyzColor));
         }
 
-        // dummy 상자 그리기
+        // draw dummy box
         m_VtxPosDummy.Render();
 
         BOOL bisFix = FALSE;
@@ -221,12 +221,12 @@ void CPondMng::Render() {
         for (int i = 0; i < iSize; i++, it++) {
             pSelPond = *it;
             if (pSelPond) {
-                // 선택된 연못의 점그리기 (삘깅)
+                // Drawing points on the selected pond (pinching)
                 pSelPond->RenderVertexPoint();
             }
         }
 
-        // 선택된 점 그리기 (초록)
+        // Draw selected point (green)
         iSize = m_SelVtxArray.GetSize();
         if (iSize > 0) {
             // transform
@@ -262,7 +262,7 @@ void CPondMng::Render() {
                 int iScreenY = int((1.0f - (v.y / v.w)) * (vp.Height) / 2.0f);
                 if (iScreenX >= (int)vp.X && iScreenX <= (int)vp.Width && iScreenY >= (int)vp.Y &&
                     iScreenY <= (int)vp.Height) {
-                    // set X (점을 찍으면 1픽셀밖에 안찍으므로 X표시를 그린다.
+                    // set X (Since only 1 pixel is drawn when a dot is placed, draw an X mark.)
                     Vertices[0].Set(float(iScreenX - 2), float(iScreenY - 2), 0.5f, 0.5f, clr);
                     Vertices[1].Set(float(iScreenX + 2), float(iScreenY + 2), 0.5f, 0.5f, clr);
                     Vertices[2].Set(float(iScreenX + 2), float(iScreenY - 2), 0.5f, 0.5f, clr);
@@ -273,7 +273,7 @@ void CPondMng::Render() {
             }
         }
 
-        // 드래그 영역 그리기
+        // Draw drag area
         if (PCM_SELECTING == m_PCursorMode) {
             m_pMainFrm->GetMapMng()->RenderDragRect(&m_rcSelDrag);
         }
@@ -295,43 +295,43 @@ CPondMesh * CPondMng::CreateNewPondMesh() {
     CPondMesh * pRM = new CPondMesh;
     __Vector3   vPos[4];
 
-    vPos[0].Set(m_CreateLine[0].x, m_CreateLine[0].y, m_CreateLine[0].z); //    왼쪽위
-    vPos[1].Set(m_CreateLine[1].x, m_CreateLine[1].y, m_CreateLine[1].z); //    오른쪽위
-    vPos[2].Set(m_CreateLine[2].x, m_CreateLine[2].y, m_CreateLine[2].z); //    오른쪽 아래
-    vPos[3].Set(m_CreateLine[3].x, m_CreateLine[3].y, m_CreateLine[3].z); //    왼쪽아래
+    vPos[0].Set(m_CreateLine[0].x, m_CreateLine[0].y, m_CreateLine[0].z); //    top left
+    vPos[1].Set(m_CreateLine[1].x, m_CreateLine[1].y, m_CreateLine[1].z); //    top right
+    vPos[2].Set(m_CreateLine[2].x, m_CreateLine[2].y, m_CreateLine[2].z); //    right below
+    vPos[3].Set(m_CreateLine[3].x, m_CreateLine[3].y, m_CreateLine[3].z); //    bottom left
 
     CLyTerrain * pTerrain = m_pMainFrm->GetMapMng()->GetTerrain();
-    pRM->SetTerrain(pTerrain); //    지형포인터 입력
-    pRM->MakeDrawRect(vPos);   //    영역입력
+    pRM->SetTerrain(pTerrain); //    Terrain pointer input
+    pRM->MakeDrawRect(vPos);   //    Area input
     pRM->MakePondPos();
 
-    SelPondRelease(); //    지금까정 선택한거 일단 지우기
+    SelPondRelease(); //    Delete whatever you have selected so far
 
     int iID = 0;
-    m_pSelPonds.push_back(pRM); //    일단 넣기(아뒤검사위해)
+    m_pSelPonds.push_back(pRM); //    Put it in first (to check the back)
     while (SetPondID(pRM, iID) == FALSE) {
-        iID++; //    새로운 아뒤찾음
+        iID++; //    Found a new one
     }
 
     CDlgPondProperty dlg(this);
     dlg.m_IsModalDialog = TRUE;
 
-    if (dlg.DoModal() == IDCANCEL) //    지금 만든연못지우기
+    if (dlg.DoModal() == IDCANCEL) //    Delete the pond you just created
     {
         SelPondDelete(pRM);
         pRM = NULL;
     }
-    if (pRM) //    만들려는 연못
+    if (pRM) //    the pond you want to make
     {
         m_PondMeshes.push_back(pRM);
         SelPondRelease();
-        //    외곽점들을 바탕으로 가운데 점을 향하여 일정거리마다 점들을 배치한다////
+        //    Based on the outer points, dots are placed at a certain distance toward the center point. ////
     }
 
     return pRM;
 }
 
-void CPondMng::RemovePondMesh(int iPondID) //    연못을 만들거나 선택하여 지우고자 버튼 눌렀을시
+void CPondMng::RemovePondMesh(int iPondID) //    When you press the button to create or select a pond and delete it,
 {
     it_PondMesh it = m_PondMeshes.begin();
     int         iSize = m_PondMeshes.size();
@@ -397,26 +397,27 @@ BOOL CPondMng::MouseMsgFilter(LPMSG pMsg) {
     switch (pMsg->message) {
     case WM_MOUSEMOVE: {
         POINT point = {short(LOWORD(pMsg->lParam)), short(HIWORD(pMsg->lParam))};
-        if (bCtrlKeyState == 2) //    연못을 회전하는 중
+        if (bCtrlKeyState == 2) //   Rotating pond
         {
             SetRotatePonds(ptDownBuff.x - point.x);
             ptDownBuff = point;
             return TRUE;
         }
 
-        if (PCM_CREATE == m_PCursorMode) { // 새로운 연못 추가할때 드래그 하는 선 설정
-            __Vector3 vRayDir, vRayOrig;   // 화면 중앙(시점)과 마우스 포인터를 이은 직선의 방향과 원점
-            __Vector3 vPN, vPV;            // 평면의 법선과 포함된 점
-            __Vector3 vPos;                // 위의 평면과 직선의 만나는 점(구할 점)
+        if (PCM_CREATE == m_PCursorMode) { // Setting the dragging line when adding a new pond
+            __Vector3 vRayDir,
+                vRayOrig; // Direction and origin of the straight line connecting the screen center (viewpoint) and the mouse pointer
+            __Vector3 vPN, vPV; // Plane normal and contained points
+            __Vector3 vPos;     // The point where the above plane meets the straight line (point to be found)
 
             vPN.Set(0, 1, 0);
             vPV = vMouseStrPos;
-            m_VtxPosDummy.GetPickRay(point, vRayDir, vRayOrig); // 이함수 잠시 빌려씀.
+            m_VtxPosDummy.GetPickRay(point, vRayDir, vRayOrig); // Let me borrow this function for a moment.
             __Vector3 vPR = vPV - vRayOrig;
             float     fT = D3DXVec3Dot(&vPN, &vPR) / D3DXVec3Dot(&vPN, &vRayDir);
-            vPos = vRayOrig + vRayDir * fT; //    시작점과 마우스점을 구했음
+            vPos = vRayOrig + vRayDir * fT; //    Find the starting point and mouse point.
 
-            ReSetDrawRect(vMouseStrPos, vPos); //    받은 두점을 맵상의 사각형태로 변환
+            ReSetDrawRect(vMouseStrPos, vPos); //    Convert the two points received into a rectangle on the map.
             return TRUE;
         } else if (PCM_SELECTING == m_PCursorMode) {
             m_rcSelDrag.right = point.x;
@@ -433,7 +434,7 @@ BOOL CPondMng::MouseMsgFilter(LPMSG pMsg) {
         }
 
         ptDownBuff = point;
-        if (bCtrlKeyState > 0) //    연못을 회전하는 중
+        if (bCtrlKeyState > 0) //    Rotating pond
         {
             if (bCtrlKeyState < 2) {
                 bCtrlKeyState++;
@@ -442,7 +443,7 @@ BOOL CPondMng::MouseMsgFilter(LPMSG pMsg) {
             return TRUE;
         }
 
-        if (PCM_CREATE == m_PCursorMode) { // 새로운 연못 추가 취소
+        if (PCM_CREATE == m_PCursorMode) { // Cancel adding new pond
             m_PCursorMode = PCM_NONE;
             ReleaseCapture();
             return TRUE;
@@ -455,7 +456,7 @@ BOOL CPondMng::MouseMsgFilter(LPMSG pMsg) {
         }
     } break;
     case WM_LBUTTONUP: {
-        if (bCtrlKeyState > 0) //    연못을 회전하는 중
+        if (bCtrlKeyState > 0) //    Rotating pond
         {
             bCtrlKeyState--;
             return TRUE;
@@ -479,36 +480,36 @@ BOOL CPondMng::MouseMsgFilter(LPMSG pMsg) {
                 m_rcSelDrag.bottom = point.y;
             }
 
-            // 드레그가 아니고 그냥 클릭일경우 드래그 영역을 3x3정도로 잡아준다.
+            // If it is just a click rather than a drag, the drag area is set to about 3x3.
             if (m_rcSelDrag.right - m_rcSelDrag.left < 3 && m_rcSelDrag.bottom - m_rcSelDrag.top < 3) {
                 m_rcSelDrag.left = point.x - 1;
                 m_rcSelDrag.right = point.x + 1;
                 m_rcSelDrag.top = point.y - 1;
                 m_rcSelDrag.bottom = point.y + 1;
             }
-            //    shift키는 여러개의 분산된 점(들)을 선택시
+            //    The shift key selects multiple distributed points(s).
             if (SelectVtxByDragRect(&m_rcSelDrag, (pMsg->wParam & MK_SHIFT) ? TRUE : FALSE)) {
-                vMouseStrPos = m_VtxPosDummy.m_vPos; //    더미의 위치 입력
+                vMouseStrPos = m_VtxPosDummy.m_vPos; //  Enter the location of the dummy
             } else {
-                m_PCursorMode = PCM_NONE; //    선택된 점이 없으므로
+                m_PCursorMode = PCM_NONE; //  Since there are no points selected
             }
 
             return TRUE;
         }
     } break;
     case WM_RBUTTONDOWN: {
-        if (bCtrlKeyState) { //    연못의 선택된 점에서 회전을 함
+        if (bCtrlKeyState) { //  Rotates at a selected point in the pond
             return TRUE;
         }
         if (m_bMovePond == TRUE) {
             m_bMovePond = FALSE;
         }
 
-        if (PCM_SELECT == m_PCursorMode) { // Select 취소
+        if (PCM_SELECT == m_PCursorMode) { // Select Cancel
             m_PCursorMode = PCM_NONE;
             ReleaseCapture();
             return TRUE;
-        } else if (PCM_NONE == m_PCursorMode) { // 새로운 연못 추가
+        } else if (PCM_NONE == m_PCursorMode) { // Added new pond
             POINT        point = {short(LOWORD(pMsg->lParam)), short(HIWORD(pMsg->lParam))};
             CLyTerrain * pTerrain = m_pMainFrm->GetMapMng()->GetTerrain();
 
@@ -516,11 +517,11 @@ BOOL CPondMng::MouseMsgFilter(LPMSG pMsg) {
             if (pTerrain && pTerrain->Pick(point.x, point.y, &vPos)) {
                 m_PCursorMode = PCM_CREATE;
 
-                vMouseStrPos = vPos; //    처음지점 입력
+                vMouseStrPos = vPos; //    Enter the first point
 
-                DWORD color = 0xffffff00; //    그려질 선색
+                DWORD color = 0xffffff00; //  Line color to be drawn
                 for (int i = 0; i < 5; ++i) {
-                    m_CreateLine[i].Set(vPos, color); //    초기화
+                    m_CreateLine[i].Set(vPos, color); //  reset
                 }
 
                 return TRUE;
@@ -528,29 +529,30 @@ BOOL CPondMng::MouseMsgFilter(LPMSG pMsg) {
         }
     } break;
     case WM_RBUTTONUP: {
-        if (bCtrlKeyState) { //    연못의 선택된 점에서 회전을 함
+        if (bCtrlKeyState) { //  Rotates at a selected point in the pond
             return TRUE;
         }
 
         POINT point = {short(LOWORD(pMsg->lParam)), short(HIWORD(pMsg->lParam))};
-        if (PCM_CREATE == m_PCursorMode) { // 새로운 연못 추가
+        if (PCM_CREATE == m_PCursorMode) { // Added new pond
             m_PCursorMode = PCM_NONE;
             ReleaseCapture();
 
-            __Vector3 vRayDir, vRayOrig; // 화면 중앙(시점)과 마우스 포인터를 이은 직선의 방향과 원점
-            __Vector3 vPN, vPV;          // 평면의 법선과 포함된 점
-            __Vector3 vPos;              // 위의 평면과 직선의 만나는 점(구할 점)
+            __Vector3 vRayDir,
+                vRayOrig; // Direction and origin of the straight line connecting the screen center (viewpoint) and the mouse pointer
+            __Vector3 vPN, vPV; // Plane normal and contained points
+            __Vector3 vPos;     // Point where the above plane meets the straight line (point to find)
 
             vPN.Set(0, 1, 0);
             vPV = vMouseStrPos;
-            m_VtxPosDummy.GetPickRay(point, vRayDir, vRayOrig); // 이함수 잠시 빌려씀.
+            m_VtxPosDummy.GetPickRay(point, vRayDir, vRayOrig);
             __Vector3 vPR = vPV - vRayOrig;
             float     fT = D3DXVec3Dot(&vPN, &vPR) / D3DXVec3Dot(&vPN, &vRayDir);
             vPos = vRayOrig + vRayDir * fT;
 
             ReSetDrawRect(vMouseStrPos, vPos);
 
-            CPondMesh * pRM = CreateNewPondMesh(); //    새로운 연못
+            CPondMesh * pRM = CreateNewPondMesh(); // new pond
             SetSelPond(pRM);
             return TRUE;
         }
@@ -580,7 +582,8 @@ BOOL CPondMng::MouseMsgFilter(LPMSG pMsg) {
 
     default: {
         if (bCtrlKeyState > 0) {
-            if (!(GetAsyncKeyState(VK_CONTROL) & 0xff00)) //    체크하여 떼어진 상태면 원상복귀
+            if (!(GetAsyncKeyState(VK_CONTROL) &
+                  0xff00)) //  If it is checked and removed, it will return to its original state.
             {
                 if (bCtrlKeyState != 0) {
                     bCtrlKeyState = 0;
@@ -588,7 +591,7 @@ BOOL CPondMng::MouseMsgFilter(LPMSG pMsg) {
                 return FALSE;
             }
 
-            if (GetAsyncKeyState('A') & 0xff00) { //    현재 선택된 연못(들)의 모든점을 대상으로 한다
+            if (GetAsyncKeyState('A') & 0xff00) { //  Targets all points in the currently selected pond(s)
                 MovePond();
             }
             return TRUE;
@@ -604,7 +607,8 @@ BOOL CPondMng::MouseMsgFilter(LPMSG pMsg) {
     return FALSE;
 }
 
-void CPondMng::ReSetDrawRect(__Vector3 vStrPos, __Vector3 vEndPos) //    받은 두 점으로 맵상의 사각형태의 점 만듬
+void CPondMng::ReSetDrawRect(__Vector3 vStrPos,
+                             __Vector3 vEndPos) //  Create a rectangular point on the map with the two points received.
 {
     if (vStrPos.x > vEndPos.x) {
         m_CreateLine[0].x = vStrPos.x;
@@ -732,7 +736,7 @@ BOOL CPondMng::SelectVtxByDragRect(RECT * pRect, BOOL bAdd, BOOL bSelectPond) {
         }
         if (bAdd == FALSE) {
             m_SelVtxArray.RemoveAll();
-            SetSelPond(NULL); // 선택한연못 해제..
+            SetSelPond(NULL); // Clear selected pond..
         }
     }
 
@@ -749,16 +753,16 @@ BOOL CPondMng::SelectVtxByDragRect(RECT * pRect, BOOL bAdd, BOOL bSelectPond) {
     CPondMesh * pSelPond = NULL;
     int         iSize = m_pSelPonds.size();
     it_PondMesh it = m_pSelPonds.begin();
-    for (int i = 0; i < iSize; ++i, ++it) // 이미 선택된 연못이 있다면..
+    for (int i = 0; i < iSize; ++i, ++it) // If there is already a pond selected...
     {
         pSelPond = *it;
         if (pSelPond == NULL) {
             continue;
         }
 
-        int iVC = pSelPond->VertexCount(); // 그연못의 점 숫자를 구하기
+        int iVC = pSelPond->VertexCount(); // Find the number of points in the pond
         for (int k = 0; k < iVC; ++k) {
-            __VertexXyzT2 * pVtx = pSelPond->GetVertex(k); // 점 하나 구하기
+            __VertexXyzT2 * pVtx = pSelPond->GetVertex(k); // find one point
             if (pVtx == NULL) {
                 continue;
             }
@@ -784,12 +788,13 @@ BOOL CPondMng::SelectVtxByDragRect(RECT * pRect, BOOL bAdd, BOOL bSelectPond) {
                         }
                     }
                     if (bAleadySelected) {
-                        m_SelVtxArray.RemoveAt(j); // 이미 있으므로 선택목록에서 제거
+                        m_SelVtxArray.RemoveAt(j); // already exists, so remove from selection list
                     } else {
-                        m_SelVtxArray.InsertAt(0, pVtx); // 추가
+                        m_SelVtxArray.InsertAt(0, pVtx); // addition
                     }
 
-                    pSelPond->InputSelectPos(pVtx->x, pVtx->y, pVtx->z, k); //    좌표입력하여 가상의 영역잡음
+                    pSelPond->InputSelectPos(pVtx->x, pVtx->y, pVtx->z,
+                                             k); // Virtual area noise by inputting coordinates
                 }
             } else {
                 BOOL bAleadySelected = FALSE;
@@ -801,17 +806,18 @@ BOOL CPondMng::SelectVtxByDragRect(RECT * pRect, BOOL bAdd, BOOL bSelectPond) {
                     }
                 }
                 if (bAleadySelected) {
-                    m_SelVtxArray.RemoveAt(j); // 이미 있으므로 선택목록에서 제거
+                    m_SelVtxArray.RemoveAt(j); // already exists, so remove from selection list
                 } else {
-                    m_SelVtxArray.InsertAt(0, pVtx); // 추가
+                    m_SelVtxArray.InsertAt(0, pVtx); // addition
                 }
 
-                pSelPond->InputSelectPos(pVtx->x, pVtx->y, pVtx->z); //    좌표입력하여 가상의 영역잡음
+                pSelPond->InputSelectPos(pVtx->x, pVtx->y, pVtx->z); //  Virtual area noise by inputting coordinates
             }
         }
     }
 
-    if (iSize == 0) // 선택된 연못이 아무것도 없다면 (모든연못 검색해서 연못 선택후 그 연못 점들만 선택..)
+    if (iSize ==
+        0) // If there are no selected ponds (search all ponds, select a pond, and then select only those pond points...)
     {
         ASSERT(m_SelVtxArray.GetSize() == 0);
 
@@ -824,11 +830,11 @@ BOOL CPondMng::SelectVtxByDragRect(RECT * pRect, BOOL bAdd, BOOL bSelectPond) {
                 continue;
             }
 
-            int iVC = pRM->VertexCount(); // 이연못의 점 갯수
+            int iVC = pRM->VertexCount(); // Number of points in this pond
             pSelPond = NULL;
             bChkSamePond = TRUE;
             for (int j = 0; j < iVC; ++j) {
-                __VertexXyzT2 * pVtx = pRM->GetVertex(j); // 점 하나 구하기
+                __VertexXyzT2 * pVtx = pRM->GetVertex(j); // find one point
                 if (pVtx == NULL) {
                     continue;
                 }
@@ -844,8 +850,8 @@ BOOL CPondMng::SelectVtxByDragRect(RECT * pRect, BOOL bAdd, BOOL bSelectPond) {
                 float fScreenY = (1.0f - (v.y / v.w)) * (vp.Height) / 2.0f;
                 if (fScreenX >= pRect->left && fScreenX <= pRect->right && fScreenY >= pRect->top &&
                     fScreenY <= pRect->bottom) {
-                    m_SelVtxArray.Add(pVtx);                           // 추가
-                    pRM->InputSelectPos(pVtx->x, pVtx->y, pVtx->z, j); //    좌표입력하여 가상의 영역잡음
+                    m_SelVtxArray.Add(pVtx);                           // addition
+                    pRM->InputSelectPos(pVtx->x, pVtx->y, pVtx->z, j); // Virtual area noise by inputting coordinates
                     if (bChkSamePond == TRUE) {
                         pSelPond = pRM;
                         SetSelPond(pSelPond, m_bChooseGroup);
@@ -901,14 +907,14 @@ void CPondMng::MakeGameFiles(HANDLE hFile, float fSize) {
         int            iVC = pRM->VertexCount();
         __VertexXyzT2 *pVtx0 = pRM->GetVertex(0), *pSrcVtx = NULL;
         ASSERT(pVtx0);
-        WriteFile(hFile, &iVC, sizeof(iVC), &dwNum, NULL); // 점 갯수
+        WriteFile(hFile, &iVC, sizeof(iVC), &dwNum, NULL); // number of points
 
         if (iVC <= 0) {
             continue;
         }
 
         int iWidthVtxNum = pRM->GetWaterScaleWidht();
-        WriteFile(hFile, &iWidthVtxNum, sizeof(int), &dwNum, NULL); // 점 갯수
+        WriteFile(hFile, &iWidthVtxNum, sizeof(int), &dwNum, NULL); // number of points
 
         CN3Texture * pPondTex = pRM->TexGet();
         int          iLen = 0;
@@ -984,7 +990,7 @@ void CPondMng::ReCalcSelectedVertex() {
     m_pMainFrm->Invalidate(FALSE);
 }
 
-void CPondMng::SetVtxCenter() //    연못(들)의 중간점을 찾아 세팅,예전 스케일도 백업
+void CPondMng::SetVtxCenter() //  Find the midpoint of the pond(s) and set it, and also back up the old scale.
 {
     int iSize = m_pSelPonds.size();
     m_vPondsCenter.Zero();
@@ -1003,7 +1009,7 @@ void CPondMng::SetVtxCenter() //    연못(들)의 중간점을 찾아 세팅,예전 스케일도 
     for (int i = 0; i < iSize; i++, it++) {
         CPondMesh * pRM = *it;
         if (pRM) {
-            pvCenter[i] = pRM->GetCenter(); //    연못(들)의 중간점을 받음, 현재의 스케일도 백업
+            pvCenter[i] = pRM->GetCenter(); // Receive midpoint of pond(s), also backing up current scale
             nCenterCnt++;
         }
     }
@@ -1136,7 +1142,7 @@ void CPondMng::InputDummyMovePos(__Vector3 vMovePos) {
         }
     }
 
-    if (m_pDlgProperty && (vMovePos.y != 0.0f || m_bMovePond == TRUE)) //    높이나 움직여서 정보를 갱신
+    if (m_pDlgProperty && (vMovePos.y != 0.0f || m_bMovePond == TRUE)) // Update information by height or movement
     {
         m_pDlgProperty->UpdateInfo();
         MainInvalidate();
@@ -1158,7 +1164,7 @@ void CPondMng::StationPond() {
 }
 
 void CPondMng::MovePond() {
-    SelectVtxByDragRect(NULL, FALSE, TRUE); //    일단 현재 선택된 모든 연못의 점들 전부 선택
+    SelectVtxByDragRect(NULL, FALSE, TRUE); // First, select all points in all currently selected ponds.
     m_bMovePond = TRUE;
     MainInvalidate();
 }

@@ -64,7 +64,7 @@ BOOL CDlgBase::OnInitDialog() {
     int   nH = 0;
 
     /////////////////////////////////////
-    // Transform 등록 정보
+    // Transform properties
     m_LPTransform.AddPropItem("Position", "", PIT_EDIT, "");
     m_LPTransform.AddPropItem("Rotation", "", PIT_EDIT, "");
     m_LPTransform.AddPropItem("Scale", "", PIT_EDIT, "");
@@ -72,31 +72,31 @@ BOOL CDlgBase::OnInitDialog() {
     m_LPTransform.GetWindowRect(&rc);
     nH = m_LPTransform.GetItemHeight(0) * m_LPTransform.GetCount() + 4;
     m_LPTransform.SetWindowPos(NULL, 0, 0, rc.Width(), nH, SWP_NOZORDER | SWP_NOMOVE);
-    // Transform 등록 정보
+    // Transform properties
     /////////////////////////////////////
 
     /////////////////////////////////////
-    // Camera 등록 정보
+    // Camera properties
     m_LPCamera.AddPropItem("Eye", "", PIT_EDIT, "");
     m_LPCamera.AddPropItem("At", "", PIT_EDIT, "");
     m_LPCamera.AddPropItem("Up", "", PIT_EDIT, "");
     m_LPCamera.AddPropItem("Field Of View", "", PIT_EDIT, "");
     m_LPCamera.AddPropItem("Near Plane", "", PIT_EDIT, "");
     m_LPCamera.AddPropItem("Far Plane", "", PIT_EDIT, "");
-    m_LPCamera.AddPropItem("안개 사용", "", PIT_EDIT, "");
-    //    m_LPCamera.AddPropItem("안개 밀도", "", PIT_EDIT, "");
-    m_LPCamera.AddPropItem("안개 색", "", PIT_EDIT, "");
-    //    m_LPCamera.AddPropItem("안개 시작", "", PIT_EDIT, "");
-    //    m_LPCamera.AddPropItem("안개 끝", "", PIT_EDIT, "");
+    m_LPCamera.AddPropItem("use fog", "", PIT_EDIT, "");
+    //    m_LPCamera.AddPropItem("fog density", "", PIT_EDIT, "");
+    m_LPCamera.AddPropItem("fog color", "", PIT_EDIT, "");
+    //    m_LPCamera.AddPropItem("fog starts", "", PIT_EDIT, "");
+    //    m_LPCamera.AddPropItem("fog end", "", PIT_EDIT, "");
 
     m_LPCamera.GetWindowRect(&rc);
     nH = m_LPCamera.GetItemHeight(0) * m_LPCamera.GetCount() + 4;
     m_LPCamera.SetWindowPos(NULL, 0, 0, rc.Width(), nH, SWP_NOZORDER | SWP_NOMOVE);
-    // Camera 등록 정보
+    // Camera properties
     /////////////////////////////////////
 
     /////////////////////////////////////
-    // Light 등록 정보
+    // Light properties
     m_LPLight.AddPropItem("On", "", PIT_EDIT, "");
     m_LPLight.AddPropItem("Number", "", PIT_EDIT, "");
     m_LPLight.AddPropItem("Type", "", PIT_COMBO, "Null|Point|Spot|Directional|");
@@ -112,13 +112,13 @@ BOOL CDlgBase::OnInitDialog() {
     m_LPLight.GetWindowRect(&rc);
     nH = m_LPLight.GetItemHeight(0) * m_LPLight.GetCount() + 4;
     m_LPLight.SetWindowPos(NULL, 0, 0, rc.Width(), nH, SWP_NOZORDER | SWP_NOMOVE);
-    // Light 등록 정보
+    // Light properties
     /////////////////////////////////////
 
     CString str, strTmp;
 
     /////////////////////////////////////
-    // Material 등록 정보
+    // Material properties
     m_LPMaterial.AddPropItem("Render Flags", "0", PIT_EDIT, "", 0);
     strTmp =
         "Null|D3DBLEND_ZERO|D3DBLEND_ONE|D3DBLEND_SRCCOLOR|D3DBLEND_INVSRCCOLOR|D3DBLEND_SRCALPHA|D3DBLEND_INVSRCALPHA|D3DBLEND_DESTALPHA|\
@@ -145,7 +145,7 @@ D3DTOP_BUMPENVMAP|D3DTOP_BUMPENVMAPLUMINANCE|D3DTOP_DOTPRODUCT|D3DTOP_MULTIPLYAD
     m_LPMaterial.GetWindowRect(&rc);
     nH = m_LPMaterial.GetItemHeight(0) * m_LPMaterial.GetCount() + 4;
     m_LPMaterial.SetWindowPos(NULL, 0, 0, rc.Width(), nH, SWP_NOZORDER | SWP_NOMOVE);
-    // Material 등록 정보
+    // Material properties
     /////////////////////////////////////
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -155,20 +155,20 @@ D3DTOP_BUMPENVMAP|D3DTOP_BUMPENVMAPLUMINANCE|D3DTOP_DOTPRODUCT|D3DTOP_MULTIPLYAD
     //    for(int i = 0; i < nPartCount; i++) { strTmp.Format("%d", i); m_CBShapePart.AddString(strTmp); }
     //    m_CBShapePart.SetCurSel(0);
 
-    m_LPShape.AddPropItem("소속", "", PIT_EDIT, "");
+    m_LPShape.AddPropItem("Belong", "", PIT_EDIT, "");
     m_LPShape.AddPropItem("Event ID", "", PIT_EDIT, "");
     m_LPShape.AddPropItem("Event Type", "", PIT_EDIT, "");
     m_LPShape.AddPropItem("NPC ID", "", PIT_EDIT, "");
     m_LPShape.AddPropItem("NPC Status", "", PIT_EDIT, "");
-    m_LPShape.AddPropItem("Part Add", "Part 추가", PIT_BUTTON, "");
-    m_LPShape.AddPropItem("Part Delete", "Part 삭제", PIT_BUTTON, "");
+    m_LPShape.AddPropItem("Part Add", "Part Add�", PIT_BUTTON, "");
+    m_LPShape.AddPropItem("Part Delete", "Part Delete", PIT_BUTTON, "");
 
     m_LPShape.AddPropItem("Face, Vertex Count", "", PIT_EDIT, "");
     m_LPShape.AddPropItem("Texture File", "", PIT_FILE_MULTI,
-                          "Texture 로 쓸수 있는 그림 파일(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
+                          "Picture file that can be written as(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
     m_LPShape.AddPropItem("Mesh File", "", PIT_FILE, "N3 Progressive Mesh File(*.N3PMesh)|*.N3PMesh||");
     m_LPShape.AddPropItem("Collision Mesh File", "", PIT_FILE, "N3 Vector Mesh(*.N3VMesh)|*.N3VMesh||");
-    m_LPShape.AddPropItem("Collision Mesh Delete", "Collision Mesh 삭제", PIT_BUTTON, "");
+    m_LPShape.AddPropItem("Collision Mesh Delete", "Collision Mesh Delete", PIT_BUTTON, "");
 
     m_LPShape.GetWindowRect(&rc);
     nH = m_LPShape.GetItemHeight(0) * m_LPShape.GetCount() + 4;
@@ -180,14 +180,14 @@ D3DTOP_BUMPENVMAP|D3DTOP_BUMPENVMAPLUMINANCE|D3DTOP_DOTPRODUCT|D3DTOP_MULTIPLYAD
     // 캐릭터
     m_LPChr.AddPropItem("Joint File", "", PIT_FILE, "N3 Joint File(*.N3Joint)|*.N3Joint||");
     m_LPChr.AddPropItem("Collision Mesh File", "", PIT_FILE, "N3 Vector Mesh(*.N3VMesh)|*.N3VMesh||");
-    m_LPChr.AddPropItem("Collision Mesh Delete", "Collision Mesh 삭제", PIT_BUTTON, "");
+    m_LPChr.AddPropItem("Collision Mesh Delete", "Collision Mesh Delete", PIT_BUTTON, "");
     //    m_LPChr.AddPropItem("Collision Skin File", "", PIT_FILE, "N3 Skin File(*.N3Skin)|*.N3Skin||");
-    //    m_LPChr.AddPropItem("Collision Skin Delete", "Collision Skin 삭제", PIT_BUTTON, "");
+    //    m_LPChr.AddPropItem("Collision Skin Delete", "Collision Skin Delete", PIT_BUTTON, "");
 
-    m_LPChr.AddPropItem("Part Add", "Part 추가", PIT_BUTTON, "");
-    m_LPChr.AddPropItem("Part Delete", "Part 삭제", PIT_BUTTON, "");
-    m_LPChr.AddPropItem("Plug Add", "Plug 추가", PIT_BUTTON, "");
-    m_LPChr.AddPropItem("Plug Delete", "Plug 삭제", PIT_BUTTON, "");
+    m_LPChr.AddPropItem("Part Add", "Part Add", PIT_BUTTON, "");
+    m_LPChr.AddPropItem("Part Delete", "Part Delete", PIT_BUTTON, "");
+    m_LPChr.AddPropItem("Plug Add", "Plug Add", PIT_BUTTON, "");
+    m_LPChr.AddPropItem("Plug Delete", "Plug Delete", PIT_BUTTON, "");
 
     m_CBChrPart.ResetContent();
     m_CBChrPart.SetCurSel(0);
@@ -199,17 +199,17 @@ D3DTOP_BUMPENVMAP|D3DTOP_BUMPENVMAPLUMINANCE|D3DTOP_DOTPRODUCT|D3DTOP_MULTIPLYAD
     }
     m_CBChrLOD.SetCurSel(0);
 
-    m_LPCPart.AddPropItem("Part Type", "", PIT_COMBO, "머리카락|얼굴|상체|하체|손|발|??|");
+    m_LPCPart.AddPropItem("Part Type", "", PIT_COMBO, "Hair|Face|Upper body|Lower body|Hands|Feet|??|");
     m_LPCPart.AddPropItem("Texture File", "", PIT_FILE,
-                          "Texture 로 쓸수 있는 그림 파일(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
+                          "Texture Picture file that can be written as(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
     //    m_LPCPart.AddPropItem("Mesh File", "", PIT_FILE, "N3 Indexed Mesh File(*.N3IMesh)|*.N3IMesh||");
     //    m_LPCPart.AddPropItem("Skin File", "", PIT_FILE, "N3 Skin File(*.N3Skin)|*.N3Skin||");
 
-    m_LPCPlug.AddPropItem("Plug Type", "", PIT_COMBO, "오른손장착|왼손장착|양손장착");
+    m_LPCPlug.AddPropItem("Plug Type", "", PIT_COMBO, "Right hand mounting | Left hand mounting | Both hands mounting");
     m_LPCPlug.AddPropItem("Plug Joint", "", PIT_EDIT, "");
     m_LPCPlug.AddPropItem("Plug Mesh File", "", PIT_FILE, "N3 Progressive Mesh File(*.N3PMesh)|*.N3PMesh||");
     m_LPCPlug.AddPropItem("Plug Texture File", "", PIT_FILE,
-                          "Texture 로 쓸수 있는 그림 파일(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
+                          "Texture Picture file that can be written as(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
     m_LPCPlug.AddPropItem("Plug Offset", "", PIT_EDIT, "");
     m_LPCPlug.AddPropItem("Plug Rotation", "Reset", PIT_BUTTON, "");
     m_LPCPlug.AddPropItem("Plug Scale", "", PIT_EDIT, "");
@@ -225,7 +225,7 @@ D3DTOP_BUMPENVMAP|D3DTOP_BUMPENVMAPLUMINANCE|D3DTOP_DOTPRODUCT|D3DTOP_MULTIPLYAD
     m_LPCPlug.GetWindowRect(&rc);
     nH = m_LPCPlug.GetItemHeight(0) * m_LPCPlug.GetCount() + 4;
     m_LPCPlug.SetWindowPos(NULL, 0, 0, rc.Width(), nH, SWP_NOZORDER | SWP_NOMOVE);
-    // 캐릭터
+    // character
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     int nW = 100;
@@ -339,7 +339,7 @@ void CDlgBase::UpdateInfo() {
         if (pItem) {
             pItem->m_curValue.Format("%f", pC->m_Data.fFP);
         }
-        pItem = m_LPCamera.GetPropItem("안개 사용");
+        pItem = m_LPCamera.GetPropItem("Use fog");
         if (pItem) {
             if (pC->m_bFogUse) {
                 pItem->m_curValue = "On";
@@ -349,7 +349,7 @@ void CDlgBase::UpdateInfo() {
         }
         //        pItem = m_LPCamera.GetPropItem("안개 밀도");
         //        if(pItem) pItem->m_curValue.Format("%f", pC->m_fFogDensity);
-        pItem = m_LPCamera.GetPropItem("안개 색");
+        pItem = m_LPCamera.GetPropItem("Fog color");
         if (pItem) {
             pItem->D3DColorSet(pC->m_FogColor);
         }
@@ -444,7 +444,7 @@ void CDlgBase::UpdateInfo() {
         CN3Shape *      pS = (CN3Shape *)pBase;
         CPropertyItem * pItem;
 
-        pItem = m_LPShape.GetPropItem("소속");
+        pItem = m_LPShape.GetPropItem("Belong");
         if (pItem) {
             pItem->m_curValue.Format("%d", pS->m_iBelong);
         }
@@ -462,7 +462,7 @@ void CDlgBase::UpdateInfo() {
         }
         pItem = m_LPShape.GetPropItem("NPC Status");
         if (pItem) {
-            pItem->m_curValue.Format("%d", pS->m_iNPC_Status); // NPC 로 쓰는 오브젝트일 경우 NPC Type
+            pItem->m_curValue.Format("%d", pS->m_iNPC_Status); // NPC Type if the object is used as an NPC
         }
 
         int nPartCount = pS->PartCount();
@@ -659,7 +659,7 @@ void CDlgBase::UpdateInfo() {
             //            }
         }
 
-        // 붙이는 오브젝트(무기, 장신구 등...) 정보 표시
+        // Display information about attached objects (weapons, accessories, etc.)
         int nPlug = m_CBChrPlug.GetCurSel();
         int nPlugCount = pC->PlugCount();
         m_CBChrPlug.ResetContent();
@@ -834,7 +834,7 @@ BOOL CDlgBase::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                 pC->m_Data.fNP = (float)atof(pItem->m_curValue);
             } else if (pItem->m_propName == "Far Plane") {
                 pC->m_Data.fFP = (float)atof(pItem->m_curValue);
-            } else if (pItem->m_propName == "안개 사용") {
+            } else if (pItem->m_propName == "Use fog") {
                 if (lstrcmpi(pItem->m_curValue, "on") == 0) {
                     pC->m_bFogUse = TRUE;
                 } else {
@@ -842,7 +842,7 @@ BOOL CDlgBase::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                 }
             }
             //            else if(pItem->m_propName == "안개 밀도") pC->m_fFogDensity = (float)atof(pItem->m_curValue);
-            else if (pItem->m_propName == "안개 색") {
+            else if (pItem->m_propName == "Fog color") {
                 pC->m_FogColor = pItem->D3DColorGet();
             }
             //            else if(pItem->m_propName == "안개 시작") pC->m_fFogStart = (float)atof(pItem->m_curValue);
@@ -896,7 +896,7 @@ BOOL CDlgBase::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
             CN3SPart *      pPD = pS->Part(nPart);
             CPropertyItem * pItem = (CPropertyItem *)lParam;
 
-            if (pItem->m_propName == "소속" && pItem->m_curValue.GetLength() > 0) {
+            if (pItem->m_propName == "Belong" && pItem->m_curValue.GetLength() > 0) {
                 pS->m_iBelong = atoi(pItem->m_curValue);
             } else if (pItem->m_propName == "Event ID" && pItem->m_curValue.GetLength() > 0) {
                 pS->m_iEventID = atoi(pItem->m_curValue);
@@ -905,7 +905,7 @@ BOOL CDlgBase::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
             } else if (pItem->m_propName == "NPC ID" && pItem->m_curValue.GetLength() > 0) {
                 pS->m_iNPC_ID = atoi(pItem->m_curValue);
             } else if (pItem->m_propName == "NPC Status" && pItem->m_curValue.GetLength() > 0) {
-                pS->m_iNPC_Status = atoi(pItem->m_curValue); // NPC 로 쓰는 오브젝트일 경우 NPC Type
+                pS->m_iNPC_Status = atoi(pItem->m_curValue); // NPC Type if the object is used as an NPC
             }
 
             else if (pItem->m_propName == "Collision Mesh File" && pItem->m_curValue.GetLength() > 0) {
@@ -1023,12 +1023,12 @@ BOOL CDlgBase::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                 if (pItem->m_propName == "Part Type") {
                     CN3CPart * pPD = pC->Part(nPart);
                     if (pPD) {
-                        //del m_Type            if(pItem->m_curValue == "머리카락") pPD->m_Type = PART_HAIR;
-                        //del m_Type            else if(pItem->m_curValue == "얼굴") pPD->m_Type = PART_FACE;
-                        //del m_Type            else if(pItem->m_curValue == "상체") pPD->m_Type = PART_UPPER;
-                        //del m_Type            else if(pItem->m_curValue == "하체") pPD->m_Type = PART_LOWER;
-                        //del m_Type            else if(pItem->m_curValue == "손") pPD->m_Type = PART_HAND;
-                        //del m_Type            else if(pItem->m_curValue == "발") pPD->m_Type = PART_FOOT;
+                        //del m_Type            if(pItem->m_curValue == "Hair") pPD->m_Type = PART_HAIR;
+                        //del m_Type            else if(pItem->m_curValue == "Face") pPD->m_Type = PART_FACE;
+                        //del m_Type            else if(pItem->m_curValue == "Upper body") pPD->m_Type = PART_UPPER;
+                        //del m_Type            else if(pItem->m_curValue == "Lower body") pPD->m_Type = PART_LOWER;
+                        //del m_Type            else if(pItem->m_curValue == "Hand") pPD->m_Type = PART_HAND;
+                        //del m_Type            else if(pItem->m_curValue == "Foot") pPD->m_Type = PART_FOOT;
                         //del m_Type            else if(pItem->m_curValue == "??") pPD->m_Type = PART_UNKNOWN;
                     }
                     this->UpdateInfo();
@@ -1067,7 +1067,7 @@ BOOL CDlgBase::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                 CN3CPlugBase * pPlug = pC->Plug(nPlug);
 
                 if (pItem->m_propName == "Plug Joint") {
-                    int        nJI = atoi(pItem->m_curValue); // Joint Index 가 영역을 벗어나지 못하도록...
+                    int        nJI = atoi(pItem->m_curValue); // Prevent the Joint Index from leaving the area...
                     int        nJC = 0;
                     CN3Joint * pJ = pC->Joint();
                     if (pJ) {
@@ -1160,7 +1160,7 @@ void CDlgBase::OnChangeEName() {
     }
     if (pBase != NULL) {
         CString str;
-        GetDlgItemText(IDC_E_NAME, str); // 이름 바꾸기..
+        GetDlgItemText(IDC_E_NAME, str); // Change name...
         pBase->m_szName = str;
     }
 }
