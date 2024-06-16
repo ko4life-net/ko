@@ -1055,7 +1055,11 @@ typedef struct __TABLE_PLAYER_LOOKS // NPC, Mob 모습 관한 리소스 레코드...
     std::string szName;       // 캐릭터 이름
     std::string szJointFN;    // 관절 파일 이름
     std::string szAniFN;      // 에니메이션 파일 이름
-    std::string szPartFNs[7]; // 각 Character Part - 상체, 하체, 머리, 팔, 다리, 머리카락, 망토
+    std::string szPartFNs[10]; // 각 Character Part - 상체, 하체, 머리, 팔, 다리, 머리카락, 망토
+    std::string skipn3cskin0;
+    std::string skipn3char0;
+    std::string skipFXPlug;
+    int         iunknownplooks0;
 
     int iJointRH;    // 오른손 끝 관절번호
     int iJointLH;    // 왼손 끝 관절번호
@@ -1072,7 +1076,12 @@ typedef struct __TABLE_PLAYER_LOOKS // NPC, Mob 모습 관한 리소스 레코드...
     int iSndID_Breathe0;
     int iSndID_Breathe1;
     int iSndID_Reserved0;
+    int iunknownplooks1; // not sure if this one is supposed to be here
     int iSndID_Reserved1;
+    int iunknownplooks2; // not sure if this one is supposed to be here 
+    BYTE byunknownplooks1;
+    BYTE byunknownplooks2;
+    BYTE byunknownplooks3;
 } TABLE_PLAYER;
 
 typedef struct __TABLE_EXCHANGE_QUEST {
@@ -1129,11 +1138,13 @@ typedef struct __TABLE_UPC_SKILL {
     int   iCastTime;   // 캐스팅 시간
     int   iReCastTime; // 다시 캐스팅할때까지 걸리는 시간.
 
-    float fUnkown1;        // TODO: implement
+    float fUnkown1;        // TODO: implement does this have to do with cooldown timers ??
+    float fUnkown2;        // TODO: implement does this have to do with cooldown timers ??
     int   iPercentSuccess; // 성공률
     DWORD dw1stTableType;  // 첫번째 타입.
     DWORD dw2ndTableType;  // 두번째 타입.
     int   iValidDist;      // 유효거리
+    int   iUnkown1;        // TODO: implement 
 
 } TABLE_UPC_ATTACK_B;
 
@@ -1160,6 +1171,7 @@ typedef struct __TABLE_UPC_SKILL_TYPE_2 {
 
 typedef struct __TABLE_UPC_SKILL_TYPE_3 {
     DWORD dwID; // SKILL 고유 ID
+    int   iRadius;  // TODO: Implement yo!
     int   iDDType;
     int   iStartDamage;
     int   iDuraDamage;
@@ -1170,14 +1182,18 @@ typedef struct __TABLE_UPC_SKILL_TYPE_3 {
 typedef struct __TABLE_UPC_SKILL_TYPE_4 {
     DWORD dwID;      // 일련번호
     int   iBuffType; // 버프타입
+    int   iRadius;          // TODO: implement
     int   iDuration;
     int   iAttackSpeed;     // 공격속도
     int   iMoveSpeed;       // 이동속도
     int   iAC;              // 방어력
+    int   iACPCT;           // TODO: implement
     int   iAttack;          // 공격력
+    int   iMagicAttack;     // TODO: implement
     int   iMaxHP;           // MAXHP
     int   iMaxHPPct;        // TODO: implement
     int   iMaxMP;           // TODO: implement
+    int   iMaxMPPct;        // TODO: implement
     int   iStr;             // 힘
     int   iSta;             // 체력
     int   iDex;             // 민첩
@@ -1189,6 +1205,7 @@ typedef struct __TABLE_UPC_SKILL_TYPE_4 {
     int   iMagicResist;     // 마법저항
     int   iDeseaseResist;   // 저주저항
     int   iPoisonResist;    // 독저항
+    int   iScrollMoveSpeed; // TODO: implement
 } TABLE_UPC_SKILL_TYPE_4;
 
 typedef struct __TABLE_UPC_SKILL_TYPE_5 {

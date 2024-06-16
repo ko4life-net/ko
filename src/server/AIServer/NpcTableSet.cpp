@@ -88,7 +88,7 @@ void CNpcTableSet::DoFieldExchange(CFieldExchange * pFX) {
     RFX_Long(pFX, _T("[iWeapon2]"), m_iWeapon2);
     RFX_Byte(pFX, _T("[byGroup]"), m_byGroup);
     RFX_Byte(pFX, _T("[byActType]"), m_byActType);
-    RFX_Byte(pFX, _T("[byType]"), m_byType);
+    RFX_Int(pFX, _T("[byType]"), m_byType);
     RFX_Byte(pFX, _T("[byFamily]"), m_byFamily);
     RFX_Byte(pFX, _T("[byRank]"), m_byRank);
     RFX_Byte(pFX, _T("[byTitle]"), m_byTitle);

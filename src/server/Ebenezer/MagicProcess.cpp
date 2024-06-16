@@ -712,30 +712,33 @@ _MAGIC_TABLE * CMagicProcess::IsAvailable(int magicid, int tid, int sid, BYTE ty
             goto fail_return;
         }
 
-        if (pTable->bType1 == 1) { // Weapons verification in case of COMBO attack (another hacking prevention).
+        if (pTable->bType1 == 1)
+        { // Weapons verification in case of COMBO attack (another hacking prevention).
             if (pTable->sSkill == 1055 ||
-                pTable->sSkill == 2055) {       // Weapons verification in case of DUAL ATTACK (type 1)!
-                _ITEM_TABLE * pLeftHand = NULL; // Get item info for left hand.
+                pTable->sSkill == 2055) 
+            {        // Weapons verification in case of DUAL ATTACK (type 1)!
+                _ITEM_TABLE * pLeftHand = NULL;  // Get item info for left hand.
+                _ITEM_TABLE * pRightHand = NULL; // Get item info for right hand
                 pLeftHand = m_pMain->m_ItemtableArray.GetData(m_pSrcUser->m_pUserData->m_sItemArray[LEFTHAND].nNum);
-                if (!pLeftHand) {
-                    return NULL;
-                }
-
-                _ITEM_TABLE * pRightHand = NULL; // Get item info for right hand.
                 pRightHand = m_pMain->m_ItemtableArray.GetData(m_pSrcUser->m_pUserData->m_sItemArray[RIGHTHAND].nNum);
-                if (!pRightHand) {
-                    return NULL;
+                if (pLeftHand != nullptr) {
+                    int left_index = pLeftHand->m_bKind/* / 10*/;
+                    if ((left_index != 21/*WEAPON_SWORD*/ && left_index != 31/*WEAPON_AXE*/ && left_index != 41/*WEAPON_MACE*/)) {
+                        return NULL;
+                    }
                 }
-
-                int left_index = pLeftHand->m_bKind / 10;
-                int right_index = pRightHand->m_bKind / 10;
-
-                if ((left_index != WEAPON_SWORD && left_index != WEAPON_AXE && left_index != WEAPON_MACE) &&
-                    (right_index != WEAPON_SWORD && right_index != WEAPON_AXE && right_index != WEAPON_MACE)) {
-                    return NULL;
+                if (pLeftHand == nullptr && pRightHand != nullptr) 
+                {
+                    int right_index = pRightHand->m_bKind /* / 10*/;
+                    if (right_index != 22 /*ITEM_CLASS_SWORD_2H*/ && right_index != 32 /*ITEM_CLASS_AXE_2H*/ &&
+                        right_index != 42 /*ITEM_CLASS_MACE_2H*/ && right_index != 52 /*ITEM_CLASS_POLEARM*/) 
+                    {
+                        return NULL;
+                    }
                 }
-            } else if (pTable->sSkill == 1056 ||
-                       pTable->sSkill == 2056) { // Weapons verification in case of DOUBLE ATTACK !
+            }
+                else if (pTable->sSkill == 1056 || pTable->sSkill == 2056)  // todo
+                { // Weapons verification in case of DOUBLE ATTACK !
                 _ITEM_TABLE * pRightHand = NULL; // Get item info for right hand.
                 pRightHand = m_pMain->m_ItemtableArray.GetData(m_pSrcUser->m_pUserData->m_sItemArray[RIGHTHAND].nNum);
                 if (!pRightHand) {

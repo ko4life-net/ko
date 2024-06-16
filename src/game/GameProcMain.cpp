@@ -4173,7 +4173,7 @@ void CGameProcMain::MsgSend_Warp() // 워프 - 존이동이 될수도 있다..
     int  iOffset = 0;
 
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_WARP_LIST);
-    CAPISocket::MP_AddByte(byBuff, iOffset, WI.iID); // 워프 아이디 보내기...
+    CAPISocket::MP_AddShort(byBuff, iOffset, WI.iID); // 워프 아이디 보내기...
     s_pSocket->Send(byBuff, iOffset);
 }
 
