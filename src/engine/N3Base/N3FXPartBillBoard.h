@@ -38,6 +38,8 @@ class CN3FXPartBillBoard : public CN3FXPartBase {
     float      m_fRotBillBoardY;
     float      m_fRotBillBoardZ;
 
+    bool       m_bRotationRate; // Needs Implementation
+    bool       m_bOnScreen;     // Needs Implementation
   protected:
     __Vector3 m_vUnit[4];
 

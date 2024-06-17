@@ -27,6 +27,7 @@ class CN3FXPartMesh : public CN3FXPartBase {
 
     bool  m_bTexLoop;
     float m_fMeshFPS;
+    bool m_bShapeLoop;  // Needs Implementation
 
   protected:
     bool IsDead();
