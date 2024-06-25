@@ -6,7 +6,7 @@
 
 //////////////////////////////////////////////////////////////////////
 
-class CUICmdEditDlg : public CN3UIBase {
+class CUICmdEdit : public CN3UIBase {
   public:
     CN3UIString * m_pText_Title;
     CN3UIButton * m_pBtn_Ok;
@@ -15,12 +15,12 @@ class CUICmdEditDlg : public CN3UIBase {
     std::string   m_szArg1;
 
   public:
-    void SetVisible(bool bVisible);
+    void SetVisible(bool bVisible) override;
     void Open(std::string msg);
 
     bool Load(HANDLE hFile);
     bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg);
 
-    CUICmdEditDlg();
-    virtual ~CUICmdEditDlg();
+    CUICmdEdit();
+    virtual ~CUICmdEdit();
 };
