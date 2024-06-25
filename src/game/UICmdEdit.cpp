@@ -14,11 +14,11 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CUICmdEditDlg::CUICmdEditDlg() {}
+CUICmdEdit::CUICmdEdit() {}
 
-CUICmdEditDlg::~CUICmdEditDlg() {}
+CUICmdEdit::~CUICmdEdit() {}
 
-bool CUICmdEditDlg::Load(HANDLE hFile) {
+bool CUICmdEdit::Load(HANDLE hFile) {
     if (CN3UIBase::Load(hFile) == false) {
         return false;
     }
@@ -34,11 +34,11 @@ bool CUICmdEditDlg::Load(HANDLE hFile) {
     return true;
 }
 
-bool CUICmdEditDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
+bool CUICmdEdit::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     if (dwMsg == UIMSG_BUTTON_CLICK) {
         if (pSender->m_szID == "btn_ok") {
             m_szArg1 = m_pEdit_Box->GetString();
-            std::string tempCmdStr = "/" + m_pText_Title->GetString() + " " + m_szArg1;
+            std::string tempCmdStr = m_pText_Title->GetString() + " " + m_szArg1;
             CGameProcedure::s_pProcMain->ParseChattingCommand(tempCmdStr);
 
             SetVisible(false);
@@ -53,9 +53,9 @@ bool CUICmdEditDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     return true;
 }
 
-void CUICmdEditDlg::Open(std::string msg) {
+void CUICmdEdit::Open(std::string msg) {
     if (!msg.empty()) {
-        //m_pText_Title->SetString(msg);
+        m_pText_Title->SetString("/"+ msg);
         m_pEdit_Box->SetString("");
     }
 
@@ -63,7 +63,7 @@ void CUICmdEditDlg::Open(std::string msg) {
     SetVisible(true);
 }
 
-void CUICmdEditDlg::SetVisible(bool bVisible) {
+void CUICmdEdit::SetVisible(bool bVisible) {
     if (bVisible == this->IsVisible()) {
         return;
     }

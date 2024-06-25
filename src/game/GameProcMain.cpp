@@ -78,79 +78,6 @@
 #include "N3Base/N3SndObjStream.h"
 #include "N3Base/N3SndMgr.h"
 #include "N3Base/N3TableBase.h"
-
-enum e_ChatCmd {
-    CMD_WHISPER,
-    CMD_TOWN,
-    CMD_EXIT,
-    CMD_GREETING,
-    CMD_GREETING2,
-    CMD_GREETING3,
-    CMD_PROVOKE,
-    CMD_PROVOKE2,
-    CMD_PROVOKE3,
-    CMD_GAME_SAVE,
-    CMD_RECOMMEND,
-    CMD_INDIVIDUAL_BATTLE,
-    CMDSIT_STAND,
-    CMD_WALK_RUN,
-    CMD_LOCATION,
-
-    CMD_TRADE,
-    CMD_FORBIDTRADE,
-    CMD_PERMITTRADE,
-    CMD_MERCHANT,
-
-    CMD_PARTY,
-    CMD_LEAVEPARTY,
-    CMD_RECRUITPARTY,
-    CMD_SEEKING_PARTY,
-    CMD_FORBIDPARTY,
-    CMD_PERMITPARTY,
-
-    CMD_JOINCLAN,
-    CMD_WITHDRAWCLAN,
-    CMD_FIRECLAN,
-    CMD_COMMAND,
-    CMD_CLAN_WAR,
-    CMD_SURRENDER,
-    CMD_APPOINTVICECHIEF,
-    CMD_CLAN_CHAT,
-    CMD_CLAN_BATTLE,
-
-    CMD_CONFEDERACY,
-    CMD_BAN_KNIGHTS,
-    CMD_QUIT_KNIGHTS,
-    CMD_BASE,
-    CMD_DECLARATION,
-
-    CMD_VISIBLE,
-    CMD_INVISIBLE,
-    CMD_CLEAN,
-    CMD_RAINING,
-    CMD_SNOWING,
-    CMD_TIME,
-    CMD_CU_COUNT,
-    CMD_NOTICE,
-    CMD_ARREST,
-    CMD_FORBIDCONNECT,
-    CMD_FORBIDCHAT,
-    CMD_PERMITCHAT,
-    CMD_NOTICEALL,
-    CMD_CUTOFF,
-    CMD_VIEW,
-    CMD_UNVIEW,
-    CMD_FORBIDUSER,
-    CMD_SUMMONUSER,
-    CMD_ATTACKDISABLE,
-    CMD_ATTACKENABLE,
-    CMD_PLC,
-
-    CMD_COUNT,
-    CMD_UNKNOWN = 0xffffffff
-};
-static std::string s_szCmdMsg[CMD_COUNT]; // 게임상 명령어
-
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
@@ -181,8 +108,8 @@ CGameProcMain::CGameProcMain() // r기본 생성자.. 각 변수의 역활은 헤더 참조..
     m_pUIStateBarAndMiniMap = new CUIStateBar();
     m_pUIVar = new CUIVarious();
     m_pUICmd = new CUICmd();
-    m_pUICmdList = new CUICmdListDlg();
-    m_pUICmdEditDlg = new CUICmdEditDlg();
+    m_pUICmdList = new CUICmdList();
+    m_pUICmdEditDlg = new CUICmdEdit();
     m_pUITargetBar = new CUITargetBar();
     m_pUIHelp = new CUIHelp();
     m_pUINotice = new CUINotice();
@@ -324,31 +251,6 @@ void CGameProcMain::Init() {
     CGameProcedure::Init();
     m_pLightMgr->Release();
     s_pEng->SetDefaultLight(m_pLightMgr->Light(0), m_pLightMgr->Light(1), m_pLightMgr->Light(2));
-
-    int i = 0;
-    for (uint32_t resource = IDS_CMD_WHISPER; resource <= IDS_CMD_LOCATION; resource++) {
-        ::_LoadStringFromResource(resource, s_szCmdMsg[i++]);
-    }
-
-    for (uint32_t resource = IDS_CMD_TRADE; resource <= IDS_CMD_MERCHANT; resource++) {
-        ::_LoadStringFromResource(resource, s_szCmdMsg[i++]);
-    }
-
-    for (uint32_t resource = IDS_CMD_PARTY; resource <= IDS_CMD_PERMITPARTY; resource++) {
-        ::_LoadStringFromResource(resource, s_szCmdMsg[i++]);
-    }
-
-    for (uint32_t resource = IDS_CMD_JOINCLAN; resource <= IDS_CMD_CLAN_BATTLE; resource++) {
-        ::_LoadStringFromResource(resource, s_szCmdMsg[i++]);
-    }
-
-    for (uint32_t resource = IDS_CMD_CONFEDERACY; resource <= IDS_CMD_DECLARATION; resource++) {
-        ::_LoadStringFromResource(resource, s_szCmdMsg[i++]);
-    }
-
-    for (uint32_t resource = IDS_CMD_VISIBLE; resource <= IDS_CMD_PLC; resource++) {
-        ::_LoadStringFromResource(resource, s_szCmdMsg[i++]);
-    }
 
     s_SndMgr.ReleaseStreamObj(&(CGameProcedure::s_pSnd_BGM));
 
@@ -5028,19 +4930,26 @@ void CGameProcMain::MsgRecv_UserState(DataPack * pDataPack, int & iOffset) {
         }
     } else if (N3_SP_STATE_CHANGE_ACTION == eSP) // 크기 변함
     {
-        if (1 == iState) {
-            pBPC->AnimationAdd(ANI_GREETING0, true); // ???
-        } else if (2 == iState) {
-            pBPC->AnimationAdd(ANI_GREETING1, true); // ????
-        } else if (3 == iState) {
-            pBPC->AnimationAdd(ANI_GREETING2, true); // ????
-        } else if (11 == iState) {
-            pBPC->AnimationAdd(ANI_WAR_CRY0, true); // ????
-        } else if (12 == iState) {
-            pBPC->AnimationAdd(ANI_WAR_CRY1, true); // ????
-        } else if (13 == iState) {
-            pBPC->AnimationAdd(ANI_WAR_CRY2, true); // ????
-        }
+        switch (iState) {
+        case 1u:
+            pBPC->AnimationAdd(ANI_GREETING0, true); 
+            break;
+        case 2u:
+            pBPC->AnimationAdd(ANI_GREETING1, true);
+            break;
+        case 3u:
+            pBPC->AnimationAdd(ANI_GREETING2, true);
+            break;
+        case 11u:
+            pBPC->AnimationAdd(ANI_WAR_CRY1, true); 
+            break;
+        case 12u:
+            pBPC->AnimationAdd(ANI_WAR_CRY0, true);
+            break;
+        case 13u:
+            pBPC->AnimationAdd(ANI_WAR_CRY2, true);
+            break;
+		}
     }
 }
 
@@ -5643,7 +5552,11 @@ void CGameProcMain::ParseChattingCommand(const std::string & szCmd) {
     static BYTE byBuff[1024] = "";
     sscanf(szCmd.c_str(), "/%s %s %s %s", szCmds[0], szCmds[1], szCmds[2], szCmds[3]);
 
-    if (0 == lstrcmp(szCmds[0], "goto")) {
+    //upper command
+    std::transform(szCmds[0], szCmds[0] + std::strlen(szCmds[0]), szCmds[0],
+                [](unsigned char c) { return std::toupper(c); });
+
+    if (0 == lstrcmp(szCmds[0], "GOTO")) {
         float fX = (float)atof(szCmds[1]);
         float fZ = (float)atof(szCmds[2]);
 
@@ -5653,39 +5566,40 @@ void CGameProcMain::ParseChattingCommand(const std::string & szCmd) {
         CAPISocket::MP_AddWord(byBuff, iOffset, (fZ * 10));
 
         s_pSocket->Send(byBuff, iOffset);
-    } else if (0 == lstrcmp(szCmds[0], "systemgametimeon")) {
+    } else if (0 == lstrcmp(szCmds[0], "SYSTEMGAMETIMEON")) {
         if (m_pUIStateBarAndMiniMap) {
             m_pUIStateBarAndMiniMap->SetSystemTimeVisibility(true);
         }
-    } else if (0 == lstrcmp(szCmds[0], "systemgametimeoff")) {
+    } else if (0 == lstrcmp(szCmds[0], "SYSTEMGAMETIMEOFF")) {
         if (m_pUIStateBarAndMiniMap) {
             m_pUIStateBarAndMiniMap->SetSystemTimeVisibility(false);
         }
     }
 
-    e_ChatCmd eCmd = CMD_UNKNOWN;
-    for (int i = 0; i < CMD_COUNT; i++) {
-        if (0 == lstrcmpi(szCmds[0], s_szCmdMsg[i].c_str())) {
-            eCmd = (e_ChatCmd)i;
-            break;
-        }
+    int eCmd = -1;
+
+    if (m_pUICmdList->g_commandMappings.count(szCmds[0]) > 0) {
+        eCmd = m_pUICmdList->g_commandMappings[szCmds[0]];
     }
 
     switch (eCmd) {
-    case CMD_WHISPER: {
-        this->MsgSend_ChatSelectTarget(szCmds[1]); // 일대일 채팅 상대 정하기.
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //PRIVATE
+    ////////////////////////////////////////////////////////////////////////////////////////
+    case iPrivateCommand ::CMD_WHISPER: {
+        this->MsgSend_ChatSelectTarget(szCmds[1]);
     } break;
 
-    case CMD_TOWN: {
+    case iPrivateCommand::CMD_TOWN: {
         if (s_pPlayer->m_bStun) {
-            return; // 기절해 있음 못함..
+            return;
         }
-        if (s_pPlayer->m_InfoBase.iHP * 2 >= s_pPlayer->m_InfoBase.iHPMax) // HP가 반 이상 있어야 한다.
+        if (s_pPlayer->m_InfoBase.iHP * 2 >= s_pPlayer->m_InfoBase.iHPMax) 
         {
             int iOffset = 0;
-            CAPISocket::MP_AddWord(byBuff, iOffset, N3_HOME); // 마을로 가기...
+            CAPISocket::MP_AddWord(byBuff, iOffset, N3_HOME); 
             s_pSocket->Send(byBuff, iOffset);
-        } else // HP가 반 이상 있어야 한다.
+        } else 
         {
             std::string szMsg;
             ::_LoadStringFromResource(IDS_ERR_GOTO_TOWN_OUT_OF_HP, szMsg);
@@ -5693,11 +5607,60 @@ void CGameProcMain::ParseChattingCommand(const std::string & szCmd) {
         }
     } break;
 
-    case CMD_TRADE: {
+    case iPrivateCommand::CMD_EXIT: {
+        PostQuitMessage(0);
+    } break;
+
+    case iPrivateCommand::CMD_GREETING:
+    case iPrivateCommand::CMD_GREETING2:
+    case iPrivateCommand::CMD_GREETING3: {
+        if (s_pPlayer->State() == PSA_BASIC && s_pPlayer->StateMove() == PSM_STOP) {
+            this->MsgSend_StateChange(N3_SP_STATE_CHANGE_ACTION, 1 + (eCmd - CMD_GREETING));
+        }
+    } break;
+
+    case iPrivateCommand::CMD_PROVOKE:
+    case iPrivateCommand::CMD_PROVOKE2:
+    case iPrivateCommand::CMD_PROVOKE3: {
+        if (s_pPlayer->State() == PSA_BASIC && s_pPlayer->StateMove() == PSM_STOP) {
+            this->MsgSend_StateChange(N3_SP_STATE_CHANGE_ACTION, 11 + (eCmd - CMD_PROVOKE));
+        }
+    } break;
+
+    case iPrivateCommand::CMD_GAME_SAVE: {
+        if (m_fRequestGameSave > 300.0f) {
+            BYTE byBuff[4];                                              
+            int  iOffset = 0;                                             
+            s_pSocket->MP_AddByte(byBuff, iOffset, N3_REQUEST_GAME_SAVE); // Save request command..
+            s_pSocket->Send(byBuff, iOffset);                             
+            m_fRequestGameSave = 0.0f;
+
+            std::string szMsg;
+            ::_LoadStringFromResource(IDS_REQUEST_GAME_SAVE, szMsg);
+            this->MsgOutput(szMsg, 0xffffff00);
+        } else {
+            char        szBuf[256];
+            std::string szMsg;
+            ::_LoadStringFromResource(IDS_DELAY_GAME_SAVE, szMsg);
+            sprintf(szBuf, szMsg.c_str(), 5);
+            this->MsgOutput(szBuf, 0xffffff00);
+        }
+    } break;
+
+    case iPrivateCommand::CMD_RECOMMEND: {
+        //TODO
+    } break;
+    case iPrivateCommand::CMD_INDIVIDUAL_BATTLE: {
+        //TODO
+    } break;
+    ////////////////////////////////////////////////////////////////////////////////////////
+    // TRADE
+    ////////////////////////////////////////////////////////////////////////////////////////
+    case iTradeCommand::CMD_TRADE: {
         CPlayerOther * pOPC = s_pOPMgr->UPCGetByID(s_pPlayer->m_iIDTarget, true);
         if (pOPC && (pOPC->Position() - s_pPlayer->Position()).Magnitude() < (pOPC->Height() + 5.0f) &&
             !m_pUITransactionDlg
-                 ->IsVisible()) // 타겟으로 다른 플레이어가 잡혀있고..  가까이 있으면.. // 개인간 아이템 거래.. // 상거래 중이 아니면..
+                 ->IsVisible()) // If another player is targeted and nearby.. // Individual item trade.. // If not in trade session..
         {
             std::string szMsg;
             ::_LoadStringFromResource(IDS_PERSONAL_TRADE_REQUEST, szMsg);
@@ -5719,30 +5682,38 @@ void CGameProcMain::ParseChattingCommand(const std::string & szCmd) {
 
             m_pSubProcPerTrade->EnterWaitMsgFromServerStatePerTradeReq();
         }
-    } break;
 
-    case CMD_EXIT: {
-        PostQuitMessage(0);
     } break;
+    case iTradeCommand::CMD_FORBIDTRADE:
+        //TODO
+        break;
 
-    case CMD_PARTY: {
+    case iTradeCommand::CMD_PERMITTRADE:
+        //TODO
+        break;
+
+    case iTradeCommand::CMD_MERCHANT:
+        //TODO
+        break;
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //PARTY
+    ////////////////////////////////////////////////////////////////////////////////////////
+    case iPartyCommand::CMD_PARTY: {
         CPlayerBase * pTarget = s_pOPMgr->UPCGetByID(s_pPlayer->m_iIDTarget, true);
         if (pTarget) {
             std::string szMsg;
             if (this->MsgSend_PartyOrForceCreate(0, pTarget->IDString())) {
-                ::_LoadStringFromResource(IDS_PARTY_INVITE, szMsg); // 파티 요청..
+                ::_LoadStringFromResource(IDS_PARTY_INVITE, szMsg); // Party request..
             } else {
-                ::_LoadStringFromResource(IDS_PARTY_INVITE_FAILED, szMsg); // 파티 초대 실패
+                ::_LoadStringFromResource(IDS_PARTY_INVITE_FAILED, szMsg); // Party invitation failed
             }
             this->MsgOutput(pTarget->IDString() + szMsg, 0xffffff00);
         }
     } break;
-
-    case CMD_LEAVEPARTY: {
-        this->MsgSend_PartyOrForceLeave(0); // 파티 요청..
+    case iPartyCommand::CMD_LEAVEPARTY: {
+        this->MsgSend_PartyOrForceLeave(0); // Party request..
     } break;
-
-    case CMD_RECRUITPARTY: {
+    case iPartyCommand::CMD_SEEKING_PARTY: {
         if (m_pUIPartyBBS) {
             if (s_pPlayer->m_bRecruitParty) {
                 m_pUIPartyBBS->MsgSend_RegisterCancel();
@@ -5754,133 +5725,202 @@ void CGameProcMain::ParseChattingCommand(const std::string & szCmd) {
         //            if(m_pUIPartyBBS && !m_pUIPartyBBS->IsVisible())
         //            m_pUIPartyBBS->MsgSend_RefreshData(0);
     } break;
-
-    case CMD_JOINCLAN: {
+    case iPartyCommand::CMD_FORBIDPARTY:
+        //TODO
+        break;
+    case iPartyCommand::CMD_PERMITPARTY:
+        //TODO
+        break;
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //CLAN
+    ////////////////////////////////////////////////////////////////////////////////////////
+    case iClanCommand::CMD_JOINCLAN: {
         if (s_pPlayer->m_InfoExt.eKnightsDuty == KNIGHTS_DUTY_CHIEF ||
             s_pPlayer->m_InfoExt.eKnightsDuty == KNIGHTS_DUTY_VICECHIEF) {
             this->MsgSend_KnightsJoin(s_pPlayer->m_iIDTarget);
         }
     } break;
-
-    case CMD_WITHDRAWCLAN: {
+    case iClanCommand::CMD_WITHDRAWCLAN: {
         this->MsgSend_KnightsWithdraw();
     } break;
-
-    case CMD_FIRECLAN: {
+    case iClanCommand::CMD_FIRECLAN: {
         if (s_pPlayer->m_InfoExt.eKnightsDuty == KNIGHTS_DUTY_CHIEF) {
             std::string szName = szCmds[1];
             MsgSend_KnightsLeave(szName);
         }
     } break;
-
-    case CMD_APPOINTVICECHIEF: {
+    case iClanCommand::CMD_COMMAND: {
+        //TODO
+    } break;
+    case iClanCommand::CMD_CLAN_WAR: {
+        //TODO
+    } break;
+    case iClanCommand::CMD_SURRENDER: {
+        //TODO
+    } break;
+    case iClanCommand::CMD_APPOINTVICECHIEF: {
         if (s_pPlayer->m_InfoExt.eKnightsDuty == KNIGHTS_DUTY_CHIEF) {
             std::string szName = szCmds[1];
             MsgSend_KnightsAppointViceChief(szName);
         }
     } break;
-
-    case CMD_GREETING:
-    case CMD_GREETING2:
-    case CMD_GREETING3: {
-        if (s_pPlayer->State() == PSA_BASIC && s_pPlayer->StateMove() == PSM_STOP) {
-            this->MsgSend_StateChange(N3_SP_STATE_CHANGE_ACTION, 1 + (eCmd - CMD_GREETING));
-        }
+    case iClanCommand::CMD_CLAN_CHAT: {
+        //TODO
     } break;
-
-    case CMD_PROVOKE:
-    case CMD_PROVOKE2:
-    case CMD_PROVOKE3: {
-        if (s_pPlayer->State() == PSA_BASIC && s_pPlayer->StateMove() == PSM_STOP) {
-            this->MsgSend_StateChange(N3_SP_STATE_CHANGE_ACTION, 11 + (eCmd - CMD_PROVOKE));
-        }
+    case iClanCommand::CMD_CLAN_BATTLE: {
+        //TODO
     } break;
-
-    case CMD_VISIBLE: {
-        this->MsgSend_StateChange(N3_SP_STATE_CHANGE_VISIBLE, 0);
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //KNIGHTS
+    ////////////////////////////////////////////////////////////////////////////////////////
+    case iKnightsCommand::CMD_CONFEDERACY: {
+        //TODO 1298
     } break;
-
-    case CMD_INVISIBLE: {
-        this->MsgSend_StateChange(N3_SP_STATE_CHANGE_VISIBLE, 255);
+    case iKnightsCommand::CMD_BAN_KNIGHTS: {
+        //TODO 1298
     } break;
-
-    case CMD_CLEAN: {
+    case iKnightsCommand::CMD_QUIT_KNIGHTS: {
+        //TODO 1298
+    } break;
+    case iKnightsCommand::CMD_BASE: {
+        //TODO 1298
+    } break;
+    case iKnightsCommand::CMD_DECLARATION: {
+        //TODO 1298
+    } break;
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //GUARDIAN MONSTER
+    ////////////////////////////////////////////////////////////////////////////////////////
+    case iGuardianCommand::CMD_GUARD_HIDE: {
+        //TODO 1298
+    } break; 
+    case iGuardianCommand::CMD_GUARD: {
+        //TODO 1298
+    } break;
+    case iGuardianCommand::CMD_GUARD_DEFEND: {
+        //TODO 1298
+    } break;
+    case iGuardianCommand::CMD_GUARD_LOOK_OUT: {
+        //TODO 1298
+    } break;
+    case iGuardianCommand::CMD_GUARD_FORMATION: {
+        //TODO 1298
+    } break;
+    case iGuardianCommand::CMD_GUARD_REST: {
+        //TODO 1298
+    } break;
+    case iGuardianCommand::CMD_GUARD_DESTROY: {
+        //TODO 1298
+    } break;
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //KING
+    ////////////////////////////////////////////////////////////////////////////////////////
+    case iKingCommand::CMD_KING_ROYALORDER: {
+        //TODO 1298
+    } break;
+    case iKingCommand::CMD_KING_PRIZE: {
+        //TODO 1298
+    } break;
+    case iKingCommand::CMD_KING_EXPRATE: {
+        //TODO 1298
+    } break;
+    case iKingCommand::CMD_KING_DROPRATE: {
+        //TODO 1298
+    } break;
+    case iKingCommand::CMD_KING_RAIN: {
+        //TODO 1298
+    } break; 
+    case iKingCommand::CMD_KING_SNOW: {
+        //TODO 1298
+    } break;
+    case iKingCommand::CMD_KING_CLEAR: {
+        //TODO 1298
+    } break;
+    case iKingCommand::CMD_KING_REWARD: {
+        //TODO 1298
+    } break;
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //GM
+    ////////////////////////////////////////////////////////////////////////////////////////
+    case iGmCommand::CMD_VISIBLE: {
+    } break;
+    case iGmCommand::CMD_INVISIBLE: {
+    } break;
+    case iGmCommand::CMD_CLEAN: {
         int iPercent = atoi(szCmds[1]);
         this->MsgSend_Weather(1, iPercent);
     } break;
 
-    case CMD_RAINING: {
+    case iGmCommand::CMD_RAINING: {
         int iPercent = atoi(szCmds[1]);
         this->MsgSend_Weather(2, iPercent);
     } break;
-
-    case CMD_SNOWING: {
+    case iGmCommand::CMD_SNOWING: {
         int iPercent = atoi(szCmds[1]);
         this->MsgSend_Weather(3, iPercent);
     } break;
-
-    case CMD_TIME: {
+    case iGmCommand::CMD_TIME: {
         int iHour = atoi(szCmds[1]);
         int iMin = atoi(szCmds[2]);
         this->MsgSend_Time(iHour, iMin);
     } break;
-
-    case CMD_CU_COUNT: {
+    case iGmCommand::CMD_CU_COUNT: {
         int iOffset = 0;
         CAPISocket::MP_AddByte(byBuff, iOffset, N3_CONCURRENT_USER_COUNT);
         s_pSocket->Send(byBuff, iOffset);
     } break;
-
-    case CMD_NOTICE: {
+    case iGmCommand::CMD_NOTICE: {
         if (szCmd.size() >= 7) {
-            std::string szChat = szCmd.substr(6); // "/공지 "를 제외한 나머지 문자열
+            std::string szChat = szCmd.substr(6); // The remaining string excluding "/Notice"
             this->MsgSend_Chat(N3_CHAT_PUBLIC, szChat);
         }
+    }
+    case iGmCommand::CMD_ARREST: {
+        this->MsgSend_Administrator(N3_SP_ADMINISTRATOR_ARREST, szCmds[1]); 
     } break;
-
-    case CMD_ARREST: {
-        this->MsgSend_Administrator(N3_SP_ADMINISTRATOR_ARREST, szCmds[1]); //추적
+    case iGmCommand::CMD_FORBIDCONNECT: {
+        this->MsgSend_Administrator(N3_SP_ADMINISTRATOR_FORBID_CONNECT, szCmds[1]); 
     } break;
-
-    case CMD_FORBIDCONNECT: {
-        this->MsgSend_Administrator(N3_SP_ADMINISTRATOR_FORBID_CONNECT, szCmds[1]); //접속금지
+    case iGmCommand::CMD_FORBIDCHAT: {
+        this->MsgSend_Administrator(N3_SP_ADMINISTRATOR_CHAT_FORBID, szCmds[1]);
     } break;
-
-    case CMD_FORBIDCHAT: {
-        this->MsgSend_Administrator(N3_SP_ADMINISTRATOR_CHAT_FORBID, szCmds[1]); //채팅금지
+    case iGmCommand::CMD_PERMITCHAT: {
+        this->MsgSend_Administrator(N3_SP_ADMINISTRATOR_CHAT_PERMIT, szCmds[1]); 
     } break;
-
-    case CMD_PERMITCHAT: {
-        this->MsgSend_Administrator(N3_SP_ADMINISTRATOR_CHAT_PERMIT, szCmds[1]); //채팅허가
+    case iGmCommand::CMD_NOTICEALL: {
+        //TODO
     } break;
-
-    case CMD_GAME_SAVE: {
-        if (m_fRequestGameSave > 300.0f) {
-            BYTE byBuff[4];                                               // 버퍼..
-            int  iOffset = 0;                                             // 옵셋..
-            s_pSocket->MP_AddByte(byBuff, iOffset, N3_REQUEST_GAME_SAVE); // 저장 요청 커멘드..
-            s_pSocket->Send(byBuff, iOffset);                             // 보냄..
-            m_fRequestGameSave = 0.0f;
-
-            std::string szMsg;
-            ::_LoadStringFromResource(IDS_REQUEST_GAME_SAVE, szMsg);
-            this->MsgOutput(szMsg, 0xffffff00);
-        } else {
-            char        szBuf[256];
-            std::string szMsg;
-            ::_LoadStringFromResource(IDS_DELAY_GAME_SAVE, szMsg);
-            sprintf(szBuf, szMsg.c_str(), 5);
-            this->MsgOutput(szBuf, 0xffffff00);
-        }
+    case iGmCommand::CMD_CUTOFF: {
+        //TODO
     } break;
-
+    case iGmCommand::CMD_VIEW: {
+        //TODO
+    } break;
+    case iGmCommand::CMD_UNVIEW: {
+        //TODO
+    } break;
+    case iGmCommand::CMD_FORBIDUSER: {
+        //TODO
+    } break;
+    case iGmCommand::CMD_SUMMONUSER: {
+        //TODO
+    } break;
+    case iGmCommand::CMD_ATTACKDISABLE: {
+        //TODO
+    } break;
+    case iGmCommand::CMD_ATTACKENABLE: {
+        //TODO
+    } break;
+    case iGmCommand::CMD_PLC: {
+        //TODO
+    } break;
     default:
         break;
-    } // end of switch(eCmd)
+    }
 }
 
 void CGameProcMain::UpdateUI_PartyOrForceButtons() {
-    // 파티 버튼 상태 바꾸기..
+    // Change party button state..
     CPlayerBase * pTarget = NULL;
     bool          bIAmLeader = false, bIAmMemberOfParty = false;
     int           iMemberIndex = -1;
@@ -5892,7 +5932,7 @@ void CGameProcMain::UpdateUI_PartyOrForceButtons() {
 
 const __InfoPartyOrForce * CGameProcMain::PartyOrForceConditionGet(bool & bIAmLeader, bool & bIAmMember,
                                                                    int & iMemberIndex, class CPlayerBase *& pTarget) {
-    // 파티 버튼 상태 바꾸기..
+    // Change party button state..
     bIAmLeader = false;
     iMemberIndex = -1;
     bIAmMember = false;

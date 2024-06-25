@@ -72,6 +72,63 @@ void CN3UITooltip::Render() {
         CN3UIStatic::Render();
     }
 }
+// I've added this function to fix long single line tooltip. I left old function too.
+void CN3UITooltip::SetSingleLineText(const std::string & szText) {
+    if (!m_bVisible || m_bSetText) {
+        return;
+    }
+
+    int iStrLen = szText.size();
+    if (iStrLen == 0 || m_pBuffOutRef == NULL) {
+        return;
+    }
+
+    m_pBuffOutRef->ClearOnlyStringBuffer();
+
+    SIZE size;
+    if (m_pBuffOutRef->GetTextExtent(szText, iStrLen, &size)) {
+        m_pBuffOutRef->SetStyle(UISTYLE_STRING_SINGLELINE | UISTYLE_STRING_ALIGNCENTER | UISTYLE_STRING_ALIGNVCENTER);
+
+        size.cx += 12; 
+        size.cy += 12; 
+        SetSize(size.cx, size.cy);
+    }
+
+    m_pBuffOutRef->SetString(szText);
+    m_pBuffOutRef->SetColor(m_crToolTipColor);
+
+    POINT ptNew = m_ptCursor;
+    ptNew.x -= (m_rcRegion.right - m_rcRegion.left) / 2;
+    ptNew.y -= (m_rcRegion.bottom - m_rcRegion.top) + 10;
+
+    D3DVIEWPORT9 & vp = s_CameraData.vp;
+
+    int vpWidth = vp.Width;
+    int vpHeight = vp.Height;
+
+    int tooltipWidth = m_rcRegion.right - m_rcRegion.left;
+    int tooltipHeight = m_rcRegion.bottom - m_rcRegion.top;
+
+    int horizontalMargin = 15;
+    int verticalMargin = 10;
+
+    if (ptNew.x + tooltipWidth > vp.X + vpWidth) {
+        ptNew.x = vp.X + vpWidth - tooltipWidth - horizontalMargin;
+    }
+    if (ptNew.x < vp.X) {
+        ptNew.x = vp.X + horizontalMargin; 
+    }
+
+    if (ptNew.y + tooltipHeight > vp.Y + vpHeight) {
+        ptNew.y = vp.Y + vpHeight - tooltipHeight - verticalMargin;
+    }
+    if (ptNew.y < vp.Y) {
+        ptNew.y = vp.Y + verticalMargin; 
+    }
+    SetPos(ptNew.x, ptNew.y);
+
+    m_bSetText = true;
+}
 
 void CN3UITooltip::SetText(const std::string & szText) {
     if (!m_bVisible || m_bSetText) {
