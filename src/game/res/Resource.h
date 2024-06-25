@@ -442,34 +442,16 @@
 #define IDS_WANT_PARTY_MEMBER                    6123
 #define IDS_SETTING_KARUS_SCREEN                 6124
 #define IDS_SETTING_ELMORAD_SCREEN               6125
-/*
-#define IDS_CMD_WHISPER                          6200
-#define IDS_CMD_TOWN                             6201
-#define IDS_CMD_TRADE                            6202
-#define IDS_CMD_EXIT                             6203
-#define IDS_CMD_PARTY                            6204
-#define IDS_CMD_LEAVEPARTY                       6205
-#define IDS_CMD_RECRUITPARTY                     6206
-#define IDS_CMD_JOINCLAN                         6207
-#define IDS_CMD_WITHDRAWCLAN                     6208
-#define IDS_CMD_FIRECLAN                         6209
-#define IDS_CMD_APPOINTVICECHIEF                 6210
-#define IDS_CMD_GREETING                         6211
-#define IDS_CMD_EXCITE                           6212
-#define IDS_CMD_VISIBLE                          6213
-#define IDS_CMD_INVISIBLE                        6214
-#define IDS_CMD_CLEAN                            6215
-#define IDS_CMD_RAINING                          6216
-#define IDS_CMD_SNOWING                          6217
-#define IDS_CMD_TIME                             6218
-#define IDS_CMD_CU_COUNT                         6219
-#define IDS_CMD_NOTICE                           6220
-#define IDS_CMD_ARREST                           6221
-#define IDS_CMD_FORBIDCONNECT                    6222
-#define IDS_CMD_FORBIDCHAT                       6223
-#define IDS_CMD_PERMITCHAT                       6224
-#define IDS_CMD_GAME_SAVE                        6225
-*/
+
+#define IDS_CMD_CATEGORY_PRIVATE  7800
+#define IDS_CMD_CATEGORY_TRADE    7801
+#define IDS_CMD_CATEGORY_PARTY    7802
+#define IDS_CMD_CATEGORY_CLAN     7803
+#define IDS_CMD_CATEGORY_KNIGHTS  7804
+#define IDS_CMD_CATEGORY_GUARDIAN 7805
+#define IDS_CMD_CATEGORY_KING     7806
+#define IDS_CMD_CATEGORY_GM       7807
+
 #define IDS_CMD_WHISPER           8000
 #define IDS_CMD_TOWN              8001
 #define IDS_CMD_EXIT              8002
@@ -535,6 +517,23 @@
 #define IDS_CMD_ATTACKDISABLE 9018
 #define IDS_CMD_ATTACKENABLE  9019
 #define IDS_CMD_PLC           9020
+
+#define IDS_CMD_GUARD_HIDE	    9200
+#define IDS_CMD_GUARD		    9201
+#define IDS_CMD_GUARD_DEFEND    9202
+#define IDS_CMD_GUARD_LOOK_OUT  9203
+#define IDS_CMD_GUARD_FORMATION 9204
+#define IDS_CMD_GUARD_REST		9205
+#define IDS_CMD_GUARD_DESTROY	9206
+
+#define IDS_CMD_KING_ROYALORDER 9400
+#define IDS_CMD_KING_PRIZE      9401
+#define IDS_CMD_KING_EXPRATE	9402
+#define IDS_CMD_KING_DROPRATE   9403
+#define IDS_CMD_KING_RAIN		9404
+#define IDS_CMD_KING_SNOW		9405
+#define IDS_CMD_KING_CLEAR		9406
+#define IDS_CMD_KING_REWARD		9407
 
 #define IDS_PARTY_BBS_REGISTER              6300
 #define IDS_PARTY_BBS_REGISTER_CANCEL       6301

@@ -19,17 +19,17 @@ class CGameProcMain : public CGameProcedure {
 
   public:
 #ifdef _N3_64GRID_
-    CServerMesh * m_pSMesh; // ¼­¹ö¿¡°Ô ÇÊ¿äÇÑ ¸Þ½¬ Å¬·¡½º..
+    CServerMesh * m_pSMesh; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½..
 #endif
-    class CUIInventory *        m_pUIInventory;          // ÀÎº¥Åä¸®
-    class CUIVarious *          m_pUIVar;                // Ä³¸¯ÅÍ »óÅÂÃ¢, ±â»ç´Ü °ü¸® µîÀÌ ÆäÀÌÁö·Î µé¾î°£ ´Ù¿ëµµ UI
-    class CUIChat *             m_pUIChatDlg;            // Ã¤ÆÃ ÀÔÃâ·Â ´ëÈ­»óÀÚ..
-    class CUIMessageWnd *       m_pUIMsgDlg;             // °ÔÀÓ ¸Þ½ÃÁö Ãâ·Â »óÀÚ.
+    class CUIInventory *        m_pUIInventory;          // ï¿½Îºï¿½ï¿½ä¸®
+    class CUIVarious *          m_pUIVar;                // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¢, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°£ ï¿½Ù¿ëµµ UI
+    class CUIChat *             m_pUIChatDlg;            // Ã¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½..
+    class CUIMessageWnd *       m_pUIMsgDlg;             // ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
     class CUIStateBar *         m_pUIStateBarAndMiniMap; // mp,hp,exp, minimap....
-    class CUICmd *              m_pUICmd;                // ¿ÞÂÊ ÇÏ´ÜÀÇ ¸í·É¹öÆ° Ã¢..
-    class CUICmdListDlg *       m_pUICmdList;
-    class CUICmdEditDlg *       m_pUICmdEditDlg;
-    class CUITargetBar *        m_pUITargetBar; // Å¸°Ù »óÅÂÃ¢..
+    class CUICmd *              m_pUICmd;                // ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½É¹ï¿½Æ° Ã¢..
+    class CUICmdList *          m_pUICmdList;
+    class CUICmdEdit *          m_pUICmdEditDlg;
+    class CUITargetBar *        m_pUITargetBar; // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¢..
     class CUITransactionDlg *   m_pUITransactionDlg;
     class CUIDroppedItemDlg *   m_pUIDroppedItemDlg;
     class CSubProcPerTrade *    m_pSubProcPerTrade;
@@ -46,37 +46,37 @@ class CGameProcMain : public CGameProcedure {
     class CUIInn *              m_pUIInn;
     class CUICreateClanName *   m_pUICreateClanName;
 
-    class CUIKnightsOperation * m_pUIKnightsOp;        // ±â»ç´Ü ¸®½ºÆ® º¸±â, °¡ÀÔ, µî...
-    class CUIPartyBBS *         m_pUIPartyBBS;         // ÆÄÆ¼ Áö¿ø °Ô½ÃÆÇ.
-    class CUITradeSellBBS *     m_pUITradeBBS;         // »ó°Å·¡ °Ô½ÃÆÇ
+    class CUIKnightsOperation * m_pUIKnightsOp;        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½...
+    class CUIPartyBBS *         m_pUIPartyBBS;         // ï¿½ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½.
+    class CUITradeSellBBS *     m_pUITradeBBS;         // ï¿½ï¿½Å·ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½
     class CUIQuestMenu *        m_pUIQuestMenu;        // Quest Menu
     class CUIQuestTalk *        m_pUIQuestTalk;        // Quest Talk
     class CUILevelGuide *       m_pUILevelGuide;       // Level guide
     class CUIDead *             m_pUIDead;             // Dead UI
-    class CUITradeBBSSelector * m_pUITradeBBSSelector; // »ó°Å·¡ °Ô½ÃÆÇ Á¾·ù ¼±ÅÃ
-    class CUITradeBBSEditDlg *  m_pUITradeBBSEdit;     // »ó°Å·¡ °Ô½Ã¹° ¼³¸í
+    class CUITradeBBSSelector * m_pUITradeBBSSelector; // ï¿½ï¿½Å·ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    class CUITradeBBSEditDlg *  m_pUITradeBBSEdit;     // ï¿½ï¿½Å·ï¿½ ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½
     class CUIRookieTip *        m_pUIRookieTip;        // RookieTip when closing notice ui
     class CUIExitMenu *         m_pUIExitMenu;         // Exit Menu
 
-    class CN3Shape * m_pTargetSymbol; // ÇÃ·¹ÀÌ¾î°¡ Å¸°ÙÀ¸·Î ÀâÀº Ä³¸¯ÅÍÀÇ À§Ä¡À§¿¡ ±×¸®¸é µÈ´Ù..
+    class CN3Shape * m_pTargetSymbol; // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½È´ï¿½..
 
-    class CN3SndObjStream *m_pSnd_Town, *m_pSnd_Battle; //¸¶À»À½¾Ç, ÀüÅõÀ½¾Ç Æ÷ÀÎÅÍ..
+    class CN3SndObjStream *m_pSnd_Town, *m_pSnd_Battle; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
     class CMagicSkillMng * m_pMagicSkillMng;
 
     class CUINpcTalk *        m_pUINpcTalk;
     class CUINPCChangeEvent * m_pUINpcChange;
     class CUIWarp *           m_pUIWarp;
-    class CWarMessage *       m_pWarMessage; // ÀüÀï°ü·Ã ¸Þ½ÃÁö
+    class CWarMessage *       m_pWarMessage; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½
     class CLightMgr *         m_pLightMgr;
 
     //..
-    BOOL m_bLoadComplete; // ·ÎµùÀÌ ¿Ï·áµÇ¾ú³ª??
+    BOOL m_bLoadComplete; // ï¿½Îµï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¾ï¿½ï¿½ï¿½??
 
-    float     m_fMsgSendTimeMove; // ÃÖ±Ù ÀÌµ¿ ¸Þ½ÃÁö º¸³½ ½Ã°£..
-    float     m_fMsgSendTimeRot;  // ÃÖ±Ù È¸Àü ¸Þ½ÃÁö º¸³½ ½Ã°£..
-    float     m_fPlayerYawSended; // ÃÖ±Ù¿¡ ¸Þ½ÃÁö¸¦ º¸³½ ½ÃÁ¡ÀÇ ÇÃ·¹ÀÌ¾î y Ãà È¸Àü°ª.
-    float     m_fRequestGameSave; // ÃÖ±Ù¿¡ °ÔÀÓ µ¥ÀÌÅÍ ÀúÀåÀ» ¿äÃ»ÇÑ ½Ã°£
-    __Vector3 m_vPlayerPosSended; // ÃÖ±Ù¿¡ ¸Þ½ÃÁö¸¦ º¸³½ ½ÃÁ¡ÀÇ ÇÃ·¹ÀÌ¾î À§Ä¡.
+    float     m_fMsgSendTimeMove; // ï¿½Ö±ï¿½ ï¿½Ìµï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½..
+    float     m_fMsgSendTimeRot;  // ï¿½Ö±ï¿½ È¸ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½..
+    float     m_fPlayerYawSended; // ï¿½Ö±Ù¿ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ y ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½.
+    float     m_fRequestGameSave; // ï¿½Ö±Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½Ã°ï¿½
+    __Vector3 m_vPlayerPosSended; // ï¿½Ö±Ù¿ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½Ä¡.
 
     __Vector3 m_vMouseLBClickedPos;
     __Vector3 m_vMouseSkillPos;
@@ -121,9 +121,9 @@ class CGameProcMain : public CGameProcedure {
     bool MsgRecv_UserInAndRequest(
         DataPack * pDataPack,
         int &
-            iOffset); // ÁÖÀ§ ¿µ¿ªÀÇ ¸ðµç User ¾ÆÀÌµð¸¦ Ä«¿îÆ®¸¸Å­ ¹Þ´Â´Ù... ±Û±¸.. ¾÷µ¥ÀÌÆ®°¡ ÇÊ¿äÇÑ °Í¸¸ ¼­¹ö¿¡°Ô ¿äÃ»..
+            iOffset); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ User ï¿½ï¿½ï¿½Ìµï¿½ Ä«ï¿½ï¿½Æ®ï¿½ï¿½Å­ ï¿½Þ´Â´ï¿½... ï¿½Û±ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»..
     bool MsgRecv_UserInRequested(DataPack * pDataPack,
-                                 int &      iOffset); // ¼­¹ö¿¡°Ô ¿äÃ»ÇÑ À¯ÀúÀÇ ¾ÆÀÌµðµéÀ» ¹Þ¾Æ¼­ User Ã³¸®..
+                                 int &      iOffset); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¼ï¿½ User Ã³ï¿½ï¿½..
     bool MsgRecv_UserInOut(DataPack * pDataPack, int & iOffset);
     bool MsgRecv_UserIn(DataPack * pDataPack, int & iOffset, bool bWithFX = false);
     bool MsgRecv_UserOut(DataPack * pDataPack, int & iOffset);
@@ -132,9 +132,9 @@ class CGameProcMain : public CGameProcedure {
     bool MsgRecv_NPCInAndRequest(
         DataPack * pDataPack,
         int &
-            iOffset); // ÁÖÀ§ ¿µ¿ªÀÇ ¸ðµç NPC ¾ÆÀÌµð¸¦ Ä«¿îÆ®¸¸Å­ ¹Þ´Â´Ù... ±Û±¸.. ¾÷µ¥ÀÌÆ®°¡ ÇÊ¿äÇÑ °Í¸¸ ¼­¹ö¿¡°Ô ¿äÃ»..
+            iOffset); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ NPC ï¿½ï¿½ï¿½Ìµï¿½ Ä«ï¿½ï¿½Æ®ï¿½ï¿½Å­ ï¿½Þ´Â´ï¿½... ï¿½Û±ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»..
     bool MsgRecv_NPCInRequested(DataPack * pDataPack,
-                                int &      iOffset); // ¼­¹ö¿¡°Ô ¿äÃ»ÇÑ NPC ¾ÆÀÌµðµéÀ» ¹Þ¾Æ¼­ User Ã³¸®..
+                                int &      iOffset); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ NPC ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¼ï¿½ User Ã³ï¿½ï¿½..
     bool MsgRecv_NPCInOut(DataPack * pDataPack, int & iOffset);
     bool MsgRecv_NPCIn(DataPack * pDataPack, int & iOffset);
     bool MsgRecv_NPCOut(DataPack * pDataPack, int & iOffset);
@@ -143,55 +143,55 @@ class CGameProcMain : public CGameProcedure {
     bool MsgRecv_Attack(DataPack * pDataPack, int & iOffset);
     bool MsgRecv_Dead(DataPack * pDataPack, int & iOffset);
 
-    bool MsgRecv_ItemMove(DataPack * pDataPack, int & iOffset);             // Item Move¿¡ ´ëÇÑ ÀÀ´ä..
-    bool MsgRecv_ItemBundleDrop(DataPack * pDataPack, int & iOffset);       // Item ÀÌ ÇÊµå¿¡ ³ªÅ¸³ª´Âµ¥¿¡ ´ëÇÑ ÀÀ´ä
-    bool MsgRecv_ItemBundleOpen(DataPack * pDataPack, int & iOffset);       // ¾ÆÀÌÅÛ »óÀÚ¸¦ ¿­°Å³ª ½ÃÃ¼¸¦ µÚÁø´Ù..
-    bool MsgRecv_ItemTradeStart(DataPack * pDataPack, int & iOffset);       // ¾ÆÀÌÅÛ »ó°Å·¡..
-    bool MsgRecv_ItemTradeResult(DataPack * pDataPack, int & iOffset);      // ¾ÆÀÌÅÛ »ó°Å·¡ °á°ú..
-    bool MsgRecv_ItemDroppedGetResult(DataPack * pDataPack, int & iOffset); // ¶¥¿¡ ¶³¾îÁø ¾ÆÀÌÅÛ ¸Ô±â °á°ú..
-    bool MsgRecv_ItemWeightChange(DataPack * pDataPack, int & iOffset);     // ¾ÆÀÌÅÛ ¹«°Ô º¯È­..
+    bool MsgRecv_ItemMove(DataPack * pDataPack, int & iOffset);             // Item Moveï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+    bool MsgRecv_ItemBundleDrop(DataPack * pDataPack, int & iOffset);       // Item ï¿½ï¿½ ï¿½Êµå¿¡ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    bool MsgRecv_ItemBundleOpen(DataPack * pDataPack, int & iOffset);       // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+    bool MsgRecv_ItemTradeStart(DataPack * pDataPack, int & iOffset);       // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å·ï¿½..
+    bool MsgRecv_ItemTradeResult(DataPack * pDataPack, int & iOffset);      // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å·ï¿½ ï¿½ï¿½ï¿½..
+    bool MsgRecv_ItemDroppedGetResult(DataPack * pDataPack, int & iOffset); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô±ï¿½ ï¿½ï¿½ï¿½..
+    bool MsgRecv_ItemWeightChange(DataPack * pDataPack, int & iOffset);     // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­..
 
-    bool MsgRecv_UserLookChange(DataPack * pDataPack, int & iOffset); // °Ñ¸ð½ÀÀÌ ¹Ù²ï´Ù.. ¾ÆÀÌÅÛ Âø¿ëµî
+    bool MsgRecv_UserLookChange(DataPack * pDataPack, int & iOffset); // ï¿½Ñ¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 
     void MsgRecv_TargetHP(DataPack * pDataPack, int & iOffset);
 
-    void MsgRecv_ZoneChange(DataPack * pDataPack, int & iOffset); // °Á ´Ü¼øÇÑ Á¸ Ã¼ÀÎÁö.
+    void MsgRecv_ZoneChange(DataPack * pDataPack, int & iOffset); // ï¿½ï¿½ ï¿½Ü¼ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½.
 
     void MsgRecv_Notice(DataPack * pDataPack, int & iOffset);
     void MsgRecv_PartyOrForce(DataPack * pDataPack, int & iOffset);
     void MsgRecv_PerTrade(DataPack * pDataPack, int & iOffset);
 
-    void MsgRecv_SkillChange(DataPack * pDataPack, int & iOffset);  // ½ºÅ³ º¯È­..
-    void MsgRecv_MagicProcess(DataPack * pDataPack, int & iOffset); // ½ºÅ³ º¯È­..
-    void MsgRecv_ClassChange(DataPack * pDataPack, int & iOffset);  // Á÷¾÷ º¯È­..
-    void MsgRecv_ObjectEvent(DataPack * pDataPack, int & iOffset);  // ¿ÀºêÁ§Æ® ÀÌº¥Æ® ½ÅÃ»¿¡ ´ëÇÑ ÀÀ´ä
+    void MsgRecv_SkillChange(DataPack * pDataPack, int & iOffset);  // ï¿½ï¿½Å³ ï¿½ï¿½È­..
+    void MsgRecv_MagicProcess(DataPack * pDataPack, int & iOffset); // ï¿½ï¿½Å³ ï¿½ï¿½È­..
+    void MsgRecv_ClassChange(DataPack * pDataPack, int & iOffset);  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­..
+    void MsgRecv_ObjectEvent(DataPack * pDataPack, int & iOffset);  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ìºï¿½Æ® ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-    void MsgRecv_DurabilityChange(DataPack * pDataPack, int & iOffset); // ³»±¸·Â º¯°æ..
+    void MsgRecv_DurabilityChange(DataPack * pDataPack, int & iOffset); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
     void MsgRecv_NpcEvent(DataPack * pDataPack, int & iOffset);         // Npc Event(Exchange, Repair both)..
 
-    void MsgRecv_Knights(DataPack * pDataPack, int & iOffset);          // ±â»ç´Ü Á¶ÀÛ °ü·Ã ÆÐÅ¶..
-    void MsgRecv_KnightsListBasic(DataPack * pDataPack, int & iOffset); // ±â»ç´Ü ±âº» Á¤º¸µé..
+    void MsgRecv_Knights(DataPack * pDataPack, int & iOffset);          // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶..
+    void MsgRecv_KnightsListBasic(DataPack * pDataPack, int & iOffset); // ï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 
     void MsgRecv_CompressedPacket(DataPack * pDataPack,
-                                  int & iOffset); // ¾ÐÃàµÈ ÆÐÅ¶ÀÌ´Ù... ¾ÐÃà Ç®°í ·çÇÁ¸¦ µ¹¸é¼­ ÇÑ¹ø´õ ÆÄ½ÌÇØ¾ß ÇÑ´Ù!!!
+                                  int & iOffset); // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ï¿½Ì´ï¿½... ï¿½ï¿½ï¿½ï¿½ Ç®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½é¼­ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½Ä½ï¿½ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½!!!
     void MsgRecv_ContinousPacket(DataPack * pDataPack,
-                                 int &      iOffset); // ºÙ¾î¼­ ¿À´Â ÆÐÅ¶ÀÌ´Ù.. ·çÇÁ¸¦ µ¹¸é¼­ ÇÑ¹ø´õ ÆÄ½ÌÇØ¾ß ÇÑ´Ù!!!
+                                 int &      iOffset); // ï¿½Ù¾î¼­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ï¿½Ì´ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½é¼­ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½Ä½ï¿½ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½!!!
 
     void MsgRecv_ItemRepair(DataPack * pDataPack, int & iOffset);      // Item Repair Result..
     void MsgRecv_ItemCountChange(DataPack * pDataPack, int & iOffset); // Item Count Change..
     void MsgRecv_ItemDestroy(DataPack * pDataPack, int & iOffset);     // Item Count Change..
 
-    void MsgRecv_WareHouse(DataPack * pDataPack, int & iOffset);     // º¸°üÇÔ °ü·Ã ÆÐÅ¶..
-    void MsgRecv_WareHouseOpen(DataPack * pDataPack, int & iOffset); // º¸°üÇÔ ¿ÀÇÂ..
+    void MsgRecv_WareHouse(DataPack * pDataPack, int & iOffset);     // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶..
+    void MsgRecv_WareHouseOpen(DataPack * pDataPack, int & iOffset); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
-    void MsgRecv_NpcChangeOpen(DataPack * pDataPack, int & iOffset);                // Class Change¿Í ÃÊ±âÈ­..
-    void MsgRecv_AllPointInit(DataPack * pDataPack, int & iOffset);                 // All Point ÃÊ±âÈ­..
-    void MsgRecv_SkillPointInit(DataPack * pDataPack, int & iOffset);               // Skill Point ÃÊ±âÈ­..
-    void MsgRecv_PointChangePriceQueryRequest(DataPack * pDataPack, int & iOffset); // °¡°Ý¿¡ ´ëÇÑ ÀÀ´ä ÆÐÅ¶..
+    void MsgRecv_NpcChangeOpen(DataPack * pDataPack, int & iOffset);                // Class Changeï¿½ï¿½ ï¿½Ê±ï¿½È­..
+    void MsgRecv_AllPointInit(DataPack * pDataPack, int & iOffset);                 // All Point ï¿½Ê±ï¿½È­..
+    void MsgRecv_SkillPointInit(DataPack * pDataPack, int & iOffset);               // Skill Point ï¿½Ê±ï¿½È­..
+    void MsgRecv_PointChangePriceQueryRequest(DataPack * pDataPack, int & iOffset); // ï¿½ï¿½ï¿½Ý¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶..
 
-    void MsgRecv_NoahChange(DataPack * pDataPack, int & iOffset); // ³ë¾Æ º¯°æ..
-    void MsgRecv_WarpList(DataPack * pDataPack, int & iOffset);   // ¿öÇÁ ¸®½ºÆ®..
-    //    void    MsgRecv_ServerCheckAndRequestConcurrentUserCount(DataPack* pDataPack, int& iOffset);            // ¼­¹ö IP ¿Í Æ÷Æ®¸¦ ¹Þ¾Æ µ¿Á¢ÀÚ¸¦ Ã¼Å©ÇØ º»´Ù..
+    void MsgRecv_NoahChange(DataPack * pDataPack, int & iOffset); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+    void MsgRecv_WarpList(DataPack * pDataPack, int & iOffset);   // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®..
+    //    void    MsgRecv_ServerCheckAndRequestConcurrentUserCount(DataPack* pDataPack, int& iOffset);            // ï¿½ï¿½ï¿½ï¿½ IP ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Þ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
     //    void    MsgRecv_ConcurrentUserCountAndSendServerCheck(DataPack* pDataPack, int& iOffset);
 
     //knights...
@@ -220,7 +220,7 @@ class CGameProcMain : public CGameProcedure {
     void PlayBGM_Town();
     void PlayBGM_Battle();
 
-    void DoCommercialTransaction(int iTradeID); // »ó°Å·¡..
+    void DoCommercialTransaction(int iTradeID); // ï¿½ï¿½Å·ï¿½..
 
     const __InfoPartyOrForce * PartyOrForceConditionGet(bool & bIAmLeader, bool & bIAmMember, int & iMemberIndex,
                                                         class CPlayerBase *& pTarget);
@@ -239,41 +239,41 @@ class CGameProcMain : public CGameProcedure {
     bool CommandToggleUINotice();
     bool CommandToggleUILevelGuide();
 
-    void CommandMove(e_MoveDirection eMD, bool bStartOrEnd); // ¿òÁ÷ÀÌ´Â ¹æÇâ(ÀüÈÄÁø, ¸ØÃã), ¿òÁ÷ÀÌ±â ½ÃÀÛÇÏ´Â°¡?
+    void CommandMove(e_MoveDirection eMD, bool bStartOrEnd); // ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½), ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´Â°ï¿½?
     void CommandEnableAttackContinous(bool bEnable, CPlayerBase * pTarget);
-    void CommandCameraChange(); // Ä«¸Þ¶ó ½ÃÁ¡ ¹Ù²Ù±â..
+    void CommandCameraChange(); // Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù±ï¿½..
     void CommandExitMenu();
     void CommandSitDown(bool bLimitInterval, bool bSitDown, bool bImmediately = false);
 
-    void CommandTargetSelect_NearstEnemy();    // °¡Àå °¡±î¿î Àû Å¸°Ù Àâ±â..
-    void CommandTargetSelect_NearstOurForce(); // °¡Àå °¡±î¿î ÆÄÆ¼ Å¸°ÙÀâ±â..
+    void CommandTargetSelect_NearstEnemy();    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½..
+    void CommandTargetSelect_NearstOurForce(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼ Å¸ï¿½ï¿½ï¿½ï¿½ï¿½..
 
-    void CloseUIs(); // °¢Á¾ »ó°Å·¡, ¿öÇÁµîµî... UI ´Ý±â..
+    void CloseUIs(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å·ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½... UI ï¿½Ý±ï¿½..
 
     void MsgOutput(const std::string & szMsg, D3DCOLOR crMsg);
 
     void InitZone(int iZone, const __Vector3 & vPosPlayer);
     void InitUI();
-    void InitPlayerPosition(const __Vector3 & vPos); // ÇÃ·¹ÀÌ¾î À§Ä¡ ÃÊ±âÈ­.. ÀÏÀ¸ÄÑ ¼¼¿ì°í, ±âº»µ¿ÀÛÀ» ÃëÇÏ°Ô ÇÑ´Ù.
+    void InitPlayerPosition(const __Vector3 & vPos); // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½Ä¡ ï¿½Ê±ï¿½È­.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ñ´ï¿½.
 
-    void MsgSend_Continous(); // Æ¯Á¤ Á¶°Ç(?)ÇÏ¿¡¼­ ¼­¹ö¿¡°Ô Á¤±âÀûÀ¸·Î ¸Þ½ÃÁö¸¦ º¸³¿..
+    void MsgSend_Continous(); // Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(?)ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
     void MsgSend_Attack(int iTargetID, float fInterval,
-                        float fDistance); // °ø°Ý ÆÐÅ¶ ³¯¸®±â - Å×ÀÌºíÀÇ °ø°Ý ÁÖ±â¸¦ °°ÀÌ Áà¼­ ÇØÅ·À» ¸·´Â´Ù.
+                        float fDistance); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±â¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½à¼­ ï¿½ï¿½Å·ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½.
     void MsgSend_Move(bool bMove,
-                      bool bContinous); // ¼­¹ö¿¡°Ô ¿òÁ÷ÀÓ ÆÐÅ¶À» ³¯¸°´Ù.. // ¿òÁ÷ÀÌ´Â°¡ ? ÁÖ±âÀûÀ¸·Î ¿òÁ÷ÀÌ´Â °Ç°¡?
-    void MsgSend_Rotation();            // ¼­¹ö¿¡°Ô È¸Àü ÆÐÅ¶À» ³¯¸°´Ù..
-    void MsgSend_Chat(enum e_ChatMode eMode, const std::string & szChat); // ¼­¹ö¿¡°Ô Ã¤ÆÃ ¸Þ½ÃÁö¸¦ ³¯¸°´Ù..
-    void MsgSend_ChatSelectTarget(const std::string & szTargetID);        // ÀÏ´ëÀÏ Ã¤ÆÃ »ó´ë Á¤ÇÏ±â.
+                      bool bContinous); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. // ï¿½ï¿½ï¿½ï¿½ï¿½Ì´Â°ï¿½ ? ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Ç°ï¿½?
+    void MsgSend_Rotation();            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½Å¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+    void MsgSend_Chat(enum e_ChatMode eMode, const std::string & szChat); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+    void MsgSend_ChatSelectTarget(const std::string & szTargetID);        // ï¿½Ï´ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½.
     void MsgSend_Regen();
-    bool MsgSend_RequestItemBundleOpen(CPlayerNPC * pCorpse); // ¾ÆÀÌÅÛ »óÀÚ¸¦ ¿­°Å³ª ½ÃÃ¼¸¦ µÚÁø´Ù..
+    bool MsgSend_RequestItemBundleOpen(CPlayerNPC * pCorpse); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
     void MsgSend_RequestTargetHP(short siIDTarget,
-                                 BYTE  byUpdateImmediately); // 0x00 - Á¡Â÷ ´Ã¾î³ª°Ô²û.. 0x01 - Áï½Ã ¾÷µ¥ÀÌÆ®..
+                                 BYTE  byUpdateImmediately); // 0x00 - ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾î³ªï¿½Ô²ï¿½.. 0x01 - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®..
     void MsgSend_GameStart();
     bool MsgSend_NPCEvent(short siIDTarget);
-    void MsgSend_NPCInRequest(int iID);  // NPC Á¤º¸°¡ ¾øÀ» °æ¿ì ¿äÃ»ÇÑ´Ù..
-    void MsgSend_UserInRequest(int iID); // User Á¤º¸°¡ ¾øÀ» °æ¿ì ¿äÃ»ÇÑ´Ù..
-    void MsgSend_Warp();                 // ¿öÇÁ?? - Á¸Ã¼ÀÎÁö°¡ µÉ¼öµµ ÀÖ´Ù..
-    void MsgSend_ZoneChangeComplete();   // Á¸ Ã¼ÀÎÁö ¿Ï·á.. (¸Ê ·Îµù ³¡..)
+    void MsgSend_NPCInRequest(int iID);  // NPC ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½Ñ´ï¿½..
+    void MsgSend_UserInRequest(int iID); // User ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½Ñ´ï¿½..
+    void MsgSend_Warp();                 // ï¿½ï¿½ï¿½ï¿½?? - ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½É¼ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½..
+    void MsgSend_ZoneChangeComplete();   // ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½.. (ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½..)
     void MsgSend_StateChange(enum e_SubPacket_State eSP, int iState);
     void MsgSend_PerTradeReq(int iDestID, bool bNear = true);
     void MsgSend_SpeedCheck(bool bInit = false);
@@ -282,7 +282,7 @@ class CGameProcMain : public CGameProcedure {
     void MsgSend_PartyOrForceLeave(int iPartyOrForce);                            // iPartyOrForce 1 : Party, 2:Force
     bool MsgSend_PartyOrForceCreate(int iPartyOrForce, const std::string & szID); // iPartyOrForce 1 : Party, 2:Force
 
-    void MsgSend_ObjectEvent(int iEventID, int iNPCID); // ¿ÀºêÁ§Æ®¿¡ ¼³Á¤µÇ¾î ÀÖ´Â ÀÌº¥Æ® ¿äÃ»..
+    void MsgSend_ObjectEvent(int iEventID, int iNPCID); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ ï¿½Ìºï¿½Æ® ï¿½ï¿½Ã»..
     void MsgSend_Weather(int iWeather, int iPercent);
     void MsgSend_Time(int iHour, int iMin);
     void MsgSend_Administrator(enum e_SubPacket_Administrator eSP, const std::string & szID);
@@ -295,11 +295,11 @@ class CGameProcMain : public CGameProcedure {
     void MsgSend_PerTradeBBSReq(std::string szName, int iDestID);
     void MsgSend_CharacterSelect(); // virtual
 
-    void ProcessPlayerInclination();            // °æ»ç Ã³¸®..(°¡¸¸È÷ ÀÖ¾îµµ °æ»ç°¡ ±ÞÇÏ¸é ¹Ì²ô·¯Áü..).
-    void ProcessLocalInput(DWORD dwMouseFlags); // Å°º¸µå ´­¸°°ÍÀ» Ã³¸®ÇÑ´Ù..
+    void ProcessPlayerInclination();            // ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½..(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾îµµ ï¿½ï¿½ç°¡ ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ì²ï¿½ï¿½ï¿½ï¿½ï¿½..).
+    void ProcessLocalInput(DWORD dwMouseFlags); // Å°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½..
     void ParseChattingCommand(const std::string & szCmd);
 
-    void UpdateUI_PartyOrForceButtons(); // Ä¿¸Çµå ÁÙ¿¡ ÀÖ´Â ÆÄÆ¼ ¹öÆ°À» »óÈ²¿¡ µû¶ó ¾÷µ¥ÀÌÆ® ÇØÁØ´Ù.
+    void UpdateUI_PartyOrForceButtons(); // Ä¿ï¿½Çµï¿½ ï¿½Ù¿ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Æ¼ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½È²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Ø´ï¿½.
     void UpdateUI_MiniMap();
     void UpdateUI_TargetBar();
     void UpdateBGM();
@@ -307,14 +307,14 @@ class CGameProcMain : public CGameProcedure {
 
     void RenderTarget();
 
-    void Init();    // UI ¿Í UI ¸®¼Ò½ºµîÀ» ÀÐ´Â´Ù.
+    void Init();    // UI ï¿½ï¿½ UI ï¿½ï¿½ï¿½Ò½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð´Â´ï¿½.
     void Release(); // Release..
     void ReleaseUIs();
     void ReleaseSound();
 
-    void Tick();   // Àâ´ÙÇÑ °è»ê..
-    void Render(); // ·»´õ¸µ..
+    void Tick();   // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
+    void Render(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 
-    CGameProcMain();          // »ý¼ºÀÚ.
-    virtual ~CGameProcMain(); // ¼Ò¸êÀÚ.
+    CGameProcMain();          // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+    virtual ~CGameProcMain(); // ï¿½Ò¸ï¿½ï¿½ï¿½.
 };

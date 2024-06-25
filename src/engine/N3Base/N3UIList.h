@@ -12,7 +12,7 @@ typedef typename std::list<CN3UIString *>::iterator it_pString;
 
 class CN3UIList : public CN3UIBase {
   protected:
-    int                      m_iCurSel;    // 현재 선택..
+    int                      m_iCurSel;    // Current selection..
     std::list<CN3UIString *> m_ListString; // String List
     class CN3UIScrollBar *   m_pScrollBarRef;
 
@@ -28,7 +28,8 @@ class CN3UIList : public CN3UIBase {
     D3DCOLOR            FontColor() { return m_crFont; }
     BOOL                FontIsBold() { return m_bFontBold; }
     BOOL                FontIsItalic() { return m_bFontItalic; }
-    CN3UIString *       GetChildStrFromList(std::string str);
+    CN3UIString *       GetChildStrFromList(const std::string str);
+    void                SetScrollBarRef(CN3UIScrollBar * pScrollBarRef);
 
     void SetFont(const std::string & szFontName, DWORD dwHeight, BOOL bBold, BOOL bItalic);
     void SetFontColor(D3DCOLOR color);
@@ -38,6 +39,9 @@ class CN3UIList : public CN3UIBase {
     void UpdateChildRegions();
     int  AddStrings(const std::string * pszStrings, int iStringCount);
     int  AddString(const std::string & szString);
+    int  AddStringTooltip(const std::string & szString, const D3DCOLOR szStringColor = 0x00000000,
+                          const std::string & szStringToolTip = nullptr,
+                          const D3DCOLOR      szStringToolTipColor = 0x00000000);
     bool InsertString(int iIndex, const std::string & szString);
     bool DeleteString(int iIndex);
     bool GetString(int iIndex, std::string & szString);
