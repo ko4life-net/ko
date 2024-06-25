@@ -45,6 +45,7 @@ class CN3UIBase : public CN3BaseFileAccess {
   public:
     std::string       m_szID;      // UI id
     std::string       m_szToolTip; // tooltip text
+    D3DCOLOR          m_crToolTipColor; // tooltip text color
     void              SetID(LPCTSTR pszID) { m_szID = pszID; }
     const std::string GetID() const { return m_szID; }
     void              SetTooltipText(LPCTSTR pszTT) { m_szToolTip = pszTT; }

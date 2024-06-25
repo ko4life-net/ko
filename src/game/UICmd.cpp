@@ -120,6 +120,9 @@ bool CUICmd::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             CGameProcedure::s_pProcMain->CommandToggleUIState();
         }
 
+        else if(pSender == m_pBtn_Option){
+            CGameProcedure::s_pProcMain->CommandToggleCmdList();
+        }
         else if (pSender == m_pBtn_Exit) {
             CGameProcedure::s_pProcMain->CommandExitMenu();
         }

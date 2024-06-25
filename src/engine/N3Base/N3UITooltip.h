@@ -24,10 +24,13 @@ class CN3UITooltip : public CN3UIStatic {
     float m_fHoverTime; // 마우스가 한곳에서 정지하여 있는 시간(누적)
     bool  m_bSetText;   // 이미 text가 설정되었는가?
     POINT m_ptCursor;   // 커서의 위치
+    D3DCOLOR m_crToolTipColor;
 
     // Operations
   public:
     void          SetText(const std::string & szText);
+    void          SetSingleLineText(const std::string & szText);
+    void          SetColor(const D3DCOLOR & crToolTipColor) { m_crToolTipColor = crToolTipColor; };
     virtual void  Release();
     virtual void  Tick();
     virtual void  Render();
