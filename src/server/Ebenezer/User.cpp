@@ -2315,7 +2315,7 @@ void CUser::ZoneChange(int zone, float x, float z) {
         }
     } else { // Battle zone close
         if (pMap->m_bType == 1 && m_pUserData->m_bNation != zone &&
-            (zone < 10 || zone > 20)) { // 상대방 국가로 못넘어 가게..
+            (zone < 10 || zone > 21)) { // 상대방 국가로 못넘어 가게..
             return;
         }
     }
