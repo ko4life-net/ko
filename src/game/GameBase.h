@@ -51,7 +51,8 @@ class CGameBase : public CN3Base {
                                                      std::string *        szResrcFN,     // Resource FileName
                                                      std::string *        szIconFN,      // Icon FileName
                                                      e_PartPosition &     ePartPosition, // Part 老版快 Index
-                                                     e_PlugPosition &     ePlugPosition);    // Plug 老版快 Index
+                                                     e_PlugPosition &     ePlugPosition,    // Plug 老版快 Index
+                                                     e_Race eRace = RACE_UNKNOWN);
 
     class CPlayerBase * CharacterGetByID(int iID, bool bFromAlive);
     bool                IsValidCharacter(CPlayerBase * pCharacter);
