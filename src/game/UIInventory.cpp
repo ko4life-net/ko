@@ -610,7 +610,7 @@ int CUIInventory::GetArmDestinationIndex(__IconItemSkill * spItem) {
     e_PartPosition ePart;
     e_PlugPosition ePlug;
     e_ItemType     eType =
-        CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, NULL, ePart, ePlug); // 아이템에 따른 파일 이름을 만들어서
+        CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, NULL, ePart, ePlug, CGameBase::s_pPlayer->m_InfoBase.eRace); // 아이템에 따른 파일 이름을 만들어서
     if (ITEM_TYPE_UNKNOWN == eType) {
         return false;
     }
@@ -1845,7 +1845,7 @@ bool CUIInventory::IsValidPosFromInvToArm(int iOrder) {
     e_PartPosition ePart;
     e_PlugPosition ePlug;
     e_ItemType     eType =
-        CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, NULL, ePart, ePlug); // 아이템에 따른 파일 이름을 만들어서
+        CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, NULL, ePart, ePlug, CGameBase::s_pPlayer->m_InfoBase.eRace); // 아이템에 따른 파일 이름을 만들어서
     if (ITEM_TYPE_UNKNOWN == eType) {
         return false;
     }
@@ -2121,7 +2121,7 @@ bool CUIInventory::IsValidPosFromArmToArm(int iOrder) {
     e_PartPosition ePart;
     e_PlugPosition ePlug;
     e_ItemType     eType =
-        CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, NULL, ePart, ePlug); // 아이템에 따른 파일 이름을 만들어서
+        CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, NULL, ePart, ePlug, CGameBase::s_pPlayer->m_InfoBase.eRace); // 아이템에 따른 파일 이름을 만들어서
     if (ITEM_TYPE_UNKNOWN == eType) {
         return false;
     }
@@ -2177,7 +2177,7 @@ bool CUIInventory::IsValidPosFromArmToArmInverse(int iOrder) {
     e_PartPosition ePart;
     e_PlugPosition ePlug;
     e_ItemType     eType =
-        CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, NULL, ePart, ePlug); // 아이템에 따른 파일 이름을 만들어서
+        CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, NULL, ePart, ePlug, CGameBase::s_pPlayer->m_InfoBase.eRace); // 아이템에 따른 파일 이름을 만들어서
     if (ITEM_TYPE_UNKNOWN == eType) {
         return false;
     }
@@ -2228,7 +2228,7 @@ void CUIInventory::ItemAdd(__TABLE_ITEM_BASIC * pItem, __TABLE_ITEM_EXT * pItemE
     e_PartPosition ePart;
     e_PlugPosition ePlug;
     e_ItemType     eType =
-        CGameProcedure::MakeResrcFileNameForUPC(pItem, &szFN, NULL, ePart, ePlug); // 아이템에 따른 파일 이름을 만들어서
+        CGameProcedure::MakeResrcFileNameForUPC(pItem, &szFN, NULL, ePart, ePlug, CGameBase::s_pPlayer->m_InfoBase.eRace); // 아이템에 따른 파일 이름을 만들어서
 
     if (ITEM_TYPE_PLUG == eType) {
         if (ITEM_SLOT_HAND_LEFT == eSlot) {
@@ -2258,7 +2258,7 @@ void CUIInventory::ItemDelete(__TABLE_ITEM_BASIC * pItem, __TABLE_ITEM_EXT * pIt
     e_PartPosition ePart;
     e_PlugPosition ePlug;
     e_ItemType     eType =
-        CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, NULL, ePart, ePlug); // 아이템에 따른 파일 이름을 만들어서
+        CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, NULL, ePart, ePlug, CGameBase::s_pPlayer->m_InfoBase.eRace); // 아이템에 따른 파일 이름을 만들어서
 
     if (pLooks) {
         if (ITEM_TYPE_PLUG == eType) {
@@ -2366,7 +2366,7 @@ void CUIInventory::ItemCountChange(int iDistrict, int iIndex, int iCount, int iI
             e_PlugPosition ePlug;
             std::string    szIconFN;
             e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
-                                                                           ePlug); // 아이템에 따른 파일 이름을 만들어서
+                                                                           ePlug, CGameBase::s_pPlayer->m_InfoBase.eRace); // 아이템에 따른 파일 이름을 만들어서
             if (ITEM_TYPE_UNKNOWN == eType) {
                 CLogWriter::Write("MyInfo - slot - Unknown Item");
             }
@@ -2420,7 +2420,7 @@ void CUIInventory::ItemCountChange(int iDistrict, int iIndex, int iCount, int iI
             e_PlugPosition ePlug;
             std::string    szIconFN;
             e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
-                                                                           ePlug); // 아이템에 따른 파일 이름을 만들어서
+                                                                           ePlug, CGameBase::s_pPlayer->m_InfoBase.eRace); // 아이템에 따른 파일 이름을 만들어서
             if (ITEM_TYPE_UNKNOWN == eType) {
                 CLogWriter::Write("MyInfo - slot - Unknown Item");
             }
@@ -2475,7 +2475,7 @@ void CUIInventory::ItemCountChange(int iDistrict, int iIndex, int iCount, int iI
             e_PlugPosition ePlug;
             std::string    szIconFN;
             e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
-                                                                           ePlug); // 아이템에 따른 파일 이름을 만들어서
+                                                                           ePlug, CGameBase::s_pPlayer->m_InfoBase.eRace); // 아이템에 따른 파일 이름을 만들어서
             if (ITEM_TYPE_UNKNOWN == eType) {
                 CLogWriter::Write("MyInfo - slot - Unknown Item");
             }
@@ -2529,7 +2529,7 @@ void CUIInventory::ItemCountChange(int iDistrict, int iIndex, int iCount, int iI
             e_PlugPosition ePlug;
             std::string    szIconFN;
             e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
-                                                                           ePlug); // 아이템에 따른 파일 이름을 만들어서
+                                                                           ePlug, CGameBase::s_pPlayer->m_InfoBase.eRace); // 아이템에 따른 파일 이름을 만들어서
             if (ITEM_TYPE_UNKNOWN == eType) {
                 CLogWriter::Write("MyInfo - slot - Unknown Item");
             }
