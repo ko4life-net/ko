@@ -1617,7 +1617,7 @@ void CUISkillTreeDlg::AllClearImageByName(const std::string & szFN, bool bTrueOr
     CN3UIBase *   pBase = NULL;
     CN3UIButton * pButton = NULL;
     for (int i = 0; i < 4; i++) {
-        pBase = GetChildBaseByName(std::format("img_{}{}", szFN, i));
+        pBase = GetChildBaseByName(std::format("img_{}_{}", szFN, i));
         if (pBase) {
             pBase->SetVisible(bTrueOrNot);
         }
