@@ -1617,7 +1617,7 @@ void CUISkillTreeDlg::AllClearImageByName(const std::string & szFN, bool bTrueOr
     CN3UIBase *   pBase = NULL;
     CN3UIButton * pButton = NULL;
     for (int i = 0; i < 4; i++) {
-        pBase = GetChildBaseByName(std::format("img_{}_{}", szFN, i));
+        pBase = GetChildBaseByName(std::format("img_{}{}", szFN, i));
         if (pBase) {
             pBase->SetVisible(bTrueOrNot);
         }
@@ -1646,6 +1646,10 @@ void CUISkillTreeDlg::SetPageInCharRegion() // 문자 역역에서 현재 페이지 설정..
         AllClearImageByName("berserker", false);
         AllClearImageByName("sorcerer", false);
         AllClearImageByName("shaman", false);
+        AllClearImageByName("Shadow Knight", false);  // Master Class
+        AllClearImageByName("Elemental Lord", false); // Master Class
+        AllClearImageByName("Shadow Bane", false);    // Master Class
+        AllClearImageByName("Berserker Hero", false); // Master Class
 
         // 직업..
         switch (CGameBase::s_pPlayer->m_InfoBase.eClass) {
@@ -1679,6 +1683,10 @@ void CUISkillTreeDlg::SetPageInCharRegion() // 문자 역역에서 현재 페이지 설정..
         AllClearImageByName("blade", false);
         AllClearImageByName("mage", false);
         AllClearImageByName("cleric", false);
+        AllClearImageByName("Paladin", false);      // Master Class
+        AllClearImageByName("Arc Mage", false);     // Master Class
+        AllClearImageByName("kasar hood", false);   // Master Class
+        AllClearImageByName("Blade Master", false); // Master Class
 
         // 직업..
         switch (CGameBase::s_pPlayer->m_InfoBase.eClass) {
