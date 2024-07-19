@@ -1856,7 +1856,7 @@ void CUISkillTreeDlg::SetPageInCharRegion() // 문자 역역에서 현재 페이지 설정..
             break;
 
         case CLASS_EL_DRUID:
-            AllClearImageByName("img_cleric", true);
+            AllClearImageByName("cleric", true);
             AllClearImageByName("Paladin", true);
             pBaseNonMaster = GetChildImageByName("img_cleric");
             if (pBaseNonMaster) {
