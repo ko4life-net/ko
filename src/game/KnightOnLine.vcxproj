@@ -138,7 +138,7 @@
     <ClInclude Include="..\engine\N3Base\JpegFile.h" />
     <ClInclude Include="..\engine\N3Base\BitMapFile.h" />
     <ClInclude Include="..\engine\N3Base\DFont.h" />
-    <ClInclude Include="..\engine\N3Base\JPEG.H" />
+    <ClInclude Include="..\engine\N3Base\Jpeg.h" />
     <ClInclude Include="..\engine\N3Base\LogWriter.h" />
     <ClInclude Include="..\engine\N3Base\My_3DStruct.h" />
     <ClInclude Include="..\engine\N3Base\N3AlphaPrimitiveManager.h" />
@@ -334,7 +334,7 @@
     <ClCompile Include="..\engine\N3Base\JpegFile.cpp" />
     <ClCompile Include="..\engine\N3Base\BitMapFile.cpp" />
     <ClCompile Include="..\engine\N3Base\DFont.cpp" />
-    <ClCompile Include="..\engine\N3Base\JPEG.CPP" />
+    <ClCompile Include="..\engine\N3Base\Jpeg.cpp" />
     <ClCompile Include="..\engine\N3Base\LogWriter.cpp" />
     <ClCompile Include="..\engine\N3Base\N3AlphaPrimitiveManager.cpp" />
     <ClCompile Include="..\engine\N3Base\N3AnimatedTexures.cpp" />

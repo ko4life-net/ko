@@ -151,7 +151,7 @@
     <ClInclude Include="..\engine\N3Base\DFont.h">
       <Filter>N3Base\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\N3Base\JPEG.H">
+    <ClInclude Include="..\engine\N3Base\Jpeg.h">
       <Filter>N3Base\Core</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\N3Base\LogWriter.h">
@@ -697,7 +697,7 @@
     <ClCompile Include="..\engine\N3Base\DFont.cpp">
       <Filter>N3Base\Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\engine\N3Base\JPEG.CPP">
+    <ClCompile Include="..\engine\N3Base\Jpeg.cpp">
       <Filter>N3Base\Core</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\N3Base\LogWriter.cpp">
