@@ -113,8 +113,8 @@ class CGameProcedure : public CGameBase {
     static void ReportServerConnectionClosed(bool bNeedQuitGame);
     static void ReportDebugStringAndSendToServer(const std::string & szDebug);
 
-    virtual int  MsgRecv_VersionCheck(DataPack * pDataPack, int & iOffset);    // 암호화 키도 같이 받는다..
-    virtual int  MsgRecv_GameServerLogIn(DataPack * pDataPack, int & iOffset); // virtual - 국가번호를 리턴한다.
+    virtual int MsgRecv_VersionCheck(DataPack * pDataPack, int & iOffset);    // 암호화 키도 같이 받는다..
+    virtual int MsgRecv_GameServerLogIn(DataPack * pDataPack, int & iOffset); // virtual - 국가번호를 리턴한다.
     virtual bool MsgRecv_CharacterSelect(DataPack * pDataPack, int & iOffset);
 
     static void  MsgSend_GameServerLogIn();

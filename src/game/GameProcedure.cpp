@@ -56,13 +56,13 @@ CN3UIDebug CGameProcedure::s_UIDebug;
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
-CKnightChrMgr *   CGameProcedure::s_pKnightChr = NULL;  // 나이트 캐릭터..
-CN3SndObjStream * CGameProcedure::s_pSnd_BGM = NULL;    // 메인 배경음악 포인터..
-CLocalInput *     CGameProcedure::s_pLocalInput = NULL; // 마우스와 키보드 입력 객체 .. Direct Input 을 썼다.
-CAPISocket *      CGameProcedure::s_pSocket = NULL;     // 메인 소켓 객체
-CAPISocket *      CGameProcedure::s_pSocketSub = NULL;  // 서브 소켓 객체
-CGameEng *        CGameProcedure::s_pEng = NULL;        // 3D Wrapper Engine
-CN3FXMgr *        CGameProcedure::s_pFX = NULL;
+CKnightChrMgr *   CGameProcedure::s_pKnightChr = NULL; // 나이트 캐릭터..
+CN3SndObjStream * CGameProcedure::s_pSnd_BGM = NULL;   // 메인 배경음악 포인터..
+CLocalInput * CGameProcedure::s_pLocalInput = NULL; // 마우스와 키보드 입력 객체 .. Direct Input 을 썼다.
+CAPISocket *  CGameProcedure::s_pSocket = NULL;     // 메인 소켓 객체
+CAPISocket *  CGameProcedure::s_pSocketSub = NULL;  // 서브 소켓 객체
+CGameEng *    CGameProcedure::s_pEng = NULL;        // 3D Wrapper Engine
+CN3FXMgr *    CGameProcedure::s_pFX = NULL;
 
 CUIManager *           CGameProcedure::s_pUIMgr = NULL;     // UI Manager
 CUILoading *           CGameProcedure::s_pUILoading = NULL; // 로딩바..
@@ -97,10 +97,10 @@ HCURSOR               CGameProcedure::m_hPrevGameCursor = NULL;
 HWND                  CGameProcedure::s_hWndSubSocket = NULL; // 서브 소켓용 윈도우 핸들..
 int                   CGameProcedure::s_iChrSelectIndex = 0;
 bool                  CGameProcedure::s_bNeedReportVersionCheck = false;
-bool                  CGameProcedure::s_bNeedReportConnectionClosed = false; // 서버접속이 끊어진걸 보고해야 하는지..
-bool                  CGameProcedure::s_bWindowed = false;                   // 창모드 실행??
-bool                  CGameProcedure::s_bKeyPress = false;   //키가 눌려졌을때 ui에서 해당하는 조작된적이 있다면
-bool                  CGameProcedure::s_bKeyPressed = false; //키가 올라갔을때 ui에서 해당하는 조작된적이 있다면
+bool CGameProcedure::s_bNeedReportConnectionClosed = false; // 서버접속이 끊어진걸 보고해야 하는지..
+bool CGameProcedure::s_bWindowed = false;                   // 창모드 실행??
+bool CGameProcedure::s_bKeyPress = false;   //키가 눌려졌을때 ui에서 해당하는 조작된적이 있다면
+bool CGameProcedure::s_bKeyPressed = false; //키가 올라갔을때 ui에서 해당하는 조작된적이 있다면
 
 CGameProcedure::CGameProcedure() {
     m_bCursorLocked = false;
@@ -886,14 +886,14 @@ void CGameProcedure::MsgSend_CharacterSelect() // virtual
 {
     BYTE byBuff[64];
     int  iOffset = 0;
-    CAPISocket::MP_AddByte(byBuff, iOffset, N3_CHARACTER_SELECT);            // 커멘드.
-    CAPISocket::MP_AddShort(byBuff, iOffset, s_szAccount.size());            // 계정 길이..
-    CAPISocket::MP_AddString(byBuff, iOffset, s_szAccount);                  // 계정 문자열..
-    CAPISocket::MP_AddShort(byBuff, iOffset, s_pPlayer->IDString().size());  // 캐릭 아이디 길이..
-    CAPISocket::MP_AddString(byBuff, iOffset, s_pPlayer->IDString());        // 캐릭 아이디 문자열..
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_CHARACTER_SELECT);           // 커멘드.
+    CAPISocket::MP_AddShort(byBuff, iOffset, s_szAccount.size());           // 계정 길이..
+    CAPISocket::MP_AddString(byBuff, iOffset, s_szAccount);                 // 계정 문자열..
+    CAPISocket::MP_AddShort(byBuff, iOffset, s_pPlayer->IDString().size()); // 캐릭 아이디 길이..
+    CAPISocket::MP_AddString(byBuff, iOffset, s_pPlayer->IDString());       // 캐릭 아이디 문자열..
     CAPISocket::MP_AddByte(byBuff, iOffset, s_pPlayer->m_InfoExt.iZoneInit); // 처음 접속인지 아닌지 0x01:처음 접속
-    CAPISocket::MP_AddByte(byBuff, iOffset, s_pPlayer->m_InfoExt.iZoneCur);  // 캐릭터 선택창에서의 캐릭터 존 번호
-    s_pSocket->Send(byBuff, iOffset);                                        // 보낸다
+    CAPISocket::MP_AddByte(byBuff, iOffset, s_pPlayer->m_InfoExt.iZoneCur); // 캐릭터 선택창에서의 캐릭터 존 번호
+    s_pSocket->Send(byBuff, iOffset);                                       // 보낸다
 
     CLogWriter::Write("MsgSend_CharacterSelect - name(%s) zone(%d)", s_pPlayer->IDString().c_str(),
                       s_pPlayer->m_InfoExt.iZoneCur); // 디버깅 로그..

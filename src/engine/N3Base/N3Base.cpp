@@ -40,15 +40,15 @@ CN3SndMgr CN3Base::s_SndMgr; //사운드 메니저.
 CN3SndMgr CN3Base::s_SndMgr; //사운드 메니저.
 #endif
 
-CN3Mng<CN3Texture>     CN3Base::s_MngTex;     // Texture Manager
-CN3Mng<CN3Mesh>        CN3Base::s_MngMesh;    // Mesh Manager
-CN3Mng<CN3VMesh>       CN3Base::s_MngVMesh;   // 단순히 폴리곤만 갖고 있는 메시 - 주로 충돌 체크에 쓴다..
-CN3Mng<CN3PMesh>       CN3Base::s_MngPMesh;   // Progressive Mesh Manager
-CN3Mng<CN3Joint>       CN3Base::s_MngJoint;   // Joint Manager
+CN3Mng<CN3Texture> CN3Base::s_MngTex;  // Texture Manager
+CN3Mng<CN3Mesh>    CN3Base::s_MngMesh; // Mesh Manager
+CN3Mng<CN3VMesh> CN3Base::s_MngVMesh;  // 단순히 폴리곤만 갖고 있는 메시 - 주로 충돌 체크에 쓴다..
+CN3Mng<CN3PMesh> CN3Base::s_MngPMesh;  // Progressive Mesh Manager
+CN3Mng<CN3Joint> CN3Base::s_MngJoint;  // Joint Manager
 CN3Mng<CN3CPartSkins>  CN3Base::s_MngSkins;   // Character Part Skins Manager
 CN3Mng<CN3AnimControl> CN3Base::s_MngAniCtrl; // Animation Manager
-CN3Mng<CN3FXPMesh>     CN3Base::s_MngFXPMesh; // FX에서 쓰는 PMesh - 파일은 일반 PMesh를 쓰지만 속은 다르다.
-CN3Mng<CN3FXShape>     CN3Base::s_MngFXShape; // FX에서 쓰는 Shape - 파일은 일반 shape를 쓰지만 속은 다르다.
+CN3Mng<CN3FXPMesh> CN3Base::s_MngFXPMesh; // FX에서 쓰는 PMesh - 파일은 일반 PMesh를 쓰지만 속은 다르다.
+CN3Mng<CN3FXShape> CN3Base::s_MngFXShape; // FX에서 쓰는 Shape - 파일은 일반 shape를 쓰지만 속은 다르다.
 
 CN3AlphaPrimitiveManager CN3Base::
     s_AlphaMgr; // Alpha blend 할 폴리곤들을 관리.. 추가했다가.. 카메라 거리에 맟추어 정렬하고 한꺼번에 그린다..

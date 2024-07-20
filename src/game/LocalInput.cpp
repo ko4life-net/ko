@@ -325,7 +325,7 @@ void CLocalInput::Tick(void) {
 
     RECT rcClient;
     ::GetClientRect(m_hWnd, &rcClient);
-    ::GetCursorPos(&m_ptCurMouse);           // 좀 이상해서... 그냥 시스템 마우스 커서 위치 가져오기
+    ::GetCursorPos(&m_ptCurMouse); // 좀 이상해서... 그냥 시스템 마우스 커서 위치 가져오기
     ::ScreenToClient(m_hWnd, &m_ptCurMouse); // 클라이언트 영역으로 변환
 
     if (PtInRect(&rcClient, m_ptCurMouse) ==

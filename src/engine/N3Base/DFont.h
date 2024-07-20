@@ -83,9 +83,9 @@ class CDFont : public CN3Base {
     void    AddToAlphaManager(DWORD dwColor, float fDist, __Matrix44 & mtxWorld, DWORD dwFlags);
     HRESULT SetFontColor(DWORD dwColor);                     // 글씨 색을 바꾼다.
     HRESULT InitDeviceObjects(LPDIRECT3DDEVICE9 pd3dDevice); // d3d device를 정해주는 초기화 함수 (Init할때 호출)
-    HRESULT RestoreDeviceObjects();                          // resource를 메모리에 세팅하는 초기화 함수 (Init할때 호출)
-    HRESULT InvalidateDeviceObjects();                       // resource등을 무효화시키는 함수 (release할때 호출)
-    HRESULT DeleteDeviceObjects();                           // resource등을 메모리에서 해제 (release할때 호출)
+    HRESULT RestoreDeviceObjects();    // resource를 메모리에 세팅하는 초기화 함수 (Init할때 호출)
+    HRESULT InvalidateDeviceObjects(); // resource등을 무효화시키는 함수 (release할때 호출)
+    HRESULT DeleteDeviceObjects();     // resource등을 메모리에서 해제 (release할때 호출)
 
     HRESULT SetText(const std::string & szText, DWORD dwFlags = 0L); // 출력할 글씨가 달라졌을때만 호출하는 것이 중요.
     HRESULT DrawText(FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags,
@@ -97,7 +97,7 @@ class CDFont : public CN3Base {
     BOOL    GetTextExtent(const std::string & szString, int iStrLen, SIZE * pSize);
 
   protected:
-    void Make2DVertex(const int           iFontHeight,
+    void Make2DVertex(const int iFontHeight,
                       const std::string & szText); // 입력 받은 문자를 적절하게 배치된 2d 폴리곤으로 만든다.
     void Make3DVertex(const int iFontHeight, const std::string & szText,
                       DWORD dwFlags); // 입력 받은 문자를 적절하게 배치된 3d 폴리곤을 만든다.

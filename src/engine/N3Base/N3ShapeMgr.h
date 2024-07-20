@@ -15,8 +15,8 @@
 const int CELL_MAIN_DEVIDE = 4;                              // 메인셀은 4 X 4 의 서브셀로 나뉜다..
 const int CELL_SUB_SIZE = 4;                                 // 4 Meter 가 서브셀의 사이즈이다..
 const int CELL_MAIN_SIZE = CELL_MAIN_DEVIDE * CELL_SUB_SIZE; // 메인셀 크기는 서브셀갯수 X 서브셀 크기이다.
-const int MAX_CELL_MAIN = 4096 / CELL_MAIN_SIZE;             // 메인셀의 최대 갯수는 지형크기 / 메인셀크기 이다.
-const int MAX_CELL_SUB = MAX_CELL_MAIN * CELL_MAIN_DEVIDE;   // 서브셀 최대 갯수는 메인셀 * 메인셀나눔수 이다.
+const int MAX_CELL_MAIN = 4096 / CELL_MAIN_SIZE; // 메인셀의 최대 갯수는 지형크기 / 메인셀크기 이다.
+const int MAX_CELL_SUB = MAX_CELL_MAIN * CELL_MAIN_DEVIDE; // 서브셀 최대 갯수는 메인셀 * 메인셀나눔수 이다.
 
 #ifdef _3DSERVER
 class CN3ShapeMgr
@@ -114,10 +114,10 @@ class CN3ShapeMgr : public CN3BaseFileAccess
 
   protected:
 #ifndef _3DSERVER
-    std::vector<CN3Shape *> m_Shapes;         // 리스트로 안 만든 이유는... 배열이 훨씬 효율적이기 때문이다.
-    std::list<CN3Shape *>   m_ShapesToRender; // Tick 을 호출하면 렌더링할 것만 추린다..
-    std::list<CN3Shape *>   m_ShapesHaveID;   // ID 를 갖고 있어 NPC 가 될수 있는 Shapes....
-#endif                                        // end of #ifndef _3DSERVER
+    std::vector<CN3Shape *> m_Shapes; // 리스트로 안 만든 이유는... 배열이 훨씬 효율적이기 때문이다.
+    std::list<CN3Shape *> m_ShapesToRender; // Tick 을 호출하면 렌더링할 것만 추린다..
+    std::list<CN3Shape *> m_ShapesHaveID;   // ID 를 갖고 있어 NPC 가 될수 있는 Shapes....
+#endif                                      // end of #ifndef _3DSERVER
 
     float        m_fMapWidth;  // 맵 너비.. 미터 단위
     float        m_fMapLength; // 맵 길이.. 미터 단위
@@ -163,8 +163,8 @@ class CN3ShapeMgr : public CN3BaseFileAccess
     float Height() { return m_fMapWidth; }          // 맵의 너비. 단위는 미터이다.
 
 #ifndef _3DSERVER
-    void       ReleaseShapes();
-    void       RenderCollision(const __Vector3 & vPos); // 넣은 위치에 있는 충돌 메시를 그려준다.. 디버깅용...
+    void ReleaseShapes();
+    void RenderCollision(const __Vector3 & vPos); // 넣은 위치에 있는 충돌 메시를 그려준다.. 디버깅용...
     void       Tick();
     void       Render();
     bool       Load(HANDLE hFile);

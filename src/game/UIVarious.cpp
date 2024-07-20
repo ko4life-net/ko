@@ -1430,7 +1430,7 @@ CUIVarious::CUIVarious() {
 
     m_bOpenningNow = false; // 열리고 있다..
     m_bClosingNow = false;  // 닫히고 있다..
-    m_fMoveDelta = 0;       // 부드럽게 열리고 닫히게 만들기 위해서 현재위치 계산에 부동소수점을 쓴다..
+    m_fMoveDelta = 0; // 부드럽게 열리고 닫히게 만들기 위해서 현재위치 계산에 부동소수점을 쓴다..
 }
 
 CUIVarious::~CUIVarious() {}
@@ -1451,7 +1451,7 @@ void CUIVarious::Release() {
 
     m_bOpenningNow = false; // 열리고 있다..
     m_bClosingNow = false;  // 닫히고 있다..
-    m_fMoveDelta = 0;       // 부드럽게 열리고 닫히게 만들기 위해서 현재위치 계산에 부동소수점을 쓴다..
+    m_fMoveDelta = 0; // 부드럽게 열리고 닫히게 만들기 위해서 현재위치 계산에 부동소수점을 쓴다..
 }
 
 bool CUIVarious::Load(HANDLE hFile) {

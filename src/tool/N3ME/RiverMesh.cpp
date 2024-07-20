@@ -78,13 +78,13 @@ bool CRiverMesh::Load(HANDLE hFile) {
     int   iLen;
     char  szTextueFName[_MAX_PATH];
 
-    ReadFile(hFile, &m_iRiverID, sizeof(m_iRiverID), &dwNum, NULL);           // 강 번호
-    ReadFile(hFile, &m_fSpeed1, sizeof(m_fSpeed1), &dwNum, NULL);             // 유속
-    ReadFile(hFile, &m_fSpeed2, sizeof(m_fSpeed2), &dwNum, NULL);             // 유속2
-    ReadFile(hFile, &m_fMeterPerV, sizeof(m_fMeterPerV), &dwNum, NULL);       // U좌표 1.0에 해당하는 강의 길이
-    ReadFile(hFile, &m_fMeterPerU, sizeof(m_fMeterPerU), &dwNum, NULL);       // V좌표 1.0에 해당하는 강의 길이
-    ReadFile(hFile, &m_fMeterPerV2, sizeof(m_fMeterPerV2), &dwNum, NULL);     // U2좌표 1.0에 해당하는 강의 길이
-    ReadFile(hFile, &m_fMeterPerU2, sizeof(m_fMeterPerU2), &dwNum, NULL);     // V2좌표 1.0에 해당하는 강의 길이
+    ReadFile(hFile, &m_iRiverID, sizeof(m_iRiverID), &dwNum, NULL);       // 강 번호
+    ReadFile(hFile, &m_fSpeed1, sizeof(m_fSpeed1), &dwNum, NULL);         // 유속
+    ReadFile(hFile, &m_fSpeed2, sizeof(m_fSpeed2), &dwNum, NULL);         // 유속2
+    ReadFile(hFile, &m_fMeterPerV, sizeof(m_fMeterPerV), &dwNum, NULL);   // U좌표 1.0에 해당하는 강의 길이
+    ReadFile(hFile, &m_fMeterPerU, sizeof(m_fMeterPerU), &dwNum, NULL);   // V좌표 1.0에 해당하는 강의 길이
+    ReadFile(hFile, &m_fMeterPerV2, sizeof(m_fMeterPerV2), &dwNum, NULL); // U2좌표 1.0에 해당하는 강의 길이
+    ReadFile(hFile, &m_fMeterPerU2, sizeof(m_fMeterPerU2), &dwNum, NULL); // V2좌표 1.0에 해당하는 강의 길이
     ReadFile(hFile, &m_dwAlphaFactor, sizeof(m_dwAlphaFactor), &dwNum, NULL); // 강을 투명하게 하기 위한 알파값
 
     ReadFile(hFile, &m_iVC, sizeof(m_iVC), &dwNum, NULL); // 점 갯수
@@ -126,13 +126,13 @@ bool CRiverMesh::Load(HANDLE hFile) {
 bool CRiverMesh::Save(HANDLE hFile) {
     DWORD dwNum;
 
-    WriteFile(hFile, &m_iRiverID, sizeof(m_iRiverID), &dwNum, NULL);           // 강 번호
-    WriteFile(hFile, &m_fSpeed1, sizeof(m_fSpeed1), &dwNum, NULL);             // 유속1
-    WriteFile(hFile, &m_fSpeed2, sizeof(m_fSpeed2), &dwNum, NULL);             // 유속2
-    WriteFile(hFile, &m_fMeterPerV, sizeof(m_fMeterPerV), &dwNum, NULL);       // U좌표 1.0에 해당하는 강의 길이
-    WriteFile(hFile, &m_fMeterPerU, sizeof(m_fMeterPerU), &dwNum, NULL);       // V좌표 1.0에 해당하는 강의 길이
-    WriteFile(hFile, &m_fMeterPerV2, sizeof(m_fMeterPerV2), &dwNum, NULL);     // U2좌표 1.0에 해당하는 강의 길이
-    WriteFile(hFile, &m_fMeterPerU2, sizeof(m_fMeterPerU2), &dwNum, NULL);     // V2좌표 1.0에 해당하는 강의 길이
+    WriteFile(hFile, &m_iRiverID, sizeof(m_iRiverID), &dwNum, NULL);       // 강 번호
+    WriteFile(hFile, &m_fSpeed1, sizeof(m_fSpeed1), &dwNum, NULL);         // 유속1
+    WriteFile(hFile, &m_fSpeed2, sizeof(m_fSpeed2), &dwNum, NULL);         // 유속2
+    WriteFile(hFile, &m_fMeterPerV, sizeof(m_fMeterPerV), &dwNum, NULL);   // U좌표 1.0에 해당하는 강의 길이
+    WriteFile(hFile, &m_fMeterPerU, sizeof(m_fMeterPerU), &dwNum, NULL);   // V좌표 1.0에 해당하는 강의 길이
+    WriteFile(hFile, &m_fMeterPerV2, sizeof(m_fMeterPerV2), &dwNum, NULL); // U2좌표 1.0에 해당하는 강의 길이
+    WriteFile(hFile, &m_fMeterPerU2, sizeof(m_fMeterPerU2), &dwNum, NULL); // V2좌표 1.0에 해당하는 강의 길이
     WriteFile(hFile, &m_dwAlphaFactor, sizeof(m_dwAlphaFactor), &dwNum, NULL); // 강을 투명하게 하기 위한 알파값
 
     WriteFile(hFile, &m_iVC, sizeof(m_iVC), &dwNum, NULL); // 점 갯수

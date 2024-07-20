@@ -70,7 +70,7 @@ class CN3UIBase : public CN3BaseFileAccess {
     RECT
         m_rcMovable; // UI를 드래그 하여 움직이게 할 수 있는 영역 - (screen : main window client area)           ~~~~~~~
 
-    bool        m_bVisible;     // 화면에 보이는가 (부모가 보이지 않으면 자식들은 render 하지 않는다.)
+    bool m_bVisible; // 화면에 보이는가 (부모가 보이지 않으면 자식들은 render 하지 않는다.)
     CN3SndObj * m_pSnd_OpenUI;  // UI가 화면에 보이는 순간 내는 소리
     CN3SndObj * m_pSnd_CloseUI; // UI가 화면에서 사라지는 순간 내는 소리
 
@@ -99,10 +99,10 @@ class CN3UIBase : public CN3BaseFileAccess {
 
     // Operations
   public:
-    bool         IsIn(int x, int y);
-    void         AddChild(CN3UIBase * pChild) { m_Children.push_front(pChild); }
-    void         RemoveChild(CN3UIBase * pChild); // 자식 리스트에서 포인터만 없어지고 실제로 delete 되지는 않는다.
-    void         SetParent(CN3UIBase * pParent);  // 부모를 바꾼다.
+    bool IsIn(int x, int y);
+    void AddChild(CN3UIBase * pChild) { m_Children.push_front(pChild); }
+    void RemoveChild(CN3UIBase * pChild); // 자식 리스트에서 포인터만 없어지고 실제로 delete 되지는 않는다.
+    void         SetParent(CN3UIBase * pParent); // 부모를 바꾼다.
     int          GetWidth() { return m_rcRegion.right - m_rcRegion.left; }
     int          GetHeight() { return m_rcRegion.bottom - m_rcRegion.top; }
     POINT        GetPos() const;

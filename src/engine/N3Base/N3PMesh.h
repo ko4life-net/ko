@@ -25,8 +25,8 @@ class CN3PMesh : public CN3BaseFileAccess {
         //    float Value;
         int NumIndicesToLose, NumIndicesToChange, NumVerticesToLose;
         //int *IndexChanges;
-        int  iIndexChanges; // 포인터 대신 n번째 저장 (0, 1, 2,...)
-        int  CollapseTo;
+        int iIndexChanges; // 포인터 대신 n번째 저장 (0, 1, 2,...)
+        int CollapseTo;
         bool bShouldCollapse; // 여기서 병합/나누기를 멈추면 구멍이 뚤린다. 다음단계를 더 진행해야함.
     };
 

@@ -1119,7 +1119,7 @@ void CN3Chr::Release() {
 
     for (int i = 0; i < MAX_CHR_ANI_PART; i++) {
         m_nJointPartStarts[i] = -1; // 조인트의 일부분이 따로 에니메이션 되야 한다면.. 조인트 인덱스 시작 번호
-        m_nJointPartEnds[i] = -1;   // 조인트의 일부분이 따로 에니메이션 되야 한다면.. 조인트 인덱스 끝 번호
+        m_nJointPartEnds[i] = -1; // 조인트의 일부분이 따로 에니메이션 되야 한다면.. 조인트 인덱스 끝 번호
 
         m_FrmCtrl.Init();
         m_FrmCtrlUpper.Init();
@@ -1489,7 +1489,7 @@ void CN3Chr::TickAnimationFrame() {
 
                 if (m_FrmCtrl.bOnceAndFreeze) {
                     m_FrmCtrl.fFrmCur =
-                        m_FrmCtrl.pAniData->fFrmEnd;            // 한번 에니메이션 하고 멈춰야 한다면.. 걍 멈춰 있는다..
+                        m_FrmCtrl.pAniData->fFrmEnd; // 한번 에니메이션 하고 멈춰야 한다면.. 걍 멈춰 있는다..
                 } else if (m_FrmCtrl.pAniData->iBlendFlags & 1) // 루핑 지연시간이 있으면..
                 {
                     m_FrmCtrl.fFrmCur = m_FrmCtrl.pAniData->fFrmEnd;

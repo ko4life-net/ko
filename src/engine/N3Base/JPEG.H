@@ -87,8 +87,8 @@ class CJpeg {
     void PutSOS(HANDLE hFile);                        // ScanHeader를 삽입
     void PutEOI(HANDLE hFile);                        // End of Image 마커를 삽입
 
-    void ShotBit(BYTE Bit);                            // 1비트를 버퍼에 저장하는 함수
-    void ChargeCode(WORD Code, int Size);              // Size만큼의 길이(아랫자리로부터)로 Code를 버퍼에 저장하는 함수
+    void ShotBit(BYTE Bit);               // 1비트를 버퍼에 저장하는 함수
+    void ChargeCode(WORD Code, int Size); // Size만큼의 길이(아랫자리로부터)로 Code를 버퍼에 저장하는 함수
     void EncodeDU(short * pos, BOOL Flag, int bWidth); // 8x8 Block을 인코드하는 함수
     void hEncode(int bWidth, int bHeight);             // 허프만 인코딩 하는 부분
     BYTE GetCategory(short V);                         // 주어진 값의 카테고리를 구하는 함수

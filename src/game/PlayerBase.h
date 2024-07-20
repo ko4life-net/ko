@@ -30,15 +30,15 @@ class CPlayerBase : public CGameBase {
   protected:
     e_PlayerType m_ePlayerType; // Player Type ... Base, NPC, OTher, MySelf
 
-    std::deque<e_Ani> m_AnimationDeque;    // 에니메이션 큐... 여기다 집어 넣으면 tick 을 돌면서 차례대로 한다..
-    bool              m_bAnimationChanged; // 큐에 넣은 에니메이션이 변하는 순간만 세팅된다..
+    std::deque<e_Ani> m_AnimationDeque; // 에니메이션 큐... 여기다 집어 넣으면 tick 을 돌면서 차례대로 한다..
+    bool m_bAnimationChanged; // 큐에 넣은 에니메이션이 변하는 순간만 세팅된다..
 
-    CN3Chr                 m_Chr;       // 캐릭터 기본 객체...
+    CN3Chr m_Chr; // 캐릭터 기본 객체...
     __TABLE_PLAYER_LOOKS * m_pLooksRef; // 기본 참조 테이블 - 캐릭터에 관한 리소스 정보, 관절 위치, 사운드 파일등등..
-    __TABLE_ITEM_BASIC *   m_pItemPartBasics[PART_POS_COUNT]; // 캐릭터에 붙은 무기들..
-    __TABLE_ITEM_EXT *     m_pItemPartExts[PART_POS_COUNT];   // 캐릭터에 붙은 무기들..
-    __TABLE_ITEM_BASIC *   m_pItemPlugBasics[PLUG_POS_COUNT]; // 캐릭터에 붙은 무기들..
-    __TABLE_ITEM_EXT *     m_pItemPlugExts[PLUG_POS_COUNT];   // 캐릭터에 붙은 무기들..
+    __TABLE_ITEM_BASIC * m_pItemPartBasics[PART_POS_COUNT]; // 캐릭터에 붙은 무기들..
+    __TABLE_ITEM_EXT *   m_pItemPartExts[PART_POS_COUNT];   // 캐릭터에 붙은 무기들..
+    __TABLE_ITEM_BASIC * m_pItemPlugBasics[PLUG_POS_COUNT]; // 캐릭터에 붙은 무기들..
+    __TABLE_ITEM_EXT *   m_pItemPlugExts[PLUG_POS_COUNT];   // 캐릭터에 붙은 무기들..
 
     // ID
     CDFont * m_pClanFont;    // clan or knights..이름 찍는데 쓰는 Font.. -.-;
@@ -96,10 +96,10 @@ class CPlayerBase : public CGameBase {
 
     float m_fTimeAfterDeath; // 죽은지 지난시간 - 5초정도면 적당한가?? 그전에 공격을 받으면 바로 죽는다.
 
-    int       m_iSkillStep;   // 현재 스킬을 쓰고 있다면 0 이 아닌값이다...
-    float     m_fAttackDelta; // 스킬이나 마법에 의해 변하는 공격 속도.. 1.0 이 기본이고 클수록 더 빨리 공격한다.
-    float     m_fMoveDelta;   // 스킬이나 마법에 의해 변하는 이동 속도 1.0 이 기본이고 클수록 더 빨리 움직인다.
-    __Vector3 m_vDirDying;    // 죽을때 밀리는 방향..
+    int m_iSkillStep; // 현재 스킬을 쓰고 있다면 0 이 아닌값이다...
+    float m_fAttackDelta; // 스킬이나 마법에 의해 변하는 공격 속도.. 1.0 이 기본이고 클수록 더 빨리 공격한다.
+    float m_fMoveDelta; // 스킬이나 마법에 의해 변하는 이동 속도 1.0 이 기본이고 클수록 더 빨리 움직인다.
+    __Vector3 m_vDirDying; // 죽을때 밀리는 방향..
 
     //sound..
     bool        m_bSoundAllSet;
@@ -149,8 +149,8 @@ class CPlayerBase : public CGameBase {
     virtual void  SetSoundAndInitFont();
     void          SetSoundPlug(__TABLE_ITEM_BASIC * pItemBasic);
     void          ReleaseSoundAndFont();
-    void          RegenerateCollisionMesh();           // 최대 최소값을 다시 찾고 충돌메시를 다시 만든다..
-    e_StateAction State() { return m_eState; }         // 행동 상태...
+    void          RegenerateCollisionMesh();   // 최대 최소값을 다시 찾고 충돌메시를 다시 만든다..
+    e_StateAction State() { return m_eState; } // 행동 상태...
     e_StateMove   StateMove() { return m_eStateMove; } // 움직이는 상태
 
     e_ItemClass ItemClass_RightHand() {
@@ -171,12 +171,12 @@ class CPlayerBase : public CGameBase {
     e_Ani
     JudgeAnimationBreath(); // 숨쉬기 모션 판단하기.. 가진 아이템과 타겟이 있는냐에 따라 다른 에니메이션 인덱스를 리턴.
     e_Ani JudgeAnimationWalk(); // 걷기 모드판단하기.. 가진 아이템과 타겟이 있는냐에 따라 다른 에니메이션 인덱스를 리턴.
-    e_Ani JudgeAnimationRun();  // 걷기 모드판단하기.. 가진 아이템과 타겟이 있는냐에 따라 다른 에니메이션 인덱스를 리턴.
+    e_Ani JudgeAnimationRun(); // 걷기 모드판단하기.. 가진 아이템과 타겟이 있는냐에 따라 다른 에니메이션 인덱스를 리턴.
     e_Ani
     JudgeAnimationWalkBackward(); // 걷기 모드판단하기.. 가진 아이템과 타겟이 있는냐에 따라 다른 에니메이션 인덱스를 리턴.
-    e_Ani JudgeAnimationAttack();      // 공격 모션 판단하기.. 가진 아이템에 따라 다른 에니메이션 인덱스를 리턴.
-    e_Ani JudgeAnimationStruck();      // 단지 NPC 와 유저를 구별해서 에니메이션 인덱스를 리턴
-    e_Ani JudgeAnimationGuard();       // 막는 동작 판단하기.  단지 NPC 와 유저를 구별해서 에니메이션 인덱스를 리턴
+    e_Ani JudgeAnimationAttack(); // 공격 모션 판단하기.. 가진 아이템에 따라 다른 에니메이션 인덱스를 리턴.
+    e_Ani JudgeAnimationStruck(); // 단지 NPC 와 유저를 구별해서 에니메이션 인덱스를 리턴
+    e_Ani JudgeAnimationGuard(); // 막는 동작 판단하기.  단지 NPC 와 유저를 구별해서 에니메이션 인덱스를 리턴
     e_Ani JudgeAnimationDying();       // 단지 NPC 와 유저를 구별해서 에니메이션 인덱스를 리턴
     e_Ani JudgetAnimationSpellMagic(); // 마법 동작
 
@@ -241,13 +241,13 @@ class CPlayerBase : public CGameBase {
                           float fDurationTime); // 컬러를 정하는 시간대로 유지하면서 원래색대로 돌아간다.
     void FlickerFactorSet(float fAlpha);
 
-    void                InfoStringSet(const std::string & szInfo, D3DCOLOR crFont);
-    void                BalloonStringSet(const std::string & szBalloon, D3DCOLOR crFont);
-    void                IDSet(int iID, const std::string & szID, D3DCOLOR crID);
-    virtual void        KnightsInfoSet(int iID, const std::string & szName, int iGrade, int iRank);
+    void         InfoStringSet(const std::string & szInfo, D3DCOLOR crFont);
+    void         BalloonStringSet(const std::string & szBalloon, D3DCOLOR crFont);
+    void         IDSet(int iID, const std::string & szID, D3DCOLOR crID);
+    virtual void KnightsInfoSet(int iID, const std::string & szName, int iGrade, int iRank);
     const std::string & IDString() { return m_InfoBase.szID; } // ID 는 Character 포인터의 이름으로 대신한다.
-    int                 IDNumber() { return m_InfoBase.iID; }
-    CPlayerBase *       TargetPointerCheck(bool bMustAlive);
+    int           IDNumber() { return m_InfoBase.iID; }
+    CPlayerBase * TargetPointerCheck(bool bMustAlive);
 
     ////////////////////
     // 충돌 체크 함수들...
@@ -273,7 +273,7 @@ class CPlayerBase : public CGameBase {
     virtual void Tick();
     virtual void Render(float fSunAngle);
     virtual void RenderCollisionMesh() { m_Chr.RenderCollisionMesh(); }
-    void         RenderChrInRect(CN3Chr * pChr, const RECT & Rect); // Dino 추가, 지정된 사각형안에 캐릭터를 그린다.
+    void RenderChrInRect(CN3Chr * pChr, const RECT & Rect); // Dino 추가, 지정된 사각형안에 캐릭터를 그린다.
 
     void Release();
 

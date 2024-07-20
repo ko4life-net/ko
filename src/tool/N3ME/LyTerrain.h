@@ -43,10 +43,10 @@ class CLyTerrain : public CN3BaseFileAccess {
     CQTNode * m_pRefCurrNode;
 
     //지형 edit관련...
-    __VertexXyzColor m_vBrushVertices[MAX_BRUSH_SIZE * MAX_BRUSH_SIZE * 9];    // Brush의 모양을 나타내는 vertex buffer
-    WORD             m_wBrushIndices[MAX_BRUSH_SIZE * MAX_BRUSH_SIZE * 6 * 4]; // Brush의 모양을 나타내는 index buffer
-    int              m_iBrushIndexCount;                                       // Brush의 모양을 나타내는 index의 숫자
-    int              m_iEditMode;                                              // Edit의 모드인가?
+    __VertexXyzColor m_vBrushVertices[MAX_BRUSH_SIZE * MAX_BRUSH_SIZE * 9]; // Brush의 모양을 나타내는 vertex buffer
+    WORD m_wBrushIndices[MAX_BRUSH_SIZE * MAX_BRUSH_SIZE * 6 * 4]; // Brush의 모양을 나타내는 index buffer
+    int  m_iBrushIndexCount;                                       // Brush의 모양을 나타내는 index의 숫자
+    int  m_iEditMode;                                              // Edit의 모드인가?
 
     CDTexMng * m_pDTexMng;
 
@@ -69,7 +69,7 @@ class CLyTerrain : public CN3BaseFileAccess {
     bool **                 m_ppIsLightMap;
     int                     m_iNumLightMap;
     bool                    m_bDrawLineLightMap; //라이트 맵 그리는 옵션에서.. 라인형태로 그리는지..
-    __VertexXyzColor        m_vLineLightMap[2];  //라인형태로 그린다면 그 라인을 화면에 표시해야되겠지?..^^ 그점이야..
+    __VertexXyzColor m_vLineLightMap[2]; //라인형태로 그린다면 그 라인을 화면에 표시해야되겠지?..^^ 그점이야..
 
     //LOD관련..
     int m_iHeightLimit;
@@ -142,7 +142,7 @@ class CLyTerrain : public CN3BaseFileAccess {
     BOOL  IntersectTriangle(const D3DXVECTOR3 orig, const D3DXVECTOR3 dir, D3DXVECTOR3 & v0, D3DXVECTOR3 & v1,
                             D3DXVECTOR3 & v2, float * t, float * u, float * v);
     void  Heighten(POINT ptCenter, float fHeight); // 지형을 높게하거나 낮게 하는 함수
-    void  Smooth(POINT ptCenter);                  // 지형을 주변 맵의 높이값과 비교해서 부드럽게 한다.
+    void  Smooth(POINT ptCenter); // 지형을 주변 맵의 높이값과 비교해서 부드럽게 한다.
     void  Flaten(POINT ptCenter);
     void  SetApexHeight(int x, int z, float fHeight); // 높이맵의 높이값 지정
     float GetApexHeight(int x, int z) const;          // 높이맵의 높이값 얻기

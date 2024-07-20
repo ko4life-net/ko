@@ -79,7 +79,7 @@ CUIInventory::CUIInventory() {
 
     m_bOpenningNow = false; // 열리고 있다..
     m_bClosingNow = false;  // 닫히고 있다..
-    m_fMoveDelta = 0;       // 부드럽게 열리고 닫히게 만들기 위해서 현재위치 계산에 부동소수점을 쓴다..
+    m_fMoveDelta = 0; // 부드럽게 열리고 닫히게 만들기 위해서 현재위치 계산에 부동소수점을 쓴다..
 
     m_bDestoyDlgAlive = false;
     m_pText_Weight = NULL;
@@ -111,7 +111,7 @@ void CUIInventory::Release() {
 
     m_bOpenningNow = false; // 열리고 있다..
     m_bClosingNow = false;  // 닫히고 있다..
-    m_fMoveDelta = 0;       // 부드럽게 열리고 닫히게 만들기 위해서 현재위치 계산에 부동소수점을 쓴다..
+    m_fMoveDelta = 0; // 부드럽게 열리고 닫히게 만들기 위해서 현재위치 계산에 부동소수점을 쓴다..
     m_pText_Weight = NULL;
 }
 
@@ -619,7 +619,7 @@ int CUIInventory::GetArmDestinationIndex(__IconItemSkill * spItem) {
         switch (pItem->byAttachPoint) {
         case ITEM_ATTACH_POS_DUAL:
             if (m_pMySlot[ITEM_SLOT_POS_HAND_RIGHT] && m_pMySlot[ITEM_SLOT_POS_HAND_LEFT]) { // 양쪽에 있는 경우..
-                return ITEM_SLOT_POS_HAND_RIGHT;                                             // 둘다 있으면 오른쪽..
+                return ITEM_SLOT_POS_HAND_RIGHT; // 둘다 있으면 오른쪽..
             }
             if (!m_pMySlot[ITEM_SLOT_POS_HAND_RIGHT]) { // 오른쪽에 없는 경우..
                 return ITEM_SLOT_POS_HAND_RIGHT;
@@ -638,14 +638,14 @@ int CUIInventory::GetArmDestinationIndex(__IconItemSkill * spItem) {
         case ITEM_ATTACH_POS_HAND_LEFT:
             return ITEM_SLOT_POS_HAND_LEFT;
 
-        case ITEM_ATTACH_POS_TWOHAND_RIGHT:                                                  // 양손검을 오른손에 찰때..
+        case ITEM_ATTACH_POS_TWOHAND_RIGHT: // 양손검을 오른손에 찰때..
             if (m_pMySlot[ITEM_SLOT_POS_HAND_RIGHT] && m_pMySlot[ITEM_SLOT_POS_HAND_LEFT]) { // 양쪽에 있는 경우..
                 return -1;
             } else {
                 return ITEM_SLOT_POS_HAND_RIGHT;
             }
 
-        case ITEM_ATTACH_POS_TWOHAND_LEFT:                                                   // 양손검을 오른손에 찰때..
+        case ITEM_ATTACH_POS_TWOHAND_LEFT: // 양손검을 오른손에 찰때..
             if (m_pMySlot[ITEM_SLOT_POS_HAND_RIGHT] && m_pMySlot[ITEM_SLOT_POS_HAND_LEFT]) { // 양쪽에 있는 경우..
                 return -1;
             } else {

@@ -438,8 +438,8 @@ void CGameProcMain::InitPlayerPosition(
     const __Vector3 & vPos) // 플레이어 위치 초기화.. 일으켜 세우고, 기본동작을 취하게 한다.
 {
     __Vector3 vPosFinal = vPos;
-    float     fYTerrain = ACT_WORLD->GetHeightWithTerrain(vPos.x, vPos.z);   // 지형의 높이값 얻기..
-    float     fYObject = ACT_WORLD->GetHeightNearstPosWithShape(vPos, 1.0f); // 오브젝트에서 가장 가까운 높이값 얻기..
+    float     fYTerrain = ACT_WORLD->GetHeightWithTerrain(vPos.x, vPos.z); // 지형의 높이값 얻기..
+    float fYObject = ACT_WORLD->GetHeightNearstPosWithShape(vPos, 1.0f); // 오브젝트에서 가장 가까운 높이값 얻기..
     if (!s_pWorldMgr->IsIndoor()) {
         if (T_Abs(vPos.y - fYObject) < T_Abs(vPos.y - fYTerrain)) {
             vPosFinal.y = fYObject; // 좀더 가까운 곳에 놓는다..
@@ -892,13 +892,13 @@ bool CGameProcMain::ProcessPacket(DataPack * pDataPack, int & iOffset) {
     case N3_UPDATE_REGION_UPC: // 첨에 로그온하면 그 주변 지역의 캐릭터들 업데이트...
         this->MsgRecv_UserInAndRequest(pDataPack, iOffset);
         return true;
-    case N3_REQUEST_USER_IN:                               // 서버에 요청한 UserIn 에 대한 자세한 정보 받기..
+    case N3_REQUEST_USER_IN: // 서버에 요청한 UserIn 에 대한 자세한 정보 받기..
         this->MsgRecv_UserInRequested(pDataPack, iOffset); //
         return true;
     case N3_UPDATE_REGION_NPC: // 첨에 로그온하면 그 주변 지역의 캐릭터들 업데이트...
         this->MsgRecv_NPCInAndRequest(pDataPack, iOffset);
         return true;
-    case N3_REQUEST_NPC_IN:                               // 서버에 요청한 UserIn 에 대한 자세한 정보 받기..
+    case N3_REQUEST_NPC_IN: // 서버에 요청한 UserIn 에 대한 자세한 정보 받기..
         this->MsgRecv_NPCInRequested(pDataPack, iOffset); //
         return true;
     case N3_NPC_INOUT: // NPC 인/아웃..
@@ -2447,8 +2447,8 @@ bool CGameProcMain::MsgRecv_UserIn(DataPack * pDataPack, int & iOffset, bool bWi
     // 기사단 관련
     int           iKnightsID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 기사단 ID
     e_KnightsDuty eKnightsDuty =
-        (e_KnightsDuty)CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);            // 소속 국가. 0 이면 없다. 1
-    int         iKnightNameLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 소속 기사단 이름 길이.
+        (e_KnightsDuty)CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);    // 소속 국가. 0 이면 없다. 1
+    int iKnightNameLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 소속 기사단 이름 길이.
     std::string szKnightsName;
     CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szKnightsName, iKnightNameLen);
     int iKnightsGrade = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 등급
@@ -2734,14 +2734,14 @@ bool CGameProcMain::MsgRecv_NPCInOut(DataPack * pDataPack, int & iOffset) {
 }
 
 bool CGameProcMain::MsgRecv_NPCIn(DataPack * pDataPack, int & iOffset) {
-    int iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);         // Server에서 관리하는 고유 ID
-    int iIDResrc = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);    // 리소스 ID
-    int iType = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);        // NPC Type - 0x05 : 상인
+    int iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);      // Server에서 관리하는 고유 ID
+    int iIDResrc = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 리소스 ID
+    int iType = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);     // NPC Type - 0x05 : 상인
     int iItemTrdeID = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset); // 아이템 거래할 그룹 ID 서버에 요청할 ID
-    int iScale = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);      // 스케일 100 은 1.0
-    int iItemID0 = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);    // 리소스 ID
-    int iItemID1 = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);    // 리소스 ID
-    int iNameLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+    int         iScale = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);   // 스케일 100 은 1.0
+    int         iItemID0 = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset); // 리소스 ID
+    int         iItemID1 = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset); // 리소스 ID
+    int         iNameLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
     std::string szName; // NPC 아이디..
     if (iNameLen > 0) {
         CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szName, iNameLen);
@@ -2754,7 +2754,7 @@ bool CGameProcMain::MsgRecv_NPCIn(DataPack * pDataPack, int & iOffset) {
     //#endif
 
     e_Nation eNation = (e_Nation)CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 소속 국가. 0 이면 없다. 1
-    int      iLevel = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
+    int iLevel = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
 
     float fXPos = (CAPISocket::Parse_GetWord(pDataPack->m_pData, iOffset)) / 10.0f;
     float fZPos = (CAPISocket::Parse_GetWord(pDataPack->m_pData, iOffset)) / 10.0f;
@@ -3109,7 +3109,7 @@ bool CGameProcMain::MsgRecv_Attack(DataPack * pDataPack, int & iOffset) {
             __TABLE_UPC_SKILL * pSkill = s_pTbl_Skill->Find(s_pPlayer->m_dwMagicID);
             if (pSkill) {
                 int SuccessValue = rand() % 100;
-                if (SuccessValue >= pSkill->iPercentSuccess) {       // 스킬 테이블에 있는 확률대로 실패한다..
+                if (SuccessValue >= pSkill->iPercentSuccess) { // 스킬 테이블에 있는 확률대로 실패한다..
                     s_pPlayer->Action(PSA_BASIC, false, NULL, true); // 캐스팅 취소, 기본동작으로 강제 세팅..
                 }
             }
@@ -4355,8 +4355,8 @@ void CGameProcMain::InitZone(int iZone, const __Vector3 & vPosPlayer) {
     ////////////////////////////////////////////////////////////////////////////////
 
     CLogWriter::Write("InitPlayerPosition() Position(%.1f, %.1f, %.1f)", vPosPlayer.x, vPosPlayer.y,
-                      vPosPlayer.z);               // TmpLog1122
-    this->InitPlayerPosition(vPosPlayer);          // 플레이어 위치 초기화.. 일으켜 세우고, 기본동작을 취하게 한다.
+                      vPosPlayer.z); // TmpLog1122
+    this->InitPlayerPosition(vPosPlayer); // 플레이어 위치 초기화.. 일으켜 세우고, 기본동작을 취하게 한다.
     CLogWriter::Write("%d->Release()2", s_pOPMgr); // TmpLog1122
     s_pOPMgr->Release();                           // 다른 플레이어 삭제...
 }
@@ -4461,7 +4461,7 @@ void CGameProcMain::CommandMove(e_MoveDirection eMD, bool bStartOrEnd) {
             float fSpeed =
                 s_pPlayer
                     ->MoveSpeedCalculationAndCheckCollision(); // 속도를 구하고 그 속도로 충돌 체크를 한다. 리턴값이 0 이면 충돌이다..
-            if (0 == fSpeed)                                   // 못움직이는 상황이면..
+            if (0 == fSpeed) // 못움직이는 상황이면..
             {
                 s_pPlayer->ActionMove(PSM_STOP); // 멈춤..
             } else {
@@ -4986,7 +4986,7 @@ void CGameProcMain::MsgRecv_PartyOrForce(DataPack * pDataPack, int & iOffset) {
             e_Class eClass = (e_Class)(CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset));
 
             m_pUIPartyOrForce->MemberAdd(iID, szID, iLevel, eClass, iHP, iHPMax); // 다른넘 파티에추가..
-            if (iID != s_pPlayer->IDNumber())                                     // 자기 자신이 아닌 경우 메시지 출력.
+            if (iID != s_pPlayer->IDNumber()) // 자기 자신이 아닌 경우 메시지 출력.
             {
                 std::string szMsg;
                 ::_LoadStringFromResource(IDS_PARTY_INSERT, szMsg);
@@ -6130,7 +6130,7 @@ void CGameProcMain::MsgRecv_KnightsListBasic(DataPack * pDataPack, int & iOffset
 }
 
 void CGameProcMain::MsgRecv_CompressedPacket(DataPack * pDataPack,
-                                             int &      iOffset) // 압축된 데이터 이다... 한번 더 파싱해야 한다!!!
+                                             int & iOffset) // 압축된 데이터 이다... 한번 더 파싱해야 한다!!!
 {
     short sCompLen, sOrgLen;
     DWORD dwCrcValue;
@@ -6161,7 +6161,7 @@ void CGameProcMain::MsgRecv_CompressedPacket(DataPack * pDataPack,
 }
 
 void CGameProcMain::MsgRecv_ContinousPacket(DataPack * pDataPack,
-                                            int &      iOffset) // 압축된 데이터 이다... 한번 더 파싱해야 한다!!!
+                                            int & iOffset) // 압축된 데이터 이다... 한번 더 파싱해야 한다!!!
 {
     int iWholeSize = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // 원래데이타길이얻기...
     int iOffset2 = iOffset, iOffsetPrev = 0, iSizeThisPacket = 0;
@@ -6505,11 +6505,11 @@ void CGameProcMain::MsgRecv_WarpList(DataPack * pDataPack, int & iOffset) // 워
             iStrLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);                 // 동의문 길이
             CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, WI.szAgreement, iStrLen); // 동의문
             WI.iZone = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);                // 존번호
-            WI.iMaxUser = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);             // 최대 유저 카운트.
-            WI.iGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);                // 돈
-            WI.vPos.x = (CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)) / 10.0f;     // 좌표
-            WI.vPos.z = (CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)) / 10.0f;     //
-            WI.vPos.y = (CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)) / 10.0f;     //
+            WI.iMaxUser = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);         // 최대 유저 카운트.
+            WI.iGold = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);            // 돈
+            WI.vPos.x = (CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)) / 10.0f; // 좌표
+            WI.vPos.z = (CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)) / 10.0f; //
+            WI.vPos.y = (CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)) / 10.0f; //
 
             m_pUIWarp->InfoAdd(WI);
         }
@@ -7084,7 +7084,7 @@ bool CGameProcMain::MsgRecv_CharacterSelect(DataPack * pDataPack, int & iOffset)
     //전쟁존에서 죽어서 서버 체인지 하는 경우는 다시 값을 세팅해준다.
     if (s_pPlayer->IsDead()) {
         this->InitPlayerPosition(
-            s_pPlayer->Position());           // 플레이어 위치 초기화.. 일으켜 세우고, 기본동작을 취하게 한다.
+            s_pPlayer->Position()); // 플레이어 위치 초기화.. 일으켜 세우고, 기본동작을 취하게 한다.
         s_pPlayer->RegenerateCollisionMesh(); // 충돌 메시를 다시 만든다..
         s_pPlayer->m_iSendRegeneration = 0;   // 한번 보내면 다시 죽을때까지 안보내는 플래그
         s_pPlayer->m_fTimeAfterDeath = 0;     // 한번 보내면 다시 죽을때까지 안보내는 플래그
@@ -7450,7 +7450,7 @@ bool CGameProcMain::OnMouseRBtnPress(POINT ptCur, POINT ptPrev) {
 
     if (NULL == pNPC) {
         CPlayerNPC * pCorpse = s_pOPMgr->PickCorpse(ptCur.x, ptCur.y, iID); // 픽킹..
-        if (false == this->MsgSend_RequestItemBundleOpen(pCorpse))          // 시체 뒤저서 아이템 상자 열기..
+        if (false == this->MsgSend_RequestItemBundleOpen(pCorpse)) // 시체 뒤저서 아이템 상자 열기..
         {
             CN3Shape * pShape = ACT_WORLD->PickWithShape(ptCur.x, ptCur.y, true);
             if (pShape && pShape == s_pPlayer->m_pObjectTarget && pShape->m_iEventID) // Event 가 있으면..
@@ -7588,7 +7588,7 @@ void CGameProcMain::MsgSend_SpeedCheck(bool bInit) {
     float fTime = CN3Base::TimeGet(); // 클라이언트 시간
 
     s_pSocket->MP_AddByte(byBuff, iOffset, N3_CHECK_SPEEDHACK); // 스피드핵 체크 패킷..
-    s_pSocket->MP_AddByte(byBuff, iOffset, bInit);  // 서버가 기준 시간으로 쓸 타입 true 이면 기준시간 false면 체크타입
+    s_pSocket->MP_AddByte(byBuff, iOffset, bInit); // 서버가 기준 시간으로 쓸 타입 true 이면 기준시간 false면 체크타입
     s_pSocket->MP_AddFloat(byBuff, iOffset, fTime); // 클라이언트 시간
     s_pSocket->Send(byBuff, iOffset);               // 보냄..
 }

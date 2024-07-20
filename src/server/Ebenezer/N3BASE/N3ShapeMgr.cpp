@@ -534,10 +534,10 @@ void CN3ShapeMgr::GenerateCollisionData() {
                     pSubCell->pdwCCVertIndices[nCCPC * 3 + 0] = i * 3 + 0; // 인덱스 저장..
                     pSubCell->pdwCCVertIndices[nCCPC * 3 + 1] = i * 3 + 1; // 인덱스 저장..
                     pSubCell->pdwCCVertIndices[nCCPC * 3 + 2] = i * 3 + 2; // 인덱스 저장..
-                    pSubCell->nCCPolyCount++;                              // Collision Check Polygon Count 를 늘린다.
-                }                                                          // end of for(int x = xx1; x <= xx2; x++)
-            } // end of for(int z = zz1; z <= zz2; z++) // 범위만큼 처리..
-        }     // end of for(int j = 0; j < 3; j++) // 걸쳐 있는 메시 만큼 생성...
+                    pSubCell->nCCPolyCount++; // Collision Check Polygon Count 를 늘린다.
+                }                             // end of for(int x = xx1; x <= xx2; x++)
+            }                                 // end of for(int z = zz1; z <= zz2; z++) // 범위만큼 처리..
+        } // end of for(int j = 0; j < 3; j++) // 걸쳐 있는 메시 만큼 생성...
     }
 }
 #endif // end of _N3TOOL
@@ -701,8 +701,8 @@ bool CN3ShapeMgr::CheckCollision(const __Vector3 & vPos,         // 충돌 위�
         return false; // 움직이는 속도가 없거나 반대로 움직이면 넘어간다..
     }
     static __CellSub * ppCells[128];
-    __Vector3          vPosNext = vPos + (vDir * fSpeedPerSec);                        // 다음 위치
-    int                nSubCellCount = this->SubCellPathThru(vPos, vPosNext, ppCells); // 통과하는 서브셀을 가져온다..
+    __Vector3          vPosNext = vPos + (vDir * fSpeedPerSec);         // 다음 위치
+    int nSubCellCount = this->SubCellPathThru(vPos, vPosNext, ppCells); // 통과하는 서브셀을 가져온다..
     if (nSubCellCount <= 0 || nSubCellCount > 128) {
         return false; // 없음 말자.
     }
@@ -756,7 +756,7 @@ bool CN3ShapeMgr::CheckCollision(const __Vector3 & vPos,         // 충돌 위�
 #ifndef _3DSERVER
     else {
         it_Shp it = m_ShapesToRender.begin(), itEnd = m_ShapesToRender.end(); // 눈에 보이는것만 대상으로 해서...
-        int    iSC = m_ShapesToRender.size();
+        int iSC = m_ShapesToRender.size();
 
         if (iSC > 0) {
             // 거리순으로 정렬..
@@ -895,7 +895,7 @@ CN3Shape * CN3ShapeMgr::Pick(int iXScreen, int iYScreen, bool bMustHaveEvent, __
                                  vPos, vDir);
 
     it_Shp it = m_ShapesToRender.begin(), itEnd = m_ShapesToRender.end(); // 눈에 보이는것만 대상으로 해서...
-    int    iSC = m_ShapesToRender.size();
+    int iSC = m_ShapesToRender.size();
 
     // 거리순으로 정렬..
     std::vector<CN3Shape *> Shapes(iSC, NULL);

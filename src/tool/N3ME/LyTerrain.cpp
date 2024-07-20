@@ -1017,7 +1017,7 @@ bool CLyTerrain::LoadFromFile(const char * lpszPath) {
                 ProgressBar.StepIt();
 
                 _makepath(szNewFName, szDrive, szDir, szFName,
-                          NULL);                        // 파일 이름과 동일한 이름으로 컬러맵 저장되어 있다.
+                          NULL); // 파일 이름과 동일한 이름으로 컬러맵 저장되어 있다.
                 wsprintf(szAdd, "_%02d%02d.DXT", x, z); // Tool 경로를 붙이고 번호와 확장자를 붙여서 저장되어 있다.
                 lstrcat(szNewFName, szAdd);
 

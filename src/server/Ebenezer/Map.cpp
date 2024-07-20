@@ -191,9 +191,9 @@ void C3DMap::LoadRegeneEvent(HANDLE hFile) {
         pEvent = new _REGENE_EVENT;
 
         pEvent->sRegenePoint = i;
-        ReadFile(hFile, &(pEvent->fRegenePosX), 4, &dwNum, NULL);  // 캐릭터 나타나는 지역의 왼아래쪽 구석 좌표 X
-        ReadFile(hFile, &(pEvent->fRegenePosY), 4, &dwNum, NULL);  // 캐릭터 나타나는 지역의 왼아래쪽 구석 좌표 Y
-        ReadFile(hFile, &(pEvent->fRegenePosZ), 4, &dwNum, NULL);  // 캐릭터 나타나는 지역의 왼아래쪽 구석 좌표 Z
+        ReadFile(hFile, &(pEvent->fRegenePosX), 4, &dwNum, NULL); // 캐릭터 나타나는 지역의 왼아래쪽 구석 좌표 X
+        ReadFile(hFile, &(pEvent->fRegenePosY), 4, &dwNum, NULL); // 캐릭터 나타나는 지역의 왼아래쪽 구석 좌표 Y
+        ReadFile(hFile, &(pEvent->fRegenePosZ), 4, &dwNum, NULL); // 캐릭터 나타나는 지역의 왼아래쪽 구석 좌표 Z
         ReadFile(hFile, &(pEvent->fRegeneAreaZ), 4, &dwNum, NULL); // 캐릭터 나타나는 지역의 Z 축 길이
         ReadFile(hFile, &(pEvent->fRegeneAreaX), 4, &dwNum, NULL); // 캐릭터 나타나는 지역의 X 축 길이
 

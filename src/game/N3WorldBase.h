@@ -49,7 +49,7 @@ class CN3WorldBase : public CN3BaseFileAccess, public CGameBase {
                                                float             fSpeedPerSec,    // 초당 움직이는 속도
                                                __Vector3 *       pvCol = NULL,    // 충돌 지점
                                                __Vector3 *       pvNormal = NULL, // 충돌한면의 법선벡터
-                                               __Vector3 *       pVec = NULL) = 0;      // 충돌한 면 의 폴리곤 __Vector3[3]
+                                               __Vector3 *       pVec = NULL) = 0; // 충돌한 면 의 폴리곤 __Vector3[3]
 
     // Sky..
     virtual D3DCOLOR GetSkyColorWithSky() { return 0x00000000; }

@@ -63,7 +63,7 @@ class CPondMng : public CN3BaseFileAccess {
     BOOL                                       m_bChooseGroup;    // 연못물 그룹으로 편집하는가
     BOOL                                       m_bChooseEditPond; // 현재 쓰는 연못내에서만 편집할것인가
     BOOL                                       m_bMovePond;       // 선택한 연못을 통째로 움직일 것인가
-    int                                        m_PCursorMode;     // 연못을 추가?하는 것인가 점을 선택하는 것인가?
+    int m_PCursorMode; // 연못을 추가?하는 것인가 점을 선택하는 것인가?
 
     CMainFrame *       m_pMainFrm;     // mainframe pointer
     CDlgPondProperty * m_pDlgProperty; // property dialog
@@ -125,5 +125,5 @@ class CPondMng : public CN3BaseFileAccess {
     void ReSetVtxBackup();
 
     void ReSetDrawRect(__Vector3 vStrPos, __Vector3 vEndPos); //    연못을 그리기위한 영역 재정리
-    void InputDummyMovePos(__Vector3 vMovePos);               //    더미가 움직인 만큼 선택한 연못에 입력
+    void InputDummyMovePos(__Vector3 vMovePos); //    더미가 움직인 만큼 선택한 연못에 입력
 };

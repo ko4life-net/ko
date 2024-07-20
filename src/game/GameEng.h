@@ -82,16 +82,16 @@ class CGameEng : public CN3Eng {
     void        CameraPitchAdd(float fRotXPerSec);
     void        CameraYawAdd(float fRotYPerSec);
     void        CameraZoom(float fDelta);
-    float       CameraYaw() { return m_fRotYawVPGod; } // 위에서 바라본 시점일 경우에 카메라 회전각도..
-    void        SetActiveCamera(CN3Camera * pCamera) { m_pActiveCam = pCamera; }
-    void        Tick(const D3DCOLOR *     crDiffuses,    // Diffuse 라이트 색깔..
-                     const D3DCOLOR *     crAmbients,    // Ambient 라이트 색깔..
-                     const D3DCOLOR       crFog,         // 안개 색깔..
-                     const __Vector3 &    vPosPlayer,    // 플레이어 위치
-                     const __Quaternion & qtPlayer,      // 회전 쿼터니언
-                     float                fHeightPlayer, // 키를 인수로 넣으면 카메라와 라이트 처리..
-                     float                fSunRadianZ);                 // 해의 Z 각도..
-    void        ApplyCameraAndLight(); // 카메라와 라이트에 세팅된 값 적용. 라이트는 해의 각도에 따라 다르게 한다.
+    float CameraYaw() { return m_fRotYawVPGod; } // 위에서 바라본 시점일 경우에 카메라 회전각도..
+    void  SetActiveCamera(CN3Camera * pCamera) { m_pActiveCam = pCamera; }
+    void  Tick(const D3DCOLOR *     crDiffuses,    // Diffuse 라이트 색깔..
+               const D3DCOLOR *     crAmbients,    // Ambient 라이트 색깔..
+               const D3DCOLOR       crFog,         // 안개 색깔..
+               const __Vector3 &    vPosPlayer,    // 플레이어 위치
+               const __Quaternion & qtPlayer,      // 회전 쿼터니언
+               float                fHeightPlayer, // 키를 인수로 넣으면 카메라와 라이트 처리..
+               float                fSunRadianZ);                 // 해의 Z 각도..
+    void ApplyCameraAndLight(); // 카메라와 라이트에 세팅된 값 적용. 라이트는 해의 각도에 따라 다르게 한다.
 
     CGameEng();
     virtual ~CGameEng();

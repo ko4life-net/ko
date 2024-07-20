@@ -39,16 +39,16 @@ enum eUI_TYPE {
 // State
 enum eUI_STATE {
     UI_STATE_COMMON_NONE =
-        0,                  // 아무렇지도 않은 그냥 평범한 상태 혹은 아이콘을 가진 윈도우가 아이콘을 선택하지 않은 상태
-    UI_STATE_COMMON_MOVE,   // 움직여야 하는
-    UI_STATE_BUTTON_NORMAL, // 아무렇지도 않은 그냥 평범한 상태..
-    UI_STATE_BUTTON_DOWN,   // 버튼이 눌린상태
+        0, // 아무렇지도 않은 그냥 평범한 상태 혹은 아이콘을 가진 윈도우가 아이콘을 선택하지 않은 상태
+    UI_STATE_COMMON_MOVE,            // 움직여야 하는
+    UI_STATE_BUTTON_NORMAL,          // 아무렇지도 않은 그냥 평범한 상태..
+    UI_STATE_BUTTON_DOWN,            // 버튼이 눌린상태
     UI_STATE_BUTTON_DOWN_2CHECKDOWN, // 버튼이 임시적으로 눌린 상태(체크 버튼시 사용, 진짜로 눌린 상태가 아니다) 다음에 down상태로
     UI_STATE_BUTTON_DOWN_2CHECKUP, // 버튼이 임시적으로 눌린 상태(체크 버튼시 사용, 진짜로 눌린 상태가 아니다) 다음에 normal상태로
     UI_STATE_BUTTON_ON,            // 버튼이 켜진 상태..
-    UI_STATE_BUTTON_DISABLE,              // 버튼이 비활성화된 상태
-    UI_STATE_BUTTON_CLICK,                // 버튼이 눌렸다 떨어진 상태 - Click.
-    UI_STATE_SCROLLBAR_NULL,              // 아무상태도 아님..
+    UI_STATE_BUTTON_DISABLE,       // 버튼이 비활성화된 상태
+    UI_STATE_BUTTON_CLICK,         // 버튼이 눌렸다 떨어진 상태 - Click.
+    UI_STATE_SCROLLBAR_NULL,       // 아무상태도 아님..
     UI_STATE_SCROLLBAR_TOPBUTTON_DOWN,    // 위로 올리는 버튼이 눌린 상태.
     UI_STATE_SCROLLBAR_BOTTOMBUTTON_DOWN, // 아래로 내리는 버튼이 눌린상태.
     UI_STATE_EDTCTRL_ACTIVE,
@@ -62,9 +62,9 @@ enum eUI_STATE {
     UI_STATE_ICON_MOVING, // 아이콘을 가진 윈도우가 아이콘을 움직이고 있는 상태..
     // UI_STATE_ICON_SELECTED,         // 아이콘을 가진 윈도우가 아이콘을 선택한 상태..
     UI_STATE_ICON_WAIT_FROM_SERVER, // 아이콘을 가진 윈도우가 아이콘을 옮기고 서버로 부터 응답을 기다리는 상태..
-    UI_STATE_ICON_DO_SUCCESS,       // 아이콘을 가진 윈도우가 서버로 부터 성공을 받은 상태..
-    UI_STATE_ICON_DO_FAIL,          // 아이콘을 가진 윈도우가 서버로 부터 실패를 받은 상태..
-    UI_STATE_ICON_DO_RECOVERY,      // 아이콘을 가진 윈도우가 서버로 부터 실패를 받아 복구해야 하는 상태..
+    UI_STATE_ICON_DO_SUCCESS, // 아이콘을 가진 윈도우가 서버로 부터 성공을 받은 상태..
+    UI_STATE_ICON_DO_FAIL,    // 아이콘을 가진 윈도우가 서버로 부터 실패를 받은 상태..
+    UI_STATE_ICON_DO_RECOVERY, // 아이콘을 가진 윈도우가 서버로 부터 실패를 받아 복구해야 하는 상태..
 };
 
 // message
@@ -124,10 +124,10 @@ const DWORD UI_STR_TYPE_VALIGN = 0x00000002; // 스트링 수직정렬
 
 // ui style
 const DWORD UISTYLE_NONE = 0x00000000;
-const DWORD UISTYLE_ALWAYSTOP = 0x00000001;      // 항상 최상위에
-const DWORD UISTYLE_MODAL = 0x00000002;          // modal dialog
-const DWORD UISTYLE_FOCUS_UNABLE = 0x00000004;   // 포커스를 받을수 없는 유아이
-const DWORD UISTYLE_SHOW_ME_ALONE = 0x00000008;  // 단지 자기 자신만 열릴수 있는 다른것은 닫혀야한다면..
+const DWORD UISTYLE_ALWAYSTOP = 0x00000001;    // 항상 최상위에
+const DWORD UISTYLE_MODAL = 0x00000002;        // modal dialog
+const DWORD UISTYLE_FOCUS_UNABLE = 0x00000004; // 포커스를 받을수 없는 유아이
+const DWORD UISTYLE_SHOW_ME_ALONE = 0x00000008; // 단지 자기 자신만 열릴수 있는 다른것은 닫혀야한다면..
 const DWORD UISTYLE_HIDE_UNABLE = 0x00000010;    // 닫히지 않는 유아이
 const DWORD UISTYLE_USER_MOVE_HIDE = 0x00000020; // 유저가 움직이면 닫히는 유아이
 const DWORD UISTYLE_POS_LEFT = 0x00000040;       // 왼쪽에 달린 유아이

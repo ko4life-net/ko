@@ -238,7 +238,7 @@ void CPlayerMySelf::Tick() {
 
                             CGameProcedure::s_pProcMain->MsgSend_Attack(pTarget->IDNumber(), fIntervalTable, fDistance);
                             if (m_iSkillStep == 0 && PSA_ATTACK != m_eState &&
-                                m_fFlickeringFactor == 1.0f) {           // 스킬을 쓰는게 아닌데 공격하지 않으면..
+                                m_fFlickeringFactor == 1.0f) { // 스킬을 쓰는게 아닌데 공격하지 않으면..
                                 this->Action(PSA_ATTACK, true, pTarget); // 공격 중이아니면 공격한다..
                             }
 
@@ -256,7 +256,7 @@ void CPlayerMySelf::Tick() {
                                 }
                             }
                             if (m_iSkillStep == 0 &&
-                                PSA_SITDOWN != m_eState) {     // 스킬을 쓰는게 아닌데 앉아있는 상태가 아니면..
+                                PSA_SITDOWN != m_eState) { // 스킬을 쓰는게 아닌데 앉아있는 상태가 아니면..
                                 this->Action(PSA_BASIC, true); // 기본자세..
                             }
                         }
@@ -639,7 +639,7 @@ CN3CPart * CPlayerMySelf::PartSet(e_PartPosition ePos, const std::string & szFN,
                     __TABLE_PLAYER_LOOKS * pLooks =
                         s_pTbl_UPC_Looks->Find(m_InfoBase.eRace); // User Player Character Skin 구조체 포인터..
                     m_ChrInv.PartSet(PART_POS_LOWER, pLooks->szPartFNs[PART_POS_LOWER]); // 하체에 기본옷을 입힌다.
-                    m_Chr.PartSet(PART_POS_LOWER, pLooks->szPartFNs[PART_POS_LOWER]);    // 하체에 기본옷을 입힌다.
+                    m_Chr.PartSet(PART_POS_LOWER, pLooks->szPartFNs[PART_POS_LOWER]); // 하체에 기본옷을 입힌다.
                 }
             }
         }
@@ -868,7 +868,7 @@ bool CPlayerMySelf::CheckCollision() {
     float fYTerrain = ACT_WORLD->GetHeightWithTerrain(vPosNext.x, vPosNext.z); // 지면의 높이값..
     float fYClimb = ACT_WORLD->GetHeightNearstPosWithShape(vPosNext, CN3Base::s_fSecPerFrm * 30.0f,
                                                            &vNormal); // 충돌 체크 오브젝트의 높이값..
-    vNormal.y = 0;                                                    // 이래야 정상적인 경사를 얻을수 있다..
+    vNormal.y = 0; // 이래야 정상적인 경사를 얻을수 있다..
 
     if (!s_pWorldMgr->IsIndoor()) {
         if (fYClimb > fYTerrain &&

@@ -61,15 +61,15 @@ class CUIEView : public CView {
     // Operations
   public:
     CN3UIBase * Pick(const POINT & point, CN3UIBase * pUI);
-    void        SetMode(eUIE_MODE eMode);     // 모드를 변경하는 함수(Edit, Preview)
+    void        SetMode(eUIE_MODE eMode); // 모드를 변경하는 함수(Edit, Preview)
     void SelectRectType(eRECTTYPE eRectType); // 수정하는 사각형 종류(영역, 움직이는 영역, 클릭 영역)를 정하는 함수
-    void ChangeBkgndColor();                  // 배경색을 바꿈
+    void ChangeBkgndColor(); // 배경색을 바꿈
   protected:
-    void      RenderPreview();                          // Preview 화면을 렌더하는 함수
-    void      RenderEditview();                         // Editview 화면을 렌더하는 함수
+    void RenderPreview();                               // Preview 화면을 렌더하는 함수
+    void RenderEditview();                              // Editview 화면을 렌더하는 함수
     eDRAGTYPE CheckDragType(CRect rcSel, CPoint point); // 마우스 위치에 따라 드래그 상태를 구별하는 함수
-    void      UpdateStatusBarText();                    // Status Bar text를 현재 상태에 받게 갱신하는 함수
-    void      UpdateUIInfo_SelectedRect();              // selected rect정보를 토대로 UI 정보를 갱신하기
+    void UpdateStatusBarText();       // Status Bar text를 현재 상태에 받게 갱신하는 함수
+    void UpdateUIInfo_SelectedRect(); // selected rect정보를 토대로 UI 정보를 갱신하기
   public:
     // Overrides
     // ClassWizard generated virtual function overrides

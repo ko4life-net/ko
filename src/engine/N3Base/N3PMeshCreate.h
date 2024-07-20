@@ -19,8 +19,8 @@ class CN3PMeshCreate {
     struct __PMCreateOption {
         bool  bUseSumOfLoss;   // Loss의 합을 사용할 것인가 아니면 ..
         bool  bTriangleWeight; // 사라질 삼각형 가중치 계산 할 것인가?
-        bool  bArea;           // false = sum of side 가중치를 넓이로 할 것인가? 세 변의 합으로 할 것인가?
-        float fWeight;         // 가중치
+        bool  bArea;   // false = sum of side 가중치를 넓이로 할 것인가? 세 변의 합으로 할 것인가?
+        float fWeight; // 가중치
     };
 
   protected:

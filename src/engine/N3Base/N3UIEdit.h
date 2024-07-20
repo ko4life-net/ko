@@ -75,8 +75,8 @@ class CN3UIEdit : public CN3UIStatic {
     virtual DWORD MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & ptOld);
     virtual BOOL  MoveOffset(int iOffsetX,
                              int iOffsetY); // 위치 지정(chilren의 위치도 같이 바꾸어준다. caret위치도 같이 바꾸어줌.)
-    void          KillFocus();              // 포커스를 없앤다.
-    bool          SetFocus();               // 포커스를 준다.
+    void          KillFocus(); // 포커스를 없앤다.
+    bool          SetFocus();  // 포커스를 준다.
     bool          HaveFocus() const { return (this == s_pFocusedEdit); }
     void          SetCaretPos(UINT nPos); //몇번째 바이트에 있는지 설정한다.
     void          SetMaxString(int iMax); // 최대 글씨 수를 정해준다.

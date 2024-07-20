@@ -180,9 +180,9 @@ class CEbenezerDlg : public CDialog {
     short m_sSocketCount; // AI Server 재접속시 사용
     // sungyong 2002.05.23
     short m_sSendSocket;
-    BOOL  m_bFirstServerFlag; // 서버가 처음시작한 후 게임서버가 붙은 경우에는 1, 붙지 않은 경우 0
-    BOOL  m_bServerCheckFlag;
-    BOOL  m_bPointCheckFlag;   // AI서버와 재접전에 NPC포인터 참조막기 (TRUE:포인터 참조, FALSE:포인터 참조 못함)
+    BOOL m_bFirstServerFlag; // 서버가 처음시작한 후 게임서버가 붙은 경우에는 1, 붙지 않은 경우 0
+    BOOL m_bServerCheckFlag;
+    BOOL m_bPointCheckFlag; // AI서버와 재접전에 NPC포인터 참조막기 (TRUE:포인터 참조, FALSE:포인터 참조 못함)
     short m_sReSocketCount;    // GameServer와 재접시 필요
     float m_fReConnectStart;   // 처음 소켓이 도착한 시간
     short m_sErrorSocketCount; // 이상소켓 감시용

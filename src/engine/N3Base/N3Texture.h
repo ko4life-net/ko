@@ -49,7 +49,7 @@ class CN3Texture : public CN3BaseFileAccess {
         }
     }
 
-    bool               Create(int nWidth, int nHeight, D3DFORMAT Format, BOOL bGenerateMipMap); // 장치에 맞게 생성
+    bool Create(int nWidth, int nHeight, D3DFORMAT Format, BOOL bGenerateMipMap); // 장치에 맞게 생성
     LPDIRECT3DTEXTURE9 Get() { return m_lpTexture; }
                        operator LPDIRECT3DTEXTURE9() { return m_lpTexture; }
 

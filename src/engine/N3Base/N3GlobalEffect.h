@@ -24,9 +24,9 @@ class CN3GlobalEffect : public CN3Transform {
     LPDIRECT3DINDEXBUFFER9  m_pIB;
     DWORD                   m_dwEffectType;
     BOOL                    m_bActive;
-    float                   m_fFadeTime;    // 이시간 동안 차차 목표한 양만큼 파티클의 수가 늘어난다..
-    float                   m_fFadeTimeCur; // 지난시간..
-    int                     m_iFadeMode;    // 1 - FadeIn 0... -1 FadeOut
+    float m_fFadeTime;    // 이시간 동안 차차 목표한 양만큼 파티클의 수가 늘어난다..
+    float m_fFadeTimeCur; // 지난시간..
+    int   m_iFadeMode;    // 1 - FadeIn 0... -1 FadeOut
 
     // Operations
   public:

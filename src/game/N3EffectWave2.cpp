@@ -85,8 +85,8 @@ bool CN3EffectWave2::Load(HANDLE hFile) {
         // XyxT2 -> XyzColorT2 Converting.
         ptmpPondMesh->m_pVertices = new __VertexPond[iVC]; ///
         ReadFile(hFile, ptmpPondMesh->m_pVertices, iVC * sizeof(__VertexPond), &dwNum, NULL);
-        ptmpPondMesh->m_pVertices[0].y += 0.2f;                               //    수치가 높으면 물결이 크게 요동친다
-        ptmpPondMesh->m_pVertices[iWidthVertex].y += 0.2f;                    //    수치가 높으면 물결이 크게 요동친다
+        ptmpPondMesh->m_pVertices[0].y += 0.2f;            //    수치가 높으면 물결이 크게 요동친다
+        ptmpPondMesh->m_pVertices[iWidthVertex].y += 0.2f; //    수치가 높으면 물결이 크게 요동친다
         ptmpPondMesh->m_pfMaxHeight = ptmpPondMesh->m_pVertices[0].y -= 0.3f; //    물결의 최대치
 
         ptmpPondMesh->m_pfVelocityArray = new float[iVC]; ///

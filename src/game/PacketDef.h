@@ -92,7 +92,7 @@ enum e_SubPacket_Party {
     N3_SP_PARTY_OR_FORCE_PERMIT = 0x02, // Send - b1(YesNo) | Recv - s1(ID)
     N3_SP_PARTY_OR_FORCE_INSERT =
         0x03, // Send - s1(ID) | Recv - s3(ID, HPMax, HP) b2(Level, Class) - 문자열은 ID 로 알아낸다.. ID 가 -1 이면.. 파티에 들어오는것을 상대방이 거절한거다..
-    N3_SP_PARTY_OR_FORCE_REMOVE = 0x04,       // Send - s1(ID) | Recv - s1(ID) - 자기 자신이면 파티를 깨야 한다..
+    N3_SP_PARTY_OR_FORCE_REMOVE = 0x04, // Send - s1(ID) | Recv - s1(ID) - 자기 자신이면 파티를 깨야 한다..
     N3_SP_PARTY_OR_FORCE_DESTROY = 0x05,      // Send
     N3_SP_PARTY_OR_FORCE_HP_CHANGE = 0x06,    // Recv - s3(ID, HPMax, HP)
     N3_SP_PARTY_OR_FORCE_LEVEL_CHANGE = 0x07, // Recv - s1(ID), b1(Level)
@@ -171,12 +171,12 @@ enum e_SubPacket_ClassChange {
 
 #define N3_KNIGHTS 0x3C // Knights Related Packet..
 enum e_SubPacket_Knights {
-    N3_SP_KNIGHTS_CREATE = 0x01,             // 생성 Send - s1(Name Length) str1 | Recv - b1(1:성공 0:실패)
-    N3_SP_KNIGHTS_JOIN = 0x02,               // 가입 Send - s1(Knights ID) | Recv - b1(1:성공 0:실패)
-    N3_SP_KNIGHTS_WITHDRAW = 0x03,           // 탈퇴 Send - | Recv - b1(1:성공 0:실패)
-    N3_SP_KNIGHTS_MEMBER_REMOVE = 0x04,      // 멤버 삭제 -
-    N3_SP_KNIGHTS_DESTROY = 0x05,            // 뽀개기 Send - | Recv - b1(1:성공 0:실패)
-    N3_SP_KNIGHTS_MEMBER_JOIN_ADMIT = 0x06,  // 멤버 가입 허가 Send - s1(Knights ID) | Recv - b1(1:성공 0:실패)
+    N3_SP_KNIGHTS_CREATE = 0x01,            // 생성 Send - s1(Name Length) str1 | Recv - b1(1:성공 0:실패)
+    N3_SP_KNIGHTS_JOIN = 0x02,              // 가입 Send - s1(Knights ID) | Recv - b1(1:성공 0:실패)
+    N3_SP_KNIGHTS_WITHDRAW = 0x03,          // 탈퇴 Send - | Recv - b1(1:성공 0:실패)
+    N3_SP_KNIGHTS_MEMBER_REMOVE = 0x04,     // 멤버 삭제 -
+    N3_SP_KNIGHTS_DESTROY = 0x05,           // 뽀개기 Send - | Recv - b1(1:성공 0:실패)
+    N3_SP_KNIGHTS_MEMBER_JOIN_ADMIT = 0x06, // 멤버 가입 허가 Send - s1(Knights ID) | Recv - b1(1:성공 0:실패)
     N3_SP_KNIGHTS_MEMBER_JOIN_REJECT = 0x07, // 멤버 가입 거절 Send - s1(Knights ID) | Recv - b1(1:성공 0:실패)
     N3_SP_KNIGHTS_MEMBER_PUNISH = 0x08,      // 멤버 징계 - 가입과 같음
     N3_SP_KNIGHTS_APPOINT_CHIEF = 0x09,      // 단장 임명 - 가입과 같음
@@ -188,9 +188,9 @@ enum e_SubPacket_Knights {
         0x0D, // 모든 멤버 요청 Send - s1(page) | s1(Member Count) Loop { s1(Name Length) str1 (Name) }
     N3_SP_KNIGHTS_MEMBER_INFO_ONLINE =
         0x0E, // 현재 접속 리스트 Send - s1(page) | s1(Member Count) Loop { s1(Name Length) str1 (Name) }
-    N3_SP_KNIGHTS_STASH = 0x0F,       // 기사단 창고
+    N3_SP_KNIGHTS_STASH = 0x0F, // 기사단 창고
     N3_SP_KNIGHTS_DUTY_CHANGE = 0x10, // 멤버의 직위 변경.. 해당 멤버에게 간다.. Recv - s1(Knights ID) b1(직위);
-    N3_SP_KNIGHTS_JOIN_REQ = 0x11,    // 기사단 인덱스
+    N3_SP_KNIGHTS_JOIN_REQ = 0x11, // 기사단 인덱스
     N3_SP_KNIGHTS_UNKNOWN
 };
 
@@ -207,20 +207,20 @@ enum e_SubPacket_KNights_Create {
 };
 
 enum e_SubPacket_KNights_Common {
-    N3_SP_KNIGHTS_COMMON_DBFAIL = 0x00,               //DB검색 실패..
-    N3_SP_KNIGHTS_COMMON_SUCCESS = 0x01,              //성공
-    N3_SP_KNIGHTS_COMMON_FAIL_NONE_USER = 0x02,       //없는 유저..
-    N3_SP_KNIGHTS_COMMON_FAIL_DEAD_USER = 0x03,       //상대유저가 죽어 있음..
-    N3_SP_KNIGHTS_COMMON_FAIL_ENEMY_USER = 0x04,      //상대유저의 국가가 다름..
+    N3_SP_KNIGHTS_COMMON_DBFAIL = 0x00,          //DB검색 실패..
+    N3_SP_KNIGHTS_COMMON_SUCCESS = 0x01,         //성공
+    N3_SP_KNIGHTS_COMMON_FAIL_NONE_USER = 0x02,  //없는 유저..
+    N3_SP_KNIGHTS_COMMON_FAIL_DEAD_USER = 0x03,  //상대유저가 죽어 있음..
+    N3_SP_KNIGHTS_COMMON_FAIL_ENEMY_USER = 0x04, //상대유저의 국가가 다름..
     N3_SP_KNIGHTS_COMMON_FAIL_OTHER_CLAN_USER = 0x05, //상대유저가 이미 다른 클랜이나 기사단에 가입되어 있음..
-    N3_SP_KNIGHTS_COMMON_FAIL_INVALIDRIGHT = 0x06,    //권한이 없음..
-    N3_SP_KNIGHTS_COMMON_FAIL_NONE_CLAN = 0x07,       //존재하지 않는 기사단..
-    N3_SP_KNIGHTS_COMMON_FAIL_FULL = 0x08,            //인원이 풀..
-    N3_SP_KNIGHTS_COMMON_FAIL_ME = 0x09,              //자기자신을 선택한 경우..
-    N3_SP_KNIGHTS_COMMON_FAIL_NOT_JOINED = 0x0A,      //기사단이나 클랜에 가입되어 있지 않음...
-    N3_SP_KNIGHTS_COMMON_FAIL_REJECT = 0x0B,          //상대편에서 거절...
-    N3_SP_KNIGHTS_COMMON_FAIL_BATTLEZONE = 0x0C       // 전쟁존에서의 거부..
-};                                                    // join, appoint, leave, withdraw 모두 쓴다.....
+    N3_SP_KNIGHTS_COMMON_FAIL_INVALIDRIGHT = 0x06, //권한이 없음..
+    N3_SP_KNIGHTS_COMMON_FAIL_NONE_CLAN = 0x07,    //존재하지 않는 기사단..
+    N3_SP_KNIGHTS_COMMON_FAIL_FULL = 0x08,         //인원이 풀..
+    N3_SP_KNIGHTS_COMMON_FAIL_ME = 0x09,           //자기자신을 선택한 경우..
+    N3_SP_KNIGHTS_COMMON_FAIL_NOT_JOINED = 0x0A,   //기사단이나 클랜에 가입되어 있지 않음...
+    N3_SP_KNIGHTS_COMMON_FAIL_REJECT = 0x0B,       //상대편에서 거절...
+    N3_SP_KNIGHTS_COMMON_FAIL_BATTLEZONE = 0x0C    // 전쟁존에서의 거부..
+};                                                 // join, appoint, leave, withdraw 모두 쓴다.....
 
 #define N3_ITEM_COUNT_CHANGE  0x3d
 #define N3_KNIGHTS_LIST_BASIC 0x3e // 기사단 정보 요청
@@ -234,7 +234,7 @@ enum e_SubPacket_KnightsList {
 enum e_SubPacket_Administrator {
     N3_SP_ADMINISTRATOR_ARREST = 0x01, // 그 유저 있는 곳으로 존체인지.. Send b1(Type) s1(유저이름길이), str1(유저이름)
     N3_SP_ADMINISTRATOR_FORBID_CONNECT = 0x02, // 접속금지 및 쫓아내기.. Send b1(Type) s1(유저이름길이), str1(유저이름)
-    N3_SP_ADMINISTRATOR_CHAT_FORBID = 0x03,    // 채팅금지 Send b1(Type) s1(유저이름길이), str1(유저이름)
+    N3_SP_ADMINISTRATOR_CHAT_FORBID = 0x03, // 채팅금지 Send b1(Type) s1(유저이름길이), str1(유저이름)
     N3_SP_ADMINISTRATOR_CHAT_PERMIT = 0x04
 }; // 채팅허가 Send b1(Type) s1(유저이름길이), str1(유저이름)
 

@@ -283,9 +283,9 @@ BOOL CRiverMng::MouseMsgFilter(LPMSG pMsg) {
         DWORD nFlags = pMsg->wParam;
         POINT point = {short(LOWORD(pMsg->lParam)), short(HIWORD(pMsg->lParam))};
         if (RCM_CREATE == m_RCursorMode) { // 새로운 강 추가할때 드래그 하는 선 설정
-            __Vector3 vRayDir, vRayOrig;   // 화면 중앙(시점)과 마우스 포인터를 이은 직선의 방향과 원점
-            __Vector3 vPN, vPV;            // 평면의 법선과 포함된 점
-            __Vector3 vPos;                // 위의 평면과 직선의 만나는 점(구할 점)
+            __Vector3 vRayDir, vRayOrig; // 화면 중앙(시점)과 마우스 포인터를 이은 직선의 방향과 원점
+            __Vector3 vPN, vPV;          // 평면의 법선과 포함된 점
+            __Vector3 vPos;              // 위의 평면과 직선의 만나는 점(구할 점)
 
             vPN.Set(0, 1, 0);
             vPV = m_CreateLine[0];

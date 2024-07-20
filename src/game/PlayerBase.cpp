@@ -41,7 +41,7 @@ CPlayerBase::CPlayerBase() {
     m_iDroppedItemID = 0; // 죽은후 떨어트린 아이템
 
     m_Chr.m_nJointPartStarts[0] = 1; // 상체 - 에니메이션을 분리해 처리하는데... 조인트 인덱스이다.
-    m_Chr.m_nJointPartEnds[0] = 15;  // 상체
+    m_Chr.m_nJointPartEnds[0] = 15; // 상체
 
     m_Chr.m_nJointPartStarts[1] = 16; // 하체
     m_Chr.m_nJointPartEnds[1] = 23;   // 하체
@@ -62,7 +62,7 @@ CPlayerBase::CPlayerBase() {
 
     m_fRotRadianPerSec = D3DXToRadian(270.0f); // 초당 회전 라디안값
     m_fMoveSpeedPerSec =
-        0;         // 초당 움직임 값.. 이값은 기본값이고 상태(걷기, 달리기, 뒤로, 저주등) 에 따라 가감해서 쓴다..
+        0; // 초당 움직임 값.. 이값은 기본값이고 상태(걷기, 달리기, 뒤로, 저주등) 에 따라 가감해서 쓴다..
     m_fYawCur = 0; // 현재 회전값..
     m_fYawToReach = 0;
 
@@ -87,9 +87,9 @@ CPlayerBase::CPlayerBase() {
     m_pShapeExtraRef = NULL; // 이 NPC 가 성문이나 집등 오브젝트의 형태이면 이 포인터를 세팅해서 쓴,다..
 
     m_fCastFreezeTime = 0.0f;
-    m_iSkillStep = 0;      // 현재 스킬을 쓰고 있다면 0 이 아닌값이다...
+    m_iSkillStep = 0; // 현재 스킬을 쓰고 있다면 0 이 아닌값이다...
     m_fAttackDelta = 1.0f; // 스킬이나 마법에 의해 변하는 공격 속도.. 1.0 이 기본이고 클수록 더 빨리 공격한다.
-    m_fMoveDelta = 1.0f;   // 스킬이나 마법에 의해 변하는 이동 속도 1.0 이 기본이고 클수록 더 빨리 움직인다.
+    m_fMoveDelta = 1.0f; // 스킬이나 마법에 의해 변하는 이동 속도 1.0 이 기본이고 클수록 더 빨리 움직인다.
 
     m_vDirDying.Set(0, 0, 1); // 죽을때 밀리는 방향..
 
@@ -205,7 +205,7 @@ void CPlayerBase::Release() {
 
     m_fRotRadianPerSec = D3DXToRadian(270.0f); // 초당 회전 라디안값
     m_fMoveSpeedPerSec =
-        0;         // 초당 움직임 값.. 이값은 기본값이고 상태(걷기, 달리기, 뒤로, 저주등) 에 따라 가감해서 쓴다..
+        0; // 초당 움직임 값.. 이값은 기본값이고 상태(걷기, 달리기, 뒤로, 저주등) 에 따라 가감해서 쓴다..
     m_fYawCur = 0; // 현재 회전값..
     m_fYawToReach = 0;
 
@@ -220,9 +220,9 @@ void CPlayerBase::Release() {
     m_pShapeExtraRef = NULL; // 이 NPC 가 성문이나 집등 오브젝트의 형태이면 이 포인터를 세팅해서 쓴,다..
 
     m_fCastFreezeTime = 0.0f;
-    m_iSkillStep = 0;         // 현재 스킬을 쓰고 있다면 0 이 아닌값이다...
-    m_fAttackDelta = 1.0f;    // 스킬이나 마법에 의해 변하는 공격 속도.. 1.0 이 기본이고 클수록 더 빨리 공격한다.
-    m_fMoveDelta = 1.0f;      // 스킬이나 마법에 의해 변하는 이동 속도 1.0 이 기본이고 클수록 더 빨리 움직인다.
+    m_iSkillStep = 0; // 현재 스킬을 쓰고 있다면 0 이 아닌값이다...
+    m_fAttackDelta = 1.0f; // 스킬이나 마법에 의해 변하는 공격 속도.. 1.0 이 기본이고 클수록 더 빨리 공격한다.
+    m_fMoveDelta = 1.0f; // 스킬이나 마법에 의해 변하는 이동 속도 1.0 이 기본이고 클수록 더 빨리 움직인다.
     m_vDirDying.Set(0, 0, 1); // 죽을때 밀리는 방향..
 
     m_bAnimationChanged = false; // 큐에 넣은 에니메이션이 변하는 순간만 세팅된다..
@@ -556,7 +556,7 @@ void CPlayerBase::RenderChrInRect(CN3Chr * pChr, const RECT & Rect) {
     D3DXVECTOR3       vUp(0.0f, 1.0f, 0.0f);
     D3DXMatrixLookAtLH(&mtxView,
                        &vEye, // 여기서 View matrix는 카메라 각도와 상관있다. 거리는 원근에 아무 영향을 미치지 않는다.
-                       &vAt,  // fVCenter: 캐릭터 키의 중간을 바라보기
+                       &vAt, // fVCenter: 캐릭터 키의 중간을 바라보기
                        &vUp);
     s_lpD3DDev->SetTransform(D3DTS_VIEW, &mtxView);
     s_lpD3DDev->SetTransform(D3DTS_PROJECTION, &mtxProj);
@@ -711,7 +711,7 @@ void CPlayerBase::TickAnimation() {
         {
             CPlayerBase * pTarget = this->CharacterGetByID(m_iIDTarget, true);
             this->Action(m_eStateNext, true, pTarget); // 상태 돌리기..
-        } else                                         // 에니메이션 데크가 비어 있지 않고 시킬 동작이 있으면..
+        } else // 에니메이션 데크가 비어 있지 않고 시킬 동작이 있으면..
         {
             e_Ani eAniToSet = m_AnimationDeque[0]; // 데크에서 하나 빼오고..
             m_AnimationDeque.pop_front();
@@ -1101,8 +1101,8 @@ bool CPlayerBase::Action(e_StateAction eState, bool bLooping, CPlayerBase * pTar
     //        TRACE("%s(%.1f) - %s\n", m_szName.c_str(), CN3Base::TimeGet(), szSt1.c_str());
     //    }
 
-    bool          bNPC = (RACE_NPC == m_InfoBase.eRace ? true : false);
-    bool          bNeedUpperAnimationOnly = false; // 몸 전체에 에니메이션을 적요하는가... -1 : 전체, 0 : 하체 1 : 상체
+    bool bNPC = (RACE_NPC == m_InfoBase.eRace ? true : false);
+    bool bNeedUpperAnimationOnly = false; // 몸 전체에 에니메이션을 적요하는가... -1 : 전체, 0 : 하체 1 : 상체
     bool          bOnceAndFreeze = false;
     e_Ani         eAni = ANI_UNKNOWN;
     e_Ani         eAniToRestore = ANI_UNKNOWN;
@@ -1292,7 +1292,7 @@ bool CPlayerBase::ActionMove(e_StateMove eMove) {
     this->Action(PSA_BASIC, true); // 딴짓 못하게 건다..
 
     // 에니메이션 세팅..
-    this->AnimationClear();                          // 에니메이션 큐의 내용을 지운다.. 그래야 바로 에니메이션이 나간다.
+    this->AnimationClear(); // 에니메이션 큐의 내용을 지운다.. 그래야 바로 에니메이션이 나간다.
     m_Chr.AniCurSet(eAni, false, FLT_MIN, 0, false); // 상체 에니메이션을 중지시키지 않고 걷거나 뛴다...
 
     return true;
@@ -2034,7 +2034,7 @@ CN3CPart * CPlayerBase::PartSet(e_PartPosition ePos, const std::string & szFN, _
                                                             ePlugPos2);
                     this->PartSet(PART_POS_LOWER, szFN2, m_pItemPartBasics[PART_POS_LOWER],
                                   m_pItemPartExts[PART_POS_LOWER]); // 하체에 전의 옷을 입힌다..
-                } else                                              // 하체에 입고 있었던 아이템이 없다면..
+                } else // 하체에 입고 있었던 아이템이 없다면..
                 {
                     __TABLE_PLAYER_LOOKS * pLooks =
                         s_pTbl_UPC_Looks->Find(m_InfoBase.eRace); // User Player Character Skin 구조체 포인터..

@@ -58,7 +58,7 @@ class CN3Joint : public CN3Transform {
 #ifdef _N3TOOL
     BOOL FindIndex(const std::string & szName, int & nIndex);
     BOOL FindPointerByName(const std::string & szName,
-                           CN3Joint *&         pJoint); // 이름을 넣으면 해당 노드의 포인터를 돌려준다..
+                           CN3Joint *& pJoint); // 이름을 넣으면 해당 노드의 포인터를 돌려준다..
     void RotSet(const __Quaternion & qtRot) {
         m_qRot = qtRot;
         this->ReCalcMatrix();

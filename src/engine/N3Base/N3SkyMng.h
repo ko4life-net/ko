@@ -129,7 +129,7 @@ class CN3SkyMng : public CN3BaseFileAccess {
     int                          m_iWeatherChangeCurPos;
 
     DWORD m_dwCheckTick; // 서버에서 시간을 받을때의 윈도우TickCount(실시간) (게임시간으로 24시에 다시 설정하기도 한다.)
-    DWORD m_dwCheckGameTime; // 서버에서 내려받은 시간(게임 시간 초단위) 0 ~ (24*60*60)
+    DWORD        m_dwCheckGameTime; // 서버에서 내려받은 시간(게임 시간 초단위) 0 ~ (24*60*60)
     eSKY_WEATHER m_eWeather;
 
     int m_iYear;
@@ -226,6 +226,6 @@ class CN3SkyMng : public CN3BaseFileAccess {
     int  GetLatestChange(eSKY_DAYCHANGE eSDC,
                          int iPos); // m_pDayChangeQueues에서 지정된 위치(iPos) 이전의 가장 최근에 변화하는 위치 얻어오기
     void ChangeSky(__SKY_DAYCHANGE * pSDC, float fTakeTime);
-    int  GetDayChangePos_AfterNSec(DWORD dwCurGameTime, float fSec); // 실시간 N초 후에 DayChangeQueue의 위치 구하기
+    int GetDayChangePos_AfterNSec(DWORD dwCurGameTime, float fSec); // 실시간 N초 후에 DayChangeQueue의 위치 구하기
     static int CompareTime(const void * pArg1, const void * pArg2);
 };

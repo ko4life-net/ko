@@ -492,7 +492,7 @@ void CPlayerOtherMgr::MoveToCorpsesForcely(CPlayerNPC * pNPC, bool bErase) {
     }
 }
 
-CPlayerNPC * CPlayerOtherMgr::CharacterGetByNearstEnemy(e_Nation          eNation,
+CPlayerNPC * CPlayerOtherMgr::CharacterGetByNearstEnemy(e_Nation eNation,
                                                         const __Vector3 & vPosPlayer) // 가장 가까운 적 가져오기..
 {
     CPlayerNPC * pTarget = NULL;

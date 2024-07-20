@@ -95,7 +95,7 @@ class CN3DExp : public SceneExport {
 
     bool       IsBone(INode * pNode);
     bool       FindNodeRecursive(INode * pNode, Class_ID cID, std::list<INode *> & list);
-    bool       CheckObjectClassID(INode *          pNode,
+    bool       CheckObjectClassID(INode * pNode,
                                   const Class_ID & cID) const; // 주어진 노드의 오브젝트가 주어진 클래스 아이디인지 검사
     Modifier * FindPhysiqueModifier(INode * pNode);
     //    bool FindNodeIndex(INode* pNodeCompare, INode* pNodeSrc, Class_ID& cID, int& nNodeIndex);

@@ -233,7 +233,7 @@ void CN3UITrackBar::UpDownThumbPos(int iDiff) {
         if (fPercentage > 1.0f) // 너무 아래로 내렸다.
         {
             m_pThumbImageRef->SetPos(rcThumb.left, rcThumb.bottom - iThumbHeight);
-            m_iCurPos = m_iMaxPos;     // SetCurrentPos함수를 호출하면 thumb위치를 다시 계산하기 때문에 직접 바꾸어줌.
+            m_iCurPos = m_iMaxPos; // SetCurrentPos함수를 호출하면 thumb위치를 다시 계산하기 때문에 직접 바꾸어줌.
         } else if (fPercentage < 0.0f) // 너무 위로 올렸다.
         {
             m_pThumbImageRef->SetPos(rcThumb.left, rcThumb.top);
@@ -258,7 +258,7 @@ void CN3UITrackBar::UpDownThumbPos(int iDiff) {
         if (fPercentage > 1.0f) // 너무 오른쪽으로 밀었다.
         {
             m_pThumbImageRef->SetPos(rcThumb.right - iThumbWidth, rcThumb.top);
-            m_iCurPos = m_iMaxPos;     // SetCurrentPos함수를 호출하면 thumb위치를 다시 계산하기 때문에 직접 바꾸어줌.
+            m_iCurPos = m_iMaxPos; // SetCurrentPos함수를 호출하면 thumb위치를 다시 계산하기 때문에 직접 바꾸어줌.
         } else if (fPercentage < 0.0f) // 너무 왼쪽으로 밀었다
         {
             m_pThumbImageRef->SetPos(rcThumb.left, rcThumb.top);

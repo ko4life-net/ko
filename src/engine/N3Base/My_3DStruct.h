@@ -820,12 +820,12 @@ const DWORD RF_NOTUSEFOG = 0x2;      // 안개 무시
 const DWORD RF_DOUBLESIDED = 0x4;    // 양면 - D3DCULL_NONE
 const DWORD RF_BOARD_Y = 0x8;        // Y 축으로 해서.. 카메라를 본다.
 const DWORD RF_POINTSAMPLING = 0x10; // MipMap 에서.. PointSampling 으로 한다..
-const DWORD RF_WINDY = 0x20;         // 바람에 날린다.. 바람의 값은 CN3Base::s_vWindFactor 를 참조 한다..
-const DWORD RF_NOTUSELIGHT = 0x40;   // Light Off
-const DWORD RF_DIFFUSEALPHA = 0x80;  // Diffuse 값을 갖고 투명하게 Alpha blending
-const DWORD RF_NOTZWRITE = 0x100;    // ZBuffer 에 안쓴다.
-const DWORD RF_UV_CLAMP = 0x200;     // texture UV적용을 Clamp로 한다..default는 wrap이다..
-const DWORD RF_NOTZBUFFER = 0x400;   // ZBuffer 무시.
+const DWORD RF_WINDY = 0x20;        // 바람에 날린다.. 바람의 값은 CN3Base::s_vWindFactor 를 참조 한다..
+const DWORD RF_NOTUSELIGHT = 0x40;  // Light Off
+const DWORD RF_DIFFUSEALPHA = 0x80; // Diffuse 값을 갖고 투명하게 Alpha blending
+const DWORD RF_NOTZWRITE = 0x100;   // ZBuffer 에 안쓴다.
+const DWORD RF_UV_CLAMP = 0x200;    // texture UV적용을 Clamp로 한다..default는 wrap이다..
+const DWORD RF_NOTZBUFFER = 0x400;  // ZBuffer 무시.
 
 struct __Material : public _D3DMATERIAL9 {
   public:

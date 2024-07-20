@@ -237,7 +237,7 @@ class CN3CPlug_Cloak : public CN3CPlugBase {
 #endif
 };
 
-const int MAX_CHR_ANI_PART = 2;       // 0 - 상체, 1 - 하체 ::: 관절들을 나누어서 나누어서 에니메이션 설정..
+const int MAX_CHR_ANI_PART = 2; // 0 - 상체, 1 - 하체 ::: 관절들을 나누어서 나누어서 에니메이션 설정..
 const int MAX_PLUG_TRACE = 2;         // 최대 두개의 무기 궤적을 남긴다..
 const int MAX_PLUG_TRACE_VERTEX = 64; // 무기 궤적 점의 수.. 점 8 개로는 잔상이 3단계로 남는다..
 
@@ -249,7 +249,7 @@ class CN3Chr : public CN3TransformCollision {
     friend class CPlayerMySelf;
 
   public:
-    int m_nLOD;   // Level Of Detail - 강제로 세팅할수 있도록 한다..
+    int m_nLOD; // Level Of Detail - 강제로 세팅할수 있도록 한다..
     int m_nLOD_0; // Level Of Detail - 0가장 디테일한 값으로 계산된 LOD 강제로 세팅할수 있도록 한다..
 
   protected:
@@ -268,7 +268,7 @@ class CN3Chr : public CN3TransformCollision {
     class CN3FXPlug *            m_pFXPlug; // 캐릭터에 FX를 붙이는 것.
 
     int m_nJointPartStarts[MAX_CHR_ANI_PART]; // 조인트의 일부분이 따로 에니메이션 되야 한다면.. 조인트 인덱스 시작 번호
-    int m_nJointPartEnds[MAX_CHR_ANI_PART];   // 조인트의 일부분이 따로 에니메이션 되야 한다면.. 조인트 인덱스 끝 번호
+    int m_nJointPartEnds[MAX_CHR_ANI_PART]; // 조인트의 일부분이 따로 에니메이션 되야 한다면.. 조인트 인덱스 끝 번호
 
     // CN3Skin * m_pSkinCollision;
 
@@ -408,7 +408,7 @@ class CN3Chr : public CN3TransformCollision {
     float FrmPrev() { return m_FrmCtrl.fFrmPrev; }
     float AniBlendDelta();
     float AniSpeedDelta() { return m_fAniSpeedDelta; } // 에니메이션 속도 조정 변수 1 이보통, 더 크면 빨라진다..
-    void  AniSpeedDeltaSet(float fDelta) {
+    void AniSpeedDeltaSet(float fDelta) {
         if (fDelta > 0.1f && fDelta < 10.0f) {
             m_fAniSpeedDelta = fDelta;
         }

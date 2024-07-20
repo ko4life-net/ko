@@ -21,13 +21,13 @@ class CGameProcMain : public CGameProcedure {
 #ifdef _N3_64GRID_
     CServerMesh * m_pSMesh; // 서버에게 필요한 메쉬 클래스..
 #endif
-    class CUIInventory *        m_pUIInventory;          // 인벤토리
-    class CUIVarious *          m_pUIVar;                // 캐릭터 상태창, 기사단 관리 등이 페이지로 들어간 다용도 UI
-    class CUIChat *             m_pUIChatDlg;            // 채팅 입출력 대화상자..
-    class CUIMessageWnd *       m_pUIMsgDlg;             // 게임 메시지 출력 상자.
-    class CUIStateBar *         m_pUIStateBarAndMiniMap; // mp,hp,exp, minimap....
-    class CUICmd *              m_pUICmd;                // 왼쪽 하단의 명령버튼 창..
-    class CUITargetBar *        m_pUITargetBar;          // 타겟 상태창..
+    class CUIInventory *  m_pUIInventory; // 인벤토리
+    class CUIVarious *    m_pUIVar; // 캐릭터 상태창, 기사단 관리 등이 페이지로 들어간 다용도 UI
+    class CUIChat *       m_pUIChatDlg;            // 채팅 입출력 대화상자..
+    class CUIMessageWnd * m_pUIMsgDlg;             // 게임 메시지 출력 상자.
+    class CUIStateBar *   m_pUIStateBarAndMiniMap; // mp,hp,exp, minimap....
+    class CUICmd *        m_pUICmd;                // 왼쪽 하단의 명령버튼 창..
+    class CUITargetBar *  m_pUITargetBar;          // 타겟 상태창..
     class CUITransactionDlg *   m_pUITransactionDlg;
     class CUIDroppedItemDlg *   m_pUIDroppedItemDlg;
     class CSubProcPerTrade *    m_pSubProcPerTrade;
@@ -121,7 +121,7 @@ class CGameProcMain : public CGameProcedure {
         int &
             iOffset); // 주위 영역의 모든 User 아이디를 카운트만큼 받는다... 글구.. 업데이트가 필요한 것만 서버에게 요청..
     bool MsgRecv_UserInRequested(DataPack * pDataPack,
-                                 int &      iOffset); // 서버에게 요청한 유저의 아이디들을 받아서 User 처리..
+                                 int & iOffset); // 서버에게 요청한 유저의 아이디들을 받아서 User 처리..
     bool MsgRecv_UserInOut(DataPack * pDataPack, int & iOffset);
     bool MsgRecv_UserIn(DataPack * pDataPack, int & iOffset, bool bWithFX = false);
     bool MsgRecv_UserOut(DataPack * pDataPack, int & iOffset);
@@ -132,7 +132,7 @@ class CGameProcMain : public CGameProcedure {
         int &
             iOffset); // 주위 영역의 모든 NPC 아이디를 카운트만큼 받는다... 글구.. 업데이트가 필요한 것만 서버에게 요청..
     bool MsgRecv_NPCInRequested(DataPack * pDataPack,
-                                int &      iOffset); // 서버에게 요청한 NPC 아이디들을 받아서 User 처리..
+                                int & iOffset); // 서버에게 요청한 NPC 아이디들을 받아서 User 처리..
     bool MsgRecv_NPCInOut(DataPack * pDataPack, int & iOffset);
     bool MsgRecv_NPCIn(DataPack * pDataPack, int & iOffset);
     bool MsgRecv_NPCOut(DataPack * pDataPack, int & iOffset);
@@ -141,9 +141,9 @@ class CGameProcMain : public CGameProcedure {
     bool MsgRecv_Attack(DataPack * pDataPack, int & iOffset);
     bool MsgRecv_Dead(DataPack * pDataPack, int & iOffset);
 
-    bool MsgRecv_ItemMove(DataPack * pDataPack, int & iOffset);             // Item Move에 대한 응답..
-    bool MsgRecv_ItemBundleDrop(DataPack * pDataPack, int & iOffset);       // Item 이 필드에 나타나는데에 대한 응답
-    bool MsgRecv_ItemBundleOpen(DataPack * pDataPack, int & iOffset);       // 아이템 상자를 열거나 시체를 뒤진다..
+    bool MsgRecv_ItemMove(DataPack * pDataPack, int & iOffset);       // Item Move에 대한 응답..
+    bool MsgRecv_ItemBundleDrop(DataPack * pDataPack, int & iOffset); // Item 이 필드에 나타나는데에 대한 응답
+    bool MsgRecv_ItemBundleOpen(DataPack * pDataPack, int & iOffset); // 아이템 상자를 열거나 시체를 뒤진다..
     bool MsgRecv_ItemTradeStart(DataPack * pDataPack, int & iOffset);       // 아이템 상거래..
     bool MsgRecv_ItemTradeResult(DataPack * pDataPack, int & iOffset);      // 아이템 상거래 결과..
     bool MsgRecv_ItemDroppedGetResult(DataPack * pDataPack, int & iOffset); // 땅에 떨어진 아이템 먹기 결과..
@@ -173,7 +173,7 @@ class CGameProcMain : public CGameProcedure {
     void MsgRecv_CompressedPacket(DataPack * pDataPack,
                                   int & iOffset); // 압축된 패킷이다... 압축 풀고 루프를 돌면서 한번더 파싱해야 한다!!!
     void MsgRecv_ContinousPacket(DataPack * pDataPack,
-                                 int &      iOffset); // 붙어서 오는 패킷이다.. 루프를 돌면서 한번더 파싱해야 한다!!!
+                                 int & iOffset); // 붙어서 오는 패킷이다.. 루프를 돌면서 한번더 파싱해야 한다!!!
 
     void MsgRecv_ItemRepair(DataPack * pDataPack, int & iOffset);      // Item Repair Result..
     void MsgRecv_ItemCountChange(DataPack * pDataPack, int & iOffset); // Item Count Change..
@@ -257,13 +257,13 @@ class CGameProcMain : public CGameProcedure {
                         float fDistance); // 공격 패킷 날리기 - 테이블의 공격 주기를 같이 줘서 해킹을 막는다.
     void MsgSend_Move(bool bMove,
                       bool bContinous); // 서버에게 움직임 패킷을 날린다.. // 움직이는가 ? 주기적으로 움직이는 건가?
-    void MsgSend_Rotation();            // 서버에게 회전 패킷을 날린다..
+    void MsgSend_Rotation();                                              // 서버에게 회전 패킷을 날린다..
     void MsgSend_Chat(enum e_ChatMode eMode, const std::string & szChat); // 서버에게 채팅 메시지를 날린다..
     void MsgSend_ChatSelectTarget(const std::string & szTargetID);        // 일대일 채팅 상대 정하기.
     void MsgSend_Regen();
     bool MsgSend_RequestItemBundleOpen(CPlayerNPC * pCorpse); // 아이템 상자를 열거나 시체를 뒤진다..
     void MsgSend_RequestTargetHP(short siIDTarget,
-                                 BYTE  byUpdateImmediately); // 0x00 - 점차 늘어나게끔.. 0x01 - 즉시 업데이트..
+                                 BYTE byUpdateImmediately); // 0x00 - 점차 늘어나게끔.. 0x01 - 즉시 업데이트..
     void MsgSend_GameStart();
     bool MsgSend_NPCEvent(short siIDTarget);
     void MsgSend_NPCInRequest(int iID);  // NPC 정보가 없을 경우 요청한다..
@@ -291,7 +291,7 @@ class CGameProcMain : public CGameProcedure {
     void MsgSend_PerTradeBBSReq(std::string szName, int iDestID);
     void MsgSend_CharacterSelect(); // virtual
 
-    void ProcessPlayerInclination();            // 경사 처리..(가만히 있어도 경사가 급하면 미끄러짐..).
+    void ProcessPlayerInclination(); // 경사 처리..(가만히 있어도 경사가 급하면 미끄러짐..).
     void ProcessLocalInput(DWORD dwMouseFlags); // 키보드 눌린것을 처리한다..
     void ParseChattingCommand(const std::string & szCmd);
 

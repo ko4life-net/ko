@@ -105,7 +105,7 @@ template <class T> class CN3Mng {
                 //    asm
                 if (reChk == -1) // 추가시 전에 데이터가 있어 참조 카운트를 하나 더한다
                 {
-                    T *     pBakData = pData; // 같은 파일중 전 데이타를 받아 리턴(새로운 그림으로 바뀌지 않을수 있다)
+                    T * pBakData = pData; // 같은 파일중 전 데이타를 받아 리턴(새로운 그림으로 바뀌지 않을수 있다)
                     it_Data it = m_Datas.find(pBakData->FileName());
                     pData = (*it).second;
 

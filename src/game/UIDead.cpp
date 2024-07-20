@@ -242,7 +242,7 @@ void CUIDead::MsgRecv_Revival(DataPack * pDataPack, int & iOffset) {
     CGameProcedure::s_pPlayer->RegenerateCollisionMesh(); // 충돌 메시를 다시 만든다..
 
     CGameProcedure::s_pPlayer->m_iSendRegeneration = 0; // 한번 보내면 다시 죽을때까지 안보내는 플래그
-    CGameProcedure::s_pPlayer->m_fTimeAfterDeath = 0;   // 한번 보내면 다시 죽을때까지 안보내는 플래그
+    CGameProcedure::s_pPlayer->m_fTimeAfterDeath = 0; // 한번 보내면 다시 죽을때까지 안보내는 플래그
     TRACE("받음 - 다시 살아나기(%.1f, %.1f)\n", vPosPlayer.x, vPosPlayer.z);
 
     //

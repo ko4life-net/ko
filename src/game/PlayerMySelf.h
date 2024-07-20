@@ -26,8 +26,8 @@ class CPlayerMySelf : public CPlayerBase {
     bool  m_bStun;     // 기절..
     float m_fStunTime; // 기절한 시간..
 
-    int  m_iSendRegeneration; // 한번 보내면 다시 죽을때까지 안보내는 플래그 0 일때는 메시지 박스를 띄운다..
-    bool m_bTempMoveTurbo;    // 개발을 위해 임시로 넣은 코드.. 무지 빠르게 움직이게 한다.. Tick 참조.
+    int m_iSendRegeneration; // 한번 보내면 다시 죽을때까지 안보내는 플래그 0 일때는 메시지 박스를 띄운다..
+    bool m_bTempMoveTurbo; // 개발을 위해 임시로 넣은 코드.. 무지 빠르게 움직이게 한다.. Tick 참조.
 
     DWORD m_dwMagicID;    // 쓰고 있는 마법..
     float m_fCastingTime; // 마법 주문 거는 시간..
@@ -57,7 +57,7 @@ class CPlayerMySelf : public CPlayerBase {
     float DistanceExceptRadius(CPlayerBase * pTarget);
     bool  IsAttackableTarget(CPlayerBase * pTarget, bool bMesureAngle = true); // 공격 가능한 범위에 있는지..
     bool  IsRunning() { return m_bRunning; }
-    bool  CheckCollision(); // 움직이는 처리와 충돌체크를 한다. 충돌되는게 있으면 움직이지 않는다.
+    bool CheckCollision(); // 움직이는 처리와 충돌체크를 한다. 충돌되는게 있으면 움직이지 않는다.
     //..
     bool           InitChr(__TABLE_PLAYER_LOOKS * pTblUPC);
     CN3CPart *     PartSet(e_PartPosition ePos, const std::string & szFN, __TABLE_ITEM_BASIC * pItemBasic,

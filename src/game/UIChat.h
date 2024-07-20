@@ -37,10 +37,10 @@ class CUIChat : public CN3UIBase {
     CN3UIString * m_pNoticeTitle; // 채팅창 맨윗줄에 표시될 공지...
     CN3UIString *
         m_pChatOut; // 채팅이 출력되는 UIString 참조포인터(실제 m_Child로 관리), 글씨체와 초기 영역만 참조한다.
-    CN3UIScrollBar * m_pScrollbar;      // scrollbar 참조포인터(실제 m_Child로 관리)
-    int              m_iChatLineCount;  // 채팅창에 출력되는 line의 수(채팅창 사이즈가 변했을때 다시 계산해주자.)
-    RECT             m_rcChatOutRegion; // 채팅이 출력되는 영역
-    CN3UIString **   m_ppUILines;       // 채팅이 출력되는 UIString 배열포인터(채팅창 사이즈가 변하므로 배열도 변한다.
+    CN3UIScrollBar * m_pScrollbar; // scrollbar 참조포인터(실제 m_Child로 관리)
+    int m_iChatLineCount; // 채팅창에 출력되는 line의 수(채팅창 사이즈가 변했을때 다시 계산해주자.)
+    RECT m_rcChatOutRegion; // 채팅이 출력되는 영역
+    CN3UIString ** m_ppUILines; // 채팅이 출력되는 UIString 배열포인터(채팅창 사이즈가 변하므로 배열도 변한다.
 
     CN3UIEdit * m_pEdit;    //son, chat_in
     std::string m_szString; //son, chat_in
@@ -76,20 +76,20 @@ class CUIChat : public CN3UIBase {
     void SetTopLine(int iTopLine); // 맨 윗줄을 지정해준다.
     //    void            AddLineBuffer(e_ChatBuffer eCB, const std::string& szString, D3DCOLOR color);    // line 버퍼를 만들어준다.(너무 길면 알아서 2줄로 만들어준다.)
     void AddLineBuffer(const std::string & szString,
-                       D3DCOLOR            color); // line 버퍼를 만들어준다.(너무 길면 알아서 2줄로 만들어준다.)
-    void RecalcLineBuffers();           // 채팅창 사이즈가 변했을때 호출해주면 line buffer를 다시 계산해서 넣어준다.
+                       D3DCOLOR color); // line 버퍼를 만들어준다.(너무 길면 알아서 2줄로 만들어준다.)
+    void RecalcLineBuffers(); // 채팅창 사이즈가 변했을때 호출해주면 line buffer를 다시 계산해서 넣어준다.
     void CreateLines();
 
     // Operations
   public:
-    void         SetNoticeTitle(const std::string & szString, D3DCOLOR color);
-    void         ShowContinueMsg();
-    void         DeleteContinueMsg();
-    bool         OnKeyPress(int iKey);
-    bool         GetEnableKillFocus() { return m_bKillFocus; }
-    void         SetEnableKillFocus(bool bKillFocus) { m_bKillFocus = bKillFocus; }
-    void         ChatListenEnable();
-    void         ChangeChattingMode(e_ChatMode eCM);
+    void SetNoticeTitle(const std::string & szString, D3DCOLOR color);
+    void ShowContinueMsg();
+    void DeleteContinueMsg();
+    bool OnKeyPress(int iKey);
+    bool GetEnableKillFocus() { return m_bKillFocus; }
+    void SetEnableKillFocus(bool bKillFocus) { m_bKillFocus = bKillFocus; }
+    void ChatListenEnable();
+    void ChangeChattingMode(e_ChatMode eCM);
     virtual BOOL MoveOffset(int iOffsetX, int iOffsetY); // Offset만큼 이동해준다.(region, children, move rect 이동)
     virtual bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg);
     virtual void Release();

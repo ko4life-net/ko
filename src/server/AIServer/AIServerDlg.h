@@ -159,8 +159,8 @@ class CServerDlg : public CDialog {
     short m_sMapEventNpc;    // Map에서 읽어들이는 event npc 수
 
     // sungyong 2002.05.23
-    BOOL  m_bFirstServerFlag;  // 서버가 처음시작한 후 게임서버가 붙은 경우에는 1, 붙지 않은 경우 0
-    short m_sSocketCount;      // GameServer와 처음접시 필요
+    BOOL m_bFirstServerFlag; // 서버가 처음시작한 후 게임서버가 붙은 경우에는 1, 붙지 않은 경우 0
+    short m_sSocketCount;    // GameServer와 처음접시 필요
     short m_sReSocketCount;    // GameServer와 재접시 필요
     float m_fReConnectStart;   // 처음 소켓이 도착한 시간
     short m_sErrorSocketCount; // 이상소켓 감시용

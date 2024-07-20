@@ -374,7 +374,7 @@ template <class Type> BOOL CN3TableBase<Type>::Load(HANDLE hFile) {
 
         int iSize = offsets
             [iDataTypeCount]; // MakeOffstTable 함수에서 리턴되는 값중 m_iDataTypeCount번째에 이 함수의 실제 사이즈가 들어있다.
-        if (sizeof(Type) != iSize ||    // 전체 type의 크기와 실제 구조체의 크기와 다르거나
+        if (sizeof(Type) != iSize || // 전체 type의 크기와 실제 구조체의 크기와 다르거나
             DT_DWORD != m_DataTypes[0]) // 맨 처음의 데이타가 DT_DWORD형이 아닐때(맨처음은 고유한 ID이므로)
         {
             m_DataTypes.clear();

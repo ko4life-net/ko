@@ -216,8 +216,8 @@ void CGameEng::Tick(const D3DCOLOR *     crDiffuses,    // Diffuse 라이트 색
         __Vector3 vEyeResult = m_vEyeToReach;
         float     fNP = m_pActiveCam->m_Data.fNP;
         CGameBase::ACT_WORLD->CheckCollisionCameraWithTerrain(vEyeResult, m_vAtToReach, fNP); // 지형과 충돌체크
-        CGameBase::ACT_WORLD->CheckCollisionCameraWithShape(vEyeResult, m_vAtToReach, fNP);   // 오브젝트와 충돌체크..
-        m_pActiveCam->LookAt(vEyeResult, m_vAtToReach, __Vector3(0, 1, 0));                   // 처다본다..
+        CGameBase::ACT_WORLD->CheckCollisionCameraWithShape(vEyeResult, m_vAtToReach, fNP); // 오브젝트와 충돌체크..
+        m_pActiveCam->LookAt(vEyeResult, m_vAtToReach, __Vector3(0, 1, 0));                 // 처다본다..
     }
     // 카메라 충돌 체크...
     ////////////////////////////////////////////////////////////////////////////////////

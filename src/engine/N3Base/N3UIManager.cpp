@@ -42,7 +42,7 @@ DWORD CN3UIManager::MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & 
             return m_dwMouseFlagsCur;
         } else if ((UI_MOUSE_LBCLICK & dwFlags) &&
                    (UI_MOUSEPROC_INREGION & dwChildRet)) { // 영역 안을 클릭 했을때 먼가 일을 했다고 하고 리턴해버린다.
-            itor = m_Children.erase(itor);                 // 우선 리스트에서 지우고
+            itor = m_Children.erase(itor); // 우선 리스트에서 지우고
             m_Children.push_front(
                 pChild); // 맨앞에 넣는다. 그리는 순서를 맨 나중에 그리도록 하고 메세지를 맨 먼저 받게 하려고
             m_dwMouseFlagsCur |= (UI_MOUSEPROC_DIALOGFOCUS);

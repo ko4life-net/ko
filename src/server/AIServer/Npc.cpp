@@ -4279,9 +4279,9 @@ void CNpc::SendExpToUserList() {
         }
     }
 
-    if (m_pMain->m_byBattleEvent == BATTLEZONE_OPEN) {         // 전쟁중
+    if (m_pMain->m_byBattleEvent == BATTLEZONE_OPEN) { // 전쟁중
         if (m_bySpecialType >= 90 && m_bySpecialType <= 100) { // 죽었을때 데미지를 많이 입힌 유저를 기록해 주세여
-            if (strlen(strMaxDamageUser) != 0) {               // 몬스터에게 가장 데미지를 많이 입힌 유저의 이름을 전송
+            if (strlen(strMaxDamageUser) != 0) { // 몬스터에게 가장 데미지를 많이 입힌 유저의 이름을 전송
                 char send_buff[100];
                 memset(send_buff, 0x00, 100);
                 int send_index = 0;

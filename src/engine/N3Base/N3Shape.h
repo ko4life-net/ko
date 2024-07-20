@@ -147,7 +147,7 @@ class CN3Shape : public CN3TransformCollision {
         __Vector3 * pVNormal = NULL); // 정밀하게 폴리곤 단위로 체크 - 먼저 박스 체크후 다시 정밀 체크..
     int CheckCollisionPrecisely(
         bool bIgnoreBoxCheck, const __Vector3 & vPos, const __Vector3 & vDir, __Vector3 * pVCol = NULL,
-        __Vector3 * pVNormal = NULL);      // 정밀하게 폴리곤 단위로 체크 - 먼저 박스 체크후 다시 정밀 체크..
+        __Vector3 * pVNormal = NULL); // 정밀하게 폴리곤 단위로 체크 - 먼저 박스 체크후 다시 정밀 체크..
     bool MakeCollisionMeshByParts();       // 충돌 메시를 박스 형태로 다시 만든다...
     bool MakeCollisionMeshByPartsDetail(); // 현재 모습 그대로... 충돌 메시를 만든다...
 

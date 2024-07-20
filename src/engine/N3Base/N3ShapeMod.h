@@ -31,12 +31,12 @@ class CN3ShapeMod : public CN3Shape {
         }
     };
     struct __ModPart {
-        CN3SPart *         pPart;        // 움직일 Part
-        bool               bPos;         // Pos 변화가 있는가?
-        bool               bRot;         // Rot 변화가 있는가?
-        bool               bScale;       // Scale 변화가 있는가?
-        __ModPosRotScale * pStateInfos;  // 움직일 상태 정보들(이동,회전,확대축소 정보 m_iStateCount개)
-        __ModPosRotScale   CurStateInfo; // 현재 움직인 상태 정보(tick에 따라 변화한다)
+        CN3SPart * pPart;               // 움직일 Part
+        bool       bPos;                // Pos 변화가 있는가?
+        bool       bRot;                // Rot 변화가 있는가?
+        bool       bScale;              // Scale 변화가 있는가?
+        __ModPosRotScale * pStateInfos; // 움직일 상태 정보들(이동,회전,확대축소 정보 m_iStateCount개)
+        __ModPosRotScale CurStateInfo;  // 현재 움직인 상태 정보(tick에 따라 변화한다)
 
         __ModPart() {
             pPart = NULL;
@@ -84,9 +84,9 @@ class CN3ShapeMod : public CN3Shape {
     //            N3SHAPEMOD_TYPE_NORMAL = 4            // 둘 다 변화하는 것
     //    };
     //    int        m_iModType;            // type..
-    int   m_iStateCount;   // 상태가 몇개가 있는지 나타낸다.
-    int   m_iCurState;     // 현재 상태
-    int   m_iPrevState;    // 이전 상태(새로운 상태를 설정해주면 Animation되는 동안 이전상태를 저장해둔다.
+    int m_iStateCount; // 상태가 몇개가 있는지 나타낸다.
+    int m_iCurState;   // 현재 상태
+    int m_iPrevState; // 이전 상태(새로운 상태를 설정해주면 Animation되는 동안 이전상태를 저장해둔다.
     float m_fTimeChanged;  // 상태가 완전히 바뀌는 시간
     float m_fTimeChanging; // 상태가 바뀌는 시작시간부터 지금까지의 경과 시간
 
@@ -99,8 +99,8 @@ class CN3ShapeMod : public CN3Shape {
 
     // Operations
   public:
-    BOOL         SetState(int iState, float fSec); // fSec시간동안 상태를 바꾼다. (fSec이 0일경우 즉시 바뀐다.)
-    BOOL         LoadStateInfo(FILE * stream);     // 상태 정보를 읽어온다.(text로부터)
+    BOOL SetState(int iState, float fSec); // fSec시간동안 상태를 바꾼다. (fSec이 0일경우 즉시 바뀐다.)
+    BOOL         LoadStateInfo(FILE * stream); // 상태 정보를 읽어온다.(text로부터)
     virtual void Release();
     virtual void ReCalcMatrix();
     virtual void Tick(float fFrm = FRAME_SELFPLAY);

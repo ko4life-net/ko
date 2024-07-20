@@ -82,19 +82,19 @@ class CMainFrame : public CFrameWnd, public CN3Base {
     CN3Light          m_Light;
     CDlgBase *        m_pDlgBase; // 객체 등록정보 편집 대화상자..
     CTotalToolSheet * m_pTotalSheet;
-    CDlgShapeList *   m_pDlgSourceList;      // Object 목록을 보여줄 다이알로그
-    CDlgShapeList *   m_pDlgOutputList;      // 맵에 배치한 Object를 보여줄 다이알로그
-    CN3Scene *        m_pSceneSource;        // source object 목록에 보여줄 것들을 담은 Scene
-    SelectElement     m_LastSelectedElement; // 가장 마지막으로 선택된 객체..    포커스 맞출때 쓴다..
+    CDlgShapeList *   m_pDlgSourceList;  // Object 목록을 보여줄 다이알로그
+    CDlgShapeList *   m_pDlgOutputList;  // 맵에 배치한 Object를 보여줄 다이알로그
+    CN3Scene *        m_pSceneSource;    // source object 목록에 보여줄 것들을 담은 Scene
+    SelectElement m_LastSelectedElement; // 가장 마지막으로 선택된 객체..    포커스 맞출때 쓴다..
 
     //.................
     CArray<CPortalVolume *, CPortalVolume *> m_SelVolArray;
     std::list<FloorInfo>                     m_FloorList;
-    CTransDummy *                            m_pDummy;     // 물체를 이동 회전 확대/축소 하는 기능을 담당하는 클래스
-    CPosDummy                                m_PosDummy;   // 이동
-    CRotDummy                                m_RotDummy;   // 회전
-    CScaleDummy                              m_ScaleDummy; // 확대/축소
-    CSwappedDummy                            m_SwappedDummy;
+    CTransDummy * m_pDummy;     // 물체를 이동 회전 확대/축소 하는 기능을 담당하는 클래스
+    CPosDummy     m_PosDummy;   // 이동
+    CRotDummy     m_RotDummy;   // 회전
+    CScaleDummy   m_ScaleDummy; // 확대/축소
+    CSwappedDummy m_SwappedDummy;
     //..................
 
     // Overrides
@@ -109,15 +109,15 @@ class CMainFrame : public CFrameWnd, public CN3Base {
 
     // Implementation
   public:
-    void           FindMinMaxTotalShape(__Vector3 & vecMin, __Vector3 & vecMax);
-    void           OutputDlgRefresh(); // 소스목록에서 선택한 Object를 넣으면 OutputScene으로 복사해서 넣어준다.
+    void FindMinMaxTotalShape(__Vector3 & vecMin, __Vector3 & vecMax);
+    void OutputDlgRefresh(); // 소스목록에서 선택한 Object를 넣으면 OutputScene으로 복사해서 넣어준다.
     CN3Transform * AddChr(CN3Scene * pDestScene, const std::string & szFN,
                           BOOL bGenerateChainNumber); // 특정Scene에 캐릭터 객체를 복사해 추가
     CN3Transform * AddShape(CN3Scene * pDestScene, const std::string & szFN,
                             BOOL bGenerateChainNumber); // 특정Scene에 Shape 객체를 복사해 추가
 
-    void        UpdateShapeInfoDisplay();
-    void        RenderObjectToWindow(CN3TransformCollision * pObj, HWND hWnd); // 특정 윈도우에 Object를 그려준다.
+    void UpdateShapeInfoDisplay();
+    void RenderObjectToWindow(CN3TransformCollision * pObj, HWND hWnd); // 특정 윈도우에 Object를 그려준다.
     ShapeInfo * GetShapeForDisplay();
     void        TotalValidateCheckAfterDelete();
 

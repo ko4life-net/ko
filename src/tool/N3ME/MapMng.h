@@ -122,7 +122,7 @@ class CMapMng : public CN3Base {
     //    CTypedPtrArray<CPtrArray, CN3TransformCollision*> m_SelOutputObjArray;    // 맵에 배치한 Object 중 선택한 것들
     CTypedPtrArray<CPtrArray, CN3Transform *> m_SelOutputObjArray; // 맵에 배치한 Object 중 선택한 것들
 
-    ENUM_EDIT_STATE                           m_eSelObjBackState; //    임시복사(ctrl+c)의 상태표시
+    ENUM_EDIT_STATE m_eSelObjBackState;                           //    임시복사(ctrl+c)의 상태표시
     CTypedPtrArray<CPtrArray, CN3Transform *> m_SelOutputObjBack; // 맵에 배치한 Object 중 선택한 것들 가지고 있음
 
     int  m_CursorMode;    // 마우스의 기능 모드 구분
@@ -159,32 +159,32 @@ class CMapMng : public CN3Base {
         }
     } //지형 존 아이디 셋팅.
     void ImportShape(const char * szFullPath);
-    void MakeTerrainMovableAttr(CN3ShapeMgr * pShapeMgr);  //지형에서 갈수 있는 타일과 갈 수 없는 타일을 정리해라..
+    void MakeTerrainMovableAttr(CN3ShapeMgr * pShapeMgr); //지형에서 갈수 있는 타일과 갈 수 없는 타일을 정리해라..
     void ImportPostDataFromScene(const char * szFileName); // Scene 에서 오브젝트 배치된걸 불러온다..
     void UpDateFP();
     void Tick();
     void Render();
     void Release();
     void SavePartition(float x, float z, float width);
-    void SaveToFile(LPCTSTR lpszPathName);                          // Map 파일 저장
-    void LoadFromFile(LPCTSTR lpszPathName);                        // Map 파일 불러오기
-    BOOL MouseMsgFilter(LPMSG pMsg);                                // 마우스의 기능
-    void ImportTerrain(const char * szMeshFN);                      // VMesh 파일에서 지형 데이터 읽어오기
-    void ImportTerrainHeight(const char * szMeshFN);                // VMesh 파일에서 지형의 높이값만 읽어오기..
+    void SaveToFile(LPCTSTR lpszPathName);           // Map 파일 저장
+    void LoadFromFile(LPCTSTR lpszPathName);         // Map 파일 불러오기
+    BOOL MouseMsgFilter(LPMSG pMsg);                 // 마우스의 기능
+    void ImportTerrain(const char * szMeshFN);       // VMesh 파일에서 지형 데이터 읽어오기
+    void ImportTerrainHeight(const char * szMeshFN); // VMesh 파일에서 지형의 높이값만 읽어오기..
     void MakeGameFiles(LPCTSTR lpszPathName, float fSize = 128.0f); // 게임 데이터로 변환하기
     void MakeServerDataFiles(LPCTSTR lpszPathName);
     void SelectObject(CN3Base * pObj, BOOL IsSourceObj, BOOL bAdd = FALSE); // 객체를 선택한다.
-    void RenderObjectToWindow(CN3TransformCollision * pObj, HWND hWnd);     // 특정 윈도우에 Object를 그려준다.
-    void SetCursorMode(int iMode);                                          // 마우스커서의 이용방법을 바꾼다.
-    int  GetCursorMode() const { return m_CursorMode; }                     // 마우스 커서의 이용방법을 얻는다.
-    void Invalidate();                                                      // View 화면 갱신
-    void FocusSelObj();                                                     // 선택된 객체로 포터스를 옮긴다.
-    void FocusAll();                                                        // 전체 맵을 볼수 있도록 한다.
-    void FocusAt(__Vector3 v);                                              // 지정된 점으로 포커스 옮겨.
-    void DropSelObjToTerrain();                                             // 선택한 객체를 지형에 붙인다.(Y값만 조정)
-    void DeleteSelObjectFromOutputScene();                                  // OutputScene에서 선택한 객체를 지운다.
-    void RenderDragRect(RECT * rc);                                         // 드래그 영역을 그린다.
-    void UpdateAll();                                                       // source 와 output dialog를 update시킨다.
+    void RenderObjectToWindow(CN3TransformCollision * pObj, HWND hWnd); // 특정 윈도우에 Object를 그려준다.
+    void SetCursorMode(int iMode);                                      // 마우스커서의 이용방법을 바꾼다.
+    int  GetCursorMode() const { return m_CursorMode; } // 마우스 커서의 이용방법을 얻는다.
+    void Invalidate();                                  // View 화면 갱신
+    void FocusSelObj();                                 // 선택된 객체로 포터스를 옮긴다.
+    void FocusAll();                                    // 전체 맵을 볼수 있도록 한다.
+    void FocusAt(__Vector3 v);                          // 지정된 점으로 포커스 옮겨.
+    void DropSelObjToTerrain();                         // 선택한 객체를 지형에 붙인다.(Y값만 조정)
+    void DeleteSelObjectFromOutputScene();              // OutputScene에서 선택한 객체를 지운다.
+    void RenderDragRect(RECT * rc);                     // 드래그 영역을 그린다.
+    void UpdateAll();                                   // source 와 output dialog를 update시킨다.
 
     void           LoadObjectPostData(LPCTSTR lpszFileName); // Shape 배치정보를 text파일에서 읽어온다.
     void           SaveObjectPostData(LPCTSTR lpszFileName); // Shape 배치정보를 text파일로 저장한다.
@@ -201,7 +201,7 @@ class CMapMng : public CN3Base {
         CN3Transform * pObj); // 소스목록에서 선택한 Object를 넣으면 OutputScene으로 복사해서 넣어준다.
     CN3Camera * CameraGet();
 
-    CN3Base *  Pick(POINT point, int * pnPart);                              // 객체 picking 함수
+    CN3Base * Pick(POINT point, int * pnPart);                               // 객체 picking 함수
     static int SortByCameraDistance(const void * pArg1, const void * pArg2); // 카메라 거리에 따른 정렬함수 qsort에 이용
 
     //    BOOL    CameraMove(LPMSG pMsg);        // 카메라 이동에 관한 메세지 처리

@@ -614,7 +614,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
             }
 
             iCountWhole2++; // 실제 처리한 갯수 증가..
-        }                   // end of if(iType == iExt) // 무기 타입과 확장 테이블에 적용할 번호가 맞는경우만 처리..
+        } // end of if(iType == iExt) // 무기 타입과 확장 테이블에 적용할 번호가 맞는경우만 처리..
 
         // 인덱스 계산..
         iIndexCur2++;

@@ -31,7 +31,7 @@
 CUISkillTreeDlg::CUISkillTreeDlg() {
     m_bOpenningNow = false; // 열리고 있다..
     m_bClosingNow = false;  // 닫히고 있다..
-    m_fMoveDelta = 0.0f;    // 부드럽게 열리고 닫히게 만들기 위해서 현재위치 계산에 부동소수점을 쓴다..
+    m_fMoveDelta = 0.0f; // 부드럽게 열리고 닫히게 만들기 위해서 현재위치 계산에 부동소수점을 쓴다..
 
     m_iRBtnDownOffs = -1;
     m_iCurKindOf = 0;
@@ -77,7 +77,7 @@ void CUISkillTreeDlg::Release() {
 
     m_bOpenningNow = false; // 열리고 있다..
     m_bClosingNow = false;  // 닫히고 있다..
-    m_fMoveDelta = 0.0f;    // 부드럽게 열리고 닫히게 만들기 위해서 현재위치 계산에 부동소수점을 쓴다..
+    m_fMoveDelta = 0.0f; // 부드럽게 열리고 닫히게 만들기 위해서 현재위치 계산에 부동소수점을 쓴다..
 
     for (int i = 0; i < MAX_SKILL_KIND_OF; i++) {
         for (int j = 0; j < MAX_SKILL_PAGE_NUM; j++) {

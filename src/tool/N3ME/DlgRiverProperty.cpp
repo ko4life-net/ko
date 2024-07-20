@@ -276,7 +276,7 @@ BOOL CDlgRiverProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult
                 char szFName[_MAX_FNAME];
                 char szExt[_MAX_EXT];
                 _splitpath(tmp.m_szName.c_str(), NULL, szDir, szFName, szExt);
-                int     iCount = atoi(szFName + lstrlen(szFName) - 2) + 1; // 파일 이름의 끝에 두자리를 숫자로 변환
+                int iCount = atoi(szFName + lstrlen(szFName) - 2) + 1; // 파일 이름의 끝에 두자리를 숫자로 변환
                 CString strFName = szDir;
                 strFName += szFName;
                 strFName = strFName.Left(strFName.GetLength() - 2);

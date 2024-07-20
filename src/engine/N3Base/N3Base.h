@@ -183,15 +183,15 @@ class CN3Base {
     static CN3AlphaPrimitiveManager
         s_AlphaMgr; // Alpha blend 할 폴리곤들을 관리.. 추가했다가.. 카메라 거리에 씗추어 정렬하고 한꺼번에 그린다..
 
-    static CN3Mng<class CN3Texture>     s_MngTex;     // Texture Manager
-    static CN3Mng<class CN3Mesh>        s_MngMesh;    // Normal Mesh Manager
-    static CN3Mng<class CN3VMesh>       s_MngVMesh;   // 단순히 폴리곤만 갖고 있는 메시 - 주로 충돌 체크에 쓴다..
+    static CN3Mng<class CN3Texture> s_MngTex;  // Texture Manager
+    static CN3Mng<class CN3Mesh>    s_MngMesh; // Normal Mesh Manager
+    static CN3Mng<class CN3VMesh> s_MngVMesh; // 단순히 폴리곤만 갖고 있는 메시 - 주로 충돌 체크에 쓴다..
     static CN3Mng<class CN3PMesh>       s_MngPMesh;   // Progressive Mesh Manager
     static CN3Mng<class CN3Joint>       s_MngJoint;   // Joint Manager
     static CN3Mng<class CN3CPartSkins>  s_MngSkins;   // Character Part Skin Manager
     static CN3Mng<class CN3AnimControl> s_MngAniCtrl; // Animation Manager
-    static CN3Mng<class CN3FXPMesh>     s_MngFXPMesh; // FX에서 쓰는 PMesh - 파일은 일반 PMesh를 쓰지만 속은 다르다.
-    static CN3Mng<class CN3FXShape>     s_MngFXShape; // FX에서 쓰는 Shape - 파일은 일반 shape를 쓰지만 속은 다르다.
+    static CN3Mng<class CN3FXPMesh> s_MngFXPMesh; // FX에서 쓰는 PMesh - 파일은 일반 PMesh를 쓰지만 속은 다르다.
+    static CN3Mng<class CN3FXShape> s_MngFXShape; // FX에서 쓰는 Shape - 파일은 일반 shape를 쓰지만 속은 다르다.
 
   protected:
     static std::string s_szPath; // 프로그램이 실행된 경로..

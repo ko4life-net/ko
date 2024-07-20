@@ -539,10 +539,10 @@ void CN3ShapeMgr::GenerateCollisionData() {
                     pSubCell->pdwCCVertIndices[nCCPC * 3 + 0] = i * 3 + 0; // 인덱스 저장..
                     pSubCell->pdwCCVertIndices[nCCPC * 3 + 1] = i * 3 + 1; // 인덱스 저장..
                     pSubCell->pdwCCVertIndices[nCCPC * 3 + 2] = i * 3 + 2; // 인덱스 저장..
-                    pSubCell->nCCPolyCount++;                              // Collision Check Polygon Count 를 늘린다.
-                }                                                          // end of for(int x = xx1; x <= xx2; x++)
-            } // end of for(int z = zz1; z <= zz2; z++) // 범위만큼 처리..
-        }     // end of for(int j = 0; j < 3; j++) // 걸쳐 있는 메시 만큼 생성...
+                    pSubCell->nCCPolyCount++; // Collision Check Polygon Count 를 늘린다.
+                }                             // end of for(int x = xx1; x <= xx2; x++)
+            }                                 // end of for(int z = zz1; z <= zz2; z++) // 범위만큼 처리..
+        } // end of for(int j = 0; j < 3; j++) // 걸쳐 있는 메시 만큼 생성...
     }
 }
 #endif // end of _N3TOOL
@@ -904,7 +904,7 @@ CN3Shape * CN3ShapeMgr::Pick(int iXScreen, int iYScreen, bool bMustHaveEvent, __
                                  vPos, vDir);
 
     it_Shp it = m_ShapesToRender.begin(), itEnd = m_ShapesToRender.end(); // 눈에 보이는것만 대상으로 해서...
-    int    iSC = m_ShapesToRender.size();
+    int iSC = m_ShapesToRender.size();
 
     // 거리순으로 정렬..
     std::vector<CN3Shape *> Shapes(iSC, NULL);
@@ -937,7 +937,7 @@ CN3Shape * CN3ShapeMgr::PickMovable(int iXScreen, int iYScreen, __Vector3 * pvPi
                                  vPos, vDir);
 
     it_Shp it = m_ShapesToRender.begin(), itEnd = m_ShapesToRender.end(); // 눈에 보이는것만 대상으로 해서...
-    int    iSC = m_ShapesToRender.size();
+    int iSC = m_ShapesToRender.size();
 
     // 거리순으로 정렬..
     std::vector<CN3Shape *> Shapes(iSC, NULL);

@@ -55,7 +55,7 @@ class CRiverMng : public CN3BaseFileAccess {
     CTypedPtrArray<CPtrArray, __VertexXyzT2 *> m_SelVtxArray; // 선택된 점들
     CVtxPosDummy                               m_VtxPosDummy; // 점을 움직일수 있는 dummy object
     BOOL                                       m_bEditMode;   // 강물 편집모드인가?
-    int                                        m_RCursorMode; // 강을 추가?하는 것인가 점을 선택하는 것인가?
+    int m_RCursorMode; // 강을 추가?하는 것인가 점을 선택하는 것인가?
 
     CMainFrame *        m_pMainFrm;     // mainframe pointer
     CDlgRiverProperty * m_pDlgProperty; // property dialog

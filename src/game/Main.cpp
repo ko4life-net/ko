@@ -445,7 +445,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
     //////////////////////////////////////////////////////////////////////////////////////////
     // Static Member 생성...
-    CGameProcedure::StaticMemberInit(hInstance, hWndMain, hWndSub);                // 파괴는 WM_DESTROY 에서 한다..
+    CGameProcedure::StaticMemberInit(hInstance, hWndMain, hWndSub); // 파괴는 WM_DESTROY 에서 한다..
     CGameProcedure::ProcActiveSet((CGameProcedure *)CGameProcedure::s_pProcLogIn); // 로그인 프로시져부터 시작..
 
     BOOL bGotMsg = FALSE;

@@ -1332,7 +1332,7 @@ bool CN3DExp::FindNodeRecursive(INode * pNode, Class_ID cID, std::list<INode *> 
     return true;
 }
 
-bool CN3DExp::CheckObjectClassID(INode *          pNode,
+bool CN3DExp::CheckObjectClassID(INode * pNode,
                                  const Class_ID & cID) const // 주어진 노드가 주어진 클래스 아이디인지 검사
 {
     if (NULL == pNode) {

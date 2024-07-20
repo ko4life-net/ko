@@ -25,9 +25,9 @@ const int SKILL_DEF_SPECIAL3 = 4;
 
 class CUISkillTreeDlg : public CN3UIWndBase {
   protected:
-    bool  m_bOpenningNow; // 열리고 있다..
-    bool  m_bClosingNow;  // 닫히고 있다..
-    float m_fMoveDelta;   // 부드럽게 열리고 닫히게 만들기 위해서 현재위치 계산에 부동소수점을 쓴다..
+    bool m_bOpenningNow; // 열리고 있다..
+    bool m_bClosingNow;  // 닫히고 있다..
+    float m_fMoveDelta; // 부드럽게 열리고 닫히게 만들기 위해서 현재위치 계산에 부동소수점을 쓴다..
 
     int m_iRBtnDownOffs;
 

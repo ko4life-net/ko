@@ -97,7 +97,7 @@ class CTransDummy : public CN3Transform {
     void         GetPickRay(POINT point, __Vector3 & vDir,
                             __Vector3 & vOrig); // 마우스 포인터가 가리키는 쪽으로 뻗어나가는 선 얻는 함수
   protected:
-    __DUMMYCUBE * Pick(int x, int y);                                                                   // 큐브 picking
+    __DUMMYCUBE * Pick(int x, int y); // 큐브 picking
     void InitDummyCube(int iType, __DUMMYCUBE * pDummyCube, const __Vector3 & vOffset, D3DCOLOR color); // 큐브 초기화
     static int   SortCube(const void * pArg1, const void * pArg2); // 큐브 카메라 거리에 대한 정렬함수
     virtual void TransDiff(__Vector3 * pvDiffPos, __Quaternion * pvDiffRot,

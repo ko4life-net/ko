@@ -22,13 +22,13 @@ CN3TableBase<__TABLE_PLAYER_LOOKS> * CGameBase::s_pTbl_UPC_Looks =
     NULL; // 각 유저의(내 자신과 주위 다른 사람) 클레스별 기본 스킨
 CN3TableBase<__TABLE_PLAYER_LOOKS> * CGameBase::s_pTbl_NPC_Looks =
     NULL; // NPC, Mob 기본 모습 - 6개의 캐릭터 파트(), 2개의 플러그
-CN3TableBase<__TABLE_UPC_SKILL> *      CGameBase::s_pTbl_Skill = NULL;          // Skill 정보에 관한 Table
+CN3TableBase<__TABLE_UPC_SKILL> * CGameBase::s_pTbl_Skill = NULL;               // Skill 정보에 관한 Table
 CN3TableBase<__TABLE_EXCHANGE_QUEST> * CGameBase::s_pTbl_Exchange_Quest = NULL; // 교환 퀘스트에 관한 테이블..
-CN3TableBase<__TABLE_FX> *             CGameBase::s_pTbl_FXSource;              // FX소스 정보 테이블..
-CN3TableBase<__TABLE_QUEST_MENU> *     CGameBase::s_pTbl_QuestMenu = NULL;      // 퀘스트 선택 메뉴
-CN3TableBase<__TABLE_QUEST_TALK> *     CGameBase::s_pTbl_QuestTalk = NULL;      // 퀘스트 지문
-CN3TableBase<__TABLE_TEXTS> *          CGameBase::s_pTbl_Texts = NULL;
-CN3TableBase<__TABLE_HELP> *           CGameBase::s_pTbl_Help = NULL;
+CN3TableBase<__TABLE_FX> *         CGameBase::s_pTbl_FXSource;                  // FX소스 정보 테이블..
+CN3TableBase<__TABLE_QUEST_MENU> * CGameBase::s_pTbl_QuestMenu = NULL;          // 퀘스트 선택 메뉴
+CN3TableBase<__TABLE_QUEST_TALK> * CGameBase::s_pTbl_QuestTalk = NULL;          // 퀘스트 지문
+CN3TableBase<__TABLE_TEXTS> *      CGameBase::s_pTbl_Texts = NULL;
+CN3TableBase<__TABLE_HELP> *       CGameBase::s_pTbl_Help = NULL;
 
 CN3WorldManager * CGameBase::s_pWorldMgr = NULL; // 월드 매니져..
 CPlayerOtherMgr * CGameBase::s_pOPMgr = NULL;    // Other Player Manager - 다른 유저 관리 클래스..

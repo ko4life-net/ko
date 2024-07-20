@@ -27,10 +27,10 @@ class CPlayerOtherMgr : public CGameBase {
     //    std::list<CPlayerNPC*>        m_NPCs;        // NPC
     //    std::list<CPlayerOther*>    m_UPCs;        // User Player Character
     //    std::list<CPlayerNPC*>        m_Corpses;    // 죽은놈.. 죽는 에니메이션 및 시간이 지나면 없어지게 한다..
-    std::map<int, CPlayerNPC *>   m_NPCs;              // NPC
-    std::map<int, CPlayerOther *> m_UPCs;              // User Player Character
-    std::map<int, CPlayerNPC *>   m_Corpses;           // 죽은놈.. 죽는 에니메이션 및 시간이 지나면 없어지게 한다..
-    int                           m_iChrCountToRender; // 렌더링되는 캐릭 카운트
+    std::map<int, CPlayerNPC *>   m_NPCs; // NPC
+    std::map<int, CPlayerOther *> m_UPCs; // User Player Character
+    std::map<int, CPlayerNPC *> m_Corpses; // 죽은놈.. 죽는 에니메이션 및 시간이 지나면 없어지게 한다..
+    int m_iChrCountToRender;               // 렌더링되는 캐릭 카운트
 
   public:
     bool IsValidCharacter(CPlayerBase * pCharacter);
@@ -43,23 +43,23 @@ class CPlayerOtherMgr : public CGameBase {
     bool UPCDelete(int iID); // 고유 ID 와 일치하는 NPC를 리스트에서 제거.. 및 리소스 해제
 
     //    CPlayerOther*        UPCGetByName(const char* szID);                    // User Player Character 와 NPC 를 조사해서 포인터를 가져온다.
-    CPlayerOther * UPCGetByID(int  iID,
+    CPlayerOther * UPCGetByID(int iID,
                               bool bFromAliveOnly); // User Player Character 와 NPC 를 조사해서 포인터를 가져온다.
     //    CPlayerNPC*            NPCGetByName(const char* szID);                    // User Player Character 와 NPC 를 조사해서 포인터를 가져온다.
-    CPlayerNPC * NPCGetByID(int  iID,
+    CPlayerNPC * NPCGetByID(int iID,
                             bool bFromAliveOnly); // User Player Character 와 NPC 를 조사해서 포인터를 가져온다.
     CPlayerNPC * NPCGetByPos(const __Vector3 & vPos);
     CPlayerNPC * CharacterGetByID(int iID, bool bFromAliveOnly); // User, NPC 안 가리고 가져온다..
     CPlayerNPC * CharacterGetByNearstEnemy(e_Nation eNation, const __Vector3 & vPosPlayer); // 가장 가까운 적 가져오기..
-    bool         CharacterDelete(int iID); // User, NPC 안 가리고 지운다..
+    bool CharacterDelete(int iID); // User, NPC 안 가리고 지운다..
 
     CPlayerBase * CorpseGetByID(int iID); // 시체들에서 Player Character 와 NPC 를 조사해서 포인터를 가져온다.
-    void          CorpseRemove(CPlayerNPC * pCorpse, bool bRemoveImmediately = false);
-    void          CorpseAdd(CPlayerNPC * pNPC);
-    void          CorpseAdd(int iID);
-    CPlayerNPC *  CorpseGetNearstNPC(bool bMustHaveItem, e_Nation eNation,
-                                     const __Vector3 & vPosPlayer);     // 가장 가까운 적 시체 가져오기..
-    void          MoveToCorpsesForcely(CPlayerNPC * pNPC, bool bErase); // 아이디가 겹치거나 하면 강제로 시체를 만든다..
+    void         CorpseRemove(CPlayerNPC * pCorpse, bool bRemoveImmediately = false);
+    void         CorpseAdd(CPlayerNPC * pNPC);
+    void         CorpseAdd(int iID);
+    CPlayerNPC * CorpseGetNearstNPC(bool bMustHaveItem, e_Nation eNation,
+                                    const __Vector3 & vPosPlayer); // 가장 가까운 적 시체 가져오기..
+    void MoveToCorpsesForcely(CPlayerNPC * pNPC, bool bErase); // 아이디가 겹치거나 하면 강제로 시체를 만든다..
 
     //.. Picking된 PlayerOther 계산..
     CPlayerNPC *   Pick(int ixScreen, int iyScreen, int & iIDResult, __Vector3 * pvPick = NULL);

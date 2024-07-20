@@ -116,8 +116,8 @@ class CPondMesh : public CN3BaseFileAccess {
 
     void EstimatePos(); // 줄의 크기에 따라 점들의 갯수를 임의로 지정////
 
-    void ClearSelectPos();                                               // 선택점에 관한 데이터 초기화
-    void InputSelectPos(float fX, float fY, float fZ, int iVC = -1);     // 선택한 점들에 대한 자료입력
+    void ClearSelectPos();                                           // 선택점에 관한 데이터 초기화
+    void InputSelectPos(float fX, float fY, float fZ, int iVC = -1); // 선택한 점들에 대한 자료입력
     BOOL InputDummyMovingPos(__Vector3 vDummyMovingPos, BOOL bMovePond); // 더미가 움직였을시 나머지점을 처리하기 위해
 
   protected:

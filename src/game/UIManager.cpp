@@ -346,9 +346,9 @@ void CUIManager::SetFocusedUI(CN3UIBase * pUI) {
         return;
     }
 
-    it = m_Children.erase(it);  // 우선 리스트에서 지우고
+    it = m_Children.erase(it); // 우선 리스트에서 지우고
     m_Children.push_front(pUI); // 맨앞에 넣는다. 그리는 순서를 맨 나중에 그리도록 하고 메세지를 맨 먼저 받게 하려고
-    ReorderChildList();         // child list 재정렬(항상 위에 뜨는 dialog 때문에 다시 정렬한다.)
+    ReorderChildList(); // child list 재정렬(항상 위에 뜨는 dialog 때문에 다시 정렬한다.)
 
     m_pUIFocused = this->GetTopUI(true);
 }
@@ -429,9 +429,9 @@ void CUIManager::SetVisibleFocusedUI(CN3UIBase * pUI) {
     }
 
     if (!(dwUIStyle & UISTYLE_FOCUS_UNABLE)) {
-        it = m_Children.erase(it);  // 우선 리스트에서 지우고
+        it = m_Children.erase(it); // 우선 리스트에서 지우고
         m_Children.push_front(pUI); // 맨앞에 넣는다. 그리는 순서를 맨 나중에 그리도록 하고 메세지를 맨 먼저 받게 하려고
-        ReorderChildList();         // child list 재정렬(항상 위에 뜨는 dialog 때문에 다시 정렬한다.)
+        ReorderChildList(); // child list 재정렬(항상 위에 뜨는 dialog 때문에 다시 정렬한다.)
     }
 
     m_pUIFocused = this->GetEnableFocusTopUI(true);

@@ -382,7 +382,7 @@ void CGameProcLogIn::MsgRecv_AccountLogIn(int iCmd, DataPack * pDataPack, int & 
         ::_LoadStringFromResource(IDS_SERVER_CONNECT_FAIL, szMsg);
         ::_LoadStringFromResource(IDS_CONNECT_FAIL, szTmp);
         this->MessageBoxPost(szMsg, szTmp, MB_OK); // MGame ID 로 접속할거냐고 물어본다.
-    } else if (5 == iResult)                       // 어떤 넘이 접속해 있다. 서버에게 끊어버리라고 하자..
+    } else if (5 == iResult) // 어떤 넘이 접속해 있다. 서버에게 끊어버리라고 하자..
     {
         int iLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
         if (iOffset > 0) {

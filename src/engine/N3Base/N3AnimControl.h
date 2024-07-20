@@ -26,8 +26,8 @@ typedef struct __AnimData {
     float fFrmSound0;
     float fFrmSound1;
 
-    float fTimeBlend;  // 다른 동작과 연결시 블렌딩 시간
-    int   iBlendFlags; // 블렌딩 플래그 0 이면 걍 블렌딩.. 1이면 루핑시 블렌딩 타임만큼 시간 지연
+    float fTimeBlend; // 다른 동작과 연결시 블렌딩 시간
+    int iBlendFlags; // 블렌딩 플래그 0 이면 걍 블렌딩.. 1이면 루핑시 블렌딩 타임만큼 시간 지연
 
     float fFrmStrike0;
     float fFrmStrike1;
@@ -39,7 +39,7 @@ typedef struct __AnimData {
         fFrmPlugTraceStart = fFrmPlugTraceEnd = 0;
         fFrmSound0 = fFrmSound1 = 0;
         fTimeBlend = 0.25f; // 기본 블렌딩 시간..
-        iBlendFlags = 0;    // 블렌딩 플래그 0 이면 걍 블렌딩.. 1이면 루핑시 블렌딩 타임만큼 시간 지연
+        iBlendFlags = 0; // 블렌딩 플래그 0 이면 걍 블렌딩.. 1이면 루핑시 블렌딩 타임만큼 시간 지연
         fFrmStrike0 = fFrmStrike1 = 0;
     }
 

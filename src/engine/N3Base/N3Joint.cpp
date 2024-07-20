@@ -259,7 +259,7 @@ void CN3Joint::NodeCount(int & nCount) {
 
 #ifdef _N3TOOL
 BOOL CN3Joint::FindPointerByName(const std::string & szName,
-                                 CN3Joint *&         pJoint) // 이름을 넣으면 해당 노드의 포인터를 돌려준다..
+                                 CN3Joint *& pJoint) // 이름을 넣으면 해당 노드의 포인터를 돌려준다..
 {
     if (szName.empty()) {
         pJoint = NULL;

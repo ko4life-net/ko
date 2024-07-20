@@ -111,9 +111,9 @@ class CNpc {
     _Target m_Target;        // 공격할 유저 저장,,
     short   m_ItemUserLevel; // 죽을때 매직 이상 아이템를 떨구기위해 참조해야하는 유저의레벨
 
-    int          m_TotalDamage;                         // 총 누적된 대미지양
+    int m_TotalDamage;                                  // 총 누적된 대미지양
     _ExpUserList m_DamagedUserList[NPC_HAVE_USER_LIST]; // 나에게 타격치를 준 유저정보를 리스트로 관리한다.(경험치 분배)
-    short        m_sMaxDamageUserid;                    // 나에게 최고의 데미지를 준 유저의 아이디 저장..
+    short m_sMaxDamageUserid; // 나에게 최고의 데미지를 준 유저의 아이디 저장..
 
     _PathList  m_PathList;   // Npc의 패스 리스트
     _PattenPos m_pPattenPos; // Npc의 패턴,,
@@ -235,7 +235,7 @@ class CNpc {
     short m_byFamilyType; // 몹들사이에서 가족관계를 결정한다.
     BYTE  m_tItemPer;     // 아이템이 떨어질 확률
     BYTE  m_tDnPer;       // 돈이 떨어질확률
-    BYTE  m_byMoneyType;  // Event몬스터일 경우 돈을 많이 주는 것, (0:루팅, 1:루팅을 하지 않고 바로 나눠갖는다)
+    BYTE m_byMoneyType; // Event몬스터일 경우 돈을 많이 주는 것, (0:루팅, 1:루팅을 하지 않고 바로 나눠갖는다)
 
     int m_iMoney; // 떨어지는 돈
     int m_iItem;  // 떨어지는 아이템
@@ -249,32 +249,32 @@ class CNpc {
     //----------------------------------------------------------------
     //    MONSTER AI에 관련된 변수들
     //----------------------------------------------------------------
-    BYTE m_tNpcLongType;       // 공격 거리 : 원거리(1), 근거리(0), 직.간접(2)
-    BYTE m_tNpcAttType;        // 공격 성향 : 선공(1), 후공(0)
-    BYTE m_tNpcOldAttType;     // 공격 성향 : 선공(1), 후공(0) (활동영역 제어)
-    BYTE m_tNpcGroupType;      // 군집을 형성하냐(1), 안하냐?(0)
-    BYTE m_byNpcEndAttType;    // 마지막까지 싸우면(1), 그렇지 않으면(0)
-                               //    BYTE    m_tNpcTraceType;    // 끝까지 따라간다(1), 시야에서 없어지면 그만(0)
-    BYTE m_byAttackPos;        // User의 어느 부분에서 공격하느지를 판단(8방향)
-    BYTE m_byBattlePos;        // 어떤 진형을 선택할 것인지를 판단..
-    BYTE m_byWhatAttackType;   // 공격 타입 : Normal(0), 근.장거리마법(1), 독(2), 힐링(3), 지역마법만(4), 1+4번 마법(5)
+    BYTE m_tNpcLongType;    // 공격 거리 : 원거리(1), 근거리(0), 직.간접(2)
+    BYTE m_tNpcAttType;     // 공격 성향 : 선공(1), 후공(0)
+    BYTE m_tNpcOldAttType;  // 공격 성향 : 선공(1), 후공(0) (활동영역 제어)
+    BYTE m_tNpcGroupType;   // 군집을 형성하냐(1), 안하냐?(0)
+    BYTE m_byNpcEndAttType; // 마지막까지 싸우면(1), 그렇지 않으면(0)
+        //    BYTE    m_tNpcTraceType;    // 끝까지 따라간다(1), 시야에서 없어지면 그만(0)
+    BYTE m_byAttackPos; // User의 어느 부분에서 공격하느지를 판단(8방향)
+    BYTE m_byBattlePos; // 어떤 진형을 선택할 것인지를 판단..
+    BYTE m_byWhatAttackType; // 공격 타입 : Normal(0), 근.장거리마법(1), 독(2), 힐링(3), 지역마법만(4), 1+4번 마법(5)
     BYTE m_byGateOpen;         // 성문일 경우에.. 사용... Gate Npc Status -> 1 : open 0 : close
     BYTE m_byMaxDamagedNation; // 나를 죽인 유저의 국가를 저장.. (1:카루스, 2:엘모라드)
     BYTE m_byObjectType;       // 보통은 0, object타입(성문, 레버)은 1
     BYTE m_byDungeonFamily;    // 던젼에서 같은 패밀리 묶음 (같은 방)
-    BYTE m_bySpecialType;      // 몬스터의 형태가 변하는지를 판단(0:변하지 않음, 1:변하는 몬스터,
-                               // 2:죽는경우 조정하는 몬스터(대장몬스터 죽을경우 성문이 열림),
+    BYTE m_bySpecialType; // 몬스터의 형태가 변하는지를 판단(0:변하지 않음, 1:변하는 몬스터,
+                          // 2:죽는경우 조정하는 몬스터(대장몬스터 죽을경우 성문이 열림),
     // 3:대장몬스터의 죽음과 관련이 있는 몬스터(대장몬스터가 죽으면 관계되는 몬스터는 같이 죽도록)
     // 4:변하면서 죽는경우 조정하는 몬스터 (m_sControlSid)
     // 5:처음에 죽었있다가 출현하는 몬스터,,
     // 6:일정시간이 지난 후에 행동하는 몬스터,,
     // 100:죽었을때 데미지를 많이 입힌 유저를 기록해 주세여
-    BYTE  m_byTrapNumber; // 던젼에서 트랩의 번호,,
-    BYTE  m_byChangeType; // 0:정상상태, 1:변하기 위한 준비, 2:다른몬스터로 변함, 3:몬스터의 출현, 100:몬스터의 죽음
-    BYTE  m_byRegenType;  // 0:정상적으로 리젠이 됨.. , 1:한번 죽으면 리젠이 안되는 특수 몸, 2:리젠이 안됨
-    BYTE  m_byDeadType;   // 0:살아 있는 경우, 100:전쟁이벤트중 죽은 경우
-    short m_sChangeSid;   // 변하는 몬스터의 Sid번호..
-    short m_sControlSid;  // 조정하는 몬스터의 Sid번호..
+    BYTE m_byTrapNumber; // 던젼에서 트랩의 번호,,
+    BYTE m_byChangeType; // 0:정상상태, 1:변하기 위한 준비, 2:다른몬스터로 변함, 3:몬스터의 출현, 100:몬스터의 죽음
+    BYTE m_byRegenType; // 0:정상적으로 리젠이 됨.. , 1:한번 죽으면 리젠이 안되는 특수 몸, 2:리젠이 안됨
+    BYTE  m_byDeadType;  // 0:살아 있는 경우, 100:전쟁이벤트중 죽은 경우
+    short m_sChangeSid;  // 변하는 몬스터의 Sid번호..
+    short m_sControlSid; // 조정하는 몬스터의 Sid번호..
 
     //----------------------------------------------------------------
     //    MONSTER_POS DB 쪽에 있는 변수들

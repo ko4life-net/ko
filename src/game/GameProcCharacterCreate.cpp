@@ -281,7 +281,7 @@ bool CGameProcCharacterCreate::ProcessPacket(DataPack * pDataPack, int & iOffset
         BYTE bySuccess = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 커멘드 파싱..
         if (0 == bySuccess) {
             ProcActiveSet((CGameProcedure *)s_pProcCharacterSelect); // 캐릭터 선택창으로 가기..
-        } else                                                       // 실패하면.. 이유가 0 이 아닌 값으로 온다..
+        } else // 실패하면.. 이유가 0 이 아닌 값으로 온다..
         {
             this->ReportErrorCharacterCreate((e_ErrorCharacterCreate)bySuccess); // 에러 메시지 띄움..
             s_pUIMgr->EnableOperationSet(false); // UI 조작 가능하게 한다... 다시 캐릭터 만들어야 한다..

@@ -798,7 +798,7 @@ void CN3SkyMng::SetCheckGameTime(DWORD dwCheckGameTime) {
             continue; // 한바퀴를 다 돌았는데도 변화값을 찾을 수 없다.
         }
         __SKY_DAYCHANGE * pSDC = &(m_DayChanges[iPos]);
-        DWORD             dwEnd = pSDC->dwWhen + (DWORD)(TIME_REAL_PER_GAME * pSDC->fHowLong); // 변화가 끝나는 시간
+        DWORD dwEnd = pSDC->dwWhen + (DWORD)(TIME_REAL_PER_GAME * pSDC->fHowLong); // 변화가 끝나는 시간
         if (dwEnd > 86400) {
             dwEnd -= 86400; // 24시간이 넘었을경우 24시간을 빼준다.
         }

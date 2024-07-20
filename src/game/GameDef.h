@@ -747,11 +747,11 @@ typedef struct __TABLE_UI_RESRC {
     std::string szChat;      // 2
     std::string szMsgOutput; // 3
     std::string szStateBar;  // 4
-    std::string szVarious;   // 5 - 캐릭터 상태, 기사단 관리, 퀘스트, 친구.. 등등 네페이지가 한개에 들어있음.
-    std::string szState;     // 6 - 캐릭터 상태
-    std::string szKnights;   // 7 - 기사단 관리
-    std::string szQuest;     // 8 - 퀘스트
-    std::string szFriends;   // 9 - 친구 관리
+    std::string szVarious; // 5 - 캐릭터 상태, 기사단 관리, 퀘스트, 친구.. 등등 네페이지가 한개에 들어있음.
+    std::string szState;   // 6 - 캐릭터 상태
+    std::string szKnights; // 7 - 기사단 관리
+    std::string szQuest;   // 8 - 퀘스트
+    std::string szFriends; // 9 - 친구 관리
 
     std::string szInventory;   // 10
     std::string szTransaction; // 11
