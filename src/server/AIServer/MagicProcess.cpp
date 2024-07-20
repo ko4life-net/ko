@@ -186,13 +186,13 @@ BYTE CMagicProcess::ExecuteType1(int magicid, int tid, int data1, int data2, int
 
     if (pNpc->SetDamage(magicid, damage, m_pSrcUser->m_strUserID, m_pSrcUser->m_iUserId + USER_BAND,
                         m_pSrcUser->m_pIocport) == FALSE) {
-        // Npc°¡ Á×Àº °æ¿ì,,
-        pNpc->SendExpToUserList(); // °æÇèÄ¡ ºĞ¹è!!
+        // Npcê°€ ì£½ì€ ê²½ìš°,,
+        pNpc->SendExpToUserList(); // ê²½í—˜ì¹˜ ë¶„ë°°!!
         pNpc->SendDead(m_pSrcUser->m_pIocport);
         //m_pSrcUser->SendAttackSuccess(tid, MAGIC_ATTACK_TARGET_DEAD, 0, pNpc->m_iHP);
         m_pSrcUser->SendAttackSuccess(tid, ATTACK_TARGET_DEAD, damage, pNpc->m_iHP);
     } else {
-        // °ø°İ °á°ú Àü¼Û
+        // ê³µê²© ê²°ê³¼ ì „ì†¡
         m_pSrcUser->SendAttackSuccess(tid, ATTACK_SUCCESS, damage, pNpc->m_iHP);
     }
     //    }
@@ -263,15 +263,15 @@ BYTE CMagicProcess::ExecuteType2(int magicid, int tid, int data1, int data2, int
             }
 
             m_pMain->Send(send_buff, send_index, m_pSrcUser->m_curZone);
-            // Npc°¡ Á×Àº °æ¿ì,,
-            pNpc->SendExpToUserList(); // °æÇèÄ¡ ºĞ¹è!!
+            // Npcê°€ ì£½ì€ ê²½ìš°,,
+            pNpc->SendExpToUserList(); // ê²½í—˜ì¹˜ ë¶„ë°°!!
             pNpc->SendDead(m_pSrcUser->m_pIocport);
             m_pSrcUser->SendAttackSuccess(tid, MAGIC_ATTACK_TARGET_DEAD, damage, pNpc->m_iHP);
             //m_pSrcUser->SendAttackSuccess(tid, ATTACK_TARGET_DEAD, damage, pNpc->m_iHP);
 
             return result;
         } else {
-            // °ø°İ °á°ú Àü¼Û
+            // ê³µê²© ê²°ê³¼ ì „ì†¡
             m_pSrcUser->SendAttackSuccess(tid, ATTACK_SUCCESS, damage, pNpc->m_iHP);
         }
     }
@@ -318,7 +318,7 @@ void CMagicProcess::ExecuteType3(
         return;
     }
 
-    if (tid == -1) { // Áö¿ª °ø°İ
+    if (tid == -1) { // ì§€ì—­ ê³µê²©
         result = AreaAttack(3, magicid, moral, data1, data2, data3, dexpoint, righthand_damage);
         //if(result == 0)        goto packet_send;
         //else
@@ -354,19 +354,19 @@ void CMagicProcess::ExecuteType3(
             } else {
                 damage = abs(damage);
                 if (pType->bAttribute == 3) {
-                    attack_type = 3; // ±âÀı½ÃÅ°´Â ¸¶¹ıÀÌ¶ó¸é.....
+                    attack_type = 3; // ê¸°ì ˆì‹œí‚¤ëŠ” ë§ˆë²•ì´ë¼ë©´.....
                 } else {
                     attack_type = magicid;
                 }
 
                 if (pNpc->SetDamage(attack_type, damage, m_pSrcUser->m_strUserID, m_pSrcUser->m_iUserId + USER_BAND,
                                     m_pSrcUser->m_pIocport) == FALSE) {
-                    // Npc°¡ Á×Àº °æ¿ì,,
-                    pNpc->SendExpToUserList(); // °æÇèÄ¡ ºĞ¹è!!
+                    // Npcê°€ ì£½ì€ ê²½ìš°,,
+                    pNpc->SendExpToUserList(); // ê²½í—˜ì¹˜ ë¶„ë°°!!
                     pNpc->SendDead(m_pSrcUser->m_pIocport);
                     m_pSrcUser->SendAttackSuccess(tid, MAGIC_ATTACK_TARGET_DEAD, damage, pNpc->m_iHP, MAGIC_ATTACK);
                 } else {
-                    // °ø°İ °á°ú Àü¼Û
+                    // ê³µê²© ê²°ê³¼ ì „ì†¡
                     m_pSrcUser->SendAttackSuccess(tid, ATTACK_SUCCESS, damage, pNpc->m_iHP, MAGIC_ATTACK);
                 }
             }
@@ -380,19 +380,19 @@ void CMagicProcess::ExecuteType3(
         } else {
             damage = abs(damage);
             if (pType->bAttribute == 3) {
-                attack_type = 3; // ±âÀı½ÃÅ°´Â ¸¶¹ıÀÌ¶ó¸é.....
+                attack_type = 3; // ê¸°ì ˆì‹œí‚¤ëŠ” ë§ˆë²•ì´ë¼ë©´.....
             } else {
                 attack_type = magicid;
             }
 
             if (pNpc->SetDamage(attack_type, damage, m_pSrcUser->m_strUserID, m_pSrcUser->m_iUserId + USER_BAND,
                                 m_pSrcUser->m_pIocport) == FALSE) {
-                // Npc°¡ Á×Àº °æ¿ì,,
-                pNpc->SendExpToUserList(); // °æÇèÄ¡ ºĞ¹è!!
+                // Npcê°€ ì£½ì€ ê²½ìš°,,
+                pNpc->SendExpToUserList(); // ê²½í—˜ì¹˜ ë¶„ë°°!!
                 pNpc->SendDead(m_pSrcUser->m_pIocport);
                 m_pSrcUser->SendAttackSuccess(tid, MAGIC_ATTACK_TARGET_DEAD, damage, pNpc->m_iHP);
             } else {
-                // °ø°İ °á°ú Àü¼Û
+                // ê³µê²© ê²°ê³¼ ì „ì†¡
                 m_pSrcUser->SendAttackSuccess(tid, ATTACK_SUCCESS, damage, pNpc->m_iHP);
             }
         }
@@ -437,7 +437,7 @@ void CMagicProcess::ExecuteType4(int magicid, int sid, int tid, int data1, int d
     _MAGIC_TYPE4 * pType = NULL;
     CNpc *         pNpc = NULL; // Pointer initialization!
 
-    if (tid == -1) { // Áö¿ª °ø°İ
+    if (tid == -1) { // ì§€ì—­ ê³µê²©
         result = AreaAttack(4, magicid, moral, data1, data2, data3, 0, 0);
         if (result == 0) {
             goto fail_return;
@@ -460,19 +460,19 @@ void CMagicProcess::ExecuteType4(int magicid, int sid, int tid, int data1, int d
     //TRACE("magictype4 ,, magicid=%d\n", magicid);
 
     switch (pType->bBuffType) { // Depending on which buff-type it is.....
-    case 1:                     // HP ¿Ã¸®±â..
+    case 1:                     // HP ì˜¬ë¦¬ê¸°..
         break;
 
-    case 2: // ¹æ¾î·Â ¿Ã¸®±â..
+    case 2: // ë°©ì–´ë ¥ ì˜¬ë¦¬ê¸°..
         break;
 
-    case 4: // °ø°İ·Â ¿Ã¸®±â..
+    case 4: // ê³µê²©ë ¥ ì˜¬ë¦¬ê¸°..
         break;
 
-    case 5: // °ø°İ ¼Óµµ ¿Ã¸®±â..
+    case 5: // ê³µê²© ì†ë„ ì˜¬ë¦¬ê¸°..
         break;
 
-    case 6: // ÀÌµ¿ ¼Óµµ ¿Ã¸®±â..
+    case 6: // ì´ë™ ì†ë„ ì˜¬ë¦¬ê¸°..
         //            if (pNpc->m_MagicType4[pType->bBuffType-1].sDurationTime > 0) {
         //                result = 0 ;
         //                goto fail_return ;
@@ -487,13 +487,13 @@ void CMagicProcess::ExecuteType4(int magicid, int sid, int tid, int data1, int d
         //            }
         break;
 
-    case 7: // ´É·ÂÄ¡ ¿Ã¸®±â...
+    case 7: // ëŠ¥ë ¥ì¹˜ ì˜¬ë¦¬ê¸°...
         break;
 
-    case 8: // ÀúÇ×·Â ¿Ã¸®±â...
+    case 8: // ì €í•­ë ¥ ì˜¬ë¦¬ê¸°...
         break;
 
-    case 9: // °ø°İ ¼º°øÀ² ¹× È¸ÇÇ ¼º°øÀ² ¿Ã¸®±â..
+    case 9: // ê³µê²© ì„±ê³µìœ¨ ë° íšŒí”¼ ì„±ê³µìœ¨ ì˜¬ë¦¬ê¸°..
         break;
 
     default:
@@ -558,7 +558,7 @@ short CMagicProcess::GetMagicDamage(int tid, int total_hit, int attribute, int d
     short damage = 0, temp_hit = 0;
     int   random = 0, total_r = 0;
     BYTE  result;
-    BOOL  bSign = TRUE; // FALSEÀÌ¸é -, TRUEÀÌ¸é +
+    BOOL  bSign = TRUE; // FALSEì´ë©´ -, TRUEì´ë©´ +
 
     if (tid < NPC_BAND || tid > INVALID_BAND) {
         return 0; // Check if target id is valid.
@@ -719,7 +719,7 @@ void CMagicProcess::AreaAttackDamage(int magictype, int rx, int rz, int magicid,
     if (pMap == NULL) {
         return;
     }
-    // ÀÚ½ÅÀÇ region¿¡ ÀÖ´Â UserArrayÀ» ¸ÕÀú °Ë»öÇÏ¿©,, °¡±î¿î °Å¸®¿¡ À¯Àú°¡ ÀÖ´ÂÁö¸¦ ÆÇ´Ü..
+    // ìì‹ ì˜ regionì— ìˆëŠ” UserArrayì„ ë¨¼ì € ê²€ìƒ‰í•˜ì—¬,, ê°€ê¹Œìš´ ê±°ë¦¬ì— ìœ ì €ê°€ ìˆëŠ”ì§€ë¥¼ íŒë‹¨..
     if (rx < 0 || rz < 0 || rx > pMap->GetXRegionMax() || rz > pMap->GetZRegionMax()) {
         TRACE("#### CMagicProcess-AreaAttackDamage() Fail : [nid=%d, name=%s], nRX=%d, nRZ=%d #####\n",
               m_pSrcUser->m_iUserId, m_pSrcUser->m_strUserID, rx, rz);
@@ -802,8 +802,8 @@ void CMagicProcess::AreaAttackDamage(int magictype, int rx, int rz, int magicid,
             vEnd.Set(pNpc->m_fCurX, pNpc->m_fCurY, pNpc->m_fCurZ);
             fDis = pNpc->GetDistance(vStart, vEnd);
 
-            if (fDis <= fRadius) {    // NPC°¡ ¹İ°æ¾È¿¡ ÀÖÀ» °æ¿ì...
-                if (magictype == 3) { // Å¸ÀÙ 3ÀÏ °æ¿ì...
+            if (fDis <= fRadius) {    // NPCê°€ ë°˜ê²½ì•ˆì— ìˆì„ ê²½ìš°...
+                if (magictype == 3) { // íƒ€ì 3ì¼ ê²½ìš°...
                     damage =
                         GetMagicDamage(pNpc->m_sNid + NPC_BAND, target_damage, attribute, dexpoint, righthand_damage);
                     TRACE("Area magictype3 ,, magicid=%d, damage=%d\n", magicid, damage);
@@ -812,15 +812,15 @@ void CMagicProcess::AreaAttackDamage(int magictype, int rx, int rz, int magicid,
                     } else {
                         damage = abs(damage);
                         if (pType3->bAttribute == 3) {
-                            attack_type = 3; // ±âÀı½ÃÅ°´Â ¸¶¹ıÀÌ¶ó¸é.....
+                            attack_type = 3; // ê¸°ì ˆì‹œí‚¤ëŠ” ë§ˆë²•ì´ë¼ë©´.....
                         } else {
                             attack_type = magicid;
                         }
 
                         if (pNpc->SetDamage(attack_type, damage, m_pSrcUser->m_strUserID,
                                             m_pSrcUser->m_iUserId + USER_BAND, m_pSrcUser->m_pIocport) == FALSE) {
-                            // Npc°¡ Á×Àº °æ¿ì,,
-                            pNpc->SendExpToUserList(); // °æÇèÄ¡ ºĞ¹è!!
+                            // Npcê°€ ì£½ì€ ê²½ìš°,,
+                            pNpc->SendExpToUserList(); // ê²½í—˜ì¹˜ ë¶„ë°°!!
                             pNpc->SendDead(m_pSrcUser->m_pIocport);
                             m_pSrcUser->SendAttackSuccess(pNpc->m_sNid + NPC_BAND, MAGIC_ATTACK_TARGET_DEAD, damage,
                                                           pNpc->m_iHP);
@@ -831,7 +831,7 @@ void CMagicProcess::AreaAttackDamage(int magictype, int rx, int rz, int magicid,
 
                     memset(send_buff, 0x00, 256);
                     send_index = 0;
-                    // ÆĞÅ¶ Àü¼Û.....
+                    // íŒ¨í‚· ì „ì†¡.....
                     //if ( pMagic->bType2 == 0 || pMagic->bType2 == 3 )
                     {
                         SetByte(send_buff, AG_MAGIC_ATTACK_RESULT, send_index);
@@ -848,24 +848,24 @@ void CMagicProcess::AreaAttackDamage(int magictype, int rx, int rz, int magicid,
 
                         m_pMain->Send(send_buff, send_index, m_pSrcUser->m_curZone);
                     }
-                } else if (magictype == 4) { // Å¸ÀÙ 4ÀÏ °æ¿ì...
+                } else if (magictype == 4) { // íƒ€ì 4ì¼ ê²½ìš°...
                     memset(send_buff, 0x00, 256);
                     send_index = 0;
                     result = 1;
                     switch (pType4->bBuffType) { // Depending on which buff-type it is.....
-                    case 1:                      // HP ¿Ã¸®±â..
+                    case 1:                      // HP ì˜¬ë¦¬ê¸°..
                         break;
 
-                    case 2: // ¹æ¾î·Â ¿Ã¸®±â..
+                    case 2: // ë°©ì–´ë ¥ ì˜¬ë¦¬ê¸°..
                         break;
 
-                    case 4: // °ø°İ·Â ¿Ã¸®±â..
+                    case 4: // ê³µê²©ë ¥ ì˜¬ë¦¬ê¸°..
                         break;
 
-                    case 5: // °ø°İ ¼Óµµ ¿Ã¸®±â..
+                    case 5: // ê³µê²© ì†ë„ ì˜¬ë¦¬ê¸°..
                         break;
 
-                    case 6: // ÀÌµ¿ ¼Óµµ ¿Ã¸®±â..
+                    case 6: // ì´ë™ ì†ë„ ì˜¬ë¦¬ê¸°..
                         //if (pNpc->m_MagicType4[pType4->bBuffType-1].sDurationTime > 0) {
                         //    result = 0 ;
                         //}
@@ -878,13 +878,13 @@ void CMagicProcess::AreaAttackDamage(int magictype, int rx, int rz, int magicid,
                         //}
                         break;
 
-                    case 7: // ´É·ÂÄ¡ ¿Ã¸®±â...
+                    case 7: // ëŠ¥ë ¥ì¹˜ ì˜¬ë¦¬ê¸°...
                         break;
 
-                    case 8: // ÀúÇ×·Â ¿Ã¸®±â...
+                    case 8: // ì €í•­ë ¥ ì˜¬ë¦¬ê¸°...
                         break;
 
-                    case 9: // °ø°İ ¼º°øÀ² ¹× È¸ÇÇ ¼º°øÀ² ¿Ã¸®±â..
+                    case 9: // ê³µê²© ì„±ê³µìœ¨ ë° íšŒí”¼ ì„±ê³µìœ¨ ì˜¬ë¦¬ê¸°..
                         break;
 
                     default:

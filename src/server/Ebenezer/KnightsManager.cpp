@@ -103,43 +103,43 @@ void CKnightsManager::CreateKnights(CUser * pUser, char * pBuf) {
     if (!IsAvailableName(idname)) {
         goto fail_return;
     }
-    if (pUser->m_pUserData->m_bKnights != 0) { // ±‚ªÁ¥‹ø° ∞°¿‘µ«æÓ ¿÷Ω¿¥œ¥Ÿ
+    if (pUser->m_pUserData->m_bKnights != 0) { // Í∏∞ÏÇ¨Îã®Ïóê Í∞ÄÏûÖÎêòÏñ¥ ÏûàÏäµÎãàÎã§
         ret_value = 5;
         goto fail_return;
     }
 
-    if (m_pMain->m_nServerGroup == 2) { // ±‚ªÁ¥‹¿∫ º≠πˆ 1±∫ø°º≠∏∏ ∏∏µÈ ºˆ ¿÷µµ∑œ...
+    if (m_pMain->m_nServerGroup == 2) { // Í∏∞ÏÇ¨Îã®ÏùÄ ÏÑúÎ≤Ñ 1Íµ∞ÏóêÏÑúÎßå ÎßåÎì§ Ïàò ÏûàÎèÑÎ°ù...
         ret_value = 8;
         goto fail_return;
     }
-    // ø‰¿œ √º≈©
+    // ÏöîÏùº Ï≤¥ÌÅ¨
     week = time.GetDayOfWeek();
     /*    if(week == 1 || week == 6 || week == 7)    {}
     else {
         ret_value = 7;
         goto fail_return;
     }    */
-    if (pUser->m_pUserData->m_bLevel < 20) { // 20 Level ¿ÃªÛ¿Ã « ø‰
+    if (pUser->m_pUserData->m_bLevel < 20) { // 20 Level Ïù¥ÏÉÅÏù¥ ÌïÑÏöî
         ret_value = 2;
         goto fail_return;
     }
-    /*    if( pUser->m_pUserData->m_iLoyalty < 800 ) {        // ±π∞°±‚ø©µµ 800 ¿ÃªÛ¿Ã « ø‰
+    /*    if( pUser->m_pUserData->m_iLoyalty < 800 ) {        // Íµ≠Í∞ÄÍ∏∞Ïó¨ÎèÑ 800 Ïù¥ÏÉÅÏù¥ ÌïÑÏöî
         goto fail_return;
     }
-    if( pUser->m_pUserData->m_bstrSkill[ORDER_SKILL] < 10 || pUser->m_pUserData->m_bstrSkill[MANNER_SKILL] < 5 ) {    // ¡ˆ»÷Ω∫≈≥ 10, øπ¿˝Ω∫≈≥ 5 ¿ÃªÛ¿Ã « ø‰
+    if( pUser->m_pUserData->m_bstrSkill[ORDER_SKILL] < 10 || pUser->m_pUserData->m_bstrSkill[MANNER_SKILL] < 5 ) {    // ÏßÄÌúòÏä§ÌÇ¨ 10, ÏòàÏ†àÏä§ÌÇ¨ 5 Ïù¥ÏÉÅÏù¥ ÌïÑÏöî
         goto fail_return;
     }
-    if( pUser->m_pUserData->m_bCha < 120 ) {            // ∏≈∑¬ 120 ¿ÃªÛ¿Ã « ø‰
+    if( pUser->m_pUserData->m_bCha < 120 ) {            // Îß§Î†• 120 Ïù¥ÏÉÅÏù¥ ÌïÑÏöî
         goto fail_return;
     }    */
-    if (pUser->m_pUserData->m_iGold < 500000) { // 5000000≥Îæ∆ ¿ÃªÛ¿Ã « ø‰
+    if (pUser->m_pUserData->m_iGold < 500000) { // 5000000ÎÖ∏ÏïÑ Ïù¥ÏÉÅÏù¥ ÌïÑÏöî
         ret_value = 4;
         goto fail_return;
     }
 
     knightindex = GetKnightsIndex(pUser->m_pUserData->m_bNation);
     //knightindex = 0;
-    if (knightindex == -1) { // ±‚ªÁ¥‹ √¢º≥ø° Ω«∆–
+    if (knightindex == -1) { // Í∏∞ÏÇ¨Îã® Ï∞ΩÏÑ§Ïóê Ïã§Ìå®
         ret_value = 6;
         goto fail_return;
     }
@@ -200,7 +200,7 @@ int CKnightsManager::GetKnightsIndex(int nation) {
 
     for (; Iter1 != Iter2; Iter1++) {
         if (knightindex < ((*Iter1).second)->m_sIndex) {
-            if (nation == KARUS) { // sungyong,, ƒ´∑ÁΩ∫øÕ ¿¸¿Ô¡∏¿« «’ƒß¿∏∑Œ ¿Œ«ÿº≠,,,
+            if (nation == KARUS) { // sungyong,, Ïπ¥Î£®Ïä§ÏôÄ Ï†ÑÏüÅÏ°¥Ïùò Ìï©Ïπ®ÏúºÎ°ú Ïù∏Ìï¥ÏÑú,,,
                 if (((*Iter1).second)->m_sIndex >= 15000) {
                     continue;
                 }
@@ -220,7 +220,7 @@ int CKnightsManager::GetKnightsIndex(int nation) {
         }
     }
 
-    if (m_pMain->m_KnightsArray.GetData(knightindex)) { // »Æ¿Œ ªÁªÏ..
+    if (m_pMain->m_KnightsArray.GetData(knightindex)) { // ÌôïÏù∏ ÏÇ¨ÏÇ¥..
         return -1;
     }
 
@@ -238,7 +238,7 @@ void CKnightsManager::JoinKnights(CUser * pUser, char * pBuf) {
         return;
     }
 
-    if (pUser->m_pUserData->m_bZone > 2) { // ¿¸¿Ô¡∏ø°º≠¥¬ ±‚ªÁ¥‹ √≥∏Æ∞° æ»µ 
+    if (pUser->m_pUserData->m_bZone > 2) { // Ï†ÑÏüÅÏ°¥ÏóêÏÑúÎäî Í∏∞ÏÇ¨Îã® Ï≤òÎ¶¨Í∞Ä ÏïàÎê®
         ret_value = 12;
         goto fail_return;
     }
@@ -254,7 +254,7 @@ void CKnightsManager::JoinKnights(CUser * pUser, char * pBuf) {
         ret_value = 7;
         goto fail_return;
     }
-    // ¿Œø¯ √º≈©
+    // Ïù∏Ïõê Ï≤¥ÌÅ¨
     /*    if(pKnights->sMembers >= 24)    {
         ret_value = 8;
         goto fail_return;
@@ -280,7 +280,7 @@ void CKnightsManager::JoinKnights(CUser * pUser, char * pBuf) {
         goto fail_return;
     }
 
-    if (pTUser->m_pUserData->m_bKnights > 0) { // ±‚ªÁ¥‹ø° ∞°¿‘µ«æÓ ¿÷Ω¿¥œ¥Ÿ
+    if (pTUser->m_pUserData->m_bKnights > 0) { // Í∏∞ÏÇ¨Îã®Ïóê Í∞ÄÏûÖÎêòÏñ¥ ÏûàÏäµÎãàÎã§
         ret_value = 5;
         goto fail_return;
     }
@@ -336,7 +336,7 @@ void CKnightsManager::JoinKnightsReq(CUser * pUser, char * pBuf) {
         return;
     }
 
-    if (flag == 0x00) { // ∞≈¿˝
+    if (flag == 0x00) { // Í±∞Ï†à
         ret_value = 11;
         SetByte(send_buff, WIZ_KNIGHTS_PROCESS, send_index);
         SetByte(send_buff, KNIGHTS_JOIN, send_index);
@@ -352,7 +352,7 @@ void CKnightsManager::JoinKnightsReq(CUser * pUser, char * pBuf) {
         ret_value = 7;
         goto fail_return;
     }
-    // ¿Œø¯ √º≈©
+    // Ïù∏Ïõê Ï≤¥ÌÅ¨
     /*    if(pKnights->sMembers >= 24)    {
         ret_value = 8;
         goto fail_return;
@@ -383,27 +383,27 @@ void CKnightsManager::WithdrawKnights(CUser * pUser, char * pBuf) {
         return;
     }
     if (pUser->m_pUserData->m_bKnights < 1 ||
-        pUser->m_pUserData->m_bKnights > 30000) { // ±‚ªÁ¥‹ø° ∞°¿‘µ«æÓ ¿÷¡ˆ æ Ω¿¥œ¥Ÿ
+        pUser->m_pUserData->m_bKnights > 30000) { // Í∏∞ÏÇ¨Îã®Ïóê Í∞ÄÏûÖÎêòÏñ¥ ÏûàÏßÄ ÏïäÏäµÎãàÎã§
         ret_value = 10;
         goto fail_return;
     }
 
     /*    pKnights = m_pMain->m_KnightsArray.GetData( pUser->m_pUserData->m_bKnights );
     if( !pKnights ) {
-//        sprintf(errormsg, "¡∏¿Á«œ¡ˆ æ ¥¬ ±‚ªÁ¥‹¿‘¥œ¥Ÿ.");
+//        sprintf(errormsg, "Ï°¥Ïû¨ÌïòÏßÄ ÏïäÎäî Í∏∞ÏÇ¨Îã®ÏûÖÎãàÎã§.");
         //::_LoadStringFromResource(IDP_KNIGHT_NOT_AVAILABLE, buff);
         //sprintf(errormsg, buff.c_str());
         ret_value = 3;
         goto fail_return;
     }    */
 
-    if (pUser->m_pUserData->m_bZone > 2) { // ¿¸¿Ô¡∏ø°º≠¥¬ ±‚ªÁ¥‹ √≥∏Æ∞° æ»µ 
+    if (pUser->m_pUserData->m_bZone > 2) { // Ï†ÑÏüÅÏ°¥ÏóêÏÑúÎäî Í∏∞ÏÇ¨Îã® Ï≤òÎ¶¨Í∞Ä ÏïàÎê®
         ret_value = 12;
         goto fail_return;
     }
 
-    if (pUser->m_pUserData->m_bFame == CHIEF) { // ¥‹¿Â¿Ã ≈ª≈«“ ∞ÊøÏø°¥¬ ≈¨∑£ ∆ƒ±´
-        if (pUser->m_pUserData->m_bZone > 2) {  // ¿¸¿Ô¡∏ø°º≠¥¬ ≈¨∑£¿ª ∆ƒ±´«“ ºˆ æ¯¥Ÿ
+    if (pUser->m_pUserData->m_bFame == CHIEF) { // Îã®Ïû•Ïù¥ ÌÉàÌá¥Ìï† Í≤ΩÏö∞ÏóêÎäî ÌÅ¥Îûú ÌååÍ¥¥
+        if (pUser->m_pUserData->m_bZone > 2) {  // Ï†ÑÏüÅÏ°¥ÏóêÏÑúÎäî ÌÅ¥ÎûúÏùÑ ÌååÍ¥¥Ìï† Ïàò ÏóÜÎã§
             ret_value = 12;
             goto fail_return;
         }
@@ -474,33 +474,33 @@ void CKnightsManager::ModifyKnightsMember(CUser * pUser, char * pBuf, BYTE comma
         return;
     }
     idlen = GetShort(pBuf, index);
-    if (idlen > MAX_ID_SIZE || idlen <= 0) { // ¿ﬂ∏¯µ» æ∆¿Ãµ
+    if (idlen > MAX_ID_SIZE || idlen <= 0) { // ÏûòÎ™ªÎêú ÏïÑÏù¥Îîî
         ret_value = 2;
         goto fail_return;
     }
     GetString(userid, pBuf, idlen, index);
 
-    if (pUser->m_pUserData->m_bZone > 2) { // ¿¸¿Ô¡∏ø°º≠¥¬ ±‚ªÁ¥‹ √≥∏Æ∞° æ»µ 
+    if (pUser->m_pUserData->m_bZone > 2) { // Ï†ÑÏüÅÏ°¥ÏóêÏÑúÎäî Í∏∞ÏÇ¨Îã® Ï≤òÎ¶¨Í∞Ä ÏïàÎê®
         ret_value = 12;
         goto fail_return;
     }
 
-    if (_strnicmp(userid, pUser->m_pUserData->m_id, MAX_ID_SIZE) == 0) { // ¿⁄Ω≈¿∫ «“ ºˆ æ¯Ω¿¥œ¥Ÿ
+    if (_strnicmp(userid, pUser->m_pUserData->m_id, MAX_ID_SIZE) == 0) { // ÏûêÏã†ÏùÄ Ìï† Ïàò ÏóÜÏäµÎãàÎã§
         ret_value = 9;
         goto fail_return;
     }
 
     if (command == KNIGHTS_ADMIT ||
-        command == KNIGHTS_REJECT) { // ±‚ªÁ¥‹, ∏‚πˆ∞°¿‘ π◊ ∏‚πˆ∞≈¿˝, ¿Â±≥ ¿ÃªÛ¿Ã «“ ºˆ ¿÷Ω¿¥œ¥Ÿ
+        command == KNIGHTS_REJECT) { // Í∏∞ÏÇ¨Îã®, Î©§Î≤ÑÍ∞ÄÏûÖ Î∞è Î©§Î≤ÑÍ±∞Ï†à, Ïû•Íµê Ïù¥ÏÉÅÏù¥ Ìï† Ïàò ÏûàÏäµÎãàÎã§
         if (pUser->m_pUserData->m_bFame < OFFICER) {
             goto fail_return;
         }
-    } else if (command == KNIGHTS_PUNISH) { // ¬°∞Ë, ∫Œ±‚ªÁ¥‹¿Â ¿ÃªÛ¿Ã «“ ºˆ ¿÷Ω¿¥œ¥Ÿ
+    } else if (command == KNIGHTS_PUNISH) { // ÏßïÍ≥Ñ, Î∂ÄÍ∏∞ÏÇ¨Îã®Ïû• Ïù¥ÏÉÅÏù¥ Ìï† Ïàò ÏûàÏäµÎãàÎã§
         if (pUser->m_pUserData->m_bFame < VICECHIEF) {
             goto fail_return;
         }
     } else {
-        if (pUser->m_pUserData->m_bFame != CHIEF) { // ±‚ªÁ¥‹¿Â ∏∏¿Ã «“ ºˆ ¿÷Ω¿¥œ¥Ÿ
+        if (pUser->m_pUserData->m_bFame != CHIEF) { // Í∏∞ÏÇ¨Îã®Ïû• ÎßåÏù¥ Ìï† Ïàò ÏûàÏäµÎãàÎã§
             ret_value = 6;
             goto fail_return;
         }
@@ -508,7 +508,7 @@ void CKnightsManager::ModifyKnightsMember(CUser * pUser, char * pBuf, BYTE comma
 
     pTUser = m_pMain->GetUserPtr(userid, 2);
     if (!pTUser) {
-        if (command == KNIGHTS_REMOVE) { // ∞‘¿”ªÛø° æ¯¥¬ ¿Ø¿˙ √ﬂπÊΩ√ (100)
+        if (command == KNIGHTS_REMOVE) { // Í≤åÏûÑÏÉÅÏóê ÏóÜÎäî Ïú†Ï†Ä Ï∂îÎ∞©Ïãú (100)
             remove_flag = 0;
             SetByte(send_buff, WIZ_KNIGHTS_PROCESS, send_index);
             SetByte(send_buff, command + 0x10, send_index);
@@ -534,9 +534,9 @@ void CKnightsManager::ModifyKnightsMember(CUser * pUser, char * pBuf, BYTE comma
         goto fail_return;
     }
 
-    // ∫Œ¥‹¿Â¿Ã 3∏Ì¿Ã µ∆¥¬¡ˆ∏¶ ∆«¥‹ (≈¨∑£¿Œ ∞ÊøÏ¿Ã¥Ÿ,,)
-    if (command == KNIGHTS_VICECHIEF) {                  // ∫Œ¥‹¿Â ¿”∏Ì
-        if (pTUser->m_pUserData->m_bFame == VICECHIEF) { // ¿ÃπÃ ∫Œ¥‹¿Â¿Œ ∞ÊøÏ
+    // Î∂ÄÎã®Ïû•Ïù¥ 3Î™ÖÏù¥ ÎêêÎäîÏßÄÎ•º ÌåêÎã® (ÌÅ¥ÎûúÏù∏ Í≤ΩÏö∞Ïù¥Îã§,,)
+    if (command == KNIGHTS_VICECHIEF) {                  // Î∂ÄÎã®Ïû• ÏûÑÎ™Ö
+        if (pTUser->m_pUserData->m_bFame == VICECHIEF) { // Ïù¥ÎØ∏ Î∂ÄÎã®Ïû•Ïù∏ Í≤ΩÏö∞
             ret_value = 8;
             goto fail_return;
         }
@@ -557,7 +557,7 @@ void CKnightsManager::ModifyKnightsMember(CUser * pUser, char * pBuf, BYTE comma
         }    */
     }
 
-    remove_flag = 1; // ∞‘¿”ªÛø° ¿÷¥¬ ¿Ø¿˙ √ﬂπÊΩ√ (1)
+    remove_flag = 1; // Í≤åÏûÑÏÉÅÏóê ÏûàÎäî Ïú†Ï†Ä Ï∂îÎ∞©Ïãú (1)
     SetByte(send_buff, WIZ_KNIGHTS_PROCESS, send_index);
     SetByte(send_buff, command + 0x10, send_index);
     SetShort(send_buff, pUser->GetSocketID(), send_index);
@@ -600,7 +600,7 @@ void CKnightsManager::AllKnightsList(CUser * pUser, char * pBuf) {
             continue;
         }
         if (pKnights->m_byFlag != KNIGHTS_TYPE) {
-            continue; // ±‚ªÁ¥‹ ∏ÆΩ∫∆Æ∏∏ πﬁ¿⁄
+            continue; // Í∏∞ÏÇ¨Îã® Î¶¨Ïä§Ìä∏Îßå Î∞õÏûê
         }
         if (pKnights->m_byNation != pUser->m_pUserData->m_bNation) {
             continue;
@@ -642,12 +642,12 @@ void CKnightsManager::AllKnightsMember(CUser * pUser, char * pBuf) {
     if (!pUser) {
         return;
     }
-    if (pUser->m_pUserData->m_bKnights <= 0) { // ±‚ªÁ¥‹ø° ∞°¿‘µ«æÓ ¿÷¡ˆ æ Ω¿¥œ¥Ÿ
+    if (pUser->m_pUserData->m_bKnights <= 0) { // Í∏∞ÏÇ¨Îã®Ïóê Í∞ÄÏûÖÎêòÏñ¥ ÏûàÏßÄ ÏïäÏäµÎãàÎã§
         ret_value = 2;
         goto fail_return;
     }
     /*    if( pUser->m_pUserData->m_bFame < OFFICER ) {
-//        sprintf(errormsg, "¿Â±≥ ¿ÃªÛ¿Ã «“ ºˆ ¿÷Ω¿¥œ¥Ÿ.");
+//        sprintf(errormsg, "Ïû•Íµê Ïù¥ÏÉÅÏù¥ Ìï† Ïàò ÏûàÏäµÎãàÎã§.");
         //::_LoadStringFromResource(IDP_MINIMUM_OFFICER, buff);
         //sprintf(errormsg, buff.c_str());
         ret_value = 3;
@@ -662,7 +662,7 @@ void CKnightsManager::AllKnightsMember(CUser * pUser, char * pBuf) {
         goto fail_return;
     }
 
-    // ¥‹¿Â
+    // Îã®Ïû•
     /*    if( pUser->m_pUserData->m_bFame == CHIEF )    {
         SetByte( send_buff, WIZ_KNIGHTS_PROCESS, send_index );
         SetByte( send_buff, KNIGHTS_MEMBER_REQ+0x10, send_index );
@@ -673,7 +673,7 @@ void CKnightsManager::AllKnightsMember(CUser * pUser, char * pBuf) {
         return;
     }    */
 
-    // ¡˜¡¢.. ∞‘¿”º≠πˆø°º≠ ¿Ø¿˙¡§∫∏∏¶ ¬¸¡∂«ÿº≠ ∫“∑Øø¿¥¬ πÊΩƒ (¥‹¿Â¿Ã æ∆¥— ∏µÁ ªÁ∂˜)
+    // ÏßÅÏ†ë.. Í≤åÏûÑÏÑúÎ≤ÑÏóêÏÑú Ïú†Ï†ÄÏ†ïÎ≥¥Î•º Ï∞∏Ï°∞Ìï¥ÏÑú Î∂àÎü¨Ïò§Îäî Î∞©Ïãù (Îã®Ïû•Ïù¥ ÏïÑÎãå Î™®Îì† ÏÇ¨Îûå)
     if (pUser->m_pUserData->m_bFame == CHIEF) {
         count = m_pMain->GetKnightsAllMembers(pUser->m_pUserData->m_bKnights, temp_buff, temp_index, 1);
     } else {
@@ -720,7 +720,7 @@ void CKnightsManager::CurrentKnightsMember(CUser * pUser, char * pBuf) {
     memset(errormsg, 0x00, 128);
     std::string buff;
 
-    //    sprintf(errormsg, "±‚ªÁ¥‹ø° ∞°¿‘µ«¡ˆ æ æ“Ω¿¥œ¥Ÿ.");
+    //    sprintf(errormsg, "Í∏∞ÏÇ¨Îã®Ïóê Í∞ÄÏûÖÎêòÏßÄ ÏïäÏïòÏäµÎãàÎã§.");
     ::_LoadStringFromResource(IDP_KNIGHT_NOT_REGISTERED, buff);
     sprintf(errormsg, buff.c_str());
 
@@ -790,7 +790,7 @@ void CKnightsManager::ReceiveKnightsProcess(CUser * pUser, char * pBuf, BYTE com
     memset(errormsg, 0x00, 128);
     std::string buff;
 
-    //    sprintf(errormsg, "±‚ªÁ¥‹ DB√≥∏Æø° Ω«∆–«œø¥Ω¿¥œ¥Ÿ.");
+    //    sprintf(errormsg, "Í∏∞ÏÇ¨Îã® DBÏ≤òÎ¶¨Ïóê Ïã§Ìå®ÌïòÏòÄÏäµÎãàÎã§.");
     ::_LoadStringFromResource(IDP_KNIGHT_DB_FAIL, buff);
     sprintf(errormsg, buff.c_str());
 
@@ -912,7 +912,7 @@ void CKnightsManager::RecvCreateKnights(CUser * pUser, char * pBuf) {
 
     m_pMain->m_KnightsArray.PutData(pKnights->m_sIndex, pKnights);
 
-    // ≈¨∑£¡§∫∏ø° √ﬂ∞°
+    // ÌÅ¥ÎûúÏ†ïÎ≥¥Ïóê Ï∂îÍ∞Ä
     AddKnightsUser(knightsindex, chiefname);
 
     //TRACE("RecvCreateKnights - nid=%d, name=%s, index=%d, fame=%d, money=%d\n", pUser->GetSocketID(), pUser->m_pUserData->m_id, knightsindex, pUser->m_pUserData->m_bFame, money);
@@ -979,16 +979,16 @@ void CKnightsManager::RecvJoinKnights(CUser * pUser, char * pBuf, BYTE command) 
     if (command == KNIGHTS_JOIN + 0x10) {
         pUser->m_pUserData->m_bKnights = knightsindex;
         pUser->m_pUserData->m_bFame = TRAINEE;
-        sprintf(finalstr, "#### %s¥‘¿Ã ∞°¿‘«œºÃΩ¿¥œ¥Ÿ. ####", pUser->m_pUserData->m_id);
-        // ≈¨∑£¡§∫∏ø° √ﬂ∞°
+        sprintf(finalstr, "#### %sÎãòÏù¥ Í∞ÄÏûÖÌïòÏÖ®ÏäµÎãàÎã§. ####", pUser->m_pUserData->m_id);
+        // ÌÅ¥ÎûúÏ†ïÎ≥¥Ïóê Ï∂îÍ∞Ä
         AddKnightsUser(knightsindex, pUser->m_pUserData->m_id);
 
-        //TRACE("RecvJoinKnights - ∞°¿‘, nid=%d, name=%s, index=%d, fame=%d\n", pUser->GetSocketID(), pUser->m_pUserData->m_id, pUser->m_pUserData->m_bKnights, pUser->m_pUserData->m_bFame);
-    } else { // ≈ª≈..
+        //TRACE("RecvJoinKnights - Í∞ÄÏûÖ, nid=%d, name=%s, index=%d, fame=%d\n", pUser->GetSocketID(), pUser->m_pUserData->m_id, pUser->m_pUserData->m_bKnights, pUser->m_pUserData->m_bFame);
+    } else { // ÌÉàÌá¥..
         pUser->m_pUserData->m_bKnights = 0;
         pUser->m_pUserData->m_bFame = 0;
 
-        // ≈¨∑£¡§∫∏ø° √ﬂ∞°
+        // ÌÅ¥ÎûúÏ†ïÎ≥¥Ïóê Ï∂îÍ∞Ä
         RemoveKnightsUser(knightsindex, pUser->m_pUserData->m_id);
 
         /*    if(pKnights)    {
@@ -999,9 +999,9 @@ void CKnightsManager::RecvJoinKnights(CUser * pUser, char * pBuf, BYTE command) 
             else if( !strcmp( pKnights->strViceChief_3, pUser->m_pUserData->m_id) )
                 memset( pKnights->strViceChief_3, 0x00, MAX_ID_SIZE+1 );
         }    */
-        sprintf(finalstr, "#### %s¥‘¿Ã ≈ª≈«œºÃΩ¿¥œ¥Ÿ. ####", pUser->m_pUserData->m_id);
+        sprintf(finalstr, "#### %sÎãòÏù¥ ÌÉàÌá¥ÌïòÏÖ®ÏäµÎãàÎã§. ####", pUser->m_pUserData->m_id);
 
-        //TRACE("RecvJoinKnights - ≈ª≈, nid=%d, name=%s, index=%d, fame=%d\n", pUser->GetSocketID(), pUser->m_pUserData->m_id, pUser->m_pUserData->m_bKnights, pUser->m_pUserData->m_bFame);
+        //TRACE("RecvJoinKnights - ÌÉàÌá¥, nid=%d, name=%s, index=%d, fame=%d\n", pUser->GetSocketID(), pUser->m_pUserData->m_id, pUser->m_pUserData->m_bKnights, pUser->m_pUserData->m_bFame);
     }
 
     //TRACE("RecvJoinKnights - command=%d, nid=%d, name=%s, index=%d, fame=%d\n", command, pUser->GetSocketID(), pUser->m_pUserData->m_id, pUser->m_pUserData->m_bKnights, pUser->m_pUserData->m_bFame);
@@ -1075,7 +1075,7 @@ void CKnightsManager::RecvModifyFame(CUser * pUser, char * pBuf, BYTE command) {
         if (pTUser) {
             pTUser->m_pUserData->m_bKnights = 0;
             pTUser->m_pUserData->m_bFame = 0;
-            sprintf(finalstr, "#### %s¥‘¿Ã √ﬂπÊµ«ºÃΩ¿¥œ¥Ÿ. ####", pTUser->m_pUserData->m_id);
+            sprintf(finalstr, "#### %sÎãòÏù¥ Ï∂îÎ∞©ÎêòÏÖ®ÏäµÎãàÎã§. ####", pTUser->m_pUserData->m_id);
 
             RemoveKnightsUser(knightsindex, pTUser->m_pUserData->m_id);
         } else {
@@ -1099,14 +1099,14 @@ void CKnightsManager::RecvModifyFame(CUser * pUser, char * pBuf, BYTE command) {
         if (pTUser) {
             pTUser->m_pUserData->m_bFame = CHIEF;
             ModifyKnightsUser(knightsindex, pTUser->m_pUserData->m_id);
-            sprintf(finalstr, "#### %s¥‘¿Ã ¥‹¿Â¿∏∑Œ ¿”∏Ìµ«ºÃΩ¿¥œ¥Ÿ. ####", pTUser->m_pUserData->m_id);
+            sprintf(finalstr, "#### %sÎãòÏù¥ Îã®Ïû•ÏúºÎ°ú ÏûÑÎ™ÖÎêòÏÖ®ÏäµÎãàÎã§. ####", pTUser->m_pUserData->m_id);
         }
         break;
     case KNIGHTS_VICECHIEF + 0x10:
         if (pTUser) {
             pTUser->m_pUserData->m_bFame = VICECHIEF;
             ModifyKnightsUser(knightsindex, pTUser->m_pUserData->m_id);
-            sprintf(finalstr, "#### %s¥‘¿Ã ∫Œ¥‹¿Â¿∏∑Œ ¿”∏Ìµ«ºÃΩ¿¥œ¥Ÿ. ####", pTUser->m_pUserData->m_id);
+            sprintf(finalstr, "#### %sÎãòÏù¥ Î∂ÄÎã®Ïû•ÏúºÎ°ú ÏûÑÎ™ÖÎêòÏÖ®ÏäµÎãàÎã§. ####", pTUser->m_pUserData->m_id);
         }
         break;
     case KNIGHTS_OFFICER + 0x10:
@@ -1209,11 +1209,11 @@ void CKnightsManager::RecvDestroyKnights(CUser * pUser, char * pBuf) {
 
     flag = pKnights->m_byFlag;
 
-    // ≈¨∑£¿Ã≥™ ±‚ªÁ¥‹¿Ã ∆ƒ±´µ» ∏ﬁΩ√¡ˆ∏¶ ∫∏≥ª∞Ì ¿Ø¿˙ µ•¿Ã≈∏∏¶ √ ±‚»≠
+    // ÌÅ¥ÎûúÏù¥ÎÇò Í∏∞ÏÇ¨Îã®Ïù¥ ÌååÍ¥¥Îêú Î©îÏãúÏßÄÎ•º Î≥¥ÎÇ¥Í≥† Ïú†Ï†Ä Îç∞Ïù¥ÌÉÄÎ•º Ï¥àÍ∏∞Ìôî
     if (flag == CLAN_TYPE) {
-        sprintf(finalstr, "#### %s ≈¨∑£¿Ã «ÿ√ºµ«æ˙Ω¿¥œ¥Ÿ ####", pKnights->m_strName);
+        sprintf(finalstr, "#### %s ÌÅ¥ÎûúÏù¥ Ìï¥Ï≤¥ÎêòÏóàÏäµÎãàÎã§ ####", pKnights->m_strName);
     } else if (flag == KNIGHTS_TYPE) {
-        sprintf(finalstr, "#### %s ±‚ªÁ¥‹¿Ã «ÿ√ºµ«æ˙Ω¿¥œ¥Ÿ ####", pKnights->m_strName);
+        sprintf(finalstr, "#### %s Í∏∞ÏÇ¨Îã®Ïù¥ Ìï¥Ï≤¥ÎêòÏóàÏäµÎãàÎã§ ####", pKnights->m_strName);
     }
 
     memset(send_buff, 0x00, 128);

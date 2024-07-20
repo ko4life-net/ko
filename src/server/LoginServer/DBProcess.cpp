@@ -38,11 +38,11 @@ void CDBProcess::ReConnectODBC(CDatabase * m_db, const char * strdb, const char 
     char strlog[256];
     memset(strlog, 0x00, 256);
     CTime t = CTime::GetCurrentTime();
-    sprintf(strlog, "Try ReConnectODBC... %d¿ù %dÀÏ %d½Ã %dºĞ\r\n", t.GetMonth(), t.GetDay(), t.GetHour(),
+    sprintf(strlog, "Try ReConnectODBC... %dì›” %dì¼ %dì‹œ %dë¶„\r\n", t.GetMonth(), t.GetDay(), t.GetHour(),
             t.GetMinute());
     LogFileWrite(strlog);
 
-    // DATABASE ¿¬°á...
+    // DATABASE ì—°ê²°...
     CString strConnect;
     strConnect.Format(_T("DSN=%s;UID=%s;PWD=%s"), strdb, strname, strpwd);
     int iCount = 0;
@@ -295,9 +295,9 @@ BOOL CDBProcess::LoadUserCountList() {
             SQLGetData(hstmt, 3, SQL_C_SSHORT, &zone_2, 0, &Indexind);
             SQLGetData(hstmt, 4, SQL_C_SSHORT, &zone_3, 0, &Indexind);
 
-            // ¿©±â¿¡¼­ µ¥ÀÌÅ¸¸¦ ¹Ş¾Æ¼­ ¾Ë¾Æ¼­ »ç¿ë....
+            // ì—¬ê¸°ì—ì„œ ë°ì´íƒ€ë¥¼ ë°›ì•„ì„œ ì•Œì•„ì„œ ì‚¬ìš©....
             if (serverid - 1 < m_pMain->m_nServerCount) {
-                m_pMain->m_ServerList[serverid - 1]->sUserCount = zone_1 + zone_2 + zone_3; // ±â¹üÀÌ°¡ ^^;
+                m_pMain->m_ServerList[serverid - 1]->sUserCount = zone_1 + zone_2 + zone_3; // ê¸°ë²”ì´ê°€ ^^;
             }
         }
     }

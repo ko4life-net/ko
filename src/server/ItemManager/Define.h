@@ -88,10 +88,10 @@ typedef union {
 #define WIZ_ITEM_LOG 0x19 // Send To Agent for Writing Log
 #define WIZ_DATASAVE 0x37 // User GameData DB Save Request
 
-#define SLOT_MAX      14   // Âø¿ë ¾ÆÅÛ MAX
-#define HAVE_MAX      28   // ¼ÒÀ¯ ¾ÆÅÛ MAX (ÀÎº¥Åä¸®Ã¢)
-#define ITEMCOUNT_MAX 9999 // ¼Ò¸ğ ¾ÆÀÌÅÛ ¼ÒÀ¯ ÇÑ°è°ª
-#define WAREHOUSE_MAX 196  // Ã¢°í ¾ÆÀÌÅÛ MAX
+#define SLOT_MAX      14   // ì°©ìš© ì•„í…œ MAX
+#define HAVE_MAX      28   // ì†Œìœ  ì•„í…œ MAX (ì¸ë²¤í† ë¦¬ì°½)
+#define ITEMCOUNT_MAX 9999 // ì†Œëª¨ ì•„ì´í…œ ì†Œìœ  í•œê³„ê°’
+#define WAREHOUSE_MAX 196  // ì°½ê³  ì•„ì´í…œ MAX
 /////////////////////////////////////////////////////////////////////////////////
 // Structure Define
 /////////////////////////////////////////////////////////////////////////////////

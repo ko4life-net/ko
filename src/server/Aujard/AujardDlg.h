@@ -68,9 +68,9 @@ class CAujardDlg : public CDialog {
 
     CFile m_LogFile;
 
-    int m_iPacketCount;     // packetÀÇ ¼ö¸¦ Ã¼Å©
-    int m_iSendPacketCount; // packetÀÇ ¼ö¸¦ Ã¼Å©
-    int m_iRecvPacketCount; // packetÀÇ ¼ö¸¦ Ã¼Å©
+    int m_iPacketCount;     // packetì˜ ìˆ˜ë¥¼ ì²´í¬
+    int m_iSendPacketCount; // packetì˜ ìˆ˜ë¥¼ ì²´í¬
+    int m_iRecvPacketCount; // packetì˜ ìˆ˜ë¥¼ ì²´í¬
     int m_iLogFileDay;
 
     // Dialog Data

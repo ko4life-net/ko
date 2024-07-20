@@ -15,10 +15,10 @@ typedef typename std::list<CN3Joint *>::iterator it_Joint;
 const int MAX_JOINT_TRANSFORM = 64;
 
 class CN3Joint : public CN3Transform {
-    friend class CN3Joint; // Position, Rotation, Scale °ªµéÀ» ÀÚÀ¯·Ó°Ô ´Ù·ê¼ö ÀÖ¾î¾ß ÇÑ´Ù..
+    friend class CN3Joint; // Position, Rotation, Scale ê°’ë“¤ì„ ìžìœ ë¡­ê²Œ ë‹¤ë£°ìˆ˜ ìžˆì–´ì•¼ í•œë‹¤..
   public:
     __Quaternion m_qOrient;   // Joint Orient Quaternion
-    CN3AnimKey   m_KeyOrient; // Joint Orient Å°°ª... NULL ÀÌ¸é ¾ø´Â°Å´Ù..
+    CN3AnimKey   m_KeyOrient; // Joint Orient í‚¤ê°’... NULL ì´ë©´ ì—†ëŠ”ê±°ë‹¤..
 
   protected:
     CN3Joint *            m_pParent;
@@ -58,7 +58,7 @@ class CN3Joint : public CN3Transform {
 #ifdef _N3TOOL
     BOOL FindIndex(const std::string & szName, int & nIndex);
     BOOL FindPointerByName(const std::string & szName,
-                           CN3Joint *&         pJoint); // ÀÌ¸§À» ³ÖÀ¸¸é ÇØ´ç ³ëµåÀÇ Æ÷ÀÎÅÍ¸¦ µ¹·ÁÁØ´Ù..
+                           CN3Joint *&         pJoint); // ì´ë¦„ì„ ë„£ìœ¼ë©´ í•´ë‹¹ ë…¸ë“œì˜ í¬ì¸í„°ë¥¼ ëŒë ¤ì¤€ë‹¤..
     void RotSet(const __Quaternion & qtRot) {
         m_qRot = qtRot;
         this->ReCalcMatrix();

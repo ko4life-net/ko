@@ -22,25 +22,25 @@ static char THIS_FILE[] = __FILE__;
 //////////////////////////////////////////////////////////////////////
 
 /*
-     ** Repent AI Server ÀÛ¾÷½Ã Âü°í »çÇ× **
-    1. Initialize() ¼öÁ¤
-    2. SendAttackSuccess() ¼öÁ¤
-    3. GetDamage() ¼öÁ¤
+     ** Repent AI Server ì‘ì—…ì‹œ ì°¸ê³  ì‚¬í•­ **
+    1. Initialize() ìˆ˜ì •
+    2. SendAttackSuccess() ìˆ˜ì •
+    3. GetDamage() ìˆ˜ì •
 */
 
 #define MORAL_GOOD    0x01
 #define MORAL_BAD     0x02
 #define MORAL_NEUTRAL 0x03
 
-// ¿î¿µÀÚ ¾ÆÀÌµğ ³Ö±â..
+// ìš´ì˜ì ì•„ì´ë”” ë„£ê¸°..
 /*const char* g_pszOPID[] = 
 {
-    //"¿©¿ì¾ß2",
-    //"³­°­ÇØ",
-    //"ÀÌ»Û¿©¿ì2"
+    //"ì—¬ìš°ì•¼2",
+    //"ë‚œê°•í•´",
+    //"ì´ìœì—¬ìš°2"
     //"Morpheus"
-//    "¸Ç¼ø",
-//    "¹Î¼ø"
+//    "ë§¨ìˆœ",
+//    "ë¯¼ìˆœ"
 };*/
 
 float surround_fx[8] = {0.0f, -0.7071f, -1.0f, -0.7083f, 0.0f, 0.7059f, 1.0000f, 0.7083f};
@@ -60,39 +60,39 @@ void CUser::Initialize() {
     m_MagicProcess.m_pMain = m_pMain;
     m_MagicProcess.m_pSrcUser = this;
 
-    memset(m_strUserID, 0, MAX_ID_SIZE + 1); // Ä³¸¯ÅÍÀÇ ÀÌ¸§
-    m_iUserId = -1;                          // UserÀÇ ¹øÈ£
-    m_bLive = USER_DEAD;                     // Á×¾ú´Ï? »ì¾Ò´Ï?
-    m_curx = 0.0f;                           // ÇöÀç X ÁÂÇ¥
-    m_cury = 0.0f;                           // ÇöÀç Y ÁÂÇ¥
-    m_curz = 0.0f;                           // ÇöÀç Z ÁÂÇ¥
+    memset(m_strUserID, 0, MAX_ID_SIZE + 1); // ìºë¦­í„°ì˜ ì´ë¦„
+    m_iUserId = -1;                          // Userì˜ ë²ˆí˜¸
+    m_bLive = USER_DEAD;                     // ì£½ì—ˆë‹ˆ? ì‚´ì•˜ë‹ˆ?
+    m_curx = 0.0f;                           // í˜„ì¬ X ì¢Œí‘œ
+    m_cury = 0.0f;                           // í˜„ì¬ Y ì¢Œí‘œ
+    m_curz = 0.0f;                           // í˜„ì¬ Z ì¢Œí‘œ
     m_fWill_x = 0.0f;
     m_fWill_y = 0.0f;
     m_fWill_z = 0.0f;
-    m_curZone = -1; // ÇöÀç Á¸
+    m_curZone = -1; // í˜„ì¬ ì¡´
     m_sZoneIndex = -1;
-    m_bNation = 0;  // ¼Ò¼Ó±¹°¡
-    m_sLevel = 0;   // ·¹º§
+    m_bNation = 0;  // ì†Œì†êµ­ê°€
+    m_sLevel = 0;   // ë ˆë²¨
     m_sHP = 0;      // HP
     m_sMP = 0;      // MP
     m_sSP = 0;      // SP
     m_sMaxHP = 0;   // MaxHP
     m_sMaxMP = 0;   // MaxMP
     m_sMaxSP = 0;   // MaxSP
-    m_state = 0;    // UserÀÇ »óÅÂ
-    m_sRegionX = 0; // ÇöÀç ¿µ¿ª X ÁÂÇ¥
-    m_sRegionZ = 0; // ÇöÀç ¿µ¿ª Z ÁÂÇ¥
+    m_state = 0;    // Userì˜ ìƒíƒœ
+    m_sRegionX = 0; // í˜„ì¬ ì˜ì—­ X ì¢Œí‘œ
+    m_sRegionZ = 0; // í˜„ì¬ ì˜ì—­ Z ì¢Œí‘œ
     m_sOldRegionX = 0;
     m_sOldRegionZ = 0;
-    m_bResHp = 0; // È¸º¹·®
+    m_bResHp = 0; // íšŒë³µëŸ‰
     m_bResMp = 0;
     m_bResSta = 0;
     m_sHitDamage = 0; // Hit
     m_sAC = 0;
     m_sItemAC = 0;
-    m_fHitrate = 0.0f; // Å¸°İ ¼º°ø·ü
-    m_fAvoidrate = 0;  // È¸ÇÇ ¼º°ø·ü
-    m_bLogOut = FALSE; // Logout ÁßÀÎ°¡?
+    m_fHitrate = 0.0f; // íƒ€ê²© ì„±ê³µë¥ 
+    m_fAvoidrate = 0;  // íšŒí”¼ ì„±ê³µë¥ 
+    m_bLogOut = FALSE; // Logout ì¤‘ì¸ê°€?
     m_byNowParty = 0;
     m_sPartyTotalLevel = 0;
     m_byPartyTotalMan = 0;
@@ -119,7 +119,7 @@ void CUser::Attack(int sid, int tid) {
         return;
     }
 
-    /*    if(pNpc->m_tNpcType == NPCTYPE_GUARD)                    // °æºñº´ÀÌ¸é Å¸°ÙÀ» ÇØ´ç À¯Àú·Î
+    /*    if(pNpc->m_tNpcType == NPCTYPE_GUARD)                    // ê²½ë¹„ë³‘ì´ë©´ íƒ€ê²Ÿì„ í•´ë‹¹ ìœ ì €ë¡œ
     {
         pNpc->m_Target.id = m_iUserId + USER_BAND;
         pNpc->m_Target.x = m_curx;
@@ -130,10 +130,10 @@ void CUser::Attack(int sid, int tid) {
     }    */
 
     int nDefence = 0, nFinalDamage = 0;
-    // NPC ¹æ¾î°ª
+    // NPC ë°©ì–´ê°’
     nDefence = pNpc->GetDefense();
 
-    // ¸íÁßÀÌ¸é //Damage Ã³¸® ----------------------------------------------------------------//
+    // ëª…ì¤‘ì´ë©´ //Damage ì²˜ë¦¬ ----------------------------------------------------------------//
     nFinalDamage = GetDamage(tid);
     if (m_pMain->m_byTestMode) {
         nFinalDamage = 3000; // sungyong test
@@ -143,15 +143,15 @@ void CUser::Attack(int sid, int tid) {
     short sOldNpcHP = pNpc->m_iHP;
 
     if (pNpc->SetDamage(0, nFinalDamage, m_strUserID, m_iUserId + USER_BAND, m_pIocport) == FALSE) {
-        // Npc°¡ Á×Àº °æ¿ì,,
-        pNpc->SendExpToUserList(); // °æÇèÄ¡ ºĞ¹è!!
+        // Npcê°€ ì£½ì€ ê²½ìš°,,
+        pNpc->SendExpToUserList(); // ê²½í—˜ì¹˜ ë¶„ë°°!!
         pNpc->SendDead(m_pIocport);
         SendAttackSuccess(tid, ATTACK_TARGET_DEAD, nFinalDamage, pNpc->m_iHP);
 
-        //    CheckMaxValue(m_dwXP, 1);        // ¸÷ÀÌ Á×À»¶§¸¸ 1 Áõ°¡!
+        //    CheckMaxValue(m_dwXP, 1);        // ëª¹ì´ ì£½ì„ë•Œë§Œ 1 ì¦ê°€!
         //    SendXP();
     } else {
-        // °ø°İ °á°ú Àü¼Û
+        // ê³µê²© ê²°ê³¼ ì „ì†¡
         SendAttackSuccess(tid, ATTACK_SUCCESS, nFinalDamage, pNpc->m_iHP);
     }
     //    m_dwLastAttackTime = GetTickCount();
@@ -181,7 +181,7 @@ void CUser::SendAttackSuccess(int tuid, BYTE result, short sDamage, int nHP, sho
 
     //TRACE("User - SendAttackSuccess() : [sid=%d, tid=%d, result=%d], damage=%d, hp = %d\n", sid, tid, bResult, sDamage, sHP);
 
-    SendAll(buff, send_index); // thread ¿¡¼­ send
+    SendAll(buff, send_index); // thread ì—ì„œ send
 }
 
 void CUser::SendMagicAttackResult(int tuid, BYTE result, short sDamage, short sHP) {
@@ -207,7 +207,7 @@ void CUser::SendMagicAttackResult(int tuid, BYTE result, short sDamage, short sH
 
     //TRACE("User - SendAttackSuccess() : [sid=%d, tid=%d, result=%d], damage=%d, hp = %d\n", sid, tid, bResult, sDamage, sHP);
 
-    SendAll(buff, send_index); // thread ¿¡¼­ send
+    SendAll(buff, send_index); // thread ì—ì„œ send
 }
 
 // sungyong 2002.05.22
@@ -246,7 +246,7 @@ void CUser::SendAll(TCHAR * pBuf, int nLength) {
 }
 // ~sungyong 2002.05.22
 
-//    Damage °è»ê, ¸¸¾à m_sHP °¡ 0 ÀÌÇÏÀÌ¸é »ç¸ÁÃ³¸®
+//    Damage ê³„ì‚°, ë§Œì•½ m_sHP ê°€ 0 ì´í•˜ì´ë©´ ì‚¬ë§ì²˜ë¦¬
 void CUser::SetDamage(int damage, int tid) {
     if (damage <= 0) {
         return;
@@ -267,7 +267,7 @@ void CUser::SetDamage(int damage, int tid) {
     }
 
     //SendHP();
-    // ¹öµğÁßÀÌ¸é ´Ù¸¥ ¹öµğ¿ø¿¡°Ô ³¯¸°´Ù.
+    // ë²„ë””ì¤‘ì´ë©´ ë‹¤ë¥¸ ë²„ë””ì›ì—ê²Œ ë‚ ë¦°ë‹¤.
 }
 
 void CUser::Dead(int tid, int nDamage) {
@@ -275,13 +275,13 @@ void CUser::Dead(int tid, int nDamage) {
         return;
     }
 
-    // ÀÌ ºÎºĞ¿¡¼­ update¸¦ ÇØ¾ß ÇÔ,,  °ÔÀÓ¼­¹ö¿¡¼­,, Ã³¸®ÇÏµµ·Ï,,,
+    // ì´ ë¶€ë¶„ì—ì„œ updateë¥¼ í•´ì•¼ í•¨,,  ê²Œì„ì„œë²„ì—ì„œ,, ì²˜ë¦¬í•˜ë„ë¡,,,
     m_sHP = 0;
     m_bLive = USER_DEAD;
 
     InitNpcAttack();
 
-    // region¿¡¼­ »èÁ¦...
+    // regionì—ì„œ ì‚­ì œ...
     if (m_sZoneIndex < 0 || m_sZoneIndex > m_pMain->g_arZone.size()) {
         TRACE("#### User-Dead ZoneIndex Fail : [name=%s], zoneindex=%d #####\n", m_strUserID, m_sZoneIndex);
         return;
@@ -291,7 +291,7 @@ void CUser::Dead(int tid, int nDamage) {
         TRACE("#### CUser-Dead() Fail : [nid=%d, name=%s], pMap == NULL #####\n", m_iUserId, m_strUserID);
         return;
     }
-    // map¿¡ region¿¡¼­ ³ªÀÇ Á¤º¸ »èÁ¦..
+    // mapì— regionì—ì„œ ë‚˜ì˜ ì •ë³´ ì‚­ì œ..
     if (m_sRegionX < 0 || m_sRegionZ < 0 || m_sRegionX > pMap->GetXRegionMax() || m_sRegionZ > pMap->GetZRegionMax()) {
         TRACE("#### CUser-Dead() Fail : [nid=%d, name=%s], x1=%d, z1=%d #####\n", m_iUserId, m_strUserID, m_sRegionX,
               m_sRegionZ);
@@ -299,7 +299,7 @@ void CUser::Dead(int tid, int nDamage) {
     }
     //pMap->m_ppRegion[m_sRegionX][m_sRegionZ].DeleteUser(m_iUserId);
     pMap->RegionUserRemove(m_sRegionX, m_sRegionZ, m_iUserId);
-    //TRACE("*** User Dead()-> User(%s, %d)¸¦ Region¿¡ »èÁ¦,, region_x=%d, y=%d\n", m_strUserID, m_iUserId, m_sRegionX, m_sRegionZ);
+    //TRACE("*** User Dead()-> User(%s, %d)ë¥¼ Regionì— ì‚­ì œ,, region_x=%d, y=%d\n", m_strUserID, m_iUserId, m_sRegionX, m_sRegionZ);
 
     m_sRegionX = -1;
     m_sRegionZ = -1;
@@ -334,7 +334,7 @@ void CUser::Dead(int tid, int nDamage) {
     //TRACE("Npc - SendAttackSuccess()-User Dead : [sid=%d, tid=%d, result=%d], damage=%d, hp = %d\n", sid, targid, result, nDamage, m_sHP);
 
     if (tid > 0) {
-        SendAll(buff, send_index); // thread ¿¡¼­ send
+        SendAll(buff, send_index); // thread ì—ì„œ send
     }
 
     /*    SetByte(buff, AG_DEAD, send_index );
@@ -342,14 +342,14 @@ void CUser::Dead(int tid, int nDamage) {
     Setfloat(buff, m_curx, send_index);
     Setfloat(buff, m_curz, send_index);
 
-    SendAll(buff, send_index);   // thread ¿¡¼­ send    */
+    SendAll(buff, send_index);   // thread ì—ì„œ send    */
 }
 
 void CUser::SendHP() {
     if (m_bLive == USER_DEAD) {
         return;
     }
-    // HP º¯µ¿·®À» °ÔÀÓ¼­¹ö·Î...
+    // HP ë³€ë™ëŸ‰ì„ ê²Œì„ì„œë²„ë¡œ...
     int  send_index = 0;
     char buff[256];
     memset(buff, 0x00, 256);
@@ -451,7 +451,7 @@ void CUser::SetPartyExp(int iNpcExp, int iLoyalty, int iPartyLevel, int iMan) {
     SendExp(iNpcExp, iLoyalty);
 }
 
-//  °æÇèÄ¡¸¦ º¸³½´Ù. (·¹º§¾÷ÀÏ¶§ °ü·Ã ¼öÄ¡¸¦ ÁØ´Ù)
+//  ê²½í—˜ì¹˜ë¥¼ ë³´ë‚¸ë‹¤. (ë ˆë²¨ì—…ì¼ë•Œ ê´€ë ¨ ìˆ˜ì¹˜ë¥¼ ì¤€ë‹¤)
 void CUser::SendExp(int iExp, int iLoyalty, int tType) {
     int  send_index = 0;
     char buff[256];
@@ -494,12 +494,12 @@ short CUser::GetDamage(int tid, int magicid) {
         return damage;
     }
 
-    Attack = (float)m_fHitrate;        // °ø°İ¹ÎÃ¸
-    Avoid = (float)pNpc->m_sEvadeRate; // ¹æ¾î¹ÎÃ¸
-    Hit = m_sHitDamage;                // °ø°İÀÚ Hit
-    // Ac = (short)(pNpc->m_sDefense) + pNpc->m_sLevel; // ¹æ¾îÀÚ Ac 2002.07.06
-    Ac = (short)(pNpc->m_sDefense);         // ¹æ¾îÀÚ Ac
-    HitB = (int)((Hit * 200) / (Ac + 240)); // »õ·Î¿î °ø°İ½ÄÀÇ B
+    Attack = (float)m_fHitrate;        // ê³µê²©ë¯¼ì²©
+    Avoid = (float)pNpc->m_sEvadeRate; // ë°©ì–´ë¯¼ì²©
+    Hit = m_sHitDamage;                // ê³µê²©ì Hit
+    // Ac = (short)(pNpc->m_sDefense) + pNpc->m_sLevel; // ë°©ì–´ì Ac 2002.07.06
+    Ac = (short)(pNpc->m_sDefense);         // ë°©ì–´ì Ac
+    HitB = (int)((Hit * 200) / (Ac + 240)); // ìƒˆë¡œìš´ ê³µê²©ì‹ì˜ B
 
     if (magicid > 0) {                                        // Skill Hit.
         pTable = m_pMain->m_MagictableArray.GetData(magicid); // Get main magic table.
@@ -559,14 +559,14 @@ short CUser::GetDamage(int tid, int magicid) {
             }
         }
     } else {                                 // Normal Hit.
-        result = GetHitRate(Attack / Avoid); // Å¸°İºñ ±¸ÇÏ±â
+        result = GetHitRate(Attack / Avoid); // íƒ€ê²©ë¹„ êµ¬í•˜ê¸°
     }
 
     switch (result) {
     case GREAT_SUCCESS:
     case SUCCESS:
     case NORMAL:
-        if (magicid > 0) { // ½ºÅ³ °ø°İ
+        if (magicid > 0) { // ìŠ¤í‚¬ ê³µê²©
             damage = (short)Hit;
             random = myrand(0, damage);
             //                damage = (short)((0.85f * (float)Hit) + 0.3f * (float)random);
@@ -575,14 +575,14 @@ short CUser::GetDamage(int tid, int magicid) {
             } else {
                 damage = (short)((float)(Hit * 0.6f) + 1.0f * (float)random + 0.99);
             }
-        } else { //ÀÏ¹İ °ø°İ
+        } else { //ì¼ë°˜ ê³µê²©
             damage = (short)(HitB);
             random = myrand(0, damage);
             damage = (short)((0.85f * (float)HitB) + 0.3f * (float)random);
         }
 
         break;
-    case FAIL: // »çÀå´Ô ¿ä±¸
+    case FAIL: // ì‚¬ì¥ë‹˜ ìš”êµ¬
         damage = 0;
         break;
     }
@@ -931,8 +931,8 @@ void CUser::SendSystemMsg(TCHAR * pMsg, BYTE type, int nWho) {
     short sLength = _tcslen(pMsg);
 
     SetByte(buff, AG_SYSTEM_MSG, send_index);
-    SetByte(buff, type, send_index);  // Ã¤ÆÃÇü½Ä
-    SetShort(buff, nWho, send_index); // ´©±¸¿¡°Ô
+    SetByte(buff, type, send_index);  // ì±„íŒ…í˜•ì‹
+    SetShort(buff, nWho, send_index); // ëˆ„êµ¬ì—ê²Œ
     SetShort(buff, m_iUserId, send_index);
     SetShort(buff, sLength, send_index);
     SetString(buff, pMsg, sLength, send_index);
@@ -1061,7 +1061,7 @@ void CUser::HealAreaCheck(int rx, int rz) {
     if (pMap == NULL) {
         return;
     }
-    // ÀÚ½ÅÀÇ region¿¡ ÀÖ´Â NpcArrayÀ» ¸ÕÀú °Ë»öÇÏ¿©,, °¡±î¿î °Å¸®¿¡ Monster°¡ ÀÖ´ÂÁö¸¦ ÆÇ´Ü..
+    // ìì‹ ì˜ regionì— ìˆëŠ” NpcArrayì„ ë¨¼ì € ê²€ìƒ‰í•˜ì—¬,, ê°€ê¹Œìš´ ê±°ë¦¬ì— Monsterê°€ ìˆëŠ”ì§€ë¥¼ íŒë‹¨..
     if (rx < 0 || rz < 0 || rx > pMap->GetXRegionMax() || rz > pMap->GetZRegionMax()) {
         TRACE("#### CUser-HealAreaCheck() Fail : [nid=%d, name=%s], nRX=%d, nRZ=%d #####\n", m_iUserId, m_strUserID, rx,
               rz);
@@ -1109,7 +1109,7 @@ void CUser::HealAreaCheck(int rx, int rz) {
             vEnd.Set(pNpc->m_fCurX, pNpc->m_fCurY, pNpc->m_fCurZ);
             fDis = pNpc->GetDistance(vStart, vEnd);
 
-            if (fDis <= fRadius) { // NPC°¡ ¹İ°æ¾È¿¡ ÀÖÀ» °æ¿ì...
+            if (fDis <= fRadius) { // NPCê°€ ë°˜ê²½ì•ˆì— ìˆì„ ê²½ìš°...
                 pNpc->ChangeTarget(1004, this, m_pIocport);
             } else {
                 continue;

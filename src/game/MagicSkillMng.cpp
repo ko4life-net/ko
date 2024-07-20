@@ -104,11 +104,11 @@ void CMagicSkillMng::Init() {
     __InfoPlayerBase * pInfoBase = &(s_pPlayer->m_InfoBase);
 
     /*
-    CLASS_KA_WARRIOR = 101, CLASS_KA_ROGUE, CLASS_KA_WIZARD, CLASS_KA_PRIEST, // ¿©±â±îÁö ±âº» Á÷¾÷
+    CLASS_KA_WARRIOR = 101, CLASS_KA_ROGUE, CLASS_KA_WIZARD, CLASS_KA_PRIEST, // ì—¬ê¸°ê¹Œì§€ ê¸°ë³¸ ì§ì—…
     CLASS_KA_BERSERKER = 105, CLASS_KA_GUARDIAN, CLASS_KA_HUNTER = 107, CLASS_KA_PENETRATOR, 
     CLASS_KA_SORCERER = 109, CLASS_KA_NECROMANCER, CLASS_KA_SHAMAN = 111, CLASS_KA_DARKPRIEST, 
     
-    CLASS_EL_WARRIOR = 201, CLASS_EL_ROGUE, CLASS_EL_WIZARD, CLASS_EL_PRIEST, // ¿©±â±îÁö ±âº» Á÷¾÷ 
+    CLASS_EL_WARRIOR = 201, CLASS_EL_ROGUE, CLASS_EL_WIZARD, CLASS_EL_PRIEST, // ì—¬ê¸°ê¹Œì§€ ê¸°ë³¸ ì§ì—… 
     CLASS_EL_BLADE = 205, CLASS_EL_PROTECTOR, CLASS_EL_RANGER = 207, CLASS_EL_ASSASIN, 
     CLASS_EL_MAGE = 209, CLASS_EL_ENCHANTER, CLASS_EL_CLERIC = 211, CLASS_EL_DRUID,
     */
@@ -253,21 +253,21 @@ bool CMagicSkillMng::CheckValidSkillMagic(__TABLE_UPC_SKILL * pSkill) {
             }
         }
 
-        __TABLE_ITEM_BASIC * pItem = NULL;    // ¾ÆÀÌÅÛ Å×ÀÌºí ±¸Á¶Ã¼ Æ÷ÀÎÅÍ..
-        __TABLE_ITEM_EXT *   pItemExt = NULL; // ¾ÆÀÌÅÛ Å×ÀÌºí ±¸Á¶Ã¼ Æ÷ÀÎÅÍ..
+        __TABLE_ITEM_BASIC * pItem = NULL;    // ì•„ì´í…œ í…Œì´ë¸” êµ¬ì¡°ì²´ í¬ì¸í„°..
+        __TABLE_ITEM_EXT *   pItemExt = NULL; // ì•„ì´í…œ í…Œì´ë¸” êµ¬ì¡°ì²´ í¬ì¸í„°..
 
-        pItem = s_pTbl_Items_Basic->Find(pSkill->dwExhaustItem / 1000 * 1000); // ¿­ µ¥ÀÌÅÍ ¾ò±â..
+        pItem = s_pTbl_Items_Basic->Find(pSkill->dwExhaustItem / 1000 * 1000); // ì—´ ë°ì´í„° ì–»ê¸°..
         if (pItem && pItem->byExtIndex >= 0 && pItem->byExtIndex < MAX_ITEM_EXTENSION) {
-            pItemExt = s_pTbl_Items_Exts[pItem->byExtIndex]->Find(pSkill->dwExhaustItem % 1000); // ¿­ µ¥ÀÌÅÍ ¾ò±â..
+            pItemExt = s_pTbl_Items_Exts[pItem->byExtIndex]->Find(pSkill->dwExhaustItem % 1000); // ì—´ ë°ì´í„° ì–»ê¸°..
         }
         if (NULL == pItem || NULL == pItemExt) {
             __ASSERT(0, "NULL Item");
             CLogWriter::Write("MyInfo - Inv - Unknown Item %d, IDNumber", pSkill->dwExhaustItem);
-            return false; // ¾ÆÀÌÅÛÀÌ ¾øÀ¸¸é..
+            return false; // ì•„ì´í…œì´ ì—†ìœ¼ë©´..
         }
 
         if (pItem->byAttachPoint == ITEM_LIMITED_EXHAUST) {
-            // Á¾Á· Ã¼Å©..
+            // ì¢…ì¡± ì²´í¬..
             switch (pItem->byNeedRace) {
             case 0:
                 break;
@@ -279,7 +279,7 @@ bool CMagicSkillMng::CheckValidSkillMagic(__TABLE_UPC_SKILL * pSkill) {
                 break;
             }
 
-            // Á÷¾÷ Ã¼Å©..
+            // ì§ì—… ì²´í¬..
             if (pItem->byNeedClass != 0) {
                 switch (pItem->byNeedClass) {
                 case CLASS_KINDOF_WARRIOR:
@@ -426,12 +426,12 @@ bool CMagicSkillMng::CheckValidSkillMagic(__TABLE_UPC_SKILL * pSkill) {
                 }
             }
 
-            // ¿ä±¸·¹º§ Ã¼Å©..
+            // ìš”êµ¬ë ˆë²¨ ì²´í¬..
             if (CGameBase::s_pPlayer->m_InfoBase.iLevel < pItem->cNeedLevel + pItemExt->siNeedLevel) {
                 return false;
             }
 
-            // ¿ä±¸ ´É·ÂÄ¡ Ã¼Å©..
+            // ìš”êµ¬ ëŠ¥ë ¥ì¹˜ ì²´í¬..
             int iNeedValue;
             iNeedValue = pItem->byNeedStrength;
             if (iNeedValue != 0) {
@@ -484,7 +484,7 @@ bool CMagicSkillMng::CheckValidCondition(int iTargetID, __TABLE_UPC_SKILL * pSki
     __InfoPlayerBase *   pInfoBase = &(s_pPlayer->m_InfoBase);
     __InfoPlayerMySelf * pInfoExt = &(s_pPlayer->m_InfoExt);
 
-    //Á÷¾÷¿¡ ¸Â´Â ½ºÅ³ÀÎÁö ¾Ë¾ÆºÁ¶ó...
+    //ì§ì—…ì— ë§ëŠ” ìŠ¤í‚¬ì¸ì§€ ì•Œì•„ë´ë¼...
     e_Class_Represent Class = CGameProcedure::GetRepresentClass(pInfoBase->eClass);
 
     if (pSkill->iNeedSkill != 0) {
@@ -621,21 +621,21 @@ bool CMagicSkillMng::CheckValidCondition(int iTargetID, __TABLE_UPC_SKILL * pSki
             }
         }
 
-        __TABLE_ITEM_BASIC * pItem = NULL;    // ¾ÆÀÌÅÛ Å×ÀÌºí ±¸Á¶Ã¼ Æ÷ÀÎÅÍ..
-        __TABLE_ITEM_EXT *   pItemExt = NULL; // ¾ÆÀÌÅÛ Å×ÀÌºí ±¸Á¶Ã¼ Æ÷ÀÎÅÍ..
+        __TABLE_ITEM_BASIC * pItem = NULL;    // ì•„ì´í…œ í…Œì´ë¸” êµ¬ì¡°ì²´ í¬ì¸í„°..
+        __TABLE_ITEM_EXT *   pItemExt = NULL; // ì•„ì´í…œ í…Œì´ë¸” êµ¬ì¡°ì²´ í¬ì¸í„°..
 
-        pItem = s_pTbl_Items_Basic->Find(pSkill->dwExhaustItem / 1000 * 1000); // ¿­ µ¥ÀÌÅÍ ¾ò±â..
+        pItem = s_pTbl_Items_Basic->Find(pSkill->dwExhaustItem / 1000 * 1000); // ì—´ ë°ì´í„° ì–»ê¸°..
         if (pItem && pItem->byExtIndex >= 0 && pItem->byExtIndex < MAX_ITEM_EXTENSION) {
-            pItemExt = s_pTbl_Items_Exts[pItem->byExtIndex]->Find(pSkill->dwExhaustItem % 1000); // ¿­ µ¥ÀÌÅÍ ¾ò±â..
+            pItemExt = s_pTbl_Items_Exts[pItem->byExtIndex]->Find(pSkill->dwExhaustItem % 1000); // ì—´ ë°ì´í„° ì–»ê¸°..
         }
         if (NULL == pItem || NULL == pItemExt) {
             __ASSERT(0, "NULL Item");
             CLogWriter::Write("MyInfo - Inv - Unknown Item %d, IDNumber", pSkill->dwExhaustItem);
-            return false; // ¾ÆÀÌÅÛÀÌ ¾øÀ¸¸é..
+            return false; // ì•„ì´í…œì´ ì—†ìœ¼ë©´..
         }
 
         if (pItem->byAttachPoint == ITEM_LIMITED_EXHAUST) {
-            // Á¾Á· Ã¼Å©..
+            // ì¢…ì¡± ì²´í¬..
             switch (pItem->byNeedRace) {
             case 0:
                 break;
@@ -647,7 +647,7 @@ bool CMagicSkillMng::CheckValidCondition(int iTargetID, __TABLE_UPC_SKILL * pSki
                 break;
             }
 
-            // Á÷¾÷ Ã¼Å©..
+            // ì§ì—… ì²´í¬..
             if (pItem->byNeedClass != 0) {
                 switch (pItem->byNeedClass) {
                 case CLASS_KINDOF_WARRIOR:
@@ -794,12 +794,12 @@ bool CMagicSkillMng::CheckValidCondition(int iTargetID, __TABLE_UPC_SKILL * pSki
                 }
             }
 
-            // ¿ä±¸·¹º§ Ã¼Å©..
+            // ìš”êµ¬ë ˆë²¨ ì²´í¬..
             if (CGameBase::s_pPlayer->m_InfoBase.iLevel < pItem->cNeedLevel + pItemExt->siNeedLevel) {
                 return false;
             }
 
-            // ¿ä±¸ ´É·ÂÄ¡ Ã¼Å©..
+            // ìš”êµ¬ ëŠ¥ë ¥ì¹˜ ì²´í¬..
             int iNeedValue;
             iNeedValue = pItem->byNeedStrength;
             if (iNeedValue != 0) {
@@ -916,7 +916,7 @@ bool CMagicSkillMng::CheckValidCondition(int iTargetID, __TABLE_UPC_SKILL * pSki
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
-    // ½ºÅ³ »ç¿ë½Ã ¿ÀºêÁ§Æ® Ã¼Å©
+    // ìŠ¤í‚¬ ì‚¬ìš©ì‹œ ì˜¤ë¸Œì íŠ¸ ì²´í¬
     CPlayerBase * pTarget = m_pGameProcMain->CharacterGetByID(iTargetID, false);
     if (pTarget == NULL) {
         return true;
@@ -1031,7 +1031,7 @@ bool CMagicSkillMng::CheckValidCondition(int iTargetID, __TABLE_UPC_SKILL * pSki
         break;
     }
 
-    // ½ºÅ³ »ç¿ë½Ã ¿ÀºêÁ§Æ® Ã¼Å©
+    // ìŠ¤í‚¬ ì‚¬ìš©ì‹œ ì˜¤ë¸Œì íŠ¸ ì²´í¬
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return true;
@@ -1041,18 +1041,18 @@ bool CMagicSkillMng::CheckValidCondition(int iTargetID, __TABLE_UPC_SKILL * pSki
 ///
 //
 bool CMagicSkillMng::MsgSend_MagicProcess(int iTargetID, __TABLE_UPC_SKILL * pSkill) {
-    //if(m_fRecastTime > 0.0f) return;//recast timeÀÌ ¾ÆÁ÷ ¾ÈµÇ¾ú³×..^^
+    //if(m_fRecastTime > 0.0f) return;//recast timeì´ ì•„ì§ ì•ˆë˜ì—ˆë„¤..^^
     if (s_pPlayer->IsDead()) {
-        return false; // Á×¾î ÀÖ³×.. ^^
+        return false; // ì£½ì–´ ìˆë„¤.. ^^
     }
 
     ///////////////////////////////////////////////////////////////////////////////////
-    // ½ºÅ³ ¾µ Á¶°ÇÀÌ µÇ´ÂÁö °Ë»ç...
+    // ìŠ¤í‚¬ ì“¸ ì¡°ê±´ì´ ë˜ëŠ”ì§€ ê²€ì‚¬...
     if (pSkill->iSelfAnimID1 >= 0) {
         if (IsCasting() || m_fRecastTime > 0.0f) {
             return false;
         }
-    } else //Ä³½ºÆÃµ¿ÀÛ¾ø´Â ¸¶¹ı..
+    } else //ìºìŠ¤íŒ…ë™ì‘ì—†ëŠ” ë§ˆë²•..
     {
         if (m_dwCastingStateNonAction != 0 || m_fRecastTimeNonAction > 0.0f) {
             return false;
@@ -1070,14 +1070,14 @@ bool CMagicSkillMng::MsgSend_MagicProcess(int iTargetID, __TABLE_UPC_SKILL * pSk
     if (!CheckValidCondition(iTargetID, pSkill)) {
         return false;
     }
-    //TRACE("¸¶¹ı¼º°ø state : %d time %.2f\n", s_pPlayer->State(), CN3Base::TimeGet());
-    // ½ºÅ³ ¾µ Á¶°ÇÀÌ µÇ´ÂÁö °Ë»ç ³¡...
+    //TRACE("ë§ˆë²•ì„±ê³µ state : %d time %.2f\n", s_pPlayer->State(), CN3Base::TimeGet());
+    // ìŠ¤í‚¬ ì“¸ ì¡°ê±´ì´ ë˜ëŠ”ì§€ ê²€ì‚¬ ë...
     ///////////////////////////////////////////////////////////////////////////////////
     __InfoPlayerBase *   pInfoBase = &(s_pPlayer->m_InfoBase);
     __InfoPlayerMySelf * pInfoExt = &(s_pPlayer->m_InfoExt);
     CPlayerBase *        pTarget = m_pGameProcMain->CharacterGetByID(iTargetID, false);
 
-    //Áö¿ª¸¶¹ıÅ¸°Ù ÃÊ±âÈ­..
+    //ì§€ì—­ë§ˆë²•íƒ€ê²Ÿ ì´ˆê¸°í™”..
     CGameProcedure::s_pFX->Stop(s_pPlayer->IDNumber(), s_pPlayer->IDNumber(), m_iMyRegionTargetFXID,
                                 m_iMyRegionTargetFXID, true);
     m_dwRegionMagicState = 0;
@@ -1090,9 +1090,9 @@ bool CMagicSkillMng::MsgSend_MagicProcess(int iTargetID, __TABLE_UPC_SKILL * pSk
     }
     //
 
-    //    if(!pTarget) return false;//ÀÓ½Ã ÀÏ´Ü Á×¾î ÀÖ´Ù¸é ¸®ÅÏÀ» ÇÑ´Ù.
+    //    if(!pTarget) return false;//ì„ì‹œ ì¼ë‹¨ ì£½ì–´ ìˆë‹¤ë©´ ë¦¬í„´ì„ í•œë‹¤.
 
-    float fDist = s_pPlayer->Radius() + 1.0f; // °ø°İ °Å¸®Á¦ÇÑ..
+    float fDist = s_pPlayer->Radius() + 1.0f; // ê³µê²© ê±°ë¦¬ì œí•œ..
     if (pTarget) {
         fDist += pTarget->Radius();
     }
@@ -1139,7 +1139,7 @@ bool CMagicSkillMng::MsgSend_MagicProcess(int iTargetID, __TABLE_UPC_SKILL * pSk
             }
             StartSkillMagicAtTargetPacket(pSkill, (short)pTarget->IDNumber());
             return true;
-        } else if (pInfo) //°Å¸®¿¡ »ó°ü¾øÀÌ ÆÄÆ¼¿øµé¿¡°Ô ¾µ¶§...
+        } else if (pInfo) //ê±°ë¦¬ì— ìƒê´€ì—†ì´ íŒŒí‹°ì›ë“¤ì—ê²Œ ì“¸ë•Œ...
         {
             StartSkillMagicAtTargetPacket(pSkill, (short)pInfo->iID);
             return true;
@@ -1191,9 +1191,9 @@ bool CMagicSkillMng::MsgSend_MagicProcess(int iTargetID, __TABLE_UPC_SKILL * pSk
     case SKILLMAGIC_TARGET_AREA_ALL: {
         m_dwRegionMagicState = 1;
         m_dwRegionSkill = (*pSkill);
-        //            CGameProcedure::s_pFX->TriggerBundle(s_pPlayer->IDNumber(), 0, m_iMyRegionTargetFXID, m_pGameProcMain->m_vMouseLBClickedPos, m_iMyRegionTargetFXID);    //Àü°İ¹«±â...
+        //            CGameProcedure::s_pFX->TriggerBundle(s_pPlayer->IDNumber(), 0, m_iMyRegionTargetFXID, m_pGameProcMain->m_vMouseLBClickedPos, m_iMyRegionTargetFXID);    //ì „ê²©ë¬´ê¸°...
         CGameProcedure::s_pFX->TriggerBundle(s_pPlayer->IDNumber(), 0, m_iMyRegionTargetFXID,
-                                             m_pGameProcMain->m_vMouseSkillPos, m_iMyRegionTargetFXID); //Àü°İ¹«±â...
+                                             m_pGameProcMain->m_vMouseSkillPos, m_iMyRegionTargetFXID); //ì „ê²©ë¬´ê¸°...
         return true;
     }
     case SKILLMAGIC_TARGET_DEAD_FRIEND_ONLY: {
@@ -1214,7 +1214,7 @@ bool CMagicSkillMng::MsgSend_MagicProcess(int iTargetID, __TABLE_UPC_SKILL * pSk
 }
 
 bool CMagicSkillMng::CheckValidDistance(__TABLE_UPC_SKILL * pSkill, __Vector3 vTargetPos, float fTargetRadius) {
-    float fDist = (vTargetPos - s_pPlayer->Position()).Magnitude(); // °ø°İ °Å¸®¸¦ ±¸ÇÏ°í..
+    float fDist = (vTargetPos - s_pPlayer->Position()).Magnitude(); // ê³µê²© ê±°ë¦¬ë¥¼ êµ¬í•˜ê³ ..
 
     if (pSkill->iValidDist > 0 && fDist <= (pSkill->iValidDist + fTargetRadius + 1.0f)) {
         return true;
@@ -1231,7 +1231,7 @@ bool CMagicSkillMng::CheckValidDistance(__TABLE_UPC_SKILL * pSkill, __Vector3 vT
         }
     }
 
-    //È­»ì½ò¶§....
+    //í™”ì‚´ì ë•Œ....
     if (pSkill->dw1stTableType == 2 || pSkill->dw2ndTableType == 2) {
         __IconItemSkill * pItemIcon1 = m_pGameProcMain->m_pUIInventory->m_pMySlot[ITEM_SLOT_HAND_LEFT];
         __IconItemSkill * pItemIcon2 = m_pGameProcMain->m_pUIInventory->m_pMySlot[ITEM_SLOT_HAND_RIGHT];
@@ -1286,7 +1286,7 @@ void CMagicSkillMng::StartSkillMagicAtPosPacket(__TABLE_UPC_SKILL * pSkill, __Ve
         }
         return;
     }
-    m_pGameProcMain->CommandSitDown(false, false); // È¤½Ã¶óµµ ¾É¾ÆÀÖÀ½ ÀÏÀ¸ÄÑ ¼¼¿î´Ù..
+    m_pGameProcMain->CommandSitDown(false, false); // í˜¹ì‹œë¼ë„ ì•‰ì•„ìˆìŒ ì¼ìœ¼ì¼œ ì„¸ìš´ë‹¤..
 
     if (pSkill->iCastTime == 0) {
         char        szBuff[80];
@@ -1311,7 +1311,7 @@ void CMagicSkillMng::StartSkillMagicAtPosPacket(__TABLE_UPC_SKILL * pSkill, __Ve
         CAPISocket::MP_AddShort(byBuff, iOffset, 0);
         CAPISocket::MP_AddShort(byBuff, iOffset, 0);
 
-        CGameProcedure::s_pSocket->Send(byBuff, iOffset); // º¸³½´Ù..
+        CGameProcedure::s_pSocket->Send(byBuff, iOffset); // ë³´ë‚¸ë‹¤..
         return;
     }
 
@@ -1365,7 +1365,7 @@ void CMagicSkillMng::StartSkillMagicAtPosPacket(__TABLE_UPC_SKILL * pSkill, __Ve
     CAPISocket::MP_AddShort(byBuff, iOffset, 0);
     CAPISocket::MP_AddShort(byBuff, iOffset, 0);
 
-    CGameProcedure::s_pSocket->Send(byBuff, iOffset); // º¸³½´Ù..
+    CGameProcedure::s_pSocket->Send(byBuff, iOffset); // ë³´ë‚¸ë‹¤..
 
     if (pSkill->iTarget == SKILLMAGIC_TARGET_ENEMY_ONLY) {
         m_pGameProcMain->PlayBGM_Battle();
@@ -1395,7 +1395,7 @@ void CMagicSkillMng::StartSkillMagicAtTargetPacket(__TABLE_UPC_SKILL * pSkill, s
         return;
     }
 
-    m_pGameProcMain->CommandSitDown(false, false); // È¤½Ã¶óµµ ¾É¾ÆÀÖÀ½ ÀÏÀ¸ÄÑ ¼¼¿î´Ù..
+    m_pGameProcMain->CommandSitDown(false, false); // í˜¹ì‹œë¼ë„ ì•‰ì•„ìˆìŒ ì¼ìœ¼ì¼œ ì„¸ìš´ë‹¤..
 
     if ((pSkill->dw1stTableType == 1 || pSkill->dw2ndTableType == 1) && pSkill->iCastTime == 0) {
         CPlayerBase * pTarget = m_pGameProcMain->CharacterGetByID(TargetID, true);
@@ -1403,19 +1403,19 @@ void CMagicSkillMng::StartSkillMagicAtTargetPacket(__TABLE_UPC_SKILL * pSkill, s
             return;
         }
 
-        //¹Ù·Î skill·Î µé¾î°¡..^^
-        //casting packetÀº º¸³»Áö ¾Ê°í..¹Ù·Î effect packetÀ» º¸³½´Ù..
+        //ë°”ë¡œ skillë¡œ ë“¤ì–´ê°€..^^
+        //casting packetì€ ë³´ë‚´ì§€ ì•Šê³ ..ë°”ë¡œ effect packetì„ ë³´ë‚¸ë‹¤..
 
-        //±â¼ú ¾Ö´Ï¸ŞÀÌ¼Ç µå°¡...=^^=
-        //È¿°úÀÖÀ¸¸é °°ÀÌ µå°¡..
+        //ê¸°ìˆ  ì• ë‹ˆë©”ì´ì…˜ ë“œê°€...=^^=
+        //íš¨ê³¼ìˆìœ¼ë©´ ê°™ì´ ë“œê°€..
         __TABLE_UPC_SKILL_TYPE_1 * pType1 = m_pTbl_Type_1->Find(pSkill->dwID);
         if (!pType1) {
             return;
         }
 
-        // °Ë±â »öÀ» ¹Ù²Ù¾î ÁØ´Ù..
-        //        D3DCOLOR crTrace = TraceColorGet(pSkill); // ½ºÅ³ÀÇ Á¾·ù¿¡ µû¶ó °Ë±âÀÇ »öÀ» Á¤ÇÑ´Ù..
-        //        s_pPlayer->PlugTraceColorRemake(crTrace); // °Ë±â »ö Àû¿ë..
+        // ê²€ê¸° ìƒ‰ì„ ë°”ê¾¸ì–´ ì¤€ë‹¤..
+        //        D3DCOLOR crTrace = TraceColorGet(pSkill); // ìŠ¤í‚¬ì˜ ì¢…ë¥˜ì— ë”°ë¼ ê²€ê¸°ì˜ ìƒ‰ì„ ì •í•œë‹¤..
+        //        s_pPlayer->PlugTraceColorRemake(crTrace); // ê²€ê¸° ìƒ‰ ì ìš©..
 
         s_pPlayer->RotateTo(pTarget);
         s_pPlayer->m_iSkillStep = 1;
@@ -1427,7 +1427,7 @@ void CMagicSkillMng::StartSkillMagicAtTargetPacket(__TABLE_UPC_SKILL * pSkill, s
         m_iComboSkillID = pSkill->dwID;
 
         for (int i = 0; i < pType1->iNumCombo; i++) {
-            bool bImmediately = ((0 == i) ? true : false); // Ã³À½°Ç ¹Ù·Î ³Ö´Â´Ù..
+            bool bImmediately = ((0 == i) ? true : false); // ì²˜ìŒê±´ ë°”ë¡œ ë„£ëŠ”ë‹¤..
             s_pPlayer->AnimationAdd((e_Ani)pType1->iAct[i], bImmediately);
         }
 
@@ -1453,7 +1453,7 @@ void CMagicSkillMng::StartSkillMagicAtTargetPacket(__TABLE_UPC_SKILL * pSkill, s
         CAPISocket::MP_AddShort(byBuff, iOffset, 0);
         CAPISocket::MP_AddShort(byBuff, iOffset, 0);
 
-        CGameProcedure::s_pSocket->Send(byBuff, iOffset); // º¸³½´Ù..
+        CGameProcedure::s_pSocket->Send(byBuff, iOffset); // ë³´ë‚¸ë‹¤..
         return;
     }
 
@@ -1480,12 +1480,12 @@ void CMagicSkillMng::StartSkillMagicAtTargetPacket(__TABLE_UPC_SKILL * pSkill, s
         CAPISocket::MP_AddShort(byBuff, iOffset, 0);
         CAPISocket::MP_AddShort(byBuff, iOffset, 0);
 
-        CGameProcedure::s_pSocket->Send(byBuff, iOffset); // º¸³½´Ù..
+        CGameProcedure::s_pSocket->Send(byBuff, iOffset); // ë³´ë‚¸ë‹¤..
         return;
     }
 
     /////////////////////////////////////////////////////////////
-    //³»²« ÆĞÅ¶ º¸³»¸é¼­ ±×³É Ã³¸®..
+    //ë‚´ê»€ íŒ¨í‚· ë³´ë‚´ë©´ì„œ ê·¸ëƒ¥ ì²˜ë¦¬..
     s_pPlayer->m_dwMagicID = pSkill->dwID;
     s_pPlayer->m_fCastingTime = 0.0f;
     m_iTarget = TargetID;
@@ -1533,7 +1533,7 @@ void CMagicSkillMng::StartSkillMagicAtTargetPacket(__TABLE_UPC_SKILL * pSkill, s
     CAPISocket::MP_AddShort(byBuff, iOffset, 0);
     CAPISocket::MP_AddShort(byBuff, iOffset, 0);
 
-    CGameProcedure::s_pSocket->Send(byBuff, iOffset); // º¸³½´Ù..
+    CGameProcedure::s_pSocket->Send(byBuff, iOffset); // ë³´ë‚¸ë‹¤..
 
     if (pSkill->iTarget == SKILLMAGIC_TARGET_ENEMY_ONLY) {
         m_pGameProcMain->PlayBGM_Battle();
@@ -1543,7 +1543,7 @@ void CMagicSkillMng::StartSkillMagicAtTargetPacket(__TABLE_UPC_SKILL * pSkill, s
 }
 
 //
-//    ³»°¡ Ä³½ºÆÃ ÁßÀÌ¸é ÄÉ½ºÆÃ Ã³¸®ÇØ¾ßµÇ°í, flyingÈ¿°úµµ Ã³¸®..
+//    ë‚´ê°€ ìºìŠ¤íŒ… ì¤‘ì´ë©´ ì¼€ìŠ¤íŒ… ì²˜ë¦¬í•´ì•¼ë˜ê³ , flyingíš¨ê³¼ë„ ì²˜ë¦¬..
 //
 void CMagicSkillMng::Tick() {
     m_fRecastTime -= CN3Base::s_fSecPerFrm;
@@ -1609,7 +1609,7 @@ void CMagicSkillMng::Tick() {
             CAPISocket::MP_AddShort(byBuff, iOffset, 0);
             CAPISocket::MP_AddShort(byBuff, iOffset, 0);
 
-            CGameProcedure::s_pSocket->Send(byBuff, iOffset); // º¸³½´Ù..
+            CGameProcedure::s_pSocket->Send(byBuff, iOffset); // ë³´ë‚¸ë‹¤..
 
             m_dwCastingStateNonAction = 0;
             m_fCastTimeNonAction = 0.0f;
@@ -1641,7 +1641,7 @@ void CMagicSkillMng::SuccessCast(__TABLE_UPC_SKILL * pSkill, CPlayerBase * pTarg
         CAPISocket::MP_AddByte(byBuff, iOffset, (BYTE)N3_SP_MAGIC_EFFECTING);
     } else {
         CAPISocket::MP_AddByte(byBuff, iOffset, (BYTE)N3_SP_MAGIC_FLYING);
-        if (pSkill->dw1stTableType == 2 || pSkill->dw2ndTableType == 2) //È­»ì½î±â..
+        if (pSkill->dw1stTableType == 2 || pSkill->dw2ndTableType == 2) //í™”ì‚´ì˜ê¸°..
         {
             int                        iNumArrow = 1;
             __TABLE_UPC_SKILL_TYPE_2 * pType2 = m_pTbl_Type_2->Find(pSkill->dwID);
@@ -1656,11 +1656,11 @@ void CMagicSkillMng::SuccessCast(__TABLE_UPC_SKILL * pSkill, CPlayerBase * pTarg
     }
 
     if (pSkill->dw1stTableType == 1 || pSkill->dw2ndTableType == 1) {
-        //¹Ù·Î skill·Î µé¾î°¡..^^
-        //casting packetÀº º¸³»Áö ¾Ê°í..¹Ù·Î effect packetÀ» º¸³½´Ù..
+        //ë°”ë¡œ skillë¡œ ë“¤ì–´ê°€..^^
+        //casting packetì€ ë³´ë‚´ì§€ ì•Šê³ ..ë°”ë¡œ effect packetì„ ë³´ë‚¸ë‹¤..
 
-        //±â¼ú ¾Ö´Ï¸ŞÀÌ¼Ç µå°¡...=^^=
-        //È¿°úÀÖÀ¸¸é °°ÀÌ µå°¡..
+        //ê¸°ìˆ  ì• ë‹ˆë©”ì´ì…˜ ë“œê°€...=^^=
+        //íš¨ê³¼ìˆìœ¼ë©´ ê°™ì´ ë“œê°€..
         __TABLE_UPC_SKILL_TYPE_1 * pType1 = m_pTbl_Type_1->Find(pSkill->dwID);
         if (!pType1) {
             return;
@@ -1673,7 +1673,7 @@ void CMagicSkillMng::SuccessCast(__TABLE_UPC_SKILL * pSkill, CPlayerBase * pTarg
         m_iNumStep = pType1->iNumCombo;
 
         for (int i = 0; i < pType1->iNumCombo; i++) {
-            bool bImmediately = ((0 == i) ? true : false); // Ã³À½°Ç ¹Ù·Î ³Ö´Â´Ù..
+            bool bImmediately = ((0 == i) ? true : false); // ì²˜ìŒê±´ ë°”ë¡œ ë„£ëŠ”ë‹¤..
             s_pPlayer->AnimationAdd((const e_Ani)pType1->iAct[i], bImmediately);
         }
 
@@ -1699,7 +1699,7 @@ void CMagicSkillMng::SuccessCast(__TABLE_UPC_SKILL * pSkill, CPlayerBase * pTarg
         CAPISocket::MP_AddShort(byBuff, iOffset, 0);
         CAPISocket::MP_AddShort(byBuff, iOffset, 0);
 
-        CGameProcedure::s_pSocket->Send(byBuff, iOffset); // º¸³½´Ù..
+        CGameProcedure::s_pSocket->Send(byBuff, iOffset); // ë³´ë‚¸ë‹¤..
     } else {
         char        szBuff[80];
         std::string buff;
@@ -1718,15 +1718,15 @@ void CMagicSkillMng::SuccessCast(__TABLE_UPC_SKILL * pSkill, CPlayerBase * pTarg
         CAPISocket::MP_AddShort(byBuff, iOffset, (short)m_vTargetPos.y);
         CAPISocket::MP_AddShort(byBuff, iOffset, (short)m_vTargetPos.z);
 
-        CAPISocket::MP_AddShort(byBuff, iOffset, (short)idx); //flyingÀÌ¶ó¸é idx...
+        CAPISocket::MP_AddShort(byBuff, iOffset, (short)idx); //flyingì´ë¼ë©´ idx...
         CAPISocket::MP_AddShort(byBuff, iOffset, 0);
         CAPISocket::MP_AddShort(byBuff, iOffset, 0);
 
-        CGameProcedure::s_pSocket->Send(byBuff, iOffset); // º¸³½´Ù..
+        CGameProcedure::s_pSocket->Send(byBuff, iOffset); // ë³´ë‚¸ë‹¤..
 
         if (pSkill->iFlyingFX != 0) {
             ////////////////////////////////////////////////////
-            //flyingÃ³¸®ÇÏ±â..
+            //flyingì²˜ë¦¬í•˜ê¸°..
             int SourceID = s_pPlayer->IDNumber();
 
             s_pPlayer->m_iMagicAni = pSkill->iSelfAnimID2;
@@ -1746,7 +1746,7 @@ void CMagicSkillMng::SuccessCast(__TABLE_UPC_SKILL * pSkill, CPlayerBase * pTarg
             CGameProcedure::s_pFX->Stop(SourceID, SourceID, pSkill->iSelfFX1, -1, true);
             CGameProcedure::s_pFX->Stop(SourceID, SourceID, pSkill->iSelfFX1, -2, true);
 
-            if (pSkill->dw1stTableType == 2 || pSkill->dw2ndTableType == 2) //È­»ì½î±â..
+            if (pSkill->dw1stTableType == 2 || pSkill->dw2ndTableType == 2) //í™”ì‚´ì˜ê¸°..
             {
                 short Data[6] = {m_vTargetPos.x, m_vTargetPos.y, m_vTargetPos.z, idx, 0, 0};
                 FlyingType2(pSkill, SourceID, m_iTarget, Data);
@@ -1803,20 +1803,20 @@ void CMagicSkillMng::FailCast(__TABLE_UPC_SKILL * pSkill) {
     CAPISocket::MP_AddShort(byBuff, iOffset, 0);
     CAPISocket::MP_AddShort(byBuff, iOffset, 0);
 
-    CGameProcedure::s_pSocket->Send(byBuff, iOffset); // º¸³½´Ù..
+    CGameProcedure::s_pSocket->Send(byBuff, iOffset); // ë³´ë‚¸ë‹¤..
 }
 
 void CMagicSkillMng::ProcessCasting() {
-    //Ä³½ºÆÃ Ã³¸®..
+    //ìºìŠ¤íŒ… ì²˜ë¦¬..
     if (s_pPlayer->m_dwMagicID != 0xffffffff) {
         __TABLE_UPC_SKILL * pSkill = s_pTbl_Skill->Find(s_pPlayer->m_dwMagicID);
 
         CPlayerBase * pTarget = m_pGameProcMain->CharacterGetByID(m_iTarget, true);
         if (pTarget) {
-            s_pPlayer->RotateTo(pTarget); // ÀÏ´Ü Å¸°ÙÀ» ÇâÇØ ¹æÇâÀ» µ¹¸°´Ù..
+            s_pPlayer->RotateTo(pTarget); // ì¼ë‹¨ íƒ€ê²Ÿì„ í–¥í•´ ë°©í–¥ì„ ëŒë¦°ë‹¤..
         }
 
-        //Ä³½ºÆÃ ¼º°øÀûÀ¸·Î ¿Ï·á...
+        //ìºìŠ¤íŒ… ì„±ê³µì ìœ¼ë¡œ ì™„ë£Œ...
         float fCastingTime = ((float)pSkill->iCastTime) / 10.0f * s_pPlayer->m_fAttackDelta;
 
         if (pSkill) {
@@ -1827,7 +1827,7 @@ void CMagicSkillMng::ProcessCasting() {
                 bSuccess = true;
             }
 
-            //Ä³½ºÆÃ ½ÇÆĞ...
+            //ìºìŠ¤íŒ… ì‹¤íŒ¨...
             if (bSuccess == false && (s_pPlayer->State() != PSA_SPELLMAGIC || s_pPlayer->StateMove() != PSM_STOP)) {
                 FailCast(pSkill);
             }
@@ -1838,10 +1838,10 @@ void CMagicSkillMng::ProcessCasting() {
 }
 
 void CMagicSkillMng::ProcessCombo() {
-    //¸¸¾à ÄŞº¸µ¿ÀÛÁß ÇÏ³ªÀÇ µ¿ÀÛÀÌ ³¡³µ´Ù¸é...=^^=
+    //ë§Œì•½ ì½¤ë³´ë™ì‘ì¤‘ í•˜ë‚˜ì˜ ë™ì‘ì´ ëë‚¬ë‹¤ë©´...=^^=
     if (m_fComboTime > (s_pPlayer->m_fAttackDelta * 1.2f)) //s_pPlayer->IsAnimationChange())
     {
-        if (m_iCurrStep == m_iNumStep) //ÄŞº¸°ø°İ ³¡³µ´Ù..
+        if (m_iCurrStep == m_iNumStep) //ì½¤ë³´ê³µê²© ëë‚¬ë‹¤..
         {
             __TABLE_UPC_SKILL * pSkill = s_pTbl_Skill->Find(m_iComboSkillID);
             if (pSkill) {
@@ -1862,7 +1862,7 @@ void CMagicSkillMng::MobCasting(__TABLE_UPC_SKILL * pSkill, int iSourceID) {
         return;
     }
 
-    //Ä³½ºÆÃ ¼º°øÀûÀ¸·Î ¿Ï·á...
+    //ìºìŠ¤íŒ… ì„±ê³µì ìœ¼ë¡œ ì™„ë£Œ...
     BYTE byBuff[32];
     int  iOffset = 0;
     CAPISocket::MP_AddByte(byBuff, iOffset, (BYTE)N3_MAGIC);
@@ -1872,7 +1872,7 @@ void CMagicSkillMng::MobCasting(__TABLE_UPC_SKILL * pSkill, int iSourceID) {
         CAPISocket::MP_AddByte(byBuff, iOffset, (BYTE)N3_SP_MAGIC_EFFECTING);
     } else {
         CAPISocket::MP_AddByte(byBuff, iOffset, (BYTE)N3_SP_MAGIC_FLYING);
-        if (pSkill->dw1stTableType == 2 || pSkill->dw2ndTableType == 2) //È­»ì½î±â..
+        if (pSkill->dw1stTableType == 2 || pSkill->dw2ndTableType == 2) //í™”ì‚´ì˜ê¸°..
         {
             int                        iNumArrow = 1;
             __TABLE_UPC_SKILL_TYPE_2 * pType2 = m_pTbl_Type_2->Find(pSkill->dwID);
@@ -1894,11 +1894,11 @@ void CMagicSkillMng::MobCasting(__TABLE_UPC_SKILL * pSkill, int iSourceID) {
     CAPISocket::MP_AddShort(byBuff, iOffset, (short)m_vTargetPos.y);
     CAPISocket::MP_AddShort(byBuff, iOffset, (short)m_vTargetPos.z);
 
-    CAPISocket::MP_AddShort(byBuff, iOffset, (short)idx); //flyingÀÌ¶ó¸é idx...
+    CAPISocket::MP_AddShort(byBuff, iOffset, (short)idx); //flyingì´ë¼ë©´ idx...
     CAPISocket::MP_AddShort(byBuff, iOffset, 0);
     CAPISocket::MP_AddShort(byBuff, iOffset, 0);
 
-    CGameProcedure::s_pSocket->Send(byBuff, iOffset); // º¸³½´Ù..
+    CGameProcedure::s_pSocket->Send(byBuff, iOffset); // ë³´ë‚¸ë‹¤..
 }
 
 void CMagicSkillMng::MsgRecv_Casting(DataPack * pDataPack, int & iOffset) {
@@ -1935,9 +1935,9 @@ void CMagicSkillMng::MsgRecv_Casting(DataPack * pDataPack, int & iOffset) {
         return;
     }
 
-    //³»°¡ ¾µ¶§...
+    //ë‚´ê°€ ì“¸ë•Œ...
     if (iSourceID == s_pPlayer->IDNumber()) {
-        m_pGameProcMain->CommandSitDown(false, false); // È¤½Ã¶óµµ ¾É¾ÆÀÖÀ½ ÀÏÀ¸ÄÑ ¼¼¿î´Ù..
+        m_pGameProcMain->CommandSitDown(false, false); // í˜¹ì‹œë¼ë„ ì•‰ì•„ìˆìŒ ì¼ìœ¼ì¼œ ì„¸ìš´ë‹¤..
 
         s_pPlayer->m_dwMagicID = dwMagicID;
         s_pPlayer->m_fCastingTime = 0.0f;
@@ -1945,9 +1945,9 @@ void CMagicSkillMng::MsgRecv_Casting(DataPack * pDataPack, int & iOffset) {
         m_vTargetPos = vTargetPos;
     }
 
-    //¸ó½ºÅÍ°¡ ³ª¸¦ ÇâÇØ ½ò¶§...
+    //ëª¬ìŠ¤í„°ê°€ ë‚˜ë¥¼ í–¥í•´ ì ë•Œ...
     if (s_pOPMgr->NPCGetByID(iSourceID, true)) {
-        pPlayer->RotateTo((CPlayerBase *)s_pPlayer); // ÀÌ³ÑÀ» ¹Ù¶óº»´Ù.
+        pPlayer->RotateTo((CPlayerBase *)s_pPlayer); // ì´ë„˜ì„ ë°”ë¼ë³¸ë‹¤.
         pPlayer->m_iIDTarget = iTargetID;
         pPlayer->ActionMove(PSM_STOP);
         pPlayer->m_iMagicAni = pSkill->iSelfAnimID1;
@@ -2040,7 +2040,7 @@ void CMagicSkillMng::MsgRecv_Flying(DataPack * pDataPack, int & iOffset) {
     CGameProcedure::s_pFX->Stop(iSourceID, iSourceID, pSkill->iSelfFX1, -1, true);
     CGameProcedure::s_pFX->Stop(iSourceID, iSourceID, pSkill->iSelfFX1, -2, true);
 
-    if (pSkill->dw1stTableType == 2 || pSkill->dw2ndTableType == 2) //È­»ì½î±â..
+    if (pSkill->dw1stTableType == 2 || pSkill->dw2ndTableType == 2) //í™”ì‚´ì˜ê¸°..
     {
         FlyingType2(pSkill, iSourceID, iTargetID, Data);
         return;
@@ -2087,7 +2087,7 @@ void CMagicSkillMng::MsgRecv_Effecting(DataPack * pDataPack, int & iOffset) {
     ////common.....//////////////////////////////////////////////////////////////
 
     if (pPlayer && iSourceID != s_pPlayer->IDNumber() && pPlayer->State() == PSA_SPELLMAGIC) {
-        pPlayer->m_iMagicAni = pSkill->iSelfAnimID2; //È­»ì³õ´Â µ¿ÀÛ...
+        pPlayer->m_iMagicAni = pSkill->iSelfAnimID2; //í™”ì‚´ë†“ëŠ” ë™ì‘...
         pPlayer->m_fCastFreezeTime = 0.0f;
         pPlayer->Action(PSA_SPELLMAGIC, false);
         pPlayer->m_iSkillStep = 0;
@@ -2097,7 +2097,7 @@ void CMagicSkillMng::MsgRecv_Effecting(DataPack * pDataPack, int & iOffset) {
     CGameProcedure::s_pFX->Stop(iSourceID, iSourceID, pSkill->iSelfFX1, -2, true);
 
     if (pSkill->dw1stTableType == 1 ||
-        pSkill->dw2ndTableType == 1) //    Å¸ÀÔ1ÀÎ°æ¿ì °Á ½ºÅ³ÀÌ¾ß..ÄŞº¸µµ ²¸ÀÖ¾î..Á» Æ¯º°ÇÏ°Ô °ü¸®ÇØ¾ßµÅ..
+        pSkill->dw2ndTableType == 1) //    íƒ€ì…1ì¸ê²½ìš° ê± ìŠ¤í‚¬ì´ì•¼..ì½¤ë³´ë„ ê»´ìˆì–´..ì¢€ íŠ¹ë³„í•˜ê²Œ ê´€ë¦¬í•´ì•¼ë¼..
     {
         if (!EffectingType1(dwMagicID, iSourceID, iTargetID, Data)) {
             return;
@@ -2118,7 +2118,7 @@ void CMagicSkillMng::MsgRecv_Effecting(DataPack * pDataPack, int & iOffset) {
 
     if (pSkill->iFlyingFX != 0 &&
         (pSkill->iTarget < SKILLMAGIC_TARGET_AREA_ENEMY || pSkill->iTarget > SKILLMAGIC_TARGET_AREA)) {
-        return; //ÇÃ¶óÀ×ÀÌ ÀÖ´Â ¸¶¹ıÀÇ °æ¿ì´Â È¿°ú¸¦ fail¿¡¼­ Ã³¸®ÇÑ´Ù..
+        return; //í”Œë¼ì‰ì´ ìˆëŠ” ë§ˆë²•ì˜ ê²½ìš°ëŠ” íš¨ê³¼ë¥¼ failì—ì„œ ì²˜ë¦¬í•œë‹¤..
     }
 
     if (iTargetID == -1) {
@@ -2172,7 +2172,7 @@ void CMagicSkillMng::MsgRecv_Fail(DataPack * pDataPack, int & iOffset) {
 
         if (iSourceID == s_pPlayer->IDNumber()) {
             s_pPlayer->m_dwMagicID = 0xffffffff;
-            m_pGameProcMain->CommandSitDown(false, false); // È¤½Ã¶óµµ ¾É¾ÆÀÖÀ½ ÀÏÀ¸ÄÑ ¼¼¿î´Ù..
+            m_pGameProcMain->CommandSitDown(false, false); // í˜¹ì‹œë¼ë„ ì•‰ì•„ìˆìŒ ì¼ìœ¼ì¼œ ì„¸ìš´ë‹¤..
 
             std::string buff;
             ::_LoadStringFromResource(IDS_MSG_FMT_TARGET_ATTACK_FAILED, buff);
@@ -2194,7 +2194,7 @@ void CMagicSkillMng::MsgRecv_Fail(DataPack * pDataPack, int & iOffset) {
 
         if (iSourceID == s_pPlayer->IDNumber()) {
             s_pPlayer->m_dwMagicID = 0xffffffff;
-            m_pGameProcMain->CommandSitDown(false, false); // È¤½Ã¶óµµ ¾É¾ÆÀÖÀ½ ÀÏÀ¸ÄÑ ¼¼¿î´Ù..
+            m_pGameProcMain->CommandSitDown(false, false); // í˜¹ì‹œë¼ë„ ì•‰ì•„ìˆìŒ ì¼ìœ¼ì¼œ ì„¸ìš´ë‹¤..
 
             std::string buff;
             ::_LoadStringFromResource(IDS_SKILL_FAIL_EFFECTING, buff);
@@ -2205,7 +2205,7 @@ void CMagicSkillMng::MsgRecv_Fail(DataPack * pDataPack, int & iOffset) {
         return;
     }
 
-    if (Data[3] == SKILLMAGIC_FAIL_CASTING) //    Ä³½ºÆÃ ½ÇÆĞÀÎ °ÍÀÌ´Ù..
+    if (Data[3] == SKILLMAGIC_FAIL_CASTING) //    ìºìŠ¤íŒ… ì‹¤íŒ¨ì¸ ê²ƒì´ë‹¤..
     {
         CGameProcedure::s_pFX->Stop(iSourceID, iSourceID, pSkill->iSelfFX1, -1, true);
         CGameProcedure::s_pFX->Stop(iSourceID, iSourceID, pSkill->iSelfFX1, -2, true);
@@ -2217,7 +2217,7 @@ void CMagicSkillMng::MsgRecv_Fail(DataPack * pDataPack, int & iOffset) {
 
         if (iSourceID == s_pPlayer->IDNumber()) {
             s_pPlayer->m_dwMagicID = 0xffffffff;
-            m_pGameProcMain->CommandSitDown(false, false); // È¤½Ã¶óµµ ¾É¾ÆÀÖÀ½ ÀÏÀ¸ÄÑ ¼¼¿î´Ù..
+            m_pGameProcMain->CommandSitDown(false, false); // í˜¹ì‹œë¼ë„ ì•‰ì•„ìˆìŒ ì¼ìœ¼ì¼œ ì„¸ìš´ë‹¤..
 
             std::string buff;
             ::_LoadStringFromResource(IDS_SKILL_FAIL_CASTING, buff);
@@ -2226,7 +2226,7 @@ void CMagicSkillMng::MsgRecv_Fail(DataPack * pDataPack, int & iOffset) {
         return;
     }
 
-    if (Data[3] == SKILLMAGIC_FAIL_KILLFLYING) //flyingÈ¿°ú Á×ÀÌ°í..±×ÀÚ¸®¿¡ Å¸°ÙÈ¿°ú ÇØ¶ó..
+    if (Data[3] == SKILLMAGIC_FAIL_KILLFLYING) //flyingíš¨ê³¼ ì£½ì´ê³ ..ê·¸ìë¦¬ì— íƒ€ê²Ÿíš¨ê³¼ í•´ë¼..
     {
         if (iSourceID == s_pPlayer->IDNumber() ||
             ((iTargetID == s_pPlayer->IDNumber() && s_pOPMgr->NPCGetByID(iSourceID, false) != NULL))) {
@@ -2260,7 +2260,7 @@ void CMagicSkillMng::MsgRecv_Fail(DataPack * pDataPack, int & iOffset) {
         return;
     }
 
-    if (Data[3] == SKILLMAGIC_FAIL_ENDCOMBO) //combo³¡³µ´Ù.
+    if (Data[3] == SKILLMAGIC_FAIL_ENDCOMBO) //comboëë‚¬ë‹¤.
     {
         if (pPlayer) {
             pPlayer->m_iSkillStep = 0;
@@ -2268,12 +2268,12 @@ void CMagicSkillMng::MsgRecv_Fail(DataPack * pDataPack, int & iOffset) {
         return;
     }
 
-    //±×¿Ü stopÀÌ ÇÊ¿äÇÑ°Ô ÀÖÀ»²¨¾ß..
-    //±×¶©...
+    //ê·¸ì™¸ stopì´ í•„ìš”í•œê²Œ ìˆì„êº¼ì•¼..
+    //ê·¸ë•...
     //CGameProcedure::s_pFX->Stop(iSourceID, iTargetID, pSkill->iSelfFX, 0);
 }
 
-//type4 ÇØÁ¦..
+//type4 í•´ì œ..
 void CMagicSkillMng::MsgRecv_BuffType(DataPack * pDataPack, int & iOffset) {
     int                  iBuffType = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
     __InfoPlayerBase *   pInfoBase = &(s_pPlayer->m_InfoBase);
@@ -2313,7 +2313,7 @@ void CMagicSkillMng::MsgRecv_BuffType(DataPack * pDataPack, int & iOffset) {
     case BUFFTYPE_SPEED:
         s_pPlayer->m_fMoveDelta /= m_fSpeed;
         m_fSpeed = 1.0f;
-        //TRACE("½ºÇÁ¸°Æ® ÇØÁ¦. MoveDelta = %f\n", s_pPlayer->m_fMoveDelta);
+        //TRACE("ìŠ¤í”„ë¦°íŠ¸ í•´ì œ. MoveDelta = %f\n", s_pPlayer->m_fMoveDelta);
         break;
     case BUFFTYPE_ABILITY:
         pInfoExt->iStrength_Delta -= m_iStr;
@@ -2380,11 +2380,11 @@ void CMagicSkillMng::FlyingType2(__TABLE_UPC_SKILL * pSkill, int iSourceID, int 
     int LeftItem = pPlayer->ItemClass_LeftHand() / 10;
     int RightItem = pPlayer->ItemClass_RightHand() / 10;
 
-    if (LeftItem == (ITEM_CLASS_BOW / 10)) //È°ÀÌ´å..
+    if (LeftItem == (ITEM_CLASS_BOW / 10)) //í™œì´ë‹·..
     {
         __Vector3 vPos = pPlayer->Position();
         CN3Base::s_SndMgr.PlayOnceAndRelease(ID_SOUND_SKILL_THROW_ARROW, &vPos);
-    } else if (RightItem == (ITEM_CLASS_JAVELIN / 10)) //ÅõÃ¢ÀÌ´å...pla
+    } else if (RightItem == (ITEM_CLASS_JAVELIN / 10)) //íˆ¬ì°½ì´ë‹·...pla
     {
     }
 
@@ -2405,7 +2405,7 @@ void CMagicSkillMng::FlyingType2(__TABLE_UPC_SKILL * pSkill, int iSourceID, int 
         __Vector3  vTargetPos3;
         __Matrix44 mtx;
         for (int i = 1; i <= NumArrow; i++) {
-            float fAng = (__PI * (float)i) / 12.0f; // 15µµ ¾¿ ³ª´²¼­...
+            float fAng = (__PI * (float)i) / 12.0f; // 15ë„ ì”© ë‚˜ëˆ ì„œ...
 
             mtx.Identity();
             mtx.RotationY(-fAng);
@@ -2434,7 +2434,7 @@ void CMagicSkillMng::FlyingType2(__TABLE_UPC_SKILL * pSkill, int iSourceID, int 
             __Vector3  vTargetPos3;
             __Matrix44 mtx;
             for (int i = 1; i <= NumArrow; i++) {
-                float fAng = (__PI * (float)i) / 12.0f; // 15µµ ¾¿ ³ª´²¼­...
+                float fAng = (__PI * (float)i) / 12.0f; // 15ë„ ì”© ë‚˜ëˆ ì„œ...
 
                 mtx.Identity();
                 mtx.RotationY(-fAng);
@@ -2464,7 +2464,7 @@ void CMagicSkillMng::FlyingType2(__TABLE_UPC_SKILL * pSkill, int iSourceID, int 
             __Vector3  vTargetPos3;
             __Matrix44 mtx;
             for (int i = 1; i <= NumArrow; i++) {
-                float fAng = (__PI * (float)i) / 12.0f; // 15µµ ¾¿ ³ª´²¼­...
+                float fAng = (__PI * (float)i) / 12.0f; // 15ë„ ì”© ë‚˜ëˆ ì„œ...
 
                 mtx.Identity();
                 mtx.RotationY(-fAng);
@@ -2492,23 +2492,23 @@ void CMagicSkillMng::FlyingType2(__TABLE_UPC_SKILL * pSkill, int iSourceID, int 
 bool CMagicSkillMng::EffectingType1(DWORD dwMagicID, int iSourceID, int iTargetID, short * pData) {
     CPlayerBase * pTarget = m_pGameProcMain->CharacterGetByID(iTargetID, false);
     if (pTarget) {
-        if (iSourceID != s_pPlayer->IDNumber()) // ³»°¡ ½ºÅ³À» ¾µ¶§..
+        if (iSourceID != s_pPlayer->IDNumber()) // ë‚´ê°€ ìŠ¤í‚¬ì„ ì“¸ë•Œ..
         {
             __TABLE_UPC_SKILL_TYPE_1 * pType1 = m_pTbl_Type_1->Find(dwMagicID);
             if (pType1) {
                 CPlayerBase * pPlayer = m_pGameProcMain->CharacterGetByID(iSourceID, true);
                 __ASSERT(pPlayer, "NULL Player Pointer!!");
                 if (pPlayer) {
-                    // °Ë±â »öÀ» ¹Ù²Ù¾î ÁØ´Ù..
+                    // ê²€ê¸° ìƒ‰ì„ ë°”ê¾¸ì–´ ì¤€ë‹¤..
                     //                    __TABLE_UPC_SKILL* pSkill = s_pTbl_Skill->Find(dwMagicID);
-                    //                    D3DCOLOR crTrace = TraceColorGet(pSkill); // ½ºÅ³ÀÇ Á¾·ù¿¡ µû¶ó °Ë±âÀÇ »öÀ» Á¤ÇÑ´Ù..
-                    //                    pPlayer->PlugTraceColorRemake(crTrace); // °Ë±â »ö Àû¿ë..
+                    //                    D3DCOLOR crTrace = TraceColorGet(pSkill); // ìŠ¤í‚¬ì˜ ì¢…ë¥˜ì— ë”°ë¼ ê²€ê¸°ì˜ ìƒ‰ì„ ì •í•œë‹¤..
+                    //                    pPlayer->PlugTraceColorRemake(crTrace); // ê²€ê¸° ìƒ‰ ì ìš©..
 
                     pPlayer->RotateTo(pTarget);
                     pPlayer->m_iSkillStep = 1;
 
                     for (int i = 0; i < pType1->iNumCombo; i++) {
-                        bool bImmediately = ((0 == i) ? true : false); // Ã³À½°Ç ¹Ù·Î ³Ö´Â´Ù..
+                        bool bImmediately = ((0 == i) ? true : false); // ì²˜ìŒê±´ ë°”ë¡œ ë„£ëŠ”ë‹¤..
                         pPlayer->AnimationAdd((const e_Ani)pType1->iAct[i], bImmediately);
                     }
                 }
@@ -2523,7 +2523,7 @@ bool CMagicSkillMng::EffectingType1(DWORD dwMagicID, int iSourceID, int iTargetI
     CPlayerBase* pTarget = m_pGameProcMain->CharacterGetByID(iTargetID, false);
     if(pTarget)
     {
-        if(iSourceID == s_pPlayer->IDNumber()) // ³»°¡ ½ºÅ³À» ¾µ¶§..
+        if(iSourceID == s_pPlayer->IDNumber()) // ë‚´ê°€ ìŠ¤í‚¬ì„ ì“¸ë•Œ..
         {
             __TABLE_UPC_SKILL_TYPE_1* pType1 = m_pTbl_Type_1->Find(dwMagicID);
 
@@ -2552,14 +2552,14 @@ bool CMagicSkillMng::EffectingType1(DWORD dwMagicID, int iSourceID, int iTargetI
                         CAPISocket::MP_AddShort(byBuff, iOffset, 0);
                         CAPISocket::MP_AddShort(byBuff, iOffset, 0);
                         
-                        CGameProcedure::s_pSocket->Send(byBuff, iOffset); // º¸³½´Ù..
+                        CGameProcedure::s_pSocket->Send(byBuff, iOffset); // ë³´ë‚¸ë‹¤..
                         //m_iActionState[pData[0]-1] = -1;
                     }                    
                 }
                 m_iResult[pData[0]-1] = pData[1];
             }// end of if(pType1 && pData[0] <= pType1->iNumCombo)
         }
-        else if(pData[0]==1) // ´Ù¸¥ À¯Àú°¡ ½ºÅ³À» ¾µ¶§
+        else if(pData[0]==1) // ë‹¤ë¥¸ ìœ ì €ê°€ ìŠ¤í‚¬ì„ ì“¸ë•Œ
         {
             __TABLE_UPC_SKILL_TYPE_1* pType1 = m_pTbl_Type_1->Find(dwMagicID);
             if(pType1)
@@ -2568,17 +2568,17 @@ bool CMagicSkillMng::EffectingType1(DWORD dwMagicID, int iSourceID, int iTargetI
                 __ASSERT(pPlayer, "NULL Player Pointer!!");
                 if(pPlayer)
                 {
-                    // °Ë±â »öÀ» ¹Ù²Ù¾î ÁØ´Ù..
+                    // ê²€ê¸° ìƒ‰ì„ ë°”ê¾¸ì–´ ì¤€ë‹¤..
 //                    __TABLE_UPC_SKILL* pSkill = s_pTbl_Skill->Find(dwMagicID);
-//                    D3DCOLOR crTrace = TraceColorGet(pSkill); // ½ºÅ³ÀÇ Á¾·ù¿¡ µû¶ó °Ë±âÀÇ »öÀ» Á¤ÇÑ´Ù..
-//                    pPlayer->PlugTraceColorRemake(crTrace); // °Ë±â »ö Àû¿ë..
+//                    D3DCOLOR crTrace = TraceColorGet(pSkill); // ìŠ¤í‚¬ì˜ ì¢…ë¥˜ì— ë”°ë¼ ê²€ê¸°ì˜ ìƒ‰ì„ ì •í•œë‹¤..
+//                    pPlayer->PlugTraceColorRemake(crTrace); // ê²€ê¸° ìƒ‰ ì ìš©..
 
                     pPlayer->RotateTo(pTarget);
                     pPlayer->m_iSkillStep = 1;
 
                     for(int i=0;i<pType1->iNumCombo;i++)
                     {
-                        bool bImmediately = ((0 == i) ? true : false); // Ã³À½°Ç ¹Ù·Î ³Ö´Â´Ù..
+                        bool bImmediately = ((0 == i) ? true : false); // ì²˜ìŒê±´ ë°”ë¡œ ë„£ëŠ”ë‹¤..
                         pPlayer->AnimationAdd((const e_Ani)pType1->iAct[i], bImmediately);
                     }
                 }
@@ -2643,7 +2643,7 @@ void CMagicSkillMng::EffectingType4(DWORD dwMagicID) {
     m_pGameProcMain->m_pUIStateBarAndMiniMap->AddMagic(pSkill, (float)pType4->iDuration);
     m_ListBuffTypeID.insert(stlmultimapVAL_INT_DWORD(pType4->iBuffType, dwMagicID));
 
-    //°°Àº ¹öÇÁÅ¸ÀÔÀÇ ¸¶¹ıÀº Áßº¹»ç¿ëÇÒ ¼ö ¾ø´Ù...¸ÕÀú »ç¿ëµÈ °Í¸¸ À¯È¿..
+    //ê°™ì€ ë²„í”„íƒ€ì…ì˜ ë§ˆë²•ì€ ì¤‘ë³µì‚¬ìš©í•  ìˆ˜ ì—†ë‹¤...ë¨¼ì € ì‚¬ìš©ëœ ê²ƒë§Œ ìœ íš¨..
     if (pType4) {
         switch (pType4->iBuffType) {
         case BUFFTYPE_MAXHP:
@@ -2745,14 +2745,14 @@ void CMagicSkillMng::EffectingType4(DWORD dwMagicID) {
 }
 
 //
-//    ³»°¡ ¾²´Â ½ºÅ³ÀÌ³ª ¸¶¹ıÀº ³»°¡ ÀÎµ¦½º¸¦ ³Ö¾î¼­ °ü¸®ÇÑ´Ù..
-//    ÀÌ°Ç ÀÎµ¦½º ³Ö´Â ÇÔ¼ö..
+//    ë‚´ê°€ ì“°ëŠ” ìŠ¤í‚¬ì´ë‚˜ ë§ˆë²•ì€ ë‚´ê°€ ì¸ë±ìŠ¤ë¥¼ ë„£ì–´ì„œ ê´€ë¦¬í•œë‹¤..
+//    ì´ê±´ ì¸ë±ìŠ¤ ë„£ëŠ” í•¨ìˆ˜..
 //
 int CMagicSkillMng::AddIdx(DWORD MagicID, int iNum) {
     int                            idx = 0;
     std::map<int, DWORD>::iterator it;
 
-    //¿¬°áµÇ´Â index¸¦ ¿©·¯°³ ÇÑ²¨¹ø¿¡ ¸¸µå´Â °æ¿ì..
+    //ì—°ê²°ë˜ëŠ” indexë¥¼ ì—¬ëŸ¬ê°œ í•œêº¼ë²ˆì— ë§Œë“œëŠ” ê²½ìš°..
     if (iNum > 1) {
         if (m_MySelf.size() != 0) {
             it = m_MySelf.end();
@@ -2768,7 +2768,7 @@ int CMagicSkillMng::AddIdx(DWORD MagicID, int iNum) {
         return idx;
     }
 
-    //±×³É ÇÏ³ªÀÇ ÀÎµ¦½º¸¸ ¸¸µå´Â °æ¿ì..
+    //ê·¸ëƒ¥ í•˜ë‚˜ì˜ ì¸ë±ìŠ¤ë§Œ ë§Œë“œëŠ” ê²½ìš°..
     for (it = m_MySelf.begin(); it != m_MySelf.end(); it++) {
         if (it->first == idx) {
             idx++;
@@ -2821,7 +2821,7 @@ void CMagicSkillMng::InitType4() {
 }
 
 //
-//    ÀÌ°Ç ÀÎµ¦½º Á¦°ÅÇÏ´Â ÇÔ¼ö..
+//    ì´ê±´ ì¸ë±ìŠ¤ ì œê±°í•˜ëŠ” í•¨ìˆ˜..
 //
 void CMagicSkillMng::RemoveIdx(int idx) {
     m_MySelf.erase(idx);
@@ -2832,29 +2832,29 @@ DWORD CMagicSkillMng::GetMagicID(int idx) {
     return it->second;
 }
 
-D3DCOLOR CMagicSkillMng::TraceColorGet(__TABLE_UPC_SKILL * pSkill) // ½ºÅ³ÀÇ Á¾·ù¿¡ µû¶ó °Ë±âÀÇ »öÀ» Á¤ÇÑ´Ù..
+D3DCOLOR CMagicSkillMng::TraceColorGet(__TABLE_UPC_SKILL * pSkill) // ìŠ¤í‚¬ì˜ ì¢…ë¥˜ì— ë”°ë¼ ê²€ê¸°ì˜ ìƒ‰ì„ ì •í•œë‹¤..
 {
     if (NULL == pSkill) {
         return 0xff404040;
     }
 
     D3DCOLOR crTrace = 0xffff4040;
-    switch (pSkill->dwNeedItem) // ¿ä±¸ ¾ÆÀÌÅÛ¿¡ µû¶ó¼­...
+    switch (pSkill->dwNeedItem) // ìš”êµ¬ ì•„ì´í…œì— ë”°ë¼ì„œ...
     {
     case 1:
-        crTrace = 0xff808080; // ITEM_CLASS_DAGGER = 11 // ´Ü°Ë(dagger)
+        crTrace = 0xff808080; // ITEM_CLASS_DAGGER = 11 // ë‹¨ê²€(dagger)
     case 2:
-        crTrace = 0xff909090; // ITEM_CLASS_SWORD = 21, // ÇÑ¼Õ°Ë(onehandsword)
-    //case : crTrace = ; // ITEM_CLASS_SWORD_2H = 22, // 3 : ¾ç¼Õ°Ë(twohandsword)
+        crTrace = 0xff909090; // ITEM_CLASS_SWORD = 21, // í•œì†ê²€(onehandsword)
+    //case : crTrace = ; // ITEM_CLASS_SWORD_2H = 22, // 3 : ì–‘ì†ê²€(twohandsword)
     case 3:
-        crTrace = 0xff7070ff; // ITEM_CLASS_AXE = 31, // ÇÑ¼Õµµ³¢(onehandaxe)
-    //case : crTrace = ; // ITEM_CLASS_AXE_2H = 32, // µÎ¼Õµµ³¢(twohandaxe)
+        crTrace = 0xff7070ff; // ITEM_CLASS_AXE = 31, // í•œì†ë„ë¼(onehandaxe)
+    //case : crTrace = ; // ITEM_CLASS_AXE_2H = 32, // ë‘ì†ë„ë¼(twohandaxe)
     case 4:
-        crTrace = 0xffa07070; // ITEM_CLASS_MACE = 41, // ÇÑ¼ÕÅ¸°İ¹«±â(mace)
-    //case : crTrace = ; // ITEM_CLASS_MACE_2H = 42, // µÎ¼ÕÅ¸°İ¹«±â(twohandmace)
+        crTrace = 0xffa07070; // ITEM_CLASS_MACE = 41, // í•œì†íƒ€ê²©ë¬´ê¸°(mace)
+    //case : crTrace = ; // ITEM_CLASS_MACE_2H = 42, // ë‘ì†íƒ€ê²©ë¬´ê¸°(twohandmace)
     case 5:
-        crTrace = 0xffff7070; // ITEM_CLASS_SPEAR = 51, // Ã¢(spear)
-    //case : crTrace = ; // ITEM_CLASS_POLEARM = 52, // Æú¾Ï(polearm)
+        crTrace = 0xffff7070; // ITEM_CLASS_SPEAR = 51, // ì°½(spear)
+    //case : crTrace = ; // ITEM_CLASS_POLEARM = 52, // í´ì•”(polearm)
     default:
         crTrace = 0xff4040ff;
     }
@@ -3002,15 +3002,15 @@ void CMagicSkillMng::ClearDurationalMagic() {
 }
 
 void CMagicSkillMng::StopCastingByRatio() {
-    m_pGameProcMain->CommandSitDown(false, false); // ÀÏÀ¸ÄÑ ¼¼¿î´Ù.
+    m_pGameProcMain->CommandSitDown(false, false); // ì¼ìœ¼ì¼œ ì„¸ìš´ë‹¤.
     if (IsCasting()) {
         __TABLE_UPC_SKILL * pSkill = s_pTbl_Skill->Find(s_pPlayer->m_dwMagicID);
         if (pSkill) {
             int SuccessValue = rand() % 100;
-            if (SuccessValue >= pSkill->iPercentSuccess) // ½ºÅ³ Å×ÀÌºí¿¡ ÀÖ´Â È®·ü´ë·Î ½ÇÆĞÇÑ´Ù..
+            if (SuccessValue >= pSkill->iPercentSuccess) // ìŠ¤í‚¬ í…Œì´ë¸”ì— ìˆëŠ” í™•ë¥ ëŒ€ë¡œ ì‹¤íŒ¨í•œë‹¤..
             {
                 FailCast(pSkill);
-                //if(    s_pPlayer->Action(PSA_BASIC, false, NULL, true); // Ä³½ºÆÃ Ãë¼Ò, ±âº»µ¿ÀÛÀ¸·Î °­Á¦ ¼¼ÆÃ..
+                //if(    s_pPlayer->Action(PSA_BASIC, false, NULL, true); // ìºìŠ¤íŒ… ì·¨ì†Œ, ê¸°ë³¸ë™ì‘ìœ¼ë¡œ ê°•ì œ ì„¸íŒ…..
             }
         }
     }
@@ -3032,9 +3032,9 @@ void CMagicSkillMng::StunMySelf(__TABLE_UPC_SKILL_TYPE_3 * pType3) {
 
     float Prob = (30.0f + (40.0f - (40.0f * (Regist / 80.0f))));
 
-    if (sample < (int)Prob) //¾ó¾î¶ó...
+    if (sample < (int)Prob) //ì–¼ì–´ë¼...
     {
-        m_pGameProcMain->CommandSitDown(false, false); // ÀÏÀ¸ÄÑ ¼¼¿î´Ù.
+        m_pGameProcMain->CommandSitDown(false, false); // ì¼ìœ¼ì¼œ ì„¸ìš´ë‹¤.
         s_pPlayer->Stun(STUN_TIME);
     }
 }

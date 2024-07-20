@@ -109,7 +109,7 @@ void CViewSceneTree::UpdateTreeItem(HTREEITEM hParent, CN3Base * pBase) {
     } else if (dwType & OBJ_SHAPE) {
         CN3Shape * pShape = (CN3Shape *)pBase;
         if (pShape->IsPMeshProcessed()) {
-            nItem = 6; // PMesh Ã³¸®°¡ µÇ¾î ÀÖ´Â°¡...??
+            nItem = 6; // PMesh ì²˜ë¦¬ê°€ ë˜ì–´ ìˆëŠ”ê°€...??
         } else {
             nItem = 7;
         }
@@ -331,7 +331,7 @@ void CViewSceneTree::OnRclick(NMHDR * pNMHDR, LRESULT * pResult) {
         CMenu popup;
         popup.LoadMenu(IDR_POPUP_SCENE);
         CMenu * pSubMenu = popup.GetSubMenu(0);
-        pSubMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, this); // ÆíÁı ¸Ş´º¸¦ ÆîÄ£´Ù..
+        pSubMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, this); // í¸ì§‘ ë©”ë‰´ë¥¼ í¼ì¹œë‹¤..
     }
 
     *pResult = 0;
@@ -395,7 +395,7 @@ void CViewSceneTree::OnEndlabeledit(NMHDR * pNMHDR, LRESULT * pResult) {
 
     CN3BaseFileAccess * pBFA = (CN3BaseFileAccess *)pBase;
     if (pTDI->item.pszText) {
-        pBFA->FileNameSet(pTDI->item.pszText); // ÆÄÀÏ ÀÌ¸§ Á¤ÇÏ±â..
+        pBFA->FileNameSet(pTDI->item.pszText); // íŒŒì¼ ì´ë¦„ ì •í•˜ê¸°..
     }
 
     *pResult = 1;

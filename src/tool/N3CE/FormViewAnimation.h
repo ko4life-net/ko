@@ -16,7 +16,7 @@ class CN3CEDoc;
 class CFormViewAnimation : public CFormView {
   public:
     BOOL       m_bUpdatingNow;
-    __AnimData m_AnimDataTemp; // ÀÓ½Ã º¹»ç ¹× ºÙÀÌ±â¿ë..
+    __AnimData m_AnimDataTemp; // ì„ì‹œ ë³µì‚¬ ë° ë¶™ì´ê¸°ìš©..
 
   public:
     static int SortByName(const void * pArg1, const void * pArg2);

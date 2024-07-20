@@ -26,8 +26,8 @@ extern CRITICAL_SECTION g_region_critical;
 //////////////////////////////////////////////////////////////////////
 
 /*
-     ** Repent AI Server ÀÛ¾÷½Ã Âü°í »çÇ× **
-    1. RecvUserInfo(), RecvAttackReq(), RecvUserUpdate() ¼öÁ¤
+     ** Repent AI Server ì‘ì—…ì‹œ ì°¸ê³  ì‚¬í•­ **
+    1. RecvUserInfo(), RecvAttackReq(), RecvUserUpdate() ìˆ˜ì •
 */
 
 CGameSocket::CGameSocket() {
@@ -146,7 +146,7 @@ void CGameSocket::RecvServerConnect(char * pBuf) {
     char  pData[1024];
     memset(pData, 0, 1024);
     BYTE byZoneNumber = GetByte(pBuf, index);
-    BYTE byReConnect = GetByte(pBuf, index); // 0 : Ã³À½Á¢¼Ó, 1 : ÀçÁ¢¼Ó
+    BYTE byReConnect = GetByte(pBuf, index); // 0 : ì²˜ìŒì ‘ì†, 1 : ì¬ì ‘ì†
 
     CString logstr;
     logstr.Format("[GameServer Connect - %d]", byZoneNumber);
@@ -166,27 +166,27 @@ void CGameSocket::RecvServerConnect(char * pBuf) {
     SetByte(pData, byReConnect, outindex);
     Send(pData, outindex);
 
-    if (byReConnect == 1) { // ÀçÁ¢¼ÓÇØ¼­ ¸®½ºÆ® ¹Ş±â (°­Á¦·Î)
+    if (byReConnect == 1) { // ì¬ì ‘ì†í•´ì„œ ë¦¬ìŠ¤íŠ¸ ë°›ê¸° (ê°•ì œë¡œ)
         if (m_pMain->m_sReSocketCount == 0) {
             m_pMain->m_fReConnectStart = TimeGet();
         }
         m_pMain->m_sReSocketCount++;
         TRACE("**** ReConnect - zone=%d,  socket = %d ****\n ", byZoneNumber, m_pMain->m_sReSocketCount);
         fReConnectEndTime = TimeGet();
-        if (fReConnectEndTime > m_pMain->m_fReConnectStart + 120) { // 2ºĞ¾È¿¡ ¸ğµç ¼ÒÄÏÀÌ ÀçÁ¢µÆ´Ù¸é...
-            TRACE("**** ReConnect - ´Ü¼øÇÑ Á¢¼Ó... socket = %d ****\n ", m_pMain->m_sReSocketCount);
+        if (fReConnectEndTime > m_pMain->m_fReConnectStart + 120) { // 2ë¶„ì•ˆì— ëª¨ë“  ì†Œì¼“ì´ ì¬ì ‘ëë‹¤ë©´...
+            TRACE("**** ReConnect - ë‹¨ìˆœí•œ ì ‘ì†... socket = %d ****\n ", m_pMain->m_sReSocketCount);
             m_pMain->m_sReSocketCount = 0;
             m_pMain->m_fReConnectStart = 0.0f;
         }
 
         if (m_pMain->m_sReSocketCount == MAX_AI_SOCKET) {
             fReConnectEndTime = TimeGet();
-            if (fReConnectEndTime < m_pMain->m_fReConnectStart + 60) { // 1ºĞ¾È¿¡ ¸ğµç ¼ÒÄÏÀÌ ÀçÁ¢µÆ´Ù¸é...
-                TRACE("**** ReConnect - ¸ğµç ¼ÒÄÏ ÃÊ±âÈ­ ¿Ï·á socket = %d ****\n ", m_pMain->m_sReSocketCount);
+            if (fReConnectEndTime < m_pMain->m_fReConnectStart + 60) { // 1ë¶„ì•ˆì— ëª¨ë“  ì†Œì¼“ì´ ì¬ì ‘ëë‹¤ë©´...
+                TRACE("**** ReConnect - ëª¨ë“  ì†Œì¼“ ì´ˆê¸°í™” ì™„ë£Œ socket = %d ****\n ", m_pMain->m_sReSocketCount);
                 m_pMain->m_bFirstServerFlag = TRUE;
                 m_pMain->m_sReSocketCount = 0;
                 m_pMain->AllNpcInfo();
-            } else { // ÇÏ³ªÀÇ ¶³¾îÁø ¼ÒÄÏÀÌ¶ó¸é...
+            } else { // í•˜ë‚˜ì˜ ë–¨ì–´ì§„ ì†Œì¼“ì´ë¼ë©´...
                 m_pMain->m_sReSocketCount = 0;
                 m_pMain->m_fReConnectStart = 0.0f;
             }
@@ -196,7 +196,7 @@ void CGameSocket::RecvServerConnect(char * pBuf) {
         m_pMain->m_sSocketCount++;
         TRACE("**** Connect - zone=%d,  socket = %d ****\n ", byZoneNumber, m_pMain->m_sSocketCount);
         if (m_pMain->m_sSocketCount == MAX_AI_SOCKET) {
-            TRACE("**** Connect - ¸ğµç ¼ÒÄÏ ÃÊ±âÈ­ ¿Ï·á socket = %d ****\n ", m_pMain->m_sSocketCount);
+            TRACE("**** Connect - ëª¨ë“  ì†Œì¼“ ì´ˆê¸°í™” ì™„ë£Œ socket = %d ****\n ", m_pMain->m_sSocketCount);
             m_pMain->m_bFirstServerFlag = TRUE;
             m_pMain->m_sSocketCount = 0;
             m_pMain->AllNpcInfo();
@@ -227,7 +227,7 @@ void CGameSocket::RecvUserInfo(char * pBuf) {
         char countstr[256];
         memset(countstr, NULL, 256);
         CTime cur = CTime::GetCurrentTime();
-        sprintf(countstr, "RecvUserInfo() Fail : %d¿ù %dÀÏ %d½Ã %dºĞ - uid=%d, name=%s\r\n", cur.GetMonth(),
+        sprintf(countstr, "RecvUserInfo() Fail : %dì›” %dì¼ %dì‹œ %dë¶„ - uid=%d, name=%s\r\n", cur.GetMonth(),
                 cur.GetDay(), cur.GetHour(), cur.GetMinute(), uid, strName);
         LogFileWrite(countstr);
         TRACE("###  RecvUserInfo() Fail ---> uid = %d, name=%s  ### \n", uid, strName);
@@ -323,7 +323,7 @@ void CGameSocket::RecvUserInOut(char * pBuf) {
     region_x = (int)fX / VIEW_DIST;
     region_z = (int)fZ / VIEW_DIST;
 
-    // ¼öÁ¤ÇÒ°Í,,, : Áö±İ Á¸ ¹øÈ£¸¦ 0À¸·Î Çß´Âµ¥.. À¯ÀúÀÇ Á¸ Á¤º¸ÀÇ ¹øÈ£¸¦ ÀĞ¾î¾ß,, ÇÔ,,
+    // ìˆ˜ì •í• ê²ƒ,,, : ì§€ê¸ˆ ì¡´ ë²ˆí˜¸ë¥¼ 0ìœ¼ë¡œ í–ˆëŠ”ë°.. ìœ ì €ì˜ ì¡´ ì •ë³´ì˜ ë²ˆí˜¸ë¥¼ ì½ì–´ì•¼,, í•¨,,
     MAP * pMap = NULL;
     //m_pMain->g_arZone[pUser->m_curZone];
 
@@ -345,7 +345,7 @@ void CGameSocket::RecvUserInOut(char * pBuf) {
                 TRACE("##### CGameSocket-RecvUserInOut Fail : UserDead  [id=%s, bLive=%d, hp=%d], fX=%.2f, fZ=%.2f "
                       "######\n",
                       pUser->m_strUserID, pUser->m_bLive, pUser->m_sHP, fX, fZ);
-                // Á×Àº À¯ÀúÀÌ¹Ç·Î °ÔÀÓ¼­¹ö¿¡ Á×Àº Ã³¸®¸¦ ÇÑ´Ù...
+                // ì£½ì€ ìœ ì €ì´ë¯€ë¡œ ê²Œì„ì„œë²„ì— ì£½ì€ ì²˜ë¦¬ë¥¼ í•œë‹¤...
                 //Send_UserError(uid);
                 //return;
             }
@@ -368,7 +368,7 @@ void CGameSocket::RecvUserInOut(char * pBuf) {
             TRACE("#### RecvUserInOut Fail : [name=%s], x1=%d, z1=%d #####\n", pUser->m_strUserID, pUser->m_sZoneIndex);
             return;
         }
-        // map ÀÌµ¿ÀÌ ºÒ°¡´ÉÀÌ¸é Userµî·Ï ½ÇÆĞ..
+        // map ì´ë™ì´ ë¶ˆê°€ëŠ¥ì´ë©´ Userë“±ë¡ ì‹¤íŒ¨..
         //if(pMap->m_pMap[x1][z1].m_sEvent == 0) return;
         if (region_x > pMap->GetXRegionMax() || region_z > pMap->GetZRegionMax()) {
             TRACE("#### GameSocket-RecvUserInOut() Fail : [name=%s], nRX=%d, nRZ=%d #####\n", pUser->m_strUserID,
@@ -384,15 +384,15 @@ void CGameSocket::RecvUserInOut(char * pBuf) {
         //if(bFlag)    pUser->m_byIsOP = 1;
 
         if (bType == 2) { // region out
-            // ±âÁ¸ÀÇ regionÁ¤º¸¿¡¼­ UserÀÇ Á¤º¸ »èÁ¦..
+            // ê¸°ì¡´ì˜ regionì •ë³´ì—ì„œ Userì˜ ì •ë³´ ì‚­ì œ..
             pMap->RegionUserRemove(region_x, region_z, uid);
-            //TRACE("^^& RecvUserInOut()-> User(%s, %d)¸¦ Region¿¡¼­ »èÁ¦..,, zone=%d, index=%d, region_x=%d, y=%d\n", pUser->m_strUserID, pUser->m_iUserId, pUser->m_curZone, pUser->m_sZoneIndex, region_x, region_z);
+            //TRACE("^^& RecvUserInOut()-> User(%s, %d)ë¥¼ Regionì—ì„œ ì‚­ì œ..,, zone=%d, index=%d, region_x=%d, y=%d\n", pUser->m_strUserID, pUser->m_iUserId, pUser->m_curZone, pUser->m_sZoneIndex, region_x, region_z);
         } else { // region in
             if (pUser->m_sRegionX != region_x || pUser->m_sRegionZ != region_z) {
                 pUser->m_sRegionX = region_x;
                 pUser->m_sRegionZ = region_z;
                 pMap->RegionUserAdd(region_x, region_z, uid);
-                //TRACE("^^& RecvUserInOut()-> User(%s, %d)¸¦ Region¿¡ µî·Ï,, zone=%d, index=%d, region_x=%d, y=%d\n", pUser->m_strUserID, pUser->m_iUserId, pUser->m_curZone, pUser->m_sZoneIndex, region_x, region_z);
+                //TRACE("^^& RecvUserInOut()-> User(%s, %d)ë¥¼ Regionì— ë“±ë¡,, zone=%d, index=%d, region_x=%d, y=%d\n", pUser->m_strUserID, pUser->m_iUserId, pUser->m_curZone, pUser->m_sZoneIndex, region_x, region_z);
             }
         }
     }
@@ -437,11 +437,11 @@ BOOL CGameSocket::SetUid(float x, float z, int id, int speed) {
 
     CUser * pUser = m_pMain->GetUserPtr(id);
     if (pUser == NULL) {
-        TRACE("#### Userµî·Ï ½ÇÆĞ sid = %d ####\n", id);
+        TRACE("#### Userë“±ë¡ ì‹¤íŒ¨ sid = %d ####\n", id);
         return FALSE;
     }
 
-    // Zone¹øÈ£µµ ¹Ş¾Æ¾ß ÇÔ,,,
+    // Zoneë²ˆí˜¸ë„ ë°›ì•„ì•¼ í•¨,,,
     if (pUser->m_sZoneIndex < 0 || pUser->m_sZoneIndex > m_pMain->g_arZone.size()) {
         TRACE("#### GameSocket-SetUid ZoneIndex Fail : [name=%s], zoneindex=%d #####\n", pUser->m_strUserID,
               pUser->m_sZoneIndex);
@@ -449,7 +449,7 @@ BOOL CGameSocket::SetUid(float x, float z, int id, int speed) {
     }
     MAP * pMap = m_pMain->g_arZone[pUser->m_sZoneIndex];
     if (pMap == NULL) {
-        TRACE("#### Userµî·Ï ½ÇÆĞ sid = %d ####\n", id);
+        TRACE("#### Userë“±ë¡ ì‹¤íŒ¨ sid = %d ####\n", id);
         return FALSE;
     }
 
@@ -463,14 +463,14 @@ BOOL CGameSocket::SetUid(float x, float z, int id, int speed) {
               nRZ);
         return FALSE;
     }
-    // map ÀÌµ¿ÀÌ ºÒ°¡´ÉÀÌ¸é Userµî·Ï ½ÇÆĞ..
+    // map ì´ë™ì´ ë¶ˆê°€ëŠ¥ì´ë©´ Userë“±ë¡ ì‹¤íŒ¨..
     // if(pMap->m_pMap[x1][z1].m_sEvent == 0) return FALSE;
 
     if (pUser != NULL) {
         if (pUser->m_bLive == USER_DEAD || pUser->m_sHP <= 0) {
             if (pUser->m_sHP > 0) {
                 pUser->m_bLive = USER_LIVE;
-                TRACE("##### CGameSocket-SetUid Fail : User°¡ HealµÈ °æ¿ì.. [id=%s, bLive=%d, hp=%d] ######\n",
+                TRACE("##### CGameSocket-SetUid Fail : Userê°€ Healëœ ê²½ìš°.. [id=%s, bLive=%d, hp=%d] ######\n",
                       pUser->m_strUserID, pUser->m_bLive, pUser->m_sHP);
             } else {
                 TRACE("##### CGameSocket-SetUid Fail : UserDead  [id=%s, bLive=%d, hp=%d] ######\n", pUser->m_strUserID,
@@ -494,17 +494,17 @@ BOOL CGameSocket::SetUid(float x, float z, int id, int speed) {
 
         //TRACE("GameSocket : SetUid()--> uid = %d, x=%f, z=%f \n", id, x, z);
         if (pUser->m_sRegionX != nRX || pUser->m_sRegionZ != nRZ) {
-            //TRACE("*** SetUid()-> User(%s, %d)¸¦ Region¿¡ »èÁ¦,, zone=%d, index=%d, region_x=%d, y=%d\n", pUser->m_strUserID, pUser->m_iUserId, pUser->m_curZone, pUser->m_sZoneIndex, pUser->m_sRegionX, pUser->m_sRegionZ);
+            //TRACE("*** SetUid()-> User(%s, %d)ë¥¼ Regionì— ì‚­ì œ,, zone=%d, index=%d, region_x=%d, y=%d\n", pUser->m_strUserID, pUser->m_iUserId, pUser->m_curZone, pUser->m_sZoneIndex, pUser->m_sRegionX, pUser->m_sRegionZ);
             pMap->RegionUserRemove(pUser->m_sRegionX, pUser->m_sRegionZ, id);
             pUser->m_sRegionX = nRX;
             pUser->m_sRegionZ = nRZ;
             pMap->RegionUserAdd(pUser->m_sRegionX, pUser->m_sRegionZ, id);
-            //TRACE("*** SetUid()-> User(%s, %d)¸¦ Region¿¡ µî·Ï,, zone=%d, index=%d, region_x=%d, y=%d\n", pUser->m_strUserID, pUser->m_iUserId, pUser->m_curZone, pUser->m_sZoneIndex, nRX, nRZ);
+            //TRACE("*** SetUid()-> User(%s, %d)ë¥¼ Regionì— ë“±ë¡,, zone=%d, index=%d, region_x=%d, y=%d\n", pUser->m_strUserID, pUser->m_iUserId, pUser->m_curZone, pUser->m_sZoneIndex, nRX, nRZ);
         }
     }
 
     // dungeon work
-    // if( pUser->m_curZone == ´øÁ¯ )
+    // if( pUser->m_curZone == ë˜ì ¼ )
     int room = pMap->IsRoomCheck(x, z);
 
     return TRUE;
@@ -556,12 +556,12 @@ void CGameSocket::RecvAttackReq(char * pBuf) {
     if (pUser->m_bLive == USER_DEAD || pUser->m_sHP <= 0) {
         if (pUser->m_sHP > 0) {
             pUser->m_bLive = USER_LIVE;
-            TRACE("##### CGameSocket-Attack Fail : User°¡ HealµÈ °æ¿ì.. [id=%d, %s, bLive=%d, hp=%d] ######\n",
+            TRACE("##### CGameSocket-Attack Fail : Userê°€ Healëœ ê²½ìš°.. [id=%d, %s, bLive=%d, hp=%d] ######\n",
                   pUser->m_iUserId, pUser->m_strUserID, pUser->m_bLive, pUser->m_sHP);
         } else {
             TRACE("##### CGameSocket-Attack Fail : UserDead  [id=%d, %s, bLive=%d, hp=%d] ######\n", pUser->m_iUserId,
                   pUser->m_strUserID, pUser->m_bLive, pUser->m_sHP);
-            // Á×Àº À¯ÀúÀÌ¹Ç·Î °ÔÀÓ¼­¹ö¿¡ Á×Àº Ã³¸®¸¦ ÇÑ´Ù...
+            // ì£½ì€ ìœ ì €ì´ë¯€ë¡œ ê²Œì„ì„œë²„ì— ì£½ì€ ì²˜ë¦¬ë¥¼ í•œë‹¤...
             Send_UserError(sid, tid);
             return;
         }
@@ -595,7 +595,7 @@ void CGameSocket::RecvUserLogOut(char * pBuf) {
         //return;
     }
 
-    // User List¿¡¼­ UserÁ¤º¸,, »èÁ¦...
+    // User Listì—ì„œ Userì •ë³´,, ì‚­ì œ...
     CUser * pUser = m_pMain->GetUserPtr(uid);
     if (pUser == NULL) {
         return;
@@ -623,7 +623,7 @@ void CGameSocket::RecvUserRegene(char * pBuf) {
     uid = GetShort(pBuf, index);
     sHP = GetShort(pBuf, index);
 
-    // User List¿¡¼­ UserÁ¤º¸,, »èÁ¦...
+    // User Listì—ì„œ Userì •ë³´,, ì‚­ì œ...
     CUser * pUser = m_pMain->GetUserPtr(uid);
     if (pUser == NULL) {
         return;
@@ -646,7 +646,7 @@ void CGameSocket::RecvUserSetHP(char * pBuf) {
     uid = GetShort(pBuf, index);
     nHP = GetDWORD(pBuf, index);
 
-    // User List¿¡¼­ UserÁ¤º¸,, »èÁ¦...
+    // User Listì—ì„œ Userì •ë³´,, ì‚­ì œ...
     CUser * pUser = m_pMain->GetUserPtr(uid);
     if (pUser == NULL) {
         return;
@@ -692,7 +692,7 @@ void CGameSocket::RecvUserUpdate(char * pBuf) {
     sAmountRight = GetShort(pBuf, index);
     //
 
-    // User List¿¡¼­ UserÁ¤º¸,, »èÁ¦...
+    // User Listì—ì„œ Userì •ë³´,, ì‚­ì œ...
     CUser * pUser = m_pMain->GetUserPtr(uid);
     if (pUser == NULL) {
         return;
@@ -741,7 +741,7 @@ void CGameSocket::Send_UserError(short uid, short tid) {
     SetShort(buff, tid, send_index);
     Send(buff, send_index);
 
-    TRACE("#### GameSocket-Send_UserError : À¯·É À¯ÀúÁ×ÀÌ±â uid=%d, tid=%d\n", uid, tid);
+    TRACE("#### GameSocket-Send_UserError : ìœ ë ¹ ìœ ì €ì£½ì´ê¸° uid=%d, tid=%d\n", uid, tid);
 }
 
 void CGameSocket::RecvZoneChange(char * pBuf) {
@@ -754,7 +754,7 @@ void CGameSocket::RecvZoneChange(char * pBuf) {
     byZoneIndex = GetByte(pBuf, index);
     byZoneNumber = GetByte(pBuf, index);
 
-    // User List¿¡¼­ User zoneÁ¤º¸ ¼öÁ¤
+    // User Listì—ì„œ User zoneì •ë³´ ìˆ˜ì •
     CUser * pUser = m_pMain->GetUserPtr(uid);
     if (pUser == NULL) {
         return;
@@ -783,12 +783,12 @@ void CGameSocket::RecvMagicAttackReq(char * pBuf) {
     if (pUser->m_bLive == USER_DEAD || pUser->m_sHP <= 0) {
         if (pUser->m_sHP > 0) {
             pUser->m_bLive = USER_LIVE;
-            TRACE("##### CGameSocket-Magic Attack Fail : User°¡ HealµÈ °æ¿ì.. [id=%s, bLive=%d, hp=%d] ######\n",
+            TRACE("##### CGameSocket-Magic Attack Fail : Userê°€ Healëœ ê²½ìš°.. [id=%s, bLive=%d, hp=%d] ######\n",
                   pUser->m_strUserID, pUser->m_bLive, pUser->m_sHP);
         } else {
             TRACE("##### CGameSocket-Magic Attack Fail : UserDead  [id=%s, bLive=%d, hp=%d] ######\n",
                   pUser->m_strUserID, pUser->m_bLive, pUser->m_sHP);
-            // Á×Àº À¯ÀúÀÌ¹Ç·Î °ÔÀÓ¼­¹ö¿¡ Á×Àº Ã³¸®¸¦ ÇÑ´Ù...
+            // ì£½ì€ ìœ ì €ì´ë¯€ë¡œ ê²Œì„ì„œë²„ì— ì£½ì€ ì²˜ë¦¬ë¥¼ í•œë‹¤...
             Send_UserError(sid, tid);
             return;
         }
@@ -804,19 +804,19 @@ void CGameSocket::RecvCompressedData(char * pBuf) {
     char  pTempBuf[10001];
     memset(pTempBuf, 0x00, 10001);
     DWORD dwCrcValue;
-    sCompLen = GetShort(pBuf, index);   // ¾ĞÃàµÈ µ¥ÀÌÅ¸±æÀÌ¾ò±â...
-    sOrgLen = GetShort(pBuf, index);    // ¿ø·¡µ¥ÀÌÅ¸±æÀÌ¾ò±â...
-    dwCrcValue = GetDWORD(pBuf, index); // CRC°ª ¾ò±â...
-    sCompCount = GetShort(pBuf, index); // ¾ĞÃà µ¥ÀÌÅ¸ ¼ö ¾ò±â...
-    // ¾ĞÃà µ¥ÀÌÅ¸ ¾ò±â...
+    sCompLen = GetShort(pBuf, index);   // ì••ì¶•ëœ ë°ì´íƒ€ê¸¸ì´ì–»ê¸°...
+    sOrgLen = GetShort(pBuf, index);    // ì›ë˜ë°ì´íƒ€ê¸¸ì´ì–»ê¸°...
+    dwCrcValue = GetDWORD(pBuf, index); // CRCê°’ ì–»ê¸°...
+    sCompCount = GetShort(pBuf, index); // ì••ì¶• ë°ì´íƒ€ ìˆ˜ ì–»ê¸°...
+    // ì••ì¶• ë°ì´íƒ€ ì–»ê¸°...
     memcpy(pTempBuf, pBuf + index, sCompLen);
     index += sCompLen;
 
     CCompressManager cmpMgrDecode;
 
-    /// ¾ĞÃà ÇØÁ¦
+    /// ì••ì¶• í•´ì œ
     cmpMgrDecode.FlushAddData();
-    cmpMgrDecode.PreUncompressWork(sCompLen, sOrgLen); // ¾ĞÃà Ç®±â...
+    cmpMgrDecode.PreUncompressWork(sCompLen, sOrgLen); // ì••ì¶• í’€ê¸°...
     char * pEncodeBuf = cmpMgrDecode.GetCompressionBufferPtr();
     memcpy(pEncodeBuf, pTempBuf, sCompLen);
 
@@ -840,25 +840,25 @@ void CGameSocket::RecvCompressedData(char * pBuf) {
         return;
     }
 
-    // ¾ĞÃà Ç®¸° µ¥ÀÌÅ¸ ÀĞ±â
+    // ì••ì¶• í’€ë¦° ë°ì´íƒ€ ì½ê¸°
     char * pDecodeBuf = (char *)cmpMgrDecode.GetExtractedBufferPtr();
 
     Parsing(sOrgLen, pDecodeBuf);
 
-    // ¾ĞÃà Ç®±â ³¡
+    // ì••ì¶• í’€ê¸° ë
     cmpMgrDecode.FlushExtractedData();
 }
 
 void CGameSocket::RecvUserInfoAllData(char * pBuf) {
     int   index = 0;
-    BYTE  byCount = 0; // ¸¶¸®¼ö
+    BYTE  byCount = 0; // ë§ˆë¦¬ìˆ˜
     short uid = -1, sHp, sMp, sZoneIndex, len;
     BYTE  bNation, bLevel, bZone, bAuthority = 1;
     short sDamage, sAC, sPartyIndex = 0;
     float fHitAgi, fAvoidAgi;
     char  strName[MAX_ID_SIZE + 1];
 
-    TRACE(" ***** À¯ÀúÀÇ ¸ğµç Á¤º¸¸¦ ¹Ş±â ½ÃÀÛÇÕ´Ï´Ù ****** \n");
+    TRACE(" ***** ìœ ì €ì˜ ëª¨ë“  ì •ë³´ë¥¼ ë°›ê¸° ì‹œì‘í•©ë‹ˆë‹¤ ****** \n");
 
     byCount = GetByte(pBuf, index);
     for (int i = 0; i < byCount; i++) {
@@ -908,8 +908,8 @@ void CGameSocket::RecvUserInfoAllData(char * pBuf) {
         pUser->m_bLive = USER_LIVE;
 
         if (sPartyIndex != -1) {
-            pUser->m_byNowParty = 1;             // ÆÄÆ¼Áß
-            pUser->m_sPartyNumber = sPartyIndex; // ÆÄÆ¼ ¹øÈ£ ¼ÂÆÃ
+            pUser->m_byNowParty = 1;             // íŒŒí‹°ì¤‘
+            pUser->m_sPartyNumber = sPartyIndex; // íŒŒí‹° ë²ˆí˜¸ ì…‹íŒ…
         }
 
         TRACE("****  RecvUserInfoAllData()---> uid = %d, %s, party_number=%d  ******\n", uid, strName,
@@ -920,7 +920,7 @@ void CGameSocket::RecvUserInfoAllData(char * pBuf) {
         }
     }
 
-    TRACE(" ***** À¯ÀúÀÇ ¸ğµç Á¤º¸¸¦ ´Ù ¹Ş¾Ò½À´Ï´Ù ****** \n");
+    TRACE(" ***** ìœ ì €ì˜ ëª¨ë“  ì •ë³´ë¥¼ ë‹¤ ë°›ì•˜ìŠµë‹ˆë‹¤ ****** \n");
 }
 
 void CGameSocket::RecvGateOpen(char * pBuf) {
@@ -1015,12 +1015,12 @@ void CGameSocket::RecvHealMagic(char * pBuf) {
     if (pUser->m_bLive == USER_DEAD || pUser->m_sHP <= 0) {
         if (pUser->m_sHP > 0) {
             pUser->m_bLive = USER_LIVE;
-            TRACE("##### CGameSocket-RecvHealMagic Fail : User°¡ HealµÈ °æ¿ì.. [id=%d, %s, bLive=%d, hp=%d] ######\n",
+            TRACE("##### CGameSocket-RecvHealMagic Fail : Userê°€ Healëœ ê²½ìš°.. [id=%d, %s, bLive=%d, hp=%d] ######\n",
                   pUser->m_iUserId, pUser->m_strUserID, pUser->m_bLive, pUser->m_sHP);
         } else {
             TRACE("##### CGameSocket-RecvHealMagic Fail : UserDead  [id=%d, %s, bLive=%d, hp=%d] ######\n",
                   pUser->m_iUserId, pUser->m_strUserID, pUser->m_bLive, pUser->m_sHP);
-            // Á×Àº À¯ÀúÀÌ¹Ç·Î °ÔÀÓ¼­¹ö¿¡ Á×Àº Ã³¸®¸¦ ÇÑ´Ù...
+            // ì£½ì€ ìœ ì €ì´ë¯€ë¡œ ê²Œì„ì„œë²„ì— ì£½ì€ ì²˜ë¦¬ë¥¼ í•œë‹¤...
             //Send_UserError(sid, tid);
             return;
         }
@@ -1041,12 +1041,12 @@ void CGameSocket::RecvTimeAndWeather(char * pBuf) {
     m_pMain->m_iAmount = GetShort(pBuf, index);
 
     if (m_pMain->m_iHour >= 5 && m_pMain->m_iHour < 21) {
-        m_pMain->m_byNight = 1; // ³·
+        m_pMain->m_byNight = 1; // ë‚®
     } else {
-        m_pMain->m_byNight = 2; // ¹ã
+        m_pMain->m_byNight = 2; // ë°¤
     }
 
-    m_pMain->m_sErrorSocketCount = 0; // Socket Checkµµ °°ÀÌ ÇÏ±â ¶§¹®¿¡...
+    m_pMain->m_sErrorSocketCount = 0; // Socket Checkë„ ê°™ì´ í•˜ê¸° ë•Œë¬¸ì—...
 }
 
 void CGameSocket::RecvUserFail(char * pBuf) {
@@ -1095,10 +1095,10 @@ void CGameSocket::RecvBattleEvent(char * pBuf) {
             continue;
         }
         if (pNpc->m_tNpcType > 10 &&
-            (pNpc->m_byGroup == KARUS_ZONE || pNpc->m_byGroup == ELMORAD_ZONE)) { // npc¿¡¸¸ Àû¿ëµÇ°í, ±¹°¡¿¡ ¼Ò¼ÓµÈ npc
-            if (nEvent == BATTLEZONE_OPEN) { // ÀüÀï ÀÌº¥Æ® ½ÃÀÛ (npcÀÇ ´É·ÂÄ¡ ´Ù¿î)
+            (pNpc->m_byGroup == KARUS_ZONE || pNpc->m_byGroup == ELMORAD_ZONE)) { // npcì—ë§Œ ì ìš©ë˜ê³ , êµ­ê°€ì— ì†Œì†ëœ npc
+            if (nEvent == BATTLEZONE_OPEN) { // ì „ìŸ ì´ë²¤íŠ¸ ì‹œì‘ (npcì˜ ëŠ¥ë ¥ì¹˜ ë‹¤ìš´)
                 pNpc->ChangeAbility(BATTLEZONE_OPEN);
-            } else if (nEvent == BATTLEZONE_CLOSE) { // ÀüÀï ÀÌº¥Æ® ³¡ (npcÀÇ ´É·ÂÄ¡ È¸º¹)
+            } else if (nEvent == BATTLEZONE_CLOSE) { // ì „ìŸ ì´ë²¤íŠ¸ ë (npcì˜ ëŠ¥ë ¥ì¹˜ íšŒë³µ)
                 pNpc->ChangeAbility(BATTLEZONE_CLOSE);
             }
         }

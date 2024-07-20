@@ -16,8 +16,8 @@ class CWall : public CN3Base {
     void Load(HANDLE hFile);
     void Save(HANDLE hFile);
     int  GetSize() { return m_Wall.size(); }
-    bool GetVertex(int idx, __Vector3 * pPos); // idxÂ° Á¡ °¡Á®¿À±â..
-    void AddVertex(__Vector3 Vertex);          //path´õÇÏ±â.
+    bool GetVertex(int idx, __Vector3 * pPos); // idxì§¸ ì  ê°€ì ¸ì˜¤ê¸°..
+    void AddVertex(__Vector3 Vertex);          //pathë”í•˜ê¸°.
     void DelPrevVertex();
 
     CWall();

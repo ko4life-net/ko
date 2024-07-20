@@ -111,8 +111,8 @@ CN3Terrain::~CN3Terrain() {
 
 //
 //    MakeDistanceTable
-//    °Å¸®¸¦ °è»êÇÏÁö ¸»°í Å×ÀÌºí¿¡¼­ °¡Á®¿Ã ¼ö ÀÖ°Ô ¹Ì¸® Å×ÀÌºí »ı¼º..
-//    Á¤¼ö ´ÜÀ§ °Å¸®..
+//    ê±°ë¦¬ë¥¼ ê³„ì‚°í•˜ì§€ ë§ê³  í…Œì´ë¸”ì—ì„œ ê°€ì ¸ì˜¬ ìˆ˜ ìˆê²Œ ë¯¸ë¦¬ í…Œì´ë¸” ìƒì„±..
+//    ì •ìˆ˜ ë‹¨ìœ„ ê±°ë¦¬..
 //
 void CN3Terrain::MakeDistanceTable() {
     for (int x = 0; x < DISTANCE_TABLE_SIZE; x++) {
@@ -263,8 +263,8 @@ void CN3Terrain::Init() {
 
     SetRectEmpty(&m_pat_BoundRect);
     //m_pat_Center2Side = ((int)CN3Base::s_CameraData.fFP / (PATCH_TILE_SIZE * TILE_SIZE)) + 1;
-    //    m_pat_Center2Side = 17;        // CN3Base::s_CameraData.fFP = 512 ¶ó°í °¡Á¤ÇÒ¶§...
-    m_pat_Center2Side = 33; // CN3Base::s_CameraData.fFP = 1024 ¶ó°í °¡Á¤ÇÒ¶§...
+    //    m_pat_Center2Side = 17;        // CN3Base::s_CameraData.fFP = 512 ë¼ê³  ê°€ì •í• ë•Œ...
+    m_pat_Center2Side = 33; // CN3Base::s_CameraData.fFP = 1024 ë¼ê³  ê°€ì •í• ë•Œ...
 
     m_iNumPatch = (m_pat_Center2Side << 1) + 1;
 
@@ -310,7 +310,7 @@ void CN3Terrain::Init() {
 }
 
 //
-//    ±ÛÇÈÄ«µå°¡ Å¸ÀÏ¸ÊÀ» ±×¸± ¼ö ÀÖ´ÂÁö ¾ø´ÂÁö °Ë»ç...
+//    ê¸€í”½ì¹´ë“œê°€ íƒ€ì¼ë§µì„ ê·¸ë¦´ ìˆ˜ ìˆëŠ”ì§€ ì—†ëŠ”ì§€ ê²€ì‚¬...
 //
 void CN3Terrain::TestAvailableTile() {
     m_bAvailableTile = true;
@@ -377,13 +377,13 @@ void CN3Terrain::TestAvailableTile() {
 //    Load...
 //
 bool CN3Terrain::Load(HANDLE hFile) {
-    std::string szFNBackup = m_szFileName; // Init ¸¦ ÇÏ°í ³ª¸é ÆÄÀÏ ÀÌ¸§ÀÌ ¾ø¾îÁø´Ù.... ±×·¡¼­...
+    std::string szFNBackup = m_szFileName; // Init ë¥¼ í•˜ê³  ë‚˜ë©´ íŒŒì¼ ì´ë¦„ì´ ì—†ì–´ì§„ë‹¤.... ê·¸ë˜ì„œ...
 
     Init();
 
     m_szFileName = szFNBackup;
 
-    CUILoading * pUILoading = CGameProcedure::s_pUILoading; // ·Îµù¹Ù..
+    CUILoading * pUILoading = CGameProcedure::s_pUILoading; // ë¡œë”©ë°”..
     if (pUILoading) {
         pUILoading->Render("Allocating Terrain...", 0);
     }
@@ -461,7 +461,7 @@ bool CN3Terrain::Load(HANDLE hFile) {
     __ASSERT(m_pGrassAttr, "GrassAttr Data Memory Allocation Failed..-.-");
     ReadFile(hFile, m_pGrassAttr, sizeof(unsigned char) * m_ti_MapSize * m_ti_MapSize, &dwRWC, NULL);
 
-    //^^vÇ®°¹¼ö Á¤º¸ ³Ö±â...(Á¶¸¸°£ ³Ö¾î¶ó..)
+    //^^ví’€ê°¯ìˆ˜ ì •ë³´ ë„£ê¸°...(ì¡°ë§Œê°„ ë„£ì–´ë¼..)
     m_pGrassNum = (unsigned char *)GlobalAlloc(GMEM_FIXED, sizeof(unsigned char) * m_ti_MapSize * m_ti_MapSize);
     if (m_pGrassNum == NULL) {
         CLogWriter::Write("Terrain Error : GrassNum Data Memory Allocation Failed..-.-");
@@ -503,7 +503,7 @@ bool CN3Terrain::Load(HANDLE hFile) {
     if (pUILoading) {
         pUILoading->Render("Loading River Data...", 0);
     }
-    m_pRiver->Load(hFile); // ¸Êµ¥ÀÌÅÍ ¿Ã¶§±îÁö¸¸ Àá½Ã¸¸ ¸·ÀÚ..2002.11.15
+    m_pRiver->Load(hFile); // ë§µë°ì´í„° ì˜¬ë•Œê¹Œì§€ë§Œ ì ì‹œë§Œ ë§‰ì..2002.11.15
     m_pPond->Load(hFile);
 
     if (pUILoading) {
@@ -695,12 +695,12 @@ void CN3Terrain::LoadTileInfo(HANDLE hFile) {
         hTTGFile = CreateFile(SrcName[SrcIdx], GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
         for (int j = 0; j < TileIdx; j++) {
-            //            m_pTileTex[i].m_iLOD = s_Options.iTexLOD_Terrain; // LOD Àû¿ëÈÄ ÀĞ±â..
-            //            m_pTileTex[i].Load(hTTGFile);// ¾Õ¿¡ ÀÖ´Â ¾µ¶§ ¾ø´Â °Íµé...
-            m_pTileTex[i].SkipFileHandle(hTTGFile); // ¾Õ¿¡ ÀÖ´Â ¾µ¶§ ¾ø´Â °Íµé...
+            //            m_pTileTex[i].m_iLOD = s_Options.iTexLOD_Terrain; // LOD ì ìš©í›„ ì½ê¸°..
+            //            m_pTileTex[i].Load(hTTGFile);// ì•ì— ìˆëŠ” ì“¸ë•Œ ì—†ëŠ” ê²ƒë“¤...
+            m_pTileTex[i].SkipFileHandle(hTTGFile); // ì•ì— ìˆëŠ” ì“¸ë•Œ ì—†ëŠ” ê²ƒë“¤...
         }
-        m_pTileTex[i].m_iLOD = s_Options.iTexLOD_Terrain; // LOD Àû¿ëÈÄ ÀĞ±â..
-        m_pTileTex[i].Load(hTTGFile);                     // ÁøÂ¥ Å¸ÀÏ...
+        m_pTileTex[i].m_iLOD = s_Options.iTexLOD_Terrain; // LOD ì ìš©í›„ ì½ê¸°..
+        m_pTileTex[i].Load(hTTGFile);                     // ì§„ì§œ íƒ€ì¼...
 
         //loading bar...
         int iLoading = (i + 1) * 100 / m_NumTileTex;
@@ -721,8 +721,8 @@ void CN3Terrain::LoadTileInfo(HANDLE hFile) {
 }
 
 //
-//    lod level ¼³Á¤..
-//    default´Â 3...
+//    lod level ì„¤ì •..
+//    defaultëŠ” 3...
 //    min = 0, max = 10..
 //
 bool CN3Terrain::SetLODLevel(int level) {
@@ -755,7 +755,7 @@ bool CN3Terrain::SetLODLevel(int level) {
 
 //
 //    SetBlunt...
-//    °¢ ÆĞÄ¡µé ±×¸±¹æ¹ı Á¤ÇÏ±â..¾î´À¸éÀ» ¹«µğ°Ô ÇÒ°ÍÀÎÁö..
+//    ê° íŒ¨ì¹˜ë“¤ ê·¸ë¦´ë°©ë²• ì •í•˜ê¸°..ì–´ëŠë©´ì„ ë¬´ë””ê²Œ í• ê²ƒì¸ì§€..
 //
 void CN3Terrain::SetBlunt() {
     for (int x = 0; x < m_iNumPatch; x++) {
@@ -824,7 +824,7 @@ void CN3Terrain::SetBlunt() {
 //    Tick..
 //
 void CN3Terrain::Tick() {
-    int iLOD = 0; // LOD ¼öÁØ °è»ê.. ³ªÁß¿¡ °è»ê½ÄÀ» ¹Ù²Ù¾î¾ß ÇÑ´Ù.
+    int iLOD = 0; // LOD ìˆ˜ì¤€ ê³„ì‚°.. ë‚˜ì¤‘ì— ê³„ì‚°ì‹ì„ ë°”ê¾¸ì–´ì•¼ í•œë‹¤.
     iLOD = (int)(3.0f * s_CameraData.fFP / 512.0f);
     bool ChangeLOD = this->SetLODLevel(iLOD);
 
@@ -854,7 +854,7 @@ void CN3Terrain::Tick() {
 
 //
 //    CheckMovePatch
-//    ÆĞÄ¡´ÜÀ§ÀÇ ÀÌµ¿ÀÌ ÀÌ·ç¾î Á³´ÂÁö...
+//    íŒ¨ì¹˜ë‹¨ìœ„ì˜ ì´ë™ì´ ì´ë£¨ì–´ ì¡ŒëŠ”ì§€...
 //
 bool CN3Terrain::CheckMovePatch() {
     m_ti_CenterPos.x = Real2Tile(CN3Base::s_CameraData.vEye.x);
@@ -896,8 +896,8 @@ void CN3Terrain::DispositionPatch() {
         }
     }
 
-    //lightmapÀĞ¾î¼­ ¹èÄ¡ÇÏ°í...
-    //ÀÖ´ø°Ç Áö¿ì°í...
+    //lightmapì½ì–´ì„œ ë°°ì¹˜í•˜ê³ ...
+    //ìˆë˜ê±´ ì§€ìš°ê³ ...
     POINT PrevCenter = m_pat_CenterPos;
     m_pat_CenterPos.x = m_pat_LBPos.x + (m_iNumPatch / 2);
     m_pat_CenterPos.y = m_pat_LBPos.y + (m_iNumPatch / 2);
@@ -1189,8 +1189,8 @@ CN3Texture * CN3Terrain::GetLightMap(int tx, int tz) {
 
 //
 //    CheckBounce...
-//    ÆĞÄ¡´ÜÀ§ÀÇ °¡½Ã¿µ¿ª °Ë»ç..
-//    º¯ÇßÀ¸¸é return true...
+//    íŒ¨ì¹˜ë‹¨ìœ„ì˜ ê°€ì‹œì˜ì—­ ê²€ì‚¬..
+//    ë³€í–ˆìœ¼ë©´ return true...
 //
 bool CN3Terrain::CheckBound() {
     RECT prevPatRc = m_pat_BoundRect;
@@ -1199,17 +1199,17 @@ bool CN3Terrain::CheckBound() {
     rc.left = rc.right = Real2Patch(CN3Base::s_CameraData.vEye.x);
     rc.top = rc.bottom = Real2Patch(CN3Base::s_CameraData.vEye.z);
 
-    // »ç¸éÃ¼ÀÇ ¹ı¼± º¤ÅÍ¿Í Far ³× ±ÍÅüÀÌ À§Ä¡ °è»ê..
+    // ì‚¬ë©´ì²´ì˜ ë²•ì„  ë²¡í„°ì™€ Far ë„¤ ê·€í‰ì´ ìœ„ì¹˜ ê³„ì‚°..
     float fS = sinf(CN3Base::s_CameraData.fFOV / 2.0f);
     float fPL = CN3Base::s_CameraData.fFP;
-    float fAspect = CN3Base::s_CameraData.fAspect; // Á¾È¾ºñ
+    float fAspect = CN3Base::s_CameraData.fAspect; // ì¢…íš¡ë¹„
 
-    // Far Plane ÀÇ ³× ±ÍÅüÀÌ À§Ä¡ °è»ê
+    // Far Plane ì˜ ë„¤ ê·€í‰ì´ ìœ„ì¹˜ ê³„ì‚°
     __Vector3 vFPs[4] = {__Vector3(fPL * -fS * fAspect, fPL * fS, fPL),   // LeftTop
                          __Vector3(fPL * fS * fAspect, fPL * fS, fPL),    // rightTop
                          __Vector3(fPL * fS * fAspect, fPL * -fS, fPL),   // RightBottom
                          __Vector3(fPL * -fS * fAspect, fPL * -fS, fPL)}; // LeftBottom
-    // ±ÍÅüÀÌ À§Ä¡¿¡ È¸Àü Çà·ÄÀ» Àû¿ëÇÑ´Ù..
+    // ê·€í‰ì´ ìœ„ì¹˜ì— íšŒì „ í–‰ë ¬ì„ ì ìš©í•œë‹¤..
     for (int i = 0; i < 4; i++) {
         vFPs[i] = vFPs[i] * CN3Base::s_CameraData.mtxViewInverse;
     }
@@ -1355,7 +1355,7 @@ void CN3Terrain::Render() {
     hr = s_lpD3DDev->GetSamplerState(1, D3DSAMP_ADDRESSU, &AddressU2);
     hr = s_lpD3DDev->GetSamplerState(1, D3DSAMP_ADDRESSV, &AddressV2);
 
-    // °¢°¢ÀÇ ÅØ½ºÃÄµéÀ» ¿¬°áÇßÀ»¶§ °æ°è¼±À» ¾ø¾Ù ¼ö ÀÖ´Ù..^^
+    // ê°ê°ì˜ í…ìŠ¤ì³ë“¤ì„ ì—°ê²°í–ˆì„ë•Œ ê²½ê³„ì„ ì„ ì—†ì•¨ ìˆ˜ ìˆë‹¤..^^
     hr = s_lpD3DDev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_MIRROR);
     hr = s_lpD3DDev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_MIRROR);
     hr = s_lpD3DDev->SetSamplerState(1, D3DSAMP_ADDRESSU, D3DTADDRESS_MIRROR);
@@ -1398,7 +1398,7 @@ void CN3Terrain::Render() {
 
 //
 //    Log2(x) = l..
-//    2ÀÇ ½Â¼ö¿¡ ´ëÇØ¼­¸¸ Á¦´ë·Î ÀÛµ¿...(x>0)
+//    2ì˜ ìŠ¹ìˆ˜ì— ëŒ€í•´ì„œë§Œ ì œëŒ€ë¡œ ì‘ë™...(x>0)
 //
 inline int CN3Terrain::Log2(int x) {
     int l = 0;
@@ -1429,20 +1429,20 @@ float CN3Terrain::GetHeight(float x, float z) {
     float y;
     float h1, h2, h3, h12, h13;
 
-    if ((ix + iz) % 2 == 0) //»ç°¢ÇüÀÌ / ¸ğ¾ç..
+    if ((ix + iz) % 2 == 0) //ì‚¬ê°í˜•ì´ / ëª¨ì–‘..
     {
         h1 = m_pMapData[ix * m_ti_MapSize + iz].fHeight;
         h3 = m_pMapData[(ix + 1) * m_ti_MapSize + (iz + 1)].fHeight;
-        if (dZ > dX) //À­ÂÊ »ï°¢Çü..
+        if (dZ > dX) //ìœ—ìª½ ì‚¼ê°í˜•..
         {
             h2 = m_pMapData[ix * m_ti_MapSize + (iz + 1)].fHeight;
 
-            h12 = h1 + (h2 - h1) * dZ; // h1°ú h2»çÀÌÀÇ ³ôÀÌ°ª
-            h13 = h1 + (h3 - h1) * dZ; // h1°ú h3»çÀÌÀÇ ³ôÀÌ°ª
+            h12 = h1 + (h2 - h1) * dZ; // h1ê³¼ h2ì‚¬ì´ì˜ ë†’ì´ê°’
+            h13 = h1 + (h3 - h1) * dZ; // h1ê³¼ h3ì‚¬ì´ì˜ ë†’ì´ê°’
 
-            y = h12 + ((h13 - h12) * (dX / dZ)); // Ã£°íÀÚ ÇÏ´Â ³ôÀÌ°ª
+            y = h12 + ((h13 - h12) * (dX / dZ)); // ì°¾ê³ ì í•˜ëŠ” ë†’ì´ê°’
             return y;
-        } else //¾Æ·¡ÂÊ »ï°¢Çü..
+        } else //ì•„ë˜ìª½ ì‚¼ê°í˜•..
         {
             if (dX == 0.0f) {
                 return h1;
@@ -1450,20 +1450,20 @@ float CN3Terrain::GetHeight(float x, float z) {
 
             h2 = m_pMapData[(ix + 1) * m_ti_MapSize + iz].fHeight;
 
-            h12 = h1 + (h2 - h1) * dX; // h1°ú h2»çÀÌÀÇ ³ôÀÌ°ª
-            h13 = h1 + (h3 - h1) * dX; // h1°ú h3»çÀÌÀÇ ³ôÀÌ°ª
+            h12 = h1 + (h2 - h1) * dX; // h1ê³¼ h2ì‚¬ì´ì˜ ë†’ì´ê°’
+            h13 = h1 + (h3 - h1) * dX; // h1ê³¼ h3ì‚¬ì´ì˜ ë†’ì´ê°’
 
-            y = h12 + ((h13 - h12) * (dZ / dX)); // Ã£°íÀÚ ÇÏ´Â ³ôÀÌ°ª
+            y = h12 + ((h13 - h12) * (dZ / dX)); // ì°¾ê³ ì í•˜ëŠ” ë†’ì´ê°’
             return y;
         }
     }
 
-    else if ((ix + iz) % 2 == 1) //»ç°¢ÇüÀÌ ¿ª½½·¹½¬ ¸ğ¾ç..
+    else if ((ix + iz) % 2 == 1) //ì‚¬ê°í˜•ì´ ì—­ìŠ¬ë ˆì‰¬ ëª¨ì–‘..
     {
         h1 = m_pMapData[(ix + 1) * m_ti_MapSize + iz].fHeight;
         h3 = m_pMapData[ix * m_ti_MapSize + (iz + 1)].fHeight;
 
-        if ((dX + dZ) > 1.0f) //À­ÂÊ »ï°¢Çü..
+        if ((dX + dZ) > 1.0f) //ìœ—ìª½ ì‚¼ê°í˜•..
         {
             if (dZ == 0.0f) {
                 return h1;
@@ -1475,15 +1475,15 @@ float CN3Terrain::GetHeight(float x, float z) {
 
             y = h12 + ((h13 - h12) * ((1.0f - dX) / dZ));
             return y;
-        } else //¾Æ·¡ÂÊ »ï°¢Çü..
+        } else //ì•„ë˜ìª½ ì‚¼ê°í˜•..
         {
             if (dX == 1.0f) {
                 return h1;
             }
             h2 = m_pMapData[ix * m_ti_MapSize + iz].fHeight;
 
-            h12 = h2 + (h1 - h2) * dX; // h1°ú h2»çÀÌÀÇ ³ôÀÌ°ª
-            h13 = h3 + (h1 - h3) * dX; // h1°ú h3»çÀÌÀÇ ³ôÀÌ°ª
+            h12 = h2 + (h1 - h2) * dX; // h1ê³¼ h2ì‚¬ì´ì˜ ë†’ì´ê°’
+            h13 = h3 + (h1 - h3) * dX; // h1ê³¼ h3ì‚¬ì´ì˜ ë†’ì´ê°’
 
             y = h12 + ((h13 - h12) * (dZ / (1.0f - dX)));
             return y;
@@ -1600,7 +1600,7 @@ BOOL CN3Terrain::Pick(int x, int y, __Vector3 & vPick) {
     int ix = ((int)vPosCur.x) / TILE_SIZE;
     int iz = ((int)vPosCur.z) / TILE_SIZE;
 
-    if ((ix + iz) % 2 == 1) // ´ç±Ù.. ¿Ş¼Õ ¹ÙÀÎµù...
+    if ((ix + iz) % 2 == 1) // ë‹¹ê·¼.. ì™¼ì† ë°”ì¸ë”©...
     {
         A.Set((float)ix * TILE_SIZE, GetHeight(ix * TILE_SIZE, iz * TILE_SIZE), (float)iz * TILE_SIZE);
         C.Set((float)(ix + 1) * TILE_SIZE, GetHeight((ix + 1) * TILE_SIZE, iz * TILE_SIZE), (float)iz * TILE_SIZE);
@@ -1620,13 +1620,13 @@ BOOL CN3Terrain::Pick(int x, int y, __Vector3 & vPick) {
     }
     bCollision = ::_IntersectTriangle(vPos, vDir, A, B, C, t, u, v, &vPick);
 
-    if (FALSE == bCollision) // Ãæµ¹Á¡ÀÌ ¾øÀ» °æ¿ì....
+    if (FALSE == bCollision) // ì¶©ëŒì ì´ ì—†ì„ ê²½ìš°....
     {
-        vPick.Set(0, 0, 0); // ÀÏ´Ü Ãæµ¹ Á¡Àº ¾ø°í..
+        vPick.Set(0, 0, 0); // ì¼ë‹¨ ì¶©ëŒ ì ì€ ì—†ê³ ..
 
-        // À½....        !!°¡»ó!!  ¹öÅØ½º ¹öÆÛ¿Í ÀÎµ¦½º ¹öÆÛ ¸¸µé±â..
-        __Vector3 AA[8];      // °¡»ó ¹öÅØ½º ¹öÆÛ..
-        int       pIndex[36]; // °¡»ó ÀÎµ¦½º ¹öÆÛ..
+        // ìŒ....        !!ê°€ìƒ!!  ë²„í…ìŠ¤ ë²„í¼ì™€ ì¸ë±ìŠ¤ ë²„í¼ ë§Œë“¤ê¸°..
+        __Vector3 AA[8];      // ê°€ìƒ ë²„í…ìŠ¤ ë²„í¼..
+        int       pIndex[36]; // ê°€ìƒ ì¸ë±ìŠ¤ ë²„í¼..
         int *     pIdx = pIndex;
 
         AA[0] = __Vector3(vPos.x - COLLISION_BOX, vPos.y - COLLISION_BOX, vPos.z + COLLISION_BOX);
@@ -1638,7 +1638,7 @@ BOOL CN3Terrain::Pick(int x, int y, __Vector3 & vPick) {
         AA[6] = __Vector3(vPos.x + COLLISION_BOX, vPos.y + COLLISION_BOX, vPos.z - COLLISION_BOX);
         AA[7] = __Vector3(vPos.x - COLLISION_BOX, vPos.y + COLLISION_BOX, vPos.z - COLLISION_BOX);
 
-        // À­¸é.
+        // ìœ—ë©´.
         *pIdx++ = 0;
         *pIdx++ = 1;
         *pIdx++ = 3;
@@ -1646,7 +1646,7 @@ BOOL CN3Terrain::Pick(int x, int y, __Vector3 & vPick) {
         *pIdx++ = 3;
         *pIdx++ = 1;
 
-        // ¾Õ¸é..
+        // ì•ë©´..
         *pIdx++ = 7;
         *pIdx++ = 3;
         *pIdx++ = 6;
@@ -1654,7 +1654,7 @@ BOOL CN3Terrain::Pick(int x, int y, __Vector3 & vPick) {
         *pIdx++ = 6;
         *pIdx++ = 3;
 
-        // ¿ŞÂÊ..
+        // ì™¼ìª½..
         *pIdx++ = 4;
         *pIdx++ = 0;
         *pIdx++ = 7;
@@ -1662,7 +1662,7 @@ BOOL CN3Terrain::Pick(int x, int y, __Vector3 & vPick) {
         *pIdx++ = 7;
         *pIdx++ = 0;
 
-        // ¿À¸¥ÂÊ..
+        // ì˜¤ë¥¸ìª½..
         *pIdx++ = 6;
         *pIdx++ = 2;
         *pIdx++ = 5;
@@ -1670,7 +1670,7 @@ BOOL CN3Terrain::Pick(int x, int y, __Vector3 & vPick) {
         *pIdx++ = 5;
         *pIdx++ = 2;
 
-        // µŞ¸é..
+        // ë’·ë©´..
         *pIdx++ = 5;
         *pIdx++ = 1;
         *pIdx++ = 4;
@@ -1678,7 +1678,7 @@ BOOL CN3Terrain::Pick(int x, int y, __Vector3 & vPick) {
         *pIdx++ = 4;
         *pIdx++ = 1;
 
-        // ¹Ø¸é..
+        // ë°‘ë©´..
         *pIdx++ = 7;
         *pIdx++ = 6;
         *pIdx++ = 4;
@@ -1764,7 +1764,7 @@ BOOL CN3Terrain::PickWide(int x, int y, __Vector3 & vPick) {
                 break;
             };
 
-            if ((ix + iz) % 2 == 1) // ´ç±Ù.. ¿Ş¼Õ ¹ÙÀÎµù...
+            if ((ix + iz) % 2 == 1) // ë‹¹ê·¼.. ì™¼ì† ë°”ì¸ë”©...
             {
                 A.Set((float)ix * TILE_SIZE, GetHeight(ix * TILE_SIZE, iz * TILE_SIZE), (float)iz * TILE_SIZE);
                 C.Set((float)(ix + 1) * TILE_SIZE, GetHeight((ix + 1) * TILE_SIZE, iz * TILE_SIZE),
@@ -1814,17 +1814,17 @@ BOOL CN3Terrain::PickWide(int x, int y, __Vector3 & vPick) {
             }
         }
         vPosCur += (vDir * TILE_SIZE);
-        //vDir Å©±â°¡ ÀÛ±â ¶§¹®¿¡ NomalizeÇÏ°í TILE_SIZE¸¸Å­ °öÇØ¼­ ´ÙÀ½ Ã¼Å©ÇÒ À§Ä¡¸¦ ¹Ù²ãÁØ´Ù.
-        //ÀÌ·¸°Ô ÇÏÁö ¾ÊÀ¸¸é Ã¼Å©ÇÑ ºÎºĞÀ» ¿©·¯¹ø Ã¼Å©ÇÏ±â ¶§¹®¿¡ ºÎÇÏ°¡ Ä¿Áø´Ù.
+        //vDir í¬ê¸°ê°€ ì‘ê¸° ë•Œë¬¸ì— Nomalizeí•˜ê³  TILE_SIZEë§Œí¼ ê³±í•´ì„œ ë‹¤ìŒ ì²´í¬í•  ìœ„ì¹˜ë¥¼ ë°”ê¿”ì¤€ë‹¤.
+        //ì´ë ‡ê²Œ í•˜ì§€ ì•Šìœ¼ë©´ ì²´í¬í•œ ë¶€ë¶„ì„ ì—¬ëŸ¬ë²ˆ ì²´í¬í•˜ê¸° ë•Œë¬¸ì— ë¶€í•˜ê°€ ì»¤ì§„ë‹¤.
     }
 
-    if (FALSE == bCollision) // Ãæµ¹Á¡ÀÌ ¾øÀ» °æ¿ì....
+    if (FALSE == bCollision) // ì¶©ëŒì ì´ ì—†ì„ ê²½ìš°....
     {
-        vPick.Set(0, 0, 0); // ÀÏ´Ü Ãæµ¹ Á¡Àº ¾ø°í..
+        vPick.Set(0, 0, 0); // ì¼ë‹¨ ì¶©ëŒ ì ì€ ì—†ê³ ..
 
-        // À½....        !!°¡»ó!!  ¹öÅØ½º ¹öÆÛ¿Í ÀÎµ¦½º ¹öÆÛ ¸¸µé±â..
-        __Vector3 AA[8];      // °¡»ó ¹öÅØ½º ¹öÆÛ..
-        int       pIndex[36]; // °¡»ó ÀÎµ¦½º ¹öÆÛ..
+        // ìŒ....        !!ê°€ìƒ!!  ë²„í…ìŠ¤ ë²„í¼ì™€ ì¸ë±ìŠ¤ ë²„í¼ ë§Œë“¤ê¸°..
+        __Vector3 AA[8];      // ê°€ìƒ ë²„í…ìŠ¤ ë²„í¼..
+        int       pIndex[36]; // ê°€ìƒ ì¸ë±ìŠ¤ ë²„í¼..
         int *     pIdx = pIndex;
 
 #define COL_BOX_OFF 2000
@@ -1838,7 +1838,7 @@ BOOL CN3Terrain::PickWide(int x, int y, __Vector3 & vPick) {
         AA[6] = __Vector3(vPos.x + COL_BOX_OFF, vPos.y + COL_BOX_OFF, vPos.z - COL_BOX_OFF);
         AA[7] = __Vector3(vPos.x - COL_BOX_OFF, vPos.y + COL_BOX_OFF, vPos.z - COL_BOX_OFF);
 
-        // À­¸é.
+        // ìœ—ë©´.
         *pIdx++ = 0;
         *pIdx++ = 1;
         *pIdx++ = 3;
@@ -1846,7 +1846,7 @@ BOOL CN3Terrain::PickWide(int x, int y, __Vector3 & vPick) {
         *pIdx++ = 3;
         *pIdx++ = 1;
 
-        // ¾Õ¸é..
+        // ì•ë©´..
         *pIdx++ = 7;
         *pIdx++ = 3;
         *pIdx++ = 6;
@@ -1854,7 +1854,7 @@ BOOL CN3Terrain::PickWide(int x, int y, __Vector3 & vPick) {
         *pIdx++ = 6;
         *pIdx++ = 3;
 
-        // ¿ŞÂÊ..
+        // ì™¼ìª½..
         *pIdx++ = 4;
         *pIdx++ = 0;
         *pIdx++ = 7;
@@ -1862,7 +1862,7 @@ BOOL CN3Terrain::PickWide(int x, int y, __Vector3 & vPick) {
         *pIdx++ = 7;
         *pIdx++ = 0;
 
-        // ¿À¸¥ÂÊ..
+        // ì˜¤ë¥¸ìª½..
         *pIdx++ = 6;
         *pIdx++ = 2;
         *pIdx++ = 5;
@@ -1870,7 +1870,7 @@ BOOL CN3Terrain::PickWide(int x, int y, __Vector3 & vPick) {
         *pIdx++ = 5;
         *pIdx++ = 2;
 
-        // µŞ¸é..
+        // ë’·ë©´..
         *pIdx++ = 5;
         *pIdx++ = 1;
         *pIdx++ = 4;
@@ -1878,7 +1878,7 @@ BOOL CN3Terrain::PickWide(int x, int y, __Vector3 & vPick) {
         *pIdx++ = 4;
         *pIdx++ = 1;
 
-        // ¹Ø¸é..
+        // ë°‘ë©´..
         *pIdx++ = 7;
         *pIdx++ = 6;
         *pIdx++ = 4;
@@ -1917,7 +1917,7 @@ void CN3Terrain::CalcCollisionTerrainByOTPlayer(__Vector3 vOrig, __Vector3 vAt, 
     int ix = ((int)vec2.x) / TILE_SIZE;
     int iz = ((int)vec2.z) / TILE_SIZE;
 
-    if ((ix + iz) % 2 == 1) // ´ç±Ù.. ¿Ş¼Õ ¹ÙÀÎµù...
+    if ((ix + iz) % 2 == 1) // ë‹¹ê·¼.. ì™¼ì† ë°”ì¸ë”©...
     {
         A.Set((float)ix * TILE_SIZE, GetHeight(ix * TILE_SIZE, iz * TILE_SIZE), (float)iz * TILE_SIZE);
         C.Set((float)(ix + 1) * TILE_SIZE, GetHeight((ix + 1) * TILE_SIZE, iz * TILE_SIZE), (float)iz * TILE_SIZE);
@@ -1966,9 +1966,9 @@ void CN3Terrain::CalcCollisionTerrainByOTPlayer(__Vector3 vOrig, __Vector3 vAt, 
 
     //#define COLLISION_BOX 6000
 
-    // À½....        !!°¡»ó!!  ¹öÅØ½º ¹öÆÛ¿Í ÀÎµ¦½º ¹öÆÛ ¸¸µé±â..
-    __Vector3 AA[8];      // °¡»ó ¹öÅØ½º ¹öÆÛ..
-    int       pIndex[36]; // °¡»ó ÀÎµ¦½º ¹öÆÛ..
+    // ìŒ....        !!ê°€ìƒ!!  ë²„í…ìŠ¤ ë²„í¼ì™€ ì¸ë±ìŠ¤ ë²„í¼ ë§Œë“¤ê¸°..
+    __Vector3 AA[8];      // ê°€ìƒ ë²„í…ìŠ¤ ë²„í¼..
+    int       pIndex[36]; // ê°€ìƒ ì¸ë±ìŠ¤ ë²„í¼..
     int *     pIdx = pIndex;
 
     AA[0] = __Vector3(vec4.x - COLLISION_BOX, vec4.y - COLLISION_BOX, vec4.z + COLLISION_BOX);
@@ -1980,7 +1980,7 @@ void CN3Terrain::CalcCollisionTerrainByOTPlayer(__Vector3 vOrig, __Vector3 vAt, 
     AA[6] = __Vector3(vec4.x + COLLISION_BOX, vec4.y + COLLISION_BOX, vec4.z - COLLISION_BOX);
     AA[7] = __Vector3(vec4.x - COLLISION_BOX, vec4.y + COLLISION_BOX, vec4.z - COLLISION_BOX);
 
-    // À­¸é.
+    // ìœ—ë©´.
     *pIdx++ = 0;
     *pIdx++ = 1;
     *pIdx++ = 3;
@@ -1988,7 +1988,7 @@ void CN3Terrain::CalcCollisionTerrainByOTPlayer(__Vector3 vOrig, __Vector3 vAt, 
     *pIdx++ = 3;
     *pIdx++ = 1;
 
-    // ¾Õ¸é..
+    // ì•ë©´..
     *pIdx++ = 7;
     *pIdx++ = 3;
     *pIdx++ = 6;
@@ -1996,7 +1996,7 @@ void CN3Terrain::CalcCollisionTerrainByOTPlayer(__Vector3 vOrig, __Vector3 vAt, 
     *pIdx++ = 6;
     *pIdx++ = 3;
 
-    // ¿ŞÂÊ..
+    // ì™¼ìª½..
     *pIdx++ = 4;
     *pIdx++ = 0;
     *pIdx++ = 7;
@@ -2004,7 +2004,7 @@ void CN3Terrain::CalcCollisionTerrainByOTPlayer(__Vector3 vOrig, __Vector3 vAt, 
     *pIdx++ = 7;
     *pIdx++ = 0;
 
-    // ¿À¸¥ÂÊ..
+    // ì˜¤ë¥¸ìª½..
     *pIdx++ = 6;
     *pIdx++ = 2;
     *pIdx++ = 5;
@@ -2012,7 +2012,7 @@ void CN3Terrain::CalcCollisionTerrainByOTPlayer(__Vector3 vOrig, __Vector3 vAt, 
     *pIdx++ = 5;
     *pIdx++ = 2;
 
-    // µŞ¸é..
+    // ë’·ë©´..
     *pIdx++ = 5;
     *pIdx++ = 1;
     *pIdx++ = 4;
@@ -2020,7 +2020,7 @@ void CN3Terrain::CalcCollisionTerrainByOTPlayer(__Vector3 vOrig, __Vector3 vAt, 
     *pIdx++ = 4;
     *pIdx++ = 1;
 
-    // ¹Ø¸é..
+    // ë°‘ë©´..
     *pIdx++ = 7;
     *pIdx++ = 6;
     *pIdx++ = 4;
@@ -2080,7 +2080,7 @@ bool CN3Terrain::CheckCollision(__Vector3 & vPos, __Vector3 & vDir, float fVeloc
     }
 
     /////////////////////////////////////////////
-    //°Á ´ú Á¤¹ĞÇÏ°Ô ÇÏ·Á¸é..ÀÌÄÉ...
+    //ê± ëœ ì •ë°€í•˜ê²Œ í•˜ë ¤ë©´..ì´ì¼€...
     //
     (*vCol) = vPos;
     (*vCol).y = this->GetHeight(vPos.x, vPos.z) + 0.1f;
@@ -2088,8 +2088,8 @@ bool CN3Terrain::CheckCollision(__Vector3 & vPos, __Vector3 & vDir, float fVeloc
     //
     /////////////////////////////////////////////
 
-    //Á¤¹ĞÇÏ°Ô ÇÏ·Á¸é ´ÙÀ½°ú °°ÀÌÇØ...
-    //Ãæµ¹Çß´Ù...
+    //ì •ë°€í•˜ê²Œ í•˜ë ¤ë©´ ë‹¤ìŒê³¼ ê°™ì´í•´...
+    //ì¶©ëŒí–ˆë‹¤...
     RECT rt;
     rt.left = Real2Tile(vPos.x);
     rt.bottom = Real2Tile(vPos.z);
@@ -2113,7 +2113,7 @@ bool CN3Terrain::CheckCollision(__Vector3 & vPos, __Vector3 & vDir, float fVeloc
     float     t, u, v;
     for (int ix = rt.left; ix <= rt.right; ix++) {
         for (int iz = rt.bottom; iz <= rt.top; iz++) {
-            if ((ix + iz) % 2 == 1) // ´ç±Ù.. ¿Ş¼Õ ¹ÙÀÎµù...
+            if ((ix + iz) % 2 == 1) // ë‹¹ê·¼.. ì™¼ì† ë°”ì¸ë”©...
             {
                 A.Set((float)ix * TILE_SIZE, GetHeight(ix * TILE_SIZE, iz * TILE_SIZE), (float)iz * TILE_SIZE);
                 C.Set((float)(ix + 1) * TILE_SIZE, GetHeight((ix + 1) * TILE_SIZE, iz * TILE_SIZE),
@@ -2174,7 +2174,7 @@ bool CN3Terrain::CheckCollision(__Vector3 & vPos, __Vector3 & vDir, float fVeloc
 }
 
 bool CN3Terrain::LoadColorMap(const std::string & szFN) {
-    CUILoading * pUILoading = CGameProcedure::s_pUILoading; // ·Îµù¹Ù..
+    CUILoading * pUILoading = CGameProcedure::s_pUILoading; // ë¡œë”©ë°”..
 
     m_iNumColorMap = (m_pat_MapSize * PATCH_PIXEL_SIZE) / COLORMAPTEX_SIZE;
     m_ppColorMapTex = new CN3Texture *[m_iNumColorMap];
@@ -2191,7 +2191,7 @@ bool CN3Terrain::LoadColorMap(const std::string & szFN) {
     char szBuff[128];
     for (int x = 0; x < m_iNumColorMap; x++) {
         for (int z = 0; z < m_iNumColorMap; z++) {
-            m_ppColorMapTex[x][z].m_iLOD = s_Options.iTexLOD_Terrain; // LOD Àû¿ëÈÄ ÀĞ´Â´Ù..
+            m_ppColorMapTex[x][z].m_iLOD = s_Options.iTexLOD_Terrain; // LOD ì ìš©í›„ ì½ëŠ”ë‹¤..
             m_ppColorMapTex[x][z].Load(hColorMapFile);
         }
 

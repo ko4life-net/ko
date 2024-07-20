@@ -1,7 +1,7 @@
 #pragma once
 
 // ---------------------------------------------------------------------
-// AI Server¿Í °ÔÀÓ¼­¹ö°£ÀÇ Npc¿¡ °ü·ÃµÈ ÆĞÅ¶Àº 1¹ø~49¹ø
+// AI Serverì™€ ê²Œì„ì„œë²„ê°„ì˜ Npcì— ê´€ë ¨ëœ íŒ¨í‚·ì€ 1ë²ˆ~49ë²ˆ
 // ---------------------------------------------------------------------
 const BYTE AI_SERVER_CONNECT = 1;
 const BYTE NPC_INFO_ALL = 2;
@@ -18,7 +18,7 @@ const BYTE AG_NPC_EVENT_ITEM = 12;
 const BYTE AG_NPC_HP_REQ = 13; // sungyong tw
 
 // ---------------------------------------------------------------------
-// AI Server¿Í °ÔÀÓ¼­¹ö°£ÀÇ User, Npc °øÅë °ü·ÃµÈ ÆĞÅ¶Àº 50¹ø~100¹ø
+// AI Serverì™€ ê²Œì„ì„œë²„ê°„ì˜ User, Npc ê³µí†µ ê´€ë ¨ëœ íŒ¨í‚·ì€ 50ë²ˆ~100ë²ˆ
 // ---------------------------------------------------------------------
 const BYTE AG_SERVER_INFO = 50;         //
 const BYTE AG_ATTACK_REQ = 51;          // Attck Packet
@@ -30,9 +30,9 @@ const BYTE AG_COMPRESSED_DATA = 56;     // Packet Data compressed
 const BYTE AG_ZONE_CHANGE = 57;         // Zone change
 const BYTE AG_MAGIC_ATTACK_REQ = 58;    // Magic Attck Packet
 const BYTE AG_MAGIC_ATTACK_RESULT = 59; // Magic Attck Packet
-const BYTE AG_USER_INFO_ALL = 60;       // UserÀÇ ¸ğµç Á¤º¸ Àü¼Û
+const BYTE AG_USER_INFO_ALL = 60;       // Userì˜ ëª¨ë“  ì •ë³´ ì „ì†¡
 const BYTE AG_LONG_MAGIC_ATTACK = 61;   // Magic Attck Packet
-const BYTE AG_PARTY_INFO_ALL = 62;      // PartyÀÇ ¸ğµç Á¤º¸ Àü¼Û
+const BYTE AG_PARTY_INFO_ALL = 62;      // Partyì˜ ëª¨ë“  ì •ë³´ ì „ì†¡
 const BYTE AG_HEAL_MAGIC = 63;          // Healing magic
 const BYTE AG_TIME_WEATHER = 64;        // time and whether info
 const BYTE AG_BATTLE_EVENT = 65;        // battle event
@@ -46,16 +46,16 @@ const BYTE BATTLE_EVENT_MAX_USER = 4;   // battle event result ( user name )
 const BYTE BATTLE_EVENT_KILL_USER = 5;  // battle event result ( user kill count )
 
 // ---------------------------------------------------------------------
-// AI Server¿Í °ÔÀÓ¼­¹ö°£ÀÇ User¿¡ °ü·ÃµÈ ÆĞÅ¶Àº 101¹ø ºÎÅÍ ½ÃÀÛ
+// AI Serverì™€ ê²Œì„ì„œë²„ê°„ì˜ Userì— ê´€ë ¨ëœ íŒ¨í‚·ì€ 101ë²ˆ ë¶€í„° ì‹œì‘
 // ---------------------------------------------------------------------
-const BYTE AG_USER_INFO = 101;     // UserÀÇ Á¤º¸
-const BYTE AG_USER_INOUT = 102;    // UserÀÇ In,Out Á¤º¸
-const BYTE AG_USER_MOVE = 103;     // UserÀÇ move Á¤º¸
-const BYTE AG_USER_MOVEEDGE = 104; // UserÀÇ move end Á¤º¸
-const BYTE AG_USER_SET_HP = 105;   // UserÀÇ HP
-const BYTE AG_USER_LOG_OUT = 106;  // UserÀÇ LogOut
-const BYTE AG_USER_REGENE = 107;   // UserÀÇ Regene
-const BYTE AG_USER_EXP = 108;      // UserÀÇ °æÇèÄ¡
-const BYTE AG_USER_UPDATE = 109;   // UserÀÇ Update Info
-const BYTE AG_USER_FAIL = 110;     // Àß¸øµÈ À¯Àú Ã³¸®...
-const BYTE AG_USER_PARTY = 111;    // ÆÄÆ¼Ã³¸® ´ã´ç
+const BYTE AG_USER_INFO = 101;     // Userì˜ ì •ë³´
+const BYTE AG_USER_INOUT = 102;    // Userì˜ In,Out ì •ë³´
+const BYTE AG_USER_MOVE = 103;     // Userì˜ move ì •ë³´
+const BYTE AG_USER_MOVEEDGE = 104; // Userì˜ move end ì •ë³´
+const BYTE AG_USER_SET_HP = 105;   // Userì˜ HP
+const BYTE AG_USER_LOG_OUT = 106;  // Userì˜ LogOut
+const BYTE AG_USER_REGENE = 107;   // Userì˜ Regene
+const BYTE AG_USER_EXP = 108;      // Userì˜ ê²½í—˜ì¹˜
+const BYTE AG_USER_UPDATE = 109;   // Userì˜ Update Info
+const BYTE AG_USER_FAIL = 110;     // ì˜ëª»ëœ ìœ ì € ì²˜ë¦¬...
+const BYTE AG_USER_PARTY = 111;    // íŒŒí‹°ì²˜ë¦¬ ë‹´ë‹¹

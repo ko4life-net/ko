@@ -30,7 +30,7 @@ void CServerMesh::Tick(CN3Terrain * pTerrain, const __Vector3 & vPosPlayer) {
 
     D3DCOLOR color = D3DCOLOR_RGBA(50, 25, 25, 0);
 
-    // Á¦ÀÏ ¿ŞÂÊ..
+    // ì œì¼ ì™¼ìª½..
     ixposL = ixpos - SGRID_SIZE;
     izposL = izpos - SGRID_SIZE;
     ixposR = ixpos - SGRID_SIZE;
@@ -50,7 +50,7 @@ void CServerMesh::Tick(CN3Terrain * pTerrain, const __Vector3 & vPosPlayer) {
 
     AutoConcMesh(color, ixposL, ixposR, izposL, izposR, fHeightBottom, fHeightTop, 0);
 
-    // ¿ŞÂÊ µÎ¹øÂ°..
+    // ì™¼ìª½ ë‘ë²ˆì§¸..
 
     ixposL = ixpos;
     izposL = izpos - SGRID_SIZE;
@@ -71,7 +71,7 @@ void CServerMesh::Tick(CN3Terrain * pTerrain, const __Vector3 & vPosPlayer) {
 
     AutoConcMesh(color, ixposL, ixposR, izposL, izposR, fHeightBottom, fHeightTop, 6);
 
-    // ¿ŞÂÊ ¼¼¹øÂ°..
+    // ì™¼ìª½ ì„¸ë²ˆì§¸..
 
     ixposL = ixpos + SGRID_SIZE;
     izposL = izpos - SGRID_SIZE;
@@ -92,7 +92,7 @@ void CServerMesh::Tick(CN3Terrain * pTerrain, const __Vector3 & vPosPlayer) {
 
     AutoConcMesh(color, ixposL, ixposR, izposL, izposR, fHeightBottom, fHeightTop, 12);
 
-    // ¿ŞÂÊ¿¡¼­ ³¡..
+    // ì™¼ìª½ì—ì„œ ë..
 
     ixposL = ixpos + SGRID_SIZE * 2;
     izposL = izpos - SGRID_SIZE;
@@ -113,7 +113,7 @@ void CServerMesh::Tick(CN3Terrain * pTerrain, const __Vector3 & vPosPlayer) {
 
     AutoConcMesh(color, ixposL, ixposR, izposL, izposR, fHeightBottom, fHeightTop, 18);
 
-    // ¹Ø¿¡¼­ Ã¹¹øÂ°..
+    // ë°‘ì—ì„œ ì²«ë²ˆì§¸..
 
     ixposL = ixpos - SGRID_SIZE;
     izposL = izpos - SGRID_SIZE;
@@ -134,7 +134,7 @@ void CServerMesh::Tick(CN3Terrain * pTerrain, const __Vector3 & vPosPlayer) {
 
     AutoConcMesh(color, ixposL, ixposR, izposL, izposR, fHeightBottom, fHeightTop, 24);
 
-    // ¹Ø¿¡¼­ µÎ¹øÂ°..
+    // ë°‘ì—ì„œ ë‘ë²ˆì§¸..
 
     ixposL = ixpos - SGRID_SIZE;
     izposL = izpos;
@@ -155,7 +155,7 @@ void CServerMesh::Tick(CN3Terrain * pTerrain, const __Vector3 & vPosPlayer) {
 
     AutoConcMesh(color, ixposL, ixposR, izposL, izposR, fHeightBottom, fHeightTop, 30);
 
-    // ¹Ø¿¡¼­ ¼¼¹øÂ°..
+    // ë°‘ì—ì„œ ì„¸ë²ˆì§¸..
 
     ixposL = ixpos - SGRID_SIZE;
     izposL = izpos + SGRID_SIZE;
@@ -176,7 +176,7 @@ void CServerMesh::Tick(CN3Terrain * pTerrain, const __Vector3 & vPosPlayer) {
 
     AutoConcMesh(color, ixposL, ixposR, izposL, izposR, fHeightBottom, fHeightTop, 36);
 
-    // ¹Ø¿¡¼­ ³¡¹øÂ°..
+    // ë°‘ì—ì„œ ëë²ˆì§¸..
 
     ixposL = ixpos - SGRID_SIZE;
     izposL = izpos + SGRID_SIZE * 2;

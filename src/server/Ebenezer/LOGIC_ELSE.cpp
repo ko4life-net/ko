@@ -84,7 +84,7 @@ void LOGIC_ELSE::Parse_and(char * pBuf) {
         index += ParseSpace(temp, pBuf + index);
         m_LogicElseInt[i++] = atoi(temp); // Weight & Empty Slot
     }
-    // ºñ·¯¸Ó±Û º¹±Ç!!!
+    // ë¹„ëŸ¬ë¨¸ê¸€ ë³µê¶Œ!!!
     else if (!strcmp(temp, "CHECK_EDITBOX")) {
         m_LogicElse = LOGIC_CHECK_EDITBOX;
 
@@ -97,7 +97,7 @@ void LOGIC_ELSE::Parse_and(char * pBuf) {
         m_LogicElseInt[i++] = atoi(temp); // Chances of you hitting the jackpot
     }
     //
-    // ÇöÀç ¿©±â±îÁö¸¸ ¾²ÀÔ´Ï´Ù. ¾Æ·¡´Â ³ªÁß¿¡ ¸Â°Ô ¼öÁ¤ÇØ¼­ ¾²¼¼¿©.
+    // í˜„ì¬ ì—¬ê¸°ê¹Œì§€ë§Œ ì“°ì…ë‹ˆë‹¤. ì•„ë˜ëŠ” ë‚˜ì¤‘ì— ë§ê²Œ ìˆ˜ì •í•´ì„œ ì“°ì„¸ì—¬.
 
     /*
     if( !strcmp( temp, "CHECK_NATION" ) )
@@ -139,7 +139,7 @@ void LOGIC_ELSE::Parse_and(char * pBuf) {
         index += ParseSpace( temp, pBuf+index );    m_LogicElseInt[i++] = atoi( temp );        // Gold
     }
 */
-    ///////////////////////// ¿©±â¼­ ºÎÅÏ ³»°¡ ÇÑÀÏ ///////////////////////////
+    ///////////////////////// ì—¬ê¸°ì„œ ë¶€í„´ ë‚´ê°€ í•œì¼ ///////////////////////////
 
     /*
     else if( !strcmp( temp, "CHECK_CLASS" ) )

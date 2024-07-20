@@ -26,11 +26,11 @@ class CSharedMemQueue //:public CObject
     BOOL IsPartner();
 
     BOOL CreateSmq(BOOL Server);
-    //ÀĞÀº µ¥ÀÌÅ¸¸¦ ¹öÆÛ¿¡ ÀúÀåÇÑ´Ù.
+    //ì½ì€ ë°ì´íƒ€ë¥¼ ë²„í¼ì— ì €ì¥í•œë‹¤.
     void SetReadData();
-    //ÀĞÀº µ¥ÀÌÅ¸¸¦ ¹öÆÛ¿¡ °¡Á®¿Â´Ù.
+    //ì½ì€ ë°ì´íƒ€ë¥¼ ë²„í¼ì— ê°€ì ¸ì˜¨ë‹¤.
     void GetReadData(LPSTR data, int nLength);
-    //¸Ş¼¼Àç¸¦ º¸³¾ À©µµ¿ì ÇÃ·¡¸¦ ¼³Á¤ÇÑ´Ù.
+    //ë©”ì„¸ì¬ë¥¼ ë³´ë‚¼ ìœˆë„ìš° í”Œë˜ë¥¼ ì„¤ì •í•œë‹¤.
     void SetHwnd(HWND hwnd);
     void CloseSmq();
     BOOL IsData();
@@ -39,8 +39,8 @@ class CSharedMemQueue //:public CObject
     HANDLE       m_hrMMFile;
     HANDLE       m_hsMMFile;
     char *       m_lpMMFile;
-    HWND         m_hwnd;         //¸Ş¼¼Áö¸¦ Àü´ŞÇÒ À©µµ¿ì ÇÃ·¯±×
-    BYTE         abIn[1024 + 1]; //ÄÄÆ÷Æ®¿¡¼­ µé¾î¿À´Â µ¥ÀÌÅ¸
+    HWND         m_hwnd;         //ë©”ì„¸ì§€ë¥¼ ì „ë‹¬í•  ìœˆë„ìš° í”ŒëŸ¬ê·¸
+    BYTE         abIn[1024 + 1]; //ì»´í¬íŠ¸ì—ì„œ ë“¤ì–´ì˜¤ëŠ” ë°ì´íƒ€
     BOOL         fConnected;
     _SMQ_HEADER *Txd, *Rxd;
 };

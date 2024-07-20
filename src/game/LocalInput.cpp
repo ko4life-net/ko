@@ -23,24 +23,24 @@ CLocalInput::CLocalInput(void) {
     //    m_bKeyboard = FALSE;
 
     m_nMouseFlag = 0;
-    m_nMouseFlagOld = 0; // ¸¶¿ì½º ¹öÆ° ´­¸² ÇÃ·¡±×
-    m_dwTickLBDown = 0;  // ¸¶¿ì½º ¿ŞÂÊ ¹öÆ° ´õºí Å¬¸¯ °¨Áö¿ë
-    m_dwTickRBDown = 0;  // ¸¶¿ì½º ¿À¸¥ÂÊ ¹öÆ° ´õºí Å¬¸¯ °¨Áö¿ë
+    m_nMouseFlagOld = 0; // ë§ˆìš°ìŠ¤ ë²„íŠ¼ ëˆŒë¦¼ í”Œë˜ê·¸
+    m_dwTickLBDown = 0;  // ë§ˆìš°ìŠ¤ ì™¼ìª½ ë²„íŠ¼ ë”ë¸” í´ë¦­ ê°ì§€ìš©
+    m_dwTickRBDown = 0;  // ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ ë²„íŠ¼ ë”ë¸” í´ë¦­ ê°ì§€ìš©
 
-    m_ptCurMouse.x = m_ptCurMouse.y = 0; // ÇöÀç ¸¶¿ì½º Æ÷ÀÎÅÍ
-    m_ptOldMouse.x = m_ptOldMouse.y = 0; // Á÷Àü ¸¶¿ì½º Æ÷ÀÎÅÍ
+    m_ptCurMouse.x = m_ptCurMouse.y = 0; // í˜„ì¬ ë§ˆìš°ìŠ¤ í¬ì¸í„°
+    m_ptOldMouse.x = m_ptOldMouse.y = 0; // ì§ì „ ë§ˆìš°ìŠ¤ í¬ì¸í„°
 
-    SetRect(&m_rcLBDrag, 0, 0, 0, 0); // µå·¡±× ¿µ¿ª
-    SetRect(&m_rcMBDrag, 0, 0, 0, 0); // µå·¡±× ¿µ¿ª
-    SetRect(&m_rcRBDrag, 0, 0, 0, 0); // µå·¡±× ¿µ¿ª
+    SetRect(&m_rcLBDrag, 0, 0, 0, 0); // ë“œë˜ê·¸ ì˜ì—­
+    SetRect(&m_rcMBDrag, 0, 0, 0, 0); // ë“œë˜ê·¸ ì˜ì—­
+    SetRect(&m_rcRBDrag, 0, 0, 0, 0); // ë“œë˜ê·¸ ì˜ì—­
 
-    SetRect(&m_rcMLimit, 0, 0, 0, 0); // ¸¶¿ì½º ¿òÁ÷ÀÓ Á¦ÇÑ ¿µ¿ª
+    SetRect(&m_rcMLimit, 0, 0, 0, 0); // ë§ˆìš°ìŠ¤ ì›€ì§ì„ ì œí•œ ì˜ì—­
 
-    memset(m_byCurKeys, 0, sizeof(m_byCurKeys));       // ÇöÀç Å° »óÅÂ
-    memset(m_byOldKeys, 0, sizeof(m_byOldKeys));       // Á÷Àü Å° »óÅÂ
-    memset(m_bKeyPresses, 0, sizeof(m_bKeyPresses));   // Å°¸¦ ´©¸¥ ¼ø°£ÀÎÁö
-    memset(m_bKeyPresseds, 0, sizeof(m_bKeyPresseds)); // Å°¸¦ ´­·¶´Ù ¶¼´Â ¼ø°£ÀÎÁö
-    m_bNoKeyDown = FALSE;                              // ¾Æ¹« Å°ÀÔ·Âµµ ¾ø´ÂÁö
+    memset(m_byCurKeys, 0, sizeof(m_byCurKeys));       // í˜„ì¬ í‚¤ ìƒíƒœ
+    memset(m_byOldKeys, 0, sizeof(m_byOldKeys));       // ì§ì „ í‚¤ ìƒíƒœ
+    memset(m_bKeyPresses, 0, sizeof(m_bKeyPresses));   // í‚¤ë¥¼ ëˆ„ë¥¸ ìˆœê°„ì¸ì§€
+    memset(m_bKeyPresseds, 0, sizeof(m_bKeyPresseds)); // í‚¤ë¥¼ ëˆŒë €ë‹¤ ë–¼ëŠ” ìˆœê°„ì¸ì§€
+    m_bNoKeyDown = FALSE;                              // ì•„ë¬´ í‚¤ì…ë ¥ë„ ì—†ëŠ”ì§€
 
     memset(m_dwTickKeyPress, 0, sizeof(m_dwTickKeyPress));
 }
@@ -79,7 +79,7 @@ BOOL CLocalInput::Init(HINSTANCE hInst, HWND hWnd, BOOL bActivateKeyboard, BOOL 
                        BOOL ExclusiveMouseAccess) {
     HRESULT rval;
 
-    m_hWnd = hWnd; // À©µµ¿ì ÇÚµé ±â¾ï..
+    m_hWnd = hWnd; // ìœˆë„ìš° í•¸ë“¤ ê¸°ì–µ..
 
     rval = DirectInput8Create(hInst, DIRECTINPUT_VERSION, IID_IDirectInput8, (void **)(&m_lpDI), NULL);
     if (rval != DI_OK) {
@@ -236,7 +236,7 @@ void CLocalInput::UnacquireMouse() {
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Updates all devices. Call this before you check for input.
 /////////////////////////////////////////////////////////////////////////////////////////////
-// µÇµµ·ÏÀÌ¸é ÀüÃ¼ ÇÁ·Î½ÃÀú µ¹¶§ ÇÑ¹ø¾¿¸¸ µµ´Â°Ô ÁÁ´Ù.. ¿©·¯¹ø ÇÏ¸é È¥¶õÀÌ ¿Ã¼öµµ ÀÖ´Ù.
+// ë˜ë„ë¡ì´ë©´ ì „ì²´ í”„ë¡œì‹œì € ëŒë•Œ í•œë²ˆì”©ë§Œ ë„ëŠ”ê²Œ ì¢‹ë‹¤.. ì—¬ëŸ¬ë²ˆ í•˜ë©´ í˜¼ë€ì´ ì˜¬ìˆ˜ë„ ìˆë‹¤.
 void CLocalInput::Tick(void) {
 #if _DEBUG
     if (ImGui::GetIO().WantCaptureMouse || ImGui::GetIO().WantCaptureKeyboard) {
@@ -250,7 +250,7 @@ void CLocalInput::Tick(void) {
     //    WORD i;
     //    DWORD key;
 
-    HWND hWndActive = ::GetActiveWindow(); // Æ÷Ä¿½ÌµÇ¾úÀ»¶§¸¸...
+    HWND hWndActive = ::GetActiveWindow(); // í¬ì»¤ì‹±ë˜ì—ˆì„ë•Œë§Œ...
     if (hWndActive != m_hWnd) {
         return;
     }
@@ -260,21 +260,21 @@ void CLocalInput::Tick(void) {
     ///////////////////////
     //    if(m_bKeyboard)
     //    {
-    memcpy(m_byOldKeys, m_byCurKeys, NUMDIKEYS);                   // ÀüÀÇ Å° »óÅÂ ±â·Ï
-    err = m_lpDIDKeyboard->GetDeviceState(NUMDIKEYS, m_byCurKeys); // ÇöÀç Å° »óÅÂ ±â·Ï
+    memcpy(m_byOldKeys, m_byCurKeys, NUMDIKEYS);                   // ì „ì˜ í‚¤ ìƒíƒœ ê¸°ë¡
+    err = m_lpDIDKeyboard->GetDeviceState(NUMDIKEYS, m_byCurKeys); // í˜„ì¬ í‚¤ ìƒíƒœ ê¸°ë¡
     if (err != DI_OK) {
         AcquireKeyboard();
     } else {
-        m_bNoKeyDown = TRUE; // Ã·¿£ ¾Æ¹«°Íµµ ¾È´­¸²
+        m_bNoKeyDown = TRUE; // ì²¨ì—” ì•„ë¬´ê²ƒë„ ì•ˆëˆŒë¦¼
         for (int i = 0; i < NUMDIKEYS; i++) {
             if (!m_byOldKeys[i] && m_byCurKeys[i]) {
-                m_bKeyPresses[i] = TRUE; // ´­¸®´Â ¼ø°£
+                m_bKeyPresses[i] = TRUE; // ëˆŒë¦¬ëŠ” ìˆœê°„
             } else {
                 m_bKeyPresses[i] = FALSE;
             }
 
             if (m_byOldKeys[i] && !m_byCurKeys[i]) {
-                m_bKeyPresseds[i] = TRUE; // ´­·¶´Ù ¶¼´Â ¼ø°£..
+                m_bKeyPresseds[i] = TRUE; // ëˆŒë €ë‹¤ ë–¼ëŠ” ìˆœê°„..
             } else {
                 m_bKeyPresseds[i] = FALSE;
             }
@@ -292,14 +292,14 @@ void CLocalInput::Tick(void) {
     //    if(m_bMouse)
     //    {
     //        DIMOUSESTATE DIMState;
-    //        err = m_lpDIDMouse->GetDeviceState(sizeof(DIMState), &DIMState); // ¸¶¿ì½º »óÅÂ ¾ò±â - ÀÌ»óÅ¸.. ÀÚ²Ù.. ¿¡·¯°¡..
+    //        err = m_lpDIDMouse->GetDeviceState(sizeof(DIMState), &DIMState); // ë§ˆìš°ìŠ¤ ìƒíƒœ ì–»ê¸° - ì´ìƒíƒ€.. ìê¾¸.. ì—ëŸ¬ê°€..
     //        if(err != DI_OK)
     //        {
     //            AcquireMouse();
     //            return;
     //        }
 
-    // ¸¶¿ì½º À§Ä¡ »õ·Î °¡Á®¿À±â
+    // ë§ˆìš°ìŠ¤ ìœ„ì¹˜ ìƒˆë¡œ ê°€ì ¸ì˜¤ê¸°
     //        m_ptCurMouse.x += DIMState.lX;
     //        m_ptCurMouse.y += DIMState.lY;
 
@@ -321,22 +321,22 @@ void CLocalInput::Tick(void) {
     //        if (m_ptCurMouse.y < m_rcMLimit.top)
     //            m_ptCurMouse.y = m_rcMLimit.top;
 
-    m_ptOldMouse = m_ptCurMouse; // ÀÏ´Ü ÀüÀÇ °Í º¹»ç...
+    m_ptOldMouse = m_ptCurMouse; // ì¼ë‹¨ ì „ì˜ ê²ƒ ë³µì‚¬...
 
     RECT rcClient;
     ::GetClientRect(m_hWnd, &rcClient);
-    ::GetCursorPos(&m_ptCurMouse);           // Á» ÀÌ»óÇØ¼­... ±×³É ½Ã½ºÅÛ ¸¶¿ì½º Ä¿¼­ À§Ä¡ °¡Á®¿À±â
-    ::ScreenToClient(m_hWnd, &m_ptCurMouse); // Å¬¶óÀÌ¾ğÆ® ¿µ¿ªÀ¸·Î º¯È¯
+    ::GetCursorPos(&m_ptCurMouse);           // ì¢€ ì´ìƒí•´ì„œ... ê·¸ëƒ¥ ì‹œìŠ¤í…œ ë§ˆìš°ìŠ¤ ì»¤ì„œ ìœ„ì¹˜ ê°€ì ¸ì˜¤ê¸°
+    ::ScreenToClient(m_hWnd, &m_ptCurMouse); // í´ë¼ì´ì–¸íŠ¸ ì˜ì—­ìœ¼ë¡œ ë³€í™˜
 
     if (PtInRect(&rcClient, m_ptCurMouse) ==
-        FALSE) //  || GetFocus() != m_hWnd) // ½ºÅ©¸° ¿µ¿ª ¹Û¿¡ ÀÖ°Å³ª Æ÷Ä¿½º°¡ °¡ÀÖÁö ¾ÊÀ¸¸é..
+        FALSE) //  || GetFocus() != m_hWnd) // ìŠ¤í¬ë¦° ì˜ì—­ ë°–ì— ìˆê±°ë‚˜ í¬ì»¤ìŠ¤ê°€ ê°€ìˆì§€ ì•Šìœ¼ë©´..
     {
     } else {
-        // ¸¶¿ì½º ¹öÆ° »óÅÂ º¸°ü.
+        // ë§ˆìš°ìŠ¤ ë²„íŠ¼ ìƒíƒœ ë³´ê´€.
         m_nMouseFlagOld = m_nMouseFlag;
         m_nMouseFlag = 0;
 
-        // ¸¶¿ì½º »óÅÂ °¡Á®¿À±â
+        // ë§ˆìš°ìŠ¤ ìƒíƒœ ê°€ì ¸ì˜¤ê¸°
         if (_IsKeyDown(VK_LBUTTON)) {
             m_nMouseFlag |= MOUSE_LBDOWN;
         }
@@ -347,7 +347,7 @@ void CLocalInput::Tick(void) {
             m_nMouseFlag |= MOUSE_RBDOWN;
         }
 
-        // ¹öÆ° Å¬¸¯ Á÷ÈÄ..
+        // ë²„íŠ¼ í´ë¦­ ì§í›„..
         if ((m_nMouseFlagOld & MOUSE_LBDOWN) == FALSE && (m_nMouseFlag & MOUSE_LBDOWN)) {
             m_nMouseFlag |= MOUSE_LBCLICK;
         }
@@ -358,7 +358,7 @@ void CLocalInput::Tick(void) {
             m_nMouseFlag |= MOUSE_RBCLICK;
         }
 
-        // ¹öÆ°¿¡¼­ ¼ÕÀ» ¶¼¸é
+        // ë²„íŠ¼ì—ì„œ ì†ì„ ë–¼ë©´
         if ((m_nMouseFlagOld & MOUSE_LBDOWN) && (m_nMouseFlag & MOUSE_LBDOWN) == FALSE) {
             m_nMouseFlag |= MOUSE_LBCLICKED;
         }
@@ -369,8 +369,8 @@ void CLocalInput::Tick(void) {
             m_nMouseFlag |= MOUSE_RBCLICKED;
         }
 
-        static DWORD dwDblClk = GetDoubleClickTime(); // À©µµ¿ìÀÇ ´õºí Å¬¸¯½Ã°£À» °¡Á®¿À°í..
-        if (m_nMouseFlag & MOUSE_LBCLICKED)           // ¿ŞÂÊ ´õºí Å¬¸¯ °¨Áö
+        static DWORD dwDblClk = GetDoubleClickTime(); // ìœˆë„ìš°ì˜ ë”ë¸” í´ë¦­ì‹œê°„ì„ ê°€ì ¸ì˜¤ê³ ..
+        if (m_nMouseFlag & MOUSE_LBCLICKED)           // ì™¼ìª½ ë”ë¸” í´ë¦­ ê°ì§€
         {
             static DWORD dwCLicked = 0;
             if (timeGetTime() < dwCLicked + dwDblClk) {
@@ -378,7 +378,7 @@ void CLocalInput::Tick(void) {
             }
             dwCLicked = timeGetTime();
         }
-        if (m_nMouseFlag & MOUSE_MBCLICKED) // ¿ŞÂÊ ´õºí Å¬¸¯ °¨Áö
+        if (m_nMouseFlag & MOUSE_MBCLICKED) // ì™¼ìª½ ë”ë¸” í´ë¦­ ê°ì§€
         {
             static DWORD dwCLicked = 0;
             if (timeGetTime() < dwCLicked + dwDblClk) {
@@ -386,7 +386,7 @@ void CLocalInput::Tick(void) {
             }
             dwCLicked = timeGetTime();
         }
-        if (m_nMouseFlag & MOUSE_RBCLICKED) // ¿ŞÂÊ ´õºí Å¬¸¯ °¨Áö
+        if (m_nMouseFlag & MOUSE_RBCLICKED) // ì™¼ìª½ ë”ë¸” í´ë¦­ ê°ì§€
         {
             static DWORD dwCLicked = 0;
             if (timeGetTime() < dwCLicked + dwDblClk) {
@@ -395,7 +395,7 @@ void CLocalInput::Tick(void) {
             dwCLicked = timeGetTime();
         }
 
-        // µå·¡±× ¿µ¿ª Ã³¸®
+        // ë“œë˜ê·¸ ì˜ì—­ ì²˜ë¦¬
         if (m_nMouseFlag & MOUSE_LBDOWN) {
             m_rcLBDrag.right = m_ptCurMouse.x;
             m_rcLBDrag.bottom = m_ptCurMouse.y;

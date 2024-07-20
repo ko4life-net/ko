@@ -1700,7 +1700,7 @@ BOOL CJpegFile::EncryptJPEG(HANDLE        hDib,     //Handle to DIB
     BYTE * data_byte;
     DWORD  encrypt_len;
 
-    // JPEG ∆ƒ¿œ ¿–æÓø¿±‚
+    // JPEG ÌååÏùº ÏùΩÏñ¥Ïò§Í∏∞
     fh = CreateFile(csJpeg.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (fh == INVALID_HANDLE_VALUE) {
         return false;
@@ -1728,13 +1728,13 @@ BOOL CJpegFile::EncryptJPEG(HANDLE        hDib,     //Handle to DIB
     CloseHandle(fh);
 
     m_r = 1124;
-    // JPEG ∆ƒ¿œ Encoding
+    // JPEG ÌååÏùº Encoding
     encrypt_len = loSize + 8;
     for (int i = 0; i < encrypt_len; i++) {
         data_byte[i] = Encrypt(data_byte[i]);
     }
 
-    // Encoding ∆ƒ¿œ Writing
+    // Encoding ÌååÏùº Writing
     fh = CreateFile(csJpeg.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     if (fh == INVALID_HANDLE_VALUE) {
         delete[] data_byte;
@@ -1766,13 +1766,13 @@ BOOL CJpegFile::DecryptJPEG(std::string csJpeg) {
     }
 
     if (GetTempFileName((LPCTSTR)szDstpath.c_str(), "ksc", 0, szTempName) == 0) {
-        // AfxMessageBox("¿”Ω√ ∆ƒ¿œ¿ª ª˝º∫«“ ºˆ∞° æ¯Ω¿¥œ¥Ÿ.", MB_ICONSTOP|MB_OK);
+        // AfxMessageBox("ÏûÑÏãú ÌååÏùºÏùÑ ÏÉùÏÑ±Ìï† ÏàòÍ∞Ä ÏóÜÏäµÎãàÎã§.", MB_ICONSTOP|MB_OK);
         return FALSE;
     }
 
     hSrc = CreateFile((LPCTSTR)csJpeg.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (hSrc == INVALID_HANDLE_VALUE) {
-        // AfxMessageBox("º“Ω∫ ∆ƒ¿œ¿Ã ¡∏¿Á«œ¡ˆ æ Ω¿¥œ¥Ÿ. ¥Ÿ∏• ∆ƒ¿œ¿ª º±≈√«ÿ¡÷ººø‰.", MB_ICONSTOP|MB_OK);
+        // AfxMessageBox("ÏÜåÏä§ ÌååÏùºÏù¥ Ï°¥Ïû¨ÌïòÏßÄ ÏïäÏäµÎãàÎã§. Îã§Î•∏ ÌååÏùºÏùÑ ÏÑ†ÌÉùÌï¥Ï£ºÏÑ∏Ïöî.", MB_ICONSTOP|MB_OK);
         return FALSE;
     }
 
@@ -1805,7 +1805,7 @@ BOOL CJpegFile::DecryptJPEG(std::string csJpeg) {
     }
 
     if (magic[0] == 'K' && magic[1] == 'S' && magic[2] == 'C' && magic[3] == 1) {
-        //πˆ¿¸ 1π¯
+        //Î≤ÑÏ†Ñ 1Î≤à
     } else {
         CloseHandle(hSrc);
         CloseHandle(hDst);

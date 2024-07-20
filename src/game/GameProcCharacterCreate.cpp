@@ -67,19 +67,19 @@ void CGameProcCharacterCreate::Init() {
 }
 
 void CGameProcCharacterCreate::Render() {
-    s_pEng->Clear(0);     // Å¬¸®¾î..
-    s_pEng->BeginScene(); // ¾À ·»´õ ¤µÀÛ...
+    s_pEng->Clear(0);     // í´ë¦¬ì–´..
+    s_pEng->BeginScene(); // ì”¬ ë Œë” ã……ìž‘...
 
     s_pUIMgr->Render();
 
-    s_pPlayer->InventoryChrRender(m_rcChr); // Ä³¸¯ÅÍ ±×¸®±â..
+    s_pPlayer->InventoryChrRender(m_rcChr); // ìºë¦­í„° ê·¸ë¦¬ê¸°..
 
-    s_pMsgBoxMgr->Render(); //MessageBox¸¦ ±×·ÁÁØ´Ù.
+    s_pMsgBoxMgr->Render(); //MessageBoxë¥¼ ê·¸ë ¤ì¤€ë‹¤.
     if (s_pGameCursor) {
         s_pGameCursor->Render();
     }
 
-    s_pEng->EndScene(); // ¾À ·»´õ ½ÃÀÛ...
+    s_pEng->EndScene(); // ì”¬ ë Œë” ì‹œìž‘...
     s_pEng->Present(CN3Base::s_hWndBase);
 }
 
@@ -99,15 +99,15 @@ void CGameProcCharacterCreate::SetChr() {
     }
 
     __TABLE_PLAYER_LOOKS * pLooks =
-        s_pTbl_UPC_Looks->Find(s_pPlayer->m_InfoBase.eRace); // User Player Character Skin ±¸Á¶Ã¼ Æ÷ÀÎÅÍ..;
+        s_pTbl_UPC_Looks->Find(s_pPlayer->m_InfoBase.eRace); // User Player Character Skin êµ¬ì¡°ì²´ í¬ì¸í„°..;
     if (NULL == pLooks) {
         return;
     }
 
     s_pPlayer->InitChr(pLooks);
-    s_pPlayer->m_ChrInv.ScaleSet(1, 1, 1); // ½ºÄÉÀÏÀ» ¿ø·¡´ë·Î µ¹¸°´Ù.
+    s_pPlayer->m_ChrInv.ScaleSet(1, 1, 1); // ìŠ¤ì¼€ì¼ì„ ì›ëž˜ëŒ€ë¡œ ëŒë¦°ë‹¤.
 
-    if (pLooks) // ÆÄÆ® ¼¼ÆÃ..
+    if (pLooks) // íŒŒíŠ¸ ì„¸íŒ…..
     {
         for (int i = 0; i < PART_POS_COUNT; i++) {
             if (i == PART_POS_FACE) {
@@ -131,7 +131,7 @@ void CGameProcCharacterCreate::SetChr() {
 }
 
 void CGameProcCharacterCreate::Tick() {
-    //    s_pLocalInput->Tick(); // Å°º¸µå¿Í ¸¶¿ì½º·ÎºÎÅÍ ÀÔ·ÂÀ» ¹Þ´Â´Ù.
+    //    s_pLocalInput->Tick(); // í‚¤ë³´ë“œì™€ ë§ˆìš°ìŠ¤ë¡œë¶€í„° ìž…ë ¥ì„ ë°›ëŠ”ë‹¤.
     //    if(dwMouseFlags & MOUSE_LBDOWN) SetCursor(s_hCursorClick);
     //    else SetCursor(s_hCursorNormal);
 
@@ -143,17 +143,17 @@ void CGameProcCharacterCreate::Tick() {
 
     s_pEng->s_SndMgr.Tick(); // Sound Engine...
 
-    // Network Msg Ã³¸®ÇÏ±â
+    // Network Msg ì²˜ë¦¬í•˜ê¸°
     DataPack * pDataPack = NULL;
-    while (s_pSocket->PktQueueSize() > 0) // ÆÐÅ¶ ¸®½ºÆ®¿¡ ÆÐÅ¶ÀÌ ÀÖ³Ä????
+    while (s_pSocket->PktQueueSize() > 0) // íŒ¨í‚· ë¦¬ìŠ¤íŠ¸ì— íŒ¨í‚·ì´ ìžˆëƒ????
     {
         int iOffset = 0;
-        pDataPack = s_pSocket->PktQueueFront(); // Å¥ÀÇ Ã¹¹øÂ° °ÍÀ» º¹»ç..
+        pDataPack = s_pSocket->PktQueueFront(); // íì˜ ì²«ë²ˆì§¸ ê²ƒì„ ë³µì‚¬..
         if (false == ProcessPacket(pDataPack, iOffset)) {
-            break; // ÆÐÅ¶À» Ã³¸®ÇÒ »óÈ²ÀÌ ¾Æ´Ï´Ù.
+            break; // íŒ¨í‚·ì„ ì²˜ë¦¬í•  ìƒí™©ì´ ì•„ë‹ˆë‹¤.
         }
         delete pDataPack;
-        s_pSocket->PktQueuePop(); // ÆÐÅ¶À» Å¥¿¡¼­ ²¨³¿..
+        s_pSocket->PktQueuePop(); // íŒ¨í‚·ì„ íì—ì„œ êº¼ëƒ„..
     }
 
     s_pPlayer->InventoryChrTick();
@@ -169,7 +169,7 @@ bool CGameProcCharacterCreate::MsgSendCharacterCreate() {
     } else if (RACE_UNKNOWN == s_pPlayer->m_InfoBase.eRace) {
         eErrCode = ERROR_CHARACTER_CREATE_INVALID_RACE;
     }
-    //    else if(RACE_KA_WRINKLETUAREK == s_pPlayer->m_InfoBase.eRace) // ¸¶¹ý»ç´Â ¼±ÅÃ ºÒ°¡´É..
+    //    else if(RACE_KA_WRINKLETUAREK == s_pPlayer->m_InfoBase.eRace) // ë§ˆë²•ì‚¬ëŠ” ì„ íƒ ë¶ˆê°€ëŠ¥..
     //    {
     //        eErrCode = ERROR_CHARACTER_CREATE_NOT_SUPPORTED_RACE;
     //    }
@@ -178,7 +178,7 @@ bool CGameProcCharacterCreate::MsgSendCharacterCreate() {
     } else if (m_pUICharacterCreate->m_iBonusPoint > 0) {
         eErrCode = ERROR_CHARACTER_CREATE_REMAIN_BONUS_POINT;
     } else {
-        // ÀÌ¸§¿¡ ºóÄ­ÀÌ³ª Æ¯¼ö¹®ÀÚ°¡ µé¾î ÀÖ´ÂÁö È®ÀÎ
+        // ì´ë¦„ì— ë¹ˆì¹¸ì´ë‚˜ íŠ¹ìˆ˜ë¬¸ìžê°€ ë“¤ì–´ ìžˆëŠ”ì§€ í™•ì¸
         bool bHasSpecialLetter = false;
         for (int i = 0; i < iIDLength; i++) {
             // CompadmreString(LOCALE_USER_DEFAULT, NORM_IGNOREWIDTH, id, strlen(id), pUser->m_UserId, strlen(pUser->m_UserId) ) == CSTR_EQUAL )
@@ -202,29 +202,29 @@ bool CGameProcCharacterCreate::MsgSendCharacterCreate() {
 
             BYTE byBuff[64];
             int  iOffset = 0;
-            CAPISocket::MP_AddByte(byBuff, iOffset, N3_NEW_CHARACTER);                  // Ä¿¸àµå.
-            CAPISocket::MP_AddByte(byBuff, iOffset, CGameProcedure::s_iChrSelectIndex); // Ä³¸¯ÅÍ ÀÎµ¦½º b
-            CAPISocket::MP_AddShort(byBuff, iOffset, iIDLength);                        // Id ±æÀÌ s
-            CAPISocket::MP_AddString(byBuff, iOffset, s_pPlayer->IDString());           // ID ¹®ÀÚ¿­ str
-            CAPISocket::MP_AddByte(byBuff, iOffset, s_pPlayer->m_InfoBase.eRace);       // Á¾Á· b
-            CAPISocket::MP_AddShort(byBuff, iOffset, s_pPlayer->m_InfoBase.eClass);     // Á÷¾÷ b
-            CAPISocket::MP_AddByte(byBuff, iOffset, pInfoExt->iFace);                   // ¾ó±¼¸ð¾ç b
-            CAPISocket::MP_AddByte(byBuff, iOffset, pInfoExt->iHair);                   // ¸Ó¸®¸ð¾ç b
-            CAPISocket::MP_AddByte(byBuff, iOffset, pInfoExt->iStrength);               // Èû b
-            CAPISocket::MP_AddByte(byBuff, iOffset, pInfoExt->iStamina);                // Áö±¸·Â b
-            CAPISocket::MP_AddByte(byBuff, iOffset, pInfoExt->iDexterity);              // ¹ÎÃ¸ b
-            CAPISocket::MP_AddByte(byBuff, iOffset, pInfoExt->iIntelligence);           // Áö´É b
-            CAPISocket::MP_AddByte(byBuff, iOffset, pInfoExt->iMagicAttak);             // ¸¶·Â b
+            CAPISocket::MP_AddByte(byBuff, iOffset, N3_NEW_CHARACTER);                  // ì»¤ë©˜ë“œ.
+            CAPISocket::MP_AddByte(byBuff, iOffset, CGameProcedure::s_iChrSelectIndex); // ìºë¦­í„° ì¸ë±ìŠ¤ b
+            CAPISocket::MP_AddShort(byBuff, iOffset, iIDLength);                        // Id ê¸¸ì´ s
+            CAPISocket::MP_AddString(byBuff, iOffset, s_pPlayer->IDString());           // ID ë¬¸ìžì—´ str
+            CAPISocket::MP_AddByte(byBuff, iOffset, s_pPlayer->m_InfoBase.eRace);       // ì¢…ì¡± b
+            CAPISocket::MP_AddShort(byBuff, iOffset, s_pPlayer->m_InfoBase.eClass);     // ì§ì—… b
+            CAPISocket::MP_AddByte(byBuff, iOffset, pInfoExt->iFace);                   // ì–¼êµ´ëª¨ì–‘ b
+            CAPISocket::MP_AddByte(byBuff, iOffset, pInfoExt->iHair);                   // ë¨¸ë¦¬ëª¨ì–‘ b
+            CAPISocket::MP_AddByte(byBuff, iOffset, pInfoExt->iStrength);               // íž˜ b
+            CAPISocket::MP_AddByte(byBuff, iOffset, pInfoExt->iStamina);                // ì§€êµ¬ë ¥ b
+            CAPISocket::MP_AddByte(byBuff, iOffset, pInfoExt->iDexterity);              // ë¯¼ì²© b
+            CAPISocket::MP_AddByte(byBuff, iOffset, pInfoExt->iIntelligence);           // ì§€ëŠ¥ b
+            CAPISocket::MP_AddByte(byBuff, iOffset, pInfoExt->iMagicAttak);             // ë§ˆë ¥ b
 
-            s_pSocket->Send(byBuff, iOffset); // º¸³½´Ù
+            s_pSocket->Send(byBuff, iOffset); // ë³´ë‚¸ë‹¤
 
-            s_pUIMgr->EnableOperationSet(false); // ÆÐÅ¶ÀÌ µé¾î¿Ã¶§±îÁö UI ¸¦ Disable ½ÃÅ²´Ù...
+            s_pUIMgr->EnableOperationSet(false); // íŒ¨í‚·ì´ ë“¤ì–´ì˜¬ë•Œê¹Œì§€ UI ë¥¼ Disable ì‹œí‚¨ë‹¤...
 
             return true;
         }
     }
 
-    ReportErrorCharacterCreate(eErrCode); // ¿¡·¯ º¸°í...
+    ReportErrorCharacterCreate(eErrCode); // ì—ëŸ¬ ë³´ê³ ...
 
     return false;
 }
@@ -259,7 +259,7 @@ void CGameProcCharacterCreate::ReportErrorCharacterCreate(e_ErrorCharacterCreate
     }
 
     ///
-    //    Á¤º¸¸¦ Àß¸ø ÀÔ·ÂÇØ¼­ ½ÇÆÐÇß´Ù´Â ¸Þ½ÃÁö¸¦ ¹ÞÀ» ¶§...
+    //    ì •ë³´ë¥¼ ìž˜ëª» ìž…ë ¥í•´ì„œ ì‹¤íŒ¨í–ˆë‹¤ëŠ” ë©”ì‹œì§€ë¥¼ ë°›ì„ ë•Œ...
     std::string szTitle;
     ::_LoadStringFromResource(IDS_ERR_CHARACTER_CREATE, szTitle);
     MessageBoxPost(szErr, szTitle, MB_OK);
@@ -273,20 +273,20 @@ bool CGameProcCharacterCreate::ProcessPacket(DataPack * pDataPack, int & iOffset
         return true;
     }
 
-    int iCmd = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // Ä¿¸àµå ÆÄ½Ì..
-    switch (iCmd)                                                      // Ä¿¸àµå¿¡ ´Ù¶ó¼­ ºÐ±â..
+    int iCmd = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // ì»¤ë©˜ë“œ íŒŒì‹±..
+    switch (iCmd)                                                      // ì»¤ë©˜ë“œì— ë‹¤ë¼ì„œ ë¶„ê¸°..
     {
-    case N3_NEW_CHARACTER: // Ä³¸¯ÅÍ ¼±ÅÃ ¸Þ½ÃÁö..
+    case N3_NEW_CHARACTER: // ìºë¦­í„° ì„ íƒ ë©”ì‹œì§€..
     {
-        BYTE bySuccess = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // Ä¿¸àµå ÆÄ½Ì..
+        BYTE bySuccess = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // ì»¤ë©˜ë“œ íŒŒì‹±..
         if (0 == bySuccess) {
-            ProcActiveSet((CGameProcedure *)s_pProcCharacterSelect); // Ä³¸¯ÅÍ ¼±ÅÃÃ¢À¸·Î °¡±â..
-        } else                                                       // ½ÇÆÐÇÏ¸é.. ÀÌÀ¯°¡ 0 ÀÌ ¾Æ´Ñ °ªÀ¸·Î ¿Â´Ù..
+            ProcActiveSet((CGameProcedure *)s_pProcCharacterSelect); // ìºë¦­í„° ì„ íƒì°½ìœ¼ë¡œ ê°€ê¸°..
+        } else                                                       // ì‹¤íŒ¨í•˜ë©´.. ì´ìœ ê°€ 0 ì´ ì•„ë‹Œ ê°’ìœ¼ë¡œ ì˜¨ë‹¤..
         {
-            this->ReportErrorCharacterCreate((e_ErrorCharacterCreate)bySuccess); // ¿¡·¯ ¸Þ½ÃÁö ¶ç¿ò..
-            s_pUIMgr->EnableOperationSet(false); // UI Á¶ÀÛ °¡´ÉÇÏ°Ô ÇÑ´Ù... ´Ù½Ã Ä³¸¯ÅÍ ¸¸µé¾î¾ß ÇÑ´Ù..
+            this->ReportErrorCharacterCreate((e_ErrorCharacterCreate)bySuccess); // ì—ëŸ¬ ë©”ì‹œì§€ ë„ì›€..
+            s_pUIMgr->EnableOperationSet(false); // UI ì¡°ìž‘ ê°€ëŠ¥í•˜ê²Œ í•œë‹¤... ë‹¤ì‹œ ìºë¦­í„° ë§Œë“¤ì–´ì•¼ í•œë‹¤..
         }
-        s_pUIMgr->EnableOperationSet(false); // ÆÐÅ¶ÀÌ µé¾î¿Ã¶§±îÁö UI ¸¦ Disable ½ÃÅ²´Ù...
+        s_pUIMgr->EnableOperationSet(false); // íŒ¨í‚·ì´ ë“¤ì–´ì˜¬ë•Œê¹Œì§€ UI ë¥¼ Disable ì‹œí‚¨ë‹¤...
     }
         return true;
     }

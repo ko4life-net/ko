@@ -17,16 +17,16 @@ class CGrassBoard : public CN3Transform {
   protected:
     typedef struct Grass_Info {
         __Matrix44 mtxWorld;
-        __Vector3  vPos;       //    Ç®ÀÇ À§Ä¡(Áöµµ»óÀÇ)
-        DWORD      dwAlpColor; //    Ç®ÀÇ ¾ËÆÄ
-        int        iTexIndex;  //    Ç®ÀÇ ÀÎµ¦½º
+        __Vector3  vPos;       //    í’€ì˜ ìœ„ì¹˜(ì§€ë„ìƒì˜)
+        DWORD      dwAlpColor; //    í’€ì˜ ì•ŒíŒŒ
+        int        iTexIndex;  //    í’€ì˜ ì¸ë±ìŠ¤
     } Grass_Info;
     //    __VertexXyzColorT1 m_vRects[4];
     Grass_Info m_sGrassInfo[20];
 
     int           m_nTexIndex;
-    unsigned char m_ucTexIndex; //    ±×¸²ÀÎµ¦½º
-    unsigned char m_ucTexNum;   //    Ç®ÀÇ °¹¼ö
+    unsigned char m_ucTexIndex; //    ê·¸ë¦¼ì¸ë±ìŠ¤
+    unsigned char m_ucTexNum;   //    í’€ì˜ ê°¯ìˆ˜
 
     //    float            m_fLeftPo;
     //    float            m_fTopPo;
@@ -38,9 +38,9 @@ class CGrassBoard : public CN3Transform {
     float m_fBrightmin; //    unit full bright lengs
     float m_fBrightmax; //    unit shadow lengs
 
-    BOOL m_bCamOut; //    Ä«¸Ş¶óÀÇ ¹üÀ§¸¦ ¹ù¾î³ª ·£´õ ÇÒ ÇÊ¿ä ¾øÀ½(TRUE)
+    BOOL m_bCamOut; //    ì¹´ë©”ë¼ì˜ ë²”ìœ„ë¥¼ ë²‹ì–´ë‚˜ ëœë” í•  í•„ìš” ì—†ìŒ(TRUE)
 
-    BOOL m_bGroundInfo; //    ÇöÀç ¼¿ÀÌ Ç®À» ±×¸±¼ö ÀÖ´ÂÁö È®ÀÎ
+    BOOL m_bGroundInfo; //    í˜„ì¬ ì…€ì´ í’€ì„ ê·¸ë¦´ìˆ˜ ìˆëŠ”ì§€ í™•ì¸
 
   public:
     //    void TexSelectNum(int Texindex,unsigned char TexOrgIndex) {m_nTexIndex = Texindex, m_usTexIndex = TexOrgIndex;}

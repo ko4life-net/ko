@@ -175,12 +175,12 @@ void CDlgPMeshEdit::OnButtonMakePmesh() {
     PMC.m_PMCOption.fWeight = OptDlg.m_fWeight;
 
     PMC.ReGenerate(pPMesh);
-    pPMesh->SaveToFile(); // ÀúÀå
+    pPMesh->SaveToFile(); // ì €ìž¥
 
     pPMI->Create(pPMesh);
 
     int nVC = pPMesh->GetMaxNumVertices();
-    int nFC = pPMI->GetNumIndices() / 3; // ÇöÀç Face Count
+    int nFC = pPMI->GetNumIndices() / 3; // í˜„ìž¬ Face Count
     pPMI->SetLODByNumVertices(nVC);
 
     m_ScrollBar.SetScrollRange(0, nVC);
@@ -219,15 +219,15 @@ void CDlgPMeshEdit::UpdateInfo() {
 
     int nVC = pPMesh->GetMaxNumVertices();
     int nVCCur = pPMI->GetNumVertices();
-    int nFC = pPMI->GetNumIndices() / 3; // ÇöÀç Face Count
+    int nFC = pPMI->GetNumIndices() / 3; // í˜„ìž¬ Face Count
     m_ScrollBar.SetScrollRange(0, nVC);
     //    m_ScrollBar.SetScrollPos(nVC);
     if (TRUE == pPMI->IsLOD()) {
         m_ScrollBar.EnableWindow(TRUE);
-        szTmp = "LOD Ã³¸® µÊ";
+        szTmp = "LOD ì²˜ë¦¬ ë¨";
     } else {
         m_ScrollBar.EnableWindow(FALSE);
-        szTmp = "LOD Ã³¸® ¾ÈµÊ";
+        szTmp = "LOD ì²˜ë¦¬ ì•ˆë¨";
     }
     SetDlgItemText(IDC_STATIC_LOD, szTmp);
 
@@ -307,7 +307,7 @@ void CDlgPMeshEdit::OnBMakePmeshAll() {
 
         PMC.ReGenerate(pPMesh);
 
-        pPMesh->SaveToFile(); // ÀúÀå
+        pPMesh->SaveToFile(); // ì €ìž¥
         pPMI->Create(pPMesh);
     }
 
@@ -364,18 +364,18 @@ void CDlgPMeshEdit::LOD_Add() {
         return;
     }
 
-    CN3PMesh::__LODCtrlValue LODs[32]; // LOD Control Value º¹»ç..
+    CN3PMesh::__LODCtrlValue LODs[32]; // LOD Control Value ë³µì‚¬..
     int                      nLODCount = pPMesh->LODCtrlCount();
     for (int i = 0; i < nLODCount; i++) {
         LODs[i] = *(pPMesh->LODCtrlGet(i));
     }
 
-    __Vector3 vDist = pPD->m_Matrix.Pos() - pPMesh->s_CameraData.vEye; // Ãß°¡..
+    __Vector3 vDist = pPD->m_Matrix.Pos() - pPMesh->s_CameraData.vEye; // ì¶”ê°€..
     LODs[nLODCount].fDist = vDist.Magnitude() * pPMesh->s_CameraData.fFOV;
     LODs[nLODCount].iNumVertices = GetDlgItemInt(IDC_EDIT_NUMVERTICES);
 
     pPMesh->LODCtrlSet(LODs, nLODCount + 1);
-    pPMesh->SaveToFile(); // ÀúÀå..
+    pPMesh->SaveToFile(); // ì €ìž¥..
 
     this->UpdateInfo();
 }
@@ -394,7 +394,7 @@ void CDlgPMeshEdit::LOD_Delete() {
         return;
     }
 
-    CN3PMesh::__LODCtrlValue LODs[32]; // LOD Control Value º¹»ç..
+    CN3PMesh::__LODCtrlValue LODs[32]; // LOD Control Value ë³µì‚¬..
     int                      nLOD = 0;
     for (int i = 0; i < nSel; i++) {
         LODs[nLOD++] = *(pPMesh->LODCtrlGet(i));
@@ -403,7 +403,7 @@ void CDlgPMeshEdit::LOD_Delete() {
         LODs[nLOD++] = *(pPMesh->LODCtrlGet(i));
     }
     pPMesh->LODCtrlSet(LODs, nLOD);
-    pPMesh->SaveToFile(); // ÀúÀå..
+    pPMesh->SaveToFile(); // ì €ìž¥..
 
     this->UpdateInfo();
 }

@@ -100,7 +100,7 @@ void CSkyViewerView::OnDraw(CDC * pDC) {
     pFrm->m_Eng.s_lpD3DDev->EndScene();
     pFrm->m_Eng.Present(m_hWnd);
 
-    // ÇÁ·¹ÀÓ Ç¥½Ã
+    // í”„ë ˆìž„ í‘œì‹œ
     CString szInfo0;
     szInfo0.Format("FPS : %6.2f", pFrm->m_Eng.s_fFrmPerSec);
     pDC->TextOut(0, 0, szInfo0);

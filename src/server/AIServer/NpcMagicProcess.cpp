@@ -170,7 +170,7 @@ _MAGIC_TABLE * CNpcMagicProcess::IsAvailable(int magicid, int tid, BYTE type) {
     } else if (tid == -1) { // Party Moral check routine.
         if (pTable->bMoral == MORAL_AREA_ENEMY) {
             if (m_pSrcNpc->m_byGroup ==
-                0) { // Switch morals. ¿€æ˜«“∞Õ : ∏ÛΩ∫≈Õ¥¬ ±π∞°∂Û¥¬ ∞≥≥‰¿Ã æ¯±‚ ∂ßπÆø°.. ≥™¡ﬂø° NPC∞° ¿Ã ∏∂π˝¿ª ªÁøÎ«œ∏È πÆ¡¶∞° µ 
+                0) { // Switch morals. ÏûëÏóÖÌï†Í≤É : Î™¨Ïä§ÌÑ∞Îäî Íµ≠Í∞ÄÎùºÎäî Í∞úÎÖêÏù¥ ÏóÜÍ∏∞ ÎïåÎ¨∏Ïóê.. ÎÇòÏ§ëÏóê NPCÍ∞Ä Ïù¥ ÎßàÎ≤ïÏùÑ ÏÇ¨Ïö©ÌïòÎ©¥ Î¨∏Ï†úÍ∞Ä Îê®
                 moral = 2;
             } else {
                 moral = 1;
@@ -231,7 +231,7 @@ _MAGIC_TABLE * CNpcMagicProcess::IsAvailable(int magicid, int tid, BYTE type) {
 
     if (type == MAGIC_EFFECTING) // Make sure you subtract MPs (SPs) after you use spell (skill).
     {
-        // MP∏∏ ¥ﬁ¥Ÿ∑œ √≥∏Æ«—¥Á.. Npc¥¬ SP∞° æ¯¿Ω..
+        // MPÎßå Îã¨Îã§Î°ù Ï≤òÎ¶¨ÌïúÎãπ.. NpcÎäî SPÍ∞Ä ÏóÜÏùå..
         //if( pTable->sMsp > m_pSrcNpc->m_sMP )
         //    goto fail_return;
         //m_pSrcNpc->MSpChange(2, -(pTable->sMsp) );
@@ -292,7 +292,7 @@ void CNpcMagicProcess::ExecuteType3(int magicid, int tid, int data1, int data2, 
         return;
     }
 
-    if (tid == -1) { // ¡ˆø™ ∞¯∞›,, ∏ÛΩ∫≈Õ¿« ¡ˆø™∞¯∞›¿∫ ∞‘¿”º≠πˆø°º≠ √≥∏Æ«—¥Ÿ.. ¿Ø¿˙µÈ¿ª ªÛ¥Î∑Œ..
+    if (tid == -1) { // ÏßÄÏó≠ Í≥µÍ≤©,, Î™¨Ïä§ÌÑ∞Ïùò ÏßÄÏó≠Í≥µÍ≤©ÏùÄ Í≤åÏûÑÏÑúÎ≤ÑÏóêÏÑú Ï≤òÎ¶¨ÌïúÎã§.. Ïú†Ï†ÄÎì§ÏùÑ ÏÉÅÎåÄÎ°ú..
         goto packet_send;
     }
 
@@ -318,17 +318,17 @@ void CNpcMagicProcess::ExecuteType3(int magicid, int tid, int data1, int data2, 
                 result = pNpc->SetHMagicDamage(damage, &m_pMain->m_Iocport);
             } else {
                 damage = abs(damage);
-                /*                if(pType->bAttribute == 3)   attack_type = 3; // ±‚¿˝Ω√≈∞¥¬ ∏∂π˝¿Ã∂Û∏È.....
+                /*                if(pType->bAttribute == 3)   attack_type = 3; // Í∏∞Ï†àÏãúÌÇ§Îäî ÎßàÎ≤ïÏù¥ÎùºÎ©¥.....
                 else attack_type = magicid;
 
                 if(pNpc->SetDamage(attack_type, damage, m_pSrcUser->m_strUserID, m_pSrcUser->m_iUserId + USER_BAND, m_pSrcUser->m_pIocport) == FALSE)    {
-                    // Npc∞° ¡◊¿∫ ∞ÊøÏ,,
-                    pNpc->SendExpToUserList(); // ∞Ê«Ëƒ° ∫–πË!!
+                    // NpcÍ∞Ä Ï£ΩÏùÄ Í≤ΩÏö∞,,
+                    pNpc->SendExpToUserList(); // Í≤ΩÌóòÏπò Î∂ÑÎ∞∞!!
                     pNpc->SendDead(m_pSrcUser->m_pIocport);
                     m_pSrcUser->SendAttackSuccess(tid, MAGIC_ATTACK_TARGET_DEAD, damage, pNpc->m_iHP, MAGIC_ATTACK);
                 }
                 else    {
-                    // ∞¯∞› ∞·∞˙ ¿¸º€
+                    // Í≥µÍ≤© Í≤∞Í≥º Ï†ÑÏÜ°
                     m_pSrcUser->SendAttackSuccess(tid, ATTACK_SUCCESS, damage, pNpc->m_iHP, MAGIC_ATTACK);
                 }    */
             }
@@ -402,7 +402,7 @@ short CNpcMagicProcess::GetMagicDamage(int tid, int total_hit, int attribute, in
     short damage = 0, temp_hit = 0;
     int   random = 0, total_r = 0;
     BYTE  result;
-    BOOL  bSign = TRUE; // FALSE¿Ã∏È -, TRUE¿Ã∏È +
+    BOOL  bSign = TRUE; // FALSEÏù¥Î©¥ -, TRUEÏù¥Î©¥ +
 
     if (tid < NPC_BAND || tid > INVALID_BAND) {
         return 0; // Check if target id is valid.

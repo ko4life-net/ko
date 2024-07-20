@@ -1,11 +1,11 @@
 // N3ShapeMod.h: interface for the CN3ShapeMod class.
-// ¸¸µçÀÌ : dino
-// n3shapeÀÇ ÇÑ ÀÏºÎºÐÀ» ¿òÁ÷ÀÏ ¼ö ÀÖ°Ô ÇÑ Å¬·¡½º
-// »óÅÂ(0¹ø »óÅÂ, 1¹ø»óÅÂ, 2¹ø»óÅÂ)¸¦ º¯°æÇÒ ¼ö ÀÖ´Ù.
-// »óÅÂ º¯°æ½Ã (½Ã°£À» ³Ö¾îÁÖ¸é »óÅÂ°£ÀÇ pos rot scale Á¤º¸¸¦ linearÇÏ°Ô º¯È­½ÃÅ²´Ù.
+// ë§Œë“ ì´ : dino
+// n3shapeì˜ í•œ ì¼ë¶€ë¶„ì„ ì›€ì§ì¼ ìˆ˜ ìžˆê²Œ í•œ í´ëž˜ìŠ¤
+// ìƒíƒœ(0ë²ˆ ìƒíƒœ, 1ë²ˆìƒíƒœ, 2ë²ˆìƒíƒœ)ë¥¼ ë³€ê²½í•  ìˆ˜ ìžˆë‹¤.
+// ìƒíƒœ ë³€ê²½ì‹œ (ì‹œê°„ì„ ë„£ì–´ì£¼ë©´ ìƒíƒœê°„ì˜ pos rot scale ì •ë³´ë¥¼ linearí•˜ê²Œ ë³€í™”ì‹œí‚¨ë‹¤.
 
-// °³¼±Á¡ : Shape ÀüÃ¼°¡ ¿òÁ÷ÀÌ´Â »óÅÂ¸¦ Ãß°¡ÇÏÀÚ
-//          ¼³°è½Ã Ãß°¡ÇÏ·Á´Ù ³Ê¹« º¹ÀâÇÏ¿© º¸·ùÇÔ. ¸®¸¶Å© µÈ ºÎºÐÀÌ ±×¿¡ °ü·ÃµÈ °ÍÀÓ. Ãß°¡ º¸°­ÇØ¾ßÇÔ.
+// ê°œì„ ì  : Shape ì „ì²´ê°€ ì›€ì§ì´ëŠ” ìƒíƒœë¥¼ ì¶”ê°€í•˜ìž
+//          ì„¤ê³„ì‹œ ì¶”ê°€í•˜ë ¤ë‹¤ ë„ˆë¬´ ë³µìž¡í•˜ì—¬ ë³´ë¥˜í•¨. ë¦¬ë§ˆí¬ ëœ ë¶€ë¶„ì´ ê·¸ì— ê´€ë ¨ëœ ê²ƒìž„. ì¶”ê°€ ë³´ê°•í•´ì•¼í•¨.
 //////////////////////////////////////////////////////////////////////
 
 #pragma once
@@ -31,12 +31,12 @@ class CN3ShapeMod : public CN3Shape {
         }
     };
     struct __ModPart {
-        CN3SPart *         pPart;        // ¿òÁ÷ÀÏ Part
-        bool               bPos;         // Pos º¯È­°¡ ÀÖ´Â°¡?
-        bool               bRot;         // Rot º¯È­°¡ ÀÖ´Â°¡?
-        bool               bScale;       // Scale º¯È­°¡ ÀÖ´Â°¡?
-        __ModPosRotScale * pStateInfos;  // ¿òÁ÷ÀÏ »óÅÂ Á¤º¸µé(ÀÌµ¿,È¸Àü,È®´ëÃà¼Ò Á¤º¸ m_iStateCount°³)
-        __ModPosRotScale   CurStateInfo; // ÇöÀç ¿òÁ÷ÀÎ »óÅÂ Á¤º¸(tick¿¡ µû¶ó º¯È­ÇÑ´Ù)
+        CN3SPart *         pPart;        // ì›€ì§ì¼ Part
+        bool               bPos;         // Pos ë³€í™”ê°€ ìžˆëŠ”ê°€?
+        bool               bRot;         // Rot ë³€í™”ê°€ ìžˆëŠ”ê°€?
+        bool               bScale;       // Scale ë³€í™”ê°€ ìžˆëŠ”ê°€?
+        __ModPosRotScale * pStateInfos;  // ì›€ì§ì¼ ìƒíƒœ ì •ë³´ë“¤(ì´ë™,íšŒì „,í™•ëŒ€ì¶•ì†Œ ì •ë³´ m_iStateCountê°œ)
+        __ModPosRotScale   CurStateInfo; // í˜„ìž¬ ì›€ì§ì¸ ìƒíƒœ ì •ë³´(tickì— ë”°ë¼ ë³€í™”í•œë‹¤)
 
         __ModPart() {
             pPart = NULL;
@@ -57,9 +57,9 @@ class CN3ShapeMod : public CN3Shape {
     struct __ModShape {
         bool               bShapePos;
         bool               bShapeRot;
-        bool               bShapeScale;       // Shape°¡ À§Ä¡, È¸Àü, ½ºÄÉÀÏ º¯È­°¡ ÀÖ´Â°¡?
-        __ModPosRotScale * pShapeStateInfos;  // Shape ÀüÃ¼ÀÇ º¯È­ Á¤º¸
-        __ModPosRotScale   CurShapeStateInfo; // ÇöÀç ¿òÁ÷ÀÎ »óÅÂ Á¤º¸(tick¿¡ µû¶ó º¯È­ÇÑ´Ù)
+        bool               bShapeScale;       // Shapeê°€ ìœ„ì¹˜, íšŒì „, ìŠ¤ì¼€ì¼ ë³€í™”ê°€ ìžˆëŠ”ê°€?
+        __ModPosRotScale * pShapeStateInfos;  // Shape ì „ì²´ì˜ ë³€í™” ì •ë³´
+        __ModPosRotScale   CurShapeStateInfo; // í˜„ìž¬ ì›€ì§ì¸ ìƒíƒœ ì •ë³´(tickì— ë”°ë¼ ë³€í™”í•œë‹¤)
         __ModShape() {
             pShapeStateInfos = NULL;
             bShapePos = false;
@@ -78,34 +78,34 @@ class CN3ShapeMod : public CN3Shape {
   public:
   protected:
     //    enum    {
-    //            N3SHAPEMOD_TYPE_NOT_MOD = 0,        // ¾Æ¹« Á¤º¸µµ º¯È­ÇÏÁö ¾Ê´Â °Í
-    //            N3SHAPEMOD_TYPE_ONLY_SHAPE = 1,        // ShapeÁ¤º¸¸¸ º¯È­ÇÏ´Â °Í
-    //            N3SHAPEMOD_TYPE_ONLY_PART = 2,        // Part Á¤º¸¸¸ º¯È­ÇÏ´Â °Í
-    //            N3SHAPEMOD_TYPE_NORMAL = 4            // µÑ ´Ù º¯È­ÇÏ´Â °Í
+    //            N3SHAPEMOD_TYPE_NOT_MOD = 0,        // ì•„ë¬´ ì •ë³´ë„ ë³€í™”í•˜ì§€ ì•ŠëŠ” ê²ƒ
+    //            N3SHAPEMOD_TYPE_ONLY_SHAPE = 1,        // Shapeì •ë³´ë§Œ ë³€í™”í•˜ëŠ” ê²ƒ
+    //            N3SHAPEMOD_TYPE_ONLY_PART = 2,        // Part ì •ë³´ë§Œ ë³€í™”í•˜ëŠ” ê²ƒ
+    //            N3SHAPEMOD_TYPE_NORMAL = 4            // ë‘˜ ë‹¤ ë³€í™”í•˜ëŠ” ê²ƒ
     //    };
     //    int        m_iModType;            // type..
-    int   m_iStateCount;   // »óÅÂ°¡ ¸î°³°¡ ÀÖ´ÂÁö ³ªÅ¸³½´Ù.
-    int   m_iCurState;     // ÇöÀç »óÅÂ
-    int   m_iPrevState;    // ÀÌÀü »óÅÂ(»õ·Î¿î »óÅÂ¸¦ ¼³Á¤ÇØÁÖ¸é AnimationµÇ´Â µ¿¾È ÀÌÀü»óÅÂ¸¦ ÀúÀåÇØµÐ´Ù.
-    float m_fTimeChanged;  // »óÅÂ°¡ ¿ÏÀüÈ÷ ¹Ù²î´Â ½Ã°£
-    float m_fTimeChanging; // »óÅÂ°¡ ¹Ù²î´Â ½ÃÀÛ½Ã°£ºÎÅÍ Áö±Ý±îÁöÀÇ °æ°ú ½Ã°£
+    int   m_iStateCount;   // ìƒíƒœê°€ ëª‡ê°œê°€ ìžˆëŠ”ì§€ ë‚˜íƒ€ë‚¸ë‹¤.
+    int   m_iCurState;     // í˜„ìž¬ ìƒíƒœ
+    int   m_iPrevState;    // ì´ì „ ìƒíƒœ(ìƒˆë¡œìš´ ìƒíƒœë¥¼ ì„¤ì •í•´ì£¼ë©´ Animationë˜ëŠ” ë™ì•ˆ ì´ì „ìƒíƒœë¥¼ ì €ìž¥í•´ë‘”ë‹¤.
+    float m_fTimeChanged;  // ìƒíƒœê°€ ì™„ì „ížˆ ë°”ë€ŒëŠ” ì‹œê°„
+    float m_fTimeChanging; // ìƒíƒœê°€ ë°”ë€ŒëŠ” ì‹œìž‘ì‹œê°„ë¶€í„° ì§€ê¸ˆê¹Œì§€ì˜ ê²½ê³¼ ì‹œê°„
 
-    __ModShape  m_ModShape;      // shapeÀÇ »óÅÂ º¯È­ Á¤º¸
-    int         m_iModPartCount; // º¯È­ÇÏ´Â ÆÄÆ®ÀÇ °¹¼ö
-    __ModPart * m_pModParts;     // º¯È­ÇÏ´Â ÆÄÆ®µé Á¤º¸
+    __ModShape  m_ModShape;      // shapeì˜ ìƒíƒœ ë³€í™” ì •ë³´
+    int         m_iModPartCount; // ë³€í™”í•˜ëŠ” íŒŒíŠ¸ì˜ ê°¯ìˆ˜
+    __ModPart * m_pModParts;     // ë³€í™”í•˜ëŠ” íŒŒíŠ¸ë“¤ ì •ë³´
 
     __ModPart **
-        m_pMatchPart2ModPart; // CPart¸®½ºÆ® ¹è¿­¼øÀ¸·Î __ModPart*¿Í ¸ÅÄ¡½ÃÅ² ¹è¿­ (load½Ã CPart °¹¼ö¸¸Å­ ¹è¿­·Î Àâ°í Á¤º¸¸¦ ³Ö´Â´Ù)
+        m_pMatchPart2ModPart; // CPartë¦¬ìŠ¤íŠ¸ ë°°ì—´ìˆœìœ¼ë¡œ __ModPart*ì™€ ë§¤ì¹˜ì‹œí‚¨ ë°°ì—´ (loadì‹œ CPart ê°¯ìˆ˜ë§Œí¼ ë°°ì—´ë¡œ ìž¡ê³  ì •ë³´ë¥¼ ë„£ëŠ”ë‹¤)
 
     // Operations
   public:
-    BOOL         SetState(int iState, float fSec); // fSec½Ã°£µ¿¾È »óÅÂ¸¦ ¹Ù²Û´Ù. (fSecÀÌ 0ÀÏ°æ¿ì Áï½Ã ¹Ù²ï´Ù.)
-    BOOL         LoadStateInfo(FILE * stream);     // »óÅÂ Á¤º¸¸¦ ÀÐ¾î¿Â´Ù.(text·ÎºÎÅÍ)
+    BOOL         SetState(int iState, float fSec); // fSecì‹œê°„ë™ì•ˆ ìƒíƒœë¥¼ ë°”ê¾¼ë‹¤. (fSecì´ 0ì¼ê²½ìš° ì¦‰ì‹œ ë°”ë€ë‹¤.)
+    BOOL         LoadStateInfo(FILE * stream);     // ìƒíƒœ ì •ë³´ë¥¼ ì½ì–´ì˜¨ë‹¤.(textë¡œë¶€í„°)
     virtual void Release();
     virtual void ReCalcMatrix();
     virtual void Tick(float fFrm = FRAME_SELFPLAY);
     virtual bool Load(HANDLE hFile);
 
   protected:
-    CN3SPart * GetPartByPMeshFileName(const std::string & szFN); // ÀÌ¸§À¸·Î PMeshÆ÷ÀÎÅÍ ±¸ÇÏ±â
+    CN3SPart * GetPartByPMeshFileName(const std::string & szFN); // ì´ë¦„ìœ¼ë¡œ PMeshí¬ì¸í„° êµ¬í•˜ê¸°
 };

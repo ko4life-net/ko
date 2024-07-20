@@ -28,9 +28,9 @@ CNpc::~CNpc() {}
 void CNpc::Initialize() {
     m_pMain = (CEbenezerDlg *)AfxGetApp()->GetMainWnd();
 
-    m_sNid = -1; // NPC (¼­¹ö»óÀÇ)ÀÏ·Ã¹øÈ£
+    m_sNid = -1; // NPC (ì„œë²„ìƒì˜)ì¼ë ¨ë²ˆí˜¸
     m_sSid = 0;
-    m_sZoneIndex = -1; // Current Zone Index(¹è¿­)
+    m_sZoneIndex = -1; // Current Zone Index(ë°°ì—´)
     m_sCurZone = -1;   // Current Zone number
     m_fCurX = 0;       // Current X Pos;
     m_fCurY = 0;       // Current Y Pos;
@@ -39,14 +39,14 @@ void CNpc::Initialize() {
     m_sSize = 100;     // MONSTER(NPC) Size
     memset(m_strName, 0, MAX_ID_SIZE + 1);
     ;             // MONSTER(NPC) Name
-    m_iMaxHP = 0; // ÃÖ´ë HP
-    m_iHP = 0;    // ÇöÀç HP
-    //m_byState = 0;            // ¸ó½ºÅÍ (NPC) »óÅÂÀÌ»ó
+    m_iMaxHP = 0; // ìµœëŒ€ HP
+    m_iHP = 0;    // í˜„ì¬ HP
+    //m_byState = 0;            // ëª¬ìŠ¤í„° (NPC) ìƒíƒœì´ìƒ
     m_tNpcType = 0; // NPC Type
                     // 0 : Normal Monster
                     // 1 : NPC
-                    // 2 : °¢ ÀÔ±¸,Ãâ±¸ NPC
-                    // 3 : °æºñº´
+                    // 2 : ê° ì…êµ¬,ì¶œêµ¬ NPC
+                    // 3 : ê²½ë¹„ë³‘
     m_byGroup = 0;
     m_byLevel = 0;
     m_iSellingGroup = 0;
@@ -54,7 +54,7 @@ void CNpc::Initialize() {
 
     m_sRegion_X = 0; // region x position
     m_sRegion_Z = 0; // region z position
-    m_fDir = 0.0f;   // npcÀÇ ¹æÇâ,,
+    m_fDir = 0.0f;   // npcì˜ ë°©í–¥,,
     m_iWeapon_1 = 0;
     m_iWeapon_2 = 0;
     m_NpcState = NPC_LIVE;
@@ -153,8 +153,8 @@ void CNpc::RegisterRegion() {
         pMap->RegionNpcAdd(m_sRegion_X, m_sRegion_Z, m_sNid);
 
         RemoveRegion(old_region_x - m_sRegion_X,
-                     old_region_z - m_sRegion_Z); // delete npc ´Â °è»ê ¹æÇâÀÌ ÁøÇà¹æÇâÀÇ ¹İ´ë...
-        InsertRegion(m_sRegion_X - old_region_x, m_sRegion_Z - old_region_z); // add npc ´Â °è»ê ¹æÇâÀÌ ÁøÇà¹æÇâ...
+                     old_region_z - m_sRegion_Z); // delete npc ëŠ” ê³„ì‚° ë°©í–¥ì´ ì§„í–‰ë°©í–¥ì˜ ë°˜ëŒ€...
+        InsertRegion(m_sRegion_X - old_region_x, m_sRegion_Z - old_region_z); // add npc ëŠ” ê³„ì‚° ë°©í–¥ì´ ì§„í–‰ë°©í–¥...
     }
 }
 
@@ -190,15 +190,15 @@ void CNpc::RemoveRegion(int del_x, int del_z) {
     SetDWORD( buff, (int)m_byGateOpen, send_index );
     SetByte( buff, m_byObjectType, send_index );
 */
-    if (del_x != 0) { // x ÃàÀ¸·Î ÀÌµ¿µÇ¾úÀ»¶§...
+    if (del_x != 0) { // x ì¶•ìœ¼ë¡œ ì´ë™ë˜ì—ˆì„ë•Œ...
         m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + del_x * 2, m_sRegion_Z + del_z - 1);
         m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + del_x * 2, m_sRegion_Z + del_z);
         m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + del_x * 2, m_sRegion_Z + del_z + 1);
         //        TRACE("Remove : (%d %d), (%d %d), (%d %d)\n", m_sRegion_X+del_x*2, m_sRegion_Z+del_z-1, m_sRegion_X+del_x*2, m_sRegion_Z+del_z, m_sRegion_X+del_x*2, m_sRegion_Z+del_z+1 );
     }
-    if (del_z != 0) { // z ÃàÀ¸·Î ÀÌµ¿µÇ¾úÀ»¶§...
+    if (del_z != 0) { // z ì¶•ìœ¼ë¡œ ì´ë™ë˜ì—ˆì„ë•Œ...
         m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + del_x, m_sRegion_Z + del_z * 2);
-        if (del_x < 0) { // x, z Ãà µÑ´Ù ÀÌµ¿µÇ¾úÀ»¶§ °ãÄ¡´Â ºÎºĞ ÇÑ¹ø¸¸ º¸³½´Ù..
+        if (del_x < 0) { // x, z ì¶• ë‘˜ë‹¤ ì´ë™ë˜ì—ˆì„ë•Œ ê²¹ì¹˜ëŠ” ë¶€ë¶„ í•œë²ˆë§Œ ë³´ë‚¸ë‹¤..
             m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + del_x + 1, m_sRegion_Z + del_z * 2);
         } else if (del_x > 0) {
             m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + del_x - 1, m_sRegion_Z + del_z * 2);
@@ -241,16 +241,16 @@ void CNpc::InsertRegion(int del_x, int del_z) {
     SetDWORD(buff, (int)m_byGateOpen, send_index);
     SetByte(buff, m_byObjectType, send_index);
 
-    if (del_x != 0) { // x ÃàÀ¸·Î ÀÌµ¿µÇ¾úÀ»¶§...
+    if (del_x != 0) { // x ì¶•ìœ¼ë¡œ ì´ë™ë˜ì—ˆì„ë•Œ...
         m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + del_x, m_sRegion_Z - 1);
         m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + del_x, m_sRegion_Z);
         m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + del_x, m_sRegion_Z + 1);
         //        TRACE("Insert : (%d %d), (%d %d), (%d %d)\n", m_sRegion_X+del_x, m_sRegion_Z-1, m_sRegion_X+del_x, m_sRegion_Z, m_sRegion_X+del_x, m_sRegion_Z+1 );
     }
-    if (del_z != 0) { // z ÃàÀ¸·Î ÀÌµ¿µÇ¾úÀ»¶§...
+    if (del_z != 0) { // z ì¶•ìœ¼ë¡œ ì´ë™ë˜ì—ˆì„ë•Œ...
         m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X, m_sRegion_Z + del_z);
 
-        if (del_x < 0) { // x, z Ãà µÑ´Ù ÀÌµ¿µÇ¾úÀ»¶§ °ãÄ¡´Â ºÎºĞ ÇÑ¹ø¸¸ º¸³½´Ù..
+        if (del_x < 0) { // x, z ì¶• ë‘˜ë‹¤ ì´ë™ë˜ì—ˆì„ë•Œ ê²¹ì¹˜ëŠ” ë¶€ë¶„ í•œë²ˆë§Œ ë³´ë‚¸ë‹¤..
             m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X + 1, m_sRegion_Z + del_z);
         } else if (del_x > 0) {
             m_pMain->Send_UnitRegion(buff, send_index, m_sZoneIndex, m_sRegion_X - 1, m_sRegion_Z + del_z);
@@ -265,7 +265,7 @@ void CNpc::InsertRegion(int del_x, int del_z) {
 
 int CNpc::GetRegionNpcList(int region_x, int region_z, char * buff, int & t_count) {
     if (m_pMain->m_bPointCheckFlag == FALSE) {
-        return 0; // Æ÷ÀÎÅÍ ÂüÁ¶ÇÏ¸é ¾ÈµÊ
+        return 0; // í¬ì¸í„° ì°¸ì¡°í•˜ë©´ ì•ˆë¨
     }
 
     int      buff_index = 0, i = 0, j = 0;

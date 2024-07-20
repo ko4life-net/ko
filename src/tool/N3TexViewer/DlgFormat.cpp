@@ -130,6 +130,6 @@ void CDlgFormat::OnOK() {
     if (D3DFMT_UNKNOWN != m_Fmt && m_nWidth / 2 * 2 == m_nWidth && m_nHeight / 2 * 2 == m_nHeight) {
         CDialog::OnOK();
     } else {
-        MessageBox("Àß¸øµÈ Æ÷¸ËÀÌ°Å³ª ÅØ½ºÃ³ÀÇ Å©±â°¡ 2ÀÇ ½Â¼ö°¡ ¾Æ´Õ´Ï´Ù.");
+        MessageBox("ì˜ëª»ëœ í¬ë§·ì´ê±°ë‚˜ í…ìŠ¤ì²˜ì˜ í¬ê¸°ê°€ 2ì˜ ìŠ¹ìˆ˜ê°€ ì•„ë‹™ë‹ˆë‹¤.");
     }
 }

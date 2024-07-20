@@ -1,8 +1,8 @@
 #pragma once
 
 /*
-     ** Repent AI Server ÀÛ¾÷½Ã Âü°í »çÇ× **
-    1. #define AI_SOCKET_PORT    10020 -> 11020À¸·Î ¼öÁ¤µÊ..
+     ** Repent AI Server ìž‘ì—…ì‹œ ì°¸ê³  ì‚¬í•­ **
+    1. #define AI_SOCKET_PORT    10020 -> 11020ìœ¼ë¡œ ìˆ˜ì •ë¨..
 */
 
 //
@@ -30,7 +30,7 @@
 #define MAX_ID_SIZE          30
 #define MAX_WEAPON_NAME_SIZE 40
 #define MAX_ITEM             28
-#define VIEW_DIST            48 // °¡½Ã°Å¸®
+#define VIEW_DIST            48 // ê°€ì‹œê±°ë¦¬
 #define MAX_UPGRADE_WEAPON   12
 
 ///////////////// NATION ///////////////////////////////////
@@ -49,8 +49,8 @@
 //
 //    User Authority
 //
-#define MANAGER_USER 0 // ¿î¿µÀÚ, °ü¸®ÀÚ
-#define GENERAL_USER 1 // ÀÏ¹ÝÀ¯Àú
+#define MANAGER_USER 0 // ìš´ì˜ìž, ê´€ë¦¬ìž
+#define GENERAL_USER 1 // ì¼ë°˜ìœ ì €
 
 // Npc InOut
 #define NPC_IN  0X01
@@ -127,13 +127,13 @@ struct _NpcMovePosition {
 };
 
 struct _OBJECT_EVENT {
-    int sBelong; // ¼Ò¼Ó
+    int sBelong; // ì†Œì†
     short
-        sIndex; // 100 ¹ø´ë - Ä«·ç½º ¹ÙÀÎµå Æ÷ÀÎÆ® | 200 ¹ø´ë ¿¤¸ð¶óµå ¹ÙÀÎµå Æ÷ÀÎÆ® | 1100 ¹ø´ë - Ä«·ç½º ¼º¹®µé 1200 - ¿¤¸ð¶óµå ¼º¹®µé
-    short sType;         // 0 - ¹ÙÀÎµå Æ÷ÀÎÆ®.. 1 - ÁÂ¿ì·Î ¿­¸®´Â ¼º¹® 2 - »óÇÏ·Î ¿­¸®´Â ¼º¹® 3 - ·¹¹ö
-    short sControlNpcID; // Á¶Á¾ÇÒ NPC ID (Á¶Á¾ÇÒ Object Index)
+        sIndex; // 100 ë²ˆëŒ€ - ì¹´ë£¨ìŠ¤ ë°”ì¸ë“œ í¬ì¸íŠ¸ | 200 ë²ˆëŒ€ ì—˜ëª¨ë¼ë“œ ë°”ì¸ë“œ í¬ì¸íŠ¸ | 1100 ë²ˆëŒ€ - ì¹´ë£¨ìŠ¤ ì„±ë¬¸ë“¤ 1200 - ì—˜ëª¨ë¼ë“œ ì„±ë¬¸ë“¤
+    short sType;         // 0 - ë°”ì¸ë“œ í¬ì¸íŠ¸.. 1 - ì¢Œìš°ë¡œ ì—´ë¦¬ëŠ” ì„±ë¬¸ 2 - ìƒí•˜ë¡œ ì—´ë¦¬ëŠ” ì„±ë¬¸ 3 - ë ˆë²„
+    short sControlNpcID; // ì¡°ì¢…í•  NPC ID (ì¡°ì¢…í•  Object Index)
     short sStatus;       // status
-    float fPosX;         // À§Ä¡°ª
+    float fPosX;         // ìœ„ì¹˜ê°’
     float fPosY;
     float fPosZ;
 };
@@ -188,9 +188,9 @@ struct _OBJECT_EVENT {
 //
 //    About Map Object
 //
-#define USER_BAND    0     // Map À§¿¡ À¯Àú°¡ ÀÖ´Ù.
-#define NPC_BAND     10000 // Map À§¿¡ NPC(¸÷Æ÷ÇÔ)°¡ ÀÖ´Ù.
-#define INVALID_BAND 20000 // Àß¸øµÈ ID BAND
+#define USER_BAND    0     // Map ìœ„ì— ìœ ì €ê°€ ìžˆë‹¤.
+#define NPC_BAND     10000 // Map ìœ„ì— NPC(ëª¹í¬í•¨)ê°€ ìžˆë‹¤.
+#define INVALID_BAND 20000 // ìž˜ëª»ëœ ID BAND
 
 //
 //    Defines About Max Value
@@ -228,7 +228,7 @@ struct _OBJECT_EVENT {
 
 #define ITEM_NAME_LENGTH  20
 #define MAX_THROW_ITEM    30000
-#define ITEM_MAX_USE_WEAR 13 // ¾ÆÀÌÅÛÁß ¾µ¼öÀÖ´Â ¼Ó¼ºµé¸¸ ¸ð¾Æ³Ö±âÀ§ÇØ, ÀÌº¥Æ® ¾ÆÀÌÅÛ°ú ±¸ºÐ
+#define ITEM_MAX_USE_WEAR 13 // ì•„ì´í…œì¤‘ ì“¸ìˆ˜ìžˆëŠ” ì†ì„±ë“¤ë§Œ ëª¨ì•„ë„£ê¸°ìœ„í•´, ì´ë²¤íŠ¸ ì•„ì´í…œê³¼ êµ¬ë¶„
 
 ////////////////////////////////////////////////////////////
 // Durability Type
@@ -264,16 +264,16 @@ const BYTE ATTACK_MAX = 80;
 
 #define DAMAGE_DELAY_C_TIME 2000
 
-// Å¸°Ýºñº° ¼º°ø·ü //
-#define GREAT_SUCCESS 0X01 // ´ë¼º°ø
-#define SUCCESS       0X02 // ¼º°ø
-#define NORMAL        0X03 // º¸Åë
-#define FAIL          0X04 // ½ÇÆÐ
+// íƒ€ê²©ë¹„ë³„ ì„±ê³µë¥  //
+#define GREAT_SUCCESS 0X01 // ëŒ€ì„±ê³µ
+#define SUCCESS       0X02 // ì„±ê³µ
+#define NORMAL        0X03 // ë³´í†µ
+#define FAIL          0X04 // ì‹¤íŒ¨
 
 //
 //    User Status Value
 //
-#define USER_ABILITY_NUM 5 // ±âº» »óÅÂ ´É·ÂÄ¡ Á¾·ù
+#define USER_ABILITY_NUM 5 // ê¸°ë³¸ ìƒíƒœ ëŠ¥ë ¥ì¹˜ ì¢…ë¥˜
 
 #define USER_STR 0
 #define USER_CON 1
@@ -281,7 +281,7 @@ const BYTE ATTACK_MAX = 80;
 #define USER_VOL 3
 #define USER_WIS 4
 
-#define DIR_DOWN      0 // °¢ º¸°íÀÖ´Â ¹æÇâÀ» Á¤ÀÇÇÑ´Ù.
+#define DIR_DOWN      0 // ê° ë³´ê³ ìžˆëŠ” ë°©í–¥ì„ ì •ì˜í•œë‹¤.
 #define DIR_DOWNLEFT  1
 #define DIR_LEFT      2
 #define DIR_UPLEFT    3
@@ -290,36 +290,36 @@ const BYTE ATTACK_MAX = 80;
 #define DIR_RIGHT     6
 #define DIR_DOWNRIGHT 7
 
-#define NPC_EVENT_MOP    1000 // ÀÌº¥Æ® ¸÷ ¹øÈ£
-#define NPC_MAGIC_ITEM   100  // 1~10000¹øÀ» ±âÁØ
+#define NPC_EVENT_MOP    1000 // ì´ë²¤íŠ¸ ëª¹ ë²ˆí˜¸
+#define NPC_MAGIC_ITEM   100  // 1~10000ë²ˆì„ ê¸°ì¤€
 #define NPC_RARE_ITEM    120  //
-#define NPC_EVENT_CHANCE 20   // ÀÌº¥Æ® ¸÷ÀÏ°æ¿ì ¸ÅÁ÷È®·ü°ú ·¹¾î È®·ü¿ï ¿Ã·ÁÁØ´Ù. X 20
+#define NPC_EVENT_CHANCE 20   // ì´ë²¤íŠ¸ ëª¹ì¼ê²½ìš° ë§¤ì§í™•ë¥ ê³¼ ë ˆì–´ í™•ë¥ ìš¸ ì˜¬ë ¤ì¤€ë‹¤. X 20
 
 ////////////////////////////////////////////////////////////
 // Npc Type
-// Monster´Â 0ºÎÅÍ ½ÃÀÛ 10±îÁöÀÇ Å¸ÀÔ
+// MonsterëŠ” 0ë¶€í„° ì‹œìž‘ 10ê¹Œì§€ì˜ íƒ€ìž…
 #define NPCTYPE_MONSTER     0 // monster
-#define NPC_BOSS_MONSTER    3 // ´ëÀå ¸ó½ºÅÍ
-#define NPC_DUNGEON_MONSTER 4 // ´øÁ¯ ¸ó½ºÅÍ
-#define NPC_TRAP_MONSTER    5 // ÇÔÁ¤ ¸ó½ºÅÍ
-// NPC´Â 11ºÎÅÍ ½ÃÀÛ
-#define NPC_GUARD            11 // ºÙ¹ÚÀÌÇü °æºñº´
-#define NPC_PATROL_GUARD     12 // ÀÏ¹Ý ÇÊµå¿¡¼­ Á¤ÂûÀ» ´ã´çÇÏ´Â Á¤Âûº´
-#define NPC_STORE_GUARD      13 // ÀÏ¹Ý ÇÊµå¿¡¼­ »óÁ¡ÁÖº¯À» º¸È£ÇÏ´Â °æºñº´
-#define NPC_MERCHANT         21 // »óÁ¡ÁÖÀÎ NPC
-#define NPC_TINKER           22 // ´ëÀåÀåÀÌ
-#define NPC_WAREHOUSE        23 // Ã¢°íÁö±â
-#define NPC_CAPTAIN_NPC      35 // ÀüÁ÷ ½ÃÄÑÁÖ´Â NPC
-#define NPC_KNIGHTS_NPC      36 // ±â»ç´Ü °ü¸® NPC
-#define NPC_CLERIC           37 // ´ë»çÁ¦ NPC
+#define NPC_BOSS_MONSTER    3 // ëŒ€ìž¥ ëª¬ìŠ¤í„°
+#define NPC_DUNGEON_MONSTER 4 // ë˜ì ¼ ëª¬ìŠ¤í„°
+#define NPC_TRAP_MONSTER    5 // í•¨ì • ëª¬ìŠ¤í„°
+// NPCëŠ” 11ë¶€í„° ì‹œìž‘
+#define NPC_GUARD            11 // ë¶™ë°•ì´í˜• ê²½ë¹„ë³‘
+#define NPC_PATROL_GUARD     12 // ì¼ë°˜ í•„ë“œì—ì„œ ì •ì°°ì„ ë‹´ë‹¹í•˜ëŠ” ì •ì°°ë³‘
+#define NPC_STORE_GUARD      13 // ì¼ë°˜ í•„ë“œì—ì„œ ìƒì ì£¼ë³€ì„ ë³´í˜¸í•˜ëŠ” ê²½ë¹„ë³‘
+#define NPC_MERCHANT         21 // ìƒì ì£¼ì¸ NPC
+#define NPC_TINKER           22 // ëŒ€ìž¥ìž¥ì´
+#define NPC_WAREHOUSE        23 // ì°½ê³ ì§€ê¸°
+#define NPC_CAPTAIN_NPC      35 // ì „ì§ ì‹œì¼œì£¼ëŠ” NPC
+#define NPC_KNIGHTS_NPC      36 // ê¸°ì‚¬ë‹¨ ê´€ë¦¬ NPC
+#define NPC_CLERIC           37 // ëŒ€ì‚¬ì œ NPC
 #define NPC_HEALER           40 // Healer
-#define NPC_DOOR             50 // ¼º¹® (6->50)
-#define NPC_PHOENIX_GATE     51 // ±úÁöÁö ¾Ê´Â ¹® (8->51)
-#define NPC_SPECIAL_GATE     52 // ±úÁöÁö ¾Ê´Â ¹®ÀÌ¸é¼­ 2ºÐ¸¶´Ù ¿­·È´Ù ´ÝÇû´Ù ÇÏ´Â ¹®
-#define NPC_GATE_LEVER       55 // ¼º¹® ·¹¹ö...    (9->55)
-#define NPC_ARTIFACT         60 // °á°è¼® (7->60)
-#define NPC_DESTORY_ARTIFACT 61 // ÆÄ±«µÇ´Â °á°è¼®
-#define NPC_DOMESTIC_ANIMAL  99 // °¡Ãà NPC
+#define NPC_DOOR             50 // ì„±ë¬¸ (6->50)
+#define NPC_PHOENIX_GATE     51 // ê¹¨ì§€ì§€ ì•ŠëŠ” ë¬¸ (8->51)
+#define NPC_SPECIAL_GATE     52 // ê¹¨ì§€ì§€ ì•ŠëŠ” ë¬¸ì´ë©´ì„œ 2ë¶„ë§ˆë‹¤ ì—´ë ¸ë‹¤ ë‹«í˜”ë‹¤ í•˜ëŠ” ë¬¸
+#define NPC_GATE_LEVER       55 // ì„±ë¬¸ ë ˆë²„...    (9->55)
+#define NPC_ARTIFACT         60 // ê²°ê³„ì„ (7->60)
+#define NPC_DESTORY_ARTIFACT 61 // íŒŒê´´ë˜ëŠ” ê²°ê³„ì„
+#define NPC_DOMESTIC_ANIMAL  99 // ê°€ì¶• NPC
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
@@ -328,18 +328,18 @@ const BYTE ATTACK_MAX = 80;
 #define CASTING 0x02
 ////////////////////////////////////////////////////////////
 
-#define MORAL_SELF            1  // ³ª ÀÚ½Å..
-#define MORAL_FRIEND_WITHME   2  // ³ª¸¦ Æ÷ÇÔÇÑ ¿ì¸®Æí(±¹°¡) Áß ÇÏ³ª ..
-#define MORAL_FRIEND_EXCEPTME 3  // ³ª¸¦ »« ¿ì¸®Æí Áß ÇÏ³ª
-#define MORAL_PARTY           4  // ³ª¸¦ Æ÷ÇÔÇÑ ¿ì¸®ÆÄÆ¼ Áß ÇÏ³ª..
-#define MORAL_NPC             5  // NPCÁß ÇÏ³ª.
-#define MORAL_PARTY_ALL       6  // ³ª¸¦ È£ÇÔÇÑ ÆÄÆ¼ ¸ðµÎ..
-#define MORAL_ENEMY           7  // ¿ïÆíÀ» Á¦¿ÜÇÑ ¸ðµç ÀûÁß ÇÏ³ª(NPCÆ÷ÇÔ)
-#define MORAL_ALL             8  // °×»ó¿¡ Á¸ÀçÇÏ´Â ¸ðµç °ÍÁß ÇÏ³ª.
-#define MORAL_AREA_ENEMY      10 // Áö¿ª¿¡ Æ÷ÇÔµÈ Àû
-#define MORAL_AREA_FRIEND     11 // Áö¿ª¿¡ Æ÷ÇÔµÈ ¿ì¸®Æí
-#define MORAL_AREA_ALL        12 // Áö¿ª¿¡ Æ÷ÇÔµÈ ¸ðµÎ
-#define MORAL_SELF_AREA       13 // ³ª¸¦ Áß½ÉÀ¸·Î ÇÑ Áö¿ª
+#define MORAL_SELF            1  // ë‚˜ ìžì‹ ..
+#define MORAL_FRIEND_WITHME   2  // ë‚˜ë¥¼ í¬í•¨í•œ ìš°ë¦¬íŽ¸(êµ­ê°€) ì¤‘ í•˜ë‚˜ ..
+#define MORAL_FRIEND_EXCEPTME 3  // ë‚˜ë¥¼ ëº€ ìš°ë¦¬íŽ¸ ì¤‘ í•˜ë‚˜
+#define MORAL_PARTY           4  // ë‚˜ë¥¼ í¬í•¨í•œ ìš°ë¦¬íŒŒí‹° ì¤‘ í•˜ë‚˜..
+#define MORAL_NPC             5  // NPCì¤‘ í•˜ë‚˜.
+#define MORAL_PARTY_ALL       6  // ë‚˜ë¥¼ í˜¸í•¨í•œ íŒŒí‹° ëª¨ë‘..
+#define MORAL_ENEMY           7  // ìš¸íŽ¸ì„ ì œì™¸í•œ ëª¨ë“  ì ì¤‘ í•˜ë‚˜(NPCí¬í•¨)
+#define MORAL_ALL             8  // ê²œìƒì— ì¡´ìž¬í•˜ëŠ” ëª¨ë“  ê²ƒì¤‘ í•˜ë‚˜.
+#define MORAL_AREA_ENEMY      10 // ì§€ì—­ì— í¬í•¨ëœ ì 
+#define MORAL_AREA_FRIEND     11 // ì§€ì—­ì— í¬í•¨ëœ ìš°ë¦¬íŽ¸
+#define MORAL_AREA_ALL        12 // ì§€ì—­ì— í¬í•¨ëœ ëª¨ë‘
+#define MORAL_SELF_AREA       13 // ë‚˜ë¥¼ ì¤‘ì‹¬ìœ¼ë¡œ í•œ ì§€ì—­
 
 ////////////////////////////////////////////////////////////////
 // Magic Packet sub define

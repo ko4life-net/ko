@@ -27,16 +27,16 @@ void CNpcInfoTable::Initialize() {
 
     m_sSid = ini.GetProfileInt("MAIN", "sSid", 0);
     strcpy(m_strName, ini.GetProfileString("MAIN", "strName", "monster"));
-    m_sMaxHP = ini.GetProfileInt("MAIN", "ÃÖ´ëHP", 0);
-    m_sMaxMP = ini.GetProfileInt("MAIN", "ÃÖ´ëPP", 0);
-    m_byClass = ini.GetProfileInt("MAIN", "¹«±â°è¿­", 0);
-    m_iExp = ini.GetProfileInt("MAIN", "°æÇèÄ¡", 0);
-    m_sDefense = ini.GetProfileInt("MAIN", "¹æ¾î°ª", 0);
-    m_byAttackRange = ini.GetProfileInt("MAIN", "»çÁ¤°Å¸®", 0);
-    m_sAI = ini.GetProfileInt("MAIN", "ÀÎ°øÁö´ÉÀÎµ¦½º", 0);
-    m_sAttackDelay = ini.GetProfileInt("MAIN", "°ø°İµô·¹ÀÌ", 0);
-    m_bySearchRange = ini.GetProfileInt("MAIN", "ÀûÅ½Áö¹üÀ§", 0);
-    m_sSpeed = ini.GetProfileInt("MAIN", "ÀÌµ¿¼Óµµ", 0);
+    m_sMaxHP = ini.GetProfileInt("MAIN", "ìµœëŒ€HP", 0);
+    m_sMaxMP = ini.GetProfileInt("MAIN", "ìµœëŒ€PP", 0);
+    m_byClass = ini.GetProfileInt("MAIN", "ë¬´ê¸°ê³„ì—´", 0);
+    m_iExp = ini.GetProfileInt("MAIN", "ê²½í—˜ì¹˜", 0);
+    m_sDefense = ini.GetProfileInt("MAIN", "ë°©ì–´ê°’", 0);
+    m_byAttackRange = ini.GetProfileInt("MAIN", "ì‚¬ì •ê±°ë¦¬", 0);
+    m_sAI = ini.GetProfileInt("MAIN", "ì¸ê³µì§€ëŠ¥ì¸ë±ìŠ¤", 0);
+    m_sAttackDelay = ini.GetProfileInt("MAIN", "ê³µê²©ë”œë ˆì´", 0);
+    m_bySearchRange = ini.GetProfileInt("MAIN", "ì íƒì§€ë²”ìœ„", 0);
+    m_sSpeed = ini.GetProfileInt("MAIN", "ì´ë™ì†ë„", 0);
     m_sStandTime = ini.GetProfileInt("MAIN", "StandTime", 0);
     m_tNpcType = ini.GetProfileInt("MAIN", "NpcType", 0);
     m_sFamilyType = ini.GetProfileInt("MAIN", "FamilyType", 0);

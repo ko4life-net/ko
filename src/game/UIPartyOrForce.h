@@ -10,20 +10,20 @@
 
 typedef typename std::list<__InfoPartyOrForce>::iterator it_PartyOrForce;
 
-class CUIPartyOrForce : public CN3UIBase // ÆÄÆ¼¿¡ °üÇÑ UI, ºÎ´ë¿Í °°Àº Å¬·¡½º·Î ¾´´Ù..
+class CUIPartyOrForce : public CN3UIBase // íŒŒí‹°ì— ê´€í•œ UI, ë¶€ëŒ€ì™€ ê°™ì€ í´ë˜ìŠ¤ë¡œ ì“´ë‹¤..
 {
   protected:
-    class CN3UIProgress * m_pProgress_HPs[MAX_PARTY_OR_FORCE];      // ºÎ´ë¿ø°¹¼ö ¸¸Å­... HP Gauge
-    class CN3UIProgress * m_pProgress_HPReduce[MAX_PARTY_OR_FORCE]; // ºÎ´ë¿ø°¹¼ö ¸¸Å­... HP Reduce
-    class CN3UIProgress * m_pProgress_ETC[MAX_PARTY_OR_FORCE];      // ºÎ´ë¿ø°¹¼ö ¸¸Å­... »óÅÂÀÌ»ó
-    class CN3UIStatic *   m_pStatic_IDs[MAX_PARTY_OR_FORCE];        // ºÎ´ë¿ø°¹¼ö ¸¸Å­... ÀÌ¸§µé..
-    class CN3UIArea *     m_pAreas[MAX_PARTY_OR_FORCE];             // ºÎ´ë¿ø°¹¼ö ¸¸Å­... ÀÌ¸§µé..
+    class CN3UIProgress * m_pProgress_HPs[MAX_PARTY_OR_FORCE];      // ë¶€ëŒ€ì›ê°¯ìˆ˜ ë§Œí¼... HP Gauge
+    class CN3UIProgress * m_pProgress_HPReduce[MAX_PARTY_OR_FORCE]; // ë¶€ëŒ€ì›ê°¯ìˆ˜ ë§Œí¼... HP Reduce
+    class CN3UIProgress * m_pProgress_ETC[MAX_PARTY_OR_FORCE];      // ë¶€ëŒ€ì›ê°¯ìˆ˜ ë§Œí¼... ìƒíƒœì´ìƒ
+    class CN3UIStatic *   m_pStatic_IDs[MAX_PARTY_OR_FORCE];        // ë¶€ëŒ€ì›ê°¯ìˆ˜ ë§Œí¼... ì´ë¦„ë“¤..
+    class CN3UIArea *     m_pAreas[MAX_PARTY_OR_FORCE];             // ë¶€ëŒ€ì›ê°¯ìˆ˜ ë§Œí¼... ì´ë¦„ë“¤..
 
-    std::list<__InfoPartyOrForce> m_Members;        // ÆÄÆ¼ ¸â¹ö
-    int                           m_iIndexSelected; // ÇöÀç ¼±ÅÃµÈ ¸â¹öÀÎµ¦½º..
+    std::list<__InfoPartyOrForce> m_Members;        // íŒŒí‹° ë©¤ë²„
+    int                           m_iIndexSelected; // í˜„ì¬ ì„ íƒëœ ë©¤ë²„ì¸ë±ìŠ¤..
 
   public:
-    int m_iPartyOrForce; // ÆÄÆ¼³Ä? ºÎ´ë³Ä?? 1 ÀÌ¸é ÆÄÆ¼ 2 ÀÌ¸é ºÎ´ë..
+    int m_iPartyOrForce; // íŒŒí‹°ëƒ? ë¶€ëŒ€ëƒ?? 1 ì´ë©´ íŒŒí‹° 2 ì´ë©´ ë¶€ëŒ€..
 
   public:
     bool OnKeyPress(int iKey);
@@ -33,12 +33,12 @@ class CUIPartyOrForce : public CN3UIBase // ÆÄÆ¼¿¡ °üÇÑ UI, ºÎ´ë¿Í °°Àº Å¬·¡½º·Î
     void MemberHPChange(int iID, int iHP, int iHPMax);
     void MemberStatusChange(int iID, e_PartyStatus ePS, bool bSuffer);
 
-    void MemberInfoReInit();        // ÆÄÆ¼¿ø ±¸¼ºÀÌ º¯°æµÉ¶§.. ¼ø¼­ ¹× °¢Á¾ Á¤º¸ ¾÷µ¥ÀÌÆ®..
-    bool TargetByIndex(int iIndex); // ¼ø¼­´ë·Î Å¸°Ù Àâ±â..
+    void MemberInfoReInit();        // íŒŒí‹°ì› êµ¬ì„±ì´ ë³€ê²½ë ë•Œ.. ìˆœì„œ ë° ê°ì¢… ì •ë³´ ì—…ë°ì´íŠ¸..
+    bool TargetByIndex(int iIndex); // ìˆœì„œëŒ€ë¡œ íƒ€ê²Ÿ ì¡ê¸°..
 
     const __InfoPartyOrForce * MemberInfoGetByID(int iID, int & iIndexResult);
     const __InfoPartyOrForce * MemberInfoGetByIndex(int iIndex);
-    const __InfoPartyOrForce * MemberInfoGetSelected(); // ÇöÀç ¼±ÅÃµÈ ¸â¹öÀÎµ¦½º..
+    const __InfoPartyOrForce * MemberInfoGetSelected(); // í˜„ì¬ ì„ íƒëœ ë©¤ë²„ì¸ë±ìŠ¤..
     const __InfoPartyOrForce * MemberAdd(int iID, const std::string szID, int iLevel, e_Class eClass, int iHP,
                                          int iHPMax);
     class CPlayerOther *       MemberGetByNearst(const __Vector3 & vPosPlayer);

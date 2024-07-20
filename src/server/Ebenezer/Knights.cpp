@@ -34,16 +34,16 @@ CKnights::~CKnights() {}
 
 void CKnights::InitializeValue() {
     m_sIndex = 0;
-    m_byFlag = 0;    // 1 : Clan, 2 : ±â»ç´Ü
+    m_byFlag = 0;    // 1 : Clan, 2 : ê¸°ì‚¬ë‹¨
     m_byNation = 0;  // nation
-    m_byGrade = 0;   // clan µî±Ş (1 ~ 5µî±Ş)
-    m_byRanking = 0; // clan µî±Ş (1 ~ 5µî)
+    m_byGrade = 0;   // clan ë“±ê¸‰ (1 ~ 5ë“±ê¸‰)
+    m_byRanking = 0; // clan ë“±ê¸‰ (1 ~ 5ë“±)
     m_sMembers = 0;
     memset(m_strName, 0x00, MAX_ID_SIZE + 1);
     memset(m_strChief, 0x00, MAX_ID_SIZE + 1);
-    memset(m_strViceChief_1, 0x00, MAX_ID_SIZE + 1); // ºÎ´ÜÀå 1
-    memset(m_strViceChief_2, 0x00, MAX_ID_SIZE + 1); // ºÎ´ÜÀå 2 (±â»ç´Ü¿¡¼­´Â Àå±³)
-    memset(m_strViceChief_3, 0x00, MAX_ID_SIZE + 1); // ºÎ´ÜÀå 3    (±â»ç´Ü¿¡¼­´Â »ç¿ëÇÏÁö ¾ÊÀ½)
+    memset(m_strViceChief_1, 0x00, MAX_ID_SIZE + 1); // ë¶€ë‹¨ì¥ 1
+    memset(m_strViceChief_2, 0x00, MAX_ID_SIZE + 1); // ë¶€ë‹¨ì¥ 2 (ê¸°ì‚¬ë‹¨ì—ì„œëŠ” ì¥êµ)
+    memset(m_strViceChief_3, 0x00, MAX_ID_SIZE + 1); // ë¶€ë‹¨ì¥ 3    (ê¸°ì‚¬ë‹¨ì—ì„œëŠ” ì‚¬ìš©í•˜ì§€ ì•ŠìŒ)
     memset(m_Image, 0x00, MAX_KNIGHTS_MARK);
     m_nMoney = 0;
     m_sDomination = 0;

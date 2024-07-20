@@ -73,12 +73,12 @@ class CTableGenerator {
 
   protected:
     std::vector<DATA_TYPE>     m_DataTypes;
-    std::vector<CTableData>    m_Datas;    // ±âº»ÀÌ µÇ´Â ¾ÆÀÌÅÛ Å×ÀÌºí
-    std::vector<CTableDataExt> m_DataExts; // ÂüÁ¶ÇÒ ¾ÆÀÌÅÛ Å×ÀÌºí
+    std::vector<CTableData>    m_Datas;    // ê¸°ë³¸ì´ ë˜ëŠ” ì•„ì´í…œ í…Œì´ë¸”
+    std::vector<CTableDataExt> m_DataExts; // ì°¸ì¡°í•  ì•„ì´í…œ í…Œì´ë¸”
 
   private:
     int ParseLine(const char * szLine, int & iOffset, int & iVal, DWORD & dwVal, double & dfVal,
-                  std::string & szText); // ¼º°øÇÏ¸é 0, Ãß°¡ÇØ¾ßÇÏ°í ³¡ÀÌ¸é -1 Ãß°¡ÇÒ ÇÊ¿ä ¾ø°í ³¡ÀÌ¸é.. -2 ¸®ÅÏ
+                  std::string & szText); // ì„±ê³µí•˜ë©´ 0, ì¶”ê°€í•´ì•¼í•˜ê³  ëì´ë©´ -1 ì¶”ê°€í•  í•„ìš” ì—†ê³  ëì´ë©´.. -2 ë¦¬í„´
 
     bool   WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszData);
     bool   ReadData(HANDLE hFile, DATA_TYPE DataType, LPTSTR lpszData);

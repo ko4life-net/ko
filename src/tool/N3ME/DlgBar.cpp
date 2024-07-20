@@ -60,7 +60,7 @@ END_MESSAGE_MAP()
 
 void CDlgBar::OnBSetResourcePath() {
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
-    pFrm->OnResourcePathSet(); // Project ¼¼ÆÃ..
+    pFrm->OnResourcePathSet(); // Project ì„¸íŒ…..
 }
 
 void CDlgBar::OnChangeETransformX() {

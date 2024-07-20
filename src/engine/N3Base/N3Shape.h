@@ -18,25 +18,25 @@ class CN3SPart : public CN3BaseFileAccess {
     friend class CN3Shape;
 
   public:
-    __Vector3  m_vPivot;            // Local Ãà
-    __Matrix44 m_Matrix;            // World Matrix.. Shape Loading ¶§ ¹Ì¸® °è»êÇØ¾ß ÁÁ´Ù..
-    BOOL       m_bOutOfCameraRange; // Camera ¹üÀ§ ¹Ù±ù¿¡ ÀÖÀ½...
+    __Vector3  m_vPivot;            // Local ì¶•
+    __Matrix44 m_Matrix;            // World Matrix.. Shape Loading ë•Œ ë¯¸ë¦¬ ê³„ì‚°í•´ì•¼ ì¢‹ë‹¤..
+    BOOL       m_bOutOfCameraRange; // Camera ë²”ìœ„ ë°”ê¹¥ì— ìˆìŒ...
 
     __Material m_Mtl;     // Material
     float      m_fTexFPS; // Texture Animation Interval;
 
-    //    __Vector3    m_vWindFactorCur;        // ÇöÀç ¹Ù¶÷ ºÎ´Â °ª.. ÀÌ°ªÀ¸·Î È¸ÀüÀ» ½ÃÅ²´Ù..
-    //    __Vector3    m_vWindFactorToReach;    // ¹Ù¶÷ ºÎ´Â °ª..
-    float m_fTimeToSetWind;     // ¹Ù¶÷ ºÎ´Â °ªÀ» ¹Ù²Ù±â À§ÇÑ ½Ã°£..
-    float m_fWindFactorToReach; // ÇöÀç ¹Ù¶÷ ºÎ´Â °ª.. ÀÌ°ªÀ¸·Î È¸ÀüÀ» ½ÃÅ²´Ù..
-    float m_fWindFactorCur;     // ¹Ù¶÷ ºÎ´Â °ª..
+    //    __Vector3    m_vWindFactorCur;        // í˜„ì¬ ë°”ëŒ ë¶€ëŠ” ê°’.. ì´ê°’ìœ¼ë¡œ íšŒì „ì„ ì‹œí‚¨ë‹¤..
+    //    __Vector3    m_vWindFactorToReach;    // ë°”ëŒ ë¶€ëŠ” ê°’..
+    float m_fTimeToSetWind;     // ë°”ëŒ ë¶€ëŠ” ê°’ì„ ë°”ê¾¸ê¸° ìœ„í•œ ì‹œê°„..
+    float m_fWindFactorToReach; // í˜„ì¬ ë°”ëŒ ë¶€ëŠ” ê°’.. ì´ê°’ìœ¼ë¡œ íšŒì „ì„ ì‹œí‚¨ë‹¤..
+    float m_fWindFactorCur;     // ë°”ëŒ ë¶€ëŠ” ê°’..
 
   protected:
     std::vector<CN3Texture *> m_TexRefs; // Texture Reference Pointers
     CN3PMeshInstance          m_PMInst;  // Progressive Mesh Instance
 
     float
-        m_fTexIndex; // Current Texture Index.. Animation ½ÃÅ³¶§ ÇÊ¿äÇÑ ÀÎµ¦½ºÀÌ´Ù.. float ·Î ÇØ¼­ ÅØ½ºÃ³ ¿¡´Ï¸ŞÀÌ¼Ç Á¦¾îÇÑ´Ù.
+        m_fTexIndex; // Current Texture Index.. Animation ì‹œí‚¬ë•Œ í•„ìš”í•œ ì¸ë±ìŠ¤ì´ë‹¤.. float ë¡œ í•´ì„œ í…ìŠ¤ì²˜ ì—ë‹ˆë©”ì´ì…˜ ì œì–´í•œë‹¤.
 
   public:
     virtual bool Load(HANDLE hFile);
@@ -79,7 +79,7 @@ class CN3SPart : public CN3BaseFileAccess {
     }
 
     void Tick(const __Matrix44 & mtxParent, const __Quaternion & qRot,
-              float fScale); // ºÎ¸ğ Çà·Ä Áï Shape Çà·Ä, È¸ÀüÄõÅÍ´Ï¾ğ À» ³Ö´Â´Ù.
+              float fScale); // ë¶€ëª¨ í–‰ë ¬ ì¦‰ Shape í–‰ë ¬, íšŒì „ì¿¼í„°ë‹ˆì–¸ ì„ ë„£ëŠ”ë‹¤.
     void Render();
 #ifdef _N3TOOL
     void RenderSelected(bool bWireFrame);
@@ -92,14 +92,14 @@ class CN3SPart : public CN3BaseFileAccess {
         } else {
             return __Vector3(0, 0, 0);
         }
-    } // ¿ùµå »óÀÇ ÃÖ¼Ò°ª
+    } // ì›”ë“œ ìƒì˜ ìµœì†Œê°’
     __Vector3 Max() {
         if (m_PMInst.GetMesh()) {
             return m_PMInst.GetMesh()->Max() * m_Matrix;
         } else {
             return __Vector3(0, 0, 0);
         }
-    } // ¿ùµå »óÀÇ ÃÖ´ë°ª
+    } // ì›”ë“œ ìƒì˜ ìµœëŒ€ê°’
     float Radius() {
         if (m_PMInst.GetMesh()) {
             return m_PMInst.GetMesh()->Radius();
@@ -124,13 +124,13 @@ typedef typename std::vector<CN3SPart *>::iterator it_SPart;
 
 class CN3Shape : public CN3TransformCollision {
   public:
-    int m_iBelong;     // ¼Ò¼Ó - 0:¼Ò¼Ó ¾øÀ½ 1:¿¤¸ğ¶óµå 2:Ä«·ç½º 3:?? ....
+    int m_iBelong;     // ì†Œì† - 0:ì†Œì† ì—†ìŒ 1:ì—˜ëª¨ë¼ë“œ 2:ì¹´ë£¨ìŠ¤ 3:?? ....
     int m_iEventID;    // Event ID
     int m_iEventType;  // Event Type
-    int m_iNPC_ID;     // NPC ·Î ¾²´Â ¿ÀºêÁ§Æ®ÀÏ °æ¿ì NPC ID
-    int m_iNPC_Status; // NPC ·Î ¾²´Â ¿ÀºêÁ§Æ®ÀÏ °æ¿ì Default Status
+    int m_iNPC_ID;     // NPC ë¡œ ì“°ëŠ” ì˜¤ë¸Œì íŠ¸ì¼ ê²½ìš° NPC ID
+    int m_iNPC_Status; // NPC ë¡œ ì“°ëŠ” ì˜¤ë¸Œì íŠ¸ì¼ ê²½ìš° Default Status
 
-    bool m_bDontRender; // Ä«¸Ş¶ó °Å¸®¿¡ µû¶ó ÀÌÇÃ·¡±×°¡ ¼³Á¤µÇ¸é ·»´õ¸µÇÏÁö ¾Ê´Â´Ù..
+    bool m_bDontRender; // ì¹´ë©”ë¼ ê±°ë¦¬ì— ë”°ë¼ ì´í”Œë˜ê·¸ê°€ ì„¤ì •ë˜ë©´ ë Œë”ë§í•˜ì§€ ì•ŠëŠ”ë‹¤..
     bool m_bVisible;    // ..
 
     std::vector<CN3SPart *> m_Parts; // Part Data Pointer Linked List
@@ -144,12 +144,12 @@ class CN3Shape : public CN3TransformCollision {
 #endif // end of _N3TOOL
     int CheckCollisionPrecisely(
         bool bIgnoreBoxCheck, int ixScreen, int iyScreen, __Vector3 * pVCol = NULL,
-        __Vector3 * pVNormal = NULL); // Á¤¹ĞÇÏ°Ô Æú¸®°ï ´ÜÀ§·Î Ã¼Å© - ¸ÕÀú ¹Ú½º Ã¼Å©ÈÄ ´Ù½Ã Á¤¹Ğ Ã¼Å©..
+        __Vector3 * pVNormal = NULL); // ì •ë°€í•˜ê²Œ í´ë¦¬ê³¤ ë‹¨ìœ„ë¡œ ì²´í¬ - ë¨¼ì € ë°•ìŠ¤ ì²´í¬í›„ ë‹¤ì‹œ ì •ë°€ ì²´í¬..
     int CheckCollisionPrecisely(
         bool bIgnoreBoxCheck, const __Vector3 & vPos, const __Vector3 & vDir, __Vector3 * pVCol = NULL,
-        __Vector3 * pVNormal = NULL);      // Á¤¹ĞÇÏ°Ô Æú¸®°ï ´ÜÀ§·Î Ã¼Å© - ¸ÕÀú ¹Ú½º Ã¼Å©ÈÄ ´Ù½Ã Á¤¹Ğ Ã¼Å©..
-    bool MakeCollisionMeshByParts();       // Ãæµ¹ ¸Ş½Ã¸¦ ¹Ú½º ÇüÅÂ·Î ´Ù½Ã ¸¸µç´Ù...
-    bool MakeCollisionMeshByPartsDetail(); // ÇöÀç ¸ğ½À ±×´ë·Î... Ãæµ¹ ¸Ş½Ã¸¦ ¸¸µç´Ù...
+        __Vector3 * pVNormal = NULL);      // ì •ë°€í•˜ê²Œ í´ë¦¬ê³¤ ë‹¨ìœ„ë¡œ ì²´í¬ - ë¨¼ì € ë°•ìŠ¤ ì²´í¬í›„ ë‹¤ì‹œ ì •ë°€ ì²´í¬..
+    bool MakeCollisionMeshByParts();       // ì¶©ëŒ ë©”ì‹œë¥¼ ë°•ìŠ¤ í˜•íƒœë¡œ ë‹¤ì‹œ ë§Œë“ ë‹¤...
+    bool MakeCollisionMeshByPartsDetail(); // í˜„ì¬ ëª¨ìŠµ ê·¸ëŒ€ë¡œ... ì¶©ëŒ ë©”ì‹œë¥¼ ë§Œë“ ë‹¤...
 
     void         FindMinMax();
     virtual void ReCalcMatrix();
@@ -183,7 +183,7 @@ class CN3Shape : public CN3TransformCollision {
     CN3Shape();
     virtual ~CN3Shape();
 
-    //    By : Ecli666 ( On 2002-08-06 ¿ÀÈÄ 4:33:04 )
+    //    By : Ecli666 ( On 2002-08-06 ì˜¤í›„ 4:33:04 )
     //
     void       SetMaxLOD();
     __Matrix44 GetPartMatrix(int iPartIndex);
@@ -201,5 +201,5 @@ class CN3Shape : public CN3TransformCollision {
     void      PartialColRender(int iCount, int * piIndices);
     void      PartialGetCollision(int iIndex, __Vector3 & vec);
     bool      LoadTransformOnly(HANDLE hFile);
-    //    ~(By Ecli666 On 2002-08-06 ¿ÀÈÄ 4:33:04 )
+    //    ~(By Ecli666 On 2002-08-06 ì˜¤í›„ 4:33:04 )
 };

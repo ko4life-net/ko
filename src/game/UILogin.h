@@ -48,14 +48,14 @@ class CUILogIn : public CN3UIBase {
 
     std::vector<__GameServerInfo> m_ListServerInfos;
 
-    bool  m_bOpenningNow; // À§¿¡¼­ ¾Æ·¡·Î ½º¸£¸¤...¿­·Á¾ß ÇÑ´Ù¸é..
+    bool  m_bOpenningNow; // ìœ„ì—ì„œ ì•„ë˜ë¡œ ìŠ¤ë¥´ë¥µ...ì—´ë ¤ì•¼ í•œë‹¤ë©´..
     float m_fMoveDelta;
-    bool  m_bLogIn; // ·Î±×ÀÎ Áßº¹ ¹æÁö..
+    bool  m_bLogIn; // ë¡œê·¸ì¸ ì¤‘ë³µ ë°©ì§€..
 
   public:
     void SetRequestedLogIn(bool bLogIn) { m_bLogIn = bLogIn; }
     bool OnKeyPress(int iKey);
-    void SetVisibleLogInUIs(bool bEnable); // °èÁ¤ LogIn ¿¡ ÇÊ¿äÇÑ UI µéÀ» ¼û±ä´Ù..
+    void SetVisibleLogInUIs(bool bEnable); // ê³„ì • LogIn ì— í•„ìš”í•œ UI ë“¤ì„ ìˆ¨ê¸´ë‹¤..
     void OpenServerList();
     void Tick();
 
@@ -63,7 +63,7 @@ class CUILogIn : public CN3UIBase {
     void FocusCircular();
     void FocusToID();
     bool Load(HANDLE hFile);
-    bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg); // ¸Ş½ÃÁö¸¦ ¹Ş´Â´Ù.. º¸³½³ğ, msg
+    bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg); // ë©”ì‹œì§€ë¥¼ ë°›ëŠ”ë‹¤.. ë³´ë‚¸ë†ˆ, msg
 
     int  ServerInfoCount() { return m_ListServerInfos.size(); }
     bool ServerInfoAdd(const __GameServerInfo & GSI);

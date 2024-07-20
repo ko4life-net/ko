@@ -21,7 +21,7 @@
 
 CGameProcNationSelect::CGameProcNationSelect() {
     m_pUINationSelectDlg = NULL;
-    s_pPlayer->m_InfoBase.eNation = NATION_NOTSELECTED; // ¾ÆÁ÷ ±¹°¡¸¦ ¼±ÅÃÇÏÁö ¾Ê¾Ò´Ù..
+    s_pPlayer->m_InfoBase.eNation = NATION_NOTSELECTED; // ì•„ì§ êµ­ê°€ë¥¼ ì„ íƒí•˜ì§€ ì•Šì•˜ë‹¤..
 }
 
 CGameProcNationSelect::~CGameProcNationSelect() {
@@ -48,40 +48,40 @@ void CGameProcNationSelect::Init() {
     m_pUINationSelectDlg = new CUINationSelectDlg();
     m_pUINationSelectDlg->Init(s_pUIMgr);
     m_pUINationSelectDlg->LoadFromFile(szTemp);
-    m_pUINationSelectDlg->m_pProcNationSelectRef = this; // ÂüÁ¶ Æ÷ÀÎÅÍ ³Ö±â..
+    m_pUINationSelectDlg->m_pProcNationSelectRef = this; // ì°¸ì¡° í¬ì¸í„° ë„£ê¸°..
 
-    s_pPlayer->m_InfoBase.eNation = NATION_NOTSELECTED; // ¾ÆÁ÷ ±¹°¡¸¦ ¼±ÅÃÇÏÁö ¾Ê¾Ò´Ù..
+    s_pPlayer->m_InfoBase.eNation = NATION_NOTSELECTED; // ì•„ì§ êµ­ê°€ë¥¼ ì„ íƒí•˜ì§€ ì•Šì•˜ë‹¤..
 }
 
 void CGameProcNationSelect::Tick() {
-    CGameProcedure::Tick(); // Å°, ¸¶¿ì½º ÀÔ·Â µîµî..
+    CGameProcedure::Tick(); // í‚¤, ë§ˆìš°ìŠ¤ ìž…ë ¥ ë“±ë“±..
 
     if (NATION_KARUS == s_pPlayer->m_InfoBase.eNation || NATION_ELMORAD == s_pPlayer->m_InfoBase.eNation) {
         CGameProcedure::ProcActiveSet(
-            (CGameProcedure *)s_pProcCharacterSelect); // ±¹°¡¸¦ °ñ¶úÀ¸¸é Ä³¸¯ÅÍ ¼±ÅÃÀ¸·Î ¹Ù·Î °£´Ù..
+            (CGameProcedure *)s_pProcCharacterSelect); // êµ­ê°€ë¥¼ ê³¨ëžìœ¼ë©´ ìºë¦­í„° ì„ íƒìœ¼ë¡œ ë°”ë¡œ ê°„ë‹¤..
     }
 }
 
 void CGameProcNationSelect::Render() {
-    s_pEng->Clear(0);     // Å¬¸®¾î..
-    s_pEng->BeginScene(); // ¾À ·»´õ ¤µÀÛ...
+    s_pEng->Clear(0);     // í´ë¦¬ì–´..
+    s_pEng->BeginScene(); // ì”¬ ë Œë” ã……ìž‘...
 
-    CGameProcedure::Render(); // UI ³ª ±×¹ÛÀÇ ±âº»ÀûÀÎ °Íµé ·»´õ¸µ..
+    CGameProcedure::Render(); // UI ë‚˜ ê·¸ë°–ì˜ ê¸°ë³¸ì ì¸ ê²ƒë“¤ ë Œë”ë§..
 
-    s_pEng->EndScene(); // ¾À ·»´õ ½ÃÀÛ...
+    s_pEng->EndScene(); // ì”¬ ë Œë” ì‹œìž‘...
     s_pEng->Present(CN3Base::s_hWndBase);
 }
 
 void CGameProcNationSelect::MsgSendNationSelect(e_Nation eNation) {
-    BYTE byBuff[4];   // ÆÐÅ¶ ¹öÆÛ..
-    int  iOffset = 0; // ¹öÆÛÀÇ ¿ÀÇÁ¼Â..
+    BYTE byBuff[4];   // íŒ¨í‚· ë²„í¼..
+    int  iOffset = 0; // ë²„í¼ì˜ ì˜¤í”„ì…‹..
 
-    CAPISocket::MP_AddByte(byBuff, iOffset, N3_NATION_SELECT); // Ä¿¸àµå.
-    CAPISocket::MP_AddByte(byBuff, iOffset, (BYTE)eNation);    // ¾ÆÀÌµð ±æÀÌ..
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_NATION_SELECT); // ì»¤ë©˜ë“œ.
+    CAPISocket::MP_AddByte(byBuff, iOffset, (BYTE)eNation);    // ì•„ì´ë”” ê¸¸ì´..
 
-    s_pSocket->Send(byBuff, iOffset); // º¸³½´Ù
+    s_pSocket->Send(byBuff, iOffset); // ë³´ë‚¸ë‹¤
 
-    s_pUIMgr->EnableOperationSet(false); // ÀÀ´ä ÆÐÅ¶À» ¹Þ±â Àü±îÁö ¾Æ¹«Áþ ¸øÇÏ°Ô ÇÑ´Ù..
+    s_pUIMgr->EnableOperationSet(false); // ì‘ë‹µ íŒ¨í‚·ì„ ë°›ê¸° ì „ê¹Œì§€ ì•„ë¬´ì§“ ëª»í•˜ê²Œ í•œë‹¤..
 }
 
 bool CGameProcNationSelect::ProcessPacket(DataPack * pDataPack, int & iOffset) {
@@ -92,16 +92,16 @@ bool CGameProcNationSelect::ProcessPacket(DataPack * pDataPack, int & iOffset) {
         return true;
     }
 
-    int iCmd = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // Ä¿¸àµå ÆÄ½Ì..
-    switch (iCmd)                                                      // Ä¿¸àµå¿¡ ´Ù¶ó¼­ ºÐ±â..
+    int iCmd = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // ì»¤ë©˜ë“œ íŒŒì‹±..
+    switch (iCmd)                                                      // ì»¤ë©˜ë“œì— ë‹¤ë¼ì„œ ë¶„ê¸°..
     {
-    case N3_NATION_SELECT: // Ä³¸¯ÅÍ ¼±ÅÃ ¸Þ½ÃÁö..
+    case N3_NATION_SELECT: // ìºë¦­í„° ì„ íƒ ë©”ì‹œì§€..
     {
         int iNation =
-            CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // ±¹°¡ - 0 ½ÇÆÐ.. 1 - Ä«·ç½º 2 - ¿¤¸ð¶óµå..
+            CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // êµ­ê°€ - 0 ì‹¤íŒ¨.. 1 - ì¹´ë£¨ìŠ¤ 2 - ì—˜ëª¨ë¼ë“œ..
 
         if (0 == iNation) {
-            s_pPlayer->m_InfoBase.eNation = NATION_NOTSELECTED; // ¾ÆÁ÷ ±¹°¡¸¦ ¼±ÅÃÇÏÁö ¾Ê¾Ò´Ù..
+            s_pPlayer->m_InfoBase.eNation = NATION_NOTSELECTED; // ì•„ì§ êµ­ê°€ë¥¼ ì„ íƒí•˜ì§€ ì•Šì•˜ë‹¤..
         } else if (1 == iNation) {
             s_pPlayer->m_InfoBase.eNation = NATION_KARUS;
         } else if (2 == iNation) {

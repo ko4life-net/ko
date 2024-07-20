@@ -81,11 +81,11 @@ typedef struct tagShapeInfo : public CN3Transform {
     int         m_iID;
     std::string m_strShapeFile;
 
-    int m_iBelong;     // ¼Ò¼Ó - 0:¼Ò¼Ó ¾øÀ½ 1:¿¤¸ğ¶óµå 2:Ä«·ç½º 3:?? ....
+    int m_iBelong;     // ì†Œì† - 0:ì†Œì† ì—†ìŒ 1:ì—˜ëª¨ë¼ë“œ 2:ì¹´ë£¨ìŠ¤ 3:?? ....
     int m_iEventID;    // Event ID
     int m_iEventType;  // Event Type
-    int m_iNPC_ID;     // NPC ·Î ¾²´Â ¿ÀºêÁ§Æ®ÀÏ °æ¿ì NPC ID
-    int m_iNPC_Status; // NPC ·Î ¾²´Â ¿ÀºêÁ§Æ®ÀÏ °æ¿ì Default Status
+    int m_iNPC_ID;     // NPC ë¡œ ì“°ëŠ” ì˜¤ë¸Œì íŠ¸ì¼ ê²½ìš° NPC ID
+    int m_iNPC_Status; // NPC ë¡œ ì“°ëŠ” ì˜¤ë¸Œì íŠ¸ì¼ ê²½ìš° Default Status
 
     CN3Shape * m_pShape;
 
@@ -186,8 +186,8 @@ class CPortalVolume : public CN3Transform {
 
     ////////////////////////////////////////
     std::list<WVOL>              m_VoltList;
-    std::list<WVID>              m_piIDList;        // ·Îµå¿¡ ÇÊ¿äÇÑ Áß°£ µ¥ÀÌÅÍ..
-    std::list<IDAndPriority>     m_piVisibleIDList; // ·Îµå¿¡ ÇÊ¿äÇÑ Áß°£ µ¥ÀÌÅÍ..
+    std::list<WVID>              m_piIDList;        // ë¡œë“œì— í•„ìš”í•œ ì¤‘ê°„ ë°ì´í„°..
+    std::list<IDAndPriority>     m_piVisibleIDList; // ë¡œë“œì— í•„ìš”í•œ ì¤‘ê°„ ë°ì´í„°..
     std::list<ShapeInfo *>       m_plShapeInfoList;
     std::list<ShapePart *>       m_lpShapePartList;
     std::list<__ColIndex *>      m_lpShapeColPartList;
@@ -195,7 +195,7 @@ class CPortalVolume : public CN3Transform {
     ////////////////////////////////////////
 
   public:
-    int m_iPriority; //.. ÄÄÆÄÀÏ ¸ğµå¿¡¼­ PortalÀÇ ¿ì¼±¼øÀ§..    -1·Î ¸ÕÀú Å¬¸®¾î ÇÑ´ÙÀ½.. 0 ¼øÀ§´Â ÀÚ±â ÀÚ½Å..
+    int m_iPriority; //.. ì»´íŒŒì¼ ëª¨ë“œì—ì„œ Portalì˜ ìš°ì„ ìˆœìœ„..    -1ë¡œ ë¨¼ì € í´ë¦¬ì–´ í•œë‹¤ìŒ.. 0 ìˆœìœ„ëŠ” ìê¸° ìì‹ ..
 
   private:
     bool            QueryHeight(float fx, float fz, float & fy);

@@ -49,7 +49,7 @@ bool CUINPCEvent::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     if (dwMsg == UIMSG_BUTTON_CLICK) {
         if (pSender->m_szID == "Btn_Sale") {
             if (CGameProcedure::s_pProcMain->m_pSubProcPerTrade->m_ePerTradeState !=
-                PER_TRADE_STATE_NONE) { /* °³ְ־°£ »ף°ֵ·¡ ֱßְּ¸י.. */
+                PER_TRADE_STATE_NONE) { /* ך°ל¸ך°„ לƒך±°כ˜ ל₪‘ל´כ©´.. */
                 return true;
             }
 
@@ -68,7 +68,7 @@ bool CUINPCEvent::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 
         if (pSender->m_szID == "Btn_Repair") {
             if (CGameProcedure::s_pProcMain->m_pSubProcPerTrade->m_ePerTradeState !=
-                PER_TRADE_STATE_NONE) { /* °³ְ־°£ »ף°ֵ·¡ ֱßְּ¸י.. */
+                PER_TRADE_STATE_NONE) { /* ך°ל¸ך°„ לƒך±°כ˜ ל₪‘ל´כ©´.. */
                 return true;
             }
 

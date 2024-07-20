@@ -22,8 +22,8 @@ class CUIState : public CN3UIBase {
     CN3UIString * m_pText_HP;
     CN3UIString * m_pText_MP;
     CN3UIString * m_pText_Exp;
-    CN3UIString * m_pText_AP; // °ø°İ·Â
-    CN3UIString * m_pText_GP; // ¹æ¾î·Â
+    CN3UIString * m_pText_AP; // ê³µê²©ë ¥
+    CN3UIString * m_pText_GP; // ë°©ì–´ë ¥
     CN3UIString * m_pText_Weight;
 
     CN3UIString * m_pText_BonusPoint;
@@ -54,11 +54,11 @@ class CUIState : public CN3UIBase {
     CN3UIBase * m_pImg_Str;
 
   public:
-    void UpdateBonusPointAndButtons(int iBonusPointRemain); // º¸³Ê½º Æ÷ÀÎÆ® Àû¿ëÀÌ °¡´ÉÇÑ°¡??
+    void UpdateBonusPointAndButtons(int iBonusPointRemain); // ë³´ë„ˆìŠ¤ í¬ì¸íŠ¸ ì ìš©ì´ ê°€ëŠ¥í•œê°€??
 
     void UpdateID(const std::string & szID);
     void UpdateLevel(int iVal);
-    void UpdateRealmPoint(int iVal); // ±¹°¡ ±â¿©µµ´Â 10À» ³ª´©¾î¼­ Ç¥½Ã
+    void UpdateRealmPoint(int iVal); // êµ­ê°€ ê¸°ì—¬ë„ëŠ” 10ì„ ë‚˜ëˆ„ì–´ì„œ í‘œì‹œ
 
     void UpdateHP(int iVal, int iValMax);
     void UpdateMSP(int iVal, int iValMax);
@@ -80,7 +80,7 @@ class CUIState : public CN3UIBase {
     void UpdateRegistCurse(int iVal, int iDelta);
     void UpdateRegistPoison(int iVal, int iDelta);
 
-    void MsgSendAblityPointChange(BYTE byType, short siValueDelta); // ´É·ÂÄ¡ º¯È­ ÆĞÅ¶À¸·Î º¸³»±â..
+    void MsgSendAblityPointChange(BYTE byType, short siValueDelta); // ëŠ¥ë ¥ì¹˜ ë³€í™” íŒ¨í‚·ìœ¼ë¡œ ë³´ë‚´ê¸°..
 
     virtual bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg);
     virtual bool Load(HANDLE hFile);
@@ -90,12 +90,12 @@ class CUIState : public CN3UIBase {
     virtual ~CUIState();
 };
 
-struct __KnightsMemberInfo // ±â»ç ´Ü¿ø Á¤º¸..
+struct __KnightsMemberInfo // ê¸°ì‚¬ ë‹¨ì› ì •ë³´..
 {
     std::string   szName;
-    int           iLevel; // ÇÃ·¹ÀÌ¾î ·¹º§..
-    e_Class       eClass; // Á÷¾÷.
-    e_KnightsDuty eDuty;  // ±â»ç´Ü Á÷À§.
+    int           iLevel; // í”Œë ˆì´ì–´ ë ˆë²¨..
+    e_Class       eClass; // ì§ì—….
+    e_KnightsDuty eDuty;  // ê¸°ì‚¬ë‹¨ ì§ìœ„.
     int           iConnected;
 };
 
@@ -152,7 +152,7 @@ class CUIKnights : public CN3UIBase {
     CUIKnights();
     virtual ~CUIKnights();
 
-    //¾²Áö ¾ÊÀ½....
+    //ì“°ì§€ ì•ŠìŒ....
     bool NeedMemberListRequest() {
         if (m_MemberList.empty()) {
             return true;
@@ -162,7 +162,7 @@ class CUIKnights : public CN3UIBase {
     }
 
     void ChangeUIByDuty(e_KnightsDuty eDuty);
-    //void    VisibleAppointButtons(bool bVisible); // ±â»ç´ÜÀå Àü¿ë ÀÓ¸í Interface
+    //void    VisibleAppointButtons(bool bVisible); // ê¸°ì‚¬ë‹¨ì¥ ì „ìš© ì„ëª… Interface
 
     //void    MsgSend_MemberInfoOnline(int iPage);
     bool MsgRecv_MemberInfo(class DataPack * pDataPack, int & iOffset);
@@ -174,12 +174,12 @@ class CUIKnights : public CN3UIBase {
     //void    MsgSend_DutyAppoint(e_KnightsDuty eDuty);
 };
 
-struct __FriendsInfo // ±â»ç ´Ü¿ø Á¤º¸..
+struct __FriendsInfo // ê¸°ì‚¬ ë‹¨ì› ì •ë³´..
 {
     std::string szName;
     int         iID;      // ID
-    bool        bOnLine;  // Á¢¼ÓÇß³ª?
-    bool        bIsParty; // ÆÄÆ¼ ÇÃ·¹ÀÌÁßÀÎ°¡?
+    bool        bOnLine;  // ì ‘ì†í–ˆë‚˜?
+    bool        bIsParty; // íŒŒí‹° í”Œë ˆì´ì¤‘ì¸ê°€?
 
     void Init() {
         szName = "";
@@ -212,9 +212,9 @@ class CUIFriends : public CN3UIBase {
     CN3UIButton * m_pBtn_Delete;
 
   public:
-    void SaveListToTextFile(const std::string & szID); // ¹®ÀÚ¿­ÀÌ ÀÖÀ¸¸é Ãß°¡ÇÏ°í.. ¾øÀ¸¸é ¸ù¶¥ ÀúÀå..
-    void MsgSend_MemberInfo(bool bDisableInterval);    // ÇöÀç ÆäÀÌÁö Á¤º¸ ¿äÃ»
-    void MsgSend_MemberInfo(const std::string & szID); // ÀÌ³Ñ¸¸ ¿äÃ»..
+    void SaveListToTextFile(const std::string & szID); // ë¬¸ìì—´ì´ ìˆìœ¼ë©´ ì¶”ê°€í•˜ê³ .. ì—†ìœ¼ë©´ ëª½ë•… ì €ì¥..
+    void MsgSend_MemberInfo(bool bDisableInterval);    // í˜„ì¬ í˜ì´ì§€ ì •ë³´ ìš”ì²­
+    void MsgSend_MemberInfo(const std::string & szID); // ì´ë„˜ë§Œ ìš”ì²­..
     void MsgRecv_MemberInfo(DataPack * pDataPack, int & iOffset);
     void UpdateList();
     bool MemberDelete(const std::string & szID);
@@ -233,7 +233,7 @@ class CUIQuest : public CN3UIBase {
     virtual ~CUIQuest();
 };
 
-class CUIVarious : public CN3UIBase // ´Ù¿ëµµ UI
+class CUIVarious : public CN3UIBase // ë‹¤ìš©ë„ UI
 {
   public:
     CUIState *   m_pPageState;
@@ -248,9 +248,9 @@ class CUIVarious : public CN3UIBase // ´Ù¿ëµµ UI
     CN3UIButton * m_pBtn_Friends;
     CN3UIButton * m_pBtn_Close;
 
-    bool  m_bOpenningNow; // ¿­¸®°í ÀÖ´Ù..
-    bool  m_bClosingNow;  // ´İÈ÷°í ÀÖ´Ù..
-    float m_fMoveDelta;   // ºÎµå·´°Ô ¿­¸®°í ´İÈ÷°Ô ¸¸µé±â À§ÇØ¼­ ÇöÀçÀ§Ä¡ °è»ê¿¡ ºÎµ¿¼Ò¼öÁ¡À» ¾´´Ù..
+    bool  m_bOpenningNow; // ì—´ë¦¬ê³  ìˆë‹¤..
+    bool  m_bClosingNow;  // ë‹«íˆê³  ìˆë‹¤..
+    float m_fMoveDelta;   // ë¶€ë“œëŸ½ê²Œ ì—´ë¦¬ê³  ë‹«íˆê²Œ ë§Œë“¤ê¸° ìœ„í•´ì„œ í˜„ì¬ìœ„ì¹˜ ê³„ì‚°ì— ë¶€ë™ì†Œìˆ˜ì ì„ ì“´ë‹¤..
 
   public:
     void SetVisibleWithNoSound(bool bVisible, bool bWork = false, bool bReFocus = false);
@@ -258,7 +258,7 @@ class CUIVarious : public CN3UIBase // ´Ù¿ëµµ UI
     bool OnKeyPress(int iKey);
     void UpdatePageButtons(CN3UIButton * pButtonToActive);
     void UpdateAllStates(const __InfoPlayerBase * pInfoBase, const __InfoPlayerMySelf * pInfoExt);
-    void UpdateKnightsInfo(); // ±â»ç´Ü °ü·Ã Á¤º¸ ¾÷µ¥ÀÌÆ®
+    void UpdateKnightsInfo(); // ê¸°ì‚¬ë‹¨ ê´€ë ¨ ì •ë³´ ì—…ë°ì´íŠ¸
     void Open();
     void Close();
 

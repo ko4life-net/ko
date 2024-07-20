@@ -12,38 +12,38 @@ class CNpc {
   public:
     CEbenezerDlg * m_pMain;
 
-    short m_sNid;       // NPC (¼­¹ö»óÀÇ)ÀÏ·Ã¹øÈ£
-    short m_sSid;       // NPC Å×ÀÌºí ÂüÁ¶¹øÈ£
+    short m_sNid;       // NPC (ì„œë²„ìƒì˜)ì¼ë ¨ë²ˆí˜¸
+    short m_sSid;       // NPC í…Œì´ë¸” ì°¸ì¡°ë²ˆí˜¸
     short m_sCurZone;   // Current Zone;
-    short m_sZoneIndex; // NPC °¡ Á¸ÀçÇÏ°í ÀÖ´Â Á¸ÀÇ ÀÎµ¦½º
+    short m_sZoneIndex; // NPC ê°€ ì¡´ì¬í•˜ê³  ìˆëŠ” ì¡´ì˜ ì¸ë±ìŠ¤
     float m_fCurX;      // Current X Pos;
     float m_fCurY;      // Current Y Pos;
     float m_fCurZ;      // Current Z Pos;
-    float m_fDir;       // NPC°¡ º¸°í ÀÖ´Â ¹æÇâ
+    float m_fDir;       // NPCê°€ ë³´ê³  ìˆëŠ” ë°©í–¥
     short m_sPid;       // MONSTER(NPC) Picture ID
     short m_sSize;      // MONSTER(NPC) Size
     int   m_iWeapon_1;
     int   m_iWeapon_2;
     TCHAR m_strName[MAX_ID_SIZE]; // MONSTER(NPC) Name
-    int   m_iMaxHP;               // ÃÖ´ë HP
-    int   m_iHP;                  // ÇöÀç HP
-    BYTE  m_byState;              // ¸ó½ºÅÍ (NPC) »óÅÂ
-    BYTE  m_byGroup;              // ¼Ò¼Ó Áı´Ü
-    BYTE  m_byLevel;              // ·¹º§
+    int   m_iMaxHP;               // ìµœëŒ€ HP
+    int   m_iHP;                  // í˜„ì¬ HP
+    BYTE  m_byState;              // ëª¬ìŠ¤í„° (NPC) ìƒíƒœ
+    BYTE  m_byGroup;              // ì†Œì† ì§‘ë‹¨
+    BYTE  m_byLevel;              // ë ˆë²¨
     BYTE  m_tNpcType;             // NPC Type
                                   // 0 : Normal Monster
                                   // 1 : NPC
-                                  // 2 : °¢ ÀÔ±¸,Ãâ±¸ NPC
-                                  // 3 : °æºñº´
+                                  // 2 : ê° ì…êµ¬,ì¶œêµ¬ NPC
+                                  // 3 : ê²½ë¹„ë³‘
     int m_iSellingGroup;          // ItemGroup
                                   //    DWORD    m_dwStepDelay;
 
     short m_sRegion_X;    // region x position
     short m_sRegion_Z;    // region z position
-    BYTE  m_NpcState;     // NPCÀÇ »óÅÂ - »ì¾Ò´Ù, Á×¾ú´Ù, ¼­ÀÖ´Ù µîµî...
+    BYTE  m_NpcState;     // NPCì˜ ìƒíƒœ - ì‚´ì•˜ë‹¤, ì£½ì—ˆë‹¤, ì„œìˆë‹¤ ë“±ë“±...
     BYTE  m_byGateOpen;   // Gate Npc Status -> 1 : open 0 : close
-    short m_sHitRate;     // °ø°İ ¼º°ø·ü
-    BYTE  m_byObjectType; // º¸ÅëÀº 0, objectÅ¸ÀÔ(¼º¹®, ·¹¹ö)Àº 1
+    short m_sHitRate;     // ê³µê²© ì„±ê³µë¥ 
+    BYTE  m_byObjectType; // ë³´í†µì€ 0, objectíƒ€ì…(ì„±ë¬¸, ë ˆë²„)ì€ 1
 
     short m_byEvent; // This is for the quest.
 

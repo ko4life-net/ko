@@ -145,7 +145,7 @@ void CMacProgressCtrl::OnPaint()
 //
 // Remarks        :    The framework calls this member function when Windows
 //                        or an application makes a request to repaint a portion
-//                        of an application’s window.
+//                        of an applicationâ€™s window.
 //
 {
     CPaintDC dcPaint(this); // device context for painting

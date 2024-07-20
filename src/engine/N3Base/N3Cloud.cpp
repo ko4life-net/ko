@@ -57,7 +57,7 @@ void CN3Cloud::Tick() {
     static float fCloudLayer = 0.0f;
     fCloudLayer += s_fSecPerFrm;
 
-    // ±¸¸§Ãş ¿òÁ÷ÀÌ±â
+    // êµ¬ë¦„ì¸µ ì›€ì§ì´ê¸°
     if (fCloudLayer >= 0.05) {
         // float du = 0.001 * fCloudLayer;
         // float dv = 0.003 * fCloudLayer;
@@ -89,22 +89,22 @@ void CN3Cloud::Tick() {
         }
     }
 
-    // »ö º¯È­ÇÏ±â
+    // ìƒ‰ ë³€í™”í•˜ê¸°
     m_Color1.Tick();
     m_Color2.Tick();
 
-    // ±¸¸§ ±³Ã¼
+    // êµ¬ë¦„ êµì²´
     if (CLOUD_NONE != m_eCloud3) {
         m_Alpha.Tick();
         m_fCloudTexTime -= s_fSecPerFrm;
-        if (m_fCloudTexTime < 0.0f) // ±¸¸§ ±³Ã¼°¡ ³¡³µÀ¸¸é
+        if (m_fCloudTexTime < 0.0f) // êµ¬ë¦„ êµì²´ê°€ ëë‚¬ìœ¼ë©´
         {
             m_fCloudTexTime = 0.0f;
             m_eCloud2 = m_eCloud3;
             m_eCloud3 = CLOUD_NONE;
             m_Alpha.ChangeColor(0xffffffff);
 
-            if (CLOUD_NONE != m_eBackupCloud) // ±¸¸§ ¹Ù²ã¾ß ÇÒ °ÍÀÌ ÀÖÀ¸¸é
+            if (CLOUD_NONE != m_eBackupCloud) // êµ¬ë¦„ ë°”ê¿”ì•¼ í•  ê²ƒì´ ìˆìœ¼ë©´
             {
                 e_CLOUDTEX eTmp = m_eCloud1;
                 m_eCloud1 = m_eCloud2;
@@ -116,7 +116,7 @@ void CN3Cloud::Tick() {
                 m_fBackupTime = 0.0f;
                 m_Alpha.ChangeColor(0x00ffffff, m_fCloudTexTime);
 
-                // uv ÁÂÇ¥µµ ¹Ù²Ù±â
+                // uv ì¢Œí‘œë„ ë°”ê¾¸ê¸°
                 for (int i = 0; i < NUM_CLOUD_VERTEX; ++i) {
                     float fTempUV = m_pVertices[i].tu;
                     m_pVertices[i].tu = m_pVertices[i].tu2;
@@ -182,7 +182,7 @@ void CN3Cloud::Render() {
         if (Alpha < color2) {
             color2 = (Alpha & 0xff000000) |
                      (color2 &
-                      0x00ffffff); // ±âÁ¸ »ö º¯È­ÀÇ alpha°ªÀÌ ±¸¸§ ±³Ã¼alpha°ªº¸´Ù Å« °æ¿ì ±¸¸§ ±³Ã¼ alpha°ªÀ¸·Î ´ëÃ¼
+                      0x00ffffff); // ê¸°ì¡´ ìƒ‰ ë³€í™”ì˜ alphaê°’ì´ êµ¬ë¦„ êµì²´alphaê°’ë³´ë‹¤ í° ê²½ìš° êµ¬ë¦„ êµì²´ alphaê°’ìœ¼ë¡œ ëŒ€ì²´
         }
         // render cloud 2
         for (int i = 0; i < 4; ++i) {
@@ -196,7 +196,7 @@ void CN3Cloud::Render() {
                                            sizeof(__VertexXyzColorT2));
         // render cloud 3
         D3DCOLOR color3 =
-            ((0xff - (color2 >> 24)) << 24) | (color2 & 0x00ffffff); // color2ÀÇ alpha°ªÀ» 0xff¿¡¼­ »« °ªÀ¸·Î ¹Ù²Ş
+            ((0xff - (color2 >> 24)) << 24) | (color2 & 0x00ffffff); // color2ì˜ alphaê°’ì„ 0xffì—ì„œ ëº€ ê°’ìœ¼ë¡œ ë°”ê¿ˆ
         for (int i = 4; i < NUM_CLOUD_VERTEX; ++i) {
             m_pVertices[i].color = color3;
         }
@@ -248,7 +248,7 @@ void CN3Cloud::Init(const std::string * pszFNs) {
     }
 
     /*
-    // 3´ÜÀÏ¶§
+    // 3ë‹¨ì¼ë•Œ
     const float fSqrt3 = 1.0f / sqrtf(3.0f);
     const float fOffset = 3.0f;
     const float fSmallLength = 5.0f;
@@ -265,14 +265,14 @@ void CN3Cloud::Init(const std::string * pszFNs) {
     float fTmp1, fTmp2;
     fTmp1 = fBigLenth - fMediumLength;
     fTmp2 = fMediumHeight - fBigHeight;
-    const float fBig = sqrtf(fTmp1 * fTmp1 + fTmp2 * fTmp2); // Á©Å« »ç°¢Çü°ú Áß°£»ç°¢Çü°£ÀÇ °Å¸®
+    const float fBig = sqrtf(fTmp1 * fTmp1 + fTmp2 * fTmp2); // ì ¤í° ì‚¬ê°í˜•ê³¼ ì¤‘ê°„ì‚¬ê°í˜•ê°„ì˜ ê±°ë¦¬
     fTmp1 = fMediumLength - fSmallLength;
     fTmp2 = fSmallHeight - fMediumHeight;
-    const float fMedium = sqrtf(fTmp1 * fTmp1 + fTmp2 * fTmp2); // Áß°£ »ç°¢Çü°ú ÀÛÀº»ç°¢Çü°£ÀÇ °Å¸®
-    const float fSmall = fSmallLength;                          // ÀÛÀº »ç°¢ÇüÀÌ 0¿¡¼­ ¶³¾îÁø °Å¸®
+    const float fMedium = sqrtf(fTmp1 * fTmp1 + fTmp2 * fTmp2); // ì¤‘ê°„ ì‚¬ê°í˜•ê³¼ ì‘ì€ì‚¬ê°í˜•ê°„ì˜ ê±°ë¦¬
+    const float fSmall = fSmallLength;                          // ì‘ì€ ì‚¬ê°í˜•ì´ 0ì—ì„œ ë–¨ì–´ì§„ ê±°ë¦¬
     const float fTotal = fBig + fMedium + fSmall;
 
-    // ÅØ½ºÃÄ ±¸¸§À¸·Î Ç¥½ÃÇÒ ¿µ¿ª ÁÂÇ¥(ÅØ½ºÃÄÀÇ ÀüÃ¼°¡ µÉ¼öµµ ÀÖ°í ÀÏºÎºĞÀÌ µÉ ¼öµµ ÀÖ±â ¶§¹®¿¡)
+    // í…ìŠ¤ì³ êµ¬ë¦„ìœ¼ë¡œ í‘œì‹œí•  ì˜ì—­ ì¢Œí‘œ(í…ìŠ¤ì³ì˜ ì „ì²´ê°€ ë ìˆ˜ë„ ìˆê³  ì¼ë¶€ë¶„ì´ ë  ìˆ˜ë„ ìˆê¸° ë•Œë¬¸ì—)
     float       fTexUVLeft = 0.0f, fTexUVTop = 0.0f, fTexUVRight = 3.0f, fTexUVBottom = 3.0f;
     // const float fTexOffsetU_M = (fBig / fTotal) * (fTexUVRight - fTexUVLeft) / 2;
     // const float fTexOffsetV_M = (fBig / fTotal) * (fTexUVBottom - fTexUVTop) / 2;
@@ -311,20 +311,20 @@ void CN3Cloud::Init(const std::string * pszFNs) {
                         fTexUVBottom - fTexOffsetV_S, fTexUVLeft + fTexOffsetU_S, fTexUVBottom - fTexOffsetV_S);
     */
 
-    // 2´ÜÀÏ¶§
+    // 2ë‹¨ì¼ë•Œ
     const float fSqrt3 = 1.0f / sqrtf(3.0f);
-    float       fBigLenth = 16.0f;   // ±¸¸§ ÀıµÎ¸éÃ¼ÀÇ ¾Æ·¡ Å« »ç°¢Çü ±æÀÌ
-    const float fSmallLength = 8.0f; // ±¸¸§ ÀıµÎ¸éÃ¼ÀÇ À§ ÀÛÀº »ç°¢Çü ±æÀÌ
-    const float fBigHeight = 5.0f;   // ±¸¸§ »ç°¢ÀıµÎ¸éÃ¼ÀÇ ¾Æ·¡ ³ôÀÌ(ÁöÆò¼± 0.0f ±âÁØ)
+    float       fBigLenth = 16.0f;   // êµ¬ë¦„ ì ˆë‘ë©´ì²´ì˜ ì•„ë˜ í° ì‚¬ê°í˜• ê¸¸ì´
+    const float fSmallLength = 8.0f; // êµ¬ë¦„ ì ˆë‘ë©´ì²´ì˜ ìœ„ ì‘ì€ ì‚¬ê°í˜• ê¸¸ì´
+    const float fBigHeight = 5.0f;   // êµ¬ë¦„ ì‚¬ê°ì ˆë‘ë©´ì²´ì˜ ì•„ë˜ ë†’ì´(ì§€í‰ì„  0.0f ê¸°ì¤€)
     const float fSmallHeight =
-        fBigHeight + (fBigLenth - fSmallLength) * fSqrt3; // ±¸¸§ ÀıµÎ¸éÃ¼ÀÇ À§ ³ôÀÌ(ÁöÆò¼± 0.0f ±âÁØ)
+        fBigHeight + (fBigLenth - fSmallLength) * fSqrt3; // êµ¬ë¦„ ì ˆë‘ë©´ì²´ì˜ ìœ„ ë†’ì´(ì§€í‰ì„  0.0f ê¸°ì¤€)
 
-    fBigLenth = 24.0f; //À§¿¡ ÄÚµå´Â ÃÖÀûÈ­ °¢µµ, ÀÌ°ÍÀº Å« »ç°İÇü¸¸ ´Ù½Ã ´Ã¸²
+    fBigLenth = 24.0f; //ìœ„ì— ì½”ë“œëŠ” ìµœì í™” ê°ë„, ì´ê²ƒì€ í° ì‚¬ê²©í˜•ë§Œ ë‹¤ì‹œ ëŠ˜ë¦¼
 
     D3DCOLOR BigColor = 0x00ffffff;
     D3DCOLOR SmallColor = 0xffffffff;
 
-    // ÅØ½ºÃÄ ±¸¸§À¸·Î Ç¥½ÃÇÒ ¿µ¿ª ÁÂÇ¥(ÅØ½ºÃÄÀÇ ÀüÃ¼°¡ µÉ¼öµµ ÀÖ°í ÀÏºÎºĞÀÌ µÉ ¼öµµ ÀÖ±â ¶§¹®¿¡)
+    // í…ìŠ¤ì³ êµ¬ë¦„ìœ¼ë¡œ í‘œì‹œí•  ì˜ì—­ ì¢Œí‘œ(í…ìŠ¤ì³ì˜ ì „ì²´ê°€ ë ìˆ˜ë„ ìˆê³  ì¼ë¶€ë¶„ì´ ë  ìˆ˜ë„ ìˆê¸° ë•Œë¬¸ì—)
     float fTexUVLeft = 0.0f, fTexUVTop = 0.0f, fTexUVRight = 4.0f, fTexUVBottom = 4.0f;
     float fTmp1 = fBigLenth - fSmallLength;
     float fTmp2 = fSmallHeight - fBigHeight;
@@ -357,14 +357,14 @@ void CN3Cloud::SetCloud(e_CLOUDTEX eCloud1, e_CLOUDTEX eCloud2, float fSec) {
         return;
     }
 
-    // º¯¼ö ÃÊ±âÈ­
+    // ë³€ìˆ˜ ì´ˆê¸°í™”
     m_Alpha.ChangeColor(0xffffffff);
     m_fCloudTexTime = 0.0f;
     m_eCloud3 = CLOUD_NONE;
     m_eBackupCloud = CLOUD_NONE;
     m_fBackupTime = 0.0f;
 
-    // ¹Ù²Ü ±¸¸§ ÆÇ´Ü
+    // ë°”ê¿€ êµ¬ë¦„ íŒë‹¨
     int iSameCount = 0;
     if (eCloud1 == m_eCloud1) {
         ++iSameCount;
@@ -377,12 +377,12 @@ void CN3Cloud::SetCloud(e_CLOUDTEX eCloud1, e_CLOUDTEX eCloud2, float fSec) {
         ++iSameCount;
     }
 
-    if (2 == iSameCount) // °°Àº ±¸¸§ÀÌ¹Ç·Î ¹Ù²Ü ÇÊ¿ä°¡ ¾ø´Ù
+    if (2 == iSameCount) // ê°™ì€ êµ¬ë¦„ì´ë¯€ë¡œ ë°”ê¿€ í•„ìš”ê°€ ì—†ë‹¤
     {
         return;
     }
 
-    if (1 == iSameCount) // ÇÏ³ª¸¸ ±³Ã¼ÇÏ¸é µÈ´Ù.
+    if (1 == iSameCount) // í•˜ë‚˜ë§Œ êµì²´í•˜ë©´ ëœë‹¤.
     {
         if (m_eCloud1 == eCloud1) {
             m_eCloud3 = eCloud2;
@@ -407,7 +407,7 @@ void CN3Cloud::SetCloud(e_CLOUDTEX eCloud1, e_CLOUDTEX eCloud2, float fSec) {
         return;
     }
 
-    // µÎ°³ ¸ğµÎ ±³Ã¼
+    // ë‘ê°œ ëª¨ë‘ êµì²´
     if (0.0f == fSec) {
         m_eCloud1 = eCloud1;
         m_eCloud2 = eCloud2;

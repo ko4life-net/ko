@@ -14,7 +14,7 @@
 class CUITradeList : public CN3UIBase {
     CN3UIString *    m_pStr_List[9];
     std::string      m_sStr[40];
-    CN3UIScrollBar * m_pScrollbar; // scrollbar ÂüÁ¶Æ÷ÀÎÅÍ(½ÇÁ¦ m_Child·Î °ü¸®)
+    CN3UIScrollBar * m_pScrollbar; // scrollbar ì°¸ì¡°í¬ì¸í„°(ì‹¤ì œ m_Childë¡œ ê´€ë¦¬)
 
   public:
     CUITradeList();
@@ -28,5 +28,5 @@ class CUITradeList : public CN3UIBase {
     void Open(int iIDTarget = -1);
     void Close();
 
-    void SetTopLine(int iTopLine); // ¸Ç À­ÁÙÀ» ÁöÁ¤ÇØÁØ´Ù.
+    void SetTopLine(int iTopLine); // ë§¨ ìœ—ì¤„ì„ ì§€ì •í•´ì¤€ë‹¤.
 };

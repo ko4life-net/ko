@@ -36,7 +36,7 @@ CUIStateBar::CUIStateBar() {
     m_pProgress_ExpC = NULL;
     m_pProgress_ExpP = NULL;
 
-    // ¹Ì´Ï¸Ê...
+    // ë¯¸ë‹ˆë§µ...
     m_pGroup_MiniMap = NULL;
     m_pImage_Map = NULL;
     m_pBtn_ZoomIn = NULL;
@@ -100,7 +100,7 @@ void CUIStateBar::Release() {
     m_pProgress_ExpC = NULL;
     m_pProgress_ExpP = NULL;
 
-    // ¹Ì´Ï¸Ê...
+    // ë¯¸ë‹ˆë§µ...
     m_pGroup_MiniMap = NULL;
     m_pImage_Map = NULL;
     m_pBtn_ZoomIn = NULL;
@@ -231,16 +231,16 @@ void CUIStateBar::UpdateExp(int iExp, int iExpNext, bool bUpdateImmediately) {
         int iPercentage2 = 100 * iExp2 / iExpNext2;
 
         if (bUpdateImmediately) {
-            m_pProgress_ExpC->SetCurValue(iPercentage2); //SetCurValue --> set°æ¿ì
+            m_pProgress_ExpC->SetCurValue(iPercentage2); //SetCurValue --> setê²½ìš°
         } else {
             m_pProgress_ExpC->SetCurValue(iPercentage2, 0.7f, 50.0f);
         }
     } else {
-        m_pProgress_ExpC->SetCurValue(0); //SetCurValue --> set°æ¿ì
+        m_pProgress_ExpC->SetCurValue(0); //SetCurValue --> setê²½ìš°
     }
 
     if (bUpdateImmediately) {
-        m_pProgress_ExpP->SetCurValue(iPercentage); //SetCurValue --> set°æ¿ì
+        m_pProgress_ExpP->SetCurValue(iPercentage); //SetCurValue --> setê²½ìš°
     } else {
         m_pProgress_ExpP->SetCurValue(iPercentage, 0.3f, 100.0f);
     }
@@ -262,7 +262,7 @@ void CUIStateBar::UpdateMSP(int iMSP, int iMSPMax, bool bUpdateImmediately) {
     int iPercentage = 100 * iMSP / iMSPMax;
 
     if (bUpdateImmediately) {
-        m_pProgress_MSP->SetCurValue(iPercentage); //SetCurValue --> set°æ¿ì
+        m_pProgress_MSP->SetCurValue(iPercentage); //SetCurValue --> setê²½ìš°
     } else {
         m_pProgress_MSP->SetCurValue(iPercentage, 0.3f, 100.0f);
     }
@@ -281,7 +281,7 @@ void CUIStateBar::UpdateHP(int iHP, int iHPMax, bool bUpdateImmediately) {
     int iPercentage = 100 * iHP / iHPMax;
 
     if (bUpdateImmediately) {
-        m_pProgress_HP->SetCurValue(iPercentage); //SetCurValue --> set°æ¿ì
+        m_pProgress_HP->SetCurValue(iPercentage); //SetCurValue --> setê²½ìš°
     } else {
         m_pProgress_HP->SetCurValue(iPercentage, 0.3f, 100.0f);
     }
@@ -298,7 +298,7 @@ void CUIStateBar::UpdatePosition(const __Vector3 & vPos, float fYaw) {
 
     m_pText_Position->SetString(std::format("{}, {}", (int)vPos.x, (int)vPos.z));
 
-    // ¹Ì´Ï¸Ê.
+    // ë¯¸ë‹ˆë§µ.
     m_vPosPlayer = vPos;
     m_fYawPlayer = fYaw;
 }
@@ -311,7 +311,7 @@ void CUIStateBar::Render() {
     CN3UIBase::Render();
 
     if (NULL == m_pGroup_MiniMap || false == m_pGroup_MiniMap->IsVisible()) {
-        return; // ¹Ì´Ï¸ÊÀÌ ¾ÈÄÑÁ® ÀÖÀ½ µ¹¾Æ°£´Ù..
+        return; // ë¯¸ë‹ˆë§µì´ ì•ˆì¼œì ¸ ìžˆìŒ ëŒì•„ê°„ë‹¤..
     }
     if (NULL == m_pImage_Map) {
         return;
@@ -361,7 +361,7 @@ void CUIStateBar::Render() {
     CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1);
     CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_DIFFUSE);
 
-    CN3Base::s_lpD3DDev->SetFVF(FVF_TRANSFORMEDCOLOR); // ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡¹× ¹æÇâ Ç¥½Ã..
+    CN3Base::s_lpD3DDev->SetFVF(FVF_TRANSFORMEDCOLOR); // í”Œë ˆì´ì–´ì˜ ìœ„ì¹˜ë° ë°©í–¥ í‘œì‹œ..
 
     __Vector3       vPos;
     it_PositionInfo it = m_Positions.begin(), itEnd = m_Positions.end();
@@ -403,7 +403,7 @@ void CUIStateBar::Render() {
 
     CN3Base::s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 2, m_vArrows, sizeof(__VertexTransformedColor));
 
-    it = m_PositionsTop.begin(), itEnd = m_PositionsTop.end(); // ³ªÁß¿¡ ±×¸± Á¡´ú...
+    it = m_PositionsTop.begin(), itEnd = m_PositionsTop.end(); // ë‚˜ì¤‘ì— ê·¸ë¦´ ì ëœ...
     for (; it != itEnd; it++) {
         info = *it;
 
@@ -468,8 +468,8 @@ void CUIStateBar::Tick() {
 
     CN3UIBase::Tick();
 
-    TickMiniMap();   // ¸Ê ÀÌ¹ÌÁö...
-    TickMagicIcon(); // ¾ÆÀÌÄÜ Ã³¸®..
+    TickMiniMap();   // ë§µ ì´ë¯¸ì§€...
+    TickMagicIcon(); // ì•„ì´ì½˜ ì²˜ë¦¬..
 
     m_fFPSValue += s_fSecPerFrm;
     if (m_fFPSValue > 1.0f) {
@@ -510,7 +510,7 @@ void CUIStateBar::TickMiniMap() {
     }
 
     float fOffset = (0.5f / m_fZoom);
-    float fX = (m_vPosPlayer.x / m_fMapSizeX); // 1/16 ÃàÀû..
+    float fX = (m_vPosPlayer.x / m_fMapSizeX); // 1/16 ì¶•ì ..
     float fY = (m_vPosPlayer.z / m_fMapSizeZ);
     //    m_pImage_Map->SetUVRect(fX - fOffset, fY - fOffset, fX + fOffset, fY + fOffset);
     m_pImage_Map->SetUVRect((fX - fOffset), 1.0f - (fY + fOffset), (fX + fOffset), 1.0f - (fY - fOffset));
@@ -522,7 +522,7 @@ void CUIStateBar::TickMiniMap() {
     mtxRot.RotationZ(m_fYawPlayer);
     mtxRot.PosSet(rc.left + (rc.right - rc.left) / 2.0f, rc.top + (rc.bottom - rc.top) / 2.0f, 0);
 
-    // È­»ìÇ¥ ¼¼ÆÃ...
+    // í™”ì‚´í‘œ ì„¸íŒ…...
     m_vArrows[0].Set(0, -fH, UI_DEFAULT_Z, UI_DEFAULT_RHW, 0xff00ff00);
     m_vArrows[1].Set(0, fH / 2.0f, UI_DEFAULT_Z, UI_DEFAULT_RHW, 0xff00ff00);
     m_vArrows[2].Set(-fH, fH, UI_DEFAULT_Z, UI_DEFAULT_RHW, 0xff00ff00);
@@ -533,7 +533,7 @@ void CUIStateBar::TickMiniMap() {
     m_vArrows[5] = m_vArrows[1];
 
     for (int i = 0; i < 6; i++) {
-        m_vArrows[i] *= mtxRot; // À§Ä¡ ¹× È¸Àü º¯È¯..
+        m_vArrows[i] *= mtxRot; // ìœ„ì¹˜ ë° íšŒì „ ë³€í™˜..
     }
 }
 
@@ -613,7 +613,7 @@ bool CUIStateBar::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
                         pMagicImg->fDuration = 0.0f;
                     }
 
-                    //¾ø¾Ö¶ó..
+                    //ì—†ì• ë¼..
                     BYTE byBuff[32];
                     int  iOffset = 0;
                     CAPISocket::MP_AddByte(byBuff, iOffset, (BYTE)N3_MAGIC);
@@ -630,7 +630,7 @@ bool CUIStateBar::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
                     CAPISocket::MP_AddShort(byBuff, iOffset, 0);
                     CAPISocket::MP_AddShort(byBuff, iOffset, 0);
 
-                    CGameProcedure::s_pSocket->Send(byBuff, iOffset); // º¸³½´Ù..
+                    CGameProcedure::s_pSocket->Send(byBuff, iOffset); // ë³´ë‚¸ë‹¤..
                 }
             }
         }
@@ -788,8 +788,8 @@ DWORD CUIStateBar::MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & p
 
 bool CUIStateBar::OnKeyPress(int iKey) {
     switch (iKey) {
-    case DIK_ESCAPE: { //hotkey°¡ Æ÷Ä¿½º ÀâÇôÀÖÀ»¶§´Â ´Ù¸¥ ui¸¦ ´ÝÀ»¼ö ¾øÀ¸¹Ç·Î DIK_ESCAPE°¡ µé¾î¿À¸é Æ÷Ä¿½º¸¦ ´Ù½ÃÀâ°í
-        //¿­·ÁÀÖ´Â ´Ù¸¥ À¯¾ÆÀÌ¸¦ ´Ý¾ÆÁØ´Ù.
+    case DIK_ESCAPE: { //hotkeyê°€ í¬ì»¤ìŠ¤ ìž¡í˜€ìžˆì„ë•ŒëŠ” ë‹¤ë¥¸ uië¥¼ ë‹«ì„ìˆ˜ ì—†ìœ¼ë¯€ë¡œ DIK_ESCAPEê°€ ë“¤ì–´ì˜¤ë©´ í¬ì»¤ìŠ¤ë¥¼ ë‹¤ì‹œìž¡ê³ 
+        //ì—´ë ¤ìžˆëŠ” ë‹¤ë¥¸ ìœ ì•„ì´ë¥¼ ë‹«ì•„ì¤€ë‹¤.
         CGameProcedure::s_pUIMgr->ReFocusUI(); //this_ui
         CN3UIBase * pFocus = CGameProcedure::s_pUIMgr->GetFocusedUI();
         if (pFocus && pFocus != this) {

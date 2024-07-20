@@ -14,7 +14,7 @@ class CNpcPosTable {
     float m_sY;          // MONSTER(NPC) y position
     float m_sZ;          // MONSTER(NPC) z position
     int   m_sArea;       // MONSTER(NPC) area
-    int   m_sMinX;       // ¸ó½ºÅÍÀÇ ¿òÁ÷ÀÓ ¿µ¿ª..
+    int   m_sMinX;       // ëª¬ìŠ¤í„°ì˜ ì›€ì§ì„ ì˜ì—­..
     int   m_sMinY;
     int   m_sMaxX;
     int   m_sMaxY;

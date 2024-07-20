@@ -15,7 +15,7 @@ class CGameProcLogIn : public CGameProcedure {
     class CN3Camera * m_pCamera;
     class CN3Light *  m_pLights[3];
 
-    bool m_bLogIn; // ∑Œ±◊¿Œ ¡ﬂ∫π πÊ¡ˆ..
+    bool m_bLogIn; // Î°úÍ∑∏Ïù∏ Ï§ëÎ≥µ Î∞©ÏßÄ..
 
     float m_fCurAudioFrm;
 
@@ -23,7 +23,7 @@ class CGameProcLogIn : public CGameProcedure {
     void MsgRecv_GameServerGroupList(DataPack * pDataPack, int & iOffset);
     void MsgRecv_AccountLogIn(int iCmd, DataPack * pDataPack, int & iOffset);
     int  MsgRecv_VersionCheck(DataPack * pDataPack, int & iOffset);    // virtual
-    int  MsgRecv_GameServerLogIn(DataPack * pDataPack, int & iOffset); // virtual - ±π∞° π¯»£∏¶ ∏Æ≈œ«—¥Ÿ.
+    int  MsgRecv_GameServerLogIn(DataPack * pDataPack, int & iOffset); // virtual - Íµ≠Í∞Ä Î≤àÌò∏Î•º Î¶¨ÌÑ¥ÌïúÎã§.
 
     bool MsgSend_AccountLogIn(enum e_LogInClassification eLIC);
 
@@ -36,7 +36,7 @@ class CGameProcLogIn : public CGameProcedure {
     virtual bool ProcessPacket(DataPack * pDataPack, int & iOffset);
 
   public:
-    void ConnectToGameServer(); // ∞Ì∏• ∞‘¿” º≠πˆø° ¡¢º”
+    void ConnectToGameServer(); // Í≥†Î•∏ Í≤åÏûÑ ÏÑúÎ≤ÑÏóê Ï†ëÏÜç
     CGameProcLogIn();
     virtual ~CGameProcLogIn();
     //    void PacketSend_MGameLogin();

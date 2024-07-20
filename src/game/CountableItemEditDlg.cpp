@@ -194,7 +194,7 @@ void CCountableItemEditDlg::Open(e_UIWND eUW, e_UIWND_DISTRICT eUD, bool bCountG
 
 void CCountableItemEditDlg::Close() {
     m_bLocked = false;
-    //    SetVisible(false);    //ÀÌ°Å ¾²Áö ¸»°í SetVisibleWithNoSound ÇÔ¼ö ½áÁÖ¼¼¿ä...
+    //    SetVisible(false);    //ì´ê±° ì“°ì§€ ë§ê³  SetVisibleWithNoSound í•¨ìˆ˜ ì¨ì£¼ì„¸ìš”...
     SetVisibleWithNoSound(false);
 
     CN3UIEdit * pEdit = GetFocusedEdit();
@@ -232,7 +232,7 @@ void CCountableItemEditDlg::SetVisible(bool bVisible) {
 }
 
 void CCountableItemEditDlg::SetVisibleWithNoSound(bool bVisible, bool bWork, bool bReFocus) {
-    if (bWork) { //¿©±â¼­´Â ReceiveMessage¿¡¼­ À¯¾ÆÀÌ°¡ º¸ÀÌ´ÂÁö¸¦ Ã¼Å©¸¦ ÇØ¼­ ÀÏ´Ü ¾ÕÂÊ¿¡ µĞ´Ù.
+    if (bWork) { //ì—¬ê¸°ì„œëŠ” ReceiveMessageì—ì„œ ìœ ì•„ì´ê°€ ë³´ì´ëŠ”ì§€ë¥¼ ì²´í¬ë¥¼ í•´ì„œ ì¼ë‹¨ ì•ìª½ì— ë‘”ë‹¤.
         ReceiveMessage(m_pBtnCancel, UIMSG_BUTTON_CLICK);
     }
 

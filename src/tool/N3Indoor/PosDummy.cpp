@@ -26,11 +26,11 @@ void CPosDummy::SetSelObj(SelectElement Obj, bool bOne) {
     if (bOne) {
         m_SelObjArray.RemoveAll();
     } else {
-        // ÀÌ¹Ì ÀÖÀ¸¸é Ãß°¡ÇÏÁö ¾Ê´Â´Ù..
+        // ì´ë¯¸ ìˆìœ¼ë©´ ì¶”ê°€í•˜ì§€ ì•ŠëŠ”ë‹¤..
         int iSize = m_SelObjArray.GetSize();
         for (int i = 0; i < iSize; i++) {
             if (m_SelObjArray[i].pSelectPointer == Obj.pSelectPointer) {
-                // ÀÌ¹Ì ÀÖÀ¸¹Ç·Î ¼±ÅÃ¸ñ·Ï¿¡¼­ Á¦°Å
+                // ì´ë¯¸ ìˆìœ¼ë¯€ë¡œ ì„ íƒëª©ë¡ì—ì„œ ì œê±°
                 m_SelObjArray.RemoveAt(i);
                 if (m_SelObjArray.GetSize() > 0) {
                     SelectElement se = m_SelObjArray.GetAt(0);
@@ -57,9 +57,9 @@ BOOL CPosDummy::MouseMsgFilter(LPMSG pMsg) {
         POINT point = {short(LOWORD(pMsg->lParam)), short(HIWORD(pMsg->lParam))};
         DWORD nFlags = pMsg->wParam;
         if (m_pSelectedCube && (nFlags & MK_LBUTTON)) {
-            __Vector3 vRayDir, vRayOrig; // È­¸é Áß¾Ó(½ÃÁ¡)°ú ¸¶¿ì½º Æ÷ÀÎÅÍ¸¦ ÀÌÀº Á÷¼±ÀÇ ¹æÇâ°ú ¿øÁ¡
-            __Vector3 vPN, vPV;          // Æò¸éÀÇ ¹ı¼±°ú Æ÷ÇÔµÈ Á¡
-            __Vector3 vPos;              // À§ÀÇ Æò¸é°ú Á÷¼±ÀÇ ¸¸³ª´Â Á¡(±¸ÇÒ Á¡)
+            __Vector3 vRayDir, vRayOrig; // í™”ë©´ ì¤‘ì•™(ì‹œì )ê³¼ ë§ˆìš°ìŠ¤ í¬ì¸í„°ë¥¼ ì´ì€ ì§ì„ ì˜ ë°©í–¥ê³¼ ì›ì 
+            __Vector3 vPN, vPV;          // í‰ë©´ì˜ ë²•ì„ ê³¼ í¬í•¨ëœ ì 
+            __Vector3 vPos;              // ìœ„ì˜ í‰ë©´ê³¼ ì§ì„ ì˜ ë§Œë‚˜ëŠ” ì (êµ¬í•  ì )
             __Vector3 vCameraDir = s_CameraData.vAt - s_CameraData.vEye;
             vCameraDir.Normalize();
             GetPickRay(point, vRayDir, vRayOrig);
@@ -74,7 +74,7 @@ BOOL CPosDummy::MouseMsgFilter(LPMSG pMsg) {
                 float     fT = D3DXVec3Dot(&vPN, &vPR) / D3DXVec3Dot(&vPN, &vRayDir);
                 vPos = vRayOrig + vRayDir * fT;
 
-                // Æò¸é»óÀÇ Á¡¿¡¼­ ÁöÇüÀÇ ³ôÀÌ¸¦ ±¸ÇÑ´Ù.
+                // í‰ë©´ìƒì˜ ì ì—ì„œ ì§€í˜•ì˜ ë†’ì´ë¥¼ êµ¬í•œë‹¤.
                 __Vector3 v1, v2, v3, v4;
                 float     fSize = 1000.0f;
                 v1.Set(-fSize, 0.0f, fSize);

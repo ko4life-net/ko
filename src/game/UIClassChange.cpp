@@ -220,7 +220,7 @@ bool CUIClassChange::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
                 break;
             }
 
-            CGameProcedure::s_pProcMain->m_pUIVar->UpdateAllStates(pInfoBase, pInfoExt); // »óÅÂÃ¢ ¼öÄ¡¸¦ ¸ğµÎ Àû¿ë
+            CGameProcedure::s_pProcMain->m_pUIVar->UpdateAllStates(pInfoBase, pInfoExt); // ìƒíƒœì°½ ìˆ˜ì¹˜ë¥¼ ëª¨ë‘ ì ìš©
 
             BYTE byBuff[4];
             int  iOffset = 0;
@@ -231,7 +231,7 @@ bool CUIClassChange::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 
             CGameProcedure::s_pProcMain->m_pUISkillTreeDlg->InitIconUpdate();
 
-            // ÀüÁ÷ÇÏ´Â ¼ø°£..  ÇÖÅ° Á¤º¸¸¦ ¸ğµÎ ¾ø¾Ø´Ù..
+            // ì „ì§í•˜ëŠ” ìˆœê°„..  í•«í‚¤ ì •ë³´ë¥¼ ëª¨ë‘ ì—†ì•¤ë‹¤..
             CGameProcedure::s_pProcMain->m_pUIHotKeyDlg->ClassChangeHotkeyFlush();
             Close();
         }
@@ -257,7 +257,7 @@ void CUIClassChange::RestorePrevClass() {
     pInfoBase->eClass = m_eClass;
     CGameProcedure::s_pProcMain->m_pUISkillTreeDlg->InitIconUpdate();
 
-    CGameProcedure::s_pProcMain->m_pUIVar->UpdateAllStates(pInfoBase, pInfoExt); // »óÅÂÃ¢ ¼öÄ¡¸¦ ¸ğµÎ Àû¿ë
+    CGameProcedure::s_pProcMain->m_pUIVar->UpdateAllStates(pInfoBase, pInfoExt); // ìƒíƒœì°½ ìˆ˜ì¹˜ë¥¼ ëª¨ë‘ ì ìš©
 }
 
 void CUIClassChange::ChangeToWarningState() {

@@ -9,7 +9,7 @@
 #include "N3Base/N3Texture.h"
 
 //
-//    »ı¼ºÀÚ
+//    ìƒì„±ì
 //
 CN3TerrainPatch::CN3TerrainPatch() {
     m_bIsRender = FALSE;
@@ -43,7 +43,7 @@ CN3TerrainPatch::CN3TerrainPatch() {
 }
 
 //
-//    ¼Ò¸êÀÚ
+//    ì†Œë©¸ì
 //
 CN3TerrainPatch::~CN3TerrainPatch() {
     Release();
@@ -237,7 +237,7 @@ void CN3TerrainPatch::Tick() {
                 m_pIsTileFull[TileCount] = MapData.bIsTileFull;
 
                 if (m_pTileTexIndx[0][TileCount] < 0 || m_pTileTexIndx[0][TileCount] > m_pRefTerrain->m_NumTileTex ||
-                    m_pIsTileFull[TileCount] == false) // Å¸ÀÏÀÌ ¾ø´Â °æ¿ì..ÄÃ·¯¸ÊÀ» Âï¾î¾ß µÅ...
+                    m_pIsTileFull[TileCount] == false) // íƒ€ì¼ì´ ì—†ëŠ” ê²½ìš°..ì»¬ëŸ¬ë§µì„ ì°ì–´ì•¼ ë¼...
                 {
                     u1[0] = u1[1] = UVConvert((float)(tx % UNITUV) / (float)UNITUV);
                     u1[2] = u1[3] = UVConvert(u1[0] + (1.0f / (float)UNITUV));
@@ -256,7 +256,7 @@ void CN3TerrainPatch::Tick() {
 
                     v2[0] = v2[3] = 0.0f;
                     v2[1] = v2[2] = 1.0f;
-                } else // Å¸ÀÏÀ» Âï´Â °æ¿ì...
+                } else // íƒ€ì¼ì„ ì°ëŠ” ê²½ìš°...
                 {
                     u1[0] = m_pRefTerrain->m_fTileDirU[dir1][2];
                     u1[1] = m_pRefTerrain->m_fTileDirU[dir1][0];
@@ -386,7 +386,7 @@ void CN3TerrainPatch::Tick() {
                 cx = ix * m_CellSize + HalfCell + m_ti_LBPoint.x;
                 cz = iz * m_CellSize + HalfCell + m_ti_LBPoint.y;
 
-                //cellÀÇ °¡¿îµ¥ Á¡...
+                //cellì˜ ê°€ìš´ë° ì ...
                 tx = cx;
                 tz = cz;
 
@@ -506,7 +506,7 @@ void CN3TerrainPatch::Tick() {
         return;
     }
 
-    if (m_iLevel > 2) // level3 ÀÌ»ó..
+    if (m_iLevel > 2) // level3 ì´ìƒ..
     {
         m_FanInfoList.clear();
         __VertexT1 * pVertices;
@@ -522,7 +522,7 @@ void CN3TerrainPatch::Tick() {
                 cx = ix * m_CellSize + HalfCell + m_ti_LBPoint.x;
                 cz = iz * m_CellSize + HalfCell + m_ti_LBPoint.y;
 
-                //cellÀÇ °¡¿îµ¥ Á¡...
+                //cellì˜ ê°€ìš´ë° ì ...
                 tx = cx;
                 tz = cz;
 
@@ -675,7 +675,7 @@ void CN3TerrainPatch::Render() {
             hr = CN3Base::s_lpD3DDev->DrawPrimitive(D3DPT_TRIANGLEFAN, vc, fc);
             vc += it->NumVertex;
 #if _DEBUG
-            CN3Base::s_RenderInfo.nTerrain_Polygon += it->NumVertex; // Rendering Information °»½Å..
+            CN3Base::s_RenderInfo.nTerrain_Polygon += it->NumVertex; // Rendering Information ê°±ì‹ ..
 #endif
         }
         return;
@@ -696,7 +696,7 @@ void CN3TerrainPatch::Render() {
             hr = CN3Base::s_lpD3DDev->SetTexture(2, NULL);
 
             if ((m_pTileTexIndx[0][i] < 0) || m_pTileTexIndx[0][i] >= m_pRefTerrain->m_NumTileTex ||
-                (m_pIsTileFull[i] == false)) // 0: ÄÃ·¯¸Ê, 1:¹«´Ì or 0:ºÎºĞÅ¸ÀÏ 1:NONE...
+                (m_pIsTileFull[i] == false)) // 0: ì»¬ëŸ¬ë§µ, 1:ë¬´ëŠ¬ or 0:ë¶€ë¶„íƒ€ì¼ 1:NONE...
             {
                 hr = CN3Base::s_lpD3DDev->SetTexture(0, m_pRefColorTex->Get());
                 hr = CN3Base::s_lpD3DDev->SetTexture(1, m_pRefTerrain->m_pBaseTex.Get());
@@ -770,7 +770,7 @@ void CN3TerrainPatch::Render() {
         }
 
 #if _DEBUG
-        CN3Base::s_RenderInfo.nTerrain_Tile_Polygon += TotalTile * 2; // Rendering Information °»½Å..
+        CN3Base::s_RenderInfo.nTerrain_Tile_Polygon += TotalTile * 2; // Rendering Information ê°±ì‹ ..
 #endif
 
         // Render Light Map...
@@ -804,8 +804,8 @@ void CN3TerrainPatch::Render() {
 }
 
 //
-//    ÇÑÇÈ¼¿¾¿ Ãà¼Ò½ÃÅ² Ä¿·¯¸Ê ¾µ¶§ uv¹Ù²ãÁÖ´Â ÇÔ¼ö..
-//    ÇÊ¿ä¾ø°Ô µÆ´Ù..-.- °Á ÅØ½ºÃÄ ½ºÅ×ÀÌÁö ½ºÅ×ÀÌÆ®¿¡¼­ mirror¾²¸é µÈ´Ù..¤Ñ.¤Ñ
+//    í•œí”½ì…€ì”© ì¶•ì†Œì‹œí‚¨ ì»¤ëŸ¬ë§µ ì“¸ë•Œ uvë°”ê¿”ì£¼ëŠ” í•¨ìˆ˜..
+//    í•„ìš”ì—†ê²Œ ëë‹¤..-.- ê± í…ìŠ¤ì³ ìŠ¤í…Œì´ì§€ ìŠ¤í…Œì´íŠ¸ì—ì„œ mirrorì“°ë©´ ëœë‹¤..ã…¡.ã…¡
 //
 inline float CN3TerrainPatch::UVConvert(float uv) {
     //return ( (uv*((float)COLORMAPTEX_SIZE - 2.0f) + 1.0f) / (float)COLORMAPTEX_SIZE);

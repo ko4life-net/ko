@@ -68,7 +68,7 @@ BOOL EVENT::LoadEvent(int zone) {
 
             t_index = 0;
 
-            if (buf[t_index] == ';' || buf[t_index] == '/') // ÁÖ¼®¿¡ ´ëÇÑ Ã³¸®
+            if (buf[t_index] == ';' || buf[t_index] == '/') // ì£¼ì„ì— ëŒ€í•œ ì²˜ë¦¬
             {
                 index = 0;
                 continue;

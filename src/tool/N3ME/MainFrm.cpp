@@ -196,12 +196,12 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     // TODO: Remove this if you don't want tool tips
     m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() | CBRS_TOOLTIPS | CBRS_FLYBY);
 
-    // °æ·Î ¼³Á¤..
+    // ê²½ë¡œ ì„¤ì •..
     char szPathCur[256] = "";
     GetCurrentDirectory(256, szPathCur);
     CN3Base::PathSet(szPathCur);
 
-    // ¿£Áø ÃÊ±âÈ­
+    // ì—”ì§„ ì´ˆê¸°í™”
     m_pEng = new CN3EngTool();
     //m_pEng->InitEnv();
     m_pEng->Init(TRUE, m_hWnd, 32, 32, 0, TRUE);
@@ -217,17 +217,17 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     m_pDTexMng = new CDTexMng;
     m_pDTexMng->Init(this);
 
-    // ±âº» ¸®¼Ò½º ÀÐ±â..
+    // ê¸°ë³¸ ë¦¬ì†ŒìŠ¤ ì½ê¸°..
     m_pMapMng->LoadSourceObjects();
     m_pDTexGroupMng->Init(this);
     //m_pDTexGroupMng->LoadFromFile();
     m_pDTexMng->Init(this);
     //m_pDTexMng->LoadFromFile();
 
-    // Åø¹Ù ´ÙÀÌ¾ó·Î±× Á¤º¸..
+    // íˆ´ë°” ë‹¤ì´ì–¼ë¡œê·¸ ì •ë³´..
     m_wndDlgBar.SetDlgItemText(IDC_E_PATH, m_pEng->PathGet().c_str());
 
-    //¾¾¾Ñ »Ñ¸®±â °ü·Ã Å¬·¡½º ÃÊ±âÈ­..
+    //ì”¨ì•— ë¿Œë¦¬ê¸° ê´€ë ¨ í´ëž˜ìŠ¤ ì´ˆê¸°í™”..
     m_pDlgSowSeed = new CDlgSowSeed;
     m_pDlgSowSeed->Create(IDD_SOW_SEED, this);
     m_pDlgSowSeed->ShowWindow(FALSE);
@@ -361,11 +361,11 @@ void CMainFrame::OnCursorDtex() {
     hr = pBackBuff->GetDesc(&desc);
     if(desc.Format!=D3DFMT_X8R8G8B8)
     {
-        MessageBox("È­¸é»ö»ó ¸ðµå°¡ 32bit¸ðµåÀÌ¾î¾ß ÇÕ´Ï´Ù..","°æ°í!!");
+        MessageBox("í™”ë©´ìƒ‰ìƒ ëª¨ë“œê°€ 32bitëª¨ë“œì´ì–´ì•¼ í•©ë‹ˆë‹¤..","ê²½ê³ !!");
     }
 */
     m_pMapMng->SetCursorMode(CM_SET_DTEX);
-    //    this->OnViewDtex(); // È­¸é¿¡ Å¸ÀÏ ÅØ½ºÃ³ ±×·ì ´ÙÀÌ¾ó·Î±×¸¦ ¿­¾îÁØ´Ù..
+    //    this->OnViewDtex(); // í™”ë©´ì— íƒ€ì¼ í…ìŠ¤ì²˜ ê·¸ë£¹ ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ ì—´ì–´ì¤€ë‹¤..
 }
 void CMainFrame::OnCursorEditRiver() {
     ASSERT(m_pMapMng);
@@ -552,10 +552,10 @@ void CMainFrame::OnUpdateViewHideObj(CCmdUI * pCmdUI) {
     ASSERT(m_pMapMng);
 
     if (m_pMapMng->m_bHideObj) {
-        pCmdUI->SetText("¿ÀºêÁ§Æ® º¸ÀÌ±â\tH");
+        pCmdUI->SetText("ì˜¤ë¸Œì íŠ¸ ë³´ì´ê¸°\tH");
     }
     if (!m_pMapMng->m_bHideObj) {
-        pCmdUI->SetText("¿ÀºêÁ§Æ® °¨Ãß±â\tH");
+        pCmdUI->SetText("ì˜¤ë¸Œì íŠ¸ ê°ì¶”ê¸°\tH");
     }
 }
 
@@ -663,10 +663,10 @@ void CMainFrame::OnResourcePathSet() {
     }
 
     std::string szPath(dlg.GetPath().GetString());
-    CN3Base::PathSet(szPath); // °æ·Î ¼³Á¤..
+    CN3Base::PathSet(szPath); // ê²½ë¡œ ì„¤ì •..
     m_wndDlgBar.SetDlgItemText(IDC_E_PATH, szPath.c_str());
 
-    // ±âº» ¸®¼Ò½º ÀÐ±â..
+    // ê¸°ë³¸ ë¦¬ì†ŒìŠ¤ ì½ê¸°..
     m_pMapMng->LoadSourceObjects();
 }
 
@@ -708,7 +708,7 @@ void CMainFrame::UpdateTransformInfo() {
     m_wndDlgBar.UpdateInfo();
 }
 
-void CMainFrame::OnTipDefaultMaterial() // ±âº»ÀçÁú·Î ¸¸µé±â.
+void CMainFrame::OnTipDefaultMaterial() // ê¸°ë³¸ìž¬ì§ˆë¡œ ë§Œë“¤ê¸°.
 {
     ASSERT(m_pMapMng);
 
@@ -717,12 +717,12 @@ void CMainFrame::OnTipDefaultMaterial() // ±âº»ÀçÁú·Î ¸¸µé±â.
         CN3TransformCollision * pObj = (CN3TransformCollision *)m_pMapMng->GetSelOutputObj(i);
         if (pObj->Type() & OBJ_SHAPE) {
             CN3Shape * pShape = (CN3Shape *)pObj;
-            pShape->MakeDefaultMaterial(); // ±âº»ÀçÁú·Î ¸¸µé±â.
+            pShape->MakeDefaultMaterial(); // ê¸°ë³¸ìž¬ì§ˆë¡œ ë§Œë“¤ê¸°.
         }
     }
 }
 
-void CMainFrame::OnTipRemoveAlphaflag() // ¾ËÆÄ ºí·»µù ÇÃ·¡±× Á¦°Å..
+void CMainFrame::OnTipRemoveAlphaflag() // ì•ŒíŒŒ ë¸”ë Œë”© í”Œëž˜ê·¸ ì œê±°..
 {
     ASSERT(m_pMapMng);
 
@@ -731,7 +731,7 @@ void CMainFrame::OnTipRemoveAlphaflag() // ¾ËÆÄ ºí·»µù ÇÃ·¡±× Á¦°Å..
         CN3TransformCollision * pObj = (CN3TransformCollision *)m_pMapMng->GetSelOutputObj(i);
         if (pObj->Type() & OBJ_SHAPE) {
             CN3Shape * pShape = (CN3Shape *)pObj;
-            pShape->RemoveRenderFlags(RF_ALPHABLENDING); // ¾ËÆÄ ºí·»µù ÇÃ·¡±× Á¦°Å..
+            pShape->RemoveRenderFlags(RF_ALPHABLENDING); // ì•ŒíŒŒ ë¸”ë Œë”© í”Œëž˜ê·¸ ì œê±°..
         }
     }
 }
@@ -775,7 +775,7 @@ void CMainFrame::OnTipSowSeed() {
     }
     m_pDlgSowSeed->ShowWindow(TRUE);
 
-    // Ç®½É±â
+    // í’€ì‹¬ê¸°
     if (m_pMapMng) {
         m_pMapMng->SetCursorMode(CM_EDIT_SEED);
         if (m_pMapMng->GetTerrain() != NULL) {

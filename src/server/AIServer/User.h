@@ -23,24 +23,24 @@ class CUser {
 
     UserLogList m_UserLogList;
 
-    // ÇÊ¿äÇÑ Á¤º¸ º¯¼ö¸¸ ¼±¾ğ,,,
-    // Ä³¸¯ÅÍ ±âº» ¼Ó¼º
-    char m_strUserID[MAX_ID_SIZE + 1]; // Ä³¸¯ÅÍÀÇ ÀÌ¸§
-    int  m_iUserId;                    // UserÀÇ ¹øÈ£
-    BYTE m_bLive;                      // Á×¾ú´Ï? »ì¾Ò´Ï?
+    // í•„ìš”í•œ ì •ë³´ ë³€ìˆ˜ë§Œ ì„ ì–¸,,,
+    // ìºë¦­í„° ê¸°ë³¸ ì†ì„±
+    char m_strUserID[MAX_ID_SIZE + 1]; // ìºë¦­í„°ì˜ ì´ë¦„
+    int  m_iUserId;                    // Userì˜ ë²ˆí˜¸
+    BYTE m_bLive;                      // ì£½ì—ˆë‹ˆ? ì‚´ì•˜ë‹ˆ?
 
-    float m_curx;       // ÇöÀç X ÁÂÇ¥
-    float m_cury;       // ÇöÀç Y ÁÂÇ¥
-    float m_curz;       // ÇöÀç Z ÁÂÇ¥
-    float m_fWill_x;    // ´ÙÀ½ X ÁÂÇ¥
-    float m_fWill_y;    // ´ÙÀ½ Y ÁÂÇ¥
-    float m_fWill_z;    // ´ÙÀ½ Z ÁÂÇ¥
-    short m_sSpeed;     // À¯ÀúÀÇ ½ºÇÇµå
-    BYTE  m_curZone;    // ÇöÀç Á¸
-    short m_sZoneIndex; // ÇöÀç Á¸ÀÇ index ¹øÈ£..
+    float m_curx;       // í˜„ì¬ X ì¢Œí‘œ
+    float m_cury;       // í˜„ì¬ Y ì¢Œí‘œ
+    float m_curz;       // í˜„ì¬ Z ì¢Œí‘œ
+    float m_fWill_x;    // ë‹¤ìŒ X ì¢Œí‘œ
+    float m_fWill_y;    // ë‹¤ìŒ Y ì¢Œí‘œ
+    float m_fWill_z;    // ë‹¤ìŒ Z ì¢Œí‘œ
+    short m_sSpeed;     // ìœ ì €ì˜ ìŠ¤í”¼ë“œ
+    BYTE  m_curZone;    // í˜„ì¬ ì¡´
+    short m_sZoneIndex; // í˜„ì¬ ì¡´ì˜ index ë²ˆí˜¸..
 
-    BYTE  m_bNation; // ¼Ò¼Ó±¹°¡
-    short m_sLevel;  // ·¹º§
+    BYTE  m_bNation; // ì†Œì†êµ­ê°€
+    short m_sLevel;  // ë ˆë²¨
 
     short m_sHP;    // HP
     short m_sMP;    // MP
@@ -49,34 +49,34 @@ class CUser {
     short m_sMaxMP; // MP
     short m_sMaxSP; // SP
 
-    BYTE m_state; // UserÀÇ »óÅÂ
+    BYTE m_state; // Userì˜ ìƒíƒœ
 
-    short m_sRegionX;    // ÇöÀç ¿µ¿ª X ÁÂÇ¥
-    short m_sRegionZ;    // ÇöÀç ¿µ¿ª Z ÁÂÇ¥
-    short m_sOldRegionX; // ÀÌÀü ¿µ¿ª X ÁÂÇ¥
-    short m_sOldRegionZ; // ÀÌÀü ¿µ¿ª Z ÁÂÇ¥
+    short m_sRegionX;    // í˜„ì¬ ì˜ì—­ X ì¢Œí‘œ
+    short m_sRegionZ;    // í˜„ì¬ ì˜ì—­ Z ì¢Œí‘œ
+    short m_sOldRegionX; // ì´ì „ ì˜ì—­ X ì¢Œí‘œ
+    short m_sOldRegionZ; // ì´ì „ ì˜ì—­ Z ì¢Œí‘œ
 
-    BYTE m_bResHp; // È¸º¹·®
+    BYTE m_bResHp; // íšŒë³µëŸ‰
     BYTE m_bResMp;
     BYTE m_bResSta;
 
-    BYTE  m_byNowParty;       // ÆÄÆ¼ÁßÀÌ¸é 1, ºÎ´ëÁßÀÌ¸é 2, µÑ´Ù ¾Æ´Ï¸é 0
-    BYTE  m_byPartyTotalMan;  // ÆÄÆ¼ ¸ÎÀº ÃÑ ±¸¼º ÀÎ¿ø¼ö
-    short m_sPartyTotalLevel; // ÆÄÆ¼ ¸ÎÀº »ç¶÷ÀÇ ÃÑ ·¹º§
-    short m_sPartyNumber;     // ÆÄÆ¼ ¹øÈ£
+    BYTE  m_byNowParty;       // íŒŒí‹°ì¤‘ì´ë©´ 1, ë¶€ëŒ€ì¤‘ì´ë©´ 2, ë‘˜ë‹¤ ì•„ë‹ˆë©´ 0
+    BYTE  m_byPartyTotalMan;  // íŒŒí‹° ë§ºì€ ì´ êµ¬ì„± ì¸ì›ìˆ˜
+    short m_sPartyTotalLevel; // íŒŒí‹° ë§ºì€ ì‚¬ëŒì˜ ì´ ë ˆë²¨
+    short m_sPartyNumber;     // íŒŒí‹° ë²ˆí˜¸
 
     short m_sHitDamage; // Hit
-    float m_fHitrate;   // °ø°İ ¹ÎÃ¸·ü
-    float m_fAvoidrate; // ¹æ¾î ¹ÎÃ¸·ü
-    short m_sAC;        // ¹æ¾îÀ²
-    short m_sItemAC;    // ¾ÆÀÌÅÛ ¹æ¾î·ü
+    float m_fHitrate;   // ê³µê²© ë¯¼ì²©ë¥ 
+    float m_fAvoidrate; // ë°©ì–´ ë¯¼ì²©ë¥ 
+    short m_sAC;        // ë°©ì–´ìœ¨
+    short m_sItemAC;    // ì•„ì´í…œ ë°©ì–´ë¥ 
 
-    short m_sSurroundNpcNumber[8]; // Npc ´Ù±¼~
+    short m_sSurroundNpcNumber[8]; // Npc ë‹¤êµ´~
 
-    BYTE m_byIsOP; // ¿î¿µÀÚÀÎÁö¸¦ ÆÇ´Ü..
-    long m_lUsed;  // Æ÷ÀÎÅÍ »ç¿ëÀ¯¹«.. (1:»ç¿ëÁß.. Á¢±Ù Çã¶ôÄ¡ ¾ÊÀ½. 0:»ç¿ëÇØµµ ¹«¹æ)
+    BYTE m_byIsOP; // ìš´ì˜ìì¸ì§€ë¥¼ íŒë‹¨..
+    long m_lUsed;  // í¬ì¸í„° ì‚¬ìš©ìœ ë¬´.. (1:ì‚¬ìš©ì¤‘.. ì ‘ê·¼ í—ˆë½ì¹˜ ì•ŠìŒ. 0:ì‚¬ìš©í•´ë„ ë¬´ë°©)
 
-    BOOL m_bLogOut; // Logout ÁßÀÎ°¡?
+    BOOL m_bLogOut; // Logout ì¤‘ì¸ê°€?
 
     // 2002.7.10 - Yookozuna
     BYTE  m_bMagicTypeLeftHand;    // The type of magic item in user's left hand
@@ -101,12 +101,12 @@ class CUser {
     void  HealMagic();
     void  HealAreaCheck(int rx, int rz);
 
-    void SendAttackSuccess(int tuid, BYTE result, short sDamage, int nHP = 0, short sAttack_type = 1); // °ø°İ ¼º°ø
-    void SendMagicAttackResult(int tuid, BYTE result, short sDamage, short sHP = 0);                   // °ø°İ ¼º°ø
-    void SendHP();                                                                                     // userÀÇ HP
+    void SendAttackSuccess(int tuid, BYTE result, short sDamage, int nHP = 0, short sAttack_type = 1); // ê³µê²© ì„±ê³µ
+    void SendMagicAttackResult(int tuid, BYTE result, short sDamage, short sHP = 0);                   // ê³µê²© ì„±ê³µ
+    void SendHP();                                                                                     // userì˜ HP
     void SendExp(int iExp, int iLoyalty, int tType = 1);
     void SendSystemMsg(TCHAR * pMsg, BYTE type, int nWho);
-    void SendAll(TCHAR * pBuf, int nLength); // game server·Î ÆĞÅ¶ Àü¼Û...
+    void SendAll(TCHAR * pBuf, int nLength); // game serverë¡œ íŒ¨í‚· ì „ì†¡...
     BOOL IsOpIDCheck(char * szName);
 
     CUser();

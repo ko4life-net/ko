@@ -32,7 +32,7 @@ DWORD WINAPI RecvUDPThread(LPVOID lp) {
             getpeername(pUdp->m_hUDPSocket, (SOCKADDR *)&pUdp->m_ReplyAddress, &addrlen);
             TRACE("recvfrom() error : %d IP : %s\n", err, inet_ntoa(pUdp->m_ReplyAddress.sin_addr));
 
-            // ÀçÀü¼Û ·çÆ¾...
+            // ìž¬ì „ì†¡ ë£¨í‹´...
 
             Sleep(10);
             continue;
@@ -249,11 +249,11 @@ void CUdpSocket::RecvBattleEvent(char * pBuf) {
             return;
         }
         if (nResult == KARUS) {
-            //TRACE("--> UDP RecvBattleEvent : Ä«·ç½º ¶¥À¸·Î ³Ñ¾î°¥ ¼ö ÀÖ¾î\n");
-            m_pMain->m_byKarusOpenFlag = 1; // Ä«·ç½º ¶¥À¸·Î ³Ñ¾î°¥ ¼ö ÀÖ¾î
+            //TRACE("--> UDP RecvBattleEvent : ì¹´ë£¨ìŠ¤ ë•…ìœ¼ë¡œ ë„˜ì–´ê°ˆ ìˆ˜ ìžˆì–´\n");
+            m_pMain->m_byKarusOpenFlag = 1; // ì¹´ë£¨ìŠ¤ ë•…ìœ¼ë¡œ ë„˜ì–´ê°ˆ ìˆ˜ ìžˆì–´
         } else if (nResult == ELMORAD) {
-            //TRACE("--> UDP  RecvBattleEvent : ¿¤¸ð ¶¥À¸·Î ³Ñ¾î°¥ ¼ö ÀÖ¾î\n");
-            m_pMain->m_byElmoradOpenFlag = 1; // ¿¤¸ð ¶¥À¸·Î ³Ñ¾î°¥ ¼ö ÀÖ¾î
+            //TRACE("--> UDP  RecvBattleEvent : ì—˜ëª¨ ë•…ìœ¼ë¡œ ë„˜ì–´ê°ˆ ìˆ˜ ìžˆì–´\n");
+            m_pMain->m_byElmoradOpenFlag = 1; // ì—˜ëª¨ ë•…ìœ¼ë¡œ ë„˜ì–´ê°ˆ ìˆ˜ ìžˆì–´
         }
     } else if (nType == BATTLE_EVENT_RESULT) {
         if (m_pMain->m_byBattleOpen == NO_BATTLE) {
@@ -261,22 +261,22 @@ void CUdpSocket::RecvBattleEvent(char * pBuf) {
             return;
         }
         if (nResult == KARUS) {
-            //TRACE("-->  UDP RecvBattleEvent : Ä«·ç½º°¡ ½Â¸®ÇÏ¿´½À´Ï´Ù.\n");
+            //TRACE("-->  UDP RecvBattleEvent : ì¹´ë£¨ìŠ¤ê°€ ìŠ¹ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤.\n");
         } else if (nResult == ELMORAD) {
-            //TRACE("-->  UDP RecvBattleEvent : ¿¤¸ð¶óµå°¡ ½Â¸®ÇÏ¿´½À´Ï´Ù.\n");
+            //TRACE("-->  UDP RecvBattleEvent : ì—˜ëª¨ë¼ë“œê°€ ìŠ¹ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤.\n");
         }
 
         m_pMain->m_bVictory = nResult;
         m_pMain->m_byOldVictory = nResult;
-        m_pMain->m_byKarusOpenFlag = 0;   // Ä«·ç½º ¶¥À¸·Î ³Ñ¾î°¥ ¼ö ¾øµµ·Ï
-        m_pMain->m_byElmoradOpenFlag = 0; // ¿¤¸ð ¶¥À¸·Î ³Ñ¾î°¥ ¼ö ¾øµµ·Ï
+        m_pMain->m_byKarusOpenFlag = 0;   // ì¹´ë£¨ìŠ¤ ë•…ìœ¼ë¡œ ë„˜ì–´ê°ˆ ìˆ˜ ì—†ë„ë¡
+        m_pMain->m_byElmoradOpenFlag = 0; // ì—˜ëª¨ ë•…ìœ¼ë¡œ ë„˜ì–´ê°ˆ ìˆ˜ ì—†ë„ë¡
         m_pMain->m_byBanishFlag = 1;
     } else if (nType == BATTLE_EVENT_MAX_USER) {
         nLen = GetByte(pBuf, index);
 
         if (nLen > 0 && nLen < MAX_ID_SIZE + 1) {
             GetString(strMaxUserName, pBuf, nLen, index);
-            //TRACE("-->  UDP RecvBattleEvent : Àû±¹ÀÇ ´ëÀåÀ» Á×ÀÎ À¯ÀúÀÌ¸§Àº? %s, len=%d\n", strMaxUserName, nResult);
+            //TRACE("-->  UDP RecvBattleEvent : ì êµ­ì˜ ëŒ€ìž¥ì„ ì£½ì¸ ìœ ì €ì´ë¦„ì€? %s, len=%d\n", strMaxUserName, nResult);
             if (nResult == 1) {
                 ::_LoadStringFromResource(IDS_KILL_CAPTAIN, buff);
                 sprintf(chatstr, buff.c_str(), strMaxUserName);
@@ -296,7 +296,7 @@ void CUdpSocket::RecvBattleEvent(char * pBuf) {
                 ::_LoadStringFromResource(IDS_KILL_ELMO_GUARD2, buff);
                 sprintf(chatstr, buff.c_str(), strMaxUserName);
             }
-            sprintf(finalstr, "## °øÁö : %s ##", chatstr);
+            sprintf(finalstr, "## ê³µì§€ : %s ##", chatstr);
             SetByte(send_buff, WIZ_CHAT, send_index);
             SetByte(send_buff, WAR_SYSTEM_CHAT, send_index);
             SetByte(send_buff, 1, send_index);
@@ -322,11 +322,11 @@ void CUdpSocket::RecvBattleEvent(char * pBuf) {
             m_pMain->m_sKarusDead = m_pMain->m_sKarusDead + nKillKarus;
             m_pMain->m_sElmoradDead = m_pMain->m_sElmoradDead + nElmoKill;
 
-            //TRACE("-->  UDP RecvBattleEvent type = 1 : Àû±¹ À¯Àú Á×ÀÎ¼ö : karus=%d->%d, elmo=%d->%d\n", nKillKarus, m_pMain->m_sKarusDead, nElmoKill, m_pMain->m_sElmoradDead);
+            //TRACE("-->  UDP RecvBattleEvent type = 1 : ì êµ­ ìœ ì € ì£½ì¸ìˆ˜ : karus=%d->%d, elmo=%d->%d\n", nKillKarus, m_pMain->m_sKarusDead, nElmoKill, m_pMain->m_sElmoradDead);
 
             SetByte(send_buff, UDP_BATTLE_EVENT_PACKET, send_index);
             SetByte(send_buff, BATTLE_EVENT_KILL_USER, send_index);
-            SetByte(send_buff, 2, send_index); // karusÀÇ Á¤º¸ Àü¼Û
+            SetByte(send_buff, 2, send_index); // karusì˜ ì •ë³´ ì „ì†¡
             SetShort(send_buff, m_pMain->m_sKarusDead, send_index);
             SetShort(send_buff, m_pMain->m_sElmoradDead, send_index);
             m_pMain->Send_UDP_All(send_buff, send_index);
@@ -334,7 +334,7 @@ void CUdpSocket::RecvBattleEvent(char * pBuf) {
             nKillKarus = GetShort(pBuf, index);
             nElmoKill = GetShort(pBuf, index);
 
-            //TRACE("-->  UDP RecvBattleEvent type = 2 : Àû±¹ À¯Àú Á×ÀÎ¼ö : karus=%d->%d, elmo=%d->%d\n", m_pMain->m_sKarusDead, nKillKarus, m_pMain->m_sElmoradDead, nElmoKill);
+            //TRACE("-->  UDP RecvBattleEvent type = 2 : ì êµ­ ìœ ì € ì£½ì¸ìˆ˜ : karus=%d->%d, elmo=%d->%d\n", m_pMain->m_sKarusDead, nKillKarus, m_pMain->m_sElmoradDead, nElmoKill);
 
             m_pMain->m_sKarusDead = nKillKarus;
             m_pMain->m_sElmoradDead = nElmoKill;
@@ -411,7 +411,7 @@ void CUdpSocket::RecvCreateKnights(char * pBuf) {
 
     m_pMain->m_KnightsArray.PutData(pKnights->m_sIndex, pKnights);
 
-    // Å¬·£Á¤º¸¿¡ Ãß°¡
+    // í´ëžœì •ë³´ì— ì¶”ê°€
     m_pMain->m_KnightsManager.AddKnightsUser(knightsindex, chiefname);
 
     //TRACE("UDP - RecvCreateKnights - knname=%s, name=%s, index=%d\n", knightsname, chiefname, knightsindex);
@@ -434,15 +434,15 @@ void CUdpSocket::RecvJoinKnights(char * pBuf, BYTE command) {
     pKnights = m_pMain->m_KnightsArray.GetData(knightsindex);
 
     if (command == KNIGHTS_JOIN) {
-        sprintf(finalstr, "#### %s´ÔÀÌ °¡ÀÔÇÏ¼Ì½À´Ï´Ù. ####", charid);
-        // Å¬·£Á¤º¸¿¡ Ãß°¡
+        sprintf(finalstr, "#### %së‹˜ì´ ê°€ìž…í•˜ì…¨ìŠµë‹ˆë‹¤. ####", charid);
+        // í´ëžœì •ë³´ì— ì¶”ê°€
         m_pMain->m_KnightsManager.AddKnightsUser(knightsindex, charid);
-        TRACE("UDP - RecvJoinKnights - °¡ÀÔ, name=%s, index=%d\n", charid, knightsindex);
-    } else { // Å»Åð..
-        // Å¬·£Á¤º¸¿¡ Ãß°¡
+        TRACE("UDP - RecvJoinKnights - ê°€ìž…, name=%s, index=%d\n", charid, knightsindex);
+    } else { // íƒˆí‡´..
+        // í´ëžœì •ë³´ì— ì¶”ê°€
         m_pMain->m_KnightsManager.RemoveKnightsUser(knightsindex, charid);
-        sprintf(finalstr, "#### %s´ÔÀÌ Å»ÅðÇÏ¼Ì½À´Ï´Ù. ####", charid);
-        TRACE("UDP - RecvJoinKnights - Å»Åð, name=%s, index=%d\n", charid, knightsindex);
+        sprintf(finalstr, "#### %së‹˜ì´ íƒˆí‡´í•˜ì…¨ìŠµë‹ˆë‹¤. ####", charid);
+        TRACE("UDP - RecvJoinKnights - íƒˆí‡´, name=%s, index=%d\n", charid, knightsindex);
     }
 
     //TRACE("UDP - RecvJoinKnights - command=%d, name=%s, index=%d\n", command, charid, knightsindex);
@@ -481,7 +481,7 @@ void CUdpSocket::RecvModifyFame(char * pBuf, BYTE command) {
         if (pTUser) {
             pTUser->m_pUserData->m_bKnights = 0;
             pTUser->m_pUserData->m_bFame = 0;
-            sprintf(finalstr, "#### %s´ÔÀÌ Ãß¹æµÇ¼Ì½À´Ï´Ù. ####", pTUser->m_pUserData->m_id);
+            sprintf(finalstr, "#### %së‹˜ì´ ì¶”ë°©ë˜ì…¨ìŠµë‹ˆë‹¤. ####", pTUser->m_pUserData->m_id);
             m_pMain->m_KnightsManager.RemoveKnightsUser(knightsindex, pTUser->m_pUserData->m_id);
         } else {
             m_pMain->m_KnightsManager.RemoveKnightsUser(knightsindex, userid);
@@ -503,14 +503,14 @@ void CUdpSocket::RecvModifyFame(char * pBuf, BYTE command) {
         if (pTUser) {
             pTUser->m_pUserData->m_bFame = CHIEF;
             m_pMain->m_KnightsManager.ModifyKnightsUser(knightsindex, pTUser->m_pUserData->m_id);
-            sprintf(finalstr, "#### %s´ÔÀÌ ´ÜÀåÀ¸·Î ÀÓ¸íµÇ¼Ì½À´Ï´Ù. ####", pTUser->m_pUserData->m_id);
+            sprintf(finalstr, "#### %së‹˜ì´ ë‹¨ìž¥ìœ¼ë¡œ ìž„ëª…ë˜ì…¨ìŠµë‹ˆë‹¤. ####", pTUser->m_pUserData->m_id);
         }
         break;
     case KNIGHTS_VICECHIEF + 0x10:
         if (pTUser) {
             pTUser->m_pUserData->m_bFame = VICECHIEF;
             m_pMain->m_KnightsManager.ModifyKnightsUser(knightsindex, pTUser->m_pUserData->m_id);
-            sprintf(finalstr, "#### %s´ÔÀÌ ºÎ´ÜÀåÀ¸·Î ÀÓ¸íµÇ¼Ì½À´Ï´Ù. ####", pTUser->m_pUserData->m_id);
+            sprintf(finalstr, "#### %së‹˜ì´ ë¶€ë‹¨ìž¥ìœ¼ë¡œ ìž„ëª…ë˜ì…¨ìŠµë‹ˆë‹¤. ####", pTUser->m_pUserData->m_id);
         }
         break;
     case KNIGHTS_OFFICER + 0x10:
@@ -588,11 +588,11 @@ void CUdpSocket::RecvDestroyKnights(char * pBuf) {
 
     flag = pKnights->m_byFlag;
 
-    // Å¬·£ÀÌ³ª ±â»ç´ÜÀÌ ÆÄ±«µÈ ¸Þ½ÃÁö¸¦ º¸³»°í À¯Àú µ¥ÀÌÅ¸¸¦ ÃÊ±âÈ­
+    // í´ëžœì´ë‚˜ ê¸°ì‚¬ë‹¨ì´ íŒŒê´´ëœ ë©”ì‹œì§€ë¥¼ ë³´ë‚´ê³  ìœ ì € ë°ì´íƒ€ë¥¼ ì´ˆê¸°í™”
     if (flag == CLAN_TYPE) {
-        sprintf(finalstr, "#### %s Å¬·£ÀÌ ÇØÃ¼µÇ¾ú½À´Ï´Ù ####", pKnights->m_strName);
+        sprintf(finalstr, "#### %s í´ëžœì´ í•´ì²´ë˜ì—ˆìŠµë‹ˆë‹¤ ####", pKnights->m_strName);
     } else if (flag == KNIGHTS_TYPE) {
-        sprintf(finalstr, "#### %s ±â»ç´ÜÀÌ ÇØÃ¼µÇ¾ú½À´Ï´Ù ####", pKnights->m_strName);
+        sprintf(finalstr, "#### %s ê¸°ì‚¬ë‹¨ì´ í•´ì²´ë˜ì—ˆìŠµë‹ˆë‹¤ ####", pKnights->m_strName);
     }
 
     memset(send_buff, 0x00, 128);

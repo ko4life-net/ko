@@ -54,10 +54,10 @@ void CGrassBoard::ReCalcMatrix() {
 }
 
 void CGrassBoard::Tick(CN3Terrain * pTerrain) {
-    // È¸Àü ½ÃÅ²´Ù..
+    // íšŒì „ ì‹œí‚¨ë‹¤..
     static __Vector3 vBakCam;
     if (vBakCam == s_CameraData.vEye) {
-        return; //    Ä«¸Ş¶ó ¿òÁ÷ÀÌÁö ¾ÊÀ¸¸é °è»ê ÇÊ¿ä¾øÀ½
+        return; //    ì¹´ë©”ë¼ ì›€ì§ì´ì§€ ì•Šìœ¼ë©´ ê³„ì‚° í•„ìš”ì—†ìŒ
     }
     vBakCam = s_CameraData.vEye;
 
@@ -67,14 +67,14 @@ void CGrassBoard::Tick(CN3Terrain * pTerrain) {
     for (int i = 0; i < m_ucTexNum; ++i) {
         pGrass = &m_sGrassInfo[i];
 
-        if (pGrass->vPos.y == 0.0f) { //    ³ôÀÌ°ª
+        if (pGrass->vPos.y == 0.0f) { //    ë†’ì´ê°’
             pGrass->vPos.y = pTerrain->GetHeight(pGrass->vPos.x, pGrass->vPos.z);
         }
 
-        //    Ä«¸Ş¶ó¿ÍÀÇ ¹æÇâ¹éÅÍ
+        //    ì¹´ë©”ë¼ì™€ì˜ ë°©í–¥ë°±í„°
         vDir = s_CameraData.vEye - pGrass->vPos;
 
-        //    Ä«¸Ş¶ó ¹æÇâÀ¸·Î ¹æÇâÀ» Æ°´Ù
+        //    ì¹´ë©”ë¼ ë°©í–¥ìœ¼ë¡œ ë°©í–¥ì„ íŠ¼ë‹¤
         if (vDir.x > 0.0f) {
             pGrass->mtxWorld.RotationY(-atanf(vDir.z / vDir.x) - (D3DX_PI * 0.5f));
         } else {
@@ -82,7 +82,7 @@ void CGrassBoard::Tick(CN3Terrain * pTerrain) {
         }
         pGrass->mtxWorld.PosSet(m_sGrassInfo[i].vPos);
 
-        //    Ä«¸Ş¶ó¿ÍÀÇ °Å¸®¿¡ µû¶ó ¾ËÆÄ¸ÔÀÓ
+        //    ì¹´ë©”ë¼ì™€ì˜ ê±°ë¦¬ì— ë”°ë¼ ì•ŒíŒŒë¨¹ì„
         dwAlpha = SetBrightLevel(vDir.Magnitude());
         if (dwAlpha != 0x00000000) {
             pGrass->dwAlpColor = dwAlpha;
@@ -92,7 +92,7 @@ void CGrassBoard::Tick(CN3Terrain * pTerrain) {
 
 void CGrassBoard::Render(CN3Texture ** ppTex) {
     if (m_bCamOut == TRUE) {
-        return; //    Ä«¸Ş¶ó ¹üÀ§ ¹ù¾î³ª ÂïÁö ¾ÊÀ½
+        return; //    ì¹´ë©”ë¼ ë²”ìœ„ ë²‹ì–´ë‚˜ ì°ì§€ ì•ŠìŒ
     }
 
     static DWORD dwColorop, dwColorA1, dwColorA2;
@@ -157,9 +157,9 @@ void CGrassBoard::LoadFromFile(int iTexIndex, unsigned char ucTexOrgIndex, __Vec
 }
 
 DWORD CGrassBoard::SetBrightLevel(float Level) {
-    static float fLevelbak; //    Ä«¸Ş¶ó¿ÍÀÇ °Å¸®¸¦ ¹é¾÷ÇÏ¿© °°À»½Ã ¾ËÆÄ°è»êÀ» ³Ñ±è-¿¹Àü µ¥ÀÌÅ¸ °£Á÷
+    static float fLevelbak; //    ì¹´ë©”ë¼ì™€ì˜ ê±°ë¦¬ë¥¼ ë°±ì—…í•˜ì—¬ ê°™ì„ì‹œ ì•ŒíŒŒê³„ì‚°ì„ ë„˜ê¹€-ì˜ˆì „ ë°ì´íƒ€ ê°„ì§
     if (fLevelbak == Level) {
-        return 0x00000000; //    Ä«¸Ş¶ó¿ÍÀÇ °Å¸®°¡ °°´Ù¸é °è»êÇÒ ÇÊ¿ä°¡ ¾ø´Ù
+        return 0x00000000; //    ì¹´ë©”ë¼ì™€ì˜ ê±°ë¦¬ê°€ ê°™ë‹¤ë©´ ê³„ì‚°í•  í•„ìš”ê°€ ì—†ë‹¤
     }
     fLevelbak = Level;
 
@@ -167,26 +167,26 @@ DWORD CGrassBoard::SetBrightLevel(float Level) {
         return 0x00ffffff;
     }
     if (Level > m_fBrightmin + m_fBrightmax) {
-        return 0x00ffffff; //    ÀÏÁ¤°Å¸® ÀÌ»óÀº º¸ÀÌÁö ¾ÊÀ½
+        return 0x00ffffff; //    ì¼ì •ê±°ë¦¬ ì´ìƒì€ ë³´ì´ì§€ ì•ŠìŒ
     }
 
     DWORD Color = 0x00ffffff;
-    if (Level > m_fBrightmin) //    ÀÏÁ¤°Å¸®³»¸¸Å­ º¸ÀÓ
+    if (Level > m_fBrightmin) //    ì¼ì •ê±°ë¦¬ë‚´ë§Œí¼ ë³´ì„
     {
         float brightper = (Level - m_fBrightmin) / m_fBrightmax;
         DWORD alphaColor = 255 - 255 * brightper;
         Color = (alphaColor << 24) | 0x00ffffff;
     } else {
-        Color = 0xffffffff; //    ÀÏÁ¤°Å¸®¾ÈÀº ¿ÏÀüÈ÷ º¸¿©ÁÜ
+        Color = 0xffffffff; //    ì¼ì •ê±°ë¦¬ì•ˆì€ ì™„ì „íˆ ë³´ì—¬ì¤Œ
     }
 
     return Color;
 }
 
 void CGrassBoard::SetInfo(__Vector3 vBoardPosion, unsigned short usData) {
-    m_vCenterPo.Set(vBoardPosion.x + 2.0f, vBoardPosion.y, vBoardPosion.z + 2.0f); //    Áöµµ¿¡¼­ÀÇ Áß°£À§Ä¡±â¾ï
-    m_ucTexIndex = (unsigned char)((usData & 0xff00) >> 8);                        //    Ç®ÀÇ ÀÎµ¦½º
-    m_ucTexNum = (unsigned char)(usData & 0x00ff);                                 //    Ç®ÀÇ °¹¼ö
+    m_vCenterPo.Set(vBoardPosion.x + 2.0f, vBoardPosion.y, vBoardPosion.z + 2.0f); //    ì§€ë„ì—ì„œì˜ ì¤‘ê°„ìœ„ì¹˜ê¸°ì–µ
+    m_ucTexIndex = (unsigned char)((usData & 0xff00) >> 8);                        //    í’€ì˜ ì¸ë±ìŠ¤
+    m_ucTexNum = (unsigned char)(usData & 0x00ff);                                 //    í’€ì˜ ê°¯ìˆ˜
 
     if (m_ucTexNum > 20) {
         m_ucTexNum = 20;
@@ -212,7 +212,7 @@ void CGrassBoard::SetInfo(__Vector3 vBoardPosion, unsigned short usData) {
         }
 
         mRand = rand();
-        pGrass->vPos.z = (mRand % 40) / 10.000 + vBoardPosion.z; //    ·£´õ°ª¸¦ Á»´õ ¹ú¸®±â À§ÇØ
+        pGrass->vPos.z = (mRand % 40) / 10.000 + vBoardPosion.z; //    ëœë”ê°’ë¥¼ ì¢€ë” ë²Œë¦¬ê¸° ìœ„í•´
         pGrass->vPos.y = 0.0f;
     }
 }

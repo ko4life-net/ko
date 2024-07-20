@@ -174,7 +174,7 @@ void CN3IndoorApp::Write(const char * lpszFormat, ...) {
     szFinal[0] = NULL;
 
     DWORD dwRWC = 0;
-    sprintf(szFinal, "    [%.2d½Ã %.2dºĞ %.2dÃÊ] ", time.wHour, time.wMinute, time.wSecond);
+    sprintf(szFinal, "    [%.2dì‹œ %.2dë¶„ %.2dì´ˆ] ", time.wHour, time.wMinute, time.wSecond);
 
     static char szBuff[1024];
     szBuff[0] = NULL;
@@ -196,7 +196,7 @@ void CN3IndoorApp::Write(const char * lpszFormat, ...) {
     }
 
     if (hFile) {
-        ::SetFilePointer(hFile, 0, NULL, FILE_END); // Ãß°¡ ÇÏ±â À§ÇØ¼­ ÆÄÀÏÀÇ ³¡À¸·Î ¿Å±â°í..
+        ::SetFilePointer(hFile, 0, NULL, FILE_END); // ì¶”ê°€ í•˜ê¸° ìœ„í•´ì„œ íŒŒì¼ì˜ ëìœ¼ë¡œ ì˜®ê¸°ê³ ..
 
         WriteFile(hFile, szFinal, iLength, &dwRWC, NULL);
         CloseHandle(hFile);

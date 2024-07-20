@@ -7,10 +7,10 @@
 #include "N3Base.h"
 
 struct __VertexRiver : public __VertexXyzT2 {
-    WORD index; // Á¡ÀÇ Index
+    WORD index; // ì ì˜ Index
 };
 
-struct __River // °­ÀÇ Á¡Á¤º¸(Á¤·ÄÀ» À§ÇÑ..)
+struct __River // ê°•ì˜ ì ì •ë³´(ì •ë ¬ì„ ìœ„í•œ..)
 {
     short           iRiverID;
     int             iVertexCount;
@@ -25,7 +25,7 @@ struct __River // °­ÀÇ Á¡Á¤º¸(Á¤·ÄÀ» À§ÇÑ..)
     }
 };
 
-struct __RiverEx // °­ÀÇ Á¡Á¤º¸(vertex buffer¸¦ À§ÇÑ..)
+struct __RiverEx // ê°•ì˜ ì ì •ë³´(vertex bufferë¥¼ ìœ„í•œ..)
 {
     short           iRiverID;
     int             iVertexCount;
@@ -50,7 +50,7 @@ struct __RiverEx // °­ÀÇ Á¡Á¤º¸(vertex buffer¸¦ À§ÇÑ..)
     }
 };
 
-class CN3RiverPatch : public CN3Base // °¢ patch¿¡ ¼ÓÇÑ °­µéÀÇ Á¤º¸.
+class CN3RiverPatch : public CN3Base // ê° patchì— ì†í•œ ê°•ë“¤ì˜ ì •ë³´.
 {
   public:
     CN3RiverPatch();

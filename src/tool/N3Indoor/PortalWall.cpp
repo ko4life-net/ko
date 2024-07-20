@@ -371,14 +371,14 @@ void CPortalWall::Load(FILE * stream) {
 }
 
 void CPortalWall::Save(FILE * stream) {
-    // ¸ÕÀú ÀÚ½ÅÀÇ Å¸ÀÔÀ» ÀúÀå..
+    // ë¨¼ì € ìì‹ ì˜ íƒ€ì…ì„ ì €ì¥..
     fwrite(&_iTypeWall, sizeof(int), 1, stream);
     fwrite(&m_eWallType, sizeof(int), 1, stream);
 
-    // ÀÚ½ÅÀÇ ¾ÆÀÌµğ¸¦ ÀúÀå..
+    // ìì‹ ì˜ ì•„ì´ë””ë¥¼ ì €ì¥..
     fwrite(&m_iID, sizeof(int), 1, stream);
 
-    // ÀÚ½ÅÀÇ µ¥ÀÌÅÍ ÀúÀå..
+    // ìì‹ ì˜ ë°ì´í„° ì €ì¥..
     CPvsBase::Save(stream);
 }
 

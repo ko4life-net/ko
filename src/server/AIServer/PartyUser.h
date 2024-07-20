@@ -6,8 +6,8 @@
 
 class CPartyUser {
   public:
-    char m_strUserID[MAX_ID_SIZE + 1]; // Ä³¸¯ÅÍÀÇ ÀÌ¸§
-    int  m_iUserId;                    // UserÀÇ ¹øÈ£
+    char m_strUserID[MAX_ID_SIZE + 1]; // ìºë¦­í„°ì˜ ì´ë¦„
+    int  m_iUserId;                    // Userì˜ ë²ˆí˜¸
   public:
     CPartyUser();
     virtual ~CPartyUser();

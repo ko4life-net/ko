@@ -8,7 +8,7 @@
 
 #define MAX_RIVER_TEX 32
 
-class CN3River : public CN3Base // CN3RiverPatch¸¦ °ü¸®ÇÏ´Â Å¬·¡½º
+class CN3River : public CN3Base // CN3RiverPatchë¥¼ ê´€ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
 {
   public:
     CN3River();
@@ -43,8 +43,8 @@ class CN3River : public CN3Base // CN3RiverPatch¸¦ °ü¸®ÇÏ´Â Å¬·¡½º
         _RIVER_DIFF *   pDiff;
 
         BOOL      m_bTick2Rand;
-        __Vector3 m_vCenterPo; //    °­ÀÇ Áß°£ÁöÁ¡
-        float     m_fRadius;   //    °­ÀÇ Áö¸§
+        __Vector3 m_vCenterPo; //    ê°•ì˜ ì¤‘ê°„ì§€ì 
+        float     m_fRadius;   //    ê°•ì˜ ì§€ë¦„
 
         CN3Texture * m_pTexWave;
 

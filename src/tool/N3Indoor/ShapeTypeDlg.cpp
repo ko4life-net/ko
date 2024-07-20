@@ -66,7 +66,7 @@ void CShapeTypeDlg::OnOK() {
     CButton *pBut = (CButton *)GetDlgItem(IDC_RADIO_PARTIAL), *pBut2 = (CButton *)GetDlgItem(IDC_RADIO_NONEPARTIAL);
 
     if (!pBut->GetCheck() && !pBut2->GetCheck()) {
-        AfxMessageBox("¸ÕÀú Shape TypeÀ» ¼³Á¤ÇÏ¼¼¿©..");
+        AfxMessageBox("ë¨¼ì € Shape Typeì„ ì„¤ì •í•˜ì„¸ì—¬..");
         return;
     }
 

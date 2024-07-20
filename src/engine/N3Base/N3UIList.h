@@ -12,7 +12,7 @@ typedef typename std::list<CN3UIString *>::iterator it_pString;
 
 class CN3UIList : public CN3UIBase {
   protected:
-    int                      m_iCurSel;    // ÇöÀç ¼±ÅÃ..
+    int                      m_iCurSel;    // í˜„ì¬ ì„ íƒ..
     std::list<CN3UIString *> m_ListString; // String List
     class CN3UIScrollBar *   m_pScrollBarRef;
 

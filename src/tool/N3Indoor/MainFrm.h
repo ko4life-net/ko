@@ -60,7 +60,7 @@ class CMainFrame : public CFrameWnd, public CN3Base {
 
     // States..
   public:
-    e_State       m_eState; // »óÅÂ º¯¼öµé..
+    e_State       m_eState; // ìƒíƒœ ë³€ìˆ˜ë“¤..
     e_SelectState m_eSelectState;
     DWORD         m_dwRenderingOption;
     e_EditMode    m_eEditState;
@@ -80,20 +80,20 @@ class CMainFrame : public CFrameWnd, public CN3Base {
     CN3EngTool        m_Eng;
     CN3Camera         m_Camera;
     CN3Light          m_Light;
-    CDlgBase *        m_pDlgBase; // °´Ã¼ µî·ÏÁ¤º¸ ÆíÁı ´ëÈ­»óÀÚ..
+    CDlgBase *        m_pDlgBase; // ê°ì²´ ë“±ë¡ì •ë³´ í¸ì§‘ ëŒ€í™”ìƒì..
     CTotalToolSheet * m_pTotalSheet;
-    CDlgShapeList *   m_pDlgSourceList;      // Object ¸ñ·ÏÀ» º¸¿©ÁÙ ´ÙÀÌ¾Ë·Î±×
-    CDlgShapeList *   m_pDlgOutputList;      // ¸Ê¿¡ ¹èÄ¡ÇÑ Object¸¦ º¸¿©ÁÙ ´ÙÀÌ¾Ë·Î±×
-    CN3Scene *        m_pSceneSource;        // source object ¸ñ·Ï¿¡ º¸¿©ÁÙ °ÍµéÀ» ´ãÀº Scene
-    SelectElement     m_LastSelectedElement; // °¡Àå ¸¶Áö¸·À¸·Î ¼±ÅÃµÈ °´Ã¼..    Æ÷Ä¿½º ¸ÂÃâ¶§ ¾´´Ù..
+    CDlgShapeList *   m_pDlgSourceList;      // Object ëª©ë¡ì„ ë³´ì—¬ì¤„ ë‹¤ì´ì•Œë¡œê·¸
+    CDlgShapeList *   m_pDlgOutputList;      // ë§µì— ë°°ì¹˜í•œ Objectë¥¼ ë³´ì—¬ì¤„ ë‹¤ì´ì•Œë¡œê·¸
+    CN3Scene *        m_pSceneSource;        // source object ëª©ë¡ì— ë³´ì—¬ì¤„ ê²ƒë“¤ì„ ë‹´ì€ Scene
+    SelectElement     m_LastSelectedElement; // ê°€ì¥ ë§ˆì§€ë§‰ìœ¼ë¡œ ì„ íƒëœ ê°ì²´..    í¬ì»¤ìŠ¤ ë§ì¶œë•Œ ì“´ë‹¤..
 
     //.................
     CArray<CPortalVolume *, CPortalVolume *> m_SelVolArray;
     std::list<FloorInfo>                     m_FloorList;
-    CTransDummy *                            m_pDummy;     // ¹°Ã¼¸¦ ÀÌµ¿ È¸Àü È®´ë/Ãà¼Ò ÇÏ´Â ±â´ÉÀ» ´ã´çÇÏ´Â Å¬·¡½º
-    CPosDummy                                m_PosDummy;   // ÀÌµ¿
-    CRotDummy                                m_RotDummy;   // È¸Àü
-    CScaleDummy                              m_ScaleDummy; // È®´ë/Ãà¼Ò
+    CTransDummy *                            m_pDummy;     // ë¬¼ì²´ë¥¼ ì´ë™ íšŒì „ í™•ëŒ€/ì¶•ì†Œ í•˜ëŠ” ê¸°ëŠ¥ì„ ë‹´ë‹¹í•˜ëŠ” í´ë˜ìŠ¤
+    CPosDummy                                m_PosDummy;   // ì´ë™
+    CRotDummy                                m_RotDummy;   // íšŒì „
+    CScaleDummy                              m_ScaleDummy; // í™•ëŒ€/ì¶•ì†Œ
     CSwappedDummy                            m_SwappedDummy;
     //..................
 
@@ -110,19 +110,19 @@ class CMainFrame : public CFrameWnd, public CN3Base {
     // Implementation
   public:
     void           FindMinMaxTotalShape(__Vector3 & vecMin, __Vector3 & vecMax);
-    void           OutputDlgRefresh(); // ¼Ò½º¸ñ·Ï¿¡¼­ ¼±ÅÃÇÑ Object¸¦ ³ÖÀ¸¸é OutputSceneÀ¸·Î º¹»çÇØ¼­ ³Ö¾îÁØ´Ù.
+    void           OutputDlgRefresh(); // ì†ŒìŠ¤ëª©ë¡ì—ì„œ ì„ íƒí•œ Objectë¥¼ ë„£ìœ¼ë©´ OutputSceneìœ¼ë¡œ ë³µì‚¬í•´ì„œ ë„£ì–´ì¤€ë‹¤.
     CN3Transform * AddChr(CN3Scene * pDestScene, const std::string & szFN,
-                          BOOL bGenerateChainNumber); // Æ¯Á¤Scene¿¡ Ä³¸¯ÅÍ °´Ã¼¸¦ º¹»çÇØ Ãß°¡
+                          BOOL bGenerateChainNumber); // íŠ¹ì •Sceneì— ìºë¦­í„° ê°ì²´ë¥¼ ë³µì‚¬í•´ ì¶”ê°€
     CN3Transform * AddShape(CN3Scene * pDestScene, const std::string & szFN,
-                            BOOL bGenerateChainNumber); // Æ¯Á¤Scene¿¡ Shape °´Ã¼¸¦ º¹»çÇØ Ãß°¡
+                            BOOL bGenerateChainNumber); // íŠ¹ì •Sceneì— Shape ê°ì²´ë¥¼ ë³µì‚¬í•´ ì¶”ê°€
 
     void        UpdateShapeInfoDisplay();
-    void        RenderObjectToWindow(CN3TransformCollision * pObj, HWND hWnd); // Æ¯Á¤ À©µµ¿ì¿¡ Object¸¦ ±×·ÁÁØ´Ù.
+    void        RenderObjectToWindow(CN3TransformCollision * pObj, HWND hWnd); // íŠ¹ì • ìœˆë„ìš°ì— Objectë¥¼ ê·¸ë ¤ì¤€ë‹¤.
     ShapeInfo * GetShapeForDisplay();
     void        TotalValidateCheckAfterDelete();
 
     // Scene Source..
-    void LoadSourceObjects(); // Folder ¿¡¼­ Source Object ¸¦ ÀĞ¾î¿Â´Ù.
+    void LoadSourceObjects(); // Folder ì—ì„œ Source Object ë¥¼ ì½ì–´ì˜¨ë‹¤.
     void RefreshSourceObjects();
 
     void            SetFPSString(LPCTSTR pStr);

@@ -62,8 +62,8 @@ class CSowSeedMng {
 
     int Add_List_Count;
 
-    __VertexColor * m_pVertices; // Á¡ ¹öÆÛ
-    int             m_nVC;       // Á¡ °¹¼ö
+    __VertexColor * m_pVertices; // ì  ë²„í¼
+    int             m_nVC;       // ì  ê°¯ìˆ˜
 
     bool  bActive;
     BOOL  Render_Grass;
@@ -75,7 +75,7 @@ class CSowSeedMng {
     void SetActive(BOOL flage);
 
     void Render(LPDIRECT3DDEVICE9 lpD3DDevice);
-    // Mouse ¸Ş¼¼Áö Ã³¸®
+    // Mouse ë©”ì„¸ì§€ ì²˜ë¦¬
     BOOL MouseMessage(LPMSG pMsg);
     void Release();
     void Create_Grass(int NUm);

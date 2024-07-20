@@ -133,7 +133,7 @@ bool CZipFileHeader::ReadLocal(CZipStorage * pStorage, WORD & iLocExtrFieldSize)
         return false;
     }
 
-    // jeszcze mo¿naby porównaæ nazwy plików
+    // jeszcze moÅ¼naby porÃ³wnaÄ‡ nazwy plikÃ³w
 
     if (!bIsDataDescr /* || !pStorage->IsSpanMode()*/) {
         if (!CheckCrcAndSizes(buf + 14)) {

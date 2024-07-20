@@ -20,8 +20,8 @@ class CUIMessageBox : public CN3UIBase {
     CN3UIEdit *   m_pEdit_Common;
 
   public:
-    e_Behavior m_eBehavior; // OK ¹öÆ°À» ´©¸£¸é ÇÒÁş...
-    int        m_iStyle;    // ¸Ş½ÃÁö ¹Ú½º ½ºÅ¸ÀÏ
+    e_Behavior m_eBehavior; // OK ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ í• ì§“...
+    int        m_iStyle;    // ë©”ì‹œì§€ ë°•ìŠ¤ ìŠ¤íƒ€ì¼
 
   public:
     bool OnKeyPress(int iKey);

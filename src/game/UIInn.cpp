@@ -25,14 +25,14 @@ CUIInn::~CUIInn() {}
 
 bool CUIInn::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     if (dwMsg == UIMSG_BUTTON_CLICK) {
-        if (pSender->m_szID == "btn_warehouse") //Ã¢°íÀÌ¿ë..
+        if (pSender->m_szID == "btn_warehouse") //ì°½ê³ ì´ìš©..
         {
             MsgSend_OpenWareHouse();
             SetVisible(false);
             return true;
         }
 
-        if (pSender->m_szID == "btn_makeclan") //clan »ı¼º..
+        if (pSender->m_szID == "btn_makeclan") //clan ìƒì„±..
         {
             __InfoPlayerBase *   pInfo = &(CGameProcedure::s_pPlayer->m_InfoBase);
             __InfoPlayerMySelf * pInfoExt = &(CGameProcedure::s_pPlayer->m_InfoExt);
@@ -79,8 +79,8 @@ void CUIInn::Message(int iMessageID) {
 }
 
 void CUIInn::MsgSend_OpenWareHouse() {
-    BYTE byBuff[2];   // ÆĞÅ¶ ¹öÆÛ..
-    int  iOffset = 0; // ÆĞÅ¶ ¿ÀÇÁ¼Â..
+    BYTE byBuff[2];   // íŒ¨í‚· ë²„í¼..
+    int  iOffset = 0; // íŒ¨í‚· ì˜¤í”„ì…‹..
 
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_WAREHOUSE);
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_WARE_OPEN);

@@ -12,14 +12,14 @@
 CN3BaseFileAccess::CN3BaseFileAccess() {
     m_dwType |= OBJ_BASE_FILEACCESS;
     m_szFileName = "";
-    m_iLOD = 0; // ·ÎµùÇÒ¶§ ¾µ LOD
+    m_iLOD = 0; // ë¡œë”©í• ë•Œ ì“¸ LOD
 }
 
 CN3BaseFileAccess::~CN3BaseFileAccess() {}
 
 void CN3BaseFileAccess::Release() {
     m_szFileName = "";
-    m_iLOD = 0; // ·ÎµùÇÒ¶§ ¾µ LOD
+    m_iLOD = 0; // ë¡œë”©í• ë•Œ ì“¸ LOD
     CN3Base::Release();
 }
 
@@ -27,11 +27,11 @@ void CN3BaseFileAccess::FileNameSet(const std::string & szFileName) {
     std::string szTmpFN = szFileName;
 
     if (!szTmpFN.empty()) {
-        CharLower(&(szTmpFN[0])); // ¸ğµÎ ¼Ò¹®ÀÚ·Î ¸¸µç´Ù..
+        CharLower(&(szTmpFN[0])); // ëª¨ë‘ ì†Œë¬¸ìë¡œ ë§Œë“ ë‹¤..
     }
-    int iPos = szTmpFN.find(s_szPath); // ¹®ÀÚ¿­¿¡ Base Path ¿Í ÀÏÄ¡ÇÏ´Â ÀÌ¸§ÀÌ ÀÖ´ÂÁö º»´Ù.
+    int iPos = szTmpFN.find(s_szPath); // ë¬¸ìì—´ì— Base Path ì™€ ì¼ì¹˜í•˜ëŠ” ì´ë¦„ì´ ìˆëŠ”ì§€ ë³¸ë‹¤.
     if (iPos >= 0) {
-        m_szFileName = szTmpFN.substr(s_szPath.size()); // °æ·Î°¡ ÀÏÄ¡ÇÏ¸é.. ±ä°æ·Î´Â Â©¶óÁØ´Ù..
+        m_szFileName = szTmpFN.substr(s_szPath.size()); // ê²½ë¡œê°€ ì¼ì¹˜í•˜ë©´.. ê¸´ê²½ë¡œëŠ” ì§¤ë¼ì¤€ë‹¤..
     } else {
         m_szFileName = szTmpFN;
     }
@@ -62,7 +62,7 @@ bool CN3BaseFileAccess::LoadFromFile() {
 
     std::string szFullPath;
     if (-1 != m_szFileName.find(':') || -1 != m_szFileName.find("\\\\") ||
-        -1 != m_szFileName.find("//")) // ¹®ÀÚ¿­¿¡ ':', '\\', '//' ÀÌ µé¾î ÀÖÀ¸¸é ÀüÃ¼ °æ·ÎÀÌ´Ù..
+        -1 != m_szFileName.find("//")) // ë¬¸ìì—´ì— ':', '\\', '//' ì´ ë“¤ì–´ ìˆìœ¼ë©´ ì „ì²´ ê²½ë¡œì´ë‹¤..
     {
         szFullPath = m_szFileName;
     } else {
@@ -107,7 +107,7 @@ bool CN3BaseFileAccess::SaveToFile() {
 
     std::string szFullPath;
     if (-1 != m_szFileName.find(':') || -1 != m_szFileName.find("\\\\") ||
-        -1 != m_szFileName.find("//")) // ¹®ÀÚ¿­¿¡ ':', '\\', '//' ÀÌ µé¾î ÀÖÀ¸¸é ÀüÃ¼ °æ·ÎÀÌ´Ù..
+        -1 != m_szFileName.find("//")) // ë¬¸ìì—´ì— ':', '\\', '//' ì´ ë“¤ì–´ ìˆìœ¼ë©´ ì „ì²´ ê²½ë¡œì´ë‹¤..
     {
         szFullPath = m_szFileName;
     } else {

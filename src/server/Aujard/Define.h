@@ -107,24 +107,24 @@ typedef union {
 ////////////////////////////////////////////////////////////////
 // Knights Packet sub define
 ////////////////////////////////////////////////////////////////
-#define KNIGHTS_CREATE      0x11 // »ı¼º
-#define KNIGHTS_JOIN        0x12 // °¡ÀÔ
-#define KNIGHTS_WITHDRAW    0x13 // Å»Åğ
-#define KNIGHTS_REMOVE      0x14 // ¸â¹ö »èÁ¦
-#define KNIGHTS_DESTROY     0x15 // »Ç°³±â
-#define KNIGHTS_ADMIT       0x16 // ¸â¹ö °¡ÀÔ Çã°¡
-#define KNIGHTS_REJECT      0x17 // ¸â¹ö °¡ÀÔ °ÅÀı
-#define KNIGHTS_PUNISH      0x18 // ¸â¹ö Â¡°è
-#define KNIGHTS_CHIEF       0x19 // ´ÜÀå ÀÓ¸í
-#define KNIGHTS_VICECHIEF   0x1A // ºÎ´ÜÀå ÀÓ¸í
-#define KNIGHTS_OFFICER     0x1B // Àå±³ÀÓ¸í
-#define KNIGHTS_ALLLIST_REQ 0x1C // ¸®½ºÆ®¸¦ 10°³ ´ÜÀ§·Î Page ¿äÃ»
-#define KNIGHTS_MEMBER_REQ  0x1D // ¸ğµç ¸â¹ö ¿äÃ»
-#define KNIGHTS_CURRENT_REQ 0x1E // ÇöÀç Á¢¼Ó ¸®½ºÆ®
-#define KNIGHTS_STASH       0x1F // ±â»ç´Ü Ã¢°í
-#define KNIGHTS_MODIFY_FAME 0x20 // ¸â¹öÀÇ Á÷À§ º¯°æ.. ÇØ´ç ¸â¹ö¿¡°Ô °£´Ù
-#define KNIGHTS_JOIN_REQ    0x21 // ÇØ´ç¸â¹ö¿¡°Ô °¡ÀÔ¿äÃ»À» ÇÑ´Ù
-#define KNIGHTS_LIST_REQ    0x22 // ±â»ç´Ü ¸®½ºÆ®¸¦  ¿äÃ» ( index °Ë»ö )
+#define KNIGHTS_CREATE      0x11 // ìƒì„±
+#define KNIGHTS_JOIN        0x12 // ê°€ì…
+#define KNIGHTS_WITHDRAW    0x13 // íƒˆí‡´
+#define KNIGHTS_REMOVE      0x14 // ë©¤ë²„ ì‚­ì œ
+#define KNIGHTS_DESTROY     0x15 // ë½€ê°œê¸°
+#define KNIGHTS_ADMIT       0x16 // ë©¤ë²„ ê°€ì… í—ˆê°€
+#define KNIGHTS_REJECT      0x17 // ë©¤ë²„ ê°€ì… ê±°ì ˆ
+#define KNIGHTS_PUNISH      0x18 // ë©¤ë²„ ì§•ê³„
+#define KNIGHTS_CHIEF       0x19 // ë‹¨ì¥ ì„ëª…
+#define KNIGHTS_VICECHIEF   0x1A // ë¶€ë‹¨ì¥ ì„ëª…
+#define KNIGHTS_OFFICER     0x1B // ì¥êµì„ëª…
+#define KNIGHTS_ALLLIST_REQ 0x1C // ë¦¬ìŠ¤íŠ¸ë¥¼ 10ê°œ ë‹¨ìœ„ë¡œ Page ìš”ì²­
+#define KNIGHTS_MEMBER_REQ  0x1D // ëª¨ë“  ë©¤ë²„ ìš”ì²­
+#define KNIGHTS_CURRENT_REQ 0x1E // í˜„ì¬ ì ‘ì† ë¦¬ìŠ¤íŠ¸
+#define KNIGHTS_STASH       0x1F // ê¸°ì‚¬ë‹¨ ì°½ê³ 
+#define KNIGHTS_MODIFY_FAME 0x20 // ë©¤ë²„ì˜ ì§ìœ„ ë³€ê²½.. í•´ë‹¹ ë©¤ë²„ì—ê²Œ ê°„ë‹¤
+#define KNIGHTS_JOIN_REQ    0x21 // í•´ë‹¹ë©¤ë²„ì—ê²Œ ê°€ì…ìš”ì²­ì„ í•œë‹¤
+#define KNIGHTS_LIST_REQ    0x22 // ê¸°ì‚¬ë‹¨ ë¦¬ìŠ¤íŠ¸ë¥¼  ìš”ì²­ ( index ê²€ìƒ‰ )
 
 ////////////////////////////////////////////////////////////////
 // Clan Packet sub define
@@ -145,124 +145,124 @@ typedef union {
 #define SEND_REGION 0x02
 #define SEND_ALL    0x03
 
-#define SLOT_MAX      14   // Âø¿ë ¾ÆÅÛ MAX
-#define HAVE_MAX      28   // ¼ÒÀ¯ ¾ÆÅÛ MAX (ÀÎº¥Åä¸®Ã¢)
-#define ITEMCOUNT_MAX 9999 // ¼Ò¸ğ ¾ÆÀÌÅÛ ¼ÒÀ¯ ÇÑ°è°ª
-#define WAREHOUSE_MAX 196  // Ã¢°í ¾ÆÀÌÅÛ MAX
+#define SLOT_MAX      14   // ì°©ìš© ì•„í…œ MAX
+#define HAVE_MAX      28   // ì†Œìœ  ì•„í…œ MAX (ì¸ë²¤í† ë¦¬ì°½)
+#define ITEMCOUNT_MAX 9999 // ì†Œëª¨ ì•„ì´í…œ ì†Œìœ  í•œê³„ê°’
+#define WAREHOUSE_MAX 196  // ì°½ê³  ì•„ì´í…œ MAX
 /////////////////////////////////////////////////////////////////////////////////
 // Structure Define
 /////////////////////////////////////////////////////////////////////////////////
 struct _ITEM_DATA {
-    int     nNum;       // item ¹øÈ£
-    short   sDuration;  // item ³»±¸·Â
-    short   sCount;     // item °¹¼ö or item Ãàº¹ ¼Ó¼º¿¡ ÇØ´ç °ª
+    int     nNum;       // item ë²ˆí˜¸
+    short   sDuration;  // item ë‚´êµ¬ë ¥
+    short   sCount;     // item ê°¯ìˆ˜ or item ì¶•ë³µ ì†ì„±ì— í•´ë‹¹ ê°’
     __int64 nSerialNum; // item serial code
 };
 
 struct _ITEM_TABLE {
     int   m_iNum;             // item num
     char  m_strName[50];      // item Name
-    BYTE  m_bKind;            // item Á¾·ù
-    BYTE  m_bSlot;            // ÀåÂøÀ§Ä¡
-    BYTE  m_bRace;            // »ç¿ë °¡´ÉÇÑ Á¾Á·
-    BYTE  m_bClass;           // »ç¿ë °¡´ÉÇÑ Class
-    short m_sDamage;          // ÃÖ´ë Å¸°İÄ¡
-    short m_sDelay;           // °ø°İ½Ã°£
-    short m_sRange;           // ¹üÀ§(À¯È¿°Å¸®)
-    short m_sWeight;          // ¹«°Ô
-    short m_sDuration;        // ³»±¸¼º
-    int   m_iBuyPrice;        // À¯Àú°¡ »ç´Â°¡°İ
-    int   m_iSellPrice;       // À¯Àú°¡ ÆÄ´Â°¡°İ
-    short m_sAc;              // ¹æ¾î·Â
-    BYTE  m_bCountable;       // °³¼ö °³³ä ¾ÆÀÌÅÛ
-    int   m_iEffect1;         // ¸ÅÁ÷ ÀÌÆåÆ®1
-    int   m_iEffect2;         // ¸ÅÁ÷ ÀÌÆåÆ®2
-    BYTE  m_bReqLevel;        // ¿ä±¸ ·¹º§
-    BYTE  m_bReqRank;         // ¿ä±¸ ÀÛÀ§
-    BYTE  m_bReqTitle;        // ¿ä±¸ ÁöÀ§
-    BYTE  m_bReqStr;          // ¿ä±¸ Èû
-    BYTE  m_bReqSta;          // ¿ä±¸ Ã¼·Â
-    BYTE  m_bReqDex;          // ¿ä±¸ ¹ÎÃ¸
-    BYTE  m_bReqIntel;        // ¿ä±¸ Áö´É
-    BYTE  m_bReqCha;          // ¿ä±¸ ¸Å·Â
-    BYTE  m_bSellingGroup;    // »óÀÎ Ãë±Ş ¹°Ç°
-    BYTE  m_ItemType;         // ¸ÅÁ÷¾ÆÀÌÅÛ ¶Ç´Â ·¹¾î¾ÆÀÌÅÛ
-    short m_sHitrate;         // Å¸°İ·ü
-    short m_sEvarate;         // È¸ÇÇÀ²
-    short m_sDaggerAc;        // ¹æ¾î·Â1
-    short m_sSwordAc;         // ¹æ¾î·Â2
-    short m_sMaceAc;          // ¹æ¾î·Â3
-    short m_sAxeAc;           // ¹æ¾î·Â4
-    short m_sSpearAc;         // ¹æ¾î·Â5
-    short m_sBowAc;           // ¹æ¾î·Â6
-    BYTE  m_bFireDamage;      // ºÒ ¼Ó¼º
-    BYTE  m_bIceDamage;       // ³Ã±â ¼Ó¼º
-    BYTE  m_bLightningDamage; // Àü°İ ¼Ó¼º
-    BYTE  m_bPoisonDamage;    // µ¶ ¼Ó¼º
-    BYTE  m_bHPDrain;         // HP Èí¼ö
-    BYTE  m_bMPDamage;        // MP Å¸°İ
-    BYTE  m_bMPDrain;         // MP Èí¼ö
-    BYTE  m_bMirrorDamage;    // ¹İ»ç Å¸°İ
-    BYTE  m_bDroprate;        // µå·Ó ºñÀ²
-    BYTE  m_bStrB;            // Èû º¸³Ê½º
-    BYTE  m_bStaB;            // Ã¼·Â º¸³Ê½º
-    BYTE  m_bDexB;            // ¹ÎÃ¸¼º º¸³Ê½º
-    BYTE  m_bIntelB;          // Áö´É º¸³Ê½º
-    BYTE  m_bChaB;            // ¸Å·Â º¸³Ê½º
+    BYTE  m_bKind;            // item ì¢…ë¥˜
+    BYTE  m_bSlot;            // ì¥ì°©ìœ„ì¹˜
+    BYTE  m_bRace;            // ì‚¬ìš© ê°€ëŠ¥í•œ ì¢…ì¡±
+    BYTE  m_bClass;           // ì‚¬ìš© ê°€ëŠ¥í•œ Class
+    short m_sDamage;          // ìµœëŒ€ íƒ€ê²©ì¹˜
+    short m_sDelay;           // ê³µê²©ì‹œê°„
+    short m_sRange;           // ë²”ìœ„(ìœ íš¨ê±°ë¦¬)
+    short m_sWeight;          // ë¬´ê²Œ
+    short m_sDuration;        // ë‚´êµ¬ì„±
+    int   m_iBuyPrice;        // ìœ ì €ê°€ ì‚¬ëŠ”ê°€ê²©
+    int   m_iSellPrice;       // ìœ ì €ê°€ íŒŒëŠ”ê°€ê²©
+    short m_sAc;              // ë°©ì–´ë ¥
+    BYTE  m_bCountable;       // ê°œìˆ˜ ê°œë… ì•„ì´í…œ
+    int   m_iEffect1;         // ë§¤ì§ ì´í™íŠ¸1
+    int   m_iEffect2;         // ë§¤ì§ ì´í™íŠ¸2
+    BYTE  m_bReqLevel;        // ìš”êµ¬ ë ˆë²¨
+    BYTE  m_bReqRank;         // ìš”êµ¬ ì‘ìœ„
+    BYTE  m_bReqTitle;        // ìš”êµ¬ ì§€ìœ„
+    BYTE  m_bReqStr;          // ìš”êµ¬ í˜
+    BYTE  m_bReqSta;          // ìš”êµ¬ ì²´ë ¥
+    BYTE  m_bReqDex;          // ìš”êµ¬ ë¯¼ì²©
+    BYTE  m_bReqIntel;        // ìš”êµ¬ ì§€ëŠ¥
+    BYTE  m_bReqCha;          // ìš”êµ¬ ë§¤ë ¥
+    BYTE  m_bSellingGroup;    // ìƒì¸ ì·¨ê¸‰ ë¬¼í’ˆ
+    BYTE  m_ItemType;         // ë§¤ì§ì•„ì´í…œ ë˜ëŠ” ë ˆì–´ì•„ì´í…œ
+    short m_sHitrate;         // íƒ€ê²©ë¥ 
+    short m_sEvarate;         // íšŒí”¼ìœ¨
+    short m_sDaggerAc;        // ë°©ì–´ë ¥1
+    short m_sSwordAc;         // ë°©ì–´ë ¥2
+    short m_sMaceAc;          // ë°©ì–´ë ¥3
+    short m_sAxeAc;           // ë°©ì–´ë ¥4
+    short m_sSpearAc;         // ë°©ì–´ë ¥5
+    short m_sBowAc;           // ë°©ì–´ë ¥6
+    BYTE  m_bFireDamage;      // ë¶ˆ ì†ì„±
+    BYTE  m_bIceDamage;       // ëƒ‰ê¸° ì†ì„±
+    BYTE  m_bLightningDamage; // ì „ê²© ì†ì„±
+    BYTE  m_bPoisonDamage;    // ë… ì†ì„±
+    BYTE  m_bHPDrain;         // HP í¡ìˆ˜
+    BYTE  m_bMPDamage;        // MP íƒ€ê²©
+    BYTE  m_bMPDrain;         // MP í¡ìˆ˜
+    BYTE  m_bMirrorDamage;    // ë°˜ì‚¬ íƒ€ê²©
+    BYTE  m_bDroprate;        // ë“œë¡­ ë¹„ìœ¨
+    BYTE  m_bStrB;            // í˜ ë³´ë„ˆìŠ¤
+    BYTE  m_bStaB;            // ì²´ë ¥ ë³´ë„ˆìŠ¤
+    BYTE  m_bDexB;            // ë¯¼ì²©ì„± ë³´ë„ˆìŠ¤
+    BYTE  m_bIntelB;          // ì§€ëŠ¥ ë³´ë„ˆìŠ¤
+    BYTE  m_bChaB;            // ë§¤ë ¥ ë³´ë„ˆìŠ¤
     short m_MaxHpB;           // MaxHP add
     short m_MaxMpB;           // MaxMP add
-    BYTE  m_bFireR;           // ºÒ ¸¶¹ı ÀúÇ×·Â
-    BYTE  m_bColdR;           // ¾óÀ½ ¸¶¹ı ÀúÇ×·Â
-    BYTE  m_bLightningR;      // Àü±â ¸¶¹ı ÀúÇ×·Â
-    BYTE  m_bMagicR;          // ±âÅ¸ ¸¶¹ı ÀúÇ×·Â
-    BYTE  m_bPoisonR;         // µ¶ ¸¶¹ı ÀúÇ×·Â
-    BYTE  m_bCurseR;          // ÀúÁÖ ¸¶¹ı ÀúÇ×·Â
+    BYTE  m_bFireR;           // ë¶ˆ ë§ˆë²• ì €í•­ë ¥
+    BYTE  m_bColdR;           // ì–¼ìŒ ë§ˆë²• ì €í•­ë ¥
+    BYTE  m_bLightningR;      // ì „ê¸° ë§ˆë²• ì €í•­ë ¥
+    BYTE  m_bMagicR;          // ê¸°íƒ€ ë§ˆë²• ì €í•­ë ¥
+    BYTE  m_bPoisonR;         // ë… ë§ˆë²• ì €í•­ë ¥
+    BYTE  m_bCurseR;          // ì €ì£¼ ë§ˆë²• ì €í•­ë ¥
 };
 
 struct _USER_DATA {
-    char m_id[MAX_ID_SIZE + 1];        // À¯Àú ID
-    char m_Accountid[MAX_ID_SIZE + 1]; // °èÁ¤ ID
+    char m_id[MAX_ID_SIZE + 1];        // ìœ ì € ID
+    char m_Accountid[MAX_ID_SIZE + 1]; // ê³„ì • ID
 
-    BYTE  m_bZone; // ÇöÀç Zone
-    float m_curx;  // ÇöÀç X ÁÂÇ¥
-    float m_curz;  // ÇöÀç Z ÁÂÇ¥
-    float m_cury;  // ÇöÀç Y ÁÂÇ¥
+    BYTE  m_bZone; // í˜„ì¬ Zone
+    float m_curx;  // í˜„ì¬ X ì¢Œí‘œ
+    float m_curz;  // í˜„ì¬ Z ì¢Œí‘œ
+    float m_cury;  // í˜„ì¬ Y ì¢Œí‘œ
 
-    BYTE  m_bNation;    // ¼Ò¼Ó±¹°¡
-    BYTE  m_bRace;      // Á¾Á·
-    short m_sClass;     // Á÷¾÷
-    BYTE  m_bHairColor; // ¼ºº°
-    BYTE  m_bRank;      // ÀÛÀ§
-    BYTE  m_bTitle;     // ÁöÀ§
-    BYTE  m_bLevel;     // ·¹º§
-    int   m_iExp;       // °æÇèÄ¡
-    int   m_iLoyalty;   // ·Î¿­Æ¼
-    BYTE  m_bFace;      // Á¾±³
-    BYTE  m_bCity;      // ¼Ò¼Óµµ½Ã
-    short m_bKnights;   // ¼Ò¼Ó ±â»ç´Ü
-    //short    m_sClan;                        // ¼Ò¼Ó Clan
-    BYTE  m_bFame;      // ¸í¼º
+    BYTE  m_bNation;    // ì†Œì†êµ­ê°€
+    BYTE  m_bRace;      // ì¢…ì¡±
+    short m_sClass;     // ì§ì—…
+    BYTE  m_bHairColor; // ì„±ë³„
+    BYTE  m_bRank;      // ì‘ìœ„
+    BYTE  m_bTitle;     // ì§€ìœ„
+    BYTE  m_bLevel;     // ë ˆë²¨
+    int   m_iExp;       // ê²½í—˜ì¹˜
+    int   m_iLoyalty;   // ë¡œì—´í‹°
+    BYTE  m_bFace;      // ì¢…êµ
+    BYTE  m_bCity;      // ì†Œì†ë„ì‹œ
+    short m_bKnights;   // ì†Œì† ê¸°ì‚¬ë‹¨
+    //short    m_sClan;                        // ì†Œì† Clan
+    BYTE  m_bFame;      // ëª…ì„±
     short m_sHp;        // HP
     short m_sMp;        // MP
     short m_sSp;        // SP
-    BYTE  m_bStr;       // Èû
-    BYTE  m_bSta;       // »ı¸í·Â
-    BYTE  m_bDex;       // °ø°İ, È¸ÇÇÀ²
-    BYTE  m_bIntel;     // ÁöÇı(?), Ä³¸¯ÅÍ ¸¶¹ı·Â °áÁ¤
-    BYTE  m_bCha;       // ¸¶¹ı ¼º°ø·ü, ¹°°Ç °¡°İ °áÁ¤(?)
-    BYTE  m_bAuthority; // À¯Àú ±ÇÇÑ
-    BYTE  m_bPoints;    // º¸³Ê½º Æ÷ÀÎÆ®
-    int   m_iGold;      // Ä³¸¯ÀÌ Áö´Ñ µ·(21¾ï)
+    BYTE  m_bStr;       // í˜
+    BYTE  m_bSta;       // ìƒëª…ë ¥
+    BYTE  m_bDex;       // ê³µê²©, íšŒí”¼ìœ¨
+    BYTE  m_bIntel;     // ì§€í˜œ(?), ìºë¦­í„° ë§ˆë²•ë ¥ ê²°ì •
+    BYTE  m_bCha;       // ë§ˆë²• ì„±ê³µë¥ , ë¬¼ê±´ ê°€ê²© ê²°ì •(?)
+    BYTE  m_bAuthority; // ìœ ì € ê¶Œí•œ
+    BYTE  m_bPoints;    // ë³´ë„ˆìŠ¤ í¬ì¸íŠ¸
+    int   m_iGold;      // ìºë¦­ì´ ì§€ë‹Œ ëˆ(21ì–µ)
     short m_sBind;      // Saved Bind Point
-    int   m_iBank;      // Ã¢°íÀÇ µ·(21¾ï)
+    int   m_iBank;      // ì°½ê³ ì˜ ëˆ(21ì–µ)
 
-    BYTE       m_bstrSkill[9];                    // Á÷¾÷º° ½ºÅ³
+    BYTE       m_bstrSkill[9];                    // ì§ì—…ë³„ ìŠ¤í‚¬
     _ITEM_DATA m_sItemArray[HAVE_MAX + SLOT_MAX]; // 42*8 bytes
-    _ITEM_DATA m_sWarehouseArray[WAREHOUSE_MAX];  // Ã¢°í ¾ÆÀÌÅÛ    196*8 bytes
+    _ITEM_DATA m_sWarehouseArray[WAREHOUSE_MAX];  // ì°½ê³  ì•„ì´í…œ    196*8 bytes
 
-    BYTE  m_bLogout;    // ·Î±×¾Æ¿ô ÇÃ·¡±×
-    BYTE  m_bWarehouse; // Ã¢°í °Å·¡ Çß¾ú³ª?
-    DWORD m_dwTime;     // ÇÃ·¹ÀÌÅ¸ÀÓ...
+    BYTE  m_bLogout;    // ë¡œê·¸ì•„ì›ƒ í”Œë˜ê·¸
+    BYTE  m_bWarehouse; // ì°½ê³  ê±°ë˜ í–ˆì—ˆë‚˜?
+    DWORD m_dwTime;     // í”Œë ˆì´íƒ€ì„...
 };
 
 //////////////////////////////////////////////////////////////////

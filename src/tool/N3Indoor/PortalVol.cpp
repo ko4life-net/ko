@@ -43,7 +43,7 @@ CPortalVol::CPortalVol() {
 
     unsigned short * pIdx = m_pIndex;
 
-    // ¾Æ·§¸é.
+    // ì•„ë«ë©´.
     *pIdx++ = 0;
     *pIdx++ = 1;
     *pIdx++ = 3;
@@ -51,7 +51,7 @@ CPortalVol::CPortalVol() {
     *pIdx++ = 3;
     *pIdx++ = 1;
 
-    // ¾Õ¸é..
+    // ì•ë©´..
     *pIdx++ = 7;
     *pIdx++ = 3;
     *pIdx++ = 6;
@@ -59,7 +59,7 @@ CPortalVol::CPortalVol() {
     *pIdx++ = 6;
     *pIdx++ = 3;
 
-    // ¿ŞÂÊ..
+    // ì™¼ìª½..
     *pIdx++ = 4;
     *pIdx++ = 0;
     *pIdx++ = 7;
@@ -67,7 +67,7 @@ CPortalVol::CPortalVol() {
     *pIdx++ = 7;
     *pIdx++ = 0;
 
-    // ¿À¸¥ÂÊ..
+    // ì˜¤ë¥¸ìª½..
     *pIdx++ = 6;
     *pIdx++ = 2;
     *pIdx++ = 5;
@@ -75,7 +75,7 @@ CPortalVol::CPortalVol() {
     *pIdx++ = 5;
     *pIdx++ = 2;
 
-    // µŞ¸é..
+    // ë’·ë©´..
     *pIdx++ = 5;
     *pIdx++ = 1;
     *pIdx++ = 4;
@@ -83,7 +83,7 @@ CPortalVol::CPortalVol() {
     *pIdx++ = 4;
     *pIdx++ = 1;
 
-    // À­¸é..
+    // ìœ—ë©´..
     *pIdx++ = 4;
     *pIdx++ = 7;
     *pIdx++ = 5;
@@ -373,7 +373,7 @@ void CPortalVol::RenderShape() {
         return;
     }
 
-    // PMesh¿¡ Àü´ŞÇÒ Index Buffer¸¦ ¸¸µç´Ù..
+    // PMeshì— ì „ë‹¬í•  Index Bufferë¥¼ ë§Œë“ ë‹¤..
     viter vit = m_viIndex.begin();
     __VPI vpi;
 
@@ -419,7 +419,7 @@ void CPortalVol::RenderShape() {
 }
 
 void CPortalVol::RenderCollision() {
-    // Çà·Ä °è»ê..
+    // í–‰ë ¬ ê³„ì‚°..
     __Matrix44 mtxWorld;
     mtxWorld.Identity();
 
@@ -569,7 +569,7 @@ void CPortalVol::Load(FILE * stream) {
 
     unsigned short * pIdx = m_pIndex;
 
-    // ¾Æ·§¸é.
+    // ì•„ë«ë©´.
     *pIdx++ = 0;
     *pIdx++ = 1;
     *pIdx++ = 3;
@@ -577,7 +577,7 @@ void CPortalVol::Load(FILE * stream) {
     *pIdx++ = 3;
     *pIdx++ = 1;
 
-    // ¾Õ¸é..
+    // ì•ë©´..
     *pIdx++ = 7;
     *pIdx++ = 3;
     *pIdx++ = 6;
@@ -585,7 +585,7 @@ void CPortalVol::Load(FILE * stream) {
     *pIdx++ = 6;
     *pIdx++ = 3;
 
-    // ¿ŞÂÊ..
+    // ì™¼ìª½..
     *pIdx++ = 4;
     *pIdx++ = 0;
     *pIdx++ = 7;
@@ -593,7 +593,7 @@ void CPortalVol::Load(FILE * stream) {
     *pIdx++ = 7;
     *pIdx++ = 0;
 
-    // ¿À¸¥ÂÊ..
+    // ì˜¤ë¥¸ìª½..
     *pIdx++ = 6;
     *pIdx++ = 2;
     *pIdx++ = 5;
@@ -601,7 +601,7 @@ void CPortalVol::Load(FILE * stream) {
     *pIdx++ = 5;
     *pIdx++ = 2;
 
-    // µŞ¸é..
+    // ë’·ë©´..
     *pIdx++ = 5;
     *pIdx++ = 1;
     *pIdx++ = 4;
@@ -609,7 +609,7 @@ void CPortalVol::Load(FILE * stream) {
     *pIdx++ = 4;
     *pIdx++ = 1;
 
-    // À­¸é..
+    // ìœ—ë©´..
     *pIdx++ = 4;
     *pIdx++ = 7;
     *pIdx++ = 5;
@@ -638,11 +638,11 @@ void CPortalVol::Load(FILE * stream) {
 
     Translate();
 
-    // ¸µÅ©µÈ °¹¼ö¸¦ ·Îµå..
+    // ë§í¬ëœ ê°¯ìˆ˜ë¥¼ ë¡œë“œ..
     int iLinkedCount = 0;
     fread(&iLinkedCount, sizeof(int), 1, stream);
 
-    // ¸µÅ©µÈ ¾ÆÀÌµğ ·Îµå..
+    // ë§í¬ëœ ì•„ì´ë”” ë¡œë“œ..
     int iID;
     for (int i = 0; i < iLinkedCount; i++) {
         fread(&iID, sizeof(int), 1, stream);
@@ -651,16 +651,16 @@ void CPortalVol::Load(FILE * stream) {
 }
 
 void CPortalVol::Save(FILE * stream) {
-    // ¸ÕÀú ÀÚ½ÅÀÇ Å¸ÀÔÀ» ÀúÀå..
+    // ë¨¼ì € ìì‹ ì˜ íƒ€ì…ì„ ì €ì¥..
     fwrite(&_iTypeVolumn, sizeof(int), 1, stream);
 
-    // ÀÚ½ÅÀÇ ¾ÆÀÌµğ¸¦ ÀúÀå..
+    // ìì‹ ì˜ ì•„ì´ë””ë¥¼ ì €ì¥..
     fwrite(&m_iID, sizeof(int), 1, stream);
 
-    // ÀÚ½ÅÀÇ µ¥ÀÌÅÍ ÀúÀå..
+    // ìì‹ ì˜ ë°ì´í„° ì €ì¥..
     CPvsBase::Save(stream);
 
-    // ¸µÅ©µÈ °¹¼ö¸¦ ÀúÀå..
+    // ë§í¬ëœ ê°¯ìˆ˜ë¥¼ ì €ì¥..
     int  iCount = 0;
     iter it = m_pPvsList.begin();
     while (it != m_pPvsList.end()) {
@@ -669,7 +669,7 @@ void CPortalVol::Save(FILE * stream) {
     }
     fwrite(&iCount, sizeof(int), 1, stream);
 
-    //¸µÅ©µÈ ¾ÆÀÌµğ ÀúÀå..
+    //ë§í¬ëœ ì•„ì´ë”” ì €ì¥..
     CPvsBase * pBase = NULL;
     it = m_pPvsList.begin();
     while (it != m_pPvsList.end()) {
@@ -708,8 +708,8 @@ void CPortalVol::SplitAndMakeShape(CN3Shape * pShape) {
     GAPP->Write("Part Count %d", iPartCount);
 
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // ±âÁ¸ Index Buffer ¿¡¼­.. Vertex Buffer¸¦ ÂüÁ¶ÇØ¼­.. ¹öÅØ½º¸¦ ¾ò¾î³½´ÙÀ½..
-    //  Æú¸®°ï ´ÜÀ§(3°³ÀÇ ¹öÅØ½º°¡ ÀüºÎ)·Î º¸ÀÌÁö ¾Ê´Â ´Ù¸é.. ÀÎµ¦½º ¹öÆÛ¿¡¼­ Á¦°ÅÇÑ´Ù..
+    // ê¸°ì¡´ Index Buffer ì—ì„œ.. Vertex Bufferë¥¼ ì°¸ì¡°í•´ì„œ.. ë²„í…ìŠ¤ë¥¼ ì–»ì–´ë‚¸ë‹¤ìŒ..
+    //  í´ë¦¬ê³¤ ë‹¨ìœ„(3ê°œì˜ ë²„í…ìŠ¤ê°€ ì „ë¶€)ë¡œ ë³´ì´ì§€ ì•ŠëŠ” ë‹¤ë©´.. ì¸ë±ìŠ¤ ë²„í¼ì—ì„œ ì œê±°í•œë‹¤..
 
     for (int i = 0; i < iPartCount; i++) {
         int iIndexCount = pShape->GetIndexbufferCount(i);
@@ -932,7 +932,7 @@ bool CPortalVol::IntersectTriangle(const __Vector3 & vOrig, const __Vector3 & vD
     __Vector3 pVec;
     float     fDet;
 
-    //    By : Ecli666 ( On 2001-09-12 ¿ÀÀü 10:39:01 )
+    //    By : Ecli666 ( On 2001-09-12 ì˜¤ì „ 10:39:01 )
 
     pVec.Cross(vEdge1, vEdge2);
     fDet = pVec.Dot(vDir);
@@ -940,13 +940,13 @@ bool CPortalVol::IntersectTriangle(const __Vector3 & vOrig, const __Vector3 & vD
         return false;
     }
 
-    //    ~(By Ecli666 On 2001-09-12 ¿ÀÀü 10:39:01 )
+    //    ~(By Ecli666 On 2001-09-12 ì˜¤ì „ 10:39:01 )
 
     pVec.Cross(vDir, vEdge2);
 
     // If determinant is near zero, ray lies in plane of triangle
     fDet = vEdge1.Dot(pVec);
-    if (fDet < 0.0001f) { // °ÅÀÇ 0¿¡ °¡±î¿ì¸é »ï°¢Çü Æò¸é°ú Áö³ª°¡´Â ¼±ÀÌ ÆòÇàÇÏ´Ù.
+    if (fDet < 0.0001f) { // ê±°ì˜ 0ì— ê°€ê¹Œìš°ë©´ ì‚¼ê°í˜• í‰ë©´ê³¼ ì§€ë‚˜ê°€ëŠ” ì„ ì´ í‰í–‰í•˜ë‹¤.
         return false;
     }
 
@@ -976,17 +976,17 @@ bool CPortalVol::IntersectTriangle(const __Vector3 & vOrig, const __Vector3 & vD
     fU *= fInvDet;
     fV *= fInvDet;
 
-    // t°¡ Å¬¼ö·Ï ¸Ö¸® Á÷¼±°ú Æò¸é°ú ¸¸³ª´Â Á¡ÀÌ ¸Ö´Ù.
-    // t*dir + orig ¸¦ ±¸ÇÏ¸é ¸¸³ª´Â Á¡À» ±¸ÇÒ ¼ö ÀÖ´Ù.
-    // u¿Í vÀÇ ÀÇ¹Ì´Â ¹«¾ùÀÏ±î?
-    // ÃßÃø : v0 (0,0), v1(1,0), v2(0,1) <°ıÈ£¾ÈÀº (U, V)ÁÂÇ¥> ÀÌ·±½ÄÀ¸·Î ¾î´À Á¡¿¡ °¡±õ³ª ³ªÅ¸³½ °Í °°À½
+    // tê°€ í´ìˆ˜ë¡ ë©€ë¦¬ ì§ì„ ê³¼ í‰ë©´ê³¼ ë§Œë‚˜ëŠ” ì ì´ ë©€ë‹¤.
+    // t*dir + orig ë¥¼ êµ¬í•˜ë©´ ë§Œë‚˜ëŠ” ì ì„ êµ¬í•  ìˆ˜ ìˆë‹¤.
+    // uì™€ vì˜ ì˜ë¯¸ëŠ” ë¬´ì—‡ì¼ê¹Œ?
+    // ì¶”ì¸¡ : v0 (0,0), v1(1,0), v2(0,1) <ê´„í˜¸ì•ˆì€ (U, V)ì¢Œí‘œ> ì´ëŸ°ì‹ìœ¼ë¡œ ì–´ëŠ ì ì— ê°€ê¹ë‚˜ ë‚˜íƒ€ë‚¸ ê²ƒ ê°™ìŒ
     //
 
     if (pVCol) {
-        (*pVCol) = vOrig + (vDir * fT); // Á¢Á¡À» °è»ê..
+        (*pVCol) = vOrig + (vDir * fT); // ì ‘ì ì„ ê³„ì‚°..
     }
 
-    // *t < 0 ÀÌ¸é µÚÂÊ...
+    // *t < 0 ì´ë©´ ë’¤ìª½...
     if (fT < 0.0f) {
         return false;
     }

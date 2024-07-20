@@ -11,7 +11,7 @@ class CPlayerOther : public CPlayerNPC {
     friend class CPlayerOtherMgr;
 
   public:
-    __InfoPlayerOther m_InfoExt; // Ä³¸¯ÅÍ Á¤º¸ È®Àå..
+    __InfoPlayerOther m_InfoExt; // ìºë¦­í„° ì •ë³´ í™•ì¥..
     bool              m_bSit;
 
   public:

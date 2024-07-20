@@ -13,14 +13,14 @@ class CMapMng;
 class CDlgSceneGraph : public CDialog {
   public:
     CN3Scene * m_pSceneRef;
-    BOOL       m_IsSourceObj; // Display¿ëÀÌ³Ä? (Åø¿¡¼­ ¿ÀºêÁ§Æ® ¸ñ·Ï)
+    BOOL       m_IsSourceObj; // Displayìš©ì´ëƒ? (íˆ´ì—ì„œ ì˜¤ë¸Œì íŠ¸ ëª©ë¡)
     CMapMng *  m_pMapMng;
 
     CImageList m_ImgList;
 
   protected:
     void  UpdateTreeItem(HTREEITEM hParent, CN3Base * pBase);
-    DWORD m_dwFlag; // ¸ñ·Ï¿¡ Ç¥½ÃÇÒ °ÍµéÀ» ³ªÅ¸³½ ÇÃ·¡±×
+    DWORD m_dwFlag; // ëª©ë¡ì— í‘œì‹œí•  ê²ƒë“¤ì„ ë‚˜íƒ€ë‚¸ í”Œë˜ê·¸
 
   public:
     void SelectObject(HTREEITEM hItem, void * pItemData);

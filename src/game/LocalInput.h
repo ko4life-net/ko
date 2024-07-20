@@ -8,7 +8,7 @@ const int DK_PRESS = 2;
 const int DK_REPEAT = 4;
 const int NUMDIKEYS = 256;
 
-// ¸¶¿ì½º ÇÃ·¡±× - ÇÑ°³ ÀÌ»óÀÇ ÇÃ·¡±×°¡ OR ¿¬»êÀ¸·Î Á¶ÇÕµÇ¾î ÀÖ´Ù..
+// ë§ˆìš°ìŠ¤ í”Œë˜ê·¸ - í•œê°œ ì´ìƒì˜ í”Œë˜ê·¸ê°€ OR ì—°ì‚°ìœ¼ë¡œ ì¡°í•©ë˜ì–´ ìˆë‹¤..
 const int MOUSE_LBCLICK = 0x1;
 const int MOUSE_LBCLICKED = 0x2;
 const int MOUSE_LBDOWN = 0x4;
@@ -43,35 +43,35 @@ class CLocalInput {
     //    BOOL m_bMouse;
     //    BOOL m_bKeyboard;
 
-    int   m_nMouseFlag, m_nMouseFlagOld; // ¸¶¿ì½º ¹öÆ° ´­¸² ÇÃ·¡±×
-    DWORD m_dwTickLBDown;                // ¸¶¿ì½º ¿ŞÂÊ ¹öÆ° ´õºí Å¬¸¯ °¨Áö¿ë
-    DWORD m_dwTickRBDown;                // ¸¶¿ì½º ¿À¸¥ÂÊ ¹öÆ° ´õºí Å¬¸¯ °¨Áö¿ë
+    int   m_nMouseFlag, m_nMouseFlagOld; // ë§ˆìš°ìŠ¤ ë²„íŠ¼ ëˆŒë¦¼ í”Œë˜ê·¸
+    DWORD m_dwTickLBDown;                // ë§ˆìš°ìŠ¤ ì™¼ìª½ ë²„íŠ¼ ë”ë¸” í´ë¦­ ê°ì§€ìš©
+    DWORD m_dwTickRBDown;                // ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ ë²„íŠ¼ ë”ë¸” í´ë¦­ ê°ì§€ìš©
 
-    POINT m_ptCurMouse; // ÇöÀç ¸¶¿ì½º Æ÷ÀÎÅÍ
-    POINT m_ptOldMouse; // Á÷Àü ¸¶¿ì½º Æ÷ÀÎÅÍ
+    POINT m_ptCurMouse; // í˜„ì¬ ë§ˆìš°ìŠ¤ í¬ì¸í„°
+    POINT m_ptOldMouse; // ì§ì „ ë§ˆìš°ìŠ¤ í¬ì¸í„°
 
-    RECT m_rcLBDrag; // µå·¡±× ¿µ¿ª
-    RECT m_rcMBDrag; // µå·¡±× ¿µ¿ª
-    RECT m_rcRBDrag; // µå·¡±× ¿µ¿ª
+    RECT m_rcLBDrag; // ë“œë˜ê·¸ ì˜ì—­
+    RECT m_rcMBDrag; // ë“œë˜ê·¸ ì˜ì—­
+    RECT m_rcRBDrag; // ë“œë˜ê·¸ ì˜ì—­
 
-    RECT m_rcMLimit;                // ¸¶¿ì½º ¿òÁ÷ÀÓ Á¦ÇÑ ¿µ¿ª
-    BYTE m_byCurKeys[NUMDIKEYS];    // ÇöÀç Å° »óÅÂ
-    BYTE m_byOldKeys[NUMDIKEYS];    // Á÷Àü Å° »óÅÂ
-    BOOL m_bKeyPresses[NUMDIKEYS];  // Å°¸¦ ´©¸¥ ¼ø°£ÀÎÁö
-    BOOL m_bKeyPresseds[NUMDIKEYS]; // Å°¸¦ ´­·¶´Ù ¶¼´Â ¼ø°£ÀÎÁö
-    BOOL m_bNoKeyDown;              // ¾Æ¹« Å°ÀÔ·Âµµ ¾ø´ÂÁö
+    RECT m_rcMLimit;                // ë§ˆìš°ìŠ¤ ì›€ì§ì„ ì œí•œ ì˜ì—­
+    BYTE m_byCurKeys[NUMDIKEYS];    // í˜„ì¬ í‚¤ ìƒíƒœ
+    BYTE m_byOldKeys[NUMDIKEYS];    // ì§ì „ í‚¤ ìƒíƒœ
+    BOOL m_bKeyPresses[NUMDIKEYS];  // í‚¤ë¥¼ ëˆ„ë¥¸ ìˆœê°„ì¸ì§€
+    BOOL m_bKeyPresseds[NUMDIKEYS]; // í‚¤ë¥¼ ëˆŒë €ë‹¤ ë–¼ëŠ” ìˆœê°„ì¸ì§€
+    BOOL m_bNoKeyDown;              // ì•„ë¬´ í‚¤ì…ë ¥ë„ ì—†ëŠ”ì§€
 
     DWORD m_dwTickKeyPress[NUMDIKEYS];
 
   public:
-    void KeyboardClearInput(int iIndex = -1) // Å°º¸µå ÀÔ·ÂÀ» ¹«È¿È­ ½ÃÅ²´Ù.. ±âº»°ªÀº ¸ù¶¥ ¹«È¿È­ÀÌ´Ù..
+    void KeyboardClearInput(int iIndex = -1) // í‚¤ë³´ë“œ ì…ë ¥ì„ ë¬´íš¨í™” ì‹œí‚¨ë‹¤.. ê¸°ë³¸ê°’ì€ ëª½ë•… ë¬´íš¨í™”ì´ë‹¤..
     {
         if (-1 == iIndex) {
             memset(m_byOldKeys, 0, sizeof(m_byOldKeys));
             memset(m_byCurKeys, 0, sizeof(m_byCurKeys));
             memset(m_bKeyPresses, 0, sizeof(m_bKeyPresses));
             memset(m_bKeyPresseds, 0, sizeof(m_bKeyPresseds));
-        } else if (iIndex >= 0 && iIndex < NUMDIKEYS) // Æ¯Á¤ÇÑ Å°¸¸ ¹«È¿È­..
+        } else if (iIndex >= 0 && iIndex < NUMDIKEYS) // íŠ¹ì •í•œ í‚¤ë§Œ ë¬´íš¨í™”..
         {
             m_byCurKeys[iIndex] = m_byOldKeys[iIndex] = m_bKeyPresses[iIndex] = m_bKeyPresseds[iIndex] = 0;
         }
@@ -82,19 +82,19 @@ class CLocalInput {
             return FALSE;
         }
         return m_byCurKeys[iIndex];
-    } // Å°º¸µå°¡ ´­·ÁÀÖ´ÂÁö... <dinput.h> ¿¡ Á¤ÀÇ µÇ¾î ÀÖ´Â DIK_???? ½ºÄµÄÚµå¸¦ ÂüÁ¶..
+    } // í‚¤ë³´ë“œê°€ ëˆŒë ¤ìˆëŠ”ì§€... <dinput.h> ì— ì •ì˜ ë˜ì–´ ìˆëŠ” DIK_???? ìŠ¤ìº”ì½”ë“œë¥¼ ì°¸ì¡°..
     BOOL IsKeyPress(int iIndex) {
         if (iIndex < 0 || iIndex >= NUMDIKEYS) {
             return FALSE;
         }
         return m_bKeyPresses[iIndex];
-    } // Å°º¸µå¸¦ ´©¸£´Â ¼ø°£... <dinput.h> ¿¡ Á¤ÀÇ µÇ¾î ÀÖ´Â DIK_???? ½ºÄµÄÚµå¸¦ ÂüÁ¶..
+    } // í‚¤ë³´ë“œë¥¼ ëˆ„ë¥´ëŠ” ìˆœê°„... <dinput.h> ì— ì •ì˜ ë˜ì–´ ìˆëŠ” DIK_???? ìŠ¤ìº”ì½”ë“œë¥¼ ì°¸ì¡°..
     BOOL IsKeyPressed(int iIndex) {
         if (iIndex < 0 || iIndex >= NUMDIKEYS) {
             return FALSE;
         }
         return m_bKeyPresseds[iIndex];
-    } // Å°º¸µå¸¦ ´©¸£°í³ª¼­ ¶¼´Â ¼ø°£... <dinput.h> ¿¡ Á¤ÀÇ µÇ¾î ÀÖ´Â DIK_???? ½ºÄµÄÚµå¸¦ ÂüÁ¶..
+    } // í‚¤ë³´ë“œë¥¼ ëˆ„ë¥´ê³ ë‚˜ì„œ ë–¼ëŠ” ìˆœê°„... <dinput.h> ì— ì •ì˜ ë˜ì–´ ìˆëŠ” DIK_???? ìŠ¤ìº”ì½”ë“œë¥¼ ì°¸ì¡°..
 
     BOOL Init(HINSTANCE hInst, HWND hWnd, BOOL bActivateKeyboard = TRUE, BOOL bActivateMouse = TRUE,
               BOOL ExclusiveMouseAccess = TRUE);
@@ -106,7 +106,7 @@ class CLocalInput {
     void SetActiveDevices(BOOL bKeyboard, BOOL bMouse);
     void MouseSetPos(int x, int y);
 
-    BOOL KeyboardGetKeyState(int nDIKey); // ÃÖ±Ù ´­·ÁÁø Å° °Ë»ç..
+    BOOL KeyboardGetKeyState(int nDIKey); // ìµœê·¼ ëˆŒë ¤ì§„ í‚¤ ê²€ì‚¬..
 
     const POINT MouseGetPos() { return m_ptCurMouse; }
     const POINT MouseGetPosOld() { return m_ptOldMouse; }
@@ -115,7 +115,7 @@ class CLocalInput {
     RECT MouseGetMBDragRect() { return m_rcMBDrag; }
     RECT MouseGetRBDragRect() { return m_rcRBDrag; }
 
-    int  MouseGetFlag() { return m_nMouseFlag; } // Mouse Flag ÀÇ or ¿¬»êÀ¸·Î Á¶ÇÕµÇ¾î ÀÖ´Ù.
+    int  MouseGetFlag() { return m_nMouseFlag; } // Mouse Flag ì˜ or ì—°ì‚°ìœ¼ë¡œ ì¡°í•©ë˜ì–´ ìˆë‹¤.
     int  MouseGetFlagOld() { return m_nMouseFlagOld; }
     void MouseRemoveFlag(int nFlag = -1) {
         if (-1 == nFlag) {
@@ -123,7 +123,7 @@ class CLocalInput {
         } else {
             m_nMouseFlag &= (~nFlag);
         }
-    } // Æ¯Á¤ÇÑ Mouse Flag Á¦°Å
+    } // íŠ¹ì •í•œ Mouse Flag ì œê±°
 
     CLocalInput(void);
     ~CLocalInput(void);

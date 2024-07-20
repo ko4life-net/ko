@@ -25,7 +25,7 @@ class CN3FXPMeshInstance : public CN3Base {
     int m_iNumIndices;
     int m_iNumVertices;
 
-    CN3PMesh::__EdgeCollapse * m_pCollapseUpTo; // ÂüÁ¶ Æ÷ÀÎÅÍ
+    CN3PMesh::__EdgeCollapse * m_pCollapseUpTo; // ì°¸ì¡° í¬ì¸í„°
 
     // A pointer to the original mesh. This is where you'll find the vertex data (which
     // is invariant between PMRInstance's)

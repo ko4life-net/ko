@@ -61,13 +61,13 @@ BOOL CDlgRiverProperty::OnInitDialog() {
     m_LPRiver.AddPropItem("meter / u", "", PIT_EDIT, "");
     m_LPRiver.AddPropItem("meter / v", "", PIT_EDIT, "");
     m_LPRiver.AddPropItem("Texture File", "", PIT_FILE,
-                          "Texture ·Î ¾µ¼ö ÀÖ´Â ±×¸² ÆÄÀÏ(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
+                          "Texture ë¡œ ì“¸ìˆ˜ ìžˆëŠ” ê·¸ë¦¼ íŒŒì¼(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
     m_LPRiver.AddPropItem("Animation Texture FPS", "", PIT_EDIT, "");
     m_LPRiver.AddPropItem("Speed2", "", PIT_EDIT, "");
     m_LPRiver.AddPropItem("meter / u2", "", PIT_EDIT, "");
     m_LPRiver.AddPropItem("meter / v2", "", PIT_EDIT, "");
     m_LPRiver.AddPropItem("Animation Texture File", "", PIT_FILE,
-                          "Texture ·Î ¾µ¼ö ÀÖ´Â ±×¸² ÆÄÀÏ(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
+                          "Texture ë¡œ ì“¸ìˆ˜ ìžˆëŠ” ê·¸ë¦¼ íŒŒì¼(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
 
     int nW = 100;
     m_LPRiver.SetDividerWidth(nW);
@@ -236,7 +236,7 @@ BOOL CDlgRiverProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult
             CPropertyItem * pItem = (CPropertyItem *)lParam;
             if (pItem->m_propName == "River ID") {
                 if (m_pRiverMng->SetRiverID(pSelRiver, (int)atoi(pItem->m_curValue)) == FALSE) {
-                    MessageBox("Á¸ÀçÇÏ´Â IDÀÔ´Ï´Ù.");
+                    MessageBox("ì¡´ìž¬í•˜ëŠ” IDìž…ë‹ˆë‹¤.");
                     pItem->m_curValue.Format("%d", pSelRiver->GetRiverID());
                 }
             } else if (pItem->m_propName == "Alpha factor(hex)") {
@@ -249,7 +249,7 @@ BOOL CDlgRiverProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult
                 pSelRiver->SetMeterPerV((float)atof(pItem->m_curValue));
             } else if (pItem->m_propName == "Texture File") {
                 CN3Base tmp;
-                tmp.m_szName = pItem->m_curValue; // »ó´ë°æ·Î·Î ¹Ù²Ù±â
+                tmp.m_szName = pItem->m_curValue; // ìƒëŒ€ê²½ë¡œë¡œ ë°”ê¾¸ê¸°
                 if (pSelRiver->SetTextureName(tmp.m_szName.c_str()) == FALSE) {
                     CString strMsg;
                     strMsg.Format("Cannot get \"%s\"Texture, check file and directory", pItem->m_curValue);
@@ -267,16 +267,16 @@ BOOL CDlgRiverProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult
             } else if (pItem->m_propName == "meter / v2") {
                 pSelRiver->SetMeterPerV2((float)atof(pItem->m_curValue));
             } else if (pItem->m_propName == "Animation Texture File") {
-                // ¿¡´Ï¸ÞÀÌ¼Ç µÇ´Â ÅØ½ºÃÄ ÁöÁ¤ (°¹¼ö´Â ÆÄÀÏ ÀÌ¸§À¸·ÎºÎÅÍ ¾Ë¾Æ³½´Ù. µû¶ó¼­ ¸Ç ¸¶Áö¸·¹øÈ£ÆÄÀÏÀ» ÁöÁ¤ÇØ¾ßÇÔ)
+                // ì—ë‹ˆë©”ì´ì…˜ ë˜ëŠ” í…ìŠ¤ì³ ì§€ì • (ê°¯ìˆ˜ëŠ” íŒŒì¼ ì´ë¦„ìœ¼ë¡œë¶€í„° ì•Œì•„ë‚¸ë‹¤. ë”°ë¼ì„œ ë§¨ ë§ˆì§€ë§‰ë²ˆí˜¸íŒŒì¼ì„ ì§€ì •í•´ì•¼í•¨)
 
                 CN3Base tmp;
-                tmp.m_szName = pItem->m_curValue; // »ó´ë°æ·Î·Î ¹Ù²Ù±â
-                // È­ÀÏ ÀÌ¸§ ºÐ¸®
+                tmp.m_szName = pItem->m_curValue; // ìƒëŒ€ê²½ë¡œë¡œ ë°”ê¾¸ê¸°
+                // í™”ì¼ ì´ë¦„ ë¶„ë¦¬
                 char szDir[_MAX_DIR];
                 char szFName[_MAX_FNAME];
                 char szExt[_MAX_EXT];
                 _splitpath(tmp.m_szName.c_str(), NULL, szDir, szFName, szExt);
-                int     iCount = atoi(szFName + lstrlen(szFName) - 2) + 1; // ÆÄÀÏ ÀÌ¸§ÀÇ ³¡¿¡ µÎÀÚ¸®¸¦ ¼ýÀÚ·Î º¯È¯
+                int     iCount = atoi(szFName + lstrlen(szFName) - 2) + 1; // íŒŒì¼ ì´ë¦„ì˜ ëì— ë‘ìžë¦¬ë¥¼ ìˆ«ìžë¡œ ë³€í™˜
                 CString strFName = szDir;
                 strFName += szFName;
                 strFName = strFName.Left(strFName.GetLength() - 2);
@@ -304,10 +304,10 @@ void CDlgRiverProperty::OnOK() {
             if (m_pRiverMng->GetRiverMesh(pSelRiver->GetRiverID()) == NULL) {
                 CDialog::OnOK();
             } else {
-                MessageBox("Áßº¹µÇ´Â ¾ÆÀÌµð ÀÔ´Ï´Ù.");
+                MessageBox("ì¤‘ë³µë˜ëŠ” ì•„ì´ë”” ìž…ë‹ˆë‹¤.");
             }
         } else {
-            MessageBox("Texture¸¦ ÁöÁ¤ÇÏÁö ¾Ê¾Ò½À´Ï´Ù.");
+            MessageBox("Textureë¥¼ ì§€ì •í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
         }
     }
 }
@@ -339,7 +339,7 @@ void CDlgRiverProperty::OnButtonDeleteRiver() {
     }
     CRiverMesh * pSelRiver = m_pRiverMng->GetSelRiver();
     if (pSelRiver) {
-        if (MessageBox("¼±ÅÃµÈ °­À» Áö¿ì½Ã°Ú½À´Ï±î?", "Remove river", MB_YESNO | MB_DEFBUTTON2) == IDNO) {
+        if (MessageBox("ì„ íƒëœ ê°•ì„ ì§€ìš°ì‹œê² ìŠµë‹ˆê¹Œ?", "Remove river", MB_YESNO | MB_DEFBUTTON2) == IDNO) {
             return;
         }
         m_pRiverMng->RemoveRiverMesh(pSelRiver->GetRiverID());

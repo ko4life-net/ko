@@ -83,7 +83,7 @@ bool CUIQuestMenu::Load(HANDLE hFile) {
 
 void CUIQuestMenu::Render() {
     if (!m_bVisible) {
-        return; // º¸ÀÌÁö ¾ÊÀ¸¸é ÀÚ½ÄµéÀ» renderÇÏÁö ¾Ê´Â´Ù.
+        return; // ë³´ì´ì§€ ì•Šìœ¼ë©´ ìì‹ë“¤ì„ renderí•˜ì§€ ì•ŠëŠ”ë‹¤.
     }
 
     for (UIListReverseItor itor = m_ReSizeChildren.rbegin(); m_ReSizeChildren.rend() != itor; ++itor) {
@@ -105,7 +105,7 @@ DWORD CUIQuestMenu::MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & 
         return dwRet;
     }
 
-    // UI ¿òÁ÷ÀÌ´Â ÄÚµå
+    // UI ì›€ì§ì´ëŠ” ì½”ë“œ
     if (UI_STATE_COMMON_MOVE == m_eState) {
         if (dwFlags & UI_MOUSE_LBCLICKED) {
             SetState(UI_STATE_COMMON_NONE);
@@ -116,25 +116,25 @@ DWORD CUIQuestMenu::MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & 
         return dwRet;
     }
 
-    if (false == IsIn(ptCur.x, ptCur.y)) // ¿µ¿ª ¹ÛÀÌ¸é
+    if (false == IsIn(ptCur.x, ptCur.y)) // ì˜ì—­ ë°–ì´ë©´
     {
         if (false == IsIn(ptOld.x, ptOld.y)) {
-            return dwRet; // ÀÌÀü ÁÂÇ¥µµ ¿µ¿ª ¹ÛÀÌ¸é
+            return dwRet; // ì´ì „ ì¢Œí‘œë„ ì˜ì—­ ë°–ì´ë©´
         }
-        dwRet |= UI_MOUSEPROC_PREVINREGION; // ÀÌÀü ÁÂÇ¥´Â ¿µ¿ª ¾ÈÀÌ¾ú´Ù.
+        dwRet |= UI_MOUSEPROC_PREVINREGION; // ì´ì „ ì¢Œí‘œëŠ” ì˜ì—­ ì•ˆì´ì—ˆë‹¤.
     } else {
-        // tool tip °ü·Ã
+        // tool tip ê´€ë ¨
         if (s_pTooltipCtrl) {
             s_pTooltipCtrl->SetText(m_szToolTip);
         }
     }
-    dwRet |= UI_MOUSEPROC_INREGION; // ÀÌ¹ø ÁÂÇ¥´Â ¿µ¿ª ¾ÈÀÌ´Ù.
+    dwRet |= UI_MOUSEPROC_INREGION; // ì´ë²ˆ ì¢Œí‘œëŠ” ì˜ì—­ ì•ˆì´ë‹¤.
 
     if (m_pChildUI && m_pChildUI->IsVisible()) {
         return dwRet;
     }
 
-    // child¿¡°Ô ¸Ş¼¼Áö Àü´Ş
+    // childì—ê²Œ ë©”ì„¸ì§€ ì „ë‹¬
     for (UIListItor itor = m_ReSizeChildren.begin(); m_ReSizeChildren.end() != itor; ++itor) {
         CN3UIBase * pChild = (*itor);
         DWORD       dwChildRet = 0;
@@ -150,17 +150,17 @@ DWORD CUIQuestMenu::MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & 
             }
         }
 
-        if (UI_MOUSEPROC_DONESOMETHING & dwChildRet) { // ÀÌ°æ¿ì¿¡´Â ¸Õ°¡ Æ÷Ä¿½º¸¦ ¹ŞÀº °æ¿ìÀÌ´Ù.
-            // (¾Æ·¡ ÄÚµå´Â dialog¸¦ °ü¸®ÇÏ´Â °÷¿¡¼­ ÇØ¾ß ÇÑ´Ù. µû¶ó¼­ ¸·¾Æ³õÀ½)
-            //            m_Children.erase(itor);            // ¿ì¼± ¸®½ºÆ®¿¡¼­ Áö¿ì°í
-            //            m_Children.push_front(pChild);    // ¸Ç¾Õ¿¡ ³Ö´Â´Ù. ±×¸®´Â ¼ø¼­¸¦ ¸Ç ³ªÁß¿¡ ±×¸®µµ·Ï ÇÏ·Á°í
+        if (UI_MOUSEPROC_DONESOMETHING & dwChildRet) { // ì´ê²½ìš°ì—ëŠ” ë¨¼ê°€ í¬ì»¤ìŠ¤ë¥¼ ë°›ì€ ê²½ìš°ì´ë‹¤.
+            // (ì•„ë˜ ì½”ë“œëŠ” dialogë¥¼ ê´€ë¦¬í•˜ëŠ” ê³³ì—ì„œ í•´ì•¼ í•œë‹¤. ë”°ë¼ì„œ ë§‰ì•„ë†“ìŒ)
+            //            m_Children.erase(itor);            // ìš°ì„  ë¦¬ìŠ¤íŠ¸ì—ì„œ ì§€ìš°ê³ 
+            //            m_Children.push_front(pChild);    // ë§¨ì•ì— ë„£ëŠ”ë‹¤. ê·¸ë¦¬ëŠ” ìˆœì„œë¥¼ ë§¨ ë‚˜ì¤‘ì— ê·¸ë¦¬ë„ë¡ í•˜ë ¤ê³ 
 
             dwRet |= (UI_MOUSEPROC_CHILDDONESOMETHING | UI_MOUSEPROC_DONESOMETHING);
             return dwRet;
         }
     }
 
-    // UI ¿òÁ÷ÀÌ´Â ÄÚµå
+    // UI ì›€ì§ì´ëŠ” ì½”ë“œ
     if (UI_STATE_COMMON_MOVE != m_eState && PtInRect(&m_rcMovable, ptCur) && (dwFlags & UI_MOUSE_LBCLICK)) {
         SetState(UI_STATE_COMMON_MOVE);
         dwRet |= UI_MOUSEPROC_DONESOMETHING;
@@ -204,13 +204,13 @@ BOOL CUIQuestMenu::MoveOffset(int iOffsetX, int iOffsetY) {
     m_rcCImage.right += iOffsetX;
     m_rcCImage.bottom += iOffsetY;
 
-    // ui ¿µ¿ª
+    // ui ì˜ì—­
     m_rcRegion.left += iOffsetX;
     m_rcRegion.top += iOffsetY;
     m_rcRegion.right += iOffsetX;
     m_rcRegion.bottom += iOffsetY;
 
-    // movable ¿µ¿ª
+    // movable ì˜ì—­
     if (m_rcMovable.right - m_rcMovable.left != 0 && m_rcMovable.bottom - m_rcMovable.top != 0) {
         m_rcMovable.left += iOffsetX;
         m_rcMovable.top += iOffsetY;
@@ -218,7 +218,7 @@ BOOL CUIQuestMenu::MoveOffset(int iOffsetX, int iOffsetY) {
         m_rcMovable.bottom += iOffsetY;
     }
 
-    // children ÁÂÇ¥ °»½Å
+    // children ì¢Œí‘œ ê°±ì‹ 
     CN3UIBase * pCUI = NULL; // Child UI...
     for (UIListItor itor = m_ReSizeChildren.begin(); m_ReSizeChildren.end() != itor; ++itor) {
         pCUI = (*itor);
@@ -309,7 +309,7 @@ void CUIQuestMenu::Open(DataPack * pDataPack, int & iOffset) {
         m_pTextMenu[0]->SetString(szMenu[0]);
     }
 
-    //string »ı¼º
+    //string ìƒì„±
     for (int i = 1; i < m_iMenuCnt; i++) {
         m_pTextMenu[i] = new CN3UIString;
         __ASSERT(m_pTextMenu[i], "NULL UI Component!!!");
@@ -360,7 +360,7 @@ void CUIQuestMenu::Open(DataPack * pDataPack, int & iOffset) {
     rcTemp.bottom = rcTemp.top + iIH;
     m_pImageBCenter->SetRegion(rcTemp);
 
-    //ÀÌ°Ç ±âº» À¯¾ÆÀÌÀÇ ¿µ¿ªÀ» ´Ù½Ã ¼³Á¤ÇØÁÜ...
+    //ì´ê±´ ê¸°ë³¸ ìœ ì•„ì´ì˜ ì˜ì—­ì„ ë‹¤ì‹œ ì„¤ì •í•´ì¤Œ...
     const int iWidth = CN3Base::s_CameraData.vp.Width;
     const int iHeight = CN3Base::s_CameraData.vp.Height;
     int       iX = 0, iY = 0;

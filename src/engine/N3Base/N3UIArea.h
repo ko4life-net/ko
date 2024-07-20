@@ -41,7 +41,7 @@ class CN3UIArea : public CN3UIBase {
 #endif
 
 #ifdef _N3TOOL
-    // Åø¿¡¼­ »ç¿ëÇÏ±â À§ÇÑ ÇÔ¼ö
+    // íˆ´ì—ì„œ ì‚¬ìš©í•˜ê¸° ìœ„í•œ í•¨ìˆ˜
     virtual void operator=(const CN3UIArea & other);
     virtual bool Save(HANDLE hFile);
 #endif

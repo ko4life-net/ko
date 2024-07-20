@@ -56,7 +56,7 @@ void CFloorDlg::OnOK() {
     // TODO: Add extra validation here
     int iCur = GetFloor();
     if (iCur < 1) {
-        AfxMessageBox("0º¸´Ù Å« ¼ö¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À....");
+        AfxMessageBox("0ë³´ë‹¤ í° ìˆ˜ë¥¼ ìž…ë ¥í•˜ì‹­ì‹œì˜¤....");
         return;
     }
 

@@ -62,8 +62,8 @@ bool CUITradeBBSSelector::Load(HANDLE hFile) {
 }
 
 void CUITradeBBSSelector::MsgSend_OpenTradeSellBBS() {
-    BYTE byBuff[5];   // ∆–≈∂ πˆ∆€..
-    int  iOffset = 0; // ∆–≈∂ ø¿«¡º¬..
+    BYTE byBuff[5];   // Ìå®ÌÇ∑ Î≤ÑÌçº..
+    int  iOffset = 0; // Ìå®ÌÇ∑ Ïò§ÌîÑÏÖã..
 
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_TRADE_BBS);
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_TYPE_BBS_OPEN);
@@ -72,8 +72,8 @@ void CUITradeBBSSelector::MsgSend_OpenTradeSellBBS() {
 }
 
 void CUITradeBBSSelector::MsgSend_OpenTradeBuyBBS() {
-    BYTE byBuff[5];   // ∆–≈∂ πˆ∆€..
-    int  iOffset = 0; // ∆–≈∂ ø¿«¡º¬..
+    BYTE byBuff[5];   // Ìå®ÌÇ∑ Î≤ÑÌçº..
+    int  iOffset = 0; // Ìå®ÌÇ∑ Ïò§ÌîÑÏÖã..
 
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_TRADE_BBS);
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_TYPE_BBS_OPEN);

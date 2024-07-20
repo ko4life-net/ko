@@ -79,7 +79,7 @@ bool CUIPartyBBS::Load(HANDLE hFile) {
         m_pText[i] = (CN3UIString *)(pParty->GetChildByID(std::format("text_{:02d}", i)));
     }
 
-    m_iCurPage = 0; // ÇöÀç ÆäÀÌÁö..
+    m_iCurPage = 0; // í˜„ìž¬ íŽ˜ì´ì§€..
 
     return true;
 }
@@ -126,15 +126,15 @@ bool CUIPartyBBS::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
         } else if (pSender == m_pBtn_Register) {
             std::string szMsg;
             ::_LoadStringFromResource(IDS_PARTY_BBS_REGISTER, szMsg);
-            CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_PARTY_BBS_REGISTER); // ±â»ç´Ü ÇØÃ¼ ¹°¾îº¸±â..
+            CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_PARTY_BBS_REGISTER); // ê¸°ì‚¬ë‹¨ í•´ì²´ ë¬¼ì–´ë³´ê¸°..
         } else if (pSender == m_pBtn_RegisterCancel) {
             std::string szMsg;
             ::_LoadStringFromResource(IDS_PARTY_BBS_REGISTER_CANCEL, szMsg);
             CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO,
-                                           BEHAVIOR_PARTY_BBS_REGISTER_CANCEL); // ±â»ç´Ü ÇØÃ¼ ¹°¾îº¸±â..
+                                           BEHAVIOR_PARTY_BBS_REGISTER_CANCEL); // ê¸°ì‚¬ë‹¨ í•´ì²´ ë¬¼ì–´ë³´ê¸°..
         } else if (pSender == m_pBtn_Whisper) {
             RequestWhisper();
-        } else if (pSender == m_pBtn_Party) // ÆÄÆ¼ ½ÅÃ»
+        } else if (pSender == m_pBtn_Party) // íŒŒí‹° ì‹ ì²­
         {
             RequestParty();
         }
@@ -149,7 +149,7 @@ bool CUIPartyBBS::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 
 void CUIPartyBBS::MsgSend_RefreshData(int iCurPage) {
     if (m_bProcessing) {
-        return; //Àü¿¡ º¸³½ ÆÐÅ¶ ÀÀ´äÀÌ ¾øÀ¸¸é
+        return; //ì „ì— ë³´ë‚¸ íŒ¨í‚· ì‘ë‹µì´ ì—†ìœ¼ë©´
     }
 
     float fTime = CN3Base::TimeGet();
@@ -176,7 +176,7 @@ void CUIPartyBBS::MsgRecv_RefreshData(DataPack * pDataPack, int & iOffset) {
     BYTE byType = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
     BYTE byResult = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
     if (byResult != 0x01) {
-        return; //½ÇÆÐÇß´Ù¸é
+        return; //ì‹¤íŒ¨í–ˆë‹¤ë©´
     }
 
     switch (byType) {
@@ -226,7 +226,7 @@ void CUIPartyBBS::MsgRecv_RefreshData(DataPack * pDataPack, int & iOffset) {
 
 void CUIPartyBBS::MsgSend_Register() {
     if (m_bProcessing) {
-        return; //Àü¿¡ º¸³½ ÆÐÅ¶ ÀÀ´äÀÌ ¾øÀ¸¸é
+        return; //ì „ì— ë³´ë‚¸ íŒ¨í‚· ì‘ë‹µì´ ì—†ìœ¼ë©´
     }
 
     BYTE byBuff[4];
@@ -241,7 +241,7 @@ void CUIPartyBBS::MsgSend_Register() {
 
 void CUIPartyBBS::MsgSend_RegisterCancel() {
     if (m_bProcessing) {
-        return; //Àü¿¡ º¸³½ ÆÐÅ¶ ÀÀ´äÀÌ ¾øÀ¸¸é
+        return; //ì „ì— ë³´ë‚¸ íŒ¨í‚· ì‘ë‹µì´ ì—†ìœ¼ë©´
     }
 
     BYTE byBuff[4];
@@ -256,7 +256,7 @@ void CUIPartyBBS::MsgSend_RegisterCancel() {
 
 void CUIPartyBBS::RefreshPage() {
     if (m_pText_Page) {
-        m_pText_Page->SetStringAsInt(m_iCurPage + 1); // ÆäÀÌÁö Ç¥½Ã..
+        m_pText_Page->SetStringAsInt(m_iCurPage + 1); // íŽ˜ì´ì§€ í‘œì‹œ..
     }
 
     ResetContent();
@@ -302,10 +302,10 @@ void CUIPartyBBS::PartyStringSet(BYTE byType) {
         ::_LoadStringFromResource(IDS_WANT_PARTY_MEMBER, szMsg);
         sprintf(szBuff, szMsg.c_str(), iLMin, iLMax);
         CGameProcedure::s_pPlayer->InfoStringSet(szBuff, 0xff00ff00);
-        CGameProcedure::s_pProcMain->MsgSend_StateChange(N3_SP_STATE_CHANGE_RECRUIT_PARTY, 0x02); // ÆÄÆ¼ ¿äÃ».. Ãë¼Ò
+        CGameProcedure::s_pProcMain->MsgSend_StateChange(N3_SP_STATE_CHANGE_RECRUIT_PARTY, 0x02); // íŒŒí‹° ìš”ì²­.. ì·¨ì†Œ
     } else {
         CGameProcedure::s_pPlayer->InfoStringSet("", 0);
-        CGameProcedure::s_pProcMain->MsgSend_StateChange(N3_SP_STATE_CHANGE_RECRUIT_PARTY, 0x01); // ÆÄÆ¼ ¿äÃ»..
+        CGameProcedure::s_pProcMain->MsgSend_StateChange(N3_SP_STATE_CHANGE_RECRUIT_PARTY, 0x01); // íŒŒí‹° ìš”ì²­..
     }
 }
 
@@ -442,7 +442,7 @@ void CUIPartyBBS::RequestWhisper() {
             __InfoPartyBBS IPB = (*it);
             if (0 !=
                 lstrcmpi(IPB.szID.c_str(),
-                         CGameProcedure::s_pPlayer->m_InfoBase.szID.c_str())) { //³ª ÀÚ½Å¿¡°Ô´Â ±Ó¼Ó¸»À» ¸øÇÏ°Ô ÇÑ´Ù...
+                         CGameProcedure::s_pPlayer->m_InfoBase.szID.c_str())) { //ë‚˜ ìžì‹ ì—ê²ŒëŠ” ê·“ì†ë§ì„ ëª»í•˜ê²Œ í•œë‹¤...
                 CGameProcedure::s_pProcMain->MsgSend_ChatSelectTarget(IPB.szID);
             }
             break;
@@ -465,12 +465,12 @@ void CUIPartyBBS::RequestParty() {
             __InfoPartyBBS IPB = (*it);
 
             if (0 != lstrcmpi(IPB.szID.c_str(), CGameProcedure::s_pPlayer->m_InfoBase.szID
-                                                    .c_str())) { //³ª ÀÚ½Å¿¡°Ô´Â ÆÄÆ¼ ½ÅÃ»À» ¸øÇÏ°Ô ÇÑ´Ù...
+                                                    .c_str())) { //ë‚˜ ìžì‹ ì—ê²ŒëŠ” íŒŒí‹° ì‹ ì²­ì„ ëª»í•˜ê²Œ í•œë‹¤...
                 std::string szMsg;
                 if (CGameProcedure::s_pProcMain->MsgSend_PartyOrForceCreate(0, IPB.szID)) {
-                    ::_LoadStringFromResource(IDS_PARTY_INVITE, szMsg); // ÆÄÆ¼
+                    ::_LoadStringFromResource(IDS_PARTY_INVITE, szMsg); // íŒŒí‹°
                 } else {
-                    ::_LoadStringFromResource(IDS_PARTY_INVITE_FAILED, szMsg); // ÆÄÆ¼ ÃÊ´ë ½ÇÆÐ
+                    ::_LoadStringFromResource(IDS_PARTY_INVITE_FAILED, szMsg); // íŒŒí‹° ì´ˆëŒ€ ì‹¤íŒ¨
                 }
                 CGameProcedure::s_pProcMain->MsgOutput(IPB.szID + szMsg, 0xffffff00);
                 break;
