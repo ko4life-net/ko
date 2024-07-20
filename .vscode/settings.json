@@ -1,5 +1,6 @@
 {
     "files.autoGuessEncoding": true,
+    "files.eol": "\n",
     "files.associations": {
         "vector": "cpp",
         "algorithm": "cpp",
