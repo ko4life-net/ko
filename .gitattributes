@@ -1,3 +1,1 @@
-* text=auto
-*.rc text working-tree-encoding=UTF-16
-*.rc2 text working-tree-encoding=UTF-16
+* text=auto eol=lf
