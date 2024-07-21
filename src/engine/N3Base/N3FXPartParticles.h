@@ -68,6 +68,9 @@ class CN3FXPartParticles : public CN3FXPartBase {
     float m_fScaleVelX;
     float m_fScaleVelY;
 
+    bool m_bDistanceNumFix;     // Needs Implementation
+    bool m_bParticleYAxisFix;   // Needs Implementation
+
   protected:
     void Rotate();
     void Scaling();
