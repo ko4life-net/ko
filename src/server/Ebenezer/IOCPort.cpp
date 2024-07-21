@@ -107,7 +107,7 @@ DWORD WINAPI AcceptThread(LPVOID lp) {
                 }
 
                 // Crytion
-                //pSocket->SendCryptionKey();    // ¾ÏÈ£È­
+                //pSocket->SendCryptionKey();    // ì•”í˜¸í™”
                 // ~
                 pSocket->Receive();
 
@@ -243,7 +243,7 @@ DWORD WINAPI ClientWorkerThread(LPVOID lp) {
                         TRACE("AISocket Closed By 0 Byte Notify\n");
                         pSocket->CloseProcess();
                         pIocport->RidIOCPSocket(pSocket->GetSocketID(), pSocket);
-                        //                        pIocport->PutOldSid( pSocket->GetSocketID() );        // Å¬¶óÀÌ¾ğÆ® ¼ÒÄÏÀº Sid °ü¸®ÇÏÁö ¾ÊÀ½
+                        //                        pIocport->PutOldSid( pSocket->GetSocketID() );        // í´ë¼ì´ì–¸íŠ¸ ì†Œì¼“ì€ Sid ê´€ë¦¬í•˜ì§€ ì•ŠìŒ
                         LeaveCriticalSection(&g_critical);
                         break;
                     }
@@ -413,7 +413,7 @@ void CIOCPort::Init(int serversocksize, int clientsocksize, int workernum) {
         m_SockArrayInActive[i] = NULL;
     }
 
-    m_ClientSockArray = new CIOCPSocket2 *[clientsocksize]; // ÇØ´ç ¼­¹ö°¡ Å¬¶óÀÌ¾ğÆ®·Î¼­ ´Ù¸¥ ÄÄÅÍ¿¡ ºÙ´Â ¼ÒÄÏ¼ö
+    m_ClientSockArray = new CIOCPSocket2 *[clientsocksize]; // í•´ë‹¹ ì„œë²„ê°€ í´ë¼ì´ì–¸íŠ¸ë¡œì„œ ë‹¤ë¥¸ ì»´í„°ì— ë¶™ëŠ” ì†Œì¼“ìˆ˜
     for (int i = 0; i < clientsocksize; i++) {
         m_ClientSockArray[i] = NULL;
     }

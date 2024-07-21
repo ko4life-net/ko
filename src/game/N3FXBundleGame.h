@@ -8,11 +8,11 @@
 
 class CN3FXBundleGame : public CN3FXBundle {
   public:
-    int  m_iID; //°×¿¡¼­ ¾²´Â ¾Æµğ..
+    int  m_iID; //ê²œì—ì„œ ì“°ëŠ” ì•„ë””..
     int  m_iIdx;
     bool m_bRegion;
 
-    //Æ÷¹°¼± ¿îµ¿À» À§ÇÑ...½ÎÀÎ°î¼± ÀÌ¿ëÇÔ´Ù..
+    //í¬ë¬¼ì„  ìš´ë™ì„ ìœ„í•œ...ì‹¸ì¸ê³¡ì„  ì´ìš©í•¨ë‹¤..
     float m_fDistance;
     float m_fHeight;
 

@@ -49,29 +49,29 @@ void CLightMgr::Release() {
     /////////////////////////////////////////////
 
     ///////////////////////////////////////////////////////////////
-    // ±‚∫ª ∂Û¿Ã∆Æ ºº∆√
+    // Í∏∞Î≥∏ ÎùºÏù¥Ìä∏ ÏÑ∏ÌåÖ
     D3DCOLORVALUE crLgt;
 
     crLgt.a = 0.0f, crLgt.r = crLgt.g = crLgt.b = 0.8f;
-    CN3Light * pLightGlobal = new CN3Light(); // ¿¸√º∏¶ ∫Ò√‚ ∂Û¿Ã∆Æ..
+    CN3Light * pLightGlobal = new CN3Light(); // Ï†ÑÏ≤¥Î•º ÎπÑÏ∂ú ÎùºÏù¥Ìä∏..
     pLightGlobal->m_Data.InitDirection(LGT_DEFAULT0, __Vector3(0, -1, 0), crLgt);
     m_pActiveLight[LGT_DEFAULT0] = pLightGlobal;
 
     crLgt.a = 0.0f, crLgt.r = crLgt.g = crLgt.b = 0.5f;
-    CN3Light * pLightGlobal2 = new CN3Light(); // π›¥Î ∆Ìø°º≠ ¿¸√º∏¶ ∫Ò√‚ ∂Û¿Ã∆Æ..
+    CN3Light * pLightGlobal2 = new CN3Light(); // Î∞òÎåÄ Ìé∏ÏóêÏÑú Ï†ÑÏ≤¥Î•º ÎπÑÏ∂ú ÎùºÏù¥Ìä∏..
     pLightGlobal2->m_Data.InitDirection(LGT_DEFAULT1, __Vector3(0, 1, 0), crLgt);
     m_pActiveLight[LGT_DEFAULT1] = pLightGlobal2;
 
     crLgt.a = 0.0f, crLgt.r = crLgt.g = crLgt.b = 0.3f;
-    CN3Light * pLight = new CN3Light(); // ƒ´∏ﬁ∂ÛøÕ ∫ŸæÓ ¥Ÿ¥—¥Ÿ...
+    CN3Light * pLight = new CN3Light(); // Ïπ¥Î©îÎùºÏôÄ Î∂ôÏñ¥ Îã§ÎãåÎã§...
     pLight->m_Data.InitPoint(LGT_DEFAULT2, __Vector3(0, 0, 0), crLgt, 32.0f);
     m_pActiveLight[LGT_DEFAULT2] = pLight;
-    // ±‚∫ª ∂Û¿Ã∆Æ ºº∆√
+    // Í∏∞Î≥∏ ÎùºÏù¥Ìä∏ ÏÑ∏ÌåÖ
     ///////////////////////////////////////////////////////////////
 }
 
 void CLightMgr::Tick() {
-    //∞≈∏Æø° µ˚∂Û √ﬂ∑¡≥ª∞Ì...
+    //Í±∞Î¶¨Ïóê Îî∞Îùº Ï∂îÎ†§ÎÇ¥Í≥†...
     int   NumSlotEmpty = 0;
     float LimitLeft, LimitRight, LimitUp, LimitDown;
     LimitLeft = CN3Base::s_CameraData.vEye.x - LIGHT_VALIDRANGE;
@@ -119,7 +119,7 @@ void CLightMgr::Tick() {
         }
     }
 
-    //tickµπ∑¡∂Û..
+    //tickÎèåÎ†§Îùº..
     for (int i = 0; i < LGT_MAX; i++) {
         if (m_pActiveLight[i]) {
             m_pActiveLight[i]->Tick();

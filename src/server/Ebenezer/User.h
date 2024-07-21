@@ -18,7 +18,7 @@
 
 #include <list>
 typedef std::list<_EXCHANGE_ITEM *> ItemList;
-typedef list<int>                   UserEventList; // ÀÌ¹êÆ®¸¦ À§ÇÏ¿© ^^;
+typedef list<int>                   UserEventList; // ì´ë°´íŠ¸ë¥¼ ìœ„í•˜ì—¬ ^^;
 
 #define BANISH_DELAY_TIME 30
 
@@ -29,41 +29,41 @@ class CUser : public CIOCPSocket2 {
 
     char m_strAccountID
         [MAX_ID_SIZE +
-         1]; // Login -> Select Char ±îÁö ÇÑ½ÃÀûÀ¸·Î¸¸ ¾²´Âº¯¼ö. ÀÌ¿Ü¿¡´Â _USER_DATA ¾È¿¡ÀÖ´Â º¯¼ö¸¦ ¾´´Ù...agent ¿ÍÀÇ µ¥ÀÌÅÍ µ¿±âÈ­¸¦ À§ÇØ...
+         1]; // Login -> Select Char ê¹Œì§€ í•œì‹œì ìœ¼ë¡œë§Œ ì“°ëŠ”ë³€ìˆ˜. ì´ì™¸ì—ëŠ” _USER_DATA ì•ˆì—ìˆëŠ” ë³€ìˆ˜ë¥¼ ì“´ë‹¤...agent ì™€ì˜ ë°ì´í„° ë™ê¸°í™”ë¥¼ ìœ„í•´...
 
-    short m_RegionX; // ÇöÀç ¿µ¿ª X ÁÂÇ¥
-    short m_RegionZ; // ÇöÀç ¿µ¿ª Z ÁÂÇ¥
+    short m_RegionX; // í˜„ì¬ ì˜ì—­ X ì¢Œí‘œ
+    short m_RegionZ; // í˜„ì¬ ì˜ì—­ Z ì¢Œí‘œ
 
-    int   m_iMaxExp;    // ´ÙÀ½ ·¹º§ÀÌ µÇ±â À§ÇØ ÇÊ¿äÇÑ Exp·®
-    short m_sMaxWeight; // µé ¼ö ÀÖ´Â ÃÖ´ë ¹«°Ô
-    BYTE  m_sSpeed;     // ½ºÇÇµå
+    int   m_iMaxExp;    // ë‹¤ìŒ ë ˆë²¨ì´ ë˜ê¸° ìœ„í•´ í•„ìš”í•œ ExpëŸ‰
+    short m_sMaxWeight; // ë“¤ ìˆ˜ ìˆëŠ” ìµœëŒ€ ë¬´ê²Œ
+    BYTE  m_sSpeed;     // ìŠ¤í”¼ë“œ
 
-    short m_sBodyAc; // ¸Ç¸ö ¹æ¾î·Â
+    short m_sBodyAc; // ë§¨ëª¸ ë°©ì–´ë ¥
 
-    short m_sTotalHit;         // ÃÑ Å¸°İ°ø°İ·Â
-    short m_sTotalAc;          // ÃÑ ¹æ¾î·Â
-    float m_sTotalHitrate;     // ÃÑ °ø°İ¼º°ø ¹ÎÃ¸¼º
-    float m_sTotalEvasionrate; // ÃÑ ¹æ¾î ¹ÎÃ¸¼º
+    short m_sTotalHit;         // ì´ íƒ€ê²©ê³µê²©ë ¥
+    short m_sTotalAc;          // ì´ ë°©ì–´ë ¥
+    float m_sTotalHitrate;     // ì´ ê³µê²©ì„±ê³µ ë¯¼ì²©ì„±
+    float m_sTotalEvasionrate; // ì´ ë°©ì–´ ë¯¼ì²©ì„±
 
-    short m_sItemMaxHp;       // ¾ÆÀÌÅÛ ÃÑ ÃÖ´ë HP Bonus
-    short m_sItemMaxMp;       // ¾ÆÀÌÅÛ ÃÑ ÃÖ´ë MP Bonus
-    short m_sItemWeight;      // ¾ÆÀÌÅÛ ÃÑ¹«°Ô
-    short m_sItemHit;         // ¾ÆÀÌÅÛ ÃÑÅ¸°İÄ¡
-    short m_sItemAc;          // ¾ÆÀÌÅÛ ÃÑ¹æ¾î·Â
-    short m_sItemStr;         // ¾ÆÀÌÅÛ ÃÑÈû º¸³Ê½º
-    short m_sItemSta;         // ¾ÆÀÌÅÛ ÃÑÃ¼·Â º¸³Ê½º
-    short m_sItemDex;         // ¾ÆÀÌÅÛ ÃÑ¹ÎÃ¸¼º º¸³Ê½º
-    short m_sItemIntel;       // ¾ÆÀÌÅÛ ÃÑÁö´É º¸³Ê½º
-    short m_sItemCham;        // ¾ÆÀÌÅÛ ÃÑ¸Å·Âº¸³Ê½º
-    short m_sItemHitrate;     // ¾ÆÀÌÅÛ ÃÑÅ¸°İÀ²
-    short m_sItemEvasionrate; // ¾ÆÀÌÅÛ ÃÑÈ¸ÇÇÀ²
+    short m_sItemMaxHp;       // ì•„ì´í…œ ì´ ìµœëŒ€ HP Bonus
+    short m_sItemMaxMp;       // ì•„ì´í…œ ì´ ìµœëŒ€ MP Bonus
+    short m_sItemWeight;      // ì•„ì´í…œ ì´ë¬´ê²Œ
+    short m_sItemHit;         // ì•„ì´í…œ ì´íƒ€ê²©ì¹˜
+    short m_sItemAc;          // ì•„ì´í…œ ì´ë°©ì–´ë ¥
+    short m_sItemStr;         // ì•„ì´í…œ ì´í˜ ë³´ë„ˆìŠ¤
+    short m_sItemSta;         // ì•„ì´í…œ ì´ì²´ë ¥ ë³´ë„ˆìŠ¤
+    short m_sItemDex;         // ì•„ì´í…œ ì´ë¯¼ì²©ì„± ë³´ë„ˆìŠ¤
+    short m_sItemIntel;       // ì•„ì´í…œ ì´ì§€ëŠ¥ ë³´ë„ˆìŠ¤
+    short m_sItemCham;        // ì•„ì´í…œ ì´ë§¤ë ¥ë³´ë„ˆìŠ¤
+    short m_sItemHitrate;     // ì•„ì´í…œ ì´íƒ€ê²©ìœ¨
+    short m_sItemEvasionrate; // ì•„ì´í…œ ì´íšŒí”¼ìœ¨
 
-    BYTE m_bFireR;      // ºÒ ¸¶¹ı ÀúÇ×·Â
-    BYTE m_bColdR;      // ¾óÀ½ ¸¶¹ı ÀúÇ×·Â
-    BYTE m_bLightningR; // Àü±â ¸¶¹ı ÀúÇ×·Â
-    BYTE m_bMagicR;     // ±âÅ¸ ¸¶¹ı ÀúÇ×·Â
-    BYTE m_bDiseaseR;   // ÀúÁÖ ¸¶¹ı ÀúÇ×·Â
-    BYTE m_bPoisonR;    // µ¶ ¸¶¹ı ÀúÇ×·Â
+    BYTE m_bFireR;      // ë¶ˆ ë§ˆë²• ì €í•­ë ¥
+    BYTE m_bColdR;      // ì–¼ìŒ ë§ˆë²• ì €í•­ë ¥
+    BYTE m_bLightningR; // ì „ê¸° ë§ˆë²• ì €í•­ë ¥
+    BYTE m_bMagicR;     // ê¸°íƒ€ ë§ˆë²• ì €í•­ë ¥
+    BYTE m_bDiseaseR;   // ì €ì£¼ ë§ˆë²• ì €í•­ë ¥
+    BYTE m_bPoisonR;    // ë… ë§ˆë²• ì €í•­ë ¥
 
     BYTE  m_bMagicTypeLeftHand;    // The type of magic item in user's left hand
     BYTE  m_bMagicTypeRightHand;   // The type of magic item in user's right hand
@@ -86,16 +86,16 @@ class CUser : public CIOCPSocket2 {
     float m_fWill_z;
     float m_fWill_y;
 
-    BYTE m_bResHpType; // HP È¸º¹Å¸ÀÔ
-    BYTE m_bWarp;      // Á¸ÀÌµ¿Áß...
-    BYTE m_bNeedParty; // ÆÄÆ¼....±¸ÇØ¿ä
+    BYTE m_bResHpType; // HP íšŒë³µíƒ€ì…
+    BYTE m_bWarp;      // ì¡´ì´ë™ì¤‘...
+    BYTE m_bNeedParty; // íŒŒí‹°....êµ¬í•´ìš”
 
     short m_sPartyIndex;
-    short m_sExchangeUser; // ±³È¯ÁßÀÎ À¯Àú
+    short m_sExchangeUser; // êµí™˜ì¤‘ì¸ ìœ ì €
     BYTE  m_bExchangeOK;
 
     ItemList   m_ExchangeItemList;
-    _ITEM_DATA m_MirrorItem[HAVE_MAX]; // ±³È¯½Ã ¹é¾÷ ¾ÆÀÌÅÛ ¸®½ºÆ®¸¦ ¾´´Ù.
+    _ITEM_DATA m_MirrorItem[HAVE_MAX]; // êµí™˜ì‹œ ë°±ì—… ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ë¥¼ ì“´ë‹¤.
 
     short m_sPrivateChatUser;
 
@@ -178,7 +178,7 @@ class CUser : public CIOCPSocket2 {
 
     float m_fLastTrapAreaTime; // The last moment you were in the trap area.
 
-    BOOL m_bZoneChangeFlag; // ¼º¿ë¾¾ ¹Ì¿ö!!
+    BOOL m_bZoneChangeFlag; // ì„±ìš©ì”¨ ë¯¸ì›Œ!!
 
     BYTE m_bRegeneType; // Did you die and go home or did you type '/town'?
 
@@ -186,16 +186,16 @@ class CUser : public CIOCPSocket2 {
 
     BOOL m_bZoneChangeSameZone; // Did the server change when you warped?
 
-    // ÀÌ¹êÆ®¿ë °ü·Ã.... Á¤¾Ö¾¾ ÀÌ°Å º¸¸é ÄÚÄ«½º ½ò²²¿ä ^^;
-    //    int                    m_iSelMsgEvent[5];    // ½ÇÇàÁßÀÎ ¼±ÅÃ ¸Ş¼¼Áö¹Ú½º ÀÌº¥Æ®
-    int           m_iSelMsgEvent[MAX_MESSAGE_EVENT]; // ½ÇÇàÁßÀÎ ¼±ÅÃ ¸Ş¼¼Áö¹Ú½º ÀÌº¥Æ®
-    short         m_sEventNid;                       // ¸¶Áö¸·À¸·Î ¼±ÅÃÇÑ ÀÌº¥Æ® NPC ¹øÈ£
-    UserEventList m_arUserEvent;                     // ½ÇÇàÇÑ ÀÌº¥Æ® ¸®½ºÆ®
+    // ì´ë°´íŠ¸ìš© ê´€ë ¨.... ì •ì• ì”¨ ì´ê±° ë³´ë©´ ì½”ì¹´ìŠ¤ ì ê»˜ìš” ^^;
+    //    int                    m_iSelMsgEvent[5];    // ì‹¤í–‰ì¤‘ì¸ ì„ íƒ ë©”ì„¸ì§€ë°•ìŠ¤ ì´ë²¤íŠ¸
+    int           m_iSelMsgEvent[MAX_MESSAGE_EVENT]; // ì‹¤í–‰ì¤‘ì¸ ì„ íƒ ë©”ì„¸ì§€ë°•ìŠ¤ ì´ë²¤íŠ¸
+    short         m_sEventNid;                       // ë§ˆì§€ë§‰ìœ¼ë¡œ ì„ íƒí•œ ì´ë²¤íŠ¸ NPC ë²ˆí˜¸
+    UserEventList m_arUserEvent;                     // ì‹¤í–‰í•œ ì´ë²¤íŠ¸ ë¦¬ìŠ¤íŠ¸
 
     char m_strCouponId[MAX_COUPON_ID_LENGTH]; // What was the number of the coupon?
     int  m_iEditBoxEvent;
 
-    short m_sEvent[MAX_CURRENT_EVENT]; // ÀÌ¹Ì ½ÇÇàµÈ ÀÌ¹êÆ® ¸®½ºÆ®µé :)
+    short m_sEvent[MAX_CURRENT_EVENT]; // ì´ë¯¸ ì‹¤í–‰ëœ ì´ë°´íŠ¸ ë¦¬ìŠ¤íŠ¸ë“¤ :)
 
   public:
     void    RecvDeleteChar(char * pBuf);
@@ -356,7 +356,7 @@ class CUser : public CIOCPSocket2 {
     void    SendTimeStatus();
     void    Regene(char * pBuf, int magicid = 0);
     void    SetMaxMp();
-    void    SetMaxHp(int iFlag = 0); // 0:default, 1:hp¸¦ maxhp¸¸Å­ Ã¤¿öÁÖ±â
+    void    SetMaxHp(int iFlag = 0); // 0:default, 1:hpë¥¼ maxhpë§Œí¼ ì±„ì›Œì£¼ê¸°
     void    ExpChange(int iExp);
     void    Chat(char * pBuf);
     void    LogOut();

@@ -256,7 +256,7 @@ void CPvsMgr::RenderCompile() {
         }
     }
 
-    // Debug¿ë ·»´õ¸µ..
+    // Debugìš© ë Œë”ë§..
     /*    typedef typename std::list<__Collision>::iterator citer;
     citer cit = m_ColList.begin();
     while (cit != m_ColList.end())
@@ -349,7 +349,7 @@ void CPvsMgr::TotalShapeRender() {
         pSh->Tick(-1000);
 
         pSh->Render();
-        CN3Base::s_AlphaMgr.Render(); // Alpha primitive ±×¸®±â...
+        CN3Base::s_AlphaMgr.Render(); // Alpha primitive ê·¸ë¦¬ê¸°...
     }
 
     CN3Base::s_lpD3DDev->SetRenderState(D3DRS_POINTSIZE, dwPointSize);
@@ -415,7 +415,7 @@ void CPvsMgr::TotalCollisionRender() {
         pSh->Tick(-1000);
 
         pSh->CollisionMesh()->Render(0xffffffff);
-        CN3Base::s_AlphaMgr.Render(); // Alpha primitive ±×¸®±â...
+        CN3Base::s_AlphaMgr.Render(); // Alpha primitive ê·¸ë¦¬ê¸°...
     }
 
     CN3Base::s_lpD3DDev->SetRenderState(D3DRS_POINTSIZE, dwPointSize);
@@ -464,7 +464,7 @@ void CPvsMgr::Load(FILE * stream) {
         }
     }
 
-    // ¸µÅ©µÈ ¾ÆÀÌµğµéÀ» ÀĞ¾î¼­ ¿¬°á½ÃÅ´..
+    // ë§í¬ëœ ì•„ì´ë””ë“¤ì„ ì½ì–´ì„œ ì—°ê²°ì‹œí‚´..
     iter it = m_pPvsList.begin();
     while (it != m_pPvsList.end()) {
         pBase = *it++;
@@ -505,7 +505,7 @@ void CPvsMgr::Save(FILE * stream) {
     iter       it = m_pPvsList.begin();
 
     while (it != m_pPvsList.end()) {
-        // ÀÚ½ÅÀÇ µ¥ÀÌÅÍ ÀúÀå..
+        // ìì‹ ì˜ ë°ì´í„° ì €ì¥..
         pBase = *it++;
         pBase->Save(stream);
     }
@@ -543,7 +543,7 @@ void CPvsMgr::ComputeVisibilty(CPortalVol * const pVolMy) {
 
     SetPriority(pVolMy);
 
-    // PortalVol·Î¸¸ ÀÌ·ç¾îÁø ¸®½ºÆ®¸¦ ¸¸µë..
+    // PortalVolë¡œë§Œ ì´ë£¨ì–´ì§„ ë¦¬ìŠ¤íŠ¸ë¥¼ ë§Œë“¬..
     std::priority_queue<CPortalVol *, std::vector<CPortalVol *>, Myless<CPortalVol *>> pQueue;
 
     CPvsBase * pBase = NULL;
@@ -555,7 +555,7 @@ void CPvsMgr::ComputeVisibilty(CPortalVol * const pVolMy) {
         }
     }
 
-    // µğ¹ö±×¿ë Æ®·¹ÀÌ½º..
+    // ë””ë²„ê·¸ìš© íŠ¸ë ˆì´ìŠ¤..
     CPortalVol * pVol = NULL;
     while (!pQueue.empty()) {
         pVol = pQueue.top();
@@ -566,7 +566,7 @@ void CPvsMgr::ComputeVisibilty(CPortalVol * const pVolMy) {
     }
     pVolMy->m_eRenderType = TYPE_TRUE;
 
-    // Ãæµ¹Ã¼Å© ÁØºñ..
+    // ì¶©ëŒì²´í¬ ì¤€ë¹„..
     PrepareCollisionDetect(pVolMy);
     CollisionDetectMain(pVolMy);
 }
@@ -587,7 +587,7 @@ void CPvsMgr::SetPriority(CPortalVol * const pVolMy) {
     pVolMy->m_iPriority = 0;
     int igPriority = 0;
 
-    // Àç±ÍÀûÀ¸·Î ¿ì¼±¼øÀ§ °áÁ¤..    Á»´õ º¹ÀâÇÏ±¸ Á¤È®È÷ ÇÏ·Á¸é.. Ã¹¹øÂ°ÀÇ Wall°ú °°Àº ¹æÇâÀÌ ¿ì¼±¼øÀ§°¡ ³ô´Ù..
+    // ì¬ê·€ì ìœ¼ë¡œ ìš°ì„ ìˆœìœ„ ê²°ì •..    ì¢€ë” ë³µì¡í•˜êµ¬ ì •í™•íˆ í•˜ë ¤ë©´.. ì²«ë²ˆì§¸ì˜ Wallê³¼ ê°™ì€ ë°©í–¥ì´ ìš°ì„ ìˆœìœ„ê°€ ë†’ë‹¤..
     SetPriorityRecursive(pVolMy, igPriority + 1);
 }
 
@@ -601,7 +601,7 @@ void CPvsMgr::SetPriorityRecursive(CPortalVol * const pVolMy, int iRecursive) {
         if (pBase->IsKindOf(RUNTIME_CLASS(CPortalVol))) {
             pVol = (CPortalVol *)pBase;
             if ((pVol->m_iPriority == -1) ||
-                (pVol->m_iPriority > iRecursive)) // ¿ì¼±¼øÀ§°¡ Á¤ÇØÁöÁö ¾Ê¾Ò°Å³ª ÇöÀç ¿ì¼±¼øÀ§º¸´Ù Å©¸é..
+                (pVol->m_iPriority > iRecursive)) // ìš°ì„ ìˆœìœ„ê°€ ì •í•´ì§€ì§€ ì•Šì•˜ê±°ë‚˜ í˜„ì¬ ìš°ì„ ìˆœìœ„ë³´ë‹¤ í¬ë©´..
             {
                 pVol->m_iPriority = iRecursive;
                 SetPriorityRecursive(pVol, iRecursive + 1);
@@ -682,12 +682,12 @@ void CPvsMgr::PrepareCollisionDetectOne(CPortalVol * const pVol, CPortalWall * c
 
 void CPvsMgr::PrepareCollisionDetectTwo(CPortalVol * pVol, CPortalWall * pWall, e_WallType eWT, __Collision & Col) {
     switch (Col.eWT) {
-    case WALL_ZB: // µÚÂÊ..
+    case WALL_ZB: // ë’¤ìª½..
         Col.Vvec[0] = pVol->m_pvVertex[7];
         Col.Vvec[1] = pVol->m_pvVertex[3];
         Col.Vvec[2] = pVol->m_pvVertex[6];
         Col.Vvec[3] = pVol->m_pvVertex[2];
-        // µÚÂÊ Åõ¿µµÈ °ª..
+        // ë’¤ìª½ íˆ¬ì˜ëœ ê°’..
         Col.Vvec[4] = pWall->m_pvVertex[0];
         Col.Vvec[4].z = pVol->m_pvVertex[7].z;
         Col.Vvec[5] = pWall->m_pvVertex[1];
@@ -698,12 +698,12 @@ void CPvsMgr::PrepareCollisionDetectTwo(CPortalVol * pVol, CPortalWall * pWall, 
         Col.Vvec[7].z = pVol->m_pvVertex[2].z;
         break;
 
-    case WALL_ZF: // ¾ÕÂÊ..
+    case WALL_ZF: // ì•ìª½..
         Col.Vvec[0] = pVol->m_pvVertex[5];
         Col.Vvec[1] = pVol->m_pvVertex[1];
         Col.Vvec[2] = pVol->m_pvVertex[4];
         Col.Vvec[3] = pVol->m_pvVertex[0];
-        // ¾ÕÂÊ Åõ¿µµÈ °ª..
+        // ì•ìª½ íˆ¬ì˜ëœ ê°’..
         Col.Vvec[4] = pWall->m_pvVertex[0];
         Col.Vvec[4].z = pVol->m_pvVertex[5].z;
         Col.Vvec[5] = pWall->m_pvVertex[1];
@@ -714,12 +714,12 @@ void CPvsMgr::PrepareCollisionDetectTwo(CPortalVol * pVol, CPortalWall * pWall, 
         Col.Vvec[7].z = pVol->m_pvVertex[0].z;
         break;
 
-    case WALL_XL: // ¿ŞÂÊ..
+    case WALL_XL: // ì™¼ìª½..
         Col.Vvec[0] = pVol->m_pvVertex[6];
         Col.Vvec[1] = pVol->m_pvVertex[2];
         Col.Vvec[2] = pVol->m_pvVertex[5];
         Col.Vvec[3] = pVol->m_pvVertex[1];
-        // ¿ŞÂÊ Åõ¿µµÈ °ª..
+        // ì™¼ìª½ íˆ¬ì˜ëœ ê°’..
         Col.Vvec[4] = pWall->m_pvVertex[0];
         Col.Vvec[4].x = pVol->m_pvVertex[6].x;
         Col.Vvec[5] = pWall->m_pvVertex[1];
@@ -730,12 +730,12 @@ void CPvsMgr::PrepareCollisionDetectTwo(CPortalVol * pVol, CPortalWall * pWall, 
         Col.Vvec[7].x = pVol->m_pvVertex[1].x;
         break;
 
-    case WALL_XR: // ¿À¸¥ÂÊ..
+    case WALL_XR: // ì˜¤ë¥¸ìª½..
         Col.Vvec[0] = pVol->m_pvVertex[4];
         Col.Vvec[1] = pVol->m_pvVertex[0];
         Col.Vvec[2] = pVol->m_pvVertex[7];
         Col.Vvec[3] = pVol->m_pvVertex[3];
-        // ¿À¸¥ÂÊ Åõ¿µµÈ °ª..
+        // ì˜¤ë¥¸ìª½ íˆ¬ì˜ëœ ê°’..
         Col.Vvec[4] = pWall->m_pvVertex[0];
         Col.Vvec[4].x = pVol->m_pvVertex[4].x;
         Col.Vvec[5] = pWall->m_pvVertex[1];
@@ -746,12 +746,12 @@ void CPvsMgr::PrepareCollisionDetectTwo(CPortalVol * pVol, CPortalWall * pWall, 
         Col.Vvec[7].x = pVol->m_pvVertex[3].x;
         break;
 
-    case WALL_YT: // À§ÂÊ
+    case WALL_YT: // ìœ„ìª½
         Col.Vvec[0] = pVol->m_pvVertex[0];
         Col.Vvec[1] = pVol->m_pvVertex[1];
         Col.Vvec[2] = pVol->m_pvVertex[3];
         Col.Vvec[3] = pVol->m_pvVertex[2];
-        // À§ÂÊ Åõ¿µµÈ °ª..
+        // ìœ„ìª½ íˆ¬ì˜ëœ ê°’..
         Col.Vvec[4] = pWall->m_pvVertex[0];
         Col.Vvec[4].y = pVol->m_pvVertex[0].y;
         Col.Vvec[5] = pWall->m_pvVertex[1];
@@ -762,12 +762,12 @@ void CPvsMgr::PrepareCollisionDetectTwo(CPortalVol * pVol, CPortalWall * pWall, 
         Col.Vvec[7].y = pVol->m_pvVertex[2].y;
         break;
 
-    case WALL_YB: // ¾Æ·¡ÂÊ
+    case WALL_YB: // ì•„ë˜ìª½
         Col.Vvec[0] = pVol->m_pvVertex[7];
         Col.Vvec[1] = pVol->m_pvVertex[6];
         Col.Vvec[2] = pVol->m_pvVertex[4];
         Col.Vvec[3] = pVol->m_pvVertex[5];
-        // ¾Æ·¡ÂÊ Åõ¿µµÈ °ª..
+        // ì•„ë˜ìª½ íˆ¬ì˜ëœ ê°’..
         Col.Vvec[4] = pWall->m_pvVertex[0];
         Col.Vvec[4].y = pVol->m_pvVertex[7].y;
         Col.Vvec[5] = pWall->m_pvVertex[1];
@@ -793,33 +793,33 @@ bool CPvsMgr::CollisionDetectMain(CPortalVol * const pVolMy) {
     while (icit != m_ColList.end()) {
         Col = *icit++;
 
-        // Volumn¿¡ ÀÖ´Â Ãæµ¹ Ã¼Å© Á¡µé..
+        // Volumnì— ìˆëŠ” ì¶©ëŒ ì²´í¬ ì ë“¤..
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
                 if ((i == 8) && (j == 4)) {
                     int k = 98;
                 }
-                // ¼±ºĞÀ» ¸¸µç´Ù..
+                // ì„ ë¶„ì„ ë§Œë“ ë‹¤..
                 vDir = Col.Wvec[j] - Col.Vvec[i];
                 vDir.Normalize();
 
-                // ¿ì¼± ¼øÀ§´ë·Î Ãæµ¹ Ã¼Å©..
+                // ìš°ì„  ìˆœìœ„ëŒ€ë¡œ ì¶©ëŒ ì²´í¬..
                 ivit = m_pVoltList.begin();
                 while (ivit != m_pVoltList.end()) {
                     pVol = *ivit++;
-                    // ÀÚ±â ÀÚ½ÅÀº °Ë»çÇÏÁö ¾Ê´Â´Ù..
+                    // ìê¸° ìì‹ ì€ ê²€ì‚¬í•˜ì§€ ì•ŠëŠ”ë‹¤..
                     if (pVol == pVolMy) {
                         continue;
                     }
 
-                    // Debug¿ë..
+                    // Debugìš©..
                     /*                    if ( (i == 1) && (j == 1) && (pVol->m_iID == 0) )
                     {
                         m_dcol.Vvec[0] = Col.Wvec[j];
                         m_dcol.Vvec[1] = Col.Vvec[i];
                     }*/
 
-                    // Portal WallÀÌ ÀÖ´Â ¸éÀº Portal Wall°ú ¸ÕÀú °Ë»çÇÑÈÄ.. Ãæµ¹ÇÏÁö ¾Ê´Â ¸é¸¸ ÀÎÁ¤.. !!
+                    // Portal Wallì´ ìˆëŠ” ë©´ì€ Portal Wallê³¼ ë¨¼ì € ê²€ì‚¬í•œí›„.. ì¶©ëŒí•˜ì§€ ì•ŠëŠ” ë©´ë§Œ ì¸ì •.. !!
                     switch (CollisionDetectSub(Col.Vvec[i], vDir, pVol)) {
                     case COLLISION_AND_CONTINUE:
                         if (pVol->m_eRenderType == TYPE_UNKNOWN) {
@@ -827,7 +827,7 @@ bool CPvsMgr::CollisionDetectMain(CPortalVol * const pVolMy) {
                             TRACE3("id %d, i %d, j %d \n", pVol->m_iID, i, j);
                         }
                         break;
-                    case COLLISION_AND_STOP: // ÇØ´ç ¼±ºĞ¿¡ ´ëÇØ¼­¸¸ °Ë»çÇÏÁö ¾Ê´Â´Ù..
+                    case COLLISION_AND_STOP: // í•´ë‹¹ ì„ ë¶„ì— ëŒ€í•´ì„œë§Œ ê²€ì‚¬í•˜ì§€ ì•ŠëŠ”ë‹¤..
                         if (pVol->m_eRenderType == TYPE_UNKNOWN) {
                             pVol->m_eRenderType = TYPE_TRUE;
                             TRACE3("id %d, i %d, j %d \n", pVol->m_iID, i, j);
@@ -846,7 +846,7 @@ bool CPvsMgr::CollisionDetectMain(CPortalVol * const pVolMy) {
     return false;
 }
 
-// Debug¿ë..
+// Debugìš©..
 /*
 void CPvsMgr::RenderCollision(__Collision& col)
 {
@@ -919,12 +919,12 @@ void CPvsMgr::RenderCollision(__Collision& col)
 */
 
 e_ReturnCode CPvsMgr::CollisionDetectSub(const __Vector3 & vOrig, const __Vector3 & vDir, CPortalVol * pVolMy) {
-    // °íÃÄ¾ß µÉ²¯µé..
-    // 1. Wall´ÜÀ§·Î °Ë»çÇØ¼­..Wall°ú Ãæµ¹ Ã¼Å© ¾øÀÌ VolumnÀÇ ¸é°ú Ãæµ¹ÇÑ ¸éÀÌ ÀÖÀ¸¸é..
+    // ê³ ì³ì•¼ ë ê»ë“¤..
+    // 1. Wallë‹¨ìœ„ë¡œ ê²€ì‚¬í•´ì„œ..Wallê³¼ ì¶©ëŒ ì²´í¬ ì—†ì´ Volumnì˜ ë©´ê³¼ ì¶©ëŒí•œ ë©´ì´ ìˆìœ¼ë©´..
     // 2. Return COLLISION_AND_STOP;
-    // 3. µÑ´Ù Ãæµ¹ ÇßÀ¸¸é.. ÀÏ´Ü COLLISION_AND_CONTINUE¸¦ ¼ÂÆÃÇÏ°í ´Ù¸¥ WallÀ» °è¼Ó °Ë»ç..
-    // 4. COLLISION_AND_CONTINUE°¡ ¼ÂÆÃµÇ¾î ÀÖÀ¸¸é.. COLLISION_AND_CONTINUE¸¦ return..
-    // 5. ¾Æ´Ï¸é..NO_COLLISION¸¦ ¸®ÅÏ..
+    // 3. ë‘˜ë‹¤ ì¶©ëŒ í–ˆìœ¼ë©´.. ì¼ë‹¨ COLLISION_AND_CONTINUEë¥¼ ì…‹íŒ…í•˜ê³  ë‹¤ë¥¸ Wallì„ ê³„ì† ê²€ì‚¬..
+    // 4. COLLISION_AND_CONTINUEê°€ ì…‹íŒ…ë˜ì–´ ìˆìœ¼ë©´.. COLLISION_AND_CONTINUEë¥¼ return..
+    // 5. ì•„ë‹ˆë©´..NO_COLLISIONë¥¼ ë¦¬í„´..
 
 #define TM_DEF_MAC(A)                                                                                                  \
     {                                                                                                                  \
@@ -1054,7 +1054,7 @@ bool CPvsMgr::IntersectTriangle(const __Vector3 & vOrig, const __Vector3 & vDir,
     __Vector3 pVec;
     float     fDet;
 
-    //    By : Ecli666 ( On 2001-09-12 ¿ÀÀü 10:39:01 )
+    //    By : Ecli666 ( On 2001-09-12 ì˜¤ì „ 10:39:01 )
 
     pVec.Cross(vEdge1, vEdge2);
     fDet = pVec.Dot(vDir);
@@ -1062,13 +1062,13 @@ bool CPvsMgr::IntersectTriangle(const __Vector3 & vOrig, const __Vector3 & vDir,
         return false;
     }
 
-    //    ~(By Ecli666 On 2001-09-12 ¿ÀÀü 10:39:01 )
+    //    ~(By Ecli666 On 2001-09-12 ì˜¤ì „ 10:39:01 )
 
     pVec.Cross(vDir, vEdge2);
 
     // If determinant is near zero, ray lies in plane of triangle
     fDet = vEdge1.Dot(pVec);
-    if (fDet < 0.0001f) { // °ÅÀÇ 0¿¡ °¡±î¿ì¸é »ï°¢Çü Æò¸é°ú Áö³ª°¡´Â ¼±ÀÌ ÆòÇàÇÏ´Ù.
+    if (fDet < 0.0001f) { // ê±°ì˜ 0ì— ê°€ê¹Œìš°ë©´ ì‚¼ê°í˜• í‰ë©´ê³¼ ì§€ë‚˜ê°€ëŠ” ì„ ì´ í‰í–‰í•˜ë‹¤.
         return false;
     }
 
@@ -1098,17 +1098,17 @@ bool CPvsMgr::IntersectTriangle(const __Vector3 & vOrig, const __Vector3 & vDir,
     fU *= fInvDet;
     fV *= fInvDet;
 
-    // t°¡ Å¬¼ö·Ï ¸Ö¸® Á÷¼±°ú Æò¸é°ú ¸¸³ª´Â Á¡ÀÌ ¸Ö´Ù.
-    // t*dir + orig ¸¦ ±¸ÇÏ¸é ¸¸³ª´Â Á¡À» ±¸ÇÒ ¼ö ÀÖ´Ù.
-    // u¿Í vÀÇ ÀÇ¹Ì´Â ¹«¾ùÀÏ±î?
-    // ÃßÃø : v0 (0,0), v1(1,0), v2(0,1) <°ıÈ£¾ÈÀº (U, V)ÁÂÇ¥> ÀÌ·±½ÄÀ¸·Î ¾î´À Á¡¿¡ °¡±õ³ª ³ªÅ¸³½ °Í °°À½
+    // tê°€ í´ìˆ˜ë¡ ë©€ë¦¬ ì§ì„ ê³¼ í‰ë©´ê³¼ ë§Œë‚˜ëŠ” ì ì´ ë©€ë‹¤.
+    // t*dir + orig ë¥¼ êµ¬í•˜ë©´ ë§Œë‚˜ëŠ” ì ì„ êµ¬í•  ìˆ˜ ìˆë‹¤.
+    // uì™€ vì˜ ì˜ë¯¸ëŠ” ë¬´ì—‡ì¼ê¹Œ?
+    // ì¶”ì¸¡ : v0 (0,0), v1(1,0), v2(0,1) <ê´„í˜¸ì•ˆì€ (U, V)ì¢Œí‘œ> ì´ëŸ°ì‹ìœ¼ë¡œ ì–´ëŠ ì ì— ê°€ê¹ë‚˜ ë‚˜íƒ€ë‚¸ ê²ƒ ê°™ìŒ
     //
 
     if (pVCol) {
-        (*pVCol) = vOrig + (vDir * fT); // Á¢Á¡À» °è»ê..
+        (*pVCol) = vOrig + (vDir * fT); // ì ‘ì ì„ ê³„ì‚°..
     }
 
-    // *t < 0 ÀÌ¸é µÚÂÊ...
+    // *t < 0 ì´ë©´ ë’¤ìª½...
     if (fT < 0.0f) {
         return false;
     }
@@ -1150,7 +1150,7 @@ void CPvsMgr::CalcCompile() {
         pBase->SetState(STATE_NONE);
     }
 
-    // Visibility¸¦ °áÁ¤ÇÑ´Ù.. !!!!!!!!
+    // Visibilityë¥¼ ê²°ì •í•œë‹¤.. !!!!!!!!
     m_ColList.clear();
     m_pVoltList.clear();
 
@@ -1195,11 +1195,11 @@ void CPvsMgr::SplitShapeToVolumn() {
         return;
     }
 
-    //  ¹è°æ ShapeÀÇ lod ·¹º§À» ÃÖ°í·Î ¸¸µç´Ù..
+    //  ë°°ê²½ Shapeì˜ lod ë ˆë²¨ì„ ìµœê³ ë¡œ ë§Œë“ ë‹¤..
     pShape->Tick();
     pShape->SetMaxLOD();
 
-    // »Ç°µ´Ù..
+    // ë½€ê° ë‹¤..
     CPvsBase *   pBase = NULL;
     CPortalVol * pVol = NULL;
 
@@ -1209,7 +1209,7 @@ void CPvsMgr::SplitShapeToVolumn() {
         if (pBase->IsKindOf(RUNTIME_CLASS(CPortalVol))) {
             pVol = (CPortalVol *)pBase;
 
-            // ShapeÀÇÆú¸®°ï °¹¼ö¸¸Å­ µ¹¸é¼­.. ¸ÕÀú Transform ½ÃÅ°°í.. °Ë»ç..
+            // Shapeì˜í´ë¦¬ê³¤ ê°¯ìˆ˜ë§Œí¼ ëŒë©´ì„œ.. ë¨¼ì € Transform ì‹œí‚¤ê³ .. ê²€ì‚¬..
             pVol->SplitAndMakeShape(pShape);
         }
     }

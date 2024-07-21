@@ -13,18 +13,18 @@ class CN3IMesh : public CN3BaseFileAccess {
     static __VertexT1 s_Vertices[MAX_IMESH_BUFFER];
     static __VertexT2 s_Vertices2[MAX_IMESH_BUFFER];
 
-    int m_nFC; // »ï°¢Çü °¹¼ö
+    int m_nFC; // ì‚¼ê°í˜• ê°¯ìˆ˜
 
     int    m_nVC;          // Vertex Count
-    WORD * m_pwVtxIndices; // Á¡ ÀÎµ¦½º ¸®½ºÆ®.
-    int    m_nUVC;         // UV ÁÂÇ¥ Count
-    WORD * m_pwUVsIndices; // ÅØ½ºÃ³ ÁÂÇ¥ ÀÎµ¦½º ¸®½ºÆ®.
+    WORD * m_pwVtxIndices; // ì  ì¸ë±ìŠ¤ ë¦¬ìŠ¤íŠ¸.
+    int    m_nUVC;         // UV ì¢Œí‘œ Count
+    WORD * m_pwUVsIndices; // í…ìŠ¤ì²˜ ì¢Œí‘œ ì¸ë±ìŠ¤ ë¦¬ìŠ¤íŠ¸.
 
-    __VertexXyzNormal * m_pVertices; // ÁÂÇ¥ Data
-    float *             m_pfUVs;     // UV Data - m_nUVC * 2 ¸¸Å­ ÇÒ´çÇÑ´Ù.
+    __VertexXyzNormal * m_pVertices; // ì¢Œí‘œ Data
+    float *             m_pfUVs;     // UV Data - m_nUVC * 2 ë§Œí¼ í• ë‹¹í•œë‹¤.
                                      //    LPDIRECT3DVERTEXBUFFER9 m_lpVB;
 
-    __Vector3 m_vMin, m_vMax; // ÃÖ¼Ò, ÃÖ´ëÁ¡.. º¯ÇÏ±ä ÇÏÁö¸¸ ´ë·«ÀûÀ¸·Î...
+    __Vector3 m_vMin, m_vMax; // ìµœì†Œ, ìµœëŒ€ì .. ë³€í•˜ê¸´ í•˜ì§€ë§Œ ëŒ€ëµì ìœ¼ë¡œ...
 
   public:
 #ifdef _N3TOOL
@@ -32,12 +32,12 @@ class CN3IMesh : public CN3BaseFileAccess {
     void ReGenerateSmoothNormal();
     void RenderSelected();
 #endif // end of _N3TOOL
-    __Vector3    Min() { return m_vMin; }
-    __Vector3    Max() { return m_vMax; }
-    void         FindMinMax();
-    void         Render(bool bUseTwoUV = false);
-    __VertexT1 * BuildVertexList();      // Vertex Buffer ¿¡´Ù°¡ Á¡À» ¸¸µç´Ù.. µ¿½Ã¿¡ µÎ¹ø »ç¿ëÇÏÁö ¾Êµµ·Ï ÁÖÀÇ°¡ ÇÊ¿ä
-    __VertexT2 * BuildVertexListTwoUV(); // Vertex Buffer ¿¡´Ù°¡ Á¡À» ¸¸µç´Ù.. µ¿½Ã¿¡ µÎ¹ø »ç¿ëÇÏÁö ¾Êµµ·Ï ÁÖÀÇ°¡ ÇÊ¿ä
+    __Vector3 Min() { return m_vMin; }
+    __Vector3 Max() { return m_vMax; }
+    void      FindMinMax();
+    void      Render(bool bUseTwoUV = false);
+    __VertexT1 * BuildVertexList(); // Vertex Buffer ì—ë‹¤ê°€ ì ì„ ë§Œë“ ë‹¤.. ë™ì‹œì— ë‘ë²ˆ ì‚¬ìš©í•˜ì§€ ì•Šë„ë¡ ì£¼ì˜ê°€ í•„ìš”
+    __VertexT2 * BuildVertexListTwoUV(); // Vertex Buffer ì—ë‹¤ê°€ ì ì„ ë§Œë“ ë‹¤.. ë™ì‹œì— ë‘ë²ˆ ì‚¬ìš©í•˜ì§€ ì•Šë„ë¡ ì£¼ì˜ê°€ í•„ìš”
 
     int                 FaceCount() { return m_nFC; }
     int                 VertexCount() { return m_nVC; }
@@ -63,7 +63,7 @@ class CN3IMesh : public CN3BaseFileAccess {
     }
 #endif // end of _N3TOOL
 
-    virtual bool Create(int nFC, int nVC, int nUVC); // Â÷·Ê´ë·Î  Face Count, VertexCount, UV Count
+    virtual bool Create(int nFC, int nVC, int nUVC); // ì°¨ë¡€ëŒ€ë¡œ  Face Count, VertexCount, UV Count
     bool         Load(HANDLE hFile);
 #ifdef _N3TOOL
     bool Save(HANDLE hFile);
@@ -73,7 +73,7 @@ class CN3IMesh : public CN3BaseFileAccess {
     CN3IMesh();
     virtual ~CN3IMesh();
 
-//    By : Ecli666 ( On 2002-07-23 ¿ÀÈÄ 5:31:41 )
+//    By : Ecli666 ( On 2002-07-23 ì˜¤í›„ 5:31:41 )
 //
 #ifdef _N3GAME
     void        TickForShadow(bool bUseTwoUV = false);
@@ -84,5 +84,5 @@ class CN3IMesh : public CN3BaseFileAccess {
     __Vector3 * m_pVertexT1;
 #endif
 
-    //    ~(By Ecli666 On 2002-07-23 ¿ÀÈÄ 5:31:41 )
+    //    ~(By Ecli666 On 2002-07-23 ì˜¤í›„ 5:31:41 )
 };

@@ -13,7 +13,7 @@ class CN3UIImage;
 
 const int MAX_RACE_SELECT = 4;
 const int MAX_CLASS_SELECT = 4;
-const int MAX_STATS = 5; // Èû, Ã¼·Â, ¹ÎÃ¸, Áö´É, ¸¶·Â
+const int MAX_STATS = 5; // íž˜, ì²´ë ¥, ë¯¼ì²©, ì§€ëŠ¥, ë§ˆë ¥
 
 class CUICharacterCreate : public CN3UIBase {
   public:

@@ -114,7 +114,7 @@ BOOL C3DMap::LoadMap(HANDLE hFile) {
     LogFileWrite("amp tile\r\n");
     LoadMapTile(hFile);
     LogFileWrite("regene\r\n");
-    LoadRegeneEvent(hFile); // ¿Ã∞« ≥ª∞° √ﬂ∞°«ﬂΩø
+    LoadRegeneEvent(hFile); // Ïù¥Í±¥ ÎÇ¥Í∞Ä Ï∂îÍ∞ÄÌñàÏä¥
     LogFileWrite("warplist\r\n");
     LoadWarpList(hFile);
 
@@ -142,7 +142,7 @@ void C3DMap::LoadObjectEvent(HANDLE hFile) {
 
     for (int i = 0; i < iEventObjectCount; i++) {
         pEvent = new _OBJECT_EVENT;
-        ReadFile(hFile, &(pEvent->sBelong), 4, &dwNum, NULL); // º“º” : 0 -> π´º“º”
+        ReadFile(hFile, &(pEvent->sBelong), 4, &dwNum, NULL); // ÏÜåÏÜç : 0 -> Î¨¥ÏÜåÏÜç
         ReadFile(hFile, &(pEvent->sIndex), 2, &dwNum, NULL);  // Event Index
         ReadFile(hFile, &(pEvent->sType), 2, &dwNum,
                  NULL); // 0 : bind point, 1,2 : gate, 3 : lever, 4 : flag lever, 5 : Warp point
@@ -162,7 +162,7 @@ void C3DMap::LoadObjectEvent(HANDLE hFile) {
             pEvent = NULL;
         }
 
-        //        TRACE ("º∫∑° ø‰√ª : %d , %d , %d , %d , %d \r\n", pEvent->sBelong, pEvent->sIndex, pEvent->sType, pEvent->sControlNpcID, pEvent->sStatus);
+        //        TRACE ("ÏÑ±Îûò ÏöîÏ≤≠ : %d , %d , %d , %d , %d \r\n", pEvent->sBelong, pEvent->sIndex, pEvent->sType, pEvent->sControlNpcID, pEvent->sStatus);
     }
 }
 
@@ -191,11 +191,11 @@ void C3DMap::LoadRegeneEvent(HANDLE hFile) {
         pEvent = new _REGENE_EVENT;
 
         pEvent->sRegenePoint = i;
-        ReadFile(hFile, &(pEvent->fRegenePosX), 4, &dwNum, NULL);  // ƒ≥∏Ø≈Õ ≥™≈∏≥™¥¬ ¡ˆø™¿« øﬁæ∆∑°¬  ±∏ºÆ ¡¬«• X
-        ReadFile(hFile, &(pEvent->fRegenePosY), 4, &dwNum, NULL);  // ƒ≥∏Ø≈Õ ≥™≈∏≥™¥¬ ¡ˆø™¿« øﬁæ∆∑°¬  ±∏ºÆ ¡¬«• Y
-        ReadFile(hFile, &(pEvent->fRegenePosZ), 4, &dwNum, NULL);  // ƒ≥∏Ø≈Õ ≥™≈∏≥™¥¬ ¡ˆø™¿« øﬁæ∆∑°¬  ±∏ºÆ ¡¬«• Z
-        ReadFile(hFile, &(pEvent->fRegeneAreaZ), 4, &dwNum, NULL); // ƒ≥∏Ø≈Õ ≥™≈∏≥™¥¬ ¡ˆø™¿« Z √‡ ±Ê¿Ã
-        ReadFile(hFile, &(pEvent->fRegeneAreaX), 4, &dwNum, NULL); // ƒ≥∏Ø≈Õ ≥™≈∏≥™¥¬ ¡ˆø™¿« X √‡ ±Ê¿Ã
+        ReadFile(hFile, &(pEvent->fRegenePosX), 4, &dwNum, NULL); // Ï∫êÎ¶≠ÌÑ∞ ÎÇòÌÉÄÎÇòÎäî ÏßÄÏó≠Ïùò ÏôºÏïÑÎûòÏ™Ω Íµ¨ÏÑù Ï¢åÌëú X
+        ReadFile(hFile, &(pEvent->fRegenePosY), 4, &dwNum, NULL); // Ï∫êÎ¶≠ÌÑ∞ ÎÇòÌÉÄÎÇòÎäî ÏßÄÏó≠Ïùò ÏôºÏïÑÎûòÏ™Ω Íµ¨ÏÑù Ï¢åÌëú Y
+        ReadFile(hFile, &(pEvent->fRegenePosZ), 4, &dwNum, NULL); // Ï∫êÎ¶≠ÌÑ∞ ÎÇòÌÉÄÎÇòÎäî ÏßÄÏó≠Ïùò ÏôºÏïÑÎûòÏ™Ω Íµ¨ÏÑù Ï¢åÌëú Z
+        ReadFile(hFile, &(pEvent->fRegeneAreaZ), 4, &dwNum, NULL); // Ï∫êÎ¶≠ÌÑ∞ ÎÇòÌÉÄÎÇòÎäî ÏßÄÏó≠Ïùò Z Ï∂ï Í∏∏Ïù¥
+        ReadFile(hFile, &(pEvent->fRegeneAreaX), 4, &dwNum, NULL); // Ï∫êÎ¶≠ÌÑ∞ ÎÇòÌÉÄÎÇòÎäî ÏßÄÏó≠Ïùò X Ï∂ï Í∏∏Ïù¥
 
         if (pEvent->sRegenePoint < 0) {
             continue;
@@ -239,7 +239,7 @@ void C3DMap::LoadWarpList(HANDLE hFile) {
 
 void C3DMap::LoadTerrain(HANDLE hFile) {
     DWORD dwRWC;
-    ReadFile(hFile, &m_nMapSize, sizeof(int), &dwRWC, NULL); // ∞°∑Œºº∑Œ ¡§∫∏∞° ∏Ó∞≥æø¿Œ∞°?
+    ReadFile(hFile, &m_nMapSize, sizeof(int), &dwRWC, NULL); // Í∞ÄÎ°úÏÑ∏Î°ú Ï†ïÎ≥¥Í∞Ä Î™áÍ∞úÏî©Ïù∏Í∞Ä?
     ReadFile(hFile, &m_fUnitDist, sizeof(float), &dwRWC, NULL);
 
     m_fHeight = new float *[m_nMapSize];
@@ -250,7 +250,7 @@ void C3DMap::LoadTerrain(HANDLE hFile) {
     int x, z;
     for (z = 0; z < m_nMapSize; z++) {
         for (x = 0; x < m_nMapSize; x++) {
-            ReadFile(hFile, &(m_fHeight[x][z]), sizeof(float), &dwRWC, NULL); // ≥Ù¿Ã∞™ ¿–æÓø¿±‚
+            ReadFile(hFile, &(m_fHeight[x][z]), sizeof(float), &dwRWC, NULL); // ÎÜíÏù¥Í∞í ÏùΩÏñ¥Ïò§Í∏∞
         }
     }
 }
@@ -259,7 +259,7 @@ float C3DMap::GetHeight(float x, float y, float z) {
     int iX, iZ;
     iX = (int)(x / m_fUnitDist);
     iZ = (int)(z / m_fUnitDist);
-    //_ASSERT( iX, iZ∞° π¸¿ß≥ªø° ¿÷¥¬ ∞™¿Œ¡ˆ √º≈©«œ±‚);
+    //_ASSERT( iX, iZÍ∞Ä Î≤îÏúÑÎÇ¥Ïóê ÏûàÎäî Í∞íÏù∏ÏßÄ Ï≤¥ÌÅ¨ÌïòÍ∏∞);
 
     float fYTerrain;
     float h1, h2, h3;
@@ -280,9 +280,9 @@ float C3DMap::GetHeight(float x, float y, float z) {
 
             //if (dX == 1.0f) return h2;
 
-            float h12 = h1 + (h2 - h1) * dX;                      // h1∞˙ h2ªÁ¿Ã¿« ≥Ù¿Ã∞™
-            float h32 = h3 + (h2 - h3) * dX;                      // h3∞˙ h2ªÁ¿Ã¿« ≥Ù¿Ã∞™
-            fYTerrain = h32 + (h12 - h32) * ((dZ) / (1.0f - dX)); // √£∞Ì¿⁄ «œ¥¬ ≥Ù¿Ã∞™
+            float h12 = h1 + (h2 - h1) * dX;                      // h1Í≥º h2ÏÇ¨Ïù¥Ïùò ÎÜíÏù¥Í∞í
+            float h32 = h3 + (h2 - h3) * dX;                      // h3Í≥º h2ÏÇ¨Ïù¥Ïùò ÎÜíÏù¥Í∞í
+            fYTerrain = h32 + (h12 - h32) * ((dZ) / (1.0f - dX)); // Ï∞æÍ≥†Ïûê ÌïòÎäî ÎÜíÏù¥Í∞í
         } else {
             h1 = m_fHeight[iX][iZ + 1];
             h2 = m_fHeight[iX + 1][iZ];
@@ -292,9 +292,9 @@ float C3DMap::GetHeight(float x, float y, float z) {
                 return h1;
             }
 
-            float h12 = h1 + (h2 - h1) * dX;                      // h1∞˙ h2ªÁ¿Ã¿« ≥Ù¿Ã∞™
-            float h13 = h1 + (h3 - h1) * dX;                      // h1∞˙ h3ªÁ¿Ã¿« ≥Ù¿Ã∞™
-            fYTerrain = h13 + (h12 - h13) * ((1.0f - dZ) / (dX)); // √£∞Ì¿⁄ «œ¥¬ ≥Ù¿Ã∞™
+            float h12 = h1 + (h2 - h1) * dX;                      // h1Í≥º h2ÏÇ¨Ïù¥Ïùò ÎÜíÏù¥Í∞í
+            float h13 = h1 + (h3 - h1) * dX;                      // h1Í≥º h3ÏÇ¨Ïù¥Ïùò ÎÜíÏù¥Í∞í
+            fYTerrain = h13 + (h12 - h13) * ((1.0f - dZ) / (dX)); // Ï∞æÍ≥†Ïûê ÌïòÎäî ÎÜíÏù¥Í∞í
         }
     } else {
         if (dZ > dX) {
@@ -304,9 +304,9 @@ float C3DMap::GetHeight(float x, float y, float z) {
 
             //if (dX == 1.0f) return h2;
 
-            float h12 = h1 + (h2 - h1) * dX;                             // h1∞˙ h2ªÁ¿Ã¿« ≥Ù¿Ã∞™
-            float h32 = h3 + (h2 - h3) * dX;                             // h3∞˙ h2ªÁ¿Ã¿« ≥Ù¿Ã∞™
-            fYTerrain = h12 + (h32 - h12) * ((1.0f - dZ) / (1.0f - dX)); // √£∞Ì¿⁄ «œ¥¬ ≥Ù¿Ã∞™
+            float h12 = h1 + (h2 - h1) * dX;                             // h1Í≥º h2ÏÇ¨Ïù¥Ïùò ÎÜíÏù¥Í∞í
+            float h32 = h3 + (h2 - h3) * dX;                             // h3Í≥º h2ÏÇ¨Ïù¥Ïùò ÎÜíÏù¥Í∞í
+            fYTerrain = h12 + (h32 - h12) * ((1.0f - dZ) / (1.0f - dX)); // Ï∞æÍ≥†Ïûê ÌïòÎäî ÎÜíÏù¥Í∞í
         } else {
             h1 = m_fHeight[iX][iZ];
             h2 = m_fHeight[iX + 1][iZ];
@@ -316,14 +316,14 @@ float C3DMap::GetHeight(float x, float y, float z) {
                 return h1;
             }
 
-            float h12 = h1 + (h2 - h1) * dX;               // h1∞˙ h2ªÁ¿Ã¿« ≥Ù¿Ã∞™
-            float h13 = h1 + (h3 - h1) * dX;               // h1∞˙ h3ªÁ¿Ã¿« ≥Ù¿Ã∞™
-            fYTerrain = h12 + (h13 - h12) * ((dZ) / (dX)); // √£∞Ì¿⁄ «œ¥¬ ≥Ù¿Ã∞™
+            float h12 = h1 + (h2 - h1) * dX;               // h1Í≥º h2ÏÇ¨Ïù¥Ïùò ÎÜíÏù¥Í∞í
+            float h13 = h1 + (h3 - h1) * dX;               // h1Í≥º h3ÏÇ¨Ïù¥Ïùò ÎÜíÏù¥Í∞í
+            fYTerrain = h12 + (h13 - h12) * ((dZ) / (dX)); // Ï∞æÍ≥†Ïûê ÌïòÎäî ÎÜíÏù¥Í∞í
         }
     }
 
     __Vector3 vPos(x, y, z);
-    float     fHeight = m_N3ShapeMgr.GetHeightNearstPos(vPos); // ∞°¿Â ∞°±ÓøÓ ≥Ù¿Ã∞™¿ª µπ∑¡¡ÿ¥Ÿ..
+    float     fHeight = m_N3ShapeMgr.GetHeightNearstPos(vPos); // Í∞ÄÏû• Í∞ÄÍπåÏö¥ ÎÜíÏù¥Í∞íÏùÑ ÎèåÎ†§Ï§ÄÎã§..
     if (-FLT_MAX != fHeight && fHeight > fYTerrain) {
         return fHeight;
     } else {

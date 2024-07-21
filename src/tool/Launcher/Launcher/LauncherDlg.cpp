@@ -56,9 +56,9 @@ BOOL CLauncherDlg::OnInitDialog() {
 
     CString szInfo;
     szInfo.LoadString(IDS_INFO_VERSION_CHECK);
-    m_Status.SetWindowText(szInfo); // È­¸é¿¡ Ç¥½Ã..
+    m_Status.SetWindowText(szInfo); // í™”ë©´ì— í‘œì‹œ..
 
-    m_progress.SetColor(RGB(64, 255, 64)); // ÇÁ·Î±×·¡½º »öÀ» Á¤ÇÑ´Ù.
+    m_progress.SetColor(RGB(64, 255, 64)); // í”„ë¡œê·¸ë˜ìŠ¤ ìƒ‰ì„ ì •í•œë‹¤.
 
     m_pSocket = new CAPISocket();
 
@@ -95,7 +95,7 @@ BOOL CLauncherDlg::OnInitDialog() {
 
     dwType = REG_SZ;
     dwBytes = 256;
-    lStatus = RegQueryValueEx(m_hRegistryKey, "PATH", NULL, &dwType, (BYTE *)szBuff, &dwBytes); // ÀÎ½ºÅç °æ·Î
+    lStatus = RegQueryValueEx(m_hRegistryKey, "PATH", NULL, &dwType, (BYTE *)szBuff, &dwBytes); // ì¸ìŠ¤í†¨ ê²½ë¡œ
     if (ERROR_SUCCESS != lStatus) {
         CString szErr;
         szErr.LoadString(IDS_ERR_REGISTRY_READ_PATH);
@@ -106,7 +106,7 @@ BOOL CLauncherDlg::OnInitDialog() {
 
     dwType = REG_SZ;
     dwBytes = 256;
-    lStatus = RegQueryValueEx(m_hRegistryKey, "EXE", NULL, &dwType, (BYTE *)szBuff, &dwBytes); // ½ÇÇàÆÄÀÏ ÀÌ¸§
+    lStatus = RegQueryValueEx(m_hRegistryKey, "EXE", NULL, &dwType, (BYTE *)szBuff, &dwBytes); // ì‹¤í–‰íŒŒì¼ ì´ë¦„
     if (ERROR_SUCCESS != lStatus) {
         CString szErr;
         szErr.LoadString(IDS_ERR_REGISTRY_READ_EXE);
@@ -118,7 +118,7 @@ BOOL CLauncherDlg::OnInitDialog() {
     dwType = REG_SZ;
     dwBytes = 256;
     lStatus =
-        RegQueryValueEx(m_hRegistryKey, "SERVICE", NULL, &dwType, (BYTE *)m_strServiceName, &dwBytes); // ¼­ºñ½º ÀÌ¸§..
+        RegQueryValueEx(m_hRegistryKey, "SERVICE", NULL, &dwType, (BYTE *)m_strServiceName, &dwBytes); // ì„œë¹„ìŠ¤ ì´ë¦„..
     if (ERROR_SUCCESS != lStatus) {
         CString szErr;
         szErr.LoadString(IDS_ERR_REGISTRY_READ_SERVICE);
@@ -126,7 +126,7 @@ BOOL CLauncherDlg::OnInitDialog() {
         exit(-1);
     }
 
-    // ¼ÒÄÏ Á¢¼Ó..
+    // ì†Œì¼“ ì ‘ì†..
     char szIniPath[_MAX_PATH] = "";
     ::GetCurrentDirectory(_MAX_PATH, szIniPath);
     lstrcat(szIniPath, "\\Server.Ini");
@@ -158,7 +158,7 @@ BOOL CLauncherDlg::OnInitDialog() {
     } else {
         CString szErr;
         szErr.LoadString(IDS_ERR_INVALID_SERVER_COUNT);
-        this->MessageBox(szInfo); // ³¡³½´Ù.
+        this->MessageBox(szInfo); // ëë‚¸ë‹¤.
         PostQuitMessage(0);
     }
 
@@ -273,12 +273,12 @@ void CLauncherDlg::PacketReceive_DownloadInfo(const BYTE * pBuf, int & iIndex) {
 
 void CLauncherDlg::PacketReceive_Version(const BYTE * pBuf, int & iIndex) {
     m_nServerVersion = m_pSocket->Parse_GetShort(pBuf, iIndex);
-    if (m_nCurVersion == m_nServerVersion) // ¹öÀüÀÌ ÀÏÄ¡ÇÏ¸é..
+    if (m_nCurVersion == m_nServerVersion) // ë²„ì „ì´ ì¼ì¹˜í•˜ë©´..
     {
-        this->StartGame();                       // °ÔÀÓ ½ÇÇà..
-    } else if (m_nCurVersion < m_nServerVersion) // ¹öÀüÀÌ ³·À¸¸é..
+        this->StartGame();                       // ê²Œì„ ì‹¤í–‰..
+    } else if (m_nCurVersion < m_nServerVersion) // ë²„ì „ì´ ë‚®ìœ¼ë©´..
     {
-        PacketSend_DownloadInfo(); // ´Ù¿î·Îµå ¿äÃ»..
+        PacketSend_DownloadInfo(); // ë‹¤ìš´ë¡œë“œ ìš”ì²­..
     } else {
         CString szErr;
         szErr.LoadString(IDS_ERR_INVALID_VERSION);
@@ -288,7 +288,7 @@ void CLauncherDlg::PacketReceive_Version(const BYTE * pBuf, int & iIndex) {
 }
 
 void CLauncherDlg::StartGame() {
-    CString szCmd = GetCommandLine(); // Ä¿¸Çµå ¶óÀÎÀ» °¡Á®¿À°í..
+    CString szCmd = GetCommandLine(); // ì»¤ë§¨ë“œ ë¼ì¸ì„ ê°€ì ¸ì˜¤ê³ ..
     char    szApp[_MAX_PATH] = "";
     GetModuleFileName(NULL, szApp, _MAX_PATH);
     int iML = lstrlen(szApp);
@@ -301,8 +301,8 @@ void CLauncherDlg::StartGame() {
         }
     }
 
-    std::string szExeFN = m_szInstalledPath + "\\" + m_szExeName; // ½ÇÇà ÆÄÀÏ ÀÌ¸§ ¸¸µé°í..
-    ::ShellExecute(NULL, "open", szExeFN.c_str(), szParam, m_szInstalledPath.c_str(), SW_SHOWNORMAL); // °ÔÀÓ ½ÇÇà..
+    std::string szExeFN = m_szInstalledPath + "\\" + m_szExeName; // ì‹¤í–‰ íŒŒì¼ ì´ë¦„ ë§Œë“¤ê³ ..
+    ::ShellExecute(NULL, "open", szExeFN.c_str(), szParam, m_szInstalledPath.c_str(), SW_SHOWNORMAL); // ê²Œì„ ì‹¤í–‰..
 
     PostQuitMessage(0);
 }
@@ -326,7 +326,7 @@ void CLauncherDlg::DownloadProcess() {
         BOOL bDownloadSuccess = GetDownloadFile(szFullPath, m_szGetFileNames[i]);
         while (!bDownloadSuccess) {
             CString szErr;
-            szErr.LoadString(IDS_ERR_DOWNLOAD_PATCH_FILE_AND_RETRY); // ´Ù½Ã ½ÃµµÇÒ±î¿©??
+            szErr.LoadString(IDS_ERR_DOWNLOAD_PATCH_FILE_AND_RETRY); // ë‹¤ì‹œ ì‹œë„í• ê¹Œì—¬??
             int iID = MessageBox(szErr, "Patch error", MB_YESNO);
             if (IDYES == iID) {
                 bDownloadSuccess = GetDownloadFile(szFullPath, m_szGetFileNames[i]);
@@ -364,7 +364,7 @@ void CLauncherDlg::DownloadProcess() {
             if (file.Open(szLocalFName.c_str(), CFile::modeRead | CFile::shareDenyNone, NULL)) {
                 file.Close();
                 file.Remove(szLocalFName.c_str());
-                if (m_hRegistryKey) // ¾ĞÃà Ç®±â¿Í ¾²±â, ¾ĞÃà ÆÄÀÏ »èÁ¦¿¡ ¼º°øÇÏ¸é ¹öÀüÀ» ¾²°í..
+                if (m_hRegistryKey) // ì••ì¶• í’€ê¸°ì™€ ì“°ê¸°, ì••ì¶• íŒŒì¼ ì‚­ì œì— ì„±ê³µí•˜ë©´ ë²„ì „ì„ ì“°ê³ ..
                 {
                     RegSetValueEx(m_hRegistryKey, "VERSION", NULL, REG_DWORD, ((BYTE *)(&m_nVersionNum[i])), 4);
                 }
@@ -390,10 +390,10 @@ void CLauncherDlg::DownloadProcess() {
     //    itoa( m_nServerVersion, (char*)(LPCTSTR)version, 10 );
     //    WritePrivateProfileString("VERSION","CURRENT",version, inipath);
 
-    if (true == bExtractSuccess && m_hRegistryKey) // ¾ĞÃà Ç®±â¿Í ¾²±â, ¾ĞÃà ÆÄÀÏ »èÁ¦¿¡ ¼º°øÇÏ¸é ¹öÀüÀ» ¾²°í..
+    if (true == bExtractSuccess && m_hRegistryKey) // ì••ì¶• í’€ê¸°ì™€ ì“°ê¸°, ì••ì¶• íŒŒì¼ ì‚­ì œì— ì„±ê³µí•˜ë©´ ë²„ì „ì„ ì“°ê³ ..
     {
         long lStatus = RegSetValueEx(m_hRegistryKey, "VERSION", NULL, REG_DWORD, ((BYTE *)(&m_nServerVersion)), 4);
-        this->StartGame(); // °ÔÀÓ ½ÇÇà..
+        this->StartGame(); // ê²Œì„ ì‹¤í–‰..
     } else {
         CString szErr;
         szErr.LoadString(IDS_ERR_PATCH);
@@ -705,13 +705,13 @@ LRESULT CLauncherDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam) {
         case FD_READ: {
             m_pSocket->Receive();
 
-            while (m_pSocket->PktQueueSize() > 0) // ÆĞÅ¶ ¸®½ºÆ®¿¡ ÆĞÅ¶ÀÌ ÀÖ³Ä????
+            while (m_pSocket->PktQueueSize() > 0) // íŒ¨í‚· ë¦¬ìŠ¤íŠ¸ì— íŒ¨í‚·ì´ ìˆëƒ????
             {
                 int        iOffset = 0;
-                DataPack * pDataPack = m_pSocket->PktQueueFront(); // Å¥ÀÇ Ã¹¹øÂ° °ÍÀ» º¹»ç..
-                this->PacketProcess(pDataPack->m_pData, iOffset);  // ÆĞÅ¶À» Ã³¸®ÇÒ »óÈ²ÀÌ ¾Æ´Ï´Ù.
+                DataPack * pDataPack = m_pSocket->PktQueueFront(); // íì˜ ì²«ë²ˆì§¸ ê²ƒì„ ë³µì‚¬..
+                this->PacketProcess(pDataPack->m_pData, iOffset);  // íŒ¨í‚·ì„ ì²˜ë¦¬í•  ìƒí™©ì´ ì•„ë‹ˆë‹¤.
                 delete pDataPack;
-                m_pSocket->PktQueuePop(); // ÆĞÅ¶À» Å¥¿¡¼­ ²¨³¿..
+                m_pSocket->PktQueuePop(); // íŒ¨í‚·ì„ íì—ì„œ êº¼ëƒ„..
             }
         } break;
         default:

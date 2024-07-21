@@ -15,8 +15,8 @@
 //////////////////////////////////////////////////////////////////////
 
 class CUIRepairTooltipDlg : public CN3UIBase {
-    CN3UIString *     m_pStr[MAX_REPAIR_TOOLTIP_COUNT];      // ½ºÆ®·ø.. ^^
-    D3DCOLOR          m_pStrColor[MAX_REPAIR_TOOLTIP_COUNT]; // ½ºÆ®·ø »ö±ò.. ^^
+    CN3UIString *     m_pStr[MAX_REPAIR_TOOLTIP_COUNT];      // ìŠ¤íŠ¸ë¥‘.. ^^
+    D3DCOLOR          m_pStrColor[MAX_REPAIR_TOOLTIP_COUNT]; // ìŠ¤íŠ¸ë¥‘ ìƒ‰ê¹”.. ^^
     int               m_iPosXBack, m_iPosYBack;
     __IconItemSkill * m_spItemBack;
 

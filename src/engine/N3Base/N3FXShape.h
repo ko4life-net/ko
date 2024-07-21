@@ -18,9 +18,9 @@ class CN3FXSPart : public CN3BaseFileAccess {
 
   public:
     __Material m_Mtl;               // Material
-    __Vector3  m_vPivot;            // Local Ãà
-    __Matrix44 m_WorldMtx;          // World Matrix.. Shape Loading ¶§ ¹Ì¸® °è»êÇØ¾ß ÁÁ´Ù..
-    BOOL       m_bOutOfCameraRange; // Camera ¹üÀ§ ¹Ù±ù¿¡ ÀÖÀ½...
+    __Vector3  m_vPivot;            // Local ì¶•
+    __Matrix44 m_WorldMtx;          // World Matrix.. Shape Loading ë•Œ ë¯¸ë¦¬ ê³„ì‚°í•´ì•¼ ì¢‹ë‹¤..
+    BOOL       m_bOutOfCameraRange; // Camera ë²”ìœ„ ë°”ê¹¥ì— ìˆìŒ...
 
     float m_fTexFPS; // Texture Animation Interval;
     bool  m_bTexLoop;
@@ -32,7 +32,7 @@ class CN3FXSPart : public CN3BaseFileAccess {
     CN3FXPMeshInstance        m_FXPMInst; // Progressive Mesh Instance
 
     float
-        m_fTexIndex; // Current Texture Index.. Animation ½ÃÅ³¶§ ÇÊ¿äÇÑ ÀÎµ¦½ºÀÌ´Ù.. float ·Î ÇØ¼­ ÅØ½ºÃ³ ¿¡´Ï¸ŞÀÌ¼Ç Á¦¾îÇÑ´Ù.
+        m_fTexIndex; // Current Texture Index.. Animation ì‹œí‚¬ë•Œ í•„ìš”í•œ ì¸ë±ìŠ¤ì´ë‹¤.. float ë¡œ í•´ì„œ í…ìŠ¤ì²˜ ì—ë‹ˆë©”ì´ì…˜ ì œì–´í•œë‹¤.
 
   public:
     bool Load(HANDLE hFile);
@@ -51,14 +51,14 @@ class CN3FXSPart : public CN3BaseFileAccess {
         } else {
             return __Vector3(0, 0, 0);
         }
-    } // ¿ùµå »óÀÇ ÃÖ¼Ò°ª
+    } // ì›”ë“œ ìƒì˜ ìµœì†Œê°’
     __Vector3 Max() {
         if (m_FXPMInst.GetMesh()) {
             return m_FXPMInst.GetMesh()->Max() * m_WorldMtx;
         } else {
             return __Vector3(0, 0, 0);
         }
-    } // ¿ùµå »óÀÇ ÃÖ´ë°ª
+    } // ì›”ë“œ ìƒì˜ ìµœëŒ€ê°’
     float Radius() {
         if (m_FXPMInst.GetMesh()) {
             return m_FXPMInst.GetMesh()->Radius();

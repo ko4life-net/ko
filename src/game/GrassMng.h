@@ -21,9 +21,9 @@ class CN3Terrain;
 class CGrassMng : public CGameBase {
   protected:
     //    std::list<class CGrassBoard*>    m_Grasses;
-    CGrassBoard m_pGrasses[GRASS_TILENUM][GRASS_TILENUM]; //    Ç® »Ñ·ÁÁö´Â ¿µ¿ª
+    CGrassBoard m_pGrasses[GRASS_TILENUM][GRASS_TILENUM]; //    í’€ ë¿Œë ¤ì§€ëŠ” ì˜ì—­
                                                           //    __Vector3        m_pCount[GRASS_MAX];
-    float m_fChkRange[4];                                 //    Ä«¸Ş¶ó¿ÍÀÇ À§Ä¡°Ë»ö¿ë
+    float m_fChkRange[4];                                 //    ì¹´ë©”ë¼ì™€ì˜ ìœ„ì¹˜ê²€ìƒ‰ìš©
 
     //    __Vector3        m_vCamPo;
     bool           m_bChkZoneChange;
@@ -31,7 +31,7 @@ class CGrassMng : public CGameBase {
 
     CN3Texture * m_txTexture[8];
 #ifdef _DEBUG
-    char m_strFileName[8][_MAX_PATH]; //    ³ªÁß¿¡ µğ¹ö°Å¸¦ À§ÇØ ±×¸²ÀÇ ÀÌ¸§À» ¹é¾÷ ¹Ş´Â´Ù
+    char m_strFileName[8][_MAX_PATH]; //    ë‚˜ì¤‘ì— ë””ë²„ê±°ë¥¼ ìœ„í•´ ê·¸ë¦¼ì˜ ì´ë¦„ì„ ë°±ì—… ë°›ëŠ”ë‹¤
 #endif
     int m_iFileMaxNum;
 
@@ -45,7 +45,7 @@ class CGrassMng : public CGameBase {
     void FindGrassIndex(const unsigned char uCGrassMngOrder, int * pnInputGrass, unsigned char * GrassIndex,
                         int & nGrassTotNum);
 
-    void ChkTileRange(float fCamX, float fCamZ); //    Å¸ÀÏ°£¿òÁ÷ÀÓ Ã¤Å©,tick
+    void ChkTileRange(float fCamX, float fCamZ); //    íƒ€ì¼ê°„ì›€ì§ì„ ì±„í¬,tick
     void FineNewTile(WORD * Tile, int & iCount, float * ChkRange, float * LargeRange);
 
   public:
@@ -56,7 +56,7 @@ class CGrassMng : public CGameBase {
 
     bool ChangeZone();
 
-    bool IsInRect(float fPoX, float fPoY, float * fRange); //    ¿µ¿ª³»¿¡ ÀÖ´ÂÁö È®ÀÎ
+    bool IsInRect(float fPoX, float fPoY, float * fRange); //    ì˜ì—­ë‚´ì— ìˆëŠ”ì§€ í™•ì¸
   public:
     CGrassMng();
     virtual ~CGrassMng();

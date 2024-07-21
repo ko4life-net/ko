@@ -83,7 +83,7 @@ void CN3SndObj2D::SetVolume(int Vol) {
 
         float fVol = (float)(Vol) / 100.0f;
 
-        long dwVol = (long)(log10(fVol) * 3000); //µ¥½Ãº§ °ü·Ã ¼Ò¸®Á¶Àý½Ä..
+        long dwVol = (long)(log10(fVol) * 3000); //ë°ì‹œë²¨ ê´€ë ¨ ì†Œë¦¬ì¡°ì ˆì‹..
         m_pDSBuff->SetVolume(dwVol);
     }
 }
@@ -154,7 +154,7 @@ void CN3SndObj2D::Tick() {
 
             HRESULT hr = m_pDSBuff->Stop();
         } else {
-            //º¼·ý Á¡Á¡ ÀÛ°Ô....
+            //ë³¼ë¥¨ ì ì  ìž‘ê²Œ....
             if (this->m_iType != SNDTYPE_3D) {
                 int vol = 0;
                 if (m_fFadeOutTime > 0.0f) {

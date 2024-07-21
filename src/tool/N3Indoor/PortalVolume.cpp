@@ -37,7 +37,7 @@ CPortalVolume::CPortalVolume() {
 
     unsigned short * pIdx = m_pIndex;
 
-    // ¾Æ·§¸é.
+    // ì•„ë«ë©´.
     *pIdx++ = 0;
     *pIdx++ = 1;
     *pIdx++ = 3;
@@ -45,7 +45,7 @@ CPortalVolume::CPortalVolume() {
     *pIdx++ = 3;
     *pIdx++ = 1;
 
-    // ¾Õ¸é..
+    // ì•ë©´..
     *pIdx++ = 7;
     *pIdx++ = 3;
     *pIdx++ = 6;
@@ -53,7 +53,7 @@ CPortalVolume::CPortalVolume() {
     *pIdx++ = 6;
     *pIdx++ = 3;
 
-    // ¿ŞÂÊ..
+    // ì™¼ìª½..
     *pIdx++ = 4;
     *pIdx++ = 0;
     *pIdx++ = 7;
@@ -61,7 +61,7 @@ CPortalVolume::CPortalVolume() {
     *pIdx++ = 7;
     *pIdx++ = 0;
 
-    // ¿À¸¥ÂÊ..
+    // ì˜¤ë¥¸ìª½..
     *pIdx++ = 6;
     *pIdx++ = 2;
     *pIdx++ = 5;
@@ -69,7 +69,7 @@ CPortalVolume::CPortalVolume() {
     *pIdx++ = 5;
     *pIdx++ = 2;
 
-    // µŞ¸é..
+    // ë’·ë©´..
     *pIdx++ = 5;
     *pIdx++ = 1;
     *pIdx++ = 4;
@@ -77,7 +77,7 @@ CPortalVolume::CPortalVolume() {
     *pIdx++ = 4;
     *pIdx++ = 1;
 
-    // À­¸é..
+    // ìœ—ë©´..
     *pIdx++ = 4;
     *pIdx++ = 7;
     *pIdx++ = 5;
@@ -88,7 +88,7 @@ CPortalVolume::CPortalVolume() {
     m_eState = STATE_NONE;
 
     m_eRenderType = TYPE_UNKNOWN;
-    m_iPriority = -1; //.. ÄÄÆÄÀÏ ¸ğµå¿¡¼­ PortalÀÇ ¿ì¼±¼øÀ§..    -1·Î ¸ÕÀú Å¬¸®¾î ÇÑ´ÙÀ½.. 0 ¼øÀ§´Â ÀÚ±â ÀÚ½Å..
+    m_iPriority = -1; //.. ì»´íŒŒì¼ ëª¨ë“œì—ì„œ Portalì˜ ìš°ì„ ìˆœìœ„..    -1ë¡œ ë¨¼ì € í´ë¦¬ì–´ í•œë‹¤ìŒ.. 0 ìˆœìœ„ëŠ” ìê¸° ìì‹ ..
 }
 
 CPortalVolume::~CPortalVolume() {
@@ -598,7 +598,7 @@ void CPortalVolume::RenderCollisionEdit() {
         pSI->m_pShape->Tick(-1000);
         pSI->m_pShape->m_bDontRender = false;
 
-        // ·ÎµùÇÒ¶§ ¹Ì¸® °è»êÇØ ³õÀº ¿ùµå Çà·Ä Àû¿ë..
+        // ë¡œë”©í• ë•Œ ë¯¸ë¦¬ ê³„ì‚°í•´ ë†“ì€ ì›”ë“œ í–‰ë ¬ ì ìš©..
         __Matrix44 mtxBackup;
         CN3Base::s_lpD3DDev->GetTransform(D3DTS_WORLD, &mtxBackup);
         CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &pSI->m_pShape->m_Matrix);
@@ -691,7 +691,7 @@ void CPortalVolume::RenderCollisionCompile() {
     while (ciit != m_lpShapeColPartList.end()) {
         pCI = *ciit++;
 
-        // Çà·Ä °è»ê..
+        // í–‰ë ¬ ê³„ì‚°..
         __Matrix44 mtxWorld;
         mtxWorld.Identity();
 
@@ -729,16 +729,16 @@ void CPortalVolume::RenderCollisionExecute() {
 bool CPortalVolume::Load(HANDLE hFile, bool bGameData) {
     CN3Transform::Load(hFile);
 
-    // ÀÚ½ÅÀÇ µ¥ÀÌÅÍ ·Îµå..
+    // ìì‹ ì˜ ë°ì´í„° ë¡œë“œ..
     DWORD       dwNum;
     std::string strSrc;
 
-    // ¸µÅ©µÈ °¹¼ö¸¦ ·Îµå..
+    // ë§í¬ëœ ê°¯ìˆ˜ë¥¼ ë¡œë“œ..
     int iLinkedCount = 0;
 
     ReadFile(hFile, &iLinkedCount, sizeof(int), &dwNum, NULL);
 
-    // ¸µÅ©µÈ ¾ÆÀÌµğ ·Îµå..
+    // ë§í¬ëœ ì•„ì´ë”” ë¡œë“œ..
     WVID wvid;
     for (int i = 0; i < iLinkedCount; i++) {
         ReadFile(hFile, &wvid.iID, sizeof(int), &dwNum, NULL);
@@ -748,7 +748,7 @@ bool CPortalVolume::Load(HANDLE hFile, bool bGameData) {
 
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
 
-    // ¸µÅ©µÈ Shape °¹¼ö ·Îµå..
+    // ë§í¬ëœ Shape ê°¯ìˆ˜ ë¡œë“œ..
     int iCount = 0;
     int iSize = 0;
     ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
@@ -756,11 +756,11 @@ bool CPortalVolume::Load(HANDLE hFile, bool bGameData) {
         ShapeInfo * pSI = new ShapeInfo;
         ReadFile(hFile, &pSI->m_iID, sizeof(int), &dwNum, NULL);
 
-        // ¹®ÀÚ¿­ ±æÀÌ..
+        // ë¬¸ìì—´ ê¸¸ì´..
         strSrc = CPVSManager::ReadDecryptString(hFile);
         pSI->m_strShapeFile = strSrc;
 
-        // SourceList¿¡¼­.. ShapeÀÇ Pointer¸¦ ¿¬°áÇÑ´Ù..
+        // SourceListì—ì„œ.. Shapeì˜ Pointerë¥¼ ì—°ê²°í•œë‹¤..
         pSI->m_pShape = pFrm->m_pSceneSource->ShapeGetByFileName(strSrc);
         ASSERT(pSI->m_pShape);
 
@@ -851,17 +851,17 @@ bool CPortalVolume::Save(HANDLE hFile, bool bGameData) {
     DWORD       dwNum;
     std::string strSrc;
 
-    // ÀÚ½ÅÀÇ ¾ÆÀÌµğ¸¦ ÀúÀå..
+    // ìì‹ ì˜ ì•„ì´ë””ë¥¼ ì €ì¥..
     WriteFile(hFile, &m_iID, sizeof(int), &dwNum, NULL);
 
-    // ÀÚ½ÅÀÇ µ¥ÀÌÅÍ ÀúÀå..
+    // ìì‹ ì˜ ë°ì´í„° ì €ì¥..
     CN3Transform::Save(hFile);
 
-    // ¸µÅ©µÈ °¹¼ö¸¦ ÀúÀå..
+    // ë§í¬ëœ ê°¯ìˆ˜ë¥¼ ì €ì¥..
     int iCount = m_VoltList.size();
     WriteFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
-    //¸µÅ©µÈ ¾ÆÀÌµğ ÀúÀå..
+    //ë§í¬ëœ ì•„ì´ë”” ì €ì¥..
     WVOL  wvol;
     witer wit = m_VoltList.begin();
     while (wit != m_VoltList.end()) {
@@ -870,7 +870,7 @@ bool CPortalVolume::Save(HANDLE hFile, bool bGameData) {
         WriteFile(hFile, &wvol.ePWT, sizeof(int), &dwNum, NULL);
     }
 
-    // ¸µÅ©µÈ Shape °¹¼ö ÀúÀå..
+    // ë§í¬ëœ Shape ê°¯ìˆ˜ ì €ì¥..
     iCount = m_plShapeInfoList.size();
     WriteFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
@@ -882,7 +882,7 @@ bool CPortalVolume::Save(HANDLE hFile, bool bGameData) {
 
         CPVSManager::WriteCryptographString(hFile, pSI->m_strShapeFile);
 
-        // ShapeÀÇ µ¥ÀÌÅÍ ÀúÀå..
+        // Shapeì˜ ë°ì´í„° ì €ì¥..
         WriteFile(hFile, &pSI->m_iBelong, sizeof(int), &dwNum, NULL);
         WriteFile(hFile, &pSI->m_iEventID, sizeof(int), &dwNum, NULL);
         WriteFile(hFile, &pSI->m_iEventType, sizeof(int), &dwNum, NULL);
@@ -907,7 +907,7 @@ void CPortalVolume::SaveGameData(HANDLE hFile) {
     int             iCount = 0;
     CPortalVolume * pVol = NULL;
 
-    // Visible VolumeÀÇ ID..
+    // Visible Volumeì˜ ID..
     iCount = m_pVisiblePvsList.size();
     WriteFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
@@ -923,7 +923,7 @@ void CPortalVolume::SaveGameData(HANDLE hFile) {
     iCount = m_lpShapePartList.size();
     WriteFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
-    // ShapeÀÇ ºÎºĞ Á¤º¸..
+    // Shapeì˜ ë¶€ë¶„ ì •ë³´..
     ShapePart * pSP = NULL;
     spiter      spit = m_lpShapePartList.begin();
     while (spit != m_lpShapePartList.end()) {
@@ -1336,7 +1336,7 @@ bool CPortalVolume::IntersectTriangle(const __Vector3 & vOrig, const __Vector3 &
     __Vector3 pVec;
     float     fDet;
 
-    //    By : Ecli666 ( On 2001-09-12 ¿ÀÀü 10:39:01 )
+    //    By : Ecli666 ( On 2001-09-12 ì˜¤ì „ 10:39:01 )
 
     pVec.Cross(vEdge1, vEdge2);
     fDet = pVec.Dot(vDir);
@@ -1344,13 +1344,13 @@ bool CPortalVolume::IntersectTriangle(const __Vector3 & vOrig, const __Vector3 &
         return false;
     }
 
-    //    ~(By Ecli666 On 2001-09-12 ¿ÀÀü 10:39:01 )
+    //    ~(By Ecli666 On 2001-09-12 ì˜¤ì „ 10:39:01 )
 
     pVec.Cross(vDir, vEdge2);
 
     // If determinant is near zero, ray lies in plane of triangle
     fDet = vEdge1.Dot(pVec);
-    if (fDet < 0.0001f) { // °ÅÀÇ 0¿¡ °¡±î¿ì¸é »ï°¢Çü Æò¸é°ú Áö³ª°¡´Â ¼±ÀÌ ÆòÇàÇÏ´Ù.
+    if (fDet < 0.0001f) { // ê±°ì˜ 0ì— ê°€ê¹Œìš°ë©´ ì‚¼ê°í˜• í‰ë©´ê³¼ ì§€ë‚˜ê°€ëŠ” ì„ ì´ í‰í–‰í•˜ë‹¤.
         return false;
     }
 
@@ -1380,17 +1380,17 @@ bool CPortalVolume::IntersectTriangle(const __Vector3 & vOrig, const __Vector3 &
     fU *= fInvDet;
     fV *= fInvDet;
 
-    // t°¡ Å¬¼ö·Ï ¸Ö¸® Á÷¼±°ú Æò¸é°ú ¸¸³ª´Â Á¡ÀÌ ¸Ö´Ù.
-    // t*dir + orig ¸¦ ±¸ÇÏ¸é ¸¸³ª´Â Á¡À» ±¸ÇÒ ¼ö ÀÖ´Ù.
-    // u¿Í vÀÇ ÀÇ¹Ì´Â ¹«¾ùÀÏ±î?
-    // ÃßÃø : v0 (0,0), v1(1,0), v2(0,1) <°ıÈ£¾ÈÀº (U, V)ÁÂÇ¥> ÀÌ·±½ÄÀ¸·Î ¾î´À Á¡¿¡ °¡±õ³ª ³ªÅ¸³½ °Í °°À½
+    // tê°€ í´ìˆ˜ë¡ ë©€ë¦¬ ì§ì„ ê³¼ í‰ë©´ê³¼ ë§Œë‚˜ëŠ” ì ì´ ë©€ë‹¤.
+    // t*dir + orig ë¥¼ êµ¬í•˜ë©´ ë§Œë‚˜ëŠ” ì ì„ êµ¬í•  ìˆ˜ ìˆë‹¤.
+    // uì™€ vì˜ ì˜ë¯¸ëŠ” ë¬´ì—‡ì¼ê¹Œ?
+    // ì¶”ì¸¡ : v0 (0,0), v1(1,0), v2(0,1) <ê´„í˜¸ì•ˆì€ (U, V)ì¢Œí‘œ> ì´ëŸ°ì‹ìœ¼ë¡œ ì–´ëŠ ì ì— ê°€ê¹ë‚˜ ë‚˜íƒ€ë‚¸ ê²ƒ ê°™ìŒ
     //
 
     if (pVCol) {
-        (*pVCol) = vOrig + (vDir * fT); // Á¢Á¡À» °è»ê..
+        (*pVCol) = vOrig + (vDir * fT); // ì ‘ì ì„ ê³„ì‚°..
     }
 
-    // *t < 0 ÀÌ¸é µÚÂÊ...
+    // *t < 0 ì´ë©´ ë’¤ìª½...
     if (fT < 0.0f) {
         return false;
     }

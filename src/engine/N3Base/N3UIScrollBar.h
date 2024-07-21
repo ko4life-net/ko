@@ -23,7 +23,7 @@ class CN3UIScrollBar : public CN3UIBase {
     CN3UITrackBar * m_pTrackBarRef;
     CN3UIButton *   m_pBtnRef[NUM_BTN_TYPE];
 
-    int m_iLineSize; // ¹öÆ°À» ´­·¶À»¶§ trackbar°¡ ¿òÁ÷¿©Áö´Â Å©±â
+    int m_iLineSize; // ë²„íŠ¼ì„ ëˆŒë €ì„ë•Œ trackbarê°€ ì›€ì§ì—¬ì§€ëŠ” í¬ê¸°
 
     // Operations
   public:
@@ -31,7 +31,7 @@ class CN3UIScrollBar : public CN3UIBase {
     virtual bool Load(HANDLE hFile);
     virtual void SetRegion(const RECT & Rect);
     virtual void SetStyle(DWORD dwStyle);
-    virtual bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg); // ¸Ş½ÃÁö¸¦ ¹Ş´Â´Ù.. º¸³½³ğ, msg
+    virtual bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg); // ë©”ì‹œì§€ë¥¼ ë°›ëŠ”ë‹¤.. ë³´ë‚¸ë†ˆ, msg
 
     void SetRange(int iMin, int iMax) {
         if (m_pTrackBarRef) {
@@ -80,10 +80,10 @@ class CN3UIScrollBar : public CN3UIBase {
     }
 
 #ifdef _N3TOOL
-    // tool¿¡¼­ »ç¿ëÇÏ´Â ÇÔ¼öµé
+    // toolì—ì„œ ì‚¬ìš©í•˜ëŠ” í•¨ìˆ˜ë“¤
   public:
     virtual void    operator=(const CN3UIScrollBar & other);
-    void            CreateTrackBarAndBtns(); // trackbar¿Í button »ı¼º
+    void            CreateTrackBarAndBtns(); // trackbarì™€ button ìƒì„±
     CN3UITrackBar * GetTrackBarRef() const { return m_pTrackBarRef; }
     CN3UIButton *   GetBtnRef(eBTN_TYPE eBtnType) const { return m_pBtnRef[eBtnType]; }
 #endif

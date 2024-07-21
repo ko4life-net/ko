@@ -18,10 +18,10 @@ class CUser;
 class CServerDlg;
 //class CRoomEvent;
 
-class CMapInfo // °¢ ÁÂÇ¥ÀÇ Á¤º¸
+class CMapInfo // ê° ì¢Œí‘œì˜ ì •ë³´
 {
   public:
-    short m_sEvent; // ÇöÁÂÇ¥ÀÇ ÀÌº¥Æ® ¹øÈ£
+    short m_sEvent; // í˜„ì¢Œí‘œì˜ ì´ë²¤íŠ¸ ë²ˆí˜¸
 
     CMapInfo();
     virtual ~CMapInfo();
@@ -31,11 +31,11 @@ class MAP {
   public:
     CServerDlg * m_pMain;
     CN3ShapeMgr  m_N3ShapeMgr;
-    CMapInfo **  m_pMap;     // Å¸ÀÏÀÇ Á¤º¸(1¼¿ : 4¹ÌÅÍ)
-    CRegion **   m_ppRegion; // 64¹ÌÅÍÀÇ Å¸ÀÏÁ¤º¸..
+    CMapInfo **  m_pMap;     // íƒ€ì¼ì˜ ì •ë³´(1ì…€ : 4ë¯¸í„°)
+    CRegion **   m_ppRegion; // 64ë¯¸í„°ì˜ íƒ€ì¼ì •ë³´..
     //CRoomEvent*        m_pRoomEvent;
-    CSize    m_sizeMap;     // ¸ÊÀÇ Å©±â
-    CSize    m_sizeRegion;  // ¸ÊÀÇ resion size
+    CSize    m_sizeMap;     // ë§µì˜ í¬ê¸°
+    CSize    m_sizeRegion;  // ë§µì˜ resion size
     int      m_nZoneNumber; // zone number
     int      m_nServerNo;
     char     m_MapName[256];
@@ -43,14 +43,14 @@ class MAP {
     float    m_fUnitDist; // i Grid Distance
     float ** m_fHeight;
     //    short        m_arDungeonBossMonster[MAX_DUNGEON_BOSS_MONSTER];
-    BYTE             m_byRoomType;   // ¹æÀÇ ÃÊ±âÈ­°ü·Ã( 0:ÀÚµ¿À¸·Î ÃÊ±âÈ­, 1:ÀüÀïÀÌº¥Æ® °ü·Ã(Æ¯Á¤Á¶°ÇÀÌ ¿Ï·á½Ã ÃÊ±âÈ­)
-    BYTE             m_byRoomEvent;  // event room(0:empty, 1:use)
-    BYTE             m_byRoomStatus; // room status(1:ÁøÇàÁß, 2:¹æÀ» ÃÊ±âÈ­Áß, 3:¹æÃÊ±âÈ­ ¿Ï·á)
-    BYTE             m_byInitRoomCount; // room ÃÊ±âÈ­ ½Ã°£À» Á¦¾î(¸ó½ºÅÍ¿Í µ¿±âÈ­¸¦ ¸ÂÃß±â À§ÇØ)
+    BYTE m_byRoomType; // ë°©ì˜ ì´ˆê¸°í™”ê´€ë ¨( 0:ìë™ìœ¼ë¡œ ì´ˆê¸°í™”, 1:ì „ìŸì´ë²¤íŠ¸ ê´€ë ¨(íŠ¹ì •ì¡°ê±´ì´ ì™„ë£Œì‹œ ì´ˆê¸°í™”)
+    BYTE             m_byRoomEvent;     // event room(0:empty, 1:use)
+    BYTE             m_byRoomStatus;    // room status(1:ì§„í–‰ì¤‘, 2:ë°©ì„ ì´ˆê¸°í™”ì¤‘, 3:ë°©ì´ˆê¸°í™” ì™„ë£Œ)
+    BYTE             m_byInitRoomCount; // room ì´ˆê¸°í™” ì‹œê°„ì„ ì œì–´(ëª¬ìŠ¤í„°ì™€ ë™ê¸°í™”ë¥¼ ë§ì¶”ê¸° ìœ„í•´)
     ObjectEventArray m_ObjectEventArray;
     RoomEventArray   m_arRoomEventArray;
-    short            m_sKarusRoom;   // karusÀÇ ¼º°¹¼ö
-    short            m_sElmoradRoom; // elmoradÀÇ ¼º°¹¼ö
+    short            m_sKarusRoom;   // karusì˜ ì„±ê°¯ìˆ˜
+    short            m_sElmoradRoom; // elmoradì˜ ì„±ê°¯ìˆ˜
 
   public:
     MAP();
@@ -76,7 +76,7 @@ class MAP {
     int GetXRegionMax() { return m_sizeRegion.cx - 1; };
     int GetZRegionMax() { return m_sizeRegion.cy - 1; };
 
-    int  IsRoomCheck(float fx, float fz); // ´øÁ¯¿¡¼­ »ç¿ë, À¯ÀúÀÇ ÇöÀçÀ§Ä¡°¡ ´øÁ¯ÀÇ ¾î´À À§Ä¡¿¡ ÀÖ´ÂÁö¸¦ ÆÇ´Ü
+    int IsRoomCheck(float fx, float fz); // ë˜ì ¼ì—ì„œ ì‚¬ìš©, ìœ ì €ì˜ í˜„ì¬ìœ„ì¹˜ê°€ ë˜ì ¼ì˜ ì–´ëŠ ìœ„ì¹˜ì— ìˆëŠ”ì§€ë¥¼ íŒë‹¨
     BOOL IsRoomStatusCheck();
 
     BOOL IsMovable(int dest_x, int dest_y);

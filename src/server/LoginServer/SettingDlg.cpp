@@ -235,7 +235,7 @@ void CSettingDlg::OnCompress() {
 
     m_ZipArchive.Close();
 
-    if (!m_bCompressOption) { // Current Version ¸¸ ¾ÐÃà
+    if (!m_bCompressOption) { // Current Version ë§Œ ì••ì¶•
         if (!m_RepackingVersionList.empty()) {
             RepackingHistory();
         }
@@ -418,7 +418,7 @@ void CSettingDlg::FolderRecurse(const char * foldername, bool b_test) {
             continue;
         }
 
-        if (b_test) { // ´Ü¼ø °Ë»ç¸¸ ¼öÇà...
+        if (b_test) { // ë‹¨ìˆœ ê²€ì‚¬ë§Œ ìˆ˜í–‰...
             if (IsDBCSString(tempstr1)) {
                 CString errmsg;
                 errmsg.Format("%s include DBCS character", tempstr1);

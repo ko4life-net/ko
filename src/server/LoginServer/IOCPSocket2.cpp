@@ -238,17 +238,17 @@ void CIOCPSocket2::ReceivedData(int length) {
 
     int len = 0;
 
-    if (!strlen(m_pRecvBuff)) { // ÆĞÅ¶±æÀÌ´Â Á¸ÀçÇÏ³ª ½Ç µ¥ÀÌÅÍ°¡ ¾ø´Â °æ¿ì°¡ ¹ß»ı...
+    if (!strlen(m_pRecvBuff)) { // íŒ¨í‚·ê¸¸ì´ëŠ” ì¡´ì¬í•˜ë‚˜ ì‹¤ ë°ì´í„°ê°€ ì—†ëŠ” ê²½ìš°ê°€ ë°œìƒ...
         return;
     }
-    m_pBuffer->PutData(m_pRecvBuff, length); // ¹ŞÀº Data¸¦ ¹öÆÛ¿¡ ³Ö´Â´Ù
+    m_pBuffer->PutData(m_pRecvBuff, length); // ë°›ì€ Dataë¥¼ ë²„í¼ì— ë„£ëŠ”ë‹¤
 
     char * pData = NULL;
     char * pDecData = NULL;
 
     while (PullOutCore(pData, len)) {
         if (pData) {
-            Parsing(len, pData); //        ½ÇÁ¦ ÆÄ½Ì ÇÔ¼ö...
+            Parsing(len, pData); //        ì‹¤ì œ íŒŒì‹± í•¨ìˆ˜...
 
             delete[] pData;
             pData = NULL;

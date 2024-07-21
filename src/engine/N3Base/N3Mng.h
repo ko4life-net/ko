@@ -54,7 +54,7 @@ template <class T> class CN3Mng {
 #ifdef _N3GAME
             CLogWriter::Write("CN3Mng::Add - duplicated object's file name.");
 #endif
-            m_Refs.erase(pairRef.first); // ÂüÁ¶ Ä«¿îÆ® Áö¿ì°í..
+            m_Refs.erase(pairRef.first); // ì°¸ì¡° ì¹´ìš´íŠ¸ ì§€ìš°ê³ ..
             return -1;
         }
 
@@ -91,44 +91,44 @@ template <class T> class CN3Mng {
 
         T *     pData = NULL;
         it_Data it = m_Datas.find(szFN2);
-        if (it == m_Datas.end()) // ¸ø Ã£¾Ò´Ù..
+        if (it == m_Datas.end()) // ëª» ì°¾ì•˜ë‹¤..
         {
             pData = new T();
-            pData->m_iLOD = iLOD; // ·Îµù½Ã LOD Àû¿ë
+            pData->m_iLOD = iLOD; // ë¡œë”©ì‹œ LOD ì ìš©
 
-            if (false == pData->LoadFromFile(szFN2)) // ÆÄÀÏ ÀĞ±â¿¡ ½ÇÆĞÇß´Ù!!
+            if (false == pData->LoadFromFile(szFN2)) // íŒŒì¼ ì½ê¸°ì— ì‹¤íŒ¨í–ˆë‹¤!!
             {
                 delete pData;
                 pData = NULL;
             } else {
-                int reChk = Add(pData); // ÀĞ±â ¼º°øÇÏ¸é Ãß°¡..
+                int reChk = Add(pData); // ì½ê¸° ì„±ê³µí•˜ë©´ ì¶”ê°€..
                 //    asm
-                if (reChk == -1) // Ãß°¡½Ã Àü¿¡ µ¥ÀÌÅÍ°¡ ÀÖ¾î ÂüÁ¶ Ä«¿îÆ®¸¦ ÇÏ³ª ´õÇÑ´Ù
+                if (reChk == -1) // ì¶”ê°€ì‹œ ì „ì— ë°ì´í„°ê°€ ìˆì–´ ì°¸ì¡° ì¹´ìš´íŠ¸ë¥¼ í•˜ë‚˜ ë”í•œë‹¤
                 {
-                    T *     pBakData = pData; // °°Àº ÆÄÀÏÁß Àü µ¥ÀÌÅ¸¸¦ ¹Ş¾Æ ¸®ÅÏ(»õ·Î¿î ±×¸²À¸·Î ¹Ù²îÁö ¾ÊÀ»¼ö ÀÖ´Ù)
+                    T * pBakData = pData; // ê°™ì€ íŒŒì¼ì¤‘ ì „ ë°ì´íƒ€ë¥¼ ë°›ì•„ ë¦¬í„´(ìƒˆë¡œìš´ ê·¸ë¦¼ìœ¼ë¡œ ë°”ë€Œì§€ ì•Šì„ìˆ˜ ìˆë‹¤)
                     it_Data it = m_Datas.find(pBakData->FileName());
                     pData = (*it).second;
 
                     if (bIncreaseRefCount) {
                         it_Ref it2 = m_Refs.find(pData);
-                        if (it2 != m_Refs.end()) // ÂüÁ¶ Ä«¿îÆ® Ã£±â..
+                        if (it2 != m_Refs.end()) // ì°¸ì¡° ì¹´ìš´íŠ¸ ì°¾ê¸°..
                         {
                             ((*it2).second)++;
                         }
                     }
 
-                    delete pBakData; // ÀÌ¹ø¿¡ ÀĞÀº µ¥ÀÌÅ¸´Â ÇÊ¿ä°¡ ¾øÀ¸¹Ç·Î Áö¿ò
+                    delete pBakData; // ì´ë²ˆì— ì½ì€ ë°ì´íƒ€ëŠ” í•„ìš”ê°€ ì—†ìœ¼ë¯€ë¡œ ì§€ì›€
                     pBakData = NULL;
                 }
                 //    asm
             }
-        } else //  Ã£¾Ò´Ù..!!
+        } else //  ì°¾ì•˜ë‹¤..!!
         {
             pData = (*it).second;
 
             if (bIncreaseRefCount) {
                 it_Ref it2 = m_Refs.find(pData);
-                if (it2 != m_Refs.end()) // ÂüÁ¶ Ä«¿îÆ® Ã£±â..
+                if (it2 != m_Refs.end()) // ì°¸ì¡° ì¹´ìš´íŠ¸ ì°¾ê¸°..
                 {
                     ((*it2).second)++;
                 }
@@ -148,11 +148,11 @@ template <class T> class CN3Mng {
         } else {
             return false;
         }
-    } // ÀÖ³ª ¾ø³ª~
+    } // ìˆë‚˜ ì—†ë‚˜~
 
     void Delete(T ** ppData, bool bReleaseOrg = true) {
 #ifndef _N3GAME
-        bReleaseOrg = true; // Åø¿¡¼­´Â ¹«Á¶°Ç
+        bReleaseOrg = true; // íˆ´ì—ì„œëŠ” ë¬´ì¡°ê±´
 #endif
         if (NULL == ppData || NULL == *ppData) {
             return;
@@ -160,11 +160,11 @@ template <class T> class CN3Mng {
 
         it_Data it = m_Datas.find((*ppData)->FileName());
         if (it == m_Datas.end()) {
-            return; // ¸ø Ã£¾Ò´Ù..
-        } else      //  Ã£¾Ò´Ù..!!
+            return; // ëª» ì°¾ì•˜ë‹¤..
+        } else      //  ì°¾ì•˜ë‹¤..!!
         {
             it_Ref it2 = m_Refs.find(*ppData);
-            if (bReleaseOrg && it2 != m_Refs.end()) // ÂüÁ¶ Ä«¿îÆ® Ã£±â..
+            if (bReleaseOrg && it2 != m_Refs.end()) // ì°¸ì¡° ì¹´ìš´íŠ¸ ì°¾ê¸°..
             {
                 ((*it2).second)--;
                 if (0 == (*it2).second) {

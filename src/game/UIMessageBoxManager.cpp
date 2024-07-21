@@ -67,7 +67,7 @@ std::string CUIMessageBoxManager::MessageBoxPost(const std::string & szMsg, cons
     pMB->SetPos(pt.x, pt.y);
     pMB->SetVisible(true);
 
-    m_pMsgBoxLatestRef = pMB; // ¸¶Áö¸·¿¡ ¶ç¿î ´ëÈ­»óÀÚ.. Z Á¤·ÄÀ» À§ÇØ¼­ ÀÌ Æ÷ÀÎÅÍ¸¦ ¼¼ÆÃÇØÁØ´Ù..
+    m_pMsgBoxLatestRef = pMB; // ë§ˆì§€ë§‰ì— ë„ìš´ ëŒ€í™”ìƒì.. Z ì •ë ¬ì„ ìœ„í•´ì„œ ì´ í¬ì¸í„°ë¥¼ ì„¸íŒ…í•´ì¤€ë‹¤..
 
     it = m_UBMs.begin();
     it_e = m_UBMs.end();
@@ -112,13 +112,13 @@ void CUIMessageBoxManager::Render() {
             continue;
         }
         CUIManager::RenderStateSet();
-        pMB->Render(); // ¸Ş½ÃÁö ¹Ú½º ·»´õ¸µ..
+        pMB->Render(); // ë©”ì‹œì§€ ë°•ìŠ¤ ë Œë”ë§..
         CUIManager::RenderStateRestore();
     }
 
     if (m_pMsgBoxLatestRef && m_pMsgBoxLatestRef->IsVisible()) {
         CUIManager::RenderStateSet();
-        m_pMsgBoxLatestRef->Render(); // ¸Ş½ÃÁö ¹Ú½º ·»´õ¸µ..
+        m_pMsgBoxLatestRef->Render(); // ë©”ì‹œì§€ ë°•ìŠ¤ ë Œë”ë§..
         CUIManager::RenderStateRestore();
     }
 }

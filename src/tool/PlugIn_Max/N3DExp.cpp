@@ -149,32 +149,32 @@ int CN3DExp::DoExport(const TCHAR * szFileName, ExpInterface * pExpIntf, Interfa
 
     // Option Dialog
     int rval = DialogBoxParam(g_hInst, MAKEINTRESOURCE(IDD_EXPORT_OPTION), pIntf->GetMAXHWnd(), DlgProcExportOption,
-                              0); // ÄÁÆ®·Ñ ÆĞ³Î ´ëÈ­»óÀÚ..
+                              0); // ì»¨íŠ¸ë¡¤ íŒ¨ë„ ëŒ€í™”ìƒì..
     if (rval != 1) {
         return TRUE;
     }
 
     m_bCancelExport = FALSE; // Export possible
 
-    m_pScene->Release(); // ¸ğµÎ ÇØÁ¦ÇÏ°í..
+    m_pScene->Release(); // ëª¨ë‘ í•´ì œí•˜ê³ ..
 
-    m_pScene->m_fFrmCur = m_Option.nFrmStart; //¸ğ¸£°Ú´Ù. ±×³É Ã¹ÇÁ·¹ÀÓÀ¸·Î ÇÑ´Ù.
+    m_pScene->m_fFrmCur = m_Option.nFrmStart; //ëª¨ë¥´ê² ë‹¤. ê·¸ëƒ¥ ì²«í”„ë ˆì„ìœ¼ë¡œ í•œë‹¤.
     m_pScene->m_fFrmStart = m_Option.nFrmStart;
     m_pScene->m_fFrmEnd = m_Option.nFrmEnd;
 
     INode * pNodeRoot = g_pIntf->GetRootNode(); // Root Node Pointer
-    // ProgressBar ÃÊ±âÈ­..
+    // ProgressBar ì´ˆê¸°í™”..
     m_nNodeCount = 0;
     this->CountAllNodes(pNodeRoot, m_nNodeCount);
 
-    g_pIntf->ProgressStart(GetString(IDS_PROGRESS_MSG), TRUE, DlgProcProgress, NULL); // ÇÁ·Î±×·¹½º ¹Ù ¼³Á¤
-    this->ProcessRecursive(pNodeRoot); // Â÷ÀÏµå ³ëµå¸¦ ¼øÈ¯ÇÏ¸é¼­ Export.....
+    g_pIntf->ProgressStart(GetString(IDS_PROGRESS_MSG), TRUE, DlgProcProgress, NULL); // í”„ë¡œê·¸ë ˆìŠ¤ ë°” ì„¤ì •
+    this->ProcessRecursive(pNodeRoot); // ì°¨ì¼ë“œ ë…¸ë“œë¥¼ ìˆœí™˜í•˜ë©´ì„œ Export.....
     g_pIntf->ProgressEnd();
 
     /////////////////////////////////
     // Scene Save
 
-    // sub directory°¡ ÀÖ´Ù¸é sub directory ¸¸µé±â
+    // sub directoryê°€ ìˆë‹¤ë©´ sub directory ë§Œë“¤ê¸°
     char szDir[_MAX_DIR] = "";
     ::CreateDirectory(m_Option.szSubDir, NULL);
     wsprintf(szDir, "%sData", m_Option.szSubDir);
@@ -186,14 +186,14 @@ int CN3DExp::DoExport(const TCHAR * szFileName, ExpInterface * pExpIntf, Interfa
     wsprintf(szDir, "%sItem", m_Option.szSubDir);
     ::CreateDirectory(szDir, NULL);
 
-    // ¸¸¾à Ä«¸Ş¶ó°¡ ÇÏ³ªµµ ¾ø´Ù¸é..
+    // ë§Œì•½ ì¹´ë©”ë¼ê°€ í•˜ë‚˜ë„ ì—†ë‹¤ë©´..
     if (m_pScene->CameraCount() <= 0) {
         m_pScene->DefaultCameraAdd();
     }
     if (m_pScene->LightCount() <= 0) {
         m_pScene->DefaultLightAdd();
     }
-    m_pScene->SaveDataAndResourcesToFile(szFileName); // Scene ÆÄÀÏ ÀúÀå ¹× ¸®¼Ò½º µµ ¸ğµÎ ÀúÀå..
+    m_pScene->SaveDataAndResourcesToFile(szFileName); // Scene íŒŒì¼ ì €ì¥ ë° ë¦¬ì†ŒìŠ¤ ë„ ëª¨ë‘ ì €ì¥..
     m_pScene->Release();
 
     m_pScene->ReleaseResrc();
@@ -210,13 +210,13 @@ bool CN3DExp::ProcessRecursive(INode * pNode) {
     if (NULL == pNode) {
         return false;
     }
-    const char * szName = pNode->GetName(); // ÀÌ¸§..
+    const char * szName = pNode->GetName(); // ì´ë¦„..
 
-    // ÇÁ·Î¼¼½º ¾÷µ¥ÀÌÆ® (!?)
+    // í”„ë¡œì„¸ìŠ¤ ì—…ë°ì´íŠ¸ (!?)
     //    g_pIntf->ProgressUpdate((m_nNodeCur)*100/m_nNodeCount, TRUE, pNode->GetName());
     m_nNodeCur++;
 
-    // ¾î¶² °´Ã¼ÀÎÁö ÀĞ¾î¿Â´Ù. (camera? light? geom object?..)
+    // ì–´ë–¤ ê°ì²´ì¸ì§€ ì½ì–´ì˜¨ë‹¤. (camera? light? geom object?..)
     Object * pObj = pNode->EvalWorldState(m_Option.nFrmStart * 160).obj;
 
     if (pObj) {
@@ -225,32 +225,32 @@ bool CN3DExp::ProcessRecursive(INode * pNode) {
 
         if (GEOMOBJECT_CLASS_ID == dwSCID && TRUE == m_Option.bExportGeometry) // Geometry Object
         {
-            // ½ÇÁ¦ Export Routine
+            // ì‹¤ì œ Export Routine
             bool bRootBiped = false;
-            if (m_Option.bExportCharacter && IsBone(pNode)) // Ä³¸¯ÅÍ Ãâ·Â ¿É¼ÇÀÌ ¼±ÅÃµÇ¾î ÀÖ°í.. º»ÀÌ¸é...
+            if (m_Option.bExportCharacter && IsBone(pNode)) // ìºë¦­í„° ì¶œë ¥ ì˜µì…˜ì´ ì„ íƒë˜ì–´ ìˆê³ .. ë³¸ì´ë©´...
             {
                 Control * pCtrl = pNode->GetTMController();
-                if (pCtrl) // ¸ÕÀú ·çÆ® ¹ÙÀÌÆĞµåÀÎÁö °Ë»çÇÏ°í...
+                if (pCtrl) // ë¨¼ì € ë£¨íŠ¸ ë°”ì´íŒ¨ë“œì¸ì§€ ê²€ì‚¬í•˜ê³ ...
                 {
                     if (pCtrl->ClassID() == BIPBODY_CONTROL_CLASS_ID) {
                         bRootBiped = true;
                     }
-                    //                    else if(pCtrl->ClassID() == BIPSLAVE_CONTROL_CLASS_ID) // ³ª¸ÓÁö´Â ¹«½ÃÇÑ´Ù.
+                    //                    else if(pCtrl->ClassID() == BIPSLAVE_CONTROL_CLASS_ID) // ë‚˜ë¨¸ì§€ëŠ” ë¬´ì‹œí•œë‹¤.
                     //                    else if(pCtrl->ClassID() == FOOTPRINT_CLASS_ID)
                 }
                 if (false == bRootBiped) {
                     INode * pParentNode = pNode->GetParentNode();
                     if (pParentNode && FALSE == IsBone(pParentNode)) {
-                        bRootBiped = true; // º»Áß¿¡¼­ ¸Ç »óÀ§ º»ÀÌ¸é
+                        bRootBiped = true; // ë³¸ì¤‘ì—ì„œ ë§¨ ìƒìœ„ ë³¸ì´ë©´
                     }
                 }
             }
 
-            if (bRootBiped) // ÄÁÆ®·Ñ·¯°¡ ¹ÙÀÌÆäµå °´Ã¼ÀÌ¸é..
+            if (bRootBiped) // ì»¨íŠ¸ë¡¤ëŸ¬ê°€ ë°”ì´í˜ë“œ ê°ì²´ì´ë©´..
             {
-                return this->ProcessChr(pNode); // »À´ë Ã³¸®...
+                return this->ProcessChr(pNode); // ë¼ˆëŒ€ ì²˜ë¦¬...
             } else {
-                return this->ProcessShape(pNode); // ±×³É ¿ÀºêÁ§Æ®·Î Ãâ·Â..
+                return this->ProcessShape(pNode); // ê·¸ëƒ¥ ì˜¤ë¸Œì íŠ¸ë¡œ ì¶œë ¥..
             }
         } else if (CAMERA_CLASS_ID == dwSCID && TRUE == m_Option.bExportCamera) {
             return this->ProcessCamera(pNode);
@@ -261,12 +261,12 @@ bool CN3DExp::ProcessRecursive(INode * pNode) {
         //            return this->ProcessShape(pNode);
         else {
             char szDebug[512];
-            wsprintf(szDebug, "Node : %s, ¹«½ÃÇÕ´Ï´Ù.\n", pNode->GetName());
+            wsprintf(szDebug, "Node : %s, ë¬´ì‹œí•©ë‹ˆë‹¤.\n", pNode->GetName());
             OutputDebugString(szDebug);
         }
     } else {
         char szDebug[512];
-        wsprintf(szDebug, "Node : %s, Type º¯È¯ÀÌ ºÒ°¡´ÉÇÑ Node ÀÔ´Ï´Ù. ¹«½ÃÇÕ´Ï´Ù.\n", pNode->GetName());
+        wsprintf(szDebug, "Node : %s, Type ë³€í™˜ì´ ë¶ˆê°€ëŠ¥í•œ Node ì…ë‹ˆë‹¤. ë¬´ì‹œí•©ë‹ˆë‹¤.\n", pNode->GetName());
         OutputDebugString(szDebug);
     }
 
@@ -285,7 +285,7 @@ bool CN3DExp::ProcessRecursive(INode * pNode) {
 }
 
 bool CN3DExp::ProcessCamera(INode * pNode) {
-    // ObjectÀÇ pipeline Á¤º¸¸¦ ÀĞ¾î¿Â´Ù. ObjectState Å¬·¡½º¿¡ ÀúÀåÇÑ´Ù.
+    // Objectì˜ pipeline ì •ë³´ë¥¼ ì½ì–´ì˜¨ë‹¤. ObjectState í´ë˜ìŠ¤ì— ì €ì¥í•œë‹¤.
     ObjectState os = pNode->EvalWorldState(m_Option.nFrmStart * 160);
     if (CAMERA_CLASS_ID != os.obj->SuperClassID()) {
         return false;
@@ -293,22 +293,22 @@ bool CN3DExp::ProcessCamera(INode * pNode) {
 
     CN3Camera * pCamera = new CN3Camera;
     m_pScene->CameraAdd(pCamera);
-    this->ProcessTransform(pNode, pCamera, false); // À§Ä¡ ¿¡´Ï¸ŞÀÌ¼Ç Å°..
+    this->ProcessTransform(pNode, pCamera, false); // ìœ„ì¹˜ ì—ë‹ˆë©”ì´ì…˜ í‚¤..
     pCamera->m_KeyRot.Release();                   // At Vector Key
     pCamera->AtPosSet(0, 0, 0);
     pCamera->m_KeyScale.Release(); // Up Vector Key
     pCamera->UpVectorSet(0, 1, 0);
 
-    INode * pTN = pNode->GetTarget(); // At Vector Key ¹× Ã³¸®..
+    INode * pTN = pNode->GetTarget(); // At Vector Key ë° ì²˜ë¦¬..
     if (pTN) {
         CN3Transform TTrans;
         this->ProcessTransform(pTN, &TTrans, false);
 
         pCamera->AtPosSet(TTrans.Pos());
-        pCamera->m_KeyRot.Add(TTrans.m_KeyPos, 0, TTrans.m_KeyPos.Count()); // Animation Key Ã³¸®..
+        pCamera->m_KeyRot.Add(TTrans.m_KeyPos, 0, TTrans.m_KeyPos.Count()); // Animation Key ì²˜ë¦¬..
     }
 
-    // Camera Object ¿¡ ÀĞ¾î¿Â ObjectStateÀÇ ¿ÀºêÁ§Æ®¸¦ ´ëÀÔ(?)
+    // Camera Object ì— ì½ì–´ì˜¨ ObjectStateì˜ ì˜¤ë¸Œì íŠ¸ë¥¼ ëŒ€ì…(?)
     CameraObject * pCmObj = (CameraObject *)os.obj;
 
     CameraState CS;
@@ -341,7 +341,7 @@ bool CN3DExp::ProcessLight(INode * pNode) {
 
     ObjectState os = pNode->EvalWorldState(m_Option.nFrmStart * 160);
 
-    // ¶óÀÌÆ® ¿ÀºêÁ§Æ®¸¦ °¡Á®¿Â´Ù.
+    // ë¼ì´íŠ¸ ì˜¤ë¸Œì íŠ¸ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
     GenLight *        pLightObj = (GenLight *)os.obj;
     struct LightState ls;
     Interval          valid = FOREVER;
@@ -360,25 +360,25 @@ bool CN3DExp::ProcessLight(INode * pNode) {
     __dcv.b = ls.color.b;
     __dcv.a = 0;
 
-    // ¹æÇâ ±¸ÇÏ±â
+    // ë°©í–¥ êµ¬í•˜ê¸°
     INode *   pTN = pNode->GetTarget();
     __Vector3 vDir(0, -1, 0);
-    if (pTN) { // Å¸°ÙÀÌ ÀÖÀ»°æ¿ì Å¸°ÙÀÇ ÁÂÇ¥¿Í lightÀÇ ÁÂÇ¥ Â÷¸¦ °¡Áö°í ¹æÇâÀ» Á¤ÇÑ´Ù.
+    if (pTN) { // íƒ€ê²Ÿì´ ìˆì„ê²½ìš° íƒ€ê²Ÿì˜ ì¢Œí‘œì™€ lightì˜ ì¢Œí‘œ ì°¨ë¥¼ ê°€ì§€ê³  ë°©í–¥ì„ ì •í•œë‹¤.
         CN3Transform TTrans;
         this->ProcessTransform(pTN, &TTrans, false);
         vDir = TTrans.Pos() - D3DXVECTOR3(ptLight.x, ptLight.z, ptLight.y);
-    } else if (OMNI_LGT != ls.type) { // Å¸°ÙÀÌ ¾øÀ» °æ¿ì lightÀÇ rotation°ªÀ» °¡Áö°í ¹æÇâÀ» Á¤ÇÑ´Ù.
+    } else if (OMNI_LGT != ls.type) { // íƒ€ê²Ÿì´ ì—†ì„ ê²½ìš° lightì˜ rotationê°’ì„ ê°€ì§€ê³  ë°©í–¥ì„ ì •í•œë‹¤.
         Matrix3 mtxLight =
-            pNode->GetObjTMAfterWSM(m_Option.nFrmStart * 160); // worldÁÂÇ¥»óÀÇ transform matrix¸¦ ±¸ÇÑ´Ù.
+            pNode->GetObjTMAfterWSM(m_Option.nFrmStart * 160); // worldì¢Œí‘œìƒì˜ transform matrixë¥¼ êµ¬í•œë‹¤.
         mtxLight.NoTrans();
-        mtxLight.NoScale(); // À§Ä¡¿Í ½ºÄÉÀÏ º¯È­¸¦ ¾ø¾Ø´Ù.
+        mtxLight.NoScale(); // ìœ„ì¹˜ì™€ ìŠ¤ì¼€ì¼ ë³€í™”ë¥¼ ì—†ì•¤ë‹¤.
         Point3 ptAt =
-            mtxLight.PointTransform(Point3(0, 0, -1)); // ±âº» º¤ÅÍ¸¦ matrix¿Í °öÇÏ¸é lightÀÇ ¹æÇâ º¤ÅÍ°¡ ³ª¿Â´Ù.
-        vDir.Set(ptAt.x, ptAt.z, ptAt.y);              // z¿Í y¸¦ ¹Ù²Ù¾îÁØ´Ù.
+            mtxLight.PointTransform(Point3(0, 0, -1)); // ê¸°ë³¸ ë²¡í„°ë¥¼ matrixì™€ ê³±í•˜ë©´ lightì˜ ë°©í–¥ ë²¡í„°ê°€ ë‚˜ì˜¨ë‹¤.
+        vDir.Set(ptAt.x, ptAt.z, ptAt.y);              // zì™€ yë¥¼ ë°”ê¾¸ì–´ì¤€ë‹¤.
     }
     vDir.Normalize();
 
-    // ¶óÀÌÆ® Á¾·ù
+    // ë¼ì´íŠ¸ ì¢…ë¥˜
     memset(&pLight->m_Data, 0, sizeof(pLight->m_Data));
     switch (ls.type) {
     //case OMNI_LIGHT:
@@ -410,7 +410,7 @@ bool CN3DExp::ProcessLight(INode * pNode) {
         break;
     }
 
-    // ÄÑÀÖ³ª ²¨Á®ÀÖ³ª Á¤ÇØÁØ´Ù.
+    // ì¼œìˆë‚˜ êº¼ì ¸ìˆë‚˜ ì •í•´ì¤€ë‹¤.
     pLight->m_Data.bOn = ls.on;
 
     return true;
@@ -447,7 +447,7 @@ bool CN3DExp::ProcessShape(INode * pNode) {
         cPID = pPObj->ClassID();
     }
 
-    if (pPN && cPID == Class_ID(DUMMY_CLASS_ID, 0)) // Parent Node °¡ ÀÖÀ¸¸é..
+    if (pPN && cPID == Class_ID(DUMMY_CLASS_ID, 0)) // Parent Node ê°€ ìˆìœ¼ë©´..
     {
         CN3Shape ShpTmp;
         ProcessName(pPN, &ShpTmp);
@@ -455,15 +455,15 @@ bool CN3DExp::ProcessShape(INode * pNode) {
         int nSC = m_pScene->ShapeCount();
         for (int i = 0; i < nSC; i++) {
             CN3Shape * pShpTmp = m_pScene->ShapeGet(i);
-            if (ShpTmp.m_szName == pShpTmp->m_szName) // ±×·ì³ëµåÀÇ ÀÌ¸§ÀÌ °°Àº °ÍÀÌ ÀÖÀ¸¸é..
+            if (ShpTmp.m_szName == pShpTmp->m_szName) // ê·¸ë£¹ë…¸ë“œì˜ ì´ë¦„ì´ ê°™ì€ ê²ƒì´ ìˆìœ¼ë©´..
             {
-                pShape = pShpTmp; // ¹Ù·Î ÀÌ Shape ÀÌ´Ù..
+                pShape = pShpTmp; // ë°”ë¡œ ì´ Shape ì´ë‹¤..
                 break;
             }
         }
     }
 
-    if (NULL == pShape) // Scene ¿¡ ÀÌ ³ëµåÀÇ ±×·ì¿¡ ÇØ´çµÇ´Â Shape °¡ ¾ø°Å³ª È¤Àº ´Üµ¶À¸·Î ÀÖ´Â ¸Ş½ÃÀÌ¸é..
+    if (NULL == pShape) // Scene ì— ì´ ë…¸ë“œì˜ ê·¸ë£¹ì— í•´ë‹¹ë˜ëŠ” Shape ê°€ ì—†ê±°ë‚˜ í˜¹ì€ ë‹¨ë…ìœ¼ë¡œ ìˆëŠ” ë©”ì‹œì´ë©´..
     {
         pShape = new CN3Shape();
         Point3 ptPivot;
@@ -474,55 +474,55 @@ bool CN3DExp::ProcessShape(INode * pNode) {
             this->ProcessName(pNode, pShape);
             ptPivot = pNode->GetNodeTM(m_Option.nFrmStart * 160).GetTrans();
         }
-        //        pShape->PosSet(ptPivot.x * 0.0254f, ptPivot.z * 0.0254f, ptPivot.y * 0.0254f);  // Pivot ¼¼ÆÃ.. y ¿Í z ¸¦ ¹İ´ë·Î.
-        pShape->PosSet(ptPivot.x, ptPivot.z, ptPivot.y); // Pivot ¼¼ÆÃ.. y ¿Í z ¸¦ ¹İ´ë·Î.
+        //        pShape->PosSet(ptPivot.x * 0.0254f, ptPivot.z * 0.0254f, ptPivot.y * 0.0254f);  // Pivot ì„¸íŒ….. y ì™€ z ë¥¼ ë°˜ëŒ€ë¡œ.
+        pShape->PosSet(ptPivot.x, ptPivot.z, ptPivot.y); // Pivot ì„¸íŒ….. y ì™€ z ë¥¼ ë°˜ëŒ€ë¡œ.
 
         int nSI = m_pScene->ShapeAdd(pShape);
     }
 
     bool bCollision = false;
-    ::CharLower(N3IMesh.m_szName.begin()); // ¼Ò¹®ÀÚ·Î ¸¸µé°í..
+    ::CharLower(N3IMesh.m_szName.begin()); // ì†Œë¬¸ìë¡œ ë§Œë“¤ê³ ..
     if (N3IMesh.m_szName.find("coll") !=
-        -1) { // "collision" ÀÌ¶ó´Â ¹®ÀÚ¿­ È®ÀÎ ..  ±×·¯³ª ¿ÀÅ¸¿¡ ´ëºñÇØ¼­ "coll" ±îÁö¸¸ È®ÀÎ
+        -1) { // "collision" ì´ë¼ëŠ” ë¬¸ìì—´ í™•ì¸ ..  ê·¸ëŸ¬ë‚˜ ì˜¤íƒ€ì— ëŒ€ë¹„í•´ì„œ "coll" ê¹Œì§€ë§Œ í™•ì¸
         bCollision = true;
     }
 
     if (true == bCollision) {
-        // Pivot, Offset Àû¿ë
+        // Pivot, Offset ì ìš©
         __Vector3 vOffset = pShape->Pos();
-        N3IMesh.ApplyOffset(vOffset * -1.0f); // Offset ¸¸Å­ »©ÁØ´Ù..
+        N3IMesh.ApplyOffset(vOffset * -1.0f); // Offset ë§Œí¼ ë¹¼ì¤€ë‹¤..
 
         CN3VMesh * pVMesh = new CN3VMesh();
-        pVMesh->Import(&N3IMesh); // ¸Ş½Ã ¸¸µé°í.. Indexed ¸Ş½Ã·ÎºÎÅÍ Import..
+        pVMesh->Import(&N3IMesh); // ë©”ì‹œ ë§Œë“¤ê³ .. Indexed ë©”ì‹œë¡œë¶€í„° Import..
 
-        std::string szVMeshFN = "Object\\" + pShape->m_szName + ".n3vmesh"; // ÀÌ¸§Áş±â..
+        std::string szVMeshFN = "Object\\" + pShape->m_szName + ".n3vmesh"; // ì´ë¦„ì§“ê¸°..
         if (lstrlen(m_Option.szSubDir) > 0) {
-            szVMeshFN = std::string(m_Option.szSubDir) + szVMeshFN; // sub directory ÀÖÀ¸¸é Ãß°¡
+            szVMeshFN = std::string(m_Option.szSubDir) + szVMeshFN; // sub directory ìˆìœ¼ë©´ ì¶”ê°€
         }
-        pVMesh->FileNameSet(szVMeshFN);  // ÀÌ¸§Áş±â..
-        CN3Base::s_MngVMesh.Add(pVMesh); // ¸Å´ÏÀú¿¡ ³Ö°í..
+        pVMesh->FileNameSet(szVMeshFN);  // ì´ë¦„ì§“ê¸°..
+        CN3Base::s_MngVMesh.Add(pVMesh); // ë§¤ë‹ˆì €ì— ë„£ê³ ..
 
-        pShape->CollisionMeshSet(szVMeshFN); // Ãæµ¹¸Ş½Ã ¼¼ÆÃ..
-    } else                                   // Ãæµ¹ Ã¼Å© ¸Ş½Ã°¡ ¾Æ´Ï¸é ÆÄÆ® Ãß°¡..
+        pShape->CollisionMeshSet(szVMeshFN); // ì¶©ëŒë©”ì‹œ ì„¸íŒ…..
+    } else                                   // ì¶©ëŒ ì²´í¬ ë©”ì‹œê°€ ì•„ë‹ˆë©´ íŒŒíŠ¸ ì¶”ê°€..
     {
-        // Part Ãß°¡.. Part Data ¼¼ÆÃ..
+        // Part ì¶”ê°€.. Part Data ì„¸íŒ…..
         CN3SPart * pPD = pShape->PartAdd();
-        this->ProcessName(pNode, pPD); // ÆÄÆ® ÀÌ¸§..
+        this->ProcessName(pNode, pPD); // íŒŒíŠ¸ ì´ë¦„..
 
-        // Pivot, Offset Àû¿ë
+        // Pivot, Offset ì ìš©
         Point3 ptPivot = pNode->GetNodeTM(m_Option.nFrmStart * 160).GetTrans();
         //    __Vector3 vOffset(ptPivot.x * 0.0254f, ptPivot.z * 0.0254f, ptPivot.y * 0.0254f);
         __Vector3 vOffset(ptPivot.x, ptPivot.z, ptPivot.y);
-        N3IMesh.ApplyOffset(vOffset * -1.0f); // Offset ¸¸Å­ »©ÁØ´Ù..
+        N3IMesh.ApplyOffset(vOffset * -1.0f); // Offset ë§Œí¼ ë¹¼ì¤€ë‹¤..
 
         CN3Mesh MeshTmp;
-        MeshTmp.Import(&N3IMesh); // ÀÓ½Ã·Î ¸Ş½Ã ¸¸µé°í.. Indexed ¸Ş½Ã·ÎºÎÅÍ Import..
+        MeshTmp.Import(&N3IMesh); // ì„ì‹œë¡œ ë©”ì‹œ ë§Œë“¤ê³ .. Indexed ë©”ì‹œë¡œë¶€í„° Import..
         if (m_Option.bGenerateSmoothNormal) {
-            MeshTmp.ReGenerateSmoothNormal(); // Normal °ª »ı¼º..
+            MeshTmp.ReGenerateSmoothNormal(); // Normal ê°’ ìƒì„±..
         }
-        MeshTmp.MakeIndexed(); // Indexed Mesh ·Î ¸¸µç´Ù..
+        MeshTmp.MakeIndexed(); // Indexed Mesh ë¡œ ë§Œë“ ë‹¤..
 
-        // PMesh »ı¼º..
+        // PMesh ìƒì„±..
         CN3PMeshCreate PMCreate;
         PMCreate.ConvertFromN3Mesh(&MeshTmp);
         CN3PMesh * pPMesh = PMCreate.CreateRendererMesh();
@@ -531,12 +531,12 @@ bool CN3DExp::ProcessShape(INode * pNode) {
 
         pPD->MeshSet(pPMesh->FileName());
         if (pTex) {
-            pPD->TexAlloc(1); // Texture ÇÒ´ç..
+            pPD->TexAlloc(1); // Texture í• ë‹¹..
             pPD->TexSet(0, pTex->FileName());
         }
         pPD->m_Mtl = mtl;
-        pPD->m_vPivot = vOffset - pShape->Pos(); // Pivot point ¸¦ ¾ò°í..
-        pPD->ReCalcMatrix(pShape->m_Matrix);     // Çà·Ä ´Ù½Ã °è»ê..
+        pPD->m_vPivot = vOffset - pShape->Pos(); // Pivot point ë¥¼ ì–»ê³ ..
+        pPD->ReCalcMatrix(pShape->m_Matrix);     // í–‰ë ¬ ë‹¤ì‹œ ê³„ì‚°..
     }
 
     return true;
@@ -547,7 +547,7 @@ BOOL CALLBACK CN3DExp::DlgProcExportOption(HWND hWndDlg, UINT uMsg, WPARAM wPara
     case WM_INITDIALOG: {
         CenterWindow(hWndDlg, GetParent(hWndDlg));
 
-        // Registry ¿¡ ¿É¼Ç°ªÀ» ³Ö¾îµÎ¾ú´Ù..
+        // Registry ì— ì˜µì…˜ê°’ì„ ë„£ì–´ë‘ì—ˆë‹¤..
         HKEY hKey = g_Eng.RegistryOpen("N3Export Option");
         if (hKey) {
             g_Eng.RegistryValueGet(hKey, "Export Camera", &m_Option.bExportCamera, 4);
@@ -579,8 +579,8 @@ BOOL CALLBACK CN3DExp::DlgProcExportOption(HWND hWndDlg, UINT uMsg, WPARAM wPara
         CheckDlgButton(hWndDlg, IDC_C_GENERATE_COMPRESSED_TEXTURE, m_Option.bGenerateCompressedTexture);
 
         Interval ii = g_pIntf->GetAnimRange();
-        m_Option.nFrmStart = ii.Start() / 160; // ½ÃÀÛ ÇÁ·¹ÀÓ.
-        m_Option.nFrmEnd = ii.End() / 160;     // ³¡ ÇÁ·¹ÀÓ
+        m_Option.nFrmStart = ii.Start() / 160; // ì‹œì‘ í”„ë ˆì„.
+        m_Option.nFrmEnd = ii.End() / 160;     // ë í”„ë ˆì„
 
         SetDlgItemInt(hWndDlg, IDC_E_FRAME_START, m_Option.nFrmStart, FALSE);
         SetDlgItemInt(hWndDlg, IDC_E_FRAME_END, m_Option.nFrmEnd, FALSE);
@@ -601,8 +601,8 @@ BOOL CALLBACK CN3DExp::DlgProcExportOption(HWND hWndDlg, UINT uMsg, WPARAM wPara
             m_Option.bExportCharacter = IsDlgButtonChecked(hWndDlg, IDC_C_OBJ_CHARACTER);
 
             m_Option.bAnimationKey = IsDlgButtonChecked(hWndDlg, IDC_C_ANIMATION_KEY);
-            m_Option.nFrmStart = GetDlgItemInt(hWndDlg, IDC_E_FRAME_START, NULL, FALSE);       // ½ÃÀÛ ÇÁ·¹ÀÓ
-            m_Option.nFrmEnd = GetDlgItemInt(hWndDlg, IDC_E_FRAME_END, NULL, FALSE);           // ³¡ ÇÁ·¹ÀÓ
+            m_Option.nFrmStart = GetDlgItemInt(hWndDlg, IDC_E_FRAME_START, NULL, FALSE);       // ì‹œì‘ í”„ë ˆì„
+            m_Option.nFrmEnd = GetDlgItemInt(hWndDlg, IDC_E_FRAME_END, NULL, FALSE);           // ë í”„ë ˆì„
             m_Option.fSamplingRate = GetDlgItemInt(hWndDlg, IDC_E_SAMPLING_RATE, NULL, FALSE); // Sampling Rate
 
             m_Option.bGenerateSmoothNormal = IsDlgButtonChecked(hWndDlg, IDC_C_GENERATE_SMOOTH_NORMAL);
@@ -620,7 +620,7 @@ BOOL CALLBACK CN3DExp::DlgProcExportOption(HWND hWndDlg, UINT uMsg, WPARAM wPara
 
             EndDialog(hWndDlg, 1);
 
-            // Registry ¿¡ ¿É¼Ç°ªÀ» ³Ö¾îµÎ¾ú´Ù..
+            // Registry ì— ì˜µì…˜ê°’ì„ ë„£ì–´ë‘ì—ˆë‹¤..
             HKEY hKey = g_Eng.RegistryOpen("N3Export Option");
             if (NULL == hKey) {
                 RegCreateKey(HKEY_CURRENT_USER, "N3Export Option", &hKey);
@@ -670,22 +670,22 @@ void CN3DExp::DecodeTransformMatrix(Matrix3 & matSrc, __Matrix44 & matDest) {
     // Quaternions are dumped as angle axis.
     AngAxisFromQ(ap.q, &fAngle, vRot);
 
-    // Çà·Ä...
+    // í–‰ë ¬...
     __Matrix44 m, tm;
     m.Identity();
     tm.Scale(ap.k.x, ap.k.z, ap.k.y);
-    m *= tm; // ½ºÄÉÀÏ
-    //    ::D3DXMatrixRotationYawPitchRoll(&tm, vRot.z * fAngle, vRot.x * fAngle, vRot.y * fAngle); m *= tm; // È¸Àü
+    m *= tm; // ìŠ¤ì¼€ì¼
+    //    ::D3DXMatrixRotationYawPitchRoll(&tm, vRot.z * fAngle, vRot.x * fAngle, vRot.y * fAngle); m *= tm; // íšŒì „
     tm.RotationZ(fAngle * vRot.y);
-    m *= tm; // È¸Àü
+    m *= tm; // íšŒì „
     tm.RotationY(fAngle * vRot.z);
-    m *= tm; // È¸Àü
+    m *= tm; // íšŒì „
     tm.RotationX(fAngle * vRot.x);
-    m *= tm; // È¸Àü
-    //    m.PosSet(ap.t.x * 0.0254f, ap.t.z * 0.0254f, ap.t.y * 0.0254f); // ÀÌµ¿ // 1 Unit == 1 Inch -> Meter ·Î ¹Ù²Û´Ù.. // Y, Z ´Â ¹İ´ë·Î..
-    m.PosSet(ap.t.x, ap.t.z, ap.t.y); // ÀÌµ¿ // 1 Unit == 1 Inch -> Meter ·Î ¹Ù²Û´Ù.. // Y, Z ´Â ¹İ´ë·Î..
+    m *= tm; // íšŒì „
+    //    m.PosSet(ap.t.x * 0.0254f, ap.t.z * 0.0254f, ap.t.y * 0.0254f); // ì´ë™ // 1 Unit == 1 Inch -> Meter ë¡œ ë°”ê¾¼ë‹¤.. // Y, Z ëŠ” ë°˜ëŒ€ë¡œ..
+    m.PosSet(ap.t.x, ap.t.z, ap.t.y); // ì´ë™ // 1 Unit == 1 Inch -> Meter ë¡œ ë°”ê¾¼ë‹¤.. // Y, Z ëŠ” ë°˜ëŒ€ë¡œ..
 
-    matDest = m; // ÈŞ.. º¯È¯ Çà·Ä ÃÖÁ¾ ¿Ï¼º..
+    matDest = m; // íœ´.. ë³€í™˜ í–‰ë ¬ ìµœì¢… ì™„ì„±..
 }
 
 void CN3DExp::CancelExport() {
@@ -703,13 +703,13 @@ bool CN3DExp::ProcessName(INode * pNode, CN3BaseFileAccess * pBase) {
     DWORD dwType = pBase->Type();
 
     if (pNode && pNode->GetParentNode()) {
-        INode * pPN = pNode->GetParentNode(); // ³ªÀÇ ºÎ¸ğ
-        INode * pPPN = NULL;                  // ³ªÀÇ ºÎ¸ğÀÇ ºÎ¸ğ
+        INode * pPN = pNode->GetParentNode(); // ë‚˜ì˜ ë¶€ëª¨
+        INode * pPPN = NULL;                  // ë‚˜ì˜ ë¶€ëª¨ì˜ ë¶€ëª¨
         if (pPN) {
             pPPN = pPN->GetParentNode();
         }
 
-        // Ä³¸¯ÅÍ ÆÄÆ®³ª Ä³¸¯ÅÍ ÆÄÆ® ½ºÅ²ÀÏ °æ¿ì ³»°¡ º» ³ëµåÀÌ¸é ³ªÀÇ ÀÌ¸§À» ³ÖÁö ¾Ê´Â´Ù.
+        // ìºë¦­í„° íŒŒíŠ¸ë‚˜ ìºë¦­í„° íŒŒíŠ¸ ìŠ¤í‚¨ì¼ ê²½ìš° ë‚´ê°€ ë³¸ ë…¸ë“œì´ë©´ ë‚˜ì˜ ì´ë¦„ì„ ë„£ì§€ ì•ŠëŠ”ë‹¤.
         if ((dwType & (OBJ_CHARACTER_PART | OBJ_CHARACTER_PART_SKINS)) && IsBone(pNode)) {
         } else {
             if (!(pBase->m_szName.empty())) {
@@ -722,9 +722,9 @@ bool CN3DExp::ProcessName(INode * pNode, CN3BaseFileAccess * pBase) {
             }
         }
 
-        if (NULL != pPPN) // Scene Root °¡ ¾Æ´Ò °æ¿ì¿¡¸¸..
+        if (NULL != pPPN) // Scene Root ê°€ ì•„ë‹ ê²½ìš°ì—ë§Œ..
         {
-            this->ProcessName(pNode->GetParentNode(), pBase); // Àç±Í È£Ãâ
+            this->ProcessName(pNode->GetParentNode(), pBase); // ì¬ê·€ í˜¸ì¶œ
             return true;
         }
     }
@@ -795,7 +795,7 @@ bool CN3DExp::ProcessName(INode * pNode, CN3BaseFileAccess * pBase) {
         }
     }
 
-    // sub directory °¡ ÀÖÀ¸¸é Ãß°¡ÇÑ´Ù.
+    // sub directory ê°€ ìˆìœ¼ë©´ ì¶”ê°€í•œë‹¤.
     std::string szFN;
     if (lstrlen(m_Option.szSubDir) > 0) {
         szFN = std::string(m_Option.szSubDir) + szDir + pBase->m_szName + szExt;
@@ -809,14 +809,14 @@ bool CN3DExp::ProcessName(INode * pNode, CN3BaseFileAccess * pBase) {
 }
 
 bool CN3DExp::ProcessChr(INode * pNode) {
-    INode * pNodeRootJoint = NULL; // ·çÆ® Á¶ÀÎÆ®¸¦ Ã£¾Æ¾ß ÇÑ´Ù..
+    INode * pNodeRootJoint = NULL; // ë£¨íŠ¸ ì¡°ì¸íŠ¸ë¥¼ ì°¾ì•„ì•¼ í•œë‹¤..
 
     Control * pCtrl = pNode->GetTMController();
-    if (pCtrl->ClassID() != BIPBODY_CONTROL_CLASS_ID) // pNode°¡ ¹ÙÀÌÆĞµå°¡ ¾Æ´Ï¸é pNode°¡ ·çÆ®Á¶ÀÎÆ®´Ù.
+    if (pCtrl->ClassID() != BIPBODY_CONTROL_CLASS_ID) // pNodeê°€ ë°”ì´íŒ¨ë“œê°€ ì•„ë‹ˆë©´ pNodeê°€ ë£¨íŠ¸ì¡°ì¸íŠ¸ë‹¤.
     {
         pNodeRootJoint = pNode;
     }      //return false;
-    else { // pNode°¡ ¹ÙÀÌÆĞµå¸é ÀÚ½ÄÁß¿¡ ·çÆ®Á¶ÀÎÆ®¸¦ Ã£´Â´Ù.
+    else { // pNodeê°€ ë°”ì´íŒ¨ë“œë©´ ìì‹ì¤‘ì— ë£¨íŠ¸ì¡°ì¸íŠ¸ë¥¼ ì°¾ëŠ”ë‹¤.
 
         int nCC = pNode->NumberOfChildren();
         for (int i = 0; i < nCC; i++) {
@@ -839,10 +839,10 @@ bool CN3DExp::ProcessChr(INode * pNode) {
 
     //    IBipedExport* pBE = (IBipedExport*)pCtrl->GetInterface(I_BIPINTERFACE); // biped export interface
     //    pBE->RemoveNonUniformScale(1); // remove the non uniform scale
-    //    pBE->BeginFigureMode(1); // Figure Mode .. Binding pose ¿Í ºñ½Á
+    //    pBE->BeginFigureMode(1); // Figure Mode .. Binding pose ì™€ ë¹„ìŠ·
 
     CN3Joint * pJoint = new CN3Joint();
-    if (false == this->ProcessJoint(pNodeRootJoint, pJoint)) // Joint Ã³¸®..
+    if (false == this->ProcessJoint(pNodeRootJoint, pJoint)) // Joint ì²˜ë¦¬..
     {
         delete pJoint;
         pJoint = NULL;
@@ -851,7 +851,7 @@ bool CN3DExp::ProcessChr(INode * pNode) {
         return false;
     }
 
-    // Ä³¸¯ÅÍ Ã³¸®..
+    // ìºë¦­í„° ì²˜ë¦¬..
     CN3Chr * pChr = new CN3Chr();
     this->ProcessName(pNode, pChr);
 
@@ -861,7 +861,7 @@ bool CN3DExp::ProcessChr(INode * pNode) {
 
     pChr->m_szName = "Temp";
     pChr->FileNameSet(std::string("Chr\\Temp.n3Chr"));
-    pChr->PartAlloc(64); // ÃæºĞÇÏ°Ô Part Data ÇÒ´ç.. saveÇÒ¶§ ºÒÇÊ¿äÇÑ µ¥ÀÌÅÍ´Â Á¦°ÅµÈ´Ù.
+    pChr->PartAlloc(64); // ì¶©ë¶„í•˜ê²Œ Part Data í• ë‹¹.. saveí• ë•Œ ë¶ˆí•„ìš”í•œ ë°ì´í„°ëŠ” ì œê±°ëœë‹¤.
     for (int i = 0; i < 64; i++) {
         CN3CPart *      pPDAdd = pChr->Part(i);
         CN3CPartSkins * pSkinAdd = new CN3CPartSkins();
@@ -870,19 +870,19 @@ bool CN3DExp::ProcessChr(INode * pNode) {
         pSkinAdd->FileNameSet(szNameTmp);
         CN3Base::s_MngSkins.Add(pSkinAdd);
         pPDAdd->SkinsSet(szNameTmp);
-        CN3Base::s_MngSkins.Delete(&pSkinAdd); // ÀÌ·¸°Ô ÇØÁÖ¾î¾ß ÂüÁ¶ Ä«¿îÆ®°¡ ÇÏ³ª ÁÙ¾îµç´Ù..
+        CN3Base::s_MngSkins.Delete(&pSkinAdd); // ì´ë ‡ê²Œ í•´ì£¼ì–´ì•¼ ì°¸ì¡° ì¹´ìš´íŠ¸ê°€ í•˜ë‚˜ ì¤„ì–´ë“ ë‹¤..
     }
 
-    // Biped ¿¡¼­ Editable Mesh ¸¦ Ã£°í..
+    // Biped ì—ì„œ Editable Mesh ë¥¼ ì°¾ê³ ..
     std::list<INode *> MeshList;
     this->FindNodeRecursive(pNode, Class_ID(EDITTRIOBJ_CLASS_ID, 0x00), MeshList);
 
     std::list<INode *>::iterator it;
-    for (it = MeshList.begin(); it != MeshList.end(); it++) // Mesh ¼ö¸¸Å­ Ã³¸®..
+    for (it = MeshList.begin(); it != MeshList.end(); it++) // Mesh ìˆ˜ë§Œí¼ ì²˜ë¦¬..
     {
         INode * pNodeTmp = *it;
 
-        // Ãæµ¹ Ã¼Å©¿ëÀ¸·Î ¾²ÀÏ ¸Ş½ÃÀÎÁö »ìÆìº»´Ù..
+        // ì¶©ëŒ ì²´í¬ìš©ìœ¼ë¡œ ì“°ì¼ ë©”ì‹œì¸ì§€ ì‚´í´ë³¸ë‹¤..
         bool        bCollisionMesh = false;
         std::string szFNM = pNodeTmp->GetName();
         if (szFNM.size() > 0) {
@@ -892,9 +892,9 @@ bool CN3DExp::ProcessChr(INode * pNode) {
             bCollisionMesh = true;
         }
 
-        if (true == bCollisionMesh) // Ãæµ¹ Ã¼Å© ¸Ş½Ã¸é....
+        if (true == bCollisionMesh) // ì¶©ëŒ ì²´í¬ ë©”ì‹œë©´....
         {
-        } else // if(false == bCollisionMesh) // Ãæµ¹ Ã¼Å© ¸Ş½Ã ¾Æ´Ï¸é....Á¤»óÀûÀ¸·Î ÁøÇà..
+        } else // if(false == bCollisionMesh) // ì¶©ëŒ ì²´í¬ ë©”ì‹œ ì•„ë‹ˆë©´....ì •ìƒì ìœ¼ë¡œ ì§„í–‰..
         {
             int     nLOD = 0;
             int     nPart = 0;
@@ -905,7 +905,7 @@ bool CN3DExp::ProcessChr(INode * pNode) {
             }
 
             if (pCG == NULL || (pMG && (pMG == pNode || IsBone(pMG))))
-            // Ä³¸¯ÅÍ ³ëµåÀÌ°Å³ª pMG°¡ º» ³ëµåÀÏ °æ¿ì, ÀÌ¶§´Â LOD°¡ ¾ø¾î¼­ ½ÅÃ¼ºÎÀ§º°·Î ±×·ìÁö¾î ÀÖÁö ¾ÊÀ»¶§ÀÌ´Ù.
+            // ìºë¦­í„° ë…¸ë“œì´ê±°ë‚˜ pMGê°€ ë³¸ ë…¸ë“œì¼ ê²½ìš°, ì´ë•ŒëŠ” LODê°€ ì—†ì–´ì„œ ì‹ ì²´ë¶€ìœ„ë³„ë¡œ ê·¸ë£¹ì§€ì–´ ìˆì§€ ì•Šì„ë•Œì´ë‹¤.
             {
                 std::string strM1(pNodeTmp->GetName());
                 std::string strM2;
@@ -914,15 +914,15 @@ bool CN3DExp::ProcessChr(INode * pNode) {
                     INode * pCN = pMG->GetChildNode(i);
                     __ASSERT(pCN, "null pointer : no child");
                     if (!CheckObjectClassID(pCN, Class_ID(EDITTRIOBJ_CLASS_ID, 0x00))) {
-                        continue; // ¸Ş½¬°¡ ¾Æ´Ï¸é ³Ñ¾î°£´Ù.
+                        continue; // ë©”ì‰¬ê°€ ì•„ë‹ˆë©´ ë„˜ì–´ê°„ë‹¤.
                     }
                     strM2 = pCN->GetName();
                     if (strM1 == strM2) {
-                        break; // ÀÌ¸§ÀÌ °°À» °æ¿ì..
+                        break; // ì´ë¦„ì´ ê°™ì„ ê²½ìš°..
                     }
-                    ++nPart; // °°Áö ¾ÊÀ¸¸é Part Áõ°¡..
+                    ++nPart; // ê°™ì§€ ì•Šìœ¼ë©´ Part ì¦ê°€..
                 }
-            } else { // LOD°¡ ÀÖ¾î¼­ ½ÅÃ¼ ºÎÀ§º°·Î ±×·ì µÇ¾î ÀÖÀ»°æ¿ì (pMG°¡ ±×·ìÀÌ´Ù)
+            } else { // LODê°€ ìˆì–´ì„œ ì‹ ì²´ ë¶€ìœ„ë³„ë¡œ ê·¸ë£¹ ë˜ì–´ ìˆì„ê²½ìš° (pMGê°€ ê·¸ë£¹ì´ë‹¤)
                 // part
                 std::string strM1(pMG->GetName());
                 std::string strM2;
@@ -931,13 +931,13 @@ bool CN3DExp::ProcessChr(INode * pNode) {
                     INode * pCN = pCG->GetChildNode(i);
                     __ASSERT(pCN, "null pointer : no child");
                     if (!CheckObjectClassID(pCN, Class_ID(DUMMY_CLASS_ID, 0x00))) {
-                        continue; // ±×·ìÀÌ ¾Æ´Ï¸é ³Ñ¾î°£´Ù.
+                        continue; // ê·¸ë£¹ì´ ì•„ë‹ˆë©´ ë„˜ì–´ê°„ë‹¤.
                     }
                     strM2 = pCN->GetName();
                     if (strM1 == strM2) {
-                        break; // ÀÌ¸§ÀÌ °°À» °æ¿ì..
+                        break; // ì´ë¦„ì´ ê°™ì„ ê²½ìš°..
                     }
-                    ++nPart; // °°Áö ¾ÊÀ¸¸é Part Áõ°¡..
+                    ++nPart; // ê°™ì§€ ì•Šìœ¼ë©´ Part ì¦ê°€..
                 }
 
                 // lod
@@ -947,13 +947,13 @@ bool CN3DExp::ProcessChr(INode * pNode) {
                     INode * pCN = pMG->GetChildNode(i);
                     __ASSERT(pCN, "null pointer : no child");
                     if (!CheckObjectClassID(pCN, Class_ID(EDITTRIOBJ_CLASS_ID, 0x00))) {
-                        continue; // ¸Ş½¬°¡ ¾Æ´Ï¸é ³Ñ¾î°£´Ù.
+                        continue; // ë©”ì‰¬ê°€ ì•„ë‹ˆë©´ ë„˜ì–´ê°„ë‹¤.
                     }
                     strM2 = pCN->GetName();
                     if (strM1 == strM2) {
-                        break; // ÀÌ¸§ÀÌ °°À» °æ¿ì..
+                        break; // ì´ë¦„ì´ ê°™ì„ ê²½ìš°..
                     }
-                    ++nLOD; // °°Áö ¾ÊÀ¸¸é LODÁõ°¡
+                    ++nLOD; // ê°™ì§€ ì•Šìœ¼ë©´ LODì¦ê°€
                 }
             }
 
@@ -964,7 +964,7 @@ bool CN3DExp::ProcessChr(INode * pNode) {
             CN3CPartSkins * pSkins = pPart->Skins();
 
             CN3Skin * pSkin = pPart->Skin(nLOD);
-            if (false == this->ProcessPhysique(pNodeTmp, pNodeRootJoint, pSkin)) // Skin Ã³¸®..
+            if (false == this->ProcessPhysique(pNodeTmp, pNodeRootJoint, pSkin)) // Skin ì²˜ë¦¬..
             {
                 MessageBox(::GetActiveWindow(), pNodeTmp->GetName(), "Skin processing failed", MB_OK);
             }
@@ -978,8 +978,8 @@ bool CN3DExp::ProcessChr(INode * pNode) {
                 //                pTex->FileNameSet(szFN);
                 pPart->TexSet(pTex->FileName());
             }
-            ProcessName(pNodeTmp, pPart);  // ÀÌ¸§ Áş±â
-            ProcessName(pNodeTmp, pSkins); // ÀÌ¸§ Áş±â
+            ProcessName(pNodeTmp, pPart);  // ì´ë¦„ ì§“ê¸°
+            ProcessName(pNodeTmp, pSkins); // ì´ë¦„ ì§“ê¸°
         }
     }
 
@@ -988,15 +988,15 @@ bool CN3DExp::ProcessChr(INode * pNode) {
     //    pBE->EndFigureMode(1);
     //    pCtrl->ReleaseInterface(I_BIPINTERFACE, pBE); // release biped export interface
     //    pBE = NULL;
-    g_pIntf->RedrawViews(0); // °á°ú¸¦ º»´Ù.. Redraw if you want to see the result
+    g_pIntf->RedrawViews(0); // ê²°ê³¼ë¥¼ ë³¸ë‹¤.. Redraw if you want to see the result
 
     //    IBipedExport* pBE = (IBipedExport*)pCtrl->GetInterface(I_BIPINTERFACE); // biped export interface
     //    pBE->RemoveNonUniformScale(1); // remove the non uniform scale
-    //    pBE->BeginFigureMode(1); // Figure Mode .. Binding pose ¿Í ºñ½Á
+    //    pBE->BeginFigureMode(1); // Figure Mode .. Binding pose ì™€ ë¹„ìŠ·
     //
     //
     //    pBE->EndFigureMode(1);
-    //    g_pIntf->RedrawViews(0); // °á°ú¸¦ º»´Ù.. Redraw if you want to see the result
+    //    g_pIntf->RedrawViews(0); // ê²°ê³¼ë¥¼ ë³¸ë‹¤.. Redraw if you want to see the result
     //    pCtrl->ReleaseInterface(I_BIPINTERFACE, pBE); // release biped export interface
 
     // biped chr
@@ -1010,7 +1010,7 @@ bool CN3DExp::ProcessChr(INode * pNode) {
 
         
         BipIface->RemoveNonUniformScale(1); // remove the non uniform scale
-        BipIface->BeginFigureMode(1); // Figure Mode .. Binding pose ¿Í ºñ½Á
+        BipIface->BeginFigureMode(1); // Figure Mode .. Binding pose ì™€ ë¹„ìŠ·
 
         // to do ----------------------------------------------------------------------------
         // these are subanim numbers for the center of mass controller
@@ -1052,14 +1052,14 @@ bool CN3DExp::ProcessChr(INode * pNode) {
 //        Control* pRotCtrl = c->GetRotationController();
 //         Control* pSclCtrl = c->GetScaleController();
 //
-//        this->ExportAnimationPosition(pPosCtrl); // À§Ä¡
-//        this->ExportAnimationRotation(pRotCtrl); // È¸Àü
-//        this->ExportAnimationScale(pSclCtrl);     // ½ºÄÉÀÏ
+//        this->ExportAnimationPosition(pPosCtrl); // ìœ„ì¹˜
+//        this->ExportAnimationRotation(pRotCtrl); // íšŒì „
+//        this->ExportAnimationScale(pSclCtrl);     // ìŠ¤ì¼€ì¼
 //
 //        Control* pTPosCtrl = NULL;
 //        INode* pTarget = pNode->GetTarget();
 //        if(pTarget != NULL) pTPosCtrl = pTarget->GetTMController()->GetPositionController();
-//        this->ExportAnimationPosition(pTPosCtrl); // Å¸°Ù À§Ä¡ ¿¡´Ï¸ŞÀÌ¼Ç..
+//        this->ExportAnimationPosition(pTPosCtrl); // íƒ€ê²Ÿ ìœ„ì¹˜ ì—ë‹ˆë©”ì´ì…˜..
         ///////////////////////////////////////////////////////////////////////////////////////
 
         BipIface->EndFigureMode(1);
@@ -1074,7 +1074,7 @@ bool CN3DExp::ProcessChr(INode * pNode) {
     return true;
 }
 
-bool CN3DExp::ProcessTransform(INode * pNode, CN3Transform * pTransform, bool bLocalCoordinate) // À§Ä¡
+bool CN3DExp::ProcessTransform(INode * pNode, CN3Transform * pTransform, bool bLocalCoordinate) // ìœ„ì¹˜
 {
     if (NULL == pTransform || NULL == pNode) {
         return false;
@@ -1088,16 +1088,16 @@ bool CN3DExp::ProcessTransform(INode * pNode, CN3Transform * pTransform, bool bL
     AffineParts mAP;
 
     mTime = m_Option.nFrmStart * 160;
-    mMtx = pNode->GetNodeTM(mTime); // 0 Frame Â°ÀÇ Å°°ªÀ» °¡Á®¿Â´Ù..
+    mMtx = pNode->GetNodeTM(mTime); // 0 Frame ì§¸ì˜ í‚¤ê°’ì„ ê°€ì ¸ì˜¨ë‹¤..
     if (bLocalCoordinate) {
-        mMtx *= Inverse(pNode->GetParentTM(mTime)); // ·ÎÄÃ ÁÂÇ¥·Î ¹Ù²Ù±â..
+        mMtx *= Inverse(pNode->GetParentTM(mTime)); // ë¡œì»¬ ì¢Œí‘œë¡œ ë°”ê¾¸ê¸°..
     }
     decomp_affine(mMtx, &mAP);
 
-    //    pTransform->PosSet(mAP.t.x * 0.0254f, mAP.t.z * 0.0254f, mAP.t.y * 0.0254f); // 1 Unit == 1 Inch -> Meter ·Î ¹Ù²Û´Ù.. // À§Ä¡ - y, z ¸¦ ¹Ù²Ù¾î ÁØ´Ù..
+    //    pTransform->PosSet(mAP.t.x * 0.0254f, mAP.t.z * 0.0254f, mAP.t.y * 0.0254f); // 1 Unit == 1 Inch -> Meter ë¡œ ë°”ê¾¼ë‹¤.. // ìœ„ì¹˜ - y, z ë¥¼ ë°”ê¾¸ì–´ ì¤€ë‹¤..
     pTransform->PosSet(mAP.t.x, mAP.t.z,
-                       mAP.t.y); // 1 Unit == 1 Inch -> Meter ·Î ¹Ù²Û´Ù.. // À§Ä¡ - y, z ¸¦ ¹Ù²Ù¾î ÁØ´Ù..
-    __Quaternion qt;             // È¸Àü.
+                       mAP.t.y); // 1 Unit == 1 Inch -> Meter ë¡œ ë°”ê¾¼ë‹¤.. // ìœ„ì¹˜ - y, z ë¥¼ ë°”ê¾¸ì–´ ì¤€ë‹¤..
+    __Quaternion qt;             // íšŒì „.
     qt.x = mAP.q.x;
     qt.y = mAP.q.y;
     qt.z = mAP.q.z;
@@ -1107,17 +1107,17 @@ bool CN3DExp::ProcessTransform(INode * pNode, CN3Transform * pTransform, bool bL
     qt.AxisAngle(vAxis, fD);
     float fTmp = vAxis.y;
     vAxis.y = vAxis.z;
-    vAxis.z = fTmp;             // yÃà°ú zÃàÀ» ¹Ù²Û´ÙÀ½..
-    qt.RotationAxis(vAxis, fD); // ÄõÅÍ´Ï¾ğ °è»ê ¹× ¼¼ÆÃ.
+    vAxis.z = fTmp;             // yì¶•ê³¼ zì¶•ì„ ë°”ê¾¼ë‹¤ìŒ..
+    qt.RotationAxis(vAxis, fD); // ì¿¼í„°ë‹ˆì–¸ ê³„ì‚° ë° ì„¸íŒ….
     pTransform->RotSet(qt);
     pTransform->ScaleSet(mAP.k.x * mAP.f, mAP.k.y * mAP.f, mAP.k.z * mAP.f); // Scale
 
     if (FALSE == m_Option.bAnimationKey) {
-        return true; // Animation Key Ã³¸® ¿É¼Ç..
+        return true; // Animation Key ì²˜ë¦¬ ì˜µì…˜..
     }
 
     int nKC = 0;
-    if (pTransform->Type() & OBJ_JOINT) // Joint ÀÏ¶§´Â Sampling...
+    if (pTransform->Type() & OBJ_JOINT) // Joint ì¼ë•ŒëŠ” Sampling...
     {
         nKC = (m_Option.nFrmEnd - m_Option.nFrmStart) * (m_Option.fSamplingRate / 30.0f);
     } else {
@@ -1133,43 +1133,43 @@ bool CN3DExp::ProcessTransform(INode * pNode, CN3Transform * pTransform, bool bL
 
         nKC = pmKey->GetNumKeys();
         if (nKC <= 0) {
-            return true; // Å°°ªÀÌ ¾øÀ¸¸é »ùÇÃ¸µ ÇÏÁö ¾Ê´Â´Ù..
+            return true; // í‚¤ê°’ì´ ì—†ìœ¼ë©´ ìƒ˜í”Œë§ í•˜ì§€ ì•ŠëŠ”ë‹¤..
         }
 
         IKey mKTmp;
-        pmKey->GetKey(nKC - 1, &mKTmp); // ¸¶Áö¸·Å°¸¦ °¡Á®¿À°í..
+        pmKey->GetKey(nKC - 1, &mKTmp); // ë§ˆì§€ë§‰í‚¤ë¥¼ ê°€ì ¸ì˜¤ê³ ..
         nKC = (mKTmp.time / 160.0f) *
-              (m_Option.fSamplingRate / 30.0f); // ÀÌ¼öÄ¡·Î ³ª´² Áà¾ß ÇÑÇÁ·¹ÀÓÀÌ µÈ´Ù.. °í·Î ¸¶Áö¸· ÇÁ·¹ÀÓÀÌ µÈ´Ù.
+              (m_Option.fSamplingRate / 30.0f); // ì´ìˆ˜ì¹˜ë¡œ ë‚˜ëˆ  ì¤˜ì•¼ í•œí”„ë ˆì„ì´ ëœë‹¤.. ê³ ë¡œ ë§ˆì§€ë§‰ í”„ë ˆì„ì´ ëœë‹¤.
         if (nKC <= 0) {
             return true;
         }
     }
 
-    pTransform->m_KeyPos.Alloc(nKC, m_Option.fSamplingRate, KEY_VECTOR3); // Å° ÇÒ´ç..
+    pTransform->m_KeyPos.Alloc(nKC, m_Option.fSamplingRate, KEY_VECTOR3); // í‚¤ í• ë‹¹..
     if (pTransform->Type() & OBJ_JOINT) {
         pTransform->m_KeyRot.Alloc(nKC, m_Option.fSamplingRate,
-                                   KEY_QUATERNION); // È¸Àü Å° ÇÒ´ç.. ÀÌ°Ç ÄõÅÍ´Ï¾ğ ÇÒ´çÀÌ´Ù...
+                                   KEY_QUATERNION); // íšŒì „ í‚¤ í• ë‹¹.. ì´ê±´ ì¿¼í„°ë‹ˆì–¸ í• ë‹¹ì´ë‹¤...
     } else {
         pTransform->m_KeyRot.Alloc(nKC, m_Option.fSamplingRate,
-                                   KEY_VECTOR3); // È¸Àü Å° ÇÒ´ç.. ÀÌ°Ç ÄõÅÍ´Ï¾ğ ÇÒ´çÀÌ´Ù...
+                                   KEY_VECTOR3); // íšŒì „ í‚¤ í• ë‹¹.. ì´ê±´ ì¿¼í„°ë‹ˆì–¸ í• ë‹¹ì´ë‹¤...
     }
-    pTransform->m_KeyScale.Alloc(nKC, m_Option.fSamplingRate, KEY_VECTOR3); // Å° ÇÒ´ç..
+    pTransform->m_KeyScale.Alloc(nKC, m_Option.fSamplingRate, KEY_VECTOR3); // í‚¤ í• ë‹¹..
 
     __Vector3 * pVKey = NULL;
 
     for (int i = 0; i < nKC; i++) {
         mTime = m_Option.nFrmStart * 160 + (int)(i * 30.0f / m_Option.fSamplingRate) * 160;
-        mMtx = pNode->GetNodeTM(mTime); // Key ¿¡ ÇØ´çÇÏ´Â Transform Sampling
+        mMtx = pNode->GetNodeTM(mTime); // Key ì— í•´ë‹¹í•˜ëŠ” Transform Sampling
         if (bLocalCoordinate) {
-            mMtx *= Inverse(pNode->GetParentTM(mTime)); // ·ÎÄÃ ÁÂÇ¥·Î ¹Ù²Ù±â.. // Parent Matrix ¿ªÇà·Ä
+            mMtx *= Inverse(pNode->GetParentTM(mTime)); // ë¡œì»¬ ì¢Œí‘œë¡œ ë°”ê¾¸ê¸°.. // Parent Matrix ì—­í–‰ë ¬
         }
         decomp_affine(mMtx, &mAP);
 
         __Vector3 *    pVP = (__Vector3 *)(pTransform->m_KeyPos.DataGet(i));
         __Vector3 *    pVS = (__Vector3 *)(pTransform->m_KeyScale.DataGet(i));
         __Quaternion * pQR = (__Quaternion *)(pTransform->m_KeyRot.DataGet(i));
-        pVP->Set(mAP.t.x, mAP.t.z, mAP.t.y); // À§Ä¡ // 1 Unit == 1 Inch -> Meter ·Î ¹Ù²Û´Ù..
-        if (pQR)                             // È¸Àü.
+        pVP->Set(mAP.t.x, mAP.t.z, mAP.t.y); // ìœ„ì¹˜ // 1 Unit == 1 Inch -> Meter ë¡œ ë°”ê¾¼ë‹¤..
+        if (pQR)                             // íšŒì „.
         {
             __Quaternion qt;
             qt.x = mAP.q.x;
@@ -1181,15 +1181,15 @@ bool CN3DExp::ProcessTransform(INode * pNode, CN3Transform * pTransform, bool bL
             qt.AxisAngle(vAxis, fD);
             float fTmp = vAxis.y;
             vAxis.y = vAxis.z;
-            vAxis.z = fTmp;               // yÃà°ú zÃàÀ» ¹Ù²Û´ÙÀ½..
+            vAxis.z = fTmp;               // yì¶•ê³¼ zì¶•ì„ ë°”ê¾¼ë‹¤ìŒ..
                                           //            while (fD>D3DX_PI) fD -= (D3DX_PI*2.0f);
                                           //            while (fD<= (-D3DX_PI)) fD += (D3DX_PI*2.0f);
-            pQR->RotationAxis(vAxis, fD); // ÄõÅÍ´Ï¾ğ °è»ê ¹× ¼¼ÆÃ.
+            pQR->RotationAxis(vAxis, fD); // ì¿¼í„°ë‹ˆì–¸ ê³„ì‚° ë° ì„¸íŒ….
         }
         pVS->Set(mAP.k.x * mAP.f, mAP.k.y * mAP.f, mAP.k.z * mAP.f); // Scale
     }
 
-    // Å°°ª Á¤¸®..
+    // í‚¤ê°’ ì •ë¦¬..
     CN3AnimKey * pKey[3] = {&(pTransform->m_KeyPos), &(pTransform->m_KeyRot), &(pTransform->m_KeyScale)};
     for (int i = 0; i < 3; i++) {
         nKC = pKey[i]->Count();
@@ -1220,7 +1220,7 @@ bool CN3DExp::ProcessTransform(INode * pNode, CN3Transform * pTransform, bool bL
             }
         }
         if (bSameKeys) {
-            pKey[i]->Release(); // Å°°ªÀÌ ¸ğµÎ ¶È°°´Ù¸é.. Áö¿î´Ù.
+            pKey[i]->Release(); // í‚¤ê°’ì´ ëª¨ë‘ ë˜‘ê°™ë‹¤ë©´.. ì§€ìš´ë‹¤.
         }
     }
 
@@ -1232,23 +1232,23 @@ bool CN3DExp::ProcessJoint(INode * pNode, CN3Joint * pJoint) {
         return false;
     }
     if (false == IsBone(pNode)) {
-        return false; // º»ÀÌ ¾Æ´Ï¸é ¹«½Ã
+        return false; // ë³¸ì´ ì•„ë‹ˆë©´ ë¬´ì‹œ
     }
 
     bool bLocalCoordinate = true;
     if (pJoint->Parent() == NULL) {
         bLocalCoordinate = false;
     }
-    this->ProcessTransform(pNode, pJoint, bLocalCoordinate); // Transformation Ã³¸®.. ·çÆ®ÀÏ¶§´Â ¿ùµå °ª..
+    this->ProcessTransform(pNode, pJoint, bLocalCoordinate); // Transformation ì²˜ë¦¬.. ë£¨íŠ¸ì¼ë•ŒëŠ” ì›”ë“œ ê°’..
 
-    // ÀÌ¸§ÀÌ ³Ê¹« ±â´Ï±î.. °­Á¦·Î ÇÑ´Ù.
+    // ì´ë¦„ì´ ë„ˆë¬´ ê¸°ë‹ˆê¹Œ.. ê°•ì œë¡œ í•œë‹¤.
     pJoint->m_szName = pNode->GetName();
     char szJFN[256];
     wsprintf(szJFN, "%sChr\\%s.N3Joint", m_Option.szSubDir, pNode->GetName());
     pJoint->FileNameSet(szJFN);
 
     ///////////////////////////////////////
-    // ÀÚ½Ä °´Ã¼ Ã³¸®..
+    // ìì‹ ê°ì²´ ì²˜ë¦¬..
     int nCC = pNode->NumberOfChildren();
     for (int i = 0; i < nCC; i++) {
         INode * pNodeChild = pNode->GetChildNode(i);
@@ -1260,12 +1260,12 @@ bool CN3DExp::ProcessJoint(INode * pNode, CN3Joint * pJoint) {
         pJoint->ChildAdd(pChild);
 
         if (true != this->ProcessJoint(pNodeChild, pChild)) {
-            pJoint->ChildDelete(pChild); // ½ÇÆĞÇÏ¸é Â÷ÀÏµå¿¡¼­ »èÁ¦..
+            pJoint->ChildDelete(pChild); // ì‹¤íŒ¨í•˜ë©´ ì°¨ì¼ë“œì—ì„œ ì‚­ì œ..
             delete pChild;
             pChild = NULL;
         }
     }
-    // ÀÚ½Ä °´Ã¼ Ã³¸®..
+    // ìì‹ ê°ì²´ ì²˜ë¦¬..
     ///////////////////////////////////////
 
     return true;
@@ -1287,7 +1287,7 @@ bool CN3DExp::IsBone(INode * pNode) {
         return true;
     }
 
-    if (cID == Class_ID(DUMMY_CLASS_ID, 0)) { // ´õ¹ÌÀÌÁö¸¸ TMController°¡ ¹ÙÀÌÆĞÆ® ÄÁÆ®·ÑÀÏ°æ¿ì°¡ ÀÖÀ¸¹Ç·Î
+    if (cID == Class_ID(DUMMY_CLASS_ID, 0)) { // ë”ë¯¸ì´ì§€ë§Œ TMControllerê°€ ë°”ì´íŒ¨íŠ¸ ì»¨íŠ¸ë¡¤ì¼ê²½ìš°ê°€ ìˆìœ¼ë¯€ë¡œ
         return false;
     }
 
@@ -1321,7 +1321,7 @@ bool CN3DExp::FindNodeRecursive(INode * pNode, Class_ID cID, std::list<INode *> 
     }
 
     ///////////////////////////////////////
-    // ÀÚ½Ä °´Ã¼ Ã³¸®..
+    // ìì‹ ê°ì²´ ì²˜ë¦¬..
     int nCC = pNode->NumberOfChildren();
     for (int i = 0; i < nCC; i++) {
         INode * pNodeChild = pNode->GetChildNode(i);
@@ -1332,8 +1332,8 @@ bool CN3DExp::FindNodeRecursive(INode * pNode, Class_ID cID, std::list<INode *> 
     return true;
 }
 
-bool CN3DExp::CheckObjectClassID(INode *          pNode,
-                                 const Class_ID & cID) const // ÁÖ¾îÁø ³ëµå°¡ ÁÖ¾îÁø Å¬·¡½º ¾ÆÀÌµğÀÎÁö °Ë»ç
+bool CN3DExp::CheckObjectClassID(INode * pNode,
+                                 const Class_ID & cID) const // ì£¼ì–´ì§„ ë…¸ë“œê°€ ì£¼ì–´ì§„ í´ë˜ìŠ¤ ì•„ì´ë””ì¸ì§€ ê²€ì‚¬
 {
     if (NULL == pNode) {
         return false;
@@ -1353,7 +1353,7 @@ bool CN3DExp::CheckObjectClassID(INode *          pNode,
     return false;
 }
 
-// Bone ¹× Skin Ã³¸® ·çÆ¾.. ÀÏºÎºĞÀÌÁö¸¸ ³ªÁß¿¡ ¾µ¼öµµ ÀÖ´Ù..
+// Bone ë° Skin ì²˜ë¦¬ ë£¨í‹´.. ì¼ë¶€ë¶„ì´ì§€ë§Œ ë‚˜ì¤‘ì— ì“¸ìˆ˜ë„ ìˆë‹¤..
 ////////////////////////////////////
 /*
                 ISkin* pmSkin = NULL;
@@ -1418,7 +1418,7 @@ bool CN3DExp::ProcessIMesh(INode * pNode, CN3IMesh * pIMesh) {
         return false;
     }
     if (pNode->ClassID() == Class_ID(DUMMY_CLASS_ID, 0)) {
-        return false; // ´õ¹ÌÀÌ¸é.. ³Ñ¾î°£´Ù..
+        return false; // ë”ë¯¸ì´ë©´.. ë„˜ì–´ê°„ë‹¤..
     }
     const char * szNamTmp = pNode->GetName();
 
@@ -1433,7 +1433,7 @@ bool CN3DExp::ProcessIMesh(INode * pNode, CN3IMesh * pIMesh) {
         }
     }
 
-    if (pTriObj == NULL || pNode->IsGroupHead()) // Áö¿À¸ŞÆ®¸®°¡ ¾Æ´Ï°Å³ª ±×·ì Çìµå¸é..
+    if (pTriObj == NULL || pNode->IsGroupHead()) // ì§€ì˜¤ë©”íŠ¸ë¦¬ê°€ ì•„ë‹ˆê±°ë‚˜ ê·¸ë£¹ í—¤ë“œë©´..
     {
         char szDebug[512];
         wsprintf(szDebug, "%s -> May be Camera Target or Light Symbol\n", pNode->GetName());
@@ -1441,30 +1441,30 @@ bool CN3DExp::ProcessIMesh(INode * pNode, CN3IMesh * pIMesh) {
         return false;
     }
 
-    Mesh * pmMesh = &pTriObj->GetMesh(); // TriObject¿¡¼­ Mesh¸¦ ¾ò¾î¿Â´Ù.
-    pmMesh->buildNormals();              // Normal À» ¸¸µç´Ù..
+    Mesh * pmMesh = &pTriObj->GetMesh(); // TriObjectì—ì„œ Meshë¥¼ ì–»ì–´ì˜¨ë‹¤.
+    pmMesh->buildNormals();              // Normal ì„ ë§Œë“ ë‹¤..
 
-    int nFC = pmMesh->getNumFaces();   // Mesh¿¡¼­ Face¸¦ ÀĞ¾î¿Â´Ù.
-    int nVC = pmMesh->getNumVerts();   // // Mesh¿¡¼­ Á¡ °¹¼ö ÀĞ¾î¿Â´Ù.
-    int nUVC = pmMesh->getNumTVerts(); // ÅØ½ºÃ³ ¸ÅÇÎ Á¡...
+    int nFC = pmMesh->getNumFaces();   // Meshì—ì„œ Faceë¥¼ ì½ì–´ì˜¨ë‹¤.
+    int nVC = pmMesh->getNumVerts();   // // Meshì—ì„œ ì  ê°¯ìˆ˜ ì½ì–´ì˜¨ë‹¤.
+    int nUVC = pmMesh->getNumTVerts(); // í…ìŠ¤ì²˜ ë§¤í•‘ ì ...
 
-    if (nFC <= 0) // Á¡°ú ¹öÅØ½º°¡ ÇÏ³ªµµ ¾øÀ¸¸é µ¹¾Æ°£´Ù..
+    if (nFC <= 0) // ì ê³¼ ë²„í…ìŠ¤ê°€ í•˜ë‚˜ë„ ì—†ìœ¼ë©´ ëŒì•„ê°„ë‹¤..
     {
-        OutputDebugString("Mesh Export - Á¡°ú ÆäÀÌ½º°¡ ÇÏ³ªµµ ¾ø½À´Ï´Ù..\n");
+        OutputDebugString("Mesh Export - ì ê³¼ í˜ì´ìŠ¤ê°€ í•˜ë‚˜ë„ ì—†ìŠµë‹ˆë‹¤..\n");
         if (bNeedDelete) {
             delete pTriObj;
         }
         return false;
     }
 
-    //    Matrix3 mMtx = pNode->GetNodeTM(m_Option.nFrmStart * 160); // ¿ùµå Çà·Ä°¡Á®¿Â´Ù.
-    Matrix3 mMtx = pNode->GetObjTMAfterWSM(m_Option.nFrmStart * 160); // ¿ùµå Çà·Ä°¡Á®¿Â´Ù.
-    //    Matrix3 mMtx = pNode->GetObjectTM(m_Option.nFrmStart * 160); // ¿ùµå Çà·Ä°¡Á®¿Â´Ù.
+    //    Matrix3 mMtx = pNode->GetNodeTM(m_Option.nFrmStart * 160); // ì›”ë“œ í–‰ë ¬ê°€ì ¸ì˜¨ë‹¤.
+    Matrix3 mMtx = pNode->GetObjTMAfterWSM(m_Option.nFrmStart * 160); // ì›”ë“œ í–‰ë ¬ê°€ì ¸ì˜¨ë‹¤.
+    //    Matrix3 mMtx = pNode->GetObjectTM(m_Option.nFrmStart * 160); // ì›”ë“œ í–‰ë ¬ê°€ì ¸ì˜¨ë‹¤.
 
     __VertexXyzNormal * pvDest1 = NULL;
     __Vector3 *         pvDest2 = NULL;
     CN3VMesh *          pVMesh = NULL;
-    if (nFC >= 8192) // Á» Å«°Å¸é .. ÁöÇü¿ëÀ¸·Î »ÌÀ» VMesh ¶ó°í »ı°¢ÇÏ°í...
+    if (nFC >= 8192) // ì¢€ í°ê±°ë©´ .. ì§€í˜•ìš©ìœ¼ë¡œ ë½‘ì„ VMesh ë¼ê³  ìƒê°í•˜ê³ ...
     {
         pVMesh = new CN3VMesh();
         pVMesh->CreateVertices(nFC * 3);
@@ -1472,28 +1472,28 @@ bool CN3DExp::ProcessIMesh(INode * pNode, CN3IMesh * pIMesh) {
     } else {
         Point3 ptTmp;
         pIMesh->Create(nFC, nVC, nUVC);
-        pvDest1 = pIMesh->Vertices(); // ¾µ µ¥ÀÌÅÍ¸¦ °¡Á®¿À°í
+        pvDest1 = pIMesh->Vertices(); // ì“¸ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¤ê³ 
         this->ProcessName(pNode, pIMesh);
 
         for (int i = 0; i < nVC; i++) {
-            ptTmp = mMtx * pmMesh->getVert(i); // Vertex ¼ö¸¸Å­ ·çÇÁ¸¦ µ¹¸°´Ù.
-            pvDest1[i].x = ptTmp.x;            // * 0.0254f; // 1 Unit == 1 Inch -> Meter ·Î ¹Ù²Û´Ù..
+            ptTmp = mMtx * pmMesh->getVert(i); // Vertex ìˆ˜ë§Œí¼ ë£¨í”„ë¥¼ ëŒë¦°ë‹¤.
+            pvDest1[i].x = ptTmp.x;            // * 0.0254f; // 1 Unit == 1 Inch -> Meter ë¡œ ë°”ê¾¼ë‹¤..
             pvDest1[i].y = ptTmp.z;            // * 0.0254f;
-            pvDest1[i].z = ptTmp.y;            // * 0.0254f; // y ¿Í z ¸¦ ¹Ù²Û´Ù..
+            pvDest1[i].z = ptTmp.y;            // * 0.0254f; // y ì™€ z ë¥¼ ë°”ê¾¼ë‹¤..
         }
         for (int i = 0; i < nUVC; i++) {
-            pIMesh->UVSet(i, pmMesh->tVerts[i].x, 1.0f - pmMesh->tVerts[i].y); // ÀÏ´Ü ÅØ½ºÃ³ ¸ÅÇÎÀ» ±â·ÏÇØ µĞ´Ù..
+            pIMesh->UVSet(i, pmMesh->tVerts[i].x, 1.0f - pmMesh->tVerts[i].y); // ì¼ë‹¨ í…ìŠ¤ì²˜ ë§¤í•‘ì„ ê¸°ë¡í•´ ë‘”ë‹¤..
         }
     }
 
     //////////////////////////////////////
-    // ½ºÄÉÀÏÀ» °Ë»çÇÑ´Ù.
-    int         vx1 = 0, vx2 = 2, vx3 = 1; // Triangle ¼ø¼­ È¸Àü Á¤ÇÏ±â.
+    // ìŠ¤ì¼€ì¼ì„ ê²€ì‚¬í•œë‹¤.
+    int         vx1 = 0, vx2 = 2, vx3 = 1; // Triangle ìˆœì„œ íšŒì „ ì •í•˜ê¸°.
     AffineParts ap;
     decomp_affine(mMtx, &ap);
     if (ap.k.x * ap.f <= 0 || ap.k.y * ap.f <= 0 || ap.k.z * ap.f <= 0) {
         //        MessageBox(::GetActiveWindow(), pNode->GetName(),
-        //            "°æ°í : ½ºÄÉÀÏ °ªÀÌ À½¼ö ÀÔ´Ï´Ù -> Face°¡ µÚÁıÇô º¸ÀÏ ¼ö ÀÖ½À´Ï´Ù.", MB_OK);
+        //            "ê²½ê³  : ìŠ¤ì¼€ì¼ ê°’ì´ ìŒìˆ˜ ì…ë‹ˆë‹¤ -> Faceê°€ ë’¤ì§‘í˜€ ë³´ì¼ ìˆ˜ ìˆìŠµë‹ˆë‹¤.", MB_OK);
         vx1 = 0;
         vx2 = 1;
         vx3 = 2;
@@ -1501,20 +1501,20 @@ bool CN3DExp::ProcessIMesh(INode * pNode, CN3IMesh * pIMesh) {
 
     Point3 ptTmp, ptNTmp;
     int    nVI[3], nUVI[3];
-    for (int i = 0; i < nFC; i++) // Face Count ¸¸Å­ µ¹¸é¼­..
+    for (int i = 0; i < nFC; i++) // Face Count ë§Œí¼ ëŒë©´ì„œ..
     {
         Face * pFace = &(pmMesh->faces[i]);
         nVI[0] = pFace->v[vx1];
         nVI[1] = pFace->v[vx2];
         nVI[2] = pFace->v[vx3];
 
-        if (pvDest2) // ÁöÇü¿ëÀ¸·Î »ÌÀ» °Å¸é...
+        if (pvDest2) // ì§€í˜•ìš©ìœ¼ë¡œ ë½‘ì„ ê±°ë©´...
         {
             for (int j = 0; j < 3; j++) {
-                ptTmp = mMtx * pmMesh->getVert(nVI[j]); // Vertex ¼ö¸¸Å­ ·çÇÁ¸¦ µ¹¸°´Ù.
-                pvDest2[i * 3 + j].x = ptTmp.x;         // * 0.0254f; // 1 Unit == 1 Inch -> Meter ·Î ¹Ù²Û´Ù..
-                pvDest2[i * 3 + j].y = ptTmp.z;         // * 0.0254f; // 1 Unit == 1 Inch -> Meter ·Î ¹Ù²Û´Ù..
-                pvDest2[i * 3 + j].z = ptTmp.y;         // * 0.0254f; // 1 Unit == 1 Inch -> Meter ·Î ¹Ù²Û´Ù..
+                ptTmp = mMtx * pmMesh->getVert(nVI[j]); // Vertex ìˆ˜ë§Œí¼ ë£¨í”„ë¥¼ ëŒë¦°ë‹¤.
+                pvDest2[i * 3 + j].x = ptTmp.x;         // * 0.0254f; // 1 Unit == 1 Inch -> Meter ë¡œ ë°”ê¾¼ë‹¤..
+                pvDest2[i * 3 + j].y = ptTmp.z;         // * 0.0254f; // 1 Unit == 1 Inch -> Meter ë¡œ ë°”ê¾¼ë‹¤..
+                pvDest2[i * 3 + j].z = ptTmp.y;         // * 0.0254f; // 1 Unit == 1 Inch -> Meter ë¡œ ë°”ê¾¼ë‹¤..
             }
         } else {
             pIMesh->VertexIndexSet(i * 3 + 0, nVI[0]); // Vertex Indices
@@ -1549,7 +1549,7 @@ bool CN3DExp::ProcessIMesh(INode * pNode, CN3IMesh * pIMesh) {
     }
 
     if (m_Option.bGenerateSmoothNormal == TRUE && pvDest1) {
-        pIMesh->ReGenerateSmoothNormal(); // ¹ı¼± º¤ÅÍ ºÎµå·´°Ô Àç°è»ê..
+        pIMesh->ReGenerateSmoothNormal(); // ë²•ì„  ë²¡í„° ë¶€ë“œëŸ½ê²Œ ì¬ê³„ì‚°..
     }
 
     if (bNeedDelete) {
@@ -1557,14 +1557,14 @@ bool CN3DExp::ProcessIMesh(INode * pNode, CN3IMesh * pIMesh) {
         pTriObj = NULL;
     }
 
-    if (pVMesh) // ÁöÇü¿ëÀ¸·Î »ÌÀº ¸Ş½Ã¸é..
+    if (pVMesh) // ì§€í˜•ìš©ìœ¼ë¡œ ë½‘ì€ ë©”ì‹œë©´..
     {
         pVMesh->m_szName = pNode->GetName();
-        pVMesh->SaveToFile(pVMesh->m_szName + ".n3vmesh"); // ÀúÀå..
+        pVMesh->SaveToFile(pVMesh->m_szName + ".n3vmesh"); // ì €ì¥..
 
         delete pVMesh;
         pVMesh = NULL;
-        return false; // ÀÌ·¸°Ô ¸®ÅÏÇØ¾ß IMesh ·Î »ÌÁö ¾Ê´Â´Ù..
+        return false; // ì´ë ‡ê²Œ ë¦¬í„´í•´ì•¼ IMesh ë¡œ ë½‘ì§€ ì•ŠëŠ”ë‹¤..
     }
 
     return true;
@@ -1580,9 +1580,9 @@ bool CN3DExp::ProcessMaterial(INode * pNode, __Material * pMtl, CN3Texture ** pp
     pMtl->Init();
     *ppTex = NULL;
 
-    Mtl * pmMtl = pNode->GetMtl(); // ³ëµå¿¡¼­ MaterialÀ» ¾ò¾î¿Â´Ù.
+    Mtl * pmMtl = pNode->GetMtl(); // ë…¸ë“œì—ì„œ Materialì„ ì–»ì–´ì˜¨ë‹¤.
     if (NULL == pmMtl) {
-        return false; // Material ÀÌ ÀÖÀ¸¸é Á¤º¸¸¦ »Ì¾Æ¿Â´Ù.
+        return false; // Material ì´ ìˆìœ¼ë©´ ì •ë³´ë¥¼ ë½‘ì•„ì˜¨ë‹¤.
     }
 
     // Methods to access sub-materials of meta-materials
@@ -1604,13 +1604,13 @@ bool CN3DExp::ProcessMaterial(INode * pNode, __Material * pMtl, CN3Texture ** pp
     //        pmMtlTmp = pmMtl;
     //    }
 
-    if (pmMtl && pmMtl->GetSubTexmap(1) != NULL) // ÅØ½ºÃ³°¡ ¾º¾î ÀÖ´Â ÀçÁúÀÌ¸é.
+    if (pmMtl && pmMtl->GetSubTexmap(1) != NULL) // í…ìŠ¤ì²˜ê°€ ì”Œì–´ ìˆëŠ” ì¬ì§ˆì´ë©´.
     {
         Texmap *    pmTex = pmMtl->GetSubTexmap(1); // Diffuse Texture Map
         BitmapTex * pBMT = NULL;
 
         if (pmTex && pmTex->ClassID() == Class_ID(BMTEX_CLASS_ID, 0x00)) {
-            pBMT = (BitmapTex *)pmTex; // Ä³½ºÆ® ¿¬»êÀÚ·Î ¹Ù²ãÁÙ ¼ö ÀÖ´Ù.
+            pBMT = (BitmapTex *)pmTex; // ìºìŠ¤íŠ¸ ì—°ì‚°ìë¡œ ë°”ê¿”ì¤„ ìˆ˜ ìˆë‹¤.
         }
 
         if (pBMT && lstrlen(pBMT->GetMapName()) > 0) {
@@ -1619,26 +1619,26 @@ bool CN3DExp::ProcessMaterial(INode * pNode, __Material * pMtl, CN3Texture ** pp
             szBMPFN = pBMT->GetMapName();
             _splitpath(szBMPFN.c_str(), szDrv, szDir, szName, szExt);
 
-            // sub directory ÁöÁ¤µÇ¾î ÀÖÀ¸¸é ºÙÀÌ±â
+            // sub directory ì§€ì •ë˜ì–´ ìˆìœ¼ë©´ ë¶™ì´ê¸°
             if (lstrlen(m_Option.szSubDir) > 0) {
                 szBMPFN2 = std::string(m_Option.szSubDir);
             } else {
                 szBMPFN2 = "";
             }
 
-            // ÅØ½ºÃÄ Æú´õ °æ·Î ºÙÀÌ±â
+            // í…ìŠ¤ì³ í´ë” ê²½ë¡œ ë¶™ì´ê¸°
             if (pszDir) {
                 szBMPFN2 += pszDir;
             } else {
                 szBMPFN2 += "Texture\\";
             }
             szBMPFN2 += szName;
-            szBMPFN2 += ".DXT"; // ÀÌ¸§°ú È®ÀåÀÚ¸¦ ¹Ù²Ù¾î ÁØ´Ù..
+            szBMPFN2 += ".DXT"; // ì´ë¦„ê³¼ í™•ì¥ìë¥¼ ë°”ê¾¸ì–´ ì¤€ë‹¤..
 
             CharLower(szBMPFN.begin());
             CharLower(szBMPFN2.begin());
 
-            int  nTCPrev = m_pScene->s_MngTex.Count(); // ÅØ½ºÃ³ Áßº¹ Ã¼Å©..
+            int  nTCPrev = m_pScene->s_MngTex.Count(); // í…ìŠ¤ì²˜ ì¤‘ë³µ ì²´í¬..
             bool bOverlapped = false;
             for (int i = 0; i < nTCPrev; i++) {
                 if (m_pScene->s_MngTex.Get(i)->FileName() == szBMPFN2) {
@@ -1647,23 +1647,23 @@ bool CN3DExp::ProcessMaterial(INode * pNode, __Material * pMtl, CN3Texture ** pp
             }
 
             if (bOverlapped) {
-                (*ppTex) = m_pScene->s_MngTex.Get(szBMPFN2); // ºñÆ®¸ÊÀ» ÀĞ°í..
+                (*ppTex) = m_pScene->s_MngTex.Get(szBMPFN2); // ë¹„íŠ¸ë§µì„ ì½ê³ ..
             } else {
                 (*ppTex) = new CN3Texture();
 
-                if (false == (*ppTex)->LoadFromFile(szBMPFN)) // ºñÆ®¸Ê ÀĞ±â°¡ ½ÇÆĞÇÏ¸é..
+                if (false == (*ppTex)->LoadFromFile(szBMPFN)) // ë¹„íŠ¸ë§µ ì½ê¸°ê°€ ì‹¤íŒ¨í•˜ë©´..
                 {
                     delete (*ppTex);
                     (*ppTex) = NULL;
                     return false;
-                } else // ºñÆ®¸ÊÀ» ÀĞ¾úÀ¸¸é..
+                } else // ë¹„íŠ¸ë§µì„ ì½ì—ˆìœ¼ë©´..
                 {
                     (*ppTex)->m_szName = pBMT->GetName();
                     (*ppTex)->FileNameSet(szBMPFN2);
-                    m_pScene->s_MngTex.Add(*ppTex); // Texture Manager ¿¡ ³Ö¾îÁØ´Ù.
+                    m_pScene->s_MngTex.Add(*ppTex); // Texture Manager ì— ë„£ì–´ì¤€ë‹¤.
 
                     CN3Texture * pTex = *ppTex;
-                    if (m_Option.bGenerateHalfSizeTexture) // Texture Size ¸¦ Àı¹İÀ¸·Î ÁÙ¿© Ãâ·Â..
+                    if (m_Option.bGenerateHalfSizeTexture) // Texture Size ë¥¼ ì ˆë°˜ìœ¼ë¡œ ì¤„ì—¬ ì¶œë ¥..
                     {
                         D3DFORMAT fmt = pTex->PixelFormat();
                         int       nW2 = pTex->Width() / 2;
@@ -1671,7 +1671,7 @@ bool CN3DExp::ProcessMaterial(INode * pNode, __Material * pMtl, CN3Texture ** pp
                         pTex->Convert(fmt, nW2, nH2);
                     }
 
-                    if (m_Option.bGenerateCompressedTexture) // Texture ¾ĞÃà »ç¿ë
+                    if (m_Option.bGenerateCompressedTexture) // Texture ì••ì¶• ì‚¬ìš©
                     {
                         D3DFORMAT fmt = pTex->PixelFormat(), NewFormat = D3DFMT_UNKNOWN;
                         if (D3DFMT_X8R8G8B8 == fmt) {
@@ -1689,7 +1689,7 @@ bool CN3DExp::ProcessMaterial(INode * pNode, __Material * pMtl, CN3Texture ** pp
 
             if (*ppTex && pMtl) {
                 D3DFORMAT fmt = (*ppTex)->PixelFormat();
-                if (D3DFMT_A8R8G8B8 == fmt || D3DFMT_DXT3 == fmt) // ¾ËÆÄÃ¤³Î ÅØ½ºÃ³ÀÌ¸é..
+                if (D3DFMT_A8R8G8B8 == fmt || D3DFMT_DXT3 == fmt) // ì•ŒíŒŒì±„ë„ í…ìŠ¤ì²˜ì´ë©´..
                 {
                     pMtl->nRenderFlags |= RF_ALPHABLENDING;
                     pMtl->dwSrcBlend = D3DBLEND_SRCALPHA;
@@ -1702,8 +1702,8 @@ bool CN3DExp::ProcessMaterial(INode * pNode, __Material * pMtl, CN3Texture ** pp
 
         pMtl->Ambient.a = 1.0f;
         pMtl->Ambient.r = pMtl->Ambient.g = pMtl->Ambient.b = 150.0f / 255.0f;
-    } else { // ÀÌ·¸°Ô ÅØ½ºÃÄ°¡ ¾øÀ»°æ¿ì ÇÏ´Â ÀÌÀ¯´Â ¸Æ½º¿¡¼­´Â diffuse´ë½Å¿¡ ÅØ½ºÃÄ¸¦ ³Ö´Â °³³äÀÌ±â ¶§¹®¿¡
-        // ÅØ½ºÃÄ°¡ ÀÖ´Â°æ¿ì¿¡´Â ±×³É 1À» ³Ö°í ¾Æ´Ñ°æ¿ì¿¡¸¸ ¸ŞÅÍ¸®¾ó¿¡ Á¤ÇØÁø °ªÀ» ³Ö´Â´Ù.
+    } else { // ì´ë ‡ê²Œ í…ìŠ¤ì³ê°€ ì—†ì„ê²½ìš° í•˜ëŠ” ì´ìœ ëŠ” ë§¥ìŠ¤ì—ì„œëŠ” diffuseëŒ€ì‹ ì— í…ìŠ¤ì³ë¥¼ ë„£ëŠ” ê°œë…ì´ê¸° ë•Œë¬¸ì—
+        // í…ìŠ¤ì³ê°€ ìˆëŠ”ê²½ìš°ì—ëŠ” ê·¸ëƒ¥ 1ì„ ë„£ê³  ì•„ë‹Œê²½ìš°ì—ë§Œ ë©”í„°ë¦¬ì–¼ì— ì •í•´ì§„ ê°’ì„ ë„£ëŠ”ë‹¤.
         pMtl->Diffuse.a = 1.0f;
         pMtl->Diffuse.r = pmMtl->GetDiffuse().r;
         pMtl->Diffuse.g = pmMtl->GetDiffuse().g;
@@ -1824,7 +1824,7 @@ bool CN3DExp::ProcessPhysique(INode * pNode, INode * pNodeRootJoint, CN3Skin * p
 
     //    pPCE->ConvertToRigid(TRUE); // we convert all vertices to Rigid in this example
 
-    Matrix3 mMtxOrg = pNode->GetObjTMAfterWSM(m_Option.nFrmStart * 160); // ¿ø·¡ ¸Ş½ÃÀÇ ¿ùµå Çà·Ä
+    Matrix3 mMtxOrg = pNode->GetObjTMAfterWSM(m_Option.nFrmStart * 160); // ì›ë˜ ë©”ì‹œì˜ ì›”ë“œ í–‰ë ¬
     for (int i = 0; i < nPtCount; i++) {
         IPhyVertexExport * pVE = pPCE->GetVertexInterface(i);
         if (NULL == pVE) {
@@ -1835,7 +1835,7 @@ bool CN3DExp::ProcessPhysique(INode * pNode, INode * pNodeRootJoint, CN3Skin * p
         ptOrg = ptOrg * mMtxOrg;
         //        pVDest[i].vOrigin.Set(ptOrg.x * 0.0254f, ptOrg.z * 0.0254f, ptOrg.y * 0.0254f);
         pVDest[i].vOrigin.Set(ptOrg.x, ptOrg.z, ptOrg.y);
-        //        pObj->SetPoint(i, ptBlendP); // È®ÀÎÇÏ±â À§ÇØ¼­ ³Ö¾îº»´Ù..
+        //        pObj->SetPoint(i, ptBlendP); // í™•ì¸í•˜ê¸° ìœ„í•´ì„œ ë„£ì–´ë³¸ë‹¤..
 
         int nVType = pVE->GetVertexType();
         if (nVType & BLENDED_TYPE) // Blend Type
@@ -1851,7 +1851,7 @@ bool CN3DExp::ProcessPhysique(INode * pNode, INode * pNodeRootJoint, CN3Skin * p
                 for (int j = 0; j < nWC; j++) {
                     int     nJI = 0;
                     INode * pBone = pVtxBlend->GetNode(j);
-                    this->FindBoneIndex(pNodeRootJoint, pBone, nJI); // Æ÷ÀÎÅÍ¸¦ °¡Áö°í ÀÎµ¦½º¸¦ Ã£´Â´Ù..
+                    this->FindBoneIndex(pNodeRootJoint, pBone, nJI); // í¬ì¸í„°ë¥¼ ê°€ì§€ê³  ì¸ë±ìŠ¤ë¥¼ ì°¾ëŠ”ë‹¤..
                     float fWeight = pVtxBlend->GetWeight(j);
 
                     const char * szBone = pBone->GetName();
@@ -1867,7 +1867,7 @@ bool CN3DExp::ProcessPhysique(INode * pNode, INode * pNodeRootJoint, CN3Skin * p
             IPhyRigidVertex * pVtxNoBlend = (IPhyRigidVertex *)pVE;
             INode *           pBone = pVtxNoBlend->GetNode();
             int               nJI = 0;
-            this->FindBoneIndex(pNodeRootJoint, pBone, nJI); // Æ÷ÀÎÅÍ¸¦ °¡Áö°í ÀÎµ¦½º¸¦ Ã£´Â´Ù..
+            this->FindBoneIndex(pNodeRootJoint, pBone, nJI); // í¬ì¸í„°ë¥¼ ê°€ì§€ê³  ì¸ë±ìŠ¤ë¥¼ ì°¾ëŠ”ë‹¤..
 
             const char * szBone = pBone->GetName();
 
@@ -1881,7 +1881,7 @@ bool CN3DExp::ProcessPhysique(INode * pNode, INode * pNodeRootJoint, CN3Skin * p
     pPE->ReleaseContextInterface(pPCE);
     pPhyMod->ReleaseInterface(I_PHYINTERFACE, pPE);
 
-    pN3Skin->RecalcWeight(); // weight °ªÀÌ 1.0ÀÌ µÇµµ·Ï ÇÑ¹ø´õ ´Ù½Ã °è»êÇØÁØ´Ù.
+    pN3Skin->RecalcWeight(); // weight ê°’ì´ 1.0ì´ ë˜ë„ë¡ í•œë²ˆë” ë‹¤ì‹œ ê³„ì‚°í•´ì¤€ë‹¤.
 
     return TRUE;
 }
@@ -1891,7 +1891,7 @@ bool CN3DExp::FindNodeIndex(INode* pNodeCompare, INode* pNodeSrc, Class_ID& cID,
     if(NULL == pNodeCompare || NULL == pNodeSrc) return false;
     Control* pCtrl = pNodeCompare->GetTMController();
     if(NULL == pCtrl) return false;
-    if(pCtrl->ClassID() != cID) return false; // ¹ÙÀÌÆäµå°¡ ¾Æ´Ï¸é ¹«½ÃÇÑ´Ù..
+    if(pCtrl->ClassID() != cID) return false; // ë°”ì´í˜ë“œê°€ ì•„ë‹ˆë©´ ë¬´ì‹œí•œë‹¤..
 
     DWORD dwID = pNodeSrc->SuperClassID();
     DWORD dwID2 = pNodeCompare->SuperClassID();
@@ -1919,7 +1919,7 @@ bool CN3DExp::FindBoneIndex(INode * pNodeCompare, INode * pNodeSrc, int & nNodeI
         return false;
     }
     if (false == IsBone(pNodeCompare)) {
-        return false; // º»ÀÌ ¾Æ´Ï¸é ¹«½ÃÇÑ´Ù..
+        return false; // ë³¸ì´ ì•„ë‹ˆë©´ ë¬´ì‹œí•œë‹¤..
     }
 
     DWORD dwID = pNodeSrc->SuperClassID();

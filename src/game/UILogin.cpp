@@ -37,7 +37,7 @@ CUILogIn::CUILogIn() {
 
     m_pList_Server = NULL;
 
-    m_bOpenningNow = false; // À§¿¡¼­ ¾Æ·¡·Î ½º¸£¸¤...¿­·Á¾ß ÇÑ´Ù¸é..
+    m_bOpenningNow = false; // ìœ„ì—ì„œ ì•„ëž˜ë¡œ ìŠ¤ë¥´ë¥µ...ì—´ë ¤ì•¼ í•œë‹¤ë©´..
     m_fMoveDelta = 0;
 
     m_bLogIn = false;
@@ -50,7 +50,7 @@ bool CUILogIn::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
         return false;
     }
 
-    //s_CameraData.vp;  //ºÒ·¯ ¿À´Â °úÁ¤À» »ìÆìº»´Ù
+    //s_CameraData.vp;  //ë¶ˆëŸ¬ ì˜¤ëŠ” ê³¼ì •ì„ ì‚´íŽ´ë³¸ë‹¤
     //DWORD mm = s_CameraData.vp.Height;
     //DWORD ss = s_CameraData.vp.Width;
 
@@ -58,10 +58,10 @@ bool CUILogIn::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
         if (pSender == m_pBtn_LogIn && m_pEdit_id && m_pEdit_pw) {
             CGameProcedure::s_pProcLogIn->MsgSend_AccountLogIn(LIC_KNIGHTONLINE);
         } else if (pSender == m_pBtn_Connect) {
-            CGameProcedure::s_pProcLogIn->ConnectToGameServer(); // °í¸¥ °ÔÀÓ ¼­¹ö¿¡ Á¢¼Ó
+            CGameProcedure::s_pProcLogIn->ConnectToGameServer(); // ê³ ë¥¸ ê²Œìž„ ì„œë²„ì— ì ‘ì†
         } else if (pSender == m_pBtn_Cancel) {
-            PostQuitMessage(0);              // Á¾·á...
-        } else if (pSender == m_pBtn_Option) // ¿É¼Ç..
+            PostQuitMessage(0);              // ì¢…ë£Œ...
+        } else if (pSender == m_pBtn_Option) // ì˜µì…˜..
         {
             std::string szMsg;
             ::_LoadStringFromResource(IDS_CONFIRM_EXECUTE_OPTION, szMsg);
@@ -77,7 +77,7 @@ bool CUILogIn::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             return true;
         }
     } else if (UIMSG_LIST_DBLCLK == dwMsg) {
-        CGameProcedure::s_pProcLogIn->ConnectToGameServer(); // °í¸¥ °ÔÀÓ ¼­¹ö¿¡ Á¢¼Ó
+        CGameProcedure::s_pProcLogIn->ConnectToGameServer(); // ê³ ë¥¸ ê²Œìž„ ì„œë²„ì— ì ‘ì†
     } else if (dwMsg == UIMSG_EDIT_RETURN) {
         if (!m_bLogIn && m_pEdit_id && m_pEdit_pw) {
             CN3UIBase * pMsgBox = CGameProcedure::s_pMsgBoxMgr->GetFocusMsgBox();
@@ -273,7 +273,7 @@ void CUILogIn::Tick() {
     CN3UIBase::Tick();
 
     if (m_pGroup_ServerList) {
-        if (m_bOpenningNow) // À§¿¡¼­ ¾Æ·¡·Î ½º¸£¸¤...¿­·Á¾ß ÇÑ´Ù¸é..
+        if (m_bOpenningNow) // ìœ„ì—ì„œ ì•„ëž˜ë¡œ ìŠ¤ë¥´ë¥µ...ì—´ë ¤ì•¼ í•œë‹¤ë©´..
         {
             POINT ptCur = m_pGroup_ServerList->GetPos();
             RECT  rc = m_pGroup_ServerList->GetRegion();
@@ -288,7 +288,7 @@ void CUILogIn::Tick() {
 
             int iYLimit = 0;
             ptCur.y = (int)(m_fMoveDelta - fHeight);
-            if (ptCur.y >= iYLimit) // ´Ù¿­·È´Ù!!
+            if (ptCur.y >= iYLimit) // ë‹¤ì—´ë ¸ë‹¤!!
             {
                 ptCur.y = iYLimit;
                 m_bOpenningNow = false;
@@ -304,7 +304,7 @@ void CUILogIn::OpenServerList() {
         return;
     }
 
-    // ½º¸£¸¤ ¿­¸°´Ù!!
+    // ìŠ¤ë¥´ë¥µ ì—´ë¦°ë‹¤!!
     m_pGroup_ServerList->SetVisible(true);
     RECT rc = m_pGroup_ServerList->GetRegion();
     m_pGroup_ServerList->SetPos(0, -(rc.bottom - rc.top));
@@ -315,10 +315,10 @@ void CUILogIn::OpenServerList() {
 
 void CUILogIn::SetVisibleLogInUIs(bool bEnable) {
     if (m_pGroup_LogIn) {
-        m_pGroup_LogIn->SetVisible(bEnable); // ·Î±×ÀÎÀ» ¼û±ä´Ù..
+        m_pGroup_LogIn->SetVisible(bEnable); // ë¡œê·¸ì¸ì„ ìˆ¨ê¸´ë‹¤..
     }
 
-    // ·Î±×ÀÎÇÑ °èÁ¤ÀÇ ±¸ºÐ¿¡ µû¶ó UI ¸¸Áö±â...
+    // ë¡œê·¸ì¸í•œ ê³„ì •ì˜ êµ¬ë¶„ì— ë”°ë¼ UI ë§Œì§€ê¸°...
     if (m_pText_Rights) {
         m_pText_Rights->SetVisible(false);
     }
@@ -332,7 +332,7 @@ void CUILogIn::SetVisibleLogInUIs(bool bEnable) {
     if (false == bEnable) {
         if (LIC_MGAME == CGameProcedure::s_eLogInClassification) {
             if (m_pText_Rights && m_pImg_MGameLogo) {
-                // ¾Æ·¡ÂÊ Áß´ÜÀ¸·Î ¸ÂÃá´Ù..
+                // ì•„ëž˜ìª½ ì¤‘ë‹¨ìœ¼ë¡œ ë§žì¶˜ë‹¤..
                 RECT rcView = {0, 0, s_CameraData.vp.Width, s_CameraData.vp.Height};
                 int  iX = (rcView.right - (m_pText_Rights->GetWidth() + m_pImg_MGameLogo->GetWidth())) / 2;
                 int  iY = rcView.bottom - m_pText_Rights->GetHeight() - 20;
@@ -345,7 +345,7 @@ void CUILogIn::SetVisibleLogInUIs(bool bEnable) {
             }
         } else if (LIC_DAUM == CGameProcedure::s_eLogInClassification) {
             if (m_pText_Rights && m_pImg_DaumLogo) {
-                // ¾Æ·¡ÂÊ Áß´ÜÀ¸·Î ¸ÂÃá´Ù..
+                // ì•„ëž˜ìª½ ì¤‘ë‹¨ìœ¼ë¡œ ë§žì¶˜ë‹¤..
                 RECT rcView = {0, 0, s_CameraData.vp.Width, s_CameraData.vp.Height};
                 int  iX = (rcView.right - (m_pText_Rights->GetWidth() + m_pImg_DaumLogo->GetWidth())) / 2;
                 int  iY = rcView.bottom - m_pText_Rights->GetHeight() - 20;

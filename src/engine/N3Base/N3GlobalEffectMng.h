@@ -7,13 +7,13 @@
 #include "N3Base.h"
 
 enum {
-    GEW_CLEAR = 0,        // ¸¼À½
-    GEW_DRIZZLE_RAIN = 1, // °¡¶ûºñ
-    GEW_RAINY = 2,        // Àû´ç·®ÀÇ ºñ
-    GEW_HEAVY_RAIN = 3,   // Æø¿ì
-    GEW_SNOW1 = 11,       // Æ÷±ÙÇÑ ´«
-    GEW_SNOW2 = 12,       // Àû´çÇÑ ´«
-    GEW_HEAVY_SNOW = 13   // Æø¼³
+    GEW_CLEAR = 0,        // ë§‘ìŒ
+    GEW_DRIZZLE_RAIN = 1, // ê°€ë‘ë¹„
+    GEW_RAINY = 2,        // ì ë‹¹ëŸ‰ì˜ ë¹„
+    GEW_HEAVY_RAIN = 3,   // í­ìš°
+    GEW_SNOW1 = 11,       // í¬ê·¼í•œ ëˆˆ
+    GEW_SNOW2 = 12,       // ì ë‹¹í•œ ëˆˆ
+    GEW_HEAVY_SNOW = 13   // í­ì„¤
 };
 
 class CN3GERain;
@@ -26,20 +26,20 @@ class CN3GlobalEffectMng : public CN3Base {
     // Attributes
   public:
   protected:
-    float     m_fCellSize;  // ³»ºÎ ¼¿ Å©±â
-    POINT     m_CurCellPos; // ÇöÀç ³»ºÎ¼¿ ÁÂÇ¥
-    __Vector3 m_vPos[9];    // ÁÖº¯ ¼¿ 9Ä­ÀÇ Áß½ÉÁÂÇ¥µé
+    float     m_fCellSize;  // ë‚´ë¶€ ì…€ í¬ê¸°
+    POINT     m_CurCellPos; // í˜„ì¬ ë‚´ë¶€ì…€ ì¢Œí‘œ
+    __Vector3 m_vPos[9];    // ì£¼ë³€ ì…€ 9ì¹¸ì˜ ì¤‘ì‹¬ì¢Œí‘œë“¤
 
-    // È¿°úµé..
-    CN3GERain * m_pGERain; // ºñ
-    CN3GESnow * m_pGESnow; // ´«
+    // íš¨ê³¼ë“¤..
+    CN3GERain * m_pGERain; // ë¹„
+    CN3GESnow * m_pGESnow; // ëˆˆ
 
     // Operations
   public:
     virtual void Release();
     void         Tick();
     void         Render();
-    //    void            SetWeather(int iWeather);    // ³¯¾¾ ÁöÁ¤ÇÏ±â
+    //    void            SetWeather(int iWeather);    // ë‚ ì”¨ ì§€ì •í•˜ê¸°
     void WeatherSetRainy(int iPercent);
     void WeatherSetSnow(int iPercent);
     void WeatherSetClean();

@@ -11,9 +11,9 @@
 typedef CSTLMap<int> mapNpcArray;
 
 struct _RoomEvent {
-    short sNumber;   // ¸í·É¾î, Á¶°Ç¹® ¹øÈ£
-    short sOption_1; // option 1 (¸ó½ºÅÍÀÇ ¹øÈ£¸¦ ÁÖ·Î °¡Áö°í ÀÖÀ½)
-    short sOption_2; // option 2 (¸ó½ºÅÍÀÇ ¸¶¸®¼ö)
+    short sNumber;   // ëª…ë ¹ì–´, ì¡°ê±´ë¬¸ ë²ˆí˜¸
+    short sOption_1; // option 1 (ëª¬ìŠ¤í„°ì˜ ë²ˆí˜¸ë¥¼ ì£¼ë¡œ ê°€ì§€ê³  ìˆìŒ)
+    short sOption_2; // option 2 (ëª¬ìŠ¤í„°ì˜ ë§ˆë¦¬ìˆ˜)
 };
 
 class CNpc;
@@ -24,21 +24,21 @@ class CRoomEvent {
     int   m_iZoneNumber; // zone number
     short m_sRoomNumber; // room number (0:empty room)
     BYTE  m_byStatus;    // room status (1:init, 2:progress, 3:clear)
-    BYTE  m_byCheck;     // Á¶°Ç¹®ÀÇ °¹¼ö
-    BYTE  m_byRoomType;  // ¹æÀÇ Å¸ÀÔ(0:ÀÏ¹İ, 1:ÇÔÁ¤¹æ, 2:,,,,)
+    BYTE  m_byCheck;     // ì¡°ê±´ë¬¸ì˜ ê°¯ìˆ˜
+    BYTE  m_byRoomType;  // ë°©ì˜ íƒ€ì…(0:ì¼ë°˜, 1:í•¨ì •ë°©, 2:,,,,)
 
     int m_iInitMinX; // room region x
     int m_iInitMinZ;
     int m_iInitMaxX;
     int m_iInitMaxZ;
 
-    int m_iEndMinX; // room end region x µµÂøÁöÁ¡,,
+    int m_iEndMinX; // room end region x ë„ì°©ì§€ì ,,
     int m_iEndMinZ;
     int m_iEndMaxX;
     int m_iEndMaxZ;
 
-    _RoomEvent m_Logic[MAX_CHECK_EVENT]; // Á¶°Çµé
-    _RoomEvent m_Exec[MAX_CHECK_EVENT];  // ½ÇÇà¹®
+    _RoomEvent m_Logic[MAX_CHECK_EVENT]; // ì¡°ê±´ë“¤
+    _RoomEvent m_Exec[MAX_CHECK_EVENT];  // ì‹¤í–‰ë¬¸
 
     float m_fDelayTime; // time
 
@@ -47,7 +47,7 @@ class CRoomEvent {
 
   private:
     BYTE
-        m_byLogicNumber; // ÇöÀçÀÇ Á¶°Ç¹® °Ë»ç ¹øÈ£ (Á¶°Ç¹øÈ£´Â 1ºÎÅÍ ½ÃÀÛµÊ) (m_byCheck¿Í m_byLogicNumberÀÌ °°´Ù¸é Å¬¸®¾î »óÅÂ)
+        m_byLogicNumber; // í˜„ì¬ì˜ ì¡°ê±´ë¬¸ ê²€ì‚¬ ë²ˆí˜¸ (ì¡°ê±´ë²ˆí˜¸ëŠ” 1ë¶€í„° ì‹œì‘ë¨) (m_byCheckì™€ m_byLogicNumberì´ ê°™ë‹¤ë©´ í´ë¦¬ì–´ ìƒíƒœ)
 
   public:
     CRoomEvent();

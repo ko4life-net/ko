@@ -2,41 +2,41 @@
 
 struct __EXPORT_HEADER {
     char szID[8];      // ID "N3Scene1"
-    char szRemark[64]; // ¼³¸í..
+    char szRemark[64]; // ì„¤ëª…..
 
-    int  nNodeCount;          // ÀüÃ¼ ³ëµå Ä«¿îÆ®
-    int  nStaticFrame;        // Á¤ÁöÀå¸é ÇÑÇÁ·¹ÀÓ..
-    BOOL bExportCurrentFrame; // ÀüÃ¼ ¿¡´Ï¸ÞÀÌ¼ÇÀ»
-    int  nFrmStart;           // ¿¡´Ï¸ÞÀÌ¼Ç ½ÃÀÛ ÇÁ·¹ÀÓ
-    int  nFrmEnd;             // ¿¡´Ï¸ÞÀÌ¼Ç ³¡ ÇÁ·¹ÀÓ
+    int  nNodeCount;          // ì „ì²´ ë…¸ë“œ ì¹´ìš´íŠ¸
+    int  nStaticFrame;        // ì •ì§€ìž¥ë©´ í•œí”„ë ˆìž„..
+    BOOL bExportCurrentFrame; // ì „ì²´ ì—ë‹ˆë©”ì´ì…˜ì„
+    int  nFrmStart;           // ì—ë‹ˆë©”ì´ì…˜ ì‹œìž‘ í”„ë ˆìž„
+    int  nFrmEnd;             // ì—ë‹ˆë©”ì´ì…˜ ë í”„ë ˆìž„
 
-    D3DCOLORVALUE dcvBackground;   // ¹è°æ »ö
-    D3DCOLORVALUE dcvAmbientLight; // ±âº» Á¶¸í »ö
+    D3DCOLORVALUE dcvBackground;   // ë°°ê²½ ìƒ‰
+    D3DCOLORVALUE dcvAmbientLight; // ê¸°ë³¸ ì¡°ëª… ìƒ‰
 
-    int nCameraCount;   // scene ³»ÀÇ Ä«¸Þ¶ó °¹¼ö
-    int nMaterialCount; // scene ³»ÀÇ ÀçÁú °¹¼ö
-    int nTextureCount;  // scene ³»ÀÇ ÅØ½ºÃ³ °¹¼ö
-    int nLightCount;    // scene ³»ÀÇ Á¶¸í °¹¼ö
+    int nCameraCount;   // scene ë‚´ì˜ ì¹´ë©”ë¼ ê°¯ìˆ˜
+    int nMaterialCount; // scene ë‚´ì˜ ìž¬ì§ˆ ê°¯ìˆ˜
+    int nTextureCount;  // scene ë‚´ì˜ í…ìŠ¤ì²˜ ê°¯ìˆ˜
+    int nLightCount;    // scene ë‚´ì˜ ì¡°ëª… ê°¯ìˆ˜
 
-    BOOL bObjGeometry; // Áö¿À¸ÞÆ®¸® µ¥ÀÌÅÍ¸¦ °®°í ÀÖ´Ù.
-    BOOL bObjShape;    // 2D Æú¸®°ï µ¥ÀÌÅÍ¸¦ °®°í ÀÖ´Ù.
-    BOOL bObjCamera;   // Ä«¸Þ¶ó µ¥ÀÌÅÍ¸¦ °®°í ÀÖ´Ù.
-    BOOL bObjLight;    // ¶óÀÌÆ® µ¥ÀÌÅÍ¸¦ °®°í ÀÖ´Ù.
+    BOOL bObjGeometry; // ì§€ì˜¤ë©”íŠ¸ë¦¬ ë°ì´í„°ë¥¼ ê°–ê³  ìžˆë‹¤.
+    BOOL bObjShape;    // 2D í´ë¦¬ê³¤ ë°ì´í„°ë¥¼ ê°–ê³  ìžˆë‹¤.
+    BOOL bObjCamera;   // ì¹´ë©”ë¼ ë°ì´í„°ë¥¼ ê°–ê³  ìžˆë‹¤.
+    BOOL bObjLight;    // ë¼ì´íŠ¸ ë°ì´í„°ë¥¼ ê°–ê³  ìžˆë‹¤.
     BOOL
-        bObjDummy; // µµ¿ì¹Ì ¿ÀºêÁ§Æ®(??? - ½ÇÁ¦ °×¿¡¼­´Â ÇÊ¿ä¾ø°í °³¹ß½Ã¿¡¸¸ ÇÊ¿äÇÑ ¿ÀºêÁ§Æ®¸¦ ¸»ÇÑ´Ù)µ¥ÀÌÅÍ¸¦ °®°í ÀÖ´Ù.
+        bObjDummy; // ë„ìš°ë¯¸ ì˜¤ë¸Œì íŠ¸(??? - ì‹¤ì œ ê²œì—ì„œëŠ” í•„ìš”ì—†ê³  ê°œë°œì‹œì—ë§Œ í•„ìš”í•œ ì˜¤ë¸Œì íŠ¸ë¥¼ ë§í•œë‹¤)ë°ì´í„°ë¥¼ ê°–ê³  ìžˆë‹¤.
 
-    BOOL bMesh;     // Æú¸®°ï µ¥ÀÌÅÍ¸¦ °®°í ÀÖ´Ù.
-    BOOL bMaterial; // ÀçÁú µ¥ÀÌÅÍ¸¦ °®°í ÀÖ´Ù.
+    BOOL bMesh;     // í´ë¦¬ê³¤ ë°ì´í„°ë¥¼ ê°–ê³  ìžˆë‹¤.
+    BOOL bMaterial; // ìž¬ì§ˆ ë°ì´í„°ë¥¼ ê°–ê³  ìžˆë‹¤.
 
-    BOOL bAnimationKey;            // ¿¡´Ï¸ÞÀÌ¼Ç Å°¸¦ °®°í ÀÖ´Ù.
-    BOOL bMeshAnimation;           // Æú¸®°ï ¿¡´Ï¸ÞÀÌ¼Ç Å°¸¦ °®°í ÀÖ´Ù.
-    BOOL bCameraAndLightAnimation; // Ä«¸Þ¶ó, Á¶¸í ¿¡´Ï¸ÞÀÌ¼ÇÀ» °®°í ÀÖ´Ù.
-    BOOL bInverseKinematicsJoint;  // IK °üÀýµéÀ» °®°í ÀÖ´Ù..
+    BOOL bAnimationKey;            // ì—ë‹ˆë©”ì´ì…˜ í‚¤ë¥¼ ê°–ê³  ìžˆë‹¤.
+    BOOL bMeshAnimation;           // í´ë¦¬ê³¤ ì—ë‹ˆë©”ì´ì…˜ í‚¤ë¥¼ ê°–ê³  ìžˆë‹¤.
+    BOOL bCameraAndLightAnimation; // ì¹´ë©”ë¼, ì¡°ëª… ì—ë‹ˆë©”ì´ì…˜ì„ ê°–ê³  ìžˆë‹¤.
+    BOOL bInverseKinematicsJoint;  // IK ê´€ì ˆë“¤ì„ ê°–ê³  ìžˆë‹¤..
 
     BOOL
-        bGenerateTexture; // ÅØ½ºÃ³ ÆÄÀÏÀ» ÀÚµ¿À¸·Î ÃÖÀûÈ­ ½ÃÄÑ¼­ »ý¼º Direct3D ÀÇ Æ÷¸Ë¿¡ ¸Â°Ô 2ÀÇ Á¦°ö¼ö ´ÜÀ§·Î ¸ÂÃß¾î¼­ "OBM" ºñÆ®¸Ê ÆÄÀÏ·Î ÀúÀå.
-    BOOL bGenerateIndexedVertex; // »öÀÎµÈ Á¡À¸·Î ÀÎÄÚµùÈÄ ÀúÀå.. ¸Þ¸ð¸®¿¡ Á»´õ È¿À²ÀûÀÌ´Ù..
-    BOOL bGenerateSmoothNormal;  // ºÎµå·´°Ô º¸ÀÌµµ·Ï ¹ý¼± º¤ÅÍµéÀ» Àç °è»êÇÑ´Ù.
+        bGenerateTexture; // í…ìŠ¤ì²˜ íŒŒì¼ì„ ìžë™ìœ¼ë¡œ ìµœì í™” ì‹œì¼œì„œ ìƒì„± Direct3D ì˜ í¬ë§·ì— ë§žê²Œ 2ì˜ ì œê³±ìˆ˜ ë‹¨ìœ„ë¡œ ë§žì¶”ì–´ì„œ "OBM" ë¹„íŠ¸ë§µ íŒŒì¼ë¡œ ì €ìž¥.
+    BOOL bGenerateIndexedVertex; // ìƒ‰ì¸ëœ ì ìœ¼ë¡œ ì¸ì½”ë”©í›„ ì €ìž¥.. ë©”ëª¨ë¦¬ì— ì¢€ë” íš¨ìœ¨ì ì´ë‹¤..
+    BOOL bGenerateSmoothNormal;  // ë¶€ë“œëŸ½ê²Œ ë³´ì´ë„ë¡ ë²•ì„  ë²¡í„°ë“¤ì„ ìž¬ ê³„ì‚°í•œë‹¤.
 };
 
 struct __UVWH {

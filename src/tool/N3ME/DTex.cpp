@@ -63,7 +63,7 @@ void CDTex::Init() {
 
 //
 //    SetAttr...
-//    鸥老窍唱俊 加己 笼绢 持扁..
+//    韮�鞚柬晿雮橃棎 靻嶌劚 歆戩柎 雱ｊ赴..
 //
 void CDTex::SetAttr(int x, int y, DTEXATTR attr) {
     m_Attr[x][y] = attr;

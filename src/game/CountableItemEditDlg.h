@@ -36,8 +36,8 @@ class CCountableItemEditDlg : public CN3UIBase {
     bool    Load(HANDLE hFile);
     void    SetVisibleWithNoSound(bool bVisible, bool bWork = false, bool bReFocus = false);
     void    SetVisible(bool bVisible);
-    int64_t GetQuantity();                  // "edit_trade" Edit Control ¿¡¼­ Á¤¼ö°ªÀ» ¾ò¿À¿Â´Ù..
-    void    SetQuantity(int64_t iQuantity); // "edit_trade" Edit Control ¿¡¼­ Á¤¼ö°ªÀ» ¹®ÀÚ¿­·Î ¼¼ÆÃÇÑ´Ù..
+    int64_t GetQuantity();                  // "edit_trade" Edit Control ì—ì„œ ì •ìˆ˜ê°’ì„ ì–»ì˜¤ì˜¨ë‹¤..
+    void    SetQuantity(int64_t iQuantity); // "edit_trade" Edit Control ì—ì„œ ì •ìˆ˜ê°’ì„ ë¬¸ìì—´ë¡œ ì„¸íŒ…í•œë‹¤..
 
     CCountableItemEditDlg();
     virtual ~CCountableItemEditDlg();

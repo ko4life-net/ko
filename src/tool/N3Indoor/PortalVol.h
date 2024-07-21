@@ -32,22 +32,22 @@ class CPortalVol : public CPvsBase {
     __VertexColor  m_pvVertex[8];
     unsigned short m_pIndex[36];
 
-    // ·Îµå¿¡ ÇÊ¿äÇÑ Áß°£ µ¥ÀÌÅÍ..
+    // ë¡œë“œì— í•„ìš”í•œ ì¤‘ê°„ ë°ì´í„°..
     std::list<int> m_piIDList;
     //..
 
     std::list<CPvsBase *> m_pPvsList;
 
-    //.. ÄÄÆÄÀÏ ¸ğµå¿¡¼­ ÇÊ¿äÇÑ °Å..
+    //.. ì»´íŒŒì¼ ëª¨ë“œì—ì„œ í•„ìš”í•œ ê±°..
     std::list<int> m_pVisibleiIDList;
 
-    //.. pvsMgrÀÇ Tick¿¡¼­ ÇÊ¿äÇÑ °Å..
+    //.. pvsMgrì˜ Tickì—ì„œ í•„ìš”í•œ ê±°..
     e_ExtBool m_eRenderType;
 
-    //.. ÄÄÆÄÀÏ ¸ğµå¿¡¼­ PortalÀÇ ¿ì¼±¼øÀ§..    -1·Î ¸ÕÀú Å¬¸®¾î ÇÑ´ÙÀ½.. 0 ¼øÀ§´Â ÀÚ±â ÀÚ½Å..
+    //.. ì»´íŒŒì¼ ëª¨ë“œì—ì„œ Portalì˜ ìš°ì„ ìˆœìœ„..    -1ë¡œ ë¨¼ì € í´ë¦¬ì–´ í•œë‹¤ìŒ.. 0 ìˆœìœ„ëŠ” ìê¸° ìì‹ ..
     int m_iPriority;
 
-    //.. Shape ÆÄÀÏ ÀÌ¸§..
+    //.. Shape íŒŒì¼ ì´ë¦„..
     std::string      m_strShapeFile;
     CN3Shape *       m_pShape;
     __Matrix44       m_MtxShapeMove;

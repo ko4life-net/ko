@@ -128,13 +128,13 @@ void CAISocket::LoginProcess(char * pBuf) {
     int     index = 0;
     float   fReConnectEndTime = 0.0f;
     BYTE    ver = GetByte(pBuf, index);
-    BYTE    byReConnect = GetByte(pBuf, index); // 0 : Ã³À½Á¢¼Ó, 1 : ÀçÁ¢¼Ó
+    BYTE    byReConnect = GetByte(pBuf, index); // 0 : ì²˜ìŒì ‘ì†, 1 : ì¬ì ‘ì†
     CString logstr;
 
-    if (ver == -1) // zone Æ²¸®¸é ¿¡·¯
+    if (ver == -1) // zone í‹€ë¦¬ë©´ ì—ëŸ¬
     {
         AfxMessageBox(_T("AI Server Version Fail!!"));
-    } else // Æ²¸®¸é ¿¡·¯
+    } else // í‹€ë¦¬ë©´ ì—ëŸ¬
     {
         logstr.Format("AI Server Connect Success!! - %d", ver);
         m_pMain->m_StatusList.AddString(logstr);
@@ -143,7 +143,7 @@ void CAISocket::LoginProcess(char * pBuf) {
             if (m_pMain->m_sSocketCount == MAX_AI_SOCKET) {
                 m_pMain->m_bServerCheckFlag = TRUE;
                 m_pMain->m_sSocketCount = 0;
-                TRACE("*** À¯ÀúÀÇ Á¤º¸¸¦ º¸³¾ ÁØºñ´Ü°è ****\n");
+                TRACE("*** ìœ ì €ì˜ ì •ë³´ë¥¼ ë³´ë‚¼ ì¤€ë¹„ë‹¨ê³„ ****\n");
                 m_pMain->SendAllUserInfo();
             }
         } else if (byReConnect == 1) {
@@ -153,21 +153,21 @@ void CAISocket::LoginProcess(char * pBuf) {
             m_pMain->m_sReSocketCount++;
             TRACE("**** ReConnect - zone=%d,  socket = %d ****\n ", ver, m_pMain->m_sReSocketCount);
             fReConnectEndTime = TimeGet();
-            if (fReConnectEndTime > m_pMain->m_fReConnectStart + 120) { // 2ºĞ¾È¿¡ ¸ğµç ¼ÒÄÏÀÌ ÀçÁ¢µÆ´Ù¸é...
-                TRACE("**** ReConnect - ´Ü¼øÇÑ Á¢¼Ó... socket = %d ****\n ", m_pMain->m_sReSocketCount);
+            if (fReConnectEndTime > m_pMain->m_fReConnectStart + 120) { // 2ë¶„ì•ˆì— ëª¨ë“  ì†Œì¼“ì´ ì¬ì ‘ëë‹¤ë©´...
+                TRACE("**** ReConnect - ë‹¨ìˆœí•œ ì ‘ì†... socket = %d ****\n ", m_pMain->m_sReSocketCount);
                 m_pMain->m_sReSocketCount = 0;
                 m_pMain->m_fReConnectStart = 0.0f;
             }
 
             if (m_pMain->m_sReSocketCount == MAX_AI_SOCKET) {
                 fReConnectEndTime = TimeGet();
-                if (fReConnectEndTime < m_pMain->m_fReConnectStart + 60) { // 1ºĞ¾È¿¡ ¸ğµç ¼ÒÄÏÀÌ ÀçÁ¢µÆ´Ù¸é...
-                    TRACE("**** ReConnect - ¸ğµç ¼ÒÄÏ ÃÊ±âÈ­ ¿Ï·á socket = %d ****\n ", m_pMain->m_sReSocketCount);
+                if (fReConnectEndTime < m_pMain->m_fReConnectStart + 60) { // 1ë¶„ì•ˆì— ëª¨ë“  ì†Œì¼“ì´ ì¬ì ‘ëë‹¤ë©´...
+                    TRACE("**** ReConnect - ëª¨ë“  ì†Œì¼“ ì´ˆê¸°í™” ì™„ë£Œ socket = %d ****\n ", m_pMain->m_sReSocketCount);
                     m_pMain->m_bServerCheckFlag = TRUE;
                     m_pMain->m_sReSocketCount = 0;
-                    TRACE("*** À¯ÀúÀÇ Á¤º¸¸¦ º¸³¾ ÁØºñ´Ü°è ****\n");
+                    TRACE("*** ìœ ì €ì˜ ì •ë³´ë¥¼ ë³´ë‚¼ ì¤€ë¹„ë‹¨ê³„ ****\n");
                     m_pMain->SendAllUserInfo();
-                } else { // ÇÏ³ªÀÇ ¶³¾îÁø ¼ÒÄÏÀÌ¶ó¸é...
+                } else { // í•˜ë‚˜ì˜ ë–¨ì–´ì§„ ì†Œì¼“ì´ë¼ë©´...
                     m_pMain->m_sReSocketCount = 0;
                     m_pMain->m_fReConnectStart = 0.0f;
                 }
@@ -184,7 +184,7 @@ void CAISocket::RecvServerInfo(char * pBuf) {
     int     size = m_pMain->m_ZoneArray.size();
 
     if (type == SERVER_INFO_START) {
-        TRACE("¸ó½ºÅÍÀÇ Á¤º¸¸¦ ¹Ş±â ½ÃÀÛÇÕ´Ï´Ù..%d\n", byZone);
+        TRACE("ëª¬ìŠ¤í„°ì˜ ì •ë³´ë¥¼ ë°›ê¸° ì‹œì‘í•©ë‹ˆë‹¤..%d\n", byZone);
     } else if (type == SERVER_INFO_END) {
         short sTotalMonster = 0;
         sTotalMonster = GetShort(pBuf, index);
@@ -193,31 +193,31 @@ void CAISocket::RecvServerInfo(char * pBuf) {
 
         m_pMain->m_sZoneCount++;
 
-        TRACE("¸ó½ºÅÍÀÇ Á¤º¸¸¦ ´Ù ¹Ş¾ÒÀ½....%d, total=%d, socketcount=%d\n", byZone, sTotalMonster,
+        TRACE("ëª¬ìŠ¤í„°ì˜ ì •ë³´ë¥¼ ë‹¤ ë°›ì•˜ìŒ....%d, total=%d, socketcount=%d\n", byZone, sTotalMonster,
               m_pMain->m_sZoneCount);
 
         if (m_pMain->m_sZoneCount == size) {
             if (m_pMain->m_bFirstServerFlag == FALSE) {
                 m_pMain->UserAcceptThread();
-                TRACE("+++ ¸ó½ºÅÍÀÇ ¸ğµç Á¤º¸¸¦ ´Ù ¹Ş¾ÒÀ½, User AcceptThread Start ....%d, socketcount=%d\n", byZone,
+                TRACE("+++ ëª¬ìŠ¤í„°ì˜ ëª¨ë“  ì •ë³´ë¥¼ ë‹¤ ë°›ì•˜ìŒ, User AcceptThread Start ....%d, socketcount=%d\n", byZone,
                       m_pMain->m_sZoneCount);
             }
             m_pMain->m_sZoneCount = 0;
             m_pMain->m_bFirstServerFlag = TRUE;
             m_pMain->m_bPointCheckFlag = TRUE;
-            TRACE("¸ó½ºÅÍÀÇ ¸ğµç Á¤º¸¸¦ ´Ù ¹Ş¾ÒÀ½, User AcceptThread Start ....%d, socketcount=%d\n", byZone,
+            TRACE("ëª¬ìŠ¤í„°ì˜ ëª¨ë“  ì •ë³´ë¥¼ ë‹¤ ë°›ì•˜ìŒ, User AcceptThread Start ....%d, socketcount=%d\n", byZone,
                   m_pMain->m_sZoneCount);
-            // ¿©±â¿¡¼­ Event MonsterÀÇ Æ÷ÀÎÅÍ¸¦ ¹Ì¸® ÇÒ´ç ÇÏµµ·Ï ÇÏÀå~~
+            // ì—¬ê¸°ì—ì„œ Event Monsterì˜ í¬ì¸í„°ë¥¼ ë¯¸ë¦¬ í• ë‹¹ í•˜ë„ë¡ í•˜ì¥~~
             //InitEventMonster( sTotalMonster );
         }
     }
 }
 
-// ai server¿¡ Ã³À½ Á¢¼Ó½Ã npcÀÇ ¸ğµç Á¤º¸¸¦ ¹Ş¾Æ¿Â´Ù..
+// ai serverì— ì²˜ìŒ ì ‘ì†ì‹œ npcì˜ ëª¨ë“  ì •ë³´ë¥¼ ë°›ì•„ì˜¨ë‹¤..
 void CAISocket::RecvNpcInfoAll(char * pBuf) {
     int   index = 0;
-    BYTE  byCount = 0; // ¸¶¸®¼ö
-    BYTE  byType;      // 0:Ã³À½¿¡ µîÀåÇÏÁö ¾Ê´Â ¸ó½ºÅÍ, 1:µîÀå
+    BYTE  byCount = 0; // ë§ˆë¦¬ìˆ˜
+    BYTE  byType;      // 0:ì²˜ìŒì— ë“±ì¥í•˜ì§€ ì•ŠëŠ” ëª¬ìŠ¤í„°, 1:ë“±ì¥
     short nid;         // NPC index
     short sid;         // NPC index
     short sZone;       // Current zone number
@@ -227,7 +227,7 @@ void CAISocket::RecvNpcInfoAll(char * pBuf) {
     int   iweapon_1;
     int   iweapon_2;
     char  szName[MAX_ID_SIZE + 1]; // NPC Name
-    BYTE  byGroup;                 // ¼Ò¼Ó Áı´Ü
+    BYTE  byGroup;                 // ì†Œì† ì§‘ë‹¨
     BYTE  byLevel;                 // level
     float fPosX;                   // X Position
     float fPosZ;                   // Z Position
@@ -236,11 +236,11 @@ void CAISocket::RecvNpcInfoAll(char * pBuf) {
     BYTE  tNpcType;                // 00    : Monster
                                    // 01    : NPC
     int   iSellingGroup;
-    int   nMaxHP;     // ÃÖ´ë HP
-    int   nHP;        // ÇöÀç HP
-    BYTE  byGateOpen; // ¼º¹®ÀÏ°æ¿ì ¿­¸²°ú ´İÈû Á¤º¸
+    int   nMaxHP;     // ìµœëŒ€ HP
+    int   nHP;        // í˜„ì¬ HP
+    BYTE  byGateOpen; // ì„±ë¬¸ì¼ê²½ìš° ì—´ë¦¼ê³¼ ë‹«í˜ ì •ë³´
     short sHitRate;
-    BYTE  byObjectType; // º¸Åë : 0, Æ¯¼ö : 1
+    BYTE  byObjectType; // ë³´í†µ : 0, íŠ¹ìˆ˜ : 1
 
     byCount = GetByte(pBuf, index);
 
@@ -273,7 +273,7 @@ void CAISocket::RecvNpcInfoAll(char * pBuf) {
 
         if (nLength < 0 || nLength > MAX_ID_SIZE) {
             TRACE("#### RecvNpcInfoAll Fail : szName=%s\n", szName);
-            continue; // Àß¸øµÈ monster ¾ÆÀÌµğ
+            continue; // ì˜ëª»ëœ monster ì•„ì´ë””
         }
 
         if (sZoneIndex < 0 || sZoneIndex >= m_pMain->m_ZoneArray.size() || nid < 0 || sPid < 0) {
@@ -354,14 +354,14 @@ void CAISocket::RecvNpcInfoAll(char * pBuf) {
         }
 
         if (byType == 0) {
-            TRACE("Recv --> NpcUserInfoAll : µî·ÏÇÏ¸é ¾ÈµÅ¿©,, uid=%d, sid=%d, name=%s\n", nid, sPid, szName);
-            continue; // region¿¡ µî·ÏÇÏÁö ¸»±â...
+            TRACE("Recv --> NpcUserInfoAll : ë“±ë¡í•˜ë©´ ì•ˆë¼ì—¬,, uid=%d, sid=%d, name=%s\n", nid, sPid, szName);
+            continue; // regionì— ë“±ë¡í•˜ì§€ ë§ê¸°...
         }
 
         C3DMap * pMap = m_pMain->m_ZoneArray[(int)pNpc->m_sZoneIndex];
         if (!pMap) {
             TRACE("Recv --> NpcUserInfoAll : fail,, uid=%d, sid=%d, name=%s\n", nid, sPid, szName);
-            continue; // region¿¡ µî·ÏÇÏÁö ¸»±â...
+            continue; // regionì— ë“±ë¡í•˜ì§€ ë§ê¸°...
         }
         pMap->RegionNpcAdd(pNpc->m_sRegion_X, pNpc->m_sRegion_Z, pNpc->m_sNid);
     }
@@ -373,13 +373,13 @@ void CAISocket::RecvNpcMoveResult(char * pBuf) {
     char send_buff[256];
     memset(send_buff, 0x00, 256);
     int  index = 0, send_index = 0;
-    BYTE flag;          // 01(INFO_MODIFY)    : NPC Á¤º¸ º¯°æ
-                        // 02(INFO_DELETE)    : NPC Á¤º¸ »èÁ¦
+    BYTE flag;          // 01(INFO_MODIFY)    : NPC ì •ë³´ ë³€ê²½
+                        // 02(INFO_DELETE)    : NPC ì •ë³´ ì‚­ì œ
     short nid;          // NPC index
     float fPosX;        // X Position
     float fPosZ;        // Z Position
     float fPosY;        // Y Position
-    float fSecForMetor; // Sec´ç metor
+    float fSecForMetor; // Secë‹¹ metor
     flag = GetByte(pBuf, index);
     nid = GetShort(pBuf, index);
     fPosX = Getfloat(pBuf, index);
@@ -392,7 +392,7 @@ void CAISocket::RecvNpcMoveResult(char * pBuf) {
         return;
     }
 
-    if (pNpc->m_NpcState == NPC_DEAD || pNpc->m_iHP <= 0) { // Npc »óÅÂ µ¿±âÈ­ ºÒ·®,, Àç¿äÃ»..
+    if (pNpc->m_NpcState == NPC_DEAD || pNpc->m_iHP <= 0) { // Npc ìƒíƒœ ë™ê¸°í™” ë¶ˆëŸ‰,, ì¬ìš”ì²­..
         SetByte(send_buff, AG_NPC_HP_REQ, send_index);
         SetShort(send_buff, nid, send_index);
         SetDWORD(send_buff, pNpc->m_iHP, send_index);
@@ -441,17 +441,17 @@ void CAISocket::RecvNpcAttack(char * pBuf) {
             pNpc->m_iHP = 0;
         }
 
-        if (result == 0x04) { // ¸¶¹ıÀ¸·Î Á×´Â°æ¿ì
+        if (result == 0x04) { // ë§ˆë²•ìœ¼ë¡œ ì£½ëŠ”ê²½ìš°
             SetByte(pOutBuf, WIZ_DEAD, send_index);
             SetShort(pOutBuf, tid, send_index);
             m_pMain->Send_Region(pOutBuf, send_index, pNpc->m_sCurZone, pNpc->m_sRegion_X, pNpc->m_sRegion_Z, NULL,
                                  false);
         } else {
             SetByte(pOutBuf, WIZ_ATTACK, send_index);
-            SetByte(pOutBuf, byAttackType, send_index); // Á÷Á¢:1, ¸¶¹ı:2, Áö¼Ó¸¶¹ı:3
-                //if(result == 0x04)                                // ¸¶¹ıÀ¸·Î Á×´Â°æ¿ì
+            SetByte(pOutBuf, byAttackType, send_index); // ì§ì ‘:1, ë§ˆë²•:2, ì§€ì†ë§ˆë²•:3
+                //if(result == 0x04)                                // ë§ˆë²•ìœ¼ë¡œ ì£½ëŠ”ê²½ìš°
                 //    SetByte( pOutBuf, 0x02, send_index );
-                //else                                            // ´Ü¼ø°ø°İÀ¸·Î Á×´Â°æ¿ì
+                //else                                            // ë‹¨ìˆœê³µê²©ìœ¼ë¡œ ì£½ëŠ”ê²½ìš°
             SetByte(pOutBuf, result, send_index);
             SetShort(pOutBuf, sid, send_index);
             SetShort(pOutBuf, tid, send_index);
@@ -471,7 +471,7 @@ void CAISocket::RecvNpcAttack(char * pBuf) {
                 switch (((CUser *)(m_pMain->m_Iocport.m_SockArray[sid]))->m_bMagicTypeLeftHand) { // LEFT HAND!!!
                 case ITEM_TYPE_HP_DRAIN:                                                          // HP Drain
                     ((CUser *)(m_pMain->m_Iocport.m_SockArray[sid]))->HpChange(temp_damage, 0);
-                    //                    TRACE("%d : Èí¼ö HP : %d  ,  ÇöÀç HP : %d", sid, temp_damage, ((CUser*)(m_pMain->m_Iocport.m_SockArray[sid]))->m_pUserData->m_sHp);
+                    //                    TRACE("%d : í¡ìˆ˜ HP : %d  ,  í˜„ì¬ HP : %d", sid, temp_damage, ((CUser*)(m_pMain->m_Iocport.m_SockArray[sid]))->m_pUserData->m_sHp);
                     break;
                 case ITEM_TYPE_MP_DRAIN: // MP Drain
                     ((CUser *)(m_pMain->m_Iocport.m_SockArray[sid]))->MSpChange(temp_damage);
@@ -486,7 +486,7 @@ void CAISocket::RecvNpcAttack(char * pBuf) {
                 switch (((CUser *)(m_pMain->m_Iocport.m_SockArray[sid]))->m_bMagicTypeRightHand) { // LEFT HAND!!!
                 case ITEM_TYPE_HP_DRAIN:                                                           // HP Drain
                     ((CUser *)(m_pMain->m_Iocport.m_SockArray[sid]))->HpChange(temp_damage, 0);
-                    //                    TRACE("%d : Èí¼ö HP : %d  ,  ÇöÀç HP : %d", sid, temp_damage, ((CUser*)(m_pMain->m_Iocport.m_SockArray[sid]))->m_pUserData->m_sHp);
+                    //                    TRACE("%d : í¡ìˆ˜ HP : %d  ,  í˜„ì¬ HP : %d", sid, temp_damage, ((CUser*)(m_pMain->m_Iocport.m_SockArray[sid]))->m_pUserData->m_sHp);
                     break;
                 case ITEM_TYPE_MP_DRAIN: // MP Drain
                     ((CUser *)(m_pMain->m_Iocport.m_SockArray[sid]))->MSpChange(temp_damage);
@@ -501,7 +501,7 @@ void CAISocket::RecvNpcAttack(char * pBuf) {
             C3DMap * pMap = m_pMain->m_ZoneArray[(int)pNpc->m_sZoneIndex];
             pMap->RegionNpcRemove(pNpc->m_sRegion_X, pNpc->m_sRegion_Z, tid);
 
-            //            TRACE("--- Npc Dead : Npc¸¦ Region¿¡¼­ »èÁ¦Ã³¸®.. ,, region_x=%d, y=%d\n", pNpc->m_sRegion_X, pNpc->m_sRegion_Z);
+            //            TRACE("--- Npc Dead : Npcë¥¼ Regionì—ì„œ ì‚­ì œì²˜ë¦¬.. ,, region_x=%d, y=%d\n", pNpc->m_sRegion_X, pNpc->m_sRegion_Z);
             pNpc->m_sRegion_X = 0;
             pNpc->m_sRegion_Z = 0;
             pNpc->m_NpcState = NPC_DEAD;
@@ -511,7 +511,7 @@ void CAISocket::RecvNpcAttack(char * pBuf) {
                     pEvent->byLife = 0;
                 }
             }
-            //    ¼º¿ë¾¾! ´ë¸¸ Àç¹ÌÀÖ¾î¿ä? --;
+            //    ì„±ìš©ì”¨! ëŒ€ë§Œ ì¬ë¯¸ìˆì–´ìš”? --;
             if (pNpc->m_tNpcType == 2) {
                 if (sid >= 0 && sid < MAX_USER) {
                     if (m_pMain->m_Iocport.m_SockArray[sid]) {
@@ -574,7 +574,7 @@ void CAISocket::RecvNpcAttack(char * pBuf) {
                 if (pUser->m_bResHpType == USER_DEAD) {
                     return;
                 }
-                // À¯Àú¿¡°Ô´Â ¹Ù·Î µ¥µå ÆĞÅ¶À» ³¯¸²... (ÇÑ ¹ø ´õ º¸³¿, À¯·ÉÀ» ¾ø¾Ö±â À§ÇØ¼­)
+                // ìœ ì €ì—ê²ŒëŠ” ë°”ë¡œ ë°ë“œ íŒ¨í‚·ì„ ë‚ ë¦¼... (í•œ ë²ˆ ë” ë³´ëƒ„, ìœ ë ¹ì„ ì—†ì• ê¸° ìœ„í•´ì„œ)
                 pUser->Send(pOutBuf, send_index);
 
                 pUser->m_bResHpType = USER_DEAD;
@@ -588,7 +588,7 @@ void CAISocket::RecvNpcAttack(char * pBuf) {
                 memset(pOutBuf, NULL, 1024);
                 send_index = 0;
                 if (pUser->m_pUserData->m_bFame ==
-                    COMMAND_CAPTAIN) { // ÁöÈÖ±ÇÇÑÀÌ ÀÖ´Â À¯Àú°¡ Á×´Â´Ù¸é,, ÁöÈÖ ±ÇÇÑ ¹ÚÅ»
+                    COMMAND_CAPTAIN) { // ì§€íœ˜ê¶Œí•œì´ ìˆëŠ” ìœ ì €ê°€ ì£½ëŠ”ë‹¤ë©´,, ì§€íœ˜ ê¶Œí•œ ë°•íƒˆ
                     pUser->m_pUserData->m_bFame = CHIEF;
                     SetByte(pOutBuf, WIZ_AUTHORITY_CHANGE, send_index);
                     SetByte(pOutBuf, COMMAND_AUTHORITY, send_index);
@@ -607,21 +607,21 @@ void CAISocket::RecvNpcAttack(char * pBuf) {
                     }
                 }
 
-                if (pNpc->m_tNpcType == NPC_PATROL_GUARD) { // °æºñº´¿¡°Ô Á×´Â °æ¿ì¶ó¸é..
+                if (pNpc->m_tNpcType == NPC_PATROL_GUARD) { // ê²½ë¹„ë³‘ì—ê²Œ ì£½ëŠ” ê²½ìš°ë¼ë©´..
                     pUser->ExpChange(-pUser->m_iMaxExp / 100);
-                    //TRACE("RecvNpcAttack : °æÇèÄ¡¸¦ 1%±ï±â id = %s\n", pUser->m_pUserData->m_id);
+                    //TRACE("RecvNpcAttack : ê²½í—˜ì¹˜ë¥¼ 1%ê¹ê¸° id = %s\n", pUser->m_pUserData->m_id);
                 } else {
                     //
                     if (pUser->m_pUserData->m_bZone != pUser->m_pUserData->m_bNation &&
                         pUser->m_pUserData->m_bZone < 3) {
                         pUser->ExpChange(-pUser->m_iMaxExp / 100);
-                        //TRACE("Á¤¸»·Î 1%¸¸ ±ï¿´´Ù´Ï±î¿ä ¤Ğ.¤Ğ");
+                        //TRACE("ì •ë§ë¡œ 1%ë§Œ ê¹ì˜€ë‹¤ë‹ˆê¹Œìš” ã… .ã… ");
                     }
                     //
                     else {
                         pUser->ExpChange(-pUser->m_iMaxExp / 20);
                     }
-                    //TRACE("RecvNpcAttack : °æÇèÄ¡¸¦ 5%±ï±â id = %s\n", pUser->m_pUserData->m_id);
+                    //TRACE("RecvNpcAttack : ê²½í—˜ì¹˜ë¥¼ 5%ê¹ê¸° id = %s\n", pUser->m_pUserData->m_id);
                 }
             }
         } else if (tid >= NPC_BAND) // npc attack -> monster
@@ -645,7 +645,7 @@ void CAISocket::RecvNpcAttack(char * pBuf) {
             if (result == 0x02) { // npc dead
                 C3DMap * pMap = m_pMain->m_ZoneArray[(int)pMon->m_sZoneIndex];
                 pMap->RegionNpcRemove(pMon->m_sRegion_X, pMon->m_sRegion_Z, tid);
-                //                TRACE("--- Npc Dead : Npc¸¦ Region¿¡¼­ »èÁ¦Ã³¸®.. ,, region_x=%d, y=%d\n", pMon->m_sRegion_X, pMon->m_sRegion_Z);
+                //                TRACE("--- Npc Dead : Npcë¥¼ Regionì—ì„œ ì‚­ì œì²˜ë¦¬.. ,, region_x=%d, y=%d\n", pMon->m_sRegion_X, pMon->m_sRegion_Z);
                 pMon->m_sRegion_X = 0;
                 pMon->m_sRegion_Z = 0;
                 pMon->m_NpcState = NPC_DEAD;
@@ -751,34 +751,34 @@ void CAISocket::RecvMagicAttackResult(char * pBuf) {
 void CAISocket::RecvNpcInfo(char * pBuf) {
     int index = 0;
 
-    BYTE Mode;                     // 01(INFO_MODIFY)    : NPC Á¤º¸ º¯°æ
-                                   // 02(INFO_DELETE)    : NPC Á¤º¸ »èÁ¦
+    BYTE Mode;                     // 01(INFO_MODIFY)    : NPC ì •ë³´ ë³€ê²½
+                                   // 02(INFO_DELETE)    : NPC ì •ë³´ ì‚­ì œ
     short nid;                     // NPC index
     short sid;                     // NPC index
     short sPid;                    // NPC Picture Number
     short sSize = 100;             // NPC Size
-    int   iWeapon_1;               // ¿À¸¥¼Õ ¹«±â
-    int   iWeapon_2;               // ¿Ş¼Õ  ¹«±â
+    int   iWeapon_1;               // ì˜¤ë¥¸ì† ë¬´ê¸°
+    int   iWeapon_2;               // ì™¼ì†  ë¬´ê¸°
     short sZone;                   // Current zone number
     short sZoneIndex;              // Current zone index
     char  szName[MAX_ID_SIZE + 1]; // NPC Name
-    BYTE  byGroup;                 // ¼Ò¼Ó Áı´Ü
+    BYTE  byGroup;                 // ì†Œì† ì§‘ë‹¨
     BYTE  byLevel;                 // level
     float fPosX;                   // X Position
     float fPosZ;                   // Z Position
     float fPosY;                   // Y Position
-    float fDir;                    // ¹æÇâ
-    BYTE  tState;                  // NPC »óÅÂ
+    float fDir;                    // ë°©í–¥
+    BYTE  tState;                  // NPC ìƒíƒœ
                                    // 00    : NPC Dead
                                    // 01    : NPC Live
     BYTE tNpcKind;                 // 00    : Monster
                                    // 01    : NPC
     int   iSellingGroup;
-    int   nMaxHP; // ÃÖ´ë HP
-    int   nHP;    // ÇöÀç HP
+    int   nMaxHP; // ìµœëŒ€ HP
+    int   nHP;    // í˜„ì¬ HP
     BYTE  byGateOpen;
-    short sHitRate;     // °ø°İ ¼º°ø·ü
-    BYTE  byObjectType; // º¸Åë : 0, Æ¯¼ö : 1
+    short sHitRate;     // ê³µê²© ì„±ê³µë¥ 
+    BYTE  byObjectType; // ë³´í†µ : 0, íŠ¹ìˆ˜ : 1
 
     Mode = GetByte(pBuf, index);
     nid = GetShort(pBuf, index);
@@ -791,7 +791,7 @@ void CAISocket::RecvNpcInfo(char * pBuf) {
     sZoneIndex = GetShort(pBuf, index);
     int nLength = GetVarString(szName, pBuf, sizeof(BYTE), index);
     if (nLength < 0 || nLength > MAX_ID_SIZE) {
-        return; // Àß¸øµÈ monster ¾ÆÀÌµğ
+        return; // ì˜ëª»ëœ monster ì•„ì´ë””
     }
     byGroup = GetByte(pBuf, index);
     byLevel = GetByte(pBuf, index);
@@ -818,7 +818,7 @@ void CAISocket::RecvNpcInfo(char * pBuf) {
     pNpc->m_NpcState = NPC_DEAD;
 
     char strLog[256];
-    if (pNpc->m_NpcState == NPC_LIVE) { // »ì¾Æ ÀÖ´Âµ¥ ¶Ç Á¤º¸¸¦ ¹Ş´Â °æ¿ì
+    if (pNpc->m_NpcState == NPC_LIVE) { // ì‚´ì•„ ìˆëŠ”ë° ë˜ ì •ë³´ë¥¼ ë°›ëŠ” ê²½ìš°
         memset(strLog, 0x00, 256);
         CTime t = CTime::GetCurrentTime();
         wsprintf(strLog, "## time(%d:%d-%d) npc regen check(%d) : nid=%d, name=%s, x=%d, z=%d, rx=%d, rz=%d ## \r\n",
@@ -951,7 +951,7 @@ void CAISocket::RecvUserExp(char * pBuf) {
         return;
     }
     if (sExp < 0 || sLoyalty < 0) {
-        TRACE("#### AISocket - RecvUserExp : exp=%d, loyalty=%d,, Àß¸øµÈ °æÇèÄ¡°¡ ¿Â´Ù,, ¼öÁ¤ÇØ!!\n", sExp, sLoyalty);
+        TRACE("#### AISocket - RecvUserExp : exp=%d, loyalty=%d,, ì˜ëª»ëœ ê²½í—˜ì¹˜ê°€ ì˜¨ë‹¤,, ìˆ˜ì •í•´!!\n", sExp, sLoyalty);
         return;
     }
     pUser->m_pUserData->m_iLoyalty += sLoyalty;
@@ -1016,7 +1016,7 @@ void CAISocket::RecvNpcGiveItem(char * pBuf) {
     C3DMap *     pMap = NULL;
     CUser *      pUser = NULL;
 
-    sUid = GetShort(pBuf, index); // ItemÀ» °¡Á®°¥ »ç¶÷ÀÇ ¾ÆÀÌµğ... (ÀÌ°ÍÀ» ÂüÁ¶ÇØ¼­ ÀÛ¾÷ÇÏ¼À~)
+    sUid = GetShort(pBuf, index); // Itemì„ ê°€ì ¸ê°ˆ ì‚¬ëŒì˜ ì•„ì´ë””... (ì´ê²ƒì„ ì°¸ì¡°í•´ì„œ ì‘ì—…í•˜ì…ˆ~)
     sNid = GetShort(pBuf, index);
     sZone = GetShort(pBuf, index);
     regionx = GetShort(pBuf, index);
@@ -1096,8 +1096,8 @@ void CAISocket::RecvUserFail(char * pBuf) {
         return;
     }
 
-    // ¿©±â¿¡¼­ °ÔÀÓµ¥ÀÌÅ¸ÀÇ Á¤º¸¸¦ AI¼­¹ö¿¡ º¸³»º¸ÀÚ...
-    /*    if(pUser->m_pUserData->m_sHp > 0 && pUser->m_bResHpType != USER_DEAD)    // °ÔÀÓ¼­¹ö¿Í AI¼­¹ö°£ÀÇ µ¥ÀÌÅ¸°¡ Æ²¸²..
+    // ì—¬ê¸°ì—ì„œ ê²Œì„ë°ì´íƒ€ì˜ ì •ë³´ë¥¼ AIì„œë²„ì— ë³´ë‚´ë³´ì...
+    /*    if(pUser->m_pUserData->m_sHp > 0 && pUser->m_bResHpType != USER_DEAD)    // ê²Œì„ì„œë²„ì™€ AIì„œë²„ê°„ì˜ ë°ì´íƒ€ê°€ í‹€ë¦¼..
     {
         SetByte(pOutBuf, AG_USER_FAIL, send_index);
         SetShort( pOutBuf, nid, send_index );
@@ -1129,18 +1129,18 @@ void CAISocket::RecvCompressedData(char * pBuf) {
     char  pTempBuf[10001];
     memset(pTempBuf, 0x00, 10001);
     DWORD dwCrcValue;
-    sCompLen = GetShort(pBuf, index);   // ¾ĞÃàµÈ µ¥ÀÌÅ¸±æÀÌ¾ò±â...
-    sOrgLen = GetShort(pBuf, index);    // ¿ø·¡µ¥ÀÌÅ¸±æÀÌ¾ò±â...
-    dwCrcValue = GetDWORD(pBuf, index); // CRC°ª ¾ò±â...
-    sCompCount = GetShort(pBuf, index); // ¾ĞÃà µ¥ÀÌÅ¸ ¼ö ¾ò±â...
-    // ¾ĞÃà µ¥ÀÌÅ¸ ¾ò±â...
+    sCompLen = GetShort(pBuf, index);   // ì••ì¶•ëœ ë°ì´íƒ€ê¸¸ì´ì–»ê¸°...
+    sOrgLen = GetShort(pBuf, index);    // ì›ë˜ë°ì´íƒ€ê¸¸ì´ì–»ê¸°...
+    dwCrcValue = GetDWORD(pBuf, index); // CRCê°’ ì–»ê¸°...
+    sCompCount = GetShort(pBuf, index); // ì••ì¶• ë°ì´íƒ€ ìˆ˜ ì–»ê¸°...
+    // ì••ì¶• ë°ì´íƒ€ ì–»ê¸°...
     memcpy(pTempBuf, pBuf + index, sCompLen);
     index += sCompLen;
 
     CCompressMng cmpMgrDecode;
 
-    /// ¾ĞÃà ÇØÁ¦
-    cmpMgrDecode.PreUncompressWork(pTempBuf, sCompLen, sOrgLen); // ¾ĞÃà Ç®±â...
+    /// ì••ì¶• í•´ì œ
+    cmpMgrDecode.PreUncompressWork(pTempBuf, sCompLen, sOrgLen); // ì••ì¶• í’€ê¸°...
 
     if (cmpMgrDecode.Extract() == false) {
         cmpMgrDecode.Initialize();
@@ -1162,10 +1162,10 @@ void CAISocket::RecvCompressedData(char * pBuf) {
         return;
     }
 
-    // ¾ĞÃà Ç®¸° µ¥ÀÌÅ¸ ÀĞ±â
+    // ì••ì¶• í’€ë¦° ë°ì´íƒ€ ì½ê¸°
     Parsing(sOrgLen, cmpMgrDecode.m_pOutputBuffer);
 
-    // ¾ĞÃà Ç®±â ³¡
+    // ì••ì¶• í’€ê¸° ë
     cmpMgrDecode.Initialize();
 }
 
@@ -1267,7 +1267,7 @@ void CAISocket::RecvNpcDead(char * pBuf) {
             return;
         }
         pMap->RegionNpcRemove(pNpc->m_sRegion_X, pNpc->m_sRegion_Z, nid);
-        //TRACE("--- RecvNpcDead : Npc¸¦ Region¿¡¼­ »èÁ¦Ã³¸®.. ,, zone=%d, region_x=%d, y=%d\n", pNpc->m_sZoneIndex, pNpc->m_sRegion_X, pNpc->m_sRegion_Z);
+        //TRACE("--- RecvNpcDead : Npcë¥¼ Regionì—ì„œ ì‚­ì œì²˜ë¦¬.. ,, zone=%d, region_x=%d, y=%d\n", pNpc->m_sZoneIndex, pNpc->m_sRegion_X, pNpc->m_sRegion_Z);
 
         SetByte(send_buff, WIZ_DEAD, send_index);
         SetShort(send_buff, nid, send_index);
@@ -1332,11 +1332,11 @@ void CAISocket::RecvBattleEvent(char * pBuf) {
             return;
         }
         if (nResult == KARUS) {
-            //TRACE("--> RecvBattleEvent : Ä«·ç½º ¶¥À¸·Î ³Ñ¾î°¥ ¼ö ÀÖ¾î\n");
-            m_pMain->m_byKarusOpenFlag = 1; // Ä«·ç½º ¶¥À¸·Î ³Ñ¾î°¥ ¼ö ÀÖ¾î
+            //TRACE("--> RecvBattleEvent : ì¹´ë£¨ìŠ¤ ë•…ìœ¼ë¡œ ë„˜ì–´ê°ˆ ìˆ˜ ìˆì–´\n");
+            m_pMain->m_byKarusOpenFlag = 1; // ì¹´ë£¨ìŠ¤ ë•…ìœ¼ë¡œ ë„˜ì–´ê°ˆ ìˆ˜ ìˆì–´
         } else if (nResult == ELMORAD) {
-            //TRACE("--> RecvBattleEvent : ¿¤¸ğ ¶¥À¸·Î ³Ñ¾î°¥ ¼ö ÀÖ¾î\n");
-            m_pMain->m_byElmoradOpenFlag = 1; // ¿¤¸ğ ¶¥À¸·Î ³Ñ¾î°¥ ¼ö ÀÖ¾î
+            //TRACE("--> RecvBattleEvent : ì—˜ëª¨ ë•…ìœ¼ë¡œ ë„˜ì–´ê°ˆ ìˆ˜ ìˆì–´\n");
+            m_pMain->m_byElmoradOpenFlag = 1; // ì—˜ëª¨ ë•…ìœ¼ë¡œ ë„˜ì–´ê°ˆ ìˆ˜ ìˆì–´
         }
 
         SetByte(udp_buff, UDP_BATTLE_EVENT_PACKET, udp_index);
@@ -1348,9 +1348,9 @@ void CAISocket::RecvBattleEvent(char * pBuf) {
             return;
         }
         if (nResult == KARUS) {
-            //TRACE("--> RecvBattleEvent : Ä«·ç½º°¡ ½Â¸®ÇÏ¿´½À´Ï´Ù.\n");
+            //TRACE("--> RecvBattleEvent : ì¹´ë£¨ìŠ¤ê°€ ìŠ¹ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤.\n");
         } else if (nResult == ELMORAD) {
-            //TRACE("--> RecvBattleEvent : ¿¤¸ğ¶óµå°¡ ½Â¸®ÇÏ¿´½À´Ï´Ù.\n");
+            //TRACE("--> RecvBattleEvent : ì—˜ëª¨ë¼ë“œê°€ ìŠ¹ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤.\n");
         }
 
         nLen = GetByte(pBuf, index);
@@ -1359,7 +1359,7 @@ void CAISocket::RecvBattleEvent(char * pBuf) {
             GetString(strMaxUserName, pBuf, nLen, index);
             if (m_pMain->m_byBattleSave == 0) {
                 memset(send_buff, NULL, 1024);
-                send_index = 0; // ½Â¸®±¹°¡¸¦ sql¿¡ ÀúÀå
+                send_index = 0; // ìŠ¹ë¦¬êµ­ê°€ë¥¼ sqlì— ì €ì¥
                 SetByte(send_buff, WIZ_BATTLE_EVENT, send_index);
                 SetByte(send_buff, nType, send_index);
                 SetByte(send_buff, nResult, send_index);
@@ -1378,11 +1378,11 @@ void CAISocket::RecvBattleEvent(char * pBuf) {
 
         m_pMain->m_bVictory = nResult;
         m_pMain->m_byOldVictory = nResult;
-        m_pMain->m_byKarusOpenFlag = 0;   // Ä«·ç½º ¶¥À¸·Î ³Ñ¾î°¥ ¼ö ¾øµµ·Ï
-        m_pMain->m_byElmoradOpenFlag = 0; // ¿¤¸ğ ¶¥À¸·Î ³Ñ¾î°¥ ¼ö ¾øµµ·Ï
+        m_pMain->m_byKarusOpenFlag = 0;   // ì¹´ë£¨ìŠ¤ ë•…ìœ¼ë¡œ ë„˜ì–´ê°ˆ ìˆ˜ ì—†ë„ë¡
+        m_pMain->m_byElmoradOpenFlag = 0; // ì—˜ëª¨ ë•…ìœ¼ë¡œ ë„˜ì–´ê°ˆ ìˆ˜ ì—†ë„ë¡
         m_pMain->m_byBanishFlag = 1;
 
-        SetByte(udp_buff, UDP_BATTLE_EVENT_PACKET, udp_index); // udp·Î ´Ù¸¥¼­¹ö¿¡ Á¤º¸ Àü´Ş
+        SetByte(udp_buff, UDP_BATTLE_EVENT_PACKET, udp_index); // udpë¡œ ë‹¤ë¥¸ì„œë²„ì— ì •ë³´ ì „ë‹¬
         SetByte(udp_buff, nType, udp_index);
         SetByte(udp_buff, nResult, udp_index);
     } else if (nType == BATTLE_EVENT_MAX_USER) {
@@ -1397,13 +1397,13 @@ void CAISocket::RecvBattleEvent(char * pBuf) {
                     strcpy(strKnightsName, pKnights->m_strName);
                 }
             }
-            //TRACE("--> RecvBattleEvent : Àû±¹ÀÇ ´ëÀåÀ» Á×ÀÎ À¯ÀúÀÌ¸§Àº? %s, len=%d\n", strMaxUserName, nResult);
+            //TRACE("--> RecvBattleEvent : ì êµ­ì˜ ëŒ€ì¥ì„ ì£½ì¸ ìœ ì €ì´ë¦„ì€? %s, len=%d\n", strMaxUserName, nResult);
             if (nResult == 1) {
                 ::_LoadStringFromResource(IDS_KILL_CAPTAIN, buff);
                 sprintf(chatstr, buff.c_str(), strKnightsName, strMaxUserName);
 
                 /*        if( m_pMain->m_byBattleSave == 0 )    {
-                    memset( send_buff, NULL, 256 );        send_index = 0;            // ½Â¸®±¹°¡¸¦ sql¿¡ ÀúÀå
+                    memset( send_buff, NULL, 256 );        send_index = 0;            // ìŠ¹ë¦¬êµ­ê°€ë¥¼ sqlì— ì €ì¥
                     SetByte( send_buff, WIZ_BATTLE_EVENT, send_index );
                     SetByte( send_buff, nType, send_index );
                     SetByte( send_buff, m_pMain->m_bVictory, send_index );
@@ -1439,7 +1439,7 @@ void CAISocket::RecvBattleEvent(char * pBuf) {
 
             memset(send_buff, NULL, 1024);
             send_index = 0;
-            //sprintf( finalstr, "## °øÁö : %s ##", chatstr );
+            //sprintf( finalstr, "## ê³µì§€ : %s ##", chatstr );
             ::_LoadStringFromResource(IDP_ANNOUNCEMENT, buff2);
             sprintf(finalstr, buff2.c_str(), chatstr);
             SetByte(send_buff, WIZ_CHAT, send_index);
@@ -1479,7 +1479,7 @@ void CAISocket::RecvNpcEventItem(char * pBuf) {
     int     nItemNumber = 0, nCount = 0;
     CUser * pUser = NULL;
 
-    sUid = GetShort(pBuf, index); // ItemÀ» °¡Á®°¥ »ç¶÷ÀÇ ¾ÆÀÌµğ... (ÀÌ°ÍÀ» ÂüÁ¶ÇØ¼­ ÀÛ¾÷ÇÏ¼À~)
+    sUid = GetShort(pBuf, index); // Itemì„ ê°€ì ¸ê°ˆ ì‚¬ëŒì˜ ì•„ì´ë””... (ì´ê²ƒì„ ì°¸ì¡°í•´ì„œ ì‘ì—…í•˜ì…ˆ~)
     sNid = GetShort(pBuf, index);
     nItemNumber = GetDWORD(pBuf, index);
     nCount = GetDWORD(pBuf, index);

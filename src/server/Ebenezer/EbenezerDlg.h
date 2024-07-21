@@ -166,7 +166,7 @@ class CEbenezerDlg : public CDialog {
     Magictype4Array  m_Magictype4Array;
     Magictype5Array  m_Magictype5Array;
     Magictype8Array  m_Magictype8Array;
-    CoefficientArray m_CoefficientArray; // °ø½Ä °è»ê °è¼öµ¥ÀÌÅ¸ Å×ÀÌºí
+    CoefficientArray m_CoefficientArray; // ê³µì‹ ê³„ì‚° ê³„ìˆ˜ë°ì´íƒ€ í…Œì´ë¸”
     LevelUpArray     m_LevelUpArray;
     PartyArray       m_PartyArray;
     KnightsArray     m_KnightsArray;
@@ -176,16 +176,16 @@ class CEbenezerDlg : public CDialog {
     CKnightsManager m_KnightsManager;
 
     short m_sPartyIndex;
-    short m_sZoneCount;   // AI Server ÀçÁ¢¼Ó½Ã »ç¿ë
-    short m_sSocketCount; // AI Server ÀçÁ¢¼Ó½Ã »ç¿ë
+    short m_sZoneCount;   // AI Server ì¬ì ‘ì†ì‹œ ì‚¬ìš©
+    short m_sSocketCount; // AI Server ì¬ì ‘ì†ì‹œ ì‚¬ìš©
     // sungyong 2002.05.23
     short m_sSendSocket;
-    BOOL  m_bFirstServerFlag; // ¼­¹ö°¡ Ã³À½½ÃÀÛÇÑ ÈÄ °ÔÀÓ¼­¹ö°¡ ºÙÀº °æ¿ì¿¡´Â 1, ºÙÁö ¾ÊÀº °æ¿ì 0
-    BOOL  m_bServerCheckFlag;
-    BOOL  m_bPointCheckFlag;   // AI¼­¹ö¿Í ÀçÁ¢Àü¿¡ NPCÆ÷ÀÎÅÍ ÂüÁ¶¸·±â (TRUE:Æ÷ÀÎÅÍ ÂüÁ¶, FALSE:Æ÷ÀÎÅÍ ÂüÁ¶ ¸øÇÔ)
-    short m_sReSocketCount;    // GameServer¿Í ÀçÁ¢½Ã ÇÊ¿ä
-    float m_fReConnectStart;   // Ã³À½ ¼ÒÄÏÀÌ µµÂøÇÑ ½Ã°£
-    short m_sErrorSocketCount; // ÀÌ»ó¼ÒÄÏ °¨½Ã¿ë
+    BOOL m_bFirstServerFlag; // ì„œë²„ê°€ ì²˜ìŒì‹œì‘í•œ í›„ ê²Œì„ì„œë²„ê°€ ë¶™ì€ ê²½ìš°ì—ëŠ” 1, ë¶™ì§€ ì•Šì€ ê²½ìš° 0
+    BOOL m_bServerCheckFlag;
+    BOOL m_bPointCheckFlag; // AIì„œë²„ì™€ ì¬ì ‘ì „ì— NPCí¬ì¸í„° ì°¸ì¡°ë§‰ê¸° (TRUE:í¬ì¸í„° ì°¸ì¡°, FALSE:í¬ì¸í„° ì°¸ì¡° ëª»í•¨)
+    short m_sReSocketCount;    // GameServerì™€ ì¬ì ‘ì‹œ í•„ìš”
+    float m_fReConnectStart;   // ì²˜ìŒ ì†Œì¼“ì´ ë„ì°©í•œ ì‹œê°„
+    short m_sErrorSocketCount; // ì´ìƒì†Œì¼“ ê°ì‹œìš©
     // ~sungyong 2002.05.23
 
     int m_iPacketCount;     // packet check
@@ -196,12 +196,12 @@ class CEbenezerDlg : public CDialog {
     int m_nCastleCapture;
 
     // ~Yookozuna 2002.06.12
-    BYTE  m_byBattleOpen, m_byOldBattleOpen; // 0:ÀüÀïÁßÀÌ ¾Æ´Ô, 1:ÀüÀïÁß(±¹°¡°£ÀüÀï), 2:´«½Î¿òÀüÀï
+    BYTE  m_byBattleOpen, m_byOldBattleOpen; // 0:ì „ìŸì¤‘ì´ ì•„ë‹˜, 1:ì „ìŸì¤‘(êµ­ê°€ê°„ì „ìŸ), 2:ëˆˆì‹¸ì›€ì „ìŸ
     BYTE  m_bVictory, m_byOldVictory;
     BYTE  m_bBanishDelayStart;
     BYTE  m_bKarusFlag, m_bElmoradFlag;
     BYTE  m_byKarusOpenFlag, m_byElmoradOpenFlag, m_byBanishFlag, m_byBattleSave;
-    short m_sDiscount; // ´É·ÂÄ¡¿Í Æ÷ÀÎÆ® ÃÊ±âÈ­ ÇÒÀÎ (0:ÇÒÀÎ¾øÀ½, 1:ÇÒÀÎ(50%) )
+    short m_sDiscount; // ëŠ¥ë ¥ì¹˜ì™€ í¬ì¸íŠ¸ ì´ˆê¸°í™” í• ì¸ (0:í• ì¸ì—†ìŒ, 1:í• ì¸(50%) )
     short m_sKarusDead, m_sElmoradDead, m_sBanishDelay, m_sKarusCount, m_sElmoradCount;
     int   m_nBattleZoneOpenWeek, m_nBattleZoneOpenHourStart, m_nBattleZoneOpenHourEnd;
     char  m_strKarusCaptain[MAX_ID_SIZE + 1];
@@ -223,24 +223,24 @@ class CEbenezerDlg : public CDialog {
     int   m_iSellPrice[MAX_BBS_POST];
     float m_fSellStartTime[MAX_BBS_POST];
 
-    // ~Yookozuna 2002.11.26 - ºñ·¯¸Ó±Û ³²´Â °øÁö --;
+    // ~Yookozuna 2002.11.26 - ë¹„ëŸ¬ë¨¸ê¸€ ë‚¨ëŠ” ê³µì§€ --;
     BOOL m_bPermanentChatMode;
     BOOL m_bPermanentChatFlag;
     char m_strPermanentChat[1024];
 
-    // ~Yookozuna 2002.12.11 - °«´ï »êÅ¸ Å¬·Î½º --;
+    // ~Yookozuna 2002.12.11 - ê°“ëŒ ì‚°íƒ€ í´ë¡œìŠ¤ --;
     BOOL m_bSanta;
 
-    // ÆĞÅ¶ ¾ĞÃà¿¡ ÇÊ¿ä º¯¼ö   -------------only from ai server
+    // íŒ¨í‚· ì••ì¶•ì— í•„ìš” ë³€ìˆ˜   -------------only from ai server
     CCompressMng m_CompMng;
     int          m_CompCount;
     TCHAR        m_CompBuf[10240];
     int          m_iCompIndex;
-    // ~ÆĞÅ¶ ¾ĞÃà¿¡ ÇÊ¿ä º¯¼ö   -------------
+    // ~íŒ¨í‚· ì••ì¶•ì— í•„ìš” ë³€ìˆ˜   -------------
 
     // zone server info
     int          m_nServerNo, m_nServerGroupNo;
-    int          m_nServerGroup; // serverÀÇ ¹øÈ£(0:¼­¹ö±ºÀÌ ¾ø´Ù, 1:¼­¹ö1±º, 2:¼­¹ö2±º)
+    int          m_nServerGroup; // serverì˜ ë²ˆí˜¸(0:ì„œë²„êµ°ì´ ì—†ë‹¤, 1:ì„œë²„1êµ°, 2:ì„œë²„2êµ°)
     ServerArray  m_ServerArray;
     ServerArray  m_ServerGroupArray;
     CUdpSocket * m_pUdpSocket;

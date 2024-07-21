@@ -142,7 +142,7 @@ int CIOCPSocket2::Send(char * pBuf, long length, int dwFlag) {
         m_Sen_val++;
         m_Sen_val &= 0x00ffffff;
 
-        pTIBuf[0] = 0xfc; // ¾ÏÈ£°¡ Á¤È®ÇÑÁö
+        pTIBuf[0] = 0xfc; // ì•”í˜¸ê°€ ì •í™•í•œì§€
         memcpy(pTIBuf + 1, &m_Sen_val, sizeof(WORD) + 1);
         memcpy(pTIBuf + 4, pBuf, length);
         jct.JvEncryptionFast(len, pTIBuf, pTOutBuf);
@@ -294,17 +294,17 @@ void CIOCPSocket2::ReceivedData(int length) {
 
     int len = 0;
 
-    if (!strlen(m_pRecvBuff)) { // ÆĞÅ¶±æÀÌ´Â Á¸ÀçÇÏ³ª ½Ç µ¥ÀÌÅÍ°¡ ¾ø´Â °æ¿ì°¡ ¹ß»ı...
+    if (!strlen(m_pRecvBuff)) { // íŒ¨í‚·ê¸¸ì´ëŠ” ì¡´ì¬í•˜ë‚˜ ì‹¤ ë°ì´í„°ê°€ ì—†ëŠ” ê²½ìš°ê°€ ë°œìƒ...
         return;
     }
-    m_pBuffer->PutData(m_pRecvBuff, length); // ¹ŞÀº Data¸¦ ¹öÆÛ¿¡ ³Ö´Â´Ù
+    m_pBuffer->PutData(m_pRecvBuff, length); // ë°›ì€ Dataë¥¼ ë²„í¼ì— ë„£ëŠ”ë‹¤
 
     char * pData = NULL;
     char * pDecData = NULL;
 
     while (PullOutCore(pData, len)) {
         if (pData) {
-            Parsing(len, pData); //        ½ÇÁ¦ ÆÄ½Ì ÇÔ¼ö...
+            Parsing(len, pData); //        ì‹¤ì œ íŒŒì‹± í•¨ìˆ˜...
 
             delete[] pData;
             pData = NULL;
@@ -364,11 +364,11 @@ BOOL CIOCPSocket2::PullOutCore(char *& data, int & length) {
             //            ASSERT(ePos+2 <= len);
 
             if (pTmp[ePos] == PACKET_END1 && pTmp[ePos + 1] == PACKET_END2) {
-                if (m_CryptionFlag) { // ¾ÏÈ£È­
+                if (m_CryptionFlag) { // ì•”í˜¸í™”
                     pBuff = new BYTE[length + 1];
                     jct.JvDecryptionFast(length, (unsigned char *)pTmp + sPos + 2, pBuff);
 
-                    if (pBuff[0] != 0xfc) { // ¾ĞÃà Ç¬ µ¥ÀÌÅÍ ¿À·ù ÀÏ°æ¿ì ¹öÆÛ¿¡¼­ »èÁ¦ ÇØ¹ö¸°´Ù
+                    if (pBuff[0] != 0xfc) { // ì••ì¶• í‘¼ ë°ì´í„° ì˜¤ë¥˜ ì¼ê²½ìš° ë²„í¼ì—ì„œ ì‚­ì œ í•´ë²„ë¦°ë‹¤
                         TRACE("CIOCPSocket2::PutOutCore - Decryption Error... sockid(%d)\n", m_Socket);
                         delete[] pBuff;
                         Close();
@@ -377,7 +377,7 @@ BOOL CIOCPSocket2::PullOutCore(char *& data, int & length) {
 
                     recv_packet = (WORD)GetShort((char *)pBuff, index);
                     //TRACE("^^^ IOCPSocket2,, PullOutCore ,,, recv_val = %d ^^^\n", recv_packet);
-                    if (m_Rec_val >= recv_packet) { // ¹«½Ã,,
+                    if (m_Rec_val >= recv_packet) { // ë¬´ì‹œ,,
                         if (recv_packet == 0) {
                             m_Rec_val = recv_packet;
                         } else {

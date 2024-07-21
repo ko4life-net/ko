@@ -62,7 +62,7 @@ class CAPISocket {
     BOOL ReceiveProcess();
     void Send(BYTE * pData, int nSize);
 
-    //ÆÐÅ¶ ¸¸µé±â ÇÔ¼ö
+    //íŒ¨í‚· ë§Œë“¤ê¸° í•¨ìˆ˜
     static void MP_AddByte(BYTE * dest, int & iOffset, BYTE byte) {
         CopyMemory(dest + iOffset, &byte, 1);
         iOffset++;
@@ -91,7 +91,7 @@ class CAPISocket {
         }
     }
 
-    //ÆÐÅ¶ Parsing ÇÔ¼ö
+    //íŒ¨í‚· Parsing í•¨ìˆ˜
     static BYTE & Parse_GetByte(const BYTE * buf, int & iOffset) {
         iOffset++;
         return *(BYTE *)(buf + iOffset - 1);

@@ -76,7 +76,7 @@ void CPathFind::SetMap(int x, int y, int * pMap) {
         m_pMap = map;
         ::InterlockedExchange(&m_lMapUse, 0);
     }
-    else TRACE("Àß¸øµÈ ¸Ê¼ÂÆÃ\n");    */
+    else TRACE("ì˜ëª»ëœ ë§µì…‹íŒ…\n");    */
 }
 
 _PathNode * CPathFind::FindPath(int start_x, int start_y, int dest_x, int dest_y) {
@@ -96,7 +96,7 @@ _PathNode * CPathFind::FindPath(int start_x, int start_y, int dest_x, int dest_y
     t_node->x = start_x;
     t_node->y = start_y;
 
-    //    int maxtry = (X ÀÌµ¿Æø * ÃÖ´ë X±¸°£ ) + (Y ÀÌµ¿Æø * ÃÖ´ë Y±¸°£) + 1;
+    //    int maxtry = (X ì´ë™í­ * ìµœëŒ€ Xêµ¬ê°„ ) + (Y ì´ë™í­ * ìµœëŒ€ Yêµ¬ê°„) + 1;
     int maxtry = abs(start_x - dest_x) * m_vMapSize.cx + abs(start_y - dest_y) * m_vMapSize.cy + 1;
     int count = 0;
 
@@ -104,7 +104,7 @@ _PathNode * CPathFind::FindPath(int start_x, int start_y, int dest_x, int dest_y
     while (1) {
         if (count > maxtry * 2) {
             //            BREAKPOINT();
-            //TRACE("ÆĞ½ºÆÄÀÎµå ÁßµµÆ÷±â...%d\n", count);
+            //TRACE("íŒ¨ìŠ¤íŒŒì¸ë“œ ì¤‘ë„í¬ê¸°...%d\n", count);
             return NULL;
         }
         count += 1;

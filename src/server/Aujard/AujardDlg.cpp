@@ -164,8 +164,8 @@ BOOL CAujardDlg::OnInitDialog() {
 
     InitializeCriticalSection(&g_LogFileWrite);
 
-    m_LoggerRecvQueue.InitailizeMMF(MAX_PKTSIZE, MAX_COUNT, SMQ_LOGGERSEND, FALSE); // Dispatcher ÀÇ Send Queue
-    m_LoggerSendQueue.InitailizeMMF(MAX_PKTSIZE, MAX_COUNT, SMQ_LOGGERRECV, FALSE); // Dispatcher ÀÇ Read Queue
+    m_LoggerRecvQueue.InitailizeMMF(MAX_PKTSIZE, MAX_COUNT, SMQ_LOGGERSEND, FALSE); // Dispatcher ì˜ Send Queue
+    m_LoggerSendQueue.InitailizeMMF(MAX_PKTSIZE, MAX_COUNT, SMQ_LOGGERRECV, FALSE); // Dispatcher ì˜ Read Queue
 
     if (!InitializeMMF()) {
         AfxMessageBox("Main Shared Memory Initialize Fail");
@@ -212,7 +212,7 @@ BOOL CAujardDlg::OnInitDialog() {
 
     CTime   cur = CTime::GetCurrentTime();
     CString starttime;
-    starttime.Format("Aujard Start : %d¿ù %dÀÏ %d½Ã %dºÐ\r\n", cur.GetMonth(), cur.GetDay(), cur.GetHour(),
+    starttime.Format("Aujard Start : %dì›” %dì¼ %dì‹œ %dë¶„\r\n", cur.GetMonth(), cur.GetDay(), cur.GetHour(),
                      cur.GetMinute());
     m_LogFile.Write(starttime, starttime.GetLength());
 
@@ -275,7 +275,7 @@ BOOL CAujardDlg::DestroyWindow() {
 BOOL CAujardDlg::InitializeMMF() {
     CString logstr;
 
-    DWORD filesize = MAX_USER * 4000; // 1¸í´ç 4000 bytes ÀÌ³» ¼Ò¿ä
+    DWORD filesize = MAX_USER * 4000; // 1ëª…ë‹¹ 4000 bytes ì´ë‚´ ì†Œìš”
 
     m_hMMFile = OpenFileMapping(FILE_MAP_ALL_ACCESS, TRUE, "KNIGHT_DB");
     if (m_hMMFile == NULL) {
@@ -810,7 +810,7 @@ BOOL CAujardDlg::PreTranslateMessage(MSG * pMsg) {
 }
 
 void CAujardDlg::OnOK() {
-    if (AfxMessageBox("ÁøÂ¥ ³¡³¾±î¿ä?", MB_YESNO) == IDYES) {
+    if (AfxMessageBox("ì§„ì§œ ëë‚¼ê¹Œìš”?", MB_YESNO) == IDYES) {
         CDialog::OnOK();
     }
 }
@@ -851,7 +851,7 @@ void CAujardDlg::AllSaveRoutine() {
     memset(logstr, 0x00, 256);
 
     CTime cur = CTime::GetCurrentTime();
-    TRACE("Dead Time : %d³â %d¿ù %dÀÏ %d½Ã %dºÐ\n", cur.GetYear(), cur.GetMonth(), cur.GetDay(), cur.GetHour(),
+    TRACE("Dead Time : %dë…„ %dì›” %dì¼ %dì‹œ %dë¶„\n", cur.GetYear(), cur.GetMonth(), cur.GetDay(), cur.GetHour(),
           cur.GetMinute());
 
     t_count = m_DBAgent.m_UserDataArray.size();
@@ -915,7 +915,7 @@ void CAujardDlg::AllSaveRoutine() {
         Sleep(100);
     }
     if (bsaved) {
-        msgstr.Format("All Data Saved:%d³â%d¿ù%dÀÏ%d½Ã%dºÐ", cur.GetYear(), cur.GetMonth(), cur.GetDay(), cur.GetHour(),
+        msgstr.Format("All Data Saved:%dë…„%dì›”%dì¼%dì‹œ%dë¶„", cur.GetYear(), cur.GetMonth(), cur.GetDay(), cur.GetHour(),
                       cur.GetMinute());
         m_OutputList.AddString(msgstr);
     }
@@ -1234,7 +1234,7 @@ void CAujardDlg::ModifyKnightsMember(char * pBuf, BYTE command) {
         return;
     }
 
-    /*    if( remove_flag == 0 && command == KNIGHTS_REMOVE )    {        // ¾ø´Â À¯Àú Ãß¹æ½Ã¿¡´Â µðºñ¿¡¼­¸¸ Ã³¸®ÇÑ´Ù
+    /*    if( remove_flag == 0 && command == KNIGHTS_REMOVE )    {        // ì—†ëŠ” ìœ ì € ì¶”ë°©ì‹œì—ëŠ” ë””ë¹„ì—ì„œë§Œ ì²˜ë¦¬í•œë‹¤
         result = m_DBAgent.UpdateKnights( command, userid, knightindex, remove_flag );
         TRACE("ModifyKnights - command=%d, nid=%d, index=%d, result=%d \n", command, uid, knightindex, result);
         return;
@@ -1499,7 +1499,7 @@ void CAujardDlg::BattleEventResult(char * pData) {
     nLen = GetByte(pData, index);
     if (nLen > 0 && nLen < MAX_ID_SIZE + 1) {
         GetString(strMaxUserName, pData, nLen, index);
-        TRACE("--> BattleEventResult : Àû±¹ÀÇ ´ëÀåÀ» Á×ÀÎ À¯ÀúÀÌ¸§Àº? %s, len=%d, nation=%d \n", strMaxUserName,
+        TRACE("--> BattleEventResult : ì êµ­ì˜ ëŒ€ìž¥ì„ ì£½ì¸ ìœ ì €ì´ë¦„ì€? %s, len=%d, nation=%d \n", strMaxUserName,
               nResult, nResult);
         m_DBAgent.UpdateBattleEvent(strMaxUserName, nResult);
     }
@@ -1524,7 +1524,7 @@ void CAujardDlg::CouponEvent(char * pData) {
         nLen = GetShort(pData, index);
         GetString(strAccountName, pData, nLen, index);
         nEventNum = GetDWORD(pData, index);
-        // ºñ·¯¸Ó±Û ´ë»ç¹® >.<
+        // ë¹„ëŸ¬ë¨¸ê¸€ ëŒ€ì‚¬ë¬¸ >.<
         nMessageNum = GetDWORD(pData, index);
         //
         nResult = m_DBAgent.CheckCouponEvent(strAccountName);
@@ -1533,7 +1533,7 @@ void CAujardDlg::CouponEvent(char * pData) {
         SetShort(send_buff, nSid, send_index);
         SetByte(send_buff, nResult, send_index);
         SetDWORD(send_buff, nEventNum, send_index);
-        // ºñ·¯¸Ó±Û ´ë»ç¹® >.<
+        // ë¹„ëŸ¬ë¨¸ê¸€ ëŒ€ì‚¬ë¬¸ >.<
         SetDWORD(send_buff, nMessageNum, send_index);
         //
         do {

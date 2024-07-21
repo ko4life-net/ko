@@ -60,16 +60,16 @@ void CSharedMemQueue::SetReadData() {
     char * InData = Rxd->Data + Rxd->Tail;
     if (*InData != 0x7f) {
         (Rxd->Tail)++;
-        TRACE("Start°¡ ¾øÀ½");
-        //        AfxMessageBox("Start°¡ ¾øÀ½", NULL, MB_OK);
+        TRACE("Startê°€ ì—†ìŒ");
+        //        AfxMessageBox("Startê°€ ì—†ìŒ", NULL, MB_OK);
         return;
     }
     memcpy((char *)&size, InData + 1, 2);
     memcpy(abIn, InData + 3, size);
     if (*(InData + size + 3) != 0x7e) {
-        TRACE("Stop°¡ ¾øÀ½");
+        TRACE("Stopê°€ ì—†ìŒ");
     }
-    //        AfxMessageBox("Stop°¡ ¾øÀ½",NULL, MB_OK);
+    //        AfxMessageBox("Stopê°€ ì—†ìŒ",NULL, MB_OK);
     Rxd->Tail += size + 4;
     SendMessage(m_hwnd, WM_RECEIVEDATA, size, 0);
 }
@@ -96,7 +96,7 @@ BOOL CSharedMemQueue::PutData(char * pBuf, WORD size) {
     return TRUE;
 }
 
-//¸Þ¼¼Áö¸¦ Àü´ÞÇÒ hwnd¼³Á¤
+//ë©”ì„¸ì§€ë¥¼ ì „ë‹¬í•  hwndì„¤ì •
 void CSharedMemQueue::SetHwnd(HWND hwnd) {
     m_hwnd = hwnd;
 }

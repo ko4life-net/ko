@@ -43,7 +43,7 @@ class CUIKnightsOperation : public CN3UIBase {
     CN3UIEdit *   m_pEdit_KnightsName;
 
   public:
-    void ChangeUIByDuty(enum e_KnightsDuty eDuty); // ±ÇÇÑ¿¡ µû¶ó UI º¯°æ..
+    void ChangeUIByDuty(enum e_KnightsDuty eDuty); // ê¶Œí•œì— ë”°ë¼ UI ë³€ê²½..
     void Open(enum e_KnightsDuty eDuty);
     void Close();
 
@@ -60,8 +60,8 @@ class CUIKnightsOperation : public CN3UIBase {
     void MsgSend_KnightsCreate();
     void MsgSend_KnightsDestroy();
     void MsgSend_KnightsJoin();
-    void MsgSend_KnightsWithdraw();      // Å»Åğ.
-    void MsgSend_KnightsList(int iPage); // ÆäÀÌÁö ´ÜÀ§·Î ±â»ç´Üµé Á¤º¸ ¿äÃ».. 10 °³¾¿ ¿Â´Ù.
+    void MsgSend_KnightsWithdraw();      // íƒˆí‡´.
+    void MsgSend_KnightsList(int iPage); // í˜ì´ì§€ ë‹¨ìœ„ë¡œ ê¸°ì‚¬ë‹¨ë“¤ ì •ë³´ ìš”ì²­.. 10 ê°œì”© ì˜¨ë‹¤.
 
     void EnableKnightsUIs(bool bEnable);
 

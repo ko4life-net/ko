@@ -3,7 +3,7 @@
 //      are changed infrequently
 //
 
-// stl ¾µ·Á°í...
+// stl ì“¸ë ¤ê³ ...
 #pragma warning(disable : 4786)
 
 #pragma once

@@ -76,7 +76,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 
     m_Eng.Init(TRUE, m_hWnd, 0, 0, 0, TRUE);
     m_Eng.SetDefaultEnvironment();
-    m_Eng.GridCreate(64, 64); // 64 ¹ÌÅÍ¾¿ 4096 ¹ÌÅÍ Ç¥Çö..
+    m_Eng.GridCreate(64, 64); // 64 ë¯¸í„°ì”© 4096 ë¯¸í„° í‘œí˜„..
 
     return 0;
 }

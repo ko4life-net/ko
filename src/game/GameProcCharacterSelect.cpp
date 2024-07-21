@@ -116,7 +116,7 @@ void CGameProcCharacterSelect::Init() {
 
     CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_Rotate);
     m_pSnd_Rotate = CN3Base::s_SndMgr.CreateObj(ID_SOUND_CHR_SELECT_ROTATE);
-    s_pUIMgr->EnableOperationSet(false); // ±âÁ¸ÀÇ Ä³¸¯ÅÍ Á¤º¸ ÆĞÅ¶ÀÌ µé¾î¿Ã¶§±îÁö UI ¸¦ Disable ½ÃÅ²´Ù...
+    s_pUIMgr->EnableOperationSet(false); // ê¸°ì¡´ì˜ ìºë¦­í„° ì •ë³´ íŒ¨í‚·ì´ ë“¤ì–´ì˜¬ë•Œê¹Œì§€ UI ë¥¼ Disable ì‹œí‚¨ë‹¤...
 
     m_pCamera = new CN3Camera();
     for (int i = 0; i < 8; i++) {
@@ -139,7 +139,7 @@ void CGameProcCharacterSelect::Init() {
     m_pUICharacterSelect = new CUICharacterSelect();
     m_pUICharacterSelect->Init(s_pUIMgr);
     m_pUICharacterSelect->LoadFromFile(
-        pTbl->szCharacterSelect); // UI Manager ¿¡ ³ÖÁö ¾Ê°í µû·Î Ã³¸®ÇÑ´Ù... ÀÌÀ¯°¡ ÀÖ´Ù..
+        pTbl->szCharacterSelect); // UI Manager ì— ë„£ì§€ ì•Šê³  ë”°ë¡œ ì²˜ë¦¬í•œë‹¤... ì´ìœ ê°€ ìˆë‹¤..
     m_pUICharacterSelect->SetPos(0, 0);
     s_pUIMgr->SetFocusedUI((CN3UIBase *)m_pUICharacterSelect);
 
@@ -157,13 +157,13 @@ void CGameProcCharacterSelect::Init() {
 
     m_vEyeBackup = m_vEye;
 
-    // ¹è°æ..
+    // ë°°ê²½..
     m_pActiveBg = new CN3Shape;
     memset(&m_lgt[0], 0, sizeof(D3DLIGHT9));
     memset(&m_lgt[1], 0, sizeof(D3DLIGHT9));
     memset(&m_lgt[2], 0, sizeof(D3DLIGHT9));
 
-    // 0°¡¿îµ¥.. 1¿ŞÂÊ..
+    // 0ê°€ìš´ë°.. 1ì™¼ìª½..
     m_lgt[2].Type = m_lgt[1].Type = m_lgt[0].Type = D3DLIGHT_SPOT;
     m_lgt[2].Attenuation0 = m_lgt[1].Attenuation0 = m_lgt[0].Attenuation0 = 0.1f;
     m_lgt[2].Attenuation1 = m_lgt[1].Attenuation1 = m_lgt[0].Attenuation1 = 0.0f;
@@ -184,20 +184,20 @@ void CGameProcCharacterSelect::Init() {
         m_pLights[1]->LoadFromFile("ChrSelect\\ka_light_1.n3light");
         m_pLights[2]->LoadFromFile("ChrSelect\\ka_light_2.n3light");
 
-        m_lgt[0].Position = m_vEye;  // Ä«·ç½º
-        m_lgt[0].Position.y += 2.0f; // Ä«·ç½º
+        m_lgt[0].Position = m_vEye;  // ì¹´ë£¨ìŠ¤
+        m_lgt[0].Position.y += 2.0f; // ì¹´ë£¨ìŠ¤
         vTemp.Set(0.0f, 0.0f, 3.5f);
         vTemp -= m_lgt[0].Position;
         m_lgt[0].Direction = vTemp;
         m_lgt[0].Phi = 0.6f;
 
-        m_lgt[1].Position = __Vector3(5.87f, 2.4f, 4.73f); // Ä«·ç½º
+        m_lgt[1].Position = __Vector3(5.87f, 2.4f, 4.73f); // ì¹´ë£¨ìŠ¤
         vTemp.Set(2.32f, 0.0f, 2.54f);
         vTemp -= m_lgt[1].Position;
         m_lgt[1].Direction = vTemp;
         m_lgt[1].Phi = 0.6f;
 
-        m_lgt[2].Position = __Vector3(-5.87f, 2.4f, 4.73f); // Ä«·ç½º
+        m_lgt[2].Position = __Vector3(-5.87f, 2.4f, 4.73f); // ì¹´ë£¨ìŠ¤
         vTemp.Set(-2.32f, 0.0f, 2.54f);
         vTemp -= m_lgt[2].Position;
         m_lgt[2].Direction = vTemp;
@@ -212,20 +212,20 @@ void CGameProcCharacterSelect::Init() {
         m_pLights[1]->LoadFromFile("ChrSelect\\el_light_1.n3light");
         m_pLights[2]->LoadFromFile("ChrSelect\\el_light_2.n3light");
 
-        m_lgt[0].Position = m_vEye;  // Ä«·ç½º
-        m_lgt[0].Position.y += 2.0f; // Ä«·ç½º
+        m_lgt[0].Position = m_vEye;  // ì¹´ë£¨ìŠ¤
+        m_lgt[0].Position.y += 2.0f; // ì¹´ë£¨ìŠ¤
         vTemp.Set(0.0f, -0.1f, 3.0f);
         vTemp -= m_lgt[0].Position;
         m_lgt[0].Direction = vTemp;
         m_lgt[0].Phi = 0.45f;
 
-        m_lgt[1].Position = __Vector3(5.6f, 2.4f, 4.68f); // Ä«·ç½º
+        m_lgt[1].Position = __Vector3(5.6f, 2.4f, 4.68f); // ì¹´ë£¨ìŠ¤
         vTemp.Set(2.2f, -0.1f, 2.36f);
         vTemp -= m_lgt[1].Position;
         m_lgt[1].Direction = vTemp;
         m_lgt[1].Phi = 0.45f;
 
-        m_lgt[2].Position = __Vector3(-5.6f, 2.4f, 4.68f); // Ä«·ç½º
+        m_lgt[2].Position = __Vector3(-5.6f, 2.4f, 4.68f); // ì¹´ë£¨ìŠ¤
         vTemp.Set(-2.4f, -0.1f, 2.23f);
         vTemp -= m_lgt[2].Position;
         m_lgt[2].Direction = vTemp;
@@ -241,7 +241,7 @@ void CGameProcCharacterSelect::Init() {
 }
 
 void CGameProcCharacterSelect::Tick() {
-    CGameProcedure::Tick(); // Å°, ¸¶¿ì½º ÀÔ·Â µîµî..
+    CGameProcedure::Tick(); // í‚¤, ë§ˆìš°ìŠ¤ ì…ë ¥ ë“±ë“±..
 
     __Vector3 vDir = CN3Base::s_CameraData.vAt - CN3Base::s_CameraData.vEye;
     vDir.Normalize();
@@ -250,14 +250,14 @@ void CGameProcCharacterSelect::Tick() {
     CN3SndObj::SetListenerPos(&vEye);
     CN3SndObj::SetListenerOrientation(&vDir, &vUp);
 
-    // ¹è°æ..
+    // ë°°ê²½..
     m_pActiveBg->Tick();
 
-    if (s_pUIMgr->m_bDoneSomething == false && s_pUIMgr->EnableOperation()) // ÆĞÅ¶À» ¹Ş±â Àü¿¡ ¾Æ¹«Áşµµ ¸øÇÏ°Ô ÇÑ´Ù.
+    if (s_pUIMgr->m_bDoneSomething == false && s_pUIMgr->EnableOperation()) // íŒ¨í‚·ì„ ë°›ê¸° ì „ì— ì•„ë¬´ì§“ë„ ëª»í•˜ê²Œ í•œë‹¤.
     {
         s_pUIMgr->SetFocusedUI(m_pUICharacterSelect);
-        int nMFlags = s_pLocalInput->MouseGetFlag(); // Mouse »óÅÂ ÇÃ·¡±×..
-        if (nMFlags & MOUSE_LBCLICK)                 // ´©¸£´Â ¼ø°£..
+        int nMFlags = s_pLocalInput->MouseGetFlag(); // Mouse ìƒíƒœ í”Œë˜ê·¸..
+        if (nMFlags & MOUSE_LBCLICK)                 // ëˆ„ë¥´ëŠ” ìˆœê°„..
         {
             if (m_eCurProcess == PROCESS_ROTATEING) {
                 goto NowRotating;
@@ -277,14 +277,14 @@ void CGameProcCharacterSelect::Tick() {
 
 NowRotating:
 
-    // ¶óÀÌÆ®..
+    // ë¼ì´íŠ¸..
     for (int i = 0; i < 8; i++) {
-        s_pEng->s_lpD3DDev->LightEnable(i, FALSE); // ÀÏ´Ü ¶óÀÌÆ® ´Ù ²ô°í..
+        s_pEng->s_lpD3DDev->LightEnable(i, FALSE); // ì¼ë‹¨ ë¼ì´íŠ¸ ë‹¤ ë„ê³ ..
     }
 
     for (int i = 0; i < 2; i++) {
         m_pLights[i]->Tick(m_pLights[i]->m_fFrmCur);
-        m_pLights[i]->Apply(); // ¶óÀÌÆ® Àû¿ë
+        m_pLights[i]->Apply(); // ë¼ì´íŠ¸ ì ìš©
     }
 
     CheckJobState();
@@ -298,8 +298,8 @@ NowRotating:
 
 void CGameProcCharacterSelect::Render() {
     D3DCOLOR crEnv = 0x00000000;
-    s_pEng->Clear(crEnv); // ¹è°æÀº °ËÀº»ö
-    s_pEng->BeginScene(); // ¾À ·»´õ ¤µÀÛ...
+    s_pEng->Clear(crEnv); // ë°°ê²½ì€ ê²€ì€ìƒ‰
+    s_pEng->BeginScene(); // ì”¬ ë Œë” ã……ì‘...
 
     __Matrix44 mtxWorld;
     mtxWorld.Identity();
@@ -315,10 +315,10 @@ void CGameProcCharacterSelect::Render() {
     m_pCamera->Tick();
     m_pCamera->Apply();
 
-    // ¹è°æ..
+    // ë°°ê²½..
     m_pActiveBg->Render();
 
-    // Ä³¸¯ÅÍ..
+    // ìºë¦­í„°..
     if (m_pChrs[0]) {
         m_pChrs[0]->m_nLOD = 0;
         m_pChrs[0]->Render();
@@ -336,13 +336,13 @@ void CGameProcCharacterSelect::Render() {
     m_pUICharacterSelect->Render();
     CUIManager::RenderStateRestore();
 
-    CGameProcedure::Render(); // UI ³ª ±×¹ÛÀÇ ±âº»ÀûÀÎ °Íµé ·»´õ¸µ..
+    CGameProcedure::Render(); // UI ë‚˜ ê·¸ë°–ì˜ ê¸°ë³¸ì ì¸ ê²ƒë“¤ ë Œë”ë§..
 
     if (m_bFadeOutRender) {
         FadeOutRender();
     }
 
-    s_pEng->EndScene(); // ¾À ·»´õ ½ÃÀÛ...
+    s_pEng->EndScene(); // ì”¬ ë Œë” ì‹œì‘...
     s_pEng->Present(CN3Base::s_hWndBase);
 }
 
@@ -368,8 +368,8 @@ void CGameProcCharacterSelect::AddChr(e_ChrPos eCP, __CharacterSelectInfo * pInf
         m_pChrs[iPosIndex]->Release();
     }
 
-    __TABLE_PLAYER_LOOKS * pLooks = s_pTbl_UPC_Looks->Find(pInfo->eRace); // User Player Character Skin ±¸Á¶Ã¼ Æ÷ÀÎÅÍ..
-    __ASSERT(pLooks, "Table ¿¡¼­ ±âº» ¸®¼Ò½º Ã£±â ½ÇÆĞ.");
+    __TABLE_PLAYER_LOOKS * pLooks = s_pTbl_UPC_Looks->Find(pInfo->eRace); // User Player Character Skin êµ¬ì¡°ì²´ í¬ì¸í„°..
+    __ASSERT(pLooks, "Table ì—ì„œ ê¸°ë³¸ ë¦¬ì†ŒìŠ¤ ì°¾ê¸° ì‹¤íŒ¨.");
 
     m_pChrs[iPosIndex]->PartAlloc(PART_POS_COUNT);
     m_pChrs[iPosIndex]->PlugAlloc(PLUG_POS_COUNT);
@@ -377,51 +377,51 @@ void CGameProcCharacterSelect::AddChr(e_ChrPos eCP, __CharacterSelectInfo * pInf
 
     switch (pInfo->eRace) {
     case RACE_EL_BABARIAN:
-        // ³²ÀÚ ¹Ù¹Ù¸®¾ÈÀº Á÷¾÷ÀÌ ÇÏ³ª..
-        szJointFN = "ChrSelect\\upc_el_ba_wa.n3joint"; // °üÀı ¼¼ÆÃ..
-        szAniFN = "ChrSelect\\upc_el_ba_wa.n3anim";    // ¿¡´Ï¸ŞÀÌ¼Ç ÆÄÀÏ ÀÌ¸§.. :-D;
+        // ë‚¨ì ë°”ë°”ë¦¬ì•ˆì€ ì§ì—…ì´ í•˜ë‚˜..
+        szJointFN = "ChrSelect\\upc_el_ba_wa.n3joint"; // ê´€ì ˆ ì„¸íŒ…..
+        szAniFN = "ChrSelect\\upc_el_ba_wa.n3anim";    // ì—ë‹ˆë©”ì´ì…˜ íŒŒì¼ ì´ë¦„.. :-D;
         szPlug0FN = "ChrSelect\\wea_el_great_sword.n3cplug";
         szPlug1FN = "";
         break;
     case RACE_EL_WOMEN:
-        // ¿¤¸ğ ¿©ÀÚ´Â Á÷¾÷ÀÌ ÇöÀç ¼¼°³(Àü»ç, ·Î±×, ¼ºÁ÷ÀÚ).. ¼ºÁ÷ÀÚ´Â ±×·¡ÇÈÀÌ ¾ø´Ù..
+        // ì—˜ëª¨ ì—¬ìëŠ” ì§ì—…ì´ í˜„ì¬ ì„¸ê°œ(ì „ì‚¬, ë¡œê·¸, ì„±ì§ì).. ì„±ì§ìëŠ” ê·¸ë˜í”½ì´ ì—†ë‹¤..
         switch (pInfo->eClass) {
         case CLASS_EL_WARRIOR:
         case CLASS_EL_BLADE:
         case CLASS_EL_PROTECTOR:
             szJointFN = "ChrSelect\\upc_el_rf_wa.n3joint";
-            szAniFN = "ChrSelect\\upc_el_rf_wa.n3anim";              // ¿¡´Ï¸ŞÀÌ¼Ç ÆÄÀÏ ÀÌ¸§.. :-D;
-            szPlug0FN = "ChrSelect\\wea_el_long_sword_left.n3cplug"; // ¿Ş¼Õ¿¡ °ËÀ» Âù´Ù..
+            szAniFN = "ChrSelect\\upc_el_rf_wa.n3anim";              // ì—ë‹ˆë©”ì´ì…˜ íŒŒì¼ ì´ë¦„.. :-D;
+            szPlug0FN = "ChrSelect\\wea_el_long_sword_left.n3cplug"; // ì™¼ì†ì— ê²€ì„ ì°¬ë‹¤..
             szPlug1FN = "";
             break;
         case CLASS_EL_ROGUE:
         case CLASS_EL_RANGER:
         case CLASS_EL_ASSASIN:
-            szJointFN = "ChrSelect\\upc_el_rf_rog.n3joint"; // °üÀı ¼¼ÆÃ..
-            szAniFN = "ChrSelect\\upc_el_rf_wa.n3anim";     // ¿¡´Ï¸ŞÀÌ¼Ç ÆÄÀÏ ÀÌ¸§.. :-D;
+            szJointFN = "ChrSelect\\upc_el_rf_rog.n3joint"; // ê´€ì ˆ ì„¸íŒ…..
+            szAniFN = "ChrSelect\\upc_el_rf_wa.n3anim";     // ì—ë‹ˆë©”ì´ì…˜ íŒŒì¼ ì´ë¦„.. :-D;
             szPlug0FN = "ChrSelect\\wea_el_rf_rog_bow.n3cplug";
             szPlug1FN = "ChrSelect\\wea_el_quiver.n3cplug";
             break;
         case CLASS_EL_WIZARD:
         case CLASS_EL_MAGE:
         case CLASS_EL_ENCHANTER:
-            szJointFN = "ChrSelect\\upc_el_rf_wiz.n3joint"; // °üÀı ¼¼ÆÃ..
-            szAniFN = "ChrSelect\\upc_el_rf_wa.n3anim";     // ¿¡´Ï¸ŞÀÌ¼Ç ÆÄÀÏ ÀÌ¸§.. :-D;
+            szJointFN = "ChrSelect\\upc_el_rf_wiz.n3joint"; // ê´€ì ˆ ì„¸íŒ…..
+            szAniFN = "ChrSelect\\upc_el_rf_wa.n3anim";     // ì—ë‹ˆë©”ì´ì…˜ íŒŒì¼ ì´ë¦„.. :-D;
             szPlug0FN = "ChrSelect\\upc_el_rf_wiz.n3cplug";
             szPlug1FN = "";
             break;
         case CLASS_EL_PRIEST:
         case CLASS_EL_CLERIC:
         case CLASS_EL_DRUID:
-            szJointFN = "ChrSelect\\upc_el_rf_pri.n3joint"; // °üÀı ¼¼ÆÃ..
-            szAniFN = "ChrSelect\\upc_el_rf_wa.n3anim";     // ¿¡´Ï¸ŞÀÌ¼Ç ÆÄÀÏ ÀÌ¸§.. :-D;
+            szJointFN = "ChrSelect\\upc_el_rf_pri.n3joint"; // ê´€ì ˆ ì„¸íŒ…..
+            szAniFN = "ChrSelect\\upc_el_rf_wa.n3anim";     // ì—ë‹ˆë©”ì´ì…˜ íŒŒì¼ ì´ë¦„.. :-D;
             szPlug0FN = "ChrSelect\\wea_el_wand.n3cplug";
             szPlug1FN = "";
             break;
         }
         break;
     case RACE_EL_MAN:
-        // ¿¤¸ğ ³²ÀÚ´Â ÇöÀç Á÷¾÷ÀÌ ¼¼°³..(·Î±×, ¼ºÁ÷ÀÚ, Àü»ç)
+        // ì—˜ëª¨ ë‚¨ìëŠ” í˜„ì¬ ì§ì—…ì´ ì„¸ê°œ..(ë¡œê·¸, ì„±ì§ì, ì „ì‚¬)
         switch (pInfo->eClass) {
         case CLASS_EL_WARRIOR:
         case CLASS_EL_BLADE:
@@ -457,7 +457,7 @@ void CGameProcCharacterSelect::AddChr(e_ChrPos eCP, __CharacterSelectInfo * pInf
         }
         break;
     case RACE_KA_ARKTUAREK:
-        // Ä«·ç½º Á÷¾÷ ÇÏ³ª.. ¿Â¸® Àü»ç..
+        // ì¹´ë£¨ìŠ¤ ì§ì—… í•˜ë‚˜.. ì˜¨ë¦¬ ì „ì‚¬..
         szJointFN = "ChrSelect\\upc_ka_at_wa.n3joint";
         szAniFN = "ChrSelect\\upc_ka_at_wa.n3anim";
         szPlug0FN = "ChrSelect\\wea_ka_great_axe.n3cplug";
@@ -490,8 +490,8 @@ void CGameProcCharacterSelect::AddChr(e_ChrPos eCP, __CharacterSelectInfo * pInf
         szPlug1FN = "";
         break;
     case RACE_KA_PURITUAREK:
-        szJointFN = "ChrSelect\\upc_el_rf_pri.n3joint"; // °üÀı ¼¼ÆÃ..
-        szAniFN = "ChrSelect\\upc_el_rf_wa.n3anim";     // ¿¡´Ï¸ŞÀÌ¼Ç ÆÄÀÏ ÀÌ¸§.. :-D;
+        szJointFN = "ChrSelect\\upc_el_rf_pri.n3joint"; // ê´€ì ˆ ì„¸íŒ…..
+        szAniFN = "ChrSelect\\upc_el_rf_wa.n3anim";     // ì—ë‹ˆë©”ì´ì…˜ íŒŒì¼ ì´ë¦„.. :-D;
         szPlug0FN = "ChrSelect\\wea_ka_mace.n3cplug";
         szPlug1FN = "";
         break;
@@ -499,30 +499,30 @@ void CGameProcCharacterSelect::AddChr(e_ChrPos eCP, __CharacterSelectInfo * pInf
         return;
     }
 
-    m_pChrs[iPosIndex]->JointSet(szJointFN); // °üÀı ¼¼ÆÃ..
-    m_pChrs[iPosIndex]->AniCtrlSet(szAniFN); // ¿¡´Ï¸ŞÀÌ¼Ç ÆÄÀÏ ÀÌ¸§.. :-D;
+    m_pChrs[iPosIndex]->JointSet(szJointFN); // ê´€ì ˆ ì„¸íŒ…..
+    m_pChrs[iPosIndex]->AniCtrlSet(szAniFN); // ì—ë‹ˆë©”ì´ì…˜ íŒŒì¼ ì´ë¦„.. :-D;
     m_pChrs[iPosIndex]->PlugSet(0, szPlug0FN);
     m_pChrs[iPosIndex]->PlugSet(1, szPlug1FN);
 
-    // »óÃ¼..
+    // ìƒì²´..
     this->AddChrPart(m_pChrs[iPosIndex], pLooks, PART_POS_UPPER, pInfo->dwItemUpper, pInfo->iItemUpperDurability);
-    // ÇÏÃ¼
+    // í•˜ì²´
     __TABLE_ITEM_BASIC * pItemUpper = this->s_pTbl_Items_Basic->Find(pInfo->dwItemUpper);
     if (pItemUpper && pItemUpper->byIsRobeType) {
-        m_pChrs[iPosIndex]->PartSet(PART_POS_LOWER, ""); // ÇÏÃ¼ÀÏ °æ¿ì »óÃ¼¿¡ ·Îºê¸¦ ÀÔ¾úÀ¸¸é ..
+        m_pChrs[iPosIndex]->PartSet(PART_POS_LOWER, ""); // í•˜ì²´ì¼ ê²½ìš° ìƒì²´ì— ë¡œë¸Œë¥¼ ì…ì—ˆìœ¼ë©´ ..
     } else {
         this->AddChrPart(m_pChrs[iPosIndex], pLooks, PART_POS_LOWER, pInfo->dwItemLower,
-                         pInfo->iItemLowerDurability); //¾Æ´Ô ÀÔÈ÷°í...
+                         pInfo->iItemLowerDurability); //ì•„ë‹˜ ì…íˆê³ ...
     }
-    // ÆÈ
+    // íŒ”
     this->AddChrPart(m_pChrs[iPosIndex], pLooks, PART_POS_HANDS, pInfo->dwItemGloves, pInfo->iItemGlovesDurability);
-    // ´Ù¸®
+    // ë‹¤ë¦¬
     this->AddChrPart(m_pChrs[iPosIndex], pLooks, PART_POS_FEET, pInfo->dwItemShoes, pInfo->iItemShoesDurability);
 
     char        szBuff[256] = "";
     std::string szResrcFN;
 
-    // ¾ó±¼ -
+    // ì–¼êµ´ -
     if (!pLooks->szPartFNs[PART_POS_FACE].empty()) {
         char szBuff[256] = "", szDir[128] = "", szFName[128] = "", szExt[16] = "";
         ::_splitpath(pLooks->szPartFNs[PART_POS_FACE].c_str(), NULL, szDir, szFName, szExt);
@@ -530,20 +530,20 @@ void CGameProcCharacterSelect::AddChr(e_ChrPos eCP, __CharacterSelectInfo * pInf
         m_pChrs[iPosIndex]->PartSet(PART_POS_FACE, szBuff);
     }
 
-    // ¸Ó¸®Ä«¶ô È¤Àº Çï¸ä -
+    // ë¨¸ë¦¬ì¹´ë½ í˜¹ì€ í—¬ë©§ -
     __TABLE_ITEM_BASIC * pItemHelmet = this->s_pTbl_Items_Basic->Find(pInfo->dwItemHelmet);
-    if (pItemHelmet && pItemHelmet->dwIDResrc) // Çï¸ä¾ÆÀÌÅÛÀÇ ¸®¼Ò½º(±×¸²ÀÌ ÀÖ´Â°Å¸é..)
+    if (pItemHelmet && pItemHelmet->dwIDResrc) // í—¬ë©§ì•„ì´í…œì˜ ë¦¬ì†ŒìŠ¤(ê·¸ë¦¼ì´ ìˆëŠ”ê±°ë©´..)
     {
         this->AddChrPart(m_pChrs[iPosIndex], pLooks, PART_POS_HAIR_HELMET, pInfo->dwItemHelmet,
                          pInfo->iItemHelmetDurability);
-    } else if (!pLooks->szPartFNs[PART_POS_HAIR_HELMET].empty()) // ¾ÆÀÌÅÛÀÌ ¾øÀ¸¸é ±âº» ¸Ó¸®..
+    } else if (!pLooks->szPartFNs[PART_POS_HAIR_HELMET].empty()) // ì•„ì´í…œì´ ì—†ìœ¼ë©´ ê¸°ë³¸ ë¨¸ë¦¬..
     {
         char szBuff[256] = "", szDir[128] = "", szFName[128] = "", szExt[16] = "";
         ::_splitpath(pLooks->szPartFNs[PART_POS_HAIR_HELMET].c_str(), NULL, szDir, szFName, szExt);
         sprintf(szBuff, "%s%s%.2d%s", szDir, szFName, pInfo->iHair, szExt);
         m_pChrs[iPosIndex]->PartSet(PART_POS_HAIR_HELMET, szBuff);
     } else {
-        m_pChrs[iPosIndex]->PartSet(PART_POS_HAIR_HELMET, ""); // Çï¸äµµ ¾Æ´Ï°í ¸Ó¸®Ä«¶ôµµ ¾øÀ¸¸é.. ´ë¸Ó¸®´Ù!
+        m_pChrs[iPosIndex]->PartSet(PART_POS_HAIR_HELMET, ""); // í—¬ë©§ë„ ì•„ë‹ˆê³  ë¨¸ë¦¬ì¹´ë½ë„ ì—†ìœ¼ë©´.. ëŒ€ë¨¸ë¦¬ë‹¤!
     }
 
     __Quaternion qt;
@@ -622,7 +622,7 @@ void CGameProcCharacterSelect::AddChrPart(CN3Chr * pChr, const __TABLE_PLAYER_LO
 
     CGameProcedure::MakeResrcFileNameForUPC(pItem, &szResrcFN, NULL, ePartPosTmp, ePlugPosTmp);
     if (szResrcFN.empty()) {
-        pPart = pChr->PartSet(ePartPos, pLooks->szPartFNs[ePartPos]); // ±âº» ÆÄÆ®
+        pPart = pChr->PartSet(ePartPos, pLooks->szPartFNs[ePartPos]); // ê¸°ë³¸ íŒŒíŠ¸
     } else {
         pPart = pChr->PartSet(ePartPos, szResrcFN);
     }
@@ -652,7 +652,7 @@ void CGameProcCharacterSelect::MsgRecv_DeleteChr(DataPack * pDataPack, int & iOf
         }
 
         if ((m_pChrs[0] == NULL) && (m_pChrs[1] == NULL) && (m_pChrs[2] == NULL)) {
-            CGameProcedure::ProcActiveSet((CGameProcedure *)s_pProcNationSelect); // ±¹°¡ ¼±ÅÃÀ¸·Î °£´Ù..
+            CGameProcedure::ProcActiveSet((CGameProcedure *)s_pProcNationSelect); // êµ­ê°€ ì„ íƒìœ¼ë¡œ ê°„ë‹¤..
         }
     }
 }
@@ -664,7 +664,7 @@ int CGameProcCharacterSelect::MsgRecv_VersionCheck(DataPack * pDataPack, int & i
         if (s_bNeedReportVersionCheck) {
             CGameProcedure::MsgSend_GameServerLogIn();
         } else {
-            MsgSend_CharacterSelect(); // °ÔÀÓ ¼­¹ö¿¡ ·Î±×ÀÎ..
+            MsgSend_CharacterSelect(); // ê²Œì„ ì„œë²„ì— ë¡œê·¸ì¸..
         }
     }
 
@@ -692,7 +692,7 @@ bool CGameProcCharacterSelect::MsgRecv_CharacterSelect(DataPack * pDataPack, int
     bool bSuccess = CGameProcedure::MsgRecv_CharacterSelect(pDataPack, iOffset);
     s_bNeedReportVersionCheck = false;
     if (bSuccess) {
-        this->CharacterSelect(); // Ä³¸¯ÅÍ¸¦ ÀÏÀ¸Å²´Ù..
+        this->CharacterSelect(); // ìºë¦­í„°ë¥¼ ì¼ìœ¼í‚¨ë‹¤..
     } else {
         this->CharacterSelectFailed();
     }
@@ -704,7 +704,7 @@ void CGameProcCharacterSelect::ProcessOnReturn() {
     if (!m_bReceivedCharacterSelect) {
         return;
     }
-    //¿£ÅÍÅ° ´­·ÈÀ»¶§ ¶óÀÌÆ® ¶§¹®¿¡ ±ôºıÀÌ´Â°Í ¾ø¾Ö±â À§ÇØ...
+    //ì—”í„°í‚¤ ëˆŒë ¸ì„ë•Œ ë¼ì´íŠ¸ ë•Œë¬¸ì— ê¹œë¹¡ì´ëŠ”ê²ƒ ì—†ì• ê¸° ìœ„í•´...
 
     if (m_eCurProcess != PROCESS_ROTATEING) {
         int iIndex;
@@ -740,7 +740,7 @@ void CGameProcCharacterSelect::ProcessOnReturn() {
         }
 
         s_SndMgr.ReleaseStreamObj(&(CGameProcedure::s_pSnd_BGM));
-        CGameProcedure::ProcActiveSet((CGameProcedure *)s_pProcMain); // Ä³¸¯ÅÍ °í¸£±â¿¡ ¼º°øÇÏ¸é.. ¸ŞÀÎÀ¸·Î °¡ÀÚ!!
+        CGameProcedure::ProcActiveSet((CGameProcedure *)s_pProcMain); // ìºë¦­í„° ê³ ë¥´ê¸°ì— ì„±ê³µí•˜ë©´.. ë©”ì¸ìœ¼ë¡œ ê°€ì!!
         // CGameProcedure::s_pEng->RestoreLighting();
         this->s_pUILoading->Render("Loading data...", 0);
     }
@@ -897,7 +897,7 @@ void CGameProcCharacterSelect::MsgSend_DeleteChr(const std::string & szKey) {
         return;
     }
 
-    // ÇöÀç »óÅÂ°¡ Ä³¸¯ÅÍ¸¦ ¼±ÅÃÇÏÁö ¾ÊÀº »óÅÂ..
+    // í˜„ì¬ ìƒíƒœê°€ ìºë¦­í„°ë¥¼ ì„ íƒí•˜ì§€ ì•Šì€ ìƒíƒœ..
     if (m_eCurProcess != PROCESS_PRESELECT) {
         return;
     }
@@ -919,14 +919,14 @@ void CGameProcCharacterSelect::MsgSend_DeleteChr(const std::string & szKey) {
 
     BYTE byBuff[64];
     int  iOffset = 0;
-    CAPISocket::MP_AddByte(byBuff, iOffset, N3_DELETE_CHARACTER);                   // Ä¿¸àµå.
-    CAPISocket::MP_AddByte(byBuff, iOffset, (BYTE)iIndex);                          // ÀÎµ¦½º - b
-    CAPISocket::MP_AddShort(byBuff, iOffset, (BYTE)m_InfoChrs[iIndex].szID.size()); // ¾ÆÀÌµğ ±æÀÌ
-    CAPISocket::MP_AddString(byBuff, iOffset, m_InfoChrs[iIndex].szID);             // ¾ÆÀÌµğ ¹®ÀÚ¿­
-    CAPISocket::MP_AddShort(byBuff, iOffset, szKey.size());                         // ÁÖ¹Îµî·Ï¹øÈ£ ±æÀÌ
-    CAPISocket::MP_AddString(byBuff, iOffset, szKey);                               // ÁÖ¹Îµî·Ï¹øÈ£ ¹®ÀÚ¿­
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_DELETE_CHARACTER);                   // ì»¤ë©˜ë“œ.
+    CAPISocket::MP_AddByte(byBuff, iOffset, (BYTE)iIndex);                          // ì¸ë±ìŠ¤ - b
+    CAPISocket::MP_AddShort(byBuff, iOffset, (BYTE)m_InfoChrs[iIndex].szID.size()); // ì•„ì´ë”” ê¸¸ì´
+    CAPISocket::MP_AddString(byBuff, iOffset, m_InfoChrs[iIndex].szID);             // ì•„ì´ë”” ë¬¸ìì—´
+    CAPISocket::MP_AddShort(byBuff, iOffset, szKey.size());                         // ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ ê¸¸ì´
+    CAPISocket::MP_AddString(byBuff, iOffset, szKey);                               // ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ ë¬¸ìì—´
 
-    s_pSocket->Send(byBuff, iOffset); // º¸³½´Ù
+    s_pSocket->Send(byBuff, iOffset); // ë³´ë‚¸ë‹¤
 }
 
 void CGameProcCharacterSelect::CheckJobState() {
@@ -1053,12 +1053,12 @@ void CGameProcCharacterSelect::CharacterSelect() {
         }
     }
 
-    m_bReceivedCharacterSelect = true;   // Ä³¸¯ÅÍ °í¸£±â ¿Ï·á..
-    s_pUIMgr->EnableOperationSet(false); // ÀÏ´Ü °í¸£¸é UI ¾ÈµÇ°Ô ÇÑ´Ù...
+    m_bReceivedCharacterSelect = true;   // ìºë¦­í„° ê³ ë¥´ê¸° ì™„ë£Œ..
+    s_pUIMgr->EnableOperationSet(false); // ì¼ë‹¨ ê³ ë¥´ë©´ UI ì•ˆë˜ê²Œ í•œë‹¤...
 }
 
 void CGameProcCharacterSelect::CharacterSelectFailed() {
-    m_bReceivedCharacterSelect = false; // Ä³¸¯ÅÍ °í¸£±â ½ÇÆĞ..
+    m_bReceivedCharacterSelect = false; // ìºë¦­í„° ê³ ë¥´ê¸° ì‹¤íŒ¨..
     std::string szErr;
     ::_LoadStringFromResource(IDS_ERR_CHARACTER_SELECT, szErr);
     CGameProcedure::MessageBoxPost(szErr, "", MB_OK, BEHAVIOR_EXIT);
@@ -1102,7 +1102,7 @@ void CGameProcCharacterSelect::DoSelectedChrProc() {
     } else {
         s_SndMgr.ReleaseStreamObj(&(CGameProcedure::s_pSnd_BGM));
         CGameProcedure::ProcActiveSet(
-            (CGameProcedure *)s_pProcMain); // Ä³¸¯ÅÍ ¹Ş¾Ò°í.. ¿¡´Ï¸ŞÀÌ¼Çµµ ³¡³µÀ¸¸é ¸ŞÀÎÀ¸·Î ³Ñ¾î°¡ÀÚ..!!
+            (CGameProcedure *)s_pProcMain); // ìºë¦­í„° ë°›ì•˜ê³ .. ì—ë‹ˆë©”ì´ì…˜ë„ ëë‚¬ìœ¼ë©´ ë©”ì¸ìœ¼ë¡œ ë„˜ì–´ê°€ì..!!
                                             //        CGameProcedure::s_pEng->RestoreLighting();
     }
 }
@@ -1308,35 +1308,35 @@ void CGameProcCharacterSelect::DecreseLightFactor() {
 }
 
 void CGameProcCharacterSelect::MsgRecv_AllCharacterInfo(DataPack * pDataPack, int & iOffset) {
-    int iResult = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // °á°ú..
+    int iResult = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // ê²°ê³¼..
     if (0x1 == iResult) {
         for (int i = 0; i < MAX_AVAILABLE_CHARACTER; i++) {
-            int iIDLength = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // Ä³¸¯ÅÍ ¾ÆÀÌµğ ±æÀÌ s,
+            int iIDLength = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // ìºë¦­í„° ì•„ì´ë”” ê¸¸ì´ s,
             CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, m_InfoChrs[i].szID,
-                                        iIDLength); // Ä³¸¯ÅÍ ¾ÆÀÌµğ ¹®ÀÚ¿­ str
+                                        iIDLength); // ìºë¦­í„° ì•„ì´ë”” ë¬¸ìì—´ str
 
-            m_InfoChrs[i].eRace = (e_Race)(CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset));    // Á¾Á· b
-            m_InfoChrs[i].eClass = (e_Class)(CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)); // Á÷¾÷ b
-            m_InfoChrs[i].iLevel = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);             // ·¹º§ b
-            m_InfoChrs[i].iFace = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);              // ¾ó±¼¸ğ¾ç b
-            m_InfoChrs[i].iHair = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);              // ¸Ó¸®¸ğ¾ç b
+            m_InfoChrs[i].eRace = (e_Race)(CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset));    // ì¢…ì¡± b
+            m_InfoChrs[i].eClass = (e_Class)(CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset)); // ì§ì—… b
+            m_InfoChrs[i].iLevel = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);             // ë ˆë²¨ b
+            m_InfoChrs[i].iFace = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);              // ì–¼êµ´ëª¨ì–‘ b
+            m_InfoChrs[i].iHair = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);              // ë¨¸ë¦¬ëª¨ì–‘ b
             m_InfoChrs[i].iZone = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);              // zone number
 
-            m_InfoChrs[i].dwItemHelmet = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);          // Åõ±¸ dw
-            m_InfoChrs[i].iItemHelmetDurability = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // ³»±¸¼º°ª
-            m_InfoChrs[i].dwItemUpper = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);           // »óÃ¼ dw
-            m_InfoChrs[i].iItemUpperDurability = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);  // ³»±¸¼º°ª
-            m_InfoChrs[i].dwItemCloak = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset); // ¾î±ú(¸ÁÅä) dw
-            m_InfoChrs[i].iItemCloakDurability = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);  // ³»±¸¼º°ª
-            m_InfoChrs[i].dwItemLower = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);           // ÇÏÃ¼ dw
-            m_InfoChrs[i].iItemLowerDurability = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);  // ³»±¸¼º°ª
-            m_InfoChrs[i].dwItemGloves = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);          // Àå°© dw
-            m_InfoChrs[i].iItemGlovesDurability = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // ³»±¸¼º°ª
-            m_InfoChrs[i].dwItemShoes = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);           // ½Å¹ß dw
-            m_InfoChrs[i].iItemShoesDurability = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);  // ³»±¸¼º°ª
+            m_InfoChrs[i].dwItemHelmet = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);          // íˆ¬êµ¬ dw
+            m_InfoChrs[i].iItemHelmetDurability = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // ë‚´êµ¬ì„±ê°’
+            m_InfoChrs[i].dwItemUpper = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);           // ìƒì²´ dw
+            m_InfoChrs[i].iItemUpperDurability = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // ë‚´êµ¬ì„±ê°’
+            m_InfoChrs[i].dwItemCloak = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset); // ì–´ê¹¨(ë§í† ) dw
+            m_InfoChrs[i].iItemCloakDurability = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // ë‚´êµ¬ì„±ê°’
+            m_InfoChrs[i].dwItemLower = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);          // í•˜ì²´ dw
+            m_InfoChrs[i].iItemLowerDurability = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // ë‚´êµ¬ì„±ê°’
+            m_InfoChrs[i].dwItemGloves = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);         // ì¥ê°‘ dw
+            m_InfoChrs[i].iItemGlovesDurability = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // ë‚´êµ¬ì„±ê°’
+            m_InfoChrs[i].dwItemShoes = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);           // ì‹ ë°œ dw
+            m_InfoChrs[i].iItemShoesDurability = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // ë‚´êµ¬ì„±ê°’
         }
 
-        // Ä³¸¯ÅÍ Ãß°¡..
+        // ìºë¦­í„° ì¶”ê°€..
         if (m_InfoChrs[0].szID.size() > 0) {
             AddChr(POS_CENTER, &(m_InfoChrs[0]));
         }
@@ -1347,7 +1347,7 @@ void CGameProcCharacterSelect::MsgRecv_AllCharacterInfo(DataPack * pDataPack, in
             AddChr(POS_RIGHT, &(m_InfoChrs[2]));
         }
     } else {
-        this->MsgSend_RequestAllCharacterInfo(); // ´Ù½Ã Á¤º¸ ¿äÃ»..
+        this->MsgSend_RequestAllCharacterInfo(); // ë‹¤ì‹œ ì •ë³´ ìš”ì²­..
         return;
     }
 }
@@ -1355,14 +1355,14 @@ void CGameProcCharacterSelect::MsgRecv_AllCharacterInfo(DataPack * pDataPack, in
 void CGameProcCharacterSelect::MsgSend_RequestAllCharacterInfo() {
     BYTE byBuff[4];
     int  iOffset = 0;
-    CAPISocket::MP_AddByte(byBuff, iOffset, N3_ALL_CHARACTER_INFO_REQUEST); // Ä¿¸àµå.
-    s_pSocket->Send(byBuff, iOffset);                                       // º¸³½´Ù
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_ALL_CHARACTER_INFO_REQUEST); // ì»¤ë©˜ë“œ.
+    s_pSocket->Send(byBuff, iOffset);                                       // ë³´ë‚¸ë‹¤
 }
 
 void CGameProcCharacterSelect::MsgSend_CharacterSelect() // virtual
 {
     CGameProcedure::MsgSend_CharacterSelect();
-    s_pUIMgr->EnableOperationSet(false); // UI ¸¦ Á¶ÀÛ ¸øÇÏ°Ô ÇÑ´Ù..
+    s_pUIMgr->EnableOperationSet(false); // UI ë¥¼ ì¡°ì‘ ëª»í•˜ê²Œ í•œë‹¤..
 }
 
 bool CGameProcCharacterSelect::ProcessPacket(DataPack * pDataPack, int & iOffset) {
@@ -1373,12 +1373,12 @@ bool CGameProcCharacterSelect::ProcessPacket(DataPack * pDataPack, int & iOffset
         return true;
     }
 
-    int iCmd = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // Ä¿¸àµå ÆÄ½Ì..
-    switch (iCmd)                                                      // Ä¿¸àµå¿¡ ´Ù¶ó¼­ ºĞ±â..
+    int iCmd = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // ì»¤ë©˜ë“œ íŒŒì‹±..
+    switch (iCmd)                                                      // ì»¤ë©˜ë“œì— ë‹¤ë¼ì„œ ë¶„ê¸°..
     {
-    case N3_ALL_CHARACTER_INFO_REQUEST: // Ä³¸¯ÅÍ ¼±ÅÃ ¸Ş½ÃÁö..
+    case N3_ALL_CHARACTER_INFO_REQUEST: // ìºë¦­í„° ì„ íƒ ë©”ì‹œì§€..
         this->MsgRecv_AllCharacterInfo(pDataPack, iOffset);
-        s_pUIMgr->EnableOperationSet(true); // Ä³¸¯ÅÍ Á¤º¸°¡ ´Ù¿À¸é UI Á¶ÀÛÇÏ°Ô ÇÑ´Ù..
+        s_pUIMgr->EnableOperationSet(true); // ìºë¦­í„° ì •ë³´ê°€ ë‹¤ì˜¤ë©´ UI ì¡°ì‘í•˜ê²Œ í•œë‹¤..
         return true;
     case N3_DELETE_CHARACTER:
         this->MsgRecv_DeleteChr(pDataPack, iOffset);
@@ -1392,9 +1392,9 @@ void CGameProcCharacterSelect::CharacterSelectOrCreate() {
     CGameProcedure::MessageBoxClose(-1);
 
     int iIndex = CGameProcedure::s_iChrSelectIndex;
-    if (NULL == m_pChrs[iIndex]) // Ä³¸¯ÅÍ°¡ ¾øÀ¸¸é..
+    if (NULL == m_pChrs[iIndex]) // ìºë¦­í„°ê°€ ì—†ìœ¼ë©´..
     {
-        CGameProcedure::ProcActiveSet((CGameProcedure *)s_pProcCharacterCreate); // Ä³¸¯ÅÍ »ı¼º ÇÁ·Î½ÃÀú¸¦ È£ÃâÇÑ´Ù..
+        CGameProcedure::ProcActiveSet((CGameProcedure *)s_pProcCharacterCreate); // ìºë¦­í„° ìƒì„± í”„ë¡œì‹œì €ë¥¼ í˜¸ì¶œí•œë‹¤..
     } else {
         s_pPlayer->m_InfoExt.iZoneInit = 0x01;
         s_pPlayer->m_InfoExt.iZoneCur = m_InfoChrs[iIndex].iZone;

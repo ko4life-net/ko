@@ -86,7 +86,7 @@
 #define WIZ_MARKET_BBS        0x50 // For the market bulletin board service...
 #define WIZ_KICKOUT           0x51 // Account ID forbid duplicate connection
 #define WIZ_CLIENT_EVENT      0x52 // Client Event (for quest)
-#define I_DONT_KNOW           0x53 // Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¹«½¼ ¿¡ÄÚ·Î ¾²°í ÀÖµ¥¿ä.
+#define I_DONT_KNOW           0x53 // í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë¬´ìŠ¨ ì—ì½”ë¡œ ì“°ê³  ìˆë°ìš”.
 #define WIZ_WEIGHT_CHANGE     0x54 // Notify change of weight
 #define WIZ_SELECT_MSG        0x55 // Select Event Message...
 #define WIZ_NPC_SAY           0x56 // Select Event Message...
@@ -164,24 +164,24 @@
 ////////////////////////////////////////////////////////////////
 // Knights Packet sub define
 ////////////////////////////////////////////////////////////////
-#define KNIGHTS_CREATE      0x01 // »ı¼º
-#define KNIGHTS_JOIN        0x02 // °¡ÀÔ
-#define KNIGHTS_WITHDRAW    0x03 // Å»Åğ
-#define KNIGHTS_REMOVE      0x04 // ¸â¹ö »èÁ¦
-#define KNIGHTS_DESTROY     0x05 // »Ç°³±â
-#define KNIGHTS_ADMIT       0x06 // ¸â¹ö °¡ÀÔ Çã°¡
-#define KNIGHTS_REJECT      0x07 // ¸â¹ö °¡ÀÔ °ÅÀı
-#define KNIGHTS_PUNISH      0x08 // ¸â¹ö Â¡°è
-#define KNIGHTS_CHIEF       0x09 // ´ÜÀå ÀÓ¸í
-#define KNIGHTS_VICECHIEF   0x0A // ºÎ´ÜÀå ÀÓ¸í
-#define KNIGHTS_OFFICER     0x0B // Àå±³ÀÓ¸í
-#define KNIGHTS_ALLLIST_REQ 0x0C // ¸®½ºÆ®¸¦ 10°³ ´ÜÀ§·Î Page ¿äÃ»
-#define KNIGHTS_MEMBER_REQ  0x0D // ¸ğµç ¸â¹ö ¿äÃ»
-#define KNIGHTS_CURRENT_REQ 0x0E // ÇöÀç Á¢¼Ó ¸®½ºÆ®
-#define KNIGHTS_STASH       0x0F // ±â»ç´Ü Ã¢°í
-#define KNIGHTS_MODIFY_FAME 0x10 // ¸â¹öÀÇ Á÷À§ º¯°æ.. ÇØ´ç ¸â¹ö¿¡°Ô °£´Ù
-#define KNIGHTS_JOIN_REQ    0x11 // ÇØ´ç¸â¹ö¿¡°Ô °¡ÀÔ¿äÃ»À» ÇÑ´Ù
-#define KNIGHTS_LIST_REQ    0x12 // ±â»ç´Ü ¸®½ºÆ®¸¦  ¿äÃ» ( index °Ë»ö )
+#define KNIGHTS_CREATE      0x01 // ìƒì„±
+#define KNIGHTS_JOIN        0x02 // ê°€ì…
+#define KNIGHTS_WITHDRAW    0x03 // íƒˆí‡´
+#define KNIGHTS_REMOVE      0x04 // ë©¤ë²„ ì‚­ì œ
+#define KNIGHTS_DESTROY     0x05 // ë½€ê°œê¸°
+#define KNIGHTS_ADMIT       0x06 // ë©¤ë²„ ê°€ì… í—ˆê°€
+#define KNIGHTS_REJECT      0x07 // ë©¤ë²„ ê°€ì… ê±°ì ˆ
+#define KNIGHTS_PUNISH      0x08 // ë©¤ë²„ ì§•ê³„
+#define KNIGHTS_CHIEF       0x09 // ë‹¨ì¥ ì„ëª…
+#define KNIGHTS_VICECHIEF   0x0A // ë¶€ë‹¨ì¥ ì„ëª…
+#define KNIGHTS_OFFICER     0x0B // ì¥êµì„ëª…
+#define KNIGHTS_ALLLIST_REQ 0x0C // ë¦¬ìŠ¤íŠ¸ë¥¼ 10ê°œ ë‹¨ìœ„ë¡œ Page ìš”ì²­
+#define KNIGHTS_MEMBER_REQ  0x0D // ëª¨ë“  ë©¤ë²„ ìš”ì²­
+#define KNIGHTS_CURRENT_REQ 0x0E // í˜„ì¬ ì ‘ì† ë¦¬ìŠ¤íŠ¸
+#define KNIGHTS_STASH       0x0F // ê¸°ì‚¬ë‹¨ ì°½ê³ 
+#define KNIGHTS_MODIFY_FAME 0x10 // ë©¤ë²„ì˜ ì§ìœ„ ë³€ê²½.. í•´ë‹¹ ë©¤ë²„ì—ê²Œ ê°„ë‹¤
+#define KNIGHTS_JOIN_REQ    0x11 // í•´ë‹¹ë©¤ë²„ì—ê²Œ ê°€ì…ìš”ì²­ì„ í•œë‹¤
+#define KNIGHTS_LIST_REQ    0x12 // ê¸°ì‚¬ë‹¨ ë¦¬ìŠ¤íŠ¸ë¥¼  ìš”ì²­ ( index ê²€ìƒ‰ )
 
 ////////////////////////////////////////////////////////////////
 // Operator Autority Packet define

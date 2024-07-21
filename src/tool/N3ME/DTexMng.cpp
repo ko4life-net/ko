@@ -115,7 +115,7 @@ void CDTexMng::DelDTexByID(int id) {
 
 //
 //    Load..
-//    DTexÁ¤º¸µé°ú ½ÇÁ¦ ÅØ½ºÃÄ ¼Ò½ºµéÀ» ÀĞ¾îµéÀÎ´Ù.
+//    DTexì •ë³´ë“¤ê³¼ ì‹¤ì œ í…ìŠ¤ì³ ì†ŒìŠ¤ë“¤ì„ ì½ì–´ë“¤ì¸ë‹¤.
 //
 void CDTexMng::LoadFromFile(CString RealFileName) {
     Init(m_pMainFrm);
@@ -151,13 +151,13 @@ void CDTexMng::LoadFromFile(CString RealFileName) {
 
             ProgressBar.StepIt();
 
-            //    ½ÇÁ¦ ÅØ½ºÃÄ ¼Ò½º¸¦ ÀĞ°í..
+            //    ì‹¤ì œ í…ìŠ¤ì³ ì†ŒìŠ¤ë¥¼ ì½ê³ ..
             CDTex * pDTex = new CDTex;
             pDTex->Init();
             pDTex->m_ID = i;
             pDTex->m_pTex->LoadFromFile(szDTexFileName);
 
-            //    ±×¿¡ °üÇÑ Å¸ÀÏ Á¤º¸µéÀ» ÀĞ°í..
+            //    ê·¸ì— ê´€í•œ íƒ€ì¼ ì •ë³´ë“¤ì„ ì½ê³ ..
             char szDir[_MAX_DIR], szFName[_MAX_FNAME];
             _splitpath(szDTexFileName, NULL, szDir, szFName, NULL);
             wsprintf(szDTexInfoFileName, "%s%s%s.dif", s_szPath.c_str(), szDir, szFName); // Texture Information file
@@ -209,7 +209,7 @@ void CDTexMng::LoadFromFile(CString RealFileName) {
                 m_NextID = id + 1;
             }
 
-            //    ½ÇÁ¦ ÅØ½ºÃÄ ¼Ò½º¸¦ ÀĞ°í..
+            //    ì‹¤ì œ í…ìŠ¤ì³ ì†ŒìŠ¤ë¥¼ ì½ê³ ..
             CDTex * pDTex = new CDTex;
             pDTex->Init();
             pDTex->m_ID = id;
@@ -234,7 +234,7 @@ void CDTexMng::LoadFromFile(CString RealFileName) {
             }
 
             if (version == 1) {
-                //    ±×¿¡ °üÇÑ Å¸ÀÏ Á¤º¸µéÀ» ÀĞ°í..
+                //    ê·¸ì— ê´€í•œ íƒ€ì¼ ì •ë³´ë“¤ì„ ì½ê³ ..
                 char szDir[_MAX_DIR], szFName[_MAX_FNAME];
                 _splitpath(szDTexFileName, NULL, szDir, szFName, NULL);
                 wsprintf(szDTexInfoFileName, "%s%s%s.dif", s_szPath.c_str(), szDir,
@@ -269,7 +269,7 @@ void CDTexMng::LoadFromFile(CString RealFileName) {
 void CDTexMng::SaveToFile(CString RealFileName) {
     char szDTexDir[_MAX_PATH];
     wsprintf(szDTexDir, "%sDTex", s_szPath.c_str());
-    CreateDirectory("dtex", NULL); // °æ·Î ¸¸µé°í..
+    CreateDirectory("dtex", NULL); // ê²½ë¡œ ë§Œë“¤ê³ ..
 
     char szDTexInfoFileName[_MAX_PATH];
     wsprintf(szDTexInfoFileName, "%sDTEX\\%s.dtx", s_szPath.c_str(), (LPCTSTR)RealFileName);
@@ -304,15 +304,15 @@ void CDTexMng::SaveToFile(CString RealFileName) {
 
         /*
         //
-        //    version1 ÀúÀå¹æ½Ä...
-        //    difÆÄÀÏ¸¸µé±â...
+        //    version1 ì €ì¥ë°©ì‹...
+        //    difíŒŒì¼ë§Œë“¤ê¸°...
         //
         char szDir[_MAX_DIR], szFName[_MAX_FNAME];
         
         _splitpath(szDTexFileName, NULL, szDir, szFName, NULL);
         wsprintf(szDTexInfoFileName, "%s%s%s.dif", s_szPath.c_str(), szDir, szFName); // Texture Information file
 
-        //    ±×¿¡ °üÇÑ Å¸ÀÏ Á¤º¸µéÀ» ÀĞ°í..
+        //    ê·¸ì— ê´€í•œ íƒ€ì¼ ì •ë³´ë“¤ì„ ì½ê³ ..
         HANDLE hFile = CreateFile(szDTexInfoFileName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
         if(hFile != INVALID_HANDLE_VALUE)
@@ -332,11 +332,11 @@ void CDTexMng::SaveToFile(CString RealFileName) {
 }
 
 //
-//    °ÔÀÓ¿¡¼­ ¾µ¼ö ÀÖ´Â Å¸ÀÏ ÅØ½ºÃÄ Æ÷¸äÀ¸·Î º¯È¯ÈÄ ÀúÀå..
+//    ê²Œì„ì—ì„œ ì“¸ìˆ˜ ìˆëŠ” íƒ€ì¼ í…ìŠ¤ì³ í¬ë©§ìœ¼ë¡œ ë³€í™˜í›„ ì €ì¥..
 //
 void CDTexMng::SaveGameTile() {
     D3DFORMAT      Format;
-    int            Size = DTEX_SIZE / NUM_DTEXTILE; //´ÜÀ§ÅØ½ºÃÄÀÇ ±æÀÌ..
+    int            Size = DTEX_SIZE / NUM_DTEXTILE; //ë‹¨ìœ„í…ìŠ¤ì³ì˜ ê¸¸ì´..
     D3DLOCKED_RECT d3dlr;
 
     HANDLE hFile;
@@ -381,7 +381,7 @@ void CDTexMng::SaveGameTile() {
                     CreateFile(szDTexGameFileName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
                 for (ix = 0; ix < NUM_DTEXTILE; ix++) {
-                    //ÅØ½ºÃÄ ¼­ÆäÀÌ½º ¸¸µé°í, ÅØ½ºÃÄ Ã¤¿ì°í, Çü½Ä º¯È¯ÇÏ°í, ÀúÀå.
+                    //í…ìŠ¤ì³ ì„œí˜ì´ìŠ¤ ë§Œë“¤ê³ , í…ìŠ¤ì³ ì±„ìš°ê³ , í˜•ì‹ ë³€í™˜í•˜ê³ , ì €ì¥.
                     TileTex.Create(Size, Size, Format, TRUE);
                     TileTex.Get()->LockRect(0, &d3dlrTarget, 0, 0);
                     pSourceImg = (char *)((char *)d3dlr.pBits + (ix * Size * Bits) + (iz * Size * d3dlr.Pitch));

@@ -14,27 +14,27 @@
 #define MAX_TYPE3_REPEAT 20
 #define MAX_TYPE4_BUFF   9
 
-#define MAX_ITEM_COUNT 9999 // ÇÑ ½½·Ô¿¡ °¡Áö´Â ÃÖ´ë È­»ì/¼ÛÆí °³¼ö
+#define MAX_ITEM_COUNT 9999 // í•œ ìŠ¬ë¡¯ì— ê°€ì§€ëŠ” ìµœëŒ€ í™”ì‚´/ì†¡íŽ¸ ê°œìˆ˜
 
 #define MAX_ID_SIZE   30
 #define MAX_PW_SIZE   12
 #define MAX_ITEM      28
-#define VIEW_DISTANCE 48 // °¡½Ã°Å¸®
+#define VIEW_DISTANCE 48 // ê°€ì‹œê±°ë¦¬
 
-const BYTE SLOT_MAX = 14;       // Âø¿ë ¾ÆÅÛ MAX
-const BYTE HAVE_MAX = 28;       // ¼ÒÀ¯ ¾ÆÅÛ MAX (ÀÎº¥Åä¸®Ã¢)
-const BYTE WAREHOUSE_MAX = 196; // Ã¢°í ¾ÆÀÌÅÛ MAX
+const BYTE SLOT_MAX = 14;       // ì°©ìš© ì•„í…œ MAX
+const BYTE HAVE_MAX = 28;       // ì†Œìœ  ì•„í…œ MAX (ì¸ë²¤í† ë¦¬ì°½)
+const BYTE WAREHOUSE_MAX = 196; // ì°½ê³  ì•„ì´í…œ MAX
 
 #define NPC_HAVE_ITEM_LIST 6
-#define ZONEITEM_MAX       2100000000 // Á¸¿¡ ¶³¾îÁö´Â ÃÖ´ë ¾ÆÀÌÅÛ¼ö...
+#define ZONEITEM_MAX       2100000000 // ì¡´ì— ë–¨ì–´ì§€ëŠ” ìµœëŒ€ ì•„ì´í…œìˆ˜...
 
-#define MAX_CLASS 26 // Á÷¾÷ MAX
-#define MAX_LEVEL 60 // ÃÖ°í·¾...
+#define MAX_CLASS 26 // ì§ì—… MAX
+#define MAX_LEVEL 60 // ìµœê³ ë ™...
 
 #define SERVER_INFO_START 0X01
 #define SERVER_INFO_END   0X02
 
-//////////////  Quest °ü·Ã Define ////////////////////////////
+//////////////  Quest ê´€ë ¨ Define ////////////////////////////
 #define MAX_EVENT            2000
 #define MAX_EVENT_SIZE       400
 #define MAX_EVENT_NUM        2000
@@ -44,8 +44,8 @@ const BYTE WAREHOUSE_MAX = 196; // Ã¢°í ¾ÆÀÌÅÛ MAX
 #define MAX_COUPON_ID_LENGTH 20
 #define MAX_CURRENT_EVENT    20
 
-// Áö±Ý ¾²ÀÌ´Â°Í¸¸ Á¤ÀÇ ÇØ ³ù½À´Ï´Ù.
-// logic°ü·Ã define
+// ì§€ê¸ˆ ì“°ì´ëŠ”ê²ƒë§Œ ì •ì˜ í•´ ë†¨ìŠµë‹ˆë‹¤.
+// logicê´€ë ¨ define
 #define LOGIC_CHECK_UNDER_WEIGHT 0X01
 #define LOGIC_CHECK_OVER_WEIGHT  0X02
 #define LOGIC_CHECK_SKILL_POINT  0X03
@@ -82,7 +82,7 @@ const BYTE WAREHOUSE_MAX = 196; // Ã¢°í ¾ÆÀÌÅÛ MAX
 #define LOGIC_CHECK_DAY                0x12
 */
 
-// ½ÇÇà°ü·Ã define
+// ì‹¤í–‰ê´€ë ¨ define
 #define EXEC_SAY             0X01
 #define EXEC_SELECT_MSG      0X02
 #define EXEC_RUN_EVENT       0X03
@@ -109,7 +109,7 @@ const BYTE WAREHOUSE_MAX = 196; // Ã¢°í ¾ÆÀÌÅÛ MAX
 #define EXEC_GIVE_NOAH                0x0B
 */
 
-// EVENT ½ÃÀÛ ¹øÈ£µé :)
+// EVENT ì‹œìž‘ ë²ˆí˜¸ë“¤ :)
 #define EVENT_POTION        1
 #define EVENT_LOGOS_ELMORAD 1001
 #define EVENT_LOGOS_KARUS   2001
@@ -137,25 +137,25 @@ const BYTE WAREHOUSE_MAX = 196; // Ã¢°í ¾ÆÀÌÅÛ MAX
 #define NPC_MONSTER          00
 #define NPC_GENERAL          01  //
 #define NPC_BOSS             03  // Unique Mop
-#define NPC_PATROL_GUARD     11  // °æºñº´
-#define NPC_MERCHANT         21  // »óÀÎ
-#define NPC_TINKER           22  // ´ëÀåÀåÀÌ
-#define NPC_WAREHOUSE        31  // Ã¢°íÁö±â
-#define NPC_CAPTAIN          35  // ÀüÁ÷
-#define NPC_OFFICER          36  // ±â»ç´Ü °ü¸® NPC
-#define NPC_CLERIC           37  // ´ë»çÁ¦ NPC
+#define NPC_PATROL_GUARD     11  // ê²½ë¹„ë³‘
+#define NPC_MERCHANT         21  // ìƒì¸
+#define NPC_TINKER           22  // ëŒ€ìž¥ìž¥ì´
+#define NPC_WAREHOUSE        31  // ì°½ê³ ì§€ê¸°
+#define NPC_CAPTAIN          35  // ì „ì§
+#define NPC_OFFICER          36  // ê¸°ì‚¬ë‹¨ ê´€ë¦¬ NPC
+#define NPC_CLERIC           37  // ëŒ€ì‚¬ì œ NPC
 #define NPC_HEALER           40  // Healer
 #define NPC_WARP             41  // Warp Npc
-#define NPC_GATE             50  // ¼º¹®ÇüÅÂ NPC
-#define NPC_PHOENIX_GATE     51  // ±úÁöÁö ¾Ê´Â ¹® (8->51)
-#define NPC_SPECIAL_GATE     52  // ±úÁöÁö ¾Ê´Â ¹®ÀÌ¸é¼­ 2ºÐ¸¶´Ù ¿­·È´Ù ´ÝÇû´Ù ÇÏ´Â ¹®
-#define NPC_GATE_LEVER       55  // ¼º¹® ·¹¹ö...    (9->55)
-#define NPC_ARTIFACT         60  // °á°è¼® (7->60)
-#define NPC_DESTORY_ARTIFACT 61  // ÆÄ±«µÇ´Â °á°è¼®
-#define NPC_MONK_ELMORAD     71  // ºñ·¯¸Ó±Û ¼öµµ½Â >.<
-#define NPC_MONK_KARUS       72  // ºñ·¯¸Ó±Û ¼öµµ½Â >.<
-#define NPC_DOMESTIC_ANIMAL  99  // °¡Ãà NPC
-#define NPC_COUPON           100 // ºñ·¯¸Ó±Û º¹±Ç >.<
+#define NPC_GATE             50  // ì„±ë¬¸í˜•íƒœ NPC
+#define NPC_PHOENIX_GATE     51  // ê¹¨ì§€ì§€ ì•ŠëŠ” ë¬¸ (8->51)
+#define NPC_SPECIAL_GATE     52  // ê¹¨ì§€ì§€ ì•ŠëŠ” ë¬¸ì´ë©´ì„œ 2ë¶„ë§ˆë‹¤ ì—´ë ¸ë‹¤ ë‹«í˜”ë‹¤ í•˜ëŠ” ë¬¸
+#define NPC_GATE_LEVER       55  // ì„±ë¬¸ ë ˆë²„...    (9->55)
+#define NPC_ARTIFACT         60  // ê²°ê³„ì„ (7->60)
+#define NPC_DESTORY_ARTIFACT 61  // íŒŒê´´ë˜ëŠ” ê²°ê³„ì„
+#define NPC_MONK_ELMORAD     71  // ë¹„ëŸ¬ë¨¸ê¸€ ìˆ˜ë„ìŠ¹ >.<
+#define NPC_MONK_KARUS       72  // ë¹„ëŸ¬ë¨¸ê¸€ ìˆ˜ë„ìŠ¹ >.<
+#define NPC_DOMESTIC_ANIMAL  99  // ê°€ì¶• NPC
+#define NPC_COUPON           100 // ë¹„ëŸ¬ë¨¸ê¸€ ë³µê¶Œ >.<
 
 ///////////////// NATION ///////////////////////////////////
 #define UNIFY_NATION 0
@@ -177,7 +177,7 @@ const BYTE WAREHOUSE_MAX = 196; // Ã¢°í ¾ÆÀÌÅÛ MAX
 // UserInOut //
 #define USER_IN     0X01
 #define USER_OUT    0X02
-#define USER_REGENE 0X03 // UserinÇÏ°í °°Àº°ÍÀÎµ¥ È¿°ú¸¦ ÁÖ±âÀ§ÇØ¼­.. ºÐ¸®(°ÔÀÓ½ÃÀÛ, ¸®Á¨. ¼ÒÈ¯½Ã)
+#define USER_REGENE 0X03 // Useriní•˜ê³  ê°™ì€ê²ƒì¸ë° íš¨ê³¼ë¥¼ ì£¼ê¸°ìœ„í•´ì„œ.. ë¶„ë¦¬(ê²Œìž„ì‹œìž‘, ë¦¬ì  . ì†Œí™˜ì‹œ)
 #define USER_WARP   0X04
 #define USER_SUMMON 0X05
 #define NPC_IN      0X01
@@ -217,11 +217,11 @@ const BYTE WAREHOUSE_MAX = 196; // Ã¢°í ¾ÆÀÌÅÛ MAX
 // ==================================================================
 //    About Map Object
 // ==================================================================
-#define USER_BAND    0     // Map À§¿¡ À¯Àú°¡ ÀÖ´Ù.
-#define NPC_BAND     10000 // Map À§¿¡ NPC(¸÷Æ÷ÇÔ)°¡ ÀÖ´Ù.
-#define INVALID_BAND 30000 // Àß¸øµÈ ID BAND
+#define USER_BAND    0     // Map ìœ„ì— ìœ ì €ê°€ ìžˆë‹¤.
+#define NPC_BAND     10000 // Map ìœ„ì— NPC(ëª¹í¬í•¨)ê°€ ìžˆë‹¤.
+#define INVALID_BAND 30000 // ìž˜ëª»ëœ ID BAND
 
-#define EVENT_MONSTER 20 // Event monster ÃÑ ¼ö
+#define EVENT_MONSTER 20 // Event monster ì´ ìˆ˜
 
 ///////////////// snow event define //////////////////////////////
 #define SNOW_EVENT_MONEY 2000

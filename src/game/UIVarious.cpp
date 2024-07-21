@@ -36,8 +36,8 @@ CUIState::CUIState() {
     m_pText_HP = NULL;
     m_pText_MP = NULL;
     m_pText_Exp = NULL;
-    m_pText_AP = NULL; // °ø°İ = NULL·Â
-    m_pText_GP = NULL; // ¹æ¾î = NULL·Â
+    m_pText_AP = NULL; // ê³µê²© = NULLë ¥
+    m_pText_GP = NULL; // ë°©ì–´ = NULLë ¥
     m_pText_Weight = NULL;
 
     m_pText_BonusPoint = NULL;
@@ -84,8 +84,8 @@ void CUIState::Release() {
     m_pText_HP = NULL;
     m_pText_MP = NULL;
     m_pText_Exp = NULL;
-    m_pText_AP = NULL; // °ø°İ = NULL·Â
-    m_pText_GP = NULL; // ¹æ¾î = NULL·Â
+    m_pText_AP = NULL; // ê³µê²© = NULLë ¥
+    m_pText_GP = NULL; // ë°©ì–´ = NULLë ¥
     m_pText_Weight = NULL;
 
     m_pText_BonusPoint = NULL;
@@ -200,7 +200,7 @@ bool CUIState::Load(HANDLE hFile) {
     return true;
 }
 
-void CUIState::UpdateBonusPointAndButtons(int iBonusPointRemain) // º¸³Ê½º Æ÷ÀÎÆ® Àû¿ëÀÌ °¡´ÉÇÑ°¡??
+void CUIState::UpdateBonusPointAndButtons(int iBonusPointRemain) // ë³´ë„ˆìŠ¤ í¬ì¸íŠ¸ ì ìš©ì´ ê°€ëŠ¥í•œê°€??
 {
     bool bEnable = false;
     if (iBonusPointRemain > 0) {
@@ -214,7 +214,7 @@ void CUIState::UpdateBonusPointAndButtons(int iBonusPointRemain) // º¸³Ê½º Æ÷ÀÎÆ
     }
 
     if (m_pBtn_Strength) {
-        m_pBtn_Strength->SetVisible(bEnable); // °æÇèÄ¡ Ã¼ÀÎÁö..
+        m_pBtn_Strength->SetVisible(bEnable); // ê²½í—˜ì¹˜ ì²´ì¸ì§€..
     }
     if (m_pBtn_Stamina) {
         m_pBtn_Stamina->SetVisible(bEnable);
@@ -244,12 +244,12 @@ void CUIState::UpdateLevel(int iVal) {
     m_pText_Level->SetStringAsInt(iVal);
 }
 
-void CUIState::UpdateRealmPoint(int iVal) // ±¹°¡ ±â¿©µµ´Â 10À» ³ª´©¾î¼­ Ç¥½Ã
+void CUIState::UpdateRealmPoint(int iVal) // êµ­ê°€ ê¸°ì—¬ë„ëŠ” 10ì„ ë‚˜ëˆ„ì–´ì„œ í‘œì‹œ
 {
     if (NULL == m_pText_RealmPoint) {
         return;
     }
-    m_pText_RealmPoint->SetStringAsInt(iVal / 10); // ±¹°¡ ±â¿©µµ´Â 10À» ³ª´©¾î¼­ Ç¥½Ã
+    m_pText_RealmPoint->SetStringAsInt(iVal / 10); // êµ­ê°€ ê¸°ì—¬ë„ëŠ” 10ì„ ë‚˜ëˆ„ì–´ì„œ í‘œì‹œ
 }
 
 void CUIState::UpdateHP(int iVal, int iValMax) {
@@ -367,7 +367,7 @@ void CUIState::UpdateRegistPoison(int iVal, int iDelta) {
 
 bool CUIState::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     if (dwMsg == UIMSG_BUTTON_CLICK) {
-        if (pSender == m_pBtn_Strength) { // °æÇèÄ¡ Ã¼ÀÎÁö..
+        if (pSender == m_pBtn_Strength) { // ê²½í—˜ì¹˜ ì²´ì¸ì§€..
             this->MsgSendAblityPointChange(0x01, +1);
         } else if (pSender == m_pBtn_Stamina) {
             this->MsgSendAblityPointChange(0x02, +1);
@@ -388,7 +388,7 @@ void CUIState::MsgSendAblityPointChange(BYTE byType, short siValueDelta) {
     int  iOffset = 0;
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_POINT_CHANGE);
     CAPISocket::MP_AddByte(byBuff, iOffset, byType);
-    CAPISocket::MP_AddShort(byBuff, iOffset, siValueDelta); // 0x00 - Á¡Â÷ ´Ã¾î³ª°Ô²û.. 0x01 - Áï½Ã ¾÷µ¥ÀÌÆ®..
+    CAPISocket::MP_AddShort(byBuff, iOffset, siValueDelta); // 0x00 - ì ì°¨ ëŠ˜ì–´ë‚˜ê²Œë”.. 0x01 - ì¦‰ì‹œ ì—…ë°ì´íŠ¸..
 
     CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 }
@@ -613,47 +613,47 @@ bool CUIKnights::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
                     KNIGHTS_DUTY_VICECHIEF == pInfoExt->eKnightsDuty || 
                     KNIGHTS_DUTY_OFFICER == pInfoExt->eKnightsDuty )
                 {
-                    this->MsgSend_MemberInfoAll(m_iPageCur); // Á÷À§°¡ ÀÖ´Â »óÅÂ¸é.. ÀüÃ¼ ¸®½ºÆ® º¸±â..
+                    this->MsgSend_MemberInfoAll(m_iPageCur); // ì§ìœ„ê°€ ìˆëŠ” ìƒíƒœë©´.. ì „ì²´ ë¦¬ìŠ¤íŠ¸ ë³´ê¸°..
                 }
                 else if(KNIGHTS_DUTY_UNKNOWN)
                 {
                 }
                 else
                 {
-                    this->MsgSend_MemberInfoOnline(m_iPageCur); // Á÷À§°¡ ¾ø´Â ÀÏ¹İ±â»ç¸é.. Á¢¼ÓÇÑ ³Ñµé¸¸ º¸±â...
+                    this->MsgSend_MemberInfoOnline(m_iPageCur); // ì§ìœ„ê°€ ì—†ëŠ” ì¼ë°˜ê¸°ì‚¬ë©´.. ì ‘ì†í•œ ë„˜ë“¤ë§Œ ë³´ê¸°...
                 }
             }
         }
         else if(pSender == m_pBtn_Close)
             SetVisible(false);
-        else if(pSender == m_pBtn_MemberJoinAdmit) // ¸â¹ö °¡ÀÔ Çã¶ô.
+        else if(pSender == m_pBtn_MemberJoinAdmit) // ë©¤ë²„ ê°€ì… í—ˆë½.
             this->MsgSend_MemberJoinAdmit();
-        else if(pSender == m_pBtn_MemberJoinReject) // ¸â¹ö °¡ÀÔ °ÅÀı.
+        else if(pSender == m_pBtn_MemberJoinReject) // ë©¤ë²„ ê°€ì… ê±°ì ˆ.
             this->MsgSend_MemberJoinReject();
-        else if(pSender == m_pBtn_MemberPunish) // ¸â¹ö Â¡°è
+        else if(pSender == m_pBtn_MemberPunish) // ë©¤ë²„ ì§•ê³„
             this->MsgSend_MemberPunish();
-        else if(pSender == m_pBtn_MemberRemove) // ¸â¹ö »èÁ¦
+        else if(pSender == m_pBtn_MemberRemove) // ë©¤ë²„ ì‚­ì œ
             this->MsgSend_MemberRemove();
-        else if(pSender == m_pBtn_MemberAppoint) // ¸â¹ö Á÷À§¿¡ ÀÓ¸í
+        else if(pSender == m_pBtn_MemberAppoint) // ë©¤ë²„ ì§ìœ„ì— ì„ëª…
         {
-            this->VisibleAppointButtons(true); // ÀÓ¸í ¹öÆ°µé ±×·ì º¸ÀÌ°Ô ÇÏ±â..
+            this->VisibleAppointButtons(true); // ì„ëª… ë²„íŠ¼ë“¤ ê·¸ë£¹ ë³´ì´ê²Œ í•˜ê¸°..
         }
         else if(pSender == m_pBtn_AppointChief)
         {
             this->MsgSend_DutyAppoint(KNIGHTS_DUTY_CHIEF);
-            this->VisibleAppointButtons(false); // ÀÓ¸í ¹öÆ°µé ±×·ì ¾Èº¸ÀÌ°Ô ÇÏ±â..
+            this->VisibleAppointButtons(false); // ì„ëª… ë²„íŠ¼ë“¤ ê·¸ë£¹ ì•ˆë³´ì´ê²Œ í•˜ê¸°..
         }
         else if(pSender == m_pBtn_AppointViceChief)
         {
             this->MsgSend_DutyAppoint(KNIGHTS_DUTY_VICECHIEF);
-            this->VisibleAppointButtons(false); // ÀÓ¸í ¹öÆ°µé ±×·ì ¾Èº¸ÀÌ°Ô ÇÏ±â..
+            this->VisibleAppointButtons(false); // ì„ëª… ë²„íŠ¼ë“¤ ê·¸ë£¹ ì•ˆë³´ì´ê²Œ í•˜ê¸°..
         }
         else if(pSender == m_pBtn_AppointOfficer)
         {
             this->MsgSend_DutyAppoint(KNIGHTS_DUTY_OFFICER);
-            this->VisibleAppointButtons(false); // ÀÓ¸í ¹öÆ°µé ±×·ì ¾Èº¸ÀÌ°Ô ÇÏ±â..
+            this->VisibleAppointButtons(false); // ì„ëª… ë²„íŠ¼ë“¤ ê·¸ë£¹ ì•ˆë³´ì´ê²Œ í•˜ê¸°..
         }
-        else if(pSender == m_pBtn_Online) // Á¢¼ÓÀÚ¸¸ º¸ÀÌ°Ô ÇÑ´Ù..
+        else if(pSender == m_pBtn_Online) // ì ‘ì†ìë§Œ ë³´ì´ê²Œ í•œë‹¤..
         {
             m_iPageCur = 0;
             this->MsgSend_MemberInfoOnline(0);
@@ -714,8 +714,8 @@ void CUIKnights::UpdateKnightsGrade(int iVal) {
     /*
     if(NULL == m_pText_Grade) return;
     
-    std::string szVal("µî±Ş : ");
-    if(iVal <= 0) szVal += "¾øÀ½";
+    std::string szVal("ë“±ê¸‰ : ");
+    if(iVal <= 0) szVal += "ì—†ìŒ";
     else szVal += (char)('0'+iVal);
     
     m_pText_Grade->SetString(szVal);
@@ -726,8 +726,8 @@ void CUIKnights::UpdateKnightsRank(int iVal) {
     /*
     if(NULL == m_pText_Rank) return;
 
-    std::string szVal("¼øÀ§ : ");
-    if(iVal <= 0) szVal += "¾øÀ½";
+    std::string szVal("ìˆœìœ„ : ");
+    if(iVal <= 0) szVal += "ì—†ìŒ";
     else szVal += (char)('0'+iVal);
     
     m_pText_Rank->SetString(szVal);
@@ -862,7 +862,7 @@ void CUIKnights::MsgSend_MemberInfoOnline(int iPage)
 
     CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 
-    // ÆäÀÌÁö¸¦ ³Ñ±æ¶§´Â ¹öÆ°µéÀ» ¸·¾Æ ³õ´Â´Ù.
+    // í˜ì´ì§€ë¥¼ ë„˜ê¸¸ë•ŒëŠ” ë²„íŠ¼ë“¤ì„ ë§‰ì•„ ë†“ëŠ”ë‹¤.
 //    this->EnableKnightsUIs(false);
 }
 //*/
@@ -893,17 +893,17 @@ bool CUIKnights::MsgRecv_MemberInfo(DataPack * pDataPack, int & iOffset) {
         eClass = (e_Class)CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
         iConnected = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
 
-        this->MemberListAdd(szName, eDuty, eClass, iLevel, iConnected); // UI ¿¡ Ãß°¡..
+        this->MemberListAdd(szName, eDuty, eClass, iLevel, iConnected); // UI ì— ì¶”ê°€..
     }
     m_iPageCur = 1;
     m_pText_Page->SetStringAsInt(m_iPageCur);
 
-    this->MemberListUpdate(); // List ¿¡ ´Ù ³Ö¾úÀ¸¸é UI Update!!
+    this->MemberListUpdate(); // List ì— ë‹¤ ë„£ì—ˆìœ¼ë©´ UI Update!!
 
     return true;
 }
 
-void CUIKnights::ChangeUIByDuty(e_KnightsDuty eDuty) // ±ÇÇÑ¿¡ µû¶ó UI º¯°æ..
+void CUIKnights::ChangeUIByDuty(e_KnightsDuty eDuty) // ê¶Œí•œì— ë”°ë¼ UI ë³€ê²½..
 {
     if (KNIGHTS_DUTY_CHIEF == eDuty) {
         m_pBtn_Admit->SetVisible(true);
@@ -933,14 +933,14 @@ void CUIKnights::ChangeUIByDuty(e_KnightsDuty eDuty) // ±ÇÇÑ¿¡ µû¶ó UI º¯°æ..
     {
     }
 
-    this->VisibleAppointButtons(false); // ÀÓ¸í ¹öÆ° ¼û±â°í..
+    this->VisibleAppointButtons(false); // ì„ëª… ë²„íŠ¼ ìˆ¨ê¸°ê³ ..
     if(m_pGroup_BossCmd) m_pGroup_BossCmd->SetVisible(bVisibles[0]);
     if(m_pBtn_Online) m_pBtn_Online->SetVisible(bVisibles[1]);
     */
 }
 
 /*
-void CUIKnights::VisibleAppointButtons(bool bVisible) // ±â»ç´ÜÀå Àü¿ë ÀÓ¸í Interface
+void CUIKnights::VisibleAppointButtons(bool bVisible) // ê¸°ì‚¬ë‹¨ì¥ ì „ìš© ì„ëª… Interface
 {
     if(NULL == m_pGroup_Appoint) return;
     m_pGroup_Appoint->SetVisible(bVisible);
@@ -957,8 +957,8 @@ void CUIKnights::MsgSend_MemberJoinAdmit()
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_KNIGHTS_MEMBER_JOIN_ADMIT);
 
     std::string szName = "???";
-    CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());    // ¾ÆÀÌµğ ±æÀÌ..
-    CAPISocket::MP_AddString(byBuff, iOffset, szName);            // ½ÇÁ¦ ¾ÆÀÌµğ..
+    CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());    // ì•„ì´ë”” ê¸¸ì´..
+    CAPISocket::MP_AddString(byBuff, iOffset, szName);            // ì‹¤ì œ ì•„ì´ë””..
 
     CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 }
@@ -974,8 +974,8 @@ void CUIKnights::MsgSend_MemberJoinReject()
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_KNIGHTS_MEMBER_JOIN_REJECT);
 
     std::string szName = "???";
-    CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());    // ¾ÆÀÌµğ ±æÀÌ..
-    CAPISocket::MP_AddString(byBuff, iOffset, szName);            // ½ÇÁ¦ ¾ÆÀÌµğ..
+    CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());    // ì•„ì´ë”” ê¸¸ì´..
+    CAPISocket::MP_AddString(byBuff, iOffset, szName);            // ì‹¤ì œ ì•„ì´ë””..
 
     CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 }
@@ -991,8 +991,8 @@ void CUIKnights::MsgSend_MemberPunish()
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_KNIGHTS_MEMBER_PUNISH);
 
     std::string szName = "???";
-    CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());    // ¾ÆÀÌµğ ±æÀÌ..
-    CAPISocket::MP_AddString(byBuff, iOffset, szName);            // ½ÇÁ¦ ¾ÆÀÌµğ..
+    CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());    // ì•„ì´ë”” ê¸¸ì´..
+    CAPISocket::MP_AddString(byBuff, iOffset, szName);            // ì‹¤ì œ ì•„ì´ë””..
 
     CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 }
@@ -1008,8 +1008,8 @@ void CUIKnights::MsgSend_MemberRemove()
     CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_KNIGHTS_MEMBER_REMOVE);
 
     std::string szName = "???";
-    CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());    // ¾ÆÀÌµğ ±æÀÌ..
-    CAPISocket::MP_AddString(byBuff, iOffset, szName);            // ½ÇÁ¦ ¾ÆÀÌµğ..
+    CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());    // ì•„ì´ë”” ê¸¸ì´..
+    CAPISocket::MP_AddString(byBuff, iOffset, szName);            // ì‹¤ì œ ì•„ì´ë””..
 
     CGameProcedure::s_pSocket->Send(byBuff, iOffset);    
 }
@@ -1033,8 +1033,8 @@ void CUIKnights::MsgSend_DutyAppoint(e_KnightsDuty eDuty)
     CAPISocket::MP_AddByte(byBuff, iOffset, eSP);
 
     std::string szName = "???";
-    CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());    // ¾ÆÀÌµğ ±æÀÌ..
-    CAPISocket::MP_AddString(byBuff, iOffset, szName);            // ½ÇÁ¦ ¾ÆÀÌµğ..
+    CAPISocket::MP_AddShort(byBuff, iOffset, szName.size());    // ì•„ì´ë”” ê¸¸ì´..
+    CAPISocket::MP_AddString(byBuff, iOffset, szName);            // ì‹¤ì œ ì•„ì´ë””..
 
     CGameProcedure::s_pSocket->Send(byBuff, iOffset);    
 }
@@ -1057,7 +1057,7 @@ CUIFriends::CUIFriends() {
 }
 
 CUIFriends::~CUIFriends() {
-    this->SaveListToTextFile(""); // ¸ù¶¥ ÀúÀå..
+    this->SaveListToTextFile(""); // ëª½ë•… ì €ì¥..
 }
 
 bool CUIFriends::Load(HANDLE hFile) {
@@ -1087,11 +1087,11 @@ bool CUIFriends::Load(HANDLE hFile) {
     __ASSERT(m_pBtn_Delete, "NULL UI Component!!");
 
     std::string szFN =
-        CGameProcedure::s_szAccount + "_" + CGameProcedure::s_szServer + ".txt"; // ÆÄÀÏÀÌ¸§Àº °èÁ¤_¼­¹ö.txt ·Î ÇÑ´Ù.
+        CGameProcedure::s_szAccount + "_" + CGameProcedure::s_szServer + ".txt"; // íŒŒì¼ì´ë¦„ì€ ê³„ì •_ì„œë²„.txt ë¡œ í•œë‹¤.
     FILE * pFile = fopen(szFN.c_str(), "r");
     if (pFile) {
         char   szLine[256] = "";
-        char * pszResult = fgets(szLine, 256, pFile); // ÁÙÀ» ÀĞ°í..
+        char * pszResult = fgets(szLine, 256, pFile); // ì¤„ì„ ì½ê³ ..
         while (pszResult) {
             int iLen = lstrlen(szLine);
             if (iLen > 3 && iLen <= 22) {
@@ -1109,7 +1109,7 @@ bool CUIFriends::Load(HANDLE hFile) {
                     this->MemberAdd(szTmp, -1, false, false);
                 }
             }
-            pszResult = fgets(szLine, 256, pFile); // Ã¹Â° ÁÙÀ» ÀĞ°í..
+            pszResult = fgets(szLine, 256, pFile); // ì²«ì§¸ ì¤„ì„ ì½ê³ ..
         }
         fclose(pFile);
 
@@ -1119,10 +1119,10 @@ bool CUIFriends::Load(HANDLE hFile) {
     return true;
 }
 
-void CUIFriends::SaveListToTextFile(const std::string & szID) // ¹®ÀÚ¿­ÀÌ ÀÖÀ¸¸é Ãß°¡ÇÏ°í.. ¾øÀ¸¸é ¸ù¶¥ ÀúÀå..
+void CUIFriends::SaveListToTextFile(const std::string & szID) // ë¬¸ìì—´ì´ ìˆìœ¼ë©´ ì¶”ê°€í•˜ê³ .. ì—†ìœ¼ë©´ ëª½ë•… ì €ì¥..
 {
     std::string szFN =
-        CGameProcedure::s_szAccount + "_" + CGameProcedure::s_szServer + ".txt"; // ÆÄÀÏÀÌ¸§Àº °èÁ¤_¼­¹ö.txt ·Î ÇÑ´Ù.
+        CGameProcedure::s_szAccount + "_" + CGameProcedure::s_szServer + ".txt"; // íŒŒì¼ì´ë¦„ì€ ê³„ì •_ì„œë²„.txt ë¡œ í•œë‹¤.
     char szFlags[4] = "w";
     if (!szID.empty()) {
         lstrcpy(szFlags, "a");
@@ -1181,25 +1181,25 @@ bool CUIFriends::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
                 }
             }
 
-            if (iPagePrev != m_iPageCur) // ÆäÀÌÁö°¡ º¯°æµÉ¶§
+            if (iPagePrev != m_iPageCur) // í˜ì´ì§€ê°€ ë³€ê²½ë ë•Œ
             {
                 this->UpdateList();
                 this->MsgSend_MemberInfo(false);
             }
-        } else if (pSender == m_pBtn_Refresh) // »õ È­¸éÀ¸·Î °»½Å...
+        } else if (pSender == m_pBtn_Refresh) // ìƒˆ í™”ë©´ìœ¼ë¡œ ê°±ì‹ ...
         {
             this->MsgSend_MemberInfo(true);
-        } else if (pSender == m_pBtn_Add) // Ãß°¡.
+        } else if (pSender == m_pBtn_Add) // ì¶”ê°€.
         {
             CPlayerOther * pUPC = CGameProcedure::s_pOPMgr->UPCGetByID(CGameProcedure::s_pPlayer->m_iIDTarget, false);
             if (pUPC) {
-                if (this->MemberAdd(pUPC->IDString(), pUPC->IDNumber(), true, false)) // Ãß°¡ ¼º°øÀÌ¸é..
+                if (this->MemberAdd(pUPC->IDString(), pUPC->IDNumber(), true, false)) // ì¶”ê°€ ì„±ê³µì´ë©´..
                 {
-                    this->SaveListToTextFile(pUPC->IDString()); // ÆÄÀÏ¿¡ Ãß°¡ ÀúÀå..
+                    this->SaveListToTextFile(pUPC->IDString()); // íŒŒì¼ì— ì¶”ê°€ ì €ì¥..
                     this->MsgSend_MemberInfo(pUPC->IDString());
                 }
             }
-        } else if (pSender == m_pBtn_Delete) // ¸â¹ö »èÁ¦
+        } else if (pSender == m_pBtn_Delete) // ë©¤ë²„ ì‚­ì œ
         {
             if (m_pList_Friends) {
                 int         iSel = m_pList_Friends->GetCurSel();
@@ -1207,10 +1207,10 @@ bool CUIFriends::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
                 m_pList_Friends->GetString(iSel, szID);
 
                 if (this->MemberDelete(szID)) {
-                    this->UpdateList(); // ¸®½ºÆ® ¾÷µ¥ÀÌÆ®..
+                    this->UpdateList(); // ë¦¬ìŠ¤íŠ¸ ì—…ë°ì´íŠ¸..
                 }
             }
-        } else if (pSender == m_pBtn_Whisper) // ±Ó¼Ó¸»
+        } else if (pSender == m_pBtn_Whisper) // ê·“ì†ë§
         {
             if (m_pList_Friends) {
                 int         iSel = m_pList_Friends->GetCurSel();
@@ -1218,7 +1218,7 @@ bool CUIFriends::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
                 m_pList_Friends->GetString(iSel, szID);
                 pProcMain->MsgSend_ChatSelectTarget(szID);
             }
-        } else if (pSender == m_pBtn_Party) // ÆÄÆ¼ ½ÅÃ»
+        } else if (pSender == m_pBtn_Party) // íŒŒí‹° ì‹ ì²­
         {
             int         iSel = m_pList_Friends->GetCurSel();
             std::string szID;
@@ -1227,9 +1227,9 @@ bool CUIFriends::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             if (it != m_MapFriends.end()) {
                 std::string szMsg;
                 if (pProcMain->MsgSend_PartyOrForceCreate(0, szID)) {
-                    ::_LoadStringFromResource(IDS_PARTY_INVITE, szMsg); // ÆÄÆ¼
+                    ::_LoadStringFromResource(IDS_PARTY_INVITE, szMsg); // íŒŒí‹°
                 } else {
-                    ::_LoadStringFromResource(IDS_PARTY_INVITE_FAILED, szMsg); // ÆÄÆ¼ ÃÊ´ë ½ÇÆĞ
+                    ::_LoadStringFromResource(IDS_PARTY_INVITE_FAILED, szMsg); // íŒŒí‹° ì´ˆëŒ€ ì‹¤íŒ¨
                 }
                 pProcMain->MsgOutput(it->second.szName + szMsg, 0xffffff00);
             }
@@ -1296,7 +1296,7 @@ void CUIFriends::UpdateList() {
     }
 
     if (m_pText_Page) {
-        m_pText_Page->SetStringAsInt(m_iPageCur + 1); // ÆäÀÌÁö Ç¥½Ã..
+        m_pText_Page->SetStringAsInt(m_iPageCur + 1); // í˜ì´ì§€ í‘œì‹œ..
     }
 
     it_FI it = m_MapFriends.begin(), itEnd = m_MapFriends.end();
@@ -1322,7 +1322,7 @@ void CUIFriends::UpdateList() {
         m_pList_Friends->SetFontColor(iIndex, crStatus);
     }
 
-    m_pList_Friends->SetCurSel(iSelPrev); // ÀüÀÇ ¼±ÅÃÀ¸·Î µ¹¸®±â..
+    m_pList_Friends->SetCurSel(iSelPrev); // ì „ì˜ ì„ íƒìœ¼ë¡œ ëŒë¦¬ê¸°..
 }
 
 void CUIFriends::MsgSend_MemberInfo(bool bDisableInterval) {
@@ -1352,7 +1352,7 @@ void CUIFriends::MsgSend_MemberInfo(bool bDisableInterval) {
 
     CAPISocket::MP_AddByte(
         &(buffers[0]), iOffset,
-        N3_FRIEND_INFO); // Ä£±¸ Á¤º¸.. Send s1(ÀÌ¸§±æÀÌ), str1(À¯ÀúÀÌ¸§) | Receive s1(ÀÌ¸§±æÀÌ), str1(À¯ÀúÀÌ¸§), s1(ID), b2(Á¢¼Ó, ÆÄÆ¼)
+        N3_FRIEND_INFO); // ì¹œêµ¬ ì •ë³´.. Send s1(ì´ë¦„ê¸¸ì´), str1(ìœ ì €ì´ë¦„) | Receive s1(ì´ë¦„ê¸¸ì´), str1(ìœ ì €ì´ë¦„), s1(ID), b2(ì ‘ì†, íŒŒí‹°)
     CAPISocket::MP_AddShort(&(buffers[0]), iOffset, iFC);
     for (int i = 0; i < iFC; i++) {
         std::string szID;
@@ -1375,7 +1375,7 @@ void CUIFriends::MsgSend_MemberInfo(const std::string & szID) {
 
     CAPISocket::MP_AddByte(
         byBuff, iOffset,
-        N3_FRIEND_INFO); // Ä£±¸ Á¤º¸.. Send s1(ÀÌ¸§±æÀÌ), str1(À¯ÀúÀÌ¸§) | Receive s1(ÀÌ¸§±æÀÌ), str1(À¯ÀúÀÌ¸§), s1(ID), b2(Á¢¼Ó, ÆÄÆ¼)
+        N3_FRIEND_INFO); // ì¹œêµ¬ ì •ë³´.. Send s1(ì´ë¦„ê¸¸ì´), str1(ìœ ì €ì´ë¦„) | Receive s1(ì´ë¦„ê¸¸ì´), str1(ìœ ì €ì´ë¦„), s1(ID), b2(ì ‘ì†, íŒŒí‹°)
     CAPISocket::MP_AddShort(byBuff, iOffset, iFC);
 
     CAPISocket::MP_AddShort(byBuff, iOffset, szID.size());
@@ -1394,7 +1394,7 @@ void CUIFriends::MsgRecv_MemberInfo(DataPack * pDataPack, int & iOffset) {
     for (int i = 0; i < iFC; i++) {
         iLen = CAPISocket::Parse_GetShort(
             pDataPack->m_pData,
-            iOffset); // Ä£±¸ Á¤º¸.. Send s1(ÀÌ¸§±æÀÌ), str1(À¯ÀúÀÌ¸§) | Receive s1(ÀÌ¸§±æÀÌ), str1(À¯ÀúÀÌ¸§), s1(ID), b2(Á¢¼Ó, ÆÄÆ¼)
+            iOffset); // ì¹œêµ¬ ì •ë³´.. Send s1(ì´ë¦„ê¸¸ì´), str1(ìœ ì €ì´ë¦„) | Receive s1(ì´ë¦„ê¸¸ì´), str1(ìœ ì €ì´ë¦„), s1(ID), b2(ì ‘ì†, íŒŒí‹°)
         CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szID, iLen);
         iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
         bStatus = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset);
@@ -1428,9 +1428,9 @@ CUIVarious::CUIVarious() {
     m_pPageQuest = NULL;
     m_pPageFriends = NULL;
 
-    m_bOpenningNow = false; // ¿­¸®°í ÀÖ´Ù..
-    m_bClosingNow = false;  // ´İÈ÷°í ÀÖ´Ù..
-    m_fMoveDelta = 0;       // ºÎµå·´°Ô ¿­¸®°í ´İÈ÷°Ô ¸¸µé±â À§ÇØ¼­ ÇöÀçÀ§Ä¡ °è»ê¿¡ ºÎµ¿¼Ò¼öÁ¡À» ¾´´Ù..
+    m_bOpenningNow = false; // ì—´ë¦¬ê³  ìˆë‹¤..
+    m_bClosingNow = false;  // ë‹«íˆê³  ìˆë‹¤..
+    m_fMoveDelta = 0; // ë¶€ë“œëŸ½ê²Œ ì—´ë¦¬ê³  ë‹«íˆê²Œ ë§Œë“¤ê¸° ìœ„í•´ì„œ í˜„ì¬ìœ„ì¹˜ ê³„ì‚°ì— ë¶€ë™ì†Œìˆ˜ì ì„ ì“´ë‹¤..
 }
 
 CUIVarious::~CUIVarious() {}
@@ -1449,9 +1449,9 @@ void CUIVarious::Release() {
     m_pPageQuest = NULL;
     m_pPageFriends = NULL;
 
-    m_bOpenningNow = false; // ¿­¸®°í ÀÖ´Ù..
-    m_bClosingNow = false;  // ´İÈ÷°í ÀÖ´Ù..
-    m_fMoveDelta = 0;       // ºÎµå·´°Ô ¿­¸®°í ´İÈ÷°Ô ¸¸µé±â À§ÇØ¼­ ÇöÀçÀ§Ä¡ °è»ê¿¡ ºÎµ¿¼Ò¼öÁ¡À» ¾´´Ù..
+    m_bOpenningNow = false; // ì—´ë¦¬ê³  ìˆë‹¤..
+    m_bClosingNow = false;  // ë‹«íˆê³  ìˆë‹¤..
+    m_fMoveDelta = 0; // ë¶€ë“œëŸ½ê²Œ ì—´ë¦¬ê³  ë‹«íˆê²Œ ë§Œë“¤ê¸° ìœ„í•´ì„œ í˜„ì¬ìœ„ì¹˜ ê³„ì‚°ì— ë¶€ë™ì†Œìˆ˜ì ì„ ì“´ë‹¤..
 }
 
 bool CUIVarious::Load(HANDLE hFile) {
@@ -1470,7 +1470,7 @@ bool CUIVarious::Load(HANDLE hFile) {
     m_pBtn_Close = (CN3UIButton *)(this->GetChildByID("Btn_Close"));
     __ASSERT(m_pBtn_Close, "NULL UI Component!!");
 
-    // ¾ÆÁ÷ UI °¡ ¾ÈµÇ¾î ÀÖÀ¸´Ï ¸·ÀÚ..
+    // ì•„ì§ UI ê°€ ì•ˆë˜ì–´ ìˆìœ¼ë‹ˆ ë§‰ì..
     if (m_pBtn_Quest) {
         m_pBtn_Quest->SetState(UI_STATE_BUTTON_DISABLE);
     }
@@ -1516,13 +1516,13 @@ bool CUIVarious::Load(HANDLE hFile) {
 bool CUIVarious::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     if (dwMsg == UIMSG_BUTTON_CLICK) {
         if (pSender == m_pBtn_Close) {
-            this->Close(); // ´İ´Â´Ù..
+            this->Close(); // ë‹«ëŠ”ë‹¤..
         } else if (pSender == m_pBtn_State) {
             this->UpdatePageButtons(m_pBtn_State);
         }
-        //        else if(pSender == m_pBtn_Quest)    this->UpdatePageButtons(m_pBtn_Quest);        // Äù½ºÆ®...
+        //        else if(pSender == m_pBtn_Quest)    this->UpdatePageButtons(m_pBtn_Quest);        // í€˜ìŠ¤íŠ¸...
         else if (pSender == m_pBtn_Knights) {
-            this->UpdatePageButtons(m_pBtn_Knights); // ±â»ç´Ü... Àá½Ã ¸·ÀÚ..
+            this->UpdatePageButtons(m_pBtn_Knights); // ê¸°ì‚¬ë‹¨... ì ì‹œ ë§‰ì..
         } else if (pSender == m_pBtn_Friends) {
             this->UpdatePageButtons(m_pBtn_Friends);
         }
@@ -1560,12 +1560,12 @@ void CUIVarious::UpdatePageButtons(CN3UIButton * pButtonToActive) {
     }
 
     if (pButtonToActive == m_pBtn_Friends && m_pPageFriends) {
-        m_pPageFriends->MsgSend_MemberInfo(false); // ÀÌ·¯¸é Ä£±¸¸®½ºÆ®¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù..
+        m_pPageFriends->MsgSend_MemberInfo(false); // ì´ëŸ¬ë©´ ì¹œêµ¬ë¦¬ìŠ¤íŠ¸ë¥¼ ì—…ë°ì´íŠ¸í•œë‹¤..
     }
 }
 
 void CUIVarious::Open() {
-    // ½º¸£¸¤ ¿­¸°´Ù!!
+    // ìŠ¤ë¥´ë¥µ ì—´ë¦°ë‹¤!!
     this->SetVisible(true);
     RECT rc = this->GetRegion();
     this->SetPos(-(rc.right - rc.left), 80);
@@ -1573,26 +1573,26 @@ void CUIVarious::Open() {
     m_bOpenningNow = true;
     m_bClosingNow = false;
 
-    // ±â»ç´Ü ¸®½ºÆ®°¡ ¾øÀ¸¸é ¿äÃ»ÇØ¼­ ¹Ş´Â´Ù.
+    // ê¸°ì‚¬ë‹¨ ë¦¬ìŠ¤íŠ¸ê°€ ì—†ìœ¼ë©´ ìš”ì²­í•´ì„œ ë°›ëŠ”ë‹¤.
     //    __InfoPlayerMySelf*    pInfoExt = &(CGameBase::s_pPlayer->m_InfoExt);
     //    if(m_pPageKnights->NeedMemberListRequest() && pInfoExt->iKnightsID > 0)
     //    {
     //        m_pPageKnights->MsgSend_MemberInfoOnline(0);
     //    }
-    //    // ±â»ç´ÜÀåÀÌ°Å³ª °£ºÎ±ŞÀÌ¸é...UI °¡ ´Ş¶ó¾ß ÇÑ´Ù..
-    //    m_pPageKnights->ChangeUIByDuty(pInfoExt->eKnightsDuty); // ±ÇÇÑ¿¡ µû¶ó UI º¯°æ..
+    //    // ê¸°ì‚¬ë‹¨ì¥ì´ê±°ë‚˜ ê°„ë¶€ê¸‰ì´ë©´...UI ê°€ ë‹¬ë¼ì•¼ í•œë‹¤..
+    //    m_pPageKnights->ChangeUIByDuty(pInfoExt->eKnightsDuty); // ê¶Œí•œì— ë”°ë¼ UI ë³€ê²½..
 }
 
 void CUIVarious::Close() {
-    // ½º¸£¸¤ ´İÈù´Ù..!!
-    //    SetVisible(false); // ´Ù ´İÈ÷°í ³ª¼­ ÇØÁØ´Ù..
+    // ìŠ¤ë¥´ë¥µ ë‹«íŒë‹¤..!!
+    //    SetVisible(false); // ë‹¤ ë‹«íˆê³  ë‚˜ì„œ í•´ì¤€ë‹¤..
     this->SetPos(0, 80);
     m_fMoveDelta = 0;
     m_bOpenningNow = false;
     m_bClosingNow = true;
 
     if (m_pSnd_CloseUI) {
-        m_pSnd_CloseUI->Play(); // ´İ´Â ¼Ò¸®..
+        m_pSnd_CloseUI->Play(); // ë‹«ëŠ” ì†Œë¦¬..
     }
 }
 
@@ -1604,7 +1604,7 @@ void CUIVarious::Tick() {
         m_pPageKnights->m_fTimeLimit_Remove += CN3Base::s_fSecPerFrm;
     }
 
-    if (m_bOpenningNow) // ¿À¸¥ÂÊ¿¡¼­ ¿ŞÂÊÀ¸·Î ½º¸£¸¤...¿­·Á¾ß ÇÑ´Ù¸é..
+    if (m_bOpenningNow) // ì˜¤ë¥¸ìª½ì—ì„œ ì™¼ìª½ìœ¼ë¡œ ìŠ¤ë¥´ë¥µ...ì—´ë ¤ì•¼ í•œë‹¤ë©´..
     {
         POINT ptCur = this->GetPos();
         RECT  rc = this->GetRegion();
@@ -1619,14 +1619,14 @@ void CUIVarious::Tick() {
 
         int iXLimit = 0;
         ptCur.x = (int)(m_fMoveDelta - fWidth);
-        if (ptCur.x >= iXLimit) // ´Ù¿­·È´Ù!!
+        if (ptCur.x >= iXLimit) // ë‹¤ì—´ë ¸ë‹¤!!
         {
             ptCur.x = iXLimit;
             m_bOpenningNow = false;
         }
 
         this->SetPos(ptCur.x, ptCur.y);
-    } else if (m_bClosingNow) // ¿À¸¥ÂÊ¿¡¼­ ¿ŞÂÊÀ¸·Î ½º¸£¸¤...¿­·Á¾ß ÇÑ´Ù¸é..
+    } else if (m_bClosingNow) // ì˜¤ë¥¸ìª½ì—ì„œ ì™¼ìª½ìœ¼ë¡œ ìŠ¤ë¥´ë¥µ...ì—´ë ¤ì•¼ í•œë‹¤ë©´..
     {
         POINT ptCur = this->GetPos();
         RECT  rc = this->GetRegion();
@@ -1641,12 +1641,12 @@ void CUIVarious::Tick() {
 
         int iXLimit = -fWidth;
         ptCur.x = -m_fMoveDelta;
-        if (ptCur.x <= iXLimit) // ´Ù ´İÇû´Ù..!!
+        if (ptCur.x <= iXLimit) // ë‹¤ ë‹«í˜”ë‹¤..!!
         {
             ptCur.x = iXLimit;
             m_bClosingNow = false;
 
-            this->SetVisibleWithNoSound(false, false, true); // ´Ù ´İÇûÀ¸´Ï ´«¿¡¼­ ¾Èº¸ÀÌ°Ô ÇÑ´Ù.
+            this->SetVisibleWithNoSound(false, false, true); // ë‹¤ ë‹«í˜”ìœ¼ë‹ˆ ëˆˆì—ì„œ ì•ˆë³´ì´ê²Œ í•œë‹¤.
             CGameProcedure::s_pUIMgr->ReFocusUI();           //this_ui
         }
 
@@ -1663,19 +1663,19 @@ void CUIVarious::UpdateAllStates(const __InfoPlayerBase * pInfoBase, const __Inf
 
     std::string szVal;
 
-    if (m_pPageState->m_pText_Class) // Á÷¾÷
+    if (m_pPageState->m_pText_Class) // ì§ì—…
     {
         CGameProcedure::GetTextByClass(pInfoBase->eClass, szVal);
         m_pPageState->m_pText_Class->SetString(szVal);
     }
 
-    // Á¾Á·
+    // ì¢…ì¡±
     if (m_pPageState->m_pText_Race) {
         CGameProcedure::GetTextByRace(pInfoBase->eRace, szVal);
         m_pPageState->m_pText_Race->SetString(szVal);
     }
 
-    // ±¹°¡
+    // êµ­ê°€
     if (m_pPageState->m_pText_Nation) {
         CGameProcedure::GetTextByNation(pInfoBase->eNation, szVal);
         m_pPageState->m_pText_Nation->SetString(szVal);
@@ -1691,7 +1691,7 @@ void CUIVarious::UpdateAllStates(const __InfoPlayerBase * pInfoBase, const __Inf
 
     m_pPageState->UpdateAttackPoint(pInfoExt->iAttack, pInfoExt->iAttack_Delta);
     m_pPageState->UpdateGuardPoint(pInfoExt->iGuard, pInfoExt->iGuard_Delta);
-    m_pPageState->UpdateBonusPointAndButtons(pInfoExt->iBonusPointRemain); // º¸³Ê½º Æ÷ÀÎÆ® Àû¿ëÀÌ °¡´ÉÇÑ°¡??
+    m_pPageState->UpdateBonusPointAndButtons(pInfoExt->iBonusPointRemain); // ë³´ë„ˆìŠ¤ í¬ì¸íŠ¸ ì ìš©ì´ ê°€ëŠ¥í•œê°€??
 
     m_pPageState->UpdateStrength(pInfoExt->iStrength, pInfoExt->iStrength_Delta);
     m_pPageState->UpdateStamina(pInfoExt->iStamina, pInfoExt->iStamina_Delta);
@@ -1706,10 +1706,10 @@ void CUIVarious::UpdateAllStates(const __InfoPlayerBase * pInfoBase, const __Inf
     m_pPageState->UpdateRegistLight(pInfoExt->iRegistLight, pInfoExt->iRegistLight_Delta);
     m_pPageState->UpdateRegistPoison(pInfoExt->iRegistPoison, pInfoExt->iRegistPoison_Delta);
 
-    // ±â»ç´Ü °ü·Ã Á¤º¸ ¾÷µ¥ÀÌÆ®...
-    m_pPageState->UpdateRealmPoint(pInfoExt->iRealmPoint); // ±¹°¡ ±â¿©µµ´Â 10À» ³ª´©¾î¼­ Ç¥½Ã
+    // ê¸°ì‚¬ë‹¨ ê´€ë ¨ ì •ë³´ ì—…ë°ì´íŠ¸...
+    m_pPageState->UpdateRealmPoint(pInfoExt->iRealmPoint); // êµ­ê°€ ê¸°ì—¬ë„ëŠ” 10ì„ ë‚˜ëˆ„ì–´ì„œ í‘œì‹œ
 
-    // Ä³¸¯ÅÍ ´É·ÂÄ¡ Æ÷ÀÎÆ® ÀÌ¹ÌÁö ¾÷µ¥ÀÌÆ®..
+    // ìºë¦­í„° ëŠ¥ë ¥ì¹˜ í¬ì¸íŠ¸ ì´ë¯¸ì§€ ì—…ë°ì´íŠ¸..
     if (m_pPageState->m_pImg_Str) {
         m_pPageState->m_pImg_Str->SetVisible(false);
     }

@@ -76,7 +76,7 @@ void CParty::PartyCreate(char * pBuf) {
     pParty->uid[0] = sUid;
 
     if (m_pMain->m_arParty.PutData(pParty->wIndex, pParty)) {
-        TRACE("Party - Create() : Party »ı¼º  number = %d, uid=%d, %d \n", sPartyIndex, pParty->uid[0], pParty->uid[1]);
+        TRACE("Party - Create() : Party ìƒì„±  number = %d, uid=%d, %d \n", sPartyIndex, pParty->uid[0], pParty->uid[1]);
     }
     LeaveCriticalSection(&g_region_critical);
 }
@@ -98,7 +98,7 @@ void CParty::PartyInsert(char * pBuf) {
     //sClass = GetShort(pBuf, index);
 
     pParty = m_pMain->m_arParty.GetData(sPartyIndex);
-    if (!pParty) { // ÀÌ»óÇÑ °æ¿ì
+    if (!pParty) { // ì´ìƒí•œ ê²½ìš°
         return;
     }
 
@@ -131,7 +131,7 @@ void CParty::PartyRemove(char * pBuf) {
     }
 
     pParty = m_pMain->m_arParty.GetData(sPartyIndex);
-    if (!pParty) { // ÀÌ»óÇÑ °æ¿ì
+    if (!pParty) { // ì´ìƒí•œ ê²½ìš°
         return;
     }
 
@@ -163,7 +163,7 @@ void CParty::PartyDelete(char * pBuf) {
     }
 
     pParty = m_pMain->m_arParty.GetData(sPartyIndex);
-    if (!pParty) { // ÀÌ»óÇÑ °æ¿ì
+    if (!pParty) { // ì´ìƒí•œ ê²½ìš°
         return;
     }
 

@@ -70,7 +70,7 @@ BOOL CDlgBase::OnInitDialog() {
     int   nH = 0;
 
     /////////////////////////////////////
-    // Transform µî·Ï Á¤º¸
+    // Transform ë“±ë¡ ì •ë³´
     m_LPTransform.AddPropItem("Position", "", PIT_EDIT, "");
     m_LPTransform.AddPropItem("Rotation", "", PIT_EDIT, "");
     m_LPTransform.AddPropItem("Scale", "", PIT_EDIT, "");
@@ -78,27 +78,27 @@ BOOL CDlgBase::OnInitDialog() {
     m_LPTransform.GetWindowRect(&rc);
     nH = m_LPTransform.GetItemHeight(0) * m_LPTransform.GetCount() + 4;
     m_LPTransform.SetWindowPos(NULL, 0, 0, rc.Width(), nH, SWP_NOZORDER | SWP_NOMOVE);
-    // Transform µî·Ï Á¤º¸
+    // Transform ë“±ë¡ ì •ë³´
     /////////////////////////////////////
 
     /////////////////////////////////////
-    // Camera µî·Ï Á¤º¸
+    // Camera ë“±ë¡ ì •ë³´
     m_LPCamera.AddPropItem("Eye", "", PIT_EDIT, "");
     m_LPCamera.AddPropItem("At", "", PIT_EDIT, "");
     m_LPCamera.AddPropItem("Up", "", PIT_EDIT, "");
     m_LPCamera.AddPropItem("Field Of View", "", PIT_EDIT, "");
     m_LPCamera.AddPropItem("Near Plane", "", PIT_EDIT, "");
     m_LPCamera.AddPropItem("Far Plane", "", PIT_EDIT, "");
-    m_LPCamera.AddPropItem("¾È°³ »ç¿ë", "", PIT_EDIT, "");
-    m_LPCamera.AddPropItem("¾È°³ »ö", "", PIT_EDIT, "");
+    m_LPCamera.AddPropItem("ì•ˆê°œ ì‚¬ìš©", "", PIT_EDIT, "");
+    m_LPCamera.AddPropItem("ì•ˆê°œ ìƒ‰", "", PIT_EDIT, "");
     m_LPCamera.GetWindowRect(&rc);
     nH = m_LPCamera.GetItemHeight(0) * m_LPCamera.GetCount() + 4;
     m_LPCamera.SetWindowPos(NULL, 0, 0, rc.Width(), nH, SWP_NOZORDER | SWP_NOMOVE);
-    // Camera µî·Ï Á¤º¸
+    // Camera ë“±ë¡ ì •ë³´
     /////////////////////////////////////
 
     /////////////////////////////////////
-    // Light µî·Ï Á¤º¸
+    // Light ë“±ë¡ ì •ë³´
     m_LPLight.AddPropItem("On", "", PIT_EDIT, "");
     m_LPLight.AddPropItem("Number", "", PIT_EDIT, "");
     m_LPLight.AddPropItem("Type", "", PIT_COMBO, "Null|Point|Spot|Directional|");
@@ -113,13 +113,13 @@ BOOL CDlgBase::OnInitDialog() {
     m_LPLight.GetWindowRect(&rc);
     nH = m_LPLight.GetItemHeight(0) * m_LPLight.GetCount() + 4;
     m_LPLight.SetWindowPos(NULL, 0, 0, rc.Width(), nH, SWP_NOZORDER | SWP_NOMOVE);
-    // Light µî·Ï Á¤º¸
+    // Light ë“±ë¡ ì •ë³´
     /////////////////////////////////////
 
     CString str, strTmp;
 
     /////////////////////////////////////
-    // Material µî·Ï Á¤º¸
+    // Material ë“±ë¡ ì •ë³´
     m_LPMaterial.AddPropItem("Render Flags", "0", PIT_EDIT, "", 0);
     strTmp =
         "Null|D3DBLEND_ZERO|D3DBLEND_ONE|D3DBLEND_SRCCOLOR|D3DBLEND_INVSRCCOLOR|D3DBLEND_SRCALPHA|D3DBLEND_INVSRCALPHA|D3DBLEND_DESTALPHA|\
@@ -146,26 +146,26 @@ D3DTOP_BUMPENVMAP|D3DTOP_BUMPENVMAPLUMINANCE|D3DTOP_DOTPRODUCT|D3DTOP_MULTIPLYAD
     m_LPMaterial.GetWindowRect(&rc);
     nH = m_LPMaterial.GetItemHeight(0) * m_LPMaterial.GetCount() + 4;
     m_LPMaterial.SetWindowPos(NULL, 0, 0, rc.Width(), nH, SWP_NOZORDER | SWP_NOMOVE);
-    // Material µî·Ï Á¤º¸
+    // Material ë“±ë¡ ì •ë³´
     /////////////////////////////////////
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Shape
     m_CBShapePart.ResetContent();
-    m_LPShape.AddPropItem("¼Ò¼Ó", "", PIT_EDIT, "");
+    m_LPShape.AddPropItem("ì†Œì†", "", PIT_EDIT, "");
     m_LPShape.AddPropItem("Event ID", "", PIT_EDIT, "");
     m_LPShape.AddPropItem("Event Type", "", PIT_EDIT, "");
     m_LPShape.AddPropItem("NPC ID", "", PIT_EDIT, "");
     m_LPShape.AddPropItem("NPC Status", "", PIT_EDIT, "");
-    m_LPShape.AddPropItem("Part Add", "Part Ãß°¡", PIT_BUTTON, "");
-    m_LPShape.AddPropItem("Part Delete", "Part »èÁ¦", PIT_BUTTON, "");
+    m_LPShape.AddPropItem("Part Add", "Part ì¶”ê°€", PIT_BUTTON, "");
+    m_LPShape.AddPropItem("Part Delete", "Part ì‚­ì œ", PIT_BUTTON, "");
 
     m_LPShape.AddPropItem("Face, Vertex Count", "", PIT_EDIT, "");
     m_LPShape.AddPropItem("Texture File", "", PIT_FILE_MULTI,
-                          "Texture ·Î ¾µ¼ö ÀÖ´Â ±×¸² ÆÄÀÏ(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
+                          "Texture ë¡œ ì“¸ìˆ˜ ìžˆëŠ” ê·¸ë¦¼ íŒŒì¼(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
     m_LPShape.AddPropItem("Mesh File", "", PIT_FILE, "N3 Progressive Mesh File(*.N3PMesh)|*.N3PMesh||");
     m_LPShape.AddPropItem("Collision Mesh File", "", PIT_FILE, "N3 Vector Mesh(*.N3VMesh)|*.N3VMesh||");
-    m_LPShape.AddPropItem("Collision Mesh Delete", "Collision Mesh »èÁ¦", PIT_BUTTON, "");
+    m_LPShape.AddPropItem("Collision Mesh Delete", "Collision Mesh ì‚­ì œ", PIT_BUTTON, "");
 
     m_LPShape.GetWindowRect(&rc);
     nH = m_LPShape.GetItemHeight(0) * m_LPShape.GetCount() + 4;
@@ -174,14 +174,14 @@ D3DTOP_BUMPENVMAP|D3DTOP_BUMPENVMAPLUMINANCE|D3DTOP_DOTPRODUCT|D3DTOP_MULTIPLYAD
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Ä³¸¯ÅÍ
+    // ìºë¦­í„°
     m_LPChr.AddPropItem("Joint File", "", PIT_FILE, "N3 Joint File(*.N3Joint)|*.N3Joint||");
     m_LPChr.AddPropItem("Collision Mesh File", "", PIT_FILE, "N3 Vector Mesh(*.N3VMesh)|*.N3VMesh||");
-    m_LPChr.AddPropItem("Collision Mesh Delete", "Collision Mesh »èÁ¦", PIT_BUTTON, "");
-    m_LPChr.AddPropItem("Part Add", "Part Ãß°¡", PIT_BUTTON, "");
-    m_LPChr.AddPropItem("Part Delete", "Part »èÁ¦", PIT_BUTTON, "");
-    m_LPChr.AddPropItem("Plug Add", "Plug Ãß°¡", PIT_BUTTON, "");
-    m_LPChr.AddPropItem("Plug Delete", "Plug »èÁ¦", PIT_BUTTON, "");
+    m_LPChr.AddPropItem("Collision Mesh Delete", "Collision Mesh ì‚­ì œ", PIT_BUTTON, "");
+    m_LPChr.AddPropItem("Part Add", "Part ì¶”ê°€", PIT_BUTTON, "");
+    m_LPChr.AddPropItem("Part Delete", "Part ì‚­ì œ", PIT_BUTTON, "");
+    m_LPChr.AddPropItem("Plug Add", "Plug ì¶”ê°€", PIT_BUTTON, "");
+    m_LPChr.AddPropItem("Plug Delete", "Plug ì‚­ì œ", PIT_BUTTON, "");
 
     m_CBChrPart.ResetContent();
     m_CBChrPart.SetCurSel(0);
@@ -193,14 +193,14 @@ D3DTOP_BUMPENVMAP|D3DTOP_BUMPENVMAPLUMINANCE|D3DTOP_DOTPRODUCT|D3DTOP_MULTIPLYAD
     }
     m_CBChrLOD.SetCurSel(0);
 
-    m_LPCPart.AddPropItem("Part Type", "", PIT_COMBO, "¸Ó¸®Ä«¶ô|¾ó±¼|»óÃ¼|ÇÏÃ¼|¼Õ|¹ß|??|");
+    m_LPCPart.AddPropItem("Part Type", "", PIT_COMBO, "ë¨¸ë¦¬ì¹´ë½|ì–¼êµ´|ìƒì²´|í•˜ì²´|ì†|ë°œ|??|");
     m_LPCPart.AddPropItem("Texture File", "", PIT_FILE,
-                          "Texture ·Î ¾µ¼ö ÀÖ´Â ±×¸² ÆÄÀÏ(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
-    m_LPCPlug.AddPropItem("Plug Type", "", PIT_COMBO, "¿À¸¥¼ÕÀåÂø|¿Þ¼ÕÀåÂø|¾ç¼ÕÀåÂø");
+                          "Texture ë¡œ ì“¸ìˆ˜ ìžˆëŠ” ê·¸ë¦¼ íŒŒì¼(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
+    m_LPCPlug.AddPropItem("Plug Type", "", PIT_COMBO, "ì˜¤ë¥¸ì†ìž¥ì°©|ì™¼ì†ìž¥ì°©|ì–‘ì†ìž¥ì°©");
     m_LPCPlug.AddPropItem("Plug Joint", "", PIT_EDIT, "");
     m_LPCPlug.AddPropItem("Plug Mesh File", "", PIT_FILE, "N3 Progressive Mesh File(*.N3PMesh)|*.N3PMesh||");
     m_LPCPlug.AddPropItem("Plug Texture File", "", PIT_FILE,
-                          "Texture ·Î ¾µ¼ö ÀÖ´Â ±×¸² ÆÄÀÏ(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
+                          "Texture ë¡œ ì“¸ìˆ˜ ìžˆëŠ” ê·¸ë¦¼ íŒŒì¼(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
     m_LPCPlug.AddPropItem("Plug Offset", "", PIT_EDIT, "");
     m_LPCPlug.AddPropItem("Plug Rotation", "Reset", PIT_BUTTON, "");
     m_LPCPlug.AddPropItem("Plug Scale", "", PIT_EDIT, "");
@@ -216,7 +216,7 @@ D3DTOP_BUMPENVMAP|D3DTOP_BUMPENVMAPLUMINANCE|D3DTOP_DOTPRODUCT|D3DTOP_MULTIPLYAD
     m_LPCPlug.GetWindowRect(&rc);
     nH = m_LPCPlug.GetItemHeight(0) * m_LPCPlug.GetCount() + 4;
     m_LPCPlug.SetWindowPos(NULL, 0, 0, rc.Width(), nH, SWP_NOZORDER | SWP_NOMOVE);
-    // Ä³¸¯ÅÍ
+    // ìºë¦­í„°
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     int nW = 100;
@@ -359,7 +359,7 @@ void CDlgBase::UpdateInfo() {
         if (pItem) {
             pItem->m_curValue.Format("%f", pC->m_Data.fFP);
         }
-        pItem = m_LPCamera.GetPropItem("¾È°³ »ç¿ë");
+        pItem = m_LPCamera.GetPropItem("ì•ˆê°œ ì‚¬ìš©");
         if (pItem) {
             if (pC->m_bFogUse) {
                 pItem->m_curValue = "On";
@@ -367,7 +367,7 @@ void CDlgBase::UpdateInfo() {
                 pItem->m_curValue = "Off";
             }
         }
-        pItem = m_LPCamera.GetPropItem("¾È°³ »ö");
+        pItem = m_LPCamera.GetPropItem("ì•ˆê°œ ìƒ‰");
         if (pItem) {
             pItem->D3DColorSet(pC->m_FogColor);
         }
@@ -458,7 +458,7 @@ void CDlgBase::UpdateInfo() {
         CN3Shape *      pS = (CN3Shape *)pBase;
         CPropertyItem * pItem;
 
-        pItem = m_LPShape.GetPropItem("¼Ò¼Ó");
+        pItem = m_LPShape.GetPropItem("ì†Œì†");
         if (pItem) {
             pItem->m_curValue.Format("%d", pSI->m_iBelong);
         }
@@ -476,7 +476,7 @@ void CDlgBase::UpdateInfo() {
         }
         pItem = m_LPShape.GetPropItem("NPC Status");
         if (pItem) {
-            pItem->m_curValue.Format("%d", pSI->m_iNPC_Status); // NPC ·Î ¾²´Â ¿ÀºêÁ§Æ®ÀÏ °æ¿ì NPC Type
+            pItem->m_curValue.Format("%d", pSI->m_iNPC_Status); // NPC ë¡œ ì“°ëŠ” ì˜¤ë¸Œì íŠ¸ì¼ ê²½ìš° NPC Type
         }
 
         int nPartCount = pS->PartCount();
@@ -647,7 +647,7 @@ void CDlgBase::UpdateInfo() {
             }
         }
 
-        // ºÙÀÌ´Â ¿ÀºêÁ§Æ®(¹«±â, Àå½Å±¸ µî...) Á¤º¸ Ç¥½Ã
+        // ë¶™ì´ëŠ” ì˜¤ë¸Œì íŠ¸(ë¬´ê¸°, ìž¥ì‹ êµ¬ ë“±...) ì •ë³´ í‘œì‹œ
         int nPlug = m_CBChrPlug.GetCurSel();
         int nPlugCount = pC->PlugCount();
         m_CBChrPlug.ResetContent();
@@ -829,13 +829,13 @@ BOOL CDlgBase::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                 pC->m_Data.fNP = (float)atof(pItem->m_curValue);
             } else if (pItem->m_propName == "Far Plane") {
                 pC->m_Data.fFP = (float)atof(pItem->m_curValue);
-            } else if (pItem->m_propName == "¾È°³ »ç¿ë") {
+            } else if (pItem->m_propName == "ì•ˆê°œ ì‚¬ìš©") {
                 if (lstrcmpi(pItem->m_curValue, "on") == 0) {
                     pC->m_bFogUse = TRUE;
                 } else {
                     pC->m_bFogUse = FALSE;
                 }
-            } else if (pItem->m_propName == "¾È°³ »ö") {
+            } else if (pItem->m_propName == "ì•ˆê°œ ìƒ‰") {
                 pC->m_FogColor = pItem->D3DColorGet();
             }
         }
@@ -887,7 +887,7 @@ BOOL CDlgBase::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
             CN3SPart *      pPD = pS->Part(nPart);
             CPropertyItem * pItem = (CPropertyItem *)lParam;
 
-            if (pItem->m_propName == "¼Ò¼Ó" && pItem->m_curValue.GetLength() > 0) {
+            if (pItem->m_propName == "ì†Œì†" && pItem->m_curValue.GetLength() > 0) {
                 pSI->m_iBelong = atoi(pItem->m_curValue);
             } else if (pItem->m_propName == "Event ID" && pItem->m_curValue.GetLength() > 0) {
                 pSI->m_iEventID = atoi(pItem->m_curValue);
@@ -896,7 +896,7 @@ BOOL CDlgBase::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
             } else if (pItem->m_propName == "NPC ID" && pItem->m_curValue.GetLength() > 0) {
                 pSI->m_iNPC_ID = atoi(pItem->m_curValue);
             } else if (pItem->m_propName == "NPC Status" && pItem->m_curValue.GetLength() > 0) {
-                pSI->m_iNPC_Status = atoi(pItem->m_curValue); // NPC ·Î ¾²´Â ¿ÀºêÁ§Æ®ÀÏ °æ¿ì NPC Type
+                pSI->m_iNPC_Status = atoi(pItem->m_curValue); // NPC ë¡œ ì“°ëŠ” ì˜¤ë¸Œì íŠ¸ì¼ ê²½ìš° NPC Type
             }
 
             else if (pItem->m_propName == "Collision Mesh File" && pItem->m_curValue.GetLength() > 0) {
@@ -1024,7 +1024,7 @@ BOOL CDlgBase::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                 CN3CPlugBase * pPlug = pC->Plug(nPlug);
 
                 if (pItem->m_propName == "Plug Joint") {
-                    int        nJI = atoi(pItem->m_curValue); // Joint Index °¡ ¿µ¿ªÀ» ¹þ¾î³ªÁö ¸øÇÏµµ·Ï...
+                    int        nJI = atoi(pItem->m_curValue); // Joint Index ê°€ ì˜ì—­ì„ ë²—ì–´ë‚˜ì§€ ëª»í•˜ë„ë¡...
                     int        nJC = 0;
                     CN3Joint * pJ = pC->Joint();
                     if (pJ) {
@@ -1129,7 +1129,7 @@ void CDlgBase::OnChangeEName() {
     pBase = pFrm->GetShapeForDisplay();
     if (pBase != NULL) {
         CString str;
-        GetDlgItemText(IDC_E_NAME, str); // ÀÌ¸§ ¹Ù²Ù±â..
+        GetDlgItemText(IDC_E_NAME, str); // ì´ë¦„ ë°”ê¾¸ê¸°..
         pBase->m_szName = str;
     }
 }

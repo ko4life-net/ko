@@ -19,7 +19,7 @@
 #include "Compress.h"
 #include "Party.h"
 
-#include "extern.h" // Àü¿ª °´Ã¼
+#include "extern.h" // ì „ì—­ ê°ì²´
 
 #include "STLMap.h"
 #include <vector>
@@ -44,8 +44,8 @@ typedef std::list<int>                 ZoneNpcInfoList;
 typedef std::vector<MAP *>             ZoneArray;
 
 /*
-     ** Repent AI Server ÀÛ¾÷½Ã Âü°í »çÇ× **
-    1. 3°³ÀÇ ÇÔ¼ö Ãß°¡
+     ** Repent AI Server ì‘ì—…ì‹œ ì°¸ê³  ì‚¬í•­ **
+    1. 3ê°œì˜ í•¨ìˆ˜ ì¶”ê°€
         int GetSpeed(BYTE bySpeed); 
         int GetAttackSpeed(BYTE bySpeed); 
         int GetCatsSpeed(BYTE bySpeed); 
@@ -71,7 +71,7 @@ class CServerDlg : public CDialog {
     void GetServerInfoIni();
 
     void SyncTest();
-    void RegionCheck(); // region¾È¿¡ µé¾î¿À´Â À¯Àú Ã¼Å© (½º·¹µå¿¡¼­ FindEnermy()ÇÔ¼öÀÇ ºÎÇÏ¸¦ ÁÙÀÌ±â À§ÇÑ ²Ç¼ö)
+    void RegionCheck(); // regionì•ˆì— ë“¤ì–´ì˜¤ëŠ” ìœ ì € ì²´í¬ (ìŠ¤ë ˆë“œì—ì„œ FindEnermy()í•¨ìˆ˜ì˜ ë¶€í•˜ë¥¼ ì¤„ì´ê¸° ìœ„í•œ ê½ìˆ˜)
     void TestCode();
     // Construction
   public:
@@ -93,7 +93,7 @@ class CServerDlg : public CDialog {
     void    CheckAliveTest();
     void    DeleteUserList(int uid);
     void    DeleteAllUserList(int zone);
-    void    SendCompressedData(int nZone); // ÆĞÅ¶À» ¾ĞÃàÇØ¼­ º¸³½´Ù..
+    void    SendCompressedData(int nZone); // íŒ¨í‚·ì„ ì••ì¶•í•´ì„œ ë³´ë‚¸ë‹¤..
     int     Send(char * pData, int length, int nZone = 0);
     void    SendSystemMsg(char * pMsg, int zone, int type = 0, int who = 0);
     void    ResetBattleZone();
@@ -144,32 +144,32 @@ class CServerDlg : public CDialog {
 
     CUser * m_pUser[MAX_USER];
 
-    // class °´Ã¼
+    // class ê°ì²´
     CNpcItem m_NpcItem;
 
     CFile m_UserLogFile;
     CFile m_ItemLogFile;
 
-    // Àü¿ª °´Ã¼ º¯¼ö
+    // ì „ì—­ ê°ì²´ ë³€ìˆ˜
     //BOOL            m_bNpcExit;
-    long  m_TotalNPC;        // DB¿¡ÀÖ´Â ÃÑ ¼ö
-    long  m_CurrentNPCError; // ¼¼ÆÃ¿¡¼­ ½ÇÆĞÇÑ ¼ö
-    long  m_CurrentNPC;      // ÇöÀç °ÔÀÓ»ó¿¡¼­ ½ÇÁ¦·Î ¼ÂÆÃµÈ ¼ö
-    short m_sTotalMap;       // Zone ¼ö
-    short m_sMapEventNpc;    // Map¿¡¼­ ÀĞ¾îµéÀÌ´Â event npc ¼ö
+    long  m_TotalNPC;        // DBì—ìˆëŠ” ì´ ìˆ˜
+    long  m_CurrentNPCError; // ì„¸íŒ…ì—ì„œ ì‹¤íŒ¨í•œ ìˆ˜
+    long  m_CurrentNPC;      // í˜„ì¬ ê²Œì„ìƒì—ì„œ ì‹¤ì œë¡œ ì…‹íŒ…ëœ ìˆ˜
+    short m_sTotalMap;       // Zone ìˆ˜
+    short m_sMapEventNpc;    // Mapì—ì„œ ì½ì–´ë“¤ì´ëŠ” event npc ìˆ˜
 
     // sungyong 2002.05.23
-    BOOL  m_bFirstServerFlag;  // ¼­¹ö°¡ Ã³À½½ÃÀÛÇÑ ÈÄ °ÔÀÓ¼­¹ö°¡ ºÙÀº °æ¿ì¿¡´Â 1, ºÙÁö ¾ÊÀº °æ¿ì 0
-    short m_sSocketCount;      // GameServer¿Í Ã³À½Á¢½Ã ÇÊ¿ä
-    short m_sReSocketCount;    // GameServer¿Í ÀçÁ¢½Ã ÇÊ¿ä
-    float m_fReConnectStart;   // Ã³À½ ¼ÒÄÏÀÌ µµÂøÇÑ ½Ã°£
-    short m_sErrorSocketCount; // ÀÌ»ó¼ÒÄÏ °¨½Ã¿ë
+    BOOL m_bFirstServerFlag; // ì„œë²„ê°€ ì²˜ìŒì‹œì‘í•œ í›„ ê²Œì„ì„œë²„ê°€ ë¶™ì€ ê²½ìš°ì—ëŠ” 1, ë¶™ì§€ ì•Šì€ ê²½ìš° 0
+    short m_sSocketCount;    // GameServerì™€ ì²˜ìŒì ‘ì‹œ í•„ìš”
+    short m_sReSocketCount;    // GameServerì™€ ì¬ì ‘ì‹œ í•„ìš”
+    float m_fReConnectStart;   // ì²˜ìŒ ì†Œì¼“ì´ ë„ì°©í•œ ì‹œê°„
+    short m_sErrorSocketCount; // ì´ìƒì†Œì¼“ ê°ì‹œìš©
     // ~sungyong 2002.05.23
-    BYTE  m_byBattleEvent;                 // ÀüÀï ÀÌº¥Æ® °ü·Ã ÇÃ·¡±×( 1:ÀüÀïÁßÀÌ ¾Æ´Ô, 0:ÀüÀïÁß)
-    short m_sKillKarusNpc, m_sKillElmoNpc; // ÀüÀïµ¿¾È¿¡ Á×Àº npc¼ıÀÚ
+    BYTE  m_byBattleEvent;                 // ì „ìŸ ì´ë²¤íŠ¸ ê´€ë ¨ í”Œë˜ê·¸( 1:ì „ìŸì¤‘ì´ ì•„ë‹˜, 0:ì „ìŸì¤‘)
+    short m_sKillKarusNpc, m_sKillElmoNpc; // ì „ìŸë™ì•ˆì— ì£½ì€ npcìˆ«ì
 
     int  m_iYear, m_iMonth, m_iDate, m_iHour, m_iMin, m_iWeather, m_iAmount;
-    BYTE m_byNight; // ¹ãÀÎÁö,, ³·ÀÎÁö¸¦ ÆÇ´Ü... 1:³·, 2:¹ã
+    BYTE m_byNight; // ë°¤ì¸ì§€,, ë‚®ì¸ì§€ë¥¼ íŒë‹¨... 1:ë‚®, 2:ë°¤
     BYTE m_byTestMode;
 
     char m_szOdbcGameDsn[24];
@@ -179,12 +179,12 @@ class CServerDlg : public CDialog {
     CIOCPort m_Iocport;
 
   private:
-    // ÆĞÅ¶ ¾ĞÃà¿¡ ÇÊ¿ä º¯¼ö   -------------
+    // íŒ¨í‚· ì••ì¶•ì— í•„ìš” ë³€ìˆ˜   -------------
     CCompressManager m_CompMng;
     int              m_CompCount;
     TCHAR            m_CompBuf[10240];
     int              m_iCompIndex;
-    // ~ÆĞÅ¶ ¾ĞÃà¿¡ ÇÊ¿ä º¯¼ö   -------------
+    // ~íŒ¨í‚· ì••ì¶•ì— í•„ìš” ë³€ìˆ˜   -------------
 
     BYTE m_byZone;
 

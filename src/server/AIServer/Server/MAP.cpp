@@ -100,7 +100,7 @@ BOOL MAP::IsMovable(int dest_x, int dest_y) {
 }
 
 ///////////////////////////////////////////////////////////////////////
-//    °¢ ¼­¹ö°¡ ´ã´çÇÏ°í ÀÖ´Â zoneÀÇ MapÀ» ·ÎµåÇÑ´Ù.
+//    ê° ì„œë²„ê°€ ë‹´ë‹¹í•˜ê³  ìˆëŠ” zoneì˜ Mapì„ ë¡œë“œí•œë‹¤.
 //
 BOOL MAP::LoadMap(HANDLE hFile) {
     LoadTerrain(hFile);
@@ -138,7 +138,7 @@ BOOL MAP::LoadMap(HANDLE hFile) {
 
 void MAP::LoadTerrain(HANDLE hFile) {
     DWORD dwRWC;
-    ReadFile(hFile, &m_nMapSize, sizeof(int), &dwRWC, NULL); // °¡·Î¼¼·Î Á¤º¸°¡ ¸î°³¾¿ÀÎ°¡?
+    ReadFile(hFile, &m_nMapSize, sizeof(int), &dwRWC, NULL); // ê°€ë¡œì„¸ë¡œ ì •ë³´ê°€ ëª‡ê°œì”©ì¸ê°€?
     ReadFile(hFile, &m_fUnitDist, sizeof(float), &dwRWC, NULL);
 
     m_fHeight = new float *[m_nMapSize];
@@ -149,7 +149,7 @@ void MAP::LoadTerrain(HANDLE hFile) {
     int x, z;
     for (z = 0; z < m_nMapSize; z++) {
         for (x = 0; x < m_nMapSize; x++) {
-            ReadFile(hFile, &(m_fHeight[x][z]), sizeof(float), &dwRWC, NULL); // ³ôÀÌ°ª ÀĞ¾î¿À±â
+            ReadFile(hFile, &(m_fHeight[x][z]), sizeof(float), &dwRWC, NULL); // ë†’ì´ê°’ ì½ì–´ì˜¤ê¸°
         }
     }
 }
@@ -158,7 +158,7 @@ float MAP::GetHeight(float x, float z) {
     int iX, iZ;
     iX = (int)(x / m_fUnitDist);
     iZ = (int)(z / m_fUnitDist);
-    //_ASSERT( iX, iZ°¡ ¹üÀ§³»¿¡ ÀÖ´Â °ªÀÎÁö Ã¼Å©ÇÏ±â);
+    //_ASSERT( iX, iZê°€ ë²”ìœ„ë‚´ì— ìˆëŠ” ê°’ì¸ì§€ ì²´í¬í•˜ê¸°);
 
     float y;
     float h1, h2, h3;
@@ -179,9 +179,9 @@ float MAP::GetHeight(float x, float z) {
 
             //if (dX == 1.0f) return h2;
 
-            float h12 = h1 + (h2 - h1) * dX;              // h1°ú h2»çÀÌÀÇ ³ôÀÌ°ª
-            float h32 = h3 + (h2 - h3) * dX;              // h3°ú h2»çÀÌÀÇ ³ôÀÌ°ª
-            y = h32 + (h12 - h32) * ((dZ) / (1.0f - dX)); // Ã£°íÀÚ ÇÏ´Â ³ôÀÌ°ª
+            float h12 = h1 + (h2 - h1) * dX;              // h1ê³¼ h2ì‚¬ì´ì˜ ë†’ì´ê°’
+            float h32 = h3 + (h2 - h3) * dX;              // h3ê³¼ h2ì‚¬ì´ì˜ ë†’ì´ê°’
+            y = h32 + (h12 - h32) * ((dZ) / (1.0f - dX)); // ì°¾ê³ ì í•˜ëŠ” ë†’ì´ê°’
         } else {
             h1 = m_fHeight[iX][iZ + 1];
             h2 = m_fHeight[iX + 1][iZ];
@@ -191,9 +191,9 @@ float MAP::GetHeight(float x, float z) {
                 return h1;
             }
 
-            float h12 = h1 + (h2 - h1) * dX;              // h1°ú h2»çÀÌÀÇ ³ôÀÌ°ª
-            float h13 = h1 + (h3 - h1) * dX;              // h1°ú h3»çÀÌÀÇ ³ôÀÌ°ª
-            y = h13 + (h12 - h13) * ((1.0f - dZ) / (dX)); // Ã£°íÀÚ ÇÏ´Â ³ôÀÌ°ª
+            float h12 = h1 + (h2 - h1) * dX;              // h1ê³¼ h2ì‚¬ì´ì˜ ë†’ì´ê°’
+            float h13 = h1 + (h3 - h1) * dX;              // h1ê³¼ h3ì‚¬ì´ì˜ ë†’ì´ê°’
+            y = h13 + (h12 - h13) * ((1.0f - dZ) / (dX)); // ì°¾ê³ ì í•˜ëŠ” ë†’ì´ê°’
         }
     } else {
         if (dZ > dX) {
@@ -203,9 +203,9 @@ float MAP::GetHeight(float x, float z) {
 
             //if (dX == 1.0f) return h2;
 
-            float h12 = h1 + (h2 - h1) * dX;                     // h1°ú h2»çÀÌÀÇ ³ôÀÌ°ª
-            float h32 = h3 + (h2 - h3) * dX;                     // h3°ú h2»çÀÌÀÇ ³ôÀÌ°ª
-            y = h12 + (h32 - h12) * ((1.0f - dZ) / (1.0f - dX)); // Ã£°íÀÚ ÇÏ´Â ³ôÀÌ°ª
+            float h12 = h1 + (h2 - h1) * dX;                     // h1ê³¼ h2ì‚¬ì´ì˜ ë†’ì´ê°’
+            float h32 = h3 + (h2 - h3) * dX;                     // h3ê³¼ h2ì‚¬ì´ì˜ ë†’ì´ê°’
+            y = h12 + (h32 - h12) * ((1.0f - dZ) / (1.0f - dX)); // ì°¾ê³ ì í•˜ëŠ” ë†’ì´ê°’
         } else {
             h1 = m_fHeight[iX][iZ];
             h2 = m_fHeight[iX + 1][iZ];
@@ -215,9 +215,9 @@ float MAP::GetHeight(float x, float z) {
                 return h1;
             }
 
-            float h12 = h1 + (h2 - h1) * dX;       // h1°ú h2»çÀÌÀÇ ³ôÀÌ°ª
-            float h13 = h1 + (h3 - h1) * dX;       // h1°ú h3»çÀÌÀÇ ³ôÀÌ°ª
-            y = h12 + (h13 - h12) * ((dZ) / (dX)); // Ã£°íÀÚ ÇÏ´Â ³ôÀÌ°ª
+            float h12 = h1 + (h2 - h1) * dX;       // h1ê³¼ h2ì‚¬ì´ì˜ ë†’ì´ê°’
+            float h13 = h1 + (h3 - h1) * dX;       // h1ê³¼ h3ì‚¬ì´ì˜ ë†’ì´ê°’
+            y = h12 + (h13 - h12) * ((dZ) / (dX)); // ì°¾ê³ ì í•˜ëŠ” ë†’ì´ê°’
         }
     }
     return y;
@@ -306,10 +306,10 @@ Iterator MAP::RegionNpcRemove(int rx, int rz, int nid) {
 }
 
 void MAP::LoadMapTile(HANDLE hFile) {
-    //MapTile¼Ó¼º ÀĞ±â..
-    //    ¼Ó¼ºÀÌ 0ÀÌ¸é ¸ø °¡´Â °÷.
-    //    1ÀÌ¸é ±×³É °¡´Â °÷...
-    //    ±×¿Ü´Â ÀÌº¥Æ® ID.
+    //MapTileì†ì„± ì½ê¸°..
+    //    ì†ì„±ì´ 0ì´ë©´ ëª» ê°€ëŠ” ê³³.
+    //    1ì´ë©´ ê·¸ëƒ¥ ê°€ëŠ” ê³³...
+    //    ê·¸ì™¸ëŠ” ì´ë²¤íŠ¸ ID.
     //
     int      x1 = m_sizeMap.cx;
     int      z1 = m_sizeMap.cy;
@@ -319,7 +319,7 @@ void MAP::LoadMapTile(HANDLE hFile) {
     for (int a = 0; a < m_sizeMap.cx; a++) {
         pEvent[a] = new short[m_sizeMap.cx];
     }
-    // Àá½Ã ¸·¾Æ³õ°í..
+    // ì ì‹œ ë§‰ì•„ë†“ê³ ..
     for (int x = 0; x < m_sizeMap.cx; x++) {
         ReadFile(hFile, pEvent[x], sizeof(short) * m_sizeMap.cy, &dwNum, NULL);
     }
@@ -405,7 +405,7 @@ void MAP::LoadObjectEvent(HANDLE hFile) {
     ReadFile(hFile, &iEventObjectCount, 4, &dwNum, NULL);
     for (int i = 0; i < iEventObjectCount; i++) {
         pEvent = new _OBJECT_EVENT;
-        ReadFile(hFile, &(pEvent->sBelong), 4, &dwNum, NULL); // ¼Ò¼Ó
+        ReadFile(hFile, &(pEvent->sBelong), 4, &dwNum, NULL); // ì†Œì†
         ReadFile(hFile, &(pEvent->sIndex), 2, &dwNum, NULL);  // Event Index
         ReadFile(hFile, &(pEvent->sType), 2, &dwNum, NULL);
         ReadFile(hFile, &(pEvent->sControlNpcID), 2, &dwNum, NULL);
@@ -414,7 +414,7 @@ void MAP::LoadObjectEvent(HANDLE hFile) {
         ReadFile(hFile, &(pEvent->fPosY), 4, &dwNum, NULL);
         ReadFile(hFile, &(pEvent->fPosZ), 4, &dwNum, NULL);
 
-        // ÀÛ¾÷ÇÒ°Í : ¸Êµ¥ÀÌÅÍ°¡ ¹Ù²î¸é Param1ÀÌ 2ÀÌ¸é ¼º¹®ÀÎ°ÍÀ» ÆÇ´Ü..  3ÀÌ¸é ·¹¹ö..
+        // ì‘ì—…í• ê²ƒ : ë§µë°ì´í„°ê°€ ë°”ë€Œë©´ Param1ì´ 2ì´ë©´ ì„±ë¬¸ì¸ê²ƒì„ íŒë‹¨..  3ì´ë©´ ë ˆë²„..
         if (pEvent->sType == 1 || pEvent->sType == 2 || pEvent->sType == 3) {
             // sungyong test
             m_pMain->AddObjectEventNpc(pEvent, m_nZoneNumber);

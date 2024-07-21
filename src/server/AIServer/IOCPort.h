@@ -8,9 +8,9 @@
 
 // sungyong 2002.05.22
 typedef struct _SEND_DATA {
-    short sCurZone;   // ÇöÀçÀÇ Á¸
-    short sLength;    // ÆĞÅ¶ÀÇ ±æÀÌ
-    char  pBuf[2048]; // ÆĞÅ¶ÀÇ ³»¿ë..
+    short sCurZone;   // í˜„ì¬ì˜ ì¡´
+    short sLength;    // íŒ¨í‚·ì˜ ê¸¸ì´
+    char  pBuf[2048]; // íŒ¨í‚·ì˜ ë‚´ìš©..
 } SEND_DATA;
 // ~sungyong 2002.05.22
 
@@ -56,7 +56,7 @@ class CIOCPort {
     CIOCPSocket2 ** m_SockArray;
     CIOCPSocket2 ** m_SockArrayInActive;
 
-    CIOCPSocket2 ** m_ClientSockArray; // Connect¿ë ¼ÒÄÏ
+    CIOCPSocket2 ** m_ClientSockArray; // Connectìš© ì†Œì¼“
 
     CRITICAL_SECTION m_critSendData; // sungyong~ 2002.05.22
 

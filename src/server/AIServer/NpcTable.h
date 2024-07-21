@@ -9,61 +9,61 @@ class CNpcTable {
     short m_sSid;                     // MONSTER(NPC) Serial ID
     TCHAR m_strName[MAX_ID_SIZE + 1]; // MONSTER(NPC) Name
     short m_sPid;                     // MONSTER(NPC) Picture ID
-    short m_sSize;                    // Ä³¸¯ÅÍÀÇ ºñÀ²(100 ÆÛ¼¾Æ® ±âÁØ)
-    int   m_iWeapon_1;                // ¹«±â°è¿­(¿À¸¥¼Õ)
-    int   m_iWeapon_2;                // ¹«±â°è¿­(¿Ş¼Õ)
-    BYTE  m_byGroup;                  // ¼Ò¼ÓÁı´Ü
-    BYTE  m_byActType;                // Çàµ¿ÆĞÅÏ
+    short m_sSize;                    // ìºë¦­í„°ì˜ ë¹„ìœ¨(100 í¼ì„¼íŠ¸ ê¸°ì¤€)
+    int   m_iWeapon_1;                // ë¬´ê¸°ê³„ì—´(ì˜¤ë¥¸ì†)
+    int   m_iWeapon_2;                // ë¬´ê¸°ê³„ì—´(ì™¼ì†)
+    BYTE  m_byGroup;                  // ì†Œì†ì§‘ë‹¨
+    BYTE  m_byActType;                // í–‰ë™íŒ¨í„´
     BYTE  m_tNpcType;                 // NPC Type
                                       // 0 : Monster
                                       // 1 : Normal NPC
-    BYTE  m_byFamilyType;             // ¸÷µé»çÀÌ¿¡¼­ °¡Á·°ü°è¸¦ °áÁ¤ÇÑ´Ù.
-    BYTE  m_byRank;                   // ÀÛÀ§
-    BYTE  m_byTitle;                  // ÁöÀ§
-    int   m_iSellingGroup;            // ¾ÆÀÌÅÛ ±×·ì(¹°°Ç¸Å¸Å ´ã´ç NPCÀÇ °æ¿ì¸¸)
+    BYTE  m_byFamilyType;             // ëª¹ë“¤ì‚¬ì´ì—ì„œ ê°€ì¡±ê´€ê³„ë¥¼ ê²°ì •í•œë‹¤.
+    BYTE  m_byRank;                   // ì‘ìœ„
+    BYTE  m_byTitle;                  // ì§€ìœ„
+    int   m_iSellingGroup;            // ì•„ì´í…œ ê·¸ë£¹(ë¬¼ê±´ë§¤ë§¤ ë‹´ë‹¹ NPCì˜ ê²½ìš°ë§Œ)
     short m_sLevel;                   // level
-    int   m_iExp;                     // °æÇèÄ¡
+    int   m_iExp;                     // ê²½í—˜ì¹˜
     int   m_iLoyalty;                 // loyalty
 
-    int   m_iMaxHP; // ÃÖ´ë HP
-    short m_sMaxMP; // ÃÖ´ë MP
+    int   m_iMaxHP; // ìµœëŒ€ HP
+    short m_sMaxMP; // ìµœëŒ€ MP
 
-    short m_sAttack;      // °ø°İ°ª
-    short m_sDefense;     // ¹æ¾î°ª
-    short m_sHitRate;     // Å¸°İ¼º°ø·ü
-    short m_sEvadeRate;   // È¸ÇÇ¼º°ø·ü
-    short m_sDamage;      // ±âº» µ¥¹ÌÁö
-    short m_sAttackDelay; // °ø°İµô·¹ÀÌ
-    short m_sSpeed;       // ÀÌµ¿¼Óµµ
-    BYTE  m_bySpeed_1;    // ±âº» ÀÌµ¿ Å¸ÀÔ
-    BYTE  m_bySpeed_2;    // ¶Ù´Â ÀÌµ¿ Å¸ÀÔ..
-    short m_sStandTime;   // ¼­ÀÖ´Â ½Ã°£
-    int   m_iMagic1;      // »ç¿ë¸¶¹ı 1
-    int   m_iMagic2;      // »ç¿ë¸¶¹ı 2
-    int   m_iMagic3;      // »ç¿ë¸¶¹ı 3
+    short m_sAttack;      // ê³µê²©ê°’
+    short m_sDefense;     // ë°©ì–´ê°’
+    short m_sHitRate;     // íƒ€ê²©ì„±ê³µë¥ 
+    short m_sEvadeRate;   // íšŒí”¼ì„±ê³µë¥ 
+    short m_sDamage;      // ê¸°ë³¸ ë°ë¯¸ì§€
+    short m_sAttackDelay; // ê³µê²©ë”œë ˆì´
+    short m_sSpeed;       // ì´ë™ì†ë„
+    BYTE  m_bySpeed_1;    // ê¸°ë³¸ ì´ë™ íƒ€ì…
+    BYTE  m_bySpeed_2;    // ë›°ëŠ” ì´ë™ íƒ€ì…..
+    short m_sStandTime;   // ì„œìˆëŠ” ì‹œê°„
+    int   m_iMagic1;      // ì‚¬ìš©ë§ˆë²• 1
+    int   m_iMagic2;      // ì‚¬ìš©ë§ˆë²• 2
+    int   m_iMagic3;      // ì‚¬ìš©ë§ˆë²• 3
 
-    short m_sFireR;      // È­¿° ÀúÇ×·Â
-    short m_sColdR;      // ³Ã±â ÀúÇ×·Â
-    short m_sLightningR; // Àü±â ÀúÇ×·Â
-    short m_sMagicR;     // ¸¶¹ı ÀúÇ×·Â
-    short m_sDiseaseR;   // ÀúÁÖ ÀúÇ×·Â
-    short m_sPoisonR;    // µ¶ ÀúÇ×·Â
-    short m_sLightR;     // ºû ÀúÇ×·Â
-    short m_sBulk;       // ¸ó½ºÅÍÀÇ Å©±â (½ÇÁ¦ ±æÀÌ * 100)
+    short m_sFireR;      // í™”ì—¼ ì €í•­ë ¥
+    short m_sColdR;      // ëƒ‰ê¸° ì €í•­ë ¥
+    short m_sLightningR; // ì „ê¸° ì €í•­ë ¥
+    short m_sMagicR;     // ë§ˆë²• ì €í•­ë ¥
+    short m_sDiseaseR;   // ì €ì£¼ ì €í•­ë ¥
+    short m_sPoisonR;    // ë… ì €í•­ë ¥
+    short m_sLightR;     // ë¹› ì €í•­ë ¥
+    short m_sBulk;       // ëª¬ìŠ¤í„°ì˜ í¬ê¸° (ì‹¤ì œ ê¸¸ì´ * 100)
 
-    BYTE m_bySearchRange;  // Àû Å½Áö ¹üÀ§
-    BYTE m_byAttackRange;  // »çÁ¤°Å¸®
-    BYTE m_byTracingRange; // Ãß°İ°Å¸®
+    BYTE m_bySearchRange;  // ì  íƒì§€ ë²”ìœ„
+    BYTE m_byAttackRange;  // ì‚¬ì •ê±°ë¦¬
+    BYTE m_byTracingRange; // ì¶”ê²©ê±°ë¦¬
 
-    short m_sAI; // ÀÎ°øÁö´É ÀÎµ¦½º
+    short m_sAI; // ì¸ê³µì§€ëŠ¥ ì¸ë±ìŠ¤
 
-    BYTE m_tItemPer; // ¾ÆÀÌÅÛÀÌ ¶³¾îÁú È®·ü
-    BYTE m_tDnPer;   // µ·ÀÌ ¶³¾îÁúÈ®·ü
+    BYTE m_tItemPer; // ì•„ì´í…œì´ ë–¨ì–´ì§ˆ í™•ë¥ 
+    BYTE m_tDnPer;   // ëˆì´ ë–¨ì–´ì§ˆí™•ë¥ 
 
-    int  m_iMoney;         // ¶³¾îÁö´Â µ·
-    int  m_iItem;          // ¶³¾îÁö´Â ¾ÆÀÌÅÛ
-    BYTE m_byDirectAttack; // °ø°İ¹æ¹ı( 0 : Á÷Á¢, 1:·Õ°ø°İ(°£Á¢°ø°İ), 2:Á÷,°£Á¢°ø°İ )
-    BYTE m_byMagicAttack;  // ¸¶¹ı°ø°İ( 0:¸¶¹ı°ø°İ ¾øÀ½, 1:¸¶¹ı°ø°İ, 2:µ¶°ø°İ, 3:Èú¸µ)
+    int  m_iMoney;         // ë–¨ì–´ì§€ëŠ” ëˆ
+    int  m_iItem;          // ë–¨ì–´ì§€ëŠ” ì•„ì´í…œ
+    BYTE m_byDirectAttack; // ê³µê²©ë°©ë²•( 0 : ì§ì ‘, 1:ë¡±ê³µê²©(ê°„ì ‘ê³µê²©), 2:ì§,ê°„ì ‘ê³µê²© )
+    BYTE m_byMagicAttack;  // ë§ˆë²•ê³µê²©( 0:ë§ˆë²•ê³µê²© ì—†ìŒ, 1:ë§ˆë²•ê³µê²©, 2:ë…ê³µê²©, 3:íë§)
 
   public:
     CNpcTable();

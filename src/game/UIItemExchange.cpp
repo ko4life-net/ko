@@ -74,7 +74,7 @@ bool CUIItemExchange::Load(HANDLE hFile) {
 
 void CUIItemExchange::Render() {
     if (!m_bVisible) {
-        return; // º¸ÀÌÁö ¾ÊÀ¸¸é ÀÚ½ÄµéÀ» renderÇÏÁö ¾Ê´Â´Ù.
+        return; // ë³´ì´ì§€ ì•Šìœ¼ë©´ ìì‹ë“¤ì„ renderí•˜ì§€ ì•ŠëŠ”ë‹¤.
     }
     POINT ptCur = CGameProcedure::s_pLocalInput->MouseGetPos();
     m_pUITooltipDlg->DisplayTooltipsDisable();
@@ -202,7 +202,7 @@ bool CUIItemExchange::ReceiveIconDrop(__IconItemSkill * spItem, POINT ptCur) {
         return false;
     }
 
-    // ³»°¡ °¡Á³´ø ¾ÆÀÌÄÜÀÌ ¾Æ´Ï¸é..
+    // ë‚´ê°€ ê°€ì¡Œë˜ ì•„ì´ì½˜ì´ ì•„ë‹ˆë©´..
     if (CN3UIWndBase::m_sSelectedIconInfo.UIWndSelect.UIWnd != m_eUIWnd) {
         FAIL_RETURN
     }
@@ -210,7 +210,7 @@ bool CUIItemExchange::ReceiveIconDrop(__IconItemSkill * spItem, POINT ptCur) {
         FAIL_RETURN
     }
 
-    // ³»°¡ °¡Á³´ø ¾ÆÀÌÄÜÀÌ¸é.. npc¿µ¿ªÀÎÁö °Ë»çÇÑ´Ù..
+    // ë‚´ê°€ ê°€ì¡Œë˜ ì•„ì´ì½˜ì´ë©´.. npcì˜ì—­ì¸ì§€ ê²€ì‚¬í•œë‹¤..
     bool bFound = false;
     int  i;
     for (i = 0; i < MAX_ITEM_EX_RE_NPC; i++) {
@@ -225,7 +225,7 @@ bool CUIItemExchange::ReceiveIconDrop(__IconItemSkill * spItem, POINT ptCur) {
         FAIL_RETURN
     }
 
-    // ¾ÆÀÌÅÛÀÌ ²Ë Â÷ÀÖ´ÂÁö °Ë»çÇÑ´Ù..
+    // ì•„ì´í…œì´ ê½‰ ì°¨ìˆëŠ”ì§€ ê²€ì‚¬í•œë‹¤..
     bFound = false;
     for (i = 0; i < MAX_ITEM_EX_RE_NPC; i++) {
         if (!m_pMyNpcWnd[i]) {
@@ -234,12 +234,12 @@ bool CUIItemExchange::ReceiveIconDrop(__IconItemSkill * spItem, POINT ptCur) {
         }
     }
 
-    // ¾ÆÀÌÅÛÀÌ ²Ë Â÷ÀÖÁö ¾Ê´Ù¸é.. °¡Àå Ã¹¹øÂ° ºó ½½·ÔÀ» °Ë»çÇÑ´Ù..
+    // ì•„ì´í…œì´ ê½‰ ì°¨ìˆì§€ ì•Šë‹¤ë©´.. ê°€ì¥ ì²«ë²ˆì§¸ ë¹ˆ ìŠ¬ë¡¯ì„ ê²€ì‚¬í•œë‹¤..
     if (!bFound) {
         FAIL_RETURN
     }
 
-    // ¹Ş¾ÆµéÀÎ´Ù..
+    // ë°›ì•„ë“¤ì¸ë‹¤..
     m_pMyInvWnd[CN3UIWndBase::m_sSelectedIconInfo.UIWndSelect.iOrder] = NULL;
 
     spItem->pUIIcon->SetRegion(pArea->GetRegion());
@@ -247,10 +247,10 @@ bool CUIItemExchange::ReceiveIconDrop(__IconItemSkill * spItem, POINT ptCur) {
 
     m_pMyNpcWnd[i] = spItem;
 
-    // ¹é¾÷ Á¤º¸..
+    // ë°±ì—… ì •ë³´..
     m_pMyNpcWndOriginIndex[i] = CN3UIWndBase::m_sSelectedIconInfo.UIWndSelect.iOrder;
 
-    // ¼ö¸®ºñ¿ë ¾÷±×·¹ÀÌµå..
+    // ìˆ˜ë¦¬ë¹„ìš© ì—…ê·¸ë ˆì´ë“œ..
     m_iTotalPrice += CalcRepairGold(spItem);
     UpdateGoldValue();
 
@@ -264,13 +264,13 @@ void CUIItemExchange::UpdateGoldValue() {
     CN3UIString * pStrGold = (CN3UIString *)GetChildByID("string_gold");
     __ASSERT(pStrGold, "NULL UI Component!!");
     if (pStrGold) {
-        // µ· ¾÷µ¥ÀÌÆ®..
+        // ëˆ ì—…ë°ì´íŠ¸..
         pStrGold->SetString(::_FormatCoins(m_iTotalPrice));
     }
 }
 
 void CUIItemExchange::UpdateUserTotalGold(int64_t iGold) {
-    // µ· ¾÷µ¥ÀÌÆ®..
+    // ëˆ ì—…ë°ì´íŠ¸..
     CGameBase::s_pPlayer->m_InfoExt.iGold = iGold;
     CN3UIString * pStatic = (CN3UIString *)CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold");
     __ASSERT(pStatic, "NULL UI Component!!");
@@ -361,9 +361,9 @@ bool CUIItemExchange::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
         break;
 
     case UIMSG_ICON_UP:
-        // ¾ÆÀÌÄÜ ¸Å´ÏÀú À©µµ¿ìµéÀ» µ¹¾Æ ´Ù´Ï¸é¼­ °Ë»ç..
+        // ì•„ì´ì½˜ ë§¤ë‹ˆì € ìœˆë„ìš°ë“¤ì„ ëŒì•„ ë‹¤ë‹ˆë©´ì„œ ê²€ì‚¬..
         if (!CGameProcedure::s_pUIMgr->BroadcastIconDropMsg(CN3UIWndBase::m_sSelectedIconInfo.pItemSelect)) {
-            // ¾ÆÀÌÄÜ À§Ä¡ ¿ø·¡´ë·Î..
+            // ì•„ì´ì½˜ ìœ„ì¹˜ ì›ë˜ëŒ€ë¡œ..
             IconRestore();
         }
         break;
@@ -382,7 +382,7 @@ DWORD CUIItemExchange::MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT
         return dwRet;
     }
 
-    // µå·¡±× µÇ´Â ¾ÆÀÌÄÜ °»½Å..
+    // ë“œë˜ê·¸ ë˜ëŠ” ì•„ì´ì½˜ ê°±ì‹ ..
     if ((GetState() == UI_STATE_ICON_MOVING) &&
         (CN3UIWndBase::m_sSelectedIconInfo.UIWndSelect.UIWnd == UIWND_EXCHANGE_REPAIR)) {
         CN3UIWndBase::m_sSelectedIconInfo.pItemSelect->pUIIcon->SetRegion(GetSampleRect());
@@ -395,9 +395,9 @@ DWORD CUIItemExchange::MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT
 void CUIItemExchange::Open() {
     SetVisible(true);
 
-    // º¸È£ÄÚµå°¡ ÇÊ¿äÇÏ´Ù.. ¿¹¸¦ µé¸é, ÀÎº¥Åä¸®, npc¿ÍÀÇ »ó°Å·¡, °³ÀÎ °Å·¡ ±İÁö..
+    // ë³´í˜¸ì½”ë“œê°€ í•„ìš”í•˜ë‹¤.. ì˜ˆë¥¼ ë“¤ë©´, ì¸ë²¤í† ë¦¬, npcì™€ì˜ ìƒê±°ë˜, ê°œì¸ ê±°ë˜ ê¸ˆì§€..
 
-    // ±âÅ¸ ÀÛ¾÷..
+    // ê¸°íƒ€ ì‘ì—…..
     for (int i = 0; i < MAX_ITEM_EX_RE_NPC; i++) {
         m_pMyNpcWnd[i] = NULL;
     }
@@ -409,12 +409,12 @@ void CUIItemExchange::Open() {
     m_iTotalPrice = 0;
     UpdateGoldValue();
 
-    // ÀÎº¥Åä¸® inv ¿µ¿ªÀÇ ¾ÆÀÌÅÛÀ» ÀÌ À©µµ¿ìÀÇ inv¿µ¿ªÀ¸·Î ¿Å±ä´Ù..
+    // ì¸ë²¤í† ë¦¬ inv ì˜ì—­ì˜ ì•„ì´í…œì„ ì´ ìœˆë„ìš°ì˜ invì˜ì—­ìœ¼ë¡œ ì˜®ê¸´ë‹¤..
     ItemMoveFromInvToThis();
 }
 
 void CUIItemExchange::UserPressOK() {
-    // °¹¼ö ¼¼±â..
+    // ê°¯ìˆ˜ ì„¸ê¸°..
     int iCount = 0;
     for (int i = 0; i < MAX_ITEM_EX_RE_NPC; i++) {
         if (m_pMyNpcWnd[i]) {
@@ -426,45 +426,45 @@ void CUIItemExchange::UserPressOK() {
         UserPressCancel();
     }
 
-    // ¼­¹ö¿¡°Ô º¸³»°í..
-    BYTE byBuff[16];  // ÆĞÅ¶ ¹öÆÛ..
-    int  iOffset = 0; // ÆĞÅ¶ ¿ÀÇÁ¼Â..
+    // ì„œë²„ì—ê²Œ ë³´ë‚´ê³ ..
+    BYTE byBuff[16];  // íŒ¨í‚· ë²„í¼..
+    int  iOffset = 0; // íŒ¨í‚· ì˜¤í”„ì…‹..
 
-    CAPISocket::MP_AddByte(byBuff, iOffset, N3_ITEM_REPAIR_REQUEST); // °ÔÀÓ ½ºÅ¸Æ® ÆĞÅ¶ Ä¿¸àµå..
-    CAPISocket::MP_AddShort(byBuff, iOffset, iCount);                // ¾ÆÀÌµğ ±æÀÌ ÆĞÅ¶¿¡ ³Ö±â..
+    CAPISocket::MP_AddByte(byBuff, iOffset, N3_ITEM_REPAIR_REQUEST); // ê²Œì„ ìŠ¤íƒ€íŠ¸ íŒ¨í‚· ì»¤ë©˜ë“œ..
+    CAPISocket::MP_AddShort(byBuff, iOffset, iCount);                // ì•„ì´ë”” ê¸¸ì´ íŒ¨í‚·ì— ë„£ê¸°..
     for (int i = 0; i < iCount; i++) {
-        CAPISocket::MP_AddByte(byBuff, iOffset, m_pMyNpcWndOriginIndex[i]); // ¾ÆÀÌµğ ±æÀÌ ÆĞÅ¶¿¡ ³Ö±â..
+        CAPISocket::MP_AddByte(byBuff, iOffset, m_pMyNpcWndOriginIndex[i]); // ì•„ì´ë”” ê¸¸ì´ íŒ¨í‚·ì— ë„£ê¸°..
         CAPISocket::MP_AddDword(byBuff, iOffset,
                                 m_pMyNpcWnd[i]->pItemBasic->dwID +
-                                    m_pMyNpcWnd[i]->pItemExt->dwID); // ¾ÆÀÌµğ ¹®ÀÚ¿­ ÆĞÅ¶¿¡ ³Ö±â..
+                                    m_pMyNpcWnd[i]->pItemExt->dwID); // ì•„ì´ë”” ë¬¸ìì—´ íŒ¨í‚·ì— ë„£ê¸°..
     }
     CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 
-    // ÀÀ´äÀ» ±â´Ù¸²..
+    // ì‘ë‹µì„ ê¸°ë‹¤ë¦¼..
     CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer = true;
 }
 
 void CUIItemExchange::ReceiveResultFromServer(int iResult, int64_t iUserGold) {
-    // ¼º°øÀÌ¸é npc¿µ¿ªÀÇ Durability¸¦ ÃÖ´ë°ªÀ¸·Î..
+    // ì„±ê³µì´ë©´ npcì˜ì—­ì˜ Durabilityë¥¼ ìµœëŒ€ê°’ìœ¼ë¡œ..
     if (iResult == 0x01) {
         for (int i = 0; i < MAX_ITEM_EX_RE_NPC; i++) {
             if (m_pMyNpcWnd[i]) {
                 m_pMyNpcWnd[i]->iDurability =
                     m_pMyNpcWnd[i]->pItemBasic->siMaxDurability + m_pMyNpcWnd[i]->pItemExt->siMaxDurability;
 
-                // ¾ÆÀÌÄÜ »óÅÂ°¡ UISTYLE_DURABILITY_EXHAUST ÀÌ¸é..
+                // ì•„ì´ì½˜ ìƒíƒœê°€ UISTYLE_DURABILITY_EXHAUST ì´ë©´..
                 m_pMyNpcWnd[i]->pUIIcon->SetStyle(m_pMyNpcWnd[i]->pUIIcon->GetStyle() & (~UISTYLE_DURABILITY_EXHAUST));
             }
         }
     }
 
-    // µ· ¾÷µ¥ÀÌÆ®..
+    // ëˆ ì—…ë°ì´íŠ¸..
     UpdateUserTotalGold(iUserGold);
 
-    // ÀÀ´ä ±â´Ù¸² ÇØÁ¦..
+    // ì‘ë‹µ ê¸°ë‹¤ë¦¼ í•´ì œ..
     CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer = false;
 
-    // ÀÌ À©µµ¿ìÀÇ npc ¿µ¿ªÀÇ ¾ÆÀÌÅÛÀ» ÀÌ À©µµ¿ìÀÇ inv ¿µ¿ªÀ¸·Î ¿Å±ä´Ù..
+    // ì´ ìœˆë„ìš°ì˜ npc ì˜ì—­ì˜ ì•„ì´í…œì„ ì´ ìœˆë„ìš°ì˜ inv ì˜ì—­ìœ¼ë¡œ ì˜®ê¸´ë‹¤..
     CN3UIArea * pArea = NULL;
     for (int i = 0; i < MAX_ITEM_EX_RE_NPC; i++) {
         if (m_pMyNpcWnd[i]) {
@@ -479,14 +479,14 @@ void CUIItemExchange::ReceiveResultFromServer(int iResult, int64_t iUserGold) {
         }
     }
 
-    // Ã¢À» ´İ´Â´Ù..
+    // ì°½ì„ ë‹«ëŠ”ë‹¤..
     Close();
 }
 
 void CUIItemExchange::UserPressCancel() {
     CN3UIArea * pArea = NULL;
 
-    // ÀÌ À©µµ¿ìÀÇ npc ¿µ¿ªÀÇ ¾ÆÀÌÅÛÀ» ÀÌ À©µµ¿ìÀÇ inv ¿µ¿ªÀ¸·Î ¿Å±ä´Ù..
+    // ì´ ìœˆë„ìš°ì˜ npc ì˜ì—­ì˜ ì•„ì´í…œì„ ì´ ìœˆë„ìš°ì˜ inv ì˜ì—­ìœ¼ë¡œ ì˜®ê¸´ë‹¤..
     for (int i = 0; i < MAX_ITEM_EX_RE_NPC; i++) {
         if (m_pMyNpcWnd[i]) {
             pArea = CN3UIWndBase::GetChildAreaByiOrder(UI_AREA_TYPE_REPAIR_INV, m_pMyNpcWndOriginIndex[i]);
@@ -500,14 +500,14 @@ void CUIItemExchange::UserPressCancel() {
         }
     }
 
-    // Ã¢À» ´İ´Â´Ù..
+    // ì°½ì„ ë‹«ëŠ”ë‹¤..
     Close();
 }
 
 void CUIItemExchange::Close() {
     SetVisible(false);
 
-    // ÀÌ À©µµ¿ìÀÇ inv ¿µ¿ªÀÇ ¾ÆÀÌÅÛÀ» ÀÌ ÀÎº¥Åä¸® À©µµ¿ìÀÇ inv¿µ¿ªÀ¸·Î ¿Å±ä´Ù..
+    // ì´ ìœˆë„ìš°ì˜ inv ì˜ì—­ì˜ ì•„ì´í…œì„ ì´ ì¸ë²¤í† ë¦¬ ìœˆë„ìš°ì˜ invì˜ì—­ìœ¼ë¡œ ì˜®ê¸´ë‹¤..
     ItemMoveFromThisToInv();
 }
 

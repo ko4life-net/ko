@@ -90,12 +90,12 @@ BOOL CDlgEditFxg::OnInitDialog() {
 
         m_pJoint[i]->ResetContent();
         m_pJoint[i]->Clear();
-        m_pJoint[i]->InsertString(0, "¹è²Å");
+        m_pJoint[i]->InsertString(0, "ë°°ê¼½");
         m_pJoint[i]->SetCurSel(0);
 
-        //    m_CBPartNameµé Ã¤¿ì±â..
-        m_pJoint[i]->InsertString(1, "¿À¸¥¼Õ");
-        m_pJoint[i]->InsertString(2, "¿Ş¼Õ");
+        //    m_CBPartNameë“¤ ì±„ìš°ê¸°..
+        m_pJoint[i]->InsertString(1, "ì˜¤ë¥¸ì†");
+        m_pJoint[i]->InsertString(2, "ì™¼ì†");
     }
     m_strFileName.Empty();
 
@@ -113,7 +113,7 @@ bool CDlgEditFxg::LoadScript(const char * szPath) {
     }
 
     //////////////////////////////////////////////////
-    //°¢ ÄÁÆ®·Ñ ¼ÂÆÃ...
+    //ê° ì»¨íŠ¸ë¡¤ ì…‹íŒ…...
     int cnt = pGroup->GetCount();
     for (int i = 0; i < cnt; i++) {
         __FXBInfo * pInfo = pGroup->GetFXBInfo(i);
@@ -195,7 +195,7 @@ void CDlgEditFxg::OnBtnSave() {
 
     FILE * file = fopen((LPCTSTR)m_strFileName, "w");
     if (!file) {
-        MessageBox("n3fxgroupÆÄÀÏ »ı¼º ½ÇÆĞ..-.-;;", "ERR02", MB_OK);
+        MessageBox("n3fxgroupíŒŒì¼ ìƒì„± ì‹¤íŒ¨..-.-;;", "ERR02", MB_OK);
         return;
     }
 

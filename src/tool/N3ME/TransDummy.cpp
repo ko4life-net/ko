@@ -133,7 +133,7 @@ void CTransDummy::Tick() {
     if (m_SelObjArray.GetSize() == 0) {
         return;
     }
-    // Scale Á¶Á¤
+    // Scale ì¡°ì •
     __Vector3 vL = s_CameraData.vEye - m_vPos;
     float     fL = vL.Magnitude() * 0.01f;
     m_vScale.Set(fL, fL, fL);
@@ -141,7 +141,7 @@ void CTransDummy::Tick() {
     CN3Transform::Tick(-1000.0f);
     ReCalcMatrix();
 
-    // °Å¸®¿¡ µû¶ó Á¤·Ä
+    // ê±°ë¦¬ì— ë”°ë¼ ì •ë ¬
     for (int i = 0; i < NUM_DUMMY; ++i) {
         __Vector3 vPos = m_DummyCubes[i].vCenterPos * m_Matrix;
         m_DummyCubes[i].fDistance = (vPos - s_CameraData.vEye).Magnitude();
@@ -173,7 +173,7 @@ void CTransDummy::Render() {
     HRESULT hr;
 
     // set transform
-    hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &m_Matrix); // ¿ùµå Çà·Ä Àû¿ë..
+    hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &m_Matrix); // ì›”ë“œ í–‰ë ¬ ì ìš©..
 
     // set texture
     hr = s_lpD3DDev->SetTexture(0, NULL);
@@ -189,11 +189,11 @@ void CTransDummy::Render() {
     hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
     hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
-    // ÀÌ¾îÁö ¼± ±×¸®±â
+    // ì´ì–´ì§€ ì„  ê·¸ë¦¬ê¸°
     hr = s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
     hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 3, m_LineVertices, sizeof(__VertexXyzColor));
 
-    // Cube ±×¸®±â
+    // Cube ê·¸ë¦¬ê¸°
     hr = s_lpD3DDev->SetFVF(FVF_XYZNORMALCOLOR);
     for (int i = 0; i < NUM_DUMMY; ++i) {
         ASSERT(m_pSortedCubes[i]);
@@ -272,7 +272,7 @@ BOOL CTransDummy::MouseMsgFilter(LPMSG pMsg) {
                 m_vPrevScaleArray = NULL;
             }
             m_vPrevScaleArray = new __Vector3[iSize];
-            for (int i = 0; i < iSize; ++i) // ¸ğµç ¼±ÅÃµÈ °´Ã¼ÀÇ ½ºÄÉÀÏ ÀúÀå
+            for (int i = 0; i < iSize; ++i) // ëª¨ë“  ì„ íƒëœ ê°ì²´ì˜ ìŠ¤ì¼€ì¼ ì €ì¥
             {
                 CN3Transform * pSelObj = m_SelObjArray.GetAt(i);
                 _ASSERT(pSelObj);
@@ -290,7 +290,7 @@ BOOL CTransDummy::MouseMsgFilter(LPMSG pMsg) {
             return TRUE;
         }
     } break;
-    case WM_RBUTTONUP: // Å¥ºê ¼±ÅÃ Ãë¼Ò ¹× ÀÌ¹ø µå·¡±×·Î ¿òÁ÷ÀÎ°Í µÇµ¹·Á ³õ±â
+    case WM_RBUTTONUP: // íë¸Œ ì„ íƒ ì·¨ì†Œ ë° ì´ë²ˆ ë“œë˜ê·¸ë¡œ ì›€ì§ì¸ê²ƒ ë˜ëŒë ¤ ë†“ê¸°
     {
         if (m_pSelectedCube) {
             __Vector3 vDiffPos = m_vPrevPos - m_vPos;
@@ -369,7 +369,7 @@ void CTransDummy::TransDiff(__Vector3 * pvDiffPos, __Quaternion * pqDiffRot, __V
             qtRot *= (*pqDiffRot);
             pSelObj->RotSet(qtRot);
 
-            vPos = pSelObj->Pos(); //    ¸Ê»ó¿¡¼­ÀÇ À§Ä¡
+            vPos = pSelObj->Pos(); //    ë§µìƒì—ì„œì˜ ìœ„ì¹˜
             vPos -= vCenter;
             vPos *= mtx44Rotate;
             vPos += vCenter;

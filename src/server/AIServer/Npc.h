@@ -44,22 +44,22 @@ struct _NpcSkillList {
 
 struct _NpcGiveItem {
     int   sSid;  // item serial number
-    short count; // item °¹¼ö(µ·Àº ´ÜÀ§)
+    short count; // item ê°¯ìˆ˜(ëˆì€ ë‹¨ìœ„)
 };
 
 struct _ExpUserList {
-    TCHAR strUserID[MAX_ID_SIZE + 1]; // ¾ÆÀÌµğ(Ä³¸¯ÅÍ ÀÌ¸§)
+    TCHAR strUserID[MAX_ID_SIZE + 1]; // ì•„ì´ë””(ìºë¦­í„° ì´ë¦„)
     int   iUid;                       // User uid
-    int   nDamage;                    // Å¸°İÄ¡ ÇÕ
-    BOOL  bIs;                        // ½Ã¾ß¿¡ Á¸ÀçÇÏ´ÂÁö¸¦ ÆÇ´Ü(true:Á¸Àç)
-    // BOOL  bSameParty;                 // °°Àº ÆÄÆ¼ ¼Ò¼ÓÀÌ ÀÖ´Ù¸é TRUE, ±×·¸Áö ¾ÊÀ¸¸é FALSE
+    int   nDamage;                    // íƒ€ê²©ì¹˜ í•©
+    BOOL  bIs;                        // ì‹œì•¼ì— ì¡´ì¬í•˜ëŠ”ì§€ë¥¼ íŒë‹¨(true:ì¡´ì¬)
+    // BOOL  bSameParty;                 // ê°™ì€ íŒŒí‹° ì†Œì†ì´ ìˆë‹¤ë©´ TRUE, ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ FALSE
 };
 
 struct _Target {
-    int   id; // °ø°İ´ë»ó User uid
-    float x;  // UserÀÇ x pos
-    float y;  // UserÀÇ y pos
-    float z;  // UserÀÇ z pos
+    int   id; // ê³µê²©ëŒ€ìƒ User uid
+    float x;  // Userì˜ x pos
+    float y;  // Userì˜ y pos
+    float z;  // Userì˜ z pos
     int   failCount;
 };
 
@@ -78,29 +78,29 @@ struct _PathList {
 };
 
 struct _MagicType3 {
-    short sHPAttackUserID; // Áö¼Ó ¸¶¹ıÀ» »ç¿ëÇÑ À¯ÀúÀÇ ¾ÆÀÌµğ ÀúÀå
-    short sHPAmount;       // Áö¼Ó damage ( Áö¼ÓÃÑ¾ç / (Áö¼Ó½Ã°£ / 2) )
-    BYTE  byHPDuration;    // Áö¼Ó ½Ã°£
-    BYTE  byHPInterval;    // Áö¼Ó °£°İ
-    float fStartTime;      // Áö¼ÓÀÌ ½ÃÀÛµÇ´Â ½Ã°£..
+    short sHPAttackUserID; // ì§€ì† ë§ˆë²•ì„ ì‚¬ìš©í•œ ìœ ì €ì˜ ì•„ì´ë”” ì €ì¥
+    short sHPAmount;       // ì§€ì† damage ( ì§€ì†ì´ì–‘ / (ì§€ì†ì‹œê°„ / 2) )
+    BYTE  byHPDuration;    // ì§€ì† ì‹œê°„
+    BYTE  byHPInterval;    // ì§€ì† ê°„ê²©
+    float fStartTime;      // ì§€ì†ì´ ì‹œì‘ë˜ëŠ” ì‹œê°„..
 };
 
 struct _MagicType4 {
-    BYTE  byAmount;      // ¾ç
-    short sDurationTime; // Áö¼Ó ½Ã°£
-    float fStartTime;    // Áö¼ÓÀÌ ½ÃÀÛµÇ´Â ½Ã°£..
+    BYTE  byAmount;      // ì–‘
+    short sDurationTime; // ì§€ì† ì‹œê°„
+    float fStartTime;    // ì§€ì†ì´ ì‹œì‘ë˜ëŠ” ì‹œê°„..
 };
 
 struct _TargetHealer {
     short sNID;   // npc nid
-    short sValue; // Á¡¼ö
+    short sValue; // ì ìˆ˜
 };
 
 class CServerDlg;
 
 /*
-     ** Repent AI Server ÀÛ¾÷½Ã Âü°í »çÇ× **
-    1. MONSTER DB ÂÊ¿¡ ÀÖ´Â º¯¼öµé ÀüºÎ ¼öÁ¤..
+     ** Repent AI Server ì‘ì—…ì‹œ ì°¸ê³  ì‚¬í•­ **
+    1. MONSTER DB ìª½ì— ìˆëŠ” ë³€ìˆ˜ë“¤ ì „ë¶€ ìˆ˜ì •..
 */
 
 class CNpc {
@@ -108,35 +108,35 @@ class CNpc {
     CServerDlg *     m_pMain;
     CNpcMagicProcess m_MagicProcess;
 
-    _Target m_Target;        // °ø°İÇÒ À¯Àú ÀúÀå,,
-    short   m_ItemUserLevel; // Á×À»¶§ ¸ÅÁ÷ ÀÌ»ó ¾ÆÀÌÅÛ¸¦ ¶³±¸±âÀ§ÇØ ÂüÁ¶ÇØ¾ßÇÏ´Â À¯ÀúÀÇ·¹º§
+    _Target m_Target;        // ê³µê²©í•  ìœ ì € ì €ì¥,,
+    short   m_ItemUserLevel; // ì£½ì„ë•Œ ë§¤ì§ ì´ìƒ ì•„ì´í…œë¥¼ ë–¨êµ¬ê¸°ìœ„í•´ ì°¸ì¡°í•´ì•¼í•˜ëŠ” ìœ ì €ì˜ë ˆë²¨
 
-    int          m_TotalDamage;                         // ÃÑ ´©ÀûµÈ ´ë¹ÌÁö¾ç
-    _ExpUserList m_DamagedUserList[NPC_HAVE_USER_LIST]; // ³ª¿¡°Ô Å¸°İÄ¡¸¦ ÁØ À¯ÀúÁ¤º¸¸¦ ¸®½ºÆ®·Î °ü¸®ÇÑ´Ù.(°æÇèÄ¡ ºĞ¹è)
-    short        m_sMaxDamageUserid;                    // ³ª¿¡°Ô ÃÖ°íÀÇ µ¥¹ÌÁö¸¦ ÁØ À¯ÀúÀÇ ¾ÆÀÌµğ ÀúÀå..
+    int m_TotalDamage;                                  // ì´ ëˆ„ì ëœ ëŒ€ë¯¸ì§€ì–‘
+    _ExpUserList m_DamagedUserList[NPC_HAVE_USER_LIST]; // ë‚˜ì—ê²Œ íƒ€ê²©ì¹˜ë¥¼ ì¤€ ìœ ì €ì •ë³´ë¥¼ ë¦¬ìŠ¤íŠ¸ë¡œ ê´€ë¦¬í•œë‹¤.(ê²½í—˜ì¹˜ ë¶„ë°°)
+    short m_sMaxDamageUserid; // ë‚˜ì—ê²Œ ìµœê³ ì˜ ë°ë¯¸ì§€ë¥¼ ì¤€ ìœ ì €ì˜ ì•„ì´ë”” ì €ì¥..
 
-    _PathList  m_PathList;   // NpcÀÇ ÆĞ½º ¸®½ºÆ®
-    _PattenPos m_pPattenPos; // NpcÀÇ ÆĞÅÏ,,
+    _PathList  m_PathList;   // Npcì˜ íŒ¨ìŠ¤ ë¦¬ìŠ¤íŠ¸
+    _PattenPos m_pPattenPos; // Npcì˜ íŒ¨í„´,,
 
-    //int m_iPattenNumber;        // ÇöÀçÀÇ ÆĞÅÏ¹øÈ£
-    short m_iPattenFrame; // ÆĞÅÏÀÇ ÇöÀç À§Ä¡..
+    //int m_iPattenNumber;        // í˜„ì¬ì˜ íŒ¨í„´ë²ˆí˜¸
+    short m_iPattenFrame; // íŒ¨í„´ì˜ í˜„ì¬ ìœ„ì¹˜..
 
-    BYTE  m_byMoveType;     // NPCÀÇ Çàµ¿Å¸ÀÔ(ÀÌµ¿°ü·Ã)
-    BYTE  m_byInitMoveType; // NPCÀÇ ÃÊ±â Çàµ¿Å¸ÀÔ(ÀÌµ¿°ü·Ã)
-    short m_sPathCount;     // NPCÀÇ PathList Count
-    short m_sMaxPathCount;  // NPCÀÇ PathList Max Count
+    BYTE  m_byMoveType;     // NPCì˜ í–‰ë™íƒ€ì…(ì´ë™ê´€ë ¨)
+    BYTE  m_byInitMoveType; // NPCì˜ ì´ˆê¸° í–‰ë™íƒ€ì…(ì´ë™ê´€ë ¨)
+    short m_sPathCount;     // NPCì˜ PathList Count
+    short m_sMaxPathCount;  // NPCì˜ PathList Max Count
 
-    BOOL  m_bFirstLive; // NPC °¡ Ã³À½ »ı¼ºµÇ´ÂÁö Á×¾ú´Ù »ì¾Æ³ª´ÂÁö ÆÇ´Ü.
-    BYTE  m_NpcState;   // NPCÀÇ »óÅÂ - »ì¾Ò´Ù, Á×¾ú´Ù, ¼­ÀÖ´Ù µîµî...
-    short m_ZoneIndex;  // NPC °¡ Á¸ÀçÇÏ°í ÀÖ´Â Á¸ÀÇ ÀÎµ¦½º
+    BOOL  m_bFirstLive; // NPC ê°€ ì²˜ìŒ ìƒì„±ë˜ëŠ”ì§€ ì£½ì—ˆë‹¤ ì‚´ì•„ë‚˜ëŠ”ì§€ íŒë‹¨.
+    BYTE  m_NpcState;   // NPCì˜ ìƒíƒœ - ì‚´ì•˜ë‹¤, ì£½ì—ˆë‹¤, ì„œìˆë‹¤ ë“±ë“±...
+    short m_ZoneIndex;  // NPC ê°€ ì¡´ì¬í•˜ê³  ìˆëŠ” ì¡´ì˜ ì¸ë±ìŠ¤
 
-    short m_sNid; // NPC (¼­¹ö»óÀÇ)ÀÏ·Ã¹øÈ£
+    short m_sNid; // NPC (ì„œë²„ìƒì˜)ì¼ë ¨ë²ˆí˜¸
 
-    CMapInfo ** m_pOrgMap; // ¿øº» MapInfo ¿¡ ´ëÇÑ Æ÷ÀÎÅÍ
+    CMapInfo ** m_pOrgMap; // ì›ë³¸ MapInfo ì— ëŒ€í•œ í¬ì¸í„°
 
-    float m_nInitX; // Ã³À½ »ı¼ºµÈ À§Ä¡ X
-    float m_nInitY; // Ã³À½ »ı¼ºµÈ À§Ä¡ Y
-    float m_nInitZ; // Ã³À½ »ı¼ºµÈ À§Ä¡ Z
+    float m_nInitX; // ì²˜ìŒ ìƒì„±ëœ ìœ„ì¹˜ X
+    float m_nInitY; // ì²˜ìŒ ìƒì„±ëœ ìœ„ì¹˜ Y
+    float m_nInitZ; // ì²˜ìŒ ìƒì„±ëœ ìœ„ì¹˜ Z
 
     short m_sCurZone; // Current Zone;
     float m_fCurX;    // Current X Pos;
@@ -155,7 +155,7 @@ class CNpc {
     short m_max_x;
     short m_max_y;
 
-    int m_pMap[MAX_MAP_SIZE]; // 2Â÷¿ø -> 1Â÷¿ø ¹è¿­·Î x * sizey + y
+    int m_pMap[MAX_MAP_SIZE]; // 2ì°¨ì› -> 1ì°¨ì› ë°°ì—´ë¡œ x * sizey + y
 
     SIZE m_vMapSize;
 
@@ -167,125 +167,125 @@ class CNpc {
     CPathFind   m_vPathFind;
     _PathNode * m_pPath;
 
-    int m_nInitMinX; // ÃÊ±âÀ§Ä¡
+    int m_nInitMinX; // ì´ˆê¸°ìœ„ì¹˜
     int m_nInitMinY;
     int m_nInitMaxX;
     int m_nInitMaxY;
 
     // NPC Class, Skill
-    //_NpcSkillList    m_NpcSkill[SKILL_NUM];    // NPC °¡ °¡Áö°í ÀÖ´Â ½ºÅ³
-    //BYTE            m_tWeaponClass;            // NPC ÀÇ ¹«±â Å¬·¡½º
+    //_NpcSkillList    m_NpcSkill[SKILL_NUM];    // NPC ê°€ ê°€ì§€ê³  ìˆëŠ” ìŠ¤í‚¬
+    //BYTE            m_tWeaponClass;            // NPC ì˜ ë¬´ê¸° í´ë˜ìŠ¤
 
-    // Áö¼Ó ¸¶¹ı °ü·Ã..
-    float       m_fHPChangeTime;               // Hp È¸º¹À²
-    float       m_fFaintingTime;               // ±âÀıÇØ ÀÖ´Â ½Ã°£..
-    _MagicType3 m_MagicType3[MAX_MAGIC_TYPE3]; // HP °ü·ÃµÈ ¸¶¹ı..
-    _MagicType4 m_MagicType4[MAX_MAGIC_TYPE4]; // ´É·ÂÄ¡ °ü·ÃµÈ ¸¶¹ı..
+    // ì§€ì† ë§ˆë²• ê´€ë ¨..
+    float       m_fHPChangeTime;               // Hp íšŒë³µìœ¨
+    float       m_fFaintingTime;               // ê¸°ì ˆí•´ ìˆëŠ” ì‹œê°„..
+    _MagicType3 m_MagicType3[MAX_MAGIC_TYPE3]; // HP ê´€ë ¨ëœ ë§ˆë²•..
+    _MagicType4 m_MagicType4[MAX_MAGIC_TYPE4]; // ëŠ¥ë ¥ì¹˜ ê´€ë ¨ëœ ë§ˆë²•..
 
     //----------------------------------------------------------------
-    //    MONSTER DB ÂÊ¿¡ ÀÖ´Â º¯¼öµé
+    //    MONSTER DB ìª½ì— ìˆëŠ” ë³€ìˆ˜ë“¤
     //----------------------------------------------------------------
     short m_sSid;                     // MONSTER(NPC) Serial ID
     TCHAR m_strName[MAX_ID_SIZE + 1]; // MONSTER(NPC) Name
     short m_sPid;                     // MONSTER(NPC) Picture ID
-    short m_sSize;                    // Ä³¸¯ÅÍÀÇ ºñÀ²(100 ÆÛ¼¾Æ® ±âÁØ)
-    int   m_iWeapon_1;                // Âø¿ë ¹«±â
-    int   m_iWeapon_2;                // Âø¿ë ¹«±â
-    BYTE  m_byGroup;                  // ¼Ò¼ÓÁı´Ü(±¹°¡ °³³ä)
-    BYTE  m_byActType;                // Çàµ¿ÆĞÅÏ
-    BYTE  m_byRank;                   // ÀÛÀ§
-    BYTE  m_byTitle;                  // ÁöÀ§
-    int   m_iSellingGroup;            // ¾ÆÀÌÅÛ ±×·ì(¹°°Ç¸Å¸Å ´ã´ç NPCÀÇ °æ¿ì¸¸)
+    short m_sSize;                    // ìºë¦­í„°ì˜ ë¹„ìœ¨(100 í¼ì„¼íŠ¸ ê¸°ì¤€)
+    int   m_iWeapon_1;                // ì°©ìš© ë¬´ê¸°
+    int   m_iWeapon_2;                // ì°©ìš© ë¬´ê¸°
+    BYTE  m_byGroup;                  // ì†Œì†ì§‘ë‹¨(êµ­ê°€ ê°œë…)
+    BYTE  m_byActType;                // í–‰ë™íŒ¨í„´
+    BYTE  m_byRank;                   // ì‘ìœ„
+    BYTE  m_byTitle;                  // ì§€ìœ„
+    int   m_iSellingGroup;            // ì•„ì´í…œ ê·¸ë£¹(ë¬¼ê±´ë§¤ë§¤ ë‹´ë‹¹ NPCì˜ ê²½ìš°ë§Œ)
     short m_sLevel;                   // level
-    int   m_iExp;                     // °æÇèÄ¡
+    int   m_iExp;                     // ê²½í—˜ì¹˜
     int   m_iLoyalty;                 // loyalty
-    int   m_iMaxHP;                   // ÃÖ´ë HP
-    short m_sMaxMP;                   // ÃÖ´ë MP
-    short m_sAttack;                  // °ø°İ°ª(Áö±İ »ç¿ëÇÏÁö ¾ÊÀ½..)
-    short m_sDefense;                 // ¹æ¾î°ª
-    short m_sHitRate;                 // °ø°İ¹ÎÃ¸
-    short m_sEvadeRate;               // ¹æ¾î¹ÎÃ¸
-    short m_sDamage;                  // ±âº» µ¥¹ÌÁö - °ø°İ°ª
-    short m_sAttackDelay;             // °ø°İµô·¹ÀÌ
-    short m_sSpeed;                   // ÀÌµ¿¼Óµµ
-    float m_fSpeed_1;                 // ±âº» ÀÌµ¿ Å¸ÀÔ        (1ÃÊ¿¡ °¥ ¼ö ÀÖ´Â °Å¸®)
-    float m_fSpeed_2;                 // ¶Ù´Â ÀÌµ¿ Å¸ÀÔ..        (1ÃÊ¿¡ °¥ ¼ö ÀÖ´Â °Å¸®)
-    short m_sStandTime;               // ¼­ÀÖ´Â ½Ã°£
-    int   m_iMagic1;                  // »ç¿ë¸¶¹ı 1 (°ø°İ)
-    int   m_iMagic2;                  // »ç¿ë¸¶¹ı 2 (Áö¿ª)
-    int   m_iMagic3;                  // »ç¿ë¸¶¹ı 3 (´É·ÂÄ¡, Èú¸µ)
-    short m_sFireR;                   // È­¿° ÀúÇ×·Â
-    short m_sColdR;                   // ³Ã±â ÀúÇ×·Â
-    short m_sLightningR;              // Àü±â ÀúÇ×·Â
-    short m_sMagicR;                  // ¸¶¹ı ÀúÇ×·Â
-    short m_sDiseaseR;                // ÀúÁÖ ÀúÇ×·Â
-    short m_sPoisonR;                 // µ¶ ÀúÇ×·Â
-    short m_sLightR;                  // ºû ÀúÇ×·Â
-    float m_fBulk;                    // ¸ó½ºÅÍÀÇ Å©±â (½ÇÁ¦ ºñÀ²)
-    BYTE  m_bySearchRange;            // Àû Å½Áö ¹üÀ§
-    BYTE  m_byAttackRange;            // »çÁ¤°Å¸®
-    BYTE  m_byTracingRange;           // Ãß°İ °Å¸®
+    int   m_iMaxHP;                   // ìµœëŒ€ HP
+    short m_sMaxMP;                   // ìµœëŒ€ MP
+    short m_sAttack;                  // ê³µê²©ê°’(ì§€ê¸ˆ ì‚¬ìš©í•˜ì§€ ì•ŠìŒ..)
+    short m_sDefense;                 // ë°©ì–´ê°’
+    short m_sHitRate;                 // ê³µê²©ë¯¼ì²©
+    short m_sEvadeRate;               // ë°©ì–´ë¯¼ì²©
+    short m_sDamage;                  // ê¸°ë³¸ ë°ë¯¸ì§€ - ê³µê²©ê°’
+    short m_sAttackDelay;             // ê³µê²©ë”œë ˆì´
+    short m_sSpeed;                   // ì´ë™ì†ë„
+    float m_fSpeed_1;                 // ê¸°ë³¸ ì´ë™ íƒ€ì…        (1ì´ˆì— ê°ˆ ìˆ˜ ìˆëŠ” ê±°ë¦¬)
+    float m_fSpeed_2;                 // ë›°ëŠ” ì´ë™ íƒ€ì…..        (1ì´ˆì— ê°ˆ ìˆ˜ ìˆëŠ” ê±°ë¦¬)
+    short m_sStandTime;               // ì„œìˆëŠ” ì‹œê°„
+    int   m_iMagic1;                  // ì‚¬ìš©ë§ˆë²• 1 (ê³µê²©)
+    int   m_iMagic2;                  // ì‚¬ìš©ë§ˆë²• 2 (ì§€ì—­)
+    int   m_iMagic3;                  // ì‚¬ìš©ë§ˆë²• 3 (ëŠ¥ë ¥ì¹˜, íë§)
+    short m_sFireR;                   // í™”ì—¼ ì €í•­ë ¥
+    short m_sColdR;                   // ëƒ‰ê¸° ì €í•­ë ¥
+    short m_sLightningR;              // ì „ê¸° ì €í•­ë ¥
+    short m_sMagicR;                  // ë§ˆë²• ì €í•­ë ¥
+    short m_sDiseaseR;                // ì €ì£¼ ì €í•­ë ¥
+    short m_sPoisonR;                 // ë… ì €í•­ë ¥
+    short m_sLightR;                  // ë¹› ì €í•­ë ¥
+    float m_fBulk;                    // ëª¬ìŠ¤í„°ì˜ í¬ê¸° (ì‹¤ì œ ë¹„ìœ¨)
+    BYTE  m_bySearchRange;            // ì  íƒì§€ ë²”ìœ„
+    BYTE  m_byAttackRange;            // ì‚¬ì •ê±°ë¦¬
+    BYTE  m_byTracingRange;           // ì¶”ê²© ê±°ë¦¬
 
-    short m_sAI; // ÀÎ°øÁö´É ÀÎµ¦½º
+    short m_sAI; // ì¸ê³µì§€ëŠ¥ ì¸ë±ìŠ¤
 
     BYTE m_tNpcType; // NPC Type
                      // 0 : Normal Monster
                      // 1 : NPC
 
-    short m_byFamilyType; // ¸÷µé»çÀÌ¿¡¼­ °¡Á·°ü°è¸¦ °áÁ¤ÇÑ´Ù.
-    BYTE  m_tItemPer;     // ¾ÆÀÌÅÛÀÌ ¶³¾îÁú È®·ü
-    BYTE  m_tDnPer;       // µ·ÀÌ ¶³¾îÁúÈ®·ü
-    BYTE  m_byMoneyType;  // Event¸ó½ºÅÍÀÏ °æ¿ì µ·À» ¸¹ÀÌ ÁÖ´Â °Í, (0:·çÆÃ, 1:·çÆÃÀ» ÇÏÁö ¾Ê°í ¹Ù·Î ³ª´²°®´Â´Ù)
+    short m_byFamilyType; // ëª¹ë“¤ì‚¬ì´ì—ì„œ ê°€ì¡±ê´€ê³„ë¥¼ ê²°ì •í•œë‹¤.
+    BYTE  m_tItemPer;     // ì•„ì´í…œì´ ë–¨ì–´ì§ˆ í™•ë¥ 
+    BYTE  m_tDnPer;       // ëˆì´ ë–¨ì–´ì§ˆí™•ë¥ 
+    BYTE m_byMoneyType; // Eventëª¬ìŠ¤í„°ì¼ ê²½ìš° ëˆì„ ë§ì´ ì£¼ëŠ” ê²ƒ, (0:ë£¨íŒ…, 1:ë£¨íŒ…ì„ í•˜ì§€ ì•Šê³  ë°”ë¡œ ë‚˜ëˆ ê°–ëŠ”ë‹¤)
 
-    int m_iMoney; // ¶³¾îÁö´Â µ·
-    int m_iItem;  // ¶³¾îÁö´Â ¾ÆÀÌÅÛ
-    //BYTE    m_byMemory;            // °ø°İ Å¸ÀÔ
+    int m_iMoney; // ë–¨ì–´ì§€ëŠ” ëˆ
+    int m_iItem;  // ë–¨ì–´ì§€ëŠ” ì•„ì´í…œ
+    //BYTE    m_byMemory;            // ê³µê²© íƒ€ì…
 
-    int   m_iHP; // ÇöÀç HP
-    short m_sMP; // ÇöÀç MP
+    int   m_iHP; // í˜„ì¬ HP
+    short m_sMP; // í˜„ì¬ MP
 
-    float m_fSecForMetor; // ÃÊ´ç °¥ ¼ö ÀÖ´Â °Å¸®..
-
-    //----------------------------------------------------------------
-    //    MONSTER AI¿¡ °ü·ÃµÈ º¯¼öµé
-    //----------------------------------------------------------------
-    BYTE m_tNpcLongType;       // °ø°İ °Å¸® : ¿ø°Å¸®(1), ±Ù°Å¸®(0), Á÷.°£Á¢(2)
-    BYTE m_tNpcAttType;        // °ø°İ ¼ºÇâ : ¼±°ø(1), ÈÄ°ø(0)
-    BYTE m_tNpcOldAttType;     // °ø°İ ¼ºÇâ : ¼±°ø(1), ÈÄ°ø(0) (È°µ¿¿µ¿ª Á¦¾î)
-    BYTE m_tNpcGroupType;      // ±ºÁıÀ» Çü¼ºÇÏ³Ä(1), ¾ÈÇÏ³Ä?(0)
-    BYTE m_byNpcEndAttType;    // ¸¶Áö¸·±îÁö ½Î¿ì¸é(1), ±×·¸Áö ¾ÊÀ¸¸é(0)
-                               //    BYTE    m_tNpcTraceType;    // ³¡±îÁö µû¶ó°£´Ù(1), ½Ã¾ß¿¡¼­ ¾ø¾îÁö¸é ±×¸¸(0)
-    BYTE m_byAttackPos;        // UserÀÇ ¾î´À ºÎºĞ¿¡¼­ °ø°İÇÏ´ÀÁö¸¦ ÆÇ´Ü(8¹æÇâ)
-    BYTE m_byBattlePos;        // ¾î¶² ÁøÇüÀ» ¼±ÅÃÇÒ °ÍÀÎÁö¸¦ ÆÇ´Ü..
-    BYTE m_byWhatAttackType;   // °ø°İ Å¸ÀÔ : Normal(0), ±Ù.Àå°Å¸®¸¶¹ı(1), µ¶(2), Èú¸µ(3), Áö¿ª¸¶¹ı¸¸(4), 1+4¹ø ¸¶¹ı(5)
-    BYTE m_byGateOpen;         // ¼º¹®ÀÏ °æ¿ì¿¡.. »ç¿ë... Gate Npc Status -> 1 : open 0 : close
-    BYTE m_byMaxDamagedNation; // ³ª¸¦ Á×ÀÎ À¯ÀúÀÇ ±¹°¡¸¦ ÀúÀå.. (1:Ä«·ç½º, 2:¿¤¸ğ¶óµå)
-    BYTE m_byObjectType;       // º¸ÅëÀº 0, objectÅ¸ÀÔ(¼º¹®, ·¹¹ö)Àº 1
-    BYTE m_byDungeonFamily;    // ´øÁ¯¿¡¼­ °°Àº ÆĞ¹Ğ¸® ¹­À½ (°°Àº ¹æ)
-    BYTE m_bySpecialType;      // ¸ó½ºÅÍÀÇ ÇüÅÂ°¡ º¯ÇÏ´ÂÁö¸¦ ÆÇ´Ü(0:º¯ÇÏÁö ¾ÊÀ½, 1:º¯ÇÏ´Â ¸ó½ºÅÍ,
-                               // 2:Á×´Â°æ¿ì Á¶Á¤ÇÏ´Â ¸ó½ºÅÍ(´ëÀå¸ó½ºÅÍ Á×À»°æ¿ì ¼º¹®ÀÌ ¿­¸²),
-    // 3:´ëÀå¸ó½ºÅÍÀÇ Á×À½°ú °ü·ÃÀÌ ÀÖ´Â ¸ó½ºÅÍ(´ëÀå¸ó½ºÅÍ°¡ Á×À¸¸é °ü°èµÇ´Â ¸ó½ºÅÍ´Â °°ÀÌ Á×µµ·Ï)
-    // 4:º¯ÇÏ¸é¼­ Á×´Â°æ¿ì Á¶Á¤ÇÏ´Â ¸ó½ºÅÍ (m_sControlSid)
-    // 5:Ã³À½¿¡ Á×¾úÀÖ´Ù°¡ ÃâÇöÇÏ´Â ¸ó½ºÅÍ,,
-    // 6:ÀÏÁ¤½Ã°£ÀÌ Áö³­ ÈÄ¿¡ Çàµ¿ÇÏ´Â ¸ó½ºÅÍ,,
-    // 100:Á×¾úÀ»¶§ µ¥¹ÌÁö¸¦ ¸¹ÀÌ ÀÔÈù À¯Àú¸¦ ±â·ÏÇØ ÁÖ¼¼¿©
-    BYTE  m_byTrapNumber; // ´øÁ¯¿¡¼­ Æ®·¦ÀÇ ¹øÈ£,,
-    BYTE  m_byChangeType; // 0:Á¤»ó»óÅÂ, 1:º¯ÇÏ±â À§ÇÑ ÁØºñ, 2:´Ù¸¥¸ó½ºÅÍ·Î º¯ÇÔ, 3:¸ó½ºÅÍÀÇ ÃâÇö, 100:¸ó½ºÅÍÀÇ Á×À½
-    BYTE  m_byRegenType;  // 0:Á¤»óÀûÀ¸·Î ¸®Á¨ÀÌ µÊ.. , 1:ÇÑ¹ø Á×À¸¸é ¸®Á¨ÀÌ ¾ÈµÇ´Â Æ¯¼ö ¸ö, 2:¸®Á¨ÀÌ ¾ÈµÊ
-    BYTE  m_byDeadType;   // 0:»ì¾Æ ÀÖ´Â °æ¿ì, 100:ÀüÀïÀÌº¥Æ®Áß Á×Àº °æ¿ì
-    short m_sChangeSid;   // º¯ÇÏ´Â ¸ó½ºÅÍÀÇ Sid¹øÈ£..
-    short m_sControlSid;  // Á¶Á¤ÇÏ´Â ¸ó½ºÅÍÀÇ Sid¹øÈ£..
+    float m_fSecForMetor; // ì´ˆë‹¹ ê°ˆ ìˆ˜ ìˆëŠ” ê±°ë¦¬..
 
     //----------------------------------------------------------------
-    //    MONSTER_POS DB ÂÊ¿¡ ÀÖ´Â º¯¼öµé
+    //    MONSTER AIì— ê´€ë ¨ëœ ë³€ìˆ˜ë“¤
     //----------------------------------------------------------------
-    int   m_Delay;      // ´ÙÀ½ »óÅÂ·Î ÀüÀÌµÇ±â ±îÁöÀÇ ½Ã°£
-    float m_fDelayTime; // Npc ThreadÃ¼Å© Å¸ÀÓ...
+    BYTE m_tNpcLongType;    // ê³µê²© ê±°ë¦¬ : ì›ê±°ë¦¬(1), ê·¼ê±°ë¦¬(0), ì§.ê°„ì ‘(2)
+    BYTE m_tNpcAttType;     // ê³µê²© ì„±í–¥ : ì„ ê³µ(1), í›„ê³µ(0)
+    BYTE m_tNpcOldAttType;  // ê³µê²© ì„±í–¥ : ì„ ê³µ(1), í›„ê³µ(0) (í™œë™ì˜ì—­ ì œì–´)
+    BYTE m_tNpcGroupType;   // êµ°ì§‘ì„ í˜•ì„±í•˜ëƒ(1), ì•ˆí•˜ëƒ?(0)
+    BYTE m_byNpcEndAttType; // ë§ˆì§€ë§‰ê¹Œì§€ ì‹¸ìš°ë©´(1), ê·¸ë ‡ì§€ ì•Šìœ¼ë©´(0)
+        //    BYTE    m_tNpcTraceType;    // ëê¹Œì§€ ë”°ë¼ê°„ë‹¤(1), ì‹œì•¼ì—ì„œ ì—†ì–´ì§€ë©´ ê·¸ë§Œ(0)
+    BYTE m_byAttackPos; // Userì˜ ì–´ëŠ ë¶€ë¶„ì—ì„œ ê³µê²©í•˜ëŠì§€ë¥¼ íŒë‹¨(8ë°©í–¥)
+    BYTE m_byBattlePos; // ì–´ë–¤ ì§„í˜•ì„ ì„ íƒí•  ê²ƒì¸ì§€ë¥¼ íŒë‹¨..
+    BYTE m_byWhatAttackType; // ê³µê²© íƒ€ì… : Normal(0), ê·¼.ì¥ê±°ë¦¬ë§ˆë²•(1), ë…(2), íë§(3), ì§€ì—­ë§ˆë²•ë§Œ(4), 1+4ë²ˆ ë§ˆë²•(5)
+    BYTE m_byGateOpen;         // ì„±ë¬¸ì¼ ê²½ìš°ì—.. ì‚¬ìš©... Gate Npc Status -> 1 : open 0 : close
+    BYTE m_byMaxDamagedNation; // ë‚˜ë¥¼ ì£½ì¸ ìœ ì €ì˜ êµ­ê°€ë¥¼ ì €ì¥.. (1:ì¹´ë£¨ìŠ¤, 2:ì—˜ëª¨ë¼ë“œ)
+    BYTE m_byObjectType;       // ë³´í†µì€ 0, objectíƒ€ì…(ì„±ë¬¸, ë ˆë²„)ì€ 1
+    BYTE m_byDungeonFamily;    // ë˜ì ¼ì—ì„œ ê°™ì€ íŒ¨ë°€ë¦¬ ë¬¶ìŒ (ê°™ì€ ë°©)
+    BYTE m_bySpecialType; // ëª¬ìŠ¤í„°ì˜ í˜•íƒœê°€ ë³€í•˜ëŠ”ì§€ë¥¼ íŒë‹¨(0:ë³€í•˜ì§€ ì•ŠìŒ, 1:ë³€í•˜ëŠ” ëª¬ìŠ¤í„°,
+                          // 2:ì£½ëŠ”ê²½ìš° ì¡°ì •í•˜ëŠ” ëª¬ìŠ¤í„°(ëŒ€ì¥ëª¬ìŠ¤í„° ì£½ì„ê²½ìš° ì„±ë¬¸ì´ ì—´ë¦¼),
+    // 3:ëŒ€ì¥ëª¬ìŠ¤í„°ì˜ ì£½ìŒê³¼ ê´€ë ¨ì´ ìˆëŠ” ëª¬ìŠ¤í„°(ëŒ€ì¥ëª¬ìŠ¤í„°ê°€ ì£½ìœ¼ë©´ ê´€ê³„ë˜ëŠ” ëª¬ìŠ¤í„°ëŠ” ê°™ì´ ì£½ë„ë¡)
+    // 4:ë³€í•˜ë©´ì„œ ì£½ëŠ”ê²½ìš° ì¡°ì •í•˜ëŠ” ëª¬ìŠ¤í„° (m_sControlSid)
+    // 5:ì²˜ìŒì— ì£½ì—ˆìˆë‹¤ê°€ ì¶œí˜„í•˜ëŠ” ëª¬ìŠ¤í„°,,
+    // 6:ì¼ì •ì‹œê°„ì´ ì§€ë‚œ í›„ì— í–‰ë™í•˜ëŠ” ëª¬ìŠ¤í„°,,
+    // 100:ì£½ì—ˆì„ë•Œ ë°ë¯¸ì§€ë¥¼ ë§ì´ ì…íŒ ìœ ì €ë¥¼ ê¸°ë¡í•´ ì£¼ì„¸ì—¬
+    BYTE m_byTrapNumber; // ë˜ì ¼ì—ì„œ íŠ¸ë©ì˜ ë²ˆí˜¸,,
+    BYTE m_byChangeType; // 0:ì •ìƒìƒíƒœ, 1:ë³€í•˜ê¸° ìœ„í•œ ì¤€ë¹„, 2:ë‹¤ë¥¸ëª¬ìŠ¤í„°ë¡œ ë³€í•¨, 3:ëª¬ìŠ¤í„°ì˜ ì¶œí˜„, 100:ëª¬ìŠ¤í„°ì˜ ì£½ìŒ
+    BYTE m_byRegenType; // 0:ì •ìƒì ìœ¼ë¡œ ë¦¬ì  ì´ ë¨.. , 1:í•œë²ˆ ì£½ìœ¼ë©´ ë¦¬ì  ì´ ì•ˆë˜ëŠ” íŠ¹ìˆ˜ ëª¸, 2:ë¦¬ì  ì´ ì•ˆë¨
+    BYTE  m_byDeadType;  // 0:ì‚´ì•„ ìˆëŠ” ê²½ìš°, 100:ì „ìŸì´ë²¤íŠ¸ì¤‘ ì£½ì€ ê²½ìš°
+    short m_sChangeSid;  // ë³€í•˜ëŠ” ëª¬ìŠ¤í„°ì˜ Sidë²ˆí˜¸..
+    short m_sControlSid; // ì¡°ì •í•˜ëŠ” ëª¬ìŠ¤í„°ì˜ Sidë²ˆí˜¸..
+
+    //----------------------------------------------------------------
+    //    MONSTER_POS DB ìª½ì— ìˆëŠ” ë³€ìˆ˜ë“¤
+    //----------------------------------------------------------------
+    int   m_Delay;      // ë‹¤ìŒ ìƒíƒœë¡œ ì „ì´ë˜ê¸° ê¹Œì§€ì˜ ì‹œê°„
+    float m_fDelayTime; // Npc Threadì²´í¬ íƒ€ì„...
 
     BYTE m_byType;
-    int  m_sRegenTime; // NPC Àç»ı½Ã°£
+    int  m_sRegenTime; // NPC ì¬ìƒì‹œê°„
 
-    int m_nLimitMinX; // È°µ¿ ¿µ¿ª
+    int m_nLimitMinX; // í™œë™ ì˜ì—­
     int m_nLimitMinZ;
     int m_nLimitMaxX;
     int m_nLimitMaxZ;
@@ -298,38 +298,38 @@ class CNpc {
     float m_fBattlePos_x;
     float m_fBattlePos_z;
 
-    float m_fSecForRealMoveMetor; // ÃÊ´ç °¥ ¼ö ÀÖ´Â °Å¸®..(½ÇÁ¦ Å¬¶óÀÌ¾ğÆ®¿¡ º¸³»ÁÖ´Â °Å¸®)
-    float m_fDir;                 // NPCÀÇ ¹æÇâ
+    float m_fSecForRealMoveMetor; // ì´ˆë‹¹ ê°ˆ ìˆ˜ ìˆëŠ” ê±°ë¦¬..(ì‹¤ì œ í´ë¼ì´ì–¸íŠ¸ì— ë³´ë‚´ì£¼ëŠ” ê±°ë¦¬)
+    float m_fDir;                 // NPCì˜ ë°©í–¥
 
-    BOOL m_bPathFlag; // ÆĞ½º ÆÄÀÎµå ½ÇÇà¿©ºÎ Ã¼Å© º¯¼ö..
+    BOOL m_bPathFlag; // íŒ¨ìŠ¤ íŒŒì¸ë“œ ì‹¤í–‰ì—¬ë¶€ ì²´í¬ ë³€ìˆ˜..
 
     //----------------------------------------------------------------
-    //    NPC ÀÌµ¿ °ü·Ã
+    //    NPC ì´ë™ ê´€ë ¨
     //----------------------------------------------------------------
-    _NpcPosition m_pPoint[MAX_PATH_LINE]; // ÀÌµ¿½Ã Âü°í ÁÂÇ¥
+    _NpcPosition m_pPoint[MAX_PATH_LINE]; // ì´ë™ì‹œ ì°¸ê³  ì¢Œí‘œ
 
     short m_iAniFrameIndex;
     short m_iAniFrameCount;
-    BYTE  m_byPathCount;  // ÆĞ½º¸¦ µû¶ó ÀÌµ¿ÇÏ´Â ¸ó½ºÅÍ ³¢¸® °ãÄ¡Áö ¾Êµµ·Ï,,
-    BYTE  m_byResetFlag;  // ÃßÀû°ø°İ½Ã ÆĞ½ºÆÄÀÎµùÀ» ´Ù½Ã ÇÒ°ÍÀÎÁö,, ¸»°ÍÀÎÁö¸¦ ÆÇ´Ü..
-    BYTE  m_byActionFlag; // Çàµ¿º¯È­ ÇÃ·¡±× ( 0 : Çàµ¿º¯È­ ¾øÀ½, 1 : °ø°İ¿¡¼­ Ãß°İ)
+    BYTE  m_byPathCount;  // íŒ¨ìŠ¤ë¥¼ ë”°ë¼ ì´ë™í•˜ëŠ” ëª¬ìŠ¤í„° ë¼ë¦¬ ê²¹ì¹˜ì§€ ì•Šë„ë¡,,
+    BYTE  m_byResetFlag;  // ì¶”ì ê³µê²©ì‹œ íŒ¨ìŠ¤íŒŒì¸ë”©ì„ ë‹¤ì‹œ í• ê²ƒì¸ì§€,, ë§ê²ƒì¸ì§€ë¥¼ íŒë‹¨..
+    BYTE  m_byActionFlag; // í–‰ë™ë³€í™” í”Œë˜ê·¸ ( 0 : í–‰ë™ë³€í™” ì—†ìŒ, 1 : ê³µê²©ì—ì„œ ì¶”ê²©)
 
-    short m_iRegion_X;  // ÇöÀçÀÇ region - x pos
-    short m_iRegion_Z;  // ÇöÀçÀÇ region - z pos
-    short m_iFind_X[4]; // find enemy¿¡¼­ Ã£À» Region°Ë»ç¿µ¿ª
+    short m_iRegion_X;  // í˜„ì¬ì˜ region - x pos
+    short m_iRegion_Z;  // í˜„ì¬ì˜ region - z pos
+    short m_iFind_X[4]; // find enemyì—ì„œ ì°¾ì„ Regionê²€ì‚¬ì˜ì—­
     short m_iFind_Y[4];
 
-    float m_fOldSpeed_1; // ±âº» ÀÌµ¿ Å¸ÀÔ        (1ÃÊ¿¡ °¥ ¼ö ÀÖ´Â °Å¸®)
-    float m_fOldSpeed_2; // ¶Ù´Â ÀÌµ¿ Å¸ÀÔ..        (1ÃÊ¿¡ °¥ ¼ö ÀÖ´Â °Å¸®)
+    float m_fOldSpeed_1; // ê¸°ë³¸ ì´ë™ íƒ€ì…        (1ì´ˆì— ê°ˆ ìˆ˜ ìˆëŠ” ê±°ë¦¬)
+    float m_fOldSpeed_2; // ë›°ëŠ” ì´ë™ íƒ€ì…..        (1ì´ˆì— ê°ˆ ìˆ˜ ìˆëŠ” ê±°ë¦¬)
 
     // test
-    short m_sThreadNumber; // ÀÚ½ÅÀÌ ¼ÓÇÑ ½º·¹µåÀÇ ¹øÈ£
+    short m_sThreadNumber; // ìì‹ ì´ ì†í•œ ìŠ¤ë ˆë“œì˜ ë²ˆí˜¸
 
   public:
     CNpc();
     virtual ~CNpc();
 
-    void Init(); //    NPC ±âº»Á¤º¸ ÃÊ±âÈ­
+    void Init(); //    NPC ê¸°ë³¸ì •ë³´ ì´ˆê¸°í™”
     void InitTarget(void);
     void InitUserList();
     void InitPos();
@@ -348,11 +348,11 @@ class CNpc {
     BOOL IsCloseTarget(CUser * pUser, int nRange);
     void ToTargetMove(CIOCPort * pIOCP, CUser * pUser);
     int  SendDead(CIOCPort * pIOCP, int type = 1); // Npc Dead
-    void SendExpToUserList();                      // User °æÇèÄ¡ ºĞ¹è..
+    void SendExpToUserList();                      // User ê²½í—˜ì¹˜ ë¶„ë°°..
     BOOL SetDamage(int nAttackType, int nDamage, const std::string & id, int uid,
-                   CIOCPort * pIOCP);                    // NpcÀÇ µ¥¹ÌÁö °è»ê..
-    BOOL SetHMagicDamage(int nDamage, CIOCPort * pIOCP); // NpcÀÇ µ¥¹ÌÁö °è»ê..
-    int  GetDefense();                                   // NpcÀÇ ¹æ¾î°ª..
+                   CIOCPort * pIOCP);                    // Npcì˜ ë°ë¯¸ì§€ ê³„ì‚°..
+    BOOL SetHMagicDamage(int nDamage, CIOCPort * pIOCP); // Npcì˜ ë°ë¯¸ì§€ ê³„ì‚°..
+    int  GetDefense();                                   // Npcì˜ ë°©ì–´ê°’..
     void ChangeTarget(int nAttackType, CUser * pUser, CIOCPort * pIOCP);
     void ChangeNTarget(CNpc * pNpc, CIOCPort * pIOCP);
     int  GetFinalDamage(CUser * pUser, int type = 1);
@@ -377,10 +377,10 @@ class CNpc {
     BOOL IsLevelCheck(int iLevel);
     BOOL IsHPCheck(int iHP);
     BOOL IsCompStatus(CUser * pUser);
-    BOOL IsPathFindCheck(float fDistance); // ÆĞ½º ÆÄÀÎµå¸¦ ÇÒ°ÍÀÎÁö¸¦ Ã¼Å©ÇÏ´Â ·çÆ¾..
-    void IsNoPathFind(float fDistance);    // ÆĞ½º ÆÄÀÎµå¸¦ ÇÏÁö ¾Ê°í °ø°İ´ë»óÀ¸·Î °¡´Â ·çÆ¾..
+    BOOL IsPathFindCheck(float fDistance); // íŒ¨ìŠ¤ íŒŒì¸ë“œë¥¼ í• ê²ƒì¸ì§€ë¥¼ ì²´í¬í•˜ëŠ” ë£¨í‹´..
+    void IsNoPathFind(float fDistance);    // íŒ¨ìŠ¤ íŒŒì¸ë“œë¥¼ í•˜ì§€ ì•Šê³  ê³µê²©ëŒ€ìƒìœ¼ë¡œ ê°€ëŠ” ë£¨í‹´..
     BOOL IsInExpRange(CUser * pUser);
-    void GiveNpcHaveItem(CIOCPort * pIOCP); // NPC °¡ °¡Áø ¾ÆÀÌÅÛÀ» ¶³±º´Ù
+    void GiveNpcHaveItem(CIOCPort * pIOCP); // NPC ê°€ ê°€ì§„ ì•„ì´í…œì„ ë–¨êµ°ë‹¤
 
     void NpcLive(CIOCPort * pIOCP);
     void NpcFighting(CIOCPort * pIOCP);
@@ -400,11 +400,11 @@ class CNpc {
     BOOL IsInPathRange();    //
     int  GetNearPathPoint(); //
 
-    // Packet SendºÎºĞ..
+    // Packet Sendë¶€ë¶„..
     void SendAll(CIOCPort * pIOCP, TCHAR * pBuf, int nLength);
     void SendAttackSuccess(CIOCPort * pIOCP, BYTE byResult, int tuid, short sDamage, int nHP = 0, BYTE byFlag = 0,
                            short sAttack_type = 1);
-    void SendNpcInfoAll(char * temp_send, int & index, int count); // game server¿¡ npcÁ¤º¸¸¦ ÀüºÎ Àü¼Û...
+    void SendNpcInfoAll(char * temp_send, int & index, int count); // game serverì— npcì •ë³´ë¥¼ ì „ë¶€ ì „ì†¡...
 
     // Inline Function
     BOOL SetUid(float x, float z, int id);
@@ -424,15 +424,15 @@ class CNpc {
     inline float RandomGenf(float max, float min);
     __Vector3    MyFunc(__Vector3 vCur, __Vector3 vDir, float fYDegree, float fDistance);
     __Vector3    GetDirection(__Vector3 vStart, __Vector3 vEnd);
-    // GetVectorPosition : vOrig->vDest¹æÇâÀ¸·Î vOrig¿¡¼­ fDis°Å¸®¸¸Å­ ¶³¾îÁø ÁÂÇ¥¸¦ ¸®ÅÏ
+    // GetVectorPosition : vOrig->vDestë°©í–¥ìœ¼ë¡œ vOrigì—ì„œ fDisê±°ë¦¬ë§Œí¼ ë–¨ì–´ì§„ ì¢Œí‘œë¥¼ ë¦¬í„´
     __Vector3 GetVectorPosition(__Vector3 vOrig, __Vector3 vDest, float fDis);
-    // CalcAdaptivePosition : vPosDest->vPosOrig¹æÇâÀ¸·Î vPosDest¿¡¼­ fDis°Å¸®¸¸Å­ ¶³¾îÁø ÁÂÇ¥¸¦ ¸®ÅÏ
+    // CalcAdaptivePosition : vPosDest->vPosOrigë°©í–¥ìœ¼ë¡œ vPosDestì—ì„œ fDisê±°ë¦¬ë§Œí¼ ë–¨ì–´ì§„ ì¢Œí‘œë¥¼ ë¦¬í„´
     __Vector3 CalcAdaptivePosition(__Vector3 vPosOrig, __Vector3 vPosDest, float fAttackDistance);
     __Vector3 ComputeDestPos(__Vector3 vCur, float fDegree, float fDegreeOffset, float fDistance);
     void      Yaw2D(float fDirX, float fDirZ, float & fYawResult);
     float     GetDistance(__Vector3 vOrig, __Vector3 vDest);
     int       PathFind(CPoint start, CPoint end, float fDistance);
-    BOOL      GetUserInView(); // NpcÀÇ °¡½Ã °Å¸®¾È¿¡ User°¡ ÀÖ´ÂÁö¸¦ ÆÇ´Ü
+    BOOL      GetUserInView(); // Npcì˜ ê°€ì‹œ ê±°ë¦¬ì•ˆì— Userê°€ ìˆëŠ”ì§€ë¥¼ íŒë‹¨
     BOOL      GetUserInViewRange(int x, int z);
     void      MoveAttack(CIOCPort * pIOCP);
     void      HpChange(CIOCPort * pIOCP);

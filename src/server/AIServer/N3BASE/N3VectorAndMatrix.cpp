@@ -14,7 +14,7 @@ inline void InitTrigonometricFunction() {
     }
 }
 
-inline float __Sine(float fRadian) // Å×ÀÌºí¿¡ ÀÇÇÑ »ï°¢ÇÔ¼ö °ª±¸ÇÏ±â..
+inline float __Sine(float fRadian) // í…Œì´ë¸”ì— ì˜í•œ ì‚¼ê°í•¨ìˆ˜ ê°’êµ¬í•˜ê¸°..
 {
     if (fRadian > -10000.0f && fRadian < 10000.0f) {
         while (fRadian < 0) {
@@ -31,7 +31,7 @@ inline float __Sine(float fRadian) // Å×ÀÌºí¿¡ ÀÇÇÑ »ï°¢ÇÔ¼ö °ª±¸ÇÏ±â..
     }
 }
 
-inline float __Cosine(float fRadian) // Å×ÀÌºí¿¡ ÀÇÇÑ »ï°¢ÇÔ¼ö °ª±¸ÇÏ±â..
+inline float __Cosine(float fRadian) // í…Œì´ë¸”ì— ì˜í•œ ì‚¼ê°í•¨ìˆ˜ ê°’êµ¬í•˜ê¸°..
 {
     if (fRadian > -10000.0f && fRadian < 10000.0f) {
         while (fRadian < 0) {
@@ -48,7 +48,7 @@ inline float __Cosine(float fRadian) // Å×ÀÌºí¿¡ ÀÇÇÑ »ï°¢ÇÔ¼ö °ª±¸ÇÏ±â..
     }
 }
 
-inline float __Tangent(float fRadian) // Å×ÀÌºí¿¡ ÀÇÇÑ »ï°¢ÇÔ¼ö °ª±¸ÇÏ±â..
+inline float __Tangent(float fRadian) // í…Œì´ë¸”ì— ì˜í•œ ì‚¼ê°í•¨ìˆ˜ ê°’êµ¬í•˜ê¸°..
 {
     if (fRadian > -10000.0f && fRadian < 10000.0f) {
         while (fRadian < 0) {
@@ -394,7 +394,7 @@ inline __Matrix44 __Matrix44::operator*(const D3DXMATRIX & mtx) {
     //    __tempM._43 = _41 * mtx._13 + _42 * mtx._23 + _43 * mtx._33 + _44 * mtx._43;
     //    __tempM._44 = _41 * mtx._14 + _42 * mtx._24 + _43 * mtx._34 + _44 * mtx._44;
 
-    // ÃÖÀûÈ­ µÈ ÄÚµå..
+    // ìµœì í™” ëœ ì½”ë“œ..
     __tempM._11 = _11 * mtx._11 + _12 * mtx._21 + _13 * mtx._31;
     __tempM._12 = _11 * mtx._12 + _12 * mtx._22 + _13 * mtx._32;
     __tempM._13 = _11 * mtx._13 + _12 * mtx._23 + _13 * mtx._33;

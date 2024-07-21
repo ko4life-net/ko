@@ -9,30 +9,30 @@ class CNpcInfoTable {
     short m_sSid;        // MONSTER(NPC) Serial ID
     TCHAR m_strName[20]; // MONSTER(NPC) Name
 
-    short m_sMaxHP; // ÃÖ´ë HP
-    short m_sMaxMP; // ÃÖ´ë PP
+    short m_sMaxHP; // ìµœëŒ€ HP
+    short m_sMaxMP; // ìµœëŒ€ PP
 
-    BYTE m_byClass; // ¹«±â°è¿­
+    BYTE m_byClass; // ë¬´ê¸°ê³„ì—´
 
-    int m_iExp; // °æÇèÄ¡
+    int m_iExp; // ê²½í—˜ì¹˜
 
-    short m_sDefense;      // ¹æ¾î°ª
-    BYTE  m_byAttackRange; // »çÁ¤°Å¸®
+    short m_sDefense;      // ë°©ì–´ê°’
+    BYTE  m_byAttackRange; // ì‚¬ì •ê±°ë¦¬
 
-    int m_sAI;          // ÀÎ°øÁö´É ÀÎµ¦½º
-    int m_sAttackDelay; // °ø°İµô·¹ÀÌ
+    int m_sAI;          // ì¸ê³µì§€ëŠ¥ ì¸ë±ìŠ¤
+    int m_sAttackDelay; // ê³µê²©ë”œë ˆì´
 
-    BYTE m_bySearchRange; // Àû Å½Áö ¹üÀ§
-    int  m_sSpeed;        // ÀÌµ¿¼Óµµ
+    BYTE m_bySearchRange; // ì  íƒì§€ ë²”ìœ„
+    int  m_sSpeed;        // ì´ë™ì†ë„
 
-    int  m_sStandTime; // ¼­ÀÖ´Â ½Ã°£
+    int  m_sStandTime; // ì„œìˆëŠ” ì‹œê°„
     BYTE m_tNpcType;   // NPC Type
                        // 0 : Monster
                        // 1 : Normal NPC
 
-    int  m_sFamilyType; // ¸÷µé»çÀÌ¿¡¼­ °¡Á·°ü°è¸¦ °áÁ¤ÇÑ´Ù.
-    BYTE m_tItemPer;    // ¾ÆÀÌÅÛÀÌ ¶³¾îÁú È®·ü
-    BYTE m_tDnPer;      // µ·ÀÌ ¶³¾îÁúÈ®·ü
+    int  m_sFamilyType; // ëª¹ë“¤ì‚¬ì´ì—ì„œ ê°€ì¡±ê´€ê³„ë¥¼ ê²°ì •í•œë‹¤.
+    BYTE m_tItemPer;    // ì•„ì´í…œì´ ë–¨ì–´ì§ˆ í™•ë¥ 
+    BYTE m_tDnPer;      // ëˆì´ ë–¨ì–´ì§ˆí™•ë¥ 
 
   public:
     void Initialize();

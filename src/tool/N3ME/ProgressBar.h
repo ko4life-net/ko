@@ -21,12 +21,12 @@ class CProgressBar : public CProgressCtrl {
     // Operations
   public:
     BOOL Create(LPCTSTR strMessage, int nSize, int MaxValue);
-    // nSize : progress barÀÇ °¡·Î pixel Å©±â
-    // MaxValue : progress barÀÇ stepÀÇ ÃÖ´ë°ª
+    // nSize : progress barì˜ ê°€ë¡œ pixel í¬ê¸°
+    // MaxValue : progress barì˜ stepì˜ ìµœëŒ€ê°’
 
-    CStatusBar * GetStatusBar(); // MainFrame¿¡¼­ StatusBar Æ÷ÀÎÅÍ ¾ò¾î¿À±â
-    void         Resize();       // À§Ä¡¿Í Å©±â Á¶Á¤
-    void         Clear();        // ÃÊ±âÈ­
+    CStatusBar * GetStatusBar(); // MainFrameì—ì„œ StatusBar í¬ì¸í„° ì–»ì–´ì˜¤ê¸°
+    void         Resize();       // ìœ„ì¹˜ì™€ í¬ê¸° ì¡°ì •
+    void         Clear();        // ì´ˆê¸°í™”
 
     // Overrides
     // ClassWizard generated virtual function overrides

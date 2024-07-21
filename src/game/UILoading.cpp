@@ -49,8 +49,8 @@ bool CUILoading::Load(HANDLE hFile) {
     m_pProgress_Loading = (CN3UIProgress *)(CN3UIBase::GetChildByID("Progress_Loading"));
     __ASSERT(m_pProgress_Loading, "NULL UI Component!!");
 
-    this->SetPosCenter();            // °¡¿îµ¥·Î ¸ÂÃß±â..
-    m_pText_Version->SetPos(10, 10); // Version Àº ¸ÇÀ§¿¡ Ç¥½Ã..
+    this->SetPosCenter();            // ê°€ìš´ë°ë¡œ ë§žì¶”ê¸°..
+    m_pText_Version->SetPos(10, 10); // Version ì€ ë§¨ìœ„ì— í‘œì‹œ..
 
     if (m_pProgress_Loading) {
         m_pProgress_Loading->SetRange(0, 100);
@@ -67,14 +67,14 @@ void CUILoading::Render(const std::string & szInfo, int iPercentage) {
         m_pProgress_Loading->SetCurValue(iPercentage);
     }
 
-    CGameProcedure::s_pEng->Clear(0);     // ¹è°æÀº °ËÀº»ö
-    CGameProcedure::s_pEng->BeginScene(); // ¾À ·»´õ ¤µÀÛ...
+    CGameProcedure::s_pEng->Clear(0);     // ë°°ê²½ì€ ê²€ì€ìƒ‰
+    CGameProcedure::s_pEng->BeginScene(); // ì”¬ ë Œë” ã……ìž‘...
 
     CN3UIBase::Tick();
     CUIManager::RenderStateSet();
     CN3UIBase::Render();
     CUIManager::RenderStateRestore();
 
-    CGameProcedure::s_pEng->EndScene(); // ¾À ·»´õ ½ÃÀÛ...
+    CGameProcedure::s_pEng->EndScene(); // ì”¬ ë Œë” ì‹œìž‘...
     CGameProcedure::s_pEng->Present(CN3Base::s_hWndBase);
 }

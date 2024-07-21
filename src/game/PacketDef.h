@@ -1,25 +1,25 @@
 #pragma once
 
-const int SOCKET_PORT_GAME = 15001;  // ¼ÒÄÏÀÌ ºÙÀ» Æ÷Æ® ¹øÈ£..
-const int SOCKET_PORT_LOGIN = 15100; // ¼ÒÄÏÀÌ ºÙÀ» Æ÷Æ® ¹øÈ£..
+const int SOCKET_PORT_GAME = 15001;  // ì†Œì¼“ì´ ë¶™ì„ í¬íŠ¸ ë²ˆí˜¸..
+const int SOCKET_PORT_LOGIN = 15100; // ì†Œì¼“ì´ ë¶™ì„ í¬íŠ¸ ë²ˆí˜¸..
 
 #define N3_ACCOUNT_LOGIN       0xf3
-#define N3_ACCOUNT_LOGIN_MGAME 0xf4 // !!! LOGIN_REQ !!! ¿Í µ¿ÀÏ
+#define N3_ACCOUNT_LOGIN_MGAME 0xf4 // !!! LOGIN_REQ !!! ì™€ ë™ì¼
 #define N3_GAMESERVER_GROUP_LIST                                                                                       \
-    0xf5 // Recv - b1(ServerCount) loop(    s1(IP±æÀÌ), str1(IP¹®ÀÚ¿­), s1(¼­¹öÀÌ¸§±æÀÌ), str1(¼­¹öÀÌ¸§¹®ÀÚ¿­), s1(¼­¹öÁ¢¼ÓÀÎ¿ø) )
+    0xf5 // Recv - b1(ServerCount) loop(    s1(IPê¸¸ì´), str1(IPë¬¸ìžì—´), s1(ì„œë²„ì´ë¦„ê¸¸ì´), str1(ì„œë²„ì´ë¦„ë¬¸ìžì—´), s1(ì„œë²„ì ‘ì†ì¸ì›) )
 
-#define N3_GAME_SERVER_LOGIN          0x01 // Game server ¿¡ Log in..
-#define N3_NEW_CHARACTER              0x02 // Ä³¸¯ÅÍ »õ·Î ¸¸µé±â..
-#define N3_DELETE_CHARACTER           0x03 // ¸¸µé¾î ³õÀº Ä³¸¯ÅÍ Áö¿ì±â..
+#define N3_GAME_SERVER_LOGIN          0x01 // Game server ì— Log in..
+#define N3_NEW_CHARACTER              0x02 // ìºë¦­í„° ìƒˆë¡œ ë§Œë“¤ê¸°..
+#define N3_DELETE_CHARACTER           0x03 // ë§Œë“¤ì–´ ë†“ì€ ìºë¦­í„° ì§€ìš°ê¸°..
 #define N3_CHARACTER_SELECT           0x04 // Game start..
-#define N3_NATION_SELECT              0x05 // ±¹°¡ ¼±ÅÃ - 0 ÀÌ¸é ½ÇÆÐ..
+#define N3_NATION_SELECT              0x05 // êµ­ê°€ ì„ íƒ - 0 ì´ë©´ ì‹¤íŒ¨..
 #define N3_MOVE                       0x06 // Move..
 #define N3_ROTATE                     0x09 // Rotate..
 #define N3_USER_INOUT                 0x07 // User inout..
 #define N3_NPC_INOUT                  0x0A // NPC inout..
 #define N3_ATTACK                     0x08 // Attack..
 #define N3_NPC_MOVE                   0x0B // NPC move..
-#define N3_ALL_CHARACTER_INFO_REQUEST 0x0C // ¸ðµç Ä³¸¯ÅÍ Á¤º¸ ¿äÃ»ÇÏ±â..
+#define N3_ALL_CHARACTER_INFO_REQUEST 0x0C // ëª¨ë“  ìºë¦­í„° ì •ë³´ ìš”ì²­í•˜ê¸°..
 #define N3_GAMESTART                  0x0D // Game Start..
 #define N3_MYINFO                     0x0E // NPC moveedge..
 #define N3_CHAT                       0x10 // Chat..
@@ -32,58 +32,58 @@ enum e_ChatMode {
     N3_CHAT_CLAN,
     N3_CHAT_PUBLIC,
     N3_CHAT_WAR,
-    N3_CHAT_TITLE,           //¸ÇÀ­ÁÙ¿¡ °¥ °øÁö
-    N3_CHAT_TITLE_DELETE,    //¸ÇÀ­ÁÙ¿¡ ÀÖ´Â °øÁö »èÁ¦
-    N3_CHAT_CONTINUE,        //Áö¼Ó °øÁö
-    N3_CHAT_CONTINUE_DELETE, //Áö¼Ó °øÁö »èÁ¦
+    N3_CHAT_TITLE,           //ë§¨ìœ—ì¤„ì— ê°ˆ ê³µì§€
+    N3_CHAT_TITLE_DELETE,    //ë§¨ìœ—ì¤„ì— ìžˆëŠ” ê³µì§€ ì‚­ì œ
+    N3_CHAT_CONTINUE,        //ì§€ì† ê³µì§€
+    N3_CHAT_CONTINUE_DELETE, //ì§€ì† ê³µì§€ ì‚­ì œ
     N3_CHAT_UNKNOWN = 0xffffffff
 };
 
 #define N3_DEAD                     0x11 // Player Dead..
 #define N3_REGENE                   0x12 // Player Regene..
-#define N3_TIME                     0x13 // °ÔÀÓ»óÀÇ ½Ã°£
-#define N3_WEATHER                  0x14 // °ÔÀÓ»óÀÇ ³¯¾¾º¯È­
+#define N3_TIME                     0x13 // ê²Œìž„ìƒì˜ ì‹œê°„
+#define N3_WEATHER                  0x14 // ê²Œìž„ìƒì˜ ë‚ ì”¨ë³€í™”
 #define N3_UPDATE_REGION_UPC        0x15 // Player Regene..
 #define N3_UPDATE_REGION_NPC        0x1C // NPC Region Update
-#define N3_REQUEST_NPC_IN           0x1D // NPC Á¤º¸ ¿äÃ»
+#define N3_REQUEST_NPC_IN           0x1D // NPC ì •ë³´ ìš”ì²­
 #define N3_WARP                     0x1E // Warp !!!
 #define N3_ITEM_MOVE                0x1F // Item Move..
 #define N3_HP_CHANGE                0x17 // Player stats Update
 #define N3_MSP_CHANGE               0x18 // Player stats Update
 #define N3_EXP_CHANGE               0x1A // Player stats Update
 #define N3_LEVEL_CHANGE             0x1B // Player stats Update
-#define N3_REALM_POINT_CHANGE       0x2A // Player stats Update // ±¹°¡ ±â¿©µµ
-#define N3_REQUEST_USER_IN          0x16 // Update Region ´ÙÀ½¿¡ ÇÊ¿äÇÑ User In ¿äÃ»
-#define N3_NPC_EVENT                0x20 // NPC Event ¿¹¸¦ µé¸é »ó°Å·¡..
-#define N3_ITEM_TRADE_START         0x25 // »ó°Å·¡ ÆÐÅ¶.. ¼­¹ö°¡ ÁÜ..
-#define N3_TARGET_HP                0x22 // Target Character HP Percentage ¿äÃ»
-#define N3_ITEM_BUNDLE_DROP         0x23 // Á×À¸¸é¼­ Item µå·Ó
-#define N3_ITEM_BUNDLE_OPEN_REQUEST 0x24 // ¾ÆÀÌÅÛ»óÀÚ¸¦ ¿­°Å³ª ½ÃÃ¼¸¦ µÚÁø´Ù.. ¿äÃ»°ú µ¥ÀÌÅÍ ¹Þ±â °øÅë..
-#define N3_ITEM_TRADE               0x21 // »ó°Å·¡ ÆÐÅ¶.. ¼­¹ö°¡ ÁÜ..
+#define N3_REALM_POINT_CHANGE       0x2A // Player stats Update // êµ­ê°€ ê¸°ì—¬ë„
+#define N3_REQUEST_USER_IN          0x16 // Update Region ë‹¤ìŒì— í•„ìš”í•œ User In ìš”ì²­
+#define N3_NPC_EVENT                0x20 // NPC Event ì˜ˆë¥¼ ë“¤ë©´ ìƒê±°ëž˜..
+#define N3_ITEM_TRADE_START         0x25 // ìƒê±°ëž˜ íŒ¨í‚·.. ì„œë²„ê°€ ì¤Œ..
+#define N3_TARGET_HP                0x22 // Target Character HP Percentage ìš”ì²­
+#define N3_ITEM_BUNDLE_DROP         0x23 // ì£½ìœ¼ë©´ì„œ Item ë“œë¡­
+#define N3_ITEM_BUNDLE_OPEN_REQUEST 0x24 // ì•„ì´í…œìƒìžë¥¼ ì—´ê±°ë‚˜ ì‹œì²´ë¥¼ ë’¤ì§„ë‹¤.. ìš”ì²­ê³¼ ë°ì´í„° ë°›ê¸° ê³µí†µ..
+#define N3_ITEM_TRADE               0x21 // ìƒê±°ëž˜ íŒ¨í‚·.. ì„œë²„ê°€ ì¤Œ..
 enum e_SubPacket_Trade {
     N3_SP_TRADE_BUY = 0x01,
     N3_SP_TRADE_SELL = 0x02,
     N3_SP_TRADE_MOVE = 0x03
 };
 
-#define N3_ITEM_DROPPED_GET 0x26 // À¯Àú°¡ È¹µæÇÑ ¾ÆÀÌÅÛ¿¡ ´ëÇÑ °Å..
-#define N3_ZONE_CHANGE      0x27 // Á¸Ã¼ÀÎÁö.. Recv - b1 Á¸¹øÈ£ f3 ÁÂÇ¥ X, Z, Y | Recv
+#define N3_ITEM_DROPPED_GET 0x26 // ìœ ì €ê°€ íšë“í•œ ì•„ì´í…œì— ëŒ€í•œ ê±°..
+#define N3_ZONE_CHANGE      0x27 // ì¡´ì²´ì¸ì§€.. Recv - b1 ì¡´ë²ˆí˜¸ f3 ì¢Œí‘œ X, Z, Y | Recv
 #define N3_POINT_CHANGE                                                                                                \
-    0x28 // ·¹º§ Ã¼ÀÎÁö -     º¸³¾¶§ b1(1Èû 2Ã¼·Â 3¹ÎÃ¸ 4Áö´É 5¸¶·Â) s(-1 +1)  // ¹ÞÀ»¶§ b1(1Èû 2Ã¼·Â 3¹ÎÃ¸ 4Áö´É 5¸Å·Â) s(Àý´ë¼öÄ¡)
+    0x28 // ë ˆë²¨ ì²´ì¸ì§€ -     ë³´ë‚¼ë•Œ b1(1íž˜ 2ì²´ë ¥ 3ë¯¼ì²© 4ì§€ëŠ¥ 5ë§ˆë ¥) s(-1 +1)  // ë°›ì„ë•Œ b1(1íž˜ 2ì²´ë ¥ 3ë¯¼ì²© 4ì§€ëŠ¥ 5ë§¤ë ¥) s(ì ˆëŒ€ìˆ˜ì¹˜)
 #define N3_STATE_CHANGE                                                                                                \
-    0x29 // »óÅÂº¯È­ Send - b2(Type, State) | Recv S1(ID) b2(Type, State) - // Type 1 ¾É±â¼­±â, 2 ÆÄÆ¼±¸ÇÔ...
+    0x29 // ìƒíƒœë³€í™” Send - b2(Type, State) | Recv S1(ID) b2(Type, State) - // Type 1 ì•‰ê¸°ì„œê¸°, 2 íŒŒí‹°êµ¬í•¨...
 enum e_SubPacket_State {
     N3_SP_STATE_CHANGE_SITDOWN = 0x01,
     N3_SP_STATE_CHANGE_RECRUIT_PARTY = 0x02,
     N3_SP_STATE_CHANGE_SIZE = 0x03,
-    N3_SP_STATE_CHANGE_ACTION = 0x04, // 1 - ÀÎ»ç, 11 - µµ¹ß
+    N3_SP_STATE_CHANGE_ACTION = 0x04, // 1 - ì¸ì‚¬, 11 - ë„ë°œ
     N3_SP_STATE_CHANGE_VISIBLE = 0x05
-}; // Åõ¸í 0 ~ 255
+}; // íˆ¬ëª… 0 ~ 255
 
-#define N3_VERSION_CHECK 0x2B // ¹öÀü Ã¼Å©... s1 - Version
-//#define N3_CRYPTION_PUBLIC_KEY    0x2C    // ¾ÏÈ£È­ 64 ºñÆ® °ø°³Å° Recv 64i
-#define N3_USER_LOOK_CHANGE 0x2D // ÇÃ·¹ÀÌ¾îÀÇ º¹ÀåÀÌ³ª ¹«±â°¡ ¹Ù²ï´Ù..
-#define N3_NOTICE           0x2E // °øÁö»çÇ×..
+#define N3_VERSION_CHECK 0x2B // ë²„ì „ ì²´í¬... s1 - Version
+//#define N3_CRYPTION_PUBLIC_KEY    0x2C    // ì•”í˜¸í™” 64 ë¹„íŠ¸ ê³µê°œí‚¤ Recv 64i
+#define N3_USER_LOOK_CHANGE 0x2D // í”Œë ˆì´ì–´ì˜ ë³µìž¥ì´ë‚˜ ë¬´ê¸°ê°€ ë°”ë€ë‹¤..
+#define N3_NOTICE           0x2E // ê³µì§€ì‚¬í•­..
 
 #define N3_PARTY_OR_FORCE 0x2F // Party Or Force Packet... Send - b1(Party:1, Force:2)
 // Sub Packet
@@ -91,14 +91,14 @@ enum e_SubPacket_Party {
     N3_SP_PARTY_OR_FORCE_CREATE = 0x01, // Send - s1(ID)    | Recv b1(YesNoErr)
     N3_SP_PARTY_OR_FORCE_PERMIT = 0x02, // Send - b1(YesNo) | Recv - s1(ID)
     N3_SP_PARTY_OR_FORCE_INSERT =
-        0x03, // Send - s1(ID) | Recv - s3(ID, HPMax, HP) b2(Level, Class) - ¹®ÀÚ¿­Àº ID ·Î ¾Ë¾Æ³½´Ù.. ID °¡ -1 ÀÌ¸é.. ÆÄÆ¼¿¡ µé¾î¿À´Â°ÍÀ» »ó´ë¹æÀÌ °ÅÀýÇÑ°Å´Ù..
-    N3_SP_PARTY_OR_FORCE_REMOVE = 0x04,       // Send - s1(ID) | Recv - s1(ID) - ÀÚ±â ÀÚ½ÅÀÌ¸é ÆÄÆ¼¸¦ ±ú¾ß ÇÑ´Ù..
+        0x03, // Send - s1(ID) | Recv - s3(ID, HPMax, HP) b2(Level, Class) - ë¬¸ìžì—´ì€ ID ë¡œ ì•Œì•„ë‚¸ë‹¤.. ID ê°€ -1 ì´ë©´.. íŒŒí‹°ì— ë“¤ì–´ì˜¤ëŠ”ê²ƒì„ ìƒëŒ€ë°©ì´ ê±°ì ˆí•œê±°ë‹¤..
+    N3_SP_PARTY_OR_FORCE_REMOVE = 0x04, // Send - s1(ID) | Recv - s1(ID) - ìžê¸° ìžì‹ ì´ë©´ íŒŒí‹°ë¥¼ ê¹¨ì•¼ í•œë‹¤..
     N3_SP_PARTY_OR_FORCE_DESTROY = 0x05,      // Send
     N3_SP_PARTY_OR_FORCE_HP_CHANGE = 0x06,    // Recv - s3(ID, HPMax, HP)
     N3_SP_PARTY_OR_FORCE_LEVEL_CHANGE = 0x07, // Recv - s1(ID), b1(Level)
-    N3_SP_PARTY_OR_FORCE_CLASS_CHANGE = 0x08, // Recv - s1(ID), b1(Class)µå¹°Áö¸¸ ÀüÁ÷ÇÒ¶§...
+    N3_SP_PARTY_OR_FORCE_CLASS_CHANGE = 0x08, // Recv - s1(ID), b1(Class)ë“œë¬¼ì§€ë§Œ ì „ì§í• ë•Œ...
     N3_SP_PARTY_OR_FORCE_STATUS_CHANGE = 0x09
-}; // Recv - s1(ID), b1(Status)µ¶, ÀúÁÖ, Áö¼Ó¼º¸¶¹ý, Ãàº¹
+}; // Recv - s1(ID), b1(Status)ë…, ì €ì£¼, ì§€ì†ì„±ë§ˆë²•, ì¶•ë³µ
 
 #define N3_PER_TRADE 0x30 // Personal Trade..
 // Sub Packet
@@ -113,19 +113,19 @@ enum e_SubPacket_PerTrade {
     N3_SP_PER_TRADE_CANCEL = 0x08
 };
 
-//    ¸¶¹ýÈ¿°ú ÆÐÅ¶ ±¸Á¶(¸ðµÎ °øÅë)
+//    ë§ˆë²•íš¨ê³¼ íŒ¨í‚· êµ¬ì¡°(ëª¨ë‘ ê³µí†µ)
 //    (BYTE)    N3_MAGIC
 //    (BYTE)    N3_MAGIC_CASTING or flying or effecting or fail
 //    (DWORD)    Magic ID
-//    (short)    ½ÃÀüÀÚ ID
-//    (short) Å¸°ÙID
+//    (short)    ì‹œì „ìž ID
+//    (short) íƒ€ê²ŸID
 //    (short) data1
 //    (short) data2
 //    (short) data3
 //    (short) data4
 //    (short) data5
 //    (short) data6
-#define N3_MAGIC 0x31 //¸¶¹ýÈ¿°ú..
+#define N3_MAGIC 0x31 //ë§ˆë²•íš¨ê³¼..
 // Sub Packet
 enum e_SubPacket_Magic {
     N3_SP_MAGIC_CASTING = 0x01,
@@ -137,7 +137,7 @@ enum e_SubPacket_Magic {
 };
 
 #define N3_SKILL_CHANGE 0x32 // Skill Point Change..
-#define N3_OBJECT_EVENT 0x33 // Send - s4(Object Event ID, Parameter, Á¶Á¾ÇÒ NPC ID, Á¶Á¾ÇÒ NPC Command) | Recv
+#define N3_OBJECT_EVENT 0x33 // Send - s4(Object Event ID, Parameter, ì¡°ì¢…í•  NPC ID, ì¡°ì¢…í•  NPC Command) | Recv
 
 #define N3_CLASS_CHANGE 0x34 // Class Change..
 // Sub Packet..
@@ -158,39 +158,39 @@ enum e_SubPacket_ClassChange {
 }; // Failure..
 
 #define N3_CHAT_SELECT_TARGET                                                                                          \
-    0x35 // Send - s1(ID String Length) str1(ID String) | Recv - s1(ID String Length) str1(ID String) ¹®ÀÚ¿­ ±æÀÌ°¡ 0ÀÌ¸é ½ÇÆÐ..
-#define N3_CONCURRENT_USER_COUNT 0x36 // Send - ... | Recv - s1(ÇöÀç µ¿½Ã Á¢¼ÓÀÚ¼ö)
-#define N3_REQUEST_GAME_SAVE     0x37 // ¼­¹ö¿¡ ÀúÀå ¿äÃ».. ¹Þ´Â°Ç ¾ø´Ù..
+    0x35 // Send - s1(ID String Length) str1(ID String) | Recv - s1(ID String Length) str1(ID String) ë¬¸ìžì—´ ê¸¸ì´ê°€ 0ì´ë©´ ì‹¤íŒ¨..
+#define N3_CONCURRENT_USER_COUNT 0x36 // Send - ... | Recv - s1(í˜„ìž¬ ë™ì‹œ ì ‘ì†ìžìˆ˜)
+#define N3_REQUEST_GAME_SAVE     0x37 // ì„œë²„ì— ì €ìž¥ ìš”ì²­.. ë°›ëŠ”ê±´ ì—†ë‹¤..
 
-#define N3_DURABILITY_CHANGE 0x38 // ³»±¸·Â º¯°æ..
+#define N3_DURABILITY_CHANGE 0x38 // ë‚´êµ¬ë ¥ ë³€ê²½..
 
-#define N3_TIME_NOTIFY 0x39 // ÆÐÅ¶¿¡¼­ ¾Æ¹«°Íµµ ¾Èº¸³½Áö 2ÃÊ Áö³ª¸é.. ÀÌ°É º¸³½´Ù..
+#define N3_TIME_NOTIFY 0x39 // íŒ¨í‚·ì—ì„œ ì•„ë¬´ê²ƒë„ ì•ˆë³´ë‚¸ì§€ 2ì´ˆ ì§€ë‚˜ë©´.. ì´ê±¸ ë³´ë‚¸ë‹¤..
 
-#define N3_ITEM_TRADE_REPAIR   0x3a // ¾ÆÀÌÅÛ ¸Å¸Å, ±³È¯, ¼ö¸®..
-#define N3_ITEM_REPAIR_REQUEST 0x3b // ¾ÆÀÌÅÛ ¼ö¸® ÀÀ´ä..
+#define N3_ITEM_TRADE_REPAIR   0x3a // ì•„ì´í…œ ë§¤ë§¤, êµí™˜, ìˆ˜ë¦¬..
+#define N3_ITEM_REPAIR_REQUEST 0x3b // ì•„ì´í…œ ìˆ˜ë¦¬ ì‘ë‹µ..
 
 #define N3_KNIGHTS 0x3C // Knights Related Packet..
 enum e_SubPacket_Knights {
-    N3_SP_KNIGHTS_CREATE = 0x01,             // »ý¼º Send - s1(Name Length) str1 | Recv - b1(1:¼º°ø 0:½ÇÆÐ)
-    N3_SP_KNIGHTS_JOIN = 0x02,               // °¡ÀÔ Send - s1(Knights ID) | Recv - b1(1:¼º°ø 0:½ÇÆÐ)
-    N3_SP_KNIGHTS_WITHDRAW = 0x03,           // Å»Åð Send - | Recv - b1(1:¼º°ø 0:½ÇÆÐ)
-    N3_SP_KNIGHTS_MEMBER_REMOVE = 0x04,      // ¸â¹ö »èÁ¦ -
-    N3_SP_KNIGHTS_DESTROY = 0x05,            // »Ç°³±â Send - | Recv - b1(1:¼º°ø 0:½ÇÆÐ)
-    N3_SP_KNIGHTS_MEMBER_JOIN_ADMIT = 0x06,  // ¸â¹ö °¡ÀÔ Çã°¡ Send - s1(Knights ID) | Recv - b1(1:¼º°ø 0:½ÇÆÐ)
-    N3_SP_KNIGHTS_MEMBER_JOIN_REJECT = 0x07, // ¸â¹ö °¡ÀÔ °ÅÀý Send - s1(Knights ID) | Recv - b1(1:¼º°ø 0:½ÇÆÐ)
-    N3_SP_KNIGHTS_MEMBER_PUNISH = 0x08,      // ¸â¹ö Â¡°è - °¡ÀÔ°ú °°À½
-    N3_SP_KNIGHTS_APPOINT_CHIEF = 0x09,      // ´ÜÀå ÀÓ¸í - °¡ÀÔ°ú °°À½
-    N3_SP_KNIGHTS_APPOINT_VICECHIEF = 0x0A,  // ºÎ´ÜÀå ÀÓ¸í - °¡ÀÔ°ú °°À½
-    N3_SP_KNIGHTS_APPOINT_OFFICER = 0x0B,    // Àå±³ÀÓ¸í - °¡ÀÔ°ú °°À½
+    N3_SP_KNIGHTS_CREATE = 0x01,            // ìƒì„± Send - s1(Name Length) str1 | Recv - b1(1:ì„±ê³µ 0:ì‹¤íŒ¨)
+    N3_SP_KNIGHTS_JOIN = 0x02,              // ê°€ìž… Send - s1(Knights ID) | Recv - b1(1:ì„±ê³µ 0:ì‹¤íŒ¨)
+    N3_SP_KNIGHTS_WITHDRAW = 0x03,          // íƒˆí‡´ Send - | Recv - b1(1:ì„±ê³µ 0:ì‹¤íŒ¨)
+    N3_SP_KNIGHTS_MEMBER_REMOVE = 0x04,     // ë©¤ë²„ ì‚­ì œ -
+    N3_SP_KNIGHTS_DESTROY = 0x05,           // ë½€ê°œê¸° Send - | Recv - b1(1:ì„±ê³µ 0:ì‹¤íŒ¨)
+    N3_SP_KNIGHTS_MEMBER_JOIN_ADMIT = 0x06, // ë©¤ë²„ ê°€ìž… í—ˆê°€ Send - s1(Knights ID) | Recv - b1(1:ì„±ê³µ 0:ì‹¤íŒ¨)
+    N3_SP_KNIGHTS_MEMBER_JOIN_REJECT = 0x07, // ë©¤ë²„ ê°€ìž… ê±°ì ˆ Send - s1(Knights ID) | Recv - b1(1:ì„±ê³µ 0:ì‹¤íŒ¨)
+    N3_SP_KNIGHTS_MEMBER_PUNISH = 0x08,      // ë©¤ë²„ ì§•ê³„ - ê°€ìž…ê³¼ ê°™ìŒ
+    N3_SP_KNIGHTS_APPOINT_CHIEF = 0x09,      // ë‹¨ìž¥ ìž„ëª… - ê°€ìž…ê³¼ ê°™ìŒ
+    N3_SP_KNIGHTS_APPOINT_VICECHIEF = 0x0A,  // ë¶€ë‹¨ìž¥ ìž„ëª… - ê°€ìž…ê³¼ ê°™ìŒ
+    N3_SP_KNIGHTS_APPOINT_OFFICER = 0x0B,    // ìž¥êµìž„ëª… - ê°€ìž…ê³¼ ê°™ìŒ
     N3_SP_KNIGHTS_GRADE_CHANGE_ALL =
-        0x0C, // Àü ±â»ç´ÜÀÇ µî±Þ ¹× ¼øÀ§ º¯°æ Recv - s1(count) Loop { s1(Knights ID) b2(Grade Rank) }
+        0x0C, // ì „ ê¸°ì‚¬ë‹¨ì˜ ë“±ê¸‰ ë° ìˆœìœ„ ë³€ê²½ Recv - s1(count) Loop { s1(Knights ID) b2(Grade Rank) }
     N3_SP_KNIGHTS_MEMBER_INFO_ALL =
-        0x0D, // ¸ðµç ¸â¹ö ¿äÃ» Send - s1(page) | s1(Member Count) Loop { s1(Name Length) str1 (Name) }
+        0x0D, // ëª¨ë“  ë©¤ë²„ ìš”ì²­ Send - s1(page) | s1(Member Count) Loop { s1(Name Length) str1 (Name) }
     N3_SP_KNIGHTS_MEMBER_INFO_ONLINE =
-        0x0E, // ÇöÀç Á¢¼Ó ¸®½ºÆ® Send - s1(page) | s1(Member Count) Loop { s1(Name Length) str1 (Name) }
-    N3_SP_KNIGHTS_STASH = 0x0F,       // ±â»ç´Ü Ã¢°í
-    N3_SP_KNIGHTS_DUTY_CHANGE = 0x10, // ¸â¹öÀÇ Á÷À§ º¯°æ.. ÇØ´ç ¸â¹ö¿¡°Ô °£´Ù.. Recv - s1(Knights ID) b1(Á÷À§);
-    N3_SP_KNIGHTS_JOIN_REQ = 0x11,    // ±â»ç´Ü ÀÎµ¦½º
+        0x0E, // í˜„ìž¬ ì ‘ì† ë¦¬ìŠ¤íŠ¸ Send - s1(page) | s1(Member Count) Loop { s1(Name Length) str1 (Name) }
+    N3_SP_KNIGHTS_STASH = 0x0F, // ê¸°ì‚¬ë‹¨ ì°½ê³ 
+    N3_SP_KNIGHTS_DUTY_CHANGE = 0x10, // ë©¤ë²„ì˜ ì§ìœ„ ë³€ê²½.. í•´ë‹¹ ë©¤ë²„ì—ê²Œ ê°„ë‹¤.. Recv - s1(Knights ID) b1(ì§ìœ„);
+    N3_SP_KNIGHTS_JOIN_REQ = 0x11, // ê¸°ì‚¬ë‹¨ ì¸ë±ìŠ¤
     N3_SP_KNIGHTS_UNKNOWN
 };
 
@@ -207,96 +207,96 @@ enum e_SubPacket_KNights_Create {
 };
 
 enum e_SubPacket_KNights_Common {
-    N3_SP_KNIGHTS_COMMON_DBFAIL = 0x00,               //DB°Ë»ö ½ÇÆÐ..
-    N3_SP_KNIGHTS_COMMON_SUCCESS = 0x01,              //¼º°ø
-    N3_SP_KNIGHTS_COMMON_FAIL_NONE_USER = 0x02,       //¾ø´Â À¯Àú..
-    N3_SP_KNIGHTS_COMMON_FAIL_DEAD_USER = 0x03,       //»ó´ëÀ¯Àú°¡ Á×¾î ÀÖÀ½..
-    N3_SP_KNIGHTS_COMMON_FAIL_ENEMY_USER = 0x04,      //»ó´ëÀ¯ÀúÀÇ ±¹°¡°¡ ´Ù¸§..
-    N3_SP_KNIGHTS_COMMON_FAIL_OTHER_CLAN_USER = 0x05, //»ó´ëÀ¯Àú°¡ ÀÌ¹Ì ´Ù¸¥ Å¬·£ÀÌ³ª ±â»ç´Ü¿¡ °¡ÀÔµÇ¾î ÀÖÀ½..
-    N3_SP_KNIGHTS_COMMON_FAIL_INVALIDRIGHT = 0x06,    //±ÇÇÑÀÌ ¾øÀ½..
-    N3_SP_KNIGHTS_COMMON_FAIL_NONE_CLAN = 0x07,       //Á¸ÀçÇÏÁö ¾Ê´Â ±â»ç´Ü..
-    N3_SP_KNIGHTS_COMMON_FAIL_FULL = 0x08,            //ÀÎ¿øÀÌ Ç®..
-    N3_SP_KNIGHTS_COMMON_FAIL_ME = 0x09,              //ÀÚ±âÀÚ½ÅÀ» ¼±ÅÃÇÑ °æ¿ì..
-    N3_SP_KNIGHTS_COMMON_FAIL_NOT_JOINED = 0x0A,      //±â»ç´ÜÀÌ³ª Å¬·£¿¡ °¡ÀÔµÇ¾î ÀÖÁö ¾ÊÀ½...
-    N3_SP_KNIGHTS_COMMON_FAIL_REJECT = 0x0B,          //»ó´ëÆí¿¡¼­ °ÅÀý...
-    N3_SP_KNIGHTS_COMMON_FAIL_BATTLEZONE = 0x0C       // ÀüÀïÁ¸¿¡¼­ÀÇ °ÅºÎ..
-};                                                    // join, appoint, leave, withdraw ¸ðµÎ ¾´´Ù.....
+    N3_SP_KNIGHTS_COMMON_DBFAIL = 0x00,          //DBê²€ìƒ‰ ì‹¤íŒ¨..
+    N3_SP_KNIGHTS_COMMON_SUCCESS = 0x01,         //ì„±ê³µ
+    N3_SP_KNIGHTS_COMMON_FAIL_NONE_USER = 0x02,  //ì—†ëŠ” ìœ ì €..
+    N3_SP_KNIGHTS_COMMON_FAIL_DEAD_USER = 0x03,  //ìƒëŒ€ìœ ì €ê°€ ì£½ì–´ ìžˆìŒ..
+    N3_SP_KNIGHTS_COMMON_FAIL_ENEMY_USER = 0x04, //ìƒëŒ€ìœ ì €ì˜ êµ­ê°€ê°€ ë‹¤ë¦„..
+    N3_SP_KNIGHTS_COMMON_FAIL_OTHER_CLAN_USER = 0x05, //ìƒëŒ€ìœ ì €ê°€ ì´ë¯¸ ë‹¤ë¥¸ í´ëžœì´ë‚˜ ê¸°ì‚¬ë‹¨ì— ê°€ìž…ë˜ì–´ ìžˆìŒ..
+    N3_SP_KNIGHTS_COMMON_FAIL_INVALIDRIGHT = 0x06, //ê¶Œí•œì´ ì—†ìŒ..
+    N3_SP_KNIGHTS_COMMON_FAIL_NONE_CLAN = 0x07,    //ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ê¸°ì‚¬ë‹¨..
+    N3_SP_KNIGHTS_COMMON_FAIL_FULL = 0x08,         //ì¸ì›ì´ í’€..
+    N3_SP_KNIGHTS_COMMON_FAIL_ME = 0x09,           //ìžê¸°ìžì‹ ì„ ì„ íƒí•œ ê²½ìš°..
+    N3_SP_KNIGHTS_COMMON_FAIL_NOT_JOINED = 0x0A,   //ê¸°ì‚¬ë‹¨ì´ë‚˜ í´ëžœì— ê°€ìž…ë˜ì–´ ìžˆì§€ ì•ŠìŒ...
+    N3_SP_KNIGHTS_COMMON_FAIL_REJECT = 0x0B,       //ìƒëŒ€íŽ¸ì—ì„œ ê±°ì ˆ...
+    N3_SP_KNIGHTS_COMMON_FAIL_BATTLEZONE = 0x0C    // ì „ìŸì¡´ì—ì„œì˜ ê±°ë¶€..
+};                                                 // join, appoint, leave, withdraw ëª¨ë‘ ì“´ë‹¤.....
 
 #define N3_ITEM_COUNT_CHANGE  0x3d
-#define N3_KNIGHTS_LIST_BASIC 0x3e // ±â»ç´Ü Á¤º¸ ¿äÃ»
+#define N3_KNIGHTS_LIST_BASIC 0x3e // ê¸°ì‚¬ë‹¨ ì •ë³´ ìš”ì²­
 enum e_SubPacket_KnightsList {
-    N3_SP_KNIGHTS_LIST_BASIC_ALL = 0x01,    // Receive - s1(knights Count) { s21(id, ÀÌ¸§±æÀÌ), str1(ÀÌ¸§) }
-    N3_SP_KNIGHTS_LIST_BASIC_INSERT = 0x02, // Receive - s2(id, ÀÌ¸§±æÀÌ), str1(ÀÌ¸§)
+    N3_SP_KNIGHTS_LIST_BASIC_ALL = 0x01,    // Receive - s1(knights Count) { s21(id, ì´ë¦„ê¸¸ì´), str1(ì´ë¦„) }
+    N3_SP_KNIGHTS_LIST_BASIC_INSERT = 0x02, // Receive - s2(id, ì´ë¦„ê¸¸ì´), str1(ì´ë¦„)
     N3_SP_KNIGHTS_LIST_BASIC_REMOVE = 0x03
 }; // Receive - s1(id)
 #define N3_ITEM_DESTROY  0x3f
-#define N3_ADMINISTRATOR 0x40 // °ü¸®ÀÚ Àü¿ë ÆÐÅ¶..
+#define N3_ADMINISTRATOR 0x40 // ê´€ë¦¬ìž ì „ìš© íŒ¨í‚·..
 enum e_SubPacket_Administrator {
-    N3_SP_ADMINISTRATOR_ARREST = 0x01, // ±× À¯Àú ÀÖ´Â °÷À¸·Î Á¸Ã¼ÀÎÁö.. Send b1(Type) s1(À¯ÀúÀÌ¸§±æÀÌ), str1(À¯ÀúÀÌ¸§)
-    N3_SP_ADMINISTRATOR_FORBID_CONNECT = 0x02, // Á¢¼Ó±ÝÁö ¹× ÂÑ¾Æ³»±â.. Send b1(Type) s1(À¯ÀúÀÌ¸§±æÀÌ), str1(À¯ÀúÀÌ¸§)
-    N3_SP_ADMINISTRATOR_CHAT_FORBID = 0x03,    // Ã¤ÆÃ±ÝÁö Send b1(Type) s1(À¯ÀúÀÌ¸§±æÀÌ), str1(À¯ÀúÀÌ¸§)
+    N3_SP_ADMINISTRATOR_ARREST = 0x01, // ê·¸ ìœ ì € ìžˆëŠ” ê³³ìœ¼ë¡œ ì¡´ì²´ì¸ì§€.. Send b1(Type) s1(ìœ ì €ì´ë¦„ê¸¸ì´), str1(ìœ ì €ì´ë¦„)
+    N3_SP_ADMINISTRATOR_FORBID_CONNECT = 0x02, // ì ‘ì†ê¸ˆì§€ ë° ì«“ì•„ë‚´ê¸°.. Send b1(Type) s1(ìœ ì €ì´ë¦„ê¸¸ì´), str1(ìœ ì €ì´ë¦„)
+    N3_SP_ADMINISTRATOR_CHAT_FORBID = 0x03, // ì±„íŒ…ê¸ˆì§€ Send b1(Type) s1(ìœ ì €ì´ë¦„ê¸¸ì´), str1(ìœ ì €ì´ë¦„)
     N3_SP_ADMINISTRATOR_CHAT_PERMIT = 0x04
-}; // Ã¤ÆÃÇã°¡ Send b1(Type) s1(À¯ÀúÀÌ¸§±æÀÌ), str1(À¯ÀúÀÌ¸§)
+}; // ì±„íŒ…í—ˆê°€ Send b1(Type) s1(ìœ ì €ì´ë¦„ê¸¸ì´), str1(ìœ ì €ì´ë¦„)
 
-#define N3_CHECK_SPEEDHACK 0x41 // ½ºÇÇµåÇÙ Ã¼Å©¿ë ÆÐÅ¶..
+#define N3_CHECK_SPEEDHACK 0x41 // ìŠ¤í”¼ë“œí•µ ì²´í¬ìš© íŒ¨í‚·..
 
-#define N3_COMPRESSED_PACKET 0x42 // ¾ÐÃàµÈ ÆÐÅ¶,.. Ç®¾î¼­ ÇÑ¹ø´õ ÆÄ½ÌÇØ¾ß ÇÑ´Ù..
-#define N3_CONTINOUS_PACKET  0x44 // ºÙ¾î¼­ ¿À´Â ÆÐÅ¶.. ·çÇÁ¸¦ µ¹¸é¼­ ÆÄ½ÌÇØ¾ß ÇÑ´Ù..
+#define N3_COMPRESSED_PACKET 0x42 // ì••ì¶•ëœ íŒ¨í‚·,.. í’€ì–´ì„œ í•œë²ˆë” íŒŒì‹±í•´ì•¼ í•œë‹¤..
+#define N3_CONTINOUS_PACKET  0x44 // ë¶™ì–´ì„œ ì˜¤ëŠ” íŒ¨í‚·.. ë£¨í”„ë¥¼ ëŒë©´ì„œ íŒŒì‹±í•´ì•¼ í•œë‹¤..
 
-#define N3_WAREHOUSE 0X45 // º¸°üÇÔ ¸ÞÀÎ ÆÐÅ¶..
+#define N3_WAREHOUSE 0X45 // ë³´ê´€í•¨ ë©”ì¸ íŒ¨í‚·..
 enum e_SubPacket_WareHouse {
     N3_SP_WARE_OPEN = 0x01,      // Open..
-    N3_SP_WARE_GET_IN = 0x02,    // †Ì±â..
-    N3_SP_WARE_GET_OUT = 0X03,   // »©±â..
-    N3_SP_WARE_WARE_MOVE = 0x04, // ÀÌµ¿..
-    N3_SP_WARE_INV_MOVE = 0x05,  // ÀÌµ¿..
-    N3_SP_WARE_INN = 0x10,       // ¸ÇÃ³À½..¿©°üÁÖÀÎÀÓÀ» ¹ÞÀ½..
+    N3_SP_WARE_GET_IN = 0x02,    // ë…›ê¸°..
+    N3_SP_WARE_GET_OUT = 0X03,   // ë¹¼ê¸°..
+    N3_SP_WARE_WARE_MOVE = 0x04, // ì´ë™..
+    N3_SP_WARE_INV_MOVE = 0x05,  // ì´ë™..
+    N3_SP_WARE_INN = 0x10,       // ë§¨ì²˜ìŒ..ì—¬ê´€ì£¼ì¸ìž„ì„ ë°›ìŒ..
     N3_SP_WARE_UNKNOWN
 };
 
 #define N3_SERVER_CHANGE       0x46
 #define N3_REPORT_DEBUG_STRING 0x47
-#define N3_HOME                0x48 // ¸¶À»·Î °¡±â.. ÀÀ´äÀ¸·Î ¿öÇÁ¸¦ ¹Þ´Â´Ù.
+#define N3_HOME                0x48 // ë§ˆì„ë¡œ ê°€ê¸°.. ì‘ë‹µìœ¼ë¡œ ì›Œí”„ë¥¼ ë°›ëŠ”ë‹¤.
 #define N3_FRIEND_INFO                                                                                                 \
-    0x49 // Ä£±¸ Á¤º¸.. Send s1(À¯ÀúÄ«¿îÆ®) s1(ÀÌ¸§±æÀÌ), str1(À¯ÀúÀÌ¸§) | Receive s1(À¯ÀúÄ«¿îÆ®) ¤ÓLoop { s1(ÀÌ¸§±æÀÌ), str1(À¯ÀúÀÌ¸§), b1(Á¢¼Ó, ÆÄÆ¼ or ¿¬»ê) }
-#define N3_NOAH_CHANGE 0x4a // ³ë¾Æ Change..
+    0x49 // ì¹œêµ¬ ì •ë³´.. Send s1(ìœ ì €ì¹´ìš´íŠ¸) s1(ì´ë¦„ê¸¸ì´), str1(ìœ ì €ì´ë¦„) | Receive s1(ìœ ì €ì¹´ìš´íŠ¸) ã…£Loop { s1(ì´ë¦„ê¸¸ì´), str1(ìœ ì €ì´ë¦„), b1(ì ‘ì†, íŒŒí‹° or ì—°ì‚°) }
+#define N3_NOAH_CHANGE 0x4a // ë…¸ì•„ Change..
 enum e_SubPacket_NoahChange {
-    N3_SP_NOAH_GET = 0x01,  // ³ë¾Æ ½Àµæ,
-    N3_SP_NOAH_LOST = 0x02, // ³ë¾Æ ºÐ½Ç..
-    N3_SP_NOAH_SPEND = 0x03 // ³ë¾Æ ¼Òºñ..
+    N3_SP_NOAH_GET = 0x01,  // ë…¸ì•„ ìŠµë“,
+    N3_SP_NOAH_LOST = 0x02, // ë…¸ì•„ ë¶„ì‹¤..
+    N3_SP_NOAH_SPEND = 0x03 // ë…¸ì•„ ì†Œë¹„..
 };
-#define N3_WARP_LIST 0x4b // ¿öÇÁ ¸®½ºÆ® Recv -
-//#define    N3_SERVER_CHECK                    0x4c    // °¡»ó ÀÓ½Ã ¼­¹ö Ã¼Å©... Recv - s1, str1(IP), s1(dwPort) | Send s1(Zone ID), s3(x*10,z*10,y*10)
-//#define    N3_SERVER_CONCURRENT_CONNECT    0x4d    // µ¿½ÃÁ¢¼ÓÀÚ¼ö...  Send - b1(±¹°¡) | Recv - s1(µ¿Á¢ÀÚ¼ö)
-#define N3_CORPSE_CHAR 0x4e // Ä³¸¯ÅÍ°¡ ´Ù½Ã regenÀ» ÇÏ¿© ½ÃÃ¼·Î ³²±ä´Ù.
-#define N3_PARTY_BBS   0x4f // ÆÄÆ¼ °Ô½ÃÆÇ¿¡ µî·ÏÇÏ±â
+#define N3_WARP_LIST 0x4b // ì›Œí”„ ë¦¬ìŠ¤íŠ¸ Recv -
+//#define    N3_SERVER_CHECK                    0x4c    // ê°€ìƒ ìž„ì‹œ ì„œë²„ ì²´í¬... Recv - s1, str1(IP), s1(dwPort) | Send s1(Zone ID), s3(x*10,z*10,y*10)
+//#define    N3_SERVER_CONCURRENT_CONNECT    0x4d    // ë™ì‹œì ‘ì†ìžìˆ˜...  Send - b1(êµ­ê°€) | Recv - s1(ë™ì ‘ìžìˆ˜)
+#define N3_CORPSE_CHAR 0x4e // ìºë¦­í„°ê°€ ë‹¤ì‹œ regenì„ í•˜ì—¬ ì‹œì²´ë¡œ ë‚¨ê¸´ë‹¤.
+#define N3_PARTY_BBS   0x4f // íŒŒí‹° ê²Œì‹œíŒì— ë“±ë¡í•˜ê¸°
 enum e_Party_BBS {
-    N3_SP_PARTY_REGISTER = 0x01,        // ÆÄÆ¼ °Ô½ÃÆÇ¿¡ µî·Ï
-    N3_SP_PARTY_REGISTER_CANCEL = 0x02, // ÆÄÆ¼ °Ô½ÃÆÇ¿¡¼­ µî·Ï Ãë¼Ò
+    N3_SP_PARTY_REGISTER = 0x01,        // íŒŒí‹° ê²Œì‹œíŒì— ë“±ë¡
+    N3_SP_PARTY_REGISTER_CANCEL = 0x02, // íŒŒí‹° ê²Œì‹œíŒì—ì„œ ë“±ë¡ ì·¨ì†Œ
     N3_SP_PARTY_BBS_DATA = 0x03
-}; // ÆÄÆ¼ °Ô½Ã Á¤º¸ ¿ä±¸
+}; // íŒŒí‹° ê²Œì‹œ ì •ë³´ ìš”êµ¬
 
-#define N3_TRADE_BBS 0x50 // »ó°Å·¡ °Ô½ÃÆÇ
+#define N3_TRADE_BBS 0x50 // ìƒê±°ëž˜ ê²Œì‹œíŒ
 enum e_Trade_BBS_Kind {
-    N3_SP_TRADE_BBS_BUY = 0x01, // »ç´Â ¹°°Ç ¸ñ·Ï
+    N3_SP_TRADE_BBS_BUY = 0x01, // ì‚¬ëŠ” ë¬¼ê±´ ëª©ë¡
     N3_SP_TRADE_BBS_SELL = 0x02
-}; // ÆÄ´Â ¹°°Ç ¸ñ·Ï
+}; // íŒŒëŠ” ë¬¼ê±´ ëª©ë¡
 
 enum e_Trade_BBS_Sub {
-    N3_SP_TYPE_REGISTER = 0x01,        // ¹°°Ç µî·ÏÇÏ±â
-    N3_SP_TYPE_REGISTER_CANCEL = 0x02, // µî·Ï ÇØÁ¦ÇÏ±â
-    N3_SP_TYPE_BBS_DATA = 0x03,        // °Ô½ÃÆÇ Á¤º¸ ¿ä±¸
-    N3_SP_TYPE_BBS_OPEN = 0x04,        // »ó°Å·¡ °Ô½ÃÆÇ ¿­±â
+    N3_SP_TYPE_REGISTER = 0x01,        // ë¬¼ê±´ ë“±ë¡í•˜ê¸°
+    N3_SP_TYPE_REGISTER_CANCEL = 0x02, // ë“±ë¡ í•´ì œí•˜ê¸°
+    N3_SP_TYPE_BBS_DATA = 0x03,        // ê²Œì‹œíŒ ì •ë³´ ìš”êµ¬
+    N3_SP_TYPE_BBS_OPEN = 0x04,        // ìƒê±°ëž˜ ê²Œì‹œíŒ ì—´ê¸°
     N3_SP_TYPE_BBS_TRADE = 0X05
-};                                 // °Ô½ÃÆÇ¿¡¼­ °Å·¡ ½ÅÃ»ÇÏ±â
+};                                 // ê²Œì‹œíŒì—ì„œ ê±°ëž˜ ì‹ ì²­í•˜ê¸°
 #define N3_KICK_OUT           0x51 // Recv s1, str1(IP) s1(port) | Send s1, str1(ID)
-#define N3_NPC_QUEST          0X52 // npc Äù½ºÆ®
-#define N3_ALIVE_CHECK        0x53 // ´Ü¼ø ¿¡ÄÚ
+#define N3_NPC_QUEST          0X52 // npc í€˜ìŠ¤íŠ¸
+#define N3_ALIVE_CHECK        0x53 // ë‹¨ìˆœ ì—ì½”
 #define N3_ITEM_WEIGHT_CHANGE 0x54
-#define N3_QUEST_SELECT       0x55 // Äù½ºÆ® ¸Þ´º ¼±ÅÃ
-#define N3_QUEST_TALK         0x56 // Äù½ºÆ® ´ëÈ­
+#define N3_QUEST_SELECT       0x55 // í€˜ìŠ¤íŠ¸ ë©”ë‰´ ì„ íƒ
+#define N3_QUEST_TALK         0x56 // í€˜ìŠ¤íŠ¸ ëŒ€í™”
 
-#define N3_TEMP_TEST 0xff // ÀÓ½Ã Å×½ºÆ®..
+#define N3_TEMP_TEST 0xff // ìž„ì‹œ í…ŒìŠ¤íŠ¸..
 
 #ifdef _DEBUG
 #include <map>

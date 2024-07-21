@@ -1,13 +1,13 @@
 #pragma once
 
 // -------------------------------------------------
-// Àü¿ª °´Ã¼ º¯¼ö
+// ì „ì—­ ê°ì²´ ë³€ìˆ˜
 // -------------------------------------------------
 extern BOOL g_bNpcExit;
 
 struct _PARTY_GROUP {
     WORD  wIndex;
-    short uid[8]; // ÇÏ³ªÀÇ ÆÄÆ¼¿¡ 8¸í±îÁö °¡ÀÔ°¡´É
+    short uid[8]; // í•˜ë‚˜ì˜ íŒŒí‹°ì— 8ëª…ê¹Œì§€ ê°€ìž…ê°€ëŠ¥
     _PARTY_GROUP() {
         for (int i = 0; i < 8; i++) {
             uid[i] = -1;
@@ -16,8 +16,8 @@ struct _PARTY_GROUP {
 };
 
 struct _MAKE_WEAPON {
-    BYTE  byIndex;                    // ¸÷ÀÇ ·¹º§ ±âÁØ
-    short sClass[MAX_UPGRADE_WEAPON]; // 1Â÷¹«±â È®·ü
+    BYTE  byIndex;                    // ëª¹ì˜ ë ˆë²¨ ê¸°ì¤€
+    short sClass[MAX_UPGRADE_WEAPON]; // 1ì°¨ë¬´ê¸° í™•ë¥ 
     _MAKE_WEAPON() {
         for (int i = 0; i < MAX_UPGRADE_WEAPON; i++) {
             sClass[i] = 0;
@@ -27,7 +27,7 @@ struct _MAKE_WEAPON {
 
 struct _MAKE_ITEM_GRADE_CODE {
     BYTE  byItemIndex; // item grade
-    short sGrade_1;    // ´Ü°èº° È®·ü
+    short sGrade_1;    // ë‹¨ê³„ë³„ í™•ë¥ 
     short sGrade_2;
     short sGrade_3;
     short sGrade_4;
@@ -39,10 +39,10 @@ struct _MAKE_ITEM_GRADE_CODE {
 };
 
 struct _MAKE_ITEM_LARE_CODE {
-    BYTE  byItemLevel;  // item level ÆÇ´Ü
-    short sLareItem;    // lareitem ³ª¿Ã È®·ü
-    short sMagicItem;   // magicitem ³ª¿Ã È®·ü
-    short sGereralItem; // gereralitem ³ª¿Ã È®·ü
+    BYTE  byItemLevel;  // item level íŒë‹¨
+    short sLareItem;    // lareitem ë‚˜ì˜¬ í™•ë¥ 
+    short sMagicItem;   // magicitem ë‚˜ì˜¬ í™•ë¥ 
+    short sGereralItem; // gereralitem ë‚˜ì˜¬ í™•ë¥ 
 };
 
 struct _MAGIC_TABLE {
@@ -127,5 +127,5 @@ struct _USERLOG {
     CTime t;
     BYTE  byFlag; //
     BYTE  byLevel;
-    char  strUserID[MAX_ID_SIZE + 1]; // ¾ÆÀÌµð(Ä³¸¯ÅÍ ÀÌ¸§)
+    char  strUserID[MAX_ID_SIZE + 1]; // ì•„ì´ë””(ìºë¦­í„° ì´ë¦„)
 };

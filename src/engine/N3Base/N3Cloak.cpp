@@ -376,7 +376,7 @@ void CN3Cloak::ApplyOffset(D3DXVECTOR3 & vDif) {
             m_vOffset[i].z = vDif.z * Weight[i];
         }
         m_fOffsetRecoveryTime = 1.4f;
-    } else { // offset ÀÌ Àû¿ëµÇ¾î ÀÖ´Â »óÅÂ.
+    } else { // offset ì´ ì ìš©ë˜ì–´ ìˆëŠ” ìƒíƒœ.
         m_fOffsetRecoveryTime -= s_fSecPerFrm;
         if (m_fOffsetRecoveryTime < 0.0f) { // Recovery process
             for (int i = 0; i < m_nGridW; i++) {
@@ -399,7 +399,7 @@ void CN3Cloak::TickYaw() {
     }
 
     float fYaw = m_bpPlayerBase->Yaw();
-    if (fYaw != m_fPrevYaw) { // È¸ÀüÀÌ ÀÖ¾ú´Ù.
+    if (fYaw != m_fPrevYaw) { // íšŒì „ì´ ìˆì—ˆë‹¤.
         if (fYaw - m_fPrevYaw > 0.0f) {
             if (m_eAnchorPattern == AMP_NONE && m_fAnchorPreserveTime < 0.0f) {
                 MoveAnchorLine(AMP_YAWCCW, 2.0f);

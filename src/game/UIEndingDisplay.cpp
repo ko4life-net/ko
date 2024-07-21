@@ -23,19 +23,19 @@ void CUIEndingDisplay::Release() {
 }
 
 void CUIEndingDisplay::Render() {
-    // È­¸é °¡¿îµ¥·Î ¸ÂÃß±â..
+    // í™”ë©´ ê°€ìš´ë°ë¡œ ë§žì¶”ê¸°..
     RECT rc = this->GetRegion();
     int  iX = (s_CameraData.vp.Width - (rc.right - rc.left)) / 2;
     int  iY = (s_CameraData.vp.Height - (rc.bottom - rc.top)) / 2;
     this->SetPos(iX, iY);
 
-    CGameProcedure::s_pEng->Clear(0);     // ¹è°æÀº °ËÀº»ö
-    CGameProcedure::s_pEng->BeginScene(); // ¾À ·»´õ ¤µÀÛ...
+    CGameProcedure::s_pEng->Clear(0);     // ë°°ê²½ì€ ê²€ì€ìƒ‰
+    CGameProcedure::s_pEng->BeginScene(); // ì”¬ ë Œë” ã……ìž‘...
 
     CUIManager::RenderStateSet();
     CN3UIBase::Render();
     CUIManager::RenderStateRestore();
 
-    CGameProcedure::s_pEng->EndScene(); // ¾À ·»´õ ½ÃÀÛ...
+    CGameProcedure::s_pEng->EndScene(); // ì”¬ ë Œë” ì‹œìž‘...
     CGameProcedure::s_pEng->Present(CN3Base::s_hWndBase);
 }

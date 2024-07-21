@@ -15,7 +15,7 @@ class CUIEDoc : public CDocument {
     DECLARE_DYNCREATE(CUIEDoc)
 
   protected:
-    CN3UIBase              m_RootUI; // ÀÌ °Í¿¡ child(tool¿¡¼­ ¸¸µå´Â ¸ğµç control)µéÀ» ºÙÀÌ¸é µÈ´Ù.
+    CN3UIBase              m_RootUI; // ì´ ê²ƒì— child(toolì—ì„œ ë§Œë“œëŠ” ëª¨ë“  control)ë“¤ì„ ë¶™ì´ë©´ ëœë‹¤.
     std::list<CN3UIBase *> m_SelectedUIs;
 
   public:
@@ -34,8 +34,8 @@ class CUIEDoc : public CDocument {
     void SetSelectedUI(CN3UIBase * pUI);
 
   protected:
-    void Release();                             // Document º¯¼ö ÃÊ±âÈ­
-    BOOL SetImageInfos(CN3UIImage * pUI);       // imageÁ¤º¸ ³Ö´Â ·çÆ¾
+    void Release();                             // Document ë³€ìˆ˜ ì´ˆê¸°í™”
+    BOOL SetImageInfos(CN3UIImage * pUI);       // imageì •ë³´ ë„£ëŠ” ë£¨í‹´
     BOOL SetStringInfos(CN3UIString * pUI);     // string
     BOOL SetTrackBarInfos(CN3UITrackBar * pUI); // track bar
     BOOL SetButtonInfos(CN3UIButton * pUI);     // button

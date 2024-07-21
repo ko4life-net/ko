@@ -180,7 +180,7 @@ HCURSOR CRscTablesDlg::OnQueryDragIcon() {
     return (HCURSOR)m_hIcon;
 }
 
-// µ¥ÀÌÅ¸ Çü½ÄÀ» »õ·Î ¸¸µç´Ù.
+// ë°ì´íƒ€ í˜•ì‹ì„ ìƒˆë¡œ ë§Œë“ ë‹¤.
 void CRscTablesDlg::OnFileNew() {
     // TODO: Add your command handler code here
     CDlgDataCount dlg;
@@ -193,11 +193,11 @@ void CRscTablesDlg::OnFileNew() {
     }
     m_Generator.Release();
 
-    m_Generator.DataTypeAssign(iCount, DT_STRING); // ±âº»°ªÀº ¹®ÀÚ¿­
-    m_Generator.DataTypeSet(0, DT_DWORD);          // Ã¹¹øÂ° ¿­Àº Á¤¼ö..
+    m_Generator.DataTypeAssign(iCount, DT_STRING); // ê¸°ë³¸ê°’ì€ ë¬¸ìì—´
+    m_Generator.DataTypeSet(0, DT_DWORD);          // ì²«ë²ˆì§¸ ì—´ì€ ì •ìˆ˜..
 
     m_ListBoxDataType.SetDividerWidth(100);
-    this->UpdateAllInfo(); // ¸®½ºÆ® ¹Ú½º °»½ÅÇÏ°í.. È­¸é¿¡ Ç¥½Ã...
+    this->UpdateAllInfo(); // ë¦¬ìŠ¤íŠ¸ ë°•ìŠ¤ ê°±ì‹ í•˜ê³ .. í™”ë©´ì— í‘œì‹œ...
 }
 
 BOOL CRscTablesDlg::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
@@ -209,9 +209,9 @@ BOOL CRscTablesDlg::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
         if (iIndex < 0 || iIndex >= m_Generator.DataTypeCount()) {
             return TRUE;
         }
-        if (0 == iIndex && lstrcmpi(pItem->m_curValue, "DWORD") != 0) // 0 ¹øÀÌ DWORD °¡ ¾Æ´Ï¸é °æ°íÇÑ´Ù..
+        if (0 == iIndex && lstrcmpi(pItem->m_curValue, "DWORD") != 0) // 0 ë²ˆì´ DWORD ê°€ ì•„ë‹ˆë©´ ê²½ê³ í•œë‹¤..
         {
-            MessageBox("Data0 ´Â ÀÎµ¦½º·Î ¾²ÀÌ±â ¶§¹®¿¡ ¹İµå½Ã DWORD ÇüÀÌ¾î¾ß ÇÕ´Ï´Ù.", "°æ°í");
+            MessageBox("Data0 ëŠ” ì¸ë±ìŠ¤ë¡œ ì“°ì´ê¸° ë•Œë¬¸ì— ë°˜ë“œì‹œ DWORD í˜•ì´ì–´ì•¼ í•©ë‹ˆë‹¤.", "ê²½ê³ ");
         }
 
         DATA_TYPE DataType = DT_NONE;
@@ -244,7 +244,7 @@ BOOL CRscTablesDlg::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
     return CDialog::OnNotify(wParam, lParam, pResult);
 }
 
-// data type ¼³Á¤ÇØ ³õÀ» °ÍÀ» ÀúÀå
+// data type ì„¤ì •í•´ ë†“ì„ ê²ƒì„ ì €ì¥
 void CRscTablesDlg::OnFileSaveEnum() {
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(FALSE, "enm", NULL, dwFlags, "Data Enum File(*.enm)|*.enm||", NULL);
@@ -255,7 +255,7 @@ void CRscTablesDlg::OnFileSaveEnum() {
     m_Generator.DataTypeSave(dlg.GetPathName().GetString());
 }
 
-// data type ¼³Á¤ÇØ ³õÀ» °ÍÀ» ¿­±â
+// data type ì„¤ì •í•´ ë†“ì„ ê²ƒì„ ì—´ê¸°
 void CRscTablesDlg::OnFileOpenEnum() {
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(TRUE, "enm", NULL, dwFlags, "Data Enum File(*.enm)|*.enm||", NULL);
@@ -265,7 +265,7 @@ void CRscTablesDlg::OnFileOpenEnum() {
 
     m_Generator.DataTypeLoad(dlg.GetPathName().GetString());
 
-    this->UpdateAllInfo(); // ¸®½ºÆ® ¹Ú½º °»½ÅÇÏ°í.. È­¸é¿¡ Ç¥½Ã...
+    this->UpdateAllInfo(); // ë¦¬ìŠ¤íŠ¸ ë°•ìŠ¤ ê°±ì‹ í•˜ê³ .. í™”ë©´ì— í‘œì‹œ...
 }
 
 void CRscTablesDlg::OnUpdateFileSaveEnum(CCmdUI * pCmdUI) {
@@ -276,18 +276,18 @@ void CRscTablesDlg::OnFileExit() {
     PostQuitMessage(0);
 }
 
-// TextÁ¤º¸¸¦ bin µ¥ÀÌÅÍ·Î º¯È¯ÇÏ±â
+// Textì •ë³´ë¥¼ bin ë°ì´í„°ë¡œ ë³€í™˜í•˜ê¸°
 void CRscTablesDlg::OnConvertText2bin() {
     int iDataCount = m_Generator.DataTypeCount();
     if (iDataCount <= 0) {
-        MessageBox("¸ÕÀú µ¥ÀÌÅÍ °¹¼ö¿Í Çü½ÄÀ» ÁöÁ¤ÇØÁÖ¾î¾ß ÇÕ´Ï´Ù.");
+        MessageBox("ë¨¼ì € ë°ì´í„° ê°¯ìˆ˜ì™€ í˜•ì‹ì„ ì§€ì •í•´ì£¼ì–´ì•¼ í•©ë‹ˆë‹¤.");
         return;
     }
 
     char        szBuff[10240] = "";
     CString     FileName;
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_ALLOWMULTISELECT;
-    CFileDialog dlg(TRUE, "txt", NULL, dwFlags, "txt(ÅÇÀ¸·Î ºĞ¸®)(*.txt)|*.txt||", NULL);
+    CFileDialog dlg(TRUE, "txt", NULL, dwFlags, "txt(íƒ­ìœ¼ë¡œ ë¶„ë¦¬)(*.txt)|*.txt||", NULL);
     dlg.m_ofn.nMaxFile = 10240;
     dlg.m_ofn.lpstrFile = szBuff;
     if (dlg.DoModal() == IDCANCEL) {
@@ -307,7 +307,7 @@ void CRscTablesDlg::OnClose() {
 }
 
 void CRscTablesDlg::UpdateInfo() {
-    // È­¸é¿¡ Ç¥½Ã
+    // í™”ë©´ì— í‘œì‹œ
     int iDataCount = m_Generator.DataTypeCount();
     for (int i = 0; i < iDataCount; ++i) {
         int iSel = -1;
@@ -372,9 +372,9 @@ void CRscTablesDlg::OnSize(UINT nType, int cx, int cy) {
 
     if (m_ListBoxDataType.GetSafeHwnd() != NULL) {
         CRect rcOrg, rcClient;
-        m_ListBoxDataType.GetWindowRect(rcOrg); // ±×·¡ÇÁ ÄÁÆ®·ÑÀÇ ¿ø·¡ È­¸é ÁÂÇ¥¸¦
+        m_ListBoxDataType.GetWindowRect(rcOrg); // ê·¸ë˜í”„ ì»¨íŠ¸ë¡¤ì˜ ì›ë˜ í™”ë©´ ì¢Œí‘œë¥¼
         this->GetClientRect(rcClient);          //
-        this->ClientToScreen(rcClient);         // È­¸é ÁÂÇ¥·Î ¹Ù²Ù°í..
+        this->ClientToScreen(rcClient);         // í™”ë©´ ì¢Œí‘œë¡œ ë°”ê¾¸ê³ ..
 
         int cx2 = rcOrg.Width();
         int cy2 = rcClient.bottom - rcOrg.top - 5;
@@ -386,8 +386,8 @@ void CRscTablesDlg::OnSize(UINT nType, int cx, int cy) {
 void CRscTablesDlg::OnEditInsert() {
     // TODO: Add your command handler code here
     int iCurSel = m_ListBoxDataType.GetCurSel();
-    if (m_Generator.DataTypeInsert(iCurSel, DT_STRING)) { // ±âº»ÀûÀ¸·Î stringÃß°¡
-        UpdateAllInfo();                                  // ¸®½ºÆ® ¹Ú½º °»½ÅÇÏ°í.. È­¸é¿¡ Ç¥½Ã...
+    if (m_Generator.DataTypeInsert(iCurSel, DT_STRING)) { // ê¸°ë³¸ì ìœ¼ë¡œ stringì¶”ê°€
+        UpdateAllInfo();                                  // ë¦¬ìŠ¤íŠ¸ ë°•ìŠ¤ ê°±ì‹ í•˜ê³ .. í™”ë©´ì— í‘œì‹œ...
     }
 }
 
@@ -395,7 +395,7 @@ void CRscTablesDlg::OnEditDelete() {
     // TODO: Add your command handler code here
     const int iCurSel = m_ListBoxDataType.GetCurSel();
     if (m_Generator.DataTypeDelete(iCurSel)) {
-        UpdateAllInfo(); // ¸®½ºÆ® ¹Ú½º °»½ÅÇÏ°í.. È­¸é¿¡ Ç¥½Ã...
+        UpdateAllInfo(); // ë¦¬ìŠ¤íŠ¸ ë°•ìŠ¤ ê°±ì‹ í•˜ê³ .. í™”ë©´ì— í‘œì‹œ...
     }
 }
 
@@ -422,7 +422,7 @@ bool CRscTablesDlg::BrowseDataEnumAndTxt(int iIndex, BOOL bOpen, std::string * p
     if (pszFN_Txt) {
         CString     FileName2;
         DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
-        CFileDialog dlg2(bOpen, "txt", NULL, dwFlags, "Tab À¸·Î ºĞ¸®µÈ Txt File(*.txt)|*.txt||", NULL);
+        CFileDialog dlg2(bOpen, "txt", NULL, dwFlags, "Tab ìœ¼ë¡œ ë¶„ë¦¬ëœ Txt File(*.txt)|*.txt||", NULL);
         if (dlg2.DoModal() == IDCANCEL) {
             return false;
         }

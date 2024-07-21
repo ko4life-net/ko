@@ -190,11 +190,11 @@ SOURCE=..\..\engine\N3Base\DFont.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\engine\N3Base\JPEG.CPP
+SOURCE=..\..\engine\N3Base\Jpeg.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\engine\N3Base\JPEG.H
+SOURCE=..\..\engine\N3Base\Jpeg.h
 # End Source File
 # Begin Source File
 

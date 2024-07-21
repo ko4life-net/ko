@@ -42,7 +42,7 @@ class CSoundMgr : public CN3BaseFileAccess {
     int m_MapSize;
 
     CMapMng *      m_pRefMapMng;
-    bool           m_bActive; // ÀÌ±â´ÉÀÌ È°¼ºÈ­ µÇ¾î ÀÖ´ÂÁö...1:È°¼ºÈ­, 0:ºñÈ°¼ºÈ­..
+    bool           m_bActive; // ì´ê¸°ëŠ¥ì´ í™œì„±í™” ë˜ì–´ ìˆëŠ”ì§€...1:í™œì„±í™”, 0:ë¹„í™œì„±í™”..
     CDlgSetSound * m_pDlgSound;
 
   public:
@@ -55,7 +55,7 @@ class CSoundMgr : public CN3BaseFileAccess {
     void Render();
 
     //////////////////////////////////////////////
-    //m_pSound¸¦ ¼ÒÆ®ÇÏ±âÀ§ÇÔÀÌ¾ß..
+    //m_pSoundë¥¼ ì†ŒíŠ¸í•˜ê¸°ìœ„í•¨ì´ì•¼..
     void SCSort();
     void SCMerge(std::list<CSoundCell *> & l1, std::list<CSoundCell *> & l2);
     bool SCComp(CSoundCell * pP1, CSoundCell * pP2);

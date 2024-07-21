@@ -5,19 +5,19 @@
 #pragma once
 
 struct __CharacterSymbol {
-    __Vector3  vBoxes[5]; // »óÀÚ¸¦ LineStrip À¸·Î ±×¸°´Ù. 5
+    __Vector3  vBoxes[5]; // ìƒìë¥¼ LineStrip ìœ¼ë¡œ ê·¸ë¦°ë‹¤. 5
     __Vector3  vDirections[3];
     __Matrix44 mtxWorld;
-    D3DCOLOR   color;         // »ö..
+    D3DCOLOR   color;         // ìƒ‰..
     char       szID[64];      // ID
-    char       szRemark[128]; // ÁÖ¼®???
+    char       szRemark[128]; // ì£¼ì„???
 
     __CharacterSymbol() {
         __Matrix44 mtxTmp;
         mtxWorld.Identity();
-        color = 0xffffffff; // ±âº»Àº Èò»ö..
+        color = 0xffffffff; // ê¸°ë³¸ì€ í°ìƒ‰..
         szID[0] = NULL;     // ID
-        szRemark[0] = NULL; // ÁÖ¼®???
+        szRemark[0] = NULL; // ì£¼ì„???
 
         float fRadius = 2.0f;
         vBoxes[0].Set(-fRadius, 0, fRadius);

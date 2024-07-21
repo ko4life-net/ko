@@ -83,7 +83,7 @@ void CEventCell::MakeTileVB(int x, int z, DWORD color) {
         return;
     }
 
-    if ((x + z) % 2 == 0) // ½½·¡½¬ ¸ğ¾çÀÇ Å¸ÀÏ..
+    if ((x + z) % 2 == 0) // ìŠ¬ë˜ì‰¬ ëª¨ì–‘ì˜ íƒ€ì¼..
     {
         __Vector3 v;
         v.x = x * TERRAIN_CELL_SIZE;
@@ -105,7 +105,7 @@ void CEventCell::MakeTileVB(int x, int z, DWORD color) {
 
         return;
     }
-    if ((x + z) % 2 == 1) //¹é½½·¹½¬ ¸ğ¾çÀÇ Å¸ÀÏ..
+    if ((x + z) % 2 == 1) //ë°±ìŠ¬ë ˆì‰¬ ëª¨ì–‘ì˜ íƒ€ì¼..
     {
         __Vector3 v;
         v.x = x * TERRAIN_CELL_SIZE;

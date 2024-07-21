@@ -15,7 +15,7 @@ class CPlayerNPC : public CPlayerBase {
     friend class CPlayerOtherMgr;
 
   public:
-    void         MoveTo(float fPosX, float fPosY, float fPosZ, float fMoveSpeed, int iMoveMode); // ÀÌ À§Ä¡·Î ÀÌµ¿..
+    void MoveTo(float fPosX, float fPosY, float fPosZ, float fMoveSpeed, int iMoveMode); // ì´ ìœ„ì¹˜ë¡œ ì´ë™..
     virtual void Tick();
 
     CPlayerNPC();

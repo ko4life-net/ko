@@ -10,22 +10,22 @@ int surround_x[8] = {-1, -1, 0, 1, 1, 1, 0, -1};
 int surround_z[8] = {0, -1, -1, -1, 0, 1, 1, 1};
 
 int test_id = 1056;
-int cur_test = 0; // 1 = testÁß , 0ÀÌ¸é Á¤»ó
+int cur_test = 0; // 1 = testì¤‘ , 0ì´ë©´ ì •ìƒ
 
 #include "extern.h"
 //BOOL g_bDebug = TRUE;
 
-#define ATROCITY_ATTACK_TYPE 1 // ¼±°ø
-#define TENDER_ATTACK_TYPE   0 // ÈÄ°ø
+#define ATROCITY_ATTACK_TYPE 1 // ì„ ê³µ
+#define TENDER_ATTACK_TYPE   0 // í›„ê³µ
 
-// Çàµ¿º¯°æ °ü·Ã
+// í–‰ë™ë³€ê²½ ê´€ë ¨
 #define NO_ACTION          0
-#define ATTACK_TO_TRACE    1 // °ø°İ¿¡¼­ Ãß°İ
+#define ATTACK_TO_TRACE    1 // ê³µê²©ì—ì„œ ì¶”ê²©
 #define MONSTER_CHANGED    1
-#define LONG_ATTACK_RANGE  30 // Àå°Å¸® °ø°İ À¯È¿°Å¸®
-#define SHORT_ATTACK_RANGE 3  // Á÷Á¢°ø°İ À¯È¿°Å¸®
+#define LONG_ATTACK_RANGE  30 // ì¥ê±°ë¦¬ ê³µê²© ìœ íš¨ê±°ë¦¬
+#define SHORT_ATTACK_RANGE 3  // ì§ì ‘ê³µê²© ìœ íš¨ê±°ë¦¬
 
-// ¹«±â °ü·Ã
+// ë¬´ê¸° ê´€ë ¨
 #define WEAPON_ITEM    1
 #define DEFENCR_ITEM   2
 #define ACCESSORY_ITEM 3
@@ -43,15 +43,15 @@ extern CRITICAL_SECTION g_region_critical;
 extern CRITICAL_SECTION g_LogFileWrite;
 
 /*
-     ** Repent AI Server ÀÛ¾÷½Ã Âü°í »çÇ× **
-    1. m_fSpeed_1,m_fSpeed_2¶ó´Â º¯¼ö°¡ ¾øÀ¸¹Ç·Î NPC_SECFORMETER_MOVE(4)·Î ¼öÁ¤,, 
-            ³ªÁß¿¡ ÀÌ°Íµµ ³ªÀÌÃ÷ ¹æ½ÄÀ¸·Î ¼öÁ¤ÇÒ °Í (Å×ÀÌºí)
-    2. m_byGroup º¯¼ö ¾øÀ½.. (ÀÌ°Í ³ª¿À´Â °Í ÀüºÎ ÁÖ¼®..)
-    3. m_byTracingRange º¯¼ö ¾øÀ½ . m_bySearchRange*2À¸·Î ´ëÄ¡
-    4. GetFinalDamage(), GetNFinalDamage(), GetDefense() ÇÔ¼ö ¼öÁ¤..  °ø°İÄ¡ °è»ê½Ä..
-    5. FillNpcInfo() ¼öÁ¤
-    6. SendNpcInfoAll() ¼öÁ¤
-    7. SendAttackSuccess() ºÎºĞ ¼öÁ¤.. È£ÃâÇÏ´Â ºÎºĞµµ ¼öÁ¤ÇÒ °Í...
+     ** Repent AI Server ì‘ì—…ì‹œ ì°¸ê³  ì‚¬í•­ **
+    1. m_fSpeed_1,m_fSpeed_2ë¼ëŠ” ë³€ìˆ˜ê°€ ì—†ìœ¼ë¯€ë¡œ NPC_SECFORMETER_MOVE(4)ë¡œ ìˆ˜ì •,, 
+            ë‚˜ì¤‘ì— ì´ê²ƒë„ ë‚˜ì´ì¸  ë°©ì‹ìœ¼ë¡œ ìˆ˜ì •í•  ê²ƒ (í…Œì´ë¸”)
+    2. m_byGroup ë³€ìˆ˜ ì—†ìŒ.. (ì´ê²ƒ ë‚˜ì˜¤ëŠ” ê²ƒ ì „ë¶€ ì£¼ì„..)
+    3. m_byTracingRange ë³€ìˆ˜ ì—†ìŒ . m_bySearchRange*2ìœ¼ë¡œ ëŒ€ì¹˜
+    4. GetFinalDamage(), GetNFinalDamage(), GetDefense() í•¨ìˆ˜ ìˆ˜ì •..  ê³µê²©ì¹˜ ê³„ì‚°ì‹..
+    5. FillNpcInfo() ìˆ˜ì •
+    6. SendNpcInfoAll() ìˆ˜ì •
+    7. SendAttackSuccess() ë¶€ë¶„ ìˆ˜ì •.. í˜¸ì¶œí•˜ëŠ” ë¶€ë¶„ë„ ìˆ˜ì •í•  ê²ƒ...
 */
 
 //////////////////////////////////////////////////////////////////////
@@ -78,8 +78,8 @@ inline BOOL CNpc::SetUid(float x, float z, int id) {
         return FALSE;
     }
 
-    // map ÀÌµ¿ÀÌ ºÒ°¡´ÉÀÌ¸é npcµî·Ï ½ÇÆĞ..
-    // ÀÛ¾÷ : ÀÌ ºÎºĞÀ» ³ªÁß¿¡ ¼öÁ¤ Ã³¸®....
+    // map ì´ë™ì´ ë¶ˆê°€ëŠ¥ì´ë©´ npcë“±ë¡ ì‹¤íŒ¨..
+    // ì‘ì—… : ì´ ë¶€ë¶„ì„ ë‚˜ì¤‘ì— ìˆ˜ì • ì²˜ë¦¬....
     // if(pMap->m_pMap[x1][z1].m_sEvent == 0) return FALSE;
     if (nRX > pMap->GetXRegionMax() || nRY > pMap->GetZRegionMax() || nRX < 0 || nRY < 0) {
         TRACE("#### SetUid Fail : [nid=%d, sid=%d], nRX=%d, nRZ=%d #####\n", m_sNid + NPC_BAND, m_sSid, nRX, nRY);
@@ -93,14 +93,14 @@ inline BOOL CNpc::SetUid(float x, float z, int id) {
         m_iRegion_Z = nRY;
 
         //TRACE("++ Npc-SetUid RegionAdd : [nid=%d, name=%s], x=%.2f, z=%.2f, nRX=%d, nRZ=%d \n", m_sNid+NPC_BAND, m_strName,x,z, nRX, nRY);
-        // »õ·Î¿î regionÀ¸·Î npcÀÌµ¿ - npcÀÇ Á¤º¸ Ãß°¡..
+        // ìƒˆë¡œìš´ regionìœ¼ë¡œ npcì´ë™ - npcì˜ ì •ë³´ ì¶”ê°€..
         CNpc * pNpc = m_pMain->m_arNpc.GetData(id - NPC_BAND);
         if (pNpc == NULL) {
             return FALSE;
         }
         pMap->RegionNpcAdd(m_iRegion_X, m_iRegion_Z, id);
 
-        // ±âÁ¸ÀÇ regionÁ¤º¸¿¡¼­ npcÀÇ Á¤º¸ »èÁ¦..
+        // ê¸°ì¡´ì˜ regionì •ë³´ì—ì„œ npcì˜ ì •ë³´ ì‚­ì œ..
         pMap->RegionNpcRemove(nOld_RX, nOld_RZ, id);
         //TRACE("-- Npc-SetUid RegionRemove : [nid=%d, name=%s], nRX=%d, nRZ=%d \n", m_sNid+NPC_BAND, m_strName, nOld_RX, nOld_RZ);
     }
@@ -121,10 +121,10 @@ CNpc::CNpc() {
     m_Delay = 0;
     m_fDelayTime = TimeGet();
 
-    m_tNpcAttType = ATROCITY_ATTACK_TYPE;    // °ø°İ ¼ºÇâ
-    m_tNpcOldAttType = ATROCITY_ATTACK_TYPE; // °ø°İ ¼ºÇâ
-    m_tNpcLongType = 0;                      // ¿ø°Å¸®(1), ±Ù°Å¸®(0)
-    m_tNpcGroupType = 0;                     // µµ¿òÀ» ÁÖ´Â³Ä(1), ¾ÈÁÖ´Â³Ä?(0)
+    m_tNpcAttType = ATROCITY_ATTACK_TYPE;    // ê³µê²© ì„±í–¥
+    m_tNpcOldAttType = ATROCITY_ATTACK_TYPE; // ê³µê²© ì„±í–¥
+    m_tNpcLongType = 0;                      // ì›ê±°ë¦¬(1), ê·¼ê±°ë¦¬(0)
+    m_tNpcGroupType = 0;                     // ë„ì›€ì„ ì£¼ëŠ”ëƒ(1), ì•ˆì£¼ëŠ”ëƒ?(0)
     m_byNpcEndAttType = 1;
     m_byWhatAttackType = 0;
     m_byMoveType = 1;
@@ -149,7 +149,7 @@ CNpc::CNpc() {
     m_fHPChangeTime = TimeGet();
     m_fFaintingTime = 0.0f;
 
-    ::ZeroMemory(m_pMap, sizeof(m_pMap)); // ÀÏÂ÷¿ø ¸ÊÀ¸·Î ÃÊ±âÈ­ÇÑ´Ù.
+    ::ZeroMemory(m_pMap, sizeof(m_pMap)); // ì¼ì°¨ì› ë§µìœ¼ë¡œ ì´ˆê¸°í™”í•œë‹¤.
 
     m_iRegion_X = 0;
     m_iRegion_Z = 0;
@@ -177,10 +177,10 @@ CNpc::~CNpc() {
 }
 
 ///////////////////////////////////////////////////////////////////////
-//    ±æÃ£±â µ¥ÀÌÅÍ¸¦ Áö¿î´Ù.
+//    ê¸¸ì°¾ê¸° ë°ì´í„°ë¥¼ ì§€ìš´ë‹¤.
 //
 void CNpc::ClearPathFindData() {
-    ::ZeroMemory(m_pMap, sizeof(m_pMap)); // ÀÏÂ÷¿ø ¸ÊÀ» À§ÇØ
+    ::ZeroMemory(m_pMap, sizeof(m_pMap)); // ì¼ì°¨ì› ë§µì„ ìœ„í•´
 
     m_bPathFlag = FALSE;
     m_sStepCount = 0;
@@ -198,7 +198,7 @@ void CNpc::ClearPathFindData() {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-//    À¯Àú¸®½ºÆ®¸¦ ÃÊ±âÈ­ÇÑ´Ù.
+//    ìœ ì €ë¦¬ìŠ¤íŠ¸ë¥¼ ì´ˆê¸°í™”í•œë‹¤.
 //
 void CNpc::InitUserList() {
     m_sMaxDamageUserid = -1;
@@ -212,7 +212,7 @@ void CNpc::InitUserList() {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
-//    °ø°İ´ë»ó(Target)À» ÃÊ±âÈ­ ÇÑ´Ù.
+//    ê³µê²©ëŒ€ìƒ(Target)ì„ ì´ˆê¸°í™” í•œë‹¤.
 //
 inline void CNpc::InitTarget() {
     if (m_byAttackPos != 0) {
@@ -233,7 +233,7 @@ inline void CNpc::InitTarget() {
     m_Target.failCount = 0;
 }
 
-//    NPC ±âº»Á¤º¸ ÃÊ±âÈ­
+//    NPC ê¸°ë³¸ì •ë³´ ì´ˆê¸°í™”
 void CNpc::Init() {
     if (m_ZoneIndex == -1) {
         m_ZoneIndex = m_pMain->GetZoneIndex(m_sCurZone);
@@ -245,10 +245,10 @@ void CNpc::Init() {
         TRACE("#### Npc-Init ZoneIndex Fail : [name=%s], zoneindex=%d #####\n", m_strName, m_ZoneIndex);
         return;
     }
-    m_pOrgMap = m_pMain->g_arZone[m_ZoneIndex]->m_pMap; // MapInfo Á¤º¸ ¼ÂÆÃ
+    m_pOrgMap = m_pMain->g_arZone[m_ZoneIndex]->m_pMap; // MapInfo ì •ë³´ ì…‹íŒ…
 }
 
-//    NPC ±âº»À§Ä¡ Á¤º¸ ÃÊ±âÈ­(ÆĞ½º µû¶ó ¿òÁ÷ÀÌ´Â NPCÀÇ ÁøÇüÀ» ¸ÂÃß¾î ÁØ´Ù..
+//    NPC ê¸°ë³¸ìœ„ì¹˜ ì •ë³´ ì´ˆê¸°í™”(íŒ¨ìŠ¤ ë”°ë¼ ì›€ì§ì´ëŠ” NPCì˜ ì§„í˜•ì„ ë§ì¶”ì–´ ì¤€ë‹¤..
 void CNpc::InitPos() {
     float fDD = 1.5f;
     if (m_byBattlePos == 0) {
@@ -288,16 +288,16 @@ void CNpc::InitMagicValuable() {
     }
 }
 
-// NPC »óÅÂº°·Î ºĞÈ­ÇÑ´Ù.
+// NPC ìƒíƒœë³„ë¡œ ë¶„í™”í•œë‹¤.
 void CNpc::NpcLive(CIOCPort * pIOCP) {
-    // Dungeon Work : º¯ÇÏ´Â ¸ó½ºÅÍÀÇ °æ¿ì º¯ÇÏ°Ô Ã³¸®..
-    if (m_byRegenType == 2 || (m_byRegenType == 1 && m_byChangeType == 100)) { // ¸®Á¨ÀÌ µÇÁö ¸øÇÏµµ·Ï,,,
+    // Dungeon Work : ë³€í•˜ëŠ” ëª¬ìŠ¤í„°ì˜ ê²½ìš° ë³€í•˜ê²Œ ì²˜ë¦¬..
+    if (m_byRegenType == 2 || (m_byRegenType == 1 && m_byChangeType == 100)) { // ë¦¬ì  ì´ ë˜ì§€ ëª»í•˜ë„ë¡,,,
         m_NpcState = NPC_LIVE;
         m_Delay = m_sRegenTime;
         m_fDelayTime = TimeGet();
         return;
     }
-    if (m_byChangeType == 1) { // ¸ó½ºÅÍÀÇ Á¤º¸¸¦ ¹Ù²Ù¾î ÁØ´Ù..
+    if (m_byChangeType == 1) { // ëª¬ìŠ¤í„°ì˜ ì •ë³´ë¥¼ ë°”ê¾¸ì–´ ì¤€ë‹¤..
         m_byChangeType = 2;
         ChangeMonsterInfomation(1);
     }
@@ -314,7 +314,7 @@ void CNpc::NpcLive(CIOCPort * pIOCP) {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-//    NPC°¡ °ø°İÇÏ´Â °æ¿ì.
+//    NPCê°€ ê³µê²©í•˜ëŠ” ê²½ìš°.
 //
 void CNpc::NpcFighting(CIOCPort * pIOCP) {
     if (cur_test) {
@@ -330,7 +330,7 @@ void CNpc::NpcFighting(CIOCPort * pIOCP) {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-//    NPC°¡ À¯Àú¸¦ ÃßÀûÇÏ´Â °æ¿ì.
+//    NPCê°€ ìœ ì €ë¥¼ ì¶”ì í•˜ëŠ” ê²½ìš°.
 //
 void CNpc::NpcTracing(CIOCPort * pIOCP) {
     char pBuf[1024];
@@ -352,7 +352,7 @@ void CNpc::NpcTracing(CIOCPort * pIOCP) {
         NpcTrace("NpcTracing()");
     }
 
-    //  °íÁ¤ °æºñº´Àº ÃßÀûÀÌ µÇÁö ¾Êµµ·ÏÇÑ´Ù.
+    //  ê³ ì • ê²½ë¹„ë³‘ì€ ì¶”ì ì´ ë˜ì§€ ì•Šë„ë¡í•œë‹¤.
     if (m_tNpcType == NPC_DOOR || m_tNpcType == NPC_ARTIFACT || m_tNpcType == NPC_PHOENIX_GATE ||
         m_tNpcType == NPC_GATE_LEVER || m_tNpcType == NPC_DOMESTIC_ANIMAL || m_tNpcType == NPC_SPECIAL_GATE ||
         m_tNpcType == NPC_DESTORY_ARTIFACT) {
@@ -363,22 +363,22 @@ void CNpc::NpcTracing(CIOCPort * pIOCP) {
         return;
     }
 
-    /* ÀÛ¾÷ÇÒ°Í
-       ´øÁ¯ ¸ó½ºÅÍÀÇ °æ¿ì ÀÏÁ¤¿µ¿ªÀ» ¹ş¾î³ªÁö ¸øÇÏµµ·Ï Ã¼Å©ÇÏ´Â ·çÆ¾     
+    /* ì‘ì—…í• ê²ƒ
+       ë˜ì ¼ ëª¬ìŠ¤í„°ì˜ ê²½ìš° ì¼ì •ì˜ì—­ì„ ë²—ì–´ë‚˜ì§€ ëª»í•˜ë„ë¡ ì²´í¬í•˜ëŠ” ë£¨í‹´     
     */
     int nFlag = IsCloseTarget(m_byAttackRange, 1);
-    if (nFlag == 1) // ±ÙÁ¢ÀüÀ» ¹úÀÏ¸¸Å­ °¡±î¿î °Å¸®ÀÎ°¡?
+    if (nFlag == 1) // ê·¼ì ‘ì „ì„ ë²Œì¼ë§Œí¼ ê°€ê¹Œìš´ ê±°ë¦¬ì¸ê°€?
     {
-        //TRACE("Npc-NpcTracing : trace->attackÀ¸·Î ¹Ù²ñ : nid=(%d, %s), x=%.2f, z=%.2f\n", m_sNid+NPC_BAND, m_strName, m_fCurX, m_fCurZ);
-        NpcMoveEnd(pIOCP); // ÀÌµ¿ ³¡..
+        //TRACE("Npc-NpcTracing : trace->attackìœ¼ë¡œ ë°”ë€œ : nid=(%d, %s), x=%.2f, z=%.2f\n", m_sNid+NPC_BAND, m_strName, m_fCurX, m_fCurZ);
+        NpcMoveEnd(pIOCP); // ì´ë™ ë..
         m_NpcState = NPC_FIGHTING;
         m_Delay = 0;
         m_fDelayTime = TimeGet();
         return;
-    } else if (nFlag == -1) // Å¸°ÙÀÌ ¾ø¾îÁü...
+    } else if (nFlag == -1) // íƒ€ê²Ÿì´ ì—†ì–´ì§...
     {
         InitTarget();
-        NpcMoveEnd(pIOCP); // ÀÌµ¿ ³¡..
+        NpcMoveEnd(pIOCP); // ì´ë™ ë..
         m_NpcState = NPC_STANDING;
         m_Delay = m_sStandTime;
         m_fDelayTime = TimeGet();
@@ -386,7 +386,7 @@ void CNpc::NpcTracing(CIOCPort * pIOCP) {
     }
     //else if(nFlag == 2 && m_tNpcType == NPC_BOSS_MONSTER)    {
     else if (nFlag == 2 && m_tNpcLongType == 2) {
-        NpcMoveEnd(pIOCP); // ÀÌµ¿ ³¡..
+        NpcMoveEnd(pIOCP); // ì´ë™ ë..
         m_NpcState = NPC_FIGHTING;
         m_Delay = 0;
         m_fDelayTime = TimeGet();
@@ -401,9 +401,9 @@ void CNpc::NpcTracing(CIOCPort * pIOCP) {
     if (m_byResetFlag == 1) {
         if (ResetPath() == FALSE) // && !m_tNpcTraceType)
         {
-            TRACE("##### NpcTracing Fail : ÆĞ½ºÆÄÀÎµå ½ÇÆĞ , NPC_STANDINGÀ¸·Î ######\n");
+            TRACE("##### NpcTracing Fail : íŒ¨ìŠ¤íŒŒì¸ë“œ ì‹¤íŒ¨ , NPC_STANDINGìœ¼ë¡œ ######\n");
             InitTarget();
-            NpcMoveEnd(pIOCP); // ÀÌµ¿ ³¡..
+            NpcMoveEnd(pIOCP); // ì´ë™ ë..
             m_NpcState = NPC_STANDING;
             m_Delay = m_sStandTime;
             m_fDelayTime = TimeGet();
@@ -413,27 +413,27 @@ void CNpc::NpcTracing(CIOCPort * pIOCP) {
 
     if (m_bPathFlag == FALSE) {
         //        TRACE("StepMove : x=%.2f, z=%.2f\n", m_fCurX, m_fCurZ);
-        if (StepMove(1, pIOCP) == FALSE) // ÇÑÄ­ ¿òÁ÷ÀÓ(°È´Âµ¿ÀÛ, ´Ş¸±¶§´Â 2Ä­)
+        if (StepMove(1, pIOCP) == FALSE) // í•œì¹¸ ì›€ì§ì„(ê±·ëŠ”ë™ì‘, ë‹¬ë¦´ë•ŒëŠ” 2ì¹¸)
         {
             m_NpcState = NPC_STANDING;
             m_Delay = m_sStandTime;
             m_fDelayTime = TimeGet();
-            TRACE("### NpcTracing Fail : StepMove ½ÇÆĞ, %s, %d ### \n", m_strName, m_sNid + NPC_BAND);
+            TRACE("### NpcTracing Fail : StepMove ì‹¤íŒ¨, %s, %d ### \n", m_strName, m_sNid + NPC_BAND);
             return;
         }
     } else if (m_bPathFlag == TRUE) {
         //        TRACE("StepNoPathMove : x=%.2f, z=%.2f\n", m_fCurX, m_fCurZ);
-        if (StepNoPathMove(1) == FALSE) // ÇÑÄ­ ¿òÁ÷ÀÓ(°È´Âµ¿ÀÛ, ´Ş¸±¶§´Â 2Ä­)
+        if (StepNoPathMove(1) == FALSE) // í•œì¹¸ ì›€ì§ì„(ê±·ëŠ”ë™ì‘, ë‹¬ë¦´ë•ŒëŠ” 2ì¹¸)
         {
             m_NpcState = NPC_STANDING;
             m_Delay = m_sStandTime;
             m_fDelayTime = TimeGet();
-            TRACE("### NpcTracing Fail : StepNoPathMove ½ÇÆĞ, %s, %d ### \n", m_strName, m_sNid + NPC_BAND);
+            TRACE("### NpcTracing Fail : StepNoPathMove ì‹¤íŒ¨, %s, %d ### \n", m_strName, m_sNid + NPC_BAND);
             return;
         }
     }
 
-    if (IsMovingEnd()) // ÀÌµ¿ÀÌ ³¡³µÀ¸¸é
+    if (IsMovingEnd()) // ì´ë™ì´ ëë‚¬ìœ¼ë©´
     {
         ::ZeroMemory(pBuf, 1024);
         index = 0;
@@ -445,7 +445,7 @@ void CNpc::NpcTracing(CIOCPort * pIOCP) {
         Setfloat(pBuf, m_fCurY, index);
         Setfloat(pBuf, 0, index);
         //TRACE("Npc TRACE end --> nid = %d, cur=[x=%.2f, y=%.2f, metor=%d], prev=[x=%.2f, z=%.2f], frame=%d, speed = %d \n", m_sNid, m_fCurX, m_fCurZ, 0, m_fPrevX, m_fPrevZ, m_sStepCount, 0);
-        SendAll(pIOCP, pBuf, index); // thread ¿¡¼­ send
+        SendAll(pIOCP, pBuf, index); // thread ì—ì„œ send
     } else {
         SetByte(pBuf, MOVE_RESULT, index);
         SetByte(pBuf, SUCCESS, index);
@@ -457,7 +457,7 @@ void CNpc::NpcTracing(CIOCPort * pIOCP) {
         Setfloat(pBuf, fMoveSpeed, index);
         //Setfloat(pBuf, m_fSecForRealMoveMetor, index);
         //TRACE("Npc Tracing --> nid = %d, cur=[x=%.2f, z=%.2f], prev=[x=%.2f, z=%.2f, metor = %.2f], frame=%d, speed = %d \n", m_sNid, m_fCurX, m_fCurZ, m_fPrevX, m_fPrevZ, m_fSecForRealMoveMetor, m_sStepCount, m_sSpeed);
-        SendAll(pIOCP, pBuf, index); // thread ¿¡¼­ send
+        SendAll(pIOCP, pBuf, index); // thread ì—ì„œ send
     }
 
     if (nFlag == 2 && m_tNpcLongType == 0 && m_tNpcType != NPC_HEALER) {
@@ -466,7 +466,7 @@ void CNpc::NpcTracing(CIOCPort * pIOCP) {
         //TRACE("--> Npc-NpcTracing : TracingAttack : nid=(%d, %s), x=%.2f, z=%.2f\n", m_sNid+NPC_BAND, m_strName, m_fCurX, m_fCurZ);
         if (nRet == 0) {
             InitTarget();
-            NpcMoveEnd(pIOCP); // ÀÌµ¿ ³¡..
+            NpcMoveEnd(pIOCP); // ì´ë™ ë..
             m_NpcState = NPC_STANDING;
             m_Delay = m_sStandTime;
             m_fDelayTime = TimeGet();
@@ -484,23 +484,23 @@ void CNpc::NpcAttacking(CIOCPort * pIOCP) {
     }
 
     if (m_iHP <= 0) {
-        Dead(pIOCP); // ¹Ù·Î ¸ó½ºÅÍ¸¦ Á×ÀÎ´Ù.. (°æÇèÄ¡ ¹èºĞ ¾ÈÇÔ)
+        Dead(pIOCP); // ë°”ë¡œ ëª¬ìŠ¤í„°ë¥¼ ì£½ì¸ë‹¤.. (ê²½í—˜ì¹˜ ë°°ë¶„ ì•ˆí•¨)
         return;
     }
 
     //    TRACE("Npc Attack - [nid=%d, sid=%d]\n", m_sNid, m_sSid);
 
     int ret = IsCloseTarget(m_byAttackRange);
-    if (ret == 1) { // °ø°İÇÒ ¼ö ÀÖ´Â¸¸Å­ °¡±î¿î °Å¸®ÀÎ°¡?
+    if (ret == 1) { // ê³µê²©í•  ìˆ˜ ìˆëŠ”ë§Œí¼ ê°€ê¹Œìš´ ê±°ë¦¬ì¸ê°€?
         m_NpcState = NPC_FIGHTING;
         m_Delay = 0;
         m_fDelayTime = TimeGet();
         return;
     }
 
-    //if(m_tNpcType == NPCTYPE_DOOR || m_tNpcType == NPCTYPE_ARTIFACT || m_tNpcType == NPCTYPE_PHOENIX_GATE || m_tNpcType == NPCTYPE_GATE_LEVER)        return;        // ¼º¹® NPC´Â °ø°İÃ³¸® ¾ÈÇÏ°Ô
+    //if(m_tNpcType == NPCTYPE_DOOR || m_tNpcType == NPCTYPE_ARTIFACT || m_tNpcType == NPCTYPE_PHOENIX_GATE || m_tNpcType == NPCTYPE_GATE_LEVER)        return;        // ì„±ë¬¸ NPCëŠ” ê³µê²©ì²˜ë¦¬ ì•ˆí•˜ê²Œ
 
-    // ÀÛ¾÷ : ÀÌ ºÎºĞ¿¡¼­.. °æºñº´µµ °ø°İÀÌ °¡´ÉÇÏ°Ô...
+    // ì‘ì—… : ì´ ë¶€ë¶„ì—ì„œ.. ê²½ë¹„ë³‘ë„ ê³µê²©ì´ ê°€ëŠ¥í•˜ê²Œ...
     if (m_tNpcType == NPC_DOOR || m_tNpcType == NPC_ARTIFACT || m_tNpcType == NPC_PHOENIX_GATE ||
         m_tNpcType == NPC_GATE_LEVER || m_tNpcType == NPC_DOMESTIC_ANIMAL || m_tNpcType == NPC_SPECIAL_GATE ||
         m_tNpcType == NPC_DESTORY_ARTIFACT) {
@@ -511,7 +511,7 @@ void CNpc::NpcAttacking(CIOCPort * pIOCP) {
     }
 
     int nValue = GetTargetPath();
-    if (nValue == -1) { // Å¸°ÙÀÌ ¾ø¾îÁö°Å³ª,, ¸Ö¾îÁ³À½À¸·Î...
+    if (nValue == -1) { // íƒ€ê²Ÿì´ ì—†ì–´ì§€ê±°ë‚˜,, ë©€ì–´ì¡ŒìŒìœ¼ë¡œ...
         if (RandomMove() == FALSE) {
             InitTarget();
             m_NpcState = NPC_STANDING;
@@ -526,8 +526,8 @@ void CNpc::NpcAttacking(CIOCPort * pIOCP) {
         m_fDelayTime = TimeGet();
         return;
     } else if (nValue == 0) {
-        m_fSecForMetor = m_fSpeed_2;  // °ø°İÀÏ¶§´Â ¶Ù´Â ¼Óµµ·Î...
-        IsNoPathFind(m_fSecForMetor); // Å¸°Ù ¹æÇâÀ¸·Î ¹Ù·Î °£´Ù..
+        m_fSecForMetor = m_fSpeed_2;  // ê³µê²©ì¼ë•ŒëŠ” ë›°ëŠ” ì†ë„ë¡œ...
+        IsNoPathFind(m_fSecForMetor); // íƒ€ê²Ÿ ë°©í–¥ìœ¼ë¡œ ë°”ë¡œ ê°„ë‹¤..
     }
 
     m_NpcState = NPC_TRACING;
@@ -536,7 +536,7 @@ void CNpc::NpcAttacking(CIOCPort * pIOCP) {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-//    NPC°¡ ÀÌµ¿ÇÏ´Â °æ¿ì.
+//    NPCê°€ ì´ë™í•˜ëŠ” ê²½ìš°.
 //
 void CNpc::NpcMoving(CIOCPort * pIOCP) {
     if (cur_test) {
@@ -562,17 +562,17 @@ void CNpc::NpcMoving(CIOCPort * pIOCP) {
         }
     }
 
-    if (FindEnemy() == TRUE) { // ÀûÀ» Ã£´Â´Ù.
+    if (FindEnemy() == TRUE) { // ì ì„ ì°¾ëŠ”ë‹¤.
                                /*    if(m_tNpcType == NPCTYPE_GUARD) 
         { 
-            NpcMoveEnd(pIOCP);    // ÀÌµ¿ ³¡..
+            NpcMoveEnd(pIOCP);    // ì´ë™ ë..
             m_NpcState = NPC_FIGHTING; 
             m_Delay = 0; 
             m_fDelayTime = TimeGet();
         }
         else */
         {
-            NpcMoveEnd(pIOCP); // ÀÌµ¿ ³¡..
+            NpcMoveEnd(pIOCP); // ì´ë™ ë..
             m_NpcState = NPC_ATTACKING;
             m_Delay = m_sSpeed;
             m_fDelayTime = TimeGet();
@@ -580,7 +580,7 @@ void CNpc::NpcMoving(CIOCPort * pIOCP) {
         return;
     }
 
-    if (IsMovingEnd()) { // ÀÌµ¿ÀÌ ³¡³µÀ¸¸é
+    if (IsMovingEnd()) { // ì´ë™ì´ ëë‚¬ìœ¼ë©´
         m_fCurX = m_fPrevX;
         m_fCurZ = m_fPrevZ;
         if (m_fCurX < 0 || m_fCurZ < 0) {
@@ -589,7 +589,7 @@ void CNpc::NpcMoving(CIOCPort * pIOCP) {
 
         int rx = m_fCurX / VIEW_DIST;
         int rz = m_fCurZ / VIEW_DIST;
-        //TRACE("** NpcMoving --> IsMovingEnd() ÀÌµ¿ÀÌ ³¡³²,, rx=%d, rz=%d, stand·Î\n", rx, rz);
+        //TRACE("** NpcMoving --> IsMovingEnd() ì´ë™ì´ ëë‚¨,, rx=%d, rz=%d, standë¡œ\n", rx, rz);
         m_NpcState = NPC_STANDING;
         m_Delay = m_sStandTime;
         m_fDelayTime = TimeGet();
@@ -603,14 +603,14 @@ void CNpc::NpcMoving(CIOCPort * pIOCP) {
     }
 
     if (m_bPathFlag == FALSE) {
-        if (StepMove(1, pIOCP) == FALSE) { // ÇÑÄ­ ¿òÁ÷ÀÓ(°È´Âµ¿ÀÛ, ´Ş¸±¶§´Â 2Ä­)
+        if (StepMove(1, pIOCP) == FALSE) { // í•œì¹¸ ì›€ì§ì„(ê±·ëŠ”ë™ì‘, ë‹¬ë¦´ë•ŒëŠ” 2ì¹¸)
             m_NpcState = NPC_STANDING;
             m_Delay = m_sStandTime;
             m_fDelayTime = TimeGet();
             return;
         }
     } else if (m_bPathFlag == TRUE) {
-        if (StepNoPathMove(1) == FALSE) { // ÇÑÄ­ ¿òÁ÷ÀÓ(°È´Âµ¿ÀÛ, ´Ş¸±¶§´Â 2Ä­)
+        if (StepNoPathMove(1) == FALSE) { // í•œì¹¸ ì›€ì§ì„(ê±·ëŠ”ë™ì‘, ë‹¬ë¦´ë•ŒëŠ” 2ì¹¸)
             m_NpcState = NPC_STANDING;
             m_Delay = m_sStandTime;
             m_fDelayTime = TimeGet();
@@ -618,7 +618,7 @@ void CNpc::NpcMoving(CIOCPort * pIOCP) {
         }
     }
 
-    if (IsMovingEnd()) { // ÀÌµ¿ÀÌ ³¡³µÀ¸¸é
+    if (IsMovingEnd()) { // ì´ë™ì´ ëë‚¬ìœ¼ë©´
         ::ZeroMemory(pBuf, 1024);
         index = 0;
         SetByte(pBuf, MOVE_RESULT, index);
@@ -629,7 +629,7 @@ void CNpc::NpcMoving(CIOCPort * pIOCP) {
         Setfloat(pBuf, m_fPrevY, index);
         Setfloat(pBuf, 0, index);
         //TRACE("Npc Move end --> nid = %d, cur=[x=%.2f, y=%.2f, metor=%d], prev=[x=%.2f, z=%.2f], frame=%d, speed = %d \n", m_sNid+NPC_BAND, m_fCurX, m_fCurZ, 0, m_fPrevX, m_fPrevZ, m_sStepCount, 0);
-        SendAll(pIOCP, pBuf, index); // thread ¿¡¼­ send
+        SendAll(pIOCP, pBuf, index); // thread ì—ì„œ send
     } else {
         SetByte(pBuf, MOVE_RESULT, index);
         SetByte(pBuf, SUCCESS, index);
@@ -641,7 +641,7 @@ void CNpc::NpcMoving(CIOCPort * pIOCP) {
         Setfloat(pBuf, fMoveSpeed, index);
         //Setfloat(pBuf, m_fSecForRealMoveMetor, index);
         //TRACE("Npc Move --> nid = %d, cur=[x=%.2f, z=%.2f], prev=[x=%.2f, z=%.2f, metor = %.2f], frame=%d, speed = %d \n", m_sNid+NPC_BAND, m_fCurX, m_fCurZ, m_fPrevX, m_fPrevZ, m_fSecForRealMoveMetor, m_sStepCount, m_sSpeed);
-        SendAll(pIOCP, pBuf, index); // thread ¿¡¼­ send
+        SendAll(pIOCP, pBuf, index); // thread ì—ì„œ send
     }
 
     m_Delay = m_sSpeed;
@@ -649,7 +649,7 @@ void CNpc::NpcMoving(CIOCPort * pIOCP) {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-//    NPC°¡ ¼­ÀÖ´Â°æ¿ì.
+//    NPCê°€ ì„œìˆëŠ”ê²½ìš°.
 //
 void CNpc::NpcStanding() {
     if (cur_test) {
@@ -659,7 +659,7 @@ void CNpc::NpcStanding() {
     char send_buff[128];
     int  send_index = 0;
 
-    /*    if(m_pMain->m_byNight == 2)    {    // ¹ãÀÌ¸é
+    /*    if(m_pMain->m_byNight == 2)    {    // ë°¤ì´ë©´
         m_NpcState = NPC_SLEEPING;
         m_Delay = 0;
         m_fDelayTime = TimeGet();
@@ -675,25 +675,25 @@ void CNpc::NpcStanding() {
 
     /*    BOOL bCheckRange = FALSE;
     bCheckRange = IsInRange( (int)m_fCurX, (int)m_fCurZ);
-    if( bCheckRange )    {    // È°µ¿¿µ¿ª¾È¿¡ ÀÖ´Ù¸é
+    if( bCheckRange )    {    // í™œë™ì˜ì—­ì•ˆì— ìˆë‹¤ë©´
         if( m_tNpcAttType != m_tNpcOldAttType )    {
-            m_tNpcAttType = ATROCITY_ATTACK_TYPE;    // °ø°İ¼ºÇâÀ¸·Î
-            //TRACE("°ø°İ¼ºÇâÀÌ ¼±°øÀ¸·Î º¯ÇÔ\n");
+            m_tNpcAttType = ATROCITY_ATTACK_TYPE;    // ê³µê²©ì„±í–¥ìœ¼ë¡œ
+            //TRACE("ê³µê²©ì„±í–¥ì´ ì„ ê³µìœ¼ë¡œ ë³€í•¨\n");
         }
     }
     else    {
         if( m_tNpcAttType == ATROCITY_ATTACK_TYPE )    {
             m_tNpcAttType = TENDER_ATTACK_TYPE;
-            //TRACE("°ø°İ¼ºÇâÀÌ ÈÄ°øÀ¸·Î º¯ÇÔ\n");
+            //TRACE("ê³µê²©ì„±í–¥ì´ í›„ê³µìœ¼ë¡œ ë³€í•¨\n");
         }
     }    */
 
     // dungeon work
-    // ´øÁ¯ Á¸ÀÎÁö¸¦ ¸ÕÀú ÆÇ´Ü
+    // ë˜ì ¼ ì¡´ì¸ì§€ë¥¼ ë¨¼ì € íŒë‹¨
     CRoomEvent * pRoom = NULL;
     pRoom = pMap->m_arRoomEventArray.GetData(m_byDungeonFamily);
     if (pRoom) {
-        if (pRoom->m_byStatus == 1) { // ¹æÀÇ »óÅÂ°¡ ½ÇÇàµÇÁö ¾Ê¾Ò´Ù¸é,, ¸ó½ºÅÍ´Â standing
+        if (pRoom->m_byStatus == 1) { // ë°©ì˜ ìƒíƒœê°€ ì‹¤í–‰ë˜ì§€ ì•Šì•˜ë‹¤ë©´,, ëª¬ìŠ¤í„°ëŠ” standing
             m_NpcState = NPC_STANDING;
             m_Delay = m_sStandTime;
             m_fDelayTime = TimeGet();
@@ -714,9 +714,9 @@ void CNpc::NpcStanding() {
     m_fDelayTime = TimeGet();
 
     if (m_tNpcType == NPC_SPECIAL_GATE && m_pMain->m_byBattleEvent == BATTLEZONE_OPEN) {
-        // ¹®ÀÌ ÀÚµ¿À¸·Î ¿­¸®°í ´İÈ÷µµ·Ï(2ºĞÀ» ÁÖ±â·Î-standing timeÀ» ÀÌ¿ë)
+        // ë¬¸ì´ ìë™ìœ¼ë¡œ ì—´ë¦¬ê³  ë‹«íˆë„ë¡(2ë¶„ì„ ì£¼ê¸°ë¡œ-standing timeì„ ì´ìš©)
         m_byGateOpen = !m_byGateOpen; //
-        // client¿Í gameserver¿¡ Á¤º¸Àü¼Û
+        // clientì™€ gameserverì— ì •ë³´ì „ì†¡
         memset(send_buff, NULL, 128);
         send_index = 0;
         SetByte(send_buff, AG_NPC_GATE_OPEN, send_index);
@@ -727,11 +727,11 @@ void CNpc::NpcStanding() {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-//    Å¸°Ù°úÀÇ °Å¸®¸¦ »çÁ¤°Å¸® ¹üÀ§·Î À¯ÁöÇÑ´Ù.(¼¿´ÜÀ§)
+//    íƒ€ê²Ÿê³¼ì˜ ê±°ë¦¬ë¥¼ ì‚¬ì •ê±°ë¦¬ ë²”ìœ„ë¡œ ìœ ì§€í•œë‹¤.(ì…€ë‹¨ìœ„)
 //
 void CNpc::NpcBack(CIOCPort * pIOCP) {
     if (m_Target.id >= 0 && m_Target.id < NPC_BAND) {
-        if (m_pMain->GetUserPtr((m_Target.id - USER_BAND)) == NULL) { // Target User °¡ Á¸ÀçÇÏ´ÂÁö °Ë»ç
+        if (m_pMain->GetUserPtr((m_Target.id - USER_BAND)) == NULL) { // Target User ê°€ ì¡´ì¬í•˜ëŠ”ì§€ ê²€ì‚¬
             m_NpcState = NPC_STANDING;
             m_Delay = m_sSpeed; //STEP_DELAY;
             m_fDelayTime = TimeGet();
@@ -765,7 +765,7 @@ void CNpc::NpcBack(CIOCPort * pIOCP) {
         }
     }
 
-    if (IsMovingEnd()) { // ÀÌµ¿ÀÌ ³¡³µÀ¸¸é
+    if (IsMovingEnd()) { // ì´ë™ì´ ëë‚¬ìœ¼ë©´
         m_fCurX = m_fPrevX;
         m_fCurZ = m_fPrevZ;
         if (m_fCurX < 0 || m_fCurZ < 0) {
@@ -782,12 +782,12 @@ void CNpc::NpcBack(CIOCPort * pIOCP) {
         Setfloat(pBuf, m_fCurY, index);
         Setfloat(pBuf, 0, index);
         //        TRACE("NpcBack end --> nid = %d, cur=[x=%.2f, y=%.2f, metor=%d], prev=[x=%.2f, z=%.2f], frame=%d, speed = %d \n", m_sNid, m_fCurX, m_fCurZ, 0, m_fPrevX, m_fPrevZ, m_sStepCount, 0);
-        SendAll(pIOCP, pBuf, index); // thread ¿¡¼­ send
+        SendAll(pIOCP, pBuf, index); // thread ì—ì„œ send
 
-        //        TRACE("** NpcBack ÀÌµ¿ÀÌ ³¡³²,, stand·Î\n");
+        //        TRACE("** NpcBack ì´ë™ì´ ëë‚¨,, standë¡œ\n");
         m_NpcState = NPC_STANDING;
 
-        //¿µ¿ª ¹Û¿¡ ÀÖÀ¸¸é ¼­ÀÖ´Â ½Ã°£À» Âª°Ô...
+        //ì˜ì—­ ë°–ì— ìˆìœ¼ë©´ ì„œìˆëŠ” ì‹œê°„ì„ ì§§ê²Œ...
         m_Delay = m_sStandTime;
         m_fDelayTime = TimeGet();
 
@@ -828,18 +828,18 @@ void CNpc::NpcBack(CIOCPort * pIOCP) {
     //Setfloat(pBuf, m_fSecForRealMoveMetor, index);
 
     //    TRACE("NpcBack --> nid = %d, cur=[x=%.2f, z=%.2f], prev=[x=%.2f, z=%.2f, metor = %.2f], frame=%d, speed = %d \n", m_sNid, m_fCurX, m_fCurZ, m_fPrevX, m_fPrevZ, m_fSecForRealMoveMetor, m_sStepCount, m_sSpeed);
-    SendAll(pIOCP, pBuf, index); // thread ¿¡¼­ send
+    SendAll(pIOCP, pBuf, index); // thread ì—ì„œ send
 
     m_Delay = m_sSpeed; //STEP_DELAY;    */
     m_fDelayTime = TimeGet();
 }
 
 ///////////////////////////////////////////////////////////////////////
-// NPC °¡ Ã³À½ »ı±â°Å³ª Á×¾ú´Ù°¡ »ì¾Æ³¯ ¶§ÀÇ Ã³¸®
+// NPC ê°€ ì²˜ìŒ ìƒê¸°ê±°ë‚˜ ì£½ì—ˆë‹¤ê°€ ì‚´ì•„ë‚  ë•Œì˜ ì²˜ë¦¬
 //
 BOOL CNpc::SetLive(CIOCPort * pIOCP) {
     //TRACE("**** Npc SetLive ***********\n");
-    // NPCÀÇ HP, PP ÃÊ±âÈ­ ----------------------//
+    // NPCì˜ HP, PP ì´ˆê¸°í™” ----------------------//
     int i = 0, j = 0;
     m_iHP = m_iMaxHP;
     m_sMP = m_sMaxMP;
@@ -861,12 +861,12 @@ BOOL CNpc::SetLive(CIOCPort * pIOCP) {
 
     InitTarget();
     ClearPathFindData();
-    InitUserList(); // Å¸°ÙÀ»À§ÇÑ ¸®½ºÆ®¸¦ ÃÊ±âÈ­.
+    InitUserList(); // íƒ€ê²Ÿì„ìœ„í•œ ë¦¬ìŠ¤íŠ¸ë¥¼ ì´ˆê¸°í™”.
     //InitPos();
 
     CNpc * pNpc = NULL;
 
-    /* Event Monster°¡ ´Ù½Ã »ì¾Æ³¯ °æ¿ì¿¡´Â Event Monster¸¦ Á×ÀÎ´Ù ÀÌº¥Æ® ½º·¹µå¿¡¼­µµ Æ÷ÀÎÅÍ¸¦ NULL */
+    /* Event Monsterê°€ ë‹¤ì‹œ ì‚´ì•„ë‚  ê²½ìš°ì—ëŠ” Event Monsterë¥¼ ì£½ì¸ë‹¤ ì´ë²¤íŠ¸ ìŠ¤ë ˆë“œì—ì„œë„ í¬ì¸í„°ë¥¼ NULL */
     if (m_lEventNpc == 1 && !m_bFirstLive) {
         for (int i = 0; i < NPC_NUM; i++) {
             pNpc = m_pMain->m_arEventNpcThread[0]->m_ThreadInfo.pNpc[i];
@@ -875,7 +875,7 @@ BOOL CNpc::SetLive(CIOCPort * pIOCP) {
                     m_pMain->m_arEventNpcThread[0]->m_ThreadInfo.m_byNpcUsed[i] = 0;
                     m_lEventNpc = 0;
                     m_pMain->m_arEventNpcThread[0]->m_ThreadInfo.pNpc[i] = NULL;
-                    TRACE("¼ÒÈ¯ ¸ó½ºÅÍ Æ÷ÀÎÅÍ ¹İÈ¯ ,, thread index=%d, nid=%d\n", i, m_sNid + NPC_BAND);
+                    TRACE("ì†Œí™˜ ëª¬ìŠ¤í„° í¬ì¸í„° ë°˜í™˜ ,, thread index=%d, nid=%d\n", i, m_sNid + NPC_BAND);
                     return TRUE;
                 }
             }
@@ -883,7 +883,7 @@ BOOL CNpc::SetLive(CIOCPort * pIOCP) {
         return TRUE;
     }
 
-    // NPC ÃÊ±âÀ§Ä¡ °áÁ¤ ------------------------//
+    // NPC ì´ˆê¸°ìœ„ì¹˜ ê²°ì • ------------------------//
     if (m_ZoneIndex < 0 || m_ZoneIndex > m_pMain->g_arZone.size()) {
         TRACE("#### Npc-SetLive ZoneIndex Fail : [nid=%d,sid=%d,name=%s], th_num=%d, zoneindex=%d #####\n",
               m_sNid + NPC_BAND, m_sSid, m_strName, m_sThreadNumber, m_ZoneIndex);
@@ -894,7 +894,7 @@ BOOL CNpc::SetLive(CIOCPort * pIOCP) {
         return FALSE;
     }
 
-    if (m_bFirstLive) { // NPC °¡ Ã³À½ »ì¾Æ³ª´Â °æ¿ì
+    if (m_bFirstLive) { // NPC ê°€ ì²˜ìŒ ì‚´ì•„ë‚˜ëŠ” ê²½ìš°
         m_nInitX = m_fPrevX = m_fCurX;
         m_nInitY = m_fPrevY = m_fCurY;
         m_nInitZ = m_fPrevZ = m_fCurZ;
@@ -963,7 +963,7 @@ BOOL CNpc::SetLive(CIOCPort * pIOCP) {
                     m_nInitX = m_fPrevX = m_fCurX;
                     m_nInitY = m_fPrevY = m_fCurY;
                     m_nInitZ = m_fPrevZ = m_fCurZ;
-                    TRACE("### fail : sid = %d, nid = %d, zone=%d, loop = %d ³ª ¼³ÀÚ¸®°¡ ÀÌ»óÇØ... °íÃÄÁà... x = %d, y "
+                    TRACE("### fail : sid = %d, nid = %d, zone=%d, loop = %d ë‚˜ ì„¤ìë¦¬ê°€ ì´ìƒí•´... ê³ ì³ì¤˜... x = %d, y "
                           "= %d\n",
                           m_sSid, m_sNid + NPC_BAND, m_sCurZone, i, nX, nZ);
                     return FALSE;
@@ -984,35 +984,35 @@ BOOL CNpc::SetLive(CIOCPort * pIOCP) {
 
     //SetUid(m_fCurX, m_fCurZ, m_sNid + NPC_BAND);
 
-    // »óÅÂÀÌ»ó Á¤º¸ ÃÊ±âÈ­
+    // ìƒíƒœì´ìƒ ì •ë³´ ì´ˆê¸°í™”
     m_fHPChangeTime = TimeGet();
     m_fFaintingTime = 0.0f;
     InitMagicValuable();
 
-    if (m_bFirstLive) { // NPC °¡ Ã³À½ »ì¾Æ³ª´Â °æ¿ì
+    if (m_bFirstLive) { // NPC ê°€ ì²˜ìŒ ì‚´ì•„ë‚˜ëŠ” ê²½ìš°
         NpcTypeParser();
         m_bFirstLive = FALSE;
 
         InterlockedIncrement(&m_pMain->m_CurrentNPC);
 
         //TRACE("Npc - SerLive :  cur = %d\n", m_pMain->m_CurrentNPC);
-        if (m_pMain->m_TotalNPC == m_pMain->m_CurrentNPC) // ¸ó½ºÅÍ ÃÑ ¼ö¿Í ÃÊ±âÈ­ÇÑ ¸ó½ºÅÍÀÇ ¼ö°¡ °°´Ù¸é
+        if (m_pMain->m_TotalNPC == m_pMain->m_CurrentNPC) // ëª¬ìŠ¤í„° ì´ ìˆ˜ì™€ ì´ˆê¸°í™”í•œ ëª¬ìŠ¤í„°ì˜ ìˆ˜ê°€ ê°™ë‹¤ë©´
         {
             CString logstr;
             logstr.Format("Monster All Init Success - %d", m_pMain->m_CurrentNPC);
             m_pMain->m_StatusList.AddString(logstr);
             TRACE("Npc - SerLive : GameServerAcceptThread, cur = %d\n", m_pMain->m_CurrentNPC);
-            m_pMain->GameServerAcceptThread(); // °ÔÀÓ¼­¹ö Accept
+            m_pMain->GameServerAcceptThread(); // ê²Œì„ì„œë²„ Accept
         }
         //TRACE("Npc - SerLive : CurrentNpc = %d\n", m_pMain->m_CurrentNPC);
     }
 
-    // NPCÀÇ ÃÊ±â º¸°í ÀÖ´Â ¹æÇâ,,
+    // NPCì˜ ì´ˆê¸° ë³´ê³  ìˆëŠ” ë°©í–¥,,
     int degree = 0;
     degree = myrand(0, 360);
     m_fDir = D3DXToRadian(degree);
-    // ÇØ¾ß ÇÒ ÀÏ : NpcÀÇ ÃÊ±â ¹æÇâ,, °áÁ¤ÇÏ±â..
-    if (m_byMoveType == 3 && m_sMaxPathCount == 2) // NpcÀÎ °æ¿ì ÃÊ±â ¹æÇâÀÌ Áß¿äÇÔÀ¸·Î½á..
+    // í•´ì•¼ í•  ì¼ : Npcì˜ ì´ˆê¸° ë°©í–¥,, ê²°ì •í•˜ê¸°..
+    if (m_byMoveType == 3 && m_sMaxPathCount == 2) // Npcì¸ ê²½ìš° ì´ˆê¸° ë°©í–¥ì´ ì¤‘ìš”í•¨ìœ¼ë¡œì¨..
     {
         __Vector3 vS, vE, vDir;
         vS.Set((float)m_PathList.pPattenPos[0].x, 0, (float)m_PathList.pPattenPos[0].z);
@@ -1022,13 +1022,13 @@ BOOL CNpc::SetLive(CIOCPort * pIOCP) {
         Yaw2D(vDir.x, vDir.z, m_fDir);
     }
 
-    if (m_bySpecialType == 5 && m_byChangeType == 0) { // Ã³À½¿¡ Á×¾îÀÖ´Ù°¡ »ì¾Æ³ª´Â ¸ó½ºÅÍ
+    if (m_bySpecialType == 5 && m_byChangeType == 0) { // ì²˜ìŒì— ì£½ì–´ìˆë‹¤ê°€ ì‚´ì•„ë‚˜ëŠ” ëª¬ìŠ¤í„°
         return FALSE;
-    } else if (m_bySpecialType == 5 && m_byChangeType == 3) { // ¸ó½ºÅÍÀÇ ÃâÇö,,,
-        //else if( m_byChangeType == 3) { // ¸ó½ºÅÍÀÇ ÃâÇö,,,
+    } else if (m_bySpecialType == 5 && m_byChangeType == 3) { // ëª¬ìŠ¤í„°ì˜ ì¶œí˜„,,,
+        //else if( m_byChangeType == 3) { // ëª¬ìŠ¤í„°ì˜ ì¶œí˜„,,,
         char notify[50];
         memset(notify, 0x00, 50);
-        //wsprintf( notify, "** ¾Ë¸² : %s ¸ó½ºÅÍ°¡ ÃâÇöÇÏ¿´½À´Ï´Ù **", m_strName);
+        //wsprintf( notify, "** ì•Œë¦¼ : %s ëª¬ìŠ¤í„°ê°€ ì¶œí˜„í•˜ì˜€ìŠµë‹ˆë‹¤ **", m_strName);
         //m_pMain->SendSystemMsg( notify, m_sCurZone, PUBLIC_CHAT, SEND_ALL);
     }
 
@@ -1039,23 +1039,23 @@ BOOL CNpc::SetLive(CIOCPort * pIOCP) {
           m_sNid + NPC_BAND, m_sSid, m_sThreadNumber, m_strName, m_fCurX, m_fCurZ, m_byGateOpen, m_byDeadType,
           t.GetHour(), t.GetMinute(), t.GetSecond());
 
-    // À¯Àú¿¡°Ô NPC Á¤º¸Àü¼Û...
-    // À¯Àú¿¡°Ô NPC Á¤º¸Àü¼Û...
+    // ìœ ì €ì—ê²Œ NPC ì •ë³´ì „ì†¡...
+    // ìœ ì €ì—ê²Œ NPC ì •ë³´ì „ì†¡...
     int  modify_index = 0;
     char modify_send[2048];
     ::ZeroMemory(modify_send, sizeof(modify_send));
 
     FillNpcInfo(modify_send, modify_index, INFO_MODIFY);
-    SendAll(pIOCP, modify_send, modify_index); // thread ¿¡¼­ send
+    SendAll(pIOCP, modify_send, modify_index); // thread ì—ì„œ send
 
     return TRUE;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-//    ÁÖº¯¿¡ ÀûÀÌ ¾ø°Å³ª ¼öµ¿¸÷ÀÇ °æ¿ì ÀÓÀÇÀÇ Á¡À¸·Î ±æÃ£±â¸¦ ÇÑ ÈÄ ¿òÁ÷ÀÎ´Ù.
+//    ì£¼ë³€ì— ì ì´ ì—†ê±°ë‚˜ ìˆ˜ë™ëª¹ì˜ ê²½ìš° ì„ì˜ì˜ ì ìœ¼ë¡œ ê¸¸ì°¾ê¸°ë¥¼ í•œ í›„ ì›€ì§ì¸ë‹¤.
 //
 BOOL CNpc::RandomMove() {
-    // º¸ÅëÀÌµ¿ÀÏ¶§´Â °È´Â ¼Óµµ·Î ¸ÂÃß¾îÁØ´Ù...
+    // ë³´í†µì´ë™ì¼ë•ŒëŠ” ê±·ëŠ” ì†ë„ë¡œ ë§ì¶”ì–´ì¤€ë‹¤...
     m_fSecForMetor = m_fSpeed_1;
 
     if (m_bySearchRange == 0) {
@@ -1063,11 +1063,11 @@ BOOL CNpc::RandomMove() {
     }
 
     if (m_byMoveType == 0) {
-        return FALSE; // Á¦ÀÚ¸®¿¡¼­,, ¼­ÀÖ´Â npc
+        return FALSE; // ì œìë¦¬ì—ì„œ,, ì„œìˆëŠ” npc
     }
 
-    /* ÀÌ°÷¿¡¼­ ¿µ¿ª °Ë»çÇØ¼­ npcÀÇ °¡½Ã°Å¸®¿¡ À¯Àú°¡ ÇÏ³ªµµ ¾ø´Ù¸é standing»óÅÂ·Î... 
-      ÀÖ´Ù¸é ÆĞÅÏÀÌ³ª,, ³ëµå¸¦ µû¶ó¼­ Çàµ¿ÇÏ°Ô Ã³¸®...  */
+    /* ì´ê³³ì—ì„œ ì˜ì—­ ê²€ì‚¬í•´ì„œ npcì˜ ê°€ì‹œê±°ë¦¬ì— ìœ ì €ê°€ í•˜ë‚˜ë„ ì—†ë‹¤ë©´ standingìƒíƒœë¡œ... 
+      ìˆë‹¤ë©´ íŒ¨í„´ì´ë‚˜,, ë…¸ë“œë¥¼ ë”°ë¼ì„œ í–‰ë™í•˜ê²Œ ì²˜ë¦¬...  */
     if (!GetUserInView()) {
         return FALSE;
     }
@@ -1088,13 +1088,13 @@ BOOL CNpc::RandomMove() {
     int  random_x = 0, random_z = 0;
     BOOL bPeedBack = FALSE;
 
-    if (m_byMoveType == 1) { // ·£´ıÇÏ°Ô Á¶±İ¾¿ ¿òÁ÷ÀÌ´Â NPC
+    if (m_byMoveType == 1) { // ëœë¤í•˜ê²Œ ì¡°ê¸ˆì”© ì›€ì§ì´ëŠ” NPC
         bPeedBack = IsInRange((int)m_fCurX, (int)m_fCurZ);
         if (bPeedBack == FALSE) {
-            //TRACE("ÃÊ±âÀ§Ä¡¸¦ ¹ş¾î³µ±º,,,  patten=%d \n", m_iPattenFrame);
+            //TRACE("ì´ˆê¸°ìœ„ì¹˜ë¥¼ ë²—ì–´ë‚¬êµ°,,,  patten=%d \n", m_iPattenFrame);
         }
 
-        if (m_iPattenFrame == 0) { // Ã³À½À§Ä¡·Î µ¹¾Æ°¡µµ·Ï...
+        if (m_iPattenFrame == 0) { // ì²˜ìŒìœ„ì¹˜ë¡œ ëŒì•„ê°€ë„ë¡...
             m_pPattenPos.x = (short)m_nInitX;
             m_pPattenPos.z = (short)m_nInitZ;
         }
@@ -1116,34 +1116,34 @@ BOOL CNpc::RandomMove() {
         vStart.Set(m_fCurX, m_fCurY, m_fCurZ);
         vEnd.Set(fDestX, 0, fDestZ);
         fDis = GetDistance(vStart, vEnd);
-        if (fDis > 50) { // ÃÊ±âÀ¯È¿°Å¸® 50m¸¦ ¹ş¾î³­ °æ¿ì
+        if (fDis > 50) { // ì´ˆê¸°ìœ íš¨ê±°ë¦¬ 50më¥¼ ë²—ì–´ë‚œ ê²½ìš°
             vNewPos = GetVectorPosition(vStart, vEnd, 40);
             fDestX = vNewPos.x;
             fDestZ = vNewPos.z;
             m_iPattenFrame = 2;
             bPeedBack = TRUE;
-            //TRACE("&&& RandomMove ÃÊ±âÀ§Ä¡ ÀÌÅ».. %d,%s ==> x=%.2f, z=%.2f,, init_x=%.2f, init_z=%.2f\n", m_sNid+NPC_BAND, m_strName, fDestX, fDestZ, m_nInitX, m_nInitZ);
+            //TRACE("&&& RandomMove ì´ˆê¸°ìœ„ì¹˜ ì´íƒˆ.. %d,%s ==> x=%.2f, z=%.2f,, init_x=%.2f, init_z=%.2f\n", m_sNid+NPC_BAND, m_strName, fDestX, fDestZ, m_nInitX, m_nInitZ);
         }
 
         //        TRACE("&&& RandomMove ==> x=%.2f, z=%.2f,, dis=%.2f, patten = %d\n", fDestX, fDestZ, fDis, m_iPattenFrame);
-    } else if (m_byMoveType == 2) { // PathLineÀ» µû¶ó¼­ ¿òÁ÷ÀÌ´Â NPC
+    } else if (m_byMoveType == 2) { // PathLineì„ ë”°ë¼ì„œ ì›€ì§ì´ëŠ” NPC
         if (m_sPathCount == m_sMaxPathCount) {
             m_sPathCount = 0;
         }
 
-        // ³ªÀÇ À§Ä¡°¡,, ÆĞ½º ¸®½ºÆ®¿¡¼­ ¸Ö¾îÁ³´Ù¸é,, ÇöÀçÀÇ m_sPathCount³ª ´ÙÀ½ÀÇ m_sPathCountÀÇ À§Ä¡¸¦
-        // ÆÇ´ÜÇØ¼­ °¡±î¿î À§Ä¡·Î ±æÃ£±â¸¦ ÇÑ´Ù,,
+        // ë‚˜ì˜ ìœ„ì¹˜ê°€,, íŒ¨ìŠ¤ ë¦¬ìŠ¤íŠ¸ì—ì„œ ë©€ì–´ì¡Œë‹¤ë©´,, í˜„ì¬ì˜ m_sPathCountë‚˜ ë‹¤ìŒì˜ m_sPathCountì˜ ìœ„ì¹˜ë¥¼
+        // íŒë‹¨í•´ì„œ ê°€ê¹Œìš´ ìœ„ì¹˜ë¡œ ê¸¸ì°¾ê¸°ë¥¼ í•œë‹¤,,
         if (m_sPathCount != 0 && IsInPathRange() == FALSE) {
             m_sPathCount--;
             nPathCount = GetNearPathPoint();
 
-            // ÀÌµ¿ÇÒ ¼ö ¾ø´Â ³Ê¹« ¸Õ°Å¸®·Î npc°¡ ÀÌµ¿µÇ¾úÀ» °æ¿ì,, npc¸¦ Á×ÀÌ°í, ´Ù½Ã »ì¸®´øÁö..
-            // npc¸¦ ÃÊ±âÀ§Ä¡·Î ¿öÇÁ ½ÃÅ°µçÁö.. ÇÑ´Ù..
+            // ì´ë™í•  ìˆ˜ ì—†ëŠ” ë„ˆë¬´ ë¨¼ê±°ë¦¬ë¡œ npcê°€ ì´ë™ë˜ì—ˆì„ ê²½ìš°,, npcë¥¼ ì£½ì´ê³ , ë‹¤ì‹œ ì‚´ë¦¬ë˜ì§€..
+            // npcë¥¼ ì´ˆê¸°ìœ„ì¹˜ë¡œ ì›Œí”„ ì‹œí‚¤ë“ ì§€.. í•œë‹¤..
             if (nPathCount == -1) {
-                TRACE("##### RandomMove Fail : [nid = %d, sid=%d], path = %d/%d, ÀÌµ¿ÇÒ ¼ö ÀÖ´Â °Å¸®¿¡¼­ ³Ê¹« "
-                      "¸Ö¾îÁ³´ç,, ¾îÄÉÇØ #####\n",
+                TRACE("##### RandomMove Fail : [nid = %d, sid=%d], path = %d/%d, ì´ë™í•  ìˆ˜ ìˆëŠ” ê±°ë¦¬ì—ì„œ ë„ˆë¬´ "
+                      "ë©€ì–´ì¡Œë‹¹,, ì–´ì¼€í•´ #####\n",
                       m_sNid + NPC_BAND, m_sSid, m_sPathCount, m_sMaxPathCount);
-                // ¹«Á¶°Ç 0¹ø À§Ä¡ ¹æÇâÀ¸·Î 40m ÀÌµ¿ÇÏ°Ô Ã³¸®ÇÏÀå..
+                // ë¬´ì¡°ê±´ 0ë²ˆ ìœ„ì¹˜ ë°©í–¥ìœ¼ë¡œ 40m ì´ë™í•˜ê²Œ ì²˜ë¦¬í•˜ì¥..
                 vStart.Set(m_fCurX, m_fCurY, m_fCurZ);
                 fDestX = (float)m_PathList.pPattenPos[0].x + m_fBattlePos_x;
                 fDestZ = (float)m_PathList.pPattenPos[0].z + m_fBattlePos_z;
@@ -1152,9 +1152,9 @@ BOOL CNpc::RandomMove() {
                 fDestX = vNewPos.x;
                 fDestZ = vNewPos.z;
                 //m_sPathCount++;
-                //return FALSE;    // Áö±İÀº standing»óÅÂ·Î..
+                //return FALSE;    // ì§€ê¸ˆì€ standingìƒíƒœë¡œ..
             } else {
-                //m_byPathCount; ¹øÈ£¸¦ ´õÇØÁÖ±â
+                //m_byPathCount; ë²ˆí˜¸ë¥¼ ë”í•´ì£¼ê¸°
                 if (nPathCount < 0) {
                     return FALSE;
                 }
@@ -1170,27 +1170,27 @@ BOOL CNpc::RandomMove() {
             fDestZ = (float)m_PathList.pPattenPos[m_sPathCount].z + m_fBattlePos_z;
         }
 
-        //TRACE("RandomMove ±æµû¶ó ÀÌµ¿ : [nid=%d, sid=%d, name=%s], path=%d/%d, nPathCount=%d, curx=%.2f, z=%.2f -> dest_X=%.2f, z=%.2f\n", m_sNid+NPC_BAND, m_sSid, m_strName, m_sPathCount, m_sMaxPathCount, nPathCount, m_fCurX, m_fCurZ, fDestX, fDestZ);
+        //TRACE("RandomMove ê¸¸ë”°ë¼ ì´ë™ : [nid=%d, sid=%d, name=%s], path=%d/%d, nPathCount=%d, curx=%.2f, z=%.2f -> dest_X=%.2f, z=%.2f\n", m_sNid+NPC_BAND, m_sSid, m_strName, m_sPathCount, m_sMaxPathCount, nPathCount, m_fCurX, m_fCurZ, fDestX, fDestZ);
         m_sPathCount++;
-    } else if (m_byMoveType == 3) { // PathLineÀ» µû¶ó¼­ ¿òÁ÷ÀÌ´Â NPC
+    } else if (m_byMoveType == 3) { // PathLineì„ ë”°ë¼ì„œ ì›€ì§ì´ëŠ” NPC
         if (m_sPathCount == m_sMaxPathCount) {
             m_byMoveType = 0;
             m_sPathCount = 0;
             return FALSE;
         }
 
-        // ³ªÀÇ À§Ä¡°¡,, ÆĞ½º ¸®½ºÆ®¿¡¼­ ¸Ö¾îÁ³´Ù¸é,, ÇöÀçÀÇ m_sPathCount³ª ´ÙÀ½ÀÇ m_sPathCountÀÇ À§Ä¡¸¦
-        // ÆÇ´ÜÇØ¼­ °¡±î¿î À§Ä¡·Î ±æÃ£±â¸¦ ÇÑ´Ù,,
+        // ë‚˜ì˜ ìœ„ì¹˜ê°€,, íŒ¨ìŠ¤ ë¦¬ìŠ¤íŠ¸ì—ì„œ ë©€ì–´ì¡Œë‹¤ë©´,, í˜„ì¬ì˜ m_sPathCountë‚˜ ë‹¤ìŒì˜ m_sPathCountì˜ ìœ„ì¹˜ë¥¼
+        // íŒë‹¨í•´ì„œ ê°€ê¹Œìš´ ìœ„ì¹˜ë¡œ ê¸¸ì°¾ê¸°ë¥¼ í•œë‹¤,,
         if (m_sPathCount != 0 && IsInPathRange() == FALSE) {
             m_sPathCount--;
             nPathCount = GetNearPathPoint();
 
-            // ÀÌµ¿ÇÒ ¼ö ¾ø´Â ³Ê¹« ¸Õ°Å¸®·Î npc°¡ ÀÌµ¿µÇ¾úÀ» °æ¿ì,, npc¸¦ Á×ÀÌ°í, ´Ù½Ã »ì¸®´øÁö..
-            // npc¸¦ ÃÊ±âÀ§Ä¡·Î ¿öÇÁ ½ÃÅ°µçÁö.. ÇÑ´Ù..
+            // ì´ë™í•  ìˆ˜ ì—†ëŠ” ë„ˆë¬´ ë¨¼ê±°ë¦¬ë¡œ npcê°€ ì´ë™ë˜ì—ˆì„ ê²½ìš°,, npcë¥¼ ì£½ì´ê³ , ë‹¤ì‹œ ì‚´ë¦¬ë˜ì§€..
+            // npcë¥¼ ì´ˆê¸°ìœ„ì¹˜ë¡œ ì›Œí”„ ì‹œí‚¤ë“ ì§€.. í•œë‹¤..
             if (nPathCount == -1) {
-                // ¹«Á¶°Ç 0¹ø À§Ä¡ ¹æÇâÀ¸·Î 40m ÀÌµ¿ÇÏ°Ô Ã³¸®ÇÏÀå..
-                TRACE("##### RandomMove Fail : [nid = %d, sid=%d], path = %d/%d, ÀÌµ¿ÇÒ ¼ö ÀÖ´Â °Å¸®¿¡¼­ ³Ê¹« "
-                      "¸Ö¾îÁ³´ç,, ¾îÄÉÇØ #####\n",
+                // ë¬´ì¡°ê±´ 0ë²ˆ ìœ„ì¹˜ ë°©í–¥ìœ¼ë¡œ 40m ì´ë™í•˜ê²Œ ì²˜ë¦¬í•˜ì¥..
+                TRACE("##### RandomMove Fail : [nid = %d, sid=%d], path = %d/%d, ì´ë™í•  ìˆ˜ ìˆëŠ” ê±°ë¦¬ì—ì„œ ë„ˆë¬´ "
+                      "ë©€ì–´ì¡Œë‹¹,, ì–´ì¼€í•´ #####\n",
                       m_sNid + NPC_BAND, m_sSid, m_sPathCount, m_sMaxPathCount);
                 vStart.Set(m_fCurX, m_fCurY, m_fCurZ);
                 fDestX = (float)m_PathList.pPattenPos[0].x + m_fBattlePos_x;
@@ -1199,7 +1199,7 @@ BOOL CNpc::RandomMove() {
                 vNewPos = GetVectorPosition(vStart, vEnd, 40);
                 fDestX = vNewPos.x;
                 fDestZ = vNewPos.z;
-                //return FALSE;    // Áö±İÀº standing»óÅÂ·Î..
+                //return FALSE;    // ì§€ê¸ˆì€ standingìƒíƒœë¡œ..
             } else {
                 if (nPathCount < 0) {
                     return FALSE;
@@ -1238,7 +1238,7 @@ BOOL CNpc::RandomMove() {
         return FALSE;
     }
 
-    // ÀÛ¾÷ÇÒ°Í :     ´øÁ¯ ¸ó½ºÅÍÀÇ °æ¿ì ÀÏÁ¤¿µ¿ªÀ» ¹ş¾î³ªÁö ¸øÇÏµµ·Ï Ã¼Å©ÇÏ´Â ·çÆ¾
+    // ì‘ì—…í• ê²ƒ :     ë˜ì ¼ ëª¬ìŠ¤í„°ì˜ ê²½ìš° ì¼ì •ì˜ì—­ì„ ë²—ì–´ë‚˜ì§€ ëª»í•˜ë„ë¡ ì²´í¬í•˜ëŠ” ë£¨í‹´
     if (m_tNpcType == NPC_DUNGEON_MONSTER) {
         if (IsInRange((int)fDestX, (int)fDestZ) == FALSE) {
             return FALSE;
@@ -1246,7 +1246,7 @@ BOOL CNpc::RandomMove() {
     }
 
     fDis = GetDistance(vStart, vEnd);
-    if (fDis > NPC_MAX_MOVE_RANGE) { // 100¹ÌÅÍ º¸´Ù ³ĞÀ¸¸é ½ºÅÄµù»óÅÂ·Î..
+    if (fDis > NPC_MAX_MOVE_RANGE) { // 100ë¯¸í„° ë³´ë‹¤ ë„“ìœ¼ë©´ ìŠ¤íƒ ë”©ìƒíƒœë¡œ..
         if (m_byMoveType == 2 || m_byMoveType == 3) {
             m_sPathCount--;
             if (m_sPathCount <= 0) {
@@ -1259,7 +1259,7 @@ BOOL CNpc::RandomMove() {
         return FALSE;
     }
 
-    if (fDis <= m_fSecForMetor) { // ÀÌµ¿°Å¸® ¾È¿¡ ¸ñÇ¥Á¡ÀÌ ÀÖ´Ù¸é ¹Ù·Î ÀÌµ¿ÇÏ°Ô Ã³¸®...
+    if (fDis <= m_fSecForMetor) { // ì´ë™ê±°ë¦¬ ì•ˆì— ëª©í‘œì ì´ ìˆë‹¤ë©´ ë°”ë¡œ ì´ë™í•˜ê²Œ ì²˜ë¦¬...
         ClearPathFindData();
         m_fStartPoint_X = m_fCurX;
         m_fStartPoint_Y = m_fCurZ;
@@ -1273,7 +1273,7 @@ BOOL CNpc::RandomMove() {
         return TRUE;
     }
 
-    float fTempRange = (float)fDis + 2; // ÀÏ½ÃÀûÀ¸·Î º¸Á¤ÇÑ´Ù.
+    float fTempRange = (float)fDis + 2; // ì¼ì‹œì ìœ¼ë¡œ ë³´ì •í•œë‹¤.
     int   min_x = (int)(m_fCurX - fTempRange) / TILE_SIZE;
     if (min_x < 0) {
         min_x = 0;
@@ -1311,7 +1311,7 @@ BOOL CNpc::RandomMove() {
     m_max_x = max_x;
     m_max_y = max_z;
 
-    // ÆĞ½º¸¦ µû¶ó °¡´Â ¸ó½ºÅÍ³ª NPC´Â ÆĞ½ºÆÄÀÎµùÀ» ÇÏÁö¾Ê°í ½ÇÁÂÇ¥·Î ¹Ù·Î ÀÌµ¿..
+    // íŒ¨ìŠ¤ë¥¼ ë”°ë¼ ê°€ëŠ” ëª¬ìŠ¤í„°ë‚˜ NPCëŠ” íŒ¨ìŠ¤íŒŒì¸ë”©ì„ í•˜ì§€ì•Šê³  ì‹¤ì¢Œí‘œë¡œ ë°”ë¡œ ì´ë™..
     if (m_byMoveType == 2 || m_byMoveType == 3 || bPeedBack == TRUE) {
         IsNoPathFind(m_fSecForMetor);
         return TRUE;
@@ -1325,9 +1325,9 @@ BOOL CNpc::RandomMove() {
     return FALSE;
 }
 
-// Target User¿Í ¹İ´ë ¹æÇâÀ¸·Î ·£´ıÇÏ°Ô ¿òÁ÷ÀÎ´Ù.
+// Target Userì™€ ë°˜ëŒ€ ë°©í–¥ìœ¼ë¡œ ëœë¤í•˜ê²Œ ì›€ì§ì¸ë‹¤.
 BOOL CNpc::RandomBackMove() {
-    m_fSecForMetor = m_fSpeed_2; // µµ¸Á°¥¶§µµ.. ¼Óµµ¸¦ ¶Ù´Â ¼Óµµ·Î ¸ÂÃß¾îÁØ´Ù..
+    m_fSecForMetor = m_fSpeed_2; // ë„ë§ê°ˆë•Œë„.. ì†ë„ë¥¼ ë›°ëŠ” ì†ë„ë¡œ ë§ì¶”ì–´ì¤€ë‹¤..
 
     if (m_bySearchRange == 0) {
         return FALSE;
@@ -1342,7 +1342,7 @@ BOOL CNpc::RandomBackMove() {
     int   max_xx = m_pMain->g_arZone[m_ZoneIndex]->m_sizeMap.cx;
     int   max_zz = m_pMain->g_arZone[m_ZoneIndex]->m_sizeMap.cy;
     int   x = 0, y = 0;
-    float fTempRange = (float)m_bySearchRange * 2; // ÀÏ½ÃÀûÀ¸·Î º¸Á¤ÇÑ´Ù.
+    float fTempRange = (float)m_bySearchRange * 2; // ì¼ì‹œì ìœ¼ë¡œ ë³´ì •í•œë‹¤.
     int   min_x = (int)(m_fCurX - fTempRange) / TILE_SIZE;
     if (min_x < 0) {
         min_x = 0;
@@ -1364,7 +1364,7 @@ BOOL CNpc::RandomBackMove() {
     float     fDis = 0.0f;
     vStart.Set(m_fCurX, m_fCurY, m_fCurZ);
 
-    int     nID = m_Target.id; // Target À» ±¸ÇÑ´Ù.
+    int     nID = m_Target.id; // Target ì„ êµ¬í•œë‹¤.
     CUser * pUser = NULL;
 
     int iDir = 0;
@@ -1372,13 +1372,13 @@ BOOL CNpc::RandomBackMove() {
     int iRandomX = 0, iRandomZ = 0, iRandomValue = 0;
     iRandomValue = rand() % 2;
 
-    if (nID >= USER_BAND && nID < NPC_BAND) // Target ÀÌ User ÀÎ °æ¿ì
+    if (nID >= USER_BAND && nID < NPC_BAND) // Target ì´ User ì¸ ê²½ìš°
     {
         pUser = m_pMain->GetUserPtr(nID - USER_BAND);
         if (pUser == NULL) {
             return FALSE;
         }
-        // µµÁÖÇÒ ¹æÇâÀ» °áÁ¤,,  ¸ÕÀú xÃàÀ¸·Î
+        // ë„ì£¼í•  ë°©í–¥ì„ ê²°ì •,,  ë¨¼ì € xì¶•ìœ¼ë¡œ
         if ((int)pUser->m_curx != (int)m_fCurX) {
             iRandomX = myrand((int)m_bySearchRange, (int)(m_bySearchRange * 1.5));
             iRandomZ = myrand(0, (int)m_bySearchRange);
@@ -1388,7 +1388,7 @@ BOOL CNpc::RandomBackMove() {
             } else {
                 iDir = 2;
             }
-        } else // zÃàÀ¸·Î
+        } else // zì¶•ìœ¼ë¡œ
         {
             iRandomZ = myrand((int)m_bySearchRange, (int)(m_bySearchRange * 1.5));
             iRandomX = myrand(0, (int)m_bySearchRange);
@@ -1436,13 +1436,13 @@ BOOL CNpc::RandomBackMove() {
 
         vEnd.Set(fDestX, 0, fDestZ);
         fDis = GetDistance(vStart, vEnd);
-        if (fDis > 20) // 20¹ÌÅÍ ÀÌ»óÀÌ¸é 20¹ÌÅÍ·Î ¸ÂÃá´Ù,,
+        if (fDis > 20) // 20ë¯¸í„° ì´ìƒì´ë©´ 20ë¯¸í„°ë¡œ ë§ì¶˜ë‹¤,,
         {
             vEnd22 = GetVectorPosition(vStart, vEnd, 20);
             fDestX = vEnd22.x;
             fDestZ = vEnd22.z;
         }
-    } else if (nID >= NPC_BAND && m_Target.id < INVALID_BAND) // Target ÀÌ Npc ÀÎ °æ¿ì
+    } else if (nID >= NPC_BAND && m_Target.id < INVALID_BAND) // Target ì´ Npc ì¸ ê²½ìš°
     {
     }
 
@@ -1478,7 +1478,7 @@ BOOL CNpc::IsInPathRange() {
     if (m_sNid == test_id) {
         int x = 0;
     }
-    float     fPathRange = 40.0f; // ¿ÀÂ÷ ÆĞ½º ¹üÀ§
+    float     fPathRange = 40.0f; // ì˜¤ì°¨ íŒ¨ìŠ¤ ë²”ìœ„
     __Vector3 vStart, vEnd;
     float     fDistance = 0.0f;
     vStart.Set(m_fCurX, m_fCurY, m_fCurZ);
@@ -1536,10 +1536,10 @@ int CNpc::GetNearPathPoint() {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
-//    NPC °¡ ÃÊ±â »ı¼ºÀ§Ä¡ ¾È¿¡ ÀÖ´ÂÁö °Ë»ç
+//    NPC ê°€ ì´ˆê¸° ìƒì„±ìœ„ì¹˜ ì•ˆì— ìˆëŠ”ì§€ ê²€ì‚¬
 //
 BOOL CNpc::IsInRange(int nX, int nZ) {
-    // NPC °¡ ÃÊ±â À§Ä¡¸¦ ¹ş¾î³µ´ÂÁö ÆÇ´ÜÇÑ´Ù.
+    // NPC ê°€ ì´ˆê¸° ìœ„ì¹˜ë¥¼ ë²—ì–´ë‚¬ëŠ”ì§€ íŒë‹¨í•œë‹¤.
     BOOL bFlag_1 = FALSE, bFlag_2 = FALSE;
     if (m_nLimitMinX < m_nLimitMaxX) {
         if (COMPARE(nX, m_nLimitMinX, m_nLimitMaxX)) {
@@ -1569,7 +1569,7 @@ BOOL CNpc::IsInRange(int nX, int nZ) {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
-//    PathFind ¸¦ ¼öÇàÇÑ´Ù.
+//    PathFind ë¥¼ ìˆ˜í–‰í•œë‹¤.
 //
 int CNpc::PathFind(CPoint start, CPoint end, float fDistance) {
     ClearPathFindData();
@@ -1578,17 +1578,17 @@ int CNpc::PathFind(CPoint start, CPoint end, float fDistance) {
         return -1;
     }
 
-    if (start.x == end.x && start.y == end.y) // °°Àº Å¸ÀÏ ¾È¿¡¼­,, Á¶±İ ¿òÁ÷ÀÓÀÌ ÀÖ¾ú´Ù¸é,,
+    if (start.x == end.x && start.y == end.y) // ê°™ì€ íƒ€ì¼ ì•ˆì—ì„œ,, ì¡°ê¸ˆ ì›€ì§ì„ì´ ìˆì—ˆë‹¤ë©´,,
     {
         m_bPathFlag = TRUE;
         m_iAniFrameIndex = 1;
         m_pPoint[0].fXPos = m_fEndPoint_X;
         m_pPoint[0].fZPos = m_fEndPoint_Y;
-        TRACE("°°Àº ¿µ¿ª¾È¿¡¼­ Á¶±İ ¿òÁ÷ÀÓ.... x=%.2f, z=%.2f\n", m_pPoint[0].fXPos, m_pPoint[0].fZPos);
+        TRACE("ê°™ì€ ì˜ì—­ì•ˆì—ì„œ ì¡°ê¸ˆ ì›€ì§ì„.... x=%.2f, z=%.2f\n", m_pPoint[0].fXPos, m_pPoint[0].fZPos);
         return 1;
     }
 
-    // ¿©±â¿¡¼­ ÆĞ½ºÆÄÀÎµå¸¦ ½ÇÇàÇÒ°ÇÁö.. ¹Ù·Î ¸ñÇ¥Á¡À¸·Î °¥°ÇÀÎÁö¸¦ ÆÇ´Ü..
+    // ì—¬ê¸°ì—ì„œ íŒ¨ìŠ¤íŒŒì¸ë“œë¥¼ ì‹¤í–‰í• ê±´ì§€.. ë°”ë¡œ ëª©í‘œì ìœ¼ë¡œ ê°ˆê±´ì¸ì§€ë¥¼ íŒë‹¨..
     if (IsPathFindCheck(fDistance) == TRUE) {
         m_bPathFlag = TRUE;
         return 1;
@@ -1674,7 +1674,7 @@ int CNpc::PathFind(CPoint start, CPoint end, float fDistance) {
     return 1;
 }
 
-//    NPC »ç¸ÁÃ³¸®
+//    NPC ì‚¬ë§ì²˜ë¦¬
 void CNpc::Dead(CIOCPort * pIOCP, int iDeadType) {
     if (m_ZoneIndex < 0 || m_ZoneIndex > m_pMain->g_arZone.size()) {
         TRACE("#### Npc-Dead ZoneIndex Fail : [name=%s], zoneindex=%d #####\n", m_strName, m_ZoneIndex);
@@ -1691,14 +1691,14 @@ void CNpc::Dead(CIOCPort * pIOCP, int iDeadType) {
     m_Delay = m_sRegenTime;
     m_fDelayTime = TimeGet();
     m_bFirstLive = FALSE;
-    m_byDeadType = 100; // ÀüÀïÀÌº¥Æ®Áß¿¡¼­ Á×´Â °æ¿ì
+    m_byDeadType = 100; // ì „ìŸì´ë²¤íŠ¸ì¤‘ì—ì„œ ì£½ëŠ” ê²½ìš°
 
     if (m_iRegion_X > pMap->GetXRegionMax() || m_iRegion_Z > pMap->GetZRegionMax()) {
         TRACE("#### Npc-Dead() Fail : [nid=%d, sid=%d], nRX=%d, nRZ=%d #####\n", m_sNid + NPC_BAND, m_sSid, m_iRegion_X,
               m_iRegion_Z);
         return;
     }
-    // map¿¡ region¿¡¼­ ³ªÀÇ Á¤º¸ »èÁ¦..
+    // mapì— regionì—ì„œ ë‚˜ì˜ ì •ë³´ ì‚­ì œ..
     //pMap->m_ppRegion[m_iRegion_X][m_iRegion_Z].DeleteNpc(m_sNid);
     pMap->RegionNpcRemove(m_iRegion_X, m_iRegion_Z, m_sNid + NPC_BAND);
 
@@ -1706,7 +1706,7 @@ void CNpc::Dead(CIOCPort * pIOCP, int iDeadType) {
     CTime t = CTime::GetCurrentTime();
     //TRACE("****** (%s,%d) Dead regentime = %d , m_byDeadType=%d, dungeonfam=%d, time=%d:%d-%d ****************\n", m_strName, m_sNid+NPC_BAND, m_sRegenTime, m_byDeadType, m_byDungeonFamily, t.GetHour(), t.GetMinute(), t.GetSecond());
 
-    if (iDeadType == 1) { // User¿¡ ÀÇÇØ Á×Àº°ÍÀÌ ¾Æ´Ï±â ¶§¹®¿¡... Å¬¶óÀÌ¾ğÆ®¿¡ DeadÆĞÅ¶Àü¼Û...
+    if (iDeadType == 1) { // Userì— ì˜í•´ ì£½ì€ê²ƒì´ ì•„ë‹ˆê¸° ë•Œë¬¸ì—... í´ë¼ì´ì–¸íŠ¸ì— DeadíŒ¨í‚·ì „ì†¡...
         char buff[256];
         int  send_index = 0;
         SetByte(buff, AG_DEAD, send_index);
@@ -1714,12 +1714,12 @@ void CNpc::Dead(CIOCPort * pIOCP, int iDeadType) {
         SendAll(pIOCP, buff, send_index);
     }
 
-    // Dungeon Work : º¯ÇÏ´Â ¸ó½ºÅÍÀÇ °æ¿ì º¯ÇÏ°Ô Ã³¸®..
+    // Dungeon Work : ë³€í•˜ëŠ” ëª¬ìŠ¤í„°ì˜ ê²½ìš° ë³€í•˜ê²Œ ì²˜ë¦¬..
     if (m_bySpecialType == 1 || m_bySpecialType == 4) {
         if (m_byChangeType == 0) {
             m_byChangeType = 1;
             //ChangeMonsterInfomation( 1 );
-        } else if (m_byChangeType == 2) { // ´ëÀå ¸ó½ºÅÍÀÇ Á×À½ (¸ó½ºÅÍ Å¸ÀÔÀÌ ´ëÀå¸ó½ºÅÍÀÎÁöµµ °Ë»çÇØ¾ß ÇÔ)
+        } else if (m_byChangeType == 2) { // ëŒ€ì¥ ëª¬ìŠ¤í„°ì˜ ì£½ìŒ (ëª¬ìŠ¤í„° íƒ€ì…ì´ ëŒ€ì¥ëª¬ìŠ¤í„°ì¸ì§€ë„ ê²€ì‚¬í•´ì•¼ í•¨)
             if (m_byDungeonFamily < 0 || m_byDungeonFamily >= MAX_DUNGEON_BOSS_MONSTER) {
                 TRACE("#### Npc-Dead() m_byDungeonFamily Fail : [nid=%d, name=%s], m_byDungeonFamily=%d #####\n",
                       m_sNid + NPC_BAND, m_strName, m_byDungeonFamily);
@@ -1737,15 +1737,15 @@ void CNpc::Dead(CIOCPort * pIOCP, int iDeadType) {
         return;
     }
     if( pMap->m_arDungeonBossMonster[m_byDungeonFamily] == 0 )    {
-        m_byRegenType = 2;                // ¸®Á¨ÀÌ ¾ÈµÇµµ·Ï.. 
+        m_byRegenType = 2;                // ë¦¬ì  ì´ ì•ˆë˜ë„ë¡.. 
     }    */
 
-    // ¸ó½ºÅÍ ¼ÒÈ¯ Å×½ºÆ®
+    // ëª¬ìŠ¤í„° ì†Œí™˜ í…ŒìŠ¤íŠ¸
     //if(m_sNid == 0)
-    //    m_pMain->MonsterSummon("Å¬¸³Åäµ·", m_sCurZone, 2605.0, 1375.0);
+    //    m_pMain->MonsterSummon("í´ë¦½í† ëˆ", m_sCurZone, 2605.0, 1375.0);
 }
 
-//    NPC ÁÖº¯ÀÇ ÀûÀ» Ã£´Â´Ù.
+//    NPC ì£¼ë³€ì˜ ì ì„ ì°¾ëŠ”ë‹¤.
 BOOL CNpc::FindEnemy() {
     if (m_tNpcType == NPC_DOOR || m_tNpcType == NPC_ARTIFACT || m_tNpcType == NPC_PHOENIX_GATE ||
         m_tNpcType == NPC_GATE_LEVER || m_tNpcType == NPC_DOMESTIC_ANIMAL || m_tNpcType == NPC_SPECIAL_GATE ||
@@ -1761,16 +1761,16 @@ BOOL CNpc::FindEnemy() {
     /*    BOOL bCheckRange = FALSE;
     if( m_NpcState == NPC_STANDING )    {
         bCheckRange = IsInRange( (int)m_fCurX, (int)m_fCurZ);
-        if( bCheckRange )    {    // È°µ¿¿µ¿ª¾È¿¡ ÀÖ´Ù¸é
+        if( bCheckRange )    {    // í™œë™ì˜ì—­ì•ˆì— ìˆë‹¤ë©´
             if( m_tNpcAttType != m_tNpcOldAttType )    {
-                m_tNpcAttType = ATROCITY_ATTACK_TYPE;    // °ø°İ¼ºÇâÀ¸·Î
-                //TRACE("°ø°İ¼ºÇâÀÌ ¼±°øÀ¸·Î º¯ÇÔ\n");
+                m_tNpcAttType = ATROCITY_ATTACK_TYPE;    // ê³µê²©ì„±í–¥ìœ¼ë¡œ
+                //TRACE("ê³µê²©ì„±í–¥ì´ ì„ ê³µìœ¼ë¡œ ë³€í•¨\n");
             }
         }
         else    {
             if( m_tNpcAttType == ATROCITY_ATTACK_TYPE )    {
                 m_tNpcAttType = TENDER_ATTACK_TYPE;
-                //TRACE("°ø°İ¼ºÇâÀÌ ÈÄ°øÀ¸·Î º¯ÇÔ\n");
+                //TRACE("ê³µê²©ì„±í–¥ì´ í›„ê³µìœ¼ë¡œ ë³€í•¨\n");
             }
         }
     }    */
@@ -1801,7 +1801,7 @@ BOOL CNpc::FindEnemy() {
 
     int iExpand = FindEnemyRegion();
 
-    // ÀÚ½ÅÀÇ region¿¡ ÀÖ´Â UserArrayÀ» ¸ÕÀú °Ë»öÇÏ¿©,, °¡±î¿î °Å¸®¿¡ À¯Àú°¡ ÀÖ´ÂÁö¸¦ ÆÇ´Ü..
+    // ìì‹ ì˜ regionì— ìˆëŠ” UserArrayì„ ë¨¼ì € ê²€ìƒ‰í•˜ì—¬,, ê°€ê¹Œìš´ ê±°ë¦¬ì— ìœ ì €ê°€ ìˆëŠ”ì§€ë¥¼ íŒë‹¨..
     if (m_iRegion_X > pMap->GetXRegionMax() || m_iRegion_Z > pMap->GetZRegionMax() || m_iRegion_X < 0 ||
         m_iRegion_Z < 0) {
         //    TRACE("#### Npc-FindEnemy() Fail : [nid=%d, sid=%d, name=%s, th_num=%d, cur_x=%.2f, cur_z=%.2f], nRX=%d, nRZ=%d #####\n", m_sNid+NPC_BAND, m_sSid, m_strName, m_sThreadNumber, m_fCurX, m_fCurZ, m_iRegion_X, m_iRegion_Z);
@@ -1812,7 +1812,7 @@ BOOL CNpc::FindEnemy() {
 
     int x = 0, y = 0;
 
-    // ÀÌ¿ôÇØ ÀÖ´Â RegionÀ» °Ë»öÇØ¼­,,  ¸óÀÇ À§Ä¡¿Í Á¦ÀÏ °¡±î¿î UserÀ» ÇâÇØ.. ÀÌµ¿..
+    // ì´ì›ƒí•´ ìˆëŠ” Regionì„ ê²€ìƒ‰í•´ì„œ,,  ëª¬ì˜ ìœ„ì¹˜ì™€ ì œì¼ ê°€ê¹Œìš´ Userì„ í–¥í•´.. ì´ë™..
     for (int l = 0; l < 4; l++) {
         if (m_iFind_X[l] == 0 && m_iFind_Y[l] == 0) {
             continue;
@@ -1821,7 +1821,7 @@ BOOL CNpc::FindEnemy() {
         x = m_iRegion_X + (m_iFind_X[l]);
         y = m_iRegion_Z + (m_iFind_Y[l]);
 
-        // ÀÌºÎºĞ ¼öÁ¤¿ä¸Á,,
+        // ì´ë¶€ë¶„ ìˆ˜ì •ìš”ë§,,
         if (x < 0 || y < 0 || x > pMap->GetXRegionMax() || y > pMap->GetZRegionMax()) {
             continue;
         }
@@ -1835,7 +1835,7 @@ BOOL CNpc::FindEnemy() {
 
     fCompareDis = 0.0f;
 
-    // Å¸ÀÔÀÌ °æºñº´ÀÎ °æ¿ì¿¡´Â °°Àº ³ª¶óÀÇ ¸ó½ºÅÍ°¡ ¾Æ´Ñ°æ¿ì¿¡´Â ¸ó½ºÅÍ¸¦ °ø°İÇÏµµ·Ï ÇÑ´Ù..
+    // íƒ€ì…ì´ ê²½ë¹„ë³‘ì¸ ê²½ìš°ì—ëŠ” ê°™ì€ ë‚˜ë¼ì˜ ëª¬ìŠ¤í„°ê°€ ì•„ë‹Œê²½ìš°ì—ëŠ” ëª¬ìŠ¤í„°ë¥¼ ê³µê²©í•˜ë„ë¡ í•œë‹¤..
     if (m_tNpcType == NPC_GUARD || m_tNpcType == NPC_PATROL_GUARD ||
         m_tNpcType == NPC_STORE_GUARD) // || m_tNpcType == NPCTYPE_MONSTER)
     {
@@ -1843,7 +1843,7 @@ BOOL CNpc::FindEnemy() {
 
         int x = 0, y = 0;
 
-        // ÀÌ¿ôÇØ ÀÖ´Â RegionÀ» °Ë»öÇØ¼­,,  ¸óÀÇ À§Ä¡¿Í Á¦ÀÏ °¡±î¿î UserÀ» ÇâÇØ.. ÀÌµ¿..
+        // ì´ì›ƒí•´ ìˆëŠ” Regionì„ ê²€ìƒ‰í•´ì„œ,,  ëª¬ì˜ ìœ„ì¹˜ì™€ ì œì¼ ê°€ê¹Œìš´ Userì„ í–¥í•´.. ì´ë™..
         for (int l = 0; l < 4; l++) {
             if (m_iFind_X[l] == 0 && m_iFind_Y[l] == 0) {
                 continue;
@@ -1852,7 +1852,7 @@ BOOL CNpc::FindEnemy() {
             x = m_iRegion_X + (m_iFind_X[l]);
             y = m_iRegion_Z + (m_iFind_Y[l]);
 
-            // ÀÌºÎºĞ ¼öÁ¤¿ä¸Á,,
+            // ì´ë¶€ë¶„ ìˆ˜ì •ìš”ë§,,
             if (x < 0 || y < 0 || x > pMap->GetXRegionMax() || y > pMap->GetZRegionMax()) {
                 continue;
             }
@@ -1865,13 +1865,13 @@ BOOL CNpc::FindEnemy() {
         return TRUE;
     }
 
-    // ¾Æ¹«µµ ¾øÀ¸¹Ç·Î ¸®½ºÆ®¿¡ °ü¸®ÇÏ´Â À¯Àú¸¦ ÃÊ±âÈ­ÇÑ´Ù.
+    // ì•„ë¬´ë„ ì—†ìœ¼ë¯€ë¡œ ë¦¬ìŠ¤íŠ¸ì— ê´€ë¦¬í•˜ëŠ” ìœ ì €ë¥¼ ì´ˆê¸°í™”í•œë‹¤.
     InitUserList();
     InitTarget();
     return FALSE;
 }
 
-// Npc°¡ À¯Àú¸¦ °Ë»öÇÒ¶§ ¾î´À Region±îÁö °Ë»öÇØ¾ß ÇÏ´ÂÁö¸¦ ÆÇ´Ü..
+// Npcê°€ ìœ ì €ë¥¼ ê²€ìƒ‰í• ë•Œ ì–´ëŠ Regionê¹Œì§€ ê²€ìƒ‰í•´ì•¼ í•˜ëŠ”ì§€ë¥¼ íŒë‹¨..
 int CNpc::FindEnemyRegion() {
     /*
         1    2    3
@@ -1938,7 +1938,7 @@ int CNpc::FindEnemyRegion() {
         break;
     }
 
-    if (iRetValue <= 0) { // ÀÓ½Ã·Î º¸Á¤(¹®Á¦½Ã),, ÇÏ±â À§ÇÑ°Í..
+    if (iRetValue <= 0) { // ì„ì‹œë¡œ ë³´ì •(ë¬¸ì œì‹œ),, í•˜ê¸° ìœ„í•œê²ƒ..
         iRetValue = 0;
     }
 
@@ -2056,7 +2056,7 @@ float CNpc::FindEnemyExpand(int nRX, int nRZ, float fCompDis, int nType) {
     int * pIDList = NULL;
     int   iLevelComprison = 0;
 
-    if (nType == 1) { // userÀ» Å¸°ÙÀ¸·Î Àâ´Â °æ¿ì
+    if (nType == 1) { // userì„ íƒ€ê²Ÿìœ¼ë¡œ ì¡ëŠ” ê²½ìš°
         int     nUserid = 0, count = 0;
         CUser * pUser = NULL;
 
@@ -2089,25 +2089,25 @@ float CNpc::FindEnemyExpand(int nRX, int nRZ, float fCompDis, int nType) {
             }
             pUser = (CUser *)m_pMain->GetUserPtr(nUserid);
             if (pUser != NULL && pUser->m_bLive == USER_LIVE) {
-                // °°Àº ±¹°¡ÀÇ À¯Àú´Â °ø°İÀ» ÇÏÁö ¾Êµµ·Ï ÇÑ´Ù...
+                // ê°™ì€ êµ­ê°€ì˜ ìœ ì €ëŠ” ê³µê²©ì„ í•˜ì§€ ì•Šë„ë¡ í•œë‹¤...
                 if (m_byGroup == pUser->m_bNation) {
                     continue;
                 }
                 if (pUser->m_byIsOP == MANAGER_USER) {
-                    continue; // ¿î¿µÀÚ ¹«½Ã
+                    continue; // ìš´ì˜ì ë¬´ì‹œ
                 }
 
                 vUser.Set(pUser->m_curx, pUser->m_cury, pUser->m_curz);
                 fDis = GetDistance(vUser, vNpc);
 
-                // ÀÛ¾÷ : ¿©±â¿¡¼­ ³ªÀÇ °ø°İ°Å¸®¿¡ ÀÖ´Â À¯ÀúÀÎÁö¸¦ ÆÇ´Ü
+                // ì‘ì—… : ì—¬ê¸°ì—ì„œ ë‚˜ì˜ ê³µê²©ê±°ë¦¬ì— ìˆëŠ” ìœ ì €ì¸ì§€ë¥¼ íŒë‹¨
                 if (fDis <= fSearchRange) {
                     if (fDis >= fComp) { //
                         target_uid = pUser->m_iUserId;
                         fComp = fDis;
 
-                        //ÈÄ°ø¸÷...
-                        if (!m_tNpcAttType) { // ³¯ °ø°İÇÑ ³ğÀ» Ã£´Â´Ù.
+                        //í›„ê³µëª¹...
+                        if (!m_tNpcAttType) { // ë‚  ê³µê²©í•œ ë†ˆì„ ì°¾ëŠ”ë‹¤.
                             if (IsDamagedUserList(pUser) || (m_tNpcGroupType && m_Target.id == target_uid)) {
                                 m_Target.id = target_uid;
                                 m_Target.failCount = 0;
@@ -2115,9 +2115,9 @@ float CNpc::FindEnemyExpand(int nRX, int nRZ, float fCompDis, int nType) {
                                 m_Target.y = pUser->m_cury;
                                 m_Target.z = pUser->m_curz;
                             }
-                        } else { // ¼±°ø¸÷...
+                        } else { // ì„ ê³µëª¹...
                             iLevelComprison = pUser->m_sLevel - m_sLevel;
-                            // ÀÛ¾÷ÇÒ °Í : Å¸ÀÔ¿¡ µû¸¥ °ø°İ¼ºÇâÀ¸·Î..
+                            // ì‘ì—…í•  ê²ƒ : íƒ€ì…ì— ë”°ë¥¸ ê³µê²©ì„±í–¥ìœ¼ë¡œ..
                             //if(iLevelComprison > ATTACK_LIMIT_LEVEL)    continue;
 
                             m_Target.id = target_uid;
@@ -2133,7 +2133,7 @@ float CNpc::FindEnemyExpand(int nRX, int nRZ, float fCompDis, int nType) {
                 }
             }
         }
-    } else if (nType == 2) { // °æºñº´ÀÌ ¸ó½ºÅÍ¸¦ Å¸°ÙÀ¸·Î Àâ´Â °æ¿ì
+    } else if (nType == 2) { // ê²½ë¹„ë³‘ì´ ëª¬ìŠ¤í„°ë¥¼ íƒ€ê²Ÿìœ¼ë¡œ ì¡ëŠ” ê²½ìš°
         int    nNpcid = 0, count = 0;
         CNpc * pNpc = NULL;
 
@@ -2173,7 +2173,7 @@ float CNpc::FindEnemyExpand(int nRX, int nRZ, float fCompDis, int nType) {
             }
 
             if (pNpc != NULL && pNpc->m_NpcState != NPC_DEAD && pNpc->m_sNid != m_sNid) {
-                // °°Àº ±¹°¡ÀÇ ¸ó½ºÅÍ´Â °ø°İÀ» ÇÏÁö ¾Êµµ·Ï ÇÑ´Ù...
+                // ê°™ì€ êµ­ê°€ì˜ ëª¬ìŠ¤í„°ëŠ” ê³µê²©ì„ í•˜ì§€ ì•Šë„ë¡ í•œë‹¤...
                 if (m_byGroup == pNpc->m_byGroup) {
                     continue;
                 }
@@ -2181,7 +2181,7 @@ float CNpc::FindEnemyExpand(int nRX, int nRZ, float fCompDis, int nType) {
                 vMon.Set(pNpc->m_fCurX, pNpc->m_fCurY, pNpc->m_fCurZ);
                 fDis = GetDistance(vMon, vNpc);
 
-                // ÀÛ¾÷ : ¿©±â¿¡¼­ ³ªÀÇ °ø°İ°Å¸®¿¡ ÀÖ´Â À¯ÀúÀÎÁö¸¦ ÆÇ´Ü
+                // ì‘ì—… : ì—¬ê¸°ì—ì„œ ë‚˜ì˜ ê³µê²©ê±°ë¦¬ì— ìˆëŠ” ìœ ì €ì¸ì§€ë¥¼ íŒë‹¨
                 if (fDis <= fSearchRange) {
                     if (fDis >= fComp) { //
                         target_uid = nNpcid;
@@ -2208,7 +2208,7 @@ float CNpc::FindEnemyExpand(int nRX, int nRZ, float fCompDis, int nType) {
     return fComp;
 }
 
-// regionÀ» 4µîºĞÇØ¼­ ¸ó½ºÅÍÀÇ ÇöÀç À§Ä¡°¡ regionÀÇ ¾î´À ºÎºĞ¿¡ µé¾î°¡´ÂÁö¸¦ ÆÇ´Ü
+// regionì„ 4ë“±ë¶„í•´ì„œ ëª¬ìŠ¤í„°ì˜ í˜„ì¬ ìœ„ì¹˜ê°€ regionì˜ ì–´ëŠ ë¶€ë¶„ì— ë“¤ì–´ê°€ëŠ”ì§€ë¥¼ íŒë‹¨
 int CNpc::GetMyField() {
     int iRet = 0;
     int iX = m_iRegion_X * VIEW_DIST;
@@ -2229,7 +2229,7 @@ int CNpc::GetMyField() {
     return iRet;
 }
 
-//    ÁÖº¯¿¡ ³ª¸¦ °ø°İÇÑ À¯Àú°¡ ÀÖ´ÂÁö ¾Ë¾Æº»´Ù
+//    ì£¼ë³€ì— ë‚˜ë¥¼ ê³µê²©í•œ ìœ ì €ê°€ ìˆëŠ”ì§€ ì•Œì•„ë³¸ë‹¤
 BOOL CNpc::IsDamagedUserList(CUser * pUser) {
     if (pUser == NULL) {
         return FALSE;
@@ -2244,24 +2244,24 @@ BOOL CNpc::IsDamagedUserList(CUser * pUser) {
     return FALSE;
 }
 
-//    Å¸°ÙÀÌ µÑ·¯ ½×¿© ÀÖÀ¸¸é ´ÙÀ½ Å¸°ÙÀ» Ã£´Â´Ù.
+//    íƒ€ê²Ÿì´ ë‘˜ëŸ¬ ìŒ“ì—¬ ìˆìœ¼ë©´ ë‹¤ìŒ íƒ€ê²Ÿì„ ì°¾ëŠ”ë‹¤.
 int CNpc::IsSurround(CUser * pUser) {
     if (m_tNpcLongType) {
-        return 0; //¿ø°Å¸®´Â Åë°ú
+        return 0; //ì›ê±°ë¦¬ëŠ” í†µê³¼
     }
 
     if (pUser == NULL) {
-        return -2; // User°¡ ¾øÀ¸¹Ç·Î Å¸°ÙÁöÁ¤ ½ÇÆĞ..
+        return -2; // Userê°€ ì—†ìœ¼ë¯€ë¡œ íƒ€ê²Ÿì§€ì • ì‹¤íŒ¨..
     }
     int nDir = pUser->IsSurroundCheck(m_fCurX, 0.0f, m_fCurZ, m_sNid + NPC_BAND);
     if (nDir != 0) {
         m_byAttackPos = nDir;
         return nDir;
     }
-    return -1; // Å¸°ÙÀÌ µÑ·¯ ½×¿© ÀÖÀ½...
+    return -1; // íƒ€ê²Ÿì´ ë‘˜ëŸ¬ ìŒ“ì—¬ ìˆìŒ...
 }
 
-//    x, y °¡ ¿òÁ÷ÀÏ ¼ö ÀÖ´Â ÁÂÇ¥ÀÎÁö ÆÇ´Ü
+//    x, y ê°€ ì›€ì§ì¼ ìˆ˜ ìˆëŠ” ì¢Œí‘œì¸ì§€ íŒë‹¨
 BOOL CNpc::IsMovable(float x, float z) {
     if (x < 0 || z < 0) {
         return FALSE;
@@ -2288,7 +2288,7 @@ BOOL CNpc::IsMovable(float x, float z) {
     return TRUE;
 }
 
-//    Path Find ·Î Ã£Àº±æÀ» ´Ù ÀÌµ¿ Çß´ÂÁö ÆÇ´Ü
+//    Path Find ë¡œ ì°¾ì€ê¸¸ì„ ë‹¤ ì´ë™ í–ˆëŠ”ì§€ íŒë‹¨
 BOOL CNpc::IsMovingEnd() {
     //if(m_fCurX == m_fEndPoint_X && m_fCurZ == m_fEndPoint_Y)
     if (m_fPrevX == m_fEndPoint_X && m_fPrevZ == m_fEndPoint_Y) {
@@ -2300,7 +2300,7 @@ BOOL CNpc::IsMovingEnd() {
     return FALSE;
 }
 
-//    Step ¼ö ¸¸Å­ Å¸ÄÏÀ» ÇâÇØ ÀÌµ¿ÇÑ´Ù.
+//    Step ìˆ˜ ë§Œí¼ íƒ€ì¼“ì„ í–¥í•´ ì´ë™í•œë‹¤.
 BOOL CNpc::StepMove(int nStep, CIOCPort * pIOCP) {
     if (m_NpcState != NPC_MOVING && m_NpcState != NPC_TRACING && m_NpcState != NPC_BACK) {
         return FALSE;
@@ -2324,7 +2324,7 @@ BOOL CNpc::StepMove(int nStep, CIOCPort * pIOCP) {
     vStart.Set(fOldCurX, 0, fOldCurZ);
     vEnd.Set(m_pPoint[m_iAniFrameCount].fXPos, 0, m_pPoint[m_iAniFrameCount].fZPos);
 
-    // ¾ÈÀü ÄÚµå..
+    // ì•ˆì „ ì½”ë“œ..
     if (m_pPoint[m_iAniFrameCount].fXPos < 0 || m_pPoint[m_iAniFrameCount].fZPos < 0) {
         m_fPrevX = m_fEndPoint_X;
         m_fPrevZ = m_fEndPoint_Y;
@@ -2345,7 +2345,7 @@ BOOL CNpc::StepMove(int nStep, CIOCPort * pIOCP) {
         if (m_iAniFrameCount == m_iAniFrameIndex) {
             vEnd.Set(m_pPoint[m_iAniFrameCount].fXPos, 0, m_pPoint[m_iAniFrameCount].fZPos);
             fDis = GetDistance(vStart, vEnd);
-            // ¸¶Áö¸· ÁÂÇ¥´Â m_fSecForMetor ~ m_fSecForMetor+1 »çÀÌµµ °¡´ÉÇÏ°Ô ÀÌµ¿
+            // ë§ˆì§€ë§‰ ì¢Œí‘œëŠ” m_fSecForMetor ~ m_fSecForMetor+1 ì‚¬ì´ë„ ê°€ëŠ¥í•˜ê²Œ ì´ë™
             if (fDis > m_fSecForMetor) {
                 vDis = GetVectorPosition(vStart, vEnd, m_fSecForMetor);
                 m_fPrevX = vDis.x;
@@ -2456,16 +2456,16 @@ BOOL CNpc::StepNoPathMove(int nStep) {
     return TRUE;
 }
 
-//    NPC¿Í Target °úÀÇ °Å¸®°¡ ÁöÁ¤ ¹üÀ§º¸´Ù ÀÛÀºÁö ÆÇ´Ü
+//    NPCì™€ Target ê³¼ì˜ ê±°ë¦¬ê°€ ì§€ì • ë²”ìœ„ë³´ë‹¤ ì‘ì€ì§€ íŒë‹¨
 int CNpc::IsCloseTarget(int nRange, int Flag) {
     __Vector3 vUser, vWillUser, vNpc, vDistance;
     CUser *   pUser = NULL;
     CNpc *    pNpc = NULL;
     float     fDis = 0.0f, fWillDis = 0.0f, fX = 0.0f, fZ = 0.0f;
-    BOOL      bUserType = FALSE; // Å¸°ÙÀÌ À¯ÀúÀÌ¸é TRUE
+    BOOL      bUserType = FALSE; // íƒ€ê²Ÿì´ ìœ ì €ì´ë©´ TRUE
     vNpc.Set(m_fCurX, m_fCurY, m_fCurZ);
 
-    if (m_Target.id >= USER_BAND && m_Target.id < NPC_BAND) { // Target ÀÌ User ÀÎ °æ¿ì
+    if (m_Target.id >= USER_BAND && m_Target.id < NPC_BAND) { // Target ì´ User ì¸ ê²½ìš°
         pUser = m_pMain->GetUserPtr(m_Target.id - USER_BAND);
         if (pUser == NULL) {
             InitTarget();
@@ -2480,7 +2480,7 @@ int CNpc::IsCloseTarget(int nRange, int Flag) {
         fWillDis = vDistance.Magnitude();
         fWillDis = fWillDis - m_fBulk;
         bUserType = TRUE;
-    } else if (m_Target.id >= NPC_BAND && m_Target.id < INVALID_BAND) // Target ÀÌ mon ÀÎ °æ¿ì
+    } else if (m_Target.id >= NPC_BAND && m_Target.id < INVALID_BAND) // Target ì´ mon ì¸ ê²½ìš°
     {
         pNpc = m_pMain->m_arNpc.GetData(m_Target.id - NPC_BAND);
         if (pNpc == NULL) {
@@ -2499,7 +2499,7 @@ int CNpc::IsCloseTarget(int nRange, int Flag) {
 
     fDis = fDis - m_fBulk;
 
-    // ÀÛ¾÷ÇÒ°Í :     ´øÁ¯ ¸ó½ºÅÍÀÇ °æ¿ì ÀÏÁ¤¿µ¿ªÀ» ¹ş¾î³ªÁö ¸øÇÏµµ·Ï Ã¼Å©ÇÏ´Â ·çÆ¾
+    // ì‘ì—…í• ê²ƒ :     ë˜ì ¼ ëª¬ìŠ¤í„°ì˜ ê²½ìš° ì¼ì •ì˜ì—­ì„ ë²—ì–´ë‚˜ì§€ ëª»í•˜ë„ë¡ ì²´í¬í•˜ëŠ” ë£¨í‹´
     if (m_tNpcType == NPC_DUNGEON_MONSTER) {
         if (IsInRange((int)vUser.x, (int)vUser.z) == FALSE) {
             return -1;
@@ -2526,30 +2526,30 @@ int CNpc::IsCloseTarget(int nRange, int Flag) {
         return 0;
     }
 
-    /* Å¸°ÙÀÇ ÁÂÇ¥¸¦ ÃÖ½Å °ÍÀ¸·Î ¼öÁ¤ÇÏ°í, ¸¶Áö¸· Æ÷ÀÎÅÍ ÁÂÇ¥¸¦ ¼öÁ¤ÇÑ´Ù,, */
+    /* íƒ€ê²Ÿì˜ ì¢Œí‘œë¥¼ ìµœì‹  ê²ƒìœ¼ë¡œ ìˆ˜ì •í•˜ê³ , ë§ˆì§€ë§‰ í¬ì¸í„° ì¢Œí‘œë¥¼ ìˆ˜ì •í•œë‹¤,, */
     m_fEndPoint_X = m_fCurX;
     m_fEndPoint_Y = m_fCurZ;
     m_Target.x = fX;
     m_Target.z = fZ;
 
-    //if( m_tNpcLongType && m_tNpcType != NPC_BOSS_MONSTER)    {        // Àå°Å¸® °ø°İÀÌ °¡´ÉÇÑ°ÍÀº °ø°İ°Å¸®·Î ÆÇ´Ü..
-    if (m_tNpcLongType == 1) { // Àå°Å¸® °ø°İÀÌ °¡´ÉÇÑ°ÍÀº °ø°İ°Å¸®·Î ÆÇ´Ü..
+    //if( m_tNpcLongType && m_tNpcType != NPC_BOSS_MONSTER)    {        // ì¥ê±°ë¦¬ ê³µê²©ì´ ê°€ëŠ¥í•œê²ƒì€ ê³µê²©ê±°ë¦¬ë¡œ íŒë‹¨..
+    if (m_tNpcLongType == 1) { // ì¥ê±°ë¦¬ ê³µê²©ì´ ê°€ëŠ¥í•œê²ƒì€ ê³µê²©ê±°ë¦¬ë¡œ íŒë‹¨..
         if (fDis < LONG_ATTACK_RANGE) {
             return 1;
         } else if (fDis > LONG_ATTACK_RANGE && fDis <= nRange) {
             return 2;
         }
-    } else {             // ´Ü°Å¸®(Á÷Á¢°ø°İ)
-        if (Flag == 1) { // ¸ó½ºÅÍÀÇ ÀÌµ¿ÇÏ¸é¼­ÀÌ °Å¸®Ã¼Å©½Ã
+    } else {             // ë‹¨ê±°ë¦¬(ì§ì ‘ê³µê²©)
+        if (Flag == 1) { // ëª¬ìŠ¤í„°ì˜ ì´ë™í•˜ë©´ì„œì´ ê±°ë¦¬ì²´í¬ì‹œ
             if (fDis < (SHORT_ATTACK_RANGE + m_fBulk)) {
                 return 1;
             }
             if (fDis > (SHORT_ATTACK_RANGE + m_fBulk) && fDis <= nRange) {
-                return 2; // À¯ÀúÀÇ ÇöÀçÁÂÇ¥¸¦ ±âÁØÀ¸·Î
+                return 2; // ìœ ì €ì˜ í˜„ì¬ì¢Œí‘œë¥¼ ê¸°ì¤€ìœ¼ë¡œ
             }
-            if (bUserType == TRUE) { // À¯ÀúÀÏ¶§¸¸,, WillÁÂÇ¥¸¦ ±âÁØÀ¸·Î ÇÑ´Ù
+            if (bUserType == TRUE) { // ìœ ì €ì¼ë•Œë§Œ,, Willì¢Œí‘œë¥¼ ê¸°ì¤€ìœ¼ë¡œ í•œë‹¤
                 if (fWillDis > (SHORT_ATTACK_RANGE + m_fBulk) && fWillDis <= nRange) {
-                    return 2; // À¯ÀúÀÇ WillµÂÇ¥¸¦ ±âÁØÀ¸·Î
+                    return 2; // ìœ ì €ì˜ Willë í‘œë¥¼ ê¸°ì¤€ìœ¼ë¡œ
                 }
             }
         } else {
@@ -2565,24 +2565,24 @@ int CNpc::IsCloseTarget(int nRange, int Flag) {
     return 0;
 }
 
-//    Target °ú NPC °£ Path FindingÀ» ¼öÇàÇÑ´Ù.
+//    Target ê³¼ NPC ê°„ Path Findingì„ ìˆ˜í–‰í•œë‹¤.
 int CNpc::GetTargetPath(int option) {
     // sungyong 2002.06.12
     int nInitType = m_byInitMoveType;
     if (m_byInitMoveType >= 100) {
         nInitType = m_byInitMoveType - 100;
     }
-    // Çàµ¿ Å¸ÀÔ ¼öÁ¤
+    // í–‰ë™ íƒ€ì… ìˆ˜ì •
     if (m_tNpcType != 0) {
         //if(m_byMoveType != m_byInitMoveType)
-        //    m_byMoveType = m_byInitMoveType;    // ÀÚ±â ÀÚ¸®·Î µ¹¾Æ°¥ ¼ö ÀÖµµ·Ï..
+        //    m_byMoveType = m_byInitMoveType;    // ìê¸° ìë¦¬ë¡œ ëŒì•„ê°ˆ ìˆ˜ ìˆë„ë¡..
         if (m_byMoveType != nInitType) {
-            m_byMoveType = nInitType; // ÀÚ±â ÀÚ¸®·Î µ¹¾Æ°¥ ¼ö ÀÖµµ·Ï..
+            m_byMoveType = nInitType; // ìê¸° ìë¦¬ë¡œ ëŒì•„ê°ˆ ìˆ˜ ìˆë„ë¡..
         }
     }
     // ~sungyong 2002.06.12
 
-    // Ãß°İÇÒ¶§´Â ¶Ù´Â ¼Óµµ·Î ¸ÂÃß¾îÁØ´Ù...
+    // ì¶”ê²©í• ë•ŒëŠ” ë›°ëŠ” ì†ë„ë¡œ ë§ì¶”ì–´ì¤€ë‹¤...
     m_fSecForMetor = m_fSpeed_2;
     CUser *   pUser = NULL;
     CNpc *    pNpc = NULL;
@@ -2599,7 +2599,7 @@ int CNpc::GetTargetPath(int option) {
     float surround_fx[8] = {0.0f, -1.4142f, -2.0f, -1.4167f, 0.0f, 1.4117f, 2.0000f, 1.4167f};
     float surround_fz[8] = {2.0f, 1.4142f, 0.0f, -1.4167f, -2.0f, -1.4167f, -0.0035f, 1.4117f};
 
-    if (m_Target.id >= USER_BAND && m_Target.id < NPC_BAND) { // Target ÀÌ User ÀÎ °æ¿ì
+    if (m_Target.id >= USER_BAND && m_Target.id < NPC_BAND) { // Target ì´ User ì¸ ê²½ìš°
         pUser = m_pMain->GetUserPtr(m_Target.id - USER_BAND);
         if (pUser == NULL) {
             InitTarget();
@@ -2614,23 +2614,23 @@ int CNpc::GetTargetPath(int option) {
             return -1;
         }
 
-        if (option == 1) { // magicÀÌ³ª È°µîÀ¸·Î °ø°İ ´çÇß´Ù¸é...
+        if (option == 1) { // magicì´ë‚˜ í™œë“±ìœ¼ë¡œ ê³µê²© ë‹¹í–ˆë‹¤ë©´...
             vNpc.Set(m_fCurX, m_fCurY, m_fCurZ);
             vUser.Set(pUser->m_curx, pUser->m_cury, pUser->m_curz);
             fDis = GetDistance(vNpc, vUser);
             if (fDis >= NPC_MAX_MOVE_RANGE) {
-                return -1; // ³Ê¹« °Å¸®°¡ ¸Ö¾î¼­,, ÃßÀûÀÌ ¾ÈµÇ°Ô..
+                return -1; // ë„ˆë¬´ ê±°ë¦¬ê°€ ë©€ì–´ì„œ,, ì¶”ì ì´ ì•ˆë˜ê²Œ..
             }
             iTempRange = fDis + 10;
         } else {
-            iTempRange = (float)m_bySearchRange; // ÀÏ½ÃÀûÀ¸·Î º¸Á¤ÇÑ´Ù.
+            iTempRange = (float)m_bySearchRange; // ì¼ì‹œì ìœ¼ë¡œ ë³´ì •í•œë‹¤.
             if (IsDamagedUserList(pUser)) {
-                iTempRange = (float)m_byTracingRange; // °ø°İ¹ŞÀº »óÅÂ¸é Ã£À» ¹üÀ§ Áõ°¡.
+                iTempRange = (float)m_byTracingRange; // ê³µê²©ë°›ì€ ìƒíƒœë©´ ì°¾ì„ ë²”ìœ„ ì¦ê°€.
             } else {
                 iTempRange += 2;
             }
         }
-    } else if (m_Target.id >= NPC_BAND && m_Target.id < INVALID_BAND) { // Target ÀÌ mon ÀÎ °æ¿ì
+    } else if (m_Target.id >= NPC_BAND && m_Target.id < INVALID_BAND) { // Target ì´ mon ì¸ ê²½ìš°
         pNpc = m_pMain->m_arNpc.GetData(m_Target.id - NPC_BAND);
         if (pNpc == NULL) {
             InitTarget();
@@ -2641,7 +2641,7 @@ int CNpc::GetTargetPath(int option) {
             return -1;
         }
 
-        iTempRange = (float)m_byTracingRange; // ÀÏ½ÃÀûÀ¸·Î º¸Á¤ÇÑ´Ù.
+        iTempRange = (float)m_byTracingRange; // ì¼ì‹œì ìœ¼ë¡œ ë³´ì •í•œë‹¤.
     }
 
     if (m_ZoneIndex < 0 || m_ZoneIndex > m_pMain->g_arZone.size()) {
@@ -2673,8 +2673,8 @@ int CNpc::GetTargetPath(int option) {
         min_z = max_zz - 1;
     }
 
-    if (m_Target.id >= USER_BAND && m_Target.id < NPC_BAND) { // Target ÀÌ User ÀÎ °æ¿ì
-        // ¸ñÇ¥Á¡ÀÌ Search Range¸¦ ¹ş¾î³ªÁö ¾Ê´ÂÁö °Ë»ç
+    if (m_Target.id >= USER_BAND && m_Target.id < NPC_BAND) { // Target ì´ User ì¸ ê²½ìš°
+        // ëª©í‘œì ì´ Search Rangeë¥¼ ë²—ì–´ë‚˜ì§€ ì•ŠëŠ”ì§€ ê²€ì‚¬
         CRect r = CRect(min_x, min_z, max_x + 1, max_z + 1);
         if (r.PtInRect(CPoint((int)pUser->m_curx / TILE_SIZE, (int)pUser->m_curz / TILE_SIZE)) == FALSE) {
             TRACE("### Npc-GetTargetPath() User Fail return -1: [nid=%d] t_Name=%s, AttackPos=%d ###\n",
@@ -2688,9 +2688,9 @@ int CNpc::GetTargetPath(int option) {
         vNpc.Set(m_fCurX, m_fCurY, m_fCurZ);
         vUser.Set(pUser->m_curx, pUser->m_cury, pUser->m_curz);
 
-        // ¿©±â¿¡¼­ À¯ÀúÀÇ ¾î´À ¹æÇâÀ¸·Î °ø°İÇÒ°ÍÀÎÁö¸¦ ÆÇ´Ü...(¼ÂÆÃ)
-        // ÀÌ ºÎºĞ¿¡¼­ NpcÀÇ °ø°İÁ¡À» ¾Ë¾Æ¿Í¼­ °ø°İÇÏµµ·Ï ÇÑ´Ù,,
-        IsSurround(pUser); //µÑ·¯ ½×¿© ÀÖÀ¸¸é ¹«½ÃÇÑ´Ù.(¿ø°Å¸®, ±Ù°Å¸® ¹«½Ã)
+        // ì—¬ê¸°ì—ì„œ ìœ ì €ì˜ ì–´ëŠ ë°©í–¥ìœ¼ë¡œ ê³µê²©í• ê²ƒì¸ì§€ë¥¼ íŒë‹¨...(ì…‹íŒ…)
+        // ì´ ë¶€ë¶„ì—ì„œ Npcì˜ ê³µê²©ì ì„ ì•Œì•„ì™€ì„œ ê³µê²©í•˜ë„ë¡ í•œë‹¤,,
+        IsSurround(pUser); //ë‘˜ëŸ¬ ìŒ“ì—¬ ìˆìœ¼ë©´ ë¬´ì‹œí•œë‹¤.(ì›ê±°ë¦¬, ê·¼ê±°ë¦¬ ë¬´ì‹œ)
 
         //vEnd22 = CalcAdaptivePosition(vNpc, vUser, 2.0+m_fBulk);
 
@@ -2710,8 +2710,8 @@ int CNpc::GetTargetPath(int option) {
             m_fEndPoint_X = vEnd22.x;
             m_fEndPoint_Y = vEnd22.z;
         }
-    } else if (m_Target.id >= NPC_BAND && m_Target.id < INVALID_BAND) { // Target ÀÌ mon ÀÎ °æ¿ì
-        // ¸ñÇ¥Á¡ÀÌ Search Range¸¦ ¹ş¾î³ªÁö ¾Ê´ÂÁö °Ë»ç
+    } else if (m_Target.id >= NPC_BAND && m_Target.id < INVALID_BAND) { // Target ì´ mon ì¸ ê²½ìš°
+        // ëª©í‘œì ì´ Search Rangeë¥¼ ë²—ì–´ë‚˜ì§€ ì•ŠëŠ”ì§€ ê²€ì‚¬
         CRect r = CRect(min_x, min_z, max_x + 1, max_z + 1);
         if (r.PtInRect(CPoint((int)pNpc->m_fCurX / TILE_SIZE, (int)pNpc->m_fCurZ / TILE_SIZE)) == FALSE) {
             TRACE("### Npc-GetTargetPath() Npc Fail return -1: [nid=%d] t_Name=%s, AttackPos=%d ###\n",
@@ -2748,8 +2748,8 @@ int CNpc::GetTargetPath(int option) {
         return -1;
     }
 
-    if (m_tNpcType != NPC_DUNGEON_MONSTER) { // ´øÁ¯ ¸ó½ºÅÍ´Â ¹«Á¶°Ç ÆĞ½ºÆÄÀÎµùÀ» ÇÏµµ·Ï..
-        // °ø°İ´ë»óÀÌ ÀÖÀ¸¸é ÆĞ½ºÆÄÀÎµùÀ» ÇÏÁö ¾Ê°í ¹Ù·Î Å¸°ÙÀ¸·Î °¡°Ô ÇÑ´Ù.
+    if (m_tNpcType != NPC_DUNGEON_MONSTER) { // ë˜ì ¼ ëª¬ìŠ¤í„°ëŠ” ë¬´ì¡°ê±´ íŒ¨ìŠ¤íŒŒì¸ë”©ì„ í•˜ë„ë¡..
+        // ê³µê²©ëŒ€ìƒì´ ìˆìœ¼ë©´ íŒ¨ìŠ¤íŒŒì¸ë”©ì„ í•˜ì§€ ì•Šê³  ë°”ë¡œ íƒ€ê²Ÿìœ¼ë¡œ ê°€ê²Œ í•œë‹¤.
         if (m_Target.id != -1) {
             return 0;
         }
@@ -2761,7 +2761,7 @@ int CNpc::GetTargetPath(int option) {
     end.x = (int)(vEnd22.x / TILE_SIZE) - min_x;
     end.y = (int)(vEnd22.z / TILE_SIZE) - min_z;
 
-    // ÀÛ¾÷ÇÒ°Í :     ´øÁ¯ ¸ó½ºÅÍÀÇ °æ¿ì ÀÏÁ¤¿µ¿ªÀ» ¹ş¾î³ªÁö ¸øÇÏµµ·Ï Ã¼Å©ÇÏ´Â ·çÆ¾
+    // ì‘ì—…í• ê²ƒ :     ë˜ì ¼ ëª¬ìŠ¤í„°ì˜ ê²½ìš° ì¼ì •ì˜ì—­ì„ ë²—ì–´ë‚˜ì§€ ëª»í•˜ë„ë¡ ì²´í¬í•˜ëŠ” ë£¨í‹´
     if (m_tNpcType == NPC_DUNGEON_MONSTER) {
         if (IsInRange((int)vEnd22.x, (int)vEnd22.z) == FALSE) {
             return -1;
@@ -2782,7 +2782,7 @@ int CNpc::Attack(CIOCPort * pIOCP) {
         return 10000;
     }
 
-    // ÅÚ·¹Æ÷Æ® °¡´ÉÇÏ°Ô,, (·»´ıÀ¸·Î,, )
+    // í…”ë ˆí¬íŠ¸ ê°€ëŠ¥í•˜ê²Œ,, (ë Œë¤ìœ¼ë¡œ,, )
     int  nRandom = 0, nPercent = 1000;
     int  send_index = 0;
     BOOL bTeleport = FALSE;
@@ -2796,7 +2796,7 @@ int CNpc::Attack(CIOCPort * pIOCP) {
     }    */
 
     //if( m_tNpcLongType==1 && m_tNpcType != NPC_BOSS_MONSTER )    {
-    if (m_tNpcLongType == 1) { // Àå°Å¸® °ø°İÀÌ °¡´ÉÇÑ°ÍÀº °ø°İ°Å¸®·Î ÆÇ´Ü..
+    if (m_tNpcLongType == 1) { // ì¥ê±°ë¦¬ ê³µê²©ì´ ê°€ëŠ¥í•œê²ƒì€ ê³µê²©ê±°ë¦¬ë¡œ íŒë‹¨..
         m_Delay = LongAndMagicAttack(pIOCP);
         return m_Delay;
     }
@@ -2809,7 +2809,7 @@ int CNpc::Attack(CIOCPort * pIOCP) {
     if (ret == 0) {
         if (m_tNpcType == NPC_DOOR || m_tNpcType == NPC_ARTIFACT || m_tNpcType == NPC_PHOENIX_GATE ||
             m_tNpcType == NPC_GATE_LEVER || m_tNpcType == NPC_DOMESTIC_ANIMAL || m_tNpcType == NPC_SPECIAL_GATE ||
-            m_tNpcType == NPC_DESTORY_ARTIFACT) // °íÁ¤ °æºñº´Àº ÃßÀûÀ» ÇÏÁö ¾Êµµ·Ï..
+            m_tNpcType == NPC_DESTORY_ARTIFACT) // ê³ ì • ê²½ë¹„ë³‘ì€ ì¶”ì ì„ í•˜ì§€ ì•Šë„ë¡..
         {
             m_NpcState = NPC_STANDING;
             InitTarget();
@@ -2817,17 +2817,17 @@ int CNpc::Attack(CIOCPort * pIOCP) {
         }
         m_sStepCount = 0;
         m_byActionFlag = ATTACK_TO_TRACE;
-        m_NpcState = NPC_TRACING; // °ø°İÇÏ°í µµ¸Á°¡´Â À¯Àú¸¦ µû¶ó Àâ±âÀ§ÇØ(¹İÀÀÀ» Á»´õ ºü¸£°Ô)
-        return 0;                 // IsCloseTarget()¿¡ À¯Àú x, y°ªÀ» °»½ÅÇÏ°í Delay = 0À¸·Î ÁÜ
+        m_NpcState = NPC_TRACING; // ê³µê²©í•˜ê³  ë„ë§ê°€ëŠ” ìœ ì €ë¥¼ ë”°ë¼ ì¡ê¸°ìœ„í•´(ë°˜ì‘ì„ ì¢€ë” ë¹ ë¥´ê²Œ)
+        return 0;                 // IsCloseTarget()ì— ìœ ì € x, yê°’ì„ ê°±ì‹ í•˜ê³  Delay = 0ìœ¼ë¡œ ì¤Œ
     } else if (ret == 2) {
-        //if(m_tNpcType == NPC_BOSS_MONSTER)    {        // ´ëÀå ¸ó½ºÅÍÀÌ¸é.....
-        if (m_tNpcLongType == 2) { // Á÷Á¢, °£Á¢(·Õ)°ø°İÀÌ °¡´ÉÇÑ ¸ó½ºÅÍ ÀÌ¹Ç·Î Àå°Å¸® °ø°İÀ» ÇÒ ¼ö ÀÖ´Ù.
+        //if(m_tNpcType == NPC_BOSS_MONSTER)    {        // ëŒ€ì¥ ëª¬ìŠ¤í„°ì´ë©´.....
+        if (m_tNpcLongType == 2) { // ì§ì ‘, ê°„ì ‘(ë¡±)ê³µê²©ì´ ê°€ëŠ¥í•œ ëª¬ìŠ¤í„° ì´ë¯€ë¡œ ì¥ê±°ë¦¬ ê³µê²©ì„ í•  ìˆ˜ ìˆë‹¤.
             m_Delay = LongAndMagicAttack(pIOCP);
             return m_Delay;
         } else {
             if (m_tNpcType == NPC_DOOR || m_tNpcType == NPC_ARTIFACT || m_tNpcType == NPC_PHOENIX_GATE ||
                 m_tNpcType == NPC_GATE_LEVER || m_tNpcType == NPC_DOMESTIC_ANIMAL || m_tNpcType == NPC_SPECIAL_GATE ||
-                m_tNpcType == NPC_DESTORY_ARTIFACT) // °íÁ¤ °æºñº´Àº ÃßÀûÀ» ÇÏÁö ¾Êµµ·Ï..
+                m_tNpcType == NPC_DESTORY_ARTIFACT) // ê³ ì • ê²½ë¹„ë³‘ì€ ì¶”ì ì„ í•˜ì§€ ì•Šë„ë¡..
             {
                 m_NpcState = NPC_STANDING;
                 InitTarget();
@@ -2835,8 +2835,8 @@ int CNpc::Attack(CIOCPort * pIOCP) {
             }
             m_sStepCount = 0;
             m_byActionFlag = ATTACK_TO_TRACE;
-            m_NpcState = NPC_TRACING; // °ø°İÇÏ°í µµ¸Á°¡´Â À¯Àú¸¦ µû¶ó Àâ±âÀ§ÇØ(¹İÀÀÀ» Á»´õ ºü¸£°Ô)
-            return 0;                 // IsCloseTarget()¿¡ À¯Àú x, y°ªÀ» °»½ÅÇÏ°í Delay = 0À¸·Î ÁÜ
+            m_NpcState = NPC_TRACING; // ê³µê²©í•˜ê³  ë„ë§ê°€ëŠ” ìœ ì €ë¥¼ ë”°ë¼ ì¡ê¸°ìœ„í•´(ë°˜ì‘ì„ ì¢€ë” ë¹ ë¥´ê²Œ)
+            return 0;                 // IsCloseTarget()ì— ìœ ì € x, yê°’ì„ ê°±ì‹ í•˜ê³  Delay = 0ìœ¼ë¡œ ì¤Œ
         }
     } else if (ret == -1) {
         m_NpcState = NPC_STANDING;
@@ -2847,19 +2847,19 @@ int CNpc::Attack(CIOCPort * pIOCP) {
     CNpc *  pNpc = NULL;
     CUser * pUser = NULL;
     int     nDamage = 0;
-    int     nID = m_Target.id; // Target À» ±¸ÇÑ´Ù.
+    int     nID = m_Target.id; // Target ì„ êµ¬í•œë‹¤.
 
-    // È¸ÇÇ°ª/¸íÁßÆÇÁ¤/µ¥¹ÌÁö °è»ê -----------------------------------------//
-    if (nID >= USER_BAND && nID < NPC_BAND) { // Target ÀÌ User ÀÎ °æ¿ì
+    // íšŒí”¼ê°’/ëª…ì¤‘íŒì •/ë°ë¯¸ì§€ ê³„ì‚° -----------------------------------------//
+    if (nID >= USER_BAND && nID < NPC_BAND) { // Target ì´ User ì¸ ê²½ìš°
         pUser = m_pMain->GetUserPtr(nID - USER_BAND);
 
-        if (pUser == NULL) { // User °¡ Invalid ÇÑ °æ¿ì
+        if (pUser == NULL) { // User ê°€ Invalid í•œ ê²½ìš°
             InitTarget();
             m_NpcState = NPC_STANDING;
             return nStandingTime;
         }
 
-        if (pUser->m_bLive == USER_DEAD) { // User °¡ ÀÌ¹Ì Á×Àº°æ¿ì
+        if (pUser->m_bLive == USER_DEAD) { // User ê°€ ì´ë¯¸ ì£½ì€ê²½ìš°
             //SendAttackSuccess(pIOCP, ATTACK_TARGET_DEAD_OK, pUser->m_iUserId, 0, pUser->m_iHP);
             SendAttackSuccess(pIOCP, ATTACK_TARGET_DEAD_OK, pUser->m_iUserId, 0, 0);
             InitTarget();
@@ -2873,12 +2873,12 @@ int CNpc::Attack(CIOCPort * pIOCP) {
             return nStandingTime;
         }
 
-        if (pUser->m_byIsOP == MANAGER_USER) { // ¿î¿µÀÚ´Â °ø°İÀ» ¾ÈÇÏ°Ô..
+        if (pUser->m_byIsOP == MANAGER_USER) { // ìš´ì˜ìëŠ” ê³µê²©ì„ ì•ˆí•˜ê²Œ..
             InitTarget();
             m_NpcState = NPC_MOVING;
             return nStandingTime;
         }
-        // Npc¿Í À¯Àú¿ÍÀÇ HP¸¦ ºñ±³ÇÏ¿©.. µµ¸ÁÀ» °¥ °ÍÀÎÁö¸¦ ÆÇ´Ü...
+        // Npcì™€ ìœ ì €ì™€ì˜ HPë¥¼ ë¹„êµí•˜ì—¬.. ë„ë§ì„ ê°ˆ ê²ƒì¸ì§€ë¥¼ íŒë‹¨...
         /*    if(m_byNpcEndAttType)    {
             if(IsCompStatus(pUser) == TRUE)    {
                 m_NpcState = NPC_BACK;
@@ -2886,16 +2886,16 @@ int CNpc::Attack(CIOCPort * pIOCP) {
             }    
         }    */
 
-        //if(m_tNpcType == NPC_BOSS_MONSTER)    {        // ´ëÀå ¸ó½ºÅÍÀÌ¸é.....
-        if (m_byWhatAttackType == 4 || m_byWhatAttackType == 5) { // Áö¿ª ¸¶¹ı »ç¿ë ¸ó½ºÅÍÀÌ¸é.....
+        //if(m_tNpcType == NPC_BOSS_MONSTER)    {        // ëŒ€ì¥ ëª¬ìŠ¤í„°ì´ë©´.....
+        if (m_byWhatAttackType == 4 || m_byWhatAttackType == 5) { // ì§€ì—­ ë§ˆë²• ì‚¬ìš© ëª¬ìŠ¤í„°ì´ë©´.....
             nRandom = myrand(1, 10000);
-            if (nRandom < nPercent) { // Áö¿ª¸¶¹ı°ø°İ...
+            if (nRandom < nPercent) { // ì§€ì—­ë§ˆë²•ê³µê²©...
                 memset(buff, 0x00, 256);
                 send_index = 0;
                 SetByte(buff, MAGIC_EFFECTING, send_index);
                 SetDWORD(buff, m_iMagic2, send_index); // Area Magic
                 SetShort(buff, m_sNid + NPC_BAND, send_index);
-                SetShort(buff, -1, send_index);             // tid´Â ¹İµå½Ã -1
+                SetShort(buff, -1, send_index);             // tidëŠ” ë°˜ë“œì‹œ -1
                 SetShort(buff, (short)m_fCurX, send_index); // terget point
                 SetShort(buff, (short)m_fCurY, send_index);
                 SetShort(buff, (short)m_fCurZ, send_index);
@@ -2905,16 +2905,16 @@ int CNpc::Attack(CIOCPort * pIOCP) {
 
                 m_MagicProcess.MagicPacket(buff, send_index, pIOCP);
                 //TRACE("++++ AreaMagicAttack --- sid=%d, magicid=%d\n", m_sNid+NPC_BAND, m_iMagic2);
-                return m_sAttackDelay + 1000; // Áö¿ª¸¶¹ıÀº Á¶±İ ½Ã°£ÀÌ °É¸®µµ·Ï.....
+                return m_sAttackDelay + 1000; // ì§€ì—­ë§ˆë²•ì€ ì¡°ê¸ˆ ì‹œê°„ì´ ê±¸ë¦¬ë„ë¡.....
             }
         } else {
-            if (m_byWhatAttackType == 2) { // µ¶ °ø°İÇÏ´Â ¸ó½ºÅÍ¶ó¸é... (10%ÀÇ °ø°İÀ¸·Î)
+            if (m_byWhatAttackType == 2) { // ë… ê³µê²©í•˜ëŠ” ëª¬ìŠ¤í„°ë¼ë©´... (10%ì˜ ê³µê²©ìœ¼ë¡œ)
                 nRandom = myrand(1, 10000);
 
-                // sungyong test ,, ¹«Á¶°Ç µ¶°ø°İ¸¸
+                // sungyong test ,, ë¬´ì¡°ê±´ ë…ê³µê²©ë§Œ
                 //nRandom = 100;
 
-                if (nRandom < nPercent) { // µ¶°ø°İ...
+                if (nRandom < nPercent) { // ë…ê³µê²©...
                     memset(buff, 0x00, 256);
                     send_index = 0;
                     SetByte(buff, AG_MAGIC_ATTACK_RESULT, send_index);
@@ -2938,8 +2938,8 @@ int CNpc::Attack(CIOCPort * pIOCP) {
             }
         }
 
-        // ¸íÁßÀÌ¸é //Damage Ã³¸® ----------------------------------------------------------------//
-        nDamage = GetFinalDamage(pUser); // ÃÖÁ¾ ´ë¹ÌÁö
+        // ëª…ì¤‘ì´ë©´ //Damage ì²˜ë¦¬ ----------------------------------------------------------------//
+        nDamage = GetFinalDamage(pUser); // ìµœì¢… ëŒ€ë¯¸ì§€
         if (m_pMain->m_byTestMode) {
             nDamage = 10; // sungyong test
         }
@@ -2955,17 +2955,17 @@ int CNpc::Attack(CIOCPort * pIOCP) {
             SendAttackSuccess(pIOCP, ATTACK_FAIL, pUser->m_iUserId, nDamage, pUser->m_sHP);
         }
 
-        // ¹æ¾îÃø ³»±¸µµ °¨¼Ò
+        // ë°©ì–´ì¸¡ ë‚´êµ¬ë„ ê°ì†Œ
     } else if (nID >= NPC_BAND && m_Target.id < INVALID_BAND) {
         pNpc = m_pMain->m_arNpc.GetData(nID - NPC_BAND);
 
-        if (pNpc == NULL) { // User °¡ Invalid ÇÑ °æ¿ì
+        if (pNpc == NULL) { // User ê°€ Invalid í•œ ê²½ìš°
             InitTarget();
             m_NpcState = NPC_STANDING;
             return nStandingTime;
         }
 
-        if (m_tNpcType == NPC_HEALER && pNpc->m_byGroup == m_byGroup) { // healerÀÌ¸é¼­ °°Àº±¹°¡ÀÇ NPCÀÎ°æ¿ì¿¡´Â Èú
+        if (m_tNpcType == NPC_HEALER && pNpc->m_byGroup == m_byGroup) { // healerì´ë©´ì„œ ê°™ì€êµ­ê°€ì˜ NPCì¸ê²½ìš°ì—ëŠ” í
             m_NpcState = NPC_HEALING;
             return 0;
         }
@@ -2977,7 +2977,7 @@ int CNpc::Attack(CIOCPort * pIOCP) {
             return nStandingTime;
         }
 
-        // Npc¿Í À¯Àú¿ÍÀÇ HP¸¦ ºñ±³ÇÏ¿©.. µµ¸ÁÀ» °¥ °ÍÀÎÁö¸¦ ÆÇ´Ü...
+        // Npcì™€ ìœ ì €ì™€ì˜ HPë¥¼ ë¹„êµí•˜ì—¬.. ë„ë§ì„ ê°ˆ ê²ƒì¸ì§€ë¥¼ íŒë‹¨...
         /*    if(IsCompStatus(pUser) == TRUE)    {
             m_NpcState = NPC_BACK;
             return 0;
@@ -2986,8 +2986,8 @@ int CNpc::Attack(CIOCPort * pIOCP) {
         // MoveAttack
         //MoveAttack(pIOCP);
 
-        // ¸íÁßÀÌ¸é //Damage Ã³¸® ----------------------------------------------------------------//
-        nDamage = GetNFinalDamage(pNpc); // ÃÖÁ¾ ´ë¹ÌÁö
+        // ëª…ì¤‘ì´ë©´ //Damage ì²˜ë¦¬ ----------------------------------------------------------------//
+        nDamage = GetNFinalDamage(pNpc); // ìµœì¢… ëŒ€ë¯¸ì§€
 
         if (pUser) {
             //TRACE("Npc-Attack() : [mon: x=%.2f, z=%.2f], [user : x=%.2f, z=%.2f]\n", m_fCurX, m_fCurZ, pUser->m_curx, pUser->m_curz);
@@ -3021,15 +3021,15 @@ int CNpc::LongAndMagicAttack(CIOCPort * pIOCP) {
     if (ret == 0) {
         m_sStepCount = 0;
         m_byActionFlag = ATTACK_TO_TRACE;
-        m_NpcState = NPC_TRACING; // °ø°İÇÏ°í µµ¸Á°¡´Â À¯Àú¸¦ µû¶ó Àâ±âÀ§ÇØ(¹İÀÀÀ» Á»´õ ºü¸£°Ô)
-        return 0;                 // IsCloseTarget()¿¡ À¯Àú x, y°ªÀ» °»½ÅÇÏ°í Delay = 0À¸·Î ÁÜ
+        m_NpcState = NPC_TRACING; // ê³µê²©í•˜ê³  ë„ë§ê°€ëŠ” ìœ ì €ë¥¼ ë”°ë¼ ì¡ê¸°ìœ„í•´(ë°˜ì‘ì„ ì¢€ë” ë¹ ë¥´ê²Œ)
+        return 0;                 // IsCloseTarget()ì— ìœ ì € x, yê°’ì„ ê°±ì‹ í•˜ê³  Delay = 0ìœ¼ë¡œ ì¤Œ
     } else if (ret == 2) {
-        //if(m_tNpcType != NPC_BOSS_MONSTER)    {        // ´ëÀå ¸ó½ºÅÍÀÌ¸é.....
-        if (m_tNpcLongType == 1) { // Àå°Å¸® ¸ó½ºÅÍÀÌ¸é.....
+        //if(m_tNpcType != NPC_BOSS_MONSTER)    {        // ëŒ€ì¥ ëª¬ìŠ¤í„°ì´ë©´.....
+        if (m_tNpcLongType == 1) { // ì¥ê±°ë¦¬ ëª¬ìŠ¤í„°ì´ë©´.....
             m_sStepCount = 0;
             m_byActionFlag = ATTACK_TO_TRACE;
-            m_NpcState = NPC_TRACING; // °ø°İÇÏ°í µµ¸Á°¡´Â À¯Àú¸¦ µû¶ó Àâ±âÀ§ÇØ(¹İÀÀÀ» Á»´õ ºü¸£°Ô)
-            return 0;                 // IsCloseTarget()¿¡ À¯Àú x, y°ªÀ» °»½ÅÇÏ°í Delay = 0À¸·Î ÁÜ
+            m_NpcState = NPC_TRACING; // ê³µê²©í•˜ê³  ë„ë§ê°€ëŠ” ìœ ì €ë¥¼ ë”°ë¼ ì¡ê¸°ìœ„í•´(ë°˜ì‘ì„ ì¢€ë” ë¹ ë¥´ê²Œ)
+            return 0;                 // IsCloseTarget()ì— ìœ ì € x, yê°’ì„ ê°±ì‹ í•˜ê³  Delay = 0ìœ¼ë¡œ ì¤Œ
         }
     }
     if (ret == -1) {
@@ -3041,19 +3041,19 @@ int CNpc::LongAndMagicAttack(CIOCPort * pIOCP) {
     CNpc *  pNpc = NULL;
     CUser * pUser = NULL;
     int     nDamage = 0;
-    int     nID = m_Target.id; // Target À» ±¸ÇÑ´Ù.
+    int     nID = m_Target.id; // Target ì„ êµ¬í•œë‹¤.
 
-    // È¸ÇÇ°ª/¸íÁßÆÇÁ¤/µ¥¹ÌÁö °è»ê -----------------------------------------//
-    if (nID >= USER_BAND && nID < NPC_BAND) { // Target ÀÌ User ÀÎ °æ¿ì
+    // íšŒí”¼ê°’/ëª…ì¤‘íŒì •/ë°ë¯¸ì§€ ê³„ì‚° -----------------------------------------//
+    if (nID >= USER_BAND && nID < NPC_BAND) { // Target ì´ User ì¸ ê²½ìš°
         pUser = m_pMain->GetUserPtr(nID - USER_BAND);
 
-        if (pUser == NULL) { // User °¡ Invalid ÇÑ °æ¿ì
+        if (pUser == NULL) { // User ê°€ Invalid í•œ ê²½ìš°
             InitTarget();
             m_NpcState = NPC_STANDING;
             return nStandingTime;
         }
 
-        if (pUser->m_bLive == USER_DEAD) { // User °¡ ÀÌ¹Ì Á×Àº°æ¿ì
+        if (pUser->m_bLive == USER_DEAD) { // User ê°€ ì´ë¯¸ ì£½ì€ê²½ìš°
             SendAttackSuccess(pIOCP, ATTACK_TARGET_DEAD_OK, pUser->m_iUserId, 0, 0);
             InitTarget();
             m_NpcState = NPC_STANDING;
@@ -3066,12 +3066,12 @@ int CNpc::LongAndMagicAttack(CIOCPort * pIOCP) {
             return nStandingTime;
         }
 
-        if (pUser->m_byIsOP == MANAGER_USER) { // ¿î¿µÀÚ´Â °ø°İÀ» ¾ÈÇÏ°Ô..
+        if (pUser->m_byIsOP == MANAGER_USER) { // ìš´ì˜ìëŠ” ê³µê²©ì„ ì•ˆí•˜ê²Œ..
             InitTarget();
             m_NpcState = NPC_MOVING;
             return nStandingTime;
         }
-        // Npc¿Í À¯Àú¿ÍÀÇ HP¸¦ ºñ±³ÇÏ¿©.. µµ¸ÁÀ» °¥ °ÍÀÎÁö¸¦ ÆÇ´Ü...
+        // Npcì™€ ìœ ì €ì™€ì˜ HPë¥¼ ë¹„êµí•˜ì—¬.. ë„ë§ì„ ê°ˆ ê²ƒì¸ì§€ë¥¼ íŒë‹¨...
         /*    if(m_byNpcEndAttType)
         {
             if(IsCompStatus(pUser) == TRUE)
@@ -3081,7 +3081,7 @@ int CNpc::LongAndMagicAttack(CIOCPort * pIOCP) {
             }    
         }    */
 
-        // Á¶°ÇÀ» ÆÇ´ÜÇØ¼­ ¸¶¹ı °ø°İ »ç¿ë (Áö±İÀº ¸¶¹ı 1¸¸ »ç¿ëÅä·Ï ÇÏÀÚ)
+        // ì¡°ê±´ì„ íŒë‹¨í•´ì„œ ë§ˆë²• ê³µê²© ì‚¬ìš© (ì§€ê¸ˆì€ ë§ˆë²• 1ë§Œ ì‚¬ìš©í† ë¡ í•˜ì)
         SetByte(buff, MAGIC_CASTING, send_index);
         SetDWORD(buff, m_iMagic1, send_index); // FireBall
         SetShort(buff, m_sNid + NPC_BAND, send_index);
@@ -3100,7 +3100,7 @@ int CNpc::LongAndMagicAttack(CIOCPort * pIOCP) {
         pNpc = m_pMain->m_arNpc.GetData(nID - NPC_BAND);
         //pNpc = m_pMain->m_arNpc[nID - NPC_BAND];
 
-        if (pNpc == NULL) { // User °¡ Invalid ÇÑ °æ¿ì
+        if (pNpc == NULL) { // User ê°€ Invalid í•œ ê²½ìš°
             InitTarget();
             m_NpcState = NPC_STANDING;
             return nStandingTime;
@@ -3113,7 +3113,7 @@ int CNpc::LongAndMagicAttack(CIOCPort * pIOCP) {
             return nStandingTime;
         }
 
-        // Npc¿Í À¯Àú¿ÍÀÇ HP¸¦ ºñ±³ÇÏ¿©.. µµ¸ÁÀ» °¥ °ÍÀÎÁö¸¦ ÆÇ´Ü...
+        // Npcì™€ ìœ ì €ì™€ì˜ HPë¥¼ ë¹„êµí•˜ì—¬.. ë„ë§ì„ ê°ˆ ê²ƒì¸ì§€ë¥¼ íŒë‹¨...
         /*    if(IsCompStatus(pUser) == TRUE)
         {
             m_NpcState = NPC_BACK;
@@ -3142,15 +3142,15 @@ int CNpc::TracingAttack(CIOCPort * pIOCP) // 0:attack fail, 1:attack success
 
     int nDamage = 0;
 
-    int nID = m_Target.id; // Target À» ±¸ÇÑ´Ù.
+    int nID = m_Target.id; // Target ì„ êµ¬í•œë‹¤.
 
-    // È¸ÇÇ°ª/¸íÁßÆÇÁ¤/µ¥¹ÌÁö °è»ê -----------------------------------------//
-    if (nID >= USER_BAND && nID < NPC_BAND) { // Target ÀÌ User ÀÎ °æ¿ì
+    // íšŒí”¼ê°’/ëª…ì¤‘íŒì •/ë°ë¯¸ì§€ ê³„ì‚° -----------------------------------------//
+    if (nID >= USER_BAND && nID < NPC_BAND) { // Target ì´ User ì¸ ê²½ìš°
         pUser = m_pMain->GetUserPtr(nID - USER_BAND);
         if (pUser == NULL) {
-            return 0; // User °¡ Invalid ÇÑ °æ¿ì
+            return 0; // User ê°€ Invalid í•œ ê²½ìš°
         }
-        if (pUser->m_bLive == USER_DEAD) { // User °¡ ÀÌ¹Ì Á×Àº°æ¿ì
+        if (pUser->m_bLive == USER_DEAD) { // User ê°€ ì´ë¯¸ ì£½ì€ê²½ìš°
             SendAttackSuccess(pIOCP, ATTACK_TARGET_DEAD_OK, pUser->m_iUserId, 0, 0);
             return 0;
         }
@@ -3158,11 +3158,11 @@ int CNpc::TracingAttack(CIOCPort * pIOCP) // 0:attack fail, 1:attack success
             return 0;
         }
         if (pUser->m_byIsOP == MANAGER_USER) {
-            return 0; // ¿î¿µÀÚ´Â °ø°İÀ» ¾ÈÇÏ°Ô..
+            return 0; // ìš´ì˜ìëŠ” ê³µê²©ì„ ì•ˆí•˜ê²Œ..
         }
 
-        // ¸íÁßÀÌ¸é //Damage Ã³¸® ----------------------------------------------------------------//
-        nDamage = GetFinalDamage(pUser); // ÃÖÁ¾ ´ë¹ÌÁö
+        // ëª…ì¤‘ì´ë©´ //Damage ì²˜ë¦¬ ----------------------------------------------------------------//
+        nDamage = GetFinalDamage(pUser); // ìµœì¢… ëŒ€ë¯¸ì§€
         if (m_pMain->m_byTestMode) {
             nDamage = 1; // sungyong test
         }
@@ -3177,12 +3177,12 @@ int CNpc::TracingAttack(CIOCPort * pIOCP) // 0:attack fail, 1:attack success
             SendAttackSuccess(pIOCP, ATTACK_FAIL, pUser->m_iUserId, nDamage, pUser->m_sHP);
         }
 
-        // ¹æ¾îÃø ³»±¸µµ °¨¼Ò
+        // ë°©ì–´ì¸¡ ë‚´êµ¬ë„ ê°ì†Œ
     } else if (nID >= NPC_BAND && m_Target.id < INVALID_BAND) {
         pNpc = m_pMain->m_arNpc.GetData(nID - NPC_BAND);
 
         if (pNpc == NULL) {
-            return 0; // User °¡ Invalid ÇÑ °æ¿ì
+            return 0; // User ê°€ Invalid í•œ ê²½ìš°
         }
 
         if (pNpc->m_iHP <= 0 || pNpc->m_NpcState == NPC_DEAD) {
@@ -3190,8 +3190,8 @@ int CNpc::TracingAttack(CIOCPort * pIOCP) // 0:attack fail, 1:attack success
             return 0;
         }
 
-        // ¸íÁßÀÌ¸é //Damage Ã³¸® ----------------------------------------------------------------//
-        nDamage = GetNFinalDamage(pNpc); // ÃÖÁ¾ ´ë¹ÌÁö
+        // ëª…ì¤‘ì´ë©´ //Damage ì²˜ë¦¬ ----------------------------------------------------------------//
+        nDamage = GetNFinalDamage(pNpc); // ìµœì¢… ëŒ€ë¯¸ì§€
         //TRACE("Npc-Attack() : [mon: x=%.2f, z=%.2f], [user : x=%.2f, z=%.2f]\n", m_fCurX, m_fCurZ, pUser->m_curx, pUser->m_curz);
 
         if (nDamage > 0) {
@@ -3231,7 +3231,7 @@ void CNpc::MoveAttack(CIOCPort * pIOCP) {
     float surround_fx[8] = {0.0f, -1.4142f, -2.0f, -1.4167f, 0.0f, 1.4117f, 2.0000f, 1.4167f};
     float surround_fz[8] = {2.0f, 1.4142f, 0.0f, -1.4167f, -2.0f, -1.4167f, -0.0035f, 1.4117f};
 
-    if (m_Target.id >= USER_BAND && m_Target.id < NPC_BAND) // Target ÀÌ User ÀÎ °æ¿ì
+    if (m_Target.id >= USER_BAND && m_Target.id < NPC_BAND) // Target ì´ User ì¸ ê²½ìš°
     {
         pUser = m_pMain->GetUserPtr(m_Target.id - USER_BAND);
         if (pUser == NULL) {
@@ -3252,7 +3252,7 @@ void CNpc::MoveAttack(CIOCPort * pIOCP) {
             fZ = vEnd22.z;
             //TRACE("MoveAttack 22 - nid(%s, %d), fx=%.2f, fz=%.2f, attackpos=%d\n", m_strName, m_sNid+NPC_BAND, fX, fZ, m_byAttackPos);
         }
-    } else if (m_Target.id >= NPC_BAND && m_Target.id < INVALID_BAND) // Target ÀÌ mon ÀÎ °æ¿ì
+    } else if (m_Target.id >= NPC_BAND && m_Target.id < INVALID_BAND) // Target ì´ mon ì¸ ê²½ìš°
     {
         pNpc = m_pMain->m_arNpc.GetData(m_Target.id - NPC_BAND);
         //pNpc = m_pMain->m_arNpc[m_Target.id - NPC_BAND];
@@ -3271,15 +3271,15 @@ void CNpc::MoveAttack(CIOCPort * pIOCP) {
     fDis = vDistance.Magnitude();
 
     if ((int)fDis < 3) {
-        return; // target°úÀÇ °Å¸®°¡ 3¹ÌÅÍ ¹Ì¸¸ÀÌ¸é ¸ØÃá»óÅÂ¿¡¼­ °ø°İÀÌ°í..
+        return; // targetê³¼ì˜ ê±°ë¦¬ê°€ 3ë¯¸í„° ë¯¸ë§Œì´ë©´ ë©ˆì¶˜ìƒíƒœì—ì„œ ê³µê²©ì´ê³ ..
     }
-    /*    if(m_tNpcLongType)        // Àå°Å¸® °ø°İÀÌ °¡´ÉÇÑ°ÍÀº °ø°İ°Å¸®·Î ÆÇ´Ü..
+    /*    if(m_tNpcLongType)        // ì¥ê±°ë¦¬ ê³µê²©ì´ ê°€ëŠ¥í•œê²ƒì€ ê³µê²©ê±°ë¦¬ë¡œ íŒë‹¨..
     {
         if((int)fDis > nRange) return FALSE; 
     }    
-    else                    // ´Ü°Å¸®(Á÷Á¢°ø°İ)
+    else                    // ë‹¨ê±°ë¦¬(ì§ì ‘ê³µê²©)
     {
-        if(fDis > 2.5) return FALSE;            // ÀÛ¾÷ :°ø°İ°¡´É°Å¸®¸¦ 2.5·Î ÀÓ½Ã ¼öÁ¤ÇÔ..
+        if(fDis > 2.5) return FALSE;            // ì‘ì—… :ê³µê²©ê°€ëŠ¥ê±°ë¦¬ë¥¼ 2.5ë¡œ ì„ì‹œ ìˆ˜ì •í•¨..
     }    */
 
     vDistance = vEnd22 - vNpc;
@@ -3291,7 +3291,7 @@ void CNpc::MoveAttack(CIOCPort * pIOCP) {
         TRACE("Npc-MoveAttack : nid=(%d, %s), x=%.2f, z=%.2f\n", m_sNid + NPC_BAND, m_strName, m_fCurX, m_fCurZ);
     }
 
-    // ÀÌµ¿°ø°İ..
+    // ì´ë™ê³µê²©..
     ::ZeroMemory(pBuf, 1024);
     index = 0;
     SetByte(pBuf, MOVE_RESULT, index);
@@ -3302,9 +3302,9 @@ void CNpc::MoveAttack(CIOCPort * pIOCP) {
     Setfloat(pBuf, m_fCurY, index);
     Setfloat(pBuf, fDis, index);
     //TRACE("Npc moveattack --> nid = %d, cur=[x=%.2f, y=%.2f, metor=%.2f]\n", m_sNid+NPC_BAND, m_fCurX, m_fCurZ, fDis);
-    SendAll(pIOCP, pBuf, index); // thread ¿¡¼­ send
+    SendAll(pIOCP, pBuf, index); // thread ì—ì„œ send
 
-    // ÀÌµ¿ ³¡
+    // ì´ë™ ë
     ::ZeroMemory(pBuf, 1024);
     index = 0;
     SetByte(pBuf, MOVE_RESULT, index);
@@ -3315,11 +3315,11 @@ void CNpc::MoveAttack(CIOCPort * pIOCP) {
     Setfloat(pBuf, m_fCurY, index);
     Setfloat(pBuf, 0, index);
     //TRACE("Npc moveattack end --> nid = %d, cur=[x=%.2f, y=%.2f, metor=%d]\n", m_sNid+NPC_BAND, m_fCurX, m_fCurZ, 0);
-    SendAll(pIOCP, pBuf, index); // thread ¿¡¼­ send
+    SendAll(pIOCP, pBuf, index); // thread ì—ì„œ send
 
     SetUid(m_fCurX, m_fCurZ, m_sNid + NPC_BAND);
 
-    /* Å¸°ÙÀÇ ÁÂÇ¥¸¦ ÃÖ½Å °ÍÀ¸·Î ¼öÁ¤ÇÏ°í, ¸¶Áö¸· Æ÷ÀÎÅÍ ÁÂÇ¥¸¦ ¼öÁ¤ÇÑ´Ù,, */
+    /* íƒ€ê²Ÿì˜ ì¢Œí‘œë¥¼ ìµœì‹  ê²ƒìœ¼ë¡œ ìˆ˜ì •í•˜ê³ , ë§ˆì§€ë§‰ í¬ì¸í„° ì¢Œí‘œë¥¼ ìˆ˜ì •í•œë‹¤,, */
     m_fEndPoint_X = m_fCurX;
     m_fEndPoint_Y = m_fCurZ;
 
@@ -3340,19 +3340,19 @@ int CNpc::GetNFinalDamage(CNpc * pNpc) {
         return damage;
     }
 
-    // °ø°İ¹ÎÃ¸
+    // ê³µê²©ë¯¼ì²©
     Attack = (float)m_sHitRate;
 
-    // ¹æ¾î¹ÎÃ¸
+    // ë°©ì–´ë¯¼ì²©
     Avoid = (float)pNpc->m_sEvadeRate;
 
-    //°ø°İÀÚ Hit
+    //ê³µê²©ì Hit
     Hit = m_sDamage;
 
-    // ¹æ¾îÀÚ Ac
+    // ë°©ì–´ì Ac
     Ac = (short)pNpc->m_sDefense;
 
-    // Å¸°İºñ ±¸ÇÏ±â
+    // íƒ€ê²©ë¹„ êµ¬í•˜ê¸°
     result = GetHitRate(Attack / Avoid);
 
     switch (result) {
@@ -3408,9 +3408,9 @@ BOOL CNpc::IsCompStatus(CUser * pUser) {
     return FALSE;
 }
 
-//    Target ÀÇ À§Ä¡°¡ ´Ù½Ã ±æÃ£±â¸¦ ÇÒ Á¤µµ·Î º¯Çß´ÂÁö ÆÇ´Ü
+//    Target ì˜ ìœ„ì¹˜ê°€ ë‹¤ì‹œ ê¸¸ì°¾ê¸°ë¥¼ í•  ì •ë„ë¡œ ë³€í–ˆëŠ”ì§€ íŒë‹¨
 BOOL CNpc::IsChangePath(int nStep) {
-    // ÆĞ½ºÆÄÀÎµåÀÇ ¸¶Áö¸· ÁÂÇ¥¸¦ °¡Áö°í,, TargetÀÌ ³» °ø°İ°Å¸®¿¡ ÀÖ´ÂÁö¸¦ ÆÇ´Ü,,
+    // íŒ¨ìŠ¤íŒŒì¸ë“œì˜ ë§ˆì§€ë§‰ ì¢Œí‘œë¥¼ ê°€ì§€ê³ ,, Targetì´ ë‚´ ê³µê²©ê±°ë¦¬ì— ìˆëŠ”ì§€ë¥¼ íŒë‹¨,,
     //    if(!m_pPath) return TRUE;
 
     float fCurX = 0.0f, fCurZ = 0.0f;
@@ -3429,14 +3429,14 @@ BOOL CNpc::IsChangePath(int nStep) {
         return FALSE;
     }
 
-    //TRACE("#### IsChangePath() - [¸ó - cur:x=%.2f, z=%.2f, ¸ñÇ¥Á¡:x=%.2f, z=%.2f], [target : x=%.2f, z=%.2f]\n",
+    //TRACE("#### IsChangePath() - [ëª¬ - cur:x=%.2f, z=%.2f, ëª©í‘œì :x=%.2f, z=%.2f], [target : x=%.2f, z=%.2f]\n",
     //     m_fCurX, m_fCurZ, m_fEndPoint_X, m_fEndPoint_Y, fCurX, fCurZ);
     return TRUE;
 }
 
-//    Target ÀÇ ÇöÀç À§Ä¡¸¦ ¾ò´Â´Ù.
+//    Target ì˜ í˜„ì¬ ìœ„ì¹˜ë¥¼ ì–»ëŠ”ë‹¤.
 BOOL CNpc::GetTargetPos(float & x, float & z) {
-    if (m_Target.id >= USER_BAND && m_Target.id < NPC_BAND) // Target ÀÌ User ÀÎ °æ¿ì
+    if (m_Target.id >= USER_BAND && m_Target.id < NPC_BAND) // Target ì´ User ì¸ ê²½ìš°
     {
         CUser * pUser = m_pMain->GetUserPtr(m_Target.id - USER_BAND);
 
@@ -3460,7 +3460,7 @@ BOOL CNpc::GetTargetPos(float & x, float & z) {
     return TRUE;
 }
 
-//    Target °ú NPC °£¿¡ ±æÃ£±â¸¦ ´Ù½ÃÇÑ´Ù.
+//    Target ê³¼ NPC ê°„ì— ê¸¸ì°¾ê¸°ë¥¼ ë‹¤ì‹œí•œë‹¤.
 BOOL CNpc::ResetPath() {
     float cur_x, cur_z;
     GetTargetPos(cur_x, cur_z);
@@ -3471,13 +3471,13 @@ BOOL CNpc::ResetPath() {
     m_Target.z = cur_z;
 
     int nValue = GetTargetPath();
-    if (nValue == -1) // Å¸°ÙÀÌ ¾ø¾îÁö°Å³ª,, ¸Ö¾îÁ³À½À¸·Î...
+    if (nValue == -1) // íƒ€ê²Ÿì´ ì—†ì–´ì§€ê±°ë‚˜,, ë©€ì–´ì¡ŒìŒìœ¼ë¡œ...
     {
         TRACE("Npc-ResetPath Fail - target_x = %.2f, z=%.2f, value=%d\n", m_Target.x, m_Target.z, nValue);
         return FALSE;
-    } else if (nValue == 0) // Å¸°Ù ¹æÇâÀ¸·Î ¹Ù·Î °£´Ù..
+    } else if (nValue == 0) // íƒ€ê²Ÿ ë°©í–¥ìœ¼ë¡œ ë°”ë¡œ ê°„ë‹¤..
     {
-        m_fSecForMetor = m_fSpeed_2; // °ø°İÀÏ¶§´Â ¶Ù´Â ¼Óµµ·Î...
+        m_fSecForMetor = m_fSpeed_2; // ê³µê²©ì¼ë•ŒëŠ” ë›°ëŠ” ì†ë„ë¡œ...
         IsNoPathFind(m_fSecForMetor);
     }
 
@@ -3500,13 +3500,13 @@ int CNpc::GetFinalDamage(CUser * pUser, int type) {
         return damage;
     }
 
-    Attack = (float)m_sHitRate;         // °ø°İ¹ÎÃ¸
-    Avoid = (float)pUser->m_fAvoidrate; // ¹æ¾î¹ÎÃ¸
-    Hit = m_sDamage;                    // °ø°İÀÚ Hit
-                                        //    Ac = (short)pUser->m_sAC ;    // ¹æ¾îÀÚ Ac
+    Attack = (float)m_sHitRate;         // ê³µê²©ë¯¼ì²©
+    Avoid = (float)pUser->m_fAvoidrate; // ë°©ì–´ë¯¼ì²©
+    Hit = m_sDamage;                    // ê³µê²©ì Hit
+                                        //    Ac = (short)pUser->m_sAC ;    // ë°©ì–´ì Ac
 
-    //    Ac = (short)pUser->m_sItemAC + (short)pUser->m_sLevel ;    // ¹æ¾îÀÚ Ac
-    //    Ac = (short)pUser->m_sAC - (short)pUser->m_sLevel ;    // ¹æ¾îÀÚ Ac. À×...¼º·¡¾¾ ¹Ì¿ö ¤Ì.¤Ì
+    //    Ac = (short)pUser->m_sItemAC + (short)pUser->m_sLevel ;    // ë°©ì–´ì Ac
+    //    Ac = (short)pUser->m_sAC - (short)pUser->m_sLevel ;    // ë°©ì–´ì Ac. ì‰...ì„±ë˜ì”¨ ë¯¸ì›Œ ã…œ.ã…œ
     Ac = (short)pUser->m_sItemAC + (short)pUser->m_sLevel + (short)(pUser->m_sAC - pUser->m_sLevel - pUser->m_sItemAC);
 
     //    ASSERT(Ac != 0);
@@ -3518,7 +3518,7 @@ int CNpc::GetFinalDamage(CUser * pUser, int type) {
 
     int nMaxDamage = (int)(2.6 * m_sDamage);
 
-    // Å¸°İºñ ±¸ÇÏ±â
+    // íƒ€ê²©ë¹„ êµ¬í•˜ê¸°
     result = GetHitRate(Attack / Avoid);
 
     //    TRACE("Hitrate : %d     %f/%f\n", result, Attack, Avoid);
@@ -3635,7 +3635,7 @@ int CNpc::GetFinalDamage(CUser * pUser, int type) {
     //return 1;
 }
 
-//    ³ª¸¦ °ø°İÇÑ À¯Àú¸¦ Å¸°ÙÀ¸·Î »ï´Â´Ù.(±âÁØ : ·¾°ú HP¸¦ ±âÁØÀ¸·Î ¼±Á¤)
+//    ë‚˜ë¥¼ ê³µê²©í•œ ìœ ì €ë¥¼ íƒ€ê²Ÿìœ¼ë¡œ ì‚¼ëŠ”ë‹¤.(ê¸°ì¤€ : ë ™ê³¼ HPë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì„ ì •)
 void CNpc::ChangeTarget(int nAttackType, CUser * pUser, CIOCPort * pIOCP) {
     int       preDamage, lastDamage;
     __Vector3 vUser, vNpc;
@@ -3649,18 +3649,18 @@ void CNpc::ChangeTarget(int nAttackType, CUser * pUser, CIOCPort * pIOCP) {
         return;
     }
     if (pUser->m_bNation == m_byGroup) {
-        return; // °°Àº ±¹°¡´Â °ø°İÀ» ¾ÈÇÏµµ·Ï...
+        return; // ê°™ì€ êµ­ê°€ëŠ” ê³µê²©ì„ ì•ˆí•˜ë„ë¡...
     }
     if (pUser->m_byIsOP == MANAGER_USER) {
-        return; // ¿î¿µÀÚ´Â ¹«½Ã...^^
+        return; // ìš´ì˜ìëŠ” ë¬´ì‹œ...^^
     }
     if (m_tNpcType == NPC_DOOR || m_tNpcType == NPC_ARTIFACT || m_tNpcType == NPC_PHOENIX_GATE ||
         m_tNpcType == NPC_GATE_LEVER || m_tNpcType == NPC_DOMESTIC_ANIMAL || m_tNpcType == NPC_SPECIAL_GATE ||
         m_tNpcType == NPC_DESTORY_ARTIFACT) {
-        return; // ¼º¹® NPC´Â °ø°İÃ³¸® ¾ÈÇÏ°Ô
+        return; // ì„±ë¬¸ NPCëŠ” ê³µê²©ì²˜ë¦¬ ì•ˆí•˜ê²Œ
     }
     if (m_NpcState == NPC_FAINTING) {
-        return; // ±âÀı»óÅÂÀÌ¸é ¹«½Ã..
+        return; // ê¸°ì ˆìƒíƒœì´ë©´ ë¬´ì‹œ..
     }
 
     CUser * preUser = NULL;
@@ -3669,7 +3669,7 @@ void CNpc::ChangeTarget(int nAttackType, CUser * pUser, CIOCPort * pIOCP) {
     }
 
     if (pUser == preUser) {
-        if (m_tNpcGroupType) { // °¡Á·Å¸ÀÔÀÌ¸é ½Ã¾ß¾È¿¡ °°Àº Å¸ÀÔ¿¡°Ô ¸ñÇ¥ ÁöÁ¤
+        if (m_tNpcGroupType) { // ê°€ì¡±íƒ€ì…ì´ë©´ ì‹œì•¼ì•ˆì— ê°™ì€ íƒ€ì…ì—ê²Œ ëª©í‘œ ì§€ì •
             m_Target.failCount = 0;
             if (m_tNpcType == NPC_BOSS_MONSTER) {
                 FindFriend(1);
@@ -3688,14 +3688,14 @@ void CNpc::ChangeTarget(int nAttackType, CUser * pUser, CIOCPort * pIOCP) {
         preDamage = 0;
         lastDamage = 0;
 
-        if (iRandom >= 0 && iRandom < 50) { // ¸ó½ºÅÍ ÀÚ½ÅÀ» °¡Àå °­ÇÏ°Ô Å¸°İÇÑ À¯Àú
+        if (iRandom >= 0 && iRandom < 50) { // ëª¬ìŠ¤í„° ìì‹ ì„ ê°€ì¥ ê°•í•˜ê²Œ íƒ€ê²©í•œ ìœ ì €
             preDamage = preUser->GetDamage(m_sNid + NPC_BAND);
             lastDamage = pUser->GetDamage(m_sNid + NPC_BAND);
             //TRACE("Npc-changeTarget 111 - iRandom=%d, pre=%d, last=%d\n", iRandom, preDamage, lastDamage);
             if (preDamage > lastDamage) {
                 return;
             }
-        } else if (iRandom >= 50 && iRandom < 80) { // °¡Àå °¡±î¿î ÇÃ·¹ÀÌ¾î
+        } else if (iRandom >= 50 && iRandom < 80) { // ê°€ì¥ ê°€ê¹Œìš´ í”Œë ˆì´ì–´
             vNpc.Set(m_fCurX, m_fCurY, m_fCurZ);
             vUser.Set(preUser->m_curx, 0, preUser->m_curz);
             fDistance1 = GetDistance(vNpc, vUser);
@@ -3706,7 +3706,7 @@ void CNpc::ChangeTarget(int nAttackType, CUser * pUser, CIOCPort * pIOCP) {
                 return;
             }
         }
-        if (iRandom >= 80 && iRandom < 95) { // ¸ó½ºÅÍ°¡ À¯Àú¿¡°Ô °¡Àå ¸¹ÀÌ Å¸°İÀ» ÁÙ ¼ö ÀÖ´Â À¯Àú
+        if (iRandom >= 80 && iRandom < 95) { // ëª¬ìŠ¤í„°ê°€ ìœ ì €ì—ê²Œ ê°€ì¥ ë§ì´ íƒ€ê²©ì„ ì¤„ ìˆ˜ ìˆëŠ” ìœ ì €
             preDamage = GetFinalDamage(preUser, 0);
             lastDamage = GetFinalDamage(pUser, 0);
             //TRACE("Npc-changeTarget 333 - iRandom=%d, pre=%d, last=%d\n", iRandom, preDamage, lastDamage);
@@ -3714,10 +3714,10 @@ void CNpc::ChangeTarget(int nAttackType, CUser * pUser, CIOCPort * pIOCP) {
                 return;
             }
         }
-        if (iRandom >= 95 && iRandom < 101) { // Heal MagicÀ» »ç¿ëÇÑ À¯Àú
+        if (iRandom >= 95 && iRandom < 101) { // Heal Magicì„ ì‚¬ìš©í•œ ìœ ì €
         }
     } else if (preUser == NULL && nAttackType == 1004) {
-        return; // Heal magic¿¡ ¹İÀÀÇÏÁö ¾Êµµ·Ï..
+        return; // Heal magicì— ë°˜ì‘í•˜ì§€ ì•Šë„ë¡..
     }
 
     m_Target.id = pUser->m_iUserId + USER_BAND;
@@ -3728,17 +3728,17 @@ void CNpc::ChangeTarget(int nAttackType, CUser * pUser, CIOCPort * pIOCP) {
     //TRACE("Npc-changeTarget - target_x = %.2f, z=%.2f\n", m_Target.x, m_Target.z);
 
     int nValue = 0;
-    // ¾î½½·· °Å¸®´Âµ¥ °ø°İÇÏ¸é ¹Ù·Î ¹İ°İ
+    // ì–´ìŠ¬ë  ê±°ë¦¬ëŠ”ë° ê³µê²©í•˜ë©´ ë°”ë¡œ ë°˜ê²©
     if (m_NpcState == NPC_STANDING || m_NpcState == NPC_MOVING ||
-        m_NpcState == NPC_SLEEPING) { // °¡±îÀÌ ÀÖÀ¸¸é ¹İ°İÀ¸·Î ÀÌ¾îÁö±¸
+        m_NpcState == NPC_SLEEPING) { // ê°€ê¹Œì´ ìˆìœ¼ë©´ ë°˜ê²©ìœ¼ë¡œ ì´ì–´ì§€êµ¬
         if (IsCloseTarget(pUser, m_byAttackRange) == TRUE) {
             m_NpcState = NPC_FIGHTING;
             m_Delay = 0;
             m_fDelayTime = TimeGet();
-        } else // ¹Ù·Î µµ¸Á°¡¸é ÁÂÇ¥¸¦ °»½ÅÇÏ°í ÃßÀû
+        } else // ë°”ë¡œ ë„ë§ê°€ë©´ ì¢Œí‘œë¥¼ ê°±ì‹ í•˜ê³  ì¶”ì 
         {
             nValue = GetTargetPath(1);
-            if (nValue == 1) // ¹İ°İ µ¿ÀÛÈÄ ¾à°£ÀÇ µô·¹ÀÌ ½Ã°£ÀÌ ÀÖÀ½
+            if (nValue == 1) // ë°˜ê²© ë™ì‘í›„ ì•½ê°„ì˜ ë”œë ˆì´ ì‹œê°„ì´ ìˆìŒ
             {
                 m_NpcState = NPC_TRACING;
                 m_Delay = 0;
@@ -3748,7 +3748,7 @@ void CNpc::ChangeTarget(int nAttackType, CUser * pUser, CIOCPort * pIOCP) {
                 m_Delay = 0;
                 m_fDelayTime = TimeGet();
             } else if (nValue == 0) {
-                m_fSecForMetor = m_fSpeed_2; // °ø°İÀÏ¶§´Â ¶Ù´Â ¼Óµµ·Î...
+                m_fSecForMetor = m_fSpeed_2; // ê³µê²©ì¼ë•ŒëŠ” ë›°ëŠ” ì†ë„ë¡œ...
                 IsNoPathFind(m_fSecForMetor);
                 m_NpcState = NPC_TRACING;
                 m_Delay = 0;
@@ -3756,9 +3756,9 @@ void CNpc::ChangeTarget(int nAttackType, CUser * pUser, CIOCPort * pIOCP) {
             }
         }
     }
-    //    else m_NpcState = NPC_ATTACKING;    // ÇÑÂü °ø°İÇÏ´Âµ¥ ´©°¡ ¹æÇØÇÏ¸é ¸ñÇ¥¸¦ ¹Ù²Ş
+    //    else m_NpcState = NPC_ATTACKING;    // í•œì°¸ ê³µê²©í•˜ëŠ”ë° ëˆ„ê°€ ë°©í•´í•˜ë©´ ëª©í‘œë¥¼ ë°”ê¿ˆ
 
-    if (m_tNpcGroupType) { // °¡Á·Å¸ÀÔÀÌ¸é ½Ã¾ß¾È¿¡ °°Àº Å¸ÀÔ¿¡°Ô ¸ñÇ¥ ÁöÁ¤
+    if (m_tNpcGroupType) { // ê°€ì¡±íƒ€ì…ì´ë©´ ì‹œì•¼ì•ˆì— ê°™ì€ íƒ€ì…ì—ê²Œ ëª©í‘œ ì§€ì •
         m_Target.failCount = 0;
         if (m_tNpcType == NPC_BOSS_MONSTER) {
             FindFriend(1);
@@ -3773,7 +3773,7 @@ void CNpc::ChangeTarget(int nAttackType, CUser * pUser, CIOCPort * pIOCP) {
     }
 }
 
-//    ³ª¸¦ °ø°İÇÑ Npc¸¦ Å¸°ÙÀ¸·Î »ï´Â´Ù.(±âÁØ : ·¾°ú HP¸¦ ±âÁØÀ¸·Î ¼±Á¤)
+//    ë‚˜ë¥¼ ê³µê²©í•œ Npcë¥¼ íƒ€ê²Ÿìœ¼ë¡œ ì‚¼ëŠ”ë‹¤.(ê¸°ì¤€ : ë ™ê³¼ HPë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì„ ì •)
 void CNpc::ChangeNTarget(CNpc * pNpc, CIOCPort * pIOCP) {
     int       preDamage, lastDamage;
     __Vector3 vMonster, vNpc;
@@ -3802,7 +3802,7 @@ void CNpc::ChangeNTarget(CNpc * pNpc, CIOCPort * pIOCP) {
         preDamage = GetNFinalDamage(preNpc);
         lastDamage = GetNFinalDamage(pNpc);
 
-        // Á¶°ÇÀ» °Ë»ö,,   (°Å¸®¿Í À¯ÀúÀÇ °ø°İ·ÂÀ» ÆÇ´ÜÇØ¼­,,)
+        // ì¡°ê±´ì„ ê²€ìƒ‰,,   (ê±°ë¦¬ì™€ ìœ ì €ì˜ ê³µê²©ë ¥ì„ íŒë‹¨í•´ì„œ,,)
         vNpc.Set(m_fCurX, m_fCurY, m_fCurZ);
         vMonster.Set(preNpc->m_fCurX, 0, preNpc->m_fCurZ);
         fDist = GetDistance(vNpc, vMonster);
@@ -3822,17 +3822,17 @@ void CNpc::ChangeNTarget(CNpc * pNpc, CIOCPort * pIOCP) {
     m_Target.z = pNpc->m_fCurZ;
 
     int nValue = 0;
-    // ¾î½½·· °Å¸®´Âµ¥ °ø°İÇÏ¸é ¹Ù·Î ¹İ°İ
+    // ì–´ìŠ¬ë  ê±°ë¦¬ëŠ”ë° ê³µê²©í•˜ë©´ ë°”ë¡œ ë°˜ê²©
     if (m_NpcState == NPC_STANDING || m_NpcState == NPC_MOVING ||
-        m_NpcState == NPC_SLEEPING) { // °¡±îÀÌ ÀÖÀ¸¸é ¹İ°İÀ¸·Î ÀÌ¾îÁö±¸
+        m_NpcState == NPC_SLEEPING) { // ê°€ê¹Œì´ ìˆìœ¼ë©´ ë°˜ê²©ìœ¼ë¡œ ì´ì–´ì§€êµ¬
         if (IsCloseTarget(m_byAttackRange) == 1) {
             m_NpcState = NPC_FIGHTING;
             m_Delay = 0;
             m_fDelayTime = TimeGet();
-        } else // ¹Ù·Î µµ¸Á°¡¸é ÁÂÇ¥¸¦ °»½ÅÇÏ°í ÃßÀû
+        } else // ë°”ë¡œ ë„ë§ê°€ë©´ ì¢Œí‘œë¥¼ ê°±ì‹ í•˜ê³  ì¶”ì 
         {
             nValue = GetTargetPath();
-            if (nValue == 1) // ¹İ°İ µ¿ÀÛÈÄ ¾à°£ÀÇ µô·¹ÀÌ ½Ã°£ÀÌ ÀÖÀ½
+            if (nValue == 1) // ë°˜ê²© ë™ì‘í›„ ì•½ê°„ì˜ ë”œë ˆì´ ì‹œê°„ì´ ìˆìŒ
             {
                 m_NpcState = NPC_TRACING;
                 m_Delay = 0;
@@ -3842,7 +3842,7 @@ void CNpc::ChangeNTarget(CNpc * pNpc, CIOCPort * pIOCP) {
                 m_Delay = 0;
                 m_fDelayTime = TimeGet();
             } else if (nValue == 0) {
-                m_fSecForMetor = m_fSpeed_2; // °ø°İÀÏ¶§´Â ¶Ù´Â ¼Óµµ·Î...
+                m_fSecForMetor = m_fSpeed_2; // ê³µê²©ì¼ë•ŒëŠ” ë›°ëŠ” ì†ë„ë¡œ...
                 IsNoPathFind(m_fSecForMetor);
                 m_NpcState = NPC_TRACING;
                 m_Delay = 0;
@@ -3850,9 +3850,9 @@ void CNpc::ChangeNTarget(CNpc * pNpc, CIOCPort * pIOCP) {
             }
         }
     }
-    //    else m_NpcState = NPC_ATTACKING;    // ÇÑÂü °ø°İÇÏ´Âµ¥ ´©°¡ ¹æÇØÇÏ¸é ¸ñÇ¥¸¦ ¹Ù²Ş
+    //    else m_NpcState = NPC_ATTACKING;    // í•œì°¸ ê³µê²©í•˜ëŠ”ë° ëˆ„ê°€ ë°©í•´í•˜ë©´ ëª©í‘œë¥¼ ë°”ê¿ˆ
 
-    if (m_tNpcGroupType) // °¡Á·Å¸ÀÔÀÌ¸é ½Ã¾ß¾È¿¡ °°Àº Å¸ÀÔ¿¡°Ô ¸ñÇ¥ ÁöÁ¤
+    if (m_tNpcGroupType) // ê°€ì¡±íƒ€ì…ì´ë©´ ì‹œì•¼ì•ˆì— ê°™ì€ íƒ€ì…ì—ê²Œ ëª©í‘œ ì§€ì •
     {
         m_Target.failCount = 0;
         FindFriend();
@@ -3860,15 +3860,15 @@ void CNpc::ChangeNTarget(CNpc * pNpc, CIOCPort * pIOCP) {
 }
 
 void CNpc::ToTargetMove(CIOCPort * pIOCP, CUser * pUser) {
-    TRACE("### ToTargetMove() À¯Àú ±æÃ£±â ½ÇÆĞ ### \n");
+    TRACE("### ToTargetMove() ìœ ì € ê¸¸ì°¾ê¸° ì‹¤íŒ¨ ### \n");
 }
 
-//    NPC ÀÇ ¹æ¾î·ÂÀ» ¾ò¾î¿Â´Ù.
+//    NPC ì˜ ë°©ì–´ë ¥ì„ ì–»ì–´ì˜¨ë‹¤.
 int CNpc::GetDefense() {
     return m_sDefense;
 }
 
-//    Damage °è»ê, ¸¸¾à m_iHP °¡ 0 ÀÌÇÏÀÌ¸é »ç¸ÁÃ³¸®
+//    Damage ê³„ì‚°, ë§Œì•½ m_iHP ê°€ 0 ì´í•˜ì´ë©´ ì‚¬ë§ì²˜ë¦¬
 BOOL CNpc::SetDamage(int nAttackType, int nDamage, const std::string & id, int uid, CIOCPort * pIOCP) {
     int            userDamage = 0;
     BOOL           bFlag = FALSE;
@@ -3883,7 +3883,7 @@ BOOL CNpc::SetDamage(int nAttackType, int nDamage, const std::string & id, int u
     if (nDamage < 0) {
         return TRUE;
     }
-    if (m_ZoneIndex < 0 || m_ZoneIndex > m_pMain->g_arZone.size()) { // NpcÀÇ Æ÷ÀÎÅÍ°¡ Àß¸øµÈ °æ¿ì¿¡´Â ¸®ÅÏ..
+    if (m_ZoneIndex < 0 || m_ZoneIndex > m_pMain->g_arZone.size()) { // Npcì˜ í¬ì¸í„°ê°€ ì˜ëª»ëœ ê²½ìš°ì—ëŠ” ë¦¬í„´..
         TRACE("#### Npc-Setdamage ZoneIndex Fail : [name=%d,%s], zoneindex=%d #####\n", m_sNid + NPC_BAND, m_strName,
               m_ZoneIndex);
         return TRUE;
@@ -3894,12 +3894,12 @@ BOOL CNpc::SetDamage(int nAttackType, int nDamage, const std::string & id, int u
     char    strDurationID[MAX_ID_SIZE + 1];
     memset(strDurationID, 0x00, MAX_ID_SIZE + 1);
 
-    if (uid >= USER_BAND && uid < NPC_BAND) { // Target ÀÌ User ÀÎ °æ¿ì
-        pUser = m_pMain->GetUserPtr(uid);     // ÇØ´ç »ç¿ëÀÚÀÎÁö ÀÎÁõ
+    if (uid >= USER_BAND && uid < NPC_BAND) { // Target ì´ User ì¸ ê²½ìš°
+        pUser = m_pMain->GetUserPtr(uid);     // í•´ë‹¹ ì‚¬ìš©ìì¸ì§€ ì¸ì¦
         if (pUser == NULL) {
             return TRUE;
         }
-    } else if (uid >= NPC_BAND && m_Target.id < INVALID_BAND) { // Target ÀÌ mon ÀÎ °æ¿ì
+    } else if (uid >= NPC_BAND && m_Target.id < INVALID_BAND) { // Target ì´ mon ì¸ ê²½ìš°
         pNpc = m_pMain->m_arNpc.GetData(uid - NPC_BAND);
         if (pNpc == NULL) {
             return TRUE;
@@ -3909,7 +3909,7 @@ BOOL CNpc::SetDamage(int nAttackType, int nDamage, const std::string & id, int u
     }
 
     userDamage = nDamage;
-    // À×¿© µ¥¹ÌÁö´Â ¼Ò¿ë¾ø´Ù.
+    // ì‰ì—¬ ë°ë¯¸ì§€ëŠ” ì†Œìš©ì—†ë‹¤.
     if ((m_iHP - nDamage) < 0) {
         userDamage = m_iHP;
     }
@@ -3930,7 +3930,7 @@ BOOL CNpc::SetDamage(int nAttackType, int nDamage, const std::string & id, int u
         }
     }
 
-    for (int i = 0; i < NPC_HAVE_USER_LIST; i++) // ÀÎ¿ø Á¦ÇÑÀÌ ÃÖÁ¾ ´ë¹ÌÁö¿¡ ¿µÇâÀ» ¹ÌÄ¡³ª?
+    for (int i = 0; i < NPC_HAVE_USER_LIST; i++) // ì¸ì› ì œí•œì´ ìµœì¢… ëŒ€ë¯¸ì§€ì— ì˜í–¥ì„ ë¯¸ì¹˜ë‚˜?
     {
         if (m_DamagedUserList[i].iUid == -1) {
             if (m_DamagedUserList[i].nDamage <= 0) {
@@ -3971,10 +3971,10 @@ go_result:
     int iRandom = myrand(1, 100);
     int iLightningR = 0;
 
-    if (uid >= USER_BAND && uid < NPC_BAND) // Target ÀÌ User ÀÎ °æ¿ì
+    if (uid >= USER_BAND && uid < NPC_BAND) // Target ì´ User ì¸ ê²½ìš°
     {
-        if (nAttackType == 3 && m_NpcState != NPC_FAINTING) { // ±âÀı ½ÃÅ°´Â ½ºÅ³À» »ç¿ëÇß´Ù¸é..
-            // È®·ü °è»ê..
+        if (nAttackType == 3 && m_NpcState != NPC_FAINTING) { // ê¸°ì ˆ ì‹œí‚¤ëŠ” ìŠ¤í‚¬ì„ ì‚¬ìš©í–ˆë‹¤ë©´..
+            // í™•ë¥  ê³„ì‚°..
             iLightningR = 10 + (40 - 40 * ((double)m_sLightningR / 80));
             if (COMPARE(iRandom, 0, iLightningR)) {
                 m_NpcState = NPC_FAINTING;
@@ -3988,7 +3988,7 @@ go_result:
             ChangeTarget(nAttackType, pUser, pIOCP);
         }
     }
-    if (uid >= NPC_BAND && m_Target.id < INVALID_BAND) // Target ÀÌ mon ÀÎ °æ¿ì
+    if (uid >= NPC_BAND && m_Target.id < INVALID_BAND) // Target ì´ mon ì¸ ê²½ìš°
     {
         ChangeNTarget(pNpc, pIOCP);
     }
@@ -3996,7 +3996,7 @@ go_result:
     return TRUE;
 }
 
-// Heal°è¿­ ¸¶¹ı°ø°İ
+// Healê³„ì—´ ë§ˆë²•ê³µê²©
 BOOL CNpc::SetHMagicDamage(int nDamage, CIOCPort * pIOCP) {
     if (m_NpcState == NPC_DEAD) {
         return FALSE;
@@ -4008,7 +4008,7 @@ BOOL CNpc::SetHMagicDamage(int nDamage, CIOCPort * pIOCP) {
         return FALSE;
     }
     if (m_iHP < 1) {
-        return FALSE; // Á×±âÁ÷ÀüÀÏ¶§´Â È¸º¹ ¾ÈµÊ...
+        return FALSE; // ì£½ê¸°ì§ì „ì¼ë•ŒëŠ” íšŒë³µ ì•ˆë¨...
     }
     if (pIOCP == NULL) {
         return FALSE;
@@ -4036,7 +4036,7 @@ BOOL CNpc::SetHMagicDamage(int nDamage, CIOCPort * pIOCP) {
     return TRUE;
 }
 
-//    NPC »ç¸ÁÃ³¸®½Ã °æÇèÄ¡ ºĞ¹è¸¦ °è»êÇÑ´Ù.(ÀÏ¹İ À¯Àú¿Í ¹öµğ »ç¿ëÀÚ±¸ºĞ)
+//    NPC ì‚¬ë§ì²˜ë¦¬ì‹œ ê²½í—˜ì¹˜ ë¶„ë°°ë¥¼ ê³„ì‚°í•œë‹¤.(ì¼ë°˜ ìœ ì €ì™€ ë²„ë”” ì‚¬ìš©ìêµ¬ë¶„)
 void CNpc::SendExpToUserList() {
     if (m_ZoneIndex < 0 || m_ZoneIndex > m_pMain->g_arZone.size()) {
         TRACE("#### Npc-SendExpToUserList() ZoneIndex Fail : [name=%s], zoneindex=%d #####\n", m_strName, m_ZoneIndex);
@@ -4062,9 +4062,9 @@ void CNpc::SendExpToUserList() {
         return;
     }
 
-    IsUserInSight(); // ½Ã¾ß±Ç³»¿¡ ÀÖ´Â À¯Àú ¼ÂÆÃ..
+    IsUserInSight(); // ì‹œì•¼ê¶Œë‚´ì— ìˆëŠ” ìœ ì € ì…‹íŒ…..
 
-    for (int i = 0; i < NPC_HAVE_USER_LIST; i++) // ÀÏ´Ü ¸®½ºÆ®¸¦ °Ë»öÇÑ´Ù.
+    for (int i = 0; i < NPC_HAVE_USER_LIST; i++) // ì¼ë‹¨ ë¦¬ìŠ¤íŠ¸ë¥¼ ê²€ìƒ‰í•œë‹¤.
     {
         if (m_DamagedUserList[i].iUid < 0 || m_DamagedUserList[i].nDamage <= 0) {
             continue;
@@ -4076,7 +4076,7 @@ void CNpc::SendExpToUserList() {
             continue;
         }
 
-        if (pUser->m_byNowParty == 1) // ÆÄÆ¼ ¼Ò¼Ó
+        if (pUser->m_byNowParty == 1) // íŒŒí‹° ì†Œì†
         {
             totalDamage = GetPartyDamage(pUser->m_sPartyNumber);
             if (totalDamage == 0 || m_TotalDamage == 0) {
@@ -4110,7 +4110,7 @@ void CNpc::SendExpToUserList() {
                     nPartyLoyalty = nPartyLoyalty + 1;
                 }
             }
-            // ÆÄÆ¼¿ø ÀüÃ¼¸¦ µ¹¸é¼­ °æÇèÄ¡ ºĞ¹è
+            // íŒŒí‹°ì› ì „ì²´ë¥¼ ëŒë©´ì„œ ê²½í—˜ì¹˜ ë¶„ë°°
             if (i != 0) {
                 BOOL bFlag = FALSE;
                 int  count = 0;
@@ -4134,7 +4134,7 @@ void CNpc::SendExpToUserList() {
                     bFlag = TRUE;
                 }
 
-                // ¿©±â¿¡¼­ ¶Ç ÀÛ¾÷...
+                // ì—¬ê¸°ì—ì„œ ë˜ ì‘ì—…...
                 if (bFlag == TRUE) {
                     int uid = 0;
                     pParty = m_pMain->m_arParty.GetData(pUser->m_sPartyNumber);
@@ -4157,7 +4157,7 @@ void CNpc::SendExpToUserList() {
                             uid = pParty->uid[k];
                             pPartyUser = m_pMain->GetUserPtr(uid);
                             if (pPartyUser) {
-                                // monster¿Í °Å¸®¸¦ ÆÇ´Ü
+                                // monsterì™€ ê±°ë¦¬ë¥¼ íŒë‹¨
                                 if (IsInExpRange(pPartyUser) == TRUE) {
                                     TempValue = (nPartyExp * (1 + 0.3 * (nTotalMan - 1))) *
                                                 (double)pPartyUser->m_sLevel / (double)nTotalLevel;
@@ -4206,7 +4206,7 @@ void CNpc::SendExpToUserList() {
                         uid = pParty->uid[k];
                         pPartyUser = m_pMain->GetUserPtr(uid);
                         if (pPartyUser) {
-                            // monster¿Í °Å¸®¸¦ ÆÇ´Ü
+                            // monsterì™€ ê±°ë¦¬ë¥¼ íŒë‹¨
                             if (IsInExpRange(pPartyUser) == TRUE) {
                                 TempValue = (nPartyExp * (1 + 0.3 * (nTotalMan - 1))) * (double)pPartyUser->m_sLevel /
                                             (double)nTotalLevel;
@@ -4234,9 +4234,9 @@ void CNpc::SendExpToUserList() {
                 }
             }
             //nExp =
-        } else if (pUser->m_byNowParty == 2) // ºÎ´ë ¼Ò¼Ó
+        } else if (pUser->m_byNowParty == 2) // ë¶€ëŒ€ ì†Œì†
         {
-        } else // °³ÀÎ
+        } else // ê°œì¸
         {
             totalDamage = m_DamagedUserList[i].nDamage;
 
@@ -4279,9 +4279,9 @@ void CNpc::SendExpToUserList() {
         }
     }
 
-    if (m_pMain->m_byBattleEvent == BATTLEZONE_OPEN) {         // ÀüÀïÁß
-        if (m_bySpecialType >= 90 && m_bySpecialType <= 100) { // Á×¾úÀ»¶§ µ¥¹ÌÁö¸¦ ¸¹ÀÌ ÀÔÈù À¯Àú¸¦ ±â·ÏÇØ ÁÖ¼¼¿©
-            if (strlen(strMaxDamageUser) != 0) {               // ¸ó½ºÅÍ¿¡°Ô °¡Àå µ¥¹ÌÁö¸¦ ¸¹ÀÌ ÀÔÈù À¯ÀúÀÇ ÀÌ¸§À» Àü¼Û
+    if (m_pMain->m_byBattleEvent == BATTLEZONE_OPEN) { // ì „ìŸì¤‘
+        if (m_bySpecialType >= 90 && m_bySpecialType <= 100) { // ì£½ì—ˆì„ë•Œ ë°ë¯¸ì§€ë¥¼ ë§ì´ ì…íŒ ìœ ì €ë¥¼ ê¸°ë¡í•´ ì£¼ì„¸ì—¬
+            if (strlen(strMaxDamageUser) != 0) { // ëª¬ìŠ¤í„°ì—ê²Œ ê°€ì¥ ë°ë¯¸ì§€ë¥¼ ë§ì´ ì…íŒ ìœ ì €ì˜ ì´ë¦„ì„ ì „ì†¡
                 char send_buff[100];
                 memset(send_buff, 0x00, 100);
                 int send_index = 0;
@@ -4347,13 +4347,13 @@ int CNpc::SendDead(CIOCPort * pIOCP, int type) {
     }
 
     if (type) {
-        GiveNpcHaveItem(pIOCP); // ¾ÆÀÌÅÛ ¶³±¸±â(°æºñ¸éÀÌ¸é ¾È¶³¾îÆ®¸²)
+        GiveNpcHaveItem(pIOCP); // ì•„ì´í…œ ë–¨êµ¬ê¸°(ê²½ë¹„ë©´ì´ë©´ ì•ˆë–¨ì–´íŠ¸ë¦¼)
     }
 
     return m_sRegenTime;
 }
 
-//    NPC¿Í Target °úÀÇ °Å¸®°¡ ÁöÁ¤ ¹üÀ§º¸´Ù ÀÛÀºÁö ÆÇ´Ü
+//    NPCì™€ Target ê³¼ì˜ ê±°ë¦¬ê°€ ì§€ì • ë²”ìœ„ë³´ë‹¤ ì‘ì€ì§€ íŒë‹¨
 BOOL CNpc::IsCloseTarget(CUser * pUser, int nRange) {
     if (pUser == NULL) {
         return FALSE;
@@ -4369,7 +4369,7 @@ BOOL CNpc::IsCloseTarget(CUser * pUser, int nRange) {
     vUser.Set(pUser->m_curx, pUser->m_cury, pUser->m_curz);
     fDis = GetDistance(vNpc, vUser);
 
-    // °ø°İ¹ŞÀº »óÅÂ±â ¶§¹®¿¡ 2¹èÀÇ °Å¸®°¨Áö¿µ¿ª,,
+    // ê³µê²©ë°›ì€ ìƒíƒœê¸° ë•Œë¬¸ì— 2ë°°ì˜ ê±°ë¦¬ê°ì§€ì˜ì—­,,
     if ((int)fDis > nRange * 2) {
         return FALSE;
     }
@@ -4385,9 +4385,9 @@ BOOL CNpc::IsCloseTarget(CUser * pUser, int nRange) {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// ½Ã¾ß ¹üÀ§³»ÀÇ ³»µ¿·á¸¦ Ã£´Â´Ù.
-// type = 0: °°Àº ±×·ìÀÌ¸é¼­ °°Àº ÆĞ¹Ğ¸® Å¸ÀÔ¸¸ µµ¿ò, 1:±×·ìÀÌ³ª ÆĞ¹Ğ¸®¿¡ °ü°è¾øÀÌ µµ¿ò,
-//        2:»çÁ¦NPC°¡ °°Àº ¾Æ±ºÀÇ »óÅÂ¸¦ Ã¼Å©ÇØ¼­ Ä¡·áÇÒ ¸ñÀûÀ¸·Î,, ¸®ÅÏÀ¸·Î Ä¡·áµÉ ¾Æ±ºÀÇ NID¸¦ ¸®ÅÏÇÑ´Ù
+// ì‹œì•¼ ë²”ìœ„ë‚´ì˜ ë‚´ë™ë£Œë¥¼ ì°¾ëŠ”ë‹¤.
+// type = 0: ê°™ì€ ê·¸ë£¹ì´ë©´ì„œ ê°™ì€ íŒ¨ë°€ë¦¬ íƒ€ì…ë§Œ ë„ì›€, 1:ê·¸ë£¹ì´ë‚˜ íŒ¨ë°€ë¦¬ì— ê´€ê³„ì—†ì´ ë„ì›€,
+//        2:ì‚¬ì œNPCê°€ ê°™ì€ ì•„êµ°ì˜ ìƒíƒœë¥¼ ì²´í¬í•´ì„œ ì¹˜ë£Œí•  ëª©ì ìœ¼ë¡œ,, ë¦¬í„´ìœ¼ë¡œ ì¹˜ë£Œë  ì•„êµ°ì˜ NIDë¥¼ ë¦¬í„´í•œë‹¤
 int CNpc::FindFriend(int type) {
     CNpc * pNpc = NULL;
     if (m_ZoneIndex < 0 || m_ZoneIndex > m_pMain->g_arZone.size()) {
@@ -4465,7 +4465,7 @@ int CNpc::FindFriend(int type) {
 void CNpc::FindFriendRegion(int x, int z, MAP * pMap, _TargetHealer * pHealer, int type)
 //void CNpc::FindFriendRegion(int x, int z, MAP* pMap, int type)
 {
-    // ÀÚ½ÅÀÇ region¿¡ ÀÖ´Â UserArrayÀ» ¸ÕÀú °Ë»öÇÏ¿©,, °¡±î¿î °Å¸®¿¡ À¯Àú°¡ ÀÖ´ÂÁö¸¦ ÆÇ´Ü..
+    // ìì‹ ì˜ regionì— ìˆëŠ” UserArrayì„ ë¨¼ì € ê²€ìƒ‰í•˜ì—¬,, ê°€ê¹Œìš´ ê±°ë¦¬ì— ìœ ì €ê°€ ìˆëŠ”ì§€ë¥¼ íŒë‹¨..
     if (x < 0 || z < 0 || x > pMap->GetXRegionMax() || z > pMap->GetZRegionMax()) {
         TRACE("#### Npc-FindFriendRegion() Fail : [nid=%d, sid=%d], nRX=%d, nRZ=%d #####\n", m_sNid + NPC_BAND, m_sSid,
               x, z);
@@ -4494,7 +4494,7 @@ void CNpc::FindFriendRegion(int x, int z, MAP * pMap, _TargetHealer * pHealer, i
     CNpc *    pNpc = NULL;
     __Vector3 vStart, vEnd;
     float     fDis = 0.0f;
-    // °ø°İ ¹ŞÀº »óÅÂÀÌ±â¶§¹®¿¡.. searchrange¸¦ 2¹è·Î..
+    // ê³µê²© ë°›ì€ ìƒíƒœì´ê¸°ë•Œë¬¸ì—.. searchrangeë¥¼ 2ë°°ë¡œ..
     float fSearchRange = 0.0f;
     if (type == 2) {
         fSearchRange = (float)m_byAttackRange;
@@ -4515,15 +4515,15 @@ void CNpc::FindFriendRegion(int x, int z, MAP * pMap, _TargetHealer * pHealer, i
             vEnd.Set(pNpc->m_fCurX, pNpc->m_fCurY, pNpc->m_fCurZ);
             fDis = GetDistance(vStart, vEnd);
 
-            // ¿©±â¿¡¼­ ³ªÀÇ °ø°İ°Å¸®¿¡ ÀÖ´Â À¯ÀúÀÎÁö¸¦ ÆÇ´Ü
+            // ì—¬ê¸°ì—ì„œ ë‚˜ì˜ ê³µê²©ê±°ë¦¬ì— ìˆëŠ” ìœ ì €ì¸ì§€ë¥¼ íŒë‹¨
             if (fDis <= fSearchRange) {
                 if (type == 1) {
                     if (m_sNid != pNpc->m_sNid) {
                         if (pNpc->m_Target.id > -1 && pNpc->m_NpcState == NPC_FIGHTING) {
                             continue;
                         }
-                        pNpc->m_Target.id = m_Target.id; // ¸ğµç µ¿·á¿¡°Ô µµ¿òÀ» ¿äÃ»ÇÑ´Ù.
-                        pNpc->m_Target.x = m_Target.x;   // °°Àº ¸ñÇ¥¸¦ °ø°İÇÏÀÚ°í...
+                        pNpc->m_Target.id = m_Target.id; // ëª¨ë“  ë™ë£Œì—ê²Œ ë„ì›€ì„ ìš”ì²­í•œë‹¤.
+                        pNpc->m_Target.x = m_Target.x;   // ê°™ì€ ëª©í‘œë¥¼ ê³µê²©í•˜ìê³ ...
                         pNpc->m_Target.y = m_Target.y;
                         pNpc->m_Target.z = m_Target.z;
                         pNpc->m_Target.failCount = 0;
@@ -4534,8 +4534,8 @@ void CNpc::FindFriendRegion(int x, int z, MAP * pMap, _TargetHealer * pHealer, i
                         if (pNpc->m_Target.id > -1 && pNpc->m_NpcState == NPC_FIGHTING) {
                             continue;
                         }
-                        pNpc->m_Target.id = m_Target.id; // °°Àº Å¸ÀÔÀÇ µ¿·á¿¡°Ô µµ¿òÀ» ¿äÃ»ÇÑ´Ù.
-                        pNpc->m_Target.x = m_Target.x;   // °°Àº ¸ñÇ¥¸¦ °ø°İÇÏÀÚ°í...
+                        pNpc->m_Target.id = m_Target.id; // ê°™ì€ íƒ€ì…ì˜ ë™ë£Œì—ê²Œ ë„ì›€ì„ ìš”ì²­í•œë‹¤.
+                        pNpc->m_Target.x = m_Target.x;   // ê°™ì€ ëª©í‘œë¥¼ ê³µê²©í•˜ìê³ ...
                         pNpc->m_Target.y = m_Target.y;
                         pNpc->m_Target.z = m_Target.z;
                         pNpc->m_Target.failCount = 0;
@@ -4545,9 +4545,9 @@ void CNpc::FindFriendRegion(int x, int z, MAP * pMap, _TargetHealer * pHealer, i
                     if (pHealer == NULL) {
                         continue;
                     }
-                    // HP»óÅÂ¸¦ Ã¼Å©
+                    // HPìƒíƒœë¥¼ ì²´í¬
                     iHP = pNpc->m_iMaxHP * 0.9;
-                    if (pNpc->m_iHP <= iHP) { // HP Ã¼Å©
+                    if (pNpc->m_iHP <= iHP) { // HP ì²´í¬
                         iCompValue = (pNpc->m_iMaxHP - pNpc->m_iHP) / (pNpc->m_iMaxHP * 0.01);
                         if (iValue < iCompValue) {
                             iValue = iCompValue;
@@ -4578,13 +4578,13 @@ void CNpc::NpcStrategy(BYTE type) {
     }
 }
 
-//    NPC Á¤º¸¸¦ ¹öÆÛ¿¡ ÀúÀåÇÑ´Ù.
+//    NPC ì •ë³´ë¥¼ ë²„í¼ì— ì €ì¥í•œë‹¤.
 void CNpc::FillNpcInfo(char * temp_send, int & index, BYTE flag) {
     SetByte(temp_send, AG_NPC_INFO, index);
     if (m_bySpecialType == 5 && m_byChangeType == 0) {
-        SetByte(temp_send, 0, index); // region¿¡ µî·ÏÇÏÁö ¸»¾Æ¶ó
+        SetByte(temp_send, 0, index); // regionì— ë“±ë¡í•˜ì§€ ë§ì•„ë¼
     } else {
-        SetByte(temp_send, 1, index); // region¿¡ µî·Ï
+        SetByte(temp_send, 1, index); // regionì— ë“±ë¡
     }
     SetShort(temp_send, m_sNid + NPC_BAND, index);
     SetShort(temp_send, m_sSid, index);
@@ -4617,12 +4617,12 @@ void CNpc::FillNpcInfo(char * temp_send, int & index, BYTE flag) {
     SetByte(temp_send, m_byObjectType, index);
 }
 
-// game server¿¡ npcÁ¤º¸¸¦ ÀüºÎ Àü¼Û...
+// game serverì— npcì •ë³´ë¥¼ ì „ë¶€ ì „ì†¡...
 void CNpc::SendNpcInfoAll(char * temp_send, int & index, int count) {
     if (m_bySpecialType == 5 && m_byChangeType == 0) {
-        SetByte(temp_send, 0, index); // region¿¡ µî·ÏÇÏÁö ¸»¾Æ¶ó
+        SetByte(temp_send, 0, index); // regionì— ë“±ë¡í•˜ì§€ ë§ì•„ë¼
     } else {
-        SetByte(temp_send, 1, index); // region¿¡ µî·Ï
+        SetByte(temp_send, 1, index); // regionì— ë“±ë¡
     }
     SetShort(temp_send, m_sNid + NPC_BAND, index);
     SetShort(temp_send, m_sSid, index);
@@ -4757,8 +4757,8 @@ inline float CNpc::RandomGenf(float max, float min) {
 }
 
 //////////////////////////////////////////////////////////////////////
-// ÀÎÀÚ: ÇöÀç À§Ä¡, ¹æÇâ, random°¢, ÀÌµ¿°Å¸®
-// ¹İÈ¯°ª: ÃÖÁ¾À§Ä¡
+// ì¸ì: í˜„ì¬ ìœ„ì¹˜, ë°©í–¥, randomê°, ì´ë™ê±°ë¦¬
+// ë°˜í™˜ê°’: ìµœì¢…ìœ„ì¹˜
 //////////////////////////////////////////////////////////////////////
 __Vector3 CNpc::MyFunc(__Vector3 vCur, __Vector3 vDir, float fYDegree, float fDistance) {
     float fYRandom = RandomGenf(fYDegree / 2.0f, -fYDegree / 2.0f);
@@ -4834,7 +4834,7 @@ void CNpc::NpcMoveEnd(CIOCPort * pIOCP) {
     int rx = m_fCurX / VIEW_DIST;
     int rz = m_fCurZ / VIEW_DIST;
     //TRACE("NpcMoveEnd() --> nid = %d, x=%f, y=%f, rx=%d,rz=%d, frame=%d, speed = %d \n", m_sNid, m_fCurX, m_fCurZ, rx,rz, m_iAniFrameCount, m_sSpeed);
-    SendAll(pIOCP, pBuf, index); // thread ¿¡¼­ send
+    SendAll(pIOCP, pBuf, index); // thread ì—ì„œ send
 }
 
 __Vector3 CNpc::GetVectorPosition(__Vector3 vOrig, __Vector3 vDest, float fDis) {
@@ -4860,7 +4860,7 @@ BOOL CNpc::GetUserInView() {
     if (pMap == NULL) {
         return FALSE;
     }
-    //if( m_ZoneIndex > 5 || m_ZoneIndex < 0) return FALSE;        // ÀÓ½ÃÄÚµå ( 2002.03.24 )
+    //if( m_ZoneIndex > 5 || m_ZoneIndex < 0) return FALSE;        // ì„ì‹œì½”ë“œ ( 2002.03.24 )
     int max_xx = pMap->m_sizeRegion.cx;
     int max_zz = pMap->m_sizeRegion.cy;
     int min_x = (int)(m_fCurX - NPC_VIEW_RANGE) / VIEW_DIST;
@@ -4932,7 +4932,7 @@ BOOL CNpc::GetUserInViewRange(int x, int z) {
         if (!pUser) {
             continue;
         }
-        // °¡½Ã °Å¸® °è»ê
+        // ê°€ì‹œ ê±°ë¦¬ ê³„ì‚°
         vEnd.Set(pUser->m_curx, 0, pUser->m_curz);
         fDis = GetDistance(vStart, vEnd);
         if (fDis <= NPC_VIEW_RANGE) {
@@ -4985,7 +4985,7 @@ void CNpc::SendAttackSuccess(CIOCPort * pIOCP, BYTE byResult, int tuid, short sD
     //TRACE("Npc - SendAttackSuccess() : [sid=%d, tid=%d, result=%d], damage=%d, hp = %d\n", sid, tid, byResult, sDamage, sHP);
     //SetShort( buff, sMaxHP, send_index );
 
-    SendAll(pIOCP, buff, send_index); // thread ¿¡¼­ send
+    SendAll(pIOCP, buff, send_index); // thread ì—ì„œ send
 }
 
 __Vector3 CNpc::CalcAdaptivePosition(__Vector3 vPosOrig, __Vector3 vPosDest, float fAttackDistance) {
@@ -4997,10 +4997,10 @@ __Vector3 CNpc::CalcAdaptivePosition(__Vector3 vPosOrig, __Vector3 vPosDest, flo
     return vReturn;
 }
 
-//    ÇöÀç ¸÷À» ±âÁØÀ¸·Î ÇÑ È­¸é ¹üÀ§¾È¿¡ ÀÖ´ÂÁö ÆÇ´Ü
+//    í˜„ì¬ ëª¹ì„ ê¸°ì¤€ìœ¼ë¡œ í•œ í™”ë©´ ë²”ìœ„ì•ˆì— ìˆëŠ”ì§€ íŒë‹¨
 void CNpc::IsUserInSight() {
     CUser * pUser = NULL;
-    // Npc¿Í User¿ÍÀÇ °Å¸®°¡ 50¹ÌÅÍ ¾È¿¡ ÀÖ´Â »ç¶÷¿¡°Ô¸¸,, °æÇèÄ¡¸¦ ÁØ´Ù..
+    // Npcì™€ Userì™€ì˜ ê±°ë¦¬ê°€ 50ë¯¸í„° ì•ˆì— ìˆëŠ” ì‚¬ëŒì—ê²Œë§Œ,, ê²½í—˜ì¹˜ë¥¼ ì¤€ë‹¤..
     int iSearchRange = NPC_EXP_RANGE;
 
     __Vector3 vStart, vEnd;
@@ -5022,11 +5022,11 @@ void CNpc::IsUserInSight() {
         fDis = GetDistance(vStart, vEnd);
 
         if ((int)fDis <= iSearchRange) {
-            // °®°íÀÖ´Â ¸®½ºÆ®»óÀÇ À¯Àú¿Í °°´Ù¸é
+            // ê°–ê³ ìˆëŠ” ë¦¬ìŠ¤íŠ¸ìƒì˜ ìœ ì €ì™€ ê°™ë‹¤ë©´
             if (m_DamagedUserList[i].iUid == pUser->m_iUserId) {
-                // ÃÖÁ¾ ID¸¦ ºñ±³ÇØ¼­ µ¿ÀÏÇÏ¸é
+                // ìµœì¢… IDë¥¼ ë¹„êµí•´ì„œ ë™ì¼í•˜ë©´
                 if (N3::iequals(m_DamagedUserList[i].strUserID, pUser->m_strUserID)) {
-                    // ÀÌ¶§¼­¾ß Á¸ÀçÇÑ´Ù´Â Ç¥½Ã¸¦ ÇÑ´Ù
+                    // ì´ë•Œì„œì•¼ ì¡´ì¬í•œë‹¤ëŠ” í‘œì‹œë¥¼ í•œë‹¤
                     m_DamagedUserList[i].bIs = TRUE;
                 }
             }
@@ -5281,7 +5281,7 @@ BYTE CNpc::GetHitRate(float rate) {
 }
 
 BOOL CNpc::IsLevelCheck(int iLevel) {
-    // ¸ó½ºÅÍÀÇ ·¹º§º¸´Ù ³·À¸¸é,,,  ¹Ù·Î °ø°İ
+    // ëª¬ìŠ¤í„°ì˜ ë ˆë²¨ë³´ë‹¤ ë‚®ìœ¼ë©´,,,  ë°”ë¡œ ê³µê²©
     if (iLevel <= m_sLevel) {
         return FALSE;
     }
@@ -5290,7 +5290,7 @@ BOOL CNpc::IsLevelCheck(int iLevel) {
 
     compLevel = iLevel - m_sLevel;
 
-    // ·¹º§À» ºñ±³ÇØ¼­ 8¹Ì¸¸ÀÌ¸é ¹Ù·Î °ø°İ
+    // ë ˆë²¨ì„ ë¹„êµí•´ì„œ 8ë¯¸ë§Œì´ë©´ ë°”ë¡œ ê³µê²©
     if (compLevel < 8) {
         return FALSE;
     }
@@ -5307,7 +5307,7 @@ BOOL CNpc::IsHPCheck(int iHP) {
     return FALSE;
 }
 
-// ÆĞ½º ÆÄÀÎµå¸¦ ÇÒ°ÍÀÎÁö¸¦ Ã¼Å©ÇÏ´Â ·çÆ¾..
+// íŒ¨ìŠ¤ íŒŒì¸ë“œë¥¼ í• ê²ƒì¸ì§€ë¥¼ ì²´í¬í•˜ëŠ” ë£¨í‹´..
 BOOL CNpc::IsPathFindCheck(float fDistance) {
     int       nX = 0, nZ = 0;
     __Vector3 vStart, vEnd, vDis, vOldDis;
@@ -5391,7 +5391,7 @@ BOOL CNpc::IsPathFindCheck(float fDistance) {
     return TRUE;
 }
 
-// ÆĞ½º ÆÄÀÎµå¸¦ ÇÏÁö ¾Ê°í °ø°İ´ë»óÀ¸·Î °¡´Â ·çÆ¾..
+// íŒ¨ìŠ¤ íŒŒì¸ë“œë¥¼ í•˜ì§€ ì•Šê³  ê³µê²©ëŒ€ìƒìœ¼ë¡œ ê°€ëŠ” ë£¨í‹´..
 void CNpc::IsNoPathFind(float fDistance) {
     ClearPathFindData();
     m_bPathFlag = TRUE;
@@ -5406,7 +5406,7 @@ void CNpc::IsNoPathFind(float fDistance) {
     int nError = 0;
 
     fDis = GetDistance(vStart, vEnd);
-    if (fDis > NPC_MAX_MOVE_RANGE) { // 100¹ÌÅÍ º¸´Ù ³ĞÀ¸¸é ½ºÅÄµù»óÅÂ·Î..
+    if (fDis > NPC_MAX_MOVE_RANGE) { // 100ë¯¸í„° ë³´ë‹¤ ë„“ìœ¼ë©´ ìŠ¤íƒ ë”©ìƒíƒœë¡œ..
         ClearPathFindData();
         TRACE("#### Npc-IsNoPathFind Fail : NPC_MAX_MOVE_RANGE overflow  .. [nid = %d, name=%s], cur_x=%.2f, z=%.2f, "
               "dest_x=%.2f, dest_z=%.2f, fDis=%.2f#####\n",
@@ -5461,7 +5461,7 @@ void CNpc::IsNoPathFind(float fDistance) {
     m_iAniFrameIndex = count;
 }
 
-//    NPC °¡ °¡Áø ¾ÆÀÌÅÛÀ» ¶³±º´Ù.
+//    NPC ê°€ ê°€ì§„ ì•„ì´í…œì„ ë–¨êµ°ë‹¤.
 void CNpc::GiveNpcHaveItem(CIOCPort * pIOCP) {
     char pBuf[1024];
     ::ZeroMemory(pBuf, 1024);
@@ -5486,13 +5486,13 @@ void CNpc::GiveNpcHaveItem(CIOCPort * pIOCP) {
     iRandom = myrand(70, 100);
     iMoney = m_iMoney * iRandom / 100;
     //m_iMoney, m_iItem;
-    _NpcGiveItem m_GiveItemList[NPC_HAVE_ITEM_LIST]; // NpcÀÇ ItemList
+    _NpcGiveItem m_GiveItemList[NPC_HAVE_ITEM_LIST]; // Npcì˜ ItemList
     if (iMoney <= 0) {
         nCount = 0;
     } else {
         m_GiveItemList[0].sSid = TYPE_MONEY_SID;
         if (iMoney > 32767) {
-            iMoney = 32000; // sungyong : shortÇüÀÌ±â ¶§¹®¿¡,,
+            iMoney = 32000; // sungyong : shortí˜•ì´ê¸° ë•Œë¬¸ì—,,
             m_GiveItemList[0].count = iMoney;
         } else {
             m_GiveItemList[0].count = iMoney;
@@ -5512,8 +5512,8 @@ void CNpc::GiveNpcHaveItem(CIOCPort * pIOCP) {
             if (iPer == 0) {
                 continue;
             }
-            if (iRandom <= iPer) { // ¿ì¼± ±âº»Å×ÀÌºí¸¦ ÂüÁ¶ÇÏ±âÀ§ÇØ
-                if (j == 1) {      // ¾ÆÀÌÅÛ »ı¼º..
+            if (iRandom <= iPer) { // ìš°ì„  ê¸°ë³¸í…Œì´ë¸”ë¥¼ ì°¸ì¡°í•˜ê¸°ìœ„í•´
+                if (j == 1) {      // ì•„ì´í…œ ìƒì„±..
                     iMakeItemCode = ItemProdution(m_pMain->m_NpcItem.m_ppItem[i][j]);
                     if (iMakeItemCode == 0) {
                         continue;
@@ -5523,7 +5523,7 @@ void CNpc::GiveNpcHaveItem(CIOCPort * pIOCP) {
                     m_GiveItemList[nCount].count = 1;
                 } else {
                     m_GiveItemList[nCount].sSid = m_pMain->m_NpcItem.m_ppItem[i][j];
-                    if (COMPARE(m_GiveItemList[nCount].sSid, ARROW_MIN, ARROW_MAX)) { // È­»ìÀÌ¶ó¸é
+                    if (COMPARE(m_GiveItemList[nCount].sSid, ARROW_MIN, ARROW_MAX)) { // í™”ì‚´ì´ë¼ë©´
                         m_GiveItemList[nCount].count = 20;
                     } else {
                         m_GiveItemList[nCount].count = 1;
@@ -5564,7 +5564,7 @@ void CNpc::GiveNpcHaveItem(CIOCPort * pIOCP) {
         //TRACE("Npc-GiveNpcHaveItem() : [nid - %d,%s,  giveme=%d, count=%d, num=%d], list=%d, count=%d\n", m_sNid+NPC_BAND, m_strName, m_sMaxDamageUserid, nCount, i, m_GiveItemList[i].sSid, m_GiveItemList[i].count);
     }
 
-    SendAll(pIOCP, pBuf, index); // thread ¿¡¼­ send
+    SendAll(pIOCP, pBuf, index); // thread ì—ì„œ send
 }
 
 void CNpc::Yaw2D(float fDirX, float fDirZ, float & fYawResult) {
@@ -5597,7 +5597,7 @@ __Vector3 CNpc::ComputeDestPos(__Vector3 vCur, float fDegree, float fDegreeOffse
 int CNpc::GetPartyDamage(int iNumber) {
     int     nDamage = 0;
     CUser * pUser = NULL;
-    for (int i = 0; i < NPC_HAVE_USER_LIST; i++) // ÀÏ´Ü ¸®½ºÆ®¸¦ °Ë»öÇÑ´Ù.
+    for (int i = 0; i < NPC_HAVE_USER_LIST; i++) // ì¼ë‹¨ ë¦¬ìŠ¤íŠ¸ë¥¼ ê²€ìƒ‰í•œë‹¤.
     {
         if (m_DamagedUserList[i].iUid < 0 || m_DamagedUserList[i].nDamage <= 0) {
             continue;
@@ -5620,7 +5620,7 @@ int CNpc::GetPartyDamage(int iNumber) {
 }
 
 void CNpc::NpcTypeParser() {
-    // ¼±°øÀÎÁö ÈÄ°øÀÎÁö¸¦ °áÁ¤ÇÑ´Ù
+    // ì„ ê³µì¸ì§€ í›„ê³µì¸ì§€ë¥¼ ê²°ì •í•œë‹¤
     switch (m_byActType) {
     case 1:
         m_tNpcAttType = m_tNpcOldAttType = 0;
@@ -5658,10 +5658,10 @@ void CNpc::HpChange(CIOCPort * pIOCP) {
         return;
     }
     if (m_iHP < 1) {
-        return; // Á×±âÁ÷ÀüÀÏ¶§´Â È¸º¹ ¾ÈµÊ...
+        return; // ì£½ê¸°ì§ì „ì¼ë•ŒëŠ” íšŒë³µ ì•ˆë¨...
     }
     if (m_iHP == m_iMaxHP) {
-        return; // HP°¡ ¸¸»§ÀÌ±â ¶§¹®¿¡..
+        return; // HPê°€ ë§Œë¹µì´ê¸° ë•Œë¬¸ì—..
     }
     if (pIOCP == NULL) {
         return;
@@ -5696,11 +5696,11 @@ void CNpc::HpChange(CIOCPort * pIOCP) {
     SetDWORD(buff, m_iHP, send_index);
     SetDWORD(buff, m_iMaxHP, send_index);
 
-    SendAll(pIOCP, buff, send_index); // thread ¿¡¼­ send
+    SendAll(pIOCP, buff, send_index); // thread ì—ì„œ send
 }
 
 BOOL CNpc::IsInExpRange(CUser * pUser) {
-    // Npc¿Í User¿ÍÀÇ °Å¸®°¡ 50¹ÌÅÍ ¾È¿¡ ÀÖ´Â »ç¶÷¿¡°Ô¸¸,, °æÇèÄ¡¸¦ ÁØ´Ù..
+    // Npcì™€ Userì™€ì˜ ê±°ë¦¬ê°€ 50ë¯¸í„° ì•ˆì— ìˆëŠ” ì‚¬ëŒì—ê²Œë§Œ,, ê²½í—˜ì¹˜ë¥¼ ì¤€ë‹¤..
     int       iSearchRange = NPC_EXP_RANGE;
     __Vector3 vStart, vEnd;
     float     fDis = 0.0f;
@@ -5718,7 +5718,7 @@ BOOL CNpc::IsInExpRange(CUser * pUser) {
 }
 
 BOOL CNpc::CheckFindEnermy() {
-    // °æºñº´Àº ¸ó½ºÅÍµµ °ø°İÇÏ¹Ç·Î Á¦¿Ü
+    // ê²½ë¹„ë³‘ì€ ëª¬ìŠ¤í„°ë„ ê³µê²©í•˜ë¯€ë¡œ ì œì™¸
     if (m_tNpcType == NPC_GUARD || m_tNpcType == NPC_PATROL_GUARD ||
         m_tNpcType == NPC_STORE_GUARD) { // || m_tNpcType == NPCTYPE_MONSTER)
         return TRUE;
@@ -5753,15 +5753,15 @@ void CNpc::MSpChange(int type, int amount) {
         } else if (m_sMP > m_sMaxMP) {
             m_sMP = m_sMaxMP;
         }
-    } else if (type == 3) { // monster´Â SP°¡ ¾øÀ½..
+    } else if (type == 3) { // monsterëŠ” SPê°€ ì—†ìŒ..
     }
 }
 
 void CNpc::ItemWoreOut(int type, int damage) {
-    // ¸ó½ºÅÍÀÇ ¹æ¾î±¸ ³»±¸·Â °¨¼Ò·ÎÁ÷..
+    // ëª¬ìŠ¤í„°ì˜ ë°©ì–´êµ¬ ë‚´êµ¬ë ¥ ê°ì†Œë¡œì§..
 }
 
-int CNpc::ItemProdution(int item_number) // ¾ÆÀÌÅÛ Á¦ÀÛ
+int CNpc::ItemProdution(int item_number) // ì•„ì´í…œ ì œì‘
 {
     int iItemNumber = 0, iRandom = 0, i = 0, iItemGrade = 0, iItemLevel = 0;
     int iDefault = 0, iItemCode = 0, iItemKey = 0, iRand2 = 0, iRand3 = 0, iRand4 = 0, iRand5 = 0;
@@ -5778,9 +5778,9 @@ int CNpc::ItemProdution(int item_number) // ¾ÆÀÌÅÛ Á¦ÀÛ
     }
     iItemLevel = m_sLevel / 5;
 
-    if (COMPARE(iRandom, 1, 4001)) { // ¹«±â±¸ ¾ÆÀÌÅÛ
+    if (COMPARE(iRandom, 1, 4001)) { // ë¬´ê¸°êµ¬ ì•„ì´í…œ
         iDefault = 100000000;
-        iRandom = myrand(1, 10000); // ¹«±âÀÇ Á¾·ù¸¦ °áÁ¤(´Ü°Ë, °Ë, µµ³¢,,,,)
+        iRandom = myrand(1, 10000); // ë¬´ê¸°ì˜ ì¢…ë¥˜ë¥¼ ê²°ì •(ë‹¨ê²€, ê²€, ë„ë¼,,,,)
         if (COMPARE(iRandom, 1, 701)) {
             iRand2 = 10000000;
         } else if (COMPARE(iRandom, 701, 1401)) {
@@ -5806,31 +5806,31 @@ int CNpc::ItemProdution(int item_number) // ¾ÆÀÌÅÛ Á¦ÀÛ
         if (iTemp1 == 0) {
             return 0;
         }
-        iItemCode = iTemp1 * 100000; // ·çÆÃºĞÆ÷Ç¥ ÂüÁ¶
+        iItemCode = iTemp1 * 100000; // ë£¨íŒ…ë¶„í¬í‘œ ì°¸ì¡°
 
-        iRand3 = myrand(1, 10000); // Á¾Á·(¿¤¸ğ, Ä«·ç½º)
+        iRand3 = myrand(1, 10000); // ì¢…ì¡±(ì—˜ëª¨, ì¹´ë£¨ìŠ¤)
         if (COMPARE(iRand3, 1, 5000)) {
             iRand3 = 10000;
         } else {
             iRand3 = 50000;
         }
-        iRand4 = myrand(1, 10000); // ÇÑ¼Õ, ¾ç¼Õ¹«±âÀÎÁö¸¦ °áÁ¤
+        iRand4 = myrand(1, 10000); // í•œì†, ì–‘ì†ë¬´ê¸°ì¸ì§€ë¥¼ ê²°ì •
         if (COMPARE(iRand4, 1, 5000)) {
             iRand4 = 0;
         } else {
             iRand4 = 5000000;
         }
 
-        iRandom = GetItemCodeNumber(iItemLevel, 1); // ·¹ÀÌ¸ÅÁ÷Ç¥ Àû¿ë
+        iRandom = GetItemCodeNumber(iItemLevel, 1); // ë ˆì´ë§¤ì§í‘œ ì ìš©
         //TRACE("ItemProdution : GetItemCodeNumber() = %d, iRand2=%d, iRand3=%d, iRand4=%d\n", iRandom, iRand2, iRand3, iRand4);
-        if (iRandom == -1) { // Àß¸øµÈ ¾ÆÀÌÅÛ »ı¼º½ÇÆĞ
+        if (iRandom == -1) { // ì˜ëª»ëœ ì•„ì´í…œ ìƒì„±ì‹¤íŒ¨
             return 0;
         }
         iRand5 = iRandom * 10;
         iItemNumber = iDefault + iItemCode + iRand2 + iRand3 + iRand4 + iRand5 + iItemGrade;
 
         //TRACE("ItemProdution : Weapon Success item_number = %d, default=%d, itemcode=%d, iRand2=%d, iRand3=%d, iRand4=%d, iRand5, iItemGrade=%d\n", iItemNumber, iDefault, iItemCode, iRand2, iRand3, iRand4, iRand5, iItemGrade);
-    } else if (COMPARE(iRandom, 4001, 8001)) { // ¹æ¾î±¸ ¾ÆÀÌÅÛ
+    } else if (COMPARE(iRandom, 4001, 8001)) { // ë°©ì–´êµ¬ ì•„ì´í…œ
         iDefault = 200000000;
 
         iTemp1 = GetWeaponItemCodeNumber(2);
@@ -5838,33 +5838,33 @@ int CNpc::ItemProdution(int item_number) // ¾ÆÀÌÅÛ Á¦ÀÛ
         if (iTemp1 == 0) {
             return 0;
         }
-        iItemCode = iTemp1 * 1000000; // ·çÆÃºĞÆ÷Ç¥ ÂüÁ¶
+        iItemCode = iTemp1 * 1000000; // ë£¨íŒ…ë¶„í¬í‘œ ì°¸ì¡°
 
-        if (m_byMaxDamagedNation == KARUS_MAN) { // Á¾Á·
-            iRandom = myrand(0, 10000);          // Á÷¾÷ÀÇ °©¿ÊÀ» °áÁ¤
+        if (m_byMaxDamagedNation == KARUS_MAN) { // ì¢…ì¡±
+            iRandom = myrand(0, 10000);          // ì§ì—…ì˜ ê°‘ì˜·ì„ ê²°ì •
             if (COMPARE(iRandom, 0, 2000)) {
                 iRand2 = 0;
-                iRand3 = 10000; // Àü»ç°©¿ÊÀº ¾ÆÅ©Åõ¾Æ·º¸¸ °¡Áöµµ·Ï
+                iRand3 = 10000; // ì „ì‚¬ê°‘ì˜·ì€ ì•„í¬íˆ¬ì•„ë ‰ë§Œ ê°€ì§€ë„ë¡
             } else if (COMPARE(iRandom, 2000, 4000)) {
                 iRand2 = 40000000;
-                iRand3 = 20000; // ·Î±×°©¿ÊÀº Åõ¾Æ·º¸¸ °¡Áöµµ·Ï
+                iRand3 = 20000; // ë¡œê·¸ê°‘ì˜·ì€ íˆ¬ì•„ë ‰ë§Œ ê°€ì§€ë„ë¡
             } else if (COMPARE(iRandom, 4000, 6000)) {
                 iRand2 = 60000000;
-                iRand3 = 30000; // ¸¶¹ı»ç°©¿ÊÀº ¸µÅ¬ Åõ¾Æ·º¸¸ °¡Áöµµ·Ï
+                iRand3 = 30000; // ë§ˆë²•ì‚¬ê°‘ì˜·ì€ ë§í´ íˆ¬ì•„ë ‰ë§Œ ê°€ì§€ë„ë¡
             } else if (COMPARE(iRandom, 6000, 10001)) {
                 iRand2 = 80000000;
                 iRandom = myrand(0, 10000);
                 if (COMPARE(iRandom, 0, 5000)) {
-                    iRand3 = 20000; // »çÁ¦°©¿ÊÀº Åõ¾Æ·º
+                    iRand3 = 20000; // ì‚¬ì œê°‘ì˜·ì€ íˆ¬ì•„ë ‰
                 } else {
-                    iRand3 = 40000; // »çÁ¦°©¿ÊÀº Ç»¸®Åõ¾Æ·º
+                    iRand3 = 40000; // ì‚¬ì œê°‘ì˜·ì€ í“¨ë¦¬íˆ¬ì•„ë ‰
                 }
             }
         } else if (m_byMaxDamagedNation == ELMORAD_MAN) {
-            iRandom = myrand(0, 10000); // Á÷¾÷ÀÇ °©¿ÊÀ» °áÁ¤
+            iRandom = myrand(0, 10000); // ì§ì—…ì˜ ê°‘ì˜·ì„ ê²°ì •
             if (COMPARE(iRandom, 0, 3300)) {
                 iRand2 = 0;
-                iItemKey = myrand(0, 10000); // Àü»ç°©¿ÊÀº ¸ğµç Á¾Á·ÀÌ °¡Áü
+                iItemKey = myrand(0, 10000); // ì „ì‚¬ê°‘ì˜·ì€ ëª¨ë“  ì¢…ì¡±ì´ ê°€ì§
                 if (COMPARE(iItemKey, 0, 3333)) {
                     iRand3 = 110000;
                 } else if (COMPARE(iItemKey, 3333, 6666)) {
@@ -5874,7 +5874,7 @@ int CNpc::ItemProdution(int item_number) // ¾ÆÀÌÅÛ Á¦ÀÛ
                 }
             } else if (COMPARE(iRandom, 3300, 5600)) {
                 iRand2 = 40000000;
-                iItemKey = myrand(0, 10000); // ·Î±×°©¿ÊÀº ³²ÀÚ¿Í ¿©ÀÚ¸¸ °¡Áü
+                iItemKey = myrand(0, 10000); // ë¡œê·¸ê°‘ì˜·ì€ ë‚¨ìì™€ ì—¬ìë§Œ ê°€ì§
                 if (COMPARE(iItemKey, 0, 5000)) {
                     iRand3 = 120000;
                 } else {
@@ -5882,7 +5882,7 @@ int CNpc::ItemProdution(int item_number) // ¾ÆÀÌÅÛ Á¦ÀÛ
                 }
             } else if (COMPARE(iRandom, 5600, 7800)) {
                 iRand2 = 60000000;
-                iItemKey = myrand(0, 10000); // ¸¶¹ı»ç°©¿ÊÀº ³²ÀÚ¿Í ¿©ÀÚ¸¸ °¡Áü
+                iItemKey = myrand(0, 10000); // ë§ˆë²•ì‚¬ê°‘ì˜·ì€ ë‚¨ìì™€ ì—¬ìë§Œ ê°€ì§
                 if (COMPARE(iItemKey, 0, 5000)) {
                     iRand3 = 120000;
                 } else {
@@ -5890,7 +5890,7 @@ int CNpc::ItemProdution(int item_number) // ¾ÆÀÌÅÛ Á¦ÀÛ
                 }
             } else if (COMPARE(iRandom, 7800, 10001)) {
                 iRand2 = 80000000;
-                iItemKey = myrand(0, 10000); // »çÁ¦°©¿ÊÀº ³²ÀÚ¿Í ¿©ÀÚ¸¸ °¡Áü
+                iItemKey = myrand(0, 10000); // ì‚¬ì œê°‘ì˜·ì€ ë‚¨ìì™€ ì—¬ìë§Œ ê°€ì§
                 if (COMPARE(iItemKey, 0, 5000)) {
                     iRand3 = 120000;
                 } else {
@@ -5899,7 +5899,7 @@ int CNpc::ItemProdution(int item_number) // ¾ÆÀÌÅÛ Á¦ÀÛ
             }
         }
 
-        iTemp2 = myrand(0, 10000); // ¸öÀÇ ºÎÀ§ ¾ÆÀÌÅÛ °áÁ¤
+        iTemp2 = myrand(0, 10000); // ëª¸ì˜ ë¶€ìœ„ ì•„ì´í…œ ê²°ì •
         if (COMPARE(iTemp2, 0, 2000)) {
             iRand4 = 1000;
         } else if (COMPARE(iTemp2, 2000, 4000)) {
@@ -5911,17 +5911,17 @@ int CNpc::ItemProdution(int item_number) // ¾ÆÀÌÅÛ Á¦ÀÛ
         } else if (COMPARE(iTemp2, 8000, 10001)) {
             iRand4 = 5000;
         }
-        iRandom = GetItemCodeNumber(iItemLevel, 2); // ·¹ÀÌ¸ÅÁ÷Ç¥ Àû¿ë
-        if (iRandom == -1) {                        // Àß¸øµÈ ¾ÆÀÌÅÛ »ı¼º½ÇÆĞ
+        iRandom = GetItemCodeNumber(iItemLevel, 2); // ë ˆì´ë§¤ì§í‘œ ì ìš©
+        if (iRandom == -1) {                        // ì˜ëª»ëœ ì•„ì´í…œ ìƒì„±ì‹¤íŒ¨
             return 0;
         }
         iRand5 = iRandom * 10;
         iItemNumber = iDefault + iRand2 + iItemCode + iRand3 + iRand4 + iRand5 +
-                      iItemGrade; // iItemGrade : ¾ÆÀÌÅÛ µî±Ş»ı¼ºÇ¥ Àû¿ë
+                      iItemGrade; // iItemGrade : ì•„ì´í…œ ë“±ê¸‰ìƒì„±í‘œ ì ìš©
         //TRACE("ItemProdution : Defensive Success item_number = %d, default=%d, iRand2=%d, itemcode=%d, iRand3=%d, iRand4=%d, iRand5, iItemGrade=%d\n", iItemNumber, iDefault, iRand2, iItemCode, iRand3, iRand4, iRand5, iItemGrade);
-    } else if (COMPARE(iRandom, 8001, 10001)) { // ¾Ç¼¼»ç¸® ¾ÆÀÌÅÛ
+    } else if (COMPARE(iRandom, 8001, 10001)) { // ì•…ì„¸ì‚¬ë¦¬ ì•„ì´í…œ
         iDefault = 300000000;
-        iRandom = myrand(0, 10000); // ¾Ç¼¼»ç¸® Á¾·ù°áÁ¤(±Í°í¸®, ¸ñ°ÉÀÌ, ¹İÁö, º§Æ®)
+        iRandom = myrand(0, 10000); // ì•…ì„¸ì‚¬ë¦¬ ì¢…ë¥˜ê²°ì •(ê·€ê³ ë¦¬, ëª©ê±¸ì´, ë°˜ì§€, ë²¨íŠ¸)
         if (COMPARE(iRandom, 0, 2500)) {
             iRand2 = 10000000;
         } else if (COMPARE(iRandom, 2500, 5000)) {
@@ -5931,15 +5931,15 @@ int CNpc::ItemProdution(int item_number) // ¾ÆÀÌÅÛ Á¦ÀÛ
         } else if (COMPARE(iRandom, 7500, 10001)) {
             iRand2 = 40000000;
         }
-        iRand3 = myrand(1, 10000); // Á¾Á·(¿¤¸ğ¶óµå, Ä«·ç½º)
+        iRand3 = myrand(1, 10000); // ì¢…ì¡±(ì—˜ëª¨ë¼ë“œ, ì¹´ë£¨ìŠ¤)
         if (COMPARE(iRand3, 1, 5000)) {
             iRand3 = 110000;
         } else {
             iRand3 = 150000;
         }
-        iRandom = GetItemCodeNumber(iItemLevel, 3); // ·¹ÀÌ¸ÅÁ÷Ç¥ Àû¿ë
+        iRandom = GetItemCodeNumber(iItemLevel, 3); // ë ˆì´ë§¤ì§í‘œ ì ìš©
         //TRACE("ItemProdution : GetItemCodeNumber() = %d\n", iRandom);
-        if (iRandom == -1) { // Àß¸øµÈ ¾ÆÀÌÅÛ »ı¼º½ÇÆĞ
+        if (iRandom == -1) { // ì˜ëª»ëœ ì•„ì´í…œ ìƒì„±ì‹¤íŒ¨
             return 0;
         }
         iRand4 = iRandom * 10;
@@ -6006,10 +6006,10 @@ int CNpc::GetWeaponItemCodeNumber(int item_type) {
     _MAKE_WEAPON * pItemData = NULL;
 
     iRandom = myrand(0, 1000);
-    if (item_type == 1) { // ¹«±â±¸
+    if (item_type == 1) { // ë¬´ê¸°êµ¬
         iItem_level = m_sLevel / 10;
         pItemData = m_pMain->m_MakeWeaponItemArray.GetData(iItem_level);
-    } else if (item_type == 2) { // ¹æ¾î±¸
+    } else if (item_type == 2) { // ë°©ì–´êµ¬
         iItem_level = m_sLevel / 10;
         pItemData = m_pMain->m_MakeDefensiveItemArray.GetData(iItem_level);
     }
@@ -6083,33 +6083,33 @@ int CNpc::GetItemCodeNumber(int level, int item_type) {
     }
 
     switch (iItemType) {
-    case 0: // Àß¸øµÈ ¾ÆÀÌÅÛ
+    case 0: // ì˜ëª»ëœ ì•„ì´í…œ
         iItemCode = 0;
         break;
     case 1:                   // lare item
-        if (item_type == 1) { // ¹«±â±¸
+        if (item_type == 1) { // ë¬´ê¸°êµ¬
             iItemCode = myrand(16, 24);
-        } else if (item_type == 2) { // ¹æ¾î±¸
+        } else if (item_type == 2) { // ë°©ì–´êµ¬
             iItemCode = myrand(12, 24);
-        } else if (item_type == 3) { // ¾Ç¼¼»ç¸®
+        } else if (item_type == 3) { // ì•…ì„¸ì‚¬ë¦¬
             iItemCode = myrand(0, 10);
         }
         break;
     case 2:                   // magic item
-        if (item_type == 1) { // ¹«±â±¸
+        if (item_type == 1) { // ë¬´ê¸°êµ¬
             iItemCode = myrand(6, 15);
-        } else if (item_type == 2) { // ¹æ¾î±¸
+        } else if (item_type == 2) { // ë°©ì–´êµ¬
             iItemCode = myrand(6, 11);
-        } else if (item_type == 3) { // ¾Ç¼¼»ç¸®
+        } else if (item_type == 3) { // ì•…ì„¸ì‚¬ë¦¬
             iItemCode = myrand(0, 10);
         }
         break;
     case 3:                   // general item
-        if (item_type == 1) { // ¹«±â±¸
+        if (item_type == 1) { // ë¬´ê¸°êµ¬
             iItemCode = 5;
-        } else if (item_type == 2) { // ¹æ¾î±¸
+        } else if (item_type == 2) { // ë°©ì–´êµ¬
             iItemCode = 5;
-        } else if (item_type == 3) { // ¾Ç¼¼»ç¸®
+        } else if (item_type == 3) { // ì•…ì„¸ì‚¬ë¦¬
             iItemCode = myrand(0, 10);
         }
         break;
@@ -6123,7 +6123,7 @@ void CNpc::DurationMagic_4(CIOCPort * pIOCP, float currenttime) {
     char send_buff[128];
     memset(send_buff, 0x00, 128);
 
-    // Dungeon Work : ´øÁ¯¸ó½ºÅÍÀÇ °æ¿ì ÇØ´ç ´ëÀå¸ó½ºÅÍ°¡ Á×Àº°æ¿ì ³ªÀÇ »óÅÂ¸¦ Á×Àº »óÅÂ·Î....
+    // Dungeon Work : ë˜ì ¼ëª¬ìŠ¤í„°ì˜ ê²½ìš° í•´ë‹¹ ëŒ€ì¥ëª¬ìŠ¤í„°ê°€ ì£½ì€ê²½ìš° ë‚˜ì˜ ìƒíƒœë¥¼ ì£½ì€ ìƒíƒœë¡œ....
     if (m_ZoneIndex < 0 || m_ZoneIndex > m_pMain->g_arZone.size()) {
         TRACE("#### Npc-DurationMagic_4() ZoneIndex Fail : [nid=%d, name=%s], zoneindex=%d #####\n", m_sNid + NPC_BAND,
               m_strName, m_ZoneIndex);
@@ -6147,11 +6147,11 @@ void CNpc::DurationMagic_4(CIOCPort * pIOCP, float currenttime) {
                 TRACE("#### Npc-DurationMagic_4() room Fail : [nid=%d, name=%s], m_byDungeonFamily=%d #####\n",
                       m_sNid + NPC_BAND, m_strName, m_byDungeonFamily);
             } else {
-                //if( pMap->m_arDungeonBossMonster[m_byDungeonFamily] == 0 )    {    // ´ëÀå ¸ó½ºÅÍ°¡ Á×Àº °æ¿ì
-                if (pRoom->m_byStatus == 3) { // ¹æÀÌ Å¬¸®¾î µÈ°æ¿ì
+                //if( pMap->m_arDungeonBossMonster[m_byDungeonFamily] == 0 )    {    // ëŒ€ì¥ ëª¬ìŠ¤í„°ê°€ ì£½ì€ ê²½ìš°
+                if (pRoom->m_byStatus == 3) { // ë°©ì´ í´ë¦¬ì–´ ëœê²½ìš°
                     if (m_NpcState != NPC_DEAD) {
                         if (m_byRegenType == 0) {
-                            m_byRegenType = 2; // ¸®Á¨ÀÌ µÇÁö ¾Êµµ·Ï,,
+                            m_byRegenType = 2; // ë¦¬ì  ì´ ë˜ì§€ ì•Šë„ë¡,,
                             Dead(pIOCP, 1);
                             return;
                         }
@@ -6169,7 +6169,7 @@ void CNpc::DurationMagic_4(CIOCPort * pIOCP, float currenttime) {
                 m_MagicType4[i].fStartTime = 0.0f;
                 m_MagicType4[i].byAmount = 0;
                 buff_type = i + 1;
-                if (i == 5) { // ¼Óµµ °ü·Ã... ´É·ÂÄ¡..
+                if (i == 5) { // ì†ë„ ê´€ë ¨... ëŠ¥ë ¥ì¹˜..
                     m_fSpeed_1 = m_fOldSpeed_1;
                     m_fSpeed_2 = m_fOldSpeed_2;
                 }
@@ -6185,32 +6185,32 @@ void CNpc::DurationMagic_4(CIOCPort * pIOCP, float currenttime) {
     }    */
 }
 
-// º¯È­µÇ´Â ¸ó½ºÅÍÀÇ Á¤º¸¸¦ ¹Ù²Ù¾îÁØ´Ù...
+// ë³€í™”ë˜ëŠ” ëª¬ìŠ¤í„°ì˜ ì •ë³´ë¥¼ ë°”ê¾¸ì–´ì¤€ë‹¤...
 void CNpc::ChangeMonsterInfomation(int iChangeType) {
     // sungyong test
     //m_sChangeSid = 500;        m_byChangeType = 2;
 
     if (m_sChangeSid == 0 || m_byChangeType == 0) {
-        return; // º¯ÇÏÁö ¾Ê´Â ¸ó½ºÅÍ
+        return; // ë³€í•˜ì§€ ì•ŠëŠ” ëª¬ìŠ¤í„°
     }
     if (m_NpcState != NPC_DEAD) {
-        return; // Á×Àº »óÅÂ
+        return; // ì£½ì€ ìƒíƒœ
     }
 
     CNpcTable * pNpcTable = NULL;
     if (m_byInitMoveType >= 0 && m_byInitMoveType < 100) {
-        if (iChangeType == 1) { // ´Ù¸¥ ¸ó½ºÅÍ·Î º¯È¯..
+        if (iChangeType == 1) { // ë‹¤ë¥¸ ëª¬ìŠ¤í„°ë¡œ ë³€í™˜..
             pNpcTable = m_pMain->m_arMonTable.GetData(m_sChangeSid);
-        } else if (iChangeType == 2) { // ¿ø·¡ÀÇ ¸ó½ºÅÍ·Î º¯È¯..
+        } else if (iChangeType == 2) { // ì›ë˜ì˜ ëª¬ìŠ¤í„°ë¡œ ë³€í™˜..
             pNpcTable = m_pMain->m_arMonTable.GetData(m_sSid);
         }
         if (pNpcTable == NULL) {
             TRACE("##### ChangeMonsterInfomation Sid Fail -- Sid = %d #####\n", m_sChangeSid);
         }
     } else if (m_byInitMoveType >= 100) {
-        if (iChangeType == 1) { // ´Ù¸¥ ¸ó½ºÅÍ·Î º¯È¯..
+        if (iChangeType == 1) { // ë‹¤ë¥¸ ëª¬ìŠ¤í„°ë¡œ ë³€í™˜..
             pNpcTable = m_pMain->m_arNpcTable.GetData(m_sChangeSid);
-        } else if (iChangeType == 2) { // ¿ø·¡ÀÇ ¸ó½ºÅÍ·Î º¯È¯..
+        } else if (iChangeType == 2) { // ì›ë˜ì˜ ëª¬ìŠ¤í„°ë¡œ ë³€í™˜..
             pNpcTable = m_pMain->m_arNpcTable.GetData(m_sSid);
         }
         if (pNpcTable == NULL) {
@@ -6218,55 +6218,55 @@ void CNpc::ChangeMonsterInfomation(int iChangeType) {
         }
     }
 
-    // Á¤º¸¼öÁ¤......
+    // ì •ë³´ìˆ˜ì •......
     _tcscpy(m_strName, pNpcTable->m_strName); // MONSTER(NPC) Name
     m_sPid = pNpcTable->m_sPid;               // MONSTER(NPC) Picture ID
-    m_sSize = pNpcTable->m_sSize;             // Ä³¸¯ÅÍÀÇ ºñÀ²(100 ÆÛ¼¾Æ® ±âÁØ)
-    m_iWeapon_1 = pNpcTable->m_iWeapon_1;     // Âø¿ë¹«±â
-    m_iWeapon_2 = pNpcTable->m_iWeapon_2;     // Âø¿ë¹«±â
-    m_byGroup = pNpcTable->m_byGroup;         // ¼Ò¼ÓÁı´Ü
-    m_byActType = pNpcTable->m_byActType;     // Çàµ¿ÆĞÅÏ
-    m_byRank = pNpcTable->m_byRank;           // ÀÛÀ§
-    m_byTitle = pNpcTable->m_byTitle;         // ÁöÀ§
+    m_sSize = pNpcTable->m_sSize;             // ìºë¦­í„°ì˜ ë¹„ìœ¨(100 í¼ì„¼íŠ¸ ê¸°ì¤€)
+    m_iWeapon_1 = pNpcTable->m_iWeapon_1;     // ì°©ìš©ë¬´ê¸°
+    m_iWeapon_2 = pNpcTable->m_iWeapon_2;     // ì°©ìš©ë¬´ê¸°
+    m_byGroup = pNpcTable->m_byGroup;         // ì†Œì†ì§‘ë‹¨
+    m_byActType = pNpcTable->m_byActType;     // í–‰ë™íŒ¨í„´
+    m_byRank = pNpcTable->m_byRank;           // ì‘ìœ„
+    m_byTitle = pNpcTable->m_byTitle;         // ì§€ìœ„
     m_iSellingGroup = pNpcTable->m_iSellingGroup;
     m_sLevel = pNpcTable->m_sLevel;                // level
-    m_iExp = pNpcTable->m_iExp;                    // °æÇèÄ¡
+    m_iExp = pNpcTable->m_iExp;                    // ê²½í—˜ì¹˜
     m_iLoyalty = pNpcTable->m_iLoyalty;            // loyalty
-    m_iHP = pNpcTable->m_iMaxHP;                   // ÃÖ´ë HP
-    m_iMaxHP = pNpcTable->m_iMaxHP;                // ÇöÀç HP
-    m_sMP = pNpcTable->m_sMaxMP;                   // ÃÖ´ë MP
-    m_sMaxMP = pNpcTable->m_sMaxMP;                // ÇöÀç MP
-    m_sAttack = pNpcTable->m_sAttack;              // °ø°İ°ª
-    m_sDefense = pNpcTable->m_sDefense;            // ¹æ¾î°ª
-    m_sHitRate = pNpcTable->m_sHitRate;            // Å¸°İ¼º°ø·ü
-    m_sEvadeRate = pNpcTable->m_sEvadeRate;        // È¸ÇÇ¼º°ø·ü
-    m_sDamage = pNpcTable->m_sDamage;              // ±âº» µ¥¹ÌÁö
-    m_sAttackDelay = pNpcTable->m_sAttackDelay;    // °ø°İµô·¹ÀÌ
-    m_sSpeed = pNpcTable->m_sSpeed;                // ÀÌµ¿¼Óµµ
-    m_fSpeed_1 = (float)pNpcTable->m_bySpeed_1;    // ±âº» ÀÌµ¿ Å¸ÀÔ
-    m_fSpeed_2 = (float)pNpcTable->m_bySpeed_2;    // ¶Ù´Â ÀÌµ¿ Å¸ÀÔ..
-    m_fOldSpeed_1 = (float)pNpcTable->m_bySpeed_1; // ±âº» ÀÌµ¿ Å¸ÀÔ
-    m_fOldSpeed_2 = (float)pNpcTable->m_bySpeed_2; // ¶Ù´Â ÀÌµ¿ Å¸ÀÔ..
-    m_sStandTime = pNpcTable->m_sStandTime;        // ¼­ÀÖ´Â ½Ã°£
-    m_iMagic1 = pNpcTable->m_iMagic1;              // »ç¿ë¸¶¹ı 1
-    m_iMagic2 = pNpcTable->m_iMagic2;              // »ç¿ë¸¶¹ı 2
-    m_iMagic3 = pNpcTable->m_iMagic3;              // »ç¿ë¸¶¹ı 3
-    m_sFireR = pNpcTable->m_sFireR;                // È­¿° ÀúÇ×·Â
-    m_sColdR = pNpcTable->m_sColdR;                // ³Ã±â ÀúÇ×·Â
-    m_sLightningR = pNpcTable->m_sLightningR;      // Àü±â ÀúÇ×·Â
-    m_sMagicR = pNpcTable->m_sMagicR;              // ¸¶¹ı ÀúÇ×·Â
-    m_sDiseaseR = pNpcTable->m_sDiseaseR;          // ÀúÁÖ ÀúÇ×·Â
-    m_sPoisonR = pNpcTable->m_sPoisonR;            // µ¶ ÀúÇ×·Â
-    m_sLightR = pNpcTable->m_sLightR;              // ºû ÀúÇ×·Â
+    m_iHP = pNpcTable->m_iMaxHP;                   // ìµœëŒ€ HP
+    m_iMaxHP = pNpcTable->m_iMaxHP;                // í˜„ì¬ HP
+    m_sMP = pNpcTable->m_sMaxMP;                   // ìµœëŒ€ MP
+    m_sMaxMP = pNpcTable->m_sMaxMP;                // í˜„ì¬ MP
+    m_sAttack = pNpcTable->m_sAttack;              // ê³µê²©ê°’
+    m_sDefense = pNpcTable->m_sDefense;            // ë°©ì–´ê°’
+    m_sHitRate = pNpcTable->m_sHitRate;            // íƒ€ê²©ì„±ê³µë¥ 
+    m_sEvadeRate = pNpcTable->m_sEvadeRate;        // íšŒí”¼ì„±ê³µë¥ 
+    m_sDamage = pNpcTable->m_sDamage;              // ê¸°ë³¸ ë°ë¯¸ì§€
+    m_sAttackDelay = pNpcTable->m_sAttackDelay;    // ê³µê²©ë”œë ˆì´
+    m_sSpeed = pNpcTable->m_sSpeed;                // ì´ë™ì†ë„
+    m_fSpeed_1 = (float)pNpcTable->m_bySpeed_1;    // ê¸°ë³¸ ì´ë™ íƒ€ì…
+    m_fSpeed_2 = (float)pNpcTable->m_bySpeed_2;    // ë›°ëŠ” ì´ë™ íƒ€ì…..
+    m_fOldSpeed_1 = (float)pNpcTable->m_bySpeed_1; // ê¸°ë³¸ ì´ë™ íƒ€ì…
+    m_fOldSpeed_2 = (float)pNpcTable->m_bySpeed_2; // ë›°ëŠ” ì´ë™ íƒ€ì…..
+    m_sStandTime = pNpcTable->m_sStandTime;        // ì„œìˆëŠ” ì‹œê°„
+    m_iMagic1 = pNpcTable->m_iMagic1;              // ì‚¬ìš©ë§ˆë²• 1
+    m_iMagic2 = pNpcTable->m_iMagic2;              // ì‚¬ìš©ë§ˆë²• 2
+    m_iMagic3 = pNpcTable->m_iMagic3;              // ì‚¬ìš©ë§ˆë²• 3
+    m_sFireR = pNpcTable->m_sFireR;                // í™”ì—¼ ì €í•­ë ¥
+    m_sColdR = pNpcTable->m_sColdR;                // ëƒ‰ê¸° ì €í•­ë ¥
+    m_sLightningR = pNpcTable->m_sLightningR;      // ì „ê¸° ì €í•­ë ¥
+    m_sMagicR = pNpcTable->m_sMagicR;              // ë§ˆë²• ì €í•­ë ¥
+    m_sDiseaseR = pNpcTable->m_sDiseaseR;          // ì €ì£¼ ì €í•­ë ¥
+    m_sPoisonR = pNpcTable->m_sPoisonR;            // ë… ì €í•­ë ¥
+    m_sLightR = pNpcTable->m_sLightR;              // ë¹› ì €í•­ë ¥
     m_fBulk = (float)(((double)pNpcTable->m_sBulk / 100) * ((double)pNpcTable->m_sSize / 100));
-    m_bySearchRange = pNpcTable->m_bySearchRange;   // Àû Å½Áö ¹üÀ§
-    m_byAttackRange = pNpcTable->m_byAttackRange;   // »çÁ¤°Å¸®
-    m_byTracingRange = pNpcTable->m_byTracingRange; // Ãß°İ°Å¸®
-    m_sAI = pNpcTable->m_sAI;                       // ÀÎ°øÁö´É ÀÎµ¦½º
+    m_bySearchRange = pNpcTable->m_bySearchRange;   // ì  íƒì§€ ë²”ìœ„
+    m_byAttackRange = pNpcTable->m_byAttackRange;   // ì‚¬ì •ê±°ë¦¬
+    m_byTracingRange = pNpcTable->m_byTracingRange; // ì¶”ê²©ê±°ë¦¬
+    m_sAI = pNpcTable->m_sAI;                       // ì¸ê³µì§€ëŠ¥ ì¸ë±ìŠ¤
     m_tNpcType = pNpcTable->m_tNpcType;             // NPC Type
-    m_byFamilyType = pNpcTable->m_byFamilyType;     // ¸÷µé»çÀÌ¿¡¼­ °¡Á·°ü°è¸¦ °áÁ¤ÇÑ´Ù.
-    m_iMoney = pNpcTable->m_iMoney;                 // ¶³¾îÁö´Â µ·
-    m_iItem = pNpcTable->m_iItem;                   // ¶³¾îÁö´Â ¾ÆÀÌÅÛ
+    m_byFamilyType = pNpcTable->m_byFamilyType;     // ëª¹ë“¤ì‚¬ì´ì—ì„œ ê°€ì¡±ê´€ê³„ë¥¼ ê²°ì •í•œë‹¤.
+    m_iMoney = pNpcTable->m_iMoney;                 // ë–¨ì–´ì§€ëŠ” ëˆ
+    m_iItem = pNpcTable->m_iItem;                   // ë–¨ì–´ì§€ëŠ” ì•„ì´í…œ
     m_tNpcLongType = pNpcTable->m_byDirectAttack;
     m_byWhatAttackType = pNpcTable->m_byMagicAttack;
 }
@@ -6276,19 +6276,19 @@ void CNpc::DurationMagic_3(CIOCPort * pIOCP, float currenttime) {
 
     for (int i = 0; i < MAX_MAGIC_TYPE3; i++) {
         if (m_MagicType3[i].byHPDuration) {
-            if (currenttime >= (m_MagicType3[i].fStartTime + m_MagicType3[i].byHPInterval)) { // 2ÃÊ°£°İÀ¸·Î
+            if (currenttime >= (m_MagicType3[i].fStartTime + m_MagicType3[i].byHPInterval)) { // 2ì´ˆê°„ê²©ìœ¼ë¡œ
                 m_MagicType3[i].byHPInterval += 2;
                 //TRACE("DurationMagic_3,, [%d] curtime = %.2f, dur=%.2f, nid=%d, damage=%d\n", i, currenttime, m_MagicType3[i].fStartTime, m_sNid+NPC_BAND, m_MagicType3[i].sHPAmount);
 
                 if (m_MagicType3[i].sHPAmount >= 0) { // healing
                 } else {
-                    // damage °è»ê½Ä...
+                    // damage ê³„ì‚°ì‹...
                     duration_damage = m_MagicType3[i].sHPAmount;
                     duration_damage = abs(duration_damage);
                     if (SetDamage(0, duration_damage, "**duration**", m_MagicType3[i].sHPAttackUserID, pIOCP) ==
                         FALSE) {
-                        // Npc°¡ Á×Àº °æ¿ì,,
-                        SendExpToUserList(); // °æÇèÄ¡ ºĞ¹è!!
+                        // Npcê°€ ì£½ì€ ê²½ìš°,,
+                        SendExpToUserList(); // ê²½í—˜ì¹˜ ë¶„ë°°!!
                         SendDead(pIOCP);
                         SendAttackSuccess(pIOCP, MAGIC_ATTACK_TARGET_DEAD, m_MagicType3[i].sHPAttackUserID,
                                           duration_damage, m_iHP, 1, DURATION_ATTACK);
@@ -6306,7 +6306,7 @@ void CNpc::DurationMagic_3(CIOCPort * pIOCP, float currenttime) {
                     }
                 }
 
-                if (currenttime >= (m_MagicType3[i].fStartTime + m_MagicType3[i].byHPDuration)) { // ÃÑ °ø°İ½Ã°£..
+                if (currenttime >= (m_MagicType3[i].fStartTime + m_MagicType3[i].byHPDuration)) { // ì´ ê³µê²©ì‹œê°„..
                     m_MagicType3[i].fStartTime = 0.0f;
                     m_MagicType3[i].byHPDuration = 0;
                     m_MagicType3[i].byHPInterval = 2;
@@ -6320,7 +6320,7 @@ void CNpc::DurationMagic_3(CIOCPort * pIOCP, float currenttime) {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-//    NPC°¡ ÀáÀÚ´Â°æ¿ì.
+//    NPCê°€ ì ìëŠ”ê²½ìš°.
 //
 void CNpc::NpcSleeping(CIOCPort * pIOCP) {
     if (cur_test) {
@@ -6336,10 +6336,10 @@ void CNpc::NpcSleeping(CIOCPort * pIOCP) {
     }    */
     // ~sungyong test
 
-    if (m_pMain->m_byNight == 1) { // ³·
+    if (m_pMain->m_byNight == 1) { // ë‚®
         m_NpcState = NPC_STANDING;
         m_Delay = 0;
-    } else { // ¹ã
+    } else { // ë°¤
         m_NpcState = NPC_SLEEPING;
         m_Delay = m_sStandTime;
     }
@@ -6348,12 +6348,12 @@ void CNpc::NpcSleeping(CIOCPort * pIOCP) {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// ¸ó½ºÅÍ°¡ ±âÀı»óÅÂ·Î..........
+// ëª¬ìŠ¤í„°ê°€ ê¸°ì ˆìƒíƒœë¡œ..........
 void CNpc::NpcFainting(CIOCPort * pIOCP, float currenttime) {
     if (cur_test) {
         NpcTrace("NpcFainting()");
     }
-    // 2ÃÊµ¿¾È ±âÀıÇØ ÀÖ´Ù°¡,,  standing»óÅÂ·Î....
+    // 2ì´ˆë™ì•ˆ ê¸°ì ˆí•´ ìˆë‹¤ê°€,,  standingìƒíƒœë¡œ....
     if (currenttime > (m_fFaintingTime + FAINTING_TIME)) {
         m_NpcState = NPC_STANDING;
         m_Delay = 0;
@@ -6363,7 +6363,7 @@ void CNpc::NpcFainting(CIOCPort * pIOCP, float currenttime) {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// ¸ó½ºÅÍ°¡ Ä¡·á»óÅÂ·Î..........
+// ëª¬ìŠ¤í„°ê°€ ì¹˜ë£Œìƒíƒœë¡œ..........
 void CNpc::NpcHealing(CIOCPort * pIOCP) {
     if (cur_test) {
         NpcTrace("NpcHealing()");
@@ -6377,7 +6377,7 @@ void CNpc::NpcHealing(CIOCPort * pIOCP) {
         return;
     }
 
-    // Ä¡·á´ë»óÀÌ Ä¡·á°¡ ´Ù µÆ´ÂÁö¸¦ ÆÇ´Ü..
+    // ì¹˜ë£ŒëŒ€ìƒì´ ì¹˜ë£Œê°€ ë‹¤ ëëŠ”ì§€ë¥¼ íŒë‹¨..
     CNpc * pNpc = NULL;
     int    nID = m_Target.id;
     BOOL   bFlag = FALSE;
@@ -6394,7 +6394,7 @@ void CNpc::NpcHealing(CIOCPort * pIOCP) {
     if (ret == 0) {
         if (m_tNpcType == NPC_DOOR || m_tNpcType == NPC_ARTIFACT || m_tNpcType == NPC_PHOENIX_GATE ||
             m_tNpcType == NPC_GATE_LEVER || m_tNpcType == NPC_DOMESTIC_ANIMAL || m_tNpcType == NPC_SPECIAL_GATE ||
-            m_tNpcType == NPC_DESTORY_ARTIFACT) // °íÁ¤ °æºñº´Àº ÃßÀûÀ» ÇÏÁö ¾Êµµ·Ï..
+            m_tNpcType == NPC_DESTORY_ARTIFACT) // ê³ ì • ê²½ë¹„ë³‘ì€ ì¶”ì ì„ í•˜ì§€ ì•Šë„ë¡..
         {
             m_NpcState = NPC_STANDING;
             InitTarget();
@@ -6404,20 +6404,20 @@ void CNpc::NpcHealing(CIOCPort * pIOCP) {
         }
         m_sStepCount = 0;
         m_byActionFlag = ATTACK_TO_TRACE;
-        m_NpcState = NPC_TRACING; // °ø°İÇÏ°í µµ¸Á°¡´Â À¯Àú¸¦ µû¶ó Àâ±âÀ§ÇØ(¹İÀÀÀ» Á»´õ ºü¸£°Ô)
+        m_NpcState = NPC_TRACING; // ê³µê²©í•˜ê³  ë„ë§ê°€ëŠ” ìœ ì €ë¥¼ ë”°ë¼ ì¡ê¸°ìœ„í•´(ë°˜ì‘ì„ ì¢€ë” ë¹ ë¥´ê²Œ)
         m_Delay = 0;
         m_fDelayTime = TimeGet();
-        return; // IsCloseTarget()¿¡ À¯Àú x, y°ªÀ» °»½ÅÇÏ°í Delay = 0À¸·Î ÁÜ
+        return; // IsCloseTarget()ì— ìœ ì € x, yê°’ì„ ê°±ì‹ í•˜ê³  Delay = 0ìœ¼ë¡œ ì¤Œ
     } else if (ret == 2) {
-        //if(m_tNpcType == NPC_BOSS_MONSTER)    {        // ´ëÀå ¸ó½ºÅÍÀÌ¸é.....
-        if (m_tNpcLongType == 2) { // Á÷Á¢, °£Á¢(·Õ)°ø°İÀÌ °¡´ÉÇÑ ¸ó½ºÅÍ ÀÌ¹Ç·Î Àå°Å¸® °ø°İÀ» ÇÒ ¼ö ÀÖ´Ù.
+        //if(m_tNpcType == NPC_BOSS_MONSTER)    {        // ëŒ€ì¥ ëª¬ìŠ¤í„°ì´ë©´.....
+        if (m_tNpcLongType == 2) { // ì§ì ‘, ê°„ì ‘(ë¡±)ê³µê²©ì´ ê°€ëŠ¥í•œ ëª¬ìŠ¤í„° ì´ë¯€ë¡œ ì¥ê±°ë¦¬ ê³µê²©ì„ í•  ìˆ˜ ìˆë‹¤.
             m_Delay = LongAndMagicAttack(pIOCP);
             m_fDelayTime = TimeGet();
             return;
         } else {
             if (m_tNpcType == NPC_DOOR || m_tNpcType == NPC_ARTIFACT || m_tNpcType == NPC_PHOENIX_GATE ||
                 m_tNpcType == NPC_GATE_LEVER || m_tNpcType == NPC_DOMESTIC_ANIMAL || m_tNpcType == NPC_SPECIAL_GATE ||
-                m_tNpcType == NPC_DESTORY_ARTIFACT) // °íÁ¤ °æºñº´Àº ÃßÀûÀ» ÇÏÁö ¾Êµµ·Ï..
+                m_tNpcType == NPC_DESTORY_ARTIFACT) // ê³ ì • ê²½ë¹„ë³‘ì€ ì¶”ì ì„ í•˜ì§€ ì•Šë„ë¡..
             {
                 m_NpcState = NPC_STANDING;
                 InitTarget();
@@ -6427,10 +6427,10 @@ void CNpc::NpcHealing(CIOCPort * pIOCP) {
             }
             m_sStepCount = 0;
             m_byActionFlag = ATTACK_TO_TRACE;
-            m_NpcState = NPC_TRACING; // °ø°İÇÏ°í µµ¸Á°¡´Â À¯Àú¸¦ µû¶ó Àâ±âÀ§ÇØ(¹İÀÀÀ» Á»´õ ºü¸£°Ô)
+            m_NpcState = NPC_TRACING; // ê³µê²©í•˜ê³  ë„ë§ê°€ëŠ” ìœ ì €ë¥¼ ë”°ë¼ ì¡ê¸°ìœ„í•´(ë°˜ì‘ì„ ì¢€ë” ë¹ ë¥´ê²Œ)
             m_Delay = 0;
             m_fDelayTime = TimeGet();
-            return; // IsCloseTarget()¿¡ À¯Àú x, y°ªÀ» °»½ÅÇÏ°í Delay = 0À¸·Î ÁÜ
+            return; // IsCloseTarget()ì— ìœ ì € x, yê°’ì„ ê°±ì‹ í•˜ê³  Delay = 0ìœ¼ë¡œ ì¤Œ
         }
     } else if (ret == -1) {
         m_NpcState = NPC_STANDING;
@@ -6443,7 +6443,7 @@ void CNpc::NpcHealing(CIOCPort * pIOCP) {
     if (nID >= NPC_BAND && nID < INVALID_BAND) {
         pNpc = m_pMain->m_arNpc.GetData(nID - NPC_BAND);
 
-        if (pNpc == NULL) { // User °¡ Invalid ÇÑ °æ¿ì
+        if (pNpc == NULL) { // User ê°€ Invalid í•œ ê²½ìš°
             InitTarget();
         }
 
@@ -6451,11 +6451,11 @@ void CNpc::NpcHealing(CIOCPort * pIOCP) {
             InitTarget();
         }
 
-        // Ä¡·á Ã¼Å©¿©ºÎ
-        iHP = pNpc->m_iMaxHP * 0.9; // 90ÆÛ¼¾Æ®ÀÇ HP
-        if (pNpc->m_iHP >= iHP) {   // Heal ¿Ï·á»óÅÂ..
+        // ì¹˜ë£Œ ì²´í¬ì—¬ë¶€
+        iHP = pNpc->m_iMaxHP * 0.9; // 90í¼ì„¼íŠ¸ì˜ HP
+        if (pNpc->m_iHP >= iHP) {   // Heal ì™„ë£Œìƒíƒœ..
             InitTarget();
-        } else { // Heal ÇØÁÖ±â
+        } else { // Heal í•´ì£¼ê¸°
             memset(buff, 0x00, 256);
             send_index = 0;
             //SetByte( buff, AG_MAGIC_ATTACK_RESULT, send_index );
@@ -6478,7 +6478,7 @@ void CNpc::NpcHealing(CIOCPort * pIOCP) {
         }
     }
 
-    // »õ·Î¿î Ä¡·á´ë»óÀ» Ã£¾Æ¼­ ÈúÇØÁØ´Ù
+    // ìƒˆë¡œìš´ ì¹˜ë£ŒëŒ€ìƒì„ ì°¾ì•„ì„œ íí•´ì¤€ë‹¤
     int iMonsterNid = FindFriend(2);
 
     if (iMonsterNid == 0) {
@@ -6539,7 +6539,7 @@ int CNpc::GetPartyExp(int party_level, int man, int nNpcExp) {
     return nPartyExp;
 }
 
-void CNpc::ChangeAbility(int iChangeType) // iChangeType - 0:´É·ÂÄ¡ ´Ù¿î, 1:´É·ÂÄ¡ È¸º¹
+void CNpc::ChangeAbility(int iChangeType) // iChangeType - 0:ëŠ¥ë ¥ì¹˜ ë‹¤ìš´, 1:ëŠ¥ë ¥ì¹˜ íšŒë³µ
 {
     if (iChangeType > 2) {
         return; //
@@ -6560,8 +6560,8 @@ void CNpc::ChangeAbility(int iChangeType) // iChangeType - 0:´É·ÂÄ¡ ´Ù¿î, 1:´É·Â
         }
     }
 
-    // Á¤º¸¼öÁ¤......
-    if (iChangeType == BATTLEZONE_OPEN) { // ´É·ÂÄ¡ ´Ù¿î
+    // ì •ë³´ìˆ˜ì •......
+    if (iChangeType == BATTLEZONE_OPEN) { // ëŠ¥ë ¥ì¹˜ ë‹¤ìš´
         nHP = pNpcTable->m_iMaxHP * 0.5;
         nAC = pNpcTable->m_sDefense * 0.2;
         nDamage = pNpcTable->m_sDamage * 0.3;
@@ -6573,35 +6573,35 @@ void CNpc::ChangeAbility(int iChangeType) // iChangeType - 0:´É·ÂÄ¡ ´Ù¿î, 1:´É·Â
         nFireR = pNpcTable->m_sFireR * 0.5;
         nColdR = pNpcTable->m_sColdR * 0.5;
         m_iMaxHP = nHP;
-        if (m_iHP > nHP) { // HPµµ ¹Ù²ã¾ß °Ú±º,,
+        if (m_iHP > nHP) { // HPë„ ë°”ê¿”ì•¼ ê² êµ°,,
             HpChange(&m_pMain->m_Iocport);
         }
         m_sDefense = nAC;
         m_sDamage = nDamage;
-        m_sFireR = nFireR;           // È­¿° ÀúÇ×·Â
-        m_sColdR = nColdR;           // ³Ã±â ÀúÇ×·Â
-        m_sLightningR = nLightningR; // Àü±â ÀúÇ×·Â
-        m_sMagicR = nMagicR;         // ¸¶¹ı ÀúÇ×·Â
-        m_sDiseaseR = nDiseaseR;     // ÀúÁÖ ÀúÇ×·Â
-        m_sPoisonR = nPoisonR;       // µ¶ ÀúÇ×·Â
-        m_sLightR = nLightR;         // ºû ÀúÇ×·Â
+        m_sFireR = nFireR;           // í™”ì—¼ ì €í•­ë ¥
+        m_sColdR = nColdR;           // ëƒ‰ê¸° ì €í•­ë ¥
+        m_sLightningR = nLightningR; // ì „ê¸° ì €í•­ë ¥
+        m_sMagicR = nMagicR;         // ë§ˆë²• ì €í•­ë ¥
+        m_sDiseaseR = nDiseaseR;     // ì €ì£¼ ì €í•­ë ¥
+        m_sPoisonR = nPoisonR;       // ë… ì €í•­ë ¥
+        m_sLightR = nLightR;         // ë¹› ì €í•­ë ¥
         //TRACE("-- ChangeAbility down : nid=%d, name=%s, hp:%d->%d, damage=%d->%d\n", m_sNid+NPC_BAND, m_strName, pNpcTable->m_iMaxHP, nHP, pNpcTable->m_sDamage, nDamage);
-    } else if (iChangeType == BATTLEZONE_CLOSE) { // ´É·ÂÄ¡ È¸º¹
-        m_iMaxHP = pNpcTable->m_iMaxHP;           // ÇöÀç HP
+    } else if (iChangeType == BATTLEZONE_CLOSE) { // ëŠ¥ë ¥ì¹˜ íšŒë³µ
+        m_iMaxHP = pNpcTable->m_iMaxHP;           // í˜„ì¬ HP
         //TRACE("++ ChangeAbility up : nid=%d, name=%s, hp:%d->%d, damage=%d->%d\n", m_sNid+NPC_BAND, m_strName, m_iHP, m_iMaxHP, pNpcTable->m_sDamage, nDamage);
-        if (m_iMaxHP > m_iHP) { // HPµµ ¹Ù²ã¾ß °Ú±º,,
+        if (m_iMaxHP > m_iHP) { // HPë„ ë°”ê¿”ì•¼ ê² êµ°,,
             m_iHP = m_iMaxHP - 50;
             HpChange(&m_pMain->m_Iocport);
         }
-        m_sDamage = pNpcTable->m_sDamage;         // ±âº» µ¥¹ÌÁö
-        m_sDefense = pNpcTable->m_sDefense;       // ¹æ¾î°ª
-        m_sFireR = pNpcTable->m_sFireR;           // È­¿° ÀúÇ×·Â
-        m_sColdR = pNpcTable->m_sColdR;           // ³Ã±â ÀúÇ×·Â
-        m_sLightningR = pNpcTable->m_sLightningR; // Àü±â ÀúÇ×·Â
-        m_sMagicR = pNpcTable->m_sMagicR;         // ¸¶¹ı ÀúÇ×·Â
-        m_sDiseaseR = pNpcTable->m_sDiseaseR;     // ÀúÁÖ ÀúÇ×·Â
-        m_sPoisonR = pNpcTable->m_sPoisonR;       // µ¶ ÀúÇ×·Â
-        m_sLightR = pNpcTable->m_sLightR;         // ºû ÀúÇ×·Â
+        m_sDamage = pNpcTable->m_sDamage;         // ê¸°ë³¸ ë°ë¯¸ì§€
+        m_sDefense = pNpcTable->m_sDefense;       // ë°©ì–´ê°’
+        m_sFireR = pNpcTable->m_sFireR;           // í™”ì—¼ ì €í•­ë ¥
+        m_sColdR = pNpcTable->m_sColdR;           // ëƒ‰ê¸° ì €í•­ë ¥
+        m_sLightningR = pNpcTable->m_sLightningR; // ì „ê¸° ì €í•­ë ¥
+        m_sMagicR = pNpcTable->m_sMagicR;         // ë§ˆë²• ì €í•­ë ¥
+        m_sDiseaseR = pNpcTable->m_sDiseaseR;     // ì €ì£¼ ì €í•­ë ¥
+        m_sPoisonR = pNpcTable->m_sPoisonR;       // ë… ì €í•­ë ¥
+        m_sLightR = pNpcTable->m_sLightR;         // ë¹› ì €í•­ë ¥
     }
 }
 
@@ -6638,7 +6638,7 @@ BOOL CNpc::Teleport(CIOCPort * pIOCP) {
 
         if (pMap->m_pMap[nTileX][nTileZ].m_sEvent <= 0) {
             if (i >= 500) {
-                TRACE("### Teleport fail : sid = %d, nid = %d, zone=%d, loop = %d ³ª ÀÌµ¿ÀÚ¸®°¡ ÀÌ»óÇØ... °íÃÄÁà... x "
+                TRACE("### Teleport fail : sid = %d, nid = %d, zone=%d, loop = %d ë‚˜ ì´ë™ìë¦¬ê°€ ì´ìƒí•´... ê³ ì³ì¤˜... x "
                       "= %d, y = %d\n",
                       m_sSid, m_sNid + NPC_BAND, m_sCurZone, i, nX, nZ);
                 return FALSE;
@@ -6654,7 +6654,7 @@ BOOL CNpc::Teleport(CIOCPort * pIOCP) {
     Setfloat(buff, m_fCurX, send_index);
     Setfloat(buff, m_fCurZ, send_index);
     Setfloat(buff, m_fCurY, send_index);
-    SendAll(pIOCP, buff, send_index); // thread ¿¡¼­ send
+    SendAll(pIOCP, buff, send_index); // thread ì—ì„œ send
 
     m_fCurX = nX;
     m_fCurZ = nZ;
@@ -6667,7 +6667,7 @@ BOOL CNpc::Teleport(CIOCPort * pIOCP) {
     Setfloat(buff, m_fCurX, send_index);
     Setfloat(buff, m_fCurZ, send_index);
     Setfloat(buff, 0, send_index);
-    SendAll(pIOCP, buff, send_index); // thread ¿¡¼­ send
+    SendAll(pIOCP, buff, send_index); // thread ì—ì„œ send
 
     SetUid(m_fCurX, m_fCurZ, m_sNid + NPC_BAND);
 

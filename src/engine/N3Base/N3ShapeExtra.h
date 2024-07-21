@@ -14,10 +14,10 @@
 class CN3ShapeExtra : public CN3Shape {
   protected:
     struct __Rotation {
-        float     fRadianPerSec;  // ÃÊ´ç È¸Àü.. Radian...
-        __Vector3 vAxis;          // È¸ÀüÃà..
-        float     fRadianCur;     // ÇöÀç È¸Àü°ª..
-        float     fRadianToReach; // È¸Àü½ÃÅ³°ª..
+        float     fRadianPerSec;  // ì´ˆë‹¹ íšŒì „.. Radian...
+        __Vector3 vAxis;          // íšŒì „ì¶•..
+        float     fRadianCur;     // í˜„ì¬ íšŒì „ê°’..
+        float     fRadianToReach; // íšŒì „ì‹œí‚¬ê°’..
 
         __Rotation() {
             memset(this, 0, sizeof(__Rotation));
@@ -29,7 +29,7 @@ class CN3ShapeExtra : public CN3Shape {
 
   public:
     void RotateTo(int iPart, const __Vector3 & vAxis, float fRadianToReach, float fRadianPerSec,
-                  bool bImmediately = false); // ¿øÇÏ´Â ÆÄÆ®¸¦ Ãà¿¡ µû¶ó ÁöÁ¤ÇÑ °¢µµ±îÁö ÁöÁ¤ÇÑ ¼Óµµ·Î È¸Àü½ÃÅ²´Ù..
+                  bool bImmediately = false); // ì›í•˜ëŠ” íŒŒíŠ¸ë¥¼ ì¶•ì— ë”°ë¼ ì§€ì •í•œ ê°ë„ê¹Œì§€ ì§€ì •í•œ ì†ë„ë¡œ íšŒì „ì‹œí‚¨ë‹¤..
 
     bool Load(HANDLE hFile);
     void Tick(float fFrm);

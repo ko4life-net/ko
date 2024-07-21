@@ -47,7 +47,7 @@ class CIOCPort {
     CIOCPSocket2 ** m_SockArray;
     CIOCPSocket2 ** m_SockArrayInActive;
 
-    CIOCPSocket2 ** m_ClientSockArray; // Connect¿ë ¼ÒÄÏ
+    CIOCPSocket2 ** m_ClientSockArray; // Connectìš© ì†Œì¼“
 
   protected:
     DWORD m_dwNumberOfWorkers;

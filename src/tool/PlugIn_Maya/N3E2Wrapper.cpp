@@ -50,7 +50,7 @@ CN3EngTool * g_pEng;
 
 // CN3E2Wrapper class methods:
 CN3E2Wrapper::CN3E2Wrapper() {
-    // ÁøÇà »óÈ² ´ëÈ­»óÀÚ
+    // ì§„í–‰ ìƒí™© ëŒ€í™”ìƒì
     HWND      hWnd = M3dView::applicationShell();
     HINSTANCE hInst = MhInstPlugin;
     m_hDlgProgress = CreateDialog(hInst, MAKEINTRESOURCE(IDD_PROGRESS), hWnd, CN3E2Wrapper::DlgProcProgress);
@@ -65,7 +65,7 @@ CN3E2Wrapper::CN3E2Wrapper() {
 }
 
 CN3E2Wrapper::~CN3E2Wrapper() {
-    ::DestroyWindow(m_hDlgProgress); // ÁøÇà »óÀÚ ¾ø¾Ö±â..
+    ::DestroyWindow(m_hDlgProgress); // ì§„í–‰ ìƒì ì—†ì• ê¸°..
     this->Release();
 }
 
@@ -87,8 +87,8 @@ void CN3E2Wrapper::Release() {
     m_Option.bGenerateCompressedTexture = TRUE;
     m_Option.fSamplingRate = 30.0f;
 
-    lstrcpy(m_szPath, "");     // °æ·Î ÀÌ¸§
-    lstrcpy(m_szFileName, ""); // ÆÄÀÏ ÀÌ¸§
+    lstrcpy(m_szPath, "");     // ê²½ë¡œ ì´ë¦„
+    lstrcpy(m_szFileName, ""); // íŒŒì¼ ì´ë¦„
 
     delete m_pScene;
     m_pScene = NULL;
@@ -97,23 +97,23 @@ void CN3E2Wrapper::Release() {
 }
 
 void CN3E2Wrapper::SetFileName(const char * szFileName) {
-    lstrcpy(m_szFileName, szFileName); // ÆÄÀÏ ÀÌ¸§
+    lstrcpy(m_szFileName, szFileName); // íŒŒì¼ ì´ë¦„
 }
 
 void CN3E2Wrapper::SetPath(const char * szPath) {
-    lstrcpy(m_szPath, szPath); // ÆÄÀÏ ÀÌ¸§
+    lstrcpy(m_szPath, szPath); // íŒŒì¼ ì´ë¦„
 }
 
-// ¶óÀÌÆ® Á¾·ù¸¦ ¸®ÅÏ.
+// ë¼ì´íŠ¸ ì¢…ë¥˜ë¥¼ ë¦¬í„´.
 CN3Light * CN3E2Wrapper::ProcessLight(MFnLight & mLight) {
     CN3Light *   pLight = new CN3Light();
     MFnTransform mT = MFnTransform(mLight.parent(0));
     this->ProcessTransform(mT, pLight); // Transform Node
 
     pLight->m_szName = mT.name().asChar();
-    pLight->FileNameSet("Data\\" + pLight->m_szName + ".N3Light"); // ÆÄÀÏ ÀÌ¸§ °áÁ¤..
+    pLight->FileNameSet("Data\\" + pLight->m_szName + ".N3Light"); // íŒŒì¼ ì´ë¦„ ê²°ì •..
 
-    // ¶óÀÌÆ® Á¾·ù
+    // ë¼ì´íŠ¸ ì¢…ë¥˜
     D3DCOLORVALUE dcv = {1, 1, 1, 1};
     pLight->m_Data.InitPoint(m_pScene->LightCount(), __Vector3(0, 0, 0), dcv);
     MFn::Type Type = mLight.type();
@@ -124,21 +124,21 @@ CN3Light * CN3E2Wrapper::ProcessLight(MFnLight & mLight) {
         pLight->m_Data.Type = D3DLIGHT_SPOT;
 
         MFnSpotLight Spot(mLight.object());
-        pLight->m_Data.Theta = (float)Spot.coneAngle();   // ³»ºÎ ¿ø»Ô°¢
-        pLight->m_Data.Phi = (float)Spot.penumbraAngle(); // ¿ÜºÎ ¿ø»Ô°¢
-    } else                                                // ±âº»ÀûÀ¸·Î point light
+        pLight->m_Data.Theta = (float)Spot.coneAngle();   // ë‚´ë¶€ ì›ë¿”ê°
+        pLight->m_Data.Phi = (float)Spot.penumbraAngle(); // ì™¸ë¶€ ì›ë¿”ê°
+    } else                                                // ê¸°ë³¸ì ìœ¼ë¡œ point light
     {
         pLight->m_Data.Type = D3DLIGHT_POINT;
     }
 
     pLight->m_Data.Position = pLight->Pos();
 
-    MFloatVector dir = mLight.lightDirection(); // ¹æÇâ
+    MFloatVector dir = mLight.lightDirection(); // ë°©í–¥
     pLight->m_Data.Direction.x = dir.x;
     pLight->m_Data.Direction.y = dir.y;
     pLight->m_Data.Direction.z = -dir.z;
 
-    MColor color = mLight.color(); // ¶óÀÌÆ® ÄÃ·¯.
+    MColor color = mLight.color(); // ë¼ì´íŠ¸ ì»¬ëŸ¬.
 
     pLight->m_Data.Ambient.a = 1.0f;
     pLight->m_Data.Ambient.r = color.r * 0.3f;
@@ -152,7 +152,7 @@ CN3Light * CN3E2Wrapper::ProcessLight(MFnLight & mLight) {
 
     /*    MFnDependencyNode lightDG(mLight);
     MObject lightAttr = lightDG.attribute(MString("intensity"));
-    MPlug plug(mLight, lightAttr); // °­µµ
+    MPlug plug(mLight, lightAttr); // ê°•ë„
     double intensity;
     plug.getValue(intensity);
     
@@ -161,7 +161,7 @@ CN3Light * CN3E2Wrapper::ProcessLight(MFnLight & mLight) {
     plug.getValue(
 */
 
-    // ³ª¸ÓÁö ±âº»°ª.
+    // ë‚˜ë¨¸ì§€ ê¸°ë³¸ê°’.
     pLight->m_Data.nNumber = m_pScene->LightCount();
     pLight->m_Data.bOn = TRUE;
 
@@ -171,15 +171,15 @@ CN3Light * CN3E2Wrapper::ProcessLight(MFnLight & mLight) {
 CN3Camera * CN3E2Wrapper::ProcessCamera(MFnCamera & mCamera) {
     CN3Camera *  pCamera = new CN3Camera();
     MFnTransform mT(mCamera.parent(0));
-    this->ProcessTransform(mT, pCamera); // Transform Ã³¸®..
+    this->ProcessTransform(mT, pCamera); // Transform ì²˜ë¦¬..
     std::string szFN = "Data\\" + pCamera->m_szName + ".N3Camera";
     pCamera->FileNameSet(szFN);
 
     //    double dHFOV, dVFOV;
     //    mCamera.getPortFieldOfView(800, 600, dHFOV, dVFOV);
-    //    pCamera->s_CameraData.fNP = (float)(mCamera.nearClippingPlane() * 0.01); // meter ´ÜÀ§ ÀÌ±â¶§¹®¿¡ 100 À¸·Î ³ª´©¾î ÁØ´Ù.
+    //    pCamera->s_CameraData.fNP = (float)(mCamera.nearClippingPlane() * 0.01); // meter ë‹¨ìœ„ ì´ê¸°ë•Œë¬¸ì— 100 ìœ¼ë¡œ ë‚˜ëˆ„ì–´ ì¤€ë‹¤.
     //    pCamera->s_CameraData.fFP = (float)(mCamera.farClippingPlane() * 0.01);
-    //    pCamera->s_CameraData.fFOV = (float)dHFOV; // 90 µµ ·»Áî·Î °­Á¦ ¼¼ÆÃ..
+    //    pCamera->s_CameraData.fFOV = (float)dHFOV; // 90 ë„ ë Œì¦ˆë¡œ ê°•ì œ ì„¸íŒ…..
 
     return pCamera;
 }
@@ -214,7 +214,7 @@ void CN3E2Wrapper::SceneExport() {
     HINSTANCE hInst = MhInstPlugin;
     HWND      hWnd = M3dView::applicationShell();
     int       rval =
-        DialogBoxParam(hInst, MAKEINTRESOURCE(IDD_EXPORT_OPTION), hWnd, DlgProcPane, NULL); // ÄÁÆ®·Ñ ÆĞ³Î ´ëÈ­»óÀÚ..
+        DialogBoxParam(hInst, MAKEINTRESOURCE(IDD_EXPORT_OPTION), hWnd, DlgProcPane, NULL); // ì»¨íŠ¸ë¡¤ íŒ¨ë„ ëŒ€í™”ìƒì..
     if (rval != 1) {
         return;
     }
@@ -225,7 +225,7 @@ void CN3E2Wrapper::SceneExport() {
 
     char szPath[256];
     ::GetCurrentDirectory(256, szPath);
-    g_pEng->PathSet(szPath); // °æ·Î ¼³Á¤...
+    g_pEng->PathSet(szPath); // ê²½ë¡œ ì„¤ì •...
 
     m_pScene = new CN3Scene();
 
@@ -235,12 +235,12 @@ void CN3E2Wrapper::SceneExport() {
         delete g_pEng;
         g_pEng = NULL;
 
-        MessageBox(::GetActiveWindow(), "VideoMemory °¡ ºÎÁ·ÇÕ´Ï´Ù. VideoMemory È®º¸ ÈÄ ´Ù½Ã ½ÃµµÇÏ¼¼¿ä.",
+        MessageBox(::GetActiveWindow(), "VideoMemory ê°€ ë¶€ì¡±í•©ë‹ˆë‹¤. VideoMemory í™•ë³´ í›„ ë‹¤ì‹œ ì‹œë„í•˜ì„¸ìš”.",
                    "Data Export Error", MB_OK);
         return;
     }
 
-    MTime mOldTime = MAnimControl::currentTime(); // ÇöÀç ÇÁ·¹ÀÓÀÌ ¸î ÇÁ·¹ÀÓÂ°ÀÎÁö ÀúÀå..
+    MTime mOldTime = MAnimControl::currentTime(); // í˜„ì¬ í”„ë ˆì„ì´ ëª‡ í”„ë ˆì„ì§¸ì¸ì§€ ì €ì¥..
     MTime ZeroFrm;
     ZeroFrm.setValue(0); // ZeroFrm.setUnit(MTime::kNTSCFrame);
     MAnimControl::setCurrentTime(ZeroFrm);
@@ -250,7 +250,7 @@ void CN3E2Wrapper::SceneExport() {
     DWORD dwRWC = 0;
     char  szInfo[1024] = "";
 
-    m_pScene->Release(); // ¸ğµÎ ÇØÁ¦ÇÏ°í..
+    m_pScene->Release(); // ëª¨ë‘ í•´ì œí•˜ê³ ..
 
     //    m_pScene->m_fFrmCur = (float)MAnimControl::currentTime().value();
     m_pScene->m_fFrmStart = (float)m_Option.nFrmStart; // (float)MAnimControl::minTime().value();
@@ -258,10 +258,10 @@ void CN3E2Wrapper::SceneExport() {
 
     MObjectArray mObjects;
 
-    MItDependencyNodes IterNodes1(MFn::kCamera);            // scene ÀÇ ³ëµåµéÀ» Ã¼Å©..
-    MItDependencyNodes IterNodes2(MFn::kLight);             // scene ÀÇ ³ëµåµéÀ» Ã¼Å©..
-    MItDependencyNodes IterNodes3(MFn::kMesh);              // scene ÀÇ ³ëµåµéÀ» Ã¼Å©..
-    MItDependencyNodes IterNodes4(MFn::kSkinClusterFilter); // scene ÀÇ ³ëµåµéÀ» Ã¼Å©..
+    MItDependencyNodes IterNodes1(MFn::kCamera);            // scene ì˜ ë…¸ë“œë“¤ì„ ì²´í¬..
+    MItDependencyNodes IterNodes2(MFn::kLight);             // scene ì˜ ë…¸ë“œë“¤ì„ ì²´í¬..
+    MItDependencyNodes IterNodes3(MFn::kMesh);              // scene ì˜ ë…¸ë“œë“¤ì„ ì²´í¬..
+    MItDependencyNodes IterNodes4(MFn::kSkinClusterFilter); // scene ì˜ ë…¸ë“œë“¤ì„ ì²´í¬..
 
     for (int i = 0; !IterNodes1.isDone(); IterNodes1.next(), i++) {
         mObjects.append(IterNodes1.item());
@@ -284,16 +284,16 @@ void CN3E2Wrapper::SceneExport() {
     // Object Count...
     int nObjectCount = mObjects.length();
 
-    // ÁøÇà »óÈ² ´ëÈ­»óÀÚ ÄÁÆ®·Ñ ÇÚµé
+    // ì§„í–‰ ìƒí™© ëŒ€í™”ìƒì ì»¨íŠ¸ë¡¤ í•¸ë“¤
     ::SendMessage(m_hWndPB, PBM_SETRANGE, 0, MAKELPARAM(0, nObjectCount));
     ::SendMessage(m_hWndLB, LB_RESETCONTENT, 0, 0);
-    ::ShowWindow(m_hDlgProgress, SW_SHOW); // ÁøÇà ´ëÈ­»óÀÚ¸¦ º¸ÀÌ°í..
+    ::ShowWindow(m_hDlgProgress, SW_SHOW); // ì§„í–‰ ëŒ€í™”ìƒìë¥¼ ë³´ì´ê³ ..
     ::ShowWindow(m_hDlgProgress, SW_RESTORE);
 
     m_bCancelExport = FALSE;
 
     for (int i = 0; i < nObjectCount && FALSE == m_bCancelExport; i++) {
-        // Dialog Message Ã³¸®...
+        // Dialog Message ì²˜ë¦¬...
         MSG msg;
         if (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE)) {
             TranslateMessage(&msg);
@@ -301,18 +301,18 @@ void CN3E2Wrapper::SceneExport() {
         }
 
         if (TRUE == m_bCancelExport) {
-            break; // Export Cancel ¹öÆ°À» ´©¸£¸é Ãë¼Ò..
+            break; // Export Cancel ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ ì·¨ì†Œ..
         }
 
         MObject   mObj = mObjects[i];
         MFn::Type mType = mObj.apiType();
 
         if (m_Option.bExportSelectedOnly && IsSelected(mSelList, mObj) == false) {
-            continue; // ¼±ÅÃµÈ °Í¸¸ Export ÇØ¾ß ÇÏ¸é..
+            continue; // ì„ íƒëœ ê²ƒë§Œ Export í•´ì•¼ í•˜ë©´..
         }
 
         bool bExport = true;
-        if (MFn::kCamera == mType && TRUE == m_Option.bExportCamera) // Ä«¸Ş¶ó..
+        if (MFn::kCamera == mType && TRUE == m_Option.bExportCamera) // ì¹´ë©”ë¼..
         {
             MFnCamera    mCamera(mObj);
             const char * szCamera = mCamera.name().asChar();
@@ -323,23 +323,23 @@ void CN3E2Wrapper::SceneExport() {
             }
         } else if ((MFn::kPointLight == mType || MFn::kDirectionalLight == mType || MFn::kAmbientLight == mType ||
                     MFn::kSpotLight == mType) &&
-                   TRUE == m_Option.bExportLight) // ¶óÀÌÆ®
+                   TRUE == m_Option.bExportLight) // ë¼ì´íŠ¸
         {
             CN3Light * pLight = this->ProcessLight(MFnLight(mObj));
-            pLight->m_Data.nNumber = m_pScene->LightCount(); // ¶óÀÌÆ® ¹øÈ£ ºÙÀÌ±â..
-            m_pScene->LightAdd(pLight);                      // Scene ¿¡ ¶óÀÌÆ® Ãß°¡..
+            pLight->m_Data.nNumber = m_pScene->LightCount(); // ë¼ì´íŠ¸ ë²ˆí˜¸ ë¶™ì´ê¸°..
+            m_pScene->LightAdd(pLight);                      // Scene ì— ë¼ì´íŠ¸ ì¶”ê°€..
         } else if (mType == MFn::kMesh && TRUE == m_Option.bExportGeometry) {
             MFnMesh mMesh(mObj);
 
             const char * szMeshName = mMesh.name().asChar();
 
-            bool bHaveJoint = false; // ¸¸¾à »À´ë¸¦ Ã³¸®ÇØ¾ß ÇÏ¸é..
+            bool bHaveJoint = false; // ë§Œì•½ ë¼ˆëŒ€ë¥¼ ì²˜ë¦¬í•´ì•¼ í•˜ë©´..
             if (TRUE == m_Option.bExportCharacter) {
                 bHaveJoint = this->HaveJoint(mMesh);
             }
-            if (true == bHaveJoint) // °üÀı¿¡ ¿¬°áµÈ ¸Ş½Ã¸é Áö³ª°£´Ù..
+            if (true == bHaveJoint) // ê´€ì ˆì— ì—°ê²°ëœ ë©”ì‹œë©´ ì§€ë‚˜ê°„ë‹¤..
             {
-                //                wsprintf(szInfo, "Skinning ÀÌ µÈ ¸Ş½Ã(%s)¸¦ ¹«½ÃÇÕ´Ï´Ù.", mMesh.name().asChar());
+                //                wsprintf(szInfo, "Skinning ì´ ëœ ë©”ì‹œ(%s)ë¥¼ ë¬´ì‹œí•©ë‹ˆë‹¤.", mMesh.name().asChar());
                 //                nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
                 //                ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
                 continue;
@@ -348,21 +348,21 @@ void CN3E2Wrapper::SceneExport() {
                 if (mMesh.parentCount() > 0 && mMesh.parent(0).apiType() == MFn::kTransform) {
                     MFnTransform mTM(mMesh.parent(0));
                     if (mTM.childCount() == 1) {
-                        bProcessShape = true; // Ã¹¹øÂ° ÀÚ½ÄÀÏ °æ¿ì¸¸ Ã³¸®..
+                        bProcessShape = true; // ì²«ë²ˆì§¸ ìì‹ì¼ ê²½ìš°ë§Œ ì²˜ë¦¬..
                     } else if (mTM.childCount() > 1 && mTM.child(0) == mMesh.object()) {
-                        bProcessShape = true; // Ã¹¹øÂ° ÀÚ½ÄÀÏ °æ¿ì¸¸ Ã³¸®..
+                        bProcessShape = true; // ì²«ë²ˆì§¸ ìì‹ì¼ ê²½ìš°ë§Œ ì²˜ë¦¬..
                     }
                 }
                 if (bProcessShape) {
                     ProcessShape(mMesh);
                 }
             }
-        } else if (mType == MFn::kSkinClusterFilter && m_Option.bExportCharacter) // ½ºÅ°´× µ¥ÀÌÅÍ ¹× Ä³¸¯ÅÍ....
+        } else if (mType == MFn::kSkinClusterFilter && m_Option.bExportCharacter) // ìŠ¤í‚¤ë‹ ë°ì´í„° ë° ìºë¦­í„°....
         {
             MFnSkinCluster mSkin(mObj);
             this->ProcessChr(mSkin);
         } else {
-            wsprintf(szInfo, "³ëµå(%s) ¹«½ÃÇÕ´Ï´Ù.", mObj.apiTypeStr());
+            wsprintf(szInfo, "ë…¸ë“œ(%s) ë¬´ì‹œí•©ë‹ˆë‹¤.", mObj.apiTypeStr());
             nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
             ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI, 0);          // Progress dialog
 
@@ -383,11 +383,11 @@ void CN3E2Wrapper::SceneExport() {
         }
     }
 
-    // Scene ÀúÀå.
+    // Scene ì €ì¥.
     bool bSaveOK = true;
     if (m_bCancelExport == TRUE) {
         bSaveOK = false;
-        int nYesNo = MessageBox(hWnd, "File ÀúÀå", "Export¸¦ Ãë¼ÒÇÏ¼Ì½À´Ï´Ù. ÀúÀåÇÏ½Ã°Ú½À´Ï±î?", MB_YESNO);
+        int nYesNo = MessageBox(hWnd, "File ì €ì¥", "Exportë¥¼ ì·¨ì†Œí•˜ì…¨ìŠµë‹ˆë‹¤. ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", MB_YESNO);
         if (nYesNo == IDYES) {
             bSaveOK = true;
         }
@@ -396,17 +396,17 @@ void CN3E2Wrapper::SceneExport() {
     if (bSaveOK) {
         m_pScene->Tick(0);
         if (m_pScene->CameraCount() <= 0) {
-            m_pScene->DefaultCameraAdd(); // ±âº» Ä«¸Ş¶ó
+            m_pScene->DefaultCameraAdd(); // ê¸°ë³¸ ì¹´ë©”ë¼
         }
         if (m_pScene->LightCount() <= 0) {
-            m_pScene->DefaultLightAdd(); // ±âº» ¶óÀÌÆ® Ãß°¡..
+            m_pScene->DefaultLightAdd(); // ê¸°ë³¸ ë¼ì´íŠ¸ ì¶”ê°€..
         }
 
-        m_pScene->SaveDataAndResourcesToFile(m_szFileName); // Scene , Resource ÀúÀå..
+        m_pScene->SaveDataAndResourcesToFile(m_szFileName); // Scene , Resource ì €ì¥..
         m_pScene->Release();
     }
 
-    MAnimControl::setCurrentTime(mOldTime); // ¿ø·¡ ´ë·Î..
+    MAnimControl::setCurrentTime(mOldTime); // ì›ë˜ ëŒ€ë¡œ..
     MGlobal::viewFrame(mOldTime);
 
     delete m_pScene;
@@ -421,11 +421,11 @@ bool CN3E2Wrapper::ProcessIMesh(MFnMesh & mMesh, CN3IMesh * pIMesh) {
     }
     pIMesh->Release();
 
-    // ÀÌ¸§ Áş±â..
+    // ì´ë¦„ ì§“ê¸°..
     MFnTransform mTM(mMesh.parent(0));
     pIMesh->m_szName = mTM.name().asChar();
 
-    // Polygon À» ¸ğµÎ »ï°¢Çü ¸Ş½Ã·Î ¸¸µé°í °¹¼ö¸¦ ¼¼¾îÁØ´Ù..
+    // Polygon ì„ ëª¨ë‘ ì‚¼ê°í˜• ë©”ì‹œë¡œ ë§Œë“¤ê³  ê°¯ìˆ˜ë¥¼ ì„¸ì–´ì¤€ë‹¤..
     int nPC = mMesh.numPolygons();
     if (nPC <= 0) {
         return false;
@@ -437,7 +437,7 @@ bool CN3E2Wrapper::ProcessIMesh(MFnMesh & mMesh, CN3IMesh * pIMesh) {
     MFloatArray mFAU, mFAV;
     MPointArray mVArray;
     mMesh.getUVs(mFAU, mFAV);
-    int nUVC = mFAU.length(); // UV ÁÂÇ¥ Count
+    int nUVC = mFAU.length(); // UV ì¢Œí‘œ Count
     mMesh.getPoints(mVArray);
     int nVC = mVArray.length(); // Vertex Count
 
@@ -447,78 +447,78 @@ bool CN3E2Wrapper::ProcessIMesh(MFnMesh & mMesh, CN3IMesh * pIMesh) {
     for (int i = 0; i < nPC; i++) {
         MVector vNTmp;
         mMesh.getPolygonNormal(i, vNTmp);    // normal
-        mMesh.getPolygonVertices(i, mVITmp); // polygon ¿¡ ÀÖ´Â Á¡ Index
+        mMesh.getPolygonVertices(i, mVITmp); // polygon ì— ìˆëŠ” ì  Index
 
         mMesh.getPolygonUVid(i, 0, nUVI);
         nVI = mVITmp[0];
         Normals[nVI] += vNTmp;
-        iNormalCounts[nVI]++;   // ¸éÀÇ Normal °ª Ãß°¡.
+        iNormalCounts[nVI]++;   // ë©´ì˜ Normal ê°’ ì¶”ê°€.
         mVIArray.append(nVI);   // Vertex Index
-        mUVIArray.append(nUVI); // VertexIndex, UV Index ±â·Ï..
+        mUVIArray.append(nUVI); // VertexIndex, UV Index ê¸°ë¡..
 
         mMesh.getPolygonUVid(i, 1, nUVI);
         nVI = mVITmp[1];
         Normals[nVI] += vNTmp;
-        iNormalCounts[nVI]++;   // ¸éÀÇ Normal °ª Ãß°¡.
+        iNormalCounts[nVI]++;   // ë©´ì˜ Normal ê°’ ì¶”ê°€.
         mVIArray.append(nVI);   // Vertex Index
-        mUVIArray.append(nUVI); // VertexIndex, UV Index ±â·Ï..
+        mUVIArray.append(nUVI); // VertexIndex, UV Index ê¸°ë¡..
 
         mMesh.getPolygonUVid(i, 2, nUVI);
         nVI = mVITmp[2];
         Normals[nVI] += vNTmp;
-        iNormalCounts[nVI]++;   // ¸éÀÇ Normal °ª Ãß°¡.
+        iNormalCounts[nVI]++;   // ë©´ì˜ Normal ê°’ ì¶”ê°€.
         mVIArray.append(nVI);   // Vertex Index
-        mUVIArray.append(nUVI); // VertexIndex, UV Index ±â·Ï..
+        mUVIArray.append(nUVI); // VertexIndex, UV Index ê¸°ë¡..
 
         nFC++;
 
         int nVITmp = mVITmp.length();
-        for (int j = 3; j < nVITmp; j++) // ÇÑ¸é¿¡ Á¡ÀÌ ³×°³ ÀÌ»ó ÀÖ´Â °Å¸é..
+        for (int j = 3; j < nVITmp; j++) // í•œë©´ì— ì ì´ ë„¤ê°œ ì´ìƒ ìˆëŠ” ê±°ë©´..
         {
             mMesh.getPolygonUVid(i, 0, nUVI);
             nVI = mVITmp[0];
             Normals[nVI] += vNTmp;
-            iNormalCounts[nVI]++;   // ¸éÀÇ Normal °ª Ãß°¡.
+            iNormalCounts[nVI]++;   // ë©´ì˜ Normal ê°’ ì¶”ê°€.
             mVIArray.append(nVI);   // Vertex Index
-            mUVIArray.append(nUVI); // VertexIndex, UV Index ±â·Ï..
+            mUVIArray.append(nUVI); // VertexIndex, UV Index ê¸°ë¡..
 
             mMesh.getPolygonUVid(i, nVITmp - j + 1, nUVI);
             nVI = mVITmp[nVITmp - j + 1];
             Normals[nVI] += vNTmp;
-            iNormalCounts[nVI]++;   // ¸éÀÇ Normal °ª Ãß°¡.
+            iNormalCounts[nVI]++;   // ë©´ì˜ Normal ê°’ ì¶”ê°€.
             mVIArray.append(nVI);   // Vertex Index
-            mUVIArray.append(nUVI); // VertexIndex, UV Index ±â·Ï..
+            mUVIArray.append(nUVI); // VertexIndex, UV Index ê¸°ë¡..
 
             mMesh.getPolygonUVid(i, nVITmp - j + 2, nUVI);
             nVI = mVITmp[nVITmp - j + 2];
             Normals[nVI] += vNTmp;
-            iNormalCounts[nVI]++;   // ¸éÀÇ Normal °ª Ãß°¡.
+            iNormalCounts[nVI]++;   // ë©´ì˜ Normal ê°’ ì¶”ê°€.
             mVIArray.append(nVI);   // Vertex Index
-            mUVIArray.append(nUVI); // VertexIndex, UV Index ±â·Ï..
+            mUVIArray.append(nUVI); // VertexIndex, UV Index ê¸°ë¡..
 
             nFC++;
         }
     }
 
-    pIMesh->Create(nFC, nVC, nUVC); // ¸Ş½Ã »ı¼º..
+    pIMesh->Create(nFC, nVC, nUVC); // ë©”ì‹œ ìƒì„±..
 
     MFnTransform mTransform(mMesh.parent(0));
     MMatrix      mMtxWorld;
     mMtxWorld.setToIdentity();
     this->GetWorldTransform(mTransform, mMtxWorld);
-    MMatrix mMtxWorldRot = mMtxWorld; // È¸ÀüÇà·Ä¸¸ ¶¼°í..
+    MMatrix mMtxWorldRot = mMtxWorld; // íšŒì „í–‰ë ¬ë§Œ ë–¼ê³ ..
     mMtxWorldRot.matrix[3][0] = mMtxWorldRot.matrix[3][1] = mMtxWorldRot.matrix[3][2] = 0;
     mMtxWorldRot.matrix[3][3] = 1.0;
 
     __VertexXyzNormal * pVDest = pIMesh->Vertices();
     for (int i = 0; i < nVC; i++) {
-        MPoint mVTmp = mVArray[i]; // World Matrix °öÇÏ°í..
+        MPoint mVTmp = mVArray[i]; // World Matrix ê³±í•˜ê³ ..
         mVTmp *= mMtxWorld;
-        pVDest[i].x = (float)(mVTmp.x * 0.01); // Vertex Data ¼¼ÆÃ - meter ´ÜÀ§ ÀÌ±â ¶§¹®¿¡ 100À¸·Î ³ª´©¾î ÁØ´Ù.
+        pVDest[i].x = (float)(mVTmp.x * 0.01); // Vertex Data ì„¸íŒ… - meter ë‹¨ìœ„ ì´ê¸° ë•Œë¬¸ì— 100ìœ¼ë¡œ ë‚˜ëˆ„ì–´ ì¤€ë‹¤.
         pVDest[i].y = (float)(mVTmp.y * 0.01);
-        pVDest[i].z = -(float)(mVTmp.z * 0.01); // Z ÃàÀº ¹İ´ë·Î ÇÑ´Ù.
+        pVDest[i].z = -(float)(mVTmp.z * 0.01); // Z ì¶•ì€ ë°˜ëŒ€ë¡œ í•œë‹¤.
 
-        // Normal °ª Ã³¸®...
+        // Normal ê°’ ì²˜ë¦¬...
         //        if(iNormalCounts[i] > 0)
         //        {
         //            mNTmp.x = mNTmp.x / iNormalCounts[i];
@@ -530,22 +530,22 @@ bool CN3E2Wrapper::ProcessIMesh(MFnMesh & mMesh, CN3IMesh * pIMesh) {
         mNTmp.normalize();
         pVDest[i].n.x = (float)mNTmp.x;
         pVDest[i].n.y = (float)mNTmp.y;
-        pVDest[i].n.z = -(float)mNTmp.z; // Z ÃàÀº ¹İ´ë·Î ÇÑ´Ù.
+        pVDest[i].n.z = -(float)mNTmp.z; // Z ì¶•ì€ ë°˜ëŒ€ë¡œ í•œë‹¤.
     }
 
     for (int i = 0; i < nUVC; i++) {
-        pIMesh->UVSet(i, mFAU[i], 1.0f - mFAV[i]); // UV µ¥ÀÌÅÍ ¼¼ÆÃ..
+        pIMesh->UVSet(i, mFAU[i], 1.0f - mFAV[i]); // UV ë°ì´í„° ì„¸íŒ…..
     }
-    //    for(int i = 0; i < nUVC; i++) pIMesh->UVSet(i, mFAU[i], mFAV[i]); // UV µ¥ÀÌÅÍ ¼¼ÆÃ..
+    //    for(int i = 0; i < nUVC; i++) pIMesh->UVSet(i, mFAU[i], mFAV[i]); // UV ë°ì´í„° ì„¸íŒ…..
     for (int i = 0; i < nFC; i++) //
     {
-        pIMesh->VertexIndexSet(i * 3 + 0, mVIArray[i * 3 + 0]); // Vertex Index ¼¼ÆÃ
+        pIMesh->VertexIndexSet(i * 3 + 0, mVIArray[i * 3 + 0]); // Vertex Index ì„¸íŒ…
         pIMesh->VertexIndexSet(i * 3 + 1, mVIArray[i * 3 + 2]);
         pIMesh->VertexIndexSet(i * 3 + 2, mVIArray[i * 3 + 1]);
 
-        if (nUVC > 0) // UV Index °¡ ÀÖ¾î¾ß ÇÑ´Ù..
+        if (nUVC > 0) // UV Index ê°€ ìˆì–´ì•¼ í•œë‹¤..
         {
-            pIMesh->UVIndexSet(i * 3 + 0, mUVIArray[i * 3 + 0]); // UV Index ¼¼ÆÃ..
+            pIMesh->UVIndexSet(i * 3 + 0, mUVIArray[i * 3 + 0]); // UV Index ì„¸íŒ…..
             pIMesh->UVIndexSet(i * 3 + 1, mUVIArray[i * 3 + 2]);
             pIMesh->UVIndexSet(i * 3 + 2, mUVIArray[i * 3 + 1]);
         }
@@ -564,7 +564,7 @@ bool CN3E2Wrapper::ProcessVMesh(MFnMesh & mMesh, CN3VMesh * pVMesh) {
     }
     pVMesh->Release();
 
-    // Polygon À» ¸ğµÎ »ï°¢Çü ¸Ş½Ã·Î ¸¸µé°í °¹¼ö¸¦ ¼¼¾îÁØ´Ù..
+    // Polygon ì„ ëª¨ë‘ ì‚¼ê°í˜• ë©”ì‹œë¡œ ë§Œë“¤ê³  ê°¯ìˆ˜ë¥¼ ì„¸ì–´ì¤€ë‹¤..
     int nPC = mMesh.numPolygons();
     if (nPC <= 0) {
         return false;
@@ -575,19 +575,19 @@ bool CN3E2Wrapper::ProcessVMesh(MFnMesh & mMesh, CN3VMesh * pVMesh) {
 
     MIntArray   mVIs;
     MPointArray mVs;
-    mMesh.getPoints(mVs); // À§Ä¡µé..
+    mMesh.getPoints(mVs); // ìœ„ì¹˜ë“¤..
     MPoint mPosTmp;
 
-    MFnTransform mTransform(mMesh.parent(0)); // ¿ùµå Çà·Ä
+    MFnTransform mTransform(mMesh.parent(0)); // ì›”ë“œ í–‰ë ¬
     MMatrix      mMtxWorld;
     mMtxWorld.setToIdentity();
     this->GetWorldTransform(mTransform, mMtxWorld);
 
     for (int i = 0; i < nPC; i++) {
-        mMesh.getPolygonVertices(i, mVIs); // polygon ¿¡ ÀÖ´Â Á¡ Index
+        mMesh.getPolygonVertices(i, mVIs); // polygon ì— ìˆëŠ” ì  Index
         if (mVIs.length() != 3) {
             char szErr[256];
-            wsprintf(szErr, "%s ´Â »ï°¢ Æú¸®°ïÀÌ ¾Æ´Õ´Ï´Ù.", mMesh.name().asChar());
+            wsprintf(szErr, "%s ëŠ” ì‚¼ê° í´ë¦¬ê³¤ì´ ì•„ë‹™ë‹ˆë‹¤.", mMesh.name().asChar());
             break;
         }
 
@@ -599,7 +599,7 @@ bool CN3E2Wrapper::ProcessVMesh(MFnMesh & mMesh, CN3VMesh * pVMesh) {
         }
     }
 
-    // ÀÌ¸§ Ã³¸®..
+    // ì´ë¦„ ì²˜ë¦¬..
     pVMesh->m_szName = "";
     this->ProcessName(mTransform.object(), pVMesh->m_szName);
     std::string szFN = pVMesh->m_szName + ".N3VMesh";
@@ -642,15 +642,15 @@ bool CN3E2Wrapper::ProcessSkin(MFnSkinCluster & mSkin, CN3Skin * pSkin) {
     }
 
     if (false == this->ProcessIMesh(mMeshOutput, pSkin)) {
-        return false; // Indexed Mesh Ã³¸®.
+        return false; // Indexed Mesh ì²˜ë¦¬.
     }
 
-    // Joint °¡ ±×·ì µÇ¾î ÀÖ´Ù¸é Parent Transform Ã³¸®..
+    // Joint ê°€ ê·¸ë£¹ ë˜ì–´ ìˆë‹¤ë©´ Parent Transform ì²˜ë¦¬..
     /*    if(mJointRoot.parentCount() > 0 && mJointRoot.parent(0).hasFn(MFn::kTransform))
     {
         MFnTransform mTJP(mJointRoot.parent(0));
 
-        // Normal °ª ´Ù½Ã Á¤¸®..
+        // Normal ê°’ ë‹¤ì‹œ ì •ë¦¬..
         MMatrix mMtx; mMtx.setToIdentity();
         this->GetWorldTransform(mTJP, mMtx);
         MTransformationMatrix mTMtx(mMtx);
@@ -675,28 +675,28 @@ bool CN3E2Wrapper::ProcessSkin(MFnSkinCluster & mSkin, CN3Skin * pSkin) {
 */
 
     __VertexSkinned * pVBone = pSkin->SkinVertices();
-    MFnTransform      mTM(mMeshOutput.parent(0)); // Mesh, Joint ¿¡ Àû¿ëµÈ Transform
+    MFnTransform      mTM(mMeshOutput.parent(0)); // Mesh, Joint ì— ì ìš©ëœ Transform
     MMatrix           mMtxM;
     mMtxM.setToIdentity();
     this->GetWorldTransform(mTM, mMtxM);
 
     int iFind = pSkin->m_szName.find('_');
     if (iFind > 0) {
-        pSkin->m_szName = pSkin->m_szName.substr(iFind + 1); // ¾ğ´õ¹Ù°¡ ÀÖÀ¸¸é Àß¶óÁØ´Ù..
+        pSkin->m_szName = pSkin->m_szName.substr(iFind + 1); // ì–¸ë”ë°”ê°€ ìˆìœ¼ë©´ ì˜ë¼ì¤€ë‹¤..
     }
-    pSkin->FileNameSet("Item\\" + pSkin->m_szName + ".N3Skin"); // ÆÄÀÏ ÀÌ¸§ °áÁ¤..
+    pSkin->FileNameSet("Item\\" + pSkin->m_szName + ".N3Skin"); // íŒŒì¼ ì´ë¦„ ê²°ì •..
 
-    for (int i = 0; !mGIt.isDone(); mGIt.next(), i++) // ·çÇÁ¸¦ µ¹¸é¼­ ÄÄÆ÷³ÍÆ®(Geometry ÀÇ ÇÑÁ¡...)À» Ã³¸®ÇÑ´Ù.
+    for (int i = 0; !mGIt.isDone(); mGIt.next(), i++) // ë£¨í”„ë¥¼ ëŒë©´ì„œ ì»´í¬ë„ŒíŠ¸(Geometry ì˜ í•œì ...)ì„ ì²˜ë¦¬í•œë‹¤.
     {
         MObject   mComp = mGIt.component();
         MFn::Type mType = mComp.apiType();
 
-        // Weight °ªÀ» ±¸ÇÑ´Ù.
+        // Weight ê°’ì„ êµ¬í•œë‹¤.
         MFloatArray  mWTs;
         unsigned int nWTs;
         mSkin.getWeights(mSkinPath, mComp, mWTs, nWTs);
         if (nWTs == 0) {
-            lstrcpy(szInfo, "Skin Ã³¸® ¿À·ù : Weight °ªÀÌ ¾ø½À´Ï´Ù.");
+            lstrcpy(szInfo, "Skin ì²˜ë¦¬ ì˜¤ë¥˜ : Weight ê°’ì´ ì—†ìŠµë‹ˆë‹¤.");
             nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
             ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI, 0);          // Progress dialog
 
@@ -705,16 +705,16 @@ bool CN3E2Wrapper::ProcessSkin(MFnSkinCluster & mSkin, CN3Skin * pSkin) {
 
         MPoint mPt;
         mPt = mGIt.position();
-        //        mPt = mVArray[j]; // ¿ø·¡ ÀÌ°Ô Á¤»óÀÌÁö¸¸.. ¹ÙÀÎµù Æ÷Áî·Î µ¹¾Æ°¡¾ß ÇÑ´Ù..
+        //        mPt = mVArray[j]; // ì›ë˜ ì´ê²Œ ì •ìƒì´ì§€ë§Œ.. ë°”ì¸ë”© í¬ì¦ˆë¡œ ëŒì•„ê°€ì•¼ í•œë‹¤..
 
-        mPt *= mMtxM; // Çà·ÄÀ» °öÇØÁÖ°í..
+        mPt *= mMtxM; // í–‰ë ¬ì„ ê³±í•´ì£¼ê³ ..
         mPt.x *= 0.01;
         mPt.y *= 0.01;
-        mPt.z *= -0.01; // Z ÃàÀº À½¼ö·Î..
+        mPt.z *= -0.01; // Z ì¶•ì€ ìŒìˆ˜ë¡œ..
 
         pVBone[i].vOrigin.Set((float)mPt.x, (float)mPt.y, (float)mPt.z);
 
-        // Weight °ªÀÌ 0ÀÌ»óÀÎ °Í¸¸ °í¸¥´Ù..
+        // Weight ê°’ì´ 0ì´ìƒì¸ ê²ƒë§Œ ê³ ë¥¸ë‹¤..
         int          nAffect = 0;
         static int   s_nJoints[128];
         static float s_fWeights[128];
@@ -746,7 +746,7 @@ bool CN3E2Wrapper::ProcessSkin(MFnSkinCluster & mSkin, CN3Skin * pSkin) {
 }
 
 bool CN3E2Wrapper::ProcessShape(MFnMesh & mMesh) {
-    if (mMesh.numPolygons() > 10000) // ¸éÀÇ °¹¼ö°¡ ¸¸°³ ³Ñ¾î°¡¸é... CN3IMesh ·Î Ã³¸® ºÒ°¡´É...
+    if (mMesh.numPolygons() > 10000) // ë©´ì˜ ê°¯ìˆ˜ê°€ ë§Œê°œ ë„˜ì–´ê°€ë©´... CN3IMesh ë¡œ ì²˜ë¦¬ ë¶ˆê°€ëŠ¥...
     {
         CN3VMesh VMesh;
         this->ProcessVMesh(mMesh, &VMesh);
@@ -791,8 +791,8 @@ bool CN3E2Wrapper::ProcessShape(MFnMesh & mMesh) {
         pShape = new CN3Shape();
         this->ProcessTransform(mTG, pShape);
         pShape->m_szName = "";
-        this->ProcessName(mTG.object(), pShape->m_szName);               // ÀÌ¸§À» ´Ù½ÃÁ¤ÇÏ±â.
-        pShape->FileNameSet("Object\\" + pShape->m_szName + ".N3Shape"); // ÆÄÀÏ ÀÌ¸§ Á¤ÇÏ±â..
+        this->ProcessName(mTG.object(), pShape->m_szName);               // ì´ë¦„ì„ ë‹¤ì‹œì •í•˜ê¸°.
+        pShape->FileNameSet("Object\\" + pShape->m_szName + ".N3Shape"); // íŒŒì¼ ì´ë¦„ ì •í•˜ê¸°..
 
         m_pScene->ShapeAdd(pShape);
 
@@ -800,7 +800,7 @@ bool CN3E2Wrapper::ProcessShape(MFnMesh & mMesh) {
         mMtxJWorld.setToIdentity();
         this->GetWorldTransform(mTG, mMtxJWorld);
 
-        // ÇÇ¹şÁ¡ °è»ê
+        // í”¼ë²—ì  ê³„ì‚°
         MPoint mvPivot;
         mvPivot = mTG.rotatePivot(MSpace::kTransform);
         pShape->PosSet((float)(mvPivot.x * 0.01), (float)(mvPivot.y * 0.01), -(float)(mvPivot.z * 0.01));
@@ -812,30 +812,30 @@ bool CN3E2Wrapper::ProcessShape(MFnMesh & mMesh) {
         return false;
     }
 
-    // ÀÌ¸§¿¡ "collision" ÀÌ¶ó´Â ¹®ÀÚ¿­ÀÌ µé¾î°¡¸é.. Ãæµ¹ ¸Ş½Ã´Ù..
+    // ì´ë¦„ì— "collision" ì´ë¼ëŠ” ë¬¸ìì—´ì´ ë“¤ì–´ê°€ë©´.. ì¶©ëŒ ë©”ì‹œë‹¤..
     std::string szTmp = IMesh.m_szName;
     if (szTmp.size()) {
         CharLower(&(szTmp[0]));
     }
     if (szTmp.find("coll") != -1 || szTmp.find("climb") != -1) {
-        // ¸Ş½ÃÀÇ Á¡À§Ä¡¸¦ ÇÇ¹şÁ¡¿¡ ´ëÇØ ´Ù½Ã °è»ê.. Shape ÀÇ ·ÎÄÃ ÁÂÇ¥·Î ¸ÂÃß¾î ÁØ´Ù..
+        // ë©”ì‹œì˜ ì ìœ„ì¹˜ë¥¼ í”¼ë²—ì ì— ëŒ€í•´ ë‹¤ì‹œ ê³„ì‚°.. Shape ì˜ ë¡œì»¬ ì¢Œí‘œë¡œ ë§ì¶”ì–´ ì¤€ë‹¤..
         IMesh.ApplyOffset(pShape->Pos() * -1.0f);
         int nFC = IMesh.FaceCount();
 
         CN3VMesh * pVMesh = new CN3VMesh();
         szNodeFullName = "";
         this->ProcessName(mTM.object(), szNodeFullName);
-        pVMesh->m_szName = mTM.name().asChar();                        // ÀÌ¸§ ´Ù½Ã Á¤ÇÏ°í..
-        pVMesh->FileNameSet("Object\\" + szNodeFullName + ".N3VMesh"); // ÆÄÀÏ ÀÌ¸§ °áÁ¤..
+        pVMesh->m_szName = mTM.name().asChar();                        // ì´ë¦„ ë‹¤ì‹œ ì •í•˜ê³ ..
+        pVMesh->FileNameSet("Object\\" + szNodeFullName + ".N3VMesh"); // íŒŒì¼ ì´ë¦„ ê²°ì •..
 
         pVMesh->CreateVertices(nFC * 3);
 
         __VertexT1 * pVSrc = IMesh.BuildVertexList();
         __Vector3 *  pVDest = pVMesh->Vertices();
         for (int i = 0; i < nFC * 3; i++) {
-            pVDest[i].x = pVSrc[i].x; // À§Ä¡¸¸ ¼¼ÆÃÇØ ÁØ´Ù...
-            pVDest[i].y = pVSrc[i].y; // À§Ä¡¸¸ ¼¼ÆÃÇØ ÁØ´Ù...
-            pVDest[i].z = pVSrc[i].z; // À§Ä¡¸¸ ¼¼ÆÃÇØ ÁØ´Ù...
+            pVDest[i].x = pVSrc[i].x; // ìœ„ì¹˜ë§Œ ì„¸íŒ…í•´ ì¤€ë‹¤...
+            pVDest[i].y = pVSrc[i].y; // ìœ„ì¹˜ë§Œ ì„¸íŒ…í•´ ì¤€ë‹¤...
+            pVDest[i].z = pVSrc[i].z; // ìœ„ì¹˜ë§Œ ì„¸íŒ…í•´ ì¤€ë‹¤...
         }
         pShape->s_MngVMesh.Add(pVMesh);
         if (szTmp.find("coll") != -1) {
@@ -843,24 +843,24 @@ bool CN3E2Wrapper::ProcessShape(MFnMesh & mMesh) {
         } else if (szTmp.find("climb") != -1) {
             pShape->ClimbMeshSet(pVMesh->FileName());
         }
-    } else // Ãæµ¹ ¸Ş½Ã°¡ ¾Æ´Ï¸é..
+    } else // ì¶©ëŒ ë©”ì‹œê°€ ì•„ë‹ˆë©´..
     {
-        CN3SPart * pPD = pShape->PartAdd(); // Part Ãß°¡ ÇØÁÖ°í..
+        CN3SPart * pPD = pShape->PartAdd(); // Part ì¶”ê°€ í•´ì£¼ê³ ..
         szNodeFullName = "";
         this->ProcessName(mTM.object(), szNodeFullName);
-        pPD->m_szName = mTM.name().asChar(); // Part ÀÌ¸§ Áş±â..
+        pPD->m_szName = mTM.name().asChar(); // Part ì´ë¦„ ì§“ê¸°..
         pPD->FileNameSet("Object\\" + szNodeFullName + "N3CPart");
 
-        // ÇÇ¹şÁ¡ °è»ê
+        // í”¼ë²—ì  ê³„ì‚°
         MPoint mvPivot = mTM.rotatePivot(MSpace::kTransform);
         pPD->m_vPivot.Set((float)(mvPivot.x * 0.01), (float)(mvPivot.y * 0.01), -(float)(mvPivot.z * 0.01));
         pPD->m_vPivot -= pShape->Pos();
 
-        // ¸Ş½ÃÀÇ Á¡À§Ä¡¸¦ Shape ÆÄÆ®ÀÇ ÇÇ¹şÁ¡¿¡ ´ëÇØ ´Ù½Ã °è»ê.. ShapeÀÇ part ·ÎÄÃ ÁÂÇ¥·Î ¸ÂÃß¾î ÁØ´Ù..
+        // ë©”ì‹œì˜ ì ìœ„ì¹˜ë¥¼ Shape íŒŒíŠ¸ì˜ í”¼ë²—ì ì— ëŒ€í•´ ë‹¤ì‹œ ê³„ì‚°.. Shapeì˜ part ë¡œì»¬ ì¢Œí‘œë¡œ ë§ì¶”ì–´ ì¤€ë‹¤..
         __Vector3 vOffset((float)(mvPivot.x * 0.01), (float)(mvPivot.y * 0.01), -(float)(mvPivot.z * 0.01));
         IMesh.ApplyOffset(vOffset * -1.0f);
 
-        // CN3Mesh ·Î Convert
+        // CN3Mesh ë¡œ Convert
         CN3Mesh N3Mesh;
         N3Mesh.Import(&IMesh);
         N3Mesh.MakeIndexed();
@@ -868,21 +868,21 @@ bool CN3E2Wrapper::ProcessShape(MFnMesh & mMesh) {
             N3Mesh.ReGenerateSmoothNormal();
         }
 
-        // Progressive Mesh »ı¼º..
+        // Progressive Mesh ìƒì„±..
         CN3PMeshCreate PMeshCreate;
         if (PMeshCreate.ConvertFromN3Mesh(&N3Mesh) == false) {
-            MessageBox(::GetActiveWindow(), "º¯È¯ÇÒ ¼ö ¾ø°Å³ª ³»¿ëÀÌ ¾ø´Â N3MeshÀÔ´Ï´Ù.", "PMesh Convert error", MB_OK);
+            MessageBox(::GetActiveWindow(), "ë³€í™˜í•  ìˆ˜ ì—†ê±°ë‚˜ ë‚´ìš©ì´ ì—†ëŠ” N3Meshì…ë‹ˆë‹¤.", "PMesh Convert error", MB_OK);
             //return;
         }
 
-        // ÀÚµ¿ PMesh »ı¼º ¿É¼Ç
-        PMeshCreate.m_PMCOption.bUseSumOfLoss = true;   // LossÀÇ ÇÕÀ» »ç¿ë
-        PMeshCreate.m_PMCOption.bTriangleWeight = true; // »ç¶óÁö´Â »ï°¢Çü °¡ÁßÄ¡ »ç¿ë
-        PMeshCreate.m_PMCOption.bArea = true;           // false : ¼¼º¯Àº ±æÀÌÀÇ ÇÕÀ¸·Î ÇÑ´Ù.
-        PMeshCreate.m_PMCOption.fWeight = 1.0f;         // »ç¶óÁö´Â »ï°¢Çü °¡ÁßÄ¡ (Áß¿äµµ)
+        // ìë™ PMesh ìƒì„± ì˜µì…˜
+        PMeshCreate.m_PMCOption.bUseSumOfLoss = true;   // Lossì˜ í•©ì„ ì‚¬ìš©
+        PMeshCreate.m_PMCOption.bTriangleWeight = true; // ì‚¬ë¼ì§€ëŠ” ì‚¼ê°í˜• ê°€ì¤‘ì¹˜ ì‚¬ìš©
+        PMeshCreate.m_PMCOption.bArea = true;           // false : ì„¸ë³€ì€ ê¸¸ì´ì˜ í•©ìœ¼ë¡œ í•œë‹¤.
+        PMeshCreate.m_PMCOption.fWeight = 1.0f;         // ì‚¬ë¼ì§€ëŠ” ì‚¼ê°í˜• ê°€ì¤‘ì¹˜ (ì¤‘ìš”ë„)
 
-        CN3PMesh * pPMesh = PMeshCreate.CreateRendererMesh(); // Progressive Mesh »ı¼º
-        pPMesh->m_szName = mTM.name().asChar();               // °Á ÀÌ¸§..
+        CN3PMesh * pPMesh = PMeshCreate.CreateRendererMesh(); // Progressive Mesh ìƒì„±
+        pPMesh->m_szName = mTM.name().asChar();               // ê± ì´ë¦„..
         std::string szFN;
         this->ProcessName(mTM.object(), szFN);
 
@@ -890,26 +890,26 @@ bool CN3E2Wrapper::ProcessShape(MFnMesh & mMesh) {
         if (m_Option.bGenerateFileName && iLen >= 11) { // Item Code ::: 0_2345_78_0
             szFN = szFN.substr(iLen - 11);
         }
-        pPMesh->FileNameSet("Object\\" + szFN + ".N3PMesh"); // ÆÄÀÏ ÀÌ¸§ °áÁ¤..
+        pPMesh->FileNameSet("Object\\" + szFN + ".N3PMesh"); // íŒŒì¼ ì´ë¦„ ê²°ì •..
 
-        pShape->s_MngPMesh.Add(pPMesh);   // Progressive Mesh Manager ¿¡ Ãß°¡..
-        pPD->MeshSet(pPMesh->FileName()); // Mesh ¼¼ÆÃ..
+        pShape->s_MngPMesh.Add(pPMesh);   // Progressive Mesh Manager ì— ì¶”ê°€..
+        pPD->MeshSet(pPMesh->FileName()); // Mesh ì„¸íŒ…..
 
         ////////////////////////////////////////////////
-        // ÀçÁú ¹× ÅØ½ºÃ³ Ã³¸®..
+        // ì¬ì§ˆ ë° í…ìŠ¤ì²˜ ì²˜ë¦¬..
         pPD->m_Mtl.dwColorArg1 = D3DTA_DIFFUSE;
         pPD->m_Mtl.dwColorArg2 = D3DTA_TEXTURE;
 
         CN3Texture * pTex = this->ProcessTexture(mMesh);
-        if (pTex) // ÅØ½ºÃ³°¡ ¾²ÀÎ ÀçÁúÀÌ¸é ÀçÁúÀº ±âº»ÀûÀÎ Èò»ö.. ÄÃ·¯ ¿ÀÆÛ·¹ÀÌ¼ÇÀº Modulate
+        if (pTex) // í…ìŠ¤ì²˜ê°€ ì“°ì¸ ì¬ì§ˆì´ë©´ ì¬ì§ˆì€ ê¸°ë³¸ì ì¸ í°ìƒ‰.. ì»¬ëŸ¬ ì˜¤í¼ë ˆì´ì…˜ì€ Modulate
         {
-            std::string szTFN = pTex->FileName(); // ÆÄÀÏ ÀÌ¸§À» °Ë»çÇØ¼­..
+            std::string szTFN = pTex->FileName(); // íŒŒì¼ ì´ë¦„ì„ ê²€ì‚¬í•´ì„œ..
             if (szTFN.size() > 0) {
                 CharLower(&(szTFN[0]));
             }
-            if (-1 == szTFN.find("object\\")) // "Item\" ÀÌ¶ó´Â ¹®ÀÚ¿­ÀÌ ¾øÀ¸¸é
+            if (-1 == szTFN.find("object\\")) // "Item\" ì´ë¼ëŠ” ë¬¸ìì—´ì´ ì—†ìœ¼ë©´
             {
-                szTFN = "Object\\" + pTex->FileName(); // Item ÀÌ¶ó´Â °æ·Î¸¦ ºÙÀÎ´Ù..
+                szTFN = "Object\\" + pTex->FileName(); // Item ì´ë¼ëŠ” ê²½ë¡œë¥¼ ë¶™ì¸ë‹¤..
                 pTex->FileNameSet(szTFN);
             }
 
@@ -926,7 +926,7 @@ bool CN3E2Wrapper::ProcessShape(MFnMesh & mMesh) {
             //            this->ProcessMaterial(this->MeshGetShader(mMesh), &(pPD->m_Mtl));
             pPD->m_Mtl.dwColorOp = D3DTOP_SELECTARG1;
         }
-        // ÀçÁú ¹× ÅØ½ºÃ³ Ã³¸®..
+        // ì¬ì§ˆ ë° í…ìŠ¤ì²˜ ì²˜ë¦¬..
         ////////////////////////////////////////////////
     }
 
@@ -936,7 +936,7 @@ bool CN3E2Wrapper::ProcessShape(MFnMesh & mMesh) {
 CN3Joint * CN3E2Wrapper::ProcessJoint(MFnIkJoint & mJoint) {
     CN3Joint * pJoint = new CN3Joint();
     //////////////////////////////////////////////////////////////////////////////////////////
-    // Joint ÀÇ TransformÀ» Ã³¸®..
+    // Joint ì˜ Transformì„ ì²˜ë¦¬..
     this->ProcessTransform(mJoint, pJoint);
 
     // Rotation Order
@@ -951,22 +951,22 @@ CN3Joint * CN3E2Wrapper::ProcessJoint(MFnIkJoint & mJoint) {
     char szName[512];
     if (mJoint.parent(0).apiType() == MFn::kTransform) {
         MFnTransform mTJ(mJoint.parent(0));
-        wsprintf(szName, "Chr\\%s.N3Joint", mTJ.name().asChar()); // ÆÄÀÏ ÀÌ¸§ Á¤ÇÏ±â..
+        wsprintf(szName, "Chr\\%s.N3Joint", mTJ.name().asChar()); // íŒŒì¼ ì´ë¦„ ì •í•˜ê¸°..
     } else {
-        wsprintf(szName, "Chr\\%s.N3Joint", mJoint.name().asChar()); // ÆÄÀÏ ÀÌ¸§ Á¤ÇÏ±â..
+        wsprintf(szName, "Chr\\%s.N3Joint", mJoint.name().asChar()); // íŒŒì¼ ì´ë¦„ ì •í•˜ê¸°..
     }
 
-    pJoint->m_szName = mJoint.name().asChar(); // ÀÌ¸§Áş±â.. FullName À¸·Î ÁşÁö´Â ¾Ê´Â´Ù..
+    pJoint->m_szName = mJoint.name().asChar(); // ì´ë¦„ì§“ê¸°.. FullName ìœ¼ë¡œ ì§“ì§€ëŠ” ì•ŠëŠ”ë‹¤..
 
-    // È¸Àü Ãà °ªÀ» ±¸ÇÑ´Ù..
-    if (pJoint->m_KeyOrient.Count() <= 0) // Joint Orient Key °ªÀÌ ¾øÀ¸¸é.. Rotation Key °ªÀ» Orient ¸¸Å­ ºñÆ°´Ù..
+    // íšŒì „ ì¶• ê°’ì„ êµ¬í•œë‹¤..
+    if (pJoint->m_KeyOrient.Count() <= 0) // Joint Orient Key ê°’ì´ ì—†ìœ¼ë©´.. Rotation Key ê°’ì„ Orient ë§Œí¼ ë¹„íŠ¼ë‹¤..
     {
         double  dAxis[3];
         MStatus stat = MStatus::kSuccess;
         stat = mJoint.getOrientation(dAxis, rotOrder); // local axis...
 
-        // Origin Rotation °ªÀÌ ÀÖÀ¸¸é..
-        if (dAxis[0] || dAxis[1] || dAxis[2]) // Origin Rotation ÀÌ ÀÖÀ¸¸é..
+        // Origin Rotation ê°’ì´ ìˆìœ¼ë©´..
+        if (dAxis[0] || dAxis[1] || dAxis[2]) // Origin Rotation ì´ ìˆìœ¼ë©´..
         {
             __Matrix44 mtxRot;
             mtxRot.Rotation((float)-dAxis[0], (float)-dAxis[1], (float)dAxis[2]);
@@ -975,16 +975,16 @@ CN3Joint * CN3E2Wrapper::ProcessJoint(MFnIkJoint & mJoint) {
         }
     }
 
-    // Â÷ÀÏµå Á¶ÀÎÆ® Ã³¸®..
+    // ì°¨ì¼ë“œ ì¡°ì¸íŠ¸ ì²˜ë¦¬..
     int nCC = mJoint.childCount();
     for (int i = 0; i < nCC; i++) {
         MObject mObj = mJoint.child(i);
-        if (mObj.hasFn(MFn::kJoint)) // Joint ÀÏ °æ¿ì..
+        if (mObj.hasFn(MFn::kJoint)) // Joint ì¼ ê²½ìš°..
         {
             MFnIkJoint mJointChild(mObj);
             CN3Joint * pJointChild = this->ProcessJoint(mJointChild);
             pJoint->ChildAdd(pJointChild);
-        } else if (mObj.hasFn(MFn::kTransform)) // º¸Åë Transform ÀÏ °æ¿ì Â÷ÀÏµå°¡ ¸Ş½Ã ÀÎÁö º»´Ù..
+        } else if (mObj.hasFn(MFn::kTransform)) // ë³´í†µ Transform ì¼ ê²½ìš° ì°¨ì¼ë“œê°€ ë©”ì‹œ ì¸ì§€ ë³¸ë‹¤..
         {
             int ttt = 0;
         }
@@ -1005,64 +1005,64 @@ void CN3E2Wrapper::ProcessJointTransform(CN3Joint * pJoint, __Vector3 * pvTrans,
     }
 
     if (pvScale) {
-        pJoint->PosSet(pJoint->Pos() * (*pvScale)); // trans Å°¸¦ ½ºÄÉÀÏ¿¡ µû¶ó ¸ÂÃß°í..
-        int nK = pJoint->m_KeyPos.Count();          // ¿¡´Ï¸ŞÀÌ¼Ç Å°µµ º¯°æÇØÁØ´Ù..
+        pJoint->PosSet(pJoint->Pos() * (*pvScale)); // trans í‚¤ë¥¼ ìŠ¤ì¼€ì¼ì— ë”°ë¼ ë§ì¶”ê³ ..
+        int nK = pJoint->m_KeyPos.Count();          // ì—ë‹ˆë©”ì´ì…˜ í‚¤ë„ ë³€ê²½í•´ì¤€ë‹¤..
         for (int i = 0; i < nK; i++) {
             __Vector3 * pvKey = (__Vector3 *)(pJoint->m_KeyPos.DataGet(i));
             (*pvKey) *= (*pvScale);
         }
     }
 
-    if (pvTrans) // ÀÌµ¿°ª Àû¿ë
+    if (pvTrans) // ì´ë™ê°’ ì ìš©
     {
         pJoint->PosSet(pJoint->Pos() + (*pvTrans));
-        int nK = pJoint->m_KeyPos.Count(); // ¿¡´Ï¸ŞÀÌ¼Ç Å°µµ º¯°æÇØÁØ´Ù..
+        int nK = pJoint->m_KeyPos.Count(); // ì—ë‹ˆë©”ì´ì…˜ í‚¤ë„ ë³€ê²½í•´ì¤€ë‹¤..
         for (int i = 0; i < nK; i++) {
             __Vector3 * pvKey = (__Vector3 *)(pJoint->m_KeyPos.DataGet(i));
             (*pvKey) += (*pvTrans);
         }
     }
 
-    if (pqRot) // È¸Àü°ªÀ» º¯°æÇØÁØ´Ù..
+    if (pqRot) // íšŒì „ê°’ì„ ë³€ê²½í•´ì¤€ë‹¤..
     {
         __Quaternion qRot2 = pJoint->Rot() * (*pqRot);
         pJoint->RotSet(qRot2);
 
-        int nK = pJoint->m_KeyRot.Count(); // È¸Àü°ª Å°µµ º¯°æÇØÁØ´Ù..
+        int nK = pJoint->m_KeyRot.Count(); // íšŒì „ê°’ í‚¤ë„ ë³€ê²½í•´ì¤€ë‹¤..
         for (int i = 0; i < nK; i++) {
             __Quaternion * pqRot2 = (__Quaternion *)pJoint->m_KeyRot.DataGet(i);
             (*pqRot2) *= (*pqRot);
         }
     }
 
-    if (bProcessChild && pvScale) // ÇÏÀ§ ³ëµå Ã³¸® ??
+    if (bProcessChild && pvScale) // í•˜ìœ„ ë…¸ë“œ ì²˜ë¦¬ ??
     {
         int nCC = pJoint->ChildCount();
         for (int i = 0; i < nCC; i++) {
             this->ProcessJointTransform((CN3Joint *)pJoint->Child(i), NULL, NULL, pvScale,
-                                        true); // ÇÏÀ§ ³ëµåµéÀº ½ºÄÉÀÏ¸¸ Ã³¸®ÇØ ÁØ´Ù..
+                                        true); // í•˜ìœ„ ë…¸ë“œë“¤ì€ ìŠ¤ì¼€ì¼ë§Œ ì²˜ë¦¬í•´ ì¤€ë‹¤..
         }
     }
 }
 
 void CN3E2Wrapper::ProcessMatrix(MFnTransform & mTransform, __Matrix44 & mtx, __Vector3 & vPos, __Quaternion & qtRot,
                                  __Vector3 & vScale) {
-    // Çà·Ä º¯È¯..
+    // í–‰ë ¬ ë³€í™˜..
     static double dRs[4], dSs[3];
     //    MTransformationMatrix::RotationOrder RotOrder = MTransformationMatrix::kXYZ;
-    //    mTransform.getRotation(dRs, RotOrder, MSpace::kTransform); // È¸Àü
+    //    mTransform.getRotation(dRs, RotOrder, MSpace::kTransform); // íšŒì „
     MVector mVecPos;
     mVecPos = mTransform.translation(MSpace::kTransform);
-    mVecPos *= 0.01; // 100 ºĞÀÇ 1·Î.. ¹ÌÅÍ ÁÂÇ¥·Î ¸ÂÃá´Ù..
+    mVecPos *= 0.01; // 100 ë¶„ì˜ 1ë¡œ.. ë¯¸í„° ì¢Œí‘œë¡œ ë§ì¶˜ë‹¤..
     mVecPos.z = -mVecPos.z;
 
-    mTransform.getScale(dSs); // È®´ë
+    mTransform.getScale(dSs); // í™•ëŒ€
 
     vPos.Set((float)mVecPos.x, (float)mVecPos.y, (float)mVecPos.z);
     //    vRot.Set((float)-dRs[0], (float)-dRs[1], (float)dRs[2]);
     vScale.Set((float)dSs[0], (float)dSs[1], (float)dSs[2]);
 
-    mTransform.getRotationQuaternion(dRs[0], dRs[1], dRs[2], dRs[3]); // È¸Àü ÄõÅÍ´Ï¾ğ
+    mTransform.getRotationQuaternion(dRs[0], dRs[1], dRs[2], dRs[3]); // íšŒì „ ì¿¼í„°ë‹ˆì–¸
     qtRot.x = (float)dRs[0];
     qtRot.y = (float)dRs[1];
     qtRot.z = (float)dRs[2];
@@ -1071,12 +1071,12 @@ void CN3E2Wrapper::ProcessMatrix(MFnTransform & mTransform, __Matrix44 & mtx, __
     __Vector3 vAxis;
     float     fAngle;
     qtRot.AxisAngle(vAxis, fAngle);
-    vAxis.x *= -1; // x Ãà È¸ÀüÀÌ ¹İ´ë..
-    vAxis.y *= -1; // y Ãà È¸ÀüÀÌ ¹İ´ë..
+    vAxis.x *= -1; // x ì¶• íšŒì „ì´ ë°˜ëŒ€..
+    vAxis.y *= -1; // y ì¶• íšŒì „ì´ ë°˜ëŒ€..
     vAxis.Normalize();
     qtRot.RotationAxis(vAxis, fAngle);
 
-    // ÃÖÁ¾ Çà·Ä °è»ê..
+    // ìµœì¢… í–‰ë ¬ ê³„ì‚°..
     mtx.Identity();
     static __Matrix44 mtxTmp;
     //    mtxTmp.Rotation((float)-dRs[0], (float)-dRs[1], (float)dRs[2]);    mtx *= mtxTmp;
@@ -1084,7 +1084,7 @@ void CN3E2Wrapper::ProcessMatrix(MFnTransform & mTransform, __Matrix44 & mtx, __
     mtx *= mtxTmp;
     mtxTmp.Scale((float)dSs[0], (float)dSs[1], (float)dSs[2]);
     mtx *= mtxTmp;
-    mtx.PosSet((float)mVecPos.x, (float)mVecPos.y, (float)mVecPos.z); // À§Ä¡..
+    mtx.PosSet((float)mVecPos.x, (float)mVecPos.y, (float)mVecPos.z); // ìœ„ì¹˜..
 }
 
 bool CN3E2Wrapper::FindAnimCurve(MObject & mObj, MObjectArray & mAnimCurveArray) {
@@ -1117,7 +1117,7 @@ bool CN3E2Wrapper::HaveJoint(MFnMesh & mMesh) {
         }
     }
 
-    if (nMC >= 2) // return true; // µÎ°³º¸´Ù Å©¸é..
+    if (nMC >= 2) // return true; // ë‘ê°œë³´ë‹¤ í¬ë©´..
     {
         MItDependencyGraph::Direction Direction = MItDependencyGraph::kUpstream;
         MItDependencyGraph::Traversal TraversalType = MItDependencyGraph::kBreadthFirst;
@@ -1129,14 +1129,14 @@ bool CN3E2Wrapper::HaveJoint(MFnMesh & mMesh) {
         for (int i = 0; !dgIter.isDone(); dgIter.next(), i++) {
             MObject mObjTmp = dgIter.thisNode();
             if (mObjTmp.apiType() == MFn::kJoint) {
-                return true; // Á¶ÀÎÆ®°¡ ÀÖÀ¸¸é..
+                return true; // ì¡°ì¸íŠ¸ê°€ ìˆìœ¼ë©´..
             }
         }
     }
     return false;
 }
 
-// ÅØ½ºÃ³ ÀÎµ¦½º °è»ê..
+// í…ìŠ¤ì²˜ ì¸ë±ìŠ¤ ê³„ì‚°..
 CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
     int   nLI = 0;
     DWORD dwRWC = 0;
@@ -1154,28 +1154,28 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
         return NULL;
     }
 
-    // »çÀÌÁî¸¦ °¡Á®¿Â´Ù..
+    // ì‚¬ì´ì¦ˆë¥¼ ê°€ì ¸ì˜¨ë‹¤..
     MString   szCommand = MString("getAttr ") + szTexture + MString(".outSize");
     MIntArray nWH;
     if (MGlobal::executeCommand(szCommand, nWH) != MS::kSuccess) {
-        wsprintf(szInfo, "ÅØ½ºÃ³ ÆÄÀÏ Ã³¸® ¿À·ù : Surface - %s, Texture - %s", szSurface.asChar(), szTexture.asChar());
+        wsprintf(szInfo, "í…ìŠ¤ì²˜ íŒŒì¼ ì²˜ë¦¬ ì˜¤ë¥˜ : Surface - %s, Texture - %s", szSurface.asChar(), szTexture.asChar());
         nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
         ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI, 0);          // Progress dialog
 
         return NULL;
     }
 
-    //    int nW = nWH[1], nH = nWH[0]; // »çÀÌÁî¸¦ ¾Ë¾Æ³»°í..
+    //    int nW = nWH[1], nH = nWH[0]; // ì‚¬ì´ì¦ˆë¥¼ ì•Œì•„ë‚´ê³ ..
     //    if(nW < 4 || nH < 4)
     //    {
-    //        wsprintf(szInfo, "ÅØ½ºÃ³ ÆÄÀÏ Ã³¸® ¿À·ù : ³Êºñ, ³ôÀÌ°¡ ³Ê¹« ÀÛ½À´Ï´Ù. Surface - %s, Texture - %s", szSurface.asChar(), szTexture.asChar());
+    //        wsprintf(szInfo, "í…ìŠ¤ì²˜ íŒŒì¼ ì²˜ë¦¬ ì˜¤ë¥˜ : ë„ˆë¹„, ë†’ì´ê°€ ë„ˆë¬´ ì‘ìŠµë‹ˆë‹¤. Surface - %s, Texture - %s", szSurface.asChar(), szTexture.asChar());
     //        nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
     //        ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
     //
     //        return NULL;
     //    }
 
-    // ÅØ½ºÃ³¸¦ º¯È¯ÇÑ´Ù..
+    // í…ìŠ¤ì²˜ë¥¼ ë³€í™˜í•œë‹¤..
     MString      szFile;
     MStringArray szResult2;
     szCommand = MString("getAttr ") + szTexture + MString(".fileTextureName");
@@ -1183,8 +1183,8 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
     szFile = szResult2[0];
 
     ////////////////////////////////////////////
-    // Texture List ¿¡ µî·ÏµÇ¾î ÀÖ´ÂÁö º»´Ù..
-    char szFNSrc[1024]; // ÆÄÀÏ ÀÌ¸§À» Á¤ÇÏ°í..
+    // Texture List ì— ë“±ë¡ë˜ì–´ ìˆëŠ”ì§€ ë³¸ë‹¤..
+    char szFNSrc[1024]; // íŒŒì¼ ì´ë¦„ì„ ì •í•˜ê³ ..
     lstrcpy(szFNSrc, szFile.asChar());
     int nFN = lstrlen(szFNSrc);
     for (int i = 0; i < nFN; i++) {
@@ -1193,19 +1193,19 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
         }
     }
 
-    // ¹®ÀÚ¿­¿¡  ":" ÀÌ ¾øÀ¸¸é ¾ÕÀÇ µÎ±ÛÀÚ°¡ '\\' È¤Àº '//' ÀÌ ¾Æ´Ï¸é Ç®³×ÀÓÀ» ¸¸µé¾î¾ß ÇÑ´Ù.
+    // ë¬¸ìì—´ì—  ":" ì´ ì—†ìœ¼ë©´ ì•ì˜ ë‘ê¸€ìê°€ '\\' í˜¹ì€ '//' ì´ ì•„ë‹ˆë©´ í’€ë„¤ì„ì„ ë§Œë“¤ì–´ì•¼ í•œë‹¤.
     if (!strstr(szFNSrc, ":") && !(szFNSrc[0] == '\\' && szFNSrc[1] == '\\')) {
         MString szWorkSpace;
         MGlobal::executeCommand(MString("workspace -fullName"), szWorkSpace);
         lstrcpy(szFNSrc, szWorkSpace.asChar());
         lstrcat(szFNSrc, szFile.asChar());
     }
-    // WorkSpace ÀÌ¸§À» °¡Á®¿À°í..
+    // WorkSpace ì´ë¦„ì„ ê°€ì ¸ì˜¤ê³ ..
 
-    char szFNDest[1024]; // ÀúÀåÇÒ ÀÌ¸§
+    char szFNDest[1024]; // ì €ì¥í•  ì´ë¦„
     lstrcpy(szFNDest, szFNSrc);
     nFN = lstrlen(szFNDest);
-    for (int i = nFN - 1; i >= 0; i--) // ÀúÀåÇÒ ÀÌ¸§À» ¸¸µç´Ù..
+    for (int i = nFN - 1; i >= 0; i--) // ì €ì¥í•  ì´ë¦„ì„ ë§Œë“ ë‹¤..
     {
         if (szFNDest[i] == '.') {
             szFNDest[i + 1] = 'D';
@@ -1221,7 +1221,7 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
 
     CN3Texture * pTex = NULL;
 
-    static char szFNs[1024][256]; // ÆÄÀÏ ÀÌ¸§ÀÌ Áßº¹µÇ´ÂÁö Ã¼Å©...
+    static char szFNs[1024][256]; // íŒŒì¼ ì´ë¦„ì´ ì¤‘ë³µë˜ëŠ”ì§€ ì²´í¬...
     if (m_pScene->s_MngTex.Count() <= 0) {
         memset(szFNs, 0, sizeof(szFNs));
     }
@@ -1237,13 +1237,13 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
 
     lstrcpy(szFNs[i], szFNDest);
     pTex = new CN3Texture();
-    if (pTex->LoadFromFile(szFNSrc)) // ÆÄÀÏÀ» ÀĞ°í...
+    if (pTex->LoadFromFile(szFNSrc)) // íŒŒì¼ì„ ì½ê³ ...
     {
-        pTex->m_szName = szFNDest;   // ÀÌ¸§ Á¤ÇÏ±â.. - ÆÄÀÏ ÀÌ¸§À¸·Î Á¤ÇÑ´Ù.
-        pTex->FileNameSet(szFNDest); // ÆÄÀÏ ÀÌ¸§ Á¤ÇÏ±â.
-        CN3Base::s_MngTex.Add(pTex); // Manager ¿¡ µî·Ï
+        pTex->m_szName = szFNDest;   // ì´ë¦„ ì •í•˜ê¸°.. - íŒŒì¼ ì´ë¦„ìœ¼ë¡œ ì •í•œë‹¤.
+        pTex->FileNameSet(szFNDest); // íŒŒì¼ ì´ë¦„ ì •í•˜ê¸°.
+        CN3Base::s_MngTex.Add(pTex); // Manager ì— ë“±ë¡
     } else {
-        wsprintf(szInfo, "ÅØ½ºÃ³ ÆÄÀÏ Ã³¸® ¿À·ù : ÆÄÀÏÀ» ÀĞÀ»¼ö ¾ø½À´Ï´Ù. - %s", szFNSrc);
+        wsprintf(szInfo, "í…ìŠ¤ì²˜ íŒŒì¼ ì²˜ë¦¬ ì˜¤ë¥˜ : íŒŒì¼ì„ ì½ì„ìˆ˜ ì—†ìŠµë‹ˆë‹¤. - %s", szFNSrc);
         nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
         ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI, 0);          // Progress dialog
 
@@ -1251,7 +1251,7 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
         return NULL;
     }
 
-    if (m_Option.bGenerateHalfSizeTexture) // Texture Size ¸¦ Àı¹İÀ¸·Î ÁÙ¿© Ãâ·Â..
+    if (m_Option.bGenerateHalfSizeTexture) // Texture Size ë¥¼ ì ˆë°˜ìœ¼ë¡œ ì¤„ì—¬ ì¶œë ¥..
     {
         D3DFORMAT fmt = pTex->PixelFormat();
         int       nW2 = pTex->Width() / 2;
@@ -1259,7 +1259,7 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
         pTex->Convert(fmt, nW2, nH2);
     }
 
-    if (m_Option.bGenerateCompressedTexture) // Texture ¾ĞÃà »ç¿ë
+    if (m_Option.bGenerateCompressedTexture) // Texture ì••ì¶• ì‚¬ìš©
     {
         D3DFORMAT fmt = pTex->PixelFormat(), NewFormat = D3DFMT_UNKNOWN;
         if (D3DFMT_X8R8G8B8 == fmt) {
@@ -1275,7 +1275,7 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
 
     return pTex;
     /*
-    // ÀÌºÎºĞÀº Maya Image ¸¦ Á÷Á¢ ÀĞ´Â ºÎºĞÀÌ´Ù..
+    // ì´ë¶€ë¶„ì€ Maya Image ë¥¼ ì§ì ‘ ì½ëŠ” ë¶€ë¶„ì´ë‹¤..
     IFFimageReader Reader;
     if(Reader.open(szFile) == MS::kSuccess)
     {
@@ -1283,7 +1283,7 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
         Reader.getSize(nW2, nH2);
         if(nW != nW2 || nH != nH2)
         {
-            wsprintf(szInfo, "ÅØ½ºÃ³ ÆÄÀÏ Ã³¸® ¿À·ù : ÆÄÀÏÀ» ÀĞÀ»¼ö ¾ø½À´Ï´Ù. - %s", szFile.asChar());
+            wsprintf(szInfo, "í…ìŠ¤ì²˜ íŒŒì¼ ì²˜ë¦¬ ì˜¤ë¥˜ : íŒŒì¼ì„ ì½ì„ìˆ˜ ì—†ìŠµë‹ˆë‹¤. - %s", szFile.asChar());
             nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
             ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
 
@@ -1295,28 +1295,28 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
     //    else
     //    {
     //        Reader.close();
-    //        DeleteFile(szFile.asChar()); // ÆÄÀÏ Áö¿ì±â..
-    //        wsprintf(szInfo, "ÅØ½ºÃ³ ÆÄÀÏ Ã³¸® ¿À·ù : GrayScale Texture ´Â Â÷ÈÄ¿¡ Áö¿ø µË´Ï´Ù. Surface - %s, Texture - %s", szSurface.asChar(), szTexture.asChar());
+    //        DeleteFile(szFile.asChar()); // íŒŒì¼ ì§€ìš°ê¸°..
+    //        wsprintf(szInfo, "í…ìŠ¤ì²˜ íŒŒì¼ ì²˜ë¦¬ ì˜¤ë¥˜ : GrayScale Texture ëŠ” ì°¨í›„ì— ì§€ì› ë©ë‹ˆë‹¤. Surface - %s, Texture - %s", szSurface.asChar(), szTexture.asChar());
     //        ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
     //        ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
     //        return false;
     //    }
         
-        // Surface »ı¼º ¹× Ã¤¿ì±â.
+        // Surface ìƒì„± ë° ì±„ìš°ê¸°.
         LPDIRECT3DSURFACE9 lpSurf;
         g_pEng->s_lpD3DDev->CreateOffscreenPlainSurface(nW, nH, D3DFMT_A8R8G8B8, D3DPOOL_DEFAULT, &lpSurf, NULL);
 
         if(NULL == lpSurf)
         {
             Reader.close();
-            wsprintf(szInfo, "ÅØ½ºÃ³ ÆÄÀÏ Ã³¸® ¿À·ù : Direct3D Texture »ı¼º ½ÇÆĞ(%d, %d)", nW, nH);
+            wsprintf(szInfo, "í…ìŠ¤ì²˜ íŒŒì¼ ì²˜ë¦¬ ì˜¤ë¥˜ : Direct3D Texture ìƒì„± ì‹¤íŒ¨(%d, %d)", nW, nH);
             nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
             ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
 
             return NULL;
         }
 
-        Reader.readImage(); // ÀÌ¹ÌÁö ÀĞ±â..
+        Reader.readImage(); // ì´ë¯¸ì§€ ì½ê¸°..
         int nBPP = 0;
         nBPP = Reader.getBytesPerChannel() * 4;
         BOOL bAlpha = Reader.hasAlpha();
@@ -1327,7 +1327,7 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
         unsigned char *pDest = NULL, *pSrc = NULL;
         for(int y = 0; y < nH; y++)
         {
-            pSrc = (unsigned char*)pBuffer + (nH - y - 1) * nW * nBPP; // °Å²Ù·Î ÀúÀåµÇ¾î ÀÖ´Ù..
+            pSrc = (unsigned char*)pBuffer + (nH - y - 1) * nW * nBPP; // ê±°ê¾¸ë¡œ ì €ì¥ë˜ì–´ ìˆë‹¤..
             pDest = (unsigned char*)LR.pBits + y * LR.Pitch;
             for(int x = 0; x < nW; x++, pDest += 4, pSrc += nBPP)
             {
@@ -1348,7 +1348,7 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
 
         if(pTex->Get() == NULL)
         {
-            wsprintf(szInfo, "### !!! Texture Export ½ÇÆĞ(%.3d) : w,h,w2,h2(%.4d, %.4d, %.4d, %.4d) FileName : \"%s\" TextureName \"%s\" MeshName - \"%s\"", 
+            wsprintf(szInfo, "### !!! Texture Export ì‹¤íŒ¨(%.3d) : w,h,w2,h2(%.4d, %.4d, %.4d, %.4d) FileName : \"%s\" TextureName \"%s\" MeshName - \"%s\"", 
                 m_pScene->s_MngTex.Count(), pTex->Width(), pTex->Height(), nW, nH, szFile.asChar(), pTex->m_szName.c_str(), mMesh.name().asChar());
             nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
             ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
@@ -1359,7 +1359,7 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // Output Window ¿¡ ÅØ½ºÃ³ Ãâ·Â..
+    // Output Window ì— í…ìŠ¤ì²˜ ì¶œë ¥..
     wsprintf(szInfo, "### Texture Export (%.3d) : w,h,w2,h2(%.4d, %.4d, %.4d, %.4d) FileName : \"%s\" TextureName \"%s\" MeshName - \"%s\"", 
         m_pScene->s_MngTex.Count(), pTex->Width(), pTex->Height(), nW, nH, szFile.asChar(), pTex->m_szName.c_str(), mMesh.name().asChar());
     nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
@@ -1415,7 +1415,7 @@ int CN3E2Wrapper::ProcessMaterial(MObject mShaderObj, __Material * pMtl) {
     pMtl->Diffuse.r = DC.r;
     pMtl->Diffuse.g = DC.g;
     pMtl->Diffuse.b = DC.b;
-    pMtl->Diffuse.a = ((1.0f - TC.r) + (1.0f - TC.g) + (1.0f - TC.b)) / 3.0f; // Åõ¸í°ª..
+    pMtl->Diffuse.a = ((1.0f - TC.r) + (1.0f - TC.g) + (1.0f - TC.b)) / 3.0f; // íˆ¬ëª…ê°’..
 
     pMtl->Ambient.r = DC.r * 0.7f;
     pMtl->Ambient.g = DC.g * 0.7f;
@@ -1444,34 +1444,34 @@ int CN3E2Wrapper::ProcessTransform(MFnTransform & mTransform, CN3Transform * pTr
     if (NULL == pTransform) {
         return -1;
     }
-    pTransform->m_szName = mTransform.name().asChar(); // ÀÌ¸§ Áş±â....
+    pTransform->m_szName = mTransform.name().asChar(); // ì´ë¦„ ì§“ê¸°....
 
     __Vector3    vPos, vScale;
     __Quaternion qtRot;
-    this->ProcessMatrix(mTransform, pTransform->m_Matrix, vPos, qtRot, vScale); // Çà·Ä Ã³¸®..
+    this->ProcessMatrix(mTransform, pTransform->m_Matrix, vPos, qtRot, vScale); // í–‰ë ¬ ì²˜ë¦¬..
 
-    if (pTransform->Type() & OBJ_CAMERA) // Ä«¸Ş¶ó ÀÏ°æ¿ì
+    if (pTransform->Type() & OBJ_CAMERA) // ì¹´ë©”ë¼ ì¼ê²½ìš°
     {
         CN3Camera * pCamera = (CN3Camera *)pTransform;
 
         pCamera->EyePosSet(vPos);
         __Matrix44 mtxR = qtRot;
-        __Vector3  vAt(0, 0, 50); // ¶³¾îÁø °Å¸®¸¸Å­...
+        __Vector3  vAt(0, 0, 50); // ë–¨ì–´ì§„ ê±°ë¦¬ë§Œí¼...
         vAt *= mtxR;
         pCamera->AtPosSet(vAt);
         pCamera->UpVectorSet(0, 1, 0);
     } else {
         pTransform->PosSet(vPos);
-        pTransform->RotSet(qtRot); // È¸ÀüÀº ÄõÅÍ´Ï¾ğÀ¸·Î µé¾î°£´Ù..
+        pTransform->RotSet(qtRot); // íšŒì „ì€ ì¿¼í„°ë‹ˆì–¸ìœ¼ë¡œ ë“¤ì–´ê°„ë‹¤..
         pTransform->ScaleSet(vScale);
     }
 
     if (FALSE == m_Option.bAnimationKey) {
-        return -1; // Animation Key Ã³¸® ¿É¼ÇÀÌ ÄÑÁú °æ¿ì¸¸ ÇÑ´Ù..
+        return -1; // Animation Key ì²˜ë¦¬ ì˜µì…˜ì´ ì¼œì§ˆ ê²½ìš°ë§Œ í•œë‹¤..
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // ¿¡´Ï¸ŞÀÌ¼Ç..
+    // ì—ë‹ˆë©”ì´ì…˜..
     MObjectArray mAKs;
     this->FindAnimCurve(mTransform.object(), mAKs);
     //    MStatus stat2 = mTransform.setRotationOrder(MTransformationMatrix::kXYZ, true);
@@ -1487,10 +1487,10 @@ int CN3E2Wrapper::ProcessTransform(MFnTransform & mTransform, CN3Transform * pTr
     for (int i = 0; i < nAK; i++) {
         MFnAnimCurve mAC(mAKs[i]);
 
-        lstrcpy(szTmp, mAC.name().asChar()); // ÀÏ´Ü ÀÌ¸§À¸·Î ºñ±³ÇØº¸°í.....
+        lstrcpy(szTmp, mAC.name().asChar()); // ì¼ë‹¨ ì´ë¦„ìœ¼ë¡œ ë¹„êµí•´ë³´ê³ .....
         CharLower(szTmp);
 
-        if (NULL != strstr(szTmp, "translatex")) // Ä«¸Ş¶óÀÇ °æ¿ì¿¡´Â translate °ªÀÌ µÎ°³°¡ µé¾î¿Â´Ù..
+        if (NULL != strstr(szTmp, "translatex")) // ì¹´ë©”ë¼ì˜ ê²½ìš°ì—ëŠ” translate ê°’ì´ ë‘ê°œê°€ ë“¤ì–´ì˜¨ë‹¤..
         {
             nTranslateCount++;
         }
@@ -1534,7 +1534,7 @@ int CN3E2Wrapper::ProcessTransform(MFnTransform & mTransform, CN3Transform * pTr
             nKType = 11;
         } else if (NULL != strstr(szTmp, "visibility")) {
             nKType = -1;
-        } else // ÀÌ¸§À¸·Î ÆÇ´ÜÇÒ¼ö ¾ø´Ù¸é.. ID ·Î ÆÇ´ÜÇÑ´Ù...??
+        } else // ì´ë¦„ìœ¼ë¡œ íŒë‹¨í• ìˆ˜ ì—†ë‹¤ë©´.. ID ë¡œ íŒë‹¨í•œë‹¤...??
         {
             //            MTypeId id = mAC.typeId();
             //            DWORD dwID = id.id();
@@ -1582,7 +1582,7 @@ int CN3E2Wrapper::ProcessTransform(MFnTransform & mTransform, CN3Transform * pTr
             mACs[2][2].setObject(mAC.object());
         }
 
-        // Joint Orient Key °ª..
+        // Joint Orient Key ê°’..
         else if (nKType == 9) {
             mACJointOrients[0].setObject(mAC.object());
         } else if (nKType == 10) {
@@ -1607,24 +1607,24 @@ int CN3E2Wrapper::ProcessTransform(MFnTransform & mTransform, CN3Transform * pTr
                          mTransform.name().asChar());
                 MessageBox(::GetActiveWindow(), szInfo, "Invalid Animation Key", MB_OK);
             } else {
-                //                if(i == 0) this->ProcessAnimKey(mACs[i], &pTransform->m_KeyPos, true, 0.01f, false); // Translation Animation Key ¸¦ Ã³¸®ÇÑ´Ù..
+                //                if(i == 0) this->ProcessAnimKey(mACs[i], &pTransform->m_KeyPos, true, 0.01f, false); // Translation Animation Key ë¥¼ ì²˜ë¦¬í•œë‹¤..
                 if (i == 0) {
                     this->ProcessAnimKey(mACs[i], &pTransform->m_KeyPos, true, 0.01f,
-                                         false); // Translation Animation Key ¸¦ Ã³¸®ÇÑ´Ù..
+                                         false); // Translation Animation Key ë¥¼ ì²˜ë¦¬í•œë‹¤..
                 } else if (i == 1) {
-                    if (nTranslateCount == 2) // View Translate ... ¿ä°Ç Ä«¸Ş¶óÀÏ´ë Å¸°ÙÃ³·³ Ã³¸®ÇÑ´Ù.
+                    if (nTranslateCount == 2) // View Translate ... ìš”ê±´ ì¹´ë©”ë¼ì¼ëŒ€ íƒ€ê²Ÿì²˜ëŸ¼ ì²˜ë¦¬í•œë‹¤.
                     {
                         this->ProcessAnimKey(mACs[i], &pTransform->m_KeyRot, true, 0.01f,
-                                             false); // ViewTarget Position Key ¸¦ Ã³¸®ÇÑ´Ù..
+                                             false); // ViewTarget Position Key ë¥¼ ì²˜ë¦¬í•œë‹¤..
                     } else {
                         MTransformationMatrix::RotationOrder rotOrder =
-                            mTransform.rotationOrder(); // È¸Àü ¼ø¼­¿¡ µû¶ó Ã³¸®°¡ ´Ş¶óÁ®¾ß ÇÑ´Ù..
+                            mTransform.rotationOrder(); // íšŒì „ ìˆœì„œì— ë”°ë¼ ì²˜ë¦¬ê°€ ë‹¬ë¼ì ¸ì•¼ í•œë‹¤..
                         this->ProcessAnimKey(mACs[i], &pTransform->m_KeyRot, true, 1.0f, true,
-                                             rotOrder); // Rotation Animation Key ¸¦ ÄõÅÍ´Ï¾ğÀ¸·Î Ã³¸®ÇÑ´Ù..
+                                             rotOrder); // Rotation Animation Key ë¥¼ ì¿¼í„°ë‹ˆì–¸ìœ¼ë¡œ ì²˜ë¦¬í•œë‹¤..
 
-                        //                        if(pTransform->Type() & OBJ_JOINT) // Á¶ÀÎÆ®ÀÎ °æ¿ì...
+                        //                        if(pTransform->Type() & OBJ_JOINT) // ì¡°ì¸íŠ¸ì¸ ê²½ìš°...
                         //                        {
-                        // -180 µµ¿¡¼­ 180 µµ »çÀÌ¿¡ ÀÖ°Ô ¸¸µç´Ù..
+                        // -180 ë„ì—ì„œ 180 ë„ ì‚¬ì´ì— ìˆê²Œ ë§Œë“ ë‹¤..
                         //                        int nKC = pTransform->m_KeyRot.Count();
                         //                        for(int i = 0; i < nKC; i++)
                         //                        {
@@ -1641,25 +1641,25 @@ int CN3E2Wrapper::ProcessTransform(MFnTransform & mTransform, CN3Transform * pTr
                     } // end of else
                 } else if (i == 2) {
                     this->ProcessAnimKey(mACs[i], &pTransform->m_KeyScale, false, 1.0f, false,
-                                         MTransformationMatrix::kXYZ); // Scale Animation Key ¸¦ Ã³¸®ÇÑ´Ù..
+                                         MTransformationMatrix::kXYZ); // Scale Animation Key ë¥¼ ì²˜ë¦¬í•œë‹¤..
                 }                                                      // end of if(i == 0)
             } // end of if(nKs[0] <= 0 || nKs[1] <= 0 || nKs[2] <= 0)
         }     // end of if(nKs[0] > 0 || nKs[1] > 0 || nKs[2] > 0)
     }         // end of for(int i = 0; i < 3; i++)
 
-    if (pTransform->Type() & OBJ_JOINT) // Joint ÀÌ¸é... Orient Å° °ªµµ º»´Ù..
+    if (pTransform->Type() & OBJ_JOINT) // Joint ì´ë©´... Orient í‚¤ ê°’ë„ ë³¸ë‹¤..
     {
         CN3Joint * pJoint = (CN3Joint *)pTransform;
         this->ProcessAnimKey(mACJointOrients, &(pJoint->m_KeyOrient), true, 1.0f, true, MTransformationMatrix::kXYZ);
     }
-    // ¿¡´Ï¸ŞÀÌ¼Ç..
+    // ì—ë‹ˆë©”ì´ì…˜..
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     return 0;
 }
 
 void CN3E2Wrapper::ProcessAnimKey(MFnAnimCurve * pmACs, CN3AnimKey * pKey, bool bReverseZ, float fScale,
                                   bool bQuaternion, MTransformationMatrix::RotationOrder mRotOrder) {
-    // °¡Àå ±ä°ÍÀ» Ã£´Â´Ù..
+    // ê°€ì¥ ê¸´ê²ƒì„ ì°¾ëŠ”ë‹¤..
     double dfFrmMax = 0.0f, dfFrmTmp = 0.0f;
     int    nKC = 0;
     for (int i = 0; i < 3; i++) {
@@ -1673,14 +1673,14 @@ void CN3E2Wrapper::ProcessAnimKey(MFnAnimCurve * pmACs, CN3AnimKey * pKey, bool 
     if (dfFrmMax <= 1) {
         return;
     }
-    dfFrmMax = m_pScene->m_fFrmEnd - m_pScene->m_fFrmStart; // ÀüÃ¼ Scene À» ´ë»óÀ¸·Î ÇÑ´Ù.
+    dfFrmMax = m_pScene->m_fFrmEnd - m_pScene->m_fFrmStart; // ì „ì²´ Scene ì„ ëŒ€ìƒìœ¼ë¡œ í•œë‹¤.
 
-    int nFrmMax = (int)(dfFrmMax * m_Option.fSamplingRate / 30.0f); // 30 Frame Per Sec ·Î Sampling
+    int nFrmMax = (int)(dfFrmMax * m_Option.fSamplingRate / 30.0f); // 30 Frame Per Sec ë¡œ Sampling
 
     if (bQuaternion) {
-        pKey->Alloc(nFrmMax, m_Option.fSamplingRate, KEY_QUATERNION); // ·ÎÅ×ÀÌ¼ÇÀÌ¸é ÄõÅÍ´Ï¾ğÀ¸·Î ÇÒ´ç.
+        pKey->Alloc(nFrmMax, m_Option.fSamplingRate, KEY_QUATERNION); // ë¡œí…Œì´ì…˜ì´ë©´ ì¿¼í„°ë‹ˆì–¸ìœ¼ë¡œ í• ë‹¹.
     } else {
-        pKey->Alloc(nFrmMax, m_Option.fSamplingRate, KEY_VECTOR3); // º¤ÅÍ·Î ÇÒ´ç..
+        pKey->Alloc(nFrmMax, m_Option.fSamplingRate, KEY_VECTOR3); // ë²¡í„°ë¡œ í• ë‹¹..
     }
 
     MTime mTime;
@@ -1691,9 +1691,9 @@ void CN3E2Wrapper::ProcessAnimKey(MFnAnimCurve * pmACs, CN3AnimKey * pKey, bool 
         //        MMatrix mMtx;
         //        MTransformationMatrix mTMtx;
         __Matrix44 mtxRotFinal, mtxRots[3];
-        int        nRotSeqs[3] = {1, 0, 2}; // ±âº» YXZ È¸Àü..
+        int        nRotSeqs[3] = {1, 0, 2}; // ê¸°ë³¸ YXZ íšŒì „..
 
-        // È¸Àü¼ø¼­
+        // íšŒì „ìˆœì„œ
         if (MTransformationMatrix::kXYZ == mRotOrder) {
             nRotSeqs[0] = 0;
             nRotSeqs[1] = 1;
@@ -1725,7 +1725,7 @@ void CN3E2Wrapper::ProcessAnimKey(MFnAnimCurve * pmACs, CN3AnimKey * pKey, bool 
         for (int i = 0; i < nFrmMax; i++) {
             pQt = (__Quaternion *)(pKey->DataGet(i));
 
-            double dfFrm = i * 30.0f / m_Option.fSamplingRate; // 60 Frame Per Sec ·Î Sampling
+            double dfFrm = i * 30.0f / m_Option.fSamplingRate; // 60 Frame Per Sec ë¡œ Sampling
             mTime.setValue(dfFrm);
 
             memset(dRs, 0, sizeof(double) * 4);
@@ -1734,7 +1734,7 @@ void CN3E2Wrapper::ProcessAnimKey(MFnAnimCurve * pmACs, CN3AnimKey * pKey, bool 
             pmACs[1].evaluate(mTime, dRs[1]);
             pmACs[2].evaluate(mTime, dRs[2]);
 
-            // -180 ~ 180 µµ »çÀÌ·Î ¸ÂÃá´Ù..
+            // -180 ~ 180 ë„ ì‚¬ì´ë¡œ ë§ì¶˜ë‹¤..
             if (dRs[0] < -D3DX_PI) {
                 dRs[0] -= __PI2 * (int)(dRs[0] / __PI2 - 1);
             }
@@ -1793,10 +1793,10 @@ void CN3E2Wrapper::ProcessAnimKey(MFnAnimCurve * pmACs, CN3AnimKey * pKey, bool 
             pV->z = (float)dfValue;
 
             if (1.0f != fScale) {
-                *pV *= fScale; // ´ÜÀ§°¡ meter ¶ó¼­ ±×·¸´Ù..
+                *pV *= fScale; // ë‹¨ìœ„ê°€ meter ë¼ì„œ ê·¸ë ‡ë‹¤..
             }
             if (TRUE == bReverseZ) {
-                pV->z = -(pV->z); // Z ÃàÀ» À½¼ö·Î ÇÑ´Ù..
+                pV->z = -(pV->z); // Z ì¶•ì„ ìŒìˆ˜ë¡œ í•œë‹¤..
             }
         }
     }
@@ -1804,34 +1804,34 @@ void CN3E2Wrapper::ProcessAnimKey(MFnAnimCurve * pmACs, CN3AnimKey * pKey, bool 
 
 bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
     /////////////////////////////////////////////////////////////////////////////////////
-    // ¿µÇâÀ» ÁÖ´Â °üÀıÀ» Ã£¾Æ¼­ Ã³¸®ÇÑ´Ù..
+    // ì˜í–¥ì„ ì£¼ëŠ” ê´€ì ˆì„ ì°¾ì•„ì„œ ì²˜ë¦¬í•œë‹¤..
     MStatus       stat;
     MDagPathArray PathArray;
     mSkin.influenceObjects(PathArray, &stat);
-    int        nJC = PathArray.length(); // °üÀı °¹¼ö¸¦ ±â¾ïÇØ µĞ´Ù.
+    int        nJC = PathArray.length(); // ê´€ì ˆ ê°¯ìˆ˜ë¥¼ ê¸°ì–µí•´ ë‘”ë‹¤.
     MFnIkJoint mJointRoot;
     for (int i = 0; i < nJC; i++) {
         mJointRoot.setObject(PathArray[i].node());
-        if (mJointRoot.parent(0).apiType() != MFn::kJoint) { // ·çÆ® °üÀıÀÏ °æ¿ì¿¡ Ã³¸®..
+        if (mJointRoot.parent(0).apiType() != MFn::kJoint) { // ë£¨íŠ¸ ê´€ì ˆì¼ ê²½ìš°ì— ì²˜ë¦¬..
             break;
         }
     }
     if (i == nJC) {
-        return false; // Root Joint °¡ ¾øÀ» °æ¿ì..
+        return false; // Root Joint ê°€ ì—†ì„ ê²½ìš°..
     }
 
-    // Áßº¹µÇ´ÂÁö Ã£¾Æº»´Ù..
+    // ì¤‘ë³µë˜ëŠ”ì§€ ì°¾ì•„ë³¸ë‹¤..
     std::string szJointFN;
     if (mJointRoot.parentCount() > 0 && mJointRoot.parent(0).hasFn(MFn::kTransform)) {
         MFnTransform mP1(mJointRoot.parent(0));
         szJointFN = "";
-        this->ProcessName(mP1.parent(0), szJointFN); // »ÀÀÇ ÀÌ¸§À» ¾Ë¾Æº¸°í..
+        this->ProcessName(mP1.parent(0), szJointFN); // ë¼ˆì˜ ì´ë¦„ì„ ì•Œì•„ë³´ê³ ..
         szJointFN = "Chr\\" + szJointFN + ".N3Joint";
     } else {
-        szJointFN = mJointRoot.name().asChar(); // »ÀÀÇ ÀÌ¸§À» ¾Ë¾Æº¸°í..
+        szJointFN = mJointRoot.name().asChar(); // ë¼ˆì˜ ì´ë¦„ì„ ì•Œì•„ë³´ê³ ..
     }
 
-    static std::string szJointFNs[512]; // Áßº¹µÇ´ÂÁö Ã¼Å©...
+    static std::string szJointFNs[512]; // ì¤‘ë³µë˜ëŠ”ì§€ ì²´í¬...
     if (m_pScene->s_MngJoint.Count() <= 0) {
         for (int i = 0; i < 512; i++) {
             szJointFNs[i] = "";
@@ -1852,47 +1852,47 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
     CN3Chr *   pChr = NULL;
     CN3Joint * pJoint = NULL;
 
-    if (false == bOverlapped) // Áßº¹µÇÁö ¾Ê´Â´Ù¸é..»õ·Î ¸¸µç´Ù..
+    if (false == bOverlapped) // ì¤‘ë³µë˜ì§€ ì•ŠëŠ”ë‹¤ë©´..ìƒˆë¡œ ë§Œë“ ë‹¤..
     {
-        szJointFNs[i] = szJointFN; // Á¶ÀÎÆ® ÀÌ¸§À» ±â·ÏÇÏ°í..
+        szJointFNs[i] = szJointFN; // ì¡°ì¸íŠ¸ ì´ë¦„ì„ ê¸°ë¡í•˜ê³ ..
 
         pChr = new CN3Chr();
-        m_pScene->ChrAdd(pChr); // Scene ¿¡ Ä³¸¯ÅÍ Ãß°¡..
-        pChr->PartAlloc(64);    // ÃæºĞÇÏ°Ô Part Data ÇÒ´ç..
+        m_pScene->ChrAdd(pChr); // Scene ì— ìºë¦­í„° ì¶”ê°€..
+        pChr->PartAlloc(64);    // ì¶©ë¶„í•˜ê²Œ Part Data í• ë‹¹..
 
         if (mJointRoot.parentCount() > 0) {
             if (mJointRoot.parent(0).hasFn(MFn::kTransform)) {
                 MFnTransform mP1(mJointRoot.parent(0));
                 if (mP1.parentCount() > 0) {
-                    this->ProcessName(mP1.parent(0), pChr->m_szName); // ÀÌ¸§ Áş±â....
+                    this->ProcessName(mP1.parent(0), pChr->m_szName); // ì´ë¦„ ì§“ê¸°....
                 } else {
-                    this->ProcessName(mP1.parent(0), pChr->m_szName); // ÀÌ¸§ Áş±â....
+                    this->ProcessName(mP1.parent(0), pChr->m_szName); // ì´ë¦„ ì§“ê¸°....
                 }
-                pChr->FileNameSet("Chr\\" + pChr->m_szName + ".N3Chr"); // ÆÄÀÏ ÀÌ¸§ °áÁ¤..
+                pChr->FileNameSet("Chr\\" + pChr->m_szName + ".N3Chr"); // íŒŒì¼ ì´ë¦„ ê²°ì •..
             } else {
-                this->ProcessName(mJointRoot.parent(0), pChr->m_szName); // ÀÌ¸§ Áş±â....
-                pChr->FileNameSet("Chr\\" + pChr->m_szName + ".N3Chr");  // ÆÄÀÏ ÀÌ¸§ °áÁ¤..);
+                this->ProcessName(mJointRoot.parent(0), pChr->m_szName); // ì´ë¦„ ì§“ê¸°....
+                pChr->FileNameSet("Chr\\" + pChr->m_szName + ".N3Chr");  // íŒŒì¼ ì´ë¦„ ê²°ì •..);
             }
         } else {
             pChr->m_szName = mJointRoot.name().asChar();
             std::string szFN = "Chr\\";
             szFN += mJointRoot.name().asChar();
-            szFN += ".N3Chr"; // ÆÄÀÏ ÀÌ¸§ °áÁ¤..
+            szFN += ".N3Chr"; // íŒŒì¼ ì´ë¦„ ê²°ì •..
             pChr->FileNameSet(szFN);
         }
 
-        pJoint = this->ProcessJoint(mJointRoot); // Joint Ã³¸®
+        pJoint = this->ProcessJoint(mJointRoot); // Joint ì²˜ë¦¬
         if (NULL == pJoint) {
             delete pChr;
             return NULL;
         }
-        pJoint->FileNameSet(szJointFN); // ÆÄÀÏ ÀÌ¸§ ¼³Á¤..
+        pJoint->FileNameSet(szJointFN); // íŒŒì¼ ì´ë¦„ ì„¤ì •..
 
         pChr->s_MngJoint.Add(pJoint);
         pChr->JointSet(pJoint->FileName()); // Joint Setting;
 
         ///////////////////////////////////////////////////////////////////////
-        // Joint °¡ ±×·ì µÇ¾î ÀÖ´Ù¸é Parent Transform Ã³¸®..
+        // Joint ê°€ ê·¸ë£¹ ë˜ì–´ ìˆë‹¤ë©´ Parent Transform ì²˜ë¦¬..
         if (mJointRoot.parentCount() > 0 && mJointRoot.parent(0).hasFn(MFn::kTransform)) {
             MFnTransform mTJ(mJointRoot.parent(0)); // Joint Transform Node
 
@@ -1928,8 +1928,8 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
             vTrans *= mtxRotG;
             this->ProcessJointTransform(pJoint, &vTrans, &qRot, &vScale, true);
 
-            pJoint->PosSet(pJoint->Pos() * mtxRotG); // À§Ä¡ °ªµµ ¹æÇâ°ú ½ºÄÉÀÏ¿¡ ¸Â°Ô
-            int nK = pJoint->m_KeyPos.Count();       // ¿¡´Ï¸ŞÀÌ¼Ç Å°µµ º¯°æÇØÁØ´Ù..
+            pJoint->PosSet(pJoint->Pos() * mtxRotG); // ìœ„ì¹˜ ê°’ë„ ë°©í–¥ê³¼ ìŠ¤ì¼€ì¼ì— ë§ê²Œ
+            int nK = pJoint->m_KeyPos.Count();       // ì—ë‹ˆë©”ì´ì…˜ í‚¤ë„ ë³€ê²½í•´ì¤€ë‹¤..
             for (int i = 0; i < nK; i++) {
                 __Vector3 * pvKey = (__Vector3 *)(pJoint->m_KeyPos.DataGet(i));
                 (*pvKey) *= mtxRotG;
@@ -1938,7 +1938,7 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
     } else {
         pJoint = m_pScene->s_MngJoint.Get(szJointFN);
 
-        int nChrCount = m_pScene->ChrCount(); // °°Àº Á¶ÀÎÆ® Æ÷ÀÎÅÍ¸¦ °®´Â Ä³¸¯ÅÍ Æ÷ÀÎÅÍ¸¦ Ã£´Â´Ù..
+        int nChrCount = m_pScene->ChrCount(); // ê°™ì€ ì¡°ì¸íŠ¸ í¬ì¸í„°ë¥¼ ê°–ëŠ” ìºë¦­í„° í¬ì¸í„°ë¥¼ ì°¾ëŠ”ë‹¤..
         for (int i = 0; i < nChrCount; i++) {
             CN3Chr * pChrTmp = m_pScene->ChrGet(i);
             if (pChrTmp->Joint() == pJoint) {
@@ -1953,7 +1953,7 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
     }
 
     /////////////////////////////////////////////////// ............ // Mesh
-    // ¿ø·¡ Mesh
+    // ì›ë˜ Mesh
     MObjectArray mMeshArray;
     mSkin.getInputGeometry(mMeshArray);
     __ASSERT(1 == mMeshArray.length(), "binding mesh count is not 1");
@@ -1973,7 +1973,7 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
         mGT.setObject(mMT.object());
     }
 
-    // Ãæµ¹ Ã¼Å©¿ëÀ¸·Î ¾²ÀÏ ¸Ş½ÃÀÎÁö »ìÆìº»´Ù..
+    // ì¶©ëŒ ì²´í¬ìš©ìœ¼ë¡œ ì“°ì¼ ë©”ì‹œì¸ì§€ ì‚´í´ë³¸ë‹¤..
     std::string szFNM = mMT.name().asChar();
     if (szFNM.size() > 0) {
         CharLower(&(szFNM[0]));
@@ -1982,9 +1982,9 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
         bCollisionMesh = true;
     }
 
-    if (true == bCollisionMesh) // Ãæµ¹ Ã¼Å© ¸Ş½Ã¸é....
+    if (true == bCollisionMesh) // ì¶©ëŒ ì²´í¬ ë©”ì‹œë©´....
     {
-        /*        CN3IMesh* pN3Mesh = this->ProcessIMesh(mMeshOrg); // Indexed Mesh Ã³¸®.
+        /*        CN3IMesh* pN3Mesh = this->ProcessIMesh(mMeshOrg); // Indexed Mesh ì²˜ë¦¬.
         int nVC = pN3Mesh->VertexCount();
         int nFC = pN3Mesh->FaceCount();
         __VertexXyzNormal* pVSrc = pN3Mesh->Vertices();
@@ -2004,20 +2004,20 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
 
         pVMesh->m_szName = "";
         this->ProcessName(mMeshOrg.object(), pVMesh);
-        std::string szFN = "Chr\\" + pVMesh->m_szName + ".N3VMesh"; // ÆÄÀÏ ÀÌ¸§ °áÁ¤..
+        std::string szFN = "Chr\\" + pVMesh->m_szName + ".N3VMesh"; // íŒŒì¼ ì´ë¦„ ê²°ì •..
         pVMesh->FileNameSet(szFN);
 
         pChr->s_MngVMesh.Add(pVMesh);
         pChr->CollisionMeshSet(pVMesh->m_szName);
 
-        this->ProcessSkin(mSkin, pChr->CollisionSkin()); // Skin Ã³¸®.
+        this->ProcessSkin(mSkin, pChr->CollisionSkin()); // Skin ì²˜ë¦¬.
 */
-    } else if (false == bCollisionMesh) // Ãæµ¹ Ã¼Å© ¸Ş½Ã ¾Æ´Ï¸é....Á¤»óÀûÀ¸·Î ÁøÇà..
+    } else if (false == bCollisionMesh) // ì¶©ëŒ ì²´í¬ ë©”ì‹œ ì•„ë‹ˆë©´....ì •ìƒì ìœ¼ë¡œ ì§„í–‰..
     {
         int nLOD = 0;
         int nPart = 0;
 
-        if (mGT.parentCount() > 0 && mGT.parent(0).hasFn(MFn::kTransform)) // ±×·ì Æ®·£½ºÆûÀÇ »óÀ§ ³ëµå°¡ ÀÖÀ» °æ¿ì..
+        if (mGT.parentCount() > 0 && mGT.parent(0).hasFn(MFn::kTransform)) // ê·¸ë£¹ íŠ¸ëœìŠ¤í¼ì˜ ìƒìœ„ ë…¸ë“œê°€ ìˆì„ ê²½ìš°..
         {
             MFnTransform mCT(mGT.parent(0)); // Character Transform
             int          nC = mCT.childCount();
@@ -2028,9 +2028,9 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
 
                 MFnTransform mTTmp(mCT.child(i));
                 if (mTTmp.object() == mGT.object()) {
-                    break; // Ä³¸¯ÅÍ Æ®·£½ºÆû ¹ØÀÇ Â÷ÀÏµåÀÇ ÀÌ¸§°ú ±×·ìÀÇ ÀÌ¸§ÀÌ °°À» °æ¿ì..
+                    break; // ìºë¦­í„° íŠ¸ëœìŠ¤í¼ ë°‘ì˜ ì°¨ì¼ë“œì˜ ì´ë¦„ê³¼ ê·¸ë£¹ì˜ ì´ë¦„ì´ ê°™ì„ ê²½ìš°..
                 }
-                nPart++; // °°Áö ¾ÊÀ¸¸é Part Áõ°¡..
+                nPart++; // ê°™ì§€ ì•Šìœ¼ë©´ Part ì¦ê°€..
             }
 
             int nGTC = mGT.childCount();
@@ -2041,11 +2041,11 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
 
                 MFnTransform mTTmp(mGT.child(i));
                 if (mTTmp.name() == mMT.name()) {
-                    break; // Mesh Transform °ú Mesh ±×·ìÀÇ Â÷ÀÏµå ¸Ş½Ã°¡ ÀÌ¸§ÀÌ °°À¸¸é..
+                    break; // Mesh Transform ê³¼ Mesh ê·¸ë£¹ì˜ ì°¨ì¼ë“œ ë©”ì‹œê°€ ì´ë¦„ì´ ê°™ìœ¼ë©´..
                 }
                 nLOD++;
             }
-        } else // pair of if(mGT.parentCount() > 0 && mGT.parent(0).apiType() == MFn::kTransform) // ±×·ì Æ®·£½ºÆûÀÇ »óÀ§ ³ëµå°¡ ÀÖÀ» °æ¿ì..
+        } else // pair of if(mGT.parentCount() > 0 && mGT.parent(0).apiType() == MFn::kTransform) // ê·¸ë£¹ íŠ¸ëœìŠ¤í¼ì˜ ìƒìœ„ ë…¸ë“œê°€ ìˆì„ ê²½ìš°..
         {
             int nC = mGT.childCount();
             for (int i = 0; i < nC; i++) {
@@ -2055,9 +2055,9 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
 
                 MFnTransform mTTmp(mGT.child(i));
                 if (mTTmp.name() == mMT.name()) {
-                    break; // Ä³¸¯ÅÍ Æ®·£½ºÆû ¹ØÀÇ Â÷ÀÏµåÀÇ ÀÌ¸§°ú ±×·ìÀÇ ÀÌ¸§ÀÌ °°À» °æ¿ì..
+                    break; // ìºë¦­í„° íŠ¸ëœìŠ¤í¼ ë°‘ì˜ ì°¨ì¼ë“œì˜ ì´ë¦„ê³¼ ê·¸ë£¹ì˜ ì´ë¦„ì´ ê°™ì„ ê²½ìš°..
                 }
-                nPart++; // °°Áö ¾ÊÀ¸¸é Part Áõ°¡..
+                nPart++; // ê°™ì§€ ì•Šìœ¼ë©´ Part ì¦ê°€..
             }
         }
 
@@ -2067,7 +2067,7 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
         CN3CPart * pPart = pChr->Part(nPart);
         CN3Skin *  pSkin = pPart->Skin(nLOD);
 
-        if (pPart->m_szName.empty()) // ÆÄÆ®ÀÇ ÀÌ¸§ÀÌ ¾øÀ¸¸é..
+        if (pPart->m_szName.empty()) // íŒŒíŠ¸ì˜ ì´ë¦„ì´ ì—†ìœ¼ë©´..
         {
             pPart->m_szName = mGT.name().asChar();
             std::string szFN;
@@ -2081,10 +2081,10 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
             pPart->FileNameSet("item\\" + szFN + ".N3CPart");
         }
 
-        if (NULL == pSkin) // Skin ÀÌ ¾øÀ¸¸é ³Ö´Â´Ù..
+        if (NULL == pSkin) // Skin ì´ ì—†ìœ¼ë©´ ë„£ëŠ”ë‹¤..
         {
             CN3CPartSkins * pSkinsAdd = new CN3CPartSkins();
-            pSkinsAdd->m_szName = mGT.name().asChar(); // ÀÌ¸§°ú ÆÄÀÏ ÀÌ¸§À» Á¤ÇÏ°í..
+            pSkinsAdd->m_szName = mGT.name().asChar(); // ì´ë¦„ê³¼ íŒŒì¼ ì´ë¦„ì„ ì •í•˜ê³ ..
             std::string szFN;
             this->ProcessName(mGT.object(), szFN);
 
@@ -2097,23 +2097,23 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
 
             CN3Base::s_MngSkins.Add(pSkinsAdd);
             pPart->SkinsSet(pSkinsAdd->FileName());
-            pSkin = pPart->Skin(nLOD); // ´Ù½Ã Æ÷ÀÎÅÍ ±¸ÇÏ±â.
+            pSkin = pPart->Skin(nLOD); // ë‹¤ì‹œ í¬ì¸í„° êµ¬í•˜ê¸°.
         }
 
-        if (false == this->ProcessSkin(mSkin, pSkin)) // Skin Ã³¸®..
+        if (false == this->ProcessSkin(mSkin, pSkin)) // Skin ì²˜ë¦¬..
         {
             MessageBox(::GetActiveWindow(), mSkin.name().asChar(), "Skin processing failed", MB_OK);
             return false;
         }
 
-        // ÅØ½ºÃ³ Ã³¸®..
+        // í…ìŠ¤ì²˜ ì²˜ë¦¬..
         pPart->m_Mtl.Init();
         pPart->m_Mtl.dwColorArg1 = D3DTA_DIFFUSE;
         pPart->m_Mtl.dwColorArg2 = D3DTA_TEXTURE;
 
         CN3Texture * pTex = ProcessTexture(mMeshOutput);
         if (pTex) {
-            pTex->m_szName = mGT.name().asChar(); // ÀÌ¸§°ú ÆÄÀÏ ÀÌ¸§À» Á¤ÇÏ°í..
+            pTex->m_szName = mGT.name().asChar(); // ì´ë¦„ê³¼ íŒŒì¼ ì´ë¦„ì„ ì •í•˜ê³ ..
             std::string szFN;
             this->ProcessName(mGT.object(), szFN);
             int iLen = szFN.size();
@@ -2121,7 +2121,7 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
             if (m_Option.bGenerateFileName && iLen >= 11 && iLen2 >= 11) { // Item Code ::: 0_2345_78_0
                 szFN = szFN.substr(iLen - 11);
             }
-            pTex->FileNameSet("Item\\" + szFN + ".DXT"); // Part ÀÌ¸§°ú Texture ÀÌ¸§À» °°°Ô ÇÑ´Ù.
+            pTex->FileNameSet("Item\\" + szFN + ".DXT"); // Part ì´ë¦„ê³¼ Texture ì´ë¦„ì„ ê°™ê²Œ í•œë‹¤.
 
             pPart->m_Mtl.dwColorOp = D3DTOP_MODULATE;
             pPart->TexSet(pTex);
@@ -2131,18 +2131,18 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
             //                fmtTex == D3DFMT_DXT3 ||
             //                fmtTex == D3DFMT_DXT4 ||
             //                fmtTex == D3DFMT_DXT5 ) pPart->m_Mtl.nRenderFlags = RF_ALPHABLENDING;
-        } else // ÅØ½ºÃ³°¡ ¾ø´Â °æ¿ì¿¡¸¸ ÀçÁú
+        } else // í…ìŠ¤ì²˜ê°€ ì—†ëŠ” ê²½ìš°ì—ë§Œ ì¬ì§ˆ
         {
             //            this->ProcessMaterial(this->MeshGetShader(mMeshOutput), &(pPart->m_Mtl));
             pPart->m_Mtl.dwColorOp = D3DTOP_SELECTARG1;
         }
-    } // if(false == bCollisionMesh) // Ãæµ¹ Ã¼Å© ¸Ş½Ã ¾Æ´Ï¸é....Á¤»óÀûÀ¸·Î ÁøÇà..
+    } // if(false == bCollisionMesh) // ì¶©ëŒ ì²´í¬ ë©”ì‹œ ì•„ë‹ˆë©´....ì •ìƒì ìœ¼ë¡œ ì§„í–‰..
 
     return true;
 }
 
 void CN3E2Wrapper::ProcessName(MObject mObj, std::string & szName) {
-    if (mObj.hasFn(MFn::kWorld) == FALSE && mObj.hasFn(MFn::kDependencyNode)) // ÃÖ»óÀ§ ³ëµå°¡ ¾Æ´Ï¸é..
+    if (mObj.hasFn(MFn::kWorld) == FALSE && mObj.hasFn(MFn::kDependencyNode)) // ìµœìƒìœ„ ë…¸ë“œê°€ ì•„ë‹ˆë©´..
     {
         MFnDependencyNode mNode(mObj);
 
@@ -2254,7 +2254,7 @@ INT_PTR CALLBACK CN3E2Wrapper::DlgProcProgress(HWND hDlg, UINT msg, WPARAM wPara
 BOOL CALLBACK CN3E2Wrapper::DlgProcPane(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     switch (uMsg) {
     case WM_INITDIALOG: {
-        // Registry ¿¡ ¿É¼Ç°ªÀ» ³Ö¾îµÎ¾ú´Ù..
+        // Registry ì— ì˜µì…˜ê°’ì„ ë„£ì–´ë‘ì—ˆë‹¤..
         HKEY hKey = g_pEng->RegistryOpen("N3Export Option");
         if (hKey) {
             g_pEng->RegistryValueGet(hKey, "Export Camera", &m_Option.bExportCamera, 4);
@@ -2287,8 +2287,8 @@ BOOL CALLBACK CN3E2Wrapper::DlgProcPane(HWND hDlg, UINT uMsg, WPARAM wParam, LPA
         CheckDlgButton(hDlg, IDC_C_GENERATE_HALF_SIZE_TEXTURE, m_Option.bGenerateHalfSizeTexture);
         CheckDlgButton(hDlg, IDC_C_GENERATE_COMPRESSED_TEXTURE, m_Option.bGenerateCompressedTexture);
 
-        m_Option.nFrmStart = (int)(MAnimControl::minTime().value());     // ½ÃÀÛ ÇÁ·¹ÀÓ.
-        m_Option.nFrmEnd = (int)(MAnimControl::maxTime().value() + 0.5); // ³¡ ÇÁ·¹ÀÓ
+        m_Option.nFrmStart = (int)(MAnimControl::minTime().value());     // ì‹œì‘ í”„ë ˆì„.
+        m_Option.nFrmEnd = (int)(MAnimControl::maxTime().value() + 0.5); // ë í”„ë ˆì„
 
         SetDlgItemInt(hDlg, IDC_E_FRAME_START, m_Option.nFrmStart, FALSE);
         SetDlgItemInt(hDlg, IDC_E_FRAME_END, m_Option.nFrmEnd, FALSE);
@@ -2307,8 +2307,8 @@ BOOL CALLBACK CN3E2Wrapper::DlgProcPane(HWND hDlg, UINT uMsg, WPARAM wParam, LPA
             m_Option.bExportCharacter = IsDlgButtonChecked(hDlg, IDC_C_OBJ_CHARACTER);
 
             m_Option.bAnimationKey = IsDlgButtonChecked(hDlg, IDC_C_ANIMATION_KEY);
-            m_Option.nFrmStart = GetDlgItemInt(hDlg, IDC_E_FRAME_START, NULL, FALSE);              // ½ÃÀÛ ÇÁ·¹ÀÓ
-            m_Option.nFrmEnd = GetDlgItemInt(hDlg, IDC_E_FRAME_END, NULL, FALSE);                  // ³¡ ÇÁ·¹ÀÓ
+            m_Option.nFrmStart = GetDlgItemInt(hDlg, IDC_E_FRAME_START, NULL, FALSE);              // ì‹œì‘ í”„ë ˆì„
+            m_Option.nFrmEnd = GetDlgItemInt(hDlg, IDC_E_FRAME_END, NULL, FALSE);                  // ë í”„ë ˆì„
             m_Option.fSamplingRate = (float)GetDlgItemInt(hDlg, IDC_E_SAMPLING_RATE, NULL, FALSE); // Sampling Rate
 
             m_Option.bGenerateFileName = IsDlgButtonChecked(hDlg, IDC_C_GENERATE_FILE_NAME);
@@ -2319,7 +2319,7 @@ BOOL CALLBACK CN3E2Wrapper::DlgProcPane(HWND hDlg, UINT uMsg, WPARAM wParam, LPA
 
             EndDialog(hDlg, 1);
 
-            // Registry ¿¡ ¿É¼Ç°ªÀ» ³Ö¾îµÎ¾ú´Ù..
+            // Registry ì— ì˜µì…˜ê°’ì„ ë„£ì–´ë‘ì—ˆë‹¤..
             HKEY hKey = g_pEng->RegistryOpen("N3Export Option");
             if (NULL == hKey) {
                 RegCreateKey(HKEY_CURRENT_USER, "N3Export Option", &hKey);

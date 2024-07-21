@@ -11,11 +11,11 @@ class BB_CircularBuffer {
 
     void   PutData(BYTE * pData, int len);
     void   GetData(BYTE * pData, int len);
-    int    GetOutData(BYTE * pData); //HeadPos, º¯È­
+    int    GetOutData(BYTE * pData); //HeadPos, ë³€í™”
     void   PutData(BYTE & data);
     BYTE & GetHeadData() { return m_pBuffer[m_iHeadPos]; }
     //1 Byte Operation;
-    //false : ¸ğµçµ¥ÀÌÅÍ ´ÙºüÁü, TRUE: Á¤»óÀûÀ¸·Î ÁøÇàÁß
+    //false : ëª¨ë“ ë°ì´í„° ë‹¤ë¹ ì§, TRUE: ì •ìƒì ìœ¼ë¡œ ì§„í–‰ì¤‘
     BOOL HeadIncrease(int increasement = 1);
     void SetEmpty() {
         m_iHeadPos = 0;
@@ -28,10 +28,10 @@ class BB_CircularBuffer {
     int   GetValidCount();
 
   protected:
-    //over flow ¸ÕÀú Á¡°ËÇÑ ÈÄ IndexOverFlow Á¡°Ë
+    //over flow ë¨¼ì € ì ê²€í•œ í›„ IndexOverFlow ì ê²€
     BOOL IsOverFlowCondition(int & len) { return (len >= m_iBufSize - GetValidCount()) ? TRUE : FALSE; }
     BOOL IsIndexOverFlow(int & len) { return (len + m_iTailPos >= m_iBufSize) ? TRUE : FALSE; }
-    void BufferResize(); //overflow condition ÀÏ¶§ size¸¦ ÇöÀçÀÇ µÎ¹è·Î ´Ã¸²
+    void BufferResize(); //overflow condition ì¼ë•Œ sizeë¥¼ í˜„ì¬ì˜ ë‘ë°°ë¡œ ëŠ˜ë¦¼
   protected:
     int    m_iBufSize;
     BYTE * m_pBuffer;
