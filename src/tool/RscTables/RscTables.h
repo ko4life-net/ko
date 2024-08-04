@@ -9,7 +9,7 @@
 
 #pragma warning(disable : 4786)
 
-#include "resource.h" // main symbols
+#include "Resource.h" // main symbols
 #include "TableGenerator.h"
 
 /////////////////////////////////////////////////////////////////////////////

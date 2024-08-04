@@ -50,7 +50,7 @@ BEGIN
     "LANGUAGE 18, 1\r\n"
     "#pragma code_page(949)\r\n"
     "#endif //_WIN32\r\n"
-    "#include ""res\\AIServer.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""AIServer.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
     "#include ""l.kor\\afxres.rc""          // Standard components\r\n"
     "#endif\r\n"
     "\0"
@@ -66,7 +66,7 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON    DISCARDABLE     "res\\AIServer.ico"
+IDR_MAINFRAME           ICON    DISCARDABLE     "AIServer.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -196,7 +196,7 @@ END
 LANGUAGE 18, 1
 #pragma code_page(949)
 #endif //_WIN32
-#include "res\AIServer.rc2"  // non-Microsoft Visual C++ edited resources
+#include "AIServer.rc2"  // non-Microsoft Visual C++ edited resources
 #include "l.kor\afxres.rc"          // Standard components
 #endif
 

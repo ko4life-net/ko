@@ -59,7 +59,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_N3TOOL;_CRT_SECURE_NO_WARNINGS;DIRECTINPUT_VERSION=0x0800;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SrcDir)\common;$(SrcDir)\engine;$(SrcDir)\game;$(VendorDir)\spdlog\include;$(WindowsSDK_IncludePath);$(VendorDir)\dxsdk9\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(SrcDir)\common;$(SrcDir)\engine;$(SrcDir)\game;$(VendorDir)\spdlog\include;$(WindowsSDK_IncludePath);$(VendorDir)\dxsdk9\Include</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 /wd4102 %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -93,7 +93,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_N3TOOL;_CRT_SECURE_NO_WARNINGS;DIRECTINPUT_VERSION=0x0800;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SrcDir)\common;$(SrcDir)\engine;$(SrcDir)\game;$(VendorDir)\spdlog\include;$(WindowsSDK_IncludePath);$(VendorDir)\dxsdk9\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(SrcDir)\common;$(SrcDir)\engine;$(SrcDir)\game;$(VendorDir)\spdlog\include;$(WindowsSDK_IncludePath);$(VendorDir)\dxsdk9\Include</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 /wd4102 %(AdditionalOptions)</AdditionalOptions>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -199,9 +199,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="N3FXE.rc" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\common\N3Utils.h" />
     <ClInclude Include="..\..\engine\N3Base\N3Log.h" />
     <ClInclude Include="..\..\engine\N3Base\BitMapFile.h" />
@@ -284,19 +281,15 @@
     <ClInclude Include="N3FXE.h" />
     <ClInclude Include="N3FXEDoc.h" />
     <ClInclude Include="N3FXEView.h" />
-    <ClInclude Include="Resource.h" />
     <ClInclude Include="StdAfx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="res\Resource.h" />
+    <ResourceCompile Include="res\N3FXE.rc" />
+    <CustomBuild Include="res\N3FXE.rc2" />
     <Image Include="res\N3FXE.ico" />
     <Image Include="res\N3FXEDoc.ico" />
     <Image Include="res\Toolbar.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="res\N3FXE.rc2" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

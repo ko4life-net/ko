@@ -59,7 +59,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_N3TOOL;_N3INDOOR;_CRT_SECURE_NO_WARNINGS;DIRECTINPUT_VERSION=0x0800;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SrcDir)\common;$(SrcDir)\engine;$(SrcDir)\game;$(VendorDir)\spdlog\include;$(WindowsSDK_IncludePath);$(VendorDir)\dxsdk9\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(SrcDir)\common;$(SrcDir)\engine;$(SrcDir)\game;$(VendorDir)\spdlog\include;$(WindowsSDK_IncludePath);$(VendorDir)\dxsdk9\Include</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 /wd4102 %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -93,7 +93,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_N3TOOL;_N3INDOOR;_CRT_SECURE_NO_WARNINGS;DIRECTINPUT_VERSION=0x0800;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SrcDir)\common;$(SrcDir)\engine;$(SrcDir)\game;$(VendorDir)\spdlog\include;$(WindowsSDK_IncludePath);$(VendorDir)\dxsdk9\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(SrcDir)\common;$(SrcDir)\engine;$(SrcDir)\game;$(VendorDir)\spdlog\include;$(WindowsSDK_IncludePath);$(VendorDir)\dxsdk9\Include</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 /wd4102 %(AdditionalOptions)</AdditionalOptions>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -118,32 +118,6 @@
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <Image Include="res\ARW09DN.ICO" />
-    <Image Include="res\ARW09UP.ICO" />
-    <Image Include="res\HANDSHAK.ICO" />
-    <Image Include="res\HEART.ICO" />
-    <Image Include="res\N3Indoor.ico" />
-    <Image Include="res\N3IndoorDoc.ico" />
-    <Image Include="res\POINT02.ICO" />
-    <Image Include="res\POINT03.ICO" />
-    <Image Include="res\POINT04.ICO" />
-    <Image Include="res\POINT05.ICO" />
-    <Image Include="res\POINT06.ICO" />
-    <Image Include="res\Toolbar.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="N3Indoor.reg" />
-    <CustomBuild Include="res\MOVE4WAY.CUR" />
-    <CustomBuild Include="res\N3Indoor.rc2" />
-    <CustomBuild Include="res\transform.cur" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="N3Indoor.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\common\N3Utils.h" />
     <ClInclude Include="..\..\engine\N3Base\N3Log.h" />
@@ -217,7 +191,6 @@
     <ClInclude Include="PortalVolume.h" />
     <ClInclude Include="PosDummy.h" />
     <ClInclude Include="PVSManager.h" />
-    <ClInclude Include="Resource.h" />
     <ClInclude Include="RotDummy.h" />
     <ClInclude Include="ScaleDummy.h" />
     <ClInclude Include="ShapeTypeDlg.h" />
@@ -308,6 +281,26 @@
     <ClCompile Include="TotalToolSheet.cpp" />
     <ClCompile Include="TransDummy.cpp" />
     <ClCompile Include="UserRegenPage.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="res\Resource.h" />
+    <ResourceCompile Include="res\N3Indoor.rc" />
+    <CustomBuild Include="res\N3Indoor.rc2" />
+    <None Include="res\N3Indoor.reg" />
+    <Image Include="res\ARW09DN.ICO" />
+    <Image Include="res\ARW09UP.ICO" />
+    <Image Include="res\HANDSHAK.ICO" />
+    <Image Include="res\HEART.ICO" />
+    <Image Include="res\N3Indoor.ico" />
+    <Image Include="res\N3IndoorDoc.ico" />
+    <Image Include="res\POINT02.ICO" />
+    <Image Include="res\POINT03.ICO" />
+    <Image Include="res\POINT04.ICO" />
+    <Image Include="res\POINT05.ICO" />
+    <Image Include="res\POINT06.ICO" />
+    <Image Include="res\Toolbar.bmp" />
+    <CustomBuild Include="res\MOVE4WAY.CUR" />
+    <CustomBuild Include="res\transform.cur" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

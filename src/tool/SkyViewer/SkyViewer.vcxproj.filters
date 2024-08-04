@@ -128,11 +128,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="SkyViewer.rc">
-      <Filter>Source Files</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="FormViewProperty.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -140,9 +135,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Widget\PropertyList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SkyViewer.h">
@@ -255,6 +247,15 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="res\Resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ResourceCompile Include="res\SkyViewer.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <CustomBuild Include="res\SkyViewer.rc2">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
     <Image Include="res\SkyViewer.ico">
       <Filter>Resource Files</Filter>
     </Image>
@@ -264,10 +265,5 @@
     <Image Include="res\Toolbar.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="res\SkyViewer.rc2">
-      <Filter>Resource Files</Filter>
-    </CustomBuild>
   </ItemGroup>
 </Project>

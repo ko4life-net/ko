@@ -59,7 +59,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SrcDir)\common;$(SrcDir)\engine;$(VendorDir)\spdlog\include;$(VendorDir)\jpeglib\include;$(WindowsSDK_IncludePath);$(VendorDir)\dxsdk9\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(SrcDir)\common;$(SrcDir)\engine;$(VendorDir)\spdlog\include;$(VendorDir)\jpeglib\include;$(WindowsSDK_IncludePath);$(VendorDir)\dxsdk9\Include</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 /wd4102 %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -93,7 +93,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SrcDir)\common;$(SrcDir)\engine;$(VendorDir)\jpeglib\include;$(VendorDir)\spdlog\include;$(WindowsSDK_IncludePath);$(VendorDir)\dxsdk9\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(SrcDir)\common;$(SrcDir)\engine;$(VendorDir)\jpeglib\include;$(VendorDir)\spdlog\include;$(WindowsSDK_IncludePath);$(VendorDir)\dxsdk9\Include</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 /wd4102 %(AdditionalOptions)</AdditionalOptions>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -132,9 +132,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="KscViewer.rc" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\common\N3Utils.h" />
     <ClInclude Include="..\..\engine\N3Base\N3Log.h" />
     <ClInclude Include="..\..\engine\N3Base\JpegFile.h" />
@@ -143,18 +140,14 @@
     <ClInclude Include="KscViewerView.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="N3JpegFile.h" />
-    <ClInclude Include="Resource.h" />
     <ClInclude Include="StdAfx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="res\Resource.h" />
+    <ResourceCompile Include="res\KscViewer.rc" />
+    <CustomBuild Include="res\KscViewer.rc2" />
     <Image Include="res\KscViewer.ico" />
     <Image Include="res\KscViewerDoc.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="res\KscViewer.rc2" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

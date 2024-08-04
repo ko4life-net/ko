@@ -170,11 +170,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="N3Viewer.rc">
-      <Filter>Source Files</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\engine\N3Base\BitMapFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -325,9 +320,6 @@
     <ClInclude Include="..\Widget\PropertyList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ShellTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -345,6 +337,18 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="res\Resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ResourceCompile Include="res\N3Viewer.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <CustomBuild Include="res\N3Viewer.rc2">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <None Include="res\N3Viewer.reg">
+      <Filter>Resource Files</Filter>
+    </None>
     <Image Include="res\N3Viewer.ico">
       <Filter>Resource Files</Filter>
     </Image>
@@ -357,14 +361,5 @@
     <Image Include="res\Toolbar.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="res\N3Viewer.rc2">
-      <Filter>Resource Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="N3Viewer.reg" />
   </ItemGroup>
 </Project>

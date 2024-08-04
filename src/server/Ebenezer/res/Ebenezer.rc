@@ -1,0 +1,300 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 18, 1\r\n"
+    "#pragma code_page(949)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""Ebenezer.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.kor\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "Ebenezer.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_EBENEZER_DIALOG DIALOGEX 0, 0, 183, 183
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Ebenezer"
+FONT 9, "굴림", 0, 0, 0x1
+BEGIN
+    LISTBOX         IDC_LIST1,8,4,166,136,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    EDITTEXT        IDC_GONGJI_EDIT,12,156,158,14,ES_AUTOHSCROLL
+    GROUPBOX        "공지",IDC_STATIC,8,145,167,32
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041204B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "Ebenezer MFC 응용 프로그램\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "Ebenezer\0"
+            VALUE "LegalCopyright", "Copyright (C) 2001\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "Ebenezer.EXE\0"
+            VALUE "ProductName", "Ebenezer 응용 프로그램\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x412, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "Ebenezer 정보(&A)..."
+    IDP_SOCKETS_INIT_FAILED "Windows 소켓 초기화에 실패하였습니다."
+    IDP_BATTLEZONE_OPEN     "루나게이트의 문이 열렸습니다. 전쟁이 시작 되었습니다."
+    IDP_KARUS_VICTORY       "카루스가 승리했습니다. 죽인 적군의 수 : %d명, 죽은 아군의 수 : %d명"
+    IDP_ELMORAD_VICTORY     "엘모라드가 승리했습니다. 죽인 적군의 수 : %d명, 죽은 아군의 수 : %d명"
+    IDP_KARUS_BANISH        "전쟁존에 있는 엘모 용사들은 추방당하였습니다!"
+    IDP_ELMORAD_BANISH      "전쟁존에 있는 카루스 용사들은 추방당하였습니다!"
+    IDP_KNIGHT_NAME_REPEAT  "기사단이름이 중복되었습니다."
+    IDP_KNIGHT_ALREADY_REGISTERED "이미 기사단에 가입되어 있습니다."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDP_KNIGHT_INSUFFICIENT_LEVEL 
+                            "기사단을 창설 하려면 20 Level 이상이 필요합니다."
+    IDP_KNIGHT_INSUFFICIENT_LOYALTY 
+                            "기사단을 창설 하려면 국가기여도 800 이상이 필요합니다."
+    IDP_KNIGHT_INSUFFICIENT_SKILL 
+                            "기사단을 창설 하려면 지휘스킬 10, 예절스킬 5 이상이 필요합니다."
+    IDP_KNIGHT_INSUFFICIENT_CHARISMA 
+                            "기사단을 창설 하려면 매력 120 이상이 필요합니다."
+    IDP_KNIGHT_INSUFFICIENT_GOLD 
+                            "기사단을 창설 하려면 1000000노아 이상이 필요합니다."
+    IDP_KNIGHT_CREATE_FAIL  "기사단 창설에 실패하였습니다."
+    IDP_KNIGHT_NOT_AVAILABLE "존재하지 않는 기사단입니다."
+    IDP_KNIGHT_LEADER_ONLY  "기사단장 만이 할 수 있습니다."
+    IDP_KNIGHT_MINIMUM_SUBLEADER "부기사단장 이상이 할 수 있습니다."
+    IDP_KNIGHT_NOT_REGISTERED "기사단에 가입되어 있지 않습니다."
+    IDP_KNIGHT_DB_FAIL      "기사단 DB처리에 실패하였습니다."
+    IDP_WRONG_ID            "잘못된 아이디 입니다."
+    IDP_SOURCE_UNABLE       "자신은 할 수 없습니다."
+    IDP_MINIMUM_OFFICER     "장교 이상이 할 수 있습니다."
+    IDP_ANNOUNCEMENT        "#### 공지 : %s ####"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ELMORAD_LOSER       "엘모라드가 패배하였습니다. 죽인 적군의 수 : %d명, 죽은 아군의 수 : %d명"
+    IDS_KARUS_LOSER         "카루스가 패배하였습니다. 죽인 적군의 수 : %d명, 죽은 아군의 수 : %d명"
+    IDS_BANISH_USER         "루나밸리에 있는 유저와 적국에 있는 유저는 본국으로 강제소환합니다"
+    IDS_BATTLE_CLOSE        "루나게이트가 닫힙니다"
+    IDS_KILL_GATEKEEPER     "적국의 수문장을 죽인 유저이름은 [%s][%s] 님입니다. 축하합니다."
+    IDS_KILL_CAPTAIN        "적국의 대장을 죽인 유저이름은 [%s][%s] 님입니다, 축하합니다."
+    IDS_KILL_KARUS_GUARD1   "카루스 제 1요새의 수문대장이 전사했습니다. 수문대장을 죽인 적군유저는 [%s][%s] 입니다"
+    IDS_KILL_KARUS_GUARD2   "카루스 제 2요새의 수문대장이 전사했습니다. 수문대장을 죽인 적군유저는 [%s][%s] 입니다"
+    IDS_KILL_ELMO_GUARD1    "엘모라드 제 1요새의 수문대장이 전사했습니다. 수문대장을 죽인 적군유저는 [%s][%s] 입니다"
+    IDS_KILL_ELMO_GUARD2    "엘모라드 제 2요새의 수문대장이 전사했습니다. 수문대장을 죽인 적군유저는 [%s][%s] 입니다"
+    IDS_KARUS_CAPTAIN       "카루스의 지휘관은 %s, %s, %s, %s, %s 입니다"
+    IDS_ELMO_CAPTAIN        "엘모라드의 총지휘관은  %s, %s, %s, %s, %s 입니다"
+    IDS_KARUS_CAPTAIN_DEPRIVE "카루스의 지휘관 [%s][%s] 님이 전사하였습니다. "
+    IDS_ELMO_CAPTAIN_DEPRIVE 
+                            "엘모라드의 지휘관  [%s][%s]님이 전사하였습니다.  "
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_COUPON_NOTEPAD_ID   "3572-8471-3720-2495"
+    IDS_COUPON_POSTIT_ID    "7352-6539-3720-2495"
+END
+
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (Taiwan) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
+#pragma code_page(950)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "Ebenezer ??(&A)..."
+    IDP_SOCKETS_INIT_FAILED "Windows ?? ???? ???????."
+    IDP_BATTLEZONE_OPEN     "通往雪戰場的道路已可通?，雪球大戰?式拉?序幕."
+    IDP_KARUS_VICTORY       "卡?斯獲勝，擊敗敵人數 : %d名]，被擊敗的我軍數 : %d名"
+    IDP_ELMORAD_VICTORY     "艾莫爾獲勝，擊敗敵人數 : %d名]，被擊敗的我軍數 : %d名"
+    IDP_KARUS_BANISH        "戰場中的愛墨爾勇士被驅逐!"
+    IDP_ELMORAD_BANISH      "戰場中的卡?斯勇士被驅逐!"
+    IDP_KNIGHT_NAME_REPEAT  "?????? ???????."
+    IDP_KNIGHT_ALREADY_REGISTERED "?? ???? ???? ????."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDP_KNIGHT_INSUFFICIENT_LEVEL "???? ?? ??? 20 Level ??? ?????."
+    IDP_KNIGHT_INSUFFICIENT_LOYALTY "???? ?? ??? ????? 800 ??? ?????."
+    IDP_KNIGHT_INSUFFICIENT_SKILL "???? ?? ??? ???? 10, ???? 5 ??? ?????."
+    IDP_KNIGHT_INSUFFICIENT_CHARISMA "???? ?? ??? ?? 120 ??? ?????."
+    IDP_KNIGHT_INSUFFICIENT_GOLD "???? ?? ??? 1000000?? ??? ?????."
+    IDP_KNIGHT_CREATE_FAIL  "??? ??? ???????."
+    IDP_KNIGHT_NOT_AVAILABLE "???? ?? ??????."
+    IDP_KNIGHT_LEADER_ONLY  "???? ?? ? ? ????."
+    IDP_KNIGHT_MINIMUM_SUBLEADER "????? ??? ? ? ????."
+    IDP_KNIGHT_NOT_REGISTERED "???? ???? ?? ????."
+    IDP_KNIGHT_DB_FAIL      "??? DB??? ???????."
+    IDP_WRONG_ID            "??? ??? ???."
+    IDP_SOURCE_UNABLE       "??? ? ? ????."
+    IDP_MINIMUM_OFFICER     "?? ??? ? ? ????."
+    IDP_ANNOUNCEMENT        "#### GM公告 : %s ####"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ELMORAD_LOSER       "艾莫爾敗?，擊敗敵人數 : %d名, 被擊敗我軍的數 : %d名"
+    IDS_KARUS_LOSER         "卡?斯敗?，擊敗敵人數 : %d名, 被擊敗我軍的數 : %d名"
+    IDS_BANISH_USER         "雪戰場內的玩家與在敵國的玩家強制傳送至出雪戰場"
+    IDS_BATTLE_CLOSE        "雪戰場已關閉"
+    IDS_KILL_GATEKEEPER     "敵方守備軍已被 [%s] [%s] 擊敗！！"
+    IDS_KILL_CAPTAIN        "敵方隊?已被 [%s] [%s] 擊敗！！"
+    IDS_KILL_KARUS_GUARD1   "卡?斯第?基地的守備軍已被擊敗，建?者為 [%s] [%s]. "
+    IDS_KILL_KARUS_GUARD2   "卡?斯第二基地的守備軍已被擊敗，建?者為 [%s] [%s]. "
+    IDS_KILL_ELMO_GUARD1    "艾莫爾第?基地的守備軍已被擊敗，建?者為 [%s] [%s]. "
+    IDS_KILL_ELMO_GUARD2    "艾莫爾第二基地的守備軍已被擊敗，建?者為 [%s] [%s]. "
+    IDS_KARUS_CAPTAIN       "卡?斯?在的?揮官是 %s、%s、%s、%s、%s"
+    IDS_ELMO_CAPTAIN        "艾莫爾?在的?揮官是 %s、%s、%s、%s、%s"
+    IDS_KARUS_CAPTAIN_DEPRIVE "卡?斯的?揮官 [%s][%s] 戰死. "
+    IDS_ELMO_CAPTAIN_DEPRIVE "艾莫爾的?揮官 [%s][%s] 戰死.  "
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_COUPON_NOTEPAD_ID   "3572-8471-3720-2495"
+    IDS_COUPON_POSTIT_ID    "7352-6539-3720-2495"
+END
+
+#endif    // Chinese (Taiwan) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE 18, 1
+#pragma code_page(949)
+#endif //_WIN32
+#include "Ebenezer.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.kor\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

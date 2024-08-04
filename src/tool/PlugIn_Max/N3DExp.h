@@ -21,7 +21,7 @@
 #include "Phyexp.h" // physique
 
 #include "Max.h"
-#include "resource.h"
+#include "Resource.h"
 
 #include "istdplug.h"
 #include "iparamb2.h"

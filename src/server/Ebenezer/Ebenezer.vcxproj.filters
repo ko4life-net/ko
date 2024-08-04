@@ -284,9 +284,6 @@
     <ClInclude Include="ZoneInfoSet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
     <ClInclude Include="N3Base\My_3DStruct.h">
       <Filter>N3Base</Filter>
     </ClInclude>
@@ -310,21 +307,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\Ebenezer.ico">
+    <ClInclude Include="res\Resource.h">
       <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Ebenezer.rc">
+    </ClInclude>
+    <ResourceCompile Include="res\Ebenezer.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <CustomBuild Include="res\Ebenezer.rc2">
       <Filter>Resource Files</Filter>
     </CustomBuild>
+    <Image Include="res\Ebenezer.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -280,9 +280,6 @@
     <ClInclude Include="N3BASE\StdAfxBase.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\common\Implode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -291,14 +288,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\AIServer.ico" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="res\Resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
     <ResourceCompile Include="res\AIServer.rc">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <CustomBuild Include="res\AIServer.rc2">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <Image Include="res\AIServer.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

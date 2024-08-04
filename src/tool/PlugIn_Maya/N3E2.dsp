@@ -1395,11 +1395,11 @@ SOURCE=C:\AW\Maya4.0\include\maya\MVectorArray.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\resource.h
+SOURCE=.\res\Resource.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\Resource.rc
+SOURCE=.\res\N3E2.rc
 # End Source File
 # End Group
 # Begin Group "Maya Library"

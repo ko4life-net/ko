@@ -59,7 +59,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_N3TOOL;_N3UIE;DIRECTINPUT_VERSION=0x0800;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SrcDir)\common;$(SrcDir)\engine;$(VendorDir)\spdlog\include;$(WindowsSDK_IncludePath);$(VendorDir)\dxsdk9\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(SrcDir)\common;$(SrcDir)\engine;$(VendorDir)\spdlog\include;$(WindowsSDK_IncludePath);$(VendorDir)\dxsdk9\Include</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 /wd4102 %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -93,7 +93,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_N3TOOL;_N3UIE;DIRECTINPUT_VERSION=0x0800;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SrcDir)\common;$(SrcDir)\engine;$(VendorDir)\spdlog\include;$(WindowsSDK_IncludePath);$(VendorDir)\dxsdk9\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(SrcDir)\common;$(SrcDir)\engine;$(VendorDir)\spdlog\include;$(WindowsSDK_IncludePath);$(VendorDir)\dxsdk9\Include</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 /wd4102 %(AdditionalOptions)</AdditionalOptions>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -166,9 +166,6 @@
     <ClCompile Include="UIEView.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="UIE.rc" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\common\N3Utils.h" />
     <ClInclude Include="..\Widget\PropertyList.h" />
     <ClInclude Include="..\..\engine\N3Base\N3Log.h" />
@@ -211,7 +208,6 @@
     <ClInclude Include="HierarchyView.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="PropertyView.h" />
-    <ClInclude Include="Resource.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="TexViewer.h" />
     <ClInclude Include="UIE.h" />
@@ -219,18 +215,15 @@
     <ClInclude Include="UIEView.h" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="res\hand.cur" />
+    <ClInclude Include="res\Resource.h" />
+    <ResourceCompile Include="res\UIE.rc" />
     <CustomBuild Include="res\UIE.rc2" />
-    <CustomBuild Include="res\zoomin.cur" />
-    <CustomBuild Include="res\zoomout.cur" />
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="res\Toolbar.bmp" />
     <Image Include="res\UIE.ico" />
     <Image Include="res\UIEDoc.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <CustomBuild Include="res\hand.cur" />
+    <CustomBuild Include="res\zoomin.cur" />
+    <CustomBuild Include="res\zoomout.cur" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

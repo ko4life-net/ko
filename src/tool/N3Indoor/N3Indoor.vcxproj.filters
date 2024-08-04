@@ -25,57 +25,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\ARW09DN.ICO">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\ARW09UP.ICO">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\HANDSHAK.ICO">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\HEART.ICO">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\N3Indoor.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\N3IndoorDoc.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\POINT02.ICO">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\POINT03.ICO">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\POINT04.ICO">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\POINT05.ICO">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\POINT06.ICO">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\Toolbar.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="N3Indoor.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Resource.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
     <ClInclude Include="ComDialog.h">
       <Filter>N3Indoor\Dialogs</Filter>
     </ClInclude>
@@ -551,13 +500,55 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="res\MOVE4WAY.CUR">
+    <ClInclude Include="res\Resource.h">
       <Filter>Resource Files</Filter>
-    </CustomBuild>
+    </ClInclude>
+    <ResourceCompile Include="res\N3Indoor.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
     <CustomBuild Include="res\N3Indoor.rc2">
       <Filter>Resource Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="N3Indoor.reg">
+    <None Include="res\N3Indoor.reg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <Image Include="res\ARW09DN.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ARW09UP.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\HANDSHAK.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\HEART.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\N3Indoor.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\N3IndoorDoc.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\POINT02.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\POINT03.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\POINT04.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\POINT05.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\POINT06.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Toolbar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <CustomBuild Include="res\MOVE4WAY.CUR">
       <Filter>Resource Files</Filter>
     </CustomBuild>
     <CustomBuild Include="res\transform.cur">

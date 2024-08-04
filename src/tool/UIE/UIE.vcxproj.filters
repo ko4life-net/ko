@@ -155,11 +155,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="UIE.rc">
-      <Filter>Source Files</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="DlgChangeImage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -176,9 +171,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PropertyView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StdAfx.h">
@@ -306,6 +298,15 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="res\Resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ResourceCompile Include="res\UIE.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <CustomBuild Include="res\UIE.rc2">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
     <Image Include="res\Toolbar.bmp">
       <Filter>Resource Files</Filter>
     </Image>
@@ -315,15 +316,7 @@
     <Image Include="res\UIEDoc.ico">
       <Filter>Resource Files</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <CustomBuild Include="res\hand.cur">
-      <Filter>Resource Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="res\UIE.rc2">
       <Filter>Resource Files</Filter>
     </CustomBuild>
     <CustomBuild Include="res\zoomin.cur">
