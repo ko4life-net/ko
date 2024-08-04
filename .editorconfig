@@ -1,3 +1,6 @@
+# Note that if auto indentation not working in vscode, you may need to install
+# editorconfig npm package and then reinstall vscode editorconfig extension:
+# npm install -g editorconfig
 root = true
 
 [*]
@@ -6,9 +9,30 @@ end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.rc]
-charset = utf-16le
-
-[*.{cpp,h,hpp,c}]
+[*.{c,cpp,h,hpp}]
 indent_style = space
 indent_size = 4
+
+[*.py]
+indent_style = space
+indent_size = 4
+
+[*.ps1]
+indent_style = space
+indent_size = 2
+
+[*.{vcxproj*,sln}]
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+indent_style = unset
+indent_size = unset
+
+# VS RC Editor will modify certain elements of the file,
+# therefore we explictly disable certain configs for it
+[*.{rc,rc2}]
+charset = utf-16le
+end_of_line = lf
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+indent_style = unset
+indent_size = unset
