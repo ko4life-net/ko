@@ -1,10 +1,8 @@
 name: PR Checks
 on:
-  push:
-    branches: [master]
   pull_request:
     branches: [master]
-    types: [opened, push, ready_for_review]
+    types: [push, opened, ready_for_review]
   workflow_dispatch:
 
 jobs:
