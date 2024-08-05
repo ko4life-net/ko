@@ -9,6 +9,8 @@ jobs:
     runs-on: windows-2022
 
     steps:
+      - uses: actions/checkout@v4
+
       - name: Install Dependencies
         shell: cmd
         run: |
@@ -23,7 +25,7 @@ jobs:
           msbuild All.sln -t:Clean -t:Build -p:Configuration=Release /m
 
       - name: Upload
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: All-x86-release
           path: src/build/Release/*.exe
