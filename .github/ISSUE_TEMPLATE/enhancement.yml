@@ -1,0 +1,49 @@
+name: Enhancement
+description: Suggest an enhancement to help improve the project
+labels: [ "enhancement" ]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        Use this enhancement template to suggest new features or functionality.
+
+  - type: checkboxes
+    attributes:
+      label: Search before asking
+      description: >
+        Please make sure to search in the [issues](https://github.com/ko4life-net/ko/issues) first to see
+        whether the same issue was reported already.
+      options:
+        - label: >
+            I searched the [issues](https://github.com/ko4life-net/ko/issues) and found
+            no similar issues.
+          required: true
+
+  - type: textarea
+    attributes:
+      label: Description
+      description: A short description of the feature
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Use case
+      description: What do you want to happen?
+      placeholder: >
+        Rather than telling us how you might implement this feature, try to take a
+        step back and describe what you are trying to achieve.
+
+  - type: checkboxes
+    attributes:
+      label: Are you willing to work on and submit a PR to address the issue?
+      description: >
+        This is absolutely not required, but we are happy to guide you in the contribution process,
+        especially if you already have a good understanding of how to implement the fix.
+        The project is a totally community-driven and we love to bring new contributors in.
+      options:
+        - label: Yes I am willing to submit a PR!
+
+  - type: markdown
+    attributes:
+      value: "Thanks for completing our form!"
