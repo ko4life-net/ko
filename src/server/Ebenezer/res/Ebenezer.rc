@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
 
@@ -13,13 +13,10 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Korean resources
+// Korean (Korea) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
-#ifdef _WIN32
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
-#pragma code_page(949)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -27,18 +24,18 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE 
 BEGIN
     "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
     "#define _AFX_NO_OLE_RESOURCES\r\n"
@@ -66,7 +63,8 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON    DISCARDABLE     "Ebenezer.ico"
+IDR_MAINFRAME           ICON                    "Ebenezer.ico"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -74,20 +72,17 @@ IDR_MAINFRAME           ICON    DISCARDABLE     "Ebenezer.ico"
 //
 
 IDD_EBENEZER_DIALOG DIALOGEX 0, 0, 183, 183
-STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
 CAPTION "Ebenezer"
 FONT 9, "굴림", 0, 0, 0x1
 BEGIN
-    LISTBOX         IDC_LIST1,8,4,166,136,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
-                    WS_TABSTOP
+    LISTBOX         IDC_LIST1,8,4,166,136,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     EDITTEXT        IDC_GONGJI_EDIT,12,156,158,14,ES_AUTOHSCROLL
     GROUPBOX        "공지",IDC_STATIC,8,145,167,32
 END
 
 
-#ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //
 // Version
@@ -110,15 +105,13 @@ BEGIN
     BEGIN
         BLOCK "041204B0"
         BEGIN
-            VALUE "CompanyName", "\0"
-            VALUE "FileDescription", "Ebenezer MFC 응용 프로그램\0"
-            VALUE "FileVersion", "1, 0, 0, 1\0"
-            VALUE "InternalName", "Ebenezer\0"
-            VALUE "LegalCopyright", "Copyright (C) 2001\0"
-            VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "Ebenezer.EXE\0"
-            VALUE "ProductName", "Ebenezer 응용 프로그램\0"
-            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "FileDescription", "Ebenezer MFC 응용 프로그램"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "Ebenezer"
+            VALUE "LegalCopyright", "Copyright (C) 2001"
+            VALUE "OriginalFilename", "Ebenezer.EXE"
+            VALUE "ProductName", "Ebenezer 응용 프로그램"
+            VALUE "ProductVersion", "1, 0, 0, 1"
         END
     END
     BLOCK "VarFileInfo"
@@ -127,15 +120,13 @@ BEGIN
     END
 END
 
-#endif    // !_MAC
-
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     IDS_ABOUTBOX            "Ebenezer 정보(&A)..."
     IDP_SOCKETS_INIT_FAILED "Windows 소켓 초기화에 실패하였습니다."
@@ -148,18 +139,13 @@ BEGIN
     IDP_KNIGHT_ALREADY_REGISTERED "이미 기사단에 가입되어 있습니다."
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
-    IDP_KNIGHT_INSUFFICIENT_LEVEL 
-                            "기사단을 창설 하려면 20 Level 이상이 필요합니다."
-    IDP_KNIGHT_INSUFFICIENT_LOYALTY 
-                            "기사단을 창설 하려면 국가기여도 800 이상이 필요합니다."
-    IDP_KNIGHT_INSUFFICIENT_SKILL 
-                            "기사단을 창설 하려면 지휘스킬 10, 예절스킬 5 이상이 필요합니다."
-    IDP_KNIGHT_INSUFFICIENT_CHARISMA 
-                            "기사단을 창설 하려면 매력 120 이상이 필요합니다."
-    IDP_KNIGHT_INSUFFICIENT_GOLD 
-                            "기사단을 창설 하려면 1000000노아 이상이 필요합니다."
+    IDP_KNIGHT_INSUFFICIENT_LEVEL "기사단을 창설 하려면 20 Level 이상이 필요합니다."
+    IDP_KNIGHT_INSUFFICIENT_LOYALTY "기사단을 창설 하려면 국가기여도 800 이상이 필요합니다."
+    IDP_KNIGHT_INSUFFICIENT_SKILL "기사단을 창설 하려면 지휘스킬 10, 예절스킬 5 이상이 필요합니다."
+    IDP_KNIGHT_INSUFFICIENT_CHARISMA "기사단을 창설 하려면 매력 120 이상이 필요합니다."
+    IDP_KNIGHT_INSUFFICIENT_GOLD "기사단을 창설 하려면 1000000노아 이상이 필요합니다."
     IDP_KNIGHT_CREATE_FAIL  "기사단 창설에 실패하였습니다."
     IDP_KNIGHT_NOT_AVAILABLE "존재하지 않는 기사단입니다."
     IDP_KNIGHT_LEADER_ONLY  "기사단장 만이 할 수 있습니다."
@@ -172,7 +158,7 @@ BEGIN
     IDP_ANNOUNCEMENT        "#### 공지 : %s ####"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     IDS_ELMORAD_LOSER       "엘모라드가 패배하였습니다. 죽인 적군의 수 : %d명, 죽은 아군의 수 : %d명"
     IDS_KARUS_LOSER         "카루스가 패배하였습니다. 죽인 적군의 수 : %d명, 죽은 아군의 수 : %d명"
@@ -187,35 +173,31 @@ BEGIN
     IDS_KARUS_CAPTAIN       "카루스의 지휘관은 %s, %s, %s, %s, %s 입니다"
     IDS_ELMO_CAPTAIN        "엘모라드의 총지휘관은  %s, %s, %s, %s, %s 입니다"
     IDS_KARUS_CAPTAIN_DEPRIVE "카루스의 지휘관 [%s][%s] 님이 전사하였습니다. "
-    IDS_ELMO_CAPTAIN_DEPRIVE 
-                            "엘모라드의 지휘관  [%s][%s]님이 전사하였습니다.  "
+    IDS_ELMO_CAPTAIN_DEPRIVE "엘모라드의 지휘관  [%s][%s]님이 전사하였습니다.  "
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     IDS_COUPON_NOTEPAD_ID   "3572-8471-3720-2495"
     IDS_COUPON_POSTIT_ID    "7352-6539-3720-2495"
 END
 
-#endif    // Korean resources
+#endif    // Korean (Korea) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Chinese (Taiwan) resources
+// Chinese (Traditional, Taiwan) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
-#ifdef _WIN32
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
-#pragma code_page(950)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     IDS_ABOUTBOX            "Ebenezer ??(&A)..."
     IDP_SOCKETS_INIT_FAILED "Windows ?? ???? ???????."
@@ -228,7 +210,7 @@ BEGIN
     IDP_KNIGHT_ALREADY_REGISTERED "?? ???? ???? ????."
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     IDP_KNIGHT_INSUFFICIENT_LEVEL "???? ?? ??? 20 Level ??? ?????."
     IDP_KNIGHT_INSUFFICIENT_LOYALTY "???? ?? ??? ????? 800 ??? ?????."
@@ -247,7 +229,7 @@ BEGIN
     IDP_ANNOUNCEMENT        "#### GM公告 : %s ####"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     IDS_ELMORAD_LOSER       "艾莫爾敗?，擊敗敵人數 : %d名, 被擊敗我軍的數 : %d名"
     IDS_KARUS_LOSER         "卡?斯敗?，擊敗敵人數 : %d名, 被擊敗我軍的數 : %d名"
@@ -265,13 +247,13 @@ BEGIN
     IDS_ELMO_CAPTAIN_DEPRIVE "艾莫爾的?揮官 [%s][%s] 戰死.  "
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     IDS_COUPON_NOTEPAD_ID   "3572-8471-3720-2495"
     IDS_COUPON_POSTIT_ID    "7352-6539-3720-2495"
 END
 
-#endif    // Chinese (Taiwan) resources
+#endif    // Chinese (Traditional, Taiwan) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

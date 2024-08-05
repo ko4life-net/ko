@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
 
@@ -13,13 +13,10 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Korean resources
+// Korean (Korea) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
-#ifdef _WIN32
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
-#pragma code_page(949)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -27,18 +24,18 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE 
 BEGIN
     "#define _AFX_NO_OLE_RESOURCES\r\n"
     "#define _AFX_NO_TRACKER_RESOURCES\r\n"
@@ -65,22 +62,25 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON    DISCARDABLE     "UIE.ico"
-IDR_UIETYPE             ICON    DISCARDABLE     "UIEDoc.ico"
+IDR_MAINFRAME           ICON                    "UIE.ico"
+
+IDR_UIETYPE             ICON                    "UIEDoc.ico"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Bitmap
 //
 
-IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "Toolbar.bmp"
+IDR_MAINFRAME           BITMAP                  "Toolbar.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Toolbar
 //
 
-IDR_MAINFRAME TOOLBAR DISCARDABLE  16, 15
+IDR_MAINFRAME TOOLBAR 16, 15
 BEGIN
     BUTTON      ID_FILE_NEW
     BUTTON      ID_FILE_OPEN
@@ -99,7 +99,7 @@ END
 // Menu
 //
 
-IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+IDR_MAINFRAME MENU
 BEGIN
     POPUP "&File"
     BEGIN
@@ -114,7 +114,7 @@ BEGIN
         MENUITEM "&Export Tooltip file",        ID_FILE_EXPORT_TOOLTIP
         MENUITEM "&Import Tooltip file",        ID_FILE_IMPORT_TOOLTIP
         MENUITEM SEPARATOR
-        MENUITEM "최근 파일",                   ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM "최근 파일",                       ID_FILE_MRU_FILE1, GRAYED
         MENUITEM SEPARATOR
         MENUITEM "E&xit",                       ID_APP_EXIT
     END
@@ -172,10 +172,8 @@ BEGIN
     POPUP "&Batch Tool"
     BEGIN
         MENUITEM "Change &Image Path",          ID_BATCH_TOOL_CHANGE_IMAGE_PATH
-
         MENUITEM "Change &Font",                ID_BATCH_TOOL_CHANGE_FONT
         MENUITEM "Gather Image FileNames",      ID_BATCH_TOOL_GATHER_IMAGE_FILE_NAME
-
     END
 END
 
@@ -185,7 +183,7 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+IDR_MAINFRAME ACCELERATORS
 BEGIN
     "D",            ID_EDIT_DUPLICATE,      VIRTKEY, CONTROL, NOINVERT
     "G",            ID_EDIT_MAKE_GROUP,     VIRTKEY, CONTROL, NOINVERT
@@ -209,7 +207,7 @@ BEGIN
     "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
 END
 
-IDR_ACCEL_DLGTEXTURE ACCELERATORS DISCARDABLE 
+IDR_ACCEL_DLGTEXTURE ACCELERATORS
 BEGIN
     "G",            ID_EDIT_MAKE_GROUP,     VIRTKEY, CONTROL, NOINVERT
     "H",            IDC_RADIO_HAND,         VIRTKEY, NOINVERT
@@ -217,7 +215,7 @@ BEGIN
     "Z",            IDC_RADIO_ZOOM,         VIRTKEY, NOINVERT
 END
 
-IDR_ACCEL_VIEW ACCELERATORS DISCARDABLE 
+IDR_ACCEL_VIEW ACCELERATORS
 BEGIN
     "P",            ID_EDIT_PARENT,         VIRTKEY, NOINVERT
     "P",            ID_EDIT_UNPARENT,       VIRTKEY, SHIFT, NOINVERT
@@ -231,8 +229,8 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_ABOUTBOX DIALOG 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "UIE 긍서포"
 FONT 9, "굴림"
 BEGIN
@@ -242,96 +240,62 @@ BEGIN
     DEFPUSHBUTTON   "밑균",IDOK,178,7,50,14,WS_GROUP
 END
 
-IDR_MAINFRAME DIALOG DISCARDABLE  0, 0, 330, 16
-STYLE WS_CHILD
+IDR_MAINFRAME DIALOG 0, 0, 330, 16
+STYLE DS_SETFONT | WS_CHILD
 FONT 9, "굴림"
 BEGIN
     PUSHBUTTON      "Browse",IDC_BUTTON_BASEPATH,193,2,33,12
     LTEXT           "栗都杰瞳쨌쓺 :",IDC_STATIC,5,4,58,8
-    EDITTEXT        IDC_EDIT_BASEPATH,66,2,126,12,ES_AUTOHSCROLL | 
-                    ES_READONLY
+    EDITTEXT        IDC_EDIT_BASEPATH,66,2,126,12,ES_AUTOHSCROLL | ES_READONLY
 END
 
-IDD_PROPERTY DIALOG DISCARDABLE  0, 0, 125, 307
-STYLE WS_CHILD
+IDD_PROPERTY DIALOG 0, 0, 125, 307
+STYLE DS_SETFONT | WS_CHILD
 FONT 9, "굴림"
 BEGIN
-    LISTBOX         IDC_UI_BASE,0,0,107,18,LBS_OWNERDRAWVARIABLE | 
-                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
-                    WS_HSCROLL | WS_TABSTOP
-    LISTBOX         IDC_UI_BUTTON,0,53,107,18,LBS_OWNERDRAWVARIABLE | 
-                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
-                    WS_HSCROLL | WS_TABSTOP
-    LISTBOX         IDC_UI_IMAGE,0,18,107,18,LBS_OWNERDRAWVARIABLE | 
-                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
-                    WS_HSCROLL | WS_TABSTOP
-    LISTBOX         IDC_UI_STRING,0,35,107,18,LBS_OWNERDRAWVARIABLE | 
-                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
-                    WS_HSCROLL | WS_TABSTOP
-    LISTBOX         IDC_UI_PROGRESS,0,99,107,18,LBS_OWNERDRAWVARIABLE | 
-                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
-                    WS_HSCROLL | WS_TABSTOP
-    LISTBOX         IDC_UI_TRACKBAR,0,120,107,18,LBS_OWNERDRAWVARIABLE | 
-                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
-                    WS_HSCROLL | WS_TABSTOP
-    LISTBOX         IDC_UI_SCROLLBAR,0,142,107,18,LBS_OWNERDRAWVARIABLE | 
-                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
-                    WS_HSCROLL | WS_TABSTOP
-    LISTBOX         IDC_UI_EDIT,0,75,107,18,LBS_OWNERDRAWVARIABLE | 
-                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
-                    WS_HSCROLL | WS_TABSTOP
-    LISTBOX         IDC_UI_AREA,0,161,107,18,LBS_OWNERDRAWVARIABLE | 
-                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
-                    WS_HSCROLL | WS_TABSTOP
-    LISTBOX         IDC_UI_ICONSLOT,1,182,107,18,LBS_OWNERDRAWVARIABLE | 
-                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
-                    WS_HSCROLL | WS_TABSTOP
-    LISTBOX         IDC_UI_STATIC,0,202,107,18,LBS_OWNERDRAWVARIABLE | 
-                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
-                    WS_HSCROLL | WS_TABSTOP
-    LISTBOX         IDC_UI_LIST,0,222,107,18,LBS_OWNERDRAWVARIABLE | 
-                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
-                    WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_UI_BASE,0,0,107,18,LBS_OWNERDRAWVARIABLE | LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_UI_BUTTON,0,53,107,18,LBS_OWNERDRAWVARIABLE | LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_UI_IMAGE,0,18,107,18,LBS_OWNERDRAWVARIABLE | LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_UI_STRING,0,35,107,18,LBS_OWNERDRAWVARIABLE | LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_UI_PROGRESS,0,99,107,18,LBS_OWNERDRAWVARIABLE | LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_UI_TRACKBAR,0,120,107,18,LBS_OWNERDRAWVARIABLE | LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_UI_SCROLLBAR,0,142,107,18,LBS_OWNERDRAWVARIABLE | LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_UI_EDIT,0,75,107,18,LBS_OWNERDRAWVARIABLE | LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_UI_AREA,0,161,107,18,LBS_OWNERDRAWVARIABLE | LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_UI_ICONSLOT,1,182,107,18,LBS_OWNERDRAWVARIABLE | LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_UI_STATIC,0,202,107,18,LBS_OWNERDRAWVARIABLE | LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_UI_LIST,0,222,107,18,LBS_OWNERDRAWVARIABLE | LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
 END
 
 IDD_TEXTURE DIALOGEX 0, 0, 277, 234
-STYLE WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
-    WS_SYSMENU | WS_THICKFRAME
+STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "Texture"
 FONT 9, "굴림", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,227,0,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,227,14,50,14
-    CONTROL         "Select(&S)",IDC_RADIO_SELECT,"Button",
-                    BS_AUTORADIOBUTTON | BS_PUSHLIKE | WS_GROUP,226,31,50,14
-    CONTROL         "Zoom(&Z)",IDC_RADIO_ZOOM,"Button",BS_AUTORADIOBUTTON | 
-                    BS_PUSHLIKE,227,46,50,14
-    CONTROL         "Hand(&H)",IDC_RADIO_HAND,"Button",BS_AUTORADIOBUTTON | 
-                    BS_PUSHLIKE,227,61,50,14
-    LTEXT           "Info",IDC_STATIC_INFO,226,143,50,70,0,WS_EX_CLIENTEDGE | 
-                    WS_EX_STATICEDGE
-    COMBOBOX        IDC_COMBO_IMAGETYPE,227,217,50,102,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "자동선택(가로)",IDC_BUTTON_AUTOSELECT_H,227,82,50,14,
-                    NOT WS_VISIBLE
-    PUSHBUTTON      "자동선택(세로)",IDC_BUTTON_AUTOSELECT_V,227,98,50,14,
-                    NOT WS_VISIBLE
+    CONTROL         "Select(&S)",IDC_RADIO_SELECT,"Button",BS_AUTORADIOBUTTON | BS_PUSHLIKE | WS_GROUP,226,31,50,14
+    CONTROL         "Zoom(&Z)",IDC_RADIO_ZOOM,"Button",BS_AUTORADIOBUTTON | BS_PUSHLIKE,227,46,50,14
+    CONTROL         "Hand(&H)",IDC_RADIO_HAND,"Button",BS_AUTORADIOBUTTON | BS_PUSHLIKE,227,61,50,14
+    LTEXT           "Info",IDC_STATIC_INFO,226,143,50,70,0,WS_EX_CLIENTEDGE | WS_EX_STATICEDGE
+    COMBOBOX        IDC_COMBO_IMAGETYPE,227,217,50,102,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "자동선택(가로)",IDC_BUTTON_AUTOSELECT_H,227,82,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "자동선택(세로)",IDC_BUTTON_AUTOSELECT_V,227,98,50,14,NOT WS_VISIBLE
 END
 
-IDD_ANIMATE DIALOG DISCARDABLE  0, 0, 115, 87
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_ANIMATE DIALOG 0, 0, 115, 87
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Set animate image count"
 FONT 9, "굴림"
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,7,66,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,58,66,50,14
-    LTEXT           "에니메이션되는 그림의 숫자를 지정하세요.\n(0을 넣으시면 보통 image로 돌아갑니다.)",
-                    IDC_STATIC,7,7,101,32
+    LTEXT           "에니메이션되는 그림의 숫자를 지정하세요.\n(0을 넣으시면 보통 image로 돌아갑니다.)",IDC_STATIC,7,7,101,32
     EDITTEXT        IDC_EDIT_COUNT,7,47,101,14,ES_AUTOHSCROLL
 END
 
-IDD_REPLACE DIALOG DISCARDABLE  0, 0, 227, 45
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_REPLACE DIALOG 0, 0, 227, 45
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Replace texture"
 FONT 9, "굴림"
 BEGIN
@@ -343,8 +307,8 @@ BEGIN
     EDITTEXT        IDC_EDIT_REPLACE,41,24,125,14,ES_AUTOHSCROLL
 END
 
-IDD_CHANGE_IMAGE_FILE_NAME DIALOG DISCARDABLE  0, 0, 189, 88
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_CHANGE_IMAGE_FILE_NAME DIALOG 0, 0, 189, 88
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "그림파일 바꾸기"
 FONT 9, "굴림"
 BEGIN
@@ -359,19 +323,17 @@ BEGIN
     PUSHBUTTON      "..",IDC_B_BROWSE_NEW_FILE,120,39,12,15
 END
 
-IDD_UNUSED_FILE DIALOG DISCARDABLE  0, 0, 390, 218
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_UNUSED_FILE DIALOG 0, 0, 390, 218
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "쓰지 않는 파일 리스트"
 FONT 9, "굴림"
 BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,198,174,186,39
-    LISTBOX         IDC_LIST_FILES,6,9,375,162,LBS_SORT | LBS_MULTIPLESEL | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LIST_FILES,6,9,375,162,LBS_SORT | LBS_MULTIPLESEL | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "선택된 파일 지우기",IDC_B_DELETE_SELECT,6,174,186,39
 END
 
 
-#ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //
 // Version
@@ -394,18 +356,13 @@ BEGIN
     BEGIN
         BLOCK "041204b0"
         BEGIN
-            VALUE "Comments", "\0"
-            VALUE "CompanyName", "\0"
-            VALUE "FileDescription", "UIE MFC 응용 프로그램\0"
-            VALUE "FileVersion", "2, 2, 7, 1341\0"
-            VALUE "InternalName", "UIE\0"
-            VALUE "LegalCopyright", "Copyright (C) 2001\0"
-            VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "UIE.EXE\0"
-            VALUE "PrivateBuild", "\0"
-            VALUE "ProductName", "UIE 응용 프로그램\0"
-            VALUE "ProductVersion", "2, 2, 7, 1341\0"
-            VALUE "SpecialBuild", "\0"
+            VALUE "FileDescription", "UIE MFC 응용 프로그램"
+            VALUE "FileVersion", "2, 2, 7, 1341"
+            VALUE "InternalName", "UIE"
+            VALUE "LegalCopyright", "Copyright (C) 2001"
+            VALUE "OriginalFilename", "UIE.EXE"
+            VALUE "ProductName", "UIE 응용 프로그램"
+            VALUE "ProductVersion", "2, 2, 7, 1341"
         END
     END
     BLOCK "VarFileInfo"
@@ -414,8 +371,6 @@ BEGIN
     END
 END
 
-#endif    // !_MAC
-
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -423,7 +378,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
@@ -478,27 +433,30 @@ END
 // Cursor
 //
 
-IDC_CURSOR_HAND         CURSOR  DISCARDABLE     "hand.cur"
-IDC_CURSOR_ZOOMOUT      CURSOR  DISCARDABLE     "zoomout.cur"
-IDC_CURSOR_ZOOMIN       CURSOR  DISCARDABLE     "zoomin.cur"
+IDC_CURSOR_HAND         CURSOR                  "hand.cur"
+
+IDC_CURSOR_ZOOMOUT      CURSOR                  "zoomout.cur"
+
+IDC_CURSOR_ZOOMIN       CURSOR                  "zoomin.cur"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE
 BEGIN
     IDR_MAINFRAME           "UIE\n\nUI\nui 파일 (*.uif)\n.uif\nUIE.Document\nUI Document"
 END
 
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_APP_TITLE       "UI Editor"
     AFX_IDS_IDLEMESSAGE     "준비"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -508,7 +466,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_NEW             "새 문서를 작성합니다\n새 파일"
     ID_FILE_OPEN            "기존 문서를 엽니다\n열기"
@@ -517,13 +475,13 @@ BEGIN
     ID_FILE_SAVE_AS         "선택된UI를 다른 이름으로 Export합니다\nExport"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     ID_APP_ABOUT            "프로그램 정보와 버전 정보, 저작권 정보를 표시합니다\n정보"
     ID_APP_EXIT             "응용 프로그램을 종료하기 위해 문서를 저장할 것인지 묻습니다\n종료"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_MRU_FILE1       "이 문서를 엽니다"
     ID_FILE_MRU_FILE2       "이 문서를 엽니다"
@@ -543,18 +501,18 @@ BEGIN
     ID_FILE_MRU_FILE16      "이 문서를 엽니다"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     ID_NEXT_PANE            "다음 창으로 전환합니다\n다음 창"
     ID_PREV_PANE            "이전 창으로 전환합니다\n이전 창"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     ID_WINDOW_SPLIT         "현재 열린 창을 나눕니다\n나누기"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "선택 부분을 지웁니다\n지우기"
     ID_EDIT_CLEAR_ALL       "모든 것을 지웁니다\n모두 지우기"
@@ -569,14 +527,14 @@ BEGIN
     ID_EDIT_REDO            "이전에 취소한 동작을 다시 수행합니다\n다시 실행"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "도구 모음을 보이거나 감춥니다\n도구 모음 전환"
     ID_VIEW_STATUS_BAR      "상태 표시줄을 표시하거나 감춥니다\n상태 표시줄 전환"
     ID_VIEW_AUTOARRANGE     "모눈에 맞추어 아이콘을 정렬합니다."
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "창의 크기를 변경합니다"
     AFX_IDS_SCMOVE          "창의 위치를 변경합니다"
@@ -587,13 +545,13 @@ BEGIN
     AFX_IDS_SCCLOSE         "현재 열린 창을 닫고 문서를 저장할 것인지를 묻습니다"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCRESTORE       "창을 원래 크기로 복원합니다"
     AFX_IDS_SCTASKLIST      "작업 목록을 활성화합니다"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     ID_VIEW_SMALLICON       "작은 아이콘을 사용하여 항목을 표시합니다\n작은 아이콘"
     ID_VIEW_LARGEICON       "큰 아이콘을 사용하여 항목을 표시합니다\n큰 아이콘"
@@ -603,7 +561,7 @@ BEGIN
     ID_VIEW_BYNAME          "알파벳순으로 아이콘을 정렬합니다."
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     ID_INSERT_IMAGE         "이미지를 생성합니다.\nimage"
     ID_INSERT_STRING        "바탕 없는 글자를 생성합니다.\nText"
@@ -619,7 +577,7 @@ BEGIN
     ID_VIEW_EDIT            "편집 모드로 전환합니다.\n편집모드"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     ID_INSERT_AREA          "Area box를 생성합니다.\narea"
     ID_INSERT_LIST          "Text List 를 생성합니다.nList 생성"
@@ -628,7 +586,7 @@ BEGIN
                             "현재 선택된 UI 를 위치를 옮기거나 크기를 조정합니다.\n위치 이동, 크기조정"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     ID_EDIT_MAKE_GROUP      "현재 선택된 여러개의 UI 를 하나의 그룹으로 지정합니다.\n그룹 지정"
     ID_EDIT_MOVE_CHILD_TO_LOWER 
@@ -641,19 +599,17 @@ BEGIN
     ID_INSERT_GROUP         "빈그룹 삽입\n비어 있는 그룹을 삽입합니다."
     ID_TEMP_CHANGE_PATH     "지정된 이미지 파일등의 상대경로를 바꿉니다.\\파일 경로 바꾸기"
     ID_TOOL_CHANGE_FONT     "지정된 폰트를 바꿉니다.\\폰트 바꾸기"
-    ID_BATCH_TOOL_CHANGE_PATH 
-                            "지정된 이미지 파일등의 상대경로를 바꿉니다.\\파일 경로 바꾸기"
+    ID_BATCH_TOOL_CHANGE_PATH "지정된 이미지 파일등의 상대경로를 바꿉니다.\\파일 경로 바꾸기"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
-    ID_BATCH_TOOL_CHANGE_IMAGE_PATH 
-                            "지정된 이미지 파일등의 상대경로를 바꿉니다.\\파일 경로 바꾸기"
+    ID_BATCH_TOOL_CHANGE_IMAGE_PATH "지정된 이미지 파일등의 상대경로를 바꿉니다.\\파일 경로 바꾸기"
     ID_BATCH_TOOL_GATHER_IMAGE_FILE_NAME 
                             "쓰지 않는 이미지 파일 리스트를 만듭니다.\n미사용 파일리스트 만듦."
 END
 
-#endif    // Korean resources
+#endif    // Korean (Korea) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
