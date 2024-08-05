@@ -1,0 +1,31 @@
+name: Need Help?
+description: We're happy to help! Normally we use Discord open-source channel, but if you need any help and rather discuss it here, you're welcome!
+labels: [ "help_needed" ]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        Use this enhancement template in case you need any help.
+
+  - type: checkboxes
+    attributes:
+      label: Search before asking
+      description: >
+        Please make sure to search in the [issues](https://github.com/ko4life-net/ko/issues) first to see
+        whether the same issue was reported already.
+      options:
+        - label: >
+            I searched the [issues](https://github.com/ko4life-net/ko/issues) and found
+            no similar issues.
+          required: true
+
+  - type: textarea
+    attributes:
+      label: Description
+      description: A short description of what you need help with
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: "Thanks for completing our form!"
