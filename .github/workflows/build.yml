@@ -4,7 +4,6 @@ on: [workflow_dispatch]
 jobs:
   Windows:
     runs-on: windows-2022
-    if: github.event.pull_request.draft == false
 
     steps:
       - uses: actions/checkout@v3
