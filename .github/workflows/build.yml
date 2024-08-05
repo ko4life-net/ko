@@ -12,8 +12,8 @@ jobs:
       - name: Install Dependencies
         shell: cmd
         run: |
-          cd src
-          git clone --depth=1 https://github.com/ko4life-net/ko-vendor.git vendor
+          git submodule init src/vendor
+          git submodule update src/vendor
 
       - name: Build KnightOnLine
         shell: cmd
