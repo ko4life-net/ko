@@ -45,12 +45,12 @@
     <VendorDir>$(SrcDir)\vendor</VendorDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)build\$(Configuration)\</OutDir>
-    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)build\$(PlatformTarget)-$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\int\$(PlatformTarget)-$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)build\$(Configuration)\</OutDir>
-    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)build\$(PlatformTarget)-$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\int\$(PlatformTarget)-$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

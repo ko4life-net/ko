@@ -1,6 +1,4 @@
 .vs/
-Release*/
-Debug*/
 [Bb]uild/
 *.exe
 *.lib
