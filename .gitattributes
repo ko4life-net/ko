@@ -1,13 +1,16 @@
-* text eol=LF
+* text=auto eol=LF
 
 *.rc text working-tree-encoding=UTF-16LE-BOM eol=LF
 *.rc2 text working-tree-encoding=UTF-16LE-BOM eol=LF
 
 # Common binary files to hint git not to touch
 # https://docs.github.com/en/get-started/getting-started-with-git/configuring-git-to-handle-line-endings
+# Note that if you're adding binary files to this repo (ideally not), please add them here.
 *.bmp binary
+*.png binary
+*.cur binary
 *.ico binary
+*.chm binary
 *.doc binary
 *.gtt binary
 *.smd binary
-*.chm binary
