@@ -10,7 +10,7 @@
 #include "MainFrm.h"
 #include "OrganizeView.h"
 
-#include "resource.h"
+#include "Resource.h"
 #include "ComDialog.h"
 
 #include "N3Base/N3Scene.h"

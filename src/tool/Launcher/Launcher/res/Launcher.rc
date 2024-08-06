@@ -1,0 +1,304 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean (Korea) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 18, 1\r\n"
+    "#pragma code_page(949)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""Launcher.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.kor\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "Launcher.ico"
+
+IDI_ICON1               ICON                    "icon1.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_LAUNCHER_DIALOG DIALOGEX 0, 0, 279, 60
+STYLE DS_SETFONT | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW | WS_EX_APPWINDOW
+CAPTION "Knight Online"
+FONT 9, "굴림", 0, 0, 0x1
+BEGIN
+    CONTROL         "Progress1",IDC_PROGRESS,"msctls_progress32",PBS_SMOOTH,15,39,246,7
+    LTEXT           "",IDC_STATUS,15,27,246,9
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041204b0"
+        BEGIN
+            VALUE "FileDescription", "Launcher MFC 응용 프로그램"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "Launcher"
+            VALUE "LegalCopyright", "Copyright (C) 2002"
+            VALUE "OriginalFilename", "Launcher.EXE"
+            VALUE "ProductName", "Launcher 응용 프로그램"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x412, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_LAUNCHER_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 277
+        VERTGUIDE, 15
+        VERTGUIDE, 101
+        VERTGUIDE, 140
+        VERTGUIDE, 151
+        VERTGUIDE, 178
+        VERTGUIDE, 233
+        BOTTOMMARGIN, 50
+        HORZGUIDE, 20
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDP_SOCKETS_INIT_FAILED "Windows 소켓 초기화에 실패하였습니다."
+    IDS_IP                  "192.203.143.108"
+    IDS_PRODUCT             "KnightOnLine"
+    IDS_DNS                 "upgrade.nohystem.co.kr"
+    IDS_JOIN_URL            "http://www.knight-online.net/register/join.htm"
+    IDS_INFO_VERSION_CHECK  "버전을 체크하고 게임 실행을 준비합니다."
+    IDS_INFO_EXTRACTING     "압축을 풀고 있습니다..."
+    IDS_ERR_REGISTRY_OPEN   "레지스트리 열기에 실패 했습니다. 다시 설치해 주십시오."
+    IDS_ERR_REGISTRY_READ_VERSION "레지스트리에서 버전정보를 찾을수 없습니다. 다시 설치해 주십시오"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_REGISTRY_READ_PATH "레지스트리에서 프로그램 경로를 찾을수 없습니다. 다시 설치해 주십시오"
+    IDS_ERR_REGISTRY_READ_EXE "레지스트리에서 실행파일 이름을 찾을수 없습니다. 다시 설치해 주십시오."
+    IDS_ERR_REGISTRY_READ_SERVICE "레지스트리에서 서비스 이름을 찾을수 없습니다. 다시 설치해 주십시오."
+    IDS_FMT_FAILED_CONNECT_LOGIN_SERVER 
+                            "LogIn Server 접속실패 - %d\n다시 접속을 시도하시겠습니까?"
+    IDS_ERR_INVALID_SERVER_COUNT "접속 가능한 서버리스트가 없습니다."
+    IDS_ERR_INVALID_VERSION "버전이 맞지 않습니다."
+    IDS_ERR_INVALID_DOWNLOAD_FILE_COUNT "파일 다운로드 갯수가 정상이 아닙니다."
+    IDS_ERR_INIT_INTERNET   "인터넷 초기화에 실패하였습니다."
+    IDS_ERR_CONNECT_FTP     "FTP 서버에 접속할 수 없습니다."
+    IDS_ERR_PATCH           "자동 패치에 실패하였습니다. 프로그램을 다시 실행해 주십시오."
+    IDS_ERR_DOWNLOAD_PATCH_FILE_AND_RETRY "파일을 다운로드 받지 못하였습니다. 다시 시도하시겠습니까?"
+    IDS_ERR_DOWNLOAD_PATCH_FILE "파일을 다운로드 받지 못하였습니다."
+END
+
+#endif    // Korean (Korea) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (Traditional, Taiwan) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDP_SOCKETS_INIT_FAILED "Windows SOCKETれ쯮ㅖⅱ귐."
+    IDS_IP                  "192.203.143.108"
+    IDS_PRODUCT             "KnightOnLine"
+    IDS_DNS                 "upgrade.nohystem.co.kr"
+    IDS_JOIN_URL            "http://www.knight-online.net/register/join.htm"
+    IDS_INFO_VERSION_CHECK  "폯{ぉ뺀掃풍튼硝疫C으."
+    IDS_INFO_EXTRACTING     "엡b먈웰햊..."
+    IDS_ERR_REGISTRY_OPEN   " REGISTRY}귑ⅱ귐. 싻シs쫤맷."
+    IDS_ERR_REGISTRY_READ_VERSION "킠챞쫇REGISTRY맸㏛⑥ぉ뺑〕. 싻シs쫤맷"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_REGISTRY_READ_PATH "킠챞쫇REGISTRY㏛⑥{─ず몰|. 싻シs쫤맷"
+    IDS_ERR_REGISTRY_READ_EXE "킠챞쫇REGISTRY맸㏛⑥곰堧瘻벧W붙. 싻シs쫤맷."
+    IDS_ERR_REGISTRY_READ_SERVICE "킠챞쫇REGISTRY맸㏛⑥浿A씁쫁붙. 싻シs쫤맷."
+    IDS_FMT_FAILED_CONNECT_LOGIN_SERVER "LogIn Server 퀂굘ⅱ귐 - %d\n춏シs퀂굘뜀?"
+    IDS_ERR_INVALID_SERVER_COUNT "쮁┳쩳퀂굘ず浿A씁쫁녔."
+    IDS_ERR_INVALID_VERSION "ぉ빱２큔X."
+    IDS_ERR_INVALID_DOWNLOAD_FILE_COUNT "짾뫘ず읠硫틋qㄳ엽`."
+    IDS_ERR_INIT_INTERNET   "빌몰れ쯮ㅖⅱ귐."
+    IDS_ERR_CONNECT_FTP     "킠챞퀂굘FTP浿A씁."
+    IDS_ERR_PATCH           "╀걺着s읠婁∮. 싻シs곰役{─."
+    IDS_ERR_DOWNLOAD_PATCH_FILE_AND_RETRY "읠婁섞西U뫘.춏シs뮐먼뜀?"
+    IDS_ERR_DOWNLOAD_PATCH_FILE "섞西U뫘읠."
+END
+
+#endif    // Chinese (Traditional, Taiwan) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDP_SOCKETS_INIT_FAILED "Failed to initialize Windows socket."
+    IDS_IP                  "192.203.143.108"
+    IDS_PRODUCT             "KnightOnLine"
+    IDS_DNS                 "upgrade.nohystem.co.kr"
+    IDS_JOIN_URL            "http://www.knight-online.net/register/join.htm"
+    IDS_INFO_VERSION_CHECK  "Check version and prepare to execute game."
+    IDS_INFO_EXTRACTING     "Decompress files..."
+    IDS_ERR_REGISTRY_OPEN   "Failed to open registry key. Reinstall again please."
+    IDS_ERR_REGISTRY_READ_VERSION 
+                            "Faile to find version info. Reinstall again please."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_REGISTRY_READ_PATH 
+                            "Faile to find program path. Reinstall again please."
+    IDS_ERR_REGISTRY_READ_EXE 
+                            "Faile to find executable file name. Reinstall again please."
+    IDS_ERR_REGISTRY_READ_SERVICE 
+                            "Faile to find service name. Reinstall again please."
+    IDS_FMT_FAILED_CONNECT_LOGIN_SERVER 
+                            "Can't connect to LogIn Server  - %d\nRetry?"
+    IDS_ERR_INVALID_SERVER_COUNT "no available server list."
+    IDS_ERR_INVALID_VERSION "Invalid version."
+    IDS_ERR_INVALID_DOWNLOAD_FILE_COUNT "Invalid downloaded file count."
+    IDS_ERR_INIT_INTERNET   "Failed to initialize internet."
+    IDS_ERR_CONNECT_FTP     "Failed to connect FTP."
+    IDS_ERR_PATCH           "Faile to auto upgrading. Reinstall again please."
+    IDS_ERR_DOWNLOAD_PATCH_FILE_AND_RETRY 
+                            "Failed to download patch file. Retry?"
+    IDS_ERR_DOWNLOAD_PATCH_FILE "Failed to download patch file."
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE 18, 1
+#pragma code_page(949)
+#endif //_WIN32
+#include "Launcher.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.kor\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

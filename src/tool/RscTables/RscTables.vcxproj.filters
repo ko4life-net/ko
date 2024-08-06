@@ -35,18 +35,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="RscTables.rc">
-      <Filter>Source Files</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="DlgDataCount.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Widget\PropertyList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RscTables.h">
@@ -66,16 +58,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\RscTables.ico">
+    <ClInclude Include="res\Resource.h">
       <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
+    </ClInclude>
+    <ResourceCompile Include="res\RscTables.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
     <CustomBuild Include="res\RscTables.rc2">
       <Filter>Resource Files</Filter>
     </CustomBuild>
+    <Image Include="res\RscTables.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

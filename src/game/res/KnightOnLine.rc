@@ -1,0 +1,1723 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean (Korea) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_PARTY_INSERT_ERR_LEVEL_DIFFERENCE "레벨 차이가 나서 ?컷셀? 가입?? 수 없습니다."
+    IDS_PARTY_INSERT_ERR_REJECTED "?컷셌苛諛? 거절 되었습니다."
+    IDS_PARTY_INVITE        "님을 ?컷셀? 초대?臼늄윱求?. 응답을 기다립니다."
+    IDS_PARTY_INVITE_FAILED "님을 ?컷셀? 초대?寗? 없습니다."
+    IDS_PARTY_ITEM_GET      "%s(이)가 %s(을)를 ?뭇戀颯윱求?."
+    IDS_PARTY_LEAVE         "?컷셀【? 탈퇴?臼늄윱求?."
+    IDS_PARTY_PERMIT        "님이 ?컷셀? 초대?臼늄윱求?. ?컷셀? 가입?絿챨黴윱歐??"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_REGENERATION        "?인? 누르면 마을, ?ㅐ? 부?걋凉念? 돌아갑니다."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_INVALID_CLASS   "직업을 선택?? 주세요."
+    IDS_ERR_INVALID_NAME    "캐릭터 아이디를 입력?? 주세요."
+    IDS_ERR_INVALID_NAME_HAS_SPECIAL_LETTER "사용?? 수 없는 캐릭터 아이디 입니다."
+    IDS_ERR_INVALID_NATION_RACE "선택?? 국가와 종족이 맞지 않습니다."
+    IDS_ERR_INVALID_RACE    "종족을 선택?? 주세요."
+    IDS_ERR_KNIGHTS_CREATE_FAILED_NAME_EMPTY "기사단을 만들려면 이름이 있어야 ?爛求?."
+    IDS_ERR_NOT_SUPPORTED_RACE "이 종족은 아직 지원되지 않습니다."
+    IDS_ERR_NO_MORE_CHARACTER "더 이상의 캐릭터를 생성?? 수 없습니다."
+    IDS_ERR_OVERLAPPED_ID   "이미 이 아이디로 생성된 캐릭터가 있어서 이름이 중복됩니다."
+    IDS_ERR_REMAIN_BONUS_POINT "보너스 ?汰廣? 남아 있습니다."
+    IDS_ERR_REQUEST_OBJECT_EVENT_SO_FAR "오브젝?와? 거리가 너무 멉니다."
+    IDS_ERR_UNKNOWN         "알수 없는 에러입니다."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_CHARACTER_CREATE "캐릭터 생성 실??"
+    IDS_ERR_DB_CREATE       "DataBase 생성 실??."
+    IDS_ERR_GOTO_TOWN_OUT_OF_HP "HP 가 절반 이?舅灸㎢? 마을로 갈수 없습니다."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PERSONAL_TRADE_FMT_WAIT "%s 님이 %s 님에게 거래를 신청?究決윱求?. 응답을 기다리고 있습니다."
+    IDS_PERSONAL_TRADE_PERMIT "%s 님이 %s 님에게서 거래를 신청받았습니다. 수락?絿챨黴윱歐??"
+    IDS_PERSONAL_TRADE_REQUEST " 님에게 거래 신청"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_VERSION_CONFIRM     "이 클라이언?? 버전은 %.3f 이며 이 서버에 접속?狗존? %.3f 버전이 ?却鄂爛求?."
+    IDS_TOOLTIP_BONUSSTA    "체력 보너스   : %d"
+    IDS_VERSION_CONFIRM_TW  "실?璇컥? 버전이 ?껴낫求?. 최신 실?璇컥舅? 설치?究셀?."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_EXIT                "종료?絿챨黴윱歐??"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TRY_SPEED_HACKING   "스??드 ?唜렝? 시도되었습니다."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CONNECTION_CLOSED   "서버와 연결이 종료 되었습니다."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CLASS_EL_RANGER     "레인저"
+    IDS_CLASS_KA_BERSERKER  "버서커"
+    IDS_CLASS_KA_DARKPRIEST "다크?존스?"
+    IDS_CLASS_KA_GUARDIAN   "가디언"
+    IDS_CLASS_KA_HUNTER     "?楊?"
+    IDS_CLASS_KA_NECROMANCER "네크로맨서"
+    IDS_CLASS_KA_PENETRATOR "?牙覺레이?"
+    IDS_CLASS_KA_SHAMAN     "샤먼"
+    IDS_CLASS_KA_SORCERER   "소서러"
+    IDS_CLASS_PRIEST        "사제"
+    IDS_CLASS_ROGUE         "로그"
+    IDS_CLASS_UNKNOWN       "미?인직?"
+    IDS_CLASS_WARRIOR       "전사"
+    IDS_CLASS_WIZARD        "마법사"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_NATION_ELMORAD      "엘모라드"
+    IDS_NATION_KARUS        "카루스"
+    IDS_NATION_UNKNOWN      "미?인국?"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_RACE_ALL            "모든종족"
+    IDS_RACE_EL_BABARIAN    "바바리안"
+    IDS_RACE_EL_MAN         "엘모라디안 남자"
+    IDS_RACE_EL_WOMEN       "엘모라디안 여자"
+    IDS_RACE_KA_ARKTUAREK   "아크투아렉"
+    IDS_RACE_KA_PURITUAREK  "?뻗? 투아렉"
+    IDS_RACE_KA_TUAREK      "투아렉"
+    IDS_RACE_KA_WRINKLETUAREK "링클투아렉"
+    IDS_RACE_UNKNOWN        "미?인종?"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CHR_SELECT_FMT_INFO "레벨 : %d \n\n직업 : %s\n\n I D : %s"
+    IDS_CHR_SELECT_HINT     "마우스 왼쪽 버?걋? \n\n누르시면 새 캐릭터를\n\n만드실 수 있습니다."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PARTY_CONFIRM_DESTROY "?컷섯? ?饅션絿챨黴윱歐??"
+    IDS_PARTY_CONFIRM_DISCHARGE "님을 ?컷셀【? 탈퇴시킬까요?"
+    IDS_PARTY_CONFIRM_LEAVE "?컷셀【? 탈퇴?絿챨黴윱歐??"
+    IDS_PARTY_DESTROY       "?컷섟? ?蠻┻?었습니다."
+    IDS_PARTY_INSERT        "님이 ?컷셀? 들어왔습니다."
+    IDS_PARTY_INSERT_ERR    "?컷셌苛諛? 거절 되었습니다."
+    IDS_PARTY_INSERT_ERR_INVALID_NATION "?컷섯? 맺을 수 없는 국가입니다."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_LOGIN_FAILED        "로그인에 실?槿臼늄윱求?. 고객지원?읏? 연락?? 주십시오."
+    IDS_LOGIN_ERR_ALREADY_CONNECTED_ACCOUNT "계정 로그인 실??. 다시 시도?? 주십시오."
+    IDS_NOACCOUNT_RETRY_MGAMEID "등록된 ID 가 없습니다. MGame ID 로 접속을 시도?爛求?."
+    IDS_NO_MGAME_ACCOUNT    "MGame 에도 등록된 ID 가 없습니다."
+    IDS_FMT_CONNECT_ERROR   "%s 서버에 접속?? 수 없습니다.(%d)"
+    IDS_FMT_GAME_SERVER_LOGIN_ERROR "%s 서버에 접속은 되었으나 게임 로그인에 실?槿臼늄윱求?.(%d)"
+    IDS_SERVER_CONNECT_FAIL "서버 접속 실??."
+    IDS_CURRENT_SERVER_ERROR "?娩? 서버에 오류가 있습니다.."
+    IDS_CONNECT_FAIL        "접속 실??"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CONFIRM_DELETE_CHR  "캐릭터를 삭제?狗존? 주민등록 번?８? 입력?? 주십시오.\n예) 890123-4567890"
+    IDS_CONFIRM_EXIT_GAME   "게임을 끝내시겠습니까?"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_NEWCHR_KA_TUAREK    "투아렉은 육체적인 능력과 정신적인 능력이 균??을 이루고 있는 종족으로 로그와 사제의 직업을 선택?? 수 있습니다."
+    IDS_NEWCHR_KA_WARRIOR   "전사는 중장갑과 모든 종류의 공격 무기를 사용?求? 버서커와 높은 방어력을 바탕으로 사제와 마법사의 보?? 임무를 맡는 가디언으로 성장?? 수 있습니다."
+    IDS_NEWCHR_KA_WRINKLETUAREK 
+                            "링클 투아렉은 강력?? 마법을 구사?歐? 위?? 정신적인 능력을 강?시? 종족입니다. 링클 투아렉은 마법사만을 선택?? 수 있습니다."
+    IDS_NEWCHR_POW          "무기를 이용?? 캐릭터의 공격과 방어력에 영?袖? 미치는 능력입니다."
+    IDS_NEWCHR_STA          "캐릭터의 생명력(HP)을 결정?求? 능력입니다."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_NEWCHR_MAP          "캐릭터의 마법 공격력을 결정짓는 능력입니다."
+    IDS_NEWCHR_DEX          "캐릭터가 전투 중 적의 공격을 ?맨??? 수 있는 ??을 높이며 로그의 ?? 공격력을 높여 주는 능력입니다."
+    IDS_NEWCHR_EL_BABA      "바바리안은 강인?? 육체를 소유?? 북방의 전사로 전사이외의 직업은 선택?? 수 없습니다."
+    IDS_NEWCHR_EL_FEMALE    "엘모라디안 여자는 높은 지능과 마력을 소유?? 캐릭터입니다."
+    IDS_NEWCHR_EL_MAGE      "마법사는 4대 원소의 ??을 이용?? 공격 마법을 구사?求? 메이지와 정신의 지배자인 엔첸터로 성장시킬 수 있습니다."
+    IDS_NEWCHR_EL_MALE      "엘모라디안 남자는 체력과 지능이 균??을 이루고 있어 모든 직업에 적?朗爛求?."
+    IDS_NEWCHR_EL_PRIEST    "사제는 동료의 치료를 주 임무로 ?求? 클레릭과 동료의 능력치를 높이거나 적에게 저주를 거는 드루이드로 성장시킬 수 있습니다."
+    IDS_NEWCHR_EL_ROGUE     "로그는 몸을 숨기고 적에게 다가가 치명상을 입?榻? 어쌔신과 ?같? 창을 이용?? 원거리 공격을 ?求? 레인져로 성장시킬 수 있습니다."
+    IDS_NEWCHR_EL_WARRIOR   "전사는 중장갑과 모든 종류의 공격 무기를 사용?求? 블레이드와 높은 방어력을 바탕으로 아군의 마법사와 사제를 보???求? ?족壙唜庫? 성장시킬 수 있습니다."
+    IDS_NEWCHR_INT          "마법사와 사제의 정신 에너지(MP) 량과 마법의 위력을 결정짓는 능력입니다."
+    IDS_NEWCHR_KA_ARKTUAREK "아크 투아렉은 육체의 능력을 극대?? 시킨 종족으로 오직 전사만을 선택?? 수 있습니다."
+    IDS_NEWCHR_KA_MAGE      "마법사는 4대 원소의 ??을 이용?? 공격 마법을 구사?求? 소서러와 죽은 자들의 주인인 네크로맨서로 성장시킬 수 있습니다."
+    IDS_NEWCHR_KA_PRIEST    "사제는 동료의 치료를 주 임무로 ?求? 샤만과 강력?? 저주의 능력을 가진 다크 ?존스트? 성장시킬 수 있습니다."
+    IDS_NEWCHR_KA_PURITUAREK 
+                            "?뻗? 투아렉은 순수?構? 정?? 정신 에너지를 이용?? 치료 마법과 저주 마법을 구사?求? 카루스의 여성 캐릭터로 사제 직업을 선택?? 수 있습니다."
+    IDS_NEWCHR_KA_ROGUE     "로그는 몸을 숨기고 적에게 다가가 치명상을 입?榻? 어쌔신과 ?같? ?살? 이용?? 원거리 공격을 ?求? ?楊庫? 성장시킬 수 있습니다."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_REQUEST_BINDPOINT   "이곳을 부?걋凉念? 지정?構黴윱歐??"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CLASS_CHANGE_ALREADY "요즘은 어떤가? 승리를 위?漫? 자네와 같은 사람들의 노력이 ?却鄂毬?."
+    IDS_CLASS_CHANGE_NOT_YET "자넨 좀더 수련이 ?却鄂? 것 같군."
+    IDS_CLASS_CHANGE_SUCCESS 
+                            "자네는 직업을 바꿀 수 있는 자격을 얻었군. 자네는 다음 두 직업 중 ?毬じ? 선택?? 수 있네. 어느 것을 선택?瑙鳴??"
+    IDS_CLASS_KINDOF_WARRIOR "전사 직업군"
+    IDS_CLASS_KINDOF_ROGUE  "로그 직업군"
+    IDS_CLASS_KINDOF_WIZARD "마법사 직업군"
+    IDS_CLASS_KINDOF_PRIEST "사제 직업군"
+    IDS_CLASS_KINDOF_ATTACK_WARRIOR "공격전사 직업군"
+    IDS_CLASS_KINDOF_DEFEND_WARRIOR "방어전사 직업군"
+    IDS_CLASS_KINDOF_ARCHER "궁수 직업군"
+    IDS_CLASS_KINDOF_ASSASSIN "암살자 직업군"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CLASS_EL_ASSASIN    "어쌔신"
+    IDS_CLASS_EL_BLADE      "블레이드"
+    IDS_CLASS_EL_CLERIC     "클레릭"
+    IDS_CLASS_EL_DRUID      "드루이드"
+    IDS_CLASS_EL_ENCHANTER  "엔첸터"
+    IDS_CLASS_EL_MAGE       "메이지"
+    IDS_CLASS_EL_PROTECTOR  "?족壙唜?"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SKILL_FAIL_CASTING  "캐스?? 실??"
+    IDS_SKILL_FAIL_DIFFURENTCLASS "사용?? 수 없는 스킬(마법)입니다."
+    IDS_SKILL_FAIL_EFFECTING "%s 무산"
+    IDS_SKILL_FAIL_INVALID_ITEM "스킬 실?? - 아이템이 맞지 않습니다."
+    IDS_SKILL_FAIL_LACK_HP  "스킬 실?? - HP 부족"
+    IDS_SKILL_FAIL_LACK_ITEM "스킬 실?? - 아이템이 부족?爛求?."
+    IDS_SKILL_FAIL_LACK_SP  "스킬 실?? - SP 부족"
+    IDS_SKILL_FAIL_SOFAR    "스킬 실?? - 거리가 멉니다."
+    IDS_SKILL_FAIL_OBJECT_BLOCK "스킬 실?? - 오브젝?? 막??"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SKILL_SUCCESS_HEALING_FROM "%s에게서 %d??링"
+    IDS_SKILL_SUCCESS_HEALING_TO "%s에게 %d??링"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_MSG_FMT_EXP_LOST    "%d 경?蝸? 잃음"
+    IDS_MSG_FMT_HP_LOST     "%d HP 대미지"
+    IDS_MSG_FMT_HP_RECOVER  "%d HP ?맏?"
+    IDS_MSG_FMT_MP_RECOVER  "%d MP ?맏?"
+    IDS_MSG_FMT_MP_USE      "%d MP 사용"
+    IDS_MSG_FMT_SP_RECOVER  "%d SP ?맏?"
+    IDS_MSG_FMT_SP_USE      "%d SP 사용"
+    IDS_MSG_FMT_TARGET_ATTACK_FAILED "%s 공격 실??."
+    IDS_MSG_FMT_TARGET_HP_LOST "%s에게 %d 타격"
+    IDS_MSG_FMT_TARGET_HP_RECOVER "%s의 HP %d ?맏?"
+    IDS_MSG_VALID_CLASSNRACE_INVALID_RACE "종족이 맞지 않아 장착이 불가"
+    IDS_MSG_VALID_CLASSNRACE_LOW_CHA "마력이 낮아 장착이 불가"
+    IDS_MSG_VALID_CLASSNRACE_LOW_DEX "민첩이 낮아 장착이 불가"
+    IDS_MSG_VALID_CLASSNRACE_LOW_INT "지능이 낮아 장착이 불가"
+    IDS_MSG_VALID_CLASSNRACE_LOW_LEVEL "레벨이 낮아 장착이 불가"
+    IDS_MSG_VALID_CLASSNRACE_LOW_POWER "??이 낮아 장착이 불가"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_MSG_ATTACK_DISABLE  "거리가 멀거나 방?袖? ?껭? 공격?? 수 없습니다."
+    IDS_MSG_ATTACK_START    "공격 시작"
+    IDS_MSG_ATTACK_STOP     "공격 멈춤"
+    IDS_MSG_CASTING_FAIL_LACK_MP "스킬 실?? - MP 부족"
+    IDS_MSG_FMT_EXP_GET     "%d 경?蝸? 얻음"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_MSG_VALID_CLASSNRACE_LOW_RANK "작위가 낮아 장착이 불가"
+    IDS_MSG_VALID_CLASSNRACE_LOW_STR "스테미나가 낮아 장착이 불가"
+    IDS_MSG_VALID_CLASSNRACE_LOW_TITLE "타이?꼭? 낮아 장착이 불가"
+    IDS_MSG_CONCURRENT_USER_OVERFLOW "?娩? 지역의 동시접속자 수를 초과?臼늄윱求?."
+    IDS_MSG_VALID_CLASSNRACE_INVALID_CLASS "직업이 맞지않아 장착이 불가"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_BIND_POINT_FAILED   "부?걋凉? 지정 실??"
+    IDS_BIND_POINT_REQUEST_FAIL "부?걋凉弩? 거리가 너무 멉니다."
+    IDS_BIND_POINT_SUCCESS  "부?걋凉? 지정 성공"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CHAT_SELECT_TARGET_FAIL "귓속말 설정이 실?槿颯윱求?."
+    IDS_CHAT_SELECT_TARGET_SUCCESS "님과 귓속말이 설정되었습니다."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_FMT_CONCURRENT_USER_COUNT "*** ?痔? 동시 접속자수 %d 명 ***"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SKILL_UP_INVALID    "자신의 레벨보다 ?娩? 스킬을 올릴수 없습니다."
+    IDS_SKILL_USE           "%s을(를) 사용?爛求?."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_REPAIR_LACK_GOLD    "수리 비용이 부족?爛求?. "
+END
+
+STRINGTABLE
+BEGIN
+    IDS_DOOR_CLOSED         "성문이 닫??습니다."
+    IDS_DOOR_OPENED         "성문이 열렸습니다."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_KNIGHTS_APPOINT_CHIEF_SUCCESS "기사단장 임명 성공"
+    IDS_KNIGHTS_APPOINT_OFFICER_FAILED "장교 임명 실??"
+    IDS_KNIGHTS_APPOINT_OFFICER_SUCCESS "장교 임명 성공"
+    IDS_KNIGHTS_APPOINT_VICECHIEF_FAILED "기사단 부단장 임명 실??"
+    IDS_KNIGHTS_APPOINT_VICECHIEF_SUCCESS "기사단 부단장 임명 성공"
+    IDS_KNIGHTS_CREATE_FAILED "기사단 생성 실??"
+    IDS_KNIGHTS_CREATE_SUCCESS "기사단 생성 성공"
+    IDS_KNIGHTS_DESTROY_CONFIRM "기사단을 ?饅? ?絿챨黴윱歐??"
+    IDS_KNIGHTS_DESTROY_FAILED "기사단 ?饅? 실??"
+    IDS_KNIGHTS_DESTROY_SUCCESS "기사단 ?饅? 성공"
+    IDS_KNIGHTS_DUTY_CHIEF  "단장"
+    IDS_KNIGHTS_DUTY_KNIGHT "단원"
+    IDS_KNIGHTS_DUTY_OFFICER "참모"
+    IDS_KNIGHTS_DUTY_PUNISH "징계중"
+    IDS_KNIGHTS_DUTY_TRAINEE "견습기사"
+    IDS_KNIGHTS_DUTY_UNKNOWN "없음"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_KNIGHTS_DUTY_VICECHIEF "부단장"
+    IDS_KNIGHTS_JOIN_FAILED "기사단 가입 실??"
+    IDS_KNIGHTS_JOIN_SUCCESS "기사단 가입 성공"
+    IDS_KNIGHTS_PUNISH_FAILED "기사단원 징계 실??"
+    IDS_KNIGHTS_PUNISH_SUCCESS "기사단원 징계 성공"
+    IDS_KNIGHTS_REJECT_FAILED "기사단 가입 거절 실??"
+    IDS_KNIGHTS_REJECT_SUCCESS "기사단 가입 거절 성공"
+    IDS_KNIGHTS_REMOVE_MEMBER_FAILED "기사단 멤버에서 추방 실??"
+    IDS_KNIGHTS_REMOVE_MEMBER_SUCCESS "기사단 멤버에서 추방 성공"
+    IDS_KNIGHTS_WITHDRAW_CONFIRM "기사단에서 탈퇴?絿챨黴윱歐??"
+    IDS_KNIGHTS_WITHROW_FAILED "기사단 탈퇴 실??"
+    IDS_KNIGHTS_WITHROW_SUCCESS "기사단 탈퇴 성공"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_KNIGHTS_ADMIT_FAILED "기사단 가입 ?嘶? 실??"
+    IDS_KNIGHTS_ADMIT_SUCCESS "기사단 가입 ?嘶? 성공"
+    IDS_KNIGHTS_APPOINT_CHIEF_FAILED "기사단장 임명 실??"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_MANY_COUNTABLE_ITEM_BUY_FAIL "?箕貶? 9999개 이상의 아이템을 살수 없습니다."
+    IDS_COUNTABLE_ITEM_BUY_NOT_ENOUGH_MONEY "노아가 부족?爛求?."
+    IDS_MANY_COUNTABLE_ITEM_GET_MANY "?箕貶? 9999개 이상의 아이템을 가질수 없습니다."
+    IDS_MANY_COUNTABLE_ITEM_TOO_MAMY "9999개 이상의 아이템을 가질수 없습니다."
+    IDS_SMALL_COUNTABLE_ITEM_BUY_FAIL "?箕貶? 500개 이상의 아이템을 살수 없습니다."
+    IDS_SMALL_COUNTABLE_ITEM_GET_MANY "?箕貶? 500개 이상의 아이템을 가질수 없습니다."
+    IDS_SMALL_COUNTABLE_ITEM_TOO_MAMY "500개 이상의 아이템을 가질수 없습니다."
+    IDS_ITEM_TOOMANY_OR_HEAVY "아이템의 갯수 또는 무게를 초과?臼? 거래 ?ㅐ? 습득이 불가?爛求?."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ITEM_WEIGHT_OVERFLOW "무게 제?記? 넘어섰습니다."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ITEM_CLASS_BOW_LONG "강노"
+    IDS_ITEM_CLASS_CHARM    "룬아이템"
+    IDS_ITEM_CLASS_DAGGER   "단검"
+    IDS_ITEM_CLASS_EARRING  "귀걸이"
+    IDS_ITEM_CLASS_ETC      "기타"
+    IDS_ITEM_CLASS_JAVELIN  "투창"
+    IDS_ITEM_CLASS_JEWEL    "보석종류"
+    IDS_ITEM_CLASS_MACE     "둔기"
+    IDS_ITEM_CLASS_MACE_2H  "양손둔기"
+    IDS_ITEM_CLASS_POLEARM  "장창"
+    IDS_ITEM_CLASS_POTION   "물약"
+    IDS_ITEM_CLASS_RING     "반지"
+    IDS_ITEM_CLASS_SCROLL   "스크롤"
+    IDS_ITEM_CLASS_SHIELD   "방??"
+    IDS_ITEM_CLASS_SPEAR    "창"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ITEM_CLASS_STAFF    "지?括?"
+    IDS_ITEM_CLASS_SWORD    "?羈卵?"
+    IDS_ITEM_CLASS_SWORD_2H "양손검"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ITEM_CLASS_AMULET   "목걸이"
+    IDS_ITEM_CLASS_ARMOR_MAGE "마법사용방어구"
+    IDS_ITEM_CLASS_ARMOR_PRIEST "사제용방어구"
+    IDS_ITEM_CLASS_ARMOR_ROGUE "로그용방어구"
+    IDS_ITEM_CLASS_ARMOR_WARRIOR "전사용방어구"
+    IDS_ITEM_CLASS_ARROW    "??"
+    IDS_ITEM_CLASS_AXE      "도끼"
+    IDS_ITEM_CLASS_AXE_2H   "양손도끼"
+    IDS_ITEM_CLASS_BELT     "?媤?"
+    IDS_ITEM_CLASS_BOW      "??"
+    IDS_ITEM_CLASS_BOW_CROSS "석궁"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ITEM_ATTRIB_CRAFT   "크래?좟? 아이템"
+    IDS_ITEM_ATTRIB_GENERAL "일반 아이템"
+    IDS_ITEM_ATTRIB_LAIR    "레어 아이템"
+    IDS_ITEM_ATTRIB_MAGIC   "매직 아이템"
+    IDS_ITEM_ATTRIB_UNIQUE  "유니크 아이템"
+    IDS_ITEM_ATTRIB_UPGRADE "업그레이드 아이템"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TOOLTIP_DEFENSE_RATE_AXE "도끼 방어력   : %d"
+    IDS_TOOLTIP_DEFENSE_RATE_BLOW "타격 방어력   : %d"
+    IDS_TOOLTIP_DEFENSE_RATE_DAGGER "단검 방어력   : %d"
+    IDS_TOOLTIP_DEFENSE_RATE_SPEAR "창 방어력     : %d"
+    IDS_TOOLTIP_DEFENSE_RATE_SWORD "검 방어력     : %d"
+    IDS_TOOLTIP_GOLD        "노아"
+    IDS_TOOLTIP_HITRATE_OVER "공격률 %d%% 증가"
+    IDS_TOOLTIP_HITRATE_UNDER "공격율 %d%% 감소"
+    IDS_TOOLTIP_MAX_DURABILITY "최대 내구력   : %d"
+    IDS_TOOLTIP_NEEDMAGICATTACK "요구 마력     : %d"
+    IDS_TOOLTIP_NEEDDEXTERITY "요구 민첩     : %d"
+    IDS_TOOLTIP_NEEDINTELLI "요구 지능     : %d"
+    IDS_TOOLTIP_NEEDLEVEL   "?却? 레벨     : %d"
+    IDS_TOOLTIP_NEEDRANK    "요구 작위     : %d"
+    IDS_TOOLTIP_NEEDSTAMINA "요구 스테미너 : %d"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TOOLTIP_ATTRMAGIC5  "HP ?茨?       : %d"
+    IDS_TOOLTIP_ATTRMAGIC6  "MP 타격       : %d"
+    IDS_TOOLTIP_ATTRMAGIC7  "MP ?茨?"
+    IDS_TOOLTIP_AVOIDRATE_OVER "?맨?율 %d%% 증가"
+    IDS_TOOLTIP_AVOIDRATE_UNDER "?맨?율 %d%% 감소"
+    IDS_TOOLTIP_BONUSMAGICATTACK "마력 보너스   : %d"
+    IDS_TOOLTIP_BONUSDEX    "민첩성 보너스 : %d"
+    IDS_TOOLTIP_BONUSHP     "HP 보너스     : %d"
+    IDS_TOOLTIP_BONUSINT    "지능 보너스   : %d"
+    IDS_TOOLTIP_BONUSSTR    "?? 보너스     : %d"
+    IDS_TOOLTIP_BONUSWIZ    "마나 보너스   : %d"
+    IDS_TOOLTIP_BUY_PRICE   "사는 가격     : %d"
+    IDS_TOOLTIP_CUR_DURABILITY "?痔? 내구력   : %d"
+    IDS_TOOLTIP_DAMAGE      "공격력        : %d"
+    IDS_TOOLTIP_DEFENSE     "방어력        : %d"
+    IDS_TOOLTIP_DEFENSE_RATE_ARROW "?? 방어력   : %d"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TOOLTIP_ATTACKINT_FAST "공격속도      : 빠름"
+    IDS_TOOLTIP_ATTACKINT_NORMAL "공격속도      : 보통"
+    IDS_TOOLTIP_ATTACKINT_SLOW "공격속도      : 느림"
+    IDS_TOOLTIP_ATTACKINT_VERYFAST "공격속도      : 매우빠름"
+    IDS_TOOLTIP_ATTACKINT_VERYSLOW "공격속도      : 매우느림"
+    IDS_TOOLTIP_ATTACKRANGE "유?염타?      : %.2f"
+    IDS_TOOLTIP_ATTRMAGIC1  "?? 데미지   : %d"
+    IDS_TOOLTIP_ATTRMAGIC2  "냉기 데미지   : %d"
+    IDS_TOOLTIP_ATTRMAGIC3  "전격 데미지   : %d"
+    IDS_TOOLTIP_ATTRMAGIC4  "독 데미지     : %d"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TOOLTIP_NEEDSTRENGTH "요구 근력     : %d"
+    IDS_TOOLTIP_NEEDTITLE   "요구 타이??   : %d"
+    IDS_TOOLTIP_REGISTCURSE "저주 저??     : %d"
+    IDS_TOOLTIP_REGISTELEC  "전격 저??     : %d"
+    IDS_TOOLTIP_REGISTFIRE  "불 저??       : %d"
+    IDS_TOOLTIP_REGISTICE   "냉기 저??     : %d"
+    IDS_TOOLTIP_REGISTMAGIC "마법 저??     : %d"
+    IDS_TOOLTIP_REGISTPOISON "독 저??       : %d"
+    IDS_TOOLTIP_SELL_PRICE  "?캑? 가격     : %d"
+    IDS_TOOLTIP_WEIGHT      "무게          : %.2f"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_NPCEVENT_TITLE_REPAIR "나 처럼 대단?? 대장장이도 드물지 ?却鄂璣? 있으면 말?構道?..."
+    IDS_NPC_EVENT_TITLE_TRADE "내가 가지고 있는 물건은 정말 많지 자네도 ?箕? 보겠나?"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SKILL_POINT_BEFORE_CLASS_CHANGE "아직 전직?歐? 전이므로 전문 스킬을 올릴수 없습니다."
+    IDS_SKILL_POINT_EXTRA_NOT_EXIST "남아있는 스킬 ?汰廣? 없습니다."
+    IDS_SKILL_POINT_NOT_YET "아직 구?層?지 않은 스킬입니다."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_LEVER_ACTIVATE      "레버가 작동되었습니다."
+    IDS_LEVER_DEACTIVATE    "레버가 작동되었습니다..."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SKILL_TOOLTIP_NO_MANA "소모 마나 없음"
+    IDS_SKILL_TOOLTIP_USE_ITEM_EXIST "소모 아이템 : %s"
+    IDS_SKILL_TOOLTIP_USE_ITEM_NO "소모 아이템 없음"
+    IDS_SKILL_TOOLTIP_USE_MANA "소모 마나 : %d"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SKILL_TOOLTIP_DOUBLE "요구 아이템 : 더블 ?湄?"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_DUAL "요구 아이템 : 듀얼 ?湄?"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID1 "요구 아이템 : 모든무기"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID10 "요구 아이템 : 런처"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID11 "요구 아이템 : 마법사 지?括?(staff)"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID12 "요구 아이템 : ??"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID13 "요구 아이템 : 투창"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID14 "요구 아이템 : 전사 방어구"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID15 "요구 아이템 : 로그 방어구"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID16 "요구 아이템 : 마법사 방어구"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID17 "요구 아이템 : 사제 방어구"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID2 "요구 아이템 : 단검"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID3 "요구 아이템 : 검"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID4 "요구 아이템 : 도끼"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID5 "요구 아이템 : 타격무기"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID6 "요구 아이템 : 창"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID7 "요구 아이템 : 방??"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID8 "요구 아이템 : ??"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID9 "요구 아이템 : 롱보우"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_INV_ITEM_FULL       "인벤토리에 아이템이 꽉차서 아이템을 습득?寗? 없습니다."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PER_TRADEING_OTHER  "유저와 거래중에 다른 유저에게서 거래 신청이 왔습니다."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_URL_JOIN            "http://www.knight-online.net"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_HELP_TIP1           "앉아서 빠른 ?맏? - 'C'"
+    IDS_HELP_TIP2           "쿼터뷰에서는 마우스로 이동가능."
+    IDS_HELP_TIP3           "자동 걷기/뛰기 전?? - 'E'"
+    IDS_HELP_TIP4           "마을로 이동 ?構? 싶을때  '/마을'"
+    IDS_HELP_TIP5           "가장 근거리의 적 타겟으로 잡음 - 'Z'"
+    IDS_HELP_TIP6           "스킬사용 : 단축키 창으로 스킬아이콘을 드래그."
+    IDS_HELP_TIP7           "부?걋凉? 지정 : 부?갰注? 오른쪽 클릭."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_HELP_TIP8           "아이템 내구력은 대장장이에게."
+    IDS_HELP_TIP9           "아이템 창고 : 여관주인에게 오른쪽 클릭."
+    IDS_HELP_TIP10          "전직 : 10레벨이 넘으면 전직을 ?? 수 있습니다."
+    IDS_HELP_TIP11          "아이템 ?뭇? : 몬스터 시체에 클릭."
+    IDS_HELP_TIP12          "걷고/뛰기 : 'T'"
+    IDS_HELP_TIP13          "공격 시작/멈춤 : 'R' ?ㅐ? 더블클릭."
+    IDS_HELP_TIP14          "시점 변?? : 단축키 'F9' "
+    IDS_HELP_TIP15          "키보드 이동은 'W,A,S,D' 키와 방?? 키"
+    IDS_HELP_TIP16          "스킬 사용 : 단축키창의 스킬아이콘을 더블클릭 또는 '1-8'."
+    IDS_HELP_TIP17          "?컷섯? 맺으면 레벨업 속도가 빨라 집니다."
+    IDS_HELP_TIP18          "?컷선맨? 메시지 ?? : '/?컷선맨?'"
+    IDS_HELP_TIP19          "?컷? 신청 : '/?컷?'"
+    IDS_HELP_TIP20          "아이템 거래 : 타겟으로 잡은상대 에게 '/거래'"
+    IDS_HELP_TIP21          "?컷셌ㅖ? : 채?쳉♧【? 'Party' 버?? 클릭."
+    IDS_HELP_TIP22          "일반채?? : 채?쳉♧【? 'Say'버?? 클릭."
+    IDS_HELP_TIP23          "능력치 습득 : 레벨업?? 때마다 3?汰廣? 습득."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_HELP_TIP24          "스킬습득 : 10레벨 이상에서 레벨업?? 때마다 2?汰廣? 습득."
+    IDS_HELP_TIP25          "아이템 없애기 : 인벤토리에서 빨강색 마크가 있는 부분에 아이템 드래그 & 드롭."
+    IDS_HELP_TIP26          "스킬 설명 보기 : 스킬창에 있는 아이콘에 커서를 놓습니다."
+    IDS_HELP_TIP27          "귓속말?歐? : '/귓속말' 상대방아이디."
+    IDS_HELP_TIP28          "미니맵 보기 : 'M' 적색,주?꼇痔? 적입니다."
+    IDS_HELP_TIP29          "단축키창 ?嶽訣? 변?? 단축키 :  'PageUp/PageDown'"
+    IDS_HELP_TIP30          "쿼터뷰에서 'Home / End' 키로 카메라 이동"
+    IDS_HELP_TIP_ALL        "[나온 ?? ?璣≠?!]"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_EDIT_BOX_GOLD       "원?絿척? 금액을 입력?絿駕첼?."
+    IDS_EDIT_BOX_COUNT      "원?絿척? 갯수를 입력?絿駕첼?."
+    IDS_SKILL_INFO_BASE     "전직 이전에 가지는 기본적인 스킬."
+    IDS_SKILL_INFO_BLADE0   "왼손의 무기사용능력을 ?脩澯쳔뎬求[쌍칼]."
+    IDS_SKILL_INFO_BLADE1   "양손무기를 사용?求? 능력을 ?脩澯쳔뎬求?"
+    IDS_SKILL_INFO_BLADE2   "여러가지 방어기술들을 습득?爛求?."
+    IDS_SKILL_INFO_BLADE3   "전사의 정신력을 증?鞭쳔뎬求?."
+    IDS_SKILL_INFO_RANGER0  "다양?? ?갚茱?들을 습득?爛求?."
+    IDS_SKILL_INFO_RANGER1  "다양?? 창던지기 기술들을 습득?爛求?."
+    IDS_SKILL_INFO_RANGER2  "탐색에 유용?? 다양?? 기술들을 습득?爛求?."
+    IDS_SKILL_INFO_RANGER3  "각종 동물들을 길들이는 기술들을 습득?爛求?."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SKILL_INFO_MAGE0    "불을 이용?? 다양?? 마법을 습득?爛求?."
+    IDS_SKILL_INFO_MAGE1    "얼음을 이용?? 다양?? 마법을 습득?爛求?."
+    IDS_SKILL_INFO_MAGE2    "전격(전기)를 이용?? 다양?? 마법을 습득?爛求?."
+    IDS_SKILL_INFO_MAGE3    "소?? 이동기술을 습득?爛求?."
+    IDS_SKILL_INFO_CLERIC0  "다양?? 치료마법들을 습득?爛求?."
+    IDS_SKILL_INFO_CLERIC1  "능력치를 상승시키는 마법을 습득?爛求?."
+    IDS_SKILL_INFO_CLERIC2  "간단?? 공격마법을 습득?爛求?."
+    IDS_SKILL_INFO_CLERIC3  "죽은 상대를 다시 부?? 시키는 마법을 습득?爛求?."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_CHARACTER_SELECT "캐릭터를 선택?? 수 없습니다."
+    IDS_DROPPED_NOAH_GET    "%d 노아 ?뭇?"
+    IDS_DURABILITY_EXOAST   "%s 의 내구력이 모두 사라졌습니다."
+    IDS_ITEM_GET_BY_RULE    "%s의 아이템을 ?뭇戀颯윱求?."
+    IDS_OTHER_PER_TRADE_NO  "%s 님이 거래를 거절?究決윱求?. "
+    IDS_PER_TRADE_FAIL      "거래가 실?筠?었습니다.."
+    IDS_OTHER_PER_TRADE_CANCEL "%s 님이 거래를 취소?究決윱求?. "
+    IDS_ITEM_KIND_BRONS     "브론즈"
+    IDS_ITEM_KIND_SILVER    "실버"
+    IDS_ITEM_KIND_GOLDEN    "골든"
+    IDS_ITEM_KIND_PLATINUM  "?첨뮷설?"
+    IDS_ITEM_KIND_CRIMSON   "크림슨"
+    IDS_ITEM_KIND_LUNA      "루나"
+    IDS_ITEM_KIND_SOLAR     "솔라"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ITEM_KIND_ANCIENT   "에이션??"
+    IDS_ITEM_KIND_MISTIQ    "미스??"
+    IDS_TOOLTIP_NOAH        "노아: %d"
+    IDS_TOOLTIP_REPAIR_PRICE "수리가격"
+    IDS_TOOLTIP_CANNOT      "수리불가아이템"
+    IDS_POINTINIT_NOT_ENOUGH_NOAH "%d 노아가 ?却鄂爛求?."
+    IDS_POINTINIT_ALREADY   "초기?? ?汰廣? 없습니다."
+    IDS_NOAH_CHANGE_GET     "%d 노아를 ?뭇戀臼늄윱求?."
+    IDS_NOAH_CHANGE_LOST    "%d 노아를 잃었습니다."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CLAN_DENY_LOWLEVEL  "미안?歐?. 자네같은 ?頻늅?리는 우두머리의 자격이 없어!!"
+    IDS_CLAN_DENY_LOWGOLD   "미안?歐?. CLAN창설을 위?漫? %d노아가 ?却鄂毬?."
+    IDS_CLAN_DENY_INVALIDDAY "오늘은 클랜을 만들 수 없는 날이라네..."
+    IDS_CLAN_DENY_ALREADYJOINED "자넨 이미 클랜에 가입이 되어있군. 그럼 클랜을 만들 수 없지."
+    IDS_CLAN_DENY_UNKNOWN   "??..지금은 클랜을 만들 수 없으니 다음에 다시 찾아오게나."
+    IDS_CLAN_MAKE_SUCCESS   "자~~ 이제 자네는 정식 클랜 우두머리네. 축?逑毬?!! "
+    IDS_CLAN_WARNING_COST   "클랜창설에는 %d노아가 명부등록비로 소비됩니다."
+    IDS_CLAN_INPUT_NAME     "오????.. 어서 오시게 용감?? 친구. 그래..만들고 싶은 클랜의 이름을 말?曼린??"
+    IDS_CLAN_REINPUT_NAME   "오~~ 이런 미안?毬?. 누군가 벌써 그 이름을 쓰는 군. 다른 이름으로 ?求째? 어때?"
+    IDS_CLAN_WITHDRAW_SUCCESS "클랜 탈퇴 성공"
+    IDS_CLAN_WITHDRAW_FAIL  "클랜 탈퇴 실??"
+    IDS_CLAN_JOIN_SUCCESS   "클랜 가입 성공"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_NOAH_CHANGE_SPEND   "%d 노아를 소비?臼늄윱求?."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CLAN_JOIN_FAIL_CLAN_FULL "제?? 인원를 초과?臼? 실??"
+    IDS_CLAN_JOIN_FAIL_NONE_CLAN "클랜이 유?옳舊? 않습니다."
+    IDS_CLAN_JOIN_FAIL_INVALIDRIGHT "권?記? 없습니다."
+    IDS_CLAN_JOIN_FAIL_OTHER_CLAN_USER "이미클랜에 가입되어 있는 유저입니다."
+    IDS_CLAN_JOIN_FAIL_ENEMY_USER "국가가 달라 실??"
+    IDS_CLAN_JOIN_FAIL_DEAD_USER "죽은 유저입니다."
+    IDS_CLAN_JOIN_FAIL_NONE_USER "없는 유저 입니다."
+    IDS_CLAN_COMMON_FAIL_ME "자신은 선택?? 수 없습니다."
+    IDS_CLAN_COMMON_FAIL_NOTJOINED "유저가 가입되어 있지 않습니다."
+    IDS_CLAN_JOIN_REQ       "%s클랜에 가입?絿챨黴윱歐??"
+    IDS_CLAN_JOIN_REJECT    "상대?諮【? 거절?臼늄윱求?."
+    IDS_CLAN_COMMON_FAIL_BATTLEZONE "개척지대에선 불가?爛求?. "
+    IDS_CONFIRM_EXECUTE_OPTION "게임을 종료?構? 옵션을 조정?爛求?. 계속 ?絿챨黴윱歐??"
+    IDS_REQUEST_GAME_SAVE   "캐릭터 정보를 저장?臼늄윱求?."
+    IDS_DELAY_GAME_SAVE     "%d분마다 ?箕騙? 저장?寗? 있습니다."
+    IDS_CLAN_DENY_INVALID_SERVER "새로운 서버 시스템으로 인?? 클랜 창설은 추?? 적용됩니다."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_DEAD_RETURN_TOWN    "마을로 돌아간다."
+    IDS_DEAD_REVIVAL        "부?건磯?."
+    IDS_DEAD_LACK_LIFE_STONE "생명의 돌이 부족?爛求?."
+    IDS_DEAD_REVIVAL_MESSAGE "부?걋? 위?漫? %d개의 생명의 돌을 신전에 바쳐야 ?爛求?."
+    IDS_DEAD_LOW_LEVEL      "레벨이 낮아 부?건寗? 없습니다."
+    IDS_INVEN_WEIGHT        "무게 :"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_MSG_HASITEMINSLOT   "아이템을 착용?構? 있으면 능력치를 변경시킬 수 없습니다."
+    IDS_ERR_REQUEST_NPC_EVENT_SO_FAR "NPC와의 거리가 너무 멉니다."
+    IDS_WRONG_PASSWORD      "PassWord 가 다릅니다."
+    IDS_WANT_PARTY_MEMBER   "?컷선맨? : 레벨 %d ~ %d"
+    IDS_SETTING_KARUS_SCREEN "\n\n카루스 캐릭터 설정?면입니?."
+    IDS_SETTING_ELMORAD_SCREEN "\n\n엘모라드 캐릭터 설정?면입니?."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CMD_WHISPER         "귓속말"
+    IDS_CMD_TOWN            "마을"
+    IDS_CMD_TRADE           "거래"
+    IDS_CMD_EXIT            "종료"
+    IDS_CMD_PARTY           "?컷?"
+    IDS_CMD_LEAVEPARTY      "?컷셔뼜?"
+    IDS_CMD_RECRUITPARTY    "?컷선맨?"
+    IDS_CMD_JOINCLAN        "클랜가입"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CMD_WITHDRAWCLAN    "클랜탈퇴"
+    IDS_CMD_FIRECLAN        "클랜추방"
+    IDS_CMD_APPOINTVICECHIEF "부단장임명"
+    IDS_CMD_GREETING        "인사"
+    IDS_CMD_EXCITE          "도발"
+    IDS_CMD_VISIBLE         "보이지"
+    IDS_CMD_INVISIBLE       "안보이지"
+    IDS_CMD_CLEAN           "맑음"
+    IDS_CMD_RAINING         "비"
+    IDS_CMD_SNOWING         "눈"
+    IDS_CMD_TIME            "시간"
+    IDS_CMD_CU_COUNT        "동접"
+    IDS_CMD_NOTICE          "공지"
+    IDS_CMD_ARREST          "추적"
+    IDS_CMD_FORBIDCONNECT   "접속금지"
+    IDS_CMD_FORBIDCHAT      "채?챰北?"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CMD_PERMITCHAT      "채?쳬昇?"
+    IDS_CMD_GAME_SAVE       "저장"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PARTY_BBS_REGISTER  "?컷? 구?? 게시??에 등록?爛求?."
+    IDS_PARTY_BBS_REGISTER_CANCEL "?컷? 구?? 게시??에서 등록을 ?蠻┎爛求?."
+    IDS_TRADE_BBS_SELL_REGISTER "?캑? 물건 등록에는 %d 노아가 소비됩니다."
+    IDS_TRADE_BBS_PER_TRADE "멀리 떨어진 사람과 거래를 ?歐? 위?漫? 여관주인에게 %d 노아를 지불?瞞? ?爛求?."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TRADE_BBS_BUY_REGISTER "사는 물건 등록에는 시간 당 %d 노아가 소비됩니다."
+    IDS_TRADE_BBS_FAIL1     "등록을 실?槿臼늄윱求?."
+    IDS_TRADE_BBS_FAIL2     "노아가 부족?爛求?."
+    IDS_TRADE_BBS_FAIL3     "등록 ?蠻┯? 실?槿臼늄윱求?."
+    IDS_TRADE_BBS_FAIL4     "실?槿臼늄윱求?. 새로고침을 ?絿駕첼?."
+    IDS_TRADE_BBS_FAIL5     "거래 신청이 실?槿臼늄윱求?."
+    IDS_TRADE_BBS_FAIL6     "상거래 게시??을 열수가 없습니다."
+    IDS_OTHER_PER_TRADE_ID_NO "상대방이 거래를 거절?臼늄윱求?."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_FONT_BALLOON        "굴림체"
+    IDS_FONT_ID             "굴림체"
+    IDS_FONT_INFO           "굴림체"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CLASS_KINDOF_ATTACK_WIZARD "공격 마법사 직업군"
+    IDS_CLASS_KINDOF_PET_WIZARD "?? 마법사 직업군"
+    IDS_CLASS_KINDOF_HEAL_PRIEST "?? 사제 직업군"
+    IDS_CLASS_KINDOF_CURSE_PRIEST "저주 사제 직업군"
+END
+
+#endif    // Korean (Korea) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (Traditional, Taiwan) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_BIND_POINT_FAILED   "復活地點指定失敗"
+    IDS_BIND_POINT_REQUEST_FAIL "距離太遠"
+    IDS_BIND_POINT_SUCCESS  "復活地點指定成功"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CHAT_SELECT_TARGET_FAIL "悄悄話設定失敗."
+    IDS_CHAT_SELECT_TARGET_SUCCESS "與(對方)的悄悄話設定完成."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CHR_SELECT_FMT_INFO "等級 : %d \n\n職業 : %s\n\nI D : %s"
+    IDS_CHR_SELECT_HINT     "\n\n按下滑鼠的左鍵， 就能\n\n開始創造一個新角色."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CLASS_CHANGE_ALREADY "最近如何啊?為了勝利,需要向你這樣的人們的努力啊."
+    IDS_CLASS_CHANGE_NOT_YET "你還需要多多修練啊."
+    IDS_CLASS_CHANGE_SUCCESS "你已經有資格轉換職業了. 現在有兩個職業可以轉, 你要選擇哪一個呢?"
+    IDS_CLASS_KINDOF_WARRIOR "戰士係職業"
+    IDS_CLASS_KINDOF_ROGUE  "弓箭手係職業"
+    IDS_CLASS_KINDOF_WIZARD "法師係職業"
+    IDS_CLASS_KINDOF_PRIEST "祭司係職業"
+    IDS_CLASS_KINDOF_ATTACK_WARRIOR "攻擊型戰士職業"
+    IDS_CLASS_KINDOF_DEFEND_WARRIOR "防禦型戰士職業"
+    IDS_CLASS_KINDOF_ARCHER "狙擊係職業"
+    IDS_CLASS_KINDOF_ASSASSIN "殺手係職業"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CLASS_KINDOF_ATTACK_WIZARD "攻擊型法師職業"
+    IDS_CLASS_KINDOF_PET_WIZARD "輔助型法師職業"
+    IDS_CLASS_KINDOF_HEAL_PRIEST "治癒型祭司職業"
+    IDS_CLASS_KINDOF_CURSE_PRIEST "詛咒型祭司職業"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CLASS_EL_ASSASIN    "殺手"
+    IDS_CLASS_EL_BLADE      "劍士"
+    IDS_CLASS_EL_CLERIC     "牧師"
+    IDS_CLASS_EL_DRUID      "自然祭使"
+    IDS_CLASS_EL_ENCHANTER  "幻術師"
+    IDS_CLASS_EL_MAGE       "術士"
+    IDS_CLASS_EL_PROTECTOR  "護衛"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CLASS_EL_RANGER     "遊俠"
+    IDS_CLASS_KA_BERSERKER  "狂戰士"
+    IDS_CLASS_KA_DARKPRIEST "黑暗祭司"
+    IDS_CLASS_KA_GUARDIAN   "守護者"
+    IDS_CLASS_KA_HUNTER     "獵人"
+    IDS_CLASS_KA_NECROMANCER "死靈法師"
+    IDS_CLASS_KA_PENETRATOR "刺客"
+    IDS_CLASS_KA_SHAMAN     "巫醫"
+    IDS_CLASS_KA_SORCERER   "巫師"
+    IDS_CLASS_PRIEST        "祭司"
+    IDS_CLASS_ROGUE         "弓箭手"
+    IDS_CLASS_UNKNOWN       "未確認之職業"
+    IDS_CLASS_WARRIOR       "戰士"
+    IDS_CLASS_WIZARD        "魔法師"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CONFIRM_DELETE_CHR  "要永遠刪除此角色嗎?"
+    IDS_CONFIRM_EXIT_GAME   "要離開遊戲嗎？"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CONNECTION_CLOSED   "與伺服器連線中斷"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_MANY_COUNTABLE_ITEM_BUY_FAIL "無法購買超過9999個物品"
+    IDS_COUNTABLE_ITEM_BUY_NOT_ENOUGH_MONEY "金幣不足."
+    IDS_MANY_COUNTABLE_ITEM_GET_MANY "無法攜帶超過9999個物品"
+    IDS_MANY_COUNTABLE_ITEM_TOO_MAMY "無法攜帶超過9999個物品"
+    IDS_SMALL_COUNTABLE_ITEM_BUY_FAIL "無法購買超過 500 個相同的物品."
+    IDS_SMALL_COUNTABLE_ITEM_GET_MANY "身上無法擁有超過 500 個相同的物品."
+    IDS_SMALL_COUNTABLE_ITEM_TOO_MAMY "身上無法擁有超過 500 個物品."
+    IDS_ITEM_TOOMANY_OR_HEAVY "身上的物品超過重量或數量限制."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_DOOR_CLOSED         "城門已關閉"
+    IDS_DOOR_OPENED         "城門打開了"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_LOGIN_FAILED        "登入失敗"
+    IDS_LOGIN_ERR_ALREADY_CONNECTED_ACCOUNT "連線失敗. 請重新嘗試."
+    IDS_NOACCOUNT_RETRY_MGAMEID "此帳號尚未註冊,請用其他帳號試試看"
+    IDS_NO_MGAME_ACCOUNT    "沒有這個角色名稱."
+    IDS_FMT_CONNECT_ERROR   "%s 伺服器正在維護中.(%d)"
+    IDS_FMT_GAME_SERVER_LOGIN_ERROR "%s 遊戲伺服器登入失敗.(%d)"
+    IDS_SERVER_CONNECT_FAIL "伺服器登入失敗"
+    IDS_CURRENT_SERVER_ERROR "發生錯誤"
+    IDS_CONNECT_FAIL        "登入失敗"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_CHARACTER_SELECT "角色創造失敗"
+    IDS_DROPPED_NOAH_GET    "取得 %d 金幣"
+    IDS_DURABILITY_EXOAST   "攻擊力下降 %s"
+    IDS_ITEM_GET_BY_RULE    "你取得 %s."
+    IDS_OTHER_PER_TRADE_NO  "%s 拒絕了交易."
+    IDS_PER_TRADE_FAIL      "交易失敗."
+    IDS_OTHER_PER_TRADE_CANCEL "%s 取消了交易."
+    IDS_ITEM_KIND_BRONS     "青銅"
+    IDS_ITEM_KIND_SILVER    "銀"
+    IDS_ITEM_KIND_GOLDEN    "金"
+    IDS_ITEM_KIND_PLATINUM  "白金"
+    IDS_ITEM_KIND_CRIMSON   "深白金"
+    IDS_ITEM_KIND_LUNA      "白銀"
+    IDS_ITEM_KIND_SOLAR     "精金"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_EDIT_BOX_GOLD       "請輸入金額"
+    IDS_EDIT_BOX_COUNT      "請輸入數量"
+    IDS_SKILL_INFO_BASE     "轉職之前，所學會的基本技能或法術."
+    IDS_SKILL_INFO_BLADE0   "提昇使用左手武器的能力(雙刀)"
+    IDS_SKILL_INFO_BLADE1   "提昇使用雙手重型武器的能力."
+    IDS_SKILL_INFO_BLADE2   "提升各種防禦性技巧的能力."
+    IDS_SKILL_INFO_BLADE3   "提升各種特殊性質的攻擊性技能."
+    IDS_SKILL_INFO_RANGER0  "提升各種弓箭的應用技巧與攻擊性技能."
+    IDS_SKILL_INFO_RANGER1  "提升各種標槍的應用技巧與攻擊性技能"
+    IDS_SKILL_INFO_RANGER2  "提升各種求生方面的技巧，並可學會一些治癒性質的能力"
+    IDS_SKILL_INFO_RANGER3  "提升馴服動物的技巧."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_CHARACTER_CREATE "角色生成失敗"
+    IDS_ERR_DB_CREATE       "資料庫發生錯誤"
+    IDS_ERR_GOTO_TOWN_OUT_OF_HP "生命力只有一半以下,無法回到村莊."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_INVALID_CLASS   "請選擇職業"
+    IDS_ERR_INVALID_NAME    "請輸入角色ID"
+    IDS_ERR_INVALID_NAME_HAS_SPECIAL_LETTER "此角色名稱無法使用,請使用其他名稱."
+    IDS_ERR_INVALID_NATION_RACE "所選的國家與種族不合."
+    IDS_ERR_INVALID_RACE    "請選擇種族"
+    IDS_ERR_KNIGHTS_CREATE_FAILED_NAME_EMPTY "創造騎士團,必須要有名稱."
+    IDS_ERR_NOT_SUPPORTED_RACE "此種族目前還未開放"
+    IDS_ERR_NO_MORE_CHARACTER "無法再創造角色"
+    IDS_ERR_OVERLAPPED_ID   "名稱重複,已經有使用此ID來生成的角色."
+    IDS_ERR_REMAIN_BONUS_POINT "點數尚未分配完成."
+    IDS_ERR_REQUEST_OBJECT_EVENT_SO_FAR "離目標距離太遠"
+    IDS_ERR_UNKNOWN         "無法得知的錯誤."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_EXIT                "要離開遊戲嗎？"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_FMT_CONCURRENT_USER_COUNT "*** 目前同時上線人數 %d 名 ***"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_FONT_BALLOON        "MingLiU"
+    IDS_FONT_ID             "MingLiU"
+    IDS_FONT_INFO           "MingLiU"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_HELP_TIP8           "修復物品的耐久度請找鐵匠."
+    IDS_HELP_TIP9           "物品倉庫 : 在旅館主人身上按右鍵."
+    IDS_HELP_TIP10          "轉職 : 等級10以上後,便可以轉職."
+    IDS_HELP_TIP11          "獲得物品 : 在怪物屍體上按右鍵."
+    IDS_HELP_TIP12          "走路/跑步 : 'Ctrl+T'"
+    IDS_HELP_TIP13          "攻擊 開始/停止 : 'Ctrl+R' 或者雙擊滑鼠"
+    IDS_HELP_TIP14          "視點切換 : 熱鍵'F9'"
+    IDS_HELP_TIP15          "人物移動:使用鍵盤之方向鍵"
+    IDS_HELP_TIP16          "使用技能或魔法 : 雙擊熱鍵窗圖示或按 'Ctrl + 1-8'."
+    IDS_HELP_TIP17          "組隊後，獲得經驗值將會提高"
+    IDS_HELP_TIP18          "徵求隊伍 : '/recruitparty"
+    IDS_HELP_TIP19          "申請組隊 : '/party'"
+    IDS_HELP_TIP20          "物品交易 : 點選目標後輸入 '/trade'"
+    IDS_HELP_TIP21          "隊伍聊天 : 在聊天視窗上點選'隊伍'鍵"
+    IDS_HELP_TIP22          "一般聊天 : 在聊天視窗上點選'輕聲'鍵."
+    IDS_HELP_TIP23          "屬性點數 : 每提升一個等級，可獲得3點屬性點數."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_HELP_TIP24          "技能點數 : 等級10以上， 每升一次等級加2點技能點數."
+    IDS_HELP_TIP25          "丟棄物品 : 將道具拖曳到裝備欄紅色標示格的位置."
+    IDS_HELP_TIP26          "查看說明 : 把滑鼠移動到要查看的物品或技能的圖示上"
+    IDS_HELP_TIP27          "密語 : '/whisper' 對方ID."
+    IDS_HELP_TIP28          "查看小地圖 : 'Ctrl+M'  而地圖上的紅點或橘點顯示為敵人、藍點則是友方、黃色是隊伍成員"
+    IDS_HELP_TIP29          "熱鍵視窗換頁 : PageUp / PageDown"
+    IDS_HELP_TIP30          "在第三人稱視角模式下，可使用 'Home / End' 來調整螢幕顯示的角度"
+    IDS_HELP_TIP_ALL        "[系統訊息!]"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_HELP_TIP1           "坐下快速恢復 - 'Ctrl+C'"
+    IDS_HELP_TIP2           "在第三人稱視角的模式下，可使用滑鼠移動來控制角色"
+    IDS_HELP_TIP3           "切換 走路/跑步 - 點選螢幕下方 走路/跑步 圖示"
+    IDS_HELP_TIP4           "直接移動回村莊時鍵入 '/town'"
+    IDS_HELP_TIP5           "指定最近距離的怪物作為目標 - 'Ctrl+Z'"
+    IDS_HELP_TIP6           "設定熱鍵 : 將技能視窗裡的圖示拖曳到熱鍵視窗內即可"
+    IDS_HELP_TIP7           "指定復活地點 :  在復活石碑上按右鍵."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_INV_ITEM_FULL       "身上的物品已滿，無法取得更多物品了."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ITEM_ATTRIB_CRAFT   "戰爭物品"
+    IDS_ITEM_ATTRIB_GENERAL "一般物品"
+    IDS_ITEM_ATTRIB_LAIR    "強化物品"
+    IDS_ITEM_ATTRIB_MAGIC   "魔法物品"
+    IDS_ITEM_ATTRIB_UNIQUE  "特殊物品"
+    IDS_ITEM_ATTRIB_UPGRADE "稀有物品"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ITEM_CLASS_AMULET   "項鍊"
+    IDS_ITEM_CLASS_ARMOR_MAGE "法師專用"
+    IDS_ITEM_CLASS_ARMOR_PRIEST "祭司專用"
+    IDS_ITEM_CLASS_ARMOR_ROGUE "弓箭手專用"
+    IDS_ITEM_CLASS_ARMOR_WARRIOR "戰士專用"
+    IDS_ITEM_CLASS_ARROW    "箭"
+    IDS_ITEM_CLASS_AXE      "斧頭"
+    IDS_ITEM_CLASS_AXE_2H   "雙手斧頭"
+    IDS_ITEM_CLASS_BELT     "腰帶"
+    IDS_ITEM_CLASS_BOW      "弓"
+    IDS_ITEM_CLASS_BOW_CROSS "十字弓"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ITEM_CLASS_BOW_LONG "長弓"
+    IDS_ITEM_CLASS_CHARM    "首飾"
+    IDS_ITEM_CLASS_DAGGER   "短劍"
+    IDS_ITEM_CLASS_EARRING  "耳環"
+    IDS_ITEM_CLASS_ETC      "其他"
+    IDS_ITEM_CLASS_JAVELIN  "標槍"
+    IDS_ITEM_CLASS_JEWEL    "寶石"
+    IDS_ITEM_CLASS_MACE     "釘頭槌"
+    IDS_ITEM_CLASS_MACE_2H  "雙手釘頭槌"
+    IDS_ITEM_CLASS_POLEARM  "長槍"
+    IDS_ITEM_CLASS_POTION   "藥水"
+    IDS_ITEM_CLASS_RING     "戒指"
+    IDS_ITEM_CLASS_SCROLL   "卷軸"
+    IDS_ITEM_CLASS_SHIELD   "盾"
+    IDS_ITEM_CLASS_SPEAR    "矛"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ITEM_CLASS_STAFF    "法杖"
+    IDS_ITEM_CLASS_SWORD    "單手劍"
+    IDS_ITEM_CLASS_SWORD_2H "雙手劍"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ITEM_KIND_ANCIENT   "古代金屬"
+    IDS_ITEM_KIND_MISTIQ    "密銀"
+    IDS_TOOLTIP_NOAH        "金幣 %d"
+    IDS_TOOLTIP_REPAIR_PRICE "修復費用"
+    IDS_TOOLTIP_CANNOT      "此物品無法修復."
+    IDS_POINTINIT_NOT_ENOUGH_NOAH "金幣不足."
+    IDS_POINTINIT_ALREADY   "條件不足."
+    IDS_NOAH_CHANGE_GET     "獲得 %d 金幣."
+    IDS_NOAH_CHANGE_LOST    "損失 %d 金幣."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CLAN_DENY_LOWLEVEL  "抱歉，你的資格不符"
+    IDS_CLAN_DENY_LOWGOLD   "金額不足，手續費是 %d 金幣"
+    IDS_CLAN_DENY_INVALIDDAY "暫時無法申請創立軍團"
+    IDS_CLAN_DENY_ALREADYJOINED "已加入其他軍團，故無法創立軍團"
+    IDS_CLAN_DENY_UNKNOWN   "暫時無法創立軍團"
+    IDS_CLAN_MAKE_SUCCESS   "恭喜你已經正式成為軍團團長"
+    IDS_CLAN_WARNING_COST   "正式成立軍團，手續費 %d 金幣已繳清"
+    IDS_CLAN_INPUT_NAME     "勇敢的朋友，歡迎你！請替你的軍團取一個響亮的名字"
+    IDS_CLAN_REINPUT_NAME   "抱歉，這個名字已有人使用過，請取其他名字"
+    IDS_CLAN_WITHDRAW_SUCCESS "退出軍團成功"
+    IDS_CLAN_WITHDRAW_FAIL  "退出軍團失敗"
+    IDS_CLAN_JOIN_SUCCESS   "加入軍團成功"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ITEM_WEIGHT_OVERFLOW "超出重量或數量限制."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_KNIGHTS_ADMIT_FAILED "升級成為騎士團失敗"
+    IDS_KNIGHTS_ADMIT_SUCCESS "恭喜你的軍團已正式升級為騎士團"
+    IDS_KNIGHTS_APPOINT_CHIEF_FAILED "騎士團長任命失敗"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_KNIGHTS_APPOINT_CHIEF_SUCCESS "騎士團長任命成功"
+    IDS_KNIGHTS_APPOINT_OFFICER_FAILED "軍官任命失敗"
+    IDS_KNIGHTS_APPOINT_OFFICER_SUCCESS "軍官任命成功"
+    IDS_KNIGHTS_APPOINT_VICECHIEF_FAILED "騎士團副團長任命失敗"
+    IDS_KNIGHTS_APPOINT_VICECHIEF_SUCCESS "騎士團副團長任命成功"
+    IDS_KNIGHTS_CREATE_FAILED "創造騎士團失敗"
+    IDS_KNIGHTS_CREATE_SUCCESS "創造騎士團成功"
+    IDS_KNIGHTS_DESTROY_CONFIRM "要解散騎士團嗎?"
+    IDS_KNIGHTS_DESTROY_FAILED "騎士團解散失敗"
+    IDS_KNIGHTS_DESTROY_SUCCESS "騎士團解散成功"
+    IDS_KNIGHTS_DUTY_CHIEF  "騎士團長"
+    IDS_KNIGHTS_DUTY_KNIGHT "騎士"
+    IDS_KNIGHTS_DUTY_OFFICER "參謀"
+    IDS_KNIGHTS_DUTY_PUNISH "懲戒中"
+    IDS_KNIGHTS_DUTY_TRAINEE "見習騎士"
+    IDS_KNIGHTS_DUTY_UNKNOWN "沒有"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_KNIGHTS_DUTY_VICECHIEF "副團長"
+    IDS_KNIGHTS_JOIN_FAILED "加入騎士團失敗"
+    IDS_KNIGHTS_JOIN_SUCCESS "加入騎士團成功"
+    IDS_KNIGHTS_PUNISH_FAILED "懲戒騎士團員失敗"
+    IDS_KNIGHTS_PUNISH_SUCCESS "懲戒騎士團員成功"
+    IDS_KNIGHTS_REJECT_FAILED "騎士團拒絕你的加入申請"
+    IDS_KNIGHTS_REJECT_SUCCESS "騎士團同意你的加入申請"
+    IDS_KNIGHTS_REMOVE_MEMBER_FAILED "騎士團組員除名失敗"
+    IDS_KNIGHTS_REMOVE_MEMBER_SUCCESS "騎士團組員除名成功"
+    IDS_KNIGHTS_WITHDRAW_CONFIRM "要脫離騎士團嗎?"
+    IDS_KNIGHTS_WITHROW_FAILED "騎士團脫離失敗"
+    IDS_KNIGHTS_WITHROW_SUCCESS "成功的脫離了騎士團"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_LEVER_ACTIVATE      "閘門已啟動"
+    IDS_LEVER_DEACTIVATE    "閘門已關閉"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_MSG_ATTACK_DISABLE  "距離太遠或方向錯誤,無法進行攻擊"
+    IDS_MSG_ATTACK_START    "開始攻擊"
+    IDS_MSG_ATTACK_STOP     "停止攻擊"
+    IDS_MSG_CASTING_FAIL_LACK_MP "法力不足"
+    IDS_MSG_FMT_EXP_GET     "得到 %d 經驗值"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_MSG_FMT_EXP_LOST    "失去 %d 經驗值"
+    IDS_MSG_FMT_HP_LOST     "失去 %d 生命力"
+    IDS_MSG_FMT_HP_RECOVER  "恢復 %d 生命力"
+    IDS_MSG_FMT_MP_RECOVER  "恢復 %d 法力"
+    IDS_MSG_FMT_MP_USE      "使用 %d 法力"
+    IDS_MSG_FMT_SP_RECOVER  "恢復 %d SP"
+    IDS_MSG_FMT_SP_USE      "使用 %d SP"
+    IDS_MSG_FMT_TARGET_ATTACK_FAILED "%s 攻擊失敗."
+    IDS_MSG_FMT_TARGET_HP_LOST "對 %s 造成了 %d 傷害"
+    IDS_MSG_FMT_TARGET_HP_RECOVER "%s 的生命力恢復了 %d "
+    IDS_MSG_VALID_CLASSNRACE_INVALID_RACE "種族不符,所以無法裝備."
+    IDS_MSG_VALID_CLASSNRACE_LOW_CHA "魔力太低，所以無法裝備."
+    IDS_MSG_VALID_CLASSNRACE_LOW_DEX "敏捷太低,所以無法裝備."
+    IDS_MSG_VALID_CLASSNRACE_LOW_INT "智力太低，所以無法裝備"
+    IDS_MSG_VALID_CLASSNRACE_LOW_LEVEL "等級太低，所以無法裝備"
+    IDS_MSG_VALID_CLASSNRACE_LOW_POWER "力量太低，所以無法裝備."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_MSG_VALID_CLASSNRACE_LOW_RANK "職位太低, 所以無法裝備."
+    IDS_MSG_VALID_CLASSNRACE_LOW_STR "精力太低,所以無法裝備."
+    IDS_MSG_VALID_CLASSNRACE_LOW_TITLE "頭銜太低,所以無法裝備"
+    IDS_MSG_CONCURRENT_USER_OVERFLOW "該區域人數已飽和"
+    IDS_MSG_VALID_CLASSNRACE_INVALID_CLASS "職業不符，無法裝備"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_NATION_ELMORAD      "愛墨爾"
+    IDS_NATION_KARUS        "卡魯斯"
+    IDS_NATION_UNKNOWN      "未確認之國家"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_NEWCHR_MAP          "此能力會影響角色魔法威力與成功率的能力."
+    IDS_NEWCHR_DEX          "此能力是角色在與敵人戰鬥時，影響命中率與迴避率的數值， 並且決定發射性武器的威力."
+    IDS_NEWCHR_EL_BABA      "野蠻人是擁有強韌肉體的北方戰士,無法選擇戰士以外的職業."
+    IDS_NEWCHR_EL_FEMALE    "艾莫爾女性是擁有高度智力與魔力的角色."
+    IDS_NEWCHR_EL_MAGE      "魔法師可以培養成利用四大元素的力量來驅使攻擊魔法的術士與支配精神的幻術師"
+    IDS_NEWCHR_EL_MALE      "艾莫爾男性是體力與智力均勻的角色，適合所有的職業."
+    IDS_NEWCHR_EL_PRIEST    "祭司可培養成治療同伴為主的牧師或提高同伴能力或召喚大自然協助的自然祭使."
+    IDS_NEWCHR_EL_ROGUE     "弓箭手可培養成利用遠距離武器狙擊敵人的遊俠或是隱藏氣息無聲無息暗殺掉致命敵人的殺手."
+    IDS_NEWCHR_EL_WARRIOR   "戰士可以培養成各種武器專家的劍士或是防禦性技巧一流，以保護魔法師與祭司為使命的護衛"
+    IDS_NEWCHR_INT          "魔法師與祭司的精神能力指標，會影響到法力的最大上限."
+    IDS_NEWCHR_KA_ARKTUAREK "亞克圖人是把肉體的能力極至強化的種族，只能成為戰士."
+    IDS_NEWCHR_KA_MAGE      "魔法師可以培養成利用四大元素的力量驅使攻擊魔法的巫師或奴役死者的主人死靈法師"
+    IDS_NEWCHR_KA_PRIEST    "祭司可培養成治療同伴為主的巫醫或詛咒能力強的黑暗祭司"
+    IDS_NEWCHR_KA_PURITUAREK "突雷克女性具有高度的淨化精神力，可以選擇成為祭司."
+    IDS_NEWCHR_KA_ROGUE     "弓箭手可培養成利用遠距離武器狙擊敵人的獵人或是隱藏氣息無聲無息暗殺掉致命敵人的刺客."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_NEWCHR_KA_TUAREK    "突雷克人是肉體與精神能力都很均勻的種族， 並可選擇弓箭手或祭司的職業"
+    IDS_NEWCHR_KA_WARRIOR   "戰士可以培養成可以使用所有攻擊性武器的狂戰士與防禦技巧高超並以保護魔法師與祭司為使命的守護者"
+    IDS_NEWCHR_KA_WRINKLETUAREK "突雷克智者是為了驅使強力的魔法，而強化智力的種族，\\突雷克智者只能成為魔法師"
+    IDS_NEWCHR_POW          "此能力會影響角色的基本物理攻擊力與負重."
+    IDS_NEWCHR_STA          "這是決定角色生命力的能力"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_NPCEVENT_TITLE_REPAIR "要買東西或修東西就儘管開口吧，我可是城內首屈一指的鐵匠。"
+    IDS_NPC_EVENT_TITLE_TRADE "我這裡有很多寶物，請隨意看看"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PARTY_CONFIRM_DESTROY "要解散隊伍嗎?"
+    IDS_PARTY_CONFIRM_DISCHARGE "將(對方)剔除出隊伍."
+    IDS_PARTY_CONFIRM_LEAVE "要脫離隊伍嗎?"
+    IDS_PARTY_DESTROY       "隊伍已經解散了"
+    IDS_PARTY_INSERT        "(對方)邀請您加入隊伍.要加入嗎"
+    IDS_PARTY_INSERT_ERR    "對方拒絕加入隊伍"
+    IDS_PARTY_INSERT_ERR_INVALID_NATION "無法與不同國家的玩家組隊"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PARTY_INSERT_ERR_LEVEL_DIFFERENCE "等級差異過大無法進行組隊."
+    IDS_PARTY_INSERT_ERR_REJECTED "對方拒絕加入隊伍"
+    IDS_PARTY_INVITE        "邀請 %s 加入隊伍.正在等待回應中."
+    IDS_PARTY_INVITE_FAILED "無法讓(對方)加入隊伍."
+    IDS_PARTY_ITEM_GET      "%s 獲得了 %s."
+    IDS_PARTY_LEAVE         "您已經脫離了隊伍"
+    IDS_PARTY_PERMIT        "%d邀請您加入隊伍，要加入隊伍嗎？"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PER_TRADEING_OTHER  "與玩家進行交易途中,又有其他玩家提出交易申請了"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PERSONAL_TRADE_FMT_WAIT "%s 向 %s 提出交易. 目前正在等回應中."
+    IDS_PERSONAL_TRADE_PERMIT "%s 收到了 %s 提出的交易. 要接受嗎?"
+    IDS_PERSONAL_TRADE_REQUEST "向(對方)提出了交易的請求"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_RACE_ALL            "所有種族"
+    IDS_RACE_EL_BABARIAN    "野蠻人"
+    IDS_RACE_EL_MAN         "艾莫爾男性"
+    IDS_RACE_EL_WOMEN       "艾莫爾女性"
+    IDS_RACE_KA_ARKTUAREK   "亞克圖人"
+    IDS_RACE_KA_PURITUAREK  "突雷克女性"
+    IDS_RACE_KA_TUAREK      "突雷克人"
+    IDS_RACE_KA_WRINKLETUAREK "突雷客智者"
+    IDS_RACE_UNKNOWN        "未確認之種族"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_REGENERATION        "要復活嗎？復活後會回到村莊或復活地點"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_REPAIR_LACK_GOLD    "修理費用不足"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_REQUEST_BINDPOINT   "要指定這裡為復活地點嗎?"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SKILL_FAIL_CASTING  "使用技能失敗"
+    IDS_SKILL_FAIL_DIFFURENTCLASS "此技能或魔法無法使用."
+    IDS_SKILL_FAIL_EFFECTING "%s 失效"
+    IDS_SKILL_FAIL_INVALID_ITEM "物品不合"
+    IDS_SKILL_FAIL_LACK_HP  "生命力不足"
+    IDS_SKILL_FAIL_LACK_ITEM "物品不足"
+    IDS_SKILL_FAIL_LACK_SP  " SP不足"
+    IDS_SKILL_FAIL_SOFAR    "距離太遠"
+    IDS_SKILL_FAIL_OBJECT_BLOCK "使用技能失敗-與目標之間有障礙物阻擋"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SKILL_INFO_MAGE0    "提升驅使火焰元素的魔法."
+    IDS_SKILL_INFO_MAGE1    "提升驅使寒冰元素的魔法."
+    IDS_SKILL_INFO_MAGE2    "提升驅使雷電元素的魔法."
+    IDS_SKILL_INFO_MAGE3    "提升各類型輔助與召喚型態的魔法"
+    IDS_SKILL_INFO_CLERIC0  "提升各種治癒性質的神術."
+    IDS_SKILL_INFO_CLERIC1  "提升各種提高各種能力值的神術."
+    IDS_SKILL_INFO_CLERIC2  "提升各種攻擊性質的神術，並可學會一些特殊的移動神術."
+    IDS_SKILL_INFO_CLERIC3  "神秘的禁咒，學習方法不明."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SKILL_POINT_BEFORE_CLASS_CHANGE "目前還未轉職， 所以無法提昇轉職後的技能或法術."
+    IDS_SKILL_POINT_EXTRA_NOT_EXIST "沒有所剩的技能點數了."
+    IDS_SKILL_POINT_NOT_YET "這是還未開放的技能或法術."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SKILL_SUCCESS_HEALING_FROM "%s 治療您 %d"
+    IDS_SKILL_SUCCESS_HEALING_TO "向 %s 治療了 %d"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SKILL_TOOLTIP_DOUBLE "要求裝備 : 雙手重型武器"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_DUAL "要求裝備: 二刀流"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID1 "要求裝備 : 所有武器"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID10 "要求裝備: 腕甲"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID11 "要求裝備 : 法杖"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID12 "要求裝備 : 箭"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID13 "要求裝備 : 標槍"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID14 "要求裝備 : 戰士防具"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID15 "要求裝備 : 弓箭手防具"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID16 "要求裝備 : 法師防具"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID17 "要求裝備 : 祭司防具"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID2 "要求裝備 : 短劍"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID3 "要求裝備 : 劍"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID4 "要求裝備 : 斧頭"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID5 "要求裝備 : 重擊武器"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID6 "要求裝備 : 矛"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID7 "要求裝備 : 盾"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID8 "要求裝備 : 弓"
+    IDS_SKILL_TOOLTIP_NEED_ITEM_ID9 "要求裝備 : 長弓"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SKILL_TOOLTIP_NO_MANA "法力不足"
+    IDS_SKILL_TOOLTIP_USE_ITEM_EXIST "消耗物品 : %s"
+    IDS_SKILL_TOOLTIP_USE_ITEM_NO "沒有可消耗的物品"
+    IDS_SKILL_TOOLTIP_USE_MANA "消耗法力 : %d"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SKILL_UP_INVALID    "技能或法術等級不能超過本身的等級"
+    IDS_SKILL_USE           "使用 %s."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TOOLTIP_ATTACKINT_FAST "攻擊速度     : 快速"
+    IDS_TOOLTIP_ATTACKINT_NORMAL "攻擊速度     : 普通"
+    IDS_TOOLTIP_ATTACKINT_SLOW "攻擊速度     : 緩慢"
+    IDS_TOOLTIP_ATTACKINT_VERYFAST "攻擊速度     : 非常快速"
+    IDS_TOOLTIP_ATTACKINT_VERYSLOW "攻擊速度     : 非常緩慢"
+    IDS_TOOLTIP_ATTACKRANGE "有效距離     : %.2f"
+    IDS_TOOLTIP_ATTRMAGIC1  "火炎傷害追加 : %d"
+    IDS_TOOLTIP_ATTRMAGIC2  "冷氣傷害追加 : %d"
+    IDS_TOOLTIP_ATTRMAGIC3  "電擊傷害追加 : %d"
+    IDS_TOOLTIP_ATTRMAGIC4  "毒素傷害追加 : %d"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TOOLTIP_ATTRMAGIC5  "敵方生命吸收 : %d"
+    IDS_TOOLTIP_ATTRMAGIC6  "敵方法力傷害 : %d"
+    IDS_TOOLTIP_ATTRMAGIC7  "敵方法力吸收 : %d"
+    IDS_TOOLTIP_AVOIDRATE_OVER "迴避率增加 %d%%"
+    IDS_TOOLTIP_AVOIDRATE_UNDER "迴避率減少 %d%%"
+    IDS_TOOLTIP_BONUSMAGICATTACK "魔力額外增加 %d 點"
+    IDS_TOOLTIP_BONUSDEX    "敏捷額外增加 %d 點"
+    IDS_TOOLTIP_BONUSHP     "生命力額外增加 %d 點"
+    IDS_TOOLTIP_BONUSINT    "智力額外增加 %d 點"
+    IDS_TOOLTIP_BONUSSTR    "力量額外增加 %d 點"
+    IDS_TOOLTIP_BONUSWIZ    "法力額外增加 %d 點"
+    IDS_TOOLTIP_BUY_PRICE   "購買的價錢   : %d"
+    IDS_TOOLTIP_CUR_DURABILITY "耐久度       : %d"
+    IDS_TOOLTIP_DAMAGE      "攻擊力       : %d"
+    IDS_TOOLTIP_DEFENSE     "防禦力       : %d"
+    IDS_TOOLTIP_DEFENSE_RATE_ARROW "箭防禦力     : %d"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_VERSION_CONFIRM     "此client的版本為 %.3f , 要連接伺服器必須要有 %.3f 版本."
+    IDS_TOOLTIP_BONUSSTA    "體質額外增加 %d 點"
+    IDS_VERSION_CONFIRM_TW  "版本錯誤，請更新到最新版本."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TOOLTIP_DEFENSE_RATE_AXE "斧頭防禦力    : %d"
+    IDS_TOOLTIP_DEFENSE_RATE_BLOW "重擊防禦力   : %d"
+    IDS_TOOLTIP_DEFENSE_RATE_DAGGER "短劍防禦力   : %d"
+    IDS_TOOLTIP_DEFENSE_RATE_SPEAR "矛防禦力     : %d"
+    IDS_TOOLTIP_DEFENSE_RATE_SWORD "劍防禦力     : %d"
+    IDS_TOOLTIP_GOLD        "金幣"
+    IDS_TOOLTIP_HITRATE_OVER "命中率增加 %d%%"
+    IDS_TOOLTIP_HITRATE_UNDER "命中率減少 %d%%"
+    IDS_TOOLTIP_MAX_DURABILITY "最大耐久力   : %d"
+    IDS_TOOLTIP_NEEDMAGICATTACK "魔力限制     : %d"
+    IDS_TOOLTIP_NEEDDEXTERITY "敏捷限制     : %d"
+    IDS_TOOLTIP_NEEDINTELLI "智力限制     : %d "
+    IDS_TOOLTIP_NEEDLEVEL   "等級限制     : %d"
+    IDS_TOOLTIP_NEEDRANK    "職位限制     : %d"
+    IDS_TOOLTIP_NEEDSTAMINA "體質限制     : %d"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TOOLTIP_NEEDSTRENGTH "力量限制     : %d"
+    IDS_TOOLTIP_NEEDTITLE   "名聲限制     : %d"
+    IDS_TOOLTIP_REGISTCURSE "詛咒抵抗     : %d"
+    IDS_TOOLTIP_REGISTELEC  "電擊抵抗     : %d "
+    IDS_TOOLTIP_REGISTFIRE  "火焰抵抗     : %d"
+    IDS_TOOLTIP_REGISTICE   "冷氣抵抗     : %d"
+    IDS_TOOLTIP_REGISTMAGIC "魔法抵抗     : %d"
+    IDS_TOOLTIP_REGISTPOISON "毒素抵抗     : %d"
+    IDS_TOOLTIP_SELL_PRICE  "販賣的價錢   : %d"
+    IDS_TOOLTIP_WEIGHT      "重量         : %.2f"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TRY_SPEED_HACKING   "應用程式發生錯誤,系統即將關閉,若有疑問請洽您的系統管理員"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_MSG_HASITEMINSLOT   "目前無法更改屬性值"
+    IDS_ERR_REQUEST_NPC_EVENT_SO_FAR "距離太遠."
+    IDS_WRONG_PASSWORD      "密碼錯誤"
+    IDS_WANT_PARTY_MEMBER   "徵求隊伍：等級 %d ~ %d"
+    IDS_SETTING_KARUS_SCREEN "\n\n卡魯斯角色設定畫面."
+    IDS_SETTING_ELMORAD_SCREEN "\n\n艾莫爾角色設定畫面."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CLAN_JOIN_FAIL_CLAN_FULL "超過人數上限"
+    IDS_CLAN_JOIN_FAIL_NONE_CLAN "沒有這個軍團"
+    IDS_CLAN_JOIN_FAIL_INVALIDRIGHT "權限不足"
+    IDS_CLAN_JOIN_FAIL_OTHER_CLAN_USER "這名玩家已經加入其他的軍團"
+    IDS_CLAN_JOIN_FAIL_ENEMY_USER "國家不同無法加入"
+    IDS_CLAN_JOIN_FAIL_DEAD_USER "該玩家已死亡，請等該玩家復活後重新執行"
+    IDS_CLAN_JOIN_FAIL_NONE_USER "沒有這名玩家"
+    IDS_CLAN_COMMON_FAIL_ME "命令無效"
+    IDS_CLAN_COMMON_FAIL_NOTJOINED "對方還未加入，無法執行此命令"
+    IDS_CLAN_JOIN_REQ       "要加入 %s 軍團嗎？"
+    IDS_CLAN_JOIN_REJECT    "對方拒絕"
+    IDS_CLAN_COMMON_FAIL_BATTLEZONE "本地區無法執行此命令"
+    IDS_CONFIRM_EXECUTE_OPTION "遊戲結束後才可調整選項. 要繼續嗎?"
+    IDS_REQUEST_GAME_SAVE   "檔案已儲存."
+    IDS_DELAY_GAME_SAVE     "%d分鐘以後才能繼續儲存."
+    IDS_CLAN_DENY_INVALID_SERVER "億煎遴 憮幗 衛蝶蠱戲煎 檣?? 贗楠 璽撲擎 蹺?? 瞳辨腌棲棻."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_DEAD_RETURN_TOWN    "回到村莊."
+    IDS_DEAD_REVIVAL        "已經復活了."
+    IDS_DEAD_LACK_LIFE_STONE "生命的寶石不足."
+    IDS_DEAD_REVIVAL_MESSAGE "想要復活，必須有%d個生命的寶石."
+    IDS_DEAD_LOW_LEVEL      "等級太低，無法使用道具復活."
+    IDS_INVEN_WEIGHT        "重量 :"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_NOAH_CHANGE_SPEND   "花費 %d 金幣."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CMD_WHISPER         "WHISPER"
+    IDS_CMD_TOWN            "TOWN"
+    IDS_CMD_TRADE           "TRADE"
+    IDS_CMD_EXIT            "EXIT"
+    IDS_CMD_PARTY           "PARTY"
+    IDS_CMD_LEAVEPARTY      "LEAVE"
+    IDS_CMD_RECRUITPARTY    "INVITE"
+    IDS_CMD_JOINCLAN        "JOINCLAN"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CMD_WITHDRAWCLAN    "DISCLAN"
+    IDS_CMD_FIRECLAN        "FIRECLAN"
+    IDS_CMD_APPOINTVICECHIEF "APPOINT_VC"
+    IDS_CMD_GREETING        "HELLO"
+    IDS_CMD_EXCITE          "EXCITE"
+    IDS_CMD_VISIBLE         "VISIBLE"
+    IDS_CMD_INVISIBLE       "INVISIBLE"
+    IDS_CMD_CLEAN           "CLEAN"
+    IDS_CMD_RAINING         "RAINING"
+    IDS_CMD_SNOWING         "SNOWING"
+    IDS_CMD_TIME            "TIME"
+    IDS_CMD_CU_COUNT        "COUNT"
+    IDS_CMD_NOTICE          "NOTICE"
+    IDS_CMD_ARREST          "ARREST"
+    IDS_CMD_FORBIDCONNECT   "FORBIDCONNECT"
+    IDS_CMD_FORBIDCHAT      "FORBIDCHAT"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CMD_PERMITCHAT      "PERMITCHAT"
+    IDS_CMD_GAME_SAVE       "SAVE"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PARTY_BBS_REGISTER  "徵求隊伍的公告已刊登"
+    IDS_PARTY_BBS_REGISTER_CANCEL "徵求隊伍的公告已解除"
+    IDS_TRADE_BBS_SELL_REGISTER "賣的物品會依照登錄的收取%d 的手續費."
+    IDS_TRADE_BBS_PER_TRADE "要與不在該區域的玩家交易時，必須先支付旅館主人%d 費用."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TRADE_BBS_BUY_REGISTER "買的物品會依照登錄的收取%d 的手續費."
+    IDS_TRADE_BBS_FAIL1     "登錄失敗."
+    IDS_TRADE_BBS_FAIL2     "金幣不足."
+    IDS_TRADE_BBS_FAIL3     "解除失敗."
+    IDS_TRADE_BBS_FAIL4     "失敗. 請重新修改."
+    IDS_TRADE_BBS_FAIL5     "交易申請失敗."
+    IDS_TRADE_BBS_FAIL6     "無法開啟交易佈告欄."
+    IDS_OTHER_PER_TRADE_ID_NO "對方拒絕交易."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_URL_JOIN            "http://www.knight-online.com.tw"
+END
+
+#endif    // Chinese (Traditional, Taiwan) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_MAIN                ICON                    "KnightOnLine.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAIN_ACCELATOR ACCELERATORS
+BEGIN
+    "1",            ID_DEBUG0,              VIRTKEY, CONTROL, ALT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,3,11,1718
+ PRODUCTVERSION 2,3,11,1718
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "CompanyName", "NoahSystem"
+            VALUE "FileDescription", "Knight Online Client"
+            VALUE "FileVersion", "2, 3, 11, 1718"
+            VALUE "InternalName", "KnightOnLine"
+            VALUE "LegalCopyright", "Copyright ? 2001. NoahSystem.co.ltd"
+            VALUE "OriginalFilename", "KnightOnLine.exe"
+            VALUE "ProductName", "Knights OnLine Client"
+            VALUE "ProductVersion", "2, 3, 11, 1718"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CURSOR_ATTACK       CURSOR                  "cursor_attack.cur"
+
+IDC_CURSOR_CLICK        CURSOR                  "cursor_click.cur"
+
+IDC_CURSOR_NORMAL       CURSOR                  "cursor_normal.cur"
+
+IDC_CURSOR_NOW_REPAIR   CURSOR                  "repair1.cur"
+
+IDC_CURSOR_PRE_REPAIR   CURSOR                  "repair0.cur"
+
+IDC_CURSOR_CLICK1       CURSOR                  "cursor_click1.cur"
+
+IDC_CURSOR_NORMAL1      CURSOR                  "cursor_normal1.cur"
+
+#endif    // Neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

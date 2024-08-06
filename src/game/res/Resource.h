@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Developer Studio generated include file.
-// Used by Resource.rc
+// Microsoft Visual C++ generated include file.
+// Used by KnightOnLine.rc
 //
 #define IDC_CURSOR_ATTACK                        1
 #define IDC_CURSOR_CLICK                         2

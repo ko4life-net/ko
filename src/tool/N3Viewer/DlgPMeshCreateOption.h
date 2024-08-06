@@ -2,7 +2,7 @@
 
 // DlgPMeshCreateOption.h : header file
 //
-#include "resource.h"
+#include "Resource.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CDlgPMeshCreateOption dialog

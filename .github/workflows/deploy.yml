@@ -47,7 +47,7 @@ jobs:
           client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
           client.connect(hostname=hostname, username=username, key_filename='pk.pem')
           sftp = client.open_sftp()
-          source = 'src/build/Release'
+          source = 'src/build/x86-Release'
           for item in os.listdir(source):
             if os.path.isfile(os.path.join(source, item)):
               sftp.put(os.path.join(source, item), f'Desktop/ftp/build/Release/{item}')

@@ -43,10 +43,12 @@
     <VendorDir>$(SrcDir)\vendor</VendorDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)build\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)build\$(PlatformTarget)-$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\int\$(PlatformTarget)-$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)build\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)build\$(PlatformTarget)-$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\int\$(PlatformTarget)-$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -59,7 +61,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SrcDir)\common;$(VendorDir)\zlib\include;$(WindowsSDK_IncludePath)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(SrcDir)\common;$(VendorDir)\zlib\include;$(WindowsSDK_IncludePath)</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 /wd4102 %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -92,7 +94,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SrcDir)\common;$(VendorDir)\zlib\include;$(WindowsSDK_IncludePath)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(SrcDir)\common;$(VendorDir)\zlib\include;$(WindowsSDK_IncludePath)</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 /wd4102 %(AdditionalOptions)</AdditionalOptions>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -134,9 +136,6 @@
     <ClCompile Include="VersionSet.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="LoginServer.rc" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\common\N3Utils.h" />
     <ClInclude Include="CircularBuffer.h" />
     <ClInclude Include="DBProcess.h" />
@@ -144,7 +143,6 @@
     <ClInclude Include="DlgBrowsePath.h" />
     <ClInclude Include="IOCPort.h" />
     <ClInclude Include="IOCPSocket2.h" />
-    <ClInclude Include="Resource.h" />
     <ClInclude Include="SettingDlg.h" />
     <ClInclude Include="ShellTree.h" />
     <ClInclude Include="StdAfx.h" />
@@ -155,13 +153,10 @@
     <ClInclude Include="VersionSet.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\LoginServer.ico" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="res\Resource.h" />
+    <ResourceCompile Include="res\LoginServer.rc" />
     <CustomBuild Include="res\LoginServer.rc2" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <Image Include="res\LoginServer.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Zip.vcxproj">

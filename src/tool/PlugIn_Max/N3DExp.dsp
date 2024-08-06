@@ -110,7 +110,7 @@ SOURCE=.\N3DExp.def
 # End Source File
 # Begin Source File
 
-SOURCE=.\N3DExp.rc
+SOURCE=.\res\N3DExp.rc
 # End Source File
 # Begin Source File
 
@@ -126,7 +126,7 @@ SOURCE=.\N3DExp.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\resource.h
+SOURCE=.\res\Resource.h
 # End Source File
 # Begin Source File
 
@@ -138,15 +138,15 @@ SOURCE=.\StdAfx.h
 # PROP Default_Filter "ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 # Begin Source File
 
-SOURCE=.\bitmap1.bmp
+SOURCE=.\res\bitmap1.bmp
 # End Source File
 # Begin Source File
 
-SOURCE=.\cursor1.cur
+SOURCE=.\res\cursor1.cur
 # End Source File
 # Begin Source File
 
-SOURCE=.\icon1.ico
+SOURCE=.\res\icon1.ico
 # End Source File
 # End Group
 # Begin Group "Direct3D Header Files"
@@ -734,11 +734,11 @@ SOURCE=..\..\engine\N3Base\WaveFile.h
 # PROP Default_Filter "*.txt"
 # Begin Source File
 
-SOURCE=.\BipedExport.txt
+SOURCE=.\res\BipedExport.txt
 # End Source File
 # Begin Source File
 
-SOURCE=.\PhysiqueExport.txt
+SOURCE=.\res\PhysiqueExport.txt
 # End Source File
 # End Group
 # End Target

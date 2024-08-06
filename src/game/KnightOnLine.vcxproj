@@ -45,12 +45,12 @@
     <VendorDir>$(SrcDir)\vendor</VendorDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)build\$(Configuration)\</OutDir>
-    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)build\$(PlatformTarget)-$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\int\$(PlatformTarget)-$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)build\$(Configuration)\</OutDir>
-    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)build\$(PlatformTarget)-$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\int\$(PlatformTarget)-$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -122,15 +122,6 @@
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <CustomBuild Include="res\Cursor_Attack.cur" />
-    <CustomBuild Include="res\Cursor_Click.cur" />
-    <CustomBuild Include="res\cursor_click1.cur" />
-    <CustomBuild Include="res\Cursor_Normal.cur" />
-    <CustomBuild Include="res\cursor_normal1.cur" />
-    <CustomBuild Include="res\repair0.cur" />
-    <CustomBuild Include="res\repair1.cur" />
-  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common\Implode.h" />
     <ClInclude Include="..\common\JvCryption.h" />
@@ -263,7 +254,6 @@
     <ClInclude Include="PlayerOtherMgr.h" />
     <ClInclude Include="PortalVolume.h" />
     <ClInclude Include="PvsMgr.h" />
-    <ClInclude Include="res/Resource.h" />
     <ClInclude Include="ServerMesh.h" />
     <ClInclude Include="SharedMem.h" />
     <ClInclude Include="StdAfx.h" />
@@ -321,12 +311,6 @@
     <ClInclude Include="UIWarp.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="WarMessage.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="res\Resource.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="res\KnightOnLine.ico" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\Implode.cpp" />
@@ -509,6 +493,18 @@
     <ClCompile Include="UIWarp.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="WarMessage.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="res\Resource.h" />
+    <ResourceCompile Include="res\KnightOnLine.rc" />
+    <Image Include="res\KnightOnLine.ico" />
+    <CustomBuild Include="res\cursor_attack.cur" />
+    <CustomBuild Include="res\cursor_click.cur" />
+    <CustomBuild Include="res\cursor_click1.cur" />
+    <CustomBuild Include="res\cursor_normal.cur" />
+    <CustomBuild Include="res\cursor_normal1.cur" />
+    <CustomBuild Include="res\repair0.cur" />
+    <CustomBuild Include="res\repair1.cur" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

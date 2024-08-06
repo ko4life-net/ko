@@ -26,18 +26,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Option.rc">
-      <Filter>Source Files</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Option.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OptionDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StdAfx.h">
@@ -48,16 +40,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\Option.ico">
+    <ClInclude Include="res\Resource.h">
       <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
+    </ClInclude>
+    <ResourceCompile Include="res\Option.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
     <CustomBuild Include="res\Option.rc2">
       <Filter>Resource Files</Filter>
     </CustomBuild>
+    <Image Include="res\Option.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

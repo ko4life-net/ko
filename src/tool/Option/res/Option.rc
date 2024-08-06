@@ -1,0 +1,260 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "Option.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Option Information"
+FONT 9, "Arial"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "Option Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2002",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_OPTION_DIALOG DIALOGEX 0, 0, 279, 392
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Knight Online Game Option Setup"
+FONT 9, "Arial", 0, 0, 0x1
+BEGIN
+    CONTROL         "High",IDC_R_TEX_CHR_HIGH,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,29,37,27,12
+    CONTROL         "Low",IDC_R_TEX_CHR_LOW,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,29,49,27,12
+    CONTROL         "Show Shadow",IDC_C_SHADOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,70,61,9
+    CONTROL         "Slider1",IDC_SLD_VIEWING_DISTANCE,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,20,112,177,18
+    COMBOBOX        IDC_CB_RESOLUTION,64,162,60,156,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CB_COLORDEPTH,64,181,36,156,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",1,221,107,50,14
+    PUSHBUTTON      "Cancel",2,221,126,50,14
+    PUSHBUTTON      "Save Changes and Start",IDC_B_APPLY_AND_EXECUTE,221,144,51,32,BS_MULTILINE
+    LTEXT           "Minimum",IDC_STATIC,25,133,34,9,NOT WS_GROUP
+    LTEXT           "Maximum",IDC_STATIC,159,133,35,9,NOT WS_GROUP
+    GROUPBOX        "Visibility Range",IDC_STATIC,13,98,196,46
+    GROUPBOX        "Configure Game Graphic Quality and Set Screen Mode",IDC_STATIC,13,7,196,88
+    GROUPBOX        "Resolution and Color Depth",IDC_STATIC,13,148,196,53
+    LTEXT           "Resolution  ",IDC_STATIC,20,162,39,12,SS_CENTERIMAGE
+    LTEXT           "Color Depth",IDC_STATIC,20,181,41,12,SS_CENTERIMAGE
+    CONTROL         "High",IDC_R_TEX_SHAPE_HIGH,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,99,37,27,12
+    CONTROL         "Low",IDC_R_TEX_SHAPE_LOW,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,99,49,27,12
+    CONTROL         "High",IDC_R_TEX_TERRAIN_HIGH,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,167,37,27,12
+    CONTROL         "Low",IDC_R_TEX_TERRAIN_LOW,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,167,49,27,12
+    GROUPBOX        "Character",IDC_STATIC,20,25,45,42
+    GROUPBOX        "Object",IDC_STATIC,85,25,45,42
+    GROUPBOX        "Terrain",IDC_STATIC,152,25,47,42
+    GROUPBOX        "Game Version",IDC_STATIC,218,7,54,88
+    EDITTEXT        IDC_E_VERSION,223,27,42,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Contents of the Update",IDC_B_VERSION,223,51,42,30,BS_MULTILINE
+    CONTROL         "Background Music",IDC_C_BACKGROUND_MUSIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,218,84,9
+    GROUPBOX        "Sound",IDC_STATIC,13,204,196,94
+    CONTROL         "Duplicated Sound",IDC_C_SOUND_DUPLICATE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,235,70,9
+    CONTROL         "Slider1",IDC_SLD_SOUND_DISTANCE,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,22,261,175,18
+    LTEXT           "Minimum",IDC_STATIC,26,279,42,9,NOT WS_GROUP
+    LTEXT           "Maximum",IDC_STATIC,159,279,37,9,NOT WS_GROUP
+    GROUPBOX        "Distance of Effect",IDC_STATIC,20,248,184,42
+    GROUPBOX        "Cursor",IDC_STATIC,13,349,196,33
+    CONTROL         "Window Cursor",IDC_C_CURSOR_WINDOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,361,90,16
+    GROUPBOX        "Number of Effect",IDC_STATIC,13,301,196,45
+    CONTROL         "Slider1",IDC_SLD_EFFECT_COUNT,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,20,313,177,18
+    LTEXT           "Minimum",IDC_STATIC,24,331,34,9,NOT WS_GROUP
+    LTEXT           "Maximum",IDC_STATIC,159,331,35,9,NOT WS_GROUP
+    CONTROL         "Window Mode",IDC_C_WINDOW_MODE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,95,70,70,9
+    CONTROL         "Show Weapon's effect",IDC_C_WEAPON_EFFECT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,83,86,9
+    CONTROL         "Sound Effect",IDC_C_SOUND_EFFECT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,103,218,63,9
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_OPTION_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 272
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 265
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "FileDescription", "Option"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "Option"
+            VALUE "LegalCopyright", "Copyright (C) 2002"
+            VALUE "OriginalFilename", "Option.EXE"
+            VALUE "ProductName", "Option"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_OPTION_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#include ""Option.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""      // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_ABOUTBOX            "Option Information(&A)..."
+    IDS_PRODUCT             "KnightOnLine"
+    IDS_ERR_REGISTRY_OPEN   "Failed opening the registry.  Please reinstall the program."
+    IDS_ERR_REGISTRY_READ_VERSION 
+                            "Could not find the version information from the registry.  Please reinstall the program."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_REGISTRY_READ_PATH 
+                            "Could not find the program path from the registry.  Please reinstall the program."
+    IDS_ERR_REGISTRY_READ_EXE 
+                            "Could not find the exe. file name from the registry.  Please reinstall the program."
+    IDS_ERR_REGISTRY_READ_SERVICE 
+                            "Could not find the service name from the registry.  Please reinstall the program."
+    IDS_ERR_REGISTRY_WRITE_VERSION 
+                            "Could not write the version information on the registry.  Please reinstall the program."
+    IDS_CONFIRM_WRITE_REGISRY 
+                            "Would you like to apply the values to the registry? "
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#include "Option.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"      // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -38,11 +38,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Launcher.rc">
-      <Filter>Source Files</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="APISocket.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -67,9 +62,6 @@
     <ClInclude Include="PacketDef.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -78,25 +70,34 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\Bkg.bmp">
+    <ClInclude Include="res\Resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ResourceCompile Include="res\Launcher.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <CustomBuild Include="res\Launcher.rc2">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <Image Include="res\bkg.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\Btn_cancel.bmp">
+    <Image Include="res\btn_cancel.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\Btn_Connect.bmp">
+    <Image Include="res\btn_connect.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\Btn_exit.bmp">
+    <Image Include="res\btn_exit.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\Btn_join.bmp">
+    <Image Include="res\btn_join.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\Edit_id.bmp">
+    <Image Include="res\edit_id.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\Edit_PW.bmp">
+    <Image Include="res\edit_pw.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\icon1.ico">
@@ -105,13 +106,5 @@
     <Image Include="res\Launcher.ico">
       <Filter>Resource Files</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="res\Launcher.rc2">
-      <Filter>Resource Files</Filter>
-    </CustomBuild>
   </ItemGroup>
 </Project>
