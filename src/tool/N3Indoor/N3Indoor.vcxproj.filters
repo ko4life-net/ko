@@ -512,16 +512,16 @@
     <None Include="res\N3Indoor.reg">
       <Filter>Resource Files</Filter>
     </None>
-    <Image Include="res\ARW09DN.ICO">
+    <Image Include="res\ARW09DN.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\ARW09UP.ICO">
+    <Image Include="res\ARW09UP.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\HANDSHAK.ICO">
+    <Image Include="res\HANDSHAK.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\HEART.ICO">
+    <Image Include="res\HEART.ico">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\N3Indoor.ico">
@@ -530,25 +530,25 @@
     <Image Include="res\N3IndoorDoc.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\POINT02.ICO">
+    <Image Include="res\POINT02.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\POINT03.ICO">
+    <Image Include="res\POINT03.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\POINT04.ICO">
+    <Image Include="res\POINT04.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\POINT05.ICO">
+    <Image Include="res\POINT05.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\POINT06.ICO">
+    <Image Include="res\POINT06.ico">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Toolbar.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <CustomBuild Include="res\MOVE4WAY.CUR">
+    <CustomBuild Include="res\MOVE4WAY.cur">
       <Filter>Resource Files</Filter>
     </CustomBuild>
     <CustomBuild Include="res\transform.cur">

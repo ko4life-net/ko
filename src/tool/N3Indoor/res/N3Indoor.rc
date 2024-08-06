@@ -67,21 +67,21 @@ IDR_MAINFRAME           ICON                    "N3Indoor.ico"
 
 IDR_N3INDOTYPE          ICON                    "N3IndoorDoc.ico"
 
-IDI_PVOLUMN             ICON                    "POINT06.ICO"
+IDI_PVOLUMN             ICON                    "POINT06.ico"
 
-IDI_SHAPE               ICON                    "HEART.ICO"
+IDI_SHAPE               ICON                    "HEART.ico"
 
-IDI_VOL_YT              ICON                    "POINT05.ICO"
+IDI_VOL_YT              ICON                    "POINT05.ico"
 
-IDI_VOL_ZB              ICON                    "ARW09UP.ICO"
+IDI_VOL_ZB              ICON                    "ARW09UP.ico"
 
-IDI_VOL_XL              ICON                    "POINT02.ICO"
+IDI_VOL_XL              ICON                    "POINT02.ico"
 
-IDI_VOL_YB              ICON                    "POINT03.ICO"
+IDI_VOL_YB              ICON                    "POINT03.ico"
 
-IDI_VOL_XR              ICON                    "POINT04.ICO"
+IDI_VOL_XR              ICON                    "POINT04.ico"
 
-IDI_VOL_ZF              ICON                    "ARW09DN.ICO"
+IDI_VOL_ZF              ICON                    "ARW09DN.ico"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -560,7 +560,7 @@ END
 
 IDC_TRANSFORM           CURSOR                  "transform.cur"
 
-IDC_SELECT              CURSOR                  "MOVE4WAY.CUR"
+IDC_SELECT              CURSOR                  "MOVE4WAY.cur"
 
 
 /////////////////////////////////////////////////////////////////////////////
