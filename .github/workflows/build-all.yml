@@ -34,4 +34,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: All-x86-release
-          path: src/build/Release/*.exe
+          path: src/build/x86-Release/*.exe
