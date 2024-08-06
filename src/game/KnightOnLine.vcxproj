@@ -498,10 +498,10 @@
     <ClInclude Include="res\Resource.h" />
     <ResourceCompile Include="res\KnightOnLine.rc" />
     <Image Include="res\KnightOnLine.ico" />
-    <CustomBuild Include="res\Cursor_Attack.cur" />
-    <CustomBuild Include="res\Cursor_Click.cur" />
+    <CustomBuild Include="res\cursor_attack.cur" />
+    <CustomBuild Include="res\cursor_click.cur" />
     <CustomBuild Include="res\cursor_click1.cur" />
-    <CustomBuild Include="res\Cursor_Normal.cur" />
+    <CustomBuild Include="res\cursor_normal.cur" />
     <CustomBuild Include="res\cursor_normal1.cur" />
     <CustomBuild Include="res\repair0.cur" />
     <CustomBuild Include="res\repair1.cur" />

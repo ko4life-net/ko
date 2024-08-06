@@ -1163,16 +1163,16 @@
     <Image Include="res\KnightOnLine.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <CustomBuild Include="res\Cursor_Attack.cur">
+    <CustomBuild Include="res\cursor_attack.cur">
       <Filter>Resource Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="res\Cursor_Click.cur">
+    <CustomBuild Include="res\cursor_click.cur">
       <Filter>Resource Files</Filter>
     </CustomBuild>
     <CustomBuild Include="res\cursor_click1.cur">
       <Filter>Resource Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="res\Cursor_Normal.cur">
+    <CustomBuild Include="res\cursor_normal.cur">
       <Filter>Resource Files</Filter>
     </CustomBuild>
     <CustomBuild Include="res\cursor_normal1.cur">

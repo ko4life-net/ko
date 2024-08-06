@@ -144,13 +144,13 @@
     <ClInclude Include="res\Resource.h" />
     <ResourceCompile Include="res\Launcher.rc" />
     <CustomBuild Include="res\Launcher.rc2" />
-    <Image Include="res\Bkg.bmp" />
-    <Image Include="res\Btn_cancel.bmp" />
-    <Image Include="res\Btn_Connect.bmp" />
-    <Image Include="res\Btn_exit.bmp" />
-    <Image Include="res\Btn_join.bmp" />
-    <Image Include="res\Edit_id.bmp" />
-    <Image Include="res\Edit_PW.bmp" />
+    <Image Include="res\bkg.bmp" />
+    <Image Include="res\btn_cancel.bmp" />
+    <Image Include="res\btn_connect.bmp" />
+    <Image Include="res\btn_exit.bmp" />
+    <Image Include="res\btn_join.bmp" />
+    <Image Include="res\edit_id.bmp" />
+    <Image Include="res\edit_pw.bmp" />
     <Image Include="res\icon1.ico" />
     <Image Include="res\Launcher.ico" />
   </ItemGroup>

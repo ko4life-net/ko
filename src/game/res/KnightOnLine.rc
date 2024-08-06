@@ -1692,11 +1692,11 @@ END
 // Cursor
 //
 
-IDC_CURSOR_ATTACK       CURSOR                  "Cursor_Attack.cur"
+IDC_CURSOR_ATTACK       CURSOR                  "cursor_attack.cur"
 
-IDC_CURSOR_CLICK        CURSOR                  "Cursor_Click.cur"
+IDC_CURSOR_CLICK        CURSOR                  "cursor_click.cur"
 
-IDC_CURSOR_NORMAL       CURSOR                  "Cursor_Normal.cur"
+IDC_CURSOR_NORMAL       CURSOR                  "cursor_normal.cur"
 
 IDC_CURSOR_NOW_REPAIR   CURSOR                  "repair1.cur"
 

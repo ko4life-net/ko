@@ -79,25 +79,25 @@
     <CustomBuild Include="res\Launcher.rc2">
       <Filter>Resource Files</Filter>
     </CustomBuild>
-    <Image Include="res\Bkg.bmp">
+    <Image Include="res\bkg.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\Btn_cancel.bmp">
+    <Image Include="res\btn_cancel.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\Btn_Connect.bmp">
+    <Image Include="res\btn_connect.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\Btn_exit.bmp">
+    <Image Include="res\btn_exit.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\Btn_join.bmp">
+    <Image Include="res\btn_join.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\Edit_id.bmp">
+    <Image Include="res\edit_id.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\Edit_PW.bmp">
+    <Image Include="res\edit_pw.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\icon1.ico">
