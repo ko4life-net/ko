@@ -121,6 +121,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\engine\N3Base\N3Log.cpp" />
     <ClCompile Include="..\Widget\PropertyList.cpp" />
     <ClCompile Include="..\..\engine\N3Base\BitMapFile.cpp" />
     <ClCompile Include="..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp" />
@@ -178,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\common\N3Utils.h" />
+    <ClInclude Include="..\..\engine\N3Base\N3Log.h" />
     <ClInclude Include="..\Widget\PropertyList.h" />
     <ClInclude Include="..\..\engine\N3Base\BitMapFile.h" />
     <ClInclude Include="..\..\engine\N3Base\My_3DStruct.h" />
