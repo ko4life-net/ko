@@ -303,7 +303,7 @@ DWORD WINAPI CheckSpeedHackProc( LPVOID lpParameter )
 const int MAX_GAME_PROCEDURE = 8;
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-    CN3Log::Init("KnightOnLine");
+    N3_LOGGER_INIT("KnightOnLine");
     N3_INFO("Game started");
 
     //////////////////////////////
@@ -500,7 +500,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
     //////////////////////////////
 
     CGameProcedure::StaticMemberRelease(); // 모두 해제......
-    CN3Log::Destroy();
+    N3_LOGGER_DESTROY();
 
     return msg.wParam;
 }
