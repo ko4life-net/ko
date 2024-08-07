@@ -43,12 +43,12 @@
     <VendorDir>$(SrcDir)\vendor</VendorDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)build\$(PlatformTarget)-$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)build\int\$(PlatformTarget)-$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SrcDir)\build\$(PlatformTarget)-$(Configuration)\</OutDir>
+    <IntDir>$(SrcDir)\build\int\$(PlatformTarget)-$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)build\$(PlatformTarget)-$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)build\int\$(PlatformTarget)-$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SrcDir)\build\$(PlatformTarget)-$(Configuration)\</OutDir>
+    <IntDir>$(SrcDir)\build\int\$(PlatformTarget)-$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -121,7 +121,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\common\Implode.cpp" />
+    <ClCompile Include="$(SrcDir)\common\Implode.cpp" />
     <ClCompile Include="CircularBuffer.cpp" />
     <ClCompile Include="Compress.cpp" />
     <ClCompile Include="Extern.cpp" />
@@ -167,8 +167,8 @@
     <ClCompile Include="ZoneInfoSet.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\common\Implode.h" />
-    <ClInclude Include="..\..\common\N3Utils.h" />
+    <ClInclude Include="$(SrcDir)\common\Implode.h" />
+    <ClInclude Include="$(SrcDir)\common\N3Utils.h" />
     <ClInclude Include="CircularBuffer.h" />
     <ClInclude Include="Compress.h" />
     <ClInclude Include="Define.h" />

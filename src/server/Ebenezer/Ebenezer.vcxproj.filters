@@ -141,10 +141,10 @@
     <ClCompile Include="N3Base\N3ShapeMgr.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\common\JvCryption.cpp">
+    <ClCompile Include="$(SrcDir)\common\JvCryption.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\common\Implode.cpp">
+    <ClCompile Include="$(SrcDir)\common\Implode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -296,13 +296,13 @@
     <ClInclude Include="N3Base\StdAfxBase.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\common\JvCryption.h">
+    <ClInclude Include="$(SrcDir)\common\JvCryption.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\common\Implode.h">
+    <ClInclude Include="$(SrcDir)\common\Implode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\common\N3Utils.h">
+    <ClInclude Include="$(SrcDir)\common\N3Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

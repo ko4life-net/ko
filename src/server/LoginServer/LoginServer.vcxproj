@@ -43,12 +43,12 @@
     <VendorDir>$(SrcDir)\vendor</VendorDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)build\$(PlatformTarget)-$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)build\int\$(PlatformTarget)-$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SrcDir)\build\$(PlatformTarget)-$(Configuration)\</OutDir>
+    <IntDir>$(SrcDir)\build\int\$(PlatformTarget)-$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)build\$(PlatformTarget)-$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)build\int\$(PlatformTarget)-$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SrcDir)\build\$(PlatformTarget)-$(Configuration)\</OutDir>
+    <IntDir>$(SrcDir)\build\int\$(PlatformTarget)-$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -136,7 +136,7 @@
     <ClCompile Include="VersionSet.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\common\N3Utils.h" />
+    <ClInclude Include="$(SrcDir)\common\N3Utils.h" />
     <ClInclude Include="CircularBuffer.h" />
     <ClInclude Include="DBProcess.h" />
     <ClInclude Include="Define.h" />
@@ -159,7 +159,7 @@
     <Image Include="res\LoginServer.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\lib\Zip\Zip.vcxproj">
+    <ProjectReference Include="$(SrcDir)\lib\Zip\Zip.vcxproj">
       <Project>{8163f992-7b73-4069-b615-3cfa6dbc58f9}</Project>
     </ProjectReference>
   </ItemGroup>

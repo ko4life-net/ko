@@ -18,7 +18,7 @@
     <ClCompile Include="DlgDataCount.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Widget\PropertyList.cpp">
+    <ClCompile Include="$(SrcDir)\tool\Widget\PropertyList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RscTables.cpp">
@@ -38,7 +38,7 @@
     <ClInclude Include="DlgDataCount.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Widget\PropertyList.h">
+    <ClInclude Include="$(SrcDir)\tool\Widget\PropertyList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RscTables.h">
@@ -53,7 +53,7 @@
     <ClInclude Include="TableGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\common\N3Utils.h">
+    <ClInclude Include="$(SrcDir)\common\N3Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
