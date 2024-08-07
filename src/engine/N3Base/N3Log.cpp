@@ -11,12 +11,18 @@ void CN3Log::Init(const std::string & loggerName) {
 #ifdef _DEBUG
     AllocConsole();
 
-    // Position console window aside
-    // TODO: Make this more dynamic, like calculating the position of the game windows and screen resolution.
+    // Position console window at the top right corner
     HWND hConsole = GetConsoleWindow();
-    int  xpos = 1024;
-    int  ypos = 0;
-    SetWindowPos(hConsole, 0, xpos, ypos, 0, 0, SWP_NOSIZE);
+    RECT rcScreen{};
+    SystemParametersInfo(SPI_GETWORKAREA, 0, &rcScreen, 0);
+    const int iScreenWidth = rcScreen.right - rcScreen.left;
+    const int iScreenHeight = rcScreen.bottom - rcScreen.top;
+    const int iTermWidth = 950;
+    const int iTermHeight = 400;
+    const int iPadding = 10;
+    const int iX = iScreenWidth - iTermWidth - iPadding;
+    const int iY = iPadding;
+    SetWindowPos(hConsole, HWND_TOP, iX, iY, iTermWidth, iTermHeight, SWP_NOACTIVATE | SWP_SHOWWINDOW);
 
     FILE * fDummy;
     freopen_s(&fDummy, "CONOUT$", "w", stdout);
