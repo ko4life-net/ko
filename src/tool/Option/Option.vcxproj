@@ -125,7 +125,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\common\N3Utils.h" />
+    <ClInclude Include="$(SrcDir)\common\N3Utils.h" />
     <ClInclude Include="Option.h" />
     <ClInclude Include="OptionDlg.h" />
     <ClInclude Include="StdAfx.h" />

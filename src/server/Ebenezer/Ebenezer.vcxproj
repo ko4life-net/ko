@@ -121,8 +121,8 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\common\Implode.cpp" />
-    <ClCompile Include="..\..\common\JvCryption.cpp" />
+    <ClCompile Include="$(SrcDir)\common\Implode.cpp" />
+    <ClCompile Include="$(SrcDir)\common\JvCryption.cpp" />
     <ClCompile Include="AISocket.cpp" />
     <ClCompile Include="BattleSet.cpp" />
     <ClCompile Include="CircularBuffer.cpp" />
@@ -169,9 +169,9 @@
     <ClCompile Include="ZoneInfoSet.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\common\Implode.h" />
-    <ClInclude Include="..\..\common\JvCryption.h" />
-    <ClInclude Include="..\..\common\N3Utils.h" />
+    <ClInclude Include="$(SrcDir)\common\Implode.h" />
+    <ClInclude Include="$(SrcDir)\common\JvCryption.h" />
+    <ClInclude Include="$(SrcDir)\common\N3Utils.h" />
     <ClInclude Include="AIPacket.h" />
     <ClInclude Include="AISocket.h" />
     <ClInclude Include="BattleSet.h" />

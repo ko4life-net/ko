@@ -127,7 +127,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\common\N3Utils.h" />
+    <ClInclude Include="$(SrcDir)\common\N3Utils.h" />
     <ClInclude Include="DBAgent.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="ItemManager.h" />

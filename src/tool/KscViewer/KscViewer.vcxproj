@@ -121,8 +121,8 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\engine\N3Base\N3Log.cpp" />
-    <ClCompile Include="..\..\engine\N3Base\JpegFile.cpp" />
+    <ClCompile Include="$(SrcDir)\engine\N3Base\N3Log.cpp" />
+    <ClCompile Include="$(SrcDir)\engine\N3Base\JpegFile.cpp" />
     <ClCompile Include="KscViewer.cpp" />
     <ClCompile Include="KscViewerDoc.cpp" />
     <ClCompile Include="KscViewerView.cpp" />
@@ -134,9 +134,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\common\N3Utils.h" />
-    <ClInclude Include="..\..\engine\N3Base\N3Log.h" />
-    <ClInclude Include="..\..\engine\N3Base\JpegFile.h" />
+    <ClInclude Include="$(SrcDir)\common\N3Utils.h" />
+    <ClInclude Include="$(SrcDir)\engine\N3Base\N3Log.h" />
+    <ClInclude Include="$(SrcDir)\engine\N3Base\JpegFile.h" />
     <ClInclude Include="KscViewer.h" />
     <ClInclude Include="KscViewerDoc.h" />
     <ClInclude Include="KscViewerView.h" />

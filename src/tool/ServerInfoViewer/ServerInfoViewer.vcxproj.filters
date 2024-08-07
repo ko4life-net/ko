@@ -33,37 +33,37 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3Log.cpp">
+    <ClCompile Include="$(SrcDir)\engine\N3Base\N3Log.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3AlphaPrimitiveManager.cpp">
+    <ClCompile Include="$(SrcDir)\engine\N3Base\N3AlphaPrimitiveManager.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3AnimControl.cpp">
+    <ClCompile Include="$(SrcDir)\engine\N3Base\N3AnimControl.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3AnimKey.cpp">
+    <ClCompile Include="$(SrcDir)\engine\N3Base\N3AnimKey.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3Base.cpp">
+    <ClCompile Include="$(SrcDir)\engine\N3Base\N3Base.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3BaseFileAccess.cpp">
+    <ClCompile Include="$(SrcDir)\engine\N3Base\N3BaseFileAccess.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3Camera.cpp">
+    <ClCompile Include="$(SrcDir)\engine\N3Base\N3Camera.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3Eng.cpp">
+    <ClCompile Include="$(SrcDir)\engine\N3Base\N3Eng.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3EngTool.cpp">
+    <ClCompile Include="$(SrcDir)\engine\N3Base\N3EngTool.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3Light.cpp">
+    <ClCompile Include="$(SrcDir)\engine\N3Base\N3Light.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\engine\N3Base\N3Transform.cpp">
+    <ClCompile Include="$(SrcDir)\engine\N3Base\N3Transform.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,49 +83,49 @@
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3Log.h">
+    <ClInclude Include="$(SrcDir)\engine\N3Base\N3Log.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\My_3DStruct.h">
+    <ClInclude Include="$(SrcDir)\engine\N3Base\My_3DStruct.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\My_Macro.h">
+    <ClInclude Include="$(SrcDir)\engine\N3Base\My_Macro.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3AlphaPrimitiveManager.h">
+    <ClInclude Include="$(SrcDir)\engine\N3Base\N3AlphaPrimitiveManager.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3AnimControl.h">
+    <ClInclude Include="$(SrcDir)\engine\N3Base\N3AnimControl.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3AnimKey.h">
+    <ClInclude Include="$(SrcDir)\engine\N3Base\N3AnimKey.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3Base.h">
+    <ClInclude Include="$(SrcDir)\engine\N3Base\N3Base.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3BaseFileAccess.h">
+    <ClInclude Include="$(SrcDir)\engine\N3Base\N3BaseFileAccess.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3Camera.h">
+    <ClInclude Include="$(SrcDir)\engine\N3Base\N3Camera.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3Eng.h">
+    <ClInclude Include="$(SrcDir)\engine\N3Base\N3Eng.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3EngTool.h">
+    <ClInclude Include="$(SrcDir)\engine\N3Base\N3EngTool.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3Light.h">
+    <ClInclude Include="$(SrcDir)\engine\N3Base\N3Light.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3Mng.h">
+    <ClInclude Include="$(SrcDir)\engine\N3Base\N3Mng.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\engine\N3Base\N3Transform.h">
+    <ClInclude Include="$(SrcDir)\engine\N3Base\N3Transform.h">
       <Filter>N3Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\common\N3Utils.h">
+    <ClInclude Include="$(SrcDir)\common\N3Utils.h">
       <Filter>N3Base</Filter>
     </ClInclude>
   </ItemGroup>

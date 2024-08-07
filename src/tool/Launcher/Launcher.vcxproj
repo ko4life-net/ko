@@ -131,7 +131,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\common\N3Utils.h" />
+    <ClInclude Include="$(SrcDir)\common\N3Utils.h" />
     <ClInclude Include="APISocket.h" />
     <ClInclude Include="BackgroundUtil.h" />
     <ClInclude Include="BB_CircularBuffer.h" />
@@ -157,7 +157,7 @@
     <Image Include="res\Launcher.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\lib\ZipArchive\ZipArchive.vcxproj">
+    <ProjectReference Include="$(SrcDir)\lib\ZipArchive\ZipArchive.vcxproj">
       <Project>{97039c5a-4f35-404c-b6d5-8854bd991ad5}</Project>
     </ProjectReference>
   </ItemGroup>

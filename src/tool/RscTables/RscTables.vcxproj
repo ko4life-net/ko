@@ -117,7 +117,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Widget\PropertyList.cpp" />
+    <ClCompile Include="$(SrcDir)\tool\Widget\PropertyList.cpp" />
     <ClCompile Include="DlgDataCount.cpp" />
     <ClCompile Include="RscTables.cpp" />
     <ClCompile Include="RscTablesDlg.cpp" />
@@ -128,8 +128,8 @@
     <ClCompile Include="TableGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\common\N3Utils.h" />
-    <ClInclude Include="..\Widget\PropertyList.h" />
+    <ClInclude Include="$(SrcDir)\common\N3Utils.h" />
+    <ClInclude Include="$(SrcDir)\tool\Widget\PropertyList.h" />
     <ClInclude Include="DlgDataCount.h" />
     <ClInclude Include="RscTables.h" />
     <ClInclude Include="RscTablesDlg.h" />
