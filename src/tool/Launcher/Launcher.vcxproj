@@ -12,18 +12,18 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
-    <ProjectGuid>{97039C5A-4F35-404C-B6D5-8854BD991AD5}</ProjectGuid>
+    <ProjectGuid>{0D8CE6AD-5A79-42DB-AB89-6FBFF7B916D7}</ProjectGuid>
     <Keyword>MFCProj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
@@ -39,7 +39,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
-    <SrcDir>$(ProjectDir)..\..\..</SrcDir>
+    <SrcDir>$(ProjectDir)..\..</SrcDir>
     <VendorDir>$(SrcDir)\vendor</VendorDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -60,19 +60,25 @@
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(VendorDir)\zlib\include;$(WindowsSDK_IncludePath)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(SrcDir)\lib\ZipArchive;$(SrcDir)\common;$(VendorDir)\zlib\include;$(WindowsSDK_IncludePath)</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 /wd4102 %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <SupportJustMyCode>true</SupportJustMyCode>
     </ClCompile>
-    <Lib>
-      <AdditionalDependencies>zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(VendorDir)\zlib\lib</AdditionalLibraryDirectories>
-    </Lib>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
     <ResourceCompile>
-      <Culture>0x0415</Culture>
+      <Culture>0x0412</Culture>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
@@ -87,50 +93,73 @@
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(VendorDir)\zlib\include;$(WindowsSDK_IncludePath)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)res;$(SrcDir)\lib\ZipArchive;$(SrcDir)\common;$(VendorDir)\zlib\include;$(WindowsSDK_IncludePath)</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 /wd4102 %(AdditionalOptions)</AdditionalOptions>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
-    <Lib>
-      <AdditionalDependencies>zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(VendorDir)\zlib\lib</AdditionalLibraryDirectories>
-    </Lib>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
     <ResourceCompile>
-      <Culture>0x0415</Culture>
+      <Culture>0x0412</Culture>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="APISocket.cpp" />
+    <ClCompile Include="BackgroundUtil.cpp" />
+    <ClCompile Include="BB_CircularBuffer.cpp" />
+    <ClCompile Include="Launcher.cpp" />
+    <ClCompile Include="LauncherDlg.cpp" />
+    <ClCompile Include="MacProgressCtrl.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ZipArchive.cpp" />
-    <ClCompile Include="ZipAutoBuffer.cpp" />
-    <ClCompile Include="ZipBigFile.cpp" />
-    <ClCompile Include="ZipCentralDir.cpp" />
-    <ClCompile Include="ZipException.cpp" />
-    <ClCompile Include="ZipFileHeader.cpp" />
-    <ClCompile Include="ZipInternalInfo.cpp" />
-    <ClCompile Include="ZipStorage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\common\N3Utils.h" />
+    <ClInclude Include="APISocket.h" />
+    <ClInclude Include="BackgroundUtil.h" />
+    <ClInclude Include="BB_CircularBuffer.h" />
+    <ClInclude Include="Define.h" />
+    <ClInclude Include="Launcher.h" />
+    <ClInclude Include="LauncherDlg.h" />
+    <ClInclude Include="MacProgressCtrl.h" />
+    <ClInclude Include="PacketDef.h" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="ZipArchive.h" />
-    <ClInclude Include="ZipAutoBuffer.h" />
-    <ClInclude Include="ZipBigFile.h" />
-    <ClInclude Include="ZipCentralDir.h" />
-    <ClInclude Include="ZipException.h" />
-    <ClInclude Include="ZipFileHeader.h" />
-    <ClInclude Include="ZipInternalInfo.h" />
-    <ClInclude Include="ZipStorage.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Appnote.txt" />
+    <ClInclude Include="res\Resource.h" />
+    <ResourceCompile Include="res\Launcher.rc" />
+    <CustomBuild Include="res\Launcher.rc2" />
+    <Image Include="res\bkg.bmp" />
+    <Image Include="res\btn_cancel.bmp" />
+    <Image Include="res\btn_connect.bmp" />
+    <Image Include="res\btn_exit.bmp" />
+    <Image Include="res\btn_join.bmp" />
+    <Image Include="res\edit_id.bmp" />
+    <Image Include="res\edit_pw.bmp" />
+    <Image Include="res\icon1.ico" />
+    <Image Include="res\Launcher.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\lib\ZipArchive\ZipArchive.vcxproj">
+      <Project>{97039c5a-4f35-404c-b6d5-8854bd991ad5}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

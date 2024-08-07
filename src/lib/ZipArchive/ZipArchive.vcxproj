@@ -12,7 +12,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
-    <ProjectGuid>{8163F992-7B73-4069-B615-3CFA6DBC58F9}</ProjectGuid>
+    <ProjectGuid>{97039C5A-4F35-404C-B6D5-8854BD991AD5}</ProjectGuid>
     <Keyword>MFCProj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -30,8 +30,6 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -62,7 +60,7 @@
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(VendorDir)\zlib\include;$(WindowsSDK_IncludePath)</AdditionalIncludeDirectories>
       <AdditionalOptions>/wd4018 /wd4091 /wd4244 /wd4267 /wd4477 /wd4838 /wd6031 /wd26495 /wd4102 %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -70,16 +68,14 @@
       <SupportJustMyCode>true</SupportJustMyCode>
     </ClCompile>
     <Lib>
+      <AdditionalDependencies>zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(VendorDir)\zlib\lib</AdditionalLibraryDirectories>
     </Lib>
     <ResourceCompile>
       <Culture>0x0415</Culture>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
-    <Lib>
-      <AdditionalDependencies>zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(VendorDir)\zlib\lib</AdditionalLibraryDirectories>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -99,48 +95,42 @@
       <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <Lib>
+      <AdditionalDependencies>zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(VendorDir)\zlib\lib</AdditionalLibraryDirectories>
     </Lib>
     <ResourceCompile>
       <Culture>0x0415</Culture>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
-    <Lib>
-      <AdditionalDependencies>zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(VendorDir)\zlib\lib</AdditionalLibraryDirectories>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AutoBuffer.cpp" />
-    <ClCompile Include="BigFile.cpp" />
-    <ClCompile Include="CentralDir.cpp" />
-    <ClCompile Include="FileHeader.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ZipArchive.cpp" />
+    <ClCompile Include="ZipAutoBuffer.cpp" />
+    <ClCompile Include="ZipBigFile.cpp" />
+    <ClCompile Include="ZipCentralDir.cpp" />
     <ClCompile Include="ZipException.cpp" />
+    <ClCompile Include="ZipFileHeader.cpp" />
     <ClCompile Include="ZipInternalInfo.cpp" />
     <ClCompile Include="ZipStorage.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AutoBuffer.h" />
-    <ClInclude Include="BigFile.h" />
-    <ClInclude Include="CentralDir.h" />
-    <ClInclude Include="FileHeader.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="ZipArchive.h" />
+    <ClInclude Include="ZipAutoBuffer.h" />
+    <ClInclude Include="ZipBigFile.h" />
+    <ClInclude Include="ZipCentralDir.h" />
     <ClInclude Include="ZipException.h" />
+    <ClInclude Include="ZipFileHeader.h" />
     <ClInclude Include="ZipInternalInfo.h" />
     <ClInclude Include="ZipStorage.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Appnote.txt" />
-    <Text Include="Readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="Zip.htm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
