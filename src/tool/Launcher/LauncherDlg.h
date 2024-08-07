@@ -10,7 +10,7 @@
 #include "MacProgressCtrl.h"
 #include "Resource.h"
 #include "define.h"
-#include "../ZipArchive/ZipArchive.h"
+#include "ZipArchive.h"
 
 //#include "DlgTransparent.h"
 

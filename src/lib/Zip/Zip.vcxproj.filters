@@ -68,11 +68,4 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="Appnote.txt" />
-    <Text Include="Readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="Zip.htm" />
-  </ItemGroup>
 </Project>
