@@ -249,7 +249,7 @@ HWND CreateMainWindow(HINSTANCE hInstance) {
         rect.right = iWidth;
         AdjustWindowRect(&rect, dwStyle, FALSE);
         iHeight = rect.bottom + GetSystemMetrics(SM_CYCAPTION);
-        iWidth = rect.right;
+        iWidth = rect.right + GetSystemMetrics(SM_CXFRAME)+4;
     }
 
     return ::CreateWindow("Knight OnLine Client", "Knight OnLine Client", dwStyle, 0, 0, iWidth, iHeight, NULL, NULL,
