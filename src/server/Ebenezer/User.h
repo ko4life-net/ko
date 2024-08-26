@@ -97,7 +97,9 @@ class CUser : public CIOCPSocket2 {
     ItemList   m_ExchangeItemList;
     _ITEM_DATA m_MirrorItem[HAVE_MAX]; // 교환시 백업 아이템 리스트를 쓴다.
 
+    //Private chat
     short m_sPrivateChatUser;
+    BOOL  m_bBlockPrivateChat;
 
     float m_fHPLastTimeNormal; // For Automatic HP recovery.
     float m_fHPStartTimeNormal;
@@ -257,6 +259,7 @@ class CUser : public CIOCPSocket2 {
     void    FriendAccept(char * pBuf);
     void    FriendRequest(char * pBuf);
     void    Friend(char * pBuf);
+    BOOL    isBlockingPrivateChat() { return m_bBlockPrivateChat; }
     BOOL    WarpListObjectEvent(short objectindex, short nid);
     BOOL    FlagObjectEvent(short objectindex, short nid);
     BOOL    GateLeverObjectEvent(short objectindex, short nid);

@@ -255,6 +255,7 @@
     <ClInclude Include="N3UIWndBase.h" />
     <ClInclude Include="N3WorldBase.h" />
     <ClInclude Include="N3WorldManager.h" />
+    <ClInclude Include="UIChatWhisperHide.h" />
     <ClInclude Include="PacketDef.h" />
     <ClInclude Include="PlayerBase.h" />
     <ClInclude Include="PlayerMySelf.h" />
@@ -322,6 +323,7 @@
     <ClInclude Include="UIWareHouseDlg.h" />
     <ClInclude Include="UIWarp.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="UIChatWhisperOpen.h" />
     <ClInclude Include="WarMessage.h" />
   </ItemGroup>
   <ItemGroup>
@@ -512,7 +514,9 @@
     <ClCompile Include="UIWareHouseDlg.cpp" />
     <ClCompile Include="UIWarp.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="UIChatWhisperOpen.cpp" />
     <ClCompile Include="WarMessage.cpp" />
+    <ClCompile Include="UIChatWhisperHide.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

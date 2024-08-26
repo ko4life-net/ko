@@ -261,7 +261,12 @@ class CAPISocket {
     //패킷 만들기 함수
     static void MP_AddByte(BYTE * dest, int & iOffset, BYTE byte) {
         CopyMemory(dest + iOffset, &byte, 1);
-        iOffset++;
+        iOffset++; 
+    }
+
+    static void MP_AddUInt8(BYTE * dest, int & iOffset, uint8_t value) {
+        CopyMemory(dest + iOffset, &value, sizeof(uint8_t));
+        iOffset += sizeof(uint8_t);
     }
     static void MP_AddShort(BYTE * dest, int & iOffset, short value) {
         CopyMemory(dest + iOffset, &value, 2);
@@ -315,6 +320,10 @@ class CAPISocket {
     static __int64 & Parse_GetInt64(const BYTE * buf, int & iOffset) {
         iOffset += 8;
         return *(__int64 *)(buf + iOffset - 8);
+    }
+    static uint8_t Parse_GetUInt8(const BYTE * buf, int & iOffset) {
+        iOffset += 1;
+        return *(const uint8_t *)(buf + iOffset - 1);
     }
 
     CAPISocket();

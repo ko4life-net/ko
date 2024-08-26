@@ -6,6 +6,7 @@
 #include "UIChat.h"
 #include "PacketDef.h"
 #include "GameProcMain.h"
+#include "PlayerMySelf.h"
 #include "UIMessageWnd.h"
 #include "UIManager.h"
 
@@ -45,6 +46,8 @@ CUIChat::CUIChat() //생성자 와 파괴자에서 Release안 불러 주나??
     m_bChatParty = true;
 
     m_bKillFocus = false;
+
+    whisperTarget = "";
 }
 
 CUIChat::~CUIChat() {
@@ -78,6 +81,18 @@ CUIChat::~CUIChat() {
     //    }
 
     DeleteContinueMsg();
+    whisperTarget = "";
+    for (auto & pair : whisperWindows) {
+        if (pair.second.Open) {
+            delete pair.second.Open;
+            pair.second.Open = nullptr;
+        }
+        if (pair.second.Hide) {
+            delete pair.second.Hide;
+            pair.second.Hide = nullptr;
+        }
+    }
+    whisperWindows.clear();
 }
 
 void CUIChat::Release() {
@@ -834,4 +849,69 @@ void CUIChat::SetNoticeTitle(const std::string & szString, D3DCOLOR color) {
         m_pNoticeTitle->SetString(szString);
         m_pNoticeTitle->SetColor(color);
     }
+}
+
+void CUIChat::InitializeWhisperWindows(const std::string & nickname, bool isSender)
+{
+    e_Nation           eNation = CGameBase::s_pPlayer->m_InfoBase.eNation; 
+    __TABLE_UI_RESRC * pTbl = CGameProcedure::s_pProcMain->s_pTbl_UI->Find(eNation);
+
+    ChatWhisperWindows & window = whisperWindows[nickname];
+
+    window.Open = new CUIChatWhisperOpen();
+    window.Open->Init(CGameProcedure::s_pUIMgr);
+    window.Open->LoadFromFile(pTbl->szWhisper_open);
+    window.Open->SetPos(100, CN3Base::s_CameraData.vp.Height - 400);
+    window.Open->SetVisible(isSender);
+    if (isSender) {
+        window.Open->Open(nickname);
+        window.Open->SetFocus();
+    }
+
+    window.Hide = new CUIChatWhisperHide();
+    window.Hide->Init(CGameProcedure::s_pUIMgr);
+    window.Hide->LoadFromFile(pTbl->szWhisper_close);
+    window.Hide->SetVisible(!isSender);
+    if (!isSender) {
+        window.Hide->Open(nickname);
+    }
+}
+bool CUIChat::deleteWhisperWinodws(const std::string & nickname) {
+    auto it = whisperWindows.find(nickname);
+    if (it != whisperWindows.end()) {
+        if (it->second.Open != nullptr) {
+            delete it->second.Open;
+            it->second.Open = nullptr;
+        }
+        if (it->second.Hide != nullptr) {
+            delete it->second.Hide;
+            it->second.Hide = nullptr;
+        }
+
+        whisperWindows.erase(it);
+        return true; 
+    }
+
+    return false; 
+}
+
+std::pair<int, int> CUIChat::CalculateWhisperPosition(int activeWhisperWindowsCount) {
+    int posX = 100;
+    int baseY = CN3Base::s_CameraData.vp.Height - 400;
+    int chatY = activeWhisperWindowsCount;
+
+    if (activeWhisperWindowsCount > 7 && activeWhisperWindowsCount <= 14) {
+        posX = 248;
+        chatY = 8 - activeWhisperWindowsCount;
+    } else if (activeWhisperWindowsCount > 14 && activeWhisperWindowsCount <= 21) {
+        posX = 396;
+        chatY = 15 - activeWhisperWindowsCount;
+    } else if (activeWhisperWindowsCount > 21 && activeWhisperWindowsCount <= 28) {
+        posX = 544;
+        chatY = 22 - activeWhisperWindowsCount;
+    } else if (activeWhisperWindowsCount > 28) {
+        chatY = 0;
+    }
+
+    return {posX, baseY + chatY * 23};
 }

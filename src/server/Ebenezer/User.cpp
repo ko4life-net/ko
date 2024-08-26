@@ -104,6 +104,7 @@ void CUser::Initialize() {
     m_sExchangeUser = -1;
     m_bExchangeOK = 0x00;
     m_sPrivateChatUser = -1;
+    m_bBlockPrivateChat = 0;
     m_bNeedParty = 0x01;
 
     m_fHPLastTimeNormal = 0.0f; // For Automatic HP recovery.
@@ -6432,37 +6433,72 @@ BOOL CUser::ItemEquipAvailable(_ITEM_TABLE * pTable) {
 }
 
 void CUser::ChatTargetSelect(char * pBuf) {
-    int     index = 0, send_index = 0, idlen = 0;
-    CUser * pUser = NULL;
-    char    chatid[MAX_ID_SIZE + 1];
-    memset(chatid, 0x00, MAX_ID_SIZE + 1);
-    char send_buff[128];
-    memset(send_buff, 0x00, 128);
+    char targetUserID[MAX_ID_SIZE + 1] = {0}; 
+    char packetBuffer[128] = {0};             
 
-    idlen = GetShort(pBuf, index);
-    if (idlen > MAX_ID_SIZE || idlen < 0) {
-        return;
-    }
-    GetString(chatid, pBuf, idlen, index);
-    int i;
-    for (i = 0; i < MAX_USER; i++) {
-        pUser = (CUser *)m_pMain->m_Iocport.m_SockArray[i];
-        if (pUser && pUser->GetState() == STATE_GAMESTART) {
-            if (_strnicmp(chatid, pUser->m_pUserData->m_id, MAX_ID_SIZE) == 0) {
-                m_sPrivateChatUser = i;
+    int bufferIndex = 0; 
+    int packetIndex = 0; 
+
+    uint8_t messageType = GetUInt8(pBuf, bufferIndex);
+
+    switch (messageType) {
+    case CHAT_TARGET_SELECT: {
+        int targetUserIDLength = GetShort(pBuf, bufferIndex);
+        if (targetUserIDLength <= 0 || targetUserIDLength > MAX_ID_SIZE) {
+            return;
+        }
+
+        GetString(targetUserID, pBuf, targetUserIDLength, bufferIndex);
+
+        CUser *          targetUser = nullptr;
+        ChatTargetStatus chatStatus = USER_NOT_FOUND;
+
+        for (int i = 0; i < MAX_USER; i++) {
+            targetUser = static_cast<CUser *>(m_pMain->m_Iocport.m_SockArray[i]);
+            if (targetUser && targetUser->GetState() == STATE_GAMESTART &&
+                _strnicmp(targetUserID, targetUser->m_pUserData->m_id, MAX_ID_SIZE) == 0) {
+                if (targetUser->isBlockingPrivateChat()) {
+                    chatStatus = USER_BLOCKS_CHAT; 
+                } else {
+                    m_sPrivateChatUser = i;
+                    chatStatus = USER_FOUND; 
+                }
                 break;
             }
         }
+        
+        SetByte(packetBuffer, WIZ_CHAT_TARGET, packetIndex);
+
+        switch (chatStatus) {
+        case USER_NOT_FOUND:
+            SetShort(packetBuffer, 0, packetIndex);
+            break;
+
+        case USER_BLOCKS_CHAT:
+            SetShort(packetBuffer, -1, packetIndex); 
+            break;
+
+        case USER_FOUND:
+            int userIDLength = strlen(targetUser->m_pUserData->m_id);
+            SetShort(packetBuffer, userIDLength, packetIndex);
+            SetString(packetBuffer, targetUser->m_pUserData->m_id, userIDLength, packetIndex);
+            break;
+        }
+        break; 
     }
 
-    SetByte(send_buff, WIZ_CHAT_TARGET, send_index);
-    if (i == MAX_USER) {
-        SetShort(send_buff, 0, send_index);
-    } else {
-        SetShort(send_buff, strlen(chatid), send_index);
-        SetString(send_buff, chatid, strlen(chatid), send_index);
+    case BLOCK_CHAT: {
+        uint8_t blockWhisperStatus = GetUInt8(pBuf, bufferIndex);
+        if (blockWhisperStatus == 0 || blockWhisperStatus == 1) {
+            m_bBlockPrivateChat = blockWhisperStatus;
+        }
+        break;
     }
-    Send(send_buff, send_index);
+    default:
+        break;
+    }
+
+    Send(packetBuffer, packetIndex);
 }
 
 // AI server에 User정보를 전부 전송...

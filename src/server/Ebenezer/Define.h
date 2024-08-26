@@ -341,7 +341,11 @@ inline BYTE GetByte(char * sBuf, int & index) {
     index++;
     return (BYTE)(*(sBuf + t_index));
 };
-
+inline uint8_t GetUInt8(char * sBuf, int & index) {
+    uint8_t value = *(reinterpret_cast<uint8_t *>(sBuf + index));
+    index += 1;
+    return value;
+}
 inline int GetShort(char * sBuf, int & index) {
     index += 2;
     return *(short *)(sBuf + index - 2);
@@ -378,7 +382,12 @@ inline void SetShort(char * tBuf, int sShort, int & index) {
     CopyMemory(tBuf + index, &temp, 2);
     index += 2;
 };
+inline void SetUInt8(char * tBuf, uint8_t sUInt8, int & index) {
+    uint8_t temp = (short)sUInt8;
 
+    CopyMemory(tBuf + index, &temp, 1);
+    index += 1;
+};
 inline void SetDWORD(char * tBuf, DWORD sDWORD, int & index) {
     CopyMemory(tBuf + index, &sDWORD, 4);
     index += 4;
@@ -540,4 +549,14 @@ inline void TimeTrace(TCHAR * pMsg) {
     szMsg.Format("%s,,  time : %d-%d-%d, %d:%d]\n", pMsg, time.GetYear(), time.GetMonth(), time.GetDay(),
                  time.GetHour(), time.GetMinute());
     TRACE(szMsg);
+};
+
+enum ChatTargetStatus {
+    USER_NOT_FOUND = 0,
+    USER_BLOCKS_CHAT = -1,
+    USER_FOUND = 1
+};
+enum MessageType : uint8_t {
+    CHAT_TARGET_SELECT = 1,
+    BLOCK_CHAT = 2,
 };

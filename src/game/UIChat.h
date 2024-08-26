@@ -5,6 +5,8 @@
 #pragma once
 
 #include "N3Base/N3UIBase.h"
+#include "UIChatWhisperOpen.h"
+#include "UIChatWhisperHide.h"
 #include <deque>
 
 //enum e_ChatBuffer { CHAT_BUFFER_NORMAL = 0, CHAT_BUFFER_PRIVATE, CHAT_BUFFER_PARTY, CHAT_BUFFER_KNIGHTS, CHAT_BUFFER_COUNT };
@@ -18,6 +20,17 @@ struct __ChatInfo {
         szChat = szChat_Arg;
         color = color_Arg;
     }
+};
+
+struct ChatWhisperWindows {
+    CUIChatWhisperOpen* Open;
+    CUIChatWhisperHide* Hide;
+    bool                 messageNotRead;
+
+    ChatWhisperWindows()
+        : Open(nullptr)
+        , Hide(nullptr)
+        , messageNotRead(false) {}
 };
 
 typedef deque<__ChatInfo *>        ChatList;
@@ -61,6 +74,11 @@ class CUIChat : public CN3UIBase {
     bool m_bChatParty;
 
     bool m_bKillFocus;
+
+  public:
+    std::unordered_map<std::string, ChatWhisperWindows> whisperWindows;
+    std::string                                         whisperTarget;
+
     //    e_ChatBuffer    m_eChatBuffer; // 채팅 표시 모드 .. 버퍼가 나누어져있다..
 
     /*
@@ -105,6 +123,9 @@ class CUIChat : public CN3UIBase {
                                    D3DCOLOR color = 0xffffffff); // 채팅 메세지를 저장하고 알맞은 형태로 화면에 출력해준다.
     void                AddContinueMsg(e_ChatMode eCM, const std::string & szString, D3DCOLOR color = 0xffffffff);
     void                AdjustScroll(); // 스크롤 위치등 조정..
+    void InitializeWhisperWindows(const std::string & nickname, bool isSender);
+    std::pair<int, int> CalculateWhisperPosition(int activeWhisperWindowsCount);
+    bool deleteWhisperWinodws(const std::string & nickname);
 
     BOOL IsChatMode();
     void SetFocus();
