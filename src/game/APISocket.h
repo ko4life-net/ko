@@ -261,7 +261,7 @@ class CAPISocket {
     //패킷 만들기 함수
     static void MP_AddByte(BYTE * dest, int & iOffset, BYTE byte) {
         CopyMemory(dest + iOffset, &byte, 1);
-        iOffset++; 
+        iOffset++;
     }
 
     static void MP_AddUInt8(BYTE * dest, int & iOffset, uint8_t value) {

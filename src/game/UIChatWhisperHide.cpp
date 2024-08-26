@@ -18,8 +18,7 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CUIChatWhisperHide::CUIChatWhisperHide() {
-}
+CUIChatWhisperHide::CUIChatWhisperHide() {}
 
 CUIChatWhisperHide::~CUIChatWhisperHide() {}
 
@@ -79,7 +78,6 @@ bool CUIChatWhisperHide::Load(HANDLE hFile) {
 
     return true;
 }
-
 
 void CUIChatWhisperHide::Render() {
     if (!m_bVisible) {

@@ -7,7 +7,6 @@
 #include "GameProcedure.h"
 #include <set>
 
-
 typedef typename std::set<int>::iterator it_ID;
 typedef std::pair<it_ID, bool>           pair_ID;
 
@@ -22,17 +21,17 @@ class CGameProcMain : public CGameProcedure {
 #ifdef _N3_64GRID_
     CServerMesh * m_pSMesh; // 서버에게 필요한 메쉬 클래스..
 #endif
-    class CUIInventory *  m_pUIInventory; // 인벤토리
-    class CUIVarious *    m_pUIVar; // 캐릭터 상태창, 기사단 관리 등이 페이지로 들어간 다용도 UI
-    class CUIChat *       m_pUIChatDlg;            // 채팅 입출력 대화상자..
+    class CUIInventory * m_pUIInventory; // 인벤토리
+    class CUIVarious *   m_pUIVar; // 캐릭터 상태창, 기사단 관리 등이 페이지로 들어간 다용도 UI
+    class CUIChat *      m_pUIChatDlg; // 채팅 입출력 대화상자..
     class CUIChatWhisperOpen *  m_pUIChatWhiserOpen;
     class CUIChatWhisperHide *  m_pUIChatWhiserHide;
-    class CUIMessageWnd * m_pUIMsgDlg;             // 게임 메시지 출력 상자.
-    class CUIStateBar *   m_pUIStateBarAndMiniMap; // mp,hp,exp, minimap....
-    class CUICmd *        m_pUICmd;                // 왼쪽 하단의 명령버튼 창..
-    class CUICmdList *    m_pUICmdList;
-    class CUICmdEdit *    m_pUICmdEditDlg;
-    class CUITargetBar *  m_pUITargetBar; // 타겟 상태창..
+    class CUIMessageWnd *       m_pUIMsgDlg;             // 게임 메시지 출력 상자.
+    class CUIStateBar *         m_pUIStateBarAndMiniMap; // mp,hp,exp, minimap....
+    class CUICmd *              m_pUICmd;                // 왼쪽 하단의 명령버튼 창..
+    class CUICmdList *          m_pUICmdList;
+    class CUICmdEdit *          m_pUICmdEditDlg;
+    class CUITargetBar *        m_pUITargetBar; // 타겟 상태창..
     class CUITransactionDlg *   m_pUITransactionDlg;
     class CUIDroppedItemDlg *   m_pUIDroppedItemDlg;
     class CSubProcPerTrade *    m_pSubProcPerTrade;

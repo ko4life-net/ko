@@ -957,7 +957,7 @@ bool CGameProcMain::ProcessPacket(DataPack * pDataPack, int & iOffset) {
         int         iLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset); // ID 문자열 길이..
         CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szID, iLen);       // ID 문자열..
 
-		e_ChatMode eCM = N3_CHAT_UNKNOWN;
+        e_ChatMode eCM = N3_CHAT_UNKNOWN;
 
         if (iLen == -1) { // User has blocked private messages
             ::_LoadStringFromResource(IDS_USER_HAS_BLOCKED_WHISPER, szMsg);
@@ -976,7 +976,7 @@ bool CGameProcMain::ProcessPacket(DataPack * pDataPack, int & iOffset) {
                 if (it == m_pUIChatDlg->whisperWindows.end()) {
                     ::_LoadStringFromResource(IDS_CHAT_SELECT_TARGET_SUCCESS, szMsg);
                     this->MsgOutput(szMsg, 0xffffff00);
-                } 
+                }
                 CGameProcedure::s_pProcMain->MsgSend_Whisper(szID);
             }
         }
@@ -2113,7 +2113,6 @@ bool CGameProcMain::MsgRecv_Chat(DataPack * pDataPack, int & iOffset) {
         pTalker = s_pPlayer->IDString();
     }
 
-
     if (eCM == N3_CHAT_CONTINUE_DELETE) { //지속 공지 삭제...
         m_pUIChatDlg->DeleteContinueMsg();
         return true;
@@ -2205,7 +2204,7 @@ bool CGameProcMain::MsgRecv_Chat(DataPack * pDataPack, int & iOffset) {
         (N3_CHAT_NORMAL == eCM || N3_CHAT_SHOUT == eCM)) { // 보통 채팅 혹은 외치기일때만..
         pBPC->BalloonStringSet(szChat, crChat);
     }
-    if (eCM == N3_CHAT_PRIVATE) { 
+    if (eCM == N3_CHAT_PRIVATE) {
         std::string szText = (iTmp > 0) ? szChat.substr(iTmp + 3, szChat.length()) : szChat;
 
         e_Nation           eNation = pBPC->m_InfoBase.eNation;
@@ -2215,7 +2214,6 @@ bool CGameProcMain::MsgRecv_Chat(DataPack * pDataPack, int & iOffset) {
         if (pTalker == s_pPlayer->IDString()) { // Send to myself
 
             if (!m_pUIChatDlg->whisperTarget.empty()) {
-
                 auto it = m_pUIChatDlg->whisperWindows.find(m_pUIChatDlg->whisperTarget);
                 if (it == m_pUIChatDlg->whisperWindows.end()) {
                     m_pUIChatDlg->InitializeWhisperWindows(m_pUIChatDlg->whisperTarget, true);
@@ -2227,7 +2225,6 @@ bool CGameProcMain::MsgRecv_Chat(DataPack * pDataPack, int & iOffset) {
 
             auto it = m_pUIChatDlg->whisperWindows.find(pTalker);
             if (it != m_pUIChatDlg->whisperWindows.end()) {
-                
             } else {
                 int whisperCount = m_pUIChatDlg->whisperWindows.size();
                 auto [posX, posY] = m_pUIChatDlg->CalculateWhisperPosition(whisperCount);
@@ -2236,7 +2233,7 @@ bool CGameProcMain::MsgRecv_Chat(DataPack * pDataPack, int & iOffset) {
                 m_pUIChatDlg->whisperWindows[pTalker].Hide->SetPos(posX, posY);
             }
 
-            if(m_pUIChatDlg->whisperWindows[pTalker].Hide->IsVisible()) {
+            if (m_pUIChatDlg->whisperWindows[pTalker].Hide->IsVisible()) {
                 m_pUIChatDlg->whisperWindows[pTalker].messageNotRead = true;
                 m_pUIChatDlg->whisperWindows[pTalker].Hide->m_messageNotRead = true;
             }
@@ -2247,7 +2244,7 @@ bool CGameProcMain::MsgRecv_Chat(DataPack * pDataPack, int & iOffset) {
         // Put it in the chat window..
         m_pUIChatDlg->AddChatMsg(eCM, szChat, crChat);
     }
-    
+
     return true;
 }
 
@@ -4892,7 +4889,6 @@ bool CGameProcMain::WhisperHide(std::string szTargetWhisperName, POINT pos) {
     m_pUIChatDlg->KillFocus();
 
     if (it != whisperWindows.end()) {
-
         it->second.Hide->SetPos(pos.x, pos.y);
         it->second.Hide->SetVisible(true);
         it->second.Hide->SetState(UI_STATE_COMMON_NONE);
@@ -4904,10 +4900,10 @@ bool CGameProcMain::WhisperHide(std::string szTargetWhisperName, POINT pos) {
         it->second.Hide->SetEnableKillFocus(false);
         s_pUIMgr->ReFocusUI();
 
-        return true; 
+        return true;
     }
 
-    return false; 
+    return false;
 }
 
 void CGameProcMain::MsgSend_Whisper(std::string szTargetWhisperName) {
@@ -5709,7 +5705,7 @@ void CGameProcMain::ParseChattingCommand(const std::string & szCmd) {
         if (m_pUIStateBarAndMiniMap) {
             m_pUIStateBarAndMiniMap->SetSystemTimeVisibility(false);
         }
-    } 
+    }
 
     int eCmd = -1;
 
@@ -7858,7 +7854,7 @@ bool CGameProcMain::OnMouseRbtnDown(POINT ptCur, POINT ptPrev) {
 
     if (fRotY || fRotX) {
         SetGameCursor(NULL);
-        POINT ptToScreen{ ptPrev.x, ptPrev.y };
+        POINT ptToScreen{ptPrev.x, ptPrev.y};
         ::ClientToScreen(s_hWndBase, &ptToScreen);
         ::SetCursorPos(ptToScreen.x, ptToScreen.y);
         s_pLocalInput->MouseSetPos(ptPrev.x, ptPrev.y);
@@ -7886,26 +7882,24 @@ void CGameProcMain::ProcessUIKeyInput(bool bEnable) {
         if (s_pLocalInput->IsKeyPress(DIK_RETURN) && !s_bKeyPress) {
             if (m_pUIChatDlg->whisperTarget.empty()) {
                 m_pUIChatDlg->SetFocus();
-            }
-            else {
+            } else {
                 if (it != m_pUIChatDlg->whisperWindows.end()) {
                     m_pUIChatDlg->whisperWindows[m_pUIChatDlg->whisperTarget].Open->SetFocus();
                 }
             }
         }
-    }
-    else if (m_pUIChatDlg && m_pUIChatDlg->IsChatMode()) {
+    } else if (m_pUIChatDlg && m_pUIChatDlg->IsChatMode()) {
         s_bKeyPress = false;
         if (m_pUIChatDlg->GetEnableKillFocus()) {
             m_pUIChatDlg->SetEnableKillFocus(false);
             m_pUIChatDlg->KillFocus();
         }
         if (!m_pUIChatDlg->whisperTarget.empty() && it != m_pUIChatDlg->whisperWindows.end()) {
-           if(m_pUIChatDlg->whisperWindows[m_pUIChatDlg->whisperTarget].Open->GetEnableKillFocus()){
+            if (m_pUIChatDlg->whisperWindows[m_pUIChatDlg->whisperTarget].Open->GetEnableKillFocus()) {
                 m_pUIChatDlg->whisperWindows[m_pUIChatDlg->whisperTarget].Open->SetEnableKillFocus(false);
                 m_pUIChatDlg->whisperWindows[m_pUIChatDlg->whisperTarget].Open->KillFocus();
-           }
-        } 
+            }
+        }
     }
 }
 

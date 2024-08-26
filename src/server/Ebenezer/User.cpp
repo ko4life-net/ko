@@ -6433,11 +6433,11 @@ BOOL CUser::ItemEquipAvailable(_ITEM_TABLE * pTable) {
 }
 
 void CUser::ChatTargetSelect(char * pBuf) {
-    char targetUserID[MAX_ID_SIZE + 1] = {0}; 
-    char packetBuffer[128] = {0};             
+    char targetUserID[MAX_ID_SIZE + 1] = {0};
+    char packetBuffer[128] = {0};
 
-    int bufferIndex = 0; 
-    int packetIndex = 0; 
+    int bufferIndex = 0;
+    int packetIndex = 0;
 
     uint8_t messageType = GetUInt8(pBuf, bufferIndex);
 
@@ -6458,15 +6458,15 @@ void CUser::ChatTargetSelect(char * pBuf) {
             if (targetUser && targetUser->GetState() == STATE_GAMESTART &&
                 _strnicmp(targetUserID, targetUser->m_pUserData->m_id, MAX_ID_SIZE) == 0) {
                 if (targetUser->isBlockingPrivateChat()) {
-                    chatStatus = USER_BLOCKS_CHAT; 
+                    chatStatus = USER_BLOCKS_CHAT;
                 } else {
                     m_sPrivateChatUser = i;
-                    chatStatus = USER_FOUND; 
+                    chatStatus = USER_FOUND;
                 }
                 break;
             }
         }
-        
+
         SetByte(packetBuffer, WIZ_CHAT_TARGET, packetIndex);
 
         switch (chatStatus) {
@@ -6475,7 +6475,7 @@ void CUser::ChatTargetSelect(char * pBuf) {
             break;
 
         case USER_BLOCKS_CHAT:
-            SetShort(packetBuffer, -1, packetIndex); 
+            SetShort(packetBuffer, -1, packetIndex);
             break;
 
         case USER_FOUND:
@@ -6484,7 +6484,7 @@ void CUser::ChatTargetSelect(char * pBuf) {
             SetString(packetBuffer, targetUser->m_pUserData->m_id, userIDLength, packetIndex);
             break;
         }
-        break; 
+        break;
     }
 
     case BLOCK_CHAT: {

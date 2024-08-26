@@ -20,31 +20,32 @@
 //////////////////////////////////////////////////////////////////////
 
 CUIChatWhisperOpen::CUIChatWhisperOpen() {
-    
-	if (m_ppUILines) { delete[] m_ppUILines; m_ppUILines = NULL; }
+    if (m_ppUILines) {
+        delete[] m_ppUILines;
+        m_ppUILines = NULL;
+    }
 
-	ChatListPmItor itor;
-    for (itor = m_ChatBuffer.begin(); m_ChatBuffer.end() != itor; ++itor)
-	{
+    ChatListPmItor itor;
+    for (itor = m_ChatBuffer.begin(); m_ChatBuffer.end() != itor; ++itor) {
         __WhisperMessage * pChatInfo = (*itor);
-		if (pChatInfo) delete pChatInfo;
-	}
+        if (pChatInfo) {
+            delete pChatInfo;
+        }
+    }
     m_ChatBuffer.clear();
 
-	for (itor = m_LineBuffer.begin(); m_LineBuffer.end() != itor; ++itor)
-	{
+    for (itor = m_LineBuffer.begin(); m_LineBuffer.end() != itor; ++itor) {
         __WhisperMessage * pChatInfo = (*itor);
-		if (pChatInfo) delete pChatInfo;
-	}
+        if (pChatInfo) {
+            delete pChatInfo;
+        }
+    }
     m_LineBuffer.clear();
 
-
-	DeleteContinueMsg();
-	
+    DeleteContinueMsg();
 }
 
-CUIChatWhisperOpen::~CUIChatWhisperOpen() {
-}
+CUIChatWhisperOpen::~CUIChatWhisperOpen() {}
 
 void CUIChatWhisperOpen::Release() {
     CN3UIBase::Release();
@@ -113,7 +114,6 @@ bool CUIChatWhisperOpen::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             return CGameProcedure::s_pProcMain->m_pUIChatDlg->deleteWhisperWinodws(m_pText_UserName->GetString());
 
         } else if (pSender->m_szID == "btn_hide") {
-           
             SetEnableKillFocus(false);
             KillFocus();
             CGameProcedure::s_pProcMain->m_pUIChatDlg->KillFocus();
@@ -122,12 +122,11 @@ bool CUIChatWhisperOpen::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             CGameProcedure::s_pUIMgr->ReFocusUI();
             SetVisible(false);
             CGameProcedure::s_pProcMain->m_pUIChatDlg->whisperTarget = "";
-          
+
             auto it = CGameProcedure::s_pProcMain->m_pUIChatDlg->whisperWindows.find(m_pText_UserName->GetString());
             if (it != CGameProcedure::s_pProcMain->m_pUIChatDlg->whisperWindows.end()) {
                 CGameProcedure::s_pProcMain->m_pUIChatDlg->whisperWindows[m_pText_UserName->GetString()]
                     .messageNotRead = false;
-
             }
 
             CGameProcedure::s_pProcMain->WhisperHide(m_pText_UserName->GetString(), chatPosition);
@@ -135,10 +134,8 @@ bool CUIChatWhisperOpen::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 
     } else if (dwMsg == UI_MOUSE_LBCLICK && (pSender->m_szID == "btn_bar" || pSender->m_szID == "exit_id")) {
         SetState(UI_STATE_COMMON_MOVE);
-    } else if (dwMsg == UI_MOUSE_LBCLICK && pSender->m_szID == "edit_chat"){
-
+    } else if (dwMsg == UI_MOUSE_LBCLICK && pSender->m_szID == "edit_chat") {
         CGameProcedure::s_pProcMain->m_pUIChatDlg->whisperTarget = m_pText_UserName->GetString();
-        
 
     } else if (dwMsg == UIMSG_EDIT_RETURN) {
         CN3UIEdit * m_pBtn_message = (CN3UIEdit *)pSender;
@@ -165,7 +162,7 @@ void CUIChatWhisperOpen::AddLineBuffer(const std::string & szString, D3DCOLOR co
     }
 
     const int iStrLen = szString.size();
-    SIZE size;
+    SIZE      size;
     if (FALSE == m_pMessages_List->GetTextExtent(szString, iStrLen, &size)) {
         __ASSERT(0, "no device context");
         return;
@@ -196,15 +193,14 @@ void CUIChatWhisperOpen::AddLineBuffer(const std::string & szString, D3DCOLOR co
         } else {
             int iCC = 0;
             if (0x80 & szString[iCount]) {
-                iCC = 2; // 2BYTE 
+                iCC = 2; // 2BYTE
             } else {
                 iCC = 1; // 1BYTE
             }
 
             BOOL bFlag = m_pMessages_List->GetTextExtent(&(szString[iCount]), iCC, &size);
             __ASSERT(bFlag, "cannot get size of dfont");
-            if ((iCX + size.cx) > iRegionWidth) 
-            {
+            if ((iCX + size.cx) > iRegionWidth) {
                 int iLineLength = iCount - iLineStart;
                 if (iLineLength > 0) {
                     __WhisperMessage * pLineInfo = new __WhisperMessage;
@@ -265,7 +261,9 @@ void CUIChatWhisperOpen::CreateLines() {
         m_ppUILines = NULL;
     }
     SIZE size;
-    if (m_pMessages_List && m_pMessages_List->GetTextExtent("M", lstrlen("M"), &size) && size.cy > 0) { // The letter 'M' is used for measuring text width because it's typically the widest character, providing a better estimate of the maximum text width.
+    if (m_pMessages_List && m_pMessages_List->GetTextExtent("M", lstrlen("M"), &size) &&
+        size.cy >
+            0) { // The letter 'M' is used for measuring text width because it's typically the widest character, providing a better estimate of the maximum text width.
         m_iChatLineCount = (m_rcChatOutRegion.bottom - m_rcChatOutRegion.top) / size.cy;
     } else {
         return;
@@ -292,13 +290,10 @@ void CUIChatWhisperOpen::CreateLines() {
 }
 
 void CUIChatWhisperOpen::AdjustScroll() {
-    int  iCurLinePos = m_pScrollbar->GetCurrentPos(); 
+    int  iCurLinePos = m_pScrollbar->GetCurrentPos();
     BOOL bAutoScroll = (m_pScrollbar->GetMaxPos() == iCurLinePos) ? TRUE : FALSE;
 
-    while (
-        m_LineBuffer.size() > MAX_CHAT_LINES_PM &&
-        0 < iCurLinePos) 
-    {
+    while (m_LineBuffer.size() > MAX_CHAT_LINES_PM && 0 < iCurLinePos) {
         __WhisperMessage * pTemp = m_LineBuffer.front();
         if (pTemp) {
             delete pTemp;
@@ -365,7 +360,7 @@ void CUIChatWhisperOpen::SetTopLine(int iTopLine) {
     }
 
     __ASSERT(m_ppUILines, "null pointer");
-    int iRealLine = i; 
+    int iRealLine = i;
     int iRealLineCount = 0;
     for (int i = 0; i < iRealLine; ++i) {
         ++iRealLineCount;
@@ -385,7 +380,7 @@ void CUIChatWhisperOpen::SetTopLine(int iTopLine) {
 }
 
 void CUIChatWhisperOpen::RecalcLineBuffers() {
-    int iMaxScrollPos = 0;
+    int            iMaxScrollPos = 0;
     ChatListPmItor itor;
     for (itor = m_LineBuffer.begin(); m_LineBuffer.end() != itor; ++itor) {
         __WhisperMessage * pLineBuff = (*itor);
@@ -403,8 +398,7 @@ void CUIChatWhisperOpen::RecalcLineBuffers() {
         }
     }
 
-    while (m_LineBuffer.size() > MAX_CHAT_LINES_PM)
-    {
+    while (m_LineBuffer.size() > MAX_CHAT_LINES_PM) {
         __WhisperMessage * pLineBuff = m_ChatBuffer.front();
         if (pLineBuff) {
             delete pLineBuff;
@@ -419,7 +413,7 @@ void CUIChatWhisperOpen::RecalcLineBuffers() {
     if (iMaxScrollPos < 0) {
         iMaxScrollPos = 0;
     }
-    m_pScrollbar->SetRange(0, iMaxScrollPos); 
+    m_pScrollbar->SetRange(0, iMaxScrollPos);
     m_pScrollbar->SetCurrentPos(iMaxScrollPos);
 
     SetTopLine(iMaxScrollPos);
@@ -481,7 +475,6 @@ BOOL CUIChatWhisperOpen::MoveOffset(int iOffsetX, int iOffsetY) {
         pCUI->MoveOffset(iOffsetX, iOffsetY);
     }
 
-
     return TRUE;
 }
 
@@ -508,7 +501,7 @@ void CUIChatWhisperOpen::ShowContinueMsg() {
         m_iCurContinueMsg = 0;
     }
 
-    int           iCnt = 0;
+    int            iCnt = 0;
     ChatListPmItor itor;
     for (itor = m_ContinueMsg.begin(); m_ContinueMsg.end() != itor; ++itor) {
         if (iCnt == m_iCurContinueMsg) {
@@ -535,4 +528,3 @@ bool CUIChatWhisperOpen::OnKeyPress(int iKey) {
 
     return CN3UIBase::OnKeyPress(iKey);
 }
-

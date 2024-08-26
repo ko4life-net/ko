@@ -851,9 +851,8 @@ void CUIChat::SetNoticeTitle(const std::string & szString, D3DCOLOR color) {
     }
 }
 
-void CUIChat::InitializeWhisperWindows(const std::string & nickname, bool isSender)
-{
-    e_Nation           eNation = CGameBase::s_pPlayer->m_InfoBase.eNation; 
+void CUIChat::InitializeWhisperWindows(const std::string & nickname, bool isSender) {
+    e_Nation           eNation = CGameBase::s_pPlayer->m_InfoBase.eNation;
     __TABLE_UI_RESRC * pTbl = CGameProcedure::s_pProcMain->s_pTbl_UI->Find(eNation);
 
     ChatWhisperWindows & window = whisperWindows[nickname];
@@ -889,10 +888,10 @@ bool CUIChat::deleteWhisperWinodws(const std::string & nickname) {
         }
 
         whisperWindows.erase(it);
-        return true; 
+        return true;
     }
 
-    return false; 
+    return false;
 }
 
 std::pair<int, int> CUIChat::CalculateWhisperPosition(int activeWhisperWindowsCount) {
