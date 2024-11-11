@@ -1269,7 +1269,7 @@ void COrganizeView::OnFileWorkshopOpen() {
     }
 
     std::string szPath(dlg.GetPathName().GetString()), szExt(dlg.GetFileExt().GetString());
-    if (!N3::iequals(szExt, "wshop")) {
+    if (!n3std::iequals(szExt, "wshop")) {
         return;
     }
 
@@ -1293,7 +1293,7 @@ void COrganizeView::OnFileOpenGamedata() {
     }
 
     std::string szPath(dlg.GetPathName().GetString()), szExt(dlg.GetFileExt().GetString());
-    if (!N3::iequals(szExt, "n3indoor")) {
+    if (!n3std::iequals(szExt, "n3indoor")) {
         return;
     }
 

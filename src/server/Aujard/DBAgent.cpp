@@ -548,10 +548,10 @@ int CDBAgent::UpdateUser(const char * userid, int uid, int type) {
                 SQLFreeHandle((SQLSMALLINT)SQL_HANDLE_STMT, hstmt);
 
                 char        logstr[1024]{};
-                std::string strBySkill = N3::BytesToHex(reinterpret_cast<uint8_t *>(bySkill), sizeof(bySkill));
-                std::string strByItem = N3::BytesToHex(reinterpret_cast<uint8_t *>(byItem), sizeof(byItem));
-                sprintf(logstr, "[Error-DB Fail] %s, Skill[%s] Item[%s] \r\n", szSQL, strBySkill.c_str(),
-                        strByItem.c_str());
+                std::string szBySkill = n3std::bytes_to_hex(reinterpret_cast<uint8_t *>(bySkill), sizeof(bySkill));
+                std::string szByItem = n3std::bytes_to_hex(reinterpret_cast<uint8_t *>(byItem), sizeof(byItem));
+                sprintf(logstr, "[Error-DB Fail] %s, Skill[%s] Item[%s] \r\n", szSQL, szBySkill.c_str(),
+                        szByItem.c_str());
                 m_pMain->WriteLogFile(logstr);
                 //m_pMain->m_LogFile.Write(logstr, strlen(logstr));
                 return 0;
@@ -1314,8 +1314,8 @@ int CDBAgent::UpdateWarehouseData(const char * accountid, int uid, int type) {
                 SQLFreeHandle((SQLSMALLINT)SQL_HANDLE_STMT, hstmt);
 
                 char        logstr[2048]{};
-                std::string strByItem = N3::BytesToHex(reinterpret_cast<uint8_t *>(byItem), sizeof(byItem));
-                sprintf(logstr, "%s, Item[%s] \r\n", szSQL, strByItem.c_str());
+                std::string szByItem = n3std::bytes_to_hex(reinterpret_cast<uint8_t *>(byItem), sizeof(byItem));
+                sprintf(logstr, "%s, Item[%s] \r\n", szSQL, szByItem.c_str());
                 m_pMain->WriteLogFile(logstr);
                 //m_pMain->m_LogFile.Write(logstr, strlen(logstr));
                 return FALSE;

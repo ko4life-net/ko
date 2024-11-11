@@ -733,7 +733,7 @@ void CUIStateBar::DelMagic(__TABLE_UPC_SKILL * pSkill) {
         __DurationMagicImg * pMagicImg = (*it);
         CN3UIDBCLButton *    pIcon = pMagicImg->pIcon;
         CN3Texture *         pTex = pIcon->GetTex();
-        if (pTex && N3::iequals(szTexFN, pTex->FileName())) {
+        if (pTex && n3std::iequals(szTexFN, pTex->FileName())) {
             itRemove = it;
         }
         if (itRemove != ite) {
