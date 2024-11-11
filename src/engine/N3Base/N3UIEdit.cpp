@@ -190,7 +190,7 @@ LRESULT APIENTRY CN3UIEdit::EditWndProc(HWND hWnd, WORD Message, WPARAM wParam, 
             DWORD dwCmd = wParam;
             switch(dwCmd)
             {
-            case IMC_GETCANDIDATEPOS: 
+            case IMC_GETCANDIDATEPOS:
                 iiii = 0;
                 break;
             case IMC_OPENSTATUSWINDOW:
@@ -290,7 +290,7 @@ LRESULT APIENTRY CN3UIEdit::EditWndProc(HWND hWnd, WORD Message, WPARAM wParam, 
             case IMN_SETCOMPOSITIONWINDOW:
                 {
                     int iiii = 0;
-                    
+
                     COMPOSITIONFORM CompForm;
                     CompForm.dwStyle = CFS_RECT;
                     int msg2 = (UINT) WM_IME_CONTROL;
@@ -706,7 +706,7 @@ void CN3UIEdit::SetSndTyping(const std::string & strFileName) {
     CN3BaseFileAccess tmpBase;
     tmpBase.FileNameSet(strFileName); // Base경로에 대해서 상대적 경로를 넘겨준다.
 
-    SetCurrentDirectory(tmpBase.PathGet().c_str());
+    SetCurrentDirectory(CN3Base::PathGet().c_str());
     m_pSnd_Typing = s_SndMgr.CreateObj(tmpBase.FileName(), SNDTYPE_2D);
 }
 

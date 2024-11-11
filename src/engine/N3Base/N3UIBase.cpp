@@ -975,7 +975,7 @@ void CN3UIBase::SetSndOpen(const std::string & strFileName) {
     CN3BaseFileAccess tmpBase;
     tmpBase.FileNameSet(strFileName); // Base경로에 대해서 상대적 경로를 넘겨준다.
 
-    SetCurrentDirectory(tmpBase.PathGet().c_str());
+    SetCurrentDirectory(CN3Base::PathGet().c_str());
     m_pSnd_OpenUI = s_SndMgr.CreateObj(tmpBase.FileName(), SNDTYPE_2D);
 }
 
@@ -988,7 +988,7 @@ void CN3UIBase::SetSndClose(const std::string & strFileName) {
     CN3BaseFileAccess tmpBase;
     tmpBase.FileNameSet(strFileName); // Base경로에 대해서 상대적 경로를 넘겨준다.
 
-    SetCurrentDirectory(tmpBase.PathGet().c_str());
+    SetCurrentDirectory(CN3Base::PathGet().c_str());
     m_pSnd_CloseUI = s_SndMgr.CreateObj(tmpBase.FileName(), SNDTYPE_2D);
 }
 

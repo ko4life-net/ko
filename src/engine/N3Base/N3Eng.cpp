@@ -40,13 +40,13 @@ CN3Eng::CN3Eng() {
     }
 
     // 프로그램이 실행된 경로..
-    if (s_szPath.empty()) {
+    if (CN3Base::PathGet().empty()) {
         char szPath[256];
         char szDrive[_MAX_DRIVE], szDir[_MAX_DIR];
         ::GetModuleFileName(NULL, szPath, 256);
         _splitpath(szPath, szDrive, szDir, NULL, NULL);
         sprintf(szPath, "%s%s", szDrive, szDir);
-        this->PathSet(szPath); // 경로 설정..
+        CN3Base::PathSet(szPath); // 경로 설정..
     }
 
 #ifdef _N3GAME

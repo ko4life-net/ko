@@ -128,7 +128,7 @@ BOOL CUIEDoc::OnOpenDocument(LPCTSTR lpszPathName) {
     //    if (!CDocument::OnOpenDocument(lpszPathName))
     //        return FALSE;
     Release();
-    SetCurrentDirectory(m_RootUI.PathGet().c_str());
+    SetCurrentDirectory(CN3Base::PathGet().c_str());
     return m_RootUI.LoadFromFile(lpszPathName);
 }
 

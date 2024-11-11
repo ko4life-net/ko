@@ -303,7 +303,7 @@ bool CDlgEditScript::LoadBundle(CString & strPathName) {
             CN3FXPartBase * pPart = m_pFXBundle->GetPart(i);
             if (pPart) {
                 std::string szPartFullPath;
-                szPartFullPath = pPart->PathGet() + pPart->FileName();
+                szPartFullPath = CN3Base::PathGet() + pPart->FileName();
 
                 char szScriptFullPath[_MAX_PATH];
                 char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
@@ -353,7 +353,7 @@ bool CDlgEditScript::NewBundle() {
     /*
     for(int i=0;i<MAX_FX_PART;i++)
     {
-        (*m_pPartStartTime[i]) = 0.0f;        
+        (*m_pPartStartTime[i]) = 0.0f;
         m_pPartName[i]->SetCurSel(0);
     }
     m_fVelocity = 0.0f;
@@ -388,7 +388,7 @@ BOOL CDlgEditScript::OnInitDialog() {
 
         CString             strPath;
         CN3BaseFileAccess * pBaseFileAccess = new CN3BaseFileAccess;
-        strPath = pBaseFileAccess->PathGet().c_str();
+        strPath = CN3Base::PathGet().c_str();
         delete pBaseFileAccess;
         strPath += "fx\\";
 
@@ -428,7 +428,7 @@ void CDlgEditScript::RefreshParts() {
         if (idx > 0) {
             CString             strPath;
             CN3BaseFileAccess * pBaseFileAccess = new CN3BaseFileAccess;
-            strPath = pBaseFileAccess->PathGet().c_str();
+            strPath = CN3Base::PathGet().c_str();
             delete pBaseFileAccess;
             strPath += "fx\\";
 
@@ -460,7 +460,7 @@ void CDlgEditScript::ReloadCombo() {
         //    m_CBPartName들 채우기..
         CString             strPath;
         CN3BaseFileAccess * pBaseFileAccess = new CN3BaseFileAccess;
-        strPath = pBaseFileAccess->PathGet().c_str();
+        strPath = CN3Base::PathGet().c_str();
         delete pBaseFileAccess;
         strPath += "fx\\";
 
@@ -655,7 +655,7 @@ void CDlgEditScript::OnBtnSaveAs() {
         pBaseFileAccess->FileNameSet((LPCTSTR)PathName);
 
         m_strPathName.Empty();
-        m_strPathName = pBaseFileAccess->PathGet().c_str();
+        m_strPathName = CN3Base::PathGet().c_str();
         m_strPathName += pBaseFileAccess->FileName().c_str();
 
         delete pBaseFileAccess;

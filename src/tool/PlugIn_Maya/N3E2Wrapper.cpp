@@ -155,7 +155,7 @@ CN3Light * CN3E2Wrapper::ProcessLight(MFnLight & mLight) {
     MPlug plug(mLight, lightAttr); // 강도
     double intensity;
     plug.getValue(intensity);
-    
+
     lightAttr = lightDG.attribute(MString("specular"));
     plug.setAttribute(lightAttr);
     plug.getValue(
@@ -225,7 +225,7 @@ void CN3E2Wrapper::SceneExport() {
 
     char szPath[256];
     ::GetCurrentDirectory(256, szPath);
-    g_pEng->PathSet(szPath); // 경로 설정...
+    CN3Base::PathSet(szPath); // 경로 설정...
 
     m_pScene = new CN3Scene();
 
@@ -664,7 +664,7 @@ bool CN3E2Wrapper::ProcessSkin(MFnSkinCluster & mSkin, CN3Skin * pSkin) {
         int nVC = pIMesh->VertexCount();
         __VertexXyzNormal* pVs = pIMesh->Vertices();
         __Vector3 vNTmp;
-        
+
         for(int i = 0; i < nVC; i++)
         {
             vNTmp = pVs[i].n;
@@ -1301,7 +1301,7 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
     //        ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
     //        return false;
     //    }
-        
+
         // Surface 생성 및 채우기.
         LPDIRECT3DSURFACE9 lpSurf;
         g_pEng->s_lpD3DDev->CreateOffscreenPlainSurface(nW, nH, D3DFMT_A8R8G8B8, D3DPOOL_DEFAULT, &lpSurf, NULL);
@@ -1343,12 +1343,12 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
         if(bAlpha) pTex->CreateFromSurface(lpSurf, D3DFMT_DXT3, TRUE);
 //        if(bAlpha) pTex->CreateFromSurface(lpSurf, D3DFMT_DXT4, TRUE);
         else pTex->CreateFromSurface(lpSurf, D3DFMT_DXT1, TRUE);
-        
+
         lpSurf->Release(); lpSurf = NULL;
 
         if(pTex->Get() == NULL)
         {
-            wsprintf(szInfo, "### !!! Texture Export 실패(%.3d) : w,h,w2,h2(%.4d, %.4d, %.4d, %.4d) FileName : \"%s\" TextureName \"%s\" MeshName - \"%s\"", 
+            wsprintf(szInfo, "### !!! Texture Export 실패(%.3d) : w,h,w2,h2(%.4d, %.4d, %.4d, %.4d) FileName : \"%s\" TextureName \"%s\" MeshName - \"%s\"",
                 m_pScene->s_MngTex.Count(), pTex->Width(), pTex->Height(), nW, nH, szFile.asChar(), pTex->m_szName.c_str(), mMesh.name().asChar());
             nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
             ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
@@ -1360,7 +1360,7 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Output Window 에 텍스처 출력..
-    wsprintf(szInfo, "### Texture Export (%.3d) : w,h,w2,h2(%.4d, %.4d, %.4d, %.4d) FileName : \"%s\" TextureName \"%s\" MeshName - \"%s\"", 
+    wsprintf(szInfo, "### Texture Export (%.3d) : w,h,w2,h2(%.4d, %.4d, %.4d, %.4d) FileName : \"%s\" TextureName \"%s\" MeshName - \"%s\"",
         m_pScene->s_MngTex.Count(), pTex->Width(), pTex->Height(), nW, nH, szFile.asChar(), pTex->m_szName.c_str(), mMesh.name().asChar());
     nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
     ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
@@ -1990,7 +1990,7 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
         __VertexXyzNormal* pVSrc = pN3Mesh->Vertices();
         WORD* pwISrc = pN3Mesh->VertexInices();
 
-        
+
         CN3VMesh* pVMesh = new CN3VMesh();
         pVMesh->CreateVertices(nVC);
         pVMesh->CreateIndex(nFC * 3);

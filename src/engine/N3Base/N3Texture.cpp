@@ -188,8 +188,8 @@ bool CN3Texture::LoadFromFile(const std::string & szFileName) {
     {
         szFullPath = m_szFileName;
     } else {
-        if (NULL != s_szPath[0]) {
-            szFullPath = s_szPath;
+        if (NULL != CN3Base::PathGet()[0]) {
+            szFullPath = CN3Base::PathGet();
         }
         szFullPath += m_szFileName;
     }

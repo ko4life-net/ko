@@ -217,11 +217,11 @@ void CMainFrame::OnUpdateViewEdit(CCmdUI * pCmdUI) {
 }
 
 void CMainFrame::SetBasePath(LPCTSTR pszPath) {
-    m_Eng.PathSet(pszPath);
+    CN3Base::PathSet(pszPath);
     if (NULL == pszPath) {
         m_wndDlgBar.SetDlgItemText(IDC_EDIT_BASEPATH, _T(""));
     } else {
-        m_wndDlgBar.SetDlgItemText(IDC_EDIT_BASEPATH, m_Eng.PathGet().c_str());
+        m_wndDlgBar.SetDlgItemText(IDC_EDIT_BASEPATH, CN3Base::PathGet().c_str());
     }
 }
 

@@ -346,7 +346,7 @@ char * CDTexGroupMng::GetGroupName(int id) {
 //
 bool CDTexGroupMng::LoadFromFile(CString RealFileName) {
     Init(m_pMainFrm);
-    SetCurrentDirectory(CN3Base::s_szPath.c_str());
+    SetCurrentDirectory(CN3Base::PathGet().c_str());
 
     char szDTexInfoFileName[_MAX_PATH];
     sprintf(szDTexInfoFileName, "dtex\\%s.tgx", (LPCTSTR)RealFileName);
@@ -389,7 +389,7 @@ bool CDTexGroupMng::LoadFromFile(CString RealFileName) {
 //
 //
 bool CDTexGroupMng::SaveToFile(CString RealFileName) {
-    SetCurrentDirectory(CN3Base::s_szPath.c_str());
+    SetCurrentDirectory(CN3Base::PathGet().c_str());
 
     CreateDirectory("dtex", NULL);
 

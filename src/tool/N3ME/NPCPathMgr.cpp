@@ -121,7 +121,7 @@ void CNPCPathMgr::LoadFromFile(const char * FileName) {
     }
 
     char szNPCPathFileName[_MAX_PATH];
-    wsprintf(szNPCPathFileName, "%snpcpath\\%s.npi", s_szPath.c_str(), FileName);
+    wsprintf(szNPCPathFileName, "%snpcpath\\%s.npi", CN3Base::PathGet().c_str(), FileName);
 
     DWORD  dwRWC;
     HANDLE hFile = CreateFile(szNPCPathFileName, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -142,11 +142,11 @@ void CNPCPathMgr::LoadFromFile(const char * FileName) {
 void CNPCPathMgr::SaveToFile(const char * FileName) {
     char szOldPath[_MAX_PATH];
     GetCurrentDirectory(_MAX_PATH, szOldPath);
-    SetCurrentDirectory(s_szPath.c_str());
+    SetCurrentDirectory(CN3Base::PathGet().c_str());
 
     CreateDirectory("npcpath", NULL); // 경로 만들고..
     char szNPCPathFileName[_MAX_PATH];
-    wsprintf(szNPCPathFileName, "%snpcpath\\%s.npi", s_szPath.c_str(), FileName);
+    wsprintf(szNPCPathFileName, "%snpcpath\\%s.npi", CN3Base::PathGet().c_str(), FileName);
 
     DWORD  dwRWC;
     HANDLE hFile = CreateFile(szNPCPathFileName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
