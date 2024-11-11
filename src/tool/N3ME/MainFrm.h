@@ -57,8 +57,8 @@ class CMainFrame : public CFrameWnd {
 
     // Implementation
   public:
-    float GetFP() { return (float)m_wndDlgBar.m_FP_Slider.GetPos(); }
-    int   GetTileRegion() { return m_wndDlgBar.m_TileRegion_Slider.GetPos(); }
+    float GetFP() { return m_wndDlgBar.GetFP(); }
+    int   GetTileRegion() { return m_wndDlgBar.GetTileRegion(); }
     void  UpdateTransformInfo();
     virtual ~CMainFrame();
 #ifdef _DEBUG

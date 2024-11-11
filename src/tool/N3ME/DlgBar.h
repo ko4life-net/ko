@@ -15,6 +15,10 @@ class CDlgBar : public CDialog {
     BOOL m_bUpdateingNow;
     CDlgBar(); // standard constructor
 
+    float GetLight() { return m_sld_Light.GetSafeHwnd() ? static_cast<float>(m_sld_Light.GetPos()) : 0.0f; }
+    int   GetTileRegion() { return m_TileRegion_Slider.GetSafeHwnd() ? m_TileRegion_Slider.GetPos() : 0; }
+    float GetFP() { return m_FP_Slider.GetSafeHwnd() ? static_cast<float>(m_FP_Slider.GetPos()) : 0.0f; }
+
     // Dialog Data
     //{{AFX_DATA(CDlgBar)
     enum {
