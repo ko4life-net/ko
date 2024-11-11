@@ -184,7 +184,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     m_Light[1].m_Data.InitDirection(1, __Vector3(0, 1, 0), crLgt);
 
     //
-    m_Chr.LoadFromFile("object\\obj_baba.n3shape");
+    m_Chr.LoadFromFile("ChrSelect\\el_chairs.n3shape");
 
     m_pGround = new CGround;
 
