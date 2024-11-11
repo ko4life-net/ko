@@ -196,10 +196,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     // TODO: Remove this if you don't want tool tips
     m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() | CBRS_TOOLTIPS | CBRS_FLYBY);
 
-    // 경로 설정..
-    char szPathCur[256] = "";
-    GetCurrentDirectory(256, szPathCur);
-    CN3Base::PathSet(szPathCur);
+    CN3Base::PathSet(fs::current_path().string());
 
     // 엔진 초기화
     m_pEng = new CN3EngTool();

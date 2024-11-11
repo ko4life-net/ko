@@ -314,9 +314,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
     // 스피드 핵 체킹용...
     //////////////////////////////
 
-    char szPath[_MAX_PATH] = "";
-    GetCurrentDirectory(_MAX_PATH, szPath);
-    CN3Base::PathSet(szPath);
+    CN3Base::PathSet(fs::current_path().string());
 
     // 세팅 읽기..
     char szIniPath[_MAX_PATH] = "";

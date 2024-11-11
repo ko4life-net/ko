@@ -87,31 +87,26 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     // TODO: Remove this if you don't want tool tips
     m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() | CBRS_TOOLTIPS | CBRS_FLYBY);
 
+    // Set working directory
+    CWinApp * pApp = AfxGetApp();
+    ASSERT(pApp);
+    CString szRet = pApp->GetProfileString("Work", "Path", "empty");
+    if (szRet == "empty") {
+        char szPath[_MAX_PATH]{};
+        GetModuleFileName(NULL, szPath, _MAX_PATH);
+        std::string szDir = fs::path(szPath).parent_path().string();
+        pApp->WriteProfileString("Work", "Path", szDir.c_str());
+        SetBasePath(szDir.c_str());
+    } else {
+        SetBasePath(szRet);
+    }
+
     // Engine 생성
     //m_Eng.InitEnv();
     if (!m_Eng.Init(TRUE, GetRightPane()->m_hWnd, 64, 64, 0, TRUE)) {
         return -1;
     }
     m_Eng.s_SndMgr.Init(m_hWnd);
-
-    char szPath[_MAX_PATH];
-    char szDrive[_MAX_DRIVE];
-    char szDir[_MAX_DIR];
-    GetModuleFileName(NULL, szPath, _MAX_PATH);
-    _splitpath(szPath, szDrive, szDir, NULL, NULL);
-    _makepath(szPath, szDrive, szDir, NULL, NULL);
-    //    SetCurrentDirectory(szPath);
-    //    SetBasePath(szPath);
-
-    CWinApp * pApp = AfxGetApp();
-    ASSERT(pApp);
-    CString szRet = pApp->GetProfileString("Work", "Path", "empty");
-    if (szRet == "empty") {
-        pApp->WriteProfileString("Work", "Path", szPath);
-        SetBasePath(szPath);
-    } else {
-        SetBasePath(szRet);
-    }
 
     return 0;
 }

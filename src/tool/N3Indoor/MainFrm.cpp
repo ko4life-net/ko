@@ -107,6 +107,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
         return -1; // fail to create
     }
 
+    CN3Base::PathSet(fs::current_path().string());
+
     if (m_Eng.Init(TRUE, m_hWnd, 64, 64, 0, TRUE) == false) {
         return 0;
     }
