@@ -10,7 +10,7 @@
 #include "N3SndEng.h"
 #include "StreamSoundObj.h"
 #include "N3SndMgr.h"
-#include "N3Base/N3Base.h"
+#include "N3Base.h"
 
 CStreamSoundObj::CStreamSoundObj() {
     m_WaveSize = NULL;

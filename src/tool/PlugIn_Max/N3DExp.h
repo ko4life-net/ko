@@ -14,31 +14,31 @@
 
 #include "StdAfx.h"
 
+#include "Resource.h"
 #include "N3Base/N3EngTool.h"
 #include "N3Base/N3Scene.h"
 
-#include "Bipexp.h" // biped
-#include "Phyexp.h" // physique
+#include <Bipexp.h> // biped
+#include <Phyexp.h> // physique
 
-#include "Max.h"
-#include "Resource.h"
+#include <Max.h>
 
-#include "istdplug.h"
-#include "iparamb2.h"
-#include "iparamm2.h"
+#include <istdplug.h>
+#include <iparamb2.h>
+#include <iparamm2.h>
 
-#include "decomp.h"
+#include <decomp.h>
 
 #include <direct.h>
 #include <commdlg.h>
 
-#include "stdmat.h"
-#include "bitmap.h"
+#include <stdmat.h>
+#include <bitmap.h>
 
 #include <d3d9.h>
 #include <d3d9types.h>
 
-//#include "ISkin.h"
+//#include <ISkin.h>
 
 //--Name : Plugin Unique ID----------------------------------------
 #define CN3DEXP_CLASS_ID Class_ID(0x4fc463a7, 0x3b1a661e)

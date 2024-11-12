@@ -5,7 +5,7 @@
 #include "Ebenezer.h"
 #include "EbenezerDlg.h"
 #include "User.h"
-#include "AiPacket.h"
+#include "AIPacket.h"
 #include "PacketDefine.h"
 
 #include "ItemTableSet.h"

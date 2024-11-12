@@ -5,7 +5,7 @@
 #include "N3PMeshCreate.h"
 #include "N3PMesh.h"
 #include "N3PMeshInstance.h"
-#include "N3Base/N3Mesh.h"
+#include "N3Mesh.h"
 
 // Maximum buffer sizes. For greater flexibility, the buffers should reallocate dynamically.
 #define MAX_COLLAPSES             5000

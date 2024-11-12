@@ -4,7 +4,7 @@
 #include "StdAfx.h"
 #include "Aujard.h"
 #include "AujardDlg.h"
-#include "ItemTableset.h"
+#include "ItemTableSet.h"
 #include <process.h>
 
 #ifdef _DEBUG

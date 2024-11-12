@@ -13,7 +13,7 @@
 ////////////////////////////////////////////////////////////
 #include "StdAfx.h"
 #include "JpegFile.h"
-#include "N3Base/My_3DStruct.h"
+#include "My_3DStruct.h"
 
 #include <tchar.h>
 

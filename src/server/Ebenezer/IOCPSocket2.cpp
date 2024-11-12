@@ -6,8 +6,8 @@
 #include "IOCPSocket2.h"
 #include "CircularBuffer.h"
 #include "Compress.h"
-#include "Packetdefine.h"
-#include "define.h"
+#include "PacketDefine.h"
+#include "Define.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

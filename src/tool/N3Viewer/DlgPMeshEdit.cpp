@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "n3viewer.h"
+#include "N3Viewer.h"
 #include "MainFrm.h"
 #include "DlgPMeshCreateOption.h"
 #include "DlgPMeshEdit.h"

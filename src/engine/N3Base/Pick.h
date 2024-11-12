@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "N3Base/N3Mesh.h"
+#include "N3Mesh.h"
 
 class CPick {
   public:

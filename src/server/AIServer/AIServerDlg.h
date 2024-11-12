@@ -1,6 +1,3 @@
-// ServerDlg.h : header file
-//
-
 #pragma once
 
 #pragma warning(disable : 4786)
@@ -8,10 +5,10 @@
 #include "IOCPort.h"
 #include "GameSocket.h"
 
-#include "MAP.h"
+#include "Map.h"
 #include "NpcTable.h"
 #include "NpcItem.h"
-#include "Pathfind.h"
+#include "PathFind.h"
 #include "User.h"
 #include "Npc.h"
 #include "NpcThread.h"
@@ -19,7 +16,7 @@
 #include "Compress.h"
 #include "Party.h"
 
-#include "extern.h" // 전역 객체
+#include "Extern.h" // 전역 객체
 
 #include "STLMap.h"
 #include <vector>

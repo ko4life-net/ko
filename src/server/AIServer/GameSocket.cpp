@@ -8,10 +8,10 @@
 #include "GameSocket.h"
 #include "User.h"
 #include "Map.h"
-#include "region.h"
+#include "Region.h"
 #include "Party.h"
 
-#include "extern.h"
+#include "Extern.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

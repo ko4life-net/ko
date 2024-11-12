@@ -4,11 +4,11 @@
 
 #pragma once
 
-#include "iocport.h"
+#include "IOCPort.h"
 #include "N3Base/My_3DStruct.h"
 #include "Map.h"
 #include "PathFind.h"
-#include "user.h"
+#include "User.h"
 #include "NpcMagicProcess.h"
 
 #define MAX_MAP_SIZE  10000

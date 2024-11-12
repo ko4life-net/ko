@@ -9,8 +9,8 @@
 #include "N3FXPartMesh.h"
 #include "N3FXPartBottomBoard.h"
 
-#include "N3Base/N3SndMgr.h"
-#include "N3Base/N3SndObj.h"
+#include "N3SndMgr.h"
+#include "N3SndObj.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

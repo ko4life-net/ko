@@ -6,7 +6,7 @@
 #include "AIServer.h"
 #include "AIServerDlg.h"
 #include "RoomEvent.h"
-#include "define.h"
+#include "Define.h"
 //#include "Npc.h"
 
 #ifdef _DEBUG

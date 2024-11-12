@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "uie.h"
+#include "UIE.h"
 #include "DlgUnusedFileList.h"
 
 #ifdef _DEBUG

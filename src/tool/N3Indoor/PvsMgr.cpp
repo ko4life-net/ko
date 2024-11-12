@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include "n3indoor.h"
+#include "N3Indoor.h"
 
 #include "PvsMgr.h"
 #include "PvsBase.h"

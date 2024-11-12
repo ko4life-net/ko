@@ -1,5 +1,6 @@
 #include "StdAfx.h"
-#include "define.h"
+#include "Define.h"
+
 #include <mmsystem.h>
 
 // sungyong 2001.11.06

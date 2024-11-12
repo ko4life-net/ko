@@ -6,10 +6,11 @@
 #include <string>
 #include <vector>
 
-#include "afxinet.h"
+#include <afxinet.h>
+
 #include "MacProgressCtrl.h"
 #include "Resource.h"
-#include "define.h"
+#include "Define.h"
 #include "ZipArchive.h"
 
 //#include "DlgTransparent.h"

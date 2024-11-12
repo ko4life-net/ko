@@ -6,7 +6,7 @@
 #include "AIServer.h"
 #include "AIServerDlg.h"
 #include "User.h"
-#include "define.h"
+#include "Define.h"
 #include "Region.h"
 #include "GameSocket.h"
 
@@ -16,7 +16,7 @@ static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
-#include "extern.h"
+#include "Extern.h"
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////

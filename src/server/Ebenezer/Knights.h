@@ -4,8 +4,8 @@
 
 #pragma once
 
-#include "define.h"
-#include "gamedefine.h"
+#include "Define.h"
+#include "GameDefine.h"
 
 class CUser;
 class CEbenezerDlg;

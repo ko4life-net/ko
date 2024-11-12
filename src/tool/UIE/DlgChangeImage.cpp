@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "uie.h"
+#include "UIE.h"
 #include "DlgChangeImage.h"
 #include "MainFrm.h"
 

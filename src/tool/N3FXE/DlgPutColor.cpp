@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "n3fxe.h"
+#include "N3FXE.h"
 #include "DlgPutColor.h"
 #include "DlgPercent.h"
 

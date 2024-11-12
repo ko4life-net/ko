@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "n3ce.h"
+#include "N3CE.h"
 #include "N3CEDoc.h"
 #include "N3CEView.h"
 #include "MainFrm.h"

@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include "n3me.h"
+#include "N3ME.h"
 #include "DTexGroupMng.h"
 #include "DTexGroup.h"
 #include "MainFrm.h"

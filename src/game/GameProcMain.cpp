@@ -37,7 +37,7 @@
 #include "UISkillTreeDlg.h"
 #include "UIHotKeyDlg.h"
 #include "UIClassChange.h"
-#include "UINpcEvent.h"
+#include "UINPCEvent.h"
 #include "UIItemExchange.h"
 #include "UIRepairTooltipDlg.h"
 #include "UINpcTalk.h"

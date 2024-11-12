@@ -2,6 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 #include "StdAfx.h"
+#include "N3Base.h"
 
 #include "N3Mesh.h"
 #include "N3VMesh.h"
@@ -9,7 +10,7 @@
 #include "N3FXPMesh.h"
 #include "N3FXShape.h"
 #include "N3Chr.h"
-#include "N3Base.h"
+
 #include <mmsystem.h>
 
 //////////////////////////////////////////////////////////////////////

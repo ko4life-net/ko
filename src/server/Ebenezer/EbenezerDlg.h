@@ -5,14 +5,14 @@
 
 #pragma warning(disable : 4786)
 
-#include "Iocport.h"
+#include "IOCPort.h"
 #include "Map.h"
 #include "Define.h"
 #include "GameDefine.h"
 #include "AISocket.h"
 #include "Npc.h"
 #include "SharedMem.h"
-#include "ini.h"
+#include "Ini.h"
 #include "Compress.h"
 #include "Knights.h"
 #include "KnightsManager.h"

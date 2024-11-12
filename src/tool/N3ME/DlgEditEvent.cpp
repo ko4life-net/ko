@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "n3me.h"
+#include "N3ME.h"
 #include "DlgEditEvent.h"
 #include "EventMgr.h"
 #include "EventCell.h"

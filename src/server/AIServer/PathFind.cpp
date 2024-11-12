@@ -6,7 +6,7 @@
 #include "AIServer.h"
 #include "AIServerDlg.h"
 #include "PathFind.h"
-#include "math.h"
+#include <math.h>
 
 //#include "Extern.h"
 

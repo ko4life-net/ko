@@ -68,8 +68,8 @@ const float N3_PI = 3.141592f;
 #endif
 #endif
 
-#include "MAYA/MString.h" // Added by ClassView
-#include "MAYA/MObject.h" // Added by ClassView
+#include <maya/MString.h> // Added by ClassView
+#include <maya/MObject.h> // Added by ClassView
 
 #include "N3Base/My_3DStruct.h"
 #include "N3Base/N3EngTool.h"

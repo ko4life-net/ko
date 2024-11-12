@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "define.h"
-#include "Iocport.h"
+#include "Define.h"
+#include "IOCPort.h"
 #include "DBProcess.h"
 #include "STLMap.h"
 #include <vector>

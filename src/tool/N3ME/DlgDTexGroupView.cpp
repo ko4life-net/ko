@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "n3me.h"
+#include "N3ME.h"
 #include "LyTerrainDef.h"
 #include "DTexGroupMng.h"
 #include "DTexGroup.h"

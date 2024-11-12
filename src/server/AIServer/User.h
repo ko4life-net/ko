@@ -4,11 +4,11 @@
 
 #pragma once
 
-#include "iocport.h"
+#include "IOCPort.h"
 #include "MagicProcess.h"
 class CServerDlg;
 
-#include "extern.h"
+#include "Extern.h"
 #include "STLMap.h"
 #include <list>
 

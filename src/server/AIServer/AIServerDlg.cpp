@@ -1,11 +1,7 @@
-// ServerDlg.cpp : implementation file
-//
-
 #include "StdAfx.h"
 #include "AIServer.h"
 #include "AIServerDlg.h"
 #include "GameSocket.h"
-#include "math.h"
 #include "MagicTableSet.h"
 #include "MagicType1Set.h"
 #include "MagicType2Set.h"
@@ -22,9 +18,7 @@
 #include "MakeGradeItemTableSet.h"
 #include "MakeLareItemTableSet.h"
 #include "Region.h"
-#include "ini.h"
-
-//#include "extern.h"            // 전역 객체
+#include "Ini.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

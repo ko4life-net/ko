@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "define.h"
+#include "Define.h"
 
 class CEbenezerDlg;
 

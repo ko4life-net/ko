@@ -6,7 +6,7 @@
 
 #pragma warning(disable : 4786)
 
-#include "define.h"
+#include "Define.h"
 #include <vector>
 
 typedef std::vector<_USER_DATA *> UserDataArray;

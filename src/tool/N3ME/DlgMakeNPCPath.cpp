@@ -2,12 +2,12 @@
 //
 
 #include "StdAfx.h"
-#include "n3me.h"
+#include "N3ME.h"
 #include "DlgMakeNPCPath.h"
 #include "NPCPathMgr.h"
 #include "NPCPath.h"
 #include "DlgLoadNPCPath.h"
-#include "dlgSaveNPCPath.h"
+#include "DlgSaveNPCPath.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

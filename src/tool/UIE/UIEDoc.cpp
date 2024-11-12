@@ -13,7 +13,7 @@
 #include "N3Base/N3UIEdit.h"
 #include "N3Base/N3UIProgress.h"
 #include "N3Base/N3UITrackBar.h"
-#include "N3Base/N3UIToolTip.h"
+#include "N3Base/N3UITooltip.h"
 #include "N3Base/N3UIScrollBar.h"
 #include "N3Base/N3Texture.h"
 #include "N3Base/N3UIArea.h"

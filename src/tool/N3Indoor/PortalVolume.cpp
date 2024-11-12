@@ -6,7 +6,7 @@
 #include "N3Indoor.h"
 #include "PortalVolume.h"
 
-#include "PvsManager.h"
+#include "PVSManager.h"
 
 #include "MainFrm.h"
 #include "OrganizeView.h"

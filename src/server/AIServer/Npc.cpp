@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-#include "math.h"
+#include <math.h>
 #include "Npc.h"
 #include "AIServerDlg.h"
 #include "Gamesocket.h"
@@ -12,7 +12,7 @@ int surround_z[8] = {0, -1, -1, -1, 0, 1, 1, 1};
 int test_id = 1056;
 int cur_test = 0; // 1 = test중 , 0이면 정상
 
-#include "extern.h"
+#include "Extern.h"
 //BOOL g_bDebug = TRUE;
 
 #define ATROCITY_ATTACK_TYPE 1 // 선공

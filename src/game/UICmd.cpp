@@ -8,7 +8,7 @@
 #include "GameProcMain.h"
 #include "PlayerOtherMgr.h"
 //#include "GameProcLogIn.h"
-#include "PlayerMyself.h"
+#include "PlayerMySelf.h"
 #include "UITransactionDlg.h"
 #include "N3Base/N3UIButton.h"
 #include "UIManager.h"

@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-#include "define.h"
+#include "Define.h"
 
 void GetString(char * tBuf, char * sBuf, int len, int & index) {
     memcpy(tBuf, sBuf + index, len);

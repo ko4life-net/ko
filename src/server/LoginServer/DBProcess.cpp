@@ -4,7 +4,7 @@
 
 #include "StdAfx.h"
 #include "LoginServer.h"
-#include "define.h"
+#include "Define.h"
 #include "DBProcess.h"
 #include "LoginServerDlg.h"
 

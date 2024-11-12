@@ -3,12 +3,12 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include "ebenezer.h"
+#include "Ebenezer.h"
 #include "UdpSocket.h"
-#include "define.h"
-#include "packetdefine.h"
+#include "Define.h"
+#include "PacketDefine.h"
 #include "EbenezerDlg.h"
-#include "AiPacket.h"
+#include "AIPacket.h"
 #include "Knights.h"
 #include "User.h"
 

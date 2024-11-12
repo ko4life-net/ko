@@ -7,7 +7,7 @@
 #pragma warning(disable : 4786)
 
 #include "IOCPSocket2.h"
-#include "define.h"
+#include "Define.h"
 #include "GameDefine.h"
 #include "MagicProcess.h"
 #include "Npc.h"

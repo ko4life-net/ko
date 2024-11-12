@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include "aujard.h"
+#include "Aujard.h"
 #include "DBPool.h"
 
 #ifdef _DEBUG

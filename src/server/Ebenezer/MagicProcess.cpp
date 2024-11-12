@@ -3,13 +3,13 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include "ebenezer.h"
+#include "Ebenezer.h"
 #include "MagicProcess.h"
 #include "EbenezerDlg.h"
 #include "User.h"
 #include "Npc.h"
 #include "PacketDefine.h"
-#include "AiPacket.h"
+#include "AIPacket.h"
 #include "GameDefine.h"
 
 #ifdef _DEBUG

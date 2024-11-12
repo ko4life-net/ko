@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "define.h"
+#include "Define.h"
 
 struct _SMQ_HEADER {
     LONG  Front;

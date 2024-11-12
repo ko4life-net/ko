@@ -9,11 +9,12 @@
 #include "FormViewAnimation.h"
 #include "FormViewProperty.h"
 #include "FormViewTool.h"
-#include "mmsystem.h"
 #include "PosDummy.h"
 
 #include "N3Base/N3SndObj.h"
 #include "N3Base/N3FXPlug.h"
+
+#include <mmsystem.h>
 
 #ifdef _DEBUG
 #undef THIS_FILE
