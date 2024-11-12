@@ -169,7 +169,6 @@
     <ClCompile Include="N3Viewer.cpp" />
     <ClCompile Include="N3ViewerDoc.cpp" />
     <ClCompile Include="N3ViewerView.cpp" />
-    <ClCompile Include="ShellTree.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -230,7 +229,6 @@
     <ClInclude Include="N3Viewer.h" />
     <ClInclude Include="N3ViewerDoc.h" />
     <ClInclude Include="N3ViewerView.h" />
-    <ClInclude Include="ShellTree.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="ViewProperty.h" />
     <ClInclude Include="ViewSceneTree.h" />

@@ -148,9 +148,6 @@
     <ClCompile Include="$(SrcDir)\tool\Widget\PropertyList.cpp">
       <Filter>N3ME\Dialogs</Filter>
     </ClCompile>
-    <ClCompile Include="ShellTree.cpp">
-      <Filter>N3ME\Dialogs</Filter>
-    </ClCompile>
     <ClCompile Include="ProgressBar.cpp">
       <Filter>N3ME\Controls</Filter>
     </ClCompile>
@@ -612,9 +609,6 @@
       <Filter>N3ME\Dialogs</Filter>
     </ClInclude>
     <ClInclude Include="$(SrcDir)\tool\Widget\PropertyList.h">
-      <Filter>N3ME\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="ShellTree.h">
       <Filter>N3ME\Dialogs</Filter>
     </ClInclude>
     <ClInclude Include="ProgressBar.h">

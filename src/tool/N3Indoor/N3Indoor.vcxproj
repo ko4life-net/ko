@@ -196,7 +196,6 @@
     <ClInclude Include="RotDummy.h" />
     <ClInclude Include="ScaleDummy.h" />
     <ClInclude Include="ShapeTypeDlg.h" />
-    <ClInclude Include="ShellTree.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="SwappedDummy.h" />
     <ClInclude Include="TotalToolSheet.h" />
@@ -274,7 +273,6 @@
     <ClCompile Include="RotDummy.cpp" />
     <ClCompile Include="ScaleDummy.cpp" />
     <ClCompile Include="ShapeTypeDlg.cpp" />
-    <ClCompile Include="ShellTree.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

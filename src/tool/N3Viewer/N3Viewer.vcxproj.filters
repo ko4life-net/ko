@@ -42,9 +42,6 @@
     <ClCompile Include="$(SrcDir)\tool\Widget\PropertyList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ShellTree.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -198,9 +195,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="$(SrcDir)\tool\Widget\PropertyList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShellTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StdAfx.h">

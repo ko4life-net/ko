@@ -225,7 +225,6 @@
     <ClCompile Include="RiverMng.cpp" />
     <ClCompile Include="RotDummy.cpp" />
     <ClCompile Include="ScaleDummy.cpp" />
-    <ClCompile Include="ShellTree.cpp" />
     <ClCompile Include="SoundCell.cpp" />
     <ClCompile Include="SoundMgr.cpp" />
     <ClCompile Include="SowSeedMng.cpp" />
@@ -349,7 +348,6 @@
     <ClInclude Include="RiverMng.h" />
     <ClInclude Include="RotDummy.h" />
     <ClInclude Include="ScaleDummy.h" />
-    <ClInclude Include="ShellTree.h" />
     <ClInclude Include="SoundCell.h" />
     <ClInclude Include="SoundMgr.h" />
     <ClInclude Include="SowSeedMng.h" />
