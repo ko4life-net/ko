@@ -1,32 +1,16 @@
-// StdAfx.h : include file for standard system include files,
-//  or project specific include files that are used frequently, but
-//      are changed infrequently
-//
-
-#pragma warning(disable : 4786)
-
 #pragma once
 
-#define VC_EXTRALEAN // Exclude rarely-used stuff from Windows headers
+// Exclude rarely-used stuff from Windows headers
+#define VC_EXTRALEAN
+#define NOMINMAX
 #include <Windows.h>
+#include <io.h> // needed for _finddata_t
 
-#include <map>
-#include <set>
-#include <list>
-#include <vector>
-#include <format>
-#include <string>
-#include <sstream>
-#include <ranges>
-#include <algorithm>
-#include <filesystem>
-#include <io.h>
-
+#include "StdBase.h"
 #include "N3Utils.h"
+
 #include "N3Base/My_3DStruct.h"
 #include "N3Base/N3Log.h"
-
-namespace fs = std::filesystem;
 
 // TODO: Since we now use spdlog, we can get ride of traces like these.
 #if defined(_DEBUG)
