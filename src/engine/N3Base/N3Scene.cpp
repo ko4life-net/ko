@@ -609,7 +609,7 @@ bool CN3Scene::LoadDataAndResourcesFromFile(const std::string & szFN) {
     ::_makepath(szPath, szDrv, szDir, NULL, NULL);
 
     this->Release();
-    this->PathSet(szPath);
+    CN3Base::PathSet(szPath);
     return LoadFromFile(szFN);
 }
 
@@ -622,7 +622,7 @@ bool CN3Scene::SaveDataAndResourcesToFile(const std::string & szFN) {
     ::_splitpath(szFN.c_str(), szDrv, szDir, NULL, NULL);
     ::_makepath(szPath, szDrv, szDir, NULL, NULL);
 
-    this->PathSet(szPath);
+    CN3Base::PathSet(szPath);
     return SaveToFile(szFN);
 }
 

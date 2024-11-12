@@ -241,7 +241,7 @@ void CMapMng::LoadSourceObjects() {
 
     // source\Chr 폴더의 모든 캐릭터 추가
     CString szChrPath;
-    szChrPath.Format("%sChr\\", CN3Base::s_szPath.c_str());
+    szChrPath.Format("%sChr\\", CN3Base::PathGet().c_str());
     SetCurrentDirectory(szChrPath); // szFolder\Chr 폴더로 경로를 바꾸고..
     HANDLE hFind = FindFirstFile("*.N3Chr", &FindFileData);
 
@@ -255,7 +255,7 @@ void CMapMng::LoadSourceObjects() {
 
     // source\Data 폴더의 모든 shape 추가
     CString szShapePath;
-    szShapePath.Format("%sObject\\", CN3Base::s_szPath.c_str());
+    szShapePath.Format("%sObject\\", CN3Base::PathGet().c_str());
     SetCurrentDirectory(szShapePath);                  // szFolder\Mesh 폴더로 경로를 바꾸고..
     hFind = FindFirstFile("*.N3Shape", &FindFileData); // 파일 찾기.
 
@@ -337,7 +337,7 @@ CN3Transform * CMapMng::AddShape(CN3Scene * pDestScene, const std::string & szFN
         char szName[_MAX_PATH];
         wsprintf(szName, "%s_%.4d", pShape->Name(), nChainNumber);
         pShape->m_szName = szName; // .. 이름을 짓는다..
-        
+
         char szFileName2[_MAX_PATH];
         char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
         _splitpath(szFileName, szDrive, szDir, szFName, szExt);
@@ -458,7 +458,7 @@ void CMapMng::SavePartition(float x, float z, float width) {
     //이벤트 정보 저장..
     //char szEvent[_MAX_PATH];
     //_makepath(szEvent, szDrive, szDir, szFName, "evt");
-    //m_pEventMgr->SaveToFile(szEvent);    
+    //m_pEventMgr->SaveToFile(szEvent);
     //*/
 }
 
@@ -820,7 +820,7 @@ BOOL CMapMng::CameraMove(LPMSG pMsg)
         //short zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
         short zDelta = (short)((pMsg->wParam>>16)&0x0000ffff);
         CN3Camera* pCamera = m_pSceneOutput->CameraGetActive();
-            
+
         if(pCamera)
         {
             float fD = (pCamera->AtPos() - pCamera->EyePos()).Magnitude();
@@ -874,7 +874,7 @@ BOOL CMapMng::CameraMove(LPMSG pMsg)
             break;
         case '2':    // '1'과 같은 내용임 (함수로 만들지 않은 이유는 static변수 때문에..)
             {    static BOOL bSet = FALSE;
-                if (pCamera) { static __Vector3 vEye(0, 0, 0);    static __Vector3 vAt(0, 0, 1); static __Vector3 vUp(0, 1, 0); 
+                if (pCamera) { static __Vector3 vEye(0, 0, 0);    static __Vector3 vAt(0, 0, 1); static __Vector3 vUp(0, 1, 0);
                     if (GetAsyncKeyState(VK_CONTROL) & 0xff00) { vEye = pCamera->EyePos();    vAt = pCamera->AtPos();    vUp = pCamera->UpVector(); pCamera->Apply(); bSet = TRUE; return FALSE; }
                     else if (bSet) { pCamera->EyePosSet(vEye); pCamera->AtPosSet(vAt);    pCamera->UpVectorSet(vUp); pCamera->Apply(); return TRUE;}
                     else return FALSE;}
@@ -935,11 +935,11 @@ BOOL CMapMng::CameraMove(LPMSG pMsg)
     CPoint point(short(LOWORD(pMsg->lParam)), short(HIWORD(pMsg->lParam)));
     CPoint ptDelta = point - ptPrev;
     ptPrev = point;
-    
+
     CN3Camera* pCamera = m_pSceneOutput->CameraGetActive();
     if (pCamera == NULL) return FALSE;
 
-    if(    (nFlags & MK_LBUTTON) && 
+    if(    (nFlags & MK_LBUTTON) &&
         (nFlags & MK_MBUTTON) ) // Alt + LB + MB
     {
         float fZoom = -(float)(ptDelta.x)/1000.0f;
@@ -1601,7 +1601,7 @@ void CMapMng::MakeServerDataFiles(LPCTSTR lpszPathName) {
         for(int x=0; x<m_pTerrain->m_iHeightMapSize; x++)
         {
             WriteFile(hFile, &(m_pEventMgr->m_ppEvent[x][z]), sizeof(short), &dwNum, NULL);
-        }        
+        }
     }
     */
     for (int x = 0; x < m_pTerrain->m_iHeightMapSize; x++) {
@@ -1635,7 +1635,7 @@ void CMapMng::MakeServerDataFiles(LPCTSTR lpszPathName) {
     fclose(stream);
     //뽑았다.
 
-    /*    
+    /*
     char szCollisionFN[512];
     char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
     _splitpath(lpszPathName, szDrive, szDir, szFName, szExt);

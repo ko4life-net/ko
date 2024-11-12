@@ -29,9 +29,9 @@ void CN3BaseFileAccess::FileNameSet(const std::string & szFileName) {
     if (!szTmpFN.empty()) {
         CharLower(&(szTmpFN[0])); // 모두 소문자로 만든다..
     }
-    int iPos = szTmpFN.find(s_szPath); // 문자열에 Base Path 와 일치하는 이름이 있는지 본다.
+    int iPos = szTmpFN.find(CN3Base::PathGet()); // 문자열에 Base Path 와 일치하는 이름이 있는지 본다.
     if (iPos >= 0) {
-        m_szFileName = szTmpFN.substr(s_szPath.size()); // 경로가 일치하면.. 긴경로는 짤라준다..
+        m_szFileName = szTmpFN.substr(CN3Base::PathGet().size()); // 경로가 일치하면.. 긴경로는 짤라준다..
     } else {
         m_szFileName = szTmpFN;
     }
@@ -66,8 +66,8 @@ bool CN3BaseFileAccess::LoadFromFile() {
     {
         szFullPath = m_szFileName;
     } else {
-        if (NULL != s_szPath.size() > 0) {
-            szFullPath = s_szPath;
+        if (NULL != CN3Base::PathGet().size() > 0) {
+            szFullPath = CN3Base::PathGet();
         }
         szFullPath += m_szFileName;
     }
@@ -111,8 +111,8 @@ bool CN3BaseFileAccess::SaveToFile() {
     {
         szFullPath = m_szFileName;
     } else {
-        if (s_szPath.size() > 0) {
-            szFullPath = s_szPath;
+        if (CN3Base::PathGet().size() > 0) {
+            szFullPath = CN3Base::PathGet();
         }
         szFullPath += m_szFileName;
     }

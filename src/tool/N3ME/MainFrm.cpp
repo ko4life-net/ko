@@ -225,7 +225,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     //m_pDTexMng->LoadFromFile();
 
     // 툴바 다이얼로그 정보..
-    m_wndDlgBar.SetDlgItemText(IDC_E_PATH, m_pEng->PathGet().c_str());
+    m_wndDlgBar.SetDlgItemText(IDC_E_PATH, CN3Base::PathGet().c_str());
 
     //씨앗 뿌리기 관련 클래스 초기화..
     m_pDlgSowSeed = new CDlgSowSeed;

@@ -270,7 +270,7 @@ void CEventMgr::SetActive(bool active) {
 
 void CEventMgr::LoadFromFile(const char * RealFileName) {
     char szNPCPathFileName[_MAX_PATH];
-    wsprintf(szNPCPathFileName, "%sevent\\%s.evt", s_szPath.c_str(), (LPCTSTR)RealFileName);
+    wsprintf(szNPCPathFileName, "%sevent\\%s.evt", CN3Base::PathGet().c_str(), (LPCTSTR)RealFileName);
 
     //DWORD dwRWC;
     HANDLE hFile = CreateFile(szNPCPathFileName, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -281,11 +281,11 @@ void CEventMgr::LoadFromFile(const char * RealFileName) {
 void CEventMgr::SaveToFile(const char * RealFileName) {
     char szOldPath[_MAX_PATH];
     GetCurrentDirectory(_MAX_PATH, szOldPath);
-    SetCurrentDirectory(s_szPath.c_str());
+    SetCurrentDirectory(CN3Base::PathGet().c_str());
 
     CreateDirectory("event", NULL); // 경로 만들고..
     char szNPCPathFileName[_MAX_PATH];
-    wsprintf(szNPCPathFileName, "%sevent\\%s.evt", s_szPath.c_str(), (LPCTSTR)RealFileName);
+    wsprintf(szNPCPathFileName, "%sevent\\%s.evt", CN3Base::PathGet().c_str(), (LPCTSTR)RealFileName);
 
     //DWORD dwRWC;
     HANDLE hFile = CreateFile(szNPCPathFileName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -467,7 +467,7 @@ void CEventMgr::SaveInfoTextFile(char* szEvent)
             fprintf(stream, "\n");
         }
     }
-    fclose(stream);    
+    fclose(stream);
 }
 */
 

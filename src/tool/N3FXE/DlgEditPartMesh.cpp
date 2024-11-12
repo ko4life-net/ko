@@ -246,7 +246,7 @@ void CDlgEditPartMesh::OnPartMeshBtnSaveAs() {
         pBaseFileAccess->FileNameSet((LPCTSTR)PathName);
 
         m_strPathName.Empty();
-        m_strPathName = pBaseFileAccess->PathGet().c_str();
+        m_strPathName = CN3Base::PathGet().c_str();
         m_strPathName += pBaseFileAccess->FileName().c_str();
 
         delete pBaseFileAccess;

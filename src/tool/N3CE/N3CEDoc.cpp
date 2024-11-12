@@ -105,7 +105,7 @@ BOOL CN3CEDoc::OnOpenDocument(LPCTSTR lpszPathName) {
 
     m_bLoadingNow = TRUE;
 
-    m_Scene.PathSet(szPath); // 경로를 정해주고..
+    CN3Base::PathSet(szPath); // 경로를 정해주고..
     m_Scene.ChrGet(0)->Release();
     m_Scene.ChrGet(0)->LoadFromFile(lpszPathName);
     CN3Joint * pJoint = m_Scene.ChrGet(0)->Joint();
@@ -147,7 +147,7 @@ BOOL CN3CEDoc::OnSaveDocument(LPCTSTR lpszPathName) {
     char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME];
     _splitpath(lpszPathName, szDrive, szDir, szFName, NULL);
 
-    m_Scene.PathSet(szPath); // 경로를 정해주고..
+    CN3Base::PathSet(szPath); // 경로를 정해주고..
     CN3Chr * pChr = m_Scene.ChrGet(0);
     pChr->m_szName = szFName; // 이름을 정하고..
 
@@ -200,7 +200,7 @@ void CN3CEDoc::OnFileSaveAsOneFolder() {
     char szDrive[_MAX_DRIVE], szDir[_MAX_DIR];
     _splitpath(szFullFileName, szDrive, szDir, NULL, NULL);
 
-    m_Scene.PathSet(szPath); // 경로를 정해주고..
+    CN3Base::PathSet(szPath); // 경로를 정해주고..
     CN3Chr * pChr = m_Scene.ChrGet(0);
 
     CN3Joint * pJoint = pChr->Joint();

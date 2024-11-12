@@ -83,9 +83,9 @@ bool CDTexMng::AddDTex(CString FileName) {
     pDTex->m_ID = m_NextID;
 
     std::string szOldPath = CN3Base::PathGet();
-    pDTex->m_pTex->PathSet(szNewPath);
+    CN3Base::PathSet(szNewPath);
     pDTex->m_pTex->LoadFromFile(szNewFN);
-    pDTex->m_pTex->PathSet(szOldPath);
+    CN3Base::PathSet(szOldPath);
 
     m_pDTex.push_back(pDTex);
     m_NextID++;
@@ -120,7 +120,7 @@ void CDTexMng::DelDTexByID(int id) {
 void CDTexMng::LoadFromFile(CString RealFileName) {
     Init(m_pMainFrm);
     char szDTexInfoFileName[_MAX_PATH];
-    wsprintf(szDTexInfoFileName, "%sDTEX\\%s.dtx", s_szPath.c_str(), (LPCTSTR)RealFileName);
+    wsprintf(szDTexInfoFileName, "%sDTEX\\%s.dtx", CN3Base::PathGet().c_str(), (LPCTSTR)RealFileName);
 
     FILE * stream = fopen(szDTexInfoFileName, "r");
     if (!stream) {
@@ -160,7 +160,8 @@ void CDTexMng::LoadFromFile(CString RealFileName) {
             //    그에 관한 타일 정보들을 읽고..
             char szDir[_MAX_DIR], szFName[_MAX_FNAME];
             _splitpath(szDTexFileName, NULL, szDir, szFName, NULL);
-            wsprintf(szDTexInfoFileName, "%s%s%s.dif", s_szPath.c_str(), szDir, szFName); // Texture Information file
+            wsprintf(szDTexInfoFileName, "%s%s%s.dif", CN3Base::PathGet().c_str(), szDir,
+                     szFName); // Texture Information file
 
             HANDLE hFile =
                 CreateFile(szDTexInfoFileName, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -237,7 +238,7 @@ void CDTexMng::LoadFromFile(CString RealFileName) {
                 //    그에 관한 타일 정보들을 읽고..
                 char szDir[_MAX_DIR], szFName[_MAX_FNAME];
                 _splitpath(szDTexFileName, NULL, szDir, szFName, NULL);
-                wsprintf(szDTexInfoFileName, "%s%s%s.dif", s_szPath.c_str(), szDir,
+                wsprintf(szDTexInfoFileName, "%s%s%s.dif", CN3Base::PathGet().c_str(), szDir,
                          szFName); // Texture Information file
 
                 HANDLE hFile =
@@ -268,11 +269,11 @@ void CDTexMng::LoadFromFile(CString RealFileName) {
 //
 void CDTexMng::SaveToFile(CString RealFileName) {
     char szDTexDir[_MAX_PATH];
-    wsprintf(szDTexDir, "%sDTex", s_szPath.c_str());
+    wsprintf(szDTexDir, "%sDTex", CN3Base::PathGet().c_str());
     CreateDirectory("dtex", NULL); // 경로 만들고..
 
     char szDTexInfoFileName[_MAX_PATH];
-    wsprintf(szDTexInfoFileName, "%sDTEX\\%s.dtx", s_szPath.c_str(), (LPCTSTR)RealFileName);
+    wsprintf(szDTexInfoFileName, "%sDTEX\\%s.dtx", CN3Base::PathGet().c_str(), (LPCTSTR)RealFileName);
 
     FILE * stream = fopen(szDTexInfoFileName, "w");
     if (!stream) {
@@ -308,9 +309,9 @@ void CDTexMng::SaveToFile(CString RealFileName) {
         //    dif파일만들기...
         //
         char szDir[_MAX_DIR], szFName[_MAX_FNAME];
-        
+
         _splitpath(szDTexFileName, NULL, szDir, szFName, NULL);
-        wsprintf(szDTexInfoFileName, "%s%s%s.dif", s_szPath.c_str(), szDir, szFName); // Texture Information file
+        wsprintf(szDTexInfoFileName, "%s%s%s.dif", CN3Base::PathGet().c_str(), szDir, szFName); // Texture Information file
 
         //    그에 관한 타일 정보들을 읽고..
         HANDLE hFile = CreateFile(szDTexInfoFileName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -325,7 +326,7 @@ void CDTexMng::SaveToFile(CString RealFileName) {
                 }
             }
         }
-        CloseHandle(hFile);        
+        CloseHandle(hFile);
         */
     }
     fclose(stream);
@@ -345,7 +346,7 @@ void CDTexMng::SaveGameTile() {
     char * pTargetImg;
 
     char szDTexDir[_MAX_PATH];
-    wsprintf(szDTexDir, "%sDTex\\", s_szPath.c_str());
+    wsprintf(szDTexDir, "%sDTex\\", CN3Base::PathGet().c_str());
     char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME];
     _splitpath(szDTexDir, szDrive, szDir, NULL, NULL);
 

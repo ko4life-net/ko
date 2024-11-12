@@ -175,7 +175,7 @@ void CDlgEditFxg::OnBtnSaveAs() {
         pBaseFileAccess->FileNameSet((LPCTSTR)PathName);
 
         m_strFileName.Empty();
-        m_strFileName = pBaseFileAccess->PathGet().c_str();
+        m_strFileName = CN3Base::PathGet().c_str();
         m_strFileName += pBaseFileAccess->FileName().c_str();
 
         delete pBaseFileAccess;

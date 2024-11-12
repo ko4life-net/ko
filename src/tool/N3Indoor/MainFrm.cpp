@@ -420,7 +420,7 @@ void CMainFrame::LoadSourceObjects() {
 
     // source\Chr 폴더의 모든 캐릭터 추가
     CString szChrPath;
-    szChrPath.Format("%sChr\\", CN3Base::s_szPath.c_str());
+    szChrPath.Format("%sChr\\", CN3Base::PathGet().c_str());
     SetCurrentDirectory(szChrPath); // szFolder\Chr 폴더로 경로를 바꾸고..
     HANDLE hFind = FindFirstFile("*.N3Chr", &FindFileData);
 
@@ -434,7 +434,7 @@ void CMainFrame::LoadSourceObjects() {
 
     // source\Data 폴더의 모든 shape 추가
     CString szShapePath;
-    szShapePath.Format("%sObject\\", CN3Base::s_szPath.c_str());
+    szShapePath.Format("%sObject\\", CN3Base::PathGet().c_str());
     SetCurrentDirectory(szShapePath);                  // szFolder\Mesh 폴더로 경로를 바꾸고..
     hFind = FindFirstFile("*.N3Shape", &FindFileData); // 파일 찾기.
 
