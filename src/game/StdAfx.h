@@ -4,6 +4,7 @@
 #define VC_EXTRALEAN
 #define NOMINMAX
 #include <Windows.h>
+#include <io.h> // needed for _finddata_t
 
 #include "StdBase.h"
 #include "N3Utils.h"
