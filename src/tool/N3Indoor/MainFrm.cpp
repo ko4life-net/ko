@@ -8,7 +8,6 @@
 #include "N3IndoorView.h"
 #include "OrganizeView.h"
 
-#include "DlgBrowsePath.h"
 #include "DlgBase.h"
 #include "DlgShapeList.h"
 #include "DlgUnusedFiles.h"

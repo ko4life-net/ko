@@ -52,9 +52,6 @@
     <ClCompile Include="DlgBase.cpp">
       <Filter>N3ME\Dialogs</Filter>
     </ClCompile>
-    <ClCompile Include="DlgBrowsePath.cpp">
-      <Filter>N3ME\Dialogs</Filter>
-    </ClCompile>
     <ClCompile Include="DlgCtrlHeightScale.cpp">
       <Filter>N3ME\Dialogs</Filter>
     </ClCompile>
@@ -513,9 +510,6 @@
       <Filter>N3ME\Dialogs</Filter>
     </ClInclude>
     <ClInclude Include="DlgBase.h">
-      <Filter>N3ME\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="DlgBrowsePath.h">
       <Filter>N3ME\Dialogs</Filter>
     </ClInclude>
     <ClInclude Include="DlgCtrlHeightScale.h">

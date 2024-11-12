@@ -8,7 +8,6 @@
 #include "N3Base/N3Scene.h"
 
 #include "MainFrm.h"
-#include "DlgBrowsePath.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -206,12 +205,13 @@ void CMainFrame::OnUpdateEditPmesh(CCmdUI * pCmdUI) {
 }
 
 void CMainFrame::OnProjectSet() {
-    CDlgBrowsePath dlg;
-    if (IDCANCEL == dlg.DoModal()) {
+    CFolderPickerDialog dlg;
+    dlg.m_ofn.lpstrTitle = "Select resource path";
+    if (dlg.DoModal() == IDCANCEL) {
         return;
     }
 
-    CN3Base::PathSet(dlg.GetPath().GetString());
+    CN3Base::PathSet(dlg.GetPathName().GetString());
 }
 
 void CMainFrame::OnAddLod() {

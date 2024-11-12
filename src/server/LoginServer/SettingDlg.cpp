@@ -1,14 +1,7 @@
-// SettingDlg.cpp : implementation file
-//
-
 #include "StdAfx.h"
 #include "LoginServer.h"
 #include "SettingDlg.h"
-#include "DlgBrowsePath.h"
 #include "LoginServerDlg.h"
-
-#pragma warning(disable : 4786)
-#include <string>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -247,9 +240,11 @@ void CSettingDlg::OnCompress() {
 }
 
 void CSettingDlg::OnPathBrowse() {
-    CDlgBrowsePath pathdlg;
-    if (pathdlg.DoModal() == IDOK) {
-        strcpy(m_strDefaultPath, (char *)(LPCTSTR)pathdlg.m_szPath);
+    CFolderPickerDialog dlg;
+    dlg.m_ofn.lpstrTitle = "Select a base path to where your patch content";
+    if (dlg.DoModal() == IDOK) {
+        CString szDir = dlg.GetPathName();
+        strcpy(m_strDefaultPath, szDir.GetString());
         m_PathEdit.SetWindowText(m_strDefaultPath);
     }
 }

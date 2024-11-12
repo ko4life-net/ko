@@ -1209,12 +1209,12 @@ void CUIEDoc::OnBatchToolChangeFont() {
 }
 
 void CUIEDoc::OnBatchToolGatherImageFileName() {
+    std::string szDlgInitialDir = CN3Base::PathGet();
+
     char        szBuff[102400] = "";
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_ALLOWMULTISELECT;
     CFileDialog dlg(TRUE, "uif", NULL, dwFlags, "UI Files(*.uif)|*.uif;||", NULL);
-    char        szCurPath[256];
-    GetCurrentDirectory(256, szCurPath);
-    dlg.m_ofn.lpstrInitialDir = szCurPath;
+    dlg.m_ofn.lpstrInitialDir = szDlgInitialDir.c_str();
     dlg.m_ofn.nMaxFile = 102400;
     dlg.m_ofn.lpstrFile = szBuff;
 
@@ -1231,48 +1231,42 @@ void CUIEDoc::OnBatchToolGatherImageFileName() {
         base.GatherImageFileName(setImgFNs);
     }
 
-    // 폴더 선택하기..
-    char          szFolder[_MAX_PATH] = "";
-    BROWSEINFO    bi;
-    LPCITEMIDLIST lpidl;
-    bi.hwndOwner = AfxGetMainWnd()->m_hWnd;
-    bi.pidlRoot = NULL;
-    bi.pszDisplayName = szFolder;
-    bi.lpszTitle = "파일이름을 비교할 폴더를 선택해주세요";
-    bi.ulFlags = BIF_RETURNONLYFSDIRS;
-    bi.lpfn = NULL;
-    bi.lParam = 0;
+    CFolderPickerDialog dlgFolderPick;
+    dlgFolderPick.m_ofn.lpstrTitle = "Please select the folder to compare file names.";
+    dlgFolderPick.m_ofn.lpstrInitialDir = szDlgInitialDir.c_str();
+    if (dlgFolderPick.DoModal() == IDCANCEL) {
+        return;
+    }
 
-    lpidl = SHBrowseForFolder(&bi);
-    if (lpidl && SHGetPathFromIDList(lpidl, szFolder)) {
-        char szPathOld[256];
-        ::GetCurrentDirectory(_MAX_PATH, szPathOld);
-        ::SetCurrentDirectory(szFolder);
+    std::string szCompareDir = dlgFolderPick.GetPathName().GetString();
 
-        CFileFind ff;
-        if (ff.FindFile("*.dxt")) {
-            CDlgUnusedFileList dlg2;
-            CString            szBasePath = CN3Base::PathGet().c_str();
-            while (ff.FindNextFile()) {
-                CString szPath = ff.GetFilePath();
-                CString szFN;
-                szPath.MakeLower();
-                int ii = szPath.Find(szBasePath);
-                if (ii >= 0) {
-                    szFN = szPath.Mid(ii + szBasePath.GetLength());
-                }
+    char szPathOld[256];
+    ::GetCurrentDirectory(_MAX_PATH, szPathOld);
+    ::SetCurrentDirectory(szCompareDir.c_str());
 
-                if (szFN.GetLength() >= 0) {
-                    std::set<std::string>::iterator it = setImgFNs.find((const char *)szFN);
-                    if (it == setImgFNs.end()) {
-                        dlg2.m_szFileNames.Add(szPath);
-                    }
-                }
+    CFileFind ff;
+    if (ff.FindFile("*.dxt")) {
+        CDlgUnusedFileList dlg2;
+        CString            szBasePath = CN3Base::PathGet().c_str();
+        while (ff.FindNextFile()) {
+            CString szPath = ff.GetFilePath();
+            CString szFN;
+            szPath.MakeLower();
+            int ii = szPath.Find(szBasePath);
+            if (ii >= 0) {
+                szFN = szPath.Mid(ii + szBasePath.GetLength());
             }
 
-            dlg2.DoModal();
+            if (szFN.GetLength() >= 0) {
+                std::set<std::string>::iterator it = setImgFNs.find((const char *)szFN);
+                if (it == setImgFNs.end()) {
+                    dlg2.m_szFileNames.Add(szPath);
+                }
+            }
         }
 
-        ::SetCurrentDirectory(szPathOld);
+        dlg2.DoModal();
     }
+
+    ::SetCurrentDirectory(szPathOld);
 }

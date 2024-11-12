@@ -121,7 +121,6 @@
   <ItemGroup>
     <ClCompile Include="CircularBuffer.cpp" />
     <ClCompile Include="DBProcess.cpp" />
-    <ClCompile Include="DlgBrowsePath.cpp" />
     <ClCompile Include="IOCPort.cpp" />
     <ClCompile Include="IOCPSocket2.cpp" />
     <ClCompile Include="SettingDlg.cpp" />
@@ -139,7 +138,6 @@
     <ClInclude Include="CircularBuffer.h" />
     <ClInclude Include="DBProcess.h" />
     <ClInclude Include="Define.h" />
-    <ClInclude Include="DlgBrowsePath.h" />
     <ClInclude Include="IOCPort.h" />
     <ClInclude Include="IOCPSocket2.h" />
     <ClInclude Include="SettingDlg.h" />

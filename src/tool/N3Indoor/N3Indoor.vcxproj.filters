@@ -31,9 +31,6 @@
     <ClInclude Include="DlgBase.h">
       <Filter>N3Indoor\Dialogs</Filter>
     </ClInclude>
-    <ClInclude Include="DlgBrowsePath.h">
-      <Filter>N3Indoor\Dialogs</Filter>
-    </ClInclude>
     <ClInclude Include="DlgShapeList.h">
       <Filter>N3Indoor\Dialogs</Filter>
     </ClInclude>
@@ -271,9 +268,6 @@
       <Filter>N3Indoor\Dialogs</Filter>
     </ClCompile>
     <ClCompile Include="DlgBase.cpp">
-      <Filter>N3Indoor\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="DlgBrowsePath.cpp">
       <Filter>N3Indoor\Dialogs</Filter>
     </ClCompile>
     <ClCompile Include="DlgShapeList.cpp">

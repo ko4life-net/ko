@@ -4,7 +4,6 @@
 #include "StdAfx.h"
 #include "N3Indoor.h"
 #include "OrganizeView.h"
-#include "DlgBrowsePath.h"
 #include "MainFrm.h"
 #include "N3IndoorDoc.h"
 #include "N3IndoorView.h"
@@ -182,13 +181,13 @@ void COrganizeView::OnButtonFileName() {
 }
 
 void COrganizeView::OnButtonResourcePath() {
-    // TODO: Add your control notification handler code here
-    CDlgBrowsePath dlg;
-    if (IDCANCEL == dlg.DoModal()) {
+    CFolderPickerDialog dlg;
+    dlg.m_ofn.lpstrTitle = "Select resource path";
+    if (dlg.DoModal() == IDCANCEL) {
         return;
     }
 
-    std::string szPath(dlg.GetPath().GetString());
+    std::string szPath(dlg.GetPathName().GetString());
     SetDlgItemText(IDC_EDIT_RESOURCE_PATH, szPath.c_str());
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     pFrm->m_strResourcePath = szPath + "\\N3Indoor";

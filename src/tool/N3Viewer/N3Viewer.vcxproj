@@ -162,7 +162,6 @@
     <ClCompile Include="$(SrcDir)\engine\N3Base\N3TransformCollision.cpp" />
     <ClCompile Include="$(SrcDir)\engine\N3Base\N3VMesh.cpp" />
     <ClCompile Include="$(SrcDir)\engine\N3Base\Pick.cpp" />
-    <ClCompile Include="DlgBrowsePath.cpp" />
     <ClCompile Include="DlgPMeshCreateOption.cpp" />
     <ClCompile Include="DlgPMeshEdit.cpp" />
     <ClCompile Include="MainFrm.cpp" />
@@ -222,7 +221,6 @@
     <ClInclude Include="$(SrcDir)\engine\N3Base\N3TransformCollision.h" />
     <ClInclude Include="$(SrcDir)\engine\N3Base\N3VMesh.h" />
     <ClInclude Include="$(SrcDir)\engine\N3Base\Pick.h" />
-    <ClInclude Include="DlgBrowsePath.h" />
     <ClInclude Include="DlgPMeshCreateOption.h" />
     <ClInclude Include="DlgPMeshEdit.h" />
     <ClInclude Include="MainFrm.h" />

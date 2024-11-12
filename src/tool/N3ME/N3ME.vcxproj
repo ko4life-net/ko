@@ -168,7 +168,6 @@
     <ClCompile Include="DlgAddSoundGroup.cpp" />
     <ClCompile Include="DlgBar.cpp" />
     <ClCompile Include="DlgBase.cpp" />
-    <ClCompile Include="DlgBrowsePath.cpp" />
     <ClCompile Include="DlgCtrlHeightScale.cpp" />
     <ClCompile Include="DlgDelGroup.cpp" />
     <ClCompile Include="DlgDTexGroupView.cpp" />
@@ -290,7 +289,6 @@
     <ClInclude Include="DlgAddSoundGroup.h" />
     <ClInclude Include="DlgBar.h" />
     <ClInclude Include="DlgBase.h" />
-    <ClInclude Include="DlgBrowsePath.h" />
     <ClInclude Include="DlgCtrlHeightScale.h" />
     <ClInclude Include="DlgDelGroup.h" />
     <ClInclude Include="DlgDTexGroupView.h" />

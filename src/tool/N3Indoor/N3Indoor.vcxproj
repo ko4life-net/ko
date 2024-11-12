@@ -177,7 +177,6 @@
     <ClInclude Include="$(SrcDir)\engine\N3Base\Pick.h" />
     <ClInclude Include="ComDialog.h" />
     <ClInclude Include="DlgBase.h" />
-    <ClInclude Include="DlgBrowsePath.h" />
     <ClInclude Include="DlgShapeList.h" />
     <ClInclude Include="DlgUnusedFiles.h" />
     <ClInclude Include="EnvironSoundPage.h" />
@@ -254,7 +253,6 @@
     <ClCompile Include="$(SrcDir)\engine\N3Base\Pick.cpp" />
     <ClCompile Include="ComDialog.cpp" />
     <ClCompile Include="DlgBase.cpp" />
-    <ClCompile Include="DlgBrowsePath.cpp" />
     <ClCompile Include="DlgShapeList.cpp" />
     <ClCompile Include="DlgUnusedFiles.cpp" />
     <ClCompile Include="EnvironSoundPage.cpp" />

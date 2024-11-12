@@ -45,30 +45,19 @@ void CDlgBar::OnButtonBasepath() {
         return;
     }
 
-    CWnd *  pWnd = GetDlgItem(IDC_EDIT_BASEPATH);
-    CString strPath;
-    if (pWnd) {
-        pWnd->GetWindowText(strPath);
+    std::string szCurDir = CN3Base::PathGet();
+
+    CFolderPickerDialog dlg;
+    dlg.m_ofn.lpstrTitle = "Please select the resource base path.";
+    dlg.m_ofn.lpstrInitialDir = szCurDir.c_str();
+    if (dlg.DoModal() == IDCANCEL) {
+        return;
     }
-    char szFolder[_MAX_PATH] = "";
-    char szTitle[] = "리소스 base경로를 선택해주세요.";
 
-    BROWSEINFO    bi;
-    LPCITEMIDLIST lpidl;
-    bi.hwndOwner = pFrm->m_hWnd;
-    bi.pidlRoot = NULL;
-    bi.pszDisplayName = szFolder;
-    bi.lpszTitle = szTitle;
-    bi.ulFlags = BIF_RETURNONLYFSDIRS;
-    bi.lpfn = NULL;
-    bi.lParam = 0;
+    std::string szDir = dlg.GetPathName().GetString();
+    pFrm->SetBasePath(szDir.c_str());
 
-    lpidl = SHBrowseForFolder(&bi);
-    if (lpidl && SHGetPathFromIDList(lpidl, szFolder)) {
-        pFrm->SetBasePath(szFolder);
-
-        CWinApp * pApp = AfxGetApp();
-        ASSERT(pApp);
-        pApp->WriteProfileString("Work", "Path", szFolder);
-    }
+    CWinApp * pApp = AfxGetApp();
+    ASSERT(pApp);
+    pApp->WriteProfileString("Work", "Path", szDir.c_str());
 }
