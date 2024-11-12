@@ -5559,7 +5559,7 @@ void CNpc::GiveNpcHaveItem(CIOCPort * pIOCP) {
             EnterCriticalSection(&g_LogFileWrite);
             m_pMain->m_ItemLogFile.Write(string, string.GetLength());
             LeaveCriticalSection(&g_LogFileWrite);
-            //LogFileWrite( logfile );
+            //n3std::log_file_write( logfile );
         }
         //TRACE("Npc-GiveNpcHaveItem() : [nid - %d,%s,  giveme=%d, count=%d, num=%d], list=%d, count=%d\n", m_sNid+NPC_BAND, m_strName, m_sMaxDamageUserid, nCount, i, m_GiveItemList[i].sSid, m_GiveItemList[i].count);
     }

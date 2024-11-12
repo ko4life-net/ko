@@ -116,7 +116,7 @@ void CAISocket::CloseProcess() {
     CTime   time = CTime::GetCurrentTime();
     logstr.Format("*** CloseProcess - socketID=%d...  ***  %d-%d-%d, %d:%d]\r\n", m_Sid, time.GetYear(),
                   time.GetMonth(), time.GetDay(), time.GetHour(), time.GetMinute());
-    LogFileWrite(logstr);
+    n3std::log_file_write(logstr);
 
     Initialize();
 

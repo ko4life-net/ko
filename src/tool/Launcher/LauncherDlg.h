@@ -66,8 +66,7 @@ class CLauncherDlg : public CDialog {
 
     CLauncherDlg(CWnd * pParent = NULL); // standard constructor
 
-    CString GetProgPath();
-    void    PacketSend_VersionReq();
+    void PacketSend_VersionReq();
 
     bool ArchiveClose();
     bool ArchiveOpen(CString OpenFileName);

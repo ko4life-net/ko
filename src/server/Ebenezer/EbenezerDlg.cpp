@@ -379,101 +379,101 @@ BOOL CEbenezerDlg::OnInitDialog() {
         return FALSE;
     }
 
-    LogFileWrite("before item\r\n");
+    n3std::log_file_write("before item\r\n");
     if (LoadItemTable() == FALSE) {
         AfxMessageBox("ItemTable Load Fail");
         AfxPostQuitMessage(0);
         return FALSE;
     }
-    LogFileWrite("before main\r\n");
+    n3std::log_file_write("before main\r\n");
     if (LoadMagicTable() == FALSE) {
         AfxMessageBox("MagicTable Load Fail");
         AfxPostQuitMessage(0);
         return FALSE;
     }
-    LogFileWrite("before 1\r\n");
+    n3std::log_file_write("before 1\r\n");
     if (LoadMagicType1() == FALSE) {
         AfxMessageBox("MagicType1 Load Fail");
         AfxPostQuitMessage(0);
         return FALSE;
     }
-    LogFileWrite("before 2\r\n");
+    n3std::log_file_write("before 2\r\n");
     if (LoadMagicType2() == FALSE) {
         AfxMessageBox("MagicType2 Load Fail");
         AfxPostQuitMessage(0);
         return FALSE;
     }
-    LogFileWrite("before 3\r\n");
+    n3std::log_file_write("before 3\r\n");
     if (LoadMagicType3() == FALSE) {
         AfxMessageBox("MagicType3 Load Fail");
         AfxPostQuitMessage(0);
         return FALSE;
     }
-    LogFileWrite("before 4\r\n");
+    n3std::log_file_write("before 4\r\n");
     if (LoadMagicType4() == FALSE) {
         AfxMessageBox("MagicType4 Load Fail");
         AfxPostQuitMessage(0);
         return FALSE;
     }
-    LogFileWrite("before 5\r\n");
+    n3std::log_file_write("before 5\r\n");
     if (LoadMagicType5() == FALSE) {
         AfxMessageBox("MagicType5 Load Fail");
         AfxPostQuitMessage(0);
         return FALSE;
     }
-    LogFileWrite("before 8\r\n");
+    n3std::log_file_write("before 8\r\n");
     if (LoadMagicType8() == FALSE) {
         AfxMessageBox("MagicType8 Load Fail");
         AfxPostQuitMessage(0);
         return FALSE;
     }
-    LogFileWrite("before Coeffi\r\n");
+    n3std::log_file_write("before Coeffi\r\n");
     if (LoadCoefficientTable() == FALSE) {
         AfxMessageBox("CharaterDataTable Load Fail");
         AfxPostQuitMessage(0);
         return FALSE;
     }
-    LogFileWrite("before Level\r\n");
+    n3std::log_file_write("before Level\r\n");
     if (LoadLevelUpTable() == FALSE) {
         AfxMessageBox("LevelUpTable Load Fail");
         AfxPostQuitMessage(0);
         return FALSE;
     }
 
-    LogFileWrite("before All Kinghts\r\n");
+    n3std::log_file_write("before All Kinghts\r\n");
     if (LoadAllKnights() == FALSE) {
         AfxMessageBox("KnightsData Load Fail");
         AfxPostQuitMessage(0);
         return FALSE;
     }
 
-    LogFileWrite("before All Knights User\r\n");
+    n3std::log_file_write("before All Knights User\r\n");
     if (LoadAllKnightsUserData() == FALSE) {
         AfxMessageBox("LoadAllKnightsUserData Load Fail");
         AfxPostQuitMessage(0);
         return FALSE;
     }
 
-    LogFileWrite("before home\r\n");
+    n3std::log_file_write("before home\r\n");
     if (LoadHomeTable() == FALSE) {
         AfxMessageBox("LoadHomeTable Load Fail");
         AfxPostQuitMessage(0);
         return FALSE;
     }
 
-    LogFileWrite("before battle\r\n");
+    n3std::log_file_write("before battle\r\n");
     if (LoadBattleTable() == FALSE) {
         AfxMessageBox("LoadBattleTable Load Fail");
         AfxPostQuitMessage(0);
         return FALSE;
     }
 
-    LogFileWrite("before map file\r\n");
+    n3std::log_file_write("before map file\r\n");
     if (!MapFileLoad()) {
         AfxPostQuitMessage(0);
     }
 
-    LogFileWrite("after map file\r\n");
+    n3std::log_file_write("after map file\r\n");
 
     LoadNoticeData();
 
@@ -495,14 +495,14 @@ BOOL CEbenezerDlg::OnInitDialog() {
 #endif
     }
 
-    LogFileWrite("success\r\n");
+    n3std::log_file_write("success\r\n");
     UserAcceptThread();
 
     //CTime cur = CTime::GetCurrentTime();
     CString starttime;
     starttime.Format("Game Server Start : %d월 %d일 %d시 %d분\r\n", cur.GetMonth(), cur.GetDay(), cur.GetHour(),
                      cur.GetMinute());
-    LogFileWrite((char *)(LPCTSTR)starttime);
+    n3std::log_file_write((char *)(LPCTSTR)starttime);
     m_StatusList.AddString(starttime);
 
     return TRUE; // return TRUE  unless you set the focus to a control
@@ -1122,7 +1122,7 @@ BOOL CEbenezerDlg::MapFileLoad() {
         sZoneName = ZoneInfoSet.m_strZoneName;
         szFullPath.Format(".\\Ebenezer_MAP\\%s", sZoneName);
 
-        LogFileWrite("mapfile load\r\n");
+        n3std::log_file_write("mapfile load\r\n");
         if (!file.Open(szFullPath, CFile::modeRead)) {
             errormsg.Format("File Open Fail - %s\n", szFullPath);
             AfxMessageBox(errormsg);
@@ -1148,7 +1148,7 @@ BOOL CEbenezerDlg::MapFileLoad() {
         m_ZoneArray.push_back(pMap);
 
         // 스트립트를 읽어 들인다.
-        LogFileWrite("before script\r\n");
+        n3std::log_file_write("before script\r\n");
 
         pEvent = new EVENT;
         if (!pEvent->LoadEvent(ZoneInfoSet.m_ZoneNo)) {
@@ -3737,7 +3737,7 @@ void CEbenezerDlg::WritePacketLog() {
     CString starttime;
     starttime.Format("* Packet Check : send=%d, realsend=%d, recv=%d, time %d:%d분\r\n", m_iPacketCount,
                      m_iSendPacketCount, m_iRecvPacketCount, cur.GetHour(), cur.GetMinute());
-    LogFileWrite((char *)(LPCTSTR)starttime);
+    n3std::log_file_write((char *)(LPCTSTR)starttime);
 }
 
 int CEbenezerDlg::GetKnightsGrade(int nPoints) {
@@ -3775,7 +3775,7 @@ void CEbenezerDlg::CheckAliveUser() {
                 char logstr[1024];
                 memset(logstr, NULL, 1024);
                 sprintf(logstr, "User Alive Close - (%d) %s\r\n", pUser->GetSocketID(), pUser->m_pUserData->m_id);
-                LogFileWrite(logstr);
+                n3std::log_file_write(logstr);
             }
             pUser->m_sAliveCount++;
         }

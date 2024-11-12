@@ -86,7 +86,7 @@ C3DMap::~C3DMap() {
 BOOL C3DMap::LoadMap(HANDLE hFile) {
     m_pMain = (CEbenezerDlg *)AfxGetApp()->GetMainWnd();
 
-    LogFileWrite("load teerr\r\n");
+    n3std::log_file_write("load teerr\r\n");
 
     LoadTerrain(hFile);
     m_N3ShapeMgr.Create((m_nMapSize - 1) * m_fUnitDist, (m_nMapSize - 1) * m_fUnitDist);
@@ -99,7 +99,7 @@ BOOL C3DMap::LoadMap(HANDLE hFile) {
         return FALSE;
     }
 
-    LogFileWrite("mapfile adfasfdasdd\r\n");
+    n3std::log_file_write("mapfile adfasfdasdd\r\n");
     int mapwidth = (int)m_N3ShapeMgr.Width();
 
     m_nXRegion = (int)(mapwidth / VIEW_DISTANCE) + 1;
@@ -111,14 +111,14 @@ BOOL C3DMap::LoadMap(HANDLE hFile) {
     }
 
     LoadObjectEvent(hFile);
-    LogFileWrite("amp tile\r\n");
+    n3std::log_file_write("amp tile\r\n");
     LoadMapTile(hFile);
-    LogFileWrite("regene\r\n");
+    n3std::log_file_write("regene\r\n");
     LoadRegeneEvent(hFile); // 이건 내가 추가했슴
-    LogFileWrite("warplist\r\n");
+    n3std::log_file_write("warplist\r\n");
     LoadWarpList(hFile);
 
-    LogFileWrite("load event before\r\n");
+    n3std::log_file_write("load event before\r\n");
     if (!LoadEvent()) {
         AfxMessageBox("Event Load Fail!!");
         return FALSE;
@@ -521,15 +521,15 @@ BOOL C3DMap::LoadEvent() {
     CEventSet    EventSet;
     CGameEvent * pEvent = NULL;
 
-    LogFileWrite("LoadEvent start \r\n");
+    n3std::log_file_write("LoadEvent start \r\n");
 
     if (!EventSet.Open()) {
-        LogFileWrite("LoadEvent 22 \r\n");
+        n3std::log_file_write("LoadEvent 22 \r\n");
         AfxMessageBox(_T("EventTable Open Fail!"));
         return FALSE;
     }
     if (EventSet.IsBOF() || EventSet.IsEOF()) {
-        LogFileWrite("LoadEvent 33 \r\n");
+        n3std::log_file_write("LoadEvent 33 \r\n");
         AfxMessageBox(_T("EventTable Empty!"));
         return FALSE;
     }
@@ -568,7 +568,7 @@ BOOL C3DMap::LoadEvent() {
         EventSet.MoveNext();
     }
 
-    LogFileWrite("LoadEvent 44 \r\n");
+    n3std::log_file_write("LoadEvent 44 \r\n");
     return TRUE;
 }
 

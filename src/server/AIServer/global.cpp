@@ -117,18 +117,6 @@ int ParseSpace(char * tBuf, char * sBuf) {
     return index;
 }
 
-CString GetProgPath() {
-    char Buf[256], Path[256];
-    char drive[_MAX_DRIVE], dir[_MAX_DIR], fname[_MAX_FNAME], ext[_MAX_EXT];
-
-    ::GetModuleFileName(AfxGetApp()->m_hInstance, Buf, 256);
-    _splitpath(Buf, drive, dir, fname, ext);
-    strcpy(Path, drive);
-    strcat(Path, dir);
-    CString _Path = Path;
-    return _Path;
-}
-
 int myrand(int min, int max, BOOL bSame) {
     static int nOld = 0;
     int        nRet = 0;
@@ -241,23 +229,6 @@ BOOL CheckMaxValueReturn(DWORD & dest, DWORD add) {
     } else {
         return FALSE; //dest = _MAX_DWORD;
     }
-}
-
-void LogFileWrite(CString logstr) {
-    CString ProgPath, LogFileName;
-    CFile   file;
-    int     loglength;
-
-    ProgPath = GetProgPath();
-    loglength = logstr.GetLength();
-
-    LogFileName.Format("%s\\AIServer.log", ProgPath);
-
-    file.Open(LogFileName, CFile::modeCreate | CFile::modeNoTruncate | CFile::modeWrite);
-
-    file.SeekToEnd();
-    file.Write(logstr, loglength);
-    file.Close();
 }
 
 void TimeTrace(TCHAR * pMsg) {

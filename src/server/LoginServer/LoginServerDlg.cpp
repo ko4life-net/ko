@@ -107,10 +107,8 @@ BOOL CLoginServerDlg::OnInitDialog() {
 }
 
 BOOL CLoginServerDlg::GetInfoFromIni() {
-    int     errorcode = 0;
-    CString errorstr, inipath;
-
-    inipath.Format("%s\\Version.ini", GetProgPath());
+    std::string  szIniPath = (n3std::get_app_dir() / "Version.ini").string();
+    const char * inipath = szIniPath.c_str();
     GetPrivateProfileString("DOWNLOAD", "URL", "ftp.your-site.net", m_strFtpUrl, 256, inipath);
     GetPrivateProfileString("DOWNLOAD", "PATH", "/", m_strFilePath, 256, inipath);
 
@@ -206,13 +204,12 @@ BOOL CLoginServerDlg::DestroyWindow() {
 }
 
 void CLoginServerDlg::OnVersionSetting() {
-    CString errorstr, inipath;
-    inipath.Format("%s\\Version.ini", GetProgPath());
+    std::string szIniPath = (n3std::get_app_dir() / "Version.ini").string();
     CSettingDlg setdlg(m_nLastVersion, this);
 
     strcpy(setdlg.m_strDefaultPath, m_strDefaultPath);
     if (setdlg.DoModal() == IDOK) {
         strcpy(m_strDefaultPath, setdlg.m_strDefaultPath);
-        WritePrivateProfileString("CONFIGURATION", "DEFAULT_PATH", m_strDefaultPath, inipath);
+        WritePrivateProfileString("CONFIGURATION", "DEFAULT_PATH", m_strDefaultPath, szIniPath.c_str());
     }
 }

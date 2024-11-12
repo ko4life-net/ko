@@ -55,7 +55,7 @@ BOOL CSharedMemQueue::InitailizeMMF(DWORD dwOffsetsize, int maxcount, LPCTSTR lp
 
     if (m_hMMFile == NULL) {
         strcpy(logstr, "Shared Memory Open Fail!!\r\n");
-        LogFileWrite(logstr);
+        n3std::log_file_write(logstr);
         return FALSE;
     }
 
@@ -88,7 +88,7 @@ int CSharedMemQueue::PutData(char * pBuf, int size) {
 
     if (size > m_wOffset) {
         sprintf(logstr, "DataSize Over.. - %d bytes\r\n", size);
-        LogFileWrite(logstr);
+        n3std::log_file_write(logstr);
         return SMQ_PKTSIZEOVER;
     }
 
@@ -169,7 +169,7 @@ int CSharedMemQueue::GetData(char * pBuf) {
             char logstr[256];
             memset(logstr, 0x00, 256);
             sprintf(logstr, "SMQ EMPTY Block Find - F:%d, R:%d\n", m_pHeader->Front, m_pHeader->Rear);
-            LogFileWrite(logstr);
+            n3std::log_file_write(logstr);
             TRACE(logstr);
         }
         return SMQ_EMPTY;

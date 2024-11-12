@@ -40,7 +40,7 @@ void CDBProcess::ReConnectODBC(CDatabase * m_db, const char * strdb, const char 
     CTime t = CTime::GetCurrentTime();
     sprintf(strlog, "Try ReConnectODBC... %d월 %d일 %d시 %d분\r\n", t.GetMonth(), t.GetDay(), t.GetHour(),
             t.GetMinute());
-    LogFileWrite(strlog);
+    n3std::log_file_write(strlog);
 
     // DATABASE 연결...
     CString strConnect;

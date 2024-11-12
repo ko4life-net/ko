@@ -379,35 +379,6 @@ inline int ParseSpace(char * tBuf, char * sBuf) {
     return index;
 };
 
-inline CString GetProgPath() {
-    char Buf[256], Path[256];
-    char drive[_MAX_DRIVE], dir[_MAX_DIR], fname[_MAX_FNAME], ext[_MAX_EXT];
-
-    ::GetModuleFileName(AfxGetApp()->m_hInstance, Buf, 256);
-    _splitpath(Buf, drive, dir, fname, ext);
-    strcpy(Path, drive);
-    strcat(Path, dir);
-    CString _Path = Path;
-    return _Path;
-};
-
-inline void LogFileWrite(LPCTSTR logstr) {
-    CString ProgPath, LogFileName;
-    CFile   file;
-    int     loglength;
-
-    ProgPath = GetProgPath();
-    loglength = strlen(logstr);
-
-    LogFileName.Format("%s\\Aujard.log", ProgPath);
-
-    file.Open(LogFileName, CFile::modeCreate | CFile::modeNoTruncate | CFile::modeWrite);
-
-    file.SeekToEnd();
-    file.Write(logstr, loglength);
-    file.Close();
-};
-
 inline int DisplayErrorMsg(SQLHANDLE hstmt) {
     SQLCHAR     SqlState[6], Msg[1024];
     SQLINTEGER  NativeError;
@@ -420,7 +391,7 @@ inline int DisplayErrorMsg(SQLHANDLE hstmt) {
     while ((rc2 = SQLGetDiagRec(SQL_HANDLE_STMT, hstmt, i, SqlState, &NativeError, Msg, sizeof(Msg), &MsgLen)) !=
            SQL_NO_DATA) {
         sprintf(logstr, "*** %s, %d, %s, %d ***\r\n", SqlState, NativeError, Msg, MsgLen);
-        LogFileWrite(logstr);
+        n3std::log_file_write(logstr);
 
         i++;
     }

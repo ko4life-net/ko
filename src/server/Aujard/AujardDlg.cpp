@@ -173,8 +173,8 @@ BOOL CAujardDlg::OnInitDialog() {
         return FALSE;
     }
 
-    CString inipath;
-    inipath.Format("%s\\Aujard.ini", GetProgPath());
+    std::string  szIniPath = (n3std::get_app_dir() / "Aujard.ini").string();
+    const char * inipath = szIniPath.c_str();
 
     GetPrivateProfileString("ODBC", "ACCOUNT_DSN", "kodb", m_szOdbcAccountDsn, sizeof(m_szOdbcAccountDsn), inipath);
     GetPrivateProfileString("ODBC", "ACCOUNT_UID", "kodb_user", m_szOdbcAccountUid, sizeof(m_szOdbcAccountUid),

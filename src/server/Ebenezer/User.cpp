@@ -5197,7 +5197,7 @@ void CUser::SpeedHackUser() {
     char logstr[256];
     memset(logstr, NULL, 256);
     sprintf(logstr, "%s Speed Hack Used\r\n", m_pUserData->m_id);
-    LogFileWrite(logstr);
+    n3std::log_file_write(logstr);
 
     if (m_pUserData->m_bAuthority != 0) {
         m_pUserData->m_bAuthority = -1;
@@ -7547,7 +7547,7 @@ void CUser::SpeedHackTime(char * pBuf) {
             char logstr[256];
             memset(logstr, NULL, 256);
             sprintf(logstr, "%s SpeedHack User Checked By Server Time\r\n", m_pUserData->m_id);
-            LogFileWrite(logstr);
+            n3std::log_file_write(logstr);
 
             Close();
         } else if (client_gap - server_gap < 0.0f) {
@@ -7565,7 +7565,7 @@ void CUser::SpeedHackTime(char * pBuf) {
             char logstr[256];
             memset( logstr, NULL, 256 );
             sprintf( logstr, "%s SpeedHack User Checked By Server Time\r\n", m_pUserData->m_id);
-            LogFileWrite( logstr );
+            n3std::log_file_write( logstr );
             
 //            if( m_pUserData->m_bAuthority != 0 )
 //                m_pUserData->m_bAuthority = -1;
@@ -7989,7 +7989,7 @@ void CUser::ReportBug(char * pBuf) {
         return;
     }
     sprintf(logstr, "%s -> ERROR : %s\r\n", m_pUserData->m_id, chatstr);
-    LogFileWrite(logstr);
+    n3std::log_file_write(logstr);
 }
 
 void CUser::Home() {
@@ -10102,7 +10102,7 @@ void CUser::SetLogInInfoToDB(BYTE bInit) {
     if (!pInfo) {
         CString logstr;
         logstr.Format("%d Server Info Invalid User Closed...\r\n", m_pMain->m_nServerNo);
-        LogFileWrite(logstr);
+        n3std::log_file_write(logstr);
         Close();
     }
 

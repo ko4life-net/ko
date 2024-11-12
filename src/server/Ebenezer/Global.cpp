@@ -116,35 +116,6 @@ int ParseSpace(char * tBuf, char * sBuf) {
     return index;
 }
 
-CString GetProgPath() {
-    char Buf[256], Path[256];
-    char drive[_MAX_DRIVE], dir[_MAX_DIR], fname[_MAX_FNAME], ext[_MAX_EXT];
-
-    ::GetModuleFileName(AfxGetApp()->m_hInstance, Buf, 256);
-    _splitpath(Buf, drive, dir, fname, ext);
-    strcpy(Path, drive);
-    strcat(Path, dir);
-    CString _Path = Path;
-    return _Path;
-}
-
-void LogFileWrite(LPCTSTR logstr) {
-    CString ProgPath, LogFileName;
-    CFile   file;
-    int     loglength;
-
-    ProgPath = GetProgPath();
-    loglength = strlen(logstr);
-
-    LogFileName.Format("%s\\Ebenezer.log", ProgPath);
-
-    file.Open(LogFileName, CFile::modeCreate | CFile::modeNoTruncate | CFile::modeWrite);
-
-    file.SeekToEnd();
-    file.Write(logstr, loglength);
-    file.Close();
-}
-
 void DisplayErrorMsg(SQLHANDLE hstmt) {
     SQLCHAR     SqlState[6], Msg[1024];
     SQLINTEGER  NativeError;
