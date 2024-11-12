@@ -80,6 +80,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     EnableDocking(CBRS_ALIGN_ANY);
     DockControlBar(&m_wndToolBar);
 
+    CN3Base::PathSet(fs::current_path().string());
+
     // Engine 생성
     //    m_Eng.InitEnv();
     if (!m_Eng.Init(TRUE, m_hWnd, 64, 64, 0, TRUE)) {
