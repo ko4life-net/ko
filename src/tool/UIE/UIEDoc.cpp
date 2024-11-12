@@ -1141,15 +1141,14 @@ void CUIEDoc::OnInsertGroup() {
 }
 
 void CUIEDoc::OnBatchToolChangeImagePath() {
-    char        szBuff[102400] = "";
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_ALLOWMULTISELECT;
     CFileDialog dlg(TRUE, "uif", NULL, dwFlags, "UI Files(*.uif)|*.uif;||", NULL);
-    char        szCurPath[256];
-    GetCurrentDirectory(256, szCurPath);
-    dlg.m_ofn.lpstrInitialDir = szCurPath;
-    dlg.m_ofn.nMaxFile = 102400;
-    dlg.m_ofn.lpstrFile = szBuff;
+    std::string szCurDir = fs::current_path().string();
+    dlg.m_ofn.lpstrInitialDir = szCurDir.c_str();
 
+    std::vector<char> vFilesBuff(512000);
+    dlg.m_ofn.lpstrFile = vFilesBuff.data();
+    dlg.m_ofn.nMaxFile = static_cast<DWORD>(vFilesBuff.size());
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
@@ -1176,15 +1175,14 @@ void CUIEDoc::OnBatchToolChangeImagePath() {
 }
 
 void CUIEDoc::OnBatchToolChangeFont() {
-    char        szBuff[102400] = "";
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_ALLOWMULTISELECT;
     CFileDialog dlg(TRUE, "uif", NULL, dwFlags, "UI Files(*.uif)|*.uif;||", NULL);
-    char        szCurPath[256];
-    GetCurrentDirectory(256, szCurPath);
-    dlg.m_ofn.lpstrInitialDir = szCurPath;
-    dlg.m_ofn.nMaxFile = 102400;
-    dlg.m_ofn.lpstrFile = szBuff;
+    std::string szCurDir = fs::current_path().string();
+    dlg.m_ofn.lpstrInitialDir = szCurDir.c_str();
 
+    std::vector<char> vFilesBuff(512000);
+    dlg.m_ofn.lpstrFile = vFilesBuff.data();
+    dlg.m_ofn.nMaxFile = static_cast<DWORD>(vFilesBuff.size());
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
@@ -1211,13 +1209,13 @@ void CUIEDoc::OnBatchToolChangeFont() {
 void CUIEDoc::OnBatchToolGatherImageFileName() {
     std::string szDlgInitialDir = CN3Base::PathGet();
 
-    char        szBuff[102400] = "";
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_ALLOWMULTISELECT;
     CFileDialog dlg(TRUE, "uif", NULL, dwFlags, "UI Files(*.uif)|*.uif;||", NULL);
     dlg.m_ofn.lpstrInitialDir = szDlgInitialDir.c_str();
-    dlg.m_ofn.nMaxFile = 102400;
-    dlg.m_ofn.lpstrFile = szBuff;
 
+    std::vector<char> vFilesBuff(512000);
+    dlg.m_ofn.lpstrFile = vFilesBuff.data();
+    dlg.m_ofn.nMaxFile = static_cast<DWORD>(vFilesBuff.size());
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }

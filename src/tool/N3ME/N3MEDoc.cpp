@@ -140,11 +140,12 @@ void CN3MEDoc::OnFileImportShapes() {
         return;
     }
 
-    char        szBuff[256000] = "";
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_ALLOWMULTISELECT;
     CFileDialog dlg(TRUE, "n3shape", NULL, dwFlags, "Shape files(*.N3Shape)|*.N3Shape||", NULL);
-    dlg.m_ofn.nMaxFile = 25600;
-    dlg.m_ofn.lpstrFile = szBuff;
+
+    std::vector<char> vFilesBuff(512000);
+    dlg.m_ofn.lpstrFile = vFilesBuff.data();
+    dlg.m_ofn.nMaxFile = static_cast<DWORD>(vFilesBuff.size());
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }

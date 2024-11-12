@@ -241,21 +241,20 @@ void CMainFrame::OnToolFixProgressiveMesh() {
     CString szExt;
     CString szFilter = "N3 Progressive Mesh File(*.N3PMesh)|*.N3PMesh||";
 
-    CString FileName;
-    char *  pBuff = new char[2048000];
-    memset(pBuff, 0, 2048000);
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_ALLOWMULTISELECT;
     CFileDialog dlg(TRUE, szExt, NULL, dwFlags, szFilter, NULL);
-    dlg.m_ofn.nMaxFile = 2048000;
-    dlg.m_ofn.lpstrFile = pBuff;
+
+    std::vector<char> vFilesBuff(512000);
+    dlg.m_ofn.lpstrFile = vFilesBuff.data();
+    dlg.m_ofn.nMaxFile = static_cast<DWORD>(vFilesBuff.size());
     if (dlg.DoModal() == IDCANCEL) {
-        delete[] pBuff;
         return;
     }
 
     CFile file;
     file.Open("프로그레시브 메쉬 처리 안된 리스트.txt", CFile::modeWrite | CFile::modeCreate);
 
+    CString  FileName;
     CN3PMesh PM;
     POSITION pos = dlg.GetStartPosition();
     for (int i = 0; pos != NULL; i++) {
@@ -275,6 +274,4 @@ void CMainFrame::OnToolFixProgressiveMesh() {
     MessageBox(
         "프로그레시브 처리가 안된 파일리스트는 \"프로그레시브 메쉬 처리 안된 리스트.txt\" 파일에 기록되었습니다.");
     file.Close();
-
-    delete[] pBuff;
 }

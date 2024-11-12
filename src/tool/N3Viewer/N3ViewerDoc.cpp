@@ -131,22 +131,24 @@ BOOL CN3ViewerDoc::OnSaveDocument(LPCTSTR lpszPathName) {
 
 void CN3ViewerDoc::OnFileImport() {
     CString szExt = "";
-    //    CString szFilter = "N3D Object File|*.*|카메라 Data(*.N3Camera)|*.N3Camera|Light Data(*.N3Light)|*.N3Light|Shape Data(*.N3Shape)|*.N3Shape|\
-// Progressive Mesh Data(*.N3PMesh)|*.N3Mesh|Indexed Mesh Data(*.N3IMesh)|*.N3IMesh|Joint Data(*.N3Joint)|*.N3Joint|Skinning Data(*.N3Skin)|*.N3Skin|Character Data(*.N3Chr)|*.N3Chr||";
+    //CString szFilter =
+    //    "N3D Object File|*.*|카메라 Data(*.N3Camera)|*.N3Camera|Light Data(*.N3Light)|*.N3Light|Shape Data(*.N3Shape)|*.N3Shape|\
+//    Progressive Mesh Data(*.N3PMesh)|*.N3Mesh|Indexed Mesh Data(*.N3IMesh)|*.N3IMesh|Joint Data(*.N3Joint)|*.N3Joint|Skinning Data(*.N3Skin)|*.N3Skin|Character Data(*.N3Chr)|*.N3Chr||";
     CString szFilter =
         "N3D Object File|*.*|카메라(*.N3Camera)|*.N3Camera|Light(*.N3Light)|*.N3Light|Progressive "
         "Mesh(*.N3PMesh)|*.N3PMesh|Shape(*.N3Shape)|*.N3Shape|Character(*.N3Chr)|*.N3Chr|Plug(*.N3CPlug)|*.N3CPlug||";
 
-    CString     FileName;
-    char        szBuff[512000] = "";
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_ALLOWMULTISELECT;
     CFileDialog dlg(TRUE, szExt, NULL, dwFlags, szFilter, NULL);
-    dlg.m_ofn.nMaxFile = 512000;
-    dlg.m_ofn.lpstrFile = szBuff;
+
+    std::vector<char> vFilesBuff(512000);
+    dlg.m_ofn.lpstrFile = vFilesBuff.data();
+    dlg.m_ofn.nMaxFile = static_cast<DWORD>(vFilesBuff.size());
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
 
+    CString  FileName;
     POSITION pos = dlg.GetStartPosition();
     for (int i = 0; pos != NULL; i++) {
         FileName = dlg.GetNextPathName(pos);

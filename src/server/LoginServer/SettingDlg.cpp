@@ -71,12 +71,10 @@ void CSettingDlg::OnOK() {
 }
 
 void CSettingDlg::OnAddfile() {
-    CFileDialog dlg(TRUE);
     std::string addfilename, addfullpath, defaultpath;
     char        tempstr1[_MAX_PATH];
     memset(tempstr1, 0x00, _MAX_PATH);
-    char szFileName[512000];
-    int  strsize = 0;
+    int strsize = 0;
 
     UpdateData(TRUE);
 
@@ -90,13 +88,18 @@ void CSettingDlg::OnAddfile() {
         return;
     }
 
-    ::SetCurrentDirectory(m_strDefaultPath);
+    fs::current_path(m_strDefaultPath);
 
-    szFileName[0] = 0x00;
+    CFileDialog dlg(TRUE);
     dlg.m_ofn.lpstrInitialDir = m_strDefaultPath;
     dlg.m_ofn.Flags |= OFN_ALLOWMULTISELECT | OFN_EXPLORER;
-    dlg.m_ofn.lpstrFile = (LPTSTR)szFileName;
-    dlg.m_ofn.nMaxFile = 512000;
+
+    std::vector<char> vFilesBuff(512000);
+    dlg.m_ofn.lpstrFile = vFilesBuff.data();
+    dlg.m_ofn.nMaxFile = static_cast<DWORD>(vFilesBuff.size());
+    if (dlg.DoModal() == IDCANCEL) {
+        return;
+    }
 
     if (dlg.DoModal() == IDOK) {
         POSITION pos = dlg.GetStartPosition();

@@ -284,12 +284,12 @@ void CRscTablesDlg::OnConvertText2bin() {
         return;
     }
 
-    char        szBuff[10240] = "";
-    CString     FileName;
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_ALLOWMULTISELECT;
     CFileDialog dlg(TRUE, "txt", NULL, dwFlags, "txt(탭으로 분리)(*.txt)|*.txt||", NULL);
-    dlg.m_ofn.nMaxFile = 10240;
-    dlg.m_ofn.lpstrFile = szBuff;
+
+    std::vector<char> vFilesBuff(512000);
+    dlg.m_ofn.lpstrFile = vFilesBuff.data();
+    dlg.m_ofn.nMaxFile = static_cast<DWORD>(vFilesBuff.size());
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }

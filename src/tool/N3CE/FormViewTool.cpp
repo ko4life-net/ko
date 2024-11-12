@@ -132,15 +132,14 @@ void CFormViewTool::OnSelchangeCbLod() {
 }
 
 void CFormViewTool::OnBAddTestSound0() {
-    char        szBuff[10240] = "";
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_ALLOWMULTISELECT;
     CFileDialog dlg(TRUE, "wav", NULL, dwFlags, "Wave files(*.wav)|*.wav||", NULL);
-    char        szCurPath[256];
-    GetCurrentDirectory(256, szCurPath);
-    dlg.m_ofn.lpstrInitialDir = szCurPath;
-    dlg.m_ofn.nMaxFile = 10240;
-    dlg.m_ofn.lpstrFile = szBuff;
+    std::string szCurDir = fs::current_path().string();
+    dlg.m_ofn.lpstrInitialDir = szCurDir.c_str();
 
+    std::vector<char> vFilesBuff(512000);
+    dlg.m_ofn.lpstrFile = vFilesBuff.data();
+    dlg.m_ofn.nMaxFile = static_cast<DWORD>(vFilesBuff.size());
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
@@ -183,15 +182,14 @@ void CFormViewTool::OnSelchangeListSound0() {
 }
 
 void CFormViewTool::OnBAddTestSound1() {
-    char        szBuff[10240] = "";
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_ALLOWMULTISELECT;
     CFileDialog dlg(TRUE, "wav", NULL, dwFlags, "Wave files(*.wav)|*.wav||", NULL);
-    char        szCurPath[256];
-    GetCurrentDirectory(256, szCurPath);
-    dlg.m_ofn.lpstrInitialDir = szCurPath;
-    dlg.m_ofn.nMaxFile = 10240;
-    dlg.m_ofn.lpstrFile = szBuff;
+    std::string szCurDir = fs::current_path().string();
+    dlg.m_ofn.lpstrInitialDir = szCurDir.c_str();
 
+    std::vector<char> vFilesBuff(512000);
+    dlg.m_ofn.lpstrFile = vFilesBuff.data();
+    dlg.m_ofn.nMaxFile = static_cast<DWORD>(vFilesBuff.size());
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }

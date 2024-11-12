@@ -375,12 +375,12 @@ void CPropertyList::OnButton() {
         }
 
     } else if (pItem->m_nItemType == PIT_FILE_MULTI) {
-        char        szBuff[10240] = "";
         DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_ALLOWMULTISELECT;
         CFileDialog dlg(TRUE, NULL, NULL, dwFlags, pItem->m_szCBItemsOrFilter.GetAt(0));
-        dlg.m_ofn.nMaxFile = 10240;
-        dlg.m_ofn.lpstrFile = szBuff;
 
+        std::vector<char> vFilesBuff(512000);
+        dlg.m_ofn.lpstrFile = vFilesBuff.data();
+        dlg.m_ofn.nMaxFile = static_cast<DWORD>(vFilesBuff.size());
         if (IDOK == dlg.DoModal()) {
             POSITION     pos = dlg.GetStartPosition();
             CStringArray szFNs;

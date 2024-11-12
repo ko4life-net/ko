@@ -164,15 +164,14 @@ void CMainFrame::OnFileConvert() {
 }
 
 void CMainFrame::OnToolConvertFilesAutomaticaly() {
-    char        szBuff[102400] = "";
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_ALLOWMULTISELECT;
     CFileDialog dlg(TRUE, "dxt", NULL, dwFlags, "Generic Image Files(*.bmp, *.tga, *.jpg)|*.bmp;*.tga;*.jpg||", NULL);
-    char        szCurPath[256];
-    GetCurrentDirectory(256, szCurPath);
-    dlg.m_ofn.lpstrInitialDir = szCurPath;
-    dlg.m_ofn.nMaxFile = 102400;
-    dlg.m_ofn.lpstrFile = szBuff;
+    std::string szCurDir = fs::current_path().string();
+    dlg.m_ofn.lpstrInitialDir = szCurDir.c_str();
 
+    std::vector<char> vFilesBuff(512000);
+    dlg.m_ofn.lpstrFile = vFilesBuff.data();
+    dlg.m_ofn.nMaxFile = static_cast<DWORD>(vFilesBuff.size());
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
@@ -200,18 +199,20 @@ void CMainFrame::OnToolConvertFilesAutomaticaly() {
 }
 
 void CMainFrame::OnToolConvertFilesManually() {
-    char        szBuff[102400] = "";
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_ALLOWMULTISELECT;
     CFileDialog dlg(TRUE, "dxt", NULL, dwFlags,
-                    "Generic Image Files(*.dxt, *.bmp, *.tga, *.jpg)|*.dxt;*.bmp;*.tga;*.jpg|BitmapFile "
-                    "File(*.bmp)|*.bmp|Targa File(*.tga)|*.bmp|DXT File(*.dxt)|*.dxt||",
+                    "Generic Image Files(*.dxt, *.bmp, *.tga, *.jpg)|*.dxt;*.bmp;*.tga;*.jpg|"
+                    "BitmapFile File(*.bmp)|*.bmp|"
+                    "Targa File(*.tga)|*.tga|"
+                    "DXT File(*.dxt)|*.dxt||",
                     NULL);
-    char        szCurPath[256];
-    GetCurrentDirectory(256, szCurPath);
-    dlg.m_ofn.lpstrInitialDir = szCurPath;
-    dlg.m_ofn.nMaxFile = 102400;
-    dlg.m_ofn.lpstrFile = szBuff;
 
+    std::string szCurDir = fs::current_path().string();
+    dlg.m_ofn.lpstrInitialDir = szCurDir.c_str();
+
+    std::vector<char> vFilesBuff(512000);
+    dlg.m_ofn.lpstrFile = vFilesBuff.data();
+    dlg.m_ofn.nMaxFile = static_cast<DWORD>(vFilesBuff.size());
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
@@ -548,15 +549,14 @@ void CMainFrame::OnFileOpenLast() {
 }
 
 void CMainFrame::OnToolSaveRepeat() {
-    char        szBuff[102400] = "";
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_ALLOWMULTISELECT;
     CFileDialog dlg(TRUE, "dxt", NULL, dwFlags, "Noah Texture Files(*.dxt)|*.dxt||", NULL);
-    char        szCurPath[256];
-    GetCurrentDirectory(256, szCurPath);
-    dlg.m_ofn.lpstrInitialDir = szCurPath;
-    dlg.m_ofn.nMaxFile = 102400;
-    dlg.m_ofn.lpstrFile = szBuff;
+    std::string szCurDir = fs::current_path().string();
+    dlg.m_ofn.lpstrInitialDir = szCurDir.c_str();
 
+    std::vector<char> vFilesBuff(512000);
+    dlg.m_ofn.lpstrFile = vFilesBuff.data();
+    dlg.m_ofn.nMaxFile = static_cast<DWORD>(vFilesBuff.size());
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
