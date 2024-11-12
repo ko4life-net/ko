@@ -211,9 +211,7 @@ void CDlgBar::OnReleasedcaptureSliderLight(NMHDR * pNMHDR, LRESULT * pResult) {
         return;
     }
     if (pFrm->GetMapMng()) {
-        int   val = m_sld_Light.GetPos();
-        float lgt = (float)val / 100.0f;
-        pFrm->GetMapMng()->SetLight(lgt);
+        pFrm->GetMapMng()->SetLight(GetLight() / 100.0f);
     }
 
     *pResult = 0;

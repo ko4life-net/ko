@@ -76,7 +76,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     m_Lights[1].m_Data.InitDirection(1, __Vector3(0, 0, -1), crLgt);
     m_Lights[2].m_Data.InitPoint(2, __Vector3(0, 0, 0), crLgt, 32.0f);
 
-    m_ObjectBundle.LoadFromFile("Object\\Field.N3Shape"); // 배경으로 쓸 오브젝트 부르기..
+    m_ObjectBundle.LoadFromFile("ChrSelect\\el_chairs.n3shape"); // 배경으로 쓸 오브젝트 부르기..
 
     return 0;
 }
