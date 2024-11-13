@@ -54,18 +54,8 @@ const char * CIni::GetProfileString(const char * lpAppName, const char * lpKeyNa
 }
 
 bool CIni::SetPath(const char * filename) {
-    char Buf[256], Path[256];
-    char drive[_MAX_DRIVE], dir[_MAX_DIR], fname[_MAX_FNAME], ext[_MAX_EXT];
-
-    ::GetModuleFileName(AfxGetApp()->m_hInstance, Buf, 256);
-    _splitpath(Buf, drive, dir, fname, ext);
-    strcpy(Path, drive);
-    strcat(Path, dir);
-    char IniPath[256] = "";
-    strcpy(IniPath, Path);
-    wsprintf(IniPath, "%s%s", IniPath, filename);
-    //IniPath += filename;
-    strcpy(m_szFileName, (LPCTSTR)IniPath);
+    fs::path fsIniPath = n3std::get_app_dir() / filename;
+    std::snprintf(m_szFileName, sizeof(m_szFileName), fsIniPath.string().c_str());
     return true;
 }
 

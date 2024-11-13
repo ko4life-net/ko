@@ -1,7 +1,6 @@
 #pragma once
 
-// TODO: reference additional headers your program requires here
-#include "AfxVer_.h"
+#include <afxver_.h>
 
 #include "My_3DStruct.h"
 

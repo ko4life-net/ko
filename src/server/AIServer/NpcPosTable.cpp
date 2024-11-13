@@ -5,7 +5,7 @@
 #include "StdAfx.h"
 #include "AIServer.h"
 #include "NpcPosTable.h"
-#include "ini.h"
+#include "Ini.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

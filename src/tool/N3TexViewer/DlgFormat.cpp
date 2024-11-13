@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "n3texviewer.h"
+#include "N3TexViewer.h"
 #include "DlgFormat.h"
 
 #ifdef _DEBUG

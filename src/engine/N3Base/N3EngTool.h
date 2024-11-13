@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "N3Base/N3Eng.h"
+#include "N3Eng.h"
 
 struct __EXPORT_OPTION {
     char szID[8];      // ID "N3Scene1"

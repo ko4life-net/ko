@@ -7,7 +7,7 @@
 
 #include "GameDef.h"
 #include "GameEng.h"
-#include "packetdef.h"
+#include "PacketDef.h"
 #include "LocalInput.h"
 #include "APISocket.h"
 #include "UIMessageBox.h"
@@ -15,7 +15,7 @@
 #include "UIManager.h"
 
 #include "N3FXMgr.h"
-#include "PlayerMyself.h"
+#include "PlayerMySelf.h"
 #include "GameProcedure.h"
 #include "GameProcLogIn.h"
 //#include "GameProcStart.h"
@@ -40,7 +40,7 @@
 #include "N3Base/N3TableBase.h"
 #include "N3Base/N3FXBundle.h"
 
-#include "N3Base/BitmapFile.h"
+#include "N3Base/BitMapFile.h"
 #include "N3Base/Jpeg.h"
 #include "N3Base/JpegFile.h"
 

@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "n3me.h"
+#include "N3ME.h"
 #include "DlgDelGroup.h"
 #include "MainFrm.h"
 #include "DTexGroupMng.h"

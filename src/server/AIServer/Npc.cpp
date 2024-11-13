@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-#include "math.h"
+#include <math.h>
 #include "Npc.h"
 #include "AIServerDlg.h"
 #include "Gamesocket.h"
@@ -12,7 +12,7 @@ int surround_z[8] = {0, -1, -1, -1, 0, 1, 1, 1};
 int test_id = 1056;
 int cur_test = 0; // 1 = test중 , 0이면 정상
 
-#include "extern.h"
+#include "Extern.h"
 //BOOL g_bDebug = TRUE;
 
 #define ATROCITY_ATTACK_TYPE 1 // 선공
@@ -3916,14 +3916,14 @@ BOOL CNpc::SetDamage(int nAttackType, int nDamage, const std::string & id, int u
 
     for (int i = 0; i < NPC_HAVE_USER_LIST; i++) {
         if (m_DamagedUserList[i].iUid == uid) {
-            if (N3::iequals("**duration**", id)) {
+            if (n3std::iequals("**duration**", id)) {
                 bFlag = TRUE;
                 strcpy(strDurationID, pUser->m_strUserID);
-                if (N3::iequals(m_DamagedUserList[i].strUserID, strDurationID)) {
+                if (n3std::iequals(m_DamagedUserList[i].strUserID, strDurationID)) {
                     m_DamagedUserList[i].nDamage += userDamage;
                     goto go_result;
                 }
-            } else if (N3::iequals(m_DamagedUserList[i].strUserID, id)) {
+            } else if (n3std::iequals(m_DamagedUserList[i].strUserID, id)) {
                 m_DamagedUserList[i].nDamage += userDamage;
                 goto go_result;
             }
@@ -3943,7 +3943,7 @@ BOOL CNpc::SetDamage(int nAttackType, int nDamage, const std::string & id, int u
                 if (bFlag == TRUE) {
                     strcpy(m_DamagedUserList[i].strUserID, strDurationID);
                 } else {
-                    if (N3::iequals("**duration**", id)) {
+                    if (n3std::iequals("**duration**", id)) {
                         strcpy(m_DamagedUserList[i].strUserID, pUser->m_strUserID);
                     } else {
                         strcpy(m_DamagedUserList[i].strUserID, id.c_str());
@@ -5025,7 +5025,7 @@ void CNpc::IsUserInSight() {
             // 갖고있는 리스트상의 유저와 같다면
             if (m_DamagedUserList[i].iUid == pUser->m_iUserId) {
                 // 최종 ID를 비교해서 동일하면
-                if (N3::iequals(m_DamagedUserList[i].strUserID, pUser->m_strUserID)) {
+                if (n3std::iequals(m_DamagedUserList[i].strUserID, pUser->m_strUserID)) {
                     // 이때서야 존재한다는 표시를 한다
                     m_DamagedUserList[i].bIs = TRUE;
                 }
@@ -5559,7 +5559,7 @@ void CNpc::GiveNpcHaveItem(CIOCPort * pIOCP) {
             EnterCriticalSection(&g_LogFileWrite);
             m_pMain->m_ItemLogFile.Write(string, string.GetLength());
             LeaveCriticalSection(&g_LogFileWrite);
-            //LogFileWrite( logfile );
+            //n3std::log_file_write( logfile );
         }
         //TRACE("Npc-GiveNpcHaveItem() : [nid - %d,%s,  giveme=%d, count=%d, num=%d], list=%d, count=%d\n", m_sNid+NPC_BAND, m_strName, m_sMaxDamageUserid, nCount, i, m_GiveItemList[i].sSid, m_GiveItemList[i].count);
     }

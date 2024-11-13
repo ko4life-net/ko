@@ -31,9 +31,6 @@
     <ClInclude Include="DlgBase.h">
       <Filter>N3Indoor\Dialogs</Filter>
     </ClInclude>
-    <ClInclude Include="DlgBrowsePath.h">
-      <Filter>N3Indoor\Dialogs</Filter>
-    </ClInclude>
     <ClInclude Include="DlgShapeList.h">
       <Filter>N3Indoor\Dialogs</Filter>
     </ClInclude>
@@ -77,9 +74,6 @@
       <Filter>N3Indoor</Filter>
     </ClInclude>
     <ClInclude Include="$(SrcDir)\tool\Widget\PropertyList.h">
-      <Filter>N3Indoor</Filter>
-    </ClInclude>
-    <ClInclude Include="ShellTree.h">
       <Filter>N3Indoor</Filter>
     </ClInclude>
     <ClInclude Include="StdAfx.h">
@@ -276,9 +270,6 @@
     <ClCompile Include="DlgBase.cpp">
       <Filter>N3Indoor\Dialogs</Filter>
     </ClCompile>
-    <ClCompile Include="DlgBrowsePath.cpp">
-      <Filter>N3Indoor\Dialogs</Filter>
-    </ClCompile>
     <ClCompile Include="DlgShapeList.cpp">
       <Filter>N3Indoor\Dialogs</Filter>
     </ClCompile>
@@ -322,9 +313,6 @@
       <Filter>N3Indoor</Filter>
     </ClCompile>
     <ClCompile Include="$(SrcDir)\tool\Widget\PropertyList.cpp">
-      <Filter>N3Indoor</Filter>
-    </ClCompile>
-    <ClCompile Include="ShellTree.cpp">
       <Filter>N3Indoor</Filter>
     </ClCompile>
     <ClCompile Include="StdAfx.cpp">

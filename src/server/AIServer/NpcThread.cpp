@@ -8,7 +8,8 @@
 #include "NpcThread.h"
 #include "Npc.h"
 #include "Extern.h"
-#include "Mmsystem.h"
+
+#include <mmsystem.h>
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

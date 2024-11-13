@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-#include "define.h"
+#include "Define.h"
 
 void GetString(char * tBuf, char * sBuf, int len, int & index) {
     memcpy(tBuf, sBuf + index, len);
@@ -76,37 +76,6 @@ int ParseSpace(char * tBuf, char * sBuf) {
     return index;
 }
 
-void GetProgPath(char * path) {
-    char Buf[256], Path[256];
-    char drive[_MAX_DRIVE], dir[_MAX_DIR], fname[_MAX_FNAME], ext[_MAX_EXT];
-
-    ::GetModuleFileName(AfxGetApp()->m_hInstance, Buf, 256);
-    _splitpath(Buf, drive, dir, fname, ext);
-    strcpy(Path, drive);
-    strcat(Path, dir);
-
-    strcpy(path, Path);
-}
-
-void LogFileWrite(LPCSTR logstr) {
-    char ProgPath[256], LogFileName[256];
-    memset(ProgPath, 0x00, 256);
-    memset(LogFileName, 0x00, 256);
-    CFile file;
-    int   loglength;
-
-    GetProgPath(ProgPath);
-    loglength = strlen(logstr);
-
-    sprintf(LogFileName, "%s\\Aujard.log", ProgPath);
-
-    file.Open(LogFileName, CFile::modeCreate | CFile::modeNoTruncate | CFile::modeWrite);
-
-    file.SeekToEnd();
-    file.Write(logstr, loglength);
-    file.Close();
-}
-
 void DisplayErrorMsg(SQLHANDLE hstmt) {
     SQLCHAR     SqlState[6], Msg[1024];
     SQLINTEGER  NativeError;
@@ -119,7 +88,7 @@ void DisplayErrorMsg(SQLHANDLE hstmt) {
     while ((rc2 = SQLGetDiagRec(SQL_HANDLE_STMT, hstmt, i, SqlState, &NativeError, Msg, sizeof(Msg), &MsgLen)) !=
            SQL_NO_DATA) {
         sprintf(logstr, "*** %s, %d, %s, %d ***\r\n", SqlState, NativeError, Msg, MsgLen);
-        LogFileWrite(logstr);
+        n3std::log_file_write(logstr);
         //        TRACE("*** %s, %d, %s, %d ***\n", SqlState,NativeError,Msg,MsgLen);
 
         i++;

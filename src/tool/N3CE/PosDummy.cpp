@@ -3,8 +3,9 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-//#include "n3me.h"
 #include "PosDummy.h"
+
+//#include "N3ME.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

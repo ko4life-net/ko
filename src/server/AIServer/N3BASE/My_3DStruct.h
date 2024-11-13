@@ -1237,7 +1237,7 @@ const DWORD OBJ_ANIM_CONTROL = 0x40000000;
 
 #define g_EPSILON (1.0e-5f)
 
-#include "CrtDbg.h"
+#include <crtdbg.h>
 
 #ifndef _DEBUG
 #define __ASSERT(expr, expMessage) void(0)

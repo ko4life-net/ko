@@ -2,7 +2,7 @@
 //
 #include "StdAfx.h"
 //#include "AIServer.h"
-#include "implode.h"
+#include "Implode.h"
 #include "Compress.h"
 
 #define DO_CRC_INSTREAM  1

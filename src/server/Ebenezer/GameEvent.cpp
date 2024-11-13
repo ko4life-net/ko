@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include "ebenezer.h"
+#include "Ebenezer.h"
 #include "GameEvent.h"
 #include "User.h"
 #include "GameDefine.h"

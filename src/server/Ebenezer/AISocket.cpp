@@ -6,11 +6,11 @@
 #include "Ebenezer.h"
 #include "AISocket.h"
 #include "EbenezerDlg.h"
-#include "define.h"
+#include "Define.h"
 #include "PacketDefine.h"
-#include "AiPacket.h"
+#include "AIPacket.h"
 #include "Npc.h"
-#include "user.h"
+#include "User.h"
 #include "Map.h"
 #include "Compress.h"
 
@@ -116,7 +116,7 @@ void CAISocket::CloseProcess() {
     CTime   time = CTime::GetCurrentTime();
     logstr.Format("*** CloseProcess - socketID=%d...  ***  %d-%d-%d, %d:%d]\r\n", m_Sid, time.GetYear(),
                   time.GetMonth(), time.GetDay(), time.GetHour(), time.GetMinute());
-    LogFileWrite(logstr);
+    n3std::log_file_write(logstr);
 
     Initialize();
 

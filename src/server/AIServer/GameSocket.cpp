@@ -8,10 +8,10 @@
 #include "GameSocket.h"
 #include "User.h"
 #include "Map.h"
-#include "region.h"
+#include "Region.h"
 #include "Party.h"
 
-#include "extern.h"
+#include "Extern.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -55,7 +55,7 @@ void CGameSocket::CloseProcess() {
     CTime   time = CTime::GetCurrentTime();
     logstr.Format("*** CloseProcess - socketID=%d ... sSid = %d ***  %d-%d-%d, %d:%d]\r\n", m_Sid, m_sSocketID,
                   time.GetYear(), time.GetMonth(), time.GetDay(), time.GetHour(), time.GetMinute());
-    LogFileWrite(logstr);
+    n3std::log_file_write(logstr);
 
     TRACE("*** CloseProcess - socketID=%d ... sSid = %d *** \n", m_Sid, m_sSocketID);
     m_pMain->DeleteAllUserList(m_sSocketID);
@@ -229,7 +229,7 @@ void CGameSocket::RecvUserInfo(char * pBuf) {
         CTime cur = CTime::GetCurrentTime();
         sprintf(countstr, "RecvUserInfo() Fail : %d월 %d일 %d시 %d분 - uid=%d, name=%s\r\n", cur.GetMonth(),
                 cur.GetDay(), cur.GetHour(), cur.GetMinute(), uid, strName);
-        LogFileWrite(countstr);
+        n3std::log_file_write(countstr);
         TRACE("###  RecvUserInfo() Fail ---> uid = %d, name=%s  ### \n", uid, strName);
         return;
     }

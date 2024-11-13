@@ -121,11 +121,9 @@
   <ItemGroup>
     <ClCompile Include="CircularBuffer.cpp" />
     <ClCompile Include="DBProcess.cpp" />
-    <ClCompile Include="DlgBrowsePath.cpp" />
     <ClCompile Include="IOCPort.cpp" />
     <ClCompile Include="IOCPSocket2.cpp" />
     <ClCompile Include="SettingDlg.cpp" />
-    <ClCompile Include="ShellTree.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -140,11 +138,9 @@
     <ClInclude Include="CircularBuffer.h" />
     <ClInclude Include="DBProcess.h" />
     <ClInclude Include="Define.h" />
-    <ClInclude Include="DlgBrowsePath.h" />
     <ClInclude Include="IOCPort.h" />
     <ClInclude Include="IOCPSocket2.h" />
     <ClInclude Include="SettingDlg.h" />
-    <ClInclude Include="ShellTree.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="STLMap.h" />
     <ClInclude Include="User.h" />

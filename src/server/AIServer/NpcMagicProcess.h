@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "iocport.h"
+#include "IOCPort.h"
 
 class CServerDlg;
 class CNpc;

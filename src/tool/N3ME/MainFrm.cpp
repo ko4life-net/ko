@@ -12,7 +12,6 @@
 #include "DTexGroupMng.h"
 #include "DlgSetDTex.h"
 #include "MapMng.h"
-#include "DlgBrowsePath.h"
 #include "DlgSowSeed.h"
 #include "DlgSaveDivision.h"
 
@@ -654,12 +653,13 @@ void CMainFrame::OnUpdateViewDtex(CCmdUI * pCmdUI) {
 void CMainFrame::OnResourcePathSet() {
     ASSERT(m_pMapMng);
 
-    CDlgBrowsePath dlg;
-    if (IDCANCEL == dlg.DoModal()) {
+    CFolderPickerDialog dlg;
+    dlg.m_ofn.lpstrTitle = "Select resource path";
+    if (dlg.DoModal() == IDCANCEL) {
         return;
     }
 
-    std::string szPath(dlg.GetPath().GetString());
+    std::string szPath(dlg.GetPathName().GetString());
     CN3Base::PathSet(szPath); // 경로 설정..
     m_wndDlgBar.SetDlgItemText(IDC_E_PATH, szPath.c_str());
 

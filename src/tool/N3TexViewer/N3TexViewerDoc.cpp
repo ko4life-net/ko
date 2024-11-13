@@ -5,7 +5,7 @@
 #include "N3TexViewer.h"
 #include "N3TexViewerDoc.h"
 
-#include "N3Base/BitmapFile.h"
+#include "N3Base/BitMapFile.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

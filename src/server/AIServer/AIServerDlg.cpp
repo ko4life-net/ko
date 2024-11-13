@@ -1,11 +1,7 @@
-// ServerDlg.cpp : implementation file
-//
-
 #include "StdAfx.h"
 #include "AIServer.h"
 #include "AIServerDlg.h"
 #include "GameSocket.h"
-#include "math.h"
 #include "MagicTableSet.h"
 #include "MagicType1Set.h"
 #include "MagicType2Set.h"
@@ -22,9 +18,7 @@
 #include "MakeGradeItemTableSet.h"
 #include "MakeLareItemTableSet.h"
 #include "Region.h"
-#include "ini.h"
-
-//#include "extern.h"            // 전역 객체
+#include "Ini.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -207,7 +201,7 @@ BOOL CServerDlg::OnInitDialog() {
     logstr.Format("[AI ServerStart - %d-%d-%d, %d:%d]\r\n", time.GetYear(), time.GetMonth(), time.GetDay(),
                   time.GetHour(), time.GetMinute());
     TRACE(logstr);
-    LogFileWrite(logstr);
+    n3std::log_file_write(logstr);
 
     //----------------------------------------------------------------------
     //    Logfile initialize
@@ -1709,7 +1703,7 @@ void CServerDlg::CheckAliveTest() {
             if (m_sErrorSocketCount == 10) {
                 logstr.Format("*** All Socket Closed ***  %d-%d-%d, %d:%d]\r\n", time.GetYear(), time.GetMonth(),
                               time.GetDay(), time.GetHour(), time.GetMinute());
-                //LogFileWrite( logstr );
+                //n3std::log_file_write( logstr );
             }
             count++;
         }

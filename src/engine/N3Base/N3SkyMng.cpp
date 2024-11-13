@@ -9,9 +9,7 @@
 #include "N3Sun.h"
 #include "N3Cloud.h"
 #include "N3Star.h"
-#include "mmsystem.h"
 #include "N3Texture.h"
-
 #include "N3GERain.h"
 #include "N3GESnow.h"
 
@@ -19,6 +17,8 @@
 #include "N3SndObj.h"
 #include "N3SndMgr.h"
 #endif // #ifdef _N3GAME
+
+#include <mmsystem.h>
 
 typedef typename std::vector<__SKY_DAYCHANGE>::iterator it_SDC;
 

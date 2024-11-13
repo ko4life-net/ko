@@ -19,11 +19,11 @@
 #include "StdBase.h"
 #include "N3Utils.h"
 
-//#include "Mmsystem.h"
-//#include "Imm.h"
+//#include <mmsystem.h>
+//#include <imm.h>
 //#include "N3Base/My_3DStruct.h"
 
-#include "packet.h" // packet 정의
+#include "Packet.h" // packet 정의
 #include "global.h" // 전역 funtion
-#include "define.h" // define
-//#include "extern.h"            // 전역 객체
+#include "Define.h" // define
+//#include "Extern.h"            // 전역 객체

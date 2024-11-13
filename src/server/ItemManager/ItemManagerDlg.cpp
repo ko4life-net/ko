@@ -108,21 +108,23 @@ BOOL CItemManagerDlg::OnInitDialog() {
     m_nExpLogFileDay = time.GetDay();
 
     m_LoggerRecvQueue.InitailizeMMF(MAX_PKTSIZE, MAX_COUNT, SMQ_ITEMLOGGER, FALSE); // Dispatcher 의 Send Queue
-                                                                                    /*
-    CString inipath;
-    inipath.Format( "%s\\ItemDB.ini", GetProgPath() );
 
-    GetPrivateProfileString( "ODBC", "GAME_DSN", "kodb", m_strGameDSN, 24, inipath );
-    GetPrivateProfileString( "ODBC", "GAME_UID", "kodb_user", m_strGameUID, 24, inipath );
-    GetPrivateProfileString( "ODBC", "GAME_PWD", "kodb_user", m_strGamePWD, 24, inipath );
+    /*
+    std::string  szIniPath = (n3std::get_app_path() / "ItemDB.ini").string();
+    const char * inipath = szIniPath.c_str();
+
+    GetPrivateProfileString("ODBC", "GAME_DSN", "kodb", m_strGameDSN, 24, inipath);
+    GetPrivateProfileString("ODBC", "GAME_UID", "kodb_user", m_strGameUID, 24, inipath);
+    GetPrivateProfileString("ODBC", "GAME_PWD", "kodb_user", m_strGamePWD, 24, inipath);
 
     m_nServerNo = GetPrivateProfileInt("ZONE_INFO", "GROUP_INFO", 1, inipath);
     m_nZoneNo = GetPrivateProfileInt("ZONE_INFO", "ZONE_INFO", 1, inipath);
 
-    if( !m_DBAgent.DatabaseInit() ) {
+    if (!m_DBAgent.DatabaseInit()) {
         AfxPostQuitMessage(0);
         return FALSE;
-    }    */
+    }
+    */
 
     DWORD id;
     m_hReadQueueThread = ::CreateThread(NULL, 0, ReadQueueThread, (LPVOID)this, 0, &id);

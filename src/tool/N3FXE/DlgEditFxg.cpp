@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "n3fxe.h"
+#include "N3FXE.h"
 #include "MainFrm.h"
 #include "DlgEditFxg.h"
 #include "N3Base/N3FXGroup.h"

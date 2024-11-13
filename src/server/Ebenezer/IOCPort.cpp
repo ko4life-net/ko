@@ -42,7 +42,7 @@ DWORD WINAPI AcceptThread(LPVOID lp) {
             char logstr[1024];
             memset(logstr, NULL, 1024);
             sprintf(logstr, "Wait failed Error %d\r\n", GetLastError());
-            LogFileWrite(logstr);
+            n3std::log_file_write(logstr);
             return 1;
         }
 
@@ -59,7 +59,7 @@ DWORD WINAPI AcceptThread(LPVOID lp) {
                     char logstr[1024];
                     memset(logstr, NULL, 1024);
                     sprintf(logstr, "Accepting User Socket Fail - New Uid is -1\r\n");
-                    LogFileWrite(logstr);
+                    n3std::log_file_write(logstr);
                     goto loop_pass_accept;
                 }
 
@@ -69,7 +69,7 @@ DWORD WINAPI AcceptThread(LPVOID lp) {
                     char logstr[1024];
                     memset(logstr, NULL, 1024);
                     sprintf(logstr, "Socket Array has Broken...\r\n");
-                    LogFileWrite(logstr);
+                    n3std::log_file_write(logstr);
                     //                    pIocport->PutOldSid( sid );                // Invalid sid must forbidden to use
                     goto loop_pass_accept;
                 }
@@ -80,7 +80,7 @@ DWORD WINAPI AcceptThread(LPVOID lp) {
                     char logstr[1024];
                     memset(logstr, NULL, 1024);
                     sprintf(logstr, "Accept Fail %d\r\n", sid);
-                    LogFileWrite(logstr);
+                    n3std::log_file_write(logstr);
 
                     EnterCriticalSection(&g_critical);
                     pIocport->RidIOCPSocket(sid, pSocket);
@@ -96,7 +96,7 @@ DWORD WINAPI AcceptThread(LPVOID lp) {
                     char logstr[1024];
                     memset(logstr, NULL, 1024);
                     sprintf(logstr, "Socket Associate Fail\r\n");
-                    LogFileWrite(logstr);
+                    n3std::log_file_write(logstr);
 
                     EnterCriticalSection(&g_critical);
                     pSocket->CloseProcess();

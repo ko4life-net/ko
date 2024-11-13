@@ -6,8 +6,8 @@
 #include "IOCPSocket2.h"
 #include "CircularBuffer.h"
 #include "Compress.h"
-#include "Packetdefine.h"
-#include "define.h"
+#include "PacketDefine.h"
+#include "Define.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -198,7 +198,7 @@ int CIOCPSocket2::Send(char * pBuf, long length, int dwFlag) {
             TRACE("SEND : ERROR [SID=%d] - %d\n", m_Sid, last_err);
             //            char logstr[1024]; memset( logstr, NULL, 1024 );
             //            sprintf( logstr, "SEND : ERROR [SID=%d] - %d\r\n", m_Sid, last_err);
-            //            LogFileWrite( logstr );
+            //            n3std::log_file_write( logstr );
             m_nSocketErr++;
             goto close_routine;
         }
@@ -518,7 +518,7 @@ BOOL CIOCPSocket2::Accept(SOCKET listensocket, struct sockaddr * addr, int * len
         char logstr[1024];
         memset(logstr, NULL, 1024);
         sprintf(logstr, "Socket Accepting Fail - %d\r\n", err);
-        LogFileWrite(logstr);
+        n3std::log_file_write(logstr);
         return FALSE;
     }
 

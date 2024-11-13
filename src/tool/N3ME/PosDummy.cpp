@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include "n3me.h"
+#include "N3ME.h"
 #include "PosDummy.h"
 #include "LyTerrain.h"
 

@@ -8,7 +8,7 @@
 #include "LocalInput.h"
 #include "APISocket.h"
 #include "GameProcMain.h"
-#include "PlayerMyself.h"
+#include "PlayerMySelf.h"
 #include "N3UIWndBase.h"
 
 #include "UIImageTooltipDlg.h"

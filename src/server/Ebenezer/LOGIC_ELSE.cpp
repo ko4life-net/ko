@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include "ebenezer.h"
+#include "Ebenezer.h"
 #include "Define.h"
 #include "LOGIC_ELSE.h"
 

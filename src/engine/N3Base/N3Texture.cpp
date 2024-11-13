@@ -5,7 +5,7 @@
 #include "N3Texture.h"
 
 #ifdef _N3TOOL
-#include "BitmapFile.h"
+#include "BitMapFile.h"
 #endif // #ifdef _N3TOOL
 
 //////////////////////////////////////////////////////////////////////

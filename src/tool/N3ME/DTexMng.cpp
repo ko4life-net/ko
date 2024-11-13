@@ -4,7 +4,7 @@
 
 #include "StdAfx.h"
 #include "MainFrm.h"
-#include "n3me.h"
+#include "N3ME.h"
 #include "LyTerrainDef.h"
 
 #include "DTex.h"

@@ -15,7 +15,7 @@
 #include "DlgEditFxg.h"
 #include "N3Base/N3FXDef.h"
 #include "N3Base/N3FXBundle.h"
-#include "ground.h"
+#include "Ground.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

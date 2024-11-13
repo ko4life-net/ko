@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "ebenezer.h"
+#include "Ebenezer.h"
 #include "PreFix2TableSet.h"
 
 #ifdef _DEBUG

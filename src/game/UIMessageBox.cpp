@@ -12,11 +12,10 @@
 #include "UIPartyBBS.h"
 #include "GameEng.h"
 #include "GameProcedure.h"
-#include "GameProcLogin.h"
+#include "GameProcLogIn.h"
 #include "LocalInput.h"
 #include "UIMessageBoxManager.h"
 #include "SubProcPerTrade.h"
-#include "ShellApi.h"
 
 #include "N3Base/N3UIButton.h"
 #include "N3Base/N3UIString.h"

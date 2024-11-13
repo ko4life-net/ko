@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "ebenezer.h"
+#include "Ebenezer.h"
 #include "ItemLevelTableSet.h"
 
 #ifdef _DEBUG

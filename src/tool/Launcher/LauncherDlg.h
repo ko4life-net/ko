@@ -6,10 +6,11 @@
 #include <string>
 #include <vector>
 
-#include "afxinet.h"
+#include <afxinet.h>
+
 #include "MacProgressCtrl.h"
 #include "Resource.h"
-#include "define.h"
+#include "Define.h"
 #include "ZipArchive.h"
 
 //#include "DlgTransparent.h"
@@ -66,8 +67,7 @@ class CLauncherDlg : public CDialog {
 
     CLauncherDlg(CWnd * pParent = NULL); // standard constructor
 
-    CString GetProgPath();
-    void    PacketSend_VersionReq();
+    void PacketSend_VersionReq();
 
     bool ArchiveClose();
     bool ArchiveOpen(CString OpenFileName);

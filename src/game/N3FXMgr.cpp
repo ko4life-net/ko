@@ -6,7 +6,7 @@
 #include "StdAfx.h"
 #include "N3FXMgr.h"
 #include "GameBase.h"
-#include "GameProcmain.h"
+#include "GameProcMain.h"
 #include "GameProcedure.h"
 #include "PlayerOtherMgr.h"
 #include "PlayerNPC.h"

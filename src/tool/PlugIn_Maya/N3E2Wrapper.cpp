@@ -22,26 +22,27 @@
 //
 //
 
-#ifdef WIN32
-#include <process.h>
-#endif
+#include "StdAfx.h"
 
-#ifdef WIN32
-#define MAXPATHLEN 1024
-#endif
+#include "Resource.h"
 
-#include <crtdbg.h>
 #include "N3E2Wrapper.h"
-#include "IFFReader.h"
 
 #include "N3Base/N3Eng.h"
 #include "N3Base/N3Scene.h"
 #include "N3Base/N3PMeshCreate.h"
 
-extern const char * objectName(MObject object);
+#ifdef WIN32
+#include <process.h>
+#define MAXPATHLEN 1024
+#endif
 
-#include "CommCtrl.h"
-#include "Resource.h"
+#include <crtdbg.h>
+#include <iffreader.h>
+#include <CommCtrl.h>
+#include <unordered_set>
+
+extern const char * objectName(MObject object);
 
 BOOL            CN3E2Wrapper::m_bCancelExport = FALSE;
 __EXPORT_OPTION CN3E2Wrapper::m_Option;

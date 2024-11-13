@@ -92,9 +92,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     ASSERT(pApp);
     CString szRet = pApp->GetProfileString("Work", "Path", "empty");
     if (szRet == "empty") {
-        char szPath[_MAX_PATH]{};
-        GetModuleFileName(NULL, szPath, _MAX_PATH);
-        std::string szDir = fs::path(szPath).parent_path().string();
+        std::string szDir = n3std::get_app_dir().string();
         pApp->WriteProfileString("Work", "Path", szDir.c_str());
         SetBasePath(szDir.c_str());
     } else {

@@ -19,5 +19,3 @@
 
 #include <random>
 #include <filesystem>
-
-namespace fs = std::filesystem;

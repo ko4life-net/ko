@@ -5,7 +5,7 @@
 
 #include "SharedMem.h"
 #include "DBAgent.h"
-#include "define.h"
+#include "Define.h"
 #include "STLMap.h"
 
 /////////////////////////////////////////////////////////////////////////////

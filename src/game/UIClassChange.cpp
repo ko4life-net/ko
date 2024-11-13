@@ -17,7 +17,7 @@
 #include "APISocket.h"
 #include "UIVarious.h"
 
-#include "UIHotkeyDlg.h"
+#include "UIHotKeyDlg.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

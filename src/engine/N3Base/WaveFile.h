@@ -13,7 +13,7 @@
 
 #pragma once
 
-#include <windows.h>
+#include <Windows.h>
 #include <mmsystem.h>
 #include <mmreg.h>
 

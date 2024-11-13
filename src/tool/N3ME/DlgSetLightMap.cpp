@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "n3me.h"
+#include "N3ME.h"
 #include "DlgSetLightMap.h"
 #include "MainFrm.h"
 #include "N3Base/N3EngTool.h"

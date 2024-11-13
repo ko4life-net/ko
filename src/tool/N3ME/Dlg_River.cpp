@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "n3me.h"
+#include "N3ME.h"
 #include "Dlg_River.h"
 
 #ifdef _DEBUG

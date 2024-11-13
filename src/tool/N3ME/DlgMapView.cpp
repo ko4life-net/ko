@@ -2,13 +2,13 @@
 //
 
 #include "StdAfx.h"
-#include "n3me.h"
+#include "N3ME.h"
 #include "DlgMapView.h"
 #include "MainFrm.h"
 #include "MapMng.h"
 #include "N3Base/N3Texture.h"
 #include "N3Base/N3EngTool.h"
-#include "N3Base/n3scene.h"
+#include "N3Base/N3Scene.h"
 #include "QTNode.h"
 
 #ifdef _DEBUG

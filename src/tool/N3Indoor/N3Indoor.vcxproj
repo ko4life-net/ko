@@ -177,7 +177,6 @@
     <ClInclude Include="$(SrcDir)\engine\N3Base\Pick.h" />
     <ClInclude Include="ComDialog.h" />
     <ClInclude Include="DlgBase.h" />
-    <ClInclude Include="DlgBrowsePath.h" />
     <ClInclude Include="DlgShapeList.h" />
     <ClInclude Include="DlgUnusedFiles.h" />
     <ClInclude Include="EnvironSoundPage.h" />
@@ -196,7 +195,6 @@
     <ClInclude Include="RotDummy.h" />
     <ClInclude Include="ScaleDummy.h" />
     <ClInclude Include="ShapeTypeDlg.h" />
-    <ClInclude Include="ShellTree.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="SwappedDummy.h" />
     <ClInclude Include="TotalToolSheet.h" />
@@ -255,7 +253,6 @@
     <ClCompile Include="$(SrcDir)\engine\N3Base\Pick.cpp" />
     <ClCompile Include="ComDialog.cpp" />
     <ClCompile Include="DlgBase.cpp" />
-    <ClCompile Include="DlgBrowsePath.cpp" />
     <ClCompile Include="DlgShapeList.cpp" />
     <ClCompile Include="DlgUnusedFiles.cpp" />
     <ClCompile Include="EnvironSoundPage.cpp" />
@@ -274,7 +271,6 @@
     <ClCompile Include="RotDummy.cpp" />
     <ClCompile Include="ScaleDummy.cpp" />
     <ClCompile Include="ShapeTypeDlg.cpp" />
-    <ClCompile Include="ShellTree.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

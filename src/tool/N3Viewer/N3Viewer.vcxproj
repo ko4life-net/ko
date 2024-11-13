@@ -162,14 +162,12 @@
     <ClCompile Include="$(SrcDir)\engine\N3Base\N3TransformCollision.cpp" />
     <ClCompile Include="$(SrcDir)\engine\N3Base\N3VMesh.cpp" />
     <ClCompile Include="$(SrcDir)\engine\N3Base\Pick.cpp" />
-    <ClCompile Include="DlgBrowsePath.cpp" />
     <ClCompile Include="DlgPMeshCreateOption.cpp" />
     <ClCompile Include="DlgPMeshEdit.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="N3Viewer.cpp" />
     <ClCompile Include="N3ViewerDoc.cpp" />
     <ClCompile Include="N3ViewerView.cpp" />
-    <ClCompile Include="ShellTree.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -223,14 +221,12 @@
     <ClInclude Include="$(SrcDir)\engine\N3Base\N3TransformCollision.h" />
     <ClInclude Include="$(SrcDir)\engine\N3Base\N3VMesh.h" />
     <ClInclude Include="$(SrcDir)\engine\N3Base\Pick.h" />
-    <ClInclude Include="DlgBrowsePath.h" />
     <ClInclude Include="DlgPMeshCreateOption.h" />
     <ClInclude Include="DlgPMeshEdit.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="N3Viewer.h" />
     <ClInclude Include="N3ViewerDoc.h" />
     <ClInclude Include="N3ViewerView.h" />
-    <ClInclude Include="ShellTree.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="ViewProperty.h" />
     <ClInclude Include="ViewSceneTree.h" />

@@ -184,18 +184,6 @@ BOOL CLauncherDlg::DestroyWindow() {
     return CDialog::DestroyWindow();
 }
 
-CString CLauncherDlg::GetProgPath() {
-    char Buf[256], Path[256];
-    char drive[_MAX_DRIVE], dir[_MAX_DIR], fname[_MAX_FNAME], ext[_MAX_EXT];
-
-    ::GetModuleFileName(AfxGetApp()->m_hInstance, Buf, 256);
-    _splitpath(Buf, drive, dir, fname, ext);
-    strcpy(Path, drive);
-    strcat(Path, dir);
-    CString _Path = Path;
-    return _Path;
-}
-
 void CLauncherDlg::PacketSend_VersionReq() {
     int  iOffset = 0;
     BYTE byBuffs[128];
@@ -288,22 +276,11 @@ void CLauncherDlg::PacketReceive_Version(const BYTE * pBuf, int & iIndex) {
 }
 
 void CLauncherDlg::StartGame() {
-    CString szCmd = GetCommandLine(); // 커맨드 라인을 가져오고..
-    char    szApp[_MAX_PATH] = "";
-    GetModuleFileName(NULL, szApp, _MAX_PATH);
-    int iML = lstrlen(szApp);
-
-    CString szParam;
-    if (iML >= 0) {
-        int ii = szCmd.Find(szApp);
-        if (ii >= 0 && szCmd.GetLength() > ii + iML + 2) {
-            szParam = szCmd.Mid(ii + iML + 2);
-        }
-    }
-
-    std::string szExeFN = m_szInstalledPath + "\\" + m_szExeName; // 실행 파일 이름 만들고..
-    ::ShellExecute(NULL, "open", szExeFN.c_str(), szParam, m_szInstalledPath.c_str(), SW_SHOWNORMAL); // 게임 실행..
-
+    std::string szCmd = GetCommandLine();
+    std::string szAppPath = n3std::get_app_path().string();
+    std::string szArgs = szCmd.find(szAppPath) != std::string::npos ? szCmd.substr(szAppPath.length() + 2) : "";
+    std::string szExePath = (fs::path(m_szInstalledPath) / m_szExeName).string();
+    ::ShellExecute(NULL, "open", szExePath.c_str(), szArgs.c_str(), m_szInstalledPath.c_str(), SW_SHOWNORMAL);
     PostQuitMessage(0);
 }
 
@@ -385,10 +362,9 @@ void CLauncherDlg::DownloadProcess() {
 
     FTP_Close();
 
-    //    CString inipath, version;
-    //    inipath.Format( "%s\\server.ini", GetProgPath() );
-    //    itoa( m_nServerVersion, (char*)(LPCTSTR)version, 10 );
-    //    WritePrivateProfileString("VERSION","CURRENT",version, inipath);
+    //std::string szIniPath = (n3std::get_app_path() / "server.ini").string();
+    //std::string szVersion = std::to_string(m_nServerVersion);
+    //WritePrivateProfileString("VERSION", "CURRENT", szVersion.c_str(), szIniPath.c_str());
 
     if (true == bExtractSuccess && m_hRegistryKey) // 압축 풀기와 쓰기, 압축 파일 삭제에 성공하면 버전을 쓰고..
     {

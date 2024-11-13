@@ -57,7 +57,7 @@ DWORD WINAPI AcceptThread(LPVOID lp) {
                 if (!pSocket) {
                     TRACE("Socket Array has Broken...\n");
                     sprintf(logstr, "Socket Array has Broken...[sid:%d]\r\n", sid);
-                    LogFileWrite(logstr);
+                    n3std::log_file_write(logstr);
                     //                    pIocport->PutOldSid( sid );                // Invalid sid must forbidden to use
                     goto loop_pass_accept;
                 }
