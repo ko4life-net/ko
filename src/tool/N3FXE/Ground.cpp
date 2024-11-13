@@ -66,9 +66,9 @@ void CGround::Render() {
     s_lpD3DDev->SetRenderState(D3DRS_ZWRITEENABLE, dwZEnable);
 }
 
-void CGround::SetTex(const char * szPath) {
+void CGround::SetTex(const fs::path & fsFile) {
     if (m_pTile) {
         CN3Base::s_MngTex.Delete(&m_pTile);
     }
-    m_pTile = CN3Base::s_MngTex.Get(szPath);
+    m_pTile = CN3Base::s_MngTex.Get(fsFile);
 }

@@ -24,7 +24,7 @@ void CDungeonManager::InitWorld(int iZoneID, const __Vector3 & vPosPlayer) {
         return;
     }
 
-    m_pvsmgr.LoadFromFile(pZone->szTerrainFN);
+    m_pvsmgr.LoadFromFile(pZone->szGtdFile);
 }
 
 void CDungeonManager::Tick() {

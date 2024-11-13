@@ -181,7 +181,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     // TODO: Remove this if you don't want tool tips
     m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() | CBRS_TOOLTIPS | CBRS_FLYBY);
 
-    CN3Base::PathSet(fs::current_path().string());
+    CN3Base::PathSet(fs::current_path());
 
     // 엔진 초기화
     m_pEng = new CN3EngTool();
@@ -207,7 +207,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     //m_pDTexMng->LoadFromFile();
 
     // 툴바 다이얼로그 정보..
-    m_wndDlgBar.SetDlgItemText(IDC_E_PATH, CN3Base::PathGet().c_str());
+    m_wndDlgBar.SetDlgItemText(IDC_E_PATH, CN3Base::PathGet().string().c_str());
 
     m_pDlgMapView = new CDlgMapView;
     m_pDlgMapView->Create(IDD_ALL_MAP_VIEW, this);
@@ -277,8 +277,9 @@ void CMainFrame::OnFileExport() {
         return;
     }
 
-    m_szZoneName = dlg.GetFileTitle().GetString();
-    m_pMapMng->MakeGameFiles(dlg.GetPathName());
+    fs::path fsFile = dlg.GetPathName().GetString();
+    m_szZoneName = fsFile.stem().string();
+    m_pMapMng->MakeGameFiles(fsFile);
 }
 
 void CMainFrame::OnFileServerData() {
@@ -287,8 +288,9 @@ void CMainFrame::OnFileServerData() {
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
+    fs::path fsFile = dlg.GetPathName().GetString();
 
-    m_pMapMng->MakeServerDataFiles(dlg.GetPathName());
+    m_pMapMng->MakeServerDataFiles(fsFile);
 }
 
 void CMainFrame::OnCursorSelect() {
@@ -591,8 +593,9 @@ void CMainFrame::OnFileImport() {
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
+    fs::path fsFile = dlg.GetPathName().GetString();
 
-    m_pMapMng->ImportTerrain(dlg.GetPathName());
+    m_pMapMng->ImportTerrain(fsFile);
 }
 
 void CMainFrame::OnFileImportHeight() {
@@ -601,8 +604,9 @@ void CMainFrame::OnFileImportHeight() {
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
+    fs::path fsFile = dlg.GetPathName().GetString();
 
-    m_pMapMng->ImportTerrainHeight(dlg.GetPathName());
+    m_pMapMng->ImportTerrainHeight(fsFile);
 }
 
 void CMainFrame::OnEditDtex() {
@@ -635,9 +639,9 @@ void CMainFrame::OnResourcePathSet() {
         return;
     }
 
-    std::string szPath(dlg.GetPathName().GetString());
-    CN3Base::PathSet(szPath); // 경로 설정..
-    m_wndDlgBar.SetDlgItemText(IDC_E_PATH, szPath.c_str());
+    fs::path fsDir = dlg.GetPathName().GetString();
+    CN3Base::PathSet(fsDir); // 경로 설정..
+    m_wndDlgBar.SetDlgItemText(IDC_E_PATH, fsDir.string().c_str());
 
     // 기본 리소스 읽기..
     m_pMapMng->LoadSourceObjects();
@@ -719,15 +723,15 @@ void CMainFrame::OnUpdateTipRemoveAlphaflag(CCmdUI * pCmdUI) {
     pCmdUI->Enable(m_pMapMng->GetSelOutputObjCount() ? TRUE : FALSE);
 }
 
-void CMainFrame::LoadDTexSet(CString FileName) {
-    if (m_DTexInfoFileName == FileName) {
+void CMainFrame::LoadDTexSet(const fs::path & fsFileName) {
+    if (m_DTexInfoFileName.GetString() == fsFileName) {
         return;
     }
 
-    m_DTexInfoFileName = FileName;
+    m_DTexInfoFileName = fsFileName.c_str();
 
-    m_pDTexGroupMng->LoadFromFile(FileName);
-    m_pDTexMng->LoadFromFile(FileName);
+    m_pDTexGroupMng->LoadFromFile(fsFileName);
+    m_pDTexMng->LoadFromFile(fsFileName);
 }
 
 void CMainFrame::OnViewSelectedObjectWireframe() {

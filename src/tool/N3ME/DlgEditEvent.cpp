@@ -132,7 +132,7 @@ void CDlgEditEvent::OnBtnLoadEvtfile() {
     CDlgLoadEvt dlg;
 
     if (dlg.DoModal() == IDOK) {
-        m_pRefEventMgr->LoadFromFile((LPCTSTR)dlg.m_SelFileName);
+        m_pRefEventMgr->LoadFromFile(dlg.m_SelFileName.GetString());
         ResetAll();
 
         if (dlg.m_SelFileName.IsEmpty()) {
@@ -149,7 +149,7 @@ void CDlgEditEvent::OnBtnSaveEvtfile() {
     CDlgSaveEvt dlg;
 
     if (dlg.DoModal() == IDOK) {
-        m_pRefEventMgr->SaveToFile((LPCTSTR)dlg.m_FileName);
+        m_pRefEventMgr->SaveToFile(dlg.m_FileName.GetString());
 
         if (dlg.m_FileName.IsEmpty()) {
             m_CurrFileName = "";

@@ -36,7 +36,7 @@ class CN3FXPlugPart : public CN3BaseFileAccess {
     virtual bool Load(HANDLE hFile);
 
     const CN3FXBundle * GetFXB() const { return m_pFXB; }
-    void                SetFXB(const std::string & strFN);
+    void                SetFXB(const fs::path & fsFile);
     int                 GetRefIndex() const { return m_nRefIndex; }
     void                SetRefIdx(int nRefIndex) { m_nRefIndex = nRefIndex; }
     void                StopFXB(bool bImmediately);

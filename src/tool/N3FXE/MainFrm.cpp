@@ -163,7 +163,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     // TODO: Remove this if you don't want tool tips
     m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() | CBRS_TOOLTIPS | CBRS_FLYBY);
 
-    CN3Base::PathSet(fs::current_path().string());
+    CN3Base::PathSet(fs::current_path());
 
     // Engine 생성
     if (m_Eng.Init(TRUE, m_hWnd, 64, 64, 0, TRUE) == false) {
@@ -184,7 +184,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     m_Light[1].m_Data.InitDirection(1, __Vector3(0, 1, 0), crLgt);
 
     //
-    m_Chr.LoadFromFile("ChrSelect\\el_chairs.n3shape");
+    m_Chr.LoadFromFile(fs::path("ChrSelect") / "el_chairs.n3shape");
 
     m_pGround = new CGround;
 
@@ -263,11 +263,11 @@ int CMainFrame::GetPartType(CString & PathName) {
         return NULL;
     }
 
-    char   szLine[512] = "", szCommand[80] = "", szBuf[4][80] = {"", "", "", ""};
-    char * pResult = fgets(szLine, 512, stream);
+    char   szLine[512]{}, szCommand[80]{}, szBuf[4][80]{};
+    char * pResult = fgets(szLine, sizeof(szLine), stream);
     sscanf(szLine, "%s %s %s %s %s", szCommand, szBuf[0], szBuf[1], szBuf[2], szBuf[3]);
 
-    if (lstrcmpi(szCommand, "<n3fxPart>")) {
+    if (!n3std::iequals(szCommand, "<n3fxPart>")) {
         fclose(stream);
         return FX_PART_TYPE_NONE;
     }
@@ -278,21 +278,19 @@ int CMainFrame::GetPartType(CString & PathName) {
             continue;
         }
 
-        ZeroMemory(szCommand, 80);
-        ZeroMemory(szBuf[0], 80);
-        ZeroMemory(szBuf[1], 80);
-        ZeroMemory(szBuf[2], 80);
-        ZeroMemory(szBuf[3], 80);
+        memset(szCommand, 0, sizeof(szCommand));
+        memset(szBuf, 0, sizeof(szBuf));
+
         sscanf(szLine, "%s %s %s %s %s", szCommand, szBuf[0], szBuf[1], szBuf[2], szBuf[3]);
 
-        if (lstrcmpi(szCommand, "<type>") == 0) {
-            if (lstrcmpi(szBuf[0], "particle") == 0) {
+        if (n3std::iequals(szCommand, "<type>")) {
+            if (n3std::iequals(szBuf[0], "particle")) {
                 PartType = FX_PART_TYPE_PARTICLE;
-            } else if (lstrcmpi(szBuf[0], "board") == 0) {
+            } else if (n3std::iequals(szBuf[0], "board")) {
                 PartType = FX_PART_TYPE_BOARD;
-            } else if (lstrcmpi(szBuf[0], "mesh") == 0) {
+            } else if (n3std::iequals(szBuf[0], "mesh")) {
                 PartType = FX_PART_TYPE_MESH;
-            } else if (lstrcmpi(szBuf[0], "ground") == 0) {
+            } else if (n3std::iequals(szBuf[0], "ground")) {
                 PartType = FX_PART_TYPE_BOTTOMBOARD;
             }
             //^^v 더 넣을꺼 있으면 넣어라..
@@ -399,7 +397,7 @@ void CMainFrame::OnFileLoadBundle() {
     POSITION pos = dlg.GetStartPosition();
 
     while (pos != NULL) {
-        CString PathName = dlg.GetNextPathName(pos);
+        fs::path fsFile = dlg.GetNextPathName(pos).GetString();
 
         //스크립트 에디트 창 만들고, 스크립트 정보들 읽고, 셋팅..
         CDlgEditScript * pEditWnd = new CDlgEditScript;
@@ -407,7 +405,7 @@ void CMainFrame::OnFileLoadBundle() {
         pEditWnd->m_pRefFrm = this;
 
         // load 해서 성공하면 그대로 하고 실패하면 다 지워버려..
-        if (pEditWnd->LoadBundle(PathName)) {
+        if (pEditWnd->LoadBundle(fsFile)) {
             pEditWnd->ShowWindow(TRUE);
             m_pEditWndList.push_back(pEditWnd);
         } else {

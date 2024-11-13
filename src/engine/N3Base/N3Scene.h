@@ -40,8 +40,8 @@ class CN3Scene : public CN3BaseFileAccess {
     void DefaultCameraAdd();
     void DefaultLightAdd();
 
-    bool LoadDataAndResourcesFromFile(const std::string & szFileName);
-    bool SaveDataAndResourcesToFile(const std::string & szFileName);
+    bool LoadDataAndResourcesFromFile(const fs::path & fsFile);
+    bool SaveDataAndResourcesToFile(const fs::path & fsFile);
 
     //    bool CheckOverlappedShapesAndReport();
     //    void DeleteOverlappedShapes();
@@ -94,13 +94,13 @@ class CN3Scene : public CN3BaseFileAccess {
         }
         return m_Shapes[iIndex];
     }
-    CN3Shape * ShapeGetByFileName(std::string & str) {
+    CN3Shape * ShapeGetByFile(const fs::path & fsFile) {
         if (m_Shapes.empty()) {
             return NULL;
         }
         int iSize = m_Shapes.size();
         for (int i = 0; i < iSize; i++) {
-            if (str == m_Shapes[i]->FileName()) {
+            if (fsFile == m_Shapes[i]->FilePath()) {
                 return m_Shapes[i];
             }
         }

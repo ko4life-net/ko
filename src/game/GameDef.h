@@ -721,22 +721,21 @@ enum {
 };
 
 typedef struct __TABLE_ZONE {
-    DWORD       dwID;        // zone ID
-    std::string szTerrainFN; // Terrain FileName - Terrain, Tile Map, ColorMap....
-    std::string szColorMapFN;
-    std::string szLightMapFN;
-    std::string szObjectPostDataFN; // Object 위치 정보 - 이안에 충돌 체크 데이터도 들어 있다.
-    std::string szMiniMapFN;
-    std::string szSkySetting;         // 하늘과 분위기 조정한 세팅 정보 파일..
-    BOOL        bIndicateEnemyPlayer; // 적국 플레이어를 표시하나??
-    int         iFixedSundDirection;  // 해의 방향을 고정시키는지..
-    std::string szLightObjFN;         // 지형에 배치되어 있는 라이트정보파일..
-
-    std::string szGevFN;         // TODO: implement
-    uint32_t    iAbyssSomething; // TODO: implement
-    std::string szEnsFN;         // TODO: implement
-    float       fFOV;            // TODO: implement
-    std::string szFlagFN;        // TODO: implement
+    DWORD       dwID;                 // Zone ID
+    std::string szGtdFile;            // Game Terrain Data (terrain, tile map, color map)
+    std::string szTctFile;            // Tile Color Texture
+    std::string szTltFile;            // Tile Light Texture
+    std::string szOpdFile;            // Object Post Data (position and collision)
+    std::string szMiniMapFile;        // Minimap texture
+    std::string szSkyFile;            // Sky and atmosphere settings
+    BOOL        bIndicateEnemyPlayer; // Show enemy players in red on the minimap
+    int         iFixedSundDirection;  // Fixed sun direction
+    std::string szGloFile;            // Game Light Object
+    std::string szGevFile;            // TODO: implement Game Event (tile event)
+    uint32_t    iAbyssSomething;      // TODO: implement
+    std::string szEnsFile;            // TODO: implement Environment Sound (rectangle coordinates)
+    float       fFOV;                 // TODO: implement
+    std::string szFlagFile;           // TODO: implement Flag (textures and transformation)
 } TABLE_ZONE;
 
 typedef struct __TABLE_UI_RESRC {
@@ -1051,11 +1050,11 @@ enum e_ItemSlot {
 
 typedef struct __TABLE_PLAYER_LOOKS // NPC, Mob 모습 관한 리소스 레코드...
 {
-    DWORD       dwID;         // NPC 고유 ID
-    std::string szName;       // 캐릭터 이름
-    std::string szJointFN;    // 관절 파일 이름
-    std::string szAniFN;      // 에니메이션 파일 이름
-    std::string szPartFNs[7]; // 각 Character Part - 상체, 하체, 머리, 팔, 다리, 머리카락, 망토
+    DWORD       dwID;           // NPC 고유 ID
+    std::string szName;         // 캐릭터 이름
+    std::string szJointFile;    // 관절 파일 이름
+    std::string szAniFile;      // 에니메이션 파일 이름
+    std::string szPartFiles[7]; // 각 Character Part - 상체, 하체, 머리, 팔, 다리, 머리카락, 망토
 
     int iJointRH;    // 오른손 끝 관절번호
     int iJointLH;    // 왼손 끝 관절번호
@@ -1395,7 +1394,7 @@ typedef struct __TABLE_FX // FX 리소스 레코드...
 {
     DWORD       dwID;      // 고유 ID
     std::string szName;    // TODO: implement
-    std::string szFN;      // file name
+    std::string szFile;    // file path
     DWORD       dwSoundID; // 효과에 쓰는 사운드 아디.
 } TABLE_FX;
 

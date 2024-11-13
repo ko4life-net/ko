@@ -25,7 +25,7 @@ class CN3Board : public CN3Transform {
     __Material m_Mtl;         // 재질..
 
   public:
-    void         TexSet(int index, const std::string & szFN);
+    void         TexSet(int index, const fs::path & fsFile);
     void         TexAlloc(int nCount);
     int          TexCount() { return m_TexRefs.size(); }
     CN3Texture * Tex(int index) {
@@ -40,7 +40,7 @@ class CN3Board : public CN3Transform {
     void Render();
 
     bool Load(HANDLE hFile);
-    void LoadFromText(const std::string & szFName);
+    void LoadFromText(const fs::path & fsFile);
 
 #ifdef _N3TOOL
     bool Save(HANDLE hFile);

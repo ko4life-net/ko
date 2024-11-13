@@ -135,13 +135,13 @@ void CLightMgr::AddLight(CN3Light * pLgt) {
     m_Lights.push_back(pLgt);
 }
 
-void CLightMgr::LoadZoneLight(const char * szFN) {
-    if (!szFN) {
+void CLightMgr::LoadZoneLight(const fs::path & fsFile) {
+    if (fsFile.empty()) {
         return;
     }
 
     DWORD  dwRWC;
-    HANDLE hFile = CreateFile(szFN, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFile = CreateFileW(fsFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hFile) {
         return;
     }

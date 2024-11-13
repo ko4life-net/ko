@@ -245,7 +245,7 @@ void CN3Terrain::Init() {
         }
     }
 
-    m_pBaseTex.LoadFromFile("Misc\\Terrain_Base.bmp");
+    m_pBaseTex.LoadFromFile(fs::path("Misc") / "Terrain_Base.bmp");
 
     m_iLodLevel = MIN_LOD_LEVEL;
     SetLODLevel(3);
@@ -337,11 +337,9 @@ void CN3Terrain::TestAvailableTile() {
 //    Load...
 //
 bool CN3Terrain::Load(HANDLE hFile) {
-    std::string szFNBackup = m_szFileName; // Init 를 하고 나면 파일 이름이 없어진다.... 그래서...
-
+    fs::path fsFileBak = FilePath();
     Init();
-
-    m_szFileName = szFNBackup;
+    FilePathSet(fsFileBak);
 
     CUILoading * pUILoading = CGameProcedure::s_pUILoading; // 로딩바..
     if (pUILoading) {
@@ -509,59 +507,51 @@ void CN3Terrain::LoadTileInfo(HANDLE hFile) {
         CGameProcedure::s_pUILoading->Render("Loading Terrain Tile Data...", 0);
     }
 
-    DWORD dwRWC;
+    DWORD dwRWC = 0;
+
+    m_NumTileTex = 0;
     ReadFile(hFile, &m_NumTileTex, sizeof(int), &dwRWC, NULL);
-    if (m_NumTileTex == 0) {
+    if (m_NumTileTex <= 0) {
         return;
     }
 
     m_pTileTex = new CN3Texture[m_NumTileTex];
 
-    int NumTileTexSrc;
+    int NumTileTexSrc = 0;
     ReadFile(hFile, &NumTileTexSrc, sizeof(int), &dwRWC, NULL);
-    if (NumTileTexSrc == 0) {
+    if (NumTileTexSrc <= 0) {
         return;
     }
 
-    char ** SrcName = new char *[NumTileTexSrc];
+    std::vector<fs::path> vGttFiles(NumTileTexSrc);
     for (int i = 0; i < NumTileTexSrc; i++) {
-        SrcName[i] = new char[MAX_PATH];
-        ReadFile(hFile, SrcName[i], MAX_PATH, &dwRWC, NULL);
+        char szBuff[260]{};
+        ReadFile(hFile, szBuff, sizeof(szBuff), &dwRWC, NULL);
+        vGttFiles[i] = szBuff;
     }
 
-    short  SrcIdx, TileIdx;
-    HANDLE hTTGFile;
-    char   szLoadingBuff[128];
     for (int i = 0; i < m_NumTileTex; i++) {
-        ReadFile(hFile, &SrcIdx, sizeof(short), &dwRWC, NULL);
-        ReadFile(hFile, &TileIdx, sizeof(short), &dwRWC, NULL);
+        short SrcIdx = 0, TileIdx = 0;
+        ReadFile(hFile, &SrcIdx, sizeof(SrcIdx), &dwRWC, NULL);
+        ReadFile(hFile, &TileIdx, sizeof(TileIdx), &dwRWC, NULL);
 
-        hTTGFile = CreateFile(SrcName[SrcIdx], GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+        HANDLE hGttFile =
+            CreateFileW(vGttFiles[SrcIdx].c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
         for (int j = 0; j < TileIdx; j++) {
-            //            m_pTileTex[i].m_iLOD = s_Options.iTexLOD_Terrain; // LOD 적용후 읽기..
-            //            m_pTileTex[i].Load(hTTGFile);// 앞에 있는 쓸때 없는 것들...
-            m_pTileTex[i].SkipFileHandle(hTTGFile); // 앞에 있는 쓸때 없는 것들...
+            m_pTileTex[i].SkipFileHandle(hGttFile); // 앞에 있는 쓸때 없는 것들...
         }
         m_pTileTex[i].m_iLOD = s_Options.iTexLOD_Terrain; // LOD 적용후 읽기..
-        m_pTileTex[i].Load(hTTGFile);                     // 진짜 타일...
+        m_pTileTex[i].Load(hGttFile);                     // 진짜 타일...
 
-        //loading bar...
-        int iLoading = (i + 1) * 100 / m_NumTileTex;
-        sprintf(szLoadingBuff, "Loading Terrain Tile Data... %d %%", iLoading);
         if (CGameProcedure::s_pUILoading) {
-            CGameProcedure::s_pUILoading->Render(szLoadingBuff, iLoading);
+            int         iPercent = (i + 1) * 100 / m_NumTileTex;
+            std::string szInfo = std::format("Loading Terrain Tile Data... {:d} %", iPercent);
+            CGameProcedure::s_pUILoading->Render(szInfo, iPercent);
         }
 
-        CloseHandle(hTTGFile);
+        CloseHandle(hGttFile);
     }
-
-    for (int i = 0; i < NumTileTexSrc; i++) {
-        delete[] SrcName[i];
-        SrcName[i] = NULL;
-    }
-
-    delete[] SrcName;
 }
 
 //
@@ -793,8 +783,8 @@ void CN3Terrain::SetLightMap(int dir) {
         return;
     }
 
-    HANDLE hFile =
-        CreateFile(pZoneData->szLightMapFN.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    fs::path fsFile = pZoneData->szTltFile;
+    HANDLE   hFile = CreateFileW(fsFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (!hFile) {
         return;
     }
@@ -2017,7 +2007,7 @@ bool CN3Terrain::CheckCollision(__Vector3 & vPos, __Vector3 & vDir, float fVeloc
     return true;
 }
 
-bool CN3Terrain::LoadColorMap(const std::string & szFN) {
+bool CN3Terrain::LoadColorMap(const fs::path & fsFile) {
     CUILoading * pUILoading = CGameProcedure::s_pUILoading; // 로딩바..
 
     m_iNumColorMap = (m_pat_MapSize * PATCH_PIXEL_SIZE) / COLORMAPTEX_SIZE;
@@ -2026,9 +2016,10 @@ bool CN3Terrain::LoadColorMap(const std::string & szFN) {
         m_ppColorMapTex[x] = new CN3Texture[m_iNumColorMap];
     }
 
-    HANDLE hColorMapFile = CreateFile(szFN.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hColorMapFile =
+        CreateFileW(fsFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hColorMapFile) {
-        CLogWriter::Write("Failed to load ColorMap - %s", szFN.c_str());
+        CLogWriter::Write("Failed to load ColorMap - %s", fsFile.string().c_str());
         return false;
     }
 

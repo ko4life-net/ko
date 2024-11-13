@@ -73,10 +73,10 @@ class CTexViewer : public CWnd {
     // Operations
   public:
     void Release();
-    BOOL Zoom(BOOL bZoomIn);                // in : 확대, out : 축소
-    BOOL Zoom(float fScale);                // f배로 Zoom 하기
-    void Render();                          // texture render하기
-    void SetTexture(LPCTSTR pszFName);      // texture 지정
+    BOOL Zoom(BOOL bZoomIn);                  // in : 확대, out : 축소
+    BOOL Zoom(float fScale);                  // f배로 Zoom 하기
+    void Render();                            // texture render하기
+    void SetTexture(const fs::path & fsFile); // texture 지정
     eEDITMODE SetEditMode(eEDITMODE eMode); // mode 바꾸기 (zoom, hand, select) 실패하면 이전 mode를 돌려준다.
     void SetLeftTopInImage(CPoint ptLeftTop);                   // 이미지의 좌측 상단 좌표 바꾸기
     BOOL GetSelectedUVRect(struct __FLOAT_RECT * pFRect) const; // 현재 선택된 UV좌표 얻기

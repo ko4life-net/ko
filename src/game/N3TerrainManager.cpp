@@ -66,25 +66,20 @@ void CN3TerrainManager::InitWorld(int iZoneID, const __Vector3 & vPosPlayer) {
     }
 
     CLogWriter::Write("CN3TerrainManager::InitWorld Pre Load\t%d", m_pTerrain);          // TmpLog_11_22
-    m_pTerrain->LoadFromFile(pZone->szTerrainFN);                                        // 지형..로드..
+    m_pTerrain->LoadFromFile(pZone->szGtdFile);                                          // 지형..로드..
     CLogWriter::Write("CN3TerrainManager::InitWorld Pre Load ColorMap");                 // TmpLog_11_22
-    m_pTerrain->LoadColorMap(pZone->szColorMapFN);                                       // 컬러맵 로드..
+    m_pTerrain->LoadColorMap(pZone->szTctFile);                                          // 컬러맵 로드..
     CLogWriter::Write("CN3TerrainManager::InitWorld Pre Release Shapes\t%d", m_pShapes); // TmpLog_11_22
     m_pShapes->Release();
     CLogWriter::Write("CN3TerrainManager::InitWorld Pre Load Shapes"); // TmpLog_11_22
-    m_pShapes->LoadFromFile(pZone->szObjectPostDataFN);                // 오브젝트 데이터 로드..
+    m_pShapes->LoadFromFile(pZone->szOpdFile);                         // 오브젝트 데이터 로드..
 
-    char szFName[_MAX_PATH];
-    _splitpath(pZone->szTerrainFN.c_str(), NULL, NULL, szFName, NULL);
-    char szFName2[_MAX_PATH];
-    char szFullPathName[_MAX_PATH];
-    sprintf(szFName2, "%s_Bird", szFName);
-    _makepath(szFullPathName, NULL, "misc\\bird", szFName2, "lst");
     CLogWriter::Write("CN3TerrainManager::InitWorld Pre Load Birds\t%d", m_pBirdMng); // TmpLog_11_22
-    m_pBirdMng->LoadFromFile(szFullPathName);
+    fs::path fsBirdListFile = fs::path("Misc") / "bird" / fs::path(pZone->szGtdFile).stem() + "_Bird.lst";
+    m_pBirdMng->LoadFromFile(fsBirdListFile);
 
     CLogWriter::Write("CN3TerrainManager::InitWorld Pre Load Sky\t%d", m_pSky); // TmpLog_11_22
-    m_pSky->LoadFromFile(pZone->szSkySetting); // 하늘, 구름, 태양, 날씨 변화등 정보 및 텍스처 로딩..
+    m_pSky->LoadFromFile(pZone->szSkyFile); // 하늘, 구름, 태양, 날씨 변화등 정보 및 텍스처 로딩..
     m_pSky->SunAndMoonDirectionFixByHour(
         pZone->iFixedSundDirection); // 해, 달 방향을 고정하든가 혹은 0 이면 고정하지 않는다.
 }

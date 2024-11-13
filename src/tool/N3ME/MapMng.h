@@ -155,21 +155,21 @@ class CMapMng : public CN3Base {
             m_pTerrain->m_iZoneID = id;
         }
     } //지형 존 아이디 셋팅.
-    void ImportShape(const char * szFullPath);
+    void ImportShape(const fs::path & fsFile);
     void MakeTerrainMovableAttr(CN3ShapeMgr * pShapeMgr); //지형에서 갈수 있는 타일과 갈 수 없는 타일을 정리해라..
-    void ImportPostDataFromScene(const char * szFileName); // Scene 에서 오브젝트 배치된걸 불러온다..
+    void ImportPostDataFromScene(const fs::path & fsFile); // Scene 에서 오브젝트 배치된걸 불러온다..
     void UpDateFP();
     void Tick();
     void Render();
     void Release();
     void SavePartition(float x, float z, float width);
-    void SaveToFile(LPCTSTR lpszPathName);           // Map 파일 저장
-    void LoadFromFile(LPCTSTR lpszPathName);         // Map 파일 불러오기
-    BOOL MouseMsgFilter(LPMSG pMsg);                 // 마우스의 기능
-    void ImportTerrain(const char * szMeshFN);       // VMesh 파일에서 지형 데이터 읽어오기
-    void ImportTerrainHeight(const char * szMeshFN); // VMesh 파일에서 지형의 높이값만 읽어오기..
-    void MakeGameFiles(LPCTSTR lpszPathName, float fSize = 128.0f); // 게임 데이터로 변환하기
-    void MakeServerDataFiles(LPCTSTR lpszPathName);
+    void SaveToFile(const fs::path & fsFile);               // Map 파일 저장
+    void LoadFromFile(const fs::path & fsFile);             // Map 파일 불러오기
+    BOOL MouseMsgFilter(LPMSG pMsg);                        // 마우스의 기능
+    void ImportTerrain(const fs::path & fsVmeshFile);       // VMesh 파일에서 지형 데이터 읽어오기
+    void ImportTerrainHeight(const fs::path & fsVmeshFile); // VMesh 파일에서 지형의 높이값만 읽어오기..
+    void MakeGameFiles(const fs::path & fsFile, float fSize = 128.0f); // 게임 데이터로 변환하기
+    void MakeServerDataFiles(const fs::path & fsFile);
     void SelectObject(CN3Base * pObj, BOOL IsSourceObj, BOOL bAdd = FALSE); // 객체를 선택한다.
     void RenderObjectToWindow(CN3TransformCollision * pObj, HWND hWnd); // 특정 윈도우에 Object를 그려준다.
     void SetCursorMode(int iMode);                                      // 마우스커서의 이용방법을 바꾼다.
@@ -183,16 +183,16 @@ class CMapMng : public CN3Base {
     void RenderDragRect(RECT * rc);                     // 드래그 영역을 그린다.
     void UpdateAll();                                   // source 와 output dialog를 update시킨다.
 
-    void           LoadObjectPostData(LPCTSTR lpszFileName); // Shape 배치정보를 text파일에서 읽어온다.
-    void           SaveObjectPostData(LPCTSTR lpszFileName); // Shape 배치정보를 text파일로 저장한다.
-    void           SaveObjectPostDataPartition(LPCTSTR lpszFileName, float psx, float psz, float width);
+    void           LoadObjectPostData(const fs::path & fsFile); // Shape 배치정보를 text파일에서 읽어온다.
+    void           SaveObjectPostData(const fs::path & fsFile); // Shape 배치정보를 text파일로 저장한다.
+    void           SaveObjectPostDataPartition(const fs::path & fsFile, float psx, float psz, float width);
     void           RenderGrid(float fGridSize, float fMaxDistance); // 맵에 일정간격으로Grid를 그려준다
     void           OnSelChanged();                                  // 선택한 객체가 바뀌었을때 해줄것들
     void           SelectObjectByDragRect(RECT * pRect, BOOL bAdd); // 드래그 해서 객체 선택하기
     void           LoadSourceObjects();                             // Folder 에서 Source Object 를 읽어온다.
-    CN3Transform * AddChr(CN3Scene * pDestScene, const std::string & szFN,
+    CN3Transform * AddChr(CN3Scene * pDestScene, const fs::path & fsFile,
                           BOOL bGenerateChainNumber); // 특정Scene에 캐릭터 객체를 복사해 추가
-    CN3Transform * AddShape(CN3Scene * pDestScene, const std::string & szFN,
+    CN3Transform * AddShape(CN3Scene * pDestScene, const fs::path & fsFile,
                             BOOL bGenerateChainNumber); // 특정Scene에 Shape 객체를 복사해 추가
     CN3Transform * AddObjectToOutputScene(
         CN3Transform * pObj); // 소스목록에서 선택한 Object를 넣으면 OutputScene으로 복사해서 넣어준다.

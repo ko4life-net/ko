@@ -766,7 +766,7 @@ bool CN3PMeshCreate::ConvertFromN3PMesh(CN3PMesh * pN3PMesh) {
     Release();
 
     CN3PMesh * pPMeshTmp =
-        CN3Base::s_MngPMesh.Get(pN3PMesh->FileName()); // 이래야 참조 카운트가 하나 늘어서 포인터가 안없어진다.
+        CN3Base::s_MngPMesh.Get(pN3PMesh->FilePath()); // 이래야 참조 카운트가 하나 늘어서 포인터가 안없어진다.
     CN3PMeshInstance PMeshInst(pN3PMesh);
     PMeshInst.SetLODByNumVertices(pN3PMesh->GetMaxNumVertices());
 

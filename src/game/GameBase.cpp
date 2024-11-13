@@ -74,65 +74,28 @@ void _FormatCoins(int64_t nCoins, std::string & szCoins) {
 }
 
 void CGameBase::StaticMemberInit() {
-    //////////////////////////////////////////////////////////////////////////////////////////
-    // Resource Table 로딩 및 초기화...
-    s_pTbl_Zones = new CN3TableBase<__TABLE_ZONE>;  // Zone 정보에 관한 Table
-    s_pTbl_UI = new CN3TableBase<__TABLE_UI_RESRC>; // UI Resource File Table loading
-    s_pTbl_UPC_Looks =
-        new CN3TableBase<__TABLE_PLAYER_LOOKS>; // 플레이어들의 기본 모습이 되는 NPC Resource Table loading
-    s_pTbl_Items_Basic = new CN3TableBase<__TABLE_ITEM_BASIC>; // Item Resource Table loading
+    const std::string szLangTail = (::GetUserDefaultLangID() == 0x0404) ? "_TW" : "";
+
+    auto fnLoadTbl = [&](const std::string & szFileStem, auto & pTbl) {
+        pTbl = new std::decay_t<decltype(*pTbl)>();
+        pTbl->LoadFromFile(fs::path("Data") / (szFileStem + ".tbl"));
+    };
+
+    fnLoadTbl("Zones", s_pTbl_Zones);
+    fnLoadTbl("UIs" + szLangTail, s_pTbl_UI);
+    fnLoadTbl("UPC_DefaultLooks", s_pTbl_UPC_Looks);
+    fnLoadTbl("Item_Org" + szLangTail, s_pTbl_Items_Basic);
+    fnLoadTbl("Quest_Menu" + szLangTail, s_pTbl_QuestMenu);
+    fnLoadTbl("Quest_Talk" + szLangTail, s_pTbl_QuestTalk);
+    fnLoadTbl("Texts" + szLangTail, s_pTbl_Texts);
+    fnLoadTbl("help" + szLangTail, s_pTbl_Help);
     for (int i = 0; i < MAX_ITEM_EXTENSION; i++) {
-        s_pTbl_Items_Exts[i] = new CN3TableBase<__TABLE_ITEM_EXT>;
+        fnLoadTbl(std::format("Item_Ext_{:d}", i) + szLangTail, s_pTbl_Items_Exts[i]);
     }
-    s_pTbl_NPC_Looks = new CN3TableBase<__TABLE_PLAYER_LOOKS>;        // NPC Resource Table loading
-    s_pTbl_Skill = new CN3TableBase<__TABLE_UPC_SKILL>;               // Skill 정보에 관한 Table
-    s_pTbl_Exchange_Quest = new CN3TableBase<__TABLE_EXCHANGE_QUEST>; // 교환 퀘스트에 관한 테이블..
-    s_pTbl_FXSource = new CN3TableBase<__TABLE_FX>;                   // FX Source에 관한 테이블..
-    s_pTbl_QuestMenu = new CN3TableBase<__TABLE_QUEST_MENU>;
-    s_pTbl_QuestTalk = new CN3TableBase<__TABLE_QUEST_TALK>;
-    s_pTbl_Texts = new CN3TableBase<__TABLE_TEXTS>;
-    s_pTbl_Help = new CN3TableBase<__TABLE_HELP>;
-
-    std::string szLangTail = ".tbl";
-    int         iLangID = ::GetUserDefaultLangID();
-    if (0x0404 == iLangID) {
-        szLangTail = "_TW.tbl"; // Taiwan Language
-    }
-
-    std::string szFN;
-    szFN = "Data\\Zones.tbl";
-    s_pTbl_Zones->LoadFromFile(szFN.c_str()); // Zone 정보에 관한 Table
-    szFN = "Data\\UIs" + szLangTail;
-    s_pTbl_UI->LoadFromFile(szFN.c_str()); // UI Resource File Table loading
-    szFN = "Data\\UPC_DefaultLooks.tbl";
-    s_pTbl_UPC_Looks->LoadFromFile(szFN.c_str()); // 플레이어들의 기본 모습이 되는 NPC Resource Table loading
-    szFN = "Data\\Item_Org" + szLangTail;
-    s_pTbl_Items_Basic->LoadFromFile(szFN.c_str()); // Item Resource Table loading
-
-    szFN = "Data\\Quest_Menu" + szLangTail;
-    s_pTbl_QuestMenu->LoadFromFile(szFN.c_str()); // 퀘스트 관련 선택메뉴
-    szFN = "Data\\Quest_Talk" + szLangTail;
-    s_pTbl_QuestTalk->LoadFromFile(szFN.c_str()); // 퀘스트 관련 지문
-    szFN = "Data\\Texts" + szLangTail;
-    s_pTbl_Texts->LoadFromFile(szFN.c_str());
-    szFN = "Data\\help" + szLangTail;
-    s_pTbl_Help->LoadFromFile(szFN.c_str());
-
-    for (int i = 0; i < MAX_ITEM_EXTENSION; i++) {
-        char szFNTmp[256] = "";
-        sprintf(szFNTmp, "Data\\Item_Ext_%d", i);
-        szFN = szFNTmp + szLangTail;
-        s_pTbl_Items_Exts[i]->LoadFromFile(szFN.c_str());
-    }
-
-    szFN = "Data\\NPC_Looks.tbl";
-    s_pTbl_NPC_Looks->LoadFromFile(szFN.c_str()); // NPC Resource Table loading
-    szFN = "Data\\skill_magic_main" + szLangTail;
-    s_pTbl_Skill->LoadFromFile(szFN.c_str()); // Skill 정보에 관한 Table
-    szFN = "Data\\Exchange_Quest.tbl";
-    s_pTbl_Exchange_Quest->LoadFromFile(szFN.c_str()); // 교환 퀘스트에 관한 테이블..
-    szFN = "Data\\fx.tbl";
-    s_pTbl_FXSource->LoadFromFile(szFN.c_str());
+    fnLoadTbl("NPC_Looks", s_pTbl_NPC_Looks);
+    fnLoadTbl("Skill_Magic_Main" + szLangTail, s_pTbl_Skill);
+    fnLoadTbl("Exchange_Quest", s_pTbl_Exchange_Quest);
+    fnLoadTbl("fx", s_pTbl_FXSource);
 
     s_pWorldMgr = new CN3WorldManager();
     s_pOPMgr = new CPlayerOtherMgr();
@@ -575,18 +538,18 @@ D3DCOLOR CGameBase::GetIDColorByLevelDifference(int iLevelDiff) {
 
 // Item Data 를 가지고 파일이름을 만든다..
 e_ItemType CGameBase::MakeResrcFileNameForUPC(__TABLE_ITEM_BASIC * pItem,         // 아이템 데이터...
-                                              std::string *        pszResrcFN,    // Resource FileName
-                                              std::string *        pszIconFN,     // Icon FileName
+                                              fs::path *           pfsResrcFile,  // Resource file path
+                                              fs::path *           pfsIconFile,   // Icon file path
                                               e_PartPosition &     ePartPosition, // Part 일경우 Index
                                               e_PlugPosition &     ePlugPosition)     // Plug 일경우 Index
 {
     ePartPosition = PART_POS_UNKNOWN;
     ePlugPosition = PLUG_POS_UNKNOWN;
-    if (pszResrcFN) {
-        *pszResrcFN = "";
+    if (pfsResrcFile) {
+        *pfsResrcFile = fs::path();
     }
-    if (pszIconFN) {
-        *pszIconFN = "";
+    if (pfsIconFile) {
+        *pfsIconFile = fs::path();
     }
 
     if (NULL == pItem) {
@@ -640,20 +603,19 @@ e_ItemType CGameBase::MakeResrcFileNameForUPC(__TABLE_ITEM_BASIC * pItem,       
         __ASSERT(0, "Invalid Item Position");
     }
 
-    if (pszResrcFN) {
+    if (pfsResrcFile) {
+        // It could be a plug or part that only has an icon...
         if (pItem->dwIDResrc) {
-            *pszResrcFN = std::format("Item\\{:d}_{:04d}_{:02d}_{:d}{}", (pItem->dwIDResrc / 10000000),
-                                      (pItem->dwIDResrc / 1000) % 10000, (pItem->dwIDResrc / 10) % 100,
-                                      pItem->dwIDResrc % 10, szExt);
-        } else {
-            // 아이콘만 있는 플러그나 파트 일수도 있다...
-            *pszResrcFN = "";
+            *pfsResrcFile = fs::path("Item") / std::format("{:d}_{:04d}_{:02d}_{:d}{:s}", (pItem->dwIDResrc / 10000000),
+                                                           (pItem->dwIDResrc / 1000) % 10000,
+                                                           (pItem->dwIDResrc / 10) % 100, pItem->dwIDResrc % 10, szExt);
         }
     }
-    if (pszIconFN) {
-        //*pszIconFN = std::format("UI\\ItemIcon_{:d}_{:04d}_{:02d}_{:d}.dxt", eType, iIndex, eRace, iPos);
-        *pszIconFN = std::format("UI\\ItemIcon_{:d}_{:04d}_{:02d}_{:d}.dxt", (pItem->dwIDIcon / 10000000),
-                                 (pItem->dwIDIcon / 1000) % 10000, (pItem->dwIDIcon / 10) % 100, pItem->dwIDIcon % 10);
+    if (pfsIconFile) {
+        //*pfsIconFile = fs::path("UI") / std::format("ItemIcon_{:d}_{:04d}_{:02d}_{:d}.dxt", eType, iIndex, eRace, iPos);
+        *pfsIconFile = fs::path("UI") / std::format("ItemIcon_{:d}_{:04d}_{:02d}_{:d}.dxt",
+                                                    (pItem->dwIDIcon / 10000000), (pItem->dwIDIcon / 1000) % 10000,
+                                                    (pItem->dwIDIcon / 10) % 100, pItem->dwIDIcon % 10);
     }
 
     return eType;

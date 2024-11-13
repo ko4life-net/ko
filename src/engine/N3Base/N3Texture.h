@@ -23,7 +23,7 @@ class CN3Texture : public CN3BaseFileAccess {
 
   public:
     void UpdateRenderInfo();
-    bool LoadFromFile(const std::string & szFileName);
+    bool LoadFromFile(const fs::path & fsFile);
     bool Load(HANDLE hFile);
     bool SkipFileHandle(HANDLE hFile);
 
@@ -31,10 +31,10 @@ class CN3Texture : public CN3BaseFileAccess {
     bool GenerateMipMap(LPDIRECT3DSURFACE9 lpSurf = NULL); // NULL 이면 0 레벨의 서피스로부터 생성..
     bool Convert(D3DFORMAT Format, int nWidth = 0, int nHeight = 0, BOOL bGenerateMipMap = TRUE);
     //#ifdef _N3TOOL
-    bool SaveToFile();                               // 현재 파일 이름대로 저장.
-    bool SaveToFile(const std::string & szFileName); // 새이름으로 저장.
+    bool SaveToFile();
+    bool SaveToFile(const fs::path & fsFile);
     bool Save(HANDLE hFile);
-    bool SaveToBitmapFile(const std::string & szFN); // 24비트 비트맵 파일로 저장..
+    bool SaveToBitmapFile(const fs::path & fsFile); // Save as 24-bit bitmap file
     bool CreateFromSurface(LPDIRECT3DSURFACE9 lpSurf, D3DFORMAT Format, BOOL bGenerateMipMap);
 #endif // end of _N3TOOL
 

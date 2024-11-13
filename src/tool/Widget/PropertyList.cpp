@@ -353,12 +353,20 @@ void CPropertyList::OnButton() {
     } else if (pItem->m_nItemType == PIT_FILE) {
         CString     SelectedFile;
         CFileDialog FileDlg(TRUE, NULL, NULL, NULL, pItem->m_szCBItemsOrFilter.GetAt(0));
-
-        CString currPath = pItem->m_curValue;
         FileDlg.m_ofn.lpstrTitle = "Select file";
-        if (currPath.GetLength() > 0) {
-            FileDlg.m_ofn.lpstrInitialDir = currPath.Left(currPath.GetLength() - currPath.ReverseFind('\\'));
+
+        std::string szInitialDir;
+        fs::path    fsDir = fs::path(pItem->m_curValue.GetString()).parent_path();
+        if (!fsDir.empty()) {
+            if (fsDir.is_absolute()) {
+                szInitialDir = fsDir.string();
+            } else {
+                // Assumes the application has already set the current path to the client folder.
+                // If not, the constructed path will be invalid, but it will fail gracefully.
+                szInitialDir = (fs::current_path() / fsDir).make_preferred().string();
+            }
         }
+        FileDlg.m_ofn.lpstrInitialDir = szInitialDir.c_str();
 
         if (IDOK == FileDlg.DoModal()) {
             SelectedFile = FileDlg.GetPathName();
@@ -382,35 +390,26 @@ void CPropertyList::OnButton() {
         dlg.m_ofn.lpstrFile = vFilesBuff.data();
         dlg.m_ofn.nMaxFile = static_cast<DWORD>(vFilesBuff.size());
         if (IDOK == dlg.DoModal()) {
-            POSITION     pos = dlg.GetStartPosition();
-            CStringArray szFNs;
+            POSITION pos = dlg.GetStartPosition();
 
-            while (pos != NULL) {
-                szFNs.Add(dlg.GetNextPathName(pos));
+            std::vector<fs::path> vSelFiles;
+            while (pos) {
+                vSelFiles.emplace_back(dlg.GetNextPathName(pos).GetString());
             }
 
             pItem->m_curValue = "";
-            int iSC = szFNs.GetSize();
+            size_t iSC = vSelFiles.size();
             if (iSC > 0) {
-                pItem->m_curValue += szFNs[iSC - 1];
-                pItem->m_curValue += '\n';
-
-                for (
-                    int i = 1; i < iSC - 1;
-                    i++) // 1 부터 시작하는 이유는 파일 대화상자에서 여러 파일을 부르면 첨과 끝 파일 이름이 바뀌기 때문이다.
-                {
-                    pItem->m_curValue += szFNs[i];
-                    pItem->m_curValue += '\n';
+                pItem->m_curValue += std::format("{:s}\n", vSelFiles.back().string()).c_str();
+                for (size_t i = 1; i < iSC - 1; ++i) {
+                    pItem->m_curValue += std::format("{:s}\n", vSelFiles[i].string()).c_str();
                 }
-
-                pItem->m_curValue += szFNs[0];
-                pItem->m_curValue += '\n';
+                pItem->m_curValue += std::format("{:s}", vSelFiles.front().string()).c_str();
 
                 m_ButtonPush.ShowWindow(SW_HIDE);
                 Invalidate();
 
-                CWnd * pWnd = GetParent();
-                if (pWnd) {
+                if (CWnd * pWnd = GetParent(); pWnd) {
                     pWnd->SendMessage(WM_NOTIFY, (DWORD)this, (DWORD)pItem); // 부모 윈도우에 메시지 보내기..
                 }
             }

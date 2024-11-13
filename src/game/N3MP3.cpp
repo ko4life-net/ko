@@ -20,7 +20,6 @@ CN3Mp3::CN3Mp3() {
 
     m_IsLoop = false;
     m_Active = false;
-    ZeroMemory(m_FileName, MAX_PATH);
 }
 
 CN3Mp3::~CN3Mp3() {
@@ -56,7 +55,7 @@ bool CN3Mp3::Init() {
 
     m_IsLoop = false;
     m_Active = false;
-    ZeroMemory(m_FileName, MAX_PATH);
+    m_fsFile = fs::path();
 
     return true;
 }
@@ -181,23 +180,16 @@ void CN3Mp3::Looping(bool loop) {
 //
 //
 //
-bool CN3Mp3::Load(char * szPathName) {
-    WCHAR         wFileName[MAX_PATH];
+bool CN3Mp3::Load(const fs::path & fsFile) {
     IBaseFilter * pFilter;
     IPin *        pPin;
-
-#ifndef UNICODE
-    MultiByteToWideChar(CP_ACP, 0, szPathName, -1, wFileName, MAX_PATH);
-#else
-    lstrcpy(wFileName, szPathName);
-#endif
 
     Stop();
     if (!ClearGraph()) {
         return false;
     }
 
-    if (m_pGraphBuilder->AddSourceFilter(wFileName, wFileName, &pFilter) != S_OK) {
+    if (m_pGraphBuilder->AddSourceFilter(fsFile.c_str(), fsFile.c_str(), &pFilter) != S_OK) {
         return false;
     }
 
@@ -226,7 +218,7 @@ bool CN3Mp3::Load(char * szPathName) {
         pFilter = NULL;
     }
 
-    wsprintf(m_FileName, szPathName);
+    m_fsFile = fsFile;
     return true;
 }
 

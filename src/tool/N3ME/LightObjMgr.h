@@ -60,7 +60,7 @@ class CLightObjMgr : public CN3BaseFileAccess {
         
     void UpdateWall();
     */
-    bool MakeGameFile(char * szFN);
+    bool MakeGameFile(const fs::path & fsFile);
     void ChangeSelLights();
     void RefreshCurrLights(float fRange, float fAtten, D3DCOLORVALUE crLgt);
     void DeleteLO(LPLIGHTOBJ pLO);

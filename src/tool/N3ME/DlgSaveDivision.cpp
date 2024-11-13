@@ -226,15 +226,15 @@ void CDlgSaveDivision::RenderTexnRegion() {
 }
 
 void CDlgSaveDivision::SetTexView() {
-    CString strTmpFileName("c:\\MiniMap.bmp");
-    m_pTerrain->GenerateMiniMap((LPCTSTR)strTmpFileName, TEX_VIEW_SIZE);
+    fs::path fsColorMapTmpFile = fs::temp_directory_path() / "N3ME_MiniMap.bmp";
+    m_pTerrain->GenerateMiniMap(fsColorMapTmpFile, TEX_VIEW_SIZE);
 
     if (m_pMiniMap) {
         m_pMapMng->m_pMainFrm->m_pEng->s_MngTex.Delete(&m_pMiniMap);
     }
 
-    m_pMiniMap = m_pMapMng->m_pMainFrm->m_pEng->s_MngTex.Get((LPCTSTR)strTmpFileName);
-    DeleteFile((LPCTSTR)strTmpFileName);
+    m_pMiniMap = m_pMapMng->m_pMainFrm->m_pEng->s_MngTex.Get(fsColorMapTmpFile);
+    fs::remove(fsColorMapTmpFile);
 }
 
 void CDlgSaveDivision::OnOK() {

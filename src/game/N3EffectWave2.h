@@ -84,7 +84,7 @@ class CN3EffectWave2 : public CN3BaseFileAccess {
     bool Load(HANDLE hFile);
     void Render();
     void Tick();
-    void Init(const std::string & TexPath);
+    void Init(const fs::path & fsTexFile);
 
   private:
     void CheckHeight(float & ChkHeight) {

@@ -203,14 +203,14 @@ bool CUIStateBar::Load(HANDLE hFile) {
     return true;
 }
 
-bool CUIStateBar::LoadMap(const std::string & szMiniMapFN, float fMapSizeX, float fMapSizeZ) {
+bool CUIStateBar::LoadMiniMap(const fs::path & fsFile, float fMapSizeX, float fMapSizeZ) {
     m_fMapSizeX = fMapSizeX;
     m_fMapSizeZ = fMapSizeZ;
     if (NULL == m_pImage_Map) {
         return false;
     }
 
-    m_pImage_Map->SetTex(szMiniMapFN);
+    m_pImage_Map->SetTex(fsFile);
     return true;
 }
 
@@ -246,7 +246,7 @@ void CUIStateBar::UpdateExp(int iExp, int iExpNext, bool bUpdateImmediately) {
     }
 
     if (m_pText_ExpP) {
-        m_pText_ExpP->SetString(std::format("{} %", iPercentage));
+        m_pText_ExpP->SetString(std::format("{:d} %", iPercentage));
     }
 }
 
@@ -268,7 +268,7 @@ void CUIStateBar::UpdateMSP(int iMSP, int iMSPMax, bool bUpdateImmediately) {
     }
 
     if (m_pText_MSP) {
-        m_pText_MSP->SetString(std::format("{} / {}", iMSP, iMSPMax));
+        m_pText_MSP->SetString(std::format("{:d} / {:d}", iMSP, iMSPMax));
     }
 }
 
@@ -287,7 +287,7 @@ void CUIStateBar::UpdateHP(int iHP, int iHPMax, bool bUpdateImmediately) {
     }
 
     if (m_pText_HP) {
-        m_pText_HP->SetString(std::format("{} / {}", iHP, iHPMax));
+        m_pText_HP->SetString(std::format("{:d} / {:d}", iHP, iHPMax));
     }
 }
 
@@ -296,7 +296,7 @@ void CUIStateBar::UpdatePosition(const __Vector3 & vPos, float fYaw) {
         return;
     }
 
-    m_pText_Position->SetString(std::format("{}, {}", (int)vPos.x, (int)vPos.z));
+    m_pText_Position->SetString(std::format("{:d}, {:d}", (int)vPos.x, (int)vPos.z));
 
     // 미니맵.
     m_vPosPlayer = vPos;
@@ -694,7 +694,9 @@ void CUIStateBar::SetSystemTimeVisibility(bool bVisible) {
 }
 
 void CUIStateBar::AddMagic(__TABLE_UPC_SKILL * pSkill, float fDuration) {
-    std::string          szTexFN = std::format("UI\\skillicon_{:02d}_{:d}.dxt", pSkill->dwID % 100, pSkill->dwID / 100);
+    fs::path fsTexFile =
+        fs::path("UI") / std::format("skillicon_{:02d}_{:d}.dxt", pSkill->dwID % 100, pSkill->dwID / 100);
+
     __DurationMagicImg * pMagicImg = new __DurationMagicImg;
     pMagicImg->fDuration = fDuration;
     pMagicImg->pIcon = new CN3UIDBCLButton;
@@ -702,7 +704,7 @@ void CUIStateBar::AddMagic(__TABLE_UPC_SKILL * pSkill, float fDuration) {
 
     CN3UIDBCLButton * pIcon = pMagicImg->pIcon;
     pIcon->Init(this);
-    pIcon->SetTex(szTexFN);
+    pIcon->SetTex(fsTexFile);
     pIcon->SetTooltipText(pSkill->szName.c_str());
     pIcon->SetUVRect(0, 0, 1, 1);
 
@@ -725,7 +727,8 @@ void CUIStateBar::AddMagic(__TABLE_UPC_SKILL * pSkill, float fDuration) {
 }
 
 void CUIStateBar::DelMagic(__TABLE_UPC_SKILL * pSkill) {
-    std::string szTexFN = std::format("UI\\skillicon_{:02d}_{:d}.dxt", pSkill->dwID % 100, pSkill->dwID / 100);
+    fs::path fsTexFile =
+        fs::path("UI") / std::format("skillicon_{:02d}_{:d}.dxt", pSkill->dwID % 100, pSkill->dwID / 100);
 
     it_MagicImg it, ite, itRemove;
     itRemove = ite = m_pMagic.end();
@@ -733,7 +736,7 @@ void CUIStateBar::DelMagic(__TABLE_UPC_SKILL * pSkill) {
         __DurationMagicImg * pMagicImg = (*it);
         CN3UIDBCLButton *    pIcon = pMagicImg->pIcon;
         CN3Texture *         pTex = pIcon->GetTex();
-        if (pTex && n3std::iequals(szTexFN, pTex->FileName())) {
+        if (pTex && n3std::iequals(fsTexFile, pTex->FilePath())) {
             itRemove = it;
         }
         if (itRemove != ite) {

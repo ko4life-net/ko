@@ -1470,9 +1470,7 @@ void CServerDlg::DeleteUserList(int uid) {
 }
 
 BOOL CServerDlg::MapFileLoad() {
-    CFile   file;
-    CString szFullPath, errormsg, sZoneName;
-    MAP *   pMap = NULL;
+    MAP * pMap = NULL;
     m_sTotalMap = 0;
 
     CZoneInfoSet ZoneInfoSet;
@@ -1490,24 +1488,22 @@ BOOL CServerDlg::MapFileLoad() {
     ZoneInfoSet.MoveFirst();
 
     while (!ZoneInfoSet.IsEOF()) {
-        sZoneName = ZoneInfoSet.m_strZoneName;
+        std::string szSmdFileName = ZoneInfoSet.m_strZoneName.GetString();
+        fs::path    fsSmdFile = fs::current_path() / "AIServer_MAP" / szSmdFileName;
 
-        szFullPath.Format(".\\AIServer_MAP\\%s", sZoneName);
-
-        if (!file.Open(szFullPath, CFile::modeRead)) {
-            errormsg.Format("파일 Open 실패 - %s\n", szFullPath);
-            AfxMessageBox(errormsg);
+        CFile file;
+        if (!file.Open(fsSmdFile.string().c_str(), CFile::modeRead)) {
+            AfxMessageBox(std::format("Failed to open file - {:s}", fsSmdFile.string()).c_str());
             return FALSE;
         }
 
         pMap = new MAP;
         pMap->m_nServerNo = ZoneInfoSet.m_ServerNo;
         pMap->m_nZoneNumber = ZoneInfoSet.m_ZoneNo;
-        strcpy(pMap->m_MapName, (char *)(LPCTSTR)sZoneName);
+        pMap->m_fsSmdFileName = szSmdFileName;
 
         if (!pMap->LoadMap((HANDLE)file.m_hFile)) {
-            errormsg.Format("Map Load 실패 - %s\n", szFullPath);
-            AfxMessageBox(errormsg);
+            AfxMessageBox(std::format("Map Load Failed - {:s}", fsSmdFile.string()).c_str());
             delete pMap;
             return FALSE;
         }
@@ -1515,8 +1511,7 @@ BOOL CServerDlg::MapFileLoad() {
         // dungeon work
         if (ZoneInfoSet.m_RoomEvent > 0) {
             if (!pMap->LoadRoomEvent(ZoneInfoSet.m_RoomEvent)) {
-                errormsg.Format("Map Room Event Load 실패 - %s\n", szFullPath);
-                AfxMessageBox(errormsg);
+                AfxMessageBox(std::format("Map Room Event Load Failed - {:s}", fsSmdFile.string()).c_str());
                 delete pMap;
                 return FALSE;
             }
@@ -1873,7 +1868,8 @@ void CServerDlg::GameServerAcceptThread() {
 }
 
 void CServerDlg::SyncTest() {
-    FILE * stream = fopen("c:\\aiserver.txt", "w");
+    fs::path fsFile = fs::temp_directory_path() / "AIServer.txt";
+    FILE *   stream = _wfopen(fsFile.c_str(), L"w");
 
     fprintf(stream, "*****   Check ... List  *****\n");
 

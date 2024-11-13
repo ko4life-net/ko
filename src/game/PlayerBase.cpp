@@ -97,12 +97,12 @@ CPlayerBase::CPlayerBase() {
     //    By : Ecli666 ( On 2002-03-29 오후 4:23:36 )
     /*
     m_pTexShadow = NULL;
-    m_pTexShadow = s_MngTex.Get("Chr\\Shadow_Character.tga"); 
+    m_pTexShadow = s_MngTex.Get(fs::path("Chr") / "Shadow_Character.tga");
     m_vShadows[0].Set(-0.7f, 0, 0.7f, 0, 0);
-    m_vShadows[1].Set( 0.7f, 0, 0.7f, 1, 0);
-    m_vShadows[2].Set( 0.7f, 0,-0.7f, 1, 1);
-    m_vShadows[3].Set(-0.7f, 0,-0.7f, 0, 1);
-*/
+    m_vShadows[1].Set(0.7f, 0, 0.7f, 1, 0);
+    m_vShadows[2].Set(0.7f, 0, -0.7f, 1, 1);
+    m_vShadows[3].Set(-0.7f, 0, -0.7f, 0, 1);
+    */
     //    ~(By Ecli666 On 2002-03-29 오후 4:23:36 )
 
     // 폰트 초기화... // 정보 표시용 폰트와 풍선용은 따로 생성한다..
@@ -379,13 +379,14 @@ void CPlayerBase::IDSet(int iID, const std::string & szID, D3DCOLOR crID) {
 }
 
 void CPlayerBase::KnightsInfoSet(int iID, const std::string & szName, int iGrade, int iRank) {
-    char szPlug[128] = "";
+    fs::path fsPlugFile;
     if (iGrade > 0 && iGrade <= 5) {
-        sprintf(szPlug, "Item\\ClanAddOn_%.3d_%d.n3cplug", m_InfoBase.eRace,
-                iGrade); // 종족과 등급으로 플러그 이름을 만든다..
+        // Create plug names by race and class.
+        fsPlugFile =
+            fs::path("Item") / std::format("ClanAddOn_{:03d}_{:d}.n3cplug", static_cast<int>(m_InfoBase.eRace), iGrade);
     }
 
-    CN3CPlugBase * pPlug = this->PlugSet(PLUG_POS_KNIGHTS_GRADE, szPlug, NULL, NULL);
+    CN3CPlugBase * pPlug = this->PlugSet(PLUG_POS_KNIGHTS_GRADE, fsPlugFile, NULL, NULL);
 
     if (NULL == pPlug) {
         return;
@@ -394,14 +395,13 @@ void CPlayerBase::KnightsInfoSet(int iID, const std::string & szName, int iGrade
     CN3CPlug *   pCPlug = (CN3CPlug *)pPlug;
     __TABLE_FX * pFXClanRank = s_pTbl_FXSource->Find(FXID_CLAN_RANK_1);
 
-    std::string szFXClanRank = "";
-    std::string szEmpty = "";
+    fs::path fsFxClanRankFile;
     if (pFXClanRank) {
         if (iRank <= 5 && iRank >= 1) {
-            szFXClanRank = pFXClanRank->szFN;
+            fsFxClanRankFile = pFXClanRank->szFile;
         }
     }
-    pCPlug->InitFX(szFXClanRank, szEmpty, 0xffffffff);
+    pCPlug->InitFX(fsFxClanRankFile, fs::path(), 0xffffffff);
 }
 
 /*
@@ -1860,7 +1860,7 @@ bool CPlayerBase::CheckCollisionToTargetByPlug(CPlayerBase * pTarget, int nPlug,
     return pTarget->CheckCollisionByBox(v1, v2, pVCol, NULL); // 캐릭터 충돌 체크 상자와 충돌 체크..
 }
 
-CN3CPlugBase * CPlayerBase::PlugSet(e_PlugPosition ePos, const std::string & szFN, __TABLE_ITEM_BASIC * pItemBasic,
+CN3CPlugBase * CPlayerBase::PlugSet(e_PlugPosition ePos, const fs::path & fsFile, __TABLE_ITEM_BASIC * pItemBasic,
                                     __TABLE_ITEM_EXT * pItemExt) {
     if (ePos < PLUG_POS_RIGHTHAND || ePos >= PLUG_POS_COUNT) {
         __ASSERT(0, "Invalid Plug Position");
@@ -1891,7 +1891,7 @@ CN3CPlugBase * CPlayerBase::PlugSet(e_PlugPosition ePos, const std::string & szF
         __ASSERT(0, "Invalid Plug Item position");
     }
 
-    CN3CPlugBase * pPlug = m_Chr.PlugSet(ePos, szFN);
+    CN3CPlugBase * pPlug = m_Chr.PlugSet(ePos, fsFile);
     if (NULL == pPlug) {
         return NULL;
     }
@@ -1909,7 +1909,7 @@ CN3CPlugBase * CPlayerBase::PlugSet(e_PlugPosition ePos, const std::string & szF
     //    }
 
     if (pPlug && NULL == pItemBasic && NULL == pItemExt) {
-        pPlug->TexOverlapSet(""); // 기본 착용이면..
+        pPlug->TexOverlapSet(fs::path()); // 기본 착용이면..
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1920,81 +1920,65 @@ CN3CPlugBase * CPlayerBase::PlugSet(e_PlugPosition ePos, const std::string & szF
             (pItemExt->byDamageFire >= LIMIT_FX_DAMAGE)) // 17 추가데미지 - 불
         {
             CN3CPlug *   pCPlug = (CN3CPlug *)pPlug;
-            __TABLE_FX * pFXMain = s_pTbl_FXSource->Find(FXID_SWORD_FIRE_MAIN);
-            __TABLE_FX * pFXTail = s_pTbl_FXSource->Find(FXID_SWORD_FIRE_TAIL);
+            __TABLE_FX * pFxMain = s_pTbl_FXSource->Find(FXID_SWORD_FIRE_MAIN);
+            __TABLE_FX * pFxTail = s_pTbl_FXSource->Find(FXID_SWORD_FIRE_TAIL);
 
-            std::string szFXMain, szFXTail;
-            if (pFXMain) {
-                szFXMain = pFXMain->szFN;
-            } else {
-                szFXMain = "";
+            fs::path fsFxMainFile, fsFxTailFile;
+            if (pFxMain) {
+                fsFxMainFile = pFxMain->szFile;
             }
-            if (pFXTail) {
-                szFXTail = pFXTail->szFN;
-            } else {
-                szFXTail = "";
+            if (pFxTail) {
+                fsFxTailFile = pFxTail->szFile;
             }
-            pCPlug->InitFX(szFXMain, szFXTail, 0xffffff00);
+            pCPlug->InitFX(fsFxMainFile, fsFxTailFile, 0xffffff00);
         } else if ((pItemExt->byMagicOrRare == ITEM_UNIQUE && pItemExt->byDamageIce > 0) ||
                    (pItemExt->byDamageIce >= LIMIT_FX_DAMAGE)) // 18 추가데미지 - 얼음
         {
             CN3CPlug *   pCPlug = (CN3CPlug *)pPlug;
-            __TABLE_FX * pFXMain = s_pTbl_FXSource->Find(FXID_SWORD_ICE_MAIN);
-            __TABLE_FX * pFXTail = s_pTbl_FXSource->Find(FXID_SWORD_ICE_TAIL);
+            __TABLE_FX * pFxMain = s_pTbl_FXSource->Find(FXID_SWORD_ICE_MAIN);
+            __TABLE_FX * pFxTail = s_pTbl_FXSource->Find(FXID_SWORD_ICE_TAIL);
 
-            std::string szFXMain, szFXTail;
-            if (pFXMain) {
-                szFXMain = pFXMain->szFN;
-            } else {
-                szFXMain = "";
+            fs::path fsFxMainFile, fsFxTailFile;
+            if (pFxMain) {
+                fsFxMainFile = pFxMain->szFile;
             }
-            if (pFXTail) {
-                szFXTail = pFXTail->szFN;
-            } else {
-                szFXTail = "";
+            if (pFxTail) {
+                fsFxTailFile = pFxTail->szFile;
             }
 
-            pCPlug->InitFX(szFXMain, szFXTail, 0xff0000ff);
+            pCPlug->InitFX(fsFxMainFile, fsFxTailFile, 0xff0000ff);
         } else if ((pItemExt->byMagicOrRare == ITEM_UNIQUE && pItemExt->byDamageThuner > 0) ||
                    (pItemExt->byDamageThuner >= LIMIT_FX_DAMAGE)) // 19 추가데미지 - 전격
         {
             CN3CPlug *   pCPlug = (CN3CPlug *)pPlug;
-            __TABLE_FX * pFXMain = s_pTbl_FXSource->Find(FXID_SWORD_LIGHTNING_MAIN);
-            __TABLE_FX * pFXTail = s_pTbl_FXSource->Find(FXID_SWORD_LIGHTNING_TAIL);
+            __TABLE_FX * pFxMain = s_pTbl_FXSource->Find(FXID_SWORD_LIGHTNING_MAIN);
+            __TABLE_FX * pFxTail = s_pTbl_FXSource->Find(FXID_SWORD_LIGHTNING_TAIL);
 
-            std::string szFXMain, szFXTail;
-            if (pFXMain) {
-                szFXMain = pFXMain->szFN;
-            } else {
-                szFXMain = "";
+            fs::path fsFxMainFile, fsFxTailFile;
+            if (pFxMain) {
+                fsFxMainFile = pFxMain->szFile;
             }
-            if (pFXTail) {
-                szFXTail = pFXTail->szFN;
-            } else {
-                szFXTail = "";
+            if (pFxTail) {
+                fsFxTailFile = pFxTail->szFile;
             }
 
-            pCPlug->InitFX(szFXMain, szFXTail, 0xffffffff);
+            pCPlug->InitFX(fsFxMainFile, fsFxTailFile, 0xffffffff);
         } else if ((pItemExt->byMagicOrRare == ITEM_UNIQUE && pItemExt->byDamagePoison > 0) ||
                    (pItemExt->byDamagePoison >= LIMIT_FX_DAMAGE)) // 20 추가데미지 - 독
         {
             CN3CPlug *   pCPlug = (CN3CPlug *)pPlug;
-            __TABLE_FX * pFXMain = s_pTbl_FXSource->Find(FXID_SWORD_POISON_MAIN);
-            __TABLE_FX * pFXTail = s_pTbl_FXSource->Find(FXID_SWORD_POISON_TAIL);
+            __TABLE_FX * pFxMain = s_pTbl_FXSource->Find(FXID_SWORD_POISON_MAIN);
+            __TABLE_FX * pFxTail = s_pTbl_FXSource->Find(FXID_SWORD_POISON_TAIL);
 
-            std::string szFXMain, szFXTail;
-            if (pFXMain) {
-                szFXMain = pFXMain->szFN;
-            } else {
-                szFXMain = "";
+            fs::path fsFxMainFile, fsFxTailFile;
+            if (pFxMain) {
+                fsFxMainFile = pFxMain->szFile;
             }
-            if (pFXTail) {
-                szFXTail = pFXTail->szFN;
-            } else {
-                szFXTail = "";
+            if (pFxTail) {
+                fsFxTailFile = pFxTail->szFile;
             }
 
-            pCPlug->InitFX(szFXMain, szFXTail, 0xffff00ff);
+            pCPlug->InitFX(fsFxMainFile, fsFxTailFile, 0xffff00ff);
         }
     }
     //
@@ -2003,7 +1987,7 @@ CN3CPlugBase * CPlayerBase::PlugSet(e_PlugPosition ePos, const std::string & szF
     return pPlug;
 }
 
-CN3CPart * CPlayerBase::PartSet(e_PartPosition ePos, const std::string & szFN, __TABLE_ITEM_BASIC * pItemBasic,
+CN3CPart * CPlayerBase::PartSet(e_PartPosition ePos, const fs::path & fsFile, __TABLE_ITEM_BASIC * pItemBasic,
                                 __TABLE_ITEM_EXT * pItemExt) {
     if (ePos < PART_POS_UPPER || ePos >= PART_POS_COUNT) {
         __ASSERT(0, "Invalid Item Position");
@@ -2026,19 +2010,19 @@ CN3CPart * CPlayerBase::PartSet(e_PartPosition ePos, const std::string & szFN, _
             {
                 if (m_pItemPartBasics[PART_POS_LOWER]) // 하체에 아이템이 입혀있으면..
                 {
-                    std::string    szFN2;
+                    fs::path       fsItemFile;
                     e_PartPosition ePartPos2 = PART_POS_UNKNOWN;
                     e_PlugPosition ePlugPos2 = PLUG_POS_UNKNOWN;
 
-                    CGameProcedure::MakeResrcFileNameForUPC(m_pItemPartBasics[PART_POS_LOWER], &szFN2, NULL, ePartPos2,
-                                                            ePlugPos2);
-                    this->PartSet(PART_POS_LOWER, szFN2, m_pItemPartBasics[PART_POS_LOWER],
+                    CGameProcedure::MakeResrcFileNameForUPC(m_pItemPartBasics[PART_POS_LOWER], &fsItemFile, NULL,
+                                                            ePartPos2, ePlugPos2);
+                    this->PartSet(PART_POS_LOWER, fsItemFile, m_pItemPartBasics[PART_POS_LOWER],
                                   m_pItemPartExts[PART_POS_LOWER]); // 하체에 전의 옷을 입힌다..
                 } else // 하체에 입고 있었던 아이템이 없다면..
                 {
                     __TABLE_PLAYER_LOOKS * pLooks =
                         s_pTbl_UPC_Looks->Find(m_InfoBase.eRace); // User Player Character Skin 구조체 포인터..
-                    this->PartSet(PART_POS_LOWER, pLooks->szPartFNs[PART_POS_LOWER], NULL,
+                    this->PartSet(PART_POS_LOWER, pLooks->szPartFiles[PART_POS_LOWER], NULL,
                                   NULL); // 하체에 기본옷을 입힌다.
                 }
             }
@@ -2052,13 +2036,13 @@ CN3CPart * CPlayerBase::PartSet(e_PartPosition ePos, const std::string & szFN, _
             {
                 m_pItemPartBasics[ePos] = pItemBasic;
                 m_pItemPartExts[ePos] = pItemExt;
-                return m_Chr.PartSet(ePos, ""); // 하체는 벗기고(?) 돌아간다.
+                return m_Chr.PartSet(ePos, fs::path()); // 하체는 벗기고(?) 돌아간다.
             }
         }
     }
 
     CN3CPart * pPart = NULL;
-    if (szFN.empty()) // 파일 이름이 없는거면.. 기본 착용..
+    if (fsFile.empty()) // 파일 이름이 없는거면.. 기본 착용..
     {
         if (PART_POS_HAIR_HELMET == ePos) {
             this->InitHair();
@@ -2070,21 +2054,21 @@ CN3CPart * CPlayerBase::PartSet(e_PartPosition ePos, const std::string & szFN, _
             __TABLE_PLAYER_LOOKS * pLooks =
                 s_pTbl_UPC_Looks->Find(m_InfoBase.eRace); // Player Character Skin 구조체 포인터..
             if (pLooks) {
-                pPart = m_Chr.PartSet(ePos, pLooks->szPartFNs[ePos]);
+                pPart = m_Chr.PartSet(ePos, pLooks->szPartFiles[ePos]);
                 if (pPart) {
-                    pPart->TexOverlapSet("");
+                    pPart->TexOverlapSet(fs::path());
                 }
             }
         }
     } else {
-        pPart = m_Chr.PartSet(ePos, szFN);
+        pPart = m_Chr.PartSet(ePos, fsFile);
     }
 
     m_pItemPartBasics[ePos] = pItemBasic; // 아이템 적용
     m_pItemPartExts[ePos] = pItemExt;
 
     if (pPart && NULL == pItemBasic && NULL == pItemExt) {
-        pPart->TexOverlapSet(""); // 기본 착용이면..
+        pPart->TexOverlapSet(fs::path()); // 기본 착용이면..
     }
 
     return pPart;
@@ -2117,15 +2101,16 @@ void CPlayerBase::DurabilitySet(e_ItemSlot eSlot, int iDurability) {
             return;
         }
 
-        int         iPercentage = iDurability * 100 / iDuMax;
-        std::string szFN;
+        int iPercentage = iDurability * 100 / iDuMax;
+
+        fs::path fsTexFile;
         if (iPercentage <= 30) {
-            szFN = "Misc\\Dust_Hard.dxt";
+            fsTexFile = fs::path("Misc") / "dust_hard.dxt";
         } else if (iPercentage <= 70) {
-            szFN = "Misc\\Dust_Soft.dxt";
+            fsTexFile = fs::path("Misc") / "dust_soft.dxt";
         }
 
-        pPlug->TexOverlapSet(szFN);
+        pPlug->TexOverlapSet(fsTexFile);
     } else if (ITEM_SLOT_UPPER == eSlot) {
         ePartPos = PART_POS_UPPER;
     } else if (ITEM_SLOT_LOWER == eSlot) {
@@ -2146,15 +2131,15 @@ void CPlayerBase::DurabilitySet(e_ItemSlot eSlot, int iDurability) {
                              m_pItemPartExts[ePartPos]->siMaxDurability; // 기본내구력 + 확장 내구력
                 int iPercentage = iDurability * 100 / iDuMax;
 
-                std::string szFN;
+                fs::path fsTexFile;
                 if (iPercentage <= 30) {
-                    szFN = "Misc\\Dust_Hard.dxt";
+                    fsTexFile = fs::path("Misc") / "dust_hard.dxt";
                 } else if (iPercentage <= 70) {
-                    szFN = "Misc\\Dust_Soft.dxt";
+                    fsTexFile = fs::path("Misc") / "dust_soft.dxt";
                 }
-                pPart->TexOverlapSet(szFN);
+                pPart->TexOverlapSet(fsTexFile);
             } else {
-                pPart->TexOverlapSet("");
+                pPart->TexOverlapSet(fs::path());
             }
         } else {
             __ASSERT(0, "Invalid Item Position");
@@ -2169,8 +2154,8 @@ bool CPlayerBase::InitChr(__TABLE_PLAYER_LOOKS * pTbl) {
 
     m_pLooksRef = pTbl;
 
-    m_Chr.JointSet(pTbl->szJointFN);
-    m_Chr.AniCtrlSet(pTbl->szAniFN);
+    m_Chr.JointSet(pTbl->szJointFile);
+    m_Chr.AniCtrlSet(pTbl->szAniFile);
 
     if (RACE_NPC != m_InfoBase.eRace) // 상,하체 따로 놀 준비..
     {

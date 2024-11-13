@@ -28,11 +28,10 @@ END_MESSAGE_MAP()
 // CN3TexViewerDoc construction/destruction
 
 CN3TexViewerDoc::CN3TexViewerDoc() {
-    // TODO: add one-time construction code here
     m_pTex = new CN3Texture();
     m_pTexAlpha = new CN3Texture();
 
-    m_nCurFile = NULL;
+    m_nCurFile = 0;
 }
 
 CN3TexViewerDoc::~CN3TexViewerDoc() {
@@ -76,7 +75,7 @@ BOOL CN3TexViewerDoc::OnNewDocument() {
     m_pTex->Release();
     m_pTexAlpha->Release();
 
-    this->UpdateAllViews(NULL);
+    UpdateAllViews(NULL);
 
     return TRUE;
 }
@@ -86,11 +85,13 @@ BOOL CN3TexViewerDoc::OnOpenDocument(LPCTSTR lpszPathName) {
         return FALSE;
     }
 
-    this->FindFiles(); // 파일을 찾고..
+    fs::path fsFile = lpszPathName;
+
+    FindFiles(); // 파일을 찾고..
 
     // TODO: Add your specialized creation code here
     m_pTexAlpha->Release();
-    if (NULL == m_pTex->LoadFromFile(lpszPathName)) {
+    if (!m_pTex->LoadFromFile(fsFile)) {
         return FALSE;
     }
 
@@ -124,50 +125,39 @@ BOOL CN3TexViewerDoc::OnOpenDocument(LPCTSTR lpszPathName) {
     // Alpha Texture 생성...
     ////////////////////////////////////////////////////////////////////////////////
 
-    char szDrv[_MAX_DRIVE], szDir[_MAX_DIR], szFN[_MAX_FNAME], szExt[_MAX_EXT];
-    ::_splitpath(lpszPathName, szDrv, szDir, szFN, szExt);
-    CString szFileName = szFN;
-    szFileName += szExt;
-
-    this->SetTitle(szFileName);
+    CString szFileName = fsFile.filename().c_str();
+    SetTitle(szFileName);
 
     // Update status bar with the currently opened file path
     CFrameWnd * pFrm = (CFrameWnd *)AfxGetMainWnd();
     ASSERT(pFrm);
     CStatusBar * pSB = (CStatusBar *)pFrm->GetMessageBar();
     ASSERT(pSB);
-    pSB->SetPaneText(0, lpszPathName);
+    pSB->SetPaneText(0, fsFile.string().c_str());
 
-    this->UpdateAllViews(NULL);
+    UpdateAllViews(NULL);
 
     return TRUE;
 }
 
 BOOL CN3TexViewerDoc::OnSaveDocument(LPCTSTR lpszPathName) {
-    char szDrv[_MAX_DRIVE], szDir[_MAX_DIR], szFN[_MAX_FNAME], szExt[_MAX_EXT];
-    ::_splitpath(lpszPathName, szDrv, szDir, szFN, szExt);
-
-    if (lstrcmpi(szExt, ".DXT") == 0) // 확장자가 DXT 면 그냥 저장..
-    {
-        CDocument::OnSaveDocument(lpszPathName);
-
-        if (false == m_pTex->SaveToFile(lpszPathName)) {
-            return FALSE;
-        }
-
-        return TRUE;
-    } else {
-        MessageBox(::GetActiveWindow(), "확장자를 DXT 로 바꾸어야 합니다. Save As 로 저장해주세요.", "저장 실패",
-                   MB_OK);
-
+    fs::path fsFile = lpszPathName;
+    if (!n3std::iequals(fsFile.extension(), ".dxt")) {
+        MessageBox(::GetActiveWindow(), "You need to change the extension to DXT. Please save it as Save As.",
+                   "Save failed", MB_OK);
         return FALSE;
     }
+
+    if (!m_pTex->SaveToFile(fsFile)) {
+        return FALSE;
+    }
+
+    return CDocument::OnSaveDocument(lpszPathName);
 }
 
 void CN3TexViewerDoc::SetTitle(LPCTSTR lpszTitle) {
-    // TODO: Add your specialized code here and/or call the base class
-    CString szFmt;
-    szFmt.Format("%s - %d, %d", lpszTitle, m_pTex->Width(), m_pTex->Height());
+    std::string szFmt = std::format("{:s} - {:d}, {:d}", lpszTitle, m_pTex->Width(), m_pTex->Height());
+
     D3DFORMAT fmtTex = m_pTex->PixelFormat();
     if (D3DFMT_DXT1 == fmtTex) {
         szFmt += " DXT1";
@@ -199,87 +189,62 @@ void CN3TexViewerDoc::SetTitle(LPCTSTR lpszTitle) {
         szFmt += " - has no MipMap";
     }
 
-    CDocument::SetTitle(szFmt);
-    //    CDocument::SetTitle(lpszTitle);
+    CDocument::SetTitle(szFmt.c_str());
 }
 
 void CN3TexViewerDoc::FindFiles() {
-    char szPath[_MAX_PATH];
-    GetCurrentDirectory(_MAX_PATH, szPath);
-
-    CString szPath2 = szPath;
-    szPath2.MakeLower();
-
-    if (m_szPath == szPath2) {
+    if (m_fsWorkDir == CN3Base::PathGet()) {
         return;
     }
 
-    m_szPath = szPath2;
-    m_szFiles.RemoveAll();
-
-    CFileFind find;
-
+    m_fsWorkDir = CN3Base::PathGet();
+    m_vDxtFiles.clear();
     m_nCurFile = 0;
-    if (FALSE == find.FindFile("*.DXT")) {
-        return;
-    }
 
-    for (int i = 0; find.FindNextFile(); i++) {
-        CString szPathTmp = find.GetFilePath();
-        m_szFiles.Add(szPathTmp);
+    int i = 0;
+    for (const auto & fsEntry : fs::recursive_directory_iterator(fs::current_path())) {
+        if (!fsEntry.is_regular_file() || !n3std::iequals(fsEntry.path().extension(), ".dxt")) {
+            continue;
+        }
 
-        if (szPathTmp == this->GetPathName()) {
+        fs::path fsDxtFile = fsEntry.path();
+        m_vDxtFiles.emplace_back(fsDxtFile);
+
+        if (fsDxtFile.c_str() == GetPathName()) {
             m_nCurFile = i;
         }
+        ++i;
     }
+}
+
+void CN3TexViewerDoc::OpenFileAtIndex(int iIndex) {
+    if (m_vDxtFiles.empty()) {
+        return;
+    }
+
+    // Clamp the index to stay within valid range
+    m_nCurFile = std::clamp(iIndex, 0, static_cast<int>(m_vDxtFiles.size()) - 1);
+    OnOpenDocument(m_vDxtFiles[m_nCurFile].string().c_str());
 }
 
 void CN3TexViewerDoc::OpenNextFile() {
-    m_nCurFile++;
-    int nFC = m_szFiles.GetSize();
-    if (m_nCurFile < 0 || m_nCurFile >= nFC) {
-        m_nCurFile = nFC - 1;
-        return;
-    }
-
-    this->OnOpenDocument(m_szFiles[m_nCurFile]);
+    OpenFileAtIndex(m_nCurFile + 1);
 }
 
 void CN3TexViewerDoc::OpenPrevFile() {
-    m_nCurFile--;
-    int nFC = m_szFiles.GetSize();
-    if (m_nCurFile < 0 || m_nCurFile >= nFC) {
-        m_nCurFile = 0;
-        return;
-    }
-
-    this->OnOpenDocument(m_szFiles[m_nCurFile]);
+    OpenFileAtIndex(m_nCurFile - 1);
 }
 
 void CN3TexViewerDoc::OpenFirstFile() {
-    m_nCurFile = 0;
-    int nFC = m_szFiles.GetSize();
-    if (m_nCurFile < 0 || m_nCurFile >= nFC) {
-        m_nCurFile = 0;
-        return;
-    }
-
-    this->OnOpenDocument(m_szFiles[m_nCurFile]);
+    OpenFileAtIndex(0);
 }
 
 void CN3TexViewerDoc::OpenLastFile() {
-    m_nCurFile = m_szFiles.GetSize() - 1;
-    int nFC = m_szFiles.GetSize();
-    if (m_nCurFile < 0 || m_nCurFile >= nFC) {
-        m_nCurFile = 0;
-        return;
-    }
-
-    this->OnOpenDocument(m_szFiles[m_nCurFile]);
+    OpenFileAtIndex(static_cast<int>(m_vDxtFiles.size()) - 1);
 }
 
 void CN3TexViewerDoc::OnFileSaveAsBitmap() {
-    if (NULL == m_pTex || NULL == m_pTex->Get()) {
+    if (!m_pTex || !m_pTex->Get()) {
         return;
     }
 

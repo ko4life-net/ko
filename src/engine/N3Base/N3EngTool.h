@@ -42,7 +42,7 @@ struct __EXPORT_OPTION {
         bGenerateHalfSizeTexture; // 텍스처 파일을 자동으로 최적화 시켜서 생성 Direct3D 의 포맷에 맞게 2의 제곱수 단위로 맞추어서 "OBM" 비트맵 파일로 저장.
     BOOL bGenerateCompressedTexture; // Texture 압축 사용
 
-    char szSubDir[_MAX_DIR]; // export 할때 저장하는 sub폴더를 지정해준다.
+    fs::path fsSubDir; // export 할때 저장하는 sub폴더를 지정해준다.
 };
 
 class CN3EngTool : public CN3Eng {

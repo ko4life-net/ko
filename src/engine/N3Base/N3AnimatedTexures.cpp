@@ -49,16 +49,15 @@ bool CN3AnimatedTexures::Load(HANDLE hFile) {
         m_TexRefs.clear();
     }
 
-    int  nL = 0;
-    char szFN[256] = "";
-    m_TexRefs.assign(iTC, NULL);  // Texture Pointer Pointer 할당..
-    for (int i = 0; i < iTC; i++) // Texture Count 만큼 파일 이름 읽어서 텍스처 부르기..
-    {
+    int         nL = 0;
+    std::string szFile;
+    m_TexRefs.assign(iTC, NULL);    // Texture Pointer Pointer 할당..
+    for (int i = 0; i < iTC; i++) { // Texture Count 만큼 파일 이름 읽어서 텍스처 부르기..
         ReadFile(hFile, &nL, 4, &dwRWC, NULL);
         if (nL > 0) {
-            ReadFile(hFile, szFN, nL, &dwRWC, NULL);
-            szFN[nL] = NULL; // 텍스처 파일 이름..
-            m_TexRefs[i] = s_MngTex.Get(szFN);
+            szFile.assign(nL, '\0');
+            ReadFile(hFile, szFile.data(), nL, &dwRWC, NULL);
+            m_TexRefs[i] = s_MngTex.Get(szFile);
         }
     }
 
@@ -75,15 +74,17 @@ bool CN3AnimatedTexures::Save(HANDLE hFile) {
     int iTC = m_TexRefs.size();
     WriteFile(hFile, &iTC, 4, &dwRWC, NULL);
 
-    for (int i = 0; i < iTC; i++) // Texture Count 만큼 파일 이름 읽어서 텍스처 부르기..
-    {
+    int         nL = 0;
+    std::string szFile;
+    for (int i = 0; i < iTC; i++) { // Texture Count 만큼 파일 이름 읽어서 텍스처 부르기..
         nL = 0;
         if (m_TexRefs[i]) {
-            nL = m_TexRefs[i].size();
+            szFile = m_TexRefs[i]->FilePathWin().string();
+            nL = szFile.length();
         }
         WriteFile(hFile, &nL, 4, &dwRWC, NULL);
         if (nL > 0) {
-            WriteFile(hFile, m_TexRefs[i]->FileName().c_str(), nL, &dwRWC, NULL); // 텍스처 파일 이름..
+            WriteFile(hFile, szFile.c_str(), nL, &dwRWC, NULL); // 텍스처 파일 이름..
         }
     }
 

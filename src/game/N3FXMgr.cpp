@@ -47,12 +47,9 @@ void CN3FXMgr::TriggerBundle(int SourceID, int SourceJoint, int FXID, int Target
         return;
     }
 
-    char buff[MAX_PATH];
-    sprintf(buff, pFX->szFN.c_str());
-    _strlwr(buff);
-    std::string strTmp = buff;
+    fs::path fsFxbFile = fs::path(pFX->szFile).lower();
 
-    stlMAP_BUNDLEORIGIN_IT itOrigin = m_OriginBundle.find(strTmp);
+    stlMAP_BUNDLEORIGIN_IT itOrigin = m_OriginBundle.find(fsFxbFile);
 
     if (itOrigin != m_OriginBundle.end()) //같은 효과가 있다..
     {
@@ -75,7 +72,7 @@ void CN3FXMgr::TriggerBundle(int SourceID, int SourceJoint, int FXID, int Target
     {
         LPFXBUNDLEORIGIN pSrc = new FXBUNDLEORIGIN;
         pSrc->pBundle = new CN3FXBundleGame;
-        pSrc->pBundle->LoadFromFile(strTmp);
+        pSrc->pBundle->LoadFromFile(fsFxbFile);
 
         CN3FXBundleGame * pBundle = new CN3FXBundleGame;
 
@@ -91,7 +88,7 @@ void CN3FXMgr::TriggerBundle(int SourceID, int SourceJoint, int FXID, int Target
         m_ListBundle.push_back(pBundle);
 
         pSrc->iNum++;
-        m_OriginBundle.insert(stlMAP_BUNDLEORIGIN_VALUE(strTmp, pSrc));
+        m_OriginBundle.insert(stlMAP_BUNDLEORIGIN_VALUE(fsFxbFile, pSrc));
     }
 }
 
@@ -104,12 +101,9 @@ void CN3FXMgr::TriggerBundle(int SourceID, int SourceJoint, int FXID, __Vector3 
         return;
     }
 
-    char buff[MAX_PATH];
-    sprintf(buff, pFX->szFN.c_str());
-    _strlwr(buff);
-    std::string strTmp = buff;
+    fs::path fsFxbFile = fs::path(pFX->szFile).lower();
 
-    stlMAP_BUNDLEORIGIN_IT itOrigin = m_OriginBundle.find(strTmp);
+    stlMAP_BUNDLEORIGIN_IT itOrigin = m_OriginBundle.find(fsFxbFile);
 
     if (itOrigin != m_OriginBundle.end()) //같은 효과가 있다..
     {
@@ -130,7 +124,7 @@ void CN3FXMgr::TriggerBundle(int SourceID, int SourceJoint, int FXID, __Vector3 
     {
         LPFXBUNDLEORIGIN pSrc = new FXBUNDLEORIGIN;
         pSrc->pBundle = new CN3FXBundleGame;
-        pSrc->pBundle->LoadFromFile(pFX->szFN);
+        pSrc->pBundle->LoadFromFile(pFX->szFile);
 
         CN3FXBundleGame * pBundle = new CN3FXBundleGame;
 
@@ -145,7 +139,7 @@ void CN3FXMgr::TriggerBundle(int SourceID, int SourceJoint, int FXID, __Vector3 
         m_ListBundle.push_back(pBundle);
 
         pSrc->iNum++;
-        m_OriginBundle.insert(stlMAP_BUNDLEORIGIN_VALUE(strTmp, pSrc));
+        m_OriginBundle.insert(stlMAP_BUNDLEORIGIN_VALUE(fsFxbFile, pSrc));
     }
 }
 
@@ -252,7 +246,7 @@ void CN3FXMgr::Tick() {
             continue;
         }
         if (pBundle->m_dwState == FX_BUNDLE_STATE_DEAD) {
-            stlMAP_BUNDLEORIGIN_IT itOrigin = m_OriginBundle.find(pBundle->FileName());
+            stlMAP_BUNDLEORIGIN_IT itOrigin = m_OriginBundle.find(pBundle->FilePath());
             if (itOrigin != m_OriginBundle.end()) //같은 효과가 있다..
             {
                 LPFXBUNDLEORIGIN pSrc = itOrigin->second;

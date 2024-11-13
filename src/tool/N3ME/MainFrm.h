@@ -29,7 +29,7 @@ class CMainFrame : public CFrameWnd {
     CDTexMng *      GetDTexMng() const { return m_pDTexMng; }
     CDTexGroupMng * GetDTexGroupMng() const { return m_pDTexGroupMng; }
 
-    void LoadDTexSet(CString FileName);
+    void LoadDTexSet(const fs::path & fsFileName);
 
   protected:
     CMapMng * m_pMapMng;

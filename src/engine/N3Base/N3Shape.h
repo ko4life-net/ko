@@ -52,12 +52,12 @@ class CN3SPart : public CN3BaseFileAccess {
         return m_TexRefs[iIndex];
     }
     void         TexAlloc(int m_nCount);
-    CN3Texture * TexSet(int iIndex, const std::string & szFN) {
+    CN3Texture * TexSet(int iIndex, const fs::path & fsFile) {
         if (iIndex < 0 || iIndex >= m_TexRefs.size()) {
             return NULL;
         }
         s_MngTex.Delete(&m_TexRefs[iIndex]);
-        m_TexRefs[iIndex] = s_MngTex.Get(szFN, true, s_Options.iTexLOD_Shape);
+        m_TexRefs[iIndex] = s_MngTex.Get(fsFile, true, s_Options.iTexLOD_Shape);
         return m_TexRefs[iIndex];
     }
     void TexSet(int iIndex, CN3Texture * pTex) {
@@ -70,7 +70,7 @@ class CN3SPart : public CN3BaseFileAccess {
 
     CN3PMeshInstance * MeshInstance() { return &m_PMInst; }
     CN3PMesh *         Mesh() { return m_PMInst.GetMesh(); }
-    void               MeshSet(const std::string & szFN);
+    void               MeshSet(const fs::path & fsFile);
 
     void ReCalcMatrix(const __Matrix44 & mtxParent) {
         m_Matrix.Identity();
@@ -137,8 +137,8 @@ class CN3Shape : public CN3TransformCollision {
 
   public:
 #ifdef _N3TOOL
-    bool SaveToSameFolderAndMore(const std::string & szFullPath, const std::string & szRelativePath);
-    bool SaveToSameFolder(const std::string & szFullPath);
+    bool SaveToSameFolder(const fs::path & fsFile);
+    bool SaveToSameFolderAndMore(const fs::path & fsFile, const fs::path & fsDirRelative);
     void RemoveRenderFlags(int nFlags = -1);
     void MakeDefaultMaterial();
 #endif // end of _N3TOOL

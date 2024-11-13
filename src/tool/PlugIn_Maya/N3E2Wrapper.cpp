@@ -44,6 +44,8 @@
 
 extern const char * objectName(MObject object);
 
+#include <unordered_set>
+
 BOOL            CN3E2Wrapper::m_bCancelExport = FALSE;
 __EXPORT_OPTION CN3E2Wrapper::m_Option;
 
@@ -88,8 +90,8 @@ void CN3E2Wrapper::Release() {
     m_Option.bGenerateCompressedTexture = TRUE;
     m_Option.fSamplingRate = 30.0f;
 
-    lstrcpy(m_szPath, "");     // 경로 이름
-    lstrcpy(m_szFileName, ""); // 파일 이름
+    m_fsDir = fs::path();
+    m_fsFile = fs::path();
 
     delete m_pScene;
     m_pScene = NULL;
@@ -97,12 +99,12 @@ void CN3E2Wrapper::Release() {
     g_pEng = NULL;
 }
 
-void CN3E2Wrapper::SetFileName(const char * szFileName) {
-    lstrcpy(m_szFileName, szFileName); // 파일 이름
+void CN3E2Wrapper::SetFileName(const fs::path & fsFile) {
+    m_fsFile = fsFile;
 }
 
-void CN3E2Wrapper::SetPath(const char * szPath) {
-    lstrcpy(m_szPath, szPath); // 파일 이름
+void CN3E2Wrapper::SetPath(const fs::path & fsDir) {
+    m_fsDir = fsDir;
 }
 
 // 라이트 종류를 리턴.
@@ -111,8 +113,8 @@ CN3Light * CN3E2Wrapper::ProcessLight(MFnLight & mLight) {
     MFnTransform mT = MFnTransform(mLight.parent(0));
     this->ProcessTransform(mT, pLight); // Transform Node
 
-    pLight->m_szName = mT.name().asChar();
-    pLight->FileNameSet("Data\\" + pLight->m_szName + ".N3Light"); // 파일 이름 결정..
+    pLight->m_szName = mT.name().asUTF8();
+    pLight->FilePathSet(fs::path("Data") / (pLight->m_szName + ".n3light")); // 파일 이름 결정..
 
     // 라이트 종류
     D3DCOLORVALUE dcv = {1, 1, 1, 1};
@@ -173,8 +175,7 @@ CN3Camera * CN3E2Wrapper::ProcessCamera(MFnCamera & mCamera) {
     CN3Camera *  pCamera = new CN3Camera();
     MFnTransform mT(mCamera.parent(0));
     this->ProcessTransform(mT, pCamera); // Transform 처리..
-    std::string szFN = "Data\\" + pCamera->m_szName + ".N3Camera";
-    pCamera->FileNameSet(szFN);
+    pCamera->FilePathSet(fs::path("Data") / (pCamera->m_szName + ".n3camera"));
 
     //    double dHFOV, dVFOV;
     //    mCamera.getPortFieldOfView(800, 600, dHFOV, dVFOV);
@@ -224,9 +225,7 @@ void CN3E2Wrapper::SceneExport() {
     //    g_pEng->InitEnv();
     g_pEng->Init(TRUE, hWnd, 64, 64, 0, FALSE);
 
-    char szPath[256];
-    ::GetCurrentDirectory(256, szPath);
-    CN3Base::PathSet(szPath); // 경로 설정...
+    CN3Base::PathSet(fs::current_path());
 
     m_pScene = new CN3Scene();
 
@@ -316,7 +315,7 @@ void CN3E2Wrapper::SceneExport() {
         if (MFn::kCamera == mType && TRUE == m_Option.bExportCamera) // 카메라..
         {
             MFnCamera    mCamera(mObj);
-            const char * szCamera = mCamera.name().asChar();
+            const char * szCamera = mCamera.name().asUTF8();
             if (strstr(szCamera, "front") == NULL && strstr(szCamera, "side") == NULL &&
                 strstr(szCamera, "top") == NULL) {
                 CN3Camera * pCamera = this->ProcessCamera(mCamera);
@@ -332,7 +331,7 @@ void CN3E2Wrapper::SceneExport() {
         } else if (mType == MFn::kMesh && TRUE == m_Option.bExportGeometry) {
             MFnMesh mMesh(mObj);
 
-            const char * szMeshName = mMesh.name().asChar();
+            const char * szMeshName = mMesh.name().asUTF8();
 
             bool bHaveJoint = false; // 만약 뼈대를 처리해야 하면..
             if (TRUE == m_Option.bExportCharacter) {
@@ -340,7 +339,7 @@ void CN3E2Wrapper::SceneExport() {
             }
             if (true == bHaveJoint) // 관절에 연결된 메시면 지나간다..
             {
-                //                wsprintf(szInfo, "Skinning 이 된 메시(%s)를 무시합니다.", mMesh.name().asChar());
+                //                wsprintf(szInfo, "Skinning 이 된 메시(%s)를 무시합니다.", mMesh.name().asUTF8());
                 //                nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
                 //                ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
                 continue;
@@ -374,7 +373,7 @@ void CN3E2Wrapper::SceneExport() {
             if (mObj.hasFn(MFn::kDependencyNode) == true) {
                 MFnDependencyNode node(mObj);
                 wsprintf(szInfo, "%d/%d - Type : %s Name : %s", i, nObjectCount, mObj.apiTypeStr(),
-                         node.name().asChar());
+                         node.name().asUTF8());
             } else {
                 wsprintf(szInfo, "%d/%d - Type : %s NoName", i, nObjectCount, mObj.apiTypeStr());
             }
@@ -403,7 +402,7 @@ void CN3E2Wrapper::SceneExport() {
             m_pScene->DefaultLightAdd(); // 기본 라이트 추가..
         }
 
-        m_pScene->SaveDataAndResourcesToFile(m_szFileName); // Scene , Resource 저장..
+        m_pScene->SaveDataAndResourcesToFile(m_fsFile); // Scene , Resource 저장..
         m_pScene->Release();
     }
 
@@ -424,7 +423,7 @@ bool CN3E2Wrapper::ProcessIMesh(MFnMesh & mMesh, CN3IMesh * pIMesh) {
 
     // 이름 짓기..
     MFnTransform mTM(mMesh.parent(0));
-    pIMesh->m_szName = mTM.name().asChar();
+    pIMesh->m_szName = mTM.name().asUTF8();
 
     // Polygon 을 모두 삼각형 메시로 만들고 갯수를 세어준다..
     int nPC = mMesh.numPolygons();
@@ -588,7 +587,7 @@ bool CN3E2Wrapper::ProcessVMesh(MFnMesh & mMesh, CN3VMesh * pVMesh) {
         mMesh.getPolygonVertices(i, mVIs); // polygon 에 있는 점 Index
         if (mVIs.length() != 3) {
             char szErr[256];
-            wsprintf(szErr, "%s 는 삼각 폴리곤이 아닙니다.", mMesh.name().asChar());
+            wsprintf(szErr, "%s 는 삼각 폴리곤이 아닙니다.", mMesh.name().asUTF8());
             break;
         }
 
@@ -603,8 +602,7 @@ bool CN3E2Wrapper::ProcessVMesh(MFnMesh & mMesh, CN3VMesh * pVMesh) {
     // 이름 처리..
     pVMesh->m_szName = "";
     this->ProcessName(mTransform.object(), pVMesh->m_szName);
-    std::string szFN = pVMesh->m_szName + ".N3VMesh";
-    pVMesh->FileNameSet(szFN);
+    pVMesh->FilePathSet(pVMesh->m_szName + ".n3vmesh");
 
     return true;
 }
@@ -617,7 +615,7 @@ bool CN3E2Wrapper::ProcessSkin(MFnSkinCluster & mSkin, CN3Skin * pSkin) {
 
     int   nLI = 0;
     DWORD dwRWC = 0;
-    char  szInfo[1024] = "";
+    char  szInfo[1024]{};
 
     MObjectArray mMeshArray;
     mSkin.getOutputGeometry(mMeshArray);
@@ -637,7 +635,7 @@ bool CN3E2Wrapper::ProcessSkin(MFnSkinCluster & mSkin, CN3Skin * pSkin) {
     if (nGVC != nVC) {
         char       szWarning[256];
         MFnDagNode nodeTmp(mMeshOutput.parent(0));
-        wsprintf(szWarning, "Mesh - %s, Skin - %s", nodeTmp.name().asChar(), mSkin.name().asChar());
+        wsprintf(szWarning, "Mesh - %s, Skin - %s", nodeTmp.name().asUTF8(), mSkin.name().asUTF8());
         MessageBox(::GetActiveWindow(), szWarning, "Warning - Skin vertex count is different to mesh vertex count",
                    MB_OK);
     }
@@ -685,7 +683,7 @@ bool CN3E2Wrapper::ProcessSkin(MFnSkinCluster & mSkin, CN3Skin * pSkin) {
     if (iFind > 0) {
         pSkin->m_szName = pSkin->m_szName.substr(iFind + 1); // 언더바가 있으면 잘라준다..
     }
-    pSkin->FileNameSet("Item\\" + pSkin->m_szName + ".N3Skin"); // 파일 이름 결정..
+    pSkin->FilePathSet(fs::path("Item") / (pSkin->m_szName + ".n3skin")); // 파일 이름 결정..
 
     for (int i = 0; !mGIt.isDone(); mGIt.next(), i++) // 루프를 돌면서 컴포넌트(Geometry 의 한점...)을 처리한다.
     {
@@ -792,8 +790,8 @@ bool CN3E2Wrapper::ProcessShape(MFnMesh & mMesh) {
         pShape = new CN3Shape();
         this->ProcessTransform(mTG, pShape);
         pShape->m_szName = "";
-        this->ProcessName(mTG.object(), pShape->m_szName);               // 이름을 다시정하기.
-        pShape->FileNameSet("Object\\" + pShape->m_szName + ".N3Shape"); // 파일 이름 정하기..
+        this->ProcessName(mTG.object(), pShape->m_szName);                         // 이름을 다시정하기.
+        pShape->FilePathSet(fs::path("Object") / (pShape->m_szName + ".n3shape")); // 파일 이름 정하기..
 
         m_pScene->ShapeAdd(pShape);
 
@@ -816,7 +814,7 @@ bool CN3E2Wrapper::ProcessShape(MFnMesh & mMesh) {
     // 이름에 "collision" 이라는 문자열이 들어가면.. 충돌 메시다..
     std::string szTmp = IMesh.m_szName;
     if (szTmp.size()) {
-        CharLower(&(szTmp[0]));
+        n3std::to_lower(szTmp);
     }
     if (szTmp.find("coll") != -1 || szTmp.find("climb") != -1) {
         // 메시의 점위치를 피벗점에 대해 다시 계산.. Shape 의 로컬 좌표로 맞추어 준다..
@@ -826,8 +824,8 @@ bool CN3E2Wrapper::ProcessShape(MFnMesh & mMesh) {
         CN3VMesh * pVMesh = new CN3VMesh();
         szNodeFullName = "";
         this->ProcessName(mTM.object(), szNodeFullName);
-        pVMesh->m_szName = mTM.name().asChar();                        // 이름 다시 정하고..
-        pVMesh->FileNameSet("Object\\" + szNodeFullName + ".N3VMesh"); // 파일 이름 결정..
+        pVMesh->m_szName = mTM.name().asUTF8();                                  // 이름 다시 정하고..
+        pVMesh->FilePathSet(fs::path("Object") / (szNodeFullName + ".n3vmesh")); // 파일 이름 결정..
 
         pVMesh->CreateVertices(nFC * 3);
 
@@ -840,17 +838,17 @@ bool CN3E2Wrapper::ProcessShape(MFnMesh & mMesh) {
         }
         pShape->s_MngVMesh.Add(pVMesh);
         if (szTmp.find("coll") != -1) {
-            pShape->CollisionMeshSet(pVMesh->FileName());
+            pShape->CollisionMeshSet(pVMesh->FilePath());
         } else if (szTmp.find("climb") != -1) {
-            pShape->ClimbMeshSet(pVMesh->FileName());
+            pShape->ClimbMeshSet(pVMesh->FilePath());
         }
     } else // 충돌 메시가 아니면..
     {
         CN3SPart * pPD = pShape->PartAdd(); // Part 추가 해주고..
         szNodeFullName = "";
         this->ProcessName(mTM.object(), szNodeFullName);
-        pPD->m_szName = mTM.name().asChar(); // Part 이름 짓기..
-        pPD->FileNameSet("Object\\" + szNodeFullName + "N3CPart");
+        pPD->m_szName = mTM.name().asUTF8(); // Part 이름 짓기..
+        pPD->FilePathSet(fs::path("Object") / (szNodeFullName + ".n3cpart"));
 
         // 피벗점 계산
         MPoint mvPivot = mTM.rotatePivot(MSpace::kTransform);
@@ -883,18 +881,18 @@ bool CN3E2Wrapper::ProcessShape(MFnMesh & mMesh) {
         PMeshCreate.m_PMCOption.fWeight = 1.0f;         // 사라지는 삼각형 가중치 (중요도)
 
         CN3PMesh * pPMesh = PMeshCreate.CreateRendererMesh(); // Progressive Mesh 생성
-        pPMesh->m_szName = mTM.name().asChar();               // 걍 이름..
-        std::string szFN;
-        this->ProcessName(mTM.object(), szFN);
+        pPMesh->m_szName = mTM.name().asUTF8();               // 걍 이름..
+        std::string szFileName;
+        this->ProcessName(mTM.object(), szFileName);
 
-        int iLen = szFN.size();
+        int iLen = szFileName.size();
         if (m_Option.bGenerateFileName && iLen >= 11) { // Item Code ::: 0_2345_78_0
-            szFN = szFN.substr(iLen - 11);
+            szFileName = szFileName.substr(iLen - 11);
         }
-        pPMesh->FileNameSet("Object\\" + szFN + ".N3PMesh"); // 파일 이름 결정..
+        pPMesh->FilePathSet(fs::path("Object") / (szFileName + ".n3pmesh")); // 파일 이름 결정..
 
         pShape->s_MngPMesh.Add(pPMesh);   // Progressive Mesh Manager 에 추가..
-        pPD->MeshSet(pPMesh->FileName()); // Mesh 세팅..
+        pPD->MeshSet(pPMesh->FilePath()); // Mesh 세팅..
 
         ////////////////////////////////////////////////
         // 재질 및 텍스처 처리..
@@ -902,16 +900,11 @@ bool CN3E2Wrapper::ProcessShape(MFnMesh & mMesh) {
         pPD->m_Mtl.dwColorArg2 = D3DTA_TEXTURE;
 
         CN3Texture * pTex = this->ProcessTexture(mMesh);
-        if (pTex) // 텍스처가 쓰인 재질이면 재질은 기본적인 흰색.. 컬러 오퍼레이션은 Modulate
-        {
-            std::string szTFN = pTex->FileName(); // 파일 이름을 검사해서..
-            if (szTFN.size() > 0) {
-                CharLower(&(szTFN[0]));
-            }
-            if (-1 == szTFN.find("object\\")) // "Item\" 이라는 문자열이 없으면
-            {
-                szTFN = "Object\\" + pTex->FileName(); // Item 이라는 경로를 붙인다..
-                pTex->FileNameSet(szTFN);
+        if (pTex) { // 텍스처가 쓰인 재질이면 재질은 기본적인 흰색.. 컬러 오퍼레이션은 Modulate
+            fs::path fsTexFile = pTex->FilePath(); // 파일 이름을 검사해서..
+            if (!fsTexFile.contains("object")) {
+                fsTexFile = "Object" / pTex->FilePath();
+                pTex->FilePathSet(fsTexFile);
             }
 
             pPD->m_Mtl.dwColorOp = D3DTOP_MODULATE;
@@ -949,15 +942,15 @@ CN3Joint * CN3E2Wrapper::ProcessJoint(MFnIkJoint & mJoint) {
     //        MessageBox(::GetActiveWindow(), "NotSupported rotation order. Must kXYZ or kYXZ", "Joint export Warning", MB_OK);
     //    }
 
-    char szName[512];
+    fs::path fsJointFile;
     if (mJoint.parent(0).apiType() == MFn::kTransform) {
         MFnTransform mTJ(mJoint.parent(0));
-        wsprintf(szName, "Chr\\%s.N3Joint", mTJ.name().asChar()); // 파일 이름 정하기..
+        fsJointFile = fs::path("Chr") / std::format("{:s}.n3joint", mTJ.name().asUTF8()); // 파일 이름 정하기..
     } else {
-        wsprintf(szName, "Chr\\%s.N3Joint", mJoint.name().asChar()); // 파일 이름 정하기..
+        fsJointFile = fs::path("Chr") / std::format("{:s}.n3joint", mJoint.name().asUTF8()); // 파일 이름 정하기..
     }
 
-    pJoint->m_szName = mJoint.name().asChar(); // 이름짓기.. FullName 으로 짓지는 않는다..
+    pJoint->m_szName = mJoint.name().asUTF8(); // 이름짓기.. FullName 으로 짓지는 않는다..
 
     // 회전 축 값을 구한다..
     if (pJoint->m_KeyOrient.Count() <= 0) // Joint Orient Key 값이 없으면.. Rotation Key 값을 Orient 만큼 비튼다..
@@ -1159,7 +1152,7 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
     MString   szCommand = MString("getAttr ") + szTexture + MString(".outSize");
     MIntArray nWH;
     if (MGlobal::executeCommand(szCommand, nWH) != MS::kSuccess) {
-        wsprintf(szInfo, "텍스처 파일 처리 오류 : Surface - %s, Texture - %s", szSurface.asChar(), szTexture.asChar());
+        wsprintf(szInfo, "텍스처 파일 처리 오류 : Surface - %s, Texture - %s", szSurface.asUTF8(), szTexture.asUTF8());
         nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
         ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI, 0);          // Progress dialog
 
@@ -1169,7 +1162,7 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
     //    int nW = nWH[1], nH = nWH[0]; // 사이즈를 알아내고..
     //    if(nW < 4 || nH < 4)
     //    {
-    //        wsprintf(szInfo, "텍스처 파일 처리 오류 : 너비, 높이가 너무 작습니다. Surface - %s, Texture - %s", szSurface.asChar(), szTexture.asChar());
+    //        wsprintf(szInfo, "텍스처 파일 처리 오류 : 너비, 높이가 너무 작습니다. Surface - %s, Texture - %s", szSurface.asUTF8(), szTexture.asUTF8());
     //        nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
     //        ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
     //
@@ -1185,66 +1178,33 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
 
     ////////////////////////////////////////////
     // Texture List 에 등록되어 있는지 본다..
-    char szFNSrc[1024]; // 파일 이름을 정하고..
-    lstrcpy(szFNSrc, szFile.asChar());
-    int nFN = lstrlen(szFNSrc);
-    for (int i = 0; i < nFN; i++) {
-        if (szFNSrc[i] == '/') {
-            szFNSrc[i] = '\\';
-        }
-    }
-
-    // 문자열에  ":" 이 없으면 앞의 두글자가 '\\' 혹은 '//' 이 아니면 풀네임을 만들어야 한다.
-    if (!strstr(szFNSrc, ":") && !(szFNSrc[0] == '\\' && szFNSrc[1] == '\\')) {
+    fs::path fsSrcFile = szFile.asUTF8();
+    if (!fsSrcFile.is_absolute()) {
         MString szWorkSpace;
         MGlobal::executeCommand(MString("workspace -fullName"), szWorkSpace);
-        lstrcpy(szFNSrc, szWorkSpace.asChar());
-        lstrcat(szFNSrc, szFile.asChar());
-    }
-    // WorkSpace 이름을 가져오고..
-
-    char szFNDest[1024]; // 저장할 이름
-    lstrcpy(szFNDest, szFNSrc);
-    nFN = lstrlen(szFNDest);
-    for (int i = nFN - 1; i >= 0; i--) // 저장할 이름을 만든다..
-    {
-        if (szFNDest[i] == '.') {
-            szFNDest[i + 1] = 'D';
-            szFNDest[i + 2] = 'X';
-            szFNDest[i + 3] = 'T';
-            szFNDest[i + 4] = NULL;
-        }
-        if (szFNDest[i] == '\\' || szFNDest[i] == '/') {
-            lstrcpy(szFNDest, &szFNDest[i + 1]);
-            break;
-        }
+        fsSrcFile = fs::path(szWorkSpace.asUTF8()) / szFile.asUTF8();
     }
 
-    CN3Texture * pTex = NULL;
+    fs::path fsDstFile = fsSrcFile;
+    fsDstFile.replace_extension(".dxt");
 
-    static char szFNs[1024][256]; // 파일 이름이 중복되는지 체크...
+    // Use a hash set for fast duplicate checking
+    static std::unordered_set<fs::path> setCurFiles;
     if (m_pScene->s_MngTex.Count() <= 0) {
-        memset(szFNs, 0, sizeof(szFNs));
+        setCurFiles.clear();
     }
-    for (int i = 0; i < 1024; i++) {
-        if (NULL == szFNs[i][0]) {
-            break;
-        }
-        if (lstrcmpi(szFNDest, szFNs[i]) == 0) {
-            pTex = m_pScene->s_MngTex.Get(szFNDest);
-            return pTex;
-        }
+    if (setCurFiles.contains(fsDstFile)) {
+        return m_pScene->s_MngTex.Get(fsDstFile);
     }
+    setCurFiles.insert(fsDstFile);
 
-    lstrcpy(szFNs[i], szFNDest);
-    pTex = new CN3Texture();
-    if (pTex->LoadFromFile(szFNSrc)) // 파일을 읽고...
-    {
-        pTex->m_szName = szFNDest;   // 이름 정하기.. - 파일 이름으로 정한다.
-        pTex->FileNameSet(szFNDest); // 파일 이름 정하기.
-        CN3Base::s_MngTex.Add(pTex); // Manager 에 등록
+    CN3Texture * pTex = new CN3Texture();
+    if (pTex->LoadFromFile(fsSrcFile)) {
+        pTex->m_szName = fsDstFile;   // 이름 정하기.. - 파일 이름으로 정한다.
+        pTex->FilePathSet(fsDstFile); // 파일 이름 정하기.
+        CN3Base::s_MngTex.Add(pTex);  // Manager 에 등록
     } else {
-        wsprintf(szInfo, "텍스처 파일 처리 오류 : 파일을 읽을수 없습니다. - %s", szFNSrc);
+        wsprintf(szInfo, "텍스처 파일 처리 오류 : 파일을 읽을수 없습니다. - %s", fsSrcFile);
         nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
         ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI, 0);          // Progress dialog
 
@@ -1284,7 +1244,7 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
         Reader.getSize(nW2, nH2);
         if(nW != nW2 || nH != nH2)
         {
-            wsprintf(szInfo, "텍스처 파일 처리 오류 : 파일을 읽을수 없습니다. - %s", szFile.asChar());
+            wsprintf(szInfo, "텍스처 파일 처리 오류 : 파일을 읽을수 없습니다. - %s", szFile.asUTF8());
             nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
             ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
 
@@ -1296,8 +1256,8 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
     //    else
     //    {
     //        Reader.close();
-    //        DeleteFile(szFile.asChar()); // 파일 지우기..
-    //        wsprintf(szInfo, "텍스처 파일 처리 오류 : GrayScale Texture 는 차후에 지원 됩니다. Surface - %s, Texture - %s", szSurface.asChar(), szTexture.asChar());
+    //        fs::remove(szFile.asUTF8()); // 파일 지우기..
+    //        wsprintf(szInfo, "텍스처 파일 처리 오류 : GrayScale Texture 는 차후에 지원 됩니다. Surface - %s, Texture - %s", szSurface.asUTF8(), szTexture.asUTF8());
     //        ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
     //        ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
     //        return false;
@@ -1350,7 +1310,7 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
         if(pTex->Get() == NULL)
         {
             wsprintf(szInfo, "### !!! Texture Export 실패(%.3d) : w,h,w2,h2(%.4d, %.4d, %.4d, %.4d) FileName : \"%s\" TextureName \"%s\" MeshName - \"%s\"",
-                m_pScene->s_MngTex.Count(), pTex->Width(), pTex->Height(), nW, nH, szFile.asChar(), pTex->m_szName.c_str(), mMesh.name().asChar());
+                m_pScene->s_MngTex.Count(), pTex->Width(), pTex->Height(), nW, nH, szFile.asUTF8(), pTex->m_szName.c_str(), mMesh.name().asUTF8());
             nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
             ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
 
@@ -1362,7 +1322,7 @@ CN3Texture * CN3E2Wrapper::ProcessTexture(MFnMesh & mMesh) {
 
     // Output Window 에 텍스처 출력..
     wsprintf(szInfo, "### Texture Export (%.3d) : w,h,w2,h2(%.4d, %.4d, %.4d, %.4d) FileName : \"%s\" TextureName \"%s\" MeshName - \"%s\"",
-        m_pScene->s_MngTex.Count(), pTex->Width(), pTex->Height(), nW, nH, szFile.asChar(), pTex->m_szName.c_str(), mMesh.name().asChar());
+        m_pScene->s_MngTex.Count(), pTex->Width(), pTex->Height(), nW, nH, szFile.asUTF8(), pTex->m_szName.c_str(), mMesh.name().asUTF8());
     nLI = ::SendMessage(m_hWndLB, LB_ADDSTRING, 0, (LPARAM)szInfo); // Progress dialog
     ::SendMessage(m_hWndLB, LB_SETCURSEL, (WPARAM)nLI,0); // Progress dialog
 */
@@ -1445,7 +1405,7 @@ int CN3E2Wrapper::ProcessTransform(MFnTransform & mTransform, CN3Transform * pTr
     if (NULL == pTransform) {
         return -1;
     }
-    pTransform->m_szName = mTransform.name().asChar(); // 이름 짓기....
+    pTransform->m_szName = mTransform.name().asUTF8(); // 이름 짓기....
 
     __Vector3    vPos, vScale;
     __Quaternion qtRot;
@@ -1484,12 +1444,12 @@ int CN3E2Wrapper::ProcessTransform(MFnTransform & mTransform, CN3Transform * pTr
 
     int  nAK = mAKs.length();
     int  nKType = -1, nT = 0, nR = 0, nS = 0;
-    char szTmp[512];
+    char szTmp[512]{};
     for (int i = 0; i < nAK; i++) {
         MFnAnimCurve mAC(mAKs[i]);
 
-        lstrcpy(szTmp, mAC.name().asChar()); // 일단 이름으로 비교해보고.....
-        CharLower(szTmp);
+        lstrcpy(szTmp, mAC.name().asUTF8()); // 일단 이름으로 비교해보고.....
+        n3std::to_lower(szTmp);
 
         if (NULL != strstr(szTmp, "translatex")) // 카메라의 경우에는 translate 값이 두개가 들어온다..
         {
@@ -1544,7 +1504,7 @@ int CN3E2Wrapper::ProcessTransform(MFnTransform & mTransform, CN3Transform * pTr
             //            else if(dwID == 0x50435455) { nKType = 6 + nS; nS++; } // Scale
             //            else nKType = -1;
 
-            lstrcpy(szTmp, mAC.typeName().asChar());
+            lstrcpy(szTmp, mAC.typeName().asUTF8());
             if (NULL != strstr(szTmp, "animCurveTL")) {
                 nKType = 0 + nT;
                 nT++;
@@ -1605,7 +1565,7 @@ int CN3E2Wrapper::ProcessTransform(MFnTransform & mTransform, CN3Transform * pTr
         if (nKs[0] > 0 || nKs[1] > 0 || nKs[2] > 0) {
             if (nKs[0] <= 0 || nKs[1] <= 0 || nKs[2] <= 0) {
                 wsprintf(szInfo, "Transform %s : All Animation Key must have at least over 1 Key value.",
-                         mTransform.name().asChar());
+                         mTransform.name().asUTF8());
                 MessageBox(::GetActiveWindow(), szInfo, "Invalid Animation Key", MB_OK);
             } else {
                 //                if(i == 0) this->ProcessAnimKey(mACs[i], &pTransform->m_KeyPos, true, 0.01f, false); // Translation Animation Key 를 처리한다..
@@ -1822,14 +1782,14 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
     }
 
     // 중복되는지 찾아본다..
-    std::string szJointFN;
+    fs::path szJointFile;
     if (mJointRoot.parentCount() > 0 && mJointRoot.parent(0).hasFn(MFn::kTransform)) {
         MFnTransform mP1(mJointRoot.parent(0));
-        szJointFN = "";
-        this->ProcessName(mP1.parent(0), szJointFN); // 뼈의 이름을 알아보고..
-        szJointFN = "Chr\\" + szJointFN + ".N3Joint";
+        std::string  szJointFileName;
+        this->ProcessName(mP1.parent(0), szJointFileName); // 뼈의 이름을 알아보고..
+        szJointFile = fs::path("Chr") / (szJointFileName + ".n3joint");
     } else {
-        szJointFN = mJointRoot.name().asChar(); // 뼈의 이름을 알아보고..
+        szJointFile = mJointRoot.name().asUTF8(); // 뼈의 이름을 알아보고..
     }
 
     static std::string szJointFNs[512]; // 중복되는지 체크...
@@ -1844,7 +1804,7 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
         if (szJointFNs[i].size() <= 0) {
             break;
         }
-        if (szJointFN == szJointFNs[i]) {
+        if (szJointFile == szJointFNs[i]) {
             bOverlapped = true;
             break;
         }
@@ -1855,7 +1815,7 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
 
     if (false == bOverlapped) // 중복되지 않는다면..새로 만든다..
     {
-        szJointFNs[i] = szJointFN; // 조인트 이름을 기록하고..
+        szJointFNs[i] = szJointFile; // 조인트 이름을 기록하고..
 
         pChr = new CN3Chr();
         m_pScene->ChrAdd(pChr); // Scene 에 캐릭터 추가..
@@ -1869,17 +1829,14 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
                 } else {
                     this->ProcessName(mP1.parent(0), pChr->m_szName); // 이름 짓기....
                 }
-                pChr->FileNameSet("Chr\\" + pChr->m_szName + ".N3Chr"); // 파일 이름 결정..
+                pChr->FilePathSet(fs::path("Chr") / (pChr->m_szName + ".n3chr")); // 파일 이름 결정..
             } else {
-                this->ProcessName(mJointRoot.parent(0), pChr->m_szName); // 이름 짓기....
-                pChr->FileNameSet("Chr\\" + pChr->m_szName + ".N3Chr");  // 파일 이름 결정..);
+                this->ProcessName(mJointRoot.parent(0), pChr->m_szName);          // 이름 짓기....
+                pChr->FilePathSet(fs::path("Chr") / (pChr->m_szName + ".n3chr")); // 파일 이름 결정..);
             }
         } else {
-            pChr->m_szName = mJointRoot.name().asChar();
-            std::string szFN = "Chr\\";
-            szFN += mJointRoot.name().asChar();
-            szFN += ".N3Chr"; // 파일 이름 결정..
-            pChr->FileNameSet(szFN);
+            pChr->m_szName = mJointRoot.name().asUTF8();
+            pChr->FilePathSet(fs::path("Chr") / std::format("{:s}.n3chr", mJointRoot.name().asUTF8()));
         }
 
         pJoint = this->ProcessJoint(mJointRoot); // Joint 처리
@@ -1887,10 +1844,10 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
             delete pChr;
             return NULL;
         }
-        pJoint->FileNameSet(szJointFN); // 파일 이름 설정..
+        pJoint->FilePathSet(szJointFile); // 파일 이름 설정..
 
         pChr->s_MngJoint.Add(pJoint);
-        pChr->JointSet(pJoint->FileName()); // Joint Setting;
+        pChr->JointSet(pJoint->FilePath()); // Joint Setting;
 
         ///////////////////////////////////////////////////////////////////////
         // Joint 가 그룹 되어 있다면 Parent Transform 처리..
@@ -1937,7 +1894,7 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
             }
         }
     } else {
-        pJoint = m_pScene->s_MngJoint.Get(szJointFN);
+        pJoint = m_pScene->s_MngJoint.Get(szJointFile);
 
         int nChrCount = m_pScene->ChrCount(); // 같은 조인트 포인터를 갖는 캐릭터 포인터를 찾는다..
         for (int i = 0; i < nChrCount; i++) {
@@ -1975,9 +1932,9 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
     }
 
     // 충돌 체크용으로 쓰일 메시인지 살펴본다..
-    std::string szFNM = mMT.name().asChar();
-    if (szFNM.size() > 0) {
-        CharLower(&(szFNM[0]));
+    std::string szFNM = mMT.name().asUTF8();
+    if (!szFNM.empty()) {
+        n3std::to_lower(szFNM);
     }
     if (szFNM.find("coll") != -1) {
         bCollisionMesh = true;
@@ -2005,8 +1962,7 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
 
         pVMesh->m_szName = "";
         this->ProcessName(mMeshOrg.object(), pVMesh);
-        std::string szFN = "Chr\\" + pVMesh->m_szName + ".N3VMesh"; // 파일 이름 결정..
-        pVMesh->FileNameSet(szFN);
+        pVMesh->FilePathSet(fs::path("Chr") / (pVMesh->m_szName + ".n3vmesh"));
 
         pChr->s_MngVMesh.Add(pVMesh);
         pChr->CollisionMeshSet(pVMesh->m_szName);
@@ -2070,40 +2026,40 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
 
         if (pPart->m_szName.empty()) // 파트의 이름이 없으면..
         {
-            pPart->m_szName = mGT.name().asChar();
-            std::string szFN;
-            this->ProcessName(mGT.object(), szFN);
+            pPart->m_szName = mGT.name().asUTF8();
+            std::string szFileName;
+            this->ProcessName(mGT.object(), szFileName);
 
-            int iLen = szFN.size();
+            int iLen = szFileName.size();
             int iLen2 = pPart->m_szName.size();
             if (m_Option.bGenerateFileName && iLen >= 11 && iLen2 >= 11) { // Item Code ::: 0_2345_78_0
-                szFN = szFN.substr(iLen - 11);
+                szFileName = szFileName.substr(iLen - 11);
             }
-            pPart->FileNameSet("item\\" + szFN + ".N3CPart");
+            pPart->FilePathSet(fs::path("Item") / (szFileName + ".n3cpart"));
         }
 
         if (NULL == pSkin) // Skin 이 없으면 넣는다..
         {
             CN3CPartSkins * pSkinsAdd = new CN3CPartSkins();
-            pSkinsAdd->m_szName = mGT.name().asChar(); // 이름과 파일 이름을 정하고..
-            std::string szFN;
-            this->ProcessName(mGT.object(), szFN);
+            pSkinsAdd->m_szName = mGT.name().asUTF8(); // 이름과 파일 이름을 정하고..
+            std::string szFileName;
+            this->ProcessName(mGT.object(), szFileName);
 
-            int iLen = szFN.size();
+            int iLen = szFileName.size();
             int iLen2 = pSkinsAdd->m_szName.size();
             if (m_Option.bGenerateFileName && iLen >= 11 && iLen2 >= 11) { // Item Code ::: 0_2345_78_0
-                szFN = szFN.substr(iLen - 11);
+                szFileName = szFileName.substr(iLen - 11);
             }
-            pSkinsAdd->FileNameSet("item\\" + szFN + ".N3CSkins");
+            pSkinsAdd->FilePathSet(fs::path("Item") / (szFileName + ".n3cskins"));
 
             CN3Base::s_MngSkins.Add(pSkinsAdd);
-            pPart->SkinsSet(pSkinsAdd->FileName());
+            pPart->SkinsSet(pSkinsAdd->FilePath());
             pSkin = pPart->Skin(nLOD); // 다시 포인터 구하기.
         }
 
         if (false == this->ProcessSkin(mSkin, pSkin)) // Skin 처리..
         {
-            MessageBox(::GetActiveWindow(), mSkin.name().asChar(), "Skin processing failed", MB_OK);
+            MessageBox(::GetActiveWindow(), mSkin.name().asUTF8(), "Skin processing failed", MB_OK);
             return false;
         }
 
@@ -2114,15 +2070,15 @@ bool CN3E2Wrapper::ProcessChr(MFnSkinCluster & mSkin) {
 
         CN3Texture * pTex = ProcessTexture(mMeshOutput);
         if (pTex) {
-            pTex->m_szName = mGT.name().asChar(); // 이름과 파일 이름을 정하고..
-            std::string szFN;
-            this->ProcessName(mGT.object(), szFN);
-            int iLen = szFN.size();
+            pTex->m_szName = mGT.name().asUTF8(); // 이름과 파일 이름을 정하고..
+            std::string szFileName;
+            this->ProcessName(mGT.object(), szFileName);
+            int iLen = szFileName.size();
             int iLen2 = pTex->m_szName.size();
             if (m_Option.bGenerateFileName && iLen >= 11 && iLen2 >= 11) { // Item Code ::: 0_2345_78_0
-                szFN = szFN.substr(iLen - 11);
+                szFileName = szFileName.substr(iLen - 11);
             }
-            pTex->FileNameSet("Item\\" + szFN + ".DXT"); // Part 이름과 Texture 이름을 같게 한다.
+            pTex->FilePathSet(fs::path("Item") / (szFileName + ".dxt")); // Part 이름과 Texture 이름을 같게 한다.
 
             pPart->m_Mtl.dwColorOp = D3DTOP_MODULATE;
             pPart->TexSet(pTex);
@@ -2148,7 +2104,7 @@ void CN3E2Wrapper::ProcessName(MObject mObj, std::string & szName) {
         MFnDependencyNode mNode(mObj);
 
         std::string szNameBack = szName;
-        szName = mNode.name().asChar();
+        szName = mNode.name().asUTF8();
         if (szNameBack.size() > 0) {
             szName += '_';
             szName += szNameBack;
@@ -2201,7 +2157,7 @@ void CN3E2Wrapper::GetWorldTransform(MFnTransform & mTransform, MMatrix & mMtx) 
 bool CN3E2Wrapper::IsSelected(MSelectionList & mSelList, MObject mObj) {
     if (mObj.hasFn(MFn::kDependencyNode)) {
         MFnDependencyNode mDag(mObj);
-        const char *      szName = mDag.name().asChar();
+        const char *      szName = mDag.name().asUTF8();
         int               ttttt = 0;
     }
 

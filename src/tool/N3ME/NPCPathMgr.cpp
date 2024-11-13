@@ -108,7 +108,7 @@ CNPCPathMgr::~CNPCPathMgr() {
 //
 //    FileName은 경로명 하나도 안들어간 순수한 파일이름과 확장자..
 //
-void CNPCPathMgr::LoadFromFile(const char * FileName) {
+void CNPCPathMgr::LoadFromFile(const fs::path & fsFileStem) {
     if (m_pCurrPath) {
         delete m_pCurrPath;
         m_pCurrPath = NULL;
@@ -120,11 +120,10 @@ void CNPCPathMgr::LoadFromFile(const char * FileName) {
         delete (*itPath);
     }
 
-    char szNPCPathFileName[_MAX_PATH];
-    wsprintf(szNPCPathFileName, "%snpcpath\\%s.npi", CN3Base::PathGet().c_str(), FileName);
+    fs::path fsFile = CN3Base::PathGet() / "npcpath" / (fsFileStem + ".npi");
+    HANDLE   hFile = CreateFileW(fsFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
-    DWORD  dwRWC;
-    HANDLE hFile = CreateFile(szNPCPathFileName, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    DWORD dwRWC;
 
     int NumPath;
     ReadFile(hFile, &NumPath, sizeof(int), &dwRWC, NULL);
@@ -139,19 +138,17 @@ void CNPCPathMgr::LoadFromFile(const char * FileName) {
     CloseHandle(hFile);
 }
 
-void CNPCPathMgr::SaveToFile(const char * FileName) {
-    char szOldPath[_MAX_PATH];
-    GetCurrentDirectory(_MAX_PATH, szOldPath);
-    SetCurrentDirectory(CN3Base::PathGet().c_str());
+void CNPCPathMgr::SaveToFile(const fs::path & fsFileStem) {
+    fs::path fsCurDirPrev = fs::current_path();
+    fs::current_path(CN3Base::PathGet());
+    fs::path fsDir("npcpath");
+    fs::create_directory(fsDir);
 
-    CreateDirectory("npcpath", NULL); // 경로 만들고..
-    char szNPCPathFileName[_MAX_PATH];
-    wsprintf(szNPCPathFileName, "%snpcpath\\%s.npi", CN3Base::PathGet().c_str(), FileName);
+    fs::path fsFile = CN3Base::PathGet() / fsDir / (fsFileStem + ".npi");
+    HANDLE   hFile = CreateFileW(fsFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
-    DWORD  dwRWC;
-    HANDLE hFile = CreateFile(szNPCPathFileName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-
-    int NumPath = m_pPaths.size();
+    DWORD dwRWC;
+    int   NumPath = m_pPaths.size();
     WriteFile(hFile, &NumPath, sizeof(int), &dwRWC, NULL);
 
     std::list<CNPCPath *>::iterator itPath;
@@ -162,12 +159,12 @@ void CNPCPathMgr::SaveToFile(const char * FileName) {
         pPath->Save(hFile);
     }
     CloseHandle(hFile);
-    SetCurrentDirectory(szOldPath);
+    fs::current_path(fsCurDirPrev);
 }
 
-void CNPCPathMgr::MakeServerDataFile(const char * FullFileName) {
+void CNPCPathMgr::MakeServerDataFile(const fs::path & fsFile) {
     // text 파일 버전...
-    FILE * stream = fopen(FullFileName, "w");
+    FILE * stream = _wfopen(fsFile.c_str(), L"w");
     if (!stream) {
         return;
     }

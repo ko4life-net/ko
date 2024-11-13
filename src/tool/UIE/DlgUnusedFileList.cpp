@@ -43,24 +43,26 @@ void CDlgUnusedFileList::OnBDeleteSelect() {
         return;
     }
 
-    int * piSels = new int[iSC];
-    m_ListFiles.GetSelItems(iSC, piSels);
-    for (int i = 0; i < iSC; i++) {
-        CString szPath;
-        m_ListFiles.GetText(piSels[i], szPath);
-        ::DeleteFile(szPath);
+    if (IDYES != MessageBox("Would you like to erase it?", "Check", MB_YESNO)) {
+        return;
     }
-    delete piSels;
+
+    std::vector<int> vSels(iSC);
+    m_ListFiles.GetSelItems(iSC, vSels.data());
+
+    for (const auto & iSelIndex : vSels) {
+        CString szFile;
+        m_ListFiles.GetText(iSelIndex, szFile);
+        fs::remove(szFile.GetString());
+    }
 }
 
 BOOL CDlgUnusedFileList::OnInitDialog() {
     CDialog::OnInitDialog();
 
-    int iFC = m_szFileNames.GetSize();
-    for (int i = 0; i < iFC; i++) {
-        m_ListFiles.AddString(m_szFileNames[i]);
+    for (const auto & fsFile : m_vFiles) {
+        m_ListFiles.AddString(CString(fsFile.c_str()));
     }
 
-    return TRUE; // return TRUE unless you set the focus to a control
-                 // EXCEPTION: OCX Property Pages should return FALSE
+    return TRUE;
 }

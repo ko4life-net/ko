@@ -23,10 +23,10 @@ class CEventMgr : public CN3Base {
 
   public:
     bool MakeGameFile(HANDLE hFile, int iSize);
-    bool MakeGameFile(char * szEventName, int iSize);
-    void LoadFromFile(const char * RealFileName);
-    void SaveToFile(const char * RealFileName);
-    void SaveInfoTextFile(char * szEvent);
+    bool MakeGameFile(const fs::path & fsFile, int iSize);
+    void LoadFromFile(const fs::path & fsFileName);
+    void SaveToFile(const fs::path & fsFileName);
+    void SaveInfoTextFile(const fs::path & fsFile);
     void MakeEventArray();
     void DelEvent(CEventCell * pEvent);
     void SetCurrEvent(CEventCell * pEvent);

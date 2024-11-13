@@ -121,7 +121,7 @@ class CN3Terrain : public CN3BaseFileAccess {
     bool         GetTileTexInfo(float x, float z, TERRAINTILETEXINFO & TexInfo1, TERRAINTILETEXINFO & TexInfo2);
     CN3Texture * GetTileTex(int x, int z);
     MAPDATA      GetMapData(int x, int z);
-    bool         LoadColorMap(const std::string & szFN);
+    bool         LoadColorMap(const fs::path & fsFile);
     void         GetNormal(float x, float z, __Vector3 & vNormal);
     bool         IsInTerrain(float x, float z);
     //..

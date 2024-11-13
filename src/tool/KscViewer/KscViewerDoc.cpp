@@ -48,7 +48,7 @@ BOOL CKscViewerDoc::OnNewDocument() {
         m_pJpegFile->Release();
     }
 
-    m_szKscPath.Empty();
+    m_fsKscFile.clear();
 
     return TRUE;
 }
@@ -81,24 +81,22 @@ void CKscViewerDoc::Dump(CDumpContext & dc) const {
 // CKscViewerDoc commands
 
 BOOL CKscViewerDoc::OnOpenDocument(LPCTSTR lpszPathName) {
-    //    if (!CDocument::OnOpenDocument(lpszPathName))
-    //        return FALSE;
+    fs::path fsFile = lpszPathName;
+    //if (!CDocument::OnOpenDocument(lpszPathName)) {
+    //    return FALSE;
+    //}
     if (m_pJpegFile == NULL) {
         return FALSE;
     }
 
-    char * szExt = NULL;
-    int    nLen = strlen(lpszPathName);
-
-    szExt = (char *)lpszPathName + nLen - 3;
-
-    if (0 == lstrcmpi(szExt, "ksc")) {
-        if (m_pJpegFile->DecryptJPEG(lpszPathName)) {
-            m_szKscPath = lpszPathName;
+    fs::path fsExt = fsFile.extension();
+    if (n3std::iequals(fsExt, ".ksc")) {
+        if (m_pJpegFile->DecryptJPEG(fsFile)) {
+            m_fsKscFile = fsFile;
         }
-    } else if (0 == lstrcmpi(szExt, "jpg")) {
-        if (m_pJpegFile->LoadJpegFile(lpszPathName)) {
-            m_szKscPath = lpszPathName;
+    } else if (n3std::iequals(fsExt, ".jpg")) {
+        if (m_pJpegFile->LoadJpegFile(fsFile)) {
+            m_fsKscFile = fsFile;
         }
     }
 
@@ -111,63 +109,51 @@ CN3JpegFile * CKscViewerDoc::GetJpegFile() {
 }
 
 BOOL CKscViewerDoc::OnSaveDocument(LPCTSTR lpszPathName) {
-    if (m_pJpegFile == NULL) {
+    if (!m_pJpegFile) {
         return FALSE;
     }
-    if (m_szKscPath.IsEmpty()) {
+    if (m_fsKscFile.empty()) {
+        return FALSE;
+    }
+    if (!n3std::iequals(m_fsKscFile.extension(), ".ksc")) {
         return FALSE;
     }
 
-    CString szTemp = m_szKscPath.Right(3);
-    if (szTemp.CompareNoCase("ksc") != 0) {
-        return FALSE;
-    }
-
-    m_pJpegFile->SaveFromDecryptToJpeg(m_szKscPath.GetBuffer(m_szKscPath.GetLength()), lpszPathName);
-
-    return TRUE;
+    return m_pJpegFile->SaveFromDecryptToJpeg(m_fsKscFile, lpszPathName);
 }
 
 void CKscViewerDoc::OnFileSave() {
     AfxGetApp()->DoWaitCursor(1);
 
-    CString fileName = m_szKscPath.Left(m_szKscPath.GetLength() - 3);
-    fileName += "jpg";
-
-    OnSaveDocument(fileName);
+    fs::path fsJpgFile = fs::path(m_fsKscFile).replace_extension(".jpg");
+    OnSaveDocument(fsJpgFile.string().c_str());
     AfxGetApp()->DoWaitCursor(-1);
 }
 
 void CKscViewerDoc::OnFileSaveAs() {
-    if (m_szKscPath.IsEmpty()) {
+    if (m_fsKscFile.empty()) {
         return;
     }
-    CString szTemp = m_szKscPath.Right(3);
-    if (szTemp.CompareNoCase("ksc") != 0) {
+    if (!n3std::iequals(m_fsKscFile.extension(), ".ksc")) {
         return;
     }
 
-    szTemp = m_szKscPath.Right(m_szKscPath.GetLength() - (m_szKscPath.ReverseFind('\\') + 1));
-    szTemp = szTemp.Left(szTemp.GetLength() - 3) + "jpg";
-
-    CString fileName;
-    CString filt = "Jpeg File (*.jpg)|*.jpg||";
+    fs::path fsFile = m_fsKscFile.stem() + ".jpg";
+    CString  szFile = fsFile.c_str();
+    CString  szFilter = "Jpeg File (*.jpg)|*.jpg||";
 
     // OPENFILENAME - so i can get to its Help page easily
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
-    CFileDialog fileDlg(FALSE, szTemp, szTemp, dwFlags, filt);
+    CFileDialog fileDlg(FALSE, szFile, szFile, dwFlags, szFilter);
 
-    CString initial_dir;
-    GetCurrentDirectory(MAX_PATH, initial_dir.GetBuffer(MAX_PATH));
-    fileDlg.m_ofn.lpstrInitialDir = (LPCTSTR)initial_dir;
+    std::string szCurDir = fs::current_path().string();
+    fileDlg.m_ofn.lpstrInitialDir = szCurDir.c_str();
     fileDlg.m_ofn.Flags |= OFN_FILEMUSTEXIST;
 
     if (fileDlg.DoModal() == IDOK) {
         AfxGetApp()->DoWaitCursor(1);
 
-        fileName = fileDlg.GetPathName();
-
-        OnSaveDocument(fileName);
+        OnSaveDocument(fileDlg.GetPathName());
         AfxGetApp()->DoWaitCursor(-1);
     }
 }

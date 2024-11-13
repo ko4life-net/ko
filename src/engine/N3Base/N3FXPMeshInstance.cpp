@@ -29,7 +29,7 @@ CN3FXPMeshInstance::CN3FXPMeshInstance(CN3FXPMesh * pN3FXPMesh) {
     CN3FXPMeshInstance::Create(pN3FXPMesh);
 }
 
-CN3FXPMeshInstance::CN3FXPMeshInstance(const std::string & szFN) {
+CN3FXPMeshInstance::CN3FXPMeshInstance(const fs::path & fsFile) {
     m_pFXPMesh = NULL;
     m_pIndices = NULL;
     m_pColorVertices = NULL;
@@ -37,7 +37,7 @@ CN3FXPMeshInstance::CN3FXPMeshInstance(const std::string & szFN) {
     m_iNumIndices = 0;
     m_pCollapseUpTo = NULL;
 
-    this->Create(szFN);
+    this->Create(fsFile);
 }
 
 CN3FXPMeshInstance::~CN3FXPMeshInstance() {
@@ -118,13 +118,13 @@ bool CN3FXPMeshInstance::Create(CN3FXPMesh * pN3FXPMesh) {
     return true;
 }
 
-bool CN3FXPMeshInstance::Create(const std::string & szFN) {
-    if (m_pFXPMesh && m_pFXPMesh->FileName() == szFN) {
+bool CN3FXPMeshInstance::Create(const fs::path & fsFile) {
+    if (m_pFXPMesh && m_pFXPMesh->FilePath() == fsFile) {
         return true; // 파일 이름이 같으면 새로 만들지 않고 리턴하자
     }
     this->Release();
 
-    CN3FXPMesh * pN3FXPMesh = s_MngFXPMesh.Get(szFN);
+    CN3FXPMesh * pN3FXPMesh = s_MngFXPMesh.Get(fsFile);
     return this->Create(pN3FXPMesh);
 }
 

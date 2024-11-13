@@ -657,16 +657,15 @@ bool CN3UIEdit::Load(HANDLE hFile) {
     }
 
     // 이전 uif파일을 컨버팅 하려면 사운드 로드 하는 부분 막기
-    int   iSndFNLen = 0;
     DWORD dwNum;
 
+    int iSndFNLen = 0;
     ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //    사운드 파일 문자열 길이
     if (iSndFNLen > 0) {
-        std::vector<char> buffer(iSndFNLen, 0);
-        ReadFile(hFile, &buffer[0], iSndFNLen, &dwNum, NULL);
-
+        std::string szFile(iSndFNLen, '\0');
+        ReadFile(hFile, szFile.data(), iSndFNLen, &dwNum, NULL);
         __ASSERT(NULL == m_pSnd_Typing, "memory leak");
-        m_pSnd_Typing = s_SndMgr.CreateObj(std::string(buffer.begin(), buffer.end()), SNDTYPE_2D);
+        m_pSnd_Typing = s_SndMgr.CreateObj(szFile, SNDTYPE_2D);
     }
 
     return true;
@@ -675,7 +674,7 @@ bool CN3UIEdit::Load(HANDLE hFile) {
 #ifdef _N3TOOL
 void CN3UIEdit::operator=(const CN3UIEdit & other) {
     CN3UIStatic::operator=(other);
-    SetSndTyping(other.GetSndFName_Typing());
+    SetSndTyping(other.GetSndFileTyping());
 }
 
 bool CN3UIEdit::Save(HANDLE hFile) {
@@ -685,36 +684,36 @@ bool CN3UIEdit::Save(HANDLE hFile) {
 
     DWORD dwNum;
 
-    int iSndFNLen = 0;
+    std::string szFile;
+    int         iLen = 0;
     if (m_pSnd_Typing) {
-        iSndFNLen = m_pSnd_Typing->m_szFileName.size();
+        szFile = fs::path(m_pSnd_Typing->m_fsFile).normalize('/', '\\').string();
+        iLen = szFile.length();
     }
-    WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //    사운드 파일 문자열 길이
-    if (iSndFNLen > 0) {
-        WriteFile(hFile, m_pSnd_Typing->m_szFileName.c_str(), iSndFNLen, &dwNum, NULL);
+    WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL); //    사운드 파일 문자열 길이
+    if (iLen > 0) {
+        WriteFile(hFile, szFile.c_str(), iLen, &dwNum, NULL);
     }
 
     return true;
 }
 
-void CN3UIEdit::SetSndTyping(const std::string & strFileName) {
+void CN3UIEdit::SetSndTyping(const fs::path & fsFile) {
     CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_Typing);
-    if (0 == strFileName.size()) {
+    fs::path fsFileRel = CN3BaseFileAccess::ToRelative(fsFile);
+    if (fsFileRel.empty()) {
         return;
     }
 
-    CN3BaseFileAccess tmpBase;
-    tmpBase.FileNameSet(strFileName); // Base경로에 대해서 상대적 경로를 넘겨준다.
-
-    SetCurrentDirectory(CN3Base::PathGet().c_str());
-    m_pSnd_Typing = s_SndMgr.CreateObj(tmpBase.FileName(), SNDTYPE_2D);
+    fs::current_path(CN3Base::PathGet());
+    m_pSnd_Typing = s_SndMgr.CreateObj(fsFileRel, SNDTYPE_2D);
 }
 
-std::string CN3UIEdit::GetSndFName_Typing() const {
+fs::path CN3UIEdit::GetSndFileTyping() const {
     if (m_pSnd_Typing) {
-        return m_pSnd_Typing->m_szFileName;
+        return m_pSnd_Typing->m_fsFile;
     } else {
-        return std::string("");
+        return fs::path();
     }
 }
 #endif

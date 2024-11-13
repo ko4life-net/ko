@@ -42,7 +42,7 @@ class CWaveFile {
     CWaveFile();
     ~CWaveFile();
 
-    HRESULT Open(LPCSTR strFileName, WAVEFORMATEX * pwfx, DWORD dwFlags);
+    HRESULT Open(const fs::path & fsFile, WAVEFORMATEX * pwfx, DWORD dwFlags);
     HRESULT OpenFromMemory(BYTE * pbData, ULONG ulDataSize, WAVEFORMATEX * pwfx, DWORD dwFlags);
     HRESULT Close();
 
