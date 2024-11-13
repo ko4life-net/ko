@@ -291,10 +291,9 @@ void CN3River2::Init(const std::string & TexPath) {
         return;
     }
 
-    char szFileName[30];
     for (int i = 0; i < MAX_RIVER_TEX; i++) {
-        sprintf(szFileName, "misc\\river\\caust%02d.dxt", i);
-        m_pTexRiver[i] = s_MngTex.Get(szFileName);
+        fs::path fsTexFile = fs::path("Misc") / "river" / std::format("caust{:02d}.dxt", i);
+        m_pTexRiver[i] = s_MngTex.Get(fsTexFile.string());
         __ASSERT(m_pTexRiver[i], "CN3River2::texture load failed");
     }
     m_pTexWave = s_MngTex.Get(TexPath);
