@@ -130,6 +130,14 @@ BOOL CN3TexViewerDoc::OnOpenDocument(LPCTSTR lpszPathName) {
     szFileName += szExt;
 
     this->SetTitle(szFileName);
+
+    // Update status bar with the currently opened file path
+    CFrameWnd * pFrm = (CFrameWnd *)AfxGetMainWnd();
+    ASSERT(pFrm);
+    CStatusBar * pSB = (CStatusBar *)pFrm->GetMessageBar();
+    ASSERT(pSB);
+    pSB->SetPaneText(0, lpszPathName);
+
     this->UpdateAllViews(NULL);
 
     return TRUE;
