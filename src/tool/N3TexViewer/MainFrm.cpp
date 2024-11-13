@@ -521,7 +521,7 @@ void CMainFrame::OnFileOpenNext() {
     if (pDoc) {
         pDoc->OpenNextFile();
     }
-    AdjustWindowSize();
+    //AdjustWindowSize();
 }
 
 void CMainFrame::OnFileOpenPrev() {
@@ -529,7 +529,7 @@ void CMainFrame::OnFileOpenPrev() {
     if (pDoc) {
         pDoc->OpenPrevFile();
     }
-    AdjustWindowSize();
+    //AdjustWindowSize();
 }
 
 void CMainFrame::OnFileOpenFirst() {
@@ -537,7 +537,7 @@ void CMainFrame::OnFileOpenFirst() {
     if (pDoc) {
         pDoc->OpenFirstFile();
     }
-    AdjustWindowSize();
+    //AdjustWindowSize();
 }
 
 void CMainFrame::OnFileOpenLast() {
@@ -545,7 +545,7 @@ void CMainFrame::OnFileOpenLast() {
     if (pDoc) {
         pDoc->OpenLastFile();
     }
-    AdjustWindowSize();
+    //AdjustWindowSize();
 }
 
 void CMainFrame::OnToolSaveRepeat() {
