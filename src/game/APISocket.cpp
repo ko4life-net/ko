@@ -126,54 +126,58 @@ void CAPISocket::Release() {
 
     // 통계를 써준다..
 #ifdef _DEBUG
-    /*    DWORD dwRWC = 0;
-    char szFN1[256] = "", szFN2[256] = "";
+    /*
     SYSTEMTIME ST;
     ::GetLocalTime(&ST);
-    sprintf(szFN1, "Socket_Statistics_Send_%d_%d_%d_%d.txt", ST.wMonth, ST.wDay, ST.wHour, ST.wMinute);
-    sprintf(szFN2, "Socket_Statistics_Recv_%d_%d_%d_%d.txt", ST.wMonth, ST.wDay, ST.wHour, ST.wMinute);
-    HANDLE hFile1 = ::CreateFile(szFN1, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-    HANDLE hFile2 = ::CreateFile(szFN2, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    fs::path fsFileSend =
+        std::format("Socket_Statistics_Send_{:d}_{:d}_{:d}_{:d}.txt", ST.wMonth, ST.wDay, ST.wHour, ST.wMinute);
+    fs::path fsFileRecv =
+        std::format("Socket_Statistics_Recv_{:d}_{:d}_{:d}_{:d}.txt", ST.wMonth, ST.wDay, ST.wHour, ST.wMinute);
+    HANDLE hFileSend =
+        ::CreateFileW(fsFileSend.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFileRecv =
+        ::CreateFileW(fsFileRecv.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
-    
-    char szBuff[64] = "";
-    char szCmd[32] = "";
+    DWORD dwRWC = 0;
+    char  szBuff[64] = "";
+    char  szCmd[32] = "";
 
     strcpy(szBuff, "Packet\t양\t횟수\r\n");
-    WriteFile(hFile1, szBuff, lstrlen(szBuff), &dwRWC, NULL);
-    WriteFile(hFile2, szBuff, lstrlen(szBuff), &dwRWC, NULL);
+    WriteFile(hFileSend, szBuff, lstrlen(szBuff), &dwRWC, NULL);
+    WriteFile(hFileRecv, szBuff, lstrlen(szBuff), &dwRWC, NULL);
 
-    for(int i = 0; i < UCHAR_MAX + 1; i++)
-    {
-        if(i == N3_NPC_MOVE) lstrcpy(szCmd, "NPC Move");
-        else if(i == N3_ATTACK) lstrcpy(szCmd, "Attack");
-        else if(i == N3_MOVE) lstrcpy(szCmd, "User Move");
-        else if(i == N3_MAGIC) lstrcpy(szCmd, "Magic");
-        else if(i == N3_CHAT) lstrcpy(szCmd, "Chatting");
-        else 
-        {
+    for (int i = 0; i < UCHAR_MAX + 1; i++) {
+        if (i == N3_NPC_MOVE) {
+            lstrcpy(szCmd, "NPC Move");
+        } else if (i == N3_ATTACK) {
+            lstrcpy(szCmd, "Attack");
+        } else if (i == N3_MOVE) {
+            lstrcpy(szCmd, "User Move");
+        } else if (i == N3_MAGIC) {
+            lstrcpy(szCmd, "Magic");
+        } else if (i == N3_CHAT) {
+            lstrcpy(szCmd, "Chatting");
+        } else {
             sprintf(szCmd, "ETC : %d", i);
         }
 
-        if(m_Statistics_Send_Sum[i].iSize > 0 || m_Statistics_Send_Sum[i].dwTime > 0)
-        {
+        if (m_Statistics_Send_Sum[i].iSize > 0 || m_Statistics_Send_Sum[i].dwTime > 0) {
             sprintf(szBuff, "%s\t%d\t%d\t\r\n", szCmd, m_Statistics_Send_Sum[i].iSize, m_Statistics_Send_Sum[i].dwTime);
-            WriteFile(hFile1, szBuff, lstrlen(szBuff), &dwRWC, NULL);
+            WriteFile(hFileSend, szBuff, lstrlen(szBuff), &dwRWC, NULL);
         }
 
-        if(m_Statistics_Recv_Sum[i].iSize > 0 || m_Statistics_Recv_Sum[i].dwTime > 0)
-        {
+        if (m_Statistics_Recv_Sum[i].iSize > 0 || m_Statistics_Recv_Sum[i].dwTime > 0) {
             sprintf(szBuff, "%s\t%d\t%d\t\r\n", szCmd, m_Statistics_Recv_Sum[i].iSize, m_Statistics_Recv_Sum[i].dwTime);
-            WriteFile(hFile2, szBuff, lstrlen(szBuff), &dwRWC, NULL);
+            WriteFile(hFileRecv, szBuff, lstrlen(szBuff), &dwRWC, NULL);
         }
     }
-*/
+    */
 
     memset(m_Statistics_Send_Sum, 0, sizeof(m_Statistics_Send_Sum));
     memset(m_Statistics_Recv_Sum, 0, sizeof(m_Statistics_Recv_Sum));
 
-//    CloseHandle(hFile1);
-//    CloseHandle(hFile2);
+    //CloseHandle(hFileSend);
+    //CloseHandle(hFileRecv);
 #endif
 }
 

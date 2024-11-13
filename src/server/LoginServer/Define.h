@@ -54,10 +54,10 @@ typedef union {
 } MYDWORD;
 
 struct _VERSION_INFO {
-    short  sVersion;
-    short  sHistoryVersion;
-    string strFileName;
-    string strCompName;
+    short       sVersion;
+    fs::path    fsFile;
+    std::string szPatchFileName;
+    short       sHistoryVersion;
 };
 
 struct _SERVER_INFO {

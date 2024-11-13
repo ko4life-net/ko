@@ -534,7 +534,7 @@ void CN3Joint::CopyExceptAnimationKey(CN3Joint * pJSrc) {
     this->Release();
 
     m_szName = pJSrc->m_szName;
-    m_szFileName = pJSrc->m_szFileName;
+    FilePathSet(pJSrc->FilePath());
 
     m_vPos = pJSrc->m_vPos;
     m_qRot = pJSrc->m_qRot;

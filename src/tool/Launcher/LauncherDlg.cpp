@@ -102,7 +102,7 @@ BOOL CLauncherDlg::OnInitDialog() {
         MessageBox(szErr);
         exit(-1);
     }
-    m_szInstalledPath = szBuff;
+    m_fsInstalledDir = szBuff;
 
     dwType = REG_SZ;
     dwBytes = 256;
@@ -113,7 +113,7 @@ BOOL CLauncherDlg::OnInitDialog() {
         MessageBox(szErr);
         exit(-1);
     }
-    m_szExeName = szBuff;
+    m_fsExeFileName = szBuff;
 
     dwType = REG_SZ;
     dwBytes = 256;
@@ -127,17 +127,15 @@ BOOL CLauncherDlg::OnInitDialog() {
     }
 
     // 소켓 접속..
-    char szIniPath[_MAX_PATH] = "";
-    ::GetCurrentDirectory(_MAX_PATH, szIniPath);
-    lstrcat(szIniPath, "\\Server.Ini");
-    int iServerCount = GetPrivateProfileInt("Server", "Count", 0, szIniPath);
+    std::string  szIniFile = (fs::current_path() / "Server.ini").string();
+    const char * pszIniFile = szIniFile.c_str();
 
-    char szIPs[256][128];
-    memset(szIPs, 0, sizeof(szIPs));
+    int iServerCount = GetPrivateProfileInt("Server", "Count", 0, pszIniFile);
+
+    char szIPs[256][128]{};
     for (int i = 0; i < iServerCount; i++) {
-        char szKey[32] = "";
-        sprintf(szKey, "IP%d", i);
-        GetPrivateProfileString("Server", szKey, "", szIPs[i], 32, szIniPath);
+        std::string szKey = std::format("IP{:d}", i);
+        GetPrivateProfileString("Server", szKey.c_str(), "", szIPs[i], sizeof(szIPs[i]), pszIniFile);
     }
 
     if (iServerCount > 0) {
@@ -240,17 +238,17 @@ void CLauncherDlg::PacketReceive_DownloadInfo(const BYTE * pBuf, int & iIndex) {
         AfxPostQuitMessage(0);
     }
 
-    char        szBuf[MAX_PATH];
-    std::string szVersion;
-    int         nVersion = 0;
     for (int i = 0; i < m_nGetFileNum; i++) {
         iLen = m_pSocket->Parse_GetShort(pBuf, iIndex);
         m_pSocket->Parse_GetString(pBuf, iIndex, m_szGetFileNames[i], iLen);
+        if (m_szGetFileNames[i].size() != 13) {
+            MessageBox(std::format("Invalid patch file name ({:s})", m_szGetFileNames[i]).c_str(), "ERROR", MB_OK);
+            continue;
+        }
 
-        sscanf(m_szGetFileNames[i].c_str(), "patch%s", szBuf);
-        szVersion = szBuf;
-        szVersion.resize(4);
-        nVersion = atoi(szVersion.c_str());
+        // "patch1234.zip"
+        int nVersion = 0;
+        std::from_chars(m_szGetFileNames[i].data() + 5, m_szGetFileNames[i].data() + 9, nVersion);
         if (m_nVersionNum[i] < nVersion) {
             m_nVersionNum[i] = nVersion;
         }
@@ -276,11 +274,12 @@ void CLauncherDlg::PacketReceive_Version(const BYTE * pBuf, int & iIndex) {
 }
 
 void CLauncherDlg::StartGame() {
-    std::string szCmd = GetCommandLine();
-    std::string szAppPath = n3std::get_app_path().string();
-    std::string szArgs = szCmd.find(szAppPath) != std::string::npos ? szCmd.substr(szAppPath.length() + 2) : "";
-    std::string szExePath = (fs::path(m_szInstalledPath) / m_szExeName).string();
-    ::ShellExecute(NULL, "open", szExePath.c_str(), szArgs.c_str(), m_szInstalledPath.c_str(), SW_SHOWNORMAL);
+    std::wstring szCmd = GetCommandLineW();
+    fs::path     fsAppPath = n3std::get_app_path();
+    std::wstring szArgs =
+        szCmd.find(fsAppPath) != std::string::npos ? szCmd.substr(fsAppPath.native().length() + 2) : L"";
+    fs::path fsExeFile = m_fsInstalledDir / m_fsExeFileName;
+    ::ShellExecuteW(NULL, L"open", fsExeFile.c_str(), szArgs.c_str(), m_fsInstalledDir.c_str(), SW_SHOWNORMAL);
     PostQuitMessage(0);
 }
 
@@ -293,20 +292,17 @@ void CLauncherDlg::DownloadProcess() {
     m_progress.SetRange(0, 100);
     m_progress.SetPos(0);
 
-    std::string szFullPath;
-    std::string szLocalFName;
-
     bool bExtractSuccess = true;
 
     for (int i = 0; i < m_nGetFileNum; i++) {
-        szFullPath = m_szFtpPath + "/" + m_szGetFileNames[i];
-        BOOL bDownloadSuccess = GetDownloadFile(szFullPath, m_szGetFileNames[i]);
+        std::string szFtpUri = m_szFtpPath + "/" + m_szGetFileNames[i];
+        BOOL        bDownloadSuccess = GetDownloadFile(szFtpUri, m_szGetFileNames[i]);
         while (!bDownloadSuccess) {
             CString szErr;
             szErr.LoadString(IDS_ERR_DOWNLOAD_PATCH_FILE_AND_RETRY); // 다시 시도할까여??
             int iID = MessageBox(szErr, "Patch error", MB_YESNO);
             if (IDYES == iID) {
-                bDownloadSuccess = GetDownloadFile(szFullPath, m_szGetFileNames[i]);
+                bDownloadSuccess = GetDownloadFile(szFtpUri, m_szGetFileNames[i]);
             } else {
                 AfxPostQuitMessage(-1);
                 break;
@@ -314,7 +310,7 @@ void CLauncherDlg::DownloadProcess() {
         }
 
         if (bDownloadSuccess) {
-            szLocalFName = m_szInstalledPath + "\\" + m_szGetFileNames[i];
+            std::string szLocalFile = (m_fsInstalledDir / m_szGetFileNames[i]).string();
 
             CString szInfo;
             szInfo.LoadString(IDS_INFO_EXTRACTING);
@@ -324,11 +320,11 @@ void CLauncherDlg::DownloadProcess() {
                 bExtractSuccess = false;
                 break;
             }
-            if (false == ArchiveOpen(szLocalFName.c_str())) {
+            if (false == ArchiveOpen(szLocalFile.c_str())) {
                 bExtractSuccess = false;
                 break;
             }
-            if (false == ArchiveExtract(m_szInstalledPath.c_str())) {
+            if (false == ArchiveExtract(m_fsInstalledDir.c_str())) {
                 bExtractSuccess = false;
                 break;
             }
@@ -338,9 +334,9 @@ void CLauncherDlg::DownloadProcess() {
             }
 
             CFile file;
-            if (file.Open(szLocalFName.c_str(), CFile::modeRead | CFile::shareDenyNone, NULL)) {
+            if (file.Open(szLocalFile.c_str(), CFile::modeRead | CFile::shareDenyNone, NULL)) {
                 file.Close();
-                file.Remove(szLocalFName.c_str());
+                file.Remove(szLocalFile.c_str());
                 if (m_hRegistryKey) // 압축 풀기와 쓰기, 압축 파일 삭제에 성공하면 버전을 쓰고..
                 {
                     RegSetValueEx(m_hRegistryKey, "VERSION", NULL, REG_DWORD, ((BYTE *)(&m_nVersionNum[i])), 4);
@@ -362,9 +358,9 @@ void CLauncherDlg::DownloadProcess() {
 
     FTP_Close();
 
-    //std::string szIniPath = (n3std::get_app_path() / "server.ini").string();
+    //std::string szIniFile = (n3std::get_app_path() / "Server.ini").string();
     //std::string szVersion = std::to_string(m_nServerVersion);
-    //WritePrivateProfileString("VERSION", "CURRENT", szVersion.c_str(), szIniPath.c_str());
+    //WritePrivateProfileString("VERSION", "CURRENT", szVersion.c_str(), szIniFile.c_str());
 
     if (true == bExtractSuccess && m_hRegistryKey) // 압축 풀기와 쓰기, 압축 파일 삭제에 성공하면 버전을 쓰고..
     {
@@ -430,10 +426,8 @@ BOOL CLauncherDlg::GetDownloadFile(const std::string & szFtpUrl, const std::stri
     }
 
     // read & save the file...
-    std::string szLocalFName;
-    szLocalFName = m_szInstalledPath + "\\" + szFileName;
-
-    FILE * fp = fopen(szLocalFName.c_str(), "wb");
+    fs::path fsLocalFile = m_fsInstalledDir / szFileName;
+    FILE *   fp = _wfopen(fsLocalFile.c_str(), L"wb");
     if (fp == NULL) {
         MessageBox("Can`t open local file");
 
@@ -466,8 +460,7 @@ BOOL CLauncherDlg::GetDownloadFile(const std::string & szFtpUrl, const std::stri
         dwCurrent = ::GetTickCount();
         dwElaspedTime += dwCurrent - dwLastTime;
 
-        std::string szInfo;
-        szInfo = szFileName + " Downloading...";
+        std::string szInfo = std::format("{:s} Downloading...", szFileName);
         m_Status.SetWindowText(szInfo.c_str());
 
         bPeekMessage = ::PeekMessage(&pMsg, NULL, NULL, NULL, PM_REMOVE);

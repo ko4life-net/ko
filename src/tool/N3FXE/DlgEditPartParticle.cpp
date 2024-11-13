@@ -333,10 +333,10 @@ void CDlgEditPartParticle::OnPartParticleBtnSave() {
     fclose(file);
 }
 
-bool CDlgEditPartParticle::LoadPartScript(const char * szPath) {
-    m_strPathName = szPath;
+bool CDlgEditPartParticle::LoadPartScript(const fs::path & fsFile) {
+    m_strPathName = fsFile.c_str();
     CN3FXPartParticles * pPart = new CN3FXPartParticles;
-    if (!pPart->DecodeScriptFile(szPath)) {
+    if (!pPart->DecodeScriptFile(fsFile)) {
         delete pPart;
         return false;
     }
@@ -378,15 +378,16 @@ bool CDlgEditPartParticle::LoadPartScript(const char * szPath) {
     m_fTexRotVelocity = pPart->m_fTexRotateVelocity;
 
     if (m_iNumTex > 0 && pPart->m_ppRefTex[0]) {
-        char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-        _splitpath((LPCTSTR)pPart->m_ppRefTex[0]->FileName().c_str(), szDrive, szDir, szFName, szExt);
-
-        CString strFName = szFName;
-        strFName.TrimRight("0000");
-
-        char szPath[_MAX_PATH];
-        _makepath(szPath, szDrive, szDir, (LPCTSTR)strFName, szExt);
-        m_strTexName = szPath;
+        fs::path    fsFile = pPart->m_ppRefTex[0]->FilePath();
+        std::string szStem = fsFile.stem().string();
+        if (szStem.ends_with("0000")) {
+            szStem.erase((szStem.find_last_not_of("0000")) + 1);
+            fs::path fsTexFile = fsFile.parent_path() / (szStem + fsFile.extension());
+            m_strTexName = fsTexFile.c_str();
+        } else {
+            m_strTexName = _T("");
+            MessageBox("The file name must end with 0000.", "ERR05", MB_OK);
+        }
     } else {
         m_strTexName = _T("");
     }
@@ -457,7 +458,7 @@ bool CDlgEditPartParticle::LoadPartScript(const char * szPath) {
     }
 
     if (pPart->m_pShape) {
-        m_strShapeName = pPart->m_pShape->FileName().c_str();
+        m_strShapeName = pPart->m_pShape->FilePath().c_str();
     }
     m_fShapeFPS = pPart->m_fMeshFPS;
     m_bAnimKey = pPart->m_bAnimKey;
@@ -474,23 +475,16 @@ void CDlgEditPartParticle::OnPartParticleBtnSaveAs() {
     UpdateData(TRUE);
 
     CDlgNewFileName dlg;
-    dlg.m_strExt = ".N3FXPart";
-    if (dlg.DoModal() == IDOK) {
-        CString PathName = "fx\\";
-        PathName += dlg.m_strNewFileName;
-        PathName += dlg.m_strExt;
-        CN3BaseFileAccess * pBaseFileAccess = new CN3BaseFileAccess;
-        pBaseFileAccess->FileNameSet((LPCTSTR)PathName);
-
-        m_strPathName.Empty();
-        m_strPathName = CN3Base::PathGet().c_str();
-        m_strPathName += pBaseFileAccess->FileName().c_str();
-
-        delete pBaseFileAccess;
-
-        UpdateData(FALSE);
-        OnPartParticleBtnSave();
+    dlg.m_strExt = ".n3fxpart";
+    if (dlg.DoModal() == IDCANCEL) {
+        return;
     }
+
+    fs::path fsFile = CN3Base::PathGet() / "fx" / (dlg.m_strNewFileName + dlg.m_strExt).GetString();
+    m_strPathName = fsFile.c_str();
+
+    UpdateData(FALSE);
+    OnPartParticleBtnSave();
 }
 
 void CDlgEditPartParticle::OnPartParticleBtnLoadTex() {
@@ -500,36 +494,22 @@ void CDlgEditPartParticle::OnPartParticleBtnLoadTex() {
         return;
     }
 
-    CString PathName = dlg.GetPathName();
-
-    CN3BaseFileAccess * pBaseFileAccess = new CN3BaseFileAccess;
-    pBaseFileAccess->FileNameSet((LPCTSTR)PathName);
-    PathName = pBaseFileAccess->FileName().c_str();
-
-    if ((PathName[0] == 'F' || PathName[0] == 'f') && (PathName[1] == 'X' || PathName[1] == 'x') &&
-        (PathName[2] == '/' || PathName[2] == '\\')) {
-        char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-        _splitpath((LPCTSTR)PathName, szDrive, szDir, szFName, szExt);
-
-        CString strFName = szFName;
-        if (strFName.Right(4) == _T("0000")) {
-            strFName.TrimRight("0000");
-            char szPath[_MAX_PATH];
-            _makepath(szPath, szDrive, szDir, (LPCTSTR)strFName, szExt);
-            m_strTexName = szPath;
+    fs::path fsFile = CN3BaseFileAccess::ToRelative(dlg.GetPathName().GetString());
+    if (n3std::iequals(*fsFile.begin(), "fx")) {
+        std::string szStem = fsFile.stem().string();
+        if (szStem.ends_with("0000")) {
+            szStem.erase((szStem.find_last_not_of("0000")) + 1);
+            fs::path fsTexFile = fsFile.parent_path() / (szStem + fsFile.extension());
+            m_strTexName = fsTexFile.c_str();
         } else {
             m_strTexName = _T("");
-            MessageBox("파일 이름끝이 0000이 아니던데요..-.-;;", "ERR05", MB_OK);
+            MessageBox("The file name must end with 0000.", "ERR05", MB_OK);
         }
-
-        //파일 갯수 세는 기능 넣을까 말까..^^
 
         UpdateData(FALSE);
     } else {
-        MessageBox("Texture파일은 fx폴더 아래, 혹은 fx폴더 아래에 있는 폴더에 위치해야 합니다..-.-;;", "ERR04", MB_OK);
+        MessageBox("Texture files must be located under the fx folder or a subfolder.", "ERR04", MB_OK);
     }
-
-    delete pBaseFileAccess;
 }
 
 void CDlgEditPartParticle::OnClose() {
@@ -610,19 +590,11 @@ void CDlgEditPartParticle::OnPartParticleBtnLoadMesh() {
         return;
     }
 
-    CString PathName = dlg.GetPathName();
-
-    CN3BaseFileAccess * pBaseFileAccess = new CN3BaseFileAccess;
-    pBaseFileAccess->FileNameSet((LPCTSTR)PathName);
-    PathName = pBaseFileAccess->FileName().c_str();
-
-    if ((PathName[0] == 'F' || PathName[0] == 'f') && (PathName[1] == 'X' || PathName[1] == 'x') &&
-        (PathName[2] == '/' || PathName[2] == '\\')) {
-        m_strShapeName = PathName;
+    fs::path fsFile = CN3BaseFileAccess::ToRelative(dlg.GetPathName().GetString());
+    if (n3std::iequals(*fsFile.begin(), "fx")) {
+        m_strShapeName = fsFile.c_str();
         UpdateData(FALSE);
     } else {
-        MessageBox("N3Shape파일은 fx폴더 아래, 혹은 fx폴더 아래에 있는 폴더에 위치해야 합니다..-.-;;", "ERR03", MB_OK);
+        MessageBox("N3Shape files must be located under the fx folder or a subfolder.", "ERR03", MB_OK);
     }
-
-    delete pBaseFileAccess;
 }

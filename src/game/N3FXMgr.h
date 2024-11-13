@@ -29,9 +29,9 @@ typedef struct __FXBundleOrigin // 번들에서 파트들 관리할때..
     }
 } FXBUNDLEORIGIN, *LPFXBUNDLEORIGIN;
 
-typedef std::map<std::string, LPFXBUNDLEORIGIN> stlMAP_BUNDLEORIGIN;
-typedef stlMAP_BUNDLEORIGIN::value_type         stlMAP_BUNDLEORIGIN_VALUE;
-typedef stlMAP_BUNDLEORIGIN::iterator           stlMAP_BUNDLEORIGIN_IT;
+typedef std::map<fs::path, LPFXBUNDLEORIGIN> stlMAP_BUNDLEORIGIN;
+typedef stlMAP_BUNDLEORIGIN::value_type      stlMAP_BUNDLEORIGIN_VALUE;
+typedef stlMAP_BUNDLEORIGIN::iterator        stlMAP_BUNDLEORIGIN_IT;
 
 typedef std::list<CN3FXBundleGame *> stlLIST_BUNDLEGAME;
 //typedef stlLIST_BUNDLEGAME::value_type stlLIST_BUNDLEGAME_VALUE;

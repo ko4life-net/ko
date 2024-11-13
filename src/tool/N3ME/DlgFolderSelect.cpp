@@ -60,9 +60,7 @@ BOOL CDlgFolderSelect::OnInitDialog() {
     }
 
     CString szDir;
-    char    szCurPath[256];
-    GetCurrentDirectory(256, szCurPath);
-    int nSel = m_CBFolder.AddString(szCurPath);
+    int     nSel = m_CBFolder.AddString(fs::current_path().string().c_str());
     m_CBFolder.SetCurSel(nSel);
     m_CBFolder.GetLBText(nSel, szDir);
 

@@ -204,27 +204,27 @@ class CJpegFile {
     // BYTE *buf = JpegFile::JpegFileToRGB(....);
     // delete [] buf;
 
-    BYTE * JpegFileToRGB(std::string fileName, // path to image
-                         UINT *      width,    // image width in pixels
-                         UINT *      height);       // image height
+    BYTE * JpegFileToRGB(const fs::path & fsFile, // path to image
+                         UINT *           width,  // image width in pixels
+                         UINT *           height);          // image height
 
     ////////////////////////////////////////////////////////////////
     // write a JPEG file from a 3-component, 1-byte per component buffer
 
-    BOOL RGBToJpegFile(std::string fileName, // path
-                       BYTE *      dataBuf,  // RGB buffer
-                       UINT        width,    // pixels
-                       UINT        height,   // rows
-                       BOOL        color,    // TRUE = RGB
-                                             // FALSE = Grayscale
-                       int quality);         // 0 - 100
+    BOOL RGBToJpegFile(const fs::path & fsFile,  // path
+                       BYTE *           dataBuf, // RGB buffer
+                       UINT             width,   // pixels
+                       UINT             height,  // rows
+                       BOOL             color,   // TRUE = RGB
+                                                 // FALSE = Grayscale
+                       int quality);             // 0 - 100
 
     ////////////////////////////////////////////////////////////////
     // fetch width / height of an image
 
-    BOOL GetJPGDimensions(std::string fileName, // path
-                          UINT *      width,    // pixels
-                          UINT *      height);
+    BOOL GetJPGDimensions(const fs::path & fsFile, // path
+                          UINT *           width,  // pixels
+                          UINT *           height);
 
     ////////////////////////////////////////////////////////////////
     // utility functions
@@ -290,22 +290,22 @@ class CJpegFile {
     HDIB FAR     ChangeBitmapFormat(HBITMAP hBitmap, WORD wBitCount, DWORD wCompression, HPALETTE hPal);
     DWORD PASCAL MyWrite(int iFileHandle, VOID FAR * lpBuffer, DWORD dwBytes);
     HPALETTE FAR GetSystemPalette(void);
-    WORD FAR     SaveDIB(HDIB hDib, LPSTR lpFileName);
+    WORD FAR     SaveDIB(HDIB hDib, const fs::path & fsFile);
     RGBQUAD      QuadFromWord(WORD b16);
     BOOL         DibToSamps(HANDLE hDib, int nSampsPerRow, struct jpeg_compress_struct cinfo, JSAMPARRAY jsmpPixels,
                             std::string & szErrMsg);
-    BOOL         JpegFromDib(HANDLE        hDib,      //Handle to DIB
-                             int           nQuality,  //JPEG quality (0-100)
-                             std::string   csJpeg,    //Pathname to jpeg file
-                             std::string & szErrMsg); //Error msg to return
-    virtual BOOL EncryptJPEG(HANDLE        hDib,      //Handle to DIB
-                             int           nQuality,  //JPEG quality (0-100)
-                             std::string   csJpeg,    //Pathname to jpeg file
-                             std::string & szErrMsg); //Error msg to return
+    BOOL         JpegFromDib(HANDLE           hDib,       // Handle to DIB
+                             int              nQuality,   // JPEG quality (0-100)
+                             const fs::path & fsJpegFile, // Path to jpeg file
+                             std::string &    szErrMsg);     // Error msg to return
+    virtual BOOL EncryptJPEG(HANDLE           hDib,       // Handle to DIB
+                             int              nQuality,   // JPEG quality (0-100)
+                             const fs::path & fsJpegFile, // Path to jpeg file
+                             std::string &    szErrMsg);     // Error msg to return
 
-    BOOL         SaveFromDecryptToJpeg(std::string csKsc, std::string csJpeg);
-    virtual BOOL DecryptJPEG(std::string csJpeg);
-    virtual BOOL LoadJpegFile(std::string csJpeg) { return TRUE; }
+    BOOL         SaveFromDecryptToJpeg(const fs::path & fsKscFile, const fs::path & fsJpegFile);
+    virtual BOOL DecryptJPEG(const fs::path & fsJpegFile);
+    virtual BOOL LoadJpegFile(const fs::path & fsJpegFile) { return TRUE; }
 
     virtual void DrawImage(HDC hDC) {}
 

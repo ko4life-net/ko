@@ -26,7 +26,7 @@ class CMainFrame : public CFrameWnd {
 
     // Operations
   public:
-    void SetBasePath(LPCTSTR pszPath);
+    void SetBasePath(const fs::path & fsDir);
     void SetStatusText(LPCTSTR pszText);
     void EnableAccelerator(BOOL bEnable);
     // Overrides

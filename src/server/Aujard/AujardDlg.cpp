@@ -173,23 +173,23 @@ BOOL CAujardDlg::OnInitDialog() {
         return FALSE;
     }
 
-    std::string  szIniPath = (n3std::get_app_dir() / "Aujard.ini").string();
-    const char * inipath = szIniPath.c_str();
+    std::string  szIniFile = (n3std::get_app_dir() / "Aujard.ini").string();
+    const char * pszIniFile = szIniFile.c_str();
 
-    GetPrivateProfileString("ODBC", "ACCOUNT_DSN", "kodb", m_szOdbcAccountDsn, sizeof(m_szOdbcAccountDsn), inipath);
+    GetPrivateProfileString("ODBC", "ACCOUNT_DSN", "kodb", m_szOdbcAccountDsn, sizeof(m_szOdbcAccountDsn), pszIniFile);
     GetPrivateProfileString("ODBC", "ACCOUNT_UID", "kodb_user", m_szOdbcAccountUid, sizeof(m_szOdbcAccountUid),
-                            inipath);
+                            pszIniFile);
     GetPrivateProfileString("ODBC", "ACCOUNT_PWD", "kodb_user", m_szOdbcAccountPwd, sizeof(m_szOdbcAccountPwd),
-                            inipath);
-    GetPrivateProfileString("ODBC", "GAME_DSN", "kodb", m_szOdbcGameDsn, sizeof(m_szOdbcGameDsn), inipath);
-    GetPrivateProfileString("ODBC", "GAME_UID", "kodb_user", m_szOdbcGameUid, sizeof(m_szOdbcGameUid), inipath);
-    GetPrivateProfileString("ODBC", "GAME_PWD", "kodb_user", m_szOdbcGamePwd, sizeof(m_szOdbcGamePwd), inipath);
-    GetPrivateProfileString("ODBC", "LOG_DSN", "kodb", m_szOdbcLogDsn, sizeof(m_szOdbcLogDsn), inipath);
-    GetPrivateProfileString("ODBC", "LOG_UID", "kodb_user", m_szOdbcLogUid, sizeof(m_szOdbcLogUid), inipath);
-    GetPrivateProfileString("ODBC", "LOG_PWD", "kodb_user", m_szOdbcLogPwd, sizeof(m_szOdbcLogPwd), inipath);
+                            pszIniFile);
+    GetPrivateProfileString("ODBC", "GAME_DSN", "kodb", m_szOdbcGameDsn, sizeof(m_szOdbcGameDsn), pszIniFile);
+    GetPrivateProfileString("ODBC", "GAME_UID", "kodb_user", m_szOdbcGameUid, sizeof(m_szOdbcGameUid), pszIniFile);
+    GetPrivateProfileString("ODBC", "GAME_PWD", "kodb_user", m_szOdbcGamePwd, sizeof(m_szOdbcGamePwd), pszIniFile);
+    GetPrivateProfileString("ODBC", "LOG_DSN", "kodb", m_szOdbcLogDsn, sizeof(m_szOdbcLogDsn), pszIniFile);
+    GetPrivateProfileString("ODBC", "LOG_UID", "kodb_user", m_szOdbcLogUid, sizeof(m_szOdbcLogUid), pszIniFile);
+    GetPrivateProfileString("ODBC", "LOG_PWD", "kodb_user", m_szOdbcLogPwd, sizeof(m_szOdbcLogPwd), pszIniFile);
 
-    m_nServerNo = GetPrivateProfileInt("ZONE_INFO", "GROUP_INFO", 1, inipath);
-    m_nZoneNo = GetPrivateProfileInt("ZONE_INFO", "ZONE_INFO", 1, inipath);
+    m_nServerNo = GetPrivateProfileInt("ZONE_INFO", "GROUP_INFO", 1, pszIniFile);
+    m_nZoneNo = GetPrivateProfileInt("ZONE_INFO", "ZONE_INFO", 1, pszIniFile);
 
     if (!m_DBAgent.DatabaseInit()) {
         AfxPostQuitMessage(0);

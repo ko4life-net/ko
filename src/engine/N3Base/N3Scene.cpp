@@ -82,8 +82,8 @@ bool CN3Scene::Load(HANDLE hFile) {
     ReadFile(hFile, &m_fFrmStart, 4, &dwRWC, NULL); // 전체 프레임.
     ReadFile(hFile, &m_fFrmEnd, 4, &dwRWC, NULL);   // 전체 프레임.
 
-    int  nL = 0;
-    char szName[512] = "";
+    int         nL = 0;
+    std::string szName;
 
     int nCC = 0;
     ReadFile(hFile, &nCC, 4, &dwRWC, NULL); // 카메라..
@@ -93,8 +93,8 @@ bool CN3Scene::Load(HANDLE hFile) {
             continue;
         }
 
-        ReadFile(hFile, szName, nL, &dwRWC, NULL);
-        szName[nL] = NULL;
+        szName.assign(nL, '\0');
+        ReadFile(hFile, szName.data(), nL, &dwRWC, NULL);
 
         CN3Camera * pCamera = new CN3Camera();
         if (false == pCamera->LoadFromFile(szName)) {
@@ -113,8 +113,8 @@ bool CN3Scene::Load(HANDLE hFile) {
             continue;
         }
 
-        ReadFile(hFile, szName, nL, &dwRWC, NULL);
-        szName[nL] = NULL;
+        szName.assign(nL, '\0');
+        ReadFile(hFile, szName.data(), nL, &dwRWC, NULL);
 
         CN3Light * pLight = new CN3Light();
         if (false == pLight->LoadFromFile(szName)) {
@@ -133,8 +133,8 @@ bool CN3Scene::Load(HANDLE hFile) {
             continue;
         }
 
-        ReadFile(hFile, szName, nL, &dwRWC, NULL);
-        szName[nL] = NULL;
+        szName.assign(nL, '\0');
+        ReadFile(hFile, szName.data(), nL, &dwRWC, NULL);
 
         CN3Shape * pShape = new CN3Shape();
         if (false == pShape->LoadFromFile(szName)) {
@@ -153,8 +153,8 @@ bool CN3Scene::Load(HANDLE hFile) {
             continue;
         }
 
-        ReadFile(hFile, szName, nL, &dwRWC, NULL);
-        szName[nL] = NULL;
+        szName.assign(nL, '\0');
+        ReadFile(hFile, szName.data(), nL, &dwRWC, NULL);
 
         CN3Chr * pChr = new CN3Chr();
         if (false == pChr->LoadFromFile(szName)) {
@@ -176,10 +176,9 @@ bool CN3Scene::Load(HANDLE hFile) {
 }
 
 bool CN3Scene::Save(HANDLE hFile) {
-    ::CreateDirectory("Data", NULL);
-    ::CreateDirectory("Chr", NULL);
-    ::CreateDirectory("Object", NULL);
-    ::CreateDirectory("Item", NULL);
+    for (const auto & szDir : {"Data", "Chr", "Object", "Item"}) {
+        fs::create_directory(szDir);
+    }
 
     DWORD dwRWC = 0;
 
@@ -188,45 +187,55 @@ bool CN3Scene::Save(HANDLE hFile) {
     WriteFile(hFile, &m_fFrmStart, 4, &dwRWC, NULL); // 전체 프레임.
     WriteFile(hFile, &m_fFrmEnd, 4, &dwRWC, NULL);   // 전체 프레임.
 
+    std::string szFile;
+    int         iLen;
     WriteFile(hFile, &m_nCameraCount, 4, &dwRWC, NULL); // 카메라..
     for (int i = 0; i < m_nCameraCount; i++) {
-        int nL = m_pCameras[i]->FileName().size();
-        WriteFile(hFile, &nL, 4, &dwRWC, NULL);
-        WriteFile(hFile, m_pCameras[i]->FileName().c_str(), nL, &dwRWC, NULL);
+        szFile = m_pCameras[i]->FilePathWin().string();
+        iLen = szFile.length();
+        WriteFile(hFile, &iLen, 4, &dwRWC, NULL);
+        if (iLen > 0) {
+            WriteFile(hFile, szFile.c_str(), iLen, &dwRWC, NULL);
+        }
         m_pCameras[i]->SaveToFile();
     }
 
     WriteFile(hFile, &m_nLightCount, 4, &dwRWC, NULL); // 카메라..
     for (int i = 0; i < m_nLightCount; i++) {
-        int nL = m_pLights[i]->FileName().size();
-        WriteFile(hFile, &nL, 4, &dwRWC, NULL);
-        WriteFile(hFile, m_pLights[i]->FileName().c_str(), nL, &dwRWC, NULL);
+        szFile = m_pLights[i]->FilePathWin().string();
+        iLen = szFile.length();
+        WriteFile(hFile, &iLen, 4, &dwRWC, NULL);
+        if (iLen > 0) {
+            WriteFile(hFile, szFile.c_str(), iLen, &dwRWC, NULL);
+        }
         m_pLights[i]->SaveToFile();
     }
 
     int iSC = m_Shapes.size();
     WriteFile(hFile, &iSC, 4, &dwRWC, NULL); // Shapes..
     for (int i = 0; i < iSC; i++) {
-        int nL = m_Shapes[i]->FileName().size();
-        WriteFile(hFile, &nL, 4, &dwRWC, NULL);
-        if (nL <= 0) {
+        szFile = m_Shapes[i]->FilePathWin().string();
+        iLen = szFile.length();
+        WriteFile(hFile, &iLen, 4, &dwRWC, NULL);
+        if (iLen <= 0) {
             continue;
         }
 
-        WriteFile(hFile, m_Shapes[i]->FileName().c_str(), nL, &dwRWC, NULL);
+        WriteFile(hFile, szFile.c_str(), iLen, &dwRWC, NULL);
         m_Shapes[i]->SaveToFile();
     }
 
     int iCC = m_Chrs.size();
     WriteFile(hFile, &iCC, 4, &dwRWC, NULL); // 캐릭터
     for (int i = 0; i < iCC; i++) {
-        int nL = m_Chrs[i]->FileName().size();
-        WriteFile(hFile, &nL, 4, &dwRWC, NULL);
-        if (nL <= 0) {
+        szFile = m_Chrs[i]->FilePathWin().string();
+        iLen = szFile.length();
+        WriteFile(hFile, &iLen, 4, &dwRWC, NULL);
+        if (iLen <= 0) {
             continue;
         }
 
-        WriteFile(hFile, m_Chrs[i]->FileName().c_str(), nL, &dwRWC, NULL);
+        WriteFile(hFile, szFile.c_str(), iLen, &dwRWC, NULL);
         m_Chrs[i]->SaveToFile();
     }
 
@@ -535,13 +544,13 @@ bool CN3Scene::CheckOverlappedShapesAndReport()
         {
             vPos2 = pShapes[j]->Pos();
             if(    vPos1 == vPos2 ||
-                pShapes[i]->FileName() == pShapes[j]->FileName() ) // 위치나 이름이 같은 오브젝트가 있는지 찾아본다.
+                pShapes[i]->FilePath() == pShapes[j]->FilePath() ) // 위치나 이름이 같은 오브젝트가 있는지 찾아본다.
             {
                 char szErr[512];
                 __Vector3 vPos = pShapes[j]->Pos();
                 sprintf(szErr, "파일 이름이 같거나 위치가 같은 오브젝트가 있습니다\n첫번째 오브젝트 : \"%s\" - 위치(%f, %f, %f)\n두번째 오브젝트 : \"%s\" - 위치(%f, %f, %f)",
-                    pShapes[i]->FileName().c_str(), vPos1.x, vPos1.y, vPos1.z,
-                    pShapes[j]->FileName().c_str(), vPos2.x, vPos2.y, vPos2.z);
+                    pShapes[i]->FilePath().c_str(), vPos1.x, vPos1.y, vPos1.z,
+                    pShapes[j]->FilePath().c_str(), vPos2.x, vPos2.y, vPos2.z);
                 MessageBox(::GetActiveWindow(), szErr, "Scene 오브젝트 중복 점검", MB_OK);
                 bOverlapped = true;
             }
@@ -581,7 +590,7 @@ void CN3Scene::DeleteOverlappedShapes()
         {
             vPos2 = pShapes[j]->Pos();
             if(    vPos1 == vPos2 ||
-                pShapes[i]->FileName() == pShapes[j]->FileName() ) // 위치나 이름이 같은 오브젝트가 있는지 찾아본다.
+                pShapes[i]->FilePath() == pShapes[j]->FilePath() ) // 위치나 이름이 같은 오브젝트가 있는지 찾아본다.
             {
                 bNeedDeletes[j] = true;
             }
@@ -599,44 +608,36 @@ void CN3Scene::DeleteOverlappedShapes()
     }
 }
 */
-bool CN3Scene::LoadDataAndResourcesFromFile(const std::string & szFN) {
-    if (szFN.empty()) {
+bool CN3Scene::LoadDataAndResourcesFromFile(const fs::path & fsFile) {
+    if (fsFile.empty()) {
         return false;
     }
-
-    char szPath[512] = "", szDrv[_MAX_DRIVE] = "", szDir[_MAX_DIR] = "";
-    ::_splitpath(szFN.c_str(), szDrv, szDir, NULL, NULL);
-    ::_makepath(szPath, szDrv, szDir, NULL, NULL);
 
     this->Release();
-    CN3Base::PathSet(szPath);
-    return LoadFromFile(szFN);
+    CN3Base::PathSet(fsFile.parent_path());
+    return LoadFromFile(fsFile);
 }
 
-bool CN3Scene::SaveDataAndResourcesToFile(const std::string & szFN) {
-    if (szFN.empty()) {
+bool CN3Scene::SaveDataAndResourcesToFile(const fs::path & fsFile) {
+    if (fsFile.empty()) {
         return false;
     }
 
-    char szPath[512] = "", szDrv[_MAX_DRIVE] = "", szDir[_MAX_DIR] = "";
-    ::_splitpath(szFN.c_str(), szDrv, szDir, NULL, NULL);
-    ::_makepath(szPath, szDrv, szDir, NULL, NULL);
-
-    CN3Base::PathSet(szPath);
-    return SaveToFile(szFN);
+    CN3Base::PathSet(fsFile.parent_path());
+    return SaveToFile(fsFile);
 }
 
 void CN3Scene::DefaultCameraAdd() {
     CN3Camera * pCamera = new CN3Camera();
     pCamera->m_szName = "DefaultCamera";
-    pCamera->FileNameSet("Data\\DefaultCamera.N3Camera");
+    pCamera->FilePathSet(fs::path("Data") / "DefaultCamera.n3camera");
     this->CameraAdd(pCamera);
 }
 void CN3Scene::DefaultLightAdd() {
     // Light 초기화..
     CN3Light * pLight = new CN3Light();
     pLight->m_szName = "DefaultLight";
-    pLight->FileNameSet("Data\\DefaultLight.N3Light");
+    pLight->FilePathSet(fs::path("Data") / "DefaultLight.n3light");
     int nLight = this->LightAdd(pLight) - 1;
 
     D3DCOLORVALUE ltColor = {0.7f, 0.7f, 0.7f, 1.0f};

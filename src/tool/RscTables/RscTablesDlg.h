@@ -63,7 +63,7 @@ class CRscTablesDlg : public CDialog {
     DECLARE_MESSAGE_MAP()
 
   public:
-    bool BrowseDataEnumAndTxt(int iIndex, BOOL bOpen, std::string * pszFN_Enm, std::string * pszFN_Txt);
+    bool BrowseDataEnumAndTxt(int iIndex, BOOL bOpen, fs::path * pfsEnmFile, fs::path * pfsTxtFile);
     void UpdateGenerationInfo();
 
     void UpdateAllInfo();

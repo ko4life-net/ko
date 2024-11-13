@@ -90,7 +90,6 @@ BOOL CUIEApp::InitInstance() {
     RegisterShellFileTypes();
 
     CString strFileTypeName;
-
     pDocTemplate->GetDocString(strFileTypeName, CDocTemplate::regFileTypeId);
     SetRegKey(".uif", strFileTypeName);
 
@@ -157,23 +156,22 @@ void CUIEApp::OnAppAbout() {
 // CUIEApp message handlers
 
 // global function
-BOOL SelectTexture(char * pszBuff) {
-    if (NULL == pszBuff) {
+BOOL SelectTexture(fs::path * pfsFile) {
+    if (!pfsFile) {
         return FALSE;
     }
-    pszBuff[0] = NULL;
+    pfsFile->clear();
+
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(TRUE, "dxt", NULL, dwFlags, "Generic Image Files(*.bmp, *.tga, *.dxt)|*.bmp;*.tga;*.dxt||", NULL);
-    dlg.m_ofn.lpstrInitialDir = CN3Base::PathGet().c_str();
+    std::string szInitialDir = CN3Base::PathGet().string();
+    dlg.m_ofn.lpstrInitialDir = szInitialDir.c_str();
     dlg.m_ofn.lpstrTitle = "Select texture file";
     if (IDCANCEL == dlg.DoModal()) {
         return FALSE;
     }
-    lstrcpy(pszBuff, dlg.GetPathName());
 
-    //    CN3BaseFileAccess tmpBase;
-    //    tmpBase.FileNameSet(pszBuff);    // Base경로에 대해서 상대적 경로를 넘겨준다.
-    //    const std::string strFN(tmpBase.FileName());
-    //    strcpy(pszBuff, strFN.c_str());
+    *pfsFile = dlg.GetPathName().GetString();
+    //CN3BaseFileAccess::ToRelative(*pfsFile);
     return TRUE;
 }

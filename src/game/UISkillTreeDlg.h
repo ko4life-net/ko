@@ -45,7 +45,7 @@ class CUISkillTreeDlg : public CN3UIWndBase {
     int               m_iCurInPageOffset[MAX_SKILL_KIND_OF]; // 스킬당 현재 페이지 옵셋..
 
   protected:
-    void AllClearImageByName(const std::string & szFN, bool bTrueOrNot);
+    void AllClearImageByName(const std::string & szName, bool bTrueOrNot);
     RECT GetSampleRect();
     void PageButtonInitialize();
 
@@ -75,9 +75,9 @@ class CUISkillTreeDlg : public CN3UIWndBase {
     void SetPageInIconRegion(int iKindOf, int iPageNum); // 아이콘 역역에서 현재 페이지 설정..
     void SetPageInCharRegion();                          // 문자 역역에서 현재 페이지 설정..
 
-    CN3UIImage *  GetChildImageByName(const std::string & szFN);
-    CN3UIBase *   GetChildBaseByName(const std::string & szFN);
-    CN3UIButton * GetChildButtonByName(const std::string & szFN);
+    CN3UIImage *  GetChildImageByName(const std::string & szName);
+    CN3UIBase *   GetChildBaseByName(const std::string & szName);
+    CN3UIButton * GetChildButtonByName(const std::string & szName);
 
     void PageLeft();
     void PageRight();

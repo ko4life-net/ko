@@ -34,10 +34,10 @@ class CLauncherDlg : public CDialog {
     HINTERNET          m_hFtpConnection;
     class CAPISocket * m_pSocket;
 
-    int         m_nCurVersion;
-    char        m_strServiceName[256];
-    std::string m_szExeName;
-    std::string m_szInstalledPath;
+    int      m_nCurVersion;
+    char     m_strServiceName[256];
+    fs::path m_fsExeFileName;
+    fs::path m_fsInstalledDir;
 
     int         m_nServerVersion;
     std::string m_szFtpUrl;

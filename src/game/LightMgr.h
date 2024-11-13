@@ -33,7 +33,7 @@ class CLightMgr : public CN3Base {
     void       AddLight(CN3Light * pLgt);
     CN3Light * Light(int idx) { return m_pActiveLight[idx]; }
 
-    void LoadZoneLight(const char * szFN);
+    void LoadZoneLight(const fs::path & fsFile);
 
     CLightMgr();
     virtual ~CLightMgr();

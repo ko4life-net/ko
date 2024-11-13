@@ -90,7 +90,7 @@ BOOL CDlgSetDTex::OnInitDialog() {
     for (int i = 0; i < iSize; i++) {
         pDTex = (*DTexIt);
         if (pDTex) {
-            m_FileList.InsertString(i, pDTex->m_pTex->FileName().c_str());
+            m_FileList.InsertString(i, pDTex->m_pTex->FilePath().string().c_str());
             m_FileList.SetItemDataPtr(i, pDTex);
         }
         DTexIt++;
@@ -413,8 +413,9 @@ void CDlgSetDTex::OnBtnSave() {
         return;
     }
 
-    pDTexGroupMng->SaveToFile(m_TileSetName);
-    pDTexMng->SaveToFile(m_TileSetName);
+    fs::path fsFileName = m_TileSetName.GetString();
+    pDTexGroupMng->SaveToFile(fsFileName);
+    pDTexMng->SaveToFile(fsFileName);
 
     pFrm->m_DTexInfoFileName = m_TileSetName;
 }
@@ -517,8 +518,8 @@ void CDlgSetDTex::OnBtnAdddtex() {
 
         dlg.m_TexName.MakeLower();
 
-        if (pDTexMng->AddDTex(dlg.m_TexName)) {
-            CDTex * pDTex = pDTexMng->GetDTexByName(dlg.m_TexName);
+        if (pDTexMng->AddDTex(dlg.m_TexName.GetString())) {
+            CDTex * pDTex = pDTexMng->GetDTexByName(dlg.m_TexName.GetString());
 
             if (pDTex) {
                 int idx = m_FileList.GetCount();
@@ -640,12 +641,13 @@ void CDlgSetDTex::OnBtnLoadTileset() {
 
         pFrm->m_DTexInfoFileName = dlg.m_SelFileName;
         m_TileSetName = dlg.m_SelFileName;
+        fs::path fsFileName = m_TileSetName.GetString();
 
         CDTexMng *      pDTexMng = pFrm->GetDTexMng();
         CDTexGroupMng * pDTexGroupMng = pFrm->GetDTexGroupMng();
 
-        pDTexGroupMng->LoadFromFile(m_TileSetName);
-        pDTexMng->LoadFromFile(m_TileSetName);
+        pDTexGroupMng->LoadFromFile(fsFileName);
+        pDTexMng->LoadFromFile(fsFileName);
 
         //reset dialog box...
         m_FileList.ResetContent();
@@ -656,7 +658,7 @@ void CDlgSetDTex::OnBtnLoadTileset() {
         for (int i = 0; i < iSize; i++) {
             pDTex = (*DTexIt);
             if (pDTex) {
-                m_FileList.InsertString(i, pDTex->m_pTex->FileName().c_str());
+                m_FileList.InsertString(i, pDTex->m_pTex->FilePath().string().c_str());
                 m_FileList.SetItemDataPtr(i, pDTex);
             }
             DTexIt++;

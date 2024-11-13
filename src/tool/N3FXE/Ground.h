@@ -16,7 +16,7 @@ class CGround : public CN3Base {
     CN3Texture * m_pTile;
 
   public:
-    void SetTex(const char * szPath);
+    void SetTex(const fs::path & fsFile);
     void Render();
 
     CGround();

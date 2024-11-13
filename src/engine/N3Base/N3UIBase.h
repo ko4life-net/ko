@@ -133,8 +133,8 @@ class CN3UIBase : public CN3BaseFileAccess {
     virtual bool  OnKeyPress(int iKey) { return false; }
     virtual bool  OnKeyPressed(int iKey) { return false; }
 
-    static bool EnableTooltip(const std::string & szFN); // tooltip UI를 초기화 해준다.
-    static void DestroyTooltip();                        // tooltip ui에 관련된 것을 해제해준다.
+    static bool EnableTooltip(const fs::path & fsFile); // tooltip UI를 초기화 해준다.
+    static void DestroyTooltip();                       // tooltip ui에 관련된 것을 해제해준다.
 
     int         GetChildrenCount() { return m_Children.size(); }
     CN3UIBase * GetChildByIndex(int iIndex) {
@@ -153,9 +153,9 @@ class CN3UIBase : public CN3BaseFileAccess {
 #ifdef _N3TOOL
   public:
     virtual bool Save(HANDLE hFile);
-    virtual void ChangeImagePath(const std::string & szPathOld, const std::string & szPathNew);
-    virtual void ChangeFont(const std::string & szFont);
-    virtual void GatherImageFileName(std::set<std::string> & setImgFile);
+    virtual void ChangeImagePath(const fs::path & fsOldFile, const fs::path & fsNewFile);
+    virtual void ChangeFont(const fs::path & fsFile);
+    virtual void GatherImageFileName(std::set<fs::path> & setImgFile);
 
     void ResizeAutomaticalyByChild();
     int  IsMyChild(CN3UIBase * pUI);
@@ -166,11 +166,11 @@ class CN3UIBase : public CN3BaseFileAccess {
     bool MoveToLowest(CN3UIBase * pChild);
     bool MoveToHighest(CN3UIBase * pChild);
 
-    void        ArrangeZOrder();
-    void        SetSndOpen(const std::string & strFileName);
-    void        SetSndClose(const std::string & strFileName);
-    std::string GetSndFName_OpenUI() const;
-    std::string GetSndFName_CloseUI() const;
+    void     ArrangeZOrder();
+    void     SetSndOpen(const fs::path & fsFile);
+    void     SetSndClose(const fs::path & fsFile);
+    fs::path GetSndFName_OpenUI() const;
+    fs::path GetSndFName_CloseUI() const;
 
     virtual bool ReplaceAllTextures(const std::string & strFind, const std::string & strReplace);
 #endif

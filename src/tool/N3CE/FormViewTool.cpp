@@ -158,9 +158,8 @@ void CFormViewTool::OnBDeleteTestSound0() {
 
     int iSel = m_ListSound0.GetCurSel();
     if (iSel >= 0) {
-        CString szFN;
-        m_ListSound0.GetText(iSel, szFN);
-        std::string szFN2(szFN);
+        CString szFile;
+        m_ListSound0.GetText(iSel, szFile);
         pFrm->m_SndMgr.ReleaseObj(&(pFrm->m_pSndObj0));
 
         m_ListSound0.DeleteString(iSel);
@@ -173,11 +172,10 @@ void CFormViewTool::OnSelchangeListSound0() {
 
     int iSel = m_ListSound0.GetCurSel();
     if (iSel >= 0) {
-        CString szFN;
-        m_ListSound0.GetText(iSel, szFN);
-        std::string szFN2(szFN);
+        CString szFile;
+        m_ListSound0.GetText(iSel, szFile);
         pFrm->m_SndMgr.ReleaseObj(&(pFrm->m_pSndObj0));
-        pFrm->m_pSndObj0 = (pFrm->m_SndMgr.CreateObj(szFN2, SNDTYPE_3D));
+        pFrm->m_pSndObj0 = pFrm->m_SndMgr.CreateObj(szFile.GetString(), SNDTYPE_3D);
     }
 }
 
@@ -208,9 +206,8 @@ void CFormViewTool::OnBDeleteTestSound1() {
 
     int iSel = m_ListSound1.GetCurSel();
     if (iSel >= 0) {
-        CString szFN;
-        m_ListSound1.GetText(iSel, szFN);
-        std::string szFN2(szFN);
+        CString szFile;
+        m_ListSound1.GetText(iSel, szFile);
         pFrm->m_SndMgr.ReleaseObj(&(pFrm->m_pSndObj0));
 
         m_ListSound0.DeleteString(iSel);
@@ -223,11 +220,10 @@ void CFormViewTool::OnSelchangeListSound1() {
 
     int iSel = m_ListSound1.GetCurSel();
     if (iSel >= 0) {
-        CString szFN;
-        m_ListSound1.GetText(iSel, szFN);
-        std::string szFN2(szFN);
+        CString szFile;
+        m_ListSound1.GetText(iSel, szFile);
         pFrm->m_SndMgr.ReleaseObj(&(pFrm->m_pSndObj1));
-        pFrm->m_pSndObj1 = pFrm->m_SndMgr.CreateObj(szFN2, SNDTYPE_3D);
+        pFrm->m_pSndObj1 = pFrm->m_SndMgr.CreateObj(szFile.GetString(), SNDTYPE_3D);
     }
 }
 

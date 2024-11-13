@@ -259,7 +259,7 @@ void CUIState::UpdateHP(int iVal, int iValMax) {
         return;
     }
 
-    m_pText_HP->SetString(std::format("{} / {}", iVal, iValMax));
+    m_pText_HP->SetString(std::format("{:d} / {:d}", iVal, iValMax));
 }
 
 void CUIState::UpdateMSP(int iVal, int iValMax) {
@@ -268,7 +268,7 @@ void CUIState::UpdateMSP(int iVal, int iValMax) {
         return;
     }
 
-    m_pText_MP->SetString(std::format("{} / {}", iVal, iValMax));
+    m_pText_MP->SetString(std::format("{:d} / {:d}", iVal, iValMax));
 }
 
 void CUIState::UpdateExp(int iVal, int iValMax) {
@@ -277,7 +277,7 @@ void CUIState::UpdateExp(int iVal, int iValMax) {
         return;
     }
 
-    m_pText_Exp->SetString(std::format("{} / {}", iVal, iValMax));
+    m_pText_Exp->SetString(std::format("{:d} / {:d}", iVal, iValMax));
 }
 
 void CUIState::UpdatePoints(CN3UIString * pText, int iVal, int iDelta) {
@@ -287,9 +287,9 @@ void CUIState::UpdatePoints(CN3UIString * pText, int iVal, int iDelta) {
 
     if (iDelta != 0) {
         if (iDelta > 0) {
-            pText->SetString(std::format("{}(+{})", iVal, iDelta));
+            pText->SetString(std::format("{:d}(+{:d})", iVal, iDelta));
         } else {
-            pText->SetString(std::format("{}({})", iVal, iDelta));
+            pText->SetString(std::format("{:d}({:d})", iVal, iDelta));
         }
     } else {
         pText->SetStringAsInt(iVal);
@@ -1086,9 +1086,8 @@ bool CUIFriends::Load(HANDLE hFile) {
     m_pBtn_Delete = (CN3UIButton *)this->GetChildByID("Btn_Delete");
     __ASSERT(m_pBtn_Delete, "NULL UI Component!!");
 
-    std::string szFN =
-        CGameProcedure::s_szAccount + "_" + CGameProcedure::s_szServer + ".txt"; // 파일이름은 계정_서버.txt 로 한다.
-    FILE * pFile = fopen(szFN.c_str(), "r");
+    fs::path fsFile = CGameProcedure::s_szAccount + "_" + CGameProcedure::s_szServer + ".txt";
+    FILE *   pFile = _wfopen(fsFile.c_str(), L"r");
     if (pFile) {
         char   szLine[256] = "";
         char * pszResult = fgets(szLine, 256, pFile); // 줄을 읽고..
@@ -1119,15 +1118,9 @@ bool CUIFriends::Load(HANDLE hFile) {
     return true;
 }
 
-void CUIFriends::SaveListToTextFile(const std::string & szID) // 문자열이 있으면 추가하고.. 없으면 몽땅 저장..
-{
-    std::string szFN =
-        CGameProcedure::s_szAccount + "_" + CGameProcedure::s_szServer + ".txt"; // 파일이름은 계정_서버.txt 로 한다.
-    char szFlags[4] = "w";
-    if (!szID.empty()) {
-        lstrcpy(szFlags, "a");
-    }
-    FILE * pFile = fopen(szFN.c_str(), szFlags);
+void CUIFriends::SaveListToTextFile(const std::string & szID) {
+    fs::path fsFile = CGameProcedure::s_szAccount + "_" + CGameProcedure::s_szServer + ".txt";
+    FILE *   pFile = _wfopen(fsFile.c_str(), szID.empty() ? L"w" : L"a");
     if (NULL == pFile) {
         return;
     }

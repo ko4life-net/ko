@@ -27,7 +27,7 @@ CN3SndObjStream::~CN3SndObjStream() {
     Release();
 }
 
-bool CN3SndObjStream::Create(const std::string & szFN, e_SndType eType) {
+bool CN3SndObjStream::Create(const fs::path & fsFile, e_SndType eType) {
     Release();
 
     if (NULL == s_lpDS) {
@@ -36,11 +36,11 @@ bool CN3SndObjStream::Create(const std::string & szFN, e_SndType eType) {
     if (SNDTYPE_STREAM != eType) {
         return false;
     }
-    if (!LoadWave(szFN.c_str())) {
+    if (!LoadWave(fsFile)) {
         return false;
     }
 
-    m_szFileName = szFN;
+    m_fsFile = fsFile;
 
     DWORD nBlockAlign = m_WaveFormat.nBlockAlign;
     DWORD BlockPerSec = m_WaveFormat.nSamplesPerSec * nBlockAlign;
@@ -76,8 +76,8 @@ bool CN3SndObjStream::Create(const std::string & szFN, e_SndType eType) {
     return true;
 }
 
-BOOL CN3SndObjStream::LoadWave(LPCSTR pFileName) {
-    hMMIO = mmioOpen((LPSTR)pFileName, NULL, MMIO_READ | MMIO_ALLOCBUF);
+BOOL CN3SndObjStream::LoadWave(const fs::path & fsFile) {
+    hMMIO = mmioOpenW(const_cast<fs::path::value_type *>(fsFile.c_str()), NULL, MMIO_READ | MMIO_ALLOCBUF);
     if (hMMIO == NULL) {
         return FALSE;
     }

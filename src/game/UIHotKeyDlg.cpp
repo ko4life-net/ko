@@ -374,12 +374,12 @@ void CUIHotKeyDlg::InitIconUpdate() {
             spSkill->pSkill = pUSkill;
 
             // 아이콘 이름 만들기.. ^^
-            spSkill->szIconFN = std::format("UI\\skillicon_{:02d}_{:d}.dxt", HD.iID % 100, HD.iID / 100);
+            spSkill->fsIconFile = fs::path("UI") / std::format("skillicon_{:02d}_{:d}.dxt", HD.iID % 100, HD.iID / 100);
 
             // 아이콘 로드하기.. ^^
             spSkill->pUIIcon = new CN3UIIcon;
             spSkill->pUIIcon->Init(this);
-            spSkill->pUIIcon->SetTex(spSkill->szIconFN);
+            spSkill->pUIIcon->SetTex(spSkill->fsIconFile);
             spSkill->pUIIcon->SetUVRect(0, 0, 1, 1);
             spSkill->pUIIcon->SetUIType(UI_TYPE_ICON);
             spSkill->pUIIcon->SetStyle(UISTYLE_ICON_SKILL);
@@ -555,7 +555,7 @@ void CUIHotKeyDlg::SetReceiveSelectedSkill(int iIndex) {
 
     // 그 다음에.. 그 자리에
     m_pMyHotkey[m_iCurPage][iIndex] = CN3UIWndBase::m_sSkillSelectInfo.pSkillDoneInfo;
-    m_pMyHotkey[m_iCurPage][iIndex]->szIconFN = CN3UIWndBase::m_sSkillSelectInfo.pSkillDoneInfo->szIconFN;
+    m_pMyHotkey[m_iCurPage][iIndex]->fsIconFile = CN3UIWndBase::m_sSkillSelectInfo.pSkillDoneInfo->fsIconFile;
     m_pMyHotkey[m_iCurPage][iIndex]->pUIIcon->SetRegion(pArea->GetRegion());
     m_pMyHotkey[m_iCurPage][iIndex]->pUIIcon->SetMoveRect(pArea->GetRegion());
     m_pMyHotkey[m_iCurPage][iIndex]->pUIIcon->SetParent(this);
@@ -801,13 +801,14 @@ bool CUIHotKeyDlg::ReceiveIconDrop(__IconItemSkill * spItem, POINT ptCur) {
         spSkill->pSkill = pUSkill;
 
         // 아이콘 이름 만들기.. ^^
-        spSkill->szIconFN = std::format("UI\\skillicon_{:02d}_{:d}.dxt", spItem->pItemBasic->dwEffectID1 % 100,
-                                        spItem->pItemBasic->dwEffectID1 / 100);
+        spSkill->fsIconFile =
+            fs::path("UI") / std::format("skillicon_{:02d}_{:d}.dxt", spItem->pItemBasic->dwEffectID1 % 100,
+                                         spItem->pItemBasic->dwEffectID1 / 100);
 
         // 아이콘 로드하기.. ^^
         spSkill->pUIIcon = new CN3UIIcon;
         spSkill->pUIIcon->Init(this);
-        spSkill->pUIIcon->SetTex(spSkill->szIconFN);
+        spSkill->pUIIcon->SetTex(spSkill->fsIconFile);
         spSkill->pUIIcon->SetUVRect(0, 0, 1.0f, 1.0f);
         spSkill->pUIIcon->SetUIType(UI_TYPE_ICON);
         spSkill->pUIIcon->SetStyle(UISTYLE_ICON_SKILL);

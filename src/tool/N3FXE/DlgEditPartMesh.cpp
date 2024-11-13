@@ -237,29 +237,22 @@ void CDlgEditPartMesh::OnPartMeshBtnSaveAs() {
     UpdateData(TRUE);
 
     CDlgNewFileName dlg;
-    dlg.m_strExt = ".N3FXPart";
-    if (dlg.DoModal() == IDOK) {
-        CString PathName = "fx\\";
-        PathName += dlg.m_strNewFileName;
-        PathName += dlg.m_strExt;
-        CN3BaseFileAccess * pBaseFileAccess = new CN3BaseFileAccess;
-        pBaseFileAccess->FileNameSet((LPCTSTR)PathName);
-
-        m_strPathName.Empty();
-        m_strPathName = CN3Base::PathGet().c_str();
-        m_strPathName += pBaseFileAccess->FileName().c_str();
-
-        delete pBaseFileAccess;
-
-        UpdateData(FALSE);
-        OnPartMeshBtnSave();
+    dlg.m_strExt = ".n3fxpart";
+    if (dlg.DoModal() == IDCANCEL) {
+        return;
     }
+
+    fs::path fsFile = CN3Base::PathGet() / "fx" / (dlg.m_strNewFileName + dlg.m_strExt).GetString();
+    m_strPathName = fsFile.c_str();
+
+    UpdateData(FALSE);
+    OnPartMeshBtnSave();
 }
 
-bool CDlgEditPartMesh::LoadPartScript(const char * szPath) {
-    m_strPathName = szPath;
+bool CDlgEditPartMesh::LoadPartScript(const fs::path & fsFile) {
+    m_strPathName = fsFile.c_str();
     CN3FXPartMesh * pPart = new CN3FXPartMesh;
-    if (!pPart->DecodeScriptFile(szPath)) {
+    if (!pPart->DecodeScriptFile(fsFile)) {
         delete pPart;
         return false;
     }
@@ -280,7 +273,7 @@ bool CDlgEditPartMesh::LoadPartScript(const char * szPath) {
     m_bZWrite = pPart->m_dwZWrite;
 
     m_bTexLoop = pPart->m_bTexLoop;
-    m_strShapeName = pPart->m_pShape->FileName().c_str();
+    m_strShapeName = pPart->m_pShape->FilePath().c_str();
     m_fTexVelocity = pPart->m_fTexFPS;
 
     if (pPart->m_cTextureMoveDir == 1) {
@@ -394,21 +387,13 @@ void CDlgEditPartMesh::OnPartMeshBtnLoadShape() {
         return;
     }
 
-    CString PathName = dlg.GetPathName();
-
-    CN3BaseFileAccess * pBaseFileAccess = new CN3BaseFileAccess;
-    pBaseFileAccess->FileNameSet((LPCTSTR)PathName);
-    PathName = pBaseFileAccess->FileName().c_str();
-
-    if ((PathName[0] == 'F' || PathName[0] == 'f') && (PathName[1] == 'X' || PathName[1] == 'x') &&
-        (PathName[2] == '/' || PathName[2] == '\\')) {
-        m_strShapeName = PathName;
+    fs::path fsFile = CN3BaseFileAccess::ToRelative(dlg.GetPathName().GetString());
+    if (n3std::iequals(*fsFile.begin(), "fx")) {
+        m_strShapeName = fsFile.c_str();
         UpdateData(FALSE);
     } else {
-        MessageBox("N3Shape파일은 fx폴더 아래, 혹은 fx폴더 아래에 있는 폴더에 위치해야 합니다..-.-;;", "ERR03", MB_OK);
+        MessageBox("N3Shape files must be located under the fx folder or a subfolder.", "ERR03", MB_OK);
     }
-
-    delete pBaseFileAccess;
 }
 
 void CDlgEditPartMesh::OnClose() {

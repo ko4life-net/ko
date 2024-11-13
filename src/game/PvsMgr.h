@@ -20,8 +20,8 @@ class CPvsMgr : public CN3BaseFileAccess {
     friend class CDungeonManager;
     friend class CPortalVolume;
 
-    const std::string m_IndoorFolder;
-    const float       m_fVolumeOffs; // Volume 체크 높이..
+    const fs::path m_fsIndoorDir;
+    const float    m_fVolumeOffs; // Volume 체크 높이..
 
     std::list<CPortalVolume *> m_pPvsList;
 
@@ -42,7 +42,7 @@ class CPvsMgr : public CN3BaseFileAccess {
 
     // String Cryptograph.. ^^
     static std::string ReadDecryptString(HANDLE hFile);
-    std::string        GetIndoorFolderPath() { return m_IndoorFolder; }
+    const fs::path &   GetIndoorFolderPath() { return m_fsIndoorDir; }
 
     CPortalVolume * GetPortalVolPointerByID(int iID);
 

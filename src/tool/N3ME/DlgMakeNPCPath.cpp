@@ -128,9 +128,8 @@ BOOL CDlgMakeNPCPath::OnInitDialog() {
     char szName[512] = "";
 
     //NPC종류에 관한 정의...
-    char szNpcFileName[MAX_PATH];
-    wsprintf(szNpcFileName, "npclist\\npclist.txt");
-    FILE * stream = fopen(szNpcFileName, "r");
+    fs::path fsNpcListFile = fs::path("npclist") / "npclist.txt";
+    FILE *   stream = _wfopen(fsNpcListFile.c_str(), L"r");
     if (stream) {
         //int result;
         while (true) {
@@ -161,8 +160,8 @@ BOOL CDlgMakeNPCPath::OnInitDialog() {
     }
 
     //NPC움직임에 관한 정의..
-    wsprintf(szNpcFileName, "npclist\\npcacttypelist.txt");
-    stream = fopen(szNpcFileName, "r");
+    fs::path fsNpcActTypeListFile = fs::path("npclist") / "npcacttypelist.txt";
+    stream = _wfopen(fsNpcActTypeListFile.c_str(), L"r");
     if (stream) {
         //int result;
         while (true) {
@@ -264,7 +263,7 @@ void CDlgMakeNPCPath::OnBtnLoadPathset() {
     m_pSelPath = NULL;
 
     if (dlg.DoModal() == IDOK) {
-        m_pRefNPCPathMgr->LoadFromFile((LPCTSTR)dlg.m_SelFileName);
+        m_pRefNPCPathMgr->LoadFromFile(dlg.m_SelFileName.GetString());
         m_PathSetFileName = dlg.m_SelFileName + ".npi";
 
         m_ListPathGroup.ResetContent();
@@ -291,7 +290,7 @@ void CDlgMakeNPCPath::OnBtnSavePathset() {
 
     if (dlg.DoModal() == IDOK) {
         m_PathSetFileName = dlg.m_NewFileName + ".npi";
-        m_pRefNPCPathMgr->SaveToFile((LPCTSTR)dlg.m_NewFileName);
+        m_pRefNPCPathMgr->SaveToFile(dlg.m_NewFileName.GetString());
         UpdateData(FALSE);
     }
 }
@@ -301,8 +300,7 @@ void CDlgMakeNPCPath::OnBtnSaveServerPathset() {
                     "서버 NPC Route파일(*.snr)|*.snr||");
 
     if (dlg.DoModal() == IDOK) {
-        CString str = dlg.GetPathName();
-        m_pRefNPCPathMgr->MakeServerDataFile((LPCTSTR)str);
+        m_pRefNPCPathMgr->MakeServerDataFile(dlg.GetPathName().GetString());
     }
 }
 

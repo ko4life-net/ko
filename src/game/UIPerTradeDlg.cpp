@@ -198,9 +198,9 @@ void CUIPerTradeDlg::InitIconWnd(e_UIWND eWnd) {
     CN3UIWndBase::InitIconWnd(eWnd);
 
     // 내 결정 버튼 보통 상태로..
-    std::string   szFN = "btn_trade_my";
+    std::string   szName = "btn_trade_my";
     CN3UIButton * pButton;
-    pButton = (CN3UIButton *)GetChildButtonByName(szFN);
+    pButton = (CN3UIButton *)GetChildButtonByName(szName);
     if (pButton) {
         pButton->SetState(UI_STATE_BUTTON_NORMAL);
     }
@@ -242,9 +242,9 @@ void CUIPerTradeDlg::LeavePerTradeState() {
         m_iBackupiOrder[i] = -1;
     }
     // 내 결정 버튼 보통 상태로..
-    std::string   szFN = "btn_trade_my";
+    std::string   szName = "btn_trade_my";
     CN3UIButton * pButton;
-    pButton = (CN3UIButton *)GetChildButtonByName(szFN);
+    pButton = (CN3UIButton *)GetChildButtonByName(szName);
     if (pButton) {
         pButton->SetState(UI_STATE_BUTTON_NORMAL);
     }
@@ -265,9 +265,9 @@ void CUIPerTradeDlg::EnterPerTradeState() {
     }
 
     // 내 결정 버튼 보통 상태로..
-    std::string   szFN = "btn_trade_my";
+    std::string   szName = "btn_trade_my";
     CN3UIButton * pButton;
-    pButton = (CN3UIButton *)GetChildButtonByName(szFN);
+    pButton = (CN3UIButton *)GetChildButtonByName(szName);
     if (pButton) {
         pButton->SetState(UI_STATE_BUTTON_NORMAL);
     }
@@ -591,7 +591,7 @@ bool CUIPerTradeDlg::ReceiveIconDrop(__IconItemSkill * spItem, POINT ptCur) {
             spItemNew = new __IconItemSkill;
             spItemNew->pItemBasic = spItem->pItemBasic;
             spItemNew->pItemExt = spItem->pItemExt;
-            spItemNew->szIconFN = spItem->szIconFN; // 아이콘 파일 이름 복사..
+            spItemNew->fsIconFile = spItem->fsIconFile; // 아이콘 파일 이름 복사..
             spItemNew->iCount = 0;
             spItemNew->iDurability = spItem->iDurability;
 
@@ -599,7 +599,7 @@ bool CUIPerTradeDlg::ReceiveIconDrop(__IconItemSkill * spItem, POINT ptCur) {
             spItemNew->pUIIcon = new CN3UIIcon;
             float fUVAspect = (float)45.0f / (float)64.0f;
             spItemNew->pUIIcon->Init(this);
-            spItemNew->pUIIcon->SetTex(spItemNew->szIconFN);
+            spItemNew->pUIIcon->SetTex(spItemNew->fsIconFile);
             spItemNew->pUIIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
             spItemNew->pUIIcon->SetUIType(UI_TYPE_ICON);
             spItemNew->pUIIcon->SetStyle(UISTYLE_ICON_ITEM | UISTYLE_ICON_CERTIFICATION_NEED);
@@ -832,10 +832,10 @@ bool CUIPerTradeDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     return true;
 }
 
-CN3UIBase * CUIPerTradeDlg::GetChildButtonByName(const std::string & szFN) {
+CN3UIBase * CUIPerTradeDlg::GetChildButtonByName(const std::string & szName) {
     for (UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor) {
         CN3UIBase * pChild = (CN3UIBase *)(*itor);
-        if ((pChild->UIType() == UI_TYPE_BUTTON) && (szFN.compare(pChild->m_szID) == 0)) {
+        if ((pChild->UIType() == UI_TYPE_BUTTON) && (szName.compare(pChild->m_szID) == 0)) {
             return pChild;
         }
     }

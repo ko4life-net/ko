@@ -8,8 +8,8 @@
 
 class CDlgChangeImage : public CDialog {
   public:
-    CString m_szFN_Old;
-    CString m_szFN_New;
+    fs::path m_fsOldFile;
+    fs::path m_fsNewFile;
     // Construction
   public:
     CDlgChangeImage(CWnd * pParent = NULL); // standard constructor

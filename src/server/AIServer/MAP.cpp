@@ -40,7 +40,6 @@ MAP::MAP() {
     m_byRoomEvent = 0;
     m_byRoomStatus = 1;
     m_byInitRoomCount = 0;
-    memset(m_MapName, NULL, 256);
     m_sKarusRoom = 0;
     m_sElmoradRoom = 0;
     //    for(int i=0; i<MAX_DUNGEON_BOSS_MONSTER; i++)
@@ -357,18 +356,18 @@ void MAP::LoadMapTile(HANDLE hFile) {
     }
     TRACE("move = %d\n", count);
 
-    /*    FILE* stream = fopen("c:\\move1.txt", "w");
-
-    for(int z=m_sizeMap.cy-1; z>=0; z--)
-    {
-        for(int x=0; x<m_sizeMap.cx; x++)
-        {
+    /*
+    fs::path fsFile = fs::temp_directory_path() / "move1.txt";
+    FILE *   stream = _wfopen(fsFile.c_str(), L"w");
+    for (int z = m_sizeMap.cy - 1; z >= 0; z--) {
+        for (int x = 0; x < m_sizeMap.cx; x++) {
             int v = m_pMap[x][z].m_sEvent;
-            fprintf(stream, "%d",v);
+            fprintf(stream, "%d", v);
         }
         fprintf(stream, "\n");
     }
-    fclose(stream);    */
+    fclose(stream);
+    */
 
     if (pEvent) {
         for (int i = 0; i < m_sizeMap.cx; i++) {
@@ -446,21 +445,20 @@ void MAP::LoadObjectEvent(HANDLE hFile) {
 }
 
 BOOL MAP::LoadRoomEvent(int zone_number) {
-    DWORD   length, count;
-    CString filename;
-    CFile   pFile;
-    BYTE    byte;
-    char    buf[4096];
-    char    first[1024];
-    char    temp[1024];
-    int     index = 0;
-    int     t_index = 0, logic = 0, exec = 0;
-    int     event_num = 0, nation = 0;
+    DWORD length, count;
+    CFile pFile;
+    BYTE  byte;
+    char  buf[4096];
+    char  first[1024];
+    char  temp[1024];
+    int   index = 0;
+    int   t_index = 0, logic = 0, exec = 0;
+    int   event_num = 0, nation = 0;
 
     CRoomEvent * pEvent = NULL;
-    filename.Format(".\\AIServer_MAP\\%d.evt", zone_number);
+    fs::path     fsEvtFile = fs::current_path() / "AIServer_MAP" / std::format("{:d}.evt", zone_number);
 
-    if (!pFile.Open(filename, CFile::modeRead)) {
+    if (!pFile.Open(fsEvtFile.string().c_str(), CFile::modeRead)) {
         return FALSE;
     }
 

@@ -268,30 +268,24 @@ void CEventMgr::SetActive(bool active) {
     }
 }
 
-void CEventMgr::LoadFromFile(const char * RealFileName) {
-    char szNPCPathFileName[_MAX_PATH];
-    wsprintf(szNPCPathFileName, "%sevent\\%s.evt", CN3Base::PathGet().c_str(), (LPCTSTR)RealFileName);
-
-    //DWORD dwRWC;
-    HANDLE hFile = CreateFile(szNPCPathFileName, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+void CEventMgr::LoadFromFile(const fs::path & fsFileName) {
+    fs::path fsFile = (CN3Base::PathGet() / "event" / fsFileName).replace_extension(".evt");
+    HANDLE   hFile = CreateFileW(fsFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     Load(hFile);
     CloseHandle(hFile);
 }
 
-void CEventMgr::SaveToFile(const char * RealFileName) {
-    char szOldPath[_MAX_PATH];
-    GetCurrentDirectory(_MAX_PATH, szOldPath);
-    SetCurrentDirectory(CN3Base::PathGet().c_str());
+void CEventMgr::SaveToFile(const fs::path & fsFileName) {
+    fs::path fsCurDirPrev = fs::current_path();
+    fs::current_path(CN3Base::PathGet());
+    fs::path fsDir("event");
+    fs::create_directory(fsDir);
 
-    CreateDirectory("event", NULL); // 경로 만들고..
-    char szNPCPathFileName[_MAX_PATH];
-    wsprintf(szNPCPathFileName, "%sevent\\%s.evt", CN3Base::PathGet().c_str(), (LPCTSTR)RealFileName);
-
-    //DWORD dwRWC;
-    HANDLE hFile = CreateFile(szNPCPathFileName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    fs::path fsFile = (CN3Base::PathGet() / fsDir / fsFileName).replace_extension(".evt");
+    HANDLE   hFile = CreateFileW(fsFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     Save(hFile);
     CloseHandle(hFile);
-    SetCurrentDirectory(szOldPath);
+    fs::current_path(fsCurDirPrev);
 }
 
 bool CEventMgr::Load(HANDLE hFile) {
@@ -357,9 +351,9 @@ void CEventMgr::MakeEventArray() {
     }
 }
 
-void CEventMgr::SaveInfoTextFile(char * szEvent) {
+void CEventMgr::SaveInfoTextFile(const fs::path & fsFile) {
     // text 파일 버전...
-    FILE * stream = fopen(szEvent, "r");
+    FILE * stream = _wfopen(fsFile.c_str(), L"r");
     //if(!stream)    return;
 
     std::list<CEventCell *> TmpList;
@@ -397,7 +391,7 @@ void CEventMgr::SaveInfoTextFile(char * szEvent) {
         }
     }
 
-    stream = fopen(szEvent, "w");
+    stream = _wfopen(fsFile.c_str(), L"w");
     if (!stream) {
         return;
     }
@@ -471,8 +465,8 @@ void CEventMgr::SaveInfoTextFile(char* szEvent)
 }
 */
 
-bool CEventMgr::MakeGameFile(char * szEventName, int iSize) {
-    HANDLE hGevFile = CreateFile(szEventName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+bool CEventMgr::MakeGameFile(const fs::path & fsFile, int iSize) {
+    HANDLE hGevFile = CreateFileW(fsFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hGevFile) {
         return false;
     }

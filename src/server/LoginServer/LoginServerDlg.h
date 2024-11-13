@@ -12,8 +12,8 @@
 /////////////////////////////////////////////////////////////////////////////
 // CLoginServerDlg dialog
 
-typedef CSTLMap<string, _VERSION_INFO> VersionInfoList;
-typedef std::vector<_SERVER_INFO *>    ServerInfoList;
+typedef CSTLMap<fs::path, _VERSION_INFO> VersionInfoList; // TODO: does the key need to be fs::path?
+typedef std::vector<_SERVER_INFO *>      ServerInfoList;
 
 class CLoginServerDlg : public CDialog {
     // Construction
@@ -24,11 +24,13 @@ class CLoginServerDlg : public CDialog {
 
     static CIOCPort m_Iocport;
 
-    char m_strFtpUrl[256];
-    char m_strFilePath[256];
-    char m_strDefaultPath[_MAX_PATH];
+    // m_szFtpUrl / m_szFtpPath / patch0000.zip
+    std::string m_szFtpUrl;  // The url for the FTP server to download patches
+    std::string m_szFtpPath; // The directory path for the FTP
 
-    int m_nLastVersion;
+    fs::path m_fsDefaultDir;
+
+    short m_nLastVersion;
 
     char m_ODBCName[32];
     char m_ODBCLogin[32];

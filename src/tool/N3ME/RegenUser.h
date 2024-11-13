@@ -40,8 +40,8 @@ class CRegenUser : public CN3Base {
 
     void ClearList();
     void SaveServerData(HANDLE hFile);
-    void LoadFromFile(LPCTSTR pFullFileName);
-    void SaveToFile(LPCTSTR pFullFileName);
+    void LoadFromFile(const fs::path & fsFile);
+    void SaveToFile(const fs::path & fsFile);
 
     CRegenUser();
     virtual ~CRegenUser();

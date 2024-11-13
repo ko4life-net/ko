@@ -28,7 +28,7 @@ class CEventManager {
     bool  PtInRect(int x, int z, RECT rc);
     short SetPos(float fX, float fZ);
     void  Release();
-    bool  LoadFromFile(const char * szFileName);
+    bool  LoadFromFile(const fs::path & fsFile);
     CEventManager();
     virtual ~CEventManager();
 };

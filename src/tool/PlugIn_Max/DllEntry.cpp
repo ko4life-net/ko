@@ -10,6 +10,8 @@
 
  *>    Copyright (c) 1997, All Rights Reserved.
  **********************************************************************/
+#include "StdAfx.h"
+
 #include "N3DExp.h"
 
 extern ClassDesc * GetCN3DExpDesc();

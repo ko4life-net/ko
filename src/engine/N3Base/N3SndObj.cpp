@@ -20,7 +20,6 @@ CN3SndObj::CN3SndObj() {
     m_lpDS3DBuff = NULL;
     m_bIsLoop = false;
     m_iVol = -1;
-    m_szFileName = "";
 
     m_fFadeInTime = 0;
     m_fFadeOutTime = 0;
@@ -43,7 +42,6 @@ void CN3SndObj::Init() {
 
     m_bIsLoop = false;
     m_iVol = -1;
-    m_szFileName = "";
 
     m_fStartDelayTime = 0;
     m_fTmpSecPerFrm = 0;
@@ -174,7 +172,7 @@ void CN3SndObj::StaticTick() {
     s_bNeedDeferredTick = false;
 }
 
-bool CN3SndObj::Create(const std::string & szFN, e_SndType eType) {
+bool CN3SndObj::Create(const fs::path & fsFile, e_SndType eType) {
     if (NULL == s_lpDS) {
         return false;
     }
@@ -186,11 +184,11 @@ bool CN3SndObj::Create(const std::string & szFN, e_SndType eType) {
     }
 
     CWaveFile WaveFile;
-    HRESULT   hr = WaveFile.Open(szFN.c_str(), NULL, 1); //#define WAVEFILE_READ   1
+    HRESULT   hr = WaveFile.Open(fsFile, NULL, 1); //#define WAVEFILE_READ   1
     if (FAILED(hr)) {
 #ifdef _N3GAME
-        if (!szFN.empty()) {
-            CLogWriter::Write("CN3SndEng::LoadSource - WaveFile Open Failed.. (%s)", szFN.c_str());
+        if (!fsFile.empty()) {
+            CLogWriter::Write("CN3SndEng::LoadSource - WaveFile Open Failed.. (%s)", fsFile.string().c_str());
         }
 #endif
         return false;
@@ -214,14 +212,14 @@ bool CN3SndObj::Create(const std::string & szFN, e_SndType eType) {
     hr = s_lpDS->CreateSoundBuffer(&dsbd, &m_lpDSBuff, NULL);
     if (FAILED(hr)) {
 #ifdef _N3GAME
-        CLogWriter::Write("CN3SndObj::Create - CreateSoundBuffer Failed.. (%)", szFN.c_str());
+        CLogWriter::Write("CN3SndObj::Create - CreateSoundBuffer Failed.. (%)", fsFile.string().c_str());
 #endif
         return false;
     }
 
     if (!FillBufferWithSound(&WaveFile)) {
 #ifdef _N3GAME
-        CLogWriter::Write("CN3SndObj::Create - FillBufferWithSound Failed.. (%)", szFN.c_str());
+        CLogWriter::Write("CN3SndObj::Create - FillBufferWithSound Failed.. (%)", fsFile.string().c_str());
 #endif
         return false;
     }
@@ -233,7 +231,7 @@ bool CN3SndObj::Create(const std::string & szFN, e_SndType eType) {
         }
     }
 
-    m_szFileName = szFN; // 파일 이름을 기록한다..
+    m_fsFile = fsFile; // 파일 이름을 기록한다..
 
     s_bNeedDeferredTick = true; // 3D Listener CommitDeferredSetting
     return true;
@@ -281,7 +279,7 @@ bool CN3SndObj::Duplicate(CN3SndObj * pSrc, e_SndType eType, D3DVECTOR * pPos) {
     }
 
     s_bNeedDeferredTick = true; // 3D Listener CommitDeferredSetting
-    m_szFileName = pSrc->m_szFileName;
+    m_fsFile = pSrc->m_fsFile;
     return true;
 }
 
