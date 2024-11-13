@@ -36,7 +36,7 @@ void CUIImageTooltipDlg::Release() {
 
 void CUIImageTooltipDlg::InitPos() {
     for (int i = 0; i < MAX_TOOLTIP_COUNT; i++) {
-        m_pStr[i] = (CN3UIString *)GetChildByID(std::format("string_{}", i));
+        m_pStr[i] = (CN3UIString *)GetChildByID(std::format("string_{:d}", i));
         __ASSERT(m_pStr[i], "NULL UI Component!!");
     }
 

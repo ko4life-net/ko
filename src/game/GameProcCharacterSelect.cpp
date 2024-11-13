@@ -174,15 +174,16 @@ void CGameProcCharacterSelect::Init() {
     m_lgt[2].Diffuse.b = m_lgt[1].Diffuse.b = m_lgt[0].Diffuse.b = 255 / 255.0f;
     m_lgt[2].Falloff = m_lgt[1].Falloff = m_lgt[0].Falloff = 20.0f;
 
+    fs::path  fsChrSelectDir("ChrSelect");
     __Vector3 vTemp;
     switch (s_pPlayer->m_InfoBase.eNation) {
     case NATION_KARUS:
-        m_pActiveBg->LoadFromFile("ChrSelect\\ka_chairs.n3shape");
+        m_pActiveBg->LoadFromFile(fsChrSelectDir / "ka_chairs.n3shape");
 
         // Light..
-        m_pLights[0]->LoadFromFile("ChrSelect\\ka_light_0.n3light");
-        m_pLights[1]->LoadFromFile("ChrSelect\\ka_light_1.n3light");
-        m_pLights[2]->LoadFromFile("ChrSelect\\ka_light_2.n3light");
+        m_pLights[0]->LoadFromFile(fsChrSelectDir / "ka_light_0.n3light");
+        m_pLights[1]->LoadFromFile(fsChrSelectDir / "ka_light_1.n3light");
+        m_pLights[2]->LoadFromFile(fsChrSelectDir / "ka_light_2.n3light");
 
         m_lgt[0].Position = m_vEye;  // 카루스
         m_lgt[0].Position.y += 2.0f; // 카루스
@@ -205,12 +206,12 @@ void CGameProcCharacterSelect::Init() {
         break;
 
     case NATION_ELMORAD:
-        m_pActiveBg->LoadFromFile("ChrSelect\\el_chairs.n3shape");
+        m_pActiveBg->LoadFromFile(fsChrSelectDir / "el_chairs.n3shape");
 
         // Light..
-        m_pLights[0]->LoadFromFile("ChrSelect\\el_light_0.n3light");
-        m_pLights[1]->LoadFromFile("ChrSelect\\el_light_1.n3light");
-        m_pLights[2]->LoadFromFile("ChrSelect\\el_light_2.n3light");
+        m_pLights[0]->LoadFromFile(fsChrSelectDir / "el_light_0.n3light");
+        m_pLights[1]->LoadFromFile(fsChrSelectDir / "el_light_1.n3light");
+        m_pLights[2]->LoadFromFile(fsChrSelectDir / "el_light_2.n3light");
 
         m_lgt[0].Position = m_vEye;  // 카루스
         m_lgt[0].Position.y += 2.0f; // 카루스
@@ -373,15 +374,16 @@ void CGameProcCharacterSelect::AddChr(e_ChrPos eCP, __CharacterSelectInfo * pInf
 
     m_pChrs[iPosIndex]->PartAlloc(PART_POS_COUNT);
     m_pChrs[iPosIndex]->PlugAlloc(PLUG_POS_COUNT);
-    std::string szJointFN, szAniFN, szPlug0FN, szPlug1FN;
+    fs::path fsJointFile, fsAniFile, fsPlug0File, fsPlug1File;
 
+    fs::path fsChrSelectDir("ChrSelect");
     switch (pInfo->eRace) {
     case RACE_EL_BABARIAN:
         // 남자 바바리안은 직업이 하나..
-        szJointFN = "ChrSelect\\upc_el_ba_wa.n3joint"; // 관절 세팅..
-        szAniFN = "ChrSelect\\upc_el_ba_wa.n3anim";    // 에니메이션 파일 이름.. :-D;
-        szPlug0FN = "ChrSelect\\wea_el_great_sword.n3cplug";
-        szPlug1FN = "";
+        fsJointFile = fsChrSelectDir / "upc_el_ba_wa.n3joint"; // 관절 세팅..
+        fsAniFile = fsChrSelectDir / "upc_el_ba_wa.n3anim";    // 에니메이션 파일 이름.. :-D;
+        fsPlug0File = fsChrSelectDir / "wea_el_great_sword.n3cplug";
+        fsPlug1File = fs::path();
         break;
     case RACE_EL_WOMEN:
         // 엘모 여자는 직업이 현재 세개(전사, 로그, 성직자).. 성직자는 그래픽이 없다..
@@ -389,34 +391,34 @@ void CGameProcCharacterSelect::AddChr(e_ChrPos eCP, __CharacterSelectInfo * pInf
         case CLASS_EL_WARRIOR:
         case CLASS_EL_BLADE:
         case CLASS_EL_PROTECTOR:
-            szJointFN = "ChrSelect\\upc_el_rf_wa.n3joint";
-            szAniFN = "ChrSelect\\upc_el_rf_wa.n3anim";              // 에니메이션 파일 이름.. :-D;
-            szPlug0FN = "ChrSelect\\wea_el_long_sword_left.n3cplug"; // 왼손에 검을 찬다..
-            szPlug1FN = "";
+            fsJointFile = fsChrSelectDir / "upc_el_rf_wa.n3joint";
+            fsAniFile = fsChrSelectDir / "upc_el_rf_wa.n3anim";              // 에니메이션 파일 이름.. :-D;
+            fsPlug0File = fsChrSelectDir / "wea_el_long_sword_left.n3cplug"; // 왼손에 검을 찬다..
+            fsPlug1File = fs::path();
             break;
         case CLASS_EL_ROGUE:
         case CLASS_EL_RANGER:
         case CLASS_EL_ASSASIN:
-            szJointFN = "ChrSelect\\upc_el_rf_rog.n3joint"; // 관절 세팅..
-            szAniFN = "ChrSelect\\upc_el_rf_wa.n3anim";     // 에니메이션 파일 이름.. :-D;
-            szPlug0FN = "ChrSelect\\wea_el_rf_rog_bow.n3cplug";
-            szPlug1FN = "ChrSelect\\wea_el_quiver.n3cplug";
+            fsJointFile = fsChrSelectDir / "upc_el_rf_rog.n3joint"; // 관절 세팅..
+            fsAniFile = fsChrSelectDir / "upc_el_rf_wa.n3anim";     // 에니메이션 파일 이름.. :-D;
+            fsPlug0File = fsChrSelectDir / "wea_el_rf_rog_bow.n3cplug";
+            fsPlug1File = fsChrSelectDir / "wea_el_quiver.n3cplug";
             break;
         case CLASS_EL_WIZARD:
         case CLASS_EL_MAGE:
         case CLASS_EL_ENCHANTER:
-            szJointFN = "ChrSelect\\upc_el_rf_wiz.n3joint"; // 관절 세팅..
-            szAniFN = "ChrSelect\\upc_el_rf_wa.n3anim";     // 에니메이션 파일 이름.. :-D;
-            szPlug0FN = "ChrSelect\\upc_el_rf_wiz.n3cplug";
-            szPlug1FN = "";
+            fsJointFile = fsChrSelectDir / "upc_el_rf_wiz.n3joint"; // 관절 세팅..
+            fsAniFile = fsChrSelectDir / "upc_el_rf_wa.n3anim";     // 에니메이션 파일 이름.. :-D;
+            fsPlug0File = fsChrSelectDir / "upc_el_rf_wiz.n3cplug";
+            fsPlug1File = fs::path();
             break;
         case CLASS_EL_PRIEST:
         case CLASS_EL_CLERIC:
         case CLASS_EL_DRUID:
-            szJointFN = "ChrSelect\\upc_el_rf_pri.n3joint"; // 관절 세팅..
-            szAniFN = "ChrSelect\\upc_el_rf_wa.n3anim";     // 에니메이션 파일 이름.. :-D;
-            szPlug0FN = "ChrSelect\\wea_el_wand.n3cplug";
-            szPlug1FN = "";
+            fsJointFile = fsChrSelectDir / "upc_el_rf_pri.n3joint"; // 관절 세팅..
+            fsAniFile = fsChrSelectDir / "upc_el_rf_wa.n3anim";     // 에니메이션 파일 이름.. :-D;
+            fsPlug0File = fsChrSelectDir / "wea_el_wand.n3cplug";
+            fsPlug1File = fs::path();
             break;
         }
         break;
@@ -426,90 +428,90 @@ void CGameProcCharacterSelect::AddChr(e_ChrPos eCP, __CharacterSelectInfo * pInf
         case CLASS_EL_WARRIOR:
         case CLASS_EL_BLADE:
         case CLASS_EL_PROTECTOR:
-            szJointFN = "ChrSelect\\upc_el_rm_wa.n3joint";
-            szAniFN = "ChrSelect\\upc_el_rm_wa.n3anim";
-            szPlug0FN = "ChrSelect\\wea_el_long_sword.n3cplug";
+            fsJointFile = fsChrSelectDir / "upc_el_rm_wa.n3joint";
+            fsAniFile = fsChrSelectDir / "upc_el_rm_wa.n3anim";
+            fsPlug0File = fsChrSelectDir / "wea_el_long_sword.n3cplug";
             break;
         case CLASS_EL_ROGUE:
         case CLASS_EL_RANGER:
         case CLASS_EL_ASSASIN:
-            szJointFN = "ChrSelect\\upc_el_rm_rog.n3joint";
-            szAniFN = "ChrSelect\\upc_el_rm_rog.n3anim";
-            szPlug0FN = "ChrSelect\\upc_el_rm_rog_bow.n3cplug";
-            szPlug1FN = "ChrSelect\\wea_el_quiver.n3cplug";
+            fsJointFile = fsChrSelectDir / "upc_el_rm_rog.n3joint";
+            fsAniFile = fsChrSelectDir / "upc_el_rm_rog.n3anim";
+            fsPlug0File = fsChrSelectDir / "upc_el_rm_rog_bow.n3cplug";
+            fsPlug1File = fsChrSelectDir / "wea_el_quiver.n3cplug";
             break;
         case CLASS_EL_WIZARD:
         case CLASS_EL_MAGE:
         case CLASS_EL_ENCHANTER:
-            szJointFN = "ChrSelect\\upc_el_rm_ma.n3joint";
-            szAniFN = "ChrSelect\\upc_el_rm_rog.n3anim";
-            szPlug0FN = "ChrSelect\\upc_el_rm_wiz.n3cplug";
-            szPlug1FN = "";
+            fsJointFile = fsChrSelectDir / "upc_el_rm_ma.n3joint";
+            fsAniFile = fsChrSelectDir / "upc_el_rm_rog.n3anim";
+            fsPlug0File = fsChrSelectDir / "upc_el_rm_wiz.n3cplug";
+            fsPlug1File = fs::path();
             break;
         case CLASS_EL_PRIEST:
         case CLASS_EL_CLERIC:
         case CLASS_EL_DRUID:
-            szJointFN = "ChrSelect\\upc_el_rm_pri.n3joint";
-            szAniFN = "ChrSelect\\upc_el_rm_rog.n3anim";
-            szPlug0FN = "ChrSelect\\wea_el_wand.n3cplug";
-            szPlug1FN = "";
+            fsJointFile = fsChrSelectDir / "upc_el_rm_pri.n3joint";
+            fsAniFile = fsChrSelectDir / "upc_el_rm_rog.n3anim";
+            fsPlug0File = fsChrSelectDir / "wea_el_wand.n3cplug";
+            fsPlug1File = fs::path();
             break;
         }
         break;
     case RACE_KA_ARKTUAREK:
         // 카루스 직업 하나.. 온리 전사..
-        szJointFN = "ChrSelect\\upc_ka_at_wa.n3joint";
-        szAniFN = "ChrSelect\\upc_ka_at_wa.n3anim";
-        szPlug0FN = "ChrSelect\\wea_ka_great_axe.n3cplug";
-        szPlug1FN = "";
+        fsJointFile = fsChrSelectDir / "upc_ka_at_wa.n3joint";
+        fsAniFile = fsChrSelectDir / "upc_ka_at_wa.n3anim";
+        fsPlug0File = fsChrSelectDir / "wea_ka_great_axe.n3cplug";
+        fsPlug1File = fs::path();
         break;
     case RACE_KA_TUAREK:
         switch (pInfo->eClass) {
         case CLASS_KA_ROGUE:
         case CLASS_KA_HUNTER:
         case CLASS_KA_PENETRATOR:
-            szJointFN = "ChrSelect\\upc_ka_tu_rog.n3joint";
-            szAniFN = "ChrSelect\\upc_ka_at_wa.n3anim";
-            szPlug0FN = "ChrSelect\\wea_ka_bow.n3cplug";
-            szPlug1FN = "ChrSelect\\wea_ka_quiver.n3cplug";
+            fsJointFile = fsChrSelectDir / "upc_ka_tu_rog.n3joint";
+            fsAniFile = fsChrSelectDir / "upc_ka_at_wa.n3anim";
+            fsPlug0File = fsChrSelectDir / "wea_ka_bow.n3cplug";
+            fsPlug1File = fsChrSelectDir / "wea_ka_quiver.n3cplug";
             break;
         case CLASS_KA_PRIEST:
         case CLASS_KA_SHAMAN:
         case CLASS_KA_DARKPRIEST:
-            szJointFN = "ChrSelect\\upc_ka_tu_pri.n3joint";
-            szAniFN = "ChrSelect\\upc_ka_at_wa.n3anim";
-            szPlug0FN = "ChrSelect\\wea_ka_mace.n3cplug";
-            szPlug1FN = "";
+            fsJointFile = fsChrSelectDir / "upc_ka_tu_pri.n3joint";
+            fsAniFile = fsChrSelectDir / "upc_ka_at_wa.n3anim";
+            fsPlug0File = fsChrSelectDir / "wea_ka_mace.n3cplug";
+            fsPlug1File = fs::path();
             break;
         }
         break;
     case RACE_KA_WRINKLETUAREK:
-        szJointFN = "ChrSelect\\upc_ka_wt_ma.n3joint";
-        szAniFN = "ChrSelect\\upc_ka_at_wa.n3anim";
-        szPlug0FN = "ChrSelect\\wea_ka_staff.n3cplug";
-        szPlug1FN = "";
+        fsJointFile = fsChrSelectDir / "upc_ka_wt_ma.n3joint";
+        fsAniFile = fsChrSelectDir / "upc_ka_at_wa.n3anim";
+        fsPlug0File = fsChrSelectDir / "wea_ka_staff.n3cplug";
+        fsPlug1File = fs::path();
         break;
     case RACE_KA_PURITUAREK:
-        szJointFN = "ChrSelect\\upc_el_rf_pri.n3joint"; // 관절 세팅..
-        szAniFN = "ChrSelect\\upc_el_rf_wa.n3anim";     // 에니메이션 파일 이름.. :-D;
-        szPlug0FN = "ChrSelect\\wea_ka_mace.n3cplug";
-        szPlug1FN = "";
+        fsJointFile = fsChrSelectDir / "upc_el_rf_pri.n3joint"; // 관절 세팅..
+        fsAniFile = fsChrSelectDir / "upc_el_rf_wa.n3anim";     // 에니메이션 파일 이름.. :-D;
+        fsPlug0File = fsChrSelectDir / "wea_ka_mace.n3cplug";
+        fsPlug1File = fs::path();
         break;
     default:
         return;
     }
 
-    m_pChrs[iPosIndex]->JointSet(szJointFN); // 관절 세팅..
-    m_pChrs[iPosIndex]->AniCtrlSet(szAniFN); // 에니메이션 파일 이름.. :-D;
-    m_pChrs[iPosIndex]->PlugSet(0, szPlug0FN);
-    m_pChrs[iPosIndex]->PlugSet(1, szPlug1FN);
+    m_pChrs[iPosIndex]->JointSet(fsJointFile); // 관절 세팅..
+    m_pChrs[iPosIndex]->AniCtrlSet(fsAniFile); // 에니메이션 파일 이름.. :-D;
+    m_pChrs[iPosIndex]->PlugSet(0, fsPlug0File);
+    m_pChrs[iPosIndex]->PlugSet(1, fsPlug1File);
 
     // 상체..
     this->AddChrPart(m_pChrs[iPosIndex], pLooks, PART_POS_UPPER, pInfo->dwItemUpper, pInfo->iItemUpperDurability);
     // 하체
     __TABLE_ITEM_BASIC * pItemUpper = this->s_pTbl_Items_Basic->Find(pInfo->dwItemUpper);
     if (pItemUpper && pItemUpper->byIsRobeType) {
-        m_pChrs[iPosIndex]->PartSet(PART_POS_LOWER, ""); // 하체일 경우 상체에 로브를 입었으면 ..
+        m_pChrs[iPosIndex]->PartSet(PART_POS_LOWER, fs::path()); // 하체일 경우 상체에 로브를 입었으면 ..
     } else {
         this->AddChrPart(m_pChrs[iPosIndex], pLooks, PART_POS_LOWER, pInfo->dwItemLower,
                          pInfo->iItemLowerDurability); //아님 입히고...
@@ -519,15 +521,11 @@ void CGameProcCharacterSelect::AddChr(e_ChrPos eCP, __CharacterSelectInfo * pInf
     // 다리
     this->AddChrPart(m_pChrs[iPosIndex], pLooks, PART_POS_FEET, pInfo->dwItemShoes, pInfo->iItemShoesDurability);
 
-    char        szBuff[256] = "";
-    std::string szResrcFN;
-
     // 얼굴 -
     if (!pLooks->szPartFNs[PART_POS_FACE].empty()) {
-        char szBuff[256] = "", szDir[128] = "", szFName[128] = "", szExt[16] = "";
-        ::_splitpath(pLooks->szPartFNs[PART_POS_FACE].c_str(), NULL, szDir, szFName, szExt);
-        sprintf(szBuff, "%s%s%.2d%s", szDir, szFName, pInfo->iFace, szExt);
-        m_pChrs[iPosIndex]->PartSet(PART_POS_FACE, szBuff);
+        fs::path fsFile = pLooks->szPartFNs[PART_POS_FACE];
+        fsFile = fsFile.parent_path() / (fsFile.stem() + std::format("{:02d}", pInfo->iFace) + fsFile.extension());
+        m_pChrs[iPosIndex]->PartSet(PART_POS_FACE, fsFile);
     }
 
     // 머리카락 혹은 헬멧 -
@@ -536,14 +534,12 @@ void CGameProcCharacterSelect::AddChr(e_ChrPos eCP, __CharacterSelectInfo * pInf
     {
         this->AddChrPart(m_pChrs[iPosIndex], pLooks, PART_POS_HAIR_HELMET, pInfo->dwItemHelmet,
                          pInfo->iItemHelmetDurability);
-    } else if (!pLooks->szPartFNs[PART_POS_HAIR_HELMET].empty()) // 아이템이 없으면 기본 머리..
-    {
-        char szBuff[256] = "", szDir[128] = "", szFName[128] = "", szExt[16] = "";
-        ::_splitpath(pLooks->szPartFNs[PART_POS_HAIR_HELMET].c_str(), NULL, szDir, szFName, szExt);
-        sprintf(szBuff, "%s%s%.2d%s", szDir, szFName, pInfo->iHair, szExt);
-        m_pChrs[iPosIndex]->PartSet(PART_POS_HAIR_HELMET, szBuff);
+    } else if (!pLooks->szPartFNs[PART_POS_HAIR_HELMET].empty()) { // 아이템이 없으면 기본 머리..
+        fs::path fsFile = pLooks->szPartFNs[PART_POS_HAIR_HELMET];
+        fsFile = fsFile.parent_path() / (fsFile.stem() + std::format("{:02d}", pInfo->iHair) + fsFile.extension());
+        m_pChrs[iPosIndex]->PartSet(PART_POS_HAIR_HELMET, fsFile);
     } else {
-        m_pChrs[iPosIndex]->PartSet(PART_POS_HAIR_HELMET, ""); // 헬멧도 아니고 머리카락도 없으면.. 대머리다!
+        m_pChrs[iPosIndex]->PartSet(PART_POS_HAIR_HELMET, fs::path()); // 헬멧도 아니고 머리카락도 없으면.. 대머리다!
     }
 
     __Quaternion qt;
@@ -615,25 +611,25 @@ void CGameProcCharacterSelect::AddChrPart(CN3Chr * pChr, const __TABLE_PLAYER_LO
         return;
     }
 
-    std::string    szResrcFN;
+    fs::path       fsResrcFile;
     CN3CPart *     pPart = NULL;
     e_PartPosition ePartPosTmp = PART_POS_UNKNOWN;
     e_PlugPosition ePlugPosTmp = PLUG_POS_UNKNOWN;
 
-    CGameProcedure::MakeResrcFileNameForUPC(pItem, &szResrcFN, NULL, ePartPosTmp, ePlugPosTmp);
-    if (szResrcFN.empty()) {
+    CGameProcedure::MakeResrcFileNameForUPC(pItem, &fsResrcFile, NULL, ePartPosTmp, ePlugPosTmp);
+    if (fsResrcFile.empty()) {
         pPart = pChr->PartSet(ePartPos, pLooks->szPartFNs[ePartPos]); // 기본 파트
     } else {
-        pPart = pChr->PartSet(ePartPos, szResrcFN);
+        pPart = pChr->PartSet(ePartPos, fsResrcFile);
     }
     if (pPart && pItem && pItem->siMaxDurability > 0) {
         int iPercentage = iItemDurability * 100 / pItem->siMaxDurability;
         if (iPercentage <= 30) {
-            pPart->TexOverlapSet("Misc\\Dust_Hard.dxt");
+            pPart->TexOverlapSet(fs::path("Misc") / "dust_hard.dxt");
         } else if (iPercentage <= 70) {
-            pPart->TexOverlapSet("Misc\\Dust_Soft.dxt");
+            pPart->TexOverlapSet(fs::path("Misc") / "dust_soft.dxt");
         } else {
-            pPart->TexOverlapSet("");
+            pPart->TexOverlapSet(fs::path());
         }
     }
 }

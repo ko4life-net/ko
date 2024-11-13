@@ -456,9 +456,9 @@ void CTexViewer::Render() {
     }
 }
 
-void CTexViewer::SetTexture(LPCTSTR pszFName) {
+void CTexViewer::SetTexture(const fs::path & fsFile) {
     CN3Base::s_MngTex.Delete(&m_pTex);
-    m_pTex = CN3Base::s_MngTex.Get(pszFName);
+    m_pTex = CN3Base::s_MngTex.Get(fsFile);
 
     // texture size 지정
     if (m_pTex) {

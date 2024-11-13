@@ -562,7 +562,7 @@ int CN3ShapeMgr::Add(CN3Shape * pShape) {
 
     pShape->SaveToFile(); // 파일로 저장하고..
     CN3Shape * pShapeAdd = new CN3Shape();
-    if (false == pShapeAdd->LoadFromFile(pShape->FileName())) // 이 파일을 열은 다음
+    if (false == pShapeAdd->LoadFromFile(pShape->FilePath())) // 이 파일을 열은 다음
     {
         delete pShapeAdd;
         return -1;

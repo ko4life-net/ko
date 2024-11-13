@@ -27,8 +27,8 @@ class CN3TransformCollision : public CN3Transform {
     void SetRadius(float fRadius) { m_fRadius = fRadius; }
     void SetMin(__Vector3 vMin) { m_vMin = vMin; }
     void SetMax(__Vector3 vMax) { m_vMin = vMax; }
-    void SetMeshCollision(const std::string & szFN) { m_pMeshCollision = s_MngVMesh.Get(szFN); }
-    void SetMeshClimb(const std::string & szFN) { m_pMeshClimb = s_MngVMesh.Get(szFN); }
+    void SetMeshCollision(const fs::path & fsFile) { m_pMeshCollision = s_MngVMesh.Get(fsFile); }
+    void SetMeshClimb(const fs::path & fsFile) { m_pMeshClimb = s_MngVMesh.Get(fsFile); }
 
     //    By : Dino ( On 2001-08-27 오후 9:15:24 )
     //    주어진 지점이 m_fRadius 범위안에 있는지 체크
@@ -49,8 +49,8 @@ class CN3TransformCollision : public CN3Transform {
 
     CN3VMesh * CollisionMesh() { return m_pMeshCollision; }
     CN3VMesh * ClimbMesh() { return m_pMeshClimb; }
-    void       CollisionMeshSet(const std::string & szFN);
-    void       ClimbMeshSet(const std::string & szFN);
+    void       CollisionMeshSet(const fs::path & fsFile);
+    void       ClimbMeshSet(const fs::path & fsFile);
 
     bool Load(HANDLE hFile);
 #ifdef _N3TOOL

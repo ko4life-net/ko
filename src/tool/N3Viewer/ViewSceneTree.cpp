@@ -136,7 +136,7 @@ void CViewSceneTree::UpdateTreeItem(HTREEITEM hParent, CN3Base * pBase) {
 
     HTREEITEM hItem = NULL;
     if (pBFA) {
-        hItem = GetTreeCtrl().InsertItem(pBFA->FileName().c_str(), nItem, nItem, hParent, NULL);
+        hItem = GetTreeCtrl().InsertItem(pBFA->FilePath().string().c_str(), nItem, nItem, hParent, NULL);
     } else {
         hItem = GetTreeCtrl().InsertItem(pBase->m_szName.c_str(), nItem, nItem, hParent, NULL);
     }
@@ -395,7 +395,7 @@ void CViewSceneTree::OnEndlabeledit(NMHDR * pNMHDR, LRESULT * pResult) {
 
     CN3BaseFileAccess * pBFA = (CN3BaseFileAccess *)pBase;
     if (pTDI->item.pszText) {
-        pBFA->FileNameSet(pTDI->item.pszText); // 파일 이름 정하기..
+        pBFA->FilePathSet(pTDI->item.pszText); // 파일 이름 정하기..
     }
 
     *pResult = 1;

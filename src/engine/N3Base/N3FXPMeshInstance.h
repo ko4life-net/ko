@@ -14,7 +14,7 @@ class CN3FXPMeshInstance : public CN3Base {
   public:
     CN3FXPMeshInstance();
     CN3FXPMeshInstance(CN3FXPMesh * pN3FXPMesh);
-    CN3FXPMeshInstance(const std::string & szFN);
+    CN3FXPMeshInstance(const fs::path & fsFile);
     virtual ~CN3FXPMeshInstance();
 
   protected:
@@ -40,7 +40,7 @@ class CN3FXPMeshInstance : public CN3Base {
         return TRUE;
     }
     bool Create(CN3FXPMesh * pN3FXPMesh);
-    bool Create(const std::string & szFN);
+    bool Create(const fs::path & fsFile);
     void Release();
     void Render();
     void RenderTwoUV();

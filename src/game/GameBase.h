@@ -48,8 +48,8 @@ class CGameBase : public CN3Base {
     static D3DCOLOR GetIDColorByLevelDifference(int iLevelDiff); // 레벨 차이에 따른 ID 색 돌려준다.
     static e_Class_Represent GetRepresentClass(e_Class eClass); // 세부직업을 넣어주면 대표되는 직업을 돌려준다.
     static e_ItemType MakeResrcFileNameForUPC(__TABLE_ITEM_BASIC * pItem,         // 아이템 데이터...
-                                              std::string *        szResrcFN,     // Resource FileName
-                                              std::string *        szIconFN,      // Icon FileName
+                                              fs::path *           pfsResrcFile,  // Resource file path
+                                              fs::path *           pfsIconFile,   // Icon file path
                                               e_PartPosition &     ePartPosition, // Part 일경우 Index
                                               e_PlugPosition &     ePlugPosition);    // Plug 일경우 Index
 

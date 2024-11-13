@@ -65,7 +65,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     EnableDocking(CBRS_ALIGN_ANY);
     DockControlBar(&m_wndToolBar);
 
-    CN3Base::PathSet(fs::current_path().string());
+    CN3Base::PathSet(fs::current_path());
 
     m_Camera.EyePosSet(100, 50, -100);
     m_Camera.UpVectorSet(0, 1, 0);

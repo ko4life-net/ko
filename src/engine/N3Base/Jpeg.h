@@ -55,30 +55,30 @@ struct SCANHEADER {
 class CJpeg {
   public:
     // JPEG File을 Load하기 위한 함수들 //
-    void  LoadJPG(LPCSTR FileName);  // JPEG File을 Load하는 함수
-    void  FindSOI();                 // Start of Image 마커를 찾는 함수
-    void  FindDQT();                 // Quantization Table을 찾아 구조체에 설정하는 함수
-    void  FindDHT();                 // Huffman Table을 찾아 구조체에 설정하는 함수
-    void  FindSOF();                 // Frame Header를 찾아 구조체에 설정하는 함수
-    void  FindSOS();                 // Scan Header를 찾아 구조체에 설정하는 함수
-    void  FindETC();                 // DRI(Define Restart Interval) 로드
-    void  Decode();                  // 디코드를 위한 정보를 설정하고 디코드를 시작
-    void  DecodeMCU(int mx, int my); // MCU블럭을 디코드하는 함수
-    void  DecodeDU(int N);           // 8x8 Data Unit를 디코드하는 함수
-    void  IDCT();                    // Inverse DCT를 하는 함수
-    void  Zigzag();                  // Zigzag순으로 되어있는 DU를 원상복귀시키는 함수
-    void  DecodeAC(int Th);          // DU중, AC성분을 디코드하는 함수
-    void  DecodeDC(int Th);          // DU중, DC성분을 디코드하는 함수
-    short Extend(WORD V, BYTE T);    // V를 카테고리 T에 맞도록 확장
-    WORD  Receive(BYTE SSSS);        // 버퍼에서 SSSS비트만큼 읽어오는 함수
-    BYTE  hDecode(int Th);           // 허프만 부호를 디코드하는 부분
-    BYTE  NextByte();                // 버퍼에서 다음 1 바이트를 읽어오는 함수
-    WORD  NextBit();                 // 버퍼에서 다음 1 비트를 읽어오는 함수
-    void  ConvertYUV2RGB();          // 디코드된 데이터를 컬러모델을 바꿈과 동시에
-                                     // 비트맵에 호환되도록 변환하는 함수
+    void  LoadJPG(const fs::path & fsFile); // JPEG File을 Load하는 함수
+    void  FindSOI();                        // Start of Image 마커를 찾는 함수
+    void  FindDQT();                        // Quantization Table을 찾아 구조체에 설정하는 함수
+    void  FindDHT();                        // Huffman Table을 찾아 구조체에 설정하는 함수
+    void  FindSOF();                        // Frame Header를 찾아 구조체에 설정하는 함수
+    void  FindSOS();                        // Scan Header를 찾아 구조체에 설정하는 함수
+    void  FindETC();                        // DRI(Define Restart Interval) 로드
+    void  Decode();                         // 디코드를 위한 정보를 설정하고 디코드를 시작
+    void  DecodeMCU(int mx, int my);        // MCU블럭을 디코드하는 함수
+    void  DecodeDU(int N);                  // 8x8 Data Unit를 디코드하는 함수
+    void  IDCT();                           // Inverse DCT를 하는 함수
+    void  Zigzag();                         // Zigzag순으로 되어있는 DU를 원상복귀시키는 함수
+    void  DecodeAC(int Th);                 // DU중, AC성분을 디코드하는 함수
+    void  DecodeDC(int Th);                 // DU중, DC성분을 디코드하는 함수
+    short Extend(WORD V, BYTE T);           // V를 카테고리 T에 맞도록 확장
+    WORD  Receive(BYTE SSSS);               // 버퍼에서 SSSS비트만큼 읽어오는 함수
+    BYTE  hDecode(int Th);                  // 허프만 부호를 디코드하는 부분
+    BYTE  NextByte();                       // 버퍼에서 다음 1 바이트를 읽어오는 함수
+    WORD  NextBit();                        // 버퍼에서 다음 1 비트를 읽어오는 함수
+    void  ConvertYUV2RGB();                 // 디코드된 데이터를 컬러모델을 바꿈과 동시에
+                                            // 비트맵에 호환되도록 변환하는 함수
 
     // JPEG File을 Save하기 위한 함수들 //
-    void SaveJPG(LPCSTR FileName, int Width, int Height, BYTE * pp); // JPEG 파일을 저장하는 함수
+    void SaveJPG(const fs::path & fsFile, int Width, int Height, BYTE * pp); // JPEG 파일을 저장하는 함수
 
     void PutSOI(HANDLE hFile);                        // Start of Image 마커를 삽입
     void PutDQT(HANDLE hFile);                        // Quantizatino Table을 삽입

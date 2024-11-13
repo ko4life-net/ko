@@ -339,7 +339,7 @@ void CN3ShapeMgr::GenerateCollisionData() {
     if (nCPC != (nFC * 3)) {
 #ifdef _N3GAME
         CLogWriter::Write("CN3ShapeMgr::GenerateCollisionData - 충돌 체크 폴리곤의 점갯수와 면 갯수가 다릅니다. (%s)",
-                          m_szFileName.c_str());
+                          FilePath().string().c_str());
 #endif
         this->Release();
         return;
@@ -528,7 +528,7 @@ void CN3ShapeMgr::GenerateCollisionData() {
 #ifdef _N3GAME
                         CLogWriter::Write(
                             "CN3ShapeMgr::GenerateCollisionData - 충돌 체크 폴리곤 수가 너무 많습니다. (%s)",
-                            m_szFileName.c_str());
+                            FilePath().string().c_str());
 #endif
                         continue;
                     }
@@ -554,14 +554,15 @@ int CN3ShapeMgr::Add(CN3Shape * pShape) {
     int       nZ = (int)(vPos.z / CELL_MAIN_SIZE);
     if (nX < 0 || nX >= MAX_CELL_MAIN || nZ < 0 || nZ >= MAX_CELL_MAIN) {
 #ifdef _N3GAME
-        CLogWriter::Write("CN3ShapeMgr::Add - Shape(%s) Add Failed. Check position", pShape->FileName().c_str());
+        CLogWriter::Write("CN3ShapeMgr::Add - Shape(%s) Add Failed. Check position",
+                          pShape->FilePath().string().c_str());
 #endif
         return -1;
     }
 
     pShape->SaveToFile(); // 파일로 저장하고..
     CN3Shape * pShapeAdd = new CN3Shape();
-    if (false == pShapeAdd->LoadFromFile(pShape->FileName())) // 이 파일을 열은 다음
+    if (false == pShapeAdd->LoadFromFile(pShape->FilePath())) // 이 파일을 열은 다음
     {
         delete pShapeAdd;
         return -1;

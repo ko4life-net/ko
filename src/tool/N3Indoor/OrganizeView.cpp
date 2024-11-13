@@ -144,7 +144,7 @@ void COrganizeView::InitEnvironSetting() {
 void COrganizeView::OnButtonFileName() {
     // TODO: Add your control notification handler code here
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
-    if (pFrm->m_strResourcePath.empty()) {
+    if (pFrm->m_fsResourceDir.empty()) {
         AfxMessageBox("먼저 리소스 경로를 설정하세여..");
     }
 
@@ -153,30 +153,27 @@ void COrganizeView::OnButtonFileName() {
         pFrm->m_pSceneSource = NULL;
     }
 
-    TCHAR tch[256];
-    GetCurrentDirectory(256, tch);
-    SetCurrentDirectory(pFrm->m_strResourcePath.c_str());
+    fs::path fsCurDirPrev = fs::current_path();
+    fs::current_path(pFrm->m_fsResourceDir);
     DWORD       dwFlags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_LONGNAMES | OFN_HIDEREADONLY;
     CFileDialog dlg(TRUE, "N3Scene File", NULL, dwFlags, "N3Scene (*.n3scene)|*.n3scene||", NULL);
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
 
-    std::string szOpen(dlg.GetFileName().GetString());
-    pFrm->m_strFileName = szOpen;
-    SetDlgItemText(IDC_EDIT_RESOURCE_NAME, szOpen.c_str());
-    SetCurrentDirectory(tch);
-
-    CString strExt = dlg.GetFileExt();
-    strExt.MakeLower();
-    if (strExt != "n3scene") {
+    fs::path fsFile = dlg.GetFileName().GetString();
+    if (!n3std::iequals(fsFile.extension(), ".n3scene")) {
         AfxMessageBox("FileType Invalidate!!");
         return;
     }
 
+    pFrm->m_fsFile = fsFile;
+    SetDlgItemTextW(GetSafeHwnd(), IDC_EDIT_RESOURCE_NAME, fsFile.c_str());
+    fs::current_path(fsCurDirPrev);
+
     pFrm->m_pSceneSource = new CN3Scene;
     pFrm->m_pSceneSource->m_szName = "SourceList";
-    pFrm->m_pSceneSource->FileNameSet(szOpen);
+    pFrm->m_pSceneSource->FilePathSet(fsFile);
     pFrm->LoadSourceObjects();
 }
 
@@ -187,13 +184,12 @@ void COrganizeView::OnButtonResourcePath() {
         return;
     }
 
-    std::string szPath(dlg.GetPathName().GetString());
-    SetDlgItemText(IDC_EDIT_RESOURCE_PATH, szPath.c_str());
-    CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
-    pFrm->m_strResourcePath = szPath + "\\N3Indoor";
+    fs::path fsDir = fs::path(dlg.GetPathName().GetString()) / "N3Indoor";
+    SetDlgItemTextW(GetSafeHwnd(), IDC_EDIT_RESOURCE_PATH, fsDir.c_str());
 
-    // 경로 설정..
-    CN3Base::PathSet(szPath + "\\N3Indoor");
+    CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
+    pFrm->m_fsResourceDir = fsDir;
+    CN3Base::PathSet(fsDir);
 }
 
 void COrganizeView::OnEdit() {
@@ -458,7 +454,7 @@ void COrganizeView::ShapeRegisterToManager(CN3Base * pBase) {
         return;
     }
 
-    m_PVSMgr.RegisterShape(((CN3Shape *)pBase)->FileName(), ((CN3Shape *)pBase));
+    m_PVSMgr.RegisterShape(((CN3Shape *)pBase)->FilePath(), ((CN3Shape *)pBase));
 }
 
 void COrganizeView::ShapeLinkToPVolumn(CN3Base * pBase) {
@@ -473,7 +469,7 @@ void COrganizeView::ShapeLinkToPVolumn(CN3Base * pBase) {
         return;
     }
 
-    pVol->SetShape(((CN3Shape *)pBase)->FileName(), ((CN3Shape *)pBase), m_PVSMgr.m_iIncreseShapeIndex++);
+    pVol->SetShape(((CN3Shape *)pBase)->FilePath(), ((CN3Shape *)pBase), m_PVSMgr.m_iIncreseShapeIndex++);
 }
 
 void COrganizeView::OnCurserSelect(e_EditMode eED) {
@@ -650,15 +646,8 @@ void COrganizeView::RefreshLinkedList() {
     }
 
     int iCount = m_LinkedListCtrl.GetItemCount();
-
-    ShapeInfo * pSI;
-    char        buffer[32]{};
-    siiter      siit = pVol->m_plShapeInfoList.begin();
-    while (siit != pVol->m_plShapeInfoList.end()) {
-        pSI = *siit++;
-        sprintf(buffer, "Shape_%d", pSI->m_iID);
-        str = buffer;
-        m_LinkedListCtrl.InsertItem(iCount++, str.c_str(), 1);
+    for (const auto & pSI : pVol->m_plShapeInfoList) {
+        m_LinkedListCtrl.InsertItem(iCount++, std::format("Shape_{:d}", pSI->m_iID).c_str(), 1);
     }
 }
 
@@ -872,16 +861,9 @@ void COrganizeView::RefreshTotalShape() {
     m_ShapesListCtrl.DeleteAllItems();
     m_ShapesListCtrl.SetImageList(&m_GlobalImageList, LVSIL_NORMAL);
 
-    int         iCount = 0;
-    ShapeInfo * pSI;
-    std::string str;
-    char        buffer[32]{};
-    siiter      siit = m_PVSMgr.m_plShapeInfoList.begin();
-    while (siit != m_PVSMgr.m_plShapeInfoList.end()) {
-        pSI = *siit++;
-        sprintf(buffer, "Part_%d", pSI->m_iID);
-        str = buffer;
-        m_ShapesListCtrl.InsertItem(iCount++, str.c_str(), 1);
+    int iCount = 0;
+    for (const auto & pSI : m_PVSMgr.m_plShapeInfoList) {
+        m_ShapesListCtrl.InsertItem(iCount++, std::format("Part_{:d}", pSI->m_iID).c_str(), 1);
     }
 }
 
@@ -1267,13 +1249,13 @@ void COrganizeView::OnFileWorkshopOpen() {
         return;
     }
 
-    std::string szPath(dlg.GetPathName().GetString()), szExt(dlg.GetFileExt().GetString());
-    if (!n3std::iequals(szExt, "wshop")) {
+    fs::path fsFile = dlg.GetPathName().GetString();
+    if (!n3std::iequals(fsFile.extension(), ".wshop")) {
         return;
     }
 
-    OpenWSFileInternal(szPath);
-    AfxGetApp()->AddToRecentFileList(szPath.c_str());
+    OpenWSFileInternal(fsFile);
+    AfxGetApp()->AddToRecentFileList(fsFile.string().c_str());
     CN3IndoorApp * pApp = (CN3IndoorApp *)AfxGetApp();
     pApp->UpdateMRU();
 }
@@ -1291,44 +1273,44 @@ void COrganizeView::OnFileOpenGamedata() {
         return;
     }
 
-    std::string szPath(dlg.GetPathName().GetString()), szExt(dlg.GetFileExt().GetString());
-    if (!n3std::iequals(szExt, "n3indoor")) {
+    fs::path fsFile = dlg.GetPathName().GetString();
+    if (!n3std::iequals(fsFile.extension(), ".n3indoor")) {
         return;
     }
 
-    OpenGDFileInternal(szPath);
-    AfxGetApp()->AddToRecentFileList(szPath.c_str());
+    OpenGDFileInternal(fsFile);
+    AfxGetApp()->AddToRecentFileList(fsFile.string().c_str());
     CN3IndoorApp * pApp = (CN3IndoorApp *)AfxGetApp();
     pApp->UpdateMRU();
 }
 
-void COrganizeView::OpenWorkShopFile(std::string strFile) {
+void COrganizeView::OpenWorkShopFile(const fs::path & fsFile) {
     if (!OnFileNew()) {
         return;
     }
 
-    OpenWSFileInternal(strFile);
-    AfxGetApp()->AddToRecentFileList(strFile.c_str());
+    OpenWSFileInternal(fsFile);
+    AfxGetApp()->AddToRecentFileList(fsFile.string().c_str());
     CN3IndoorApp * pApp = (CN3IndoorApp *)AfxGetApp();
     pApp->UpdateMRU();
 }
 
-void COrganizeView::OpenGameDataFile(std::string strFile) {
+void COrganizeView::OpenGameDataFile(const fs::path & fsFile) {
     if (!OnFileNew()) {
         return;
     }
 
-    OpenGDFileInternal(strFile);
-    AfxGetApp()->AddToRecentFileList(strFile.c_str());
+    OpenGDFileInternal(fsFile);
+    AfxGetApp()->AddToRecentFileList(fsFile.string().c_str());
     CN3IndoorApp * pApp = (CN3IndoorApp *)AfxGetApp();
     pApp->UpdateMRU();
 }
 
-void COrganizeView::OpenWSFileInternal(std::string strFile) {
+void COrganizeView::OpenWSFileInternal(const fs::path & fsFile) {
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
 
     m_PVSMgr.m_bGameData = false;
-    m_PVSMgr.LoadFromFile(strFile);
+    m_PVSMgr.LoadFromFile(fsFile);
 
     RefreshSelectedList();
     RefreshLinkToList();
@@ -1352,23 +1334,17 @@ void COrganizeView::OpenWSFileInternal(std::string strFile) {
 
     UpdateData(FALSE);
 
-    std::string strT;
-    char        szFName[_MAX_FNAME], szExt[_MAX_EXT];
-    _splitpath(strFile.c_str(), NULL, NULL, szFName, szExt);
-    strT = szFName;
-    strT += szExt;
-
-    pFrm->SetWindowText(strT.c_str());
+    pFrm->SetWindowText(fsFile.filename().string().c_str());
     if (pFrm->m_pDlgOutputList && pFrm->m_pDlgOutputList->IsWindowVisible()) {
         pFrm->m_pDlgOutputList->UpdateTree();
     }
 }
 
-void COrganizeView::OpenGDFileInternal(std::string strFile) {
+void COrganizeView::OpenGDFileInternal(const fs::path & fsFile) {
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
 
     m_PVSMgr.m_bGameData = true;
-    m_PVSMgr.LoadFromFile(strFile);
+    m_PVSMgr.LoadFromFile(fsFile);
     m_PVSMgr.m_bCompiled = true;
 
     RefreshSelectedList();
@@ -1402,13 +1378,7 @@ void COrganizeView::OpenGDFileInternal(std::string strFile) {
         pFrm->GetOrganizeView()->m_PVSMgr.CheckcompileMode(pVol);
     }
 
-    std::string strT;
-    char        szFName[_MAX_FNAME], szExt[_MAX_EXT];
-    _splitpath(strFile.c_str(), NULL, NULL, szFName, szExt);
-    strT = szFName;
-    strT += szExt;
-
-    pFrm->SetWindowText(strT.c_str());
+    pFrm->SetWindowText(fsFile.filename().string().c_str());
     if (pFrm->m_pDlgOutputList && pFrm->m_pDlgOutputList->IsWindowVisible()) {
         pFrm->m_pDlgOutputList->UpdateTree();
     }
@@ -1416,7 +1386,7 @@ void COrganizeView::OpenGDFileInternal(std::string strFile) {
 
 void COrganizeView::OnFileSaveWorkshop() {
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
-    if (pFrm->m_strFileName.size() <= 0) {
+    if (pFrm->m_fsFile.empty()) {
         AfxMessageBox("SourceList가  없습니다..Data는 저장되지 않을것 입니다..");
         return;
     }
@@ -1438,7 +1408,7 @@ void COrganizeView::OnFileSaveWorkshop() {
 
 void COrganizeView::OnFileSaveGamedata() {
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
-    if (pFrm->m_strFileName.size() <= 0) {
+    if (pFrm->m_fsFile.empty()) {
         AfxMessageBox("SourceList가  없습니다..Data는 저장되지 않을것 입니다..");
         return;
     }
@@ -1477,8 +1447,8 @@ void COrganizeView::OnFileServerData() {
         return;
     }
 
-    CString strOpen = dlg.GetPathName(), strExt = dlg.GetFileExt(), strFiles, strCount;
-    if (strExt.CompareNoCase("smd") != 0) {
+    fs::path fsFile = dlg.GetPathName().GetString();
+    if (!n3std::iequals(fsFile.extension(), ".smd")) {
         return;
     }
 
@@ -1486,27 +1456,19 @@ void COrganizeView::OnFileServerData() {
         m_PVSMgr.DoAllCompile();
     }
 
-    char drive[_MAX_DRIVE];
-    char dir[_MAX_DIR];
-    char fname[_MAX_FNAME];
-    char ext[_MAX_EXT];
-    _splitpath(strOpen, drive, dir, fname, ext);
-    strFiles = drive;
-    strFiles += dir;
-    strFiles += fname;
-
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     int          iCount = pFrm->m_FloorList.size();
 
     // Terrain Size Calc..
     int iMax = GetTerrainSize();
 
+    fs::path    fsParentDir = fsFile.parent_path();
+    std::string szStem = fsFile.stem().string();
+    std::string szExt = fsFile.extension().string();
     for (int i = 0; i < iCount; i++) {
-        CString strFName;
-        strCount.Format("_%d.", i);
-        strFName = strFiles + strCount + strExt;
-
-        HANDLE hFile = CreateFile(strFName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+        fs::path fsIndexedFile = fsParentDir / std::format("{:s}_{:d}{:s}", szStem, i, szExt);
+        HANDLE   hFile =
+            CreateFileW(fsIndexedFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
         if (INVALID_HANDLE_VALUE == hFile) {
             AfxMessageBox("File Create Error!!\n");
             return;

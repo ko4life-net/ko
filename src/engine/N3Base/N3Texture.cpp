@@ -115,15 +115,13 @@ bool CN3Texture::Create(int nWidth, int nHeight, D3DFORMAT Format, BOOL bGenerat
 
 #ifdef _N3GAME
     if (rval == D3DERR_INVALIDCALL) {
-        CLogWriter::Write("N3Texture: createtexture err D3DERR_INVALIDCALL(%s)", m_szFileName.c_str());
+        CLogWriter::Write("N3Texture: createtexture err D3DERR_INVALIDCALL(%s)", FilePath().string().c_str());
         return false;
-    }
-    if (rval == D3DERR_OUTOFVIDEOMEMORY) {
-        CLogWriter::Write("N3Texture: createtexture err D3DERR_OUTOFVIDEOMEMORY(%s)", m_szFileName.c_str());
+    } else if (rval == D3DERR_OUTOFVIDEOMEMORY) {
+        CLogWriter::Write("N3Texture: createtexture err D3DERR_OUTOFVIDEOMEMORY(%s)", FilePath().string().c_str());
         return false;
-    }
-    if (rval == E_OUTOFMEMORY) {
-        CLogWriter::Write("N3Texture: createtexture err E_OUTOFMEMORY(%s)", m_szFileName.c_str());
+    } else if (rval == E_OUTOFMEMORY) {
+        CLogWriter::Write("N3Texture: createtexture err E_OUTOFMEMORY(%s)", FilePath().string().c_str());
         return false;
     }
 #endif
@@ -176,42 +174,32 @@ bool CN3Texture::CreateFromSurface(LPDIRECT3DSURFACE9 lpSurf, D3DFORMAT Format, 
 }
 #endif // end of _N3TOOL
 
-bool CN3Texture::LoadFromFile(const std::string & szFileName) {
+bool CN3Texture::LoadFromFile(const fs::path & fsFile) {
     if (m_lpTexture != NULL) {
         this->Release();
     }
 
-    this->FileNameSet(szFileName); // 파일 이름을 복사하고..
-    std::string szFullPath;
-    if (-1 != m_szFileName.find(':') || -1 != m_szFileName.find("\\\\") ||
-        -1 != m_szFileName.find("//")) // 문자열에 ':', '\\', '//' 이 들어 있으면 전체 경로이다..
-    {
-        szFullPath = m_szFileName;
-    } else {
-        if (NULL != CN3Base::PathGet()[0]) {
-            szFullPath = CN3Base::PathGet();
-        }
-        szFullPath += m_szFileName;
-    }
+    bool bSuccess = false;
 
-    int nFNL = szFullPath.size();
-    if (lstrcmpi(&szFullPath[nFNL - 3], "DXT") == 0) {
+    this->FilePathSet(fsFile);
+    if (n3std::iequals(fsFile.extension(), ".dxt")) {
         HANDLE hFile =
-            ::CreateFile(szFullPath.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+            ::CreateFileW(FilePathAbs().c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
         if (hFile == INVALID_HANDLE_VALUE) {
 #ifdef _N3GAME
-            CLogWriter::Write("invalid file handle(%d) - Can't open texture file(%s)", (int)hFile, szFullPath.c_str());
+            CLogWriter::Write("invalid file handle(%d) - Can't open texture file(%s)", (int)hFile,
+                              FilePathAbs().string().c_str());
 #endif
             return false;
         }
-        this->Load(hFile);
+        bSuccess = this->Load(hFile);
         CloseHandle(hFile);
     } else {
         D3DXIMAGE_INFO ImgInfo;
         HRESULT        rval =
-            D3DXCreateTextureFromFileEx(s_lpD3DDev, szFullPath.c_str(), D3DX_DEFAULT, D3DX_DEFAULT, D3DX_DEFAULT, 0,
-                                        D3DFMT_UNKNOWN, D3DPOOL_MANAGED, D3DX_FILTER_TRIANGLE | D3DX_FILTER_MIRROR,
-                                        D3DX_FILTER_TRIANGLE | D3DX_FILTER_MIRROR, 0, &ImgInfo, NULL, &m_lpTexture);
+            D3DXCreateTextureFromFileExW(s_lpD3DDev, FilePathAbs().c_str(), D3DX_DEFAULT, D3DX_DEFAULT, D3DX_DEFAULT, 0,
+                                         D3DFMT_UNKNOWN, D3DPOOL_MANAGED, D3DX_FILTER_TRIANGLE | D3DX_FILTER_MIRROR,
+                                         D3DX_FILTER_TRIANGLE | D3DX_FILTER_MIRROR, 0, &ImgInfo, NULL, &m_lpTexture);
         if (rval == D3D_OK) {
             D3DSURFACE_DESC sd;
             m_lpTexture->GetLevelDesc(0, &sd);
@@ -219,9 +207,10 @@ bool CN3Texture::LoadFromFile(const std::string & szFileName) {
             m_Header.nWidth = sd.Width;
             m_Header.nHeight = sd.Height;
             m_Header.Format = sd.Format;
+            bSuccess = true;
         } else {
 #ifdef _N3GAME
-            CLogWriter::Write("N3Texture - Failed to load texture(%s)", szFullPath.c_str());
+            CLogWriter::Write("N3Texture - Failed to load texture(%s)", FilePathAbs().string().c_str());
 #endif
         }
 
@@ -242,11 +231,12 @@ bool CN3Texture::LoadFromFile(const std::string & szFileName) {
         }
     }
 
-    if (NULL == m_lpTexture) {
+    if (!m_lpTexture) {
         this->Release();
         return false;
     }
-    return true;
+
+    return bSuccess;
 }
 
 bool CN3Texture::Load(HANDLE hFile) {
@@ -260,7 +250,7 @@ bool CN3Texture::Load(HANDLE hFile) {
         3 != HeaderOrg.szID[3]) // "NTF"3 - Noah Texture File Ver. 3.0
     {
 #ifdef _N3GAME
-        CLogWriter::Write("N3Texture Warning - Old format DXT file (%s)", m_szFileName.c_str());
+        CLogWriter::Write("N3Texture Warning - Old format DXT file (%s)", FilePath().string().c_str());
 #endif
     }
 
@@ -320,7 +310,7 @@ bool CN3Texture::Load(HANDLE hFile) {
 
     if (m_lpTexture == NULL) {
 #ifdef _N3GAME
-        CLogWriter::Write("N3Texture error - Can't create texture (%s)", m_szFileName.c_str());
+        CLogWriter::Write("N3Texture error - Can't create texture (%s)", FilePath().string().c_str());
 #endif
         return false;
     }
@@ -511,7 +501,7 @@ bool CN3Texture::SkipFileHandle(HANDLE hFile) {
         3 != HeaderOrg.szID[3]) // "NTF"3 - Noah Texture File Ver. 3.0
     {
 #ifdef _N3GAME
-        CLogWriter::Write("N3Texture Warning - Old format DXT file (%s)", m_szFileName.c_str());
+        CLogWriter::Write("N3Texture Warning - Old format DXT file (%s)", FilePath().string().c_str());
 #endif
     }
 
@@ -583,9 +573,7 @@ bool CN3Texture::SkipFileHandle(HANDLE hFile) {
 
 #ifdef _N3TOOL
 bool CN3Texture::SaveToFile() {
-    char szExt[_MAX_EXT];
-    _splitpath(m_szFileName.c_str(), NULL, NULL, NULL, szExt);
-    if (lstrcmpi(szExt, ".dxt") != 0) {
+    if (!n3std::iequals(FilePath().extension(), ".dxt")) {
         return false;
     }
 
@@ -594,8 +582,8 @@ bool CN3Texture::SaveToFile() {
 #endif // end of _N3TOOL
 
 #ifdef _N3TOOL
-bool CN3Texture::SaveToFile(const std::string & szFileName) {
-    this->FileNameSet(szFileName);
+bool CN3Texture::SaveToFile(const fs::path & fsFile) {
+    this->FilePathSet(fsFile);
     return this->SaveToFile();
 }
 #endif // end of _N3TOOL
@@ -623,7 +611,7 @@ bool CN3Texture::Save(HANDLE hFile) {
         }
         if (nMMC < nMMC2) {
 #ifdef _N3GAME
-            CLogWriter::Write("N3Texture save warning - Invalid MipMap Count (%s)", m_szFileName.c_str());
+            CLogWriter::Write("N3Texture save warning - Invalid MipMap Count (%s)", FilePath().string().c_str());
 #endif
             m_Header.bMipMap = FALSE;
             nMMC = 1;
@@ -888,8 +876,8 @@ bool CN3Texture::GenerateMipMap(LPDIRECT3DSURFACE9 lpSurfSrc) {
 void CN3Texture::UpdateRenderInfo() {}
 
 #ifdef _N3TOOL
-bool CN3Texture::SaveToBitmapFile(const std::string & szFN) {
-    if (szFN.empty()) {
+bool CN3Texture::SaveToBitmapFile(const fs::path & fsFile) {
+    if (fsFile.empty()) {
         return false;
     }
     if (NULL == m_lpTexture) {
@@ -943,6 +931,6 @@ bool CN3Texture::SaveToBitmapFile(const std::string & szFN) {
     lpSurfSrc->Release();
     lpSurfSrc = NULL;
 
-    return bmpf.SaveToFile(szFN.c_str());
+    return bmpf.SaveToFile(fsFile);
 }
 #endif // end of _N3TOOL

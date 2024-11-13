@@ -87,21 +87,14 @@ void CKscViewerView::OnDropFiles(HDROP hDropInfo) {
     CKscViewerDoc * pDoc = GetDocument();
     ASSERT_VALID(pDoc);
 
-    char   szFile[MAX_PATH];
-    char * szExt = NULL;
-    UINT   uiFiles;
-
-    uiFiles = DragQueryFile(hDropInfo, 0xFFFF, NULL, 0);
-
-    ::DragQueryFile(hDropInfo, 0, szFile, MAX_PATH - 1);
+    fs::path::value_type szFile[260]{};
+    ::DragQueryFileW(hDropInfo, 0xFFFF, NULL, 0);
+    ::DragQueryFileW(hDropInfo, 0, szFile, std::size(szFile) - 1);
     ::DragFinish(hDropInfo);
 
-    int nLen = strlen(szFile);
-
-    szExt = szFile + nLen - 3;
-
+    fs::path fsFile = szFile;
     if (pDoc) {
-        pDoc->OnOpenDocument(szFile);
+        pDoc->OnOpenDocument(fsFile.string().c_str());
     }
 
     CView::OnDropFiles(hDropInfo);

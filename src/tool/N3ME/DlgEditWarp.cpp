@@ -169,11 +169,10 @@ void CDlgEditWarp::OnOK() {
 void CDlgEditWarp::OnBtnExport() {
     CFileDialog dlg(FALSE, "wap", "Noname", OFN_EXPLORER | OFN_LONGNAMES | OFN_OVERWRITEPROMPT,
                     "Warp Info파일(*.wap)|*.wap||");
-
-    if (dlg.DoModal() == IDOK) {
-        CString str = dlg.GetPathName();
-        m_pRefWarpMgr->SaveToFile((LPCTSTR)str);
+    if (dlg.DoModal() == IDCANCEL) {
+        return;
     }
+    m_pRefWarpMgr->SaveToFile(dlg.GetPathName().GetString());
 }
 
 void CDlgEditWarp::OnBtnImport() {
@@ -183,7 +182,5 @@ void CDlgEditWarp::OnBtnImport() {
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
-
-    CString str = dlg.GetPathName();
-    m_pRefWarpMgr->LoadFromFile((LPCTSTR)str);
+    m_pRefWarpMgr->LoadFromFile(dlg.GetPathName().GetString());
 }

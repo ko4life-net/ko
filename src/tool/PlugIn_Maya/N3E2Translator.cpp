@@ -19,7 +19,11 @@
 // N3E2 Translator Maya specific source
 //
 
+#include "StdAfx.h"
+
 #include "N3E2Translator.h"
+
+#include <unordered_set>
 
 // Initialize our magic "number"
 MString CN3E2Translator::magic("filetype gx");
@@ -59,14 +63,13 @@ MStatus CN3E2Translator::writer(const MFileObject & fileObject, const MString & 
         options.split(';', optionList);
     }
 
-    char szFN[256] = "";
-    lstrcpy(szFN, fileObject.name().asChar());
-    CharLower(szFN);
-    if (strstr(szFN, ".n3scene") == NULL) {
-        lstrcat(szFN, ".n3scene");
+    fs::path fsFile = fileObject.name().asUTF8();
+    fsFile.make_lower();
+    if (!n3std::iequals(fsFile.extension(), ".n3scene")) {
+        fsFile.replace_extension(".n3scene");
     }
 
-    m_Wrapper.SetFileName(szFN);
+    m_Wrapper.SetFileName(fsFile);
     m_Wrapper.SetPath(fileObject.path().asChar());
     m_Wrapper.SceneExport();
 
@@ -77,21 +80,15 @@ MStatus CN3E2Translator::writer(const MFileObject & fileObject, const MString & 
 
 MPxFileTranslator::MFileKind CN3E2Translator::identifyFile(const MFileObject & fileName, const char * buffer,
                                                            short size) const {
-    //Check the buffer for the "GE2" magic number, the
-    // string "filetype gx"
-    MFileKind rval = kNotMyFileType;
+    static const std::unordered_set<std::string> vSupportedExts = {
+        ".N3Scene", ".N3Camera", ".N3Light", ".N3Mesh", ".N3PMesh", ".N3Shape", ".N3Joint", ".N3IMesh", ".N3DSKN"};
 
-    const char * szFN = fileName.name().asChar();
-    int          nFN = lstrlen(szFN);
-    if (lstrcmpi(&szFN[nFN - 4], ".N3Scene") == 0 || lstrcmpi(&szFN[nFN - 7], ".N3Camera") == 0 ||
-        lstrcmpi(&szFN[nFN - 7], ".N3Light") == 0 || lstrcmpi(&szFN[nFN - 7], ".N3Mesh") == 0 ||
-        lstrcmpi(&szFN[nFN - 7], ".N3PMesh") == 0 || lstrcmpi(&szFN[nFN - 7], ".N3Shape") == 0 ||
-        lstrcmpi(&szFN[nFN - 7], ".N3Joint") == 0 || lstrcmpi(&szFN[nFN - 7], ".N3IMesh") == 0 ||
-        lstrcmpi(&szFN[nFN - 7], ".N3DSKN") == 0) {
-        rval = kIsMyFileType;
+    fs::path fsFile = fileName.name().asUTF8();
+    if (vSupportedExts.contains(fsFile.extension().string())) {
+        return kIsMyFileType;
     }
 
-    return rval;
+    return kNotMyFileType;
 }
 
 // Shouldn't be any C functions trying to call us, should there?

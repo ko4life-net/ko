@@ -27,11 +27,8 @@ class CN3IndoorApp : public CWinApp {
 
     CN3IndoorApp();
 
-    std::string GetMRU1();
-    std::string GetMRU2();
-    std::string GetMRU3();
-    std::string GetMRU4();
-    void        UpdateMRU();
+    fs::path GetMRU(size_t iIndex);
+    void     UpdateMRU();
 
     // Overrides
     // ClassWizard generated virtual function overrides

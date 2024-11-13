@@ -291,22 +291,22 @@ void CRegenUser::DeleteSel() {
     m_vrSelRegion = NULL;
 }
 
-void CRegenUser::LoadFromFile(LPCTSTR pFullFileName) {
-    FILE * stream = fopen(pFullFileName, "r");
+void CRegenUser::LoadFromFile(const fs::path & fsFile) {
+    FILE * stream = _wfopen(fsFile.c_str(), L"r");
     if (!stream) {
         return;
     }
 
-    char   szLine[512] = "", szCommand[80] = "", szBuf[4][80] = {"", "", "", ""};
-    char * pResult = fgets(szLine, 512, stream);
+    char   szLine[512]{}, szCommand[80]{}, szBuf[4][80]{};
+    char * pResult = fgets(szLine, sizeof(szLine), stream);
     sscanf(szLine, "%s %s %s %s %s", szCommand, szBuf[0], szBuf[1], szBuf[2], szBuf[3]);
 
-    int NumRC;
-    if (lstrcmpi(szCommand, "<NUM_REGION>") == 0) {
-        NumRC = atoi(szBuf[0]);
-    } else {
+    if (!n3std::iequals(szCommand, "<NUM_REGION>")) {
+        fclose(stream);
         return;
     }
+
+    int NumRC = atoi(szBuf[0]);
 
     ClearList();
 
@@ -317,11 +317,8 @@ void CRegenUser::LoadFromFile(LPCTSTR pFullFileName) {
         if (pResult == NULL) {
             break;
         }
-        ZeroMemory(szCommand, 80);
-        ZeroMemory(szBuf[0], 80);
-        ZeroMemory(szBuf[1], 80);
-        ZeroMemory(szBuf[2], 80);
-        ZeroMemory(szBuf[3], 80);
+        memset(szCommand, 0, sizeof(szCommand));
+        memset(szBuf, 0, sizeof(szBuf));
         sscanf(szLine, "%s %s %s %s", szBuf[0], szBuf[1], szBuf[2], szBuf[3]);
         pVR->m_vLB.x = atof(szBuf[0]);
         pVR->m_vLB.y = atof(szBuf[1]);
@@ -331,11 +328,8 @@ void CRegenUser::LoadFromFile(LPCTSTR pFullFileName) {
         if (pResult == NULL) {
             break;
         }
-        ZeroMemory(szCommand, 80);
-        ZeroMemory(szBuf[0], 80);
-        ZeroMemory(szBuf[1], 80);
-        ZeroMemory(szBuf[2], 80);
-        ZeroMemory(szBuf[3], 80);
+        memset(szCommand, 0, sizeof(szCommand));
+        memset(szBuf, 0, sizeof(szBuf));
         sscanf(szLine, "%s %s %s %s", szBuf[0], szBuf[1], szBuf[2], szBuf[3]);
         pVR->m_vLT.x = atof(szBuf[0]);
         pVR->m_vLT.y = atof(szBuf[1]);
@@ -345,11 +339,8 @@ void CRegenUser::LoadFromFile(LPCTSTR pFullFileName) {
         if (pResult == NULL) {
             break;
         }
-        ZeroMemory(szCommand, 80);
-        ZeroMemory(szBuf[0], 80);
-        ZeroMemory(szBuf[1], 80);
-        ZeroMemory(szBuf[2], 80);
-        ZeroMemory(szBuf[3], 80);
+        memset(szCommand, 0, sizeof(szCommand));
+        memset(szBuf, 0, sizeof(szBuf));
         sscanf(szLine, "%s %s %s %s", szBuf[0], szBuf[1], szBuf[2], szBuf[3]);
         pVR->m_vRB.x = atof(szBuf[0]);
         pVR->m_vRB.y = atof(szBuf[1]);
@@ -359,11 +350,8 @@ void CRegenUser::LoadFromFile(LPCTSTR pFullFileName) {
         if (pResult == NULL) {
             break;
         }
-        ZeroMemory(szCommand, 80);
-        ZeroMemory(szBuf[0], 80);
-        ZeroMemory(szBuf[1], 80);
-        ZeroMemory(szBuf[2], 80);
-        ZeroMemory(szBuf[3], 80);
+        memset(szCommand, 0, sizeof(szCommand));
+        memset(szBuf, 0, sizeof(szBuf));
         sscanf(szLine, "%s %s %s %s", szBuf[0], szBuf[1], szBuf[2], szBuf[3]);
         pVR->m_vRT.x = atof(szBuf[0]);
         pVR->m_vRT.y = atof(szBuf[1]);
@@ -380,8 +368,8 @@ void CRegenUser::LoadFromFile(LPCTSTR pFullFileName) {
     m_vrSelRegion = NULL;
 }
 
-void CRegenUser::SaveToFile(LPCTSTR pFullFileName) {
-    FILE * file = fopen(pFullFileName, "w");
+void CRegenUser::SaveToFile(const fs::path & fsFile) {
+    FILE * file = _wfopen(fsFile.c_str(), L"w");
     if (!file) {
         return;
     }

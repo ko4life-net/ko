@@ -156,20 +156,20 @@ class CLyTerrain : public CN3BaseFileAccess {
     void UpdateBrushArea(POINT ptCenter); // Brush 영역 표시 vertex갱신
     void RenderBrushArea();               // Brush 영역 표시 그리기
 
-    void ExportHeightBMP(const char * szPathName);
-    void ImportHeightBMP(const char * szPathName);
+    void ExportHeightBMP(const fs::path & fsFile);
+    void ImportHeightBMP(const fs::path & fsFile);
 
     void MakeMoveTable(short ** ppEvent);
     void Init(int HeightMapSize = 5);
-    bool LoadFromFile(const char * lpszPath);
-    bool SaveToFile(const char * lpszPath);
-    bool SaveToFilePartition(const char * lpszPath, float psx, float psz, float width);
+    bool LoadFromFile(const fs::path & fsFile);
+    bool SaveToFile(const fs::path & fsFile);
+    bool SaveToFilePartition(const fs::path & fsFile, float psx, float psz, float width);
     void Tick();
     void Render();
     void Release();
 
-    void MakeGameLightMap(char * szFullPathName);
-    void MakeGameColorMap(char * szFullPathName);
+    void MakeGameLightMap(const fs::path & fsFile);
+    void MakeGameColorMap(const fs::path & fsFile);
     void GeneraterColorMap(bool bIsAll = false);
     void TilingAll(); //지형 전체를 선택된 타일로 깔기..
 
@@ -184,16 +184,16 @@ class CLyTerrain : public CN3BaseFileAccess {
     SIZE GetPatchNum(float fSize);
     BOOL MouseMsgFilter(LPMSG pMsg); // 지형 고칠때 마우스 메세지 처리
     bool Pick(int x, int y, __Vector3 * vec, POINT * pHeightMapPos = NULL);
-    void Import(LPCTSTR pFileName, float fSize);
-    void ImportHeight(LPCTSTR pFileName);
+    void Import(const fs::path & fsVmeshFile, float fSize);
+    void ImportHeight(const fs::path & fsVmeshFile);
     void SaveServerData(HANDLE hFile);
     void SetEditMode(int iEditMode); // 지형 Edit모드로 변경
     void UpdateBrushIntensityMap(int iShape, int iSize,
                                  float fFallOff); // 브러쉬의 모양과 사이즈에 따라서 IntensityMap을 다시 구성한다.
     void SaveGameData(HANDLE hFile);
-    void ColorMapImport(LPCTSTR lpszPathName);
-    void ColorMapExport(LPCTSTR lpszPathName);
-    void GenerateMiniMap(LPCTSTR lpszPathName, int size);
+    void ColorMapImport(const fs::path & fsFile);
+    void ColorMapExport(const fs::path & fsFile);
+    void GenerateMiniMap(const fs::path & fsFile, int size);
     //
 
     CLyTerrain();

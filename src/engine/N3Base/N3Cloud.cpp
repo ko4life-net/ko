@@ -13,7 +13,6 @@
 CN3Cloud::CN3Cloud() {
     for (int i = 0; i < NUM_CLOUD; i++) {
         m_pTextures[i] = NULL;
-        m_szTextures[i] = "";
     }
 
     m_Color1.ChangeColor(0xffffffff);
@@ -39,7 +38,7 @@ void CN3Cloud::Release() {
     for (int i = 0; i < NUM_CLOUD; ++i) {
         if (m_pTextures[i]) {
             s_MngTex.Delete(&m_pTextures[i]);
-            m_szTextures[i] = "";
+            m_fsTexFiles[i] = fs::path();
         }
     }
     m_Color1.ChangeColor(0xffffffff);
@@ -231,7 +230,7 @@ void CN3Cloud::Render() {
 
 LPDIRECT3DTEXTURE9 CN3Cloud::GetTex(e_CLOUDTEX tex) {
     if (NULL == m_pTextures[tex]) {
-        m_pTextures[tex] = s_MngTex.Get(m_szTextures[tex]);
+        m_pTextures[tex] = s_MngTex.Get(m_fsTexFiles[tex]);
         if (NULL == m_pTextures[tex]) {
             return NULL;
         }
@@ -240,11 +239,11 @@ LPDIRECT3DTEXTURE9 CN3Cloud::GetTex(e_CLOUDTEX tex) {
     return m_pTextures[tex]->Get();
 }
 
-void CN3Cloud::Init(const std::string * pszFNs) {
+void CN3Cloud::Init(const fs::path * pfsTexFiles) {
     Release();
 
     for (int i = 0; i < NUM_CLOUD; i++) {
-        m_szTextures[i] = pszFNs[i];
+        m_fsTexFiles[i] = pfsTexFiles[i];
     }
 
     /*

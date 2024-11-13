@@ -7,7 +7,6 @@
 #include "N3Base/N3Base.h"
 #include "N3Base/N3Shape.h"
 
-#define INDOOR_FOLDER "N3Indoor\\"
 const float fBaseVolumnSize = 1.0f;
 
 enum e_ExtBool {
@@ -20,8 +19,8 @@ class CPortalVolume;
 
 //////////////////////////////////////////////////////////////////
 typedef struct tagShapeInfo : public CN3Transform {
-    int         m_iID;
-    std::string m_strShapeFile;
+    int      m_iID;
+    fs::path m_fsShapeFile;
 
     int m_iBelong;     // 소속 - 0:소속 없음 1:엘모라드 2:카루스 3:?? ....
     int m_iEventID;    // Event ID
@@ -34,7 +33,6 @@ typedef struct tagShapeInfo : public CN3Transform {
     //..
     tagShapeInfo() {
         m_iID = -1;
-        m_strShapeFile = "";
         m_pShape = NULL;
 
         m_iBelong = 0;
@@ -46,7 +44,7 @@ typedef struct tagShapeInfo : public CN3Transform {
 
     const tagShapeInfo & operator=(const tagShapeInfo & si) {
         m_iID = si.m_iID;
-        m_strShapeFile = si.m_strShapeFile;
+        m_fsShapeFile = si.m_fsShapeFile;
         m_pShape = si.m_pShape;
         m_iBelong = si.m_iBelong;
         m_iEventID = si.m_iEventID;

@@ -83,7 +83,7 @@ class CDlgEditPartParticle : public CDialog {
     float     m_fScaleVelY;
     //}}AFX_DATA
 
-    bool LoadPartScript(const char * szPath);
+    bool LoadPartScript(const fs::path & fsFile);
     void SetEmitTypeState(int EmitType);
 
     // Overrides

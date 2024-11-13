@@ -15,7 +15,7 @@ class CMainFrame : public CFrameWnd {
     CMainFrame();
     virtual ~CMainFrame();
 
-    BOOL BMPCutter(LPCTSTR lpszFileName, int iWidth, int iHeight, bool bSaveToDXT = false,
+    BOOL BMPCutter(const fs::path & fsFile, int iWidth, int iHeight, bool bSaveToDXT = false,
                    D3DFORMAT fmtDXT = D3DFMT_DXT1);
 
     // Overrides

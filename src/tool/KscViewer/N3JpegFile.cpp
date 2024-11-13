@@ -39,12 +39,12 @@ void CN3JpegFile::Release() {
     m_uiHeight = 0;
 }
 
-BOOL CN3JpegFile::LoadJpegFile(std::string csJpeg) {
+BOOL CN3JpegFile::LoadJpegFile(const fs::path & fsFile) {
     // m_buf is the global buffer
     Release();
 
     // read to buffer tmp
-    m_pImageBuf = CJpegFile::JpegFileToRGB(csJpeg.c_str(), &m_uiWidth, &m_uiHeight);
+    m_pImageBuf = CJpegFile::JpegFileToRGB(fsFile, &m_uiWidth, &m_uiHeight);
 
     //////////////////////
     // set up for display

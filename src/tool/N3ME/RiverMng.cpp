@@ -657,7 +657,7 @@ void CRiverMng::MakeGameFiles(HANDLE hFile, float fSize) {
 
         CN3Texture * pRiverTex = pRM->TexGet();
         if (pRiverTex) {
-            std::string szFile = fs::path(pRiverTex->FileName()).filename().string();
+            std::string szFile = pRiverTex->FilePath().filename().string();
             if (szFile.empty()) {
                 WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
             } else {
@@ -687,214 +687,214 @@ void CRiverMng::MakeGameFiles(HANDLE hFile, float fSize) {
     // 모든 강 정보 저장 (*.grm) game river main
     int iRiverCount = m_RiverMeshes.size();
 
-    CLyTerrain* pTerrain = m_pMainFrm->GetMapMng()->GetTerrain();
-    SIZE size = pTerrain->GetPatchNum(fSize);
+    CLyTerrain * pTerrain = m_pMainFrm->GetMapMng()->GetTerrain();
+    SIZE         size = pTerrain->GetPatchNum(fSize);
 
-    CN3River river;
-    __RiverInfo* RiverInfos = river.CreateRiverInfo(iRiverCount);
+    CN3River      river;
+    __RiverInfo * RiverInfos = river.CreateRiverInfo(iRiverCount);
     river.SetMaxPatchSize(size.cx, size.cy);
 
     it_RiverMesh it = m_RiverMeshes.begin();
-    for(int i = 0; i < iRiverCount; i++, it++)
-    {
-        CRiverMesh* pRM = *it;
+    for (int i = 0; i < iRiverCount; i++, it++) {
+        CRiverMesh * pRM = *it;
         ASSERT(pRM);
-        
+
         RiverInfos[i].iRiverID = pRM->GetRiverID();
         RiverInfos[i].dwAlphaFactor = pRM->GetAlphaFactor();
         RiverInfos[i].fSpeed1 = pRM->GetSpeed1();
         RiverInfos[i].fSpeed2 = pRM->GetSpeed2();
-        CN3Texture* pTex = pRM->TexGet();    ASSERT(pTex);
-        if (pTex) RiverInfos[i].SetTexName(pTex->Name());
+        CN3Texture * pTex = pRM->TexGet();
+        ASSERT(pTex);
+        if (pTex) {
+            RiverInfos[i].SetTexName(pTex->Name());
+        }
 
         // animation texture
         RiverInfos[i].fAnimTexFPS = pRM->GetAnimTexFPS();
         int iAnimTexCount = pRM->GetAnimTexCount();
         RiverInfos[i].SetAnimTexCount(iAnimTexCount);
-        for (int j=0; j<iAnimTexCount; ++j)
-        {
+        for (int j = 0; j < iAnimTexCount; ++j) {
             __ASSERT(pRM->AnimTexGet(j), "");
             RiverInfos[i].SetAnimTexName(j, pRM->AnimTexGet(j)->Name());
         }
     }
     river.Save(hFile);
 
-    if (iRiverCount <=0) return;
+    if (iRiverCount <= 0) {
+        return;
+    }
 
     // 각각의 패치 정보 저장 (*.grp) game river patch
     int iPatchCount = size.cx * size.cy;
     // 각 패치별로 정보 분류하기
-    __TempPatch* TempPatches = new __TempPatch[iPatchCount];
+    __TempPatch * TempPatches = new __TempPatch[iPatchCount];
 
     it = m_RiverMeshes.begin();
-    for(int i = 0; i < iRiverCount; i++, it++)
-    {
-        CRiverMesh* pRM = *it;
-        int iVC = pRM->VertexCount();
-        for (int j=0; j<iVC; ++j)
-        {
-            __VertexXyzT2* pVtx = pRM->GetVertex(j);
-            int iX = int(pVtx->x/fSize);    int iZ = int(pVtx->z/fSize);
-            int iPatchPos = iZ*size.cx + iX;
-            __TempRiver* pTempRiver = TempPatches[iPatchPos].GetRiver(pRM->GetRiverID());
-            if (pTempRiver == NULL)
-            {
+    for (int i = 0; i < iRiverCount; i++, it++) {
+        CRiverMesh * pRM = *it;
+        int          iVC = pRM->VertexCount();
+        for (int j = 0; j < iVC; ++j) {
+            __VertexXyzT2 * pVtx = pRM->GetVertex(j);
+            int             iX = int(pVtx->x / fSize);
+            int             iZ = int(pVtx->z / fSize);
+            int             iPatchPos = iZ * size.cx + iX;
+            __TempRiver *   pTempRiver = TempPatches[iPatchPos].GetRiver(pRM->GetRiverID());
+            if (pTempRiver == NULL) {
                 pTempRiver = new __TempRiver;
                 pTempRiver->iRiverID = pRM->GetRiverID();
                 TempPatches[iPatchPos].RiverArray.Add(pTempRiver);
             }
-            __TempVertex* pTempVtx = new __TempVertex;
-            pTempVtx->index = j;    pTempVtx->pVtx = pVtx;
+            __TempVertex * pTempVtx = new __TempVertex;
+            pTempVtx->index = j;
+            pTempVtx->pVtx = pVtx;
             pTempRiver->VtxArray.Add(pTempVtx);
         }
     }
 
     // CN3RiverPatch구조에 알맞게 넣기.
-    CN3RiverPatch* RiverPatches = new CN3RiverPatch[iPatchCount];
-    for (int i=0; i<iPatchCount; ++i)
-    {
-        int iRC = TempPatches[i].RiverArray.GetSize();
-        __River* Rivers = RiverPatches[i].CreateRiver(iRC);
-        for (int j=0; j<iRC; ++j)
-        {
-            __TempRiver* pTempRiver = TempPatches[i].RiverArray.GetAt(j);    ASSERT(pTempRiver);
+    CN3RiverPatch * RiverPatches = new CN3RiverPatch[iPatchCount];
+    for (int i = 0; i < iPatchCount; ++i) {
+        int       iRC = TempPatches[i].RiverArray.GetSize();
+        __River * Rivers = RiverPatches[i].CreateRiver(iRC);
+        for (int j = 0; j < iRC; ++j) {
+            __TempRiver * pTempRiver = TempPatches[i].RiverArray.GetAt(j);
+            ASSERT(pTempRiver);
             Rivers[j].iRiverID = pTempRiver->iRiverID;
             int iVC = pTempRiver->VtxArray.GetSize();
             Rivers[j].iVertexCount = iVC;
 
-            if (iVC<=0) continue;
-            __VertexRiver* pVertices;
+            if (iVC <= 0) {
+                continue;
+            }
+            __VertexRiver * pVertices;
             pVertices = Rivers[j].pVertices = new __VertexRiver[iVC];
-            for(int k=0; k<iVC; ++k)
-            {
-                __TempVertex* pTempVtx = pTempRiver->VtxArray.GetAt(k);
+            for (int k = 0; k < iVC; ++k) {
+                __TempVertex * pTempVtx = pTempRiver->VtxArray.GetAt(k);
                 pVertices[k].index = pTempVtx->index;
-                pVertices[k].Set(pTempVtx->pVtx->v, pTempVtx->pVtx->tu, pTempVtx->pVtx->tv, pTempVtx->pVtx->tu2, pTempVtx->pVtx->tv2);
-                
+                pVertices[k].Set(pTempVtx->pVtx->v, pTempVtx->pVtx->tu, pTempVtx->pVtx->tv, pTempVtx->pVtx->tu2,
+                                 pTempVtx->pVtx->tv2);
             }
         }
     }
 
     // 메모리 할당한거 지우기
-    delete [] TempPatches;
+    delete[] TempPatches;
 
     // RiverPatches 저장하기
-    for (int i=0; i<size.cx; ++i)
-    {
-        for (int j=0; j<size.cy; ++j)
-        {
-            RiverPatches[j*size.cy + i].Save(hFile);
+    for (int i = 0; i < size.cx; ++i) {
+        for (int j = 0; j < size.cy; ++j) {
+            RiverPatches[j * size.cy + i].Save(hFile);
         }
     }
-    delete [] RiverPatches;
-*/
+    delete[] RiverPatches;
+    */
 }
+
 /*
-void CRiverMng::MakeGameFiles(LPCTSTR lpszFName, float fSize)
-{
+void CRiverMng::MakeGameFiles(const fs::path & fsFileStem, float fSize) {
     // 모든 강 정보 저장 (*.grm) game river main
     int iRiverCount = m_RiverMeshes.size();
 
-    CLyTerrain* pTerrain = m_pMainFrm->GetMapMng()->GetTerrain();
-    SIZE size = pTerrain->GetPatchNum(fSize);
+    CLyTerrain * pTerrain = m_pMainFrm->GetMapMng()->GetTerrain();
+    SIZE         size = pTerrain->GetPatchNum(fSize);
 
-    CN3River river;
-    __RiverInfo* RiverInfos = river.CreateRiverInfo(iRiverCount);
+    CN3River      river;
+    __RiverInfo * RiverInfos = river.CreateRiverInfo(iRiverCount);
     river.SetMaxPatchSize(size.cx, size.cy);
 
-    for (int i=0; i<iRiverCount; ++i)
-    {
-        CRiverMesh* pRM = m_RiverMeshes.Get(i);
+    for (int i = 0; i < iRiverCount; ++i) {
+        CRiverMesh * pRM = m_RiverMeshes.Get(i);
         ASSERT(pRM);
         RiverInfos[i].iRiverID = pRM->GetRiverID();
         RiverInfos[i].dwAlphaFactor = pRM->GetAlphaFactor();
         RiverInfos[i].fSpeed1 = pRM->GetSpeed1();
         RiverInfos[i].fSpeed2 = pRM->GetSpeed2();
-        CN3Texture* pTex = pRM->TexGet();    ASSERT(pTex);
-        if (pTex) RiverInfos[i].SetTexName(pTex->Name());
+        CN3Texture * pTex = pRM->TexGet();
+        ASSERT(pTex);
+        if (pTex) {
+            RiverInfos[i].SetTexName(pTex->Name());
+        }
 
         // animation texture
         RiverInfos[i].fAnimTexFPS = pRM->GetAnimTexFPS();
         int iAnimTexCount = pRM->GetAnimTexCount();
         RiverInfos[i].SetAnimTexCount(iAnimTexCount);
-        for (int j=0; j<iAnimTexCount; ++j)
-        {
+        for (int j = 0; j < iAnimTexCount; ++j) {
             __ASSERT(pRM->AnimTexGet(j), "");
             RiverInfos[i].SetAnimTexName(j, pRM->AnimTexGet(j)->Name());
         }
     }
-    char szTmpFName[_MAX_FNAME];
-    wsprintf(szTmpFName, "River\\%s.grm", lpszFName);
-    river.SaveToFile(szTmpFName);
 
-    if (iRiverCount <=0) return;
+    river.SaveToFile(("River" / fsFileStem).replace_extension(".grm"));
+
+    if (iRiverCount <= 0) {
+        return;
+    }
 
     // 각각의 패치 정보 저장 (*.grp) game river patch
     int iPatchCount = size.cx * size.cy;
     // 각 패치별로 정보 분류하기
-    __TempPatch* TempPatches = new __TempPatch[iPatchCount];
+    __TempPatch * TempPatches = new __TempPatch[iPatchCount];
 
-    for (int i=0; i<iRiverCount; ++i)
-    {
-        CRiverMesh* pRM = m_RiverMeshes.Get(i);
-        int iVC = pRM->VertexCount();
-        for (int j=0; j<iVC; ++j)
-        {
-            __VertexXyzT2* pVtx = pRM->GetVertex(j);
-            int iX = int(pVtx->x/fSize);    int iZ = int(pVtx->z/fSize);
-            int iPatchPos = iZ*size.cx + iX;
-            __TempRiver* pTempRiver = TempPatches[iPatchPos].GetRiver(pRM->GetRiverID());
-            if (pTempRiver == NULL)
-            {
+    for (int i = 0; i < iRiverCount; ++i) {
+        CRiverMesh * pRM = m_RiverMeshes.Get(i);
+        int          iVC = pRM->VertexCount();
+        for (int j = 0; j < iVC; ++j) {
+            __VertexXyzT2 * pVtx = pRM->GetVertex(j);
+            int             iX = int(pVtx->x / fSize);
+            int             iZ = int(pVtx->z / fSize);
+            int             iPatchPos = iZ * size.cx + iX;
+            __TempRiver *   pTempRiver = TempPatches[iPatchPos].GetRiver(pRM->GetRiverID());
+            if (pTempRiver == NULL) {
                 pTempRiver = new __TempRiver;
                 pTempRiver->iRiverID = pRM->GetRiverID();
                 TempPatches[iPatchPos].RiverArray.Add(pTempRiver);
             }
-            __TempVertex* pTempVtx = new __TempVertex;
-            pTempVtx->index = j;    pTempVtx->pVtx = pVtx;
+            __TempVertex * pTempVtx = new __TempVertex;
+            pTempVtx->index = j;
+            pTempVtx->pVtx = pVtx;
             pTempRiver->VtxArray.Add(pTempVtx);
         }
     }
 
     // CN3RiverPatch구조에 알맞게 넣기.
-    CN3RiverPatch* RiverPatches = new CN3RiverPatch[iPatchCount];
-    for (int i=0; i<iPatchCount; ++i)
-    {
-        int iRC = TempPatches[i].RiverArray.GetSize();
-        __River* Rivers = RiverPatches[i].CreateRiver(iRC);
-        for (int j=0; j<iRC; ++j)
-        {
-            __TempRiver* pTempRiver = TempPatches[i].RiverArray.GetAt(j);    ASSERT(pTempRiver);
+    CN3RiverPatch * RiverPatches = new CN3RiverPatch[iPatchCount];
+    for (int i = 0; i < iPatchCount; ++i) {
+        int       iRC = TempPatches[i].RiverArray.GetSize();
+        __River * Rivers = RiverPatches[i].CreateRiver(iRC);
+        for (int j = 0; j < iRC; ++j) {
+            __TempRiver * pTempRiver = TempPatches[i].RiverArray.GetAt(j);
+            ASSERT(pTempRiver);
             Rivers[j].iRiverID = pTempRiver->iRiverID;
             int iVC = pTempRiver->VtxArray.GetSize();
             Rivers[j].iVertexCount = iVC;
 
-            if (iVC<=0) continue;
-            __VertexRiver* pVertices;
+            if (iVC <= 0) {
+                continue;
+            }
+            __VertexRiver * pVertices;
             pVertices = Rivers[j].pVertices = new __VertexRiver[iVC];
-            for(int k=0; k<iVC; ++k)
-            {
-                __TempVertex* pTempVtx = pTempRiver->VtxArray.GetAt(k);
+            for (int k = 0; k < iVC; ++k) {
+                __TempVertex * pTempVtx = pTempRiver->VtxArray.GetAt(k);
                 pVertices[k].index = pTempVtx->index;
-                pVertices[k].Set(pTempVtx->pVtx->v, pTempVtx->pVtx->tu, pTempVtx->pVtx->tv, pTempVtx->pVtx->tu2, pTempVtx->pVtx->tv2);
-                
+                pVertices[k].Set(pTempVtx->pVtx->v, pTempVtx->pVtx->tu, pTempVtx->pVtx->tv, pTempVtx->pVtx->tu2,
+                                 pTempVtx->pVtx->tv2);
             }
         }
     }
 
     // 메모리 할당한거 지우기
-    delete [] TempPatches;
+    delete[] TempPatches;
 
     // RiverPatches 저장하기
-    for (int i=0; i<size.cx; ++i)
-    {
-        for (int j=0; j<size.cy; ++j)
-        {
-            wsprintf(szTmpFName, "River\\%s_%02d%02d.grp", lpszFName, i, j);
-            RiverPatches[j*size.cy + i].SaveToFile(szTmpFName);
+    for (int i = 0; i < size.cx; ++i) {
+        for (int j = 0; j < size.cy; ++j) {
+            fs::path fsGrpFile = "River" / fsFileStem;
+            fsGrpFile += std::format("_{:02}{:02}.grp", i, j);
+            RiverPatches[j * size.cy + i].SaveToFile(fsGrpFile);
         }
     }
-    delete [] RiverPatches;
+    delete[] RiverPatches;
 }
 */
 

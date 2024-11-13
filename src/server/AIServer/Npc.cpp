@@ -4812,8 +4812,8 @@ void CNpc::SendAll(CIOCPort * pIOCP, TCHAR * pBuf, int nLength) {
 void CNpc::NpcTrace(const std::string & szMsg) {
     //if(g_bDebug == FALSE) return;
 
-    TRACE(std::format("{} : uid = {}, name = {}, xpos = {}, zpos = {}", szMsg, m_sNid + NPC_BAND, m_strName, m_fCurX,
-                      m_fCurZ)
+    TRACE(std::format("{:s} : uid = {:d}, name = {:s}, xpos = {:f}, zpos = {:f}", szMsg, m_sNid + NPC_BAND, m_strName,
+                      m_fCurX, m_fCurZ)
               .c_str());
 }
 

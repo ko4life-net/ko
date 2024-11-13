@@ -38,9 +38,9 @@ CJpeg::~CJpeg() {
     }
 }
 
-void CJpeg::LoadJPG(LPCSTR FileName) {
+void CJpeg::LoadJPG(const fs::path & fsFile) {
     // File Open & Load Entire Contents //
-    HFILE hFile = _lopen(FileName, OF_READWRITE);
+    HFILE hFile = _wopen(fsFile.c_str(), OF_READWRITE);
     int   FileSize = GetFileSize((HANDLE)hFile, NULL);
     m_pBuf = new BYTE[FileSize];
     _lread(hFile, m_pBuf, FileSize);
@@ -647,7 +647,7 @@ void CJpeg::ConvertYUV2RGB() {
     delete[] pLine;
 }
 
-void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE * pp) {
+void CJpeg::SaveJPG(const fs::path & fsFile, int Width, int Height, BYTE * pp) {
     m_rWidth = Width;
     m_rHeight = Height;
 
@@ -672,7 +672,8 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE * pp) {
     }
 
     DWORD  dwWritten;
-    HANDLE fh = CreateFile(FileName, GENERIC_READ | GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE fh =
+        CreateFileW(fsFile.c_str(), GENERIC_READ | GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     if (fh == INVALID_HANDLE_VALUE) {
         return;
     }

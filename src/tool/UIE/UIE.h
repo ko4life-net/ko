@@ -37,7 +37,7 @@ class CUIEApp : public CWinApp {
 /////////////////////////////////////////////////////////////////////////////
 
 // global function
-BOOL SelectTexture(char * pszBuff);
+BOOL SelectTexture(fs::path * pfsFile);
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.

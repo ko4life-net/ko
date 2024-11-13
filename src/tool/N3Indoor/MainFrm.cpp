@@ -106,7 +106,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
         return -1; // fail to create
     }
 
-    CN3Base::PathSet(fs::current_path().string());
+    CN3Base::PathSet(fs::current_path());
 
     if (m_Eng.Init(TRUE, m_hWnd, 64, 64, 0, TRUE) == false) {
         return 0;
@@ -164,14 +164,15 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     m_eEditState = EDIT_SELECT;
 
     // 경로 설정..
-    std::string str;
-    char        szPathCur[256] = "";
-    GetCurrentDirectory(256, szPathCur);
-    GetOrganizeView()->SetDlgItemText(IDC_EDIT_RESOURCE_PATH, szPathCur);
-    str = szPathCur;
-    str += "\\N3Indoor";
-    CN3Base::PathSet(str);
-    m_strResourcePath = str;
+    fs::path fsCurDir = fs::current_path();
+    GetOrganizeView()->SetDlgItemText(IDC_EDIT_RESOURCE_PATH, fsCurDir.string().c_str());
+
+    fs::path fsIndoorDir = fsCurDir / "N3Indoor";
+    if (!fs::is_directory(fsIndoorDir)) {
+        fs::create_directories(fsIndoorDir);
+    }
+    CN3Base::PathSet(fsIndoorDir);
+    m_fsResourceDir = fsIndoorDir;
 
     m_dwRenderingOption |= dw_Render_Add_Shape;
 
@@ -365,44 +366,42 @@ void CMainFrame::OnUpdateViewOutputobject(CCmdUI * pCmdUI) {
     }
 }
 
-CN3Transform * CMainFrame::AddChr(CN3Scene * pDestScene, const std::string & szFN, BOOL bGenerateChainNumber) {
+CN3Transform * CMainFrame::AddChr(CN3Scene * pDestScene, const fs::path & fsFile, BOOL bGenerateChainNumber) {
     CN3Chr * pChr = new CN3Chr;
-    if (false == pChr->LoadFromFile(szFN)) // 부르기가 실패하면..
+    if (!pChr->LoadFromFile(fsFile)) // 부르기가 실패하면..
     {
         delete pChr;
         return NULL;
     }
 
     if (bGenerateChainNumber) {
-        int  nCC = pDestScene->ChrCount();
-        int  nChainNumber = 0;
-        char szCompare[_MAX_PATH];
+        int nChainNumber = 0;
+        int nCC = pDestScene->ChrCount();
         for (int i = 0; i < nCC; i++) {
-            lstrcpy(szCompare, pDestScene->ChrGet(i)->m_szName.c_str());
-            int nL = lstrlen(szCompare);
-            if (nL < 5) {
+            std::string szNameFull = pDestScene->ChrGet(i)->m_szName;
+            size_t      iSeparatorPos = szNameFull.rfind('_');
+            if (iSeparatorPos == std::string::npos) {
                 continue;
             }
 
-            szCompare[nL - 5] = NULL;        // 뒤에 붙는 언더바와 네자리 번호는 뺀다..
-            if (pChr->m_szName == szCompare) // 이름이 같으면..
-            {
-                nChainNumber = atoi(&(szCompare[nL - 4])) + 1;
+            std::string szName = szNameFull.substr(0, iSeparatorPos);
+            if (pChr->m_szName == szName) {
+                std::string szDigits = szNameFull.substr(iSeparatorPos + 1);
+                std::from_chars(szDigits.data(), szDigits.data() + szDigits.size(), nChainNumber);
+                ++nChainNumber;
             }
         }
 
-        char szName[_MAX_PATH];
-        wsprintf(szName, "%s_%.4d", pChr->m_szName.c_str(), nChainNumber);
-        pChr->m_szName = szName; // .. 이름을 짓는다..
+        pChr->m_szName = std::format("{:s}_{:04d}", pChr->m_szName, nChainNumber);
     }
 
     pDestScene->ChrAdd(pChr);
     return pChr;
 }
 
-CN3Transform * CMainFrame::AddShape(CN3Scene * pDestScene, const std::string & szFN, BOOL bGenerateChainNumber) {
+CN3Transform * CMainFrame::AddShape(CN3Scene * pDestScene, const fs::path & fsFile, BOOL bGenerateChainNumber) {
     CN3Shape * pShape = new CN3Shape;
-    if (false == pShape->LoadFromFile(szFN)) // 부르기가 실패하면..
+    if (false == pShape->LoadFromFile(fsFile)) // 부르기가 실패하면..
     {
         delete pShape;
         return NULL;
@@ -417,34 +416,28 @@ void CMainFrame::LoadSourceObjects() {
 
     m_pSceneSource->Release();
 
-    WIN32_FIND_DATA FindFileData;
+    fs::path fsChrDir = fs::current_path() / "Chr";
+    if (fs::is_directory(fsChrDir)) {
+        for (const auto & fi : fs::directory_iterator(fsChrDir)) {
+            if (!fi.is_regular_file() || !n3std::iequals(fi.path().extension(), ".n3chr")) {
+                continue;
+            }
 
-    // source\Chr 폴더의 모든 캐릭터 추가
-    CString szChrPath;
-    szChrPath.Format("%sChr\\", CN3Base::PathGet().c_str());
-    SetCurrentDirectory(szChrPath); // szFolder\Chr 폴더로 경로를 바꾸고..
-    HANDLE hFind = FindFirstFile("*.N3Chr", &FindFileData);
-
-    if (hFind != INVALID_HANDLE_VALUE) {
-        AddChr(m_pSceneSource, std::string(szChrPath + FindFileData.cFileName), FALSE);
-        while (FindNextFile(hFind, &FindFileData)) {
-            AddChr(m_pSceneSource, std::string(szChrPath + FindFileData.cFileName), FALSE);
+            fs::path fsFile = "Chr" / fi.path().filename();
+            AddChr(m_pSceneSource, fsFile, FALSE);
         }
-        FindClose(hFind);
     }
 
-    // source\Data 폴더의 모든 shape 추가
-    CString szShapePath;
-    szShapePath.Format("%sObject\\", CN3Base::PathGet().c_str());
-    SetCurrentDirectory(szShapePath);                  // szFolder\Mesh 폴더로 경로를 바꾸고..
-    hFind = FindFirstFile("*.N3Shape", &FindFileData); // 파일 찾기.
+    fs::path fsObjectDir = fs::current_path() / "Object";
+    if (fs::is_directory(fsObjectDir)) {
+        for (const auto & fi : fs::directory_iterator(fsObjectDir)) {
+            if (!fi.is_regular_file() || !n3std::iequals(fi.path().extension(), ".n3shape")) {
+                continue;
+            }
 
-    if (hFind != INVALID_HANDLE_VALUE) {
-        AddShape(m_pSceneSource, std::string(szShapePath + FindFileData.cFileName), FALSE);
-        while (FindNextFile(hFind, &FindFileData)) {
-            AddShape(m_pSceneSource, std::string(szShapePath + FindFileData.cFileName), FALSE);
+            fs::path fsFile = "Object" / fi.path().filename();
+            AddShape(m_pSceneSource, fsFile, FALSE);
         }
-        FindClose(hFind);
     }
 
     m_pSceneSource->Tick();                       // Object 초기화
@@ -459,7 +452,7 @@ void CMainFrame::RefreshSourceObjects() {
     siiter          siit = pView->m_PVSMgr.m_plShapeInfoList.begin();
     while (siit != pView->m_PVSMgr.m_plShapeInfoList.end()) {
         pSI = *siit++;
-        pSI->m_pShape = m_pSceneSource->ShapeGetByFileName(pSI->m_strShapeFile);
+        pSI->m_pShape = m_pSceneSource->ShapeGetByFile(pSI->m_fsShapeFile);
     }
 
     CPortalVolume * pVol = NULL;
@@ -470,7 +463,7 @@ void CMainFrame::RefreshSourceObjects() {
         siiter siit = pVol->m_plShapeInfoList.begin();
         while (siit != pVol->m_plShapeInfoList.end()) {
             pSI = *siit++;
-            pSI->m_pShape = m_pSceneSource->ShapeGetByFileName(pSI->m_strShapeFile);
+            pSI->m_pShape = m_pSceneSource->ShapeGetByFile(pSI->m_fsShapeFile);
         }
     }
 }
@@ -1007,85 +1000,34 @@ void CMainFrame::TotalValidateCheckAfterDelete() {
     }
 }
 
-void CMainFrame::OnFileMruFile1() {
-    // TODO: Add your command handler code here
-    CN3IndoorApp * pApp = (CN3IndoorApp *)AfxGetApp();
-    std::string    str = pApp->GetMRU1();
-    std::string    strT;
-
-    char szExt[_MAX_EXT];
-    _splitpath(str.c_str(), NULL, NULL, NULL, szExt);
-    strT = szExt;
-
+void CMainFrame::OnFileMruFile(size_t iIndex) {
+    CN3IndoorApp *  pApp = (CN3IndoorApp *)AfxGetApp();
+    fs::path        fsFile = pApp->GetMRU(iIndex);
     COrganizeView * pView = GetOrganizeView();
 
-    if (strT == ".wshop") {
-        pView->OpenWorkShopFile(str);
+    fs::path fsExt = fsFile.extension();
+    if (n3std::iequals(fsExt, ".wshop")) {
+        pView->OpenWorkShopFile(fsFile);
     }
-    if (strT == ".n3indoor") {
-        pView->OpenGameDataFile(str);
+    if (n3std::iequals(fsExt, ".n3indoor")) {
+        pView->OpenGameDataFile(fsFile);
     }
+}
+
+void CMainFrame::OnFileMruFile1() {
+    OnFileMruFile(0);
 }
 
 void CMainFrame::OnFileMruFile2() {
-    // TODO: Add your command handler code here
-    CN3IndoorApp * pApp = (CN3IndoorApp *)AfxGetApp();
-    std::string    str = pApp->GetMRU2();
-    std::string    strT;
-
-    char szExt[_MAX_EXT];
-    _splitpath(str.c_str(), NULL, NULL, NULL, szExt);
-    strT = szExt;
-
-    COrganizeView * pView = GetOrganizeView();
-
-    if (strT == ".wshop") {
-        pView->OpenWorkShopFile(str);
-    }
-    if (strT == ".n3indoor") {
-        pView->OpenGameDataFile(str);
-    }
+    OnFileMruFile(1);
 }
 
 void CMainFrame::OnFileMruFile3() {
-    // TODO: Add your command handler code here
-    CN3IndoorApp * pApp = (CN3IndoorApp *)AfxGetApp();
-    std::string    str = pApp->GetMRU3();
-    std::string    strT;
-
-    char szExt[_MAX_EXT];
-    _splitpath(str.c_str(), NULL, NULL, NULL, szExt);
-    strT = szExt;
-
-    COrganizeView * pView = GetOrganizeView();
-    strT = szExt;
-
-    if (strT == ".wshop") {
-        pView->OpenWorkShopFile(str);
-    }
-    if (strT == ".n3indoor") {
-        pView->OpenGameDataFile(str);
-    }
+    OnFileMruFile(2);
 }
 
 void CMainFrame::OnFileMruFile4() {
-    // TODO: Add your command handler code here
-    CN3IndoorApp * pApp = (CN3IndoorApp *)AfxGetApp();
-    std::string    str = pApp->GetMRU4();
-    std::string    strT;
-
-    char szExt[_MAX_EXT];
-    _splitpath(str.c_str(), NULL, NULL, NULL, szExt);
-    strT = szExt;
-
-    COrganizeView * pView = GetOrganizeView();
-
-    if (strT == ".wshop") {
-        pView->OpenWorkShopFile(str);
-    }
-    if (strT == ".n3indoor") {
-        pView->OpenGameDataFile(str);
-    }
+    OnFileMruFile(3);
 }
 
 void CMainFrame::OnEditProperty() {
@@ -1117,134 +1059,75 @@ void CMainFrame::OnTipDeleteUnusedFiles() {
         return;
     }
 
-    // TODO: Add your command handler code here
-    typedef std::map<std::string, CN3BaseFileAccess *> mapBase;
-    typedef mapBase::value_type                        valBase;
-    typedef mapBase::iterator                          it_Base;
+    std::map<fs::path, CN3BaseFileAccess *> mBases;
+    std::vector<fs::path>                   vUnusedFiles;
+    std::vector<std::wstring>               vErroredFiles;
 
-    std::vector<std::string> invalidFNs;
-    std::vector<std::string> unusedFNs;
-    std::string              szFN;
-
-    //  일단 몽땅 다 맵에 넣는다..
-    mapBase mBases;
-    int     iSC = m_pDlgOutputList->GetTotalShapeInfoCount();
-
-    CN3Shape *   pShape = NULL;
-    CN3VMesh *   pVMesh = NULL;
-    CN3SPart *   pPart = NULL;
-    CN3PMesh *   pPMesh = NULL;
-    CN3Texture * pTex = NULL;
+    int iSC = m_pDlgOutputList->GetTotalShapeInfoCount();
     for (int i = 0; i < iSC; i++) {
-        pShape = m_pDlgOutputList->GetShapeByiOrder(i);
+        CN3Shape * pShape = m_pDlgOutputList->GetShapeByiOrder(i);
         if (NULL == pShape) {
             continue;
         }
 
-        szFN = CN3Base::PathGet() + pShape->FileName();
-        CharLower(&(szFN[0]));
-        mBases.insert(valBase(szFN, pShape));
+        mBases.emplace(pShape->FilePathAbs(), pShape);
 
-        pVMesh = pShape->CollisionMesh();
+        CN3VMesh * pVMesh = pShape->CollisionMesh();
         if (pVMesh) {
-            szFN = CN3Base::PathGet() + pVMesh->FileName();
-            CharLower(&(szFN[0]));
-            mBases.insert(valBase(szFN, pVMesh));
+            mBases.emplace(pVMesh->FilePathAbs(), pVMesh);
         } else {
-            invalidFNs.push_back("NULL VMesh : " + pShape->FileName());
+            vErroredFiles.emplace_back(std::format(L"NULL VMesh : {:s}", pShape->FilePath().c_str()));
         }
 
         int iSPC = pShape->PartCount();
         for (int j = 0; j < iSPC; j++) {
-            pPart = pShape->Part(j);
+            CN3SPart * pPart = pShape->Part(j);
             if (NULL == pPart) {
-                CString szErr;
-                szErr.Format("NULL Part : %s - %d번째 Part", pShape->FileName().c_str(), j);
-                invalidFNs.push_back(szErr.operator LPCTSTR());
+                vErroredFiles.emplace_back(
+                    std::format(L"NULL Part : {:s} - {:d}th Part", pShape->FilePath().c_str(), j));
                 continue;
             }
 
-            pPMesh = pPart->Mesh();
+            CN3PMesh * pPMesh = pPart->Mesh();
             if (pPMesh) {
-                szFN = CN3Base::PathGet() + pPMesh->FileName();
-                CharLower(&(szFN[0]));
-                mBases.insert(valBase(szFN, pPMesh));
+                mBases.emplace(pPMesh->FilePathAbs(), pPMesh);
             } else {
-                CString szErr;
-                szErr.Format("NULL PMesh : %s - %d번째 Part", pShape->FileName().c_str(), j);
-                invalidFNs.push_back(szErr.operator LPCTSTR());
+                vErroredFiles.emplace_back(
+                    std::format(L"NULL Part : {:s} - {:d}th Part", pShape->FilePath().c_str(), j));
             }
 
             int iSTC = pPart->TexCount();
             for (int k = 0; k < iSTC; k++) {
-                pTex = pPart->Tex(k);
+                CN3Texture * pTex = pPart->Tex(k);
                 if (pTex) {
-                    szFN = CN3Base::PathGet() + pTex->FileName();
-                    CharLower(&(szFN[0]));
-                    mBases.insert(valBase(szFN, pTex));
+                    mBases.emplace(pTex->FilePathAbs(), pTex);
                 } else {
-                    CString szErr;
-                    szErr.Format("NULL Texture : %s - %d번째 Part, %d번째 Texture", pShape->FileName().c_str(), j, k);
-                    invalidFNs.push_back(szErr.operator LPCTSTR());
+                    vErroredFiles.emplace_back(std::format(L"NULL Texture : {:s} - {:d}th Part, {:d}th Texture",
+                                                           pShape->FilePath().c_str(), j, k));
                     continue;
                 }
             }
         }
     }
 
-    // 파일을 찾고..
-    std::string szPath = CN3Base::PathGet() + "object\\";
-    ::SetCurrentDirectory(szPath.c_str());
-    CFileFind ff;
+    fs::path fsObjectDir = CN3Base::PathGet() / "Object";
+    if (fs::is_directory(fsObjectDir)) {
+        for (const auto & fi : fs::directory_iterator(fsObjectDir)) {
+            if (!fi.is_regular_file()) {
+                continue;
+            }
 
-    BOOL    bFind;
-    CString szFNTmp;
-    CString szFNTmp2;
-
-    for (ff.FindFile(); bFind = ff.FindNextFile();) {
-        szFNTmp = ff.GetFilePath();
-        szFNTmp2 = ff.GetFileName();
-
-        if (szFNTmp2 == "." || szFNTmp2 == "..") {
-            continue;
-        }
-
-        szFNTmp.MakeLower();
-
-        szFN = szFNTmp;
-        it_Base it = mBases.find(szFN);
-        if (it != mBases.end()) {
-            continue; // 찾았으면 쓴거다..
-        }
-
-        unusedFNs.push_back(szFN);
-    }
-
-    if (!bFind) {
-        szFNTmp = ff.GetFilePath();
-        szFNTmp2 = ff.GetFileName();
-
-        szFNTmp.MakeLower();
-
-        szFN = szFNTmp;
-        it_Base it = mBases.find(szFN);
-        if (it == mBases.end()) {
-            unusedFNs.push_back(szFN);
+            fs::path fsFindFile = fi.path();
+            fsFindFile.make_lower();
+            if (mBases.contains(fsFindFile)) {
+                vUnusedFiles.emplace_back(fsFindFile);
+            }
         }
     }
 
-    // 파일 지우기 대화상자 띄우기..
     CDlgUnusedFiles dlg;
-    int             iUFC = unusedFNs.size();
-    for (int i = 0; i < iUFC; i++) {
-        dlg.m_FileNames.Add(unusedFNs[i].c_str());
-    }
-
-    int iIFC = invalidFNs.size();
-    for (int i = 0; i < iIFC; i++) {
-        dlg.m_InvalidFileNames.Add(invalidFNs[i].c_str());
-    }
-
+    dlg.m_vFiles = vUnusedFiles;
+    dlg.m_vErroredFiles = vErroredFiles;
     dlg.DoModal();
 
     // 모두 업데이트..

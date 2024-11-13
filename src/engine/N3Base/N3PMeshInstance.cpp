@@ -39,7 +39,7 @@ CN3PMeshInstance::CN3PMeshInstance(CN3PMesh * pN3PMesh) {
     CN3PMeshInstance::Create(pN3PMesh);
 }
 
-CN3PMeshInstance::CN3PMeshInstance(const std::string & szFN) {
+CN3PMeshInstance::CN3PMeshInstance(const fs::path & fsFile) {
     m_pPMesh = NULL;
 
 #ifdef _USE_VERTEXBUFFER
@@ -51,7 +51,7 @@ CN3PMeshInstance::CN3PMeshInstance(const std::string & szFN) {
     m_iNumIndices = 0;
     m_pCollapseUpTo = NULL;
 
-    this->Create(szFN);
+    this->Create(fsFile);
 }
 
 CN3PMeshInstance::~CN3PMeshInstance() {
@@ -132,13 +132,13 @@ bool CN3PMeshInstance::Create(CN3PMesh * pN3PMesh) {
     return true;
 }
 
-bool CN3PMeshInstance::Create(const std::string & szFN) {
-    if (m_pPMesh && m_pPMesh->FileName() == szFN) {
+bool CN3PMeshInstance::Create(const fs::path & fsFile) {
+    if (m_pPMesh && m_pPMesh->FilePath() == fsFile) {
         return true; // 파일 이름이 같으면 새로 만들지 않고 리턴하자
     }
     this->Release();
 
-    CN3PMesh * pN3PMesh = s_MngPMesh.Get(szFN);
+    CN3PMesh * pN3PMesh = s_MngPMesh.Get(fsFile);
     return this->Create(pN3PMesh);
 }
 

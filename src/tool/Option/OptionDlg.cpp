@@ -140,9 +140,9 @@ BOOL COptionDlg::OnInitDialog() {
 
     // Loading all from ini
 
-    auto fsCurPath = fs::current_path();
-    SettingLoad((fsCurPath / "Option.ini").string());
-    SettingServerLoad((fsCurPath / "Server.ini").string());
+    fs::path fsCurDir = fs::current_path();
+    SettingLoad(fsCurDir / "Option.ini");
+    SettingServerLoad(fsCurDir / "Server.ini");
     // Setting all from ini
     SettingUpdate();
 
@@ -190,20 +190,20 @@ HCURSOR COptionDlg::OnQueryDragIcon() {
 }
 
 void COptionDlg::OnOK() {
-    auto fsCurPath = fs::current_path();
-    SettingSave((fsCurPath / "Option.ini").string());
-    SettingServerSave((fsCurPath / "Server.ini").string());
+    fs::path fsCurDir = fs::current_path();
+    SettingSave(fsCurDir / "Option.ini");
+    SettingServerSave(fsCurDir / "Server.ini");
     MessageBox("Settings saved successfully");
     CDialog::OnOK();
 }
 
 void COptionDlg::OnBApplyAndExecute() {
-    auto szLauncherFile = (fs::current_path() / "Launcher.exe").string();
+    fs::path fsLauncherFile = fs::current_path() / "Launcher.exe";
     OnOK();
-    ShellExecute(NULL, "open", szLauncherFile.c_str(), "", "", SW_SHOWNORMAL); // Open Launcher
+    ShellExecuteW(NULL, L"open", fsLauncherFile.c_str(), L"", L"", SW_SHOWNORMAL); // Open Launcher
 }
 
-void COptionDlg::SettingSave(const std::string & szIniFile) {
+void COptionDlg::SettingSave(const fs::path & fsIniFile) {
     CString szBuff;
 
     if (IsDlgButtonChecked(IDC_R_TEX_CHR_HIGH)) {
@@ -289,58 +289,68 @@ void COptionDlg::SettingSave(const std::string & szIniFile) {
     m_Option.bSndDuplicated = IsDlgButtonChecked(IDC_C_SOUND_DUPLICATE) ? true : false;
     m_Option.bWindowCursor = IsDlgButtonChecked(IDC_C_CURSOR_WINDOW) ? true : false;
 
-    auto szFile = szIniFile.c_str();
-    WritePrivateProfileString("Texture", "LOD_Chr", to_str(m_Option.iTexLOD_Chr), szFile);
-    WritePrivateProfileString("Texture", "LOD_Shape", to_str(m_Option.iTexLOD_Shape), szFile);
-    WritePrivateProfileString("Texture", "LOD_Terrain", to_str(m_Option.iTexLOD_Terrain), szFile);
-    WritePrivateProfileString("Shadow", "Use", to_str(m_Option.iUseShadow), szFile);
-    WritePrivateProfileString("ViewPort", "Width", to_str(m_Option.iViewWidth), szFile);
-    WritePrivateProfileString("ViewPort", "Height", to_str(m_Option.iViewHeight), szFile);
-    WritePrivateProfileString("ViewPort", "ColorDepth", to_str(m_Option.iViewColorDepth), szFile);
-    WritePrivateProfileString("ViewPort", "Distance", to_str(m_Option.iViewDist), szFile);
-    WritePrivateProfileString("Effect", "Count", to_str(m_Option.iEffectCount), szFile);
-    WritePrivateProfileString("Sound", "Distance", to_str(m_Option.iEffectSndDist), szFile);
-    WritePrivateProfileString("Sound", "Bgm", to_str(m_Option.bSndBackground), szFile);
-    WritePrivateProfileString("Sound", "Effect", to_str(m_Option.bSndEffect), szFile);
-    WritePrivateProfileString("Sound", "Duplicate", to_str(m_Option.bSndDuplicated), szFile);
-    WritePrivateProfileString("Cursor", "WindowCursor", to_str(m_Option.bWindowCursor), szFile);
-    WritePrivateProfileString("Screen", "WindowMode", to_str(m_Option.bWindowMode), szFile);
-    WritePrivateProfileString("WeaponEffect", "EffectVisible", to_str(m_Option.bWeaponEffect), szFile);
+    std::string  szIniFile = fsIniFile.string();
+    const char * pszIniFile = szIniFile.c_str();
+
+    WritePrivateProfileString("Texture", "LOD_Chr", to_str(m_Option.iTexLOD_Chr), pszIniFile);
+    WritePrivateProfileString("Texture", "LOD_Shape", to_str(m_Option.iTexLOD_Shape), pszIniFile);
+    WritePrivateProfileString("Texture", "LOD_Terrain", to_str(m_Option.iTexLOD_Terrain), pszIniFile);
+    WritePrivateProfileString("Shadow", "Use", to_str(m_Option.iUseShadow), pszIniFile);
+    WritePrivateProfileString("ViewPort", "Width", to_str(m_Option.iViewWidth), pszIniFile);
+    WritePrivateProfileString("ViewPort", "Height", to_str(m_Option.iViewHeight), pszIniFile);
+    WritePrivateProfileString("ViewPort", "ColorDepth", to_str(m_Option.iViewColorDepth), pszIniFile);
+    WritePrivateProfileString("ViewPort", "Distance", to_str(m_Option.iViewDist), pszIniFile);
+    WritePrivateProfileString("Effect", "Count", to_str(m_Option.iEffectCount), pszIniFile);
+    WritePrivateProfileString("Sound", "Distance", to_str(m_Option.iEffectSndDist), pszIniFile);
+    WritePrivateProfileString("Sound", "Bgm", to_str(m_Option.bSndBackground), pszIniFile);
+    WritePrivateProfileString("Sound", "Effect", to_str(m_Option.bSndEffect), pszIniFile);
+    WritePrivateProfileString("Sound", "Duplicate", to_str(m_Option.bSndDuplicated), pszIniFile);
+    WritePrivateProfileString("Cursor", "WindowCursor", to_str(m_Option.bWindowCursor), pszIniFile);
+    WritePrivateProfileString("Screen", "WindowMode", to_str(m_Option.bWindowMode), pszIniFile);
+    WritePrivateProfileString("WeaponEffect", "EffectVisible", to_str(m_Option.bWeaponEffect), pszIniFile);
 }
 
-void COptionDlg::SettingLoad(const std::string & szIniFile) {
-    auto szFile = szIniFile.c_str();
-    m_Option.iTexLOD_Chr = GetPrivateProfileInt("Texture", "LOD_Chr", 0, szFile);
-    m_Option.iTexLOD_Shape = GetPrivateProfileInt("Texture", "LOD_Shape", 0, szFile);
-    m_Option.iTexLOD_Terrain = GetPrivateProfileInt("Texture", "LOD_Terrain", 0, szFile);
-    m_Option.iUseShadow = GetPrivateProfileInt("Shadow", "Use", 1, szFile);
-    m_Option.iViewWidth = GetPrivateProfileInt("ViewPort", "Width", 1024, szFile);
-    m_Option.iViewHeight = GetPrivateProfileInt("ViewPort", "Height", 768, szFile);
-    m_Option.iViewColorDepth = GetPrivateProfileInt("ViewPort", "ColorDepth", 16, szFile);
-    m_Option.iViewDist = GetPrivateProfileInt("ViewPort", "Distance", 512, szFile);
-    m_Option.iEffectSndDist = GetPrivateProfileInt("Sound", "Distance", 48, szFile);
-    m_Option.iEffectCount = GetPrivateProfileInt("Effect", "Count", 2000, szFile);
+void COptionDlg::SettingLoad(const fs::path & fsIniFile) {
+    std::string  szIniFile = fsIniFile.string();
+    const char * pszIniFile = szIniFile.c_str();
 
-    int iSndBackground = GetPrivateProfileInt("Sound", "Bgm", 1, szFile);
+    m_Option.iTexLOD_Chr = GetPrivateProfileInt("Texture", "LOD_Chr", 0, pszIniFile);
+    m_Option.iTexLOD_Shape = GetPrivateProfileInt("Texture", "LOD_Shape", 0, pszIniFile);
+    m_Option.iTexLOD_Terrain = GetPrivateProfileInt("Texture", "LOD_Terrain", 0, pszIniFile);
+    m_Option.iUseShadow = GetPrivateProfileInt("Shadow", "Use", 1, pszIniFile);
+    m_Option.iViewWidth = GetPrivateProfileInt("ViewPort", "Width", 1024, pszIniFile);
+    m_Option.iViewHeight = GetPrivateProfileInt("ViewPort", "Height", 768, pszIniFile);
+    m_Option.iViewColorDepth = GetPrivateProfileInt("ViewPort", "ColorDepth", 16, pszIniFile);
+    m_Option.iViewDist = GetPrivateProfileInt("ViewPort", "Distance", 512, pszIniFile);
+    m_Option.iEffectSndDist = GetPrivateProfileInt("Sound", "Distance", 48, pszIniFile);
+    m_Option.iEffectCount = GetPrivateProfileInt("Effect", "Count", 2000, pszIniFile);
+
+    int iSndBackground = GetPrivateProfileInt("Sound", "Bgm", 1, pszIniFile);
     m_Option.bSndBackground = iSndBackground ? true : false;
-    int iSndEffect = GetPrivateProfileInt("Sound", "Effect", 1, szFile);
+    int iSndEffect = GetPrivateProfileInt("Sound", "Effect", 1, pszIniFile);
     m_Option.bSndEffect = iSndEffect ? true : false;
-    int iSndDuplicate = GetPrivateProfileInt("Sound", "Duplicate", 0, szFile);
+    int iSndDuplicate = GetPrivateProfileInt("Sound", "Duplicate", 0, pszIniFile);
     m_Option.bSndDuplicated = iSndDuplicate ? true : false;
-    int iWindowCursor = GetPrivateProfileInt("Cursor", "WindowCursor", 1, szFile);
+    int iWindowCursor = GetPrivateProfileInt("Cursor", "WindowCursor", 1, pszIniFile);
     m_Option.bWindowCursor = iWindowCursor ? true : false;
-    int iWindowMode = GetPrivateProfileInt("Screen", "WindowMode", false, szFile);
+    int iWindowMode = GetPrivateProfileInt("Screen", "WindowMode", false, pszIniFile);
     m_Option.bWindowMode = iWindowMode ? true : false;
-    int iWeaponEffect = GetPrivateProfileInt("WeaponEffect", "EffectVisible", true, szFile);
+    int iWeaponEffect = GetPrivateProfileInt("WeaponEffect", "EffectVisible", true, pszIniFile);
     m_Option.bWeaponEffect = iWeaponEffect ? true : false;
 }
 
-void COptionDlg::SettingServerLoad(const std::string & szIniFile) {
-    m_ServerOption.Version = GetPrivateProfileInt("Version", "Files", 1264, szIniFile.c_str());
+void COptionDlg::SettingServerLoad(const fs::path & fsIniFile) {
+    std::string  szIniFile = fsIniFile.string();
+    const char * pszIniFile = szIniFile.c_str();
+
+    m_ServerOption.Version = GetPrivateProfileInt("Version", "Files", m_ServerOption.Version, pszIniFile);
 }
 
-void COptionDlg::SettingServerSave(const std::string & szIniFile) {
-    WritePrivateProfileString("Version", "Files", to_str(m_ServerOption.Version), szIniFile.c_str());
+void COptionDlg::SettingServerSave(const fs::path & fsIniFile) {
+    std::string  szIniFile = fsIniFile.string();
+    const char * pszIniFile = szIniFile.c_str();
+
+    WritePrivateProfileString("Version", "Files", to_str(m_ServerOption.Version), pszIniFile);
 }
 
 void COptionDlg::SettingUpdate() {
@@ -416,8 +426,11 @@ void COptionDlg::OnBVersion() {
     VersionUpdate((fs::current_path() / "Server.ini").string(), iVersion);
 }
 
-void COptionDlg::VersionUpdate(const std::string & szIniFile, int Version) {
+void COptionDlg::VersionUpdate(const fs::path & fsIniFile, int Version) {
+    std::string  szIniFile = fsIniFile.string();
+    const char * pszIniFile = szIniFile.c_str();
+
     m_ServerOption.Version = Version;
-    auto szVersion = std::to_string(m_ServerOption.Version);
-    WritePrivateProfileString("Version", "Files", szVersion.c_str(), szIniFile.c_str());
+    std::string szVersion = std::to_string(m_ServerOption.Version);
+    WritePrivateProfileString("Version", "Files", szVersion.c_str(), pszIniFile);
 }

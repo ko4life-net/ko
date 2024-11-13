@@ -436,7 +436,8 @@ void CWallMgr::AddWall2Coll(CN3ShapeMgr * pShapeMgr) {
     __Vector3 v1, v2, v3;
 
     // 텍스트파일로 함 뽑아보자..
-    FILE * stream = fopen("c:\\Wall_info.txt", "w");
+    fs::path fsFile = fs::temp_directory_path() / "N3ME_Wall_info.txt";
+    FILE *   stream = _wfopen(fsFile.c_str(), L"w");
 
     fprintf(stream, "Walls = %d\n", m_pWalls.size());
     for (itWall = m_pWalls.begin(); itWall != m_pWalls.end(); itWall++) {

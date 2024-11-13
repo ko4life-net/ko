@@ -25,7 +25,7 @@ HWND              CN3Base::s_hWndPresent = NULL;        // 최근에 Present 한
 
 D3DPRESENT_PARAMETERS CN3Base::s_DevParam; // Device 생성 Present Parameter
 D3DCAPS9              CN3Base::s_DevCaps;  // Device 호환성...
-std::string           CN3Base::s_szPath;
+fs::path              CN3Base::s_fsBaseDir;
 
 __CameraData CN3Base::s_CameraData; // Camera Data
 __ResrcInfo  CN3Base::s_ResrcInfo;  // Rendering Information
@@ -60,7 +60,6 @@ CLogWriter g_Log; // 로그 남기기...
 
 CN3Base::CN3Base() {
     m_dwType = OBJ_BASE; // "MESH", "CAMERA", "SCENE", "???" .... 등등등...
-    m_szName = "";
 }
 
 CN3Base::~CN3Base() {}
@@ -255,18 +254,8 @@ float CN3Base::TimerProcess(TIMER_COMMAND command) {
     }
 }
 
-void CN3Base::PathSet(const std::string & szPath) {
-    s_szPath = szPath;
-    if (s_szPath.size() <= 0) {
-        return;
-    }
-
-    CharLower(&(s_szPath[0])); // 반드시 소문자로 만들어 준다..
-    if (s_szPath.size() > 1) {
-        if (s_szPath[s_szPath.size() - 1] != '\\') {
-            s_szPath += '\\';
-        }
-    }
+void CN3Base::PathSet(const fs::path & fsBaseDir) {
+    s_fsBaseDir = fsBaseDir.lower().generic_string();
 }
 
 void CN3Base::RenderLines(const __Vector3 * pvLines, int nCount, D3DCOLOR color) {

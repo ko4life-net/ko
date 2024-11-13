@@ -36,7 +36,6 @@ C3DMap::C3DMap() {
     m_bType = 0;
     m_wBundle = 1;
     m_sMaxUser = 150; // Max user in Battlezone!!!
-    memset(m_MapName, NULL, 256);
     m_pMain = NULL;
 }
 

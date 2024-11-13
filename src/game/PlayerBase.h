@@ -259,9 +259,9 @@ class CPlayerBase : public CGameBase {
     virtual void           InitFace(){};
     CN3CPart *             Part(e_PartPosition ePos) { return m_Chr.Part(ePos); }
     CN3CPlugBase *         Plug(e_PlugPosition ePos) { return m_Chr.Plug(ePos); }
-    virtual CN3CPart *     PartSet(e_PartPosition ePos, const std::string & szFN, __TABLE_ITEM_BASIC * pItemBasic,
+    virtual CN3CPart *     PartSet(e_PartPosition ePos, const fs::path & fsFile, __TABLE_ITEM_BASIC * pItemBasic,
                                    __TABLE_ITEM_EXT * pItemExt);
-    virtual CN3CPlugBase * PlugSet(e_PlugPosition ePos, const std::string & szFN, __TABLE_ITEM_BASIC * pItemBasic,
+    virtual CN3CPlugBase * PlugSet(e_PlugPosition ePos, const fs::path & fsFile, __TABLE_ITEM_BASIC * pItemBasic,
                                    __TABLE_ITEM_EXT * pItemExt);
     virtual void           DurabilitySet(e_ItemSlot eSlot, int iDurability);
 

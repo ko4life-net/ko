@@ -39,15 +39,16 @@ void CGameProcNationSelect::Release() {
 void CGameProcNationSelect::Init() {
     CGameProcedure::Init();
 
-    std::string        szTemp = "UI\\Co_NationSelect.uif";
+    fs::path fsFile = fs::path("UI") / "Co_NationSelect.uif";
+
     __TABLE_UI_RESRC * pTbl = s_pTbl_UI->Find(NATION_ELMORAD);
     if (pTbl) {
-        szTemp = pTbl->szNationSelect;
+        fsFile = pTbl->szNationSelect;
     }
 
     m_pUINationSelectDlg = new CUINationSelectDlg();
     m_pUINationSelectDlg->Init(s_pUIMgr);
-    m_pUINationSelectDlg->LoadFromFile(szTemp);
+    m_pUINationSelectDlg->LoadFromFile(fsFile);
     m_pUINationSelectDlg->m_pProcNationSelectRef = this; // 참조 포인터 넣기..
 
     s_pPlayer->m_InfoBase.eNation = NATION_NOTSELECTED; // 아직 국가를 선택하지 않았다..

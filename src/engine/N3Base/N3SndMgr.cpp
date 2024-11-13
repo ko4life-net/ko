@@ -26,7 +26,7 @@ CN3SndMgr::~CN3SndMgr() {
 void CN3SndMgr::Init(HWND hWnd) {
     Release();
     m_bSndEnable = CN3SndObj::StaticInit(hWnd);
-    m_Tbl_Source.LoadFromFile("Data\\sound.tbl");
+    m_Tbl_Source.LoadFromFile(fs::path("Data") / "sound.tbl");
 }
 
 CN3SndObj * CN3SndMgr::CreateObj(int iID, e_SndType eType) {
@@ -35,26 +35,26 @@ CN3SndObj * CN3SndMgr::CreateObj(int iID, e_SndType eType) {
         return NULL;
     }
 
-    return this->CreateObj(pTbl->szFN, eType);
+    return this->CreateObj(pTbl->szFile, eType);
 }
 
-CN3SndObj * CN3SndMgr::CreateObj(const std::string & szFN, e_SndType eType) {
+CN3SndObj * CN3SndMgr::CreateObj(const fs::path & fsFile, e_SndType eType) {
     if (!m_bSndEnable) {
         return NULL;
     }
 
     CN3SndObj * pObjSrc = NULL;
-    itm_Snd     it = m_SndObjSrcs.find(szFN);
+    itm_Snd     it = m_SndObjSrcs.find(fsFile);
     if (it == m_SndObjSrcs.end()) // 못 찾았다... 새로 만들자..
     {
         pObjSrc = new CN3SndObj();
-        if (false == pObjSrc->Create(szFN, eType)) // 새로 로딩..
+        if (false == pObjSrc->Create(fsFile, eType)) // 새로 로딩..
         {
             delete pObjSrc;
             pObjSrc = NULL;
             return NULL;
         }
-        m_SndObjSrcs.insert(val_Snd(szFN, pObjSrc)); // 맵에 추가한다..
+        m_SndObjSrcs.insert(val_Snd(fsFile, pObjSrc)); // 맵에 추가한다..
     } else {
         pObjSrc = it->second;
     }
@@ -81,9 +81,9 @@ CN3SndObj * CN3SndMgr::CreateObj(const std::string & szFN, e_SndType eType) {
     return pObjNew;
 }
 
-CN3SndObjStream * CN3SndMgr::CreateStreamObj(const std::string & szFN) {
+CN3SndObjStream * CN3SndMgr::CreateStreamObj(const fs::path & fsFile) {
     CN3SndObjStream * pObj = new CN3SndObjStream();
-    if (false == pObj->Create(szFN)) {
+    if (false == pObj->Create(fsFile)) {
         delete pObj;
         pObj = NULL;
         return NULL;
@@ -100,7 +100,7 @@ CN3SndObjStream * CN3SndMgr::CreateStreamObj(int iID) {
         return NULL;
     }
 
-    return this->CreateStreamObj(pTbl->szFN);
+    return this->CreateStreamObj(pTbl->szFile);
 }
 
 void CN3SndMgr::ReleaseStreamObj(CN3SndObjStream ** ppObj) {
@@ -201,7 +201,7 @@ void CN3SndMgr::ReleaseObj(CN3SndObj ** ppObj) {
     if (NULL == ppObj || NULL == *ppObj) {
         return;
     }
-    std::string szFN = (*ppObj)->m_szFileName; // 파일 이름을 기억하고..
+    fs::path fsFile = (*ppObj)->m_fsFile; // 파일 이름을 기억하고..
 
     itl_Snd it = m_SndObjs_Duplicated.begin(), itEnd = m_SndObjs_Duplicated.end();
     for (; it != itEnd; it++) {
@@ -226,7 +226,7 @@ void CN3SndMgr::ReleaseObj(CN3SndObj ** ppObj) {
 
     *ppObj = NULL; // 포인터만 널로 만들어 준다..
 
-    /*    itm_Snd it = m_SndObjSrcs.find(szFN);
+    /*    itm_Snd it = m_SndObjSrcs.find(fsFile);
     if(it != m_SndObjSrcs.end()) // 찾았다..
     {
         CN3SndObj* pObj = it->second;
@@ -308,22 +308,22 @@ bool CN3SndMgr::PlayOnceAndRelease(int iSndID, const _D3DVECTOR * pPos) {
     }
 
     TABLE_SOUND * pTbl = m_Tbl_Source.Find(iSndID);
-    if (pTbl == NULL || pTbl->szFN.empty()) {
+    if (pTbl == NULL || pTbl->szFile.empty()) {
         return false;
     }
 
     CN3SndObj * pObjSrc = NULL;
-    itm_Snd     it = m_SndObjSrcs.find(pTbl->szFN);
+    itm_Snd     it = m_SndObjSrcs.find(pTbl->szFile);
     if (it == m_SndObjSrcs.end()) // 못 찾았다... 새로 만들자..
     {
         pObjSrc = new CN3SndObj();
-        if (false == pObjSrc->Create(pTbl->szFN, (e_SndType)pTbl->iType)) // 새로 로딩..
+        if (false == pObjSrc->Create(pTbl->szFile, (e_SndType)pTbl->iType)) // 새로 로딩..
         {
             delete pObjSrc;
             pObjSrc = NULL;
             return NULL;
         }
-        m_SndObjSrcs.insert(val_Snd(pTbl->szFN, pObjSrc)); // 맵에 추가한다..
+        m_SndObjSrcs.insert(val_Snd(pTbl->szFile, pObjSrc)); // 맵에 추가한다..
         if (!m_bSndDuplicated) {
             pObjSrc->Play(pPos); //this_Snd
         }
@@ -357,7 +357,7 @@ bool CN3SndMgr::PlayOnceAndRelease(int iSndID, const _D3DVECTOR * pPos) {
     return false;
     /*
     CN3SndObj* pObj = new CN3SndObj();
-    if(false == pObj->Create(pTbl->szFN, (e_SndType)pTbl->iType))
+    if(false == pObj->Create(pTbl->fsFile, (e_SndType)pTbl->iType))
     {
         delete pObj; pObj = NULL;
         return false;

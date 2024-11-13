@@ -35,8 +35,8 @@ class CDTexGroupMng : public CN3Base {
     int          GetIndex2ID(int idx);
     int          GetID2Index(int id);
     char *       GetGroupName(int id);
-    bool         SaveToFile(CString RealFileName);
-    bool         LoadFromFile(CString RealFileName);
+    bool         SaveToFile(const fs::path & fsFileName);
+    bool         LoadFromFile(const fs::path & fsFileName);
     void         Init(CWnd * pWndParent);
     void         Release();
     void         SetGroup(const char * pName);

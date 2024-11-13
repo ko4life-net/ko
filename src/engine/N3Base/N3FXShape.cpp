@@ -78,12 +78,12 @@ CN3Texture * CN3FXSPart::Tex(int iIndex) {
     return m_TexRefs[iIndex];
 }
 
-CN3Texture * CN3FXSPart::TexSet(int iIndex, const std::string & szFN) {
+CN3Texture * CN3FXSPart::TexSet(int iIndex, const fs::path & fsFile) {
     if (iIndex < 0 || iIndex >= m_TexRefs.size()) {
         return NULL;
     }
     s_MngTex.Delete(&m_TexRefs[iIndex]);
-    m_TexRefs[iIndex] = s_MngTex.Get(szFN);
+    m_TexRefs[iIndex] = s_MngTex.Get(fsFile);
     return m_TexRefs[iIndex];
 }
 
@@ -235,25 +235,24 @@ void CN3FXSPart::Render() {
 }
 
 bool CN3FXSPart::Load(HANDLE hFile) {
-    DWORD dwRWC;
-    int   nL = 0;
-    char  szFN[256];
+    DWORD       dwRWC = 0;
+    int         iLen = 0;
+    std::string szFile;
 
     ReadFile(hFile, &m_vPivot, sizeof(__Vector3), &dwRWC, NULL);
 
-    ReadFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
-    ReadFile(hFile, szFN, nL, &dwRWC, NULL);
-    szFN[nL] = NULL; // 메시 파일 이름..
+    ReadFile(hFile, &iLen, 4, &dwRWC, NULL); // Mesh FileName
+    if (iLen <= 0) {
+        N3_ERROR("CN3FXShape's n3shape file without n3pmesh ({:s})", FilePath().string());
+        return false;
+    }
 
-    //m_pRefShape의 경로와 읽어들인 파일명을 합쳐라...
-    char szPath[_MAX_PATH];
-    char szFName[_MAX_FNAME], szExt[_MAX_EXT];
-    char szDir[_MAX_DIR];
-    _splitpath(m_pRefShape->FileName().c_str(), NULL, szDir, NULL, NULL);
-    _splitpath(szFN, NULL, NULL, szFName, szExt);
-    _makepath(szPath, NULL, szDir, szFName, szExt);
+    szFile.assign(iLen, '\0');
+    ReadFile(hFile, szFile.data(), iLen, &dwRWC, NULL);
 
-    if (!this->MeshSet(szPath)) {
+    fs::path fsDir = m_pRefShape->FilePath().parent_path();
+    fs::path fsMeshFile = fsDir / fs::path(szFile).filename();
+    if (!MeshSet(fsMeshFile)) {
         return false;
     }
 
@@ -263,17 +262,16 @@ bool CN3FXSPart::Load(HANDLE hFile) {
     ReadFile(hFile, &iTC, 4, &dwRWC, NULL);
     ReadFile(hFile, &m_fTexFPS, 4, &dwRWC, NULL);
     m_TexRefs.clear();
-    this->TexAlloc(iTC);          // Texture Pointer Pointer 할당..
-    for (int j = 0; j < iTC; j++) // Texture Count 만큼 파일 이름 읽어서 텍스처 부르기..
-    {
-        ReadFile(hFile, &nL, 4, &dwRWC, NULL);
-        if (nL > 0) {
-            ReadFile(hFile, szFN, nL, &dwRWC, NULL);
-            szFN[nL] = NULL; // 텍스처 파일 이름..
+    this->TexAlloc(iTC);            // Texture Pointer Pointer 할당..
+    for (int j = 0; j < iTC; j++) { // Texture Count 만큼 파일 이름 읽어서 텍스처 부르기..
+        iLen = 0;
+        ReadFile(hFile, &iLen, 4, &dwRWC, NULL);
+        if (iLen > 0) {
+            szFile.assign(iLen, '\0');
+            ReadFile(hFile, szFile.data(), iLen, &dwRWC, NULL);
 
-            _splitpath(szFN, NULL, NULL, szFName, szExt);
-            _makepath(szPath, NULL, szDir, szFName, szExt);
-            m_TexRefs[j] = s_MngTex.Get(szPath);
+            fs::path fsTexFile = fsDir / fs::path(szFile).filename();
+            m_TexRefs[j] = s_MngTex.Get(fsTexFile);
         }
     }
 
@@ -283,7 +281,7 @@ bool CN3FXSPart::Load(HANDLE hFile) {
 void CN3FXSPart::Duplicate(CN3FXSPart * pSrc) {
     m_vPivot = pSrc->m_vPivot;
     if (pSrc->Mesh()) {
-        MeshSet(pSrc->Mesh()->FileName());
+        MeshSet(pSrc->Mesh()->FilePath());
     }
 
     m_Mtl = pSrc->m_Mtl;
@@ -297,7 +295,7 @@ void CN3FXSPart::Duplicate(CN3FXSPart * pSrc) {
     for (int j = 0; j < iTC; j++) // Texture Count 만큼 파일 이름 읽어서 텍스처 부르기..
     {
         if (pSrc->Tex(j)) {
-            m_TexRefs[j] = s_MngTex.Get(pSrc->Tex(j)->FileName());
+            m_TexRefs[j] = s_MngTex.Get(pSrc->Tex(j)->FilePath());
         }
     }
     return;
@@ -307,9 +305,8 @@ bool CN3FXSPart::Save(HANDLE hFile) {
     return true;
 }
 
-bool CN3FXSPart::MeshSet(const std::string & szFN) {
-    m_FXPMInst.Create(szFN);
-    return true;
+bool CN3FXSPart::MeshSet(const fs::path & fsFile) {
+    return m_FXPMInst.Create(fsFile);
 }
 
 //
@@ -415,7 +412,7 @@ bool CN3FXShape::Save(HANDLE hFile) {
     
     DWORD dwRWC = 0;
     
-    int nL = 0;
+    int iLen = 0;
     
     CN3SPart* pPD = NULL;
     int iPC = m_Parts.size();
@@ -516,10 +513,10 @@ void CN3FXShape::Duplicate(CN3FXShape * pSrc) {
     SetMax(pSrc->Max());
 
     if (pSrc->CollisionMesh()) {
-        SetMeshCollision(pSrc->CollisionMesh()->FileName());
+        SetMeshCollision(pSrc->CollisionMesh()->FilePath());
     }
     if (pSrc->ClimbMesh()) {
-        SetMeshClimb(pSrc->ClimbMesh()->FileName());
+        SetMeshClimb(pSrc->ClimbMesh()->FilePath());
     }
 
     //transform....
@@ -528,7 +525,7 @@ void CN3FXShape::Duplicate(CN3FXShape * pSrc) {
     RotSet(pSrc->Rot());
 
     //basefileaccess
-    FileNameSet(pSrc->FileName());
+    FilePathSet(pSrc->FilePath());
 
     m_Matrix = pSrc->m_Matrix;
     //

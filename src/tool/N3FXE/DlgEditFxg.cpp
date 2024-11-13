@@ -104,10 +104,10 @@ BOOL CDlgEditFxg::OnInitDialog() {
     return TRUE;
 }
 
-bool CDlgEditFxg::LoadScript(const char * szPath) {
-    m_strFileName = szPath;
+bool CDlgEditFxg::LoadScript(const fs::path & fsFile) {
+    m_strFileName = fsFile.c_str();
     CN3FXGroup * pGroup = new CN3FXGroup;
-    if (!pGroup->DecodeScriptFile(szPath)) {
+    if (!pGroup->DecodeScriptFile(fsFile)) {
         delete pGroup;
         return false;
     }
@@ -120,7 +120,7 @@ bool CDlgEditFxg::LoadScript(const char * szPath) {
 
         m_pJoint[i]->SetCurSel(pInfo->joint);
         *(m_pLoop[i]) = pInfo->IsLooping;
-        m_pFXBName[i]->Format(pInfo->FXBName);
+        m_pFXBName[i]->Format(pInfo->szFxbFile);
     }
     UpdateData(FALSE);
     //
@@ -131,23 +131,21 @@ bool CDlgEditFxg::LoadScript(const char * szPath) {
 }
 
 void CDlgEditFxg::SaveGameData() {
+    fs::path fsFile = m_strFileName.GetString();
+
     //OnBtnSave();
-    if (m_strFileName.IsEmpty()) {
+    if (fsFile.empty()) {
         return;
     }
 
     CN3FXGroup * pGroup = new CN3FXGroup;
-    if (!pGroup->DecodeScriptFile((LPCTSTR)m_strFileName)) {
+    if (!pGroup->DecodeScriptFile(fsFile)) {
         delete pGroup;
         return;
     }
 
-    char szPath[_MAX_PATH];
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-    _splitpath(m_strFileName, szDrive, szDir, szFName, szExt);
-    _makepath(szPath, szDrive, szDir, szFName, "fxg");
-
-    pGroup->SaveToFile(szPath);
+    fs::path fsFxgFile = fs::path(fsFile).replace_extension(".fxg");
+    pGroup->SaveToFile(fsFxgFile);
 
     delete pGroup;
     return;
@@ -166,23 +164,17 @@ void CDlgEditFxg::OnBtnSaveAs() {
     UpdateData(TRUE);
 
     CDlgNewFileName dlg;
-    dlg.m_strExt = ".N3FXGroup";
-    if (dlg.DoModal() == IDOK) {
-        CString PathName = "fx\\";
-        PathName += dlg.m_strNewFileName;
-        PathName += dlg.m_strExt;
-        CN3BaseFileAccess * pBaseFileAccess = new CN3BaseFileAccess;
-        pBaseFileAccess->FileNameSet((LPCTSTR)PathName);
-
-        m_strFileName.Empty();
-        m_strFileName = CN3Base::PathGet().c_str();
-        m_strFileName += pBaseFileAccess->FileName().c_str();
-
-        delete pBaseFileAccess;
-
-        UpdateData(FALSE);
-        OnBtnSave();
+    dlg.m_strExt = ".n3fxgroup";
+    if (dlg.DoModal() == IDCANCEL) {
+        return;
     }
+
+    fs::path fsFile = CN3Base::PathGet() / "fx" / dlg.m_strNewFileName.GetString();
+    fsFile += dlg.m_strExt.GetString();
+    m_strFileName = fsFile.c_str();
+
+    UpdateData(FALSE);
+    OnBtnSave();
 }
 
 void CDlgEditFxg::OnBtnSave() {
@@ -227,8 +219,7 @@ void CDlgEditFxg::OnBtnLoadFxb0() {
         return;
     }
 
-    m_strFXBName_0 = "fx\\";
-    m_strFXBName_0 = dlg.GetFileName();
+    m_strFXBName_0 = (fs::path("fx") / dlg.GetFileName().GetString()).c_str();
     UpdateData(FALSE);
 }
 
@@ -240,8 +231,7 @@ void CDlgEditFxg::OnBtnLoadFxb1() {
         return;
     }
 
-    m_strFXBName_1 = "fx\\";
-    m_strFXBName_1 = dlg.GetFileName();
+    m_strFXBName_1 = (fs::path("fx") / dlg.GetFileName().GetString()).c_str();
     UpdateData(FALSE);
 }
 
@@ -253,8 +243,7 @@ void CDlgEditFxg::OnBtnLoadFxb2() {
         return;
     }
 
-    m_strFXBName_2 = "fx\\";
-    m_strFXBName_2 = dlg.GetFileName();
+    m_strFXBName_2 = (fs::path("fx") / dlg.GetFileName().GetString()).c_str();
     UpdateData(FALSE);
 }
 
@@ -266,7 +255,6 @@ void CDlgEditFxg::OnBtnLoadFxb3() {
         return;
     }
 
-    m_strFXBName_3 = "fx\\";
-    m_strFXBName_3 = dlg.GetFileName();
+    m_strFXBName_3 = (fs::path("fx") / dlg.GetFileName().GetString()).c_str();
     UpdateData(FALSE);
 }

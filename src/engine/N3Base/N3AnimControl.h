@@ -92,11 +92,11 @@ typedef struct __AnimData {
 
         // 이름 읽기..
         szName = "";
+        nL = 0;
         ReadFile(hFile, &nL, 4, &dwRWC, NULL);
         if (nL > 0) {
-            std::vector<char> buffer(nL, 0);
-            ReadFile(hFile, &buffer[0], nL, &dwRWC, NULL);
-            szName = std::string(buffer.begin(), buffer.end());
+            szName.assign(nL, '\0');
+            ReadFile(hFile, szName.data(), nL, &dwRWC, NULL);
         }
     }
     void Save(HANDLE hFile) {
@@ -127,7 +127,7 @@ typedef struct __AnimData {
         WriteFile(hFile, &fFrmStrike1, 4, &dwRWC, NULL);
 
         // 이름 읽기..
-        nL = szName.size();
+        nL = szName.length();
         WriteFile(hFile, &nL, 4, &dwRWC, NULL);
         if (nL > 0) {
             WriteFile(hFile, szName.c_str(), nL, &dwRWC, NULL);

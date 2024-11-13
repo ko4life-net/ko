@@ -411,7 +411,7 @@ void CUIInventory::InitIconUpdate() {
         if (m_pMySlot[i] != NULL) {
             m_pMySlot[i]->pUIIcon = new CN3UIIcon;
             m_pMySlot[i]->pUIIcon->Init(this);
-            m_pMySlot[i]->pUIIcon->SetTex(m_pMySlot[i]->szIconFN);
+            m_pMySlot[i]->pUIIcon->SetTex(m_pMySlot[i]->fsIconFile);
             m_pMySlot[i]->pUIIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
             m_pMySlot[i]->pUIIcon->SetUIType(UI_TYPE_ICON);
             m_pMySlot[i]->pUIIcon->SetStyle(UISTYLE_ICON_ITEM | UISTYLE_ICON_CERTIFICATION_NEED);
@@ -430,7 +430,7 @@ void CUIInventory::InitIconUpdate() {
         if (m_pMyInvWnd[i] != NULL) {
             m_pMyInvWnd[i]->pUIIcon = new CN3UIIcon;
             m_pMyInvWnd[i]->pUIIcon->Init(this);
-            m_pMyInvWnd[i]->pUIIcon->SetTex(m_pMyInvWnd[i]->szIconFN);
+            m_pMyInvWnd[i]->pUIIcon->SetTex(m_pMyInvWnd[i]->fsIconFile);
             m_pMyInvWnd[i]->pUIIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
             m_pMyInvWnd[i]->pUIIcon->SetUIType(UI_TYPE_ICON);
             m_pMyInvWnd[i]->pUIIcon->SetStyle(UISTYLE_ICON_ITEM | UISTYLE_ICON_CERTIFICATION_NEED);
@@ -2224,11 +2224,11 @@ bool CUIInventory::IsValidPosFromArmToArmInverse(int iOrder) {
 }
 
 void CUIInventory::ItemAdd(__TABLE_ITEM_BASIC * pItem, __TABLE_ITEM_EXT * pItemExt, e_ItemSlot eSlot) {
-    std::string    szFN;
+    fs::path       fsItemFile;
     e_PartPosition ePart;
     e_PlugPosition ePlug;
-    e_ItemType     eType =
-        CGameProcedure::MakeResrcFileNameForUPC(pItem, &szFN, NULL, ePart, ePlug); // 아이템에 따른 파일 이름을 만들어서
+    e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, &fsItemFile, NULL, ePart,
+                                                                   ePlug); // 아이템에 따른 파일 이름을 만들어서
 
     if (ITEM_TYPE_PLUG == eType) {
         if (ITEM_SLOT_HAND_LEFT == eSlot) {
@@ -2239,10 +2239,10 @@ void CUIInventory::ItemAdd(__TABLE_ITEM_BASIC * pItem, __TABLE_ITEM_EXT * pItemE
             __ASSERT(0, "Invalid Item Plug Position");
         }
 
-        CGameBase::s_pPlayer->PlugSet(ePlug, szFN, pItem, pItemExt); // 플러그 셋팅..
+        CGameBase::s_pPlayer->PlugSet(ePlug, fsItemFile, pItem, pItemExt); // 플러그 셋팅..
         CGameBase::s_pPlayer->DurabilitySet(eSlot, m_pMySlot[eSlot]->iDurability);
     } else if (ITEM_TYPE_PART == eType) {
-        CGameBase::s_pPlayer->PartSet(ePart, szFN, pItem, pItemExt);
+        CGameBase::s_pPlayer->PartSet(ePart, fsItemFile, pItem, pItemExt);
         CGameBase::s_pPlayer->DurabilitySet(eSlot, m_pMySlot[eSlot]->iDurability);
     }
 }
@@ -2364,8 +2364,8 @@ void CUIInventory::ItemCountChange(int iDistrict, int iIndex, int iCount, int iI
 
             e_PartPosition ePart;
             e_PlugPosition ePlug;
-            std::string    szIconFN;
-            e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
+            fs::path       fsIconFile;
+            e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &fsIconFile, ePart,
                                                                            ePlug); // 아이템에 따른 파일 이름을 만들어서
             if (ITEM_TYPE_UNKNOWN == eType) {
                 CLogWriter::Write("MyInfo - slot - Unknown Item");
@@ -2375,7 +2375,7 @@ void CUIInventory::ItemCountChange(int iDistrict, int iIndex, int iCount, int iI
             spItem = new __IconItemSkill;
             spItem->pItemBasic = pItem;
             spItem->pItemExt = pItemExt;
-            spItem->szIconFN = szIconFN; // 아이콘 파일 이름 복사..
+            spItem->fsIconFile = fsIconFile; // 아이콘 파일 이름 복사..
             spItem->iCount = iCount;
             spItem->iDurability = pItem->siMaxDurability + pItemExt->siMaxDurability;
             m_pMySlot[iIndex] = spItem;
@@ -2418,8 +2418,8 @@ void CUIInventory::ItemCountChange(int iDistrict, int iIndex, int iCount, int iI
 
             e_PartPosition ePart;
             e_PlugPosition ePlug;
-            std::string    szIconFN;
-            e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
+            fs::path       fsIconFile;
+            e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &fsIconFile, ePart,
                                                                            ePlug); // 아이템에 따른 파일 이름을 만들어서
             if (ITEM_TYPE_UNKNOWN == eType) {
                 CLogWriter::Write("MyInfo - slot - Unknown Item");
@@ -2429,7 +2429,7 @@ void CUIInventory::ItemCountChange(int iDistrict, int iIndex, int iCount, int iI
             spItem = new __IconItemSkill;
             spItem->pItemBasic = pItem;
             spItem->pItemExt = pItemExt;
-            spItem->szIconFN = szIconFN; // 아이콘 파일 이름 복사..
+            spItem->fsIconFile = fsIconFile; // 아이콘 파일 이름 복사..
             spItem->iCount = iCount;
             spItem->iDurability = pItem->siMaxDurability + pItemExt->siMaxDurability;
             m_pMySlot[iIndex] = spItem;
@@ -2473,8 +2473,8 @@ void CUIInventory::ItemCountChange(int iDistrict, int iIndex, int iCount, int iI
 
             e_PartPosition ePart;
             e_PlugPosition ePlug;
-            std::string    szIconFN;
-            e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
+            fs::path       fsIconFile;
+            e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &fsIconFile, ePart,
                                                                            ePlug); // 아이템에 따른 파일 이름을 만들어서
             if (ITEM_TYPE_UNKNOWN == eType) {
                 CLogWriter::Write("MyInfo - slot - Unknown Item");
@@ -2484,7 +2484,7 @@ void CUIInventory::ItemCountChange(int iDistrict, int iIndex, int iCount, int iI
             spItem = new __IconItemSkill;
             spItem->pItemBasic = pItem;
             spItem->pItemExt = pItemExt;
-            spItem->szIconFN = szIconFN; // 아이콘 파일 이름 복사..
+            spItem->fsIconFile = fsIconFile; // 아이콘 파일 이름 복사..
             spItem->iCount = iCount;
             spItem->iDurability = pItem->siMaxDurability + pItemExt->siMaxDurability;
             m_pMyInvWnd[iIndex] = spItem;
@@ -2527,8 +2527,8 @@ void CUIInventory::ItemCountChange(int iDistrict, int iIndex, int iCount, int iI
 
             e_PartPosition ePart;
             e_PlugPosition ePlug;
-            std::string    szIconFN;
-            e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
+            fs::path       fsIconFile;
+            e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &fsIconFile, ePart,
                                                                            ePlug); // 아이템에 따른 파일 이름을 만들어서
             if (ITEM_TYPE_UNKNOWN == eType) {
                 CLogWriter::Write("MyInfo - slot - Unknown Item");
@@ -2538,14 +2538,14 @@ void CUIInventory::ItemCountChange(int iDistrict, int iIndex, int iCount, int iI
             spItem = new __IconItemSkill;
             spItem->pItemBasic = pItem;
             spItem->pItemExt = pItemExt;
-            spItem->szIconFN = szIconFN; // 아이콘 파일 이름 복사..
+            spItem->fsIconFile = fsIconFile; // 아이콘 파일 이름 복사..
             spItem->iCount = iCount;
             spItem->iDurability = pItem->siMaxDurability + pItemExt->siMaxDurability;
             m_pMyInvWnd[iIndex] = spItem;
 
             m_pMyInvWnd[iIndex]->pUIIcon = new CN3UIIcon;
             m_pMyInvWnd[iIndex]->pUIIcon->Init(this);
-            m_pMyInvWnd[iIndex]->pUIIcon->SetTex(m_pMyInvWnd[iIndex]->szIconFN);
+            m_pMyInvWnd[iIndex]->pUIIcon->SetTex(m_pMyInvWnd[iIndex]->fsIconFile);
             float fUVAspect = (float)45.0f / (float)64.0f;
             m_pMyInvWnd[iIndex]->pUIIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
             m_pMyInvWnd[iIndex]->pUIIcon->SetUIType(UI_TYPE_ICON);

@@ -49,10 +49,10 @@ class CN3UIButton : public CN3UIBase {
     virtual bool Save(HANDLE hFile);
     void         CreateImages();
     CN3UIImage * GetImageRef(eBTN_STATE eState) const { return m_ImageRef[eState]; }
-    void         SetSndOn(const std::string & strFileName);
-    void         SetSndClick(const std::string & strFileName);
+    void         SetSndOn(const fs::path & fsFile);
+    void         SetSndClick(const fs::path & fsFile);
 
-    std::string GetSndFName_On() const;
-    std::string GetSndFName_Click() const;
+    fs::path GetSndFName_On() const;
+    fs::path GetSndFName_Click() const;
 #endif
 };

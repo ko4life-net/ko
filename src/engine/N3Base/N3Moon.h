@@ -29,7 +29,7 @@ class CN3Moon : public CN3Base {
 
     // Operations
   public:
-    void Init(const std::string & szTexFN);
+    void Init(const fs::path & fsTexFile);
     void SetMoonPhase(int iIndex);                                          // 달의 모양 설정
     void SetCurAngle(float fAngle) { m_fCurRadian = D3DXToRadian(fAngle); } // 현재 각도설정
 

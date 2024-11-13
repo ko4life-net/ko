@@ -17,7 +17,7 @@ class CN3SndObj;
 
 typedef struct __SoundSource {
     int                 iID;
-    std::string         szFN;
+    fs::path            fsFile;
     LPDIRECTSOUNDBUFFER pDSBuff;
     int                 Size;
     int                 Type; // 0:2d 1:3d 2: streammin..
@@ -28,7 +28,6 @@ typedef struct __SoundSource {
     __SoundSource() {
         iID = 0;
         ppObjs = NULL;
-        szFN = "";
         pDSBuff = NULL;
         Size = 0;
         Type = 0;
@@ -40,7 +39,7 @@ typedef struct __SoundSource {
 typedef struct __TABLE_SOUND // Sound 리소스 레코드...
 {
     DWORD       dwID;     // 고유 ID
-    std::string szFN;     // wave file name
+    std::string szFile;   // wave file path
     int         iType;    // 사운드 타입...
     int         iNumInst; // 최대 사용할 수 있는 인스턴스의 갯수..
 } TABLE_SOUND;

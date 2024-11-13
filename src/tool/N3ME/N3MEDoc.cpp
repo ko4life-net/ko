@@ -122,11 +122,12 @@ void CN3MEDoc::OnFileImportPostDataFromScene() {
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
+    fs::path fsFile = dlg.GetPathName().GetString();
 
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     if (pFrm && pFrm->GetMapMng()) {
         CMapMng * pMapMng = pFrm->GetMapMng();
-        pMapMng->ImportPostDataFromScene(dlg.GetPathName());
+        pMapMng->ImportPostDataFromScene(fsFile);
     }
 }
 
@@ -151,10 +152,9 @@ void CN3MEDoc::OnFileImportShapes() {
     }
 
     POSITION pos = dlg.GetStartPosition();
-    CString  szPath;
     while (pos != NULL) {
-        szPath = dlg.GetNextPathName(pos);
-        pMapMng->ImportShape(szPath);
+        fs::path fsFile = dlg.GetNextPathName(pos).GetString();
+        pMapMng->ImportShape(fsFile);
     }
 
     pMapMng->UpdateAll();

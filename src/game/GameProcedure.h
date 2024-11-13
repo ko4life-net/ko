@@ -141,7 +141,7 @@ class CGameProcedure : public CGameBase {
     static void UIPostData_Read(const std::string & szKey, class CN3UIBase * pUI, int iDefaultX, int iDefaultY);
     static void UIPostData_Write(const std::string & szKey, CN3UIBase * pUI);
 
-    static bool CaptureScreenAndSaveToFile(const std::string & szFN);
+    static bool CaptureScreenAndSaveToFile(const fs::path & fsFile);
 
     static void SetGameCursor(HCURSOR hCursor, bool bLocked = false);
     static void SetGameCursor(e_Cursor eCursor, bool bLocked = false);

@@ -431,19 +431,19 @@ bool CN3SkyMng::DayChangeWrite(FILE * fp, __SKY_DAYCHANGE * pDayChange) {
 #endif // #ifdef _N3TOOL
 
 #ifdef _N3TOOL
-bool CN3SkyMng::LoadFromTextFile(const char * szIniFN) {
-    if (NULL == szIniFN || strlen(szIniFN) <= 0) {
+bool CN3SkyMng::LoadFromTextFile(const fs::path & fsFile) {
+    if (fsFile.empty()) {
         return false;
     }
 
-    FILE * fp = fopen(szIniFN, "r");
+    FILE * fp = _wfopen(fsFile.c_str(), L"r");
     if (!fp) {
         return false;
     }
 
-    std::string szMoon;
-    std::string szSuns[NUM_SUNPART];
-    std::string szClouds[NUM_CLOUD];
+    fs::path szMoon;
+    fs::path szSuns[NUM_SUNPART];
+    fs::path szClouds[NUM_CLOUD];
 
     char   szLine[512] = "", szBuff[256] = "";
     char * pResult = fgets(szLine, 512, fp);
@@ -533,35 +533,38 @@ bool CN3SkyMng::LoadFromTextFile(const char * szIniFN) {
 #endif // #ifdef _N3TOOL
 
 #ifdef _N3TOOL
-bool CN3SkyMng::SaveToTextFile(const char * szIniFN) {
-    if (NULL == szIniFN || strlen(szIniFN) <= 0) {
+bool CN3SkyMng::SaveToTextFile(const fs::path & fsFile) {
+    if (fsFile.empty()) {
         return false;
     }
 
-    FILE * fp = fopen(szIniFN, "w");
+    FILE * fp = _wfopen(fsFile.c_str(), L"w");
     if (!fp) {
         return false;
     }
 
     char szBuff[256] = "";
 
-    if (this->MoonTextureGet()) {
-        fprintf(fp, "Moon : %s\r\n", this->MoonTextureGet()->FileName().c_str());
+    CN3Texture * pMoonTex = MoonTextureGet();
+    if (pMoonTex) {
+        fprintf(fp, "Moon : %s\r\n", pMoonTex->FilePathWin().string().c_str());
     } else {
         fprintf(fp, "Moon : \r\n");
     }
 
     for (int i = 0; i < NUM_SUNPART; i++) {
-        if (this->SunTextureGet(i)) {
-            fprintf(fp, "Sun : %s\r\n", this->SunTextureGet(i)->FileName().c_str());
+        CN3Texture * pSunTex = SunTextureGet(i);
+        if (pSunTex) {
+            fprintf(fp, "Sun : %s\r\n", pSunTex->FilePathWin().string().c_str());
         } else {
             fprintf(fp, "Sun : \r\n");
         }
     }
 
     for (int i = 0; i < NUM_CLOUD; i++) {
-        if (this->CloudTextureFileName(i)) {
-            fprintf(fp, "Cloud : %s\r\n", this->CloudTextureFileName(i));
+        fs::path fsCloudTexFile = CloudTextureFile(i).normalize('/', '\\');
+        if (!fsCloudTexFile.empty()) {
+            fprintf(fp, "Cloud : %s\r\n", fsCloudTexFile.string().c_str());
         } else {
             fprintf(fp, "Cloud : \r\n");
         }
@@ -583,18 +586,20 @@ bool CN3SkyMng::SaveToTextFile(const char * szIniFN) {
 void CN3SkyMng::InitToDefaultHardCoding() {
     this->Release();
 
+    fs::path fsSkyDir = fs::path("Misc") / "Sky";
+
     m_pSky = new CN3Sky();
     m_pSky->Init();
 
     m_pMoon = new CN3Moon();
-    m_pMoon->Init("misc\\sky\\phases.tga");
+    m_pMoon->Init(fsSkyDir / "phases.tga");
 
-    std::string szSuns[NUM_SUNPART] = {"misc\\sky\\sundisk.bmp", "misc\\sky\\sunglow.bmp", "misc\\sky\\sunflare.bmp"};
+    fs::path szSuns[NUM_SUNPART] = {fsSkyDir / "sundisk.bmp", fsSkyDir / "sunglow.bmp", fsSkyDir / "sunflare.bmp"};
     m_pSun = new CN3Sun();
     m_pSun->Init(szSuns);
 
-    std::string szClouds[NUM_CLOUD] = {"misc\\sky\\wisps.tga",   "misc\\sky\\puffs.tga", "misc\\sky\\tatters.tga",
-                                       "misc\\sky\\streaks.tga", "misc\\sky\\dense.tga", "misc\\sky\\overcast.tga"};
+    fs::path szClouds[NUM_CLOUD] = {fsSkyDir / "wisps.tga",   fsSkyDir / "puffs.tga", fsSkyDir / "tatters.tga",
+                                    fsSkyDir / "streaks.tga", fsSkyDir / "dense.tga", fsSkyDir / "overcast.tga"};
     m_pCloud = new CN3Cloud();
     m_pCloud->Init(szClouds);
 
@@ -1466,34 +1471,40 @@ D3DCOLOR CN3SkyMng::GetLightAmbientColor(int iIndex) {
 }
 
 bool CN3SkyMng::Load(HANDLE hFile) {
-    DWORD       dwRWC = 0;
-    std::string szSuns[NUM_SUNPART];
-    std::string szClouds[NUM_CLOUD];
-    std::string szMoon;
+    DWORD    dwRWC = 0;
+    fs::path fsSuns[NUM_SUNPART];
+    fs::path fsClouds[NUM_CLOUD];
+    fs::path fsMoon;
+
+    int         iL = 0;
+    std::string szFile;
 
     for (int i = 0; i < NUM_SUNPART; i++) {
-        int iL = 0;
+        iL = 0;
         ReadFile(hFile, &iL, 4, &dwRWC, NULL);
         if (iL > 0) {
-            szSuns[i].assign(iL, ' ');
-            ReadFile(hFile, &(szSuns[i][0]), iL, &dwRWC, NULL);
+            szFile.assign(iL, '\0');
+            ReadFile(hFile, szFile.data(), iL, &dwRWC, NULL);
+            fsSuns[i] = szFile;
         }
     }
 
     for (int i = 0; i < NUM_CLOUD; i++) {
-        int iL = 0;
+        iL = 0;
         ReadFile(hFile, &iL, 4, &dwRWC, NULL);
         if (iL > 0) {
-            szClouds[i].assign(iL, ' ');
-            ReadFile(hFile, &(szClouds[i][0]), iL, &dwRWC, NULL);
+            szFile.assign(iL, '\0');
+            ReadFile(hFile, szFile.data(), iL, &dwRWC, NULL);
+            fsClouds[i] = szFile;
         }
     }
 
-    int iL = 0;
+    iL = 0;
     ReadFile(hFile, &iL, 4, &dwRWC, NULL);
     if (iL > 0) {
-        szMoon.assign(iL, ' ');
-        ReadFile(hFile, &(szMoon[0]), iL, &dwRWC, NULL);
+        szFile.assign(iL, '\0');
+        ReadFile(hFile, szFile.data(), iL, &dwRWC, NULL);
+        fsMoon = szFile;
     }
 
     if (NULL == m_pSky) {
@@ -1509,17 +1520,17 @@ bool CN3SkyMng::Load(HANDLE hFile) {
     if (NULL == m_pSun) {
         m_pSun = new CN3Sun();
     }
-    m_pSun->Init(szSuns);
+    m_pSun->Init(fsSuns);
 
     if (NULL == m_pCloud) {
         m_pCloud = new CN3Cloud();
     }
-    m_pCloud->Init(szClouds);
+    m_pCloud->Init(fsClouds);
 
     if (NULL == m_pMoon) {
         m_pMoon = new CN3Moon();
     }
-    m_pMoon->Init(szMoon);
+    m_pMoon->Init(fsMoon);
 
     for (int i = 0; i < MAX_GAME_LIGHT; i++) {
         if (NULL == m_pLightColorDiffuses[i]) {
@@ -1557,16 +1568,16 @@ bool CN3SkyMng::Save(HANDLE hFile) {
 
     for (int i = 0; i < NUM_SUNPART; i++) {
         if (m_pSun && m_pSun->m_Parts[i].pTex) {
-            szSuns[i] = m_pSun->m_Parts[i].pTex->FileName();
+            szSuns[i] = m_pSun->m_Parts[i].pTex->FilePathWin().string();
         }
     }
     for (int i = 0; i < NUM_CLOUD; i++) {
         if (m_pCloud) {
-            szClouds[i] = m_pCloud->m_szTextures[i];
+            szClouds[i] = fs::path(m_pCloud->m_fsTexFiles[i]).normalize('/', '\\').string();
         }
     }
     if (m_pMoon && m_pMoon->m_pTexture) {
-        szMoon = m_pMoon->m_pTexture->FileName();
+        szMoon = m_pMoon->m_pTexture->FilePathWin().string();
     }
 
     for (int i = 0; i < NUM_SUNPART; i++) {
@@ -1645,38 +1656,38 @@ bool CN3SkyMng::DayChangeDelete(int iIndex) {
     return true;
 }
 
-CN3Texture * CN3SkyMng::SunTextureSet(int iIndex, const char * szPath) {
-    if (NULL == szPath || NULL == m_pSun || iIndex < 0 || iIndex >= NUM_SUNPART) {
+CN3Texture * CN3SkyMng::SunTextureSet(int iIndex, const fs::path & fsFile) {
+    if (fsFile.empty() || NULL == m_pSun || iIndex < 0 || iIndex >= NUM_SUNPART) {
         return NULL;
     }
 
     s_MngTex.Delete(&(m_pSun->m_Parts[iIndex].pTex));
-    m_pSun->m_Parts[iIndex].pTex = s_MngTex.Get(szPath);
+    m_pSun->m_Parts[iIndex].pTex = s_MngTex.Get(fsFile);
 
     return m_pSun->m_Parts[iIndex].pTex;
 }
 
-CN3Texture * CN3SkyMng::MoonTextureSet(const char * szPath) {
-    if (NULL == szPath || NULL == m_pMoon) {
+CN3Texture * CN3SkyMng::MoonTextureSet(const fs::path & fsFile) {
+    if (fsFile.empty() || NULL == m_pMoon) {
         return NULL;
     }
 
     s_MngTex.Delete(&(m_pMoon->m_pTexture));
-    m_pMoon->m_pTexture = s_MngTex.Get(szPath);
+    m_pMoon->m_pTexture = s_MngTex.Get(fsFile);
 
     return m_pMoon->m_pTexture;
 }
 
-CN3Texture * CN3SkyMng::CloudTextureSet(int iIndex, const char * szPath) {
-    if (NULL == szPath || NULL == m_pCloud || iIndex < 0 || iIndex >= NUM_CLOUD) {
+CN3Texture * CN3SkyMng::CloudTextureSet(int iIndex, const fs::path & fsFile) {
+    if (fsFile.empty() || NULL == m_pCloud || iIndex < 0 || iIndex >= NUM_CLOUD) {
         return NULL;
     }
 
     s_MngTex.Delete(&(m_pCloud->m_pTextures[iIndex]));
-    m_pCloud->m_pTextures[iIndex] = s_MngTex.Get(szPath);
-    m_pCloud->m_szTextures[iIndex] = "";
+    m_pCloud->m_pTextures[iIndex] = s_MngTex.Get(fsFile);
+    m_pCloud->m_fsTexFiles[iIndex] = fs::path();
     if (m_pCloud->m_pTextures[iIndex]) {
-        m_pCloud->m_szTextures[iIndex] = m_pCloud->m_pTextures[iIndex]->FileName();
+        m_pCloud->m_fsTexFiles[iIndex] = m_pCloud->m_pTextures[iIndex]->FilePath();
     }
 
     return m_pCloud->m_pTextures[iIndex];
@@ -1703,11 +1714,11 @@ CN3Texture * CN3SkyMng::CloudTextureGet(int iIndex) {
     return m_pCloud->m_pTextures[iIndex];
 }
 
-const char * CN3SkyMng::CloudTextureFileName(int iIndex) {
+fs::path CN3SkyMng::CloudTextureFile(int iIndex) {
     if (NULL == m_pCloud || iIndex < 0 || iIndex >= NUM_CLOUD) {
-        return NULL;
+        return fs::path();
     }
-    return m_pCloud->m_szTextures[iIndex].c_str();
+    return m_pCloud->m_fsTexFiles[iIndex];
 }
 #endif
 

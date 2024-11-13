@@ -80,8 +80,8 @@ const int MAX_TEXTURE = 1024;
 class CN3E2Wrapper {
   private:
     // different extensions will get added to this:
-    char m_szPath[1024];     // 경로 이름
-    char m_szFileName[1024]; // 파일 이름
+    fs::path m_fsDir;
+    fs::path m_fsFile;
 
     CN3Scene *             m_pScene;
     static __EXPORT_OPTION m_Option;
@@ -123,8 +123,8 @@ class CN3E2Wrapper {
     void SceneExport();
 
     void Release();
-    void SetPath(const char * szPath);
-    void SetFileName(const char * szFileName);
+    void SetPath(const fs::path & fsDir);
+    void SetFileName(const fs::path & fsFile);
 
     static BOOL CALLBACK DlgProcProgress(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);
     static BOOL CALLBACK DlgProcPane(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);

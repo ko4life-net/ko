@@ -14,6 +14,8 @@
 // TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
+#include "StdAfx.h"
+
 #include <maya/MString.h>
 #include <maya/MStatus.h>
 #include "iffreader.h"

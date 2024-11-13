@@ -142,36 +142,22 @@ void CDlgEditPartBillBoard::OnPartBoardBtnLoadTex() {
         return;
     }
 
-    CString PathName = dlg.GetPathName();
-
-    CN3BaseFileAccess * pBaseFileAccess = new CN3BaseFileAccess;
-    pBaseFileAccess->FileNameSet((LPCTSTR)PathName);
-    PathName = pBaseFileAccess->FileName().c_str();
-
-    if ((PathName[0] == 'F' || PathName[0] == 'f') && (PathName[1] == 'X' || PathName[1] == 'x') &&
-        (PathName[2] == '/' || PathName[2] == '\\')) {
-        char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-        _splitpath((LPCTSTR)PathName, szDrive, szDir, szFName, szExt);
-
-        CString strFName = szFName;
-        if (strFName.Right(4) == _T("0000")) {
-            strFName.TrimRight("0000");
-            char szPath[_MAX_PATH];
-            _makepath(szPath, szDrive, szDir, (LPCTSTR)strFName, szExt);
-            m_strTexName = szPath;
-
-            //파일 갯수 세는 기능 넣을까 말까..
+    fs::path fsFile = CN3BaseFileAccess::ToRelative(dlg.GetPathName().GetString());
+    if (n3std::iequals(*fsFile.begin(), "fx")) {
+        std::string szStem = fsFile.stem().string();
+        if (szStem.ends_with("0000")) {
+            szStem.erase((szStem.find_last_not_of("0000")) + 1);
+            fs::path fsTexFile = fsFile.parent_path() / (szStem + fsFile.extension());
+            m_strTexName = fsTexFile.c_str();
         } else {
             m_strTexName = _T("");
-            MessageBox("파일 이름끝이 0000이 아니던데요..-.-;;", "ERR05", MB_OK);
+            MessageBox("The file name must end with 0000.", "ERR05", MB_OK);
         }
 
         UpdateData(FALSE);
     } else {
-        MessageBox("Texture파일은 fx폴더 아래, 혹은 fx폴더 아래에 있는 폴더에 위치해야 합니다..-.-;;", "ERR04", MB_OK);
+        MessageBox("Texture files must be located under the fx folder or a subfolder.", "ERR04", MB_OK);
     }
-
-    delete pBaseFileAccess;
 }
 
 void CDlgEditPartBillBoard::OnPartBoardBtnSave() {
@@ -279,23 +265,16 @@ void CDlgEditPartBillBoard::OnPartBoardBtnSaveAs() {
     UpdateData(TRUE);
 
     CDlgNewFileName dlg;
-    dlg.m_strExt = ".N3FXPart";
-    if (dlg.DoModal() == IDOK) {
-        CString PathName = "fx\\";
-        PathName += dlg.m_strNewFileName;
-        PathName += dlg.m_strExt;
-        CN3BaseFileAccess * pBaseFileAccess = new CN3BaseFileAccess;
-        pBaseFileAccess->FileNameSet((LPCTSTR)PathName);
-
-        m_strPathName.Empty();
-        m_strPathName = CN3Base::PathGet().c_str();
-        m_strPathName += pBaseFileAccess->FileName().c_str();
-
-        delete pBaseFileAccess;
-
-        UpdateData(FALSE);
-        OnPartBoardBtnSave();
+    dlg.m_strExt = ".n3fxpart";
+    if (dlg.DoModal() == IDCANCEL) {
+        return;
     }
+
+    fs::path fsFile = CN3Base::PathGet() / "fx" / (dlg.m_strNewFileName + dlg.m_strExt).GetString();
+    m_strPathName = fsFile.c_str();
+
+    UpdateData(FALSE);
+    OnPartBoardBtnSave();
 }
 
 void CDlgEditPartBillBoard::OnOK() {
@@ -341,10 +320,10 @@ BOOL CDlgEditPartBillBoard::OnInitDialog() {
                  // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-bool CDlgEditPartBillBoard::LoadPartScript(const char * szPath) {
-    m_strPathName = szPath;
+bool CDlgEditPartBillBoard::LoadPartScript(const fs::path & fsFile) {
+    m_strPathName = fsFile.c_str();
     CN3FXPartBillBoard * pPart = new CN3FXPartBillBoard;
-    if (!pPart->DecodeScriptFile(szPath)) {
+    if (!pPart->DecodeScriptFile(fsFile)) {
         delete pPart;
         return false;
     }
@@ -394,16 +373,17 @@ bool CDlgEditPartBillBoard::LoadPartScript(const char * szPath) {
 
     m_bRotateY = pPart->m_bRoateOnlyY;
 
-    if (m_iNumTex > 0) {
-        char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-        _splitpath((LPCTSTR)pPart->m_ppRefTex[0]->FileName().c_str(), szDrive, szDir, szFName, szExt);
-
-        CString strFName = szFName;
-        strFName.TrimRight("0000");
-
-        char szPath[_MAX_PATH];
-        _makepath(szPath, szDrive, szDir, (LPCTSTR)strFName, szExt);
-        m_strTexName = szPath;
+    if (m_iNumTex > 0 && pPart->m_ppRefTex[0]) {
+        fs::path    fsFile = pPart->m_ppRefTex[0]->FilePath();
+        std::string szStem = fsFile.stem().string();
+        if (szStem.ends_with("0000")) {
+            szStem.erase((szStem.find_last_not_of("0000")) + 1);
+            fs::path fsTexFile = fsFile.parent_path() / (szStem + fsFile.extension());
+            m_strTexName = fsTexFile.c_str();
+        } else {
+            m_strTexName = _T("");
+            MessageBox("The file name must end with 0000.", "ERR05", MB_OK);
+        }
     } else {
         m_strTexName = _T("");
     }

@@ -68,10 +68,10 @@ bool CUILogIn::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_EXECUTE_OPTION);
         } else if (pSender == m_pBtn_Join) {
             char         szRegistrationSite[2000]{};
-            auto         serverIni = fs::path(CN3Base::PathGet()) / "Server.ini";
+            std::string  szIniFile = (CN3Base::PathGet() / "Server.ini").string();
             const char * szDefaultSite = "https://github.com/ko4life-net/ko";
             GetPrivateProfileString("Join", "Registration site", szDefaultSite, szRegistrationSite,
-                                    sizeof(szRegistrationSite), serverIni.string().c_str());
+                                    sizeof(szRegistrationSite), szIniFile.c_str());
             ShellExecute(NULL, "open", szRegistrationSite, NULL, NULL, SW_NORMAL);
             PostQuitMessage(0);
             return true;

@@ -16,7 +16,7 @@ class CUser : public CIOCPSocket2 {
     void Parsing(int len, char * pData);
     void CloseProcess();
 
-    void SendDownloadInfo(int version);
+    void SendDownloadInfo(short sVersion);
     void MgameLogin(char * pBuf);
     void LogInReq(char * pBuf);
 

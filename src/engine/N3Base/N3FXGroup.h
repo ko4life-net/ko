@@ -26,6 +26,6 @@ class CN3FXGroup : public CN3BaseFileAccess {
 
 #ifdef _N3TOOL //툴에서만 쓰는 함수들...
   public:
-    bool DecodeScriptFile(const char * lpPathName);
+    bool DecodeScriptFile(const fs::path & fsFile);
 #endif // end of _N3TOOL
 };

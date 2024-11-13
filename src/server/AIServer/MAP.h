@@ -38,7 +38,7 @@ class MAP {
     CSize    m_sizeRegion;  // 맵의 resion size
     int      m_nZoneNumber; // zone number
     int      m_nServerNo;
-    char     m_MapName[256];
+    fs::path m_fsSmdFileName;
     int      m_nMapSize;  // Grid Unit ex) 4m
     float    m_fUnitDist; // i Grid Distance
     float ** m_fHeight;

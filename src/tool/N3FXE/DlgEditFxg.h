@@ -21,7 +21,7 @@ class CDlgEditFxg : public CDialog {
     CString *    m_pFXBName[MAX_FXB];
 
     //functions...
-    bool LoadScript(const char * szPath);
+    bool LoadScript(const fs::path & fsFile);
     void SaveGameData();
 
     // Dialog Data

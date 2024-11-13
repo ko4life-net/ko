@@ -65,9 +65,8 @@ struct __SKY_DAYCHANGE {
         int   nL = 0;
         ReadFile(hFile, &nL, 4, &dwRWC, NULL);
         if (nL > 0) {
-            std::vector<char> buffer(nL, 0);
-            ReadFile(hFile, &buffer[0], nL, &dwRWC, NULL);
-            szName = std::string(buffer.begin(), buffer.end());
+            szName.assign(nL, '\0');
+            ReadFile(hFile, szName.data(), nL, &dwRWC, NULL);
         }
 
         ReadFile(hFile, &eSkyDayChange, 4, &dwRWC, NULL);
@@ -154,8 +153,8 @@ class CN3SkyMng : public CN3BaseFileAccess {
   public:
 #ifdef _N3TOOL
     void InitToDefaultHardCoding();
-    bool LoadFromTextFile(const char * szIniFN);
-    bool SaveToTextFile(const char * szIniFN);
+    bool LoadFromTextFile(const fs::path & fsFile);
+    bool SaveToTextFile(const fs::path & fsFile);
     bool DayChangeParse(FILE * fp, __SKY_DAYCHANGE * pDayChange);
     bool DayChangeWrite(FILE * fp, __SKY_DAYCHANGE * pDayChange);
 
@@ -165,14 +164,14 @@ class CN3SkyMng : public CN3BaseFileAccess {
     __SKY_DAYCHANGE * DayChangeInsert(int iIndex);
     bool              DayChangeDelete(int iIndex);
 
-    CN3Texture * SunTextureSet(int iIndex, const char * szPath);
-    CN3Texture * MoonTextureSet(const char * szPath);
-    CN3Texture * CloudTextureSet(int iIndex, const char * szPath);
+    CN3Texture * SunTextureSet(int iIndex, const fs::path & fsFile);
+    CN3Texture * MoonTextureSet(const fs::path & fsFile);
+    CN3Texture * CloudTextureSet(int iIndex, const fs::path & fsFile);
 
     CN3Texture * SunTextureGet(int iIndex);
     CN3Texture * MoonTextureGet();
     CN3Texture * CloudTextureGet(int iIndex);
-    const char * CloudTextureFileName(int iIndex);
+    fs::path     CloudTextureFile(int iIndex);
 #endif
 
     bool Load(HANDLE hFile);

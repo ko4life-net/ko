@@ -78,8 +78,8 @@ typedef struct tagCollisionIndex {
 } __ColIndex;
 
 typedef struct tagShapeInfo : public CN3Transform {
-    int         m_iID;
-    std::string m_strShapeFile;
+    int      m_iID;
+    fs::path m_fsShapeFile;
 
     int m_iBelong;     // 소속 - 0:소속 없음 1:엘모라드 2:카루스 3:?? ....
     int m_iEventID;    // Event ID
@@ -92,7 +92,6 @@ typedef struct tagShapeInfo : public CN3Transform {
     //..
     tagShapeInfo() {
         m_iID = -1;
-        m_strShapeFile = "";
         m_pShape = NULL;
 
         m_iBelong = 0;
@@ -104,7 +103,7 @@ typedef struct tagShapeInfo : public CN3Transform {
 
     const tagShapeInfo & operator=(const tagShapeInfo & si) {
         m_iID = si.m_iID;
-        m_strShapeFile = si.m_strShapeFile;
+        m_fsShapeFile = si.m_fsShapeFile;
         m_pShape = si.m_pShape;
         m_iBelong = si.m_iBelong;
         m_iEventID = si.m_iEventID;
@@ -205,7 +204,7 @@ class CPortalVolume : public CN3Transform {
     CPortalVolume * GetNthLinkedVolume(int iOrder);
     int             GetLinkedVolumeCount();
     int             GetLinkedShapeCount();
-    void            SetShape(std::string szStr, CN3Shape * pShape, int iOrder);
+    void            SetShape(const fs::path & fsFile, CN3Shape * pShape, int iOrder);
 
     bool IsExistLinkedShapeByPointer(ShapeInfo * pSI);
 

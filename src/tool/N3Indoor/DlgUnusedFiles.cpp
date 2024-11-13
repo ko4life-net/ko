@@ -41,26 +41,22 @@ END_MESSAGE_MAP()
 // CDlgUnusedFiles message handlers
 
 void CDlgUnusedFiles::OnDelete() {
-    // TODO: Add your control notification handler code here
-    int iSelFNC = m_ListFiles.GetSelCount();
-    if (iSelFNC <= 0) {
+    int iSC = m_ListFiles.GetSelCount();
+    if (iSC <= 0) {
         return;
     }
 
-    int iYesNo = MessageBox("지우시겠습니까?", "확인", MB_YESNO);
-
-    if (IDYES != iYesNo) {
+    if (IDYES != MessageBox("Would you like to erase it?", "Check", MB_YESNO)) {
         return;
     }
 
-    std::vector<int> sel;
-    sel.reserve(iSelFNC);
-    m_ListFiles.GetSelItems(iSelFNC, &(sel[0]));
+    std::vector<int> vSels(iSC);
+    m_ListFiles.GetSelItems(iSC, vSels.data());
 
-    CString szFN;
-    for (int i = 0; i < iSelFNC; i++) {
-        m_ListFiles.GetText(sel[i], szFN);
-        ::DeleteFile(szFN);
+    for (const auto & iSelIndex : vSels) {
+        CString szFile;
+        m_ListFiles.GetText(iSelIndex, szFile);
+        fs::remove(szFile.GetString());
     }
 
     CDialog::OnOK();
@@ -69,11 +65,9 @@ void CDlgUnusedFiles::OnDelete() {
 BOOL CDlgUnusedFiles::OnInitDialog() {
     CDialog::OnInitDialog();
 
-    // TODO: Add extra initialization here
     this->UpdateAll();
 
-    return TRUE; // return TRUE unless you set the focus to a control
-                 // EXCEPTION: OCX Property Pages should return FALSE
+    return TRUE;
 }
 
 void CDlgUnusedFiles::OnCancel() {
@@ -82,13 +76,11 @@ void CDlgUnusedFiles::OnCancel() {
 }
 
 void CDlgUnusedFiles::UpdateAll() {
-    int iFNC = m_FileNames.GetSize();
-    for (int i = 0; i < iFNC; i++) {
-        m_ListFiles.AddString(m_FileNames[i]);
+    for (const auto & fsFile : m_vFiles) {
+        m_ListFiles.AddString(CString(fsFile.c_str()));
     }
 
-    iFNC = m_InvalidFileNames.GetSize();
-    for (int i = 0; i < iFNC; i++) {
-        m_ListInvalidObjects.AddString(m_InvalidFileNames[i]);
+    for (const auto & szError : m_vErroredFiles) {
+        m_ListInvalidObjects.AddString(CString(szError.c_str()));
     }
 }

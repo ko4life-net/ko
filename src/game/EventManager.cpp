@@ -37,10 +37,10 @@ CEventManager::~CEventManager() {
     Release();
 }
 
-bool CEventManager::LoadFromFile(const char * szFileName) {
+bool CEventManager::LoadFromFile(const fs::path & fsFile) {
     Release();
 
-    HANDLE hGevFile = CreateFile(szFileName, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hGevFile = CreateFileW(fsFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hGevFile) {
         return false;
     }

@@ -219,7 +219,7 @@ void CDlgPondProperty::UpdateInfo() {
     if (pItem) {
         CN3Texture * pTex = pSelPond->TexGet();
         if (pTex) {
-            pItem->m_curValue = pTex->FileName().c_str();
+            pItem->m_curValue = pTex->FilePath().c_str();
         } else {
             pItem->m_curValue = "";
         }
@@ -343,15 +343,14 @@ BOOL CDlgPondProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult)
                     UpdateWaterLength(pSelPond);
                 }
             } else if (pItem->m_propName == "Texture File") {
-                CN3Base tmp;
-                tmp.m_szName = pItem->m_curValue; // 상대경로로 바꾸기
-                if (pSelPond->SetTextureName(tmp.m_szName.c_str()) == FALSE) {
-                    CString strMsg;
-                    strMsg.Format("Cannot get \"%s\"Texture, check file and directory", pItem->m_curValue);
-                    MessageBox(strMsg);
+                fs::path fsFile = CN3BaseFileAccess::ToRelative(pItem->m_curValue.GetString());
+                if (!pSelPond->SetTextureName(fsFile)) {
+                    std::wstring szMsg =
+                        std::format(L"Cannot get \"{:s}\" Texture, check file and directory", fsFile.c_str());
+                    MessageBoxW(NULL, szMsg.c_str(), L"", MB_OK);
                     pItem->m_curValue = "";
                 } else {
-                    pItem->m_curValue = tmp.m_szName.c_str();
+                    pItem->m_curValue = fsFile.c_str();
                 }
                 return TRUE;
             }

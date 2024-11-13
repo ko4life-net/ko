@@ -73,7 +73,7 @@ bool CN3IMesh::Create(int nFC, int nVC, int nUVC) {
 
 #ifdef _N3GAME
     if (nFC > 32768) {
-        CLogWriter::Write("CN3IMesh::Create - Too many faces. (more than 32768) (%s)", m_szFileName.c_str());
+        CLogWriter::Write("CN3IMesh::Create - Too many faces. (more than 32768) (%s)", FilePath().string().c_str());
     }
 #endif
 
@@ -93,11 +93,10 @@ bool CN3IMesh::Create(int nFC, int nVC, int nUVC) {
     }
 
     //    s_lpD3DDev->CreateVertexBuffer(nFC * 3 * sizeof(__VertexT1), 0, FVF_VNT1, D3DPOOL_MANAGED, &m_lpVB, NULL);
-
-    //    if(NULL == m_lpVB)
-    //    {
+    //
+    //    if (NULL == m_lpVB) {
     //#ifdef _N3GAME
-    //        CLogWriter::Write("CN3IMesh::Create - Can't Create VertexBuffer (%s)", m_szFileName.c_str());
+    //        CLogWriter::Write("CN3IMesh::Create - Can't Create VertexBuffer (%s)", FilePath().string().c_str());
     //#endif
     //        this->Release();
     //        return false;

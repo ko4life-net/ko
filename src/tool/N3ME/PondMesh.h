@@ -97,7 +97,7 @@ class CPondMesh : public CN3BaseFileAccess {
         return m_pRectVts + iIndex;
     }
 
-    BOOL SetTextureName(LPCTSTR pszFName);
+    BOOL SetTextureName(const fs::path & fsFile);
 
   public:
     // 새로 추가한거나 고친거

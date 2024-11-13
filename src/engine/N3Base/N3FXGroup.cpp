@@ -71,47 +71,40 @@ bool CN3FXGroup::Save(HANDLE hFile) {
 //    스크립트 파일 읽고 해석시킴...
 //
 #ifdef _N3TOOL
-bool CN3FXGroup::DecodeScriptFile(const char * lpPathName) {
-    FILE * stream = fopen(lpPathName, "r");
+bool CN3FXGroup::DecodeScriptFile(const fs::path & fsFile) {
+    FILE * stream = _wfopen(fsFile.c_str(), L"r");
     if (!stream) {
         return false;
     }
 
-    char szGamePathName[_MAX_PATH];
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-    _splitpath(lpPathName, szDrive, szDir, szFName, szExt);
-    _makepath(szGamePathName, szDrive, szDir, szFName, "fxg");
+    fs::path fsFxgPath = fs::path(fsFile).replace_extension(".fxg");
+    CN3BaseFileAccess::FilePathSet(fsFxgPath);
 
-    CN3BaseFileAccess::FileNameSet(szGamePathName);
-
-    char   szLine[512] = "", szCommand[80] = "", szBuf[4][80] = {"", "", "", ""};
-    char * pResult = fgets(szLine, 512, stream);
+    char   szLine[512]{}, szCommand[80]{}, szBuf[4][80]{};
+    char * pResult = fgets(szLine, sizeof(szLine), stream);
     sscanf(szLine, "%s %s %s %s %s", szCommand, szBuf[0], szBuf[1], szBuf[2], szBuf[3]);
 
-    if (lstrcmpi(szCommand, "<n3fxgroup>")) {
+    if (!n3std::iequals(szCommand, "<n3fxgroup>")) {
         fclose(stream);
         return false;
     }
 
     while (!feof(stream)) {
-        char * pResult = fgets(szLine, 512, stream);
+        char * pResult = fgets(szLine, sizeof(szLine), stream);
         if (pResult == NULL) {
             continue;
         }
 
-        ZeroMemory(szCommand, 80);
-        ZeroMemory(szBuf[0], 80);
-        ZeroMemory(szBuf[1], 80);
-        ZeroMemory(szBuf[2], 80);
-        ZeroMemory(szBuf[3], 80);
+        memset(szCommand, 0, sizeof(szCommand));
+        memset(szBuf, 0, sizeof(szBuf));
 
         sscanf(szLine, "%s %s %s %s %s", szCommand, szBuf[0], szBuf[1], szBuf[2], szBuf[3]);
 
-        if (lstrcmpi(szCommand, "<fxb>") == 0) {
+        if (n3std::iequals(szCommand, "<fxb>")) {
             __FXBInfo * pFXB = new __FXBInfo;
-            sprintf(pFXB->FXBName, szBuf[0]);
+            memcpy(pFXB->szFxbFile, szBuf[0], sizeof(szBuf[0]));
             pFXB->joint = atoi(szBuf[1]);
-            if (lstrcmpi(szBuf[2], "TRUE") == 0) {
+            if (n3std::iequals(szBuf[2], "TRUE")) {
                 pFXB->IsLooping = TRUE;
             }
 

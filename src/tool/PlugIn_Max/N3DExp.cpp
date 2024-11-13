@@ -11,6 +11,8 @@
  *>    Copyright (c) 1997, All Rights Reserved.
  **********************************************************************/
 
+#include "StdAfx.h"
+
 #include "N3Base/N3PMeshCreate.h"
 #include "N3DExp.h"
 
@@ -37,10 +39,9 @@ CN3DExp::CN3DExp() {
     this->Init();
 
     // allocation CN3Eng, CN3Scene | Init Engine
-    //    if(NULL == g_Eng.s_lpD3DDev)
-    //    {
-    //        g_Eng.Init(TRUE, NULL, 64, 64, 0, FALSE);
-    //    }
+    //if (!g_Eng.s_lpD3DDev) {
+    //    g_Eng.Init(TRUE, NULL, 64, 64, 0, FALSE);
+    //}
     m_pScene = NULL;
 }
 
@@ -66,8 +67,8 @@ void CN3DExp::Init() {
     m_nNodeCur = 0;
     m_nNodeCount = 0;
 
-    lstrcpy(m_szPath, "");     // Path Name
-    lstrcpy(m_szFileName, ""); // File Name
+    m_fsDir = fs::path();
+    m_fsFile = fs::path();
 }
 
 int CN3DExp::ExtCount() {
@@ -119,7 +120,7 @@ void CN3DExp::ShowAbout(HWND hWnd) {
     // Optional
 }
 
-int CN3DExp::DoExport(const TCHAR * szFileName, ExpInterface * pExpIntf, Interface * pIntf, BOOL suppressPrompts,
+int CN3DExp::DoExport(const fs::path & fsFile, ExpInterface * pExpIntf, Interface * pIntf, BOOL suppressPrompts,
                       DWORD dwOptions) {
     // Interface Object Pointer
     g_pIntf = pIntf;
@@ -145,7 +146,7 @@ int CN3DExp::DoExport(const TCHAR * szFileName, ExpInterface * pExpIntf, Interfa
     delete m_pScene;
     m_pScene = new CN3Scene();
     m_pScene->ReleaseResrc();
-    lstrcpy(m_szFileName, szFileName); // Set File Name
+    m_fsFile = fsFile;
 
     // Option Dialog
     int rval = DialogBoxParam(g_hInst, MAKEINTRESOURCE(IDD_EXPORT_OPTION), pIntf->GetMAXHWnd(), DlgProcExportOption,
@@ -175,16 +176,11 @@ int CN3DExp::DoExport(const TCHAR * szFileName, ExpInterface * pExpIntf, Interfa
     // Scene Save
 
     // sub directory가 있다면 sub directory 만들기
-    char szDir[_MAX_DIR] = "";
-    ::CreateDirectory(m_Option.szSubDir, NULL);
-    wsprintf(szDir, "%sData", m_Option.szSubDir);
-    ::CreateDirectory(szDir, NULL);
-    wsprintf(szDir, "%sChr", m_Option.szSubDir);
-    ::CreateDirectory(szDir, NULL);
-    wsprintf(szDir, "%sObject", m_Option.szSubDir);
-    ::CreateDirectory(szDir, NULL);
-    wsprintf(szDir, "%sItem", m_Option.szSubDir);
-    ::CreateDirectory(szDir, NULL);
+    fs::create_directory(m_Option.fsSubDir);
+    fs::create_directory(m_Option.fsSubDir / "Data");
+    fs::create_directory(m_Option.fsSubDir / "Chr");
+    fs::create_directory(m_Option.fsSubDir / "Object");
+    fs::create_directory(m_Option.fsSubDir / "Item");
 
     // 만약 카메라가 하나도 없다면..
     if (m_pScene->CameraCount() <= 0) {
@@ -193,7 +189,7 @@ int CN3DExp::DoExport(const TCHAR * szFileName, ExpInterface * pExpIntf, Interfa
     if (m_pScene->LightCount() <= 0) {
         m_pScene->DefaultLightAdd();
     }
-    m_pScene->SaveDataAndResourcesToFile(szFileName); // Scene 파일 저장 및 리소스 도 모두 저장..
+    m_pScene->SaveDataAndResourcesToFile(fsFile); // Scene 파일 저장 및 리소스 도 모두 저장..
     m_pScene->Release();
 
     m_pScene->ReleaseResrc();
@@ -428,12 +424,9 @@ bool CN3DExp::ProcessShape(INode * pNode) {
     __Material mtl;
     mtl.Init();
     CN3Texture * pTex = NULL;
-    this->ProcessMaterial(pNode, &mtl, &pTex, "Object\\");
+    this->ProcessMaterial(pNode, &mtl, &pTex, "Object");
     if (pTex) {
-        //        char szDrv[_MAX_DIR], szDir[_MAX_DIR], szFName[_MAX_FNAME];
-        //        _splitpath(pTex->FileName().c_str(), szDrv, szDir, szFName, NULL);
-        //        char szFN[256]; wsprintf(szFN, "Object\\%s.dxt", szFName);
-        pTex->FileNameSet(pTex->FileName());
+        pTex->FilePathSet(pTex->FilePath());
     }
 
     CN3Shape * pShape = NULL;
@@ -481,7 +474,7 @@ bool CN3DExp::ProcessShape(INode * pNode) {
     }
 
     bool bCollision = false;
-    ::CharLower(N3IMesh.m_szName.begin()); // 소문자로 만들고..
+    n3std::to_lower(N3IMesh.m_szName);
     if (N3IMesh.m_szName.find("coll") !=
         -1) { // "collision" 이라는 문자열 확인 ..  그러나 오타에 대비해서 "coll" 까지만 확인
         bCollision = true;
@@ -495,16 +488,15 @@ bool CN3DExp::ProcessShape(INode * pNode) {
         CN3VMesh * pVMesh = new CN3VMesh();
         pVMesh->Import(&N3IMesh); // 메시 만들고.. Indexed 메시로부터 Import..
 
-        std::string szVMeshFN = "Object\\" + pShape->m_szName + ".n3vmesh"; // 이름짓기..
-        if (lstrlen(m_Option.szSubDir) > 0) {
-            szVMeshFN = std::string(m_Option.szSubDir) + szVMeshFN; // sub directory 있으면 추가
+        fs::path fsVmeshFile = fs::path("Object") / (pShape->m_szName + ".n3vmesh"); // 이름짓기..
+        if (!m_Option.fsSubDir.empty()) {
+            fsVmeshFile = m_Option.fsSubDir / fsVmeshFile; // sub directory 있으면 추가
         }
-        pVMesh->FileNameSet(szVMeshFN);  // 이름짓기..
-        CN3Base::s_MngVMesh.Add(pVMesh); // 매니저에 넣고..
+        pVMesh->FilePathSet(fsVmeshFile); // 이름짓기..
+        CN3Base::s_MngVMesh.Add(pVMesh);  // 매니저에 넣고..
 
-        pShape->CollisionMeshSet(szVMeshFN); // 충돌메시 세팅..
-    } else                                   // 충돌 체크 메시가 아니면 파트 추가..
-    {
+        pShape->CollisionMeshSet(fsVmeshFile); // 충돌메시 세팅..
+    } else {                                   // 충돌 체크 메시가 아니면 파트 추가..
         // Part 추가.. Part Data 세팅..
         CN3SPart * pPD = pShape->PartAdd();
         this->ProcessName(pNode, pPD); // 파트 이름..
@@ -529,10 +521,10 @@ bool CN3DExp::ProcessShape(INode * pNode) {
         this->ProcessName(pNode, pPMesh);
         pShape->s_MngPMesh.Add(pPMesh);
 
-        pPD->MeshSet(pPMesh->FileName());
+        pPD->MeshSet(pPMesh->FilePath());
         if (pTex) {
             pPD->TexAlloc(1); // Texture 할당..
-            pPD->TexSet(0, pTex->FileName());
+            pPD->TexSet(0, pTex->FilePath());
         }
         pPD->m_Mtl = mtl;
         pPD->m_vPivot = vOffset - pShape->Pos(); // Pivot point 를 얻고..
@@ -610,13 +602,9 @@ BOOL CALLBACK CN3DExp::DlgProcExportOption(HWND hWndDlg, UINT uMsg, WPARAM wPara
             m_Option.bGenerateHalfSizeTexture = IsDlgButtonChecked(hWndDlg, IDC_C_GENERATE_HALF_SIZE_TEXTURE);
             m_Option.bGenerateCompressedTexture = IsDlgButtonChecked(hWndDlg, IDC_C_GENERATE_COMPRESSED_TEXTURE);
 
-            GetDlgItemText(hWndDlg, IDC_E_SUBDIR, m_Option.szSubDir, _MAX_DIR);
-            int iStrLen = lstrlen(m_Option.szSubDir);
-            if (iStrLen > 0) {
-                if ('\\' != m_Option.szSubDir[iStrLen - 1]) {
-                    lstrcat(m_Option.szSubDir, "\\");
-                }
-            }
+            wchar_t szSubDir[_MAX_DIR]{};
+            GetDlgItemText(hWndDlg, IDC_E_SUBDIR, szSubDir, std::size(szSubDir));
+            m_Option.fsSubDir = szSubDir;
 
             EndDialog(hWndDlg, 1);
 
@@ -712,7 +700,7 @@ bool CN3DExp::ProcessName(INode * pNode, CN3BaseFileAccess * pBase) {
         // 캐릭터 파트나 캐릭터 파트 스킨일 경우 내가 본 노드이면 나의 이름을 넣지 않는다.
         if ((dwType & (OBJ_CHARACTER_PART | OBJ_CHARACTER_PART_SKINS)) && IsBone(pNode)) {
         } else {
-            if (!(pBase->m_szName.empty())) {
+            if (!pBase->m_szName.empty()) {
                 std::string szTmp = pNode->GetName();
                 szTmp += '_';
                 szTmp += pBase->m_szName;
@@ -729,81 +717,74 @@ bool CN3DExp::ProcessName(INode * pNode, CN3BaseFileAccess * pBase) {
         }
     }
 
-    char szDir[32] = "";
-    char szExt[32] = "";
-
+    fs::path    fsDir;
+    std::string szExt;
     if (dwType & OBJ_SHAPE) {
-        lstrcpy(szDir, "Object\\");
-        lstrcpy(szExt, ".N3Shape");
+        fsDir = "Object";
+        szExt = ".n3shape";
     } else if (dwType & OBJ_SHAPE_PART) {
-        lstrcpy(szDir, "Object\\");
-        lstrcpy(szExt, ".N3SPart");
+        fsDir = "Object";
+        szExt = ".n3spart";
     } else if (dwType & OBJ_MESH) {
-        lstrcpy(szDir, "Object\\");
-        lstrcpy(szExt, ".N3Mesh");
+        fsDir = "Object";
+        szExt = ".n3mesh";
     } else if (dwType & OBJ_MESH_PROGRESSIVE) {
-        lstrcpy(szDir, "Object\\");
-        lstrcpy(szExt, ".N3PMesh");
+        fsDir = "Object";
+        szExt = ".n3pmesh";
     } else if (dwType & OBJ_MESH_VECTOR3) {
-        lstrcpy(szDir, "Object\\");
-        lstrcpy(szExt, ".N3VMesh");
-    }
-
-    else if (dwType & OBJ_CHARACTER) {
-        lstrcpy(szDir, "Chr\\");
-        lstrcpy(szExt, ".N3Chr");
+        fsDir = "Object";
+        szExt = ".n3vmesh";
+    } else if (dwType & OBJ_CHARACTER) {
+        fsDir = "Chr";
+        szExt = ".n3chr";
     } else if (dwType & OBJ_JOINT) {
-        lstrcpy(szDir, "Chr\\");
-        lstrcpy(szExt, ".N3Joint");
+        fsDir = "Chr";
+        szExt = ".n3joint";
     } else if (dwType & OBJ_CHARACTER_PART) {
-        lstrcpy(szDir, "Item\\");
-        lstrcpy(szExt, ".N3CPart");
+        fsDir = "Item";
+        szExt = ".n3cpart";
     } else if (dwType & OBJ_CHARACTER_PART_SKINS) {
-        lstrcpy(szDir, "Item\\");
-        lstrcpy(szExt, ".N3CSkins");
+        fsDir = "Item";
+        szExt = ".n3cskins";
     } else if (dwType & OBJ_MESH_INDEXED) {
-        lstrcpy(szDir, "Item\\");
-        lstrcpy(szExt, ".N3IMesh");
+        fsDir = "Item";
+        szExt = ".n3imesh";
     } else if (dwType & OBJ_SKIN) {
-        lstrcpy(szDir, "Item\\");
-        lstrcpy(szExt, ".N3Skin");
+        fsDir = "Item";
+        szExt = ".n3skin";
     } else if (dwType & OBJ_CHARACTER_PLUG) {
-        lstrcpy(szDir, "Item\\");
-        lstrcpy(szExt, ".N3CPlug");
-    }
-
-    else if (dwType & OBJ_TEXTURE) {
-        lstrcpy(szDir, "Texture\\");
-        lstrcpy(szExt, ".DXT");
+        fsDir = "Item";
+        szExt = ".n3cplug";
+    } else if (dwType & OBJ_TEXTURE) {
+        fsDir = "Texture";
+        szExt = ".dxt";
     } else if (dwType & OBJ_SCENE) {
-        lstrcpy(szDir, "");
-        lstrcpy(szExt, ".N3Scene");
-    }
-
-    else {
-        lstrcpy(szDir, "Data\\");
+        fsDir = "";
+        szExt = ".n3scene";
+    } else {
+        fsDir = "Data";
         if (dwType & OBJ_CAMERA) {
-            lstrcpy(szExt, ".N3Camera");
+            szExt = ".n3camera";
         } else if (dwType & OBJ_LIGHT) {
-            lstrcpy(szExt, ".N3Light");
+            szExt = ".n3light";
         } else if (dwType & OBJ_TRANSFORM) {
-            lstrcpy(szExt, ".N3Transform");
+            szExt = ".n3transform";
         } else if (dwType & OBJ_BASE) {
-            lstrcpy(szExt, ".N3Base");
+            szExt = ".n3base";
         } else {
-            lstrcpy(szExt, ".Unknown");
+            szExt = ".unknown";
         }
     }
 
     // sub directory 가 있으면 추가한다.
-    std::string szFN;
-    if (lstrlen(m_Option.szSubDir) > 0) {
-        szFN = std::string(m_Option.szSubDir) + szDir + pBase->m_szName + szExt;
+    fs::path fsFile;
+    if (!m_Option.fsSubDir.empty()) {
+        fsFile = m_Option.fsSubDir / fsDir / (pBase->m_szName + szExt);
     } else {
-        szFN = szDir + pBase->m_szName + szExt;
+        fsFile = fsDir / (pBase->m_szName + szExt);
     }
 
-    pBase->FileNameSet(szFN);
+    pBase->FilePathSet(fsFile);
 
     return true;
 }
@@ -856,20 +837,19 @@ bool CN3DExp::ProcessChr(INode * pNode) {
     this->ProcessName(pNode, pChr);
 
     pChr->s_MngJoint.Add(pJoint);
-    pChr->JointSet(pJoint->FileName());
+    pChr->JointSet(pJoint->FilePath());
     m_pScene->ChrAdd(pChr);
 
-    pChr->m_szName = "Temp";
-    pChr->FileNameSet(std::string("Chr\\Temp.n3Chr"));
+    pChr->m_szName = "temp";
+    pChr->FilePathSet("Chr" / "temp.n3chr");
     pChr->PartAlloc(64); // 충분하게 Part Data 할당.. save할때 불필요한 데이터는 제거된다.
     for (int i = 0; i < 64; i++) {
         CN3CPart *      pPDAdd = pChr->Part(i);
         CN3CPartSkins * pSkinAdd = new CN3CPartSkins();
-        char            szNameTmp[256];
-        wsprintf(szNameTmp, "chr\\temp_%d.N3CSkins", i);
-        pSkinAdd->FileNameSet(szNameTmp);
+        fs::path        fsTmpFile = fs::path("Chr") / std::format("temp_{:d}.n3cskins", i);
+        pSkinAdd->FilePathSet(fsTmpFile);
         CN3Base::s_MngSkins.Add(pSkinAdd);
-        pPDAdd->SkinsSet(szNameTmp);
+        pPDAdd->SkinsSet(fsTmpFile);
         CN3Base::s_MngSkins.Delete(&pSkinAdd); // 이렇게 해주어야 참조 카운트가 하나 줄어든다..
     }
 
@@ -886,7 +866,7 @@ bool CN3DExp::ProcessChr(INode * pNode) {
         bool        bCollisionMesh = false;
         std::string szFNM = pNodeTmp->GetName();
         if (szFNM.size() > 0) {
-            CharLower(&(szFNM[0]));
+            n3std::to_lower(szFNM);
         }
         if (szFNM.find("coll") != -1) {
             bCollisionMesh = true;
@@ -970,13 +950,9 @@ bool CN3DExp::ProcessChr(INode * pNode) {
             }
 
             CN3Texture * pTex = NULL;
-            this->ProcessMaterial(pNodeTmp, &(pPart->m_Mtl), &pTex, "Item\\");
+            this->ProcessMaterial(pNodeTmp, &(pPart->m_Mtl), &pTex, "Item");
             if (pTex) {
-                //                char szDrv[_MAX_DIR], szDir[_MAX_DIR], szFName[_MAX_FNAME];
-                //                _splitpath(pTex->FileName().c_str(), szDrv, szDir, szFName, NULL);
-                //                char szFN[256]; wsprintf(szFN, "Item\\%s.dxt", szFName);
-                //                pTex->FileNameSet(szFN);
-                pPart->TexSet(pTex->FileName());
+                pPart->TexSet(pTex->FilePath());
             }
             ProcessName(pNodeTmp, pPart);  // 이름 짓기
             ProcessName(pNodeTmp, pSkins); // 이름 짓기
@@ -1243,9 +1219,8 @@ bool CN3DExp::ProcessJoint(INode * pNode, CN3Joint * pJoint) {
 
     // 이름이 너무 기니까.. 강제로 한다.
     pJoint->m_szName = pNode->GetName();
-    char szJFN[256];
-    wsprintf(szJFN, "%sChr\\%s.N3Joint", m_Option.szSubDir, pNode->GetName());
-    pJoint->FileNameSet(szJFN);
+    fs::path fsJointFile = m_Option.fsSubDir / "Chr" / (pJoint->m_szName + ".n3joint");
+    pJoint->FilePathSet(fsJointFile);
 
     ///////////////////////////////////////
     // 자식 객체 처리..
@@ -1570,7 +1545,7 @@ bool CN3DExp::ProcessIMesh(INode * pNode, CN3IMesh * pIMesh) {
     return true;
 }
 
-bool CN3DExp::ProcessMaterial(INode * pNode, __Material * pMtl, CN3Texture ** ppTex, LPCTSTR pszDir) {
+bool CN3DExp::ProcessMaterial(INode * pNode, __Material * pMtl, CN3Texture ** ppTex, const fs::path & fsDir) {
     if (NULL == pNode || NULL == pMtl || NULL == ppTex) {
         return false;
     }
@@ -1586,23 +1561,18 @@ bool CN3DExp::ProcessMaterial(INode * pNode, __Material * pMtl, CN3Texture ** pp
     }
 
     // Methods to access sub-materials of meta-materials
-    //    Mtl* pmMtlTmp = NULL;
+    //Mtl * pmMtlTmp = NULL;
     int nSM = pmMtl->NumSubMtls();
-    //    if(nSM > 0)
-    //    {
-    //        for(int i = 0; i < nSM; i++)
-    //        {
-    //            if(pmMtl->GetSubMtl(i) != NULL)
-    //            {
-    //                pmMtlTmp = pmMtl->GetSubMtl(i);
-    //                break;
-    //            }
+    //if (nSM > 0) {
+    //    for (int i = 0; i < nSM; i++) {
+    //        if (pmMtl->GetSubMtl(i) != NULL) {
+    //            pmMtlTmp = pmMtl->GetSubMtl(i);
+    //            break;
     //        }
     //    }
-    //    else
-    //    {
-    //        pmMtlTmp = pmMtl;
-    //    }
+    //} else {
+    //    pmMtlTmp = pmMtl;
+    //}
 
     if (pmMtl && pmMtl->GetSubTexmap(1) != NULL) // 텍스처가 씌어 있는 재질이면.
     {
@@ -1614,44 +1584,28 @@ bool CN3DExp::ProcessMaterial(INode * pNode, __Material * pMtl, CN3Texture ** pp
         }
 
         if (pBMT && lstrlen(pBMT->GetMapName()) > 0) {
-            std::string szBMPFN, szBMPFN2;
-            char        szDrv[32], szDir[128], szName[128], szExt[128];
-            szBMPFN = pBMT->GetMapName();
-            _splitpath(szBMPFN.c_str(), szDrv, szDir, szName, szExt);
+            fs::path fsBmpFile = pBMT->GetMapName();
+            fsBmpFile.make_lower();
 
-            // sub directory 지정되어 있으면 붙이기
-            if (lstrlen(m_Option.szSubDir) > 0) {
-                szBMPFN2 = std::string(m_Option.szSubDir);
-            } else {
-                szBMPFN2 = "";
-            }
-
-            // 텍스쳐 폴더 경로 붙이기
-            if (pszDir) {
-                szBMPFN2 += pszDir;
-            } else {
-                szBMPFN2 += "Texture\\";
-            }
-            szBMPFN2 += szName;
-            szBMPFN2 += ".DXT"; // 이름과 확장자를 바꾸어 준다..
-
-            CharLower(szBMPFN.begin());
-            CharLower(szBMPFN2.begin());
+            fs::path fsBmpFile2 = m_Option.fsSubDir;
+            fsBmpFile2 /= fsDir.empty() ? "Texture" : fsDir;
+            fsBmpFile2 /= fsBmpFile.stem() + ".dxt";
+            fsBmpFile2.make_lower();
 
             int  nTCPrev = m_pScene->s_MngTex.Count(); // 텍스처 중복 체크..
             bool bOverlapped = false;
             for (int i = 0; i < nTCPrev; i++) {
-                if (m_pScene->s_MngTex.Get(i)->FileName() == szBMPFN2) {
+                if (m_pScene->s_MngTex.Get(i)->FilePath() == fsBmpFile2) {
                     bOverlapped = true;
                 }
             }
 
             if (bOverlapped) {
-                (*ppTex) = m_pScene->s_MngTex.Get(szBMPFN2); // 비트맵을 읽고..
+                (*ppTex) = m_pScene->s_MngTex.Get(fsBmpFile2); // 비트맵을 읽고..
             } else {
                 (*ppTex) = new CN3Texture();
 
-                if (false == (*ppTex)->LoadFromFile(szBMPFN)) // 비트맵 읽기가 실패하면..
+                if (false == (*ppTex)->LoadFromFile(fsBmpFile)) // 비트맵 읽기가 실패하면..
                 {
                     delete (*ppTex);
                     (*ppTex) = NULL;
@@ -1659,7 +1613,7 @@ bool CN3DExp::ProcessMaterial(INode * pNode, __Material * pMtl, CN3Texture ** pp
                 } else // 비트맵을 읽었으면..
                 {
                     (*ppTex)->m_szName = pBMT->GetName();
-                    (*ppTex)->FileNameSet(szBMPFN2);
+                    (*ppTex)->FilePathSet(fsBmpFile2);
                     m_pScene->s_MngTex.Add(*ppTex); // Texture Manager 에 넣어준다.
 
                     CN3Texture * pTex = *ppTex;

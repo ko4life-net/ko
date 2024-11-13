@@ -52,9 +52,9 @@ class CNPCPathMgr : public CN3Base {
     void       DelPath(CNPCPath * pPath);
     int        GetSize() { return m_pPaths.size(); }
     CNPCPath * GetpPath(int idx);
-    void       LoadFromFile(const char * FileName);
-    void       SaveToFile(const char * FileName);
-    void       MakeServerDataFile(const char * FullFileName);
+    void       LoadFromFile(const fs::path & fsFileStem);
+    void       SaveToFile(const fs::path & fsFileStem);
+    void       MakeServerDataFile(const fs::path & fsFile);
 
     void Render();
     void UpdatePath();

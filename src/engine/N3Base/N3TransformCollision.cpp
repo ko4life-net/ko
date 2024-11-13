@@ -39,22 +39,23 @@ void CN3TransformCollision::Release() {
 bool CN3TransformCollision::Load(HANDLE hFile) {
     CN3Transform::Load(hFile);
 
-    int  nL = 0;
-    char szFN[512] = "";
+    DWORD       dwRWC = 0;
+    int         nL = 0;
+    std::string szFile;
 
-    DWORD dwRWC;
     ReadFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
     if (nL > 0) {
-        ReadFile(hFile, szFN, nL, &dwRWC, NULL);
-        szFN[nL] = NULL; // 메시 파일 이름..
-        m_pMeshCollision = s_MngVMesh.Get(szFN);
+        szFile.assign(nL, '\0');
+        ReadFile(hFile, szFile.data(), nL, &dwRWC, NULL);
+        m_pMeshCollision = s_MngVMesh.Get(szFile);
     }
 
+    nL = 0;
     ReadFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
     if (nL > 0) {
-        ReadFile(hFile, szFN, nL, &dwRWC, NULL);
-        szFN[nL] = NULL; // 메시 파일 이름..
-        m_pMeshClimb = s_MngVMesh.Get(szFN);
+        szFile.assign(nL, '\0');
+        ReadFile(hFile, szFile.data(), nL, &dwRWC, NULL);
+        m_pMeshClimb = s_MngVMesh.Get(szFile);
     }
     return true;
 }
@@ -65,61 +66,68 @@ bool CN3TransformCollision::Save(HANDLE hFile) {
 
     DWORD dwRWC;
 
-    int nL = 0;
+    fs::path    fsFile;
+    std::string szFile;
+    int         iLen = 0;
     if (m_pMeshCollision) {
-        nL = m_pMeshCollision->FileName().size();
+        fsFile = m_pMeshCollision->FilePathWin();
+        szFile = fsFile.string();
+        iLen = szFile.length();
     }
-    WriteFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
-    if (nL > 0) {
-        if (m_pMeshCollision->FileName().find("object\\") <
-            0) // 임시로 경로를 바꾸려고 넣었다.. 나중에 필요없음 지운다..
-        {
-            char szFNTmp[256];
-            wsprintf(szFNTmp, "Object\\%s.N3VMesh", m_pMeshCollision->m_szName.c_str());
-            m_pMeshCollision->FileNameSet(szFNTmp);
+    WriteFile(hFile, &iLen, 4, &dwRWC, NULL); // Mesh FileName
+    if (iLen > 0) {
+        // 임시로 경로를 바꾸려고 넣었다.. 나중에 필요없음 지운다..
+        if (!fsFile.parent_path().icontains("Object")) {
+            fsFile = fs::path("Object") / (m_pMeshCollision->m_szName + ".n3vmesh");
+            m_pMeshCollision->FilePathSet(fsFile);
+            fsFile = m_pMeshCollision->FilePathWin();
+            szFile = fsFile.string();
+            iLen = szFile.length();
 
             SetFilePointer(hFile, -4, 0, FILE_CURRENT);
-            nL = m_pMeshCollision->FileName().size();
-            WriteFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
+            WriteFile(hFile, &iLen, 4, &dwRWC, NULL); // Mesh FileName
         }
 
-        WriteFile(hFile, m_pMeshCollision->FileName().c_str(), nL, &dwRWC, NULL);
+        WriteFile(hFile, szFile.c_str(), iLen, &dwRWC, NULL);
     }
 
-    nL = 0;
+    iLen = 0;
     if (m_pMeshClimb) {
-        nL = m_pMeshClimb->FileName().size();
+        fsFile = m_pMeshClimb->FilePathWin();
+        szFile = fsFile.string();
+        iLen = szFile.length();
     }
-    WriteFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
-    if (nL > 0) {
-        if (-1 == m_pMeshClimb->FileName().find("object\\")) // 임시로 경로를 바꾸려고 넣었다.. 나중에 필요없음 지운다..
-        {
-            char szFNTmp[256];
-            wsprintf(szFNTmp, "Object\\%s.N3VMesh", m_pMeshClimb->m_szName.c_str());
-            m_pMeshClimb->FileNameSet(szFNTmp);
+    WriteFile(hFile, &iLen, 4, &dwRWC, NULL); // Mesh FileName
+    if (iLen > 0) {
+        // 임시로 경로를 바꾸려고 넣었다.. 나중에 필요없음 지운다..
+        if (!fsFile.parent_path().icontains("object")) {
+            fsFile = fs::path("Object") / (m_pMeshClimb->m_szName + ".n3vmesh");
+            m_pMeshClimb->FilePathSet(fsFile);
+            fsFile = m_pMeshClimb->FilePathWin();
+            szFile = fsFile.string();
+            iLen = szFile.length();
 
             SetFilePointer(hFile, -4, 0, FILE_CURRENT);
-            nL = m_pMeshClimb->FileName().size();
-            WriteFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
+            WriteFile(hFile, &iLen, 4, &dwRWC, NULL); // Mesh FileName
         }
 
-        WriteFile(hFile, m_pMeshClimb->FileName().c_str(), nL, &dwRWC, NULL);
+        WriteFile(hFile, szFile.c_str(), iLen, &dwRWC, NULL);
     }
     return true;
 }
 #endif // end of _N3TOOL
 
-void CN3TransformCollision::CollisionMeshSet(const std::string & szFN) {
+void CN3TransformCollision::CollisionMeshSet(const fs::path & fsFile) {
     s_MngVMesh.Delete(&m_pMeshCollision);
-    m_pMeshCollision = s_MngVMesh.Get(szFN);
+    m_pMeshCollision = s_MngVMesh.Get(fsFile);
     if (m_pMeshCollision) {
         this->FindMinMax();
     }
 }
 
-void CN3TransformCollision::ClimbMeshSet(const std::string & szFN) {
+void CN3TransformCollision::ClimbMeshSet(const fs::path & fsFile) {
     s_MngVMesh.Delete(&m_pMeshClimb);
-    m_pMeshClimb = s_MngVMesh.Get(szFN);
+    m_pMeshClimb = s_MngVMesh.Get(fsFile);
     if (m_pMeshClimb) {
         m_pMeshClimb->FindMinMax();
     }

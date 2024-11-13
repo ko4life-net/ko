@@ -103,8 +103,8 @@ bool CBitMapFile::Save(HANDLE hFile) {
     return true;
 }
 
-bool CBitMapFile::SaveRectToFile(const std::string & szFN, RECT rc) {
-    if (szFN.empty()) {
+bool CBitMapFile::SaveRectToFile(const fs::path & fsFile, RECT rc) {
+    if (fsFile.empty()) {
         return false;
     }
 
@@ -136,7 +136,7 @@ bool CBitMapFile::SaveRectToFile(const std::string & szFN, RECT rc) {
     }
 
     DWORD  dwRWC = 0;
-    HANDLE hFile = ::CreateFile(szFN.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFile = ::CreateFileW(fsFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
     // 쓰기 모드로 파일 열기
     if (INVALID_HANDLE_VALUE == hFile) {
@@ -179,13 +179,13 @@ bool CBitMapFile::SaveRectToFile(const std::string & szFN, RECT rc) {
     return true;
 }
 
-bool CBitMapFile::LoadFromFile(const char * pszFN) {
-    if (NULL == pszFN || lstrlen(pszFN) <= 0) {
+bool CBitMapFile::LoadFromFile(const fs::path & fsFile) {
+    if (fsFile.empty()) {
         return false;
     }
 
     DWORD  dwRWC = 0;
-    HANDLE hFile = ::CreateFile(pszFN, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFile = ::CreateFileW(fsFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
     if (INVALID_HANDLE_VALUE == hFile) {
         return false;
@@ -198,13 +198,13 @@ bool CBitMapFile::LoadFromFile(const char * pszFN) {
     return bSuccess;
 }
 
-bool CBitMapFile::SaveToFile(const char * pszFN) {
-    if (NULL == pszFN || lstrlen(pszFN) <= 0) {
+bool CBitMapFile::SaveToFile(const fs::path & fsFile) {
+    if (fsFile.empty()) {
         return false;
     }
 
     DWORD  dwRWC = 0;
-    HANDLE hFile = ::CreateFile(pszFN, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFile = ::CreateFileW(fsFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
     if (hFile == INVALID_HANDLE_VALUE) {
         return false;

@@ -23,7 +23,7 @@ CDlgTexture::CDlgTexture(CWnd * pParent /*=NULL*/)
     //}}AFX_DATA_INIT
     m_pTexViewer = new CTexViewer;
     m_iImageTypeCount = 0;
-    ZeroMemory(m_szImageTypeNames, sizeof(char) * MAX_IMAGETYPE * _MAX_PATH);
+    memset(m_szImageTypeNames, 0, sizeof(m_szImageTypeNames));
     m_hAccelTable = NULL;
 }
 
@@ -135,9 +135,9 @@ void CDlgTexture::OnOK() {
     }
 }
 
-void CDlgTexture::SetTexture(LPCTSTR pszFileName) {
+void CDlgTexture::SetTexture(const fs::path & fsFile) {
     if (m_pTexViewer) {
-        m_pTexViewer->SetTexture(pszFileName);
+        m_pTexViewer->SetTexture(fsFile);
     }
 }
 

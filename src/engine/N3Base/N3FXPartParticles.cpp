@@ -130,7 +130,7 @@ bool CN3FXPartParticles::ParseScript(char * szCommand, char * szBuff0, char * sz
     }
 
     //    파티클 수.
-    if (lstrcmpi(szCommand, "<particle_count>") == 0) {
+    if (n3std::iequals(szCommand, "<particle_count>")) {
         m_iNumParticle = atoi(szBuff0);
         if (m_iNumParticle > 0) {
             InitVB();
@@ -139,53 +139,53 @@ bool CN3FXPartParticles::ParseScript(char * szCommand, char * szBuff0, char * sz
     }
 
     //    파티클 크기.
-    if (lstrcmpi(szCommand, "<particle_size>") == 0) {
+    if (n3std::iequals(szCommand, "<particle_size>")) {
         m_pair_fParticleSize.first = m_pair_fParticleSize.second = atof(szBuff0);
         return true;
     }
-    if (lstrcmpi(szCommand, "<particle_size_range>") == 0) {
+    if (n3std::iequals(szCommand, "<particle_size_range>")) {
         m_pair_fParticleSize.first = atof(szBuff0);
         m_pair_fParticleSize.second = atof(szBuff1);
         return true;
     }
 
     //    파티클 생명.
-    if (lstrcmpi(szCommand, "<particle_life>") == 0) {
+    if (n3std::iequals(szCommand, "<particle_life>")) {
         m_pair_fParticleLife.first = atof(szBuff0);
         m_pair_fParticleLife.second = atof(szBuff1);
         return true;
     }
 
     //    파티클 시작오차..min
-    if (lstrcmpi(szCommand, "<start_range_min>") == 0) {
+    if (n3std::iequals(szCommand, "<start_range_min>")) {
         m_MinCreateRange.Set(atof(szBuff0), atof(szBuff1), atof(szBuff2));
         return true;
     }
 
     //    파티클 시작오차..max
-    if (lstrcmpi(szCommand, "<start_range_max>") == 0) {
+    if (n3std::iequals(szCommand, "<start_range_max>")) {
         m_MaxCreateRange.Set(atof(szBuff0), atof(szBuff1), atof(szBuff2));
         return true;
     }
 
     //    파티클 한번에 생성 갯수
-    if (lstrcmpi(szCommand, "<create_count>") == 0) {
+    if (n3std::iequals(szCommand, "<create_count>")) {
         m_iNumCreate = atoi(szBuff0);
         return true;
     }
 
     //    파티클 한번에 생성 시간 범위
-    if (lstrcmpi(szCommand, "<create_delay>") == 0) {
+    if (n3std::iequals(szCommand, "<create_delay>")) {
         m_CurrCreateDelay = m_fCreateDelay = atof(szBuff0);
         return true;
     }
 
     //    시작하는 방법.
-    if (lstrcmpi(szCommand, "<emit_type>") == 0) {
-        if (lstrcmpi(szBuff0, "spread") == 0) {
+    if (n3std::iequals(szCommand, "<emit_type>")) {
+        if (n3std::iequals(szBuff0, "spread")) {
             m_dwEmitType = FX_PART_PARTICLE_EMIT_TYPE_SPREAD;
             m_uEmitCon.fEmitAngle = atof(szBuff1);
-        } else if (lstrcmpi(szBuff0, "gather") == 0) {
+        } else if (n3std::iequals(szBuff0, "gather")) {
             m_dwEmitType = FX_PART_PARTICLE_EMIT_TYPE_GATHER;
             m_uEmitCon.vGatherPoint.x = atof(szBuff1);
             m_uEmitCon.vGatherPoint.y = atof(szBuff2);
@@ -194,33 +194,33 @@ bool CN3FXPartParticles::ParseScript(char * szCommand, char * szBuff0, char * sz
         return true;
     }
 
-    if (lstrcmpi(szCommand, "<particle_direction>") == 0) {
+    if (n3std::iequals(szCommand, "<particle_direction>")) {
         m_vPtEmitDir.Set(atof(szBuff0), atof(szBuff1), atof(szBuff2));
         return true;
     }
 
-    if (lstrcmpi(szCommand, "<particle_velocity>") == 0) {
+    if (n3std::iequals(szCommand, "<particle_velocity>")) {
         m_fPtVelocity = atof(szBuff0);
         return true;
     }
 
-    if (lstrcmpi(szCommand, "<particle_acceleration>") == 0) {
+    if (n3std::iequals(szCommand, "<particle_acceleration>")) {
         m_fPtAccel = atof(szBuff0);
         return true;
     }
 
-    if (lstrcmpi(szCommand, "<particle_rotation_velocity>") == 0) {
+    if (n3std::iequals(szCommand, "<particle_rotation_velocity>")) {
         float Degree = atof(szBuff0);
         m_fPtRotVelocity = D3DXToRadian(Degree);
         return true;
     }
 
-    if (lstrcmpi(szCommand, "<particle_gravity>") == 0) {
+    if (n3std::iequals(szCommand, "<particle_gravity>")) {
         m_fPtGravity = atof(szBuff0);
         return true;
     }
 
-    if (lstrcmpi(szCommand, "<particle_color>") == 0) {
+    if (n3std::iequals(szCommand, "<particle_color>")) {
         int   seq = atoi(szBuff0);
         DWORD color = atoi(szBuff1);
         if (seq >= 0 && seq < NUM_KEY_COLOR) {
@@ -229,58 +229,57 @@ bool CN3FXPartParticles::ParseScript(char * szCommand, char * szBuff0, char * sz
         return true;
     }
 
-    if (lstrcmpi(szCommand, "<change_color>") == 0) {
-        if (lstrcmpi(szBuff0, "true") == 0) {
+    if (n3std::iequals(szCommand, "<change_color>")) {
+        if (n3std::iequals(szBuff0, "true")) {
             m_bChangeColor = true;
         }
-        if (lstrcmpi(szBuff0, "false") == 0) {
+        if (n3std::iequals(szBuff0, "false")) {
             m_bChangeColor = false;
         }
         return true;
     }
 
-    if (lstrcmpi(szCommand, "<color_key>") == 0) {
+    if (n3std::iequals(szCommand, "<color_key>")) {
         int seq = atoi(szBuff0);
         if (seq >= 0 && seq < NUM_KEY_COLOR) {
             m_bChangeColorKey[seq] = true;
         }
         return true;
     }
-    if (lstrcmpi(szCommand, "<alpha_key>") == 0) {
+    if (n3std::iequals(szCommand, "<alpha_key>")) {
         int seq = atoi(szBuff0);
         if (seq >= 0 && seq < NUM_KEY_COLOR) {
             m_bChangeAlphaKey[seq] = true;
         }
         return true;
     }
-    if (lstrcmpi(szCommand, "<shape_name>") == 0 && lstrcmpi(szBuff0, "") != 0) {
-        char szPath[MAX_PATH];
-        sprintf(szPath, szBuff0);
+    if (n3std::iequals(szCommand, "<shape_name>") && szBuff0[0] != '\0') {
+        fs::path fsShapeFile = szBuff0;
         m_pShape = new CN3FXShape;
 
-        m_pRefShape = s_MngFXShape.Get(szPath);
+        m_pRefShape = s_MngFXShape.Get(fsShapeFile);
         m_pShape->Duplicate(m_pRefShape);
         m_vCurrPos = m_pShape->CenterPos();
         return true;
     }
-    if (lstrcmpi(szCommand, "<shape_fps>") == 0) {
+    if (n3std::iequals(szCommand, "<shape_fps>")) {
         m_fMeshFPS = atof(szBuff0);
         return true;
     }
-    if (lstrcmpi(szCommand, "<shape_apply>") == 0) {
-        if (lstrcmpi(szBuff0, "true") == 0) {
+    if (n3std::iequals(szCommand, "<shape_apply>")) {
+        if (n3std::iequals(szBuff0, "true")) {
             m_bAnimKey = true;
         }
-        if (lstrcmpi(szBuff0, "false") == 0) {
+        if (n3std::iequals(szBuff0, "false")) {
             m_bAnimKey = false;
         }
         return true;
     }
-    if (lstrcmpi(szCommand, "<texture_rotation_speed>") == 0) {
+    if (n3std::iequals(szCommand, "<texture_rotation_speed>")) {
         m_fTexRotateVelocity = atof(szBuff0);
         return true;
     }
-    if (lstrcmpi(szCommand, "<particle_scale_velocity>") == 0) {
+    if (n3std::iequals(szCommand, "<particle_scale_velocity>")) {
         m_fScaleVelX = atof(szBuff0);
         m_fScaleVelY = atof(szBuff1);
         return true;
@@ -395,8 +394,8 @@ bool CN3FXPartParticles::Load(HANDLE hFile) {
     if (m_bAnimKey) {
         ReadFile(hFile, &m_fMeshFPS, sizeof(float), &dwRWC, NULL);
 
-        char szShapeFileName[_MAX_PATH];
-        ReadFile(hFile, szShapeFileName, _MAX_PATH, &dwRWC, NULL);
+        char szShapeFile[260]{};
+        ReadFile(hFile, szShapeFile, sizeof(szShapeFile), &dwRWC, NULL);
 
         if (m_pShape) {
             delete m_pShape;
@@ -405,7 +404,7 @@ bool CN3FXPartParticles::Load(HANDLE hFile) {
 
         m_pShape = new CN3FXShape;
 
-        m_pRefShape = s_MngFXShape.Get(szShapeFileName);
+        m_pRefShape = s_MngFXShape.Get(szShapeFile);
         m_pShape->Duplicate(m_pRefShape);
     }
 
@@ -470,9 +469,9 @@ bool CN3FXPartParticles::Save(HANDLE hFile) {
     if (m_bAnimKey) {
         WriteFile(hFile, &m_fMeshFPS, sizeof(float), &dwRWC, NULL);
 
-        char szShapeFileName[_MAX_PATH];
-        sprintf(szShapeFileName, m_pRefShape->FileName().c_str());
-        WriteFile(hFile, szShapeFileName, _MAX_PATH, &dwRWC, NULL);
+        char szShapeFile[260]{};
+        m_pRefShape->FilePathWin().string().copy(szShapeFile, sizeof(szShapeFile) - 1);
+        WriteFile(hFile, szShapeFile, sizeof(szShapeFile), &dwRWC, NULL);
     }
 
     WriteFile(hFile, &m_fTexRotateVelocity, sizeof(float), &dwRWC, NULL);
@@ -1312,7 +1311,7 @@ void CN3FXPartParticles::Duplicate(CN3FXPartParticles * pSrc) {
 
         m_pShape = new CN3FXShape;
 
-        m_pRefShape = s_MngFXShape.Get(pSrc->m_pRefShape->FileName());
+        m_pRefShape = s_MngFXShape.Get(pSrc->m_pRefShape->FilePath());
         m_pShape->Duplicate(m_pRefShape);
     }
 

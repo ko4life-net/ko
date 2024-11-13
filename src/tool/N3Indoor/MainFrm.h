@@ -65,8 +65,8 @@ class CMainFrame : public CFrameWnd, public CN3Base {
     DWORD         m_dwRenderingOption;
     e_EditMode    m_eEditState;
 
-    std::string m_strResourcePath;
-    std::string m_strFileName;
+    fs::path m_fsResourceDir;
+    fs::path m_fsFile;
 
     bool m_bViewSelectedTotalShape;
     bool m_bViewSelectedFloor;
@@ -105,15 +105,17 @@ class CMainFrame : public CFrameWnd, public CN3Base {
 
   protected:
     virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext * pContext);
+
+    void OnFileMruFile(size_t iIndex);
     //}}AFX_VIRTUAL
 
     // Implementation
   public:
     void FindMinMaxTotalShape(__Vector3 & vecMin, __Vector3 & vecMax);
     void OutputDlgRefresh(); // 소스목록에서 선택한 Object를 넣으면 OutputScene으로 복사해서 넣어준다.
-    CN3Transform * AddChr(CN3Scene * pDestScene, const std::string & szFN,
+    CN3Transform * AddChr(CN3Scene * pDestScene, const fs::path & fsFile,
                           BOOL bGenerateChainNumber); // 특정Scene에 캐릭터 객체를 복사해 추가
-    CN3Transform * AddShape(CN3Scene * pDestScene, const std::string & szFN,
+    CN3Transform * AddShape(CN3Scene * pDestScene, const fs::path & fsFile,
                             BOOL bGenerateChainNumber); // 특정Scene에 Shape 객체를 복사해 추가
 
     void UpdateShapeInfoDisplay();

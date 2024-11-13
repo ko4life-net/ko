@@ -483,12 +483,13 @@ BOOL CN3CEView::OnDrop(COleDataObject * pDataObject, DROPEFFECT dropEffect, CPoi
 
 void CN3CEView::OnDropFiles(HDROP hDropInfo) {
     // TODO: Add your message handler code here and/or call default
-    char szFN[256];
-    ::DragQueryFile(hDropInfo, 0, szFN, 256);
+    fs::path::value_type szFile[260]{};
+    ::DragQueryFileW(hDropInfo, 0, szFile, std::size(szFile) - 1);
     ::DragFinish(hDropInfo);
 
-    if (lstrlen(szFN) > 0) {
-        GetDocument()->OnOpenDocument(szFN);
+    fs::path fsFile = szFile;
+    if (!fsFile.empty()) {
+        GetDocument()->OnOpenDocument(fsFile.string().c_str());
     }
 
     CView::OnDropFiles(hDropInfo);

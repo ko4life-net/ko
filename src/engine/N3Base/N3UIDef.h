@@ -6,8 +6,6 @@
 
 #include <string>
 
-#define DIR_UITEXTURE ("Texture\\UI\\")
-
 const float UI_DEFAULT_Z = 0.9f;
 const float UI_DEFAULT_RHW = 1.0f;
 

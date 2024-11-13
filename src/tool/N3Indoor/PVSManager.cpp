@@ -671,10 +671,10 @@ void CPVSManager::SplitShapeToVolumn(CDialog * pDlg) {
     }
 }
 
-void CPVSManager::RegisterShape(std::string szStr, CN3Shape * pShape) {
+void CPVSManager::RegisterShape(const fs::path & fsFile, CN3Shape * pShape) {
     ShapeInfo * pSI = new ShapeInfo;
     pSI->m_iID = m_iIncreseShapeIndex++;
-    pSI->m_strShapeFile = szStr;
+    pSI->m_fsShapeFile = fsFile;
     pSI->m_pShape = pShape;
 
     m_plShapeInfoList.push_back(pSI);
@@ -923,14 +923,13 @@ void CPVSManager::DebugFunc() {
 }
 
 bool CPVSManager::Save(HANDLE hFile) {
-    DWORD       dwNum;
-    std::string strSrc;
+    DWORD dwNum;
 
     // Version..
     WriteFile(hFile, &ciVersion, sizeof(int), &dwNum, NULL);
 
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
-    WriteCryptographString(hFile, pFrm->m_strFileName);
+    WriteCryptographString(hFile, fs::path(pFrm->m_fsFile).normalize('/', '\\').string());
 
     COrganizeView * pView = pFrm->GetOrganizeView();
     int             iT = pView->GetDlgItemInt(IDC_TOTAL_MOVE_X);
@@ -949,7 +948,7 @@ bool CPVSManager::Save(HANDLE hFile) {
     while (siit != m_plShapeInfoList.end()) {
         pSI = *siit++;
         WriteFile(hFile, &pSI->m_iID, sizeof(int), &dwNum, NULL);
-        WriteCryptographString(hFile, pSI->m_strShapeFile);
+        WriteCryptographString(hFile, fs::path(pSI->m_fsShapeFile).normalize('/', '\\').string());
 
         // Shape의 데이터 저장..
         WriteFile(hFile, &pSI->m_iBelong, sizeof(int), &dwNum, NULL);
@@ -1008,21 +1007,21 @@ bool CPVSManager::Load(HANDLE hFile) {
     CMainFrame *    pFrm = (CMainFrame *)AfxGetMainWnd();
     COrganizeView * pView = pFrm->GetOrganizeView();
 
-    std::string strSrc = ReadDecryptString(hFile);
-    if (pFrm->m_strFileName != strSrc) {
-        if (pFrm->m_strFileName.size()) {
+    fs::path fsSrcFile = ReadDecryptString(hFile);
+    if (pFrm->m_fsFile != fsSrcFile) {
+        if (!pFrm->m_fsFile.empty()) {
             if (pFrm->m_pSceneSource) {
                 delete pFrm->m_pSceneSource;
                 pFrm->m_pSceneSource = NULL;
             }
         }
 
-        pFrm->m_strFileName = strSrc;
+        pFrm->m_fsFile = fsSrcFile;
         pFrm->m_pSceneSource = new CN3Scene;
         pFrm->m_pSceneSource->m_szName = "SourceList";
-        pFrm->m_pSceneSource->FileNameSet(strSrc);
+        pFrm->m_pSceneSource->FilePathSet(fsSrcFile);
         pFrm->LoadSourceObjects();
-        pView->SetDlgItemText(IDC_EDIT_RESOURCE_NAME, strSrc.c_str());
+        pView->SetDlgItemText(IDC_EDIT_RESOURCE_NAME, fsSrcFile.string().c_str());
     }
 
     if (!pFrm->m_pSceneSource) {
@@ -1055,11 +1054,11 @@ bool CPVSManager::Load(HANDLE hFile) {
         ReadFile(hFile, &pSI->m_iID, sizeof(int), &dwNum, NULL);
 
         // 문자열 길이..
-        strSrc = ReadDecryptString(hFile);
-        pSI->m_strShapeFile = strSrc;
+        fsSrcFile = ReadDecryptString(hFile);
+        pSI->m_fsShapeFile = fsSrcFile;
 
         // SourceList에서.. Shape의 Pointer를 연결한다..
-        pSI->m_pShape = pFrm->m_pSceneSource->ShapeGetByFileName(strSrc);
+        pSI->m_pShape = pFrm->m_pSceneSource->ShapeGetByFile(fsSrcFile);
         ASSERT(pSI->m_pShape);
 
         ReadFile(hFile, &pSI->m_iBelong, sizeof(int), &dwNum, NULL);
@@ -1198,40 +1197,44 @@ CPortalVolume * CPVSManager::GetPortalVolPointerByID(int iID) {
 
 #define CRY_KEY 0x0816
 
-void CPVSManager::WriteCryptographString(HANDLE hFile, std::string strSrc) {
+void CPVSManager::WriteCryptographString(HANDLE hFile, std::string szStr) {
     DWORD dwNum;
 
-    int               iCount = strSrc.size();
-    std::vector<char> buffer(iCount, 0);
-    for (int i = 0; i < iCount; i++) {
-        buffer[i] = (int)strSrc[i] ^ CRY_KEY;
+    int iLen = szStr.length();
+    WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
+    if (iLen > 0) {
+        for (int i = 0; i < iLen; i++) {
+            szStr[i] ^= CRY_KEY;
+        }
+        WriteFile(hFile, szStr.c_str(), iLen, &dwNum, NULL);
     }
-
-    WriteFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
-    WriteFile(hFile, &buffer[0], iCount, &dwNum, NULL);
 }
 
 std::string CPVSManager::ReadDecryptString(HANDLE hFile) {
     DWORD dwNum;
-    int   iCount;
-    ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
-    std::vector<char> buffer(iCount, 0);
-    ReadFile(hFile, &buffer[0], iCount, &dwNum, NULL); // string
-    for (int i = 0; i < iCount; i++) {
-        buffer[i] ^= CRY_KEY;
+    int iLen = 0;
+    ReadFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
+
+    std::string szStr;
+    if (iLen > 0) {
+        szStr.assign(iLen, '\0');
+        ReadFile(hFile, szStr.data(), iLen, &dwNum, NULL);
+        for (int i = 0; i < iLen; i++) {
+            szStr[i] ^= CRY_KEY;
+        }
     }
 
-    return std::string(buffer.begin(), buffer.end());
+    return szStr;
 }
 
-CN3Shape * CPVSManager::GetShapeByManager(std::string szStr) {
+CN3Shape * CPVSManager::GetShapeByManager(const fs::path & fsFile) {
     ShapeInfo * pSI = NULL;
 
     siiter siit = m_plShapeInfoList.begin();
     while (siit != m_plShapeInfoList.end()) {
         pSI = *siit++;
-        if (pSI->m_pShape->FileName() == szStr) {
+        if (pSI->m_pShape->FilePath() == fsFile) {
             return pSI->m_pShape;
         }
     }

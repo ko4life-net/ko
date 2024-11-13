@@ -98,7 +98,7 @@ bool CN3Pond::Load(HANDLE hFile) {
             }
 
             fs::path fsTexFile = fs::path("Misc") / "river" / szFile;
-            ptmpPondMesh->m_pTexWave = s_MngTex.Get(fsTexFile.string());
+            ptmpPondMesh->m_pTexWave = s_MngTex.Get(fsTexFile);
             __ASSERT(ptmpPondMesh->m_pTexWave, "CN3Pond::texture load failed");
         }
 
@@ -212,7 +212,7 @@ bool CN3Pond::Load(HANDLE hFile) {
 
     for (int i = 0; i < MAX_POND_TEX; i++) {
         fs::path fsTexFile = fs::path("Misc") / "river" / std::format("caust{:02d}.dxt", i);
-        m_pTexPond[i] = CN3Base::s_MngTex.Get(fsTexFile.string());
+        m_pTexPond[i] = CN3Base::s_MngTex.Get(fsTexFile);
         __ASSERT(m_pTexPond[i], "CN3Pond::texture load failed");
     }
 

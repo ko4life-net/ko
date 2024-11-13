@@ -131,10 +131,10 @@ bool CN3SndEng::LoadSource(LPSOUNDSOURCE pSrc) {
     }
 
     CWaveFile WaveFile;
-    HRESULT   hr = WaveFile.Open(pSrc->szFN.c_str(), NULL, 1); //#define WAVEFILE_READ   1
+    HRESULT   hr = WaveFile.Open(pSrc->fsFile, NULL, 1); //#define WAVEFILE_READ   1
     if (FAILED(hr)) {
 #ifdef _N3GAME
-        CLogWriter::Write("CN3SndEng::LoadSource - WaveFile Open Failed.. (%)", pSrc->szFN.c_str());
+        CLogWriter::Write("CN3SndEng::LoadSource - WaveFile Open Failed.. (%)", pSrc->fsFile.string().c_str());
 #endif
         return false;
     }
@@ -157,14 +157,14 @@ bool CN3SndEng::LoadSource(LPSOUNDSOURCE pSrc) {
     hr = m_pDS->CreateSoundBuffer(&dsbd, &(pSrc->pDSBuff), NULL);
     if (FAILED(hr)) {
 #ifdef _N3GAME
-        CLogWriter::Write("CN3SndEng::LoadSource - CreateSoundBuffer Failed.. (%)", pSrc->szFN.c_str());
+        CLogWriter::Write("CN3SndEng::LoadSource - CreateSoundBuffer Failed.. (%)", pSrc->fsFile.string().c_str());
 #endif
         return false;
     }
 
     if (!FillBufferWithSound(pSrc, &WaveFile)) {
 #ifdef _N3GAME
-        CLogWriter::Write("CN3SndEng::LoadSource - FillBufferWithSound Failed.. (%)", pSrc->szFN.c_str());
+        CLogWriter::Write("CN3SndEng::LoadSource - FillBufferWithSound Failed.. (%)", pSrc->fsFile.string().c_str());
 #endif
         return false;
     }

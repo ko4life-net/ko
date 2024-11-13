@@ -554,7 +554,7 @@ void CPlayerMySelf::InventoryChrAnimationInitialize() {
     m_ChrInv.Tick(); // 한번 해준다..
 }
 
-CN3CPlugBase * CPlayerMySelf::PlugSet(e_PlugPosition ePos, const std::string & szFN, __TABLE_ITEM_BASIC * pItemBasic,
+CN3CPlugBase * CPlayerMySelf::PlugSet(e_PlugPosition ePos, const fs::path & fsFile, __TABLE_ITEM_BASIC * pItemBasic,
                                       __TABLE_ITEM_EXT * pItemExt) {
     int iJoint = 0;
     if (PLUG_POS_RIGHTHAND == ePos) {
@@ -581,7 +581,7 @@ CN3CPlugBase * CPlayerMySelf::PlugSet(e_PlugPosition ePos, const std::string & s
         __ASSERT(0, "Invalid Plug Item position");
     }
 
-    CN3CPlugBase * pPlug = m_ChrInv.PlugSet(ePos, szFN);
+    CN3CPlugBase * pPlug = m_ChrInv.PlugSet(ePos, fsFile);
     if (NULL == pPlug) {
         return NULL;
     }
@@ -600,10 +600,10 @@ CN3CPlugBase * CPlayerMySelf::PlugSet(e_PlugPosition ePos, const std::string & s
     //    }
 
     this->SetSoundPlug(pItemBasic);
-    return CPlayerBase::PlugSet(ePos, szFN, pItemBasic, pItemExt);
+    return CPlayerBase::PlugSet(ePos, fsFile, pItemBasic, pItemExt);
 }
 
-CN3CPart * CPlayerMySelf::PartSet(e_PartPosition ePos, const std::string & szFN, __TABLE_ITEM_BASIC * pItemBasic,
+CN3CPart * CPlayerMySelf::PartSet(e_PartPosition ePos, const fs::path & fsFile, __TABLE_ITEM_BASIC * pItemBasic,
                                   __TABLE_ITEM_EXT * pItemExt) {
     if (ePos < PART_POS_UPPER || ePos >= PART_POS_COUNT) {
         __ASSERT(0, "Invalid Item Position");
@@ -617,8 +617,8 @@ CN3CPart * CPlayerMySelf::PartSet(e_PartPosition ePos, const std::string & szFN,
             if (pItemBasic->byIsRobeType &&
                 m_Chr.Part(PART_POS_LOWER)) // 로브 타입의 통짜 윗옷이고 아래에 뭔가 입고 있으면..
             {
-                m_ChrInv.PartSet(PART_POS_LOWER, ""); // 아래를 비워준다..
-                m_Chr.PartSet(PART_POS_LOWER, "");
+                m_ChrInv.PartSet(PART_POS_LOWER, fs::path()); // 아래를 비워준다..
+                m_Chr.PartSet(PART_POS_LOWER, fs::path());
             }
         } else // 상체를 벗는 경우
         {
@@ -626,14 +626,14 @@ CN3CPart * CPlayerMySelf::PartSet(e_PartPosition ePos, const std::string & szFN,
             {
                 if (m_pItemPartBasics[PART_POS_LOWER]) // 하체에 아이템이 입혀있으면..
                 {
-                    std::string    szFN2;
+                    fs::path       fsItemFile;
                     e_PartPosition ePartPos2 = PART_POS_UNKNOWN;
                     e_PlugPosition ePlugPos2 = PLUG_POS_UNKNOWN;
-                    CGameProcedure::MakeResrcFileNameForUPC(m_pItemPartBasics[PART_POS_LOWER], &szFN2, NULL, ePartPos2,
-                                                            ePlugPos2);
+                    CGameProcedure::MakeResrcFileNameForUPC(m_pItemPartBasics[PART_POS_LOWER], &fsItemFile, NULL,
+                                                            ePartPos2, ePlugPos2);
 
-                    m_ChrInv.PartSet(PART_POS_LOWER, szFN2); // 하체에 전의 옷을 입힌다..
-                    m_Chr.PartSet(PART_POS_LOWER, szFN2);
+                    m_ChrInv.PartSet(PART_POS_LOWER, fsItemFile); // 하체에 전의 옷을 입힌다..
+                    m_Chr.PartSet(PART_POS_LOWER, fsItemFile);
                 } else // 하체에 입고 있었던 아이템이 없다면..
                 {
                     __TABLE_PLAYER_LOOKS * pLooks =
@@ -651,14 +651,14 @@ CN3CPart * CPlayerMySelf::PartSet(e_PartPosition ePos, const std::string & szFN,
         {
             m_pItemPartBasics[ePos] = pItemBasic; // 아이템 적용
             m_pItemPartExts[ePos] = pItemExt;
-            m_ChrInv.PartSet(ePos, "");
-            m_Chr.PartSet(ePos, ""); // 하체는 벗기고(?)..
-            return NULL;             // 돌아간다.
+            m_ChrInv.PartSet(ePos, fs::path());
+            m_Chr.PartSet(ePos, fs::path()); // 하체는 벗기고(?)..
+            return NULL;                     // 돌아간다.
         }
     }
 
     CN3CPart * pPart = NULL;
-    if (szFN.empty()) // 파일 이름이 없는거면.. 기본 착용..
+    if (fsFile.empty()) // 파일 이름이 없는거면.. 기본 착용..
     {
         if (PART_POS_HAIR_HELMET == ePos) {
             this->InitHair();
@@ -673,13 +673,13 @@ CN3CPart * CPlayerMySelf::PartSet(e_PartPosition ePos, const std::string & szFN,
                 m_ChrInv.PartSet(ePos, pLooks->szPartFNs[ePos]);
                 pPart = m_Chr.PartSet(ePos, pLooks->szPartFNs[ePos]);
                 if (pPart) {
-                    pPart->TexOverlapSet("");
+                    pPart->TexOverlapSet(fs::path());
                 }
             }
         }
     } else {
-        m_ChrInv.PartSet(ePos, szFN);
-        pPart = m_Chr.PartSet(ePos, szFN);
+        m_ChrInv.PartSet(ePos, fsFile);
+        pPart = m_Chr.PartSet(ePos, fsFile);
     }
 
     m_pItemPartBasics[ePos] = pItemBasic; // 아이템 적용
@@ -933,26 +933,22 @@ bool CPlayerMySelf::CheckCollision() {
 
 void CPlayerMySelf::InitFace() {
     __TABLE_PLAYER_LOOKS * pLooks = s_pTbl_UPC_Looks->Find(m_InfoBase.eRace);
-    if (pLooks && !pLooks->szPartFNs[PART_POS_FACE].empty()) // 아이템이 있고 얼굴 이름이 있으면..
-    {
-        char szBuff[256] = "", szDir[128] = "", szFName[128] = "", szExt[16] = "";
-        ::_splitpath(pLooks->szPartFNs[PART_POS_FACE].c_str(), NULL, szDir, szFName, szExt);
-        sprintf(szBuff, "%s%s%.2d%s", szDir, szFName, m_InfoExt.iFace, szExt);
-        this->PartSet(PART_POS_FACE, szBuff, NULL, NULL);
+    if (pLooks && !pLooks->szPartFNs[PART_POS_FACE].empty()) { // 아이템이 있고 얼굴 이름이 있으면..
+        fs::path fsFile = pLooks->szPartFNs[PART_POS_FACE];
+        fsFile = fsFile.parent_path() / (fsFile.stem() + std::format("{:02d}", m_InfoExt.iFace) + fsFile.extension());
+        this->PartSet(PART_POS_FACE, fsFile, NULL, NULL);
     }
 }
 
 void CPlayerMySelf::InitHair() {
     __TABLE_PLAYER_LOOKS * pLooks = s_pTbl_UPC_Looks->Find(m_InfoBase.eRace);
-    if (pLooks && !pLooks->szPartFNs[PART_POS_HAIR_HELMET].empty()) // 아이템이 있고 얼굴 이름이 있으면..
-    {
-        char szBuff[256] = "", szDir[128] = "", szFName[128] = "", szExt[16] = "";
-        ::_splitpath(pLooks->szPartFNs[PART_POS_HAIR_HELMET].c_str(), NULL, szDir, szFName, szExt);
-        sprintf(szBuff, "%s%s%.2d%s", szDir, szFName, m_InfoExt.iHair, szExt);
-        this->PartSet(PART_POS_HAIR_HELMET, szBuff, NULL, NULL);
+    if (pLooks && !pLooks->szPartFNs[PART_POS_HAIR_HELMET].empty()) { // 아이템이 있고 얼굴 이름이 있으면..
+        fs::path fsFile = pLooks->szPartFNs[PART_POS_HAIR_HELMET];
+        fsFile = fsFile.parent_path() / (fsFile.stem() + std::format("{:02d}", m_InfoExt.iHair) + fsFile.extension());
+        this->PartSet(PART_POS_HAIR_HELMET, fsFile, NULL, NULL);
     } else {
-        m_Chr.PartSet(PART_POS_HAIR_HELMET, "");
-        m_ChrInv.PartSet(PART_POS_HAIR_HELMET, "");
+        m_Chr.PartSet(PART_POS_HAIR_HELMET, fs::path());
+        m_ChrInv.PartSet(PART_POS_HAIR_HELMET, fs::path());
     }
 }
 

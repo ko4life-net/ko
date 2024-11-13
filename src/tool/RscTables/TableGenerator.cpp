@@ -13,16 +13,15 @@ CTableGenerator::CTableGenerator() {}
 
 CTableGenerator::~CTableGenerator() {}
 
-bool CTableGenerator::OpenSource(const std::string & szEnumFileName, const std::string & szTxtFileName) {
-    if (szEnumFileName.empty() || szTxtFileName.empty()) {
+bool CTableGenerator::OpenSource(const fs::path & fsEnumFile, const fs::path & fsTxtFile) {
+    if (fsEnumFile.empty() || fsTxtFile.empty()) {
         return false;
     }
 
     HWND   hWnd = ::GetActiveWindow();
-    HANDLE hFile =
-        CreateFile(szEnumFileName.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFile = CreateFileW(fsEnumFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hFile) {
-        MessageBox(hWnd, szEnumFileName.c_str(), "파일이 없거나 읽을 수 없습니다.", MB_OK);
+        MessageBoxW(hWnd, fsEnumFile.c_str(), L"파일이 없거나 읽을 수 없습니다.", MB_OK);
         return false;
     }
 
@@ -33,7 +32,7 @@ bool CTableGenerator::OpenSource(const std::string & szEnumFileName, const std::
     ReadFile(hFile, &iDataCount, sizeof(iDataCount), &dwNum, NULL);
     if (iDataCount <= 0) {
         CloseHandle(hFile);
-        MessageBox(hWnd, szEnumFileName.c_str(), "Data Type 이 없습니다.", MB_OK);
+        MessageBoxW(hWnd, fsEnumFile.c_str(), L"Data Type 이 없습니다.", MB_OK);
         return false;
     }
 
@@ -43,15 +42,15 @@ bool CTableGenerator::OpenSource(const std::string & szEnumFileName, const std::
     }
     CloseHandle(hFile);
 
-    FILE * pFile = fopen(szTxtFileName.c_str(), "r");
+    FILE * pFile = _wfopen(fsTxtFile.c_str(), L"r");
     if (NULL == pFile) {
-        MessageBox(hWnd, szTxtFileName.c_str(), "파일이 없거나 읽을 수 없습니다.", MB_OK);
+        MessageBoxW(hWnd, fsTxtFile.c_str(), L"파일이 없거나 읽을 수 없습니다.", MB_OK);
         return false;
     }
 
     // 파일 이름 기록..
-    m_szEnmBasic = szEnumFileName;
-    m_szTxtBasic = szTxtFileName;
+    m_fsEnmBasicFile = fsEnumFile;
+    m_fsTxtBasicFile = fsTxtFile;
 
     char                                     szLine[1024];
     std::set<int>                            KeySet;
@@ -88,7 +87,7 @@ bool CTableGenerator::OpenSource(const std::string & szEnumFileName, const std::
                         if (false == pk.second) {
                             char szErr[512];
                             sprintf(szErr, "Key 중복 : Line %d, Key : %d, File : %s", i + 1, iVal,
-                                    szTxtFileName.c_str());
+                                    fsTxtFile.string().c_str());
                             MessageBox(hWnd, szErr, "Key 중복 - 테이블에 추가 실패", MB_OK);
                             break;
                         }
@@ -100,7 +99,7 @@ bool CTableGenerator::OpenSource(const std::string & szEnumFileName, const std::
                     m_Datas[j].m_Texts.push_back(szText);
                 }
             } else {
-                MessageBox(hWnd, szTxtFileName.c_str(), "Data 의 열 갯수가 적거나 다릅니다.", MB_OK);
+                MessageBoxW(hWnd, fsTxtFile.c_str(), L"Data 의 열 갯수가 적거나 다릅니다.", MB_OK);
                 fclose(pFile);
                 m_Datas.clear();
                 return false;
@@ -113,16 +112,15 @@ bool CTableGenerator::OpenSource(const std::string & szEnumFileName, const std::
     return true;
 }
 
-bool CTableGenerator::OpenReference_Enum(const std::string & szEnumFileName) {
-    if (szEnumFileName.empty()) {
+bool CTableGenerator::OpenReference_Enum(const fs::path & fsEnumFile) {
+    if (fsEnumFile.empty()) {
         return false;
     }
 
     HWND   hWnd = ::GetActiveWindow();
-    HANDLE hFile =
-        CreateFile(szEnumFileName.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFile = CreateFileW(fsEnumFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hFile) {
-        MessageBox(hWnd, szEnumFileName.c_str(), "파일이 없거나 읽을 수 없습니다.", MB_OK);
+        MessageBoxW(hWnd, fsEnumFile.c_str(), L"파일이 없거나 읽을 수 없습니다.", MB_OK);
         return false;
     }
 
@@ -134,7 +132,7 @@ bool CTableGenerator::OpenReference_Enum(const std::string & szEnumFileName) {
     ReadFile(hFile, &iDataCount, sizeof(iDataCount), &dwNum, NULL);
     if (iDataCount <= 0) {
         CloseHandle(hFile);
-        MessageBox(hWnd, szEnumFileName.c_str(), "Data Type 이 없습니다.", MB_OK);
+        MessageBoxW(hWnd, fsEnumFile.c_str(), L"Data Type 이 없습니다.", MB_OK);
         return false;
     }
 
@@ -145,13 +143,13 @@ bool CTableGenerator::OpenReference_Enum(const std::string & szEnumFileName) {
     CloseHandle(hFile);
 
     // 파일 이름 기록..
-    m_szEnmExt = szEnumFileName;
+    m_fsEnmExtFile = fsEnumFile;
 
     return true;
 }
 
-bool CTableGenerator::OpenReference_Txt(int iIndex, const std::string & szTxtFileName) {
-    if (szTxtFileName.empty()) {
+bool CTableGenerator::OpenReference_Txt(int iIndex, const fs::path & fsTxtFile) {
+    if (fsTxtFile.empty()) {
         return false;
     }
     if (iIndex < 0 || iIndex >= MAX_ITEM_EXTENSION) {
@@ -163,9 +161,9 @@ bool CTableGenerator::OpenReference_Txt(int iIndex, const std::string & szTxtFil
 
     HWND hWnd = ::GetActiveWindow();
 
-    FILE * pFile = fopen(szTxtFileName.c_str(), "r");
+    FILE * pFile = _wfopen(fsTxtFile.c_str(), L"r");
     if (NULL == pFile) {
-        MessageBox(hWnd, szTxtFileName.c_str(), "파일이 없거나 읽을 수 없습니다.", MB_OK);
+        MessageBoxW(hWnd, fsTxtFile.c_str(), L"파일이 없거나 읽을 수 없습니다.", MB_OK);
         return false;
     }
 
@@ -205,7 +203,7 @@ bool CTableGenerator::OpenReference_Txt(int iIndex, const std::string & szTxtFil
                         if (false == pk.second) {
                             char szErr[512];
                             sprintf(szErr, "Key 중복 : Line %d, Key : %d, File : %s", i + 1, iVal,
-                                    szTxtFileName.c_str());
+                                    fsTxtFile.string().c_str());
                             MessageBox(hWnd, szErr, "Key 중복 - 테이블에 추가 실패", MB_OK);
                             break;
                         }
@@ -230,12 +228,12 @@ bool CTableGenerator::OpenReference_Txt(int iIndex, const std::string & szTxtFil
     fclose(pFile);
 
     // 파일 이름 기록..
-    m_szTxtExts[iIndex] = szTxtFileName;
+    m_fsTxtExtFiles[iIndex] = fsTxtFile;
 
     return true;
 }
 
-bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, const std::string & szTxtFileName) {
+bool CTableGenerator::Generate(int iIndex, const fs::path & fsEnumFile, const fs::path & fsTxtFile) {
     int iIndexS = iIndex, iIndexE = iIndex;
     if (-1 == iIndex) {
         iIndexS = 0;
@@ -245,7 +243,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
     if (iIndexS < 0 || iIndexS >= MAX_ITEM_EXTENSION || iIndexE < 0 || iIndexE >= MAX_ITEM_EXTENSION) {
         return false;
     }
-    if (szTxtFileName.empty()) {
+    if (fsTxtFile.empty()) {
         return false;
     }
 
@@ -256,10 +254,9 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
     }
 
     DWORD  dwRWC = 0;
-    HANDLE hFile =
-        CreateFile(szTxtFileName.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFile = CreateFileW(fsTxtFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hFile) {
-        MessageBox(hWnd, szTxtFileName.c_str(), "파일이 없거나 쓸수 없습니다.", MB_OK);
+        MessageBoxW(hWnd, fsTxtFile.c_str(), L"파일이 없거나 쓸수 없습니다.", MB_OK);
         return false;
     }
 
@@ -652,7 +649,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
     CloseHandle(hFile);
 
     // Data Type 저장..
-    this->DataTypeSave(szEnumFileName);
+    this->DataTypeSave(fsEnumFile);
     m_DataTypes = DataTypesPrev; // 백업 받은걸로 돌려놓는다.
     return true;
 }
@@ -700,8 +697,8 @@ int CTableGenerator::ParseLine(
     return 0;
 }
 
-bool CTableGenerator::DataTypeSave(const std::string & szFN) {
-    HANDLE hFile = CreateFile(szFN.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+bool CTableGenerator::DataTypeSave(const fs::path & fsFile) {
+    HANDLE hFile = CreateFileW(fsFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     HWND   hWnd = ::GetActiveWindow();
     if (INVALID_HANDLE_VALUE == hFile) {
         MessageBox(hWnd, "파일을 만들 수 없습니다.", "데이터 형식 저장", MB_OK);
@@ -720,9 +717,9 @@ bool CTableGenerator::DataTypeSave(const std::string & szFN) {
     return true;
 }
 
-bool CTableGenerator::DataTypeLoad(const std::string & szFN) {
+bool CTableGenerator::DataTypeLoad(const fs::path & fsFile) {
     HWND   hWnd = ::GetActiveWindow();
-    HANDLE hFile = CreateFile(szFN.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFile = CreateFileW(fsFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hFile) {
         MessageBox(hWnd, "파일이 없거나 읽을 수 없습니다.", "데이터 형식 부르기", MB_OK);
         return false;
@@ -747,9 +744,9 @@ bool CTableGenerator::DataTypeLoad(const std::string & szFN) {
     return true;
 }
 
-bool CTableGenerator::Convert2Bin(const std::string & szFN) {
+bool CTableGenerator::Convert2Bin(const fs::path & fsFile) {
     HWND   hWnd = ::GetActiveWindow();
-    FILE * stream = fopen(szFN.c_str(), "r");
+    FILE * stream = _wfopen(fsFile.c_str(), L"r");
     if (NULL == stream) {
         MessageBox(hWnd, "읽을 수 없는 파일입니다.", "Convert Error", MB_OK);
         return false;
@@ -760,7 +757,7 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
     // 맨 윗줄은 column의 이름들이 써있음
     if (fgets(line, iMaxStrLen, stream) == NULL) {
         fclose(stream);
-        std::string szMsg = szFN + " - 파일 내용을 읽을 수 없습니다.";
+        std::string szMsg = fsFile.string() + " - 파일 내용을 읽을 수 없습니다.";
         MessageBox(hWnd, szMsg.c_str(), "Convert Error", MB_OK);
         return false;
     }
@@ -774,7 +771,8 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
     }
     if (iCount != iDataCount) {
         fclose(stream);
-        std::string szMsg = szFN + " - 파일 데이터와 설정한 데이터 수가 일치하지 않습니다.\n다시 확인해 주세요!";
+        std::string szMsg =
+            fsFile.string() + " - 파일 데이터와 설정한 데이터 수가 일치하지 않습니다.\n다시 확인해 주세요!";
         MessageBox(hWnd, szMsg.c_str(), "Convert Error", MB_OK);
         return false;
     }
@@ -799,15 +797,11 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
     }
 
     // binary file 생성하기
-    char szFName[_MAX_PATH], szDrv[_MAX_DRIVE], szPath[_MAX_PATH];
-    char szDestFN[_MAX_PATH];
-    _splitpath(szFN.c_str(), szDrv, szPath, szFName, NULL);
-    _makepath(szDestFN, szDrv, szPath, szFName, ".tbl");
-    HANDLE hFile = CreateFile(szDestFN, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    fs::path fsTblFile = fs::path(fsFile).replace_extension(".tbl");
+    HANDLE   hFile = CreateFileW(fsTblFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hFile) {
         fclose(stream);
-        std::string szMsg = szDestFN;
-        szMsg += " - 파일을 생성할 수 없습니다.";
+        std::string szMsg = fsTblFile.string() + " - 파일을 생성할 수 없습니다.";
         MessageBox(hWnd, szMsg.c_str(), "Convert Error", MB_OK);
         return false;
     }
@@ -853,7 +847,7 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
         pair_Key pk = KeySet.insert(iKey);
         if (false == pk.second) {
             char szErr[512];
-            sprintf(szErr, "Key 중복 : Line %d, Key : %d, File : %s", iRowCount + 1, iKey, szFN.c_str());
+            sprintf(szErr, "Key 중복 : Line %d, Key : %d, File : %s", iRowCount + 1, iKey, fsFile.string().c_str());
             MessageBox(hWnd, szErr, "Key 중복 - 테이블에 추가 실패", MB_OK);
             CloseHandle(hFile);
             fclose(stream);
@@ -877,7 +871,8 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
                         // 버퍼에 있는것 기록
                         if (FALSE == WriteData(hFile, m_DataTypes[iColCount], strValueBuffer.c_str())) {
                             char szErr[512];
-                            wsprintf(szErr, "File - %s, Line - %d, Field - %d", szFN.c_str(), iRowCount + 1, iColCount);
+                            wsprintf(szErr, "File - %s, Line - %d, Field - %d", fsFile.string().c_str(), iRowCount + 1,
+                                     iColCount);
                             MessageBox(
                                 hWnd, szErr,
                                 "데이타 기록이 무시되는 것이 있습니다. 이 파일은 제대로 작동 되지 않을 것입니다.",
@@ -906,7 +901,8 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
                     // 버퍼에 있는것 기록
                     if (FALSE == WriteData(hFile, m_DataTypes[iColCount], strValueBuffer.c_str())) {
                         char szErr[512];
-                        wsprintf(szErr, "File - %s, Line - %d, Field - %d", szFN.c_str(), iRowCount + 1, iColCount);
+                        wsprintf(szErr, "File - %s, Line - %d, Field - %d", fsFile.string().c_str(), iRowCount + 1,
+                                 iColCount);
                         MessageBox(hWnd, szErr,
                                    "데이타 기록이 무시되는 것이 있습니다. 이 파일은 제대로 작동 되지 않을 것입니다.",
                                    MB_OK);
@@ -948,7 +944,7 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
 
             if (FALSE == WriteData(hFile, m_DataTypes[iColCount], token)) {
                 char szErr[512];
-                wsprintf(szErr, "File - %s, Line - %d, Field - %d", szFN.c_str(), iRowCount + 1, iColCount);
+                wsprintf(szErr, "File - %s, Line - %d, Field - %d", fsFile.string().c_str(), iRowCount + 1, iColCount);
                 MessageBox(hWnd, szErr,
                            "데이타 기록이 무시되는 것이 있습니다. 이 파일은 제대로 작동 되지 않을 것입니다.", MB_OK);
                 CloseHandle(hFile);
@@ -964,7 +960,7 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
         }
         if (iDataCount != iColCount) {
             char szErr[512];
-            wsprintf(szErr, "File - %s, Line - %d, Field - %d", szFN.c_str(), iRowCount + 1, iColCount);
+            wsprintf(szErr, "File - %s, Line - %d, Field - %d", fsFile.string().c_str(), iRowCount + 1, iColCount);
             MessageBox(hWnd, szErr, "현재 설정된 데이타 항목과 기록되는 데이타 항목이 일치하지 않는 항목이 있습니다.",
                        MB_OK);
             CloseHandle(hFile);
@@ -981,10 +977,10 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
     ////////////////////////////////////////////////////////////
     // 암호화.. 게임의 키와 동일하다...
 
-    hFile = ::CreateFile(szDestFN, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    hFile = ::CreateFileW(fsTblFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hFile) {
-        MessageBox(hWnd, szDestFN, "암호화 파일 만들기에 실패 했습니다.", MB_OK);
-        remove(szDestFN); // 파일 지우고..
+        MessageBoxW(hWnd, fsTblFile.c_str(), L"암호화 파일 만들기에 실패 했습니다.", MB_OK);
+        fs::remove(fsTblFile); // 파일 지우고..
         return false;
     }
 
@@ -993,7 +989,7 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
     DWORD dwSizeLow = ::GetFileSize(hFile, &dwSizeHigh);
     if (dwSizeLow <= 0) {
         CloseHandle(hFile);
-        ::remove(szDestFN); // 임시 파일 지우기..
+        fs::remove(fsTblFile); // 임시 파일 지우기..
         return false;
     }
 
@@ -1008,18 +1004,16 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
     WORD key_c1 = 0x6081;
     WORD key_c2 = 0x1608;
 
-    //BYTE Encrypt(BYTE plain)
-    //{
+    //BYTE Encrypt(BYTE plain) {
     //    BYTE cipher;
-    //    cipher = (plain ^ (key_r>>8));
+    //    cipher = (plain ^ (key_r >> 8));
     //    key_r = (cipher + key_r) * key_c1 + key_c2;
     //    return cipher;
     //}
 
-    //BYTE Decrypt(BYTE cipher)
-    //{
+    //BYTE Decrypt(BYTE cipher) {
     //    BYTE plain;
-    //    plain = (cipher ^ (m_r>>8));
+    //    plain = (cipher ^ (m_r >> 8));
     //    m_r = (cipher + m_r) * m_c1 + m_c2;
     //    return plain;
     //}
@@ -1032,7 +1026,7 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
     }
 
     // 다시 파일을 연다..
-    hFile = ::CreateFile(szDestFN, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    hFile = ::CreateFileW(fsTblFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     ::WriteFile(hFile, pDatas, dwSizeLow, &dwRWC, NULL); // 파일에 암호화 시킨 데이터 쓰기
     CloseHandle(hFile);                                  // 파일 닫기
     delete[] pDatas;
@@ -1224,11 +1218,11 @@ char * CTableGenerator::MyToken(LPCTSTR lpszInput) {
 }
 
 void CTableGenerator::Release() {
-    m_szEnmBasic = "";
-    m_szTxtBasic = "";
-    m_szEnmExt = "";
+    m_fsEnmBasicFile = "";
+    m_fsTxtBasicFile = "";
+    m_fsEnmExtFile = "";
     for (int i = 0; i < MAX_ITEM_EXTENSION; i++) {
-        m_szTxtExts[i] = "";
+        m_fsTxtExtFiles[i] = "";
     }
 
     m_DataTypes.clear();

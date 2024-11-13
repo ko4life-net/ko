@@ -59,9 +59,9 @@ class CN3CPart : public CN3BaseFileAccess {
     void Render(int nLOD);
 
     CN3Texture * Tex() { return m_pTexRef; }
-    CN3Texture * TexSet(const std::string & szFN) {
+    CN3Texture * TexSet(const fs::path & fsFile) {
         s_MngTex.Delete(&m_pTexRef);
-        m_pTexRef = s_MngTex.Get(szFN, true, s_Options.iTexLOD_Chr);
+        m_pTexRef = s_MngTex.Get(fsFile, true, s_Options.iTexLOD_Chr);
         return m_pTexRef;
     }
     void TexSet(CN3Texture * pTex) {
@@ -70,7 +70,7 @@ class CN3CPart : public CN3BaseFileAccess {
     }
 
     CN3Texture * TexOverlap() { return m_pTexOverlapRef; } // 위에 덧칠할 텍스처
-    CN3Texture * TexOverlapSet(const std::string & szFN);
+    CN3Texture * TexOverlapSet(const fs::path & fsFile);
     void         TexOverlapSet(CN3Texture * pTex);
 
     CN3Skin * Skin(int nLOD) {
@@ -81,7 +81,7 @@ class CN3CPart : public CN3BaseFileAccess {
         }
     }
     CN3CPartSkins * Skins() { return m_pSkinsRef; }
-    CN3CPartSkins * SkinsSet(const std::string & szFN);
+    CN3CPartSkins * SkinsSet(const fs::path & fsFile);
 
 #ifdef _N3TOOL
     void RenderSelected(int nLOD);
@@ -122,7 +122,7 @@ class CN3CPlugBase : public CN3BaseFileAccess {
   public:
     CN3CPlugBase();
     virtual ~CN3CPlugBase();
-    static e_PlugType GetPlugTypeByFileName(const std::string & szFN);
+    static e_PlugType GetPlugTypeByFileName(const fs::path & fsFile);
 
     virtual bool Load(HANDLE hFile);
 #ifdef _N3TOOL
@@ -152,9 +152,9 @@ class CN3CPlugBase : public CN3BaseFileAccess {
     }
 
     CN3Texture * Tex() { return m_pTexRef; }
-    CN3Texture * TexSet(const std::string & szFN) {
+    CN3Texture * TexSet(const fs::path & fsFile) {
         s_MngTex.Delete(&m_pTexRef);
-        m_pTexRef = s_MngTex.Get(szFN, true, s_Options.iTexLOD_Chr);
+        m_pTexRef = s_MngTex.Get(fsFile, true, s_Options.iTexLOD_Chr);
         return m_pTexRef;
     }
     void TexSet(CN3Texture * pTex) {
@@ -163,12 +163,12 @@ class CN3CPlugBase : public CN3BaseFileAccess {
     }
 
     CN3Texture * TexOverlap() { return m_pTexOverlapRef; } // 위에 덧칠할 텍스처
-    CN3Texture * TexOverlapSet(const std::string & szFN);
+    CN3Texture * TexOverlapSet(const fs::path & fsFile);
     void         TexOverlapSet(CN3Texture * pTex);
 
     CN3PMesh *         PMesh() { return m_PMeshInst.GetMesh(); }
     CN3PMeshInstance * PMeshInst() { return &m_PMeshInst; }
-    void               PMeshSet(const std::string & szFN);
+    void               PMeshSet(const fs::path & fsFile);
 };
 
 const int MAX_PLUG_FX_POSITION = 5;
@@ -193,21 +193,21 @@ class CN3CPlug : public CN3CPlugBase {
     class CN3FXBundle *        m_pFXMainBundle;
     class CN3FXBundle *        m_pFXTailBundle[MAX_FXTAIL];
     class CN3FXPartBillBoard * m_pFXPart;
-    std::string                m_strFXMainName;
-    std::string                m_strFXTailName;
+    fs::path                   m_fsFXMainFile;
+    fs::path                   m_fsFXTailFile;
 
   public:
     virtual bool Load(HANDLE hFile);
 #ifdef _N3TOOL
     virtual bool Save(HANDLE hFile);
-    void         ImportPMesh(const std::string & szFileName);
+    void         ImportPMesh(const fs::path & fsFile);
     void RenderFXLines(const __Matrix44 & mtxParent, const __Matrix44 & mtxJoint); // FX 들어갈 곳에 선을 그려준다.
 #endif                                                                             // end of _N3TOOL
     virtual void Render(const __Matrix44 & mtxParent, const __Matrix44 & mtxJoint);
     virtual void Release();
 
     void RenderFX(const __Matrix44 & mtxParent, const __Matrix44 & mtxJoint);
-    void InitFX(std::string & szFXMain, std::string & szFXTail, D3DCOLOR TraceCR = 0xffffffff);
+    void InitFX(const fs::path & fsMainFile, const fs::path & fsTailFile, D3DCOLOR TraceCR = 0xffffffff);
 
   public:
     CN3CPlug();
@@ -339,13 +339,13 @@ class CN3Chr : public CN3TransformCollision {
         return NULL;
     }
 
-    // void      CollisionSkinSet(const std::string & szFN);
+    // void      CollisionSkinSet(const fs::path & fsFile);
     // CN3Skin * CollisionSkin() { return m_pSkinCollision; }
 
     void       PartDelete(int iIndex);
     void       PartAlloc(int nCount);
     int        PartCount() { return m_Parts.size(); }
-    CN3CPart * PartSet(int iIndex, const std::string & szFN);
+    CN3CPart * PartSet(int iIndex, const fs::path & fsFile);
     CN3CPart * PartAdd() {
         CN3CPart * pPart = new CN3CPart();
         m_Parts.push_back(pPart);
@@ -361,7 +361,7 @@ class CN3Chr : public CN3TransformCollision {
     void       PlugDelete(int iIndex);
     void       PlugAlloc(int nCount);
     int        PlugCount() { return m_Plugs.size(); }
-    CN3CPlug * PlugSet(int iIndex, const std::string & szFN);
+    CN3CPlug * PlugSet(int iIndex, const fs::path & fsFile);
     CN3CPlug * PlugAdd(e_PlugType eType = PLUGTYPE_NORMAL) {
         CN3CPlug * pPlug = new CN3CPlug();
         m_Plugs.push_back(pPlug);
@@ -384,14 +384,14 @@ class CN3Chr : public CN3TransformCollision {
     float Radius() { return m_fRadius * m_vScale.y; } // 스케일을 적용한 너비...
 
     CN3Joint * Joint() { return m_pRootJointRef; }
-    void       JointSet(const std::string & szFN);
+    void       JointSet(const fs::path & fsFile);
 
     // Animation 관련 함수
 #ifdef _N3TOOL
     void AniDefaultSet();
 #endif // #ifdef _N3TOOL
     CN3AnimControl * AniCtrl() { return m_pAniCtrlRef; }
-    void             AniCtrlSet(const std::string & szFN);
+    void             AniCtrlSet(const fs::path & fsFile);
     int              AniIndexCur() { return m_FrmCtrl.iAni; }
     int              AniCurSet(int   iAni,                       // Animation 번호,
                                bool  bOnceAndFreeze = false,     // 한번만 돌고 멈추어야 하는가??
@@ -428,7 +428,7 @@ class CN3Chr : public CN3TransformCollision {
     //////////////////////////////////////////////////
     // Coded (By Dino On 2002-10-10 오후 2:35:32 )
     // FXPlug
-    class CN3FXPlug * FXPlugSet(const std::string & strFN);
+    class CN3FXPlug * FXPlugSet(const fs::path & fsFile);
     class CN3FXPlug * FXPlugCreate();
     class CN3FXPlug * FXPlugGet() { return m_pFXPlug; }
     void              FXPlugDelete();

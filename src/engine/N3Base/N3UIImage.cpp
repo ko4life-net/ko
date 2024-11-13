@@ -15,7 +15,6 @@ CN3UIImage::CN3UIImage() {
 
     m_pVB = NULL;
     m_pTexRef = NULL;
-    m_szTexFN = "";
     m_pAnimImagesRef = NULL;
 
     ZeroMemory(&m_frcUVRect, sizeof(m_frcUVRect));
@@ -44,7 +43,7 @@ void CN3UIImage::Release() {
         m_pVB = NULL;
     }
     s_MngTex.Delete(&m_pTexRef);
-    m_szTexFN = "";
+    m_fsTexFile.clear();
 
     ZeroMemory(&m_frcUVRect, sizeof(m_frcUVRect));
     m_Color = D3DCOLOR_ARGB(0xff, 0xff, 0xff, 0xff);
@@ -102,12 +101,12 @@ void CN3UIImage::SetVB() {
     }
 }
 
-void CN3UIImage::SetTex(const std::string & szFN) {
-    m_szTexFN = szFN;
+void CN3UIImage::SetTex(const fs::path & fsFile) {
+    m_fsTexFile = fsFile;
     s_MngTex.Delete(&m_pTexRef);
     // animate image일때만 texture 지정하기
     if (!(UISTYLE_IMAGE_ANIMATE & m_dwStyle)) {
-        m_pTexRef = s_MngTex.Get(szFN);
+        m_pTexRef = s_MngTex.Get(fsFile);
     }
 }
 
@@ -206,16 +205,17 @@ bool CN3UIImage::Load(HANDLE hFile) {
     if (false == CN3UIBase::Load(hFile)) {
         return false;
     }
-    DWORD dwNum;
-    // texture 정보
-    __ASSERT(NULL == m_pTexRef, "load 하기 전에 초기화가 되지 않았습니다.");
-    int iStrLen = 0;
-    ReadFile(hFile, &iStrLen, sizeof(iStrLen), &dwNum, NULL); // 파일 이름 길이
-    char szFName[MAX_PATH] = "";
-    if (iStrLen > 0) {
-        ReadFile(hFile, szFName, iStrLen, &dwNum, NULL); // 파일 이름
-        szFName[iStrLen] = '\0';
-        this->SetTex(szFName);
+
+    __ASSERT(NULL == m_pTexRef, "Not initialized before loading.");
+
+    DWORD dwNum = 0;
+
+    int iLen = 0;
+    ReadFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL); // 파일 이름 길이
+    if (iLen > 0) {
+        std::string szFile(iLen, '\0');
+        ReadFile(hFile, szFile.data(), iLen, &dwNum, NULL); // 파일 이름
+        SetTex(szFile);
     }
 
     ReadFile(hFile, &m_frcUVRect, sizeof(m_frcUVRect), &dwNum, NULL); // uv좌표
@@ -258,9 +258,9 @@ void CN3UIImage::operator=(const CN3UIImage & other) {
     m_iAnimCount = other.m_iAnimCount;
 
     if (other.m_pTexRef) {
-        m_pTexRef = s_MngTex.Get(other.m_pTexRef->FileName());
+        m_pTexRef = s_MngTex.Get(other.m_pTexRef->FilePath());
     }
-    m_szTexFN = other.m_szTexFN;
+    m_fsTexFile = other.m_fsTexFile;
 
     // Animate 되는 image이면 관련된 변수 세팅
     m_iAnimCount = m_Children.size(); // animate image 수 정하기
@@ -289,12 +289,13 @@ bool CN3UIImage::Save(HANDLE hFile) {
     DWORD dwNum;
     // texture 정보
     if (m_pTexRef) {
-        m_szTexFN = m_pTexRef->FileName();
+        m_fsTexFile = m_pTexRef->FilePathWin();
     }
-    int iStrLen = m_szTexFN.size();
-    WriteFile(hFile, &iStrLen, sizeof(iStrLen), &dwNum, NULL); // 파일 길이
-    if (iStrLen > 0) {
-        WriteFile(hFile, m_szTexFN.c_str(), iStrLen, &dwNum, NULL); // 파일 이름
+    std::string szTexFile = m_fsTexFile.string();
+    int         iLen = szTexFile.length();
+    WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL); // 파일 길이
+    if (iLen > 0) {
+        WriteFile(hFile, szTexFile.c_str(), iLen, &dwNum, NULL); // 파일 이름
     }
 
     WriteFile(hFile, &m_frcUVRect, sizeof(m_frcUVRect), &dwNum, NULL);   // uv좌표
@@ -303,41 +304,37 @@ bool CN3UIImage::Save(HANDLE hFile) {
     return true;
 }
 
-void CN3UIImage::ChangeImagePath(const std::string & szPathOld, const std::string & szPathNew) {
-    CN3UIBase::ChangeImagePath(szPathOld, szPathNew);
+void CN3UIImage::ChangeImagePath(const fs::path & fsOldFile, const fs::path & fsNewFile) {
+    CN3UIBase::ChangeImagePath(fsOldFile, fsNewFile);
 
-    std::string szOld = szPathOld, szNew = szPathNew;
-
-    if (!szOld.empty()) {
-        ::CharLower(&(szOld[0]));
+    fs::path fsOld = fsOldFile, fsNew = fsNewFile;
+    if (!fsOld.empty()) {
+        CN3BaseFileAccess::ToRelative(fsOld);
     }
-    if (!szNew.empty()) {
-        ::CharLower(&(szNew[0]));
-    }
-    if (!m_szTexFN.empty()) {
-        ::CharLower(&(m_szTexFN[0]));
+    if (!fsNew.empty()) {
+        CN3BaseFileAccess::ToRelative(fsNew);
     }
 
     if (m_pTexRef) {
-        m_szTexFN = m_pTexRef->FileName();
+        m_fsTexFile = m_pTexRef->FilePath();
     }
-    int i = m_szTexFN.find(szOld);
-    if (i >= 0) {
-        std::string szF = m_szTexFN.substr(0, i);
-        std::string szL = m_szTexFN.substr(i + szOld.size());
-        m_szTexFN = szF + szNew + szL;
+    if (!m_fsTexFile.empty()) {
+        CN3BaseFileAccess::ToRelative(m_fsTexFile);
+    }
+
+    if (m_fsTexFile == fsOld) {
+        m_fsTexFile = fsNew;
         s_MngTex.Delete(&m_pTexRef);
-        m_pTexRef = s_MngTex.Get(m_szTexFN);
+        m_pTexRef = s_MngTex.Get(m_fsTexFile);
     }
 }
 
-void CN3UIImage::GatherImageFileName(std::set<std::string> & setImgFile) {
+void CN3UIImage::GatherImageFileName(std::set<fs::path> & setImgFile) {
     CN3UIBase::GatherImageFileName(setImgFile); // child 정보
 
-    std::string szImgFN = m_szTexFN;
-    if (!szImgFN.empty()) {
-        ::CharLower(&(szImgFN[0]));
-        setImgFile.insert(szImgFN);
+    fs::path fsTexFile = m_fsTexFile;
+    if (!fsTexFile.empty()) {
+        setImgFile.insert(fsTexFile.lower());
     }
 }
 
@@ -415,86 +412,91 @@ void CN3UIImage::SetAnimImage(int iAnimCount) {
 }
 
 bool CN3UIImage::ReplaceAllTextures(const std::string & strFind, const std::string & strReplace) {
-    if (strFind.size() <= 0 || strReplace.size() <= 0) {
+    if (strFind.empty() || strReplace.empty()) {
         return false;
     }
+
+    fs::path fsFindPath(strFind);
+    fs::path fsReplacePath(strReplace);
+
+    std::string szFindStem = fsFindPath.stem().string();
+    std::string szFindExt = fsFindPath.extension().string();
+
+    std::string szReplaceStem = fsReplacePath.stem().string();
+    std::string szReplaceExt = fsReplacePath.extension().string();
+
+    if (szFindStem.empty() || szFindExt.empty() || szReplaceStem.empty() || szReplaceExt.empty()) {
+        return false;
+    }
+
     while (m_pTexRef) {
-        char szFindDir[_MAX_DIR], szFindFName[_MAX_FNAME], szFindExt[_MAX_EXT];
-        char szReplaceDir[_MAX_DIR], szReplaceFName[_MAX_FNAME], szReplaceExt[_MAX_EXT];
-        char szTexDir[_MAX_DIR], szTexFName[_MAX_FNAME], szTexExt[_MAX_EXT];
-        _splitpath(strFind.c_str(), NULL, szFindDir, szFindFName, szFindExt);
-        _splitpath(strReplace.c_str(), NULL, szReplaceDir, szReplaceFName, szReplaceExt);
-        _splitpath(m_pTexRef->FileName().c_str(), NULL, szTexDir, szTexFName, szTexExt);
+        std::string szTexStem = m_pTexRef->FilePath().stem().string();
+        std::string szTexExt = m_pTexRef->FilePath().extension().string();
 
-        if (lstrlen(szFindFName) == 0 || lstrlen(szFindExt) == 0 || lstrlen(szReplaceFName) == 0 ||
-            lstrlen(szReplaceExt) == 0) {
-            return false;
-        }
-
-        std::string strNew(szTexDir);
-        if (lstrcmpi(szFindFName, "*") == 0) {
-            if (lstrcmpi(szFindExt, ".*") == 0) { // *.* ->
-                if (lstrcmpi(szReplaceFName, "*") == 0) {
-                    strNew += szTexFName;
+        fs::path fsNew = m_pTexRef->FilePath().parent_path();
+        if (szFindStem == "*") {
+            if (szFindExt == ".*") { // *.* ->
+                if (szReplaceStem == "*") {
+                    fsNew /= szTexStem;
                 } else {
-                    strNew += szReplaceFName;
+                    fsNew /= szReplaceStem;
                 }
-                if (lstrcmpi(szReplaceExt, ".*") == 0) {
-                    strNew += szTexExt;
+                if (szReplaceExt == ".*") {
+                    fsNew += szTexExt;
                 } else {
-                    strNew += szReplaceExt;
+                    fsNew += szReplaceExt;
                 }
             } else { // *.tga ->
-                if (lstrcmpi(szFindExt, szTexExt) != 0) {
+                if (!n3std::iequals(szFindExt, szTexExt)) {
                     break; // 확장자가 같지 않으므로 그냥 리턴
                 }
 
-                if (lstrcmpi(szReplaceFName, "*") == 0) {
-                    strNew += szTexFName;
+                if (szReplaceStem == "*") {
+                    fsNew /= szTexStem;
                 } else {
-                    strNew += szReplaceFName;
+                    fsNew /= szReplaceStem;
                 }
-                if (lstrcmpi(szReplaceExt, ".*") == 0) {
-                    strNew += szTexExt;
+                if (szReplaceExt == ".*") {
+                    fsNew += szTexExt;
                 } else {
-                    strNew += szReplaceExt;
+                    fsNew += szReplaceExt;
                 }
             }
         } else {
-            if (lstrcmpi(szFindFName, szTexFName) != 0) {
+            if (!n3std::iequals(szFindStem, szTexStem)) {
                 break; // 이름이 같지 않으므로 그냥 리턴
             }
 
-            if (lstrcmpi(szFindExt, ".*") == 0) { // abc.* ->
-                if (lstrcmpi(szReplaceFName, "*") == 0) {
-                    strNew += szFindFName;
+            if (szFindExt == ".*") { // abc.* ->
+                if (szReplaceStem == "*") {
+                    fsNew /= szFindStem;
                 } else {
-                    strNew += szReplaceFName;
+                    fsNew /= szReplaceStem;
                 }
-                if (lstrcmpi(szReplaceExt, ".*") == 0) {
-                    strNew += szTexExt;
+                if (szReplaceExt == ".*") {
+                    fsNew += szTexExt;
                 } else {
-                    strNew += szReplaceExt;
+                    fsNew += szReplaceExt;
                 }
             } else { // 찾는 파일명과 확장자가 지정되어 있을경우 // abc.tga ->
-                if (lstrcmpi(szFindExt, szTexExt) != 0) {
+                if (!n3std::iequals(szFindExt, szTexExt)) {
                     break; // 확장자가 같지 않으므로 그냥 리턴
                 }
 
-                if (lstrcmpi(szReplaceFName, "*") == 0) {
-                    strNew += szFindFName;
+                if (szReplaceStem == "*") {
+                    fsNew /= szFindStem;
                 } else {
-                    strNew += szReplaceFName;
+                    fsNew /= szReplaceStem;
                 }
-                if (lstrcmpi(szReplaceExt, ".*") == 0) {
-                    strNew += szTexExt;
+                if (szReplaceExt == ".*") {
+                    fsNew += szTexExt;
                 } else {
-                    strNew += szReplaceExt;
+                    fsNew += szReplaceExt;
                 }
             }
         }
         // 텍스쳐 다시 지정하기
-        SetTex(strNew);
+        SetTex(fsNew.string());
         break;
     }
     return CN3UIBase::ReplaceAllTextures(strFind, strReplace);

@@ -27,25 +27,24 @@ EVENT::~EVENT() {
 }
 
 BOOL EVENT::LoadEvent(int zone) {
-    DWORD   length, count;
-    CString filename;
-    CFile   pFile;
-    BYTE    byte;
-    char    buf[4096];
-    char    first[1024];
-    char    temp[1024];
-    int     index = 0;
-    int     t_index = 0;
-    int     event_num;
+    DWORD length, count;
+    CFile pFile;
+    BYTE  byte;
+    char  buf[4096];
+    char  first[1024];
+    char  temp[1024];
+    int   index = 0;
+    int   t_index = 0;
+    int   event_num;
 
     EVENT_DATA * newData = NULL;
     EVENT_DATA * eventData = NULL;
 
-    filename.Format(".\\Ebenezer_MAP\\%d.evt", zone);
+    fs::path fsEvtFile = fs::current_path() / "Ebenezer_MAP" / std::format("{:d}.evt", zone);
 
     m_Zone = zone;
 
-    if (!pFile.Open(filename, CFile::modeRead)) {
+    if (!pFile.Open(fsEvtFile.string().c_str(), CFile::modeRead)) {
         return TRUE;
     }
 

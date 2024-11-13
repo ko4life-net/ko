@@ -14,20 +14,20 @@
 class CN3SndObj;
 class CN3SndObjStream;
 
-typedef typename std::list<CN3SndObj *>::iterator               itl_Snd;
-typedef typename std::list<CN3SndObjStream *>::iterator         itl_SndStream;
-typedef typename std::map<std::string, CN3SndObj *>::iterator   itm_Snd;
-typedef typename std::map<std::string, CN3SndObj *>::value_type val_Snd;
+typedef typename std::list<CN3SndObj *>::iterator            itl_Snd;
+typedef typename std::list<CN3SndObjStream *>::iterator      itl_SndStream;
+typedef typename std::map<fs::path, CN3SndObj *>::iterator   itm_Snd;
+typedef typename std::map<fs::path, CN3SndObj *>::value_type val_Snd;
 
 class CN3SndMgr {
   protected:
     CN3TableBase<__TABLE_SOUND> m_Tbl_Source; // 사운드 소스 정보 테이블..
 
-    bool                               m_bSndEnable;
-    bool                               m_bSndDuplicated;
-    std::map<std::string, CN3SndObj *> m_SndObjSrcs;
-    std::list<CN3SndObjStream *>       m_SndObjStreams; // 스트리밍 사운드..
-    std::list<CN3SndObj *>             m_SndObjs_Duplicated;
+    bool                            m_bSndEnable;
+    bool                            m_bSndDuplicated;
+    std::map<fs::path, CN3SndObj *> m_SndObjSrcs;
+    std::list<CN3SndObjStream *>    m_SndObjStreams; // 스트리밍 사운드..
+    std::list<CN3SndObj *>          m_SndObjs_Duplicated;
     std::list<CN3SndObj *> m_SndObjs_PlayOnceAndRelease; // 한번만 플레이 하고 릴리즈 해야 하는 사운드들
 
   public:
@@ -44,9 +44,9 @@ class CN3SndMgr {
     void Release();
     void Tick();
 
-    CN3SndObj *       CreateObj(const std::string & szFN, e_SndType eType = SNDTYPE_3D);
+    CN3SndObj *       CreateObj(const fs::path & fsFile, e_SndType eType = SNDTYPE_3D);
     CN3SndObj *       CreateObj(int iID, e_SndType eType = SNDTYPE_3D);
-    CN3SndObjStream * CreateStreamObj(const std::string & szFN);
+    CN3SndObjStream * CreateStreamObj(const fs::path & fsFile);
     CN3SndObjStream * CreateStreamObj(int iID);
 
     CN3SndMgr();

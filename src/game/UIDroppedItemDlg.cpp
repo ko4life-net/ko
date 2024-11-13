@@ -134,7 +134,7 @@ void CUIDroppedItemDlg::InitIconUpdate() {
         if (m_pMyDroppedItem[i]) {
             m_pMyDroppedItem[i]->pUIIcon = new CN3UIIcon;
             m_pMyDroppedItem[i]->pUIIcon->Init(this);
-            m_pMyDroppedItem[i]->pUIIcon->SetTex(m_pMyDroppedItem[i]->szIconFN);
+            m_pMyDroppedItem[i]->pUIIcon->SetTex(m_pMyDroppedItem[i]->fsIconFile);
             m_pMyDroppedItem[i]->pUIIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
             m_pMyDroppedItem[i]->pUIIcon->SetUIType(UI_TYPE_ICON);
             m_pMyDroppedItem[i]->pUIIcon->SetStyle(UISTYLE_ICON_ITEM | UISTYLE_ICON_CERTIFICATION_NEED);
@@ -206,7 +206,7 @@ void CUIDroppedItemDlg::AddToItemTable(int iItemID, int iItemCount, int iOrder) 
     __IconItemSkill *    spItem;
     __TABLE_ITEM_BASIC * pItem = NULL;    // 아이템 테이블 구조체 포인터..
     __TABLE_ITEM_EXT *   pItemExt = NULL; // 아이템 테이블 구조체 포인터..
-    std::string          szIconFN;
+    fs::path             fsIconFile;
 
     pItem = CGameBase::s_pTbl_Items_Basic->Find(iItemID / 1000 * 1000); // 열 데이터 얻기..
     if (pItem && pItem->byExtIndex >= 0 && pItem->byExtIndex < MAX_ITEM_EXTENSION) {
@@ -221,7 +221,7 @@ void CUIDroppedItemDlg::AddToItemTable(int iItemID, int iItemCount, int iOrder) 
     TRACE("Dropped item from server to ItemDlg %d \n", iItemID);
     e_PartPosition ePart;
     e_PlugPosition ePlug;
-    e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
+    e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &fsIconFile, ePart,
                                                                    ePlug); // 아이템에 따른 파일 이름을 만들어서
     if (ITEM_TYPE_UNKNOWN == eType) {
         return;
@@ -230,7 +230,7 @@ void CUIDroppedItemDlg::AddToItemTable(int iItemID, int iItemCount, int iOrder) 
     spItem = new __IconItemSkill;
     spItem->pItemBasic = pItem;
     spItem->pItemExt = pItemExt;
-    spItem->szIconFN = szIconFN; // 아이콘 파일 이름 복사..
+    spItem->fsIconFile = fsIconFile; // 아이콘 파일 이름 복사..
     spItem->iCount = iItemCount;
     spItem->iDurability = pItem->siMaxDurability + pItemExt->siMaxDurability;
 
@@ -242,7 +242,7 @@ void CUIDroppedItemDlg::AddToItemTableToInventory(int iItemID, int iItemCount, i
     __IconItemSkill *    spItem;
     __TABLE_ITEM_BASIC * pItem = NULL;    // 아이템 테이블 구조체 포인터..
     __TABLE_ITEM_EXT *   pItemExt = NULL; // 아이템 테이블 구조체 포인터..
-    std::string          szIconFN;
+    fs::path             fsIconFile;
     float                fUVAspect = (float)45.0f / (float)64.0f;
 
     pItem = CGameBase::s_pTbl_Items_Basic->Find(iItemID / 1000 * 1000); // 열 데이터 얻기..
@@ -258,7 +258,7 @@ void CUIDroppedItemDlg::AddToItemTableToInventory(int iItemID, int iItemCount, i
     TRACE("Dropped item from server to ItemDlg %d \n", iItemID);
     e_PartPosition ePart;
     e_PlugPosition ePlug;
-    e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
+    e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &fsIconFile, ePart,
                                                                    ePlug); // 아이템에 따른 파일 이름을 만들어서
     if (ITEM_TYPE_UNKNOWN == eType) {
         return;
@@ -267,13 +267,13 @@ void CUIDroppedItemDlg::AddToItemTableToInventory(int iItemID, int iItemCount, i
     spItem = new __IconItemSkill;
     spItem->pItemBasic = pItem;
     spItem->pItemExt = pItemExt;
-    spItem->szIconFN = szIconFN; // 아이콘 파일 이름 복사..
+    spItem->fsIconFile = fsIconFile; // 아이콘 파일 이름 복사..
     spItem->iCount = iItemCount;
     spItem->iDurability = pItem->siMaxDurability + pItemExt->siMaxDurability;
 
     spItem->pUIIcon = new CN3UIIcon;
     spItem->pUIIcon->Init(CGameProcedure::s_pProcMain->m_pUIInventory);
-    spItem->pUIIcon->SetTex(spItem->szIconFN);
+    spItem->pUIIcon->SetTex(spItem->fsIconFile);
     spItem->pUIIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
     spItem->pUIIcon->SetUIType(UI_TYPE_ICON);
     spItem->pUIIcon->SetStyle(UISTYLE_ICON_ITEM | UISTYLE_ICON_CERTIFICATION_NEED);
@@ -367,7 +367,7 @@ bool CUIDroppedItemDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 
     __TABLE_ITEM_BASIC * pItem;
     __IconItemSkill *    spItem;
-    std::string          szIconFN;
+    fs::path             fsIconFile;
     e_PartPosition       ePart;
     e_PlugPosition       ePlug;
     e_ItemType           eType;
@@ -404,7 +404,7 @@ bool CUIDroppedItemDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             break;
         }
 
-        eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
+        eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &fsIconFile, ePart,
                                                         ePlug); // 아이템에 따른 파일 이름을 만들어서
 
         // 보낸 아이콘 배열이랑 비교..

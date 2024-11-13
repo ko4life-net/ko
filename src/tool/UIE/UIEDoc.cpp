@@ -128,7 +128,7 @@ BOOL CUIEDoc::OnOpenDocument(LPCTSTR lpszPathName) {
     //    if (!CDocument::OnOpenDocument(lpszPathName))
     //        return FALSE;
     Release();
-    SetCurrentDirectory(CN3Base::PathGet().c_str());
+    fs::current_path(CN3Base::PathGet());
     return m_RootUI.LoadFromFile(lpszPathName);
 }
 
@@ -362,33 +362,36 @@ void CUIEDoc::OnInsertProgress() {
     // background이미지와 foreground이미지를 설정하고
     CN3UIImage * pUIImage = pUI->GetBkGndImgRef();
     ASSERT(pUIImage);
-    // texture 설정
-    char szTexture[_MAX_PATH];
-    while (1) {
-        if (FALSE == SelectTexture(szTexture)) {
-            if (IDYES ==
-                pFrm->MessageBox("텍스쳐 지정이 취소되었습니다.\nProgress를 삭제하시겠습니까?", NULL, MB_YESNO)) {
+
+    // texture settings
+    fs::path fsTexFile;
+    while (true) {
+        if (!SelectTexture(&fsTexFile)) {
+            if (IDYES == pFrm->MessageBox("Texture assignment has been cancelled.\nDo you want to delete Progress?",
+                                          NULL, MB_YESNO)) {
                 OnEditDelete();
             } else {
-                pFrm->MessageBox("텍스쳐지정 및 기타 설정을 해야 progress가 보일 것입니다.");
+                pFrm->MessageBox("You will need to specify textures and other settings to see progress.");
             }
             return;
         }
-        pUIImage->SetTex(szTexture);
-        if (NULL == pUIImage->GetTex()) {
-            if (IDYES == pFrm->MessageBox("텍스쳐를 Load할 수 없습니다.\n다시 지정하시겠습니까?", NULL, MB_YESNO)) {
+
+        pUIImage->SetTex(fsTexFile);
+        if (!pUIImage->GetTex()) {
+            if (IDYES == pFrm->MessageBox("Could not load texture.\nDo you want to re-specify it?", NULL, MB_YESNO)) {
                 continue;
             } else {
-                pFrm->MessageBox("텍스쳐지정 및 기타 설정을 해야 progress가 보일 것입니다.");
+                pFrm->MessageBox("You will need to specify textures and other settings to see progress.");
             }
             return;
         } else {
             break;
         }
     }
-    // image의 normal on down disable그림 영역 설정
+
+    // Set the image area to disable normal on down of the image
     CDlgTexture dlg;
-    dlg.SetTexture(szTexture);
+    dlg.SetTexture(fsTexFile);
     char   szNames[2][20] = {"Back", "Fore"};
     char * szImageTypeNames[2] = {szNames[0], szNames[1]};
     dlg.SetImageTypes(2, szImageTypeNames);
@@ -413,7 +416,7 @@ void CUIEDoc::OnInsertProgress() {
         ASSERT(pUIImage);
         __FLOAT_RECT frcUV;
         rcRegion = dlg.GetImageRect(i, &frcUV);
-        pUIImage->SetTex(szTexture);
+        pUIImage->SetTex(fsTexFile);
         pUIImage->SetUVRect(frcUV.left, frcUV.top, frcUV.right, frcUV.bottom);
     }
 
@@ -422,7 +425,7 @@ void CUIEDoc::OnInsertProgress() {
     pUI->SetFrGndUVFromFrGndImage();
     pUI->SetRegion(rcRegion);
     // style 지정
-    pFrm->MessageBox("왼쪽창에서 스타일(가로/세로)을 지정해주세요.");
+    pFrm->MessageBox("Please specify the style (horizontal/vertical) in the left window.");
 
     pFrm->GetRightPane()->SetMode(CUIEView::UIEMODE_EDIT);
     pFrm->GetRightPane()->SelectRectType(CUIEView::RT_REGION);
@@ -641,15 +644,17 @@ BOOL CUIEDoc::SetImageInfos(CN3UIImage * pUI) {
         return FALSE;
     }
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
-    // texture 지정
-    char szTexture[_MAX_PATH];
-    while (1) {
-        if (FALSE == SelectTexture(szTexture)) {
+
+    // texture settings
+    fs::path fsTexFile;
+    while (true) {
+        if (!SelectTexture(&fsTexFile)) {
             return FALSE;
         }
-        pUI->SetTex(szTexture);
-        if (NULL == pUI->GetTex()) {
-            if (IDYES == pFrm->MessageBox("텍스쳐를 Load할 수 없습니다.\n다시 지정하시겠습니까?", NULL, MB_YESNO)) {
+
+        pUI->SetTex(fsTexFile);
+        if (!pUI->GetTex()) {
+            if (IDYES == pFrm->MessageBox("Could not load texture.\nDo you want to re-specify it?", NULL, MB_YESNO)) {
                 continue;
             }
             return FALSE;
@@ -657,9 +662,10 @@ BOOL CUIEDoc::SetImageInfos(CN3UIImage * pUI) {
             break;
         }
     }
-    // texture 위의 쓰이는 부분 지정 (영역과 UV지정을 하기 위해)
+
+    // Specify the part to be used on the texture (to specify the area and UV)
     CDlgTexture dlg;
-    dlg.SetTexture(szTexture);
+    dlg.SetTexture(fsTexFile);
     if (IDCANCEL == dlg.DoModal()) {
         return FALSE;
     }
@@ -707,22 +713,25 @@ BOOL CUIEDoc::SetTrackBarInfos(CN3UITrackBar * pUI) {
     // background이미지와 thumb이미지를 설정하고
     CN3UIImage * pUIImage = pUI->GetBkGndImgRef();
     ASSERT(pUIImage);
-    // texture 설정
-    char szTexture[_MAX_PATH];
-    while (1) {
-        if (FALSE == SelectTexture(szTexture)) {
+
+    // texture settings
+    fs::path fsTexFile;
+    while (true) {
+        if (!SelectTexture(&fsTexFile)) {
             return FALSE;
         }
-        pUIImage->SetTex(szTexture);
-        if (NULL == pUIImage->GetTex()) {
+
+        pUIImage->SetTex(fsTexFile);
+        if (!pUIImage->GetTex()) {
             return FALSE;
         } else {
             break;
         }
     }
-    // image의 normal on down disable그림 영역 설정
+
+    // Set the image area to disable normal on down of the image
     CDlgTexture dlg;
-    dlg.SetTexture(szTexture);
+    dlg.SetTexture(fsTexFile);
     char   szNames[2][20] = {"Back", "Thumb"};
     char * szImageTypeNames[2] = {szNames[0], szNames[1]};
     dlg.SetImageTypes(2, szImageTypeNames);
@@ -741,7 +750,7 @@ BOOL CUIEDoc::SetTrackBarInfos(CN3UITrackBar * pUI) {
         ASSERT(pUIImage);
         __FLOAT_RECT frcUV;
         rcRegion = dlg.GetImageRect(i, &frcUV);
-        pUIImage->SetTex(szTexture);
+        pUIImage->SetTex(fsTexFile);
         pUIImage->SetUVRect(frcUV.left, frcUV.top, frcUV.right, frcUV.bottom);
         rcRegion.OffsetRect(-rcRegion.TopLeft());
         pUIImage->SetRegion(rcRegion);
@@ -757,23 +766,25 @@ BOOL CUIEDoc::SetButtonInfos(CN3UIButton * pUI) {
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     CN3UIImage * pUIImage = pUI->GetImageRef(CN3UIButton::BS_NORMAL);
     ASSERT(pUIImage);
-    // texture 설정
-    char szTexture[_MAX_PATH];
-    while (1) {
-        if (FALSE == SelectTexture(szTexture)) {
+
+    // texture settings
+    fs::path fsTexFile;
+    while (true) {
+        if (!SelectTexture(&fsTexFile)) {
             return FALSE;
         }
-        pUIImage->SetTex(szTexture);
-        if (NULL == pUIImage->GetTex()) {
+        pUIImage->SetTex(fsTexFile);
+        if (!pUIImage->GetTex()) {
             return FALSE;
         } else {
             break;
         }
     }
-    // image의 normal on down disable그림 영역 설정
+
+    // Set the image area to disable normal on down of the image
     CDlgTexture dlg;
-    dlg.SetTexture(szTexture);
-    char   szNames[4][_MAX_PATH] = {"Normal", "Down", "On", "Disable"};
+    dlg.SetTexture(fsTexFile);
+    char   szNames[4][100] = {"Normal", "Down", "On", "Disable"};
     char * szImageTypeNames[4] = {szNames[0], szNames[1], szNames[2], szNames[3]};
     dlg.SetImageTypes(4, szImageTypeNames);
     if (IDCANCEL == dlg.DoModal()) {
@@ -785,7 +796,7 @@ BOOL CUIEDoc::SetButtonInfos(CN3UIButton * pUI) {
         ASSERT(pUIImage);
         __FLOAT_RECT frcUV;
         rcRegion = dlg.GetImageRect(i, &frcUV);
-        pUIImage->SetTex(szTexture);
+        pUIImage->SetTex(fsTexFile);
         pUIImage->SetRegion(rcRegion);
         pUIImage->SetUVRect(frcUV.left, frcUV.top, frcUV.right, frcUV.bottom);
     }
@@ -808,7 +819,7 @@ void CUIEDoc::OnFileExportTooltip() {
         return;
     }
 
-    pUI->SaveToFile((LPCTSTR)dlg.GetPathName());
+    pUI->SaveToFile(dlg.GetPathName().GetString());
 }
 
 void CUIEDoc::OnUpdateFileExportTooltip(CCmdUI * pCmdUI) {
@@ -825,7 +836,7 @@ void CUIEDoc::OnFileImportTooltip() {
 
     CN3UIStatic * pStatic = new CN3UIStatic();
     pStatic->Init(&m_RootUI);
-    pStatic->LoadFromFile((LPCTSTR)dlg.GetPathName());
+    pStatic->LoadFromFile(dlg.GetPathName().GetString());
     SetSelectedUI(NULL);
     SetSelectedUI(pStatic);
 }
@@ -1158,18 +1169,14 @@ void CUIEDoc::OnBatchToolChangeImagePath() {
         return;
     }
 
-    CN3Texture  Tex;
-    POSITION    pos = dlg.GetStartPosition();
-    CString     FileName;
-    std::string szFNOld(dlg2.m_szFN_Old.GetString());
-    std::string szFNNew(dlg2.m_szFN_New.GetString());
+    POSITION pos = dlg.GetStartPosition();
 
     while (pos != NULL) {
-        CN3UIBase base;
-        FileName = dlg.GetNextPathName(pos);
+        fs::path fsFile = dlg.GetNextPathName(pos).GetString();
 
-        base.LoadFromFile((const char *)FileName);
-        base.ChangeImagePath(szFNOld, szFNNew);
+        CN3UIBase base;
+        base.LoadFromFile(fsFile);
+        base.ChangeImagePath(dlg2.m_fsOldFile, dlg2.m_fsNewFile);
         base.SaveToFile();
     }
 }
@@ -1192,22 +1199,20 @@ void CUIEDoc::OnBatchToolChangeFont() {
         return;
     }
 
-    CN3Texture Tex;
-    POSITION   pos = dlg.GetStartPosition();
-    CString    FileName;
-    CString    szFont = dlg2.GetFaceName();
+    POSITION pos = dlg.GetStartPosition();
+    CString  szFont = dlg2.GetFaceName();
     while (pos != NULL) {
-        CN3UIBase base;
-        FileName = dlg.GetNextPathName(pos);
+        CString FileName = dlg.GetNextPathName(pos);
 
-        base.LoadFromFile((const char *)FileName);
-        base.ChangeFont((const char *)szFont);
+        CN3UIBase base;
+        base.LoadFromFile(FileName.GetString());
+        base.ChangeFont(szFont.GetString());
         base.SaveToFile();
     }
 }
 
 void CUIEDoc::OnBatchToolGatherImageFileName() {
-    std::string szDlgInitialDir = CN3Base::PathGet();
+    std::string szDlgInitialDir = CN3Base::PathGet().string();
 
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_ALLOWMULTISELECT;
     CFileDialog dlg(TRUE, "uif", NULL, dwFlags, "UI Files(*.uif)|*.uif;||", NULL);
@@ -1220,13 +1225,12 @@ void CUIEDoc::OnBatchToolGatherImageFileName() {
         return;
     }
 
-    std::set<std::string> setImgFNs;
-    POSITION              pos = dlg.GetStartPosition();
+    std::set<fs::path> setUifImageFiles;
+    POSITION           pos = dlg.GetStartPosition();
     while (pos != NULL) {
         CN3UIBase base;
-        CString   FileName = dlg.GetNextPathName(pos);
-        base.LoadFromFile((const char *)FileName);
-        base.GatherImageFileName(setImgFNs);
+        base.LoadFromFile(dlg.GetNextPathName(pos).GetString());
+        base.GatherImageFileName(setUifImageFiles);
     }
 
     CFolderPickerDialog dlgFolderPick;
@@ -1236,35 +1240,19 @@ void CUIEDoc::OnBatchToolGatherImageFileName() {
         return;
     }
 
-    std::string szCompareDir = dlgFolderPick.GetPathName().GetString();
+    fs::path fsCompareDir = dlgFolderPick.GetPathName().GetString();
 
-    char szPathOld[256];
-    ::GetCurrentDirectory(_MAX_PATH, szPathOld);
-    ::SetCurrentDirectory(szCompareDir.c_str());
-
-    CFileFind ff;
-    if (ff.FindFile("*.dxt")) {
-        CDlgUnusedFileList dlg2;
-        CString            szBasePath = CN3Base::PathGet().c_str();
-        while (ff.FindNextFile()) {
-            CString szPath = ff.GetFilePath();
-            CString szFN;
-            szPath.MakeLower();
-            int ii = szPath.Find(szBasePath);
-            if (ii >= 0) {
-                szFN = szPath.Mid(ii + szBasePath.GetLength());
-            }
-
-            if (szFN.GetLength() >= 0) {
-                std::set<std::string>::iterator it = setImgFNs.find((const char *)szFN);
-                if (it == setImgFNs.end()) {
-                    dlg2.m_szFileNames.Add(szPath);
-                }
-            }
+    CDlgUnusedFileList dlgUnusedFiles;
+    for (const auto & fsEntry : fs::directory_iterator(fsCompareDir)) {
+        if (!fsEntry.is_regular_file() || !n3std::iequals(fsEntry.path().extension(), ".dxt")) {
+            continue;
         }
 
-        dlg2.DoModal();
+        fs::path fsCurFile = fsEntry.path();
+        CN3BaseFileAccess::ToRelative(fsCurFile);
+        if (!setUifImageFiles.contains(fsCurFile)) {
+            dlgUnusedFiles.m_vFiles.emplace_back(fsCurFile);
+        }
     }
-
-    ::SetCurrentDirectory(szPathOld);
+    dlgUnusedFiles.DoModal();
 }

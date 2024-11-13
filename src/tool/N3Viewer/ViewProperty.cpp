@@ -353,7 +353,7 @@ void CViewProperty::UpdateInfo() {
             if (pItem) {
                 CN3Texture * pTex = pPD->Tex(0);
                 if (pTex) {
-                    pItem->m_curValue = pTex->FileName().c_str();
+                    pItem->m_curValue = pTex->FilePath().c_str();
                 } else {
                     pItem->m_curValue = "";
                 }
@@ -367,7 +367,7 @@ void CViewProperty::UpdateInfo() {
             pItem = m_LPShape.GetPropItem("Mesh File");
             if (pItem) {
                 if (pPMesh) {
-                    pItem->m_curValue = pPMesh->FileName().c_str();
+                    pItem->m_curValue = pPMesh->FilePath().c_str();
                 } else {
                     pItem->m_curValue = "";
                 }
@@ -457,13 +457,15 @@ void CViewProperty::UpdateInfo() {
             }
         }
 
-        //        pItem = m_LPChr.GetPropItem("Collision Skin File");
-        //        if(pItem)
-        //        {
-        //            CN3Skin* pSkin = pC->CollisionSkin();
-        //            if(pSkin) pItem->m_curValue = pSkin->m_szName.c_str();
-        //            else pItem->m_curValue = "";
-        //        }
+        //pItem = m_LPChr.GetPropItem("Collision Skin File");
+        //if (pItem) {
+        //    CN3Skin * pSkin = pC->CollisionSkin();
+        //    if (pSkin) {
+        //        pItem->m_curValue = pSkin->m_szName.c_str();
+        //    } else {
+        //        pItem->m_curValue = "";
+        //    }
+        //}
 
         CN3CPart * pPart = pC->Part(nPart);
         if (pPart) {
@@ -481,7 +483,7 @@ void CViewProperty::UpdateInfo() {
             if (pItem) {
                 CN3Texture * pTex = pPart->Tex();
                 if (pTex) {
-                    pItem->m_curValue = pTex->FileName().c_str();
+                    pItem->m_curValue = pTex->FilePath().c_str();
                 } else {
                     pItem->m_curValue = "";
                 }
@@ -734,7 +736,7 @@ BOOL CViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
             }
 
             else if (pItem->m_propName == "Collision Mesh File" && pItem->m_curValue.GetLength() > 0) {
-                pS->CollisionMeshSet(std::string(pItem->m_curValue));
+                pS->CollisionMeshSet(CN3BaseFileAccess::ToRelative(pItem->m_curValue.GetString()));
             }
 
             else if (pItem->m_propName == "Collision Mesh Delete") {
@@ -742,28 +744,20 @@ BOOL CViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
             }
 
             else if (pItem->m_propName == "Texture File" && pItem->m_curValue.GetLength() > 0) {
-                CStringArray szArr;
-                int          n = 0, nPrev = 0;
-                while (1) {
-                    n = pItem->m_curValue.Find('\n', n);
-                    if (-1 == n) {
-                        break;
-                    }
-
-                    szArr.Add(pItem->m_curValue.Mid(nPrev, n - nPrev));
-                    nPrev = n + 1;
-                    n++;
+                std::vector<fs::path> vTexFiles;
+                for (const auto & itrTexFile : std::string(pItem->m_curValue.GetString()) | std::views::split('\n')) {
+                    fs::path fsTexFile(itrTexFile.begin(), itrTexFile.end());
+                    CN3BaseFileAccess::ToRelative(fsTexFile);
+                    vTexFiles.emplace_back(fsTexFile);
                 }
 
-                CN3BaseFileAccess tmp;
-                int               nTC = szArr.GetSize();
-                pPD->TexAlloc(nTC);
-                for (int i = 0; i < nTC; i++) {
-                    tmp.FileNameSet(std::string(szArr[i]));
-                    pPD->TexSet(i, tmp.FileName());
+                int iTexCount = static_cast<int>(vTexFiles.size());
+                pPD->TexAlloc(iTexCount);
+                for (int i = 0; i < iTexCount; ++i) {
+                    pPD->TexSet(i, vTexFiles[i]);
                 }
+
                 this->UpdateInfo();
-
             }
 
             else if (pItem->m_propName == "Texture Animaion Speed") {
@@ -774,10 +768,7 @@ BOOL CViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
             }
 
             else if (pItem->m_propName == "Mesh File" && pItem->m_curValue.GetLength() > 0) {
-                CN3BaseFileAccess tmp;
-                tmp.FileNameSet(std::string(pItem->m_curValue));
-                pPD->MeshSet(tmp.FileName());
-
+                pPD->MeshSet(CN3BaseFileAccess::ToRelative(pItem->m_curValue.GetString()));
                 this->UpdateInfo();
             }
 
@@ -816,40 +807,27 @@ BOOL CViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
             int nPlugCount = pC->PlugCount();
 
             if (pItem->m_propName == "Joint File" && pItem->m_curValue.GetLength() > 0) {
-                CN3BaseFileAccess tmp;
-                tmp.FileNameSet(std::string(pItem->m_curValue));
-                pC->JointSet(tmp.FileName());
+                pC->JointSet(CN3BaseFileAccess::ToRelative(pItem->m_curValue.GetString()));
                 this->UpdateInfo();
-            }
-            //            else if(pItem->m_propName == "Collision Mesh File" && pItem->m_curValue.GetLength() > 0)
-            //            {
-            //                pC->CollisionMeshSet(pItem->m_curValue);
-            //                this->UpdateInfo();
-            //            }
-            //            else if(pItem->m_propName == "Collision Mesh Delete")
-            //            {
-            //                pC->CollisionMeshSet("");
-            //                this->UpdateInfo();
-            //            }
-            //            else if(pItem->m_propName == "Collision Skin File" && pItem->m_curValue.GetLength() > 0)
-            //            {
-            //                pC->CollisionSkinSet(pItem->m_curValue);
-            //                this->UpdateInfo();
-            //            }
-            //            else if(pItem->m_propName == "Collision Skin Delete")
-            //            {
-            //                pC->CollisionSkinSet("");
-            //                this->UpdateInfo();
-            //            }
-            else if (pItem->m_propName == "Part Add") {
+                //} else if (pItem->m_propName == "Collision Mesh File" && pItem->m_curValue.GetLength() > 0) {
+                //    pC->CollisionMeshSet(CN3BaseFileAccess::ToRelative(pItem->m_curValue.GetString()));
+                //    this->UpdateInfo();
+                //} else if (pItem->m_propName == "Collision Mesh Delete") {
+                //    pC->CollisionMeshSet("");
+                //    this->UpdateInfo();
+                //} else if (pItem->m_propName == "Collision Skin File" && pItem->m_curValue.GetLength() > 0) {
+                //    pC->CollisionSkinSet(CN3BaseFileAccess::ToRelative(pItem->m_curValue.GetString()));
+                //    this->UpdateInfo();
+                //} else if (pItem->m_propName == "Collision Skin Delete") {
+                //    pC->CollisionSkinSet("");
+                //    this->UpdateInfo();
+            } else if (pItem->m_propName == "Part Add") {
                 pC->PartAdd();
                 this->UpdateInfo();
             } else if (pItem->m_propName == "Part Delete") {
                 pC->PartDelete(nPart);
                 this->UpdateInfo();
-            }
-
-            else if (pItem->m_propName == "Plug Add") {
+            } else if (pItem->m_propName == "Plug Add") {
                 pC->PlugAdd();
                 this->UpdateInfo();
             } else if (pItem->m_propName == "Plug Delete") {
@@ -887,10 +865,7 @@ BOOL CViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                 //                    this->UpdateInfo();
                 //                }
                 else if (pItem->m_propName == "Texture File" && pItem->m_curValue.GetLength() > 0) {
-                    CN3BaseFileAccess tmp;
-                    tmp.FileNameSet(std::string(pItem->m_curValue));
-                    pPart->TexSet(tmp.FileName());
-
+                    pPart->TexSet(CN3BaseFileAccess::ToRelative(pItem->m_curValue.GetString()));
                     this->UpdateInfo();
                 }
             }
@@ -928,15 +903,11 @@ BOOL CViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                     pPlug->ScaleSet(__Vector3(pItem->VectorGet()));
                 } else if (pItem->m_propName == "Plug Mesh File" && pItem->m_curValue.GetLength() > 0) {
                     if (pItem->m_curValue != "") {
-                        CN3BaseFileAccess tmp;
-                        tmp.FileNameSet(std::string(pItem->m_curValue));
-                        pPlug->PMeshSet(tmp.FileName());
+                        pPlug->PMeshSet(CN3BaseFileAccess::ToRelative(pItem->m_curValue.GetString()));
                     }
                     this->UpdateInfo();
                 } else if (pItem->m_propName == "Plug Texture File" && pItem->m_curValue.GetLength() > 0) {
-                    CN3BaseFileAccess tmp;
-                    tmp.FileNameSet(std::string(pItem->m_curValue));
-                    pPlug->TexSet(tmp.FileName());
+                    pPlug->TexSet(CN3BaseFileAccess::ToRelative(pItem->m_curValue.GetString()));
 
                     this->UpdateInfo();
                 }

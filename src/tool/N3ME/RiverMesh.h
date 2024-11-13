@@ -85,8 +85,8 @@ class CRiverMesh : public CN3BaseFileAccess {
     }
     __Vector3 GetCenter();
 
-    BOOL SetTextureName(LPCTSTR pszFName);
-    BOOL SetAnimTextureName(LPCTSTR pszFName, LPCTSTR pszExt, int iCount);
+    BOOL SetTextureName(const fs::path & fsFile);
+    BOOL SetAnimTextureName(const fs::path & fsFile, const fs::path & fsExt, int iCount);
     void ReCalcUV();
 
   protected:

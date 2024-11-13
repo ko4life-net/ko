@@ -79,7 +79,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     EnableDocking(CBRS_ALIGN_ANY);
     DockControlBar(&m_wndToolBar);
 
-    CN3Base::PathSet(fs::current_path().string());
+    CN3Base::PathSet(fs::current_path());
 
     // Engine 생성
     //    m_Eng.InitEnv();
@@ -254,19 +254,18 @@ void CMainFrame::OnToolFixProgressiveMesh() {
     CFile file;
     file.Open("프로그레시브 메쉬 처리 안된 리스트.txt", CFile::modeWrite | CFile::modeCreate);
 
-    CString  FileName;
     CN3PMesh PM;
     POSITION pos = dlg.GetStartPosition();
     for (int i = 0; pos != NULL; i++) {
-        FileName = dlg.GetNextPathName(pos);
+        fs::path fsFile = dlg.GetNextPathName(pos).GetString();
 
         PM.Release();
-        PM.LoadFromFile(std::string(FileName));
-        PM.SaveToFile(std::string(FileName));
+        PM.LoadFromFile(fsFile);
+        PM.SaveToFile(fsFile);
 
         if (PM.LODCtrlCount() <= 0 || PM.CollapsesCount() <= 0) {
             CString szWarning;
-            szWarning.Format("LOD 처리 안됨 : %s\r\n", PM.FileName().c_str());
+            szWarning.Format("LOD 처리 안됨 : %s\r\n", PM.FilePath().c_str());
             file.Write(szWarning, szWarning.GetLength());
         }
     }

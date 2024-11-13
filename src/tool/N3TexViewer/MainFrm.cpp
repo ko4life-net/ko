@@ -77,7 +77,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     EnableDocking(CBRS_ALIGN_ANY);
     DockControlBar(&m_wndToolBar);
 
-    CN3Base::PathSet(fs::current_path().string());
+    CN3Base::PathSet(fs::current_path());
 
     if (m_Eng.Init(TRUE, m_hWnd, 64, 64, 0, TRUE) == false) {
         return -1;
@@ -180,8 +180,8 @@ void CMainFrame::OnToolConvertFilesAutomaticaly() {
     POSITION   pos = dlg.GetStartPosition();
     CString    FileName;
     while (pos != NULL) {
-        fs::path fsPath(dlg.GetNextPathName(pos).GetString());
-        Tex.LoadFromFile(fsPath.string());
+        fs::path fsFile = dlg.GetNextPathName(pos).GetString();
+        Tex.LoadFromFile(fsFile);
 
         if (Tex.Get()) {
             D3DFORMAT Fmt = Tex.PixelFormat();
@@ -191,8 +191,8 @@ void CMainFrame::OnToolConvertFilesAutomaticaly() {
                 Tex.Convert(D3DFMT_DXT3);
             }
 
-            Tex.m_szName = fsPath.stem().string();
-            Tex.SaveToFile(fsPath.replace_extension("dxt").string());
+            Tex.m_szName = fsFile.stem().string();
+            Tex.SaveToFile(fsFile.replace_extension("dxt"));
             Tex.Release();
         }
     }
@@ -217,12 +217,10 @@ void CMainFrame::OnToolConvertFilesManually() {
         return;
     }
 
-    CN3Texture  Tex;
-    std::string szFN;
-    szFN = dlg.GetPathName();
-    Tex.LoadFromFile(szFN); // 첨 하나 읽어보고..
+    CN3Texture Tex;
+    Tex.LoadFromFile(dlg.GetPathName().GetString());
 
-    CDlgFormat dlgFormat; // 포맷 정학...
+    CDlgFormat dlgFormat;
     dlgFormat.m_nWidth = Tex.Width();
     dlgFormat.m_nHeight = Tex.Height();
     dlgFormat.m_bMipMap = Tex.MipMapCount() > 1 ? TRUE : FALSE;
@@ -231,22 +229,14 @@ void CMainFrame::OnToolConvertFilesManually() {
     }
 
     POSITION pos = dlg.GetStartPosition();
-    CString  FileName;
     while (pos != NULL) {
-        FileName = dlg.GetNextPathName(pos);
-
-        szFN = FileName;
-        Tex.LoadFromFile(szFN);
-
+        fs::path fsFile = dlg.GetNextPathName(pos).GetString();
+        Tex.LoadFromFile(fsFile);
         if (Tex.Get()) {
-            char szFN2[_MAX_PATH] = "", szDrv[_MAX_DRIVE], szDir[_MAX_DIR], szFN[_MAX_FNAME], szExt[_MAX_EXT];
-            ::_splitpath(FileName, szDrv, szDir, szFN, szExt);
-            lstrcpy(szExt, ".DXT");
-            ::_makepath(szFN2, szDrv, szDir, szFN, szExt); // 파일 이름의 확장자를 DXT 로 바꿈...
-
+            fsFile.replace_extension(".dxt");
             Tex.Convert(dlgFormat.m_Fmt, dlgFormat.m_nWidth, dlgFormat.m_nHeight, dlgFormat.m_bMipMap);
-            Tex.m_szName = szFN2;
-            Tex.SaveToFile(szFN2);
+            Tex.m_szName = fsFile.stem().string();
+            Tex.SaveToFile(fsFile);
         }
     }
 }
@@ -273,21 +263,17 @@ void CMainFrame::OnToolCutBmp() {
         bSaveToDXT = true;
     }
 
-    BMPCutter(dlg.GetPathName(), nW, nH, bSaveToDXT, fmtSave);
+    BMPCutter(dlg.GetPathName().GetString(), nW, nH, bSaveToDXT, fmtSave);
 }
 
-BOOL CMainFrame::BMPCutter(LPCTSTR lpszFileName, int iWidth, int iHeight, bool bSaveToDXT, D3DFORMAT fmtDXT) {
+BOOL CMainFrame::BMPCutter(const fs::path & fsFile, int iWidth, int iHeight, bool bSaveToDXT, D3DFORMAT fmtDXT) {
     CBitMapFile BMF;
-    if (false == BMF.LoadFromFile(lpszFileName)) {
+    if (false == BMF.LoadFromFile(fsFile)) {
         return FALSE;
     }
 
-    // 저장할 file 이름
-    char szDrive[_MAX_DRIVE];
-    char szDir[_MAX_DIR];
-    char szFName[_MAX_FNAME];
-    _splitpath(lpszFileName, szDrive, szDir, szFName, NULL);
-    CreateDirectory(szFName, NULL); // 하위 폴더 만들기
+    fs::path fsDir = fsFile.parent_path() / fsFile.stem();
+    fs::create_directory(fsDir);
 
     int xx = BMF.Width() / iWidth;
     int yy = BMF.Height() / iHeight;
@@ -297,28 +283,27 @@ BOOL CMainFrame::BMPCutter(LPCTSTR lpszFileName, int iWidth, int iHeight, bool b
     ProgressBar.Create("cutting bitmap..", 50, yy * xx);
     ProgressBar.SetStep(1);
 
+    std::string szStem = fsFile.stem().string();
     for (int y = 0; y < yy; y++) {
         for (int x = 0; x < xx; x++) {
-            RECT rcDest = {x * iWidth, y * iHeight, (x + 1) * iWidth, (y + 1) * iHeight};
-            char szDestFN[_MAX_PATH];
+            fs::path fsDxtFile = fsDir / std::format("{:s}_{:02}{:02}.dxt", szStem, x, y);
 
+            RECT rcDest = {x * iWidth, y * iHeight, (x + 1) * iWidth, (y + 1) * iHeight};
             if (bSaveToDXT) {
-                if (false == BMF.SaveRectToFile("c:\\TempConvert.BMP", rcDest)) {
+                fs::path fsBmpTmpFile = fs::temp_directory_path() / "N3TexViewer_TempConvert.bmp";
+                if (!BMF.SaveRectToFile(fsBmpTmpFile, rcDest)) {
                     continue;
                 }
 
                 CN3Texture Tex;
-                if (false == Tex.LoadFromFile("c:\\TempConvert.BMP")) {
+                if (!Tex.LoadFromFile(fsBmpTmpFile)) {
                     continue;
                 }
 
                 Tex.Convert(fmtDXT);
-                wsprintf(szDestFN, "%s%s%s\\%s_%02d%02d.DXT", szDrive, szDir, szFName, szFName, x, y);
-                Tex.SaveToFile(szDestFN);
-                DeleteFile("c:\\TempConvert.BMP");
+                Tex.SaveToFile(fsDxtFile);
             } else {
-                wsprintf(szDestFN, "%s%s%s\\%s_%02d%02d.bmp", szDrive, szDir, szFName, szFName, x, y);
-                BMF.SaveRectToFile(szDestFN, rcDest);
+                BMF.SaveRectToFile(fsDxtFile, rcDest);
             }
 
             ProgressBar.StepIt();
@@ -327,18 +312,16 @@ BOOL CMainFrame::BMPCutter(LPCTSTR lpszFileName, int iWidth, int iHeight, bool b
 
     return TRUE;
     /*
-    if (lstrlen(lpszFileName) == 0 || iWidth<=0 || iHeight<=0)
-    {
+    if (fsFile.empty() || iWidth <= 0 || iHeight <= 0) {
         MessageBox("가로 세로가 0이하인 bitmap으로 나눌 수 없습니다.", "error");
         return FALSE;
     }
 
-    CFile file;
+    CFile          file;
     CFileException fe;
 
     // 읽기 모드로 파일 열기
-    if (!file.Open(lpszFileName, CFile::modeRead|CFile::shareDenyWrite, &fe))
-    {
+    if (!file.Open(fsFile.string().c_str(), CFile::modeRead | CFile::shareDenyWrite, &fe)) {
         MessageBox("원본 bitmap을 열 수 없습니다.", "error");
         return FALSE;
     }
@@ -349,26 +332,26 @@ BOOL CMainFrame::BMPCutter(LPCTSTR lpszFileName, int iWidth, int iHeight, bool b
 
     // 파일 헤더 읽기
     BITMAPFILEHEADER bmfHeader;
-    if (file.Read(&bmfHeader, sizeof(bmfHeader)) != sizeof(bmfHeader))
-    {
+    if (file.Read(&bmfHeader, sizeof(bmfHeader)) != sizeof(bmfHeader)) {
         MessageBox("원본 bitmap이 이상합니다.", "error");
         return FALSE;
     }
 
     // bmp 파일임을 나타내는 "BM"마커 확인
-    if (bmfHeader.bfType != 0x4D42)
-    {
+    if (bmfHeader.bfType != 0x4D42) {
         MessageBox("원본 파일이 bitmap파일이 아닙니다.", "error");
         return FALSE;
     }
 
     // BITMAPINFOHEADER 얻기
     BITMAPINFOHEADER bmInfoHeader;
-    if (file.Read(&bmInfoHeader, sizeof(bmInfoHeader)) != sizeof(bmInfoHeader)) return FALSE;
+    if (file.Read(&bmInfoHeader, sizeof(bmInfoHeader)) != sizeof(bmInfoHeader)) {
+        return FALSE;
+    }
 
     // 픽셀당 비트 수 확인
     WORD wBitCount = bmInfoHeader.biBitCount;
-    if (24 != wBitCount)        // 24비트 bmp가 아니면 return해 버린다.
+    if (24 != wBitCount) // 24비트 bmp가 아니면 return해 버린다.
     {
         MessageBox("원본 bitmap이 24bit파일이 아닙니다.", "error");
         return FALSE;
@@ -376,27 +359,25 @@ BOOL CMainFrame::BMPCutter(LPCTSTR lpszFileName, int iWidth, int iHeight, bool b
 
     // 가로, 세로로 나누어야 할 수 계산
     int iCX, iCY;
-    iCX = (bmInfoHeader.biWidth+iWidth-1) / iWidth;
-    iCY = (bmInfoHeader.biHeight+iHeight-1) / iHeight;
-    if (iCX <= 0 || iCY <= 0)
-    {
+    iCX = (bmInfoHeader.biWidth + iWidth - 1) / iWidth;
+    iCY = (bmInfoHeader.biHeight + iHeight - 1) / iHeight;
+    if (iCX <= 0 || iCY <= 0) {
         MessageBox("나눌 수 없습니다.", "error");
         return FALSE;
     }
 
     // 실제 이미지 비트 주소
-//    LPVOID pSrcImageBit;
-//    pSrcImageBit = (LPVOID)((BYTE*)pSrcDIB + (bmfHeader.bfOffBits - sizeof(bmfHeader)));
+    //    LPVOID pSrcImageBit;
+    //    pSrcImageBit = (LPVOID)((BYTE*)pSrcDIB + (bmfHeader.bfOffBits - sizeof(bmfHeader)));
 
     // 실제 이미지의 메모리상에 잡힌 가로 길이 (24bit)
-    int iRealWidthSrc = ((int)((bmInfoHeader.biWidth*3 + 3)/4))*4;    
+    int iRealWidthSrc = ((int)((bmInfoHeader.biWidth * 3 + 3) / 4)) * 4;
 
     // 새로 만들 이미지 메모리 할당
-    int iRealWidthDest = ((int)((iWidth*3 + 3)/4))*4;    
-    int iDestDIBSize = sizeof(BITMAPINFOHEADER) + iRealWidthDest * iHeight;
+    int    iRealWidthDest = ((int)((iWidth * 3 + 3) / 4)) * 4;
+    int    iDestDIBSize = sizeof(BITMAPINFOHEADER) + iRealWidthDest * iHeight;
     LPVOID pDestDIB;
-    if ((pDestDIB = ::GlobalAlloc(GMEM_FIXED | GMEM_ZEROINIT, iDestDIBSize )) == NULL )
-    {
+    if ((pDestDIB = ::GlobalAlloc(GMEM_FIXED | GMEM_ZEROINIT, iDestDIBSize)) == NULL) {
         MessageBox("메모리를 할당하지 못했습니다.", "error");
         return FALSE;
     }
@@ -419,20 +400,14 @@ BOOL CMainFrame::BMPCutter(LPCTSTR lpszFileName, int iWidth, int iHeight, bool b
     bmInfoHeaderDest.biSizeImage = iRealWidthDest * iHeight;
     memcpy(pDestDIB, &bmInfoHeaderDest, sizeof(bmInfoHeaderDest));
 
-    // 저장할 file 이름
-    char szDrive[_MAX_DRIVE];
-    char szDir[_MAX_DIR];
-    char szFName[_MAX_FNAME];
-    char szFNameDest[_MAX_FNAME];
-    _splitpath(lpszFileName, szDrive, szDir, szFName, NULL);
-    CreateDirectory(szFName, NULL);    // 하위 폴더 만들기
+    fs::path fsDir = fsFile.parent_path() / fsFile.stem();
+    fs::create_directory(fsDir);
 
     // 쪼갠 정보를 tcd파일에 넣어서 저장
-    DWORD dwNum;
-    wsprintf(szFNameDest, "%s\\%s.tcd", szFName, szFName);
-    HANDLE hFile = CreateFile(szFNameDest, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-    if(INVALID_HANDLE_VALUE != hFile)
-    {
+    DWORD    dwNum;
+    fs::path fsTcdFile = fsDir / (fsFile.stem() + ".tcd");
+    HANDLE   hFile = CreateFileW(fsTcdFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    if (INVALID_HANDLE_VALUE != hFile) {
         WriteFile(hFile, &iCX, sizeof(iCX), &dwNum, NULL);
         WriteFile(hFile, &iCY, sizeof(iCX), &dwNum, NULL);
         CloseHandle(hFile);
@@ -440,50 +415,46 @@ BOOL CMainFrame::BMPCutter(LPCTSTR lpszFileName, int iWidth, int iHeight, bool b
 
     // progress bar
     CProgressBar ProgressBar;
-    ProgressBar.Create("cutting bitmap..", 50, iCY*iCX);
+    ProgressBar.Create("cutting bitmap..", 50, iCY * iCX);
     ProgressBar.SetStep(1);
 
     // 새로 쪼개서 저장하기
-    BYTE *pTmpBitDest;
-    pTmpBitDest = ((BYTE*)pDestDIB) + sizeof(BITMAPINFOHEADER);
-    for (int j=0; j<iCY; ++j)
-    {
-        for (int i=0; i<iCX; ++i)
-        {
+    BYTE * pTmpBitDest;
+    pTmpBitDest = ((BYTE *)pDestDIB) + sizeof(BITMAPINFOHEADER);
+
+    std::string szStem = fsFile.stem().string();
+    for (int j = 0; j < iCY; ++j) {
+        for (int i = 0; i < iCX; ++i) {
             memset(pTmpBitDest, 0, iDestDIBSize - sizeof(BITMAPINFOHEADER));
-            for(int y=0; y<iHeight; ++y)
-            {
-                if ( (iHeight*j + y) >= bmInfoHeader.biHeight) break;    // 맨 아래가 짤릴 경우가 있다
+            for (int y = 0; y < iHeight; ++y) {
+                if ((iHeight * j + y) >= bmInfoHeader.biHeight) {
+                    break; // 맨 아래가 짤릴 경우가 있다
+                }
 
                 // 원본파일의 읽어올 부분의 file position을 맞게 세팅한다.
-                file.Seek(bmfHeader.bfOffBits + 
-                    iRealWidthSrc*(bmInfoHeader.biHeight - 1 - (iHeight*j + y)) + 
-                    3*(iWidth*i),
-                    CFile::begin);
+                file.Seek(bmfHeader.bfOffBits + iRealWidthSrc * (bmInfoHeader.biHeight - 1 - (iHeight * j + y)) +
+                              3 * (iWidth * i),
+                          CFile::begin);
 
-                if (i == (iCX-1))
-                {    // 맨 오른쪽 끝은 짤릴 가능성이 있다.
-                    file.Read(pTmpBitDest + iRealWidthDest*(iHeight-1-y), bmInfoHeader.biWidth*3 - iRealWidthDest*(iCX-1));
-                }
-                else
-                {
-                    file.Read(pTmpBitDest + iRealWidthDest*(iHeight-1-y), iRealWidthDest);
+                if (i == (iCX - 1)) { // 맨 오른쪽 끝은 짤릴 가능성이 있다.
+                    file.Read(pTmpBitDest + iRealWidthDest * (iHeight - 1 - y),
+                              bmInfoHeader.biWidth * 3 - iRealWidthDest * (iCX - 1));
+                } else {
+                    file.Read(pTmpBitDest + iRealWidthDest * (iHeight - 1 - y), iRealWidthDest);
                 }
             }
 
             // 저장하기
-            if(bSaveToDXT)
-            {
-                wsprintf(szFNameDest, "%s%s%s\\ConversionTmp.bmp", szDrive, szDir, szFName, szFName, i, iCY-1-j);
-            }
-            else
-            {
-                wsprintf(szFNameDest, "%s%s%s\\%s_%02d%02d.bmp", szDrive, szDir, szFName, szFName, i, iCY-1-j);
+            fs::path fsTexFileTmp;
+            if (bSaveToDXT) {
+                fsTexFileTmp = fs::temp_directory_path() / "N3TexViewer_TempConvert.bmp";
+            } else {
+                fsTexFileTmp = fsDir / std::format("{:s}_{:02}{:02}.dxt", szStem, i, iCY - 1 - j);
             }
 
-            hFile = CreateFile(szFNameDest, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-            if(INVALID_HANDLE_VALUE != hFile)
-            {
+            hFile =
+                CreateFileW(fsTexFileTmp.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+            if (INVALID_HANDLE_VALUE != hFile) {
                 WriteFile(hFile, &bmfHeaderDest, sizeof(bmfHeaderDest), &dwNum, NULL);
                 WriteFile(hFile, pDestDIB, iDestDIBSize, &dwNum, NULL);
                 CloseHandle(hFile);
@@ -491,19 +462,16 @@ BOOL CMainFrame::BMPCutter(LPCTSTR lpszFileName, int iWidth, int iHeight, bool b
             ProgressBar.StepIt();
             this->UpdateWindow();
 
-            if(bSaveToDXT) // DXT 를 저장하려면..
-            {
-                char szDXT_FName[_MAX_PATH];
-                wsprintf(szDXT_FName, "%s%s%s\\%s_%02d%02d.DXT", szDrive, szDir, szFName, szFName, i, iCY-1-j);
-
+            if (bSaveToDXT) { // DXT 를 저장하려면..
                 CN3Texture TexTmp;
-                TexTmp.LoadFromFile(szFNameDest); // 로딩
-                if(true == TexTmp.Convert(fmtDXT)) // 변환
+                TexTmp.LoadFromFile(fsTcdFile);     // 로딩
+                if (true == TexTmp.Convert(fmtDXT)) // 변환
                 {
-                    TexTmp.SaveToFile(szDXT_FName);
+                    fs::path fsDxtFile = (fsDir / fsFile.stem()) + std::format("_{:02}{:02}.dxt", i, iCY - 1 - j);
+                    TexTmp.SaveToFile(fsDxtFile);
                 }
 
-                DeleteFile(szFNameDest); // 임시 비트맵 파일 지우기..
+                fs::remove(fsTcdFile.c_str()); // 임시 비트맵 파일 지우기..
             }
         }
     }
@@ -511,9 +479,9 @@ BOOL CMainFrame::BMPCutter(LPCTSTR lpszFileName, int iWidth, int iHeight, bool b
     // 메모리 풀어줌
     ::GlobalFree(pDestDIB);
     file.Close();
-    
-     return TRUE;
-     */
+
+    return TRUE;
+    */
 }
 
 void CMainFrame::OnFileOpenNext() {
@@ -561,24 +529,22 @@ void CMainFrame::OnToolSaveRepeat() {
         return;
     }
 
-    CN3Texture   Tex;
-    POSITION     pos = dlg.GetStartPosition();
-    CStringArray FileNames;
-    while (pos != NULL) {
-        FileNames.Add(dlg.GetNextPathName(pos));
-    }
+    POSITION pos = dlg.GetStartPosition();
 
-    int nFNC = FileNames.GetSize();
+    std::vector<fs::path> vFiles;
+    while (pos) {
+        vFiles.emplace_back(dlg.GetNextPathName(pos).GetString());
+    }
 
     // progress bar
     CProgressBar ProgressBar;
-    ProgressBar.Create("ReSave DXT Files..", 50, nFNC);
+    ProgressBar.Create("ReSave DXT Files..", 50, static_cast<int>(vFiles.size()));
     ProgressBar.SetStep(1);
 
-    for (int i = 0; i < nFNC; i++) {
-        std::string szFN(FileNames[i].GetString());
-        Tex.LoadFromFile(szFN);
-        Tex.SaveToFile(szFN);
+    for (const auto & fsFile : vFiles) {
+        CN3Texture Tex;
+        Tex.LoadFromFile(fsFile);
+        Tex.SaveToFile(fsFile);
 
         ProgressBar.StepIt();
     }

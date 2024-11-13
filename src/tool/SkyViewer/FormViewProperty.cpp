@@ -294,15 +294,15 @@ void CFormViewProperty::UpdateAllInfo() {
     CSkyViewerDoc * pDoc = GetDocument();
 
     if (pDoc->m_Sky.MoonTextureGet()) {
-        SetDlgItemText(IDC_E_MOON_TEXTURE, pDoc->m_Sky.MoonTextureGet()->FileName().c_str());
+        SetDlgItemTextW(GetSafeHwnd(), IDC_E_MOON_TEXTURE, pDoc->m_Sky.MoonTextureGet()->FilePath().c_str());
     } else {
-        SetDlgItemText(IDC_E_MOON_TEXTURE, "");
+        SetDlgItemTextW(GetSafeHwnd(), IDC_E_MOON_TEXTURE, L"");
     }
 
     m_ListSunTextures.ResetContent();
     for (int i = 0; i < NUM_SUNPART; i++) {
         if (pDoc->m_Sky.SunTextureGet(i)) {
-            m_ListSunTextures.AddString(pDoc->m_Sky.SunTextureGet(i)->FileName().c_str());
+            m_ListSunTextures.AddString(pDoc->m_Sky.SunTextureGet(i)->FilePath().string().c_str());
         } else {
             m_ListSunTextures.AddString("");
         }
@@ -310,7 +310,7 @@ void CFormViewProperty::UpdateAllInfo() {
 
     m_ListCloudTextures.ResetContent();
     for (int i = 0; i < NUM_CLOUD; i++) {
-        m_ListCloudTextures.AddString(pDoc->m_Sky.CloudTextureFileName(i));
+        m_ListCloudTextures.AddString(pDoc->m_Sky.CloudTextureFile(i).string().c_str());
     }
 
     int iIndexPrev = m_ListDayChanges.GetCurSel();
@@ -400,22 +400,21 @@ void CFormViewProperty::OnTimer(UINT nIDEvent) {
 }
 
 void CFormViewProperty::OnDblclkListCloudTextures() {
-    CString     FileName;
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(TRUE, "DXT", NULL, dwFlags,
                     "Texture 로 쓸수 있는 그림 파일(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA||", NULL);
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
+    fs::path fsFile = dlg.GetPathName().GetString();
 
     int iIndex = m_ListCloudTextures.GetCurSel();
 
-    FileName = dlg.GetPathName();
     CSkyViewerDoc * pDoc = GetDocument();
-    CN3Texture *    pTex = pDoc->m_Sky.CloudTextureSet(iIndex, FileName);
+    CN3Texture *    pTex = pDoc->m_Sky.CloudTextureSet(iIndex, fsFile);
 
     m_ListCloudTextures.DeleteString(iIndex);
-    m_ListCloudTextures.InsertString(iIndex, pTex->FileName().c_str());
+    m_ListCloudTextures.InsertString(iIndex, pTex->FilePath().string().c_str());
     m_ListCloudTextures.SetCurSel(iIndex);
 
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
@@ -423,22 +422,21 @@ void CFormViewProperty::OnDblclkListCloudTextures() {
 }
 
 void CFormViewProperty::OnDblclkListSunTextures() {
-    CString     FileName;
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(TRUE, "DXT", NULL, dwFlags,
                     "Texture 로 쓸수 있는 그림 파일(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA||", NULL);
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
+    fs::path fsFile = dlg.GetPathName().GetString();
 
     int iIndex = m_ListSunTextures.GetCurSel();
 
-    FileName = dlg.GetPathName();
     CSkyViewerDoc * pDoc = GetDocument();
-    CN3Texture *    pTex = pDoc->m_Sky.SunTextureSet(iIndex, FileName);
+    CN3Texture *    pTex = pDoc->m_Sky.SunTextureSet(iIndex, fsFile);
 
     m_ListSunTextures.DeleteString(iIndex);
-    m_ListSunTextures.InsertString(iIndex, pTex->FileName().c_str());
+    m_ListSunTextures.InsertString(iIndex, pTex->FilePath().string().c_str());
     m_ListSunTextures.SetCurSel(iIndex);
 
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
@@ -446,19 +444,18 @@ void CFormViewProperty::OnDblclkListSunTextures() {
 }
 
 void CFormViewProperty::OnBBrowseMoonTexture() {
-    CString     FileName;
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(TRUE, "DXT", NULL, dwFlags,
                     "Texture 로 쓸수 있는 그림 파일(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA||", NULL);
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
+    fs::path fsFile = dlg.GetPathName().GetString();
 
-    FileName = dlg.GetPathName();
     CSkyViewerDoc * pDoc = GetDocument();
-    CN3Texture *    pTex = pDoc->m_Sky.MoonTextureSet(FileName);
+    CN3Texture *    pTex = pDoc->m_Sky.MoonTextureSet(fsFile);
 
-    SetDlgItemText(IDC_E_MOON_TEXTURE, pTex->FileName().c_str());
+    SetDlgItemTextW(GetSafeHwnd(), IDC_E_MOON_TEXTURE, pTex->FilePath().c_str());
 
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     pFrm->GetViewRender()->InvalidateRect(NULL, FALSE);

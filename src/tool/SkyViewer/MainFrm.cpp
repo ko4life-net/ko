@@ -62,7 +62,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     EnableDocking(CBRS_ALIGN_ANY);
     DockControlBar(&m_wndToolBar);
 
-    CN3Base::PathSet(fs::current_path().string());
+    CN3Base::PathSet(fs::current_path());
 
     if (!m_Eng.Init(TRUE, m_hWnd, 64, 64, 0, TRUE)) {
         return -1;
@@ -76,7 +76,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     m_Lights[1].m_Data.InitDirection(1, __Vector3(0, 0, -1), crLgt);
     m_Lights[2].m_Data.InitPoint(2, __Vector3(0, 0, 0), crLgt, 32.0f);
 
-    m_ObjectBundle.LoadFromFile("ChrSelect\\el_chairs.n3shape"); // 배경으로 쓸 오브젝트 부르기..
+    m_ObjectBundle.LoadFromFile(fs::path("ChrSelect") / "el_chairs.n3shape"); // 배경으로 쓸 오브젝트 부르기..
 
     return 0;
 }
@@ -141,15 +141,13 @@ void CMainFrame::OnImportObject() {
         return;
     }
 
-    CString szFullPath = dlg.GetPathName();
-
-    std::string szObjPrev = m_ObjectBundle.FileName();
+    fs::path fsFile = dlg.GetPathName().GetString();
+    fs::path fsObjPrev = m_ObjectBundle.FilePath();
     m_ObjectBundle.Release();
-    if (m_ObjectBundle.LoadFromFile((const char *)szFullPath)) // 배경으로 쓸 오브젝트 부르기..
-    {
+    if (m_ObjectBundle.LoadFromFile(fsFile)) { // 배경으로 쓸 오브젝트 부르기..
         CSkyViewerView * pView = (CSkyViewerView *)(m_wndSplitter.GetPane(0, 1));
         pView->InvalidateRect(NULL, FALSE);
     } else {
-        m_ObjectBundle.LoadFromFile(szObjPrev);
+        m_ObjectBundle.LoadFromFile(fsObjPrev);
     }
 }

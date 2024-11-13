@@ -41,7 +41,7 @@ class CBird : public CN3Base {
     void         Tick();
     void         Render();
 
-    int LoadBird(const std::string & szFN);
+    int LoadBird(const fs::path & fsFile);
 
   protected:
 };

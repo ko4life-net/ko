@@ -66,10 +66,10 @@ class CTableDataExt {
 
 class CTableGenerator {
   public:
-    std::string m_szEnmBasic;
-    std::string m_szTxtBasic;
-    std::string m_szEnmExt;
-    std::string m_szTxtExts[MAX_ITEM_EXTENSION];
+    fs::path m_fsEnmBasicFile;
+    fs::path m_fsTxtBasicFile;
+    fs::path m_fsEnmExtFile;
+    fs::path m_fsTxtExtFiles[MAX_ITEM_EXTENSION];
 
   protected:
     std::vector<DATA_TYPE>     m_DataTypes;
@@ -103,15 +103,15 @@ class CTableGenerator {
     bool DataTypeDelete(int iIndex);
     bool DataTypeInsert(int iIndex, DATA_TYPE Type);
     bool DataTypeAssign(int iCount, DATA_TYPE Type);
-    bool DataTypeLoad(const std::string & szFN);
-    bool DataTypeSave(const std::string & szFN);
+    bool DataTypeLoad(const fs::path & fsFile);
+    bool DataTypeSave(const fs::path & fsFile);
 
-    bool Convert2Bin(const std::string & szFN);
+    bool Convert2Bin(const fs::path & fsFile);
 
-    bool OpenSource(const std::string & szEnumFileName, const std::string & szTxtFileName);
-    bool OpenReference_Enum(const std::string & szEnumFileName);
-    bool OpenReference_Txt(int iIndex, const std::string & szTxtFileName);
-    bool Generate(int iIndex, const std::string & szEnumFileName, const std::string & szTxtFileName);
+    bool OpenSource(const fs::path & fsEnumFile, const fs::path & fsTxtFile);
+    bool OpenReference_Enum(const fs::path & fsEnumFile);
+    bool OpenReference_Txt(int iIndex, const fs::path & fsTxtFile);
+    bool Generate(int iIndex, const fs::path & fsEnumFile, const fs::path & fsTxtFile);
 
     void Release();
     CTableGenerator();

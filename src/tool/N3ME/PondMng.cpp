@@ -914,7 +914,7 @@ void CPondMng::MakeGameFiles(HANDLE hFile, float fSize) {
 
         CN3Texture * pPondTex = pRM->TexGet();
         if (pPondTex) {
-            std::string szFile = fs::path(pPondTex->FileName()).filename().string();
+            std::string szFile = pPondTex->FilePath().filename().string();
             if (szFile.empty()) {
                 WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
             } else {

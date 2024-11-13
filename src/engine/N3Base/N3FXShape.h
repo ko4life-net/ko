@@ -42,7 +42,7 @@ class CN3FXSPart : public CN3BaseFileAccess {
     int          TexCount() { return m_TexRefs.size(); }
     CN3Texture * Tex(int iIndex);
     void         TexAlloc(int m_nCount);
-    CN3Texture * TexSet(int iIndex, const std::string & szFN);
+    CN3Texture * TexSet(int iIndex, const fs::path & fsFile);
     void         TexSet(int iIndex, CN3Texture * pTex);
 
     __Vector3 Min() {
@@ -70,7 +70,7 @@ class CN3FXSPart : public CN3BaseFileAccess {
     CN3FXPMesh *         Mesh() { return m_FXPMInst.GetMesh(); }
     __VertexXyzColorT1 * GetColorVertices() { return m_FXPMInst.GetVertices(); }
     void                 SetColor(DWORD dwColor = 0xffffffff) { m_FXPMInst.SetColor(dwColor); }
-    bool                 MeshSet(const std::string & szFN);
+    bool                 MeshSet(const fs::path & fsFile);
     void                 Tick(const __Matrix44 & mtxParent);
     void                 Render();
     void                 Release();

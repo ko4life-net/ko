@@ -213,10 +213,10 @@ CPortalVolume * CPortalVolume::GetNthLinkedVolume(int iOrder) {
     return NULL;
 }
 
-void CPortalVolume::SetShape(std::string szStr, CN3Shape * pShape, int iOrder) {
+void CPortalVolume::SetShape(const fs::path & fsFile, CN3Shape * pShape, int iOrder) {
     ShapeInfo * pSI = new ShapeInfo;
     pSI->m_iID = iOrder;
-    pSI->m_strShapeFile = szStr;
+    pSI->m_fsShapeFile = fsFile;
     pSI->m_pShape = pShape;
 
     m_plShapeInfoList.push_back(pSI);
@@ -730,8 +730,7 @@ bool CPortalVolume::Load(HANDLE hFile, bool bGameData) {
     CN3Transform::Load(hFile);
 
     // 자신의 데이터 로드..
-    DWORD       dwNum;
-    std::string strSrc;
+    DWORD dwNum;
 
     // 링크된 갯수를 로드..
     int iLinkedCount = 0;
@@ -756,12 +755,10 @@ bool CPortalVolume::Load(HANDLE hFile, bool bGameData) {
         ShapeInfo * pSI = new ShapeInfo;
         ReadFile(hFile, &pSI->m_iID, sizeof(int), &dwNum, NULL);
 
-        // 문자열 길이..
-        strSrc = CPVSManager::ReadDecryptString(hFile);
-        pSI->m_strShapeFile = strSrc;
+        pSI->m_fsShapeFile = CPVSManager::ReadDecryptString(hFile);
 
         // SourceList에서.. Shape의 Pointer를 연결한다..
-        pSI->m_pShape = pFrm->m_pSceneSource->ShapeGetByFileName(strSrc);
+        pSI->m_pShape = pFrm->m_pSceneSource->ShapeGetByFile(pSI->m_fsShapeFile);
         ASSERT(pSI->m_pShape);
 
         ReadFile(hFile, &pSI->m_iBelong, sizeof(int), &dwNum, NULL);
@@ -784,8 +781,7 @@ bool CPortalVolume::Load(HANDLE hFile, bool bGameData) {
 }
 
 void CPortalVolume::LoadGameData(HANDLE hFile) {
-    DWORD       dwNum;
-    std::string strSrc;
+    DWORD dwNum;
 
     //..
     int           iCount = 0;
@@ -848,8 +844,7 @@ void CPortalVolume::LoadGameData(HANDLE hFile) {
 }
 
 bool CPortalVolume::Save(HANDLE hFile, bool bGameData) {
-    DWORD       dwNum;
-    std::string strSrc;
+    DWORD dwNum;
 
     // 자신의 아이디를 저장..
     WriteFile(hFile, &m_iID, sizeof(int), &dwNum, NULL);
@@ -880,7 +875,7 @@ bool CPortalVolume::Save(HANDLE hFile, bool bGameData) {
         pSI = *siit++;
         WriteFile(hFile, &pSI->m_iID, sizeof(int), &dwNum, NULL);
 
-        CPVSManager::WriteCryptographString(hFile, pSI->m_strShapeFile);
+        CPVSManager::WriteCryptographString(hFile, fs::path(pSI->m_fsShapeFile).normalize('/', '\\').string());
 
         // Shape의 데이터 저장..
         WriteFile(hFile, &pSI->m_iBelong, sizeof(int), &dwNum, NULL);
@@ -901,8 +896,7 @@ bool CPortalVolume::Save(HANDLE hFile, bool bGameData) {
 }
 
 void CPortalVolume::SaveGameData(HANDLE hFile) {
-    DWORD       dwNum;
-    std::string strSrc;
+    DWORD dwNum;
 
     int             iCount = 0;
     CPortalVolume * pVol = NULL;

@@ -133,7 +133,7 @@ void CN3ViewerDoc::OnFileImport() {
     CString szExt = "";
     //CString szFilter =
     //    "N3D Object File|*.*|카메라 Data(*.N3Camera)|*.N3Camera|Light Data(*.N3Light)|*.N3Light|Shape Data(*.N3Shape)|*.N3Shape|\
-//    Progressive Mesh Data(*.N3PMesh)|*.N3Mesh|Indexed Mesh Data(*.N3IMesh)|*.N3IMesh|Joint Data(*.N3Joint)|*.N3Joint|Skinning Data(*.N3Skin)|*.N3Skin|Character Data(*.N3Chr)|*.N3Chr||";
+    //    Progressive Mesh Data(*.N3PMesh)|*.N3Mesh|Indexed Mesh Data(*.N3IMesh)|*.N3IMesh|Joint Data(*.N3Joint)|*.N3Joint|Skinning Data(*.N3Skin)|*.N3Skin|Character Data(*.N3Chr)|*.N3Chr||";
     CString szFilter =
         "N3D Object File|*.*|카메라(*.N3Camera)|*.N3Camera|Light(*.N3Light)|*.N3Light|Progressive "
         "Mesh(*.N3PMesh)|*.N3PMesh|Shape(*.N3Shape)|*.N3Shape|Character(*.N3Chr)|*.N3Chr|Plug(*.N3CPlug)|*.N3CPlug||";
@@ -148,61 +148,57 @@ void CN3ViewerDoc::OnFileImport() {
         return;
     }
 
-    CString  FileName;
     POSITION pos = dlg.GetStartPosition();
     for (int i = 0; pos != NULL; i++) {
-        FileName = dlg.GetNextPathName(pos);
-        CString szExt = FileName.Right(FileName.GetLength() - FileName.ReverseFind('.') - 1);
+        fs::path    fsFile = dlg.GetNextPathName(pos).GetString();
+        std::string szExt = fsFile.extension().string();
 
         CN3BaseFileAccess * pBase = NULL;
 
-        if (lstrcmpi(szExt, "N3Camera") == 0) {
+        if (n3std::iequals(szExt, ".n3camera")) {
             CN3Camera * pCamera = new CN3Camera();
             m_Scene.CameraAdd(pCamera);
             pBase = pCamera;
-        } else if (lstrcmpi(szExt, "N3Light") == 0) {
+        } else if (n3std::iequals(szExt, ".n3light")) {
             CN3Light * pLight = new CN3Light();
             m_Scene.LightAdd(pLight);
             pBase = pLight;
-        } else if (lstrcmpi(szExt, "N3PMesh") == 0) {
+        } else if (n3std::iequals(szExt, ".n3pmesh")) {
             CN3PMesh * pMesh = new CN3PMesh();
             m_Scene.s_MngPMesh.Add(pMesh);
             pBase = pMesh;
-        }
-        //        else if(lstrcmpi(szExt, "N3Joint") == 0)
-        //        {
-        //            CN3Joint* pJoint = new CN3Joint();
-        //            m_Scene.s_MngJoint.Add(pJoint);
-        //            pBase = pJoint;
-        //        }
-        else if (lstrcmpi(szExt, "N3Shape") == 0) {
+            //} else if (n3std::iequals(szExt, ".n3joint")) {
+            //    CN3Joint * pJoint = new CN3Joint();
+            //    m_Scene.s_MngJoint.Add(pJoint);
+            //    pBase = pJoint;
+        } else if (n3std::iequals(szExt, ".n3shape")) {
             CN3Shape * pShape = new CN3Shape();
             m_Scene.ShapeAdd(pShape);
             pBase = pShape;
-        } else if (lstrcmpi(szExt, "N3Chr") == 0) {
+        } else if (n3std::iequals(szExt, ".n3chr")) {
             CN3Chr * pChr = new CN3Chr();
             m_Scene.ChrAdd(pChr);
             pBase = pChr;
-        } else if (lstrcmpi(szExt, "N3CPlug") == 0) {
+        } else if (n3std::iequals(szExt, ".n3cplug")) {
             CN3Shape * pShape = new CN3Shape();
             m_Scene.ShapeAdd(pShape);
             CN3SPart * pPart = pShape->PartAdd();
 
             CN3CPlug plug;
-            plug.LoadFromFile(std::string(FileName));
+            plug.LoadFromFile(fsFile);
 
             pPart->m_szName = plug.m_szName;
             pShape->m_szName = plug.m_szName;
-            pShape->FileNameSet(plug.m_szName + ".N3Shape");
+            pShape->FilePathSet(plug.m_szName + ".n3shape");
 
             CN3PMesh * pPMesh = plug.PMesh();
             m_Scene.s_MngPMesh.Add(pPMesh);
             CN3Texture * pTex = plug.Tex();
             m_Scene.s_MngTex.Add(pTex);
 
-            pPart->MeshSet(pPMesh->FileName());
+            pPart->MeshSet(pPMesh->FilePath());
             pPart->TexAlloc(1);
-            pPart->TexSet(0, pTex->FileName());
+            pPart->TexSet(0, pTex->FilePath());
 
             pShape->FindMinMax(); // 큰값, 작은값 찾기..
 
@@ -211,14 +207,14 @@ void CN3ViewerDoc::OnFileImport() {
             continue;
         }
 
-        pBase->LoadFromFile(std::string(FileName)); // 파일에서 읽는다..
+        pBase->LoadFromFile(fsFile); // 파일에서 읽는다..
         m_pSelectedObj = pBase;
 
-        if (lstrcmpi(szExt, "N3PMesh") == 0) {
+        if (n3std::iequals(szExt, ".n3pmesh")) {
             CN3Shape * pShape = new CN3Shape();
             m_Scene.ShapeAdd(pShape);
             CN3SPart * pPart = pShape->PartAdd();
-            pPart->MeshSet(pBase->FileName());
+            pPart->MeshSet(pBase->FilePath());
             m_pSelectedObj = pShape;
 
             delete pBase;
@@ -277,18 +273,17 @@ void CN3ViewerDoc::OnFileExport() {
         return;
     }
 
-    std::string szOldFN = pBase->FileName();
-    CString     szFullPath = dlg.GetPathName();
+    fs::path fsFileBak = pBase->FilePath();
+    fs::path fsFile = dlg.GetPathName().GetString();
 
-    CString szOldName = pBase->m_szName.c_str();
     if (dwType & OBJ_SHAPE) {
         CN3Shape * pShape = (CN3Shape *)pBase;
-        pShape->SaveToFile(std::string(szFullPath));
+        pShape->SaveToFile(fsFile);
     } else {
-        pBase->SaveToFile(std::string(szFullPath));
+        pBase->SaveToFile(fsFile);
     }
 
-    pBase->FileNameSet(szOldFN);
+    pBase->FilePathSet(fsFileBak);
     this->UpdateAllViews(NULL);
 }
 
@@ -306,11 +301,10 @@ void CN3ViewerDoc::OnFileSaveToSameFolder() {
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
-
-    CString szFullPath = dlg.GetPathName();
+    fs::path fsFile = dlg.GetPathName().GetString();
 
     CN3Shape * pShape = (CN3Shape *)m_pSelectedObj;
-    pShape->SaveToSameFolder(std::string(szFullPath));
+    pShape->SaveToSameFolder(fsFile);
 }
 
 void CN3ViewerDoc::OnFileSaveToIndoor() {
@@ -325,22 +319,21 @@ void CN3ViewerDoc::OnFileSaveToIndoor() {
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
-    CString szFullPath = dlg.GetPathName();
+    fs::path fsFile = dlg.GetPathName().GetString();
 
     for (int i = 0; i < iCount; i++) {
         CN3Shape * pShape = m_Scene.ShapeGet(i);
-        pShape->SaveToSameFolderAndMore(std::string(szFullPath), "N3Indoor\\");
+        pShape->SaveToSameFolderAndMore(fsFile, "N3Indoor");
     }
-    OnSaveDocument(std::string(szFullPath).c_str());
+    OnSaveDocument(fsFile.string().c_str());
 }
 
 void CN3ViewerDoc::OnEditInsertCamera() {
     CN3Camera * pCamera = new CN3Camera();
     pCamera->m_szName = "DefaultCamera";
 
-    char szFN[256];
-    wsprintf(szFN, "Chr\\DefaultCamera_%d.N3Camera", m_Scene.CameraCount() + 1);
-    pCamera->FileNameSet(szFN);
+    fs::path fsFile = fs::path("Chr") / std::format("DefaultCamera_{:d}.n3camera", m_Scene.CameraCount() + 1);
+    pCamera->FilePathSet(fsFile);
     m_Scene.CameraAdd(pCamera);
 
     m_pSelectedObj = pCamera;
@@ -351,9 +344,8 @@ void CN3ViewerDoc::OnEditInsertLight() {
     CN3Light * pLight = new CN3Light();
     pLight->m_szName = "DefaultLight";
 
-    char szFN[256];
-    wsprintf(szFN, "Data\\DefaultLight_%d.N3Light", m_Scene.LightCount() + 1);
-    pLight->FileNameSet(szFN);
+    fs::path fsFile = fs::path("Data") / std::format("DefaultLight_{:d}.n3light", m_Scene.LightCount() + 1);
+    pLight->FilePathSet(fsFile);
     m_Scene.LightAdd(pLight);
 
     m_pSelectedObj = pLight;
@@ -364,9 +356,8 @@ void CN3ViewerDoc::OnEditInsertShape() {
     CN3Shape * pShape = new CN3Shape();
     pShape->m_szName = "DefaultShape";
 
-    char szFN[256];
-    wsprintf(szFN, "Object\\DefaultShape_%d.N3Shape", m_Scene.ShapeCount() + 1);
-    pShape->FileNameSet(szFN);
+    fs::path fsFile = fs::path("Object") / std::format("DefaultShape_{:d}.n3shape", m_Scene.ShapeCount() + 1);
+    pShape->FilePathSet(fsFile);
     m_Scene.ShapeAdd(pShape);
 
     m_pSelectedObj = pShape;
@@ -377,9 +368,8 @@ void CN3ViewerDoc::OnEditInsertCharacter() {
     CN3Chr * pChr = new CN3Chr();
     pChr->m_szName = "DefaultChr";
 
-    char szFN[256];
-    wsprintf(szFN, "Chr\\DefaultChr_%d.N3Chr", m_Scene.ChrCount() + 1);
-    pChr->FileNameSet(szFN);
+    fs::path fsFile = fs::path("Chr") / std::format("DefaultChr_{:d}.n3chr", m_Scene.ChrCount() + 1);
+    pChr->FilePathSet(fsFile);
     m_Scene.ChrAdd(pChr);
 
     m_pSelectedObj = pChr;

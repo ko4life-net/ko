@@ -122,7 +122,7 @@ class CPVSManager : public CN3BaseFileAccess {
     void SplitShapeToVolumn(CDialog * pDlg);
 
     // Shape를 리스트에 등록한다..
-    void RegisterShape(std::string szStr, CN3Shape * pShape);
+    void RegisterShape(const fs::path & fsFile, CN3Shape * pShape);
     bool IsValidPortalVolume(CPortalVolume * pVol);
 
     void UpdatePosAll(float fx, float fy, float fz);
@@ -135,7 +135,7 @@ class CPVSManager : public CN3BaseFileAccess {
   public:
     //..
     ShapeInfo * GetShapeInfoByManager(int iID);
-    CN3Shape *  GetShapeByManager(std::string szStr);
+    CN3Shape *  GetShapeByManager(const fs::path & fsFile);
 
     // String Cryptograph.. ^^
     static void        WriteCryptographString(HANDLE hFile, std::string strSrc);

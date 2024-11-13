@@ -37,7 +37,7 @@ class CN3SndObjStream : public CN3SndObj {
     HMMIO        hMMIO;
 
   public:
-    bool Create(const std::string & szFN, e_SndType eType = SNDTYPE_STREAM);
+    bool Create(const fs::path & fsFile, e_SndType eType = SNDTYPE_STREAM);
 
     //    void Play(float delay = 0.0f, float fFadeInTime = 0.0f);
     //    void Stop(float fFadeOutTime = 0.0f);
@@ -53,7 +53,7 @@ class CN3SndObjStream : public CN3SndObj {
 
     //void Stop();
 
-    BOOL LoadWave(LPCSTR pFileName);
+    BOOL LoadWave(const fs::path & fsFile);
     BOOL WriteBuffer();
     BOOL InitWriteBuffer();
     void Reset();

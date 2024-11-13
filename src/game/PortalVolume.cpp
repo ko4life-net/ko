@@ -312,11 +312,8 @@ void CPortalVolume::RenderCollision() {
 bool CPortalVolume::Load(HANDLE hFile) {
     CN3Transform::Load(hFile);
 
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-
     // 자신의 데이터 로드..
-    DWORD       dwNum;
-    std::string strSrc, strDest;
+    DWORD dwNum;
 
     // 링크된 갯수를 로드..    일단 읽구 버린다..
     int iLinkedCount = 0, iTID, iEWT;
@@ -334,20 +331,17 @@ bool CPortalVolume::Load(HANDLE hFile) {
         ReadFile(hFile, &pSI->m_iID, sizeof(int), &dwNum, NULL);
 
         // 문자열 길이..
-        strSrc = CPvsMgr::ReadDecryptString(hFile);
-        _splitpath(strSrc.c_str(), szDrive, szDir, szFName, szExt);
-        strDest = szFName;
-        strDest += szExt;
-        pSI->m_strShapeFile = m_pManager->GetIndoorFolderPath() + strDest;
+        fs::path fsSrcFile = CPvsMgr::ReadDecryptString(hFile);
+        pSI->m_fsShapeFile = m_pManager->GetIndoorFolderPath() / fsSrcFile.filename();
         ReadFile(hFile, &pSI->m_iBelong, sizeof(int), &dwNum, NULL);
         ReadFile(hFile, &pSI->m_iEventID, sizeof(int), &dwNum, NULL);
         ReadFile(hFile, &pSI->m_iEventType, sizeof(int), &dwNum, NULL);
         ReadFile(hFile, &pSI->m_iNPC_ID, sizeof(int), &dwNum, NULL);
         ReadFile(hFile, &pSI->m_iNPC_Status, sizeof(int), &dwNum, NULL);
         if (pSI->m_iEventID || pSI->m_iEventType || pSI->m_iNPC_ID || pSI->m_iNPC_Status) { // 이벤트가 있으면
-            pSI->m_pShape = CPvsMgr::s_MngShapeExt.Get(m_pManager->GetIndoorFolderPath() + strDest);
+            pSI->m_pShape = CPvsMgr::s_MngShapeExt.Get(pSI->m_fsShapeFile);
         } else {
-            pSI->m_pShape = CPvsMgr::s_MngShape.Get(m_pManager->GetIndoorFolderPath() + strDest);
+            pSI->m_pShape = CPvsMgr::s_MngShape.Get(pSI->m_fsShapeFile);
         }
         __ASSERT(pSI->m_pShape, "Shape Not Found");
         pSI->Load(hFile);

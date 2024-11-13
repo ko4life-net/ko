@@ -60,9 +60,9 @@ class CPlayerMySelf : public CPlayerBase {
     bool CheckCollision(); // 움직이는 처리와 충돌체크를 한다. 충돌되는게 있으면 움직이지 않는다.
     //..
     bool           InitChr(__TABLE_PLAYER_LOOKS * pTblUPC);
-    CN3CPart *     PartSet(e_PartPosition ePos, const std::string & szFN, __TABLE_ITEM_BASIC * pItemBasic,
+    CN3CPart *     PartSet(e_PartPosition ePos, const fs::path & fsFile, __TABLE_ITEM_BASIC * pItemBasic,
                            __TABLE_ITEM_EXT * pItemExt);
-    CN3CPlugBase * PlugSet(e_PlugPosition ePos, const std::string & szFN, __TABLE_ITEM_BASIC * pItemBasic,
+    CN3CPlugBase * PlugSet(e_PlugPosition ePos, const fs::path & fsFile, __TABLE_ITEM_BASIC * pItemBasic,
                            __TABLE_ITEM_EXT * pItemExt);
 
     void Tick();

@@ -1,27 +1,23 @@
 #pragma once
 
-// SettingDlg.h : header file
-//
-
-#pragma warning(disable : 4786) // Visual C++ Only
-#include <set>
-using namespace std;
-
 #include "ZipArchive.h"
 
-typedef std::set<int> HistoryList;
+#include <set>
+
+typedef std::set<short> HistoryList;
+
 /////////////////////////////////////////////////////////////////////////////
 // CSettingDlg dialog
 class CLoginServerDlg;
 class CSettingDlg : public CDialog {
     // Construction
   public:
-    bool IsDBCSString(const char * string);
-    void FolderRecurse(const char * foldername, bool b_test = false);
-    bool InsertProcess(const char * filename);
-    bool Repacking(int version);
+    bool IsDBCSString(const std::string & szStr);
+    void FolderRecurse(const fs::path & fsDir, bool bVerifyDbcs = false);
+    bool InsertProcess(const fs::path & fsFile);
+    bool Repacking(short sVersion);
     void RepackingHistory();
-    CSettingDlg(int version, CWnd * pParent = NULL); // standard constructor
+    CSettingDlg(short sVersion, CWnd * pParent = NULL); // standard constructor
 
     // Dialog Data
     //{{AFX_DATA(CSettingDlg)
@@ -36,7 +32,7 @@ class CSettingDlg : public CDialog {
     BOOL          m_bAllFileAdd;
     //}}AFX_DATA
 
-    char m_strDefaultPath[_MAX_PATH];
+    fs::path m_fsDefaultDir;
 
     CLoginServerDlg * m_pMain;
     CZipArchive       m_ZipArchive;
@@ -56,14 +52,14 @@ class CSettingDlg : public CDialog {
   protected:
     // Generated message map functions
     //{{AFX_MSG(CSettingDlg)
-    afx_msg void OnAddfile();
-    afx_msg void OnDeletefile();
+    afx_msg void OnAddFile();
+    afx_msg void OnDeleteFile();
     afx_msg void OnCompress();
     virtual void OnOK();
     virtual BOOL OnInitDialog();
     afx_msg void OnPathBrowse();
     afx_msg void OnRefresh();
-    afx_msg void OnKillfocusVersionEdit();
+    afx_msg void OnKillFocusVersionEdit();
     afx_msg void OnDbcstest();
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP()

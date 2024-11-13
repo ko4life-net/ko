@@ -77,55 +77,46 @@ CN3FXBundle::~CN3FXBundle() {
 //    스크립트 파일 읽고 해석시킴...
 //
 #ifdef _N3TOOL
-bool CN3FXBundle::DecodeScriptFile(const char * lpPathName) {
-    FILE * stream = fopen(lpPathName, "r");
+bool CN3FXBundle::DecodeScriptFile(const fs::path & fsFile) {
+    FILE * stream = _wfopen(fsFile.c_str(), L"r");
     if (!stream) {
         return false;
     }
 
-    char szGamePathName[_MAX_PATH];
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-    _splitpath(lpPathName, szDrive, szDir, szFName, szExt);
-    _makepath(szGamePathName, szDrive, szDir, szFName, "fxb");
+    fs::path fsFxbFile = fs::path(fsFile).replace_extension(".fxb");
+    CN3BaseFileAccess::FilePathSet(fsFxbFile);
 
-    CN3BaseFileAccess::FileNameSet(szGamePathName);
-
-    char   szLine[512] = "", szCommand[80] = "", szBuf[4][80] = {"", "", "", ""};
-    char * pResult = fgets(szLine, 512, stream);
+    char   szLine[512]{}, szCommand[80]{}, szBuf[4][80]{};
+    char * pResult = fgets(szLine, sizeof(szLine), stream);
     sscanf(szLine, "%s %s %s %s %s", szCommand, szBuf[0], szBuf[1], szBuf[2], szBuf[3]);
 
-    if (lstrcmpi(szCommand, "<n3fxbundle>")) {
+    if (!n3std::iequals(szCommand, "<n3fxbundle>")) {
         fclose(stream);
         return false;
     }
 
     while (!feof(stream)) {
-        char * pResult = fgets(szLine, 512, stream);
+        char * pResult = fgets(szLine, sizeof(szLine), stream);
         if (pResult == NULL) {
             continue;
         }
 
-        ZeroMemory(szCommand, 80);
-        ZeroMemory(szBuf[0], 80);
-        ZeroMemory(szBuf[1], 80);
-        ZeroMemory(szBuf[2], 80);
-        ZeroMemory(szBuf[3], 80);
+        memset(szCommand, 0, sizeof(szCommand));
+        memset(szBuf, 0, sizeof(szBuf));
 
         sscanf(szLine, "%s %s %s %s %s", szCommand, szBuf[0], szBuf[1], szBuf[2], szBuf[3]);
 
-        if (lstrcmpi(szCommand, "<name>") == 0) {
+        if (n3std::iequals(szCommand, "<name>")) {
             m_strName = szBuf[0];
             continue;
         }
 
-        if (lstrcmpi(szCommand, "<part>") == 0) {
-            char szFullPath[_MAX_PATH]; //full path 만들기..
-            sprintf(szFullPath, "%s%s", CN3Base::PathGet().c_str(), szBuf[0]);
+        if (n3std::iequals(szCommand, "<part>")) {
+            fs::path fsFile = CN3Base::PathGet() / szBuf[0];
 
             FXPARTWITHSTARTTIME * pPart = new FXPARTWITHSTARTTIME;
             pPart->fStartTime = atof(szBuf[1]);
-
-            pPart->pPart = SetPart(szFullPath);
+            pPart->pPart = SetPart(fsFile);
 
             if (!(pPart->pPart)) {
                 delete pPart;
@@ -140,20 +131,20 @@ bool CN3FXBundle::DecodeScriptFile(const char * lpPathName) {
             }
             continue;
         }
-        if (lstrcmpi(szCommand, "<velocity>") == 0) {
+        if (n3std::iequals(szCommand, "<velocity>")) {
             m_fVelocity = atof(szBuf[0]);
             continue;
         }
-        if (lstrcmpi(szCommand, "<depend_scale>") == 0) {
-            if (lstrcmpi(szBuf[0], "true") == 0) {
+        if (n3std::iequals(szCommand, "<depend_scale>")) {
+            if (n3std::iequals(szBuf[0], "true")) {
                 m_bDependScale = true;
             } else {
                 m_bDependScale = false;
             }
             continue;
         }
-        if (lstrcmpi(szCommand, "<Static_Pos>") == 0) {
-            if (lstrcmpi(szBuf[0], "true") == 0) {
+        if (n3std::iequals(szCommand, "<Static_Pos>")) {
+            if (n3std::iequals(szBuf[0], "true")) {
                 m_bStatic = true;
             } else {
                 m_bStatic = false;
@@ -174,44 +165,42 @@ bool CN3FXBundle::DecodeScriptFile(const char * lpPathName) {
 //    파트의 파일이름으로 타입을 알아내자..
 //
 #ifdef _N3TOOL
-CN3FXPartBase * CN3FXBundle::SetPart(const char * pFileName) {
+CN3FXPartBase * CN3FXBundle::SetPart(const fs::path & fsFile) {
     int PartType = FX_PART_TYPE_NONE;
 
-    FILE * stream = fopen(pFileName, "r");
+    FILE * stream = _wfopen(fsFile.c_str(), L"r");
     if (!stream) {
         return NULL;
     }
 
-    char   szLine[512] = "", szCommand[80] = "", szBuf[4][80] = {"", "", "", ""};
-    char * pResult = fgets(szLine, 512, stream);
+    char   szLine[512]{}, szCommand[80]{}, szBuf[4][80]{};
+    char * pResult = fgets(szLine, sizeof(szLine), stream);
     sscanf(szLine, "%s %s %s %s %s", szCommand, szBuf[0], szBuf[1], szBuf[2], szBuf[3]);
 
-    if (lstrcmpi(szCommand, "<n3fxPart>")) {
+    if (!n3std::iequals(szCommand, "<n3fxPart>")) {
         fclose(stream);
         return NULL;
     }
 
     while (!feof(stream)) {
-        char * pResult = fgets(szLine, 512, stream);
+        char * pResult = fgets(szLine, sizeof(szLine), stream);
         if (pResult == NULL) {
             continue;
         }
 
-        ZeroMemory(szCommand, 80);
-        ZeroMemory(szBuf[0], 80);
-        ZeroMemory(szBuf[1], 80);
-        ZeroMemory(szBuf[2], 80);
-        ZeroMemory(szBuf[3], 80);
+        memset(szCommand, 0, sizeof(szCommand));
+        memset(szBuf, 0, sizeof(szBuf));
+
         sscanf(szLine, "%s %s %s %s %s", szCommand, szBuf[0], szBuf[1], szBuf[2], szBuf[3]);
 
-        if (lstrcmpi(szCommand, "<type>") == 0) {
-            if (lstrcmpi(szBuf[0], "particle") == 0) {
+        if (n3std::iequals(szCommand, "<type>")) {
+            if (n3std::iequals(szBuf[0], "particle")) {
                 PartType = FX_PART_TYPE_PARTICLE;
-            } else if (lstrcmpi(szBuf[0], "board") == 0) {
+            } else if (n3std::iequals(szBuf[0], "board")) {
                 PartType = FX_PART_TYPE_BOARD;
-            } else if (lstrcmpi(szBuf[0], "mesh") == 0) {
+            } else if (n3std::iequals(szBuf[0], "mesh")) {
                 PartType = FX_PART_TYPE_MESH;
-            } else if (lstrcmpi(szBuf[0], "ground") == 0) {
+            } else if (n3std::iequals(szBuf[0], "ground")) {
                 PartType = FX_PART_TYPE_BOTTOMBOARD;
             }
             //^^v 더 넣을꺼 있으면 넣어라..
@@ -224,25 +213,25 @@ CN3FXPartBase * CN3FXBundle::SetPart(const char * pFileName) {
         pPart = new CN3FXPartParticles;
         pPart->m_pRefBundle = this;
         pPart->m_pRefPrevPart = NULL;
-        pPart->DecodeScriptFile(pFileName);
+        pPart->DecodeScriptFile(fsFile);
         return pPart;
     } else if (PartType == FX_PART_TYPE_BOARD) {
         pPart = new CN3FXPartBillBoard;
         pPart->m_pRefBundle = this;
         pPart->m_pRefPrevPart = NULL;
-        pPart->DecodeScriptFile(pFileName);
+        pPart->DecodeScriptFile(fsFile);
         return pPart;
     } else if (PartType == FX_PART_TYPE_MESH) {
         pPart = new CN3FXPartMesh;
         pPart->m_pRefBundle = this;
         pPart->m_pRefPrevPart = NULL;
-        pPart->DecodeScriptFile(pFileName);
+        pPart->DecodeScriptFile(fsFile);
         return pPart;
     } else if (PartType == FX_PART_TYPE_BOTTOMBOARD) {
         pPart = new CN3FXPartBottomBoard;
         pPart->m_pRefBundle = this;
         pPart->m_pRefPrevPart = NULL;
-        pPart->DecodeScriptFile(pFileName);
+        pPart->DecodeScriptFile(fsFile);
         return pPart;
     }
     return NULL;
@@ -295,10 +284,7 @@ bool CN3FXBundle::Load(HANDLE hFile) {
             else if (iType == FX_PART_TYPE_PARTICLE) {
                 m_pPart[i] = new FXPARTWITHSTARTTIME;
 
-                //char FName[80];
                 float fStartTime;
-                //ReadFile(hFile, FName, 80, &dwRWC, NULL);
-
                 ReadFile(hFile, &(fStartTime), sizeof(float), &dwRWC, NULL);
 
                 m_pPart[i]->fStartTime = fStartTime;
@@ -307,17 +293,13 @@ bool CN3FXBundle::Load(HANDLE hFile) {
                 m_pPart[i]->pPart->m_pRefBundle = this;
                 m_pPart[i]->pPart->m_pRefPrevPart = NULL;
                 m_pPart[i]->pPart->m_iType = FX_PART_TYPE_PARTICLE;
-                //m_pPart[i]->pPart->LoadFromFile(FName);
                 m_pPart[i]->pPart->Load(hFile);
             }
 
             else if (iType == FX_PART_TYPE_BOARD) {
                 m_pPart[i] = new FXPARTWITHSTARTTIME;
 
-                //char FName[80];
                 float fStartTime;
-                //ReadFile(hFile, FName, 80, &dwRWC, NULL);
-
                 ReadFile(hFile, &(fStartTime), sizeof(float), &dwRWC, NULL);
 
                 m_pPart[i]->fStartTime = fStartTime;
@@ -326,17 +308,13 @@ bool CN3FXBundle::Load(HANDLE hFile) {
                 m_pPart[i]->pPart->m_pRefBundle = this;
                 m_pPart[i]->pPart->m_pRefPrevPart = NULL;
                 m_pPart[i]->pPart->m_iType = FX_PART_TYPE_BOARD;
-                //m_pPart[i]->pPart->LoadFromFile(FName);
                 m_pPart[i]->pPart->Load(hFile);
             }
 
             else if (iType == FX_PART_TYPE_MESH) {
                 m_pPart[i] = new FXPARTWITHSTARTTIME;
 
-                //char FName[80];
                 float fStartTime;
-                //ReadFile(hFile, FName, 80, &dwRWC, NULL);
-
                 ReadFile(hFile, &(fStartTime), sizeof(float), &dwRWC, NULL);
 
                 m_pPart[i]->fStartTime = fStartTime;
@@ -345,15 +323,11 @@ bool CN3FXBundle::Load(HANDLE hFile) {
                 m_pPart[i]->pPart->m_pRefBundle = this;
                 m_pPart[i]->pPart->m_pRefPrevPart = NULL;
                 m_pPart[i]->pPart->m_iType = FX_PART_TYPE_MESH;
-                //m_pPart[i]->pPart->LoadFromFile(FName);
                 m_pPart[i]->pPart->Load(hFile);
             } else if (iType == FX_PART_TYPE_BOTTOMBOARD) {
                 m_pPart[i] = new FXPARTWITHSTARTTIME;
 
-                //char FName[80];
                 float fStartTime;
-                //ReadFile(hFile, FName, 80, &dwRWC, NULL);
-
                 ReadFile(hFile, &(fStartTime), sizeof(float), &dwRWC, NULL);
 
                 m_pPart[i]->fStartTime = fStartTime;
@@ -362,7 +336,6 @@ bool CN3FXBundle::Load(HANDLE hFile) {
                 m_pPart[i]->pPart->m_pRefBundle = this;
                 m_pPart[i]->pPart->m_pRefPrevPart = NULL;
                 m_pPart[i]->pPart->m_iType = FX_PART_TYPE_BOTTOMBOARD;
-                //m_pPart[i]->pPart->LoadFromFile(FName);
                 m_pPart[i]->pPart->Load(hFile);
             }
         }
@@ -380,10 +353,7 @@ bool CN3FXBundle::Load(HANDLE hFile) {
             else if (iType == FX_PART_TYPE_PARTICLE) {
                 m_pPart[i] = new FXPARTWITHSTARTTIME;
 
-                //char FName[80];
                 float fStartTime;
-                //ReadFile(hFile, FName, 80, &dwRWC, NULL);
-
                 ReadFile(hFile, &(fStartTime), sizeof(float), &dwRWC, NULL);
 
                 m_pPart[i]->fStartTime = fStartTime;
@@ -392,17 +362,13 @@ bool CN3FXBundle::Load(HANDLE hFile) {
                 m_pPart[i]->pPart->m_pRefBundle = this;
                 m_pPart[i]->pPart->m_pRefPrevPart = NULL;
                 m_pPart[i]->pPart->m_iType = FX_PART_TYPE_PARTICLE;
-                //m_pPart[i]->pPart->LoadFromFile(FName);
                 m_pPart[i]->pPart->Load(hFile);
             }
 
             else if (iType == FX_PART_TYPE_BOARD) {
                 m_pPart[i] = new FXPARTWITHSTARTTIME;
 
-                //char FName[80];
                 float fStartTime;
-                //ReadFile(hFile, FName, 80, &dwRWC, NULL);
-
                 ReadFile(hFile, &(fStartTime), sizeof(float), &dwRWC, NULL);
 
                 m_pPart[i]->fStartTime = fStartTime;
@@ -411,17 +377,13 @@ bool CN3FXBundle::Load(HANDLE hFile) {
                 m_pPart[i]->pPart->m_pRefBundle = this;
                 m_pPart[i]->pPart->m_pRefPrevPart = NULL;
                 m_pPart[i]->pPart->m_iType = FX_PART_TYPE_BOARD;
-                //m_pPart[i]->pPart->LoadFromFile(FName);
                 m_pPart[i]->pPart->Load(hFile);
             }
 
             else if (iType == FX_PART_TYPE_MESH) {
                 m_pPart[i] = new FXPARTWITHSTARTTIME;
 
-                //char FName[80];
                 float fStartTime;
-                //ReadFile(hFile, FName, 80, &dwRWC, NULL);
-
                 ReadFile(hFile, &(fStartTime), sizeof(float), &dwRWC, NULL);
 
                 m_pPart[i]->fStartTime = fStartTime;
@@ -430,15 +392,11 @@ bool CN3FXBundle::Load(HANDLE hFile) {
                 m_pPart[i]->pPart->m_pRefBundle = this;
                 m_pPart[i]->pPart->m_pRefPrevPart = NULL;
                 m_pPart[i]->pPart->m_iType = FX_PART_TYPE_MESH;
-                //m_pPart[i]->pPart->LoadFromFile(FName);
                 m_pPart[i]->pPart->Load(hFile);
             } else if (iType == FX_PART_TYPE_BOTTOMBOARD) {
                 m_pPart[i] = new FXPARTWITHSTARTTIME;
 
-                //char FName[80];
                 float fStartTime;
-                //ReadFile(hFile, FName, 80, &dwRWC, NULL);
-
                 ReadFile(hFile, &(fStartTime), sizeof(float), &dwRWC, NULL);
 
                 m_pPart[i]->fStartTime = fStartTime;
@@ -447,7 +405,6 @@ bool CN3FXBundle::Load(HANDLE hFile) {
                 m_pPart[i]->pPart->m_pRefBundle = this;
                 m_pPart[i]->pPart->m_pRefPrevPart = NULL;
                 m_pPart[i]->pPart->m_iType = FX_PART_TYPE_BOTTOMBOARD;
-                //m_pPart[i]->pPart->LoadFromFile(FName);
                 m_pPart[i]->pPart->Load(hFile);
             }
         }
@@ -474,10 +431,6 @@ bool CN3FXBundle::Save(HANDLE hFile) {
     for (int i = 0; i < MAX_FX_PART; i++) {
         if (m_pPart[i] && m_pPart[i]->pPart) {
             WriteFile(hFile, &(m_pPart[i]->pPart->m_iType), sizeof(int), &dwRWC, NULL);
-
-            //char FName[80];
-            //sprintf(FName, m_pPart[i]->pPart->FileName().c_str());
-            //WriteFile(hFile, FName, 80, &dwRWC, NULL);
             WriteFile(hFile, &(m_pPart[i]->fStartTime), sizeof(float), &dwRWC, NULL);
             m_pPart[i]->pPart->Save(hFile);
         } else {
@@ -642,7 +595,7 @@ void CN3FXBundle::SetPartSTime(int i, float time) {
 }
 
 void CN3FXBundle::Duplicate(CN3FXBundle * pDestBundle) {
-    pDestBundle->FileNameSet(this->FileName());
+    pDestBundle->FilePathSet(FilePath());
 
     pDestBundle->m_iVersion = m_iVersion;
     pDestBundle->m_fLife0 = m_fLife0;

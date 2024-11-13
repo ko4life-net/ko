@@ -45,7 +45,7 @@ void CDlgBar::OnButtonBasepath() {
         return;
     }
 
-    std::string szCurDir = CN3Base::PathGet();
+    std::string szCurDir = fs::path(CN3Base::PathGet()).make_preferred().string();
 
     CFolderPickerDialog dlg;
     dlg.m_ofn.lpstrTitle = "Please select the resource base path.";
@@ -54,10 +54,10 @@ void CDlgBar::OnButtonBasepath() {
         return;
     }
 
-    std::string szDir = dlg.GetPathName().GetString();
-    pFrm->SetBasePath(szDir.c_str());
+    fs::path fsDir = dlg.GetPathName().GetString();
+    pFrm->SetBasePath(fsDir);
 
     CWinApp * pApp = AfxGetApp();
     ASSERT(pApp);
-    pApp->WriteProfileString("Work", "Path", szDir.c_str());
+    pApp->WriteProfileString("Work", "Path", fsDir.string().c_str());
 }

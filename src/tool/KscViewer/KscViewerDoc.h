@@ -27,7 +27,7 @@ class CKscViewerDoc : public CDocument {
 
     // Implementation
   public:
-    CString       m_szKscPath;
+    fs::path      m_fsKscFile;
     CN3JpegFile * m_pJpegFile;
     CN3JpegFile * GetJpegFile();
     virtual ~CKscViewerDoc();

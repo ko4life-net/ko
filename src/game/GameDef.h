@@ -1395,7 +1395,7 @@ typedef struct __TABLE_FX // FX 리소스 레코드...
 {
     DWORD       dwID;      // 고유 ID
     std::string szName;    // TODO: implement
-    std::string szFN;      // file name
+    std::string szFile;    // file path
     DWORD       dwSoundID; // 효과에 쓰는 사운드 아디.
 } TABLE_FX;
 

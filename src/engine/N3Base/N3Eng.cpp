@@ -40,7 +40,7 @@ CN3Eng::CN3Eng() {
     }
 
     if (CN3Base::PathGet().empty()) {
-        CN3Base::PathSet(n3std::get_app_dir().string());
+        CN3Base::PathSet(n3std::get_app_dir());
     }
 
 #ifdef _N3GAME
@@ -644,9 +644,9 @@ bool CN3Eng::RegistryValueGet(HKEY hKey, const std::string & szName, std::string
     DWORD dwType = REG_SZ;
     DWORD dwBytes = 0;
 
-    char buffer[MAX_PATH]{};
-    long lStatus = RegQueryValueEx(hKey, szName.c_str(), NULL, &dwType, (BYTE *)buffer, &dwBytes);
-    szValue = buffer;
+    char szBuff[260]{};
+    long lStatus = RegQueryValueEx(hKey, szName.c_str(), NULL, &dwType, (BYTE *)szBuff, &dwBytes);
+    szValue = szBuff;
 
     if (ERROR_SUCCESS == lStatus) {
         return true;

@@ -73,11 +73,13 @@ void CGameProcLogIn::Release() {
 void CGameProcLogIn::Init() {
     CGameProcedure::Init();
 
+    fs::path fsIntroDir("Intro");
+
     m_pTexBkg = new CN3Texture();
-    m_pTexBkg->LoadFromFile("Intro\\Moon.dxt");
+    m_pTexBkg->LoadFromFile(fsIntroDir / "moon.dxt");
 
     m_pChr = new CN3Chr();
-    m_pChr->LoadFromFile("Intro\\Intro.N3Chr");
+    m_pChr->LoadFromFile(fsIntroDir / "intro.n3chr");
     m_pChr->AniCurSet(0); // 루핑 에니메이션..
 
     m_pCamera = new CN3Camera();
@@ -90,9 +92,9 @@ void CGameProcLogIn::Init() {
     for (int i = 0; i < 3; i++) {
         m_pLights[i] = new CN3Light();
     }
-    m_pLights[0]->LoadFromFile("Intro\\0.N3Light");
-    m_pLights[1]->LoadFromFile("Intro\\1.N3Light");
-    m_pLights[2]->LoadFromFile("Intro\\2.N3Light");
+    m_pLights[0]->LoadFromFile(fsIntroDir / "0.n3light");
+    m_pLights[1]->LoadFromFile(fsIntroDir / "1.n3light");
+    m_pLights[2]->LoadFromFile(fsIntroDir / "2.n3light");
 
     m_fCurAudioFrm = 0.0f;
     s_pEng->s_SndMgr.ReleaseStreamObj(&(CGameProcedure::s_pSnd_BGM));
@@ -117,18 +119,16 @@ void CGameProcLogIn::Init() {
     m_pUILogIn->SetRegion(rc); // 이걸 꼭 해줘야 UI 처리가 제대로 된다..
     s_pUIMgr->SetFocusedUI((CN3UIBase *)m_pUILogIn);
 
-    // 소켓 접속..
-    char szIniPath[_MAX_PATH] = "";
-    lstrcpy(szIniPath, CN3Base::PathGet().c_str());
-    lstrcat(szIniPath, "Server.Ini");
-    int iServerCount = GetPrivateProfileInt("Server", "Count", 0, szIniPath);
+    // Socket connection..
+    std::string  fsIniFile = (CN3Base::PathGet() / "Server.ini").string();
+    const char * pszIniFile = fsIniFile.c_str();
 
-    char szIPs[256][32];
-    memset(szIPs, 0, sizeof(szIPs));
+    int iServerCount = GetPrivateProfileInt("Server", "Count", 0, pszIniFile);
+
+    char szIPs[256][32]{};
     for (int i = 0; i < iServerCount; i++) {
-        char szKey[32] = "";
-        sprintf(szKey, "IP%d", i);
-        GetPrivateProfileString("Server", szKey, "", szIPs[i], 32, szIniPath);
+        std::string szKey = std::format("IP{:d}", i);
+        GetPrivateProfileString("Server", szKey.c_str(), "", szIPs[i], sizeof(szIPs[i]), pszIniFile);
     }
     int iServer = -1;
     if (iServerCount > 0) {

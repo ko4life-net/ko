@@ -36,7 +36,7 @@ class CN3UIStatic : public CN3UIBase {
     CN3UIImage *  GetImageBkGnd() const { return m_pImageBkGnd; }
     CN3UIString * GetUIString() const { return m_pBuffOutRef; }
     void          DeleteImage(); // 이미지를 사용하지 않는 static일 경우 호출하면 지워진다.
-    void          SetSndClick(const std::string & strFileName);
-    std::string   GetSndFName_Click() const;
+    void          SetSndClick(const fs::path & fsFile);
+    fs::path      GetSndFName_Click() const;
 #endif
 };

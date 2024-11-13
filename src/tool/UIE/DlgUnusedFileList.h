@@ -8,7 +8,7 @@
 
 class CDlgUnusedFileList : public CDialog {
   public:
-    CStringArray m_szFileNames;
+    std::vector<fs::path> m_vFiles;
     // Construction
   public:
     CDlgUnusedFileList(CWnd * pParent = NULL); // standard constructor

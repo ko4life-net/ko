@@ -7,6 +7,7 @@
 #include "DlgDataCount.h"
 
 #include <string>
+#include <array>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -399,80 +400,54 @@ void CRscTablesDlg::OnEditDelete() {
     }
 }
 
-bool CRscTablesDlg::BrowseDataEnumAndTxt(int iIndex, BOOL bOpen, std::string * pszFN_Enm, std::string * pszFN_Txt) {
-    if (pszFN_Enm) {
-        *pszFN_Enm = "";
+bool CRscTablesDlg::BrowseDataEnumAndTxt(int iIndex, BOOL bOpen, fs::path * pfsEnmFile, fs::path * pfsTxtFile) {
+    if (pfsEnmFile) {
+        *pfsEnmFile = fs::path();
     }
-    if (pszFN_Txt) {
-        *pszFN_Txt = "";
+    if (pfsTxtFile) {
+        *pfsTxtFile = fs::path();
     }
 
-    if (pszFN_Enm) {
-        CString     FileName;
+    if (pfsEnmFile) {
         DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
         CFileDialog dlg(bOpen, "enm", NULL, dwFlags, "Data Enum File(*.enm)|*.enm||", NULL);
         if (dlg.DoModal() == IDCANCEL) {
             return false;
         }
-        FileName = dlg.GetFileName();
-
-        *pszFN_Enm = FileName;
+        *pfsEnmFile = dlg.GetFileName().GetString();
     }
 
-    if (pszFN_Txt) {
-        CString     FileName2;
+    if (pfsTxtFile) {
         DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
         CFileDialog dlg2(bOpen, "txt", NULL, dwFlags, "Tab 으로 분리된 Txt File(*.txt)|*.txt||", NULL);
         if (dlg2.DoModal() == IDCANCEL) {
             return false;
         }
-        FileName2 = dlg2.GetFileName();
-        *pszFN_Txt = FileName2;
+        *pfsTxtFile = dlg2.GetFileName().GetString();
     }
 
     if (bOpen) {
         if (iIndex == -2) {
-            if (pszFN_Enm) {
-                char szFName[256], szExt[256];
-                ::_splitpath(pszFN_Enm->c_str(), NULL, NULL, szFName, szExt);
-                std::string szFN = szFName;
-                szFN += szExt;
-                SetDlgItemText(IDC_E_TABLE_BASIC_ENM, szFN.c_str());
+            if (pfsEnmFile) {
+                SetDlgItemTextW(GetSafeHwnd(), IDC_E_TABLE_BASIC_ENM, pfsEnmFile->filename().c_str());
             }
-            if (pszFN_Txt) {
-                char szFName[256], szExt[256];
-                ::_splitpath(pszFN_Txt->c_str(), NULL, NULL, szFName, szExt);
-                std::string szFN = szFName;
-                szFN += szExt;
-                SetDlgItemText(IDC_E_TABLE_BASIC_TXT, szFN.c_str());
+            if (pfsTxtFile) {
+                SetDlgItemTextW(GetSafeHwnd(), IDC_E_TABLE_BASIC_TXT, pfsTxtFile->filename().c_str());
             }
         } else if (iIndex == -1) {
-            if (pszFN_Enm) {
-                char szFName[256], szExt[256];
-                ::_splitpath(pszFN_Enm->c_str(), NULL, NULL, szFName, szExt);
-                std::string szFN = szFName;
-                szFN += szExt;
-                SetDlgItemText(IDC_E_TABLE_EXT_ENM, szFN.c_str());
+            if (pfsEnmFile) {
+                SetDlgItemTextW(GetSafeHwnd(), IDC_E_TABLE_EXT_ENM, pfsEnmFile->filename().c_str());
             }
         } else if (iIndex >= 0 && iIndex < MAX_ITEM_EXTENSION) {
-            if (pszFN_Enm) {
-                char szFName[256], szExt[256];
-                ::_splitpath(pszFN_Enm->c_str(), NULL, NULL, szFName, szExt);
-                std::string szFN = szFName;
-                szFN += szExt;
-                SetDlgItemText(IDC_E_TABLE_EXT_ENM, szFN.c_str());
+            if (pfsEnmFile) {
+                SetDlgItemTextW(GetSafeHwnd(), IDC_E_TABLE_EXT_ENM, pfsEnmFile->filename().c_str());
             }
-            if (pszFN_Txt) {
-                char szFName[256], szExt[256];
-                ::_splitpath(pszFN_Txt->c_str(), NULL, NULL, szFName, szExt);
-
-                CString szFN;
-                szFN.LoadString(IDS_FMT_TABLE_EXT0 + iIndex);
-                szFN += szFName;
-                szFN += szExt;
-
+            if (pfsTxtFile) {
+                CString szFileName;
+                szFileName.LoadString(IDS_FMT_TABLE_EXT0 + iIndex);
+                szFileName += pfsTxtFile->filename().c_str();
                 m_ListTableExt.DeleteString(iIndex);
-                m_ListTableExt.InsertString(iIndex, szFN);
+                m_ListTableExt.InsertString(iIndex, szFileName);
             }
         }
     }
@@ -481,19 +456,19 @@ bool CRscTablesDlg::BrowseDataEnumAndTxt(int iIndex, BOOL bOpen, std::string * p
 }
 
 void CRscTablesDlg::OnBOpenTableBasic() {
-    std::string szFN_Enm, szFN_Txt;
-    if (false == this->BrowseDataEnumAndTxt(-2, TRUE, &szFN_Enm, &szFN_Txt)) {
+    fs::path fsEnmFile, fsTxtFile;
+    if (!BrowseDataEnumAndTxt(-2, TRUE, &fsEnmFile, &fsTxtFile)) {
         return;
     }
-    m_Generator.OpenSource(szFN_Enm, szFN_Txt);
+    m_Generator.OpenSource(fsEnmFile, fsTxtFile);
 }
 
 void CRscTablesDlg::OnBOpenTableExtEnum() {
-    std::string szFN_Enm;
-    if (false == this->BrowseDataEnumAndTxt(-1, TRUE, &szFN_Enm, NULL)) {
+    fs::path fsEnmFile;
+    if (!BrowseDataEnumAndTxt(-1, TRUE, &fsEnmFile, NULL)) {
         return;
     }
-    m_Generator.OpenReference_Enum(szFN_Enm);
+    m_Generator.OpenReference_Enum(fsEnmFile);
 }
 
 void CRscTablesDlg::OnDblclkListTableExt() {
@@ -502,11 +477,11 @@ void CRscTablesDlg::OnDblclkListTableExt() {
         return;
     }
 
-    std::string szFN_Txt;
-    if (false == this->BrowseDataEnumAndTxt(iSel, TRUE, NULL, &szFN_Txt)) {
+    fs::path fsTxtFile;
+    if (!BrowseDataEnumAndTxt(iSel, TRUE, NULL, &fsTxtFile)) {
         return;
     }
-    m_Generator.OpenReference_Txt(iSel, szFN_Txt);
+    m_Generator.OpenReference_Txt(iSel, fsTxtFile);
 }
 
 void CRscTablesDlg::OnBGenerateSelected() {
@@ -515,49 +490,38 @@ void CRscTablesDlg::OnBGenerateSelected() {
         return;
     }
 
-    std::string szFN_Enm, szFN_Txt;
-    if (false == this->BrowseDataEnumAndTxt(-3, FALSE, &szFN_Enm, &szFN_Txt)) {
+    fs::path fsEnmFile, fsTxtFile;
+    if (!BrowseDataEnumAndTxt(-3, FALSE, &fsEnmFile, &fsTxtFile)) {
         return;
     }
-    m_Generator.Generate(iSel, szFN_Enm, szFN_Txt);
+    m_Generator.Generate(iSel, fsEnmFile, fsTxtFile);
 }
 
 void CRscTablesDlg::OnBGenerateAll() {
-    std::string szFN_Enm, szFN_Txt;
-    if (false == this->BrowseDataEnumAndTxt(-3, FALSE, &szFN_Enm, &szFN_Txt)) {
+    fs::path fsEnmFile, fsTxtFile;
+    if (!BrowseDataEnumAndTxt(-3, FALSE, &fsEnmFile, &fsTxtFile)) {
         return;
     }
-    m_Generator.Generate(-1, szFN_Enm, szFN_Txt);
+    m_Generator.Generate(-1, fsEnmFile, fsTxtFile);
 }
 
 void CRscTablesDlg::UpdateGenerationInfo() {
-    char    szFName[256] = "", szExt[256] = "";
-    CString szFN;
+    CString szFileName;
 
-    ::_splitpath(m_Generator.m_szEnmBasic.c_str(), NULL, NULL, szFName, szExt);
-    szFN = szFName;
-    szFN += szExt;
-    SetDlgItemText(IDC_E_TABLE_BASIC_ENM, szFN);
+    szFileName = m_Generator.m_fsEnmBasicFile.filename().c_str();
+    SetDlgItemText(IDC_E_TABLE_BASIC_ENM, szFileName);
 
-    ::_splitpath(m_Generator.m_szTxtBasic.c_str(), NULL, NULL, szFName, szExt);
-    szFN = szFName;
-    szFN += szExt;
-    SetDlgItemText(IDC_E_TABLE_BASIC_TXT, szFN);
+    szFileName = m_Generator.m_fsTxtBasicFile.filename().c_str();
+    SetDlgItemText(IDC_E_TABLE_BASIC_TXT, szFileName);
 
-    ::_splitpath(m_Generator.m_szEnmExt.c_str(), NULL, NULL, szFName, szExt);
-    szFN = szFName;
-    szFN += szExt;
-    SetDlgItemText(IDC_E_TABLE_EXT_ENM, szFN);
+    szFileName = m_Generator.m_fsEnmExtFile.filename().c_str();
+    SetDlgItemText(IDC_E_TABLE_EXT_ENM, szFileName);
 
     m_ListTableExt.ResetContent();
     for (int i = 0; i < MAX_ITEM_EXTENSION; i++) {
-        ::_splitpath(m_Generator.m_szTxtExts[i].c_str(), NULL, NULL, szFName, szExt);
-
-        szFN.LoadString(IDS_FMT_TABLE_EXT0 + i);
-        szFN += szFName;
-        szFN += szExt;
-
-        m_ListTableExt.AddString(szFN);
+        szFileName.LoadString(IDS_FMT_TABLE_EXT0 + i);
+        szFileName += m_Generator.m_fsTxtExtFiles[i].filename().c_str();
+        m_ListTableExt.AddString(szFileName);
     }
 }
 
@@ -568,29 +532,22 @@ void CRscTablesDlg::OnItemFileListLoad() {
         return;
     }
 
-    char szBuffs[32][256];
-    memset(szBuffs, 0, sizeof(szBuffs));
+    std::array<fs::path, MAX_ITEM_EXTENSION + 3> arFiles;
 
-    FILE * pFile = fopen(dlg.GetPathName(), "r");
-    if (NULL == pFile) {
+    std::ifstream iFile(dlg.GetPathName().GetString());
+    if (!iFile) {
         return;
     }
-    for (int i = 0; i < MAX_ITEM_EXTENSION + 3; i++) {
-        fgets(szBuffs[i], 256, pFile);
-        int iLen = lstrlen(szBuffs[i]);
-        if (iLen > 0) {
-            szBuffs[i][iLen - 1] = NULL; // '\r'
-        } else {
-            szBuffs[i][0] = NULL;
-        }
-    }
-    fclose(pFile);
-    pFile = NULL;
 
-    m_Generator.OpenSource(szBuffs[0], szBuffs[1]);
-    m_Generator.OpenReference_Enum(szBuffs[2]);
-    for (int i = 0; i < MAX_ITEM_EXTENSION + 3; i++) {
-        m_Generator.OpenReference_Txt(i, szBuffs[i + 3]);
+    std::string szLine;
+    for (int i = 0; i < MAX_ITEM_EXTENSION + 3 && std::getline(iFile, szLine); ++i) {
+        arFiles[i] = szLine;
+    }
+
+    m_Generator.OpenSource(arFiles[0], arFiles[1]);
+    m_Generator.OpenReference_Enum(arFiles[2]);
+    for (int i = 0; i < MAX_ITEM_EXTENSION; ++i) {
+        m_Generator.OpenReference_Txt(i, arFiles[i + 3]);
     }
 
     this->UpdateGenerationInfo();
@@ -603,24 +560,20 @@ void CRscTablesDlg::OnItemFileListSave() {
         return;
     }
 
-    char szBuffs[32][256];
-    memset(szBuffs, 0, sizeof(szBuffs));
-
-    lstrcpy(szBuffs[0], m_Generator.m_szEnmBasic.c_str());
-    lstrcpy(szBuffs[1], m_Generator.m_szTxtBasic.c_str());
-    lstrcpy(szBuffs[2], m_Generator.m_szEnmExt.c_str());
-    for (int i = 0; i < MAX_ITEM_EXTENSION + 3; i++) {
-        lstrcpy(szBuffs[i + 3], m_Generator.m_szTxtExts[i].c_str());
+    std::array<fs::path, MAX_ITEM_EXTENSION + 3> arFiles;
+    arFiles[0] = m_Generator.m_fsEnmBasicFile;
+    arFiles[1] = m_Generator.m_fsTxtBasicFile;
+    arFiles[2] = m_Generator.m_fsEnmExtFile;
+    for (int i = 0; i < MAX_ITEM_EXTENSION; ++i) {
+        arFiles[i + 3] = m_Generator.m_fsTxtExtFiles[i];
     }
 
-    FILE * pFile = fopen(dlg.GetPathName(), "w");
-    if (NULL == pFile) {
+    std::ofstream oFile(dlg.GetPathName().GetString());
+    if (!oFile) {
         return;
     }
-    for (int i = 0; i < MAX_ITEM_EXTENSION + 3; i++) {
-        fputs(szBuffs[i], pFile);
-        fputs("\n", pFile);
+
+    for (const auto & fsTblFile : arFiles) {
+        oFile << fsTblFile.string() << '\n';
     }
-    fclose(pFile);
-    pFile = NULL;
 }

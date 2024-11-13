@@ -17,7 +17,6 @@ CN3SndObj2D::CN3SndObj() {
     m_bIsLoop = false;
     m_iVol = -1;
     m_iType = SNDTYPE_2D;
-    m_szFileName = "";
     m_pRefMgr = NULL;
 
     m_fFadeInTime = 0;
@@ -45,7 +44,7 @@ void CN3SndObj2D::Init() {
     m_iVol = -1;
     m_iType = SNDTYPE_2D;
     m_pRefMgr = NULL;
-    m_szFileName = "";
+    m_fsFile = fs::path();
 
     m_fStartDelayTime = 0;
     m_fTmpSecPerFrm = 0;

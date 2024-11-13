@@ -12,8 +12,6 @@
 #include "N3Base/N3Camera.h"
 #include "N3Base/N3ShapeMgr.h"
 
-#define INDOOR_FOLDER "N3Indoor\\"
-
 CN3Mng<class CN3Shape>      CPvsMgr::s_MngShape;
 CN3Mng<class CN3ShapeExtra> CPvsMgr::s_MngShapeExt;
 std::list<ShapeInfo *>      CPvsMgr::s_plShapeInfoList;
@@ -23,7 +21,7 @@ std::list<ShapeInfo *>      CPvsMgr::s_plShapeInfoList;
 //////////////////////////////////////////////////////////////////////
 
 CPvsMgr::CPvsMgr()
-    : m_IndoorFolder("N3Indoor\\")
+    : m_fsIndoorDir("N3Indoor")
     , m_fVolumeOffs(0.6f) //..
 {
     s_plShapeInfoList.clear();
@@ -135,16 +133,14 @@ bool CPvsMgr::Load(HANDLE hFile) {
     }
 
     // N3Scene 화일.. 안쓴다.. -.-;
-    std::string strSrc = ReadDecryptString(hFile), strDest;
+    fs::path fsSrcFile = ReadDecryptString(hFile);
 
     // 전체 이동값.. 안슨다.. -.-;
     ReadFile(hFile, &iT, sizeof(int), &dwNum, NULL);
     ReadFile(hFile, &iT, sizeof(int), &dwNum, NULL);
     ReadFile(hFile, &iT, sizeof(int), &dwNum, NULL);
 
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-    int  iCount;
-
+    int iCount;
     ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
     for (int i = 0; i < iCount; i++) {
@@ -152,12 +148,9 @@ bool CPvsMgr::Load(HANDLE hFile) {
         ReadFile(hFile, &pSI->m_iID, sizeof(int), &dwNum, NULL);
 
         // 문자열 길이..
-        strSrc = ReadDecryptString(hFile);
-        _splitpath(strSrc.c_str(), szDrive, szDir, szFName, szExt);
-        strDest = szFName;
-        strDest += szExt;
-        pSI->m_strShapeFile = m_IndoorFolder + strDest;
-        pSI->m_pShape = s_MngShape.Get(m_IndoorFolder + strDest);
+        fsSrcFile = ReadDecryptString(hFile);
+        pSI->m_fsShapeFile = m_fsIndoorDir / fsSrcFile.filename();
+        pSI->m_pShape = s_MngShape.Get(pSI->m_fsShapeFile);
         __ASSERT(pSI->m_pShape, "Shape Not Found");
 
         ReadFile(hFile, &pSI->m_iBelong, sizeof(int), &dwNum, NULL);
@@ -227,16 +220,20 @@ CPortalVolume * CPvsMgr::GetPortalVolPointerByID(int iID) {
 
 std::string CPvsMgr::ReadDecryptString(HANDLE hFile) {
     DWORD dwNum;
-    int   iCount;
-    ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
-    std::vector<char> buffer(iCount, 0);
-    ReadFile(hFile, &buffer[0], iCount, &dwNum, NULL); // string
-    for (int i = 0; i < iCount; i++) {
-        buffer[i] ^= CRY_KEY;
+    int iLen = 0;
+    ReadFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
+
+    std::string szStr;
+    if (iLen > 0) {
+        szStr.assign(iLen, '\0');
+        ReadFile(hFile, szStr.data(), iLen, &dwNum, NULL);
+        for (int i = 0; i < iLen; i++) {
+            szStr[i] ^= CRY_KEY;
+        }
     }
 
-    return std::string(buffer.begin(), buffer.end());
+    return szStr;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

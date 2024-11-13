@@ -43,8 +43,6 @@ CN3FXPartBase::CN3FXPartBase() {
     m_fFadeOut = 0.0f;
     m_fFadeIn = 0.0f;
 
-    ZeroMemory(m_pTexName, MAX_PATH);
-
     m_bOnGround = false;
 
     m_dwRenderFlag = RF_ALPHABLENDING | RF_NOTUSEFOG | RF_DIFFUSEALPHA | RF_NOTUSELIGHT | RF_DOUBLESIDED;
@@ -86,23 +84,23 @@ CN3FXPartBase::~CN3FXPartBase() {
 #ifdef _N3TOOL
 bool CN3FXPartBase::ParseScript(char * szCommand, char * szBuff0, char * szBuff1, char * szBuff2, char * szBuff3) {
     //    이름.
-    if (lstrcmpi(szCommand, "<name>") == 0) {
+    if (n3std::iequals(szCommand, "<name>")) {
         m_strName = szBuff0;
         return true;
     }
 
     //    타입..
-    if (lstrcmpi(szCommand, "<type>") == 0) {
-        if (lstrcmpi(szBuff0, "particle") == 0) {
+    if (n3std::iequals(szCommand, "<type>")) {
+        if (n3std::iequals(szBuff0, "particle")) {
             m_iType = FX_PART_TYPE_PARTICLE;
         }
-        if (lstrcmpi(szBuff0, "board") == 0) {
+        if (n3std::iequals(szBuff0, "board")) {
             m_iType = FX_PART_TYPE_BOARD;
         }
-        if (lstrcmpi(szBuff0, "mesh") == 0) {
+        if (n3std::iequals(szBuff0, "mesh")) {
             m_iType = FX_PART_TYPE_MESH;
         }
-        if (lstrcmpi(szBuff0, "ground") == 0) {
+        if (n3std::iequals(szBuff0, "ground")) {
             m_iType = FX_PART_TYPE_BOTTOMBOARD;
         }
         //^^v 더 넣을꺼 있으면 넣어라..
@@ -110,45 +108,34 @@ bool CN3FXPartBase::ParseScript(char * szCommand, char * szBuff0, char * szBuff1
     }
 
     //    지속시간.(0이면 무한대...)
-    if (lstrcmpi(szCommand, "<life>") == 0) {
+    if (n3std::iequals(szCommand, "<life>")) {
         m_fLife = atof(szBuff0);
         return true;
     }
 
     //    texture 이름과 개수 읽기.
-    if (lstrcmpi(szCommand, "<texture>") == 0) {
+    if (n3std::iequals(szCommand, "<texture>")) {
         m_iNumTex = atoi(szBuff1);
         m_ppRefTex = new CN3Texture *[m_iNumTex];
 
-        char szPathName[_MAX_PATH];
-        char szDir[_MAX_DIR];
-        char szFileName[_MAX_PATH];
-        char szExt[_MAX_EXT];
+        fs::path fsFile = szBuff0;
+        m_fsTexFileBase = fsFile.parent_path() / fsFile.stem();
 
-        sprintf(szPathName, szBuff0);
-        _splitpath(szPathName, NULL, szDir, szFileName, szExt);
-        sprintf(m_pTexName, "%s%s", szDir, szFileName);
-
-        std::string FileName = m_pTexName;
-        char        Buff[5];
+        std::string szExt = fsFile.extension().string();
         for (int i = 0; i < m_iNumTex; i++) {
-            sprintf(Buff, "%04d", i);
-            FileName = m_pTexName;
-            FileName += Buff;
-            FileName += szExt;
-            m_ppRefTex[i] = CN3Base::s_MngTex.Get(FileName);
+            m_ppRefTex[i] = CN3Base::s_MngTex.Get(m_fsTexFileBase + std::format("{:04d}{:s}", i, szExt));
         }
         return true;
     }
 
     //    texture animation speed 설정..
-    if (lstrcmpi(szCommand, "<texture_animation_speed>") == 0) {
+    if (n3std::iequals(szCommand, "<texture_animation_speed>")) {
         m_fTexFPS = atof(szBuff0);
         return true;
     }
 
     //    상대위치...
-    if (lstrcmpi(szCommand, "<position0>") == 0) {
+    if (n3std::iequals(szCommand, "<position0>")) {
         m_vPos.x = atof(szBuff0);
         m_vPos.y = atof(szBuff1);
         m_vPos.z = atof(szBuff2);
@@ -156,7 +143,7 @@ bool CN3FXPartBase::ParseScript(char * szCommand, char * szBuff0, char * szBuff1
     }
 
     //    속도..
-    if (lstrcmpi(szCommand, "<velocity>") == 0) {
+    if (n3std::iequals(szCommand, "<velocity>")) {
         __Vector3 v;
         m_vVelocity.x = atof(szBuff0);
         m_vVelocity.y = atof(szBuff1);
@@ -165,7 +152,7 @@ bool CN3FXPartBase::ParseScript(char * szCommand, char * szBuff0, char * szBuff1
     }
 
     //    가속도..
-    if (lstrcmpi(szCommand, "<acceleration>") == 0) {
+    if (n3std::iequals(szCommand, "<acceleration>")) {
         __Vector3 v;
         m_vAcceleration.x = atof(szBuff0);
         m_vAcceleration.y = atof(szBuff1);
@@ -174,7 +161,7 @@ bool CN3FXPartBase::ParseScript(char * szCommand, char * szBuff0, char * szBuff1
     }
 
     //    회전 각속도..
-    if (lstrcmpi(szCommand, "<rot_velocity>") == 0) {
+    if (n3std::iequals(szCommand, "<rot_velocity>")) {
         __Vector3 v;
         m_vRotVelocity.x = atof(szBuff0);
         m_vRotVelocity.y = atof(szBuff1);
@@ -183,114 +170,114 @@ bool CN3FXPartBase::ParseScript(char * szCommand, char * szBuff0, char * szBuff1
     }
 
     //    SRCBLEND..
-    if (lstrcmpi(szCommand, "<src_blend>") == 0) {
-        if (lstrcmpi(szBuff0, "ONE") == 0) {
+    if (n3std::iequals(szCommand, "<src_blend>")) {
+        if (n3std::iequals(szBuff0, "ONE")) {
             m_dwSrcBlend = D3DBLEND_ONE;
-        } else if (lstrcmpi(szBuff0, "ZERO") == 0) {
+        } else if (n3std::iequals(szBuff0, "ZERO")) {
             m_dwSrcBlend = D3DBLEND_ZERO;
-        } else if (lstrcmpi(szBuff0, "SRCCOLOR") == 0) {
+        } else if (n3std::iequals(szBuff0, "SRCCOLOR")) {
             m_dwSrcBlend = D3DBLEND_SRCCOLOR;
-        } else if (lstrcmpi(szBuff0, "INVSRCCOLOR") == 0) {
+        } else if (n3std::iequals(szBuff0, "INVSRCCOLOR")) {
             m_dwSrcBlend = D3DBLEND_INVSRCCOLOR;
-        } else if (lstrcmpi(szBuff0, "SRCALPHA") == 0) {
+        } else if (n3std::iequals(szBuff0, "SRCALPHA")) {
             m_dwSrcBlend = D3DBLEND_SRCALPHA;
-        } else if (lstrcmpi(szBuff0, "INVSRCALPHA") == 0) {
+        } else if (n3std::iequals(szBuff0, "INVSRCALPHA")) {
             m_dwSrcBlend = D3DBLEND_INVSRCALPHA;
         }
         return true;
     }
 
     //    SRCBLEND..
-    if (lstrcmpi(szCommand, "<dest_blend>") == 0) {
-        if (lstrcmpi(szBuff0, "ONE") == 0) {
+    if (n3std::iequals(szCommand, "<dest_blend>")) {
+        if (n3std::iequals(szBuff0, "ONE")) {
             m_dwDestBlend = D3DBLEND_ONE;
-        } else if (lstrcmpi(szBuff0, "ZERO") == 0) {
+        } else if (n3std::iequals(szBuff0, "ZERO")) {
             m_dwDestBlend = D3DBLEND_ZERO;
-        } else if (lstrcmpi(szBuff0, "SRCCOLOR") == 0) {
+        } else if (n3std::iequals(szBuff0, "SRCCOLOR")) {
             m_dwDestBlend = D3DBLEND_SRCCOLOR;
-        } else if (lstrcmpi(szBuff0, "INVSRCCOLOR") == 0) {
+        } else if (n3std::iequals(szBuff0, "INVSRCCOLOR")) {
             m_dwDestBlend = D3DBLEND_INVSRCCOLOR;
-        } else if (lstrcmpi(szBuff0, "SRCALPHA") == 0) {
+        } else if (n3std::iequals(szBuff0, "SRCALPHA")) {
             m_dwDestBlend = D3DBLEND_SRCALPHA;
-        } else if (lstrcmpi(szBuff0, "INVSRCALPHA") == 0) {
+        } else if (n3std::iequals(szBuff0, "INVSRCALPHA")) {
             m_dwDestBlend = D3DBLEND_INVSRCALPHA;
         }
         return true;
     }
 
-    if (lstrcmpi(szCommand, "<alpha>") == 0) {
+    if (n3std::iequals(szCommand, "<alpha>")) {
         m_dwRenderFlag |= RF_ALPHABLENDING;
-        if (lstrcmpi(szBuff0, "TRUE") == 0) {
+        if (n3std::iequals(szBuff0, "TRUE")) {
             m_bAlpha = TRUE;
-        } else if (lstrcmpi(szBuff0, "FALSE") == 0) {
+        } else if (n3std::iequals(szBuff0, "FALSE")) {
             m_bAlpha = FALSE;
             m_dwRenderFlag ^= RF_ALPHABLENDING;
         }
         return true;
     }
 
-    if (lstrcmpi(szCommand, "<fadeout>") == 0) {
+    if (n3std::iequals(szCommand, "<fadeout>")) {
         m_fFadeOut = atof(szBuff0);
         return true;
     }
 
-    if (lstrcmpi(szCommand, "<fadein>") == 0) {
+    if (n3std::iequals(szCommand, "<fadein>")) {
         m_fFadeIn = atof(szBuff0);
         return true;
     }
 
-    if (lstrcmpi(szCommand, "<on_ground>") == 0) {
-        if (lstrcmpi(szBuff0, "TRUE") == 0) {
+    if (n3std::iequals(szCommand, "<on_ground>")) {
+        if (n3std::iequals(szBuff0, "TRUE")) {
             m_bOnGround = true;
-        } else if (lstrcmpi(szBuff0, "FALSE") == 0) {
+        } else if (n3std::iequals(szBuff0, "FALSE")) {
             m_bOnGround = false;
         }
         return true;
     }
 
-    if (lstrcmpi(szCommand, "<doubleside>") == 0) {
+    if (n3std::iequals(szCommand, "<doubleside>")) {
         m_dwRenderFlag |= RF_DOUBLESIDED;
-        if (lstrcmpi(szBuff0, "true") == 0) {
+        if (n3std::iequals(szBuff0, "true")) {
             m_dwDoubleSide = D3DCULL_NONE;
         }
-        if (lstrcmpi(szBuff0, "false") == 0) {
+        if (n3std::iequals(szBuff0, "false")) {
             m_dwDoubleSide = D3DCULL_CCW;
             m_dwRenderFlag ^= RF_DOUBLESIDED;
         }
         return true;
     }
 
-    if (lstrcmpi(szCommand, "<light>") == 0) {
+    if (n3std::iequals(szCommand, "<light>")) {
         m_dwRenderFlag |= RF_NOTUSELIGHT;
-        if (lstrcmpi(szBuff0, "true") == 0) {
+        if (n3std::iequals(szBuff0, "true")) {
             m_dwLight = TRUE;
             m_dwRenderFlag ^= RF_NOTUSELIGHT;
         }
-        if (lstrcmpi(szBuff0, "false") == 0) {
+        if (n3std::iequals(szBuff0, "false")) {
             m_dwLight = FALSE;
         }
         return true;
     }
 
-    if (lstrcmpi(szCommand, "<zbuffer>") == 0) {
+    if (n3std::iequals(szCommand, "<zbuffer>")) {
         m_dwRenderFlag |= RF_NOTZBUFFER;
-        if (lstrcmpi(szBuff0, "true") == 0) {
+        if (n3std::iequals(szBuff0, "true")) {
             m_dwZEnable = D3DZB_TRUE;
             m_dwRenderFlag ^= RF_NOTZBUFFER;
         }
-        if (lstrcmpi(szBuff0, "false") == 0) {
+        if (n3std::iequals(szBuff0, "false")) {
             m_dwZEnable = D3DZB_FALSE;
         }
         return true;
     }
 
-    if (lstrcmpi(szCommand, "<zwrite>") == 0) {
+    if (n3std::iequals(szCommand, "<zwrite>")) {
         m_dwRenderFlag |= RF_NOTZWRITE;
-        if (lstrcmpi(szBuff0, "true") == 0) {
+        if (n3std::iequals(szBuff0, "true")) {
             m_dwZWrite = TRUE;
             m_dwRenderFlag ^= RF_NOTZWRITE;
         }
-        if (lstrcmpi(szBuff0, "false") == 0) {
+        if (n3std::iequals(szBuff0, "false")) {
             m_dwZWrite = FALSE;
         }
         return true;
@@ -305,39 +292,33 @@ bool CN3FXPartBase::ParseScript(char * szCommand, char * szBuff0, char * szBuff1
 //    스크립트 파일 읽고 해석.(call parse script..)
 //
 #ifdef _N3TOOL
-bool CN3FXPartBase::DecodeScriptFile(const char * lpPathName) {
-    //    char szGamePathName[_MAX_PATH];
-    //    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-    //    _splitpath(lpPathName, szDrive, szDir, szFName, szExt);
-    //    _makepath(szGamePathName, szDrive, szDir, szFName, "fxp");
-    //    CN3BaseFileAccess::FileNameSet(szGamePathName);
-    CN3BaseFileAccess::FileNameSet(lpPathName);
+bool CN3FXPartBase::DecodeScriptFile(const fs::path & fsFile) {
+    // fs::path fsFxpPath = fs::path(fsFile).replace_extension(".fxp");
+    // CN3BaseFileAccess::FilePathSet(fsFxpPath);
+    CN3BaseFileAccess::FilePathSet(fsFile);
 
-    FILE * stream = fopen(lpPathName, "r");
+    FILE * stream = _wfopen(fsFile.c_str(), L"r");
     if (!stream) {
         return false;
     }
 
-    char   szLine[512] = "", szCommand[80] = "", szBuf[4][80] = {"", "", "", ""};
-    char * pResult = fgets(szLine, 512, stream);
+    char   szLine[512]{}, szCommand[80]{}, szBuf[4][80]{};
+    char * pResult = fgets(szLine, sizeof(szLine), stream);
     sscanf(szLine, "%s %s %s %s %s", szCommand, szBuf[0], szBuf[1], szBuf[2], szBuf[3]);
 
-    if (lstrcmpi(szCommand, "<n3fxpart>")) {
+    if (!n3std::iequals(szCommand, "<n3fxpart>")) {
         fclose(stream);
         return false;
     }
 
     while (!feof(stream)) {
-        char * pResult = fgets(szLine, 512, stream);
+        char * pResult = fgets(szLine, sizeof(szLine), stream);
         if (pResult == NULL) {
             continue;
         }
 
-        ZeroMemory(szCommand, 80);
-        ZeroMemory(szBuf[0], 80);
-        ZeroMemory(szBuf[1], 80);
-        ZeroMemory(szBuf[2], 80);
-        ZeroMemory(szBuf[3], 80);
+        memset(szCommand, 0, sizeof(szCommand));
+        memset(szBuf, 0, sizeof(szBuf));
         sscanf(szLine, "%s %s %s %s %s", szCommand, szBuf[0], szBuf[1], szBuf[2], szBuf[3]);
         ParseScript(szCommand, szBuf[0], szBuf[1], szBuf[2], szBuf[3]);
     }
@@ -442,7 +423,10 @@ bool CN3FXPartBase::Load(HANDLE hFile) {
 
     ReadFile(hFile, &m_iNumTex, sizeof(int), &dwRWC, NULL);
     ReadFile(hFile, &m_fTexFPS, sizeof(float), &dwRWC, NULL);
-    ReadFile(hFile, &m_pTexName, MAX_PATH, &dwRWC, NULL);
+
+    char szTexFileBase[260]{};
+    ReadFile(hFile, &szTexFileBase, sizeof(szTexFileBase), &dwRWC, NULL);
+    m_fsTexFileBase = fs::path(szTexFileBase).generic_string();
 
     if (m_iBaseVersion < 2) {
         ReadFile(hFile, &m_bAlpha, sizeof(BOOL), &dwRWC, NULL);
@@ -489,16 +473,8 @@ bool CN3FXPartBase::Load(HANDLE hFile) {
     }
 
     m_ppRefTex = new CN3Texture *[m_iNumTex];
-
-    std::string FileName;
-    char        Buff[5];
     for (int i = 0; i < m_iNumTex; i++) {
-        sprintf(Buff, "%04d", i);
-        FileName = m_pTexName;
-        FileName += Buff;
-        FileName += ".dxt";
-
-        m_ppRefTex[i] = CN3Base::s_MngTex.Get(FileName);
+        m_ppRefTex[i] = CN3Base::s_MngTex.Get(m_fsTexFileBase + std::format("{:04d}.dxt", i));
     }
 
     return true;
@@ -534,7 +510,9 @@ bool CN3FXPartBase::Save(HANDLE hFile) {
 
     WriteFile(hFile, &m_fTexFPS, sizeof(float), &dwRWC, NULL);
 
-    WriteFile(hFile, &m_pTexName, MAX_PATH, &dwRWC, NULL);
+    char szTexFileBase[260]{};
+    fs::path(m_fsTexFileBase).normalize('/', '\\').string().copy(szTexFileBase, sizeof(szTexFileBase) - 1);
+    WriteFile(hFile, szTexFileBase, sizeof(szTexFileBase), &dwRWC, NULL);
 
     /* 
     if(m_iBaseVersion<2)
@@ -593,7 +571,7 @@ void CN3FXPartBase::Duplicate(CN3FXPartBase * pSrc) {
     m_vPos = pSrc->m_vPos;
     m_iNumTex = pSrc->m_iNumTex;
     m_fTexFPS = pSrc->m_fTexFPS;
-    sprintf(m_pTexName, pSrc->m_pTexName);
+    m_fsTexFileBase = pSrc->m_fsTexFileBase;
 
     m_dwZEnable = pSrc->m_dwZEnable;
     m_dwZWrite = pSrc->m_dwZWrite;
@@ -609,14 +587,7 @@ void CN3FXPartBase::Duplicate(CN3FXPartBase * pSrc) {
 
     m_ppRefTex = new CN3Texture *[m_iNumTex];
 
-    std::string FileName;
-    char        Buff[5];
     for (int i = 0; i < m_iNumTex; i++) {
-        sprintf(Buff, "%04d", i);
-        FileName = m_pTexName;
-        FileName += Buff;
-        FileName += ".dxt";
-
-        m_ppRefTex[i] = CN3Base::s_MngTex.Get(FileName);
+        m_ppRefTex[i] = CN3Base::s_MngTex.Get(m_fsTexFileBase + std::format("{:04d}.dxt", i));
     }
 }

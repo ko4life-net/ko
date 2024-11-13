@@ -87,7 +87,7 @@ class CN3UIEdit : public CN3UIStatic {
   public:
     virtual void operator=(const CN3UIEdit & other);
     virtual bool Save(HANDLE hFile);
-    void         SetSndTyping(const std::string & strFileName);
-    std::string  GetSndFName_Typing() const;
+    void         SetSndTyping(const fs::path & fsFile);
+    fs::path     GetSndFName_Typing() const;
 #endif
 };

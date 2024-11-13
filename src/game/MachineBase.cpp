@@ -220,7 +220,7 @@ void CMachineBase::LoadMachine(FILE * stream) {
     //    result = fscanf(stream, "WheelRadius_BR = %f\n", &(m_Wheel[WHEEL_BR].fRadius));    __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
 
     // shape load하기
-    this->Load(szSrcName);
+    //this->Load(szSrcName); // this looks outdated, but keeping it as comment for the record.
 
     __ASSERT(m_bSkipCalcPartMtx == NULL, "Machine에서 메모리 릭 가능성");
     int iPartCount = PartCount();

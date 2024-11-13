@@ -37,7 +37,7 @@ class CN3Sun : public CN3Base {
     // Operations
   public:
     void SetCurAngle(float fAngle) { m_fCurRadian = D3DXToRadian(fAngle); } // 현재 각도설정
-    void Init(const std::string * pszFNs);
+    void Init(const fs::path * pfsTexFiles);
     //    By : Ecli666 ( On 2002-04-04 오전 10:55:52 )
     //
     float GetCurAngle() { return D3DXToDegree(m_fCurRadian); }

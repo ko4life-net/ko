@@ -143,7 +143,7 @@ void CDlgRiverProperty::UpdateInfo() {
     if (pItem) {
         CN3Texture * pTex = pSelRiver->TexGet();
         if (pTex) {
-            pItem->m_curValue = pTex->FileName().c_str();
+            pItem->m_curValue = pTex->FilePath().c_str();
         } else {
             pItem->m_curValue = "";
         }
@@ -171,7 +171,7 @@ void CDlgRiverProperty::UpdateInfo() {
         int          iCount = pSelRiver->GetAnimTexCount();
         CN3Texture * pTex = pSelRiver->AnimTexGet(iCount - 1);
         if (pTex) {
-            pItem->m_curValue = pTex->FileName().c_str();
+            pItem->m_curValue = pTex->FilePath().c_str();
         } else {
             pItem->m_curValue = "";
         }
@@ -248,15 +248,12 @@ BOOL CDlgRiverProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult
             } else if (pItem->m_propName == "meter / v") {
                 pSelRiver->SetMeterPerV((float)atof(pItem->m_curValue));
             } else if (pItem->m_propName == "Texture File") {
-                CN3Base tmp;
-                tmp.m_szName = pItem->m_curValue; // 상대경로로 바꾸기
-                if (pSelRiver->SetTextureName(tmp.m_szName.c_str()) == FALSE) {
-                    CString strMsg;
-                    strMsg.Format("Cannot get \"%s\"Texture, check file and directory", pItem->m_curValue);
-                    MessageBox(strMsg);
+                fs::path fsFile = CN3BaseFileAccess::ToRelative(pItem->m_curValue.GetString());
+                if (!pSelRiver->SetTextureName(fsFile)) {
+                    std::wstring szMsg =
+                        std::format(L"Cannot get \"{:s}\" Texture, check file and directory", fsFile.c_str());
+                    MessageBoxW(NULL, szMsg.c_str(), L"", MB_OK);
                     pItem->m_curValue = "";
-                } else {
-                    pItem->m_curValue = tmp.m_szName.c_str();
                 }
             } else if (pItem->m_propName == "Animation Texture FPS") {
                 pSelRiver->SetAnimTexFPS((float)atof(pItem->m_curValue));
@@ -268,26 +265,18 @@ BOOL CDlgRiverProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult
                 pSelRiver->SetMeterPerV2((float)atof(pItem->m_curValue));
             } else if (pItem->m_propName == "Animation Texture File") {
                 // 에니메이션 되는 텍스쳐 지정 (갯수는 파일 이름으로부터 알아낸다. 따라서 맨 마지막번호파일을 지정해야함)
+                fs::path fsFile = CN3BaseFileAccess::ToRelative(pItem->m_curValue.GetString());
 
-                CN3Base tmp;
-                tmp.m_szName = pItem->m_curValue; // 상대경로로 바꾸기
-                // 화일 이름 분리
-                char szDir[_MAX_DIR];
-                char szFName[_MAX_FNAME];
-                char szExt[_MAX_EXT];
-                _splitpath(tmp.m_szName.c_str(), NULL, szDir, szFName, szExt);
-                int iCount = atoi(szFName + lstrlen(szFName) - 2) + 1; // 파일 이름의 끝에 두자리를 숫자로 변환
-                CString strFName = szDir;
-                strFName += szFName;
-                strFName = strFName.Left(strFName.GetLength() - 2);
+                // Convert last two digits from the string to an integer and increment
+                std::string szFileStem = fsFile.stem().string();
+                int         iTexCount = std::stoi(szFileStem.substr(szFileStem.size() - 2)) + 1;
 
-                if (pSelRiver->SetAnimTextureName(strFName, szExt, iCount) == FALSE) {
-                    CString strMsg;
-                    strMsg.Format("Cannot get \"%s\"Texture, check file and directory", pItem->m_curValue);
-                    MessageBox(strMsg);
+                fs::path fsFileClean = fsFile.parent_path() / szFileStem.substr(0, szFileStem.size() - 2);
+                if (!pSelRiver->SetAnimTextureName(fsFileClean, fsFile.extension(), iTexCount)) {
+                    std::wstring szMsg =
+                        std::format(L"Cannot get \"{:s}\" Texture, check file and directory", fsFile.c_str());
+                    MessageBoxW(NULL, szMsg.c_str(), L"", MB_OK);
                     pItem->m_curValue = "";
-                } else {
-                    pItem->m_curValue = tmp.m_szName.c_str();
                 }
             }
         }

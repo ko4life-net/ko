@@ -2,8 +2,9 @@
 //
 
 #include "StdAfx.h"
-#include "n3me.h"
+#include "N3ME.h"
 #include "DlgAddDTex.h"
+#include "N3Base/N3Base.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -51,19 +52,13 @@ void CDlgAddDTex::OnDblclkAdddtexlist() {
 BOOL CDlgAddDTex::OnInitDialog() {
     CDialog::OnInitDialog();
 
-    char szOldPath[_MAX_PATH];
-    GetCurrentDirectory(_MAX_PATH, szOldPath);
+    fs::path fsPrevPath = fs::current_path();
+    fs::current_path(CN3Base::PathGet());
 
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR];
-    char szModuleFilePath[_MAX_PATH];
-    GetModuleFileName(NULL, szModuleFilePath, _MAX_PATH);
+    std::string szSearchPath = (fs::path("DTex") / "*.bmp").string();
+    m_TexList.Dir(DDL_READONLY, szSearchPath.c_str());
 
-    char szNewPath[_MAX_PATH];
-    _splitpath(szModuleFilePath, szDrive, szDir, NULL, NULL);
-    _makepath(szNewPath, szDrive, szDir, NULL, NULL);
-    SetCurrentDirectory(szNewPath);
-    m_TexList.Dir(DDL_READONLY, "dtex\\*.bmp");
-    SetCurrentDirectory(szOldPath);
+    fs::current_path(fsPrevPath);
 
     return TRUE; // return TRUE unless you set the focus to a control
                  // EXCEPTION: OCX Property Pages should return FALSE

@@ -230,11 +230,9 @@ void CDlgEditScript::OnBtnSave() {
             continue;
         }
 
-        char szBuff[_MAX_PATH];
-
-        m_pPartName[i]->GetLBText(SelIdx, szBuff);
-
-        fprintf(file, "<PART> fx/%s %3.2f\n", szBuff, (*m_pPartStartTime[i]));
+        CString szPartName;
+        m_pPartName[i]->GetLBText(SelIdx, szPartName);
+        fprintf(file, "<PART> fx/%s %3.2f\n", szPartName.GetString(), *m_pPartStartTime[i]);
     }
 
     if (m_bDependScale) {
@@ -253,7 +251,7 @@ void CDlgEditScript::OnBtnSave() {
 
     fclose(file);
 
-    LoadBundle(m_strPathName);
+    LoadBundle(m_strPathName.GetString());
     SaveGameDataPartnBundle();
 }
 
@@ -273,7 +271,7 @@ void CDlgEditScript::OnBtnStop() {
 }
 
 //strPathName은 FullPath...
-bool CDlgEditScript::LoadBundle(CString & strPathName) {
+bool CDlgEditScript::LoadBundle(const fs::path & fsFile) {
     if (m_pFXBundle) {
         delete m_pFXBundle;
         m_pFXBundle = NULL;
@@ -290,11 +288,11 @@ bool CDlgEditScript::LoadBundle(CString & strPathName) {
     //
     ///////////////////////////////////////////////////
 
-    m_strPathName = strPathName;
+    m_strPathName = fsFile.c_str();
 
     m_pFXBundle = new CN3FXBundle;
     m_pRefFrm->m_pCurrFX = m_pFXBundle;
-    if (m_pFXBundle->DecodeScriptFile((LPCTSTR)strPathName)) //번들 스크립트 읽기 성공했으면...
+    if (m_pFXBundle->DecodeScriptFile(fsFile)) //번들 스크립트 읽기 성공했으면...
     {
         //
         //    set part editor
@@ -302,24 +300,13 @@ bool CDlgEditScript::LoadBundle(CString & strPathName) {
         for (int i = 0; i < MAX_FX_PART; i++) {
             CN3FXPartBase * pPart = m_pFXBundle->GetPart(i);
             if (pPart) {
-                std::string szPartFullPath;
-                szPartFullPath = CN3Base::PathGet() + pPart->FileName();
-
-                char szScriptFullPath[_MAX_PATH];
-                char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-                _splitpath(szPartFullPath.c_str(), szDrive, szDir, szFName, szExt);
-                _makepath(szScriptFullPath, szDrive, szDir, szFName, "n3fxpart");
-
-                //콤보박스 셋팅..
-                char szComboName[_MAX_PATH];
-                _splitpath(szScriptFullPath, szDrive, szDir, szFName, szExt);
-                _makepath(szComboName, NULL, NULL, szFName, szExt);
+                fs::path fsFxPart = pPart->FilePath().stem() + ".n3fxpart";
 
                 int ComboCount = m_pPartName[i]->GetCount();
                 for (int j = 0; j < ComboCount; j++) {
-                    char szComboNameTarget[_MAX_PATH];
-                    m_pPartName[i]->GetLBText(j, szComboNameTarget);
-                    if (lstrcmpi(szComboNameTarget, szComboName) == 0) {
+                    CString szFxPartTarget;
+                    m_pPartName[i]->GetLBText(j, szFxPartTarget);
+                    if (n3std::iequals(szFxPartTarget.GetString(), fsFxPart)) {
                         m_pPartName[i]->SetCurSel(j);
                     }
                 }
@@ -384,19 +371,8 @@ BOOL CDlgEditScript::OnInitDialog() {
         m_pPartName[i]->InsertString(0, "NONE");
         m_pPartName[i]->SetCurSel(0);
 
-        //    m_CBPartName들 채우기..
-
-        CString             strPath;
-        CN3BaseFileAccess * pBaseFileAccess = new CN3BaseFileAccess;
-        strPath = CN3Base::PathGet().c_str();
-        delete pBaseFileAccess;
-        strPath += "fx\\";
-
-        char szCurrPath[_MAX_PATH];
-        GetCurrentDirectory(_MAX_PATH, szCurrPath);
-        SetCurrentDirectory((LPCTSTR)strPath);
-        m_pPartName[i]->Dir(DDL_READONLY, "*.n3fxpart");
-        SetCurrentDirectory(szCurrPath);
+        std::string szSearchPath = (CN3Base::PathGet() / "fx" / "*.n3fxpart").string();
+        m_pPartName[i]->Dir(DDL_READONLY, szSearchPath.c_str());
     }
 
     m_fVelocity = 0.0f;
@@ -426,18 +402,11 @@ void CDlgEditScript::RefreshParts() {
 
         int idx = m_pPartName[i]->GetCurSel();
         if (idx > 0) {
-            CString             strPath;
-            CN3BaseFileAccess * pBaseFileAccess = new CN3BaseFileAccess;
-            strPath = CN3Base::PathGet().c_str();
-            delete pBaseFileAccess;
-            strPath += "fx\\";
-
-            char szBuff[_MAX_PATH];
-            m_pPartName[i]->GetLBText(idx, szBuff);
-            strPath += szBuff;
-
-            m_pFXBundle->m_pPart[i]->pPart = m_pFXBundle->SetPart((LPCTSTR)strPath);
-            m_pFXBundle->m_pPart[i]->fStartTime = (*m_pPartStartTime[i]);
+            CString szFileName;
+            m_pPartName[i]->GetLBText(idx, szFileName);
+            fs::path fsFile = CN3Base::PathGet() / "fx" / szFileName.GetString();
+            m_pFXBundle->m_pPart[i]->pPart = m_pFXBundle->SetPart(fsFile);
+            m_pFXBundle->m_pPart[i]->fStartTime = *m_pPartStartTime[i];
         }
     }
     m_pFXBundle->Init();
@@ -446,38 +415,28 @@ void CDlgEditScript::RefreshParts() {
 }
 
 void CDlgEditScript::ReloadCombo() {
-    CString strOldName;
-    int     idx;
+    CString szOldName;
+    int     iIdx;
     for (int i = 0; i < MAX_FX_PART; i++) {
-        idx = m_pPartName[i]->GetCurSel();
-        m_pPartName[i]->GetLBText(idx, strOldName);
+        iIdx = m_pPartName[i]->GetCurSel();
+        m_pPartName[i]->GetLBText(iIdx, szOldName);
 
         m_pPartName[i]->ResetContent();
         m_pPartName[i]->Clear();
         m_pPartName[i]->InsertString(0, "NONE");
         m_pPartName[i]->SetCurSel(0);
 
-        //    m_CBPartName들 채우기..
-        CString             strPath;
-        CN3BaseFileAccess * pBaseFileAccess = new CN3BaseFileAccess;
-        strPath = CN3Base::PathGet().c_str();
-        delete pBaseFileAccess;
-        strPath += "fx\\";
+        std::string szSearchPath = (CN3Base::PathGet() / "fx" / "*.n3fxpart").string();
+        m_pPartName[i]->Dir(DDL_READONLY, szSearchPath.c_str());
 
-        char szCurrPath[_MAX_PATH];
-        GetCurrentDirectory(_MAX_PATH, szCurrPath);
-        SetCurrentDirectory((LPCTSTR)strPath);
-        m_pPartName[i]->Dir(DDL_READONLY, "*.n3fxpart");
-
-        int count = m_pPartName[i]->GetCount();
-        for (int j = 0; j < count; j++) {
-            CString DestName;
-            m_pPartName[i]->GetLBText(j, DestName);
-            if (lstrcmpi((LPCTSTR)DestName, (LPCTSTR)strOldName) == 0) {
+        int iCount = m_pPartName[i]->GetCount();
+        for (int j = 0; j < iCount; j++) {
+            CString szDestName;
+            m_pPartName[i]->GetLBText(j, szDestName);
+            if (n3std::iequals(szDestName.GetString(), szOldName.GetString())) {
                 m_pPartName[i]->SetCurSel(j);
             }
         }
-        SetCurrentDirectory(szCurrPath);
     }
 }
 
@@ -646,31 +605,19 @@ void CDlgEditScript::OnDropdownComboPart16() {
 
 void CDlgEditScript::OnBtnSaveAs() {
     CDlgNewFileName dlg;
-    dlg.m_strExt = ".N3FXBundle";
-    if (dlg.DoModal() == IDOK) {
-        CString PathName = "fx\\";
-        PathName += dlg.m_strNewFileName;
-        PathName += dlg.m_strExt;
-        CN3BaseFileAccess * pBaseFileAccess = new CN3BaseFileAccess;
-        pBaseFileAccess->FileNameSet((LPCTSTR)PathName);
-
-        m_strPathName.Empty();
-        m_strPathName = CN3Base::PathGet().c_str();
-        m_strPathName += pBaseFileAccess->FileName().c_str();
-
-        delete pBaseFileAccess;
-
-        char szGameFileName[_MAX_PATH];
-        char szExt[_MAX_EXT];
-        char szDir[_MAX_DIR];
-        char szDrive[_MAX_DRIVE];
-        sprintf(szGameFileName, m_pFXBundle->FileName().c_str());
-        _splitpath(szGameFileName, szDrive, szDir, NULL, szExt);
-        sprintf(szGameFileName, "%s%s%s%s", szDrive, szDir, dlg.m_strNewFileName, szExt);
-        m_pFXBundle->FileNameSet(szGameFileName);
-
-        OnBtnSave();
+    dlg.m_strExt = ".n3fxbundle";
+    if (dlg.DoModal() == IDCANCEL) {
+        return;
     }
+
+    fs::path fsScriptFile = fs::path("fx") / (dlg.m_strNewFileName + dlg.m_strExt).GetString();
+    m_strPathName = (CN3Base::PathGet() / fsScriptFile).c_str();
+
+    fs::path fsGameFile =
+        m_pFXBundle->FilePath().parent_path() / (fsScriptFile.stem() + m_pFXBundle->FilePath().extension());
+    m_pFXBundle->FilePathSet(fsGameFile);
+
+    OnBtnSave();
 }
 
 void CDlgEditScript::OnBtnRefresh() {

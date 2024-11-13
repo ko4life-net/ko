@@ -55,7 +55,7 @@ void CDlgRegenUser::OnBtnLoadPathset() {
 
     m_PathName = dlg.GetPathName();
 
-    m_pRefRegenUser->LoadFromFile((LPCTSTR)m_PathName);
+    m_pRefRegenUser->LoadFromFile(m_PathName.GetString());
     UpdateData(FALSE);
 }
 
@@ -77,11 +77,11 @@ void CDlgRegenUser::OnBtnSavePathset() {
 
         if (dlg.DoModal() == IDOK) {
             m_PathName = dlg.GetPathName();
-            m_pRefRegenUser->SaveToFile((LPCTSTR)m_PathName);
+            m_pRefRegenUser->SaveToFile(m_PathName.GetString());
             UpdateData(FALSE);
         }
     } else {
-        m_pRefRegenUser->SaveToFile((LPCTSTR)m_PathName);
+        m_pRefRegenUser->SaveToFile(m_PathName.GetString());
     }
 }
 
@@ -132,7 +132,7 @@ void CDlgRegenUser::OnBtnSaveAs() {
 
     if (dlg.DoModal() == IDOK) {
         m_PathName = dlg.GetPathName();
-        m_pRefRegenUser->SaveToFile((LPCTSTR)m_PathName);
+        m_pRefRegenUser->SaveToFile(m_PathName.GetString());
     }
 
     UpdateData(FALSE);

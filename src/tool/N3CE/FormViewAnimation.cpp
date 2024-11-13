@@ -315,7 +315,7 @@ void CFormViewAnimation::UpdateAllInfo() {
     SetDlgItemInt(IDC_E_SCENE_FRM_END, (int)fFrmE);
     m_SldSceneFrm.SetRange((int)(fFrmS * FRAME_PRECISION), (int)(fFrmE * FRAME_PRECISION));
 
-    SetDlgItemText(IDC_E_ANI_FILE_NAME, pAniCtrl->FileName().c_str());
+    SetDlgItemTextW(GetSafeHwnd(), IDC_E_ANI_FILE_NAME, pAniCtrl->FilePath().c_str());
 
     this->UpdateInfo();
 }
@@ -600,20 +600,17 @@ void CFormViewAnimation::OnBLoad() {
         return;
     }
 
-    CString FileName;
-    DWORD   dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
+    DWORD dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
 
     CFileDialog dlg(TRUE, "N3Anim", NULL, dwFlags, "Animation Data(*.N3Anim)|*.n3Anim||", NULL);
-    char        szCurPath[_MAX_PATH];
-    GetCurrentDirectory(_MAX_PATH, szCurPath);
-    dlg.m_ofn.lpstrInitialDir = szCurPath;
+    std::string szCurDir = fs::current_path().string();
+    dlg.m_ofn.lpstrInitialDir = szCurDir.c_str();
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
 
-    FileName = dlg.GetPathName();
-
-    pAniCtrl->LoadFromFile(std::string(FileName));
+    fs::path fsFile = dlg.GetPathName().GetString();
+    pAniCtrl->LoadFromFile(fsFile);
 
     this->UpdateAllInfo();
 }
@@ -641,20 +638,16 @@ void CFormViewAnimation::OnBSaveAs() {
         return;
     }
 
-    CString FileName;
-    DWORD   dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
-
+    DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(FALSE, "N3Anim", NULL, dwFlags, "Animation Data(*.N3Anim)|*.n3Anim||", NULL);
-    char        szCurPath[_MAX_PATH];
-    GetCurrentDirectory(_MAX_PATH, szCurPath);
-    dlg.m_ofn.lpstrInitialDir = szCurPath;
+    std::string szCurDir = fs::current_path().string();
+    dlg.m_ofn.lpstrInitialDir = szCurDir.c_str();
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
 
-    FileName = dlg.GetPathName();
-
-    pAniCtrl->SaveToFile(std::string(FileName));
+    fs::path fsFile = dlg.GetPathName().GetString();
+    pAniCtrl->SaveToFile(fsFile);
 
     this->UpdateAllInfo();
 }

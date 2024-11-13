@@ -441,13 +441,13 @@ void CLightObjMgr::ChangeSelLights() {
     }
 }
 
-bool CLightObjMgr::MakeGameFile(char * szFN) {
+bool CLightObjMgr::MakeGameFile(const fs::path & fsFile) {
     int cnt = m_ListObj.size();
     if (cnt <= 0) {
         return true;
     }
 
-    HANDLE hFile = CreateFile(szFN, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFile = CreateFileW(fsFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
     DWORD dwRWC;
     WriteFile(hFile, &m_iVersion, sizeof(int), &dwRWC, NULL);

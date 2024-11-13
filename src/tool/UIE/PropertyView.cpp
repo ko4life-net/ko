@@ -246,19 +246,17 @@ BOOL CPropertyView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
     if ((void *)wParam == (&m_UIImage) && UI_TYPE_IMAGE == pUI->UIType()) {
         CN3UIImage * pImage = (CN3UIImage *)pUI;
         if (pItem->m_propName == "Texture") {
-            CN3BaseFileAccess tmpBase;
-            tmpBase.FileNameSet((LPCTSTR)pItem->m_curValue); // Base경로에 대해서 상대적 경로를 넘겨준다.
-
-            pImage->SetTex(tmpBase.FileName());
-            pItem->m_curValue = tmpBase.FileName().c_str(); //tex file name 다시 설정
+            fs::path fsTexFile = CN3BaseFileAccess::ToRelative(pItem->m_curValue.GetString());
+            pImage->SetTex(fsTexFile);
+            pItem->m_curValue = fsTexFile.c_str(); //tex file name 다시 설정
             m_UIImage.Invalidate();
         } else if (pItem->m_propName == "UV left" || pItem->m_propName == "UV top" || pItem->m_propName == "UV right" ||
                    pItem->m_propName == "UV bottom") {
             // UV 설정하는 함수 만들어서 처리하기
             CN3Texture * pTex = pImage->GetTex();
-            if (pTex && pTex->FileName().size() > 0) {
+            if (pTex && !pTex->FilePath().empty()) {
                 CDlgTexture dlg;
-                dlg.SetTexture(pTex->FileName().c_str());
+                dlg.SetTexture(pTex->FilePath());
                 dlg.SetSelectedUVRect(pImage->GetUVRect());
                 if (IDOK == dlg.DoModal()) {
                     __FLOAT_RECT frc;
@@ -296,13 +294,13 @@ BOOL CPropertyView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                 if (dlgAnim.m_iCount <= 0) {
                     break; // 1장 이상이면 texture와 uv좌표 세팅
                 }
-                char szTexFName[_MAX_PATH];
-                if (FALSE == SelectTexture(szTexFName)) {
-                    break; // texture이름 정하기
+                fs::path fsTexFile;
+                if (!SelectTexture(&fsTexFile)) {
+                    break; // Decide on a texture name
                 }
                 // 여러장의 이미지 세팅하게 하기
                 CDlgTexture dlgTex;
-                dlgTex.SetTexture(szTexFName);
+                dlgTex.SetTexture(fsTexFile);
                 char   szNames[1000][20];
                 char * szImageTypeNames[1000];
                 for (int i = 0; i < dlgAnim.m_iCount; ++i) {
@@ -321,7 +319,7 @@ BOOL CPropertyView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                     if (NULL == pChildImage) {
                         continue;
                     }
-                    pChildImage->SetTex(szTexFName);                                          // texture설정
+                    pChildImage->SetTex(fsTexFile);                                           // texture설정
                     pChildImage->SetUVRect(frcUV.left, frcUV.top, frcUV.right, frcUV.bottom); // uv 설정
                 }
                 // 위치 설정
@@ -844,10 +842,10 @@ void CPropertyView::UpdateUIImageInfo() {
     CPropertyItem * pItem = NULL;
     pItem = m_UIImage.GetPropItem("Texture"); // texture 이름
     if (pItem) {
-        pItem->m_curValue = pUI->GetTexFN().c_str();
+        pItem->m_curValue = pUI->GetTexFile().c_str();
         CN3Texture * pTex = pUI->GetTex();
         if (pTex) {
-            pItem->m_curValue = pTex->FileName().c_str();
+            pItem->m_curValue = pTex->FilePath().c_str();
         } else {
             pItem->m_curValue += " : Load fail.";
         }
