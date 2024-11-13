@@ -8,7 +8,6 @@ class CN3EngTool;
 class CMapMng;
 class CDTexMng;
 class CDTexGroupMng;
-class CDlgSowSeed;
 
 #include "DlgBar.h"
 #include "DlgMapView.h"
@@ -39,11 +38,9 @@ class CMainFrame : public CFrameWnd {
     CDTexGroupMng * m_pDTexGroupMng;
 
   public:
-    CString                m_DTexInfoFileName;
-    CDlgSowSeed *          m_pDlgSowSeed;
-    CDlgMapView *          m_pDlgMapView;
-    std::list<LPSEEDGROUP> m_SeedGroupList;
-    char                   m_SeedFileName[MAX_PATH];
+    CString       m_DTexInfoFileName;
+    CDlgMapView * m_pDlgMapView;
+    std::string   m_szZoneName;
 
     // Operations
   public:
@@ -140,7 +137,6 @@ class CMainFrame : public CFrameWnd {
     afx_msg void OnUpdateCursorMakeNpcpath(CCmdUI * pCmdUI);
     afx_msg void OnViewSelectedObjectWireframe();
     afx_msg void OnUpdateViewSelectedObjectWireframe(CCmdUI * pCmdUI);
-    afx_msg void OnTipSowSeed();
     afx_msg void OnViewHideObj();
     afx_msg void OnUpdateViewHideObj(CCmdUI * pCmdUI);
     afx_msg void OnViewAxisAndGrid();

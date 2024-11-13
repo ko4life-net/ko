@@ -116,10 +116,6 @@ LRESULT CN3MEView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam) {
         msg.message = message;
         msg.wParam = wParam;
         msg.lParam = lParam;
-        if (m_pMapMng->m_SowSeedMng.bActive == TRUE) {
-            m_pMapMng->m_SowSeedMng.MouseMessage(&msg);
-            this->Invalidate(FALSE);
-        }
         if (m_pMapMng->MouseMsgFilter(&msg)) {
             this->Invalidate(FALSE);
         }

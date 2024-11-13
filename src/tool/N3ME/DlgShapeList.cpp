@@ -7,7 +7,6 @@
 
 #include "MainFrm.h"
 #include "MapMng.h"
-#include "DlgSowSeed.h"
 
 #include "N3Base/N3Shape.h"
 #include "N3Base/N3Scene.h"
@@ -126,9 +125,6 @@ void CDlgShapeList::OnSelchangeListObj() {
         }
     }
     pWnd->Invalidate();
-
-    CMainFrame * pFrame = (CMainFrame *)AfxGetMainWnd();
-    pFrame->m_pDlgSowSeed->Invalidate(false);
 }
 
 void CDlgShapeList::OnSize(UINT nType, int cx, int cy) {

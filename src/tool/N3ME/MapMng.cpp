@@ -691,11 +691,6 @@ void CMapMng::Render() {
         m_pLightObjMgr->Render();
     }
 
-    // 풀심기 테스트
-    if (m_SowSeedMng.bActive == TRUE) {
-        m_SowSeedMng.Render(s_lpD3DDev);
-    }
-
     m_RiverMng.Render();
     m_PondMng.Render();
     //    RenderGrid(256.0f, 4096);
@@ -1854,8 +1849,6 @@ void CMapMng::SetCursorMode(int iMode) {
 
     m_RiverMng.SetEditMode(FALSE);
     m_PondMng.SetEditMode(FALSE);
-    // 풀심기
-    m_SowSeedMng.SetActive(FALSE);
 
     switch (iMode) {
     case CM_SELECT:
@@ -1953,10 +1946,6 @@ void CMapMng::SetCursorMode(int iMode) {
             m_pSoundMgr->SetActive(true);
         }
         break;
-        // 풀심기
-    case CM_EDIT_SEED: {
-        m_SowSeedMng.SetActive(TRUE);
-    } break;
     case CM_EDIT_LIGHT: {
         m_pLightObjMgr->SetActive(TRUE);
     } break;

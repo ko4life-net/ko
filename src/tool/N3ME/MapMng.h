@@ -23,8 +23,7 @@ enum {
     CM_FLAT_TERRAIN = 15,
     CM_EDIT_REGENUSER = 16,
     CM_EDIT_SOUND = 17,
-    CM_EDIT_SEED = 18,
-    CM_EDIT_LIGHT = 19
+    CM_EDIT_LIGHT = 18
 };
 
 const int NUM_UNIT_LIGHT = 2;
@@ -38,7 +37,6 @@ const int NUM_UNIT_LIGHT = 2;
 #include "PondMng.h"
 #include "LyTerrain.h"
 #include "RegenUser.h"
-#include "SowSeedMng.h"
 
 class CMainFrame;
 class CN3Scene;
@@ -88,8 +86,7 @@ class CMapMng : public CN3Base {
     bool m_bHideObj;
     bool m_bLoadingComplete; // 이게 참이어야만 렌더링을 한다..
 
-    CMainFrame *    m_pMainFrm; // Main 윈도우
-    CSowSeedMng     m_SowSeedMng;
+    CMainFrame *    m_pMainFrm;       // Main 윈도우
     CDlgShapeList * m_pDlgSourceList; // Object 목록을 보여줄 다이알로그
     CN3Transform *  GetSelSourceObj() { return m_pSelSourceObj; }
 

@@ -550,9 +550,6 @@
     <ClInclude Include="BirdMng.h">
       <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
     </ClInclude>
-    <ClInclude Include="GrassBoard.h">
-      <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
-    </ClInclude>
     <ClInclude Include="LightMgr.h">
       <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
     </ClInclude>
@@ -1059,9 +1056,6 @@
       <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
     </ClCompile>
     <ClCompile Include="BirdMng.cpp">
-      <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
-    </ClCompile>
-    <ClCompile Include="GrassBoard.cpp">
       <Filter>Procedure - Main\World Manager\Terrain Manager\Misc</Filter>
     </ClCompile>
     <ClCompile Include="LightMgr.cpp">

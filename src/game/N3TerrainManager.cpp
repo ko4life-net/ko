@@ -11,7 +11,6 @@
 
 #include "N3Terrain.h"
 #include "BirdMng.h"
-//#include "GrassMng.h"
 
 #include "GameProcedure.h"
 #include "PlayerMySelf.h"
@@ -32,9 +31,6 @@ CN3TerrainManager::CN3TerrainManager() {
 
     // Bird..
     m_pBirdMng = new CBirdMng();
-
-    //    // Grass..
-    //    m_pGrasses = new CGrassMng();
 }
 
 CN3TerrainManager::~CN3TerrainManager() {
@@ -56,10 +52,6 @@ CN3TerrainManager::~CN3TerrainManager() {
     CLogWriter::Write("CN3TerrainManager::~CN3TerrainManager -> Pre delete m_pBirdMng"); // TmpLog1122
     delete m_pBirdMng;
     m_pBirdMng = NULL;
-
-    // Grass..
-    //    CLogWriter::Write("CN3TerrainManager::~CN3TerrainManager -> Pre delete m_pGrasses"); // TmpLog1122
-    //    delete m_pGrasses; m_pGrasses = NULL;
 
     CLogWriter::Write("CN3TerrainManager::~CN3TerrainManager -> delete finished"); // TmpLog1122
 }
@@ -91,8 +83,6 @@ void CN3TerrainManager::InitWorld(int iZoneID, const __Vector3 & vPosPlayer) {
     CLogWriter::Write("CN3TerrainManager::InitWorld Pre Load Birds\t%d", m_pBirdMng); // TmpLog_11_22
     m_pBirdMng->LoadFromFile(szFullPathName);
 
-    //    CLogWriter::Write("CN3TerrainManager::InitWorld Pre Load Grasses\t%d", m_pGrasses); // TmpLog_11_22
-    //    m_pGrasses->Init(vPosPlayer);
     CLogWriter::Write("CN3TerrainManager::InitWorld Pre Load Sky\t%d", m_pSky); // TmpLog_11_22
     m_pSky->LoadFromFile(pZone->szSkySetting); // 하늘, 구름, 태양, 날씨 변화등 정보 및 텍스처 로딩..
     m_pSky->SunAndMoonDirectionFixByHour(
@@ -102,7 +92,6 @@ void CN3TerrainManager::InitWorld(int iZoneID, const __Vector3 & vPosPlayer) {
 void CN3TerrainManager::Tick() {
     m_pTerrain->Tick();
     m_pShapes->Tick();
-    //    m_pGrasses->Tick((CGameProcedure* )CGameProcedure::s_pProcMain);
     m_pSky->Tick();
     m_pBirdMng->Tick();
 }
@@ -131,10 +120,6 @@ void CN3TerrainManager::RenderSky() {
     if (m_pSky) {
         m_pSky->Render();
     }
-}
-
-void CN3TerrainManager::RenderGrass() {
-    //    if (m_pGrasses)        m_pGrasses->Render();
 }
 
 void CN3TerrainManager::RenderBirdMgr() {
@@ -343,9 +328,4 @@ CN3Sun * CN3TerrainManager::GetSunPointerWithSky() {
     } else {
         return NULL;
     }
-}
-
-// Grass..
-void CN3TerrainManager::InitWithGrass(__Vector3 CamPo) {
-    //    if (m_pGrasses)    m_pGrasses->Init(CamPo);
 }

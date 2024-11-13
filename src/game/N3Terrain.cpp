@@ -49,13 +49,6 @@ CN3Terrain::CN3Terrain() {
     m_ppPatchRadius = NULL;
     m_ppPatchMiddleY = NULL;
 
-    ZeroMemory(m_pGrassFileName, MAX_PATH);
-
-    for (int i = 0; i < MAX_GRASS; i++) {
-        ZeroMemory(m_pGrassTextureName[i], MAX_PATH);
-    }
-    m_iNumGrass = 0;
-
     m_NumTileTex = 0;
     m_pTileTex = NULL;
     m_ppColorMapTex = NULL;
@@ -88,9 +81,6 @@ CN3Terrain::CN3Terrain() {
     memcpy(m_fTileDirV, TileDirV, sizeof(float) * 8 * 4);
 
     MakeDistanceTable();
-
-    m_pGrassAttr = NULL;
-    m_pGrassNum = NULL;
 
     m_pRiver = NULL;
     m_pPond = NULL;
@@ -127,31 +117,6 @@ void CN3Terrain::MakeDistanceTable() {
 //    Release....
 //
 void CN3Terrain::Release() {
-    if (m_pGrassAttr) {
-        //free(m_pGrassAttr);
-        GlobalFree(m_pGrassAttr);
-        m_pGrassAttr = NULL;
-    }
-
-    if (m_pGrassNum) {
-        //free(m_pGrassAttr);
-        GlobalFree(m_pGrassNum);
-        m_pGrassNum = NULL;
-    }
-
-    //    {
-    //        for(int x=0;x<m_ti_MapSize;x++)
-    //        {
-    //            if(m_ppGrassAttr[x])
-    //            {
-    //                delete[] m_ppGrassAttr[x];
-    //                m_ppGrassAttr[x] = NULL;
-    //            }
-    //        }
-    //        delete[] m_ppGrassAttr;
-    //        m_ppGrassAttr = NULL;
-    //    }
-
     if (m_pRiver) {
         m_pRiver->Release();
         delete m_pRiver;
@@ -225,6 +190,8 @@ void CN3Terrain::Release() {
         m_ppPatchMiddleY = NULL;
     }
 
+    m_szZoneName = "";
+
     for (int x = 0; x < 3; x++) {
         for (int z = 0; z < 3; z++) {
             stlMap_N3TexIt itBegin = m_LightMapPatch[x][z].begin();
@@ -291,19 +258,12 @@ void CN3Terrain::Init() {
     m_ti_CenterPos.x = m_ti_CenterPos.y = -100;
     m_ti_PrevCenterPos = m_ti_CenterPos;
 
-    ZeroMemory(m_pGrassFileName, MAX_PATH);
-    for (int i = 0; i < MAX_GRASS; i++) {
-        ZeroMemory(m_pGrassTextureName[i], MAX_PATH);
-    }
-    m_iNumGrass = 0;
+    m_szZoneName = "";
 
     m_NumTileTex = 0;
     m_pTileTex = NULL;
     m_ppColorMapTex = NULL;
     m_iNumColorMap = 0;
-
-    m_pGrassAttr = NULL;
-    m_pGrassNum = NULL;
 
     m_pRiver = new CN3River();
     m_pPond = new CN3Pond();
@@ -411,8 +371,7 @@ bool CN3Terrain::Load(HANDLE hFile) {
         pUILoading->Render("", 100);
     }
 
-    //patch middleY & radius...
-
+    // patch middleY & radius...
     m_ppPatchRadius = new float *[m_pat_MapSize];
     m_ppPatchMiddleY = new float *[m_pat_MapSize];
     for (int x = 0; x < m_pat_MapSize; x++) {
@@ -439,41 +398,14 @@ bool CN3Terrain::Load(HANDLE hFile) {
         }
     }
 
-    //    m_ppGrassAttr = new unsigned char* [m_ti_MapSize];
-    //    for(int x=0; x<m_ti_MapSize; x++)
-    //    {
-    //        m_ppGrassAttr[x] = new unsigned char[m_ti_MapSize];
-    //        ReadFile(hFile, m_ppGrassAttr[x], sizeof(unsigned char)*m_ti_MapSize, &dwRWC, NULL);
-    //
-    //        if(!(x%256))
-    //        {
-    //            pUILoading->SetValue(20 + 7 * x / m_ti_MapSize);
-    //            pUILoading->Render();
-    //        }
-    //
-    //    }
+    // Skip unused grass attributes data
+    SetFilePointer(hFile, m_ti_MapSize * m_ti_MapSize, NULL, FILE_CURRENT);
 
-    //m_pGrassAttr = (unsigned char*)malloc(sizeof(unsigned char)*m_ti_MapSize*m_ti_MapSize);
-    m_pGrassAttr = (unsigned char *)GlobalAlloc(GMEM_FIXED, sizeof(unsigned char) * m_ti_MapSize * m_ti_MapSize);
-    if (m_pGrassAttr == NULL) {
-        CLogWriter::Write("Terrain Error : GrassAttr Data Memory Allocation Failed..-.-");
-    }
-    __ASSERT(m_pGrassAttr, "GrassAttr Data Memory Allocation Failed..-.-");
-    ReadFile(hFile, m_pGrassAttr, sizeof(unsigned char) * m_ti_MapSize * m_ti_MapSize, &dwRWC, NULL);
+    char szZoneName[260]{};
+    ReadFile(hFile, szZoneName, sizeof(szZoneName), &dwRWC, NULL);
+    m_szZoneName = szZoneName;
 
-    //^^v풀갯수 정보 넣기...(조만간 넣어라..)
-    m_pGrassNum = (unsigned char *)GlobalAlloc(GMEM_FIXED, sizeof(unsigned char) * m_ti_MapSize * m_ti_MapSize);
-    if (m_pGrassNum == NULL) {
-        CLogWriter::Write("Terrain Error : GrassNum Data Memory Allocation Failed..-.-");
-    }
-    __ASSERT(m_pGrassNum, "GrassNum Data Memory Allocation Failed..-.-");
-    //ReadFile(hFile, m_pGrassNum, sizeof(unsigned char)*m_ti_MapSize*m_ti_MapSize, &dwRWC, NULL);
-    memset(m_pGrassNum, 5, sizeof(unsigned char) * m_ti_MapSize * m_ti_MapSize);
-
-    //load colormap....
-    ReadFile(hFile, m_pGrassFileName, MAX_PATH, &dwRWC, NULL);
-    LoadGrassInfo();
-
+    // load colormap....
     LoadTileInfo(hFile);
 
     //load lightmap..
@@ -559,21 +491,6 @@ void CN3Terrain::SetNormals() {
 //
 //
 //
-unsigned short CN3Terrain::GetGrassAttr(int x, int z) {
-    unsigned short Attr;
-    if (x < 0 || x >= m_ti_MapSize || z < 0 || z >= m_ti_MapSize) {
-        return 0;
-    }
-    if (m_pGrassAttr && m_pGrassNum) {
-        Attr = (((unsigned short)m_pGrassAttr[x * m_ti_MapSize + z]) << 8) + m_pGrassNum[x * m_ti_MapSize + z];
-        return Attr;
-    }
-    return 0;
-}
-
-//
-//
-//
 MAPDATA CN3Terrain::GetMapData(int x, int z) {
     MAPDATA MapData;
     if (x < 0 || x >= m_ti_MapSize || z < 0 || z >= m_ti_MapSize) {
@@ -582,79 +499,6 @@ MAPDATA CN3Terrain::GetMapData(int x, int z) {
     MapData = m_pMapData[(x * m_ti_MapSize) + z];
 
     return MapData;
-}
-
-//
-//
-//
-void CN3Terrain::LoadGrassInfo() {
-    if (CGameProcedure::s_pUILoading) {
-        CGameProcedure::s_pUILoading->Render("Loading Terrain Grass Data...", 0);
-    }
-
-    m_iNumGrass = 0;
-    if (strcmp(m_pGrassFileName, "") == 0) {
-        ZeroMemory(m_pGrassAttr, sizeof(unsigned char) * m_ti_MapSize * m_ti_MapSize);
-        return;
-    }
-
-    char szDrive[_MAX_DRIVE];
-    char szDir[_MAX_DIR];
-    char szGrassDir[_MAX_DIR];
-    char szModuleFilePath[_MAX_PATH];
-    GetModuleFileName(NULL, szModuleFilePath, _MAX_PATH);
-    _splitpath(szModuleFilePath, szDrive, szDir, NULL, NULL);
-    char szDir2[MAX_PATH];
-    sprintf(szDir2, "misc\\grass");
-    sprintf(szGrassDir, "%s%s", szDir, szDir2);
-
-    char szFullPath[MAX_PATH];
-    _makepath(szFullPath, szDrive, szGrassDir, m_pGrassFileName, "grs");
-
-    DWORD  dwRWC;
-    HANDLE hFile = CreateFile(szFullPath, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-
-    char Buff[80];
-    if (!ReadFile(hFile, Buff, 80, &dwRWC, NULL)) {
-        CloseHandle(hFile);
-        return;
-    }
-    if (strcmp(Buff, "GrassInfoFile") != 0) {
-        CloseHandle(hFile);
-        return;
-    }
-
-    if (!ReadFile(hFile, &m_iNumGrass, sizeof(int), &dwRWC, NULL)) {
-        CloseHandle(hFile);
-        return;
-    }
-
-    int  id;
-    char FileName[MAX_PATH];
-    char szLoadingBuff[128];
-    for (int i = 0; i < m_iNumGrass; i++) {
-        if (!ReadFile(hFile, &id, sizeof(int), &dwRWC, NULL)) {
-            CloseHandle(hFile);
-            return;
-        }
-        if (!ReadFile(hFile, FileName, MAX_PATH, &dwRWC, NULL)) {
-            CloseHandle(hFile);
-            return;
-        }
-
-        char szDxtFullPath[_MAX_PATH];
-        _makepath(szDxtFullPath, szDrive, szGrassDir, FileName, NULL);
-
-        strcpy(m_pGrassTextureName[Log2(id)], szDxtFullPath);
-
-        //loading bar...
-        int iLoading = (i + 1) * 100 / m_iNumGrass;
-        sprintf(szLoadingBuff, "Loading Terrain Grass Data... %d %%", iLoading);
-        if (CGameProcedure::s_pUILoading) {
-            CGameProcedure::s_pUILoading->Render(szLoadingBuff, iLoading);
-        }
-    }
-    CloseHandle(hFile);
 }
 
 //

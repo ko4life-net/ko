@@ -12,7 +12,6 @@
 #include "DTexGroupMng.h"
 #include "DlgSetDTex.h"
 #include "MapMng.h"
-#include "DlgSowSeed.h"
 #include "DlgSaveDivision.h"
 
 #include "N3Base/N3EngTool.h"
@@ -97,7 +96,6 @@ ON_COMMAND(ID_CURSOR_MAKE_NPCPATH, OnCursorMakeNpcpath)
 ON_UPDATE_COMMAND_UI(ID_CURSOR_MAKE_NPCPATH, OnUpdateCursorMakeNpcpath)
 ON_COMMAND(ID_VIEW_SELECTED_OBJECT_WIREFRAME, OnViewSelectedObjectWireframe)
 ON_UPDATE_COMMAND_UI(ID_VIEW_SELECTED_OBJECT_WIREFRAME, OnUpdateViewSelectedObjectWireframe)
-ON_COMMAND(ID_TIP_SOW_SEED, OnTipSowSeed)
 ON_COMMAND(ID_VIEW_HIDE_OBJ, OnViewHideObj)
 ON_UPDATE_COMMAND_UI(ID_VIEW_HIDE_OBJ, OnUpdateViewHideObj)
 ON_COMMAND(ID_VIEW_AXIS_AND_GRID, OnViewAxisAndGrid)
@@ -146,22 +144,10 @@ CMainFrame::CMainFrame() {
     m_pDTexMng = NULL;
     m_pDTexGroupMng = NULL;
     m_DTexInfoFileName.Empty();
-    m_pDlgSowSeed = NULL;
-    ZeroMemory(m_SeedFileName, MAX_PATH);
+    m_szZoneName = "";
 }
 
-CMainFrame::~CMainFrame() {
-    if (m_pDlgSowSeed) {
-        m_pDlgSowSeed->Release();
-        delete m_pDlgSowSeed;
-        m_pDlgSowSeed = NULL;
-    }
-    std::list<LPSEEDGROUP>::iterator sgit;
-    for (sgit = m_SeedGroupList.begin(); sgit != m_SeedGroupList.end(); sgit++) {
-        delete (*sgit);
-    }
-    m_SeedGroupList.clear();
-}
+CMainFrame::~CMainFrame() {}
 
 int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     if (CFrameWnd::OnCreate(lpCreateStruct) == -1) {
@@ -223,12 +209,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     // 툴바 다이얼로그 정보..
     m_wndDlgBar.SetDlgItemText(IDC_E_PATH, CN3Base::PathGet().c_str());
 
-    //씨앗 뿌리기 관련 클래스 초기화..
-    m_pDlgSowSeed = new CDlgSowSeed;
-    m_pDlgSowSeed->Create(IDD_SOW_SEED, this);
-    m_pDlgSowSeed->ShowWindow(FALSE);
-    m_pDlgSowSeed->m_pRefFrm = this;
-
     m_pDlgMapView = new CDlgMapView;
     m_pDlgMapView->Create(IDD_ALL_MAP_VIEW, this);
     m_pDlgMapView->ShowWindow(FALSE);
@@ -288,10 +268,6 @@ void CMainFrame::OnDestroy() {
         delete m_pEng;
         m_pEng = NULL;
     }
-    if (m_pDlgSowSeed) {
-        delete m_pDlgSowSeed;
-        m_pDlgSowSeed = NULL;
-    }
 }
 
 void CMainFrame::OnFileExport() {
@@ -301,7 +277,7 @@ void CMainFrame::OnFileExport() {
         return;
     }
 
-    strcpy(m_SeedFileName, dlg.GetFileTitle());
+    m_szZoneName = dlg.GetFileTitle().GetString();
     m_pMapMng->MakeGameFiles(dlg.GetPathName());
 }
 
@@ -763,23 +739,6 @@ void CMainFrame::OnViewSelectedObjectWireframe() {
 void CMainFrame::OnUpdateViewSelectedObjectWireframe(CCmdUI * pCmdUI) {
     if (m_pMapMng) {
         pCmdUI->SetCheck(m_pMapMng->m_bViewWireFrame);
-    }
-}
-
-void CMainFrame::OnTipSowSeed() {
-    if (!m_pDlgSowSeed->m_hWnd) {
-        m_pDlgSowSeed->Create(IDD_SOW_SEED);
-    }
-    m_pDlgSowSeed->ShowWindow(TRUE);
-
-    // 풀심기
-    if (m_pMapMng) {
-        m_pMapMng->SetCursorMode(CM_EDIT_SEED);
-        if (m_pMapMng->GetTerrain() != NULL) {
-            m_pMapMng->GetTerrain()->SetEditMode(TEM_BRUSH_SHOW);
-        }
-
-        m_pMapMng->m_SowSeedMng.SetActive(TRUE);
     }
 }
 
