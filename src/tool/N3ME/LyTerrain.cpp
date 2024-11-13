@@ -21,8 +21,6 @@
 #include "DlgDTexGroupView.h"
 #include "DlgModifyDTex.h"
 #include "DlgSetLightMap.h"
-#include "DlgSowSeed.h"
-#include "SowSeedMng.h"
 #include "MapMng.h"
 
 #ifdef _DEBUG
@@ -598,19 +596,8 @@ bool CLyTerrain::SaveToFilePartition(const char * lpszPath, float psx, float psz
     //풀 관련 정보 저장..
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
 
-    int NumSeedInfo = pFrm->m_SeedGroupList.size();
-    WriteFile(hFile, &(NumSeedInfo), sizeof(int), &dwRWC, NULL);
-
-    ProgressBar.Create("Save Grass Info", 50, NumSeedInfo);
-
-    std::list<LPSEEDGROUP>::iterator sgit;
-    sgit = pFrm->m_SeedGroupList.begin();
-    for (int i = 0; i < NumSeedInfo; i++) {
-        ProgressBar.StepIt();
-        LPSEEDGROUP pSeedGroup = (*sgit);
-        WriteFile(hFile, pSeedGroup, sizeof(SEEDGROUP), &dwRWC, NULL);
-        sgit++;
-    }
+    int NumSeedInfo = 0;
+    WriteFile(hFile, &NumSeedInfo, sizeof(int), &dwRWC, NULL);
 
     CloseHandle(hFile);
 
@@ -812,19 +799,8 @@ bool CLyTerrain::SaveToFile(const char * lpszPath) {
     //풀 관련 정보 저장..
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
 
-    int NumSeedInfo = pFrm->m_SeedGroupList.size();
-    WriteFile(hFile, &(NumSeedInfo), sizeof(int), &dwRWC, NULL);
-
-    ProgressBar.Create("Save Grass Info", 50, NumSeedInfo);
-
-    std::list<LPSEEDGROUP>::iterator sgit;
-    sgit = pFrm->m_SeedGroupList.begin();
-    for (int i = 0; i < NumSeedInfo; i++) {
-        ProgressBar.StepIt();
-        LPSEEDGROUP pSeedGroup = (*sgit);
-        WriteFile(hFile, pSeedGroup, sizeof(SEEDGROUP), &dwRWC, NULL);
-        sgit++;
-    }
+    int NumSeedInfo = 0;
+    WriteFile(hFile, &NumSeedInfo, sizeof(int), &dwRWC, NULL);
 
     CloseHandle(hFile);
 
@@ -981,22 +957,8 @@ bool CLyTerrain::LoadFromFile(const char * lpszPath) {
     }
     if (version <= -2) //버전 2부터....^^
     {
-        // 풀씨에 관한 정보 읽기..
-        int NumSeedInfo;
-        ReadFile(hFile, &(NumSeedInfo), sizeof(int), &dwRWC, NULL);
-
-        CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
-        pFrm->m_SeedGroupList.clear();
-
-        ProgressBar.Create("Load Grass Info", 50, NumSeedInfo);
-
-        for (int i = 0; i < NumSeedInfo; i++) {
-            ProgressBar.StepIt();
-            LPSEEDGROUP pSeedGroup = new SEEDGROUP;
-            ReadFile(hFile, pSeedGroup, sizeof(SEEDGROUP), &dwRWC, NULL);
-
-            pFrm->m_SeedGroupList.push_back(pSeedGroup);
-        }
+        int NumSeedInfo = 0;
+        ReadFile(hFile, &NumSeedInfo, sizeof(int), &dwRWC, NULL);
     }
 
     CloseHandle(hFile);
@@ -1454,119 +1416,21 @@ void CLyTerrain::SaveGameData(HANDLE hFile) {
 
     //타일에 풀 속성 저장..
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
-    pFrm->GetMapMng()->m_SowSeedMng.SaveDataGame();
-    LPSEEDGROUP SeedAttr = new SEEDGROUP[m_iHeightMapSize * m_iHeightMapSize];
-    ZeroMemory(SeedAttr, sizeof(unsigned char) * m_iHeightMapSize * m_iHeightMapSize);
-    CDlgSowSeed * pSowSeed = pFrm->m_pDlgSowSeed;
 
-    for (int i = 0; i < m_iHeightMapSize * m_iHeightMapSize; i++) {
-        SeedAttr[i].Obj_Id = 0;
-        SeedAttr[i].Seed_Count = 0;
-        SeedAttr[i].SeedGroup_Sub = NULL;
-        SeedAttr[i].sub_flage = 0;
-    }
-    int            size = pFrm->GetMapMng()->m_SowSeedMng.Grass_Group.size();
-    it_Grass_Group it = pFrm->GetMapMng()->m_SowSeedMng.Grass_Group.begin();
-    int            temp_Id = 0;
-    for (int i = 0; i < size; i++, it++) {
-        LPGRASS_GROUP group = (LPGRASS_GROUP)*it;
-        it_Grass      it_grass = group->grass.begin();
-        for (int j = 0; j < group->grass.size(); j++, it_grass++) {
-            LPGRASS grass = *it_grass;
-
-            it_Obj_Name it_Obj = pFrm->GetMapMng()->m_SowSeedMng.Obj_Name.begin();
-            temp_Id = 0;
-            for (int jj = 0; jj < pFrm->GetMapMng()->m_SowSeedMng.Obj_Name.size(); jj++, it_Obj++) {
-                LPOBJ_NAME Obj = *it_Obj;
-                if (strcmp(group->FileName, Obj->FileName) == 0) {
-                    temp_Id = Obj->Id;
-                }
-            }
-
-            if (SeedAttr[grass->Tile_z + (grass->Tile_x * m_iHeightMapSize)].Obj_Id == 0) {
-                SeedAttr[grass->Tile_z + (grass->Tile_x * m_iHeightMapSize)].Obj_Id = temp_Id + 1;
-
-                if (SeedAttr[grass->Tile_z + (grass->Tile_x * m_iHeightMapSize)].Seed_Count < 15) {
-                    SeedAttr[grass->Tile_z + (grass->Tile_x * m_iHeightMapSize)].Seed_Count += 1;
-                }
-            } else {
-                if (SeedAttr[grass->Tile_z + (grass->Tile_x * m_iHeightMapSize)].Obj_Id == temp_Id + 1) {
-                    if (SeedAttr[grass->Tile_z + (grass->Tile_x * m_iHeightMapSize)].Seed_Count < 15) {
-                        SeedAttr[grass->Tile_z + (grass->Tile_x * m_iHeightMapSize)].Seed_Count += 1;
-                    }
-                } else {
-                    if (SeedAttr[grass->Tile_z + (grass->Tile_x * m_iHeightMapSize)].SeedGroup_Sub == NULL) {
-                        SeedAttr[grass->Tile_z + (grass->Tile_x * m_iHeightMapSize)].sub_flage = 1;
-                        SeedAttr[grass->Tile_z + (grass->Tile_x * m_iHeightMapSize)].SeedGroup_Sub = new SEEDGROUP;
-                    }
-
-                    SeedAttr[grass->Tile_z + (grass->Tile_x * m_iHeightMapSize)].SeedGroup_Sub->Obj_Id = temp_Id + 1;
-                    if (SeedAttr[grass->Tile_z + (grass->Tile_x * m_iHeightMapSize)].SeedGroup_Sub->Seed_Count < 15) {
-                        SeedAttr[grass->Tile_z + (grass->Tile_x * m_iHeightMapSize)].SeedGroup_Sub->Seed_Count += 1;
-                    }
-                }
-            }
-        }
-    }
-    for (int i = 0; i < m_iHeightMapSize * m_iHeightMapSize; i++) {
-        WriteFile(hFile, &SeedAttr[i], sizeof(unsigned char), &dwRWC, NULL);
-        if (SeedAttr[i].SeedGroup_Sub != NULL) {
-            WriteFile(hFile, SeedAttr[i].SeedGroup_Sub, sizeof(unsigned char), &dwRWC, NULL);
-        }
-    }
-
-    /*   원래의 풀 저장 
-    int NumSeedInfo = pFrm->m_SeedGroupList.size();
-    for(int x=0; x<m_iHeightMapSize-1;x++)
+    // Grass / Seed unused dummy data
     {
-        for(int z=0; z<m_iHeightMapSize-1;z++)
-        {
-            int Group = m_ppMapData[x][z].DTexInfo1.Attr.Group;
-
-            std::list<LPSEEDGROUP>::iterator sgit = pFrm->m_SeedGroupList.begin();
-
-            for(int i=0;i<NumSeedInfo;i++)
-            {
-                LPSEEDGROUP pSeedGroup = (*sgit);
-                unsigned char seed = (unsigned char)pSeedGroup->iSeedID;
-                if(Group == pSeedGroup->iDTexGroupID && ((seed & SeedAttr[z + (x*m_iHeightMapSize)])==0))
-                {
-                    SeedAttr[z + (x*m_iHeightMapSize)] += seed;
-                    //break;
-                }
-                sgit++;
-            }
-        }
+        // Note that this implementation has been removed, since it hasn't been used and also to this
+        // day (2024) even in the official client is not unused.
+        // Grass / Seed data are actually part of the opd file and added to maps as shapes.
+        std::vector<char> vSeedDummyData(m_iHeightMapSize * m_iHeightMapSize, 0);
+        WriteFile(hFile, vSeedDummyData.data(), vSeedDummyData.size(), &dwRWC, NULL);
     }
-    WriteFile(hFile, SeedAttr, sizeof(unsigned char)*m_iHeightMapSize*m_iHeightMapSize, &dwRWC, NULL);
-*/
-    WriteFile(hFile, pFrm->m_SeedFileName, sizeof(char) * MAX_PATH, &dwRWC, NULL);
 
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-    _splitpath(m_szFileName.c_str(), szDrive, szDir, szFName, szExt);
+    char szZoneName[260]{};
+    pFrm->m_szZoneName.copy(szZoneName, sizeof(szZoneName) - 1);
+    WriteFile(hFile, szZoneName, sizeof(szZoneName), &dwRWC, NULL);
 
-    // 텍스트파일로 함 뽑아보자..
-    FILE * stream = fopen("c:\\grass.txt", "w");
-    for (int z = 0; z < m_iHeightMapSize; z++) {
-        for (int x = 0; x < m_iHeightMapSize; x++) {
-            SEEDGROUP v = SeedAttr[z + (x * m_iHeightMapSize)];
-            fprintf(stream, "%d,%d\t", v.Obj_Id, v.Seed_Count);
-
-            if (v.SeedGroup_Sub != NULL) {
-                fprintf(stream, "서브 %d,%d\t", v.SeedGroup_Sub->Obj_Id, v.SeedGroup_Sub->Seed_Count);
-            }
-
-            fprintf(stream, "\n");
-        }
-    }
-    fclose(stream);
-
-    //WriteFile(hFile, szFName, _MAX_PATH, &dwRWC, NULL); // 컬러맵 이름 저장.
-    //컬러맵은 MapMng에서 따로 저장한다..
-
-    //
-    //    타일텍스쳐정보 저장...
-    //
+    // Saving tile texture information...
     WriteFile(hFile, &NumTile, sizeof(int), &dwRWC, NULL);
     if (NumTile != 0) {
         WriteFile(hFile, &NumTileSrcTex, sizeof(int), &dwRWC, NULL);
@@ -1582,6 +1446,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile) {
             if (pTexture) {
                 // 경로를 빼고 파일이름과 확장자만 저장해준다.
                 char szTileFN[MAX_PATH];
+                char szFName[_MAX_FNAME]{};
                 _splitpath(pTexture->FileName().c_str(), NULL, NULL, szFName, NULL);
                 wsprintf(szTileFN, "dtex\\%s_%d.gtt", szFName, YIdx);
                 WriteFile(hFile, szTileFN, MAX_PATH, &dwRWC, NULL);

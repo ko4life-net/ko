@@ -196,7 +196,6 @@
     <ClCompile Include="DlgSetLightMap.cpp" />
     <ClCompile Include="DlgSetSound.cpp" />
     <ClCompile Include="DlgShapeList.cpp" />
-    <ClCompile Include="DlgSowSeed.cpp" />
     <ClCompile Include="DlgTerrainSize.cpp" />
     <ClCompile Include="DlgUnusedFiles.cpp" />
     <ClCompile Include="DTex.cpp" />
@@ -226,7 +225,6 @@
     <ClCompile Include="ScaleDummy.cpp" />
     <ClCompile Include="SoundCell.cpp" />
     <ClCompile Include="SoundMgr.cpp" />
-    <ClCompile Include="SowSeedMng.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -317,7 +315,6 @@
     <ClInclude Include="DlgSetLightMap.h" />
     <ClInclude Include="DlgSetSound.h" />
     <ClInclude Include="DlgShapeList.h" />
-    <ClInclude Include="DlgSowSeed.h" />
     <ClInclude Include="DlgTerrainSize.h" />
     <ClInclude Include="DlgUnusedFiles.h" />
     <ClInclude Include="DTex.h" />
@@ -348,7 +345,6 @@
     <ClInclude Include="ScaleDummy.h" />
     <ClInclude Include="SoundCell.h" />
     <ClInclude Include="SoundMgr.h" />
-    <ClInclude Include="SowSeedMng.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="TransDummy.h" />
     <ClInclude Include="VtxPosDummy.h" />

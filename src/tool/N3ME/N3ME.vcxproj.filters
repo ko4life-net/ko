@@ -133,9 +133,6 @@
     <ClCompile Include="DlgShapeList.cpp">
       <Filter>N3ME\Dialogs</Filter>
     </ClCompile>
-    <ClCompile Include="DlgSowSeed.cpp">
-      <Filter>N3ME\Dialogs</Filter>
-    </ClCompile>
     <ClCompile Include="DlgTerrainSize.cpp">
       <Filter>N3ME\Dialogs</Filter>
     </ClCompile>
@@ -229,8 +226,6 @@
     <ClCompile Include="WarpMgr.cpp">
       <Filter>N3ME</Filter>
     </ClCompile>
-    <ClCompile Include="DlgMapView.cpp" />
-    <ClCompile Include="SowSeedMng.cpp" />
     <ClCompile Include="$(SrcDir)\engine\N3Base\BitMapFile.cpp">
       <Filter>N3Base</Filter>
     </ClCompile>
@@ -350,6 +345,9 @@
     </ClCompile>
     <ClCompile Include="$(SrcDir)\engine\N3Base\N3Log.cpp">
       <Filter>N3Base</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgMapView.cpp">
+      <Filter>N3ME\Dialogs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -593,9 +591,6 @@
     <ClInclude Include="DlgShapeList.h">
       <Filter>N3ME\Dialogs</Filter>
     </ClInclude>
-    <ClInclude Include="DlgSowSeed.h">
-      <Filter>N3ME\Dialogs</Filter>
-    </ClInclude>
     <ClInclude Include="DlgTerrainSize.h">
       <Filter>N3ME\Dialogs</Filter>
     </ClInclude>
@@ -692,13 +687,14 @@
     <ClInclude Include="WarpMgr.h">
       <Filter>N3ME</Filter>
     </ClInclude>
-    <ClInclude Include="DlgMapView.h" />
-    <ClInclude Include="SowSeedMng.h" />
     <ClInclude Include="$(SrcDir)\engine\N3Base\N3Log.h">
       <Filter>N3Base</Filter>
     </ClInclude>
     <ClInclude Include="$(SrcDir)\common\N3Utils.h">
       <Filter>N3Base</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgMapView.h">
+      <Filter>N3ME\Dialogs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

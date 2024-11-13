@@ -72,12 +72,7 @@ class CN3Terrain : public CN3BaseFileAccess {
     float m_fTileDirU[8][4];
     float m_fTileDirV[8][4];
 
-    //Grass Attr;
-    char            m_pGrassTextureName[MAX_GRASS][MAX_PATH];
-    char            m_pGrassFileName[MAX_PATH];
-    unsigned char * m_pGrassAttr;
-    unsigned char * m_pGrassNum;
-    int             m_iNumGrass;
+    std::string m_szZoneName;
 
     class CN3River * m_pRiver;
     class CN3Pond *  m_pPond;
@@ -104,7 +99,6 @@ class CN3Terrain : public CN3BaseFileAccess {
     bool CheckBound();
     void DispositionPatch();
     void SetBlunt();
-    void LoadGrassInfo();
 
   public:
     CN3Texture * GetLightMap(int tx, int tz);
@@ -124,13 +118,12 @@ class CN3Terrain : public CN3BaseFileAccess {
     virtual ~CN3Terrain();
 
   public: //additional........
-    bool           GetTileTexInfo(float x, float z, TERRAINTILETEXINFO & TexInfo1, TERRAINTILETEXINFO & TexInfo2);
-    CN3Texture *   GetTileTex(int x, int z);
-    MAPDATA        GetMapData(int x, int z);
-    unsigned short GetGrassAttr(int x, int z);
-    bool           LoadColorMap(const std::string & szFN);
-    void           GetNormal(float x, float z, __Vector3 & vNormal);
-    bool           IsInTerrain(float x, float z);
+    bool         GetTileTexInfo(float x, float z, TERRAINTILETEXINFO & TexInfo1, TERRAINTILETEXINFO & TexInfo2);
+    CN3Texture * GetTileTex(int x, int z);
+    MAPDATA      GetMapData(int x, int z);
+    bool         LoadColorMap(const std::string & szFN);
+    void         GetNormal(float x, float z, __Vector3 & vNormal);
+    bool         IsInTerrain(float x, float z);
     //..
     BOOL Pick(int x, int y, __Vector3 & vPick);
     BOOL PickWide(int x, int y, __Vector3 & vPick);

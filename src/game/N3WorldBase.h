@@ -62,16 +62,10 @@ class CN3WorldBase : public CN3BaseFileAccess, public CGameBase {
     virtual D3DCOLOR GetFogColorWithSky() { return 0xffffffff; }
     virtual CN3Sun * GetSunPointerWithSky() { return NULL; }
 
-    // Bird..
-
-    // Grass..
-    virtual void InitWithGrass(__Vector3 CamPo) {}
-
     // Rendering..
     virtual void RenderTerrain() = 0;
     virtual void RenderShape() = 0;
     virtual void RenderSky() {}
-    virtual void RenderGrass() {}
     virtual void RenderBirdMgr() {}
     virtual void RenderSkyWeather() {}
 

@@ -23,7 +23,6 @@ const int LIGHTMAP_TEX_SIZE = 16;   //    타일 하나당 들어가는 라이�
 const int TILE_PIXEL_SIZE = 128;    //    타일하나의 실제 픽셀 사이즈.
 const int COLORMAPTEX_SIZE = 128;   //    컬러맵 텍스쳐의 픽셀크기..128x128
 const int DISTANCE_TABLE_SIZE = 64; //    셀단위의 거리 테이블 크기(64 x 64)..
-const int MAX_GRASS = 8;
 const int MAX_TERRAIN_SOUND_EFFECT = 4;
 
 enum {

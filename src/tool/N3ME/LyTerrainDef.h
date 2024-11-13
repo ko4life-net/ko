@@ -140,17 +140,3 @@ typedef struct __GameMapData {
     }
 
 } GAMEMAPDATA, *LPGAMEMAPDATA;
-
-typedef struct __SeedGroup {
-    unsigned char Obj_Id : 4;
-    unsigned char Seed_Count : 3;
-    unsigned char sub_flage : 1;
-
-    __SeedGroup * SeedGroup_Sub;
-
-    __SeedGroup() {
-        Obj_Id = 0;
-        Seed_Count = 0;
-        SeedGroup_Sub = NULL;
-    }
-} SEEDGROUP, *LPSEEDGROUP;
