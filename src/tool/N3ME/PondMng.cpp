@@ -890,7 +890,7 @@ void CPondMng::ReCalcUV() {
 
 void CPondMng::MakeGameFiles(HANDLE hFile, float fSize) {
     int   iPondCount = m_PondMeshes.size();
-    DWORD dwNum;
+    DWORD dwNum = 0;
 
     it_PondMesh it = m_PondMeshes.begin();
     WriteFile(hFile, &iPondCount, sizeof(int), &dwNum, NULL);
@@ -910,26 +910,33 @@ void CPondMng::MakeGameFiles(HANDLE hFile, float fSize) {
         int iWidthVtxNum = pRM->GetWaterScaleWidht();
         WriteFile(hFile, &iWidthVtxNum, sizeof(int), &dwNum, NULL); // 점 갯수
 
-        CN3Texture * pPondTex = pRM->TexGet();
-        int          iLen = 0;
+        int iLen = 0;
 
+        CN3Texture * pPondTex = pRM->TexGet();
         if (pPondTex) {
-            char szFileName[MAX_PATH], szFindName[50];
-            sprintf(szFileName, "%s", pPondTex->FileName().c_str());
-            iLen = pPondTex->FileName().size();
-            for (int i = iLen; i > 0; --i) {
-                if (szFileName[i] == '\\') {
-                    sprintf(szFindName, "%s", &szFileName[i + 1]);
-                    iLen -= i;
-                    i = 0;
-                }
-            }
-            WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL); // texture file name length
-            if (iLen > 0) {
-                WriteFile(hFile, szFindName, iLen, &dwNum, NULL); // texture file name
+            std::string szFile = fs::path(pPondTex->FileName()).filename().string();
+            if (szFile.empty()) {
+                WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
+            } else {
+                // The `+ 1` ensures that the null-termination byte is written to file, addressing a previous
+                // issue where the algorithm mistakenly calculated the length of the string doing a reverse loop
+                // to extract the filename from path.
+                // Notably, this issue persists even in their official maps from the 2xxx versions, potentially
+                // causing confusion or problems for those interpreting these formats.
+                //
+                // The root cause is that when reading strings from files, we consistently read 4 bytes
+                // for the string length, followed by the string itself based on that length. If the
+                // null-termination byte is read directly into, for example, a dynamically allocated container,
+                // the null-byte will be included, leading to failed string comparisons, even though the string
+                // values appear identical.
+                //
+                // Therefore to stay compatible with the official formats, we sadly include that null-byte.
+                iLen = szFile.length() + 1;
+                WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
+                WriteFile(hFile, szFile.c_str(), iLen, &dwNum, NULL);
             }
         } else {
-            WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL); // texture file name length
+            WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
         }
 
         // XyxT2 -> XyzColorT2 Converting.

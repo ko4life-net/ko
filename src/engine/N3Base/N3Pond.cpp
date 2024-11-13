@@ -53,7 +53,9 @@ void CN3Pond::Release() {
 bool CN3Pond::Load(HANDLE hFile) {
     Release();
 
-    DWORD dwNum;
+    DWORD       dwNum = 0;
+    int         iLen = 0;
+    std::string szFile;
 
     ReadFile(hFile, &m_iPondMeshNum, sizeof(int), &dwNum, NULL); ///
     if (m_iPondMeshNum <= 0) {
@@ -81,15 +83,22 @@ bool CN3Pond::Load(HANDLE hFile) {
         ptmpPondMesh->m_iWidthVtx = iWidthVertex;                           ///
         ptmpPondMesh->m_iHeightVtx = iVC / iWidthVertex;                    ///
 
-        int iTexNameLength = 0;
-        ReadFile(hFile, &iTexNameLength, sizeof(int), &dwNum, NULL);
-        if (iTexNameLength > 0) {
-            char szTextueFName[_MAX_PATH], szTextue[50];
-            ReadFile(hFile, szTextue, iTexNameLength, &dwNum, NULL); // texture name
-            szTextue[iTexNameLength] = NULL;
-            sprintf(szTextueFName, "misc\\river\\%s", szTextue);
+        iLen = 0;
+        ReadFile(hFile, &iLen, sizeof(int), &dwNum, NULL);
+        if (iLen > 0) {
+            szFile.assign(iLen, '\0');
+            ReadFile(hFile, szFile.data(), iLen, &dwNum, NULL);
 
-            ptmpPondMesh->m_pTexWave = s_MngTex.Get(szTextueFName);
+            // In case you wonder why we look for null-bytes and resize, officially CPondMng::MakeGameFiles calculates
+            // the length of the filename wrong and therefore it includes an additional null-byte.
+            // We can technically assume that they will never fix this and simply resize by the length - 1 without
+            // checking for null-bytes, but for making it future-proof and reliable, we check before resizing.
+            if (auto iPos = szFile.find('\0'); iPos != std::string::npos) {
+                szFile.resize(iPos);
+            }
+
+            fs::path fsTexFile = fs::path("Misc") / "river" / szFile;
+            ptmpPondMesh->m_pTexWave = s_MngTex.Get(fsTexFile.string());
             __ASSERT(ptmpPondMesh->m_pTexWave, "CN3Pond::texture load failed");
         }
 
@@ -201,10 +210,9 @@ bool CN3Pond::Load(HANDLE hFile) {
         return false;
     }
 
-    char szFileName[30];
     for (int i = 0; i < MAX_POND_TEX; i++) {
-        sprintf(szFileName, "misc\\river\\caust%02d.dxt", i);
-        m_pTexPond[i] = CN3Base::s_MngTex.Get(szFileName);
+        fs::path fsTexFile = fs::path("Misc") / "river" / std::format("caust{:02d}.dxt", i);
+        m_pTexPond[i] = CN3Base::s_MngTex.Get(fsTexFile.string());
         __ASSERT(m_pTexPond[i], "CN3Pond::texture load failed");
     }
 

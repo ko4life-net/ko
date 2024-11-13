@@ -25,8 +25,10 @@ CN3River::~CN3River() {
 }
 
 bool CN3River::Load(HANDLE hFile) {
-    DWORD dwNum;
-    WORD  wIndex[18] = {4, 0, 1, 4, 1, 5, 5, 1, 2, 5, 2, 6, 6, 2, 3, 6, 3, 7};
+    DWORD       dwNum = 0;
+    int         iLen = 0;
+    std::string szFile;
+    WORD        wIndex[18] = {4, 0, 1, 4, 1, 5, 5, 1, 2, 5, 2, 6, 6, 2, 3, 6, 3, 7};
 
     ReadFile(hFile, &m_iRiverCount, sizeof(m_iRiverCount), &dwNum, NULL);
     if (m_iRiverCount == 0) {
@@ -47,15 +49,22 @@ bool CN3River::Load(HANDLE hFile) {
         ReadFile(hFile, &pInfo->iIC, sizeof(int), &dwNum, NULL);
         __ASSERT(pInfo->iIC % 18 == 0, "River-Vertex-Index is a multiple of 18");
 
-        int iTexNameLength = 0;
-        ReadFile(hFile, &iTexNameLength, sizeof(int), &dwNum, NULL);
-        if (iTexNameLength > 0) {
-            char szTextueFName[_MAX_PATH], szTextue[50];
-            ReadFile(hFile, szTextue, iTexNameLength, &dwNum, NULL); // texture name
-            szTextue[iTexNameLength] = NULL;
-            sprintf(szTextueFName, "misc\\river\\%s", szTextue);
+        iLen = 0;
+        ReadFile(hFile, &iLen, sizeof(int), &dwNum, NULL);
+        if (iLen > 0) {
+            szFile.assign(iLen, '\0');
+            ReadFile(hFile, szFile.data(), iLen, &dwNum, NULL);
 
-            pInfo->m_pTexWave = s_MngTex.Get(szTextueFName);
+            // In case you wonder why we look for null-bytes and resize, officially CRiverMng::MakeGameFiles calculates
+            // the length of the filename wrong and therefore it includes an additional null-byte.
+            // We can technically assume that they will never fix this and simply resize by the length - 1 without
+            // checking for null-bytes, but for making it future-proof and reliable, we check before resizing.
+            if (auto iPos = szFile.find('\0'); iPos != std::string::npos) {
+                szFile.resize(iPos);
+            }
+
+            fs::path fsTexFile = fs::path("Misc") / "river" / szFile;
+            pInfo->m_pTexWave = s_MngTex.Get(fsTexFile.string());
             __ASSERT(pInfo->m_pTexWave, "CN3River::texture load failed");
         }
 
@@ -118,10 +127,9 @@ bool CN3River::Load(HANDLE hFile) {
         }
     }
 
-    char szFileName[30];
     for (int i = 0; i < MAX_RIVER_TEX; i++) {
-        sprintf(szFileName, "misc\\river\\caust%02d.dxt", i);
-        m_pTexRiver[i] = s_MngTex.Get(szFileName);
+        fs::path fsTexFile = fs::path("Misc") / "river" / std::format("caust{:02d}.dxt", i);
+        m_pTexRiver[i] = s_MngTex.Get(fsTexFile.string());
         __ASSERT(m_pTexRiver[i], "CN3River::texture load failed");
     }
 

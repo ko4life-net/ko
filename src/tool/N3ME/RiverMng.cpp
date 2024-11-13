@@ -653,26 +653,33 @@ void CRiverMng::MakeGameFiles(HANDLE hFile, float fSize) {
         delete[] pTemp;
         pTemp = NULL;
 
-        CN3Texture * pRiverTex = pRM->TexGet();
-        int          iLen = 0;
+        int iLen = 0;
 
+        CN3Texture * pRiverTex = pRM->TexGet();
         if (pRiverTex) {
-            char szFileName[MAX_PATH], szFindName[50];
-            sprintf(szFileName, "%s", pRiverTex->FileName().c_str());
-            iLen = pRiverTex->FileName().size();
-            for (int i = iLen; i > 0; --i) {
-                if (szFileName[i] == '\\') {
-                    sprintf(szFindName, "%s", &szFileName[i + 1]);
-                    iLen -= i;
-                    i = 0;
-                }
-            }
-            WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL); // texture file name length
-            if (iLen > 0) {
-                WriteFile(hFile, szFindName, iLen, &dwNum, NULL); // texture file name
+            std::string szFile = fs::path(pRiverTex->FileName()).filename().string();
+            if (szFile.empty()) {
+                WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
+            } else {
+                // The `+ 1` ensures that the null-termination byte is written to file, addressing a previous
+                // issue where the algorithm mistakenly calculated the length of the string doing a reverse loop
+                // to extract the filename from path.
+                // Notably, this issue persists even in their official maps from the 2xxx versions, potentially
+                // causing confusion or problems for those interpreting these formats.
+                //
+                // The root cause is that when reading strings from files, we consistently read 4 bytes
+                // for the string length, followed by the string itself based on that length. If the
+                // null-termination byte is read directly into, for example, a dynamically allocated container,
+                // the null-byte will be included, leading to failed string comparisons, even though the string
+                // values appear identical.
+                //
+                // Therefore to stay compatible with the official formats, we sadly include that null-byte.
+                iLen = szFile.length() + 1;
+                WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
+                WriteFile(hFile, szFile.c_str(), iLen, &dwNum, NULL);
             }
         } else {
-            WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL); // texture file name length
+            WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
         }
     }
 
