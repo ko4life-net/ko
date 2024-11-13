@@ -115,6 +115,7 @@ void CLogWriter::Write(const char * lpszFormat, ...) {
     va_start(argList, lpszFormat);
     vsprintf(szBuff, lpszFormat, argList);
     va_end(argList);
+    N3_DEBUG("CLogWriter::Write: {}", szBuff);
 
     lstrcat(szFinal, szBuff);
     lstrcat(szFinal, "\r\n");
