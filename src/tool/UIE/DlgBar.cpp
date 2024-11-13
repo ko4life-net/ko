@@ -51,7 +51,7 @@ void CDlgBar::OnButtonBasepath() {
         pWnd->GetWindowText(strPath);
     }
     char szFolder[_MAX_PATH] = "";
-    char szTitle[] = "리소스 base경로를 선택해주세요.";
+    char szTitle[] = "What is the base of rice? What is the double-crossing?.";
 
     BROWSEINFO    bi;
     LPCITEMIDLIST lpidl;

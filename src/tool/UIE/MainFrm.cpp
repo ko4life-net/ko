@@ -87,7 +87,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     // TODO: Remove this if you don't want tool tips
     m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() | CBRS_TOOLTIPS | CBRS_FLYBY);
 
-    // Engine ����
+    // Engine
     //m_Eng.InitEnv();
     if (!m_Eng.Init(TRUE, GetRightPane()->m_hWnd, 64, 64, 0, TRUE)) {
         return -1;
@@ -267,7 +267,7 @@ void CMainFrame::OnDestroy() {
 }
 
 void CMainFrame::EnableAccelerator(BOOL bEnable) {
-    // ó�� ȣ��Ǹ� ���� Accel table �����س���
+
     if (NULL == m_hDefaultAccelTable) {
         m_hDefaultAccelTable = m_hAccelTable;
     }

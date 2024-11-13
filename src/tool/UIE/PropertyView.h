@@ -50,22 +50,24 @@ class CPropertyView : public CFormView {
   public:
     // Operations
   public:
-    void UpdateInfo();            // 모든 정보 갱신
-    void UpdateUIBaseInfo();      // Base정보 갱신
-    void UpdateUIImageInfo();     // Image정보 갱신
-    void UpdateUIStringInfo();    // String정보 갱신
-    void UpdateUIListInfo();      // List정보 갱신
-    void UpdateUIButtonInfo();    // Button정보 갱신
-    void UpdateUIEditInfo();      // Edit정보 갱신
-    void UpdateUIProgressInfo();  // Progress정보 갱신
-    void UpdateUITrackBarInfo();  // Trackbar정보 갱신
-    void UpdateUIScrollBarInfo(); // ScrollBar정보 갱신
-    void UpdateUIAreaInfo();      // Area정보 갱신
-    void UpdateUIIconSlotInfo();  // IconSlot 정보 갱신(리펜트 전용)
-    void UpdateUIStaticInfo();    // Static 정보 갱신
+    void UpdateInfo();
+    void UpdateUIBaseInfo();
+    void UpdateUIImageInfo();
+    void UpdateUIStringInfo();
+    void UpdateUIListInfo();
+    void UpdateUIButtonInfo();
+    void UpdateUIEditInfo();
+    void UpdateUIProgressInfo();
+    void UpdateUITrackBarInfo();
+    void UpdateUIScrollBarInfo();
+    void UpdateUIAreaInfo();
+    void UpdateUIIconSlotInfo();
+    void UpdateUIStaticInfo();
+
   protected:
-    void Resize();                                                     // 화면 구성요소 재배치
-    void SetPropertyListPos(CPropertyList * pList, CPoint & ptWndPos); // 구성요소 특정위치에 배치하는 함수
+    void Resize();
+    void SetPropertyListPos(CPropertyList * pList, CPoint & ptWndPos);
+
   public:
     // Overrides
     // ClassWizard generated virtual function overrides

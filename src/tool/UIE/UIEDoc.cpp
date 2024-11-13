@@ -159,7 +159,7 @@ void CUIEDoc::SetSelectedUI(CN3UIBase * pUI) {
         bool  bOverLapped = false;
         for (; it != itEnd;) {
             if (pUI == *it) {
-                it = m_SelectedUIs.erase(it); // ���� �Ÿ� ���ÿ��� ����.
+                it = m_SelectedUIs.erase(it);
                 bOverLapped = true;
             } else {
                 it++;
@@ -167,7 +167,7 @@ void CUIEDoc::SetSelectedUI(CN3UIBase * pUI) {
         }
 
         if (false == bOverLapped) {
-            m_SelectedUIs.push_front(pUI); // ��ġ�� ������.. �߰�..
+            m_SelectedUIs.push_front(pUI);
         }
     }
 
@@ -189,7 +189,6 @@ void CUIEDoc::OnInsertImage() {
     SetSelectedUI(NULL);
     SetSelectedUI(pUI);
 
-    // ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     if (FALSE == SetImageInfos(pUI)) {
         if (IDYES ==
@@ -299,15 +298,13 @@ void CUIEDoc::OnInsertStatic() {
     SetSelectedUI(NULL);
     SetSelectedUI(pUI);
 
-    // ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
-    // image¿¡ °ü·ÃµÈ ¼¼ÆÃÀ» ÇØÁÖ°í image¿µ¿ªÀ» °¡Á®¿Í staticÀÇ ¿µ¿ªÀ» ¼¼ÆÃÈÄ
+
     CN3UIImage * pBkImage = pUI->GetImageBkGnd();
     SetImageInfos(pBkImage);
     RECT rcRegion = pBkImage->GetRegion();
     pUI->SetRegion(rcRegion);
 
-    // string °ü·Ã ¼¼ÆÃ, µé¾î°¥ text¸¦ ÁöÁ¤ÇØÁØ´Ù.
     CN3UIString * pUIString = pUI->GetUIString();
     if (FALSE == SetStringInfos(pUIString)) {
         pFrm->MessageBox("The text will be displayed properly when you enter the text information.");
@@ -331,14 +328,13 @@ void CUIEDoc::OnInsertEdit() {
     SetSelectedUI(NULL);
     SetSelectedUI(pUI);
 
-    // ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
-    // image¿¡ °ü·ÃµÈ ¼¼ÆÃÀ» ÇØÁÖ°í image¿µ¿ªÀ» °¡Á®¿Í editÀÇ ¿µ¿ªÀ» ¼¼ÆÃÈÄ
+
     CN3UIImage * pBkImage = pUI->GetImageBkGnd();
     SetImageInfos(pBkImage);
     RECT rcRegion = pBkImage->GetRegion();
     pUI->SetRegion(rcRegion);
-    // string °ü·Ã ¼¼ÆÃ
+
     CN3UIString * pUIString = pUI->GetUIString();
     if (FALSE == SetStringInfos(pUIString)) {
         pFrm->MessageBox("The text will be displayed properly when you enter the text information.");
@@ -362,12 +358,11 @@ void CUIEDoc::OnInsertProgress() {
     SetSelectedUI(NULL);
     SetSelectedUI(pUI);
 
-    // ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
-    // backgroundÀÌ¹ÌÁö¿Í foregroundÀÌ¹ÌÁö¸¦ ¼³Á¤ÇÏ°í
+    // Background Foreground
     CN3UIImage * pUIImage = pUI->GetBkGndImgRef();
     ASSERT(pUIImage);
-    // texture ¼³Á¤
+
     char szTexture[_MAX_PATH];
     while (1) {
         if (FALSE == SelectTexture(szTexture)) {
@@ -394,7 +389,7 @@ void CUIEDoc::OnInsertProgress() {
             break;
         }
     }
-    // imageÀÇ normal on down disable±×¸² ¿µ¿ª ¼³Á¤
+    // image normal on down disable
     CDlgTexture dlg;
     dlg.SetTexture(szTexture);
     char   szNames[2][20] = {"Back", "Fore"};
@@ -426,11 +421,11 @@ void CUIEDoc::OnInsertProgress() {
         pUIImage->SetUVRect(frcUV.left, frcUV.top, frcUV.right, frcUV.bottom);
     }
 
-    // image¿µ¿ªÀ» °¡Á®¿Í progress ¿µ¿ªÀ» ¼³Á¤
+    // image progress
     rcRegion = dlg.GetImageRect(0);
     pUI->SetFrGndUVFromFrGndImage();
     pUI->SetRegion(rcRegion);
-    // style ÁöÁ¤
+    // style
     pFrm->MessageBox("Please specify the style (horizontal/vertical) in the left pane.");
 
     pFrm->GetRightPane()->SetMode(CUIEView::UIEMODE_EDIT);
@@ -451,7 +446,6 @@ void CUIEDoc::OnInsertTrackbar() {
     SetSelectedUI(NULL);
     SetSelectedUI(pUI);
 
-    // ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     if (FALSE == SetTrackBarInfos(pUI)) {
         if (IDYES == pFrm->MessageBox("Trackbar information designation has been cancelled.\nAre you sure you want to "
@@ -463,7 +457,6 @@ void CUIEDoc::OnInsertTrackbar() {
         }
         return;
     }
-    // style ÁöÁ¤
     pFrm->MessageBox("Please specify the style (horizontal/vertical) in the left pane.");
 
     pFrm->GetRightPane()->SetMode(CUIEView::UIEMODE_EDIT);
@@ -483,10 +476,10 @@ void CUIEDoc::OnInsertScrollbar() {
     pUI->CreateTrackBarAndBtns();
     SetSelectedUI(NULL);
     SetSelectedUI(pUI);
-    // ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
+
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     pFrm->MessageBox("(Create Scrollbar) Up/Left Button Assignment.");
-    // 2°³ÀÇ buttonÀ» ¼³Á¤ÇÏ°í
+
     CN3UIButton * pUIBtn = pUI->GetBtnRef(CN3UIScrollBar::BTN_LEFTUP);
     ASSERT(pUIBtn);
     if (FALSE == SetButtonInfos(pUIBtn)) {
@@ -500,11 +493,11 @@ void CUIEDoc::OnInsertScrollbar() {
         }
         return;
     }
-    // ¹öÆ° À§Ä¡ ¼³Á¤, size(width,height)´Â image¿µ¿ª ¼³Á¤¿¡ µû¸¥´Ù.
+
     CRect rcRegion = pUIBtn->GetRegion();
-    rcRegion.OffsetRect(-rcRegion.TopLeft()); // 0,0ÀÎÁ¡À¸·Î ¸¶Ãß±â
+    rcRegion.OffsetRect(-rcRegion.TopLeft());
     pUIBtn->SetRegion(rcRegion);
-    // 2¹øÂ° ¹öÆ°
+
     pFrm->MessageBox("Create a scrollbar) Down/Right button assignment.");
     pUIBtn = pUI->GetBtnRef(CN3UIScrollBar::BTN_RIGHTDOWN);
     ASSERT(pUIBtn);
@@ -519,12 +512,11 @@ void CUIEDoc::OnInsertScrollbar() {
         }
         return;
     }
-    // ¹öÆ° À§Ä¡ ¼³Á¤, size(width,height)´Â image¿µ¿ª ¼³Á¤¿¡ µû¸¥´Ù.
+
     rcRegion = pUIBtn->GetRegion();
-    rcRegion.OffsetRect(CPoint(20, 20) - rcRegion.TopLeft()); // 20,20ÀÎÁ¡À¸·Î ¸ÂÃß±â
+    rcRegion.OffsetRect(CPoint(20, 20) - rcRegion.TopLeft());
     pUIBtn->SetRegion(rcRegion);
     pFrm->MessageBox("(Creating a scroll bar) This is the middle track bar designation.");
-    // trackbar¸¦ ¼³Á¤ÇÏ°í
 
     CN3UITrackBar * pUITrackBar = pUI->GetTrackBarRef();
     if (FALSE == SetTrackBarInfos(pUITrackBar)) {
@@ -538,12 +530,10 @@ void CUIEDoc::OnInsertScrollbar() {
         return;
     }
     rcRegion = pUITrackBar->GetRegion();
-    rcRegion.OffsetRect(CPoint(40, 40) - rcRegion.TopLeft()); // 40,40ÀÎÁ¡À¸·Î ¸ÂÃß±â
+    rcRegion.OffsetRect(CPoint(40, 40) - rcRegion.TopLeft());
     pUITrackBar->SetRegion(rcRegion);
     pUI->SetRegion(rcRegion);
 
-    // ¹öÆ°°ú trackbar¿µ¿ªÀ» ´õÇØ¼­ scrollbar¿µ¿ªÀ» ¼³Á¤
-    // styleÀ» Á¤ÇÏ°í
     pFrm->MessageBox("1. In the left panel, specify the style (horizontal/vertical).\nMake sure to set the scroll area "
                      "so that both buttons and the center track bar are included.");
 
@@ -565,7 +555,7 @@ void CUIEDoc::OnInsertArea() {
 
     SetSelectedUI(NULL);
     SetSelectedUI(pUI);
-    // ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
+
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     pFrm->GetRightPane()->SetMode(CUIEView::UIEMODE_EDIT);
     pFrm->GetRightPane()->SelectRectType(CUIEView::RT_REGION);
@@ -583,7 +573,7 @@ void CUIEDoc::OnInsertIconslot() {
         pUI->Init(&m_RootUI);
     }
     SetSelectedUI(pUI);
-    // ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
+
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     pFrm->MessageBox("Please specify the area.");
     pFrm->GetRightPane()->SetMode(CUIEView::UIEMODE_EDIT);
@@ -607,7 +597,7 @@ void CUIEDoc::OnInsertList() {
 
     SetSelectedUI(NULL);
     SetSelectedUI(pUI);
-    // �Ʒ��� �⺻������ ���ָ� ���� �͵��� �������.
+
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     pFrm->GetRightPane()->SetMode(CUIEView::UIEMODE_EDIT);
     pFrm->GetRightPane()->SelectRectType(CUIEView::RT_REGION);
@@ -615,16 +605,14 @@ void CUIEDoc::OnInsertList() {
     //    this->OnInsertScrollbar();
 }
 
-void CUIEDoc::OnEditDelete() // ���õ� ui �����
-{
+void CUIEDoc::OnEditDelete() {
     CN3UIBase * pUI = NULL;
     it_UI       it = m_SelectedUIs.begin(), itEnd = m_SelectedUIs.end();
     for (; it != itEnd;) {
         pUI = *it;
         //        if (pUI && (&m_RootUI) == pUI->GetParent())
-        //        {    // ���õ� ui�� m_RootUI�� child�̸� �����.
-        if (pUI && (&m_RootUI) != pUI) // Root UI �� �ƴϸ� �����..
-        {
+        //        {
+        if (pUI && (&m_RootUI) != pUI) {
             delete pUI;
             it = m_SelectedUIs.erase(it);
             SetModifiedFlag();
@@ -656,7 +644,7 @@ BOOL CUIEDoc::SetImageInfos(CN3UIImage * pUI) {
         return FALSE;
     }
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
-    // texture ����
+    // texture
     char szTexture[_MAX_PATH];
     while (1) {
         if (FALSE == SelectTexture(szTexture)) {
@@ -672,7 +660,7 @@ BOOL CUIEDoc::SetImageInfos(CN3UIImage * pUI) {
             break;
         }
     }
-    // texture ���� ���̴� �κ� ���� (������ UV������ �ϱ� ����)
+
     CDlgTexture dlg;
     dlg.SetTexture(szTexture);
     if (IDCANCEL == dlg.DoModal()) {
@@ -684,25 +672,25 @@ BOOL CUIEDoc::SetImageInfos(CN3UIImage * pUI) {
         return FALSE;
     }
     rcRegion = dlg.GetSelectedRect();
-    // UV��ǥ ����
+
     pUI->SetUVRect(frcUV.left, frcUV.top, frcUV.right, frcUV.bottom);
-    // ���� ����(texture�� ũ�⿡ ���� width�� height�� �ڵ����� �����ϰ� ��ġ�� �����)
-    rcRegion.OffsetRect(-rcRegion.TopLeft()); // 0,0�������� ���߱�
+
+    rcRegion.OffsetRect(-rcRegion.TopLeft());
     pUI->SetRegion(rcRegion);
     return TRUE;
 }
 
 BOOL CUIEDoc::SetStringInfos(CN3UIString * pUI) {
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
-    // font ����, ���� �� ����
+
     CFontDialog dlg;
     if (IDCANCEL == dlg.DoModal()) {
         return FALSE;
     }
-    __ASSERT(dlg.GetSize() > 0, "font height�� 0���� �۽��ϴ�.");
+    __ASSERT(dlg.GetSize() > 0, "font height 0...");
     CString strTmp = dlg.GetFaceName();
 
-    std::string strFontName = "����ü";
+    std::string strFontName = "The body of the person who made the mistake ";
     if (strTmp.GetLength() > 0) {
         strFontName = strTmp;
     }
@@ -711,18 +699,18 @@ BOOL CUIEDoc::SetStringInfos(CN3UIString * pUI) {
     COLORREF color = dlg.GetColor();
     D3DCOLOR d3dColor = 0xff000000 | ((color & 0x00ff0000) >> 16) | (color & 0x0000ff00) | ((color & 0x000000ff) << 16);
     pUI->SetColor(d3dColor);
-    // style ÁöÁ¤
-    pFrm->MessageBox("1. In the left panel, specify ☆★☆★[[[Style]]]☆★☆★ (important),\n2. Please specify the location "
+
+    pFrm->MessageBox("1. In the left panel, specify Style (important),\n2. Please specify the location "
                      "and size.\n3. If there is text to be displayed, please write it in the lower left panel.");
     return TRUE;
 }
 
 BOOL CUIEDoc::SetTrackBarInfos(CN3UITrackBar * pUI) {
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
-    // backgroundÀÌ¹ÌÁö¿Í thumbÀÌ¹ÌÁö¸¦ ¼³Á¤ÇÏ°í
+
     CN3UIImage * pUIImage = pUI->GetBkGndImgRef();
     ASSERT(pUIImage);
-    // texture ¼³Á¤
+
     char szTexture[_MAX_PATH];
     while (1) {
         if (FALSE == SelectTexture(szTexture)) {
@@ -735,7 +723,7 @@ BOOL CUIEDoc::SetTrackBarInfos(CN3UITrackBar * pUI) {
             break;
         }
     }
-    // imageÀÇ normal on down disable±×¸² ¿µ¿ª ¼³Á¤
+
     CDlgTexture dlg;
     dlg.SetTexture(szTexture);
     char   szNames[2][20] = {"Back", "Thumb"};
@@ -761,7 +749,7 @@ BOOL CUIEDoc::SetTrackBarInfos(CN3UITrackBar * pUI) {
         rcRegion.OffsetRect(-rcRegion.TopLeft());
         pUIImage->SetRegion(rcRegion);
     }
-    // background image¿µ¿ªÀ» °¡Á®¿Í trackbar ¿µ¿ªÀ» ¼³Á¤
+
     rcRegion = dlg.GetImageRect(0);
     rcRegion.OffsetRect(-rcRegion.TopLeft());
     pUI->SetRegion(rcRegion);
@@ -772,7 +760,7 @@ BOOL CUIEDoc::SetButtonInfos(CN3UIButton * pUI) {
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     CN3UIImage * pUIImage = pUI->GetImageRef(CN3UIButton::BS_NORMAL);
     ASSERT(pUIImage);
-    // texture ����
+
     char szTexture[_MAX_PATH];
     while (1) {
         if (FALSE == SelectTexture(szTexture)) {
@@ -785,7 +773,7 @@ BOOL CUIEDoc::SetButtonInfos(CN3UIButton * pUI) {
             break;
         }
     }
-    // image�� normal on down disable�׸� ���� ����
+
     CDlgTexture dlg;
     dlg.SetTexture(szTexture);
     char   szNames[4][_MAX_PATH] = {"Normal", "Down", "On", "Disable"};
@@ -815,7 +803,7 @@ void CUIEDoc::OnFileExportTooltip() {
     if (NULL == pUI) {
         return;
     }
-    ASSERT(UI_TYPE_STATIC == pUI->UIType()); // tooltip�� static���� ��ӹް� ���� �����ϴ� ������ ����.
+    ASSERT(UI_TYPE_STATIC == pUI->UIType());
 
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(FALSE, "uif", NULL, dwFlags, "UI Files(*.uif)|*.uif;||", NULL);
@@ -875,7 +863,7 @@ void CUIEDoc::OnEditDuplicate() {
             CN3UIStatic * pUINew = new CN3UIStatic();
             *pUINew = *((CN3UIStatic *)pUISrc);
             pUIDest = pUINew;
-        } break; // static (���׸��� ���ڰ� ������ Ŭ����)
+        } break;
         case UI_TYPE_PROGRESS: {
             CN3UIProgress * pUINew = new CN3UIProgress();
             *pUINew = *((CN3UIProgress *)pUISrc);
@@ -942,7 +930,6 @@ void CUIEDoc::OnEditDuplicate() {
         pUIDest->MoveOffset(10, 10);
     }
 
-    // region �����ϴ� �Լ� ���� ó���ϱ�
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     pFrm->GetRightPane()->SelectRectType(CUIEView::RT_REGION);
 
@@ -960,8 +947,7 @@ void CUIEDoc::OnEditMakeGroup() {
         pUI = *it;
         if (iUIC == iUIC) {
             pUIFirst = pUI;
-        } else // ¸ğµÎ °°Àº ÆĞ¾î·±Æ®ÀÎÁö È®ÀÎ..
-        {
+        } else {
             if (pUIFirst->GetParent() != pUI->GetParent()) {
                 MessageBox(AfxGetMainWnd()->m_hWnd, "All UIs to be grouped must be in the same parent.",
                            "Group Assaigment Failure", MB_OK);
@@ -978,7 +964,7 @@ void CUIEDoc::OnEditMakeGroup() {
 
     CN3UIBase * pUIParentOld = pUIFirst->GetParent();
     CN3UIBase * pUIParentNew = new CN3UIBase();
-    pUIParentNew->Init(pUIParentOld); // ±×·ìÀ» ¿¹Àü ÆĞ¾î·±Æ® ¹Ø¿¡ ³Ö°í..
+    pUIParentNew->Init(pUIParentOld);
 
     it = m_SelectedUIs.begin();
     itEnd = m_SelectedUIs.end();
@@ -1169,7 +1155,7 @@ void CUIEDoc::OnBatchToolChangeImagePath() {
         return;
     }
 
-    CDlgChangeImage dlg2; // �̹��� ���� �̸� ��������..
+    CDlgChangeImage dlg2;
     if (dlg2.DoModal() == IDCANCEL) {
         return;
     }
@@ -1204,7 +1190,7 @@ void CUIEDoc::OnBatchToolChangeFont() {
         return;
     }
 
-    CFontDialog dlg2; // �̹��� ���� �̸� ��������..
+    CFontDialog dlg2;
     if (dlg2.DoModal() == IDCANCEL) {
         return;
     }
@@ -1246,7 +1232,6 @@ void CUIEDoc::OnBatchToolGatherImageFileName() {
         base.GatherImageFileName(setImgFNs);
     }
 
-    // Æú´õ ¼±ÅÃÇÏ±â..
     char          szFolder[_MAX_PATH] = "";
     BROWSEINFO    bi;
     LPCITEMIDLIST lpidl;

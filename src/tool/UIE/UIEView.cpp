@@ -92,7 +92,7 @@ void CUIEView::OnDraw(CDC * pDC) {
     ASSERT_VALID(pDoc);
 
     if (UIEMODE_PREVIEW == m_eMode) {
-        return; // preview일때는 그냥 리턴
+        return;
     }
 
     int iUIC = pDoc->GetSelectedUICount();
@@ -112,7 +112,7 @@ void CUIEView::OnDraw(CDC * pDC) {
             pDC->SelectObject(pOldPen);
         }
 
-        if (RT_NONE == m_eSelectedRectType) { // Rect 수정중이 아닐때 각각 Rect 표시
+        if (RT_NONE == m_eSelectedRectType) {
 
             // region
             RECT rcRegion = pUI->GetRegion();
@@ -146,16 +146,14 @@ void CUIEView::OnDraw(CDC * pDC) {
         }
     }
 
-    if (RT_NONE != m_eSelectedRectType) // Rect 수정중일때 각각 Rect 표시
-    {
+    if (RT_NONE != m_eSelectedRectType) {
         CPen   SelPen(PS_DOT, 1, RGB(0, 0, 0));
         CPen * pOldPen = pDC->SelectObject(&SelPen);
         pDC->Rectangle(&m_rcSelectedRect);
         pDC->SelectObject(pOldPen);
     }
 
-    if (m_bViewGrid) // 그리드 보기..
-    {
+    if (m_bViewGrid) {
         CRect rc;
         CPen  pen, penThick;
         pen.CreatePen(PS_SOLID, 1, RGB(128, 128, 128));
@@ -239,7 +237,6 @@ BOOL CUIEView::OnEraseBkgnd(CDC * pDC) {
 
     pEng->s_lpD3DDev->BeginScene();
 
-    //    그리기...
     switch (m_eMode) {
     case UIEMODE_PREVIEW:
         RenderPreview();
@@ -274,7 +271,7 @@ void CUIEView::OnLButtonDown(UINT nFlags, CPoint point) {
         }
     } else if (UIEMODE_EDIT == m_eMode) {
         CN3UIBase * pSelectedUI = pDoc->GetSelectedUI();
-        if (RT_NONE != m_eSelectedRectType && pSelectedUI) { // 지정된 사각형 변형일때
+        if (RT_NONE != m_eSelectedRectType && pSelectedUI) {
             if (-1000 != m_rcSelectedRect.left) {
                 m_eDragType = CheckDragType(m_rcSelectedRect, point);
             } else {
@@ -282,9 +279,9 @@ void CUIEView::OnLButtonDown(UINT nFlags, CPoint point) {
             }
         }
 
-        if (DRAGTYPE_NONE == m_eDragType) { // m_RootUI의 자식중에서 point에 위치한 ui 선택하기
+        if (DRAGTYPE_NONE == m_eDragType) {
             if (!(nFlags & MK_CONTROL)) {
-                pDoc->SetSelectedUI(NULL); // 컨트롤 키를 누르지 않으면 멀티 셀렉트 해제후..
+                pDoc->SetSelectedUI(NULL);
             }
 
             CN3UIBase * pRootUI = GetDocument()->GetRootUI();
@@ -298,7 +295,7 @@ void CUIEView::OnLButtonDown(UINT nFlags, CPoint point) {
             }
 
             if (NULL == pUISelected && pRootUI->IsIn(point.x, point.y)) {
-                pUISelected = pRootUI; // 암것도 못찍으면 루트UI를 찍어본다.
+                pUISelected = pRootUI;
             }
             if (pUISelected) {
                 pDoc->SetSelectedUI(pUISelected);
@@ -439,8 +436,7 @@ BOOL CUIEView::OnSetCursor(CWnd * pWnd, UINT nHitTest, UINT message) {
     if (UIEMODE_EDIT == m_eMode && RT_NONE != m_eSelectedRectType) {
         char *    pszRsrcID = NULL;
         eDRAGTYPE eDT = m_eDragType;
-        if (DRAGTYPE_NONE == m_eDragType) // 드레그 중이 아니면 cursor의 위치를 얻어서 테스트하기
-        {
+        if (DRAGTYPE_NONE == m_eDragType) {
             CPoint pt;
             if (GetCursorPos(&pt)) {
                 ScreenToClient(&pt);
@@ -484,14 +480,12 @@ BOOL CUIEView::OnSetCursor(CWnd * pWnd, UINT nHitTest, UINT message) {
     return CView::OnSetCursor(pWnd, nHitTest, message);
 }
 
-// mode 바꾸기
 void CUIEView::SetMode(eUIE_MODE eMode) {
     m_eMode = eMode;
     UpdateStatusBarText();
     Invalidate();
 }
 
-// 미리보기 render
 void CUIEView::RenderPreview() {
     CUIEDoc * pDoc = GetDocument();
     if (NULL == pDoc) {
@@ -527,7 +521,7 @@ void CUIEView::RenderPreview() {
         lpD3DDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
     }
     if (FALSE != dwFog) {
-        lpD3DDev->SetRenderState(D3DRS_FOGENABLE, FALSE); // 2d도 fog를 먹는다 ㅡ.ㅡ;
+        lpD3DDev->SetRenderState(D3DRS_FOGENABLE, FALSE);
     }
     if (D3DTEXF_POINT != dwMagFilter) {
         lpD3DDev->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_POINT);
@@ -608,7 +602,7 @@ void CUIEView::RenderEditview() {
         lpD3DDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
     }
     if (FALSE != dwFog) {
-        lpD3DDev->SetRenderState(D3DRS_FOGENABLE, FALSE); // 2d도 fog를 먹는다 ㅡ.ㅡ;
+        lpD3DDev->SetRenderState(D3DRS_FOGENABLE, FALSE);
     }
     if (D3DTEXF_POINT != dwMagFilter) {
         lpD3DDev->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_POINT);
@@ -630,7 +624,7 @@ void CUIEView::RenderEditview() {
     for (int i = 0; i < iUIC; i++) {
         CN3UIBase * pUI = pDoc->GetSelectedUI(i);
         if (pUI) {
-            pUI->Render(); // 선택된 UI한번 더 그리기(뒤에 가릴 수도 있으니까 한번 더 그린다. button같은 경우 특히)
+            pUI->Render();
         }
     }
 
@@ -666,14 +660,12 @@ void CUIEView::SelectRectType(eRECTTYPE eRectType) {
     m_rcSelectedRect.SetRect(-1000, -1000, -1000, -1000);
     CN3UIBase * pSelectedUI = GetDocument()->GetSelectedUI();
 
-    // 선택된 UI가 없으면 RT_NONE으로 만들고 리턴
     if (NULL == pSelectedUI) {
         m_eSelectedRectType = RT_NONE;
         Invalidate();
         return;
     }
 
-    // 선택된 UI에서 RectType에 맞는 사각형 가져오기
     switch (m_eSelectedRectType) {
     case RT_NONE:
     case RT_REGION:
@@ -814,7 +806,6 @@ BOOL CUIEView::MoveSelectedRect(int dx, int dy) {
     return FALSE;
 }
 
-// selected rect정보를 토대로 UI 정보를 갱신하기
 void CUIEView::UpdateUIInfo_SelectedRect() {
     CUIEDoc *   pDoc = this->GetDocument();
     CN3UIBase * pSelectedUI = pDoc->GetSelectedUI(pDoc->GetSelectedUICount() - 1);
@@ -834,9 +825,7 @@ void CUIEView::UpdateUIInfo_SelectedRect() {
                     ScreenToClient(&ptMouse);
                     CPoint ptOffset = ptMouse - m_ptOldLBPos;
                     pSelectedUI->MoveOffset(ptOffset.x, ptOffset.y);
-                } else if (i == 0 && m_eDragType >= DRAGTYPE_LEFT &&
-                           m_eDragType <= DRAGTYPE_RIGHTBOTTOM) // 마지막에 선택한 UI
-                {
+                } else if (i == 0 && m_eDragType >= DRAGTYPE_LEFT && m_eDragType <= DRAGTYPE_RIGHTBOTTOM) {
                     pSelectedUI->SetRegion(m_rcSelectedRect);
                     pSelectedUI->SetSize(m_rcSelectedRect.Width(), m_rcSelectedRect.Height());
                 } else {
@@ -844,9 +833,8 @@ void CUIEView::UpdateUIInfo_SelectedRect() {
                     pSelectedUI->SetSize(m_rcSelectedRect.Width(), m_rcSelectedRect.Height());
                 }
 
-                if (pSelectedUI->GetParent()) // 부모 UI 가 있으면..
-                {
-                    pSelectedUI->GetParent()->ResizeAutomaticalyByChild(); // 자동으로 영역 다시 계산..
+                if (pSelectedUI->GetParent()) {
+                    pSelectedUI->GetParent()->ResizeAutomaticalyByChild();
                 }
             }
 
@@ -939,7 +927,7 @@ BOOL CUIEView::PreTranslateMessage(MSG * pMsg) {
 }
 
 void CUIEView::OnViewGrid() {
-    m_bViewGrid = !m_bViewGrid; // 그리드 보기..
+    m_bViewGrid = !m_bViewGrid;
     this->InvalidateRect(NULL, FALSE);
 }
 

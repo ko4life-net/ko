@@ -25,18 +25,17 @@ class CTexViewer : public CWnd {
     CSize     GetTexSize() const { return m_TexSize; }
 
   protected:
-    CN3Texture * m_pTex;             // texture
-    CSize        m_TexSize;          // texture size
-    float        m_fScale;           // 화면 배율
-    CPoint       m_ptLeftTopInImage; // 이 윈도우 좌측 상단에 보이는 texture의 좌측 상단 좌표
-    eEDITMODE    m_eEditMode;        // 현재 어떤 편집 상황인지.(예, 영역선택, zoom in/out...)
-    CRect        m_rcSelectedRect;   // 선택된 사각형(image좌표 기준)
-    BOOL         m_bDrag;            // 드래그 중인가?
-    CPen         m_WhiteDashPen;     // 흰색 점선
-    CPoint       m_ptMouseOld;       // 마우스의 이전 지점 기억
-    BOOL         m_bDeselect;        // deselect 할 것인가?
-    CPoint       m_ptClickOffset;    // 선택 영역을 움직이려고 할때 click했을경우의
-                                     // 선택창의 클릭지점 상대좌표(선택 영역lefttop 0,0 기준)(image pixel좌표계)
+    CN3Texture * m_pTex;
+    CSize        m_TexSize;
+    float        m_fScale;
+    CPoint       m_ptLeftTopInImage;
+    eEDITMODE    m_eEditMode;
+    CRect        m_rcSelectedRect;
+    BOOL         m_bDrag;
+    CPen         m_WhiteDashPen;
+    CPoint       m_ptMouseOld;
+    BOOL         m_bDeselect;
+    CPoint       m_ptClickOffset;
 
     enum eDRAGTYPE {
         DRAGTYPE_NONE = 0,
@@ -51,9 +50,8 @@ class CTexViewer : public CWnd {
         DRAGTYPE_RIGHTBOTTOM,
         DRAGTYPE_SELECT
     };
-    eDRAGTYPE m_eDragType; // Drag 상태
+    eDRAGTYPE m_eDragType; // Drag
 
-    // 커서
     HCURSOR m_hCursorSelect;
     HCURSOR m_hCursorZoomIn;
     HCURSOR m_hCursorZoomOut;
@@ -65,36 +63,36 @@ class CTexViewer : public CWnd {
     HCURSOR m_hCursorSizeNWSE;
     HCURSOR m_hCursorSizeNESW;
 
-    // image type관련
-    int   m_iImageTypeCount;           // 선택되어야 할 이미지 종류의 수
-    CRect m_ImageRects[MAX_IMAGETYPE]; // m_iImageTypeCount만큼의 ImageRect
-    int   m_iCurSelectedImage;         // 현재 선택된 ImageType
+    // image type占쏙옙占쏙옙
+    int   m_iImageTypeCount;
+    CRect m_ImageRects[MAX_IMAGETYPE];
+    int   m_iCurSelectedImage;
 
     // Operations
   public:
     void      Release();
-    BOOL      Zoom(BOOL bZoomIn);                  // in : 확대, out : 축소
-    BOOL      Zoom(float fScale);                  // f배로 Zoom 하기
-    void      Render();                            // texture render하기
-    void      SetTexture(LPCTSTR pszFName);        // texture 지정
-    eEDITMODE SetEditMode(eEDITMODE eMode);        // mode 바꾸기 (zoom, hand, select) 실패하면 이전 mode를 돌려준다.
-    void      SetLeftTopInImage(CPoint ptLeftTop); // 이미지의 좌측 상단 좌표 바꾸기
-    BOOL      GetSelectedUVRect(struct __FLOAT_RECT * pFRect) const; // 현재 선택된 UV좌표 얻기
-    void      SetSelectedUVRect(const struct __FLOAT_RECT * pFRect); // 현재 선택된 UV좌표 넣기
+    BOOL      Zoom(BOOL bZoomIn);
+    BOOL      Zoom(float fScale);
+    void      Render();
+    void      SetTexture(LPCTSTR pszFName);
+    eEDITMODE SetEditMode(eEDITMODE eMode);
+    void      SetLeftTopInImage(CPoint ptLeftTop);
+    BOOL      GetSelectedUVRect(struct __FLOAT_RECT * pFRect) const;
+    void      SetSelectedUVRect(const struct __FLOAT_RECT * pFRect);
 
-    // image type관련
-    void  SetImageTypeCount(int iCount) { m_iImageTypeCount = iCount; } // image type 갯수 정하기
-    BOOL  SetImageTypeIndex(int iIndex);                                // zero base 선택된 image type정하기
+    void  SetImageTypeCount(int iCount) { m_iImageTypeCount = iCount; }
+    BOOL  SetImageTypeIndex(int iIndex);
     CRect GetImageRect(int iIndex);
     BOOL  AutoMultiRectSelect(BOOL bHorizon, CString & strErrMsg);
 
   protected:
-    BOOL      ScreenToImage(POINT * pPoint); // screen좌표를 image좌표로
-    BOOL      ScreenToImage(RECT * pRect);   // screen좌표를 image좌표로
-    BOOL      ImageToScreen(POINT * pPoint); // image좌표를 screen좌표로
-    BOOL      ImageToScreen(RECT * pRect);   // image좌표를 screen좌표로
+    BOOL      ScreenToImage(POINT * pPoint);
+    BOOL      ScreenToImage(RECT * pRect);
+    BOOL      ImageToScreen(POINT * pPoint);
+    BOOL      ImageToScreen(RECT * pRect);
     eDRAGTYPE CheckDragType(CRect rcSel, CPoint point);
-    void      ProcessDrag(CPoint point); // 영역 변형일 경우 처리하는 루틴
+    void      ProcessDrag(CPoint point);
+
   public:
     // Overrides
     // ClassWizard generated virtual function overrides

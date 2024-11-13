@@ -115,12 +115,12 @@ void CDlgTexture::OnSelchangeComboImagetype() {
 
 void CDlgTexture::OnOK() {
     ASSERT(m_pTexViewer);
-    if (m_iImageTypeCount > 0) { // 모두 영역 선택이 되었나 체크
+    if (m_iImageTypeCount > 0) {
         for (int i = 0; i < m_iImageTypeCount; ++i) {
             if (-1 == m_pTexViewer->GetImageRect(i).left) {
                 CString str, strLBText;
                 m_ImageType.GetLBText(i, strLBText);
-                str.Format("%s의 영역이 선택되지 않았습니다.", strLBText);
+                str.Format("%s I'm going to try to fix it.", strLBText);
                 MessageBox(str);
                 return;
             }
@@ -130,7 +130,7 @@ void CDlgTexture::OnOK() {
         if (-1 != m_pTexViewer->GetSelectedRect().left) {
             CDialog::OnOK();
         } else {
-            MessageBox("영역이 선택 되지 않았습니다.");
+            MessageBox("I'm going to do it. I'm going to do it. I'm going to do it..");
         }
     }
 }
@@ -146,7 +146,7 @@ void CDlgTexture::OnRadioSelect() {
         return;
     }
     CTexViewer::eEDITMODE eEditMode = m_pTexViewer->SetEditMode(CTexViewer::EDITMODE_SELECT);
-    if (CTexViewer::EDITMODE_SELECT != eEditMode) { // 모드 바꾸기 실패
+    if (CTexViewer::EDITMODE_SELECT != eEditMode) {
         UpdateData(TRUE);
         m_RadioEditMode = eEditMode;
         UpdateData(FALSE);
@@ -158,7 +158,7 @@ void CDlgTexture::OnRadioZoom() {
         return;
     }
     CTexViewer::eEDITMODE eEditMode = m_pTexViewer->SetEditMode(CTexViewer::EDITMODE_ZOOM);
-    if (CTexViewer::EDITMODE_ZOOM != eEditMode) { // 모드 바꾸기 실패
+    if (CTexViewer::EDITMODE_ZOOM != eEditMode) {
         UpdateData(TRUE);
         m_RadioEditMode = eEditMode;
         UpdateData(FALSE);
@@ -179,7 +179,7 @@ void CDlgTexture::OnRadioHand() {
         return;
     }
     CTexViewer::eEDITMODE eEditMode = m_pTexViewer->SetEditMode(CTexViewer::EDITMODE_HAND);
-    if (CTexViewer::EDITMODE_HAND != eEditMode) { // 모드 바꾸기 실패
+    if (CTexViewer::EDITMODE_HAND != eEditMode) {
         UpdateData(TRUE);
         m_RadioEditMode = eEditMode;
         UpdateData(FALSE);
@@ -225,7 +225,6 @@ LRESULT CDlgTexture::OnUpdateInfo(WPARAM wParam, LPARAM lParam) {
     return 0;
 }
 
-// control들 다시 배치
 void CDlgTexture::Resize() {
     CWnd * pOKBtn = GetDlgItem(IDOK);
     CWnd * pCancelBtn = GetDlgItem(IDCANCEL);
@@ -238,7 +237,7 @@ void CDlgTexture::Resize() {
         pWnd = GetDlgItem(IDC_STATIC_INFO);
         pWnd->GetWindowRect(&rc);
 
-        // texture window 배치
+        // texture window
         int iTexViewerWidth = rcClient.Width() - rc.Width() - iOffset;
         int iTexViewerHeight = rcClient.Height();
         if (iTexViewerWidth < 0) {
@@ -253,7 +252,6 @@ void CDlgTexture::Resize() {
         }
         m_pTexViewer->MoveWindow(0, 0, iTexViewerWidth, iTexViewerHeight);
 
-        // 버튼들 배치
         pWnd = GetDlgItem(IDC_STATIC_INFO);
         pWnd->GetWindowRect(&rc);
         CPoint ptCtrl(rcClient.Width() - rc.Width(), 0);
@@ -307,7 +305,7 @@ BOOL CDlgTexture::GetSelectedUVRect(struct __FLOAT_RECT * pFRect) const {
     return m_pTexViewer->GetSelectedUVRect(pFRect);
 }
 
-void CDlgTexture::SetSelectedUVRect(const __FLOAT_RECT * pFRect) // 현재 선택된 UV좌표 넣기
+void CDlgTexture::SetSelectedUVRect(const __FLOAT_RECT * pFRect) // UV symbol for double-crossing
 {
     if (NULL == m_pTexViewer) {
         return;

@@ -173,7 +173,7 @@ BOOL SelectTexture(char * pszBuff) {
     lstrcpy(pszBuff, dlg.GetPathName());
 
     //    CN3BaseFileAccess tmpBase;
-    //    tmpBase.FileNameSet(pszBuff);    // Base��ο� ���ؼ� ����� ��θ� �Ѱ��ش�.
+    //    tmpBase.FileNameSet(pszBuff);
     //    const std::string strFN(tmpBase.FileName());
     //    strcpy(pszBuff, strFN.c_str());
     return TRUE;

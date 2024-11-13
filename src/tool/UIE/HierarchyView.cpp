@@ -105,7 +105,7 @@ void CHierarchyView::OnSelchanged(NMHDR * pNMHDR, LRESULT * pResult) {
 
     CN3UIBase * pUI = (CN3UIBase *)GetTreeCtrl().GetItemData(hItem);
     if (0 == ::_IsKeyDown(VK_CONTROL)) {
-        GetDocument()->SetSelectedUI(NULL); // 컨트롤 키를 안눌렀으면.. 단독 셀렉트..
+        GetDocument()->SetSelectedUI(NULL);
     }
     GetDocument()->SetSelectedUI(pUI);
 
@@ -121,7 +121,6 @@ void CHierarchyView::OnRclick(NMHDR * pNMHDR, LRESULT * pResult) {
 /////////////////////////////////////////////////////////////////////////////
 // CHierarchyView Operations
 
-// 모든 tree item 정보 갱신하기
 void CHierarchyView::UpdateAllInfo() {
     GetTreeCtrl().DeleteAllItems();
 
@@ -130,7 +129,6 @@ void CHierarchyView::UpdateAllInfo() {
     this->SelectObject(TVI_ROOT, GetDocument()->GetSelectedUI());
 }
 
-// tree item 정보 갱신하기
 void CHierarchyView::UpdateTreeItem(HTREEITEM hParent, CN3UIBase * pUIBase) {
     if (pUIBase == NULL) {
         return;
@@ -145,7 +143,7 @@ void CHierarchyView::UpdateTreeItem(HTREEITEM hParent, CN3UIBase * pUIBase) {
         break;
     case UI_TYPE_BUTTON: {
         str = _T("Button");
-        if (pParentUI && UI_TYPE_SCROLLBAR == pParentUI->UIType()) { // 부모가 스크롤의 버튼일 경우
+        if (pParentUI && UI_TYPE_SCROLLBAR == pParentUI->UIType()) {
             if (CN3UIScrollBar::BTN_LEFTUP == pUIBase->GetReserved()) {
                 str = _T("Left/Up Button");
             } else if (CN3UIScrollBar::BTN_RIGHTDOWN == pUIBase->GetReserved()) {
@@ -165,7 +163,7 @@ void CHierarchyView::UpdateTreeItem(HTREEITEM hParent, CN3UIBase * pUIBase) {
             break;
         }
         if (UI_TYPE_IMAGE == pParentUI->UIType()) {
-            ASSERT(UISTYLE_IMAGE_ANIMATE & pParentUI->m_dwStyle); // 부모는 반드시 Animate image여야 한다.
+            ASSERT(UISTYLE_IMAGE_ANIMATE & pParentUI->m_dwStyle);
             str.Format("Image (%d)", pUIBase->GetReserved());
         } else if (UI_TYPE_BUTTON == pParentUI->UIType()) {
             if (CN3UIButton::BS_NORMAL == pUIBase->GetReserved()) {
@@ -227,10 +225,10 @@ void CHierarchyView::UpdateTreeItem(HTREEITEM hParent, CN3UIBase * pUIBase) {
     }
 
     str += " - ";
-    str += pUIBase->m_szID.c_str(); // 이름을 붙여준다... !!
+    str += pUIBase->m_szID.c_str();
 
     HTREEITEM hItem = GetTreeCtrl().InsertItem(str, hParent); // insert
-    GetTreeCtrl().SetItemData(hItem, (DWORD)pUIBase);         // pointer 저장
+    GetTreeCtrl().SetItemData(hItem, (DWORD)pUIBase);         // pointer
     GetTreeCtrl().Expand(hItem, TVE_EXPAND);                  // expand
 
     // update child
@@ -240,7 +238,6 @@ void CHierarchyView::UpdateTreeItem(HTREEITEM hParent, CN3UIBase * pUIBase) {
     }
 }
 
-// UIBase 포인터로 tree item 선택하기
 void CHierarchyView::SelectObject(HTREEITEM hItem, CN3UIBase * pUIBase) {
     if (NULL == pUIBase || NULL == hItem) {
         return;

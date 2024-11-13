@@ -18,9 +18,9 @@ class CHierarchyView : public CTreeView {
     // Operations
   public:
   protected:
-    void UpdateAllInfo();                                        // 모든 tree item 정보 갱신하기
-    void UpdateTreeItem(HTREEITEM hParent, CN3UIBase * pUIBase); // tree item 정보 갱신하기
-    void SelectObject(HTREEITEM hItem, CN3UIBase * pUIBase);     // UPBase 포인터로 tree item 선택하기
+    void UpdateAllInfo();
+    void UpdateTreeItem(HTREEITEM hParent, CN3UIBase * pUIBase);
+    void SelectObject(HTREEITEM hItem, CN3UIBase * pUIBase);
 
   public:
     // Overrides

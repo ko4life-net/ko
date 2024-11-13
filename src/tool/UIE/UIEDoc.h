@@ -15,7 +15,7 @@ class CUIEDoc : public CDocument {
     DECLARE_DYNCREATE(CUIEDoc)
 
   protected:
-    CN3UIBase              m_RootUI; // 이 것에 child(tool에서 만드는 모든 control)들을 붙이면 된다.
+    CN3UIBase              m_RootUI;
     std::list<CN3UIBase *> m_SelectedUIs;
 
   public:
@@ -34,8 +34,8 @@ class CUIEDoc : public CDocument {
     void SetSelectedUI(CN3UIBase * pUI);
 
   protected:
-    void Release();                             // Document 변수 초기화
-    BOOL SetImageInfos(CN3UIImage * pUI);       // image정보 넣는 루틴
+    void Release();
+    BOOL SetImageInfos(CN3UIImage * pUI);
     BOOL SetStringInfos(CN3UIString * pUI);     // string
     BOOL SetTrackBarInfos(CN3UITrackBar * pUI); // track bar
     BOOL SetButtonInfos(CN3UIButton * pUI);     // button
