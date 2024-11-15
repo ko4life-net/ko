@@ -942,7 +942,7 @@ int CUIImageTooltipDlg::CalcTooltipStringNumAndWrite(__IconItemSkill * spItem, b
         }
         ERROR_EXCEPTION
 
-       if (!spItem->pItemBasic->szRemark.empty()) { // szRemark is not empty, proceed with setting it
+        if (!spItem->pItemBasic->szRemark.empty()) { // szRemark is not empty, proceed with setting it
             m_pStr[iIndex]->SetStyle(UI_STR_TYPE_HALIGN, UISTYLE_STRING_ALIGNCENTER);
             sprintf(szBuff, spItem->pItemBasic->szRemark.c_str());
             m_pstdstr[iIndex] = szBuff;
