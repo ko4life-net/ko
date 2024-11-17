@@ -140,6 +140,9 @@
     <ClCompile Include="$(SrcDir)\common\Implode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MakeItemGroupSet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircularBuffer.h">
@@ -284,6 +287,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="$(SrcDir)\common\N3Utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeItemGroupSet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

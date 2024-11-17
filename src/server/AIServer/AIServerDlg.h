@@ -37,6 +37,7 @@ typedef CSTLMap<_PARTY_GROUP>          PartyArray;
 typedef CSTLMap<_MAKE_WEAPON>          MakeWeaponItemTableArray;
 typedef CSTLMap<_MAKE_ITEM_GRADE_CODE> MakeGradeItemTableArray;
 typedef CSTLMap<_MAKE_ITEM_LARE_CODE>  MakeLareItemTableArray;
+typedef CSTLMap<_MAKE_ITEM_LARE_CODE>  MakeLareItemTableArray;
 typedef std::list<int>                 ZoneNpcInfoList;
 typedef std::vector<MAP *>             ZoneArray;
 
@@ -60,6 +61,7 @@ class CServerDlg : public CDialog {
     BOOL GetMonsterTableData();
     BOOL GetNpcTableData();
     BOOL GetNpcItemTable();
+    BOOL GetMakeItemGroupTable();
     BOOL GetMakeWeaponItemTableData();
     BOOL GetMakeDefensiveItemTableData();
     BOOL GetMakeGradeItemTableData();
@@ -119,23 +121,24 @@ class CServerDlg : public CDialog {
 
   public:
     //    ZoneArray            m_arZone;
-    NpcArray                 m_arNpc;
-    NpcTableArray            m_arMonTable;
-    NpcTableArray            m_arNpcTable;
-    NpcThreadArray           m_arNpcThread;
-    NpcThreadArray           m_arEventNpcThread; // Event Npc Logic
-    PartyArray               m_arParty;
-    ZoneNpcInfoList          m_ZoneNpcList;
-    MagictableArray          m_MagictableArray;
-    Magictype1Array          m_Magictype1Array;
-    Magictype2Array          m_Magictype2Array;
-    Magictype3Array          m_Magictype3Array;
-    Magictype4Array          m_Magictype4Array;
-    MakeWeaponItemTableArray m_MakeWeaponItemArray;
-    MakeWeaponItemTableArray m_MakeDefensiveItemArray;
-    MakeGradeItemTableArray  m_MakeGradeItemArray;
-    MakeLareItemTableArray   m_MakeLareItemArray;
-    ZoneArray                g_arZone;
+    NpcArray                         m_arNpc;
+    NpcTableArray                    m_arMonTable;
+    NpcTableArray                    m_arNpcTable;
+    NpcThreadArray                   m_arNpcThread;
+    NpcThreadArray                   m_arEventNpcThread; // Event Npc Logic
+    PartyArray                       m_arParty;
+    ZoneNpcInfoList                  m_ZoneNpcList;
+    MagictableArray                  m_MagictableArray;
+    Magictype1Array                  m_Magictype1Array;
+    Magictype2Array                  m_Magictype2Array;
+    Magictype3Array                  m_Magictype3Array;
+    Magictype4Array                  m_Magictype4Array;
+    MakeWeaponItemTableArray         m_MakeWeaponItemArray;
+    MakeWeaponItemTableArray         m_MakeDefensiveItemArray;
+    MakeGradeItemTableArray          m_MakeGradeItemArray;
+    MakeLareItemTableArray           m_MakeLareItemArray;
+    ZoneArray                        g_arZone;
+    std::map<int, MakeItemGroupData> m_MakeItemGroup;
 
     CWinThread * m_pZoneEventThread; // zone
 

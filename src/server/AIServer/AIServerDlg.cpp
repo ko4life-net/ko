@@ -13,6 +13,7 @@
 #include "NpcTableSet.h"
 #include "MonTableSet.h"
 #include "RNpcPosSet.h"
+#include "MakeItemGroupSet.h"
 #include "MakeWeaponTableSet.h"
 #include "MakeDefensiveTableSet.h"
 #include "MakeGradeItemTableSet.h"
@@ -273,6 +274,11 @@ BOOL CServerDlg::OnInitDialog() {
     //    Load NPC Item Table
     //----------------------------------------------------------------------
     if (!GetNpcItemTable()) {
+        EndDialog(IDCANCEL);
+        return FALSE;
+    }
+
+    if (!GetMakeItemGroupTable()) {
         EndDialog(IDCANCEL);
         return FALSE;
     }
@@ -687,6 +693,66 @@ BOOL CServerDlg::GetNpcItemTable() {
         e->ReportError();
         e->Delete();
 
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
+BOOL CServerDlg::GetMakeItemGroupTable() {
+    CMakeItemGroupSet ItemGroupSet;
+
+    try {
+        if (ItemGroupSet.IsOpen()) {
+            ItemGroupSet.Close();
+        }
+
+        ItemGroupSet.m_strSort = _T("iItemGroupNum");
+
+        if (!ItemGroupSet.Open()) {
+            AfxMessageBox(_T("MAKE ITEM GROUP DB Open Fail!"));
+            return FALSE;
+        }
+
+        if (ItemGroupSet.IsBOF()) {
+            AfxMessageBox(_T("MAKE ITEM GROUP DB Empty!"));
+            return FALSE;
+        }
+
+        ItemGroupSet.MoveFirst();
+
+        while (!ItemGroupSet.IsEOF()) {
+            int               groupIndex = ItemGroupSet.m_iItemGroupNum;
+            MakeItemGroupData itemGroup;
+
+            int cumulativeChance = 0;
+
+            for (int j = 0; j < 30; j++) {
+                int itemId = ItemGroupSet.m_iItem[j];
+                int itemChance = ItemGroupSet.m_sPersent[j];
+
+                if (itemChance > 0) {
+                    std::vector<int> itemData;
+                    itemData.push_back(itemId);               // Item ID
+                    itemData.push_back(cumulativeChance + 1); // Range Start
+                    cumulativeChance += itemChance;
+                    itemData.push_back(cumulativeChance); // Range End
+
+                    itemGroup.m_Items.push_back(itemData);
+                }
+            }
+
+            m_MakeItemGroup[groupIndex] = itemGroup;
+
+            ItemGroupSet.MoveNext();
+        }
+    } catch (CMemoryException * e) {
+        e->ReportError();
+        e->Delete();
+        return FALSE;
+    } catch (CDBException * e) {
+        e->ReportError();
+        e->Delete();
         return FALSE;
     }
 
