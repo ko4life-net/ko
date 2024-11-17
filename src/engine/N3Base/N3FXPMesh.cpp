@@ -59,7 +59,7 @@ void CN3FXPMesh::operator=(const CN3FXPMesh & fxPMesh) {
 
     Release();
 
-    FileNameSet(fxPMesh.FileName());
+    FilePathSet(fxPMesh.FilePath());
 
     m_iMaxNumVertices = fxPMesh.m_iMaxNumVertices;
     m_iMaxNumIndices = fxPMesh.m_iMaxNumIndices;

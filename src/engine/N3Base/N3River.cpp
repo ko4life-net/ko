@@ -64,7 +64,7 @@ bool CN3River::Load(HANDLE hFile) {
             }
 
             fs::path fsTexFile = fs::path("Misc") / "river" / szFile;
-            pInfo->m_pTexWave = s_MngTex.Get(fsTexFile.string());
+            pInfo->m_pTexWave = s_MngTex.Get(fsTexFile);
             __ASSERT(pInfo->m_pTexWave, "CN3River::texture load failed");
         }
 
@@ -129,7 +129,7 @@ bool CN3River::Load(HANDLE hFile) {
 
     for (int i = 0; i < MAX_RIVER_TEX; i++) {
         fs::path fsTexFile = fs::path("Misc") / "river" / std::format("caust{:02d}.dxt", i);
-        m_pTexRiver[i] = s_MngTex.Get(fsTexFile.string());
+        m_pTexRiver[i] = s_MngTex.Get(fsTexFile);
         __ASSERT(m_pTexRiver[i], "CN3River::texture load failed");
     }
 

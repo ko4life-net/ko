@@ -36,7 +36,6 @@ MAP::MAP() {
 
     m_ppRegion = NULL;
     m_nZoneNumber = 0;
-    memset(m_MapName, NULL, 256);
 }
 
 MAP::~MAP() {
@@ -344,19 +343,18 @@ void MAP::LoadMapTile(HANDLE hFile) {
     }
     TRACE("move = %d\n", count);
 
-    /*    FILE* stream = fopen("c:\\move1.txt", "w");
-
-    for(int z=m_sizeMap.cy-1; z>=0; z--)
-    {
-        for(int x=0; x<m_sizeMap.cx; x++)
-        {
+    /*
+    fs::path fsTxtFile = (fs::temp_directory_path() / "move1.txt");
+    FILE *   stream = _wfopen(fsTxtFile.c_str(), L"w");
+    for (int z = m_sizeMap.cy - 1; z >= 0; z--) {
+        for (int x = 0; x < m_sizeMap.cx; x++) {
             int v = m_pMap[x][z].m_sEvent;
-            fprintf(stream, "%d",v);
+            fprintf(stream, "%d", v);
         }
         fprintf(stream, "\n");
     }
-    fclose(stream);    
-*/
+    fclose(stream);
+    */
 
     if (pEvent) {
         for (int i = 0; i < m_sizeMap.cx; i++) {

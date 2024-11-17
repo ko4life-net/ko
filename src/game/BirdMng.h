@@ -30,7 +30,7 @@ class CBirdMng : public CN3Base {
     virtual void Release();
     void         Tick();
     void         Render();
-    void         LoadFromFile(const std::string & szFN);
+    void         LoadFromFile(const fs::path & fsFile);
 
   protected:
 };

@@ -21,7 +21,7 @@ class CDlgEditScript : public CDialog {
     // Construction
   public:
     bool NewBundle();
-    bool LoadBundle(CString & strPathName);
+    bool LoadBundle(const fs::path & fsFile);
     void SaveGameDataPartnBundle();
     CDlgEditScript(CWnd * pParent = NULL); // standard constructor
     void RefreshParts();

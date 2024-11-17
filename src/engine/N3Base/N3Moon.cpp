@@ -28,9 +28,9 @@ void CN3Moon::Release() {
     m_iMoonPhaseIndex = 0;
 }
 
-void CN3Moon::Init(const std::string & szTexFN) {
+void CN3Moon::Init(const fs::path & fsTexFile) {
     Release();
-    m_pTexture = s_MngTex.Get(szTexFN);
+    m_pTexture = s_MngTex.Get(fsTexFile);
     __ASSERT(m_pTexture, "Texture load failed.");
 
     m_fMoonRatio = 0.2f;

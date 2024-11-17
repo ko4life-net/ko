@@ -166,7 +166,7 @@ BOOL CN3IndoorApp::OnIdle(LONG lCount) {
 }
 
 void CN3IndoorApp::Write(const char * lpszFormat, ...) {
-    std::string s_szFileName = "log.txt";
+    fs::path fsLogFile = "log.txt";
 
     static char       szFinal[1024];
     static SYSTEMTIME time;
@@ -187,9 +187,9 @@ void CN3IndoorApp::Write(const char * lpszFormat, ...) {
     lstrcat(szFinal, "\r\n");
     int iLength = lstrlen(szFinal);
 
-    HANDLE hFile = CreateFile(s_szFileName.c_str(), GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFile = CreateFileW(fsLogFile.c_str(), GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hFile) {
-        hFile = CreateFile(s_szFileName.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+        hFile = CreateFileW(fsLogFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
         if (INVALID_HANDLE_VALUE == hFile) {
             hFile = NULL;
         }
@@ -209,60 +209,13 @@ int CN3IndoorApp::Run() {
     return CWinApp::Run();
 }
 
-std::string CN3IndoorApp::GetMRU1() {
+fs::path CN3IndoorApp::GetMRU(size_t iIndex) {
     m_pRecentFileList->ReadList();
-    std::string str;
-    CString     cstr;
-    if (m_pRecentFileList->GetSize() < 1) {
-        return str;
+    if (m_pRecentFileList->GetSize() < (iIndex + 1)) {
+        return fs::path();
     }
 
-    cstr = (*(m_pRecentFileList))[0];
-    str = cstr;
-
-    return str;
-}
-
-std::string CN3IndoorApp::GetMRU2() {
-    m_pRecentFileList->ReadList();
-    std::string str = "";
-    CString     cstr;
-    if (m_pRecentFileList->GetSize() < 2) {
-        return str;
-    }
-
-    cstr = (*(m_pRecentFileList))[1];
-    str = cstr;
-
-    return str;
-}
-
-std::string CN3IndoorApp::GetMRU3() {
-    m_pRecentFileList->ReadList();
-    std::string str = "";
-    CString     cstr;
-    if (m_pRecentFileList->GetSize() < 3) {
-        return str;
-    }
-
-    cstr = (*(m_pRecentFileList))[2];
-    str = cstr;
-
-    return str;
-}
-
-std::string CN3IndoorApp::GetMRU4() {
-    m_pRecentFileList->ReadList();
-    std::string str = "";
-    CString     cstr;
-    if (m_pRecentFileList->GetSize() < 4) {
-        return str;
-    }
-
-    cstr = (*(m_pRecentFileList))[3];
-    str = cstr;
-
-    return str;
+    return static_cast<LPCTSTR>((*m_pRecentFileList)[iIndex]);
 }
 
 void CN3IndoorApp::UpdateMRU() {

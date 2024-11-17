@@ -91,11 +91,11 @@ void CDlgLight::OnBtnExport() {
 
         if (dlg.DoModal() == IDOK) {
             m_strPathName = dlg.GetPathName();
-            m_pRefLightObjMgr->SaveToFile((LPCTSTR)m_strPathName);
+            m_pRefLightObjMgr->SaveToFile(m_strPathName.GetString());
             UpdateData(FALSE);
         }
     } else {
-        m_pRefLightObjMgr->SaveToFile((LPCTSTR)m_strPathName);
+        m_pRefLightObjMgr->SaveToFile(m_strPathName.GetString());
     }
 }
 
@@ -106,8 +106,7 @@ void CDlgLight::OnBtnImport() {
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
-
-    m_pRefLightObjMgr->LoadFromFile((LPCTSTR)dlg.GetPathName());
+    m_pRefLightObjMgr->LoadFromFile(dlg.GetPathName().GetString());
 
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     if (pFrm) {

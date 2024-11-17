@@ -344,19 +344,16 @@ char * CDTexGroupMng::GetGroupName(int id) {
 //
 //
 //
-bool CDTexGroupMng::LoadFromFile(CString RealFileName) {
+bool CDTexGroupMng::LoadFromFile(const fs::path & fsFileName) {
     Init(m_pMainFrm);
-    SetCurrentDirectory(CN3Base::PathGet().c_str());
 
-    char szDTexInfoFileName[_MAX_PATH];
-    sprintf(szDTexInfoFileName, "dtex\\%s.tgx", (LPCTSTR)RealFileName);
-
-    FILE * stream = fopen(szDTexInfoFileName, "r");
+    fs::path fsTgxFile = ("DTex" / fsFileName).replace_extension(".tgx");
+    FILE *   stream = _wfopen(fsTgxFile.c_str(), L"r");
     if (stream) {
         int iCount;
         int result = fscanf(stream, "NumGroup = %d\n", &iCount);
         if (EOF == result) {
-            MessageBox(::GetActiveWindow(), szDTexInfoFileName, "Invalid DTex Info File...", MB_OK);
+            MessageBoxW(::GetActiveWindow(), fsTgxFile.c_str(), L"Invalid DTex Info File...", MB_OK);
             return false;
         }
 
@@ -370,7 +367,7 @@ bool CDTexGroupMng::LoadFromFile(CString RealFileName) {
             //result = fscanf(stream, "%s", szDTexGroupName);
             //result = fscanf(stream, "%d\n", &id);
             if (EOF == result) {
-                MessageBox(::GetActiveWindow(), szDTexInfoFileName, "Invalid DTex Info File...", MB_OK);
+                MessageBoxW(::GetActiveWindow(), fsTgxFile.c_str(), L"Invalid DTex Info File...", MB_OK);
                 return false;
             }
 
@@ -388,16 +385,13 @@ bool CDTexGroupMng::LoadFromFile(CString RealFileName) {
 //
 //
 //
-bool CDTexGroupMng::SaveToFile(CString RealFileName) {
-    SetCurrentDirectory(CN3Base::PathGet().c_str());
+bool CDTexGroupMng::SaveToFile(const fs::path & fsFileName) {
+    fs::path fsDtexDir("DTex");
+    fs::create_directory(fsDtexDir);
 
-    CreateDirectory("dtex", NULL);
+    fs::path fsTgxFile = (fsDtexDir / fsFileName).replace_extension(".tgx");
 
-    char szDTexInfoFileName[_MAX_PATH];
-    sprintf(szDTexInfoFileName, "dtex\\%s.tgx", (LPCTSTR)RealFileName);
-
-    FILE * stream = fopen(szDTexInfoFileName, "w");
-
+    FILE * stream = _wfopen(fsTgxFile.c_str(), L"w");
     if (stream) {
         int iCount = m_Groups.size() - 1;
         fprintf(stream, "NumGroup = %d\n", iCount);

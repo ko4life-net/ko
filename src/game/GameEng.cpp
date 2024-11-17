@@ -18,13 +18,6 @@ const float LIGHTNING_DURATION = 2.0f;
 CGameEng::CGameEng() {
     m_pActiveCam = NULL;
 
-    // 프로그램이 실행된 경로..
-    char szBuf[_MAX_PATH];
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR];
-    ::GetModuleFileName(NULL, szBuf, _MAX_PATH);
-    _splitpath(szBuf, szDrive, szDir, NULL, NULL);
-    _makepath(szBuf, szDrive, szDir, NULL, NULL);
-
     ///////////////////////////////////////////////////////////////
     // 기본 카메라 세팅..
     CN3Camera * pCamera = new CN3Camera();

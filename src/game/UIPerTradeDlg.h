@@ -65,7 +65,7 @@ class CUIPerTradeDlg : public CN3UIWndBase {
 
     void SendToServerItemAddMsg(uint8_t pos, int itemID, int iCount);
 
-    CN3UIBase * GetChildButtonByName(const std::string & szFN);
+    CN3UIBase * GetChildButtonByName(const std::string & szName);
 
     // Item Count OK..
     void ItemCountOK();

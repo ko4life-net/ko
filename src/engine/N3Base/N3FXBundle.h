@@ -77,7 +77,7 @@ class CN3FXBundle : public CN3BaseFileAccess {
 
 #ifdef _N3TOOL //툴에서만 쓰는 함수들...
   public:
-    CN3FXPartBase * SetPart(const char * pFileName);
-    bool            DecodeScriptFile(const char * lpPathName);
+    CN3FXPartBase * SetPart(const fs::path & fsFile);
+    bool            DecodeScriptFile(const fs::path & fsFile);
 #endif // end of _N3TOOL
 };

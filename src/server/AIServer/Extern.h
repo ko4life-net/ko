@@ -129,3 +129,9 @@ struct _USERLOG {
     BYTE  byLevel;
     char  strUserID[MAX_ID_SIZE + 1]; // 아이디(캐릭터 이름)
 };
+
+struct MakeItemGroupData {
+    std::vector<std::vector<int>> m_Items;
+};
+
+const int MAX_ITEM_GROUP_ID = 99999999;

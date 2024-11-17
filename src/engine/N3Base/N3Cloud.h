@@ -32,7 +32,7 @@ class CN3Cloud : public CN3Base {
   protected:
     __VertexXyzColorT2 m_pVertices[NUM_CLOUD_VERTEX]; // 구름층의 버텍스
     CN3Texture *       m_pTextures[NUM_CLOUD];        // 텍스쳐들..
-    std::string        m_szTextures[NUM_CLOUD];       // 텍스처 파일 이름들...
+    fs::path           m_fsTexFiles[NUM_CLOUD];       // 텍스처 파일 이름들...
 
     CN3ColorChange m_Color1;  // 구름 색1
     CN3ColorChange m_Color2;  // 구름 색2
@@ -50,7 +50,7 @@ class CN3Cloud : public CN3Base {
     void         ChangeColor1(D3DCOLOR color, float fSec) { m_Color1.ChangeColor(color, fSec); }
     void         ChangeColor2(D3DCOLOR color, float fSec) { m_Color2.ChangeColor(color, fSec); }
     void         SetCloud(e_CLOUDTEX eCloud1, e_CLOUDTEX eCloud2, float fSec);
-    void         Init(const std::string * pszFNs);
+    void         Init(const fs::path * pfsTexFiles);
     virtual void Release();
     virtual void Render();
     virtual void Tick();

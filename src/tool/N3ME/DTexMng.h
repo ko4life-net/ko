@@ -23,18 +23,18 @@ class CDTexMng : public CN3Base {
     //CDTex*            m_pDTex[MAX_TILETEXTURE];
 
   public:
-    bool    IsInDTex(CString FileName);
     int     GetMaxID() { return m_NextID - 1; }
     CDTex * GetDTexByID(int id);
-    CDTex * GetDTexByName(CString FileName);
+    CDTex * GetDTexByName(const fs::path & fsFileName);
+    bool    IsInDTex(const fs::path & fsFileName);
     int     GetNumDTex() { return m_pDTex.size(); }
-    bool    AddDTex(CString FileName);
+    bool    AddDTex(const fs::path & fsFileName);
     void    DelDTexByID(int id);
     void    Init(CMainFrame * pFrm = NULL);
     void    Release();
 
-    void SaveToFile(CString RealFileName);
-    void LoadFromFile(CString RealFileName);
+    void SaveToFile(const fs::path & fsFileName);
+    void LoadFromFile(const fs::path & fsFileName);
     void SaveGameTile();
 
     CDTexMng();

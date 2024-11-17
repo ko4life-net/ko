@@ -62,30 +62,18 @@ void CDTexMng::Init(CMainFrame * pFrm) {
 //
 //
 //
-bool CDTexMng::AddDTex(CString FileName) {
-    if (IsInDTex(FileName)) {
+bool CDTexMng::AddDTex(const fs::path & fsFileName) {
+    if (IsInDTex(fsFileName)) {
         return false;
     }
-
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR];
-    char szModuleFilePath[_MAX_PATH];
-    GetModuleFileName(NULL, szModuleFilePath, _MAX_PATH);
-
-    char szNewPath[_MAX_PATH];
-    _splitpath(szModuleFilePath, szDrive, szDir, NULL, NULL);
-    _makepath(szNewPath, szDrive, szDir, NULL, NULL);
-
-    std::string szNewFN = "dtex\\";
-    szNewFN += FileName;
 
     CDTex * pDTex = new CDTex;
     pDTex->Init();
     pDTex->m_ID = m_NextID;
-
-    std::string szOldPath = CN3Base::PathGet();
-    CN3Base::PathSet(szNewPath);
-    pDTex->m_pTex->LoadFromFile(szNewFN);
-    CN3Base::PathSet(szOldPath);
+    if (!pDTex->m_pTex->LoadFromFile("DTex" / fsFileName)) {
+        delete pDTex;
+        return false;
+    }
 
     m_pDTex.push_back(pDTex);
     m_NextID++;
@@ -117,12 +105,10 @@ void CDTexMng::DelDTexByID(int id) {
 //    Load..
 //    DTex정보들과 실제 텍스쳐 소스들을 읽어들인다.
 //
-void CDTexMng::LoadFromFile(CString RealFileName) {
+void CDTexMng::LoadFromFile(const fs::path & fsFileName) {
     Init(m_pMainFrm);
-    char szDTexInfoFileName[_MAX_PATH];
-    wsprintf(szDTexInfoFileName, "%sDTEX\\%s.dtx", CN3Base::PathGet().c_str(), (LPCTSTR)RealFileName);
-
-    FILE * stream = fopen(szDTexInfoFileName, "r");
+    fs::path fsDtxFile = (CN3Base::PathGet() / "DTex" / fsFileName).replace_extension(".dtx");
+    FILE *   stream = _wfopen(fsDtxFile.c_str(), L"r");
     if (!stream) {
         return;
     }
@@ -130,7 +116,7 @@ void CDTexMng::LoadFromFile(CString RealFileName) {
     int iCount;
     int result = fscanf(stream, "NumDTex = %d\n", &iCount);
     if (EOF == result) {
-        MessageBox(::GetActiveWindow(), szDTexInfoFileName, "Invalid DTex Info File...", MB_OK);
+        MessageBoxW(::GetActiveWindow(), fsDtxFile.c_str(), L"Invalid DTex Info File...", MB_OK);
         return;
     }
 
@@ -142,9 +128,8 @@ void CDTexMng::LoadFromFile(CString RealFileName) {
 
         CDTexGroupMng * pDTexGroupMng = m_pMainFrm->GetDTexGroupMng();
 
-        int   i;
-        char  szDTexFileName[_MAX_PATH];
-        DWORD dwRWC;
+        int  i;
+        char szDTexFileName[_MAX_PATH];
         for (i = 0; i < iCount; i++) {
             result = fscanf(stream, "%s\n", szDTexFileName);
             __ASSERT(result != EOF, "Invalid DTex Info File...");
@@ -158,13 +143,12 @@ void CDTexMng::LoadFromFile(CString RealFileName) {
             pDTex->m_pTex->LoadFromFile(szDTexFileName);
 
             //    그에 관한 타일 정보들을 읽고..
-            char szDir[_MAX_DIR], szFName[_MAX_FNAME];
-            _splitpath(szDTexFileName, NULL, szDir, szFName, NULL);
-            wsprintf(szDTexInfoFileName, "%s%s%s.dif", CN3Base::PathGet().c_str(), szDir,
-                     szFName); // Texture Information file
+            // Texture Information file
+            fsDtxFile = (CN3Base::PathGet() / szDTexFileName).replace_extension(".dif");
 
+            DWORD  dwRWC;
             HANDLE hFile =
-                CreateFile(szDTexInfoFileName, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+                CreateFileW(fsDtxFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
             if (hFile != INVALID_HANDLE_VALUE) {
                 for (int x = 0; x < NUM_DTEXTILE; x++) {
                     for (int y = 0; y < NUM_DTEXTILE; y++) {
@@ -195,7 +179,6 @@ void CDTexMng::LoadFromFile(CString RealFileName) {
 
         CDTexGroupMng * pDTexGroupMng = m_pMainFrm->GetDTexGroupMng();
         char            szDTexFileName[_MAX_PATH];
-        DWORD           dwRWC;
 
         CProgressBar ProgressBar;
         ProgressBar.Create("Load TileTex Info..", 50, iCount);
@@ -236,13 +219,12 @@ void CDTexMng::LoadFromFile(CString RealFileName) {
 
             if (version == 1) {
                 //    그에 관한 타일 정보들을 읽고..
-                char szDir[_MAX_DIR], szFName[_MAX_FNAME];
-                _splitpath(szDTexFileName, NULL, szDir, szFName, NULL);
-                wsprintf(szDTexInfoFileName, "%s%s%s.dif", CN3Base::PathGet().c_str(), szDir,
-                         szFName); // Texture Information file
+                // Texture Information file
+                fsDtxFile = (CN3Base::PathGet() / szDTexFileName).replace_extension(".dif");
 
+                DWORD  dwRWC;
                 HANDLE hFile =
-                    CreateFile(szDTexInfoFileName, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+                    CreateFileW(fsDtxFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
                 if (hFile != INVALID_HANDLE_VALUE) {
                     for (int x = 0; x < NUM_DTEXTILE; x++) {
                         for (int y = 0; y < NUM_DTEXTILE; y++) {
@@ -267,15 +249,12 @@ void CDTexMng::LoadFromFile(CString RealFileName) {
 //
 //
 //
-void CDTexMng::SaveToFile(CString RealFileName) {
-    char szDTexDir[_MAX_PATH];
-    wsprintf(szDTexDir, "%sDTex", CN3Base::PathGet().c_str());
-    CreateDirectory("dtex", NULL); // 경로 만들고..
+void CDTexMng::SaveToFile(const fs::path & fsFileName) {
+    fs::path fsDtexDir = CN3Base::PathGet() / "DTex";
+    fs::create_directory(fsDtexDir);
 
-    char szDTexInfoFileName[_MAX_PATH];
-    wsprintf(szDTexInfoFileName, "%sDTEX\\%s.dtx", CN3Base::PathGet().c_str(), (LPCTSTR)RealFileName);
-
-    FILE * stream = fopen(szDTexInfoFileName, "w");
+    fs::path fsDtxFile = (fsDtexDir / fsFileName).replace_extension(".dtx");
+    FILE *   stream = _wfopen(fsDtxFile.c_str(), L"w");
     if (!stream) {
         return;
     }
@@ -287,17 +266,9 @@ void CDTexMng::SaveToFile(CString RealFileName) {
 
     CDTexGroupMng * pDTexGroupMng = m_pMainFrm->GetDTexGroupMng();
 
-    int     id;
-    it_DTex it;
-    char    szDTexFileName[_MAX_PATH];
-    //DWORD dwRWC;
-    CDTex * pDTex;
-    for (it = m_pDTex.begin(); it != m_pDTex.end(); it++) {
-        pDTex = (*it);
-        sprintf(szDTexFileName, "%s", pDTex->m_pTex->FileName().c_str());
-        id = pDTex->m_ID;
-
-        fprintf(stream, "%s %d\n", szDTexFileName, id);
+    for (it_DTex it = m_pDTex.begin(); it != m_pDTex.end(); it++) {
+        CDTex * pDTex = (*it);
+        fprintf(stream, "%s %d\n", pDTex->m_pTex->FilePathWin().c_str(), pDTex->m_ID);
 
         for (int y = 0; y < NUM_DTEXTILE; y++) {
             fprintf(stream, "%d\n", pDTex->m_Attr[0][y].Group);
@@ -308,20 +279,18 @@ void CDTexMng::SaveToFile(CString RealFileName) {
         //    version1 저장방식...
         //    dif파일만들기...
         //
-        char szDir[_MAX_DIR], szFName[_MAX_FNAME];
 
-        _splitpath(szDTexFileName, NULL, szDir, szFName, NULL);
-        wsprintf(szDTexInfoFileName, "%s%s%s.dif", CN3Base::PathGet().c_str(), szDir, szFName); // Texture Information file
+        // Texture Information file
+        fsDtxFile = fs::path(pDTex->m_pTex->FilePathAbs()).replace_extension(".dif");
 
         //    그에 관한 타일 정보들을 읽고..
-        HANDLE hFile = CreateFile(szDTexInfoFileName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+        DWORD  dwRWC;
+        HANDLE hFile =
+            CreateFileW(fsDtxFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
-        if(hFile != INVALID_HANDLE_VALUE)
-        {
-            for(int x=0; x<NUM_DTEXTILE; x++)
-            {
-                for(int y=0; y<NUM_DTEXTILE; y++)
-                {
+        if (hFile != INVALID_HANDLE_VALUE) {
+            for (int x = 0; x < NUM_DTEXTILE; x++) {
+                for (int y = 0; y < NUM_DTEXTILE; y++) {
                     WriteFile(hFile, &(pDTex->m_Attr[x][y]), sizeof(DTEXATTR), &dwRWC, NULL);
                 }
             }
@@ -336,57 +305,41 @@ void CDTexMng::SaveToFile(CString RealFileName) {
 //    게임에서 쓸수 있는 타일 텍스쳐 포멧으로 변환후 저장..
 //
 void CDTexMng::SaveGameTile() {
-    D3DFORMAT      Format;
-    int            Size = DTEX_SIZE / NUM_DTEXTILE; //단위텍스쳐의 길이..
-    D3DLOCKED_RECT d3dlr;
+    int Size = DTEX_SIZE / NUM_DTEXTILE; // Length of unit texture
 
-    HANDLE hFile;
-    int    ix, iz;
-    char * pSourceImg;
-    char * pTargetImg;
+    fs::path fsDtexDir = (CN3Base::PathGet() / "DTex");
+    fs::create_directory(fsDtexDir);
 
-    char szDTexDir[_MAX_PATH];
-    wsprintf(szDTexDir, "%sDTex\\", CN3Base::PathGet().c_str());
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME];
-    _splitpath(szDTexDir, szDrive, szDir, NULL, NULL);
-
-    CN3Texture * pTex;
-    char         szDTexGameFileName[_MAX_PATH];
-    char         szNewFName[_MAX_PATH];
-
-    it_DTex it;
     //for(int i=0;i<MAX_TILETEXTURE;i++)
-    for (it = m_pDTex.begin(); it != m_pDTex.end(); it++) {
+    for (it_DTex it = m_pDTex.begin(); it != m_pDTex.end(); it++) {
         CDTex * pDTex = (*it);
         if (pDTex) {
-            pTex = pDTex->m_pTex;
+            CN3Texture * pTex = pDTex->m_pTex;
             if (NULL == pTex || NULL == pTex->Get()) {
                 MessageBox(::GetActiveWindow(), "Tile texture pointer is NULL!!!", "Save GameTile Data Error", MB_OK);
                 continue;
             }
 
             //Source Info...
-            Format = pTex->PixelFormat();
+            D3DFORMAT      Format = pTex->PixelFormat();
+            D3DLOCKED_RECT d3dlr;
             pTex->Get()->LockRect(0, &d3dlr, 0, 0);
             int Bits = d3dlr.Pitch / DTEX_SIZE;
 
             CN3Texture     TileTex;
             D3DLOCKED_RECT d3dlrTarget;
-            for (iz = 0; iz < NUM_DTEXTILE; iz++) {
-                //file setting..
-                _splitpath(pTex->FileName().c_str(), NULL, NULL, szFName, NULL);
-                sprintf(szNewFName, "%s_%d", szFName, iz);
+            std::string    szTexStem = pTex->FilePath().stem().string();
+            for (int iz = 0; iz < NUM_DTEXTILE; iz++) {
+                fs::path fsGttFile = fsDtexDir / std::format("{:s}_{:d}.gtt", szTexStem, iz);
+                HANDLE   hFile =
+                    CreateFileW(fsGttFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
-                _makepath(szDTexGameFileName, szDrive, szDir, szNewFName, ".gtt");
-                hFile =
-                    CreateFile(szDTexGameFileName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-
-                for (ix = 0; ix < NUM_DTEXTILE; ix++) {
+                for (int ix = 0; ix < NUM_DTEXTILE; ix++) {
                     //텍스쳐 서페이스 만들고, 텍스쳐 채우고, 형식 변환하고, 저장.
                     TileTex.Create(Size, Size, Format, TRUE);
                     TileTex.Get()->LockRect(0, &d3dlrTarget, 0, 0);
-                    pSourceImg = (char *)((char *)d3dlr.pBits + (ix * Size * Bits) + (iz * Size * d3dlr.Pitch));
-                    pTargetImg = (char *)d3dlrTarget.pBits;
+                    char * pSourceImg = (char *)((char *)d3dlr.pBits + (ix * Size * Bits) + (iz * Size * d3dlr.Pitch));
+                    char * pTargetImg = (char *)d3dlrTarget.pBits;
 
                     for (int j = 0; j < Size; j++) {
                         memcpy(&(pTargetImg[j * Bits * Size]), &(pSourceImg[j * d3dlr.Pitch]), Bits * Size);
@@ -421,60 +374,21 @@ CDTex * CDTexMng::GetDTexByID(int id) {
 //
 //
 //
-CDTex * CDTexMng::GetDTexByName(CString FileName) {
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR];
-    char szModuleFilePath[_MAX_PATH];
-    GetModuleFileName(NULL, szModuleFilePath, _MAX_PATH);
+CDTex * CDTexMng::GetDTexByName(const fs::path & fsFileName) {
+    const fs::path & fsFileSearch = "dtex" / fsFileName;
 
-    char szNewPath[_MAX_PATH];
-    _splitpath(szModuleFilePath, szDrive, szDir, NULL, NULL);
-    _makepath(szNewPath, szDrive, szDir, NULL, NULL);
+    auto pDTex = std::ranges::find_if(
+        m_pDTex, [&fsFileSearch](CDTex * pDTex) { return n3std::iequals(pDTex->m_pTex->FilePath(), fsFileSearch); });
 
-    CString NewFileName = "dtex\\";
-
-    NewFileName += FileName;
-
-    CString DTexName;
-    CDTex * pDTex;
-
-    it_DTex it;
-    for (it = m_pDTex.begin(); it != m_pDTex.end(); it++) {
-        pDTex = (*it);
-        DTexName = pDTex->m_pTex->FileName().c_str();
-
-        if (DTexName == NewFileName) {
-            return pDTex;
-        }
-    }
-    return NULL;
+    return (pDTex != m_pDTex.end()) ? *pDTex : NULL;
 }
 
 //
 //
 //
-bool CDTexMng::IsInDTex(CString FileName) {
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR];
-    char szModuleFilePath[_MAX_PATH];
-    GetModuleFileName(NULL, szModuleFilePath, _MAX_PATH);
+bool CDTexMng::IsInDTex(const fs::path & fsFileName) {
+    const fs::path & fsFileSearch = "dtex" / fsFileName;
 
-    char szNewPath[_MAX_PATH];
-    _splitpath(szModuleFilePath, szDrive, szDir, NULL, NULL);
-    _makepath(szNewPath, szDrive, szDir, NULL, NULL);
-
-    CString NewFileName = "dtex\\";
-    NewFileName += FileName;
-
-    CString DTexName;
-    CDTex * pDTex;
-
-    it_DTex it;
-    for (it = m_pDTex.begin(); it != m_pDTex.end(); it++) {
-        pDTex = (*it);
-        DTexName = pDTex->m_pTex->FileName().c_str();
-
-        if (DTexName == NewFileName) {
-            return true;
-        }
-    }
-    return false;
+    return std::ranges::any_of(
+        m_pDTex, [&](const auto & pDTex) { return n3std::iequals(pDTex->m_pTex->FilePath(), fsFileSearch); });
 }

@@ -268,12 +268,12 @@ bool CN3UIList::Load(HANDLE hFile) {
     ReadFile(hFile, &iStrLen, sizeof(iStrLen), &dwNum, NULL); // font 이름 길이
     __ASSERT(iStrLen > 0, "No font name");
     if (iStrLen > 0) {
-        m_szFontName.assign(iStrLen, ' ');
-        ReadFile(hFile, &(m_szFontName[0]), iStrLen, &dwNum, NULL); // string
-        ReadFile(hFile, &m_dwFontHeight, 4, &dwNum, NULL);          // font height
-        ReadFile(hFile, &m_crFont, 4, &dwNum, NULL);                // font color
-        ReadFile(hFile, &m_bFontBold, 4, &dwNum, NULL);             // font flag (bold, italic)
-        ReadFile(hFile, &m_bFontItalic, 4, &dwNum, NULL);           // font flag (bold, italic)
+        m_szFontName.assign(iStrLen, '\0');
+        ReadFile(hFile, m_szFontName.data(), iStrLen, &dwNum, NULL); // string
+        ReadFile(hFile, &m_dwFontHeight, 4, &dwNum, NULL);           // font height
+        ReadFile(hFile, &m_crFont, 4, &dwNum, NULL);                 // font color
+        ReadFile(hFile, &m_bFontBold, 4, &dwNum, NULL);              // font flag (bold, italic)
+        ReadFile(hFile, &m_bFontItalic, 4, &dwNum, NULL);            // font flag (bold, italic)
     }
 
     // Child 중에 Scroll Bar 가 있는지 찾아본다.

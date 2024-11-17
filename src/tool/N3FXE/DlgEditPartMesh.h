@@ -61,7 +61,7 @@ class CDlgEditPartMesh : public CDialog {
     BOOL      m_bZWrite;
     //}}AFX_DATA
 
-    bool LoadPartScript(const char * szPath);
+    bool LoadPartScript(const fs::path & fsFile);
 
     // Overrides
     // ClassWizard generated virtual function overrides

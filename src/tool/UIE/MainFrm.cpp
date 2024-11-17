@@ -92,11 +92,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
     ASSERT(pApp);
     CString szRet = pApp->GetProfileString("Work", "Path", "empty");
     if (szRet == "empty") {
-        std::string szDir = n3std::get_app_dir().string();
-        pApp->WriteProfileString("Work", "Path", szDir.c_str());
-        SetBasePath(szDir.c_str());
+        fs::path fsDir = n3std::get_app_dir();
+        pApp->WriteProfileString("Work", "Path", fsDir.string().c_str());
+        SetBasePath(fsDir);
     } else {
-        SetBasePath(szRet);
+        SetBasePath(szRet.GetString());
     }
 
     // Engine 생성
@@ -209,12 +209,12 @@ void CMainFrame::OnUpdateViewEdit(CCmdUI * pCmdUI) {
     pCmdUI->SetRadio(CUIEView::UIEMODE_EDIT == GetRightPane()->GetMode() ? TRUE : FALSE);
 }
 
-void CMainFrame::SetBasePath(LPCTSTR pszPath) {
-    CN3Base::PathSet(pszPath);
-    if (NULL == pszPath) {
+void CMainFrame::SetBasePath(const fs::path & fsDir) {
+    CN3Base::PathSet(fsDir);
+    if (fsDir.empty()) {
         m_wndDlgBar.SetDlgItemText(IDC_EDIT_BASEPATH, _T(""));
     } else {
-        m_wndDlgBar.SetDlgItemText(IDC_EDIT_BASEPATH, CN3Base::PathGet().c_str());
+        m_wndDlgBar.SetDlgItemText(IDC_EDIT_BASEPATH, CN3Base::PathGet().string().c_str());
     }
 }
 

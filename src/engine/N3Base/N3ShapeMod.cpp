@@ -35,14 +35,14 @@ void CN3ShapeMod::Release() {
     m_fTimeChanging = 0.0f;
 }
 
-CN3SPart * CN3ShapeMod::GetPartByPMeshFileName(const std::string & szFN) {
-    if (szFN.empty()) {
+CN3SPart * CN3ShapeMod::GetPartByPMeshFileName(const fs::path & fsFile) {
+    if (fsFile.empty()) {
         return NULL;
     }
 
     int iPC = m_Parts.size();
     for (int i = 0; i < iPC; i++) {
-        if (m_Parts[i]->Mesh() && m_Parts[i]->Mesh()->FileName() == szFN) {
+        if (m_Parts[i]->Mesh() && n3std::iequals(m_Parts[i]->Mesh()->FilePath(), fsFile)) {
             return m_Parts[i];
         }
     }
@@ -52,14 +52,10 @@ CN3SPart * CN3ShapeMod::GetPartByPMeshFileName(const std::string & szFN) {
 bool CN3ShapeMod::Load(HANDLE hFile) {
     bool ret = CN3Shape::Load(hFile);
 
-    char szPathName[_MAX_PATH];
-    char szDir[_MAX_DIR];
-    char szFName[_MAX_FNAME];
-    _splitpath(m_szFileName.c_str(), NULL, szDir, szFName, NULL);
-    _makepath(szPathName, NULL, szDir, szFName, "txt");
-    FILE * stream = fopen(szPathName, "r");
-    LoadStateInfo(stream);
-    fclose(stream);
+    fs::path fsTxtFile = fs::path(FilePath()).replace_extension(".txt");
+    FILE *   pFile = _wfopen(fsTxtFile.c_str(), L"r");
+    LoadStateInfo(pFile);
+    fclose(pFile);
 
     return ret;
 }

@@ -10,25 +10,25 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 //HANDLE CLogWriter::s_hFile = NULL;
-std::string CLogWriter::s_szFileName = "";
+fs::path CLogWriter::s_fsLogFile;
 
 CLogWriter::CLogWriter() {}
 
 CLogWriter::~CLogWriter() {}
 
-void CLogWriter::Open(const std::string & szFN) {
-    // if (s_hFile || szFN.empty()) {
+void CLogWriter::Open(const fs::path & fsFile) {
+    // if (s_hFile || fsFile.empty()) {
     //     return;
     // }
-    if (szFN.empty()) {
+    if (fsFile.empty()) {
         return;
     }
 
-    s_szFileName = szFN;
+    s_fsLogFile = fsFile;
 
-    HANDLE hFile = CreateFile(s_szFileName.c_str(), GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFile = CreateFileW(s_fsLogFile.c_str(), GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hFile) {
-        hFile = CreateFile(s_szFileName.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+        hFile = CreateFileW(s_fsLogFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
         if (INVALID_HANDLE_VALUE == hFile) {
             return;
         }
@@ -39,8 +39,8 @@ void CLogWriter::Open(const std::string & szFN) {
     if (dwSizeLow > 256000) // 파일 사이즈가 너무 크면 지운다..
     {
         CloseHandle(hFile);
-        ::DeleteFile(s_szFileName.c_str());
-        hFile = CreateFile(s_szFileName.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+        fs::remove(s_fsLogFile);
+        hFile = CreateFileW(s_fsLogFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
         if (INVALID_HANDLE_VALUE == hFile) {
             return;
         }
@@ -66,9 +66,9 @@ void CLogWriter::Open(const std::string & szFN) {
 }
 
 void CLogWriter::Close() {
-    HANDLE hFile = CreateFile(s_szFileName.c_str(), GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFile = CreateFileW(s_fsLogFile.c_str(), GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hFile) {
-        hFile = CreateFile(s_szFileName.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+        hFile = CreateFileW(s_fsLogFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
         if (INVALID_HANDLE_VALUE == hFile) {
             hFile = NULL;
         }
@@ -97,7 +97,7 @@ void CLogWriter::Close() {
 }
 
 void CLogWriter::Write(const char * lpszFormat, ...) {
-    if (s_szFileName.empty() || NULL == lpszFormat) {
+    if (s_fsLogFile.empty() || NULL == lpszFormat) {
         return;
     }
 
@@ -115,14 +115,15 @@ void CLogWriter::Write(const char * lpszFormat, ...) {
     va_start(argList, lpszFormat);
     vsprintf(szBuff, lpszFormat, argList);
     va_end(argList);
+    N3_DEBUG("CLogWriter::Write: {}", szBuff);
 
     lstrcat(szFinal, szBuff);
     lstrcat(szFinal, "\r\n");
     int iLength = lstrlen(szFinal);
 
-    HANDLE hFile = CreateFile(s_szFileName.c_str(), GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFile = CreateFileW(s_fsLogFile.c_str(), GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hFile) {
-        hFile = CreateFile(s_szFileName.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+        hFile = CreateFileW(s_fsLogFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
         if (INVALID_HANDLE_VALUE == hFile) {
             hFile = NULL;
         }

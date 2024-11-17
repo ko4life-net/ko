@@ -59,11 +59,11 @@ class COptionDlg : public CDialog {
     // Construction
   public:
     void SettingUpdate();
-    void SettingLoad(const std::string & szIniFile);
-    void SettingServerLoad(const std::string & szIniFile);
-    void SettingSave(const std::string & szIniFile);
-    void SettingServerSave(const std::string & szIniFile);
-    void VersionUpdate(const std::string & szIniFile, int Version);
+    void SettingLoad(const fs::path & fsIniFile);
+    void SettingServerLoad(const fs::path & fsIniFile);
+    void SettingSave(const fs::path & fsIniFile);
+    void SettingServerSave(const fs::path & fsIniFile);
+    void VersionUpdate(const fs::path & fsIniFile, int Version);
     COptionDlg(CWnd * pParent = NULL); // standard constructor
 
     // Dialog Data

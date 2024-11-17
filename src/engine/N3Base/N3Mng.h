@@ -15,14 +15,14 @@
 
 template <class T> class CN3Mng {
   protected:
-    typedef typename std::map<std::string, T *>::iterator   it_Data;
-    typedef typename std::map<std::string, T *>::value_type val_Data;
+    typedef typename std::map<fs::path, T *>::iterator   it_Data;
+    typedef typename std::map<fs::path, T *>::value_type val_Data;
 
     typedef typename std::map<T *, int>::iterator   it_Ref;
     typedef typename std::map<T *, int>::value_type val_Ref;
 
-    std::map<std::string, T *> m_Datas;
-    std::map<T *, int>         m_Refs;
+    std::map<fs::path, T *> m_Datas;
+    std::map<T *, int>      m_Refs;
 
   public:
     int Count() { return m_Datas.size(); }
@@ -34,7 +34,7 @@ template <class T> class CN3Mng {
 #endif
             return -1;
         }
-        if (pData->FileName().empty()) {
+        if (pData->FilePath().empty()) {
 #ifdef _N3GAME
             CLogWriter::Write("CN3Mng::Add - Null object file name");
 #endif
@@ -49,7 +49,7 @@ template <class T> class CN3Mng {
             return -1;
         }
 
-        std::pair<it_Data, bool> pairData = m_Datas.insert(val_Data(pData->FileName(), pData));
+        std::pair<it_Data, bool> pairData = m_Datas.insert(val_Data(pData->FilePath(), pData));
         if (false == pairData.second) {
 #ifdef _N3GAME
             CLogWriter::Write("CN3Mng::Add - duplicated object's file name.");
@@ -82,22 +82,20 @@ template <class T> class CN3Mng {
         return it->second;
     }
 
-    T * Get(const std::string & szFN, bool bIncreaseRefCount = TRUE, int iLOD = 0) {
-        if (szFN.empty()) {
+    T * Get(const fs::path & fsFile, bool bIncreaseRefCount = TRUE, int iLOD = 0) {
+        if (fsFile.empty()) {
             return NULL;
         }
-        std::string szFN2 = szFN;
-        CharLower(&(szFN2[0]));
+
+        fs::path fsFile2 = fsFile.lower();
 
         T *     pData = NULL;
-        it_Data it = m_Datas.find(szFN2);
-        if (it == m_Datas.end()) // 못 찾았다..
-        {
+        it_Data it = m_Datas.find(fsFile2);
+        if (it == m_Datas.end()) { // 못 찾았다..
             pData = new T();
             pData->m_iLOD = iLOD; // 로딩시 LOD 적용
 
-            if (false == pData->LoadFromFile(szFN2)) // 파일 읽기에 실패했다!!
-            {
+            if (false == pData->LoadFromFile(fsFile2)) { // 파일 읽기에 실패했다!!
                 delete pData;
                 pData = NULL;
             } else {
@@ -106,7 +104,7 @@ template <class T> class CN3Mng {
                 if (reChk == -1) // 추가시 전에 데이터가 있어 참조 카운트를 하나 더한다
                 {
                     T * pBakData = pData; // 같은 파일중 전 데이타를 받아 리턴(새로운 그림으로 바뀌지 않을수 있다)
-                    it_Data it = m_Datas.find(pBakData->FileName());
+                    it_Data it = m_Datas.find(pBakData->FilePath());
                     pData = (*it).second;
 
                     if (bIncreaseRefCount) {
@@ -122,8 +120,7 @@ template <class T> class CN3Mng {
                 }
                 //    asm
             }
-        } else //  찾았다..!!
-        {
+        } else { //  찾았다..!!
             pData = (*it).second;
 
             if (bIncreaseRefCount) {
@@ -138,12 +135,12 @@ template <class T> class CN3Mng {
         return pData;
     }
 
-    bool IsExist(const std::string & szFN) {
-        if (szFN.empty()) {
+    bool IsExist(const fs::path & fsFile) {
+        if (fsFile.empty()) {
             return false;
         }
 
-        if (m_Datas.find(szFN) != m_Datas.end()) {
+        if (m_Datas.find(fsFile) != m_Datas.end()) {
             return true;
         } else {
             return false;
@@ -158,7 +155,7 @@ template <class T> class CN3Mng {
             return;
         }
 
-        it_Data it = m_Datas.find((*ppData)->FileName());
+        it_Data it = m_Datas.find((*ppData)->FilePath());
         if (it == m_Datas.end()) {
             return; // 못 찾았다..
         } else      //  찾았다..!!

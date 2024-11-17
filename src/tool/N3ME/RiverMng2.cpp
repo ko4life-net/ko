@@ -318,25 +318,21 @@ void CRiverMng2::SetActive(bool bActive, CLyTerrain * pTerrain) {
                 ZeroMemory(m_ppRiver[i], sizeof(__River) * m_nMapSize);
             }
         }
-        //        if (NULL == m_ppIsRiver)
-        //        {
-        //            ASSERT(m_nMapSize);
-        //            m_ppIsRiver = new bool* [m_nMapSize];
-        //            for (int i=0;i<m_nMapSize;i++)
-        //            {
-        //                m_ppIsRiver[i] = new bool[m_nMapSize];
-        //                ZeroMemory(m_ppIsRiver[i], sizeof(bool)*m_nMapSize);
-        //            }
-        //        }
+        //if (NULL == m_ppIsRiver) {
+        //    ASSERT(m_nMapSize);
+        //    m_ppIsRiver = new bool *[m_nMapSize];
+        //    for (int i = 0; i < m_nMapSize; i++) {
+        //        m_ppIsRiver[i] = new bool[m_nMapSize];
+        //        ZeroMemory(m_ppIsRiver[i], sizeof(bool) * m_nMapSize);
+        //    }
+        //}
         if (NULL == m_pTexRiver[0]) {
-            char szFileName[40];
             for (int i = 0; i < MAX_RIVER_TEX; i++) {
-                sprintf(szFileName, "misc\\river\\caust%02d.tga", i);
-                //sprintf(szFileName, "misc\\river\\caust%02d.dxt", i);
-                m_pTexRiver[i] = s_MngTex.Get(szFileName);
+                fs::path fsTexFile = fs::path("Misc") / "river" / std::format("caust{:02d}.dxt", i);
+                m_pTexRiver[i] = s_MngTex.Get(fsTexFile);
                 __ASSERT(m_pTexRiver[i], "CN3River2::texture load failed");
             }
-            m_pTexWave = s_MngTex.Get("misc\\river\\el_water.bmp");
+            m_pTexWave = s_MngTex.Get(fs::path("Misc") / "river" / "el_water.bmp");
         }
 
         if (pTerrain->m_iHeightMapSize != m_nMapSize) {
@@ -421,9 +417,8 @@ bool CRiverMng2::Load(HANDLE hFile) {
     // Map Size
     ReadFile(hFile, &m_nVer, sizeof(m_nVer), &dwRWC, NULL);
     if (m_nVer != VER_RIVER) {
-        char buf[80];
-        sprintf(buf, "Old File Format,(Latest:%d, This:%d)", VER_RIVER, m_nVer);
-        MessageBox(NULL, buf, "Version", MB_OK);
+        std::string szErr = std::format("Old File Format,(Latest:{:d}, This:{:d})", VER_RIVER, m_nVer);
+        MessageBoxA(NULL, szErr.c_str(), "Version", MB_OK);
         return false;
     }
     ReadFile(hFile, &m_nMapSize, sizeof(m_nMapSize), &dwRWC, NULL);

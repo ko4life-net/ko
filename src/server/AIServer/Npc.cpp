@@ -4812,8 +4812,8 @@ void CNpc::SendAll(CIOCPort * pIOCP, TCHAR * pBuf, int nLength) {
 void CNpc::NpcTrace(const std::string & szMsg) {
     //if(g_bDebug == FALSE) return;
 
-    TRACE(std::format("{} : uid = {}, name = {}, xpos = {}, zpos = {}", szMsg, m_sNid + NPC_BAND, m_strName, m_fCurX,
-                      m_fCurZ)
+    TRACE(std::format("{:s} : uid = {:d}, name = {:s}, xpos = {:f}, zpos = {:f}", szMsg, m_sNid + NPC_BAND, m_strName,
+                      m_fCurX, m_fCurZ)
               .c_str());
 }
 
@@ -5461,6 +5461,53 @@ void CNpc::IsNoPathFind(float fDistance) {
     m_iAniFrameIndex = count;
 }
 
+int CNpc::GetRandomItemFromGroup(int iGroupIndex) {
+    auto & groupItems = m_pMain->m_MakeItemGroup[iGroupIndex].m_Items;
+
+    int iTotalChance = 0;
+    int iItemCount = groupItems.size();
+
+    for (int i = 0; i < iItemCount; ++i) {
+        const auto & itemData = groupItems[i];
+
+        if (itemData[2] == 0) {
+            continue; // Skip items with drop % 0
+        }
+
+        int iRangeStart = itemData[1];
+        int iRangeEnd = itemData[2];
+
+        iTotalChance += (iRangeEnd - iRangeStart + 1);
+    }
+
+    if (iTotalChance == 0) {
+        return 0;
+    }
+
+    int iRandomChance = rand() % iTotalChance + 1;
+    int iCumulativeChance = 0;
+
+    for (int i = 0; i < iItemCount; ++i) {
+        const auto & itemData = groupItems[i];
+
+        if (itemData[2] == 0) {
+            continue; // Skip items with drop % 0
+        }
+
+        int iRangeStart = itemData[1];
+        int iRangeEnd = itemData[2];
+
+        int itemChance = iRangeEnd - iRangeStart + 1;
+        iCumulativeChance += itemChance;
+
+        if (iRandomChance <= iCumulativeChance) {
+            return itemData[0]; // Return Item id
+        }
+    }
+
+    return 0;
+}
+
 //    NPC 가 가진 아이템을 떨군다.
 void CNpc::GiveNpcHaveItem(CIOCPort * pIOCP) {
     char pBuf[1024];
@@ -5474,62 +5521,78 @@ void CNpc::GiveNpcHaveItem(CIOCPort * pIOCP) {
     int     nCount = 1;
     CString string;
 
-    /*    if( m_byMoneyType == 1 )    {
-        SetByte(pBuf, AG_NPC_EVENT_ITEM, index);
-        SetShort(pBuf, m_sMaxDamageUserid, index);    
-        SetShort(pBuf, m_sNid+NPC_BAND, index);
-        SetDWORD(pBuf, TYPE_MONEY_SID, index);
-        SetDWORD(pBuf, m_iMoney, index);
-        return;
-    }    */
-
     iRandom = myrand(70, 100);
     iMoney = m_iMoney * iRandom / 100;
-    //m_iMoney, m_iItem;
-    _NpcGiveItem m_GiveItemList[NPC_HAVE_ITEM_LIST]; // Npc의 ItemList
+
+    _NpcGiveItem m_GiveItemList[NPC_HAVE_ITEM_LIST];
     if (iMoney <= 0) {
         nCount = 0;
     } else {
         m_GiveItemList[0].sSid = TYPE_MONEY_SID;
         if (iMoney > 32767) {
-            iMoney = 32000; // sungyong : short형이기 때문에,,
+            iMoney = 32000;
             m_GiveItemList[0].count = iMoney;
         } else {
             m_GiveItemList[0].count = iMoney;
         }
     }
 
-    for (int i = 0; i < m_pMain->m_NpcItem.m_nRow; i++) {
-        if (m_pMain->m_NpcItem.m_ppItem[i][0] != m_iItem) {
+    for (int rowIndex = 0; rowIndex < m_pMain->m_NpcItem.m_nRow; rowIndex++) {
+        if (m_pMain->m_NpcItem.m_ppItem[rowIndex][0] != m_iItem) {
             continue;
         }
-        for (int j = 1; j < m_pMain->m_NpcItem.m_nField; j += 2) {
-            if (m_pMain->m_NpcItem.m_ppItem[i][j] == 0) {
-                continue;
-            }
-            iRandom = myrand(1, 10000);
-            iPer = m_pMain->m_NpcItem.m_ppItem[i][j + 1];
-            if (iPer == 0) {
-                continue;
-            }
-            if (iRandom <= iPer) { // 우선 기본테이블를 참조하기위해
-                if (j == 1) {      // 아이템 생성..
-                    iMakeItemCode = ItemProdution(m_pMain->m_NpcItem.m_ppItem[i][j]);
-                    if (iMakeItemCode == 0) {
-                        continue;
-                    }
 
-                    m_GiveItemList[nCount].sSid = iMakeItemCode;
-                    m_GiveItemList[nCount].count = 1;
-                } else {
-                    m_GiveItemList[nCount].sSid = m_pMain->m_NpcItem.m_ppItem[i][j];
-                    if (COMPARE(m_GiveItemList[nCount].sSid, ARROW_MIN, ARROW_MAX)) { // 화살이라면
-                        m_GiveItemList[nCount].count = 20;
-                    } else {
-                        m_GiveItemList[nCount].count = 1;
-                    }
+        for (int itemFieldIndex = 1; itemFieldIndex < m_pMain->m_NpcItem.m_nField; itemFieldIndex += 2) {
+            int itemID = m_pMain->m_NpcItem.m_ppItem[rowIndex][itemFieldIndex];
+            int iDropChance = m_pMain->m_NpcItem.m_ppItem[rowIndex][itemFieldIndex + 1];
+
+            if (itemID == 0 || iDropChance == 0) {
+                continue;
+            }
+
+            iRandom = myrand(1, 10000);
+            if (iRandom > iDropChance) {
+                continue;
+            }
+
+            if (itemFieldIndex < 2) {
+                iMakeItemCode = 0;
+
+                // Special item ?
+                if (itemID < 100) {
+                    iMakeItemCode = ItemProdution(itemID);
                 }
-                nCount++;
+                // (ID >= 100)
+                else if (itemID < MAX_ITEM_GROUP_ID) {
+                    iMakeItemCode = GetRandomItemFromGroup(itemID);
+                }
+
+                if (iMakeItemCode == 0) {
+                    continue;
+                }
+
+                m_GiveItemList[nCount].sSid = iMakeItemCode;
+
+                if (COMPARE(m_GiveItemList[nCount].sSid, ARROW_MIN, ARROW_MAX)) {
+                    m_GiveItemList[nCount].count = 20;
+                } else {
+                    m_GiveItemList[nCount].count = 1;
+                }
+
+            } else {
+                m_GiveItemList[nCount].sSid = itemID;
+
+                if (COMPARE(m_GiveItemList[nCount].sSid, ARROW_MIN, ARROW_MAX)) {
+                    m_GiveItemList[nCount].count = 20;
+                } else {
+                    m_GiveItemList[nCount].count = 1;
+                }
+            }
+
+            nCount++;
+
+            if (nCount >= NPC_HAVE_ITEM_LIST) {
+                break;
             }
         }
     }
@@ -5549,22 +5612,21 @@ void CNpc::GiveNpcHaveItem(CIOCPort * pIOCP) {
     Setfloat(pBuf, m_fCurZ, index);
     Setfloat(pBuf, m_fCurY, index);
     SetByte(pBuf, nCount, index);
+
     for (int i = 0; i < nCount; i++) {
         SetInt(pBuf, m_GiveItemList[i].sSid, index);
         SetShort(pBuf, m_GiveItemList[i].count, index);
 
         if (m_GiveItemList[i].sSid != TYPE_MONEY_SID) {
-            //sprintf( logfile, "%d\r\n", m_GiveItemList[i].sSid);
             string.Format("%d\r\n", m_GiveItemList[i].sSid);
             EnterCriticalSection(&g_LogFileWrite);
             m_pMain->m_ItemLogFile.Write(string, string.GetLength());
             LeaveCriticalSection(&g_LogFileWrite);
-            //n3std::log_file_write( logfile );
         }
         //TRACE("Npc-GiveNpcHaveItem() : [nid - %d,%s,  giveme=%d, count=%d, num=%d], list=%d, count=%d\n", m_sNid+NPC_BAND, m_strName, m_sMaxDamageUserid, nCount, i, m_GiveItemList[i].sSid, m_GiveItemList[i].count);
     }
 
-    SendAll(pIOCP, pBuf, index); // thread 에서 send
+    SendAll(pIOCP, pBuf, index);
 }
 
 void CNpc::Yaw2D(float fDirX, float fDirZ, float & fYawResult) {

@@ -123,7 +123,7 @@ void CN3VMesh::CreateIndex(int nIC) {
 
 #ifdef _N3GAME
     if (nIC > 32768) {
-        CLogWriter::Write("N3VMesh creation warning (%s) - Too many Indices.", m_szFileName.c_str());
+        CLogWriter::Write("N3VMesh creation warning (%s) - Too many Indices.", FilePath().string().c_str());
     }
 #endif
 

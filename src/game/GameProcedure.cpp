@@ -184,7 +184,7 @@ void CGameProcedure::StaticMemberInit(HINSTANCE hInstance, HWND hWndMain, HWND h
 
     if (!CN3Base::s_Options.bWindowCursor) {
         s_pGameCursor = new CGameCursor();
-        s_pGameCursor->LoadFromFile("ui\\cursor.uif");
+        s_pGameCursor->LoadFromFile(fs::path("ui") / "cursor.uif");
     }
     SetGameCursor(s_hCursorNormal);
 
@@ -363,10 +363,9 @@ void CGameProcedure::Tick() {
     {
         SYSTEMTIME st;
         ::GetLocalTime(&st);
-        char szFN[128] = "";
-        //        sprintf(szFN, "%d_%d_%d_%d.%d.%d.jpg", st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond);
-        sprintf(szFN, "%d_%d_%d_%d.%d.%d.ksc", st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond);
-        this->CaptureScreenAndSaveToFile(szFN);
+        fs::path fsFile = std::format("{:d}_{:d}_{:d}_{:d}.{:d}.{:d}.ksc", st.wYear, st.wMonth, st.wDay, st.wHour,
+                                      st.wMinute, st.wSecond);
+        this->CaptureScreenAndSaveToFile(fsFile);
     }
 
     //////////////////////////////////
@@ -445,8 +444,8 @@ void CGameProcedure::RenderActive() {
     //    }
 }
 
-bool CGameProcedure::CaptureScreenAndSaveToFile(const std::string & szFN) {
-    if (szFN.empty()) {
+bool CGameProcedure::CaptureScreenAndSaveToFile(const fs::path & fsFile) {
+    if (fsFile.empty()) {
         return false;
     }
     CJpegFile file;
@@ -464,8 +463,8 @@ bool CGameProcedure::CaptureScreenAndSaveToFile(const std::string & szFN) {
         }
 
         std::string szError;
-        if (file.EncryptJPEG(hDIB, nQuality, szFN, szError) == TRUE) {
-            TRACE("Screen Captue %s\n", szFN.c_str());
+        if (file.EncryptJPEG(hDIB, nQuality, fsFile, szError) == TRUE) {
+            TRACE("Screen Captue %s\n", fsFile.string().c_str());
         }
         GlobalFree(hDIB);
     }
@@ -474,37 +473,31 @@ bool CGameProcedure::CaptureScreenAndSaveToFile(const std::string & szFN) {
     int iW = CN3Base::s_CameraData.vp.Width;
     int iH = CN3Base::s_CameraData.vp.Height;
 
-    bool bResult = false;
+    bool               bResult = false;
     LPDIRECT3DSURFACE9 lpDDSTmp = NULL;
     LPDIRECT3DSURFACE9 lpDDSBack = NULL;
     CN3Base::s_lpD3DDev->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &lpDDSBack);
-    if(lpDDSBack)
-    {
+    if (lpDDSBack) {
         CN3Base::s_lpD3DDev->CreateOffscreenPlainSurface(iW, iH, D3DFMT_X8R8G8B8, D3DPOOL_DEFAULT, &lpDDSTmp, NULL);
-        if(lpDDSTmp)
-        {
+        if (lpDDSTmp) {
             HRESULT rval = D3DXLoadSurfaceFromSurface(lpDDSTmp, NULL, NULL, lpDDSBack, NULL, NULL, D3DX_FILTER_NONE, 0);
-//            HRESULT rval = s_lpD3DDev->CopyRects(lpDDSBack, NULL, 0, lpDDSTmp, NULL);
-//            char szErr[256];
-//            ::D3DXGetErrorString(rval, szErr, 256);
+            //HRESULT rval = s_lpD3DDev->CopyRects(lpDDSBack, NULL, 0, lpDDSTmp, NULL);
+            //char    szErr[256];
+            //::D3DXGetErrorString(rval, szErr, 256);
 
-            if(D3D_OK == rval)
-            {
+            if (D3D_OK == rval) {
                 D3DLOCKED_RECT LR;
-                if(D3D_OK == lpDDSTmp->LockRect(&LR, NULL, 0))
-                {
-//                    std::vector<BYTE> buff(iW * iH * 3, 0);
+                if (D3D_OK == lpDDSTmp->LockRect(&LR, NULL, 0)) {
+                    //std::vector<BYTE> buff(iW * iH * 3, 0);
                     CBitMapFile bmf;
                     bmf.Create(iW, iH);
 
-                    for(int y = 0; y < iH; y++)
-                    {
-                        BYTE* pPS = ((BYTE*)LR.pBits) + LR.Pitch * y;
-//                        BYTE* pPD = (BYTE*)(&(buff[y * (iW * 3)]));
-                        BYTE* pPD = (BYTE*)(bmf.Pixels(0, y));
+                    for (int y = 0; y < iH; y++) {
+                        BYTE * pPS = ((BYTE *)LR.pBits) + LR.Pitch * y;
+                        //BYTE * pPD = (BYTE *)(&(buff[y * (iW * 3)]));
+                        BYTE * pPD = (BYTE *)(bmf.Pixels(0, y));
 
-                        for(int x = 0; x < iW; x++, pPS += 4, pPD +=3 )
-                        {
+                        for (int x = 0; x < iW; x++, pPS += 4, pPD += 3) {
                             pPD[0] = pPS[0];
                             pPD[1] = pPS[1];
                             pPD[2] = pPS[2];
@@ -512,23 +505,22 @@ bool CGameProcedure::CaptureScreenAndSaveToFile(const std::string & szFN) {
                     }
                     lpDDSTmp->UnlockRect();
 
-//                    CJpeg jpg;
-//                    jpg.SaveJPG(szFN.c_str(), iW, iH, &(buff[0]));
-                    bmf.SaveToFile(szFN.c_str());
+                    //CJpeg jpg;
+                    //jpg.SaveJPG(fsFile, iW, iH, buff.data());
+                    bmf.SaveToFile(fsFile);
                 }
             }
-            
+
             lpDDSTmp->Release();
             lpDDSTmp = NULL;
         }
-
 
         lpDDSBack->Release();
         lpDDSBack = NULL;
     }
 
     return bResult;
-*/
+    */
 }
 
 void CGameProcedure::ProcActiveSet(CGameProcedure * pProc) {

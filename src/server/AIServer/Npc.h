@@ -381,6 +381,7 @@ class CNpc {
     void IsNoPathFind(float fDistance);    // 패스 파인드를 하지 않고 공격대상으로 가는 루틴..
     BOOL IsInExpRange(CUser * pUser);
     void GiveNpcHaveItem(CIOCPort * pIOCP); // NPC 가 가진 아이템을 떨군다
+    int  GetRandomItemFromGroup(int iGroupIndex);
 
     void NpcLive(CIOCPort * pIOCP);
     void NpcFighting(CIOCPort * pIOCP);

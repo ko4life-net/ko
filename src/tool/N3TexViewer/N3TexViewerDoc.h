@@ -16,9 +16,9 @@ class CN3TexViewerDoc : public CDocument {
     CN3Texture * m_pTex;
     CN3Texture * m_pTexAlpha;
 
-    int          m_nCurFile;
-    CString      m_szPath;
-    CStringArray m_szFiles;
+    int                   m_nCurFile;
+    fs::path              m_fsWorkDir;
+    std::vector<fs::path> m_vDxtFiles;
 
     // Operations
   public:
@@ -35,6 +35,7 @@ class CN3TexViewerDoc : public CDocument {
 
     // Implementation
   public:
+    void OpenFileAtIndex(int iIndex);
     void OpenLastFile();
     void OpenFirstFile();
     void OpenPrevFile();

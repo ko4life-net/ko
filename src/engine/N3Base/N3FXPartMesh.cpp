@@ -56,12 +56,11 @@ bool CN3FXPartMesh::ParseScript(char * szCommand, char * szBuff0, char * szBuff1
         return true;
     }
 
-    if (lstrcmpi(szCommand, "<shape_name>") == 0) {
-        char szPath[MAX_PATH];
-        sprintf(szPath, szBuff0);
+    if (n3std::iequals(szCommand, "<shape_name>")) {
+        fs::path fsShapeFile = szBuff0;
         m_pShape = new CN3FXShape;
 
-        m_pRefShape = s_MngFXShape.Get(szPath);
+        m_pRefShape = s_MngFXShape.Get(fsShapeFile);
         m_pShape->Duplicate(m_pRefShape);
 
         __Vector3 vScale;
@@ -73,14 +72,14 @@ bool CN3FXPartMesh::ParseScript(char * szCommand, char * szBuff0, char * szBuff1
 
         return true;
     }
-    if (lstrcmpi(szCommand, "<texture_move>") == 0) {
-        if (lstrcmpi(szBuff0, "up") == 0) {
+    if (n3std::iequals(szCommand, "<texture_move>")) {
+        if (n3std::iequals(szBuff0, "up")) {
             m_cTextureMoveDir = 1;
-        } else if (lstrcmpi(szBuff0, "down") == 0) {
+        } else if (n3std::iequals(szBuff0, "down")) {
             m_cTextureMoveDir = 2;
-        } else if (lstrcmpi(szBuff0, "left") == 0) {
+        } else if (n3std::iequals(szBuff0, "left")) {
             m_cTextureMoveDir = 3;
-        } else if (lstrcmpi(szBuff0, "right") == 0) {
+        } else if (n3std::iequals(szBuff0, "right")) {
             m_cTextureMoveDir = 4;
         }
 
@@ -102,20 +101,20 @@ bool CN3FXPartMesh::ParseScript(char * szCommand, char * szBuff0, char * szBuff1
 
         return true;
     }
-    if (lstrcmpi(szCommand, "<scale_velocity>") == 0) {
+    if (n3std::iequals(szCommand, "<scale_velocity>")) {
         m_vScaleVel.Set(atof(szBuff0), atof(szBuff1), atof(szBuff2));
         m_vCurrScaleVel = m_vScaleVel;
         return true;
     }
-    if (lstrcmpi(szCommand, "<scale_accelerate>") == 0) {
+    if (n3std::iequals(szCommand, "<scale_accelerate>")) {
         m_vScaleAccel.Set(atof(szBuff0), atof(szBuff1), atof(szBuff2));
         return true;
     }
-    if (lstrcmpi(szCommand, "<scale>") == 0) {
+    if (n3std::iequals(szCommand, "<scale>")) {
         m_vUnitScale.Set(atof(szBuff0), atof(szBuff1), atof(szBuff2));
         return true;
     }
-    if (lstrcmpi(szCommand, "<tex_fps>") == 0) {
+    if (n3std::iequals(szCommand, "<tex_fps>")) {
         m_fTexFPS = atof(szBuff0);
         if (!m_pShape) {
             return false;
@@ -125,9 +124,9 @@ bool CN3FXPartMesh::ParseScript(char * szCommand, char * szBuff0, char * szBuff1
         }
         return true;
     }
-    if (lstrcmpi(szCommand, "<tex_loop>") == 0) {
+    if (n3std::iequals(szCommand, "<tex_loop>")) {
         m_bTexLoop = true;
-        if (lstrcmpi(szBuff0, "false") == 0) {
+        if (n3std::iequals(szBuff0, "false")) {
             m_bTexLoop = false;
         }
 
@@ -139,12 +138,12 @@ bool CN3FXPartMesh::ParseScript(char * szCommand, char * szBuff0, char * szBuff1
         }
         return true;
     }
-    if (lstrcmpi(szCommand, "<mesh_fps>") == 0) {
+    if (n3std::iequals(szCommand, "<mesh_fps>")) {
         m_fMeshFPS = atof(szBuff0);
         return true;
     }
 
-    if (lstrcmpi(szCommand, "<end>") == 0) {
+    if (n3std::iequals(szCommand, "<end>")) {
         Init();
         return true;
     }
@@ -190,18 +189,18 @@ bool CN3FXPartMesh::Load(HANDLE hFile) {
 
     DWORD dwRWC = 0;
 
-    char szShapeFileName[_MAX_PATH];
-    ReadFile(hFile, szShapeFileName, _MAX_PATH, &dwRWC, NULL);
+    char szShapeFile[260]{};
+    ReadFile(hFile, szShapeFile, sizeof(szShapeFile), &dwRWC, NULL);
 
     if (m_pShape) {
         delete m_pShape;
     }
     m_pShape = new CN3FXShape;
 
-    m_pRefShape = s_MngFXShape.Get(szShapeFileName);
+    m_pRefShape = s_MngFXShape.Get(szShapeFile);
     m_pShape->Duplicate(m_pRefShape);
     m_pShape->SetPartsMtl(m_bAlpha, m_dwSrcBlend, m_dwDestBlend, m_dwZEnable, m_dwZWrite, m_dwLight, m_dwDoubleSide);
-    //m_pShape->LoadFromFile(szShapeFileName);
+    //m_pShape->LoadFromFile(szShapeFile);
     __Vector3 vScale;
     if (m_pShape->m_KeyScale.DataGet(0, vScale)) {
         m_vUnitScale = vScale;
@@ -250,10 +249,9 @@ bool CN3FXPartMesh::Save(HANDLE hFile) {
 
     DWORD dwRWC = 0;
 
-    char szShapeFileName[_MAX_PATH];
-    sprintf(szShapeFileName, m_pShape->FileName().c_str());
-
-    WriteFile(hFile, szShapeFileName, _MAX_PATH, &dwRWC, NULL);
+    char szShapeFile[260]{};
+    m_pShape->FilePathWin().string().copy(szShapeFile, sizeof(szShapeFile) - 1);
+    WriteFile(hFile, szShapeFile, sizeof(szShapeFile), &dwRWC, NULL);
 
     WriteFile(hFile, &m_cTextureMoveDir, sizeof(char), &dwRWC, NULL);
     WriteFile(hFile, &m_fu, sizeof(float), &dwRWC, NULL);
@@ -678,7 +676,7 @@ void CN3FXPartMesh::Duplicate(CN3FXPartMesh * pSrc) {
 
     m_pShape = new CN3FXShape;
 
-    m_pRefShape = s_MngFXShape.Get(pSrc->m_pRefShape->FileName());
+    m_pRefShape = s_MngFXShape.Get(pSrc->m_pRefShape->FilePath());
     m_pShape->Duplicate(m_pRefShape);
     m_pShape->SetPartsMtl(m_bAlpha, m_dwSrcBlend, m_dwDestBlend, m_dwZEnable, m_dwZWrite, m_dwLight, m_dwDoubleSide);
 

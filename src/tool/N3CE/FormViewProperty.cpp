@@ -274,7 +274,7 @@ void CFormViewProperty::UpdateInfo() {
         pItem = m_LPPlug.GetPropItem("Mesh");
         if (pItem) {
             if (pPlug->PMesh()) {
-                pItem->m_curValue = pPlug->PMesh()->FileName().c_str();
+                pItem->m_curValue = pPlug->PMesh()->FilePath().c_str();
             } else {
                 pItem->m_curValue = "";
             }
@@ -282,7 +282,7 @@ void CFormViewProperty::UpdateInfo() {
         pItem = m_LPPlug.GetPropItem("Texture");
         if (pItem) {
             if (pPlug->Tex()) {
-                pItem->m_curValue = pPlug->Tex()->FileName().c_str();
+                pItem->m_curValue = pPlug->Tex()->FilePath().c_str();
             } else {
                 pItem->m_curValue = "";
             }
@@ -325,7 +325,7 @@ void CFormViewProperty::UpdateInfo() {
         pItem = m_LPFXPlugPart.GetPropItem("FXB");
         if (pItem) {
             if (pFXPPart->GetFXB()) {
-                pItem->m_curValue = pFXPPart->GetFXB()->FileName().c_str();
+                pItem->m_curValue = pFXPPart->GetFXB()->FilePath().c_str();
             } else {
                 pItem->m_curValue = "";
             }
@@ -394,7 +394,7 @@ void CFormViewProperty::UpdateInfo() {
     if (pTex) {
         pItem = m_LPMtl.GetPropItem("Texture");
         if (pItem) {
-            pItem->m_curValue = pTex->FileName().c_str();
+            pItem->m_curValue = pTex->FilePath().c_str();
         }
     }
 }
@@ -442,9 +442,9 @@ BOOL CFormViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult
         }
         if (pItem->m_propName == "Texture") {
             if (pBase->Type() & OBJ_CHARACTER_PART) {
-                ((CN3CPart *)pBase)->TexSet((LPCTSTR)pItem->m_curValue);
+                ((CN3CPart *)pBase)->TexSet(pItem->m_curValue.GetString());
             } else if (pBase->Type() & OBJ_CHARACTER_PLUG) {
-                ((CN3CPlug *)pBase)->TexSet((LPCTSTR)pItem->m_curValue);
+                ((CN3CPlug *)pBase)->TexSet(pItem->m_curValue.GetString());
             }
             UpdateInfo();
         }
@@ -468,9 +468,9 @@ BOOL CFormViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult
         } else if (pItem->m_propName == "Rotation") {
             pFrm->GetPaneRender()->m_eCursorMode = eCM_PlugRotation;
         } else if (pItem->m_propName == "Mesh") {
-            pPlug->PMeshSet((const char *)pItem->m_curValue);
+            pPlug->PMeshSet(pItem->m_curValue.GetString());
         } else if (pItem->m_propName == "Texture") {
-            pPlug->TexSet((const char *)pItem->m_curValue);
+            pPlug->TexSet(pItem->m_curValue.GetString());
         } else if (pItem->m_propName == "Trace Step") {
             pPlug->m_nTraceStep = atoi(pItem->m_curValue);
             CN3Chr * pChr = this->GetDocument()->m_Scene.ChrGet(0);
@@ -513,9 +513,9 @@ BOOL CFormViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult
 
         CN3FXPlugPart * pFXPPart = (CN3FXPlugPart *)pBase;
         if ("FXB" == pItem->m_propName) {
-            pFXPPart->SetFXB((LPCTSTR)pItem->m_curValue);
+            pFXPPart->SetFXB(pItem->m_curValue.GetString());
             if (pFXPPart->GetFXB()) {
-                pItem->m_curValue = pFXPPart->GetFXB()->FileName().c_str();
+                pItem->m_curValue = pFXPPart->GetFXB()->FilePath().c_str();
             } else {
                 pItem->m_curValue = "";
             }
@@ -584,9 +584,8 @@ void CFormViewProperty::UpdateAllInfo() {
     if (pFXP) {
         int nFXPPC = pFXP->m_FXPParts.size();
         for (int i = 0; i < nFXPPC; ++i) {
-            char szName[_MAX_PATH];
-            wsprintf(szName, "FXPlugPart_%03d", i);
-            hInsert = m_TreeChr.InsertItem(szName, 11, 11, m_hTI_FXPlug);
+            std::string szName = std::format("FXPlugPart_{:03d}", i);
+            hInsert = m_TreeChr.InsertItem(szName.c_str(), 11, 11, m_hTI_FXPlug);
             m_TreeChr.SetItemData(hInsert, (DWORD)pFXP->m_FXPParts[i]);
         }
     }
@@ -611,7 +610,7 @@ void CFormViewProperty::UpdateAllInfo() {
             continue;
         }
 
-        hInsert = m_TreeChr.InsertItem(pChr->Part(i)->FileName().c_str(), 10, 10, m_hTI_Parts);
+        hInsert = m_TreeChr.InsertItem(pChr->Part(i)->FilePath().string().c_str(), 10, 10, m_hTI_Parts);
         m_TreeChr.SetItemData(hInsert, (DWORD)pChr->Part(i));
     }
     m_TreeChr.Expand(m_hTI_Parts, TVE_EXPAND);
@@ -624,7 +623,7 @@ void CFormViewProperty::UpdateAllInfo() {
         }
         CN3CPlugBase * pPlug = pChr->Plug(i);
 
-        hInsert = m_TreeChr.InsertItem(pPlug->FileName().c_str(), 11, 11, m_hTI_Plugs);
+        hInsert = m_TreeChr.InsertItem(pPlug->FilePath().string().c_str(), 11, 11, m_hTI_Plugs);
         m_TreeChr.SetItemData(hInsert, (DWORD)pPlug);
 
         CString   szTmp;
@@ -677,7 +676,7 @@ void CFormViewProperty::OnTreeChrEndLabelEdit(NMHDR * pNMHDR, LRESULT * pResult)
     if (pBase) {
         if (pTDI->item.pszText) {
             if (pBase->Type() & OBJ_BASE_FILEACCESS) {
-                ((CN3BaseFileAccess *)pBase)->FileNameSet(pTDI->item.pszText); // 파일 이름을 바꾸어 준다..
+                ((CN3BaseFileAccess *)pBase)->FilePathSet(pTDI->item.pszText); // 파일 이름을 바꾸어 준다..
             } else {
                 pBase->m_szName = pTDI->item.pszText;
             }
@@ -754,18 +753,15 @@ void CFormViewProperty::OnEditChrJointSet() {
 
     pFrm->GetPaneRender()->m_pJointSelected = NULL;
 
-    CString     FileName;
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(TRUE, "N3Joint", NULL, dwFlags, "Joint File(*.N3Joint)|*.N3Joint||", NULL);
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
 
-    FileName = dlg.GetPathName();
-    pChr->JointSet(std::string(FileName));
-
+    fs::path fsFile = dlg.GetPathName().GetString();
+    pChr->JointSet(fsFile);
     pDoc->UpdateAllViews(NULL);
-    ;
 }
 
 void CFormViewProperty::OnEditChrPartAdd() {
@@ -819,16 +815,15 @@ void CFormViewProperty::OnEditChrPartSet() {
 
     CN3CPart * pPart = (CN3CPart *)pBase;
 
-    CString     FileName;
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(TRUE, "N3CPart", NULL, dwFlags, "Character Part File(*.N3CPart)|*.N3CPart||", NULL);
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
 
-    FileName = dlg.GetPathName();
+    fs::path fsFile = dlg.GetPathName().GetString();
     pPart->Release();
-    pPart->LoadFromFile(std::string(FileName)); // 파일에서 읽기.
+    pPart->LoadFromFile(fsFile); // 파일에서 읽기.
 
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     GetDocument()->UpdateAllViews(NULL);
@@ -846,7 +841,7 @@ void CFormViewProperty::OnEditChrPlugAdd() {
     CN3CPlugBase * pPlug = pChr->PlugAdd();
     if (pPlug) {
         pPlug->m_szName = "Untitled";
-        pPlug->FileNameSet("Item\\Untitled.N3CPlug");
+        pPlug->FilePathSet(fs::path("Item") / "Untitled.n3cplug");
     }
     pDoc->UpdateAllViews(NULL);
 }
@@ -862,7 +857,7 @@ void CFormViewProperty::OnEditChrPlugAddcloak() {
     CN3CPlugBase * pPlug = pChr->PlugAdd(PLUGTYPE_CLOAK);
     if (pPlug) {
         pPlug->m_szName = "Untitled";
-        pPlug->FileNameSet("Item\\Untitled.N3CPlug_Cloak");
+        pPlug->FilePathSet(fs::path("Item") / "Untitled.n3cplug_cloak");
     }
     pDoc->UpdateAllViews(NULL);
 }
@@ -905,16 +900,15 @@ void CFormViewProperty::OnEditChrPlugSet() {
 
     CN3CPlug * pPlug = (CN3CPlug *)pBase;
 
-    CString     FileName;
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(TRUE, "N3CPlug", NULL, dwFlags, "Character Plug File(*.N3CPlug)|*.N3CPlug||", NULL);
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
 
-    FileName = dlg.GetPathName();
+    fs::path fsFile = dlg.GetPathName().GetString();
     pPlug->Release();
-    pPlug->LoadFromFile(std::string(FileName));
+    pPlug->LoadFromFile(fsFile);
 
     CN3Chr * pChr = GetDocument()->m_Scene.ChrGet(0);
     if (pChr) {
@@ -1088,17 +1082,16 @@ void CFormViewProperty::OnEditChrPlugImportPMesh() {
         return;
     }
 
-    CString     FileName;
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(TRUE, "N3PMesh", NULL, dwFlags, "N3 Progressive Mesh(*.N3PMesh)|*.N3PMesh||", NULL);
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
 
-    FileName = dlg.GetPathName();
+    fs::path fsFile = dlg.GetPathName().GetString();
 
     CN3CPlug * pPlug = (CN3CPlug *)pBase;
-    pPlug->ImportPMesh((const char *)FileName);
+    pPlug->ImportPMesh(fsFile);
 
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     pFrm->GetPaneRender()->InvalidateRect(NULL, FALSE);
@@ -1112,15 +1105,14 @@ void CFormViewProperty::OnEditFxplugSet() {
         return;
     }
 
-    CString     FileName;
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(TRUE, "N3FXPlug", NULL, dwFlags, "FXPlug File(*.N3FXPlug)|*.N3FXPlug||", NULL);
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
 
-    FileName = dlg.GetPathName();
-    pChr->FXPlugSet(std::string(FileName));
+    fs::path fsFile = dlg.GetPathName().GetString();
+    pChr->FXPlugSet(fsFile);
 
     pDoc->UpdateAllViews(NULL);
 }

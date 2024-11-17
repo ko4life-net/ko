@@ -472,10 +472,10 @@ CN3Texture * CLyTerrain::GetTileTex(int id) {
 //
 //
 //
-bool CLyTerrain::SaveToFilePartition(const char * lpszPath, float psx, float psz, float width) {
-    HANDLE hFile = CreateFile(lpszPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+bool CLyTerrain::SaveToFilePartition(const fs::path & fsFile, float psx, float psz, float width) {
+    HANDLE hFile = CreateFileW(fsFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     if (hFile == INVALID_HANDLE_VALUE) {
-        MessageBox(::GetActiveWindow(), lpszPath, "Fail to save trn file!", MB_OK);
+        MessageBoxW(::GetActiveWindow(), fsFile.c_str(), L"Fail to save trn file!", MB_OK);
         return false;
     }
 
@@ -603,12 +603,8 @@ bool CLyTerrain::SaveToFilePartition(const char * lpszPath, float psx, float psz
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // 컬러맵 쓰기.
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-    _splitpath(lpszPath, szDrive, szDir, szFName, szExt);
-    char szNewFName[_MAX_PATH] = "";
-    _makepath(szNewFName, szDrive, szDir, szFName, "tcm"); // 파일 이름과 동일한 이름으로 컬러맵 저장..
-
-    HANDLE hCMFile = CreateFile(szNewFName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    fs::path fsTcmFile = fs::path(fsFile).replace_extension(".tcm");
+    HANDLE hCMFile = CreateFileW(fsTcmFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
     int NumColorMap = (((HeightMapSize - 1) * m_iColorMapPixelPerUnitDistance) / m_iColorMapTexSize) + 1;
     if (((HeightMapSize - 1) * m_iColorMapPixelPerUnitDistance) % m_iColorMapTexSize == 0) {
@@ -633,20 +629,20 @@ bool CLyTerrain::SaveToFilePartition(const char * lpszPath, float psx, float psz
     // 다시 읽어온 다음에...
     // 다시 잘라서 저장한 다음에...
     // 잘라 저장한 bmp를 Import하는 것처럼 읽어서 셋팅..
-    CString strTmpColorMap("c:\\MiniMap.bmp");
-    ColorMapExport((LPCTSTR)strTmpColorMap);
+    fs::path fsColorMapTmpFile = fs::temp_directory_path() / "N3ME_MiniMap.bmp";
+    ColorMapExport(fsColorMapTmpFile);
 
     CBitMapFile BMF;
-    if (BMF.LoadFromFile((LPCTSTR)strTmpColorMap)) {
+    if (BMF.LoadFromFile(fsColorMapTmpFile)) {
         RECT rc;
         rc.left = sx * m_iColorMapPixelPerUnitDistance;
         rc.right = rc.left + (m_iColorMapTexSize * NumColorMap);
         rc.bottom = (m_iHeightMapSize - 1 - sz) * m_iColorMapPixelPerUnitDistance;
         rc.top = rc.bottom - (m_iColorMapTexSize * NumColorMap);
 
-        BMF.SaveRectToFile((LPCTSTR)strTmpColorMap, rc);
+        BMF.SaveRectToFile(fsColorMapTmpFile, rc);
 
-        if (BMF.LoadFromFile((LPCTSTR)strTmpColorMap)) {
+        if (BMF.LoadFromFile(fsColorMapTmpFile)) {
             for (x = 0; x < NumColorMap; x++) {
                 for (z = 0; z < NumColorMap; z++) {
                     ProgressBar.StepIt();
@@ -655,11 +651,11 @@ bool CLyTerrain::SaveToFilePartition(const char * lpszPath, float psx, float psz
 
                     rc.right = rc.left + m_iColorMapTexSize;
                     rc.bottom = rc.top + m_iColorMapTexSize;
-                    BMF.SaveRectToFile((LPCTSTR)strTmpColorMap, rc);
+                    BMF.SaveRectToFile(fsColorMapTmpFile, rc);
 
-                    pColorTexture[x][z].LoadFromFile((LPCTSTR)strTmpColorMap);
+                    pColorTexture[x][z].LoadFromFile(fsColorMapTmpFile);
                     pColorTexture[x][z].Convert(D3DFMT_X8R8G8B8, m_iColorMapTexSize, m_iColorMapTexSize);
-                    DeleteFile((LPCTSTR)strTmpColorMap);
+                    fs::remove(fsColorMapTmpFile);
                 }
             }
         }
@@ -683,10 +679,10 @@ bool CLyTerrain::SaveToFilePartition(const char * lpszPath, float psx, float psz
 //    Save()
 //    맵에디터에서 쓰는 파일 타입으로 저장하기..
 //
-bool CLyTerrain::SaveToFile(const char * lpszPath) {
-    HANDLE hFile = CreateFile(lpszPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+bool CLyTerrain::SaveToFile(const fs::path & fsFile) {
+    HANDLE hFile = CreateFileW(fsFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     if (hFile == INVALID_HANDLE_VALUE) {
-        MessageBox(::GetActiveWindow(), lpszPath, "Fail to save trn file!", MB_OK);
+        MessageBoxW(::GetActiveWindow(), fsFile.c_str(), L"Fail to save trn file!", MB_OK);
         return false;
     }
 
@@ -806,12 +802,8 @@ bool CLyTerrain::SaveToFile(const char * lpszPath) {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // 컬러맵 쓰기.
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-    _splitpath(lpszPath, szDrive, szDir, szFName, szExt);
-    char szNewFName[_MAX_PATH] = "";
-    _makepath(szNewFName, szDrive, szDir, szFName, "tcm"); // 파일 이름과 동일한 이름으로 컬러맵 저장..
-
-    HANDLE hCMFile = CreateFile(szNewFName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    fs::path fsTcmFile = fs::path(fsFile).replace_extension(".tcm");
+    HANDLE hCMFile = CreateFileW(fsTcmFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
     ProgressBar.Create("Save color map..", 50, m_iNumColorMap * m_iNumColorMap);
     for (x = 0; x < m_iNumColorMap; x++) {
@@ -822,25 +814,20 @@ bool CLyTerrain::SaveToFile(const char * lpszPath) {
     }
     CloseHandle(hCMFile);
 
-    /*    old version....
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-    _splitpath(lpszPath, szDrive, szDir, szFName, szExt);
-    char szNewFName[_MAX_PATH] = "", szAdd[_MAX_PATH] = "";
-
+    /*
+    // old version....
     ProgressBar.Create("Save color map..", 50, m_iNumColorMap * m_iNumColorMap);
-    for(x=0;x<m_iNumColorMap;x++)
-    {
-        for(z=0;z<m_iNumColorMap;z++)
-        {
+    for (x = 0; x < m_iNumColorMap; x++) {
+        for (z = 0; z < m_iNumColorMap; z++) {
             ProgressBar.StepIt();
 
-            _makepath(szNewFName, szDrive, szDir, szFName, NULL); // 파일 이름과 동일한 이름으로 컬러맵 저장..
-            wsprintf(szAdd, "_%02d%02d.DXT", x, z);  // Tool 경로를 붙이고 번호와 확장자를 붙여서 저장..
-            lstrcat(szNewFName, szAdd);
-            m_pColorTexture[x][z].SaveToFile(szNewFName);
+            fs::path fsColorMapFile = fs::path(fsFile).replace_extension();
+            fsColorMapFile = std::format("{:s}_{:02}{:02}.dxt", fsColorMapFile.string(), x, z);
+            m_pColorTexture[x][z].SaveToFile(fsColorMapFile);
         }
     }
     */
+
     // 컬러맵 쓰기.
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -850,8 +837,8 @@ bool CLyTerrain::SaveToFile(const char * lpszPath) {
 //
 //    Load..
 //
-bool CLyTerrain::LoadFromFile(const char * lpszPath) {
-    HANDLE hFile = CreateFile(lpszPath, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+bool CLyTerrain::LoadFromFile(const fs::path & fsFile) {
+    HANDLE hFile = CreateFileW(fsFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hFile) {
         return false;
     }
@@ -966,31 +953,21 @@ bool CLyTerrain::LoadFromFile(const char * lpszPath) {
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // 컬러맵 읽기.
     ProgressBar.Create("Load color map..", 50, m_iNumColorMap * m_iNumColorMap);
-
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-    _splitpath(lpszPath, szDrive, szDir, szFName, szExt);
-    char szNewFName[_MAX_PATH] = "", szAdd[_MAX_PATH] = "";
-
-    _makepath(szNewFName, szDrive, szDir, szFName, "tcm"); // 파일 이름과 동일한 이름으로 컬러맵 저장되어 있다.
-    HANDLE hCMFile = CreateFile(szNewFName, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    fs::path fsTcmFile = fs::path(fsFile).replace_extension(".tcm");
+    HANDLE hCMFile = CreateFileW(fsTcmFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hCMFile) {
+        std::string szTcmFileBase = fsTcmFile.replace_extension().string();
         for (x = 0; x < m_iNumColorMap; x++) {
             for (z = 0; z < m_iNumColorMap; z++) {
                 ProgressBar.StepIt();
 
-                _makepath(szNewFName, szDrive, szDir, szFName,
-                          NULL); // 파일 이름과 동일한 이름으로 컬러맵 저장되어 있다.
-                wsprintf(szAdd, "_%02d%02d.DXT", x, z); // Tool 경로를 붙이고 번호와 확장자를 붙여서 저장되어 있다.
-                lstrcat(szNewFName, szAdd);
-
-                if (m_pColorTexture[x][z].LoadFromFile(szNewFName) == false) {
-                    MessageBox(::GetActiveWindow(), "컬러맵은 32bit dxt파일만 사용할 수 있어요..", "ㅠ.ㅠ", MB_OK);
+                fs::path fsDxtFile = std::format("{:s}_{:02d}{:02d}.dxt", szTcmFileBase, x, z);
+                if (!m_pColorTexture[x][z].LoadFromFile(fsDxtFile)) {
+                    MessageBox(::GetActiveWindow(), "Colormap can only use 32bit dxt files.", "ㅠ.ㅠ", MB_OK);
                 }
             }
         }
-    }
-
-    else {
+    } else {
         for (x = 0; x < m_iNumColorMap; x++) {
             for (z = 0; z < m_iNumColorMap; z++) {
                 ProgressBar.StepIt();
@@ -1058,12 +1035,13 @@ void CLyTerrain::ConvertLightMapToolDataV2toV3() {
             }
 
             //dc만들어서 비트맵축소..
-            pBMP->SaveToFile("c:\\templightmap.bmp");
+            fs::path fsLightMapBmpTmpFile = fs::temp_directory_path() / "N3ME_templightmap.bmp";
+            pBMP->SaveToFile(fsLightMapBmpTmpFile);
 
             int SmallSize = LIGHTMAP_TEX_SIZE - 2;
 
             HANDLE hSrcBitmap =
-                LoadImage(0, "c:\\templightmap.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_DEFAULTSIZE);
+                LoadImageW(0, fsLightMapBmpTmpFile.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_DEFAULTSIZE);
             __ASSERT(hSrcBitmap, "");
 
             HDC hSmallDC = CreateCompatibleDC(NULL);
@@ -1106,7 +1084,7 @@ void CLyTerrain::ConvertLightMapToolDataV2toV3() {
             SelectObject(hBMDC, hOldBM);
             SelectObject(hSmallDC, hOldBM2);
 
-            DeleteFile("c:\\templightmap.bmp"); // 임시 파일을 지워준다..
+            fs::remove(fsLightMapBmpTmpFile);
         }
     }
 
@@ -1444,12 +1422,11 @@ void CLyTerrain::SaveGameData(HANDLE hFile) {
 
             pTexture = GetTileTex(TexIdx);
             if (pTexture) {
-                // 경로를 빼고 파일이름과 확장자만 저장해준다.
-                char szTileFN[MAX_PATH];
-                char szFName[_MAX_FNAME]{};
-                _splitpath(pTexture->FileName().c_str(), NULL, NULL, szFName, NULL);
-                wsprintf(szTileFN, "dtex\\%s_%d.gtt", szFName, YIdx);
-                WriteFile(hFile, szTileFN, MAX_PATH, &dwRWC, NULL);
+                fs::path fsGttFile =
+                    (("DTex" / pTexture->FilePath().stem()) + std::format("_{:d}.gtt", YIdx)).normalize('/', '\\');
+                char szGttFile[260]{};
+                fsGttFile.string().copy(szGttFile, sizeof(szGttFile) - 1);
+                WriteFile(hFile, szGttFile, sizeof(szGttFile), &dwRWC, NULL);
             }
             TLIt++;
         }
@@ -1516,7 +1493,7 @@ void CLyTerrain::SaveGameData(HANDLE hFile) {
     }
 }
 
-void CLyTerrain::MakeGameLightMap(char * szFullPathName) {
+void CLyTerrain::MakeGameLightMap(const fs::path & fsFile) {
     DetectRealLightMap(0, 0, m_iHeightMapSize);
 
     int PatchCount = (m_iHeightMapSize - 1) / PATCH_TILE_SIZE; //PATCH_TILE_SIZE = 8
@@ -1554,10 +1531,9 @@ void CLyTerrain::MakeGameLightMap(char * szFullPathName) {
             }
 
             //임시파일 만들고 저장함 해보고, 용량 알아낸다음....저장할까?
-
-            char szTmpName[_MAX_PATH];
-            sprintf(szTmpName, "c:\\temp_lightmap.binn");
-            HANDLE hFile = CreateFile(szTmpName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+            fs::path fsLightTmpFile = fs::temp_directory_path() / "N3ME_lightmap.bin";
+            HANDLE   hFile =
+                CreateFileW(fsLightTmpFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
             WriteFile(hFile, &(TexCount), sizeof(int), &dwRWC, NULL); // LightMap의 갯수 기록..
 
@@ -1581,11 +1557,11 @@ void CLyTerrain::MakeGameLightMap(char * szFullPathName) {
                 Size += dwSize;
             }
             CloseHandle(hFile);
-            DeleteFile(szTmpName);
+            fs::remove(fsLightTmpFile);
         }
     }
 
-    HANDLE hFile = CreateFile(szFullPathName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFile = CreateFileW(fsFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
     int version = 0;
     WriteFile(hFile, &(version), sizeof(int), &dwRWC, NULL);
@@ -1636,8 +1612,8 @@ void CLyTerrain::MakeGameLightMap(char * szFullPathName) {
     delete[] PatchInfo;
 }
 
-void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
-    HANDLE hCMFile = CreateFile(szFullPathName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+void CLyTerrain::MakeGameColorMap(const fs::path & fsFile) {
+    HANDLE hCMFile = CreateFileW(fsFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
     CProgressBar ProgressBar; // 진행 상황..
     ProgressBar.Create("Save game color map..", 50, m_iNumColorMap * m_iNumColorMap);
@@ -1648,9 +1624,8 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
     //*
     CN3Texture TexTmp;
     TexTmp.Create(m_iColorMapTexSize, m_iColorMapTexSize, D3DFMT_A1R5G5B5, TRUE);
-    int x, z;
-    for (x = 0; x < m_iNumColorMap; x++) {
-        for (z = 0; z < m_iNumColorMap; z++) {
+    for (int x = 0; x < m_iNumColorMap; x++) {
+        for (int z = 0; z < m_iNumColorMap; z++) {
             ProgressBar.StepIt();
 
             LPDIRECT3DSURFACE9 lpSurfSrc = NULL;
@@ -1673,46 +1648,46 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
     //
     //    New...(축소시키는방법..)
     /*
-    int x,z;
     CBitMapFile BMP[3][3];
-    char buff[80];
-    unsigned char* pBMPImg;
-    for(x=0;x<3;x++)
-    {
-        for(z=0;z<3;z++) BMP[x][z].Create(m_iColorMapTexSize,m_iColorMapTexSize);
+    for (int x = 0; x < 3; x++) {
+        for (int z = 0; z < 3; z++) {
+            BMP[x][z].Create(m_iColorMapTexSize, m_iColorMapTexSize);
+        }
     }
 
-    CN3Texture TexTmp;
     TexTmp.Create(m_iColorMapTexSize, m_iColorMapTexSize, D3DFMT_X8R8G8B8, TRUE);
-    
+
     D3DLOCKED_RECT d3dlrTex;
-    DWORD* pTexBits;        
-    for(x=0;x<m_iNumColorMap;x++)
-    {
-        for(z=0;z<m_iNumColorMap;z++)
-        {
+    DWORD *        pTexBits;
+    for (int x = 0; x < m_iNumColorMap; x++) {
+        for (int z = 0; z < m_iNumColorMap; z++) {
             int ax, az;
-            for(ax=0;ax<3;ax++)
-            {
-                for(az=0;az<3;az++)
-                {
-                    sprintf(buff,"c:\\tmpcolormap%04d%04d.bmp", ax, az);
-                    if((x+ax-1)>=0 && (z+az-1)>=0 && (x+ax-1)<m_iNumColorMap && (z+az-1)<m_iNumColorMap) m_pColorTexture[x+ax-1][z+az-1].SaveToBitmapFile(buff);
-                    else BMP[ax][az].SaveToFile(buff);
-                }    //for(int az=0;az<3;az++)
-            }    //for(int ax=0;ax<3;ax++)
+            for (ax = 0; ax < 3; ax++) {
+                for (az = 0; az < 3; az++) {
+                    fs::path fsTmpFile = fs::temp_directory_path();
+                    fsTmpFile /= std::format("N3ME_tmpcolormap{:04d}{:04d}.bmp", ax, az);
+
+                    if ((x + ax - 1) >= 0 && (z + az - 1) >= 0 && (x + ax - 1) < m_iNumColorMap &&
+                        (z + az - 1) < m_iNumColorMap) {
+                        m_pColorTexture[x + ax - 1][z + az - 1].SaveToBitmapFile(fsTmpFile);
+                    } else {
+                        BMP[ax][az].SaveToFile(fsTmpFile);
+                    }
+                } //for(int az=0;az<3;az++)
+            }     //for(int ax=0;ax<3;ax++)
 
             //픽셀 재배열...
             int SmallSize = m_iColorMapTexSize - 2;
             TexTmp.Convert(D3DFMT_X8R8G8B8, m_iColorMapTexSize, m_iColorMapTexSize);
             TexTmp.Get()->LockRect(0, &d3dlrTex, 0, 0);
-            pTexBits = (DWORD*)d3dlrTex.pBits;
-            for(ax=0;ax<3;ax++)
-            {
-                for(az=0;az<3;az++)
-                {
-                    sprintf(buff,"c:\\tmpcolormap%04d%04d.bmp", ax, az);
-                    HANDLE hSrcBitmap = LoadImage(0, buff, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE|LR_DEFAULTSIZE);
+            pTexBits = (DWORD *)d3dlrTex.pBits;
+            for (ax = 0; ax < 3; ax++) {
+                for (az = 0; az < 3; az++) {
+                    fs::path fsTmpFile = fs::temp_directory_path();
+                    fsTmpFile /= std::format("N3ME_tmpcolormap{:04d}{:04d}.bmp", ax, az);
+
+                    HANDLE hSrcBitmap =
+                        LoadImageW(0, fsTmpFile.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_DEFAULTSIZE);
                     __ASSERT(hSrcBitmap, "");
 
                     HDC hSmallDC = CreateCompatibleDC(NULL);
@@ -1721,71 +1696,69 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
                     HBITMAP hOldBM = (HBITMAP)SelectObject(hBMDC, (HBITMAP)hSrcBitmap);
 
                     // Prepare to create a bitmap
-                    DWORD* pBitmapBits;
+                    DWORD *    pBitmapBits;
                     BITMAPINFO bmi;
-                    ZeroMemory( &bmi.bmiHeader,  sizeof(BITMAPINFOHEADER) );
-                    bmi.bmiHeader.biSize        = sizeof(BITMAPINFOHEADER);
-                    bmi.bmiHeader.biWidth       =  (int)SmallSize;
-                    bmi.bmiHeader.biHeight      = -(int)SmallSize;
-                    bmi.bmiHeader.biPlanes      = 1;
+                    ZeroMemory(&bmi.bmiHeader, sizeof(BITMAPINFOHEADER));
+                    bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+                    bmi.bmiHeader.biWidth = (int)SmallSize;
+                    bmi.bmiHeader.biHeight = -(int)SmallSize;
+                    bmi.bmiHeader.biPlanes = 1;
                     bmi.bmiHeader.biCompression = BI_RGB;
-                    bmi.bmiHeader.biBitCount    = 32;
+                    bmi.bmiHeader.biBitCount = 32;
 
-                    HBITMAP hbmBitmap = CreateDIBSection( hSmallDC, &bmi, DIB_RGB_COLORS, (VOID**)&pBitmapBits, NULL, 0 );
-                    HBITMAP hOldBM2 = (HBITMAP) SelectObject( hSmallDC, hbmBitmap );
+                    HBITMAP hbmBitmap =
+                        CreateDIBSection(hSmallDC, &bmi, DIB_RGB_COLORS, (VOID **)&pBitmapBits, NULL, 0);
+                    HBITMAP hOldBM2 = (HBITMAP)SelectObject(hSmallDC, hbmBitmap);
 
                     SetStretchBltMode(hSmallDC, HALFTONE);
-                    StretchBlt(hSmallDC, 0,0, SmallSize, SmallSize, hBMDC, 0,0, m_iColorMapTexSize, m_iColorMapTexSize, SRCCOPY);
-                
-                    if(ax==0 && az==0) 
-                        pTexBits[(m_iColorMapTexSize-1)*m_iColorMapTexSize] = pBitmapBits[SmallSize-1];
-                    else if(ax==1 && az==0)
-                        memcpy(&(pTexBits[(m_iColorMapTexSize-1)*m_iColorMapTexSize + 1]), &(pBitmapBits[0]), sizeof(DWORD)*SmallSize);
-                    else if(ax==2 && az==0)
-                        pTexBits[(m_iColorMapTexSize*m_iColorMapTexSize)-1] = pBitmapBits[0];
-                    else if(ax==0 && az==1)
-                    {
-                        for(int i=0;i<SmallSize;i++)
-                        {
-                            pTexBits[(i+1)*m_iColorMapTexSize] = pBitmapBits[(i+1)*SmallSize - 1];
+                    StretchBlt(hSmallDC, 0, 0, SmallSize, SmallSize, hBMDC, 0, 0, m_iColorMapTexSize,
+                               m_iColorMapTexSize, SRCCOPY);
+
+                    if (ax == 0 && az == 0) {
+                        pTexBits[(m_iColorMapTexSize - 1) * m_iColorMapTexSize] = pBitmapBits[SmallSize - 1];
+                    } else if (ax == 1 && az == 0) {
+                        memcpy(&(pTexBits[(m_iColorMapTexSize - 1) * m_iColorMapTexSize + 1]), &(pBitmapBits[0]),
+                               sizeof(DWORD) * SmallSize);
+                    } else if (ax == 2 && az == 0) {
+                        pTexBits[(m_iColorMapTexSize * m_iColorMapTexSize) - 1] = pBitmapBits[0];
+                    } else if (ax == 0 && az == 1) {
+                        for (int i = 0; i < SmallSize; i++) {
+                            pTexBits[(i + 1) * m_iColorMapTexSize] = pBitmapBits[(i + 1) * SmallSize - 1];
                         }
+                    } else if (ax == 1 && az == 1) {
+                        for (int i = 0; i < SmallSize; i++) {
+                            memcpy(&(pTexBits[(i + 1) * m_iColorMapTexSize + 1]), &(pBitmapBits[i * SmallSize]),
+                                   sizeof(DWORD) * SmallSize);
+                        }
+                    } else if (ax == 2 && az == 1) {
+                        for (int i = 0; i < SmallSize; i++) {
+                            pTexBits[(i + 1) * m_iColorMapTexSize + (m_iColorMapTexSize - 1)] =
+                                pBitmapBits[i * SmallSize];
+                        }
+                    } else if (ax == 0 && az == 2) {
+                        pTexBits[0] = pBitmapBits[(SmallSize * SmallSize) - 1];
+                    } else if (ax == 1 && az == 2) {
+                        memcpy(&(pTexBits[1]), &(pBitmapBits[(SmallSize - 1) * SmallSize]), sizeof(DWORD) * SmallSize);
+                    } else if (ax == 2 && az == 2) {
+                        pTexBits[m_iColorMapTexSize - 1] = pBitmapBits[(SmallSize - 1) * SmallSize];
                     }
-                    else if(ax==1 && az==1)
-                    {
-                        for(int i=0;i<SmallSize;i++)
-                            memcpy(&(pTexBits[(i+1)*m_iColorMapTexSize + 1]), &(pBitmapBits[i*SmallSize]), sizeof(DWORD)*SmallSize);
-                    }
-                    else if(ax==2 && az==1)
-                    {
-                        for(int i=0;i<SmallSize;i++)
-                            pTexBits[(i+1)*m_iColorMapTexSize + (m_iColorMapTexSize-1)] = pBitmapBits[i*SmallSize];
-                    }
-                    else if(ax==0 && az==2) 
-                        pTexBits[0] = pBitmapBits[(SmallSize*SmallSize) - 1];
-                    else if(ax==1 && az==2)
-                    {
-                        memcpy(&(pTexBits[1]), &(pBitmapBits[(SmallSize-1)*SmallSize]), sizeof(DWORD)*SmallSize);
-                    }
-                    else if(ax==2 && az==2)
-                        pTexBits[m_iColorMapTexSize - 1] = pBitmapBits[(SmallSize-1)*SmallSize];
 
-                    SelectObject( hBMDC, hOldBM );
-                    SelectObject( hSmallDC, hOldBM2 );
-                    
+                    SelectObject(hBMDC, hOldBM);
+                    SelectObject(hSmallDC, hOldBM2);
 
-                    DeleteFile(buff); // 임시 파일을 지워준다..    
+                    fs::remove(fsTmpFile);
                 }
             }
             TexTmp.Get()->UnlockRect(0);
-            sprintf(buff,"tmpb%04d%04d.bmp", x,z);
-            TexTmp.SaveToBitmapFile(buff);
-            
+            fs::path fsTmpFile = fs::temp_directory_path();
+            fsTmpFile /= std::format("N3ME_tmpb{:04d}{:04d}.bmp", ax, az);
+            TexTmp.SaveToBitmapFile(fsTmpFile);
             TexTmp.Convert(D3DFMT_A1R5G5B5, m_iColorMapTexSize, m_iColorMapTexSize);
             TexTmp.Save(hCMFile);
-            
-        }    //for(z=0;z<m_iNumColorMap;z++)
-    }    //for(x=0;x<m_iNumColorMap;x++)
-    //*/
+
+        } //for(z=0;z<m_iNumColorMap;z++)
+    }     //for(x=0;x<m_iNumColorMap;x++)
+    */
     //
     ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1796,112 +1769,103 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
     // 그런데 texturestagestate에서 mirror쓰면 좀 어색하긴 해도 어느정도는 되더라...-.-
     //
     /*
-    HANDLE hCMFile = CreateFile(szFullPathName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hCMFile = CreateFileW(fsFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
     CProgressBar ProgressBar; // 진행 상황..
     ProgressBar.Create("Save game color map..", 50, m_iNumColorMap * m_iNumColorMap);
     ProgressBar.SetStep(1);
 
     //bitmap가공...
-    ColorMapExport("c:\\TempColormap.bmp");
+    fs::path fsBmpTmpFile = fs::temp_directory_path() / "N3ME_TempColormap.bmp";
+    ColorMapExport(fsBmpTmpFile);
 
     int OrgWidth, OrgHeight;
     OrgWidth = m_iColorMapTexSize * m_iNumColorMap;
     OrgHeight = m_iColorMapTexSize * m_iNumColorMap;
 
     int SmallWidth, SmallHeight;
-    SmallWidth = OrgWidth - ((OrgWidth / m_iColorMapTexSize)<<1);
-    SmallHeight = OrgHeight - ((OrgHeight / m_iColorMapTexSize)<<1);
+    SmallWidth = OrgWidth - ((OrgWidth / m_iColorMapTexSize) << 1);
+    SmallHeight = OrgHeight - ((OrgHeight / m_iColorMapTexSize) << 1);
 
-    HANDLE hSrcBitmap = LoadImage(0, "c:\\TempColormap.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE|LR_DEFAULTSIZE);
+    HANDLE hSrcBitmap = LoadImageW(0, fsBmpTmpFile.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_DEFAULTSIZE);
     __ASSERT(hSrcBitmap, "");
 
     CBitmap PatchBitmap;
-    HDC hSmallDC = CreateCompatibleDC(NULL);
-    HDC hBMDC = CreateCompatibleDC(hSmallDC);
+    HDC     hSmallDC = CreateCompatibleDC(NULL);
+    HDC     hBMDC = CreateCompatibleDC(hSmallDC);
 
     HBITMAP hOldBM = (HBITMAP)SelectObject(hBMDC, (HBITMAP)hSrcBitmap);
 
     // Prepare to create a bitmap
-    DWORD* pBitmapBits;
+    DWORD *    pBitmapBits;
     BITMAPINFO bmi;
-    ZeroMemory( &bmi.bmiHeader,  sizeof(BITMAPINFOHEADER) );
-    bmi.bmiHeader.biSize        = sizeof(BITMAPINFOHEADER);
-    bmi.bmiHeader.biWidth       =  (int)SmallWidth;
-    bmi.bmiHeader.biHeight      = -(int)SmallHeight;
-    bmi.bmiHeader.biPlanes      = 1;
+    ZeroMemory(&bmi.bmiHeader, sizeof(BITMAPINFOHEADER));
+    bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+    bmi.bmiHeader.biWidth = (int)SmallWidth;
+    bmi.bmiHeader.biHeight = -(int)SmallHeight;
+    bmi.bmiHeader.biPlanes = 1;
     bmi.bmiHeader.biCompression = BI_RGB;
-    bmi.bmiHeader.biBitCount    = 32;
+    bmi.bmiHeader.biBitCount = 32;
 
-    HBITMAP hbmBitmap = CreateDIBSection( hSmallDC, &bmi, DIB_RGB_COLORS,
-                                          (VOID**)&pBitmapBits, NULL, 0 );
-    HBITMAP hOldBM2 = (HBITMAP) SelectObject( hSmallDC, hbmBitmap );
+    HBITMAP hbmBitmap = CreateDIBSection(hSmallDC, &bmi, DIB_RGB_COLORS, (VOID **)&pBitmapBits, NULL, 0);
+    HBITMAP hOldBM2 = (HBITMAP)SelectObject(hSmallDC, hbmBitmap);
 
-    StretchBlt(hSmallDC, 0,0, SmallWidth, SmallHeight,
-                hBMDC, 0,0, OrgWidth, OrgHeight, SRCCOPY);
-
+    StretchBlt(hSmallDC, 0, 0, SmallWidth, SmallHeight, hBMDC, 0, 0, OrgWidth, OrgHeight, SRCCOPY);
 
     // n3texture 가공..
-    CN3Texture TexTmp;
-    LPDWORD pImgTarget;
+    CN3Texture     TexTmp;
+    LPDWORD        pImgTarget;
     D3DLOCKED_RECT d3dlrTarget;
 
     int TexSize = m_pColorTexture[0][0].Width();
-    int x,z;
-    int sx,sz;
+    int sx, sz;
     int DestWidth, DestHeight;
-    for(x=0;x<m_iNumColorMap;x++)
-    {
-        for(z=m_iNumColorMap-1;z>=0;z--)
-        {
-            ProgressBar.StepIt();                        
+    for (int x = 0; x < m_iNumColorMap; x++) {
+        for (int z = m_iNumColorMap - 1; z >= 0; z--) {
+            ProgressBar.StepIt();
             TexTmp.Create(TexSize, TexSize, D3DFMT_X8R8G8B8, TRUE);
-            TexTmp.Get()->LockRect( 0, &d3dlrTarget, 0, 0 );
+            TexTmp.Get()->LockRect(0, &d3dlrTarget, 0, 0);
             pImgTarget = (LPDWORD)d3dlrTarget.pBits;
 
-            sx = x * (TexSize-2) - 1;
-            sz = z * (TexSize-2) - 1;
+            sx = x * (TexSize - 2) - 1;
+            sz = z * (TexSize - 2) - 1;
             DestWidth = TexSize;
             DestHeight = TexSize;
-            
-            if(x==0)
-            {
+
+            if (x == 0) {
                 sx = 0;
                 DestWidth = TexSize - 1;
                 pImgTarget++;
+            } else if (x == m_iNumColorMap - 1) {
+                DestWidth = TexSize - 1;
             }
-            else if(x==m_iNumColorMap-1)
-            {
-                DestWidth = TexSize - 1;                
-            }
-            
-            if(z==0)
-            {
+
+            if (z == 0) {
                 sz = 0;
                 DestHeight = TexSize - 1;
                 pImgTarget += TexSize;
+            } else if (z == m_iNumColorMap - 1) {
+                DestHeight = TexSize - 1;
             }
-            else if(z==m_iNumColorMap-1)
-            {
-                DestHeight = TexSize - 1;                
+
+            for (int i = 0; i < DestHeight; i++) {
+                memcpy(&(pImgTarget[i * TexSize]), &(pBitmapBits[sx + (sz + i) * SmallWidth]),
+                       DestWidth * sizeof(DWORD));
             }
-            
-            for(int i=0;i<DestHeight;i++)
-                memcpy(&(pImgTarget[i*TexSize]), &(pBitmapBits[sx + (sz+i)*SmallWidth]), DestWidth*sizeof(DWORD));
 
             TexTmp.Get()->UnlockRect(0);
             TexTmp.Convert(D3DFMT_DXT1); // DXT1 형식으로 Convert
-            TexTmp.Save(hCMFile);            
+            TexTmp.Save(hCMFile);
         }
     }
 
     CloseHandle(hCMFile);
 
-    SelectObject( hBMDC, hOldBM );
-    SelectObject( hSmallDC, hOldBM2 );
+    SelectObject(hBMDC, hOldBM);
+    SelectObject(hSmallDC, hOldBM2);
 
-    DeleteFile("c:\\TempColormap.bmp"); // 임시 파일을 지워준다..
-*/
+    fs::remove(fsBmpTmpFile);
+    */
     //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1910,34 +1874,30 @@ void CLyTerrain::MakeGameColorMap(char * szFullPathName) {
     // 컬러 맵 이름.. 파일이름만(확장자는 없다.) 저장해준다.
     // 컬러맵을 패치별로  따로 저장...
     /*
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
-    _splitpath(m_szFileName, szDrive, szDir, szFName, szExt);
-    
     CProgressBar ProgressBar; // 진행 상황..
     ProgressBar.Create("Save game color map..", m_iNumColorMap * m_iNumColorMap, 50);
     ProgressBar.SetStep(1);
 
-    WriteFile(hFile, szFName, _MAX_PATH, &dwRWC, NULL); // 컬러맵 이름 저장.
+    char szGttFile[260]{};
+    fsGttFile.string().copy(szGttFile, sizeof(szGttFile) - 1);
+    WriteFile(hFile, szGttFile, sizeof(szGttFile), &dwRWC, NULL); // 컬러맵 이름 저장.
 
-    CN3Texture TexTmp;
-    char szNewFName[_MAX_PATH] = "", szAdd[_MAX_PATH] = "";
-    for(x=0;x<m_iNumColorMap;x++)
-    {
-        for(z=0;z<m_iNumColorMap;z++)
-        {
+    fs::path    fsTmpConvFile = fs::temp_directory_path() / "N3ME_TempConversion.dxt";
+    CN3Texture  TexTmp;
+    std::string szTmpFileBase = fsTmpFile.replace_extension().string();
+    for (int x = 0; x < m_iNumColorMap; x++) {
+        for (int z = 0; z < m_iNumColorMap; z++) {
             ProgressBar.StepIt();
 
-            m_pColorTexture[x][z].SaveToFile("c:\\TempConversion.DXT"); // 임시로 저장.
-            TexTmp.LoadFromFile("c:\\TempConversion.DXT"); // 읽는다. 
-            TexTmp.Convert(D3DFMT_DXT1); // DXT1 형식으로 Convert
+            m_pColorTexture[x][z].SaveToFile(fsTmpConvFile); // 임시로 저장.
+            TexTmp.LoadFromFile(fsTmpConvFile);              // 읽는다.
+            TexTmp.Convert(D3DFMT_DXT1);                     // DXT1 형식으로 Convert
 
-            _makepath(szNewFName, szDrive, szDir, szFName, NULL);
-            wsprintf(szAdd, "_%02d%02d.dxt", x, z);
-            lstrcat(szNewFName, szAdd);
-            TexTmp.SaveToFile(szNewFName);
+            fs::path fsDxtFile = std::format("{:s}_{:02d}{:02d}.dxt", szTmpFileBase, x, z);
+            TexTmp.SaveToFile(fsDxtFile);
         }
     }
-    DeleteFile("c:\\TempConversion.DXT"); // 임시 파일을 지워준다..
+    fs::remove(fsTmpConvFile);
     */
     //
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -4659,7 +4619,7 @@ void CLyTerrain::RenderBrushArea() {
 //    Import...
 //    마야에서 뽑아낸 N3Scene파일로 부터 지형 읽기..
 //
-void CLyTerrain::Import(LPCTSTR pFileName, float fSize) {
+void CLyTerrain::Import(const fs::path & fsVmeshFile, float fSize) {
     int    HeightMapSize;
     double NumCell = fSize / TERRAIN_CELL_SIZE;
     double Log = log(NumCell) / log(2);
@@ -4675,7 +4635,7 @@ void CLyTerrain::Import(LPCTSTR pFileName, float fSize) {
     CN3VMesh * pVMesh = new CN3VMesh;
     __ASSERT(pVMesh, "VMesh가 안읽허여..ㅜ.ㅜ");
 
-    pVMesh->LoadFromFile(pFileName);
+    pVMesh->LoadFromFile(fsVmeshFile);
 
     __Vector3 vMax, vMin;
     vMax = pVMesh->Max();
@@ -4893,11 +4853,11 @@ void CLyTerrain::Import(LPCTSTR pFileName, float fSize) {
 //
 //
 //
-void CLyTerrain::ImportHeight(LPCTSTR pFileName) {
+void CLyTerrain::ImportHeight(const fs::path & fsVmeshFile) {
     CN3VMesh * pVMesh = new CN3VMesh;
     __ASSERT(pVMesh, "VMesh가 안읽혀여..ㅜ.ㅜ");
 
-    pVMesh->LoadFromFile(pFileName);
+    pVMesh->LoadFromFile(fsVmeshFile);
 
     __Vector3 vMax, vMin;
     vMax = pVMesh->Max();
@@ -5031,12 +4991,12 @@ void CLyTerrain::ImportHeight(LPCTSTR pFileName) {
     delete pVMesh;
 }
 /*
-void CLyTerrain::ImportHeight(LPCTSTR pFileName)
+void CLyTerrain::ImportHeight(const fs::path & fsVmeshFile)
 {
     CN3VMesh* pVMesh = new CN3VMesh;
     __ASSERT(pVMesh, "VMesh가 안읽허여..ㅜ.ㅜ");
 
-    pVMesh->LoadFromFile(pFileName);
+    pVMesh->LoadFromFile(fsVmeshFile);
 
     __Vector3 vMax, vMin;
     vMax = pVMesh->Max();
@@ -5123,9 +5083,9 @@ void CLyTerrain::ImportHeight(LPCTSTR pFileName)
 //
 //    ImportColorMap..
 //
-void CLyTerrain::ColorMapImport(LPCTSTR lpszPathName) {
+void CLyTerrain::ColorMapImport(const fs::path & fsFile) {
     CBitMapFile BMF;
-    if (false == BMF.LoadFromFile(lpszPathName)) {
+    if (false == BMF.LoadFromFile(fsFile)) {
         return;
     }
 
@@ -5143,18 +5103,19 @@ void CLyTerrain::ColorMapImport(LPCTSTR lpszPathName) {
             rc.top = (m_iNumColorMap - z - 1) * m_iColorMapTexSize;
             rc.right = rc.left + m_iColorMapTexSize;
             rc.bottom = rc.top + m_iColorMapTexSize;
-            BMF.SaveRectToFile("C:\\TmpSave.BMP", rc);
-            m_pColorTexture[x][z].LoadFromFile("C:\\TmpSave.BMP");
-            DeleteFile("C:\\TmpSave.BMP");
+            fs::path szTmpBmpFile = fs::temp_directory_path() / "N3ME_TmpSave.bmp";
+            BMF.SaveRectToFile(szTmpBmpFile, rc);
+            m_pColorTexture[x][z].LoadFromFile(szTmpBmpFile);
+            fs::remove(szTmpBmpFile);
         }
     }
 }
 
-void CLyTerrain::ColorMapExport(LPCTSTR lpszPathName) {
+void CLyTerrain::ColorMapExport(const fs::path & fsFile) {
     if (m_iNumColorMap <= 0) {
         return;
     }
-    if (lstrlen(lpszPathName) <= 0) {
+    if (fsFile.empty()) {
         return;
     }
 
@@ -5202,14 +5163,14 @@ void CLyTerrain::ColorMapExport(LPCTSTR lpszPathName) {
         }
     }
 
-    BMF.SaveToFile(lpszPathName); // 비트맵으로 저장..
+    BMF.SaveToFile(fsFile); // 비트맵으로 저장..
 }
 
-void CLyTerrain::GenerateMiniMap(LPCTSTR lpszPathName, int size) {
+void CLyTerrain::GenerateMiniMap(const fs::path & fsFile, int size) {
     if (m_iNumColorMap <= 0) {
         return;
     }
-    if (lstrlen(lpszPathName) <= 0) {
+    if (fsFile.empty()) {
         return;
     }
 
@@ -5259,11 +5220,11 @@ void CLyTerrain::GenerateMiniMap(LPCTSTR lpszPathName, int size) {
             TmpTex.Get()->UnlockRect(0);
         }
     }
-    BMF.SaveToFile(lpszPathName); // 비트맵으로 저장..
+    BMF.SaveToFile(fsFile); // 비트맵으로 저장..
 }
 
-void CLyTerrain::ExportHeightBMP(const char * szPathName) {
-    if (lstrlen(szPathName) <= 0) {
+void CLyTerrain::ExportHeightBMP(const fs::path & fsFile) {
+    if (fsFile.empty()) {
         return;
     }
 
@@ -5322,7 +5283,7 @@ void CLyTerrain::ExportHeightBMP(const char * szPathName) {
             pPixelDest[2] = gray;
         }
     }
-    BMF.SaveToFile(szPathName); // 비트맵으로 저장..
+    BMF.SaveToFile(fsFile); // 비트맵으로 저장..
 
     char msg[256];
     sprintf(msg, "Max : %.2f Min : %.2f", Max, Min);
@@ -5330,9 +5291,9 @@ void CLyTerrain::ExportHeightBMP(const char * szPathName) {
     MessageBox(::GetActiveWindow(), msg, NULL, MB_OK);
 }
 
-void CLyTerrain::ImportHeightBMP(const char * szPathName) {
+void CLyTerrain::ImportHeightBMP(const fs::path & fsFile) {
     CBitMapFile BMF;
-    BMF.LoadFromFile(szPathName);
+    BMF.LoadFromFile(fsFile);
 
     CProgressBar ProgressBar; // 진행 상황..
     ProgressBar.Create("Import HeightBMP..", 50, m_iHeightMapSize * m_iHeightMapSize);

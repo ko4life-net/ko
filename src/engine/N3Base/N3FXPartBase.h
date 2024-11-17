@@ -37,8 +37,7 @@ class CN3FXPartBase : public CN3BaseFileAccess {
 
     bool m_bOnGround; //바닥에 붙어서 갈 것인가...
 
-    //texture..
-    char          m_pTexName[MAX_PATH];
+    fs::path      m_fsTexFileBase; // without texture index and ext (fx/billboard/tex|{0,1,2}.dxt)
     CN3Texture ** m_ppRefTex;
     int           m_iNumTex;
     float         m_fTexFPS;
@@ -78,7 +77,7 @@ class CN3FXPartBase : public CN3BaseFileAccess {
                              char * szBuff3); //실질적인 스크립트 해석 함수..
 
   public:
-    bool DecodeScriptFile(const char * lpPathName);
+    bool DecodeScriptFile(const fs::path & fsFile);
 #endif // end of _N3TOOL
 
   public:

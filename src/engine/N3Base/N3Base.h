@@ -193,8 +193,8 @@ class CN3Base {
     static CN3Mng<class CN3FXPMesh> s_MngFXPMesh; // FX에서 쓰는 PMesh - 파일은 일반 PMesh를 쓰지만 속은 다르다.
     static CN3Mng<class CN3FXShape> s_MngFXShape; // FX에서 쓰는 Shape - 파일은 일반 shape를 쓰지만 속은 다르다.
 
-  protected:
-    static std::string s_szPath; // 프로그램이 실행된 경로..
+  private:
+    static fs::path s_fsBaseDir; // Application root path (aka working directory)
 
   protected:
     DWORD m_dwType; // "MESH", "CAMERA", "SCENE", "???" .... 등등등...
@@ -203,9 +203,9 @@ class CN3Base {
     std::string m_szName;
 
   public:
-    static float               TimeGet();
-    static const std::string & PathGet() { return s_szPath; }
-    static void                PathSet(const std::string & szPath);
+    static float            TimeGet();
+    static const fs::path & PathGet() { return s_fsBaseDir; }
+    static void             PathSet(const fs::path & fsBaseDir);
 
     static void RenderLines(const __Vector3 * pvLines, int nCount, D3DCOLOR color);
     static void RenderLines(const RECT & rc, D3DCOLOR color);

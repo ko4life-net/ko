@@ -32,20 +32,19 @@ void CN3FXPlugPart::Release() {
 }
 
 bool CN3FXPlugPart::Load(HANDLE hFile) {
-    if (false == CN3BaseFileAccess::Load(hFile)) {
+    if (!CN3BaseFileAccess::Load(hFile)) {
         return false;
     }
     __ASSERT(NULL == m_pFXB, "must null");
-    DWORD dwNum;
-    int   nStrLen;
-    ReadFile(hFile, &nStrLen, sizeof(nStrLen), &dwNum, NULL);
-    if (nStrLen > 0) {
-        char szFN[_MAX_PATH];
-        ReadFile(hFile, szFN, nStrLen, &dwNum, NULL);
-        szFN[nStrLen] = NULL;
+    DWORD dwNum = 0;
+    int   iLen = 0;
+    ReadFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
+    if (iLen > 0) {
+        std::string szFile(iLen, '\0');
+        ReadFile(hFile, szFile.data(), iLen, &dwNum, NULL);
 
         m_pFXB = new CN3FXBundle();
-        if (false == m_pFXB->LoadFromFile(szFN)) {
+        if (!m_pFXB->LoadFromFile(szFile)) {
             delete m_pFXB;
             m_pFXB = NULL;
         } else {
@@ -68,10 +67,14 @@ bool CN3FXPlugPart::Save(HANDLE hFile) {
     }
     __ASSERT(m_pFXB, "no FXB");
 
-    DWORD dwNum;
-    int   nStrLen = m_pFXB->FileName().size();
-    WriteFile(hFile, &nStrLen, sizeof(nStrLen), &dwNum, NULL);
-    WriteFile(hFile, m_pFXB->FileName().c_str(), nStrLen, &dwNum, NULL);
+    DWORD       dwNum;
+    std::string szFile = m_pFXB->FilePathWin().string();
+    int         iLen = szFile.length();
+
+    WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
+    if (iLen > 0) {
+        WriteFile(hFile, szFile.c_str(), iLen, &dwNum, NULL);
+    }
     WriteFile(hFile, &m_nRefIndex, sizeof(m_nRefIndex), &dwNum, NULL);
     WriteFile(hFile, &m_vOffsetPos, sizeof(m_vOffsetPos), &dwNum, NULL);
     WriteFile(hFile, &m_vOffsetDir, sizeof(m_vOffsetDir), &dwNum, NULL);
@@ -123,13 +126,13 @@ void CN3FXPlugPart::Render() {
     }
 }
 
-void CN3FXPlugPart::SetFXB(const std::string & strFN) {
+void CN3FXPlugPart::SetFXB(const fs::path & fsFile) {
     if (NULL == m_pFXB) {
         m_pFXB = new CN3FXBundle();
     } else {
         m_pFXB->Release();
     }
-    m_pFXB->LoadFromFile(strFN);
+    m_pFXB->LoadFromFile(fsFile);
 
     m_vOffsetPos = m_pFXB->m_vPos; //일단 FXB에 설정되어 있는 vPos와 vDir값을 가져와서 적용.
     m_vOffsetDir = m_pFXB->m_vDir;
