@@ -1,16 +1,15 @@
 [submodule "src/assets"]
 	path = src/assets
 	url = ../ko-assets
-	branch = 1.1.1
 	shallow = true
 	depth = 1
 [submodule "src/db"]
 	path = src/db
 	url = ../ko-db
-	branch = 1.1.2
+	shallow = true
+	depth = 1
 [submodule "src/vendor"]
 	path = src/vendor
 	url = ../ko-vendor
-	branch = 1.1.0
 	shallow = true
 	depth = 1
