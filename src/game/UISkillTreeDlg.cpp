@@ -323,12 +323,12 @@ bool CUISkillTreeDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 
                 spSkillCopy = new __IconItemSkill();
                 spSkillCopy->pSkill = spSkill->pSkill;
-                spSkillCopy->szIconFN = spSkill->szIconFN;
+                spSkillCopy->fsIconFile = spSkill->fsIconFile;
 
                 // 아이콘 로드하기.. ^^
                 spSkillCopy->pUIIcon = new CN3UIIcon;
                 spSkillCopy->pUIIcon->Init(this);
-                spSkillCopy->pUIIcon->SetTex(spSkill->szIconFN);
+                spSkillCopy->pUIIcon->SetTex(spSkill->fsIconFile);
                 spSkillCopy->pUIIcon->SetUVRect(0, 0, 1, 1);
                 spSkillCopy->pUIIcon->SetUIType(UI_TYPE_ICON);
 
@@ -357,12 +357,12 @@ bool CUISkillTreeDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
         // 복사본을 만든다..
         spSkillCopy = new __IconItemSkill();
         spSkillCopy->pSkill = spSkill->pSkill;
-        spSkillCopy->szIconFN = spSkill->szIconFN;
+        spSkillCopy->fsIconFile = spSkill->fsIconFile;
 
         // 아이콘 로드하기.. ^^
         spSkillCopy->pUIIcon = new CN3UIIcon;
         spSkillCopy->pUIIcon->Init(this);
-        spSkillCopy->pUIIcon->SetTex(spSkill->szIconFN);
+        spSkillCopy->pUIIcon->SetTex(spSkill->fsIconFile);
         spSkillCopy->pUIIcon->SetUVRect(0, 0, 1, 1);
         spSkillCopy->pUIIcon->SetUIType(UI_TYPE_ICON);
 
@@ -1447,12 +1447,13 @@ stop:
     spSkill->pSkill = pUSkill;
 
     // 아이콘 이름 만들기.. ^^
-    spSkill->szIconFN = std::format("UI\\skillicon_{:02d}_{:d}.dxt", pUSkill->dwID % 100, pUSkill->dwID / 100);
+    spSkill->fsIconFile =
+        fs::path("UI") / std::format("skillicon_{:02d}_{:d}.dxt", pUSkill->dwID % 100, pUSkill->dwID / 100);
 
     // 아이콘 로드하기.. ^^
     spSkill->pUIIcon = new CN3UIIcon;
     spSkill->pUIIcon->Init(this);
-    spSkill->pUIIcon->SetTex(spSkill->szIconFN);
+    spSkill->pUIIcon->SetTex(spSkill->fsIconFile);
     spSkill->pUIIcon->SetUVRect(0, 0, 1, 1);
     spSkill->pUIIcon->SetUIType(UI_TYPE_ICON);
     spSkill->pUIIcon->SetStyle(UISTYLE_ICON_SKILL);
@@ -1592,12 +1593,12 @@ void CUISkillTreeDlg::SetPageInIconRegion(int iKindOf, int iPageNum) // 아이�
     CN3UIString * pStrName = NULL;
     for (int k = 0; k < MAX_SKILL_IN_PAGE; k++) {
         if (m_pMySkillTree[m_iCurKindOf][m_iCurSkillPage][k] != NULL) {
-            pStrName = (CN3UIString *)GetChildByID(std::format("string_list_{}", k));
+            pStrName = (CN3UIString *)GetChildByID(std::format("string_list_{:d}", k));
             __ASSERT(pStrName, "NULL UI Component!!");
             pStrName->SetString(m_pMySkillTree[m_iCurKindOf][m_iCurSkillPage][k]->pSkill->szName);
             pStrName->SetVisible(true);
         } else {
-            pStrName = (CN3UIString *)GetChildByID(std::format("string_list_{}", k));
+            pStrName = (CN3UIString *)GetChildByID(std::format("string_list_{:d}", k));
             __ASSERT(pStrName, "NULL UI Component!!");
             pStrName->SetVisible(false);
         }
@@ -1612,24 +1613,24 @@ void CUISkillTreeDlg::SetPageInIconRegion(int iKindOf, int iPageNum) // 아이�
     }
 }
 
-void CUISkillTreeDlg::AllClearImageByName(const std::string & szFN, bool bTrueOrNot) {
+void CUISkillTreeDlg::AllClearImageByName(const std::string & szName, bool bTrueOrNot) {
     //    CN3UIImage* pImage;
     CN3UIBase *   pBase = NULL;
     CN3UIButton * pButton = NULL;
     for (int i = 0; i < 4; i++) {
-        pBase = GetChildBaseByName(std::format("img_{}{}", szFN, i));
+        pBase = GetChildBaseByName(std::format("img_{:s}{:d}", szName, i));
         if (pBase) {
             pBase->SetVisible(bTrueOrNot);
         }
     }
 
-    pBase = GetChildBaseByName("img_" + szFN);
+    pBase = GetChildBaseByName("img_" + szName);
     if (pBase) {
         pBase->SetVisible(bTrueOrNot);
     }
 
     for (int i = 0; i < 4; i++) {
-        pButton = GetChildButtonByName(std::format("btn_{}{}", szFN, i));
+        pButton = GetChildButtonByName(std::format("btn_{:s}{:d}", szName, i));
         if (pButton) {
             pButton->SetVisible(bTrueOrNot);
         }
@@ -1709,10 +1710,10 @@ void CUISkillTreeDlg::SetPageInCharRegion() // 문자 역역에서 현재 페이
     }
 }
 
-CN3UIImage * CUISkillTreeDlg::GetChildImageByName(const std::string & szFN) {
+CN3UIImage * CUISkillTreeDlg::GetChildImageByName(const std::string & szName) {
     for (UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor) {
         CN3UIBase * pChild = (CN3UIBase *)(*itor);
-        if ((pChild->UIType() == UI_TYPE_IMAGE) && (szFN.compare(pChild->m_szID) == 0)) {
+        if ((pChild->UIType() == UI_TYPE_IMAGE) && (szName.compare(pChild->m_szID) == 0)) {
             return (CN3UIImage *)pChild;
         }
     }
@@ -1720,10 +1721,10 @@ CN3UIImage * CUISkillTreeDlg::GetChildImageByName(const std::string & szFN) {
     return NULL;
 }
 
-CN3UIBase * CUISkillTreeDlg::GetChildBaseByName(const std::string & szFN) {
+CN3UIBase * CUISkillTreeDlg::GetChildBaseByName(const std::string & szName) {
     for (UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor) {
         CN3UIBase * pChild = (CN3UIBase *)(*itor);
-        if (szFN.compare(pChild->m_szID) == 0) {
+        if (szName.compare(pChild->m_szID) == 0) {
             return pChild;
         }
     }
@@ -1731,10 +1732,10 @@ CN3UIBase * CUISkillTreeDlg::GetChildBaseByName(const std::string & szFN) {
     return NULL;
 }
 
-CN3UIButton * CUISkillTreeDlg::GetChildButtonByName(const std::string & szFN) {
+CN3UIButton * CUISkillTreeDlg::GetChildButtonByName(const std::string & szName) {
     for (UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor) {
         CN3UIBase * pChild = (CN3UIBase *)(*itor);
-        if ((pChild->UIType() == UI_TYPE_BUTTON) && (szFN.compare(pChild->m_szID) == 0)) {
+        if ((pChild->UIType() == UI_TYPE_BUTTON) && (szName.compare(pChild->m_szID) == 0)) {
             return (CN3UIButton *)pChild;
         }
     }

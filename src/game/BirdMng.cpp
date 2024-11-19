@@ -27,19 +27,17 @@ void CBirdMng::Release() {
     m_iBirdCount = 0;
 }
 
-void CBirdMng::LoadFromFile(const std::string & szFN) {
+void CBirdMng::LoadFromFile(const fs::path & fsFile) {
     Release();
 
-    if (szFN.empty()) {
+    if (fsFile.empty()) {
         return;
     }
-    FILE * stream = fopen(szFN.c_str(), "r"); //text파일로 만든다
 
+    FILE * stream = _wfopen(fsFile.c_str(), L"r"); //text파일로 만든다
     if (NULL == stream) {
 #if _DEBUG
-        char szErr[512];
-        wsprintf(szErr, "failed to open file - %s", szFN.c_str());
-        __ASSERT(stream, szErr);
+        __ASSERT(stream, std::format("failed to open file - {:s}", fsFile).c_str());
 #endif
         return;
     }

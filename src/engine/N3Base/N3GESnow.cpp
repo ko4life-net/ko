@@ -304,5 +304,5 @@ void CN3GESnow::Create(float fDensity, float fWidth, float fHeight, float fSnowS
     }
 
     m_pVB->Unlock();
-    m_pTex = s_MngTex.Get("Misc\\Snow.DXT", TRUE);
+    m_pTex = s_MngTex.Get(fs::path("Misc") / "snow.dxt", TRUE);
 }

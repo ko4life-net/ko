@@ -84,8 +84,7 @@ class CUIStateBar : public CN3UIBase {
     void ZoomSet(float fZoom);
     void PositionInfoAdd(int iID, const __Vector3 & vPos, D3DCOLOR crID, bool bDrawTop);
     void PositionInfoClear();
-    bool LoadMap(const std::string & szMiniMapFN, float fMapSizeX,
-                 float fMapSizeZ); // 미니맵 비트맵 파일 이름, 매의 너비 길이..(Meter);
+    bool LoadMiniMap(const fs::path & fsFile, float fMapSizeX, float fMapSizeZ);
 
     bool ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg); // 메시지를 받는다.. 보낸놈, msg
 

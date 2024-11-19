@@ -84,7 +84,7 @@ template <typename Type> class CN3TableBase {
 
         return -1;
     }
-    BOOL LoadFromFile(const std::string & szFN);
+    BOOL LoadFromFile(const fs::path & fsFile);
 
   protected:
     BOOL Load(HANDLE hFile);
@@ -268,27 +268,27 @@ template <class Type> BOOL CN3TableBase<Type>::ReadData(HANDLE hFile, DATA_TYPE 
     return TRUE;
 }
 
-template <class Type> BOOL CN3TableBase<Type>::LoadFromFile(const std::string & szFN) {
-    if (szFN.empty()) {
+template <class Type> BOOL CN3TableBase<Type>::LoadFromFile(const fs::path & fsFile) {
+    if (fsFile.empty()) {
         return FALSE;
     }
 
-    HANDLE hFile = ::CreateFile(szFN.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFile = ::CreateFileW(fsFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
     if (INVALID_HANDLE_VALUE == hFile) {
 #ifdef _N3GAME
-        CLogWriter::Write("N3TableBase - Can't open file(read) File Handle error (%s)", szFN.c_str());
+        CLogWriter::Write("N3TableBase - Can't open file(read) File Handle error ({:s})", fsFile);
 #endif
         return FALSE;
     }
 
     // 파일 암호화 풀기.. .. 임시 파일에다 쓴다음 ..
-    std::string szFNTmp = szFN + ".tmp";
-    DWORD       dwSizeHigh = 0;
-    DWORD       dwSizeLow = ::GetFileSize(hFile, &dwSizeHigh);
+    fs::path fsFileTmp = fsFile + ".tmp";
+    DWORD    dwSizeHigh = 0;
+    DWORD    dwSizeLow = ::GetFileSize(hFile, &dwSizeHigh);
     if (dwSizeLow <= 0) {
         CloseHandle(hFile);
-        ::remove(szFNTmp.c_str()); // 임시 파일 지우기..
+        fs::remove(fsFileTmp); // 임시 파일 지우기..
         return FALSE;
     }
 
@@ -327,14 +327,14 @@ template <class Type> BOOL CN3TableBase<Type>::LoadFromFile(const std::string & 
     }
 
     // 임시 파일에 쓴다음.. 다시 연다..
-    hFile = ::CreateFile(szFNTmp.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    hFile = ::CreateFileW(fsFileTmp.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     ::WriteFile(hFile, pDatas, dwSizeLow, &dwRWC, NULL); // 임시파일에 암호화 풀린 데이터 쓰기
     CloseHandle(hFile);                                  // 임시 파일 닫기
     delete[] pDatas;
     pDatas = NULL;
 
-    hFile = ::CreateFile(szFNTmp.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,
-                         NULL); // 임시 파일 읽기 모드로 열기.
+    hFile = ::CreateFileW(fsFileTmp.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,
+                          NULL); // 임시 파일 읽기 모드로 열기.
 
     BOOL bResult = Load(hFile);
 
@@ -342,12 +342,12 @@ template <class Type> BOOL CN3TableBase<Type>::LoadFromFile(const std::string & 
 
     if (FALSE == bResult) {
 #ifdef _N3GAME
-        CLogWriter::Write("N3TableBase - incorrect table (%s)", szFN.c_str());
+        CLogWriter::Write("N3TableBase - incorrect table ({:s})", fsFile);
 #endif
     }
 
     // 임시 파일 지우기..
-    ::remove(szFNTmp.c_str());
+    fs::remove(fsFileTmp);
 
     return bResult;
 }

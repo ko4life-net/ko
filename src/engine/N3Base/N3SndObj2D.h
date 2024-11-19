@@ -29,9 +29,9 @@ class CN3SndObj2D {
     int m_iMaxVolume;
 
   public:
-    int         m_iID;
-    bool        m_bUse;
-    std::string m_szFileName; //파일이름...(ID 대용).
+    int      m_iID;
+    bool     m_bUse;
+    fs::path m_fsFile; //파일이름...(ID 대용).
 
   protected:
     virtual void RealPlay();

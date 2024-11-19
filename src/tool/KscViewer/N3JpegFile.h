@@ -14,7 +14,7 @@ class CN3JpegFile : public CJpegFile {
 
   public:
     void   DrawImage(HDC hDC);
-    BOOL   LoadJpegFile(std::string csJpeg);
+    BOOL   LoadJpegFile(const fs::path & fsFile);
     UINT   GetWidth() { return m_uiWidth; }
     UINT   GetHeight() { return m_uiHeight; }
     BYTE * GetImageBuf() { return m_pImageBuf; }

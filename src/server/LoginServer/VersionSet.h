@@ -14,8 +14,9 @@ class CVersionSet : public CRecordset {
     // Field/Param Data
     //{{AFX_FIELD(CVersionSet, CRecordset)
     int     m_sVersion;
-    CString m_strFileName;
-    BYTE    m_bCompressed;
+    CString m_strFile;
+    CString m_strPatchFileName;
+    int     m_sHistoryVersion;
     //}}AFX_FIELD
 
     // Overrides

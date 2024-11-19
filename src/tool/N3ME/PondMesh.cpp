@@ -362,14 +362,14 @@ void CPondMesh::MakePondPos() {
     ReCalcUV();
 }
 
-BOOL CPondMesh::SetTextureName(LPCTSTR pszFName) {
+BOOL CPondMesh::SetTextureName(const fs::path & fsFile) {
     if (m_pTexture) {
-        if (lstrcmpi(pszFName, m_pTexture->FileName().c_str()) == 0) {
+        if (n3std::iequals(fsFile, m_pTexture->FilePath())) {
             return TRUE;
         }
         s_MngTex.Delete(&m_pTexture);
     }
-    m_pTexture = s_MngTex.Get(pszFName, TRUE);
+    m_pTexture = s_MngTex.Get(fsFile, TRUE);
     return m_pTexture ? TRUE : FALSE;
 }
 
@@ -769,9 +769,7 @@ __Vector3 CPondMesh::GetCenter() {
 bool CPondMesh::Load1001(HANDLE hFile) {
     Release();
 
-    DWORD dwNum;
-    int   iLen;
-    char  szTextueFName[_MAX_PATH];
+    DWORD dwNum = 0;
 
     ReadFile(hFile, &m_iPondID, sizeof(m_iPondID), &dwNum, NULL);         // 연못 번호
     ReadFile(hFile, &m_dwPondAlpha, sizeof(m_dwPondAlpha), &dwNum, NULL); // 연못 알파
@@ -793,11 +791,12 @@ bool CPondMesh::Load1001(HANDLE hFile) {
     }
     ReadFile(hFile, &m_iIC, sizeof(m_iIC), &dwNum, NULL); // IndexBuffer Count.
 
-    ReadFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL); // texture file name length
+    int iLen = 0;
+    ReadFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
     if (iLen > 0) {
-        ReadFile(hFile, szTextueFName, iLen, &dwNum, NULL); // texture name
-        szTextueFName[iLen] = NULL;
-        m_pTexture = s_MngTex.Get(szTextueFName, TRUE); // load texture
+        std::string szTexFile(iLen, '\0');
+        ReadFile(hFile, szTexFile.data(), iLen, &dwNum, NULL);
+        m_pTexture = s_MngTex.Get(szTexFile, TRUE);
     }
 
     MakeIndex();              //    인덱스를 다시 계산
@@ -811,16 +810,15 @@ bool CPondMesh::Load1001(HANDLE hFile) {
 
 bool CPondMesh::Load1000(HANDLE hFile) {
     Release();
-    DWORD dwNum;
-    int   iLen;
-    char  szTextueFName[_MAX_PATH];
-    float fScaleTemp;
+
+    DWORD dwNum = 0;
 
     ReadFile(hFile, &m_iPondID, sizeof(m_iPondID), &dwNum, NULL);         // 연못 번호
     ReadFile(hFile, &m_dwPondAlpha, sizeof(m_dwPondAlpha), &dwNum, NULL); // 연못 알파
 
     ReadFile(hFile, &m_iWaterScaleWidth, sizeof(m_iWaterScaleWidth), &dwNum, NULL); // 한줄에 있는 점 갯수
 
+    float fScaleTemp;
     ReadFile(hFile, &fScaleTemp, sizeof(fScaleTemp), &dwNum, NULL);
     ReadFile(hFile, &fScaleTemp, sizeof(fScaleTemp), &dwNum, NULL);
 
@@ -829,11 +827,13 @@ bool CPondMesh::Load1000(HANDLE hFile) {
         ReadFile(hFile, m_pVertices, m_iVC * sizeof(__Vector3), &dwNum, NULL); // vertex buffer
     }
     ReadFile(hFile, &m_iIC, sizeof(m_iIC), &dwNum, NULL); // IndexBufferCount.
-    ReadFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);   // texture name length
+
+    int iLen = 0;
+    ReadFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
     if (iLen > 0) {
-        ReadFile(hFile, szTextueFName, iLen, &dwNum, NULL); // texture name
-        szTextueFName[iLen] = NULL;
-        m_pTexture = s_MngTex.Get(szTextueFName, TRUE); // load texture
+        std::string szTexFile(iLen, '\0');
+        ReadFile(hFile, szTexFile.data(), iLen, &dwNum, NULL);
+        m_pTexture = s_MngTex.Get(szTexFile, TRUE);
     }
 
     //    ---------------------------------------------------------------------------------------------------------
@@ -878,10 +878,8 @@ bool CPondMesh::Load1000(HANDLE hFile) {
 
 bool CPondMesh::Load(HANDLE hFile) {
     Release();
-    DWORD dwNum;
-    int   iLen;
-    char  szTextueFName[_MAX_PATH];
-    float fScaleTemp;
+
+    DWORD dwNum = 0;
 
     ReadFile(hFile, &m_iPondID, sizeof(m_iPondID), &dwNum, NULL); // 연못 번호
 
@@ -889,6 +887,7 @@ bool CPondMesh::Load(HANDLE hFile) {
 
     ReadFile(hFile, &m_iWaterScaleWidth, sizeof(int), &dwNum, NULL); // 한줄에 있는 점 갯수
 
+    float fScaleTemp;
     ReadFile(hFile, &fScaleTemp, sizeof(fScaleTemp), &dwNum, NULL);
     ReadFile(hFile, &fScaleTemp, sizeof(fScaleTemp), &dwNum, NULL);
 
@@ -898,11 +897,13 @@ bool CPondMesh::Load(HANDLE hFile) {
         ReInputBackPos();                                                         //    백업용에 새로좌표입력
     }
     ReadFile(hFile, &m_iIC, sizeof(m_iIC), &dwNum, NULL); // IndexBufferCount.
-    ReadFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);   // texture name length
+
+    int iLen = 0;
+    ReadFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
     if (iLen > 0) {
-        ReadFile(hFile, szTextueFName, iLen, &dwNum, NULL); // texture name
-        szTextueFName[iLen] = NULL;
-        m_pTexture = s_MngTex.Get(szTextueFName, TRUE); // load texture
+        std::string szTexFile(iLen, '\0');
+        ReadFile(hFile, szTexFile.data(), iLen, &dwNum, NULL);
+        m_pTexture = s_MngTex.Get(szTexFile, TRUE);
     }
 
     //    ---------------------------------------------------------------------------------------------------------
@@ -964,13 +965,15 @@ bool CPondMesh::Save(HANDLE hFile) {
     }
     WriteFile(hFile, &m_iIC, sizeof(m_iIC), &dwNum, NULL); // IndexBuffer Count.
 
-    int iLen = 0;
+    std::string szFile;
+    int         iLen = 0;
     if (m_pTexture) {
-        iLen = m_pTexture->FileName().size();
+        szFile = m_pTexture->FilePathWin().string();
+        iLen = szFile.length();
     }
     WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL); // texture file name length
     if (iLen > 0) {
-        WriteFile(hFile, m_pTexture->FileName().c_str(), iLen, &dwNum, NULL); // texture file name
+        WriteFile(hFile, szFile.c_str(), iLen, &dwNum, NULL); // texture file name
     }
 
     return 0;

@@ -374,7 +374,7 @@ bool CN3UIString::Load(HANDLE hFile) {
     ReadFile(hFile, &iStrLen, sizeof(iStrLen), &dwNum, NULL); // font 이름 길이
     if (iStrLen > 0) {
         std::string szFontName(iStrLen, '?');
-        ReadFile(hFile, &(szFontName[0]), iStrLen, &dwNum, NULL); // string
+        ReadFile(hFile, szFontName.data(), iStrLen, &dwNum, NULL); // string
 
         DWORD dwFontFlags = 0, dwFontHeight = 0;
         ReadFile(hFile, &dwFontHeight, sizeof(dwFontHeight), &dwNum, NULL); // font height
@@ -397,7 +397,7 @@ bool CN3UIString::Load(HANDLE hFile) {
     ReadFile(hFile, &iStrLen, sizeof(iStrLen), &dwNum, NULL); // string 길이
     if (iStrLen > 0) {
         std::string szString(iStrLen, '?');
-        ReadFile(hFile, &(szString[0]), iStrLen, &dwNum, NULL); // string
+        ReadFile(hFile, szString.data(), iStrLen, &dwNum, NULL); // string
         SetString(szString);
     }
 

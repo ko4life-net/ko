@@ -107,5 +107,5 @@ class CN3ShapeMod : public CN3Shape {
     virtual bool Load(HANDLE hFile);
 
   protected:
-    CN3SPart * GetPartByPMeshFileName(const std::string & szFN); // 이름으로 PMesh포인터 구하기
+    CN3SPart * GetPartByPMeshFilePath(const fs::path & fsFile); // 이름으로 PMesh포인터 구하기
 };

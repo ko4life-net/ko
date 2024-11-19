@@ -220,10 +220,10 @@ BOOL CPropertyView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
             pUI->SetTooltipText(pItem->m_curValue);
         } else if (pItem->m_propName == "Open sound") {
             pUI->SetSndOpen((LPCTSTR)pItem->m_curValue);
-            pItem->m_curValue = pUI->GetSndFName_OpenUI().c_str();
+            pItem->m_curValue = pUI->GetSndFileOpenUI().c_str();
         } else if (pItem->m_propName == "Close sound") {
             pUI->SetSndClose((LPCTSTR)pItem->m_curValue);
-            pItem->m_curValue = pUI->GetSndFName_CloseUI().c_str();
+            pItem->m_curValue = pUI->GetSndFileCloseUI().c_str();
         } else if (pItem->m_propName == "Delete sound") {
             pUI->SetSndOpen("");
             pUI->SetSndClose("");
@@ -246,19 +246,17 @@ BOOL CPropertyView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
     if ((void *)wParam == (&m_UIImage) && UI_TYPE_IMAGE == pUI->UIType()) {
         CN3UIImage * pImage = (CN3UIImage *)pUI;
         if (pItem->m_propName == "Texture") {
-            CN3BaseFileAccess tmpBase;
-            tmpBase.FileNameSet((LPCTSTR)pItem->m_curValue); // Base경로에 대해서 상대적 경로를 넘겨준다.
-
-            pImage->SetTex(tmpBase.FileName());
-            pItem->m_curValue = tmpBase.FileName().c_str(); //tex file name 다시 설정
+            fs::path fsTexFile = CN3BaseFileAccess::ToRelative(pItem->m_curValue.GetString());
+            pImage->SetTex(fsTexFile);
+            pItem->m_curValue = fsTexFile.c_str(); //tex file name 다시 설정
             m_UIImage.Invalidate();
         } else if (pItem->m_propName == "UV left" || pItem->m_propName == "UV top" || pItem->m_propName == "UV right" ||
                    pItem->m_propName == "UV bottom") {
             // UV 설정하는 함수 만들어서 처리하기
             CN3Texture * pTex = pImage->GetTex();
-            if (pTex && pTex->FileName().size() > 0) {
+            if (pTex && !pTex->FilePath().empty()) {
                 CDlgTexture dlg;
-                dlg.SetTexture(pTex->FileName().c_str());
+                dlg.SetTexture(pTex->FilePath());
                 dlg.SetSelectedUVRect(pImage->GetUVRect());
                 if (IDOK == dlg.DoModal()) {
                     __FLOAT_RECT frc;
@@ -296,13 +294,13 @@ BOOL CPropertyView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                 if (dlgAnim.m_iCount <= 0) {
                     break; // 1장 이상이면 texture와 uv좌표 세팅
                 }
-                char szTexFName[_MAX_PATH];
-                if (FALSE == SelectTexture(szTexFName)) {
-                    break; // texture이름 정하기
+                fs::path fsTexFile;
+                if (!SelectTexture(&fsTexFile)) {
+                    break; // Decide on a texture name
                 }
                 // 여러장의 이미지 세팅하게 하기
                 CDlgTexture dlgTex;
-                dlgTex.SetTexture(szTexFName);
+                dlgTex.SetTexture(fsTexFile);
                 char   szNames[1000][20];
                 char * szImageTypeNames[1000];
                 for (int i = 0; i < dlgAnim.m_iCount; ++i) {
@@ -321,7 +319,7 @@ BOOL CPropertyView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
                     if (NULL == pChildImage) {
                         continue;
                     }
-                    pChildImage->SetTex(szTexFName);                                          // texture설정
+                    pChildImage->SetTex(fsTexFile);                                           // texture설정
                     pChildImage->SetUVRect(frcUV.left, frcUV.top, frcUV.right, frcUV.bottom); // uv 설정
                 }
                 // 위치 설정
@@ -443,10 +441,10 @@ BOOL CPropertyView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
             pFrm->GetRightPane()->SelectRectType(CUIEView::RT_CLICK);
         } else if (pItem->m_propName == "On sound") {
             pBtn->SetSndOn((LPCTSTR)pItem->m_curValue);
-            pItem->m_curValue = pBtn->GetSndFName_On().c_str();
+            pItem->m_curValue = pBtn->GetSndFileOn().c_str();
         } else if (pItem->m_propName == "Click sound") {
             pBtn->SetSndClick((LPCTSTR)pItem->m_curValue);
-            pItem->m_curValue = pBtn->GetSndFName_Click().c_str();
+            pItem->m_curValue = pBtn->GetSndFileClick().c_str();
         } else if (pItem->m_propName == "Delete sound") {
             pBtn->SetSndOn("");
             pBtn->SetSndClick("");
@@ -467,7 +465,7 @@ BOOL CPropertyView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
         CN3UIStatic * pStatic = (CN3UIStatic *)pUI;
         if (pItem->m_propName == "Click sound") {
             pStatic->SetSndClick((LPCTSTR)pItem->m_curValue);
-            pItem->m_curValue = pStatic->GetSndFName_Click().c_str();
+            pItem->m_curValue = pStatic->GetSndFileClick().c_str();
         } else if (pItem->m_propName == "Delete bkgnd image") {
             pStatic->DeleteImage();
             GetDocument()->UpdateAllViews(NULL);
@@ -498,7 +496,7 @@ BOOL CPropertyView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
             pEdit->SetStyle(dwStyle);
         } else if (pItem->m_propName == "Typing sound") {
             pEdit->SetSndTyping((LPCTSTR)pItem->m_curValue);
-            pItem->m_curValue = pEdit->GetSndFName_Typing().c_str();
+            pItem->m_curValue = pEdit->GetSndFileTyping().c_str();
         } else if (pItem->m_propName == "Delete bkgnd image") {
             pEdit->DeleteImage();
             GetDocument()->UpdateAllViews(NULL);
@@ -807,12 +805,12 @@ void CPropertyView::UpdateUIBaseInfo() {
 
     pItem = m_UIBase.GetPropItem("Open sound"); // open sound
     if (pItem) {
-        pItem->m_curValue = pUIBase->GetSndFName_OpenUI().c_str();
+        pItem->m_curValue = pUIBase->GetSndFileOpenUI().c_str();
     }
 
     pItem = m_UIBase.GetPropItem("Close sound"); // close sound
     if (pItem) {
-        pItem->m_curValue = pUIBase->GetSndFName_CloseUI().c_str();
+        pItem->m_curValue = pUIBase->GetSndFileCloseUI().c_str();
     }
 
     pItem = m_UIBase.GetPropItem("Visible"); // visible
@@ -844,10 +842,10 @@ void CPropertyView::UpdateUIImageInfo() {
     CPropertyItem * pItem = NULL;
     pItem = m_UIImage.GetPropItem("Texture"); // texture 이름
     if (pItem) {
-        pItem->m_curValue = pUI->GetTexFN().c_str();
+        pItem->m_curValue = pUI->GetTexFile().c_str();
         CN3Texture * pTex = pUI->GetTex();
         if (pTex) {
-            pItem->m_curValue = pTex->FileName().c_str();
+            pItem->m_curValue = pTex->FilePath().c_str();
         } else {
             pItem->m_curValue += " : Load fail.";
         }
@@ -1070,12 +1068,12 @@ void CPropertyView::UpdateUIButtonInfo() {
 
     pItem = m_UIButton.GetPropItem("On sound"); // on sound
     if (pItem) {
-        pItem->m_curValue = pUI->GetSndFName_On().c_str();
+        pItem->m_curValue = pUI->GetSndFileOn().c_str();
     }
 
     pItem = m_UIButton.GetPropItem("Click sound"); // click sound
     if (pItem) {
-        pItem->m_curValue = pUI->GetSndFName_Click().c_str();
+        pItem->m_curValue = pUI->GetSndFileClick().c_str();
     }
 
     m_UIButton.Invalidate();
@@ -1191,7 +1189,7 @@ void CPropertyView::UpdateUIStaticInfo() {
     CPropertyItem * pItem = NULL;
     pItem = m_UIStatic.GetPropItem("Click sound"); // click sound
     if (pItem) {
-        pItem->m_curValue = pUI->GetSndFName_Click().c_str();
+        pItem->m_curValue = pUI->GetSndFileClick().c_str();
     }
 
     m_UIStatic.Invalidate();
@@ -1224,7 +1222,7 @@ void CPropertyView::UpdateUIEditInfo() {
     }
     pItem = m_UIEdit.GetPropItem("Typing sound"); // typing sound
     if (pItem) {
-        pItem->m_curValue = pUI->GetSndFName_Typing().c_str();
+        pItem->m_curValue = pUI->GetSndFileTyping().c_str();
     }
 
     m_UIEdit.Invalidate();

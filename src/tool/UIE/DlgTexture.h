@@ -27,12 +27,12 @@ class CDlgTexture : public CDialog {
   protected:
     CTexViewer * m_pTexViewer;
     int          m_iImageTypeCount;
-    char         m_szImageTypeNames[MAX_IMAGETYPE][_MAX_PATH];
+    char         m_szImageTypeNames[MAX_IMAGETYPE][100];
     HACCEL       m_hAccelTable;
 
     // Operations
   public:
-    void  SetTexture(LPCTSTR pszFileName);
+    void  SetTexture(const fs::path & fsFile);
     BOOL  GetSelectedUVRect(struct __FLOAT_RECT * pFRect) const;
     void  SetSelectedUVRect(const struct __FLOAT_RECT * pFRect); // 현재 선택된 UV좌표 넣기
     CRect GetSelectedRect() const;

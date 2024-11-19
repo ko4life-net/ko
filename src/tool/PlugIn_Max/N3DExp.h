@@ -67,9 +67,9 @@ struct __UVWH {
 //------------------------------------------------------------------------------------------------------
 class CN3DExp : public SceneExport {
   public:
-    char       m_szPath[1024];     // Path Name
-    char       m_szFileName[1024]; // File Name
-    CN3Scene * m_pScene;           // N3Scene
+    fs::path   m_fsDir;
+    fs::path   m_fsFile;
+    CN3Scene * m_pScene; // N3Scene
 
   protected:
     static __EXPORT_OPTION m_Option;        // Export Option - Window Procedure 땜시 Static 으로 쓴다..
@@ -84,7 +84,7 @@ class CN3DExp : public SceneExport {
     void Init();
 
     bool ProcessIMesh(INode * pNode, CN3IMesh * pIMesh);
-    bool ProcessMaterial(INode * pNode, __Material * pMtl, CN3Texture ** pTex, LPCTSTR pszDir);
+    bool ProcessMaterial(INode * pNode, __Material * pMtl, CN3Texture ** pTex, const fs::path & fsDir);
     bool ProcessRecursive(INode * pNode);                       // Parent Node -> Child Node
     bool ProcessName(INode * pNode, CN3BaseFileAccess * pBase); // Process Make Name
     bool ProcessCamera(INode * pNode);                          // Export Camera Data
@@ -125,7 +125,7 @@ class CN3DExp : public SceneExport {
     const TCHAR * OtherMessage2();      // Other message #2
     unsigned int  Version();            // Version number * 100 (i.e. v3.01 = 301)
     void          ShowAbout(HWND hWnd); // Show DLL's "About..." box
-    int           DoExport(const TCHAR * name, ExpInterface * ei, Interface * i, BOOL suppressPrompts,
+    int           DoExport(const fs::path & fsFile, ExpInterface * ei, Interface * i, BOOL suppressPrompts,
                            DWORD options); // Export file
 
     CN3DExp();  //Constructor

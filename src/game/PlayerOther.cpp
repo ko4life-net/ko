@@ -43,13 +43,13 @@ bool CPlayerOther::Init(e_Race eRace, int iFace, int iHair, DWORD * pdwItemIDs, 
     // 이제 패킷에 따라 캐릭터를 치장..(?) 시켜준다.. 아이템장착, 무기 장착등...
     __TABLE_PLAYER_LOOKS * pLooks = s_pTbl_UPC_Looks->Find(eRace); // 테이블에서 기본 스킨 ..
     if (NULL == pLooks) {
-        CLogWriter::Write("CPlayerOther::Init() Basic Resource Pointer is NULL Race(%d)", eRace);
+        CLogWriter::Write("CPlayerOther::Init() Basic Resource Pointer is NULL Race({:d})", (int)eRace);
         return false;
     }
     this->InitChr(pLooks); // 관절 세팅..
 
     for (int i = 0; i < MAX_ITEM_SLOT_OPC; i++) {
-        std::string          szFN;
+        fs::path             fsItemFile;
         e_PartPosition       ePart = PART_POS_UNKNOWN;
         e_PlugPosition       ePlug = PLUG_POS_UNKNOWN;
         e_ItemSlot           eSlot = ITEM_SLOT_UNKNOWN;
@@ -59,22 +59,25 @@ bool CPlayerOther::Init(e_Race eRace, int iFace, int iHair, DWORD * pdwItemIDs, 
         if (0 == pdwItemIDs[i]) {
             if (0 == i) {
                 ePart = PART_POS_UPPER;
-                szFN = pLooks->szPartFNs[0];
+                fsItemFile = pLooks->szPartFiles[0];
             } else if (1 == i) {
                 ePart = PART_POS_LOWER;
-                szFN = pLooks->szPartFNs[1];
-            }
-            //            else if(2 == i) { ePart = PART_POS_HAIR_HELMET; szFN = pLooks->szPartFNs[5]; }
-            else if (3 == i) {
+                fsItemFile = pLooks->szPartFiles[1];
+                //} else if (2 == i) {
+                //    ePart = PART_POS_HAIR_HELMET;
+                //    fsItemFile = pLooks->szPartFiles[5];
+            } else if (3 == i) {
                 ePart = PART_POS_HANDS;
-                szFN = pLooks->szPartFNs[3];
+                fsItemFile = pLooks->szPartFiles[3];
             } else if (4 == i) {
                 ePart = PART_POS_FEET;
-                szFN = pLooks->szPartFNs[4];
+                fsItemFile = pLooks->szPartFiles[4];
             } else if (5 == i) {
-            } // 망토
-              //            else if(6 == i) { ePlug = PLUG_POS_RIGHTHAND; }
-              //            else if(7 == i) { ePlug = PLUG_POS_LEFTHAND; }
+                //} else if (6 == i) {
+                //    ePlug = PLUG_POS_RIGHTHAND;
+                //} else if (7 == i) {
+                //    ePlug = PLUG_POS_LEFTHAND;
+            }
         } else {
             pItem = s_pTbl_Items_Basic->Find(pdwItemIDs[i] / 1000 * 1000); // 유저 플레이어 아이템 얻기..
             if (pItem && pItem->byExtIndex >= 0 && pItem->byExtIndex < MAX_ITEM_EXTENSION) {
@@ -85,7 +88,7 @@ bool CPlayerOther::Init(e_Race eRace, int iFace, int iHair, DWORD * pdwItemIDs, 
                 continue;
             }
 
-            e_ItemType eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, &szFN, NULL, ePart,
+            e_ItemType eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, &fsItemFile, NULL, ePart,
                                                                        ePlug); // 리소스 파일 이름을 만들고..
 
             if (0 == i) {
@@ -115,13 +118,13 @@ bool CPlayerOther::Init(e_Race eRace, int iFace, int iHair, DWORD * pdwItemIDs, 
         }
 
         if (PART_POS_UPPER == ePart || PART_POS_LOWER == ePart || PART_POS_HANDS == ePart || PART_POS_FEET == ePart) {
-            this->PartSet(ePart, szFN, pItem, pItemExt);
+            this->PartSet(ePart, fsItemFile, pItem, pItemExt);
         } else if (PART_POS_HAIR_HELMET == ePart) // 머리카락 혹은 헬멧이면..
         {
-            this->PartSet(ePart, szFN, pItem, pItemExt);
+            this->PartSet(ePart, fsItemFile, pItem, pItemExt);
         } else if (5 == i) {
         } else if ((6 == i || 7 == i) && PLUG_POS_UNKNOWN != ePlug) {
-            this->PlugSet(ePlug, szFN, pItem, pItemExt);
+            this->PlugSet(ePlug, fsItemFile, pItem, pItemExt);
         }
 
         if (ITEM_SLOT_UNKNOWN != eSlot) {
@@ -132,7 +135,7 @@ bool CPlayerOther::Init(e_Race eRace, int iFace, int iHair, DWORD * pdwItemIDs, 
     // 얼굴은 따로하자..
     this->InitFace();
     CN3CPart * pPartHairHelmet = this->Part(PART_POS_HAIR_HELMET);
-    if (pPartHairHelmet->FileName().empty()) { // 헬멧에 해당되는게 없으면.. 머리카락 붙이기..
+    if (pPartHairHelmet->FilePath().empty()) { // 헬멧에 해당되는게 없으면.. 머리카락 붙이기..
         this->InitHair();
     }
 
@@ -141,25 +144,21 @@ bool CPlayerOther::Init(e_Race eRace, int iFace, int iHair, DWORD * pdwItemIDs, 
 
 void CPlayerOther::InitFace() {
     __TABLE_PLAYER_LOOKS * pItem = s_pTbl_UPC_Looks->Find(m_InfoBase.eRace);
-    if (pItem && !pItem->szPartFNs[PART_POS_FACE].empty()) // 아이템이 있고 얼굴 이름이 있으면..
-    {
-        char szBuff[256] = "", szDir[128] = "", szFName[128] = "", szExt[16] = "";
-        ::_splitpath(pItem->szPartFNs[PART_POS_FACE].c_str(), NULL, szDir, szFName, szExt);
-        sprintf(szBuff, "%s%s%.2d%s", szDir, szFName, m_InfoExt.iFace, szExt);
-        this->PartSet(PART_POS_FACE, szBuff, NULL, NULL);
+    if (pItem && !pItem->szPartFiles[PART_POS_FACE].empty()) { // 아이템이 있고 얼굴 이름이 있으면..
+        fs::path fsFile = pItem->szPartFiles[PART_POS_FACE];
+        fsFile = fsFile.parent_path() / (fsFile.stem() + std::format("{:02d}", m_InfoExt.iFace) + fsFile.extension());
+        this->PartSet(PART_POS_FACE, fsFile, NULL, NULL);
     }
 }
 
 void CPlayerOther::InitHair() {
     __TABLE_PLAYER_LOOKS * pItem = s_pTbl_UPC_Looks->Find(m_InfoBase.eRace);
-    if (pItem && !pItem->szPartFNs[PART_POS_HAIR_HELMET].empty()) // 아이템이 있고 얼굴 이름이 있으면..
-    {
-        char szBuff[256] = "", szDir[128] = "", szFName[128] = "", szExt[16] = "";
-        ::_splitpath(pItem->szPartFNs[PART_POS_HAIR_HELMET].c_str(), NULL, szDir, szFName, szExt);
-        sprintf(szBuff, "%s%s%.2d%s", szDir, szFName, m_InfoExt.iHair, szExt);
-        this->PartSet(PART_POS_HAIR_HELMET, szBuff, NULL, NULL);
+    if (pItem && !pItem->szPartFiles[PART_POS_HAIR_HELMET].empty()) { // 아이템이 있고 얼굴 이름이 있으면..
+        fs::path fsFile = pItem->szPartFiles[PART_POS_HAIR_HELMET];
+        fsFile = fsFile.parent_path() / (fsFile.stem() + std::format("{:02d}", m_InfoExt.iHair) + fsFile.extension());
+        this->PartSet(PART_POS_HAIR_HELMET, fsFile, NULL, NULL);
     } else {
-        m_Chr.PartSet(PART_POS_HAIR_HELMET, "");
+        m_Chr.PartSet(PART_POS_HAIR_HELMET, fs::path());
     }
 }
 

@@ -70,14 +70,11 @@ void CDlgShapeList::UpdateTree(CN3Scene * pScene) {
         for (int i = 0; i < nSC; i++) {
             CN3Shape * pShape = m_pSceneRef->ShapeGet(i);
             if (pShape) {
-                char szFName[MAX_PATH];
-                _splitpath(pShape->FileName().c_str(), NULL, NULL, szFName, NULL);
-                m_ListShape.InsertString(i, szFName);
+                m_ListShape.InsertString(i, pShape->FilePath().stem().string().c_str());
                 m_ListShape.SetItemDataPtr(i, pShape);
             }
         }
-    } else if (!pScene && !m_IsSourceObj) // Output용 버전..
-    {
+    } else if (!pScene && !m_IsSourceObj) { // Output용 버전..
         CMainFrame *    pFrm = (CMainFrame *)AfxGetMainWnd();
         COrganizeView * pView = pFrm->GetOrganizeView();
 
@@ -86,9 +83,7 @@ void CDlgShapeList::UpdateTree(CN3Scene * pScene) {
         siiter      siit = pView->m_PVSMgr.m_plShapeInfoList.begin();
         while (siit != pView->m_PVSMgr.m_plShapeInfoList.end()) {
             pSI = *siit++;
-            char szFName[MAX_PATH];
-            _splitpath(pSI->m_strShapeFile.c_str(), NULL, NULL, szFName, NULL);
-            m_ListShape.InsertString(i, szFName);
+            m_ListShape.InsertString(i, pSI->m_fsShapeFile.stem().string().c_str());
             m_ListShape.SetItemDataPtr(i, pSI);
             i++;
         }
@@ -101,9 +96,7 @@ void CDlgShapeList::UpdateTree(CN3Scene * pScene) {
             siiter siit = pVol->m_plShapeInfoList.begin();
             while (siit != pVol->m_plShapeInfoList.end()) {
                 pSI = *siit++;
-                char szFName[MAX_PATH];
-                _splitpath(pSI->m_strShapeFile.c_str(), NULL, NULL, szFName, NULL);
-                m_ListShape.InsertString(i, szFName);
+                m_ListShape.InsertString(i, pSI->m_fsShapeFile.stem().string().c_str());
                 m_ListShape.SetItemDataPtr(i, pSI);
                 i++;
             }
@@ -299,15 +292,11 @@ void CDlgShapeList::OnBtnSort() {
 
         int cnt = m_ListShape.GetCount();
         for (int i = 0; i < cnt; i++) {
-            char        buff[MAX_PATH];
-            std::string str;
-            CN3Shape *  pShape;
+            CN3Shape * pShape = (CN3Shape *)m_ListShape.GetItemDataPtr(i);
 
-            pShape = (CN3Shape *)m_ListShape.GetItemDataPtr(i);
-            m_ListShape.GetText(i, buff);
-            str = buff;
-
-            Map.insert(SMValue(str, pShape));
+            CString szShapeFileName;
+            m_ListShape.GetText(i, szShapeFileName);
+            Map.insert(SMValue(szShapeFileName.GetString(), pShape));
         }
 
         m_ListShape.ResetContent();
@@ -329,15 +318,11 @@ void CDlgShapeList::OnBtnSort() {
 
         int cnt = m_ListShape.GetCount();
         for (int i = 0; i < cnt; i++) {
-            char        buff[MAX_PATH];
-            std::string str;
-            ShapeInfo * pSI;
+            ShapeInfo * pSI = (ShapeInfo *)m_ListShape.GetItemDataPtr(i);
 
-            pSI = (ShapeInfo *)m_ListShape.GetItemDataPtr(i);
-            m_ListShape.GetText(i, buff);
-            str = buff;
-
-            Map.insert(SIMValue(str, pSI));
+            CString szShapeFileName;
+            m_ListShape.GetText(i, szShapeFileName);
+            Map.insert(SIMValue(szShapeFileName.GetString(), pSI));
         }
 
         m_ListShape.ResetContent();

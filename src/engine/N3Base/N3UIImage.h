@@ -23,7 +23,7 @@ class CN3UIImage : public CN3UIBase {
   protected:
     LPDIRECT3DVERTEXBUFFER9 m_pVB; // vertex buffer
     CN3Texture * m_pTexRef;        // texture 참조 포인터 (s_TexMng에서 관리하므로 참조포인터이다.)
-    std::string m_szTexFN; // 텍스처 이름.. 따로 갖고 있는 이유는 툴에서 텍스처 부르기가 실패할 경우를 대비해서이다.
+    fs::path m_fsTexFile; // 텍스처 이름.. 따로 갖고 있는 이유는 툴에서 텍스처 부르기가 실패할 경우를 대비해서이다.
     __FLOAT_RECT m_frcUVRect; // uv 좌표를 저장
     D3DCOLOR     m_Color;     // 칼라(배경 이미지가 없을경우 사용된다.)
 
@@ -37,7 +37,7 @@ class CN3UIImage : public CN3UIBase {
     D3DCOLOR GetColor() { return m_Color; }
 
     CN3Texture * GetTex() const { return m_pTexRef; }                         // Texture 포인터 얻기
-    void         SetTex(const std::string & szFN);                            // Texture 지정
+    void         SetTex(const fs::path & fsFile);                             // Texture 지정
     void         SetUVRect(float left, float top, float right, float bottom); // image의 uv좌표 지정
     void         SetColor(D3DCOLOR color);                                    // 칼라 지정
 
@@ -59,9 +59,9 @@ class CN3UIImage : public CN3UIBase {
 #ifdef _N3TOOL
   public:
     virtual bool Save(HANDLE hFile);
-    virtual void ChangeImagePath(const std::string & szPathOld, const std::string & szPathNew);
-    void         GatherImageFileName(std::set<std::string> & setImgFile);
-    std::string  GetTexFN() { return m_szTexFN; }
+    virtual void ChangeImagePath(const fs::path & fsOldFile, const fs::path & fsNewFile);
+    void         GatherImageFileName(std::set<fs::path> & setImgFile);
+    fs::path     GetTexFile() { return m_fsTexFile; }
 
     void         ReorderChildImage();
     void         SetAnimImage(int iAnimCount);

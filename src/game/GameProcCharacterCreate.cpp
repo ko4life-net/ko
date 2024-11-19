@@ -52,7 +52,7 @@ void CGameProcCharacterCreate::Init() {
 
     SetRect(&m_rcChr, 0, 0, 0, 0);
 
-    m_Tbl_InitValue.LoadFromFile("Data\\NewChrValue.tbl");
+    m_Tbl_InitValue.LoadFromFile(fs::path("Data") / "NewChrValue.tbl");
 
     s_pPlayer->m_InfoBase.eRace = RACE_UNKNOWN;
     s_pPlayer->m_InfoBase.eClass = CLASS_UNKNOWN;
@@ -118,7 +118,7 @@ void CGameProcCharacterCreate::SetChr() {
                 s_pPlayer->InitHair();
                 continue;
             }
-            s_pPlayer->PartSet((e_PartPosition)i, pLooks->szPartFNs[i], NULL, NULL);
+            s_pPlayer->PartSet((e_PartPosition)i, pLooks->szPartFiles[i], NULL, NULL);
         }
     }
 

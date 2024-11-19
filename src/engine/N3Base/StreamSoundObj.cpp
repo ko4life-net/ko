@@ -31,7 +31,7 @@ CStreamSoundObj::~CStreamSoundObj() {
 BOOL CStreamSoundObj::Create(CN3SndEng * pEng) {
     Release();
 
-    if (!LoadWave(CN3SndObj::m_szFileName.c_str())) {
+    if (!LoadWave(CN3SndObj::m_fsFile)) {
         return FALSE;
     }
 
@@ -69,8 +69,8 @@ BOOL CStreamSoundObj::Create(CN3SndEng * pEng) {
     return TRUE;
 }
 
-BOOL CStreamSoundObj::LoadWave(LPCSTR pFileName) {
-    hMMIO = mmioOpen((LPSTR)pFileName, NULL, MMIO_READ | MMIO_ALLOCBUF);
+BOOL CStreamSoundObj::LoadWave(const fs::path & fsFile) {
+    hMMIO = mmioOpenW(const_cast<fs::path::value_type *>(fsFile.c_str()), NULL, MMIO_READ | MMIO_ALLOCBUF);
     if (hMMIO == NULL) {
         return FALSE;
     }

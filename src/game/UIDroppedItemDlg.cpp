@@ -134,7 +134,7 @@ void CUIDroppedItemDlg::InitIconUpdate() {
         if (m_pMyDroppedItem[i]) {
             m_pMyDroppedItem[i]->pUIIcon = new CN3UIIcon;
             m_pMyDroppedItem[i]->pUIIcon->Init(this);
-            m_pMyDroppedItem[i]->pUIIcon->SetTex(m_pMyDroppedItem[i]->szIconFN);
+            m_pMyDroppedItem[i]->pUIIcon->SetTex(m_pMyDroppedItem[i]->fsIconFile);
             m_pMyDroppedItem[i]->pUIIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
             m_pMyDroppedItem[i]->pUIIcon->SetUIType(UI_TYPE_ICON);
             m_pMyDroppedItem[i]->pUIIcon->SetStyle(UISTYLE_ICON_ITEM | UISTYLE_ICON_CERTIFICATION_NEED);
@@ -206,7 +206,7 @@ void CUIDroppedItemDlg::AddToItemTable(int iItemID, int iItemCount, int iOrder) 
     __IconItemSkill *    spItem;
     __TABLE_ITEM_BASIC * pItem = NULL;    // 아이템 테이블 구조체 포인터..
     __TABLE_ITEM_EXT *   pItemExt = NULL; // 아이템 테이블 구조체 포인터..
-    std::string          szIconFN;
+    fs::path             fsIconFile;
 
     pItem = CGameBase::s_pTbl_Items_Basic->Find(iItemID / 1000 * 1000); // 열 데이터 얻기..
     if (pItem && pItem->byExtIndex >= 0 && pItem->byExtIndex < MAX_ITEM_EXTENSION) {
@@ -214,14 +214,14 @@ void CUIDroppedItemDlg::AddToItemTable(int iItemID, int iItemCount, int iOrder) 
     }
     if (NULL == pItem || NULL == pItemExt) {
         __ASSERT(0, "아이템 포인터 테이블에 없음!!");
-        CLogWriter::Write("CUIDroppedItemDlg::AddToItemTable - Invalidate ItemID : %d", iItemID);
+        CLogWriter::Write("CUIDroppedItemDlg::AddToItemTable - Invalidate ItemID : {:d}", iItemID);
         return;
     }
 
     TRACE("Dropped item from server to ItemDlg %d \n", iItemID);
     e_PartPosition ePart;
     e_PlugPosition ePlug;
-    e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
+    e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &fsIconFile, ePart,
                                                                    ePlug); // 아이템에 따른 파일 이름을 만들어서
     if (ITEM_TYPE_UNKNOWN == eType) {
         return;
@@ -230,7 +230,7 @@ void CUIDroppedItemDlg::AddToItemTable(int iItemID, int iItemCount, int iOrder) 
     spItem = new __IconItemSkill;
     spItem->pItemBasic = pItem;
     spItem->pItemExt = pItemExt;
-    spItem->szIconFN = szIconFN; // 아이콘 파일 이름 복사..
+    spItem->fsIconFile = fsIconFile; // 아이콘 파일 이름 복사..
     spItem->iCount = iItemCount;
     spItem->iDurability = pItem->siMaxDurability + pItemExt->siMaxDurability;
 
@@ -242,7 +242,7 @@ void CUIDroppedItemDlg::AddToItemTableToInventory(int iItemID, int iItemCount, i
     __IconItemSkill *    spItem;
     __TABLE_ITEM_BASIC * pItem = NULL;    // 아이템 테이블 구조체 포인터..
     __TABLE_ITEM_EXT *   pItemExt = NULL; // 아이템 테이블 구조체 포인터..
-    std::string          szIconFN;
+    fs::path             fsIconFile;
     float                fUVAspect = (float)45.0f / (float)64.0f;
 
     pItem = CGameBase::s_pTbl_Items_Basic->Find(iItemID / 1000 * 1000); // 열 데이터 얻기..
@@ -251,14 +251,14 @@ void CUIDroppedItemDlg::AddToItemTableToInventory(int iItemID, int iItemCount, i
     }
     if (NULL == pItem || NULL == pItemExt) {
         __ASSERT(0, "아이템 포인터 테이블에 없음!!");
-        CLogWriter::Write("CUIDroppedItemDlg::AddToItemTableToInventory - Invalidate ItemID : %d", iItemID);
+        CLogWriter::Write("CUIDroppedItemDlg::AddToItemTableToInventory - Invalidate ItemID : {:d}", iItemID);
         return;
     }
 
     TRACE("Dropped item from server to ItemDlg %d \n", iItemID);
     e_PartPosition ePart;
     e_PlugPosition ePlug;
-    e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
+    e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &fsIconFile, ePart,
                                                                    ePlug); // 아이템에 따른 파일 이름을 만들어서
     if (ITEM_TYPE_UNKNOWN == eType) {
         return;
@@ -267,13 +267,13 @@ void CUIDroppedItemDlg::AddToItemTableToInventory(int iItemID, int iItemCount, i
     spItem = new __IconItemSkill;
     spItem->pItemBasic = pItem;
     spItem->pItemExt = pItemExt;
-    spItem->szIconFN = szIconFN; // 아이콘 파일 이름 복사..
+    spItem->fsIconFile = fsIconFile; // 아이콘 파일 이름 복사..
     spItem->iCount = iItemCount;
     spItem->iDurability = pItem->siMaxDurability + pItemExt->siMaxDurability;
 
     spItem->pUIIcon = new CN3UIIcon;
     spItem->pUIIcon->Init(CGameProcedure::s_pProcMain->m_pUIInventory);
-    spItem->pUIIcon->SetTex(spItem->szIconFN);
+    spItem->pUIIcon->SetTex(spItem->fsIconFile);
     spItem->pUIIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
     spItem->pUIIcon->SetUIType(UI_TYPE_ICON);
     spItem->pUIIcon->SetStyle(UISTYLE_ICON_ITEM | UISTYLE_ICON_CERTIFICATION_NEED);
@@ -367,7 +367,7 @@ bool CUIDroppedItemDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
 
     __TABLE_ITEM_BASIC * pItem;
     __IconItemSkill *    spItem;
-    std::string          szIconFN;
+    fs::path             fsIconFile;
     e_PartPosition       ePart;
     e_PlugPosition       ePlug;
     e_ItemType           eType;
@@ -399,12 +399,12 @@ bool CUIDroppedItemDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
         pItem = CGameBase::s_pTbl_Items_Basic->Find(spItem->pItemBasic->dwID); // 열 데이터 얻기..
         if (pItem == NULL) {
             __ASSERT(0, "NULL Item!!!");
-            CLogWriter::Write("CUIDroppedItemDlg::ReceiveMessage - UIMSG_ICON_UP - NULL Icon : %d",
+            CLogWriter::Write("CUIDroppedItemDlg::ReceiveMessage - UIMSG_ICON_UP - NULL Icon : {:d}",
                               spItem->pItemBasic->dwID);
             break;
         }
 
-        eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
+        eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &fsIconFile, ePart,
                                                         ePlug); // 아이템에 따른 파일 이름을 만들어서
 
         // 보낸 아이콘 배열이랑 비교..
@@ -557,7 +557,7 @@ void CUIDroppedItemDlg::GetItemByIDToInventory(BYTE bResult, int iItemID, int64_
         }
         if (NULL == pItem || NULL == pItemExt) {
             __ASSERT(0, "아이템 포인터 테이블에 없음!!");
-            CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - NULL Icon : %d", iItemID);
+            CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - NULL Icon : {:d}", iItemID);
             return;
         }
 
@@ -643,13 +643,13 @@ void CUIDroppedItemDlg::GetItemByIDToInventory(BYTE bResult, int iItemID, int64_
     {
         if (iItemID == dwGold) {
             __ASSERT(0, "Invalidate Item ID From Server.. ");
-            CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - ID Pos : %d", iPos);
+            CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - ID Pos : {:d}", iPos);
             return;
         }
 
         if ((iPos < 0) || (iPos > (MAX_ITEM_INVENTORY - 1))) {
             __ASSERT(0, "Invalidate Item Pos From Server.. ");
-            CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - Invalidate Pos : %d", iPos);
+            CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - Invalidate Pos : {:d}", iPos);
             return;
         }
 
@@ -688,7 +688,7 @@ void CUIDroppedItemDlg::GetItemByIDToInventory(BYTE bResult, int iItemID, int64_
         pItem = CGameBase::s_pTbl_Items_Basic->Find(iItemID / 1000 * 1000); // 열 데이터 얻기..
         if (NULL == pItem) {
             __ASSERT(0, "아이템 포인터 테이블에 없음!!");
-            CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - NULL Icon : %d", iItemID);
+            CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - NULL Icon : {:d}", iItemID);
             return;
         }
 
@@ -722,7 +722,7 @@ void CUIDroppedItemDlg::GetItemByIDToInventory(BYTE bResult, int iItemID, int64_
         if (iItemID != dwGold) {
             if ((iPos < 0) || (iPos > (MAX_ITEM_INVENTORY - 1))) {
                 __ASSERT(0, "Invalidate Item Pos From Server.. ");
-                CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - Invalidate Pos : %d", iPos);
+                CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - Invalidate Pos : {:d}", iPos);
                 return;
             }
 

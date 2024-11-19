@@ -279,9 +279,8 @@ bool CN3UIBase::Load(HANDLE hFile) {
     int iIDLen = 0;
     ReadFile(hFile, &iIDLen, sizeof(iIDLen), &dwRWC, NULL); // ui id length
     if (iIDLen > 0) {
-        std::vector<char> buffer(iIDLen, 0);
-        ReadFile(hFile, &buffer[0], iIDLen, &dwRWC, NULL); // ui id
-        m_szID = std::string(buffer.begin(), buffer.end());
+        m_szID.assign(iIDLen, '\0');
+        ReadFile(hFile, m_szID.data(), iIDLen, &dwRWC, NULL); // ui id
     } else {
         m_szID = "";
     }
@@ -293,29 +292,27 @@ bool CN3UIBase::Load(HANDLE hFile) {
     int iTooltipLen;
     ReadFile(hFile, &iTooltipLen, sizeof(iTooltipLen), &dwRWC, NULL); //    tooltip문자열 길이
     if (iTooltipLen > 0) {
-        std::vector<char> buffer(iTooltipLen, 0);
-        ReadFile(hFile, &buffer[0], iTooltipLen, &dwRWC, NULL);
-        m_szToolTip = std::string(buffer.begin(), buffer.end());
+        m_szToolTip.assign(iTooltipLen, '\0');
+        ReadFile(hFile, m_szToolTip.data(), iTooltipLen, &dwRWC, NULL);
     }
 
     // 이전 uif파일을 컨버팅 하려면 사운드 로드 하는 부분 막기
-    int iSndFNLen = 0;
-    ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL); //    사운드 파일 문자열 길이
-    if (iSndFNLen > 0) {
-        std::vector<char> buffer(iSndFNLen, 0);
-        ReadFile(hFile, &buffer[0], iSndFNLen, &dwRWC, NULL);
-
+    int iLen = 0;
+    ReadFile(hFile, &iLen, sizeof(iLen), &dwRWC, NULL); //    사운드 파일 문자열 길이
+    if (iLen > 0) {
+        std::string szFile(iLen, '\0');
+        ReadFile(hFile, szFile.data(), iLen, &dwRWC, NULL);
         __ASSERT(NULL == m_pSnd_OpenUI, "memory leak");
-        m_pSnd_OpenUI = s_SndMgr.CreateObj(std::string(buffer.begin(), buffer.end()), SNDTYPE_2D);
+        m_pSnd_OpenUI = s_SndMgr.CreateObj(szFile, SNDTYPE_2D);
     }
 
-    ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL); //    사운드 파일 문자열 길이
-    if (iSndFNLen > 0) {
-        std::vector<char> buffer(iSndFNLen, 0);
-        ReadFile(hFile, &buffer[0], iSndFNLen, &dwRWC, NULL);
-
+    iLen = 0;
+    ReadFile(hFile, &iLen, sizeof(iLen), &dwRWC, NULL); //    사운드 파일 문자열 길이
+    if (iLen > 0) {
+        std::string szFile(iLen, '\0');
+        ReadFile(hFile, szFile.data(), iLen, &dwRWC, NULL);
         __ASSERT(NULL == m_pSnd_CloseUI, "memory leak");
-        m_pSnd_CloseUI = s_SndMgr.CreateObj(std::string(buffer.begin(), buffer.end()), SNDTYPE_2D);
+        m_pSnd_CloseUI = s_SndMgr.CreateObj(szFile, SNDTYPE_2D);
     }
 
     return true;
@@ -407,16 +404,16 @@ DWORD CN3UIBase::MouseProc(DWORD dwFlags, const POINT & ptCur, const POINT & ptO
     return dwRet;
 }
 
-bool CN3UIBase::EnableTooltip(const std::string & szFN) {
+bool CN3UIBase::EnableTooltip(const fs::path & fsFile) {
     delete s_pTooltipCtrl;
     s_pTooltipCtrl = NULL;
-    if (szFN.empty()) {
+    if (fsFile.empty()) {
         return false;
     }
 
     s_pTooltipCtrl = new CN3UITooltip();
     s_pTooltipCtrl->Init(NULL);
-    s_pTooltipCtrl->LoadFromFile(szFN);
+    s_pTooltipCtrl->LoadFromFile(fsFile);
     return true;
 }
 
@@ -434,8 +431,8 @@ CN3UIBase * CN3UIBase::GetChildByID(const std::string & szID) {
 
     for (UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor) {
         CN3UIBase * pChild = (*itor);
-        //        if(pChild->m_szID == szID) return pChild;
-        if (lstrcmpi(pChild->m_szID.c_str(), szID.c_str()) == 0) {
+        //if(pChild->m_szID == szID) return pChild;
+        if (n3std::iequals(pChild->m_szID, szID)) {
             return pChild; // 대소문자 안가리고 검색..
         }
     }
@@ -587,12 +584,12 @@ void CN3UIBase::operator=(const CN3UIBase & other) {
 
     if (other.m_pSnd_OpenUI) {
         CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_OpenUI);
-        m_pSnd_OpenUI = s_SndMgr.CreateObj(other.m_pSnd_OpenUI->m_szFileName, SNDTYPE_2D);
+        m_pSnd_OpenUI = s_SndMgr.CreateObj(other.m_pSnd_OpenUI->m_fsFile, SNDTYPE_2D);
     }
 
     if (other.m_pSnd_CloseUI) {
         CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_CloseUI);
-        m_pSnd_CloseUI = s_SndMgr.CreateObj(other.m_pSnd_CloseUI->m_szFileName, SNDTYPE_2D);
+        m_pSnd_CloseUI = s_SndMgr.CreateObj(other.m_pSnd_CloseUI->m_fsFile, SNDTYPE_2D);
     }
 
     m_rcMovable = other.m_rcMovable;
@@ -638,44 +635,48 @@ bool CN3UIBase::Save(HANDLE hFile) {
         WriteFile(hFile, m_szToolTip.c_str(), iTooltipLen, &dwRWC, NULL);
     }
 
-    int iSndFNLen = 0;
+    std::string szFile;
+    int         iLen = 0;
     if (m_pSnd_OpenUI) {
-        iSndFNLen = m_pSnd_OpenUI->m_szFileName.size();
+        szFile = fs::path(m_pSnd_OpenUI->m_fsFile).normalize('/', '\\').string();
+        iLen = szFile.length();
     }
-    WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL); //    사운드 파일 문자열 길이
-    if (iSndFNLen > 0) {
-        WriteFile(hFile, m_pSnd_OpenUI->m_szFileName.c_str(), iSndFNLen, &dwRWC, NULL);
+    WriteFile(hFile, &iLen, sizeof(iLen), &dwRWC, NULL); //    사운드 파일 문자열 길이
+    if (iLen > 0) {
+        WriteFile(hFile, szFile.c_str(), iLen, &dwRWC, NULL);
     }
 
-    iSndFNLen = 0;
+    szFile.clear();
+    iLen = 0;
     if (m_pSnd_CloseUI) {
-        iSndFNLen = m_pSnd_CloseUI->m_szFileName.size();
+        szFile = fs::path(m_pSnd_CloseUI->m_fsFile).normalize('/', '\\').string();
+        iLen = szFile.length();
     }
-    WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL); //    사운드 파일 문자열 길이
-    if (iSndFNLen > 0) {
-        WriteFile(hFile, m_pSnd_CloseUI->m_szFileName.c_str(), iSndFNLen, &dwRWC, NULL);
+    WriteFile(hFile, &iLen, sizeof(iLen), &dwRWC, NULL); //    사운드 파일 문자열 길이
+    if (iLen > 0) {
+        WriteFile(hFile, szFile.c_str(), iLen, &dwRWC, NULL);
     }
 
     return true;
 }
 
-void CN3UIBase::ChangeImagePath(const std::string & szPathOld, const std::string & szPathNew) {
+void CN3UIBase::ChangeImagePath(const fs::path & fsOldFile, const fs::path & fsNewFile) {
     // child 정보
     for (UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor) {
         CN3UIBase * pChild = (*itor);
-        pChild->ChangeImagePath(szPathOld, szPathNew);
+        pChild->ChangeImagePath(fsOldFile, fsNewFile);
     }
 }
 
-void CN3UIBase::ChangeFont(const std::string & szFont) {
+void CN3UIBase::ChangeFont(const fs::path & fsFile) {
     // child 정보
     for (UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor) {
         CN3UIBase * pChild = (*itor);
-        pChild->ChangeFont(szFont);
+        pChild->ChangeFont(fsFile);
     }
 }
 
-void CN3UIBase::GatherImageFileName(std::set<std::string> & setImgFile) {
+void CN3UIBase::GatherImageFileName(std::set<fs::path> & setImgFile) {
     // child 정보
     for (UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor) {
         CN3UIBase * pChild = (*itor);
@@ -957,8 +958,8 @@ void CN3UIBase::operator=(const CN3UIBase & other) {
     m_eState = other.m_eState;
     m_eType = other.m_eType;
 
-    SetSndOpen(other.GetSndFName_OpenUI());
-    SetSndClose(other.GetSndFName_CloseUI());
+    SetSndOpen(other.GetSndFileOpenUI());
+    SetSndClose(other.GetSndFileCloseUI());
 
     m_rcMovable = other.m_rcMovable;
     m_rcRegion = other.m_rcRegion;
@@ -966,45 +967,41 @@ void CN3UIBase::operator=(const CN3UIBase & other) {
     m_szToolTip = other.m_szToolTip;
 }
 
-void CN3UIBase::SetSndOpen(const std::string & strFileName) {
+void CN3UIBase::SetSndOpen(const fs::path & fsFile) {
     CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_OpenUI);
-    if (0 == strFileName.size()) {
+    fs::path fsSndFile = CN3BaseFileAccess::ToRelative(fsFile);
+    if (fsSndFile.empty()) {
         return;
     }
 
-    CN3BaseFileAccess tmpBase;
-    tmpBase.FileNameSet(strFileName); // Base경로에 대해서 상대적 경로를 넘겨준다.
-
-    SetCurrentDirectory(CN3Base::PathGet().c_str());
-    m_pSnd_OpenUI = s_SndMgr.CreateObj(tmpBase.FileName(), SNDTYPE_2D);
+    fs::current_path(CN3Base::PathGet());
+    m_pSnd_OpenUI = s_SndMgr.CreateObj(fsSndFile, SNDTYPE_2D);
 }
 
-void CN3UIBase::SetSndClose(const std::string & strFileName) {
+void CN3UIBase::SetSndClose(const fs::path & fsFile) {
     CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_CloseUI);
-    if (0 == strFileName.size()) {
+    fs::path fsFileRel = CN3BaseFileAccess::ToRelative(fsFile);
+    if (fsFileRel.empty()) {
         return;
     }
 
-    CN3BaseFileAccess tmpBase;
-    tmpBase.FileNameSet(strFileName); // Base경로에 대해서 상대적 경로를 넘겨준다.
-
-    SetCurrentDirectory(CN3Base::PathGet().c_str());
-    m_pSnd_CloseUI = s_SndMgr.CreateObj(tmpBase.FileName(), SNDTYPE_2D);
+    fs::current_path(CN3Base::PathGet());
+    m_pSnd_CloseUI = s_SndMgr.CreateObj(fsFileRel, SNDTYPE_2D);
 }
 
-std::string CN3UIBase::GetSndFName_OpenUI() const {
+fs::path CN3UIBase::GetSndFileOpenUI() const {
     if (m_pSnd_OpenUI) {
-        return m_pSnd_OpenUI->m_szFileName;
+        return m_pSnd_OpenUI->m_fsFile;
     } else {
-        return std::string("");
+        return fs::path();
     }
 }
 
-std::string CN3UIBase::GetSndFName_CloseUI() const {
+fs::path CN3UIBase::GetSndFileCloseUI() const {
     if (m_pSnd_CloseUI) {
-        return m_pSnd_CloseUI->m_szFileName;
+        return m_pSnd_CloseUI->m_fsFile;
     } else {
-        return std::string("");
+        return fs::path();
     }
 }
 

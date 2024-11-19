@@ -208,7 +208,7 @@ void CUIWareHouseDlg::InitIconUpdate() {
             if (m_pMyWare[j][i] != NULL) {
                 m_pMyWare[j][i]->pUIIcon = new CN3UIIcon;
                 m_pMyWare[j][i]->pUIIcon->Init(this);
-                m_pMyWare[j][i]->pUIIcon->SetTex(m_pMyWare[j][i]->szIconFN);
+                m_pMyWare[j][i]->pUIIcon->SetTex(m_pMyWare[j][i]->fsIconFile);
                 m_pMyWare[j][i]->pUIIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
                 m_pMyWare[j][i]->pUIIcon->SetUIType(UI_TYPE_ICON);
                 m_pMyWare[j][i]->pUIIcon->SetStyle(UISTYLE_ICON_ITEM | UISTYLE_ICON_CERTIFICATION_NEED);
@@ -1444,12 +1444,12 @@ void CUIWareHouseDlg::ItemCountOK() {
             spItemNew = new __IconItemSkill;
             spItemNew->pItemBasic = spItem->pItemBasic;
             spItemNew->pItemExt = spItem->pItemExt;
-            spItemNew->szIconFN = spItem->szIconFN;
+            spItemNew->fsIconFile = spItem->fsIconFile;
             spItemNew->iCount = iGold;
             spItemNew->iDurability = spItem->iDurability;
             spItemNew->pUIIcon = new CN3UIIcon;
             spItemNew->pUIIcon->Init(this);
-            spItemNew->pUIIcon->SetTex(spItem->szIconFN);
+            spItemNew->pUIIcon->SetTex(spItem->fsIconFile);
             spItemNew->pUIIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
             spItemNew->pUIIcon->SetUIType(UI_TYPE_ICON);
             spItemNew->pUIIcon->SetStyle(UISTYLE_ICON_ITEM | UISTYLE_ICON_CERTIFICATION_NEED);
@@ -1557,12 +1557,12 @@ void CUIWareHouseDlg::ItemCountOK() {
             spItemNew = new __IconItemSkill;
             spItemNew->pItemBasic = spItem->pItemBasic;
             spItemNew->pItemExt = spItem->pItemExt;
-            spItemNew->szIconFN = spItem->szIconFN;
+            spItemNew->fsIconFile = spItem->fsIconFile;
             spItemNew->iCount = iGold;
             spItemNew->iDurability = spItem->iDurability;
             spItemNew->pUIIcon = new CN3UIIcon;
             spItemNew->pUIIcon->Init(this);
-            spItemNew->pUIIcon->SetTex(spItem->szIconFN);
+            spItemNew->pUIIcon->SetTex(spItem->fsIconFile);
             spItemNew->pUIIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
             spItemNew->pUIIcon->SetUIType(UI_TYPE_ICON);
             spItemNew->pUIIcon->SetStyle(UISTYLE_ICON_ITEM | UISTYLE_ICON_CERTIFICATION_NEED);
@@ -1676,7 +1676,7 @@ void CUIWareHouseDlg::AddItemInWare(int iItem, int iDurability, int iCount, int 
     if (!iItem) {
         return;
     }
-    std::string          szIconFN;
+    fs::path             fsIconFile;
     __IconItemSkill *    spItem = NULL;
     __TABLE_ITEM_BASIC * pItem = NULL; // 아이템 테이블 구조체 포인터..
     __TABLE_ITEM_EXT *   pItemExt = NULL;
@@ -1687,13 +1687,13 @@ void CUIWareHouseDlg::AddItemInWare(int iItem, int iDurability, int iCount, int 
     }
     if (NULL == pItem || NULL == pItemExt) {
         __ASSERT(0, "NULL Item!!!");
-        CLogWriter::Write("WareHouse - Ware - Unknown Item %d, IDNumber", iItem);
+        CLogWriter::Write("WareHouse - Ware - Unknown Item {:d}, IDNumber", iItem);
         return; // 아이템이 없으면..
     }
 
     e_PartPosition ePart;
     e_PlugPosition ePlug;
-    e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
+    e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &fsIconFile, ePart,
                                                                    ePlug); // 아이템에 따른 파일 이름을 만들어서
     if (ITEM_TYPE_UNKNOWN == eType) {
         CLogWriter::Write("MyInfo - slot - Unknown Item");
@@ -1703,7 +1703,7 @@ void CUIWareHouseDlg::AddItemInWare(int iItem, int iDurability, int iCount, int 
     spItem = new __IconItemSkill;
     spItem->pItemBasic = pItem;
     spItem->pItemExt = pItemExt;
-    spItem->szIconFN = szIconFN; // 아이콘 파일 이름 복사..
+    spItem->fsIconFile = fsIconFile; // 아이콘 파일 이름 복사..
     spItem->iCount = iCount;
     spItem->iDurability = iDurability;
 

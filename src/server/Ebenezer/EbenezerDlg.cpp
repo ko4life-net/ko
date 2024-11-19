@@ -1098,8 +1098,6 @@ BOOL CEbenezerDlg::InitializeMMF() {
 }
 
 BOOL CEbenezerDlg::MapFileLoad() {
-    CFile    file;
-    CString  szFullPath, errormsg, sZoneName;
     C3DMap * pMap = NULL;
     EVENT *  pEvent = NULL;
 
@@ -1119,13 +1117,14 @@ BOOL CEbenezerDlg::MapFileLoad() {
     ZoneInfoSet.MoveFirst();
 
     while (!ZoneInfoSet.IsEOF()) {
-        sZoneName = ZoneInfoSet.m_strZoneName;
-        szFullPath.Format(".\\Ebenezer_MAP\\%s", sZoneName);
+        std::string szSmdFileName = ZoneInfoSet.m_strZoneName.GetString();
+        fs::path    fsSmdFile = fs::current_path() / "Ebenezer_MAP" / szSmdFileName;
 
         n3std::log_file_write("mapfile load\r\n");
-        if (!file.Open(szFullPath, CFile::modeRead)) {
-            errormsg.Format("File Open Fail - %s\n", szFullPath);
-            AfxMessageBox(errormsg);
+
+        CFile file;
+        if (!file.Open(fsSmdFile.string().c_str(), CFile::modeRead)) {
+            AfxMessageBox(std::format("File Open Fail - {:s}", fsSmdFile).c_str());
             return FALSE;
         }
 
@@ -1133,15 +1132,14 @@ BOOL CEbenezerDlg::MapFileLoad() {
 
         pMap->m_nServerNo = ZoneInfoSet.m_ServerNo;
         pMap->m_nZoneNumber = ZoneInfoSet.m_ZoneNo;
-        strcpy(pMap->m_MapName, (char *)(LPCTSTR)sZoneName);
+        pMap->m_fsSmdFileName = szSmdFileName;
         pMap->m_fInitX = (float)(ZoneInfoSet.m_InitX / 100.0);
         pMap->m_fInitZ = (float)(ZoneInfoSet.m_InitZ / 100.0);
         pMap->m_fInitY = (float)(ZoneInfoSet.m_InitY / 100.0);
         pMap->m_bType = ZoneInfoSet.m_Type;
 
         if (!pMap->LoadMap((HANDLE)file.m_hFile)) {
-            errormsg.Format("Map Load Fail - %s\n", szFullPath);
-            AfxMessageBox(errormsg);
+            AfxMessageBox(std::format("Map Load Fail - {:s}", fsSmdFile).c_str());
             delete pMap;
             return FALSE;
         }
@@ -2657,14 +2655,13 @@ bool CEbenezerDlg::LoadNoticeData() {
 }
 
 void CEbenezerDlg::SyncTest(int nType) {
-    char strPath[100];
-    memset(strPath, 0x00, 100);
+    fs::path fsFile;
     if (nType == 1) {
-        strcpy(strPath, "c:\\userlist.txt");
+        fsFile = fs::temp_directory_path() / "Ebenezer_userlist.txt";
     } else if (nType == 2) {
-        strcpy(strPath, "c:\\npclist.txt");
+        fsFile = fs::temp_directory_path() / "Ebenezer_npclist.txt";
     }
-    FILE * stream = fopen(strPath, "w");
+    FILE * stream = _wfopen(fsFile.c_str(), L"w");
 
     int         size = m_arNpcArray.GetSize();
     CNpc *      pNpc = NULL;

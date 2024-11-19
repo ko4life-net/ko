@@ -72,11 +72,11 @@ class COrganizeView : public CFormView {
 
     void OnFileServerData();
 
-    void OpenWorkShopFile(std::string strFile);
-    void OpenGameDataFile(std::string strFile);
+    void OpenWorkShopFile(const fs::path & fsFile);
+    void OpenGameDataFile(const fs::path & fsFile);
 
-    void OpenWSFileInternal(std::string strFile);
-    void OpenGDFileInternal(std::string strFile);
+    void OpenWSFileInternal(const fs::path & fsFile);
+    void OpenGDFileInternal(const fs::path & fsFile);
 
     void        ShapeLinkToPVolumn(CN3Base * pBase);
     bool        IsSelectedPvs();

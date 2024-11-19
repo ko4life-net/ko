@@ -111,11 +111,12 @@ void CSubProcPerTrade::InitPerTradeDlg(CUIManager * pUIManager) {
     __TABLE_ITEM_BASIC * pItem = NULL;        // 아이템 테이블 구조체 포인터..
     pItem = s_pTbl_Items_Basic->Find(dwGold); // 열 데이터 얻기..
 
-    std::string    szIconFN;
+    fs::path       fsIconFile;
     e_PartPosition ePart;
     e_PlugPosition ePlug;
-    CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart, ePlug); // 아이템에 따른 파일 이름을 만들어서
-    m_pUITradeEditDlg->m_pImageOfIcon->SetTex(szIconFN);
+    CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &fsIconFile, ePart,
+                                            ePlug); // 아이템에 따른 파일 이름을 만들어서
+    m_pUITradeEditDlg->m_pImageOfIcon->SetTex(fsIconFile);
     float fUVAspect = (float)45.0f / (float)64.0f;
     m_pUITradeEditDlg->m_pImageOfIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
     m_pUITradeEditDlg->m_pImageOfIcon->SetRegion(m_pUITradeEditDlg->m_pArea->GetRegion());
@@ -708,7 +709,7 @@ void CSubProcPerTrade::ReceiveMsgPerTradeAdd(BYTE bResult) {
                     spItemNew = new __IconItemSkill;
                     spItemNew->pItemBasic = spItem->pItemBasic;
                     spItemNew->pItemExt = spItem->pItemExt;
-                    spItemNew->szIconFN = spItem->szIconFN; // 아이콘 파일 이름 복사..
+                    spItemNew->fsIconFile = spItem->fsIconFile; // 아이콘 파일 이름 복사..
                     spItemNew->iCount = m_pUIPerTradeDlg->m_iBackupiCount;
                     spItemNew->iDurability = spItem->iDurability;
 
@@ -716,7 +717,7 @@ void CSubProcPerTrade::ReceiveMsgPerTradeAdd(BYTE bResult) {
                     spItemNew->pUIIcon = new CN3UIIcon;
                     float fUVAspect = (float)45.0f / (float)64.0f;
                     spItemNew->pUIIcon->Init(m_pUIPerTradeDlg);
-                    spItemNew->pUIIcon->SetTex(spItemNew->szIconFN);
+                    spItemNew->pUIIcon->SetTex(spItemNew->fsIconFile);
                     spItemNew->pUIIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
                     spItemNew->pUIIcon->SetUIType(UI_TYPE_ICON);
                     spItemNew->pUIIcon->SetStyle(UISTYLE_ICON_ITEM | UISTYLE_ICON_CERTIFICATION_NEED);
@@ -863,10 +864,10 @@ void CSubProcPerTrade::ReceiveMsgPerTradeOtherAdd(int iItemID, int iCount, int i
             {
                 m_pUIPerTradeDlg->m_pPerTradeOther[iDestiOrder]->iCount += iCount;
             } else {
-                std::string    szIconFN;
+                fs::path       fsIconFile;
                 e_PartPosition ePart;
                 e_PlugPosition ePlug;
-                CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
+                CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &fsIconFile, ePart,
                                                         ePlug); // 아이템에 따른 파일 이름을 만들어서
 
                 __IconItemSkill * spItem;
@@ -874,13 +875,13 @@ void CSubProcPerTrade::ReceiveMsgPerTradeOtherAdd(int iItemID, int iCount, int i
                 spItem = new __IconItemSkill;
                 spItem->pItemBasic = pItem;
                 spItem->pItemExt = pItemExt;
-                spItem->szIconFN = szIconFN; // 아이콘 파일 이름 복사..
+                spItem->fsIconFile = fsIconFile; // 아이콘 파일 이름 복사..
                 spItem->iCount = iCount;
                 spItem->iDurability = iDurability;
                 float fUVAspect = (float)45.0f / (float)64.0f;
                 spItem->pUIIcon = new CN3UIIcon;
                 spItem->pUIIcon->Init(m_pUIPerTradeDlg);
-                spItem->pUIIcon->SetTex(szIconFN);
+                spItem->pUIIcon->SetTex(fsIconFile);
                 spItem->pUIIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
                 spItem->pUIIcon->SetUIType(UI_TYPE_ICON);
                 spItem->pUIIcon->SetStyle(UISTYLE_ICON_ITEM | UISTYLE_ICON_CERTIFICATION_NEED);
@@ -909,10 +910,10 @@ void CSubProcPerTrade::ReceiveMsgPerTradeOtherAdd(int iItemID, int iCount, int i
                 return; // 못 찾았으므로.. 실패..
             }
 
-            std::string    szIconFN;
+            fs::path       fsIconFile;
             e_PartPosition ePart;
             e_PlugPosition ePlug;
-            CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
+            CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &fsIconFile, ePart,
                                                     ePlug); // 아이템에 따른 파일 이름을 만들어서
 
             __IconItemSkill * spItem;
@@ -920,13 +921,13 @@ void CSubProcPerTrade::ReceiveMsgPerTradeOtherAdd(int iItemID, int iCount, int i
             spItem = new __IconItemSkill;
             spItem->pItemBasic = pItem;
             spItem->pItemExt = pItemExt;
-            spItem->szIconFN = szIconFN; // 아이콘 파일 이름 복사..
+            spItem->fsIconFile = fsIconFile; // 아이콘 파일 이름 복사..
             spItem->iCount = 1;
             spItem->iDurability = iDurability;
             float fUVAspect = (float)45.0f / (float)64.0f;
             spItem->pUIIcon = new CN3UIIcon;
             spItem->pUIIcon->Init(m_pUIPerTradeDlg);
-            spItem->pUIIcon->SetTex(szIconFN);
+            spItem->pUIIcon->SetTex(fsIconFile);
             spItem->pUIIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
             spItem->pUIIcon->SetUIType(UI_TYPE_ICON);
             spItem->pUIIcon->SetStyle(UISTYLE_ICON_ITEM | UISTYLE_ICON_CERTIFICATION_NEED);
@@ -1021,22 +1022,23 @@ Make_Icon:
         return;
     }
 
-    std::string    szIconFN;
+    fs::path       fsIconFile;
     e_PartPosition ePart;
     e_PlugPosition ePlug;
-    CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart, ePlug); // 아이템에 따른 파일 이름을 만들어서
+    CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &fsIconFile, ePart,
+                                            ePlug); // 아이템에 따른 파일 이름을 만들어서
 
     spItem = new __IconItemSkill;
     spItem->pItemBasic = pItem;
     spItem->pItemExt = pItemExt;
-    spItem->szIconFN = szIconFN; // 아이콘 파일 이름 복사..
+    spItem->fsIconFile = fsIconFile; // 아이콘 파일 이름 복사..
     spItem->iCount = iCount;
     spItem->iDurability = iDurability;
 
     float fUVAspect = (float)45.0f / (float)64.0f;
     spItem->pUIIcon = new CN3UIIcon;
     spItem->pUIIcon->Init(m_pUIPerTradeDlg);
-    spItem->pUIIcon->SetTex(szIconFN);
+    spItem->pUIIcon->SetTex(fsIconFile);
     spItem->pUIIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
     spItem->pUIIcon->SetUIType(UI_TYPE_ICON);
     spItem->pUIIcon->SetStyle(UISTYLE_ICON_ITEM | UISTYLE_ICON_CERTIFICATION_NEED);

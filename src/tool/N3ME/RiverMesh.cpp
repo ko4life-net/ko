@@ -74,9 +74,8 @@ void CRiverMesh::ReleaseAnimTextures() {
 
 bool CRiverMesh::Load(HANDLE hFile) {
     Release();
-    DWORD dwNum;
-    int   iLen;
-    char  szTextueFName[_MAX_PATH];
+
+    DWORD dwNum = 0;
 
     ReadFile(hFile, &m_iRiverID, sizeof(m_iRiverID), &dwNum, NULL);       // 강 번호
     ReadFile(hFile, &m_fSpeed1, sizeof(m_fSpeed1), &dwNum, NULL);         // 유속
@@ -92,11 +91,15 @@ bool CRiverMesh::Load(HANDLE hFile) {
         ReadFile(hFile, m_pVertices, m_iVC * sizeof(__VertexXyzT2), &dwNum, NULL); // vertex buffer
     }
     ReadFile(hFile, &m_iIC, sizeof(m_iIC), &dwNum, NULL); // IndexBufferCount.
-    ReadFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);   // texture name length
+
+    int         iLen = 0;
+    std::string szTexFile;
+
+    ReadFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
     if (iLen > 0) {
-        ReadFile(hFile, szTextueFName, iLen, &dwNum, NULL); // texture name
-        szTextueFName[iLen] = NULL;
-        m_pTexture = s_MngTex.Get(szTextueFName, TRUE); // load texture
+        szTexFile.assign(iLen, '\0');
+        ReadFile(hFile, szTexFile.data(), iLen, &dwNum, NULL);
+        m_pTexture = s_MngTex.Get(szTexFile, TRUE);
     }
 
     // Animation Texture Data
@@ -110,16 +113,18 @@ bool CRiverMesh::Load(HANDLE hFile) {
     }
 
     for (int i = 0; i < m_iAnimTextureCount; ++i) {
+        iLen = 0;
         ReadFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL); // texture name length
         if (iLen <= 0) {
             m_pAnimTextures[i] = NULL;
             __ASSERT(0, "텍스쳐가 없다");
             continue;
         }
-        ReadFile(hFile, szTextueFName, iLen, &dwNum, NULL); // texture name
-        szTextueFName[iLen] = NULL;
-        m_pAnimTextures[i] = s_MngTex.Get(szTextueFName, TRUE); // load texture
+        szTexFile.assign(iLen, '\0');
+        ReadFile(hFile, szTexFile.data(), iLen, &dwNum, NULL); // texture name
+        m_pAnimTextures[i] = s_MngTex.Get(szTexFile, TRUE);    // load texture
     }
+
     return 0;
 }
 
@@ -141,13 +146,15 @@ bool CRiverMesh::Save(HANDLE hFile) {
     }
     WriteFile(hFile, &m_iIC, sizeof(m_iIC), &dwNum, NULL); // IndexBuffer Count.
 
-    int iLen = 0;
+    std::string szFile;
+    int         iLen = 0;
     if (m_pTexture) {
-        iLen = m_pTexture->FileName().size();
+        szFile = m_pTexture->FilePathWin().string();
+        iLen = szFile.length();
     }
     WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL); // texture file name length
     if (iLen > 0) {
-        WriteFile(hFile, m_pTexture->FileName().c_str(), iLen, &dwNum, NULL); // texture file name
+        WriteFile(hFile, szFile.c_str(), iLen, &dwNum, NULL); // texture file name
     }
 
     // Animation Texture Data
@@ -156,10 +163,11 @@ bool CRiverMesh::Save(HANDLE hFile) {
 
     for (int i = 0; i < m_iAnimTextureCount; ++i) {
         __ASSERT(m_pAnimTextures[i], "강물 텍스쳐 포인터가 NULL입니다.");
-        int iLen = m_pAnimTextures[i]->FileName().size();
+        szFile = m_pAnimTextures[i]->FilePathWin().string();
+        iLen = szFile.length();
         WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL); // texture name length
         if (iLen > 0) {
-            WriteFile(hFile, m_pAnimTextures[i]->FileName().c_str(), iLen, &dwNum, NULL); // texture name
+            WriteFile(hFile, szFile.c_str(), iLen, &dwNum, NULL); // texture name
         }
     }
     return 0;
@@ -383,30 +391,31 @@ int CRiverMesh::DeleteVertex(int iIndex) {
     return m_iVC;
 }
 
-BOOL CRiverMesh::SetTextureName(LPCTSTR pszFName) {
+BOOL CRiverMesh::SetTextureName(const fs::path & fsFile) {
     if (m_pTexture) {
-        if (lstrcmpi(pszFName, m_pTexture->FileName().c_str()) == 0) {
+        if (n3std::iequals(fsFile, m_pTexture->FilePath())) {
             return TRUE;
         }
         s_MngTex.Delete(&m_pTexture);
     }
-    m_pTexture = s_MngTex.Get(pszFName, TRUE);
+    m_pTexture = s_MngTex.Get(fsFile, TRUE);
     return m_pTexture ? TRUE : FALSE;
 }
 
-BOOL CRiverMesh::SetAnimTextureName(LPCTSTR pszFName, LPCTSTR pszExt, int iCount) {
+BOOL CRiverMesh::SetAnimTextureName(const fs::path & fsFile, const fs::path & fsExt, int iCount) {
     ReleaseAnimTextures();
-    if (lstrlen(pszFName) == 0 || iCount <= 0) {
+    if (fsFile.empty() || iCount <= 0) {
         return FALSE;
     }
-    __ASSERT(iCount < 100, "강물 에니메이션 텍스쳐가 너무 많습니다.");
+    __ASSERT(iCount < 100, "There are too many river animation textures.");
     m_iAnimTextureCount = iCount;
     m_pAnimTextures = new CN3Texture *[m_iAnimTextureCount];
 
-    char szTemp[_MAX_PATH];
     for (int i = 0; i < m_iAnimTextureCount; ++i) {
-        wsprintf(szTemp, "%s%02d%s", pszFName, i, pszExt);
-        m_pAnimTextures[i] = s_MngTex.Get(szTemp);
+        fs::path fsTexFile(fsFile);
+        fsTexFile += std::format("{:02}", i);
+        fsTexFile += fsExt;
+        m_pAnimTextures[i] = s_MngTex.Get(fsTexFile);
     }
     return TRUE;
 }

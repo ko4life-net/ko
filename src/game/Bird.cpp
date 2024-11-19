@@ -109,19 +109,17 @@ void CBird::Render() {
     m_pShape->Render();
 }
 
-int CBird::LoadBird(const std::string & szFN) {
+int CBird::LoadBird(const fs::path & fsFile) {
     Release();
-    FILE * stream = fopen(szFN.c_str(), "r"); //text파일로 만든다
+    FILE * stream = _wfopen(fsFile.c_str(), L"r"); //text파일로 만든다
     if (NULL == stream) {
 #if _DEBUG
-        char szErr[512];
-        wsprintf(szErr, "failed to open file - %s", szFN);
-        __ASSERT(stream, szErr);
+        __ASSERT(stream, std::format("failed to open file - {:s}", fsFile).c_str());
 #endif
         return false;
     }
 
-    char  szRrcName[_MAX_PATH];
+    char  szRrcName[260]{};
     float fSpeed = 0.0f;
     int   result = fscanf(stream, "ResourceName = %s\n", szRrcName);
     __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");

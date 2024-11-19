@@ -280,20 +280,19 @@ bool CN3UIButton::Load(HANDLE hFile) {
     int iSndFNLen = 0;
     ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //    사운드 파일 문자열 길이
     if (iSndFNLen > 0) {
-        std::vector<char> buffer(iSndFNLen, 0);
-        ReadFile(hFile, &buffer[0], iSndFNLen, &dwNum, NULL);
-
+        std::string szFile(iSndFNLen, '\0');
+        ReadFile(hFile, szFile.data(), iSndFNLen, &dwNum, NULL);
         __ASSERT(NULL == m_pSnd_On, "memory leak");
-        m_pSnd_On = s_SndMgr.CreateObj(std::string(buffer.begin(), buffer.end()), SNDTYPE_2D);
+        m_pSnd_On = s_SndMgr.CreateObj(szFile, SNDTYPE_2D);
     }
 
+    iSndFNLen = 0;
     ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //    사운드 파일 문자열 길이
     if (iSndFNLen > 0) {
-        std::vector<char> buffer(iSndFNLen, 0);
-        ReadFile(hFile, &buffer[0], iSndFNLen, &dwNum, NULL);
-
+        std::string szFile(iSndFNLen, '\0');
+        ReadFile(hFile, szFile.data(), iSndFNLen, &dwNum, NULL);
         __ASSERT(NULL == m_pSnd_Click, "memory leak");
-        m_pSnd_Click = s_SndMgr.CreateObj(std::string(buffer.begin(), buffer.end()), SNDTYPE_2D);
+        m_pSnd_Click = s_SndMgr.CreateObj(szFile, SNDTYPE_2D);
     }
 
     return true;
@@ -303,9 +302,9 @@ bool CN3UIButton::Load(HANDLE hFile) {
 void CN3UIButton::operator=(const CN3UIButton & other) {
     CN3UIBase::operator=(other);
 
-    m_rcClick = other.m_rcClick;            // 클릭 영역
-    SetSndOn(other.GetSndFName_On());       // 사운드
-    SetSndClick(other.GetSndFName_Click()); // 사운드
+    m_rcClick = other.m_rcClick;          // 클릭 영역
+    SetSndOn(other.GetSndFileOn());       // 사운드
+    SetSndClick(other.GetSndFileClick()); // 사운드
 
     // m_ImageRef 설정하기
     for (UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor) {
@@ -327,22 +326,25 @@ bool CN3UIButton::Save(HANDLE hFile) {
     DWORD dwNum;
     WriteFile(hFile, &m_rcClick, sizeof(m_rcClick), &dwNum, NULL); // click 영역
 
-    int iSndFNLen = 0;
+    std::string szFile;
+    int         iLen = 0;
     if (m_pSnd_On) {
-        iSndFNLen = m_pSnd_On->m_szFileName.size();
+        szFile = fs::path(m_pSnd_On->m_fsFile).normalize('/', '\\').string();
+        iLen = szFile.length();
     }
-    WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //    사운드 파일 문자열 길이
-    if (iSndFNLen > 0) {
-        WriteFile(hFile, m_pSnd_On->m_szFileName.c_str(), iSndFNLen, &dwNum, NULL);
+    WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL); //    사운드 파일 문자열 길이
+    if (iLen > 0) {
+        WriteFile(hFile, szFile.c_str(), iLen, &dwNum, NULL);
     }
 
-    iSndFNLen = 0;
+    iLen = 0;
     if (m_pSnd_Click) {
-        iSndFNLen = m_pSnd_Click->m_szFileName.size();
+        szFile = fs::path(m_pSnd_Click->m_fsFile).normalize('/', '\\').string();
+        iLen = szFile.length();
     }
-    WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL); //    사운드 파일 문자열 길이
-    if (iSndFNLen > 0) {
-        WriteFile(hFile, m_pSnd_Click->m_szFileName.c_str(), iSndFNLen, &dwNum, NULL);
+    WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL); //    사운드 파일 문자열 길이
+    if (iLen > 0) {
+        WriteFile(hFile, szFile.c_str(), iLen, &dwNum, NULL);
     }
 
     return true;
@@ -360,46 +362,34 @@ void CN3UIButton::CreateImages() {
     }
 }
 
-void CN3UIButton::SetSndOn(const std::string & strFileName) {
+void CN3UIButton::SetSndOn(const fs::path & fsFile) {
     CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_On);
-    if (0 == strFileName.size()) {
+    fs::path fsFileRel = CN3BaseFileAccess::ToRelative(fsFile);
+    if (fsFileRel.empty()) {
         return;
     }
 
-    CN3BaseFileAccess tmpBase;
-    tmpBase.FileNameSet(strFileName); // Base경로에 대해서 상대적 경로를 넘겨준다.
-
-    SetCurrentDirectory(CN3Base::PathGet().c_str());
-    m_pSnd_On = s_SndMgr.CreateObj(tmpBase.FileName(), SNDTYPE_2D);
+    fs::current_path(CN3Base::PathGet());
+    m_pSnd_On = s_SndMgr.CreateObj(fsFileRel, SNDTYPE_2D);
 }
 
-void CN3UIButton::SetSndClick(const std::string & strFileName) {
+void CN3UIButton::SetSndClick(const fs::path & fsFile) {
     CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_Click);
-    if (0 == strFileName.size()) {
+    fs::path fsFileRel = CN3BaseFileAccess::ToRelative(fsFile);
+    if (fsFileRel.empty()) {
         return;
     }
 
-    CN3BaseFileAccess tmpBase;
-    tmpBase.FileNameSet(strFileName); // Base경로에 대해서 상대적 경로를 넘겨준다.
-
-    SetCurrentDirectory(CN3Base::PathGet().c_str());
-    m_pSnd_Click = s_SndMgr.CreateObj(tmpBase.FileName(), SNDTYPE_2D);
+    fs::current_path(CN3Base::PathGet());
+    m_pSnd_Click = s_SndMgr.CreateObj(fsFileRel, SNDTYPE_2D);
 }
 
-std::string CN3UIButton::GetSndFName_On() const {
-    if (m_pSnd_On) {
-        return m_pSnd_On->m_szFileName;
-    } else {
-        return std::string("");
-    }
+fs::path CN3UIButton::GetSndFileOn() const {
+    return m_pSnd_On ? m_pSnd_On->m_fsFile : fs::path();
 }
 
-std::string CN3UIButton::GetSndFName_Click() const {
-    if (m_pSnd_Click) {
-        return m_pSnd_Click->m_szFileName;
-    } else {
-        return std::string("");
-    }
+fs::path CN3UIButton::GetSndFileClick() const {
+    return m_pSnd_Click ? m_pSnd_Click->m_fsFile : fs::path();
 }
 
 #endif

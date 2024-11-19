@@ -11,136 +11,112 @@
 
 CN3BaseFileAccess::CN3BaseFileAccess() {
     m_dwType |= OBJ_BASE_FILEACCESS;
-    m_szFileName = "";
-    m_iLOD = 0; // 로딩할때 쓸 LOD
+    m_iLOD = 0;
 }
 
 CN3BaseFileAccess::~CN3BaseFileAccess() {}
 
 void CN3BaseFileAccess::Release() {
-    m_szFileName = "";
-    m_iLOD = 0; // 로딩할때 쓸 LOD
+    m_fsFile = fs::path();
+    m_fsFileAbs = fs::path();
+    m_iLOD = 0;
     CN3Base::Release();
 }
 
-void CN3BaseFileAccess::FileNameSet(const std::string & szFileName) {
-    std::string szTmpFN = szFileName;
+void CN3BaseFileAccess::ToRelative(fs::path & fsFile) {
+    fsFile.make_lower().make_relative(CN3Base::PathGet());
+}
 
-    if (!szTmpFN.empty()) {
-        CharLower(&(szTmpFN[0])); // 모두 소문자로 만든다..
-    }
-    int iPos = szTmpFN.find(CN3Base::PathGet()); // 문자열에 Base Path 와 일치하는 이름이 있는지 본다.
-    if (iPos >= 0) {
-        m_szFileName = szTmpFN.substr(CN3Base::PathGet().size()); // 경로가 일치하면.. 긴경로는 짤라준다..
+fs::path CN3BaseFileAccess::ToRelative(const fs::path & fsFile) {
+    fs::path fsFileCopy(fsFile);
+    ToRelative(fsFileCopy);
+    return fsFileCopy;
+}
+
+void CN3BaseFileAccess::FilePathSet(const fs::path & fsFile) {
+    m_fsFile = fsFile.lower().generic_string();
+    if (m_fsFile.is_absolute()) {
+        m_fsFileAbs = m_fsFile;
+        m_fsFile.make_relative(CN3Base::PathGet());
     } else {
-        m_szFileName = szTmpFN;
+        m_fsFileAbs = CN3Base::PathGet() / m_fsFile;
     }
 }
 
 bool CN3BaseFileAccess::Load(HANDLE hFile) {
-    m_szName = "";
+    m_szName.clear();
 
     DWORD dwRWC = 0;
-    int   nL = 0;
-    ReadFile(hFile, &nL, 4, &dwRWC, NULL);
-    if (nL > 0) {
-        std::vector<char> buffer(nL, 0);
-        ReadFile(hFile, &buffer[0], nL, &dwRWC, NULL);
-        m_szName = std::string(buffer.begin(), buffer.end());
+    int   iLen = 0;
+    ReadFile(hFile, &iLen, 4, &dwRWC, NULL);
+    if (iLen > 0) {
+        m_szName.assign(iLen, '\0');
+        ReadFile(hFile, m_szName.data(), iLen, &dwRWC, NULL);
     }
 
     return true;
 }
 
 bool CN3BaseFileAccess::LoadFromFile() {
-    if (m_szFileName.size() <= 0) {
+    if (FilePathAbs().empty()) {
 #ifdef _N3GAME
         CLogWriter::Write("Can't open file (read)");
 #endif
         return false;
     }
 
-    std::string szFullPath;
-    if (-1 != m_szFileName.find(':') || -1 != m_szFileName.find("\\\\") ||
-        -1 != m_szFileName.find("//")) // 문자열에 ':', '\\', '//' 이 들어 있으면 전체 경로이다..
-    {
-        szFullPath = m_szFileName;
-    } else {
-        if (NULL != CN3Base::PathGet().size() > 0) {
-            szFullPath = CN3Base::PathGet();
-        }
-        szFullPath += m_szFileName;
-    }
-
-    DWORD  dwRWC = 0;
-    HANDLE hFile = ::CreateFile(szFullPath.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-
+    HANDLE hFile =
+        ::CreateFileW(FilePathAbs().c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hFile) {
-        std::string szErr = szFullPath + " - Can't open file (read)";
+        std::string szErr = std::format("{:s} - Can't open file (read)", FilePathAbs());
 #ifdef _N3TOOL
         MessageBox(::GetActiveWindow(), szErr.c_str(), "File Handle error", MB_OK);
 #endif
 #ifdef _N3GAME
-        CLogWriter::Write(szErr.c_str());
+        CLogWriter::Write(szErr);
 #endif
         return false;
     }
 
-    bool bSuccess = this->Load(hFile);
-
+    bool bSuccess = Load(hFile);
     CloseHandle(hFile);
-
     return bSuccess;
 }
 
-bool CN3BaseFileAccess::LoadFromFile(const std::string & szFileName) {
-    this->FileNameSet(szFileName);
-    return this->LoadFromFile();
+bool CN3BaseFileAccess::LoadFromFile(const fs::path & fsFile) {
+    FilePathSet(fsFile);
+    return LoadFromFile();
 }
 
 bool CN3BaseFileAccess::SaveToFile() {
-    if (m_szFileName.size() <= 0) {
+    if (FilePathAbs().empty()) {
         std::string szErr = m_szName + " Can't open file (write) - NULL String";
         MessageBox(::GetActiveWindow(), szErr.c_str(), "File Open Error", MB_OK);
         return false;
     }
 
-    std::string szFullPath;
-    if (-1 != m_szFileName.find(':') || -1 != m_szFileName.find("\\\\") ||
-        -1 != m_szFileName.find("//")) // 문자열에 ':', '\\', '//' 이 들어 있으면 전체 경로이다..
-    {
-        szFullPath = m_szFileName;
-    } else {
-        if (CN3Base::PathGet().size() > 0) {
-            szFullPath = CN3Base::PathGet();
-        }
-        szFullPath += m_szFileName;
-    }
-
-    DWORD  dwRWC = 0;
-    HANDLE hFile = ::CreateFile(szFullPath.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-
+    HANDLE hFile =
+        ::CreateFileW(FilePathAbs().c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     if (hFile == INVALID_HANDLE_VALUE) {
-        std::string szErr = szFullPath + " - Can't open file(write)";
+        std::string szErr = std::format("{:s} - Can't open file(write)", FilePathAbs());
         MessageBox(::GetActiveWindow(), szErr.c_str(), "File Handle error", MB_OK);
         return false;
     }
 
-    this->Save(hFile);
-
+    bool bSuccess = Save(hFile);
     CloseHandle(hFile);
-    return true;
+    return bSuccess;
 }
 
-bool CN3BaseFileAccess::SaveToFile(const std::string & szFileName) {
-    this->FileNameSet(szFileName);
-    return this->SaveToFile();
+bool CN3BaseFileAccess::SaveToFile(const fs::path & fsFile) {
+    FilePathSet(fsFile);
+    return SaveToFile();
 }
 
 bool CN3BaseFileAccess::Save(HANDLE hFile) {
     DWORD dwRWC = 0;
 
-    int nL = m_szName.size();
+    int nL = m_szName.length();
     WriteFile(hFile, &nL, 4, &dwRWC, NULL);
     if (nL > 0) {
         WriteFile(hFile, m_szName.c_str(), nL, &dwRWC, NULL);

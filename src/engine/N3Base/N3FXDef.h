@@ -65,8 +65,8 @@ enum e_FXPartParticleEmitType // 이펙트 파트가 어떤 모양으로 전개�
 /*
 typedef struct __TABLE_FX    // FX 리소스 레코드...
 {
-    DWORD        dwID;        // 고유 ID
-    std::string    szFN;        // file name
+    DWORD        dwID;         // 고유 ID
+    std::string  szFile;       // file path
     DWORD        dwSoundID;    // 효과에 쓰는 사운드 아디.
 } TABLE_FX;
 */
@@ -95,12 +95,12 @@ typedef struct __FXPartWithStartTime // 번들에서 파트들 관리할때..
 } FXPARTWITHSTARTTIME, *LPFXPARTWITHSTARTTIME;
 
 typedef struct __FXBInfo {
-    char FXBName[MAX_PATH];
+    char szFxbFile[260];
     int  joint;
     BOOL IsLooping;
 
     __FXBInfo() {
-        ZeroMemory(FXBName, MAX_PATH);
+        memset(szFxbFile, 0, sizeof(szFxbFile));
         joint = -1;
         IsLooping = FALSE;
     }

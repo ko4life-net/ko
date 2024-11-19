@@ -88,7 +88,7 @@ CJpegFile::~CJpegFile() {}
 // read a JPEG file
 //
 
-BYTE * CJpegFile::JpegFileToRGB(std::string fileName, UINT * width, UINT * height)
+BYTE * CJpegFile::JpegFileToRGB(const fs::path & fsFile, UINT * width, UINT * height)
 
 {
     // get our buffer set to hold data
@@ -113,7 +113,6 @@ BYTE * CJpegFile::JpegFileToRGB(std::string fileName, UINT * width, UINT * heigh
 
     JSAMPARRAY buffer;     /* Output row buffer */
     int        row_stride; /* physical row width in output buffer */
-    char       buf[250];
 
     /* In this example we want to open the input file before doing anything else,
     * so that the setjmp() error recovery below can assume the file is open.
@@ -121,9 +120,8 @@ BYTE * CJpegFile::JpegFileToRGB(std::string fileName, UINT * width, UINT * heigh
     * requires it in order to read binary files.
     */
 
-    if ((infile = fopen(fileName.c_str(), "rb")) == NULL) {
-        sprintf(buf, "JPEG :\nCan't open %s\n", fileName.c_str());
-        // AfxMessageBox(buf);
+    if ((infile = _wfopen(fsFile.c_str(), L"rb")) == NULL) {
+        //AfxMessageBox(std::format("JpegFile :\nCan't open {:s}\n", fsFile).c_str());
         return NULL;
     }
 
@@ -261,7 +259,7 @@ BYTE * CJpegFile::JpegFileToRGB(std::string fileName, UINT * width, UINT * heigh
     return dataBuf;
 }
 
-BOOL CJpegFile::GetJPGDimensions(std::string fileName, UINT * width, UINT * height)
+BOOL CJpegFile::GetJPGDimensions(const fs::path & fsFile, UINT * width, UINT * height)
 
 {
     // basic code from IJG Jpeg Code v6 example.c
@@ -277,7 +275,6 @@ BOOL CJpegFile::GetJPGDimensions(std::string fileName, UINT * width, UINT * heig
     struct my_error_mgr jerr;
     /* More stuff */
     FILE * infile = NULL; /* source file */
-    char   buf[250];
 
     /* In this example we want to open the input file before doing anything else,
     * so that the setjmp() error recovery below can assume the file is open.
@@ -285,9 +282,8 @@ BOOL CJpegFile::GetJPGDimensions(std::string fileName, UINT * width, UINT * heig
     * requires it in order to read binary files.
     */
 
-    if ((infile = fopen(fileName.c_str(), "rb")) == NULL) {
-        sprintf(buf, "JPEG :\nCan't open %s\n", fileName.c_str());
-        // AfxMessageBox(buf);
+    if ((infile = _wfopen(fsFile.c_str(), L"rb")) == NULL) {
+        //AfxMessageBox(std::format("JpegFile :\nCan't open {:s}\n", fsFile).c_str());
         return FALSE;
     }
 
@@ -378,7 +374,7 @@ BYTE * CJpegFile::RGBFromDWORDAligned(BYTE * inBuf, UINT widthPix, UINT widthByt
 //
 //
 
-BOOL CJpegFile::RGBToJpegFile(std::string fileName, BYTE * dataBuf, UINT widthPix, UINT height, BOOL color,
+BOOL CJpegFile::RGBToJpegFile(const fs::path & fsFile, BYTE * dataBuf, UINT widthPix, UINT height, BOOL color,
                               int quality) {
     if (dataBuf == NULL) {
         return FALSE;
@@ -450,10 +446,8 @@ BOOL CJpegFile::RGBToJpegFile(std::string fileName, BYTE * dataBuf, UINT widthPi
     /* Step 2: specify data destination (eg, a file) */
     /* Note: steps 2 and 3 can be done in either order. */
 
-    if ((outfile = fopen(fileName.c_str(), "wb")) == NULL) {
-        char buf[250];
-        sprintf(buf, "JpegFile :\nCan't open %s\n", fileName.c_str());
-        // AfxMessageBox(buf);
+    if ((outfile = _wfopen(fsFile.c_str(), L"wb")) == NULL) {
+        //AfxMessageBox(std::format("JpegFile :\nCan't open {:s}\n", fsFile).c_str());
         return FALSE;
     }
 
@@ -1275,7 +1269,7 @@ DWORD PASCAL CJpegFile::MyWrite(int iFileHandle, VOID FAR * lpBuffer, DWORD dwBy
     return dwBytesTmp;
 }
 
-WORD FAR CJpegFile::SaveDIB(HDIB hDib, LPSTR lpFileName) {
+WORD FAR CJpegFile::SaveDIB(HDIB hDib, const fs::path & fsFile) {
     BITMAPFILEHEADER   bmfHdr; // Header for Bitmap file
     LPBITMAPINFOHEADER lpBI;   // Pointer to DIB info structure
     HANDLE             fh;     // file handle for opened file
@@ -1286,7 +1280,7 @@ WORD FAR CJpegFile::SaveDIB(HDIB hDib, LPSTR lpFileName) {
     if (!hDib) {
         return ERR_INVALIDHANDLE;
     }
-    fh = CreateFile(lpFileName, GENERIC_READ | GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    fh = CreateFileW(fsFile.c_str(), GENERIC_READ | GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     if (fh == INVALID_HANDLE_VALUE) {
         return ERR_OPEN;
     }
@@ -1609,13 +1603,13 @@ BOOL CJpegFile::DibToSamps(HANDLE hDib, int nSampsPerRow, struct jpeg_compress_s
     return TRUE;
 }
 
-BOOL CJpegFile::JpegFromDib(HANDLE        hDib,     //Handle to DIB
-                            int           nQuality, //JPEG quality (0-100)
-                            std::string   csJpeg,   //Pathname to jpeg file
-                            std::string & szErrMsg) //Error msg to return
+BOOL CJpegFile::JpegFromDib(HANDLE           hDib,       // Handle to DIB
+                            int              nQuality,   // JPEG quality (0-100)
+                            const fs::path & fsJpegFile, // Path to jpeg file
+                            std::string &    szErrMsg)      // Error msg to return
 {
     //Basic sanity checks...
-    if (nQuality < 0 || nQuality > 100 || hDib == NULL || csJpeg == "") {
+    if (nQuality < 0 || nQuality > 100 || hDib == NULL || fsJpegFile.empty()) {
         szErrMsg = "Invalid input data";
         return FALSE;
     }
@@ -1637,7 +1631,7 @@ BOOL CJpegFile::JpegFromDib(HANDLE        hDib,     //Handle to DIB
 
     jpeg_create_compress(&cinfo);
 
-    if ((pOutFile = fopen(csJpeg.c_str(), "wb")) == NULL) {
+    if ((pOutFile = _wfopen(fsJpegFile.c_str(), L"wb")) == NULL) {
         szErrMsg = "Cannot open Fail";
         jpeg_destroy_compress(&cinfo);
         GlobalUnlock(hDib);
@@ -1686,12 +1680,12 @@ BOOL CJpegFile::JpegFromDib(HANDLE        hDib,     //Handle to DIB
     }
 }
 
-BOOL CJpegFile::EncryptJPEG(HANDLE        hDib,     //Handle to DIB
-                            int           nQuality, //JPEG quality (0-100)
-                            std::string   csJpeg,   //Pathname to jpeg file
-                            std::string & szErrMsg) //Error msg to return
+BOOL CJpegFile::EncryptJPEG(HANDLE           hDib,       // Handle to DIB
+                            int              nQuality,   // JPEG quality (0-100)
+                            const fs::path & fsJpegFile, // Path to jpeg file
+                            std::string &    szErrMsg)      // Error msg to return
 {
-    if (JpegFromDib(hDib, nQuality, csJpeg, szErrMsg) == FALSE) {
+    if (JpegFromDib(hDib, nQuality, fsJpegFile, szErrMsg) == FALSE) {
         return FALSE;
     }
 
@@ -1701,7 +1695,7 @@ BOOL CJpegFile::EncryptJPEG(HANDLE        hDib,     //Handle to DIB
     DWORD  encrypt_len;
 
     // JPEG 파일 읽어오기
-    fh = CreateFile(csJpeg.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    fh = CreateFileW(fsJpegFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (fh == INVALID_HANDLE_VALUE) {
         return false;
     }
@@ -1735,7 +1729,7 @@ BOOL CJpegFile::EncryptJPEG(HANDLE        hDib,     //Handle to DIB
     }
 
     // Encoding 파일 Writing
-    fh = CreateFile(csJpeg.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    fh = CreateFileW(fsJpegFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     if (fh == INVALID_HANDLE_VALUE) {
         delete[] data_byte;
         return FALSE;
@@ -1750,48 +1744,33 @@ BOOL CJpegFile::EncryptJPEG(HANDLE        hDib,     //Handle to DIB
     return TRUE;
 }
 
-BOOL CJpegFile::DecryptJPEG(std::string csJpeg) {
-    char        szTempName[MAX_PATH]{};
-    std::string szDstpath;
-    HANDLE      hSrc, hDst;
-    BYTE *      dst_data, *src_data;
-    DWORD       dst_len, src_len, src_hlen;
-    DWORD       result_len;
-
-    int rfv = csJpeg.rfind('\\');
-    szDstpath = csJpeg;
-    szDstpath.resize(rfv);
-    if (szDstpath.size() == 2) {
-        szDstpath += _T('\\');
-    }
-
-    if (GetTempFileName((LPCTSTR)szDstpath.c_str(), "ksc", 0, szTempName) == 0) {
-        // AfxMessageBox("임시 파일을 생성할 수가 없습니다.", MB_ICONSTOP|MB_OK);
-        return FALSE;
-    }
-
-    hSrc = CreateFile((LPCTSTR)csJpeg.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+BOOL CJpegFile::DecryptJPEG(const fs::path & fsJpegFile) {
+    HANDLE hSrc = CreateFileW(fsJpegFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (hSrc == INVALID_HANDLE_VALUE) {
         // AfxMessageBox("소스 파일이 존재하지 않습니다. 다른 파일을 선택해주세요.", MB_ICONSTOP|MB_OK);
         return FALSE;
     }
 
-    hDst = CreateFile((LPCTSTR)szTempName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    fs::path fsTmpFile = fs::mktemp_file("ksc");
+    HANDLE   hDst = CreateFileW(fsTmpFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     if (hDst == INVALID_HANDLE_VALUE) {
         CloseHandle(hSrc);
         return FALSE;
     }
 
-    src_len = GetFileSize(hSrc, &src_hlen);
+    DWORD src_hlen;
+    DWORD src_len = GetFileSize(hSrc, &src_hlen);
     if (src_hlen > 0) {
         CloseHandle(hSrc);
         CloseHandle(hDst);
+        return FALSE;
     }
-    dst_len = src_len - 8;
+    DWORD dst_len = src_len - 8;
 
-    src_data = new BYTE[src_len];
-    dst_data = new BYTE[dst_len];
+    BYTE * src_data = new BYTE[src_len];
+    BYTE * dst_data = new BYTE[dst_len];
 
+    DWORD result_len;
     ReadFile(hSrc, (LPVOID)src_data, src_len, &result_len, NULL);
 
     m_r = 1124;
@@ -1826,39 +1805,37 @@ BOOL CJpegFile::DecryptJPEG(std::string csJpeg) {
     delete[] dst_data;
     delete[] src_data;
 
-    LoadJpegFile(szTempName);
-    DeleteFile((LPCTSTR)szTempName);
+    LoadJpegFile(fsTmpFile);
+    fs::remove(fsTmpFile);
 
     return TRUE;
 }
 
-BOOL CJpegFile::SaveFromDecryptToJpeg(std::string csKsc, std::string csJpeg) {
-    HANDLE hSrc, hDst;
-    BYTE * dst_data, *src_data;
-    DWORD  dst_len, src_len, src_hlen;
-    DWORD  result_len;
-
-    hSrc = CreateFile((LPCTSTR)csKsc.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+BOOL CJpegFile::SaveFromDecryptToJpeg(const fs::path & fsKscFile, const fs::path & fsJpegFile) {
+    HANDLE hSrc = CreateFileW(fsKscFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (hSrc == INVALID_HANDLE_VALUE) {
         return FALSE;
     }
 
-    hDst = CreateFile((LPCTSTR)csJpeg.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hDst = CreateFileW(fsJpegFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     if (hDst == INVALID_HANDLE_VALUE) {
         CloseHandle(hSrc);
         return FALSE;
     }
 
-    src_len = GetFileSize(hSrc, &src_hlen);
+    DWORD src_hlen;
+    DWORD src_len = GetFileSize(hSrc, &src_hlen);
     if (src_hlen > 0) {
         CloseHandle(hSrc);
         CloseHandle(hDst);
+        return FALSE;
     }
-    dst_len = src_len - 8;
+    DWORD dst_len = src_len - 8;
 
-    src_data = new BYTE[src_len];
-    dst_data = new BYTE[dst_len];
+    BYTE * src_data = new BYTE[src_len];
+    BYTE * dst_data = new BYTE[dst_len];
 
+    DWORD result_len;
     ReadFile(hSrc, (LPVOID)src_data, src_len, &result_len, NULL);
 
     m_r = 1124;

@@ -20,9 +20,8 @@ CVersionSet::CVersionSet(CDatabase * pdb)
     : CRecordset(pdb) {
     //{{AFX_FIELD_INIT(CVersionSet)
     m_sVersion = 0;
-    m_strFileName = _T("");
-    m_bCompressed = 0;
-    m_nFields = 3;
+    m_sHistoryVersion = 0;
+    m_nFields = 4;
     //}}AFX_FIELD_INIT
     m_nDefaultType = snapshot;
 }
@@ -39,8 +38,9 @@ void CVersionSet::DoFieldExchange(CFieldExchange * pFX) {
     //{{AFX_FIELD_MAP(CVersionSet)
     pFX->SetFieldType(CFieldExchange::outputColumn);
     RFX_Int(pFX, _T("[sVersion]"), m_sVersion);
-    RFX_Text(pFX, _T("[strFileName]"), m_strFileName);
-    RFX_Byte(pFX, _T("[bCompressed]"), m_bCompressed);
+    RFX_Text(pFX, _T("[strFile]"), m_strFile);
+    RFX_Text(pFX, _T("[strPatchFileName]"), m_strPatchFileName);
+    RFX_Int(pFX, _T("[sHistoryVersion]"), m_sHistoryVersion);
     //}}AFX_FIELD_MAP
 }
 

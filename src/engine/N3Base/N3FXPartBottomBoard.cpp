@@ -58,7 +58,7 @@ bool CN3FXPartBottomBoard::ParseScript(char * szCommand, char * szBuff0, char * 
     }
 
     //    보드 크기.
-    if (lstrcmpi(szCommand, "<ground_size>") == 0) {
+    if (n3std::iequals(szCommand, "<ground_size>")) {
         m_fCurrSizeX = m_fSizeX = atof(szBuff0);
         m_fCurrSizeZ = m_fSizeZ = atof(szBuff1);
         /*
@@ -70,25 +70,25 @@ bool CN3FXPartBottomBoard::ParseScript(char * szCommand, char * szBuff0, char * 
 */
         return true;
     }
-    if (lstrcmpi(szCommand, "<tex_loop>") == 0) {
-        if (lstrcmpi(szBuff0, "true") == 0) {
+    if (n3std::iequals(szCommand, "<tex_loop>")) {
+        if (n3std::iequals(szBuff0, "true")) {
             m_bTexLoop = true;
-        } else if (lstrcmpi(szBuff0, "false") == 0) {
+        } else if (n3std::iequals(szBuff0, "false")) {
             m_bTexLoop = false;
         }
         return true;
     }
-    if (lstrcmpi(szCommand, "<ground_scale_velocity>") == 0) {
+    if (n3std::iequals(szCommand, "<ground_scale_velocity>")) {
         m_fScaleVelX = atof(szBuff0);
         m_fScaleVelZ = atof(szBuff1);
         return true;
     }
-    if (lstrcmpi(szCommand, "<ground_scale_acceleration>") == 0) {
+    if (n3std::iequals(szCommand, "<ground_scale_acceleration>")) {
         m_fScaleAccelX = atof(szBuff0);
         m_fScaleAccelZ = atof(szBuff1);
         return true;
     }
-    if (lstrcmpi(szCommand, "<ground_gap>") == 0) {
+    if (n3std::iequals(szCommand, "<ground_gap>")) {
         m_fGap = atof(szBuff0);
         return true;
     }

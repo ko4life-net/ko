@@ -182,7 +182,7 @@ void CUITransactionDlg::InitIconUpdate() {
             if (m_pMyTrade[j][i] != NULL) {
                 m_pMyTrade[j][i]->pUIIcon = new CN3UIIcon;
                 m_pMyTrade[j][i]->pUIIcon->Init(this);
-                m_pMyTrade[j][i]->pUIIcon->SetTex(m_pMyTrade[j][i]->szIconFN);
+                m_pMyTrade[j][i]->pUIIcon->SetTex(m_pMyTrade[j][i]->fsIconFile);
                 m_pMyTrade[j][i]->pUIIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
                 m_pMyTrade[j][i]->pUIIcon->SetUIType(UI_TYPE_ICON);
                 m_pMyTrade[j][i]->pUIIcon->SetStyle(UISTYLE_ICON_ITEM | UISTYLE_ICON_CERTIFICATION_NEED);
@@ -241,7 +241,7 @@ void CUITransactionDlg::EnterTransactionState() {
         }
     }
 
-    std::string          szIconFN;
+    fs::path             fsIconFile;
     __IconItemSkill *    spItem = NULL;
     __TABLE_ITEM_BASIC * pItem = NULL; // 아이템 테이블 구조체 포인터..
     __TABLE_ITEM_EXT *   pItemExt = NULL;
@@ -264,7 +264,7 @@ void CUITransactionDlg::EnterTransactionState() {
         if (NULL == pItem) // 아이템이 없으면..
         {
             __ASSERT(0, "아이템 포인터 테이블에 없음!!");
-            CLogWriter::Write("CUITransactionDlg::EnterTransactionState - Invalid Item ID : %d, %d", iOrg, iExt);
+            CLogWriter::Write("CUITransactionDlg::EnterTransactionState - Invalid Item ID : {:d}, {:d}", iOrg, iExt);
             continue;
         }
 
@@ -280,7 +280,7 @@ void CUITransactionDlg::EnterTransactionState() {
         if (NULL == pItemExt) // 아이템이 없으면..
         {
             __ASSERT(0, "아이템 포인터 테이블에 없음!!");
-            CLogWriter::Write("CUITransactionDlg::EnterTransactionState - Invalid Item ID : %d, %d", iOrg, iExt);
+            CLogWriter::Write("CUITransactionDlg::EnterTransactionState - Invalid Item ID : {:d}, {:d}", iOrg, iExt);
             continue;
         }
 
@@ -290,14 +290,14 @@ void CUITransactionDlg::EnterTransactionState() {
 
         e_PartPosition ePart;
         e_PlugPosition ePlug;
-        e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
+        e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &fsIconFile, ePart,
                                                                        ePlug); // 아이템에 따른 파일 이름을 만들어서
         __ASSERT(ITEM_TYPE_UNKNOWN != eType, "Unknown Item");
 
         spItem = new __IconItemSkill;
         spItem->pItemBasic = pItem;
         spItem->pItemExt = pItemExt;
-        spItem->szIconFN = szIconFN; // 아이콘 파일 이름 복사..
+        spItem->fsIconFile = fsIconFile; // 아이콘 파일 이름 복사..
         spItem->iCount = 1;
         spItem->iDurability = pItem->siMaxDurability + pItemExt->siMaxDurability;
 
@@ -550,7 +550,7 @@ void CUITransactionDlg::ItemCountOK() {
             spItemNew = new __IconItemSkill;
             spItemNew->pItemBasic = spItem->pItemBasic;
             spItemNew->pItemExt = spItem->pItemExt;
-            spItemNew->szIconFN = spItem->szIconFN; // 아이콘 파일 이름 복사..
+            spItemNew->fsIconFile = spItem->fsIconFile; // 아이콘 파일 이름 복사..
             spItemNew->iCount = iGold;
             spItemNew->iDurability = spItem->pItemBasic->siMaxDurability + spItem->pItemExt->siMaxDurability;
 
@@ -558,7 +558,7 @@ void CUITransactionDlg::ItemCountOK() {
             spItemNew->pUIIcon = new CN3UIIcon;
             float fUVAspect = (float)45.0f / (float)64.0f;
             spItemNew->pUIIcon->Init(this);
-            spItemNew->pUIIcon->SetTex(spItemNew->szIconFN);
+            spItemNew->pUIIcon->SetTex(spItemNew->fsIconFile);
             spItemNew->pUIIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
             spItemNew->pUIIcon->SetUIType(UI_TYPE_ICON);
             spItemNew->pUIIcon->SetStyle(UISTYLE_ICON_ITEM | UISTYLE_ICON_CERTIFICATION_NEED);
@@ -923,12 +923,12 @@ bool CUITransactionDlg::ReceiveIconDrop(__IconItemSkill * spItem, POINT ptCur) {
                                        CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemExt->dwID,
                                    iDestiOrder, CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->iCount);
 
-                std::string    szIconFN;
+                fs::path       fsIconFile;
                 e_PartPosition ePart;
                 e_PlugPosition ePlug;
                 CGameProcedure::MakeResrcFileNameForUPC(
                     m_pMyTrade[m_iCurPage][CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]->pItemBasic, NULL,
-                    &szIconFN, ePart, ePlug); // 아이템에 따른 파일 이름을 만들어서
+                    &fsIconFile, ePart, ePlug); // 아이템에 따른 파일 이름을 만들어서
 
                 __IconItemSkill * spItemNew;
                 spItemNew = new __IconItemSkill;
@@ -936,7 +936,7 @@ bool CUITransactionDlg::ReceiveIconDrop(__IconItemSkill * spItem, POINT ptCur) {
                     m_pMyTrade[m_iCurPage][CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]->pItemBasic;
                 spItemNew->pItemExt =
                     m_pMyTrade[m_iCurPage][CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]->pItemExt;
-                spItemNew->szIconFN = szIconFN; // 아이콘 파일 이름 복사..
+                spItemNew->fsIconFile = fsIconFile; // 아이콘 파일 이름 복사..
                 spItemNew->iCount = 1;
                 spItemNew->iDurability =
                     m_pMyTrade[m_iCurPage][CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]
@@ -948,7 +948,7 @@ bool CUITransactionDlg::ReceiveIconDrop(__IconItemSkill * spItem, POINT ptCur) {
                 spItemNew->pUIIcon = new CN3UIIcon;
                 float fUVAspect = (float)45.0f / (float)64.0f;
                 spItemNew->pUIIcon->Init(this);
-                spItemNew->pUIIcon->SetTex(szIconFN);
+                spItemNew->pUIIcon->SetTex(fsIconFile);
                 spItemNew->pUIIcon->SetUVRect(0, 0, fUVAspect, fUVAspect);
                 spItemNew->pUIIcon->SetUIType(UI_TYPE_ICON);
                 spItemNew->pUIIcon->SetStyle(UISTYLE_ICON_ITEM | UISTYLE_ICON_CERTIFICATION_NEED);
@@ -1451,10 +1451,10 @@ bool CUITransactionDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
     return true;
 }
 
-CN3UIBase * CUITransactionDlg::GetChildButtonByName(const std::string & szFN) {
+CN3UIBase * CUITransactionDlg::GetChildButtonByName(const std::string & szName) {
     for (UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor) {
         CN3UIBase * pChild = (CN3UIBase *)(*itor);
-        if ((pChild->UIType() == UI_TYPE_BUTTON) && (szFN.compare(pChild->m_szID) == 0)) {
+        if ((pChild->UIType() == UI_TYPE_BUTTON) && (szName.compare(pChild->m_szID) == 0)) {
             return pChild;
         }
     }

@@ -161,19 +161,19 @@ void CN3Board::TexAlloc(int nCount) {
     m_TexRefs.assign(nCount, NULL);
 }
 
-void CN3Board::TexSet(int index, const std::string & szFN) {
+void CN3Board::TexSet(int index, const fs::path & fsFile) {
     if (index < 0 || index >= m_TexRefs.size()) {
         return;
     }
 
     s_MngTex.Delete(&m_TexRefs[index]);
-    m_TexRefs[index] = s_MngTex.Get(szFN);
+    m_TexRefs[index] = s_MngTex.Get(fsFile);
 }
 
-void CN3Board::LoadFromText(const std::string & szFName) {
+void CN3Board::LoadFromText(const fs::path & fsFile) {
     Release();
 
-    FILE * stream = fopen(szFName.c_str(), "r");
+    FILE * stream = _wfopen(fsFile.c_str(), L"r");
     __ASSERT(stream, "지정한 파일을 찾을 수 없습니다.");
 
     int       result, iCount;
@@ -201,12 +201,12 @@ void CN3Board::LoadFromText(const std::string & szFName) {
     __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
 
     if (iCount > 0) {
-        char szTexFName[_MAX_PATH];
+        char szTexFile[260]{};
         TexAlloc(iCount);
         for (int i = 0; i < iCount; ++i) {
-            result = fscanf(stream, "Texture Name = %s\n", &szTexFName);
+            result = fscanf(stream, "Texture Name = %s\n", &szTexFile);
             __ASSERT(result != EOF, "잘못된 Machine 세팅 파일");
-            TexSet(i, szTexFName);
+            TexSet(i, szTexFile);
         }
     }
 

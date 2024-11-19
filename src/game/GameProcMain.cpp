@@ -1,8 +1,6 @@
 // GameProcMain.cpp: implementation of the CGameProcMain class.
 //
 //////////////////////////////////////////////////////////////////////
-#include <io.h>
-
 #include "StdAfx.h"
 #include "Resource.h"
 
@@ -308,130 +306,49 @@ void CGameProcMain::Init() {
         }
     }
 
+    auto fnLoadData = [&](fs::path && fsDirName, fs::path && fsSearchExt, auto & refMng) {
+        fs::path fsDir = fs::current_path() / fsDirName;
+        if (fs::is_directory(fsDir)) {
+            for (const auto & fi : fs::directory_iterator(fsDir)) {
+                if (fi.is_regular_file() && n3std::iequals(fi.path().extension(), fsSearchExt)) {
+                    refMng.Get(fsDirName / fi.path().filename());
+                }
+            }
+        } else {
+            N3_ERROR("Directory not found ({:s})", fsDir);
+        }
+    };
+
     if (s_pUILoading) {
         s_pUILoading->Render("Loading Character Data...", 0);
     }
-
-    // 경로 기억..
-    char szPathOld[_MAX_PATH], szPathFind[_MAX_PATH];
-    ::GetCurrentDirectory(_MAX_PATH, szPathOld);
-
-    _finddata_t fi;
-    long        hFind = -1;
-
-    // 리소스 다 읽기..
-    // 에니메이션 다 읽기..
-    lstrcpy(szPathFind, szPathOld);
-    lstrcat(szPathFind, "\\Chr");
-    ::SetCurrentDirectory(szPathFind);
-    hFind = _findfirst("*.N3Anim", &fi);
-    if (hFind) {
-        std::string szFN = "Chr\\";
-        szFN += fi.name;
-        CN3AnimControl * pObjTmp = s_MngAniCtrl.Get(szFN.c_str());
-        while (_findnext(hFind, &fi) != -1) {
-            szFN = "Chr\\";
-            szFN += fi.name;
-            pObjTmp = s_MngAniCtrl.Get(szFN.c_str());
-        }
-    }
-    _findclose(hFind);
+    fnLoadData("Chr", ".n3anim", s_MngAniCtrl);
 
     if (s_pUILoading) {
         s_pUILoading->Render("Loading Character Data... 10 %", 10);
     }
-
-    // 리소스 다 읽기..
-    // 텍스처 다 읽기..
-    lstrcpy(szPathFind, szPathOld);
-    lstrcat(szPathFind, "\\Item");
-    ::SetCurrentDirectory(szPathFind);
-    hFind = _findfirst("*.dxt", &fi);
-    if (hFind) {
-        std::string szFN = "Item\\";
-        szFN += fi.name;
-        CN3Texture * pObjTmp = s_MngTex.Get(szFN.c_str());
-        while (_findnext(hFind, &fi) != -1) {
-            szFN = "Item\\";
-            szFN += fi.name;
-            pObjTmp = s_MngTex.Get(szFN.c_str());
-        }
-    }
-    _findclose(hFind);
+    fnLoadData("Item", ".dxt", s_MngTex);
 
     if (s_pUILoading) {
         s_pUILoading->Render("Loading Character Data... 25 %", 25);
     }
-
-    // 리소스 다 읽기..
-    // 조인트 다 읽기..
-    lstrcpy(szPathFind, szPathOld);
-    lstrcat(szPathFind, "\\Chr");
-    ::SetCurrentDirectory(szPathFind);
-    hFind = _findfirst("*.N3Joint", &fi);
-    if (hFind) {
-        std::string szFN = "Chr\\";
-        szFN += fi.name;
-        CN3Joint * pObjTmp = s_MngJoint.Get(szFN.c_str());
-        while (_findnext(hFind, &fi) != -1) {
-            szFN = "Chr\\";
-            szFN += fi.name;
-            pObjTmp = s_MngJoint.Get(szFN.c_str());
-        }
-    }
-    _findclose(hFind);
+    fnLoadData("Chr", ".n3joint", s_MngJoint);
 
     if (s_pUILoading) {
         s_pUILoading->Render("Loading Character Data... 50 %", 50);
     }
-
-    // 리소스 다 읽기..
-    // 스킨 읽기..
-    lstrcpy(szPathFind, szPathOld);
-    lstrcat(szPathFind, "\\Item");
-    ::SetCurrentDirectory(szPathFind);
-    hFind = _findfirst("*.N3CSkins", &fi);
-    if (hFind) {
-        std::string szFN = "Item\\";
-        szFN += fi.name;
-        CN3CPartSkins * pObjTmp = s_MngSkins.Get(szFN.c_str());
-        while (_findnext(hFind, &fi) != -1) {
-            szFN = "Item\\";
-            szFN += fi.name;
-            pObjTmp = s_MngSkins.Get(szFN.c_str());
-        }
-    }
-    _findclose(hFind);
+    fnLoadData("Item", ".n3skins", s_MngSkins);
 
     if (s_pUILoading) {
         s_pUILoading->Render("Loading Character Data... 75 %", 75);
     }
-
-    // 리소스 다 읽기..
-    // PMesh 읽기..
-    lstrcpy(szPathFind, szPathOld);
-    lstrcat(szPathFind, "\\Item");
-    ::SetCurrentDirectory(szPathFind);
-    hFind = _findfirst("*.N3PMesh", &fi);
-    if (hFind) {
-        std::string szFN = "Item\\";
-        szFN += fi.name;
-        CN3PMesh * pObjTmp = s_MngPMesh.Get(szFN.c_str());
-        while (_findnext(hFind, &fi) != -1) {
-            szFN = "Item\\";
-            szFN += fi.name;
-            pObjTmp = s_MngPMesh.Get(szFN.c_str());
-        }
-    }
-    _findclose(hFind);
+    fnLoadData("Item", ".n3pmesh", s_MngPMesh);
 
     if (s_pUILoading) {
         s_pUILoading->Render("Loading Character Data... 100 %", 100);
     }
 
     this->MsgSend_GameStart();
-    // 경로 돌리기..
-    ::SetCurrentDirectory(szPathOld);
 }
 
 void CGameProcMain::InitPlayerPosition(
@@ -483,17 +400,14 @@ void CGameProcMain::Tick() {
         CAPISocket::MP_AddByte(byBuff, iOffset, N3_TEMP_TEST);
         s_pSocket->Send(byBuff, iOffset);
 
-        int  iNPC = s_pOPMgr->m_NPCs.size();
-        char szBuff[1024];
-        sprintf(szBuff, "NPC Region Test : %d", iNPC);
-        CLogWriter::Write(szBuff);
+        int iNPC = s_pOPMgr->m_NPCs.size();
+        CLogWriter::Write("NPC Region Test : {:d}", iNPC);
         it_NPC it = s_pOPMgr->m_NPCs.begin(), itEnd = s_pOPMgr->m_NPCs.end();
         for (; it != itEnd; it++) {
             CPlayerNPC * pNPC = it->second;
 
-            sprintf(szBuff, "    ID(%d) Name(%s) Pos(%.1f, %.1f)", pNPC->IDNumber(), pNPC->IDString().c_str(),
-                    pNPC->m_vPosFromServer.x, pNPC->m_vPosFromServer.z);
-            CLogWriter::Write(szBuff);
+            CLogWriter::Write("    ID({:d}) Name({:s}) Pos({:.1f}, {:.1f})", pNPC->IDNumber(), pNPC->IDString(),
+                              pNPC->m_vPosFromServer.x, pNPC->m_vPosFromServer.z);
         }
     }
 #endif
@@ -809,16 +723,13 @@ bool CGameProcMain::ProcessPacket(DataPack * pDataPack, int & iOffset) {
     {
 #ifdef _DEBUG
     case N3_TEMP_TEST: {
-        int  iNPC = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-        char szBuff[32];
-        sprintf(szBuff, "NPC Region Test : %d -> ", iNPC);
-        std::string szLog = szBuff;
+        int         iNPC = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        std::string szLog = std::format("NPC Region Test : {:d} -> ", iNPC);
         for (int i = 0; i < iNPC; i++) {
             int iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-            sprintf(szBuff, "%d, ", iID);
-            szLog += szBuff;
+            szLog += std::format("{:d}, ", iID);
         }
-        CLogWriter::Write(szLog.c_str());
+        CLogWriter::Write(szLog);
     }
         return true;
 #endif
@@ -1780,8 +1691,8 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack * pDataPack, int & iOffset) {
     __TABLE_PLAYER_LOOKS * pLooks =
         s_pTbl_UPC_Looks->Find(s_pPlayer->m_InfoBase.eRace); // User Player Character Skin 구조체 포인터..
     if (NULL == pLooks) {
-        CLogWriter::Write("CGameProcMain::MsgRecv_MyInfo_All : failed find character resource data (Race : %d)",
-                          s_pPlayer->m_InfoBase.eRace);
+        CLogWriter::Write("CGameProcMain::MsgRecv_MyInfo_All : failed find character resource data (Race : {:d})",
+                          (int)s_pPlayer->m_InfoBase.eRace);
     }
     __ASSERT(pLooks, "failed find character resource data");
     s_pPlayer->InitChr(pLooks); // 관절 세팅..
@@ -1907,7 +1818,7 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack * pDataPack, int & iOffset) {
 
     m_pUIInventory->ReleaseItem();
 
-    std::string szResrcFN, szIconFN;
+    fs::path fsResrcFile, fsIconFile;
     for (int i = 0; i < ITEM_SLOT_COUNT; i++) // 슬롯 갯수마큼..
     {
         if (0 == iItemIDInSlots[i]) {
@@ -1923,13 +1834,13 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack * pDataPack, int & iOffset) {
 
         if (NULL == pItem || NULL == pItemExt) {
             N3_WARN("NULL slot Item!!!");
-            CLogWriter::Write("MyInfo - slot - Unknown Item %d, IDNumber", iItemIDInSlots[i]);
+            CLogWriter::Write("MyInfo - slot - Unknown Item {:d}, IDNumber", iItemIDInSlots[i]);
             continue; // 아이템이 없으면..
         }
 
         e_PartPosition ePart;
         e_PlugPosition ePlug;
-        e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, &szResrcFN, &szIconFN, ePart,
+        e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, &fsResrcFile, &fsIconFile, ePart,
                                                                        ePlug); // 아이템에 따른 파일 이름을 만들어서
         if (ITEM_TYPE_UNKNOWN == eType) {
             CLogWriter::Write("MyInfo - slot - Unknown Item");
@@ -1958,7 +1869,7 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack * pDataPack, int & iOffset) {
                 CLogWriter::Write("MyInfo - slot - Invalid Item");
             }
             __ASSERT(ITEM_TYPE_PART == eType, "Invalid Item");
-            s_pPlayer->PartSet(ePart, szResrcFN, pItem, pItemExt); // 파트를 셋팅..
+            s_pPlayer->PartSet(ePart, fsResrcFile, pItem, pItemExt); // 파트를 셋팅..
         } break;
         case ITEM_SLOT_HAND_RIGHT: // 오른손
         case ITEM_SLOT_HAND_LEFT:  // 왼손
@@ -1974,7 +1885,7 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack * pDataPack, int & iOffset) {
             } else {
                 ePlugPos = PLUG_POS_LEFTHAND;
             }
-            s_pPlayer->PlugSet(ePlugPos, szResrcFN, pItem, pItemExt); // 파트를 셋팅..
+            s_pPlayer->PlugSet(ePlugPos, fsResrcFile, pItem, pItemExt); // 파트를 셋팅..
         } break;
         case ITEM_SLOT_SHOULDER: // 망토
         {
@@ -1988,7 +1899,7 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack * pDataPack, int & iOffset) {
         __IconItemSkill * spItem = new __IconItemSkill;
         spItem->pItemBasic = pItem;
         spItem->pItemExt = pItemExt;
-        spItem->szIconFN = szIconFN; // 아이콘 파일 이름 복사..
+        spItem->fsIconFile = fsIconFile; // 아이콘 파일 이름 복사..
         spItem->iCount = iItemCountInSlots[i];
         spItem->iDurability = iItemDurabilityInSlots[i];
 
@@ -2012,13 +1923,13 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack * pDataPack, int & iOffset) {
         }
         if (NULL == pItem || NULL == pItemExt) {
             N3_WARN("NULL Inv Item");
-            CLogWriter::Write("MyInfo - Inv - Unknown Item %d, IDNumber", iItemIDInInventorys[i]);
+            CLogWriter::Write("MyInfo - Inv - Unknown Item {:d}, IDNumber", iItemIDInInventorys[i]);
             continue; // 아이템이 없으면..
         }
 
         e_PartPosition ePart;
         e_PlugPosition ePlug;
-        e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart,
+        e_ItemType     eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &fsIconFile, ePart,
                                                                        ePlug); // 아이템에 따른 파일 이름을 만들어서
         if (ITEM_TYPE_UNKNOWN == eType) {
             CLogWriter::Write("MyInfo - slot - Unknown Item");
@@ -2028,7 +1939,7 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack * pDataPack, int & iOffset) {
         __IconItemSkill * spItem = new __IconItemSkill;
         spItem->pItemBasic = pItem;
         spItem->pItemExt = pItemExt;
-        spItem->szIconFN = szIconFN; // 아이콘 파일 이름 복사..
+        spItem->fsIconFile = fsIconFile; // 아이콘 파일 이름 복사..
         spItem->iCount = iItemCountInInventorys[i];
         spItem->iDurability = iItemDurabilityInInventorys[i];
 
@@ -2046,22 +1957,22 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack * pDataPack, int & iOffset) {
         m_pUIHotKeyDlg->UpdateDisableCheck();
     }
 
-    if (s_pPlayer->Part(PART_POS_UPPER)->FileName().empty()) { // 아무것도 세팅안되어 있으면 파일 이름이 없다..
-        s_pPlayer->PartSet(PART_POS_UPPER, pLooks->szPartFNs[PART_POS_UPPER], NULL, NULL); // 상체..
+    if (s_pPlayer->Part(PART_POS_UPPER)->FilePath().empty()) { // 아무것도 세팅안되어 있으면 파일 이름이 없다..
+        s_pPlayer->PartSet(PART_POS_UPPER, pLooks->szPartFiles[PART_POS_UPPER], NULL, NULL); // 상체..
     }
-    if (s_pPlayer->Part(PART_POS_LOWER)->FileName().empty()) { // 아무것도 세팅안되어 있으면 파일 이름이 없다..
-        s_pPlayer->PartSet(PART_POS_LOWER, pLooks->szPartFNs[PART_POS_LOWER], NULL, NULL); // 하체..
+    if (s_pPlayer->Part(PART_POS_LOWER)->FilePath().empty()) { // 아무것도 세팅안되어 있으면 파일 이름이 없다..
+        s_pPlayer->PartSet(PART_POS_LOWER, pLooks->szPartFiles[PART_POS_LOWER], NULL, NULL); // 하체..
     }
-    if (s_pPlayer->Part(PART_POS_HANDS)->FileName().empty()) { // 아무것도 세팅안되어 있으면 파일 이름이 없다..
-        s_pPlayer->PartSet(PART_POS_HANDS, pLooks->szPartFNs[PART_POS_HANDS], NULL, NULL); // 팔..
+    if (s_pPlayer->Part(PART_POS_HANDS)->FilePath().empty()) { // 아무것도 세팅안되어 있으면 파일 이름이 없다..
+        s_pPlayer->PartSet(PART_POS_HANDS, pLooks->szPartFiles[PART_POS_HANDS], NULL, NULL); // 팔..
     }
-    if (s_pPlayer->Part(PART_POS_FEET)->FileName().empty()) { // 아무것도 세팅안되어 있으면 파일 이름이 없다..
-        s_pPlayer->PartSet(PART_POS_FEET, pLooks->szPartFNs[PART_POS_FEET], NULL, NULL); // 다리..
+    if (s_pPlayer->Part(PART_POS_FEET)->FilePath().empty()) { // 아무것도 세팅안되어 있으면 파일 이름이 없다..
+        s_pPlayer->PartSet(PART_POS_FEET, pLooks->szPartFiles[PART_POS_FEET], NULL, NULL); // 다리..
     }
-    if (s_pPlayer->Part(PART_POS_FACE)->FileName().empty()) { // 아무것도 세팅안되어 있으면 파일 이름이 없다..
+    if (s_pPlayer->Part(PART_POS_FACE)->FilePath().empty()) { // 아무것도 세팅안되어 있으면 파일 이름이 없다..
         s_pPlayer->InitFace();
     }
-    if (s_pPlayer->Part(PART_POS_HAIR_HELMET)->FileName().empty()) { // 아무것도 세팅안되어 있으면 파일 이름이 없다..
+    if (s_pPlayer->Part(PART_POS_HAIR_HELMET)->FilePath().empty()) { // 아무것도 세팅안되어 있으면 파일 이름이 없다..
         s_pPlayer->InitHair();
     }
 
@@ -2088,7 +1999,7 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack * pDataPack, int & iOffset) {
     this->InitPlayerPosition(__Vector3(fX, fY, fZ)); // 플레이어 위치 초기화.. 일으켜 세우고, 기본동작을 취하게 한다.
 
     // berserk temp
-    //s_pPlayer->PlugSet(PLUG_POS_BACK, "item/babacloak.n3cplug_cloak", NULL);    // 파트를 셋팅..
+    //s_pPlayer->PlugSet(PLUG_POS_BACK, fs::path("Item") / "babacloak.n3cplug_cloak", NULL);    // 파트를 셋팅..
     // end berserk temp
 
     // berserk
@@ -2496,7 +2407,7 @@ bool CGameProcMain::MsgRecv_UserIn(DataPack * pDataPack, int & iOffset, bool bWi
     CPlayerOther * pUPC = s_pOPMgr->UPCGetByID(iID, false);
     if (pUPC) // 이미 아이디 같은 캐릭이 있으면..
     {
-        CLogWriter::Write("User In - Duplicated ID (%d, %s) Pos(%.2f,%.2f,%.2f)", iID, szName.c_str(), fXPos, fYPos,
+        CLogWriter::Write("User In - Duplicated ID ({:d}, {:s}) Pos({:.2f},{:.2f},{:.2f})", iID, szName, fXPos, fYPos,
                           fZPos);
         TRACE("User In - Duplicated ID (%d, %s) Pos(%.2f,%.2f,%.2f)\n", iID, szName.c_str(), fXPos, fYPos, fZPos);
 
@@ -2749,7 +2660,7 @@ bool CGameProcMain::MsgRecv_NPCIn(DataPack * pDataPack, int & iOffset) {
     }
 
     //#ifdef _DEBUG
-    //    CLogWriter::Write("NPC In - ID(%d) Name(%s) Time(%.1f)", iID, szName.c_str(), CN3Base::TimeGet()); // 캐릭 세팅..
+    //    CLogWriter::Write("NPC In - ID({:d}) Name({:s}) Time({:.1f})", iID, szName, CN3Base::TimeGet()); // 캐릭 세팅..
     //#endif
 
     e_Nation eNation = (e_Nation)CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 소속 국가. 0 이면 없다. 1
@@ -2776,7 +2687,7 @@ bool CGameProcMain::MsgRecv_NPCIn(DataPack * pDataPack, int & iOffset) {
     CPlayerNPC * pNPC = s_pOPMgr->NPCGetByID(iID, false);
     if (pNPC) // 이미 아이디 같은 캐릭이 있으면..
     {
-        CLogWriter::Write("NPC In - Duplicated ID (%d, %s) Pos(%.2f,%.2f,%.2f)", iID, szName.c_str(), fXPos, fYPos,
+        CLogWriter::Write("NPC In - Duplicated ID ({:d}, {:s}) Pos({:.2f},{:.2f},{:.2f})", iID, szName, fXPos, fYPos,
                           fZPos);
         TRACE("NPC In - Duplicated ID (%d, %s) Pos(%.2f,%.2f,%.2f)\n", iID, szName.c_str(), fXPos, fYPos, fZPos);
         pNPC->Action(PSA_BASIC, true, NULL, true); // 강제로 살리고..
@@ -2825,11 +2736,10 @@ bool CGameProcMain::MsgRecv_NPCIn(DataPack * pDataPack, int & iOffset) {
         pNPC->InitChr(pLooks); // 관절 세팅..
         pNPC->ScaleSet(iScale / 100.0f);
 
-        std::string    szPartFN;
         e_PartPosition eParts[6] = {PART_POS_UPPER, PART_POS_LOWER, PART_POS_FACE,
                                     PART_POS_HANDS, PART_POS_FEET,  PART_POS_HAIR_HELMET};
         for (int i = 0; i < 6; i++) {
-            pNPC->PartSet(eParts[i], pLooks->szPartFNs[eParts[i]], NULL, NULL);
+            pNPC->PartSet(eParts[i], pLooks->szPartFiles[eParts[i]], NULL, NULL);
         }
 
         if (iItemID0) {
@@ -2841,9 +2751,9 @@ bool CGameProcMain::MsgRecv_NPCIn(DataPack * pDataPack, int & iOffset) {
             if (pItem0 && pItemExt0) {
                 e_PartPosition ePart;
                 e_PlugPosition ePlug;
-                std::string    szItemFN;
-                CGameProcedure::MakeResrcFileNameForUPC(pItem0, &szItemFN, NULL, ePart, ePlug);
-                pNPC->PlugSet(PLUG_POS_RIGHTHAND, szItemFN, pItem0, pItemExt0);
+                fs::path       fsItemFile;
+                CGameProcedure::MakeResrcFileNameForUPC(pItem0, &fsItemFile, NULL, ePart, ePlug);
+                pNPC->PlugSet(PLUG_POS_RIGHTHAND, fsItemFile, pItem0, pItemExt0);
             } else {
                 __ASSERT(0, "Invalid Item ID And Extension");
             }
@@ -2858,9 +2768,9 @@ bool CGameProcMain::MsgRecv_NPCIn(DataPack * pDataPack, int & iOffset) {
             if (pItem1 && pItemExt1) {
                 e_PartPosition ePart;
                 e_PlugPosition ePlug;
-                std::string    szItemFN;
-                CGameProcedure::MakeResrcFileNameForUPC(pItem1, &szItemFN, NULL, ePart, ePlug);
-                pNPC->PlugSet(PLUG_POS_LEFTHAND, szItemFN, pItem1, pItemExt1);
+                fs::path       fsItemFile;
+                CGameProcedure::MakeResrcFileNameForUPC(pItem1, &fsItemFile, NULL, ePart, ePlug);
+                pNPC->PlugSet(PLUG_POS_LEFTHAND, fsItemFile, pItem1, pItemExt1);
             } else {
                 N3_WARN("Invalid Item ID And Extension");
             }
@@ -2916,9 +2826,7 @@ bool CGameProcMain::MsgRecv_NPCIn(DataPack * pDataPack, int & iOffset) {
             }
         }
     } else {
-        char szBuff[256];
-        sprintf(szBuff, "No Resource NPC In : [Name(%s), ResourceID(%d)]", szName.c_str(), iIDResrc);
-        CLogWriter::Write(szBuff);
+        CLogWriter::Write("No Resource NPC In : [Name({:s}), ResourceID({:d})]", szName, iIDResrc);
     }
 
     pNPC->PositionSet(__Vector3(fXPos, fYPos, fZPos), true); // 현재 위치 셋팅..
@@ -3345,22 +3253,22 @@ bool CGameProcMain::MsgRecv_UserLookChange(DataPack * pDataPack, int & iOffset) 
     if (ePartPos != PART_POS_UNKNOWN) {
         if (dwItemID) // 아이템이 있는 경우
         {
-            std::string szItemFN;
-            CGameProcedure::MakeResrcFileNameForUPC(pItem, &szItemFN, NULL, ePartPos2, ePlugPos2);
-            pUPC->PartSet(ePartPos, szItemFN, pItem, pItemExt); // 아이템 붙이기..
+            fs::path fsItemFile;
+            CGameProcedure::MakeResrcFileNameForUPC(pItem, &fsItemFile, NULL, ePartPos2, ePlugPos2);
+            pUPC->PartSet(ePartPos, fsItemFile, pItem, pItemExt); // 아이템 붙이기..
             pUPC->DurabilitySet(eSlot, iDurability);
         } else {
             __TABLE_PLAYER_LOOKS * pLooks =
                 s_pTbl_UPC_Looks->Find(pUPC->m_InfoBase.eRace); // User Player Character Skin 구조체 포인터..
             if (NULL == pLooks) {
-                CLogWriter::Write("CGameProcMain::MsgRecv_UserLookChange() - failed find table : Race (%d)",
-                                  pUPC->m_InfoBase.eRace);
+                CLogWriter::Write("CGameProcMain::MsgRecv_UserLookChange() - failed find table : Race ({:d})",
+                                  (int)pUPC->m_InfoBase.eRace);
                 __ASSERT(pLooks, "failed find table");
             } else {
                 if (PART_POS_HAIR_HELMET == ePartPos) {
                     pUPC->InitHair(); // 머리인데 없는 경우는..
                 } else {
-                    pUPC->PartSet(ePartPos, pLooks->szPartFNs[ePartPos], NULL, NULL);
+                    pUPC->PartSet(ePartPos, pLooks->szPartFiles[ePartPos], NULL, NULL);
                 }
             }
         }
@@ -3368,9 +3276,9 @@ bool CGameProcMain::MsgRecv_UserLookChange(DataPack * pDataPack, int & iOffset) 
         return true;
     } else if (ePlugPos != PLUG_POS_UNKNOWN) {
         if (dwItemID) {
-            std::string szItemFN;
-            CGameProcedure::MakeResrcFileNameForUPC(pItem, &szItemFN, NULL, ePartPos2, ePlugPos2);
-            pUPC->PlugSet(ePlugPos, szItemFN, pItem, pItemExt);
+            fs::path fsItemFile;
+            CGameProcedure::MakeResrcFileNameForUPC(pItem, &fsItemFile, NULL, ePartPos2, ePlugPos2);
+            pUPC->PlugSet(ePlugPos, fsItemFile, pItem, pItemExt);
             pUPC->DurabilitySet(eSlot, iDurability);
         } else {
             pUPC->PlugSet(ePlugPos, "", NULL, NULL);
@@ -3386,7 +3294,8 @@ bool CGameProcMain::MsgRecv_UserLookChange(DataPack * pDataPack, int & iOffset) 
 
         return true;
     } else {
-        CLogWriter::Write("CGameProcMain::MsgRecv_UserLookChange() - Unknown Slot(%d) Item(%d)", eSlot, dwItemID);
+        CLogWriter::Write("CGameProcMain::MsgRecv_UserLookChange() - Unknown Slot({:d}) Item({:d})", (int)eSlot,
+                          dwItemID);
         return false;
     }
 
@@ -4076,7 +3985,7 @@ void CGameProcMain::MsgRecv_TargetHP(DataPack * pDataPack, int & iOffset) {
             szBuff += pTarget->IDString();
         }
         szBuff += ')';
-        CLogWriter::Write(szBuff.c_str());
+        CLogWriter::Write(szBuff);
     }
     __ASSERT(iTargetHPMax > 0, "최대 체력 수치는 0이상이어야 합니다.");
 
@@ -4274,13 +4183,11 @@ void CGameProcMain::InitZone(int iZone, const __Vector3 & vPosPlayer) {
         s_pPlayer->m_bMoveContinous = true; // 멈춘다..
         this->CommandToggleMoveContinous();
 
-        CLogWriter::Write("CGameProcMain::InitZone -> Zone Change (%d -> %d) Position(%.1f, %.1f, %.1f)", iZonePrev,
-                          iZone, vPosPlayer.x, vPosPlayer.y, vPosPlayer.z);
+        CLogWriter::Write("CGameProcMain::InitZone -> Zone Change ({:d} -> {:d}) Position({:.1f}, {:.1f}, {:.1f})",
+                          iZonePrev, iZone, vPosPlayer.x, vPosPlayer.y, vPosPlayer.z);
 
-        m_bLoadComplete = false;                                           // 로딩 끝남..
-        CLogWriter::Write("%d->ClearDurationalMagic()", m_pMagicSkillMng); // TmpLog1122
+        m_bLoadComplete = false; // 로딩 끝남..
         m_pMagicSkillMng->ClearDurationalMagic();
-        CLogWriter::Write("%d->ClearAll()", s_pFX); // TmpLog1122
         s_pFX->ClearAll();
 
         if (s_pUILoading) {
@@ -4291,26 +4198,19 @@ void CGameProcMain::InitZone(int iZone, const __Vector3 & vPosPlayer) {
         s_pPlayer->m_InfoExt.iZoneCur = iZone;
         iZonePrev = iZone; // 최근에 읽은 존 번호를 기억해둔다.
 
-        CLogWriter::Write("%d->Find(s_pPlayer->m_InfoExt.iZoneCur)", s_pTbl_Zones); // TmpLog1122
         __TABLE_ZONE * pZoneData = s_pTbl_Zones->Find(s_pPlayer->m_InfoExt.iZoneCur);
         if (NULL == pZoneData) {
-            CLogWriter::Write("can't find zone data. (zone : %d)", s_pPlayer->m_InfoExt.iZoneCur);
+            CLogWriter::Write("can't find zone data. (zone : {:d})", s_pPlayer->m_InfoExt.iZoneCur);
             __ASSERT(0, "Zone Data Not Found!");
             return;
         }
 
-        CLogWriter::Write("%d->Release()", s_pOPMgr); // TmpLog1122
-
-        s_pOPMgr->Release();                               // 다른 넘들 다 날린다..
-        CLogWriter::Write("%d->InitWorld()", s_pWorldMgr); // TmpLog1122
+        s_pOPMgr->Release(); // 다른 넘들 다 날린다..
         s_pWorldMgr->InitWorld(iZone, vPosPlayer);
 
         // 미니맵 로딩..
-        CLogWriter::Write("%d->GetWidthByMeterWithTerrain()", ACT_WORLD); // TmpLog1122
         float fWidth = ACT_WORLD->GetWidthByMeterWithTerrain();
-        CLogWriter::Write("%d->LoadMap()", m_pUIStateBarAndMiniMap); // TmpLog1122
-        CLogWriter::Write("%d->szMiniMapFNszMiniMapFN", pZoneData);  // TmpLog1122
-        m_pUIStateBarAndMiniMap->LoadMap(pZoneData->szMiniMapFN, fWidth, fWidth);
+        m_pUIStateBarAndMiniMap->LoadMiniMap(pZoneData->szMiniMapFile, fWidth, fWidth);
 
         CLogWriter::Write("GetRepresentClass()"); // TmpLog1122
         // 줌 비율 정하기..
@@ -4319,19 +4219,11 @@ void CGameProcMain::InitZone(int iZone, const __Vector3 & vPosPlayer) {
         if (CLASS_REPRESENT_ROGUE == eCR) {
             fZoom = 3.0f; // 로그 계열은 맵이 좀더 널리 자세히 보인다..
         }
-        CLogWriter::Write("%d->ZoomSet()", m_pUIStateBarAndMiniMap); // TmpLog1122
         m_pUIStateBarAndMiniMap->ZoomSet(fZoom);
 
-        CLogWriter::Write("%d->szTerrainFN.c_str()", pZoneData); // TmpLog1122
-        //char szBuf[256];
-        char szFName[_MAX_PATH];
-        _splitpath(pZoneData->szTerrainFN.c_str(), NULL, NULL, szFName, NULL);
-        char szFName2[_MAX_PATH];
-        char szFullPathName[_MAX_PATH];
-        sprintf(szFName2, "%s_Bird", szFName);
-        _makepath(szFullPathName, NULL, "misc\\bird", szFName2, "lst");
+        //fs::path fsBirdListFile = fs::path("Misc") / "bird" / fs::path(pZoneData->szGtdFile).stem() + "_Bird.lst";
 
-        m_pLightMgr->LoadZoneLight(pZoneData->szLightObjFN.c_str());
+        m_pLightMgr->LoadZoneLight(pZoneData->szGloFile.c_str());
 
         m_bLoadComplete = true; // 로딩 끝남..
     }
@@ -4353,11 +4245,10 @@ void CGameProcMain::InitZone(int iZone, const __Vector3 & vPosPlayer) {
     // 기본적인 캐릭터위치와 카메라 위치 잡기..
     ////////////////////////////////////////////////////////////////////////////////
 
-    CLogWriter::Write("InitPlayerPosition() Position(%.1f, %.1f, %.1f)", vPosPlayer.x, vPosPlayer.y,
+    CLogWriter::Write("InitPlayerPosition() Position({:.1f}, {:.1f}, {:.1f})", vPosPlayer.x, vPosPlayer.y,
                       vPosPlayer.z); // TmpLog1122
     this->InitPlayerPosition(vPosPlayer); // 플레이어 위치 초기화.. 일으켜 세우고, 기본동작을 취하게 한다.
-    CLogWriter::Write("%d->Release()2", s_pOPMgr); // TmpLog1122
-    s_pOPMgr->Release();                           // 다른 플레이어 삭제...
+    s_pOPMgr->Release();                  // 다른 플레이어 삭제...
 }
 
 void CGameProcMain::MsgSend_GameStart() {

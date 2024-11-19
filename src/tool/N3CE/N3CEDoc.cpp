@@ -89,25 +89,20 @@ BOOL CN3CEDoc::OnOpenDocument(LPCTSTR lpszPathName) {
         return FALSE;
     }
 
-    // TODO: Add your specialized creation code here
-    char szPath[512]; // 경로를 잘 가려야 한다..
-    lstrcpy(szPath, lpszPathName);
-    int nFind = 0;
-    for (int i = lstrlen(szPath) - 1; i >= 0; i--) {
-        if ('\\' == szPath[i] || '/' == szPath[i]) {
-            nFind++;
-        }
-        if (nFind >= 2) {
-            szPath[i] = NULL;
-            break;
-        }
+    // Set the base path based on the currently opened file:
+    // C:\KnightOnLine\Chr\file.n3chr -> C:\KnightOnLine
+    fs::path fsFile = lpszPathName;
+    fs::path fsDir = fsFile.parent_path();
+    fs::path fsBaseDir = fsDir;
+    if (fsBaseDir.has_parent_path()) {
+        fsBaseDir = fsBaseDir.parent_path();
     }
 
     m_bLoadingNow = TRUE;
 
-    CN3Base::PathSet(szPath); // 경로를 정해주고..
+    CN3Base::PathSet(fsBaseDir);
     m_Scene.ChrGet(0)->Release();
-    m_Scene.ChrGet(0)->LoadFromFile(lpszPathName);
+    m_Scene.ChrGet(0)->LoadFromFile(fsFile);
     CN3Joint * pJoint = m_Scene.ChrGet(0)->Joint();
     if (pJoint) {
         m_Scene.m_fFrmEnd = pJoint->m_KeyPos.Count() * 30.0f / pJoint->m_KeyRot.SamplingRate();
@@ -130,32 +125,21 @@ BOOL CN3CEDoc::OnOpenDocument(LPCTSTR lpszPathName) {
 BOOL CN3CEDoc::OnSaveDocument(LPCTSTR lpszPathName) {
     CDocument::OnSaveDocument(lpszPathName);
 
-    // TODO: Add your specialized creation code here
-    char szPath[512]; // 경로를 잘 가려야 한다..
-    lstrcpy(szPath, lpszPathName);
-    int nFind = 0;
-    for (int i = lstrlen(szPath) - 1; i >= 0; i--) {
-        if ('\\' == szPath[i] || '/' == szPath[i]) {
-            nFind++;
-        }
-        if (nFind >= 2) {
-            szPath[i] = NULL;
-            break;
-        }
+    fs::path fsFile = lpszPathName;
+    fs::path fsDir = fsFile.parent_path();
+    fs::path fsBaseDir = fsDir;
+    if (fsBaseDir.has_parent_path()) {
+        fsBaseDir = fsBaseDir.parent_path();
     }
 
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME];
-    _splitpath(lpszPathName, szDrive, szDir, szFName, NULL);
-
-    CN3Base::PathSet(szPath); // 경로를 정해주고..
+    CN3Base::PathSet(fsBaseDir);
     CN3Chr * pChr = m_Scene.ChrGet(0);
-    pChr->m_szName = szFName; // 이름을 정하고..
+    pChr->m_szName = fsFile.stem().string(); // 이름을 정하고..
 
-    //    CN3Joint* pJoint = pChr->Joint();
-    //    if(pJoint)
-    //    {
-    //        pJoint->SaveToFile(); // 관절도 저장해준다..
-    //    }
+    //CN3Joint * pJoint = pChr->Joint();
+    //if (pJoint) {
+    //    pJoint->SaveToFile(); // 관절도 저장해준다..
+    //}
 
     CN3CPlugBase * pPlug = NULL;
     int            nCPC = pChr->PlugCount();
@@ -169,7 +153,7 @@ BOOL CN3CEDoc::OnSaveDocument(LPCTSTR lpszPathName) {
         pAni->SaveToFile();
     }
 
-    m_Scene.ChrGet(0)->SaveToFile(lpszPathName);
+    m_Scene.ChrGet(0)->SaveToFile(fsFile);
     m_Scene.SaveResrc();
 
     return TRUE; // 그냥 저장하면 안된다.. 0 Byte 가 된다.
@@ -182,32 +166,20 @@ void CN3CEDoc::OnFileSaveAsOneFolder() {
     if (dlg.DoModal() == IDCANCEL) {
         return;
     }
-    CString szFullFileName = dlg.GetPathName();
 
-    char szPath[512]; // 경로를 잘 가려야 한다..
-    lstrcpy(szPath, szFullFileName);
-    int nFind = 0;
-    for (int i = lstrlen(szPath) - 1; i >= 0; i--) {
-        if ('\\' == szPath[i] || '/' == szPath[i]) {
-            nFind++;
-        }
-        if (nFind >= 2) {
-            szPath[i] = NULL;
-            break;
-        }
+    fs::path fsFile = dlg.GetPathName().GetString();
+    fs::path fsDir = fsFile.parent_path();
+    fs::path fsBaseDir = fsDir;
+    if (fsBaseDir.has_parent_path()) {
+        fsBaseDir = fsBaseDir.parent_path();
     }
 
-    char szDrive[_MAX_DRIVE], szDir[_MAX_DIR];
-    _splitpath(szFullFileName, szDrive, szDir, NULL, NULL);
-
-    CN3Base::PathSet(szPath); // 경로를 정해주고..
+    CN3Base::PathSet(fsBaseDir); // 경로를 정해주고..
     CN3Chr * pChr = m_Scene.ChrGet(0);
 
     CN3Joint * pJoint = pChr->Joint();
     if (pJoint) {
-        char szFN[256];
-        _makepath(szFN, szDrive, szDir, pChr->m_szName.c_str(), ".N3Joint");
-        pJoint->SaveToFile(szFN); // 관절도 저장해준다..
+        pJoint->SaveToFile(fsDir / (pChr->m_szName + ".n3joint")); // 관절도 저장해준다..
     }
 
     CN3CPlugBase * pPlug = NULL;
@@ -218,18 +190,14 @@ void CN3CEDoc::OnFileSaveAsOneFolder() {
             continue;
         }
 
-        char szFN[256];
         if (pPlug->PMesh()) {
-            _makepath(szFN, szDrive, szDir, pPlug->PMesh()->m_szName.c_str(), ".N3PMesh");
-            pPlug->PMesh()->SaveToFile(szFN);
+            pPlug->PMesh()->SaveToFile(fsDir / (pPlug->PMesh()->m_szName + ".n3pmesh"));
         }
         if (pPlug->Tex()) {
-            _makepath(szFN, szDrive, szDir, pPlug->Tex()->m_szName.c_str(), NULL);
-            pPlug->Tex()->SaveToFile(szFN);
+            pPlug->Tex()->SaveToFile(fsDir / (pPlug->Tex()->m_szName + ".dxt"));
         }
 
-        _makepath(szFN, szDrive, szDir, pPlug->m_szName.c_str(), ".N3CPlug");
-        pPlug->SaveToFile(szFN);
+        pPlug->SaveToFile(fsDir / (pPlug->m_szName + ".n3cplug"));
     }
 
     CN3CPart * pPart = NULL;
@@ -240,35 +208,26 @@ void CN3CEDoc::OnFileSaveAsOneFolder() {
             continue;
         }
 
-        char szFN[256];
-
         if (pPart->Skins()) {
-            _makepath(szFN, szDrive, szDir, pPart->Skins()->m_szName.c_str(), ".N3CSkins");
-            pPart->Skins()->SaveToFile(szFN);
+            pPart->Skins()->SaveToFile(fsDir / (pPart->Skins()->m_szName + ".n3cskins"));
         }
 
         if (pPart->Tex()) {
-            _makepath(szFN, szDrive, szDir, pPart->Tex()->m_szName.c_str(), ".DXT");
-            pPart->Tex()->SaveToFile(szFN);
+            pPart->Tex()->SaveToFile(fsDir / (pPart->Tex()->m_szName + ".dxt"));
         }
 
-        _makepath(szFN, szDrive, szDir, pPart->m_szName.c_str(), ".N3CPart");
-        pPart->SaveToFile(szFN);
+        pPart->SaveToFile(fsDir / (pPart->m_szName + ".n3cpart"));
     }
 
     CN3AnimControl * pAni = pChr->AniCtrl();
-    if (pAni && pAni->Count() > 0) // 에니메이션은 같은 이름으로 저장해준다..
-    {
+    if (pAni && pAni->Count() > 0) { // 에니메이션은 같은 이름으로 저장해준다..
         pAni->m_szName = pChr->m_szName;
-
-        char szFN[256];
-        _makepath(szFN, szDrive, szDir, pChr->m_szName.c_str(), ".N3Anim");
         CN3Base::s_MngAniCtrl.Add(pAni);
-        pAni->SaveToFile(szFN);
+        pAni->SaveToFile(fsDir / (pChr->m_szName + ".n3anim"));
     }
 
-    m_Scene.ChrGet(0)->SaveToFile(std::string(szFullFileName));
-    this->SetPathName(szFullFileName);
+    m_Scene.ChrGet(0)->SaveToFile(fsFile);
+    this->SetPathName(fsFile.string().c_str());
     this->UpdateAllViews(NULL); // 모두 업데이트..
 }
 
@@ -305,30 +264,27 @@ void CN3CEDoc::OnToolOptimizeAnimationData() {
         "원본 Joint 와 Animation File 을 다른 이름으로 저장해 둡니다. 이 파일은 나중에 다시 편집할때 필요합니다.",
         "Joint 및 Animation 파일 다른이름으로 저장", MB_OK);
 
-    CString     FileName;
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
     CFileDialog dlg1(FALSE, "N3Anim", NULL, dwFlags, "Animation Data(*.N3Anim)|*.n3Anim||", NULL);
     if (dlg1.DoModal() == IDCANCEL) {
         return;
     }
-    FileName = dlg1.GetPathName();
+    fs::path fsFile = dlg1.GetPathName().GetString();
 
-    std::string szFN(FileName);
-    std::string szFNPrev = pAniCtrl->FileName();
-    pAniCtrl->SaveToFile(szFN); // 저장..
-    pAniCtrl->FileNameSet(szFNPrev);
+    fs::path fsFilePrev = pAniCtrl->FilePath();
+    pAniCtrl->SaveToFile(fsFile); // 저장..
+    pAniCtrl->FilePathSet(fsFilePrev);
 
     CFileDialog dlg2(FALSE, "N3Joint", NULL, dwFlags, "Joint File(*.N3Joint)|*.N3Joint||", NULL);
     if (dlg2.DoModal() == IDCANCEL) {
         return;
     }
-    FileName = dlg2.GetPathName();
+    fsFile = dlg2.GetPathName().GetString();
 
-    szFNPrev = pJointSrc->FileName();
-    pChr->Tick(0.0f); // 초기위치로 Tick
-    szFN = FileName;
-    pJointSrc->SaveToFile(szFN); // 원래걸 다른 이름으로 저장..
-    pJointSrc->FileNameSet(szFNPrev);
+    fsFilePrev = pJointSrc->FilePath();
+    pChr->Tick(0.0f);              // 초기위치로 Tick
+    pJointSrc->SaveToFile(fsFile); // 원래걸 다른 이름으로 저장..
+    pJointSrc->FilePathSet(fsFilePrev);
 
     int      nK = pAniCtrl->Count();
     CN3Joint JointDest;
@@ -373,8 +329,8 @@ void CN3CEDoc::OnToolOptimizeAnimationData() {
     JointDest.SaveToFile();
 
     pChr->Tick(0.0f); // 초기위치로 Tick
-    pChr->JointSet("");
-    pChr->JointSet(JointDest.FileName());
+    pChr->JointSet(fs::path());
+    pChr->JointSet(JointDest.FilePath());
 
     UpdateAllViews(NULL); // 모든 뷰 초기화..
 }

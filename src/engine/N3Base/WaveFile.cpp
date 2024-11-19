@@ -49,14 +49,14 @@ CWaveFile::~CWaveFile() {
 // Name: CWaveFile::Open()
 // Desc: Opens a wave file for reading
 //-----------------------------------------------------------------------------
-HRESULT CWaveFile::Open(LPCSTR strFileName, WAVEFORMATEX * pwfx, DWORD dwFlags) {
+HRESULT CWaveFile::Open(const fs::path & fsFile, WAVEFORMATEX * pwfx, DWORD dwFlags) {
     HRESULT hr;
 
     m_dwFlags = dwFlags;
     m_bIsReadingFromMemory = FALSE;
 
     if (m_dwFlags == WAVEFILE_READ) {
-        if (strFileName == NULL) {
+        if (fsFile.empty()) {
             return E_INVALIDARG;
         }
         if (m_pwfx) {
@@ -64,7 +64,7 @@ HRESULT CWaveFile::Open(LPCSTR strFileName, WAVEFORMATEX * pwfx, DWORD dwFlags) 
             m_pwfx = NULL;
         }
 
-        m_hmmio = mmioOpen((LPSTR)strFileName, NULL, MMIO_ALLOCBUF | MMIO_READ);
+        m_hmmio = mmioOpenW(const_cast<fs::path::value_type *>(fsFile.c_str()), NULL, MMIO_ALLOCBUF | MMIO_READ);
 
         if (NULL == m_hmmio) {
             HRSRC   hResInfo;
@@ -73,8 +73,8 @@ HRESULT CWaveFile::Open(LPCSTR strFileName, WAVEFORMATEX * pwfx, DWORD dwFlags) 
             VOID *  pvRes;
 
             // Loading it as a file failed, so try it as a resource
-            if (NULL == (hResInfo = FindResource(NULL, strFileName, TEXT("WAVE")))) {
-                if (NULL == (hResInfo = FindResource(NULL, strFileName, TEXT("WAV")))) {
+            if (NULL == (hResInfo = FindResourceW(NULL, fsFile.c_str(), TEXT(L"WAVE")))) {
+                if (NULL == (hResInfo = FindResourceW(NULL, fsFile.c_str(), TEXT(L"WAV")))) {
                     return E_FAIL;
                 }
             }
@@ -116,7 +116,8 @@ HRESULT CWaveFile::Open(LPCSTR strFileName, WAVEFORMATEX * pwfx, DWORD dwFlags) 
         // After the reset, the size of the wav file is m_ck.cksize so store it now
         m_dwSize = m_ck.cksize;
     } else {
-        m_hmmio = mmioOpen((LPSTR)strFileName, NULL, MMIO_ALLOCBUF | MMIO_READWRITE | MMIO_CREATE);
+        m_hmmio = mmioOpenW(const_cast<fs::path::value_type *>(fsFile.c_str()), NULL,
+                            MMIO_ALLOCBUF | MMIO_READWRITE | MMIO_CREATE);
         if (NULL == m_hmmio) {
             return E_FAIL;
         }

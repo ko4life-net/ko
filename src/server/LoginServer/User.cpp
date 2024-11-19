@@ -151,36 +151,26 @@ fail_return:
     Send(send_buff, send_index);
 }
 
-void CUser::SendDownloadInfo(int version) {
-    int              send_index = 0, filecount = 0;
-    _VERSION_INFO *  pInfo = NULL;
-    std::set<string> downloadset;
-    char             buff[2048];
-    memset(buff, 0x00, 2048);
+void CUser::SendDownloadInfo(short sVersion) {
+    int  send_index = 0;
+    char send_buff[2048]{};
+    SetByte(send_buff, LS_DOWNLOADINFO_REQ, send_index);
+    SetShort(send_buff, m_pMain->m_szFtpUrl.length(), send_index);
+    SetString(send_buff, m_pMain->m_szFtpUrl.data(), m_pMain->m_szFtpUrl.length(), send_index);
+    SetShort(send_buff, m_pMain->m_szFtpPath.length(), send_index);
+    SetString(send_buff, m_pMain->m_szFtpPath.data(), m_pMain->m_szFtpPath.length(), send_index);
 
-    std::map<string, _VERSION_INFO *>::iterator Iter1, Iter2;
-    Iter1 = m_pMain->m_VersionList.m_UserTypeMap.begin();
-    Iter2 = m_pMain->m_VersionList.m_UserTypeMap.end();
-    for (; Iter1 != Iter2; Iter1++) {
-        pInfo = (*Iter1).second;
-        if (pInfo->sVersion > version) {
-            downloadset.insert(pInfo->strCompName);
+    std::set<std::string> vPatchFiles;
+    for (const auto & [_, pInfo] : m_pMain->m_VersionList.m_UserTypeMap) {
+        if (pInfo->sVersion == sVersion) {
+            vPatchFiles.insert(pInfo->fsPatchFileName.string());
         }
     }
-
-    SetByte(buff, LS_DOWNLOADINFO_REQ, send_index);
-    SetShort(buff, strlen(m_pMain->m_strFtpUrl), send_index);
-    SetString(buff, m_pMain->m_strFtpUrl, strlen(m_pMain->m_strFtpUrl), send_index);
-    SetShort(buff, strlen(m_pMain->m_strFilePath), send_index);
-    SetString(buff, m_pMain->m_strFilePath, strlen(m_pMain->m_strFilePath), send_index);
-    SetShort(buff, downloadset.size(), send_index);
-
-    std::set<string>::iterator filenameIter1, filenameIter2;
-    filenameIter1 = downloadset.begin();
-    filenameIter2 = downloadset.end();
-    for (; filenameIter1 != filenameIter2; filenameIter1++) {
-        SetShort(buff, strlen((*filenameIter1).c_str()), send_index);
-        SetString(buff, (char *)((*filenameIter1).c_str()), strlen((*filenameIter1).c_str()), send_index);
+    SetShort(send_buff, vPatchFiles.size(), send_index);
+    for (std::string szPatchFile : vPatchFiles) {
+        SetShort(send_buff, szPatchFile.length(), send_index);
+        SetString(send_buff, szPatchFile.data(), szPatchFile.length(), send_index);
     }
-    Send(buff, send_index);
+
+    Send(send_buff, send_index);
 }

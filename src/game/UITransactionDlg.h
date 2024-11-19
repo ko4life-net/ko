@@ -89,7 +89,7 @@ class CUITransactionDlg : public CN3UIWndBase {
     // 물건 구입이 서버에게 보내기전 성공..
     void ReceiveItemDropByTradeSuccess();
 
-    CN3UIBase * GetChildButtonByName(const std::string & szFN);
+    CN3UIBase * GetChildButtonByName(const std::string & szName);
 
     // Item Count OK..
     void ItemCountOK();

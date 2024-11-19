@@ -13,7 +13,7 @@ if ERRORLEVEL 1 (
     exit 1
 )
 
-git submodule update --init --recursive
+git submodule update --init
 
 @REM src\All.sln
 

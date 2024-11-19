@@ -132,14 +132,14 @@ void CN3Sun::Tick() {
     }
 }
 
-void CN3Sun::Init(const std::string * pszFNs) {
+void CN3Sun::Init(const fs::path * pfsTexFiles) {
     Release();
 
     const float    fZ = 0.9f;
     const float    rhw = 1.0f;
     const D3DCOLOR color = 0xffffffff;
     for (int i = 0; i < NUM_SUNPART; ++i) {
-        m_Parts[i].pTex = s_MngTex.Get(pszFNs[i]); // load texture
+        m_Parts[i].pTex = s_MngTex.Get(pfsTexFiles[i]); // load texture
 
         m_Parts[i].pVertices[0].Set(0, 0, fZ, rhw, color, 0.0f, 0.0f);
         m_Parts[i].pVertices[1].Set(0, 0, fZ, rhw, color, 1.0f, 0.0f);

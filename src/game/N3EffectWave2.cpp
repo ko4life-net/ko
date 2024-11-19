@@ -166,14 +166,13 @@ bool CN3EffectWave2::Load(HANDLE hFile) {
     return 0;
 }
 
-void CN3EffectWave2::Init(const std::string & TexPath) {
-    char szFileName[30];
+void CN3EffectWave2::Init(const fs::path & fsTexFile) {
     for (int i = 0; i < MAX_POND_TEX; i++) {
-        sprintf(szFileName, "misc\\river\\caust%02d.dxt", i);
-        m_pTexPond[i] = CN3Base::s_MngTex.Get(szFileName);
+        fs::path fsTexFile = fs::path("Misc") / "river" / std::format("caust{:02d}.dxt", i);
+        m_pTexPond[i] = CN3Base::s_MngTex.Get(fsTexFile);
         __ASSERT(m_pTexPond[i], "CN3EffectWave2::texture load failed");
     }
-    m_pTexWave = s_MngTex.Get(TexPath); //"misc\\river\\blupool3.tga");        ///
+    m_pTexWave = CN3Base::s_MngTex.Get(fsTexFile);
     __ASSERT(m_pTexWave, "CN3EffectWave2::texture load failed");
 }
 
