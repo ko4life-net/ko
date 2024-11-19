@@ -129,10 +129,8 @@ void CMachineMng::AddMachine(ReplyMsg & RPMsg) {
     fs::path fsFile = fs::path("misc") / "machines" / "catapult.mcn";
     FILE *   stream = _wfopen(fsFile, L"r"); //text파일로 만든다
 #if _DEBUG
-    char szErr[512];
     if (NULL == stream) {
-        wsprintf(szErr, "failed to open file - %s", fsFile.string().c_str());
-        __ASSERT(stream, szErr);
+        __ASSERT(stream, std::format("failed to open file - {:s}", fsFile).c_str());
     }
 #endif
 

@@ -336,8 +336,9 @@ void CN3ShapeMgr::GenerateCollisionData() {
 
     if (nCPC != (nFC * 3)) {
 #ifdef _N3GAME
-        CLogWriter::Write("CN3ShapeMgr::GenerateCollisionData - 충돌 체크 폴리곤의 점갯수와 면 갯수가 다릅니다. (%s)",
-                          FilePath().string().c_str());
+        CLogWriter::Write("CN3ShapeMgr::GenerateCollisionData - The number of points and faces of the collision check "
+                          "polygon are different. ({:s})",
+                          FilePath());
 #endif
         this->Release();
         return;
@@ -525,8 +526,8 @@ void CN3ShapeMgr::GenerateCollisionData() {
                     if (nCCPC >= 256) {
 #ifdef _N3GAME
                         CLogWriter::Write(
-                            "CN3ShapeMgr::GenerateCollisionData - 충돌 체크 폴리곤 수가 너무 많습니다. (%s)",
-                            FilePath().string().c_str());
+                            "CN3ShapeMgr::GenerateCollisionData - Too many collision check polygons. ({:s})",
+                            FilePath());
 #endif
                         continue;
                     }
@@ -552,8 +553,7 @@ int CN3ShapeMgr::Add(CN3Shape * pShape) {
     int       nZ = (int)(vPos.z / CELL_MAIN_SIZE);
     if (nX < 0 || nX >= MAX_CELL_MAIN || nZ < 0 || nZ >= MAX_CELL_MAIN) {
 #ifdef _N3GAME
-        CLogWriter::Write("CN3ShapeMgr::Add - Shape(%s) Add Failed. Check position",
-                          pShape->FilePath().string().c_str());
+        CLogWriter::Write("CN3ShapeMgr::Add - Shape({:s}) Add Failed. Check position", pShape->FilePath());
 #endif
         return -1;
     }

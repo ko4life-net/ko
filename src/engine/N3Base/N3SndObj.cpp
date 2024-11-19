@@ -188,7 +188,7 @@ bool CN3SndObj::Create(const fs::path & fsFile, e_SndType eType) {
     if (FAILED(hr)) {
 #ifdef _N3GAME
         if (!fsFile.empty()) {
-            CLogWriter::Write("CN3SndEng::LoadSource - WaveFile Open Failed.. (%s)", fsFile.string().c_str());
+            CLogWriter::Write("CN3SndEng::LoadSource - WaveFile Open Failed.. ({:s})", fsFile);
         }
 #endif
         return false;
@@ -212,14 +212,14 @@ bool CN3SndObj::Create(const fs::path & fsFile, e_SndType eType) {
     hr = s_lpDS->CreateSoundBuffer(&dsbd, &m_lpDSBuff, NULL);
     if (FAILED(hr)) {
 #ifdef _N3GAME
-        CLogWriter::Write("CN3SndObj::Create - CreateSoundBuffer Failed.. (%)", fsFile.string().c_str());
+        CLogWriter::Write("CN3SndObj::Create - CreateSoundBuffer Failed.. {:s})", fsFile);
 #endif
         return false;
     }
 
     if (!FillBufferWithSound(&WaveFile)) {
 #ifdef _N3GAME
-        CLogWriter::Write("CN3SndObj::Create - FillBufferWithSound Failed.. (%)", fsFile.string().c_str());
+        CLogWriter::Write("CN3SndObj::Create - FillBufferWithSound Failed.. {:s})", fsFile);
 #endif
         return false;
     }

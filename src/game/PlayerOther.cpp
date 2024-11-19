@@ -43,7 +43,7 @@ bool CPlayerOther::Init(e_Race eRace, int iFace, int iHair, DWORD * pdwItemIDs, 
     // 이제 패킷에 따라 캐릭터를 치장..(?) 시켜준다.. 아이템장착, 무기 장착등...
     __TABLE_PLAYER_LOOKS * pLooks = s_pTbl_UPC_Looks->Find(eRace); // 테이블에서 기본 스킨 ..
     if (NULL == pLooks) {
-        CLogWriter::Write("CPlayerOther::Init() Basic Resource Pointer is NULL Race(%d)", eRace);
+        CLogWriter::Write("CPlayerOther::Init() Basic Resource Pointer is NULL Race({:d})", (int)eRace);
         return false;
     }
     this->InitChr(pLooks); // 관절 세팅..

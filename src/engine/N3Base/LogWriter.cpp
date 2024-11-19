@@ -1,138 +1,74 @@
-// LogWriter.cpp: implementation of the CLogWriter class.
-//
-//////////////////////////////////////////////////////////////////////
-
-#include <stdio.h>
 #include "StdAfx.h"
 #include "LogWriter.h"
 
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-//HANDLE CLogWriter::s_hFile = NULL;
 fs::path CLogWriter::s_fsLogFile;
 
-CLogWriter::CLogWriter() {}
-
-CLogWriter::~CLogWriter() {}
+static std::mutex s_mtxLog;
 
 void CLogWriter::Open(const fs::path & fsFile) {
-    // if (s_hFile || fsFile.empty()) {
-    //     return;
-    // }
     if (fsFile.empty()) {
         return;
     }
 
+    std::lock_guard<std::mutex> lock(s_mtxLog);
+
     s_fsLogFile = fsFile;
 
-    HANDLE hFile = CreateFileW(s_fsLogFile.c_str(), GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-    if (INVALID_HANDLE_VALUE == hFile) {
-        hFile = CreateFileW(s_fsLogFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-        if (INVALID_HANDLE_VALUE == hFile) {
-            return;
-        }
-    }
-
-    DWORD dwSizeHigh = 0;
-    DWORD dwSizeLow = ::GetFileSize(hFile, &dwSizeHigh);
-    if (dwSizeLow > 256000) // 파일 사이즈가 너무 크면 지운다..
-    {
-        CloseHandle(hFile);
+    // Remove the file if its size exceeds 512 KB
+    if (fs::exists(s_fsLogFile) && fs::file_size(s_fsLogFile) > 512000) {
         fs::remove(s_fsLogFile);
-        hFile = CreateFileW(s_fsLogFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-        if (INVALID_HANDLE_VALUE == hFile) {
-            return;
-        }
     }
 
-    ::SetFilePointer(hFile, 0, NULL, FILE_END); // 추가 하기 위해서 파일의 끝으로 옮기고..
-
-    char       szBuff[1024];
-    SYSTEMTIME time;
-    GetLocalTime(&time);
-    DWORD dwRWC = 0;
-
-    sprintf(szBuff, "---------------------------------------------------------------------------\r\n");
-    int iLength = lstrlen(szBuff);
-    WriteFile(hFile, szBuff, iLength, &dwRWC, NULL);
-
-    sprintf(szBuff, "// Begin writing log... [%.2d/%.2d %.2d:%.2d]\r\n", time.wMonth, time.wDay, time.wHour,
-            time.wMinute);
-    iLength = lstrlen(szBuff);
-    WriteFile(hFile, szBuff, iLength, &dwRWC, NULL);
-
-    CloseHandle(hFile);
-}
-
-void CLogWriter::Close() {
-    HANDLE hFile = CreateFileW(s_fsLogFile.c_str(), GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-    if (INVALID_HANDLE_VALUE == hFile) {
-        hFile = CreateFileW(s_fsLogFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-        if (INVALID_HANDLE_VALUE == hFile) {
-            hFile = NULL;
-        }
-    }
-
-    if (hFile) {
-        ::SetFilePointer(hFile, 0, NULL, FILE_END); // 추가 하기 위해서 파일의 끝으로 옮기고..
-
-        char       szBuff[1024];
-        SYSTEMTIME time;
-        GetLocalTime(&time);
-        DWORD dwRWC = 0;
-
-        sprintf(szBuff, "// End writing log... [%.2d/%.2d %.2d:%.2d]\r\n", time.wMonth, time.wDay, time.wHour,
-                time.wMinute);
-        int iLength = lstrlen(szBuff);
-        WriteFile(hFile, szBuff, iLength, &dwRWC, NULL);
-
-        sprintf(szBuff, "---------------------------------------------------------------------------\r\n");
-        iLength = lstrlen(szBuff);
-        WriteFile(hFile, szBuff, iLength, &dwRWC, NULL);
-
-        CloseHandle(hFile);
-        hFile = NULL;
-    }
-}
-
-void CLogWriter::Write(const char * lpszFormat, ...) {
-    if (s_fsLogFile.empty() || NULL == lpszFormat) {
+    std::ofstream ofsFile(s_fsLogFile, std::ios::app | std::ios::binary);
+    if (!ofsFile) {
         return;
     }
 
-    static char       szFinal[1024];
-    static SYSTEMTIME time;
-    GetLocalTime(&time);
-    szFinal[0] = NULL;
+    auto tpNow = std::chrono::system_clock::now();
+    auto tmLocal = std::chrono::current_zone()->to_local(tpNow);
 
-    DWORD dwRWC = 0;
-    sprintf(szFinal, "    [%.2d:%.2d:%.2d] ", time.wHour, time.wMinute, time.wSecond);
+    ofsFile << "---------------------------------------------------------------------------\n";
+    ofsFile << std::format("// Begin writing log... [{:%m/%d %H:%M}]\n", tmLocal);
+}
 
-    static char szBuff[1024];
-    szBuff[0] = NULL;
-    va_list argList;
-    va_start(argList, lpszFormat);
-    vsprintf(szBuff, lpszFormat, argList);
-    va_end(argList);
-    N3_DEBUG("CLogWriter::Write: {}", szBuff);
-
-    lstrcat(szFinal, szBuff);
-    lstrcat(szFinal, "\r\n");
-    int iLength = lstrlen(szFinal);
-
-    HANDLE hFile = CreateFileW(s_fsLogFile.c_str(), GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-    if (INVALID_HANDLE_VALUE == hFile) {
-        hFile = CreateFileW(s_fsLogFile.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-        if (INVALID_HANDLE_VALUE == hFile) {
-            hFile = NULL;
-        }
+void CLogWriter::Close() {
+    if (s_fsLogFile.empty()) {
+        return;
     }
 
-    if (hFile) {
-        ::SetFilePointer(hFile, 0, NULL, FILE_END); // 추가 하기 위해서 파일의 끝으로 옮기고..
+    std::lock_guard<std::mutex> lock(s_mtxLog);
 
-        WriteFile(hFile, szFinal, iLength, &dwRWC, NULL);
-        CloseHandle(hFile);
+    std::ofstream ofsFile(s_fsLogFile, std::ios::app | std::ios::binary);
+    if (!ofsFile) {
+        return;
+    }
+
+    auto tpNow = std::chrono::system_clock::now();
+    auto tmLocal = std::chrono::current_zone()->to_local(tpNow);
+
+    ofsFile << std::format("// End writing log... [{:%m/%d %H:%M}]\n", tmLocal);
+    ofsFile << "---------------------------------------------------------------------------\n";
+
+    s_fsLogFile.clear();
+}
+
+void CLogWriter::WriteImpl(std::string_view szFmt, const std::format_args fmtArgs) {
+    if (s_fsLogFile.empty() || szFmt.empty()) {
+        return;
+    }
+
+    std::lock_guard<std::mutex> lock(s_mtxLog);
+
+    std::string szMsg = std::vformat(szFmt, fmtArgs);
+    N3_DEBUG("CLogWriter::Write: {:s}", szMsg);
+
+    auto tpNow = std::chrono::system_clock::now();
+    auto tmLocal = std::chrono::current_zone()->to_local(tpNow);
+
+    std::string szLog = std::format("    [{:%H:%M:%S}] ", tmLocal) + szMsg + "\n";
+
+    std::ofstream ofsFile(s_fsLogFile, std::ios::app | std::ios::binary);
+    if (ofsFile) {
+        ofsFile.write(szLog.c_str(), szLog.size());
     }
 }

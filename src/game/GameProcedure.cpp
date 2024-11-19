@@ -379,7 +379,7 @@ void CGameProcedure::Tick() {
             // 패킷을 처리할 상황이 아니다.
             int iTempOffst = 0;
             int iCmd = CAPISocket::Parse_GetByte(pDataPack->m_pData, iTempOffst);
-            CLogWriter::Write("Invalid Packet... (%d)", iCmd);
+            CLogWriter::Write("Invalid Packet... ({:d})", iCmd);
         }
         delete pDataPack;
         s_pSocket->PktQueuePop(); // 패킷을 큐에서 꺼냄..
@@ -819,8 +819,8 @@ void CGameProcedure::ReportServerConnectionClosed(bool bNeedQuitGame) {
 
     if (s_pPlayer) {
         __Vector3 vPos = s_pPlayer->Position();
-        CLogWriter::Write("Socket Closed... Zone(%d) Pos(%.1f, %.1f, %.1f) Exp(%d)", s_pPlayer->m_InfoExt.iZoneCur,
-                          vPos.x, vPos.y, vPos.z, s_pPlayer->m_InfoExt.iExp);
+        CLogWriter::Write("Socket Closed... Zone({:d}) Pos({:.1f}, {:.1f}, {:.1f}) Exp({:d})",
+                          s_pPlayer->m_InfoExt.iZoneCur, vPos.x, vPos.y, vPos.z, s_pPlayer->m_InfoExt.iExp);
     } else {
         CLogWriter::Write("Socket Closed...");
     }
@@ -835,7 +835,7 @@ void CGameProcedure::ReportDebugStringAndSendToServer(const std::string & szDebu
         return;
     }
 
-    CLogWriter::Write(szDebug.c_str());
+    CLogWriter::Write(szDebug);
 
     if (s_pSocket && s_pSocket->IsConnected()) {
         int               iLen = szDebug.size();
@@ -887,8 +887,8 @@ void CGameProcedure::MsgSend_CharacterSelect() // virtual
     CAPISocket::MP_AddByte(byBuff, iOffset, s_pPlayer->m_InfoExt.iZoneCur); // 캐릭터 선택창에서의 캐릭터 존 번호
     s_pSocket->Send(byBuff, iOffset);                                       // 보낸다
 
-    CLogWriter::Write("MsgSend_CharacterSelect - name(%s) zone(%d)", s_pPlayer->IDString().c_str(),
-                      s_pPlayer->m_InfoExt.iZoneCur); // 디버깅 로그..
+    CLogWriter::Write("MsgSend_CharacterSelect - name({:s}) zone({:d})", s_pPlayer->IDString(),
+                      s_pPlayer->m_InfoExt.iZoneCur);
 }
 
 void CGameProcedure::MsgSend_AliveCheck() {
@@ -949,12 +949,12 @@ bool CGameProcedure::MsgRecv_CharacterSelect(DataPack * pDataPack, int & iOffset
         int iZonePrev = s_pPlayer->m_InfoExt.iZoneCur = iZoneCur;
         s_pPlayer->PositionSet(__Vector3(fX, fY, fZ), true);
 
-        CLogWriter::Write("MsgRecv_CharacterSelect - name(%s) zone(%d -> %d)", s_pPlayer->m_InfoBase.szID.c_str(),
+        CLogWriter::Write("MsgRecv_CharacterSelect - name({:s}) zone({:d} -> {:d})", s_pPlayer->m_InfoBase.szID,
                           iZonePrev, iZoneCur);
         return true;
     } else // 실패
     {
-        CLogWriter::Write("MsgRecv_CharacterSelect - failed(%d)", iResult);
+        CLogWriter::Write("MsgRecv_CharacterSelect - failed({:d})", iResult);
         return false;
     }
 

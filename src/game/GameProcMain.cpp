@@ -315,7 +315,7 @@ void CGameProcMain::Init() {
                 }
             }
         } else {
-            N3_ERROR("Directory not found ({:s})", fsDir.string());
+            N3_ERROR("Directory not found ({:s})", fsDir);
         }
     };
 
@@ -400,17 +400,14 @@ void CGameProcMain::Tick() {
         CAPISocket::MP_AddByte(byBuff, iOffset, N3_TEMP_TEST);
         s_pSocket->Send(byBuff, iOffset);
 
-        int  iNPC = s_pOPMgr->m_NPCs.size();
-        char szBuff[1024];
-        sprintf(szBuff, "NPC Region Test : %d", iNPC);
-        CLogWriter::Write(szBuff);
+        int iNPC = s_pOPMgr->m_NPCs.size();
+        CLogWriter::Write("NPC Region Test : {:d}", iNPC);
         it_NPC it = s_pOPMgr->m_NPCs.begin(), itEnd = s_pOPMgr->m_NPCs.end();
         for (; it != itEnd; it++) {
             CPlayerNPC * pNPC = it->second;
 
-            sprintf(szBuff, "    ID(%d) Name(%s) Pos(%.1f, %.1f)", pNPC->IDNumber(), pNPC->IDString().c_str(),
-                    pNPC->m_vPosFromServer.x, pNPC->m_vPosFromServer.z);
-            CLogWriter::Write(szBuff);
+            CLogWriter::Write("    ID({:d}) Name({:s}) Pos({:.1f}, {:.1f})", pNPC->IDNumber(), pNPC->IDString(),
+                              pNPC->m_vPosFromServer.x, pNPC->m_vPosFromServer.z);
         }
     }
 #endif
@@ -726,16 +723,13 @@ bool CGameProcMain::ProcessPacket(DataPack * pDataPack, int & iOffset) {
     {
 #ifdef _DEBUG
     case N3_TEMP_TEST: {
-        int  iNPC = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-        char szBuff[32];
-        sprintf(szBuff, "NPC Region Test : %d -> ", iNPC);
-        std::string szLog = szBuff;
+        int         iNPC = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+        std::string szLog = std::format("NPC Region Test : {:d} -> ", iNPC);
         for (int i = 0; i < iNPC; i++) {
             int iID = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
-            sprintf(szBuff, "%d, ", iID);
-            szLog += szBuff;
+            szLog += std::format("{:d}, ", iID);
         }
-        CLogWriter::Write(szLog.c_str());
+        CLogWriter::Write(szLog);
     }
         return true;
 #endif
@@ -1697,8 +1691,8 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack * pDataPack, int & iOffset) {
     __TABLE_PLAYER_LOOKS * pLooks =
         s_pTbl_UPC_Looks->Find(s_pPlayer->m_InfoBase.eRace); // User Player Character Skin 구조체 포인터..
     if (NULL == pLooks) {
-        CLogWriter::Write("CGameProcMain::MsgRecv_MyInfo_All : failed find character resource data (Race : %d)",
-                          s_pPlayer->m_InfoBase.eRace);
+        CLogWriter::Write("CGameProcMain::MsgRecv_MyInfo_All : failed find character resource data (Race : {:d})",
+                          (int)s_pPlayer->m_InfoBase.eRace);
     }
     __ASSERT(pLooks, "failed find character resource data");
     s_pPlayer->InitChr(pLooks); // 관절 세팅..
@@ -1840,7 +1834,7 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack * pDataPack, int & iOffset) {
 
         if (NULL == pItem || NULL == pItemExt) {
             N3_WARN("NULL slot Item!!!");
-            CLogWriter::Write("MyInfo - slot - Unknown Item %d, IDNumber", iItemIDInSlots[i]);
+            CLogWriter::Write("MyInfo - slot - Unknown Item {:d}, IDNumber", iItemIDInSlots[i]);
             continue; // 아이템이 없으면..
         }
 
@@ -1929,7 +1923,7 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack * pDataPack, int & iOffset) {
         }
         if (NULL == pItem || NULL == pItemExt) {
             N3_WARN("NULL Inv Item");
-            CLogWriter::Write("MyInfo - Inv - Unknown Item %d, IDNumber", iItemIDInInventorys[i]);
+            CLogWriter::Write("MyInfo - Inv - Unknown Item {:d}, IDNumber", iItemIDInInventorys[i]);
             continue; // 아이템이 없으면..
         }
 
@@ -2413,7 +2407,7 @@ bool CGameProcMain::MsgRecv_UserIn(DataPack * pDataPack, int & iOffset, bool bWi
     CPlayerOther * pUPC = s_pOPMgr->UPCGetByID(iID, false);
     if (pUPC) // 이미 아이디 같은 캐릭이 있으면..
     {
-        CLogWriter::Write("User In - Duplicated ID (%d, %s) Pos(%.2f,%.2f,%.2f)", iID, szName.c_str(), fXPos, fYPos,
+        CLogWriter::Write("User In - Duplicated ID ({:d}, {:s}) Pos({:.2f},{:.2f},{:.2f})", iID, szName, fXPos, fYPos,
                           fZPos);
         TRACE("User In - Duplicated ID (%d, %s) Pos(%.2f,%.2f,%.2f)\n", iID, szName.c_str(), fXPos, fYPos, fZPos);
 
@@ -2666,7 +2660,7 @@ bool CGameProcMain::MsgRecv_NPCIn(DataPack * pDataPack, int & iOffset) {
     }
 
     //#ifdef _DEBUG
-    //    CLogWriter::Write("NPC In - ID(%d) Name(%s) Time(%.1f)", iID, szName.c_str(), CN3Base::TimeGet()); // 캐릭 세팅..
+    //    CLogWriter::Write("NPC In - ID({:d}) Name({:s}) Time({:.1f})", iID, szName, CN3Base::TimeGet()); // 캐릭 세팅..
     //#endif
 
     e_Nation eNation = (e_Nation)CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 소속 국가. 0 이면 없다. 1
@@ -2693,7 +2687,7 @@ bool CGameProcMain::MsgRecv_NPCIn(DataPack * pDataPack, int & iOffset) {
     CPlayerNPC * pNPC = s_pOPMgr->NPCGetByID(iID, false);
     if (pNPC) // 이미 아이디 같은 캐릭이 있으면..
     {
-        CLogWriter::Write("NPC In - Duplicated ID (%d, %s) Pos(%.2f,%.2f,%.2f)", iID, szName.c_str(), fXPos, fYPos,
+        CLogWriter::Write("NPC In - Duplicated ID ({:d}, {:s}) Pos({:.2f},{:.2f},{:.2f})", iID, szName, fXPos, fYPos,
                           fZPos);
         TRACE("NPC In - Duplicated ID (%d, %s) Pos(%.2f,%.2f,%.2f)\n", iID, szName.c_str(), fXPos, fYPos, fZPos);
         pNPC->Action(PSA_BASIC, true, NULL, true); // 강제로 살리고..
@@ -2832,9 +2826,7 @@ bool CGameProcMain::MsgRecv_NPCIn(DataPack * pDataPack, int & iOffset) {
             }
         }
     } else {
-        char szBuff[256];
-        sprintf(szBuff, "No Resource NPC In : [Name(%s), ResourceID(%d)]", szName.c_str(), iIDResrc);
-        CLogWriter::Write(szBuff);
+        CLogWriter::Write("No Resource NPC In : [Name({:s}), ResourceID({:d})]", szName, iIDResrc);
     }
 
     pNPC->PositionSet(__Vector3(fXPos, fYPos, fZPos), true); // 현재 위치 셋팅..
@@ -3269,8 +3261,8 @@ bool CGameProcMain::MsgRecv_UserLookChange(DataPack * pDataPack, int & iOffset) 
             __TABLE_PLAYER_LOOKS * pLooks =
                 s_pTbl_UPC_Looks->Find(pUPC->m_InfoBase.eRace); // User Player Character Skin 구조체 포인터..
             if (NULL == pLooks) {
-                CLogWriter::Write("CGameProcMain::MsgRecv_UserLookChange() - failed find table : Race (%d)",
-                                  pUPC->m_InfoBase.eRace);
+                CLogWriter::Write("CGameProcMain::MsgRecv_UserLookChange() - failed find table : Race ({:d})",
+                                  (int)pUPC->m_InfoBase.eRace);
                 __ASSERT(pLooks, "failed find table");
             } else {
                 if (PART_POS_HAIR_HELMET == ePartPos) {
@@ -3302,7 +3294,8 @@ bool CGameProcMain::MsgRecv_UserLookChange(DataPack * pDataPack, int & iOffset) 
 
         return true;
     } else {
-        CLogWriter::Write("CGameProcMain::MsgRecv_UserLookChange() - Unknown Slot(%d) Item(%d)", eSlot, dwItemID);
+        CLogWriter::Write("CGameProcMain::MsgRecv_UserLookChange() - Unknown Slot({:d}) Item({:d})", (int)eSlot,
+                          dwItemID);
         return false;
     }
 
@@ -3992,7 +3985,7 @@ void CGameProcMain::MsgRecv_TargetHP(DataPack * pDataPack, int & iOffset) {
             szBuff += pTarget->IDString();
         }
         szBuff += ')';
-        CLogWriter::Write(szBuff.c_str());
+        CLogWriter::Write(szBuff);
     }
     __ASSERT(iTargetHPMax > 0, "최대 체력 수치는 0이상이어야 합니다.");
 
@@ -4190,13 +4183,11 @@ void CGameProcMain::InitZone(int iZone, const __Vector3 & vPosPlayer) {
         s_pPlayer->m_bMoveContinous = true; // 멈춘다..
         this->CommandToggleMoveContinous();
 
-        CLogWriter::Write("CGameProcMain::InitZone -> Zone Change (%d -> %d) Position(%.1f, %.1f, %.1f)", iZonePrev,
-                          iZone, vPosPlayer.x, vPosPlayer.y, vPosPlayer.z);
+        CLogWriter::Write("CGameProcMain::InitZone -> Zone Change ({:d} -> {:d}) Position({:.1f}, {:.1f}, {:.1f})",
+                          iZonePrev, iZone, vPosPlayer.x, vPosPlayer.y, vPosPlayer.z);
 
-        m_bLoadComplete = false;                                           // 로딩 끝남..
-        CLogWriter::Write("%d->ClearDurationalMagic()", m_pMagicSkillMng); // TmpLog1122
+        m_bLoadComplete = false; // 로딩 끝남..
         m_pMagicSkillMng->ClearDurationalMagic();
-        CLogWriter::Write("%d->ClearAll()", s_pFX); // TmpLog1122
         s_pFX->ClearAll();
 
         if (s_pUILoading) {
@@ -4207,25 +4198,18 @@ void CGameProcMain::InitZone(int iZone, const __Vector3 & vPosPlayer) {
         s_pPlayer->m_InfoExt.iZoneCur = iZone;
         iZonePrev = iZone; // 최근에 읽은 존 번호를 기억해둔다.
 
-        CLogWriter::Write("%d->Find(s_pPlayer->m_InfoExt.iZoneCur)", s_pTbl_Zones); // TmpLog1122
         __TABLE_ZONE * pZoneData = s_pTbl_Zones->Find(s_pPlayer->m_InfoExt.iZoneCur);
         if (NULL == pZoneData) {
-            CLogWriter::Write("can't find zone data. (zone : %d)", s_pPlayer->m_InfoExt.iZoneCur);
+            CLogWriter::Write("can't find zone data. (zone : {:d})", s_pPlayer->m_InfoExt.iZoneCur);
             __ASSERT(0, "Zone Data Not Found!");
             return;
         }
 
-        CLogWriter::Write("%d->Release()", s_pOPMgr); // TmpLog1122
-
-        s_pOPMgr->Release();                               // 다른 넘들 다 날린다..
-        CLogWriter::Write("%d->InitWorld()", s_pWorldMgr); // TmpLog1122
+        s_pOPMgr->Release(); // 다른 넘들 다 날린다..
         s_pWorldMgr->InitWorld(iZone, vPosPlayer);
 
         // 미니맵 로딩..
-        CLogWriter::Write("%d->GetWidthByMeterWithTerrain()", ACT_WORLD); // TmpLog1122
         float fWidth = ACT_WORLD->GetWidthByMeterWithTerrain();
-        CLogWriter::Write("%d->LoadMiniMap()", m_pUIStateBarAndMiniMap); // TmpLog1122
-        CLogWriter::Write("%d->szMiniMapFNszMiniMapFN", pZoneData);      // TmpLog1122
         m_pUIStateBarAndMiniMap->LoadMiniMap(pZoneData->szMiniMapFile, fWidth, fWidth);
 
         CLogWriter::Write("GetRepresentClass()"); // TmpLog1122
@@ -4235,10 +4219,7 @@ void CGameProcMain::InitZone(int iZone, const __Vector3 & vPosPlayer) {
         if (CLASS_REPRESENT_ROGUE == eCR) {
             fZoom = 3.0f; // 로그 계열은 맵이 좀더 널리 자세히 보인다..
         }
-        CLogWriter::Write("%d->ZoomSet()", m_pUIStateBarAndMiniMap); // TmpLog1122
         m_pUIStateBarAndMiniMap->ZoomSet(fZoom);
-
-        CLogWriter::Write("%d->szGtdFile.c_str()", pZoneData); // TmpLog1122
 
         //fs::path fsBirdListFile = fs::path("Misc") / "bird" / fs::path(pZoneData->szGtdFile).stem() + "_Bird.lst";
 
@@ -4264,11 +4245,10 @@ void CGameProcMain::InitZone(int iZone, const __Vector3 & vPosPlayer) {
     // 기본적인 캐릭터위치와 카메라 위치 잡기..
     ////////////////////////////////////////////////////////////////////////////////
 
-    CLogWriter::Write("InitPlayerPosition() Position(%.1f, %.1f, %.1f)", vPosPlayer.x, vPosPlayer.y,
+    CLogWriter::Write("InitPlayerPosition() Position({:.1f}, {:.1f}, {:.1f})", vPosPlayer.x, vPosPlayer.y,
                       vPosPlayer.z); // TmpLog1122
     this->InitPlayerPosition(vPosPlayer); // 플레이어 위치 초기화.. 일으켜 세우고, 기본동작을 취하게 한다.
-    CLogWriter::Write("%d->Release()2", s_pOPMgr); // TmpLog1122
-    s_pOPMgr->Release();                           // 다른 플레이어 삭제...
+    s_pOPMgr->Release();                  // 다른 플레이어 삭제...
 }
 
 void CGameProcMain::MsgSend_GameStart() {

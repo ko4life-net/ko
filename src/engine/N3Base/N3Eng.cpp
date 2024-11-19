@@ -205,7 +205,7 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
             errMsg << "]";
             MessageBox(hWnd, errMsg.str().c_str(), "Initialization", MB_OK);
 #ifdef _N3GAME
-            CLogWriter::Write(errMsg.str().c_str());
+            CLogWriter::Write(errMsg.str());
 #endif
             LocalFree(pszDebug);
             // for (int iii = 0; iii < 3; iii++) { // 여러번 삑~
@@ -403,7 +403,7 @@ void CN3Eng::Present(HWND hWnd, RECT * pRC) {
 #ifdef _N3GAME
             // char szErr[256];
             // D3DXGetErrorString(rval, szErr, 256);
-            // CLogWriter::Write("CNEng::Present - device present failed (%s)", szErr);
+            // CLogWriter::Write("CNEng::Present - device present failed ({:s})", szErr);
             // Beep(2000, 50);
 #endif
         } else {
@@ -414,7 +414,7 @@ void CN3Eng::Present(HWND hWnd, RECT * pRC) {
 #ifdef _N3GAME
         // char szErr[256];
         // D3DXGetErrorString(rval, szErr, 256);
-        // CLogWriter::Write("CNEng::Present - device present failed (%s)", szErr);
+        // CLogWriter::Write("CNEng::Present - device present failed ({:s})", szErr);
         // Beep(2000, 50);
 #endif
     }

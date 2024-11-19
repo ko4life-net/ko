@@ -214,7 +214,7 @@ void CUIDroppedItemDlg::AddToItemTable(int iItemID, int iItemCount, int iOrder) 
     }
     if (NULL == pItem || NULL == pItemExt) {
         __ASSERT(0, "아이템 포인터 테이블에 없음!!");
-        CLogWriter::Write("CUIDroppedItemDlg::AddToItemTable - Invalidate ItemID : %d", iItemID);
+        CLogWriter::Write("CUIDroppedItemDlg::AddToItemTable - Invalidate ItemID : {:d}", iItemID);
         return;
     }
 
@@ -251,7 +251,7 @@ void CUIDroppedItemDlg::AddToItemTableToInventory(int iItemID, int iItemCount, i
     }
     if (NULL == pItem || NULL == pItemExt) {
         __ASSERT(0, "아이템 포인터 테이블에 없음!!");
-        CLogWriter::Write("CUIDroppedItemDlg::AddToItemTableToInventory - Invalidate ItemID : %d", iItemID);
+        CLogWriter::Write("CUIDroppedItemDlg::AddToItemTableToInventory - Invalidate ItemID : {:d}", iItemID);
         return;
     }
 
@@ -399,7 +399,7 @@ bool CUIDroppedItemDlg::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
         pItem = CGameBase::s_pTbl_Items_Basic->Find(spItem->pItemBasic->dwID); // 열 데이터 얻기..
         if (pItem == NULL) {
             __ASSERT(0, "NULL Item!!!");
-            CLogWriter::Write("CUIDroppedItemDlg::ReceiveMessage - UIMSG_ICON_UP - NULL Icon : %d",
+            CLogWriter::Write("CUIDroppedItemDlg::ReceiveMessage - UIMSG_ICON_UP - NULL Icon : {:d}",
                               spItem->pItemBasic->dwID);
             break;
         }
@@ -557,7 +557,7 @@ void CUIDroppedItemDlg::GetItemByIDToInventory(BYTE bResult, int iItemID, int64_
         }
         if (NULL == pItem || NULL == pItemExt) {
             __ASSERT(0, "아이템 포인터 테이블에 없음!!");
-            CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - NULL Icon : %d", iItemID);
+            CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - NULL Icon : {:d}", iItemID);
             return;
         }
 
@@ -643,13 +643,13 @@ void CUIDroppedItemDlg::GetItemByIDToInventory(BYTE bResult, int iItemID, int64_
     {
         if (iItemID == dwGold) {
             __ASSERT(0, "Invalidate Item ID From Server.. ");
-            CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - ID Pos : %d", iPos);
+            CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - ID Pos : {:d}", iPos);
             return;
         }
 
         if ((iPos < 0) || (iPos > (MAX_ITEM_INVENTORY - 1))) {
             __ASSERT(0, "Invalidate Item Pos From Server.. ");
-            CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - Invalidate Pos : %d", iPos);
+            CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - Invalidate Pos : {:d}", iPos);
             return;
         }
 
@@ -688,7 +688,7 @@ void CUIDroppedItemDlg::GetItemByIDToInventory(BYTE bResult, int iItemID, int64_
         pItem = CGameBase::s_pTbl_Items_Basic->Find(iItemID / 1000 * 1000); // 열 데이터 얻기..
         if (NULL == pItem) {
             __ASSERT(0, "아이템 포인터 테이블에 없음!!");
-            CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - NULL Icon : %d", iItemID);
+            CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - NULL Icon : {:d}", iItemID);
             return;
         }
 
@@ -722,7 +722,7 @@ void CUIDroppedItemDlg::GetItemByIDToInventory(BYTE bResult, int iItemID, int64_
         if (iItemID != dwGold) {
             if ((iPos < 0) || (iPos > (MAX_ITEM_INVENTORY - 1))) {
                 __ASSERT(0, "Invalidate Item Pos From Server.. ");
-                CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - Invalidate Pos : %d", iPos);
+                CLogWriter::Write("CUIDroppedItemDlg::GetItemByIDToInventory - Invalidate Pos : {:d}", iPos);
                 return;
             }
 

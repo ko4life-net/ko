@@ -2285,7 +2285,7 @@ void CUIInventory::DurabilityChange(e_ItemSlot eSlot, int iDurability) {
 
     if (eSlot < ITEM_SLOT_EAR_RIGHT || eSlot >= ITEM_SLOT_COUNT) {
         __ASSERT(0, "Durability Change Item Index Weird.");
-        CLogWriter::Write("Durability Change Item Index Weird. Slot(%d) Durability(%d)", eSlot, iDurability);
+        CLogWriter::Write("Durability Change Item Index Weird. Slot({:d}) Durability({:d})", (int)eSlot, iDurability);
         return;
     }
 
@@ -2300,13 +2300,13 @@ void CUIInventory::DurabilityChange(e_ItemSlot eSlot, int iDurability) {
                 CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xffff3b3b);
             } else {
                 __ASSERT(0, "Durability Change Item NULL icon or NULL item.");
-                CLogWriter::Write("Durability Change Item NULL icon or NULL item. Slot(%d) Durability(%d)", eSlot,
-                                  iDurability);
+                CLogWriter::Write("Durability Change Item NULL icon or NULL item. Slot({:d}) Durability({:d})",
+                                  (int)eSlot, iDurability);
             }
         }
     } else {
         __ASSERT(0, "Durability Change Item NULL Slot.");
-        CLogWriter::Write("Durability Change Item ... NULL Slot. Slot(%d) Durability(%d)", eSlot, iDurability);
+        CLogWriter::Write("Durability Change Item ... NULL Slot. Slot({:d}) Durability({:d})", (int)eSlot, iDurability);
     }
 }
 
@@ -2358,7 +2358,7 @@ void CUIInventory::ItemCountChange(int iDistrict, int iIndex, int iCount, int iI
             }
             if (NULL == pItem || NULL == pItemExt) {
                 __ASSERT(0, "NULL Item");
-                CLogWriter::Write("MyInfo - Inv - Unknown Item %d, IDNumber", iID);
+                CLogWriter::Write("MyInfo - Inv - Unknown Item {:d}, IDNumber", iID);
                 return;
             }
 
@@ -2412,7 +2412,7 @@ void CUIInventory::ItemCountChange(int iDistrict, int iIndex, int iCount, int iI
             }
             if (NULL == pItem || NULL == pItemExt) {
                 __ASSERT(0, "NULL Item");
-                CLogWriter::Write("MyInfo - Inv - Unknown Item %d, IDNumber", iID);
+                CLogWriter::Write("MyInfo - Inv - Unknown Item {:d}, IDNumber", iID);
                 return;
             }
 
@@ -2467,7 +2467,7 @@ void CUIInventory::ItemCountChange(int iDistrict, int iIndex, int iCount, int iI
             }
             if (NULL == pItem || NULL == pItemExt) {
                 __ASSERT(0, "NULL Item");
-                CLogWriter::Write("MyInfo - Inv - Unknown Item %d, IDNumber", iID);
+                CLogWriter::Write("MyInfo - Inv - Unknown Item {:d}, IDNumber", iID);
                 return;
             }
 
@@ -2521,7 +2521,7 @@ void CUIInventory::ItemCountChange(int iDistrict, int iIndex, int iCount, int iI
             }
             if (NULL == pItem || NULL == pItemExt) {
                 __ASSERT(0, "NULL Item");
-                CLogWriter::Write("MyInfo - Inv - Unknown Item %d, IDNumber", iID);
+                CLogWriter::Write("MyInfo - Inv - Unknown Item {:d}, IDNumber", iID);
                 return;
             }
 

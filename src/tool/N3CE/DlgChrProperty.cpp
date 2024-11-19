@@ -176,13 +176,13 @@ void CDlgChrProperty::UpdateInfo() {
     int nPartCount = pChr->PartCount();
     m_CBChrPart.ResetContent();
     for (int i = 0; i < nPartCount; i++) {
-        CString szTmp;
+        std::string szTmp;
         if (pChr->Part(i)) {
-            szTmp.Format("Part(%d) : %s", i, pChr->Part(i)->FilePath().string().c_str());
+            szTmp = std::format("Part({:d}) : {:s}", i, pChr->Part(i)->FilePath());
         } else {
-            szTmp.Format("Part(%d) : Null Pointer !!!", i);
+            szTmp = std::format("Part({:d}) : Null Pointer !!!", i);
         }
-        m_CBChrPart.AddString(szTmp);
+        m_CBChrPart.AddString(szTmp.c_str());
     }
 
     if (nPart < 0) {

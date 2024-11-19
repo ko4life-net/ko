@@ -305,7 +305,7 @@ void CAPISocket::Receive() {
             __ASSERT(0, "socket receive error!");
 #ifdef _N3GAME
             int iErr = ::GetLastError();
-            CLogWriter::Write("socket receive error! : %d", iErr);
+            CLogWriter::Write("socket receive error! : {:d}", iErr);
             TRACE("socket receive error! : %d\n", iErr);
 #endif
             break;
@@ -402,7 +402,7 @@ void CAPISocket::Send(BYTE * pData, int nSize) {
             __ASSERT(0, "socket send error!");
 #ifdef _N3GAME
             int iErr = ::GetLastError();
-            CLogWriter::Write("socket send error! : %d", iErr);
+            CLogWriter::Write("socket send error! : {:d}", iErr);
             TRACE("socket send error! : %d\n", iErr);
             PostQuitMessage(-1);
 #endif

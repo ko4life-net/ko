@@ -277,7 +277,7 @@ template <class Type> BOOL CN3TableBase<Type>::LoadFromFile(const fs::path & fsF
 
     if (INVALID_HANDLE_VALUE == hFile) {
 #ifdef _N3GAME
-        CLogWriter::Write("N3TableBase - Can't open file(read) File Handle error (%s)", fsFile.string().c_str());
+        CLogWriter::Write("N3TableBase - Can't open file(read) File Handle error ({:s})", fsFile);
 #endif
         return FALSE;
     }
@@ -342,7 +342,7 @@ template <class Type> BOOL CN3TableBase<Type>::LoadFromFile(const fs::path & fsF
 
     if (FALSE == bResult) {
 #ifdef _N3GAME
-        CLogWriter::Write("N3TableBase - incorrect table (%s)", fsFile.string().c_str());
+        CLogWriter::Write("N3TableBase - incorrect table ({:s})", fsFile);
 #endif
     }
 

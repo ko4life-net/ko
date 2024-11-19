@@ -243,7 +243,7 @@ bool CN3FXSPart::Load(HANDLE hFile) {
 
     ReadFile(hFile, &iLen, 4, &dwRWC, NULL); // Mesh FileName
     if (iLen <= 0) {
-        N3_ERROR("CN3FXShape's n3shape file without n3pmesh ({:s})", FilePath().string());
+        N3_ERROR("CN3FXShape's n3shape file without n3pmesh ({:s})", FilePath());
         return false;
     }
 

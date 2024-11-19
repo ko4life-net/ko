@@ -146,8 +146,7 @@ void CN3Mesh::Create(int nVC, int nIC) {
     {
 #ifdef _N3GAME
         if (nVC > 32768) {
-            CLogWriter::Write("CN3IMesh::Create - Too many vertices. (more than 32768) (%s)",
-                              FilePath().string().c_str());
+            CLogWriter::Write("CN3IMesh::Create - Too many vertices. (more than 32768) ({:s})", FilePath());
         }
 #endif
         if (m_pVertices) {
@@ -162,8 +161,7 @@ void CN3Mesh::Create(int nVC, int nIC) {
     {
 #ifdef _N3GAME
         if (nIC > 32768) {
-            CLogWriter::Write("CN3IMesh::Create - Too many indices. (more than 32768) (%s)",
-                              FilePath().string().c_str());
+            CLogWriter::Write("CN3IMesh::Create - Too many indices. (more than 32768) ({:s})", FilePath());
         }
 #endif
         if (m_psnIndices) {

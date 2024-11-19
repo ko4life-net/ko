@@ -2019,7 +2019,7 @@ bool CN3Terrain::LoadColorMap(const fs::path & fsFile) {
     HANDLE hColorMapFile =
         CreateFileW(fsFile.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hColorMapFile) {
-        CLogWriter::Write("Failed to load ColorMap - %s", fsFile.string().c_str());
+        CLogWriter::Write("Failed to load ColorMap - {:s}", fsFile);
         return false;
     }
 
