@@ -121,7 +121,7 @@ BYTE * CJpegFile::JpegFileToRGB(const fs::path & fsFile, UINT * width, UINT * he
     */
 
     if ((infile = _wfopen(fsFile.c_str(), L"rb")) == NULL) {
-        //AfxMessageBox(std::format("JpegFile :\nCan't open {:s}\n", fsFile.string()).c_str());
+        //AfxMessageBox(std::format("JpegFile :\nCan't open {:s}\n", fsFile).c_str());
         return NULL;
     }
 
@@ -283,7 +283,7 @@ BOOL CJpegFile::GetJPGDimensions(const fs::path & fsFile, UINT * width, UINT * h
     */
 
     if ((infile = _wfopen(fsFile.c_str(), L"rb")) == NULL) {
-        //AfxMessageBox(std::format("JpegFile :\nCan't open {:s}\n", fsFile.string()).c_str());
+        //AfxMessageBox(std::format("JpegFile :\nCan't open {:s}\n", fsFile).c_str());
         return FALSE;
     }
 
@@ -447,7 +447,7 @@ BOOL CJpegFile::RGBToJpegFile(const fs::path & fsFile, BYTE * dataBuf, UINT widt
     /* Note: steps 2 and 3 can be done in either order. */
 
     if ((outfile = _wfopen(fsFile.c_str(), L"wb")) == NULL) {
-        //AfxMessageBox(std::format("JpegFile :\nCan't open {:s}\n", fsFile.string()).c_str());
+        //AfxMessageBox(std::format("JpegFile :\nCan't open {:s}\n", fsFile).c_str());
         return FALSE;
     }
 

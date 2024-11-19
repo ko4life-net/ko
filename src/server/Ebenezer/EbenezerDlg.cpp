@@ -1124,7 +1124,7 @@ BOOL CEbenezerDlg::MapFileLoad() {
 
         CFile file;
         if (!file.Open(fsSmdFile.string().c_str(), CFile::modeRead)) {
-            AfxMessageBox(std::format("File Open Fail - {:s}", fsSmdFile.string()).c_str());
+            AfxMessageBox(std::format("File Open Fail - {:s}", fsSmdFile).c_str());
             return FALSE;
         }
 
@@ -1139,7 +1139,7 @@ BOOL CEbenezerDlg::MapFileLoad() {
         pMap->m_bType = ZoneInfoSet.m_Type;
 
         if (!pMap->LoadMap((HANDLE)file.m_hFile)) {
-            AfxMessageBox(std::format("Map Load Fail - {:s}", fsSmdFile.string()).c_str());
+            AfxMessageBox(std::format("Map Load Fail - {:s}", fsSmdFile).c_str());
             delete pMap;
             return FALSE;
         }

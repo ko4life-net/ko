@@ -822,7 +822,7 @@ bool CLyTerrain::SaveToFile(const fs::path & fsFile) {
             ProgressBar.StepIt();
 
             fs::path fsColorMapFile = fs::path(fsFile).replace_extension();
-            fsColorMapFile = std::format("{:s}_{:02}{:02}.dxt", fsColorMapFile.string(), x, z);
+            fsColorMapFile = std::format("{:s}_{:02}{:02}.dxt", fsColorMapFile, x, z);
             m_pColorTexture[x][z].SaveToFile(fsColorMapFile);
         }
     }

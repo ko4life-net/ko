@@ -1061,7 +1061,7 @@ void CMainFrame::OnTipDeleteUnusedFiles() {
 
     std::map<fs::path, CN3BaseFileAccess *> mBases;
     std::vector<fs::path>                   vUnusedFiles;
-    std::vector<std::wstring>               vErroredFiles;
+    std::vector<std::string>                vErroredFiles;
 
     int iSC = m_pDlgOutputList->GetTotalShapeInfoCount();
     for (int i = 0; i < iSC; i++) {
@@ -1076,15 +1076,14 @@ void CMainFrame::OnTipDeleteUnusedFiles() {
         if (pVMesh) {
             mBases.emplace(pVMesh->FilePathAbs(), pVMesh);
         } else {
-            vErroredFiles.emplace_back(std::format(L"NULL VMesh : {:s}", pShape->FilePath().c_str()));
+            vErroredFiles.emplace_back(std::format("NULL VMesh : {:s}", pShape->FilePath()));
         }
 
         int iSPC = pShape->PartCount();
         for (int j = 0; j < iSPC; j++) {
             CN3SPart * pPart = pShape->Part(j);
             if (NULL == pPart) {
-                vErroredFiles.emplace_back(
-                    std::format(L"NULL Part : {:s} - {:d}th Part", pShape->FilePath().c_str(), j));
+                vErroredFiles.emplace_back(std::format("NULL Part : {:s} - {:d}th Part", pShape->FilePath(), j));
                 continue;
             }
 
@@ -1092,8 +1091,7 @@ void CMainFrame::OnTipDeleteUnusedFiles() {
             if (pPMesh) {
                 mBases.emplace(pPMesh->FilePathAbs(), pPMesh);
             } else {
-                vErroredFiles.emplace_back(
-                    std::format(L"NULL Part : {:s} - {:d}th Part", pShape->FilePath().c_str(), j));
+                vErroredFiles.emplace_back(std::format("NULL Part : {:s} - {:d}th Part", pShape->FilePath(), j));
             }
 
             int iSTC = pPart->TexCount();
@@ -1102,8 +1100,8 @@ void CMainFrame::OnTipDeleteUnusedFiles() {
                 if (pTex) {
                     mBases.emplace(pTex->FilePathAbs(), pTex);
                 } else {
-                    vErroredFiles.emplace_back(std::format(L"NULL Texture : {:s} - {:d}th Part, {:d}th Texture",
-                                                           pShape->FilePath().c_str(), j, k));
+                    vErroredFiles.emplace_back(
+                        std::format("NULL Texture : {:s} - {:d}th Part, {:d}th Texture", pShape->FilePath(), j, k));
                     continue;
                 }
             }

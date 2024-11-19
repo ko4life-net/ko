@@ -143,7 +143,7 @@ void CSettingDlg::OnDeleteFile() {
                 fs::path fsPatchFileName = std::format("patch{:04d}.zip", pInfo->sVersion);
                 if (!m_pMain->m_DBProcess.InsertVersion(pInfo->sVersion, fsSelFile, fsPatchFileName, 0)) {
                     m_pMain->m_VersionList.DeleteData(fsSelFile);
-                    AfxMessageBox(std::format("{:s} DB Insert Fail", fsSelFile.string()).c_str());
+                    AfxMessageBox(std::format("{:s} DB Insert Fail", fsSelFile).c_str());
                     return;
                 }
             } else {
@@ -188,14 +188,14 @@ void CSettingDlg::OnCompress() {
 
         CFile file;
         if (!file.Open(szCurFileAbs.c_str(), CFile::modeRead)) {
-            AfxMessageBox(std::format("{:s} File Open Fail", fsCurFile.string()).c_str());
+            AfxMessageBox(std::format("{:s} File Open Fail", fsCurFile).c_str());
             continue;
         }
         DWORD dwSize = file.GetLength();
         file.Close();
 
         if (!m_ZipArchive.AddNewFile(szCurFileAbs.c_str(), szDefaultDir.c_str(), -1, dwSize)) {
-            AfxMessageBox(std::format("{:s} File Compress Fail", fsCurFile.string()).c_str());
+            AfxMessageBox(std::format("{:s} File Compress Fail", fsCurFile).c_str());
             continue;
         }
         m_Progress.SetPos(i * 100 / iFilesCount);
@@ -291,7 +291,7 @@ bool CSettingDlg::Repacking(short sVersion) {
 
 bool CSettingDlg::InsertProcess(const fs::path & fsFile) {
     if (IsDBCSString(fsFile.string())) {
-        AfxMessageBox(std::format("'{:s}' include DBCS character", fsFile.string()).c_str());
+        AfxMessageBox(std::format("'{:s}' include DBCS character", fsFile).c_str());
         return false;
     }
 
@@ -303,7 +303,7 @@ bool CSettingDlg::InsertProcess(const fs::path & fsFile) {
             return false;
         }
         if (!m_pMain->m_DBProcess.DeleteVersion(fsFile)) {
-            AfxMessageBox(std::format("'{:s}' DB Delete Fail", fsFile.string()).c_str());
+            AfxMessageBox(std::format("'{:s}' DB Delete Fail", fsFile).c_str());
             return false;
         }
     }
@@ -320,7 +320,7 @@ bool CSettingDlg::InsertProcess(const fs::path & fsFile) {
 
     if (!m_pMain->m_DBProcess.InsertVersion(m_nVersion, fsFile, pInfo2->fsPatchFileName, sHistoryVersion)) {
         m_pMain->m_VersionList.DeleteData(fsFile);
-        AfxMessageBox(std::format("'{:s}' DB Insert Fail", fsFile.string()).c_str());
+        AfxMessageBox(std::format("'{:s}' DB Insert Fail", fsFile).c_str());
         return false;
     }
 
@@ -344,7 +344,7 @@ void CSettingDlg::FolderRecurse(const fs::path & fsDir, bool bVerifyDbcs /*= fal
 
         if (bVerifyDbcs) { // Perform simple DBCS verification
             if (IsDBCSString(fsFile.string().c_str())) {
-                AfxMessageBox(std::format("'{:s}' includes DBCS character", fsFile.string()).c_str());
+                AfxMessageBox(std::format("'{:s}' includes DBCS character", fsFile).c_str());
             }
             continue;
         }

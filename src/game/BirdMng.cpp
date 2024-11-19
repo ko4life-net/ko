@@ -37,7 +37,7 @@ void CBirdMng::LoadFromFile(const fs::path & fsFile) {
     FILE * stream = _wfopen(fsFile.c_str(), L"r"); //text파일로 만든다
     if (NULL == stream) {
 #if _DEBUG
-        __ASSERT(stream, std::format("failed to open file - {:s}", fsFile.string()).c_str());
+        __ASSERT(stream, std::format("failed to open file - {:s}", fsFile).c_str());
 #endif
         return;
     }

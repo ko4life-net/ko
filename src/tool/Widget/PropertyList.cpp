@@ -400,11 +400,11 @@ void CPropertyList::OnButton() {
             pItem->m_curValue = "";
             size_t iSC = vSelFiles.size();
             if (iSC > 0) {
-                pItem->m_curValue += std::format("{:s}\n", vSelFiles.back().string()).c_str();
+                pItem->m_curValue += std::format("{:s}\n", vSelFiles.back()).c_str();
                 for (size_t i = 1; i < iSC - 1; ++i) {
-                    pItem->m_curValue += std::format("{:s}\n", vSelFiles[i].string()).c_str();
+                    pItem->m_curValue += std::format("{:s}\n", vSelFiles[i]).c_str();
                 }
-                pItem->m_curValue += std::format("{:s}", vSelFiles.front().string()).c_str();
+                pItem->m_curValue += std::format("{:s}", vSelFiles.front()).c_str();
 
                 m_ButtonPush.ShowWindow(SW_HIDE);
                 Invalidate();

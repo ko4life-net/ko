@@ -1493,7 +1493,7 @@ BOOL CServerDlg::MapFileLoad() {
 
         CFile file;
         if (!file.Open(fsSmdFile.string().c_str(), CFile::modeRead)) {
-            AfxMessageBox(std::format("Failed to open file - {:s}", fsSmdFile.string()).c_str());
+            AfxMessageBox(std::format("Failed to open file - {:s}", fsSmdFile).c_str());
             return FALSE;
         }
 
@@ -1503,7 +1503,7 @@ BOOL CServerDlg::MapFileLoad() {
         pMap->m_fsSmdFileName = szSmdFileName;
 
         if (!pMap->LoadMap((HANDLE)file.m_hFile)) {
-            AfxMessageBox(std::format("Map Load Failed - {:s}", fsSmdFile.string()).c_str());
+            AfxMessageBox(std::format("Map Load Failed - {:s}", fsSmdFile).c_str());
             delete pMap;
             return FALSE;
         }
@@ -1511,7 +1511,7 @@ BOOL CServerDlg::MapFileLoad() {
         // dungeon work
         if (ZoneInfoSet.m_RoomEvent > 0) {
             if (!pMap->LoadRoomEvent(ZoneInfoSet.m_RoomEvent)) {
-                AfxMessageBox(std::format("Map Room Event Load Failed - {:s}", fsSmdFile.string()).c_str());
+                AfxMessageBox(std::format("Map Room Event Load Failed - {:s}", fsSmdFile).c_str());
                 delete pMap;
                 return FALSE;
             }

@@ -405,9 +405,17 @@ using path = pathx;
 
 } // namespace fs
 
-// Trick ADL to prioritize our custom overloads so that we return pathx instead of path
-namespace std::filesystem {
+// Extending standard functionality
+namespace std {
 
+// Allows std::format to support std::filesystem::path and derived types.
+template <n3std::PathType T> struct formatter<T> : formatter<std::string> {
+    auto format(const T & p, format_context & ctx) const { return formatter<std::string>::format(p.string(), ctx); }
+};
+
+namespace filesystem {
+
+// Trick ADL to prioritize our custom overload so that we return pathx instead of path
 [[nodiscard]] fs::pathx operator/(const n3std::PathConstructible auto & lhs,
                                   const n3std::PathConstructible auto & rhs) {
 #if defined(FS_AUTO_NORMALIZE)
@@ -417,7 +425,9 @@ namespace std::filesystem {
 #endif
 }
 
-} // namespace std::filesystem
+} // namespace filesystem
+
+} // namespace std
 
 namespace n3std {
 

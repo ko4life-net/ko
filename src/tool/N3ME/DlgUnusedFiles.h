@@ -8,8 +8,8 @@
 
 class CDlgUnusedFiles : public CDialog {
   public:
-    std::vector<fs::path>     m_vFiles;
-    std::vector<std::wstring> m_vErroredFiles;
+    std::vector<fs::path>    m_vFiles;
+    std::vector<std::string> m_vErroredFiles;
 
   public:
     void UpdateAll();
