@@ -25,7 +25,7 @@ CKnightsManager::CKnightsManager() {
     m_pMain = NULL;
 
     /*
-    CString szConnStr = CServerDlg::GetInstance()->GetGameDBConnectionString();
+    CString szConnStr = CServerDlg::GetInstance()->ConnectionStringGame();
     m_KnightsDB.SetLoginTimeout(10);
     if (!m_KnightsDB.Open(NULL, FALSE, FALSE, szConnStr)) {
         AfxMessageBox("KnightsDB Connection Fail...");

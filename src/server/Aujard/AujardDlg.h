@@ -49,10 +49,10 @@ class CAujardDlg : public CDialog {
     BOOL InitializeMMF();
     void SelectCharacter(char * pBuf);
 
-    CString GetDBConnectionString(std::string_view szDsn, std::string_view szUid, std::string_view szPwd) const;
-    CString GetGameDBConnectionString() const;
-    CString GetAccountDBConnectionString() const;
-    CString GetLoginDBConnectionString() const;
+    CString CreateConnectionString(std::string_view szDsn, std::string_view szUid, std::string_view szPwd) const;
+    CString ConnectionStringGame() const;
+    CString ConnectionStringAccount() const;
+    CString ConnectionStringLogin() const;
 
     CSharedMemQueue m_LoggerSendQueue;
     CSharedMemQueue m_LoggerRecvQueue;

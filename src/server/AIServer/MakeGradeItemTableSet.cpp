@@ -35,7 +35,7 @@ CMakeGradeItemTableSet::CMakeGradeItemTableSet(CDatabase * pdb)
 }
 
 CString CMakeGradeItemTableSet::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CMakeGradeItemTableSet::GetDefaultSQL() {

@@ -30,14 +30,14 @@ BOOL CDBAgent::DatabaseInit() {
 
     CString szConnStr;
 
-    szConnStr = CAujardDlg::GetInstance()->GetGameDBConnectionString();
+    szConnStr = CAujardDlg::GetInstance()->ConnectionStringGame();
     m_GameDB.SetLoginTimeout(10);
     if (!m_GameDB.Open(NULL, FALSE, FALSE, szConnStr)) {
         AfxMessageBox("GameDB SQL Connection Fail...");
         return FALSE;
     }
 
-    szConnStr = CAujardDlg::GetInstance()->GetAccountDBConnectionString();
+    szConnStr = CAujardDlg::GetInstance()->ConnectionStringAccount();
     m_AccountDB.SetLoginTimeout(10);
     if (!m_AccountDB.Open(NULL, FALSE, FALSE, szConnStr)) {
         AfxMessageBox("AccountDB SQL Connection Fail...");
@@ -243,7 +243,7 @@ BOOL CDBAgent::LoadUserData(char * userid, int uid) {
 
             m_GameDB.Close();
             if (!m_GameDB.IsOpen()) {
-                ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->GetGameDBConnectionString());
+                ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->ConnectionStringGame());
                 return FALSE;
             }
         }
@@ -532,7 +532,7 @@ int CDBAgent::UpdateUser(const char * userid, int uid, int type) {
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_GameDB.Close();
                     if (!m_GameDB.IsOpen()) {
-                        ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->GetGameDBConnectionString());
+                        ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->ConnectionStringGame());
                         return 0;
                     }
                 }
@@ -587,7 +587,7 @@ int CDBAgent::AccountLogInReq(char * id, char * pw) {
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_GameDB.Close();
                     if (!m_GameDB.IsOpen()) {
-                        ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->GetGameDBConnectionString());
+                        ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->ConnectionStringGame());
                         return FALSE;
                     }
                 }
@@ -624,7 +624,7 @@ BOOL CDBAgent::NationSelect(char * id, int nation) {
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_GameDB.Close();
                     if (!m_GameDB.IsOpen()) {
-                        ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->GetGameDBConnectionString());
+                        ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->ConnectionStringGame());
                         return FALSE;
                     }
                 }
@@ -668,7 +668,7 @@ int CDBAgent::CreateNewChar(char * accountid, int index, char * charid, int race
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_GameDB.Close();
                     if (!m_GameDB.IsOpen()) {
-                        ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->GetGameDBConnectionString());
+                        ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->ConnectionStringGame());
                         return -1;
                     }
                 }
@@ -707,7 +707,7 @@ BOOL CDBAgent::DeleteChar(int index, char * id, char * charid, char * socno) {
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_GameDB.Close();
                     if (!m_GameDB.IsOpen()) {
-                        ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->GetGameDBConnectionString());
+                        ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->ConnectionStringGame());
                         return FALSE;
                     }
                 }
@@ -777,7 +777,7 @@ BOOL CDBAgent::LoadCharInfo(char * id, char * buff, int & buff_index) {
         if (DisplayErrorMsg(hstmt) == -1) {
             m_GameDB.Close();
             if (!m_GameDB.IsOpen()) {
-                ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->GetGameDBConnectionString());
+                ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->ConnectionStringGame());
                 return FALSE;
             }
         }
@@ -862,7 +862,7 @@ BOOL CDBAgent::GetAllCharID(const char * id, char * char1, char * char2, char * 
         if (DisplayErrorMsg(hstmt) == -1) {
             m_GameDB.Close();
             if (!m_GameDB.IsOpen()) {
-                ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->GetGameDBConnectionString());
+                ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->ConnectionStringGame());
                 return FALSE;
             }
         }
@@ -908,7 +908,7 @@ int CDBAgent::CreateKnights(int knightsindex, int nation, char * name, char * ch
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_GameDB.Close();
                     if (!m_GameDB.IsOpen()) {
-                        ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->GetGameDBConnectionString());
+                        ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->ConnectionStringGame());
                         return FALSE;
                     }
                 }
@@ -949,7 +949,7 @@ int CDBAgent::UpdateKnights(int type, char * userid, int knightsindex, int domin
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_GameDB.Close();
                     if (!m_GameDB.IsOpen()) {
-                        ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->GetGameDBConnectionString());
+                        ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->ConnectionStringGame());
                         return FALSE;
                     }
                 }
@@ -991,7 +991,7 @@ int CDBAgent::DeleteKnights(int knightsindex) {
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_GameDB.Close();
                     if (!m_GameDB.IsOpen()) {
-                        ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->GetGameDBConnectionString());
+                        ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->ConnectionStringGame());
                         return -1;
                     }
                 }
@@ -1076,7 +1076,7 @@ int CDBAgent::LoadKnightsAllMembers(int knightsindex, int start, char * temp_buf
             if (DisplayErrorMsg(hstmt) == -1) {
                 m_GameDB.Close();
                 if (!m_GameDB.IsOpen()) {
-                    ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->GetGameDBConnectionString());
+                    ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->ConnectionStringGame());
                     return 0;
                 }
             }
@@ -1116,7 +1116,7 @@ BOOL CDBAgent::UpdateConCurrentUserCount(int serverno, int zoneno, int t_count) 
             if (DisplayErrorMsg(hstmt) == -1) {
                 m_AccountDB1.Close();
                 if (!m_AccountDB1.IsOpen()) {
-                    ReConnectODBC(&m_AccountDB1, CAujardDlg::GetInstance()->GetAccountDBConnectionString());
+                    ReConnectODBC(&m_AccountDB1, CAujardDlg::GetInstance()->ConnectionStringAccount());
                     return FALSE;
                 }
             }
@@ -1169,7 +1169,7 @@ BOOL CDBAgent::LoadWarehouseData(const char * accountid, int uid) {
         if (DisplayErrorMsg(hstmt) == -1) {
             m_GameDB.Close();
             if (!m_GameDB.IsOpen()) {
-                ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->GetGameDBConnectionString());
+                ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->ConnectionStringGame());
                 return FALSE;
             }
         }
@@ -1288,7 +1288,7 @@ int CDBAgent::UpdateWarehouseData(const char * accountid, int uid, int type) {
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_GameDB.Close();
                     if (!m_GameDB.IsOpen()) {
-                        ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->GetGameDBConnectionString());
+                        ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->ConnectionStringGame());
                         return 0;
                     }
                 }
@@ -1363,7 +1363,7 @@ BOOL CDBAgent::LoadKnightsInfo(int index, char * buff, int & buff_index) {
             if (DisplayErrorMsg(hstmt) == -1) {
                 m_GameDB.Close();
                 if (!m_GameDB.IsOpen()) {
-                    ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->GetGameDBConnectionString());
+                    ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->ConnectionStringGame());
                     return FALSE;
                 }
             }
@@ -1409,7 +1409,7 @@ BOOL CDBAgent::SetLogInInfo(const char * accountid, const char * charid, const c
             if (DisplayErrorMsg(hstmt) == -1) {
                 m_AccountDB.Close();
                 if (!m_AccountDB.IsOpen()) {
-                    ReConnectODBC(&m_AccountDB, CAujardDlg::GetInstance()->GetAccountDBConnectionString());
+                    ReConnectODBC(&m_AccountDB, CAujardDlg::GetInstance()->ConnectionStringAccount());
                     return FALSE;
                 }
             }
@@ -1458,7 +1458,7 @@ int CDBAgent::AccountLogout(const char * accountid) {
                 if (DisplayErrorMsg(hstmt) == -1) {
                     m_AccountDB.Close();
                     if (!m_AccountDB.IsOpen()) {
-                        ReConnectODBC(&m_AccountDB, CAujardDlg::GetInstance()->GetAccountDBConnectionString());
+                        ReConnectODBC(&m_AccountDB, CAujardDlg::GetInstance()->ConnectionStringAccount());
                         return FALSE;
                     }
                 }
@@ -1510,7 +1510,7 @@ BOOL CDBAgent::CheckUserData(const char * accountid, const char * charid, int ty
             if (DisplayErrorMsg(hstmt) == -1) {
                 m_GameDB.Close();
                 if (!m_GameDB.IsOpen()) {
-                    ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->GetGameDBConnectionString());
+                    ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->ConnectionStringGame());
                     return FALSE;
                 }
             }
@@ -1604,7 +1604,7 @@ void CDBAgent::LoadKnightsAllList(int nation) {
             if (DisplayErrorMsg(hstmt) == -1) {
                 m_GameDB.Close();
                 if (!m_GameDB.IsOpen()) {
-                    ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->GetGameDBConnectionString());
+                    ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->ConnectionStringGame());
                     return;
                 }
             }
@@ -1660,7 +1660,7 @@ BOOL CDBAgent::UpdateBattleEvent(const char * charid, int nation) {
             if (DisplayErrorMsg(hstmt) == -1) {
                 m_GameDB.Close();
                 if (!m_GameDB.IsOpen()) {
-                    ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->GetGameDBConnectionString());
+                    ReConnectODBC(&m_GameDB, CAujardDlg::GetInstance()->ConnectionStringGame());
                     return 0;
                 }
             }
@@ -1710,7 +1710,7 @@ BOOL CDBAgent::CheckCouponEvent(const char * accountid) {
         if (DisplayErrorMsg(hstmt) == -1) {
             m_AccountDB.Close();
             if (!m_AccountDB.IsOpen()) {
-                ReConnectODBC(&m_AccountDB, CAujardDlg::GetInstance()->GetAccountDBConnectionString());
+                ReConnectODBC(&m_AccountDB, CAujardDlg::GetInstance()->ConnectionStringAccount());
                 return FALSE;
             }
         }
@@ -1758,7 +1758,7 @@ BOOL CDBAgent::UpdateCouponEvent(const char * accountid, char * charid, char * c
         if (DisplayErrorMsg(hstmt) == -1) {
             m_AccountDB.Close();
             if (!m_AccountDB.IsOpen()) {
-                ReConnectODBC(&m_AccountDB, CAujardDlg::GetInstance()->GetAccountDBConnectionString());
+                ReConnectODBC(&m_AccountDB, CAujardDlg::GetInstance()->ConnectionStringAccount());
                 return FALSE;
             }
         }

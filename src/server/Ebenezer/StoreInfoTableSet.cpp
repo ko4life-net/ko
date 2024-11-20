@@ -68,7 +68,7 @@ CStoreInfoTableSet::CStoreInfoTableSet(CDatabase * pdb)
 }
 
 CString CStoreInfoTableSet::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CStoreInfoTableSet::GetDefaultSQL() {

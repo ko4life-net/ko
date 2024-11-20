@@ -2582,7 +2582,7 @@ void CServerDlg::ResetBattleZone() {
     TRACE("ServerDlg - ResetBattleZone() : end \n");
 }
 
-CString CServerDlg::GetGameDBConnectionString() const {
+CString CServerDlg::ConnectionStringGame() const {
     static CString szConnStr =
         std::format("ODBC;DSN={:s};UID={:s};PWD={:s}", m_szOdbcGameDsn, m_szOdbcGameUid, m_szOdbcGamePwd).c_str();
 

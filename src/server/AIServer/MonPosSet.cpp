@@ -36,7 +36,7 @@ CMonPosSet::CMonPosSet(CDatabase * pdb)
 }
 
 CString CMonPosSet::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CMonPosSet::GetDefaultSQL() {

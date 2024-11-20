@@ -36,7 +36,7 @@ CNpcItemSet::CNpcItemSet(CDatabase * pdb)
 }
 
 CString CNpcItemSet::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CNpcItemSet::GetDefaultSQL() {

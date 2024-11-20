@@ -39,7 +39,7 @@ CKnightsSet::CKnightsSet(CDatabase * pdb)
 }
 
 CString CKnightsSet::GetDefaultConnect() {
-    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CKnightsSet::GetDefaultSQL() {

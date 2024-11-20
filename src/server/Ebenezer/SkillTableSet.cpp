@@ -77,7 +77,7 @@ CSkillTableSet::CSkillTableSet(CDatabase * pdb)
 }
 
 CString CSkillTableSet::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CSkillTableSet::GetDefaultSQL() {

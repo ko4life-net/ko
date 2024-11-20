@@ -1551,26 +1551,26 @@ void CAujardDlg::CouponEvent(char * pData) {
     }
 }
 
-CString CAujardDlg::GetDBConnectionString(std::string_view szDsn, std::string_view szUid,
-                                          std::string_view szPwd) const {
+CString CAujardDlg::CreateConnectionString(std::string_view szDsn, std::string_view szUid,
+                                           std::string_view szPwd) const {
     return std::format("ODBC;DSN={:s};UID={:s};PWD={:s}", szDsn, szUid, szPwd).c_str();
 }
 
 // Lazy load connection strings, because they get called many times
-CString CAujardDlg::GetGameDBConnectionString() const {
-    static CString szConnStr = GetDBConnectionString(m_szOdbcGameDsn, m_szOdbcGameUid, m_szOdbcGamePwd);
+CString CAujardDlg::ConnectionStringGame() const {
+    static CString szConnStr = CreateConnectionString(m_szOdbcGameDsn, m_szOdbcGameUid, m_szOdbcGamePwd);
 
     return szConnStr;
 }
 
-CString CAujardDlg::GetAccountDBConnectionString() const {
-    static CString szConnStr = GetDBConnectionString(m_szOdbcAccountDsn, m_szOdbcAccountUid, m_szOdbcAccountPwd);
+CString CAujardDlg::ConnectionStringAccount() const {
+    static CString szConnStr = CreateConnectionString(m_szOdbcAccountDsn, m_szOdbcAccountUid, m_szOdbcAccountPwd);
 
     return szConnStr;
 }
 
-CString CAujardDlg::GetLoginDBConnectionString() const {
-    static CString szConnStr = GetDBConnectionString(m_szOdbcLogDsn, m_szOdbcLogUid, m_szOdbcLogPwd);
+CString CAujardDlg::ConnectionStringLogin() const {
+    static CString szConnStr = CreateConnectionString(m_szOdbcLogDsn, m_szOdbcLogUid, m_szOdbcLogPwd);
 
     return szConnStr;
 }

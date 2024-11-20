@@ -95,7 +95,7 @@ class CServerDlg : public CDialog {
     void SendSystemMsg(char * pMsg, int zone, int type = 0, int who = 0);
     void ResetBattleZone();
 
-    CString GetGameDBConnectionString() const;
+    CString ConnectionStringGame() const;
 
     CServerDlg(CWnd * pParent = NULL); // standard constructor
 

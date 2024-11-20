@@ -36,7 +36,7 @@ CCharacterDataSet::CCharacterDataSet(CDatabase * pdb)
 }
 
 CString CCharacterDataSet::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CCharacterDataSet::GetDefaultSQL() {

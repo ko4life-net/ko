@@ -65,7 +65,7 @@ BOOL CDBProcess::LoadVersionList() {
         if (DisplayErrorMsg(hStmt) == -1) {
             m_VersionDB.Close();
             if (!m_VersionDB.IsOpen()) {
-                ReConnectODBC(&m_VersionDB, CLoginServerDlg::GetInstance()->GetLogDbConnectionString());
+                ReConnectODBC(&m_VersionDB, CLoginServerDlg::GetInstance()->ConnectionStringLogin());
                 return FALSE;
             }
         }
@@ -125,7 +125,7 @@ int CDBProcess::AccountLogin(const char * szId, const char * szPwd) {
                 if (DisplayErrorMsg(hStmt) == -1) {
                     m_VersionDB.Close();
                     if (!m_VersionDB.IsOpen()) {
-                        ReConnectODBC(&m_VersionDB, CLoginServerDlg::GetInstance()->GetLogDbConnectionString());
+                        ReConnectODBC(&m_VersionDB, CLoginServerDlg::GetInstance()->ConnectionStringLogin());
                         return 2;
                     }
                 }
@@ -155,7 +155,7 @@ int CDBProcess::MgameLogin(const char * szId, const char * szPwd) {
                 if (DisplayErrorMsg(hStmt) == -1) {
                     m_VersionDB.Close();
                     if (!m_VersionDB.IsOpen()) {
-                        ReConnectODBC(&m_VersionDB, CLoginServerDlg::GetInstance()->GetLogDbConnectionString());
+                        ReConnectODBC(&m_VersionDB, CLoginServerDlg::GetInstance()->ConnectionStringLogin());
                         return 2;
                     }
                 }
@@ -226,7 +226,7 @@ BOOL CDBProcess::LoadUserCountList() {
         if (DisplayErrorMsg(hStmt) == -1) {
             m_VersionDB.Close();
             if (!m_VersionDB.IsOpen()) {
-                ReConnectODBC(&m_VersionDB, CLoginServerDlg::GetInstance()->GetLogDbConnectionString());
+                ReConnectODBC(&m_VersionDB, CLoginServerDlg::GetInstance()->ConnectionStringLogin());
                 return FALSE;
             }
         }
@@ -291,7 +291,7 @@ BOOL CDBProcess::IsCurrentUser(const char * szAccountId, char * szServerIp, int 
         if (DisplayErrorMsg(hStmt) == -1) {
             m_VersionDB.Close();
             if (!m_VersionDB.IsOpen()) {
-                ReConnectODBC(&m_VersionDB, CLoginServerDlg::GetInstance()->GetLogDbConnectionString());
+                ReConnectODBC(&m_VersionDB, CLoginServerDlg::GetInstance()->ConnectionStringLogin());
                 return FALSE;
             }
         }

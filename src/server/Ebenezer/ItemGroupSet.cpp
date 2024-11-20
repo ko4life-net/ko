@@ -57,7 +57,7 @@ CItemGroupSet::CItemGroupSet(CDatabase * pdb)
 }
 
 CString CItemGroupSet::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CItemGroupSet::GetDefaultSQL() {

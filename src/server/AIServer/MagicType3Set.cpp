@@ -36,7 +36,7 @@ CMagicType3Set::CMagicType3Set(CDatabase * pdb)
 }
 
 CString CMagicType3Set::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CMagicType3Set::GetDefaultSQL() {

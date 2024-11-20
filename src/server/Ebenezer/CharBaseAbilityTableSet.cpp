@@ -61,7 +61,7 @@ CCharBaseAbilityTableSet::CCharBaseAbilityTableSet(CDatabase * pdb)
 }
 
 CString CCharBaseAbilityTableSet::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CCharBaseAbilityTableSet::GetDefaultSQL() {

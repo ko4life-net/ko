@@ -70,7 +70,7 @@ CNpcTableSet::CNpcTableSet(CDatabase * pdb)
 }
 
 CString CNpcTableSet::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CNpcTableSet::GetDefaultSQL() {

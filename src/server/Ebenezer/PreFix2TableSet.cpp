@@ -57,7 +57,7 @@ CPreFix2TableSet::CPreFix2TableSet(CDatabase * pdb)
 }
 
 CString CPreFix2TableSet::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CPreFix2TableSet::GetDefaultSQL() {

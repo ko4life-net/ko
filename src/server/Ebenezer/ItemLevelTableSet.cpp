@@ -47,7 +47,7 @@ CItemLevelTableSet::CItemLevelTableSet(CDatabase * pdb)
 }
 
 CString CItemLevelTableSet::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CItemLevelTableSet::GetDefaultSQL() {

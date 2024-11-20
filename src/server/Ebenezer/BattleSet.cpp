@@ -27,7 +27,7 @@ CBattleSet::CBattleSet(CDatabase * pdb)
 }
 
 CString CBattleSet::GetDefaultConnect() {
-    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CBattleSet::GetDefaultSQL() {

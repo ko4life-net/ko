@@ -29,7 +29,7 @@ CKnightsRankSet::CKnightsRankSet(CDatabase * pdb)
 }
 
 CString CKnightsRankSet::GetDefaultConnect() {
-    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CKnightsRankSet::GetDefaultSQL() {

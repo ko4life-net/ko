@@ -4151,7 +4151,7 @@ void CEbenezerDlg::WriteEventLog(char * pBuf) {
     LeaveCriticalSection(&g_LogFile_critical);
 }
 
-CString CEbenezerDlg::GetGameDBConnectionString() const {
+CString CEbenezerDlg::ConnectionStringGame() const {
     static CString szConnStr =
         std::format("ODBC;DSN={:s};UID={:s};PWD={:s}", m_szOdbcGameDsn, m_szOdbcGameUid, m_szOdbcGamePwd).c_str();
 

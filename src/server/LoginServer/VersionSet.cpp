@@ -27,7 +27,7 @@ CVersionSet::CVersionSet(CDatabase * pdb)
 }
 
 CString CVersionSet::GetDefaultConnect() {
-    return CLoginServerDlg::GetInstance()->GetLogDbConnectionString();
+    return CLoginServerDlg::GetInstance()->ConnectionStringLogin();
 }
 
 CString CVersionSet::GetDefaultSQL() {

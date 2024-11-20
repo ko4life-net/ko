@@ -52,7 +52,7 @@ CBaseItemTableSet::CBaseItemTableSet(CDatabase * pdb)
 }
 
 CString CBaseItemTableSet::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CBaseItemTableSet::GetDefaultSQL() {

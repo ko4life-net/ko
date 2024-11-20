@@ -21,7 +21,7 @@ class CLoginServerDlg : public CDialog {
   public:
     static CLoginServerDlg * GetInstance() { return s_pInstance; }
 
-    CString GetLogDbConnectionString() const;
+    CString ConnectionStringLogin() const;
 
     BOOL GetInfoFromIni();
 

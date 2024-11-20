@@ -70,7 +70,7 @@ CMonTableSet::CMonTableSet(CDatabase * pdb)
 }
 
 CString CMonTableSet::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CMonTableSet::GetDefaultSQL() {

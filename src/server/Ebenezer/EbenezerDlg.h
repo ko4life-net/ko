@@ -137,7 +137,7 @@ class CEbenezerDlg : public CDialog {
     void           Send_AIServer(int zone, char * pBuf, int len);
     static CUser * GetUserPtr(const char * userid, BYTE type);
 
-    CString GetGameDBConnectionString() const;
+    CString ConnectionStringGame() const;
 
     CEbenezerDlg(CWnd * pParent = NULL); // standard constructor
 

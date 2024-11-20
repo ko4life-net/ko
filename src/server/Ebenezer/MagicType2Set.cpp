@@ -33,7 +33,7 @@ CMagicType2Set::CMagicType2Set(CDatabase * pdb)
 }
 
 CString CMagicType2Set::GetDefaultConnect() {
-    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CMagicType2Set::GetDefaultSQL() {

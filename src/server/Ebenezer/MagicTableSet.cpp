@@ -48,7 +48,7 @@ CMagicTableSet::CMagicTableSet(CDatabase * pdb)
 }
 
 CString CMagicTableSet::GetDefaultConnect() {
-    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CMagicTableSet::GetDefaultSQL() {

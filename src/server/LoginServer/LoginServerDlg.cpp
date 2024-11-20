@@ -76,7 +76,7 @@ BOOL CLoginServerDlg::OnInitDialog() {
         return FALSE;
     }
 
-    CString szConnStr = GetLogDbConnectionString();
+    CString szConnStr = ConnectionStringLogin();
     if (!m_DBProcess.InitDatabase(szConnStr)) {
         AfxMessageBox("Database Connection Fail!!");
         AfxPostQuitMessage(0);
@@ -205,7 +205,7 @@ void CLoginServerDlg::OnVersionSetting() {
     }
 }
 
-CString CLoginServerDlg::GetLogDbConnectionString() const {
+CString CLoginServerDlg::ConnectionStringLogin() const {
     static CString szConnStr =
         std::format("ODBC;DSN={:s};UID={:s};PWD={:s}", m_szOdbcLogDsn, m_szOdbcLogUid, m_szOdbcLogPwd).c_str();
 

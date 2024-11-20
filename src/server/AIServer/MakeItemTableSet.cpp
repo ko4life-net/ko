@@ -28,7 +28,7 @@ CMakeItemTableSet::CMakeItemTableSet(CDatabase * pdb)
 }
 
 CString CMakeItemTableSet::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CMakeItemTableSet::GetDefaultSQL() {

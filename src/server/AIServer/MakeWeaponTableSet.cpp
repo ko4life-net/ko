@@ -38,7 +38,7 @@ CMakeWeaponTableSet::CMakeWeaponTableSet(CDatabase * pdb)
 }
 
 CString CMakeWeaponTableSet::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CMakeWeaponTableSet::GetDefaultSQL() {
