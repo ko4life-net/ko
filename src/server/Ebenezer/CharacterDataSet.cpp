@@ -36,7 +36,7 @@ CCharacterDataSet::CCharacterDataSet(CDatabase * pdb)
 }
 
 CString CCharacterDataSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return CServerDlg::GetInstance()->GetGameDBConnectionString();
 }
 
 CString CCharacterDataSet::GetDefaultSQL() {

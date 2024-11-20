@@ -2,8 +2,8 @@
 //
 
 #include "StdAfx.h"
-#include "LoginServer.h"
 #include "VersionSet.h"
+#include "LoginServerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -27,7 +27,7 @@ CVersionSet::CVersionSet(CDatabase * pdb)
 }
 
 CString CVersionSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return CLoginServerDlg::GetInstance()->GetLogDbConnectionString();
 }
 
 CString CVersionSet::GetDefaultSQL() {
