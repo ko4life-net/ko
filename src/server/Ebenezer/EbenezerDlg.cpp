@@ -269,10 +269,6 @@ CEbenezerDlg::CEbenezerDlg(CWnd * pParent /*=NULL*/)
     memset(m_strElmoradCaptain, 0x00, MAX_ID_SIZE + 1);
 
     m_bSanta = FALSE; // 갓댐 산타!!! >.<
-
-    memset(m_szOdbcGameDsn, 0, sizeof(m_szOdbcGameDsn));
-    memset(m_szOdbcGameUid, 0, sizeof(m_szOdbcGameUid));
-    memset(m_szOdbcGamePwd, 0, sizeof(m_szOdbcGamePwd));
 }
 
 void CEbenezerDlg::DoDataExchange(CDataExchange * pDX) {
@@ -1622,9 +1618,9 @@ void CEbenezerDlg::GetTimeFromIni() {
     m_nBattleZoneOpenHourStart = m_pIni->GetInt("BATTLE", "START_TIME", 20);
     m_nBattleZoneOpenHourEnd = m_pIni->GetInt("BATTLE", "END_TIME", 0);
 
-    m_pIni->GetString("ODBC", "GAME_DSN", "kodb", m_szOdbcGameDsn, sizeof(m_szOdbcGameDsn));
-    m_pIni->GetString("ODBC", "GAME_UID", "kodb_user", m_szOdbcGameUid, sizeof(m_szOdbcGameUid));
-    m_pIni->GetString("ODBC", "GAME_PWD", "kodb_user", m_szOdbcGamePwd, sizeof(m_szOdbcGamePwd));
+    m_szOdbcGameDsn = m_pIni->GetString("ODBC", "GAME_DSN", "kodb");
+    m_szOdbcGameUid = m_pIni->GetString("ODBC", "GAME_UID", "kodb_user");
+    m_szOdbcGamePwd = m_pIni->GetString("ODBC", "GAME_PWD", "kodb_user");
 
     m_nCastleCapture = m_pIni->GetInt("CASTLE", "NATION", 1);
     m_nServerNo = m_pIni->GetInt("ZONE_INFO", "MY_INFO", 1);
@@ -4156,7 +4152,8 @@ void CEbenezerDlg::WriteEventLog(char * pBuf) {
 }
 
 CString CEbenezerDlg::GetGameDBConnectionString() const {
-    CString strConnection;
-    strConnection.Format(_T("ODBC;DSN=%s;UID=%s;PWD=%s"), m_szOdbcGameDsn, m_szOdbcGameUid, m_szOdbcGamePwd);
-    return strConnection;
+    static CString szConnStr =
+        std::format("ODBC;DSN={:s};UID={:s};PWD={:s}", m_szOdbcGameDsn, m_szOdbcGameUid, m_szOdbcGamePwd).c_str();
+
+    return szConnStr;
 }

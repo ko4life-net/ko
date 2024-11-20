@@ -12,7 +12,7 @@
 class CItemManagerDlg;
 class CDBAgent {
   public:
-    void ReConnectODBC(CDatabase * m_db, char * strdb, char * strname, char * strpwd);
+    void ReConnectODBC(CDatabase * pDb, const CString & szConnStr);
     BOOL DatabaseInit();
     CDBAgent();
     virtual ~CDBAgent();

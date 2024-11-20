@@ -24,10 +24,9 @@ class CItemManagerDlg : public CDialog {
 
     //ItemtableArray        m_ItemtableArray;
 
-    int  m_nServerNo, m_nZoneNo;
-    char m_strGameDSN[24];
-    char m_strGameUID[24];
-    char m_strGamePWD[24];
+    int m_nServerNo, m_nZoneNo;
+
+    std::string m_szOdbcGameDsn, m_szOdbcGameUid, m_szOdbcGamePwd;
 
     CFile m_ItemLogFile;     // log file
     CFile m_ExpLogFile;      // log file

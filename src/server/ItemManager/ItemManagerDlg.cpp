@@ -60,9 +60,6 @@ CItemManagerDlg::CItemManagerDlg(CWnd * pParent /*=NULL*/)
     // Note that LoadIcon does not require a subsequent DestroyIcon in Win32
     m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
-    memset(m_strGameDSN, 0x00, 24);
-    memset(m_strGameUID, 0x00, 24);
-    memset(m_strGamePWD, 0x00, 24);
     m_nItemLogFileDay = 0;
     m_nServerNo = 0;
     m_nZoneNo = 0;
@@ -113,9 +110,9 @@ BOOL CItemManagerDlg::OnInitDialog() {
 
     CIni ini("Server.ini");
 
-    ini.GetString("ODBC", "GAME_DSN", "kodb", m_strGameDSN, sizeof(m_strGameDSN));
-    ini.GetString("ODBC", "GAME_UID", "kodb_user", m_strGameUID, sizeof(m_strGameUID));
-    ini.GetString("ODBC", "GAME_PWD", "kodb_user", m_strGamePWD, sizeof(m_strGamePWD));
+    m_szOdbcGameDsn = ini.GetString("ODBC", "GAME_DSN", "kodb");
+    m_szOdbcGameUid = ini.GetString("ODBC", "GAME_UID", "kodb_user");
+    m_szOdbcGamePwd = ini.GetString("ODBC", "GAME_PWD", "kodb_user");
 
     m_nServerNo = ini.GetInt("ZONE_INFO", "GROUP_INFO", 1);
     m_nZoneNo = ini.GetInt("ZONE_INFO", "ZONE_INFO", 1);

@@ -28,10 +28,6 @@ CLoginServerDlg::CLoginServerDlg(CWnd * pParent /*=NULL*/)
     s_pInstance = this;
 
     m_nLastVersion = 0;
-    memset(m_szOdbcLogDsn, 0, sizeof(m_szOdbcLogDsn));
-    memset(m_szOdbcLogUid, 0, sizeof(m_szOdbcLogUid));
-    memset(m_szOdbcLogPwd, 0, sizeof(m_szOdbcLogPwd));
-    memset(m_TableName, 0, sizeof(m_TableName));
 
     m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -80,9 +76,8 @@ BOOL CLoginServerDlg::OnInitDialog() {
         return FALSE;
     }
 
-    char szConnectionString[256]{};
-    sprintf(szConnectionString, "ODBC;DSN=%s;UID=%s;PWD=%s", m_szOdbcLogDsn, m_szOdbcLogUid, m_szOdbcLogPwd);
-    if (!m_DBProcess.InitDatabase(szConnectionString)) {
+    CString szConnStr = GetLogDbConnectionString();
+    if (!m_DBProcess.InitDatabase(szConnStr)) {
         AfxMessageBox("Database Connection Fail!!");
         AfxPostQuitMessage(0);
         return FALSE;
@@ -93,7 +88,7 @@ BOOL CLoginServerDlg::OnInitDialog() {
         return FALSE;
     }
 
-    m_OutputList.AddString(szConnectionString);
+    m_OutputList.AddString(szConnStr);
     std::string szVersion = std::format("Latest Version : {:d}", m_nLastVersion);
     m_OutputList.AddString(szVersion.c_str());
 
@@ -108,10 +103,10 @@ BOOL CLoginServerDlg::GetInfoFromIni() {
     m_szFtpUrl = ini.GetString("DOWNLOAD", "URL", "ftp.your-site.net");
     m_szFtpPath = ini.GetString("DOWNLOAD", "PATH", "/");
 
-    ini.GetString("ODBC", "LOG_DSN", "kodb", m_szOdbcLogDsn, sizeof(m_szOdbcLogDsn));
-    ini.GetString("ODBC", "LOG_UID", "kodb_user", m_szOdbcLogUid, sizeof(m_szOdbcLogUid));
-    ini.GetString("ODBC", "LOG_PWD", "kodb_user", m_szOdbcLogPwd, sizeof(m_szOdbcLogPwd));
-    ini.GetString("ODBC", "TABLE", "VERSION", m_TableName, sizeof(m_TableName));
+    m_szOdbcLogDsn = ini.GetString("ODBC", "LOG_DSN", "kodb");
+    m_szOdbcLogUid = ini.GetString("ODBC", "LOG_UID", "kodb_user");
+    m_szOdbcLogPwd = ini.GetString("ODBC", "LOG_PWD", "kodb_user");
+    m_szVersionTable = ini.GetString("ODBC", "TABLE", "VERSION");
 
     m_fsDefaultDir = ini.GetString("CONFIGURATION", "DEFAULT_PATH", "");
     if (!m_fsDefaultDir.is_absolute()) {
@@ -123,7 +118,7 @@ BOOL CLoginServerDlg::GetInfoFromIni() {
     if (m_szFtpUrl.empty() || m_szFtpPath.empty()) {
         return FALSE;
     }
-    if (!strlen(m_szOdbcLogDsn) || !strlen(m_szOdbcLogUid) || !strlen(m_szOdbcLogPwd) || !strlen(m_TableName)) {
+    if (m_szOdbcLogDsn.empty() || m_szOdbcLogUid.empty() || m_szOdbcLogPwd.empty() || m_szVersionTable.empty()) {
         return FALSE;
     }
     if (m_nServerCount <= 0) {
@@ -134,10 +129,11 @@ BOOL CLoginServerDlg::GetInfoFromIni() {
     for (int i = 0; i < m_nServerCount; i++) {
         _SERVER_INFO * pInfo = new _SERVER_INFO;
         std::string    szKeyIp = std::format("SERVER_{:02d}", i);
-        ini.GetString("SERVER_LIST", szKeyIp, "127.0.0.1", pInfo->strServerIP, sizeof(pInfo->strServerIP));
+        ini.GetString("SERVER_LIST", szKeyIp, "127.0.0.1").copy(pInfo->strServerIP, sizeof(pInfo->strServerIP) - 1);
 
         std::string szKeyServerName = std::format("NAME_{:02d}", i);
-        ini.GetString("SERVER_LIST", szKeyServerName, szKeyIp, pInfo->strServerName, sizeof(pInfo->strServerName));
+        ini.GetString("SERVER_LIST", szKeyServerName, szKeyIp)
+            .copy(pInfo->strServerName, sizeof(pInfo->strServerName) - 1);
         m_ServerList.emplace_back(pInfo);
     }
 
@@ -210,7 +206,8 @@ void CLoginServerDlg::OnVersionSetting() {
 }
 
 CString CLoginServerDlg::GetLogDbConnectionString() const {
-    CString strConnection;
-    strConnection.Format(_T("ODBC;DSN=%s;UID=%s;PWD=%s"), m_szOdbcLogDsn, m_szOdbcLogUid, m_szOdbcLogPwd);
-    return strConnection;
+    static CString szConnStr =
+        std::format("ODBC;DSN={:s};UID={:s};PWD={:s}", m_szOdbcLogDsn, m_szOdbcLogUid, m_szOdbcLogPwd).c_str();
+
+    return szConnStr;
 }

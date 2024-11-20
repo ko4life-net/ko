@@ -22,7 +22,8 @@ class CLoginServerDlg : public CDialog {
     static CLoginServerDlg * GetInstance() { return s_pInstance; }
 
     CString GetLogDbConnectionString() const;
-    BOOL    GetInfoFromIni();
+
+    BOOL GetInfoFromIni();
 
     CLoginServerDlg(CWnd * pParent = NULL); // standard constructor
 
@@ -36,9 +37,9 @@ class CLoginServerDlg : public CDialog {
 
     short m_nLastVersion;
 
-    char m_szOdbcLogDsn[24], m_szOdbcLogUid[24], m_szOdbcLogPwd[24];
+    std::string m_szOdbcLogDsn, m_szOdbcLogUid, m_szOdbcLogPwd;
 
-    char m_TableName[32];
+    std::string m_szVersionTable;
 
     VersionInfoList m_VersionList;
     ServerInfoList  m_ServerList;

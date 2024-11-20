@@ -22,32 +22,29 @@ CDBProcess::CDBProcess() {}
 
 CDBProcess::~CDBProcess() {}
 
-BOOL CDBProcess::InitDatabase(char * szConnectString) {
+BOOL CDBProcess::InitDatabase(const CString & szConnStr) {
     m_VersionDB.SetLoginTimeout(100);
 
     m_pMain = (CLoginServerDlg *)AfxGetApp()->GetMainWnd();
 
-    if (!m_VersionDB.Open(NULL, FALSE, FALSE, szConnectString)) {
+    if (!m_VersionDB.Open(NULL, FALSE, FALSE, szConnStr)) {
         return FALSE;
     }
 
     return TRUE;
 }
 
-void CDBProcess::ReConnectODBC(CDatabase * pDb, const char * szDsn, const char * szUid, const char * szPwd) {
+void CDBProcess::ReConnectODBC(CDatabase * pDb, const CString & szConnStr) {
     CTime t = CTime::GetCurrentTime();
     n3std::log_file_write(std::format("Try ReConnectODBC... {:d} month {:d} day {:d} hour {:d} minute", t.GetMonth(),
                                       t.GetDay(), t.GetHour(), t.GetMinute())
                               .c_str());
 
-    // DATABASE 연결...
-    std::string szConnStr = std::format("DSN={:s};UID={:s};PWD={:s}", szDsn, szUid, szPwd);
-
     int iCount = 0;
     while (iCount++ < 4 && !pDb->IsOpen()) {
         pDb->SetLoginTimeout(10);
         try {
-            pDb->OpenEx(szConnStr.c_str(), CDatabase::noOdbcDialog);
+            pDb->OpenEx(szConnStr, CDatabase::noOdbcDialog);
         } catch (CDBException * e) {
             e->Delete();
         }
@@ -55,8 +52,7 @@ void CDBProcess::ReConnectODBC(CDatabase * pDb, const char * szDsn, const char *
 }
 
 BOOL CDBProcess::LoadVersionList() {
-    char szSQL[1024]{};
-    wsprintf(szSQL, TEXT("SELECT * FROM %s"), m_pMain->m_TableName);
+    std::string szSql = std::format("SELECT * FROM {:s}", m_pMain->m_szVersionTable);
 
     SQLHSTMT  hStmt = NULL;
     SQLRETURN rc = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_VersionDB.m_hdbc, &hStmt);
@@ -64,12 +60,12 @@ BOOL CDBProcess::LoadVersionList() {
         return FALSE;
     }
 
-    rc = SQLExecDirect(hStmt, (unsigned char *)szSQL, SQL_NTS);
+    rc = SQLExecDirect(hStmt, (unsigned char *)szSql.c_str(), SQL_NTS);
     if (rc != SQL_SUCCESS && rc != SQL_SUCCESS_WITH_INFO) {
         if (DisplayErrorMsg(hStmt) == -1) {
             m_VersionDB.Close();
             if (!m_VersionDB.IsOpen()) {
-                ReConnectODBC(&m_VersionDB, m_pMain->m_szOdbcLogDsn, m_pMain->m_szOdbcLogUid, m_pMain->m_szOdbcLogPwd);
+                ReConnectODBC(&m_VersionDB, CLoginServerDlg::GetInstance()->GetLogDbConnectionString());
                 return FALSE;
             }
         }
@@ -129,8 +125,7 @@ int CDBProcess::AccountLogin(const char * szId, const char * szPwd) {
                 if (DisplayErrorMsg(hStmt) == -1) {
                     m_VersionDB.Close();
                     if (!m_VersionDB.IsOpen()) {
-                        ReConnectODBC(&m_VersionDB, m_pMain->m_szOdbcLogDsn, m_pMain->m_szOdbcLogUid,
-                                      m_pMain->m_szOdbcLogPwd);
+                        ReConnectODBC(&m_VersionDB, CLoginServerDlg::GetInstance()->GetLogDbConnectionString());
                         return 2;
                     }
                 }
@@ -160,8 +155,7 @@ int CDBProcess::MgameLogin(const char * szId, const char * szPwd) {
                 if (DisplayErrorMsg(hStmt) == -1) {
                     m_VersionDB.Close();
                     if (!m_VersionDB.IsOpen()) {
-                        ReConnectODBC(&m_VersionDB, m_pMain->m_szOdbcLogDsn, m_pMain->m_szOdbcLogUid,
-                                      m_pMain->m_szOdbcLogPwd);
+                        ReConnectODBC(&m_VersionDB, CLoginServerDlg::GetInstance()->GetLogDbConnectionString());
                         return 2;
                     }
                 }
@@ -180,7 +174,7 @@ BOOL CDBProcess::InsertVersion(short sVersion, const fs::path & fsFile, const fs
 
     std::string szSql = std::format(
         "INSERT INTO {:s} (sVersion, strFile, strPatchFileName, sHistoryVersion) VALUES ({:d}, '{:s}', '{:s}', {:d})",
-        m_pMain->m_TableName, sVersion, fsFile, fsPatchFileName, sHistoryVersion);
+        m_pMain->m_szVersionTable, sVersion, fsFile, fsPatchFileName, sHistoryVersion);
 
     SQLHSTMT  hStmt = NULL;
     SQLRETURN rc = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_VersionDB.m_hdbc, &hStmt);
@@ -200,7 +194,7 @@ BOOL CDBProcess::InsertVersion(short sVersion, const fs::path & fsFile, const fs
 BOOL CDBProcess::DeleteVersion(const fs::path & fsFile) {
     BOOL retvalue = TRUE;
 
-    std::string szSql = std::format("DELETE FROM {:s} WHERE strFile = '{:s}'", m_pMain->m_TableName, fsFile);
+    std::string szSql = std::format("DELETE FROM {:s} WHERE strFile = '{:s}'", m_pMain->m_szVersionTable, fsFile);
 
     SQLHSTMT  hStmt = NULL;
     SQLRETURN rc = SQLAllocHandle((SQLSMALLINT)SQL_HANDLE_STMT, m_VersionDB.m_hdbc, &hStmt);
@@ -232,7 +226,7 @@ BOOL CDBProcess::LoadUserCountList() {
         if (DisplayErrorMsg(hStmt) == -1) {
             m_VersionDB.Close();
             if (!m_VersionDB.IsOpen()) {
-                ReConnectODBC(&m_VersionDB, m_pMain->m_szOdbcLogDsn, m_pMain->m_szOdbcLogUid, m_pMain->m_szOdbcLogPwd);
+                ReConnectODBC(&m_VersionDB, CLoginServerDlg::GetInstance()->GetLogDbConnectionString());
                 return FALSE;
             }
         }
@@ -297,7 +291,7 @@ BOOL CDBProcess::IsCurrentUser(const char * szAccountId, char * szServerIp, int 
         if (DisplayErrorMsg(hStmt) == -1) {
             m_VersionDB.Close();
             if (!m_VersionDB.IsOpen()) {
-                ReConnectODBC(&m_VersionDB, m_pMain->m_szOdbcLogDsn, m_pMain->m_szOdbcLogUid, m_pMain->m_szOdbcLogPwd);
+                ReConnectODBC(&m_VersionDB, CLoginServerDlg::GetInstance()->GetLogDbConnectionString());
                 return FALSE;
             }
         }
