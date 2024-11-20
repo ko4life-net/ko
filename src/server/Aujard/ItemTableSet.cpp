@@ -80,7 +80,7 @@ CItemTableSet::CItemTableSet(CDatabase * pdb)
 }
 
 CString CItemTableSet::GetDefaultConnect() {
-    return CAujardDlg::GetInstance()->GetGameDBConnectionString();
+    return CAujardDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CItemTableSet::GetDefaultSQL() {

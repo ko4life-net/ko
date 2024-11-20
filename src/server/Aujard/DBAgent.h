@@ -40,7 +40,7 @@ class CDBAgent {
     int  AccountLogInReq(char * id, char * pw); // return Nation value
     int  UpdateUser(const char * userid, int uid, int type);
     BOOL LoadUserData(char * userid, int uid);
-    void ReConnectODBC(CDatabase * m_db, char * strdb, char * strname, char * strpwd);
+    void ReConnectODBC(CDatabase * pDb, const CString & szConnStr);
     BOOL DatabaseInit();
     void MUserInit(int uid);
     CDBAgent();

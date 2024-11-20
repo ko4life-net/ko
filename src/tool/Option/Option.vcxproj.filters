@@ -15,6 +15,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(SrcDir)\common\Ini.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Option.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="$(SrcDir)\common\N3Utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SrcDir)\common\Ini.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -57,7 +57,7 @@
     <ClCompile Include="HomeSet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Ini.cpp">
+    <ClCompile Include="$(SrcDir)\common\Ini.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IOCPort.cpp">
@@ -197,7 +197,7 @@
     <ClInclude Include="HomeSet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Ini.h">
+    <ClInclude Include="$(SrcDir)\common\Ini.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IOCPort.h">

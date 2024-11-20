@@ -68,7 +68,7 @@ CStoreInfoTableSet::CStoreInfoTableSet(CDatabase * pdb)
 }
 
 CString CStoreInfoTableSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=Repent;UID=Repent;PWD=Repent");
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CStoreInfoTableSet::GetDefaultSQL() {

@@ -49,7 +49,7 @@ CMagicType4Set::CMagicType4Set(CDatabase * pdb)
 }
 
 CString CMagicType4Set::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CMagicType4Set::GetDefaultSQL() {

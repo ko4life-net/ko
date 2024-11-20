@@ -61,7 +61,7 @@ CCharBaseAbilityTableSet::CCharBaseAbilityTableSet(CDatabase * pdb)
 }
 
 CString CCharBaseAbilityTableSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=Repent;UID=Repent;PWD=Repent");
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CCharBaseAbilityTableSet::GetDefaultSQL() {

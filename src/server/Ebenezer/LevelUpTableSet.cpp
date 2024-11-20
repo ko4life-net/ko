@@ -27,7 +27,7 @@ CLevelUpTableSet::CLevelUpTableSet(CDatabase * pdb)
 }
 
 CString CLevelUpTableSet::GetDefaultConnect() {
-    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CLevelUpTableSet::GetDefaultSQL() {

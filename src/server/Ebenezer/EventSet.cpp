@@ -38,7 +38,7 @@ CEventSet::CEventSet(CDatabase * pdb)
 }
 
 CString CEventSet::GetDefaultConnect() {
-    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CEventSet::GetDefaultSQL() {

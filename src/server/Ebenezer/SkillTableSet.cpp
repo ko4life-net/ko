@@ -77,7 +77,7 @@ CSkillTableSet::CSkillTableSet(CDatabase * pdb)
 }
 
 CString CSkillTableSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=Repent;UID=Repent;PWD=Repent");
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CSkillTableSet::GetDefaultSQL() {

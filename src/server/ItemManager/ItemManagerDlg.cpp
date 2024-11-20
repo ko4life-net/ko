@@ -4,6 +4,8 @@
 #include "StdAfx.h"
 #include "ItemManager.h"
 #include "ItemManagerDlg.h"
+#include "Ini.h"
+
 #include <process.h>
 
 #ifdef _DEBUG
@@ -58,9 +60,6 @@ CItemManagerDlg::CItemManagerDlg(CWnd * pParent /*=NULL*/)
     // Note that LoadIcon does not require a subsequent DestroyIcon in Win32
     m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
-    memset(m_strGameDSN, 0x00, 24);
-    memset(m_strGameUID, 0x00, 24);
-    memset(m_strGamePWD, 0x00, 24);
     m_nItemLogFileDay = 0;
     m_nServerNo = 0;
     m_nZoneNo = 0;
@@ -109,22 +108,19 @@ BOOL CItemManagerDlg::OnInitDialog() {
 
     m_LoggerRecvQueue.InitailizeMMF(MAX_PKTSIZE, MAX_COUNT, SMQ_ITEMLOGGER, FALSE); // Dispatcher 의 Send Queue
 
-    /*
-    std::string  szIniFile = (n3std::get_app_path() / "ItemDB.ini").string();
-    const char * pszIniFile = szIniFile.c_str();
+    CIni ini("Server.ini");
 
-    GetPrivateProfileString("ODBC", "GAME_DSN", "kodb", m_strGameDSN, sizeof(m_strGameDSN), pszIniFile);
-    GetPrivateProfileString("ODBC", "GAME_UID", "kodb_user", m_strGameUID, sizeof(m_strGameUID), pszIniFile);
-    GetPrivateProfileString("ODBC", "GAME_PWD", "kodb_user", m_strGamePWD, sizeof(m_strGamePWD), pszIniFile);
+    m_szOdbcGameDsn = ini.GetString("ODBC", "GAME_DSN", "kodb");
+    m_szOdbcGameUid = ini.GetString("ODBC", "GAME_UID", "kodb_user");
+    m_szOdbcGamePwd = ini.GetString("ODBC", "GAME_PWD", "kodb_user");
 
-    m_nServerNo = GetPrivateProfileInt("ZONE_INFO", "GROUP_INFO", 1, pszIniFile);
-    m_nZoneNo = GetPrivateProfileInt("ZONE_INFO", "ZONE_INFO", 1, pszIniFile);
+    m_nServerNo = ini.GetInt("ZONE_INFO", "GROUP_INFO", 1);
+    m_nZoneNo = ini.GetInt("ZONE_INFO", "ZONE_INFO", 1);
 
     if (!m_DBAgent.DatabaseInit()) {
         AfxPostQuitMessage(0);
         return FALSE;
     }
-    */
 
     DWORD id;
     m_hReadQueueThread = ::CreateThread(NULL, 0, ReadQueueThread, (LPVOID)this, 0, &id);

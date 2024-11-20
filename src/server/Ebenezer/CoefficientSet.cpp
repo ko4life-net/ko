@@ -40,7 +40,7 @@ CCoefficientSet::CCoefficientSet(CDatabase * pdb)
 }
 
 CString CCoefficientSet::GetDefaultConnect() {
-    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CCoefficientSet::GetDefaultSQL() {

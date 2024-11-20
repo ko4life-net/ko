@@ -20,6 +20,8 @@
 #include "N3Base/N3SndObjStream.h"
 #include "N3Base/N3SndMgr.h"
 
+#include "Ini.h"
+
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
@@ -120,24 +122,23 @@ void CGameProcLogIn::Init() {
     s_pUIMgr->SetFocusedUI((CN3UIBase *)m_pUILogIn);
 
     // Socket connection..
-    std::string  fsIniFile = (CN3Base::PathGet() / "Server.ini").string();
-    const char * pszIniFile = fsIniFile.c_str();
+    CIni ini(CN3Base::PathGet() / "Server.ini", false);
 
-    int iServerCount = GetPrivateProfileInt("Server", "Count", 0, pszIniFile);
+    int iServerCount = ini.GetInt("Server", "Count", 0);
 
-    char szIPs[256][32]{};
+    std::vector<std::string> vIpAddrs(iServerCount, "");
     for (int i = 0; i < iServerCount; i++) {
-        std::string szKey = std::format("IP{:d}", i);
-        GetPrivateProfileString("Server", szKey.c_str(), "", szIPs[i], sizeof(szIPs[i]), pszIniFile);
-    }
-    int iServer = -1;
-    if (iServerCount > 0) {
-        iServer = rand() % iServerCount;
+        vIpAddrs[i] = ini.GetString("Server", std::format("IP{:d}", i), "");
     }
 
-    if (iServer >= 0 && lstrlen(szIPs[iServer])) {
+    std::string szServerIpAddr;
+    if (iServerCount > 0) {
+        szServerIpAddr = vIpAddrs[rand() % iServerCount];
+    }
+
+    if (!szServerIpAddr.empty()) {
         s_bNeedReportConnectionClosed = false; // 서버접속이 끊어진걸 보고해야 하는지..
-        int iErr = s_pSocket->Connect(s_hWndBase, szIPs[iServer], SOCKET_PORT_LOGIN);
+        int iErr = s_pSocket->Connect(s_hWndBase, szServerIpAddr.c_str(), SOCKET_PORT_LOGIN);
         s_bNeedReportConnectionClosed = true; // 서버접속이 끊어진걸 보고해야 하는지..
         if (iErr) {
             this->ReportServerConnectionFailed("LogIn Server", iErr, true);

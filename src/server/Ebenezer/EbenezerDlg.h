@@ -136,7 +136,9 @@ class CEbenezerDlg : public CDialog {
                             int nation = 0); // pointer != NULL don`t send to that user pointer
     void           Send_AIServer(int zone, char * pBuf, int len);
     static CUser * GetUserPtr(const char * userid, BYTE type);
-    CString        GetGameDBConnectionString() const;
+
+    CString ConnectionStringGame() const;
+
     CEbenezerDlg(CWnd * pParent = NULL); // standard constructor
 
     static CEbenezerDlg * s_pInstance;
@@ -248,9 +250,7 @@ class CEbenezerDlg : public CDialog {
     CFile        m_LogFile;
     CFile        m_EvnetLogFile;
 
-    char m_szOdbcGameDsn[24];
-    char m_szOdbcGameUid[24];
-    char m_szOdbcGamePwd[24];
+    std::string m_szOdbcGameDsn, m_szOdbcGameUid, m_szOdbcGamePwd;
 
     // Dialog Data
     //{{AFX_DATA(CEbenezerDlg)
@@ -272,7 +272,7 @@ class CEbenezerDlg : public CDialog {
                                                       //}}AFX_VIRTUAL
 
   private:
-    CIni m_Ini;
+    std::unique_ptr<CIni> m_pIni;
     // Implementation
   protected:
     HICON m_hIcon;

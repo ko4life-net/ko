@@ -4,14 +4,13 @@
 #include "StdAfx.h"
 #include "Option.h"
 #include "OptionDlg.h"
+#include "Ini.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
-
-#define to_str(x) std::to_string(x).c_str()
 
 /////////////////////////////////////////////////////////////////////////////
 // CAboutDlg dialog used for App About
@@ -289,68 +288,55 @@ void COptionDlg::SettingSave(const fs::path & fsIniFile) {
     m_Option.bSndDuplicated = IsDlgButtonChecked(IDC_C_SOUND_DUPLICATE) ? true : false;
     m_Option.bWindowCursor = IsDlgButtonChecked(IDC_C_CURSOR_WINDOW) ? true : false;
 
-    std::string  szIniFile = fsIniFile.string();
-    const char * pszIniFile = szIniFile.c_str();
-
-    WritePrivateProfileString("Texture", "LOD_Chr", to_str(m_Option.iTexLOD_Chr), pszIniFile);
-    WritePrivateProfileString("Texture", "LOD_Shape", to_str(m_Option.iTexLOD_Shape), pszIniFile);
-    WritePrivateProfileString("Texture", "LOD_Terrain", to_str(m_Option.iTexLOD_Terrain), pszIniFile);
-    WritePrivateProfileString("Shadow", "Use", to_str(m_Option.iUseShadow), pszIniFile);
-    WritePrivateProfileString("ViewPort", "Width", to_str(m_Option.iViewWidth), pszIniFile);
-    WritePrivateProfileString("ViewPort", "Height", to_str(m_Option.iViewHeight), pszIniFile);
-    WritePrivateProfileString("ViewPort", "ColorDepth", to_str(m_Option.iViewColorDepth), pszIniFile);
-    WritePrivateProfileString("ViewPort", "Distance", to_str(m_Option.iViewDist), pszIniFile);
-    WritePrivateProfileString("Effect", "Count", to_str(m_Option.iEffectCount), pszIniFile);
-    WritePrivateProfileString("Sound", "Distance", to_str(m_Option.iEffectSndDist), pszIniFile);
-    WritePrivateProfileString("Sound", "Bgm", to_str(m_Option.bSndBackground), pszIniFile);
-    WritePrivateProfileString("Sound", "Effect", to_str(m_Option.bSndEffect), pszIniFile);
-    WritePrivateProfileString("Sound", "Duplicate", to_str(m_Option.bSndDuplicated), pszIniFile);
-    WritePrivateProfileString("Cursor", "WindowCursor", to_str(m_Option.bWindowCursor), pszIniFile);
-    WritePrivateProfileString("Screen", "WindowMode", to_str(m_Option.bWindowMode), pszIniFile);
-    WritePrivateProfileString("WeaponEffect", "EffectVisible", to_str(m_Option.bWeaponEffect), pszIniFile);
+    CIni ini(fsIniFile, false);
+    ini.SetInt("Texture", "LOD_Chr", m_Option.iTexLOD_Chr);
+    ini.SetInt("Texture", "LOD_Shape", m_Option.iTexLOD_Shape);
+    ini.SetInt("Texture", "LOD_Terrain", m_Option.iTexLOD_Terrain);
+    ini.SetInt("Shadow", "Use", m_Option.iUseShadow);
+    ini.SetInt("ViewPort", "Width", m_Option.iViewWidth);
+    ini.SetInt("ViewPort", "Height", m_Option.iViewHeight);
+    ini.SetInt("ViewPort", "ColorDepth", m_Option.iViewColorDepth);
+    ini.SetInt("ViewPort", "Distance", m_Option.iViewDist);
+    ini.SetInt("Effect", "Count", m_Option.iEffectCount);
+    ini.SetInt("Sound", "Distance", m_Option.iEffectSndDist);
+    ini.SetBool("Sound", "Bgm", m_Option.bSndBackground);
+    ini.SetBool("Sound", "Effect", m_Option.bSndEffect);
+    ini.SetBool("Sound", "Duplicate", m_Option.bSndDuplicated);
+    ini.SetBool("Cursor", "WindowCursor", m_Option.bWindowCursor);
+    ini.SetBool("Screen", "WindowMode", m_Option.bWindowMode);
+    ini.SetBool("WeaponEffect", "EffectVisible", m_Option.bWeaponEffect);
 }
 
 void COptionDlg::SettingLoad(const fs::path & fsIniFile) {
-    std::string  szIniFile = fsIniFile.string();
-    const char * pszIniFile = szIniFile.c_str();
+    CIni ini(fsIniFile, false);
 
-    m_Option.iTexLOD_Chr = GetPrivateProfileInt("Texture", "LOD_Chr", 0, pszIniFile);
-    m_Option.iTexLOD_Shape = GetPrivateProfileInt("Texture", "LOD_Shape", 0, pszIniFile);
-    m_Option.iTexLOD_Terrain = GetPrivateProfileInt("Texture", "LOD_Terrain", 0, pszIniFile);
-    m_Option.iUseShadow = GetPrivateProfileInt("Shadow", "Use", 1, pszIniFile);
-    m_Option.iViewWidth = GetPrivateProfileInt("ViewPort", "Width", 1024, pszIniFile);
-    m_Option.iViewHeight = GetPrivateProfileInt("ViewPort", "Height", 768, pszIniFile);
-    m_Option.iViewColorDepth = GetPrivateProfileInt("ViewPort", "ColorDepth", 16, pszIniFile);
-    m_Option.iViewDist = GetPrivateProfileInt("ViewPort", "Distance", 512, pszIniFile);
-    m_Option.iEffectSndDist = GetPrivateProfileInt("Sound", "Distance", 48, pszIniFile);
-    m_Option.iEffectCount = GetPrivateProfileInt("Effect", "Count", 2000, pszIniFile);
+    m_Option.iTexLOD_Chr = ini.GetInt("Texture", "LOD_Chr", 0);
+    m_Option.iTexLOD_Shape = ini.GetInt("Texture", "LOD_Shape", 0);
+    m_Option.iTexLOD_Terrain = ini.GetInt("Texture", "LOD_Terrain", 0);
+    m_Option.iUseShadow = ini.GetInt("Shadow", "Use", 1);
+    m_Option.iViewWidth = ini.GetInt("ViewPort", "Width", 1024);
+    m_Option.iViewHeight = ini.GetInt("ViewPort", "Height", 768);
+    m_Option.iViewColorDepth = ini.GetInt("ViewPort", "ColorDepth", 16);
+    m_Option.iViewDist = ini.GetInt("ViewPort", "Distance", 512);
+    m_Option.iEffectSndDist = ini.GetInt("Sound", "Distance", 48);
+    m_Option.iEffectCount = ini.GetInt("Effect", "Count", 2000);
 
-    int iSndBackground = GetPrivateProfileInt("Sound", "Bgm", 1, pszIniFile);
-    m_Option.bSndBackground = iSndBackground ? true : false;
-    int iSndEffect = GetPrivateProfileInt("Sound", "Effect", 1, pszIniFile);
-    m_Option.bSndEffect = iSndEffect ? true : false;
-    int iSndDuplicate = GetPrivateProfileInt("Sound", "Duplicate", 0, pszIniFile);
-    m_Option.bSndDuplicated = iSndDuplicate ? true : false;
-    int iWindowCursor = GetPrivateProfileInt("Cursor", "WindowCursor", 1, pszIniFile);
-    m_Option.bWindowCursor = iWindowCursor ? true : false;
-    int iWindowMode = GetPrivateProfileInt("Screen", "WindowMode", false, pszIniFile);
-    m_Option.bWindowMode = iWindowMode ? true : false;
-    int iWeaponEffect = GetPrivateProfileInt("WeaponEffect", "EffectVisible", true, pszIniFile);
-    m_Option.bWeaponEffect = iWeaponEffect ? true : false;
+    m_Option.bSndBackground = ini.GetBool("Sound", "Bgm", true);
+    m_Option.bSndEffect = ini.GetBool("Sound", "Effect", true);
+    m_Option.bSndDuplicated = ini.GetBool("Sound", "Duplicate", false);
+    m_Option.bWindowCursor = ini.GetBool("Cursor", "WindowCursor", true);
+    m_Option.bWindowMode = ini.GetBool("Screen", "WindowMode", false);
+    m_Option.bWeaponEffect = ini.GetBool("WeaponEffect", "EffectVisible", true);
 }
 
 void COptionDlg::SettingServerLoad(const fs::path & fsIniFile) {
-    std::string  szIniFile = fsIniFile.string();
-    const char * pszIniFile = szIniFile.c_str();
-
-    m_ServerOption.Version = GetPrivateProfileInt("Version", "Files", m_ServerOption.Version, pszIniFile);
+    CIni ini(fsIniFile, false);
+    m_ServerOption.Version = ini.GetInt("Version", "Files", m_ServerOption.Version);
 }
 
 void COptionDlg::SettingServerSave(const fs::path & fsIniFile) {
-    std::string  szIniFile = fsIniFile.string();
-    const char * pszIniFile = szIniFile.c_str();
-
-    WritePrivateProfileString("Version", "Files", to_str(m_ServerOption.Version), pszIniFile);
+    CIni ini(fsIniFile, false);
+    ini.SetInt("Version", "Files", m_ServerOption.Version);
 }
 
 void COptionDlg::SettingUpdate() {
@@ -427,10 +413,7 @@ void COptionDlg::OnBVersion() {
 }
 
 void COptionDlg::VersionUpdate(const fs::path & fsIniFile, int Version) {
-    std::string  szIniFile = fsIniFile.string();
-    const char * pszIniFile = szIniFile.c_str();
-
+    CIni ini(fsIniFile, false);
     m_ServerOption.Version = Version;
-    std::string szVersion = std::to_string(m_ServerOption.Version);
-    WritePrivateProfileString("Version", "Files", szVersion.c_str(), pszIniFile);
+    ini.SetInt("Version", "Files", Version);
 }

@@ -46,7 +46,7 @@ CHomeSet::CHomeSet(CDatabase * pdb)
 }
 
 CString CHomeSet::GetDefaultConnect() {
-    return CEbenezerDlg::GetInstance()->GetGameDBConnectionString();
+    return CEbenezerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CHomeSet::GetDefaultSQL() {

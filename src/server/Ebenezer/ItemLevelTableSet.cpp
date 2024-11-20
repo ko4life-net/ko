@@ -47,7 +47,7 @@ CItemLevelTableSet::CItemLevelTableSet(CDatabase * pdb)
 }
 
 CString CItemLevelTableSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=Repent;UID=Repent;PWD=Repent");
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CItemLevelTableSet::GetDefaultSQL() {

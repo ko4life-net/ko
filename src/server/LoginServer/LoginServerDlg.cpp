@@ -8,6 +8,7 @@
 #include "VersionSet.h"
 #include "SettingDlg.h"
 #include "User.h"
+#include "Ini.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -20,17 +21,13 @@ CIOCPort CLoginServerDlg::m_Iocport;
 /////////////////////////////////////////////////////////////////////////////
 // CLoginServerDlg dialog
 
+CLoginServerDlg * CLoginServerDlg::s_pInstance = nullptr;
+
 CLoginServerDlg::CLoginServerDlg(CWnd * pParent /*=NULL*/)
     : CDialog(CLoginServerDlg::IDD, pParent) {
-    //{{AFX_DATA_INIT(CLoginServerDlg)
-    // NOTE: the ClassWizard will add member initialization here
-    //}}AFX_DATA_INIT
+    s_pInstance = this;
 
     m_nLastVersion = 0;
-    memset(m_ODBCName, 0, sizeof(m_ODBCName));
-    memset(m_ODBCLogin, 0, sizeof(m_ODBCLogin));
-    memset(m_ODBCPwd, 0, sizeof(m_ODBCPwd));
-    memset(m_TableName, 0, sizeof(m_TableName));
 
     m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -79,9 +76,8 @@ BOOL CLoginServerDlg::OnInitDialog() {
         return FALSE;
     }
 
-    char szConnectionString[256]{};
-    sprintf(szConnectionString, "ODBC;DSN=%s;UID=%s;PWD=%s", m_ODBCName, m_ODBCLogin, m_ODBCPwd);
-    if (!m_DBProcess.InitDatabase(szConnectionString)) {
+    CString szConnStr = ConnectionStringLogin();
+    if (!m_DBProcess.InitDatabase(szConnStr)) {
         AfxMessageBox("Database Connection Fail!!");
         AfxPostQuitMessage(0);
         return FALSE;
@@ -92,7 +88,7 @@ BOOL CLoginServerDlg::OnInitDialog() {
         return FALSE;
     }
 
-    m_OutputList.AddString(szConnectionString);
+    m_OutputList.AddString(szConnStr);
     std::string szVersion = std::format("Latest Version : {:d}", m_nLastVersion);
     m_OutputList.AddString(szVersion.c_str());
 
@@ -102,35 +98,27 @@ BOOL CLoginServerDlg::OnInitDialog() {
 }
 
 BOOL CLoginServerDlg::GetInfoFromIni() {
-    std::string  szIniFile = (n3std::get_app_dir() / "Version.ini").string();
-    const char * pszIniFile = szIniFile.c_str();
+    CIni ini("Server.ini");
 
-    char szBuff[500]{};
-    GetPrivateProfileString("DOWNLOAD", "URL", "ftp.your-site.net", szBuff, sizeof(szBuff), pszIniFile);
-    m_szFtpUrl = szBuff;
+    m_szFtpUrl = ini.GetString("DOWNLOAD", "URL", "ftp.your-site.net");
+    m_szFtpPath = ini.GetString("DOWNLOAD", "PATH", "/");
 
-    memset(szBuff, 0, sizeof(szBuff));
-    GetPrivateProfileString("DOWNLOAD", "PATH", "/", szBuff, sizeof(szBuff), pszIniFile);
-    m_szFtpPath = szBuff;
+    m_szOdbcLogDsn = ini.GetString("ODBC", "LOG_DSN", "kodb");
+    m_szOdbcLogUid = ini.GetString("ODBC", "LOG_UID", "kodb_user");
+    m_szOdbcLogPwd = ini.GetString("ODBC", "LOG_PWD", "kodb_user");
+    m_szVersionTable = ini.GetString("ODBC", "TABLE", "VERSION");
 
-    GetPrivateProfileString("ODBC", "DSN", "kodb", m_ODBCName, sizeof(m_ODBCName), pszIniFile);
-    GetPrivateProfileString("ODBC", "UID", "kodb_user", m_ODBCLogin, sizeof(m_ODBCLogin), pszIniFile);
-    GetPrivateProfileString("ODBC", "PWD", "kodb_user", m_ODBCPwd, sizeof(m_ODBCPwd), pszIniFile);
-    GetPrivateProfileString("ODBC", "TABLE", "VERSION", m_TableName, sizeof(m_TableName), pszIniFile);
-
-    memset(szBuff, 0, sizeof(szBuff));
-    GetPrivateProfileString("CONFIGURATION", "DEFAULT_PATH", "", szBuff, sizeof(szBuff), pszIniFile);
-    m_fsDefaultDir = szBuff;
+    m_fsDefaultDir = ini.GetString("CONFIGURATION", "DEFAULT_PATH", "");
     if (!m_fsDefaultDir.is_absolute()) {
         m_fsDefaultDir = n3std::get_app_dir().normalize();
     }
 
-    m_nServerCount = GetPrivateProfileInt("SERVER_LIST", "COUNT", 1, pszIniFile);
+    m_nServerCount = ini.GetInt("SERVER_LIST", "COUNT", 1);
 
     if (m_szFtpUrl.empty() || m_szFtpPath.empty()) {
         return FALSE;
     }
-    if (!strlen(m_ODBCName) || !strlen(m_ODBCLogin) || !strlen(m_ODBCPwd) || !strlen(m_TableName)) {
+    if (m_szOdbcLogDsn.empty() || m_szOdbcLogUid.empty() || m_szOdbcLogPwd.empty() || m_szVersionTable.empty()) {
         return FALSE;
     }
     if (m_nServerCount <= 0) {
@@ -141,12 +129,11 @@ BOOL CLoginServerDlg::GetInfoFromIni() {
     for (int i = 0; i < m_nServerCount; i++) {
         _SERVER_INFO * pInfo = new _SERVER_INFO;
         std::string    szKeyIp = std::format("SERVER_{:02d}", i);
-        GetPrivateProfileString("SERVER_LIST", szKeyIp.c_str(), "127.0.0.1", pInfo->strServerIP,
-                                sizeof(pInfo->strServerIP), pszIniFile);
+        ini.GetString("SERVER_LIST", szKeyIp, "127.0.0.1").copy(pInfo->strServerIP, sizeof(pInfo->strServerIP) - 1);
 
         std::string szKeyServerName = std::format("NAME_{:02d}", i);
-        GetPrivateProfileString("SERVER_LIST", szKeyServerName.c_str(), szKeyIp.c_str(), pInfo->strServerName,
-                                sizeof(pInfo->strServerName), pszIniFile);
+        ini.GetString("SERVER_LIST", szKeyServerName, szKeyIp)
+            .copy(pInfo->strServerName, sizeof(pInfo->strServerName) - 1);
         m_ServerList.emplace_back(pInfo);
     }
 
@@ -208,11 +195,19 @@ BOOL CLoginServerDlg::DestroyWindow() {
 }
 
 void CLoginServerDlg::OnVersionSetting() {
-    fs::path    fsIniPath = n3std::get_app_dir() / "Version.ini";
     CSettingDlg dlg(m_nLastVersion, this);
     dlg.m_fsDefaultDir = m_fsDefaultDir;
     if (dlg.DoModal() == IDOK) {
         m_fsDefaultDir = dlg.m_fsDefaultDir;
-        WritePrivateProfileStringW(L"CONFIGURATION", L"DEFAULT_PATH", m_fsDefaultDir.c_str(), fsIniPath.c_str());
+
+        CIni ini("Server.ini");
+        ini.SetString("CONFIGURATION", "DEFAULT_PATH", m_fsDefaultDir.string().c_str());
     }
+}
+
+CString CLoginServerDlg::ConnectionStringLogin() const {
+    static CString szConnStr =
+        std::format("ODBC;DSN={:s};UID={:s};PWD={:s}", m_szOdbcLogDsn, m_szOdbcLogUid, m_szOdbcLogPwd).c_str();
+
+    return szConnStr;
 }

@@ -26,12 +26,12 @@ BOOL CDBAgent::DatabaseInit() {
     /////////////////////////////////////////////////////////////////////////////////////
     m_pMain = (CItemManagerDlg *)AfxGetApp()->GetMainWnd();
 
-    CString strConnect;
-    strConnect.Format(_T("ODBC;DSN=%s;UID=%s;PWD=%s"), m_pMain->m_strGameDSN, m_pMain->m_strGameUID,
-                      m_pMain->m_strGamePWD);
+    CString szConnStr = std::format("ODBC;DSN={:s};UID={:s};PWD={:s}", m_pMain->m_szOdbcGameDsn,
+                                    m_pMain->m_szOdbcGameUid, m_pMain->m_szOdbcGamePwd)
+                            .c_str();
 
     m_GameDB.SetLoginTimeout(10);
-    if (!m_GameDB.Open(NULL, FALSE, FALSE, strConnect)) {
+    if (!m_GameDB.Open(NULL, FALSE, FALSE, szConnStr)) {
         AfxMessageBox("GameDB SQL Connection Fail...");
         return FALSE;
     }
@@ -39,7 +39,7 @@ BOOL CDBAgent::DatabaseInit() {
     return TRUE;
 }
 
-void CDBAgent::ReConnectODBC(CDatabase * m_db, char * strdb, char * strname, char * strpwd) {
+void CDBAgent::ReConnectODBC(CDatabase * pDb, const CString & szConnStr) {
     char strlog[256];
     memset(strlog, 0x00, 256);
     CTime t = CTime::GetCurrentTime();
@@ -47,24 +47,20 @@ void CDBAgent::ReConnectODBC(CDatabase * m_db, char * strdb, char * strname, cha
             t.GetMinute());
     m_pMain->m_ItemLogFile.Write(strlog, strlen(strlog));
 
-    // DATABASE 연결...
-    CString strConnect;
-    strConnect.Format(_T("DSN=%s;UID=%s;PWD=%s"), strdb, strname, strpwd);
     int iCount = 0;
-
     do {
         iCount++;
         if (iCount >= 4) {
             break;
         }
 
-        m_db->SetLoginTimeout(10);
+        pDb->SetLoginTimeout(10);
 
         try {
-            m_db->OpenEx((LPCTSTR)strConnect, CDatabase::noOdbcDialog);
+            pDb->OpenEx(szConnStr, CDatabase::noOdbcDialog);
         } catch (CDBException * e) {
             e->Delete();
         }
 
-    } while (!m_db->IsOpen());
+    } while (!pDb->IsOpen());
 }

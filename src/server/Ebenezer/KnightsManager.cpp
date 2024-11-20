@@ -24,11 +24,13 @@ static char THIS_FILE[] = __FILE__;
 CKnightsManager::CKnightsManager() {
     m_pMain = NULL;
 
-    /*    CString strConnect;
-    strConnect.Format (_T("ODBC;DSN=%s;UID=%s;PWD=%s"), "kodb", "kodb_user", "kodb_user");
-    m_KnightsDB.SetLoginTimeout (10);
-    if( !m_KnightsDB.Open(NULL,FALSE,FALSE,strConnect) )
-        AfxMessageBox("KnightsDB Connection Fail...");    */
+    /*
+    CString szConnStr = CServerDlg::GetInstance()->ConnectionStringGame();
+    m_KnightsDB.SetLoginTimeout(10);
+    if (!m_KnightsDB.Open(NULL, FALSE, FALSE, szConnStr)) {
+        AfxMessageBox("KnightsDB Connection Fail...");
+    }
+    */
 }
 
 CKnightsManager::~CKnightsManager() {}

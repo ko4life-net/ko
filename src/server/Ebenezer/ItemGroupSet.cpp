@@ -57,7 +57,7 @@ CItemGroupSet::CItemGroupSet(CDatabase * pdb)
 }
 
 CString CItemGroupSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CItemGroupSet::GetDefaultSQL() {

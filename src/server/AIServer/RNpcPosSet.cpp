@@ -44,7 +44,7 @@ CRNpcPosSet::CRNpcPosSet(CDatabase * pdb)
 }
 
 CString CRNpcPosSet::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CRNpcPosSet::GetDefaultSQL() {

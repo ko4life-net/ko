@@ -8,11 +8,11 @@ class CLoginServerDlg;
 class CDBProcess {
   public:
     BOOL IsCurrentUser(const char * szAccountId, char * szServerIp, int & nServerNo);
-    void ReConnectODBC(CDatabase * pDb, const char * szDsn, const char * szUid, const char * szPwd);
+    void ReConnectODBC(CDatabase * pDb, const CString & szConnStr);
     BOOL DeleteVersion(const fs::path & fsFile);
     BOOL InsertVersion(short sVersion, const fs::path & fsFile, const fs::path & fsPatchFileName,
                        short sHistoryVersion);
-    BOOL InitDatabase(char * szConnectString);
+    BOOL InitDatabase(const CString & szConnStr);
     int  MgameLogin(const char * szId, const char * szPwd);
     int  AccountLogin(const char * szId, const char * szPwd);
     BOOL LoadVersionList();

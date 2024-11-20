@@ -33,7 +33,7 @@ CMakeDefensiveTableSet::CMakeDefensiveTableSet(CDatabase * pdb)
 }
 
 CString CMakeDefensiveTableSet::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CMakeDefensiveTableSet::GetDefaultSQL() {

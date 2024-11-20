@@ -28,7 +28,7 @@ CMakeItemTableSet::CMakeItemTableSet(CDatabase * pdb)
 }
 
 CString CMakeItemTableSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=kodb;UID=kodb_user;PWD=kodb_user");
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CMakeItemTableSet::GetDefaultSQL() {

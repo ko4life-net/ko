@@ -4,6 +4,7 @@
 #pragma once
 
 #include "Define.h"
+#include "Resource.h"
 #include "IOCPort.h"
 #include "DBProcess.h"
 #include "STLMap.h"
@@ -18,6 +19,10 @@ typedef std::vector<_SERVER_INFO *>      ServerInfoList;
 class CLoginServerDlg : public CDialog {
     // Construction
   public:
+    static CLoginServerDlg * GetInstance() { return s_pInstance; }
+
+    CString ConnectionStringLogin() const;
+
     BOOL GetInfoFromIni();
 
     CLoginServerDlg(CWnd * pParent = NULL); // standard constructor
@@ -32,10 +37,9 @@ class CLoginServerDlg : public CDialog {
 
     short m_nLastVersion;
 
-    char m_ODBCName[32];
-    char m_ODBCLogin[32];
-    char m_ODBCPwd[32];
-    char m_TableName[32];
+    std::string m_szOdbcLogDsn, m_szOdbcLogUid, m_szOdbcLogPwd;
+
+    std::string m_szVersionTable;
 
     VersionInfoList m_VersionList;
     ServerInfoList  m_ServerList;
@@ -64,6 +68,8 @@ class CLoginServerDlg : public CDialog {
     // Implementation
   protected:
     HICON m_hIcon;
+
+    static CLoginServerDlg * s_pInstance;
 
     // Generated message map functions
     //{{AFX_MSG(CLoginServerDlg)

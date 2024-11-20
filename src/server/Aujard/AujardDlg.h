@@ -46,9 +46,13 @@ class CAujardDlg : public CDialog {
     void         UserLogOut(char * pBuf);
     CAujardDlg(CWnd * pParent = NULL); // standard constructor
 
-    BOOL    InitializeMMF();
-    void    SelectCharacter(char * pBuf);
-    CString GetGameDBConnectionString() const;
+    BOOL InitializeMMF();
+    void SelectCharacter(char * pBuf);
+
+    CString CreateConnectionString(std::string_view szDsn, std::string_view szUid, std::string_view szPwd) const;
+    CString ConnectionStringGame() const;
+    CString ConnectionStringAccount() const;
+    CString ConnectionStringLogin() const;
 
     CSharedMemQueue m_LoggerSendQueue;
     CSharedMemQueue m_LoggerRecvQueue;
@@ -61,10 +65,11 @@ class CAujardDlg : public CDialog {
 
     ItemtableArray m_ItemtableArray;
 
-    int  m_nServerNo, m_nZoneNo;
-    char m_szOdbcGameDsn[24], m_szOdbcAccountDsn[24], m_szOdbcLogDsn[24];
-    char m_szOdbcGameUid[24], m_szOdbcAccountUid[24], m_szOdbcLogUid[24];
-    char m_szOdbcGamePwd[24], m_szOdbcAccountPwd[24], m_szOdbcLogPwd[24];
+    int m_nServerNo, m_nZoneNo;
+
+    std::string m_szOdbcGameDsn, m_szOdbcGameUid, m_szOdbcGamePwd;
+    std::string m_szOdbcAccountDsn, m_szOdbcAccountUid, m_szOdbcAccountPwd;
+    std::string m_szOdbcLogDsn, m_szOdbcLogUid, m_szOdbcLogPwd;
 
     CFile m_LogFile;
 

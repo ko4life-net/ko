@@ -52,7 +52,7 @@ CBaseItemTableSet::CBaseItemTableSet(CDatabase * pdb)
 }
 
 CString CBaseItemTableSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=Repent;UID=Repent;PWD=Repent");
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CBaseItemTableSet::GetDefaultSQL() {

@@ -35,7 +35,7 @@ CZoneInfoSet::CZoneInfoSet(CDatabase * pdb)
 }
 
 CString CZoneInfoSet::GetDefaultConnect() {
-    return CServerDlg::GetInstance()->GetGameDBConnectionString();
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CZoneInfoSet::GetDefaultSQL() {

@@ -57,7 +57,7 @@ CPreFix1TableSet::CPreFix1TableSet(CDatabase * pdb)
 }
 
 CString CPreFix1TableSet::GetDefaultConnect() {
-    return _T("ODBC;DSN=Repent;UID=Repent;PWD=Repent");
+    return CServerDlg::GetInstance()->ConnectionStringGame();
 }
 
 CString CPreFix1TableSet::GetDefaultSQL() {
