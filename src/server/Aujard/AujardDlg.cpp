@@ -5,6 +5,8 @@
 #include "Aujard.h"
 #include "AujardDlg.h"
 #include "ItemTableSet.h"
+#include "Ini.h"
+
 #include <process.h>
 
 #ifdef _DEBUG
@@ -173,23 +175,20 @@ BOOL CAujardDlg::OnInitDialog() {
         return FALSE;
     }
 
-    std::string  szIniFile = (n3std::get_app_dir() / "Aujard.ini").string();
-    const char * pszIniFile = szIniFile.c_str();
+    CIni ini("Server.ini");
 
-    GetPrivateProfileString("ODBC", "ACCOUNT_DSN", "kodb", m_szOdbcAccountDsn, sizeof(m_szOdbcAccountDsn), pszIniFile);
-    GetPrivateProfileString("ODBC", "ACCOUNT_UID", "kodb_user", m_szOdbcAccountUid, sizeof(m_szOdbcAccountUid),
-                            pszIniFile);
-    GetPrivateProfileString("ODBC", "ACCOUNT_PWD", "kodb_user", m_szOdbcAccountPwd, sizeof(m_szOdbcAccountPwd),
-                            pszIniFile);
-    GetPrivateProfileString("ODBC", "GAME_DSN", "kodb", m_szOdbcGameDsn, sizeof(m_szOdbcGameDsn), pszIniFile);
-    GetPrivateProfileString("ODBC", "GAME_UID", "kodb_user", m_szOdbcGameUid, sizeof(m_szOdbcGameUid), pszIniFile);
-    GetPrivateProfileString("ODBC", "GAME_PWD", "kodb_user", m_szOdbcGamePwd, sizeof(m_szOdbcGamePwd), pszIniFile);
-    GetPrivateProfileString("ODBC", "LOG_DSN", "kodb", m_szOdbcLogDsn, sizeof(m_szOdbcLogDsn), pszIniFile);
-    GetPrivateProfileString("ODBC", "LOG_UID", "kodb_user", m_szOdbcLogUid, sizeof(m_szOdbcLogUid), pszIniFile);
-    GetPrivateProfileString("ODBC", "LOG_PWD", "kodb_user", m_szOdbcLogPwd, sizeof(m_szOdbcLogPwd), pszIniFile);
+    ini.GetString("ODBC", "ACCOUNT_DSN", "kodb", m_szOdbcAccountDsn, sizeof(m_szOdbcAccountDsn));
+    ini.GetString("ODBC", "ACCOUNT_UID", "kodb_user", m_szOdbcAccountUid, sizeof(m_szOdbcAccountUid));
+    ini.GetString("ODBC", "ACCOUNT_PWD", "kodb_user", m_szOdbcAccountPwd, sizeof(m_szOdbcAccountPwd));
+    ini.GetString("ODBC", "GAME_DSN", "kodb", m_szOdbcGameDsn, sizeof(m_szOdbcGameDsn));
+    ini.GetString("ODBC", "GAME_UID", "kodb_user", m_szOdbcGameUid, sizeof(m_szOdbcGameUid));
+    ini.GetString("ODBC", "GAME_PWD", "kodb_user", m_szOdbcGamePwd, sizeof(m_szOdbcGamePwd));
+    ini.GetString("ODBC", "LOG_DSN", "kodb", m_szOdbcLogDsn, sizeof(m_szOdbcLogDsn));
+    ini.GetString("ODBC", "LOG_UID", "kodb_user", m_szOdbcLogUid, sizeof(m_szOdbcLogUid));
+    ini.GetString("ODBC", "LOG_PWD", "kodb_user", m_szOdbcLogPwd, sizeof(m_szOdbcLogPwd));
 
-    m_nServerNo = GetPrivateProfileInt("ZONE_INFO", "GROUP_INFO", 1, pszIniFile);
-    m_nZoneNo = GetPrivateProfileInt("ZONE_INFO", "ZONE_INFO", 1, pszIniFile);
+    m_nServerNo = ini.GetInt("ZONE_INFO", "GROUP_INFO", 1);
+    m_nZoneNo = ini.GetInt("ZONE_INFO", "ZONE_INFO", 1);
 
     if (!m_DBAgent.DatabaseInit()) {
         AfxPostQuitMessage(0);

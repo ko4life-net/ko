@@ -4,10 +4,12 @@
 #include "StdAfx.h"
 #include "Launcher.h"
 #include "LauncherDlg.h"
-#include <wininet.h>
+#include "Ini.h"
 
 #include "PacketDef.h"
 #include "APISocket.h"
+
+#include <wininet.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -126,21 +128,19 @@ BOOL CLauncherDlg::OnInitDialog() {
         exit(-1);
     }
 
-    // 소켓 접속..
-    std::string  szIniFile = (fs::current_path() / "Server.ini").string();
-    const char * pszIniFile = szIniFile.c_str();
+    CIni ini("Server.ini");
 
-    int iServerCount = GetPrivateProfileInt("Server", "Count", 0, pszIniFile);
+    int iServerCount = ini.GetInt("Server", "Count", 0);
 
-    char szIPs[256][128]{};
+    std::vector<std::string> vIpsAddrs(iServerCount, "");
     for (int i = 0; i < iServerCount; i++) {
         std::string szKey = std::format("IP{:d}", i);
-        GetPrivateProfileString("Server", szKey.c_str(), "", szIPs[i], sizeof(szIPs[i]), pszIniFile);
+        vIpsAddrs[i] = ini.GetString("Server", szKey.c_str(), "");
     }
 
     if (iServerCount > 0) {
         int iServer = rand() % iServerCount;
-        while (!m_pSocket->Connect(m_hWnd, szIPs[iServer], CONNECT_PORT)) {
+        while (!m_pSocket->Connect(m_hWnd, vIpsAddrs[iServer].c_str(), CONNECT_PORT)) {
             int     iErrCode = GetLastError();
             CString szFmt;
             szFmt.LoadString(IDS_FMT_FAILED_CONNECT_LOGIN_SERVER);
@@ -358,9 +358,8 @@ void CLauncherDlg::DownloadProcess() {
 
     FTP_Close();
 
-    //std::string szIniFile = (n3std::get_app_path() / "Server.ini").string();
-    //std::string szVersion = std::to_string(m_nServerVersion);
-    //WritePrivateProfileString("VERSION", "CURRENT", szVersion.c_str(), szIniFile.c_str());
+    //CIni ini("Server.ini");
+    //ini.SetString("VERSION", "CURRENT", std::to_string(m_nServerVersion).c_str());
 
     if (true == bExtractSuccess && m_hRegistryKey) // 압축 풀기와 쓰기, 압축 파일 삭제에 성공하면 버전을 쓰고..
     {

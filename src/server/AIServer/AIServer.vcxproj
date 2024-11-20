@@ -122,12 +122,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="$(SrcDir)\common\Implode.cpp" />
+    <ClCompile Include="$(SrcDir)\common\Ini.cpp" />
     <ClCompile Include="CircularBuffer.cpp" />
     <ClCompile Include="Compress.cpp" />
     <ClCompile Include="Extern.cpp" />
     <ClCompile Include="GameSocket.cpp" />
     <ClCompile Include="global.cpp" />
-    <ClCompile Include="Ini.cpp" />
     <ClCompile Include="IOCPort.cpp" />
     <ClCompile Include="IOCPSocket2.cpp" />
     <ClCompile Include="MagicProcess.cpp" />
@@ -169,13 +169,13 @@
   <ItemGroup>
     <ClInclude Include="$(SrcDir)\common\Implode.h" />
     <ClInclude Include="$(SrcDir)\common\N3Utils.h" />
+    <ClInclude Include="$(SrcDir)\common\Ini.h" />
     <ClInclude Include="CircularBuffer.h" />
     <ClInclude Include="Compress.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Extern.h" />
     <ClInclude Include="GameSocket.h" />
     <ClInclude Include="global.h" />
-    <ClInclude Include="Ini.h" />
     <ClInclude Include="IOCPort.h" />
     <ClInclude Include="IOCPSocket2.h" />
     <ClInclude Include="MagicProcess.h" />

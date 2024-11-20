@@ -120,6 +120,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CircularBuffer.cpp" />
+    <ClCompile Include="$(SrcDir)\common\Ini.cpp" />
     <ClCompile Include="DBProcess.cpp" />
     <ClCompile Include="IOCPort.cpp" />
     <ClCompile Include="IOCPSocket2.cpp" />
@@ -135,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(SrcDir)\common\N3Utils.h" />
+    <ClInclude Include="$(SrcDir)\common\Ini.h" />
     <ClInclude Include="CircularBuffer.h" />
     <ClInclude Include="DBProcess.h" />
     <ClInclude Include="Define.h" />

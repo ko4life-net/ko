@@ -117,6 +117,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="$(SrcDir)\common\Ini.cpp" />
     <ClCompile Include="DBAgent.cpp" />
     <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="ItemManagerDlg.cpp" />
@@ -128,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(SrcDir)\common\N3Utils.h" />
+    <ClInclude Include="$(SrcDir)\common\Ini.h" />
     <ClInclude Include="DBAgent.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="ItemManager.h" />

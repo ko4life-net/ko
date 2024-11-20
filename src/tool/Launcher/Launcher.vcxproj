@@ -119,6 +119,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="$(SrcDir)\common\Ini.cpp" />
     <ClCompile Include="APISocket.cpp" />
     <ClCompile Include="BackgroundUtil.cpp" />
     <ClCompile Include="BB_CircularBuffer.cpp" />
@@ -132,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(SrcDir)\common\N3Utils.h" />
+    <ClInclude Include="$(SrcDir)\common\Ini.h" />
     <ClInclude Include="APISocket.h" />
     <ClInclude Include="BackgroundUtil.h" />
     <ClInclude Include="BB_CircularBuffer.h" />

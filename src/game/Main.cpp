@@ -18,6 +18,8 @@
 #include "N3Base/N3SndMgr.h"
 #include "N3Base/N3UIEdit.h"
 
+#include "Ini.h"
+
 #ifdef _DEBUG
 #include "N3UIDebug.h"
 #endif
@@ -316,11 +318,10 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
     CN3Base::PathSet(fs::current_path());
 
-    // 세팅 읽기..
-    std::string  szIniFile = (CN3Base::PathGet() / "Options.ini").string();
-    const char * pszIniFile = szIniFile.c_str();
+    // Configuration file
+    CIni ini(CN3Base::PathGet() / "Option.ini", false);
 
-    CN3Base::s_Options.iTexLOD_Chr = GetPrivateProfileInt("Texture", "LOD_Chr", 0, pszIniFile);
+    CN3Base::s_Options.iTexLOD_Chr = ini.GetInt("Texture", "LOD_Chr", 0);
     if (CN3Base::s_Options.iTexLOD_Chr < 0) {
         CN3Base::s_Options.iTexLOD_Chr = 0;
     }
@@ -328,7 +329,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
         CN3Base::s_Options.iTexLOD_Chr = 1;
     }
 
-    CN3Base::s_Options.iTexLOD_Shape = GetPrivateProfileInt("Texture", "LOD_Shape", 0, pszIniFile);
+    CN3Base::s_Options.iTexLOD_Shape = ini.GetInt("Texture", "LOD_Shape", 0);
     if (CN3Base::s_Options.iTexLOD_Shape < 0) {
         CN3Base::s_Options.iTexLOD_Shape = 0;
     }
@@ -336,7 +337,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
         CN3Base::s_Options.iTexLOD_Shape = 1;
     }
 
-    CN3Base::s_Options.iTexLOD_Terrain = GetPrivateProfileInt("Texture", "LOD_Terrain", 0, pszIniFile);
+    CN3Base::s_Options.iTexLOD_Terrain = ini.GetInt("Texture", "LOD_Terrain", 0);
     if (CN3Base::s_Options.iTexLOD_Terrain < 0) {
         CN3Base::s_Options.iTexLOD_Terrain = 0;
     }
@@ -344,10 +345,10 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
         CN3Base::s_Options.iTexLOD_Terrain = 1;
     }
 
-    CN3Base::s_Options.iUseShadow = GetPrivateProfileInt("Shadow", "Use", 1, pszIniFile);
+    CN3Base::s_Options.iUseShadow = ini.GetInt("Shadow", "Use", 1);
 
-    CN3Base::s_Options.iViewWidth = GetPrivateProfileInt("ViewPort", "Width", 1024, pszIniFile);
-    CN3Base::s_Options.iViewHeight = GetPrivateProfileInt("ViewPort", "Height", 768, pszIniFile);
+    CN3Base::s_Options.iViewWidth = ini.GetInt("ViewPort", "Width", 1024);
+    CN3Base::s_Options.iViewHeight = ini.GetInt("ViewPort", "Height", 768);
     if (1024 == CN3Base::s_Options.iViewWidth) {
         CN3Base::s_Options.iViewHeight = 768;
     } else if (1280 == CN3Base::s_Options.iViewWidth) {
@@ -359,11 +360,11 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
         CN3Base::s_Options.iViewHeight = 768;
     }
 
-    CN3Base::s_Options.iViewColorDepth = GetPrivateProfileInt("ViewPort", "ColorDepth", 16, pszIniFile);
+    CN3Base::s_Options.iViewColorDepth = ini.GetInt("ViewPort", "ColorDepth", 16);
     if (CN3Base::s_Options.iViewColorDepth != 16 && CN3Base::s_Options.iViewColorDepth != 32) {
         CN3Base::s_Options.iViewColorDepth = 16;
     }
-    CN3Base::s_Options.iViewDist = GetPrivateProfileInt("ViewPort", "Distance", 512, pszIniFile);
+    CN3Base::s_Options.iViewDist = ini.GetInt("ViewPort", "Distance", 512);
     if (CN3Base::s_Options.iViewDist < 256) {
         CN3Base::s_Options.iViewDist = 256;
     }
@@ -371,7 +372,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
         CN3Base::s_Options.iViewDist = 512;
     }
 
-    CN3Base::s_Options.iEffectSndDist = GetPrivateProfileInt("Sound", "Distance", 48, pszIniFile);
+    CN3Base::s_Options.iEffectSndDist = ini.GetInt("Sound", "Distance", 48);
     if (CN3Base::s_Options.iEffectSndDist < 20) {
         CN3Base::s_Options.iEffectSndDist = 20;
     }
@@ -379,17 +380,10 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
         CN3Base::s_Options.iEffectSndDist = 48;
     }
 
-    int iSndEnable = GetPrivateProfileInt("Sound", "Enable", 1, pszIniFile);
-    CN3Base::s_Options.bSndEnable = (iSndEnable) ? true : false; // 사운드...
-
-    int iSndDuplicate = GetPrivateProfileInt("Sound", "Duplicate", 0, pszIniFile);
-    CN3Base::s_Options.bSndDuplicated = (iSndDuplicate) ? true : false; // 사운드...
-
-    int iWindowCursor = GetPrivateProfileInt("Cursor", "WindowCursor", 1, pszIniFile);
-    CN3Base::s_Options.bWindowCursor = (iWindowCursor) ? true : false; // cursor...
-
-    int iWindowMode = GetPrivateProfileInt("Screen", "WindowMode", 0, pszIniFile);
-    CGameProcedure::s_bWindowed = iWindowMode ? true : false;
+    CN3Base::s_Options.bSndEnable = ini.GetBool("Sound", "Enable", true);
+    CN3Base::s_Options.bSndDuplicated = ini.GetBool("Sound", "Duplicate", false);
+    CN3Base::s_Options.bWindowCursor = ini.GetBool("Cursor", "WindowCursor", true);
+    CGameProcedure::s_bWindowed = ini.GetBool("Screen", "WindowMode", false);
 #if _DEBUG
     CGameProcedure::s_bWindowed = true;
 #endif // #if _DEBUG

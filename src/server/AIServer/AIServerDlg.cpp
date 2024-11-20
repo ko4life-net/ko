@@ -2547,13 +2547,12 @@ void CServerDlg::ClostSocket(int zonenumber) {
 }
 
 void CServerDlg::GetServerInfoIni() {
-    CIni inifile;
-    inifile.SetPath("server.ini");
-    m_byZone = inifile.GetProfileInt("SERVER", "ZONE", 1);
+    CIni inifile("Server.ini");
+    m_byZone = inifile.GetInt("SERVER", "ZONE", 1);
 
-    inifile.GetProfileString("ODBC", "GAME_DSN", "kodb", m_szOdbcGameDsn, sizeof(m_szOdbcGameDsn));
-    inifile.GetProfileString("ODBC", "GAME_UID", "kodb_user", m_szOdbcGameUid, sizeof(m_szOdbcGameUid));
-    inifile.GetProfileString("ODBC", "GAME_PWD", "kodb_user", m_szOdbcGamePwd, sizeof(m_szOdbcGamePwd));
+    inifile.GetString("ODBC", "GAME_DSN", "kodb", m_szOdbcGameDsn, sizeof(m_szOdbcGameDsn));
+    inifile.GetString("ODBC", "GAME_UID", "kodb_user", m_szOdbcGameUid, sizeof(m_szOdbcGameUid));
+    inifile.GetString("ODBC", "GAME_PWD", "kodb_user", m_szOdbcGamePwd, sizeof(m_szOdbcGamePwd));
 }
 
 void CServerDlg::SendSystemMsg(char * pMsg, int zone, int type, int who) {

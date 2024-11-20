@@ -117,6 +117,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="$(SrcDir)\common\Ini.cpp" />
     <ClCompile Include="Aujard.cpp" />
     <ClCompile Include="AujardDlg.cpp" />
     <ClCompile Include="DBAgent.cpp" />
@@ -129,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(SrcDir)\common\N3Utils.h" />
+    <ClInclude Include="$(SrcDir)\common\Ini.h" />
     <ClInclude Include="Aujard.h" />
     <ClInclude Include="AujardDlg.h" />
     <ClInclude Include="DBAgent.h" />

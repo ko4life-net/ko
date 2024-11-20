@@ -4,6 +4,8 @@
 #include "StdAfx.h"
 #include "ItemManager.h"
 #include "ItemManagerDlg.h"
+#include "Ini.h"
+
 #include <process.h>
 
 #ifdef _DEBUG
@@ -109,22 +111,19 @@ BOOL CItemManagerDlg::OnInitDialog() {
 
     m_LoggerRecvQueue.InitailizeMMF(MAX_PKTSIZE, MAX_COUNT, SMQ_ITEMLOGGER, FALSE); // Dispatcher 의 Send Queue
 
-    /*
-    std::string  szIniFile = (n3std::get_app_path() / "ItemDB.ini").string();
-    const char * pszIniFile = szIniFile.c_str();
+    CIni ini("Server.ini");
 
-    GetPrivateProfileString("ODBC", "GAME_DSN", "kodb", m_strGameDSN, sizeof(m_strGameDSN), pszIniFile);
-    GetPrivateProfileString("ODBC", "GAME_UID", "kodb_user", m_strGameUID, sizeof(m_strGameUID), pszIniFile);
-    GetPrivateProfileString("ODBC", "GAME_PWD", "kodb_user", m_strGamePWD, sizeof(m_strGamePWD), pszIniFile);
+    ini.GetString("ODBC", "GAME_DSN", "kodb", m_strGameDSN, sizeof(m_strGameDSN));
+    ini.GetString("ODBC", "GAME_UID", "kodb_user", m_strGameUID, sizeof(m_strGameUID));
+    ini.GetString("ODBC", "GAME_PWD", "kodb_user", m_strGamePWD, sizeof(m_strGamePWD));
 
-    m_nServerNo = GetPrivateProfileInt("ZONE_INFO", "GROUP_INFO", 1, pszIniFile);
-    m_nZoneNo = GetPrivateProfileInt("ZONE_INFO", "ZONE_INFO", 1, pszIniFile);
+    m_nServerNo = ini.GetInt("ZONE_INFO", "GROUP_INFO", 1);
+    m_nZoneNo = ini.GetInt("ZONE_INFO", "ZONE_INFO", 1);
 
     if (!m_DBAgent.DatabaseInit()) {
         AfxPostQuitMessage(0);
         return FALSE;
     }
-    */
 
     DWORD id;
     m_hReadQueueThread = ::CreateThread(NULL, 0, ReadQueueThread, (LPVOID)this, 0, &id);

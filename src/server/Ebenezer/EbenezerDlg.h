@@ -272,7 +272,7 @@ class CEbenezerDlg : public CDialog {
                                                       //}}AFX_VIRTUAL
 
   private:
-    CIni m_Ini;
+    std::unique_ptr<CIni> m_pIni;
     // Implementation
   protected:
     HICON m_hIcon;

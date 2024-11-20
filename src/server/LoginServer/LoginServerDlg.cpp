@@ -8,6 +8,7 @@
 #include "VersionSet.h"
 #include "SettingDlg.h"
 #include "User.h"
+#include "Ini.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -102,30 +103,22 @@ BOOL CLoginServerDlg::OnInitDialog() {
 }
 
 BOOL CLoginServerDlg::GetInfoFromIni() {
-    std::string  szIniFile = (n3std::get_app_dir() / "server.ini").string();
-    const char * pszIniFile = szIniFile.c_str();
+    CIni ini("Server.ini");
 
-    char szBuff[500]{};
-    GetPrivateProfileString("DOWNLOAD", "URL", "ftp.your-site.net", szBuff, sizeof(szBuff), pszIniFile);
-    m_szFtpUrl = szBuff;
+    m_szFtpUrl = ini.GetString("DOWNLOAD", "URL", "ftp.your-site.net");
+    m_szFtpPath = ini.GetString("DOWNLOAD", "PATH", "/");
 
-    memset(szBuff, 0, sizeof(szBuff));
-    GetPrivateProfileString("DOWNLOAD", "PATH", "/", szBuff, sizeof(szBuff), pszIniFile);
-    m_szFtpPath = szBuff;
+    ini.GetString("ODBC", "LOG_DSN", "kodb", m_szOdbcLogDsn, sizeof(m_szOdbcLogDsn));
+    ini.GetString("ODBC", "LOG_UID", "kodb_user", m_szOdbcLogUid, sizeof(m_szOdbcLogUid));
+    ini.GetString("ODBC", "LOG_PWD", "kodb_user", m_szOdbcLogPwd, sizeof(m_szOdbcLogPwd));
+    ini.GetString("ODBC", "TABLE", "VERSION", m_TableName, sizeof(m_TableName));
 
-    GetPrivateProfileString("ODBC", "LOG_DSN", "kodb", m_szOdbcLogDsn, sizeof(m_szOdbcLogDsn), pszIniFile);
-    GetPrivateProfileString("ODBC", "LOG_UID", "kodb_user", m_szOdbcLogUid, sizeof(m_szOdbcLogUid), pszIniFile);
-    GetPrivateProfileString("ODBC", "LOG_PWD", "kodb_user", m_szOdbcLogPwd, sizeof(m_szOdbcLogPwd), pszIniFile);
-    GetPrivateProfileString("ODBC", "TABLE", "VERSION", m_TableName, sizeof(m_TableName), pszIniFile);
-
-    memset(szBuff, 0, sizeof(szBuff));
-    GetPrivateProfileString("CONFIGURATION", "DEFAULT_PATH", "", szBuff, sizeof(szBuff), pszIniFile);
-    m_fsDefaultDir = szBuff;
+    m_fsDefaultDir = ini.GetString("CONFIGURATION", "DEFAULT_PATH", "");
     if (!m_fsDefaultDir.is_absolute()) {
         m_fsDefaultDir = n3std::get_app_dir().normalize();
     }
 
-    m_nServerCount = GetPrivateProfileInt("SERVER_LIST", "COUNT", 1, pszIniFile);
+    m_nServerCount = ini.GetInt("SERVER_LIST", "COUNT", 1);
 
     if (m_szFtpUrl.empty() || m_szFtpPath.empty()) {
         return FALSE;
@@ -141,12 +134,10 @@ BOOL CLoginServerDlg::GetInfoFromIni() {
     for (int i = 0; i < m_nServerCount; i++) {
         _SERVER_INFO * pInfo = new _SERVER_INFO;
         std::string    szKeyIp = std::format("SERVER_{:02d}", i);
-        GetPrivateProfileString("SERVER_LIST", szKeyIp.c_str(), "127.0.0.1", pInfo->strServerIP,
-                                sizeof(pInfo->strServerIP), pszIniFile);
+        ini.GetString("SERVER_LIST", szKeyIp, "127.0.0.1", pInfo->strServerIP, sizeof(pInfo->strServerIP));
 
         std::string szKeyServerName = std::format("NAME_{:02d}", i);
-        GetPrivateProfileString("SERVER_LIST", szKeyServerName.c_str(), szKeyIp.c_str(), pInfo->strServerName,
-                                sizeof(pInfo->strServerName), pszIniFile);
+        ini.GetString("SERVER_LIST", szKeyServerName, szKeyIp, pInfo->strServerName, sizeof(pInfo->strServerName));
         m_ServerList.emplace_back(pInfo);
     }
 
@@ -208,12 +199,13 @@ BOOL CLoginServerDlg::DestroyWindow() {
 }
 
 void CLoginServerDlg::OnVersionSetting() {
-    fs::path    fsIniPath = n3std::get_app_dir() / "server.ini";
     CSettingDlg dlg(m_nLastVersion, this);
     dlg.m_fsDefaultDir = m_fsDefaultDir;
     if (dlg.DoModal() == IDOK) {
         m_fsDefaultDir = dlg.m_fsDefaultDir;
-        WritePrivateProfileStringW(L"CONFIGURATION", L"DEFAULT_PATH", m_fsDefaultDir.c_str(), fsIniPath.c_str());
+
+        CIni ini("Server.ini");
+        ini.SetString("CONFIGURATION", "DEFAULT_PATH", m_fsDefaultDir.string().c_str());
     }
 }
 

@@ -126,6 +126,7 @@
     <ClInclude Include="$(SrcDir)\common\Implode.h" />
     <ClInclude Include="$(SrcDir)\common\JvCryption.h" />
     <ClInclude Include="$(SrcDir)\common\N3Utils.h" />
+    <ClInclude Include="$(SrcDir)\common\Ini.h" />
     <ClInclude Include="$(SrcDir)\engine\N3Base\JpegFile.h" />
     <ClInclude Include="$(SrcDir)\engine\N3Base\BitMapFile.h" />
     <ClInclude Include="$(SrcDir)\engine\N3Base\DFont.h" />
@@ -314,6 +315,7 @@
   <ItemGroup>
     <ClCompile Include="$(SrcDir)\common\Implode.cpp" />
     <ClCompile Include="$(SrcDir)\common\JvCryption.cpp" />
+    <ClCompile Include="$(SrcDir)\common\Ini.cpp" />
     <ClCompile Include="$(SrcDir)\engine\N3Base\JpegFile.cpp" />
     <ClCompile Include="$(SrcDir)\engine\N3Base\BitMapFile.cpp" />
     <ClCompile Include="$(SrcDir)\engine\N3Base\DFont.cpp" />

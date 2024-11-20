@@ -123,6 +123,7 @@
   <ItemGroup>
     <ClCompile Include="$(SrcDir)\common\Implode.cpp" />
     <ClCompile Include="$(SrcDir)\common\JvCryption.cpp" />
+    <ClCompile Include="$(SrcDir)\common\Ini.cpp" />
     <ClCompile Include="AISocket.cpp" />
     <ClCompile Include="BattleSet.cpp" />
     <ClCompile Include="CircularBuffer.cpp" />
@@ -136,7 +137,6 @@
     <ClCompile Include="EXEC.cpp" />
     <ClCompile Include="GameEvent.cpp" />
     <ClCompile Include="HomeSet.cpp" />
-    <ClCompile Include="Ini.cpp" />
     <ClCompile Include="IOCPort.cpp" />
     <ClCompile Include="IOCPSocket2.cpp" />
     <ClCompile Include="ItemTableSet.cpp" />
@@ -172,6 +172,7 @@
     <ClInclude Include="$(SrcDir)\common\Implode.h" />
     <ClInclude Include="$(SrcDir)\common\JvCryption.h" />
     <ClInclude Include="$(SrcDir)\common\N3Utils.h" />
+    <ClInclude Include="$(SrcDir)\common\Ini.h" />
     <ClInclude Include="AIPacket.h" />
     <ClInclude Include="AISocket.h" />
     <ClInclude Include="BattleSet.h" />
@@ -188,7 +189,6 @@
     <ClInclude Include="GameDefine.h" />
     <ClInclude Include="GameEvent.h" />
     <ClInclude Include="HomeSet.h" />
-    <ClInclude Include="Ini.h" />
     <ClInclude Include="IOCPort.h" />
     <ClInclude Include="IOCPSocket2.h" />
     <ClInclude Include="ItemTableSet.h" />

@@ -12,6 +12,8 @@
 #include "N3Base/N3UIList.h"
 #include "UIMessageBoxManager.h"
 
+#include "Ini.h"
+
 #include <algorithm>
 
 //////////////////////////////////////////////////////////////////////
@@ -67,12 +69,9 @@ bool CUILogIn::ReceiveMessage(CN3UIBase * pSender, DWORD dwMsg) {
             ::_LoadStringFromResource(IDS_CONFIRM_EXECUTE_OPTION, szMsg);
             CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_EXECUTE_OPTION);
         } else if (pSender == m_pBtn_Join) {
-            char         szRegistrationSite[2000]{};
-            std::string  szIniFile = (CN3Base::PathGet() / "Server.ini").string();
-            const char * szDefaultSite = "https://github.com/ko4life-net/ko";
-            GetPrivateProfileString("Join", "Registration site", szDefaultSite, szRegistrationSite,
-                                    sizeof(szRegistrationSite), szIniFile.c_str());
-            ShellExecute(NULL, "open", szRegistrationSite, NULL, NULL, SW_NORMAL);
+            CIni        ini(CN3Base::PathGet() / "Server.ini", false);
+            std::string szSite = ini.GetString("Join", "Registration site", "https://github.com/ko4life-net/ko");
+            ShellExecute(NULL, "open", szSite.c_str(), NULL, NULL, SW_NORMAL);
             PostQuitMessage(0);
             return true;
         }

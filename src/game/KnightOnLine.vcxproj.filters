@@ -642,6 +642,9 @@
     <ClInclude Include="$(SrcDir)\common\N3Utils.h">
       <Filter>N3Base\Core</Filter>
     </ClInclude>
+    <ClInclude Include="$(SrcDir)\common\Ini.h">
+      <Filter>N3Base\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(SrcDir)\engine\N3Base\N3UIBase.cpp">
@@ -1136,6 +1139,9 @@
     </ClCompile>
     <ClCompile Include="$(SrcDir)\common\Implode.cpp">
       <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SrcDir)\common\Ini.cpp">
+      <Filter>N3Base\Core</Filter>
     </ClCompile>
     <ClCompile Include="UIRookieTip.cpp">
       <Filter>Procedure - Main\UI</Filter>
