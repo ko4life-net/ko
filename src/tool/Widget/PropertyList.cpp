@@ -101,10 +101,8 @@ void CPropertyList::DrawItem(LPDRAWITEMSTRUCT lpDIS) {
         dc.DrawText(pItem->m_propName, CRect(rect2.left + 3, rect2.top + 3, rect2.right - 3, rect2.bottom + 3),
                     DT_LEFT | DT_SINGLELINE);
 
-       
         if (pItem->m_nItemType == PIT_COLOR) {
-            dc.FillSolidRect(CRect(rect.left + 2, rect.top + 2, rect.right - 4, rect.bottom - 4),
-                             pItem->m_crColor); 
+            dc.FillSolidRect(CRect(rect.left + 2, rect.top + 2, rect.right - 4, rect.bottom - 4), pItem->m_crColor);
         } else if (pItem->m_nItemType == PIT_COMBO) {
             int nSel = pItem->m_crColor;
             if (nSel >= 0 && nSel < pItem->m_szCBItemsOrFilter.GetSize()) {
@@ -313,7 +311,7 @@ void CPropertyList::OnSelchangeCmbBox() {
 
         CWnd * pWnd = GetParent();
         if (pWnd) {
-            pWnd->SendMessage(WM_NOTIFY, (DWORD)this, (DWORD)pItem); 
+            pWnd->SendMessage(WM_NOTIFY, (DWORD)this, (DWORD)pItem);
         }
     }
 }
@@ -327,7 +325,7 @@ void CPropertyList::OnChangeEditBox() {
 
     CWnd * pWnd = GetParent();
     if (pWnd) {
-        pWnd->SendMessage(WM_NOTIFY, (DWORD)this, (DWORD)pItem); 
+        pWnd->SendMessage(WM_NOTIFY, (DWORD)this, (DWORD)pItem);
     }
 }
 
@@ -347,7 +345,7 @@ void CPropertyList::OnButton() {
 
         CWnd * pWnd = GetParent();
         if (pWnd) {
-            pWnd->SendMessage(WM_NOTIFY, (DWORD)this, (DWORD)pItem); 
+            pWnd->SendMessage(WM_NOTIFY, (DWORD)this, (DWORD)pItem);
         }
 
     } else if (pItem->m_nItemType == PIT_FILE) {
@@ -371,7 +369,7 @@ void CPropertyList::OnButton() {
 
         CWnd * pWnd = GetParent();
         if (pWnd) {
-            pWnd->SendMessage(WM_NOTIFY, (DWORD)this, (DWORD)pItem); 
+            pWnd->SendMessage(WM_NOTIFY, (DWORD)this, (DWORD)pItem);
         }
 
     } else if (pItem->m_nItemType == PIT_FILE_MULTI) {
@@ -395,9 +393,7 @@ void CPropertyList::OnButton() {
                 pItem->m_curValue += szFNs[iSC - 1];
                 pItem->m_curValue += '\n';
 
-                for (
-                    int i = 1; i < iSC - 1;
-                    i++) // 1 
+                for (int i = 1; i < iSC - 1; i++) // 1
                 {
                     pItem->m_curValue += szFNs[i];
                     pItem->m_curValue += '\n';
@@ -411,7 +407,7 @@ void CPropertyList::OnButton() {
 
                 CWnd * pWnd = GetParent();
                 if (pWnd) {
-                    pWnd->SendMessage(WM_NOTIFY, (DWORD)this, (DWORD)pItem); 
+                    pWnd->SendMessage(WM_NOTIFY, (DWORD)this, (DWORD)pItem);
                 }
             }
         }
@@ -429,12 +425,12 @@ void CPropertyList::OnButton() {
 
         CWnd * pWnd = GetParent();
         if (pWnd) {
-            pWnd->SendMessage(WM_NOTIFY, (DWORD)this, (DWORD)pItem); 
+            pWnd->SendMessage(WM_NOTIFY, (DWORD)this, (DWORD)pItem);
         }
     } else {
         CWnd * pWnd = GetParent();
         if (pWnd) {
-            pWnd->SendMessage(WM_NOTIFY, (DWORD)this, (DWORD)pItem); 
+            pWnd->SendMessage(WM_NOTIFY, (DWORD)this, (DWORD)pItem);
         }
     }
 }

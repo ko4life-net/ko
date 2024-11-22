@@ -180,7 +180,6 @@ HCURSOR CRscTablesDlg::OnQueryDragIcon() {
     return (HCURSOR)m_hIcon;
 }
 
-
 void CRscTablesDlg::OnFileNew() {
     // TODO: Add your command handler code here
     CDlgDataCount dlg;
@@ -193,11 +192,11 @@ void CRscTablesDlg::OnFileNew() {
     }
     m_Generator.Release();
 
-    m_Generator.DataTypeAssign(iCount, DT_STRING); 
-    m_Generator.DataTypeSet(0, DT_DWORD);          
+    m_Generator.DataTypeAssign(iCount, DT_STRING);
+    m_Generator.DataTypeSet(0, DT_DWORD);
 
     m_ListBoxDataType.SetDividerWidth(100);
-    this->UpdateAllInfo(); 
+    this->UpdateAllInfo();
 }
 
 BOOL CRscTablesDlg::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
@@ -265,7 +264,7 @@ void CRscTablesDlg::OnFileOpenEnum() {
 
     m_Generator.DataTypeLoad(dlg.GetPathName().GetString());
 
-    this->UpdateAllInfo(); 
+    this->UpdateAllInfo();
 }
 
 void CRscTablesDlg::OnUpdateFileSaveEnum(CCmdUI * pCmdUI) {
@@ -372,9 +371,9 @@ void CRscTablesDlg::OnSize(UINT nType, int cx, int cy) {
 
     if (m_ListBoxDataType.GetSafeHwnd() != NULL) {
         CRect rcOrg, rcClient;
-        m_ListBoxDataType.GetWindowRect(rcOrg); 
-        this->GetClientRect(rcClient);         
-        this->ClientToScreen(rcClient);        
+        m_ListBoxDataType.GetWindowRect(rcOrg);
+        this->GetClientRect(rcClient);
+        this->ClientToScreen(rcClient);
 
         int cx2 = rcOrg.Width();
         int cy2 = rcClient.bottom - rcOrg.top - 5;
@@ -386,8 +385,8 @@ void CRscTablesDlg::OnSize(UINT nType, int cx, int cy) {
 void CRscTablesDlg::OnEditInsert() {
     // TODO: Add your command handler code here
     int iCurSel = m_ListBoxDataType.GetCurSel();
-    if (m_Generator.DataTypeInsert(iCurSel, DT_STRING)) { 
-        UpdateAllInfo();                                 
+    if (m_Generator.DataTypeInsert(iCurSel, DT_STRING)) {
+        UpdateAllInfo();
     }
 }
 
@@ -395,7 +394,7 @@ void CRscTablesDlg::OnEditDelete() {
     // TODO: Add your command handler code here
     const int iCurSel = m_ListBoxDataType.GetCurSel();
     if (m_Generator.DataTypeDelete(iCurSel)) {
-        UpdateAllInfo(); 
+        UpdateAllInfo();
     }
 }
 

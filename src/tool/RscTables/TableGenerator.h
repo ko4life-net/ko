@@ -73,12 +73,11 @@ class CTableGenerator {
 
   protected:
     std::vector<DATA_TYPE>     m_DataTypes;
-    std::vector<CTableData>    m_Datas;    
-    std::vector<CTableDataExt> m_DataExts; 
+    std::vector<CTableData>    m_Datas;
+    std::vector<CTableDataExt> m_DataExts;
 
   private:
-    int ParseLine(const char * szLine, int & iOffset, int & iVal, DWORD & dwVal, double & dfVal,
-                  std::string & szText);
+    int ParseLine(const char * szLine, int & iOffset, int & iVal, DWORD & dwVal, double & dfVal, std::string & szText);
 
     bool   WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszData);
     bool   ReadData(HANDLE hFile, DATA_TYPE DataType, LPTSTR lpszData);

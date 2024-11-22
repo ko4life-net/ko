@@ -26,7 +26,6 @@ bool CTableGenerator::OpenSource(const std::string & szEnumFileName, const std::
         return false;
     }
 
-   
     m_Datas.clear();
     int   iDataCount = 0;
     DWORD dwNum;
@@ -73,17 +72,13 @@ bool CTableGenerator::OpenSource(const std::string & szEnumFileName, const std::
         std::string szText;
 
         for (int j = 0; j < iDataCount; j++) {
-            int iSuccess =
-                this->ParseLine(szLine, iOffset, iVal, dwVal, dfVal,
-                                szText); 
+            int iSuccess = this->ParseLine(szLine, iOffset, iVal, dwVal, dfVal, szText);
 
             if (iSuccess > 0) {
-                if (i == 0)
-                {
+                if (i == 0) {
                     m_Datas[j].m_szTitle = szText;
                 } else {
-                    if (0 == j) 
-                    {
+                    if (0 == j) {
                         pair_Key pk = KeySet.insert(iVal);
                         if (false == pk.second) {
                             char szErr[512];
@@ -126,7 +121,6 @@ bool CTableGenerator::OpenReference_Enum(const std::string & szEnumFileName) {
         return false;
     }
 
-    
     m_DataExts.clear();
 
     int   iDataCount = 0;
@@ -144,7 +138,6 @@ bool CTableGenerator::OpenReference_Enum(const std::string & szEnumFileName) {
     }
     CloseHandle(hFile);
 
-  
     m_szEnmExt = szEnumFileName;
 
     return true;
@@ -190,17 +183,13 @@ bool CTableGenerator::OpenReference_Txt(int iIndex, const std::string & szTxtFil
 
         int iDataCount = m_DataExts.size();
         for (int j = 0; j < iDataCount; j++) {
-            int iSuccess =
-                this->ParseLine(szLine, iOffset, iVal, dwVal, dfVal,
-                                szText); 
+            int iSuccess = this->ParseLine(szLine, iOffset, iVal, dwVal, dfVal, szText);
 
             if (iSuccess > 0) {
-                if (i == 0) 
-                {
+                if (i == 0) {
                     m_DataExts[j].m_szTitle = szText;
                 } else {
-                    if (0 == j)
-                    {
+                    if (0 == j) {
                         pair_Key pk = KeySet.insert(iVal);
                         if (false == pk.second) {
                             char szErr[512];
@@ -230,7 +219,6 @@ bool CTableGenerator::OpenReference_Txt(int iIndex, const std::string & szTxtFil
 
     fclose(pFile);
 
-   
     m_szTxtExts[iIndex] = szTxtFileName;
 
     return true;
@@ -265,7 +253,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
         return false;
     }
 
-    std::vector<DATA_TYPE> DataTypesPrev; 
+    std::vector<DATA_TYPE> DataTypesPrev;
     DataTypesPrev = m_DataTypes;
     m_DataTypes.clear();
 
@@ -350,31 +338,29 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
     }
     int iCountWhole = iCountBasic * iCountRef;
 
-    std::vector<std::string> * pLineArrays = new std::vector<
-        std::string>[iCountWhole + 1];
+    std::vector<std::string> * pLineArrays = new std::vector<std::string>[iCountWhole + 1];
 
     int iIndexCur1 = 0;
     int iIndexCur2 = 0;
     int iExt = iIndexS;
-    int iCountWhole2 = 0; 
+    int iCountWhole2 = 0;
     int iAddTitle = -1;
     for (int i = 0; i < iCountWhole; i++) {
-        int iType = m_Datas[IG1_GEN_TYPE].m_dwValues[iIndexCur1]; 
+        int iType = m_Datas[IG1_GEN_TYPE].m_dwValues[iIndexCur1];
 
-       
         if (iType == iExt) {
-            int                    iGrade = (m_DataExts[IG2_KEY].m_dwValues[iExt][iIndexCur2]) % 10; 
+            int                    iGrade = (m_DataExts[IG2_KEY].m_dwValues[iExt][iIndexCur2]) % 10;
             e_ItemGenerationIndex2 eIG2 = IG2_UNKNOWN;
 
             for (int j = 0; j < iDTCountBasic; j++) {
                 DATA_TYPE dt = m_Datas[j].m_Type;
-               
+
                 switch (j) {
                 case IG1_KEY:
                     if (DT_DWORD == dt) {
-                        //                        DWORD dwKey = ((m_Datas[j].m_dwValues[iIndexCur1] / 1000) * 1000) + m_DataExts[IG2_KEY].m_dwValues[iExt][iIndexCur2]; 
-                        DWORD dwKey = m_Datas[j].m_dwValues[iIndexCur1] +
-                                      m_DataExts[IG2_KEY].m_dwValues[iExt][iIndexCur2]; 
+                        //                        DWORD dwKey = ((m_Datas[j].m_dwValues[iIndexCur1] / 1000) * 1000) + m_DataExts[IG2_KEY].m_dwValues[iExt][iIndexCur2];
+                        DWORD dwKey =
+                            m_Datas[j].m_dwValues[iIndexCur1] + m_DataExts[IG2_KEY].m_dwValues[iExt][iIndexCur2];
                         sprintf(szBuff, "%d", dwKey);
                     } else {
                         lstrcpy(szBuff, "Invalid Key");
@@ -385,7 +371,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
                     lstrcpy(szBuff, "");
                     break;
 
-                case IG1_NAME: 
+                case IG1_NAME:
                     if (DT_STRING == dt) {
                         sprintf(szBuff, "%s%s %s", szGrade[iGrade].c_str(),
                                 m_DataExts[IG2_NAME_HEAD].m_Texts[iExt][iIndexCur2].c_str(),
@@ -395,7 +381,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
                     }
                     break;
 
-                case IG1_REMARK: 
+                case IG1_REMARK:
                 case IG1_PIC:
                 case IG1_ICON:
                 case IG1_SOUND0:
@@ -404,7 +390,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
                     lstrcpy(szBuff, "");
                     break;
 
-                case IG1_DAMAGE: 
+                case IG1_DAMAGE:
                 case IG1_AC:
                 case IG1_EFFECT1:
                 case IG1_EFFECT2:
@@ -417,8 +403,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
                 case IG1_REQ_DEX:
                 case IG1_REQ_INT:
                 case IG1_REQ_CHA: {
-                    bool bApplyAbility =
-                        false; 
+                    bool bApplyAbility = false;
 
                     if (IG1_DAMAGE == j) {
                         eIG2 = IG2_DAMAGE;
@@ -461,10 +446,9 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
 
                     if (DT_STRING != dt) {
                         int iValue = m_Datas[j].m_iValues[iIndexCur1] + m_DataExts[eIG2].m_iValues[iExt][iIndexCur2];
-                        if (bApplyAbility) 
-                        {
+                        if (bApplyAbility) {
                             if (0 == m_Datas[j].m_iValues[iIndexCur1]) {
-                                iValue = 0; 
+                                iValue = 0;
                             }
                             if (iValue < 0) {
                                 iValue = 0;
@@ -499,8 +483,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
                             sprintf(szBuff, "%d", iValue);
 
                             int iDamage = m_Datas[IG1_DAMAGE].m_iValues[iIndexCur1];
-                            if (iDamage > 0) 
-                            {
+                            if (iDamage > 0) {
                                 if (iValue < 50) {
                                     char szErr[256];
                                     sprintf(szErr,
@@ -543,13 +526,13 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
                 }
 
                 if (lstrlen(szBuff) > 0) {
-                    pLineArrays[i + 1].push_back(szBuff); 
+                    pLineArrays[i + 1].push_back(szBuff);
 
                     if (iAddTitle < 0) {
                         iAddTitle = i;
                     }
                     if (i == iAddTitle) {
-                        pLineArrays[0].push_back(m_Datas[j].m_szTitle); 
+                        pLineArrays[0].push_back(m_Datas[j].m_szTitle);
                         m_DataTypes.push_back(dt);
                     }
                 }
@@ -608,17 +591,16 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
 
                 if (lstrlen(szBuff) > 0) {
                     if (i == iAddTitle) {
-                        pLineArrays[0].push_back(m_DataExts[j].m_szTitle); 
-                        m_DataTypes.push_back(dt);                         
+                        pLineArrays[0].push_back(m_DataExts[j].m_szTitle);
+                        m_DataTypes.push_back(dt);
                     }
-                    pLineArrays[i + 1].push_back(szBuff); 
+                    pLineArrays[i + 1].push_back(szBuff);
                 }
             }
 
-            iCountWhole2++; 
-        }                   // end of if(iType == iExt)
+            iCountWhole2++;
+        } // end of if(iType == iExt)
 
-       
         iIndexCur2++;
         if (iIndexCur2 >= m_DataExts[0].m_iValues[iExt].size()) {
             iIndexCur2 = 0;
@@ -631,8 +613,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
     } // end of for(int i = 0; i < iCountWhole; i++)
 
     int iColCount = pLineArrays[0].size();
-    for (int i = 0; i <= iCountWhole; i++) 
-    {
+    for (int i = 0; i <= iCountWhole; i++) {
         if (pLineArrays[i].empty()) {
             continue;
         }
@@ -640,9 +621,9 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
         for (int j = 0; j < iColCount; j++) {
             WriteFile(hFile, pLineArrays[i][j].c_str(), pLineArrays[i][j].size(), &dwRWC, NULL);
             if (j < iColCount - 1) {
-                WriteFile(hFile, "\t", 1, &dwRWC, NULL); 
+                WriteFile(hFile, "\t", 1, &dwRWC, NULL);
             } else {
-                WriteFile(hFile, "\r\n", 2, &dwRWC, NULL); 
+                WriteFile(hFile, "\r\n", 2, &dwRWC, NULL);
             }
         }
     }
@@ -653,16 +634,14 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
     pLineArrays = NULL;
     CloseHandle(hFile);
 
-    // Data Type 
+    // Data Type
     this->DataTypeSave(szEnumFileName);
-    m_DataTypes = DataTypesPrev; 
+    m_DataTypes = DataTypesPrev;
     return true;
 }
 
-int CTableGenerator::ParseLine(
-    const char * szLine, int & iOffset, int & iVal, DWORD & dwVal, double & dfVal,
-    std::string & szText) 
-{
+int CTableGenerator::ParseLine(const char * szLine, int & iOffset, int & iVal, DWORD & dwVal, double & dfVal,
+                               std::string & szText) {
     const char * szLine2 = szLine + iOffset;
 
     if ('\r' == *szLine2 || '\n' == *szLine2) {
@@ -682,8 +661,7 @@ int CTableGenerator::ParseLine(
             dfVal = atof(szText.c_str());
             iOffset++;
             return 1;
-        } else if ('\r' == *szLine2 || '\n' == *(szLine2)) 
-        {
+        } else if ('\r' == *szLine2 || '\n' == *(szLine2)) {
             iVal = atoi(szText.c_str());
             dwVal = atol(szText.c_str());
             dfVal = atof(szText.c_str());
@@ -731,7 +709,6 @@ bool CTableGenerator::DataTypeLoad(const std::string & szFN) {
     }
     m_DataTypes.clear();
 
-    
     int   iDataCount = 0;
     DWORD dwNum;
     ReadFile(hFile, &iDataCount, sizeof(iDataCount), &dwNum, NULL);
@@ -759,14 +736,13 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
     const int iMaxStrLen = 4096;
     char      line[iMaxStrLen + 1];
 
-   
     if (fgets(line, iMaxStrLen, stream) == NULL) {
         fclose(stream);
         std::string szMsg = szFN + " - Unable to read file contents.";
         MessageBox(hWnd, szMsg.c_str(), "Convert Error", MB_OK);
         return false;
     }
-  
+
     int    iDataCount = m_DataTypes.size();
     int    iCount = 0;
     char * token = MyToken(line);
@@ -780,12 +756,12 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
         MessageBox(hWnd, szMsg.c_str(), "Convert Error", MB_OK);
         return false;
     }
-  
+
     iCount = 0;
     bool bQuotationActived = false;
     while (fgets(line, iMaxStrLen, stream)) {
         char * pcFind = line;
-        pcFind = strchr(pcFind, '\"'); 
+        pcFind = strchr(pcFind, '\"');
         while (pcFind) {
             if (*(pcFind - 1) != '\t' && *(pcFind + 1) != '\t' && *(pcFind + 1) != '\n') {
                 MessageBox(hWnd, "There is a quote in an unexpected place..", "Convert Error", MB_OK);
@@ -796,11 +772,11 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
         }
 
         if (!bQuotationActived) {
-            ++iCount; 
+            ++iCount;
         }
     }
 
-    // binary file 
+    // binary file
     char szFName[_MAX_PATH], szDrv[_MAX_DRIVE], szPath[_MAX_PATH];
     char szDestFN[_MAX_PATH];
     _splitpath(szFN.c_str(), szDrv, szPath, szFName, NULL);
@@ -814,29 +790,28 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
         return false;
     }
 
-    // data(column) 
+    // data(column)
     DWORD dwNum;
     WriteFile(hFile, &iDataCount, sizeof(iDataCount), &dwNum, NULL); // ( column )
     for (int i = 0; i < iDataCount; ++i) {
         DATA_TYPE datatype = m_DataTypes[i];
         WriteFile(hFile, &datatype, sizeof(DATA_TYPE), &dwNum, NULL); //  column data type
     }
-    // row 
+    // row
     WriteFile(hFile, &iCount, sizeof(iCount), &dwNum, NULL);
 
     // txt table
     int iRet = fseek(stream, 0, SEEK_SET);
     ASSERT(0 == iRet);
-    fgets(line, iMaxStrLen, stream); 
+    fgets(line, iMaxStrLen, stream);
 
-   
     std::set<int>                            KeySet;
     typedef typename std::set<int>::iterator it_Key;
     typedef std::pair<it_Key, bool>          pair_Key;
 
     BOOL bCheckEmptyValue = FALSE;
     bQuotationActived = false;
-    std::string strValueBuffer; 
+    std::string strValueBuffer;
     int         iRowCount = 0;
     int         iColCount = 0;
     while (iRowCount < iCount) {
@@ -846,7 +821,7 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
         int iStrLen = lstrlen(line);
         ASSERT(iStrLen > 0);
         if (line[iStrLen - 1] == '\n') {
-            line[iStrLen - 1] = '\0'; 
+            line[iStrLen - 1] = '\0';
         }
 
         token = MyToken(line);
@@ -865,18 +840,17 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
 
         //for (int j=0; j<m_iDataCount; ++j)
         while (iColCount < iDataCount) {
-            if (bQuotationActived) { 
+            if (bQuotationActived) {
                 if (NULL == token) {
-                  
+
                     strValueBuffer += "\n";
                     break;
                 } else {
                     int iLast = lstrlen(token) - 1;
-                    if (iLast >= 0 && '\"' == token[iLast]) { 
+                    if (iLast >= 0 && '\"' == token[iLast]) {
                         bQuotationActived = false;
                         strValueBuffer += std::string(token).substr(0, iLast);
 
-                        
                         if (FALSE == WriteData(hFile, m_DataTypes[iColCount], strValueBuffer.c_str())) {
                             char szErr[512];
                             wsprintf(szErr, "File - %s, Line - %d, Field - %d", szFN.c_str(), iRowCount + 1, iColCount);
@@ -892,20 +866,19 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
                         token = MyToken(NULL);
                         ++iColCount;
                         continue;
-                    } else { 
+                    } else {
                         strValueBuffer += token;
                         token = MyToken(NULL);
                         continue;
                     }
                 }
-            } else if (token && '\"' == token[0]) // bQuotationActived false '\"' == token[0] 
-            {                                    
+            } else if (token && '\"' == token[0]) // bQuotationActived false '\"' == token[0]
+            {
                 int iLast = lstrlen(token) - 1;
-                if (iLast >= 1 && '\"' == token[iLast]) // iLast>=1 
-                {                                      
+                if (iLast >= 1 && '\"' == token[iLast]) // iLast>=1
+                {
                     strValueBuffer = std::string(token).substr(1, iLast - 1);
 
-                  
                     if (FALSE == WriteData(hFile, m_DataTypes[iColCount], strValueBuffer.c_str())) {
                         char szErr[512];
                         wsprintf(szErr, "File - %s, Line - %d, Field - %d", szFN.c_str(), iRowCount + 1, iColCount);
@@ -921,15 +894,15 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
                     token = MyToken(NULL);
                     ++iColCount;
                     continue;
-                } else { 
+                } else {
                     bQuotationActived = true;
-                    strValueBuffer = (token + 1); 
+                    strValueBuffer = (token + 1);
                     token = MyToken(NULL);
                     continue;
                 }
             }
 
-            ASSERT(token || (iColCount + 1) == iDataCount); 
+            ASSERT(token || (iColCount + 1) == iDataCount);
 
             if (FALSE == (token || (NULL == token && DT_STRING == m_DataTypes[iColCount])) &&
                 FALSE == bCheckEmptyValue) {
@@ -965,7 +938,7 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
             ++iColCount;
         }
         if (bQuotationActived) {
-            continue; 
+            continue;
         }
         if (iDataCount != iColCount) {
             char szErr[512];
@@ -985,31 +958,27 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
     fclose(stream);
 
     ////////////////////////////////////////////////////////////
-   
 
     hFile = ::CreateFile(szDestFN, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == hFile) {
         MessageBox(hWnd, szDestFN, "Failed to create encryption file.", MB_OK);
-        remove(szDestFN); 
+        remove(szDestFN);
         return false;
     }
 
-  
     DWORD dwSizeHigh = 0;
     DWORD dwSizeLow = ::GetFileSize(hFile, &dwSizeHigh);
     if (dwSizeLow <= 0) {
         CloseHandle(hFile);
-        ::remove(szDestFN); 
+        ::remove(szDestFN);
         return false;
     }
 
-    
     BYTE * pDatas = new BYTE[dwSizeLow];
     DWORD  dwRWC = 0;
-    ::ReadFile(hFile, pDatas, dwSizeLow, &dwRWC, NULL); 
-    CloseHandle(hFile);                                 
+    ::ReadFile(hFile, pDatas, dwSizeLow, &dwRWC, NULL);
+    CloseHandle(hFile);
 
-  
     WORD key_r = 0x0816;
     WORD key_c1 = 0x6081;
     WORD key_c2 = 0x1608;
@@ -1030,17 +999,15 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
     //    return plain;
     //}
 
-   
     for (int i = 0; i < dwSizeLow; i++) {
         BYTE byData = (pDatas[i] ^ (key_r >> 8));
         key_r = (byData + key_r) * key_c1 + key_c2;
         pDatas[i] = byData;
     }
 
-   
     hFile = ::CreateFile(szDestFN, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-    ::WriteFile(hFile, pDatas, dwSizeLow, &dwRWC, NULL); 
-    CloseHandle(hFile);                                  
+    ::WriteFile(hFile, pDatas, dwSizeLow, &dwRWC, NULL);
+    CloseHandle(hFile);
     delete[] pDatas;
     pDatas = NULL;
 
@@ -1058,7 +1025,6 @@ bool CTableGenerator::Convert2Bin(const std::string & szFN) {
     }
 }
 
-
 bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszData) {
 
     //    ASSERT(lpszData || (NULL == lpszData && DT_STRING == DataType));
@@ -1071,11 +1037,11 @@ bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszDa
             if (isdigit(lpszData[0]) || '-' == lpszData[0]) {
                 int iTemp = atoi(lpszData);
                 if (iTemp < -127 || iTemp > 128) {
-                    return false; 
+                    return false;
                 }
                 cWrite = (char)iTemp;
             } else {
-                return false; 
+                return false;
             }
         }
 
@@ -1087,11 +1053,11 @@ bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszDa
             if (isdigit(lpszData[0])) {
                 int iTemp = atoi(lpszData);
                 if (iTemp < 0 || iTemp > 255) {
-                    return false; 
+                    return false;
                 }
                 byteWrite = (BYTE)iTemp;
             } else {
-                return false; 
+                return false;
             }
         }
 
@@ -1103,7 +1069,7 @@ bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszDa
             if (isdigit(lpszData[0]) || '-' == lpszData[0]) {
                 int iTemp = atoi(lpszData);
                 if (iTemp < -32767 || iTemp > 32768) {
-                    return false; 
+                    return false;
                 }
                 iWrite = (short)iTemp;
             } else {
@@ -1119,11 +1085,11 @@ bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszDa
             if (isdigit(lpszData[0])) {
                 int iTemp = atoi(lpszData);
                 if (iTemp < 0 || iTemp > 65535) {
-                    return false; 
+                    return false;
                 }
                 iWrite = (short)iTemp;
             } else {
-                return false; 
+                return false;
             }
         }
 
@@ -1135,7 +1101,7 @@ bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszDa
             if (isdigit(lpszData[0]) || '-' == lpszData[0]) {
                 iWrite = atoi(lpszData);
             } else {
-                return false; 
+                return false;
             }
         }
 
@@ -1147,7 +1113,7 @@ bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszDa
             if (isdigit(lpszData[0])) {
                 iWrite = strtoul(lpszData, NULL, 10);
             } else {
-                return false; 
+                return false;
             }
         }
 
@@ -1169,7 +1135,7 @@ bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszDa
             if (isdigit(lpszData[0]) || '-' == lpszData[0] || '.' == lpszData[0]) {
                 fWrite = (float)atof(lpszData);
             } else {
-                return false; 
+                return false;
             }
         }
         WriteFile(hFile, &fWrite, sizeof(fWrite), &dwNum, NULL);
@@ -1193,11 +1159,10 @@ bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszDa
     return true;
 }
 
-// binary 
+// binary
 bool CTableGenerator::ReadData(HANDLE hFile, DATA_TYPE DataType, LPTSTR lpszData) {
     return true;
 }
-
 
 char * CTableGenerator::MyToken(LPCTSTR lpszInput) {
     static char   szLine[4096] = "";

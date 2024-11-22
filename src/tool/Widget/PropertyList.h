@@ -17,7 +17,7 @@
 #define PIT_COLOR      2
 #define PIT_FONT       3
 #define PIT_FILE       4
-#define PIT_FILE_MULTI 5 // FileName1'\n'FileName2'\n'....FileName'\n' 
+#define PIT_FILE_MULTI 5 // FileName1'\n'FileName2'\n'....FileName'\n'
 #define PIT_CHECK      6
 #define PIT_BUTTON     7
 
@@ -31,10 +31,10 @@ class CPropertyItem {
     // Attributes
   public:
     CString      m_propName;
-    CString      m_curValue; // Color Alpha 
+    CString      m_curValue; // Color Alpha
     int          m_nItemType;
     CStringArray m_szCBItemsOrFilter;
-    COLORREF     m_crColor; // ColorReference | Combo Box Index 
+    COLORREF     m_crColor; // ColorReference | Combo Box Index
 
   public:
     void          D3DColorSet(D3DCOLOR color);
