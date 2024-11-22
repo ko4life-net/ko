@@ -49,7 +49,7 @@ bool CTableGenerator::OpenSource(const std::string & szEnumFileName, const std::
         return false;
     }
 
-    // ���� �̸� ���?.
+    // ���� �̸� ���?.
     m_szEnmBasic = szEnumFileName;
     m_szTxtBasic = szTxtFileName;
 
@@ -359,7 +359,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string & szEnumFileName, c
     int iCountWhole2 = 0; 
     int iAddTitle = -1;
     for (int i = 0; i < iCountWhole; i++) {
-        int iType = m_Datas[IG1_GEN_TYPE].m_dwValues[iIndexCur1]; // ������ ����Ÿ��..
+        int iType = m_Datas[IG1_GEN_TYPE].m_dwValues[iIndexCur1]; 
 
        
         if (iType == iExt) {

@@ -101,7 +101,7 @@ void CPropertyList::DrawItem(LPDRAWITEMSTRUCT lpDIS) {
         dc.DrawText(pItem->m_propName, CRect(rect2.left + 3, rect2.top + 3, rect2.right - 3, rect2.bottom + 3),
                     DT_LEFT | DT_SINGLELINE);
 
-        // ���� �÷���..
+       
         if (pItem->m_nItemType == PIT_COLOR) {
             dc.FillSolidRect(CRect(rect.left + 2, rect.top + 2, rect.right - 4, rect.bottom - 4),
                              pItem->m_crColor); 
