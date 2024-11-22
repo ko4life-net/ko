@@ -73,12 +73,12 @@ class CTableGenerator {
 
   protected:
     std::vector<DATA_TYPE>     m_DataTypes;
-    std::vector<CTableData>    m_Datas;    // 기본이 되는 아이템 테이블
-    std::vector<CTableDataExt> m_DataExts; // 참조할 아이템 테이블
+    std::vector<CTableData>    m_Datas;    
+    std::vector<CTableDataExt> m_DataExts; 
 
   private:
     int ParseLine(const char * szLine, int & iOffset, int & iVal, DWORD & dwVal, double & dfVal,
-                  std::string & szText); // 성공하면 0, 추가해야하고 끝이면 -1 추가할 필요 없고 끝이면.. -2 리턴
+                  std::string & szText);
 
     bool   WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszData);
     bool   ReadData(HANDLE hFile, DATA_TYPE DataType, LPTSTR lpszData);

@@ -180,7 +180,7 @@ HCURSOR CRscTablesDlg::OnQueryDragIcon() {
     return (HCURSOR)m_hIcon;
 }
 
-// ����Ÿ ������ ���� �����.
+
 void CRscTablesDlg::OnFileNew() {
     // TODO: Add your command handler code here
     CDlgDataCount dlg;
@@ -193,11 +193,11 @@ void CRscTablesDlg::OnFileNew() {
     }
     m_Generator.Release();
 
-    m_Generator.DataTypeAssign(iCount, DT_STRING); // �⺻���� ���ڿ�
-    m_Generator.DataTypeSet(0, DT_DWORD);          // ù��° ���� ����..
+    m_Generator.DataTypeAssign(iCount, DT_STRING); 
+    m_Generator.DataTypeSet(0, DT_DWORD);          
 
     m_ListBoxDataType.SetDividerWidth(100);
-    this->UpdateAllInfo(); // ����Ʈ �ڽ� �����ϰ�.. ȭ�鿡 ǥ��...
+    this->UpdateAllInfo(); 
 }
 
 BOOL CRscTablesDlg::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
@@ -209,7 +209,7 @@ BOOL CRscTablesDlg::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
         if (iIndex < 0 || iIndex >= m_Generator.DataTypeCount()) {
             return TRUE;
         }
-        if (0 == iIndex && lstrcmpi(pItem->m_curValue, "DWORD") != 0) // 0 ���� DWORD �� �ƴϸ� ����Ѵ�..
+        if (0 == iIndex && lstrcmpi(pItem->m_curValue, "DWORD") != 0) // 0 DWORD BYTE
         {
             MessageBox("Since Data0 is used as an index, it must be a DWORD type.", "Warning.");
         }
@@ -244,7 +244,7 @@ BOOL CRscTablesDlg::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
     return CDialog::OnNotify(wParam, lParam, pResult);
 }
 
-// data type ������ ���� ���� ����
+// data type
 void CRscTablesDlg::OnFileSaveEnum() {
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(FALSE, "enm", NULL, dwFlags, "Data Enum File(*.enm)|*.enm||", NULL);
@@ -255,7 +255,7 @@ void CRscTablesDlg::OnFileSaveEnum() {
     m_Generator.DataTypeSave(dlg.GetPathName().GetString());
 }
 
-// data type ������ ���� ���� ����
+// data type
 void CRscTablesDlg::OnFileOpenEnum() {
     DWORD       dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
     CFileDialog dlg(TRUE, "enm", NULL, dwFlags, "Data Enum File(*.enm)|*.enm||", NULL);
@@ -265,7 +265,7 @@ void CRscTablesDlg::OnFileOpenEnum() {
 
     m_Generator.DataTypeLoad(dlg.GetPathName().GetString());
 
-    this->UpdateAllInfo(); // ����Ʈ �ڽ� �����ϰ�.. ȭ�鿡 ǥ��...
+    this->UpdateAllInfo(); 
 }
 
 void CRscTablesDlg::OnUpdateFileSaveEnum(CCmdUI * pCmdUI) {
@@ -276,7 +276,7 @@ void CRscTablesDlg::OnFileExit() {
     PostQuitMessage(0);
 }
 
-// Text������ bin �����ͷ� ��ȯ�ϱ�
+// Text to bin
 void CRscTablesDlg::OnConvertText2bin() {
     int iDataCount = m_Generator.DataTypeCount();
     if (iDataCount <= 0) {
@@ -372,9 +372,9 @@ void CRscTablesDlg::OnSize(UINT nType, int cx, int cy) {
 
     if (m_ListBoxDataType.GetSafeHwnd() != NULL) {
         CRect rcOrg, rcClient;
-        m_ListBoxDataType.GetWindowRect(rcOrg); // �׷��� ��Ʈ���� ���� ȭ�� ��ǥ��
-        this->GetClientRect(rcClient);          //
-        this->ClientToScreen(rcClient);         // ȭ�� ��ǥ�� �ٲٰ�..
+        m_ListBoxDataType.GetWindowRect(rcOrg); 
+        this->GetClientRect(rcClient);         
+        this->ClientToScreen(rcClient);        
 
         int cx2 = rcOrg.Width();
         int cy2 = rcClient.bottom - rcOrg.top - 5;
@@ -386,8 +386,8 @@ void CRscTablesDlg::OnSize(UINT nType, int cx, int cy) {
 void CRscTablesDlg::OnEditInsert() {
     // TODO: Add your command handler code here
     int iCurSel = m_ListBoxDataType.GetCurSel();
-    if (m_Generator.DataTypeInsert(iCurSel, DT_STRING)) { // �⺻������ string�߰�
-        UpdateAllInfo();                                  // ����Ʈ �ڽ� �����ϰ�.. ȭ�鿡 ǥ��...
+    if (m_Generator.DataTypeInsert(iCurSel, DT_STRING)) { 
+        UpdateAllInfo();                                 
     }
 }
 
@@ -395,7 +395,7 @@ void CRscTablesDlg::OnEditDelete() {
     // TODO: Add your command handler code here
     const int iCurSel = m_ListBoxDataType.GetCurSel();
     if (m_Generator.DataTypeDelete(iCurSel)) {
-        UpdateAllInfo(); // ����Ʈ �ڽ� �����ϰ�.. ȭ�鿡 ǥ��...
+        UpdateAllInfo(); 
     }
 }
 
