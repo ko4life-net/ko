@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
 
@@ -13,13 +13,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Korean resources
+// Korean (Korea) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
-#ifdef _WIN32
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 #pragma code_page(949)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -57,6 +55,16 @@ END
 
 #endif    // APSTUDIO_INVOKED
 
+#endif    // Korean (Korea) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -153,16 +161,6 @@ IDC_CURSOR_ZOOMOUT      CURSOR                  "res\\zoomout.cur"
 
 IDC_CURSOR_ZOOMIN       CURSOR                  "res\\zoomin.cur"
 
-#endif    // Korean (Korea) resources
-/////////////////////////////////////////////////////////////////////////////
-
-
-/////////////////////////////////////////////////////////////////////////////
-// English (United States) resources
-
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
-#pragma code_page(1252)
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -335,13 +333,13 @@ STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_
 CAPTION "Texture"
 FONT 9, "Arial", 400, 0, 0xA2
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,227,0,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,227,14,50,14
-    CONTROL         "Select(&S)",IDC_RADIO_SELECT,"Button",BS_AUTORADIOBUTTON | BS_PUSHLIKE | WS_GROUP,226,31,50,14
-    CONTROL         "Zoom(&Z)",IDC_RADIO_ZOOM,"Button",BS_AUTORADIOBUTTON | BS_PUSHLIKE,227,46,50,14
-    CONTROL         "Hand(&H)",IDC_RADIO_HAND,"Button",BS_AUTORADIOBUTTON | BS_PUSHLIKE,227,61,50,14
-    LTEXT           "Information",IDC_STATIC_INFO,226,143,50,70,0,WS_EX_CLIENTEDGE | WS_EX_STATICEDGE
-    COMBOBOX        IDC_COMBO_IMAGETYPE,227,217,50,102,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,266,0,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,266,14,50,14
+    CONTROL         "Select(&S)",IDC_RADIO_SELECT,"Button",BS_AUTORADIOBUTTON | BS_PUSHLIKE | WS_GROUP,266,30,50,14
+    CONTROL         "Zoom(&Z)",IDC_RADIO_ZOOM,"Button",BS_AUTORADIOBUTTON | BS_PUSHLIKE,266,46,50,14
+    CONTROL         "Hand(&H)",IDC_RADIO_HAND,"Button",BS_AUTORADIOBUTTON | BS_PUSHLIKE,266,61,50,14
+    LTEXT           "Information",IDC_STATIC_INFO,227,142,76,70,0,WS_EX_CLIENTEDGE | WS_EX_STATICEDGE
+    COMBOBOX        IDC_COMBO_IMAGETYPE,266,217,50,102,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Auto Select - Horizontal",IDC_BUTTON_AUTOSELECT_H,227,82,84,14,NOT WS_VISIBLE
     PUSHBUTTON      "Auto Select - Vertical",IDC_BUTTON_AUTOSELECT_V,227,98,84,14,NOT WS_VISIBLE
 END
@@ -351,23 +349,23 @@ STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Set Image Count To Animate"
 FONT 9, "Arial", 400, 0, 0xA2
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,7,66,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,78,66,50,14
+    DEFPUSHBUTTON   "OK",IDOK,14,66,43,14
+    PUSHBUTTON      "Cancel",IDCANCEL,78,66,40,14
     LTEXT           "Specify the number of images to be animated.\n(Enter 0 to return to normal image.)",IDC_STATIC,7,7,121,32
-    EDITTEXT        IDC_EDIT_COUNT,7,47,121,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_COUNT,15,47,104,14,ES_AUTOHSCROLL
 END
 
-IDD_REPLACE DIALOGEX 0, 0, 227, 45
+IDD_REPLACE DIALOGEX 0, 0, 227, 51
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Replace Texture"
 FONT 9, "Arial", 400, 0, 0xA2
 BEGIN
     PUSHBUTTON      "Replace",IDOK,170,7,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,170,24,50,14
-    LTEXT           "Find",IDC_STATIC,7,8,33,11,SS_CENTERIMAGE
-    LTEXT           "Replace",IDC_STATIC,7,25,33,11,SS_CENTERIMAGE
-    EDITTEXT        IDC_EDIT_FIND,41,7,125,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EDIT_REPLACE,41,24,125,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Cancel",IDCANCEL,170,30,50,14
+    LTEXT           "Find",IDC_STATIC,14,7,21,11,SS_CENTERIMAGE
+    LTEXT           "Replace",IDC_STATIC,14,33,29,11,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_FIND,50,7,116,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_REPLACE,50,30,116,14,ES_AUTOHSCROLL
 END
 
 IDD_CHANGE_IMAGE_FILE_NAME DIALOGEX 0, 0, 345, 88
@@ -381,9 +379,9 @@ BEGIN
     EDITTEXT        IDC_E_PATH_NEW,72,37,111,14,ES_AUTOHSCROLL
     LTEXT           "Image File",IDC_STATIC,17,20,43,12,SS_CENTERIMAGE
     LTEXT           "Replace With...",IDC_STATIC,16,37,54,12,SS_CENTERIMAGE
-    LTEXT           "Cast",IDC_STATIC,223,18,24,12,SS_CENTERIMAGE
-    PUSHBUTTON      "Browse",IDC_B_BROWSE_OLD_FILE,184,18,35,15
-    PUSHBUTTON      "Browse",IDC_B_BROWSE_NEW_FILE,183,37,36,15
+    LTEXT           "Cast",IDC_STATIC,232,18,24,12,SS_CENTERIMAGE
+    PUSHBUTTON      "Browse",IDC_B_BROWSE_OLD_FILE,186,18,35,15
+    PUSHBUTTON      "Browse",IDC_B_BROWSE_NEW_FILE,185,36,36,15
 END
 
 IDD_UNUSED_FILE DIALOGEX 0, 0, 390, 218
@@ -424,7 +422,7 @@ BEGIN
 
     IDD_TEXTURE, DIALOG
     BEGIN
-        RIGHTMARGIN, 277
+        RIGHTMARGIN, 316
     END
 
     IDD_ANIMATE, DIALOG
@@ -440,7 +438,7 @@ BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 220
         TOPMARGIN, 7
-        BOTTOMMARGIN, 38
+        BOTTOMMARGIN, 44
     END
 
     IDD_CHANGE_IMAGE_FILE_NAME, DIALOG

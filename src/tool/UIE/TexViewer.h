@@ -50,7 +50,7 @@ class CTexViewer : public CWnd {
         DRAGTYPE_RIGHTBOTTOM,
         DRAGTYPE_SELECT
     };
-    eDRAGTYPE m_eDragType; // Drag
+    eDRAGTYPE m_eDragType; 
 
     HCURSOR m_hCursorSelect;
     HCURSOR m_hCursorZoomIn;
@@ -63,7 +63,7 @@ class CTexViewer : public CWnd {
     HCURSOR m_hCursorSizeNWSE;
     HCURSOR m_hCursorSizeNESW;
 
-    // image type����
+
     int   m_iImageTypeCount;
     CRect m_ImageRects[MAX_IMAGETYPE];
     int   m_iCurSelectedImage;

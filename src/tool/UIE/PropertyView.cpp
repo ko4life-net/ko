@@ -414,7 +414,7 @@ BOOL CPropertyView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT * pResult) {
             CFontDialog dlg(&logfont);
             if (IDOK == dlg.DoModal()) {
                 __ASSERT(dlg.GetSize() > 0, "The font height is less than 0.");
-                std::string szFontName = dlg.GetFaceName();
+                std::string szFontName(dlg.GetFaceName().GetString());
                 pUIList->SetFont(szFontName, dlg.GetSize() / 10, dlg.IsBold(), dlg.IsItalic());
                 UpdateUIListInfo();
             }
@@ -650,7 +650,7 @@ void CPropertyView::UpdateInfo() {
     CMainFrame * pFrm = (CMainFrame *)AfxGetMainWnd();
     CN3UIBase *  pUIBase = GetDocument()->GetSelectedUI();
 
-    // �ϴ� ��� ���߱�
+    
     m_UIBase.ShowWindow(SW_HIDE);
     m_UIImage.ShowWindow(SW_HIDE);
     m_UIString.ShowWindow(SW_HIDE);
@@ -963,7 +963,7 @@ void CPropertyView::UpdateUIStringInfo() {
             }
         }
         if (pItem->m_curValue.GetLength() == 0) {
-            pItem->m_curValue = _T("�usually"); // I'am not sure about it.
+            pItem->m_curValue = _T("Usually"); // I'am not sure about it.
         }
     }
     pItem = m_UIString.GetPropItem("Text Color"); // string color

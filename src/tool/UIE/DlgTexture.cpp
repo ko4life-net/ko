@@ -120,7 +120,7 @@ void CDlgTexture::OnOK() {
             if (-1 == m_pTexViewer->GetImageRect(i).left) {
                 CString str, strLBText;
                 m_ImageType.GetLBText(i, strLBText);
-                str.Format("%s I'm going to try to fix it.", strLBText);
+                str.Format("The area of %s has not been selected.", strLBText);
                 MessageBox(str);
                 return;
             }
@@ -130,7 +130,7 @@ void CDlgTexture::OnOK() {
         if (-1 != m_pTexViewer->GetSelectedRect().left) {
             CDialog::OnOK();
         } else {
-            MessageBox("I'm going to do it. I'm going to do it. I'm going to do it..");
+            MessageBox("No area has been selected.");
         }
     }
 }

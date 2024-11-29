@@ -804,10 +804,10 @@ CRect CTexViewer::GetImageRect(int iIndex) {
 
 BOOL CTexViewer::AutoMultiRectSelect(BOOL bHorizon, CString & strErrMsg) {
     if (-1 == m_rcSelectedRect.left) {
-        strErrMsg = "Let's do this. Let's do this.";
+        strErrMsg = "No area is currently selected.";
         return FALSE;
     } else if (0 == m_rcSelectedRect.Width() || 0 == m_rcSelectedRect.Height()) {
-        strErrMsg = "If you want to know more about fortune telling, please contact us. The price is 0.";
+        strErrMsg = "The width or height of the selected area is 0.";
         return FALSE;
     }
 
@@ -822,7 +822,8 @@ BOOL CTexViewer::AutoMultiRectSelect(BOOL bHorizon, CString & strErrMsg) {
                 iRow = 0;
             }
             if ((ptLeftTop.y + m_rcSelectedRect.Height() * (iCol + 1)) > m_TexSize.cy) {
-                strErrMsg.Format("Let's do this. Let's do this.)", i + 1);
+                 strErrMsg.Format("Unable to select all rectangular areas. (%d items set)", i + 1);
+
                 return FALSE;
             }
             m_ImageRects[i].SetRect(ptLeftTop.x + m_rcSelectedRect.Width() * iRow,
@@ -838,7 +839,7 @@ BOOL CTexViewer::AutoMultiRectSelect(BOOL bHorizon, CString & strErrMsg) {
                 iCol = 0;
             }
             if ((ptLeftTop.x + m_rcSelectedRect.Width() * (iRow + 1)) > m_TexSize.cx) {
-                strErrMsg.Format("Let's do this. Let's do this)", i + 1);
+                strErrMsg.Format("Unable to select all rectangular areas. (%d items set)", i + 1);
                 return FALSE;
             }
             m_ImageRects[i].SetRect(ptLeftTop.x + m_rcSelectedRect.Width() * iRow,
