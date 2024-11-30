@@ -227,6 +227,10 @@ bool CN3FXPartMesh::Load(HANDLE hFile) {
         ReadFile(hFile, &m_vUnitScale, sizeof(__Vector3), &dwRWC, NULL);
     }
 
+    if (m_iVersion == 6) {
+        ReadFile(hFile, &m_bShapeLoop, sizeof(bool), &dwRWC, NULL); //?<shape_loop> true <view_fix> true <usefadeshowlife> false
+    }
+
     if (m_pShape) {
         for (int i = 0; i < m_pShape->PartCount(); i++) {
             m_pShape->Part(i)->m_fTexFPS = m_fTexFPS;
