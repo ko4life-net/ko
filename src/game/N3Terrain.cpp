@@ -347,6 +347,11 @@ bool CN3Terrain::Load(HANDLE hFile) {
     }
 
     DWORD dwRWC;
+    int TempVersion, TempIntStringLength;
+    ReadFile(hFile, &(TempVersion), sizeof(int), &dwRWC, NULL);	// Read the map version
+    ReadFile(hFile, &(TempIntStringLength), sizeof(int), &dwRWC, NULL);	// Read the map name char length
+    CHAR * TempGTDMapNamebuffer = new CHAR[TempIntStringLength / sizeof(char) + 1]{};	// Zero-initialized
+    ReadFile(hFile, TempGTDMapNamebuffer, TempIntStringLength, &dwRWC, NULL);	// Now read it and push it back to the GTDMapName char buffer
     ReadFile(hFile, &(m_ti_MapSize), sizeof(int), &dwRWC, NULL);
     m_pat_MapSize = (m_ti_MapSize - 1) / PATCH_TILE_SIZE;
 
