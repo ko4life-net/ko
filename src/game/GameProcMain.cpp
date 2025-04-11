@@ -14,6 +14,7 @@
 
 #include "PlayerMySelf.h"
 #include "PlayerOtherMgr.h"
+#include "ItemBundleMgr.h"
 #include "ServerMesh.h"
 #include "N3FXMgr.h"
 
@@ -131,6 +132,7 @@ CGameProcMain::CGameProcMain() // r기본 생성자.. 각 변수의 역활은 �
     m_iExitCurCountDown = SECONDS_TO_EXIT_GAME_AFTER_ATTACK;
     m_fExitCurCountDownToReach = -1.0f;
 
+    m_pItemBundleMgr = new CItemBundleMgr();
     //UI
     m_pUIMsgDlg = new CUIMessageWnd;
     m_pUIChatDlg = new CUIChat();
@@ -222,6 +224,7 @@ CGameProcMain::~CGameProcMain() {
     delete m_pTargetSymbol; // 플레이어가 타겟으로 잡은 캐릭터의 위치위에 그리면 된다..
 
     delete m_pLightMgr;
+    delete m_pItemBundleMgr;
 }
 
 void CGameProcMain::Release() {
@@ -420,6 +423,7 @@ void CGameProcMain::Tick() {
     s_pPlayer->Tick(); // 플레이어 틱(갱신)
     s_pWorldMgr->Tick();
     s_pOPMgr->Tick(s_pPlayer->Position()); // 다른 유저 관리자 틱(갱신)
+    m_pItemBundleMgr->Tick();
     //    s_pFX->Tick(); //내부에서 카메라 값을 쓸 경우 위치가 오차가 생겨 Render()함수 안으로 옮김...
 
     __Vector3 ListenerPos = s_pPlayer->Position();
@@ -617,8 +621,9 @@ void CGameProcMain::Render() {
     CN3Base::s_lpD3DDev->SetSamplerState(1, D3DSAMP_MIPFILTER,
                                          dwFilter); // 텍스쳐를 줄여서 찍었을 경우 픽셀이 깨진것처럼 보이는 것 방지
 
-    ACT_WORLD->RenderTerrain();   // 지형 렌더..
-    ACT_WORLD->RenderShape();     // 물체 렌더..
+    ACT_WORLD->RenderTerrain(); // 지형 렌더..
+    ACT_WORLD->RenderShape();   // 물체 렌더..
+    m_pItemBundleMgr->Render();
     s_pOPMgr->Render(fSunAngle);  // 다른 플레이어 렌더..
     s_pPlayer->Render(fSunAngle); // 플레이어 렌더..
 
@@ -3314,6 +3319,7 @@ bool CGameProcMain::MsgRecv_ItemBundleDrop(DataPack * pDataPack, int & iOffset) 
 
     if (pCorpse) {
         pCorpse->m_iDroppedItemID = iItemID; // 떨어트린 아이템 아이디 뭉치
+        m_pItemBundleMgr->Add(pCorpse->Position(), iID, 12);
     }
 
     return true;
@@ -7183,7 +7189,12 @@ bool CGameProcMain::OnMouseLBtnPress(POINT ptCur, POINT ptPrev) {
 
         s_pPlayer->m_pObjectTarget =
             ACT_WORLD->PickWithShape(ptCur.x, ptCur.y, true, &m_vMouseLBClickedPos); // 찍힌 위치를 저장한다..
-        if (NULL == s_pPlayer->m_pObjectTarget)                                      // 타겟도 없으면..
+        CItemBundle * pItemBundle = m_pItemBundleMgr->Pick(ptCur.x, ptCur.y);
+        if (pItemBundle) {
+            int test = pItemBundle->GetItemID();
+            this->MsgSend_RequestItemBundleOpen(dynamic_cast<CPlayerNPC *>(s_pOPMgr->CorpseGetByID(test)));
+        }
+        if (NULL == s_pPlayer->m_pObjectTarget) // 타겟도 없으면..
         {
             // 시체 뒤저서 아이템 상자 열기..
             CPlayerNPC * pCorpse = s_pOPMgr->PickCorpse(ptCur.x, ptCur.y, iID); // 픽킹..
@@ -7337,6 +7348,12 @@ bool CGameProcMain::OnMouseRBtnPress(POINT ptCur, POINT ptPrev) {
 
     int          iID = -1;
     CPlayerNPC * pNPC = s_pOPMgr->PickNPC(ptCur.x, ptCur.y, iID); // 픽킹..
+
+    CItemBundle * pItemBundle = m_pItemBundleMgr->Pick(ptCur.x, ptCur.y);
+    if (pItemBundle) {
+        int test = pItemBundle->GetItemID();
+        this->MsgSend_RequestItemBundleOpen(dynamic_cast<CPlayerNPC *>(s_pOPMgr->CorpseGetByID(test)));
+    }
 
     if (NULL == pNPC) {
         CPlayerNPC * pCorpse = s_pOPMgr->PickCorpse(ptCur.x, ptCur.y, iID); // 픽킹..

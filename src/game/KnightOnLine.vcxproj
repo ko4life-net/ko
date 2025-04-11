@@ -222,6 +222,7 @@
     <ClInclude Include="GameProcMain.h" />
     <ClInclude Include="GameProcNationSelect.h" />
     <ClInclude Include="GameProcOption.h" />
+    <ClInclude Include="ItemBundleMgr.h" />
     <ClInclude Include="ItemRepairMgr.h" />
     <ClInclude Include="KnightChrMgr.h" />
     <ClInclude Include="LightMgr.h" />
@@ -402,6 +403,7 @@
     <ClCompile Include="GameProcMain.cpp" />
     <ClCompile Include="GameProcNationSelect.cpp" />
     <ClCompile Include="GameProcOption.cpp" />
+    <ClCompile Include="ItemBundleMgr.cpp" />
     <ClCompile Include="ItemRepairMgr.cpp" />
     <ClCompile Include="KnightChrMgr.cpp" />
     <ClCompile Include="LightMgr.cpp" />

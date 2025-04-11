@@ -642,6 +642,7 @@
     <ClInclude Include="$(SrcDir)\common\N3Utils.h">
       <Filter>N3Base\Core</Filter>
     </ClInclude>
+    <ClInclude Include="ItemBundleMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(SrcDir)\engine\N3Base\N3UIBase.cpp">
@@ -1146,6 +1147,7 @@
     <ClCompile Include="UIExitMenu.cpp">
       <Filter>Procedure - Main\UI</Filter>
     </ClCompile>
+    <ClCompile Include="ItemBundleMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="res\Resource.h">
