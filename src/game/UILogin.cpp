@@ -10,6 +10,7 @@
 #include "N3Base/N3UIEdit.h"
 #include "N3Base/N3UIButton.h"
 #include "N3Base/N3UIList.h"
+#include "N3Base/N3UIString.h";
 #include "UIMessageBoxManager.h"
 
 #include <algorithm>
@@ -34,6 +35,10 @@ CUILogIn::CUILogIn() {
     m_pText_Rights = NULL;
     m_pImg_MGameLogo = NULL;
     m_pImg_DaumLogo = NULL;
+
+    m_pGroup_Notice[1] = NULL;
+    m_pGroup_Notice[2] = NULL;
+    m_pGroup_Notice[3] = NULL;
 
     m_pList_Server = NULL;
 
@@ -365,6 +370,38 @@ void CUILogIn::SetVisibleLogInUIs(bool bEnable) {
 
                 m_pText_Rights->SetVisible(true);
             }
+        }
+    }
+}
+
+void CUILogIn::LoadNewsData() {
+    std::string szGroupNotice = "Group_Notice_";
+
+    for (size_t i = 0; i < m_loginNewsCount; ++i) {
+        CN3UIBase * pGroupNotice = GetChildByID(szGroupNotice + std::to_string(i + 1));
+        if (pGroupNotice) {
+            CN3UIString * pNoticeTitle = (CN3UIString *)pGroupNotice->GetChildByID("text_notice_name");
+            CN3UIString * pNoticeText = (CN3UIString *)pGroupNotice->GetChildByID("text_notice");
+
+            if (pNoticeTitle) {
+                pNoticeTitle->SetString(m_loginNewsTitle[i].c_str());
+            }
+            if (pNoticeText) {
+                pNoticeText->SetString(m_loginNewsText[i].c_str());
+            }
+
+            int x = (CN3Base::s_CameraData.vp.Width / 2) - 40;
+            int y = (CN3Base::s_CameraData.vp.Height / 2);
+
+            if (i == 0) {
+                pGroupNotice->MoveOffset(x, 30 + 170 - y);
+            } else if (i == 1) {
+                pGroupNotice->MoveOffset(x, 30 + 342 - y);
+            } else if (i == 2) {
+                pGroupNotice->MoveOffset(x, 30 + 518 - y);
+            }
+
+            pGroupNotice->SetVisible(true);
         }
     }
 }

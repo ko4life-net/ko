@@ -71,6 +71,48 @@ void CUser::Parsing(int len, char * pData) {
     case LS_MGAME_LOGIN:
         MgameLogin(pData + index);
         break;
+    case LS_NEWS: {
+        constexpr char BOX_START[] = {'#', '\0'};
+        constexpr char LINE_ENDING[] = {'\0'};
+        constexpr char BOX_END[] = {'#', '\0'};
+
+        std::ostringstream oss;
+
+        for (const auto & news : m_pMain->m_ServerNews) {
+            if (!news.IsActive) {
+                continue;
+            }
+
+            oss << news.Title;
+            oss.write(BOX_START, sizeof(BOX_START));
+            oss << news.Content;
+            oss.write(LINE_ENDING, sizeof(LINE_ENDING));
+            oss.write(BOX_END, sizeof(BOX_END));
+        }
+
+        std::string fullContent = oss.str();
+        std::string header = "Login Notice";
+
+        SetByte(buff, LS_NEWS, send_index);
+
+        int headerLen = static_cast<int>(header.size());
+        SetShort(buff, headerLen, send_index);
+        SetString(buff, header.data(), headerLen, send_index);
+
+        if (!fullContent.empty()) {
+            uint16_t size = static_cast<uint16_t>(fullContent.size());
+            SetShort(buff, size, send_index);
+            SetString(buff, fullContent.data(), size, send_index);
+        } else {
+            std::string emptyStr = "<empty>";
+            int         emptyLen = static_cast<int>(emptyStr.size());
+            SetShort(buff, emptyLen, send_index);
+            SetString(buff, emptyStr.data(), emptyLen, send_index);
+        }
+
+        Send(buff, send_index);
+        break;
+    }
     }
 }
 void CUser::LogInReq(char * pBuf) {

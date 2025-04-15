@@ -7,6 +7,7 @@ const int SOCKET_PORT_LOGIN = 15100; // 소켓이 붙을 포트 번호..
 #define N3_ACCOUNT_LOGIN_MGAME 0xf4 // !!! LOGIN_REQ !!! 와 동일
 #define N3_GAMESERVER_GROUP_LIST                                                                                       \
     0xf5 // Recv - b1(ServerCount) loop(    s1(IP길이), str1(IP문자열), s1(서버이름길이), str1(서버이름문자열), s1(서버접속인원) )
+#define N3_LOGIN_NEWS_REQUEST 0xf6
 
 #define N3_GAME_SERVER_LOGIN          0x01 // Game server 에 Log in..
 #define N3_NEW_CHARACTER              0x02 // 캐릭터 새로 만들기..

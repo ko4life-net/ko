@@ -47,6 +47,7 @@ BEGIN_MESSAGE_MAP(CLoginServerDlg, CDialog)
 ON_WM_PAINT()
 ON_WM_QUERYDRAGICON()
 ON_BN_CLICKED(IDC_SETTING, OnVersionSetting)
+ON_WM_TIMER()
 //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -91,6 +92,12 @@ BOOL CLoginServerDlg::OnInitDialog() {
         AfxPostQuitMessage(0);
         return FALSE;
     }
+    if (!m_DBProcess.LoadNews()) {
+        AfxMessageBox("Load News Data Fail!!");
+        AfxPostQuitMessage(0);
+        return FALSE;
+    }
+    StartNewsRefreshTimer();
 
     m_OutputList.AddString(szConnectionString);
     std::string szVersion = std::format("Latest Version : {:d}", m_nLastVersion);
@@ -104,6 +111,21 @@ BOOL CLoginServerDlg::OnInitDialog() {
 BOOL CLoginServerDlg::GetInfoFromIni() {
     std::string  szIniFile = (n3std::get_app_dir() / "Version.ini").string();
     const char * pszIniFile = szIniFile.c_str();
+
+    DWORD dwAttrib = GetFileAttributesA(pszIniFile);
+    if (dwAttrib == INVALID_FILE_ATTRIBUTES) {
+        WritePrivateProfileString("DOWNLOAD", "URL", "ftp.your-site.net", pszIniFile);
+        WritePrivateProfileString("DOWNLOAD", "PATH", "/", pszIniFile);
+        WritePrivateProfileString("ODBC", "DSN", "kodb", pszIniFile);
+        WritePrivateProfileString("ODBC", "UID", "kodb_user", pszIniFile);
+        WritePrivateProfileString("ODBC", "PWD", "kodb_user", pszIniFile);
+        WritePrivateProfileString("ODBC", "TABLE", "VERSION", pszIniFile);
+        WritePrivateProfileString("CONFIGURATION", "DEFAULT_PATH", "", pszIniFile);
+        WritePrivateProfileString("CONFIGURATION", "NewsRefreshInterval", "30", pszIniFile);
+        WritePrivateProfileString("SERVER_LIST", "COUNT", "1", pszIniFile);
+        WritePrivateProfileString("SERVER_LIST", "SERVER_00", "127.0.0.1", pszIniFile);
+        WritePrivateProfileString("SERVER_LIST", "NAME_00", "SERVER_01", pszIniFile);
+    }
 
     char szBuff[500]{};
     GetPrivateProfileString("DOWNLOAD", "URL", "ftp.your-site.net", szBuff, sizeof(szBuff), pszIniFile);
@@ -135,6 +157,11 @@ BOOL CLoginServerDlg::GetInfoFromIni() {
     }
     if (m_nServerCount <= 0) {
         return FALSE;
+    }
+
+    m_NewsRefreshInterval = GetPrivateProfileInt("CONFIGURATION", "NewsRefreshInterval", -1, pszIniFile);
+    if (m_NewsRefreshInterval <= 0) {
+        m_NewsRefreshInterval = 15;
     }
 
     m_ServerList.reserve(20);
@@ -215,4 +242,31 @@ void CLoginServerDlg::OnVersionSetting() {
         m_fsDefaultDir = dlg.m_fsDefaultDir;
         WritePrivateProfileStringW(L"CONFIGURATION", L"DEFAULT_PATH", m_fsDefaultDir.c_str(), fsIniPath.c_str());
     }
+}
+
+void CLoginServerDlg::StartNewsRefreshTimer() {
+    if (m_NewsRefreshTimerID != 0) {
+        KillTimer(m_NewsRefreshTimerID);
+    }
+
+    m_NewsRefreshTimerID = SetTimer(1, m_NewsRefreshInterval * 60 * 1000, NULL);
+    if (m_NewsRefreshTimerID == 0) {
+        TRACE("Timer failed to set!");
+    }
+}
+
+void CLoginServerDlg::RefreshNewsData() {
+    m_ServerNews.clear();
+    if (m_DBProcess.LoadNews()) {
+        TRACE("News Data Refreshed Successfully!");
+    } else {
+        TRACE("Failed to Refresh News Data!");
+    }
+}
+
+void CLoginServerDlg::OnTimer(UINT_PTR nIDEvent) {
+    if (nIDEvent == m_NewsRefreshTimerID) {
+        RefreshNewsData();
+    }
+    CDialog::OnTimer(nIDEvent);
 }

@@ -326,6 +326,17 @@ bool CGameProcLogIn::MsgSend_AccountLogIn(e_LogInClassification eLIC) {
     return true;
 }
 
+bool CGameProcLogIn::MsgSend_NewsRequestData() {
+    BYTE byBuffer[4];
+    int  iOffset = 0;
+
+    CAPISocket::MP_AddByte(byBuffer, iOffset, N3_LOGIN_NEWS_REQUEST);
+
+    s_pSocket->Send(byBuffer, iOffset);
+
+    return true;
+}
+
 void CGameProcLogIn::MsgRecv_GameServerGroupList(DataPack * pDataPack, int & iOffset) {
     int iServerCount = CAPISocket::Parse_GetByte(pDataPack->m_pData, iOffset); // 서버 갯수
     for (int i = 0; i < iServerCount; i++) {
@@ -496,10 +507,14 @@ bool CGameProcLogIn::ProcessPacket(DataPack * pDataPack, int & iOffset) {
     case N3_GAMESERVER_GROUP_LIST: // 접속하면 바로 보내준다..
         this->MsgRecv_GameServerGroupList(pDataPack, iOffset);
         return true;
-
+    case N3_LOGIN_NEWS_REQUEST:
+        N3_DEBUG("N3_LOGIN_NEWS_REQUEST");
+        this->MsgRecv_News(pDataPack, iOffset);
+        return true;
     case N3_ACCOUNT_LOGIN:       // 계정 접속 성공..
     case N3_ACCOUNT_LOGIN_MGAME: // MGame 계정 접속 성공..
         this->MsgRecv_AccountLogIn(iCmd, pDataPack, iOffset);
+        this->MsgSend_NewsRequestData();
         return true;
     }
 
@@ -524,6 +539,64 @@ void CGameProcLogIn::ConnectToGameServer() // 고른 게임 서버에 접속
         this->MsgSend_VersionCheck();
     }
 }
+void CGameProcLogIn::MsgRecv_News(DataPack * pDataPack, int & iOffset) {
+    constexpr int maxNewsCount = 3;
+    int           newsCount = 0;
+
+    int         headerLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+    std::string szHeader;
+    if (headerLen > 0) {
+        CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szHeader, headerLen);
+    }
+
+    int         fullContentLen = CAPISocket::Parse_GetShort(pDataPack->m_pData, iOffset);
+    std::string fullContent;
+    if (fullContentLen > 0) {
+        CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, fullContent, fullContentLen);
+    }
+
+    fullContent.erase(std::remove(fullContent.begin(), fullContent.end(), '\0'), fullContent.end());
+
+    std::vector<std::string> tokens;
+    {
+        size_t start = 0;
+        while (true) {
+            size_t pos = fullContent.find('#', start);
+            if (pos == std::string::npos) {
+                std::string token = fullContent.substr(start);
+                tokens.push_back(token);
+                break;
+            } else {
+                std::string token = fullContent.substr(start, pos - start);
+                tokens.push_back(token);
+                start = pos + 1;
+            }
+        }
+    }
+
+    auto trim = [](const std::string & s) -> std::string {
+        const std::string whitespace = " \t\n\r";
+        size_t            start = s.find_first_not_of(whitespace);
+        if (start == std::string::npos) {
+            return "";
+        }
+        size_t end = s.find_last_not_of(whitespace);
+        return s.substr(start, end - start + 1);
+    };
+
+    for (size_t i = 0; i + 1 < tokens.size() && newsCount < maxNewsCount; i += 2) {
+        std::string title = trim(tokens[i]);
+        std::string content = trim(tokens[i + 1]);
+
+        m_pUILogIn->m_loginNewsTitle[newsCount] = title;
+        m_pUILogIn->m_loginNewsText[newsCount] = content;
+        newsCount++;
+    }
+
+    m_pUILogIn->m_loginNewsCount = newsCount;
+    m_pUILogIn->LoadNewsData();
+}
+
 //    By : Ecli666 ( On 2002-07-15 오후 7:35:16 )
 //
 /*

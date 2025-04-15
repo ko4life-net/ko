@@ -14,11 +14,14 @@
 
 typedef CSTLMap<fs::path, _VERSION_INFO> VersionInfoList; // TODO: does the key need to be fs::path?
 typedef std::vector<_SERVER_INFO *>      ServerInfoList;
+typedef std::vector<_SERVER_INFO *>      ServerInfoList;
 
 class CLoginServerDlg : public CDialog {
     // Construction
   public:
     BOOL GetInfoFromIni();
+    void StartNewsRefreshTimer();
+    void RefreshNewsData();
 
     CLoginServerDlg(CWnd * pParent = NULL); // standard constructor
 
@@ -37,9 +40,12 @@ class CLoginServerDlg : public CDialog {
     char m_ODBCPwd[32];
     char m_TableName[32];
 
-    VersionInfoList m_VersionList;
-    ServerInfoList  m_ServerList;
-    int             m_nServerCount;
+    VersionInfoList    m_VersionList;
+    ServerInfoList     m_ServerList;
+    int                m_nServerCount;
+    std::vector<_NEWS> m_ServerNews;
+    int                m_NewsRefreshInterval = 30; // Minutes
+    UINT_PTR           m_NewsRefreshTimerID = 0;
 
     CDBProcess m_DBProcess;
 
@@ -60,6 +66,8 @@ class CLoginServerDlg : public CDialog {
   protected:
     virtual void DoDataExchange(CDataExchange * pDX); // DDX/DDV support
                                                       //}}AFX_VIRTUAL
+  protected:
+    afx_msg void OnTimer(UINT_PTR nIDEvent);
 
     // Implementation
   protected:

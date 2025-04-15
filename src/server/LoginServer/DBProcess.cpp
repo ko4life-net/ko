@@ -306,3 +306,58 @@ BOOL CDBProcess::IsCurrentUser(const char * szAccountId, char * szServerIp, int 
 
     return retval;
 }
+
+BOOL CDBProcess::LoadNews() {
+    SQLHSTMT  hstmt = NULL;
+    SQLRETURN retcode;
+    TCHAR     szSQL[1024];
+
+    memset(szSQL, 0x00, 1024);
+    wsprintf(szSQL, TEXT("SELECT Title, Content, IsActive FROM NEWS WHERE IsActive = 1 AND "
+                         "(StartsAt IS NULL OR StartsAt <= GETDATE()) AND "
+                         "(ExpiresAt IS NULL OR ExpiresAt > GETDATE()) AND "
+                         "NoticeType = 'login'"));
+
+    _NEWS newsItem;
+    memset(&newsItem, 0, sizeof(newsItem));
+
+    retcode = SQLAllocHandle(SQL_HANDLE_STMT, m_VersionDB.m_hdbc, &hstmt);
+    if (retcode != SQL_SUCCESS) {
+        return FALSE;
+    }
+
+    retcode = SQLExecDirect(hstmt, (unsigned char *)szSQL, 1024);
+    if (retcode != SQL_SUCCESS && retcode != SQL_SUCCESS_WITH_INFO) {
+        if (DisplayErrorMsg(hstmt) == -1) {
+            m_VersionDB.Close();
+            if (!m_VersionDB.IsOpen()) {
+                ReConnectODBC(&m_VersionDB, m_pMain->m_ODBCName, m_pMain->m_ODBCLogin, m_pMain->m_ODBCPwd);
+                return FALSE;
+            }
+        }
+        SQLFreeHandle(SQL_HANDLE_STMT, hstmt);
+        return FALSE;
+    }
+
+    while (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+        retcode = SQLFetch(hstmt);
+        if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+            SQLCHAR titleBuffer[256] = {0};
+            SQLCHAR contentBuffer[4096] = {0};
+
+            SQLGetData(hstmt, 1, SQL_C_CHAR, titleBuffer, sizeof(titleBuffer), NULL);
+            SQLGetData(hstmt, 2, SQL_C_CHAR, contentBuffer, sizeof(contentBuffer), NULL);
+            SQLGetData(hstmt, 3, SQL_C_BIT, &newsItem.IsActive, 0, NULL);
+
+            strncpy(newsItem.Title, reinterpret_cast<char *>(titleBuffer), sizeof(newsItem.Title) - 1);
+            strncpy(newsItem.Content, reinterpret_cast<char *>(contentBuffer), sizeof(newsItem.Content) - 1);
+
+            if (newsItem.IsActive) {
+                m_pMain->m_ServerNews.push_back(newsItem);
+            }
+        }
+    }
+
+    SQLFreeHandle(SQL_HANDLE_STMT, hstmt);
+    return TRUE;
+}

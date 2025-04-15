@@ -44,6 +44,10 @@ class CUILogIn : public CN3UIBase {
     CN3UIBase * m_pImg_MGameLogo;
     CN3UIBase * m_pImg_DaumLogo;
 
+    CN3UIBase *   m_pGroup_Notice[3];
+    CN3UIString * m_pNotice_Title[3];
+    CN3UIString * m_pNotice_Text[3];
+
     CN3UIList * m_pList_Server;
 
     std::vector<__GameServerInfo> m_ListServerInfos;
@@ -53,6 +57,10 @@ class CUILogIn : public CN3UIBase {
     bool  m_bLogIn; // 로그인 중복 방지..
 
   public:
+    std::string m_loginNewsTitle[3];
+    std::string m_loginNewsText[3];
+    int         m_loginNewsCount = 0;
+
     void SetRequestedLogIn(bool bLogIn) { m_bLogIn = bLogIn; }
     bool OnKeyPress(int iKey);
     void SetVisibleLogInUIs(bool bEnable); // 계정 LogIn 에 필요한 UI 들을 숨긴다..
@@ -70,6 +78,7 @@ class CUILogIn : public CN3UIBase {
     bool ServerInfoGet(int iIndex, __GameServerInfo & GSI);
     bool ServerInfoGetCur(__GameServerInfo & GSI);
     void ServerInfoUpdate();
+    void LoadNewsData();
 
     void AccountIDGet(std::string & szID);
     void AccountPWGet(std::string & szPW);
