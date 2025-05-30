@@ -484,7 +484,7 @@ bool CN3FXBundleGame::Load(HANDLE hFile) {
             }
         }
     }
-    if (m_iVersion >= 1) {
+    if (m_iVersion >= 1 && m_iVersion < 3) {
         for (int i = 0; i < MAX_FX_PART; i++) {
             int iType;
 
@@ -554,10 +554,84 @@ bool CN3FXBundleGame::Load(HANDLE hFile) {
         }
     }
 
+    if (m_iVersion > 2) {
+        for (int i = 0; i < 26; i++) {
+            int iType;
+
+            ReadFile(hFile, &iType, sizeof(int), &dwRWC, NULL);
+
+            if (iType == FX_PART_TYPE_NONE) {
+                continue;
+            }
+
+            else if (iType == FX_PART_TYPE_PARTICLE) {
+                m_pPart[i] = new FXPARTWITHSTARTTIME;
+
+                float fStartTime;
+                ReadFile(hFile, &(fStartTime), sizeof(float), &dwRWC, NULL);
+
+                m_pPart[i]->fStartTime = fStartTime;
+
+                m_pPart[i]->pPart = new CN3FXPartParticles;
+                m_pPart[i]->pPart->m_pRefBundle = this;
+                m_pPart[i]->pPart->m_pRefPrevPart = NULL;
+                m_pPart[i]->pPart->m_iType = FX_PART_TYPE_PARTICLE;
+                m_pPart[i]->pPart->Load(hFile);
+            }
+
+            else if (iType == FX_PART_TYPE_BOARD) {
+                m_pPart[i] = new FXPARTWITHSTARTTIME;
+
+                float fStartTime;
+                ReadFile(hFile, &(fStartTime), sizeof(float), &dwRWC, NULL);
+
+                m_pPart[i]->fStartTime = fStartTime;
+
+                m_pPart[i]->pPart = new CN3FXPartBillBoardGame;
+                m_pPart[i]->pPart->m_pRefBundle = this;
+                m_pPart[i]->pPart->m_pRefPrevPart = NULL;
+                m_pPart[i]->pPart->m_iType = FX_PART_TYPE_BOARD;
+                m_pPart[i]->pPart->Load(hFile);
+            }
+
+            else if (iType == FX_PART_TYPE_MESH) {
+                m_pPart[i] = new FXPARTWITHSTARTTIME;
+
+                float fStartTime;
+                ReadFile(hFile, &(fStartTime), sizeof(float), &dwRWC, NULL);
+
+                m_pPart[i]->fStartTime = fStartTime;
+
+                m_pPart[i]->pPart = new CN3FXPartMesh;
+                m_pPart[i]->pPart->m_pRefBundle = this;
+                m_pPart[i]->pPart->m_pRefPrevPart = NULL;
+                m_pPart[i]->pPart->m_iType = FX_PART_TYPE_MESH;
+                m_pPart[i]->pPart->Load(hFile);
+            } else if (iType == FX_PART_TYPE_BOTTOMBOARD) {
+                m_pPart[i] = new FXPARTWITHSTARTTIME;
+
+                float fStartTime;
+                ReadFile(hFile, &(fStartTime), sizeof(float), &dwRWC, NULL);
+
+                m_pPart[i]->fStartTime = fStartTime;
+
+                m_pPart[i]->pPart = new CN3FXPartBottomBoardGame;
+                m_pPart[i]->pPart->m_pRefBundle = this;
+                m_pPart[i]->pPart->m_pRefPrevPart = NULL;
+                m_pPart[i]->pPart->m_iType = FX_PART_TYPE_BOTTOMBOARD;
+                m_pPart[i]->pPart->Load(hFile);
+            }
+        }
+    }
     if (m_iVersion >= 2) {
         ReadFile(hFile, &m_bStatic, sizeof(bool), &dwRWC, NULL);
     }
-
+    if (m_iVersion >= 3) { // Todo
+        bool  m_bEarthQuake;
+        float m_fEarthQuakeStartTime;
+        ReadFile(hFile, &m_bEarthQuake, sizeof(bool), &dwRWC, NULL);
+        ReadFile(hFile, &m_fEarthQuakeStartTime, sizeof(float), &dwRWC, NULL);
+    }
     return true;
 }
 

@@ -226,6 +226,14 @@ bool CN3FXPartMesh::Load(HANDLE hFile) {
     if (m_iVersion >= 5) {
         ReadFile(hFile, &m_vUnitScale, sizeof(__Vector3), &dwRWC, NULL);
     }
+    if (m_iVersion >= 6) { // Todo <shape_loop> <view_fix> <usefadeshowlife> ???
+        bool m_bSkipUnknown1;
+        ReadFile(hFile, &m_bSkipUnknown1, sizeof(bool), &dwRWC, NULL);
+    }
+    if (m_iVersion >= 7) { // Todo <shape_loop> <view_fix> <usefadeshowlife> ???
+        bool m_bSkipUnknown2;
+        ReadFile(hFile, &m_bSkipUnknown2, sizeof(bool), &dwRWC, NULL);
+    }
 
     if (m_pShape) {
         for (int i = 0; i < m_pShape->PartCount(); i++) {
