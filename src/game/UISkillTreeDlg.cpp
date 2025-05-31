@@ -906,19 +906,15 @@ void CUISkillTreeDlg::TooltipRenderEnable(__IconItemSkill * spSkill) {
     }
     m_pStr_info->SetString(spSkill->pSkill->szDesc);
 
-    if ((spSkill->pSkill->dw1stTableType != 1) && (spSkill->pSkill->dw1stTableType != 2)) {
-        if (!m_pStr_skill_mp->IsVisible()) {
-            m_pStr_skill_mp->SetVisible(true);
-        }
-        if (spSkill->pSkill->iExhaustMSP == 0) {
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NO_MANA, szFmt);
-            sprintf(pszDesc, "%s", szFmt.c_str());
-        } else {
-            ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_USE_MANA, szFmt);
-            sprintf(pszDesc, szFmt.c_str(), spSkill->pSkill->iExhaustMSP);
-        }
-        m_pStr_skill_mp->SetString(pszDesc);
+    m_pStr_skill_mp->SetVisible(true);
+    if (spSkill->pSkill->iExhaustMSP == 0) {
+        ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NO_MANA, szFmt);
+        sprintf(pszDesc, "%s", szFmt.c_str());
+    } else {
+        ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_USE_MANA, szFmt);
+        sprintf(pszDesc, szFmt.c_str(), spSkill->pSkill->iExhaustMSP);
     }
+    m_pStr_skill_mp->SetString(pszDesc);
 
     if (!m_pStr_skill_item0->IsVisible()) {
         m_pStr_skill_item0->SetVisible(true);
@@ -926,14 +922,14 @@ void CUISkillTreeDlg::TooltipRenderEnable(__IconItemSkill * spSkill) {
     switch (spSkill->pSkill->iNeedSkill) {
     case 1055:
     case 2055:
-        ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_DUAL, szFmt);
+        ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID1, szFmt);
         sprintf(pszDesc, szFmt.c_str());
         bFound = true;
         break;
 
     case 1056:
     case 2056:
-        ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_DOUBLE, szFmt);
+        ::_LoadStringFromResource(IDS_SKILL_TOOLTIP_NEED_ITEM_ID1, szFmt);
         sprintf(pszDesc, szFmt.c_str());
         bFound = true;
         break;
@@ -1617,8 +1613,13 @@ void CUISkillTreeDlg::AllClearImageByName(const std::string & szName, bool bTrue
     //    CN3UIImage* pImage;
     CN3UIBase *   pBase = NULL;
     CN3UIButton * pButton = NULL;
+    pBase = GetChildBaseByName(std::format("img_{:s}", szName)); // Master
+    if (pBase) {
+        pBase->SetVisible(bTrueOrNot);
+    }
+
     for (int i = 0; i < 4; i++) {
-        pBase = GetChildBaseByName(std::format("img_{:s}{:d}", szName, i));
+        pBase = GetChildBaseByName(std::format("img_{:s}_{:d}", szName, i));
         if (pBase) {
             pBase->SetVisible(bTrueOrNot);
         }
@@ -1647,6 +1648,11 @@ void CUISkillTreeDlg::SetPageInCharRegion() // 문자 역역에서 현재 페이
         AllClearImageByName("berserker", false);
         AllClearImageByName("sorcerer", false);
         AllClearImageByName("shaman", false);
+        //master
+        AllClearImageByName("Berserker Hero", false);
+        AllClearImageByName("Shadow Bane", false);
+        AllClearImageByName("Elemental Lord", false);
+        AllClearImageByName("Shadow Knight", false);
 
         // 직업..
         switch (CGameBase::s_pPlayer->m_InfoBase.eClass) {
@@ -1680,6 +1686,11 @@ void CUISkillTreeDlg::SetPageInCharRegion() // 문자 역역에서 현재 페이
         AllClearImageByName("blade", false);
         AllClearImageByName("mage", false);
         AllClearImageByName("cleric", false);
+        //master
+        AllClearImageByName("Blade Master", false);
+        AllClearImageByName("Kasar Hood", false);
+        AllClearImageByName("Arc Mage", false);
+        AllClearImageByName("Paladin", false);
 
         // 직업..
         switch (CGameBase::s_pPlayer->m_InfoBase.eClass) {
