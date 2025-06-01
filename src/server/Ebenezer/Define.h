@@ -108,13 +108,6 @@ const BYTE WAREHOUSE_MAX = 196; // 창고 아이템 MAX
 #define EXEC_QUEST_SAVE                0X0A
 #define EXEC_GIVE_NOAH                0x0B
 */
-
-// EVENT 시작 번호들 :)
-#define EVENT_POTION        1
-#define EVENT_LOGOS_ELMORAD 1001
-#define EVENT_LOGOS_KARUS   2001
-#define EVENT_COUPON        3001
-
 ////////////////////////////////////////////////////////////
 
 ///////////////// BBS RELATED //////////////////////////////
@@ -134,28 +127,121 @@ const BYTE WAREHOUSE_MAX = 196; // 창고 아이템 MAX
 #define NPC_LIVE 0X01
 
 ///////////////// NPC TYPE /////////////////////////////////
-#define NPC_MONSTER          00
-#define NPC_GENERAL          01  //
-#define NPC_BOSS             03  // Unique Mop
-#define NPC_PATROL_GUARD     11  // 경비병
-#define NPC_MERCHANT         21  // 상인
-#define NPC_TINKER           22  // 대장장이
-#define NPC_WAREHOUSE        31  // 창고지기
-#define NPC_CAPTAIN          35  // 전직
-#define NPC_OFFICER          36  // 기사단 관리 NPC
-#define NPC_CLERIC           37  // 대사제 NPC
-#define NPC_HEALER           40  // Healer
-#define NPC_WARP             41  // Warp Npc
-#define NPC_GATE             50  // 성문형태 NPC
-#define NPC_PHOENIX_GATE     51  // 깨지지 않는 문 (8->51)
-#define NPC_SPECIAL_GATE     52  // 깨지지 않는 문이면서 2분마다 열렸다 닫혔다 하는 문
-#define NPC_GATE_LEVER       55  // 성문 레버...    (9->55)
-#define NPC_ARTIFACT         60  // 결계석 (7->60)
-#define NPC_DESTORY_ARTIFACT 61  // 파괴되는 결계석
-#define NPC_MONK_ELMORAD     71  // 비러머글 수도승 >.<
-#define NPC_MONK_KARUS       72  // 비러머글 수도승 >.<
-#define NPC_DOMESTIC_ANIMAL  99  // 가축 NPC
-#define NPC_COUPON           100 // 비러머글 복권 >.<
+#define NPC_MONSTER         0
+#define NPC_GENERAL         1
+#define NPC_BOSS            3
+#define NPC_DUNGEON_MONSTER 4
+#define NPC_TRAP_MONSTER    5
+#define NPC_GUARD           11
+#define NPC_PATROL_GUARD    12
+#define NPC_STORE_GUARD     13
+#define NPC_WAR_GUARD       14
+#define NPC_MERCHANT        21
+#define NPC_TINKER          22
+#define NPC_SELITH          23 // Selith[special store]
+#define NPC_ANVIL           24
+
+#define NPC_MARK               25
+#define NPC_CLAN_MATCH_ADVISOR 26
+#define NPC_SIEGE_1            27
+#define NPC_OPERATOR           29 // not sure what Operator Moira was ever supposed to do...
+#define NPC_WAREHOUSE          31
+#define NPC_KISS               32 // pretty useless.
+#define NPC_ISAAC              33 // need to check which quests he handles
+#define NPC_KAISHAN            34 // need to see what he actually does to name this properly
+#define NPC_CAPTAIN            35
+#define NPC_CLAN               36
+#define NPC_OFFICER            36
+#define NPC_CLERIC             37
+#define NPC_LADY               38 // Calamus lady event -- need to see what they're used for
+#define NPC_ATHIAN             39 // Priest athian -- need to see what they're used for
+#define NPC_HEALER             40
+#define NPC_WARP               41 // Warp Npc
+#define NPC_ROOM               42
+#define NPC_ARENA              43 // also recon guards
+#define NPC_SIEGE              44
+#define NPC_SENTINEL_PATRICK   47 // need to check which quests he handles (was it the beginner quests or was that isaac?)
+
+#define NPC_GATE                  50
+#define NPC_PHOENIX_GATE          51
+#define NPC_SPECIAL_GATE          52
+#define NPC_VICTORY_GATE          53
+#define NPC_GATE_LEVER            55
+#define NPC_ARTIFACT              60
+#define NPC_DESTROYED_ARTIFACT    61
+#define NPC_GUARD_TOWER1          62
+#define NPC_GUARD_TOWER2          63
+#define NPC_BOARD                 64 // also encampment
+#define NPC_ARTIFACT1             65 // Protective artifact
+#define NPC_ARTIFACT2             66 // Guard Tower artifact
+#define NPC_ARTIFACT3             67 // Guard artifact
+#define NPC_ARTIFACT4             68
+#define NPC_MONK_ELMORAD          71
+#define NPC_MONK_KARUS            72
+#define NPC_BLACKSMITH            77
+#define NPC_RENTAL                78
+#define NPC_ELECTION              79 // king elections
+#define NPC_TREASURY              80
+#define NPC_DOMESTIC_ANIMAL       99
+#define NPC_COUPON                100
+#define NPC_HERO_STATUE_1         106 // 1st place
+#define NPC_HERO_STATUE_2         107 // 2nd place
+#define NPC_HERO_STATUE_3         108 // 3rd place
+#define NPC_KEY_QUEST_1           111 // Sentinel of the Key
+#define NPC_KEY_QUEST_2           112 // Watcher of the Key
+#define NPC_KEY_QUEST_3           113 // Protector of the Key
+#define NPC_KEY_QUEST_4           114 // Ranger of the Key
+#define NPC_KEY_QUEST_5           115 // Patroller of the Key
+#define NPC_KEY_QUEST_6           116 // Recon of the Key
+#define NPC_KEY_QUEST_7           117 // Keeper of the Key
+#define NPC_ROBOS                 118 // need to see what he actually does to name this properly
+#define NPC_KARUS_MONUMENT        121 // Luferson Monument/Linate Monument/Bellua monument/Laon Camp Monument
+#define NPC_HUMAN_MONUMENT        122 // El Morad/Asga village/Raiba village/Doda camp monuments
+#define NPC_SERVER_TRANSFER       123
+#define NPC_RANKING               124
+#define NPC_LYONI                 125 // need to see what this NPC actually does to name this properly
+#define NPC_ADINE_BEGINNER_HELPER 127
+#define NPC_FT_1                  129
+#define NPC_FT_2                  130
+#define NPC_FT_3                  131 // also Priest Minerva
+#define NPC_KJWAR                 133
+#define NPC_SIEGE_2               134
+#define NPC_CRAFTSMAN             135 // Craftsman boy, not sure what he's actually used for
+#define NPC_CHAOTIC_GENERATOR     137
+#define NPC_SPY                   141
+#define NPC_ROYAL_GUARD           142
+#define NPC_ROYAL_CHEF            143
+#define NPC_ESLANT_WOMAN          144
+#define NPC_FARMER                145
+#define NPC_GATE_GUARD            148
+#define NPC_ROYAL_ADVISOR         149
+#define NPC_GATE2                 150 // Doda camp gate
+#define NPC_ADELIA                153 // Goddess Adelia[event]
+#define NPC_BIFROST_MONUMENT      155
+#define NPC_CHAOTIC_GENERATOR2    162 // newer type used by the Chaotic Generator
+#define NPC_SCARECROW             171 // official scarecrow byType
+#define NPC_KARUS_WARDER1         190
+#define NPC_KARUS_WARDER2         191
+#define NPC_ELMORAD_WARDER1       192
+#define NPC_ELMORAD_WARDER2       193
+#define NPC_KARUS_GATEKEEPER      198
+#define NPC_ELMORAD_GATEKEEPER    199
+#define NPC_CHAOS_STONE           200
+#define NPC_PVP_MONUMENT          210
+#define NPC_BATTLE_MONUMENT       211
+    // not sure
+#define NPC_GUARD_TRAINEE           45
+#define NPC_NASHIRA                 46
+#define NPC_TRADER_KIM              48
+#define NPC_VERONICA                49
+#define NPC_WARRIOR_SKAKY           73 // Jaki? SalliMan? Warrior Master Skaky?
+#define NPC_SECRET_AGENT_ClARENCE   74
+#define NPC_ARCH_MAGE_DRAKE         75
+#define NPC_PRIEST_MINERVA          76
+#define NPC_HERO_KARUS              109
+#define NPC_ADIEN_BEGINNER_HELPER   126
+#define NPC_ADIRIAN_BEGINNER_HELPER 128
+#define NPC_CAPTAIN_PREMIUM         132
 
 ///////////////// NATION ///////////////////////////////////
 #define UNIFY_NATION 0

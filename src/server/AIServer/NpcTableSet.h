@@ -21,7 +21,7 @@ class CNpcTableSet : public CRecordset {
     long    m_iWeapon2;
     BYTE    m_byGroup;
     BYTE    m_byActType;
-    BYTE    m_byType;
+    int    m_byType;
     BYTE    m_byFamily;
     BYTE    m_byRank;
     BYTE    m_byTitle;

@@ -10188,20 +10188,210 @@ void CUser::ClientEvent(char * pBuf) // The main function for the quest procedur
     //    pEventData = pEvent->m_arEvent.GetData(pNpc->m_byEvent);                        //
 
     switch (pNpc->m_tNpcType) {
-    case NPC_CLERIC:
-        eventid = EVENT_POTION;
-        break;
-
     case NPC_COUPON:
-        eventid = EVENT_COUPON;
-        break;
-
-    case NPC_MONK_ELMORAD:
-        eventid = EVENT_LOGOS_ELMORAD;
-        break;
-
+        eventid = 4001;
+        break; // this one is based on server flag (Renold[Event]).. we'll just assume the flag's set
     case NPC_MONK_KARUS:
-        eventid = EVENT_LOGOS_KARUS;
+        eventid = 2001;
+        break;
+    case NPC_CLAN:
+    case NPC_MONK_ELMORAD:
+        eventid = 1001;
+        break;
+    case NPC_WARRIOR_SKAKY:
+        eventid = 11001;
+        break;
+    case NPC_SECRET_AGENT_ClARENCE:
+        eventid = 12001;
+        break;
+    case NPC_ARCH_MAGE_DRAKE:
+        eventid = 13001;
+        break;
+    case NPC_PRIEST_MINERVA:
+        eventid = 14001;
+        break;
+    case NPC_BLACKSMITH:
+        eventid = 7001;
+        break;
+    case NPC_ISAAC:
+        eventid = 35001;
+        break;
+    case NPC_KAISHAN:
+    case 105: // called NPC5 unknown
+        eventid = 21001;
+        break;
+    case NPC_CAPTAIN:
+        eventid = 15002;
+        break;
+    case NPC_ARENA:
+        eventid = 15951;
+        break;
+    case NPC_GUARD_TRAINEE:
+    case 102: // called NPC2 unknown
+        eventid = 20701;
+        break;
+    case NPC_KEY_QUEST_1:
+        eventid = 15801;
+        break;
+    case NPC_KEY_QUEST_2:
+        eventid = 15821;
+        break;
+    case NPC_KEY_QUEST_3:
+        eventid = 15841;
+        break;
+    case NPC_KEY_QUEST_4:
+        eventid = 15861;
+        break;
+    case NPC_KEY_QUEST_5:
+        eventid = 15881;
+        break;
+    case NPC_KEY_QUEST_6:
+        eventid = 15901;
+        break;
+    case NPC_KEY_QUEST_7:
+        eventid = 15921;
+        break;
+    case NPC_NASHIRA:
+    case 104: // called NPC4 unknown
+        eventid = 20901;
+        break;
+    case NPC_SENTINEL_PATRICK:
+    case 103: // called NPC3 unknown
+        eventid = 20801;
+        break;
+    case NPC_TRADER_KIM:
+    case 101: // called NPC1 unknown
+        eventid = 20601;
+        break;
+    case NPC_LADY:
+    case NPC_VERONICA:
+        eventid = 20501;
+        break;
+    case NPC_SELITH:
+        eventid = 30001;
+        break;
+    case NPC_CLAN_MATCH_ADVISOR:
+        eventid = 31001;
+        break;
+    case NPC_OPERATOR:
+        eventid = 35201;
+        break;
+    case NPC_HERO_STATUE_1:
+    case NPC_HERO_KARUS:
+        eventid = 31101;
+        break;
+    case NPC_HERO_STATUE_2:
+        eventid = 31131;
+        break;
+    case NPC_HERO_STATUE_3:
+        eventid = 31161;
+        break;
+    case 110:
+        eventid = 31171;
+        break;
+    case NPC_ANVIL:
+        eventid = 8030;
+        break;
+    case NPC_ROBOS:
+        eventid = 35480;
+        break;
+    case NPC_SERVER_TRANSFER:
+        eventid = 35541;
+        break;
+    case NPC_LYONI:
+        eventid = 35553;
+        break;
+    case NPC_RANKING:
+        eventid = 35560;
+        break;
+    case NPC_ADIEN_BEGINNER_HELPER:
+        eventid = 35563;
+        break;
+    case NPC_ADINE_BEGINNER_HELPER:
+        eventid = 35594;
+        break;
+    case NPC_ADIRIAN_BEGINNER_HELPER:
+        eventid = 35615;
+        break;
+    case NPC_FT_1:
+        eventid = 20;
+        break;
+    case NPC_FT_2:
+        eventid = 50;
+        break;
+    case NPC_FT_3:
+        eventid = 36;
+        break;
+    case NPC_CAPTAIN_PREMIUM:
+        eventid = 35550;
+        break;
+    case NPC_KJWAR:
+        eventid = 35624;
+        break;
+    case NPC_CLERIC:
+    case NPC_SIEGE_2:
+        eventid = 1;
+        break;
+    case NPC_CRAFTSMAN:
+        eventid = 32000;
+        break;
+    case 136: // Aban[Battlefield Gate-keeper]
+        eventid = 35640;
+        break;
+    case NPC_ATHIAN:
+    case NPC_CHAOTIC_GENERATOR:
+        eventid = 22001;
+        break;
+    case 138: // ?
+        eventid = 35650;
+        break;
+    case 140: // Love Agent
+        eventid = 35662;
+        break;
+    case NPC_SPY:
+        eventid = 1100;
+        break;
+    case NPC_ROYAL_GUARD:
+        eventid = 17000;
+        break;
+    case NPC_ROYAL_CHEF:
+        eventid = 17550;
+        break;
+    case NPC_ESLANT_WOMAN:
+        eventid = 17590;
+        break;
+    case NPC_FARMER:
+        eventid = 17600;
+        break;
+    case 146: // Nameless Warrior
+        eventid = 17630;
+        break;
+    case 147: // ?
+        eventid = 17100;
+        break;
+    case NPC_GATE_GUARD:
+        eventid = 17570;
+        break;
+    case NPC_ROYAL_ADVISOR:
+        eventid = 17520;
+        break;
+    case NPC_GATE2:
+        eventid = 17681;
+        break;
+    case 151: // Sangduf[Teleport NPC]
+        eventid = 15310;
+        break;
+    case 152: // ?
+        eventid = 2901;
+        break;
+    case NPC_ADELIA:
+        eventid = 35212;
+        break;
+    case 154: // ?
+        eventid = 0;
+        break; // it actually returns this...
+    default:
+        eventid = -1;
         break;
     }
 
