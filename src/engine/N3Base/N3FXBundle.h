@@ -37,6 +37,8 @@ class CN3FXBundle : public CN3BaseFileAccess {
     int m_iSourceJoint;
 
     bool m_bDependScale;
+    bool m_bEarthQuake;             // Needs Implementation
+    float m_fEarthQuakeStartTime;  // Needs Implementation
     //__Vector3            m_vTargetScale;
     float m_fTargetScale;
 

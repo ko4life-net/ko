@@ -414,6 +414,15 @@ bool CN3FXBundle::Load(HANDLE hFile) {
         ReadFile(hFile, &m_bStatic, sizeof(bool), &dwRWC, NULL);
     }
 
+    if (m_iVersion == 3) {
+        ReadFile(hFile, &m_bEarthQuake, sizeof(bool), &dwRWC, NULL);
+        if (m_bEarthQuake) {
+            ReadFile(hFile, &m_fEarthQuakeStartTime, sizeof(float), &dwRWC, NULL);
+        } else {
+            m_fEarthQuakeStartTime = 0;
+        }
+    }
+
     return true;
 }
 
