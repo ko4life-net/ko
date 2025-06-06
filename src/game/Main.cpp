@@ -249,9 +249,11 @@ HWND CreateMainWindow(HINSTANCE hInstance) {
         RECT rect{};
         rect.bottom = iHeight;
         rect.right = iWidth;
-        AdjustWindowRect(&rect, dwStyle, FALSE);
-        iHeight = rect.bottom + GetSystemMetrics(SM_CYCAPTION);
-        iWidth = rect.right;
+        if (!AdjustWindowRect(&rect, dwStyle, FALSE)) {
+            CLogWriter::Write("AdjustWindowRect failed.");
+        }
+        iWidth = rect.right - rect.left;
+        iHeight = rect.bottom - rect.top;
     }
 
     return ::CreateWindow("Knight OnLine Client", "Knight OnLine Client", dwStyle, 0, 0, iWidth, iHeight, NULL, NULL,
