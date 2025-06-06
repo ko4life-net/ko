@@ -723,6 +723,7 @@ enum {
 typedef struct __TABLE_ZONE {
     DWORD       dwID;                 // Zone ID
     std::string szGtdFile;            // Game Terrain Data (terrain, tile map, color map)
+    std::string szMapDescription;     // TODO: implement
     std::string szTctFile;            // Tile Color Texture
     std::string szTltFile;            // Tile Light Texture
     std::string szOpdFile;            // Object Post Data (position and collision)
@@ -736,6 +737,10 @@ typedef struct __TABLE_ZONE {
     std::string szEnsFile;            // TODO: implement Environment Sound (rectangle coordinates)
     float       fFOV;                 // TODO: implement
     std::string szFlagFile;           // TODO: implement Flag (textures and transformation)
+    DWORD       ZoneUnknownSkip[4];   // TODO: implement
+    std::string szOpdSubFile;         // TODO: implement
+    uint32_t    ZoneUnknownSkipInt;   // TODO: implement seems to be all 1 except for 2 dungeons they are set to 0
+    std::string szEvtSubFile;         // TODO: implement Game Event (tile sub event)
 } TABLE_ZONE;
 
 typedef struct __TABLE_UI_RESRC {
@@ -870,6 +875,20 @@ typedef struct __TABLE_UI_RESRC {
     std::string szRentalItem;               // 113 TODO: implement
     std::string szRentalMessage;            // 114 TODO: implement
     std::string szRentalCount;              // 115 TODO: implement
+    std::string szNetDio;                   // 117 TODO: implement
+    std::string szLoginIntro;               // 118 TODO: implement
+    std::string szSubLoginIntroSub;         // 119 TODO: implement
+    std::string szCharacterSelect2;         // 120 TODO: implement
+    std::string szCharacterCreate2;         // 121 TODO: implement
+    std::string szOtherState;               // 122 TODO: implement
+    std::string szPpCardBegin;              // 123 TODO: implement
+    std::string szPpCardList;               // 124 TODO: implement
+    std::string szPpCardRegister;           // 125 TODO: implement
+    std::string szPpCardMessage;            // 126 TODO: implement
+    std::string szPpCardBuyList;            // 127 TODO: implement
+    std::string szPpCardMyInfo;             // 128 TODO: implement
+    std::string szNationSelect2;            // 129 TODO: implement
+    std::string szUsaLogo;                  // 130 TODO: implement
 } TABLE_UI_RESRC;
 
 typedef struct __TABLE_ITEM_BASIC // 장착 아이템에 관한 리소스 레코드...
@@ -1050,12 +1069,15 @@ enum e_ItemSlot {
 
 typedef struct __TABLE_PLAYER_LOOKS // NPC, Mob 모습 관한 리소스 레코드...
 {
-    DWORD       dwID;           // NPC 고유 ID
-    std::string szName;         // 캐릭터 이름
-    std::string szJointFile;    // 관절 파일 이름
-    std::string szAniFile;      // 에니메이션 파일 이름
-    std::string szPartFiles[7]; // 각 Character Part - 상체, 하체, 머리, 팔, 다리, 머리카락, 망토
-
+    DWORD       dwID;            // NPC 고유 ID
+    std::string szName;          // 캐릭터 이름
+    std::string szJointFile;     // 관절 파일 이름
+    std::string szAniFile;       // 에니메이션 파일 이름
+    std::string szPartFiles[10]; // 각 Character Part - 상체, 하체, 머리, 팔, 다리, 머리카락, 망토
+    std::string szN3cSkin;       // TODO: implement N3Skin
+    std::string szN3cChar;       // TODO: implement N3Char
+    std::string szNFxPlug;       // TODO: implement FxPlug
+    int iUnknown; // TODO: implement is war tower? (war tower =0 rest = -1
     int iJointRH;    // 오른손 끝 관절번호
     int iJointLH;    // 왼손 끝 관절번호
     int iJointLH2;   // 왼손 팔뚝 관절번호
@@ -1072,6 +1094,9 @@ typedef struct __TABLE_PLAYER_LOOKS // NPC, Mob 모습 관한 리소스 레코�
     int iSndID_Breathe1;
     int iSndID_Reserved0;
     int iSndID_Reserved1;
+    int  iUknownNumbers1;    // TODO: implement
+    int  iUknownNumbers2;    // TODO: implement
+    BYTE iUknownNumbers3[3]; // TODO: implement
 } TABLE_PLAYER;
 
 typedef struct __TABLE_EXCHANGE_QUEST {
@@ -1128,12 +1153,13 @@ typedef struct __TABLE_UPC_SKILL {
     int   iCastTime;   // 캐스팅 시간
     int   iReCastTime; // 다시 캐스팅할때까지 걸리는 시간.
 
-    float fUnkown1;        // TODO: implement
-    int   iPercentSuccess; // 성공률
-    DWORD dw1stTableType;  // 첫번째 타입.
-    DWORD dw2ndTableType;  // 두번째 타입.
-    int   iValidDist;      // 유효거리
-
+    float fUnkown1;          // TODO: implement (temp cast and cooldown for funknown1-2)
+    float fUnkown2;          // TODO: implement
+    int   iPercentSuccess;   // 성공률
+    DWORD dw1stTableType;    // 첫번째 타입.
+    DWORD dw2ndTableType;    // 두번째 타입.
+    int   iValidDist;        // 유효거리
+    int   iUnknownMgcValues; // TODO: Implement
 } TABLE_UPC_ATTACK_B;
 
 typedef struct __TABLE_UPC_SKILL_TYPE_1 {
@@ -1154,11 +1180,13 @@ typedef struct __TABLE_UPC_SKILL_TYPE_2 {
     int   iSuccessType; // 성공타입.
     int   iPower;       // 공격력
     int   iAddDist;     // 거리증가
+    int   iAddDamage;   // TODO: Implement
     int   iNumArrow;    // 화살요구수
 } TABLE_UPC_SKILL_TYPE_2;
 
 typedef struct __TABLE_UPC_SKILL_TYPE_3 {
-    DWORD dwID; // SKILL 고유 ID
+    DWORD dwID;    // SKILL 고유 ID
+    int   iRadius; // TODO: Implement
     int   iDDType;
     int   iStartDamage;
     int   iDuraDamage;
@@ -1169,14 +1197,18 @@ typedef struct __TABLE_UPC_SKILL_TYPE_3 {
 typedef struct __TABLE_UPC_SKILL_TYPE_4 {
     DWORD dwID;      // 일련번호
     int   iBuffType; // 버프타입
+    int   iRadius;   // TODO: implement
     int   iDuration;
     int   iAttackSpeed;     // 공격속도
     int   iMoveSpeed;       // 이동속도
     int   iAC;              // 방어력
+    int   iACPct;           // TODO: implement
     int   iAttack;          // 공격력
+    int   iMagicAttack;     // TODO: implement
     int   iMaxHP;           // MAXHP
     int   iMaxHPPct;        // TODO: implement
     int   iMaxMP;           // TODO: implement
+    int   iMaxMPPct;        // TODO: implement
     int   iStr;             // 힘
     int   iSta;             // 체력
     int   iDex;             // 민첩
@@ -1188,6 +1220,7 @@ typedef struct __TABLE_UPC_SKILL_TYPE_4 {
     int   iMagicResist;     // 마법저항
     int   iDeseaseResist;   // 저주저항
     int   iPoisonResist;    // 독저항
+    int   iExpPct;          // TODO: implement
 } TABLE_UPC_SKILL_TYPE_4;
 
 typedef struct __TABLE_UPC_SKILL_TYPE_5 {

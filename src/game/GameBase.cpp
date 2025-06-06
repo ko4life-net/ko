@@ -74,7 +74,7 @@ void _FormatCoins(int64_t nCoins, std::string & szCoins) {
 }
 
 void CGameBase::StaticMemberInit() {
-    const std::string szLangTail = (::GetUserDefaultLangID() == 0x0404) ? "_TW" : "";
+    const std::string szLangTail = (::GetUserDefaultLangID() == 0x0404) ? "_TW" : "_US";
 
     auto fnLoadTbl = [&](const std::string & szFileStem, auto & pTbl) {
         pTbl = new std::decay_t<decltype(*pTbl)>();
@@ -89,7 +89,7 @@ void CGameBase::StaticMemberInit() {
     fnLoadTbl("Quest_Talk" + szLangTail, s_pTbl_QuestTalk);
     fnLoadTbl("Texts" + szLangTail, s_pTbl_Texts);
     fnLoadTbl("help" + szLangTail, s_pTbl_Help);
-    for (int i = 0; i < MAX_ITEM_EXTENSION; i++) {
+    for (int i = 0; i <= MAX_ITEM_EXTENSION; i++) {
         fnLoadTbl(std::format("Item_Ext_{:d}", i) + szLangTail, s_pTbl_Items_Exts[i]);
     }
     fnLoadTbl("NPC_Looks", s_pTbl_NPC_Looks);
