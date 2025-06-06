@@ -10,6 +10,7 @@
 #include "User.h"
 #include "EventSet.h"
 #include "EbenezerDlg.h"
+#include "WarpInfoSet.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -115,7 +116,10 @@ BOOL C3DMap::LoadMap(HANDLE hFile) {
     n3std::log_file_write("regene\r\n");
     LoadRegeneEvent(hFile); // 이건 내가 추가했슴
     n3std::log_file_write("warplist\r\n");
-    LoadWarpList(hFile);
+
+    //LoadWarpList(hFile); // Orginal from SMD FILE function is not deleted
+
+    LoadWarpListDB(m_nZoneNumber); // Load Warp list from DB
 
     n3std::log_file_write("load event before\r\n");
     if (!LoadEvent()) {
@@ -234,6 +238,50 @@ void C3DMap::LoadWarpList(HANDLE hFile) {
             pWarp = NULL;
         }
     }
+}
+
+BOOL C3DMap::LoadWarpListDB(int m_nZoneNumber) {
+    CWarpInfoSet warpSet;
+
+    if (!warpSet.OpenByZoneId(m_nZoneNumber)) {
+        TRACE("Failed to open warp info set for zone %d\n", m_nZoneNumber);
+        return FALSE;
+    }
+
+    if (warpSet.IsBOF() || warpSet.IsEOF()) {
+        TRACE("No warp info found for zone %d\n", m_nZoneNumber);
+        return TRUE;
+    }
+
+    warpSet.MoveFirst();
+
+    while (!warpSet.IsEOF()) {
+        _WARP_INFO * pWarp = new _WARP_INFO;
+
+        pWarp->sWarpID = (short)warpSet.m_sWarpID;
+        _tcscpy_s(pWarp->strWarpName, warpSet.m_strWarpName);
+        _tcscpy_s(pWarp->strAnnounce, warpSet.m_strAnnounce);
+        pWarp->dwPay = warpSet.m_dwPay;
+        pWarp->sZone = (short)warpSet.m_sZone;
+        pWarp->fX = warpSet.m_fX;
+        pWarp->fY = warpSet.m_fY;
+        pWarp->fZ = warpSet.m_fZ;
+        pWarp->fR = warpSet.m_fR;
+
+        if (!m_WarpArray.PutData(pWarp->sWarpID, pWarp)) {
+            TRACE("DB Warp list PutData Fail - %d\n", pWarp->sWarpID);
+            delete pWarp;
+            pWarp = nullptr;
+        }
+
+        warpSet.MoveNext();
+    }
+
+    m_pMain->m_StatusList.AddString(std::format("Warp list loaded successfully (ZoneId={})", m_nZoneNumber).c_str());
+
+    warpSet.Close();
+
+    return TRUE;
 }
 
 void C3DMap::LoadTerrain(HANDLE hFile) {

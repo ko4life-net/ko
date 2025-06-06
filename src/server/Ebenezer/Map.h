@@ -39,6 +39,7 @@ class C3DMap {
     float m_fUnitDist; // i Grid Distance
                        //
     void            LoadWarpList(HANDLE hFile);
+    BOOL            LoadWarpListDB(int m_nZoneNumber);
     void            LoadRegeneEvent(HANDLE hFile);
     BOOL            IsValidPosition(float x, float z, float y);
     _OBJECT_EVENT * GetObjectEvent(int objectindex) { return m_ObjectEventArray.GetData(objectindex); };
