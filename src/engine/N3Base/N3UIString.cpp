@@ -146,7 +146,7 @@ void CN3UIString::WordWrap() {
             if (m_dwStyle & UISTYLE_STRING_ALIGNVCENTER) {
                 // 문자열의 pixel 길이 측정
                 SIZE sizeTmp = {0, 0};
-                m_pDFont->GetTextExtent("가", 2, &sizeTmp);
+                m_pDFont->GetTextExtent("Arial", 2, &sizeTmp);
                 m_ptDrawPos.y = m_rcRegion.top + ((m_rcRegion.bottom - m_rcRegion.top - sizeTmp.cy) / 2);
             } else {
                 m_ptDrawPos.y = m_rcRegion.top;
@@ -247,70 +247,83 @@ void CN3UIString::WordWrap() {
         }
         m_pDFont->SetText(szNewBuff);
 
-    } else { // mutiline일때는 항상 왼쪽 정렬해서 그린다.
+    } else { // For multiline, always left-align text
         m_ptDrawPos.x = m_rcRegion.left;
         m_ptDrawPos.y = m_rcRegion.top;
 
-        m_NewLineIndices.clear(); // 새로운 라인 인덱스 클리어
+        m_NewLineIndices.clear(); // Clear previous line indices
 
-        // 글자 자르는 코드, 영역 밖으로 벗어나는 글자는 찍지 않는다.
-        int iCX = 0; //, iCY=0;
-        int iCount = 0;
+        int  iCX = 0;    // Horizontal position accumulator
+        int  iCount = 0; // Character index
+        SIZE size = {};  // Used for measuring text
+        int  iStrLen = szString.size();
 
-        // 우선 맨 처음 한줄이 들어갈 수 있는 크기인지 체크하기
-        BOOL bFlag = m_pDFont->GetTextExtent("최", 2, &size);
+        // Check if even one line can fit
+        BOOL bFlag = m_pDFont->GetTextExtent("Arial", 2, &size);
         __ASSERT(bFlag, "cannot get size of dfont");
-        //        iCY += size.cy;
-        //        if (iCY > iRegionHeight)
+
         if (size.cy > iRegionHeight) {
-            // TODO: fix this
             N3_WARN("[CN3UIString::WordWrap]: The text height is greater than the STRING control [2].");
-            // return;
         }
 
-        m_iLineCount = 1;              // 여기까지 오면 1줄은 찍힌다.
-        m_NewLineIndices.push_back(0); // 맨 첨 시작은 0
+        m_iLineCount = 1;
+        m_NewLineIndices.push_back(0);
 
         while (iCount < iStrLen) {
-            if ('\n' == szString[iCount]) // \n
-            {
-                //                szNewBuff += '\n';
-                //                iCY += size.cy;
-                //                if (iCY > iRegionHeight) break;    // 세로 범위가 넘으면 더이상 글자를 찍지 않는다.
+            // Handle newline
+            if (szString[iCount] == '\n') {
                 ++iCount;
                 iCX = 0;
-                if (iCount < iStrLen - 1) {
-                    ++m_iLineCount; // 마지막 글자가 아닐경우 한줄 더하기
+                if (iCount < iStrLen) {
+                    ++m_iLineCount;
                     m_NewLineIndices.push_back(iCount);
                 }
-            } else {
-                int iCC = 0;
-                if (0x80 & szString[iCount]) {
-                    iCC = 2; // 2BYTE 문자
-                } else {
-                    iCC = 1; // 1BYTE 문자
-                }
+                continue;
+            }
 
-                BOOL bFlag = m_pDFont->GetTextExtent(&(szString[iCount]), iCC, &size);
-                __ASSERT(bFlag, "cannot get size of dfont");
-                if ((iCX + size.cx) > iRegionWidth) // 가로 길이가 넘었으면
-                {
-                    //                    szNewBuff += '\n';    // 다음줄로 내린다.
-                    iCX = 0;
-                    //                    iCY += size.cy;
-                    //                    if (iCY > iRegionHeight) break;    // 세로 범위가 넘으면 더이상 글자를 찍지 않는다.
-                    if (iCount < iStrLen - 1) {
-                        ++m_iLineCount; // 마지막 글자가 아닐경우 한줄 더하기
-                        m_NewLineIndices.push_back(iCount);
+            // Start of a word
+            int         wordStart = iCount;
+            std::string word;
+
+            while (iCount < iStrLen && szString[iCount] != ' ' && szString[iCount] != '\n') {
+                if (szString[iCount] & 0x80) {
+                    // 2-byte character (Korean, etc.)
+                    if (iCount + 1 < iStrLen) {
+                        word += szString[iCount];
+                        word += szString[iCount + 1];
+                        iCount += 2;
+                    } else {
+                        word += szString[iCount++];
                     }
+                } else {
+                    // 1-byte character
+                    word += szString[iCount++];
                 }
-                // 글자 카피
-                //                szNewBuff += szString.substr(iCount, iCC);
+            }
 
-                iCount += iCC;
-                iCX += size.cx;
+            // Measure the word
+            SIZE wordSize = {};
+            bFlag = m_pDFont->GetTextExtent(word.c_str(), word.length(), &wordSize);
+            __ASSERT(bFlag, "cannot get size of dfont");
+
+            if ((iCX + wordSize.cx) > iRegionWidth) {
+                // Word doesn't fit, move to next line
+                m_NewLineIndices.push_back(wordStart);
+                ++m_iLineCount;
+                iCX = wordSize.cx;
+            } else {
+                iCX += wordSize.cx;
+            }
+
+            // If there's a space after the word, account for that
+            if (iCount < iStrLen && szString[iCount] == ' ') {
+                SIZE spaceSize = {};
+                m_pDFont->GetTextExtent(" ", 1, &spaceSize);
+                iCX += spaceSize.cx;
+                ++iCount;
             }
         }
+
         SetStartLine(0);
     }
     //m_pDFont->SetText(szNewBuff);
@@ -323,7 +336,7 @@ void CN3UIString::SetStartLine(int iLine) {
     m_iStartLine = iLine;
 
     SIZE size = {0, 0};
-    BOOL bFlag = m_pDFont->GetTextExtent("최", 2, &size);
+    BOOL bFlag = m_pDFont->GetTextExtent("Arial", 2, &size);
     __ASSERT(bFlag, "cannot get size of dfont");
     if (0 == size.cy) {
         return;
